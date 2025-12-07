@@ -5,13 +5,9 @@ from openai import OpenAI
 
 
 class OpenRouterClient:
-    def __init__(self, api_key):
+    def __init__(self, api_key, base_url="https://openrouter.ai/api/v1"):
         self.api_key = api_key
-        # Tailscale Funnel URL (HTTPS - Tailscale handles SSL termination)
-        # self.base_url = "https://oc-micro.tail92c7a.ts.net/api/v1"
-        # For local testing without Tailscale, use: "http://localhost:9000/api/v1"
-        self.base_url = "http://localhost:9000/api/v1"
-        # Direct OpenRouter: "https://openrouter.ai/api/v1"
+        self.base_url = base_url
         self.client = OpenAI(
             base_url=self.base_url,
             api_key=api_key,

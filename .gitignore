@@ -5,3 +5,7 @@ __pycache__/
 .venv
 env/
 venv/
+node_modules
+dist
+build
+.coverage*
