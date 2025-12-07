@@ -41,6 +41,33 @@ body {
     overflow: hidden; /* Prevent body scroll */
 }
 
+/* Enable text selection for labels and text content */
+label,
+.lang-checkbox,
+.text-area,
+.panel-title,
+.stats,
+.form-group label,
+.tab-content,
+.modal-body,
+p,
+span {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* Keep checkboxes, radio buttons, and buttons non-selectable */
+input[type="checkbox"],
+input[type="radio"],
+button,
+.btn,
+.provider-header {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
 input,
 textarea,
 select,
@@ -190,6 +217,7 @@ button {
 .panel-controls {
     display: flex;
     align-items: center;
+    min-height: 48px; /* Ensure consistent height even when empty */
 }
 
 .panel-fill {
@@ -338,6 +366,12 @@ button {
     font-size: 11px;
 }
 
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Selectors (Language/Style) */
 .language-selector,
 .style-selector {
@@ -448,6 +482,8 @@ button {
     flex-direction: column;
     /* max-height: 85vh; <-- Controlled by inline styles now */
     /* animation: scaleIn 0.2s ease-out; <-- Handled manually or disabled for drag */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 /* Standalone Settings Window Mode */
@@ -505,9 +541,33 @@ button {
     color: white;
 }
 
+.close-btn-text {
+    padding: 6px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+}
+
+.close-btn-text:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--text-secondary);
+}
+
 .modal-body {
     padding: var(--spacing-lg);
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    margin: 0; /* Remove all margins */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Form Groups in Settings */
@@ -637,15 +697,19 @@ button {
 
 /* Settings Modal Extensions */
 .settings-modal {
-    width: 900px !important; /* Wider for split view */
+    /* Width is controlled by inline styles from geometry */
+    min-width: 780px; /* Minimum width for 4-column language grid */
     height: 700px;
-    max-width: 95vw;
+    max-width: none; /* Allow full expansion */
 }
 
 .settings-body {
     padding: 0; /* Remove default padding for tabs */
     display: flex;
     flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden; /* Let child elements handle scrolling */
 }
 
 /* Tabs */
@@ -681,7 +745,11 @@ button {
 .tab-content {
     padding: var(--spacing-lg);
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     flex: 1;
+    margin: 0; /* Remove all margins */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* General Tab Tweaks */
@@ -689,6 +757,8 @@ button {
     margin-bottom: 24px;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .section:last-child {
@@ -763,6 +833,26 @@ button {
     display: flex;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-sm);
+    align-items: center;
+}
+
+.sort-select {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 20px;
+}
+
+.sort-select:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--text-secondary);
 }
 
 .models-list,
@@ -802,6 +892,10 @@ button {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+}
+
+.model-item.flat {
+    padding-left: 12px; /* No indent for flat list */
 }
 
 .model-item:hover {
@@ -850,9 +944,26 @@ button {
 }
 
 /* Language Grid */
+.languages-section {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.languages-section:last-child {
+    border-bottom: none;
+}
+
+.languages-section h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 .languages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-sm);
 }
 

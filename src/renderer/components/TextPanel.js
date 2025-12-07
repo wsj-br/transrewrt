@@ -12,9 +12,19 @@ const TextPanel = ({
   onClear,
   onCopy,
   onPaste,
+  fontFamily,
+  fontSize,
+  textColor,
 }) => {
   const headerDisplay = headerMeta ?? stats;
   const footerDisplay = footerStats ?? stats;
+
+  // Build inline styles for the textarea
+  const textareaStyle = {
+    fontFamily: fontFamily || undefined,
+    fontSize: fontSize ? `${fontSize}px` : undefined,
+    color: textColor || undefined,
+  };
 
   return (
     <>
@@ -53,6 +63,7 @@ const TextPanel = ({
           placeholder={placeholder}
           readOnly={readOnly}
           aria-label={title || placeholder || "Text panel"}
+          style={textareaStyle}
         ></textarea>
         <div className="controls">
           <div className="stats">{footerDisplay}</div>

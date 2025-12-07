@@ -1,0 +1,35 @@
+{
+  "api_key": "",
+  "last_used_model": "google/gemma-3-27b-it:free",
+  "available_models": [
+    "google/gemma-3-27b-it:free",
+    "x-ai/grok-4.1-fast:free",
+    "z-ai/glm-4.5-air:free",
+    "google/gemma-3n-e2b-it:free",
+    "tngtech/deepseek-r1t2-chimera:free",
+    "qwen/qwen3-4b:free",
+    "qwen/qwen3-235b-a22b:free",
+    "openai/gpt-oss-20b:free",
+    "anthropic/claude-3-haiku"
+  ],
+  "available_languages": [
+    "Brazilian Portuguese",
+    "English (UK)",
+    "Spanish (ES)"
+  ],
+  "auto_copy": false,
+  "real_time_translation": false,
+  "enter_behavior": "Shift-Translate",
+  "font_family": "Verdana",
+  "font_size": 13,
+  "input_text_color": "#FFFFFF",
+  "output_text_color": "#efefef",
+  "theme": "System",
+  "window_geometry": "1000x700",
+  "settings_modal_geometry": {
+    "width": 950,
+    "height": 640
+  },
+  "total_cost": 0.0,
+  "api_url": "https://openrouter.ai/api/v1"
+}

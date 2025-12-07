@@ -7,6 +7,7 @@ import SettingsDialog from "./SettingsDialog";
 import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
 import { useAppContext } from "../contexts/AppContext";
+import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
 
 const App = () => {
@@ -357,6 +358,15 @@ const App = () => {
     }
   };
 
+  // Get all languages (predefined + any custom languages from settings)
+  const allLanguages = useMemo(() => {
+    const selectedSet = new Set(languages);
+    const customLangs = Array.from(selectedSet).filter(
+      lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
+    );
+    return [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) => a.localeCompare(b));
+  }, [languages]);
+
   const leftPanelControls =
     currentMode === "translate" ? (
       <LanguageSelector
@@ -364,6 +374,7 @@ const App = () => {
         value={sourceLanguage}
         onChange={setSourceLanguage}
         languages={languages}
+        allLanguages={allLanguages}
         detectLanguage={true}
       />
     ) : (
@@ -381,6 +392,7 @@ const App = () => {
       value={targetLanguage}
       onChange={setTargetLanguage}
       languages={languages}
+      allLanguages={allLanguages}
     />
   );
 
@@ -388,9 +400,7 @@ const App = () => {
 
   const leftPanel = (
     <div className="panel-stack panel-stack--padded">
-      {leftPanelControls && (
-        <div className="panel-controls">{leftPanelControls}</div>
-      )}
+      <div className="panel-controls">{leftPanelControls || null}</div>
       <div className="panel-fill">
         <TextPanel
           title="Input"
@@ -400,6 +410,9 @@ const App = () => {
           footerStats={getInputStats()}
           onClear={clearInput}
           onPaste={pasteToInput}
+          fontFamily={settings.font_family}
+          fontSize={settings.font_size}
+          textColor={settings.input_text_color}
         />
       </div>
       {!settings.enable_real_time_processing && (
@@ -410,9 +423,7 @@ const App = () => {
 
   const rightPanel = (
     <div className="panel-stack panel-stack--padded">
-      {rightPanelControls && (
-        <div className="panel-controls">{rightPanelControls}</div>
-      )}
+      <div className="panel-controls">{rightPanelControls || null}</div>
       <div className="panel-fill">
         <TextPanel
           title="Output"
@@ -423,6 +434,9 @@ const App = () => {
           headerMeta={outputMeta}
           footerStats={`${getOutputStats()} | Model: ${lastRunModel || "N/A"}`}
           onCopy={copyOutput}
+          fontFamily={settings.font_family}
+          fontSize={settings.font_size}
+          textColor={settings.output_text_color}
         />
       </div>
       {!settings.enable_real_time_processing && (

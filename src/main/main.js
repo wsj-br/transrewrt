@@ -49,48 +49,6 @@ const saveWindowState = (win) => {
   }
 };
 
-const createWindow = () => {
-  // Load saved window state
-  const savedState = loadWindowState();
-
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    x: savedState ? savedState.x : undefined,
-    y: savedState ? savedState.y : undefined,
-    width: savedState ? savedState.width : 1000,
-    height: savedState ? savedState.height : 700,
-    icon: path.join(__dirname, "../../tr_logo.ico"),
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  // Restore maximized state
-  if (savedState && savedState.isMaximized) {
-    mainWindow.maximize();
-  }
-
-  // Save window state on resize, move, and close
-  mainWindow.on("resize", () => saveWindowState(mainWindow));
-  mainWindow.on("move", () => saveWindowState(mainWindow));
-
-  // and load the index.html of the app.
-  if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL("http://localhost:3000");
-    mainWindow.webContents.openDevTools();
-  } else {
-    mainWindow.loadFile(path.join(__dirname, "../../dist/index.html"));
-  }
-
-  // Remove menu bar
-  mainWindow.setMenuBarVisibility(false);
-
-  // Save window state on close
-  // Save window state on close
-  mainWindow.on("close", () => saveWindowState(mainWindow));
-};
 
 // Get the path to store SETTINGS window state
 const getSettingsWindowStatePath = () => {
@@ -127,7 +85,69 @@ const saveSettingsWindowState = (win) => {
   }
 };
 
+let mainWindow = null;
 let settingsWindow = null;
+
+const createWindow = () => {
+  // Load saved window state
+  const savedState = loadWindowState();
+
+  // Create the browser window.
+  mainWindow = new BrowserWindow({
+    x: savedState ? savedState.x : undefined,
+    y: savedState ? savedState.y : undefined,
+    width: savedState ? savedState.width : 1000,
+    height: savedState ? savedState.height : 700,
+    icon: path.join(__dirname, "../../tr_logo.ico"),
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  // Restore maximized state
+  if (savedState && savedState.isMaximized) {
+    mainWindow.maximize();
+  }
+
+  // Save window state on resize, move, and close
+  mainWindow.on("resize", () => saveWindowState(mainWindow));
+  mainWindow.on("move", () => saveWindowState(mainWindow));
+
+  // and load the index.html of the app.
+  if (process.env.NODE_ENV === "development") {
+    mainWindow.loadURL("http://localhost:3000");
+    mainWindow.webContents.openDevTools();
+  } else {
+    mainWindow.loadFile(path.join(__dirname, "../../dist/index.html"));
+  }
+
+  // Remove menu bar
+  mainWindow.setMenuBarVisibility(false);
+
+  // Add keyboard shortcut to open DevTools (Ctrl+Shift+I or F12)
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+      mainWindow.webContents.toggleDevTools();
+    } else if (input.key === 'F12') {
+      mainWindow.webContents.toggleDevTools();
+    }
+  });
+
+  // Close settings window when main window closes
+  mainWindow.on("close", () => {
+    saveWindowState(mainWindow);
+    // Close settings window if it's open
+    if (settingsWindow && !settingsWindow.isDestroyed()) {
+      settingsWindow.close();
+    }
+  });
+
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+  });
+};
 
 const createSettingsWindow = () => {
   if (settingsWindow) {
@@ -152,6 +172,16 @@ const createSettingsWindow = () => {
   });
 
   settingsWindow.setMenuBarVisibility(false);
+  settingsWindow.setMinimumSize(780, 300); // Minimum width for 4-column language grid
+
+  // Add keyboard shortcut to open DevTools in settings window (Ctrl+Shift+I or F12)
+  settingsWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+      settingsWindow.webContents.toggleDevTools();
+    } else if (input.key === 'F12') {
+      settingsWindow.webContents.toggleDevTools();
+    }
+  });
 
   settingsWindow.on("resize", () => saveSettingsWindowState(settingsWindow));
   settingsWindow.on("move", () => saveSettingsWindowState(settingsWindow));

@@ -5,10 +5,10 @@
   "main": "src/main/main.js",
   "scripts": {
     "dev": "concurrently \"npm run watch\" \"npm run electron\"",
-    "watch": "webpack serve --mode development --port 3000",
-    "electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "watch": "webpack serve --mode development --port 3030",
+    "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron .",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
-    "package": "npm run build-renderer && electron-builder",
+    "package": "npm run build-renderer && node scripts/build-with-timestamp.js",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,22 +18,39 @@
     "translator",
     "rewriter"
   ],
-  "author": "T&R Team",
+  "author": "Waldemar Scudeller Jr.",
   "license": "MIT",
   "build": {
-    "appId": "com.yourcompany.translator-and-rewriter",
+    "appId": "br.com.wsj.translator-and-rewriter",
     "productName": "Translator & Rewriter",
     "files": [
       "dist/**/*",
       "src/main/main.js",
       "package.json"
     ],
+    "extraFiles": [
+      {
+        "from": "config_default.json",
+        "to": "config_default.json"
+      }
+    ],
     "directories": {
       "output": "release",
-      "buildResources": "assets"
+      "buildResources": "."
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "forceCodeSigning": false,
+      "icon": "tr_logo.ico",
+      "artifactName": "${productName} Setup ${version}-${env.BUILD_TIMESTAMP}.${ext}"
+    },
+    "nsis": {
+      "installerIcon": "tr_logo.ico",
+      "uninstallerIcon": "tr_logo.ico",
+      "installerHeaderIcon": "tr_logo.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Translator & Rewriter"
     }
   },
   "devDependencies": {

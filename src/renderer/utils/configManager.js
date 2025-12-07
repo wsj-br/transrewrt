@@ -21,54 +21,59 @@ class ConfigManager {
       // If running in Electron, try to load from file and merge
       if (window.electronAPI) {
         const fileConfig = window.electronAPI.readConfig();
-        if (fileConfig) {
+        // readConfig() always returns an object (never null), either from config.json or config_default.json
+        if (fileConfig && Object.keys(fileConfig).length > 0) {
           this.config = { ...this.config, ...fileConfig };
           console.log("Loaded config from file:", this.config);
         }
-
-        if (Object.keys(this.config).length === 0) {
-          this.setDefaultConfig();
-        }
-      } else {
-        if (Object.keys(this.config).length === 0) {
-          this.setDefaultConfig();
-        }
+      }
+      
+      // If config is still empty after all attempts, log a warning
+      // This should not happen in Electron since readConfig() creates config from defaults
+      if (Object.keys(this.config).length === 0) {
+        console.warn("No configuration loaded. This may cause issues.");
       }
     } catch (error) {
       console.error("Error loading config:", error);
-      this.setDefaultConfig();
+      // Keep empty config - readConfig() should have handled defaults
     }
-  }
-
-  setDefaultConfig() {
-    this.config = {
-      api_key: "",
-      last_used_model: "",
-      available_models: [],
-      available_languages: [],
-      auto_copy: false,
-      real_time_translation: false,
-      enter_behavior: "Translate",
-      font_family: "Arial",
-      font_size: 14,
-      input_text_color: "#ffffff",
-      output_text_color: "#ffffff",
-      window_geometry: "1000x700",
-      settings_modal_geometry: { width: 950, height: 640 },
-      total_cost: 0.0,
-      api_url: "https://openrouter.ai/api/v1",
-    };
   }
 
   persistToFile() {
     try {
+      // Use electronAPI to write config if available (ensures consistent location)
+      if (window.electronAPI && window.electronAPI.writeConfig) {
+        const success = window.electronAPI.writeConfig(this.config);
+        if (success) {
+          return;
+        }
+        // If writeConfig fails, fall back to old method
+      }
+
+      // Fallback: try to write using require (for compatibility)
       const electronRequire =
         typeof window !== "undefined" && window.require ? window.require : null;
       if (!electronRequire) return;
       const fs = electronRequire("fs");
       const path = electronRequire("path");
-      const filePath = path.join(process.cwd(), "config.json");
+      
+      // Try to get the config path from electronAPI if available
+      let filePath;
+      if (window.electronAPI && window.electronAPI.getConfigPath) {
+        filePath = window.electronAPI.getConfigPath();
+      } else {
+        // Fallback to executable directory
+        filePath = path.join(path.dirname(process.execPath || process.cwd()), "config.json");
+      }
+      
+      // Ensure directory exists
+      const configDir = path.dirname(filePath);
+      if (!fs.existsSync(configDir)) {
+        fs.mkdirSync(configDir, { recursive: true });
+      }
+      
       fs.writeFileSync(filePath, JSON.stringify(this.config, null, 2), "utf8");
+      console.log(`Persisted config to: ${filePath}`);
     } catch (error) {
       console.error("Error writing config file:", error);
     }

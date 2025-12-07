@@ -37,6 +37,22 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Watch for changes in settings.available_languages and update languages state
+  useEffect(() => {
+    const currentLangs = settings.available_languages || [];
+    // Always update to ensure we have the latest from settings
+    // Create a new array reference to trigger re-renders
+    setLanguages([...currentLangs]);
+  }, [settings.available_languages]);
+
+  // Watch for changes in settings.available_models and update availableModels state
+  useEffect(() => {
+    const currentModels = settings.available_models || [];
+    // Always update to ensure we have the latest from settings
+    // Create a new array reference to trigger re-renders
+    setAvailableModels([...currentModels]);
+  }, [settings.available_models]);
+
   // Load models and languages on startup
   useEffect(() => {
     const loadData = async () => {
@@ -97,6 +113,9 @@ export const AppProvider = ({ children }) => {
 
         // Also refresh models/availability if that changed
         setAvailableModels(configManager.get("available_models") || []);
+        
+        // Also refresh languages if that changed
+        setLanguages(configManager.get("available_languages") || []);
 
         // Update API base URL just in case
         apiService.setBaseUrl(
@@ -146,6 +165,16 @@ export const AppProvider = ({ children }) => {
     apiService.setBaseUrl(
       updatedSettings.api_url || "https://openrouter.ai/api/v1",
     );
+    
+    // Update languages state if available_languages changed
+    if (newSettings.available_languages !== undefined) {
+      setLanguages(newSettings.available_languages || []);
+    }
+    
+    // Update availableModels state if available_models changed
+    if (newSettings.available_models !== undefined) {
+      setAvailableModels(newSettings.available_models || []);
+    }
   };
 
   // Update a single setting
@@ -157,6 +186,30 @@ export const AppProvider = ({ children }) => {
     // Update the API service base URL when settings change
     if (key === "api_url") {
       apiService.setBaseUrl(value || "https://openrouter.ai/api/v1");
+    }
+    
+    // Update languages state when available_languages changes
+    if (key === "available_languages") {
+      // Create a new array reference to ensure React detects the change
+      const newLanguages = Array.isArray(value) ? [...value] : (value || []);
+      setLanguages(newLanguages);
+      
+      // Notify other windows about the settings update
+      if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
+        window.electronAPI.notifySettingsUpdated();
+      }
+    }
+    
+    // Update availableModels state when available_models changes
+    if (key === "available_models") {
+      // Create a new array reference to ensure React detects the change
+      const newModels = Array.isArray(value) ? [...value] : (value || []);
+      setAvailableModels(newModels);
+      
+      // Notify other windows about the settings update
+      if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
+        window.electronAPI.notifySettingsUpdated();
+      }
     }
   };
 

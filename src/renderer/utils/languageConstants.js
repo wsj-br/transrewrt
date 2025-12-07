@@ -1,0 +1,27 @@
+// All available languages (predefined list)
+export const ALL_AVAILABLE_LANGUAGES = [
+  'Arabic',
+  'Bengali',
+  'Brazilian Portuguese',
+  'Dutch',
+  'English (UK)',
+  'English (US)',
+  'French',
+  'German',
+  'Hindi',
+  'Italian',
+  'Japanese',
+  'Javanese',
+  'Malay',
+  'Mandarin Chinese',
+  'Polish',
+  'Portuguese (PT)',
+  'Punjabi',
+  'Romanian',
+  'Russian',
+  'Spanish',
+  'Spanish (ES)',
+  'Telugu',
+  'Ukrainian',
+  'Wu Chinese'
+].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true }));
