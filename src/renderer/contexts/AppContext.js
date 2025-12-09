@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
+import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 
 // Create the context
 const AppContext = createContext();
@@ -53,40 +54,28 @@ export const AppProvider = ({ children }) => {
     setAvailableModels([...currentModels]);
   }, [settings.available_models]);
 
-  // Load models and languages on startup
+  // Load languages on startup (models are loaded when Settings opens)
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
+    // Use predefined language list instead of calling non-existent API endpoint
+    const loadLanguages = () => {
       try {
-        // Set the API base URL from settings
+        // Set the API base URL from settings (for other API calls)
         const currentSettings = configManager.getAll();
         apiService.setBaseUrl(
           currentSettings.api_url || "https://openrouter.ai/api/v1",
         );
 
-        const [loadedModels, loadedLanguages] = await Promise.all([
-          apiService.getModels(),
-          apiService.getLanguages(),
-        ]);
-
-        if (loadedModels && loadedModels.length > 0) {
-          setAllModels(loadedModels);
-
-          // If no available models are configured, select all by default
-          const currentAvailable = configManager.get("available_models");
-          if (!currentAvailable || currentAvailable.length === 0) {
-            const allIds = loadedModels.map((m) => m.id);
-            setAvailableModels(allIds);
-            configManager.set("available_models", allIds);
-          }
-        }
-
-        if (loadedLanguages && loadedLanguages.length > 0) {
-          setLanguages(loadedLanguages);
-          // If no available languages are configured, select all (or don't overwrite user choice)
-          // The python code defaults to all if empty?
-          const currentLangs = configManager.get("available_languages");
-          if (!currentLangs || currentLangs.length === 0) {
+        // Check if there are already configured languages
+        const currentLangs = configManager.get("available_languages");
+        
+        if (currentLangs && currentLangs.length > 0) {
+          // Use the configured languages
+          setLanguages(currentLangs);
+        } else {
+          // If no available languages are configured, use all available languages as default
+          const loadedLanguages = ALL_AVAILABLE_LANGUAGES;
+          if (loadedLanguages && loadedLanguages.length > 0) {
+            setLanguages(loadedLanguages);
             configManager.set("available_languages", loadedLanguages);
           }
         }
@@ -94,14 +83,12 @@ export const AppProvider = ({ children }) => {
         // Update settings state
         setSettings(configManager.getAll());
       } catch (err) {
-        setError("Failed to load models and languages");
+        setError("Failed to load languages");
         console.error(err);
-      } finally {
-        setLoading(false);
       }
     };
 
-    loadData();
+    loadLanguages();
 
     // Listen for settings updates from other windows
     if (window.electronAPI && window.electronAPI.onSettingsUpdated) {
@@ -310,6 +297,39 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Fetch models from API (called when Settings opens)
+  const fetchModels = async () => {
+    try {
+      // Set the API base URL from settings
+      const currentSettings = configManager.getAll();
+      apiService.setBaseUrl(
+        currentSettings.api_url || "https://openrouter.ai/api/v1",
+      );
+
+      const loadedModels = await apiService.getModels();
+
+      if (loadedModels && loadedModels.length > 0) {
+        setAllModels(loadedModels);
+
+        // If no available models are configured, select all by default
+        const currentAvailable = configManager.get("available_models");
+        if (!currentAvailable || currentAvailable.length === 0) {
+          const allIds = loadedModels.map((m) => m.id);
+          setAvailableModels(allIds);
+          configManager.set("available_models", allIds);
+          // Update settings state to reflect the change
+          setSettings(configManager.getAll());
+        }
+      }
+
+      return loadedModels || [];
+    } catch (err) {
+      console.error("Failed to fetch models:", err);
+      setError("Failed to fetch models");
+      return [];
+    }
+  };
+
   // Context value
   const contextValue = {
     settings,
@@ -323,6 +343,7 @@ export const AppProvider = ({ children }) => {
     setSetting,
     translate,
     rewrite,
+    fetchModels, // Function to fetch models from API
     calculateCost: getCalculateCost(),
   };
 

@@ -194,25 +194,6 @@ class APIService {
     }
   }
 
-  /**
-   * Get list of available languages
-   * @returns {Promise<Array>} List of available languages
-   */
-  async getLanguages() {
-    try {
-      const response = await fetch(`${this.baseUrl}/languages`);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.languages || [];
-    } catch (error) {
-      console.error("Error fetching languages:", error);
-      return [];
-    }
-  }
 }
 
 export default new APIService();

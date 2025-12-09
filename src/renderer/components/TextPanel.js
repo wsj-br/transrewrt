@@ -1,7 +1,9 @@
 import React from "react";
+import { X, Clipboard, ClipboardPaste } from "lucide-react";
 
 const TextPanel = ({
   title,
+  icon,
   text,
   onTextChange,
   placeholder,
@@ -12,6 +14,7 @@ const TextPanel = ({
   onClear,
   onCopy,
   onPaste,
+  onPasteEvent,
   fontFamily,
   fontSize,
   textColor,
@@ -38,7 +41,10 @@ const TextPanel = ({
             gap: "8px",
           }}
         >
-          <div className="panel-title">{title}</div>
+          <div className="panel-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {icon && <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>}
+            {title}
+          </div>
           {headerDisplay && (
             <div
               className="panel-meta"
@@ -60,6 +66,15 @@ const TextPanel = ({
           className="text-area"
           value={text}
           onChange={(e) => onTextChange(e.target.value)}
+          onPaste={(e) => {
+            // Get the pasted text from clipboard
+            const pastedText = e.clipboardData.getData('text');
+            if (pastedText && onPasteEvent) {
+              // Call onPasteEvent immediately to set the flag before onChange fires
+              // This ensures the flag is set before React processes the state update
+              onPasteEvent(pastedText);
+            }
+          }}
           placeholder={placeholder}
           readOnly={readOnly}
           aria-label={title || placeholder || "Text panel"}
@@ -69,17 +84,20 @@ const TextPanel = ({
           <div className="stats">{footerDisplay}</div>
           <div className="buttons">
             {onClear && (
-              <button className="btn" onClick={onClear}>
+              <button className="btn" onClick={onClear} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <X size={14} />
                 Clear
               </button>
             )}
             {onCopy && (
-              <button className="btn primary" onClick={onCopy}>
+              <button className="btn primary" onClick={onCopy} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Clipboard size={14} />
                 Copy
               </button>
             )}
             {onPaste && (
-              <button className="btn" onClick={onPaste}>
+              <button className="btn" onClick={onPaste} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <ClipboardPaste size={14} />
                 Paste
               </button>
             )}

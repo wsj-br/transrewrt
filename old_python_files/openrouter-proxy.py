@@ -90,9 +90,37 @@ class ProxyHandler(BaseHTTPRequestHandler):
         client_ip = self.client_address[0]
         try:
             # Construct target URL
-            url = f"{self.TARGET_SCHEME}://{self.TARGET_HOST}{self.path}"
-            logger.info(f"[{client_ip}] {self.command} {self.path}")
-            logger.debug(f"[{client_ip}] Target URL: {url}")
+            received_url = self.path
+            
+            # Handle path forwarding: ensure /api/v1 prefix is present
+            # Tailscale Funnel may strip the /api/v1 prefix when routing to backend
+            forward_path = received_url
+            
+            # Check if path is root or empty - return error instead of forwarding
+            if forward_path == '/' or forward_path == '':
+                logger.warning(f"[{client_ip}] Rejected request to root path: {received_url}")
+                self.send_json_error(400, "Bad Request: No API endpoint specified. Please include an endpoint path (e.g., /api/v1/models, /api/v1/chat/completions)")
+                return
+            
+            if not forward_path.startswith('/api/v1'):
+                # If path doesn't start with /api/v1, prepend it
+                # This handles cases where Tailscale Funnel strips the prefix
+                if forward_path.startswith('/'):
+                    forward_path = '/api/v1' + forward_path
+                else:
+                    forward_path = '/api/v1/' + forward_path
+            # If path already starts with /api/v1, use it as-is
+            
+            # Additional check: if path is exactly /api/v1 (no endpoint), return error
+            if forward_path == '/api/v1' or forward_path == '/api/v1/':
+                logger.warning(f"[{client_ip}] Rejected request to /api/v1 without endpoint: {received_url}")
+                self.send_json_error(400, "Bad Request: No API endpoint specified. Please include an endpoint path (e.g., /api/v1/models, /api/v1/chat/completions)")
+                return
+            
+            called_url = f"{self.TARGET_SCHEME}://{self.TARGET_HOST}{forward_path}"
+            logger.info(f"[{client_ip}] {self.command} - Received URL: {received_url}")
+            logger.info(f"[{client_ip}] {self.command} - Forwarding to: {called_url}")
+            url = called_url
             
             # Log incoming headers (excluding sensitive ones)
             sensitive_headers = {'authorization', 'cookie', 'x-api-key'}
@@ -218,8 +246,16 @@ class ProxyHandler(BaseHTTPRequestHandler):
                     logger.warning(f"[{client_ip}] {self.command} {self.path} - {e.code} (forwarded error body)")
                 
             except urllib.error.URLError as e:
-                logger.error(f"[{client_ip}] URL Error connecting to upstream: {e.reason}")
-                logger.error(f"[{client_ip}] Failed URL: {url}")
+                error_msg = str(e.reason)
+                # Check if it's a DNS resolution error
+                if "Name or service not known" in error_msg or "[Errno -2]" in error_msg:
+                    logger.error(f"[{client_ip}] DNS Resolution Error: Cannot resolve hostname '{self.TARGET_HOST}'")
+                    logger.error(f"[{client_ip}] This usually means DNS is not configured correctly in the container")
+                    logger.error(f"[{client_ip}] Failed URL: {url}")
+                    logger.error(f"[{client_ip}] Suggestion: Ensure container has DNS servers configured (e.g., --dns 8.8.8.8)")
+                else:
+                    logger.error(f"[{client_ip}] URL Error connecting to upstream: {e.reason}")
+                    logger.error(f"[{client_ip}] Failed URL: {url}")
                 self.send_json_error(502, f"Bad Gateway: {e.reason}")
                 
             except Exception as e:
@@ -240,11 +276,21 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
 def main():
     """Start the proxy server"""
-    host = 'localhost'
-    port = 9000
+    # Allow host override via environment variable (useful for Docker)
+    host = os.environ.get('PROXY_HOST', 'localhost')
+    # Default to 0.0.0.0 if running in Docker (detected by container env)
+    if os.path.exists('/.dockerenv') or os.environ.get('DOCKER_CONTAINER'):
+        host = '0.0.0.0'
     
-    # Allow port override via command line
-    if len(sys.argv) > 1:
+    port = 9000
+    # Allow port override via environment variable or command line
+    if os.environ.get('PROXY_PORT'):
+        try:
+            port = int(os.environ.get('PROXY_PORT'))
+        except ValueError:
+            logger.error("Invalid port number in PROXY_PORT environment variable")
+            sys.exit(1)
+    elif len(sys.argv) > 1:
         try:
             port = int(sys.argv[1])
         except ValueError:
@@ -258,7 +304,6 @@ def main():
         httpd = ThreadedHTTPServer(server_address, ProxyHandler)
         logger.info(f"OpenRouter API Proxy started on {host}:{port}")
         logger.info(f"Forwarding requests to https://{ProxyHandler.TARGET_HOST}")
-        logger.info("Press Ctrl+C to stop")
         httpd.serve_forever()
     except KeyboardInterrupt:
         logger.info("\nShutting down proxy server...")

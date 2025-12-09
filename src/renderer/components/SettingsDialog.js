@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useAppContext } from '../contexts/AppContext';
 import { ALL_AVAILABLE_LANGUAGES } from '../utils/languageConstants';
+import { Trash2, Key, DollarSign, Settings as SettingsIcon, Palette, Cpu, Languages } from 'lucide-react';
 
 const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
-  const { settings, allModels, languages, updateSettings, setSetting } = useAppContext();
+  const { settings, allModels, languages, updateSettings, setSetting, fetchModels } = useAppContext();
+  const prevIsOpenRef = useRef(false);
 
   // Local state for pending changes
   const [localSettings, setLocalSettings] = useState({});
@@ -40,20 +42,48 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
   const [showApiKey, setShowApiKey] = useState(false);
   const [apiTestStatus, setApiTestStatus] = useState(null); // null, 'testing', 'success', 'error'
   const [apiTestMessage, setApiTestMessage] = useState('');
+  
+  // Models loading state
+  const [modelsLoading, setModelsLoading] = useState(false);
+  const [modelsError, setModelsError] = useState(null);
 
-  // Initialize checks
+  // Initialize checks when dialog opens
   useEffect(() => {
+    const wasOpen = prevIsOpenRef.current;
+    prevIsOpenRef.current = isOpen;
+    
     if (isOpen) {
+      // Only reset UI state when dialog first opens (not when settings change)
+      const isOpening = !wasOpen;
+      
+      if (isOpening) {
+        setShowApiKey(false);
+        setApiTestStatus(null);
+        setApiTestMessage('');
+        setCustomLanguage('');
+        setModelsError(null);
+        
+        // Fetch models when Settings opens (if not already loaded)
+        if (allModels.length === 0) {
+          setModelsLoading(true);
+          fetchModels()
+            .then(() => {
+              setModelsLoading(false);
+            })
+            .catch((err) => {
+              setModelsError(err.message || 'Failed to load models');
+              setModelsLoading(false);
+            });
+        }
+      }
+      
+      // Always sync settings when dialog is open
       setLocalSettings({ ...settings });
       setSelectedModelIds(new Set(settings.available_models || []));
       setSelectedLanguages(new Set(settings.available_languages || []));
-      setCustomLanguage('');
-      setShowApiKey(false);
-      setApiTestStatus(null);
-      setApiTestMessage('');
 
-      // Load saved geometry or set default only if NOT standalone
-      if (!isStandalone) {
+      // Load saved geometry or set default only if NOT standalone (only on opening)
+      if (isOpening && !isStandalone) {
         const savedGeom = settings.settings_modal_geometry;
         if (savedGeom && savedGeom.width && savedGeom.height) {
           // If x/y not saved (or 0), center it
@@ -74,7 +104,7 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
         }
       }
     }
-  }, [isOpen, settings, isStandalone]);
+  }, [isOpen, isStandalone, settings, allModels.length]);
 
   const handleSave = () => {
     updateSettings({
@@ -138,16 +168,23 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
   };
 
   const handleTestApi = async () => {
+    console.log('[API Test] Starting API connection test...');
+    
     const apiUrl = localSettings.api_url || 'https://openrouter.ai/api/v1';
     const apiKey = localSettings.api_key || '';
+    
+    console.log('[API Test] API URL:', apiUrl);
+    console.log('[API Test] API Key present:', apiKey ? `Yes (${apiKey.length} chars, starts with: ${apiKey.substring(0, 6)}...)` : 'No');
 
     if (!apiUrl.trim()) {
+      console.error('[API Test] Validation failed: API URL is required');
       setApiTestStatus('error');
       setApiTestMessage('API URL is required');
       return;
     }
 
     if (!apiKey.trim()) {
+      console.error('[API Test] Validation failed: API Key is required');
       setApiTestStatus('error');
       setApiTestMessage('API Key is required');
       return;
@@ -160,7 +197,11 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
       // Make a direct API call to test the configuration
       // Normalize the URL (ensure it doesn't end with /)
       const normalizedUrl = apiUrl.trim().replace(/\/$/, '');
-      const testUrl = `${normalizedUrl}/models`;
+      const testUrl = `${normalizedUrl}/key`;
+      
+      console.log('[API Test] Normalized URL:', normalizedUrl);
+      console.log('[API Test] Test URL:', testUrl);
+      console.log('[API Test] Making fetch request...');
 
       const response = await fetch(testUrl, {
         method: 'GET',
@@ -172,31 +213,57 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
         },
       });
 
+      console.log('[API Test] Response received:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries())
+      });
+
       if (!response.ok) {
         const errorText = await response.text();
+        console.error('[API Test] Error response:', {
+          status: response.status,
+          statusText: response.statusText,
+          body: errorText
+        });
+        
         let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
         try {
           const errorData = JSON.parse(errorText);
+          console.log('[API Test] Parsed error data:', errorData);
           if (errorData.error?.message) {
             errorMessage = errorData.error.message;
           }
         } catch (e) {
-          // If parsing fails, use the status text
+          console.warn('[API Test] Failed to parse error response as JSON:', e);
         }
         throw new Error(errorMessage);
       }
 
       const data = await response.json();
-      const models = data.data || [];
-
-      if (models.length > 0) {
+      console.log('[API Test] Response data received:', data);
+      
+      // The /key endpoint returns key information, not a list
+      // Check if we got a valid response (should have key data or success indicator)
+      if (data && (data.data || data.id || response.ok)) {
+        const keyInfo = data.data || data;
+        console.log('[API Test] ✓ Success! API key is valid. Key info:', keyInfo);
         setApiTestStatus('success');
-        setApiTestMessage(`Success! Connected to API. Found ${models.length} models.`);
+        const keyLabel = keyInfo.label || keyInfo.id || 'API key';
+        setApiTestMessage(`Success! Connected to API. Valid API key: ${keyLabel}`);
       } else {
+        console.warn('[API Test] ⚠ Connection successful but unexpected response format');
         setApiTestStatus('error');
-        setApiTestMessage('Connection successful but no models returned. Check your API key permissions.');
+        setApiTestMessage('Connection successful but unexpected response. Check your API key permissions.');
       }
     } catch (error) {
+      console.error('[API Test] ✗ Connection failed:', error);
+      console.error('[API Test] Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
       setApiTestStatus('error');
       setApiTestMessage(`Connection failed: ${error.message}`);
     }
@@ -462,7 +529,10 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
         {activeTab === 'general' && (
           <div className="tab-content">
             <div className="section">
-              <h3>API Configuration</h3>
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Key size={18} color="#4A90E2" />
+                API Configuration
+              </h3>
               <div className="form-group">
                 <label>API URL:</label>
                 <input
@@ -520,7 +590,10 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
             </div>
 
             <div className="section">
-              <h3>Cost Tracking</h3>
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <DollarSign size={18} color="#50C878" />
+                Cost Tracking
+              </h3>
               <div className="cost-row">
                 <span>Total Cost: ${parseFloat(localSettings.total_cost || 0).toFixed(6)}</span>
                 <button
@@ -533,16 +606,40 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
             </div>
 
             <div className="section">
-              <h3>Behavior</h3>
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <SettingsIcon size={18} color="#9B59B6" />
+                Behavior
+              </h3>
               <div className="form-group">
-                <label>Enter Key Behavior:</label>
+                <label>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <span className="key-code"
+                      style={{
+                        display: 'inline-block',
+                        padding: '4px 10px',
+                        border: '2px solid #666',
+                        borderRadius: '6px',
+                        backgroundColor: '#f0f0f0',
+                        color: '#333',
+                        fontWeight: 'bold',
+                        fontSize: '12px',
+                        fontFamily: 'monospace',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1), inset 0 -2px 0 rgba(0,0,0,0.1)',
+                        textTransform: 'uppercase'
+                      }}
+                    >
+                      ENTER
+                    </span> <span> Key Behavior:</span>
+
+                  </span>
+                </label>
                 <select
                   value={localSettings.enter_behavior || 'Translate'}
                   onChange={(e) => handleSettingChange('enter_behavior', e.target.value)}
                 >
-                  <option value="Translate">Translate / Rewrite</option>
-                  <option value="Newline">New Line</option>
-                  <option value="Shift-Translate">Shift+Enter to Translate</option>
+                  <option value="Translate">Translate / Rewrite when pressed</option>
+                  <option value="Newline">Insert a new line</option>
+                  <option value="Shift-Translate">Shift+ENTER to translate</option>
                 </select>
               </div>
               <div className="checkbox-group">
@@ -566,7 +663,10 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
             </div>
 
             <div className="section">
-              <h3>Appearance</h3>
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Palette size={18} color="#E67E22" />
+                Appearance
+              </h3>
               <div className="form-row">
                 <div className="form-group">
                   <label>Font Family:</label>
@@ -618,7 +718,10 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
             <div className="models-split-view">
               {/* LEFT: AVAILABLE */}
               <div className="models-pane left">
-                <h4>Available Models</h4>
+                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Cpu size={16} color="#4A90E2" />
+                  Available Models
+                </h4>
                 <div className="models-controls">
                   <input
                     type="text"
@@ -636,6 +739,24 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
                   </label>
                 </div>
                 <div className="models-actions">
+                  <button 
+                    onClick={() => {
+                      setModelsLoading(true);
+                      setModelsError(null);
+                      fetchModels()
+                        .then(() => {
+                          setModelsLoading(false);
+                        })
+                        .catch((err) => {
+                          setModelsError(err.message || 'Failed to refresh models');
+                          setModelsLoading(false);
+                        });
+                    }}
+                    className="btn xsmall"
+                    disabled={modelsLoading}
+                  >
+                    {modelsLoading ? 'Loading...' : 'Refresh Models'}
+                  </button>
                   {sortBy.startsWith('provider') && (
                     <>
                       <button onClick={expandAll} className="btn xsmall">Expand All</button>
@@ -663,7 +784,33 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
                 </div>
 
                 <div className="models-list">
-                  {sortedModelsData.type === 'grouped' ? (
+                  {modelsLoading && allModels.length === 0 ? (
+                    <div className="empty-state" style={{ padding: '20px', textAlign: 'center' }}>
+                      Loading models...
+                    </div>
+                  ) : modelsError && allModels.length === 0 ? (
+                    <div className="empty-state" style={{ padding: '20px', textAlign: 'center', color: '#ff4444' }}>
+                      <div>Error: {modelsError}</div>
+                      <button 
+                        onClick={() => {
+                          setModelsLoading(true);
+                          setModelsError(null);
+                          fetchModels()
+                            .then(() => {
+                              setModelsLoading(false);
+                            })
+                            .catch((err) => {
+                              setModelsError(err.message || 'Failed to refresh models');
+                              setModelsLoading(false);
+                            });
+                        }}
+                        className="btn xsmall"
+                        style={{ marginTop: '10px' }}
+                      >
+                        Retry
+                      </button>
+                    </div>
+                  ) : sortedModelsData.type === 'grouped' ? (
                     // Provider sorting: show grouped format with expand/collapse
                     Object.keys(sortedModelsData.data).map(provider => (
                       <div key={provider} className="provider-group">
@@ -715,7 +862,10 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
 
               {/* RIGHT: SELECTED */}
               <div className="models-pane right">
-                <h4>Selected Models</h4>
+                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Cpu size={16} color="#50C878" />
+                  Selected Models
+                </h4>
                 <div style={{ marginBottom: '8px' }}>
                   <button onClick={deselectAllModels} className="btn xsmall" disabled={selectedModelIds.size === 0}>
                     Deselect All
@@ -796,28 +946,61 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
                   }
                 }
                 
-                return columnWiseLangs.map(lang => (
-                  <label key={lang} className="lang-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={selectedLanguages.has(lang)}
-                      onChange={(e) => {
-                        const newSet = new Set(selectedLanguages);
-                        if (e.target.checked) newSet.add(lang);
-                        else newSet.delete(lang);
-                        setSelectedLanguages(newSet);
-                        // Auto-save: persist immediately
-                        setSetting('available_languages', Array.from(newSet));
-                      }}
-                    />
-                    {lang}
-                  </label>
-                ));
+                return columnWiseLangs.map(lang => {
+                  const isCustom = !ALL_AVAILABLE_LANGUAGES.includes(lang);
+                  return (
+                    <label key={lang} className="lang-checkbox" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedLanguages.has(lang)}
+                        onChange={(e) => {
+                          const newSet = new Set(selectedLanguages);
+                          if (e.target.checked) newSet.add(lang);
+                          else newSet.delete(lang);
+                          setSelectedLanguages(newSet);
+                          // Auto-save: persist immediately
+                          setSetting('available_languages', Array.from(newSet));
+                        }}
+                      />
+                      <span>{lang}</span>
+                      {isCustom && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Copy the language name to the custom language input before deleting
+                            setCustomLanguage(lang);
+                            const newSet = new Set(selectedLanguages);
+                            newSet.delete(lang);
+                            setSelectedLanguages(newSet);
+                            // Auto-save: persist immediately
+                            setSetting('available_languages', Array.from(newSet));
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            padding: '2px 4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            color: '#666'
+                          }}
+                          title="Delete custom language"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      )}
+                    </label>
+                  );
+                });
               })()}
             </div>
 
             <div className="languages-section">
-              <h3 style={{ marginTop: 36 }}>Custom Language</h3>
+              <h3 style={{ marginTop: 36, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Languages size={18} color="#9B59B6" />
+                Custom Language
+              </h3>
               <div className="form-group">
                 <input
                   type="text"

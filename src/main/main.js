@@ -117,7 +117,7 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL("http://localhost:3000");
+    mainWindow.loadURL("http://localhost:3030");
     mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadFile(path.join(__dirname, "../../dist/index.html"));
@@ -190,7 +190,7 @@ const createSettingsWindow = () => {
   // Load the same app but with a query param to router
   const startUrl =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3000?window=settings"
+      ? "http://localhost:3030?window=settings"
       : `file://${path.join(__dirname, "../../dist/index.html")}?window=settings`;
 
   settingsWindow.loadURL(startUrl);

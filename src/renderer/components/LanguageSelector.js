@@ -1,4 +1,5 @@
 import React from 'react';
+import { Globe, ChevronDown } from 'lucide-react';
 
 const LanguageSelector = ({ 
   label, 
@@ -18,7 +19,7 @@ const LanguageSelector = ({
       .filter(lang => !selectedSet.has(lang))
       .sort((a, b) => a.localeCompare(b));
     
-    languageOptions = ['Detect Language', ...selected];
+    languageOptions = ['Detect Language', '---', ...selected];
     if (remaining.length > 0) {
       languageOptions.push('---'); // Separator
       languageOptions.push(...remaining);
@@ -30,12 +31,17 @@ const LanguageSelector = ({
 
   return (
     <div className="language-selector">
-      <label>{label}</label>
-      <select 
-        value={value} 
-        onChange={(e) => onChange(e.target.value)}
-        className="language-dropdown"
-      >
+      <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <Globe size={14} color="#4A90E2" />
+        {label}
+      </label>
+      <div style={{ position: 'relative', flex: 1 }}>
+        <select 
+          value={value} 
+          onChange={(e) => onChange(e.target.value)}
+          className="language-dropdown"
+          style={{ paddingRight: '36px' }}
+        >
         {languageOptions.map((lang, index) => {
           if (lang === '---') {
             return (
@@ -59,6 +65,18 @@ const LanguageSelector = ({
           );
         })}
       </select>
+      <ChevronDown 
+        size={16} 
+        color="#d0d0d0" 
+        style={{ 
+          position: 'absolute', 
+          right: '12px', 
+          top: '50%', 
+          transform: 'translateY(-50%)', 
+          pointerEvents: 'none' 
+        }} 
+      />
+      </div>
     </div>
   );
 };

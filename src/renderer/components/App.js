@@ -9,6 +9,7 @@ import StyleSelector from "./StyleSelector";
 import { useAppContext } from "../contexts/AppContext";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
+import { FileText, FileCheck, Languages, Sparkles } from "lucide-react";
 
 const App = () => {
   const { settings, translate, rewrite, languages, models, updateSettings } =
@@ -35,6 +36,8 @@ const App = () => {
   const debounceRef = useRef(null);
   const tpsCalculationRef = useRef({ startTime: null, tokens: 0 });
   const startTimeRef = useRef(null);
+  const inputTextRef = useRef("");
+  const shouldAutoProcessRef = useRef(false);
 
   // Determine active model safely
   const activeModel = useMemo(() => {
@@ -68,6 +71,7 @@ const App = () => {
 
   const clearInput = () => {
     setInputText("");
+    setOutputText("");
   };
 
   // Cleanup timer on unmount
@@ -88,10 +92,42 @@ const App = () => {
       .readText()
       .then((text) => {
         setInputText(text);
+        // Automatically translate/rewrite after pasting
+        if (text.trim()) {
+          setTimeout(() => {
+            handleRunAction();
+          }, 150);
+        }
       })
       .catch((err) => {
         console.error("Failed to read clipboard contents: ", err);
       });
+  };
+
+  const handlePasteEvent = (pastedText) => {
+    // This is called when text is pasted into the textarea
+    // Set the flag immediately so the useEffect can catch it
+    if (pastedText && pastedText.trim()) {
+      shouldAutoProcessRef.current = true;
+      // Also trigger processing directly after state update
+      // Use multiple attempts to ensure we catch the state update
+      const attemptProcess = (attempt = 0) => {
+        if (attempt > 10) return; // Max 10 attempts (500ms)
+        setTimeout(() => {
+          // Check if state has been updated with the pasted text
+          const currentText = inputTextRef.current;
+          if (currentText && currentText.includes(pastedText.trim().substring(0, 10))) {
+            // State has been updated, process it
+            shouldAutoProcessRef.current = false;
+            handleRunAction();
+          } else {
+            // State not updated yet, try again
+            attemptProcess(attempt + 1);
+          }
+        }, 50);
+      };
+      attemptProcess();
+    }
   };
 
   const getInputStats = () => {
@@ -134,8 +170,9 @@ const App = () => {
     setIsSettingsOpen(false);
   };
 
-  const handleTranslate = async () => {
-    if (!inputText.trim()) return;
+  const translateText = async (textToTranslate) => {
+    const text = textToTranslate || inputText;
+    if (!text.trim()) return;
 
     // Start timer
     setIsProcessing(true);
@@ -159,7 +196,7 @@ const App = () => {
 
     try {
       const result = await translate(
-        inputText,
+        text,
         targetLanguage,
         activeModel,
         sourceLanguage === "Detect Language" ? null : sourceLanguage,
@@ -207,6 +244,10 @@ const App = () => {
       setLastRunModel(null);
       setOutputText(`Error: ${error.message}`);
     }
+  };
+
+  const handleTranslate = () => {
+    translateText();
   };
 
   const handleRewrite = async () => {
@@ -278,6 +319,14 @@ const App = () => {
     }
   };
 
+  const handleRunAction = () => {
+    if (currentMode === "translate") {
+      handleTranslate();
+    } else {
+      handleRewrite();
+    }
+  };
+
   // Debounced processing function
   const processText = () => {
     if (debounceRef.current) {
@@ -288,15 +337,32 @@ const App = () => {
       if (inputText.trim()) {
         handleRunAction();
       }
-    }, settings.real_time_delay || 500);
+    }, settings.real_time_delay || 1000);
   };
+
+  // Update ref whenever inputText changes
+  useEffect(() => {
+    inputTextRef.current = inputText;
+    
+    // If paste event triggered auto-process, handle it after state update
+    if (shouldAutoProcessRef.current && inputText.trim()) {
+      shouldAutoProcessRef.current = false;
+      // Use a small delay to ensure state is fully updated and all effects have run
+      setTimeout(() => {
+        handleRunAction();
+      }, 50);
+      return; // Don't process via real-time translation if we're auto-processing from paste
+    }
+  }, [inputText]);
 
   // Handle text changes with debouncing
   useEffect(() => {
-    if (settings.enable_real_time_processing) {
+    // Only process if real-time translation is explicitly enabled (true)
+    // and we're not auto-processing from a paste event
+    if (settings.real_time_translation === true && !shouldAutoProcessRef.current) {
       processText();
     }
-  }, [inputText]);
+  }, [inputText, settings.real_time_translation]);
 
   // Apply theme
   useEffect(() => {
@@ -350,14 +416,6 @@ const App = () => {
     settings.enter_behavior,
   ]);
 
-  const handleRunAction = () => {
-    if (currentMode === "translate") {
-      handleTranslate();
-    } else {
-      handleRewrite();
-    }
-  };
-
   // Get all languages (predefined + any custom languages from settings)
   const allLanguages = useMemo(() => {
     const selectedSet = new Set(languages);
@@ -404,20 +462,19 @@ const App = () => {
       <div className="panel-fill">
         <TextPanel
           title="Input"
+          icon={<FileText size={16} color="#4A90E2" />}
           text={inputText}
           onTextChange={setInputText}
           placeholder="Enter text here..."
           footerStats={getInputStats()}
           onClear={clearInput}
           onPaste={pasteToInput}
+          onPasteEvent={handlePasteEvent}
           fontFamily={settings.font_family}
           fontSize={settings.font_size}
           textColor={settings.input_text_color}
         />
       </div>
-      {!settings.enable_real_time_processing && (
-        <div className="panel-spacer" aria-hidden="true" />
-      )}
     </div>
   );
 
@@ -427,6 +484,7 @@ const App = () => {
       <div className="panel-fill">
         <TextPanel
           title="Output"
+          icon={<FileCheck size={16} color="#50C878" />}
           text={outputText}
           onTextChange={setOutputText}
           placeholder="Output will appear here..."
@@ -439,13 +497,21 @@ const App = () => {
           textColor={settings.output_text_color}
         />
       </div>
-      {!settings.enable_real_time_processing && (
-        <div className="run-button-container run-button-container--full">
-          <button className="btn primary" onClick={handleRunAction}>
-            {currentMode === "translate" ? "Translate" : "Rewrite"}
-          </button>
-        </div>
-      )}
+      <div className="run-button-container run-button-container--full">
+        <button className="btn primary" onClick={handleRunAction} style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+          {currentMode === "translate" ? (
+            <>
+              <Languages size={16} />
+              Translate
+            </>
+          ) : (
+            <>
+              <Sparkles size={16} />
+              Rewrite
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 
