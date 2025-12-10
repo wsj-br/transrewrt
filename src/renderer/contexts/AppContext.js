@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
 import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
@@ -167,7 +167,10 @@ export const AppProvider = ({ children }) => {
   // Update a single setting
   const setSetting = (key, value) => {
     configManager.set(key, value);
-    const updatedSettings = configManager.getAll();
+    // Ensure we get a fresh copy of all settings to trigger React re-render
+    // Use JSON parse/stringify to ensure deep copy and new reference
+    const allSettings = configManager.getAll();
+    const updatedSettings = JSON.parse(JSON.stringify(allSettings));
     setSettings(updatedSettings);
 
     // Update the API service base URL when settings change
@@ -180,11 +183,6 @@ export const AppProvider = ({ children }) => {
       // Create a new array reference to ensure React detects the change
       const newLanguages = Array.isArray(value) ? [...value] : (value || []);
       setLanguages(newLanguages);
-      
-      // Notify other windows about the settings update
-      if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
-        window.electronAPI.notifySettingsUpdated();
-      }
     }
     
     // Update availableModels state when available_models changes
@@ -192,11 +190,11 @@ export const AppProvider = ({ children }) => {
       // Create a new array reference to ensure React detects the change
       const newModels = Array.isArray(value) ? [...value] : (value || []);
       setAvailableModels(newModels);
-      
-      // Notify other windows about the settings update
-      if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
-        window.electronAPI.notifySettingsUpdated();
-      }
+    }
+    
+    // Notify other windows about the settings update (for all settings)
+    if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
+      window.electronAPI.notifySettingsUpdated();
     }
   };
 

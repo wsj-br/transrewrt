@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
+import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
 import App from "./components/App";
 import SettingsDialog from "./components/SettingsDialog";
 import AppContext, { AppProvider } from "./contexts/AppContext";
@@ -32,6 +33,9 @@ const AppWrapperForDialog = () => {
   );
 };
 
+// Store root reference for HMR
+let root = null;
+
 // Function to initialize the app
 const initializeApp = () => {
   const rootElement = document.getElementById("root");
@@ -39,7 +43,13 @@ const initializeApp = () => {
     return;
   }
 
-  const root = ReactDOM.createRoot(rootElement);
+  // Reuse existing root if available, otherwise create new one
+  if (!root) {
+    root = ReactDOM.createRoot(rootElement);
+  }
+
+  // Use dark theme for Windows 11 look
+  const theme = webDarkTheme;
 
   if (isSettingsWindow) {
     // Add specific class for window-specific styling
@@ -47,18 +57,22 @@ const initializeApp = () => {
 
     root.render(
       <React.StrictMode>
-        <AppProvider>
-          {/* We render SettingsDialog directly, passing isOpen=true and dummy onClose (or one that closes window) */}
-          <SettingsPage />
-        </AppProvider>
+        <FluentProvider theme={theme}>
+          <AppProvider>
+            {/* We render SettingsDialog directly, passing isOpen=true and dummy onClose (or one that closes window) */}
+            <SettingsPage />
+          </AppProvider>
+        </FluentProvider>
       </React.StrictMode>,
     );
   } else {
     root.render(
       <React.StrictMode>
-        <AppProvider>
-          <App />
-        </AppProvider>
+        <FluentProvider theme={theme}>
+          <AppProvider>
+            <App />
+          </AppProvider>
+        </FluentProvider>
       </React.StrictMode>,
     );
   }
@@ -70,4 +84,12 @@ if (document.readyState === "loading") {
 } else {
   // DOM is already loaded, initialize immediately
   initializeApp();
+}
+
+// Enable Hot Module Replacement
+if (module.hot) {
+  module.hot.accept();
+  
+  // React Fast Refresh will handle component updates automatically
+  // This ensures the HMR runtime is active
 }

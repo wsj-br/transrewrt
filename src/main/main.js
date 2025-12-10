@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, screen } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
@@ -10,6 +10,13 @@ try {
   }
 } catch (error) {
   // electron-squirrel-startup is optional
+}
+
+// Enable hot reload for development
+if (process.env.NODE_ENV === "development") {
+  require("electron-reload")(__dirname, {
+    hardResetMethod: "exit",
+  });
 }
 
 // Get the path to store window state
@@ -88,9 +95,46 @@ const saveSettingsWindowState = (win) => {
 let mainWindow = null;
 let settingsWindow = null;
 
+// Ensure a saved window state is visible and has a minimum size; otherwise fall back.
+const validateWindowState = (state, fallback) => {
+  try {
+    if (!state) return fallback;
+    const display = screen.getDisplayMatching({
+      x: state.x,
+      y: state.y,
+      width: state.width,
+      height: state.height,
+    });
+    const { workArea } = display;
+    const minWidth = 800;
+    const minHeight = 600;
+    const width = Math.max(state.width || fallback.width, minWidth);
+    const height = Math.max(state.height || fallback.height, minHeight);
+
+    const withinX =
+      state.x >= workArea.x - width + 50 &&
+      state.x <= workArea.x + workArea.width - 50;
+    const withinY =
+      state.y >= workArea.y - height + 50 &&
+      state.y <= workArea.y + workArea.height - 50;
+
+    if (!withinX || !withinY) {
+      return fallback;
+    }
+
+    return { ...state, width, height };
+  } catch (err) {
+    console.error("Failed to validate window state:", err);
+    return fallback;
+  }
+};
+
 const createWindow = () => {
-  // Load saved window state
-  const savedState = loadWindowState();
+  // Load saved window state and validate it against current displays
+  const savedState = validateWindowState(loadWindowState(), {
+    width: 1000,
+    height: 700,
+  });
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -103,6 +147,7 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
       contextIsolation: false,
+      webSecurity: process.env.NODE_ENV === "development" ? false : true,
     },
   });
 
@@ -155,7 +200,10 @@ const createSettingsWindow = () => {
     return;
   }
 
-  const savedState = loadSettingsWindowState();
+  const savedState = validateWindowState(loadSettingsWindowState(), {
+    width: 950,
+    height: 640,
+  });
 
   settingsWindow = new BrowserWindow({
     x: savedState ? savedState.x : undefined,

@@ -1,13 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
-module.exports = {
+module.exports = (env, argv) => {
+  const isDevelopment = argv.mode === "development" || process.env.NODE_ENV !== "production";
+
+  return {
+  mode: isDevelopment ? "development" : "production",
   entry: "./src/renderer/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "./",
+    publicPath: isDevelopment ? "/" : "./",
     clean: true,
   },
   module: {
@@ -18,7 +23,9 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-react"],
+            ...(isDevelopment && {
+              plugins: [require.resolve("react-refresh/babel")],
+            }),
           },
         },
       },
@@ -31,7 +38,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: isDevelopment
+          ? ["style-loader", "css-loader"]
+          : [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
@@ -39,19 +48,44 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
     }),
-    new MiniCssExtractPlugin({
+    !isDevelopment && new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
-  ],
+    isDevelopment && new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
+  ].filter(Boolean),
   resolve: {
     extensions: [".js", ".jsx"],
   },
+  optimization: {
+    usedExports: true,
+  },
+  ignoreWarnings: [
+    /export .* was not found in '@fluentui\/react-icons'/,
+    {
+      module: /@fluentui\/react-icons/,
+    },
+  ],
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
-    port: 3000,
+    port: 3030,
+    hot: true,
+    liveReload: false, // Disable liveReload when using HMR
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    client: {
+      webSocketURL: "ws://localhost:3030/ws",
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
+  };
 };

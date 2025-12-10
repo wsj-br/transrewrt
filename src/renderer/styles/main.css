@@ -1,30 +1,12 @@
-/* Modern Windows 11 Fluent Design Styling */
-:root {
-    /* Windows 11 Dark Mode Colors */
-    --bg-color: #202020;
-    --surface-color: #2c2c2c;
-    --surface-hover: #3a3a3a;
-    --border-color: #454545;
-    --accent-color: #60cdff;
-    --accent-light: #9edcff;
-    --accent-hover: #7ad5ff;
-    --text-primary: #ffffff;
-    --text-secondary: #d0d0d0;
-    --text-disabled: #808080;
-    --success-color: #6ccb5f;
-
-    /* Dimensions & Spacing */
-    --header-height: 48px; /* More compact header */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --spacing-xxs: 2px;
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --run-button-height: 44px;
-}
+/* Fluent UI Integration - Custom Styles for Electron App */
+/* 
+ * Fluent UI React provides most component styling (buttons, inputs, tabs, etc.)
+ * This file contains only:
+ * - Essential Electron-specific styles (window dragging, etc.)
+ * - Custom modal/dialog positioning (for draggable SettingsDialog)
+ * - Layout utilities not provided by Fluent UI
+ * - Legacy styles for components not yet fully migrated
+ */
 
 body {
     margin: 0;
@@ -35,10 +17,42 @@ body {
         system-ui,
         -apple-system,
         sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
     user-select: none;
     overflow: hidden; /* Prevent body scroll */
+}
+
+/* Enable text selection for text content */
+textarea,
+.panel-title,
+.stats,
+.tab-content,
+.modal-body,
+p,
+span {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* Keep buttons non-selectable */
+button,
+.provider-header {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+}
+
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Enable text selection for labels and text content */
@@ -470,9 +484,6 @@ button {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px); /* Acrylic effect */
-    /* display: flex;  <-- REMOVED flex centering to allow manual positioning */
-    /* justify-content: center; */
-    /* align-items: center; */
     z-index: 1000;
     animation: fadeIn 0.2s ease-out;
 }
@@ -481,15 +492,11 @@ button {
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    /* width: 500px; <-- Controlled by inline styles now */
-    /* max-width: 90%; */
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    /* max-height: 85vh; <-- Controlled by inline styles now */
-    /* animation: scaleIn 0.2s ease-out; <-- Handled manually or disabled for drag */
     box-sizing: border-box;
-    overflow: hidden; /* Prevent content overflow */
+    overflow: hidden;
 }
 
 /* Standalone Settings Window Mode */
@@ -518,6 +525,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .modal-header h2 {
@@ -568,12 +576,14 @@ button {
 }
 
 .modal-body {
-    padding: var(--spacing-lg);
-    overflow-y: auto;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    margin: 0; /* Remove all margins */
+    padding: 0;
+    margin: 0;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
 }
 
 /* Form Groups in Settings */
@@ -592,13 +602,14 @@ button {
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="number"],
+.form-group input[type="color"],
 .form-group select {
     width: 100%;
     padding: 10px 12px; /* Taller inputs */
     border: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--text-disabled); /* Stronger bottom border */
-    border-radius: var(--radius-sm);
-    background-color: var(--bg-color); /* Slightly darker than surface */
+    border-bottom: 2px solid var(--text-disabled); /* Underline style */
+    border-radius: 0;
+    background-color: transparent;
     color: var(--text-primary);
     font-size: 14px;
     transition: all 0.2s;
@@ -608,8 +619,23 @@ button {
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--accent-color);
-    border-bottom-width: 2px;
+    border-bottom-color: var(--accent-color);
+    border-bottom-width: 3px;
+}
+
+/* Fluent UI Input & Checkbox */
+.form-group .fui-Input input {
+    border-radius: 0 !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+.form-group .fui-Input input:focus {
+    border-bottom-color: var(--accent-color) !important;
+    border-bottom-width: 3px !important;
+}
+
+.form-group .fui-Checkbox {
+    accent-color: var(--accent-color) !important;
 }
 
 /* Checkbox Style */
@@ -708,27 +734,30 @@ button {
 
 /* Settings Modal Extensions */
 .settings-modal {
-    /* Width is controlled by inline styles from geometry */
-    min-width: 780px; /* Minimum width for 4-column language grid */
-    height: 700px;
-    max-width: none; /* Allow full expansion */
+    /* Width and height are controlled by inline styles from geometry */
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box;
+    padding: 0 !important;
 }
 
 .settings-body {
-    padding: 0; /* Remove default padding for tabs */
     display: flex;
     flex-direction: column;
     width: 100%;
+    flex: 1;
+    min-height: 0;
     box-sizing: border-box;
-    overflow: hidden; /* Let child elements handle scrolling */
+    overflow: hidden;
 }
 
 /* Tabs */
 .tabs-header {
     display: flex;
     background-color: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0 var(--spacing-md);
+    border-bottom: 1px solid #454545;
+    padding: 0 16px;
+    flex-shrink: 0;
 }
 
 .tab-btn {
@@ -736,7 +765,7 @@ button {
     border: none;
     border-bottom: 3px solid transparent;
     padding: 12px 16px;
-    color: var(--text-secondary);
+    color: #d0d0d0;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -744,23 +773,25 @@ button {
 }
 
 .tab-btn:hover {
-    color: var(--text-primary);
+    color: #ffffff;
     background-color: rgba(255, 255, 255, 0.05);
 }
 
 .tab-btn.active {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+    color: #60cdff;
+    border-bottom-color: #60cdff;
 }
 
 .tab-content {
-    padding: var(--spacing-lg);
+    padding: 16px 32px;
     overflow-y: auto;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: auto;
     flex: 1;
-    margin: 0; /* Remove all margins */
+    margin: 0;
     width: 100%;
     box-sizing: border-box;
+    min-width: 0;
+    min-height: 0;
 }
 
 /* General Tab Tweaks */
@@ -770,6 +801,7 @@ button {
     border-bottom: 1px solid var(--border-color);
     width: 100%;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
 .section:last-child {
@@ -786,10 +818,21 @@ button {
     display: flex;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+    flex: 1;
+    min-width: 0; /* Allow flex items to shrink */
+    max-width: 100%;
 }
 
 .form-group.narrow {
     width: 100px;
+    flex: 0 0 auto;
 }
 
 .checkbox-group {
@@ -802,11 +845,21 @@ button {
 .models-tab {
     padding: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .models-split-view {
     display: flex;
     height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0; /* Allow flex items to shrink */
+    max-width: 100%;
 }
 
 .models-pane {
@@ -815,6 +868,10 @@ button {
     flex-direction: column;
     padding: var(--spacing-md);
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0; /* Allow flex items to shrink */
+    max-width: 100%;
 }
 
 .models-pane.left {
@@ -833,11 +890,15 @@ button {
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-sm);
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .models-controls input[type="text"] {
     flex: 1;
     padding: 6px;
+    min-width: 150px;
 }
 
 .models-actions {
@@ -845,6 +906,9 @@ button {
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-sm);
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .sort-select {
@@ -873,6 +937,9 @@ button {
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     border-radius: var(--radius-sm);
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 0;
 }
 
 /* Tree View Styles */
@@ -959,6 +1026,9 @@ button {
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-lg);
     border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .languages-section:last-child {
@@ -976,6 +1046,9 @@ button {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-sm);
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .lang-checkbox {

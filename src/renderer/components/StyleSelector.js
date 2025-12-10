@@ -1,42 +1,73 @@
 import React from 'react';
-import { Palette, ChevronDown } from 'lucide-react';
+import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
+import { Color20Regular } from '@fluentui/react-icons';
+
+const useStyles = makeStyles({
+  styleSelector: {
+    margin: `0 ${tokens.spacingHorizontalXS} ${tokens.spacingVerticalS} ${tokens.spacingHorizontalXS}`,
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalS,
+  },
+  label: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    minWidth: "45px",
+  },
+  selectContainer: {
+    flex: 1,
+    position: "relative",
+  },
+  select: {
+    width: "100%",
+    "& .fui-Dropdown__trigger": {
+      borderRadius: "0 !important",
+      border: "none !important",
+      borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
+      backgroundColor: "transparent !important",
+      paddingLeft: "0 !important",
+      paddingRight: "0 !important",
+    },
+    "& .fui-Dropdown__trigger:hover": {
+      borderBottomColor: `${tokens.colorNeutralForeground1} !important`,
+    },
+    "& .fui-Dropdown__trigger:focus-visible": {
+      borderBottomColor: `${tokens.colorBrandBackground} !important`,
+      borderBottomWidth: "3px !important",
+    },
+  },
+});
 
 const StyleSelector = ({ 
   label,
   value, 
   onChange,
-  styles = []
+  styles = [],
+  iconColor
 }) => {
+  const styleStyles = useStyles();
+
   return (
-    <div className="style-selector">
-      <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-        <Palette size={14} color="#9B59B6" />
+    <div className={styleStyles.styleSelector}>
+      <label className={styleStyles.label}>
+        <Color20Regular color={iconColor} />
         {label}
       </label>
-      <div style={{ position: 'relative', flex: 1 }}>
-        <select 
-          value={value} 
-          onChange={(e) => onChange(e.target.value)}
-          className="style-dropdown"
-          style={{ paddingRight: '36px' }}
+      <div className={styleStyles.selectContainer}>
+        <Dropdown
+          value={value || ""}
+          selectedOptions={value ? [value] : []}
+          onOptionSelect={(e, data) => onChange(data.optionValue)}
+          className={styleStyles.select}
+          aria-label={label}
         >
           {styles.map((style) => (
-            <option key={style} value={style}>
+            <Option key={style} value={style}>
               {style}
-            </option>
+            </Option>
           ))}
-        </select>
-        <ChevronDown 
-          size={16} 
-          color="#d0d0d0" 
-          style={{ 
-            position: 'absolute', 
-            right: '12px', 
-            top: '50%', 
-            transform: 'translateY(-50%)', 
-            pointerEvents: 'none' 
-          }} 
-        />
+        </Dropdown>
       </div>
     </div>
   );

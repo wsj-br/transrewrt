@@ -1,5 +1,51 @@
 import React from 'react';
-import { Globe, ChevronDown } from 'lucide-react';
+import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
+import { LocalLanguage20Filled } from '@fluentui/react-icons';
+
+const useStyles = makeStyles({
+  languageSelector: {
+    margin: `0 ${tokens.spacingHorizontalXS} ${tokens.spacingVerticalS} ${tokens.spacingHorizontalXS}`,
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalS,
+  },
+  label: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    minWidth: "45px",
+  },
+  selectContainer: {
+    flex: 1,
+    position: "relative",
+  },
+  select: {
+    width: "100%",
+    "& .fui-Dropdown__trigger": {
+      borderRadius: "0 !important",
+      border: "none !important",
+      borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
+      backgroundColor: "transparent !important",
+      paddingLeft: "0 !important",
+      paddingRight: "0 !important",
+    },
+    "& .fui-Dropdown__trigger:hover": {
+      borderBottomColor: `${tokens.colorNeutralForeground1} !important`,
+    },
+    "& .fui-Dropdown__trigger:focus-visible": {
+      borderBottomColor: `${tokens.colorBrandBackground} !important`,
+      borderBottomWidth: "3px !important",
+    },
+    detectLanguageOption: {
+      color: tokens.colorBrandForeground1,
+    },
+    dropdownDetectLanguage: {
+      '& button': {
+        color: `${tokens.colorBrandForeground1} !important`,
+      },
+    },
+  },
+});
 
 const LanguageSelector = ({ 
   label, 
@@ -7,8 +53,10 @@ const LanguageSelector = ({
   onChange, 
   languages = [],
   allLanguages = [],
-  detectLanguage = false
+  detectLanguage = false,
+  iconColor
 }) => {
+  const styles = useStyles();
   let languageOptions = [];
 
   if (detectLanguage) {
@@ -30,52 +78,31 @@ const LanguageSelector = ({
   }
 
   return (
-    <div className="language-selector">
-      <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-        <Globe size={14} color="#4A90E2" />
+    <div className={styles.languageSelector}>
+      <label className={styles.label}>
+        <LocalLanguage20Filled color={iconColor} />
         {label}
       </label>
-      <div style={{ position: 'relative', flex: 1 }}>
-        <select 
-          value={value} 
-          onChange={(e) => onChange(e.target.value)}
-          className="language-dropdown"
-          style={{ paddingRight: '36px' }}
+      <div className={styles.selectContainer}>
+        <Dropdown
+          appearance="underline"
+          value={value || ""}
+          selectedOptions={value ? [value] : []}
+          onOptionSelect={(e, data) => onChange(data.optionValue)}
+          className={`${styles.select} ${value === 'Detect Language' ? styles.dropdownDetectLanguage : ''}`}
+          aria-label={label}
         >
-        {languageOptions.map((lang, index) => {
-          if (lang === '---') {
-            return (
-              <option 
-                key={`separator-${index}`}
-                value=""
-                disabled
-                style={{ 
-                  fontStyle: 'normal',
-                  fontWeight: 'normal'
-                }}
-              >
-                ────────────
-              </option>
-            );
-          }
-          return (
-            <option key={lang} value={lang}>
-              {lang}
-            </option>
-          );
-        })}
-      </select>
-      <ChevronDown 
-        size={16} 
-        color="#d0d0d0" 
-        style={{ 
-          position: 'absolute', 
-          right: '12px', 
-          top: '50%', 
-          transform: 'translateY(-50%)', 
-          pointerEvents: 'none' 
-        }} 
-      />
+          {languageOptions.map((lang, index) => (
+            <Option
+              key={lang === '---' ? `separator-${index}` : lang}
+              value={lang}
+              disabled={lang === '---'}
+              style={lang === 'Detect Language' ? { color: tokens.colorBrandForeground1 } : undefined}
+            >
+              {lang === '---' ? '────────────' : lang}
+            </Option>
+          ))}
+        </Dropdown>
       </div>
     </div>
   );

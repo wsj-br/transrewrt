@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { 
+  Button,
+  makeStyles,
+  tokens,
+} from '@fluentui/react-components';
 import { useAppContext } from '../contexts/AppContext';
-import { ALL_AVAILABLE_LANGUAGES } from '../utils/languageConstants';
-import { Trash2, Key, DollarSign, Settings as SettingsIcon, Palette, Cpu, Languages } from 'lucide-react';
+import SettingsDialogGeneralTab from './SettingsDialogGeneralTab';
+import SettingsDialogModelsTab from './SettingsDialogModelsTab';
+import SettingsDialogLanguagesTab from './SettingsDialogLanguagesTab';
 
 const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
   const { settings, allModels, languages, updateSettings, setSetting, fetchModels } = useAppContext();
@@ -15,8 +21,8 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
   const [geometry, setGeometry] = useState({
     x: 0,
     y: 0,
-    width: Math.max(950, 780),
-    height: 640
+    width: Math.max(1100, 1050),
+    height: 700
   });
 
   // Dragging State
@@ -95,9 +101,9 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
             setGeometry(savedGeom);
           }
         } else {
-          // Default center - ensure minimum width of 780px
-          const width = Math.max(950, 780);
-          const height = 640;
+          // Default center - ensure minimum width of 1050px
+          const width = Math.max(1100, 1050);
+          const height = 700;
           const x = (window.innerWidth - width) / 2;
           const y = (window.innerHeight - height) / 2;
           setGeometry({ x: x > 0 ? x : 50, y: y > 0 ? y : 50, width, height });
@@ -500,7 +506,7 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
         style={!isStandalone ? { cursor: isDragging ? 'grabbing' : 'grab' } : {}}
       >
         <h2>Settings</h2>
-        <button className="close-btn-text" onClick={handleClose}>Close</button>
+        <Button appearance="secondary" onClick={handleClose}>Close</Button>
       </div>
 
       <div className="tabs-header">
@@ -527,516 +533,64 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
       <div className="modal-body settings-body" style={{ flex: 1 }}>
         {/* GENERAL TAB */}
         {activeTab === 'general' && (
-          <div className="tab-content">
-            <div className="section">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Key size={18} color="#4A90E2" />
-                API Configuration
-              </h3>
-              <div className="form-group">
-                <label>API URL:</label>
-                <input
-                  type="text"
-                  value={localSettings.api_url || 'https://openrouter.ai/api/v1'}
-                  onChange={(e) => handleSettingChange('api_url', e.target.value)}
-                  placeholder="https://openrouter.ai/api/v1"
-                />
-              </div>
-              <div className="form-group">
-                <label>OpenRouter API Key:</label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type={showApiKey ? 'text' : 'password'}
-                    value={localSettings.api_key || ''}
-                    onChange={(e) => handleSettingChange('api_key', e.target.value)}
-                    placeholder="sk-or-..."
-                    style={{ flex: 1 }}
-                  />
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={showApiKey}
-                      onChange={(e) => setShowApiKey(e.target.checked)}
-                    />
-                    <span style={{ fontSize: '12px' }}>Show</span>
-                  </label>
-                </div>
-              </div>
-              <div className="form-group" style={{ marginTop: '8px' }}>
-                <button
-                  className="btn"
-                  onClick={handleTestApi}
-                  disabled={apiTestStatus === 'testing'}
-                  style={{ width: '100%' }}
-                >
-                  {apiTestStatus === 'testing' ? 'Testing...' : 'Test API Configuration'}
-                </button>
-                {apiTestStatus && (
-                  <div
-                    style={{
-                      marginTop: '8px',
-                      padding: '8px',
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      backgroundColor: apiTestStatus === 'success' ? '#d4edda' : '#f8d7da',
-                      color: apiTestStatus === 'success' ? '#155724' : '#721c24',
-                      border: `1px solid ${apiTestStatus === 'success' ? '#c3e6cb' : '#f5c6cb'}`
-                    }}
-                  >
-                    {apiTestMessage}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="section">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <DollarSign size={18} color="#50C878" />
-                Cost Tracking
-              </h3>
-              <div className="cost-row">
-                <span>Total Cost: ${parseFloat(localSettings.total_cost || 0).toFixed(6)}</span>
-                <button
-                  className="btn small"
-                  onClick={() => handleSettingChange('total_cost', 0)}
-                >
-                  Reset Cost
-                </button>
-              </div>
-            </div>
-
-            <div className="section">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <SettingsIcon size={18} color="#9B59B6" />
-                Behavior
-              </h3>
-              <div className="form-group">
-                <label>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="key-code"
-                      style={{
-                        display: 'inline-block',
-                        padding: '4px 10px',
-                        border: '2px solid #666',
-                        borderRadius: '6px',
-                        backgroundColor: '#f0f0f0',
-                        color: '#333',
-                        fontWeight: 'bold',
-                        fontSize: '12px',
-                        fontFamily: 'monospace',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1), inset 0 -2px 0 rgba(0,0,0,0.1)',
-                        textTransform: 'uppercase'
-                      }}
-                    >
-                      ENTER
-                    </span> <span> Key Behavior:</span>
-
-                  </span>
-                </label>
-                <select
-                  value={localSettings.enter_behavior || 'Translate'}
-                  onChange={(e) => handleSettingChange('enter_behavior', e.target.value)}
-                >
-                  <option value="Translate">Translate / Rewrite when pressed</option>
-                  <option value="Newline">Insert a new line</option>
-                  <option value="Shift-Translate">Shift+ENTER to translate</option>
-                </select>
-              </div>
-              <div className="checkbox-group">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={localSettings.auto_copy || false}
-                    onChange={(e) => handleSettingChange('auto_copy', e.target.checked)}
-                  />
-                  Auto-copy result to clipboard
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={localSettings.real_time_translation || false}
-                    onChange={(e) => handleSettingChange('real_time_translation', e.target.checked)}
-                  />
-                  Real-time translation (while typing)
-                </label>
-              </div>
-            </div>
-
-            <div className="section">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Palette size={18} color="#E67E22" />
-                Appearance
-              </h3>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Font Family:</label>
-                  <select
-                    value={localSettings.font_family || 'Arial'}
-                    onChange={(e) => handleSettingChange('font_family', e.target.value)}
-                  >
-                    <option value="Arial">Arial</option>
-                    <option value="Segoe UI">Segoe UI</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Consolas">Consolas</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                  </select>
-                </div>
-                <div className="form-group narrow">
-                  <label>Size:</label>
-                  <input
-                    type="number"
-                    value={localSettings.font_size || 14}
-                    onChange={(e) => handleSettingChange('font_size', parseInt(e.target.value))}
-                  />
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Input Color:</label>
-                  <input
-                    type="color"
-                    value={localSettings.input_text_color || '#ffffff'}
-                    onChange={(e) => handleSettingChange('input_text_color', e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Output Color:</label>
-                  <input
-                    type="color"
-                    value={localSettings.output_text_color || '#ffffff'}
-                    onChange={(e) => handleSettingChange('output_text_color', e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <SettingsDialogGeneralTab
+            localSettings={localSettings}
+            showApiKey={showApiKey}
+            apiTestStatus={apiTestStatus}
+            apiTestMessage={apiTestMessage}
+            onSettingChange={handleSettingChange}
+            onShowApiKeyChange={setShowApiKey}
+            onTestApi={handleTestApi}
+          />
         )}
 
         {/* MODELS TAB */}
         {activeTab === 'models' && (
-          <div className="tab-content models-tab">
-            <div className="models-split-view">
-              {/* LEFT: AVAILABLE */}
-              <div className="models-pane left">
-                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Cpu size={16} color="#4A90E2" />
-                  Available Models
-                </h4>
-                <div className="models-controls">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={filterFree}
-                      onChange={(e) => setFilterFree(e.target.checked)}
-                    />
-                    Free Only
-                  </label>
-                </div>
-                <div className="models-actions">
-                  <button 
-                    onClick={() => {
-                      setModelsLoading(true);
-                      setModelsError(null);
-                      fetchModels()
-                        .then(() => {
-                          setModelsLoading(false);
-                        })
-                        .catch((err) => {
-                          setModelsError(err.message || 'Failed to refresh models');
-                          setModelsLoading(false);
-                        });
-                    }}
-                    className="btn xsmall"
-                    disabled={modelsLoading}
-                  >
-                    {modelsLoading ? 'Loading...' : 'Refresh Models'}
-                  </button>
-                  {sortBy.startsWith('provider') && (
-                    <>
-                      <button onClick={expandAll} className="btn xsmall">Expand All</button>
-                      <button onClick={collapseAll} className="btn xsmall">Collapse All</button>
-                    </>
-                  )}
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="btn xsmall sort-select"
-                    style={{
-                      padding: '2px 6px',
-                      fontSize: '11px',
-                      height: 'auto',
-                      minWidth: '100px'
-                    }}
-                  >
-                    <option value="cost-asc">Cost ↓</option>
-                    <option value="cost-desc">Cost ↑</option>
-                    <option value="model-asc">Model ↓</option>
-                    <option value="model-desc">Model ↑</option>
-                    <option value="provider-asc">Provider ↓</option>
-                    <option value="provider-desc">Provider ↑</option>
-                  </select>
-                </div>
-
-                <div className="models-list">
-                  {modelsLoading && allModels.length === 0 ? (
-                    <div className="empty-state" style={{ padding: '20px', textAlign: 'center' }}>
-                      Loading models...
-                    </div>
-                  ) : modelsError && allModels.length === 0 ? (
-                    <div className="empty-state" style={{ padding: '20px', textAlign: 'center', color: '#ff4444' }}>
-                      <div>Error: {modelsError}</div>
-                      <button 
-                        onClick={() => {
-                          setModelsLoading(true);
-                          setModelsError(null);
-                          fetchModels()
-                            .then(() => {
-                              setModelsLoading(false);
-                            })
-                            .catch((err) => {
-                              setModelsError(err.message || 'Failed to refresh models');
-                              setModelsLoading(false);
-                            });
-                        }}
-                        className="btn xsmall"
-                        style={{ marginTop: '10px' }}
-                      >
-                        Retry
-                      </button>
-                    </div>
-                  ) : sortedModelsData.type === 'grouped' ? (
-                    // Provider sorting: show grouped format with expand/collapse
-                    Object.keys(sortedModelsData.data).map(provider => (
-                      <div key={provider} className="provider-group">
-                        <div
-                          className="provider-header"
-                          onClick={() => toggleProvider(provider)}
-                        >
-                          {expandedProviders.has(provider) ? '▼' : '▶'} {provider}
-                        </div>
-                        {expandedProviders.has(provider) && (
-                          <div className="provider-models">
-                            {sortedModelsData.data[provider].map(model => (
-                              <div
-                                key={model.id}
-                                className={`model-item ${selectedModelIds.has(model.id) ? 'selected' : ''}`}
-                                onClick={() => toggleModelSelection(model.id)}
-                              >
-                                <span className="model-name">{model.name || model.id}</span>
-                                <span className="model-price">
-                                  ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))
-                  ) : (
-                    // Cost or Model sorting: show flat list "Model (Provider)"
-                    sortedModelsData.data.map(model => {
-                      const provider = model.id.split('/')[0] || 'Other';
-                      const modelName = getModelName(model);
-                      return (
-                        <div
-                          key={model.id}
-                          className={`model-item flat ${selectedModelIds.has(model.id) ? 'selected' : ''}`}
-                          onClick={() => toggleModelSelection(model.id)}
-                        >
-                          <span className="model-name">{modelName} ({provider})</span>
-                          <span className="model-price">
-                            ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)}
-                          </span>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              </div>
-
-              {/* RIGHT: SELECTED */}
-              <div className="models-pane right">
-                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Cpu size={16} color="#50C878" />
-                  Selected Models
-                </h4>
-                <div style={{ marginBottom: '8px' }}>
-                  <button onClick={deselectAllModels} className="btn xsmall" disabled={selectedModelIds.size === 0}>
-                    Deselect All
-                  </button>
-                </div>
-                <div className="selected-list">
-                  {Array.from(selectedModelIds).sort().map(modelId => {
-                    const model = allModels.find(m => m.id === modelId) || { id: modelId };
-                    return (
-                      <div
-                        key={modelId}
-                        className="selected-item"
-                        onClick={() => toggleModelSelection(modelId)}
-                      >
-                        <span>{model.name || model.id}</span>
-                        <button className="remove-btn">×</button>
-                      </div>
-                    );
-                  })}
-                  {selectedModelIds.size === 0 && (
-                    <div className="empty-state">No models selected</div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <SettingsDialogModelsTab
+            allModels={allModels}
+            selectedModelIds={selectedModelIds}
+            searchTerm={searchTerm}
+            filterFree={filterFree}
+            sortBy={sortBy}
+            expandedProviders={expandedProviders}
+            sortedModelsData={sortedModelsData}
+            modelsLoading={modelsLoading}
+            modelsError={modelsError}
+            onSearchTermChange={setSearchTerm}
+            onFilterFreeChange={setFilterFree}
+            onSortByChange={setSortBy}
+            onRefreshModels={() => {
+              setModelsLoading(true);
+              setModelsError(null);
+              fetchModels()
+                .then(() => {
+                  setModelsLoading(false);
+                })
+                .catch((err) => {
+                  setModelsError(err.message || 'Failed to refresh models');
+                  setModelsLoading(false);
+                });
+            }}
+            onToggleProvider={toggleProvider}
+            onExpandAll={expandAll}
+            onCollapseAll={collapseAll}
+            onToggleModelSelection={toggleModelSelection}
+            onDeselectAllModels={deselectAllModels}
+            getModelName={getModelName}
+          />
         )}
 
         {/* LANGUAGES TAB */}
         {activeTab === 'languages' && (
-          <div className="tab-content languages-tab">
-            <p>Select languages to appear in dropdowns:</p>
-            <div className="languages-grid">
-              {(() => {
-                // Combine predefined languages with any custom languages from selectedLanguages
-                const customLangs = Array.from(selectedLanguages).filter(
-                  lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
-                );
-                // Sort with explicit localeCompare options for consistent alphabetical sorting
-                const allLangs = [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) => 
-                  a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true })
-                );
-                
-                // Distribute languages across 4 columns using the provided formula:
-                // number_of_lines = int(nLang / 4)
-                // excess = nLang % 4
-                // n-column = number_of_lines + (1 if n <= excess else 0)
-                const nLang = allLangs.length;
-                const numColumns = 4;
-                const number_of_lines = Math.floor(nLang / numColumns);
-                const excess = nLang % numColumns;
-                
-                // Calculate items per column (1-indexed columns)
-                const itemsPerColumn = [];
-                for (let n = 1; n <= numColumns; n++) {
-                  itemsPerColumn.push(number_of_lines + (n <= excess ? 1 : 0));
-                }
-                
-                // Distribute languages into columns
-                const columns = [];
-                let currentIndex = 0;
-                for (let col = 0; col < numColumns; col++) {
-                  const itemsInThisColumn = itemsPerColumn[col];
-                  columns.push(allLangs.slice(currentIndex, currentIndex + itemsInThisColumn));
-                  currentIndex += itemsInThisColumn;
-                }
-                
-                // Reorder for CSS Grid (which fills row by row)
-                // Find the maximum column length
-                const maxColumnLength = Math.max(...itemsPerColumn);
-                const columnWiseLangs = [];
-                
-                for (let row = 0; row < maxColumnLength; row++) {
-                  for (let col = 0; col < numColumns; col++) {
-                    if (row < columns[col].length) {
-                      columnWiseLangs.push(columns[col][row]);
-                    }
-                  }
-                }
-                
-                return columnWiseLangs.map(lang => {
-                  const isCustom = !ALL_AVAILABLE_LANGUAGES.includes(lang);
-                  return (
-                    <label key={lang} className="lang-checkbox" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <input
-                        type="checkbox"
-                        checked={selectedLanguages.has(lang)}
-                        onChange={(e) => {
-                          const newSet = new Set(selectedLanguages);
-                          if (e.target.checked) newSet.add(lang);
-                          else newSet.delete(lang);
-                          setSelectedLanguages(newSet);
-                          // Auto-save: persist immediately
-                          setSetting('available_languages', Array.from(newSet));
-                        }}
-                      />
-                      <span>{lang}</span>
-                      {isCustom && (
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            // Copy the language name to the custom language input before deleting
-                            setCustomLanguage(lang);
-                            const newSet = new Set(selectedLanguages);
-                            newSet.delete(lang);
-                            setSelectedLanguages(newSet);
-                            // Auto-save: persist immediately
-                            setSetting('available_languages', Array.from(newSet));
-                          }}
-                          style={{
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '2px 4px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            color: '#666'
-                          }}
-                          title="Delete custom language"
-                        >
-                          <Trash2 size={14} />
-                        </button>
-                      )}
-                    </label>
-                  );
-                });
-              })()}
-            </div>
-
-            <div className="languages-section">
-              <h3 style={{ marginTop: 36, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Languages size={18} color="#9B59B6" />
-                Custom Language
-              </h3>
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={customLanguage}
-                  onChange={(e) => setCustomLanguage(e.target.value)}
-                  onBlur={(e) => {
-                    const lang = e.target.value.trim();
-                    if (lang && !selectedLanguages.has(lang) && !ALL_AVAILABLE_LANGUAGES.includes(lang)) {
-                      const newSet = new Set(selectedLanguages);
-                      newSet.add(lang);
-                      setSelectedLanguages(newSet);
-                      // Auto-save: persist immediately
-                      setSetting('available_languages', Array.from(newSet));
-                    }
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      const lang = customLanguage.trim();
-                      if (lang && !selectedLanguages.has(lang) && !ALL_AVAILABLE_LANGUAGES.includes(lang)) {
-                        const newSet = new Set(selectedLanguages);
-                        newSet.add(lang);
-                        setSelectedLanguages(newSet);
-                        setCustomLanguage('');
-                        // Auto-save: persist immediately
-                        setSetting('available_languages', Array.from(newSet));
-                      }
-                    }
-                  }}
-                  placeholder="Enter custom language name and press Enter"
-                />
-              </div>
-            </div>
-          </div>
+          <SettingsDialogLanguagesTab
+            selectedLanguages={selectedLanguages}
+            customLanguage={customLanguage}
+            onSelectedLanguagesChange={setSelectedLanguages}
+            onCustomLanguageChange={setCustomLanguage}
+            onSetting={setSetting}
+          />
         )}
       </div>
-
     </div>
   );
 

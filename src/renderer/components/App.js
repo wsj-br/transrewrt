@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
+import { Button, makeStyles, tokens } from "@fluentui/react-components";
+import { ChatMultiple20Filled, Color20Regular } from "@fluentui/react-icons";
 import Header from "./Header";
 import ModeSelector from "./ModeSelector";
 import TextPanel from "./TextPanel";
@@ -9,11 +11,70 @@ import StyleSelector from "./StyleSelector";
 import { useAppContext } from "../contexts/AppContext";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
-import { FileText, FileCheck, Languages, Sparkles } from "lucide-react";
+import { FileText, FileCheck } from "lucide-react";
+
+const useStyles = makeStyles({
+  root: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  content: {
+    flex: 1,
+    display: "flex",
+    padding: `0 ${tokens.spacingHorizontalM} ${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
+    gap: tokens.spacingHorizontalM,
+    overflow: "hidden",
+  },
+  panelStack: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    minHeight: 0,
+    gap: "6px",
+    padding: `0 ${tokens.spacingHorizontalXXS}`,
+  },
+  panelControls: {
+    display: "flex",
+    alignItems: "center",
+    minHeight: "48px",
+  },
+  panelFill: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    minHeight: 0,
+  },
+  runButtonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "stretch",
+    padding: 0,
+    minHeight: "44px",
+    height: "44px",
+    flexShrink: 0,
+  },
+  runButton: {
+    width: "100%",
+    height: "44px",
+    minHeight: "44px",
+  },
+});
 
 const App = () => {
+  const styles = useStyles();
   const { settings, translate, rewrite, languages, models, updateSettings } =
     useAppContext();
+  
+  // Debug: Log settings changes
+  React.useEffect(() => {
+    console.log('App settings updated:', {
+      font_family: settings.font_family,
+      font_size: settings.font_size,
+      input_text_color: settings.input_text_color,
+      output_text_color: settings.output_text_color,
+    });
+  }, [settings.font_family, settings.font_size, settings.input_text_color, settings.output_text_color]);
   const [currentMode, setCurrentMode] = useState("translate");
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -434,6 +495,7 @@ const App = () => {
         languages={languages}
         allLanguages={allLanguages}
         detectLanguage={true}
+        iconColor={tokens.colorBrandForeground1}
       />
     ) : (
       <StyleSelector
@@ -441,6 +503,7 @@ const App = () => {
         value={rewriteStyle}
         onChange={setRewriteStyle}
         styles={rewriteStyles}
+        iconColor={tokens.colorBrandForeground1}
       />
     );
 
@@ -451,18 +514,19 @@ const App = () => {
       onChange={setTargetLanguage}
       languages={languages}
       allLanguages={allLanguages}
+      iconColor={tokens.colorStatusWarningForeground3}
     />
   );
 
   const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${elapsedTime.toFixed(1)}s | ` : ""}Cost: ${formatCostDisplay(lastRunCost)} | Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
 
   const leftPanel = (
-    <div className="panel-stack panel-stack--padded">
-      <div className="panel-controls">{leftPanelControls || null}</div>
-      <div className="panel-fill">
+    <div className={styles.panelStack}>
+      <div className={styles.panelControls}>{leftPanelControls || null}</div>
+      <div className={styles.panelFill}>
         <TextPanel
           title="Input"
-          icon={<FileText size={16} color="#4A90E2" />}
+          icon={<FileText size={20} color={tokens.colorBrandForeground1} />}
           text={inputText}
           onTextChange={setInputText}
           placeholder="Enter text here..."
@@ -470,47 +534,48 @@ const App = () => {
           onClear={clearInput}
           onPaste={pasteToInput}
           onPasteEvent={handlePasteEvent}
-          fontFamily={settings.font_family}
-          fontSize={settings.font_size}
-          textColor={settings.input_text_color}
+          fontFamily={settings?.font_family}
+          fontSize={settings?.font_size}
+          textColor={settings?.input_text_color}
         />
       </div>
     </div>
   );
 
   const rightPanel = (
-    <div className="panel-stack panel-stack--padded">
-      <div className="panel-controls">{rightPanelControls || null}</div>
-      <div className="panel-fill">
+    <div className={styles.panelStack}>
+      <div className={styles.panelControls}>{rightPanelControls || null}</div>
+      <div className={styles.panelFill}>
         <TextPanel
           title="Output"
-          icon={<FileCheck size={16} color="#50C878" />}
+          icon={<FileCheck size={20} color={tokens.colorStatusWarningForeground3} />}
           text={outputText}
           onTextChange={setOutputText}
           placeholder="Output will appear here..."
           readOnly={true}
           headerMeta={outputMeta}
-          footerStats={`${getOutputStats()} | Model: ${lastRunModel || "N/A"}`}
+          footerStats={
+            <>
+              {getOutputStats()}
+              <br />
+              Model: {lastRunModel || "N/A"}
+            </>
+          }
           onCopy={copyOutput}
-          fontFamily={settings.font_family}
-          fontSize={settings.font_size}
-          textColor={settings.output_text_color}
+          fontFamily={settings?.font_family}
+          fontSize={settings?.font_size}
+          textColor={settings?.output_text_color}
         />
       </div>
-      <div className="run-button-container run-button-container--full">
-        <button className="btn primary" onClick={handleRunAction} style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
-          {currentMode === "translate" ? (
-            <>
-              <Languages size={16} />
-              Translate
-            </>
-          ) : (
-            <>
-              <Sparkles size={16} />
-              Rewrite
-            </>
-          )}
-        </button>
+      <div className={styles.runButtonContainer}>
+        <Button
+          appearance="primary"
+          onClick={handleRunAction}
+          className={styles.runButton}
+          icon={currentMode === "translate" ? <ChatMultiple20Filled color={tokens.colorBrandForeground1} /> : <Color20Regular color={tokens.colorStatusWarningForeground3} />}
+        >
+          {currentMode === "translate" ? "Translate" : "Rewrite"}
+        </Button>
       </div>
     </div>
   );
@@ -518,10 +583,7 @@ const App = () => {
   return (
     <div
       id="root"
-      style={{
-        fontFamily: settings.font_family || "Arial",
-        fontSize: `${settings.font_size || 14}px`,
-      }}
+      className={styles.root}
     >
       <Header
         title="Translator & Rewriter"
@@ -533,7 +595,7 @@ const App = () => {
 
       <ModeSelector currentMode={currentMode} onModeChange={handleModeChange} />
 
-      <div className="content">
+      <div className={styles.content}>
         <ResizablePanels leftPanel={leftPanel} rightPanel={rightPanel} />
       </div>
 

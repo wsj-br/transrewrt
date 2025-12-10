@@ -1,55 +1,8 @@
 {
   "type": "translate",
-  "model": "google/gemma-3-27b-it:free",
-  "usage": {
-    "prompt_tokens": 136,
-    "completion_tokens": 98,
-    "total_tokens": 234,
-    "cost": 0,
-    "is_byok": false,
-    "prompt_tokens_details": {
-      "cached_tokens": 0,
-      "audio_tokens": 0,
-      "video_tokens": 0
-    },
-    "cost_details": {
-      "upstream_inference_cost": null,
-      "upstream_inference_prompt_cost": 0,
-      "upstream_inference_completions_cost": 0
-    },
-    "completion_tokens_details": {
-      "reasoning_tokens": 0,
-      "image_tokens": 0
-    }
-  },
-  "calculated_cost": 0,
-  "total_cost": 0.0001195,
+  "model": "google/gemma-3n-e2b-it:free",
   "raw": {
-    "content": "\nOs lares americanos demonstraram maior pessimismo em relação às suas situações financeira atual e futura em novembro, mesmo com a manutenção das expectativas em relação à trajetória futura da inflação, de acordo com um relatório do Federal Reserve de Nova York divulgado na segunda-feira.\n\nIsso está funcionando agora. Fantástico!!",
-    "usage": {
-      "prompt_tokens": 136,
-      "completion_tokens": 98,
-      "total_tokens": 234,
-      "cost": 0,
-      "is_byok": false,
-      "prompt_tokens_details": {
-        "cached_tokens": 0,
-        "audio_tokens": 0,
-        "video_tokens": 0
-      },
-      "cost_details": {
-        "upstream_inference_cost": null,
-        "upstream_inference_prompt_cost": 0,
-        "upstream_inference_completions_cost": 0
-      },
-      "completion_tokens_details": {
-        "reasoning_tokens": 0,
-        "image_tokens": 0
-      }
-    },
-    "model": "google/gemma-3-27b-it:free",
-    "calculated_cost": 0,
-    "total_cost": 0.0001195,
-    "model_used": "google/gemma-3-27b-it:free"
+    "error": "HTTP error! status: 400",
+    "model_used": "google/gemma-3n-e2b-it:free"
   }
 }
