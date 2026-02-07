@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, tokens, Label, Text, Dropdown, Option, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
-import { Key20Regular, Money20Regular, Settings20Regular } from '@fluentui/react-icons';
+import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
 
-
+// ColorPickerPopup Component remains unchanged (copy from previous version with Palette icon fixes if needed)
 const useColorPickerStyles = makeStyles({
   colorPickerRow: {
     display: 'flex',
@@ -48,14 +48,13 @@ const useFormStyles = makeStyles({
   },
 });
 
-// Helper function to convert hex to HSV
+// Helper functions for color conversion
 const hexToHsv = (hex) => {
   const color = new TinyColor(hex);
   const hsv = color.toHsv();
   return { h: hsv.h, s: hsv.s, v: hsv.v, a: hsv.a ?? 1 };
 };
 
-// Helper function to convert HSV to hex
 const hsvToHex = (hsv) => {
   return new TinyColor({ h: hsv.h, s: hsv.s, v: hsv.v, a: hsv.a ?? 1 }).toHexString();
 };
@@ -77,12 +76,10 @@ const ColorPickerPopup = ({ color, onChange, label }) => {
   };
 
   const handleCancel = () => {
-    // Reset preview to current color
-    setPreviewColor(hexToHsv(color || '#ffffff')); 
+    setPreviewColor(hexToHsv(color || '#ffffff'));
     setPopoverOpen(false);
   };
 
-  // Update preview when color prop changes
   useEffect(() => {
     if (!popoverOpen) {
       setPreviewColor(hexToHsv(color || '#ffffff'));
@@ -164,115 +161,22 @@ const ColorPickerPopup = ({ color, onChange, label }) => {
 
 const SettingsDialogGeneralTab = ({
   localSettings,
-  showApiKey,
-  apiTestStatus,
-  apiTestMessage,
   onSettingChange,
-  onShowApiKeyChange,
-  onTestApi,
 }) => {
   const formStyles = useFormStyles();
+
   return (
     <div className="tab-content">
-      {/* API Configuration Section */}
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
-          <Key20Regular />
-          API Configuration
-        </Text>
-        <div style={{ marginBottom: '16px' }}>
-          <Label htmlFor="api-url" style={{ display: 'block', marginBottom: '6px' }}>
-            API URL:
-          </Label>
-          <Input
-            id="api-url"
-            type="text"
-            value={localSettings.api_url || 'https://openrouter.ai/api/v1'}
-            onChange={(e) => onSettingChange('api_url', e.target.value)}
-            placeholder="https://openrouter.ai/api/v1"
-            style={{ width: '100%' }}
-          />
-        </div>
-        <div style={{ marginBottom: '16px' }}>
-          <Label htmlFor="api-key" style={{ display: 'block', marginBottom: '6px' }}>
-            OpenRouter API Key:
-          </Label>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Input
-              id="api-key"
-              type={showApiKey ? 'text' : 'password'}
-              value={localSettings.api_key || ''}
-              onChange={(e) => onSettingChange('api_key', e.target.value)}
-              placeholder="sk-or-..."
-              style={{ flex: 1 }}
-            />
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Checkbox
-                id="show-api-key"
-                checked={showApiKey}
-                onChange={(e) => onShowApiKeyChange(e.target.checked)}
-              />
-              <Label htmlFor="show-api-key" style={{ cursor: 'pointer', margin: 0 }}>
-                Show
-              </Label>
-            </div>
-          </div>
-        </div>
-        <div className="form-group" style={{ marginTop: '8px' }}>
-          <Button
-            appearance="primary"
-            onClick={onTestApi}
-            disabled={apiTestStatus === 'testing'}
-            style={{ width: '100%' }}
-          >
-            {apiTestStatus === 'testing' ? 'Testing...' : 'Test API Configuration'}
-          </Button>
-          {apiTestStatus && (
-            <div
-              style={{
-                marginTop: '8px',
-                padding: '8px',
-                borderRadius: '4px',
-                fontSize: '12px',
-                backgroundColor: apiTestStatus === 'success' ? '#d4edda' : '#f8d7da',
-                color: apiTestStatus === 'success' ? '#155724' : '#721c24',
-                border: `1px solid ${apiTestStatus === 'success' ? '#c3e6cb' : '#f5c6cb'}`
-              }}
-            >
-              {apiTestMessage}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Cost Tracking Section */}
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
-          <Money20Regular />
-          Cost Tracking
-        </Text>
-        <div className="cost-row">
-          <span>Total Cost: ${parseFloat(localSettings.total_cost || 0).toFixed(6)}</span>
-          <Button
-            appearance="secondary"
-            size="small"
-            onClick={() => onSettingChange('total_cost', 0)}
-          >
-            Reset Cost
-          </Button>
-        </div>
-      </div>
-
       {/* Behavior Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
-          <Settings20Regular />
+          <Settings size={20} />
           Behavior
         </Text>
         <div style={{ marginBottom: '16px' }}>
           <Label htmlFor="enter-behavior" style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <span className="key-code"
+              <span
                 style={{
                   display: 'inline-block',
                   padding: '4px 10px',
@@ -296,7 +200,7 @@ const SettingsDialogGeneralTab = ({
             value={localSettings.enter_behavior || 'Translate'}
             selectedOptions={[(localSettings.enter_behavior || 'Translate')]}
             onOptionSelect={(e, data) => onSettingChange('enter_behavior', data.optionValue)}
-            style={{ width: '100%' }}
+            style={{ width: 'auto', minWidth: '280px' }}
           >
             <Option value="Translate">Translate / Rewrite when pressed</Option>
             <Option value="Newline">Insert a new line</Option>
@@ -306,16 +210,41 @@ const SettingsDialogGeneralTab = ({
         <div className="checkbox-group" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox
+              checked={localSettings.auto_translate_on_paste !== false}
+              onChange={(e) => onSettingChange('auto_translate_on_paste', e.target.checked)}
+            />
+            <Label style={{ margin: 0 }}>Auto-translate on paste</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Checkbox
               checked={localSettings.auto_copy || false}
               onChange={(e) => onSettingChange('auto_copy', e.target.checked)}
-              label="Auto-copy result to clipboard"
+              icon={<ClipboardCheck size={16} />}
             />
+            <Label style={{ margin: 0 }}>Auto-copy result to clipboard</Label>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox
               checked={localSettings.real_time_translation || false}
               onChange={(e) => onSettingChange('real_time_translation', e.target.checked)}
-              label="Real-time translation (while typing)"
+              icon={<RefreshCw size={16} />}
+            />
+            <Label style={{ margin: 0 }}>Real-time translation (while typing)</Label>
+          </div>
+          <div style={{ marginLeft: '48px', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Label htmlFor="real-time-delay" style={{ margin: 0, whiteSpace: 'nowrap' }}>Timeout (ms):</Label>
+            <SpinButton
+              id="real-time-delay"
+              value={localSettings.real_time_delay || 1000}
+              onChange={(e, data) => {
+                const value = parseInt(data.value);
+                if (!isNaN(value) && value >= 0) {
+                  onSettingChange('real_time_delay', value);
+                }
+              }}
+              min={0}
+              step={100}
+              style={{ width: '120px' }}
             />
           </div>
         </div>
@@ -324,17 +253,18 @@ const SettingsDialogGeneralTab = ({
       {/* Appearance Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
+          <Palette size={20} />
           Appearance
         </Text>
         <div className="form-row">
-          <div className="form-group">
-            <Label htmlFor="font-family">Font Family:</Label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
             <Dropdown
               id="font-family"
               value={localSettings.font_family || 'Arial'}
               selectedOptions={[(localSettings.font_family || 'Arial')]}
               onOptionSelect={(e, data) => onSettingChange('font_family', data.optionValue)}
-              className={formStyles.formControl}
+              style={{ width: 'auto', minWidth: '200px' }}
             >
               <Option value="Arial" style={{ fontFamily: 'Arial' }}>Arial</Option>
               <Option value="Segoe UI" style={{ fontFamily: 'Segoe UI' }}>Segoe UI</Option>
@@ -342,9 +272,7 @@ const SettingsDialogGeneralTab = ({
               <Option value="Consolas" style={{ fontFamily: 'Consolas' }}>Consolas</Option>
               <Option value="Times New Roman" style={{ fontFamily: 'Times New Roman' }}>Times New Roman</Option>
             </Dropdown>
-          </div>
-          <div className="form-group narrow">
-            <Label htmlFor="font-size">Size:</Label>
+            <Label htmlFor="font-size" style={{ margin: 0, whiteSpace: 'nowrap' }}>Size:</Label>
             <SpinButton
               id="font-size"
               value={localSettings.font_size || 14}
@@ -353,12 +281,12 @@ const SettingsDialogGeneralTab = ({
                   onSettingChange('font_size', parseInt(data.value));
                 }
               }}
-              className={formStyles.formControl}
+              style={{ width: '80px' }}
             />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <ColorPickerPopup
               color={localSettings.input_text_color || '#ffffff'}
               onChange={(hexColor) => onSettingChange('input_text_color', hexColor)}
@@ -366,8 +294,8 @@ const SettingsDialogGeneralTab = ({
             />
             <div
               style={{
-                width: '25vw',
-                marginTop: '8px',
+                width: '250px',
+                marginTop: '4px',
                 color: localSettings.input_text_color || '#ffffff',
                 wordWrap: 'break-word',
                 fontFamily: localSettings.font_family || 'Arial',
@@ -378,7 +306,7 @@ const SettingsDialogGeneralTab = ({
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nunc velit. Class aptent taciti.
             </div>
           </div>
-          <div className="form-group">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <ColorPickerPopup
               color={localSettings.output_text_color || '#ffffff'}
               onChange={(hexColor) => onSettingChange('output_text_color', hexColor)}
@@ -386,8 +314,8 @@ const SettingsDialogGeneralTab = ({
             />
             <div
               style={{
-                width: '25vw',
-                marginTop: '8px',
+                width: '250px',
+                marginTop: '4px',
                 color: localSettings.output_text_color || '#ffffff',
                 wordWrap: 'break-word',
                 fontFamily: localSettings.font_family || 'Arial',
@@ -405,4 +333,3 @@ const SettingsDialogGeneralTab = ({
 };
 
 export default SettingsDialogGeneralTab;
-

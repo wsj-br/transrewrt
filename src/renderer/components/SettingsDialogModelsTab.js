@@ -1,7 +1,29 @@
 import React from 'react';
-import { Button } from '@fluentui/react-components';
-import { Globe20Regular } from '@fluentui/react-icons';
-import { Input, Checkbox, Dropdown, Option } from '@fluentui/react-components';
+import {
+  Button,
+  Input,
+  Checkbox,
+  Dropdown,
+  Option,
+  Badge,
+  Card,
+  Text,
+  Spinner,
+} from '@fluentui/react-components';
+import {
+  SearchRegular,
+  ArrowSyncRegular,
+  ChevronDownRegular,
+  ChevronUpRegular,
+  ChevronRightRegular,
+  DismissRegular,
+} from '@fluentui/react-icons';
+import {
+  Cpu,
+  Sparkles,
+  CheckSquare,
+  Package,
+} from 'lucide-react';
 
 const SettingsDialogModelsTab = ({
   allModels,
@@ -27,134 +49,297 @@ const SettingsDialogModelsTab = ({
   return (
     <div className="tab-content models-tab">
       <div className="models-split-view">
-        {/* LEFT: AVAILABLE */}
+        {/* LEFT: AVAILABLE MODELS */}
         <div className="models-pane left">
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Globe20Regular />
-            Available Models
-          </h4>
-          <div className="models-controls">
-            <Input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => onSearchTermChange(e.target.value)}
-              style={{ flex: 1 }}
-            />
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Header */}
+          <div className="models-pane-header">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Cpu size={20} strokeWidth={2} />
+              <Text size={500} weight="semibold">Available Models</Text>
+            </div>
+          </div>
+
+          {/* Search and Filter Controls */}
+          <div className="models-controls-modern">
+            <div className="search-box-container">
+              <Input
+                contentBefore={<SearchRegular />}
+                contentAfter={
+                  searchTerm && (
+                    <Button
+                      appearance="transparent"
+                      size="small"
+                      icon={<DismissRegular />}
+                      onClick={() => onSearchTermChange('')}
+                    />
+                  )
+                }
+                placeholder="Search models..."
+                value={searchTerm}
+                onChange={(e) => onSearchTermChange(e.target.value)}
+              />
+            </div>
+            
+            <div className="free-only-toggle">
               <Checkbox
                 checked={filterFree}
-                onChange={(e) => onFilterFreeChange(e.target.checked)}
-                label="Free Only"
+                onChange={(e, data) => onFilterFreeChange(data.checked)}
+                label={
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Sparkles size={14} />
+                    Free Only
+                  </span>
+                }
               />
             </div>
           </div>
-          <div className="models-actions">
-            <Button 
-              appearance="secondary"
+
+          {/* Action Toolbar */}
+          <div className="models-toolbar">
+            <Button
+              appearance="subtle"
               size="small"
+              icon={<ArrowSyncRegular />}
               onClick={onRefreshModels}
               disabled={modelsLoading}
             >
-              {modelsLoading ? 'Loading...' : 'Refresh Models'}
+              Refresh
             </Button>
+            
             {sortBy.startsWith('provider') && (
               <>
-                <Button appearance="secondary" size="small" onClick={onExpandAll}>Expand All</Button>
-                <Button appearance="secondary" size="small" onClick={onCollapseAll}>Collapse All</Button>
+                <Button
+                  appearance="subtle"
+                  size="small"
+                  icon={<ChevronDownRegular />}
+                  onClick={onExpandAll}
+                >
+                  Expand All
+                </Button>
+                <Button
+                  appearance="subtle"
+                  size="small"
+                  icon={<ChevronUpRegular />}
+                  onClick={onCollapseAll}
+                >
+                  Collapse All
+                </Button>
               </>
             )}
+            
             <Dropdown
+              appearance="outline"
+              size="small"
               value={sortBy}
               selectedOptions={[sortBy]}
               onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
-              style={{ minWidth: '120px' }}
+              style={{ minWidth: '140px' }}
             >
-              <Option value="cost-asc">Cost ↓</Option>
-              <Option value="cost-desc">Cost ↑</Option>
-              <Option value="model-asc">Model ↓</Option>
-              <Option value="model-desc">Model ↑</Option>
-              <Option value="provider-asc">Provider ↓</Option>
-              <Option value="provider-desc">Provider ↑</Option>
+              <Option value="cost-asc">Cost ↑ Low to High</Option>
+              <Option value="cost-desc">Cost ↓ High to Low</Option>
+              <Option value="model-asc">Model A→Z</Option>
+              <Option value="model-desc">Model Z→A</Option>
+              <Option value="provider-asc">Provider A→Z</Option>
+              <Option value="provider-desc">Provider Z→A</Option>
             </Dropdown>
           </div>
 
-          <div className="models-list">
+          {/* Models List */}
+          <div className="models-list-container">
             {modelsLoading && allModels.length === 0 ? (
-              <div className="empty-state" style={{ padding: '20px', textAlign: 'center' }}>
-                Loading models...
+              <div className="empty-state-modern">
+                <Spinner size="large" />
+                <Text size={400} weight="medium">Loading models...</Text>
+                <Text size={300}>Please wait while we fetch available models</Text>
               </div>
             ) : modelsError && allModels.length === 0 ? (
-              <div className="empty-state" style={{ padding: '20px', textAlign: 'center', color: '#ff4444' }}>
-                <div>Error: {modelsError}</div>
-                <Button 
-                  appearance="secondary"
-                  size="small"
+              <div className="empty-state-modern error">
+                <Package size={48} strokeWidth={1.5} style={{ opacity: 0.5 }} />
+                <Text size={400} weight="semibold" style={{ color: 'var(--colorPaletteRedForeground1)' }}>
+                  Error loading models
+                </Text>
+                <Text size={300}>{modelsError}</Text>
+                <Button
+                  appearance="primary"
+                  size="medium"
+                  icon={<ArrowSyncRegular />}
                   onClick={onRefreshModels}
-                  style={{ marginTop: '10px' }}
+                  style={{ marginTop: '12px' }}
                 >
                   Retry
                 </Button>
               </div>
             ) : sortedModelsData.type === 'grouped' ? (
-              // Provider sorting: show grouped format with expand/collapse
-              Object.keys(sortedModelsData.data).map(provider => (
-                <div key={provider} className="provider-group">
-                  <div
-                    className="provider-header"
-                    onClick={() => onToggleProvider(provider)}
-                  >
-                    {expandedProviders.has(provider) ? '▼' : '▶'} {provider}
-                  </div>
-                  {expandedProviders.has(provider) && (
-                    <div className="provider-models">
-                      {sortedModelsData.data[provider].map(model => (
-                        <div
-                          key={model.id}
-                          className={`model-item ${selectedModelIds.has(model.id) ? 'selected' : ''}`}
-                          onClick={() => onToggleModelSelection(model.id)}
-                        >
-                          <span className="model-name">{model.name || model.id}</span>
-                          <span className="model-price">
-                            ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)}
+              // GROUPED VIEW (by Provider)
+              <div className="models-list-grouped">
+                {Object.keys(sortedModelsData.data).map(provider => {
+                  const models = sortedModelsData.data[provider];
+                  const isExpanded = expandedProviders.has(provider);
+                  const selectedCount = models.filter(m => selectedModelIds.has(m.id)).length;
+                  
+                  return (
+                    <div key={provider} className="provider-section-modern">
+                      <div
+                        className="provider-header-modern"
+                        onClick={() => onToggleProvider(provider)}
+                      >
+                        <div className="provider-info">
+                          <span className="provider-icon">
+                            {isExpanded ? <ChevronDownRegular /> : <ChevronRightRegular />}
                           </span>
+                          <span className="provider-emoji">{getProviderEmoji(provider)}</span>
+                          <Text weight="semibold" size={400}>{provider}</Text>
+                          <Badge
+                            appearance="tint"
+                            size="small"
+                            color={selectedCount > 0 ? 'brand' : 'subtle'}
+                          >
+                            {models.length} {models.length === 1 ? 'model' : 'models'}
+                          </Badge>
+                          {selectedCount > 0 && (
+                            <Badge appearance="filled" size="small" color="success">
+                              {selectedCount} selected
+                            </Badge>
+                          )}
                         </div>
-                      ))}
+                      </div>
+
+                      {isExpanded && (
+                        <div className="provider-models-modern">
+                          {models.map(model => {
+                            const isSelected = selectedModelIds.has(model.id);
+                            const isFree = parseFloat(model.pricing?.prompt || 0) === 0;
+                            
+                            return (
+                              <Card
+                                key={model.id}
+                                className={`model-card-modern ${isSelected ? 'selected' : ''}`}
+                                onClick={() => onToggleModelSelection(model.id)}
+                              >
+                                <div className="model-card-content">
+                                  <div className="model-info">
+                                    <div className="model-name-row">
+                                      <Text weight="medium" size={300}>
+                                        {model.name || model.id}
+                                      </Text>
+                                      {isFree && (
+                                        <Badge
+                                          appearance="tint"
+                                          size="small"
+                                          color="success"
+                                          icon={<Sparkles size={12} />}
+                                        >
+                                          Free
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <Text size={200} className="model-price">
+                                      ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)} / 1M tokens
+                                    </Text>
+                                  </div>
+                                  <div className="model-action">
+                                    {isSelected ? (
+                                      <Badge appearance="filled" size="small" color="brand">
+                                        Selected
+                                      </Badge>
+                                    ) : (
+                                      <Button
+                                        appearance="subtle"
+                                        size="small"
+                                      >
+                                        Add
+                                      </Button>
+                                    )}
+                                  </div>
+                                </div>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ))
+                  );
+                })}
+              </div>
             ) : (
-              // Cost or Model sorting: show flat list "Model (Provider)"
-              sortedModelsData.data.map(model => {
-                const provider = model.id.split('/')[0] || 'Other';
-                const modelName = getModelName(model);
-                return (
-                  <div
-                    key={model.id}
-                    className={`model-item flat ${selectedModelIds.has(model.id) ? 'selected' : ''}`}
-                    onClick={() => onToggleModelSelection(model.id)}
-                  >
-                    <span className="model-name">{modelName} ({provider})</span>
-                    <span className="model-price">
-                      ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)}
-                    </span>
-                  </div>
-                );
-              })
+              // FLAT LIST VIEW (by Cost or Model name)
+              <div className="models-list-flat">
+                {sortedModelsData.data.map(model => {
+                  const provider = model.id.split('/')[0] || 'Other';
+                  const modelName = getModelName(model);
+                  const isSelected = selectedModelIds.has(model.id);
+                  const isFree = parseFloat(model.pricing?.prompt || 0) === 0;
+
+                  return (
+                    <Card
+                      key={model.id}
+                      className={`model-card-modern flat ${isSelected ? 'selected' : ''}`}
+                      onClick={() => onToggleModelSelection(model.id)}
+                    >
+                      <div className="model-card-content">
+                        <div className="model-info">
+                          <div className="model-name-row">
+                            <span className="provider-emoji-small">{getProviderEmoji(provider)}</span>
+                            <Text weight="medium" size={300}>
+                              {modelName}
+                            </Text>
+                            <Text size={200} style={{ opacity: 0.7 }}>
+                              ({provider})
+                            </Text>
+                            {isFree && (
+                              <Badge
+                                appearance="tint"
+                                size="small"
+                                color="success"
+                                icon={<Sparkles size={12} />}
+                              >
+                                Free
+                              </Badge>
+                            )}
+                          </div>
+                          <Text size={200} className="model-price">
+                            ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)} / 1M tokens
+                          </Text>
+                        </div>
+                        <div className="model-action">
+                          {isSelected ? (
+                            <Badge appearance="filled" size="small" color="brand">
+                              Selected
+                            </Badge>
+                          ) : (
+                            <Button
+                              appearance="subtle"
+                              size="small"
+                            >
+                              Add
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </Card>
+                  );
+                })}
+              </div>
             )}
           </div>
         </div>
 
-        {/* RIGHT: SELECTED */}
+        {/* Vertical Divider */}
+        <div className="models-divider"></div>
+
+        {/* RIGHT: SELECTED MODELS */}
         <div className="models-pane right">
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Globe20Regular />
-            Selected Models
-          </h4>
-          <div style={{ marginBottom: '8px' }}>
-            <Button 
-              appearance="secondary"
+          {/* Header */}
+          <div className="models-pane-header">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <CheckSquare size={20} strokeWidth={2} />
+              <Text size={500} weight="semibold">Selected Models</Text>
+              <Badge appearance="filled" size="medium" color="brand">
+                {selectedModelIds.size}
+              </Badge>
+            </div>
+            <Button
+              appearance="subtle"
               size="small"
               onClick={onDeselectAllModels}
               disabled={selectedModelIds.size === 0}
@@ -162,23 +347,61 @@ const SettingsDialogModelsTab = ({
               Deselect All
             </Button>
           </div>
-          <div className="selected-list">
-            {Array.from(selectedModelIds).sort().map(modelId => {
-              const model = allModels.find(m => m.id === modelId) || { id: modelId };
-              return (
-                <div
-                  key={modelId}
-                  className="selected-item"
-                  onClick={() => onToggleModelSelection(modelId)}
-                >
-                  <span>{model.name || model.id}</span>
-                  <button className="remove-btn">×</button>
-                </div>
-              );
-            })}
-            {selectedModelIds.size === 0 && (
-              <div className="empty-state">No models selected</div>
-            )}
+
+          {/* Selected Models List */}
+          <div className="selected-models-container">
+            <div className="selected-models-list">
+              {Array.from(selectedModelIds).sort().map(modelId => {
+                const model = allModels.find(m => m.id === modelId) || { id: modelId };
+                const provider = modelId.split('/')[0] || 'Other';
+                const isFree = model.pricing && parseFloat(model.pricing.prompt || 0) === 0;
+                const FREE_MODEL_ID = "openrouter/free";
+                const isRequiredFree = modelId === FREE_MODEL_ID;
+
+                return (
+                  <Card
+                    key={modelId}
+                    className="selected-model-card-modern"
+                  >
+                    <div className="selected-model-content">
+                      <div className="selected-model-info">
+                        <div className="selected-model-header">
+                          <span className="provider-emoji-small">{getProviderEmoji(provider)}</span>
+                          <Text weight="semibold" size={400}>
+                            {model.name || model.id}
+                          </Text>
+                          {isFree && (
+                            <Badge
+                              appearance="tint"
+                              size="small"
+                              color="success"
+                              icon={<Sparkles size={12} />}
+                            >
+                              Free
+                            </Badge>
+                          )}
+                        </div>
+                        <Text size={200} style={{ opacity: 0.7 }}>
+                          {provider}
+                          {model.pricing && (
+                            <> • ${(parseFloat(model.pricing.prompt || 0) * 1000000).toFixed(2)} / 1M</>
+                          )}
+                        </Text>
+                      </div>
+                      {!isRequiredFree && (
+                        <Button
+                          appearance="subtle"
+                          size="small"
+                          icon={<DismissRegular />}
+                          onClick={() => onToggleModelSelection(modelId)}
+                          aria-label="Remove model"
+                        />
+                      )}
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -186,5 +409,19 @@ const SettingsDialogModelsTab = ({
   );
 };
 
-export default SettingsDialogModelsTab;
+// Helper function to get provider emoji/icon
+const getProviderEmoji = (provider) => {
+  const providerLower = provider.toLowerCase();
+  if (providerLower.includes('anthropic')) return '⚡';
+  if (providerLower.includes('openai')) return '🤖';
+  if (providerLower.includes('google')) return '🔷';
+  if (providerLower.includes('meta')) return '📘';
+  if (providerLower.includes('alibaba')) return '🟠';
+  if (providerLower.includes('cohere')) return '🟣';
+  if (providerLower.includes('mistral')) return '🔶';
+  if (providerLower.includes('deepseek')) return '🔵';
+  if (providerLower.includes('qwen')) return '🟢';
+  return '🤖';
+};
 
+export default SettingsDialogModelsTab;

@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Button, makeStyles, tokens } from "@fluentui/react-components";
-import { ChatMultiple20Filled, Color20Regular } from "@fluentui/react-icons";
-import Header from "./Header";
-import ModeSelector from "./ModeSelector";
+import { makeStyles, tokens, Button } from "@fluentui/react-components";
+import Sidebar from "./Sidebar";
+import MainContent from "./MainContent";
 import TextPanel from "./TextPanel";
-import ResizablePanels from "./ResizablePanels";
-import SettingsDialog from "./SettingsDialog";
 import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
 import { useAppContext } from "../contexts/AppContext";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
-import { FileText, FileCheck } from "lucide-react";
+import { Zap, Square } from "lucide-react";
 
 const useStyles = makeStyles({
   root: {
@@ -22,8 +19,8 @@ const useStyles = makeStyles({
   content: {
     flex: 1,
     display: "flex",
-    padding: `0 ${tokens.spacingHorizontalM} ${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
-    gap: tokens.spacingHorizontalM,
+    padding: `0 ${tokens.spacingHorizontalXL} ${tokens.spacingVerticalXL} ${tokens.spacingHorizontalXL}`,
+    gap: tokens.spacingHorizontalXL,
     overflow: "hidden",
   },
   panelStack: {
@@ -31,8 +28,8 @@ const useStyles = makeStyles({
     flexDirection: "column",
     height: "100%",
     minHeight: 0,
-    gap: "6px",
-    padding: `0 ${tokens.spacingHorizontalXXS}`,
+    gap: "16px",
+    padding: 0,
   },
   panelControls: {
     display: "flex",
@@ -48,16 +45,19 @@ const useStyles = makeStyles({
   runButtonContainer: {
     display: "flex",
     justifyContent: "flex-end",
-    alignItems: "stretch",
-    padding: 0,
+    alignItems: "center",
+    padding: `${tokens.spacingVerticalS} 0 0 0`,
     minHeight: "44px",
-    height: "44px",
     flexShrink: 0,
   },
   runButton: {
-    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    minWidth: "180px",
     height: "44px",
     minHeight: "44px",
+    padding: `0 ${tokens.spacingHorizontalM}`,
   },
 });
 
@@ -66,19 +66,11 @@ const App = () => {
   const { settings, translate, rewrite, languages, models, updateSettings } =
     useAppContext();
   
-  // Debug: Log settings changes
-  React.useEffect(() => {
-    console.log('App settings updated:', {
-      font_family: settings.font_family,
-      font_size: settings.font_size,
-      input_text_color: settings.input_text_color,
-      output_text_color: settings.output_text_color,
-    });
-  }, [settings.font_family, settings.font_size, settings.input_text_color, settings.output_text_color]);
   const [currentMode, setCurrentMode] = useState("translate");
+  const [currentView, setCurrentView] = useState("workspace");
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [showApiKeyMissing, setShowApiKeyMissing] = useState(false);
 
   // Language selection states
   const [sourceLanguage, setSourceLanguage] = useState("Detect Language");
@@ -99,14 +91,32 @@ const App = () => {
   const startTimeRef = useRef(null);
   const inputTextRef = useRef("");
   const shouldAutoProcessRef = useRef(false);
+  const abortControllerRef = useRef(null);
+  const cancelledByUserRef = useRef(false);
 
   // Determine active model safely
   const activeModel = useMemo(() => {
     if (!models || models.length === 0) return null;
-    return models.includes(settings.last_used_model)
-      ? settings.last_used_model
-      : models[0];
+
+    // Check if last_used_model is still in the current models list
+    if (settings.last_used_model && models.includes(settings.last_used_model)) {
+      return settings.last_used_model;
+    }
+
+    // If last_used_model is stale (no longer in models list), default to first model
+    return models[0];
   }, [models, settings.last_used_model]);
+
+  // Check for missing API key on startup and after settings change
+  useEffect(() => {
+    const apiKey = settings?.api_key;
+    if (!apiKey || apiKey.trim() === "") {
+      setShowApiKeyMissing(true);
+      setCurrentView("settings");
+    } else {
+      setShowApiKeyMissing(false);
+    }
+  }, [settings?.api_key]);
 
   // Available styles for rewrite mode
   const rewriteStyles = [
@@ -128,6 +138,7 @@ const App = () => {
 
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
+    setCurrentView("workspace");
   };
 
   const clearInput = () => {
@@ -135,11 +146,14 @@ const App = () => {
     setOutputText("");
   };
 
-  // Cleanup timer on unmount
+  // Cleanup timer and abort controller on unmount
   useEffect(() => {
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
+      }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
     };
   }, []);
@@ -153,8 +167,8 @@ const App = () => {
       .readText()
       .then((text) => {
         setInputText(text);
-        // Automatically translate/rewrite after pasting
-        if (text.trim()) {
+        // Automatically translate/rewrite after pasting (when setting enabled)
+        if (text.trim() && settings.auto_translate_on_paste !== false) {
           setTimeout(() => {
             handleRunAction();
           }, 150);
@@ -167,8 +181,8 @@ const App = () => {
 
   const handlePasteEvent = (pastedText) => {
     // This is called when text is pasted into the textarea
-    // Set the flag immediately so the useEffect can catch it
-    if (pastedText && pastedText.trim()) {
+    // Set the flag immediately so the useEffect can catch it (only when auto-translate on paste is enabled)
+    if (pastedText && pastedText.trim() && settings.auto_translate_on_paste !== false) {
       shouldAutoProcessRef.current = true;
       // Also trigger processing directly after state update
       // Use multiple attempts to ensure we catch the state update
@@ -215,23 +229,10 @@ const App = () => {
 
   const formatCostDisplay = (cost) => {
     if (!cost || cost <= 0) return "free";
-    if (cost < 0.01) return `c$${(cost * 100).toFixed(4)}`;
-    return `$${cost.toFixed(4)}`;
+    return `$${cost.toFixed(5)}`;
   };
 
-  const openSettings = () => {
-    if (window.electronAPI && window.electronAPI.openSettings) {
-      window.electronAPI.openSettings();
-    } else {
-      setIsSettingsOpen(true); // Fallback for pure browser dev (though IPC should mock if needed)
-    }
-  };
-
-  const closeSettings = () => {
-    setIsSettingsOpen(false);
-  };
-
-  const translateText = async (textToTranslate) => {
+  const translateText = async (textToTranslate, signal) => {
     const text = textToTranslate || inputText;
     if (!text.trim()) return;
 
@@ -261,27 +262,32 @@ const App = () => {
         targetLanguage,
         activeModel,
         sourceLanguage === "Detect Language" ? null : sourceLanguage,
+        signal
       );
 
-      // Calculate TPS
-      const endTime = Date.now();
-      const durationSeconds =
-        (endTime - tpsCalculationRef.current.startTime) / 1000;
-      const totalTokens =
-        (result.usage?.prompt_tokens || 0) +
-        (result.usage?.completion_tokens || 0);
-      const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
-      setTokensPerSecond(tps);
-
-      // Stop timer
+      // Stop timer (always)
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
       startTimeRef.current = null;
       setIsProcessing(false);
-      setLastRunCost(result.calculated_cost || 0);
-      setLastRunModel(result.model_used || lastRunModel || null);
+
+      // Calculate TPS and update cost display (even when cancelled - we have usage)
+      const totalTokens =
+        (result.usage?.prompt_tokens || 0) +
+        (result.usage?.completion_tokens || 0);
+      const durationSeconds =
+        (Date.now() - tpsCalculationRef.current.startTime) / 1000;
+      const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
+      setTokensPerSecond(tps);
+      setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+      setLastRunModel(result.model_used || result.model || lastRunModel || null);
+
+      // If user cancelled, don't overwrite output text - keep "Translation stopped by user."
+      if (cancelledByUserRef.current) {
+        return;
+      }
 
       if (result.content) {
         const cleanedContent = result.content.replace(/^\s*\n+/, "");
@@ -290,6 +296,14 @@ const App = () => {
         if (settings.auto_copy) {
           navigator.clipboard.writeText(cleanedContent);
         }
+      }
+
+      // Show cancellation message if cancelled
+      if (result.cancelled) {
+        const cancelledMessage = result.content ?
+          `Translation stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? '$' + result.calculated_cost.toFixed(5) : 'free'})` :
+          "Translation stopped by user.";
+        setOutputText(cancelledMessage);
       } else if (result.error) {
         setOutputText(`Error: ${result.error}`);
       }
@@ -303,16 +317,63 @@ const App = () => {
       setIsProcessing(false);
       setLastRunCost(0);
       setLastRunModel(null);
-      setOutputText(`Error: ${error.message}`);
+      if (error.name === 'AbortError') {
+        if (!cancelledByUserRef.current) {
+          setOutputText("Translation stopped by user.");
+        }
+      } else {
+        setOutputText(`Error: ${error.message}`);
+      }
+    } finally {
+      abortControllerRef.current = null;
     }
   };
 
+  const stopProcessing = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    startTimeRef.current = null;
+    setIsProcessing(false);
+    abortControllerRef.current = null;
+  };
+
   const handleTranslate = () => {
-    translateText();
+    if (isProcessing) {
+      // Mark as cancelled so any late-arriving result will be ignored
+      cancelledByUserRef.current = true;
+      setOutputText("Translation stopped by user.");
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      stopProcessing();
+      return;
+    }
+
+    // Create new AbortController for this request
+    cancelledByUserRef.current = false;
+    abortControllerRef.current = new AbortController();
+    translateText(inputText, abortControllerRef.current.signal);
   };
 
   const handleRewrite = async () => {
     if (!inputText.trim()) return;
+
+    if (isProcessing) {
+      // Mark as cancelled so any late-arriving result will be ignored
+      cancelledByUserRef.current = true;
+      setOutputText("Rewrite stopped by user.");
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      stopProcessing();
+      return;
+    }
+
+    // Create new AbortController for this request
+    cancelledByUserRef.current = false;
+    abortControllerRef.current = new AbortController();
 
     // Start timer
     setIsProcessing(true);
@@ -335,27 +396,36 @@ const App = () => {
     };
 
     try {
-      const result = await rewrite(inputText, rewriteStyle, activeModel);
+      const result = await rewrite(
+        inputText,
+        rewriteStyle,
+        activeModel,
+        abortControllerRef.current.signal
+      );
 
-      // Calculate TPS
-      const endTime = Date.now();
-      const durationSeconds =
-        (endTime - tpsCalculationRef.current.startTime) / 1000;
-      const totalTokens =
-        (result.usage?.prompt_tokens || 0) +
-        (result.usage?.completion_tokens || 0);
-      const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
-      setTokensPerSecond(tps);
-
-      // Stop timer
+      // Stop timer (always)
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
       startTimeRef.current = null;
       setIsProcessing(false);
-      setLastRunCost(result.calculated_cost || 0);
-      setLastRunModel(result.model_used || lastRunModel || null);
+
+      // Update cost display (even when cancelled - we have usage)
+      const totalTokens =
+        (result.usage?.prompt_tokens || 0) +
+        (result.usage?.completion_tokens || 0);
+      const durationSeconds =
+        (Date.now() - tpsCalculationRef.current.startTime) / 1000;
+      const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
+      setTokensPerSecond(tps);
+      setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+      setLastRunModel(result.model_used || result.model || lastRunModel || null);
+
+      // If user cancelled, don't overwrite output text - keep "Rewrite stopped by user."
+      if (cancelledByUserRef.current) {
+        return;
+      }
 
       if (result.content) {
         const cleanedContent = result.content.replace(/^\s*\n+/, "");
@@ -364,6 +434,14 @@ const App = () => {
         if (settings.auto_copy) {
           navigator.clipboard.writeText(cleanedContent);
         }
+      }
+
+      // Show cancellation message if cancelled
+      if (result.cancelled) {
+        const cancelledMessage = result.content ?
+          `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? '$' + result.calculated_cost.toFixed(5) : 'free'})` :
+          "Rewrite stopped by user.";
+        setOutputText(cancelledMessage);
       } else if (result.error) {
         setOutputText(`Error: ${result.error}`);
       }
@@ -376,7 +454,15 @@ const App = () => {
       startTimeRef.current = null;
       setIsProcessing(false);
       setLastRunCost(0);
-      setOutputText(`Error: ${error.message}`);
+      if (error.name === 'AbortError') {
+        if (!cancelledByUserRef.current) {
+          setOutputText("Rewrite stopped by user.");
+        }
+      } else {
+        setOutputText(`Error: ${error.message}`);
+      }
+    } finally {
+      abortControllerRef.current = null;
     }
   };
 
@@ -518,7 +604,7 @@ const App = () => {
     />
   );
 
-  const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${elapsedTime.toFixed(1)}s | ` : ""}Cost: ${formatCostDisplay(lastRunCost)} | Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
+  const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${elapsedTime.toFixed(1)}s | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
 
   const leftPanel = (
     <div className={styles.panelStack}>
@@ -526,7 +612,6 @@ const App = () => {
       <div className={styles.panelFill}>
         <TextPanel
           title="Input"
-          icon={<FileText size={20} color={tokens.colorBrandForeground1} />}
           text={inputText}
           onTextChange={setInputText}
           placeholder="Enter text here..."
@@ -539,6 +624,11 @@ const App = () => {
           textColor={settings?.input_text_color}
         />
       </div>
+      <div className={styles.runButtonContainer} style={{ visibility: 'hidden' }}>
+        <Button style={{ minWidth: "180px", height: "44px" }} disabled>
+          Spacer
+        </Button>
+      </div>
     </div>
   );
 
@@ -548,7 +638,6 @@ const App = () => {
       <div className={styles.panelFill}>
         <TextPanel
           title="Output"
-          icon={<FileCheck size={20} color={tokens.colorStatusWarningForeground3} />}
           text={outputText}
           onTextChange={setOutputText}
           placeholder="Output will appear here..."
@@ -561,6 +650,7 @@ const App = () => {
               Model: {lastRunModel || "N/A"}
             </>
           }
+          footerAlign="left"
           onCopy={copyOutput}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
@@ -572,34 +662,99 @@ const App = () => {
           appearance="primary"
           onClick={handleRunAction}
           className={styles.runButton}
-          icon={currentMode === "translate" ? <ChatMultiple20Filled color={tokens.colorBrandForeground1} /> : <Color20Regular color={tokens.colorStatusWarningForeground3} />}
+          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
         >
-          {currentMode === "translate" ? "Translate" : "Rewrite"}
+          {isProcessing
+            ? `Stop ${currentMode === "translate" ? "Translate" : "Rewrite"}`
+            : currentMode === "translate"
+            ? "Translate"
+            : "Rewrite"}
+          {!isProcessing && (
+            <span style={{ fontSize: "12px", opacity: 0.8, fontWeight: 400 }}>
+              (Ctrl+Enter)
+            </span>
+          )}
         </Button>
       </div>
     </div>
   );
 
-  return (
-    <div
-      id="root"
-      className={styles.root}
-    >
-      <Header
-        title="Translator & Rewriter"
-        onSettingsClick={openSettings}
-        models={models}
-        currentModel={activeModel}
-        onModelChange={(model) => updateSettings({ last_used_model: model })}
-      />
-
-      <ModeSelector currentMode={currentMode} onModeChange={handleModeChange} />
-
-      <div className={styles.content}>
-        <ResizablePanels leftPanel={leftPanel} rightPanel={rightPanel} />
+  // Render API key missing modal
+  const renderApiKeyMissingModal = () => {
+    if (!showApiKeyMissing) return null;
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+        }}
+        onClick={(e) => {
+          // Prevent clicks inside modal from closing
+          if (e.target === e.currentTarget) {
+            // Don't allow dismiss by clicking outside; user must set API key
+          }
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: tokens.colorNeutralBackground1,
+            borderRadius: '8px',
+            padding: '24px',
+            maxWidth: '480px',
+            width: '90%',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+            border: `1px solid ${tokens.colorNeutralStroke1}`,
+          }}
+        >
+          <h2 style={{ marginTop: 0, marginBottom: '16px' }}>API Key Required</h2>
+          <p style={{ marginBottom: '24px' }}>
+            To use the Translator & Rewriter, you need to configure your OpenRouter API key.
+            Please open Settings to add your API key.
+          </p>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+            <Button
+              appearance="primary"
+              onClick={() => {
+                setShowApiKeyMissing(false);
+                setCurrentView("settings");
+              }}
+            >
+              Open Settings
+            </Button>
+          </div>
+        </div>
       </div>
+    );
+  };
 
-      <SettingsDialog isOpen={isSettingsOpen} onClose={closeSettings} />
+  return (
+    <div id="root" className={styles.root}>
+      {renderApiKeyMissingModal()}
+      <div className="app-container">
+        <Sidebar
+          currentMode={currentMode}
+          currentView={currentView}
+          onModeChange={handleModeChange}
+          onSettingsClick={() => setCurrentView("settings")}
+        />
+        <MainContent
+          view={currentView}
+          currentMode={currentMode}
+          models={models}
+          activeModel={activeModel}
+          onModelChange={(model) => updateSettings({ last_used_model: model })}
+          leftPanel={leftPanel}
+          rightPanel={rightPanel}
+        />
+      </div>
     </div>
   );
 };

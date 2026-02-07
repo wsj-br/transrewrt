@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
-import { LocalLanguage20Filled } from '@fluentui/react-icons';
+import { makeStyles, mergeClasses, tokens, Dropdown, Option } from '@fluentui/react-components';
+import { Languages } from 'lucide-react';
 
 const useStyles = makeStyles({
   languageSelector: {
@@ -30,27 +30,26 @@ const useStyles = makeStyles({
       paddingRight: "0 !important",
     },
     "& .fui-Dropdown__trigger:hover": {
-      borderBottomColor: `${tokens.colorNeutralForeground1} !important`,
+      borderBottom: `2px solid ${tokens.colorNeutralForeground1} !important`,
     },
     "& .fui-Dropdown__trigger:focus-visible": {
-      borderBottomColor: `${tokens.colorBrandBackground} !important`,
-      borderBottomWidth: "3px !important",
+      borderBottom: `2px solid ${tokens.colorBrandBackground} !important`,
     },
-    detectLanguageOption: {
-      color: tokens.colorBrandForeground1,
-    },
-    dropdownDetectLanguage: {
-      '& button': {
-        color: `${tokens.colorBrandForeground1} !important`,
-      },
+  },
+  detectLanguageOption: {
+    color: tokens.colorBrandForeground1,
+  },
+  dropdownDetectLanguage: {
+    "& button": {
+      color: `${tokens.colorBrandForeground1} !important`,
     },
   },
 });
 
-const LanguageSelector = ({ 
-  label, 
-  value, 
-  onChange, 
+const LanguageSelector = ({
+  label,
+  value,
+  onChange,
   languages = [],
   allLanguages = [],
   detectLanguage = false,
@@ -60,27 +59,27 @@ const LanguageSelector = ({
   let languageOptions = [];
 
   if (detectLanguage) {
-    // For "From:" dropdown: Detect Language first, then selected languages, separator, then remaining
     const selectedSet = new Set(languages);
     const selected = [...languages].sort((a, b) => a.localeCompare(b));
     const remaining = allLanguages
       .filter(lang => !selectedSet.has(lang))
       .sort((a, b) => a.localeCompare(b));
-    
+
     languageOptions = ['Detect Language', '---', ...selected];
     if (remaining.length > 0) {
-      languageOptions.push('---'); // Separator
+      languageOptions.push('---');
       languageOptions.push(...remaining);
     }
   } else {
-    // For "To:" dropdown: just selected languages
     languageOptions = [...languages].sort((a, b) => a.localeCompare(b));
   }
+
+  const isDetectLanguage = value === 'Detect Language';
 
   return (
     <div className={styles.languageSelector}>
       <label className={styles.label}>
-        <LocalLanguage20Filled color={iconColor} />
+        <Languages size={20} color={iconColor} />
         {label}
       </label>
       <div className={styles.selectContainer}>
@@ -89,7 +88,7 @@ const LanguageSelector = ({
           value={value || ""}
           selectedOptions={value ? [value] : []}
           onOptionSelect={(e, data) => onChange(data.optionValue)}
-          className={`${styles.select} ${value === 'Detect Language' ? styles.dropdownDetectLanguage : ''}`}
+          className={mergeClasses(styles.select, isDetectLanguage && styles.dropdownDetectLanguage)}
           aria-label={label}
         >
           {languageOptions.map((lang, index) => (
@@ -97,7 +96,7 @@ const LanguageSelector = ({
               key={lang === '---' ? `separator-${index}` : lang}
               value={lang}
               disabled={lang === '---'}
-              style={lang === 'Detect Language' ? { color: tokens.colorBrandForeground1 } : undefined}
+              className={lang === 'Detect Language' ? styles.detectLanguageOption : undefined}
             >
               {lang === '---' ? '────────────' : lang}
             </Option>

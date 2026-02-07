@@ -15,7 +15,7 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
 
   // Local state for pending changes
   const [localSettings, setLocalSettings] = useState({});
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeTab, setActiveTab] = useState('general'); // Will be set on open from saved config
 
   // Geometry State
   const [geometry, setGeometry] = useState({
@@ -85,8 +85,13 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
       
       // Always sync settings when dialog is open
       setLocalSettings({ ...settings });
-      setSelectedModelIds(new Set(settings.available_models || []));
+      // Always include the free model in selection
+      const FREE_MODEL_ID = "openrouter/free";
+      const modelsWithFree = new Set([FREE_MODEL_ID, ...(settings.available_models || [])]);
+      setSelectedModelIds(modelsWithFree);
       setSelectedLanguages(new Set(settings.available_languages || []));
+      // Load the last active tab from configuration
+      setActiveTab(settings.settings_active_tab || 'general');
 
       // Load saved geometry or set default only if NOT standalone (only on opening)
       if (isOpening && !isStandalone) {
@@ -159,7 +164,16 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
       });
     }
     onClose();
-  }
+  };
+
+  // Handle tab changes - explicitly persist the active tab
+  const handleTabChange = (tab) => {
+    console.log(`[SettingsDialog] handleTabChange CALLED with tab: ${tab}, activeTab before: ${activeTab}`);
+    setActiveTab(tab);
+    console.log(`[SettingsDialog] After setActiveTab, about to call setSetting`);
+    setSetting('settings_active_tab', tab);
+    console.log(`[SettingsDialog] setSetting call completed`);
+  };
 
   const handleSettingChange = (key, value) => {
     const newSettings = { ...localSettings, [key]: value };
@@ -340,6 +354,14 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
   // --- Model Logic ---
 
   const toggleModelSelection = (modelId) => {
+    const FREE_MODEL_ID = "openrouter/free";
+
+    // Prevent deselecting the required free model
+    if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID)) {
+      console.log('[Settings] Cannot deselect the required free model');
+      return;
+    }
+
     const newSet = new Set(selectedModelIds);
     if (newSet.has(modelId)) {
       newSet.delete(modelId);
@@ -467,11 +489,14 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
 
   const deselectAllModels = () => {
     if (selectedModelIds.size === 0) return;
-    
-    if (window.confirm('Are you sure you want to deselect all models? This will remove all selected models from the list.')) {
-      setSelectedModelIds(new Set());
+
+    if (window.confirm('Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).')) {
+      // Keep only the required "openrouter/free" model selected
+      const FREE_MODEL_ID = "openrouter/free";
+      const newSet = new Set([FREE_MODEL_ID]);
+      setSelectedModelIds(newSet);
       // Auto-save: persist immediately
-      setSetting('available_models', []);
+      setSetting('available_models', [FREE_MODEL_ID]);
     }
   };
 
@@ -512,19 +537,28 @@ const SettingsDialog = ({ isOpen, onClose, isStandalone = false }) => {
       <div className="tabs-header">
         <button
           className={`tab-btn ${activeTab === 'general' ? 'active' : ''}`}
-          onClick={() => setActiveTab('general')}
+          onClick={() => {
+            console.log('[SettingsDialog] GENERAL tab button clicked');
+            handleTabChange('general');
+          }}
         >
           General
         </button>
         <button
           className={`tab-btn ${activeTab === 'models' ? 'active' : ''}`}
-          onClick={() => setActiveTab('models')}
+          onClick={() => {
+            console.log('[SettingsDialog] MODELS tab button clicked');
+            handleTabChange('models');
+          }}
         >
           Models
         </button>
         <button
           className={`tab-btn ${activeTab === 'languages' ? 'active' : ''}`}
-          onClick={() => setActiveTab('languages')}
+          onClick={() => {
+            console.log('[SettingsDialog] LANGUAGES tab button clicked');
+            handleTabChange('languages');
+          }}
         >
           Languages
         </button>

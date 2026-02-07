@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Checkbox, Input } from '@fluentui/react-components';
-import { TranslateAuto20Regular, LocalLanguage20Regular, Delete20Regular } from '@fluentui/react-icons';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Checkbox, Input, tokens } from '@fluentui/react-components';
+import { Languages, Trash2, Globe } from 'lucide-react';
 import { ALL_AVAILABLE_LANGUAGES } from '../utils/languageConstants';
 
 // Function to split languages into columns
@@ -25,20 +25,27 @@ const SettingsDialogLanguagesTab = ({
   onSetting,
 }) => {
   const [numColumns, setNumColumns] = useState(5);
-  const [columns, setColumns] = useState([]);
 
   // Combine predefined languages with any custom languages from selectedLanguages
-  const customLangs = Array.from(selectedLanguages).filter(
-    lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
-  );
-  const allLangs = [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) => 
-    a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true })
+  const customLangs = useMemo(() =>
+    Array.from(selectedLanguages).filter(
+      lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
+    ),
+    [selectedLanguages]
   );
 
-  // Update columns when languages or numColumns changes
-  useEffect(() => {
-    setColumns(splitIntoColumns(allLangs, numColumns));
-  }, [allLangs, numColumns]);
+  const allLangs = useMemo(() =>
+    [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true })
+    ),
+    [customLangs]
+  );
+
+  // Compute columns directly from allLangs and numColumns
+  const columns = useMemo(() =>
+    splitIntoColumns(allLangs, numColumns),
+    [allLangs, numColumns]
+  );
 
   // Responsive behavior based on window width
   useEffect(() => {
@@ -65,7 +72,7 @@ const SettingsDialogLanguagesTab = ({
   return (
     <div className="tab-content languages-tab">
       <h3 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <TranslateAuto20Regular />
+        <Languages size={20} />
         Selected Languages
       </h3>
       <p>Select languages to appear in dropdowns:</p>
@@ -115,11 +122,11 @@ const SettingsDialogLanguagesTab = ({
                         padding: '2px 4px',
                         display: 'flex',
                         alignItems: 'center',
-                        color: '#666'
+                        color: tokens.colorNeutralForeground3,
                       }}
                       title="Delete custom language"
                     >
-                      <Delete20Regular />
+                      <Trash2 size={14} />
                     </button>
                   )}
                 </div>
@@ -131,7 +138,7 @@ const SettingsDialogLanguagesTab = ({
 
       <div className="languages-section">
         <h3 style={{ marginTop: 36, display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <LocalLanguage20Regular />
+          <Globe size={20} />
           Custom Language
         </h3>
         <div className="form-group" style={{ marginTop: '12px' }}>

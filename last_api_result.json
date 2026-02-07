@@ -1,8 +1,54 @@
 {
   "type": "translate",
-  "model": "google/gemma-3n-e2b-it:free",
+  "model": "stepfun/step-3.5-flash:free",
+  "usage": {
+    "prompt_tokens": 201,
+    "completion_tokens": 431,
+    "total_tokens": 632,
+    "cost": 0,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0,
+      "upstream_inference_completions_cost": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 326,
+      "audio_tokens": 0
+    }
+  },
+  "calculated_cost": 0,
+  "total_cost": 0.007530879999999999,
   "raw": {
-    "error": "HTTP error! status: 400",
-    "model_used": "google/gemma-3n-e2b-it:free"
+    "content": "O influenciador mineiro Henrique Maderite morreu ontem, aos 50 anos. Ele foi encontrado debilitado em seu haras, em Amarantina, distrito de Ouro Preto, no interior de Minas Gerais. Técnicas de reanimação foram realizadas pelos policiais e o óbito foi constatado pelo Samu. As causas da morte são investigadas, mas a suspeita inicial é um enfarte.",
+    "usage": {
+      "prompt_tokens": 201,
+      "completion_tokens": 431,
+      "total_tokens": 632,
+      "cost": 0,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 326,
+        "audio_tokens": 0
+      }
+    },
+    "model": "stepfun/step-3.5-flash:free",
+    "cancelled": false,
+    "calculated_cost": 0,
+    "total_cost": 0.007530879999999999,
+    "model_used": "stepfun/step-3.5-flash:free"
   }
 }

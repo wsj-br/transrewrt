@@ -6,24 +6,6 @@ import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 // Create the context
 const AppContext = createContext();
 
-// Model pricing (price per 1K tokens)
-const MODEL_PRICING = {
-  "gpt-3.5-turbo": { input: 0.001, output: 0.002 },
-  "gpt-4": { input: 0.03, output: 0.06 },
-  "claude-2": { input: 0.008, output: 0.024 },
-  "claude-instant-1": { input: 0.0008, output: 0.0024 },
-  // Default fallback pricing
-  default: { input: 0.01, output: 0.02 },
-};
-
-// Calculate cost based on model and token usage
-const calculateCost = (model, promptTokens, completionTokens) => {
-  const pricing = MODEL_PRICING[model] || MODEL_PRICING.default;
-  const inputCost = (promptTokens / 1000) * pricing.input;
-  const outputCost = (completionTokens / 1000) * pricing.output;
-  return inputCost + outputCost;
-};
-
 // Provider component
 export const AppProvider = ({ children }) => {
   const [settings, setSettings] = useState(configManager.getAll());
@@ -112,22 +94,6 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  // Expose calculateCost function for use elsewhere
-  const getCalculateCost = () => calculateCost;
-
-  const computeCostFromUsage = (modelId, promptTokens, completionTokens) => {
-    const pricing =
-      allModels.find((m) => m.id === modelId)?.pricing ||
-      settings.cached_models?.find((m) => m.id === modelId)?.pricing;
-    const promptRate = parseFloat(pricing?.prompt ?? 0);
-    const completionRate = parseFloat(pricing?.completion ?? 0);
-    if (promptRate || completionRate) {
-      return promptTokens * promptRate + completionTokens * completionRate;
-    }
-    // If pricing is missing, treat as free (avoid default/fallback pricing).
-    return 0;
-  };
-
   const writeLastApiResult = (payload) => {
     try {
       const electronRequire =
@@ -199,7 +165,7 @@ export const AppProvider = ({ children }) => {
   };
 
   // Translate text
-  const translate = async (text, targetLang, model, sourceLang = null) => {
+  const translate = async (text, targetLang, model, sourceLang = null, signal = null) => {
     setLoading(true);
     setError(null);
 
@@ -209,6 +175,7 @@ export const AppProvider = ({ children }) => {
         targetLang,
         model,
         sourceLang,
+        signal,
       );
 
       // Update last used model
@@ -216,12 +183,7 @@ export const AppProvider = ({ children }) => {
 
       // Update total cost if applicable
       if (result.usage) {
-        const { prompt_tokens = 0, completion_tokens = 0 } = result.usage;
-        const calculatedCost = computeCostFromUsage(
-          model,
-          prompt_tokens,
-          completion_tokens,
-        );
+        const calculatedCost = result.usage.cost || 0;
         const newTotalCost = (settings.total_cost || 0) + calculatedCost;
         setSetting("total_cost", newTotalCost);
         result.calculated_cost = calculatedCost;
@@ -241,6 +203,7 @@ export const AppProvider = ({ children }) => {
 
       return result;
     } catch (err) {
+      if (err.name === "AbortError") throw err;
       setError("Translation failed");
       console.error(err);
       return { error: err.message };
@@ -250,24 +213,19 @@ export const AppProvider = ({ children }) => {
   };
 
   // Rewrite text
-  const rewrite = async (text, style, model) => {
+  const rewrite = async (text, style, model, signal = null) => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await apiService.rewrite(text, style, model);
+      const result = await apiService.rewrite(text, style, model, signal);
 
       // Update last used model
       // Do not overwrite last_used_model here; it is persisted via user selection in the header.
 
       // Update total cost if applicable
       if (result.usage) {
-        const { prompt_tokens = 0, completion_tokens = 0 } = result.usage;
-        const calculatedCost = computeCostFromUsage(
-          model,
-          prompt_tokens,
-          completion_tokens,
-        );
+        const calculatedCost = result.usage.cost || 0;
         const newTotalCost = (settings.total_cost || 0) + calculatedCost;
         setSetting("total_cost", newTotalCost);
         result.calculated_cost = calculatedCost;
@@ -287,6 +245,7 @@ export const AppProvider = ({ children }) => {
 
       return result;
     } catch (err) {
+      if (err.name === "AbortError") throw err;
       setError("Rewrite failed");
       console.error(err);
       return { error: err.message };
@@ -307,16 +266,60 @@ export const AppProvider = ({ children }) => {
       const loadedModels = await apiService.getModels();
 
       if (loadedModels && loadedModels.length > 0) {
+        const loadedModelIds = new Set(loadedModels.map(m => m.id));
+
+        // Get current selections
+        const currentSelected = configManager.get("available_models") || [];
+        const selectedSet = new Set(currentSelected);
+
+        // Filter out any selected models that are no longer available
+        const invalidModels = Array.from(selectedSet).filter(id => !loadedModelIds.has(id));
+        if (invalidModels.length > 0) {
+          console.warn(`[fetchModels] Removing ${invalidModels.length} deprecated models from selection:`, invalidModels);
+          selectedSet.clear();
+          // Re-add only valid models
+          currentSelected.forEach(id => {
+            if (loadedModelIds.has(id)) {
+              selectedSet.add(id);
+            }
+          });
+          // Save the updated selection
+          configManager.set("available_models", Array.from(selectedSet));
+        }
+
+        // Always ensure "openrouter/free" is available
+        const FREE_MODEL_ID = "openrouter/free";
+        if (!loadedModelIds.has(FREE_MODEL_ID)) {
+          console.log(`[fetchModels] Adding special model "${FREE_MODEL_ID}" to the model list`);
+          loadedModels.push({
+            id: FREE_MODEL_ID,
+            name: "OpenRouter Free",
+            top_provider: "openrouter",
+            pricing: { prompt: 0, completion: 0 },
+          });
+        }
+
+        // Ensure "openrouter/free" is always selected
+        selectedSet.add(FREE_MODEL_ID);
+
         setAllModels(loadedModels);
 
-        // If no available models are configured, select all by default
-        const currentAvailable = configManager.get("available_models");
-        if (!currentAvailable || currentAvailable.length === 0) {
-          const allIds = loadedModels.map((m) => m.id);
-          setAvailableModels(allIds);
-          configManager.set("available_models", allIds);
-          // Update settings state to reflect the change
-          setSettings(configManager.getAll());
+        // Update available models with the synchronized selection (always includes free model)
+        const validAvailableModels = Array.from(selectedSet);
+        setAvailableModels(validAvailableModels);
+        configManager.set("available_models", validAvailableModels);
+
+        // Update settings state to reflect the change
+        setSettings(configManager.getAll());
+
+        // Also validate the last_used_model
+        const lastUsed = settings.last_used_model;
+        if (lastUsed && !loadedModelIds.has(lastUsed) && lastUsed !== FREE_MODEL_ID) {
+          console.warn(`[fetchModels] Last used model "${lastUsed}" is no longer available. Resetting to free model.`);
+          setSetting("last_used_model", FREE_MODEL_ID);
+        } else if (!lastUsed) {
+          // If no last_used_model set, default to free model
+          setSetting("last_used_model", FREE_MODEL_ID);
         }
       }
 
@@ -342,7 +345,6 @@ export const AppProvider = ({ children }) => {
     translate,
     rewrite,
     fetchModels, // Function to fetch models from API
-    calculateCost: getCalculateCost(),
   };
 
   return (

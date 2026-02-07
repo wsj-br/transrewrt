@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
-import { Color20Regular } from '@fluentui/react-icons';
+import { Palette } from 'lucide-react';
 
 const useStyles = makeStyles({
   styleSelector: {
@@ -51,7 +51,7 @@ const StyleSelector = ({
   return (
     <div className={styleStyles.styleSelector}>
       <label className={styleStyles.label}>
-        <Color20Regular color={iconColor} />
+        <Palette size={20} color={iconColor} />
         {label}
       </label>
       <div className={styleStyles.selectContainer}>

@@ -19,6 +19,7 @@
   ],
   "auto_copy": false,
   "real_time_translation": false,
+  "real_time_delay": 1000,
   "enter_behavior": "Shift-Translate",
   "font_family": "Verdana",
   "font_size": 13,
@@ -31,5 +32,7 @@
     "height": 640
   },
   "total_cost": 0.0,
-  "api_url": "https://openrouter.ai/api/v1"
+  "api_url": "https://openrouter.ai/api/v1",
+  "settings_active_tab": "general",
+  "auto_translate_on_paste": true
 }
