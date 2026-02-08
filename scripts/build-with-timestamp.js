@@ -22,7 +22,6 @@ console.log(`Building with timestamp: ${timestamp}`);
 // Run electron-builder
 const builder = spawn('npx', ['electron-builder'], {
   stdio: 'inherit',
-  shell: true,
   env: process.env
 });
 

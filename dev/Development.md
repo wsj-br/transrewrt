@@ -8,16 +8,15 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 ### Windows 11
 
-1. **Node.js (LTS)**
+1. **Node.js (LTS) using nvm**
 
-   Download and install from [nodejs.org](https://nodejs.org/) (LTS version), or use a version manager:
+   Install [nvm-windows](https://github.com/coreybutler/nvm-windows) (Node Version Manager for Windows):
 
    ```powershell
-   # Using winget (Windows Package Manager)
-   winget install OpenJS.NodeJS.LTS
-
-   # Or using Chocolatey
-   choco install nodejs-lts
+   # Download nvm-setup.exe from the releases page and install it
+   # Then install Node.js LTS:
+   nvm install lts
+   nvm use lts
    ```
 
    Verify:
@@ -35,7 +34,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 3. **Code Editor (optional)**
 
-   [Visual Studio Code](https://code.visualstudio.com/) is recommended.
+   [Cursor IDE](https://cursor.com/home) is recommended.
 
 4. **Developer Mode (recommended for building)**
 
@@ -51,20 +50,15 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 ### Linux (Debian-based: Ubuntu, Debian, Mint)
 
-1. **Node.js (LTS)**
+1. **Node.js (LTS) using nvm**
 
-   Using NodeSource repository:
-
-   ```bash
-   curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-   sudo apt-get install -y nodejs
-   ```
-
-   Or using your distribution's package manager:
+   Install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager):
 
    ```bash
-   sudo apt update
-   sudo apt install nodejs npm
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+   # Restart your terminal or source ~/.bashrc (or ~/.zshrc)
+   nvm install --lts
+   nvm use --lts
    ```
 
    Verify:
@@ -96,7 +90,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 5. **Code Editor (optional)**
 
-   VS Code: `sudo snap install code` or download from [code.visualstudio.com](https://code.visualstudio.com/).
+   [Cursor IDE](https://cursor.com/home) is recommended. Download and install from [cursor.com](https://cursor.com/).
 
 ---
 
@@ -105,7 +99,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 Clone the repository and install dependencies:
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:wsj-br/T-R.git
 cd T-R
 npm install
 ```

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === "development" || process.env.NODE_ENV !== "production";
+  const isDevelopment = argv.mode === "development";
 
   return {
   mode: isDevelopment ? "development" : "production",
