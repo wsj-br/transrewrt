@@ -15,4 +15,7 @@ release/
 *.log
 *.exe
 
-
+# api log files
+models_api_raw.json
+models_valid.json
+last_api_result.json

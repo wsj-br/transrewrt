@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  t-r-web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - t-r-data:/app/data
+    environment:
+      - PORT=3000
+      - CONFIG_PATH=/app/data/config.json
+
+volumes:
+  t-r-data:

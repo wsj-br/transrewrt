@@ -1,5 +1,0 @@
-customtkinter
-openai
-pyperclip
-requests
-packaging

@@ -1,18 +1,27 @@
 // API service to communicate with the backend
+// In Electron: calls OpenRouter directly. In Web/Docker: calls server proxy (API key stays on server).
 class APIService {
   constructor() {
-    this.baseUrl = "https://openrouter.ai/api/v1";
+    this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    this.baseUrl = this._isWebMode ? "/api/proxy" : "https://openrouter.ai/api/v1";
   }
 
   /**
    * Set the base URL for API requests
-   * @param {string} url - The base URL to use for API requests
+   * In web mode, we use /api/proxy (server adds API key). In Electron, use OpenRouter URL.
    */
   setBaseUrl(url) {
-    this.baseUrl = url;
+    if (this._isWebMode) {
+      this.baseUrl = "/api/proxy";
+    } else {
+      this.baseUrl = url || "https://openrouter.ai/api/v1";
+    }
   }
 
   getHeaders() {
+    if (this._isWebMode) {
+      return { "Content-Type": "application/json" };
+    }
     const config = require("../utils/configManager").default.getAll();
     return {
       "Content-Type": "application/json",

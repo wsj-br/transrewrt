@@ -11,6 +11,7 @@
     "package": "npm run build-renderer && node scripts/build-with-timestamp.js",
     "start": "electron .",
     "start-x11": "electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
+    "start:server": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -80,6 +81,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
+    "express": "^4.21.0",
     "@fluentui/react-components": "^9.72.11",
     "@fluentui/react-icons": "^2.0.318",
     "electron-squirrel-startup": "^1.0.1",

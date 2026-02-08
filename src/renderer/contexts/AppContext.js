@@ -36,25 +36,19 @@ export const AppProvider = ({ children }) => {
     setAvailableModels([...currentModels]);
   }, [settings.available_models]);
 
-  // Load languages on startup (models are loaded when Settings opens)
+  // Load config and languages on startup (models are loaded when Settings opens)
   useEffect(() => {
-    // Use predefined language list instead of calling non-existent API endpoint
     const loadLanguages = () => {
       try {
-        // Set the API base URL from settings (for other API calls)
         const currentSettings = configManager.getAll();
         apiService.setBaseUrl(
           currentSettings.api_url || "https://openrouter.ai/api/v1",
         );
 
-        // Check if there are already configured languages
         const currentLangs = configManager.get("available_languages");
-        
         if (currentLangs && currentLangs.length > 0) {
-          // Use the configured languages
           setLanguages(currentLangs);
         } else {
-          // If no available languages are configured, use all available languages as default
           const loadedLanguages = ALL_AVAILABLE_LANGUAGES;
           if (loadedLanguages && loadedLanguages.length > 0) {
             setLanguages(loadedLanguages);
@@ -62,7 +56,6 @@ export const AppProvider = ({ children }) => {
           }
         }
 
-        // Update settings state
         setSettings(configManager.getAll());
       } catch (err) {
         setError("Failed to load languages");
@@ -70,26 +63,24 @@ export const AppProvider = ({ children }) => {
       }
     };
 
-    loadLanguages();
+    const init = async () => {
+      await configManager.loadConfig();
+      loadLanguages();
+    };
 
-    // Listen for settings updates from other windows
+    init();
+
+    // Listen for settings updates from other windows (Electron only)
     if (window.electronAPI && window.electronAPI.onSettingsUpdated) {
       window.electronAPI.onSettingsUpdated(() => {
-        // Reload config without triggering a full re-render of everything if possible?
-        // Actually we want to re-render settings dependent values.
-        configManager.loadConfig(); // Force reload from file/localstorage
-        setSettings(configManager.getAll());
-
-        // Also refresh models/availability if that changed
-        setAvailableModels(configManager.get("available_models") || []);
-        
-        // Also refresh languages if that changed
-        setLanguages(configManager.get("available_languages") || []);
-
-        // Update API base URL just in case
-        apiService.setBaseUrl(
-          configManager.get("api_url") || "https://openrouter.ai/api/v1",
-        );
+        configManager.loadConfig().then(() => {
+          setSettings(configManager.getAll());
+          setAvailableModels(configManager.get("available_models") || []);
+          setLanguages(configManager.get("available_languages") || []);
+          apiService.setBaseUrl(
+            configManager.get("api_url") || "https://openrouter.ai/api/v1",
+          );
+        });
       });
     }
   }, []);
