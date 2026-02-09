@@ -1,64 +1,81 @@
 #!/bin/bash
-# clean-workspace.sh
-#
-# Removes installed dependencies and build artifacts from the workspace.
-# Run this for a fresh start (e.g. before reinstalling or troubleshooting).
-#
 
-set -e  # Exit on error
+# Get the directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
-# Resolve script directory and project root
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-
-cd "$PROJECT_ROOT"
-
-# Color codes
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-RESET='\033[0m'
-
-echo ""
-echo "--------------------------------"
-echo "🧹 Cleaning workspace"
-echo "--------------------------------"
-echo ""
-
-# Items to remove (relative to project root)
-CLEAN_ITEMS=(
-  "node_modules"
-  "dist"
-  "build"
-  "release"
-  "cache"
-  ".cache"
+# Directories and files to clean
+ITEMS_TO_REMOVE=(
+    ".next"
+    "node_modules"
+    "dist"
+    "out"
+    ".turbo"
+    "pnpm-lock.yaml"
+    "data/*.json"
+    "public/documentation"
+    "documentation/.docusaurus"
+    "documentation/.cache-loader"
+    "documentation/.cache"
+    "documentation/build"   
+    "documentation/node_modules"
+    "documentation/pnpm-lock.yaml"
+    ".genkit"
 )
 
-for item in "${CLEAN_ITEMS[@]}"; do
-  if [ -e "$item" ]; then
-    echo -e "${YELLOW}Removing:${RESET} $item"
-    rm -rf "$item"
-    echo -e "${GREEN}  ✓ Removed${RESET}"
-  else
-    echo "  (skip) $item — not present"
-  fi
+echo "🧹 Cleaning build artifacts and dependencies..."
+
+# Remove directories and files
+for item in "${ITEMS_TO_REMOVE[@]}"; do
+    if rm -rf "$ROOT_DIR"/$item; then
+        echo "✅ Removed $item"
+    else
+        echo "❌ Error removing $item"
+    fi
 done
 
-# Clear npm cache so packages are re-downloaded fresh from the registry
-echo -e "${YELLOW}Clearing npm cache...${RESET}"
-npm cache clean --force 2>/dev/null || true
-echo -e "${GREEN}  ✓ npm cache cleared${RESET}"
+# Handle glob patterns separately
+echo "🧹 Cleaning glob patterns..."
 
-# Remove package-lock.json for fresh dependency resolution on next npm install
-if [ -f "package-lock.json" ]; then
-  echo -e "${YELLOW}Removing:${RESET} package-lock.json"
-  rm -f package-lock.json
-  echo -e "${GREEN}  ✓ Removed${RESET}"
-else
-  echo "  (skip) package-lock.json — not present"
+# Remove documentation/.cache-* directories
+if find "$ROOT_DIR/documentation" -maxdepth 1 -type d -name ".cache-*" -exec rm -rf {} + 2>/dev/null; then
+    echo "✅ Removed documentation/.cache-* directories"
 fi
 
+# Remove *.tsbuildinfo files
+if find "$ROOT_DIR" -maxdepth 3 -type f -name "*.tsbuildinfo" -exec rm -f {} + 2>/dev/null; then
+    echo "✅ Removed *.tsbuildinfo files"
+fi
+
+
+# Clear pnpm store cache
+echo "🧹 Clearing pnpm store cache..."
+if pnpm store prune; then
+    echo "✅ pnpm store cache cleared"
+else
+    echo "❌ Error clearing pnpm store cache"
+fi
+
+# clear docker compose cache
+echo "🧹 Clearing docker compose cache..."
+if docker builder prune --all --force; then
+    echo "✅ Docker compose cache cleared"
+else
+    echo "❌ Error clearing docker compose cache"
+fi
+# clear docker system images/networks/volumes
+echo "🧹 Clearing docker system images/networks/volumes not used..."
+if docker system prune --all --force; then
+    echo "✅ Docker system images/networks/volumes not used cleared"
+else
+    echo "❌ Error clearing docker system images/networks/volumes"
+fi
+
+echo "✨ Clean completed!" 
+
 echo ""
-echo -e "${GREEN}Workspace cleaned.${RESET} Run 'npm install' to reinstall dependencies."
+echo ""
+echo "💡"
+echo "     remember to run 'pnpm install' to update the dependencies before building the application"
+echo "     or before running 'pnpm docker-up'"
 echo ""

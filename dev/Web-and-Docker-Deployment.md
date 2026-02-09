@@ -39,11 +39,11 @@ The application uses **runtime environment detection** to switch between modes:
 Same as before:
 
 ```bash
-npm run build-renderer
-npm start
+pnpm run build-renderer
+pnpm start
 # Or for Linux with X11:
 
-npm run start-x11
+pnpm run start-x11
 ```
 
 ### Web Server (Local)
@@ -51,8 +51,8 @@ npm run start-x11
 For local testing without Docker:
 
 ```bash
-npm run build-renderer
-npm run start:server
+pnpm run build-renderer
+pnpm run start:server
 ```
 
 Then open http://localhost:3000/ in a browser.

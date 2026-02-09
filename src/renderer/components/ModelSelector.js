@@ -1,6 +1,7 @@
-import React from "react";
-import { makeStyles, tokens, Dropdown, Option } from "@fluentui/react-components";
-import { Bot } from "lucide-react";
+ import React from "react";
+ import { makeStyles, tokens, Dropdown, Option } from "@fluentui/react-components";
+ import { Bot } from "lucide-react";
+ import ProviderIcon from "./ProviderIcon";
 
 const useStyles = makeStyles({
   container: {
@@ -55,10 +56,18 @@ const ModelSelector = ({ models = [], currentModel, onModelChange }) => {
     return infoA.name.localeCompare(infoB.name);
   });
 
+  // Determine which model to show icon for (current or first in original list)
+  const displayModel = currentModel || models[0] || "";
+  const displayInfo = getModelInfo(displayModel);
+
   return (
     <div className={styles.container}>
       <div className={styles.modelIcon}>
-        <Bot size={18} />
+        {displayInfo.provider ? (
+          <ProviderIcon provider={displayInfo.provider} size={18} />
+        ) : (
+          <Bot size={18} />
+        )}
       </div>
       <Dropdown
         appearance="underline"
@@ -75,6 +84,11 @@ const ModelSelector = ({ models = [], currentModel, onModelChange }) => {
           const displayName = provider ? `${name} (${provider})` : name;
           return (
             <Option key={model} value={model}>
+               {provider && (
+                 <span style={{ marginRight: "8px", display: "inline-flex", alignItems: "center" }}>
+                   <ProviderIcon provider={provider} size={16} />
+                 </span>
+               )}
               {displayName}
             </Option>
           );

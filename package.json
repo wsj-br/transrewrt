@@ -4,15 +4,19 @@
   "description": "Translator & Rewriter Application",
   "main": "src/main/main.js",
   "scripts": {
-    "dev": "concurrently \"npm run watch\" \"npm run electron\"",
+    "dev": "concurrently \"pnpm run watch\" \"pnpm run electron\"",
     "watch": "webpack serve --mode development --port 3030",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
-    "package": "npm run build-renderer && node scripts/build-with-timestamp.js",
+    "package": "pnpm run build-renderer && node scripts/build-with-timestamp.js",
     "start": "electron .",
     "start-x11": "electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
     "start:server": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker-up": "docker compose up --build -d",
+    "docker-down": "docker compose down",
+    "docker-clean": "./scripts/clean-docker.sh",
+    "docker-devel": "docker build . -t wsj-br/t-r:devel"
   },
   "keywords": [
     "electron",
@@ -74,17 +78,25 @@
     "webpack": "^5.105.0",
     "webpack-cli": "^6.0.1"
   },
-  "overrides": {
-    "rimraf": "^5.0.0",
-    "glob": "^13.0.0",
-    "global-agent": "^4.1.2"
+  "pnpm": {
+    "overrides": {
+      "lodash-es": "^4.17.23",
+      "rimraf": "^5.0.0",
+      "glob": "^13.0.0",
+      "global-agent": "^4.1.2"
+    },
+    "onlyBuiltDependencies": [
+      "core-js-pure",
+      "electron",
+      "electron-winstaller"
+    ]
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "express": "^4.21.0",
     "@fluentui/react-components": "^9.72.11",
     "@fluentui/react-icons": "^2.0.318",
     "electron-squirrel-startup": "^1.0.1",
+    "express": "^5.2.1",
     "lucide-react": "^0.563.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

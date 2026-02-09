@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
 import App from "./components/App";
-import SettingsDialog from "./components/SettingsDialog";
 import AppContext, { AppProvider } from "./contexts/AppContext";
+
+// Lazy load SettingsDialog - only loaded when settings window opens
+const SettingsDialog = lazy(() => import("./components/SettingsDialog"));
 
 // Check query params for routing
 const urlParams = new URLSearchParams(window.location.search);
@@ -60,7 +62,9 @@ const initializeApp = () => {
         <FluentProvider theme={theme}>
           <AppProvider>
             {/* We render SettingsDialog directly, passing isOpen=true and dummy onClose (or one that closes window) */}
-            <SettingsPage />
+            <Suspense fallback={null}>
+              <SettingsPage />
+            </Suspense>
           </AppProvider>
         </FluentProvider>
       </React.StrictMode>,

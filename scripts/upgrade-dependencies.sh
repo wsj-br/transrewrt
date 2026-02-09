@@ -29,29 +29,29 @@ echo -e "${BLUE}🔄  Upgrading Node.js to the latest LTS version...${RESET}"
 nvm install --lts
 nvm use --lts
 
-# ensure npm is installed
-echo -e "${BLUE}🔄  Ensure npm-check-updates and doctoc are installed and in the latest version...${RESET}"
-npm install -g npm-check-updates doctoc
+# ensure pnpm is installed
+echo -e "${BLUE}🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...${RESET}"
+npm install -g pnpm npm-check-updates doctoc
 
 
 # Update package.json with latest versions using npm-check-updates
 echo -e "${BLUE}📦  Running npm-check-updates...${RESET}"
 ncu --upgrade 2>&1 | pr -o 4 -T
 
-# Update npm lockfile and install updated dependencies
-echo -e "${BLUE}⬆️  Running npm install...${RESET}"
-npm install 2>&1 | pr -o 4 -T
+# Update pnpm lockfile and install updated dependencies
+echo -e "${BLUE}⬆️  Running pnpm install...${RESET}"
+pnpm install 2>&1 | pr -o 4 -T
 
 # check for vulnerabilities
 echo -e "${BLUE}🔍  Checking for vulnerabilities...${RESET}"
-npm audit 2>&1 | pr -o 4 -T
+pnpm audit 2>&1 | pr -o 4 -T
 
 # fix vulnerabilities
 echo -e "${BLUE}🔧  Fixing vulnerabilities...${RESET}"
-npm audit fix 2>&1 | pr -o 4 -T
+pnpm audit fix 2>&1 | pr -o 4 -T
 
 # check for vulnerabilities again
 echo -e "${BLUE}🔍  Checking for vulnerabilities again...${RESET}"
-npm audit 2>&1 | pr -o 4 -T
+pnpm audit 2>&1 | pr -o 4 -T
 
 

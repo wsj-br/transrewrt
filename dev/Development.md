@@ -10,20 +10,26 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 1. **Node.js (LTS) using nvm**
 
-   Install [nvm-windows](https://github.com/coreybutler/nvm-windows) (Node Version Manager for Windows):
+    Install [nvm-windows](https://github.com/coreybutler/nvm-windows) (Node Version Manager for Windows):
 
-   ```powershell
-   # Download nvm-setup.exe from the releases page and install it
-   # Then install Node.js LTS:
-   nvm install lts
-   nvm use lts
-   ```
+    ```powershell
+    # Download nvm-setup.exe from the releases page and install it
+    # Then install Node.js LTS:
+    nvm install lts
+    nvm use lts
+    ```
 
-   Verify:
-   ```powershell
-   node --version   # e.g. v20.x.x
-   npm --version   # e.g. 10.x.x
-   ```
+    Install pnpm globally:
+
+    ```powershell
+    npm install -g pnpm
+    ```
+
+    Verify:
+    ```powershell
+    node --version   # e.g. v20.x.x
+    pnpm --version   # e.g. 10.x.x
+    ```
 
 2. **Git**
 
@@ -38,7 +44,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 4. **Developer Mode (recommended for building)**
 
-   Required to avoid symlink errors when running `npm install` or `npm run package`:
+    Required to avoid symlink errors when running `pnpm install` or `pnpm run package`:
 
    - Press `Win + I` → **Privacy & Security** → **For developers**
    - Toggle **Developer Mode** to **On**
@@ -52,20 +58,26 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 1. **Node.js (LTS) using nvm**
 
-   Install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager):
+    Install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager):
 
-   ```bash
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-   # Restart your terminal or source ~/.bashrc (or ~/.zshrc)
-   nvm install --lts
-   nvm use --lts
-   ```
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    # Restart your terminal or source ~/.bashrc (or ~/.zshrc)
+    nvm install --lts
+    nvm use --lts
+    ```
 
-   Verify:
-   ```bash
-   node --version   # e.g. v20.x.x
-   npm --version   # e.g. 10.x.x
-   ```
+    Install pnpm globally:
+
+    ```bash
+    npm install -g pnpm
+    ```
+
+    Verify:
+    ```bash
+    node --version   # e.g. v20.x.x
+    pnpm --version   # e.g. 10.x.x
+    ```
 
 2. **Git**
 
@@ -101,7 +113,7 @@ Clone the repository and install dependencies:
 ```bash
 git clone git@github.com:wsj-br/T-R.git
 cd T-R
-npm install
+pnpm install
 ```
 
 ---
@@ -113,11 +125,11 @@ npm install
 Runs the Webpack dev server and Electron with live-reload:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
-- `npm run watch` starts Webpack on http://localhost:3030
-- `npm run electron` waits for the server, then launches Electron
+- `pnpm run watch` starts Webpack on http://localhost:3030
+- `pnpm run electron` waits for the server, then launches Electron
 - React changes are compiled and reflected automatically
 
 ### Run Electron Only (Production Build)
@@ -125,14 +137,14 @@ npm run dev
 After building, run Electron without the dev server:
 
 ```bash
-npm run build-renderer
-npm start
+pnpm run build-renderer
+pnpm start
 ```
 
 On Linux with X11 (if Wayland causes issues):
 
 ```bash
-npm run start-x11
+pnpm run start-x11
 ```
 
 ---
@@ -144,7 +156,7 @@ npm run start-x11
 Compiles the React app into optimized assets in `dist/`:
 
 ```bash
-npm run build-renderer
+pnpm run build-renderer
 ```
 
 ### Package as Installable Application
@@ -152,12 +164,12 @@ npm run build-renderer
 Builds the renderer and creates the installer/executable:
 
 ```bash
-npm run package
+pnpm run package
 ```
 
 This will:
 
-1. Run `npm run build-renderer`
+1. Run `pnpm run build-renderer`
 2. Package the app with electron-builder
 3. Output to the `release/` directory (e.g. NSIS installer on Windows)
 
@@ -170,7 +182,7 @@ The application can be packaged as native installers for Windows and Linux using
 ### Build Installers for All Platforms
 
 ```bash
-npm run package
+pnpm run package
 ```
 
 This command:
@@ -263,8 +275,8 @@ Automate builds using GitHub Actions, GitLab CI, or similar. Example steps:
 
 1. Checkout code
 2. Setup Node.js (LTS)
-3. Run `npm ci`
-4. Run `npm run package`
+3. Run `pnpm ci`
+4. Run `pnpm run package`
 5. Upload artifacts from `release/`
 
 Cross-platform builds require running on each target OS or using a Windows/Mac/Linux runner matrix.
@@ -284,12 +296,12 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 **Solution 1: Enable Developer Mode** (recommended)
 
 - Settings → Privacy & Security → For developers → Developer Mode **On**
-- Restart terminal, then run `npm run package` again
+- Restart terminal, then run `pnpm run package` again
 
 **Solution 2: Run as Administrator**
 
 - Right-click PowerShell → Run as administrator
-- Navigate to project directory and run `npm run package`
+- Navigate to project directory and run `pnpm run package`
 
 ### Current Build Configuration
 
@@ -318,19 +330,19 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 | Phase | Command | Notes |
 |-------|---------|-------|
-| **Develop** | `npm run dev` | Hot reload, Webpack on :3030 |
-| **Test** | `npm run build-renderer` then `npm start` | Run built app |
-| **Test (Linux)** | `npm run build-renderer` then `npm run start-x11` | Use X11 if Wayland fails |
-| **Build** | `npm run package` | Creates installer in `release/` |
+| **Develop** | `pnpm run dev` | Hot reload, Webpack on :3030 |
+| **Test** | `pnpm run build-renderer` then `pnpm start` | Run built app |
+| **Test (Linux)** | `pnpm run build-renderer` then `pnpm run start-x11` | Use X11 if Wayland fails |
+| **Build** | `pnpm run package` | Creates installer in `release/` |
 
 ### Web (Browser, local server)
 
 | Phase | Command | Notes |
 |-------|---------|-------|
-| **Develop** | `npm run dev` | Same as Electron (shared code) |
-| **Build** | `npm run build-renderer` | Output to `dist/` |
-| **Test** | `npm run start:server` | Serves at http://localhost:3000 |
-| **Run** | `npm run build-renderer` then `npm run start:server` | Full local web test |
+| **Develop** | `pnpm run dev` | Same as Electron (shared code) |
+| **Build** | `pnpm run build-renderer` | Output to `dist/` |
+| **Test** | `pnpm run start:server` | Serves at http://localhost:3000 |
+| **Run** | `pnpm run build-renderer` then `pnpm run start:server` | Full local web test |
 
 ### Docker (Web in container)
 
@@ -347,12 +359,12 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 | Command | Purpose |
 |---------|---------|
-| `npm install` | Install dependencies |
-| `npm run dev` | Development with hot reload (Electron) |
-| `npm run build-renderer` | Production build of React app |
-| `npm run start` | Run Electron (after build) |
-| `npm run start-x11` | Run Electron with X11 (Linux) |
-| `npm run start:server` | Run web server (after build) |
-| `npm run package` | Build and create Electron installer |
+| `pnpm install` | Install dependencies |
+| `pnpm run dev` | Development with hot reload (Electron) |
+| `pnpm run build-renderer` | Production build of React app |
+| `pnpm start` | Run Electron (after build) |
+| `pnpm run start-x11` | Run Electron with X11 (Linux) |
+| `pnpm run start:server` | Run web server (after build) |
+| `pnpm run package` | Build and create Electron installer |
 | `docker build -t t-r-web .` | Build Docker image |
 | `docker-compose up -d` | Run web app in Docker |

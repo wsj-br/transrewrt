@@ -24,6 +24,7 @@ import {
   CheckSquare,
   Package,
 } from 'lucide-react';
+import ProviderIcon from './ProviderIcon';
 
 const SettingsDialogModelsTab = ({
   allModels,
@@ -187,7 +188,7 @@ const SettingsDialogModelsTab = ({
                           <span className="provider-icon">
                             {isExpanded ? <ChevronDownRegular /> : <ChevronRightRegular />}
                           </span>
-                          <span className="provider-emoji">{getProviderEmoji(provider)}</span>
+                           <ProviderIcon provider={provider} size={20} />
                           <Text weight="semibold" size={400}>{provider}</Text>
                           <Badge
                             appearance="tint"
@@ -279,7 +280,7 @@ const SettingsDialogModelsTab = ({
                       <div className="model-card-content">
                         <div className="model-info">
                           <div className="model-name-row">
-                            <span className="provider-emoji-small">{getProviderEmoji(provider)}</span>
+                             <ProviderIcon provider={provider} size={14} />
                             <Text weight="medium" size={300}>
                               {modelName}
                             </Text>
@@ -366,7 +367,7 @@ const SettingsDialogModelsTab = ({
                     <div className="selected-model-content">
                       <div className="selected-model-info">
                         <div className="selected-model-header">
-                          <span className="provider-emoji-small">{getProviderEmoji(provider)}</span>
+                           <ProviderIcon provider={provider} size={14} />
                           <Text weight="semibold" size={400}>
                             {model.name || model.id}
                           </Text>
@@ -409,19 +410,5 @@ const SettingsDialogModelsTab = ({
   );
 };
 
-// Helper function to get provider emoji/icon
-const getProviderEmoji = (provider) => {
-  const providerLower = provider.toLowerCase();
-  if (providerLower.includes('anthropic')) return '⚡';
-  if (providerLower.includes('openai')) return '🤖';
-  if (providerLower.includes('google')) return '🔷';
-  if (providerLower.includes('meta')) return '📘';
-  if (providerLower.includes('alibaba')) return '🟠';
-  if (providerLower.includes('cohere')) return '🟣';
-  if (providerLower.includes('mistral')) return '🔶';
-  if (providerLower.includes('deepseek')) return '🔵';
-  if (providerLower.includes('qwen')) return '🟢';
-  return '🤖';
-};
 
 export default SettingsDialogModelsTab;

@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
   entry: "./src/renderer/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].js",
     publicPath: isDevelopment ? "/" : "./",
     clean: true,
   },
@@ -59,8 +59,21 @@ module.exports = (env, argv) => {
   resolve: {
     extensions: [".js", ".jsx"],
   },
+  performance: {
+    maxEntrypointSize: 1000000, // 1MB - increased from default 244KB
+  },
   optimization: {
     usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+      maxSize: 200000,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+        },
+      },
+    },
   },
   ignoreWarnings: [
     /export .* was not found in '@fluentui\/react-icons'/,

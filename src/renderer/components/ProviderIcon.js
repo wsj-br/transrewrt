@@ -1,0 +1,97 @@
+import React from 'react';
+import iconData from '../assets/icons_with_files.json';
+
+// Normalize string: lowercase, remove all non-alphanumeric
+const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+// Build map: normalized provider_id -> icon filename (with .ico)
+const providerIdToFile = {};
+iconData.forEach(entry => {
+  if (entry.iconFile) {
+    const norm = normalize(entry.provider_id);
+    // Keep the first mapping for each normalized key
+    if (!providerIdToFile[norm]) {
+      providerIdToFile[norm] = entry.iconFile;
+    }
+  }
+});
+
+// Require all .ico files from assets folder directly
+const iconContext = require.context('../assets', false, /\.ico$/);
+const fileToUrl = {};
+iconContext.keys().forEach(key => {
+  // key is like './ai21.ico'
+  const file = key.replace(/^\.\//, ''); // 'ai21.ico'
+  fileToUrl[file] = iconContext(key);
+});
+
+// Manual overrides for providers that don't match directly (use .ico filenames)
+const manualMap = {
+  'google': 'google_ai_studio.ico',
+  'googlevertex': 'google_vertex.ico',
+  'amazon': 'amazon_bedrock.ico',
+  'mistralai': 'mistral.ico',
+  'openrouter': 'openrouter.ico', // if we had one
+};
+
+// Emoji fallback mapping
+const getProviderEmoji = (provider) => {
+  const providerLower = provider.toLowerCase();
+  if (providerLower.includes('anthropic')) return '⚡';
+  if (providerLower.includes('openai')) return '🤖';
+  if (providerLower.includes('google')) return '🔷';
+  if (providerLower.includes('meta')) return '📘';
+  if (providerLower.includes('alibaba')) return '🟠';
+  if (providerLower.includes('cohere')) return '🟣';
+  if (providerLower.includes('mistral')) return '🔶';
+  if (providerLower.includes('deepseek')) return '🔵';
+  if (providerLower.includes('qwen')) return '🟢';
+  return '🤖';
+};
+
+function getIconUrl(provider) {
+  // Try manual override
+  const normProvider = normalize(provider);
+  if (manualMap[provider] && fileToUrl[manualMap[provider]]) {
+    return fileToUrl[manualMap[provider]];
+  }
+  if (manualMap[normProvider] && fileToUrl[manualMap[normProvider]]) {
+    return fileToUrl[manualMap[normProvider]];
+  }
+
+  // Try to find by normalized name -> file mapping
+  const file = providerIdToFile[normProvider];
+  if (file && fileToUrl[file]) {
+    return fileToUrl[file];
+  }
+
+  // Try direct filename match (provider as is, maybe already includes .ico? unlikely)
+  if (fileToUrl[provider]) {
+    return fileToUrl[provider];
+  }
+
+  return null;
+}
+
+const ProviderIcon = ({ provider, size = 16 }) => {
+  const src = getIconUrl(provider);
+
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={provider}
+        width={size}
+        height={size}
+        style={{ objectFit: 'contain' }}
+      />
+    );
+  }
+
+  // Fallback to emoji
+  const emoji = getProviderEmoji(provider);
+  const fontSize = size === 20 ? '20px' : '16px';
+  return <span style={{ fontSize, lineHeight: 1 }}>{emoji}</span>;
+};
+
+export default ProviderIcon;

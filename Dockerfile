@@ -1,28 +1,34 @@
 # Stage 1: Build the React frontend
-FROM node:20-alpine AS builder
+FROM node:lts-alpine AS builder
 
 WORKDIR /app
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 # Copy package files
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies (including devDependencies for build)
-RUN npm install
+RUN pnpm install
 
 # Copy source code
 COPY . .
 
 # Build the renderer
-RUN npm run build-renderer
+RUN pnpm run build-renderer
 
 # Stage 2: Production server
-FROM node:20-alpine AS production
+FROM node:lts-alpine AS production
 
 WORKDIR /app
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 # Copy server package and install (minimal deps - just express)
-COPY server/package.json ./server/
-RUN cd server && npm install --omit=dev
+COPY server/package.json server/pnpm-lock.yaml ./server/
+RUN cd server && pnpm install --prod
 
 # Copy built static files from builder
 COPY --from=builder /app/dist ./dist
