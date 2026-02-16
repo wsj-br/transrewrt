@@ -100,8 +100,8 @@ export const AppProvider = ({ children }) => {
   };
 
   // Update settings
-  const updateSettings = (newSettings) => {
-    configManager.setAll(newSettings);
+  const updateSettings = async (newSettings) => {
+    await configManager.setAll(newSettings);
     const updatedSettings = configManager.getAll();
     setSettings(updatedSettings);
 
@@ -122,8 +122,8 @@ export const AppProvider = ({ children }) => {
   };
 
   // Update a single setting
-  const setSetting = (key, value) => {
-    configManager.set(key, value);
+  const setSetting = async (key, value) => {
+    await configManager.set(key, value);
     // Ensure we get a fresh copy of all settings to trigger React re-render
     // Use JSON parse/stringify to ensure deep copy and new reference
     const allSettings = configManager.getAll();

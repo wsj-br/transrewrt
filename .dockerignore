@@ -1,23 +1,63 @@
+# Dependencies (will be installed in container)
 node_modules
+server/node_modules
+
+# Build outputs (will be generated in container)
 dist
 build
 release
+
+# Git files
 .git
 .gitignore
+
+# Environment and config files
 .env
-*.log
-.DS_Store
 config.json
+data/
+
+# Log and temporary files
+*.log
+*.tmp
 last_api_result.json
 models_api_raw.json
 models_valid.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python files (not needed for web deployment)
 __pycache__
 *.pyc
 .venv
 venv
 env
 .coverage*
-*.tmp
+
+# Electron build artifacts (not needed for web)
 *.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+
+# Development and documentation
 .specstory
 .cursorindexingignore
+scripts/
+dev/
+README.md
+DEPLOY.md
+
+# Docker files (not needed inside container)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

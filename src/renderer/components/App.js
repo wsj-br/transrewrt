@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
@@ -74,7 +74,35 @@ const App = () => {
 
   // Language selection states
   const [sourceLanguage, setSourceLanguage] = useState("Detect Language");
-  const [targetLanguage, setTargetLanguage] = useState("Spanish");
+  const [targetLanguage, setTargetLanguage] = useState(() => {
+    // Load saved target language from settings, default to Spanish
+    return settings.target_language || "Spanish";
+  });
+
+  // Track if initial config has been loaded
+  const [configLoaded, setConfigLoaded] = useState(false);
+
+  // Sync targetLanguage from settings when config loads
+  useEffect(() => {
+    if (settings && settings.target_language && settings.target_language !== targetLanguage) {
+      setTargetLanguage(settings.target_language);
+    }
+  }, [settings.target_language]);
+
+  // Persist target language when it changes, but only after config is loaded
+  useEffect(() => {
+    if (configLoaded && targetLanguage) {
+      updateSettings({ target_language: targetLanguage });
+    }
+  }, [targetLanguage, configLoaded]);
+
+  // Mark config as loaded after initial render
+  useEffect(() => {
+    // Check if we have meaningful settings (config has been loaded)
+    if (settings && Object.keys(settings).length > 0) {
+      setConfigLoaded(true);
+    }
+  }, [settings]);
 
   // Style selection state
   const [rewriteStyle, setRewriteStyle] = useState("Check Spelling & Grammar");
@@ -112,7 +140,8 @@ const App = () => {
     const apiKey = settings?.api_key;
     if (!apiKey || apiKey.trim() === "") {
       setShowApiKeyMissing(true);
-      setCurrentView("settings");
+      // Don't switch to settings view - always start on translate page
+      // User can manually go to settings if needed
     } else {
       setShowApiKeyMissing(false);
     }
@@ -608,7 +637,7 @@ const App = () => {
 
   const leftPanel = (
     <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{leftPanelControls || null}</div>
+      <div className={styles.panelControls}>{leftPanelControls}</div>
       <div className={styles.panelFill}>
         <TextPanel
           title="Input"
@@ -634,7 +663,7 @@ const App = () => {
 
   const rightPanel = (
     <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{rightPanelControls || null}</div>
+      <div className={styles.panelControls}>{rightPanelControls}</div>
       <div className={styles.panelFill}>
         <TextPanel
           title="Output"

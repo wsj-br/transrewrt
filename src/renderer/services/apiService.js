@@ -1,9 +1,22 @@
+// Detect base path from window location for reverse proxy support (e.g., /translator)
+function getBasePath() {
+  if (typeof window !== "undefined" && window.location.pathname) {
+    const path = window.location.pathname.replace(/\/$/, "");
+    if (path && path !== "/") {
+      return path;
+    }
+  }
+  return "";
+}
+
+const BASE_PATH = getBasePath();
+
 // API service to communicate with the backend
 // In Electron: calls OpenRouter directly. In Web/Docker: calls server proxy (API key stays on server).
 class APIService {
   constructor() {
     this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.readConfig;
-    this.baseUrl = this._isWebMode ? "/api/proxy" : "https://openrouter.ai/api/v1";
+    this.baseUrl = this._isWebMode ? `${BASE_PATH}/api/proxy` : "https://openrouter.ai/api/v1";
   }
 
   /**
@@ -12,7 +25,7 @@ class APIService {
    */
   setBaseUrl(url) {
     if (this._isWebMode) {
-      this.baseUrl = "/api/proxy";
+      this.baseUrl = `${BASE_PATH}/api/proxy`;
     } else {
       this.baseUrl = url || "https://openrouter.ai/api/v1";
     }

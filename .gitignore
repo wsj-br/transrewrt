@@ -14,6 +14,7 @@ cache
 release/
 *.log
 *.exe
+.specstory
 
 # api log files
 models_api_raw.json

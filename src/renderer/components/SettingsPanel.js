@@ -83,13 +83,19 @@ const SettingsPanel = () => {
   }, [allModels.length, fetchModels]);
 
   const handleSettingChange = (key, value) => {
+    console.log(`[SettingsPanel] handleSettingChange called - Key: ${key}, Value type: ${typeof value}`);
+    if (key === "api_key" && typeof value === "string") {
+      console.log(`[SettingsPanel] API Key being changed: ${value.substring(0, 8)}...`);
+    }
     const newSettings = { ...localSettings, [key]: value };
     setLocalSettings(newSettings);
+    console.log(`[SettingsPanel] Calling setSetting for key: ${key}`);
     setSetting(key, value);
     if (key === "api_url" || key === "api_key") {
       setApiTestStatus(null);
       setApiTestMessage("");
     }
+    console.log(`[SettingsPanel] handleSettingChange completed for key: ${key}`);
   };
 
   const handleTestApi = async () => {

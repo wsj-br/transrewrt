@@ -44,8 +44,10 @@ RUN mkdir -p /app/data
 
 ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=5000
+ENV USERNAME="translator"
+ENV PASSWORD="Tr@nsl8r-2025!Secure"
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["node", "server/index.js"]

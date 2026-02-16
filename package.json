@@ -5,6 +5,7 @@
   "main": "src/main/main.js",
   "scripts": {
     "dev": "concurrently \"pnpm run watch\" \"pnpm run electron\"",
+    "dev:web": "concurrently \"pnpm run watch\" \"pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
@@ -13,10 +14,11 @@
     "start-x11": "electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
     "start:server": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker-up": "docker compose up --build -d",
-    "docker-down": "docker compose down",
-    "docker-clean": "./scripts/clean-docker.sh",
-    "docker-devel": "docker build . -t wsj-br/t-r:devel"
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:clean": "./scripts/clean-docker.sh",
+    "docker:devel": "docker build . -t wsj-br/t-r:devel",
+    "docker:deploy": "./scripts/docker-deploy.sh"
   },
   "keywords": [
     "electron",
