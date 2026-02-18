@@ -1,6 +1,6 @@
 # Web and Docker Deployment
 
-This document describes how the T-R application runs as both a desktop Electron app and a web application served from a Docker container. Both modes share the same React codebase.
+This document describes how the Poliverb application runs as both a desktop Electron app and a web application served from a Docker container. Both modes share the same React codebase.
 
 ## Architecture Overview
 
@@ -34,6 +34,18 @@ The application uses **runtime environment detection** to switch between modes:
 
 ## Running the Application
 
+Relevant `package.json` scripts for the dual workflow:
+
+| Script | Purpose |
+|--------|---------|
+| `pnpm run dev` | Electron development (watch + Electron; open in app) |
+| `pnpm run dev:web` | Web development (watch + server; open http://localhost:5000) |
+| `pnpm run build` / `build-renderer` | Production build of the React app to `dist/` |
+| `pnpm start` | Run Electron (use after build) |
+| `pnpm run serve` | Build then run web server (serves on port 5000) |
+| `pnpm run start:server` | Run web server only (use if `dist/` already built, e.g. in Docker) |
+| `pnpm run docker:up` | Run web app in Docker (docker-compose) |
+
 ### Electron (Desktop)
 
 Same as before:
@@ -48,22 +60,31 @@ pnpm run start-x11
 
 ### Web Server (Local)
 
-For local testing without Docker:
+For local testing without Docker (builds then serves, so you always get a fresh app):
 
 ```bash
-pnpm run build-renderer
-pnpm run start:server
+pnpm run serve
 ```
 
-Then open http://localhost:3000/ in a browser.
+Then open http://localhost:5000/ in a browser.
+
+### Development (Web, with HMR)
+
+For web development with hot reload, run the dev server and the Express API together; the dev server proxies `/api` to the backend:
+
+```bash
+pnpm run dev:web
+```
+
+Then open http://localhost:5000/ (Webpack dev server with HMR; API is on port 3030, proxied via /api).
 
 ### Docker
 
 **Build and run:**
 
 ```bash
-docker build -t t-r-web .
-docker run -p 3000:3000 -v t-r-data:/app/data t-r-web
+docker build -t poliverb-web .
+docker run -p 5000:5000 -v poliverb-data:/app/data -e PORT=5000 poliverb-web
 ```
 
 **With docker-compose:**
@@ -72,13 +93,13 @@ docker run -p 3000:3000 -v t-r-data:/app/data t-r-web
 docker-compose up -d
 ```
 
-Then open http://localhost:3000/
+Then open http://localhost:5000/
 
 **Environment variables:**
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PORT` | 3000 | Server port |
+| `PORT` | 5000 | Server port |
 | `CONFIG_PATH` | /app/data/config.json | Path to config file |
 
 **Volume persistence:** Mount a volume at `/app/data` so `config.json` persists across container restarts.
@@ -125,18 +146,6 @@ The server (`server/index.js`) provides:
 - Calls `POST /api/proxy/chat/completions`, etc.
 - Server reads API key from its config and forwards to OpenRouter
 - Response stream is passed through to the client
-
-## Files Modified
-
-| File | Change |
-|------|--------|
-| `src/renderer/utils/configManager.js` | Environment detection, `webAPI` fallback |
-| `src/renderer/utils/webApiClient.js` | New (web API client) |
-| `src/renderer/services/apiService.js` | Web mode, proxy base URL |
-| `src/renderer/contexts/AppContext.js` | Async `loadConfig()` on init |
-| `package.json` | `express`, `start:server` script |
-| `server/` | New (server code) |
-| `Dockerfile`, `docker-compose.yml`, `.dockerignore` | New |
 
 ## Docker Build Details
 

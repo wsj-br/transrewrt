@@ -47,6 +47,7 @@ module.exports = (env, argv) => {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
+      favicon: path.resolve(__dirname, "poliverb_logo.ico"),
     }),
     !isDevelopment && new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -60,7 +61,14 @@ module.exports = (env, argv) => {
     extensions: [".js", ".jsx"],
   },
   performance: {
-    maxEntrypointSize: 1000000, // 1MB - increased from default 244KB
+    // Entry: initial load JS/CSS. 1MB is reasonable for React + Fluent UI (web/Docker + Electron).
+    maxEntrypointSize: 1000000,
+    // Single asset limit (chunks, etc.). 512KB allows larger vendor chunks and avoids noisy warnings for big icons.
+    maxAssetSize: 512000,
+    // Only apply size hints to JS/CSS; exclude images/icons so one large .ico doesn't trigger warnings.
+    assetFilter(assetFilename) {
+      return !/\.(ico|png|jpe?g|gif|svg|webp|woff2?)$/i.test(assetFilename);
+    },
   },
   optimization: {
     usedExports: true,
@@ -92,8 +100,16 @@ module.exports = (env, argv) => {
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
+    // When using dev:web (watch:web on 5000), proxy /api to Express server (port 3030)
+    proxy: [
+      {
+        context: ["/api"],
+        target: "http://localhost:3030",
+        changeOrigin: false,
+      },
+    ],
     client: {
-      webSocketURL: "ws://localhost:3030/ws",
+      // default host/port so HMR works for both watch (3030) and watch:web (5000)
       overlay: {
         errors: true,
         warnings: false,

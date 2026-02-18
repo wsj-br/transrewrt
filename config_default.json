@@ -1,6 +1,6 @@
 {
   "api_key": "",
-  "last_used_model": "google/gemma-3-27b-it:free",
+  "last_used_model": "openrouter/free",
   "available_models": [
     "google/gemma-3-27b-it:free",
     "x-ai/grok-4.1-fast:free",
@@ -20,7 +20,7 @@
   "auto_copy": false,
   "real_time_translation": false,
   "real_time_delay": 1000,
-  "enter_behavior": "Shift-Translate",
+  "enter_behavior": "Shift-Execute",
   "font_family": "Verdana",
   "font_size": 13,
   "input_text_color": "#FFFFFF",
@@ -33,6 +33,10 @@
   },
   "total_cost": 0.0,
   "api_url": "https://openrouter.ai/api/v1",
-  "settings_active_tab": "general",
+  "settings_active_tab": "api",
+  "source_language": "Detect Language",
+  "target_language": "Spanish",
+  "app_mode": "translate",
+  "rewrite_style": "Check Spelling & Grammar",
   "auto_translate_on_paste": true
 }

@@ -1,31 +1,31 @@
 #!/bin/bash
 
-# Docker deployment script for T-R application
+# Docker deployment script for Poliverb application
 # Deploys to pi-piro server (arm64) from amd64 host
 
 set -e  # Exit on error
 
 # Configuration
-IMAGE_NAME="wsj-br/t-r:devel"
+IMAGE_NAME="wsj-br/poliverb:devel"
 TARGET_HOST="pi-piro"
 TARGET_PORT="5000"
 TARGET_PLATFORM="linux/arm64"
-DATA_VOLUME="t-r-data"
+DATA_VOLUME="poliverb-data"
 
 echo ""
 echo "--------------------------------"
-echo " Deploying T-R to ${TARGET_HOST}"
+echo " Deploying Poliverb to ${TARGET_HOST}"
 echo " Target platform: ${TARGET_PLATFORM}"
 echo "--------------------------------"
 echo ""
 
-# Step 0: Check if the T-R app is installed on the target host and running
-echo " Checking if T-R is already running on ${TARGET_HOST}..."
-if ssh ${TARGET_HOST} "docker ps --filter 'name=t-r-web' --format '{{.Names}}' | grep -q 't-r-web'"; then
-    echo " T-R is already running on ${TARGET_HOST}. Stopping existing container..."
-    ssh ${TARGET_HOST} "docker stop t-r-web"
+# Step 0: Check if the Poliverb app is installed on the target host and running
+echo " Checking if Poliverb is already running on ${TARGET_HOST}..."
+if ssh ${TARGET_HOST} "docker ps --filter 'name=poliverb-web' --format '{{.Names}}' | grep -q 'poliverb-web'"; then
+    echo " Poliverb is already running on ${TARGET_HOST}. Stopping existing container..."
+    ssh ${TARGET_HOST} "docker stop poliverb-web"
 else
-    echo " No existing T-R container found on ${TARGET_HOST}."
+    echo " No existing Poliverb container found on ${TARGET_HOST}."
 fi
 
 echo "removing existing image..."
@@ -51,7 +51,7 @@ echo ""
 echo " Starting container on ${TARGET_HOST}..."
 echo " Access the app at: http://${TARGET_HOST}:${TARGET_PORT}"
 echo ""
-ssh ${TARGET_HOST} "docker run -d --rm -p ${TARGET_PORT}:${TARGET_PORT} --name t-r-web -v ${DATA_VOLUME}:/app/data ${IMAGE_NAME}"
+ssh ${TARGET_HOST} "docker run -d --rm -p ${TARGET_PORT}:${TARGET_PORT} --name poliverb-web -v ${DATA_VOLUME}:/app/data ${IMAGE_NAME}"
 
 echo ""
 echo " Deployment complete!"
@@ -61,6 +61,6 @@ ssh ${TARGET_HOST} "docker ps"
 echo ""
 
 
-echo " Container 't-r-web' is running in the background."
-echo " To view logs: ssh ${TARGET_HOST} 'docker logs -f t-r-web'"
-echo " To stop: ssh ${TARGET_HOST} 'docker stop t-r-web'"
+echo " Container 'poliverb-web' is running in the background."
+echo " To view logs: ssh ${TARGET_HOST} 'docker logs -f poliverb-web'"
+echo " To stop: ssh ${TARGET_HOST} 'docker stop poliverb-web'"

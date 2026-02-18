@@ -75,9 +75,12 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: tokens.spacingVerticalXS,
+    paddingBottom: tokens.spacingVerticalXS,
     borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
     marginTop: tokens.spacingVerticalXS,
     gap: tokens.spacingHorizontalM,
+    minHeight: "44px",
+    boxSizing: "border-box",
   },
   stats: {
     fontSize: "12px",

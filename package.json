@@ -1,23 +1,25 @@
 {
-  "name": "t-r",
-  "version": "1.0.0",
-  "description": "Translator & Rewriter Application",
+  "name": "poliverb",
+  "version": "1.0.1",
+  "description": "Poliverb Application",
   "main": "src/main/main.js",
   "scripts": {
     "dev": "concurrently \"pnpm run watch\" \"pnpm run electron\"",
-    "dev:web": "concurrently \"pnpm run watch\" \"pnpm run start:server\"",
+    "dev:web": "concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
+    "watch:web": "webpack serve --mode development --port 5000",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
+    "build": "node node_modules/webpack/bin/webpack.js --mode production",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
-    "package": "pnpm run build-renderer && node scripts/build-with-timestamp.js",
     "start": "electron .",
     "start-x11": "electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
     "start:server": "node server/index.js",
+    "serve": "pnpm run build-renderer && pnpm run start:server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:clean": "./scripts/clean-docker.sh",
-    "docker:devel": "docker build . -t wsj-br/t-r:devel",
+    "docker:devel": "docker build . -t wsj-br/poliverb:devel",
     "docker:deploy": "./scripts/docker-deploy.sh"
   },
   "keywords": [
@@ -29,8 +31,8 @@
   "author": "Waldemar Scudeller Jr.",
   "license": "MIT",
   "build": {
-    "appId": "br.com.wsj.t-r",
-    "productName": "Translator & Rewriter",
+    "appId": "br.com.wsj.poliverb",
+    "productName": "Poliverb",
     "files": [
       "dist/**/*",
       "src/main/main.js",
@@ -49,16 +51,16 @@
     "win": {
       "target": "nsis",
       "forceCodeSigning": false,
-      "icon": "tr_logo.ico",
+      "icon": "poliverb_logo.ico",
       "artifactName": "${productName} Setup ${version}-${env.BUILD_TIMESTAMP}.${ext}"
     },
     "nsis": {
-      "installerIcon": "tr_logo.ico",
-      "uninstallerIcon": "tr_logo.ico",
-      "installerHeaderIcon": "tr_logo.ico",
+      "installerIcon": "poliverb_logo.ico",
+      "uninstallerIcon": "poliverb_logo.ico",
+      "installerHeaderIcon": "poliverb_logo.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Translator & Rewriter"
+      "shortcutName": "Poliverb"
     }
   },
   "devDependencies": {
@@ -68,16 +70,16 @@
     "babel-loader": "^10.0.0",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
-    "css-loader": "^7.1.3",
-    "electron": "^40.2.1",
+    "css-loader": "^7.1.4",
+    "electron": "^40.4.1",
     "electron-builder": "^26.7.0",
     "electron-reload": "^2.0.0-alpha.1",
     "html-webpack-plugin": "^5.6.6",
     "mini-css-extract-plugin": "^2.10.0",
     "react-refresh": "^0.18.0",
     "style-loader": "^4.0.0",
-    "wait-on": "^9.0.3",
-    "webpack": "^5.105.0",
+    "wait-on": "^9.0.4",
+    "webpack": "^5.105.2",
     "webpack-cli": "^6.0.1"
   },
   "pnpm": {
@@ -85,7 +87,8 @@
       "lodash-es": "^4.17.23",
       "rimraf": "^5.0.0",
       "glob": "^13.0.0",
-      "global-agent": "^4.1.2"
+      "global-agent": "^4.1.2",
+      "qs": ">=6.14.2"
     },
     "onlyBuiltDependencies": [
       "core-js-pure",
@@ -95,11 +98,11 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "@fluentui/react-components": "^9.72.11",
-    "@fluentui/react-icons": "^2.0.318",
+    "@fluentui/react-components": "^9.73.0",
+    "@fluentui/react-icons": "^2.0.319",
     "electron-squirrel-startup": "^1.0.1",
     "express": "^5.2.1",
-    "lucide-react": "^0.563.0",
+    "lucide-react": "^0.574.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "webpack-dev-server": "^5.2.3"

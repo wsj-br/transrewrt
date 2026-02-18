@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { makeStyles, tokens } from "@fluentui/react-components";
-import { Sliders, Database, Globe, Key } from "lucide-react";
+import { Sliders, Database, Globe, Key, Lock, DollarSign } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
 import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
 import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
+import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
+import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
+
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
 
 const useStyles = makeStyles({
   panel: {
@@ -62,12 +66,13 @@ const SettingsPanel = () => {
 
   useEffect(() => {
     setLocalSettings({ ...settings });
-    // Always include the free model in selection
     const modelsWithFree = new Set([FREE_MODEL_ID, ...(settings.available_models || [])]);
     setSelectedModelIds(modelsWithFree);
     setSelectedLanguages(new Set(settings.available_languages || []));
-    // Load the last active tab from configuration when settings change
-    setActiveTab(settings.settings_active_tab || "general");
+    let tab = settings.settings_active_tab || "general";
+    if (tab === "auth" && !isWeb) tab = "general";
+    if (tab === "api" && isWeb) tab = "general";
+    setActiveTab(tab);
   }, [settings]);
 
   useEffect(() => {
@@ -83,19 +88,13 @@ const SettingsPanel = () => {
   }, [allModels.length, fetchModels]);
 
   const handleSettingChange = (key, value) => {
-    console.log(`[SettingsPanel] handleSettingChange called - Key: ${key}, Value type: ${typeof value}`);
-    if (key === "api_key" && typeof value === "string") {
-      console.log(`[SettingsPanel] API Key being changed: ${value.substring(0, 8)}...`);
-    }
     const newSettings = { ...localSettings, [key]: value };
     setLocalSettings(newSettings);
-    console.log(`[SettingsPanel] Calling setSetting for key: ${key}`);
     setSetting(key, value);
     if (key === "api_url" || key === "api_key") {
       setApiTestStatus(null);
       setApiTestMessage("");
     }
-    console.log(`[SettingsPanel] handleSettingChange completed for key: ${key}`);
   };
 
   const handleTestApi = async () => {
@@ -125,8 +124,8 @@ const SettingsPanel = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
           "HTTP-Referer":
-            "https://github.com/TranslateRewrite/translator-and-rewriter",
-          "X-Title": "Translator & Rewriter",
+            "https://github.com/wsj-br/poliverb",
+          "X-Title": "Poliverb",
         },
       });
 
@@ -292,13 +291,6 @@ const SettingsPanel = () => {
         </button>
         <button
           type="button"
-          className={`tab-btn ${activeTab === "api" ? "active" : ""}`}
-          onClick={() => handleTabChange("api")}
-        >
-          <Key size={16} /> API Config
-        </button>
-        <button
-          type="button"
           className={`tab-btn ${activeTab === "models" ? "active" : ""}`}
           onClick={() => handleTabChange("models")}
         >
@@ -311,6 +303,31 @@ const SettingsPanel = () => {
         >
           <Globe size={16} /> Languages
         </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === "cost" ? "active" : ""}`}
+          onClick={() => handleTabChange("cost")}
+        >
+          <DollarSign size={16} /> Cost Tracking
+        </button>
+        {!isWeb && (
+          <button
+            type="button"
+            className={`tab-btn ${activeTab === "api" ? "active" : ""}`}
+            onClick={() => handleTabChange("api")}
+          >
+            <Key size={16} /> API Config
+          </button>
+        )}
+        {isWeb && (
+          <button
+            type="button"
+            className={`tab-btn ${activeTab === "auth" ? "active" : ""}`}
+            onClick={() => handleTabChange("auth")}
+          >
+            <Lock size={16} /> Authentication
+          </button>
+        )}
       </div>
 
       <div className="modal-body settings-body" style={{ flex: 1 }}>
@@ -318,18 +335,6 @@ const SettingsPanel = () => {
           <SettingsDialogGeneralTab
             localSettings={localSettings}
             onSettingChange={handleSettingChange}
-          />
-        )}
-
-        {activeTab === "api" && (
-          <SettingsDialogApiTab
-            localSettings={localSettings}
-            showApiKey={showApiKey}
-            apiTestStatus={apiTestStatus}
-            apiTestMessage={apiTestMessage}
-            onSettingChange={handleSettingChange}
-            onShowApiKeyChange={setShowApiKey}
-            onTestApi={handleTestApi}
           />
         )}
 
@@ -375,6 +380,27 @@ const SettingsPanel = () => {
             onSetting={setSetting}
           />
         )}
+
+        {activeTab === "cost" && (
+          <SettingsDialogCostTrackingTab
+            localSettings={localSettings}
+            onSettingChange={handleSettingChange}
+          />
+        )}
+
+        {!isWeb && activeTab === "api" && (
+          <SettingsDialogApiTab
+            localSettings={localSettings}
+            showApiKey={showApiKey}
+            apiTestStatus={apiTestStatus}
+            apiTestMessage={apiTestMessage}
+            onSettingChange={handleSettingChange}
+            onShowApiKeyChange={setShowApiKey}
+            onTestApi={handleTestApi}
+          />
+        )}
+
+        {isWeb && activeTab === "auth" && <SettingsDialogAuthTab />}
       </div>
     </div>
   );

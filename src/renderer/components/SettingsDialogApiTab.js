@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Button, tokens, Label, Text, Input, Checkbox } from '@fluentui/react-components';
-import { Key, DollarSign, Copy } from 'lucide-react';
+import React from "react";
+import { Button, Label, Text, Input, Checkbox } from "@fluentui/react-components";
+import { Key } from "lucide-react";
+
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
 
 const SettingsDialogApiTab = ({
   localSettings,
@@ -11,16 +13,11 @@ const SettingsDialogApiTab = ({
   onShowApiKeyChange,
   onTestApi,
 }) => {
-  const handleCopyCost = () => {
-    const cost = parseFloat(localSettings.total_cost || 0).toFixed(6);
-    navigator.clipboard.writeText(cost);
-  };
-
   return (
     <div className="tab-content">
-      {/* API Configuration Section */}
+      {!isWeb && (
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
           <Key size={20} />
           API Configuration
         </Text>
@@ -88,39 +85,10 @@ const SettingsDialogApiTab = ({
           )}
         </div>
       </div>
-
-      {/* Cost Tracking Section */}
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
-          <DollarSign size={20} />
-          Cost Tracking
-        </Text>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '16px', fontWeight: 600 }}>Total Cost:</span>
-            <span style={{ fontSize: '18px', fontWeight: 700, color: tokens.colorStatusSuccessForeground1 }}>
-              ${parseFloat(localSettings.total_cost || 0).toFixed(6)}
-            </span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Button
-              appearance="secondary"
-              size="small"
-              onClick={handleCopyCost}
-              icon={<Copy size={14} />}
-            >
-              Copy Value
-            </Button>
-            <Button
-              appearance="secondary"
-              size="small"
-              onClick={() => onSettingChange('total_cost', 0)}
-            >
-              Reset Cost
-            </Button>
-          </div>
-        </div>
-      </div>
+      )}
+      {isWeb && (
+        <Text as="p" style={{ marginTop: 0 }}>API is configured on the server.</Text>
+      )}
     </div>
   );
 };

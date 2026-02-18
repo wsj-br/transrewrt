@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import TextPanel from "./TextPanel";
 import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
+import LoginModal from "./LoginModal";
 import { useAppContext } from "../contexts/AppContext";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
@@ -61,26 +62,31 @@ const useStyles = makeStyles({
   },
 });
 
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+
 const App = () => {
   const styles = useStyles();
-  const { settings, translate, rewrite, languages, models, updateSettings } =
+  const { settings, translate, rewrite, languages, models, updateSettings, removeModelFromList, needsLogin, handleWebLogin, apiKeyStatus } =
     useAppContext();
   
-  const [currentMode, setCurrentMode] = useState("translate");
+  const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState("workspace");
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
-  const [showApiKeyMissing, setShowApiKeyMissing] = useState(false);
+  const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
+  const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
+  const electronApiKeyMissing = !isWeb && (!settings?.api_key || String(settings?.api_key).trim() === "");
+  const showApiKeyModal = !apiKeyWarningDismissed && (apiKeyProblem || electronApiKeyMissing);
 
   // Language selection states
-  const [sourceLanguage, setSourceLanguage] = useState("Detect Language");
-  const [targetLanguage, setTargetLanguage] = useState(() => {
-    // Load saved target language from settings, default to Spanish
-    return settings.target_language || "Spanish";
-  });
+  const [sourceLanguage, setSourceLanguage] = useState(() => settings.source_language || "Detect Language");
+  const [targetLanguage, setTargetLanguage] = useState(() => settings.target_language || "Spanish");
 
   // Track if initial config has been loaded
   const [configLoaded, setConfigLoaded] = useState(false);
+
+  // Style selection state (persisted as rewrite_style)
+  const [rewriteStyle, setRewriteStyle] = useState(() => settings.rewrite_style || "Check Spelling & Grammar");
 
   // Sync targetLanguage from settings when config loads
   useEffect(() => {
@@ -89,12 +95,47 @@ const App = () => {
     }
   }, [settings.target_language]);
 
+  // Sync sourceLanguage from settings when config loads
+  useEffect(() => {
+    if (settings && settings.source_language && settings.source_language !== sourceLanguage) {
+      setSourceLanguage(settings.source_language);
+    }
+  }, [settings.source_language]);
+
+  // Sync currentMode from settings when config loads
+  useEffect(() => {
+    if (settings?.app_mode) {
+      setCurrentMode(settings.app_mode);
+    }
+  }, [settings.app_mode]);
+
+  // Sync rewriteStyle from settings when config loads
+  useEffect(() => {
+    if (settings?.rewrite_style) {
+      setRewriteStyle(settings.rewrite_style);
+    }
+  }, [settings.rewrite_style]);
+
   // Persist target language when it changes, but only after config is loaded
   useEffect(() => {
     if (configLoaded && targetLanguage) {
       updateSettings({ target_language: targetLanguage });
     }
   }, [targetLanguage, configLoaded]);
+
+  // Persist source language when it changes, but only after config is loaded
+  useEffect(() => {
+    if (configLoaded && sourceLanguage) {
+      updateSettings({ source_language: sourceLanguage });
+    }
+  }, [sourceLanguage, configLoaded]);
+
+  // Persist rewrite style when it changes, but only after config is loaded
+  useEffect(() => {
+    if (configLoaded && rewriteStyle) {
+      updateSettings({ rewrite_style: rewriteStyle });
+    }
+  }, [rewriteStyle, configLoaded]);
 
   // Mark config as loaded after initial render
   useEffect(() => {
@@ -103,9 +144,6 @@ const App = () => {
       setConfigLoaded(true);
     }
   }, [settings]);
-
-  // Style selection state
-  const [rewriteStyle, setRewriteStyle] = useState("Check Spelling & Grammar");
 
   // Timer and processing states
   const [isProcessing, setIsProcessing] = useState(false);
@@ -135,18 +173,6 @@ const App = () => {
     return models[0];
   }, [models, settings.last_used_model]);
 
-  // Check for missing API key on startup and after settings change
-  useEffect(() => {
-    const apiKey = settings?.api_key;
-    if (!apiKey || apiKey.trim() === "") {
-      setShowApiKeyMissing(true);
-      // Don't switch to settings view - always start on translate page
-      // User can manually go to settings if needed
-    } else {
-      setShowApiKeyMissing(false);
-    }
-  }, [settings?.api_key]);
-
   // Available styles for rewrite mode
   const rewriteStyles = [
     "Check Spelling & Grammar",
@@ -158,16 +184,11 @@ const App = () => {
     "Make Technical",
   ];
 
-  useEffect(() => {
-    // Set default target language if available languages exist
-    if (languages.length > 0 && targetLanguage === "Spanish") {
-      setTargetLanguage(languages[0]);
-    }
-  }, [languages]);
-
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
     setCurrentView("workspace");
+    setOutputText("");
+    updateSettings({ app_mode: mode });
   };
 
   const clearInput = () => {
@@ -556,21 +577,19 @@ const App = () => {
 
       // Enter key behavior based on settings
       if (event.key === "Enter" && !event.ctrlKey && !event.metaKey) {
-        const behavior = settings.enter_behavior || "Translate";
+        const behavior = settings.enter_behavior || "Execute";
         const hasText = inputText.trim();
+        const isExecute = behavior === "Execute" || behavior === "Translate";
+        const isShiftExecute = behavior === "Shift-Execute" || behavior === "Shift-Translate";
 
-        if (behavior === "Translate" && hasText) {
+        if (isExecute && hasText) {
           event.preventDefault();
           handleRunAction();
-        } else if (
-          behavior === "Shift-Translate" &&
-          event.shiftKey &&
-          hasText
-        ) {
+        } else if (isShiftExecute && event.shiftKey && hasText) {
           event.preventDefault();
           handleRunAction();
         }
-        // "Newline" or other behaviors fall through to default Enter
+        // Shift-Execute: default Enter inserts newline; other values fall through
       }
 
       // Escape to clear input
@@ -708,9 +727,15 @@ const App = () => {
     </div>
   );
 
-  // Render API key missing modal
+  // Render API key missing/invalid modal (web: server API_KEY check at startup)
   const renderApiKeyMissingModal = () => {
-    if (!showApiKeyMissing) return null;
+    if (!showApiKeyModal) return null;
+    const notSet = isWeb && apiKeyStatus && !apiKeyStatus.apiKeySet;
+    const message = notSet
+      ? "You need to set the API_KEY environment variable on the server to use this application."
+      : (apiKeyStatus && apiKeyStatus.message)
+        ? apiKeyStatus.message
+        : "The OpenRouter API key could not be verified. Translation and rewrite may not work.";
     return (
       <div
         style={{
@@ -726,9 +751,8 @@ const App = () => {
           zIndex: 9999,
         }}
         onClick={(e) => {
-          // Prevent clicks inside modal from closing
           if (e.target === e.currentTarget) {
-            // Don't allow dismiss by clicking outside; user must set API key
+            // Don't allow dismiss by clicking outside
           }
         }}
       >
@@ -745,18 +769,25 @@ const App = () => {
         >
           <h2 style={{ marginTop: 0, marginBottom: '16px' }}>API Key Required</h2>
           <p style={{ marginBottom: '24px' }}>
-            To use the Translator & Rewriter, you need to configure your OpenRouter API key.
-            Please open Settings to add your API key.
+            {message}
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+            {!notSet && (
+              <Button
+                appearance="secondary"
+                onClick={() => setApiKeyWarningDismissed(true)}
+              >
+                Continue anyway
+              </Button>
+            )}
             <Button
               appearance="primary"
               onClick={() => {
-                setShowApiKeyMissing(false);
-                setCurrentView("settings");
+                setApiKeyWarningDismissed(true);
+                if (!notSet) setCurrentView("settings");
               }}
             >
-              Open Settings
+              {notSet ? "OK" : "Open Settings"}
             </Button>
           </div>
         </div>
@@ -766,6 +797,9 @@ const App = () => {
 
   return (
     <div id="root" className={styles.root}>
+      {isWeb && needsLogin && (
+        <LoginModal onSuccess={handleWebLogin} />
+      )}
       {renderApiKeyMissingModal()}
       <div className="app-container">
         <Sidebar
@@ -780,6 +814,11 @@ const App = () => {
           models={models}
           activeModel={activeModel}
           onModelChange={(model) => updateSettings({ last_used_model: model })}
+          onOpenSettingsModels={() => {
+            updateSettings({ settings_active_tab: "models" });
+            setCurrentView("settings");
+          }}
+          onRemoveModel={removeModelFromList}
           leftPanel={leftPanel}
           rightPanel={rightPanel}
         />

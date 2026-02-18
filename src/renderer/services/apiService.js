@@ -40,8 +40,8 @@ class APIService {
       "Content-Type": "application/json",
       Authorization: `Bearer ${config.api_key || ""}`,
       "HTTP-Referer":
-        "https://github.com/TranslateRewrite/translator-and-rewriter",
-      "X-Title": "Translator & Rewriter",
+        "https://github.com/wsj-br/poliverb",
+      "X-Title": "Poliverb",
     };
   }
 
@@ -109,7 +109,9 @@ class APIService {
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const url = `${this.baseUrl}/generation?id=${encodeURIComponent(generationId)}`;
-        const response = await fetch(url, { headers: this.getHeaders() });
+        const opts = { headers: this.getHeaders() };
+        if (this._isWebMode) opts.credentials = "include";
+        const response = await fetch(url, opts);
         if (response.status === 404 && attempt < maxRetries - 1) {
           await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
           continue;
@@ -170,31 +172,37 @@ Your task:
 - Output only the translated text`;
       }
 
+      const body = {
+        model: model,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: text },
+        ],
+        temperature: 0.3,
+        stream: true,
+      };
+      const bodyStr = JSON.stringify(body);
+      const request_bytes = new TextEncoder().encode(bodyStr).length;
+      const startTime = Date.now();
+
       const fetchOptions = {
         method: "POST",
         headers: this.getHeaders(),
-        body: JSON.stringify({
-          model: model,
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: text },
-          ],
-          temperature: 0.3, // Lower temperature for more consistent translations
-          stream: true, // Use streaming to capture partial usage on cancellation
-        }),
+        body: bodyStr,
       };
-
       if (signal) {
         fetchOptions.signal = signal;
       }
+      if (this._isWebMode) fetchOptions.credentials = "include";
 
       const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
 
+      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
       if (!response.ok) {
-        throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
+        const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
+        throw Object.assign(new Error(msg), { status: response.status });
       }
 
-      // Handle streaming response
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let content = "";
@@ -202,18 +210,15 @@ Your task:
       let generationId = null;
       let rawChunks = [];
       let aborted = false;
+      let response_bytes = 0;
 
-      // Check if abort was requested before starting
       if (signal?.aborted) {
         reader.cancel();
         aborted = true;
       }
-
-      // Listen for abort signal
       if (signal) {
         signal.addEventListener('abort', () => {
           aborted = true;
-          // Don't cancel reader immediately - let it drain buffered data
         }, { once: true });
       }
 
@@ -224,6 +229,7 @@ Your task:
             const { done, value } = await reader.read();
             if (done) break;
             if (value) {
+              response_bytes += value.length;
               const chunk = decoder.decode(value, { stream: true });
               const lines = chunk.split("\n");
 
@@ -254,7 +260,13 @@ Your task:
 
                   // Check for errors in stream
                   if (data.error) {
-                    throw new Error(data.error.message || "Stream error");
+                    const msg = data.error.message || "Stream error";
+                    const err = new Error(msg);
+                    const code = data.error.code || data.error.status;
+                    if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
+                      Object.assign(err, { status: 404 });
+                    }
+                    throw err;
                   }
                 } catch (parseErr) {
                   if (parseErr.message.includes("Unexpected end of JSON input")) {
@@ -277,8 +289,8 @@ Your task:
             try {
               const { done, value } = await reader.read();
               if (done) break;
-              // Process any remaining buffered data
               if (value) {
+                response_bytes += value.length;
                 const chunk = decoder.decode(value, { stream: true });
                 const lines = chunk.split("\n");
                 for (const line of lines) {
@@ -312,11 +324,15 @@ Your task:
           if (!usage && id) {
             usage = await this.getGenerationUsage(id);
           }
+          const duration_ms = Date.now() - startTime;
           const result = {
             content: content,
             usage: usage,
             model: model,
             cancelled: true,
+            request_bytes: request_bytes,
+            response_bytes: response_bytes,
+            duration_ms: duration_ms,
           };
           this.writeLastApiResult({
             type: "translate",
@@ -335,11 +351,15 @@ Your task:
         usage = await this.getGenerationUsage(idForUsage);
       }
 
+      const duration_ms = Date.now() - startTime;
       const result = {
         content: content,
         usage: usage,
         model: model,
         cancelled: aborted,
+        request_bytes: request_bytes,
+        response_bytes: response_bytes,
+        duration_ms: duration_ms,
       };
 
       this.writeLastApiResult({
@@ -356,6 +376,12 @@ Your task:
       if (error.name === 'AbortError') {
         throw error;
       }
+      // Re-throw 404/400 so AppContext can remove the model from the list and switch to fallback
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
       console.error("Translation error:", error);
       return {
         error: error.message,
@@ -381,6 +407,8 @@ Your task:
 - Correct punctuation and capitalization issues
 - Ensure proper sentence structure
 - Preserve the original meaning, tone, and style
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Maintain all formatting (line breaks, lists, etc.)
 - Do not rewrite or rephrase unless necessary for grammatical correctness
 - Output only the corrected text without explanations`,
@@ -396,6 +424,8 @@ Your task:
 - Remove ambiguity and redundancy
 - Use active voice where appropriate
 - Maintain the original tone and formality level
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Keep all key information and formatting
 - Output only the improved text without explanations`,
           temperature: 0.4,
@@ -410,6 +440,8 @@ Your task:
 - Avoid contractions, slang, and colloquialisms
 - Maintain respectful and courteous tone
 - Preserve all key information and meaning
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Keep formatting intact
 - Output only the formal version without explanations`,
           temperature: 0.3,
@@ -424,6 +456,8 @@ Your task:
 - Make it sound natural and personable
 - Keep the message clear and engaging
 - Preserve all key information and meaning
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Maintain formatting
 - Output only the informal version without explanations`,
           temperature: 0.5,
@@ -438,6 +472,8 @@ Your task:
 - Keep all critical information and key points
 - Maintain clarity and readability
 - Preserve the original tone
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Keep formatting where relevant
 - Output only the shortened text without explanations`,
           temperature: 0.3,
@@ -452,6 +488,8 @@ Your task:
 - Improve depth while maintaining focus
 - Keep the writing natural and coherent
 - Preserve the original message and tone
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Maintain logical structure and formatting
 - Output only the expanded text without explanations`,
           temperature: 0.6,
@@ -466,6 +504,8 @@ Your task:
 - Add technical accuracy and detail where appropriate
 - Maintain professional tone
 - Ensure clarity despite increased technicality
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Preserve all key information and formatting
 - Output only the technical version without explanations`,
           temperature: 0.4,
@@ -478,36 +518,44 @@ Your task:
 Your task:
 - Rewrite the user's text to improve it
 - Maintain the original meaning and key information
-- Preserve formatting
+- Write the output in the same language as the input; do not translate
+- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
 - Output only the rewritten text without explanations`,
         temperature: 0.4,
       };
 
+      const body = {
+        model: model,
+        messages: [
+          { role: "system", content: styleConfig.system },
+          { role: "user", content: text },
+        ],
+        temperature: styleConfig.temperature,
+        stream: true,
+      };
+      const bodyStr = JSON.stringify(body);
+      const request_bytes = new TextEncoder().encode(bodyStr).length;
+      const startTime = Date.now();
+
       const fetchOptions = {
         method: "POST",
         headers: this.getHeaders(),
-        body: JSON.stringify({
-          model: model,
-          messages: [
-            { role: "system", content: styleConfig.system },
-            { role: "user", content: text },
-          ],
-          temperature: styleConfig.temperature,
-          stream: true, // Use streaming to capture partial usage on cancellation
-        }),
+        body: bodyStr,
       };
-
       if (signal) {
         fetchOptions.signal = signal;
       }
 
+      if (this._isWebMode) fetchOptions.credentials = "include";
+
       const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
 
+      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
       if (!response.ok) {
-        throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
+        const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
+        throw Object.assign(new Error(msg), { status: response.status });
       }
 
-      // Handle streaming response
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let content = "";
@@ -515,12 +563,14 @@ Your task:
       let generationId = null;
       let rawChunks = [];
       let aborted = false;
+      let response_bytes = 0;
 
       try {
         while (true) {
           if (signal?.aborted) aborted = true;
           const { done, value } = await reader.read();
           if (done) break;
+          if (value) response_bytes += value.length;
 
           const chunk = decoder.decode(value);
           const lines = chunk.split("\n");
@@ -552,7 +602,13 @@ Your task:
 
               // Check for errors in stream
               if (data.error) {
-                throw new Error(data.error.message || "Stream error");
+                const msg = data.error.message || "Stream error";
+                const err = new Error(msg);
+                const code = data.error.code || data.error.status;
+                if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
+                  Object.assign(err, { status: 404 });
+                }
+                throw err;
               }
             } catch (parseErr) {
               if (parseErr.message.includes("Unexpected end of JSON input")) {
@@ -564,17 +620,20 @@ Your task:
           }
         }
       } catch (error) {
-        // Re-throw AbortError so the caller can handle it properly
         if (error.name === 'AbortError') {
           const id = generationId || rawChunks.find((c) => c && c.id)?.id;
           if (!usage && id) {
             usage = await this.getGenerationUsage(id);
           }
+          const duration_ms = Date.now() - startTime;
           const result = {
             content: content,
             usage: usage,
             model: model,
             cancelled: true,
+            request_bytes: request_bytes,
+            response_bytes: response_bytes,
+            duration_ms: duration_ms,
           };
           this.writeLastApiResult({
             type: "rewrite",
@@ -594,11 +653,15 @@ Your task:
         usage = await this.getGenerationUsage(idForUsage);
       }
 
+      const duration_ms = Date.now() - startTime;
       const result = {
         content: content,
         usage: usage,
         model: model,
         cancelled: aborted,
+        request_bytes: request_bytes,
+        response_bytes: response_bytes,
+        duration_ms: duration_ms,
       };
 
       this.writeLastApiResult({
@@ -612,10 +675,15 @@ Your task:
 
       return result;
     } catch (error) {
-      // Re-throw AbortError so the caller can handle it properly
       if (error.name === 'AbortError') {
         throw error;
       }
+      // Re-throw 404/400 so AppContext can remove the model from the list and switch to fallback
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
       console.error("Rewrite error:", error);
       return {
         error: error.message,
@@ -629,10 +697,11 @@ Your task:
    */
   async getModels() {
     try {
-      const response = await fetch(`${this.baseUrl}/models`, {
-        headers: this.getHeaders(),
-      });
+      const opts = { headers: this.getHeaders() };
+      if (this._isWebMode) opts.credentials = "include";
+      const response = await fetch(`${this.baseUrl}/models`, opts);
 
+      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
       if (!response.ok) {
         throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
       }

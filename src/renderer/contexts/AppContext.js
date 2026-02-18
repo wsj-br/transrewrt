@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
 import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
+import webAPI from "../utils/webApiClient";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 
 // Create the context
@@ -19,6 +20,8 @@ export const AppProvider = ({ children }) => {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [needsLogin, setNeedsLogin] = useState(false);
+  const [apiKeyStatus, setApiKeyStatus] = useState(null);
 
   // Watch for changes in settings.available_languages and update languages state
   useEffect(() => {
@@ -64,8 +67,22 @@ export const AppProvider = ({ children }) => {
     };
 
     const init = async () => {
-      await configManager.loadConfig();
-      loadLanguages();
+      try {
+        await configManager.loadConfig();
+        loadLanguages();
+        const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+        if (isWeb && webAPI.getApiStatus) {
+          const status = await webAPI.getApiStatus();
+          setApiKeyStatus(status);
+        }
+      } catch (err) {
+        if (err && err.status === 401) {
+          setNeedsLogin(true);
+        } else {
+          setError("Failed to load config");
+          console.error(err);
+        }
+      }
     };
 
     init();
@@ -96,6 +113,28 @@ export const AppProvider = ({ children }) => {
       fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
     } catch (err) {
       console.error("Failed to write last_api_result.json", err);
+    }
+  };
+
+  const logApiCall = (type, result, extra = {}) => {
+    const timestamp = new Date().toLocaleString();
+    const cost = result.calculated_cost ?? result.usage?.cost ?? 0;
+    const total_cost = result.total_cost ?? 0;
+    const req = result.request_bytes ?? 0;
+    const res = result.response_bytes ?? 0;
+    const dur = result.duration_ms ?? 0;
+    const model = result.model_used ?? result.model ?? "";
+    if (type === "translate") {
+      const source = extra.source_lang ?? "";
+      const target = extra.target_lang ?? "";
+      console.log(
+        `[API call] timestamp=${timestamp} type=translate model=${model} source=${source} target=${target} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
+      );
+    } else {
+      const style = extra.rewrite_style ?? "";
+      console.log(
+        `[API call] timestamp=${timestamp} type=rewrite model=${model} rewrite_style=${style} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
+      );
     }
   };
 
@@ -172,7 +211,7 @@ export const AppProvider = ({ children }) => {
       // Update last used model
       // Do not overwrite last_used_model here; it is persisted via user selection in the header.
 
-      // Update total cost if applicable
+      // Update total cost if applicable (persisted to config after each API call via setSetting)
       if (result.usage) {
         const calculatedCost = result.usage.cost || 0;
         const newTotalCost = (settings.total_cost || 0) + calculatedCost;
@@ -192,9 +231,52 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
 
+      logApiCall("translate", result, {
+        source_lang: sourceLang || "",
+        target_lang: targetLang || "",
+      });
+
+      if (typeof window !== "undefined" && !window.electronAPI?.readConfig && webAPI.logApiCall) {
+        const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+        const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+        const tps = durationSec > 0 ? totalTokens / durationSec : null;
+        webAPI.logApiCall({
+          timestamp: new Date().toISOString(),
+          type: "translate",
+          model: result.model_used || model,
+          source_lang: sourceLang || null,
+          target_lang: targetLang || null,
+          rewrite_style: null,
+          request_bytes: result.request_bytes ?? null,
+          response_bytes: result.response_bytes ?? null,
+          duration_ms: result.duration_ms ?? null,
+          cost: result.calculated_cost ?? result.usage?.cost ?? null,
+          total_cost: result.total_cost ?? null,
+          tps: tps ?? null,
+        });
+      }
+
       return result;
     } catch (err) {
       if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      const isUnavailableModel =
+        err &&
+        (err.status === 404 ||
+          err.status === 400 ||
+          (err.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(err.message))));
+      if (isUnavailableModel) {
+        const FREE_MODEL_ID = "openrouter/free";
+        const current = configManager.get("available_models") || [];
+        const next = current.filter((id) => id !== model);
+        if (!next.includes(FREE_MODEL_ID)) next.unshift(FREE_MODEL_ID);
+        await setSetting("available_models", next);
+        await setSetting("last_used_model", FREE_MODEL_ID);
+        setError(null);
+        return {
+          error: "Model unavailable (404/400). The model has been removed from your list and \"openrouter/free\" has been selected.",
+        };
+      }
       setError("Translation failed");
       console.error(err);
       return { error: err.message };
@@ -214,7 +296,7 @@ export const AppProvider = ({ children }) => {
       // Update last used model
       // Do not overwrite last_used_model here; it is persisted via user selection in the header.
 
-      // Update total cost if applicable
+      // Update total cost if applicable (persisted to config after each API call via setSetting)
       if (result.usage) {
         const calculatedCost = result.usage.cost || 0;
         const newTotalCost = (settings.total_cost || 0) + calculatedCost;
@@ -234,15 +316,83 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
 
+      logApiCall("rewrite", result, { rewrite_style: style || "" });
+
+      if (typeof window !== "undefined" && !window.electronAPI?.readConfig && webAPI.logApiCall) {
+        const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+        const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+        const tps = durationSec > 0 ? totalTokens / durationSec : null;
+        webAPI.logApiCall({
+          timestamp: new Date().toISOString(),
+          type: "rewrite",
+          model: result.model_used || model,
+          source_lang: null,
+          target_lang: null,
+          rewrite_style: style || null,
+          request_bytes: result.request_bytes ?? null,
+          response_bytes: result.response_bytes ?? null,
+          duration_ms: result.duration_ms ?? null,
+          cost: result.calculated_cost ?? result.usage?.cost ?? null,
+          total_cost: result.total_cost ?? null,
+          tps: tps ?? null,
+        });
+      }
+
       return result;
     } catch (err) {
       if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      const isUnavailableModel =
+        err &&
+        (err.status === 404 ||
+          err.status === 400 ||
+          (err.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(err.message))));
+      if (isUnavailableModel) {
+        const FREE_MODEL_ID = "openrouter/free";
+        const current = configManager.get("available_models") || [];
+        const next = current.filter((id) => id !== model);
+        if (!next.includes(FREE_MODEL_ID)) next.unshift(FREE_MODEL_ID);
+        await setSetting("available_models", next);
+        await setSetting("last_used_model", FREE_MODEL_ID);
+        setError(null);
+        return {
+          error: "Model unavailable (404/400). The model has been removed from your list and \"openrouter/free\" has been selected.",
+        };
+      }
       setError("Rewrite failed");
       console.error(err);
       return { error: err.message };
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleWebLogin = async (password) => {
+    const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    if (!isWeb) return;
+    await webAPI.login(password);
+    setNeedsLogin(false);
+    await configManager.loadConfig();
+    setSettings(configManager.getAll());
+  };
+
+  const handleWebLogout = async () => {
+    const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    if (!isWeb) return;
+    await webAPI.logout();
+    setNeedsLogin(true);
+  };
+
+  // Remove a model from the list and select the next one
+  const removeModelFromList = async (modelId) => {
+    const current = configManager.get("available_models") || [];
+    if (current.length <= 1) return;
+    const nextList = current.filter((id) => id !== modelId);
+    if (nextList.length === current.length) return; // model not in list
+    const idx = current.indexOf(modelId);
+    const nextModel = nextList[idx] ?? nextList[idx - 1] ?? nextList[0];
+    await setSetting("available_models", nextList);
+    await setSetting("last_used_model", nextModel);
   };
 
   // Fetch models from API (called when Settings opens)
@@ -322,20 +472,25 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Context value
   const contextValue = {
     settings,
-    models: availableModels, // Expose user selected models as 'models' for backward compat
-    allModels, // Expose full list for settings
+    models: availableModels,
+    allModels,
     availableModels,
     languages,
     loading,
     error,
+    needsLogin,
+    setNeedsLogin,
+    handleWebLogin,
+    handleWebLogout,
+    apiKeyStatus,
     updateSettings,
     setSetting,
     translate,
     rewrite,
-    fetchModels, // Function to fetch models from API
+    fetchModels,
+    removeModelFromList,
   };
 
   return (

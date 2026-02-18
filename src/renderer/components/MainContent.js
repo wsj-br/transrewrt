@@ -52,6 +52,8 @@ const MainContent = ({
   models,
   activeModel,
   onModelChange,
+  onOpenSettingsModels,
+  onRemoveModel,
   leftPanel,
   rightPanel,
 }) => {
@@ -76,6 +78,8 @@ const MainContent = ({
             models={models}
             currentModel={activeModel}
             onModelChange={onModelChange}
+            onIconClick={onOpenSettingsModels}
+            onRemoveModel={onRemoveModel}
           />
         </div>
         <div className={styles.content}>

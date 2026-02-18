@@ -1,9 +1,13 @@
 {
-  "name": "t-r-server",
+  "name": "poliverb-server",
   "version": "1.0.0",
-  "description": "T-R web server",
+  "description": "Poliverb web server",
   "main": "index.js",
   "dependencies": {
+    "better-sqlite3": "^11.6.0",
     "express": "^4.21.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["better-sqlite3"]
   }
 }

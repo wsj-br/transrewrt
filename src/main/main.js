@@ -142,7 +142,7 @@ const createWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 1000,
     height: savedState ? savedState.height : 700,
-    icon: path.join(__dirname, "../../tr_logo.ico"),
+    icon: path.join(__dirname, "../../poliverb_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
@@ -210,7 +210,7 @@ const createSettingsWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
-    icon: path.join(__dirname, "../../tr_logo.ico"),
+    icon: path.join(__dirname, "../../poliverb_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,

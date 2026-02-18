@@ -1,6 +1,6 @@
-# Development Guide: Translator & Rewriter
+# Development Guide: Poliverb
 
-This document covers prerequisites, setup, development workflow, and building/packaging for the T-R application (Electron, React, Webpack).
+This document covers prerequisites, setup, development workflow, and building/packaging for the Poliverb application (Electron, React, Webpack).
 
 ---
 
@@ -111,8 +111,8 @@ This document covers prerequisites, setup, development workflow, and building/pa
 Clone the repository and install dependencies:
 
 ```bash
-git clone git@github.com:wsj-br/T-R.git
-cd T-R
+git clone git@github.com:wsj-br/poliverb.git
+cd poliverb
 pnpm install
 ```
 
@@ -198,8 +198,8 @@ The `package.json` `build` section currently configures:
 
 - **Windows**: NSIS installer (`.exe`)
   - Creates desktop and Start Menu shortcuts
-  - App ID: `br.com.wsj.t-r`
-  - Product name: "Translator & Rewriter"
+  - App ID: `br.com.wsj.poliverb`
+  - Product name: "Poliverb"
 - **Code Signing**: Disabled (`forceCodeSigning: false`)
 - **Output**: `release/` directory
 
@@ -207,7 +207,7 @@ The `package.json` `build` section currently configures:
 
 After building, check the `release/` folder for:
 
-- **Windows**: `Translator & Rewriter Setup <version>-<timestamp>.exe`
+- **Windows**: `Poliverb Setup <version>-<timestamp>.exe`
 - **Linux** (if configured): `.deb`, `.rpm`, `.AppImage`, or `.pacman` packages
 
 __Note__: Linux packaging targets are not yet configured in `package.json`. To add them, extend the `build` section:
@@ -219,7 +219,7 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
     "deb",
     "rpm"
   ],
-  "icon": "tr_logo.png",
+  "icon": "poliverb_logo.png",
   "category": "Utility"
 }
 ```
@@ -229,7 +229,7 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
 **Windows**:
 1. Download the `.exe` installer
 2. Run it and follow the wizard (default options are recommended)
-3. The app installs to `C:\Program Files\Translator & Rewriter` by default
+3. The app installs to `C:\Program Files\Poliverb` by default
 4. Launch from Start Menu or desktop shortcut
 
 **Linux** (once configured):
@@ -241,8 +241,8 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
 
 User-specific configuration is stored in the standard user data directory:
 
-- **Windows**: `%APPDATA%\t-r\` (e.g., `C:\Users\<user>\AppData\Roaming\t-r\`)
-- **Linux**: `~/.config/t-r/` or `~/.local/share/t-r/`
+- **Windows**: `%APPDATA%\poliverb\` (e.g., `C:\Users\<user>\AppData\Roaming\poliverb\`)
+- **Linux**: `~/.config/poliverb/` or `~/.local/share/poliverb/`
 
 The first run copies `config_default.json` to a user-writable location. Subsequent runs read/write user settings there.
 
@@ -339,19 +339,19 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 | Phase | Command | Notes |
 |-------|---------|-------|
-| **Develop** | `pnpm run dev` | Same as Electron (shared code) |
-| **Build** | `pnpm run build-renderer` | Output to `dist/` |
-| **Test** | `pnpm run start:server` | Serves at http://localhost:3000 |
-| **Run** | `pnpm run build-renderer` then `pnpm run start:server` | Full local web test |
+| **Develop** | `pnpm run dev:web` | Webpack on :5000, API on :3030 (proxied via /api) |
+| **Build** | `pnpm run build` or `pnpm run build-renderer` | Output to `dist/` |
+| **Test** | `pnpm run serve` | Build then serve at http://localhost:5000 |
+| **Run** | `pnpm run start:server` | Serve only (use when `dist/` already built) |
 
 ### Docker (Web in container)
 
 | Phase | Command | Notes |
 |-------|---------|-------|
-| **Build image** | `docker build -t t-r-web .` | Multi-stage build |
-| **Run** | `docker run -p 3000:3000 -v t-r-data:/app/data t-r-web` | Config persists in volume |
-| **Run (compose)** | `docker-compose up -d` | Uses `docker-compose.yml` |
-| **Test** | Open http://localhost:3000 | Config at `/api/config` |
+| **Build image** | `docker build -t poliverb-web .` | Multi-stage build |
+| **Run** | `docker run -p 5000:5000 -v poliverb-data:/app/data -e PORT=5000 poliverb-web` | Config persists in volume |
+| **Run (compose)** | `docker-compose up -d` or `pnpm run docker:up` | Uses `docker-compose.yml` |
+| **Test** | Open http://localhost:5000 | Config at `/api/config` |
 
 ---
 
@@ -361,10 +361,12 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 |---------|---------|
 | `pnpm install` | Install dependencies |
 | `pnpm run dev` | Development with hot reload (Electron) |
-| `pnpm run build-renderer` | Production build of React app |
+| `pnpm run dev:web` | Development with hot reload (Web; API proxied to server) |
+| `pnpm run build` / `pnpm run build-renderer` | Production build of React app |
 | `pnpm start` | Run Electron (after build) |
 | `pnpm run start-x11` | Run Electron with X11 (Linux) |
-| `pnpm run start:server` | Run web server (after build) |
+| `pnpm run serve` | Build then run web server (port 5000) |
+| `pnpm run start:server` | Run web server only (e.g. after build or in Docker) |
 | `pnpm run package` | Build and create Electron installer |
-| `docker build -t t-r-web .` | Build Docker image |
+| `docker build -t poliverb-web .` | Build Docker image |
 | `docker-compose up -d` | Run web app in Docker |

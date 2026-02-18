@@ -23,12 +23,12 @@ FROM node:lts-alpine AS production
 
 WORKDIR /app
 
-# Install pnpm globally
-RUN npm install -g pnpm
+# Install pnpm and build deps for native modules (better-sqlite3), then remove build deps
+RUN apk add --no-cache python3 make g++ && npm install -g pnpm
 
-# Copy server package and install (minimal deps - just express)
+# Copy server package and install (minimal deps - express, better-sqlite3)
 COPY server/package.json server/pnpm-lock.yaml ./server/
-RUN cd server && pnpm install --prod
+RUN cd server && pnpm install --prod && apk del python3 make g++
 
 # Copy built static files from builder
 COPY --from=builder /app/dist ./dist
@@ -45,8 +45,6 @@ RUN mkdir -p /app/data
 ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
 ENV PORT=5000
-ENV USERNAME="translator"
-ENV PASSWORD="Tr@nsl8r-2025!Secure"
 
 EXPOSE 5000
 

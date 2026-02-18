@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import { makeStyles, tokens, Button, Input, Label } from "@fluentui/react-components";
+
+const useStyles = makeStyles({
+  overlay: {
+    position: "fixed",
+    inset: 0,
+    backgroundColor: "rgba(0,0,0,0.6)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 10000,
+  },
+  modal: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    padding: "24px",
+    borderRadius: "8px",
+    boxShadow: tokens.shadow28,
+    minWidth: "320px",
+    maxWidth: "90vw",
+  },
+  title: {
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    fontWeight: 600,
+  },
+  field: {
+    marginBottom: "16px",
+  },
+  actions: {
+    marginTop: "20px",
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: "8px",
+  },
+  error: {
+    color: tokens.colorStatusDangerForeground1,
+    fontSize: "12px",
+    marginTop: "8px",
+  },
+});
+
+const LoginModal = ({ onSuccess }) => {
+  const styles = useStyles();
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      await onSuccess(password);
+    } catch (err) {
+      setError(err.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <h2 className={styles.title}>Log in</h2>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.field}>
+            <Label htmlFor="login-password">Password</Label>
+            <Input
+              id="login-password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              autoComplete="current-password"
+              autoFocus
+              disabled={loading}
+              style={{ width: "100%" }}
+            />
+          </div>
+          {error && <div className={styles.error}>{error}</div>}
+          <div className={styles.actions}>
+            <Button type="submit" appearance="primary" disabled={loading}>
+              {loading ? "Logging in…" : "Log in"}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LoginModal;

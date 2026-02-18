@@ -17,55 +17,149 @@ function getBasePath() {
 }
 
 const API_BASE = getBasePath();
-console.log(`[WebAPI] Detected base path: "${API_BASE}"`);
 
 const webAPI = {
   readConfig: async () => {
-    console.log("[WebAPI] readConfig - Fetching config from server");
     try {
-      const res = await fetch(`${API_BASE}/api/config`);
-      console.log(`[WebAPI] readConfig - Response status: ${res.status}`);
-      if (!res.ok) {
-        console.log("[WebAPI] readConfig - Response not OK, returning empty object");
-        return {};
-      }
+      const res = await fetch(`${API_BASE}/api/config`, { credentials: "include" });
+      if (res.status === 401) return Promise.reject({ status: 401 });
+      if (!res.ok) return {};
       const data = await res.json();
-      console.log(`[WebAPI] readConfig - Received config with keys: ${Object.keys(data || {}).join(", ")}`);
-      if (data && data.api_key) {
-        console.log(`[WebAPI] readConfig - API Key present: ${data.api_key.substring(0, 8)}...`);
-      } else {
-        console.log("[WebAPI] readConfig - No API Key in received config");
-      }
       return data && typeof data === "object" ? data : {};
     } catch (err) {
-      console.error("[WebAPI] readConfig - Failed to read config:", err);
+      if (err && err.status === 401) throw err;
+      console.error("[WebAPI] readConfig failed:", err);
       return {};
     }
   },
 
   writeConfig: async (configData) => {
-    console.log("[WebAPI] writeConfig - Sending config to server");
-    console.log(`[WebAPI] writeConfig - Config keys: ${Object.keys(configData || {}).join(", ")}`);
-    if (configData && configData.api_key) {
-      console.log(`[WebAPI] writeConfig - API Key being sent: ${configData.api_key.substring(0, 8)}...`);
-    } else {
-      console.log("[WebAPI] writeConfig - No API Key in config being sent");
-    }
     try {
       const res = await fetch(`${API_BASE}/api/config`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(configData),
+        credentials: "include",
       });
-      console.log(`[WebAPI] writeConfig - Response status: ${res.status}`);
+      if (res.status === 401) return Promise.reject({ status: 401 });
       const json = await res.json();
-      console.log(`[WebAPI] writeConfig - Response: ${JSON.stringify(json)}`);
-      const success = json && json.success === true;
-      console.log(`[WebAPI] writeConfig - Success: ${success}`);
-      return success;
+      return json && json.success === true;
     } catch (err) {
-      console.error("[WebAPI] writeConfig - Failed to write config:", err);
+      if (err && err.status === 401) throw err;
+      console.error("[WebAPI] writeConfig failed:", err);
       return false;
+    }
+  },
+
+  login: async (password) => {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+      credentials: "include",
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Login failed");
+    }
+    return true;
+  },
+
+  changePassword: async (newPassword) => {
+    const res = await fetch(`${API_BASE}/api/auth/change-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ newPassword }),
+      credentials: "include",
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to change password");
+    }
+    return true;
+  },
+
+  logout: async () => {
+    const res = await fetch(`${API_BASE}/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Logout failed");
+    }
+    return true;
+  },
+
+  logApiCall: async (payload) => {
+    try {
+      await fetch(`${API_BASE}/api/calls`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        credentials: "include",
+      });
+    } catch (err) {
+      console.warn("[WebAPI] logApiCall failed:", err);
+    }
+  },
+
+  getSummaryByFunction: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-function?${q}`, { credentials: "include" });
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
+  getSummaryByModel: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-model?${q}`, { credentials: "include" });
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
+  getSummaryByDay: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-day?${q}`, { credentials: "include" });
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
+  deleteCallsOutsideRange: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls?${q}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to delete data");
+    }
+  },
+
+  getApiStatus: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/status`, { credentials: "include" });
+      const data = await res.json();
+      return {
+        apiKeySet: !!data.apiKeySet,
+        apiKeyValid: !!data.apiKeyValid,
+        message: data.message || "",
+      };
+    } catch (err) {
+      console.error("[WebAPI] getApiStatus failed:", err);
+      return { apiKeySet: false, apiKeyValid: false, message: err.message || "Failed to check API status." };
     }
   },
 

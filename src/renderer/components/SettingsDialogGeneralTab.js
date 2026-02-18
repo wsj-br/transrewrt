@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, tokens, Label, Text, Dropdown, Option, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
+import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
 
@@ -28,6 +28,12 @@ const useColorPickerStyles = makeStyles({
     marginTop: '12px',
   },
 });
+
+function normalizeEnterBehavior(value) {
+  if (value === 'Translate') return 'Execute';
+  if (value === 'Shift-Translate' || value === 'Newline') return 'Shift-Execute';
+  return value || 'Execute';
+}
 
 const useFormStyles = makeStyles({
   formControl: {
@@ -174,7 +180,7 @@ const SettingsDialogGeneralTab = ({
           Behavior
         </Text>
         <div style={{ marginBottom: '16px' }}>
-          <Label htmlFor="enter-behavior" style={{ display: 'block', marginBottom: '6px' }}>
+          <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <span
                 style={{
@@ -195,17 +201,16 @@ const SettingsDialogGeneralTab = ({
               </span> <span> Key Behavior:</span>
             </span>
           </Label>
-          <Dropdown
+          <RadioGroup
             id="enter-behavior"
-            value={localSettings.enter_behavior || 'Translate'}
-            selectedOptions={[(localSettings.enter_behavior || 'Translate')]}
-            onOptionSelect={(e, data) => onSettingChange('enter_behavior', data.optionValue)}
-            style={{ width: 'auto', minWidth: '280px' }}
+            value={normalizeEnterBehavior(localSettings.enter_behavior)}
+            onChange={(e, data) => onSettingChange('enter_behavior', data.value)}
+            layout="vertical"
+            style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginLeft: '32px' }}
           >
-            <Option value="Translate">Translate / Rewrite when pressed</Option>
-            <Option value="Newline">Insert a new line</Option>
-            <Option value="Shift-Translate">Shift+ENTER to translate</Option>
-          </Dropdown>
+            <Radio value="Execute" label="ENTER to translate / rewrite" />
+            <Radio value="Shift-Execute" label="SHIFT+ENTER to translate / rewrite" />
+          </RadioGroup>
         </div>
         <div className="checkbox-group" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
