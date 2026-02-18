@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
+import { FluentProvider, webDarkTheme } from "@fluentui/react-components";
 import App from "./components/App";
 import { AppProvider } from "./contexts/AppContext";
 

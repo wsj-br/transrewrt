@@ -3,18 +3,7 @@
  * Uses fetch() to call the server's REST API.
  */
 
-// Detect base path from window location for reverse proxy support (e.g., /translator)
-function getBasePath() {
-  if (typeof window !== "undefined" && window.location.pathname) {
-    // Get the path segment - e.g., /translator/ -> /translator
-    const path = window.location.pathname.replace(/\/$/, "");
-    // If there's a path (not root), return it
-    if (path && path !== "/") {
-      return path;
-    }
-  }
-  return "";
-}
+import { getBasePath } from "./urlUtils";
 
 const API_BASE = getBasePath();
 

@@ -47,7 +47,7 @@ module.exports = (env, argv) => {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
-      favicon: path.resolve(__dirname, "poliverb_logo.ico"),
+      favicon: path.resolve(__dirname, "transrewrt_logo.ico"),
     }),
     !isDevelopment && new MiniCssExtractPlugin({
       filename: "[name].css",

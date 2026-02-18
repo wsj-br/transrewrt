@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { makeStyles, tokens } from "@fluentui/react-components";
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
 import { Sliders, Database, Globe, Key, Lock, DollarSign } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
@@ -8,8 +8,10 @@ import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
 import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
 import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
+import { FREE_MODEL_ID } from "../constants";
+import configManager from "../utils/configManager";
 
-const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const useStyles = makeStyles({
   panel: {
@@ -31,6 +33,9 @@ const useStyles = makeStyles({
     margin: 0,
     fontSize: "20px",
     fontWeight: 600,
+  },
+  settingsBody: {
+    flex: 1,
   },
 });
 
@@ -61,19 +66,44 @@ const SettingsPanel = () => {
   const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
   const [modelsError, setModelsError] = useState(null);
-
-  const FREE_MODEL_ID = "openrouter/free";
+  const skipNextPersistTabRef = useRef(true); // skip first run so we don't overwrite restored tab on mount
+  const hasRestoredTabRef = useRef(false);   // in web mode, later context updates can overwrite; only restore tab once per mount
 
   useEffect(() => {
     setLocalSettings({ ...settings });
     const modelsWithFree = new Set([FREE_MODEL_ID, ...(settings.available_models || [])]);
     setSelectedModelIds(modelsWithFree);
     setSelectedLanguages(new Set(settings.available_languages || []));
-    let tab = settings.settings_active_tab || "general";
-    if (tab === "auth" && !isWeb) tab = "general";
-    if (tab === "api" && isWeb) tab = "general";
-    setActiveTab(tab);
+    // Restore active tab once per mount from configManager, then context. If we had to read from
+    // context (configManager didn't have it), persist it so the next time we open Settings we can
+    // restore from configManager.
+    if (!hasRestoredTabRef.current) {
+      hasRestoredTabRef.current = true;
+      let tab = configManager.get("settings_active_tab") || settings.settings_active_tab || "general";
+      if (tab === "auth" && !isWeb) tab = "general";
+      if (tab === "api" && isWeb) tab = "general";
+      setActiveTab(tab);
+      if (tab && configManager.get("settings_active_tab") !== tab) {
+        setSetting("settings_active_tab", tab);
+      }
+    }
   }, [settings]);
+
+  // Persist active tab when user switches tabs (not on initial mount, to avoid overwriting restored tab).
+  useEffect(() => {
+    if (skipNextPersistTabRef.current) {
+      skipNextPersistTabRef.current = false;
+      return;
+    }
+    if (!activeTab) return;
+    const current = settings.settings_active_tab || "general";
+    // Don't overwrite a saved tab with initial state: restore set the tab but state may not have
+    // flushed yet (or effect ran twice in Strict Mode), so we must not persist "general" over it.
+    if (activeTab === "general" && current !== "general") return;
+    if (activeTab !== current) {
+      setSetting("settings_active_tab", activeTab);
+    }
+  }, [activeTab]); // eslint-disable-line react-hooks/exhaustive-deps -- intentionally omit settings/setSetting to avoid loop
 
   useEffect(() => {
     if (allModels.length === 0) {
@@ -124,8 +154,8 @@ const SettingsPanel = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
           "HTTP-Referer":
-            "https://github.com/wsj-br/poliverb",
-          "X-Title": "Poliverb",
+            "https://github.com/wsj-br/transrewrt",
+          "X-Title": "Transrewrt",
         },
       });
 
@@ -269,10 +299,9 @@ const SettingsPanel = () => {
     }
   };
 
-  // Handle tab changes - explicitly persist the active tab
+  // Handle tab changes (persistence is done in the effect below to avoid duplicate persistence)
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setSetting('settings_active_tab', tab);
   };
 
   return (
@@ -330,7 +359,7 @@ const SettingsPanel = () => {
         )}
       </div>
 
-      <div className="modal-body settings-body" style={{ flex: 1 }}>
+      <div className={mergeClasses("modal-body", "settings-body", styles.settingsBody)}>
         {activeTab === "general" && (
           <SettingsDialogGeneralTab
             localSettings={localSettings}

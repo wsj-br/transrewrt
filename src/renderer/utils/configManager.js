@@ -5,7 +5,7 @@ import webAPI from "./webApiClient";
 class ConfigManager {
   constructor() {
     this.config = {};
-    this._isElectron = !!(typeof window !== "undefined" && window.electronAPI && window.electronAPI.readConfig);
+    this._isElectron = !!(typeof window !== "undefined" && window.electronAPI && window.electronAPI.getConfig);
     this._isWeb = !this._isElectron && typeof fetch !== "undefined";
     if (this._isElectron) {
       this.loadConfig();
@@ -13,15 +13,15 @@ class ConfigManager {
   }
 
   /**
-   * Load configuration - sync in Electron, async in Web mode.
-   * Returns Promise that resolves when load is complete (caller should await in web mode).
+   * Load configuration - async in both Electron (IPC) and Web mode.
+   * Returns Promise that resolves when load is complete (caller should await).
    */
   loadConfig() {
     try {
-      if (this._isElectron && window.electronAPI && window.electronAPI.readConfig) {
-        const fileConfig = window.electronAPI.readConfig();
-        this.config = fileConfig && Object.keys(fileConfig).length > 0 ? { ...fileConfig } : {};
-        return Promise.resolve();
+      if (this._isElectron && window.electronAPI && window.electronAPI.getConfig) {
+        return window.electronAPI.getConfig().then((fileConfig) => {
+          this.config = fileConfig && Object.keys(fileConfig).length > 0 ? { ...fileConfig } : {};
+        });
       }
       if (this._isWeb) {
         return webAPI.readConfig().then((fileConfig) => {
@@ -38,15 +38,15 @@ class ConfigManager {
   }
 
   /**
-   * Persist configuration to file via Electron API or server API (web mode)
+   * Persist configuration via Electron IPC or server API (web mode)
    * @returns {Promise<boolean>} True if save succeeded
    */
   async persistToFile() {
     try {
-      if (this._isElectron && window.electronAPI && window.electronAPI.writeConfig) {
-        window.electronAPI.writeConfig(this.config);
-        console.log("[ConfigManager] Config persisted.");
-        return true;
+      if (this._isElectron && window.electronAPI && window.electronAPI.setAllConfig) {
+        const success = await window.electronAPI.setAllConfig(this.config);
+        if (success) console.log("[ConfigManager] Config persisted.");
+        return success;
       }
       if (this._isWeb) {
         const success = await webAPI.writeConfig(this.config);
@@ -57,26 +57,7 @@ class ConfigManager {
         }
         return success;
       }
-      const electronRequire =
-        typeof window !== "undefined" && window.require ? window.require : null;
-      if (!electronRequire) {
-        return false;
-      }
-      const fs = electronRequire("fs");
-      const path = electronRequire("path");
-      let filePath;
-      if (window.electronAPI && window.electronAPI.getConfigPath) {
-        filePath = window.electronAPI.getConfigPath();
-      } else {
-        filePath = path.join(path.dirname(process.execPath || process.cwd()), "config.json");
-      }
-      const configDir = path.dirname(filePath);
-      if (!fs.existsSync(configDir)) {
-        fs.mkdirSync(configDir, { recursive: true });
-      }
-      fs.writeFileSync(filePath, JSON.stringify(this.config, null, 2), "utf8");
-      console.log("[ConfigManager] Config persisted.");
-      return true;
+      return false;
     } catch (error) {
       console.error("[ConfigManager] Failed to save config:", error);
       return false;
@@ -107,14 +88,17 @@ class ConfigManager {
   }
 
   /**
-   * Set a configuration value
+   * Set a configuration value (single-key write in Electron to avoid race conditions)
    * @param {string} key - Configuration key
    * @param {*} value - Configuration value
    * @returns {Promise<boolean>} True if save succeeded
    */
   set(key, value) {
+    if (this._isElectron && window.electronAPI && window.electronAPI.setConfig) {
+      this.config[key] = value;
+      return window.electronAPI.setConfig(key, value);
+    }
     this.config[key] = value;
-    // Return the promise so callers can await if needed
     return this.saveConfig();
   }
 
@@ -133,7 +117,9 @@ class ConfigManager {
    */
   setAll(config) {
     this.config = { ...this.config, ...config };
-    // Return the promise so callers can await if needed
+    if (this._isElectron && window.electronAPI && window.electronAPI.setAllConfig) {
+      return window.electronAPI.setAllConfig(this.config);
+    }
     return this.saveConfig();
   }
 }

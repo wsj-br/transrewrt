@@ -1,13 +1,4 @@
-// Detect base path from window location for reverse proxy support (e.g., /translator)
-function getBasePath() {
-  if (typeof window !== "undefined" && window.location.pathname) {
-    const path = window.location.pathname.replace(/\/$/, "");
-    if (path && path !== "/") {
-      return path;
-    }
-  }
-  return "";
-}
+import { getBasePath } from "../utils/urlUtils";
 
 const BASE_PATH = getBasePath();
 
@@ -15,7 +6,7 @@ const BASE_PATH = getBasePath();
 // In Electron: calls OpenRouter directly. In Web/Docker: calls server proxy (API key stays on server).
 class APIService {
   constructor() {
-    this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     this.baseUrl = this._isWebMode ? `${BASE_PATH}/api/proxy` : "https://openrouter.ai/api/v1";
   }
 
@@ -40,26 +31,18 @@ class APIService {
       "Content-Type": "application/json",
       Authorization: `Bearer ${config.api_key || ""}`,
       "HTTP-Referer":
-        "https://github.com/wsj-br/poliverb",
-      "X-Title": "Poliverb",
+        "https://github.com/wsj-br/transrewrt",
+      "X-Title": "Transrewrt",
     };
   }
 
   writeDebugFile(filename, data) {
-    try {
-      const electronRequire =
-        typeof window !== "undefined" && window.require ? window.require : null;
-      if (!electronRequire) {
-        console.log(`[debug] Not in Electron environment, skipping write to ${filename}`);
-        return;
-      }
-      const fs = electronRequire("fs");
-      const path = electronRequire("path");
-      const filePath = path.join(process.cwd(), filename);
-      fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-      console.log(`[debug] Wrote ${filename} to ${filePath}`);
-    } catch (err) {
-      console.error(`Failed to write ${filename}:`, err);
+    if (typeof window !== "undefined" && window.electronAPI?.writeDebugFile) {
+      window.electronAPI.writeDebugFile(filename, data).then(() => {
+        console.log(`[debug] Wrote ${filename}`);
+      }).catch((err) => {
+        console.error(`Failed to write ${filename}:`, err);
+      });
     }
   }
 
@@ -84,16 +67,10 @@ class APIService {
   }
 
   writeLastApiResult(payload) {
-    try {
-      const electronRequire =
-        typeof window !== "undefined" && window.require ? window.require : null;
-      if (!electronRequire) return;
-      const fs = electronRequire("fs");
-      const path = electronRequire("path");
-      const filePath = path.join(process.cwd(), "last_api_result.json");
-      fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
-    } catch (err) {
-      console.error("Failed to write last_api_result.json", err);
+    if (typeof window !== "undefined" && window.electronAPI?.writeLastApiResult) {
+      window.electronAPI.writeLastApiResult(payload).catch((err) => {
+        console.error("Failed to write last_api_result.json", err);
+      });
     }
   }
 
@@ -139,6 +116,161 @@ class APIService {
   }
 
   /**
+   * Shared streaming chat completion (translate and rewrite).
+   * @private
+   * @param {string} systemPrompt
+   * @param {string} userText
+   * @param {string} model
+   * @param {number} temperature
+   * @param {AbortSignal|null} signal
+   * @param {string} type - "translate" | "rewrite" (for logging)
+   * @param {Object} extraMetadata - e.g. { style } for rewrite
+   * @returns {Promise<Object>} { content, usage, model, cancelled, request_bytes, response_bytes, duration_ms }
+   */
+  async _streamChatCompletion(systemPrompt, userText, model, temperature, signal, type, extraMetadata = {}) {
+    const body = {
+      model,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userText },
+      ],
+      temperature,
+      stream: true,
+    };
+    const bodyStr = JSON.stringify(body);
+    const request_bytes = new TextEncoder().encode(bodyStr).length;
+    const startTime = Date.now();
+
+    const fetchOptions = {
+      method: "POST",
+      headers: this.getHeaders(),
+      body: bodyStr,
+    };
+    if (signal) fetchOptions.signal = signal;
+    if (this._isWebMode) fetchOptions.credentials = "include";
+
+    const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
+    if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
+    if (!response.ok) {
+      const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
+      throw Object.assign(new Error(msg), { status: response.status });
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let content = "";
+    let usage = null;
+    let generationId = null;
+    let rawChunks = [];
+    let aborted = false;
+    let response_bytes = 0;
+
+    if (signal?.aborted) {
+      reader.cancel();
+      aborted = true;
+    }
+    if (signal) {
+      signal.addEventListener("abort", () => { aborted = true; }, { once: true });
+    }
+
+    try {
+      while (true) {
+        if (signal?.aborted) aborted = true;
+        try {
+          const { done, value } = await reader.read();
+          if (done) break;
+          if (value) {
+            response_bytes += value.length;
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split("\n");
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed || trimmed === "data: [DONE]") continue;
+              if (!trimmed.startsWith("data: ")) continue;
+              try {
+                const dataStr = trimmed.replace(/^data: /, "");
+                const data = JSON.parse(dataStr);
+                rawChunks.push(data);
+                if (data.id && !generationId) generationId = data.id;
+                if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
+                if (data.usage) usage = data.usage;
+                if (data.error) {
+                  const msg = data.error.message || "Stream error";
+                  const err = new Error(msg);
+                  const code = data.error.code ?? data.error.status;
+                  if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
+                    Object.assign(err, { status: 404 });
+                  }
+                  throw err;
+                }
+              } catch (parseErr) {
+                if (parseErr.message?.includes("Unexpected end of JSON input")) continue;
+                console.warn("Failed to parse stream chunk:", parseErr);
+              }
+            }
+          }
+        } catch (readErr) {
+          if (readErr.name === "AbortError") break;
+          throw readErr;
+        }
+        if (aborted && !reader.closed) {
+          try {
+            const { done, value } = await reader.read();
+            if (done) break;
+            if (value) {
+              response_bytes += value.length;
+              const chunk = decoder.decode(value, { stream: true });
+              for (const line of chunk.split("\n")) {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed === "data: [DONE]" || !trimmed.startsWith("data: ")) continue;
+                try {
+                  const data = JSON.parse(trimmed.replace(/^data: /, ""));
+                  rawChunks.push(data);
+                  if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
+                  if (data.usage) usage = data.usage;
+                } catch (_) {}
+              }
+            }
+          } catch (_) {}
+          break;
+        }
+      }
+    } catch (error) {
+      if (error.name === "AbortError") {
+        const id = generationId || rawChunks.find((c) => c?.id)?.id;
+        if (!usage && id) usage = await this.getGenerationUsage(id);
+        const result = {
+          content,
+          usage,
+          model,
+          cancelled: true,
+          request_bytes,
+          response_bytes,
+          duration_ms: Date.now() - startTime,
+        };
+        this.writeLastApiResult({ type, model, usage, cancelled: true, raw: rawChunks, ...extraMetadata });
+        return result;
+      }
+      throw error;
+    }
+
+    const idForUsage = generationId || rawChunks.find((c) => c?.id)?.id;
+    if (aborted && !usage && idForUsage) usage = await this.getGenerationUsage(idForUsage);
+    const duration_ms = Date.now() - startTime;
+    const result = {
+      content,
+      usage,
+      model,
+      cancelled: aborted,
+      request_bytes,
+      response_bytes,
+      duration_ms,
+    };
+    this.writeLastApiResult({ type, model, usage, cancelled: aborted, raw: rawChunks, ...extraMetadata });
+    return result;
+  }
+
+  /**
    * Translate text from source language to target language
    * @param {string} text - Text to translate
    * @param {string} targetLang - Target language
@@ -148,10 +280,8 @@ class APIService {
    */
   async translate(text, targetLang, model, sourceLang = null, signal = null) {
     try {
-      let systemPrompt;
-
-      if (sourceLang && sourceLang !== "Detect Language") {
-        systemPrompt = `You are a professional translator specializing in ${sourceLang} to ${targetLang} translation.
+      const systemPrompt = sourceLang && sourceLang !== "Detect Language"
+        ? `You are a professional translator specializing in ${sourceLang} to ${targetLang} translation.
 
 Your task:
 - Translate the user's text from ${sourceLang} into natural, fluent ${targetLang}
@@ -159,9 +289,8 @@ Your task:
 - Maintain any formatting (line breaks, bullet points, etc.)
 - Keep proper nouns, technical terms, and brand names unchanged unless they have standard translations
 - Do not add explanations, notes, or commentary
-- Output only the translated text`;
-      } else {
-        systemPrompt = `You are a professional translator specializing in ${targetLang}.
+- Output only the translated text`
+        : `You are a professional translator specializing in ${targetLang}.
 
 Your task:
 - Translate the user's text into natural, fluent ${targetLang}
@@ -170,207 +299,7 @@ Your task:
 - Keep proper nouns, technical terms, and brand names unchanged unless they have standard translations
 - Do not add explanations, notes, or commentary
 - Output only the translated text`;
-      }
-
-      const body = {
-        model: model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: text },
-        ],
-        temperature: 0.3,
-        stream: true,
-      };
-      const bodyStr = JSON.stringify(body);
-      const request_bytes = new TextEncoder().encode(bodyStr).length;
-      const startTime = Date.now();
-
-      const fetchOptions = {
-        method: "POST",
-        headers: this.getHeaders(),
-        body: bodyStr,
-      };
-      if (signal) {
-        fetchOptions.signal = signal;
-      }
-      if (this._isWebMode) fetchOptions.credentials = "include";
-
-      const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
-
-      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
-      if (!response.ok) {
-        const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
-        throw Object.assign(new Error(msg), { status: response.status });
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let content = "";
-      let usage = null;
-      let generationId = null;
-      let rawChunks = [];
-      let aborted = false;
-      let response_bytes = 0;
-
-      if (signal?.aborted) {
-        reader.cancel();
-        aborted = true;
-      }
-      if (signal) {
-        signal.addEventListener('abort', () => {
-          aborted = true;
-        }, { once: true });
-      }
-
-      try {
-        while (true) {
-          if (signal?.aborted) aborted = true;
-          try {
-            const { done, value } = await reader.read();
-            if (done) break;
-            if (value) {
-              response_bytes += value.length;
-              const chunk = decoder.decode(value, { stream: true });
-              const lines = chunk.split("\n");
-
-              for (const line of lines) {
-                const trimmed = line.trim();
-                if (!trimmed || trimmed === "data: [DONE]") continue;
-                if (!trimmed.startsWith("data: ")) continue;
-
-                try {
-                  const dataStr = trimmed.replace(/^data: /, "");
-                  const data = JSON.parse(dataStr);
-                  rawChunks.push(data);
-
-                  // Capture generation ID from first chunk (for fetching usage after cancel)
-                  if (data.id && !generationId) {
-                    generationId = data.id;
-                  }
-
-                  // Capture content delta
-                  if (data.choices && data.choices[0]?.delta?.content) {
-                    content += data.choices[0].delta.content;
-                  }
-
-                  // Capture usage from final chunk (or any chunk with usage)
-                  if (data.usage) {
-                    usage = data.usage;
-                  }
-
-                  // Check for errors in stream
-                  if (data.error) {
-                    const msg = data.error.message || "Stream error";
-                    const err = new Error(msg);
-                    const code = data.error.code || data.error.status;
-                    if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
-                      Object.assign(err, { status: 404 });
-                    }
-                    throw err;
-                  }
-                } catch (parseErr) {
-                  if (parseErr.message.includes("Unexpected end of JSON input")) {
-                    // Ignore incomplete JSON chunks
-                    continue;
-                  }
-                  console.warn("Failed to parse stream chunk:", parseErr);
-                }
-              }
-            }
-          } catch (readErr) {
-            if (readErr.name === 'AbortError') {
-              break;
-            }
-            throw readErr;
-          }
-
-          // If we've been aborted, try to read once more to get final usage chunk
-          if (aborted && !reader.closed) {
-            try {
-              const { done, value } = await reader.read();
-              if (done) break;
-              if (value) {
-                response_bytes += value.length;
-                const chunk = decoder.decode(value, { stream: true });
-                const lines = chunk.split("\n");
-                for (const line of lines) {
-                  const trimmed = line.trim();
-                  if (!trimmed || trimmed === "data: [DONE]") continue;
-                  if (!trimmed.startsWith("data: ")) continue;
-                  try {
-                    const dataStr = trimmed.replace(/^data: /, "");
-                    const data = JSON.parse(dataStr);
-                    rawChunks.push(data);
-                    if (data.choices && data.choices[0]?.delta?.content) {
-                      content += data.choices[0].delta.content;
-                    }
-                    if (data.usage) {
-                      usage = data.usage;
-                    }
-                  } catch (e) {
-                    // ignore
-                  }
-                }
-              }
-            } catch (e) {
-              // ignore errors when draining
-            }
-            break;
-          }
-        }
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          const id = generationId || rawChunks.find((c) => c && c.id)?.id;
-          if (!usage && id) {
-            usage = await this.getGenerationUsage(id);
-          }
-          const duration_ms = Date.now() - startTime;
-          const result = {
-            content: content,
-            usage: usage,
-            model: model,
-            cancelled: true,
-            request_bytes: request_bytes,
-            response_bytes: response_bytes,
-            duration_ms: duration_ms,
-          };
-          this.writeLastApiResult({
-            type: "translate",
-            model,
-            usage: usage,
-            cancelled: true,
-            raw: rawChunks,
-          });
-          return result;
-        }
-        throw error;
-      }
-
-      const idForUsage = generationId || rawChunks.find((c) => c && c.id)?.id;
-      if (aborted && !usage && idForUsage) {
-        usage = await this.getGenerationUsage(idForUsage);
-      }
-
-      const duration_ms = Date.now() - startTime;
-      const result = {
-        content: content,
-        usage: usage,
-        model: model,
-        cancelled: aborted,
-        request_bytes: request_bytes,
-        response_bytes: response_bytes,
-        duration_ms: duration_ms,
-      };
-
-      this.writeLastApiResult({
-        type: "translate",
-        model,
-        usage: usage,
-        cancelled: aborted,
-        raw: rawChunks,
-      });
-
-      return result;
+      return await this._streamChatCompletion(systemPrompt, text, model, 0.3, signal, "translate", {});
     } catch (error) {
       // Re-throw AbortError so the caller can handle it properly
       if (error.name === 'AbortError') {
@@ -524,158 +453,17 @@ Your task:
         temperature: 0.4,
       };
 
-      const body = {
-        model: model,
-        messages: [
-          { role: "system", content: styleConfig.system },
-          { role: "user", content: text },
-        ],
-        temperature: styleConfig.temperature,
-        stream: true,
-      };
-      const bodyStr = JSON.stringify(body);
-      const request_bytes = new TextEncoder().encode(bodyStr).length;
-      const startTime = Date.now();
-
-      const fetchOptions = {
-        method: "POST",
-        headers: this.getHeaders(),
-        body: bodyStr,
-      };
-      if (signal) {
-        fetchOptions.signal = signal;
-      }
-
-      if (this._isWebMode) fetchOptions.credentials = "include";
-
-      const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
-
-      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
-      if (!response.ok) {
-        const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
-        throw Object.assign(new Error(msg), { status: response.status });
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let content = "";
-      let usage = null;
-      let generationId = null;
-      let rawChunks = [];
-      let aborted = false;
-      let response_bytes = 0;
-
-      try {
-        while (true) {
-          if (signal?.aborted) aborted = true;
-          const { done, value } = await reader.read();
-          if (done) break;
-          if (value) response_bytes += value.length;
-
-          const chunk = decoder.decode(value);
-          const lines = chunk.split("\n");
-
-          for (const line of lines) {
-            const trimmed = line.trim();
-            if (!trimmed || trimmed === "data: [DONE]") continue;
-            if (!trimmed.startsWith("data: ")) continue;
-
-            try {
-              const dataStr = trimmed.replace(/^data: /, "");
-              const data = JSON.parse(dataStr);
-              rawChunks.push(data);
-
-              // Capture generation ID from first chunk (for fetching usage after cancel)
-              if (data.id && !generationId) {
-                generationId = data.id;
-              }
-
-              // Capture content delta
-              if (data.choices && data.choices[0]?.delta?.content) {
-                content += data.choices[0].delta.content;
-              }
-
-              // Capture usage from final chunk (or any chunk with usage)
-              if (data.usage) {
-                usage = data.usage;
-              }
-
-              // Check for errors in stream
-              if (data.error) {
-                const msg = data.error.message || "Stream error";
-                const err = new Error(msg);
-                const code = data.error.code || data.error.status;
-                if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
-                  Object.assign(err, { status: 404 });
-                }
-                throw err;
-              }
-            } catch (parseErr) {
-              if (parseErr.message.includes("Unexpected end of JSON input")) {
-                // Ignore incomplete JSON chunks
-                continue;
-              }
-              console.warn("Failed to parse stream chunk:", parseErr);
-            }
-          }
-        }
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          const id = generationId || rawChunks.find((c) => c && c.id)?.id;
-          if (!usage && id) {
-            usage = await this.getGenerationUsage(id);
-          }
-          const duration_ms = Date.now() - startTime;
-          const result = {
-            content: content,
-            usage: usage,
-            model: model,
-            cancelled: true,
-            request_bytes: request_bytes,
-            response_bytes: response_bytes,
-            duration_ms: duration_ms,
-          };
-          this.writeLastApiResult({
-            type: "rewrite",
-            style,
-            model,
-            usage: usage,
-            cancelled: true,
-            raw: rawChunks,
-          });
-          return result;
-        }
-        throw error;
-      }
-
-      const idForUsage = generationId || rawChunks.find((c) => c && c.id)?.id;
-      if (aborted && !usage && idForUsage) {
-        usage = await this.getGenerationUsage(idForUsage);
-      }
-
-      const duration_ms = Date.now() - startTime;
-      const result = {
-        content: content,
-        usage: usage,
-        model: model,
-        cancelled: aborted,
-        request_bytes: request_bytes,
-        response_bytes: response_bytes,
-        duration_ms: duration_ms,
-      };
-
-      this.writeLastApiResult({
-        type: "rewrite",
-        style,
+      return await this._streamChatCompletion(
+        styleConfig.system,
+        text,
         model,
-        usage: usage,
-        cancelled: aborted,
-        raw: rawChunks,
-      });
-
-      return result;
+        styleConfig.temperature,
+        signal,
+        "rewrite",
+        { style },
+      );
     } catch (error) {
-      if (error.name === 'AbortError') {
+      if (error.name === "AbortError") {
         throw error;
       }
       // Re-throw 404/400 so AppContext can remove the model from the list and switch to fallback

@@ -18,6 +18,7 @@ import {
   ChevronRightRegular,
   DismissRegular,
 } from '@fluentui/react-icons';
+import { FREE_MODEL_ID } from "../constants";
 import {
   Cpu,
   Sparkles,
@@ -356,7 +357,6 @@ const SettingsDialogModelsTab = ({
                 const model = allModels.find(m => m.id === modelId) || { id: modelId };
                 const provider = modelId.split('/')[0] || 'Other';
                 const isFree = model.pricing && parseFloat(model.pricing.prompt || 0) === 0;
-                const FREE_MODEL_ID = "openrouter/free";
                 const isRequiredFree = modelId === FREE_MODEL_ID;
 
                 return (

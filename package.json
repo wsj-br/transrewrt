@@ -1,7 +1,7 @@
 {
-  "name": "poliverb",
+  "name": "transrewrt",
   "version": "1.0.1",
-  "description": "Poliverb Application",
+  "description": "Transrewrt Application",
   "main": "src/main/main.js",
   "scripts": {
     "dev": "concurrently \"pnpm run watch\" \"pnpm run electron\"",
@@ -19,7 +19,7 @@
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:clean": "./scripts/clean-docker.sh",
-    "docker:devel": "docker build . -t wsj-br/poliverb:devel",
+    "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh"
   },
   "keywords": [
@@ -31,8 +31,8 @@
   "author": "Waldemar Scudeller Jr.",
   "license": "MIT",
   "build": {
-    "appId": "br.com.wsj.poliverb",
-    "productName": "Poliverb",
+    "appId": "br.com.wsj.transrewrt",
+    "productName": "Transrewrt",
     "files": [
       "dist/**/*",
       "src/main/main.js",
@@ -51,16 +51,16 @@
     "win": {
       "target": "nsis",
       "forceCodeSigning": false,
-      "icon": "poliverb_logo.ico",
-      "artifactName": "${productName} Setup ${version}-${env.BUILD_TIMESTAMP}.${ext}"
+      "icon": "transrewrt_logo.ico",
+      "artifactName": "${productName} Setup ${version}.${ext}"
     },
     "nsis": {
-      "installerIcon": "poliverb_logo.ico",
-      "uninstallerIcon": "poliverb_logo.ico",
-      "installerHeaderIcon": "poliverb_logo.ico",
+      "installerIcon": "transrewrt_logo.ico",
+      "uninstallerIcon": "transrewrt_logo.ico",
+      "installerHeaderIcon": "transrewrt_logo.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Poliverb"
+      "shortcutName": "Transrewrt"
     }
   },
   "devDependencies": {
@@ -97,6 +97,8 @@
     ]
   },
   "dependencies": {
+    "argon2": "^0.41.1",
+    "proper-lockfile": "^4.1.2",
     "@ctrl/tinycolor": "^4.2.0",
     "@fluentui/react-components": "^9.73.0",
     "@fluentui/react-icons": "^2.0.319",

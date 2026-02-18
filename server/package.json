@@ -1,7 +1,7 @@
 {
-  "name": "poliverb-server",
+  "name": "transrewrt-server",
   "version": "1.0.0",
-  "description": "Poliverb web server",
+  "description": "Transrewrt web server",
   "main": "index.js",
   "dependencies": {
     "better-sqlite3": "^11.6.0",

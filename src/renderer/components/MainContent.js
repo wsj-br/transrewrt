@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   content: {
     flex: 1,
     display: "flex",
-    padding: `0 ${tokens.spacingHorizontalL} ${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL} ${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
     gap: tokens.spacingHorizontalL,
     overflow: "hidden",
     minHeight: 0,

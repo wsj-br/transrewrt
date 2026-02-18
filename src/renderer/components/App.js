@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { makeStyles, tokens, Button } from "@fluentui/react-components";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { makeStyles, mergeClasses, tokens, Button } from "@fluentui/react-components";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import TextPanel from "./TextPanel";
@@ -7,6 +7,9 @@ import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
 import LoginModal from "./LoginModal";
 import { useAppContext } from "../contexts/AppContext";
+import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
+import { usePasteHandler } from "../hooks/usePasteHandler";
+import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import "../styles/main.css";
 import { Zap, Square } from "lucide-react";
@@ -36,6 +39,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     minHeight: "48px",
+    marginBottom: tokens.spacingVerticalS,
   },
   panelFill: {
     flex: 1,
@@ -60,19 +64,70 @@ const useStyles = makeStyles({
     minHeight: "44px",
     padding: `0 ${tokens.spacingHorizontalM}`,
   },
+  runButtonShortcut: {
+    fontSize: "12px",
+    opacity: 0.8,
+    fontWeight: 400,
+  },
+  apiKeyModalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 9999,
+  },
+  apiKeyModalContent: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    borderRadius: "8px",
+    padding: "24px",
+    maxWidth: "480px",
+    width: "90%",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    border: `1px solid ${tokens.colorNeutralStroke1}`,
+  },
+  apiKeyModalTitle: {
+    marginTop: 0,
+    marginBottom: "16px",
+  },
+  apiKeyModalMessage: {
+    marginBottom: "24px",
+  },
+  apiKeyModalActions: {
+    display: "flex",
+    gap: "12px",
+    justifyContent: "flex-end",
+  },
+  loadingRoot: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+  },
 });
 
-const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const App = () => {
   const styles = useStyles();
-  const { settings, translate, rewrite, languages, models, updateSettings, removeModelFromList, needsLogin, handleWebLogin, apiKeyStatus } =
+  const { settings, translate, rewrite, languages, models, updateSettings, removeModelFromList, needsLogin, handleWebLogin, apiKeyStatus, configLoading } =
     useAppContext();
   
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState("workspace");
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
+  const [inputTextTranslate, setInputTextTranslate] = useState("");
+  const [outputTextTranslate, setOutputTextTranslate] = useState("");
+  const [inputTextRewrite, setInputTextRewrite] = useState("");
+  const [outputTextRewrite, setOutputTextRewrite] = useState("");
+  const inputText = currentMode === "translate" ? inputTextTranslate : inputTextRewrite;
+  const outputText = currentMode === "translate" ? outputTextTranslate : outputTextRewrite;
+  const setInputText = currentMode === "translate" ? setInputTextTranslate : setInputTextRewrite;
+  const setOutputText = currentMode === "translate" ? setOutputTextTranslate : setOutputTextRewrite;
   const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
   const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
   const electronApiKeyMissing = !isWeb && (!settings?.api_key || String(settings?.api_key).trim() === "");
@@ -152,11 +207,8 @@ const App = () => {
   const [lastRunCost, setLastRunCost] = useState(0);
   const [lastRunModel, setLastRunModel] = useState(null);
   const timerRef = useRef(null);
-  const debounceRef = useRef(null);
   const tpsCalculationRef = useRef({ startTime: null, tokens: 0 });
   const startTimeRef = useRef(null);
-  const inputTextRef = useRef("");
-  const shouldAutoProcessRef = useRef(false);
   const abortControllerRef = useRef(null);
   const cancelledByUserRef = useRef(false);
 
@@ -187,13 +239,17 @@ const App = () => {
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
     setCurrentView("workspace");
-    setOutputText("");
     updateSettings({ app_mode: mode });
   };
 
   const clearInput = () => {
-    setInputText("");
-    setOutputText("");
+    if (currentMode === "translate") {
+      setInputTextTranslate("");
+      setOutputTextTranslate("");
+    } else {
+      setInputTextRewrite("");
+      setOutputTextRewrite("");
+    }
   };
 
   // Cleanup timer and abort controller on unmount
@@ -210,49 +266,6 @@ const App = () => {
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputText);
-  };
-
-  const pasteToInput = () => {
-    navigator.clipboard
-      .readText()
-      .then((text) => {
-        setInputText(text);
-        // Automatically translate/rewrite after pasting (when setting enabled)
-        if (text.trim() && settings.auto_translate_on_paste !== false) {
-          setTimeout(() => {
-            handleRunAction();
-          }, 150);
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to read clipboard contents: ", err);
-      });
-  };
-
-  const handlePasteEvent = (pastedText) => {
-    // This is called when text is pasted into the textarea
-    // Set the flag immediately so the useEffect can catch it (only when auto-translate on paste is enabled)
-    if (pastedText && pastedText.trim() && settings.auto_translate_on_paste !== false) {
-      shouldAutoProcessRef.current = true;
-      // Also trigger processing directly after state update
-      // Use multiple attempts to ensure we catch the state update
-      const attemptProcess = (attempt = 0) => {
-        if (attempt > 10) return; // Max 10 attempts (500ms)
-        setTimeout(() => {
-          // Check if state has been updated with the pasted text
-          const currentText = inputTextRef.current;
-          if (currentText && currentText.includes(pastedText.trim().substring(0, 10))) {
-            // State has been updated, process it
-            shouldAutoProcessRef.current = false;
-            handleRunAction();
-          } else {
-            // State not updated yet, try again
-            attemptProcess(attempt + 1);
-          }
-        }, 50);
-      };
-      attemptProcess();
-    }
   };
 
   const getInputStats = () => {
@@ -282,13 +295,13 @@ const App = () => {
     return `$${cost.toFixed(5)}`;
   };
 
-  const translateText = async (textToTranslate, signal) => {
-    const text = textToTranslate || inputText;
+  const translateText = async (signal) => {
+    const text = inputText;
     if (!text.trim()) return;
 
     // Start timer
     setIsProcessing(true);
-    setOutputText("translating...");
+    setOutputTextTranslate("translating...");
     setLastRunCost(0);
     setLastRunModel(null);
     setElapsedTime(0);
@@ -341,7 +354,7 @@ const App = () => {
 
       if (result.content) {
         const cleanedContent = result.content.replace(/^\s*\n+/, "");
-        setOutputText(cleanedContent);
+        setOutputTextTranslate(cleanedContent);
         // Auto-copy if enabled
         if (settings.auto_copy) {
           navigator.clipboard.writeText(cleanedContent);
@@ -353,9 +366,9 @@ const App = () => {
         const cancelledMessage = result.content ?
           `Translation stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? '$' + result.calculated_cost.toFixed(5) : 'free'})` :
           "Translation stopped by user.";
-        setOutputText(cancelledMessage);
+        setOutputTextTranslate(cancelledMessage);
       } else if (result.error) {
-        setOutputText(`Error: ${result.error}`);
+        setOutputTextTranslate(`Error: ${result.error}`);
       }
     } catch (error) {
       // Stop timer on error
@@ -369,10 +382,10 @@ const App = () => {
       setLastRunModel(null);
       if (error.name === 'AbortError') {
         if (!cancelledByUserRef.current) {
-          setOutputText("Translation stopped by user.");
+          setOutputTextTranslate("Translation stopped by user.");
         }
       } else {
-        setOutputText(`Error: ${error.message}`);
+        setOutputTextTranslate(`Error: ${error.message}`);
       }
     } finally {
       abortControllerRef.current = null;
@@ -393,7 +406,7 @@ const App = () => {
     if (isProcessing) {
       // Mark as cancelled so any late-arriving result will be ignored
       cancelledByUserRef.current = true;
-      setOutputText("Translation stopped by user.");
+      setOutputTextTranslate("Translation stopped by user.");
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -404,7 +417,7 @@ const App = () => {
     // Create new AbortController for this request
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
-    translateText(inputText, abortControllerRef.current.signal);
+    translateText(abortControllerRef.current.signal);
   };
 
   const handleRewrite = async () => {
@@ -413,7 +426,7 @@ const App = () => {
     if (isProcessing) {
       // Mark as cancelled so any late-arriving result will be ignored
       cancelledByUserRef.current = true;
-      setOutputText("Rewrite stopped by user.");
+      setOutputTextRewrite("Rewrite stopped by user.");
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -427,7 +440,7 @@ const App = () => {
 
     // Start timer
     setIsProcessing(true);
-    setOutputText("rewriting...");
+    setOutputTextRewrite("rewriting...");
     setLastRunCost(0);
     setLastRunModel(null);
     setElapsedTime(0);
@@ -479,7 +492,7 @@ const App = () => {
 
       if (result.content) {
         const cleanedContent = result.content.replace(/^\s*\n+/, "");
-        setOutputText(cleanedContent);
+        setOutputTextRewrite(cleanedContent);
         // Auto-copy if enabled
         if (settings.auto_copy) {
           navigator.clipboard.writeText(cleanedContent);
@@ -491,9 +504,9 @@ const App = () => {
         const cancelledMessage = result.content ?
           `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? '$' + result.calculated_cost.toFixed(5) : 'free'})` :
           "Rewrite stopped by user.";
-        setOutputText(cancelledMessage);
+        setOutputTextRewrite(cancelledMessage);
       } else if (result.error) {
-        setOutputText(`Error: ${result.error}`);
+        setOutputTextRewrite(`Error: ${result.error}`);
       }
     } catch (error) {
       // Stop timer on error
@@ -506,110 +519,45 @@ const App = () => {
       setLastRunCost(0);
       if (error.name === 'AbortError') {
         if (!cancelledByUserRef.current) {
-          setOutputText("Rewrite stopped by user.");
+          setOutputTextRewrite("Rewrite stopped by user.");
         }
       } else {
-        setOutputText(`Error: ${error.message}`);
+        setOutputTextRewrite(`Error: ${error.message}`);
       }
     } finally {
       abortControllerRef.current = null;
     }
   };
 
-  const handleRunAction = () => {
+  const handleRunAction = useCallback(() => {
     if (currentMode === "translate") {
       handleTranslate();
     } else {
       handleRewrite();
     }
-  };
+  }, [currentMode, handleTranslate, handleRewrite]);
 
-  // Debounced processing function
-  const processText = () => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
+  const { pasteToInput, handlePasteEvent, shouldAutoProcessRef } = usePasteHandler(
+    setInputText,
+    handleRunAction,
+    inputText,
+    settings.auto_translate_on_paste
+  );
 
-    debounceRef.current = setTimeout(() => {
-      if (inputText.trim()) {
-        handleRunAction();
-      }
-    }, settings.real_time_delay || 1000);
-  };
+  useDebouncedProcess(
+    inputText,
+    handleRunAction,
+    settings.real_time_translation,
+    settings.real_time_delay,
+    shouldAutoProcessRef
+  );
 
-  // Update ref whenever inputText changes
-  useEffect(() => {
-    inputTextRef.current = inputText;
-    
-    // If paste event triggered auto-process, handle it after state update
-    if (shouldAutoProcessRef.current && inputText.trim()) {
-      shouldAutoProcessRef.current = false;
-      // Use a small delay to ensure state is fully updated and all effects have run
-      setTimeout(() => {
-        handleRunAction();
-      }, 50);
-      return; // Don't process via real-time translation if we're auto-processing from paste
-    }
-  }, [inputText]);
-
-  // Handle text changes with debouncing
-  useEffect(() => {
-    // Only process if real-time translation is explicitly enabled (true)
-    // and we're not auto-processing from a paste event
-    if (settings.real_time_translation === true && !shouldAutoProcessRef.current) {
-      processText();
-    }
-  }, [inputText, settings.real_time_translation]);
+  useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput);
 
   // Apply theme
   useEffect(() => {
     document.body.className = settings.theme || "light";
   }, [settings.theme]);
-
-  // Handle keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      // Ctrl+Enter or Cmd+Enter to process text
-      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
-        event.preventDefault();
-        handleRunAction();
-      }
-
-      // Enter key behavior based on settings
-      if (event.key === "Enter" && !event.ctrlKey && !event.metaKey) {
-        const behavior = settings.enter_behavior || "Execute";
-        const hasText = inputText.trim();
-        const isExecute = behavior === "Execute" || behavior === "Translate";
-        const isShiftExecute = behavior === "Shift-Execute" || behavior === "Shift-Translate";
-
-        if (isExecute && hasText) {
-          event.preventDefault();
-          handleRunAction();
-        } else if (isShiftExecute && event.shiftKey && hasText) {
-          event.preventDefault();
-          handleRunAction();
-        }
-        // Shift-Execute: default Enter inserts newline; other values fall through
-      }
-
-      // Escape to clear input
-      if (event.key === "Escape") {
-        clearInput();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [
-    inputText,
-    currentMode,
-    sourceLanguage,
-    targetLanguage,
-    rewriteStyle,
-    settings.enter_behavior,
-  ]);
 
   // Get all languages (predefined + any custom languages from settings)
   const allLanguages = useMemo(() => {
@@ -637,7 +585,7 @@ const App = () => {
         value={rewriteStyle}
         onChange={setRewriteStyle}
         styles={rewriteStyles}
-        iconColor={tokens.colorBrandForeground1}
+        iconColor={tokens.colorPaletteLavenderBorderActive}
       />
     );
 
@@ -672,9 +620,23 @@ const App = () => {
           textColor={settings?.input_text_color}
         />
       </div>
-      <div className={styles.runButtonContainer} style={{ visibility: 'hidden' }}>
-        <Button style={{ minWidth: "180px", height: "44px" }} disabled>
-          Spacer
+      <div className={styles.runButtonContainer}>
+        <Button
+          appearance="primary"
+          onClick={handleRunAction}
+          className={styles.runButton}
+          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
+        >
+          {isProcessing
+            ? `Stop ${currentMode === "translate" ? "Translate" : "Rewrite"}`
+            : currentMode === "translate"
+            ? "Translate"
+            : "Rewrite"}
+          {!isProcessing && (
+            <span className={styles.runButtonShortcut}>
+              (Ctrl+Enter)
+            </span>
+          )}
         </Button>
       </div>
     </div>
@@ -687,7 +649,7 @@ const App = () => {
         <TextPanel
           title="Output"
           text={outputText}
-          onTextChange={setOutputText}
+          onTextChange={currentMode === "translate" ? setOutputTextTranslate : setOutputTextRewrite}
           placeholder="Output will appear here..."
           readOnly={true}
           headerMeta={outputMeta}
@@ -705,25 +667,7 @@ const App = () => {
           textColor={settings?.output_text_color}
         />
       </div>
-      <div className={styles.runButtonContainer}>
-        <Button
-          appearance="primary"
-          onClick={handleRunAction}
-          className={styles.runButton}
-          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
-        >
-          {isProcessing
-            ? `Stop ${currentMode === "translate" ? "Translate" : "Rewrite"}`
-            : currentMode === "translate"
-            ? "Translate"
-            : "Rewrite"}
-          {!isProcessing && (
-            <span style={{ fontSize: "12px", opacity: 0.8, fontWeight: 400 }}>
-              (Ctrl+Enter)
-            </span>
-          )}
-        </Button>
-      </div>
+      <div className={styles.runButtonContainer} aria-hidden="true" />
     </div>
   );
 
@@ -738,40 +682,19 @@ const App = () => {
         : "The OpenRouter API key could not be verified. Translation and rewrite may not work.";
     return (
       <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 9999,
-        }}
+        className={styles.apiKeyModalOverlay}
         onClick={(e) => {
           if (e.target === e.currentTarget) {
             // Don't allow dismiss by clicking outside
           }
         }}
       >
-        <div
-          style={{
-            backgroundColor: tokens.colorNeutralBackground1,
-            borderRadius: '8px',
-            padding: '24px',
-            maxWidth: '480px',
-            width: '90%',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-            border: `1px solid ${tokens.colorNeutralStroke1}`,
-          }}
-        >
-          <h2 style={{ marginTop: 0, marginBottom: '16px' }}>API Key Required</h2>
-          <p style={{ marginBottom: '24px' }}>
+        <div className={styles.apiKeyModalContent}>
+          <h2 className={styles.apiKeyModalTitle}>API Key Required</h2>
+          <p className={styles.apiKeyModalMessage}>
             {message}
           </p>
-          <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+          <div className={styles.apiKeyModalActions}>
             {!notSet && (
               <Button
                 appearance="secondary"
@@ -794,6 +717,14 @@ const App = () => {
       </div>
     );
   };
+
+  if (configLoading) {
+    return (
+      <div id="root" className={mergeClasses(styles.root, styles.loadingRoot)}>
+        <span>Loading settings…</span>
+      </div>
+    );
+  }
 
   return (
     <div id="root" className={styles.root}>

@@ -1,6 +1,6 @@
 # Web and Docker Deployment
 
-This document describes how the Poliverb application runs as both a desktop Electron app and a web application served from a Docker container. Both modes share the same React codebase.
+This document describes how the Transrewrt application runs as both a desktop Electron app and a web application served from a Docker container. Both modes share the same React codebase.
 
 ## Architecture Overview
 
@@ -83,8 +83,8 @@ Then open http://localhost:5000/ (Webpack dev server with HMR; API is on port 30
 **Build and run:**
 
 ```bash
-docker build -t poliverb-web .
-docker run -p 5000:5000 -v poliverb-data:/app/data -e PORT=5000 poliverb-web
+docker build -t transrewrt-web .
+docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web
 ```
 
 **With docker-compose:**

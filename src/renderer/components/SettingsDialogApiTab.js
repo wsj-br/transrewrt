@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Label, Text, Input, Checkbox } from "@fluentui/react-components";
 import { Key } from "lucide-react";
 
-const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const SettingsDialogApiTab = ({
   localSettings,

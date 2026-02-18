@@ -1,6 +1,6 @@
-# Development Guide: Poliverb
+# Development Guide: Transrewrt
 
-This document covers prerequisites, setup, development workflow, and building/packaging for the Poliverb application (Electron, React, Webpack).
+This document covers prerequisites, setup, development workflow, and building/packaging for the Transrewrt application (Electron, React, Webpack).
 
 ---
 
@@ -111,8 +111,8 @@ This document covers prerequisites, setup, development workflow, and building/pa
 Clone the repository and install dependencies:
 
 ```bash
-git clone git@github.com:wsj-br/poliverb.git
-cd poliverb
+git clone git@github.com:wsj-br/transrewrt.git
+cd transrewrt
 pnpm install
 ```
 
@@ -190,7 +190,6 @@ This command:
 1. Builds the React renderer into optimized `dist/` assets
 2. Packages the Electron app with `electron-builder`
 3. Generates installer(s) in the `release/` directory
-4. Uses timestamp in filename for versioning (via `scripts/build-with-timestamp.js`)
 
 ### Current Packaging Configuration
 
@@ -198,8 +197,8 @@ The `package.json` `build` section currently configures:
 
 - **Windows**: NSIS installer (`.exe`)
   - Creates desktop and Start Menu shortcuts
-  - App ID: `br.com.wsj.poliverb`
-  - Product name: "Poliverb"
+  - App ID: `br.com.wsj.transrewrt`
+  - Product name: "Transrewrt"
 - **Code Signing**: Disabled (`forceCodeSigning: false`)
 - **Output**: `release/` directory
 
@@ -207,7 +206,7 @@ The `package.json` `build` section currently configures:
 
 After building, check the `release/` folder for:
 
-- **Windows**: `Poliverb Setup <version>-<timestamp>.exe`
+- **Windows**: `Transrewrt Setup <version>-<timestamp>.exe`
 - **Linux** (if configured): `.deb`, `.rpm`, `.AppImage`, or `.pacman` packages
 
 __Note__: Linux packaging targets are not yet configured in `package.json`. To add them, extend the `build` section:
@@ -219,7 +218,7 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
     "deb",
     "rpm"
   ],
-  "icon": "poliverb_logo.png",
+  "icon": "transrewrt_logo.ico",
   "category": "Utility"
 }
 ```
@@ -229,7 +228,7 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
 **Windows**:
 1. Download the `.exe` installer
 2. Run it and follow the wizard (default options are recommended)
-3. The app installs to `C:\Program Files\Poliverb` by default
+3. The app installs to `C:\Program Files\Transrewrt` by default
 4. Launch from Start Menu or desktop shortcut
 
 **Linux** (once configured):
@@ -241,8 +240,8 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
 
 User-specific configuration is stored in the standard user data directory:
 
-- **Windows**: `%APPDATA%\poliverb\` (e.g., `C:\Users\<user>\AppData\Roaming\poliverb\`)
-- **Linux**: `~/.config/poliverb/` or `~/.local/share/poliverb/`
+- **Windows**: `%APPDATA%\transrewrt\` (e.g., `C:\Users\<user>\AppData\Roaming\transrewrt\`)
+- **Linux**: `~/.config/transrewrt/` or `~/.local/share/transrewrt/`
 
 The first run copies `config_default.json` to a user-writable location. Subsequent runs read/write user settings there.
 
@@ -348,8 +347,8 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 | Phase | Command | Notes |
 |-------|---------|-------|
-| **Build image** | `docker build -t poliverb-web .` | Multi-stage build |
-| **Run** | `docker run -p 5000:5000 -v poliverb-data:/app/data -e PORT=5000 poliverb-web` | Config persists in volume |
+| **Build image** | `docker build -t transrewrt-web .` | Multi-stage build |
+| **Run** | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Config persists in volume |
 | **Run (compose)** | `docker-compose up -d` or `pnpm run docker:up` | Uses `docker-compose.yml` |
 | **Test** | Open http://localhost:5000 | Config at `/api/config` |
 
@@ -368,5 +367,5 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 | `pnpm run serve` | Build then run web server (port 5000) |
 | `pnpm run start:server` | Run web server only (e.g. after build or in Docker) |
 | `pnpm run package` | Build and create Electron installer |
-| `docker build -t poliverb-web .` | Build Docker image |
+| `docker build -t transrewrt-web .` | Build Docker image |
 | `docker-compose up -d` | Run web app in Docker |

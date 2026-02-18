@@ -1,31 +1,31 @@
 #!/bin/bash
 
-# Docker deployment script for Poliverb application
+# Docker deployment script for Transrewrt application
 # Deploys to pi-piro server (arm64) from amd64 host
 
 set -e  # Exit on error
 
 # Configuration
-IMAGE_NAME="wsj-br/poliverb:devel"
+IMAGE_NAME="wsj-br/transrewrt:devel"
 TARGET_HOST="pi-piro"
 TARGET_PORT="5000"
 TARGET_PLATFORM="linux/arm64"
-DATA_VOLUME="poliverb-data"
+DATA_VOLUME="transrewrt-data"
 
 echo ""
 echo "--------------------------------"
-echo " Deploying Poliverb to ${TARGET_HOST}"
+echo " Deploying Transrewrt to ${TARGET_HOST}"
 echo " Target platform: ${TARGET_PLATFORM}"
 echo "--------------------------------"
 echo ""
 
-# Step 0: Check if the Poliverb app is installed on the target host and running
-echo " Checking if Poliverb is already running on ${TARGET_HOST}..."
-if ssh ${TARGET_HOST} "docker ps --filter 'name=poliverb-web' --format '{{.Names}}' | grep -q 'poliverb-web'"; then
-    echo " Poliverb is already running on ${TARGET_HOST}. Stopping existing container..."
-    ssh ${TARGET_HOST} "docker stop poliverb-web"
+# Step 0: Check if the Transrewrt app is installed on the target host and running
+echo " Checking if Transrewrt is already running on ${TARGET_HOST}..."
+if ssh ${TARGET_HOST} "docker ps --filter 'name=transrewrt-web' --format '{{.Names}}' | grep -q 'transrewrt-web'"; then
+    echo " Transrewrt is already running on ${TARGET_HOST}. Stopping existing container..."
+    ssh ${TARGET_HOST} "docker stop transrewrt-web"
 else
-    echo " No existing Poliverb container found on ${TARGET_HOST}."
+    echo " No existing Transrewrt container found on ${TARGET_HOST}."
 fi
 
 echo "removing existing image..."
@@ -51,7 +51,7 @@ echo ""
 echo " Starting container on ${TARGET_HOST}..."
 echo " Access the app at: http://${TARGET_HOST}:${TARGET_PORT}"
 echo ""
-ssh ${TARGET_HOST} "docker run -d --rm -p ${TARGET_PORT}:${TARGET_PORT} --name poliverb-web -v ${DATA_VOLUME}:/app/data ${IMAGE_NAME}"
+ssh ${TARGET_HOST} "docker run -d --rm -p ${TARGET_PORT}:${TARGET_PORT} --name transrewrt-web -v ${DATA_VOLUME}:/app/data ${IMAGE_NAME}"
 
 echo ""
 echo " Deployment complete!"
@@ -61,6 +61,6 @@ ssh ${TARGET_HOST} "docker ps"
 echo ""
 
 
-echo " Container 'poliverb-web' is running in the background."
-echo " To view logs: ssh ${TARGET_HOST} 'docker logs -f poliverb-web'"
-echo " To stop: ssh ${TARGET_HOST} 'docker stop poliverb-web'"
+echo " Container 'transrewrt-web' is running in the background."
+echo " To view logs: ssh ${TARGET_HOST} 'docker logs -f transrewrt-web'"
+echo " To stop: ssh ${TARGET_HOST} 'docker stop transrewrt-web'"

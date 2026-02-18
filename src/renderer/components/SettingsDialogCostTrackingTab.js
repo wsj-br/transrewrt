@@ -4,7 +4,7 @@ import { DollarSign, Copy } from "lucide-react";
 import webAPI from "../utils/webApiClient";
 import ConfirmModal from "./ConfirmModal";
 
-const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const useStyles = makeStyles({
   tableWrap: {

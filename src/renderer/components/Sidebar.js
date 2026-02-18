@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
 import { Languages, PenTool, Settings } from "lucide-react";
-import Logo from "../../../poliverb_logo_withoutblackbox.png";
+import Logo from "../../../transrewrt_logo.png";
 
 const useStyles = makeStyles({
   sidebar: {
@@ -106,7 +106,7 @@ const Sidebar = ({
         <img
           className={styles.logo}
           src={Logo}
-          alt="Poliverb logo"
+          alt="Transrewrt logo"
         />
       </div>
 

@@ -1,7 +1,199 @@
-const { app, BrowserWindow, screen } = require("electron");
+const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
+
+// --- Config path (single source of truth for Electron; must match preload usage when migrating) ---
+const getConfigFilePath = () => {
+  try {
+    const appPath = process.env.PORTABLE_EXECUTABLE_DIR || process.cwd();
+    const homedir = os.homedir();
+    const isSystemPath = (p) => {
+      const normalized = (p || "").toLowerCase();
+      return (
+        normalized.includes("node_modules") ||
+        normalized.includes("electron/dist") ||
+        normalized.includes("resources") ||
+        normalized.includes(".npm")
+      );
+    };
+    const pathsToCheck = [
+      path.resolve("config.json"),
+      path.join(appPath, "config.json"),
+      path.join(homedir, "config.json"),
+      path.join(__dirname, "../../config.json"),
+      path.resolve("../config.json"),
+      ...(isSystemPath(process.execPath) ? [] : [path.join(path.dirname(process.execPath), "config.json")]),
+    ];
+    for (const p of pathsToCheck) {
+      if (fs.existsSync(p) && !isSystemPath(p)) return p;
+    }
+    const writablePathsToTry = [
+      path.resolve("config.json"),
+      path.join(appPath, "config.json"),
+      path.join(homedir, "config.json"),
+      path.join(path.dirname(process.execPath), "config.json"),
+    ];
+    for (const p of writablePathsToTry) {
+      try {
+        const dir = path.dirname(p);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        const testFile = path.join(dir, ".write-test");
+        fs.writeFileSync(testFile, "test", "utf8");
+        fs.unlinkSync(testFile);
+        return p;
+      } catch (_) {
+        continue;
+      }
+    }
+    return path.resolve("config.json");
+  } catch (_) {
+    return path.resolve("config.json");
+  }
+};
+
+const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), "../config_default.json");
+
+const getStateFilePath = () => path.join(path.dirname(getConfigFilePath()), "state.json");
+
+const STATE_KEYS = [
+  "last_used_model",
+  "window_geometry",
+  "settings_active_tab",
+  "source_language",
+  "target_language",
+  "app_mode",
+  "rewrite_style",
+  "web_session",
+];
+
+const DEFAULT_STATE = {
+  last_used_model: "openrouter/free",
+  window_geometry: "1000x700",
+  settings_active_tab: "api",
+  source_language: "Detect Language",
+  target_language: "Spanish",
+  app_mode: "translate",
+  rewrite_style: "Check Spelling & Grammar",
+  web_session: "",
+};
+
+function isStateKey(key) {
+  return STATE_KEYS.includes(key);
+}
+
+function stripStateKeysAndDeprecated(obj) {
+  const out = { ...obj };
+  STATE_KEYS.forEach((k) => delete out[k]);
+  delete out.settings_modal_geometry;
+  return out;
+}
+
+let configCache = {};
+let stateCache = {};
+/** State keys read from config file before strip; used for migration when state.json is missing. */
+let stateFromConfigForMigration = {};
+
+function loadConfigFromFile() {
+  try {
+    const configPath = getConfigFilePath();
+    let userConfig = {};
+    if (fs.existsSync(configPath)) {
+      const data = fs.readFileSync(configPath, "utf8");
+      userConfig = JSON.parse(data);
+    }
+    const defaultPath = path.join(__dirname, "../../config_default.json");
+    let defaultConfig = {};
+    if (fs.existsSync(defaultPath)) {
+      defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));
+    }
+    const merged = { ...defaultConfig, ...userConfig };
+    stateFromConfigForMigration = {};
+    STATE_KEYS.forEach((k) => {
+      if (merged[k] !== undefined) stateFromConfigForMigration[k] = merged[k];
+    });
+    configCache = stripStateKeysAndDeprecated(merged);
+    if (!fs.existsSync(configPath) && Object.keys(defaultConfig).length > 0) {
+      const dir = path.dirname(configPath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(configPath, JSON.stringify(configCache, null, 2), "utf8");
+    }
+    return configCache;
+  } catch (err) {
+    console.error("Failed to load config in main:", err);
+    configCache = {};
+    stateFromConfigForMigration = {};
+    return configCache;
+  }
+}
+
+function canonicalConfigString(config) {
+  if (config === null || typeof config !== "object") return JSON.stringify(config);
+  if (Array.isArray(config)) return "[" + config.map(canonicalConfigString).join(",") + "]";
+  const keys = Object.keys(config).sort();
+  return "{" + keys.map((k) => JSON.stringify(k) + ":" + canonicalConfigString(config[k])).join(",") + "}";
+}
+
+function saveConfigToFile(config) {
+  try {
+    const configPath = getConfigFilePath();
+    const dir = path.dirname(configPath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    let current = {};
+    if (fs.existsSync(configPath)) {
+      try {
+        const raw = fs.readFileSync(configPath, "utf8");
+        if (raw.trim()) current = JSON.parse(raw);
+      } catch (_) {}
+    }
+    if (canonicalConfigString(current) === canonicalConfigString(config)) return true;
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2), "utf8");
+    return true;
+  } catch (err) {
+    console.error("Failed to save config in main:", err);
+    return false;
+  }
+}
+
+function loadStateFromFile() {
+  try {
+    const statePath = getStateFilePath();
+    if (fs.existsSync(statePath)) {
+      const data = fs.readFileSync(statePath, "utf8");
+      const fileState = data.trim() ? JSON.parse(data) : {};
+      stateCache = { ...DEFAULT_STATE, ...fileState };
+      return stateCache;
+    }
+    stateCache = { ...DEFAULT_STATE, ...stateFromConfigForMigration };
+    saveStateToFile(stateCache);
+    return stateCache;
+  } catch (err) {
+    console.error("Failed to load state in main:", err);
+    stateCache = { ...DEFAULT_STATE };
+    return stateCache;
+  }
+}
+
+function saveStateToFile(state) {
+  try {
+    const statePath = getStateFilePath();
+    const dir = path.dirname(statePath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    let current = {};
+    if (fs.existsSync(statePath)) {
+      try {
+        const raw = fs.readFileSync(statePath, "utf8");
+        if (raw.trim()) current = JSON.parse(raw);
+      } catch (_) {}
+    }
+    if (canonicalConfigString(current) === canonicalConfigString(state)) return true;
+    fs.writeFileSync(statePath, JSON.stringify(state, null, 2), "utf8");
+    return true;
+  } catch (err) {
+    console.error("Failed to save state in main:", err);
+    return false;
+  }
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 try {
@@ -142,11 +334,11 @@ const createWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 1000,
     height: savedState ? savedState.height : 700,
-    icon: path.join(__dirname, "../../poliverb_logo.ico"),
+    icon: path.join(__dirname, "../../transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      contextIsolation: true,
       webSecurity: process.env.NODE_ENV === "development" ? false : true,
     },
   });
@@ -210,11 +402,11 @@ const createSettingsWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
-    icon: path.join(__dirname, "../../poliverb_logo.ico"),
+    icon: path.join(__dirname, "../../transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      contextIsolation: true,
     },
     autoHideMenuBar: true,
   });
@@ -252,23 +444,114 @@ const createSettingsWindow = () => {
   });
 };
 
-const { ipcMain } = require("electron");
+// --- IPC: config (main process is single source of truth) ---
+ipcMain.handle("config:get", () => Promise.resolve({ ...configCache, ...stateCache }));
+
+function configUnchanged(existing, value) {
+  if (existing === value) return true;
+  if (typeof value === "object" && value !== null && typeof existing === "object" && existing !== null) {
+    return JSON.stringify(existing) === JSON.stringify(value);
+  }
+  return false;
+}
+
+ipcMain.handle("config:set", (_, key, value) => {
+  if (key === undefined) return Promise.resolve(false);
+  if (isStateKey(key)) {
+    if (configUnchanged(stateCache[key], value)) return Promise.resolve(true);
+    stateCache[key] = value;
+    const ok = saveStateToFile(stateCache);
+    if (ok) {
+      BrowserWindow.getAllWindows().forEach((win) => {
+        if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
+      });
+    }
+    return Promise.resolve(ok);
+  }
+  if (configUnchanged(configCache[key], value)) return Promise.resolve(true);
+  configCache[key] = value;
+  const ok = saveConfigToFile(configCache);
+  if (ok) {
+    BrowserWindow.getAllWindows().forEach((win) => {
+      if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
+    });
+  }
+  return Promise.resolve(ok);
+});
+
+ipcMain.handle("config:setAll", (_, newConfig) => {
+  if (typeof newConfig !== "object") return Promise.resolve(false);
+  const configPart = {};
+  const statePart = {};
+  Object.keys(newConfig).forEach((k) => {
+    if (isStateKey(k)) statePart[k] = newConfig[k];
+    else configPart[k] = newConfig[k];
+  });
+  let configSaved = false;
+  let stateSaved = false;
+  if (Object.keys(configPart).length > 0) {
+    const nextConfig = { ...configCache, ...configPart };
+    if (canonicalConfigString(configCache) !== canonicalConfigString(nextConfig)) {
+      configCache = nextConfig;
+      configSaved = saveConfigToFile(configCache);
+    }
+  }
+  if (Object.keys(statePart).length > 0) {
+    const nextState = { ...stateCache, ...statePart };
+    if (canonicalConfigString(stateCache) !== canonicalConfigString(nextState)) {
+      stateCache = nextState;
+      stateSaved = saveStateToFile(stateCache);
+    }
+  }
+  if (configSaved || stateSaved) {
+    BrowserWindow.getAllWindows().forEach((win) => {
+      if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
+    });
+  }
+  return Promise.resolve(true);
+});
+
+ipcMain.handle("write-last-api-result", (_, payload) => {
+  try {
+    const filePath = path.join(process.cwd(), "last_api_result.json");
+    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
+    return Promise.resolve(true);
+  } catch (err) {
+    console.error("Failed to write last_api_result.json", err);
+    return Promise.resolve(false);
+  }
+});
+
+ipcMain.handle("write-debug-file", (_, filename, data) => {
+  try {
+    const filePath = path.join(process.cwd(), filename);
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
+    return Promise.resolve(true);
+  } catch (err) {
+    console.error(`Failed to write ${filename}:`, err);
+    return Promise.resolve(false);
+  }
+});
 
 ipcMain.on("open-settings", () => {
   createSettingsWindow();
 });
 
 ipcMain.on("settings-updated", () => {
-  // Broadcast to all windows to reload config
   BrowserWindow.getAllWindows().forEach((win) => {
-    win.webContents.send("settings-updated");
+    if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
   });
 });
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+app.on("ready", () => {
+  loadConfigFromFile();
+  loadStateFromFile();
+  saveConfigToFile(configCache);
+  createWindow();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

@@ -3,6 +3,9 @@ import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
 import webAPI from "../utils/webApiClient";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
+import { FREE_MODEL_ID } from "../constants";
+import { useCostTracking } from "../hooks/useCostTracking";
+import { useModelManagement } from "../hooks/useModelManagement";
 
 // Create the context
 const AppContext = createContext();
@@ -19,6 +22,7 @@ export const AppProvider = ({ children }) => {
     configManager.get("available_languages") || [],
   );
   const [loading, setLoading] = useState(false);
+  const [configLoading, setConfigLoading] = useState(true);
   const [error, setError] = useState(null);
   const [needsLogin, setNeedsLogin] = useState(false);
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
@@ -67,10 +71,11 @@ export const AppProvider = ({ children }) => {
     };
 
     const init = async () => {
+      setConfigLoading(true);
       try {
         await configManager.loadConfig();
         loadLanguages();
-        const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+        const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
         if (isWeb && webAPI.getApiStatus) {
           const status = await webAPI.getApiStatus();
           setApiKeyStatus(status);
@@ -82,14 +87,17 @@ export const AppProvider = ({ children }) => {
           setError("Failed to load config");
           console.error(err);
         }
+      } finally {
+        setConfigLoading(false);
       }
     };
 
     init();
 
     // Listen for settings updates from other windows (Electron only)
+    let settingsCallback = null;
     if (window.electronAPI && window.electronAPI.onSettingsUpdated) {
-      window.electronAPI.onSettingsUpdated(() => {
+      settingsCallback = () => {
         configManager.loadConfig().then(() => {
           setSettings(configManager.getAll());
           setAvailableModels(configManager.get("available_models") || []);
@@ -98,47 +106,21 @@ export const AppProvider = ({ children }) => {
             configManager.get("api_url") || "https://openrouter.ai/api/v1",
           );
         });
-      });
+      };
+      window.electronAPI.onSettingsUpdated(settingsCallback);
     }
+
+    return () => {
+      if (window.electronAPI?.removeSettingsUpdated && settingsCallback) {
+        window.electronAPI.removeSettingsUpdated(settingsCallback);
+      }
+    };
   }, []);
 
-  const writeLastApiResult = (payload) => {
-    try {
-      const electronRequire =
-        typeof window !== "undefined" && window.require ? window.require : null;
-      if (!electronRequire) return;
-      const fs = electronRequire("fs");
-      const path = electronRequire("path");
-      const filePath = path.join(process.cwd(), "last_api_result.json");
-      fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
-    } catch (err) {
-      console.error("Failed to write last_api_result.json", err);
-    }
-  };
-
-  const logApiCall = (type, result, extra = {}) => {
-    const timestamp = new Date().toLocaleString();
-    const cost = result.calculated_cost ?? result.usage?.cost ?? 0;
-    const total_cost = result.total_cost ?? 0;
-    const req = result.request_bytes ?? 0;
-    const res = result.response_bytes ?? 0;
-    const dur = result.duration_ms ?? 0;
-    const model = result.model_used ?? result.model ?? "";
-    if (type === "translate") {
-      const source = extra.source_lang ?? "";
-      const target = extra.target_lang ?? "";
-      console.log(
-        `[API call] timestamp=${timestamp} type=translate model=${model} source=${source} target=${target} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
-      );
-    } else {
-      const style = extra.rewrite_style ?? "";
-      console.log(
-        `[API call] timestamp=${timestamp} type=rewrite model=${model} rewrite_style=${style} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
-      );
-    }
-  };
-
-  // Update settings
+  // --- Settings persistence pattern ---
+  // setSetting(key, value): persist a single key; use for form fields and discrete updates (e.g. last_used_model, settings_active_tab).
+  // updateSettings({ ... }): persist multiple keys at once; use when batching related changes (e.g. language + mode from the same UI).
+  // Both update React state and notify other windows (Electron). Prefer setSetting for single-key updates to avoid overwriting other keys.
   const updateSettings = async (newSettings) => {
     await configManager.setAll(newSettings);
     const updatedSettings = configManager.getAll();
@@ -194,6 +176,13 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const { writeLastApiResult, logApiCall, applyCostToResult } = useCostTracking();
+  const { removeModelFromList, isUnavailableModelError, handleUnavailableModel } = useModelManagement(
+    configManager,
+    setSetting,
+    setError
+  );
+
   // Translate text
   const translate = async (text, targetLang, model, sourceLang = null, signal = null) => {
     setLoading(true);
@@ -208,19 +197,8 @@ export const AppProvider = ({ children }) => {
         signal,
       );
 
-      // Update last used model
-      // Do not overwrite last_used_model here; it is persisted via user selection in the header.
-
-      // Update total cost if applicable (persisted to config after each API call via setSetting)
-      if (result.usage) {
-        const calculatedCost = result.usage.cost || 0;
-        const newTotalCost = (settings.total_cost || 0) + calculatedCost;
-        setSetting("total_cost", newTotalCost);
-        result.calculated_cost = calculatedCost;
-        result.total_cost = newTotalCost;
-      }
-
       result.model_used = result.model || model;
+      applyCostToResult(settings, setSetting, result);
 
       writeLastApiResult({
         type: "translate",
@@ -236,7 +214,7 @@ export const AppProvider = ({ children }) => {
         target_lang: targetLang || "",
       });
 
-      if (typeof window !== "undefined" && !window.electronAPI?.readConfig && webAPI.logApiCall) {
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
         const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
         const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
         const tps = durationSec > 0 ? totalTokens / durationSec : null;
@@ -260,22 +238,8 @@ export const AppProvider = ({ children }) => {
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
-      const isUnavailableModel =
-        err &&
-        (err.status === 404 ||
-          err.status === 400 ||
-          (err.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(err.message))));
-      if (isUnavailableModel) {
-        const FREE_MODEL_ID = "openrouter/free";
-        const current = configManager.get("available_models") || [];
-        const next = current.filter((id) => id !== model);
-        if (!next.includes(FREE_MODEL_ID)) next.unshift(FREE_MODEL_ID);
-        await setSetting("available_models", next);
-        await setSetting("last_used_model", FREE_MODEL_ID);
-        setError(null);
-        return {
-          error: "Model unavailable (404/400). The model has been removed from your list and \"openrouter/free\" has been selected.",
-        };
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
       }
       setError("Translation failed");
       console.error(err);
@@ -293,19 +257,8 @@ export const AppProvider = ({ children }) => {
     try {
       const result = await apiService.rewrite(text, style, model, signal);
 
-      // Update last used model
-      // Do not overwrite last_used_model here; it is persisted via user selection in the header.
-
-      // Update total cost if applicable (persisted to config after each API call via setSetting)
-      if (result.usage) {
-        const calculatedCost = result.usage.cost || 0;
-        const newTotalCost = (settings.total_cost || 0) + calculatedCost;
-        setSetting("total_cost", newTotalCost);
-        result.calculated_cost = calculatedCost;
-        result.total_cost = newTotalCost;
-      }
-
       result.model_used = result.model || model;
+      applyCostToResult(settings, setSetting, result);
 
       writeLastApiResult({
         type: "rewrite",
@@ -318,7 +271,7 @@ export const AppProvider = ({ children }) => {
 
       logApiCall("rewrite", result, { rewrite_style: style || "" });
 
-      if (typeof window !== "undefined" && !window.electronAPI?.readConfig && webAPI.logApiCall) {
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
         const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
         const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
         const tps = durationSec > 0 ? totalTokens / durationSec : null;
@@ -342,22 +295,8 @@ export const AppProvider = ({ children }) => {
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
-      const isUnavailableModel =
-        err &&
-        (err.status === 404 ||
-          err.status === 400 ||
-          (err.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(err.message))));
-      if (isUnavailableModel) {
-        const FREE_MODEL_ID = "openrouter/free";
-        const current = configManager.get("available_models") || [];
-        const next = current.filter((id) => id !== model);
-        if (!next.includes(FREE_MODEL_ID)) next.unshift(FREE_MODEL_ID);
-        await setSetting("available_models", next);
-        await setSetting("last_used_model", FREE_MODEL_ID);
-        setError(null);
-        return {
-          error: "Model unavailable (404/400). The model has been removed from your list and \"openrouter/free\" has been selected.",
-        };
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
       }
       setError("Rewrite failed");
       console.error(err);
@@ -368,7 +307,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleWebLogin = async (password) => {
-    const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     if (!isWeb) return;
     await webAPI.login(password);
     setNeedsLogin(false);
@@ -377,22 +316,10 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleWebLogout = async () => {
-    const isWeb = typeof window !== "undefined" && !window.electronAPI?.readConfig;
+    const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     if (!isWeb) return;
     await webAPI.logout();
     setNeedsLogin(true);
-  };
-
-  // Remove a model from the list and select the next one
-  const removeModelFromList = async (modelId) => {
-    const current = configManager.get("available_models") || [];
-    if (current.length <= 1) return;
-    const nextList = current.filter((id) => id !== modelId);
-    if (nextList.length === current.length) return; // model not in list
-    const idx = current.indexOf(modelId);
-    const nextModel = nextList[idx] ?? nextList[idx - 1] ?? nextList[0];
-    await setSetting("available_models", nextList);
-    await setSetting("last_used_model", nextModel);
   };
 
   // Fetch models from API (called when Settings opens)
@@ -429,7 +356,6 @@ export const AppProvider = ({ children }) => {
         }
 
         // Always ensure "openrouter/free" is available
-        const FREE_MODEL_ID = "openrouter/free";
         if (!loadedModelIds.has(FREE_MODEL_ID)) {
           console.log(`[fetchModels] Adding special model "${FREE_MODEL_ID}" to the model list`);
           loadedModels.push({
@@ -479,6 +405,7 @@ export const AppProvider = ({ children }) => {
     availableModels,
     languages,
     loading,
+    configLoading,
     error,
     needsLogin,
     setNeedsLogin,

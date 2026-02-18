@@ -30,11 +30,10 @@ const useStyles = makeStyles({
       paddingRight: "0 !important",
     },
     "& .fui-Dropdown__trigger:hover": {
-      borderBottomColor: `${tokens.colorNeutralForeground1} !important`,
+      borderBottom: `2px solid ${tokens.colorNeutralForeground1} !important`,
     },
     "& .fui-Dropdown__trigger:focus-visible": {
-      borderBottomColor: `${tokens.colorBrandBackground} !important`,
-      borderBottomWidth: "3px !important",
+      borderBottom: `2px solid ${tokens.colorBrandBackground} !important`,
     },
   },
 });
@@ -56,6 +55,7 @@ const StyleSelector = ({
       </label>
       <div className={styleStyles.selectContainer}>
         <Dropdown
+          appearance="underline"
           value={value || ""}
           selectedOptions={value ? [value] : []}
           onOptionSelect={(e, data) => onChange(data.optionValue)}
