@@ -28,6 +28,8 @@ const STATE_KEYS = [
   "app_mode",
   "rewrite_style",
   "web_session",
+  "web_session_expires_at",
+  "web_view",
 ];
 
 const DEFAULT_STATE = {
@@ -39,6 +41,8 @@ const DEFAULT_STATE = {
   app_mode: "translate",
   rewrite_style: "Check Spelling & Grammar",
   web_session: "",
+  web_session_expires_at: null,
+  web_view: "workspace",
 };
 
 function isStateKey(key) {
@@ -158,6 +162,24 @@ function parseCookie(cookieHeader) {
     if (key && v.length) out[key] = decodeURIComponent(v.join("=").trim());
   });
   return out;
+}
+
+/** Set session cookie with current config timeout (sliding window). Call on translate/rewrite usage. */
+function setSessionRefreshCookie(req, res) {
+  const cookies = parseCookie(req.headers.cookie);
+  const sessionId = cookies.transrewrt_session;
+  if (!sessionId) return;
+  const config = loadConfig();
+  const maxAge = Math.max(60, Number(config.web_session_timeout) || 604800);
+  const expiresAt = Date.now() + maxAge * 1000;
+  const state = loadState();
+  if (state.web_session === sessionId) {
+    saveState({ ...state, web_session_expires_at: expiresAt });
+  }
+  res.setHeader(
+    "Set-Cookie",
+    `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`
+  );
 }
 
 // Web login: require session cookie for /api except POST /api/auth/login and GET /api/status
@@ -373,6 +395,9 @@ app.post("/api/config", (req, res) => {
       if (isStateKey(k)) statePart[k] = body[k];
       else configPart[k] = body[k];
     });
+    // Never overwrite server-managed session state from client (e.g. after translate/rewrite sliding window)
+    delete statePart.web_session;
+    delete statePart.web_session_expires_at;
     if (Object.keys(configPart).length > 0) {
       const config = { ...loadConfig(), ...configPart };
       saveConfig(config);
@@ -402,7 +427,12 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid password" });
     }
     const sessionId = crypto.randomBytes(24).toString("hex");
-    const newState = { ...state, web_session: sessionId };
+    const maxAge = Math.max(3600, Number(config.web_session_timeout) || 604800);
+    const newState = {
+      ...state,
+      web_session: sessionId,
+      web_session_expires_at: Date.now() + maxAge * 1000,
+    };
     saveState(newState);
     if (!storedHash) {
       const newConfig = { ...config, web_password_hash: await hashPassword(DEFAULT_WEB_PASSWORD) };
@@ -415,7 +445,7 @@ app.post("/api/auth/login", async (req, res) => {
       .status(200)
       .setHeader(
         "Set-Cookie",
-        `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400`
+        `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`
       )
       .json({ success: true });
   } catch (err) {
@@ -443,7 +473,7 @@ app.post("/api/auth/change-password", async (req, res) => {
 app.post("/api/auth/logout", (req, res) => {
   try {
     const state = loadState();
-    saveState({ ...state, web_session: "" });
+    saveState({ ...state, web_session: "", web_session_expires_at: null });
     res
       .status(200)
       .setHeader(
@@ -455,6 +485,10 @@ app.post("/api/auth/logout", (req, res) => {
     console.error("[API] POST /api/auth/logout - Error:", err);
     res.status(500).json({ error: err.message });
   }
+});
+
+app.get("/api/auth/check", (req, res) => {
+  res.json({ ok: true });
 });
 
 app.get("/api/config/default", (req, res) => {
@@ -472,6 +506,7 @@ app.get("/api/config/default", (req, res) => {
 
 // --- API call logging (SQLite) ---
 app.post("/api/calls", (req, res) => {
+  setSessionRefreshCookie(req, res);
   if (!db) {
     return res.status(503).json({ error: "Database unavailable" });
   }
@@ -675,8 +710,10 @@ app.post("/api/proxy/chat/completions", async (req, res) => {
     });
 
     res.status(response.status);
+    setSessionRefreshCookie(req, res);
     response.headers.forEach((value, key) => {
-      if (key.toLowerCase() !== "transfer-encoding") {
+      const k = key.toLowerCase();
+      if (k !== "transfer-encoding" && k !== "set-cookie") {
         res.setHeader(key, value);
       }
     });

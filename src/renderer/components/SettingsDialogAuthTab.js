@@ -1,8 +1,20 @@
-import React, { useState } from "react";
-import { Button, Label, Input, Text, Checkbox } from "@fluentui/react-components";
-import { Lock, LogOut } from "lucide-react";
+import React, { useState, useMemo, useEffect } from "react";
+import { Button, Label, Input, Text, Checkbox, Dropdown, Option } from "@fluentui/react-components";
+import { Lock, LogOut, Clock } from "lucide-react";
 import webAPI from "../utils/webApiClient";
 import { useAppContext } from "../contexts/AppContext";
+
+/** Format remaining ms: "Xd HH:MM" if ≥1 day, "HH:MM" if <24h. */
+function formatSessionRemaining(expiresAtMs) {
+  if (expiresAtMs == null || typeof expiresAtMs !== "number") return null;
+  const remaining = Math.max(0, expiresAtMs - Date.now());
+  const totalM = Math.floor(remaining / 60000);
+  const dd = Math.floor(totalM / (24 * 60));
+  const hh = Math.floor((totalM % (24 * 60)) / 60);
+  const mm = totalM % 60;
+  const time = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+  return dd > 0 ? `${dd} day${dd > 1 ? "s" : ""}, ${time}` : time;
+}
 
 const gridRow = {
   display: "grid",
@@ -13,13 +25,58 @@ const gridRow = {
   maxWidth: "400px",
 };
 
+const SESSION_TIMEOUT_OPTIONS = [
+  { label: "1h", seconds: 3600 },
+  { label: "6h", seconds: 21600 },
+  { label: "12h", seconds: 43200 },
+  { label: "1 day", seconds: 86400 },
+  { label: "2 days", seconds: 172800 },
+  { label: "4 days", seconds: 345600 },
+  { label: "7 days", seconds: 604800 },
+];
+
+const DEFAULT_SESSION_TIMEOUT = 604800;
+
+function secondsToClosestOption(seconds) {
+  const num = Number(seconds) || DEFAULT_SESSION_TIMEOUT;
+  let closest = SESSION_TIMEOUT_OPTIONS[SESSION_TIMEOUT_OPTIONS.length - 1];
+  let minDiff = Infinity;
+  for (const opt of SESSION_TIMEOUT_OPTIONS) {
+    const diff = Math.abs(opt.seconds - num);
+    if (diff < minDiff) {
+      minDiff = diff;
+      closest = opt;
+    }
+  }
+  return String(closest.seconds);
+}
+
 const SettingsDialogAuthTab = () => {
-  const { handleWebLogout } = useAppContext();
+  const { settings, setSetting, handleWebLogout } = useAppContext();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState({ type: null, text: "" });
   const [loading, setLoading] = useState(false);
+
+  const sessionTimeoutSeconds = Number(settings.web_session_timeout) || DEFAULT_SESSION_TIMEOUT;
+  const sessionTimeoutValue = useMemo(
+    () => secondsToClosestOption(sessionTimeoutSeconds),
+    [sessionTimeoutSeconds]
+  );
+
+  const expiresAt = settings.web_session_expires_at;
+  const [sessionRemaining, setSessionRemaining] = useState(() => formatSessionRemaining(expiresAt));
+  useEffect(() => {
+    if (expiresAt == null) {
+      setSessionRemaining(null);
+      return;
+    }
+    const update = () => setSessionRemaining(formatSessionRemaining(expiresAt));
+    update();
+    const id = setInterval(update, 60000);
+    return () => clearInterval(id);
+  }, [expiresAt]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,6 +170,34 @@ const SettingsDialogAuthTab = () => {
       </div>
       <div className="section" style={{ marginTop: "24px" }}>
         <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+          <Clock size={20} />
+          Session timeout
+        </Text>
+        <div style={gridRow}>
+          <Label htmlFor="auth-session-timeout">Timeout</Label>
+          <Dropdown
+            id="auth-session-timeout"
+            value={SESSION_TIMEOUT_OPTIONS.find((o) => String(o.seconds) === sessionTimeoutValue)?.label ?? "7 days"}
+            selectedOptions={[sessionTimeoutValue]}
+            onOptionSelect={(e, data) => {
+              const seconds = data.optionValue ? parseInt(String(data.optionValue), 10) : NaN;
+              if (!Number.isNaN(seconds)) setSetting("web_session_timeout", seconds);
+            }}
+            style={{ minWidth: "140px" }}
+          >
+            {SESSION_TIMEOUT_OPTIONS.map((opt) => (
+              <Option key={opt.seconds} value={String(opt.seconds)}>
+                {opt.label}
+              </Option>
+            ))}
+          </Dropdown>
+        </div>
+        <Text as="p" size={200} style={{ marginTop: "4px", marginBottom: 0, color: "var(--colorNeutralForeground3)" }}>
+          Applies to new logins.
+        </Text>
+      </div>
+      <div className="section" style={{ marginTop: "24px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
           <LogOut size={20} />
           Session
         </Text>
@@ -128,6 +213,11 @@ const SettingsDialogAuthTab = () => {
         >
           Log out
         </Button>
+        {sessionRemaining != null && (
+          <Text as="p" size={200} style={{ marginTop: 0, marginLeft: "12px", color: "var(--colorNeutralForeground3)" }}>
+           <Clock size={12} /> Session remaining: <b>{sessionRemaining}</b>
+          </Text>
+        )}
       </div>
     </div>
   );

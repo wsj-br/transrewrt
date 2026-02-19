@@ -7,6 +7,7 @@ import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
 import LoginModal from "./LoginModal";
 import { useAppContext } from "../contexts/AppContext";
+import webAPI from "../utils/webApiClient";
 import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
@@ -114,11 +115,12 @@ const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const App = () => {
   const styles = useStyles();
-  const { settings, translate, rewrite, languages, models, updateSettings, removeModelFromList, needsLogin, handleWebLogin, apiKeyStatus, configLoading } =
+  const { settings, translate, rewrite, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading } =
     useAppContext();
-  
+
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
-  const [currentView, setCurrentView] = useState("workspace");
+  const [currentView, setCurrentView] = useState(() => (settings.web_view === "settings" ? "settings" : "workspace"));
+  const hasRestoredViewRef = useRef(false);
   // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
   const [inputTextTranslate, setInputTextTranslate] = useState("");
   const [outputTextTranslate, setOutputTextTranslate] = useState("");
@@ -163,6 +165,16 @@ const App = () => {
       setCurrentMode(settings.app_mode);
     }
   }, [settings.app_mode]);
+
+  // Restore main view (workspace vs settings) from state once when config has loaded
+  useEffect(() => {
+    if (hasRestoredViewRef.current || !settings || Object.keys(settings).length === 0) return;
+    const view = settings.web_view;
+    if (view === "settings" || view === "workspace") {
+      hasRestoredViewRef.current = true;
+      setCurrentView(view);
+    }
+  }, [settings, settings?.web_view]);
 
   // Sync rewriteStyle from settings when config loads
   useEffect(() => {
@@ -240,6 +252,7 @@ const App = () => {
     setCurrentMode(mode);
     setCurrentView("workspace");
     updateSettings({ app_mode: mode });
+    if (isWeb) setSetting("web_view", "workspace");
   };
 
   const clearInput = () => {
@@ -263,6 +276,12 @@ const App = () => {
       }
     };
   }, []);
+
+  // Web mode: check session on every navigation so expired session shows login immediately
+  useEffect(() => {
+    if (!isWeb || needsLogin) return;
+    webAPI.checkSession().catch(() => {});
+  }, [isWeb, needsLogin, currentView, currentMode]);
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputText);
@@ -634,7 +653,7 @@ const App = () => {
             : "Rewrite"}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              (Ctrl+Enter)
+              {settings?.enter_behavior === "Shift-Execute" ? "(Shift+Enter)" : "(Enter)"}
             </span>
           )}
         </Button>
@@ -729,7 +748,7 @@ const App = () => {
   return (
     <div id="root" className={styles.root}>
       {isWeb && needsLogin && (
-        <LoginModal onSuccess={handleWebLogin} />
+        <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
       )}
       {renderApiKeyMissingModal()}
       <div className="app-container">
@@ -737,7 +756,10 @@ const App = () => {
           currentMode={currentMode}
           currentView={currentView}
           onModeChange={handleModeChange}
-          onSettingsClick={() => setCurrentView("settings")}
+          onSettingsClick={() => {
+            setCurrentView("settings");
+            if (isWeb) setSetting("web_view", "settings");
+          }}
         />
         <MainContent
           view={currentView}
@@ -748,6 +770,7 @@ const App = () => {
           onOpenSettingsModels={() => {
             updateSettings({ settings_active_tab: "models" });
             setCurrentView("settings");
+            if (isWeb) setSetting("web_view", "settings");
           }}
           onRemoveModel={removeModelFromList}
           leftPanel={leftPanel}

@@ -1,1 +1,26 @@
-{"api_key":"","available_models":["google/gemma-3-27b-it:free","x-ai/grok-4.1-fast:free","z-ai/glm-4.5-air:free","google/gemma-3n-e2b-it:free","tngtech/deepseek-r1t2-chimera:free","qwen/qwen3-4b:free","qwen/qwen3-235b-a22b:free","openai/gpt-oss-20b:free","anthropic/claude-3-haiku"],"available_languages":["Brazilian Portuguese","English (UK)","Spanish (ES)"],"auto_copy":false,"real_time_translation":false,"real_time_delay":1000,"enter_behavior":"Shift-Execute","font_family":"Verdana","font_size":13,"input_text_color":"#FFFFFF","output_text_color":"#efefef","theme":"System","total_cost":0,"api_url":"https://openrouter.ai/api/v1","auto_translate_on_paste":true}
+{
+    "api_key": "",
+    "available_models": [
+        "anthropic/claude-3-haiku",
+        "openrouter/free",
+        "z-ai/glm-4.5-air:free"
+    ],
+    "available_languages": [
+        "Brazilian Portuguese",
+        "English (UK)",
+        "Spanish (ES)"
+    ],
+    "auto_copy": false,
+    "real_time_translation": false,
+    "real_time_delay": 1000,
+    "enter_behavior": "Shift-Execute",
+    "auto_translate_on_paste": true,
+    "font_family": "Verdana",
+    "font_size": 15,
+    "input_text_color": "#FFFFFF",
+    "output_text_color": "#FFFFFF",
+    "theme": "System",
+    "total_cost": 0,
+    "api_url": "https://openrouter.ai/api/v1",
+    "web_session_timeout": 604800
+}

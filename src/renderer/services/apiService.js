@@ -1,4 +1,10 @@
 import { getBasePath } from "../utils/urlUtils";
+import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
+import prompts from "../../../prompts.json";
+
+function resolvePrompt(value) {
+  return Array.isArray(value) ? value.join("\n") : value;
+}
 
 const BASE_PATH = getBasePath();
 
@@ -89,6 +95,10 @@ class APIService {
         const opts = { headers: this.getHeaders() };
         if (this._isWebMode) opts.credentials = "include";
         const response = await fetch(url, opts);
+        if (response.status === 401) {
+          if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
+          return null;
+        }
         if (response.status === 404 && attempt < maxRetries - 1) {
           await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
           continue;
@@ -150,7 +160,10 @@ class APIService {
     if (this._isWebMode) fetchOptions.credentials = "include";
 
     const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
-    if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
+    if (response.status === 401) {
+      if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
+      throw Object.assign(new Error("Unauthorized"), { status: 401 });
+    }
     if (!response.ok) {
       const msg = this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`);
       throw Object.assign(new Error(msg), { status: response.status });
@@ -280,26 +293,15 @@ class APIService {
    */
   async translate(text, targetLang, model, sourceLang = null, signal = null) {
     try {
-      const systemPrompt = sourceLang && sourceLang !== "Detect Language"
-        ? `You are a professional translator specializing in ${sourceLang} to ${targetLang} translation.
-
-Your task:
-- Translate the user's text from ${sourceLang} into natural, fluent ${targetLang}
-- Preserve the original tone, style, and intent
-- Maintain any formatting (line breaks, bullet points, etc.)
-- Keep proper nouns, technical terms, and brand names unchanged unless they have standard translations
-- Do not add explanations, notes, or commentary
-- Output only the translated text`
-        : `You are a professional translator specializing in ${targetLang}.
-
-Your task:
-- Translate the user's text into natural, fluent ${targetLang}
-- Preserve the original tone, style, and intent
-- Maintain any formatting (line breaks, bullet points, etc.)
-- Keep proper nouns, technical terms, and brand names unchanged unless they have standard translations
-- Do not add explanations, notes, or commentary
-- Output only the translated text`;
-      return await this._streamChatCompletion(systemPrompt, text, model, 0.3, signal, "translate", {});
+      const template = resolvePrompt(
+        sourceLang && sourceLang !== "Detect Language"
+          ? prompts.translate.withSourceLang
+          : prompts.translate.withoutSourceLang
+      );
+      const systemPrompt = template
+        .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
+        .replace(/\{\{targetLang\}\}/g, targetLang || "");
+      return await this._streamChatCompletion(systemPrompt, `<translate>${text}</translate>`, model, 0.3, signal, "translate", {});
     } catch (error) {
       // Re-throw AbortError so the caller can handle it properly
       if (error.name === 'AbortError') {
@@ -327,135 +329,11 @@ Your task:
    */
   async rewrite(text, style, model, signal = null) {
     try {
-      const stylePrompts = {
-        "Check Spelling & Grammar": {
-          system: `You are a meticulous proofreader and copy editor.
-
-Your task:
-- Fix all spelling errors, typos, and grammatical mistakes
-- Correct punctuation and capitalization issues
-- Ensure proper sentence structure
-- Preserve the original meaning, tone, and style
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Maintain all formatting (line breaks, lists, etc.)
-- Do not rewrite or rephrase unless necessary for grammatical correctness
-- Output only the corrected text without explanations`,
-          temperature: 0.2,
-        },
-
-        "Improve Clarity": {
-          system: `You are a skilled editor specializing in clear communication.
-
-Your task:
-- Rewrite the text to improve clarity and readability
-- Simplify complex sentences while preserving meaning
-- Remove ambiguity and redundancy
-- Use active voice where appropriate
-- Maintain the original tone and formality level
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Keep all key information and formatting
-- Output only the improved text without explanations`,
-          temperature: 0.4,
-        },
-
-        "Make Formal": {
-          system: `You are a professional business writer.
-
-Your task:
-- Rewrite the text in a formal, professional style
-- Use sophisticated vocabulary and complete sentences
-- Avoid contractions, slang, and colloquialisms
-- Maintain respectful and courteous tone
-- Preserve all key information and meaning
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Keep formatting intact
-- Output only the formal version without explanations`,
-          temperature: 0.3,
-        },
-
-        "Make Informal": {
-          system: `You are a conversational writer who makes content approachable.
-
-Your task:
-- Rewrite the text in a casual, friendly style
-- Use conversational language and contractions
-- Make it sound natural and personable
-- Keep the message clear and engaging
-- Preserve all key information and meaning
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Maintain formatting
-- Output only the informal version without explanations`,
-          temperature: 0.5,
-        },
-
-        "Shorten": {
-          system: `You are an expert at concise writing.
-
-Your task:
-- Condense the text to its essential message
-- Remove redundancy, filler words, and unnecessary details
-- Keep all critical information and key points
-- Maintain clarity and readability
-- Preserve the original tone
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Keep formatting where relevant
-- Output only the shortened text without explanations`,
-          temperature: 0.3,
-        },
-
-        "Expand": {
-          system: `You are a skilled content developer.
-
-Your task:
-- Expand the text with relevant details and context
-- Add explanations, examples, or supporting information
-- Improve depth while maintaining focus
-- Keep the writing natural and coherent
-- Preserve the original message and tone
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Maintain logical structure and formatting
-- Output only the expanded text without explanations`,
-          temperature: 0.6,
-        },
-
-        "Make Technical": {
-          system: `You are a technical writer with domain expertise.
-
-Your task:
-- Rewrite the text using precise, technical language
-- Replace general terms with specific technical terminology
-- Add technical accuracy and detail where appropriate
-- Maintain professional tone
-- Ensure clarity despite increased technicality
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Preserve all key information and formatting
-- Output only the technical version without explanations`,
-          temperature: 0.4,
-        },
-      };
-
-      const styleConfig = stylePrompts[style] || {
-        system: `You are a professional writer.
-
-Your task:
-- Rewrite the user's text to improve it
-- Maintain the original meaning and key information
-- Write the output in the same language as the input; do not translate
-- Preserve all markdown (headers, lists, code blocks, bold, italic, links) and any other formatting
-- Output only the rewritten text without explanations`,
-        temperature: 0.4,
-      };
+      const styleConfig = prompts.rewrite.styles[style] || prompts.rewrite.fallback;
 
       return await this._streamChatCompletion(
-        styleConfig.system,
-        text,
+        resolvePrompt(styleConfig.system),
+        `<rewrite>${text}</rewrite>`,
         model,
         styleConfig.temperature,
         signal,
@@ -489,7 +367,10 @@ Your task:
       if (this._isWebMode) opts.credentials = "include";
       const response = await fetch(`${this.baseUrl}/models`, opts);
 
-      if (response.status === 401) throw Object.assign(new Error("Unauthorized"), { status: 401 });
+      if (response.status === 401) {
+        if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
+        throw Object.assign(new Error("Unauthorized"), { status: 401 });
+      }
       if (!response.ok) {
         throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
       }

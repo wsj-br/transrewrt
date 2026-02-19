@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
-import { Sliders, Database, Globe, Key, Lock, DollarSign } from "lucide-react";
+import { Sliders, Database, Globe, Key, Lock, DollarSign, Info } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
 import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
@@ -8,6 +8,7 @@ import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
 import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
 import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
+import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/configManager";
 
@@ -357,6 +358,13 @@ const SettingsPanel = () => {
             <Lock size={16} /> Authentication
           </button>
         )}
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === "about" ? "active" : ""}`}
+          onClick={() => handleTabChange("about")}
+        >
+          <Info size={16} /> About…
+        </button>
       </div>
 
       <div className={mergeClasses("modal-body", "settings-body", styles.settingsBody)}>
@@ -430,6 +438,8 @@ const SettingsPanel = () => {
         )}
 
         {isWeb && activeTab === "auth" && <SettingsDialogAuthTab />}
+
+        {activeTab === "about" && <SettingsDialogAboutTab />}
       </div>
     </div>
   );

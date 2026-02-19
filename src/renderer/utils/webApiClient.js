@@ -4,14 +4,22 @@
  */
 
 import { getBasePath } from "./urlUtils";
+import * as sessionExpiredHandler from "./sessionExpiredHandler";
 
 const API_BASE = getBasePath();
+
+function handle401() {
+  sessionExpiredHandler.onSessionExpired();
+}
 
 const webAPI = {
   readConfig: async () => {
     try {
       const res = await fetch(`${API_BASE}/api/config`, { credentials: "include" });
-      if (res.status === 401) return Promise.reject({ status: 401 });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
       if (!res.ok) return {};
       const data = await res.json();
       return data && typeof data === "object" ? data : {};
@@ -30,7 +38,10 @@ const webAPI = {
         body: JSON.stringify(configData),
         credentials: "include",
       });
-      if (res.status === 401) return Promise.reject({ status: 401 });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
       const json = await res.json();
       return json && json.success === true;
     } catch (err) {
@@ -80,14 +91,27 @@ const webAPI = {
     return true;
   },
 
+  checkSession: async () => {
+    const res = await fetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) return Promise.reject(new Error("Session check failed"));
+    return true;
+  },
+
   logApiCall: async (payload) => {
     try {
-      await fetch(`${API_BASE}/api/calls`, {
+      const res = await fetch(`${API_BASE}/api/calls`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
         credentials: "include",
       });
+      if (res.status === 401) {
+        handle401();
+      }
     } catch (err) {
       console.warn("[WebAPI] logApiCall failed:", err);
     }
@@ -98,6 +122,10 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-function?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
     if (!res.ok) throw new Error("Failed to load summary");
     const data = await res.json();
     return data.rows || [];
@@ -108,6 +136,10 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-model?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
     if (!res.ok) throw new Error("Failed to load summary");
     const data = await res.json();
     return data.rows || [];
@@ -118,6 +150,10 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-day?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
     if (!res.ok) throw new Error("Failed to load summary");
     const data = await res.json();
     return data.rows || [];
@@ -131,6 +167,10 @@ const webAPI = {
       method: "DELETE",
       credentials: "include",
     });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       throw new Error(data.error || "Failed to delete data");

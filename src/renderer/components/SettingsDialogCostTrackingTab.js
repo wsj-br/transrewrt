@@ -290,48 +290,6 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
             <>
               <div className={styles.tablesGrid}>
                 <div className={`section ${styles.gridSection}`}>
-                  <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By function</Text>
-                  <div className={styles.tableWrap}>
-                    <table className={`${styles.table} ${styles.tableFullWidth}`}>
-                    <thead className={styles.thead}>
-                      <tr>
-                        <th className={styles.th}>Function</th>
-                        <th className={styles.th}>Calls</th>
-                        <th className={styles.th}>Cost</th>
-                        <th className={styles.th}>Avg cost</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {byFunction.filter((r) => r.function !== "Total").length === 0
-                        ? emptyRow(4)
-                        : byFunction
-                            .filter((r) => r.function !== "Total")
-                            .map((row, i) => (
-                              <tr key={i} className={styles.tbodyTr}>
-                                <td className={styles.td}>{row.function}</td>
-                                <td className={styles.td}>{row.calls}</td>
-                                <td className={styles.td}>${Number(row.cost || 0).toFixed(6)}</td>
-                                <td className={styles.td}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
-                              </tr>
-                            ))}
-                      {byFunction.some((r) => r.function === "Total") && (() => {
-                        const total = byFunction.find((r) => r.function === "Total");
-                        const calls = total?.calls ?? 0;
-                        return (
-                          <tr className={styles.totalRow}>
-                            <td className={styles.td}><strong>Total</strong></td>
-                            <td className={styles.td}>{calls}</td>
-                            <td className={styles.td}>${Number(total?.cost || 0).toFixed(6)}</td>
-                            <td className={styles.td}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
-                          </tr>
-                        );
-                      })()}
-                    </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div className={`section ${styles.gridSection}`}>
                   <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By model</Text>
                   <div className={styles.tableWrap}>
                     <table className={`${styles.table} ${styles.tableFullWidth}`}>
@@ -385,6 +343,49 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                   </table>
                   </div>
                 </div>
+
+                <div className={`section ${styles.gridSection}`}>
+                  <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By function</Text>
+                  <div className={styles.tableWrap}>
+                    <table className={`${styles.table} ${styles.tableFullWidth}`}>
+                    <thead className={styles.thead}>
+                      <tr>
+                        <th className={styles.th}>Function</th>
+                        <th className={styles.th}>Calls</th>
+                        <th className={styles.th}>Cost</th>
+                        <th className={styles.th}>Avg cost</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {byFunction.filter((r) => r.function !== "Total").length === 0
+                        ? emptyRow(4)
+                        : byFunction
+                            .filter((r) => r.function !== "Total")
+                            .map((row, i) => (
+                              <tr key={i} className={styles.tbodyTr}>
+                                <td className={styles.td}>{row.function}</td>
+                                <td className={styles.td}>{row.calls}</td>
+                                <td className={styles.td}>${Number(row.cost || 0).toFixed(6)}</td>
+                                <td className={styles.td}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
+                              </tr>
+                            ))}
+                      {byFunction.some((r) => r.function === "Total") && (() => {
+                        const total = byFunction.find((r) => r.function === "Total");
+                        const calls = total?.calls ?? 0;
+                        return (
+                          <tr className={styles.totalRow}>
+                            <td className={styles.td}><strong>Total</strong></td>
+                            <td className={styles.td}>{calls}</td>
+                            <td className={styles.td}>${Number(total?.cost || 0).toFixed(6)}</td>
+                            <td className={styles.td}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
+                          </tr>
+                        );
+                      })()}
+                    </tbody>
+                    </table>
+                  </div>
+                </div>
+
               </div>
 
               <div className="section">

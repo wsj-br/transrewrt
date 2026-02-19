@@ -1,7 +1,9 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const pkg = require("./package.json");
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
@@ -45,6 +47,13 @@ module.exports = (env, argv) => {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __APP_VERSION__: JSON.stringify(pkg.version),
+      __APP_DESCRIPTION__: JSON.stringify(pkg.description || ""),
+      __APP_AUTHOR__: JSON.stringify(pkg.author || ""),
+      __APP_LICENSE__: JSON.stringify(pkg.license || ""),
+      __REPO_URL__: JSON.stringify("https://github.com/wsj-br/transrewrt"),
+    }),
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
       favicon: path.resolve(__dirname, "transrewrt_logo.ico"),

@@ -206,7 +206,7 @@ The `package.json` `build` section currently configures:
 
 After building, check the `release/` folder for:
 
-- **Windows**: `Transrewrt Setup <version>-<timestamp>.exe`
+- **Windows**: `Transrewrt Setup <version>.exe`
 - **Linux** (if configured): `.deb`, `.rpm`, `.AppImage`, or `.pacman` packages
 
 __Note__: Linux packaging targets are not yet configured in `package.json`. To add them, extend the `build` section:
@@ -349,7 +349,8 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 |-------|---------|-------|
 | **Build image** | `docker build -t transrewrt-web .` | Multi-stage build |
 | **Run** | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Config persists in volume |
-| **Run (compose)** | `docker-compose up -d` or `pnpm run docker:up` | Uses `docker-compose.yml` |
+| **Run (compose)** | `docker compose up --build -d` or `pnpm run docker:up` | Uses `docker-compose.yml` |
+| **Stop (compose)** | `docker compose down` or `pnpm run docker:down` | Stop services |
 | **Test** | Open http://localhost:5000 | Config at `/api/config` |
 
 ---
@@ -368,4 +369,7 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 | `pnpm run start:server` | Run web server only (e.g. after build or in Docker) |
 | `pnpm run package` | Build and create Electron installer |
 | `docker build -t transrewrt-web .` | Build Docker image |
-| `docker-compose up -d` | Run web app in Docker |
+| `pnpm run docker:up` | Build and run web app in Docker (compose) |
+| `pnpm run docker:down` | Stop Docker compose services |
+| `pnpm run docker:clean` | Remove Docker image and volumes |
+| `pnpm run docker:deploy` | Deploy to production (runs deploy script) |

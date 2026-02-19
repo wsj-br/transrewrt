@@ -1,7 +1,7 @@
 {
   "name": "transrewrt",
-  "version": "1.0.1.32",
-  "description": "Transrewrt Application",
+  "version": "1.0.1.50",
+  "description": "Translate text between languages and rewrite text in different styles using AI. Desktop and web app.",
   "main": "src/main/main.js",
   "scripts": {
     "dev": "./scripts/bump-version.sh && concurrently \"pnpm run watch\" \"pnpm run electron\"",
@@ -30,7 +30,7 @@
     "rewriter"
   ],
   "author": "Waldemar Scudeller Jr.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "build": {
     "appId": "br.com.wsj.transrewrt",
     "productName": "Transrewrt",

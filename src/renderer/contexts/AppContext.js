@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useMemo } from "
 import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
 import webAPI from "../utils/webApiClient";
+import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
 import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
 import { FREE_MODEL_ID } from "../constants";
 import { useCostTracking } from "../hooks/useCostTracking";
@@ -25,7 +26,19 @@ export const AppProvider = ({ children }) => {
   const [configLoading, setConfigLoading] = useState(true);
   const [error, setError] = useState(null);
   const [needsLogin, setNeedsLogin] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
+
+  // Web mode: any 401 from API triggers login modal via this callback
+  useEffect(() => {
+    const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+    if (!isWeb) return;
+    sessionExpiredHandler.register(() => {
+      setNeedsLogin(true);
+      setSessionExpired(true);
+    });
+    return () => sessionExpiredHandler.register(null);
+  }, []);
 
   // Watch for changes in settings.available_languages and update languages state
   useEffect(() => {
@@ -83,6 +96,7 @@ export const AppProvider = ({ children }) => {
       } catch (err) {
         if (err && err.status === 401) {
           setNeedsLogin(true);
+          setSessionExpired(true);
         } else {
           setError("Failed to load config");
           console.error(err);
@@ -311,6 +325,11 @@ export const AppProvider = ({ children }) => {
     if (!isWeb) return;
     await webAPI.login(password);
     setNeedsLogin(false);
+    setSessionExpired(false);
+    // So browser may offer to save password
+    if (typeof window !== "undefined" && window.history?.replaceState) {
+      window.history.replaceState(window.history.state, "", window.location.href);
+    }
     await configManager.loadConfig();
     setSettings(configManager.getAll());
   };
@@ -392,6 +411,7 @@ export const AppProvider = ({ children }) => {
 
       return loadedModels || [];
     } catch (err) {
+      if (err && err.status === 401) setNeedsLogin(true);
       console.error("Failed to fetch models:", err);
       setError("Failed to fetch models");
       return [];
@@ -409,6 +429,7 @@ export const AppProvider = ({ children }) => {
     error,
     needsLogin,
     setNeedsLogin,
+    sessionExpired,
     handleWebLogin,
     handleWebLogout,
     apiKeyStatus,

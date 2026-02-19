@@ -38,9 +38,21 @@ const useStyles = makeStyles({
     fontSize: "12px",
     marginTop: "8px",
   },
+  // Visually hidden but in DOM so browsers/password managers detect username+password pair
+  hiddenUsername: {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: 0,
+    margin: "-1px",
+    overflow: "hidden",
+    clip: "rect(0, 0, 0, 0)",
+    whiteSpace: "nowrap",
+    border: 0,
+  },
 });
 
-const LoginModal = ({ onSuccess }) => {
+const LoginModal = ({ onSuccess, sessionExpired = false }) => {
   const styles = useStyles();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -62,12 +74,34 @@ const LoginModal = ({ onSuccess }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2 className={styles.title}>Log in</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className={styles.title}>{sessionExpired ? "Session expired" : "Log in"}</h2>
+        {sessionExpired && (
+          <p style={{ margin: "0 0 16px 0", fontSize: "14px", color: "var(--colorNeutralForeground2, #605e5c)" }}>
+            Your session has expired. Please log in again.
+          </p>
+        )}
+        <form
+          onSubmit={handleSubmit}
+          method="post"
+          action="#"
+          autoComplete="on"
+        >
+          <input
+            type="text"
+            name="username"
+            id="login-username"
+            autoComplete="username"
+            defaultValue="Transrewrt"
+            readOnly
+            tabIndex={-1}
+            className={styles.hiddenUsername}
+            aria-hidden
+          />
           <div className={styles.field}>
             <Label htmlFor="login-password">Password</Label>
             <Input
               id="login-password"
+              name="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

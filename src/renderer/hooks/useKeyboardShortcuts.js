@@ -1,34 +1,33 @@
 import { useEffect } from "react";
 
 /**
- * Registers global keyboard shortcuts for run action (Ctrl+Enter, Enter by setting),
- * and Escape to clear input.
+ * Registers keyboard shortcuts: Execute = Enter runs translate/rewrite,
+ * Shift-Execute = Shift+Enter runs translate/rewrite. Escape clears input.
  */
 export function useKeyboardShortcuts(handleRunAction, inputText, enterBehavior, clearInput) {
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
-        event.preventDefault();
-        handleRunAction();
+      if (event.key !== "Enter") {
+        if (event.key === "Escape") {
+          clearInput();
+        }
+        return;
       }
 
-      if (event.key === "Enter" && !event.ctrlKey && !event.metaKey) {
-        const behavior = enterBehavior || "Execute";
-        const hasText = inputText.trim();
-        const isExecute = behavior === "Execute" || behavior === "Translate";
-        const isShiftExecute = behavior === "Shift-Execute" || behavior === "Shift-Translate";
+      const behavior = enterBehavior || "Execute";
+      const hasText = !!inputText.trim();
+      const isShiftExecute = behavior === "Shift-Execute";
 
-        if (isExecute && hasText) {
-          event.preventDefault();
-          handleRunAction();
-        } else if (isShiftExecute && event.shiftKey && hasText) {
+      if (event.shiftKey) {
+        if (isShiftExecute && hasText) {
           event.preventDefault();
           handleRunAction();
         }
-      }
-
-      if (event.key === "Escape") {
-        clearInput();
+      } else {
+        if (!isShiftExecute && hasText) {
+          event.preventDefault();
+          handleRunAction();
+        }
       }
     };
 

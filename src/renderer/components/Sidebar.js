@@ -31,9 +31,15 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
+    alignItems: "stretch",
+    gap: 0,
+    WebkitAppRegion: "no-drag",
+  },
+  iconButtonSection: {
+    padding: tokens.spacingVerticalM,
+    display: "flex",
+    justifyContent: "center",
     alignItems: "center",
-    gap: tokens.spacingVerticalS,
-    padding: `${tokens.spacingVerticalM} 0`,
     WebkitAppRegion: "no-drag",
   },
   iconButton: {
@@ -110,30 +116,34 @@ const Sidebar = ({
         />
       </div>
 
-      <nav className={styles.navSection}>
-        <button
-          type="button"
-          className={mergeClasses(styles.iconButton, isTranslateActive && styles.iconButtonActive)}
-          onClick={() => onModeChange("translate")}
-          aria-label="Translate"
-        >
-          <div className={styles.iconContainer}>
-            <Languages size={iconSize} strokeWidth={isTranslateActive ? 2.5 : 1.5} />
-          </div>
-          <span className={styles.iconLabel}>Translate</span>
-        </button>
-        <button
-          type="button"
-          className={mergeClasses(styles.iconButton, isRewriteActive && styles.iconButtonActive)}
-          onClick={() => onModeChange("rewrite")}
-          aria-label="Rewrite"
-        >
-          <div className={styles.iconContainer}>
-            <PenTool size={iconSize} strokeWidth={isRewriteActive ? 2.5 : 1.5} />
-          </div>
-          <span className={styles.iconLabel}>Rewrite</span>
-        </button>
-      </nav>
+      <div className={styles.navSection} role="navigation" aria-label="Main">
+        <div className={styles.iconButtonSection}>
+          <button
+            type="button"
+            className={mergeClasses(styles.iconButton, isTranslateActive && styles.iconButtonActive)}
+            onClick={() => onModeChange("translate")}
+            aria-label="Translate"
+          >
+            <div className={styles.iconContainer}>
+              <Languages size={iconSize} strokeWidth={isTranslateActive ? 2.5 : 1.5} />
+            </div>
+            <span className={styles.iconLabel}>Translate</span>
+          </button>
+        </div>
+        <div className={styles.iconButtonSection}>
+          <button
+            type="button"
+            className={mergeClasses(styles.iconButton, isRewriteActive && styles.iconButtonActive)}
+            onClick={() => onModeChange("rewrite")}
+            aria-label="Rewrite"
+          >
+            <div className={styles.iconContainer}>
+              <PenTool size={iconSize} strokeWidth={isRewriteActive ? 2.5 : 1.5} />
+            </div>
+            <span className={styles.iconLabel}>Rewrite</span>
+          </button>
+        </div>
+      </div>
 
       <div className={styles.footerSection}>
         <button

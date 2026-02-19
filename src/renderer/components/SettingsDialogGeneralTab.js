@@ -29,10 +29,10 @@ const useColorPickerStyles = makeStyles({
   },
 });
 
+/** Normalize to the two supported behaviors; map legacy values for existing configs. */
 function normalizeEnterBehavior(value) {
-  if (value === 'Translate') return 'Execute';
-  if (value === 'Shift-Translate' || value === 'Newline') return 'Shift-Execute';
-  return value || 'Execute';
+  if (value === "Shift-Execute" || value === "Shift-Translate" || value === "Newline") return "Shift-Execute";
+  return "Execute";
 }
 
 const useFormStyles = makeStyles({
