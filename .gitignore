@@ -16,6 +16,9 @@ release/
 *.exe
 .specstory
 
+# local data (keep out of repo)
+data/
+
 # api log files
 models_api_raw.json
 models_valid.json
