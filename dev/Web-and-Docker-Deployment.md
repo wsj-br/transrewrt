@@ -151,5 +151,5 @@ The server (`server/index.js`) provides:
 
 - **Multi-stage build**: Stage 1 builds the React app with webpack; Stage 2 runs the server
 - **Stage 1**: Uses full `package.json` to build `dist/`
-- **Stage 2**: Uses minimal `server/package.json` (only Express) for a smaller image
+- **Stage 2**: Uses root `package.json` and installs production dependencies only (single dependency list for app and server)
 - Config is stored in a mounted volume at `/app/data`

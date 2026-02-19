@@ -1,7 +1,10 @@
-# Stage 1: Build the React frontend
+# Stage 1: Build the React frontend and prepare production node_modules
 FROM node:lts-alpine AS builder
 
 WORKDIR /app
+
+# Build deps for native modules (argon2, better-sqlite3) – removed after install
+RUN apk add --no-cache python3 make g++
 
 # Install pnpm globally
 RUN npm install -g pnpm
@@ -9,7 +12,7 @@ RUN npm install -g pnpm
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies (including devDependencies for build)
+# Install all dependencies (native modules are built here)
 RUN pnpm install
 
 # Copy source code
@@ -18,17 +21,17 @@ COPY . .
 # Build the renderer
 RUN pnpm run build-renderer
 
-# Stage 2: Production server
+# Keep only production dependencies so production stage can copy them as-is
+RUN pnpm prune --prod
+
+# Stage 2: Production server – copy resolved deps from builder, no install
 FROM node:lts-alpine AS production
 
 WORKDIR /app
 
-# Install pnpm and build deps for native modules (better-sqlite3), then remove build deps
-RUN apk add --no-cache python3 make g++ && npm install -g pnpm
-
-# Copy server package and install (minimal deps - express, better-sqlite3)
-COPY server/package.json server/pnpm-lock.yaml ./server/
-RUN cd server && pnpm install --prod && apk del python3 make g++
+# Copy package files and resolved node_modules from builder (no pnpm install)
+COPY package.json pnpm-lock.yaml ./
+COPY --from=builder /app/node_modules ./node_modules
 
 # Copy built static files from builder
 COPY --from=builder /app/dist ./dist

@@ -1,11 +1,11 @@
 {
   "name": "transrewrt",
-  "version": "1.0.1",
+  "version": "1.0.1.32",
   "description": "Transrewrt Application",
   "main": "src/main/main.js",
   "scripts": {
-    "dev": "concurrently \"pnpm run watch\" \"pnpm run electron\"",
-    "dev:web": "concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
+    "dev": "./scripts/bump-version.sh && concurrently \"pnpm run watch\" \"pnpm run electron\"",
+    "dev:web": "./scripts/bump-version.sh && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
     "watch:web": "webpack serve --mode development --port 5000",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
@@ -20,7 +20,8 @@
     "docker:down": "docker compose down",
     "docker:clean": "./scripts/clean-docker.sh",
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
-    "docker:deploy": "./scripts/docker-deploy.sh"
+    "docker:deploy": "./scripts/docker-deploy.sh",
+    "package": "./scripts/bump-version.sh && electron-builder"
   },
   "keywords": [
     "electron",
@@ -93,11 +94,14 @@
     "onlyBuiltDependencies": [
       "core-js-pure",
       "electron",
-      "electron-winstaller"
+      "electron-winstaller",
+      "better-sqlite3",
+      "argon2"
     ]
   },
   "dependencies": {
     "argon2": "^0.41.1",
+    "better-sqlite3": "^11.6.0",
     "proper-lockfile": "^4.1.2",
     "@ctrl/tinycolor": "^4.2.0",
     "@fluentui/react-components": "^9.73.0",
