@@ -1,5 +1,6 @@
 {
     "api_key": "",
+    "api_url": "https://openrouter.ai/api/v1",
     "available_models": [
         "anthropic/claude-3-haiku",
         "openrouter/free",
@@ -21,6 +22,5 @@
     "output_text_color": "#FFFFFF",
     "theme": "System",
     "total_cost": 0,
-    "api_url": "https://openrouter.ai/api/v1",
     "web_session_timeout": 604800
 }
