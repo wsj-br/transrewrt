@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
 import { Languages, PenTool, Settings } from "lucide-react";
-import Logo from "../../../transrewrt_logo.png";
+import Logo from "../../../images/transrewrt_logo.png";
 
 const useStyles = makeStyles({
   sidebar: {

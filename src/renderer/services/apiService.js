@@ -1,6 +1,6 @@
 import { getBasePath } from "../utils/urlUtils";
 import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
-import prompts from "../../../prompts.json";
+import prompts from "../../../config/prompts.json";
 
 function resolvePrompt(value) {
   return Array.isArray(value) ? value.join("\n") : value;

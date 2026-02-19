@@ -195,5 +195,5 @@ All summary endpoints accept optional `from` and `to` query parameters (ISO 8601
 
 - **Multi-stage build**: Stage 1 builds the React app with webpack and prunes to production dependencies; Stage 2 copies the built artifacts and runs the server
 - **Stage 1 (builder)**: Uses full `package.json` to install all dependencies (including native modules such as `better-sqlite3` and `argon2`) and builds `dist/`; then runs `pnpm prune --prod` to strip dev dependencies
-- **Stage 2 (production)**: Copies resolved `node_modules` directly from the builder stage (no `pnpm install`), `dist/`, `server/index.js`, and `config_default.json`; starts the server with `node server/index.js`
+- **Stage 2 (production)**: Copies resolved `node_modules` directly from the builder stage (no `pnpm install`), `dist/`, `server/index.js`, and the `config/` folder (including `config_default.json`); starts the server with `node server/index.js`
 - Config and state are stored in a mounted volume at `/app/data`

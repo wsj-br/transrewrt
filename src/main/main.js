@@ -52,7 +52,7 @@ const getConfigFilePath = () => {
   }
 };
 
-const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), "../config_default.json");
+const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
 
 const getStateFilePath = () => path.join(path.dirname(getConfigFilePath()), "state.json");
 
@@ -102,7 +102,7 @@ function loadConfigFromFile() {
       const data = fs.readFileSync(configPath, "utf8");
       userConfig = JSON.parse(data);
     }
-    const defaultPath = path.join(__dirname, "../../config_default.json");
+    const defaultPath = path.join(__dirname, "../../config/config_default.json");
     let defaultConfig = {};
     if (fs.existsSync(defaultPath)) {
       defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));
@@ -334,7 +334,7 @@ const createWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 1000,
     height: savedState ? savedState.height : 700,
-    icon: path.join(__dirname, "../../transrewrt_logo.ico"),
+    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -402,7 +402,7 @@ const createSettingsWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
-    icon: path.join(__dirname, "../../transrewrt_logo.ico"),
+    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,

@@ -1,11 +1,11 @@
 {
   "name": "transrewrt",
-  "version": "1.0.1.50",
+  "version": "1.0.1-55",
   "description": "Translate text between languages and rewrite text in different styles using AI. Desktop and web app.",
   "main": "src/main/main.js",
   "scripts": {
-    "dev": "./scripts/bump-version.sh && concurrently \"pnpm run watch\" \"pnpm run electron\"",
-    "dev:web": "./scripts/bump-version.sh && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
+    "dev": "node scripts/bump-version.js && concurrently \"pnpm run watch\" \"pnpm run electron\"",
+    "dev:web": "node scripts/bump-version.js && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
     "watch:web": "webpack serve --mode development --port 5000",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
@@ -21,7 +21,7 @@
     "docker:clean": "./scripts/clean-docker.sh",
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh",
-    "package": "./scripts/bump-version.sh && electron-builder"
+    "package": "node scripts/bump-version.js && electron-builder"
   },
   "keywords": [
     "electron",
@@ -37,17 +37,18 @@
     "files": [
       "dist/**/*",
       "src/main/main.js",
+      "images/**/*",
       "package.json"
     ],
     "extraFiles": [
       {
-        "from": "config_default.json",
-        "to": "config_default.json"
+        "from": "config/config_default.json",
+        "to": "config/config_default.json"
       }
     ],
     "directories": {
       "output": "release",
-      "buildResources": "."
+      "buildResources": "images"
     },
     "win": {
       "target": "nsis",

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, tokens, Link } from "@fluentui/react-components";
 
-import LogoImage from "../../../transrewrt_logo.svg";
+import LogoImage from "../../../images/transrewrt_logo.svg";
 import GitHubInvertocat from "../assets/GitHub_Invertocat_White.svg";
 
 const REPO_URL = typeof __REPO_URL__ !== "undefined" ? __REPO_URL__ : "https://github.com/wsj-br/transrewrt";

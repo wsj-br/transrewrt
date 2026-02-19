@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
+  <img src="images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
 </p>
 
 <h1 align="center">Transrewrt</h1>
@@ -171,7 +171,7 @@ Then open <http://localhost:5000>.
 
 ## Configuration
 
-On first run the application copies `config_default.json` to a writable location and then reads/writes settings there:
+On first run the application copies the default config from `config/config_default.json` to a writable location and then reads/writes settings there:
 
 | Deployment | Config location |
 |------------|----------------|

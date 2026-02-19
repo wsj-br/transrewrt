@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
     }),
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
-      favicon: path.resolve(__dirname, "transrewrt_logo.ico"),
+      favicon: path.resolve(__dirname, "images/transrewrt_logo.ico"),
     }),
     !isDevelopment && new MiniCssExtractPlugin({
       filename: "[name].css",

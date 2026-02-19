@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const CONFIG_PATH = process.env.CONFIG_PATH || path.join(__dirname, "..", "data", "config.json");
 const STATE_PATH = path.join(path.dirname(CONFIG_PATH), "state.json");
-const DEFAULT_CONFIG_PATH = path.join(__dirname, "..", "config_default.json");
+const DEFAULT_CONFIG_PATH = path.join(__dirname, "..", "config", "config_default.json");
 
 const STATE_KEYS = [
   "last_used_model",

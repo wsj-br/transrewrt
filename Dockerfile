@@ -39,8 +39,8 @@ COPY --from=builder /app/dist ./dist
 # Copy server code
 COPY server/index.js ./server/
 
-# Copy config_default.json for initialization
-COPY config_default.json ./
+# Copy config for initialization
+COPY config/ ./config/
 
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data

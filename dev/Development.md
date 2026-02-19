@@ -218,7 +218,7 @@ __Note__: Linux packaging targets are not yet configured in `package.json`. To a
     "deb",
     "rpm"
   ],
-  "icon": "transrewrt_logo.ico",
+  "icon": "images/transrewrt_logo.ico",
   "category": "Utility"
 }
 ```
@@ -243,7 +243,7 @@ User-specific configuration is stored in the standard user data directory:
 - **Windows**: `%APPDATA%\transrewrt\` (e.g., `C:\Users\<user>\AppData\Roaming\transrewrt\`)
 - **Linux**: `~/.config/transrewrt/` or `~/.local/share/transrewrt/`
 
-The first run copies `config_default.json` to a user-writable location. Subsequent runs read/write user settings there.
+The first run copies the default config from `config/config_default.json` to a user-writable location. Subsequent runs read/write user settings there.
 
 ### Updating the Application
 
