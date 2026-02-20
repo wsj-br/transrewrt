@@ -177,6 +177,33 @@ class APIService {
     let rawChunks = [];
     let aborted = false;
     let response_bytes = 0;
+    let lineBuffer = "";
+
+    const processOneLine = (line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed === "data: [DONE]") return;
+      if (!trimmed.startsWith("data: ")) return;
+      try {
+        const dataStr = trimmed.replace(/^data: /, "");
+        const data = JSON.parse(dataStr);
+        rawChunks.push(data);
+        if (data.id && !generationId) generationId = data.id;
+        if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
+        if (data.usage) usage = data.usage;
+        if (data.error) {
+          const msg = data.error.message || "Stream error";
+          const err = new Error(msg);
+          const code = data.error.code ?? data.error.status;
+          if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
+            Object.assign(err, { status: 404 });
+          }
+          throw err;
+        }
+      } catch (parseErr) {
+        if (parseErr.message?.includes("Unexpected end of JSON input")) return;
+        console.warn("Failed to parse stream chunk:", parseErr);
+      }
+    };
 
     if (signal?.aborted) {
       reader.cancel();
@@ -195,36 +222,17 @@ class APIService {
         }
         try {
           const { done, value } = await reader.read();
-          if (done) break;
           if (value) {
             response_bytes += value.length;
             const chunk = decoder.decode(value, { stream: true });
-            const lines = chunk.split("\n");
-            for (const line of lines) {
-              const trimmed = line.trim();
-              if (!trimmed || trimmed === "data: [DONE]") continue;
-              if (!trimmed.startsWith("data: ")) continue;
-              try {
-                const dataStr = trimmed.replace(/^data: /, "");
-                const data = JSON.parse(dataStr);
-                rawChunks.push(data);
-                if (data.id && !generationId) generationId = data.id;
-                if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
-                if (data.usage) usage = data.usage;
-                if (data.error) {
-                  const msg = data.error.message || "Stream error";
-                  const err = new Error(msg);
-                  const code = data.error.code ?? data.error.status;
-                  if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
-                    Object.assign(err, { status: 404 });
-                  }
-                  throw err;
-                }
-              } catch (parseErr) {
-                if (parseErr.message?.includes("Unexpected end of JSON input")) continue;
-                console.warn("Failed to parse stream chunk:", parseErr);
-              }
-            }
+            lineBuffer += chunk;
+            const lines = lineBuffer.split("\n");
+            lineBuffer = lines.pop() ?? "";
+            for (const line of lines) processOneLine(line);
+          }
+          if (done) {
+            if (lineBuffer.trim()) processOneLine(lineBuffer);
+            break;
           }
         } catch (readErr) {
           if (readErr.name === "AbortError") {

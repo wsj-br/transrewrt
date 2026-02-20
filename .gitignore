@@ -12,6 +12,7 @@ cache
 .coverage*
 *.tmp
 release/
+build_timestamp
 *.log
 *.exe
 .specstory

@@ -533,6 +533,25 @@ ipcMain.handle("write-debug-file", (_, filename, data) => {
   }
 });
 
+let buildTimestampCache = null;
+function getBuildTimestamp() {
+  if (buildTimestampCache !== null) return buildTimestampCache;
+  try {
+    const filePath = path.join(app.getAppPath(), "build_timestamp");
+    if (!fs.existsSync(filePath)) {
+      buildTimestampCache = null;
+      return null;
+    }
+    const content = fs.readFileSync(filePath, "utf8").trim();
+    buildTimestampCache = content || null;
+    return buildTimestampCache;
+  } catch (_) {
+    buildTimestampCache = null;
+    return null;
+  }
+}
+ipcMain.handle("get-build-timestamp", () => Promise.resolve(getBuildTimestamp()));
+
 ipcMain.on("open-settings", () => {
   createSettingsWindow();
 });

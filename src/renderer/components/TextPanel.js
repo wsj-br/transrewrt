@@ -79,7 +79,7 @@ const useStyles = makeStyles({
     borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
     marginTop: tokens.spacingVerticalXS,
     gap: tokens.spacingHorizontalM,
-    minHeight: "44px",
+    minHeight: "60px",
     boxSizing: "border-box",
   },
   stats: {

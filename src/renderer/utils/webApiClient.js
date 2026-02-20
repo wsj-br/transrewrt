@@ -15,7 +15,7 @@ function handle401() {
 const webAPI = {
   readConfig: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/config`, { credentials: "include" });
+      const res = await fetch(`${API_BASE}/api/config`, { credentials: "include", cache: "no-store" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
@@ -244,6 +244,17 @@ const webAPI = {
     } catch (err) {
       console.error("[WebAPI] getOpenRouterKeyInfo failed:", err);
       throw err;
+    }
+  },
+
+  getBuildInfo: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/build-info`, { credentials: "include" });
+      if (!res.ok) return { buildTimestamp: null };
+      const data = await res.json();
+      return { buildTimestamp: data?.buildTimestamp ?? null };
+    } catch {
+      return { buildTimestamp: null };
     }
   },
 

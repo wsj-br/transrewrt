@@ -1,11 +1,11 @@
 {
   "name": "transrewrt",
-  "version": "1.0.1+build20260220-004045",
-  "description": "Translate text between languages and rewrite text in different styles using AI. Desktop and web app.",
+  "version": "1.0.2",
+  "description": "Translate text between languages and rewrite text in different styles using AI.",
   "main": "src/main/main.js",
   "scripts": {
-    "dev": "node scripts/bump-version.js && concurrently \"pnpm run watch\" \"pnpm run electron\"",
-    "dev:web": "node scripts/bump-version.js && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
+    "dev": "node scripts/write-build-timestamp.js && concurrently \"pnpm run watch\" \"pnpm run electron\"",
+    "dev:web": "node scripts/write-build-timestamp.js && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
     "watch:web": "webpack serve --mode development --port 5000",
     "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
@@ -21,7 +21,7 @@
     "docker:clean": "./scripts/clean-docker.sh",
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh",
-    "package": "node scripts/bump-version.js && electron-builder",
+    "package": "node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js"
   },
   "keywords": [
@@ -39,7 +39,8 @@
       "dist/**/*",
       "src/main/main.js",
       "images/**/*",
-      "package.json"
+      "package.json",
+      "build_timestamp"
     ],
     "extraFiles": [
       {

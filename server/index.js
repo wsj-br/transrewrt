@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 5000;
 const CONFIG_PATH = process.env.CONFIG_PATH || path.join(__dirname, "..", "data", "config.json");
 const STATE_PATH = path.join(path.dirname(CONFIG_PATH), "state.json");
 const DEFAULT_CONFIG_PATH = path.join(__dirname, "..", "config", "config_default.json");
+const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "build_timestamp");
 
 const STATE_KEYS = [
   "last_used_model",
@@ -187,6 +188,7 @@ function setSessionRefreshCookie(req, res) {
 function requireWebSession(req, res, next) {
   if (req.path === "/auth/login" && req.method === "POST") return next();
   if (req.path === "/status" && req.method === "GET") return next();
+  if (req.path === "/build-info" && req.method === "GET") return next();
   const cookies = parseCookie(req.headers.cookie);
   const sessionId = cookies.transrewrt_session;
   const state = loadState();
@@ -374,6 +376,8 @@ function saveConfig(config) {
 
 app.get("/api/config", (req, res) => {
   try {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
     const config = loadConfig();
     const state = loadState();
     res.json({ ...config, ...state });
@@ -724,6 +728,19 @@ app.get("/api/status", async (req, res) => {
       apiKeyValid: false,
       message: err.message || "Failed to verify API key.",
     });
+  }
+});
+
+app.get("/api/build-info", (req, res) => {
+  try {
+    if (!fs.existsSync(BUILD_TIMESTAMP_PATH)) {
+      return res.json({ buildTimestamp: null });
+    }
+    const content = fs.readFileSync(BUILD_TIMESTAMP_PATH, "utf8").trim();
+    res.json({ buildTimestamp: content || null });
+  } catch (err) {
+    console.error("[API] GET /api/build-info - Error:", err);
+    res.json({ buildTimestamp: null });
   }
 });
 

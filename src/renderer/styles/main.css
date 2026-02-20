@@ -97,6 +97,16 @@ button {
     flex-direction: column;
 }
 
+/* Web mode: outer area around bordered app frame (dark/light by system preference) */
+[data-web-outer] {
+    background: #000;
+}
+@media (prefers-color-scheme: light) {
+    [data-web-outer] {
+        background: #fff;
+    }
+}
+
 /* Sidebar layout - app container */
 .app-container {
     display: flex;

@@ -45,6 +45,9 @@ COPY config/ ./config/
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
 
+# Build timestamp for About tab (same format as write-build-timestamp.js)
+RUN date +"%Y-%m-%dT%H:%M:%S%z" > build_timestamp
+
 ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
 ENV PORT=5000

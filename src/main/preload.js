@@ -18,6 +18,7 @@ const api = {
   },
   writeLastApiResult: (payload) => ipcRenderer.invoke('write-last-api-result', payload),
   writeDebugFile: (filename, data) => ipcRenderer.invoke('write-debug-file', filename, data),
+  getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

@@ -109,6 +109,37 @@ const useStyles = makeStyles({
     justifyContent: "center",
     height: "100vh",
   },
+  // Web-only: outer padding + background (margin visible on all 4 sides)
+  webOuter: {
+    height: "100vh",
+    boxSizing: "border-box",
+    padding: "1% 1.5%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  // Web-only: bordered frame around the app
+  webFrame: {
+    flex: 1,
+    minHeight: 0,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    border: "1px solid #333",
+    borderRadius: "4px",
+  },
+  loadingWebInner: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // Root layout when inside web frame (fills frame, no fixed height)
+  rootInWeb: {
+    flex: 1,
+    minHeight: 0,
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
@@ -749,6 +780,17 @@ const App = () => {
   };
 
   if (configLoading) {
+    if (isWeb) {
+      return (
+        <div id="root" className={styles.webOuter} data-web-outer>
+          <div className={styles.webFrame}>
+            <div className={styles.loadingWebInner}>
+              <span>Loading settings…</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div id="root" className={mergeClasses(styles.root, styles.loadingRoot)}>
         <span>Loading settings…</span>
@@ -756,11 +798,49 @@ const App = () => {
     );
   }
 
+  if (isWeb) {
+    return (
+      <div id="root" className={styles.webOuter} data-web-outer>
+        <div className={styles.webFrame}>
+          <div className={styles.rootInWeb}>
+            {isWeb && needsLogin && (
+              <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
+            )}
+            {renderApiKeyMissingModal()}
+            <div className="app-container">
+              <Sidebar
+                currentMode={currentMode}
+                currentView={currentView}
+                onModeChange={handleModeChange}
+                onSettingsClick={() => {
+                  setCurrentView("settings");
+                  if (isWeb) setSetting("web_view", "settings");
+                }}
+              />
+              <MainContent
+                view={currentView}
+                currentMode={currentMode}
+                models={models}
+                activeModel={activeModel}
+                onModelChange={(model) => updateSettings({ last_used_model: model })}
+                onOpenSettingsModels={() => {
+                  updateSettings({ settings_active_tab: "models" });
+                  setCurrentView("settings");
+                  if (isWeb) setSetting("web_view", "settings");
+                }}
+                onRemoveModel={removeModelFromList}
+                leftPanel={leftPanel}
+                rightPanel={rightPanel}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div id="root" className={styles.root}>
-      {isWeb && needsLogin && (
-        <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
-      )}
       {renderApiKeyMissingModal()}
       <div className="app-container">
         <Sidebar
@@ -769,7 +849,6 @@ const App = () => {
           onModeChange={handleModeChange}
           onSettingsClick={() => {
             setCurrentView("settings");
-            if (isWeb) setSetting("web_view", "settings");
           }}
         />
         <MainContent
@@ -781,7 +860,6 @@ const App = () => {
           onOpenSettingsModels={() => {
             updateSettings({ settings_active_tab: "models" });
             setCurrentView("settings");
-            if (isWeb) setSetting("web_view", "settings");
           }}
           onRemoveModel={removeModelFromList}
           leftPanel={leftPanel}
