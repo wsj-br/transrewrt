@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.1-65",
+  "version": "1.0.1+build20260220-004045",
   "description": "Translate text between languages and rewrite text in different styles using AI. Desktop and web app.",
   "main": "src/main/main.js",
   "scripts": {

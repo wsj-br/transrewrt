@@ -1,5 +1,6 @@
 /**
- * Bump semver prerelease number in package.json (e.g. 1.0.1-52 -> 1.0.1-53).
+ * Set package.json version to base (major.minor.patch) + build timestamp.
+ * e.g. 1.0.1 or 1.0.1-65 -> 1.0.1+build20260220-003811
  * Works on Windows and Linux.
  */
 
@@ -17,24 +18,21 @@ if (!fs.existsSync(packagePath)) {
 const p = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 const raw = (p.version || '').trim();
 
-let base, prerelease;
-if (raw.includes('-')) {
-  const idx = raw.lastIndexOf('-');
-  base = raw.slice(0, idx);
-  prerelease = parseInt(raw.slice(idx + 1), 10);
-} else {
-  const parts = raw.split('.');
-  if (parts.length < 4) {
-    console.error('Error: version must be major.minor.patch-N or major.minor.patch.fourth');
-    process.exit(1);
-  }
-  base = parts.slice(0, 3).join('.');
-  prerelease = parseInt(parts[3], 10);
-}
-if (Number.isNaN(prerelease)) {
-  console.error('Error: prerelease segment is not a number');
-  process.exit(1);
-}
-p.version = base + '-' + (prerelease + 1);
+// Strip build metadata (+...) then prerelease (-N) to get base major.minor.patch
+let v = raw.includes('+') ? raw.split('+')[0] : raw;
+const dashIdx = v.indexOf('-');
+const base = dashIdx >= 0 ? v.slice(0, dashIdx) : v;
+
+const now = new Date();
+const yyyymmdd =
+  now.getFullYear() +
+  String(now.getMonth() + 1).padStart(2, '0') +
+  String(now.getDate()).padStart(2, '0');
+const hhmmss =
+  String(now.getHours()).padStart(2, '0') +
+  String(now.getMinutes()).padStart(2, '0') +
+  String(now.getSeconds()).padStart(2, '0');
+
+p.version = base + '+build' + yyyymmdd + '-' + hhmmss;
 fs.writeFileSync(packagePath, JSON.stringify(p, null, 2) + '\n');
-console.log('Version bumped to ' + p.version+'\n');
+console.log('Version set to ' + p.version + '\n');

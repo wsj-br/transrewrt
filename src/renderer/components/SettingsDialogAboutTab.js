@@ -92,9 +92,11 @@ const SettingsDialogAboutTab = () => {
         <b>{REPO_URL}</b>
       </Link>
       <div className={styles.meta}>
-        {APP_AUTHOR && <span>© {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
+        {APP_AUTHOR && <span>Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
         {APP_AUTHOR && APP_LICENSE && " · "}
         {APP_LICENSE && <span>Licensed under {APP_LICENSE}</span>}
+        <br />
+        <span>All rights reserved.</span>
       </div>
     </div>
   );
