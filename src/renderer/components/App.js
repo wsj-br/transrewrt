@@ -113,6 +113,17 @@ const useStyles = makeStyles({
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
+/** Format seconds as "mm:ss.s" (e.g. 191.8 → "03:11.8", 8.9 → "00:08.9") */
+function formatElapsedMmSs(seconds) {
+  const sec = Number(seconds) || 0;
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  const mm = String(m).padStart(2, "0");
+  const [sInt, sFrac] = s.toFixed(1).split(".");
+  const ss = String(sInt).padStart(2, "0") + "." + sFrac;
+  return `${mm}:${ss}`;
+}
+
 const App = () => {
   const styles = useStyles();
   const { settings, translate, rewrite, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading } =
@@ -619,7 +630,7 @@ const App = () => {
     />
   );
 
-  const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${elapsedTime.toFixed(1)}s | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
+  const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${formatElapsedMmSs(elapsedTime)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
 
   const leftPanel = (
     <div className={styles.panelStack}>

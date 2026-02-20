@@ -3,6 +3,25 @@ import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
 
+const DEFAULT_FONT = 'Verdana';
+
+const FONT_OPTIONS = [
+  { type: 'header', value: '__sans__', label: '— Sans-serif —' },
+  { type: 'font', value: 'system-ui', label: 'system-ui' },
+  { type: 'font', value: 'Segoe UI', label: 'Segoe UI' },
+  { type: 'font', value: 'Verdana', label: 'Verdana' },
+  { type: 'header', value: '__serif__', label: '— Serif —' },
+  { type: 'font', value: 'Georgia', label: 'Georgia' },
+  { type: 'font', value: 'Times New Roman', label: 'Times New Roman' },
+  { type: 'font', value: 'Cambria', label: 'Cambria' },
+  { type: 'header', value: '__mono__', label: '— Monospace —' },
+  { type: 'font', value: 'ui-monospace', label: 'ui-monospace' },
+  { type: 'font', value: 'Consolas', label: 'Consolas' },
+  { type: 'font', value: 'Menlo', label: 'Menlo' },
+];
+
+const FONT_VALUES = FONT_OPTIONS.filter((o) => o.type === 'font').map((o) => o.value);
+
 // ColorPickerPopup Component remains unchanged (copy from previous version with Palette icon fixes if needed)
 const useColorPickerStyles = makeStyles({
   colorPickerRow: {
@@ -266,16 +285,30 @@ const SettingsDialogGeneralTab = ({
             <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
             <Dropdown
               id="font-family"
-              value={localSettings.font_family || 'Arial'}
-              selectedOptions={[(localSettings.font_family || 'Arial')]}
-              onOptionSelect={(e, data) => onSettingChange('font_family', data.optionValue)}
+              value={localSettings.font_family || DEFAULT_FONT}
+              selectedOptions={[(localSettings.font_family || DEFAULT_FONT)]}
+              onOptionSelect={(e, data) => {
+                const v = data.optionValue;
+                if (v && FONT_VALUES.includes(v)) onSettingChange('font_family', v);
+              }}
               style={{ width: 'auto', minWidth: '200px' }}
             >
-              <Option value="Arial" style={{ fontFamily: 'Arial' }}>Arial</Option>
-              <Option value="Segoe UI" style={{ fontFamily: 'Segoe UI' }}>Segoe UI</Option>
-              <Option value="Verdana" style={{ fontFamily: 'Verdana' }}>Verdana</Option>
-              <Option value="Consolas" style={{ fontFamily: 'Consolas' }}>Consolas</Option>
-              <Option value="Times New Roman" style={{ fontFamily: 'Times New Roman' }}>Times New Roman</Option>
+              {localSettings.font_family && !FONT_VALUES.includes(localSettings.font_family) ? (
+                <Option value={localSettings.font_family} style={{ fontFamily: localSettings.font_family }}>
+                  {localSettings.font_family}
+                </Option>
+              ) : null}
+              {FONT_OPTIONS.map((item) =>
+                item.type === 'header' ? (
+                  <Option key={item.value} value={item.value} disabled>
+                    {item.label}
+                  </Option>
+                ) : (
+                  <Option key={item.value} value={item.value} style={{ fontFamily: item.value }}>
+                    {item.label}
+                  </Option>
+                )
+              )}
             </Dropdown>
             <Label htmlFor="font-size" style={{ margin: 0, whiteSpace: 'nowrap' }}>Size:</Label>
             <SpinButton
@@ -303,7 +336,7 @@ const SettingsDialogGeneralTab = ({
                 marginTop: '4px',
                 color: localSettings.input_text_color || '#ffffff',
                 wordWrap: 'break-word',
-                fontFamily: localSettings.font_family || 'Arial',
+                fontFamily: localSettings.font_family || DEFAULT_FONT,
                 fontSize: `${localSettings.font_size || 14}px`,
                 lineHeight: '1.5',
               }}
@@ -323,7 +356,7 @@ const SettingsDialogGeneralTab = ({
                 marginTop: '4px',
                 color: localSettings.output_text_color || '#ffffff',
                 wordWrap: 'break-word',
-                fontFamily: localSettings.font_family || 'Arial',
+                fontFamily: localSettings.font_family || DEFAULT_FONT,
                 fontSize: `${localSettings.font_size || 14}px`,
                 lineHeight: '1.5',
               }}

@@ -189,6 +189,10 @@ class APIService {
     try {
       while (true) {
         if (signal?.aborted) aborted = true;
+        if (aborted) {
+          if (!reader.closed) reader.cancel();
+          break;
+        }
         try {
           const { done, value } = await reader.read();
           if (done) break;
@@ -223,29 +227,11 @@ class APIService {
             }
           }
         } catch (readErr) {
-          if (readErr.name === "AbortError") break;
+          if (readErr.name === "AbortError") {
+            aborted = true;
+            break;
+          }
           throw readErr;
-        }
-        if (aborted && !reader.closed) {
-          try {
-            const { done, value } = await reader.read();
-            if (done) break;
-            if (value) {
-              response_bytes += value.length;
-              const chunk = decoder.decode(value, { stream: true });
-              for (const line of chunk.split("\n")) {
-                const trimmed = line.trim();
-                if (!trimmed || trimmed === "data: [DONE]" || !trimmed.startsWith("data: ")) continue;
-                try {
-                  const data = JSON.parse(trimmed.replace(/^data: /, ""));
-                  rawChunks.push(data);
-                  if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
-                  if (data.usage) usage = data.usage;
-                } catch (_) {}
-              }
-            }
-          } catch (_) {}
-          break;
         }
       }
     } catch (error) {

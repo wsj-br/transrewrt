@@ -117,6 +117,20 @@ const webAPI = {
     }
   },
 
+  getTotalCostFromDatabase: async () => {
+    const res = await fetch(`${API_BASE}/api/calls/total-cost`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to get total cost");
+    }
+    const data = await res.json();
+    return { total_cost: data.total_cost ?? 0 };
+  },
+
   getSummaryByFunction: async (from, to) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
@@ -177,6 +191,35 @@ const webAPI = {
     }
   },
 
+  deleteCallsByModel: async (model) => {
+    const name = model != null ? String(model).trim() : "";
+    if (!name) {
+      return Promise.reject(new Error("Model name is required"));
+    }
+    const res = await fetch(`${API_BASE}/api/calls/delete-by-model`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: name }),
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) {
+      const text = await res.text();
+      let msg = "Failed to delete data";
+      try {
+        const data = text ? JSON.parse(text) : {};
+        if (data.error && typeof data.error === "string") msg = data.error;
+        else msg = `${msg} (${res.status} ${res.statusText || ""})`.trim();
+      } catch (_) {
+        msg = `${msg} (${res.status} ${res.statusText || ""})`.trim();
+      }
+      throw new Error(msg);
+    }
+  },
+
   getApiStatus: async () => {
     try {
       const res = await fetch(`${API_BASE}/api/status`, { credentials: "include" });
@@ -189,6 +232,18 @@ const webAPI = {
     } catch (err) {
       console.error("[WebAPI] getApiStatus failed:", err);
       return { apiKeySet: false, apiKeyValid: false, message: err.message || "Failed to check API status." };
+    }
+  },
+
+  getOpenRouterKeyInfo: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/key`, { credentials: "include" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      return data;
+    } catch (err) {
+      console.error("[WebAPI] getOpenRouterKeyInfo failed:", err);
+      throw err;
     }
   },
 

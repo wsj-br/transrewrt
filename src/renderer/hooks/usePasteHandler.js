@@ -9,7 +9,12 @@ export function usePasteHandler(setInputText, handleRunAction, inputText, autoTr
   const shouldAutoProcessRef = useRef(false);
 
   const pasteToInput = () => {
-    navigator.clipboard
+    const clipboard = typeof navigator !== "undefined" ? navigator.clipboard : null;
+    if (!clipboard || typeof clipboard.readText !== "function") {
+      console.warn("Clipboard API not available (requires secure context)");
+      return;
+    }
+    clipboard
       .readText()
       .then((text) => {
         setInputText(text);

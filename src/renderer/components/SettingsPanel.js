@@ -51,7 +51,7 @@ const SettingsPanel = () => {
   } = useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
-  const [activeTab, setActiveTab] = useState("general"); // Will be set from settings on mount/update
+  const [activeTab, setActiveTab] = useState(null); // Restored from settings on mount; no tab selected until then to avoid flash
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filterFree, setFilterFree] = useState(false);
@@ -67,7 +67,6 @@ const SettingsPanel = () => {
   const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
   const [modelsError, setModelsError] = useState(null);
-  const skipNextPersistTabRef = useRef(true); // skip first run so we don't overwrite restored tab on mount
   const hasRestoredTabRef = useRef(false);   // in web mode, later context updates can overwrite; only restore tab once per mount
 
   useEffect(() => {
@@ -89,22 +88,6 @@ const SettingsPanel = () => {
       }
     }
   }, [settings]);
-
-  // Persist active tab when user switches tabs (not on initial mount, to avoid overwriting restored tab).
-  useEffect(() => {
-    if (skipNextPersistTabRef.current) {
-      skipNextPersistTabRef.current = false;
-      return;
-    }
-    if (!activeTab) return;
-    const current = settings.settings_active_tab || "general";
-    // Don't overwrite a saved tab with initial state: restore set the tab but state may not have
-    // flushed yet (or effect ran twice in Strict Mode), so we must not persist "general" over it.
-    if (activeTab === "general" && current !== "general") return;
-    if (activeTab !== current) {
-      setSetting("settings_active_tab", activeTab);
-    }
-  }, [activeTab]); // eslint-disable-line react-hooks/exhaustive-deps -- intentionally omit settings/setSetting to avoid loop
 
   useEffect(() => {
     if (allModels.length === 0) {
@@ -300,9 +283,9 @@ const SettingsPanel = () => {
     }
   };
 
-  // Handle tab changes (persistence is done in the effect below to avoid duplicate persistence)
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+    setSetting("settings_active_tab", tab);
   };
 
   return (
@@ -317,7 +300,7 @@ const SettingsPanel = () => {
           className={`tab-btn ${activeTab === "general" ? "active" : ""}`}
           onClick={() => handleTabChange("general")}
         >
-          <Sliders size={16} /> Behavior & Appearance
+          <Sliders size={16} /> General Settings
         </button>
         <button
           type="button"

@@ -327,3 +327,5 @@ Please follow the existing code style and test your changes in both Electron and
 ## License
 
 [Apache License 2.0](LICENSE) © 2026 Waldemar Scudeller Jr.
+
+

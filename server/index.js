@@ -546,6 +546,17 @@ function buildWhereFromTo(from, to) {
   return { where: parts.length ? " WHERE " + parts.join(" AND ") : "", params };
 }
 
+app.get("/api/calls/total-cost", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const row = db.prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls").get();
+    res.json({ total_cost: row?.total_cost ?? 0 });
+  } catch (err) {
+    console.error("[API] GET /api/calls/total-cost - Error:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/api/calls/summary-by-function", (req, res) => {
   if (!db) return res.status(503).json({ error: "Database unavailable" });
   try {
@@ -633,6 +644,25 @@ app.get("/api/calls/summary-by-day", (req, res) => {
   }
 });
 
+// Delete all rows for a single model (body: { model }). Never deletes entire table.
+app.post("/api/calls/delete-by-model", (req, res) => {
+  setSessionRefreshCookie(req, res);
+  if (!db) {
+    return res.status(503).json({ error: "Database unavailable" });
+  }
+  const model = req.body && req.body.model != null ? String(req.body.model).trim() : "";
+  if (!model) {
+    return res.status(400).json({ error: "Model name is required" });
+  }
+  try {
+    const result = db.prepare("DELETE FROM api_calls WHERE model = ?").run(model);
+    res.json({ success: true, deleted: result.changes });
+  } catch (err) {
+    console.error("[API] POST /api/calls/delete-by-model - Error:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.delete("/api/calls", (req, res) => {
   if (!db) {
     return res.status(503).json({ error: "Database unavailable" });
@@ -694,6 +724,25 @@ app.get("/api/status", async (req, res) => {
       apiKeyValid: false,
       message: err.message || "Failed to verify API key.",
     });
+  }
+});
+
+// --- OpenRouter key limits (limit, limit_remaining, limit_reset) ---
+app.get("/api/key", async (req, res) => {
+  try {
+    const baseUrl = getProxyBaseUrl();
+    if (!baseUrl.includes("openrouter.ai")) {
+      return res.status(400).json({ error: "Key info is only available for OpenRouter API." });
+    }
+    const keyUrl = `${baseUrl}/key`;
+    const headers = getProxyHeaders();
+    const keyRes = await fetch(keyUrl, { method: "GET", headers });
+    const data = await keyRes.json().catch(() => ({}));
+    if (!keyRes.ok) return res.status(keyRes.status).json(data);
+    return res.json(data);
+  } catch (err) {
+    console.error("[API] GET /api/key - Error:", err);
+    res.status(500).json({ error: err.message || "Failed to fetch key info." });
   }
 });
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, tokens, Text, makeStyles } from "@fluentui/react-components";
-import { DollarSign, Copy } from "lucide-react";
+import { Button, tokens, Text, makeStyles, Dropdown, Option, Label } from "@fluentui/react-components";
+import { DollarSign, Copy, Trash2, Server } from "lucide-react";
 import webAPI from "../utils/webApiClient";
 import ConfirmModal from "./ConfirmModal";
 
@@ -44,6 +44,9 @@ const useStyles = makeStyles({
     padding: "12px 16px",
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     color: tokens.colorNeutralForeground1,
+  },
+  tdValue: {
+    whiteSpace: "nowrap",
   },
   tbodyTr: {
     ":hover": {
@@ -93,7 +96,29 @@ const useStyles = makeStyles({
       color: "#ffffff",
     },
   },
+  modelCell: {
+    minWidth: "240px",
+    whiteSpace: "nowrap",
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+  },
+  modelTrashIcon: {
+    color: "#6b7280",
+    cursor: "pointer",
+    flexShrink: 0,
+    ":hover": {
+      color: tokens.colorNeutralForeground1,
+    },
+  },
 });
+
+const COST_FRACTION_STYLE_OPTIONS = [
+  { value: "subscript", label: "Subscript" },
+  { value: "muted", label: "Muted gray" },
+  { value: "superscript", label: "Superscript" },
+  { value: "small", label: "Small font" },
+];
 
 const FILTERS = [
   { id: "all", label: "All" },
@@ -162,6 +187,58 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   const [loading, setLoading] = useState(false);
   const [showDeleteAllConfirm, setShowDeleteAllConfirm] = useState(false);
   const [deleteAllError, setDeleteAllError] = useState(null);
+  const [modelToDelete, setModelToDelete] = useState(null);
+  const [deleteByModelError, setDeleteByModelError] = useState(null);
+  const [syncCostError, setSyncCostError] = useState(null);
+  const [keyInfo, setKeyInfo] = useState(null);
+  const [keyInfoLoading, setKeyInfoLoading] = useState(false);
+  const [keyInfoError, setKeyInfoError] = useState(null);
+
+  const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
+  const isOpenRouter = apiUrl.includes("openrouter.ai");
+
+  useEffect(() => {
+    if (!isOpenRouter) {
+      setKeyInfo(null);
+      setKeyInfoError(null);
+      return;
+    }
+    let cancelled = false;
+    setKeyInfoError(null);
+    setKeyInfoLoading(true);
+    const fetchKeyInfo = async () => {
+      try {
+        if (isWeb) {
+          if (!webAPI.getOpenRouterKeyInfo) return;
+          const data = await webAPI.getOpenRouterKeyInfo();
+          if (!cancelled) setKeyInfo(data?.data != null ? data.data : data);
+        } else {
+          const key = localSettings.api_key || "";
+          if (!key.trim()) {
+            if (!cancelled) setKeyInfoError("API key not set");
+            return;
+          }
+          const base = apiUrl.replace(/\/$/, "");
+          const res = await fetch(`${base}/key`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${key}` },
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+          if (!cancelled) setKeyInfo(data?.data != null ? data.data : data);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setKeyInfo(null);
+          setKeyInfoError(err?.message || "Failed to load key info");
+        }
+      } finally {
+        if (!cancelled) setKeyInfoLoading(false);
+      }
+    };
+    fetchKeyInfo();
+    return () => { cancelled = true; };
+  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key]);
 
   useEffect(() => {
     if (!isWeb || !webAPI.getSummaryByFunction) return;
@@ -185,9 +262,37 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
       .finally(() => setLoading(false));
   }, [filter]);
 
-  const handleCopyCost = () => {
+  const handleCopyCost = async () => {
     const cost = parseFloat(localSettings.total_cost || 0).toFixed(6);
-    navigator.clipboard.writeText(cost);
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(cost);
+        return;
+      } catch {
+        // fall through to fallback
+      }
+    }
+    const textArea = document.createElement("textarea");
+    textArea.value = cost;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand("copy");
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  };
+
+  const handleSyncWithKeyUsage = () => {
+    setSyncCostError(null);
+    if (!keyInfo || keyInfo.limit == null) {
+      setSyncCostError("No key usage available");
+      return;
+    }
+    const usage = keyInfo.limit - (keyInfo.limit_remaining ?? 0);
+    onSettingChange("total_cost", usage);
   };
 
   const refetchSummaries = () => {
@@ -223,14 +328,65 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
     }
   };
 
+  const handleConfirmDeleteByModel = async () => {
+    if (!modelToDelete) return;
+    setDeleteByModelError(null);
+    try {
+      await webAPI.deleteCallsByModel(modelToDelete);
+      setModelToDelete(null);
+      refetchSummaries();
+    } catch (err) {
+      setDeleteByModelError(err.message || "Failed to delete data");
+    }
+  };
+
   const filterLabel = FILTERS.find((f) => f.id === filter)?.label || filter;
   const isDeleteAll = filter === "all";
 
-  const formatAvgCost = (cost, calls) =>
-    calls > 0 ? `$${Number(cost / calls).toFixed(6)}` : "—";
+  const DASH = "—";
+  const costFractionStyle = localSettings.cost_fraction_style || "muted";
 
-  const formatAvgTps = (avgTps) =>
-    avgTps != null && Number(avgTps) > 0 ? Number(avgTps).toFixed(2) : "—";
+  const formatDollarAmount = (n) => {
+    const s = Number(n).toFixed(6);
+    const dot = s.indexOf(".");
+    if (dot === -1) return "$" + s;
+    const main = s.slice(0, dot + 3);
+    const frac = s.slice(dot + 3);
+    const fractionNode =
+      costFractionStyle === "superscript" ? (
+        <sup>{frac}</sup>
+      ) : costFractionStyle === "muted" ? (
+        <span style={{ color: tokens.colorNeutralForeground3 }}>{frac}</span>
+      ) : costFractionStyle === "small" ? (
+        <span style={{ fontSize: "0.7em" }}>{frac}</span>
+      ) : (
+        <sub>{frac}</sub>
+      );
+    return (
+      <>
+        {"$" + main}
+        {fractionNode}
+      </>
+    );
+  };
+
+  const formatCost = (cost) => {
+    const n = Number(cost);
+    return cost == null || Number.isNaN(n) || n === 0 ? DASH : formatDollarAmount(n);
+  };
+
+  const formatAvgCost = (cost, calls) => {
+    const n = Number(cost);
+    if (calls == null || calls === 0 || cost == null || Number.isNaN(n) || n === 0) return DASH;
+    return formatDollarAmount(cost / calls);
+  };
+
+  const formatAvgTps = (avgTps) => {
+    const n = Number(avgTps);
+    return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(2);
+  };
+
+  const formatCount = (count) => (count == null || Number(count) === 0 ? DASH : Number(count));
 
   const emptyRow = (colSpan) => (
     <tr>
@@ -247,40 +403,111 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
           <DollarSign size={20} />
           Cost Tracking
         </Text>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: "64px", marginTop: "12px", gap: "16px", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "16px", fontWeight: 600 }}>Total Cost:</span>
-            <span style={{ fontSize: "18px", fontWeight: 700, color: tokens.colorStatusSuccessForeground1 }}>
-              ${parseFloat(localSettings.total_cost || 0).toFixed(6)}
+            <span style={{ fontSize: "16px", color: tokens.colorStatusSuccessForeground1, whiteSpace: "nowrap" }}>
+              {formatCost(localSettings.total_cost)}
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <Button appearance="secondary" size="small" onClick={handleCopyCost} icon={<Copy size={14} />}>
               Copy Value
             </Button>
             <Button appearance="secondary" size="small" onClick={() => onSettingChange("total_cost", 0)}>
               Reset Cost
             </Button>
+            {isOpenRouter && (
+              <Button
+                appearance="secondary"
+                size="small"
+                onClick={handleSyncWithKeyUsage}
+                disabled={keyInfoLoading || !keyInfo || keyInfo.limit == null}
+                icon={<Server size={14} />}
+              >
+                Sync with API key usage
+              </Button>
+            )}
+            {syncCostError && (
+              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: "13px" }}>{syncCostError}</span>
+            )}
           </div>
         </div>
+        {isOpenRouter && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginTop: "18px", marginLeft: "32px" }}>
+            <span style={{ fontSize: "16px", fontWeight: 600 }}>API Key Usage:</span>
+            <span style={{
+              fontSize: "16px",
+              color: keyInfoError ? tokens.colorStatusDangerForeground1 : tokens.colorNeutralForeground1,
+              whiteSpace: "nowrap",
+            }}>
+              {keyInfoLoading
+                ? "Loading…"
+                : keyInfoError
+                  ? keyInfoError
+                  : !keyInfo
+                    ? DASH
+                    : keyInfo.limit == null
+                      ? "no limit configured"
+                      : (
+                          <>
+                            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
+                              {formatCost(keyInfo.limit - keyInfo.limit_remaining)}
+                            </span>
+                            {" / "}
+                            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
+                              ${Number(keyInfo.limit).toFixed(2)}
+                            </span>
+                            {keyInfo.limit_reset == null ? " (no reset)" : ` (reset ${keyInfo.limit_reset})`}
+                          </>
+                        )}
+            </span>
+          </div>
+        )}
       </div>
 
       {isWeb && (
         <>
           <div className="section" style={{ marginTop: "24px" }}>
-            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "8px" }}>Filter</Text>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              {FILTERS.map((f) => (
-                <Button
-                  key={f.id}
-                  size="small"
-                  appearance={filter === f.id ? "primary" : "subtle"}
-                  className={filter !== f.id ? styles.filterButtonUnselected : undefined}
-                  onClick={() => setFilter(f.id)}
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "24px 8px" }}>
+              {/* Block 1: Filter label + filter buttons; wraps as a unit when row is too narrow */}
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
+                <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginRight: "4px" }}>Filter</Text>
+                {FILTERS.map((f) => (
+                  <Button
+                    key={f.id}
+                    size="small"
+                    appearance={filter === f.id ? "primary" : "subtle"}
+                    className={filter !== f.id ? styles.filterButtonUnselected : undefined}
+                    onClick={() => setFilter(f.id)}
+                  >
+                    {f.label}
+                  </Button>
+                ))}
+              </div>
+              {/* Block 2: Fraction digits label + dropdown; moves below block 1 when row is too narrow */}
+              <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
+                <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginLeft: "24px", marginRight: "4px" }}>Fraction digits</Text>
+                <Dropdown
+                  id="cost-fraction-style"
+                  appearance="underline"
+                  value={COST_FRACTION_STYLE_OPTIONS.find((o) => o.value === (localSettings.cost_fraction_style || "muted"))?.label ?? "Muted gray"}
+                  selectedOptions={[localSettings.cost_fraction_style || "muted"]}
+                  onOptionSelect={(e, data) => {
+                    const v = data.optionValue;
+                    if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
+                      onSettingChange("cost_fraction_style", v);
+                    }
+                  }}
+                  style={{ minWidth: "120px" }}
                 >
-                  {f.label}
-                </Button>
-              ))}
+                  {COST_FRACTION_STYLE_OPTIONS.map((o) => (
+                    <Option key={o.value} value={o.value}>
+                      {o.label}
+                    </Option>
+                  ))}
+                </Dropdown>
+              </div>
             </div>
           </div>
 
@@ -295,7 +522,7 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                     <table className={`${styles.table} ${styles.tableFullWidth}`}>
                     <thead className={styles.thead}>
                       <tr>
-                        <th className={styles.th}>Model</th>
+                        <th className={styles.th} style={{ minWidth: "240px" }}>Model</th>
                         <th className={styles.th}>Translation calls</th>
                         <th className={styles.th}>Rewrite calls</th>
                         <th className={styles.th}>Translation cost</th>
@@ -312,14 +539,27 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                             .filter((r) => r.model !== "Total")
                             .map((row, i) => (
                               <tr key={i} className={styles.tbodyTr}>
-                                <td className={styles.td}>{row.model}</td>
-                                <td className={styles.td}>{row.translation_calls ?? 0}</td>
-                                <td className={styles.td}>{row.rewrite_calls ?? 0}</td>
-                                <td className={styles.td}>${Number(row.translation_cost || 0).toFixed(6)}</td>
-                                <td className={styles.td}>${Number(row.rewrite_cost || 0).toFixed(6)}</td>
-                                <td className={styles.td}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                                <td className={styles.td}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
-                                <td className={styles.td}>{formatAvgTps(row.avg_tps)}</td>
+                                <td className={styles.td}>
+                                  <span className={styles.modelCell}>
+                                    <span>{row.model}</span>
+                                    <Trash2
+                                      size={14}
+                                      className={styles.modelTrashIcon}
+                                      title="Exclude all data for this model"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setModelToDelete(row.model);
+                                      }}
+                                    />
+                                  </span>
+                                </td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(row.avg_tps)}</td>
                               </tr>
                             ))}
                       {byModel.some((r) => r.model === "Total") && (() => {
@@ -329,13 +569,13 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                         return (
                           <tr className={styles.totalRow}>
                             <td className={styles.td}><strong>Total</strong></td>
-                            <td className={styles.td}>{tc}</td>
-                            <td className={styles.td}>{rc}</td>
-                            <td className={styles.td}>${Number(total?.translation_cost || 0).toFixed(6)}</td>
-                            <td className={styles.td}>${Number(total?.rewrite_cost || 0).toFixed(6)}</td>
-                            <td className={styles.td}>{formatAvgCost(Number(total?.translation_cost || 0), tc)}</td>
-                            <td className={styles.td}>{formatAvgCost(Number(total?.rewrite_cost || 0), rc)}</td>
-                            <td className={styles.td}>{formatAvgTps(total?.avg_tps)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(tc)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(rc)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.translation_cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.rewrite_cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.translation_cost || 0), tc)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.rewrite_cost || 0), rc)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(total?.avg_tps)}</td>
                           </tr>
                         );
                       })()}
@@ -364,9 +604,9 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                             .map((row, i) => (
                               <tr key={i} className={styles.tbodyTr}>
                                 <td className={styles.td}>{row.function}</td>
-                                <td className={styles.td}>{row.calls}</td>
-                                <td className={styles.td}>${Number(row.cost || 0).toFixed(6)}</td>
-                                <td className={styles.td}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.calls)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.cost)}</td>
+                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
                               </tr>
                             ))}
                       {byFunction.some((r) => r.function === "Total") && (() => {
@@ -375,9 +615,9 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                         return (
                           <tr className={styles.totalRow}>
                             <td className={styles.td}><strong>Total</strong></td>
-                            <td className={styles.td}>{calls}</td>
-                            <td className={styles.td}>${Number(total?.cost || 0).toFixed(6)}</td>
-                            <td className={styles.td}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(calls)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
                           </tr>
                         );
                       })()}
@@ -409,12 +649,12 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                         : byDay.map((row, i) => (
                             <tr key={i} className={styles.tbodyTr}>
                               <td className={styles.td}>{row.day}</td>
-                              <td className={styles.td}>{row.translation_calls ?? 0}</td>
-                              <td className={styles.td}>{row.rewrite_calls ?? 0}</td>
-                              <td className={styles.td}>${Number(row.translation_cost || 0).toFixed(6)}</td>
-                              <td className={styles.td}>${Number(row.rewrite_cost || 0).toFixed(6)}</td>
-                              <td className={styles.td}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                              <td className={styles.td}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
                             </tr>
                           ))}
                     </tbody>
@@ -465,6 +705,24 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
           onCancel={() => {
             setShowDeleteAllConfirm(false);
             setDeleteAllError(null);
+          }}
+        />
+      )}
+
+      {modelToDelete != null && (
+        <ConfirmModal
+          title="Exclude all data for this model"
+          message={
+            deleteByModelError
+              ? `Something went wrong: ${deleteByModelError}`
+              : `Delete all API call records for model "${modelToDelete}"? This cannot be undone.`
+          }
+          confirmLabel="Delete"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirmDeleteByModel}
+          onCancel={() => {
+            setModelToDelete(null);
+            setDeleteByModelError(null);
           }}
         />
       )}
