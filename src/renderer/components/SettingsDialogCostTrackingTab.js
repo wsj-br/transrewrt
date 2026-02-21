@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     width: "fit-content",
     maxWidth: "100%",
     marginTop: "8px",
-    marginBottom: "24px",
+    marginBottom: "8px",
     borderRadius: "8px",
     overflow: "auto",
     boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
@@ -63,6 +63,7 @@ const useStyles = makeStyles({
   totalRow: {
     fontWeight: 600,
     backgroundColor: "rgba(96, 205, 255, 0.12)",
+    borderTop: "2px solid rgba(96, 205, 255, 0.4)",
     "& td": {
       borderBottom: "none",
       color: "#60cdff",
@@ -90,9 +91,9 @@ const useStyles = makeStyles({
     width: "fit-content",
     maxWidth: "100%",
     alignSelf: "flex-start",
-    marginBottom: "24px",
-    paddingBottom: "24px",
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    marginBottom: "12px",
+    paddingBottom: "12px",
+    // borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     boxSizing: "border-box",
   },
   /* By function: content-sized only */
@@ -103,9 +104,9 @@ const useStyles = makeStyles({
     width: "fit-content",
     maxWidth: "100%",
     alignSelf: "flex-start",
-    marginBottom: "24px",
-    paddingBottom: "24px",
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    marginBottom: "12px",
+    paddingBottom: "12px",
+    // borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     boxSizing: "border-box",
   },
   filterButtonUnselected: {
@@ -285,9 +286,8 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
         setByFunction(Array.isArray(a) ? a : []);
         setByModel(Array.isArray(b) ? b : []);
         setByDay(Array.isArray(c) ? c : []);
-        if (!isWeb && costApi.getTotalCostFromDatabase) {
-          costApi.getTotalCostFromDatabase().then((r) => onSettingChange("total_cost", r.total_cost ?? 0));
-        }
+        // Do not overwrite persisted total_cost from DB when loading the tab; the user may have
+        // synced with API key usage, and that value must not be replaced by the local DB total.
       })
       .catch(() => {
         setByFunction([]);
@@ -421,7 +421,7 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
 
   const formatAvgTps = (avgTps) => {
     const n = Number(avgTps);
-    return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(2);
+    return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(1);
   };
 
   const formatCount = (count) => (count == null || Number(count) === 0 ? DASH : Number(count));
@@ -554,7 +554,7 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
           <div className={styles.tablesGrid}>
             <div className={styles.gridSectionByModel}>
               <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By model</Text>
-              <div className={styles.tableWrap} style={{ width: "865px" }}>
+              <div className={styles.tableWrap} style={{ width: "910px" }}>
                 <table className={styles.table}>
                 <thead className={styles.thead}>
                   <tr>
