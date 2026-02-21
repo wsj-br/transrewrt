@@ -19,8 +19,12 @@ build_timestamp
 
 # local data (keep out of repo)
 data/
+config.json
+state.json
+transrewrt.db
 
 # api log files
 models_api_raw.json
 models_valid.json
 last_api_result.json
+

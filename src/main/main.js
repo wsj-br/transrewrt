@@ -8,6 +8,7 @@ const getConfigFilePath = () => {
   try {
     const appPath = process.env.PORTABLE_EXECUTABLE_DIR || process.cwd();
     const homedir = os.homedir();
+    const userDataPath = typeof app !== "undefined" && app.getPath ? path.join(app.getPath("userData"), "config.json") : null;
     const isSystemPath = (p) => {
       const normalized = (p || "").toLowerCase();
       return (
@@ -18,6 +19,7 @@ const getConfigFilePath = () => {
       );
     };
     const pathsToCheck = [
+      ...(userDataPath ? [userDataPath] : []),
       path.resolve("config.json"),
       path.join(appPath, "config.json"),
       path.join(homedir, "config.json"),
@@ -26,9 +28,10 @@ const getConfigFilePath = () => {
       ...(isSystemPath(process.execPath) ? [] : [path.join(path.dirname(process.execPath), "config.json")]),
     ];
     for (const p of pathsToCheck) {
-      if (fs.existsSync(p) && !isSystemPath(p)) return p;
+      if (p && fs.existsSync(p) && !isSystemPath(p)) return p;
     }
     const writablePathsToTry = [
+      ...(userDataPath ? [userDataPath] : []),
       path.resolve("config.json"),
       path.join(appPath, "config.json"),
       path.join(homedir, "config.json"),
@@ -85,7 +88,6 @@ function isStateKey(key) {
 function stripStateKeysAndDeprecated(obj) {
   const out = { ...obj };
   STATE_KEYS.forEach((k) => delete out[k]);
-  delete out.settings_modal_geometry;
   return out;
 }
 
@@ -513,7 +515,9 @@ ipcMain.handle("config:setAll", (_, newConfig) => {
 
 ipcMain.handle("write-last-api-result", (_, payload) => {
   try {
-    const filePath = path.join(process.cwd(), "last_api_result.json");
+    const dir = app.getPath("userData");
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const filePath = path.join(dir, "last_api_result.json");
     fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
     return Promise.resolve(true);
   } catch (err) {
@@ -524,7 +528,9 @@ ipcMain.handle("write-last-api-result", (_, payload) => {
 
 ipcMain.handle("write-debug-file", (_, filename, data) => {
   try {
-    const filePath = path.join(process.cwd(), filename);
+    const dir = app.getPath("userData");
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const filePath = path.join(dir, filename);
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
     return Promise.resolve(true);
   } catch (err) {
@@ -562,10 +568,14 @@ ipcMain.on("settings-updated", () => {
   });
 });
 
+// Cost-tracking SQLite DB (transrewrt.db in userData)
+const { registerCostDbHandlers } = require("./costDb");
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
+  registerCostDbHandlers(ipcMain, () => app.getPath("userData"));
   loadConfigFromFile();
   loadStateFromFile();
   saveConfigToFile(configCache);

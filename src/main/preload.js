@@ -19,6 +19,14 @@ const api = {
   writeLastApiResult: (payload) => ipcRenderer.invoke('write-last-api-result', payload),
   writeDebugFile: (filename, data) => ipcRenderer.invoke('write-debug-file', filename, data),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
+  // Cost-tracking DB (same surface as webAPI for Cost tab)
+  logApiCall: (payload) => ipcRenderer.invoke('costDb:log', payload),
+  getTotalCostFromDatabase: () => ipcRenderer.invoke('costDb:getTotalCost').then((r) => ({ total_cost: r?.total_cost ?? 0 })),
+  getSummaryByFunction: (from, to) => ipcRenderer.invoke('costDb:getSummaryByFunction', from, to).then((r) => r?.rows ?? []),
+  getSummaryByModel: (from, to) => ipcRenderer.invoke('costDb:getSummaryByModel', from, to).then((r) => r?.rows ?? []),
+  getSummaryByDay: (from, to) => ipcRenderer.invoke('costDb:getSummaryByDay', from, to).then((r) => r?.rows ?? []),
+  deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('costDb:deleteOutsideRange', from, to),
+  deleteCallsByModel: (model) => ipcRenderer.invoke('costDb:deleteByModel', model),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

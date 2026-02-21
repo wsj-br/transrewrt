@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
 
   return {
   mode: isDevelopment ? "development" : "production",
+  target: isDevelopment ? "electron-renderer" : "web",
   entry: "./src/renderer/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),

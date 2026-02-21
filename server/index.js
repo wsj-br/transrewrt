@@ -53,7 +53,6 @@ function isStateKey(key) {
 function stripStateKeysAndDeprecated(obj) {
   const out = { ...obj };
   STATE_KEYS.forEach((k) => delete out[k]);
-  delete out.settings_modal_geometry;
   return out;
 }
 
@@ -201,7 +200,7 @@ app.use("/api", requireWebSession);
 
 /**
  * Load config from file with file locking. Merges with default config.
- * Strips state keys and settings_modal_geometry so only config is returned.
+ * Strips state keys so only config is returned.
  */
 function loadConfig() {
   const lockOpts = { realpath: false };
