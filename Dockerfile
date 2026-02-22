@@ -1,5 +1,5 @@
 # Stage 1: Build the React frontend and prepare production node_modules
-FROM node:lts-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -25,7 +25,7 @@ RUN pnpm run build-renderer
 RUN pnpm prune --prod
 
 # Stage 2: Production server – copy resolved deps from builder, no install
-FROM node:lts-alpine AS production
+FROM node:24-alpine AS production
 
 WORKDIR /app
 

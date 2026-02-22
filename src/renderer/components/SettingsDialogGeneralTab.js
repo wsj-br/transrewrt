@@ -22,6 +22,8 @@ const FONT_OPTIONS = [
 
 const FONT_VALUES = FONT_OPTIONS.filter((o) => o.type === 'font').map((o) => o.value);
 
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+
 // ColorPickerPopup Component remains unchanged (copy from previous version with Palette icon fixes if needed)
 const useColorPickerStyles = makeStyles({
   colorPickerRow: {
@@ -194,10 +196,11 @@ const SettingsDialogGeneralTab = ({
     <div className="tab-content">
       {/* Behavior Section */}
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
           <Settings size={20} />
           Behavior
         </Text>
+        <div style={{ paddingLeft: '24px' }}>
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -272,14 +275,28 @@ const SettingsDialogGeneralTab = ({
             />
           </div>
         </div>
+        </div>
       </div>
 
       {/* Appearance Section */}
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '16px' }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
           <Palette size={20} />
           Appearance
         </Text>
+        <div style={{ paddingLeft: '24px' }}>
+        {isWeb && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+            <Checkbox
+              id="web-margin"
+              checked={localSettings.web_margin !== false}
+              onChange={(e) => onSettingChange('web_margin', e.target.checked)}
+            />
+            <Label htmlFor="web-margin" style={{ cursor: 'pointer', margin: 0 }}>
+              Include margin in web application
+            </Label>
+          </div>
+        )}
         <div className="form-row">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
@@ -364,6 +381,7 @@ const SettingsDialogGeneralTab = ({
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nunc velit. Class aptent taciti.
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

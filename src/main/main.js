@@ -2,6 +2,7 @@ const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
+const crypto = require("crypto");
 
 // --- Config path (single source of truth for Electron; must match preload usage when migrating) ---
 const getConfigFilePath = () => {
@@ -59,9 +60,63 @@ const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), 
 
 const getStateFilePath = () => path.join(path.dirname(getConfigFilePath()), "state.json");
 
+const getConfigDir = () => path.dirname(getConfigFilePath());
+const getKeyFilePath = () => path.join(getConfigDir(), "transrewrt.key");
+const ENC_PREFIX = "enc:";
+const KEY_BYTES = 32;
+const IV_BYTES = 16;
+
+function getOrCreateEncryptionKey() {
+  const keyPath = getKeyFilePath();
+  const dir = path.dirname(keyPath);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (fs.existsSync(keyPath)) {
+    const raw = fs.readFileSync(keyPath, "utf8").trim();
+    if (/^[0-9a-fA-F]{64}$/.test(raw)) return Buffer.from(raw, "hex");
+    if (raw.length >= 32) return Buffer.from(raw.slice(0, KEY_BYTES), "utf8");
+    return Buffer.from(raw, "hex");
+  }
+  const key = crypto.randomBytes(KEY_BYTES);
+  fs.writeFileSync(keyPath, key.toString("hex"), "utf8");
+  return key;
+}
+
+function isEncryptedApiKey(value) {
+  return typeof value === "string" && value.startsWith(ENC_PREFIX);
+}
+
+function decryptApiKey(encryptedValue) {
+  try {
+    const b64 = encryptedValue.slice(ENC_PREFIX.length);
+    const buf = Buffer.from(b64, "base64");
+    if (buf.length < IV_BYTES) return "";
+    const iv = buf.subarray(0, IV_BYTES);
+    const ciphertext = buf.subarray(IV_BYTES);
+    const key = getOrCreateEncryptionKey();
+    const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
+    return Buffer.concat([decipher.update(ciphertext), decipher.final()]).toString("utf8");
+  } catch (err) {
+    console.error("Failed to decrypt api_key:", err.message);
+    return "";
+  }
+}
+
+function encryptApiKey(plainValue) {
+  if (typeof plainValue !== "string" || !plainValue.trim()) return "";
+  try {
+    const key = getOrCreateEncryptionKey();
+    const iv = crypto.randomBytes(IV_BYTES);
+    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+    const ciphertext = Buffer.concat([cipher.update(plainValue, "utf8"), cipher.final()]);
+    return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
+  } catch (err) {
+    console.error("Failed to encrypt api_key:", err.message);
+    return plainValue;
+  }
+}
+
 const STATE_KEYS = [
   "last_used_model",
-  "window_geometry",
   "settings_active_tab",
   "source_language",
   "target_language",
@@ -72,7 +127,6 @@ const STATE_KEYS = [
 
 const DEFAULT_STATE = {
   last_used_model: "openrouter/free",
-  window_geometry: "1000x700",
   settings_active_tab: "api",
   source_language: "Detect Language",
   target_language: "Spanish",
@@ -110,6 +164,9 @@ function loadConfigFromFile() {
       defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));
     }
     const merged = { ...defaultConfig, ...userConfig };
+    if (merged.api_key != null && isEncryptedApiKey(merged.api_key)) {
+      merged.api_key = decryptApiKey(merged.api_key);
+    }
     stateFromConfigForMigration = {};
     STATE_KEYS.forEach((k) => {
       if (merged[k] !== undefined) stateFromConfigForMigration[k] = merged[k];
@@ -148,8 +205,12 @@ function saveConfigToFile(config) {
         if (raw.trim()) current = JSON.parse(raw);
       } catch (_) {}
     }
-    if (canonicalConfigString(current) === canonicalConfigString(config)) return true;
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2), "utf8");
+    const toWrite = { ...config };
+    if (typeof toWrite.api_key === "string" && toWrite.api_key.trim() !== "") {
+      toWrite.api_key = encryptApiKey(toWrite.api_key);
+    }
+    if (canonicalConfigString(current) === canonicalConfigString(toWrite)) return true;
+    fs.writeFileSync(configPath, JSON.stringify(toWrite, null, 2), "utf8");
     return true;
   } catch (err) {
     console.error("Failed to save config in main:", err);

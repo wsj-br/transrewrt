@@ -22,7 +22,6 @@ const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "build_timestamp");
 
 const STATE_KEYS = [
   "last_used_model",
-  "window_geometry",
   "settings_active_tab",
   "source_language",
   "target_language",
@@ -35,7 +34,6 @@ const STATE_KEYS = [
 
 const DEFAULT_STATE = {
   last_used_model: "openrouter/free",
-  window_geometry: "1000x700",
   settings_active_tab: "api",
   source_language: "Detect Language",
   target_language: "Spanish",
