@@ -67,6 +67,14 @@ const getConfigFilePath = () => {
 
 const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
 
+// Path to config_default.json for merging defaults. In packaged app, extraFiles put it next to the exe.
+const getDefaultConfigPathForLoad = () => {
+  if (typeof app !== "undefined" && app.isPackaged) {
+    return path.join(path.dirname(process.execPath), "config", "config_default.json");
+  }
+  return path.join(__dirname, "../../config/config_default.json");
+};
+
 const getStateFilePath = () => path.join(path.dirname(getConfigFilePath()), "state.json");
 
 const getConfigDir = () => path.dirname(getConfigFilePath());
@@ -167,7 +175,7 @@ function loadConfigFromFile() {
       const data = fs.readFileSync(configPath, "utf8");
       userConfig = JSON.parse(data);
     }
-    const defaultPath = path.join(__dirname, "../../config/config_default.json");
+    const defaultPath = getDefaultConfigPathForLoad();
     let defaultConfig = {};
     if (fs.existsSync(defaultPath)) {
       defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));

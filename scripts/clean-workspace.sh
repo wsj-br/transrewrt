@@ -13,6 +13,8 @@ ITEMS_TO_REMOVE=(
     ".turbo"
     "pnpm-lock.yaml"
     "data/*.json"
+    "release"
+    "build_timestamp"
     "public/documentation"
     "documentation/.docusaurus"
     "documentation/.cache-loader"

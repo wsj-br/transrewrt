@@ -43,7 +43,6 @@ $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $artifacts = @(
     (Join-Path $ProjectRoot "node_modules"),
     (Join-Path $ProjectRoot "dist"),
-    (Join-Path $ProjectRoot "build"),
     (Join-Path $ProjectRoot "cache"),
     (Join-Path $ProjectRoot "release"),
     (Join-Path $ProjectRoot "build_timestamp")

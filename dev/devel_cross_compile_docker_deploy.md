@@ -1,4 +1,4 @@
-# how to deploy to pi-piro
+# how to deploy to pi-piro (Raspberry Pi 5)
 
 # Setup
 
