@@ -46,6 +46,8 @@ env
 .specstory
 .cursorindexingignore
 scripts/
+!scripts/electron-rebuild.js
+!scripts/node-rebuild.js
 dev/
 README.md
 DEPLOY.md

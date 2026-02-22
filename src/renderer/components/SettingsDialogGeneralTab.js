@@ -286,19 +286,19 @@ const SettingsDialogGeneralTab = ({
         </Text>
         <div style={{ paddingLeft: '24px' }}>
         {isWeb && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
             <Checkbox
               id="web-margin"
               checked={localSettings.web_margin !== false}
               onChange={(e) => onSettingChange('web_margin', e.target.checked)}
             />
-            <Label htmlFor="web-margin" style={{ cursor: 'pointer', margin: 0 }}>
-              Include margin in web application
+            <Label htmlFor="web-margin" style={{ cursor: 'pointer', margin: 0  }}>
+              show a margin around the app
             </Label>
           </div>
         )}
         <div className="form-row">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
             <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
             <Dropdown
               id="font-family"

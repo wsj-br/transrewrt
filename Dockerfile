@@ -9,8 +9,9 @@ RUN apk add --no-cache python3 make g++
 # Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy package files
+# Copy package files and scripts needed by postinstall (electron-rebuild.js)
 COPY package.json pnpm-lock.yaml ./
+COPY scripts/ ./scripts/
 
 # Install all dependencies (native modules are built here)
 RUN pnpm install
@@ -22,7 +23,8 @@ COPY . .
 RUN pnpm run build-renderer
 
 # Keep only production dependencies so production stage can copy them as-is
-RUN pnpm prune --prod
+# --ignore-scripts: avoid re-running postinstall (electron-rebuild), since electron was just pruned
+RUN pnpm prune --prod --ignore-scripts
 
 # Stage 2: Production server – copy resolved deps from builder, no install
 FROM node:24-alpine AS production

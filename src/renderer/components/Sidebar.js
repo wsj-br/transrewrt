@@ -17,14 +17,32 @@ const useStyles = makeStyles({
   logoSection: {
     padding: tokens.spacingVerticalM,
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    gap: "8px",
+    paddingBottom: "24px",
     WebkitAppRegion: "no-drag",
   },
   logo: {
     height: "32px",
     width: "auto",
     objectFit: "contain",
+  },
+  appName: {
+    fontSize: "16px", 
+    fontWeight: 800, // Extra bold helps show the color transition
+    textAlign: "center",
+    lineHeight: 1.2,
+    display: "inline-block",
+  
+    /* 1. Solid Gradient */
+    background: "linear-gradient(90deg, #00ff00 0%, #63e684 40%, #f2ab38 60%, #ed7139 100%)",
+
+    /* 2. Clipping */
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
   },
   navSection: {
     flex: 1,
@@ -87,7 +105,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
+    // borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
     WebkitAppRegion: "no-drag",
   },
 });
@@ -114,6 +132,7 @@ const Sidebar = ({
           src={Logo}
           alt="Transrewrt logo"
         />
+        <span className={styles.appName}>Transrewrt</span>
       </div>
 
       <div className={styles.navSection} role="navigation" aria-label="Main">

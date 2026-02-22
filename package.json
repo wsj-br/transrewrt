@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Translate text between languages and rewrite text in different styles using AI.",
   "main": "src/main/main.js",
   "scripts": {
