@@ -85,7 +85,7 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 | Tool | Notes |
 |------|-------|
-| **Node.js LTS** | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows) |
+| **Node.js 24 (LTS)** | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); use `nvm install 24` and `nvm use 24` (or `nvm use` in project root) |
 | **pnpm** | `npm install -g pnpm` |
 | **Git** | Any recent version |
 | **Docker** *(optional)* | Required only for the web/container deployment target |

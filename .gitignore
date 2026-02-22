@@ -1,7 +1,8 @@
 config.json
 __pycache__/
 *.pyc
-.env
+.env*
+!.envrc
 .venv
 env/
 venv/

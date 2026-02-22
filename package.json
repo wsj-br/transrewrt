@@ -13,7 +13,8 @@
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
     "start": "electron .",
     "start-x11": "electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
-    "start:server": "node server/index.js",
+    "start:server": "node scripts/check-node-version.js",
+    "start:server:rebuild": "pnpm run postinstall && pnpm run start:server",
     "serve": "pnpm run build-renderer && pnpm run start:server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker:up": "docker compose up --build -d",
@@ -23,7 +24,7 @@
     "docker:deploy": "./scripts/docker-deploy.sh",
     "package": "node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
-    "postinstall": "electron-rebuild -f -o better-sqlite3"
+    "postinstall": "node scripts/electron-rebuild.js"
   },
   "keywords": [
     "electron",
@@ -33,6 +34,9 @@
   ],
   "author": "Waldemar Scudeller Jr.",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "build": {
     "appId": "br.com.wsj.transrewrt",
     "productName": "Transrewrt",
@@ -96,7 +100,8 @@
       "rimraf": "^5.0.0",
       "glob": "^13.0.0",
       "global-agent": "^4.1.2",
-      "qs": ">=6.14.2"
+      "qs": ">=6.14.2",
+      "minimatch": ">=10.2.1"
     },
     "onlyBuiltDependencies": [
       "core-js-pure",
@@ -110,7 +115,7 @@
     "@ctrl/tinycolor": "^4.2.0",
     "@fluentui/react-components": "^9.73.0",
     "@fluentui/react-icons": "^2.0.319",
-    "argon2": "^0.41.1",
+    "argon2": "^0.44.0",
     "better-sqlite3": "^12.4.2",
     "electron-squirrel-startup": "^1.0.1",
     "express": "^5.2.1",

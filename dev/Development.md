@@ -8,16 +8,21 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 ### Windows 11
 
-1. **Node.js (LTS) using nvm**
+1. **Node.js 24 (LTS) using nvm**
 
-    Install [nvm-windows](https://github.com/coreybutler/nvm-windows) (Node Version Manager for Windows):
+    Install [nvm-windows](https://github.com/coreybutler/nvm-windows) (Node Version Manager for Windows). You do **not** need to install Node.js separately (e.g. via `winget install OpenJS.NodeJS`); nvm will download and install Node when you run `nvm install 24`.
 
     ```powershell
-    # Download nvm-setup.exe from the releases page and install it
-    # Then install Node.js LTS:
-    nvm install lts
-    nvm use lts
+    # Option 1: winget
+    winget install CoreyButler.NVMforWindows
+    # Option 2: download nvm-setup.exe from the releases page and install it
+    # Then install Node.js 24 (matches Electron 40; use .nvmrc in project root):
+    nvm install 24
+    nvm use 24
+    # Or from project root: nvm use
     ```
+
+    **Alternative (single global Node, no nvm):** `winget install OpenJS.NodeJS` and ensure you use Node 24 (check with `node --version`). The project recommends nvm so you can match Electron’s Node version and switch versions per project.
 
     Install pnpm globally:
 
@@ -27,7 +32,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
     Verify:
     ```powershell
-    node --version   # e.g. v20.x.x
+    node --version   # e.g. v24.x.x
     pnpm --version   # e.g. 10.x.x
     ```
 
@@ -47,7 +52,9 @@ This document covers prerequisites, setup, development workflow, and building/pa
    **Option A – winget** (no extra package manager)
 
    ```powershell
+   # Python 3.12 or 3.13 (node-gyp supports both)
    winget install Python.Python.3.12 --accept-package-agreements --accept-source-agreements
+   # Or: winget install Python.Python.3.13 --accept-package-agreements --accept-source-agreements
    winget install Microsoft.VisualStudio.2022.BuildTools --accept-package-agreements --accept-source-agreements --override "--wait --quiet --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
    ```
 
@@ -88,19 +95,23 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
 6. **Docker (for Web/Docker target)**
 
-   Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
+   ```powershell
+   winget install Docker.DockerDesktop
+   ```
+   Or download from [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
 
 ### Linux (Debian-based: Ubuntu, Debian, Mint)
 
-1. **Node.js (LTS) using nvm**
+1. **Node.js 24 (LTS) using nvm**
 
     Install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager):
 
     ```bash
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     # Restart your terminal or source ~/.bashrc (or ~/.zshrc)
-    nvm install --lts
-    nvm use --lts
+    nvm install 24
+    nvm use 24
+    # Or from project root: nvm use
     ```
 
     Install pnpm globally:
@@ -111,7 +122,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
 
     Verify:
     ```bash
-    node --version   # e.g. v20.x.x
+    node --version   # e.g. v24.x.x
     pnpm --version   # e.g. 10.x.x
     ```
 
@@ -139,6 +150,12 @@ This document covers prerequisites, setup, development workflow, and building/pa
 5. **Code Editor (optional)**
 
    [Cursor IDE](https://cursor.com/home) is recommended. Download and install from [cursor.com](https://cursor.com/).
+
+### Dependency versions and security (all platforms)
+
+- **Electron & Node:** The project uses **Electron 40** (e.g. 40.6.x), which bundles **Node.js 24** (see [Electron releases](https://releases.electronjs.org/release/v40.0.0)). The `engines` field in `package.json` requires Node `>=24.0.0` so that local tooling matches Electron’s runtime.
+- **Security:** Run `pnpm audit` to check for known vulnerabilities. The project uses pnpm `overrides` in `package.json` to force patched versions of transitive dependencies (e.g. `minimatch`, `qs`, `glob`, `lodash-es`); keep these aligned with upstream security advisories when updating dependencies.
+- **Key versions:** electron-builder 26.x, express 5.x, React 19.x, better-sqlite3 12.x, and argon2 0.44+ are used and kept at versions without known vulnerabilities and compatible with Electron 40 / Node 24.
 
 ---
 
@@ -311,7 +328,7 @@ Signing requires purchasing a code signing certificate from a trusted CA (e.g., 
 Automate builds using GitHub Actions, GitLab CI, or similar. Example steps:
 
 1. Checkout code
-2. Setup Node.js (LTS)
+2. Setup Node.js 24 (LTS)
 3. Run `pnpm ci`
 4. Run `pnpm run package`
 5. Upload artifacts from `release/`
@@ -336,7 +353,7 @@ Could not find any Visual Studio installation to use
 
 **Fix**: Install the prerequisites in **§1 Prerequisites → Build tools for native modules** (winget, Chocolatey, or manual). Restart the terminal and run `pnpm install` again.
 
-**Optional**: Using Node.js LTS (e.g. v20 or v22) via `nvm use lts` can allow prebuilt binaries for some packages; if none are available for your Node version, the build tools are still required.
+**Optional**: Using Node.js 24 (LTS) via `nvm use 24` or `nvm use` (with `.nvmrc` in the project) can allow prebuilt binaries for some packages; if none are available for your Node version, the build tools are still required.
 
 ### better-sqlite3 / NODE_MODULE_VERSION mismatch in Electron
 
@@ -350,13 +367,40 @@ The module '...better_sqlite3.node' was compiled against a different Node.js ver
 
 **Fix**:
 
-1. **better-sqlite3**: The project uses `better-sqlite3` **^12.4.2** (required for Electron 40’s V8). After `pnpm install`, the **postinstall** script runs `electron-rebuild` to build it for Electron. If you see the error above, run:
+1. **better-sqlite3**: The project uses `better-sqlite3` **^12.4.2** (required for Electron 40’s V8). After `pnpm install`, the **postinstall** script runs `electron-rebuild` (via `scripts/electron-rebuild.js`) for the installed Electron version (e.g. 40.x → Node 24). If you see the error above, run:
    ```powershell
    pnpm run postinstall
    ```
    (Requires the [build tools for native modules](#3-build-tools-for-native-modules-required-for-better-sqlite3-and-argon2) to be installed.)
 
 2. If you upgraded Electron and the error persists, run `pnpm install` again so dependencies and the rebuild use the new Electron version.
+
+### NODE_MODULE_VERSION mismatch when running `pnpm dev:web` or `pnpm run start:server`
+
+If the **standalone server** (used by `dev:web` and `serve`) fails with `better_sqlite3.node` / `NODE_MODULE_VERSION 143` vs `137` (or similar), the server is running with a different Node version than the one `electron-rebuild` used. The binary was built for Node 24 (Electron's version); your current `node` is older (e.g. Node 18).
+
+**Fix**: Use Node 24 in the same terminal where you run the server:
+
+```powershell
+nvm use 24
+# or, from project root:
+nvm use
+pnpm dev:web
+```
+
+If you don't use nvm, switch your PATH to Node 24 and try again. The script `start:server` runs `check-node-version.js` first and will print this requirement if the version is too old. If you no longer have Node 18 installed but still see 137, see [No Node 18 installed but NODE_MODULE_VERSION 137](troubleshooting-node-version.md).
+
+### Why “two” Node versions? Can we use Node 22 everywhere?
+
+You don’t need two Node versions by design. There are two runtimes involved:
+
+1. **Electron’s bundled Node** – Each Electron release ships with a specific Node version (e.g. Electron 40 uses Node 24). You don’t choose this; Electron does. The **postinstall** script runs `electron-rebuild` with the installed Electron version (see `scripts/electron-rebuild.js`) so native addons (e.g. `better-sqlite3`) are built for that bundled Node (Electron 40 → Node 24).
+2. **System Node** – The Node you use in the terminal for `pnpm install`, `node server/index.js`, and other scripts. This is whatever you have installed (nvm, installer, etc.).
+
+A mismatch happens when the native module was built for one ABI (e.g. Node 22 from a previous install) but the process that loads it uses another (e.g. Electron’s Node or a different system Node). The fix is to **align everything on one Node ABI**: run `pnpm install` and `node server/index.js` with the **same** Node version that Electron uses (or that you rebuilt for).
+
+- **Use one version everywhere**: Prefer the Node version that matches your Electron release. For example, if you’re on Electron 40 (Node 24), use Node 24 for `pnpm install` and for running the standalone server (`node server/index.js`). Then one `pnpm run postinstall` builds native modules for that ABI and both Electron and the server work.
+- **Node 20 and maintenance**: Node 20 goes out of maintenance in May 2026. This project does not require Node 20 specifically. Newer Electron versions bundle newer Node (e.g. Electron 40 uses Node 24). To avoid relying on Node 20, use an Electron version that bundles a maintained Node (22+), use that same Node for install and for the server, and run `pnpm run postinstall` so native modules are built for that single version.
 
 ### Node not found (but npm/pnpm are recognized)
 

@@ -117,7 +117,15 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-  // Web-only: bordered frame around the app
+  // Web-only: same as webOuter but no padding (when web_margin is false)
+  webOuterNoMargin: {
+    height: "100vh",
+    boxSizing: "border-box",
+    padding: 0,
+    display: "flex",
+    flexDirection: "column",
+  },
+  // Web-only: bordered frame around the app (rounded when margin is shown)
   webFrame: {
     flex: 1,
     minHeight: 0,
@@ -126,6 +134,16 @@ const useStyles = makeStyles({
     flexDirection: "column",
     border: "1px solid #333",
     borderRadius: "4px",
+  },
+  // Web-only: square corners when no margin (no gap at viewport edges)
+  webFrameSquare: {
+    flex: 1,
+    minHeight: 0,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    border: "1px solid #333",
+    borderRadius: 0,
   },
   loadingWebInner: {
     flex: 1,
@@ -782,8 +800,8 @@ const App = () => {
   if (configLoading) {
     if (isWeb) {
       return (
-        <div id="root" className={styles.webOuter} data-web-outer>
-          <div className={styles.webFrame}>
+        <div id="root" className={styles.webOuterNoMargin} data-web-outer>
+          <div className={styles.webFrameSquare}>
             <div className={styles.loadingWebInner}>
               <span>Loading settings…</span>
             </div>
@@ -799,9 +817,12 @@ const App = () => {
   }
 
   if (isWeb) {
+    const useMargin = settings.web_margin !== false;
+    const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
+    const webFrameClass = useMargin ? styles.webFrame : styles.webFrameSquare;
     return (
-      <div id="root" className={styles.webOuter} data-web-outer>
-        <div className={styles.webFrame}>
+      <div id="root" className={webOuterClass} data-web-outer>
+        <div className={webFrameClass}>
           <div className={styles.rootInWeb}>
             {isWeb && needsLogin && (
               <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
