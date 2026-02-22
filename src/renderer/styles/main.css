@@ -691,15 +691,6 @@ button {
     transition: all 0.2s;
 }
 
-/* Settings Modal Extensions */
-.settings-modal {
-    /* Width and height are controlled by inline styles from geometry */
-    display: flex !important;
-    flex-direction: column !important;
-    box-sizing: border-box;
-    padding: 0 !important;
-}
-
 .settings-body {
     display: flex;
     flex-direction: column;

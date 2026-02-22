@@ -261,7 +261,7 @@ const webAPI = {
   getConfigPath: () => `${API_BASE}/api/config`,
 
   openSettings: () => {
-    // No-op in web mode - settings are inline modal
+    // No-op in web mode - settings are inline in the app
   },
 
   notifySettingsUpdated: () => {

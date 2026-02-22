@@ -5,17 +5,24 @@ import webAPI from "../utils/webApiClient";
 import ConfirmModal from "./ConfirmModal";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+// Cost data: from server in web mode, from Electron SQLite (transrewrt.db) in desktop mode
+const getCostApi = () => (isWeb ? webAPI : (typeof window !== "undefined" && window.electronAPI) || {});
 
 const useStyles = makeStyles({
   tableWrap: {
     width: "fit-content",
-    minWidth: "360px",
+    maxWidth: "100%",
     marginTop: "8px",
-    marginBottom: "24px",
+    marginBottom: "8px",
     borderRadius: "8px",
-    overflow: "hidden",
+    overflow: "auto",
     boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
     border: `1px solid ${tokens.colorNeutralStroke1}`,
+  },
+  tableWrapFitContent: {
+    width: "fit-content",
+    maxWidth: "100%",
+    minWidth: 0,
   },
   tableWrapFullWidth: {
     width: "100%",
@@ -56,6 +63,7 @@ const useStyles = makeStyles({
   totalRow: {
     fontWeight: 600,
     backgroundColor: "rgba(96, 205, 255, 0.12)",
+    borderTop: "2px solid rgba(96, 205, 255, 0.4)",
     "& td": {
       borderBottom: "none",
       color: "#60cdff",
@@ -69,13 +77,37 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
   },
   tablesGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    display: "flex",
+    flexWrap: "wrap",
     gap: "24px",
+    width: "100%",
+    boxSizing: "border-box",
   },
-  gridSection: {
+  /* By model: content-sized, min 865px so all columns fit without wrapping */
+  gridSectionByModel: {
+    flexGrow: 0,
+    flexShrink: 0,
+    flexBasis: "fit-content",
     width: "fit-content",
     maxWidth: "100%",
+    alignSelf: "flex-start",
+    marginBottom: "12px",
+    paddingBottom: "12px",
+    // borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    boxSizing: "border-box",
+  },
+  /* By function: content-sized only */
+  gridSectionByFunction: {
+    flexGrow: 0,
+    flexShrink: 0,
+    flexBasis: "fit-content",
+    width: "fit-content",
+    maxWidth: "100%",
+    alignSelf: "flex-start",
+    marginBottom: "12px",
+    paddingBottom: "12px",
+    // borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    boxSizing: "border-box",
   },
   filterButtonUnselected: {
     backgroundColor: "rgba(96, 205, 255, 0.12)",
@@ -240,19 +272,22 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
     return () => { cancelled = true; };
   }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key]);
 
+  const costApi = getCostApi();
   useEffect(() => {
-    if (!isWeb || !webAPI.getSummaryByFunction) return;
+    if (!costApi.getSummaryByFunction) return;
     const { from, to } = getFilterRange(filter);
     setLoading(true);
     Promise.all([
-      webAPI.getSummaryByFunction(from, to),
-      webAPI.getSummaryByModel(from, to),
-      webAPI.getSummaryByDay(from, to),
+      costApi.getSummaryByFunction(from, to),
+      costApi.getSummaryByModel(from, to),
+      costApi.getSummaryByDay(from, to),
     ])
       .then(([a, b, c]) => {
         setByFunction(Array.isArray(a) ? a : []);
         setByModel(Array.isArray(b) ? b : []);
         setByDay(Array.isArray(c) ? c : []);
+        // Do not overwrite persisted total_cost from DB when loading the tab; the user may have
+        // synced with API key usage, and that value must not be replaced by the local DB total.
       })
       .catch(() => {
         setByFunction([]);
@@ -296,12 +331,13 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   };
 
   const refetchSummaries = () => {
+    if (!costApi.getSummaryByFunction) return;
     const { from, to } = getFilterRange(filter);
     setLoading(true);
     Promise.all([
-      webAPI.getSummaryByFunction(from, to),
-      webAPI.getSummaryByModel(from, to),
-      webAPI.getSummaryByDay(from, to),
+      costApi.getSummaryByFunction(from, to),
+      costApi.getSummaryByModel(from, to),
+      costApi.getSummaryByDay(from, to),
     ])
       .then(([a, b, c]) => {
         setByFunction(Array.isArray(a) ? a : []);
@@ -318,9 +354,10 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
 
   const handleConfirmDeleteOutsideRange = async () => {
     setDeleteAllError(null);
+    if (!costApi.deleteCallsOutsideRange) return;
     const { from, to } = getFilterRange(filter);
     try {
-      await webAPI.deleteCallsOutsideRange(from, to);
+      await costApi.deleteCallsOutsideRange(from, to);
       setShowDeleteAllConfirm(false);
       refetchSummaries();
     } catch (err) {
@@ -331,8 +368,9 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   const handleConfirmDeleteByModel = async () => {
     if (!modelToDelete) return;
     setDeleteByModelError(null);
+    if (!costApi.deleteCallsByModel) return;
     try {
-      await webAPI.deleteCallsByModel(modelToDelete);
+      await costApi.deleteCallsByModel(modelToDelete);
       setModelToDelete(null);
       refetchSummaries();
     } catch (err) {
@@ -383,7 +421,7 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
 
   const formatAvgTps = (avgTps) => {
     const n = Number(avgTps);
-    return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(2);
+    return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(1);
   };
 
   const formatCount = (count) => (count == null || Number(count) === 0 ? DASH : Number(count));
@@ -466,226 +504,222 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
         )}
       </div>
 
-      {isWeb && (
+      <div className="section" style={{ marginTop: "24px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "24px 8px" }}>
+          {/* Block 1: Filter label + filter buttons; wraps as a unit when row is too narrow */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
+            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginRight: "4px" }}>Filter</Text>
+            {FILTERS.map((f) => (
+              <Button
+                key={f.id}
+                size="small"
+                appearance={filter === f.id ? "primary" : "subtle"}
+                className={filter !== f.id ? styles.filterButtonUnselected : undefined}
+                onClick={() => setFilter(f.id)}
+              >
+                {f.label}
+              </Button>
+            ))}
+          </div>
+          {/* Block 2: Fraction digits label + dropdown; moves below block 1 when row is too narrow */}
+          <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
+            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginLeft: "24px", marginRight: "4px" }}>Fraction digits</Text>
+            <Dropdown
+              id="cost-fraction-style"
+              appearance="underline"
+              value={COST_FRACTION_STYLE_OPTIONS.find((o) => o.value === (localSettings.cost_fraction_style || "muted"))?.label ?? "Muted gray"}
+              selectedOptions={[localSettings.cost_fraction_style || "muted"]}
+              onOptionSelect={(e, data) => {
+                const v = data.optionValue;
+                if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
+                  onSettingChange("cost_fraction_style", v);
+                }
+              }}
+              style={{ minWidth: "120px" }}
+            >
+              {COST_FRACTION_STYLE_OPTIONS.map((o) => (
+                <Option key={o.value} value={o.value}>
+                  {o.label}
+                </Option>
+              ))}
+            </Dropdown>
+          </div>
+        </div>
+      </div>
+
+      {loading ? (
+        <p style={{ marginTop: "16px" }}>Loading summaries…</p>
+      ) : (
         <>
-          <div className="section" style={{ marginTop: "24px" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "24px 8px" }}>
-              {/* Block 1: Filter label + filter buttons; wraps as a unit when row is too narrow */}
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
-                <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginRight: "4px" }}>Filter</Text>
-                {FILTERS.map((f) => (
-                  <Button
-                    key={f.id}
-                    size="small"
-                    appearance={filter === f.id ? "primary" : "subtle"}
-                    className={filter !== f.id ? styles.filterButtonUnselected : undefined}
-                    onClick={() => setFilter(f.id)}
-                  >
-                    {f.label}
-                  </Button>
-                ))}
+          <div className={styles.tablesGrid}>
+            <div className={styles.gridSectionByModel}>
+              <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By model</Text>
+              <div className={styles.tableWrap} style={{ width: "910px" }}>
+                <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th className={styles.th} style={{ minWidth: "240px" }}>Model</th>
+                    <th className={styles.th}>Translation calls</th>
+                    <th className={styles.th}>Rewrite calls</th>
+                    <th className={styles.th}>Translation cost</th>
+                    <th className={styles.th}>Rewrite cost</th>
+                    <th className={styles.th}>Avg translation</th>
+                    <th className={styles.th}>Avg rewrite</th>
+                    <th className={styles.th}>Avg TPS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {byModel.filter((r) => r.model !== "Total").length === 0
+                    ? emptyRow(8)
+                    : byModel
+                        .filter((r) => r.model !== "Total")
+                        .map((row, i) => (
+                          <tr key={i} className={styles.tbodyTr}>
+                            <td className={styles.td}>
+                              <span className={styles.modelCell}>
+                                <span>{row.model}</span>
+                                <Trash2
+                                  size={14}
+                                  className={styles.modelTrashIcon}
+                                  title="Exclude all data for this model"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setModelToDelete(row.model);
+                                  }}
+                                />
+                              </span>
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(row.avg_tps)}</td>
+                          </tr>
+                        ))}
+                  {byModel.some((r) => r.model === "Total") && (() => {
+                    const total = byModel.find((r) => r.model === "Total");
+                    const tc = total?.translation_calls ?? 0;
+                    const rc = total?.rewrite_calls ?? 0;
+                    return (
+                      <tr className={styles.totalRow}>
+                        <td className={styles.td}><strong>Total</strong></td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(tc)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(rc)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.translation_cost)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.rewrite_cost)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.translation_cost || 0), tc)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.rewrite_cost || 0), rc)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(total?.avg_tps)}</td>
+                      </tr>
+                    );
+                  })()}
+                </tbody>
+              </table>
               </div>
-              {/* Block 2: Fraction digits label + dropdown; moves below block 1 when row is too narrow */}
-              <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
-                <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginLeft: "24px", marginRight: "4px" }}>Fraction digits</Text>
-                <Dropdown
-                  id="cost-fraction-style"
-                  appearance="underline"
-                  value={COST_FRACTION_STYLE_OPTIONS.find((o) => o.value === (localSettings.cost_fraction_style || "muted"))?.label ?? "Muted gray"}
-                  selectedOptions={[localSettings.cost_fraction_style || "muted"]}
-                  onOptionSelect={(e, data) => {
-                    const v = data.optionValue;
-                    if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
-                      onSettingChange("cost_fraction_style", v);
-                    }
-                  }}
-                  style={{ minWidth: "120px" }}
-                >
-                  {COST_FRACTION_STYLE_OPTIONS.map((o) => (
-                    <Option key={o.value} value={o.value}>
-                      {o.label}
-                    </Option>
-                  ))}
-                </Dropdown>
+            </div>
+
+            <div className={styles.gridSectionByFunction}>
+              <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By function</Text>
+              <div className={styles.tableWrap}>
+                <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th className={styles.th}>Function</th>
+                    <th className={styles.th}>Calls</th>
+                    <th className={styles.th}>Cost</th>
+                    <th className={styles.th}>Avg cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {byFunction.filter((r) => r.function !== "Total").length === 0
+                    ? emptyRow(4)
+                    : byFunction
+                        .filter((r) => r.function !== "Total")
+                        .map((row, i) => (
+                          <tr key={i} className={styles.tbodyTr}>
+                            <td className={styles.td}>{row.function}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.calls)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.cost)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
+                          </tr>
+                        ))}
+                  {byFunction.some((r) => r.function === "Total") && (() => {
+                    const total = byFunction.find((r) => r.function === "Total");
+                    const calls = total?.calls ?? 0;
+                    return (
+                      <tr className={styles.totalRow}>
+                        <td className={styles.td}><strong>Total</strong></td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(calls)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.cost)}</td>
+                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
+                      </tr>
+                    );
+                  })()}
+                </tbody>
+                </table>
               </div>
+            </div>
+
+          </div>
+
+          <div className="section">
+            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By day</Text>
+            <div className={`${styles.tableWrap} ${styles.tableWrapFitContent}`} style={{ width: "fit-content" }}>
+              <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th className={styles.th}>Day</th>
+                    <th className={styles.th}>Translation calls</th>
+                    <th className={styles.th}>Rewrite calls</th>
+                    <th className={styles.th}>Translation cost</th>
+                    <th className={styles.th}>Rewrite cost</th>
+                    <th className={styles.th}>Avg translation</th>
+                    <th className={styles.th}>Avg rewrite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {byDay.length === 0
+                    ? emptyRow(7)
+                    : byDay.map((row, i) => (
+                        <tr key={i} className={styles.tbodyTr}>
+                          <td className={styles.td}>{row.day}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
+                        </tr>
+                      ))}
+                </tbody>
+              </table>
             </div>
           </div>
 
-          {loading ? (
-            <p style={{ marginTop: "16px" }}>Loading summaries…</p>
-          ) : (
-            <>
-              <div className={styles.tablesGrid}>
-                <div className={`section ${styles.gridSection}`}>
-                  <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By model</Text>
-                  <div className={styles.tableWrap}>
-                    <table className={`${styles.table} ${styles.tableFullWidth}`}>
-                    <thead className={styles.thead}>
-                      <tr>
-                        <th className={styles.th} style={{ minWidth: "240px" }}>Model</th>
-                        <th className={styles.th}>Translation calls</th>
-                        <th className={styles.th}>Rewrite calls</th>
-                        <th className={styles.th}>Translation cost</th>
-                        <th className={styles.th}>Rewrite cost</th>
-                        <th className={styles.th}>Avg translation</th>
-                        <th className={styles.th}>Avg rewrite</th>
-                        <th className={styles.th}>Avg TPS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {byModel.filter((r) => r.model !== "Total").length === 0
-                        ? emptyRow(8)
-                        : byModel
-                            .filter((r) => r.model !== "Total")
-                            .map((row, i) => (
-                              <tr key={i} className={styles.tbodyTr}>
-                                <td className={styles.td}>
-                                  <span className={styles.modelCell}>
-                                    <span>{row.model}</span>
-                                    <Trash2
-                                      size={14}
-                                      className={styles.modelTrashIcon}
-                                      title="Exclude all data for this model"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setModelToDelete(row.model);
-                                      }}
-                                    />
-                                  </span>
-                                </td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(row.avg_tps)}</td>
-                              </tr>
-                            ))}
-                      {byModel.some((r) => r.model === "Total") && (() => {
-                        const total = byModel.find((r) => r.model === "Total");
-                        const tc = total?.translation_calls ?? 0;
-                        const rc = total?.rewrite_calls ?? 0;
-                        return (
-                          <tr className={styles.totalRow}>
-                            <td className={styles.td}><strong>Total</strong></td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(tc)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(rc)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.translation_cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.rewrite_cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.translation_cost || 0), tc)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.rewrite_cost || 0), rc)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(total?.avg_tps)}</td>
-                          </tr>
-                        );
-                      })()}
-                    </tbody>
-                  </table>
-                  </div>
-                </div>
-
-                <div className={`section ${styles.gridSection}`}>
-                  <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By function</Text>
-                  <div className={styles.tableWrap}>
-                    <table className={`${styles.table} ${styles.tableFullWidth}`}>
-                    <thead className={styles.thead}>
-                      <tr>
-                        <th className={styles.th}>Function</th>
-                        <th className={styles.th}>Calls</th>
-                        <th className={styles.th}>Cost</th>
-                        <th className={styles.th}>Avg cost</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {byFunction.filter((r) => r.function !== "Total").length === 0
-                        ? emptyRow(4)
-                        : byFunction
-                            .filter((r) => r.function !== "Total")
-                            .map((row, i) => (
-                              <tr key={i} className={styles.tbodyTr}>
-                                <td className={styles.td}>{row.function}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.calls)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.cost)}</td>
-                                <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
-                              </tr>
-                            ))}
-                      {byFunction.some((r) => r.function === "Total") && (() => {
-                        const total = byFunction.find((r) => r.function === "Total");
-                        const calls = total?.calls ?? 0;
-                        return (
-                          <tr className={styles.totalRow}>
-                            <td className={styles.td}><strong>Total</strong></td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(calls)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
-                          </tr>
-                        );
-                      })()}
-                    </tbody>
-                    </table>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="section">
-                <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By day</Text>
-                <div className={styles.tableWrap}>
-                  <table className={`${styles.table} ${styles.tableFullWidth}`}>
-                    <thead className={styles.thead}>
-                      <tr>
-                        <th className={styles.th}>Day</th>
-                        <th className={styles.th}>Translation calls</th>
-                        <th className={styles.th}>Rewrite calls</th>
-                        <th className={styles.th}>Translation cost</th>
-                        <th className={styles.th}>Rewrite cost</th>
-                        <th className={styles.th}>Avg translation</th>
-                        <th className={styles.th}>Avg rewrite</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {byDay.length === 0
-                        ? emptyRow(7)
-                        : byDay.map((row, i) => (
-                            <tr key={i} className={styles.tbodyTr}>
-                              <td className={styles.td}>{row.day}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
-                            </tr>
-                          ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div className="section" style={{ marginTop: "32px", paddingTop: "24px", borderTop: `1px solid ${tokens.colorNeutralStroke2}` }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
-                  <Button
-                    appearance="primary"
-                    className={styles.deleteAllButton}
-                    style={{ backgroundColor: "#8b0000", color: "#ffffff" }}
-                    title={isDeleteAll ? "Delete all records in the database" : `Delete all records older than the start of "${filterLabel}"`}
-                    onClick={() => {
-                      setDeleteAllError(null);
-                      setShowDeleteAllConfirm(true);
-                    }}
-                  >
-                    Delete not filtered data
-                  </Button>
-                  <Text
-                    as="span"
-                    style={{ fontSize: "13px", color: tokens.colorNeutralForeground2, maxWidth: "420px", lineHeight: 1.4 }}
-                  >
-                    Deletes only data <b>older than</b> the start of the selected range; data from the range onward is kept. With &quot;All&quot;, deletes every record. Example: with &quot;Last month&quot; selected, only data before the first day of last month is deleted; last month and current month are kept.
-                  </Text>
-                </div>
-              </div>
-            </>
-          )}
+          <div className="section" style={{ marginTop: "32px", paddingTop: "24px", borderTop: `1px solid ${tokens.colorNeutralStroke2}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+              <Button
+                appearance="primary"
+                className={styles.deleteAllButton}
+                style={{ backgroundColor: "#8b0000", color: "#ffffff" }}
+                title={isDeleteAll ? "Delete all records in the database" : `Delete all records older than the start of "${filterLabel}"`}
+                onClick={() => {
+                  setDeleteAllError(null);
+                  setShowDeleteAllConfirm(true);
+                }}
+              >
+                Delete not filtered data
+              </Button>
+              <Text
+                as="span"
+                style={{ fontSize: "13px", color: tokens.colorNeutralForeground2, maxWidth: "420px", lineHeight: 1.4 }}
+              >
+                Deletes only data <b>older than</b> the start of the selected range; data from the range onward is kept. With &quot;All&quot;, deletes every record. Example: with &quot;Last month&quot; selected, only data before the first day of last month is deleted; last month and current month are kept.
+              </Text>
+            </div>
+          </div>
         </>
       )}
 

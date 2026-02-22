@@ -8,7 +8,7 @@
     "dev:web": "node scripts/write-build-timestamp.js && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=3030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 3030",
     "watch:web": "webpack serve --mode development --port 5000",
-    "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . --disable-gpu-compositing --enable-unsafe-webgpu --ozone-platform=x11",
+    "electron": "wait-on http://localhost:3030 && cross-env NODE_ENV=development electron . ",
     "build": "node node_modules/webpack/bin/webpack.js --mode production",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",
     "start": "electron .",
@@ -22,7 +22,8 @@
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh",
     "package": "node scripts/write-build-timestamp.js && electron-builder",
-    "generate-test-data": "node scripts/generate-test-data.js"
+    "generate-test-data": "node scripts/generate-test-data.js",
+    "postinstall": "electron-rebuild -f -o better-sqlite3"
   },
   "keywords": [
     "electron",
@@ -70,6 +71,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
+    "@electron/rebuild": "^4.0.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "babel-loader": "^10.0.0",
     "concurrently": "^9.2.1",
@@ -78,14 +80,15 @@
     "electron": "^40.4.1",
     "electron-builder": "^26.7.0",
     "electron-reload": "^2.0.0-alpha.1",
+    "events": "^3.3.0",
     "html-webpack-plugin": "^5.6.6",
     "mini-css-extract-plugin": "^2.10.0",
     "react-refresh": "^0.18.0",
+    "sql.js": "^1.14.0",
     "style-loader": "^4.0.0",
     "wait-on": "^9.0.4",
     "webpack": "^5.105.2",
-    "webpack-cli": "^6.0.1",
-    "sql.js": "^1.14.0"
+    "webpack-cli": "^6.0.1"
   },
   "pnpm": {
     "overrides": {
@@ -104,15 +107,15 @@
     ]
   },
   "dependencies": {
-    "argon2": "^0.41.1",
-    "better-sqlite3": "^11.6.0",
-    "proper-lockfile": "^4.1.2",
     "@ctrl/tinycolor": "^4.2.0",
     "@fluentui/react-components": "^9.73.0",
     "@fluentui/react-icons": "^2.0.319",
+    "argon2": "^0.41.1",
+    "better-sqlite3": "^12.4.2",
     "electron-squirrel-startup": "^1.0.1",
     "express": "^5.2.1",
     "lucide-react": "^0.574.0",
+    "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "webpack-dev-server": "^5.2.3"

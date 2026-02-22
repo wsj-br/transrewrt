@@ -14,9 +14,22 @@ const fs = require("fs");
 const DEFAULT_NUM_TRANSLATIONS = 600;
 const DEFAULT_NUM_REWRITES = 200;
 
-const DATA_DIR = process.env.CONFIG_PATH
-  ? path.dirname(process.env.CONFIG_PATH)
-  : path.join(__dirname, "..", "data");
+function getDataDir() {
+  if (process.env.CONFIG_PATH) {
+    return path.dirname(process.env.CONFIG_PATH);
+  }
+  if (process.platform === "win32") {
+    const appData = process.env.APPDATA;
+    if (!appData) {
+      console.error("APPDATA environment variable is not set");
+      process.exit(1);
+    }
+    return path.join(appData, "transrewrt");
+  }
+  return path.join(__dirname, "..", "data");
+}
+
+const DATA_DIR = getDataDir();
 const CONFIG_PATH = process.env.CONFIG_PATH || path.join(DATA_DIR, "config.json");
 const DB_PATH = path.join(DATA_DIR, "transrewrt.db");
 

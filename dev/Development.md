@@ -38,11 +38,47 @@ This document covers prerequisites, setup, development workflow, and building/pa
    # Or: choco install git
    ```
 
-3. **Code Editor (optional)**
+3. **Build tools for native modules (required for `better-sqlite3` and `argon2`)**
+
+   This project uses native Node addons that must be compiled on Windows. **These installs require an elevated console** (Run as administrator): Visual Studio Build Tools installs system-wide, and Python/winget typically do too. A regular user prompt will not have permission.
+
+   Install using one of the following (each run in an **elevated** PowerShell):
+
+   **Option A – winget** (no extra package manager)
+
+   ```powershell
+   winget install Python.Python.3.12 --accept-package-agreements --accept-source-agreements
+   winget install Microsoft.VisualStudio.2022.BuildTools --accept-package-agreements --accept-source-agreements --override "--wait --quiet --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+   ```
+
+   Exit code 3010 means a reboot is required. Restart the terminal (or reboot) before running `pnpm install`.
+
+   **Option B – Chocolatey**
+
+   ```powershell
+   choco install python visualstudio2022-workload-vctools -y
+   ```
+
+   If Chocolatey is not installed: [Install Chocolatey](https://chocolatey.org/install) (Chocolatey itself requires elevation), then run the command above.
+
+   **Option C – Manual**
+
+   Run the installers (they will prompt for administrator approval if needed):
+
+   - **Python**: Install from [python.org](https://www.python.org/downloads/) (node-gyp uses it; 3.12+ is supported).
+   - **Visual Studio C++ workload**: Install one of:
+     - [Visual Studio 2022 Community](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community) with the **"Desktop development with C++"** workload, or
+     - [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools) with the **"Desktop development with C++"** workload (no full IDE).
+
+   After installing, restart your terminal and run `pnpm install` again.
+
+   Reference: [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
+
+4. **Code Editor (optional)**
 
    [Cursor IDE](https://cursor.com/home) is recommended.
 
-4. **Developer Mode (recommended for building)**
+5. **Developer Mode (recommended for building)**
 
     Required to avoid symlink errors when running `pnpm install` or `pnpm run package`:
 
@@ -50,7 +86,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
    - Toggle **Developer Mode** to **On**
    - Restart your terminal after enabling
 
-5. **Docker (for Web/Docker target)**
+6. **Docker (for Web/Docker target)**
 
    Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
 
@@ -243,6 +279,8 @@ User-specific configuration is stored in the standard user data directory:
 - **Windows**: `%APPDATA%\transrewrt\` (e.g., `C:\Users\<user>\AppData\Roaming\transrewrt\`)
 - **Linux**: `~/.config/transrewrt/` or `~/.local/share/transrewrt/`
 
+In the Electron desktop app, cost-tracking data is stored in the same directory in **transrewrt.db** (SQLite). The same schema is used for the web/server mode.
+
 The first run copies the default config from `config/config_default.json` to a user-writable location. Subsequent runs read/write user settings there.
 
 ### Updating the Application
@@ -283,6 +321,61 @@ Cross-platform builds require running on each target OS or using a Windows/Mac/L
 ---
 
 ## 6. Windows 11: Common Issues
+
+### Native module build failed (better-sqlite3 / argon2)
+
+If `pnpm install` fails with errors like:
+
+```
+gyp ERR! find VS You need to install the latest version of Visual Studio
+gyp ERR! find VS including the "Desktop development with C++" workload.
+Could not find any Visual Studio installation to use
+```
+
+**Cause**: The project depends on native addons (`better-sqlite3`, `argon2`) that are compiled with node-gyp. Windows requires Visual Studio (or Build Tools) with the C++ workload.
+
+**Fix**: Install the prerequisites in **§1 Prerequisites → Build tools for native modules** (winget, Chocolatey, or manual). Restart the terminal and run `pnpm install` again.
+
+**Optional**: Using Node.js LTS (e.g. v20 or v22) via `nvm use lts` can allow prebuilt binaries for some packages; if none are available for your Node version, the build tools are still required.
+
+### better-sqlite3 / NODE_MODULE_VERSION mismatch in Electron
+
+If the Electron app shows errors like:
+
+```
+The module '...better_sqlite3.node' was compiled against a different Node.js version using NODE_MODULE_VERSION 141. This version of Node.js requires NODE_MODULE_VERSION 143.
+```
+
+**Cause**: Native modules (e.g. `better-sqlite3`) are built for the Node ABI used at install time. Electron uses a different ABI, so the addon must be rebuilt for Electron.
+
+**Fix**:
+
+1. **better-sqlite3**: The project uses `better-sqlite3` **^12.4.2** (required for Electron 40’s V8). After `pnpm install`, the **postinstall** script runs `electron-rebuild` to build it for Electron. If you see the error above, run:
+   ```powershell
+   pnpm run postinstall
+   ```
+   (Requires the [build tools for native modules](#3-build-tools-for-native-modules-required-for-better-sqlite3-and-argon2) to be installed.)
+
+2. If you upgraded Electron and the error persists, run `pnpm install` again so dependencies and the rebuild use the new Electron version.
+
+### Node not found (but npm/pnpm are recognized)
+
+You ran `nvm install lts` and `nvm use lts`, but `node` is still not recognized while `npm` or `pnpm` work (or npm fails with "node.exe is not recognized").
+
+**Cause**: nvm-windows puts Node at `%NVM_SYMLINK%` (e.g. `C:\nvm4w\nodejs`) and adds `%NVM_HOME%` and `%NVM_SYMLINK%` to your User PATH. The **terminal (or Cursor) was started before those variables existed**, so this process has no `NVM_HOME`/`NVM_SYMLINK` and PATH still contains the literal `%NVM_SYMLINK%`, which doesn’t resolve to the folder where `node.exe` lives.
+
+**Fix 1 – Restart Cursor (recommended)**  
+Fully quit Cursor and open it again so it loads the updated User environment (with `NVM_HOME` and `NVM_SYMLINK`). Open a new terminal; `node` and `npm` should work.
+
+**Fix 2 – Add Node path to User PATH**  
+If restarting doesn’t help (or you can’t restart), add the nvm Node folder to your User PATH so it’s always found:
+
+1. Win + R → `rundll32 sysdm.cpl,EditEnvironmentVariables` → Enter  
+2. Under "User variables", select **Path** → **Edit** → **New**  
+3. Add: `C:\nvm4w\nodejs` (or your actual `NVM_SYMLINK` value from nvm’s settings)  
+4. OK out, then open a **new** terminal
+
+After that, `node --version` and `npm --version` should work in new terminals.
 
 ### Symlink Permission Errors
 

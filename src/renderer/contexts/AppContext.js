@@ -228,24 +228,29 @@ export const AppProvider = ({ children }) => {
         target_lang: targetLang || "",
       });
 
+      const translatePayload = {
+        timestamp: new Date().toISOString(),
+        type: "translate",
+        model: result.model_used || model,
+        source_lang: sourceLang || null,
+        target_lang: targetLang || null,
+        rewrite_style: null,
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+      }
       if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
-        const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
-        const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
-        const tps = durationSec > 0 ? totalTokens / durationSec : null;
-        webAPI.logApiCall({
-          timestamp: new Date().toISOString(),
-          type: "translate",
-          model: result.model_used || model,
-          source_lang: sourceLang || null,
-          target_lang: targetLang || null,
-          rewrite_style: null,
-          request_bytes: result.request_bytes ?? null,
-          response_bytes: result.response_bytes ?? null,
-          duration_ms: result.duration_ms ?? null,
-          cost: result.calculated_cost ?? result.usage?.cost ?? null,
-          total_cost: result.total_cost ?? null,
-          tps: tps ?? null,
-        });
+        webAPI.logApiCall(translatePayload);
       }
 
       return result;
@@ -285,24 +290,29 @@ export const AppProvider = ({ children }) => {
 
       logApiCall("rewrite", result, { rewrite_style: style || "" });
 
+      const rewritePayload = {
+        timestamp: new Date().toISOString(),
+        type: "rewrite",
+        model: result.model_used || model,
+        source_lang: null,
+        target_lang: null,
+        rewrite_style: style || null,
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+      }
       if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
-        const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
-        const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
-        const tps = durationSec > 0 ? totalTokens / durationSec : null;
-        webAPI.logApiCall({
-          timestamp: new Date().toISOString(),
-          type: "rewrite",
-          model: result.model_used || model,
-          source_lang: null,
-          target_lang: null,
-          rewrite_style: style || null,
-          request_bytes: result.request_bytes ?? null,
-          response_bytes: result.response_bytes ?? null,
-          duration_ms: result.duration_ms ?? null,
-          cost: result.calculated_cost ?? result.usage?.cost ?? null,
-          total_cost: result.total_cost ?? null,
-          tps: tps ?? null,
-        });
+        webAPI.logApiCall(rewritePayload);
       }
 
       return result;

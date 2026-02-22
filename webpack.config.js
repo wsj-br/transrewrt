@@ -10,6 +10,9 @@ module.exports = (env, argv) => {
 
   return {
   mode: isDevelopment ? "development" : "production",
+  // Use "web" in dev so the bundle served by webpack-dev-server has no runtime require() calls
+  // (renderer has nodeIntegration: false). Production already loads from file with target "web".
+  target: "web",
   entry: "./src/renderer/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -68,6 +71,10 @@ module.exports = (env, argv) => {
   ].filter(Boolean),
   resolve: {
     extensions: [".js", ".jsx"],
+    // Bundle Node-style modules for Electron renderer / dev server so require() is not used at runtime
+    fallback: {
+      events: require.resolve("events/"),
+    },
   },
   performance: {
     // Entry: initial load JS/CSS. 1MB is reasonable for React + Fluent UI (web/Docker + Electron).
