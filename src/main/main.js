@@ -1,8 +1,17 @@
-const { app, BrowserWindow, screen, ipcMain } = require("electron");
+const { app, BrowserWindow, screen, ipcMain, protocol } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
 const crypto = require("crypto");
+
+// Custom protocol for production: serve renderer via app:// instead of file://.
+// Best practice: Electron recommends loadFile()/file:// for local content when it works; in packaged
+// apps file:// can be blocked (e.g. "Not allowed to load local resource" in some sandbox contexts).
+// Using a custom protocol is the documented approach for "the same effect as the file:// protocol"
+// (https://www.electronjs.org/docs/latest/api/protocol) and avoids that restriction.
+protocol.registerSchemesAsPrivileged([
+  { scheme: "app", privileges: { standard: true, secure: true, supportFetchAPI: true } },
+]);
 
 // --- Config path (single source of truth for Electron; must match preload usage when migrating) ---
 const getConfigFilePath = () => {
@@ -258,15 +267,6 @@ function saveStateToFile(state) {
   }
 }
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-try {
-  if (require("electron-squirrel-startup")) {
-    app.quit();
-  }
-} catch (error) {
-  // electron-squirrel-startup is optional
-}
-
 // Enable hot reload for development
 if (process.env.NODE_ENV === "development") {
   require("electron-reload")(__dirname, {
@@ -402,7 +402,6 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
       contextIsolation: true,
-      webSecurity: process.env.NODE_ENV === "development" ? false : true,
     },
   });
 
@@ -417,10 +416,26 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL("http://localhost:3030");
+    const devUrl = "http://localhost:3030";
+    let devLoadRetries = 0;
+    const tryLoadDev = () => mainWindow.loadURL(devUrl);
+    mainWindow.webContents.on("did-fail-load", (_, errorCode, errorDescription, validatedUrl) => {
+      if (errorCode === -3) return; // ERR_ABORTED, e.g. user navigated
+      console.error("Main window load failed:", errorCode, errorDescription, validatedUrl);
+      if (validatedUrl === devUrl && devLoadRetries < 2) {
+        devLoadRetries += 1;
+        setTimeout(tryLoadDev, 2000);
+      }
+    });
+    tryLoadDev();
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, "../../dist/index.html"));
+    mainWindow.loadURL("app://./dist/index.html");
+    mainWindow.webContents.on("did-fail-load", (_, errorCode, errorDescription, validatedUrl) => {
+      if (errorCode !== -3) {
+        console.error("Main window load failed:", errorCode, errorDescription, validatedUrl);
+      }
+    });
   }
 
   // Remove menu bar
@@ -494,7 +509,7 @@ const createSettingsWindow = () => {
   const startUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3030?window=settings"
-      : `file://${path.join(__dirname, "../../dist/index.html")}?window=settings`;
+      : "app://./dist/index.html?window=settings";
 
   settingsWindow.loadURL(startUrl);
 
@@ -636,6 +651,52 @@ const { registerCostDbHandlers } = require("./costDb");
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
+  // Serve app assets via app:// in production so we avoid file:// (blocked in some packaged/sandbox contexts).
+  // Use fs.readFile (not net.fetch(file://)) so reading from app.asar works in sandboxed environments.
+  if (process.env.NODE_ENV !== "development") {
+    const appBase = app.getAppPath();
+    const mimeByExt = {
+      ".html": "text/html",
+      ".js": "application/javascript",
+      ".css": "text/css",
+      ".json": "application/json",
+      ".ico": "image/x-icon",
+      ".png": "image/png",
+      ".svg": "image/svg+xml",
+      ".woff2": "font/woff2",
+      ".woff": "font/woff",
+    };
+    protocol.handle("app", async (request) => {
+      try {
+        const { pathname } = new URL(request.url);
+        const requestPath = pathname.replace(/^\/+/, "").replace(/\\/g, "/");
+        const filePath = path.resolve(appBase, requestPath);
+        const relative = path.relative(appBase, filePath);
+        if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) {
+          return new Response("Forbidden", { status: 403, headers: { "Content-Type": "text/plain" } });
+        }
+        const data = await fs.promises.readFile(filePath);
+        const ext = path.extname(filePath).toLowerCase();
+        const contentType = mimeByExt[ext] || "application/octet-stream";
+        return new Response(data, {
+          headers: { "Content-Type": contentType },
+        });
+      } catch (err) {
+        if (err.code === "ENOENT") {
+          return new Response(`Not found: ${requestPath}`, {
+            status: 404,
+            headers: { "Content-Type": "text/plain" },
+          });
+        }
+        console.error("app:// protocol error:", err);
+        return new Response(String(err.message), {
+          status: 500,
+          headers: { "Content-Type": "text/plain" },
+        });
+      }
+    });
+  }
+
   registerCostDbHandlers(ipcMain, () => app.getPath("userData"));
   loadConfigFromFile();
   loadStateFromFile();

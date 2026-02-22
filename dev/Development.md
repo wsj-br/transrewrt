@@ -93,7 +93,14 @@ This document covers prerequisites, setup, development workflow, and building/pa
    - Toggle **Developer Mode** to **On**
    - Restart your terminal after enabling
 
-6. **Docker (for Web/Docker target)**
+6. **Loading `.env` (optional, Windows/PowerShell)**
+
+   The project uses `.env` (and optionally `.env.local`) for local environment variables (e.g. `API_KEY`). Two scripts provide direnv-style loading:
+
+   - **Manual:** From the repo root run `. .\scripts\Load-DotEnv.ps1` to load `.env` and `.env.local` into the current session.
+   - **Automatic:** Add to your PowerShell profile: `. 'C:\Users\wsj\src\transrewrt\scripts\Register-DotEnvHook.ps1'` (adjust the path if your clone is elsewhere). Then `.env` is loaded automatically when you `cd` into the project. Open your profile with `notepad $PROFILE`.
+
+7. **Docker (for Web/Docker target)**
 
    ```powershell
    winget install Docker.DockerDesktop
@@ -139,7 +146,20 @@ This document covers prerequisites, setup, development workflow, and building/pa
    sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
    ```
 
-4. **Docker (for Web/Docker target)**
+4. **direnv (optional – load `.env` in project directory)**
+
+   [direnv](https://direnv.net/) loads environment variables from `.env` when you `cd` into the project and unloads them when you leave.
+
+   ```bash
+   # e.g. on Debian/Ubuntu
+   sudo apt install direnv
+   # Add to ~/.bashrc or ~/.zshrc:
+   eval "$(direnv hook bash)"   # or: eval "$(direnv hook zsh)"
+   ```
+
+   Restart your shell, then in the project root run once: `direnv allow`.
+
+5. **Docker (for Web/Docker target)**
 
    ```bash
    sudo apt update
@@ -147,7 +167,7 @@ This document covers prerequisites, setup, development workflow, and building/pa
    sudo usermod -aG docker $USER   # Log out and back in for group to take effect
    ```
 
-5. **Code Editor (optional)**
+6. **Code Editor (optional)**
 
    [Cursor IDE](https://cursor.com/home) is recommended. Download and install from [cursor.com](https://cursor.com/).
 

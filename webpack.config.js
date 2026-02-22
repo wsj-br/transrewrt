@@ -60,6 +60,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",
       favicon: path.resolve(__dirname, "images/transrewrt_logo.ico"),
+      // Production: no 'unsafe-eval' (Electron security). Dev: allow 'unsafe-eval' for React Refresh / HMR.
+      cspScriptSrc: isDevelopment ? "'self' 'unsafe-inline' 'unsafe-eval'" : "'self' 'unsafe-inline'",
     }),
     !isDevelopment && new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -130,6 +132,7 @@ module.exports = (env, argv) => {
         errors: true,
         warnings: false,
       },
+      logging: "warn",
     },
   },
   };

@@ -31,9 +31,6 @@ importers:
       better-sqlite3:
         specifier: ^12.4.2
         version: 12.6.2
-      electron-squirrel-startup:
-        specifier: ^1.0.1
-        version: 1.0.1
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -1872,9 +1869,6 @@ packages:
 
   electron-reload@2.0.0-alpha.1:
     resolution: {integrity: sha512-hTde7gv0TEqxbxlB3pj2CwoyCQ9sdiQrcP8GkpzhosxyVeYM3mZbMEVKCZK3L0fED7Mz5A9IWmK7zEvi4H3P1g==}
-
-  electron-squirrel-startup@1.0.1:
-    resolution: {integrity: sha512-sTfFIHGku+7PsHLJ7v0dRcZNkALrV+YEozINTW8X1nM//e5O3L+rfYuvSW00lmGHnYmUjARZulD8F2V8ISI9RA==}
 
   electron-to-chromium@1.5.302:
     resolution: {integrity: sha512-sM6HAN2LyK82IyPBpznDRqlTQAtuSaO+ShzFiWTvoMJLHyZ+Y39r8VMfHzwbU8MVBzQ4Wdn85+wlZl2TLGIlwg==}
@@ -6367,12 +6361,6 @@ snapshots:
   electron-reload@2.0.0-alpha.1:
     dependencies:
       chokidar: 3.6.0
-
-  electron-squirrel-startup@1.0.1:
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
 
   electron-to-chromium@1.5.302: {}
 

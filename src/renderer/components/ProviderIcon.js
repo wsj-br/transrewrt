@@ -34,20 +34,6 @@ const manualMap = {
   'openrouter': 'openrouter.ico', // if we had one
 };
 
-// Emoji fallback mapping
-const getProviderEmoji = (provider) => {
-  const providerLower = provider.toLowerCase();
-  if (providerLower.includes('anthropic')) return '⚡';
-  if (providerLower.includes('openai')) return '🤖';
-  if (providerLower.includes('google')) return '🔷';
-  if (providerLower.includes('meta')) return '📘';
-  if (providerLower.includes('alibaba')) return '🟠';
-  if (providerLower.includes('cohere')) return '🟣';
-  if (providerLower.includes('mistral')) return '🔶';
-  if (providerLower.includes('deepseek')) return '🔵';
-  if (providerLower.includes('qwen')) return '🟢';
-  return '🤖';
-};
 
 function getIconUrl(provider) {
   // Try manual override
@@ -88,10 +74,9 @@ const ProviderIcon = ({ provider, size = 16 }) => {
     );
   }
 
-  // Fallback to emoji
-  const emoji = getProviderEmoji(provider);
+  // Fallback to generic robot emoji
   const fontSize = size === 20 ? '20px' : '16px';
-  return <span style={{ fontSize, lineHeight: 1 }}>{emoji}</span>;
+  return <span style={{ fontSize, lineHeight: 1 }}>🤖</span>;
 };
 
 export default ProviderIcon;

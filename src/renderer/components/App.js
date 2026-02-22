@@ -283,6 +283,8 @@ const App = () => {
   const startTimeRef = useRef(null);
   const abortControllerRef = useRef(null);
   const cancelledByUserRef = useRef(false);
+  const processingModeRef = useRef(null); // "translate" | "rewrite" | null
+  const currentModeRef = useRef(currentMode);
 
   // Determine active model safely
   const activeModel = useMemo(() => {
@@ -307,6 +309,11 @@ const App = () => {
     "Expand",
     "Make Technical",
   ];
+
+  // Keep currentModeRef in sync so async callbacks can read the latest mode
+  useEffect(() => {
+    currentModeRef.current = currentMode;
+  }, [currentMode]);
 
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
@@ -377,6 +384,8 @@ const App = () => {
   const translateText = async (signal) => {
     const text = inputText;
     if (!text.trim()) return;
+
+    processingModeRef.current = "translate";
 
     // Start timer
     setIsProcessing(true);
@@ -459,7 +468,9 @@ const App = () => {
       setIsProcessing(false);
       setLastRunCost(0);
       setLastRunModel(null);
-      if (error.name === 'AbortError') {
+      // Aborted requests can surface as AbortError or "Failed to fetch" (e.g. Chromium)
+      const isAbort = error.name === "AbortError" || (error.message && String(error.message).includes("Failed to fetch"));
+      if (isAbort) {
         if (!cancelledByUserRef.current) {
           setOutputTextTranslate("Translation stopped by user.");
         }
@@ -468,6 +479,13 @@ const App = () => {
       }
     } finally {
       abortControllerRef.current = null;
+      processingModeRef.current = null;
+      // If the operation completed naturally (not stopped by user) and the user
+      // navigated away during processing, bring them back to the translate view.
+      if (!cancelledByUserRef.current && currentModeRef.current !== "translate") {
+        setCurrentMode("translate");
+        updateSettings({ app_mode: "translate" });
+      }
     }
   };
 
@@ -516,6 +534,8 @@ const App = () => {
     // Create new AbortController for this request
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
+
+    processingModeRef.current = "rewrite";
 
     // Start timer
     setIsProcessing(true);
@@ -596,7 +616,9 @@ const App = () => {
       startTimeRef.current = null;
       setIsProcessing(false);
       setLastRunCost(0);
-      if (error.name === 'AbortError') {
+      // Aborted requests can surface as AbortError or "Failed to fetch" (e.g. Chromium)
+      const isAbort = error.name === "AbortError" || (error.message && String(error.message).includes("Failed to fetch"));
+      if (isAbort) {
         if (!cancelledByUserRef.current) {
           setOutputTextRewrite("Rewrite stopped by user.");
         }
@@ -605,16 +627,48 @@ const App = () => {
       }
     } finally {
       abortControllerRef.current = null;
+      processingModeRef.current = null;
+      // If the operation completed naturally (not stopped by user) and the user
+      // navigated away during processing, bring them back to the rewrite view.
+      if (!cancelledByUserRef.current && currentModeRef.current !== "rewrite") {
+        setCurrentMode("rewrite");
+        updateSettings({ app_mode: "rewrite" });
+      }
     }
   };
 
-  const handleRunAction = useCallback(() => {
+  // Start-only action for debounce: never aborts. Prevents mode switch from
+  // re-running the debounce and accidentally stopping the in-flight request.
+  const runActionStartOnlyRef = useRef(null);
+  runActionStartOnlyRef.current = () => {
+    if (isProcessing) return;
     if (currentMode === "translate") {
       handleTranslate();
     } else {
       handleRewrite();
     }
-  }, [currentMode, handleTranslate, handleRewrite]);
+  };
+  const handleRunActionStartOnly = useCallback(() => {
+    runActionStartOnlyRef.current?.();
+  }, []);
+
+  const handleRunAction = useCallback(() => {
+    if (isProcessing) {
+      // Route the stop to whichever mode is actually running so the correct
+      // "stopped" message is written to the right output panel.
+      if (processingModeRef.current === "translate") {
+        handleTranslate();
+      } else {
+        handleRewrite();
+      }
+      return;
+    }
+    if (currentMode === "translate") {
+      handleTranslate();
+    } else {
+      handleRewrite();
+    }
+  }, [currentMode, isProcessing, handleTranslate, handleRewrite]);
 
   const { pasteToInput, handlePasteEvent, shouldAutoProcessRef } = usePasteHandler(
     setInputText,
@@ -625,13 +679,13 @@ const App = () => {
 
   useDebouncedProcess(
     inputText,
-    handleRunAction,
+    handleRunActionStartOnly,
     settings.real_time_translation,
     settings.real_time_delay,
     shouldAutoProcessRef
   );
 
-  useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput);
+  useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput, currentView);
 
   // Apply theme
   useEffect(() => {
@@ -707,7 +761,7 @@ const App = () => {
           icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
         >
           {isProcessing
-            ? `Stop ${currentMode === "translate" ? "Translate" : "Rewrite"}`
+            ? `Stop ${processingModeRef.current === "translate" ? "Translate" : "Rewrite"}`
             : currentMode === "translate"
             ? "Translate"
             : "Rewrite"}

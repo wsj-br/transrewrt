@@ -1,12 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Registers keyboard shortcuts: Execute = Enter runs translate/rewrite,
  * Shift-Execute = Shift+Enter runs translate/rewrite. Escape clears input.
+ * Only active when currentView === "workspace" so Settings navigation doesn't trigger run/stop.
  */
-export function useKeyboardShortcuts(handleRunAction, inputText, enterBehavior, clearInput) {
+export function useKeyboardShortcuts(handleRunAction, inputText, enterBehavior, clearInput, currentView = "workspace") {
+  const currentViewRef = useRef(currentView);
+  currentViewRef.current = currentView;
+
   useEffect(() => {
     const handleKeyDown = (event) => {
+      if (currentViewRef.current !== "workspace") return;
+
       if (event.key !== "Enter") {
         if (event.key === "Escape") {
           clearInput();
