@@ -13,6 +13,8 @@ function Read-DotEnvFile {
     Get-Content $FilePath -Encoding UTF8 | ForEach-Object {
         $line = $_.Trim()
         if ($line -and $line -notmatch '^\s*#') {
+            # Strip leading "export " so bash-style export VAR=value works
+            $line = $line -replace '^\s*export\s+', ''
             if ($line -match '^([^#=]+)=(.*)$') {
                 $key = $matches[1].Trim()
                 $value = $matches[2].Trim().Trim('"').Trim("'")
