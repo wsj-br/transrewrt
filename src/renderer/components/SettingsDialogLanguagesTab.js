@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Checkbox, Input, tokens } from '@fluentui/react-components';
+import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
 import { ALL_AVAILABLE_LANGUAGES } from '../utils/languageConstants';
 
@@ -69,80 +69,87 @@ const SettingsDialogLanguagesTab = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const sectionTitleStyle = { display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' };
+
   return (
     <div className="tab-content languages-tab">
-      <h3 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <Languages size={20} />
-        Selected Languages
-      </h3>
-      <p>Select languages to appear in dropdowns:</p>
-      <div 
-        className="languages-grid"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${numColumns}, 1fr)`,
-          gap: '16px'
-        }}
-      >
-        {columns.map((column, colIndex) => (
-          <div key={colIndex} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {column.map(lang => {
-              const isCustom = !ALL_AVAILABLE_LANGUAGES.includes(lang);
-              return (
-                <div key={lang} style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
-                  <Checkbox
-                    checked={selectedLanguages.has(lang)}
-                    onChange={(e) => {
-                      const newSet = new Set(selectedLanguages);
-                      if (e.target.checked) newSet.add(lang);
-                      else newSet.delete(lang);
-                      onSelectedLanguagesChange(newSet);
-                      // Auto-save: persist immediately
-                      onSetting('available_languages', Array.from(newSet));
-                    }}
-                    label={lang}
-                  />
-                  {isCustom && (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // Copy the language name to the custom language input before deleting
-                        onCustomLanguageChange(lang);
-                        const newSet = new Set(selectedLanguages);
-                        newSet.delete(lang);
-                        onSelectedLanguagesChange(newSet);
-                        // Auto-save: persist immediately
-                        onSetting('available_languages', Array.from(newSet));
-                      }}
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: '2px 4px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        color: tokens.colorNeutralForeground3,
-                      }}
-                      title="Delete custom language"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+      <div className="section">
+        <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
+          <Languages size={20} />
+          Selected Languages
+        </Text>
+        <div style={{ paddingLeft: '24px' }}>
+          <p>Select languages to appear in dropdowns:</p>
+          <div 
+            className="languages-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(${numColumns}, 1fr)`,
+              gap: '16px'
+            }}
+          >
+            {columns.map((column, colIndex) => (
+              <div key={colIndex} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {column.map(lang => {
+                  const isCustom = !ALL_AVAILABLE_LANGUAGES.includes(lang);
+                  return (
+                    <div key={lang} style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
+                      <Checkbox
+                        checked={selectedLanguages.has(lang)}
+                        onChange={(e) => {
+                          const newSet = new Set(selectedLanguages);
+                          if (e.target.checked) newSet.add(lang);
+                          else newSet.delete(lang);
+                          onSelectedLanguagesChange(newSet);
+                          // Auto-save: persist immediately
+                          onSetting('available_languages', Array.from(newSet));
+                        }}
+                        label={lang}
+                      />
+                      {isCustom && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Copy the language name to the custom language input before deleting
+                            onCustomLanguageChange(lang);
+                            const newSet = new Set(selectedLanguages);
+                            newSet.delete(lang);
+                            onSelectedLanguagesChange(newSet);
+                            // Auto-save: persist immediately
+                            onSetting('available_languages', Array.from(newSet));
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            padding: '2px 4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            color: tokens.colorNeutralForeground3,
+                          }}
+                          title="Delete custom language"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
-      <div className="languages-section">
-        <h3 style={{ marginTop: 36, display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div className="languages-section section">
+        <Text as="h3" size={500} weight="semibold" style={{ ...sectionTitleStyle, marginTop: '36px' }}>
           <Globe size={20} />
           Custom Language
-        </h3>
-        <div className="form-group" style={{ marginTop: '12px' }}>
-          <Input
+        </Text>
+        <div style={{ paddingLeft: '24px' }}>
+          <div className="form-group" style={{ marginTop: 0 }}>
+            <Input
             type="text"
             value={customLanguage}
             onChange={(e) => onCustomLanguageChange(e.target.value)}
@@ -172,6 +179,7 @@ const SettingsDialogLanguagesTab = ({
             placeholder="Enter custom language name and press Enter"
             style={{ width: '50%'}}
           />
+          </div>
         </div>
       </div>
     </div>

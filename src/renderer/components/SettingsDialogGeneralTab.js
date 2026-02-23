@@ -302,6 +302,7 @@ const SettingsDialogGeneralTab = ({
             <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
             <Dropdown
               id="font-family"
+              appearance="underline"
               value={localSettings.font_family || DEFAULT_FONT}
               selectedOptions={[(localSettings.font_family || DEFAULT_FONT)]}
               onOptionSelect={(e, data) => {

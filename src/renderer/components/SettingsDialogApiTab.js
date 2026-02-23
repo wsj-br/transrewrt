@@ -17,10 +17,11 @@ const SettingsDialogApiTab = ({
     <div className="tab-content">
       {!isWeb && (
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Key size={20} />
           API Configuration
         </Text>
+        <div style={{ paddingLeft: "24px" }}>
         <div style={{ marginBottom: '16px' }}>
           <Label htmlFor="api-url" style={{ display: 'block', marginBottom: '6px' }}>
             API URL:
@@ -83,6 +84,7 @@ const SettingsDialogApiTab = ({
               {apiTestMessage}
             </div>
           )}
+        </div>
         </div>
       </div>
       )}

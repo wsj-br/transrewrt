@@ -27,6 +27,15 @@ import {
 } from 'lucide-react';
 import ProviderIcon from './ProviderIcon';
 
+const SORT_OPTIONS = [
+  { value: 'cost-asc', label: 'Cost ↑ Low to High' },
+  { value: 'cost-desc', label: 'Cost ↓ High to Low' },
+  { value: 'model-asc', label: 'Model A→Z' },
+  { value: 'model-desc', label: 'Model Z→A' },
+  { value: 'provider-asc', label: 'Provider A→Z' },
+  { value: 'provider-desc', label: 'Provider Z→A' },
+];
+
 const SettingsDialogModelsTab = ({
   allModels,
   selectedModelIds,
@@ -130,19 +139,16 @@ const SettingsDialogModelsTab = ({
             )}
             
             <Dropdown
-              appearance="outline"
+              appearance="underline"
               size="small"
-              value={sortBy}
+              value={SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? sortBy}
               selectedOptions={[sortBy]}
               onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
-              style={{ minWidth: '140px' }}
+              style={{ minWidth: '200px' }}
             >
-              <Option value="cost-asc">Cost ↑ Low to High</Option>
-              <Option value="cost-desc">Cost ↓ High to Low</Option>
-              <Option value="model-asc">Model A→Z</Option>
-              <Option value="model-desc">Model Z→A</Option>
-              <Option value="provider-asc">Provider A→Z</Option>
-              <Option value="provider-desc">Provider Z→A</Option>
+              {SORT_OPTIONS.map((opt) => (
+                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+              ))}
             </Dropdown>
           </div>
 

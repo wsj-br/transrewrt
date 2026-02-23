@@ -437,7 +437,7 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   return (
     <div className="tab-content">
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <DollarSign size={20} />
           Cost Tracking
         </Text>

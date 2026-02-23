@@ -105,10 +105,11 @@ const SettingsDialogAuthTab = () => {
   return (
     <div className="tab-content">
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Lock size={20} />
           Change password
         </Text>
+        <div style={{ paddingLeft: "24px" }}>
         <form onSubmit={handleSubmit}>
           <div style={gridRow}>
             <Label htmlFor="auth-new">New password</Label>
@@ -167,16 +168,19 @@ const SettingsDialogAuthTab = () => {
             {loading ? "Changing…" : "Change password"}
           </Button>
         </form>
+        </div>
       </div>
       <div className="section" style={{ marginTop: "24px" }}>
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Clock size={20} />
           Session timeout
         </Text>
+        <div style={{ paddingLeft: "24px" }}>
         <div style={gridRow}>
           <Label htmlFor="auth-session-timeout">Timeout</Label>
           <Dropdown
             id="auth-session-timeout"
+            appearance="underline"
             value={SESSION_TIMEOUT_OPTIONS.find((o) => String(o.seconds) === sessionTimeoutValue)?.label ?? "7 days"}
             selectedOptions={[sessionTimeoutValue]}
             onOptionSelect={(e, data) => {
@@ -195,12 +199,14 @@ const SettingsDialogAuthTab = () => {
         <Text as="p" size={200} style={{ marginTop: "4px", marginBottom: 0, color: "var(--colorNeutralForeground3)" }}>
           Applies to new logins.
         </Text>
+        </div>
       </div>
       <div className="section" style={{ marginTop: "24px" }}>
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "16px" }}>
+        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <LogOut size={20} />
           Session
         </Text>
+        <div style={{ paddingLeft: "24px" }}>
         <Button
           appearance="secondary"
           onClick={async () => {
@@ -218,6 +224,7 @@ const SettingsDialogAuthTab = () => {
            <Clock size={12} /> Session remaining: <b>{sessionRemaining}</b>
           </Text>
         )}
+        </div>
       </div>
     </div>
   );
