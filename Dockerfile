@@ -13,8 +13,11 @@ RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
 COPY scripts/ ./scripts/
 
-# Install all dependencies (native modules are built here)
-RUN pnpm install
+# Install all dependencies (native modules built for Node 24 here).
+# --ignore-scripts: skip postinstall (electron-rebuild); we run plain Node in prod, not Electron.
+RUN pnpm install --ignore-scripts
+# Rebuild native addons for this image's Node (skipped by --ignore-scripts above).
+RUN pnpm rebuild better-sqlite3 argon2
 
 # Copy source code
 COPY . .

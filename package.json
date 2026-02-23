@@ -22,6 +22,7 @@
     "docker:clean": "./scripts/clean-docker.sh",
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh",
+    "docker:logs": "docker logs -f transrewrt-web-1",
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
     "postinstall": "node scripts/electron-rebuild.js"

@@ -301,7 +301,6 @@ function saveState(state) {
       return true;
     }
     fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), "utf8");
-    console.log("[STATE] State saved.");
     return true;
   } catch (err) {
     console.error("[STATE] Failed to save state:", err);
