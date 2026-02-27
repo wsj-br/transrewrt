@@ -5,41 +5,39 @@ import Logo from "../../../images/transrewrt_logo.png";
 
 const useStyles = makeStyles({
   sidebar: {
-    width: "100px",
-    minWidth: "100px",
+    width: "220px",
+    minWidth: "220px",
     height: "100%",
-    backgroundColor: tokens.colorNeutralBackground1,
-    borderRight: `1px solid ${tokens.colorNeutralStroke1}`,
+    backgroundColor: "#12141d",
+    borderRight: "1px solid rgba(255, 255, 255, 0.08)",
     display: "flex",
     flexDirection: "column",
     WebkitAppRegion: "drag",
   },
   logoSection: {
-    padding: tokens.spacingVerticalM,
+    padding: "20px",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
-    gap: "8px",
-    paddingBottom: "24px",
+    gap: "12px",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
     WebkitAppRegion: "no-drag",
   },
   logo: {
-    height: "32px",
+    height: "28px",
     width: "auto",
     objectFit: "contain",
   },
   appName: {
-    fontSize: "16px", 
-    fontWeight: 800, // Extra bold helps show the color transition
-    textAlign: "center",
-    lineHeight: 1.2,
+    fontSize: "18px",
+    fontWeight: 700,
+    fontFamily:
+      "'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    letterSpacing: "-0.5px",
     display: "inline-block",
-  
-    /* 1. Solid Gradient */
-    background: "linear-gradient(90deg, #00ff00 0%, #63e684 40%, #f2ab38 60%, #ed7139 100%)",
-
-    /* 2. Clipping */
+    background:
+      "linear-gradient(90deg, #84cc16 0%, #a3e635 40%, #fb923c 60%, #f97316 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
@@ -50,62 +48,72 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    gap: 0,
-    WebkitAppRegion: "no-drag",
-  },
-  iconButtonSection: {
-    padding: tokens.spacingVerticalM,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    WebkitAppRegion: "no-drag",
-  },
-  iconButton: {
-    width: "100%",
-    minHeight: "64px",
-    borderRadius: tokens.borderRadiusMedium,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: "12px 8px",
     gap: "4px",
+    WebkitAppRegion: "no-drag",
+  },
+  navItem: {
+    width: "100%",
+    minHeight: "48px",
+    borderRadius: "8px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "12px",
     cursor: "pointer",
     backgroundColor: "transparent",
     border: "none",
-    color: tokens.colorNeutralForeground2,
-    transition: "all 0.15s ease",
-    position: "relative",
-    padding: "8px 0",
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground1Hover,
-      color: tokens.colorNeutralForeground1,
-    },
-  },
-  iconButtonActive: {
-    backgroundColor: tokens.colorNeutralBackground2,
-    color: tokens.colorBrandForeground1,
-    borderLeft: `3px solid ${tokens.colorBrandBackground}`,
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground2,
-      color: tokens.colorBrandForeground1,
-    },
-  },
-  iconLabel: {
-    fontSize: "11px",
+    color: "#e0e0e0",
+    transition: "all 0.2s ease",
+    padding: "10px 12px",
+    fontFamily:
+      "'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    fontSize: "14px",
     fontWeight: 500,
-    textAlign: "center",
+    textAlign: "left",
+    ":hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.06)",
+    },
   },
-  iconContainer: {
+  navItemActive: {
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    color: "#ffffff",
+    ":hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+    },
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: "3px",
+      height: "24px",
+      backgroundColor: "#fb923c",
+      borderRadius: "0 2px 2px 0",
+    },
+  },
+  navItemIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexShrink: 0,
+  },
+  navItemLabel: {
+    flex: 1,
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   footerSection: {
-    padding: tokens.spacingVerticalM,
+    padding: "12px 8px",
+    borderTop: "1px solid rgba(255, 255, 255, 0.06)",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    // borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    gap: "4px",
     WebkitAppRegion: "no-drag",
   },
 });
@@ -118,63 +126,82 @@ const Sidebar = ({
 }) => {
   const styles = useStyles();
   const isSettingsActive = currentView === "settings";
-  const isTranslateActive = currentMode === "translate" && currentView === "workspace";
-  const isRewriteActive = currentMode === "rewrite" && currentView === "workspace";
+  const isTranslateActive =
+    currentMode === "translate" && currentView === "workspace";
+  const isRewriteActive =
+    currentMode === "rewrite" && currentView === "workspace";
 
-  // Icon size for consistent rendering
-  const iconSize = 24;
+  const iconSize = 20;
+
+  const navItems = [
+    {
+      id: "translate",
+      label: "Translate",
+      icon: Languages,
+      isActive: isTranslateActive,
+      onClick: () => onModeChange("translate"),
+    },
+    {
+      id: "rewrite",
+      label: "Rewrite",
+      icon: PenTool,
+      isActive: isRewriteActive,
+      onClick: () => onModeChange("rewrite"),
+    },
+  ];
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logoSection}>
-        <img
-          className={styles.logo}
-          src={Logo}
-          alt="Transrewrt logo"
-        />
+        <img className={styles.logo} src={Logo} alt="Transrewrt logo" />
         <span className={styles.appName}>Transrewrt</span>
       </div>
 
-      <div className={styles.navSection} role="navigation" aria-label="Main">
-        <div className={styles.iconButtonSection}>
-          <button
-            type="button"
-            className={mergeClasses(styles.iconButton, isTranslateActive && styles.iconButtonActive)}
-            onClick={() => onModeChange("translate")}
-            aria-label="Translate"
-          >
-            <div className={styles.iconContainer}>
-              <Languages size={iconSize} strokeWidth={isTranslateActive ? 2.5 : 1.5} />
-            </div>
-            <span className={styles.iconLabel}>Translate</span>
-          </button>
-        </div>
-        <div className={styles.iconButtonSection}>
-          <button
-            type="button"
-            className={mergeClasses(styles.iconButton, isRewriteActive && styles.iconButtonActive)}
-            onClick={() => onModeChange("rewrite")}
-            aria-label="Rewrite"
-          >
-            <div className={styles.iconContainer}>
-              <PenTool size={iconSize} strokeWidth={isRewriteActive ? 2.5 : 1.5} />
-            </div>
-            <span className={styles.iconLabel}>Rewrite</span>
-          </button>
-        </div>
-      </div>
+      <nav className={styles.navSection} role="navigation" aria-label="Main">
+        {navItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              className={mergeClasses(
+                styles.navItem,
+                item.isActive && styles.navItemActive,
+              )}
+              onClick={item.onClick}
+              aria-label={item.label}
+              aria-current={item.isActive ? "page" : undefined}
+            >
+              <span className={styles.navItemIcon}>
+                <IconComponent
+                  size={iconSize}
+                  strokeWidth={item.isActive ? 2.2 : 1.6}
+                />
+              </span>
+              <span className={styles.navItemLabel}>{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
 
       <div className={styles.footerSection}>
         <button
           type="button"
-          className={mergeClasses(styles.iconButton, isSettingsActive && styles.iconButtonActive)}
+          className={mergeClasses(
+            styles.navItem,
+            isSettingsActive && styles.navItemActive,
+          )}
           onClick={onSettingsClick}
           aria-label="Settings"
+          aria-current={isSettingsActive ? "page" : undefined}
         >
-          <div className={styles.iconContainer}>
-            <Settings size={iconSize} strokeWidth={isSettingsActive ? 2.5 : 1.5} />
-          </div>
-          <span className={styles.iconLabel}>Settings</span>
+          <span className={styles.navItemIcon}>
+            <Settings
+              size={iconSize}
+              strokeWidth={isSettingsActive ? 2.2 : 1.6}
+            />
+          </span>
+          <span className={styles.navItemLabel}>Settings</span>
         </button>
       </div>
     </aside>

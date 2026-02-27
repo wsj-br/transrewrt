@@ -10,7 +10,10 @@ const crypto = require("crypto");
 // Using a custom protocol is the documented approach for "the same effect as the file:// protocol"
 // (https://www.electronjs.org/docs/latest/api/protocol) and avoids that restriction.
 protocol.registerSchemesAsPrivileged([
-  { scheme: "app", privileges: { standard: true, secure: true, supportFetchAPI: true } },
+  {
+    scheme: "app",
+    privileges: { standard: true, secure: true, supportFetchAPI: true },
+  },
 ]);
 
 // --- Config path (single source of truth for Electron; must match preload usage when migrating) ---
@@ -18,7 +21,10 @@ const getConfigFilePath = () => {
   try {
     const appPath = process.env.PORTABLE_EXECUTABLE_DIR || process.cwd();
     const homedir = os.homedir();
-    const userDataPath = typeof app !== "undefined" && app.getPath ? path.join(app.getPath("userData"), "config.json") : null;
+    const userDataPath =
+      typeof app !== "undefined" && app.getPath
+        ? path.join(app.getPath("userData"), "config.json")
+        : null;
     const isSystemPath = (p) => {
       const normalized = (p || "").toLowerCase();
       return (
@@ -35,7 +41,9 @@ const getConfigFilePath = () => {
       path.join(homedir, "config.json"),
       path.join(__dirname, "../../config.json"),
       path.resolve("../config.json"),
-      ...(isSystemPath(process.execPath) ? [] : [path.join(path.dirname(process.execPath), "config.json")]),
+      ...(isSystemPath(process.execPath)
+        ? []
+        : [path.join(path.dirname(process.execPath), "config.json")]),
     ];
     for (const p of pathsToCheck) {
       if (p && fs.existsSync(p) && !isSystemPath(p)) return p;
@@ -65,17 +73,23 @@ const getConfigFilePath = () => {
   }
 };
 
-const getDefaultConfigPath = () => path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
+const getDefaultConfigPath = () =>
+  path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
 
 // Path to config_default.json for merging defaults. In packaged app, extraFiles put it next to the exe.
 const getDefaultConfigPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
-    return path.join(path.dirname(process.execPath), "config", "config_default.json");
+    return path.join(
+      path.dirname(process.execPath),
+      "config",
+      "config_default.json",
+    );
   }
   return path.join(__dirname, "../../config/config_default.json");
 };
 
-const getStateFilePath = () => path.join(path.dirname(getConfigFilePath()), "state.json");
+const getStateFilePath = () =>
+  path.join(path.dirname(getConfigFilePath()), "state.json");
 
 const getConfigDir = () => path.dirname(getConfigFilePath());
 const getKeyFilePath = () => path.join(getConfigDir(), "transrewrt.key");
@@ -111,7 +125,10 @@ function decryptApiKey(encryptedValue) {
     const ciphertext = buf.subarray(IV_BYTES);
     const key = getOrCreateEncryptionKey();
     const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
-    return Buffer.concat([decipher.update(ciphertext), decipher.final()]).toString("utf8");
+    return Buffer.concat([
+      decipher.update(ciphertext),
+      decipher.final(),
+    ]).toString("utf8");
   } catch (err) {
     console.error("Failed to decrypt api_key:", err.message);
     return "";
@@ -124,7 +141,10 @@ function encryptApiKey(plainValue) {
     const key = getOrCreateEncryptionKey();
     const iv = crypto.randomBytes(IV_BYTES);
     const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
-    const ciphertext = Buffer.concat([cipher.update(plainValue, "utf8"), cipher.final()]);
+    const ciphertext = Buffer.concat([
+      cipher.update(plainValue, "utf8"),
+      cipher.final(),
+    ]);
     return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
   } catch (err) {
     console.error("Failed to encrypt api_key:", err.message);
@@ -192,7 +212,11 @@ function loadConfigFromFile() {
     if (!fs.existsSync(configPath) && Object.keys(defaultConfig).length > 0) {
       const dir = path.dirname(configPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(configPath, JSON.stringify(configCache, null, 2), "utf8");
+      fs.writeFileSync(
+        configPath,
+        JSON.stringify(configCache, null, 2),
+        "utf8",
+      );
     }
     return configCache;
   } catch (err) {
@@ -204,10 +228,18 @@ function loadConfigFromFile() {
 }
 
 function canonicalConfigString(config) {
-  if (config === null || typeof config !== "object") return JSON.stringify(config);
-  if (Array.isArray(config)) return "[" + config.map(canonicalConfigString).join(",") + "]";
+  if (config === null || typeof config !== "object")
+    return JSON.stringify(config);
+  if (Array.isArray(config))
+    return "[" + config.map(canonicalConfigString).join(",") + "]";
   const keys = Object.keys(config).sort();
-  return "{" + keys.map((k) => JSON.stringify(k) + ":" + canonicalConfigString(config[k])).join(",") + "}";
+  return (
+    "{" +
+    keys
+      .map((k) => JSON.stringify(k) + ":" + canonicalConfigString(config[k]))
+      .join(",") +
+    "}"
+  );
 }
 
 function saveConfigToFile(config) {
@@ -226,7 +258,8 @@ function saveConfigToFile(config) {
     if (typeof toWrite.api_key === "string" && toWrite.api_key.trim() !== "") {
       toWrite.api_key = encryptApiKey(toWrite.api_key);
     }
-    if (canonicalConfigString(current) === canonicalConfigString(toWrite)) return true;
+    if (canonicalConfigString(current) === canonicalConfigString(toWrite))
+      return true;
     fs.writeFileSync(configPath, JSON.stringify(toWrite, null, 2), "utf8");
     return true;
   } catch (err) {
@@ -266,7 +299,8 @@ function saveStateToFile(state) {
         if (raw.trim()) current = JSON.parse(raw);
       } catch (_) {}
     }
-    if (canonicalConfigString(current) === canonicalConfigString(state)) return true;
+    if (canonicalConfigString(current) === canonicalConfigString(state))
+      return true;
     fs.writeFileSync(statePath, JSON.stringify(state, null, 2), "utf8");
     return true;
   } catch (err) {
@@ -319,7 +353,6 @@ const saveWindowState = (win) => {
   }
 };
 
-
 // Get the path to store SETTINGS window state
 const getSettingsWindowStatePath = () => {
   return path.join(app.getPath("userData"), "settings-window-state.json");
@@ -369,8 +402,8 @@ const validateWindowState = (state, fallback) => {
       height: state.height,
     });
     const { workArea } = display;
-    const minWidth = 800;
-    const minHeight = 600;
+    const minWidth = 1220;
+    const minHeight = 840;
     const width = Math.max(state.width || fallback.width, minWidth);
     const height = Math.max(state.height || fallback.height, minHeight);
 
@@ -395,16 +428,18 @@ const validateWindowState = (state, fallback) => {
 const createWindow = () => {
   // Load saved window state and validate it against current displays
   const savedState = validateWindowState(loadWindowState(), {
-    width: 1000,
-    height: 700,
+    width: 1220,
+    height: 840,
   });
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
     x: savedState ? savedState.x : undefined,
     y: savedState ? savedState.y : undefined,
-    width: savedState ? savedState.width : 1000,
-    height: savedState ? savedState.height : 700,
+    width: savedState ? savedState.width : 1220,
+    height: savedState ? savedState.height : 840,
+    minWidth: 1220,
+    minHeight: 840,
     icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -413,7 +448,6 @@ const createWindow = () => {
       devTools: false,
     },
   });
-
   // Restore maximized state
   if (savedState && savedState.isMaximized) {
     mainWindow.maximize();
@@ -428,33 +462,49 @@ const createWindow = () => {
     const devUrl = "http://localhost:3030";
     let devLoadRetries = 0;
     const tryLoadDev = () => mainWindow.loadURL(devUrl);
-    mainWindow.webContents.on("did-fail-load", (_, errorCode, errorDescription, validatedUrl) => {
-      if (errorCode === -3) return; // ERR_ABORTED, e.g. user navigated
-      console.error("Main window load failed:", errorCode, errorDescription, validatedUrl);
-      if (validatedUrl === devUrl && devLoadRetries < 2) {
-        devLoadRetries += 1;
-        setTimeout(tryLoadDev, 2000);
-      }
-    });
+    mainWindow.webContents.on(
+      "did-fail-load",
+      (_, errorCode, errorDescription, validatedUrl) => {
+        if (errorCode === -3) return; // ERR_ABORTED, e.g. user navigated
+        console.error(
+          "Main window load failed:",
+          errorCode,
+          errorDescription,
+          validatedUrl,
+        );
+        if (validatedUrl === devUrl && devLoadRetries < 2) {
+          devLoadRetries += 1;
+          setTimeout(tryLoadDev, 2000);
+        }
+      },
+    );
     tryLoadDev();
     mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadURL("app://./dist/index.html");
-    mainWindow.webContents.on("did-fail-load", (_, errorCode, errorDescription, validatedUrl) => {
-      if (errorCode !== -3) {
-        console.error("Main window load failed:", errorCode, errorDescription, validatedUrl);
-      }
-    });
+    mainWindow.webContents.on(
+      "did-fail-load",
+      (_, errorCode, errorDescription, validatedUrl) => {
+        if (errorCode !== -3) {
+          console.error(
+            "Main window load failed:",
+            errorCode,
+            errorDescription,
+            validatedUrl,
+          );
+        }
+      },
+    );
   }
 
   // Remove menu bar
   mainWindow.setMenuBarVisibility(false);
 
   // Add keyboard shortcut to open DevTools (Ctrl+Shift+I or F12)
-  mainWindow.webContents.on('before-input-event', (event, input) => {
-    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+  mainWindow.webContents.on("before-input-event", (event, input) => {
+    if (input.control && input.shift && input.key.toLowerCase() === "i") {
       mainWindow.webContents.toggleDevTools();
-    } else if (input.key === 'F12') {
+    } else if (input.key === "F12") {
       mainWindow.webContents.toggleDevTools();
     }
   });
@@ -502,10 +552,10 @@ const createSettingsWindow = () => {
   settingsWindow.setMinimumSize(780, 300); // Minimum width for 4-column language grid
 
   // Add keyboard shortcut to open DevTools in settings window (Ctrl+Shift+I or F12)
-  settingsWindow.webContents.on('before-input-event', (event, input) => {
-    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+  settingsWindow.webContents.on("before-input-event", (event, input) => {
+    if (input.control && input.shift && input.key.toLowerCase() === "i") {
       settingsWindow.webContents.toggleDevTools();
-    } else if (input.key === 'F12') {
+    } else if (input.key === "F12") {
       settingsWindow.webContents.toggleDevTools();
     }
   });
@@ -532,11 +582,18 @@ const createSettingsWindow = () => {
 };
 
 // --- IPC: config (main process is single source of truth) ---
-ipcMain.handle("config:get", () => Promise.resolve({ ...configCache, ...stateCache }));
+ipcMain.handle("config:get", () =>
+  Promise.resolve({ ...configCache, ...stateCache }),
+);
 
 function configUnchanged(existing, value) {
   if (existing === value) return true;
-  if (typeof value === "object" && value !== null && typeof existing === "object" && existing !== null) {
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    typeof existing === "object" &&
+    existing !== null
+  ) {
     return JSON.stringify(existing) === JSON.stringify(value);
   }
   return false;
@@ -578,14 +635,18 @@ ipcMain.handle("config:setAll", (_, newConfig) => {
   let stateSaved = false;
   if (Object.keys(configPart).length > 0) {
     const nextConfig = { ...configCache, ...configPart };
-    if (canonicalConfigString(configCache) !== canonicalConfigString(nextConfig)) {
+    if (
+      canonicalConfigString(configCache) !== canonicalConfigString(nextConfig)
+    ) {
       configCache = nextConfig;
       configSaved = saveConfigToFile(configCache);
     }
   }
   if (Object.keys(statePart).length > 0) {
     const nextState = { ...stateCache, ...statePart };
-    if (canonicalConfigString(stateCache) !== canonicalConfigString(nextState)) {
+    if (
+      canonicalConfigString(stateCache) !== canonicalConfigString(nextState)
+    ) {
       stateCache = nextState;
       stateSaved = saveStateToFile(stateCache);
     }
@@ -641,7 +702,9 @@ function getBuildTimestamp() {
     return null;
   }
 }
-ipcMain.handle("get-build-timestamp", () => Promise.resolve(getBuildTimestamp()));
+ipcMain.handle("get-build-timestamp", () =>
+  Promise.resolve(getBuildTimestamp()),
+);
 
 ipcMain.on("open-settings", () => {
   createSettingsWindow();
@@ -681,8 +744,15 @@ app.on("ready", () => {
         const requestPath = pathname.replace(/^\/+/, "").replace(/\\/g, "/");
         const filePath = path.resolve(appBase, requestPath);
         const relative = path.relative(appBase, filePath);
-        if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) {
-          return new Response("Forbidden", { status: 403, headers: { "Content-Type": "text/plain" } });
+        if (
+          !relative ||
+          relative.startsWith("..") ||
+          path.isAbsolute(relative)
+        ) {
+          return new Response("Forbidden", {
+            status: 403,
+            headers: { "Content-Type": "text/plain" },
+          });
         }
         const data = await fs.promises.readFile(filePath);
         const ext = path.extname(filePath).toLowerCase();

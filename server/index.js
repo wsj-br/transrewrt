@@ -15,9 +15,15 @@ const argon2 = require("argon2");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const CONFIG_PATH = process.env.CONFIG_PATH || path.join(__dirname, "..", "data", "config.json");
+const CONFIG_PATH =
+  process.env.CONFIG_PATH || path.join(__dirname, "..", "data", "config.json");
 const STATE_PATH = path.join(path.dirname(CONFIG_PATH), "state.json");
-const DEFAULT_CONFIG_PATH = path.join(__dirname, "..", "config", "config_default.json");
+const DEFAULT_CONFIG_PATH = path.join(
+  __dirname,
+  "..",
+  "config",
+  "config_default.json",
+);
 const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "build_timestamp");
 
 const STATE_KEYS = [
@@ -58,13 +64,17 @@ const DEV_WEB = process.env.DEV_WEB === "true";
 
 // API key can come from env or (in DEV_WEB) from config. If unset, web app shows a message.
 const ENV_API_KEY = process.env.API_KEY || "";
-const ENV_API_URL = (process.env.API_URL || "https://openrouter.ai/api/v1").replace(/\/$/, "");
+const ENV_API_URL = (
+  process.env.API_URL || "https://openrouter.ai/api/v1"
+).replace(/\/$/, "");
 
 console.log("=".repeat(60));
 console.log("[SERVER] Transrewrt Server starting...");
 console.log(`[SERVER] Port: ${PORT}`);
 if (DEV_WEB) {
-  console.log("[SERVER] DEV_WEB mode: only API on this port; use http://localhost:5000 for the app");
+  console.log(
+    "[SERVER] DEV_WEB mode: only API on this port; use http://localhost:5000 for the app",
+  );
 }
 console.log(`[SERVER] Config path: ${CONFIG_PATH}`);
 console.log(`[SERVER] Default config path: ${DEFAULT_CONFIG_PATH}`);
@@ -137,7 +147,11 @@ async function hashPassword(password) {
 }
 
 function isLegacyHash(stored) {
-  return typeof stored === "string" && stored.length === LEGACY_HASH_LEN && LEGACY_HEX.test(stored);
+  return (
+    typeof stored === "string" &&
+    stored.length === LEGACY_HASH_LEN &&
+    LEGACY_HEX.test(stored)
+  );
 }
 
 function legacyHashPassword(password) {
@@ -176,7 +190,7 @@ function setSessionRefreshCookie(req, res) {
   }
   res.setHeader(
     "Set-Cookie",
-    `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`
+    `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
   );
 }
 
@@ -319,9 +333,16 @@ function saveState(state) {
 /** Canonical JSON stringify (sorted keys) for change detection. */
 function canonicalStringify(obj) {
   if (obj === null || typeof obj !== "object") return JSON.stringify(obj);
-  if (Array.isArray(obj)) return "[" + obj.map(canonicalStringify).join(",") + "]";
+  if (Array.isArray(obj))
+    return "[" + obj.map(canonicalStringify).join(",") + "]";
   const keys = Object.keys(obj).sort();
-  return "{" + keys.map((k) => JSON.stringify(k) + ":" + canonicalStringify(obj[k])).join(",") + "}";
+  return (
+    "{" +
+    keys
+      .map((k) => JSON.stringify(k) + ":" + canonicalStringify(obj[k]))
+      .join(",") +
+    "}"
+  );
 }
 
 /**
@@ -333,7 +354,8 @@ function saveConfig(config) {
   try {
     const dir = path.dirname(CONFIG_PATH);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    if (!fs.existsSync(CONFIG_PATH)) fs.writeFileSync(CONFIG_PATH, "{}", "utf8");
+    if (!fs.existsSync(CONFIG_PATH))
+      fs.writeFileSync(CONFIG_PATH, "{}", "utf8");
     release = lockfile.lockSync(CONFIG_PATH, lockOpts);
     const newContent = JSON.stringify(config, null, 2);
     let current;
@@ -435,17 +457,23 @@ app.post("/api/auth/login", async (req, res) => {
     };
     saveState(newState);
     if (!storedHash) {
-      const newConfig = { ...config, web_password_hash: await hashPassword(DEFAULT_WEB_PASSWORD) };
+      const newConfig = {
+        ...config,
+        web_password_hash: await hashPassword(DEFAULT_WEB_PASSWORD),
+      };
       saveConfig(newConfig);
     } else if (isLegacyHash(storedHash)) {
-      const newConfig = { ...config, web_password_hash: await hashPassword(password) };
+      const newConfig = {
+        ...config,
+        web_password_hash: await hashPassword(password),
+      };
       saveConfig(newConfig);
     }
     res
       .status(200)
       .setHeader(
         "Set-Cookie",
-        `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`
+        `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
       )
       .json({ success: true });
   } catch (err) {
@@ -457,11 +485,18 @@ app.post("/api/auth/login", async (req, res) => {
 app.post("/api/auth/change-password", async (req, res) => {
   try {
     const { newPassword } = req.body || {};
-    if (!newPassword || typeof newPassword !== "string" || newPassword.length < 1) {
+    if (
+      !newPassword ||
+      typeof newPassword !== "string" ||
+      newPassword.length < 1
+    ) {
       return res.status(400).json({ error: "New password required" });
     }
     const config = loadConfig();
-    const newConfig = { ...config, web_password_hash: await hashPassword(newPassword) };
+    const newConfig = {
+      ...config,
+      web_password_hash: await hashPassword(newPassword),
+    };
     saveConfig(newConfig);
     res.json({ success: true });
   } catch (err) {
@@ -478,7 +513,7 @@ app.post("/api/auth/logout", (req, res) => {
       .status(200)
       .setHeader(
         "Set-Cookie",
-        "transrewrt_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0"
+        "transrewrt_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0",
       )
       .json({ success: true });
   } catch (err) {
@@ -512,23 +547,46 @@ app.post("/api/calls", (req, res) => {
   }
   try {
     const b = req.body || {};
+    const timestamp = b.timestamp || new Date().toLocaleString();
+    const type = b.type || "";
+    const model = b.model || "";
+    const source_lang = b.source_lang || "";
+    const target_lang = b.target_lang || "";
+    const rewrite_style = b.rewrite_style || "";
+    const req_bytes = b.request_bytes ?? 0;
+    const res_bytes = b.response_bytes ?? 0;
+    const dur = b.duration_ms ?? 0;
+    const cost = b.cost ?? 0;
+    const total_cost = b.total_cost ?? 0;
+
+    // Log to server console
+    if (type === "translate") {
+      console.log(
+        `[API call] timestamp=${timestamp} type=translate model=${model} source=${source_lang} target=${target_lang} request_bytes=${req_bytes} response_bytes=${res_bytes} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`,
+      );
+    } else {
+      console.log(
+        `[API call] timestamp=${timestamp} type=rewrite model=${model} rewrite_style=${rewrite_style} request_bytes=${req_bytes} response_bytes=${res_bytes} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`,
+      );
+    }
+
     const stmt = db.prepare(`
       INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
     stmt.run(
-      b.timestamp || new Date().toISOString(),
-      b.type || "",
-      b.model || null,
-      b.source_lang || null,
-      b.target_lang || null,
-      b.rewrite_style || null,
-      b.request_bytes ?? null,
-      b.response_bytes ?? null,
-      b.duration_ms ?? null,
-      b.cost ?? null,
-      b.total_cost ?? null,
-      b.tps ?? null
+      timestamp,
+      type,
+      model,
+      source_lang,
+      target_lang,
+      rewrite_style,
+      req_bytes,
+      res_bytes,
+      dur,
+      cost,
+      total_cost,
+      b.tps ?? null,
     );
     res.json({ success: true });
   } catch (err) {
@@ -541,15 +599,23 @@ app.post("/api/calls", (req, res) => {
 function buildWhereFromTo(from, to) {
   const parts = [];
   const params = [];
-  if (from) { parts.push("timestamp >= ?"); params.push(from); }
-  if (to) { parts.push("timestamp <= ?"); params.push(to); }
+  if (from) {
+    parts.push("timestamp >= ?");
+    params.push(from);
+  }
+  if (to) {
+    parts.push("timestamp <= ?");
+    params.push(to);
+  }
   return { where: parts.length ? " WHERE " + parts.join(" AND ") : "", params };
 }
 
 app.get("/api/calls/total-cost", (req, res) => {
   if (!db) return res.status(503).json({ error: "Database unavailable" });
   try {
-    const row = db.prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls").get();
+    const row = db
+      .prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls")
+      .get();
     res.json({ total_cost: row?.total_cost ?? 0 });
   } catch (err) {
     console.error("[API] GET /api/calls/total-cost - Error:", err);
@@ -599,7 +665,8 @@ app.get("/api/calls/summary-by-model", (req, res) => {
         const tc = r.translation_calls || 0;
         const rc = r.rewrite_calls || 0;
         const totalCalls = tc + rc;
-        const avgTps = r.avg_tps != null && Number(r.avg_tps) > 0 ? Number(r.avg_tps) : null;
+        const avgTps =
+          r.avg_tps != null && Number(r.avg_tps) > 0 ? Number(r.avg_tps) : null;
         if (avgTps != null && totalCalls > 0) {
           weightedTpsNum += avgTps * totalCalls;
           weightedTpsDenom += totalCalls;
@@ -611,9 +678,15 @@ app.get("/api/calls/summary-by-model", (req, res) => {
           rewrite_cost: acc.rewrite_cost + (r.rewrite_cost || 0),
         };
       },
-      { translation_calls: 0, rewrite_calls: 0, translation_cost: 0, rewrite_cost: 0 }
+      {
+        translation_calls: 0,
+        rewrite_calls: 0,
+        translation_cost: 0,
+        rewrite_cost: 0,
+      },
     );
-    const totalAvgTps = weightedTpsDenom > 0 ? weightedTpsNum / weightedTpsDenom : null;
+    const totalAvgTps =
+      weightedTpsDenom > 0 ? weightedTpsNum / weightedTpsDenom : null;
     rows.push({ model: "Total", ...totals, avg_tps: totalAvgTps });
     res.json({ rows });
   } catch (err) {
@@ -650,12 +723,15 @@ app.post("/api/calls/delete-by-model", (req, res) => {
   if (!db) {
     return res.status(503).json({ error: "Database unavailable" });
   }
-  const model = req.body && req.body.model != null ? String(req.body.model).trim() : "";
+  const model =
+    req.body && req.body.model != null ? String(req.body.model).trim() : "";
   if (!model) {
     return res.status(400).json({ error: "Model name is required" });
   }
   try {
-    const result = db.prepare("DELETE FROM api_calls WHERE model = ?").run(model);
+    const result = db
+      .prepare("DELETE FROM api_calls WHERE model = ?")
+      .run(model);
     res.json({ success: true, deleted: result.changes });
   } catch (err) {
     console.error("[API] POST /api/calls/delete-by-model - Error:", err);
@@ -686,7 +762,7 @@ app.delete("/api/calls", (req, res) => {
 // --- OpenRouter Proxy (uses ENV_API_KEY/ENV_API_URL when set, else config) ---
 
 function getProxyHeaders() {
-  const apiKey = ENV_API_KEY || (loadConfig().api_key || "");
+  const apiKey = ENV_API_KEY || loadConfig().api_key || "";
   return {
     "Content-Type": "application/json",
     Authorization: `Bearer ${apiKey}`,
@@ -696,16 +772,25 @@ function getProxyHeaders() {
 }
 
 function getProxyBaseUrl() {
-  return ENV_API_KEY ? ENV_API_URL : (loadConfig().api_url || "https://openrouter.ai/api/v1").replace(/\/$/, "");
+  return ENV_API_KEY
+    ? ENV_API_URL
+    : (loadConfig().api_url || "https://openrouter.ai/api/v1").replace(
+        /\/$/,
+        "",
+      );
 }
 
 // --- API status (check if API key is set and valid) - no auth required ---
 app.get("/api/status", async (req, res) => {
   try {
-    const apiKey = ENV_API_KEY || (loadConfig().api_key || "");
+    const apiKey = ENV_API_KEY || loadConfig().api_key || "";
     const apiKeySet = !!(apiKey && String(apiKey).trim());
     if (!apiKeySet) {
-      return res.json({ apiKeySet: false, apiKeyValid: false, message: "API_KEY is not set." });
+      return res.json({
+        apiKeySet: false,
+        apiKeyValid: false,
+        message: "API_KEY is not set.",
+      });
     }
     const baseUrl = getProxyBaseUrl();
     const testUrl = `${baseUrl}/models?limit=1`;
@@ -715,12 +800,16 @@ app.get("/api/status", async (req, res) => {
     res.json({
       apiKeySet: true,
       apiKeyValid,
-      message: apiKeyValid ? "API key is valid." : (keyRes.status === 401 ? "API key is invalid or expired." : `API key check failed (HTTP ${keyRes.status}).`),
+      message: apiKeyValid
+        ? "API key is valid."
+        : keyRes.status === 401
+          ? "API key is invalid or expired."
+          : `API key check failed (HTTP ${keyRes.status}).`,
     });
   } catch (err) {
     console.error("[API] GET /api/status - Error:", err);
     res.json({
-      apiKeySet: !!((ENV_API_KEY || (loadConfig().api_key || ""))?.trim()),
+      apiKeySet: !!(ENV_API_KEY || loadConfig().api_key || "")?.trim(),
       apiKeyValid: false,
       message: err.message || "Failed to verify API key.",
     });
@@ -745,7 +834,9 @@ app.get("/api/key", async (req, res) => {
   try {
     const baseUrl = getProxyBaseUrl();
     if (!baseUrl.includes("openrouter.ai")) {
-      return res.status(400).json({ error: "Key info is only available for OpenRouter API." });
+      return res
+        .status(400)
+        .json({ error: "Key info is only available for OpenRouter API." });
     }
     const keyUrl = `${baseUrl}/key`;
     const headers = getProxyHeaders();
@@ -863,9 +954,13 @@ app.listen(PORT, () => {
   console.log("[SERVER] Loading initial config...");
   const initialConfig = loadConfig();
   if (ENV_API_KEY) {
-    console.log("[SERVER] API Key is being loaded from environment variable API_KEY");
+    console.log(
+      "[SERVER] API Key is being loaded from environment variable API_KEY",
+    );
   } else if (initialConfig.api_key) {
-    console.log(`[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`);
+    console.log(
+      `[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`,
+    );
   } else {
     console.log("[SERVER] No API Key in initial config");
   }

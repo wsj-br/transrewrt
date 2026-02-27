@@ -11,25 +11,7 @@ export function useCostTracking() {
   };
 
   const logApiCall = (type, result, extra = {}) => {
-    const timestamp = new Date().toLocaleString();
-    const cost = result.calculated_cost ?? result.usage?.cost ?? 0;
-    const total_cost = result.total_cost ?? 0;
-    const req = result.request_bytes ?? 0;
-    const res = result.response_bytes ?? 0;
-    const dur = result.duration_ms ?? 0;
-    const model = result.model_used ?? result.model ?? "";
-    if (type === "translate") {
-      const source = extra.source_lang ?? "";
-      const target = extra.target_lang ?? "";
-      console.log(
-        `[API call] timestamp=${timestamp} type=translate model=${model} source=${source} target=${target} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
-      );
-    } else {
-      const style = extra.rewrite_style ?? "";
-      console.log(
-        `[API call] timestamp=${timestamp} type=rewrite model=${model} rewrite_style=${style} request_bytes=${req} response_bytes=${res} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`
-      );
-    }
+    // API call logging is now done on the server side
   };
 
   const applyCostToResult = (settings, setSetting, result) => {

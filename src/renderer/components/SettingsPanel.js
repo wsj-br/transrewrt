@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
-import { Sliders, Database, Globe, Key, Lock, DollarSign, Info } from "lucide-react";
+import {
+  Sliders,
+  Database,
+  Globe,
+  Key,
+  Lock,
+  DollarSign,
+  Info,
+} from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
 import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
@@ -42,13 +50,8 @@ const useStyles = makeStyles({
 
 const SettingsPanel = () => {
   const styles = useStyles();
-  const {
-    settings,
-    allModels,
-    updateSettings,
-    setSetting,
-    fetchModels,
-  } = useAppContext();
+  const { settings, allModels, updateSettings, setSetting, fetchModels } =
+    useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
   const [activeTab, setActiveTab] = useState(null); // Restored from settings on mount; no tab selected until then to avoid flash
@@ -67,11 +70,15 @@ const SettingsPanel = () => {
   const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
   const [modelsError, setModelsError] = useState(null);
-  const hasRestoredTabRef = useRef(false);   // in web mode, later context updates can overwrite; only restore tab once per mount
+  const hasRestoredTabRef = useRef(false); // in web mode, later context updates can overwrite; only restore tab once per mount
+  const [costTabActivationCount, setCostTabActivationCount] = useState(0);
 
   useEffect(() => {
     setLocalSettings({ ...settings });
-    const modelsWithFree = new Set([FREE_MODEL_ID, ...(settings.available_models || [])]);
+    const modelsWithFree = new Set([
+      FREE_MODEL_ID,
+      ...(settings.available_models || []),
+    ]);
     setSelectedModelIds(modelsWithFree);
     setSelectedLanguages(new Set(settings.available_languages || []));
     // Restore active tab once per mount from configManager, then context. If we had to read from
@@ -79,7 +86,10 @@ const SettingsPanel = () => {
     // restore from configManager.
     if (!hasRestoredTabRef.current) {
       hasRestoredTabRef.current = true;
-      let tab = configManager.get("settings_active_tab") || settings.settings_active_tab || "general";
+      let tab =
+        configManager.get("settings_active_tab") ||
+        settings.settings_active_tab ||
+        "general";
       if (tab === "auth" && !isWeb) tab = "general";
       if (tab === "api" && isWeb) tab = "general";
       setActiveTab(tab);
@@ -137,8 +147,7 @@ const SettingsPanel = () => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer":
-            "https://github.com/wsj-br/transrewrt",
+          "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
           "X-Title": "Transrewrt",
         },
       });
@@ -161,12 +170,12 @@ const SettingsPanel = () => {
         setApiTestStatus("success");
         const keyLabel = keyInfo.label || keyInfo.id || "API key";
         setApiTestMessage(
-          `Success! Connected to API. Valid API key: ${keyLabel}`
+          `Success! Connected to API. Valid API key: ${keyLabel}`,
         );
       } else {
         setApiTestStatus("error");
         setApiTestMessage(
-          "Connection successful but unexpected response. Check your API key permissions."
+          "Connection successful but unexpected response. Check your API key permissions.",
         );
       }
     } catch (error) {
@@ -176,7 +185,8 @@ const SettingsPanel = () => {
   };
 
   const toggleModelSelection = (modelId) => {
-    if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID)) return;
+    if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID))
+      return;
     const newSet = new Set(selectedModelIds);
     if (newSet.has(modelId)) newSet.delete(modelId);
     else newSet.add(modelId);
@@ -237,11 +247,11 @@ const SettingsPanel = () => {
     const ascending = sortDir === "asc";
     if (sortType === "provider") {
       const sortedProviders = Object.keys(groupedModels).sort((a, b) =>
-        ascending ? a.localeCompare(b) : b.localeCompare(a)
+        ascending ? a.localeCompare(b) : b.localeCompare(a),
       );
       const sortedGroups = {};
       sortedProviders.forEach(
-        (provider) => (sortedGroups[provider] = groupedModels[provider])
+        (provider) => (sortedGroups[provider] = groupedModels[provider]),
       );
       return { type: "grouped", data: sortedGroups };
     }
@@ -274,7 +284,7 @@ const SettingsPanel = () => {
     if (selectedModelIds.size === 0) return;
     if (
       window.confirm(
-        "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model)."
+        "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
       )
     ) {
       const newSet = new Set([FREE_MODEL_ID]);
@@ -286,6 +296,9 @@ const SettingsPanel = () => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     setSetting("settings_active_tab", tab);
+    if (tab === "cost") {
+      setCostTabActivationCount((prev) => prev + 1);
+    }
   };
 
   return (
@@ -350,7 +363,13 @@ const SettingsPanel = () => {
         </button>
       </div>
 
-      <div className={mergeClasses("modal-body", "settings-body", styles.settingsBody)}>
+      <div
+        className={mergeClasses(
+          "modal-body",
+          "settings-body",
+          styles.settingsBody,
+        )}
+      >
         {activeTab === "general" && (
           <SettingsDialogGeneralTab
             localSettings={localSettings}
@@ -405,6 +424,7 @@ const SettingsPanel = () => {
           <SettingsDialogCostTrackingTab
             localSettings={localSettings}
             onSettingChange={handleSettingChange}
+            isTabActive={costTabActivationCount}
           />
         )}
 

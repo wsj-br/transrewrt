@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button, tokens, Text, makeStyles, Dropdown, Option, Label } from "@fluentui/react-components";
-import { DollarSign, Copy, Trash2, Server } from "lucide-react";
+import {
+  Button,
+  tokens,
+  Text,
+  makeStyles,
+  Dropdown,
+  Option,
+  Label,
+} from "@fluentui/react-components";
+import { DollarSign, Copy, Trash2, Server, RotateCcw } from "lucide-react";
 import webAPI from "../utils/webApiClient";
 import ConfirmModal from "./ConfirmModal";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 // Cost data: from server in web mode, from Electron SQLite (transrewrt.db) in desktop mode
-const getCostApi = () => (isWeb ? webAPI : (typeof window !== "undefined" && window.electronAPI) || {});
+const getCostApi = () =>
+  isWeb ? webAPI : (typeof window !== "undefined" && window.electronAPI) || {};
 
 const useStyles = makeStyles({
   tableWrap: {
@@ -174,7 +183,11 @@ function getFilterRange(filterId) {
       from = new Date(now.getTime() - 60 * 60 * 1000).toISOString();
       break;
     case "today":
-      from = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+      from = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+      ).toISOString();
       break;
     case "yesterday": {
       const d = new Date(now);
@@ -210,7 +223,11 @@ function getFilterRange(filterId) {
   return { from, to };
 }
 
-const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
+const SettingsDialogCostTrackingTab = ({
+  localSettings,
+  onSettingChange,
+  isTabActive,
+}) => {
   const styles = useStyles();
   const [filter, setFilter] = useState("all");
   const [byFunction, setByFunction] = useState([]);
@@ -229,48 +246,45 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
   const isOpenRouter = apiUrl.includes("openrouter.ai");
 
-  useEffect(() => {
+  const fetchKeyInfo = async () => {
     if (!isOpenRouter) {
       setKeyInfo(null);
       setKeyInfoError(null);
       return;
     }
-    let cancelled = false;
     setKeyInfoError(null);
     setKeyInfoLoading(true);
-    const fetchKeyInfo = async () => {
-      try {
-        if (isWeb) {
-          if (!webAPI.getOpenRouterKeyInfo) return;
-          const data = await webAPI.getOpenRouterKeyInfo();
-          if (!cancelled) setKeyInfo(data?.data != null ? data.data : data);
-        } else {
-          const key = localSettings.api_key || "";
-          if (!key.trim()) {
-            if (!cancelled) setKeyInfoError("API key not set");
-            return;
-          }
-          const base = apiUrl.replace(/\/$/, "");
-          const res = await fetch(`${base}/key`, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${key}` },
-          });
-          const data = await res.json().catch(() => ({}));
-          if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
-          if (!cancelled) setKeyInfo(data?.data != null ? data.data : data);
+    try {
+      if (isWeb) {
+        if (!webAPI.getOpenRouterKeyInfo) return;
+        const data = await webAPI.getOpenRouterKeyInfo();
+        setKeyInfo(data?.data != null ? data.data : data);
+      } else {
+        const key = localSettings.api_key || "";
+        if (!key.trim()) {
+          setKeyInfoError("API key not set");
+          return;
         }
-      } catch (err) {
-        if (!cancelled) {
-          setKeyInfo(null);
-          setKeyInfoError(err?.message || "Failed to load key info");
-        }
-      } finally {
-        if (!cancelled) setKeyInfoLoading(false);
+        const base = apiUrl.replace(/\/$/, "");
+        const res = await fetch(`${base}/key`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${key}` },
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        setKeyInfo(data?.data != null ? data.data : data);
       }
-    };
+    } catch (err) {
+      setKeyInfo(null);
+      setKeyInfoError(err?.message || "Failed to load key info");
+    } finally {
+      setKeyInfoLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchKeyInfo();
-    return () => { cancelled = true; };
-  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key]);
+  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key, isTabActive]);
 
   const costApi = getCostApi();
   useEffect(() => {
@@ -410,12 +424,21 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
 
   const formatCost = (cost) => {
     const n = Number(cost);
-    return cost == null || Number.isNaN(n) || n === 0 ? DASH : formatDollarAmount(n);
+    return cost == null || Number.isNaN(n) || n === 0
+      ? DASH
+      : formatDollarAmount(n);
   };
 
   const formatAvgCost = (cost, calls) => {
     const n = Number(cost);
-    if (calls == null || calls === 0 || cost == null || Number.isNaN(n) || n === 0) return DASH;
+    if (
+      calls == null ||
+      calls === 0 ||
+      cost == null ||
+      Number.isNaN(n) ||
+      n === 0
+    )
+      return DASH;
     return formatDollarAmount(cost / calls);
   };
 
@@ -424,7 +447,8 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
     return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(1);
   };
 
-  const formatCount = (count) => (count == null || Number(count) === 0 ? DASH : Number(count));
+  const formatCount = (count) =>
+    count == null || Number(count) === 0 ? DASH : Number(count);
 
   const emptyRow = (colSpan) => (
     <tr>
@@ -437,22 +461,66 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
   return (
     <div className="tab-content">
       <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
+        <Text
+          as="h3"
+          size={500}
+          weight="semibold"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            marginTop: 0,
+            marginBottom: "36px",
+          }}
+        >
           <DollarSign size={20} />
           Cost Tracking
         </Text>
-        <div style={{ display: "flex", alignItems: "center", marginLeft: "64px", marginTop: "12px", gap: "16px", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "64px",
+            marginTop: "12px",
+            gap: "16px",
+            flexWrap: "wrap",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "16px", fontWeight: 600 }}>Total Cost:</span>
-            <span style={{ fontSize: "16px", color: tokens.colorStatusSuccessForeground1, whiteSpace: "nowrap" }}>
+            <span style={{ fontSize: "16px", fontWeight: 600 }}>
+              Total Cost:
+            </span>
+            <span
+              style={{
+                fontSize: "16px",
+                color: tokens.colorStatusSuccessForeground1,
+                whiteSpace: "nowrap",
+              }}
+            >
               {formatCost(localSettings.total_cost)}
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-            <Button appearance="secondary" size="small" onClick={handleCopyCost} icon={<Copy size={14} />}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              flexWrap: "wrap",
+            }}
+          >
+            <Button
+              appearance="secondary"
+              size="small"
+              onClick={handleCopyCost}
+              icon={<Copy size={14} />}
+            >
               Copy Value
             </Button>
-            <Button appearance="secondary" size="small" onClick={() => onSettingChange("total_cost", 0)}>
+            <Button
+              appearance="secondary"
+              size="small"
+              onClick={() => onSettingChange("total_cost", 0)}
+            >
               Reset Cost
             </Button>
             {isOpenRouter && (
@@ -467,54 +535,108 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
               </Button>
             )}
             {syncCostError && (
-              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: "13px" }}>{syncCostError}</span>
+              <span
+                style={{
+                  color: tokens.colorStatusDangerForeground1,
+                  fontSize: "13px",
+                }}
+              >
+                {syncCostError}
+              </span>
             )}
           </div>
         </div>
         {isOpenRouter && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginTop: "18px", marginLeft: "32px" }}>
-            <span style={{ fontSize: "16px", fontWeight: 600 }}>API Key Usage:</span>
-            <span style={{
-              fontSize: "16px",
-              color: keyInfoError ? tokens.colorStatusDangerForeground1 : tokens.colorNeutralForeground1,
-              whiteSpace: "nowrap",
-            }}>
-              {keyInfoLoading
-                ? "Loading…"
-                : keyInfoError
-                  ? keyInfoError
-                  : !keyInfo
-                    ? DASH
-                    : keyInfo.limit == null
-                      ? "no limit configured"
-                      : (
-                          <>
-                            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                              {formatCost(keyInfo.limit - keyInfo.limit_remaining)}
-                            </span>
-                            {" / "}
-                            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                              ${Number(keyInfo.limit).toFixed(2)}
-                            </span>
-                            {keyInfo.limit_reset == null ? " (no reset)" : ` (reset ${keyInfo.limit_reset})`}
-                          </>
-                        )}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              flexWrap: "wrap",
+              marginTop: "18px",
+              marginLeft: "32px",
+            }}
+          >
+            <span style={{ fontSize: "16px", fontWeight: 600 }}>
+              API Key Usage:
             </span>
+            <span
+              style={{
+                fontSize: "16px",
+                color: keyInfoError
+                  ? tokens.colorStatusDangerForeground1
+                  : tokens.colorNeutralForeground1,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {keyInfoLoading ? (
+                "Loading…"
+              ) : keyInfoError ? (
+                keyInfoError
+              ) : !keyInfo ? (
+                DASH
+              ) : keyInfo.limit == null ? (
+                "no limit configured"
+              ) : (
+                <>
+                  <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
+                    {formatCost(keyInfo.limit - keyInfo.limit_remaining)}
+                  </span>
+                  {" / "}
+                  <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
+                    ${Number(keyInfo.limit).toFixed(2)}
+                  </span>
+                  {keyInfo.limit_reset == null
+                    ? " (no reset)"
+                    : ` (reset ${keyInfo.limit_reset})`}
+                </>
+              )}
+            </span>
+            <Button
+              appearance="subtle"
+              size="small"
+              icon={<RotateCcw size={14} />}
+              onClick={fetchKeyInfo}
+              title="Refresh API key usage"
+            />
           </div>
         )}
       </div>
 
       <div className="section" style={{ marginTop: "24px" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "24px 8px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "24px 8px",
+          }}
+        >
           {/* Block 1: Filter label + filter buttons; wraps as a unit when row is too narrow */}
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
-            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginRight: "4px" }}>Filter</Text>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <Text
+              as="h4"
+              size={400}
+              weight="semibold"
+              style={{ marginTop: 0, marginBottom: 0, marginRight: "4px" }}
+            >
+              Filter
+            </Text>
             {FILTERS.map((f) => (
               <Button
                 key={f.id}
                 size="small"
                 appearance={filter === f.id ? "primary" : "subtle"}
-                className={filter !== f.id ? styles.filterButtonUnselected : undefined}
+                className={
+                  filter !== f.id ? styles.filterButtonUnselected : undefined
+                }
                 onClick={() => setFilter(f.id)}
               >
                 {f.label}
@@ -522,16 +644,43 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
             ))}
           </div>
           {/* Block 2: Fraction digits label + dropdown; moves below block 1 when row is too narrow */}
-          <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
-            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: 0, marginLeft: "24px", marginRight: "4px" }}>Fraction digits</Text>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+              flexShrink: 0,
+            }}
+          >
+            <Text
+              as="h4"
+              size={400}
+              weight="semibold"
+              style={{
+                marginTop: 0,
+                marginBottom: 0,
+                marginLeft: "24px",
+                marginRight: "4px",
+              }}
+            >
+              Fraction digits
+            </Text>
             <Dropdown
               id="cost-fraction-style"
               appearance="underline"
-              value={COST_FRACTION_STYLE_OPTIONS.find((o) => o.value === (localSettings.cost_fraction_style || "muted"))?.label ?? "Muted gray"}
+              value={
+                COST_FRACTION_STYLE_OPTIONS.find(
+                  (o) =>
+                    o.value === (localSettings.cost_fraction_style || "muted"),
+                )?.label ?? "Muted gray"
+              }
               selectedOptions={[localSettings.cost_fraction_style || "muted"]}
               onOptionSelect={(e, data) => {
                 const v = data.optionValue;
-                if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
+                if (
+                  v &&
+                  COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)
+                ) {
                   onSettingChange("cost_fraction_style", v);
                 }
               }}
@@ -553,120 +702,209 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
         <>
           <div className={styles.tablesGrid}>
             <div className={styles.gridSectionByModel}>
-              <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By model</Text>
+              <Text
+                as="h4"
+                size={400}
+                weight="semibold"
+                style={{ marginTop: 0, marginBottom: "4px" }}
+              >
+                By model
+              </Text>
               <div className={styles.tableWrap} style={{ width: "910px" }}>
                 <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th} style={{ minWidth: "240px" }}>Model</th>
-                    <th className={styles.th}>Translation calls</th>
-                    <th className={styles.th}>Rewrite calls</th>
-                    <th className={styles.th}>Translation cost</th>
-                    <th className={styles.th}>Rewrite cost</th>
-                    <th className={styles.th}>Avg translation</th>
-                    <th className={styles.th}>Avg rewrite</th>
-                    <th className={styles.th}>Avg TPS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {byModel.filter((r) => r.model !== "Total").length === 0
-                    ? emptyRow(8)
-                    : byModel
-                        .filter((r) => r.model !== "Total")
-                        .map((row, i) => (
-                          <tr key={i} className={styles.tbodyTr}>
+                  <thead className={styles.thead}>
+                    <tr>
+                      <th className={styles.th} style={{ minWidth: "240px" }}>
+                        Model
+                      </th>
+                      <th className={styles.th}>Translation calls</th>
+                      <th className={styles.th}>Rewrite calls</th>
+                      <th className={styles.th}>Translation cost</th>
+                      <th className={styles.th}>Rewrite cost</th>
+                      <th className={styles.th}>Avg translation</th>
+                      <th className={styles.th}>Avg rewrite</th>
+                      <th className={styles.th}>Avg TPS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {byModel.filter((r) => r.model !== "Total").length === 0
+                      ? emptyRow(8)
+                      : byModel
+                          .filter((r) => r.model !== "Total")
+                          .map((row, i) => (
+                            <tr key={i} className={styles.tbodyTr}>
+                              <td className={styles.td}>
+                                <span className={styles.modelCell}>
+                                  <span>{row.model}</span>
+                                  <Trash2
+                                    size={14}
+                                    className={styles.modelTrashIcon}
+                                    title="Exclude all data for this model"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setModelToDelete(row.model);
+                                    }}
+                                  />
+                                </span>
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCount(row.translation_calls)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCount(row.rewrite_calls)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.translation_cost)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.rewrite_cost)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatAvgCost(
+                                  Number(row.translation_cost || 0),
+                                  row.translation_calls ?? 0,
+                                )}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatAvgCost(
+                                  Number(row.rewrite_cost || 0),
+                                  row.rewrite_calls ?? 0,
+                                )}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatAvgTps(row.avg_tps)}
+                              </td>
+                            </tr>
+                          ))}
+                    {byModel.some((r) => r.model === "Total") &&
+                      (() => {
+                        const total = byModel.find((r) => r.model === "Total");
+                        const tc = total?.translation_calls ?? 0;
+                        const rc = total?.rewrite_calls ?? 0;
+                        return (
+                          <tr className={styles.totalRow}>
                             <td className={styles.td}>
-                              <span className={styles.modelCell}>
-                                <span>{row.model}</span>
-                                <Trash2
-                                  size={14}
-                                  className={styles.modelTrashIcon}
-                                  title="Exclude all data for this model"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setModelToDelete(row.model);
-                                  }}
-                                />
-                              </span>
+                              <strong>Total</strong>
                             </td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(row.avg_tps)}</td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCount(tc)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCount(rc)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCost(total?.translation_cost)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCost(total?.rewrite_cost)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatAvgCost(
+                                Number(total?.translation_cost || 0),
+                                tc,
+                              )}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatAvgCost(
+                                Number(total?.rewrite_cost || 0),
+                                rc,
+                              )}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatAvgTps(total?.avg_tps)}
+                            </td>
                           </tr>
-                        ))}
-                  {byModel.some((r) => r.model === "Total") && (() => {
-                    const total = byModel.find((r) => r.model === "Total");
-                    const tc = total?.translation_calls ?? 0;
-                    const rc = total?.rewrite_calls ?? 0;
-                    return (
-                      <tr className={styles.totalRow}>
-                        <td className={styles.td}><strong>Total</strong></td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(tc)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(rc)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.translation_cost)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.rewrite_cost)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.translation_cost || 0), tc)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.rewrite_cost || 0), rc)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgTps(total?.avg_tps)}</td>
-                      </tr>
-                    );
-                  })()}
-                </tbody>
-              </table>
-              </div>
-            </div>
-
-            <div className={styles.gridSectionByFunction}>
-              <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By function</Text>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th}>Function</th>
-                    <th className={styles.th}>Calls</th>
-                    <th className={styles.th}>Cost</th>
-                    <th className={styles.th}>Avg cost</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {byFunction.filter((r) => r.function !== "Total").length === 0
-                    ? emptyRow(4)
-                    : byFunction
-                        .filter((r) => r.function !== "Total")
-                        .map((row, i) => (
-                          <tr key={i} className={styles.tbodyTr}>
-                            <td className={styles.td}>{row.function}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.calls)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.cost)}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0)}</td>
-                          </tr>
-                        ))}
-                  {byFunction.some((r) => r.function === "Total") && (() => {
-                    const total = byFunction.find((r) => r.function === "Total");
-                    const calls = total?.calls ?? 0;
-                    return (
-                      <tr className={styles.totalRow}>
-                        <td className={styles.td}><strong>Total</strong></td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(calls)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(total?.cost)}</td>
-                        <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(total?.cost || 0), calls)}</td>
-                      </tr>
-                    );
-                  })()}
-                </tbody>
+                        );
+                      })()}
+                  </tbody>
                 </table>
               </div>
             </div>
 
+            <div className={styles.gridSectionByFunction}>
+              <Text
+                as="h4"
+                size={400}
+                weight="semibold"
+                style={{ marginTop: 0, marginBottom: "4px" }}
+              >
+                By function
+              </Text>
+              <div className={styles.tableWrap}>
+                <table className={styles.table}>
+                  <thead className={styles.thead}>
+                    <tr>
+                      <th className={styles.th}>Function</th>
+                      <th className={styles.th}>Calls</th>
+                      <th className={styles.th}>Cost</th>
+                      <th className={styles.th}>Avg cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {byFunction.filter((r) => r.function !== "Total").length ===
+                    0
+                      ? emptyRow(4)
+                      : byFunction
+                          .filter((r) => r.function !== "Total")
+                          .map((row, i) => (
+                            <tr key={i} className={styles.tbodyTr}>
+                              <td className={styles.td}>{row.function}</td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCount(row.calls)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.cost)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatAvgCost(
+                                  Number(row.cost || 0),
+                                  row.calls ?? 0,
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                    {byFunction.some((r) => r.function === "Total") &&
+                      (() => {
+                        const total = byFunction.find(
+                          (r) => r.function === "Total",
+                        );
+                        const calls = total?.calls ?? 0;
+                        return (
+                          <tr className={styles.totalRow}>
+                            <td className={styles.td}>
+                              <strong>Total</strong>
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCount(calls)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCost(total?.cost)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatAvgCost(Number(total?.cost || 0), calls)}
+                            </td>
+                          </tr>
+                        );
+                      })()}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <div className="section">
-            <Text as="h4" size={400} weight="semibold" style={{ marginTop: 0, marginBottom: "4px" }}>By day</Text>
-            <div className={`${styles.tableWrap} ${styles.tableWrapFitContent}`} style={{ width: "fit-content" }}>
+            <Text
+              as="h4"
+              size={400}
+              weight="semibold"
+              style={{ marginTop: 0, marginBottom: "4px" }}
+            >
+              By day
+            </Text>
+            <div
+              className={`${styles.tableWrap} ${styles.tableWrapFitContent}`}
+              style={{ width: "fit-content" }}
+            >
               <table className={styles.table}>
                 <thead className={styles.thead}>
                   <tr>
@@ -685,12 +923,30 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
                     : byDay.map((row, i) => (
                         <tr key={i} className={styles.tbodyTr}>
                           <td className={styles.td}>{row.day}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.translation_calls)}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCount(row.rewrite_calls)}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.translation_cost)}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatCost(row.rewrite_cost)}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.translation_cost || 0), row.translation_calls ?? 0)}</td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>{formatAvgCost(Number(row.rewrite_cost || 0), row.rewrite_calls ?? 0)}</td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatCount(row.translation_calls)}
+                          </td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatCount(row.rewrite_calls)}
+                          </td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatCost(row.translation_cost)}
+                          </td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatCost(row.rewrite_cost)}
+                          </td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatAvgCost(
+                              Number(row.translation_cost || 0),
+                              row.translation_calls ?? 0,
+                            )}
+                          </td>
+                          <td className={`${styles.td} ${styles.tdValue}`}>
+                            {formatAvgCost(
+                              Number(row.rewrite_cost || 0),
+                              row.rewrite_calls ?? 0,
+                            )}
+                          </td>
                         </tr>
                       ))}
                 </tbody>
@@ -698,13 +954,31 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
             </div>
           </div>
 
-          <div className="section" style={{ marginTop: "32px", paddingTop: "24px", borderTop: `1px solid ${tokens.colorNeutralStroke2}` }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+          <div
+            className="section"
+            style={{
+              marginTop: "32px",
+              paddingTop: "24px",
+              borderTop: `1px solid ${tokens.colorNeutralStroke2}`,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+                flexWrap: "wrap",
+              }}
+            >
               <Button
                 appearance="primary"
                 className={styles.deleteAllButton}
                 style={{ backgroundColor: "#8b0000", color: "#ffffff" }}
-                title={isDeleteAll ? "Delete all records in the database" : `Delete all records older than the start of "${filterLabel}"`}
+                title={
+                  isDeleteAll
+                    ? "Delete all records in the database"
+                    : `Delete all records older than the start of "${filterLabel}"`
+                }
                 onClick={() => {
                   setDeleteAllError(null);
                   setShowDeleteAllConfirm(true);
@@ -714,9 +988,18 @@ const SettingsDialogCostTrackingTab = ({ localSettings, onSettingChange }) => {
               </Button>
               <Text
                 as="span"
-                style={{ fontSize: "13px", color: tokens.colorNeutralForeground2, maxWidth: "420px", lineHeight: 1.4 }}
+                style={{
+                  fontSize: "13px",
+                  color: tokens.colorNeutralForeground2,
+                  maxWidth: "420px",
+                  lineHeight: 1.4,
+                }}
               >
-                Deletes only data <b>older than</b> the start of the selected range; data from the range onward is kept. With &quot;All&quot;, deletes every record. Example: with &quot;Last month&quot; selected, only data before the first day of last month is deleted; last month and current month are kept.
+                Deletes only data <b>older than</b> the start of the selected
+                range; data from the range onward is kept. With &quot;All&quot;,
+                deletes every record. Example: with &quot;Last month&quot;
+                selected, only data before the first day of last month is
+                deleted; last month and current month are kept.
               </Text>
             </div>
           </div>
