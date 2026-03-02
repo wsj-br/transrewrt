@@ -212,7 +212,7 @@ export const AppProvider = ({ children }) => {
       );
 
       result.model_used = result.model || model;
-      applyCostToResult(settings, setSetting, result);
+      applyCostToResult(setSetting, result);
 
       writeLastApiResult({
         type: "translate",
@@ -277,7 +277,7 @@ export const AppProvider = ({ children }) => {
       const result = await apiService.rewrite(text, style, model, signal);
 
       result.model_used = result.model || model;
-      applyCostToResult(settings, setSetting, result);
+      applyCostToResult(setSetting, result);
 
       writeLastApiResult({
         type: "rewrite",

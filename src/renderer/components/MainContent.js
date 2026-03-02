@@ -3,6 +3,7 @@ import { makeStyles, tokens } from "@fluentui/react-components";
 import ModelSelector from "./ModelSelector";
 import ResizablePanels from "./ResizablePanels";
 import SettingsPanel from "./SettingsPanel";
+import DashboardPage from "./DashboardPage";
 
 const useStyles = makeStyles({
   mainPanel: {
@@ -63,6 +64,14 @@ const MainContent = ({
     return (
       <main className={styles.mainPanel}>
         <SettingsPanel />
+      </main>
+    );
+  }
+
+  if (view === "dashboard") {
+    return (
+      <main className={styles.mainPanel}>
+        <DashboardPage />
       </main>
     );
   }

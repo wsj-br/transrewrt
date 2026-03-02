@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Translate text between languages and rewrite text in different styles using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "docker:logs": "docker logs transrewrt-web-1",
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
+    "reset-web-password": "node scripts/reset-web-password.js",
     "postinstall": "node scripts/electron-rebuild.js"
   },
   "keywords": [
@@ -125,6 +126,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
+    "recharts": "^2.15.0",
     "@fluentui/react-components": "^9.73.0",
     "@fluentui/react-icons": "^2.0.319",
     "argon2": "^0.44.0",

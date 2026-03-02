@@ -209,6 +209,94 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
     }
   });
 
+  ipcMain.handle("costDb:getSummaryByTargetLang", (_, from, to) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [] };
+      const { where, params } = buildWhereFromTo(from, to);
+      const andPart = where ? where.replace(" WHERE ", "") : "";
+      const fullWhere = " WHERE type = 'translate'" + (andPart ? " AND " + andPart : "");
+      const sql = `
+        SELECT COALESCE(target_lang, '(none)') AS target_lang, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+        FROM api_calls ${fullWhere}
+        GROUP BY target_lang
+        ORDER BY calls DESC
+      `;
+      const rows = d.prepare(sql).all(...params);
+      return { rows };
+    } catch (err) {
+      console.error("[costDb] getSummaryByTargetLang error:", err);
+      return { rows: [] };
+    }
+  });
+
+  ipcMain.handle("costDb:getSummaryByRewriteStyle", (_, from, to) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [] };
+      const { where, params } = buildWhereFromTo(from, to);
+      const andPart = where ? where.replace(" WHERE ", "") : "";
+      const fullWhere = " WHERE type = 'rewrite'" + (andPart ? " AND " + andPart : "");
+      const sql = `
+        SELECT COALESCE(rewrite_style, '(none)') AS rewrite_style, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+        FROM api_calls ${fullWhere}
+        GROUP BY rewrite_style
+        ORDER BY calls DESC
+      `;
+      const rows = d.prepare(sql).all(...params);
+      return { rows };
+    } catch (err) {
+      console.error("[costDb] getSummaryByRewriteStyle error:", err);
+      return { rows: [] };
+    }
+  });
+
+  ipcMain.handle("costDb:getAllCalls", (_, from, to, page, pageSize) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [], total: 0 };
+      const { where, params } = buildWhereFromTo(from, to);
+      const countRow = d.prepare(`SELECT COUNT(*) AS total FROM api_calls${where}`).get(...params);
+      const total = countRow?.total ?? 0;
+      const offset = ((page || 1) - 1) * (pageSize || 50);
+      const limit = pageSize || 50;
+      const rows = d.prepare(
+        `SELECT * FROM api_calls${where} ORDER BY timestamp DESC LIMIT ? OFFSET ?`
+      ).all(...params, limit, offset);
+      return { rows, total };
+    } catch (err) {
+      console.error("[costDb] getAllCalls error:", err);
+      return { rows: [], total: 0 };
+    }
+  });
+
+  ipcMain.handle("costDb:getSummaryByDayPaginated", (_, from, to, page, pageSize) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [], total: 0 };
+      const { where, params } = buildWhereFromTo(from, to);
+      const countRow = d.prepare(
+        `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${where}`
+      ).get(...params);
+      const total = countRow?.total ?? 0;
+      const offset = ((page || 1) - 1) * (pageSize || 50);
+      const limit = pageSize || 50;
+      const rows = d.prepare(
+        `SELECT date(timestamp) AS day,
+          SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,
+          SUM(CASE WHEN type = 'rewrite' THEN 1 ELSE 0 END) AS rewrite_calls,
+          SUM(CASE WHEN type = 'translate' THEN COALESCE(cost, 0) ELSE 0 END) AS translation_cost,
+          SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost
+        FROM api_calls${where}
+        GROUP BY date(timestamp) ORDER BY day DESC LIMIT ? OFFSET ?`
+      ).all(...params, limit, offset);
+      return { rows, total };
+    } catch (err) {
+      console.error("[costDb] getSummaryByDayPaginated error:", err);
+      return { rows: [], total: 0 };
+    }
+  });
+
   ipcMain.handle("costDb:deleteOutsideRange", (_, from, to) => {
     try {
       const d = getDb();

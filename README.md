@@ -33,6 +33,7 @@
 - [Configuration](#configuration)
   - [Environment Variables](#environment-variables)
   - [Web Authentication](#web-authentication)
+  - [Transrewrt proxy (optional)](#transrewrt-proxy-optional)
 - [Building and Packaging](#building-and-packaging)
 - [Architecture](#architecture)
 - [Development](#development)
@@ -48,7 +49,7 @@
 - **Translate** — translate text from one language to another, with automatic source language detection.
 - **Rewrite** — transform the style of any text (fix grammar, improve clarity, make it formal/informal, shorten, expand, or make it more technical).
 
-It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI models (including free-tier models). The same React codebase runs both as a native Electron desktop application and as a self-hosted web app inside a Docker container.
+It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI models (including free-tier models). The same React codebase runs both as a native Electron desktop application and as a self-hosted web app inside a Docker container. The sidebar gives access to **Translate**, **Rewrite**, **Cost dashboard** (analytics and call log), and **Settings**.
 
 ---
 
@@ -56,26 +57,28 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 ### Core
 
-| Feature | Description |
-|---------|-------------|
-| **Translation** | Translate between dozens of languages; auto-detect source language |
-| **Rewrite styles** | Spelling & grammar, clarity, formal, informal, shorten, expand, technical |
-| **Model selection** | Choose from any OpenRouter model; manage your model list in settings |
-| **Language management** | Add or remove languages from the selection list |
-| **Real-time translation** | Optional live translation as you type (debounced) |
-| **Auto-translate on paste** | Automatically translates text when pasted into the input panel |
-| **Auto-copy** | Optionally copy the output to clipboard after each translation |
+| Feature                     | Description                                                               |
+|-----------------------------|---------------------------------------------------------------------------|
+| **Translation**             | Translate between dozens of languages; auto-detect source language        |
+| **Rewrite styles**          | Spelling & grammar, clarity, formal, informal, shorten, expand, technical |
+| **Model selection**         | Choose from any OpenRouter model; manage your model list in settings      |
+| **Language management**     | Add or remove languages from the selection list                           |
+| **Real-time translation**   | Optional live translation as you type (debounced)                         |
+| **Auto-translate on paste** | Automatically translates text when pasted into the input panel            |
+| **Auto-copy**               | Optionally copy the output to clipboard after each translation            |
 
 ### Application
 
-| Feature | Description |
-|---------|-------------|
-| **Dual deployment** | Same codebase runs as Electron desktop app or web app |
-| **Cost tracking** | SQLite log of every API call with cost summaries by model, function, or day |
-| **Customisation** | Font family, font size, text colours, light/dark/system theme |
-| **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc. |
-| **Secure web mode** | API key stored only on the server — never sent to the browser |
-| **ARM64 support** | Docker image builds for Raspberry Pi and other ARM64 targets |
+| Feature                | Description                                                                                                                                                               |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Dual deployment**    | Same codebase runs as Electron desktop app or web app                                                                                                                     |
+| **Cost tracking**      | SQLite log of every API call with cost summaries by model, function, or day                                                                                               |
+| **Cost dashboard**     | Analytics view with Summary (KPIs, charts), By Model, By Day, and All Calls; time-range filters (e.g. today, this week, this month); optional cost-fraction display style |
+| **Transrewrt proxy**   | Optional external proxy: use a rolling key (HMAC-SHA256 TOTP, 30s window) instead of sending the API key; set API URL to proxy base and a shared key seed                 |
+| **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behavior, cost fraction style                                                                    |
+| **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc.                                                                                                          |
+| **Secure web mode**    | API key stored only on the server — never sent to the browser                                                                                                             |
+| **ARM64 support**      | Docker image builds for Raspberry Pi and other ARM64 targets                                                                                                              |
 
 ---
 
@@ -83,12 +86,12 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 ### Prerequisites
 
-| Tool | Notes |
-|------|-------|
-| **Node.js 24 (LTS)** | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); use `nvm install 24` and `nvm use 24` (or `nvm use` in project root) |
-| **pnpm** | `npm install -g pnpm` |
-| **Git** | Any recent version |
-| **Docker** *(optional)* | Required only for the web/container deployment target |
+| Tool                    | Notes                                                                                                                                                                                             |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Node.js 24 (LTS)**    | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); use `nvm install 24` and `nvm use 24` (or `nvm use` in project root) |
+| **pnpm**                | `npm install -g pnpm`                                                                                                                                                                             |
+| **Git**                 | Any recent version                                                                                                                                                                                |
+| **Docker** *(optional)* | Required only for the web/container deployment target                                                                                                                                             |
 
 On Debian/Ubuntu, Electron also needs a few system libraries:
 
@@ -173,38 +176,43 @@ Then open <http://localhost:5000>.
 
 On first run the application copies the default config from `config/config_default.json` to a writable location and then reads/writes settings there:
 
-| Deployment | Config location |
-|------------|----------------|
-| Electron | `%APPDATA%\transrewrt\` (Windows) · `~/.config/transrewrt/` (Linux) |
-| Web / Docker | `/app/data/config.json` (inside container, persist with a volume) |
+| Deployment   | Config location                                                     |
+|--------------|---------------------------------------------------------------------|
+| Electron     | `%APPDATA%\transrewrt\` (Windows) · `~/.config/transrewrt/` (Linux) |
+| Web / Docker | `/app/data/config.json` (inside container, persist with a volume)   |
 
 Key settings (editable via the **Settings** dialog or directly in the JSON):
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `api_key` | *(empty)* | Your OpenRouter API key |
-| `api_url` | `https://openrouter.ai/api/v1` | Upstream AI API base URL |
-| `available_models` | 3 default models | List of models shown in the selector |
-| `available_languages` | 3 default languages | List of languages shown in the selector |
-| `real_time_translation` | `false` | Translate as you type |
-| `real_time_delay` | `1000` | Debounce delay in ms for real-time mode |
-| `auto_copy` | `false` | Copy output to clipboard automatically |
-| `auto_translate_on_paste` | `true` | Translate when text is pasted |
-| `theme` | `System` | `Light`, `Dark`, or `System` |
-| `font_family` | `Verdana` | Text panel font |
-| `font_size` | `15` | Text panel font size (px) |
-| `web_session_timeout` | `604800` | Session duration in seconds (default: 7 days) |
+| Setting                   | Default                        | Description                                                                        |
+|---------------------------|--------------------------------|------------------------------------------------------------------------------------|
+| `api_key`                 | *(empty)*                      | Your OpenRouter API key                                                            |
+| `api_url`                 | `https://openrouter.ai/api/v1` | Upstream AI API base URL                                                           |
+| `use_transrewrt_proxy`    | `false`                        | Use an external Transrewrt proxy (rolling key auth) instead of sending the API key |
+| `key_seed`                | *(empty)*                      | Shared secret for the Transrewrt proxy (used to derive the rolling key)            |
+| `available_models`        | 3 default models               | List of models shown in the selector                                               |
+| `available_languages`     | 3 default languages            | List of languages shown in the selector                                            |
+| `real_time_translation`   | `false`                        | Translate as you type                                                              |
+| `real_time_delay`         | `1000`                         | Debounce delay in ms for real-time mode                                            |
+| `auto_copy`               | `false`                        | Copy output to clipboard automatically                                             |
+| `auto_translate_on_paste` | `true`                         | Translate when text is pasted                                                      |
+| `enter_behavior`          | `Shift-Execute`                | Whether Enter runs the action or adds a new line                                   |
+| `theme`                   | `System`                       | `Light`, `Dark`, or `System`                                                       |
+| `font_family`             | `Verdana`                      | Text panel font                                                                    |
+| `font_size`               | `15`                           | Text panel font size (px)                                                          |
+| `cost_fraction_style`     | `muted`                        | How cost decimals are shown: `subscript`, `muted`, `superscript`, or `small`       |
+| `web_margin`              | `true`                         | (Web only) Show a margin around the app                                            |
+| `web_session_timeout`     | `604800`                       | Session duration in seconds (default: 7 days)                                      |
 
 ### Environment Variables
 
 These apply only to the web/Docker deployment:
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PORT` | `5000` | Server listening port |
-| `CONFIG_PATH` | `/app/data/config.json` | Path to the config file |
-| `API_KEY` | *(empty)* | Override: set the OpenRouter API key from the host instead of storing it in `config.json` |
-| `API_URL` | `https://openrouter.ai/api/v1` | Override: upstream AI API base URL |
+| Variable      | Default                        | Description                                                                               |
+|---------------|--------------------------------|-------------------------------------------------------------------------------------------|
+| `PORT`        | `5000`                         | Server listening port                                                                     |
+| `CONFIG_PATH` | `/app/data/config.json`        | Path to the config file                                                                   |
+| `API_KEY`     | *(empty)*                      | Override: set the OpenRouter API key from the host instead of storing it in `config.json` |
+| `API_URL`     | `https://openrouter.ai/api/v1` | Override: upstream AI API base URL                                                        |
 
 ### Web Authentication
 
@@ -214,8 +222,18 @@ The web app protects all endpoints with session-based authentication.
 - Passwords are hashed with **Argon2id** and stored in `config.json`.
 - Sessions use a **sliding window** — every successful API call extends the expiry.
 - Change the password via **Settings → Auth** in the web UI.
+- **Reset from command line:**  
+  - **Docker:** `docker exec <container> reset-web-password.sh "<new-password>"`  
+  - **Local (same config as server):** `pnpm run reset-web-password -- "<new-password>"` or `node scripts/reset-web-password.js "<new-password>"` (set `CONFIG_PATH` if the config file is elsewhere).
 
 > **Change the default password immediately** when deploying to a network-accessible host.
+
+### Transrewrt proxy (optional)
+
+You can route API traffic through an external **Transrewrt proxy** that accepts a time-based rolling key instead of your OpenRouter API key. Useful when the key is only allowed on the proxy host.
+
+1. Set **Settings → API** → **Use Transrewrt Proxy** and enter the **Key seed** (shared secret with the proxy).
+2. Set **API URL** to the proxy base (e.g. `http://localhost:6500`). The app derives a 30s-window key from the seed (HMAC-SHA256 TOTP) and calls the proxy with that key; the proxy validates it and forwards to OpenRouter with its own API key.
 
 ---
 
@@ -229,10 +247,10 @@ pnpm run package
 
 Produces a native installer in `release/`:
 
-| Platform | Output |
-|----------|--------|
-| Windows | `Transrewrt Setup <version>.exe` (NSIS installer) |
-| Linux | Configure targets in `package.json` (AppImage, deb, rpm) |
+| Platform | Output                                                   |
+|----------|----------------------------------------------------------|
+| Windows  | `Transrewrt Setup <version>.exe` (NSIS installer)        |
+| Linux    | Configure targets in `package.json` (AppImage, deb, rpm) |
 
 ### Docker Multi-Architecture (e.g. Raspberry Pi)
 
@@ -253,31 +271,32 @@ docker buildx inspect --bootstrap
 ## Architecture
 
 ```
-┌──────────────────────────────────────────────────────┐
-│                   src/renderer/                      │
-│              (shared React application)              │
-│  ┌─────────────┐  ┌──────────┐  ┌────────────────┐   │
-│  │  Translate  │  │ Rewrite  │  │    Settings    │   │
-│  └─────────────┘  └──────────┘  └────────────────┘   │
-│        │                │               │            │
-│        └────────────────┴───────────────┘            │
-│                         │                            │
-│              configManager / apiService              │
-│           (detects Electron vs Web at runtime)       │
-└──────────┬──────────────────────────────┬────────────┘
-           │ Electron                     │ Web / Docker
-           ▼                             ▼
-   src/main/main.js              server/index.js
-   (IPC · fs · preload)          (Express · proxy ·
-                                  auth · SQLite)
+┌─────────────────────────────────────────────────────────────┐
+│                      src/renderer/                          │
+│                 (shared React application)                  │
+│  ┌─────────────┐ ┌──────────┐ ┌─────────────┐ ┌──────────┐  │
+│  │  Translate  │ │ Rewrite  │ │  Dashboard  │ │ Settings │  │
+│  └─────────────┘ └──────────┘ └─────────────┘ └──────────┘  │
+│        │               │              │              │      │
+│        └───────────────┴──────────────┴──────────────┘      │
+│                             │                               │
+│              configManager / apiService / costUtils         │
+│           (detects Electron vs Web at runtime)              │
+└──────────────┬───────────────────────────────┬──────────────┘
+               │ Electron                      │ Web / Docker
+               ▼                              ▼
+      src/main/main.js                 server/index.js
+      (IPC · fs · preload ·            (Express · proxy ·
+       costDb)                          auth · SQLite · cost)
 ```
 
-| Concern | Electron | Web / Docker |
-|---------|----------|--------------|
-| Config storage | Local `config.json` via IPC | REST API → server file |
-| API calls | Direct to OpenRouter (API key in config) | Proxied through server (API key never reaches browser) |
-| Authentication | None (local app) | Session cookie (Argon2id password) |
-| Cost logging | Local SQLite DB | Server SQLite DB at `/app/data/transrewrt.db` |
+| Concern        | Electron                                 | Web / Docker                                                                 |
+|----------------|------------------------------------------|------------------------------------------------------------------------------|
+| Config storage | Local `config.json` via IPC              | REST API → server file                                                       |
+| API calls      | Direct to OpenRouter or external proxy   | Proxied through server, or optional external Transrewrt proxy (rolling key)  |
+| Authentication | None (local app)                         | Session cookie (Argon2id password)                                          |
+| Cost logging   | Local SQLite DB (`costDb`)               | Server SQLite DB at `/app/data/transrewrt.db`                                 |
+| Dashboard      | Reads cost data via IPC                  | Reads cost data via REST API                                                |
 
 ---
 
@@ -298,18 +317,18 @@ See [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) for:
 
 ### Quick command reference
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm run dev` | Electron dev with hot reload |
-| `pnpm run dev:web` | Web dev with hot reload |
+| Command                   | Purpose                                 |
+|---------------------------|-----------------------------------------|
+| `pnpm run dev`            | Electron dev with hot reload            |
+| `pnpm run dev:web`        | Web dev with hot reload                 |
 | `pnpm run build-renderer` | Production build of React app → `dist/` |
-| `pnpm start` | Run Electron (after build) |
-| `pnpm run serve` | Build then serve web app at :5000 |
-| `pnpm run package` | Build Electron installer → `release/` |
-| `pnpm run docker:up` | Build and run Docker Compose |
-| `pnpm run docker:down` | Stop Docker Compose |
-| `pnpm run docker:clean` | Remove Docker image and volumes |
-| `pnpm run docker:deploy` | Deploy to production host |
+| `pnpm start`              | Run Electron (after build)              |
+| `pnpm run serve`          | Build then serve web app at :5000       |
+| `pnpm run package`        | Build Electron installer → `release/`   |
+| `pnpm run docker:up`      | Build and run Docker Compose            |
+| `pnpm run docker:down`    | Stop Docker Compose                     |
+| `pnpm run docker:clean`   | Remove Docker image and volumes         |
+| `pnpm run docker:deploy`  | Deploy to production host               |
 
 ---
 

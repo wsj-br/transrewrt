@@ -79,8 +79,8 @@ module.exports = (env, argv) => {
     },
   },
   performance: {
-    // Entry: initial load JS/CSS. 1MB is reasonable for React + Fluent UI (web/Docker + Electron).
-    maxEntrypointSize: 1000000,
+    // Entry: initial load JS/CSS. Allow ~1.6 MiB for React + Fluent UI + Recharts (web/Docker + Electron).
+    maxEntrypointSize: 1600000,
     // Single asset limit (chunks, etc.). 512KB allows larger vendor chunks and avoids noisy warnings for big icons.
     maxAssetSize: 512000,
     // Only apply size hints to JS/CSS; exclude images/icons so one large .ico doesn't trigger warnings.

@@ -12,6 +12,7 @@ const { Readable } = require("stream");
 const Database = require("better-sqlite3");
 const lockfile = require("proper-lockfile");
 const argon2 = require("argon2");
+const { createLogger } = require("./logger");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -68,27 +69,33 @@ const ENV_API_URL = (
   process.env.API_URL || "https://openrouter.ai/api/v1"
 ).replace(/\/$/, "");
 
-console.log("=".repeat(60));
-console.log("[SERVER] Transrewrt Server starting...");
-console.log(`[SERVER] Port: ${PORT}`);
+// Ensure data directory exists before creating logger
+const dataDir = path.dirname(CONFIG_PATH);
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+const logToConsole = DEV_WEB || process.env.LOG_TO_CONSOLE === "1" || process.env.LOG_TO_CONSOLE === "true";
+const log = createLogger(dataDir, logToConsole);
+
+log.info("=".repeat(60));
+log.info("[SERVER] Transrewrt Server starting...");
+log.info(`[SERVER] Port: ${PORT}`);
 if (DEV_WEB) {
-  console.log(
+  log.info(
     "[SERVER] DEV_WEB mode: only API on this port; use http://localhost:5000 for the app",
   );
 }
-console.log(`[SERVER] Config path: ${CONFIG_PATH}`);
-console.log(`[SERVER] Default config path: ${DEFAULT_CONFIG_PATH}`);
-console.log("=".repeat(60));
-
-// Ensure data directory exists
-const dataDir = path.dirname(CONFIG_PATH);
-console.log(`[SERVER] Data directory: ${dataDir}`);
+log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
+log.info(`[SERVER] Default config path: ${DEFAULT_CONFIG_PATH}`);
+log.info("=".repeat(60));
+log.info(`[SERVER] Data directory: ${dataDir}`);
 if (!fs.existsSync(dataDir)) {
-  console.log(`[SERVER] Creating data directory: ${dataDir}`);
+  log.info(`[SERVER] Creating data directory: ${dataDir}`);
   fs.mkdirSync(dataDir, { recursive: true });
-  console.log(`[SERVER] Data directory created successfully`);
+  log.info("[SERVER] Data directory created successfully");
 } else {
-  console.log(`[SERVER] Data directory already exists`);
+  log.info("[SERVER] Data directory already exists");
 }
 
 // SQLite DB for API call logs
@@ -96,7 +103,7 @@ const DB_PATH = path.join(dataDir, "transrewrt.db");
 const LEGACY_DB_PATH = path.join(dataDir, "poliverb.db");
 if (fs.existsSync(LEGACY_DB_PATH) && !fs.existsSync(DB_PATH)) {
   fs.copyFileSync(LEGACY_DB_PATH, DB_PATH);
-  console.log("[SERVER] Migrated legacy DB to transrewrt.db");
+  log.info("[SERVER] Migrated legacy DB to transrewrt.db");
 }
 let db;
 try {
@@ -124,12 +131,28 @@ try {
     // Column may already exist (e.g. from CREATE or previous migration)
   }
 } catch (err) {
-  console.error("[SERVER] Failed to init SQLite DB:", err);
+  log.error("[SERVER] Failed to init SQLite DB: " + err.message, {
+    stack: err.stack,
+  });
   db = null;
 }
 
 // Middleware
 app.use(express.json({ limit: "10mb" }));
+
+// Log all /api requests and responses to file (and console in dev)
+app.use("/api", (req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    log.info("API request", {
+      method: req.method,
+      path: req.originalUrl || req.path,
+      statusCode: res.statusCode,
+      durationMs: Date.now() - start,
+    });
+  });
+  next();
+});
 
 const DEFAULT_WEB_PASSWORD = "transrewrt26";
 
@@ -203,10 +226,28 @@ function requireWebSession(req, res, next) {
   const cookies = parseCookie(req.headers.cookie);
   const sessionId = cookies.transrewrt_session;
   const state = loadState();
-  if (sessionId && state.web_session && sessionId === state.web_session) {
-    return next();
+
+  if (!sessionId) {
+    log.info("[AUTH] 401: no session cookie");
+    return res.status(401).json({ error: "Authentication required" });
   }
-  return res.status(401).json({ error: "Authentication required" });
+  if (!state.web_session || sessionId !== state.web_session) {
+    log.info("[AUTH] 401: session cookie does not match server state (cookie present, server session missing or different)");
+    return res.status(401).json({ error: "Authentication required" });
+  }
+  // Server-side expiry: reject if past web_session_expires_at (e.g. state was not refreshed or server restarted with stale cookie)
+  const expiresAt = state.web_session_expires_at;
+  if (expiresAt != null && typeof expiresAt === "number" && Date.now() > expiresAt) {
+    log.info("[AUTH] 401: session expired (web_session_expires_at in the past); clearing server session");
+    saveState({ ...state, web_session: "", web_session_expires_at: null });
+    res.setHeader(
+      "Set-Cookie",
+      "transrewrt_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0",
+    );
+    return res.status(401).json({ error: "Authentication required" });
+  }
+
+  return next();
 }
 app.use("/api", requireWebSession);
 
@@ -234,14 +275,14 @@ function loadConfig() {
     const merged = { ...defaultConfig, ...userConfig };
     return stripStateKeysAndDeprecated(merged);
   } catch (err) {
-    console.error("[CONFIG] Failed to load config:", err);
+    log.error("[CONFIG] Failed to load config: " + err.message, { stack: err.stack });
     return {};
   } finally {
     if (release) {
       try {
         release();
       } catch (e) {
-        console.error("[CONFIG] Failed to release config lock:", e);
+        log.error("[CONFIG] Failed to release config lock:", e.message);
       }
     }
   }
@@ -275,14 +316,14 @@ function loadState() {
     saveState(state);
     return state;
   } catch (err) {
-    console.error("[STATE] Failed to load state:", err);
+    log.error("[STATE] Failed to load state: " + err.message, { stack: err.stack });
     return { ...DEFAULT_STATE };
   } finally {
     if (release) {
       try {
         release();
       } catch (e) {
-        console.error("[STATE] Failed to release state lock:", e);
+        log.error("[STATE] Failed to release state lock:", e.message);
       }
     }
   }
@@ -317,14 +358,14 @@ function saveState(state) {
     fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), "utf8");
     return true;
   } catch (err) {
-    console.error("[STATE] Failed to save state:", err);
+    log.error("[STATE] Failed to save state: " + err.message, { stack: err.stack });
     return false;
   } finally {
     if (release) {
       try {
         release();
       } catch (e) {
-        console.error("[STATE] Failed to release state lock:", e);
+        log.error("[STATE] Failed to release state lock:", e.message);
       }
     }
   }
@@ -374,17 +415,17 @@ function saveConfig(config) {
       return true;
     }
     fs.writeFileSync(CONFIG_PATH, newContent, "utf8");
-    console.log("[CONFIG] Config saved.");
+    log.info("[CONFIG] Config saved.");
     return true;
   } catch (err) {
-    console.error("[CONFIG] Failed to save config:", err);
+    log.error("[CONFIG] Failed to save config: " + err.message, { stack: err.stack });
     return false;
   } finally {
     if (release) {
       try {
         release();
       } catch (e) {
-        console.error("[CONFIG] Failed to release config lock:", e);
+        log.error("[CONFIG] Failed to release config lock:", e.message);
       }
     }
   }
@@ -400,7 +441,7 @@ app.get("/api/config", (req, res) => {
     const state = loadState();
     res.json({ ...config, ...state });
   } catch (err) {
-    console.error("[API] GET /api/config - Error:", err);
+    log.error("[API] GET /api/config - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -430,7 +471,7 @@ app.post("/api/config", (req, res) => {
     }
     res.json({ success: true });
   } catch (err) {
-    console.error("[API] POST /api/config - Error:", err);
+    log.error("[API] POST /api/config - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -477,7 +518,7 @@ app.post("/api/auth/login", async (req, res) => {
       )
       .json({ success: true });
   } catch (err) {
-    console.error("[API] POST /api/auth/login - Error:", err);
+    log.error("[API] POST /api/auth/login - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -500,7 +541,7 @@ app.post("/api/auth/change-password", async (req, res) => {
     saveConfig(newConfig);
     res.json({ success: true });
   } catch (err) {
-    console.error("[API] POST /api/auth/change-password - Error:", err);
+    log.error("[API] POST /api/auth/change-password - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -517,7 +558,7 @@ app.post("/api/auth/logout", (req, res) => {
       )
       .json({ success: true });
   } catch (err) {
-    console.error("[API] POST /api/auth/logout - Error:", err);
+    log.error("[API] POST /api/auth/logout - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -559,15 +600,29 @@ app.post("/api/calls", (req, res) => {
     const cost = b.cost ?? 0;
     const total_cost = b.total_cost ?? 0;
 
-    // Log to server console
     if (type === "translate") {
-      console.log(
-        `[API call] timestamp=${timestamp} type=translate model=${model} source=${source_lang} target=${target_lang} request_bytes=${req_bytes} response_bytes=${res_bytes} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`,
-      );
+      log.info("[API call] translate", {
+        timestamp,
+        model,
+        source_lang,
+        target_lang,
+        request_bytes: req_bytes,
+        response_bytes: res_bytes,
+        duration_ms: dur,
+        cost,
+        total_cost,
+      });
     } else {
-      console.log(
-        `[API call] timestamp=${timestamp} type=rewrite model=${model} rewrite_style=${rewrite_style} request_bytes=${req_bytes} response_bytes=${res_bytes} duration_ms=${dur} cost=${cost} total_cost=${total_cost}`,
-      );
+      log.info("[API call] rewrite", {
+        timestamp,
+        model,
+        rewrite_style,
+        request_bytes: req_bytes,
+        response_bytes: res_bytes,
+        duration_ms: dur,
+        cost,
+        total_cost,
+      });
     }
 
     const stmt = db.prepare(`
@@ -590,7 +645,7 @@ app.post("/api/calls", (req, res) => {
     );
     res.json({ success: true });
   } catch (err) {
-    console.error("[API] POST /api/calls - Error:", err);
+    log.error("[API] POST /api/calls - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -616,9 +671,11 @@ app.get("/api/calls/total-cost", (req, res) => {
     const row = db
       .prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls")
       .get();
-    res.json({ total_cost: row?.total_cost ?? 0 });
+    const total_cost = row?.total_cost ?? 0;
+    log.info("GET /api/calls/total-cost", { total_cost });
+    res.json({ total_cost });
   } catch (err) {
-    console.error("[API] GET /api/calls/total-cost - Error:", err);
+    log.error("[API] GET /api/calls/total-cost - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -638,7 +695,7 @@ app.get("/api/calls/summary-by-function", (req, res) => {
     rows.push({ function: "Total", calls: totalCalls, cost: totalCost });
     res.json({ rows });
   } catch (err) {
-    console.error("[API] GET /api/calls/summary-by-function - Error:", err);
+    log.error("[API] GET /api/calls/summary-by-function - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -690,7 +747,7 @@ app.get("/api/calls/summary-by-model", (req, res) => {
     rows.push({ model: "Total", ...totals, avg_tps: totalAvgTps });
     res.json({ rows });
   } catch (err) {
-    console.error("[API] GET /api/calls/summary-by-model - Error:", err);
+    log.error("[API] GET /api/calls/summary-by-model - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -712,7 +769,94 @@ app.get("/api/calls/summary-by-day", (req, res) => {
     const rows = db.prepare(sql).all(...params);
     res.json({ rows });
   } catch (err) {
-    console.error("[API] GET /api/calls/summary-by-day - Error:", err);
+    log.error("[API] GET /api/calls/summary-by-day - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/calls/summary-by-target-lang", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+    const andPart = where ? where.replace(" WHERE ", "") : "";
+    const fullWhere = " WHERE type = 'translate'" + (andPart ? " AND " + andPart : "");
+    const sql = `
+      SELECT COALESCE(target_lang, '(none)') AS target_lang, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+      FROM api_calls ${fullWhere}
+      GROUP BY target_lang
+      ORDER BY calls DESC
+    `;
+    const rows = db.prepare(sql).all(...params);
+    res.json({ rows });
+  } catch (err) {
+    log.error("[API] GET /api/calls/summary-by-target-lang - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/calls/summary-by-rewrite-style", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+    const andPart = where ? where.replace(" WHERE ", "") : "";
+    const fullWhere = " WHERE type = 'rewrite'" + (andPart ? " AND " + andPart : "");
+    const sql = `
+      SELECT COALESCE(rewrite_style, '(none)') AS rewrite_style, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+      FROM api_calls ${fullWhere}
+      GROUP BY rewrite_style
+      ORDER BY calls DESC
+    `;
+    const rows = db.prepare(sql).all(...params);
+    res.json({ rows });
+  } catch (err) {
+    log.error("[API] GET /api/calls/summary-by-rewrite-style - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/calls/all", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const pageSize = Math.min(200, Math.max(1, parseInt(req.query.pageSize, 10) || 50));
+    const countRow = db.prepare(`SELECT COUNT(*) AS total FROM api_calls${where}`).get(...params);
+    const total = countRow?.total ?? 0;
+    const offset = (page - 1) * pageSize;
+    const rows = db.prepare(
+      `SELECT * FROM api_calls${where} ORDER BY timestamp DESC LIMIT ? OFFSET ?`
+    ).all(...params, pageSize, offset);
+    res.json({ rows, total, page, pageSize });
+  } catch (err) {
+    log.error("[API] GET /api/calls/all - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/calls/summary-by-day-paginated", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const pageSize = Math.min(200, Math.max(1, parseInt(req.query.pageSize, 10) || 50));
+    const countRow = db.prepare(
+      `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${where}`
+    ).get(...params);
+    const total = countRow?.total ?? 0;
+    const offset = (page - 1) * pageSize;
+    const sql = `
+      SELECT date(timestamp) AS day,
+        SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,
+        SUM(CASE WHEN type = 'rewrite' THEN 1 ELSE 0 END) AS rewrite_calls,
+        SUM(CASE WHEN type = 'translate' THEN COALESCE(cost, 0) ELSE 0 END) AS translation_cost,
+        SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost
+      FROM api_calls ${where}
+      GROUP BY date(timestamp) ORDER BY day DESC LIMIT ? OFFSET ?
+    `;
+    const rows = db.prepare(sql).all(...params, pageSize, offset);
+    res.json({ rows, total, page, pageSize });
+  } catch (err) {
+    log.error("[API] GET /api/calls/summary-by-day-paginated - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -734,7 +878,7 @@ app.post("/api/calls/delete-by-model", (req, res) => {
       .run(model);
     res.json({ success: true, deleted: result.changes });
   } catch (err) {
-    console.error("[API] POST /api/calls/delete-by-model - Error:", err);
+    log.error("[API] POST /api/calls/delete-by-model - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -754,7 +898,7 @@ app.delete("/api/calls", (req, res) => {
     }
     res.json({ success: true });
   } catch (err) {
-    console.error("[API] DELETE /api/calls - Error:", err);
+    log.error("[API] DELETE /api/calls - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -807,7 +951,7 @@ app.get("/api/status", async (req, res) => {
           : `API key check failed (HTTP ${keyRes.status}).`,
     });
   } catch (err) {
-    console.error("[API] GET /api/status - Error:", err);
+    log.error("[API] GET /api/status - Error: " + err.message, { stack: err.stack });
     res.json({
       apiKeySet: !!(ENV_API_KEY || loadConfig().api_key || "")?.trim(),
       apiKeyValid: false,
@@ -824,7 +968,7 @@ app.get("/api/build-info", (req, res) => {
     const content = fs.readFileSync(BUILD_TIMESTAMP_PATH, "utf8").trim();
     res.json({ buildTimestamp: content || null });
   } catch (err) {
-    console.error("[API] GET /api/build-info - Error:", err);
+    log.error("[API] GET /api/build-info - Error: " + err.message, { stack: err.stack });
     res.json({ buildTimestamp: null });
   }
 });
@@ -838,14 +982,17 @@ app.get("/api/key", async (req, res) => {
         .status(400)
         .json({ error: "Key info is only available for OpenRouter API." });
     }
-    const keyUrl = `${baseUrl}/key`;
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    const keyUrl = `${baseUrl}/key?_=${Date.now()}`;
     const headers = getProxyHeaders();
     const keyRes = await fetch(keyUrl, { method: "GET", headers });
     const data = await keyRes.json().catch(() => ({}));
     if (!keyRes.ok) return res.status(keyRes.status).json(data);
+    log.info("API key usage", { status: keyRes.status, data });
     return res.json(data);
   } catch (err) {
-    console.error("[API] GET /api/key - Error:", err);
+    log.error("[API] GET /api/key - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message || "Failed to fetch key info." });
   }
 });
@@ -877,7 +1024,7 @@ app.post("/api/proxy/chat/completions", async (req, res) => {
       res.end();
     }
   } catch (err) {
-    console.error("Proxy error:", err);
+    log.error("Proxy error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -892,7 +1039,7 @@ app.get("/api/proxy/models", async (req, res) => {
     const data = await response.json();
     res.status(response.status).json(data);
   } catch (err) {
-    console.error("Proxy error:", err);
+    log.error("Proxy error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -907,7 +1054,7 @@ app.get("/api/proxy/generation", async (req, res) => {
     const data = await response.json();
     res.status(response.status).json(data);
   } catch (err) {
-    console.error("Proxy error:", err);
+    log.error("Proxy error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });
@@ -948,22 +1095,22 @@ if (!DEV_WEB) {
 // --- Start ---
 
 app.listen(PORT, () => {
-  console.log("=".repeat(60));
-  console.log(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
-  console.log(`[SERVER] Config path: ${CONFIG_PATH}`);
-  console.log("[SERVER] Loading initial config...");
+  log.info("=".repeat(60));
+  log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
+  log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
+  log.info("[SERVER] Loading initial config...");
   const initialConfig = loadConfig();
   if (ENV_API_KEY) {
-    console.log(
+    log.info(
       "[SERVER] API Key is being loaded from environment variable API_KEY",
     );
   } else if (initialConfig.api_key) {
-    console.log(
+    log.info(
       `[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`,
     );
   } else {
-    console.log("[SERVER] No API Key in initial config");
+    log.info("[SERVER] No API Key in initial config");
   }
-  console.log("[SERVER] Server ready to accept requests");
-  console.log("=".repeat(60));
+  log.info("[SERVER] Server ready to accept requests");
+  log.info("=".repeat(60));
 });

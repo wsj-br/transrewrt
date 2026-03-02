@@ -31,10 +31,40 @@ const SettingsDialogApiTab = ({
             type="text"
             value={localSettings.api_url || 'https://openrouter.ai/api/v1'}
             onChange={(e) => onSettingChange('api_url', e.target.value)}
-            placeholder="https://openrouter.ai/api/v1"
+            placeholder={localSettings.use_transrewrt_proxy ? 'http://localhost:6500' : 'https://openrouter.ai/api/v1'}
             style={{ width: 'auto', minWidth: '400px' }}
           />
+          {localSettings.use_transrewrt_proxy && (
+            <Text as="p" style={{ fontSize: '12px', color: 'var(--colorNeutralForeground3)', marginTop: '4px' }}>
+              When using proxy, this is the proxy base URL (e.g. http://localhost:6500).
+            </Text>
+          )}
         </div>
+        <div style={{ marginBottom: '16px' }}>
+          <Checkbox
+            id="use-transrewrt-proxy"
+            checked={!!localSettings.use_transrewrt_proxy}
+            onChange={(e) => onSettingChange('use_transrewrt_proxy', e.target.checked)}
+          />
+          <Label htmlFor="use-transrewrt-proxy" style={{ cursor: 'pointer', marginLeft: '8px' }}>
+            Use Transrewrt Proxy
+          </Label>
+        </div>
+        {localSettings.use_transrewrt_proxy && (
+          <div style={{ marginBottom: '16px', marginLeft: '24px' }}>
+            <Label htmlFor="key-seed" style={{ display: 'block', marginBottom: '6px' }}>
+              Key Seed:
+            </Label>
+            <Input
+              id="key-seed"
+              type="password"
+              value={localSettings.key_seed || ''}
+              onChange={(e) => onSettingChange('key_seed', e.target.value)}
+              placeholder="Shared secret with the proxy"
+              style={{ width: '400px', minWidth: '300px' }}
+            />
+          </div>
+        )}
         <div style={{ marginBottom: '16px' }}>
           <Label htmlFor="api-key" style={{ display: 'block', marginBottom: '6px' }}>
             OpenRouter API Key:

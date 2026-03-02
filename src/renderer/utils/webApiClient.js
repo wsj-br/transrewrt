@@ -173,6 +173,64 @@ const webAPI = {
     return data.rows || [];
   },
 
+  getSummaryByTargetLang: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-target-lang?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
+  getSummaryByRewriteStyle: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-rewrite-style?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
+  getAllCalls: async (from, to, page, pageSize) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    if (page) q.set("page", String(page));
+    if (pageSize) q.set("pageSize", String(pageSize));
+    const res = await fetch(`${API_BASE}/api/calls/all?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load calls");
+    return await res.json();
+  },
+
+  getSummaryByDayPaginated: async (from, to, page, pageSize) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    if (page) q.set("page", String(page));
+    if (pageSize) q.set("pageSize", String(pageSize));
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-day-paginated?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load summary");
+    return await res.json();
+  },
+
   deleteCallsOutsideRange: async (from, to) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
@@ -237,8 +295,15 @@ const webAPI = {
 
   getOpenRouterKeyInfo: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/key`, { credentials: "include" });
-      const data = await res.json();
+      const res = await fetch(`${API_BASE}/api/key?_=${Date.now()}`, {
+        credentials: "include",
+        cache: "no-store",
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject(new Error(data.error || "Authentication required"));
+      }
       if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
       return data;
     } catch (err) {

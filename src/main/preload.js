@@ -25,6 +25,12 @@ const api = {
   getSummaryByFunction: (from, to) => ipcRenderer.invoke('costDb:getSummaryByFunction', from, to).then((r) => r?.rows ?? []),
   getSummaryByModel: (from, to) => ipcRenderer.invoke('costDb:getSummaryByModel', from, to).then((r) => r?.rows ?? []),
   getSummaryByDay: (from, to) => ipcRenderer.invoke('costDb:getSummaryByDay', from, to).then((r) => r?.rows ?? []),
+  getSummaryByTargetLang: (from, to) => ipcRenderer.invoke('costDb:getSummaryByTargetLang', from, to).then((r) => r?.rows ?? []),
+  getSummaryByRewriteStyle: (from, to) => ipcRenderer.invoke('costDb:getSummaryByRewriteStyle', from, to).then((r) => r?.rows ?? []),
+  getAllCalls: (from, to, page, pageSize) =>
+    ipcRenderer.invoke('costDb:getAllCalls', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
+  getSummaryByDayPaginated: (from, to, page, pageSize) =>
+    ipcRenderer.invoke('costDb:getSummaryByDayPaginated', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('costDb:deleteOutsideRange', from, to),
   deleteCallsByModel: (model) => ipcRenderer.invoke('costDb:deleteByModel', model),
 };

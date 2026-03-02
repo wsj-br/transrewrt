@@ -226,11 +226,11 @@ const App = () => {
     }
   }, [settings.app_mode]);
 
-  // Restore main view (workspace vs settings) from state once when config has loaded
+  // Restore main view (workspace vs settings vs dashboard) from state once when config has loaded
   useEffect(() => {
     if (hasRestoredViewRef.current || !settings || Object.keys(settings).length === 0) return;
     const view = settings.web_view;
-    if (view === "settings" || view === "workspace") {
+    if (view === "settings" || view === "workspace" || view === "dashboard") {
       hasRestoredViewRef.current = true;
       setCurrentView(view);
     }
@@ -320,6 +320,11 @@ const App = () => {
     setCurrentView("workspace");
     updateSettings({ app_mode: mode });
     if (isWeb) setSetting("web_view", "workspace");
+  };
+
+  const handleDashboardClick = () => {
+    setCurrentView("dashboard");
+    if (isWeb) setSetting("web_view", "dashboard");
   };
 
   const clearInput = () => {
@@ -887,6 +892,7 @@ const App = () => {
                 currentMode={currentMode}
                 currentView={currentView}
                 onModeChange={handleModeChange}
+                onDashboardClick={handleDashboardClick}
                 onSettingsClick={() => {
                   setCurrentView("settings");
                   if (isWeb) setSetting("web_view", "settings");
@@ -922,6 +928,7 @@ const App = () => {
           currentMode={currentMode}
           currentView={currentView}
           onModeChange={handleModeChange}
+          onDashboardClick={handleDashboardClick}
           onSettingsClick={() => {
             setCurrentView("settings");
           }}

@@ -1,0 +1,140 @@
+/**
+ * Shared cost-tracking utilities: filters, formatters, and API access.
+ * Used by SettingsDialogCostTrackingTab, DashboardPage, and SettingsDialogGeneralTab.
+ */
+
+import React from "react";
+import { tokens } from "@fluentui/react-components";
+import webAPI from "./webApiClient";
+
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+
+export function getCostApi() {
+  return isWeb ? webAPI : (typeof window !== "undefined" && window.electronAPI) || {};
+}
+
+export const COST_FRACTION_STYLE_OPTIONS = [
+  { value: "subscript", label: "Subscript" },
+  { value: "muted", label: "Muted gray" },
+  { value: "superscript", label: "Superscript" },
+  { value: "small", label: "Small font" },
+];
+
+export const FILTERS = [
+  { id: "all", label: "All" },
+  { id: "last_hour", label: "Last hour" },
+  { id: "today", label: "Today" },
+  { id: "yesterday", label: "Yesterday" },
+  { id: "this_week", label: "This week" },
+  { id: "this_month", label: "This month" },
+  { id: "last_month", label: "Last month" },
+  { id: "this_year", label: "This year" },
+  { id: "last_year", label: "Last year" },
+];
+
+export const DASH = "—";
+
+export function getFilterRange(filterId) {
+  if (!filterId || filterId === "all") return { from: null, to: null };
+  const now = new Date();
+  const to = now.toISOString();
+  let from;
+  switch (filterId) {
+    case "last_hour":
+      from = new Date(now.getTime() - 60 * 60 * 1000).toISOString();
+      break;
+    case "today":
+      from = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+      ).toISOString();
+      break;
+    case "yesterday": {
+      const d = new Date(now);
+      d.setDate(d.getDate() - 1);
+      from = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString();
+      const end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+      return { from, to: end.toISOString() };
+    }
+    case "this_week":
+      from = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+      break;
+    case "this_month":
+      from = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+      break;
+    case "last_month": {
+      const d = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      from = d.toISOString();
+      const end = new Date(now.getFullYear(), now.getMonth(), 1);
+      return { from, to: end.toISOString() };
+    }
+    case "this_year":
+      from = new Date(now.getFullYear(), 0, 1).toISOString();
+      break;
+    case "last_year": {
+      const y = now.getFullYear() - 1;
+      from = new Date(y, 0, 1).toISOString();
+      const end = new Date(y + 1, 0, 1);
+      return { from, to: end.toISOString() };
+    }
+    default:
+      return { from: null, to: null };
+  }
+  return { from, to };
+}
+
+/** Returns React node for dollar amount with fraction styling. */
+export function formatDollarAmount(n, costFractionStyle = "muted") {
+  const s = Number(n).toFixed(6);
+  const dot = s.indexOf(".");
+  if (dot === -1) return "$" + s;
+  const main = s.slice(0, dot + 3);
+  const frac = s.slice(dot + 3);
+  const mutedColor = tokens.colorNeutralForeground3 || "#888";
+  const fractionNode =
+    costFractionStyle === "superscript" ? (
+      <sup>{frac}</sup>
+    ) : costFractionStyle === "muted" ? (
+      <span style={{ color: mutedColor }}>{frac}</span>
+    ) : costFractionStyle === "small" ? (
+      <span style={{ fontSize: "0.7em" }}>{frac}</span>
+    ) : (
+      <sub>{frac}</sub>
+    );
+  return (
+    <>
+      {"$" + main}
+      {fractionNode}
+    </>
+  );
+}
+
+export function formatCost(cost, costFractionStyle = "muted") {
+  const n = Number(cost);
+  return cost == null || Number.isNaN(n) || n === 0
+    ? DASH
+    : formatDollarAmount(n, costFractionStyle);
+}
+
+export function formatAvgCost(cost, calls, costFractionStyle = "muted") {
+  const n = Number(cost);
+  if (
+    calls == null ||
+    calls === 0 ||
+    cost == null ||
+    Number.isNaN(n) ||
+    n === 0
+  )
+    return DASH;
+  return formatDollarAmount(cost / calls, costFractionStyle);
+}
+
+export function formatAvgTps(avgTps) {
+  const n = Number(avgTps);
+  return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(1);
+}
+
+export function formatCount(count) {
+  return count == null || Number(count) === 0 ? DASH : Number(count);
+}

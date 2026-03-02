@@ -1,5 +1,6 @@
 import { getBasePath } from "../utils/urlUtils";
 import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
+import { getRollingKey } from "../utils/transrewrtProxyKey";
 import prompts from "../../../config/prompts.json";
 
 function resolvePrompt(value) {
@@ -26,6 +27,31 @@ class APIService {
     } else {
       this.baseUrl = url || "https://openrouter.ai/api/v1";
     }
+  }
+
+  /**
+   * Build the request URL: when Transrewrt proxy is enabled, use proxy base + rolling key + path;
+   * otherwise use the configured base URL (direct OpenRouter).
+   * @param {string} path - Path segment (e.g. "chat/completions", "models", "generation?id=...")
+   * @returns {Promise<string>} Full URL for the request
+   */
+  async getRequestUrl(path) {
+    if (this._isWebMode) {
+      const p = path.startsWith("/") ? path.slice(1) : path;
+      return `${this.baseUrl}/${p}`;
+    }
+    const config = require("../utils/configManager").default.getAll();
+    const useProxy = !!config.use_transrewrt_proxy;
+    const keySeed = (config.key_seed || "").trim();
+    if (useProxy && keySeed && config.api_url) {
+      const proxyBase = String(config.api_url).replace(/\/+$/, "");
+      const rollingKey = await getRollingKey(keySeed);
+      const pathPart = path.startsWith("/") ? path.slice(1) : path;
+      return `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
+    }
+    const base = (this.baseUrl || "").replace(/\/+$/, "");
+    const pathPart = path.startsWith("/") ? path : `/${path}`;
+    return `${base}${pathPart}`;
   }
 
   getHeaders() {
@@ -91,7 +117,7 @@ class APIService {
     if (!generationId) return null;
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
-        const url = `${this.baseUrl}/generation?id=${encodeURIComponent(generationId)}`;
+        const url = await this.getRequestUrl(`generation?id=${encodeURIComponent(generationId)}`);
         const opts = { headers: this.getHeaders() };
         if (this._isWebMode) opts.credentials = "include";
         const response = await fetch(url, opts);
@@ -108,7 +134,7 @@ class APIService {
         const data = json.data;
         if (!data) return null;
         return {
-          cost: data.total_cost ?? data.usage ?? 0,
+          cost: data.total_cost ?? 0,
           prompt_tokens: data.tokens_prompt ?? 0,
           completion_tokens: data.tokens_completion ?? 0,
           total_tokens: (data.tokens_prompt ?? 0) + (data.tokens_completion ?? 0),
@@ -159,7 +185,8 @@ class APIService {
     if (signal) fetchOptions.signal = signal;
     if (this._isWebMode) fetchOptions.credentials = "include";
 
-    const response = await fetch(`${this.baseUrl}/chat/completions`, fetchOptions);
+    const url = await this.getRequestUrl("chat/completions");
+    const response = await fetch(url, fetchOptions);
     if (response.status === 401) {
       if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
       throw Object.assign(new Error("Unauthorized"), { status: 401 });
@@ -178,6 +205,7 @@ class APIService {
     let aborted = false;
     let response_bytes = 0;
     let lineBuffer = "";
+    let streamError = null;
 
     const processOneLine = (line) => {
       const trimmed = line.trim();
@@ -197,7 +225,8 @@ class APIService {
           if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
             Object.assign(err, { status: 404 });
           }
-          throw err;
+          streamError = err;
+          return;
         }
       } catch (parseErr) {
         if (parseErr.message?.includes("Unexpected end of JSON input")) return;
@@ -262,7 +291,8 @@ class APIService {
     }
 
     const idForUsage = generationId || rawChunks.find((c) => c?.id)?.id;
-    if (aborted && !usage && idForUsage) usage = await this.getGenerationUsage(idForUsage);
+    if (!usage && idForUsage) usage = await this.getGenerationUsage(idForUsage);
+    if (streamError && !content && streamError.status === 404) throw streamError;
     const duration_ms = Date.now() - startTime;
     const result = {
       content,
@@ -359,7 +389,8 @@ class APIService {
     try {
       const opts = { headers: this.getHeaders() };
       if (this._isWebMode) opts.credentials = "include";
-      const response = await fetch(`${this.baseUrl}/models`, opts);
+      const url = await this.getRequestUrl("models");
+      const response = await fetch(url, opts);
 
       if (response.status === 401) {
         if (this._isWebMode) sessionExpiredHandler.onSessionExpired();

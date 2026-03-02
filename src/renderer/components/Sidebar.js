@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
-import { Languages, PenTool, Settings } from "lucide-react";
+import { Languages, PenTool, BarChart3, Settings } from "lucide-react";
 import Logo from "../../../images/transrewrt_logo.png";
 
 const useStyles = makeStyles({
@@ -21,7 +21,6 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     gap: "12px",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
     WebkitAppRegion: "no-drag",
   },
   logo: {
@@ -108,7 +107,6 @@ const useStyles = makeStyles({
   },
   footerSection: {
     padding: "12px 8px",
-    borderTop: "1px solid rgba(255, 255, 255, 0.06)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -122,10 +120,12 @@ const Sidebar = ({
   currentMode,
   currentView,
   onModeChange,
+  onDashboardClick,
   onSettingsClick,
 }) => {
   const styles = useStyles();
   const isSettingsActive = currentView === "settings";
+  const isDashboardActive = currentView === "dashboard";
   const isTranslateActive =
     currentMode === "translate" && currentView === "workspace";
   const isRewriteActive =
@@ -185,6 +185,24 @@ const Sidebar = ({
       </nav>
 
       <div className={styles.footerSection}>
+        <button
+          type="button"
+          className={mergeClasses(
+            styles.navItem,
+            isDashboardActive && styles.navItemActive,
+          )}
+          onClick={() => onDashboardClick?.()}
+          aria-label="Dashboard"
+          aria-current={isDashboardActive ? "page" : undefined}
+        >
+          <span className={styles.navItemIcon}>
+            <BarChart3
+              size={iconSize}
+              strokeWidth={isDashboardActive ? 2.2 : 1.6}
+            />
+          </span>
+          <span className={styles.navItemLabel}>Dashboard</span>
+        </button>
         <button
           type="button"
           className={mergeClasses(

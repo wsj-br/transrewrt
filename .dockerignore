@@ -48,6 +48,8 @@ env
 scripts/
 !scripts/electron-rebuild.js
 !scripts/node-rebuild.js
+!scripts/reset-web-password.js
+!scripts/reset-web-password.sh
 dev/
 README.md
 DEPLOY.md

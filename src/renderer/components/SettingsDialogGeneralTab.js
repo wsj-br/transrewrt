@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
+import { COST_FRACTION_STYLE_OPTIONS } from '../utils/costUtils';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -285,6 +286,34 @@ const SettingsDialogGeneralTab = ({
           Appearance
         </Text>
         <div style={{ paddingLeft: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
+          <Label htmlFor="cost-fraction-style" style={{ margin: 0, whiteSpace: 'nowrap' }}>
+            Cost fraction digits:
+          </Label>
+          <Dropdown
+            id="cost-fraction-style"
+            appearance="underline"
+            value={
+              COST_FRACTION_STYLE_OPTIONS.find(
+                (o) => o.value === (localSettings.cost_fraction_style || 'muted'),
+              )?.label ?? 'Muted gray'
+            }
+            selectedOptions={[localSettings.cost_fraction_style || 'muted']}
+            onOptionSelect={(e, data) => {
+              const v = data.optionValue;
+              if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
+                onSettingChange('cost_fraction_style', v);
+              }
+            }}
+            style={{ minWidth: '120px' }}
+          >
+            {COST_FRACTION_STYLE_OPTIONS.map((o) => (
+              <Option key={o.value} value={o.value}>
+                {o.label}
+              </Option>
+            ))}
+          </Dropdown>
+        </div>
         {isWeb && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
             <Checkbox

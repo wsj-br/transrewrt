@@ -117,6 +117,9 @@ In web mode, all `/api` endpoints (except `POST /api/auth/login` and `GET /api/s
 - **Session sliding window**: a successful translate or rewrite call extends the session expiry
 - **Session timeout**: configurable via `web_session_timeout` in config (seconds; default 604800 = 7 days)
 - **Password change**: available through the Settings → Auth tab in the web UI
+- **Reset password from CLI (Docker)**: run inside the container:  
+  `docker exec <container> reset-web-password.sh "<new-password>"`  
+  Example: `docker exec transrewrt-web-1 reset-web-password.sh "mynewpass"`
 
 Legacy SHA-256 hashes (from older versions) are automatically migrated to Argon2id on the next successful login.
 

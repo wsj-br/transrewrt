@@ -1,3 +1,5 @@
+import configManager from "../utils/configManager";
+
 /**
  * Cost tracking: persist total cost, write last result (Electron), and log API calls.
  */
@@ -14,10 +16,11 @@ export function useCostTracking() {
     // API call logging is now done on the server side
   };
 
-  const applyCostToResult = (settings, setSetting, result) => {
+  const applyCostToResult = (setSetting, result) => {
     if (result.usage) {
-      const calculatedCost = result.usage.cost || 0;
-      const newTotalCost = (settings.total_cost || 0) + calculatedCost;
+      const calculatedCost = Number(result.usage.cost) || 0;
+      const currentTotal = configManager.get("total_cost") ?? 0;
+      const newTotalCost = currentTotal + calculatedCost;
       setSetting("total_cost", newTotalCost);
       result.calculated_cost = calculatedCost;
       result.total_cost = newTotalCost;

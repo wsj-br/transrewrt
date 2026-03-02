@@ -116,6 +116,10 @@ function isEncryptedApiKey(value) {
   return typeof value === "string" && value.startsWith(ENC_PREFIX);
 }
 
+function isEncryptedKeySeed(value) {
+  return typeof value === "string" && value.startsWith(ENC_PREFIX);
+}
+
 function decryptApiKey(encryptedValue) {
   try {
     const b64 = encryptedValue.slice(ENC_PREFIX.length);
@@ -148,6 +152,42 @@ function encryptApiKey(plainValue) {
     return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
   } catch (err) {
     console.error("Failed to encrypt api_key:", err.message);
+    return plainValue;
+  }
+}
+
+function decryptKeySeed(encryptedValue) {
+  try {
+    const b64 = encryptedValue.slice(ENC_PREFIX.length);
+    const buf = Buffer.from(b64, "base64");
+    if (buf.length < IV_BYTES) return "";
+    const iv = buf.subarray(0, IV_BYTES);
+    const ciphertext = buf.subarray(IV_BYTES);
+    const key = getOrCreateEncryptionKey();
+    const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
+    return Buffer.concat([
+      decipher.update(ciphertext),
+      decipher.final(),
+    ]).toString("utf8");
+  } catch (err) {
+    console.error("Failed to decrypt key_seed:", err.message);
+    return "";
+  }
+}
+
+function encryptKeySeed(plainValue) {
+  if (typeof plainValue !== "string" || !plainValue.trim()) return "";
+  try {
+    const key = getOrCreateEncryptionKey();
+    const iv = crypto.randomBytes(IV_BYTES);
+    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+    const ciphertext = Buffer.concat([
+      cipher.update(plainValue, "utf8"),
+      cipher.final(),
+    ]);
+    return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
+  } catch (err) {
+    console.error("Failed to encrypt key_seed:", err.message);
     return plainValue;
   }
 }
@@ -204,6 +244,9 @@ function loadConfigFromFile() {
     if (merged.api_key != null && isEncryptedApiKey(merged.api_key)) {
       merged.api_key = decryptApiKey(merged.api_key);
     }
+    if (merged.key_seed != null && isEncryptedKeySeed(merged.key_seed)) {
+      merged.key_seed = decryptKeySeed(merged.key_seed);
+    }
     stateFromConfigForMigration = {};
     STATE_KEYS.forEach((k) => {
       if (merged[k] !== undefined) stateFromConfigForMigration[k] = merged[k];
@@ -257,6 +300,9 @@ function saveConfigToFile(config) {
     const toWrite = { ...config };
     if (typeof toWrite.api_key === "string" && toWrite.api_key.trim() !== "") {
       toWrite.api_key = encryptApiKey(toWrite.api_key);
+    }
+    if (typeof toWrite.key_seed === "string" && toWrite.key_seed.trim() !== "") {
+      toWrite.key_seed = encryptKeySeed(toWrite.key_seed);
     }
     if (canonicalConfigString(current) === canonicalConfigString(toWrite))
       return true;

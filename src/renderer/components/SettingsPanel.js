@@ -19,6 +19,8 @@ import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/configManager";
+import apiService from "../services/apiService";
+import { getRollingKey } from "../utils/transrewrtProxyKey";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -115,7 +117,7 @@ const SettingsPanel = () => {
     const newSettings = { ...localSettings, [key]: value };
     setLocalSettings(newSettings);
     setSetting(key, value);
-    if (key === "api_url" || key === "api_key") {
+    if (key === "api_url" || key === "api_key" || key === "use_transrewrt_proxy" || key === "key_seed") {
       setApiTestStatus(null);
       setApiTestMessage("");
     }
@@ -135,13 +137,25 @@ const SettingsPanel = () => {
       setApiTestMessage("API Key is required");
       return;
     }
+    if (localSettings.use_transrewrt_proxy && !(localSettings.key_seed || "").trim()) {
+      setApiTestStatus("error");
+      setApiTestMessage("Key Seed is required when using Transrewrt Proxy");
+      return;
+    }
 
     setApiTestStatus("testing");
     setApiTestMessage("Testing connection...");
 
     try {
-      const normalizedUrl = apiUrl.trim().replace(/\/$/, "");
-      const testUrl = `${normalizedUrl}/key`;
+      let testUrl;
+      if (localSettings.use_transrewrt_proxy && (localSettings.key_seed || "").trim()) {
+        const proxyBase = String(apiUrl).trim().replace(/\/+$/, "");
+        const rollingKey = await getRollingKey((localSettings.key_seed || "").trim());
+        testUrl = `${proxyBase}/${rollingKey}/api/v1/key`;
+      } else {
+        const base = String(apiUrl).trim().replace(/\/+$/, "");
+        testUrl = `${base}/key`;
+      }
       const response = await fetch(testUrl, {
         method: "GET",
         headers: {
