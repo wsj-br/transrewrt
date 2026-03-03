@@ -92,11 +92,13 @@ module.exports = (env, argv) => {
     usedExports: true,
     splitChunks: {
       chunks: 'all',
-      maxSize: 200000,
+      maxInitialRequests: 5,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
           chunks: 'all',
+          priority: -10,
         },
       },
     },

@@ -51,6 +51,8 @@ const DEFAULT_STATE = {
   web_view: "workspace",
 };
 
+const SESSION_STALE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
+
 function isStateKey(key) {
   return STATE_KEYS.includes(key);
 }
@@ -126,6 +128,16 @@ try {
       tps REAL
     )
   `);
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS sessions (
+      id TEXT PRIMARY KEY,
+      created_at INTEGER NOT NULL,
+      last_seen_at INTEGER NOT NULL,
+      expires_at INTEGER NOT NULL
+    )
+  `);
+  db.exec("CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions (expires_at)");
+  db.exec("CREATE INDEX IF NOT EXISTS idx_sessions_last_seen_at ON sessions (last_seen_at)");
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN tps REAL");
   } catch (_) {
@@ -136,6 +148,53 @@ try {
     stack: err.stack,
   });
   db = null;
+}
+
+function cleanupStalledSessions(now = Date.now()) {
+  if (!db) return;
+  try {
+    const result = db
+      .prepare("DELETE FROM sessions WHERE expires_at <= ? OR last_seen_at <= ?")
+      .run(now, now - SESSION_STALE_GRACE_MS);
+    if (result.changes > 0) {
+      log.info(`[AUTH] Cleaned up ${result.changes} expired/stalled sessions`);
+    }
+  } catch (err) {
+    log.error("[AUTH] Failed to clean up sessions: " + err.message, { stack: err.stack });
+  }
+}
+
+// Migrate legacy single-session state to DB once, then clear deprecated fields.
+function migrateLegacyStateSession() {
+  if (!db) return;
+  try {
+    const state = loadState();
+    const legacySessionId =
+      typeof state.web_session === "string" ? state.web_session.trim() : "";
+    const legacyExpiresAt = Number(state.web_session_expires_at);
+    const hasValidExpiry = Number.isFinite(legacyExpiresAt) && legacyExpiresAt > Date.now();
+    if (legacySessionId && hasValidExpiry) {
+      db.prepare(
+        `
+          INSERT OR IGNORE INTO sessions (id, created_at, last_seen_at, expires_at)
+          VALUES (?, ?, ?, ?)
+        `,
+      ).run(legacySessionId, Date.now(), Date.now(), legacyExpiresAt);
+    }
+    if (legacySessionId || state.web_session_expires_at != null) {
+      saveState({ ...state, web_session: "", web_session_expires_at: null });
+    }
+    cleanupStalledSessions();
+  } catch (err) {
+    log.error("[AUTH] Failed to migrate legacy session state: " + err.message, {
+      stack: err.stack,
+    });
+  }
+}
+
+if (db) {
+  migrateLegacyStateSession();
+  setInterval(() => cleanupStalledSessions(), 5 * 60 * 1000);
 }
 
 // Middleware
@@ -204,14 +263,15 @@ function parseCookie(cookieHeader) {
 function setSessionRefreshCookie(req, res) {
   const cookies = parseCookie(req.headers.cookie);
   const sessionId = cookies.transrewrt_session;
-  if (!sessionId) return;
+  if (!sessionId || !db) return;
   const config = loadConfig();
   const maxAge = Math.max(60, Number(config.web_session_timeout) || 604800);
-  const expiresAt = Date.now() + maxAge * 1000;
-  const state = loadState();
-  if (state.web_session === sessionId) {
-    saveState({ ...state, web_session_expires_at: expiresAt });
-  }
+  const now = Date.now();
+  const expiresAt = now + maxAge * 1000;
+  const result = db
+    .prepare("UPDATE sessions SET expires_at = ?, last_seen_at = ? WHERE id = ?")
+    .run(expiresAt, now, sessionId);
+  if (result.changes === 0) return;
   res.setHeader(
     "Set-Cookie",
     `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
@@ -224,23 +284,30 @@ function requireWebSession(req, res, next) {
   if (req.path === "/auth/login" && req.method === "POST") return next();
   if (req.path === "/status" && req.method === "GET") return next();
   if (req.path === "/build-info" && req.method === "GET") return next();
+  if (!db) {
+    log.error("[AUTH] 503: session database unavailable");
+    return res.status(503).json({ error: "Database unavailable" });
+  }
   const cookies = parseCookie(req.headers.cookie);
   const sessionId = cookies.transrewrt_session;
-  const state = loadState();
 
   if (!sessionId) {
     log.info("[AUTH] 401: no session cookie");
     return res.status(401).json({ error: "Authentication required" });
   }
-  if (!state.web_session || sessionId !== state.web_session) {
-    log.info("[AUTH] 401: session cookie does not match server state (cookie present, server session missing or different)");
+
+  cleanupStalledSessions();
+  const now = Date.now();
+  const row = db
+    .prepare("SELECT id, expires_at FROM sessions WHERE id = ?")
+    .get(sessionId);
+  if (!row) {
+    log.info("[AUTH] 401: session cookie does not match any active DB session");
     return res.status(401).json({ error: "Authentication required" });
   }
-  // Server-side expiry: reject if past web_session_expires_at (e.g. state was not refreshed or server restarted with stale cookie)
-  const expiresAt = state.web_session_expires_at;
-  if (expiresAt != null && typeof expiresAt === "number" && Date.now() > expiresAt) {
-    log.info("[AUTH] 401: session expired (web_session_expires_at in the past); clearing server session");
-    saveState({ ...state, web_session: "", web_session_expires_at: null });
+  if (Number(row.expires_at) <= now) {
+    db.prepare("DELETE FROM sessions WHERE id = ?").run(sessionId);
+    log.info("[AUTH] 401: session expired; removed session from DB");
     res.setHeader(
       "Set-Cookie",
       "transrewrt_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0",
@@ -248,6 +315,10 @@ function requireWebSession(req, res, next) {
     return res.status(401).json({ error: "Authentication required" });
   }
 
+  req.authSession = {
+    id: row.id,
+    expiresAt: Number(row.expires_at),
+  };
   return next();
 }
 app.use("/api", requireWebSession);
@@ -440,7 +511,12 @@ app.get("/api/config", (req, res) => {
     res.setHeader("Pragma", "no-cache");
     const config = loadConfig();
     const state = loadState();
-    const payload = { ...config, ...state };
+    const payload = {
+      ...config,
+      ...state,
+      web_session: "",
+      web_session_expires_at: req.authSession?.expiresAt ?? null,
+    };
     if (ENV_KEY_SEED) payload.key_seed = ENV_KEY_SEED;
     res.json(payload);
   } catch (err) {
@@ -484,7 +560,6 @@ app.post("/api/auth/login", async (req, res) => {
   try {
     const { password } = req.body || {};
     const config = loadConfig();
-    const state = loadState();
     const storedHash = config.web_password_hash;
     const valid = storedHash
       ? await verifyPassword(password, storedHash)
@@ -494,12 +569,17 @@ app.post("/api/auth/login", async (req, res) => {
     }
     const sessionId = crypto.randomBytes(24).toString("hex");
     const maxAge = Math.max(3600, Number(config.web_session_timeout) || 604800);
-    const newState = {
-      ...state,
-      web_session: sessionId,
-      web_session_expires_at: Date.now() + maxAge * 1000,
-    };
-    saveState(newState);
+    const now = Date.now();
+    cleanupStalledSessions(now);
+    if (!db) {
+      return res.status(503).json({ error: "Database unavailable" });
+    }
+    db.prepare(
+      `
+        INSERT INTO sessions (id, created_at, last_seen_at, expires_at)
+        VALUES (?, ?, ?, ?)
+      `,
+    ).run(sessionId, now, now, now + maxAge * 1000);
     if (!storedHash) {
       const newConfig = {
         ...config,
@@ -551,8 +631,11 @@ app.post("/api/auth/change-password", async (req, res) => {
 
 app.post("/api/auth/logout", (req, res) => {
   try {
-    const state = loadState();
-    saveState({ ...state, web_session: "", web_session_expires_at: null });
+    const cookies = parseCookie(req.headers.cookie);
+    const sessionId = cookies.transrewrt_session;
+    if (db && sessionId) {
+      db.prepare("DELETE FROM sessions WHERE id = ?").run(sessionId);
+    }
     res
       .status(200)
       .setHeader(
