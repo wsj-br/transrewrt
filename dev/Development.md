@@ -205,6 +205,15 @@ pnpm run dev
 - `pnpm run electron` waits for the server, then launches Electron
 - React changes are compiled and reflected automatically
 
+### Upgrading development tools
+
+To upgrade Node.js (via nvm) to the latest LTS and to install or update global tools (pnpm, npm-check-updates, doctoc), run:
+
+- **Windows (PowerShell):** from the repo root, `.\scripts\upgrade-tools.ps1`
+- **Linux/macOS (Bash):** from the repo root, `./scripts/upgrade-tools.sh`
+
+Requires [nvm-windows](https://github.com/coreybutler/nvm-windows) (Windows) or [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS). If nvm is not installed, the script skips the Node upgrade step and only runs the global npm installs.
+
 ### Run Electron Only (Production Build)
 
 After building, run Electron without the dev server:
@@ -471,12 +480,12 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 ## 7. Key Configuration Files
 
-| File | Description |
-|------|-------------|
-| `package.json` | Scripts, dependencies, electron-builder config |
-| `webpack.config.js` | React build, output to `dist/` |
-| `src/main/main.js` | Electron main process entry |
-| `src/main/preload.js` | Preload script exposing APIs to renderer |
+| File                  | Description                                    |
+|-----------------------|------------------------------------------------|
+| `package.json`        | Scripts, dependencies, electron-builder config |
+| `webpack.config.js`   | React build, output to `dist/`                 |
+| `src/main/main.js`    | Electron main process entry                    |
+| `src/main/preload.js` | Preload script exposing APIs to renderer       |
 
 ---
 
@@ -484,49 +493,50 @@ ERROR: Cannot create symbolic link : A required privilege is not held by the cli
 
 ### Electron (Desktop)
 
-| Phase | Command | Notes |
-|-------|---------|-------|
-| **Develop** | `pnpm run dev` | Hot reload, Webpack on :3030 |
-| **Test** | `pnpm run build-renderer` then `pnpm start` | Run built app |
-| **Test (Linux)** | `pnpm run build-renderer` then `pnpm run start-x11` | Use X11 if Wayland fails |
-| **Build** | `pnpm run package` | Creates installer in `release/` |
+| Phase            | Command                                             | Notes                           |
+|------------------|-----------------------------------------------------|---------------------------------|
+| **Develop**      | `pnpm run dev`                                      | Hot reload, Webpack on :3030    |
+| **Test**         | `pnpm run build-renderer` then `pnpm start`         | Run built app                   |
+| **Test (Linux)** | `pnpm run build-renderer` then `pnpm run start-x11` | Use X11 if Wayland fails        |
+| **Build**        | `pnpm run package`                                  | Creates installer in `release/` |
 
 ### Web (Browser, local server)
 
-| Phase | Command | Notes |
-|-------|---------|-------|
-| **Develop** | `pnpm run dev:web` | Webpack on :5000, API on :3030 (proxied via /api) |
-| **Build** | `pnpm run build` or `pnpm run build-renderer` | Output to `dist/` |
-| **Test** | `pnpm run serve` | Build then serve at http://localhost:5000 |
-| **Run** | `pnpm run start:server` | Serve only (use when `dist/` already built) |
+| Phase       | Command                                       | Notes                                             |
+|-------------|-----------------------------------------------|---------------------------------------------------|
+| **Develop** | `pnpm run dev:web`                            | Webpack on :5000, API on :3030 (proxied via /api) |
+| **Build**   | `pnpm run build` or `pnpm run build-renderer` | Output to `dist/`                                 |
+| **Test**    | `pnpm run serve`                              | Build then serve at http://localhost:5000         |
+| **Run**     | `pnpm run start:server`                       | Serve only (use when `dist/` already built)       |
 
 ### Docker (Web in container)
 
-| Phase | Command | Notes |
-|-------|---------|-------|
-| **Build image** | `docker build -t transrewrt-web .` | Multi-stage build |
-| **Run** | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Config persists in volume |
-| **Run (compose)** | `docker compose up --build -d` or `pnpm run docker:up` | Uses `docker-compose.yml` |
-| **Stop (compose)** | `docker compose down` or `pnpm run docker:down` | Stop services |
-| **Test** | Open http://localhost:5000 | Config at `/api/config` |
+| Phase              | Command                                                                            | Notes                     |
+|--------------------|------------------------------------------------------------------------------------|---------------------------|
+| **Build image**    | `docker build -t transrewrt-web .`                                                 | Multi-stage build         |
+| **Run**            | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Config persists in volume |
+| **Run (compose)**  | `docker compose up --build -d` or `pnpm run docker:up`                             | Uses `docker-compose.yml` |
+| **Stop (compose)** | `docker compose down` or `pnpm run docker:down`                                    | Stop services             |
+| **Test**           | Open http://localhost:5000                                                         | Config at `/api/config`   |
 
 ---
 
 ## 9. Useful Commands Summary
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm install` | Install dependencies |
-| `pnpm run dev` | Development with hot reload (Electron) |
-| `pnpm run dev:web` | Development with hot reload (Web; API proxied to server) |
-| `pnpm run build` / `pnpm run build-renderer` | Production build of React app |
-| `pnpm start` | Run Electron (after build) |
-| `pnpm run start-x11` | Run Electron with X11 (Linux) |
-| `pnpm run serve` | Build then run web server (port 5000) |
-| `pnpm run start:server` | Run web server only (e.g. after build or in Docker) |
-| `pnpm run package` | Build and create Electron installer |
-| `docker build -t transrewrt-web .` | Build Docker image |
-| `pnpm run docker:up` | Build and run web app in Docker (compose) |
-| `pnpm run docker:down` | Stop Docker compose services |
-| `pnpm run docker:clean` | Remove Docker image and volumes |
-| `pnpm run docker:deploy` | Deploy to production (runs deploy script) |
+| Command                                                                       | Purpose                                                                          |
+|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `pnpm install`                                                                | Install dependencies                                                             |
+| `pnpm run dev`                                                                | Development with hot reload (Electron)                                           |
+| `pnpm run dev:web`                                                            | Development with hot reload (Web; API proxied to server)                         |
+| `pnpm run build` / `pnpm run build-renderer`                                  | Production build of React app                                                    |
+| `pnpm start`                                                                  | Run Electron (after build)                                                       |
+| `pnpm run start-x11`                                                          | Run Electron with X11 (Linux)                                                    |
+| `pnpm run serve`                                                              | Build then run web server (port 5000)                                            |
+| `pnpm run start:server`                                                       | Run web server only (e.g. after build or in Docker)                              |
+| `pnpm run package`                                                            | Build and create Electron installer                                              |
+| `docker build -t transrewrt-web .`                                            | Build Docker image                                                               |
+| `pnpm run docker:up`                                                          | Build and run web app in Docker (compose)                                        |
+| `pnpm run docker:down`                                                        | Stop Docker compose services                                                     |
+| `pnpm run docker:clean`                                                       | Remove Docker image and volumes                                                  |
+| `pnpm run docker:deploy`                                                      | Deploy to production (runs deploy script)                                        |
+| `.\scripts\upgrade-tools.ps1` (Windows) / `./scripts/upgrade-tools.sh` (Bash) | Upgrade Node.js (LTS via nvm) and global tools (pnpm, npm-check-updates, doctoc) |
