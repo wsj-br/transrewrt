@@ -224,7 +224,7 @@ The web app protects all endpoints with session-based authentication.
 - Sessions use **sliding-window expiry** — every successful API call extends the session.
 - Change the password via **Settings → Auth** in the web UI.
 - **Reset from command line:**  
-  - **Docker:** `docker exec <container> reset-web-password.sh "<new-password>"`  
+  - **Docker:** `docker exec <container> reset-web-password "<new-password>"`  
   - **Local (same config path as server):** `pnpm run reset-web-password -- "<new-password>"` or `node scripts/reset-web-password.js "<new-password>"` (set `CONFIG_PATH` if the config file is elsewhere).
 
 > **Change the default password immediately** when deploying to a network-accessible host.

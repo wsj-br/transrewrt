@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Reset the web UI password from the command line.
- * Usage: node scripts/reset-web-password.js <new-password>
+ * Usage: reset-web-password <new-password>
  *
  * Uses the same config file as the server (CONFIG_PATH env or data/config.json).
  * The password is hashed with Argon2id before being stored.
@@ -28,7 +28,7 @@ async function hashPassword(password) {
 async function main() {
   const newPassword = process.argv[2];
   if (newPassword === undefined || newPassword === "") {
-    console.error("Usage: node scripts/reset-web-password.js <new-password>");
+    console.error("Usage: reset-web-password <new-password>");
     console.error("  new-password is mandatory (plain text).");
     process.exit(1);
   }

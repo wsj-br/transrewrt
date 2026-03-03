@@ -47,9 +47,10 @@ COPY server/*.js ./server/
 # Copy config for initialization
 COPY config/ ./config/
 
-# Password reset script (run via: docker exec <container> reset-web-password.sh "<new-password>")
-COPY scripts/reset-web-password.js scripts/reset-web-password.sh ./scripts/
-RUN chmod +x /app/scripts/reset-web-password.sh
+# Password reset script (run via: docker exec <container> reset-web-password "<new-password>")
+COPY scripts/reset-web-password.js ./scripts/
+COPY scripts/reset-web-password.sh ./reset-web-password
+RUN chmod +x /app/reset-web-password
 
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
@@ -61,7 +62,7 @@ ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
 ENV PORT=5000
 ENV LOG_TO_CONSOLE=1
-ENV PATH="/app/scripts:${PATH}"
+ENV PATH="/app:/app/scripts:${PATH}"
 
 EXPOSE 5000
 
