@@ -49,7 +49,7 @@
 - **Translate** — translate text from one language to another, with automatic source language detection.
 - **Rewrite** — transform the style of any text (fix grammar, improve clarity, make it formal/informal, shorten, expand, or make it more technical).
 
-It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI models (including free-tier models). The same React codebase runs both as a native Electron desktop application and as a self-hosted web app inside a Docker container. The sidebar gives access to **Translate**, **Rewrite**, **Cost dashboard** (analytics and call log), and **Settings**.
+It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI models (including free-tier models). The same React codebase runs both as a native Electron desktop application and as a self-hosted web app inside a Docker container. The sidebar provides access to **Translate**, **Rewrite**, **Cost dashboard** (analytics and request log), and **Settings**.
 
 ---
 
@@ -72,13 +72,13 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 | Feature                | Description                                                                                                                                                               |
 |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Dual deployment**    | Same codebase runs as Electron desktop app or web app                                                                                                                     |
-| **Cost tracking**      | SQLite log of every API call with cost summaries by model, function, or day                                                                                               |
-| **Cost dashboard**     | Analytics view with Summary (KPIs, charts), By Model, By Day, and All Calls; time-range filters (e.g. today, this week, this month); optional cost-fraction display style |
-| **Transrewrt proxy**   | Optional external proxy: use a rolling key (HMAC-SHA256 TOTP, 30s window) instead of sending the API key; set API URL to proxy base and a shared key seed                 |
-| **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behavior, cost fraction style                                                                    |
+| **Cost tracking**      | SQLite log of every API call with cost summaries by model, operation (translate/rewrite), or day                                                                         |
+| **Cost dashboard**     | Analytics view with Summary (KPIs, charts), By Model, By Day, and All Calls; time-range filters (e.g. today, this week, this month); configurable display style for fractional costs |
+| **Transrewrt proxy**   | Optional external proxy: use a time-based rolling key (HMAC-SHA256 TOTP, 30s window) instead of sending the API key; set the API URL to the proxy base URL and a shared key seed |
+| **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behaviour, cost fraction style                                                                    |
 | **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc.                                                                                                          |
 | **Secure web mode**    | API key stored only on the server — never sent to the browser                                                                                                             |
-| **ARM64 support**      | Docker image builds for Raspberry Pi and other ARM64 targets                                                                                                              |
+| **ARM64 support**      | Docker image builds for Raspberry Pi and other ARM64 platforms                                                                                                            |
 
 ---
 
@@ -88,7 +88,7 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 | Tool                    | Notes                                                                                                                                                                                             |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Node.js 24 (LTS)**    | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); use `nvm install 24` and `nvm use 24` (or `nvm use` in project root) |
+| **Node.js 24 (LTS)**    | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); run `nvm install 24` then `nvm use 24` (or `nvm use` in project root if `.nvmrc` is present) |
 | **pnpm**                | `npm install -g pnpm`                                                                                                                                                                             |
 | **Git**                 | Any recent version                                                                                                                                                                                |
 | **Docker** *(optional)* | Required only for the web/container deployment target                                                                                                                                             |
@@ -119,7 +119,7 @@ pnpm install
 pnpm run dev
 ```
 
-**Production build then run:**
+**Production build, then run:**
 
 ```bash
 pnpm run build-renderer
@@ -155,7 +155,7 @@ docker compose up --build -d
 pnpm run docker:up
 ```
 
-**Manual docker run:**
+**Manual Docker run:**
 
 ```bash
 docker build -t transrewrt-web .
@@ -168,18 +168,18 @@ docker run -d -p 5000:5000 \
 
 Then open <http://localhost:5000>.
 
-> **Data persistence:** mount a volume at `/app/data` so `config.json` and `state.json` survive container restarts.
+> **Data persistence:** Mount a volume at `/app/data` so that `config.json` and `state.json` persist across container restarts.
 
 ---
 
 ## Configuration
 
-On first run the application copies the default config from `config/config_default.json` to a writable location and then reads/writes settings there:
+On first run, the application copies the default config from `config/config_default.json` to a writable location and then reads and writes settings there:
 
 | Deployment   | Config location                                                     |
 |--------------|---------------------------------------------------------------------|
 | Electron     | `%APPDATA%\transrewrt\` (Windows) · `~/.config/transrewrt/` (Linux) |
-| Web / Docker | `/app/data/config.json` (inside container, persist with a volume)   |
+| Web / Docker | `/app/data/config.json` (inside container; use a volume to persist) |
 
 Key settings (editable via the **Settings** dialog or directly in the JSON):
 
@@ -192,14 +192,14 @@ Key settings (editable via the **Settings** dialog or directly in the JSON):
 | `available_models`        | 3 default models               | List of models shown in the selector                                               |
 | `available_languages`     | 3 default languages            | List of languages shown in the selector                                            |
 | `real_time_translation`   | `false`                        | Translate as you type                                                              |
-| `real_time_delay`         | `1000`                         | Debounce delay in ms for real-time mode                                            |
+| `real_time_delay`         | `1000`                         | Debounce interval (ms) for real-time translation                                    |
 | `auto_copy`               | `false`                        | Copy output to clipboard automatically                                             |
 | `auto_translate_on_paste` | `true`                         | Translate when text is pasted                                                      |
 | `enter_behavior`          | `Shift-Execute`                | Whether Enter runs the action or adds a new line                                   |
 | `theme`                   | `System`                       | `Light`, `Dark`, or `System`                                                       |
 | `font_family`             | `Verdana`                      | Text panel font                                                                    |
 | `font_size`               | `15`                           | Text panel font size (px)                                                          |
-| `cost_fraction_style`     | `muted`                        | How cost decimals are shown: `subscript`, `muted`, `superscript`, or `small`       |
+| `cost_fraction_style`     | `muted`                        | How fractional cost values are displayed: `subscript`, `muted`, `superscript`, or `small` |
 | `web_margin`              | `true`                         | (Web only) Show a margin around the app                                            |
 | `web_session_timeout`     | `604800`                       | Session duration in seconds (default: 7 days)                                      |
 
@@ -211,7 +211,7 @@ These apply only to the web/Docker deployment:
 |---------------|--------------------------------|-------------------------------------------------------------------------------------------|
 | `PORT`        | `5000`                         | Server listening port                                                                     |
 | `CONFIG_PATH` | `/app/data/config.json`        | Path to the config file                                                                   |
-| `API_KEY`     | *(empty)*                      | Override: set the OpenRouter API key from the host instead of storing it in `config.json` |
+| `API_KEY`     | *(empty)*                      | Override: set the OpenRouter API key via the environment instead of storing it in `config.json` |
 | `API_URL`     | `https://openrouter.ai/api/v1` | Override: upstream AI API base URL                                                        |
 
 ### Web Authentication
@@ -220,20 +220,22 @@ The web app protects all endpoints with session-based authentication.
 
 - **Default password:** `transrewrt26`
 - Passwords are hashed with **Argon2id** and stored in `config.json`.
-- Sessions use a **sliding window** — every successful API call extends the expiry.
+- Sessions use **sliding-window expiry** — every successful API call extends the session.
 - Change the password via **Settings → Auth** in the web UI.
 - **Reset from command line:**  
   - **Docker:** `docker exec <container> reset-web-password.sh "<new-password>"`  
-  - **Local (same config as server):** `pnpm run reset-web-password -- "<new-password>"` or `node scripts/reset-web-password.js "<new-password>"` (set `CONFIG_PATH` if the config file is elsewhere).
+  - **Local (same config path as server):** `pnpm run reset-web-password -- "<new-password>"` or `node scripts/reset-web-password.js "<new-password>"` (set `CONFIG_PATH` if the config file is elsewhere).
 
 > **Change the default password immediately** when deploying to a network-accessible host.
 
 ### Transrewrt proxy (optional)
 
-You can route API traffic through an external **Transrewrt proxy** that accepts a time-based rolling key instead of your OpenRouter API key. Useful when the key is only allowed on the proxy host.
+You can route API traffic through an external **Transrewrt proxy** that uses a time-based rolling key to obscure and protect the proxy endpoint from unauthorized access and crawlers. Your OpenRouter API key is still required; the proxy forwards requests to OpenRouter on your behalf.
 
-1. Set **Settings → API** → **Use Transrewrt Proxy** and enter the **Key seed** (shared secret with the proxy).
-2. Set **API URL** to the proxy base (e.g. `http://localhost:6500`). The app derives a 30s-window key from the seed (HMAC-SHA256 TOTP) and calls the proxy with that key; the proxy validates it and forwards to OpenRouter with its own API key.
+1. In **Settings → API**, enable **Use Transrewrt Proxy** and enter the **Key seed** (shared secret with the proxy).
+2. Set **API URL** to the proxy base URL (e.g. `http://localhost:6500`).
+
+The app derives a 30-second-window key from the seed (HMAC-SHA256 TOTP) and sends it with each request; the proxy validates the key and forwards valid requests to OpenRouter using your API key.
 
 ---
 
@@ -255,7 +257,7 @@ Produces a native installer in `release/`:
 ### Docker Multi-Architecture (e.g. Raspberry Pi)
 
 ```bash
-# Install QEMU binfmt support
+# Register QEMU binfmt handlers for cross-architecture builds
 docker run --privileged --rm tonistiigi/binfmt --install all
 
 # Create a multi-arch builder
@@ -293,8 +295,8 @@ docker buildx inspect --bootstrap
 | Concern        | Electron                                 | Web / Docker                                                                 |
 |----------------|------------------------------------------|------------------------------------------------------------------------------|
 | Config storage | Local `config.json` via IPC              | REST API → server file                                                       |
-| API calls      | Direct to OpenRouter or external proxy   | Proxied through server, or optional external Transrewrt proxy (rolling key)  |
-| Authentication | None (local app)                         | Session cookie (Argon2id password)                                          |
+| API calls      | Direct to OpenRouter or external proxy   | Proxied via app server, or optional external Transrewrt proxy (rolling key)  |
+| Authentication | None (local app)                         | Session cookie; password hashed with Argon2id                               |
 | Cost logging   | Local SQLite DB (`costDb`)               | Server SQLite DB at `/app/data/transrewrt.db`                                 |
 | Dashboard      | Reads cost data via IPC                  | Reads cost data via REST API                                                |
 
@@ -323,7 +325,7 @@ See [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) for:
 | `pnpm run dev:web`        | Web dev with hot reload                 |
 | `pnpm run build-renderer` | Production build of React app → `dist/` |
 | `pnpm start`              | Run Electron (after build)              |
-| `pnpm run serve`          | Build then serve web app at :5000       |
+| `pnpm run serve`          | Build and serve web app at :5000        |
 | `pnpm run package`        | Build Electron installer → `release/`   |
 | `pnpm run docker:up`      | Build and run Docker Compose            |
 | `pnpm run docker:down`    | Stop Docker Compose                     |
