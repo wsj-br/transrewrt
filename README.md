@@ -213,6 +213,7 @@ These apply only to the web/Docker deployment:
 | `CONFIG_PATH` | `/app/data/config.json`        | Path to the config file                                                                   |
 | `API_KEY`     | *(empty)*                      | Override: set the OpenRouter API key via the environment instead of storing it in `config.json` |
 | `API_URL`     | `https://openrouter.ai/api/v1` | Override: upstream AI API base URL                                                        |
+| `KEY_SEED`    | *(empty)*                      | Override: set the Transrewrt proxy key seed via the environment (takes precedence over `config.json`) |
 
 ### Web Authentication
 

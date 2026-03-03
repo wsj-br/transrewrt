@@ -68,6 +68,7 @@ const ENV_API_KEY = process.env.API_KEY || "";
 const ENV_API_URL = (
   process.env.API_URL || "https://openrouter.ai/api/v1"
 ).replace(/\/$/, "");
+const ENV_KEY_SEED = (process.env.KEY_SEED || "").trim();
 
 // Ensure data directory exists before creating logger
 const dataDir = path.dirname(CONFIG_PATH);
@@ -439,7 +440,9 @@ app.get("/api/config", (req, res) => {
     res.setHeader("Pragma", "no-cache");
     const config = loadConfig();
     const state = loadState();
-    res.json({ ...config, ...state });
+    const payload = { ...config, ...state };
+    if (ENV_KEY_SEED) payload.key_seed = ENV_KEY_SEED;
+    res.json(payload);
   } catch (err) {
     log.error("[API] GET /api/config - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
@@ -1110,6 +1113,9 @@ app.listen(PORT, () => {
     );
   } else {
     log.info("[SERVER] No API Key in initial config");
+  }
+  if (ENV_KEY_SEED) {
+    log.info("[SERVER] KEY_SEED is being loaded from environment variable KEY_SEED");
   }
   log.info("[SERVER] Server ready to accept requests");
   log.info("=".repeat(60));
