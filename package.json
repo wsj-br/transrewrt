@@ -23,6 +23,7 @@
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:deploy": "./scripts/docker-deploy.sh",
     "docker:logs": "docker logs transrewrt-web-1",
+    "docker:shell": "docker exec -it transrewrt-web-1 /bin/sh",
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
     "reset-web-password": "node scripts/reset-web-password.js",
