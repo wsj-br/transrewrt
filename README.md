@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.1.43-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -69,16 +69,16 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 ### Application
 
-| Feature                | Description                                                                                                                                                               |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Dual deployment**    | Same codebase runs as Electron desktop app or web app                                                                                                                     |
-| **Cost tracking**      | SQLite log of every API call with cost summaries by model, operation (translate/rewrite), or day                                                                         |
+| Feature                | Description                                                                                                                                                                          |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Dual deployment**    | Same codebase runs as Electron desktop app or web app                                                                                                                                |
+| **Cost tracking**      | SQLite log of every API call with cost summaries by model, operation (translate/rewrite), or day                                                                                     |
 | **Cost dashboard**     | Analytics view with Summary (KPIs, charts), By Model, By Day, and All Calls; time-range filters (e.g. today, this week, this month); configurable display style for fractional costs |
-| **Transrewrt proxy**   | Optional external proxy: use a time-based rolling key (HMAC-SHA256 TOTP, 30s window) instead of sending the API key; set the API URL to the proxy base URL and a shared key seed |
-| **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behaviour, cost fraction style                                                                    |
-| **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc.                                                                                                          |
-| **Secure web mode**    | API key stored only on the server — never sent to the browser                                                                                                             |
-| **ARM64 support**      | Docker image builds for Raspberry Pi and other ARM64 platforms                                                                                                            |
+| **Transrewrt proxy**   | Optional external proxy: use a time-based rolling key (HMAC-SHA256 TOTP, 30s window) instead of sending the API key; set the API URL to the proxy base URL and a shared key seed     |
+| **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behaviour, cost fraction style                                                                              |
+| **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc.                                                                                                                     |
+| **Secure web mode**    | API key stored only on the server — never sent to the browser                                                                                                                        |
+| **ARM64 support**      | Docker image builds for Raspberry Pi and other ARM64 platforms                                                                                                                       |
 
 ---
 
@@ -86,12 +86,13 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 
 ### Prerequisites
 
-| Tool                    | Notes                                                                                                                                                                                             |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Node.js 24 (LTS)**    | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); run `nvm install 24` then `nvm use 24` (or `nvm use` in project root if `.nvmrc` is present) |
-| **pnpm**                | `npm install -g pnpm`                                                                                                                                                                             |
-| **Git**                 | Any recent version                                                                                                                                                                                |
-| **Docker** *(optional)* | Required only for the web/container deployment target                                                                                                                                             |
+| Tool                           | Notes                                                                                                                                                                                                                     |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Node.js 24 (LTS)**           | Install via [nvm](https://github.com/nvm-sh/nvm) (Linux/macOS) or [nvm-windows](https://github.com/coreybutler/nvm-windows); run `nvm install 24` then `nvm use 24` (or `nvm use` in project root if `.nvmrc` is present) |
+| **pnpm**                       | `npm install -g pnpm`                                                                                                                                                                                                     |
+| **Git**                        | Any recent version                                                                                                                                                                                                        |
+| **direnv** *(Linux, optional)* | Auto-load project environment variables from `.env` when entering the repo (`direnv allow`)                                                                                                                               |
+| **Docker** *(optional)*        | Required only for the web/container deployment target                                                                                                                                                                     |
 
 On Debian/Ubuntu, Electron also needs a few system libraries:
 
@@ -221,7 +222,7 @@ The web app protects all endpoints with session-based authentication.
 
 - **Default password:** `transrewrt26`
 - Passwords are hashed with **Argon2id** and stored in `config.json`.
-- Sessions use **sliding-window expiry** — every successful API call extends the session.
+- Sessions use **sliding-window expiry** — successful translate/rewrite activity extends the session.
 - Change the password via **Settings → Auth** in the web UI.
 - **Reset from command line:**  
   - **Docker:** `docker exec <container> reset-web-password "<new-password>"`  
@@ -293,13 +294,13 @@ docker buildx inspect --bootstrap
        costDb)                          auth · SQLite · cost)
 ```
 
-| Concern        | Electron                                 | Web / Docker                                                                 |
-|----------------|------------------------------------------|------------------------------------------------------------------------------|
-| Config storage | Local `config.json` via IPC              | REST API → server file                                                       |
-| API calls      | Direct to OpenRouter or external proxy   | Proxied via app server, or optional external Transrewrt proxy (rolling key)  |
-| Authentication | None (local app)                         | Session cookie; password hashed with Argon2id                               |
-| Cost logging   | Local SQLite DB (`costDb`)               | Server SQLite DB at `/app/data/transrewrt.db`                                 |
-| Dashboard      | Reads cost data via IPC                  | Reads cost data via REST API                                                |
+| Concern        | Electron                               | Web / Docker                                                                |
+|----------------|----------------------------------------|-----------------------------------------------------------------------------|
+| Config storage | Local `config.json` via IPC            | REST API → server file                                                      |
+| API calls      | Direct to OpenRouter or external proxy | Proxied via app server, or optional external Transrewrt proxy (rolling key) |
+| Authentication | None (local app)                       | Session cookie; password hashed with Argon2id                               |
+| Cost logging   | Local SQLite DB (`costDb`)             | Server SQLite DB at `/app/data/transrewrt.db`                               |
+| Dashboard      | Reads cost data via IPC                | Reads cost data via REST API                                                |
 
 ---
 
@@ -320,18 +321,19 @@ See [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) for:
 
 ### Quick command reference
 
-| Command                   | Purpose                                 |
-|---------------------------|-----------------------------------------|
-| `pnpm run dev`            | Electron dev with hot reload            |
-| `pnpm run dev:web`        | Web dev with hot reload                 |
-| `pnpm run build-renderer` | Production build of React app → `dist/` |
-| `pnpm start`              | Run Electron (after build)              |
-| `pnpm run serve`          | Build and serve web app at :5000        |
-| `pnpm run package`        | Build Electron installer → `release/`   |
-| `pnpm run docker:up`      | Build and run Docker Compose            |
-| `pnpm run docker:down`    | Stop Docker Compose                     |
-| `pnpm run docker:clean`   | Remove Docker image and volumes         |
-| `pnpm run docker:deploy`  | Deploy to production host               |
+| Command               | Purpose                                 |
+|-----------------------|-----------------------------------------|
+| `pnpm dev`            | Electron dev with hot reload            |
+| `pnpm dev:web`        | Web dev with hot reload                 |
+| `pnpm build-renderer` | Production build of React app → `dist/` |
+| `pnpm start`          | Run Electron (after build)              |
+| `pnpm serve`          | Build and serve web app at :5000        |
+| `pnpm package`        | Build Electron installer → `release/`   |
+| `pnpm docker:up`      | Build and run Docker Compose            |
+| `pnpm docker:down`    | Stop Docker Compose                     |
+| `pnpm docker:shell`   | Open shell in running Docker container  |
+| `pnpm docker:clean`   | Remove Docker image and volumes         |
+| `pnpm docker:deploy`  | Deploy to production host               |
 
 ---
 
