@@ -710,7 +710,14 @@ ipcMain.handle("write-last-api-result", (_, payload) => {
     const dir = app.getPath("userData");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     const filePath = path.join(dir, "last_api_result.json");
-    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
+    // Keep payload serializable: truncate huge raw arrays (stream chunks) to avoid write failures
+    const MAX_RAW_CHUNKS = 20;
+    let toWrite = payload;
+    if (payload && Array.isArray(payload.raw) && payload.raw.length > MAX_RAW_CHUNKS) {
+      toWrite = { ...payload, raw: payload.raw.slice(0, MAX_RAW_CHUNKS) };
+    }
+    const json = JSON.stringify(toWrite, null, 2);
+    fs.writeFileSync(filePath, json, "utf8");
     return Promise.resolve(true);
   } catch (err) {
     console.error("Failed to write last_api_result.json", err);
@@ -727,6 +734,20 @@ ipcMain.handle("write-debug-file", (_, filename, data) => {
     return Promise.resolve(true);
   } catch (err) {
     console.error(`Failed to write ${filename}:`, err);
+    return Promise.resolve(false);
+  }
+});
+
+ipcMain.handle("write-proxy-debug-log", (_, line) => {
+  try {
+    const dir = app.getPath("userData");
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const filePath = path.join(dir, "proxy-debug.log");
+    const timestamp = new Date().toISOString();
+    fs.appendFileSync(filePath, `${timestamp} ${line}\n`, "utf8");
+    return Promise.resolve(true);
+  } catch (err) {
+    console.error("Failed to write proxy-debug.log", err);
     return Promise.resolve(false);
   }
 });

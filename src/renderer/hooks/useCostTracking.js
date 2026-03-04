@@ -6,10 +6,11 @@ import configManager from "../utils/configManager";
 export function useCostTracking() {
   const writeLastApiResult = (payload) => {
     if (window.electronAPI?.writeLastApiResult) {
-      window.electronAPI.writeLastApiResult(payload).catch((err) => {
+      return window.electronAPI.writeLastApiResult(payload).catch((err) => {
         console.error("Failed to write last_api_result.json", err);
       });
     }
+    return Promise.resolve();
   };
 
   const logApiCall = (type, result, extra = {}) => {

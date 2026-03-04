@@ -7,10 +7,12 @@ const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 const SettingsDialogApiTab = ({
   localSettings,
   showApiKey,
+  showKeySeed,
   apiTestStatus,
   apiTestMessage,
   onSettingChange,
   onShowApiKeyChange,
+  onShowKeySeedChange,
   onTestApi,
 }) => {
   return (
@@ -55,14 +57,26 @@ const SettingsDialogApiTab = ({
             <Label htmlFor="key-seed" style={{ display: 'block', marginBottom: '6px' }}>
               Key Seed:
             </Label>
-            <Input
-              id="key-seed"
-              type="password"
-              value={localSettings.key_seed || ''}
-              onChange={(e) => onSettingChange('key_seed', e.target.value)}
-              placeholder="Shared secret with the proxy"
-              style={{ width: '400px', minWidth: '300px' }}
-            />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Input
+                id="key-seed"
+                type={showKeySeed ? 'text' : 'password'}
+                value={localSettings.key_seed || ''}
+                onChange={(e) => onSettingChange('key_seed', e.target.value)}
+                placeholder="Shared secret with the proxy"
+                style={{ width: '400px', minWidth: '300px' }}
+              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Checkbox
+                  id="show-key-seed"
+                  checked={showKeySeed}
+                  onChange={(e) => onShowKeySeedChange(e.target.checked)}
+                />
+                <Label htmlFor="show-key-seed" style={{ cursor: 'pointer', margin: 0 }}>
+                  Show
+                </Label>
+              </div>
+            </div>
           </div>
         )}
         <div style={{ marginBottom: '16px' }}>

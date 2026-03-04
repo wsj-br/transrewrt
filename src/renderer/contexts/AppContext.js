@@ -214,7 +214,7 @@ export const AppProvider = ({ children }) => {
       result.model_used = result.model || model;
       applyCostToResult(setSetting, result);
 
-      writeLastApiResult({
+      await writeLastApiResult({
         type: "translate",
         model: result.model_used,
         usage: result.usage,
@@ -279,7 +279,7 @@ export const AppProvider = ({ children }) => {
       result.model_used = result.model || model;
       applyCostToResult(setSetting, result);
 
-      writeLastApiResult({
+      await writeLastApiResult({
         type: "rewrite",
         model: result.model_used,
         usage: result.usage,

@@ -3,14 +3,69 @@ import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
 import { getRollingKey } from "../utils/transrewrtProxyKey";
 import prompts from "../../../config/prompts.json";
 
+const PROXY_DEBUG =
+  typeof __DEV__ !== "undefined" && __DEV__;
+
+let _proxyDebugLoggedOnce = false;
+
+function formatProxyDebugLine(...args) {
+  const parts = args.map((a) => (typeof a === "object" ? JSON.stringify(a) : String(a)));
+  return "[Transrewrt Proxy] " + parts.join(" ");
+}
+
+function proxyDebug(...args) {
+  if (!PROXY_DEBUG || args.length === 0) return;
+  if (typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog) {
+    if (!_proxyDebugLoggedOnce) {
+      _proxyDebugLoggedOnce = true;
+      window.electronAPI.writeProxyDebugLog(
+        formatProxyDebugLine("Debug logging active (development mode). All proxy requests and rolling key usage logged to proxy-debug.log.")
+      ).catch(() => {});
+    }
+    window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(...args)).catch(() => {});
+  }
+}
+
 function resolvePrompt(value) {
   return Array.isArray(value) ? value.join("\n") : value;
+}
+
+function buildTranslatePrompt(withSourceLang) {
+  const config = withSourceLang ? prompts.translate.withSourceLang : prompts.translate.withoutSourceLang;
+  const shared = prompts.shared.translate;
+  const lines = [
+    config.role,
+    "",
+    "Your task:",
+    config.firstBullet,
+    ...shared.task,
+    ...shared.footer,
+  ];
+  return resolvePrompt(lines);
+}
+
+function buildRewriteSystemPrompt(styleConfig) {
+  const shared = prompts.shared.rewrite;
+  const common = shared.common.map((line) =>
+    line.replace(/\{\{outputDescription\}\}/g, styleConfig.outputDescription || "rewritten")
+  );
+  const lines = [
+    styleConfig.role,
+    "",
+    "Your task:",
+    ...styleConfig.bullets,
+    "",
+    ...common,
+    ...shared.footer,
+  ];
+  return resolvePrompt(lines);
 }
 
 const BASE_PATH = getBasePath();
 
 // API service to communicate with the backend
-// In Electron: calls OpenRouter directly. In Web/Docker: calls server proxy (API key stays on server).
+// In Electron: calls OpenRouter directly or via Transrewrt proxy (transparent; client sends Authorization Bearer on every request).
+// In Web/Docker: calls server proxy (API key stays on server; server adds it when proxying).
 class APIService {
   constructor() {
     this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
@@ -19,7 +74,7 @@ class APIService {
 
   /**
    * Set the base URL for API requests
-   * In web mode, we use /api/proxy (server adds API key). In Electron, use OpenRouter URL.
+   * In web mode we use /api/proxy (server adds API key). In Electron we use OpenRouter URL or Transrewrt proxy (transparent; client sends Bearer in all proxy calls).
    */
   setBaseUrl(url) {
     if (this._isWebMode) {
@@ -30,8 +85,8 @@ class APIService {
   }
 
   /**
-   * Build the request URL: when Transrewrt proxy is enabled, use proxy base + rolling key + path;
-   * otherwise use the configured base URL (direct OpenRouter).
+   * Build the request URL: when Transrewrt proxy is enabled, use proxy base + rolling key + path.
+   * The proxy is transparent: the client must send Authorization Bearer (API key) on every request.
    * @param {string} path - Path segment (e.g. "chat/completions", "models", "generation?id=...")
    * @returns {Promise<string>} Full URL for the request
    */
@@ -45,9 +100,25 @@ class APIService {
     const keySeed = (config.key_seed || "").trim();
     if (useProxy && keySeed && config.api_url) {
       const proxyBase = String(config.api_url).replace(/\/+$/, "");
-      const rollingKey = await getRollingKey(keySeed);
+      const rollingKey = await getRollingKey(
+        keySeed,
+        PROXY_DEBUG && typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog
+          ? (msg, data) => {
+              window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(msg, data)).catch(() => {});
+            }
+          : undefined
+      );
       const pathPart = path.startsWith("/") ? path.slice(1) : path;
-      return `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
+      const url = `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
+      if (PROXY_DEBUG) {
+        proxyDebug("getRequestUrl (proxy)", {
+          proxyBase,
+          pathPart,
+          rollingKeyMasked: rollingKey ? `${rollingKey.slice(0, 2)}***` : "(empty)",
+          fullUrl: url,
+        });
+      }
+      return url;
     }
     const base = (this.baseUrl || "").replace(/\/+$/, "");
     const pathPart = path.startsWith("/") ? path : `/${path}`;
@@ -59,6 +130,14 @@ class APIService {
       return { "Content-Type": "application/json" };
     }
     const config = require("../utils/configManager").default.getAll();
+    const useProxy = !!config.use_transrewrt_proxy;
+    if (PROXY_DEBUG && useProxy) {
+      proxyDebug("getHeaders (proxy)", {
+        note: "API Key will not shown in the log, check if hasAPIKeyInConfig is true",
+        hasApiKeyInConfig: !!(config.api_key && String(config.api_key).trim()),
+        headerKeys: ["Content-Type", "Authorization", "HTTP-Referer", "X-Title"],
+      });
+    }
     return {
       "Content-Type": "application/json",
       Authorization: `Bearer ${config.api_key || ""}`,
@@ -115,12 +194,20 @@ class APIService {
    */
   async getGenerationUsage(generationId, maxRetries = 5) {
     if (!generationId) return null;
+    const config = require("../utils/configManager").default.getAll();
+    const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const url = await this.getRequestUrl(`generation?id=${encodeURIComponent(generationId)}`);
         const opts = { headers: this.getHeaders() };
         if (this._isWebMode) opts.credentials = "include";
+        if (PROXY_DEBUG && useProxy) {
+          proxyDebug("getGenerationUsage (proxy)", { attempt: attempt + 1, maxRetries, generationId, url });
+        }
         const response = await fetch(url, opts);
+        if (PROXY_DEBUG && useProxy) {
+          proxyDebug("getGenerationUsage (proxy) RESPONSE", { generationId, status: response.status, ok: response.ok });
+        }
         if (response.status === 401) {
           if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
           return null;
@@ -132,6 +219,9 @@ class APIService {
         if (!response.ok) return null;
         const json = await response.json();
         const data = json.data;
+        if (PROXY_DEBUG && useProxy) {
+          proxyDebug("getGenerationUsage (proxy) DATA", { generationId, json, data });
+        }
         if (!data) return null;
         return {
           cost: data.total_cost ?? 0,
@@ -186,7 +276,29 @@ class APIService {
     if (this._isWebMode) fetchOptions.credentials = "include";
 
     const url = await this.getRequestUrl("chat/completions");
+    const config = require("../utils/configManager").default.getAll();
+    const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
+    const requestStartMs = Date.now();
+    if (PROXY_DEBUG && useProxy) {
+      proxyDebug("_streamChatCompletion (proxy) START", {
+        type,
+        model,
+        temperature,
+        url,
+        requestBytes: request_bytes,
+        hasSignal: !!signal,
+      });
+    }
     const response = await fetch(url, fetchOptions);
+    if (PROXY_DEBUG && useProxy) {
+      proxyDebug("_streamChatCompletion (proxy) RESPONSE", {
+        type,
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        elapsedMs: Date.now() - requestStartMs,
+      });
+    }
     if (response.status === 401) {
       if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
       throw Object.assign(new Error("Unauthorized"), { status: 401 });
@@ -303,6 +415,21 @@ class APIService {
       response_bytes,
       duration_ms,
     };
+    if (PROXY_DEBUG && useProxy) {
+      proxyDebug("_streamChatCompletion (proxy) DONE", {
+        type,
+        model,
+        cancelled: aborted,
+        duration_ms,
+        response_bytes,
+        prompt_tokens: usage?.prompt_tokens,
+        completion_tokens: usage?.completion_tokens,
+        generationId: idForUsage || generationId,
+        contentLength: content?.length ?? 0,
+        contentPreview: content ? content.slice(0, 80) + (content.length > 80 ? "..." : "") : "",
+        usage,
+      });
+    }
     this.writeLastApiResult({ type, model, usage, cancelled: aborted, raw: rawChunks, ...extraMetadata });
     return result;
   }
@@ -317,10 +444,8 @@ class APIService {
    */
   async translate(text, targetLang, model, sourceLang = null, signal = null) {
     try {
-      const template = resolvePrompt(
-        sourceLang && sourceLang !== "Detect Language"
-          ? prompts.translate.withSourceLang
-          : prompts.translate.withoutSourceLang
+      const template = buildTranslatePrompt(
+        !!(sourceLang && sourceLang !== "Detect Language")
       );
       const systemPrompt = template
         .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
@@ -356,7 +481,7 @@ class APIService {
       const styleConfig = prompts.rewrite.styles[style] || prompts.rewrite.fallback;
 
       return await this._streamChatCompletion(
-        resolvePrompt(styleConfig.system),
+        buildRewriteSystemPrompt(styleConfig),
         `<rewrite>${text}</rewrite>`,
         model,
         styleConfig.temperature,
@@ -382,7 +507,9 @@ class APIService {
   }
 
   /**
-   * Get list of available models
+   * Get list of available models.
+   * When using Transrewrt proxy, the proxy must buffer GET /models (not stream) so the client
+   * receives the full JSON; otherwise upstream may be cancelled and the body truncated.
    * @returns {Promise<Array>} List of available models
    */
   async getModels() {
@@ -390,8 +517,15 @@ class APIService {
       const opts = { headers: this.getHeaders() };
       if (this._isWebMode) opts.credentials = "include";
       const url = await this.getRequestUrl("models");
+      const config = require("../utils/configManager").default.getAll();
+      const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
+      if (PROXY_DEBUG && useProxy) {
+        proxyDebug("getModels (proxy) START", { url });
+      }
       const response = await fetch(url, opts);
-
+      if (PROXY_DEBUG && useProxy) {
+        proxyDebug("getModels (proxy) RESPONSE", { status: response.status, ok: response.ok });
+      }
       if (response.status === 401) {
         if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
         throw Object.assign(new Error("Unauthorized"), { status: 401 });
@@ -400,12 +534,45 @@ class APIService {
         throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
       }
 
-      const data = await response.json();
+      // Read body as text; wrap in try/catch because if the proxy streamed and cancelled,
+      // response.text() itself will throw a network/TypeError.
+      let rawText;
+      try {
+        rawText = await response.text();
+      } catch (bodyErr) {
+        if (PROXY_DEBUG && useProxy) {
+          proxyDebug("getModels (proxy) BODY READ FAILED", {
+            error: bodyErr.message,
+            name: bodyErr.name,
+          });
+        }
+        throw bodyErr;
+      }
 
-      // Write raw API response to debug file
-      this.writeDebugFile('models_api_raw.json', data);
+      let data;
+      try {
+        data = JSON.parse(rawText);
+      } catch (parseErr) {
+        if (PROXY_DEBUG && useProxy) {
+          proxyDebug("getModels (proxy) BODY PARSE FAILED", {
+            error: parseErr.message,
+            bodyLength: rawText.length,
+            bodyPreview: rawText.slice(0, 200) + (rawText.length > 200 ? "..." : ""),
+          });
+        }
+        throw parseErr;
+      }
+
+      this.writeDebugFile("models_api_raw.json", data);
 
       const models = data.data || [];
+      if (PROXY_DEBUG && useProxy) {
+        proxyDebug("getModels (proxy) DATA", {
+          modelCount: models.length,
+          modelIds: models.slice(0, 20).map((m) => m?.id).filter(Boolean),
+          hasMore: models.length > 20,
+        });
+      }
 
       // Filter out invalid/incomplete models
       const validModels = models.filter(model => {
@@ -442,7 +609,18 @@ class APIService {
 
       return validModels;
     } catch (error) {
-      console.error("Error fetching models:", error);
+      console.error("Error fetching models:", error?.name, error?.message || error);
+      this.writeDebugFile("models_api_error.json", {
+        name: error?.name,
+        message: error?.message,
+        stack: error?.stack,
+      });
+      if (PROXY_DEBUG) {
+        proxyDebug("getModels ERROR", {
+          name: error?.name,
+          message: error?.message,
+        });
+      }
       return [];
     }
   }

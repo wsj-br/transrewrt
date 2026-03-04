@@ -68,6 +68,7 @@ const SettingsPanel = () => {
   const [customLanguage, setCustomLanguage] = useState("");
 
   const [showApiKey, setShowApiKey] = useState(false);
+  const [showKeySeed, setShowKeySeed] = useState(false);
   const [apiTestStatus, setApiTestStatus] = useState(null);
   const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
@@ -446,10 +447,12 @@ const SettingsPanel = () => {
           <SettingsDialogApiTab
             localSettings={localSettings}
             showApiKey={showApiKey}
+            showKeySeed={showKeySeed}
             apiTestStatus={apiTestStatus}
             apiTestMessage={apiTestMessage}
             onSettingChange={handleSettingChange}
             onShowApiKeyChange={setShowApiKey}
+            onShowKeySeedChange={setShowKeySeed}
             onTestApi={handleTestApi}
           />
         )}

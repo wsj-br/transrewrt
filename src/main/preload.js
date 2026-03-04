@@ -18,6 +18,7 @@ const api = {
   },
   writeLastApiResult: (payload) => ipcRenderer.invoke('write-last-api-result', payload),
   writeDebugFile: (filename, data) => ipcRenderer.invoke('write-debug-file', filename, data),
+  writeProxyDebugLog: (line) => ipcRenderer.invoke('write-proxy-debug-log', line),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
   // Cost-tracking DB (same surface as webAPI for Cost tab)
   logApiCall: (payload) => ipcRenderer.invoke('costDb:log', payload),

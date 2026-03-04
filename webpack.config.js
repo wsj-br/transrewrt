@@ -56,6 +56,7 @@ module.exports = (env, argv) => {
       __APP_AUTHOR__: JSON.stringify(pkg.author || ""),
       __APP_LICENSE__: JSON.stringify(pkg.license || ""),
       __REPO_URL__: JSON.stringify("https://github.com/wsj-br/transrewrt"),
+      __DEV__: JSON.stringify(isDevelopment),
     }),
     new HtmlWebpackPlugin({
       template: "./src/renderer/index.html",

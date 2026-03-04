@@ -714,6 +714,7 @@ const DashboardPage = () => {
                                 cx="50%"
                                 cy="50%"
                                 outerRadius="68%"
+                                isAnimationActive={false}
                                 label={({ cx, cy, midAngle, outerRadius: or, function: fn, calls }) => {
                                   const radius = or + 14;
                                   const x = cx + radius * Math.cos(-midAngle * RADIAN);
