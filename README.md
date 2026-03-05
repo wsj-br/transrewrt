@@ -302,22 +302,17 @@ docker buildx inspect --bootstrap
 | Cost logging   | Local SQLite DB (`costDb`)             | Server SQLite DB at `/app/data/transrewrt.db`                               |
 | Dashboard      | Reads cost data via IPC                | Reads cost data via REST API                                                |
 
+For a detailed technical overview (folder structure, tech stack, design decisions, Transrewrt proxy), see [dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md).
+
 ---
 
 ## Development
 
-See [dev/Development.md](dev/Development.md) for a full development guide including:
+See **[dev/DEVELOPMENT.MD](dev/DEVELOPMENT.MD)** for the full development guide: setup, build, test, and deploy (Electron, Web, Docker, Raspberry Pi).
 
-- Platform-specific prerequisites (Windows 11, Linux)
-- Hot-reload workflows for Electron and Web targets
-- Build and packaging instructions
-- Common Windows issues (symlink permissions)
-
-See [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) for:
-
-- Detailed web/Docker architecture
-- Server API reference (config, auth, proxy, cost-tracking endpoints)
-- Docker build internals (multi-stage build)
+Additional references:
+- [dev/Development.md](dev/Development.md) — extended prerequisites and Windows troubleshooting
+- [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) — server API reference and Docker build details
 
 ### Quick command reference
 

@@ -201,6 +201,20 @@ const webAPI = {
     return data.rows || [];
   },
 
+  getSummaryByTransformPrompt: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-transform-prompt?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load summary");
+    const data = await res.json();
+    return data.rows || [];
+  },
+
   getAllCalls: async (from, to, page, pageSize) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
@@ -276,6 +290,94 @@ const webAPI = {
       }
       throw new Error(msg);
     }
+  },
+
+  customPrompts: {
+    getAll: async () => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts`, { credentials: "include" });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) throw new Error("Failed to load custom prompts");
+      return res.json();
+    },
+    create: async (prompt) => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(prompt),
+        credentials: "include",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to create prompt");
+      }
+      const data = await res.json();
+      return { id: data.id, error: null };
+    },
+    update: async (id, prompt) => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(prompt),
+        credentials: "include",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to update prompt");
+      }
+      return { success: true, error: null };
+    },
+    delete: async (id) => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to delete prompt");
+      }
+      return { success: true, error: null };
+    },
+    export: async () => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts/export`, { credentials: "include" });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) throw new Error("Failed to export prompts");
+      return res.json();
+    },
+    import: async (prompts, mode = "merge") => {
+      const res = await fetch(`${API_BASE}/api/custom-prompts/import`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompts: Array.isArray(prompts) ? prompts : [prompts], mode }),
+        credentials: "include",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to import prompts");
+      }
+      return res.json();
+    },
   },
 
   getApiStatus: async () => {

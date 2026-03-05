@@ -330,6 +330,69 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Transform text with custom prompt
+  const transform = async (text, promptConfig, model, targetLang = null, signal = null) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await apiService.transform(text, promptConfig, model, targetLang, signal);
+
+      result.model_used = result.model || model;
+      applyCostToResult(setSetting, result);
+
+      await writeLastApiResult({
+        type: "transform",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+
+      logApiCall("transform", result, { transform_prompt: promptConfig?.name ?? "" });
+
+      const transformPayload = {
+        timestamp: new Date().toISOString(),
+        type: "transform",
+        model: result.model_used || model,
+        source_lang: null,
+        target_lang: targetLang ?? null,
+        rewrite_style: null,
+        transform_prompt: promptConfig?.name ?? null,
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(transformPayload);
+      }
+
+      return result;
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
+      }
+      setError("Transform failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleWebLogin = async (password) => {
     const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     if (!isWeb) return;
@@ -447,6 +510,7 @@ export const AppProvider = ({ children }) => {
     setSetting,
     translate,
     rewrite,
+    transform,
     fetchModels,
     removeModelFromList,
   };

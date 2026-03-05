@@ -28,12 +28,20 @@ const api = {
   getSummaryByDay: (from, to) => ipcRenderer.invoke('costDb:getSummaryByDay', from, to).then((r) => r?.rows ?? []),
   getSummaryByTargetLang: (from, to) => ipcRenderer.invoke('costDb:getSummaryByTargetLang', from, to).then((r) => r?.rows ?? []),
   getSummaryByRewriteStyle: (from, to) => ipcRenderer.invoke('costDb:getSummaryByRewriteStyle', from, to).then((r) => r?.rows ?? []),
+  getSummaryByTransformPrompt: (from, to) => ipcRenderer.invoke('costDb:getSummaryByTransformPrompt', from, to).then((r) => r?.rows ?? []),
   getAllCalls: (from, to, page, pageSize) =>
     ipcRenderer.invoke('costDb:getAllCalls', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   getSummaryByDayPaginated: (from, to, page, pageSize) =>
     ipcRenderer.invoke('costDb:getSummaryByDayPaginated', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('costDb:deleteOutsideRange', from, to),
   deleteCallsByModel: (model) => ipcRenderer.invoke('costDb:deleteByModel', model),
+  customPrompts: {
+    getAll: () => ipcRenderer.invoke('customPrompts:getAll'),
+    create: (prompt) => ipcRenderer.invoke('customPrompts:create', prompt),
+    update: (id, prompt) => ipcRenderer.invoke('customPrompts:update', id, prompt),
+    delete: (id) => ipcRenderer.invoke('customPrompts:delete', id),
+    import: (prompts, mode) => ipcRenderer.invoke('customPrompts:import', { prompts, mode }),
+  },
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

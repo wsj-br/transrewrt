@@ -1,0 +1,25 @@
+---
+description: Minimal context for new chats and CHANGELOG updates
+alwaysApply: true
+---
+
+# Minimal Context and CHANGELOG
+
+## Project baseline
+
+- **App and Projectname**:  `Transrewrt`
+- **Framework**: Electron + React. Shared React renderer; Electron main/preload only in desktop mode.
+- **Runtime environments**: Two modes:  **Electron**: local `config.json` via preload, direct OpenRouter API, separate window/modal for settings. **Web/Docker**: server file via REST API, External API calls proxied (key on server).  When changing config, API, or settings UI, consider both runtimes.
+
+## Minimal context (each new chat)
+
+- Prefer **searching the codebase** (e.g. SemanticSearch, Grep) over assuming structure or APIs.
+- Use **minimal necessary context**: only open or reference files relevant to the current task.
+- When unsure about stack or entrypoints, check **package.json** and key entry files (e.g. `src/main/main.js`, `server/index.js`) rather than guessing.
+- Keep replies **focused**: avoid repeating project overview unless the user asks.
+
+## CHANGELOG
+
+- For **any notable change** (features, fixes, refactors, config, dependencies), **add an entry** under the **Unreleased** section of **dev/CHANGELOG.md**.
+- Use **Keep a Changelog** types: Added, Changed, Deprecated, Removed, Fixed, Security.
+- One short line per change; no need to duplicate full commit messages.

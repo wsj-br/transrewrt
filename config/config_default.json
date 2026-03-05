@@ -26,5 +26,6 @@
     "theme": "System",
     "cost_fraction_style": "muted",
     "total_cost": 0,
-    "web_session_timeout": 604800
+    "web_session_timeout": 604800,
+    "transform_prompt": null
 }

@@ -1,9 +1,10 @@
-import React from "react";
-import { makeStyles, tokens } from "@fluentui/react-components";
+import React, { lazy, Suspense } from "react";
+import { makeStyles, tokens, Spinner } from "@fluentui/react-components";
 import ModelSelector from "./ModelSelector";
 import ResizablePanels from "./ResizablePanels";
-import SettingsPanel from "./SettingsPanel";
-import DashboardPage from "./DashboardPage";
+
+const SettingsPanel = lazy(() => import("./SettingsPanel"));
+const DashboardPage = lazy(() => import("./DashboardPage"));
 
 const useStyles = makeStyles({
   mainPanel: {
@@ -63,7 +64,9 @@ const MainContent = ({
   if (view === "settings") {
     return (
       <main className={styles.mainPanel}>
-        <SettingsPanel />
+        <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label="Loading settings…" /></div>}>
+          <SettingsPanel />
+        </Suspense>
       </main>
     );
   }
@@ -71,7 +74,9 @@ const MainContent = ({
   if (view === "dashboard") {
     return (
       <main className={styles.mainPanel}>
-        <DashboardPage />
+        <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label="Loading dashboard…" /></div>}>
+          <DashboardPage />
+        </Suspense>
       </main>
     );
   }
@@ -81,7 +86,7 @@ const MainContent = ({
       <div className={styles.workspace}>
         <div className={styles.toolbar}>
           <span className={styles.modeIndicator}>
-            {currentMode === "translate" ? "Translate" : "Rewrite"}
+            {currentMode === "translate" ? "Translate" : currentMode === "rewrite" ? "Rewrite" : "Transform"}
           </span>
           <ModelSelector
             models={models}

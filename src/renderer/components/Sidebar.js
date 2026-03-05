@@ -1,15 +1,15 @@
 import React from "react";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
-import { Languages, PenTool, BarChart3, Settings } from "lucide-react";
+import { Languages, PenTool, Sparkles, BarChart3, Settings } from "lucide-react";
 import Logo from "../../../images/transrewrt_logo.png";
 
 const useStyles = makeStyles({
   sidebar: {
-    width: "220px",
-    minWidth: "220px",
+    width: "180px",
+    minWidth: "180px",
     height: "100%",
     backgroundColor: "#12141d",
-    borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+    borderRight: "1px solid rgba(85, 66, 66, 0.08)",
     display: "flex",
     flexDirection: "column",
     WebkitAppRegion: "drag",
@@ -130,6 +130,8 @@ const Sidebar = ({
     currentMode === "translate" && currentView === "workspace";
   const isRewriteActive =
     currentMode === "rewrite" && currentView === "workspace";
+  const isTransformActive =
+    currentMode === "transform" && currentView === "workspace";
 
   const iconSize = 20;
 
@@ -147,6 +149,13 @@ const Sidebar = ({
       icon: PenTool,
       isActive: isRewriteActive,
       onClick: () => onModeChange("rewrite"),
+    },
+    {
+      id: "transform",
+      label: "Transform",
+      icon: Sparkles,
+      isActive: isTransformActive,
+      onClick: () => onModeChange("transform"),
     },
   ];
 

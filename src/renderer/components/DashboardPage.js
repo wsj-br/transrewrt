@@ -305,6 +305,10 @@ const useStyles = makeStyles({
     backgroundColor: "rgba(251, 146, 60, 0.25)",
     color: CHART_COLORS.rewrite,
   },
+  typeTransform: {
+    backgroundColor: "rgba(167, 139, 250, 0.25)",
+    color: "#a78bfa",
+  },
 });
 
 const DashboardPage = () => {
@@ -319,6 +323,7 @@ const DashboardPage = () => {
   const [byDay, setByDay] = useState([]);
   const [byTargetLang, setByTargetLang] = useState([]);
   const [byRewriteStyle, setByRewriteStyle] = useState([]);
+  const [byTransformPrompt, setByTransformPrompt] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [allCallsPage, setAllCallsPage] = useState(1);
@@ -344,19 +349,22 @@ const DashboardPage = () => {
     setLoading(true);
     const targetLangPromise = costApi.getSummaryByTargetLang ? costApi.getSummaryByTargetLang(from, to) : Promise.resolve([]);
     const rewriteStylePromise = costApi.getSummaryByRewriteStyle ? costApi.getSummaryByRewriteStyle(from, to) : Promise.resolve([]);
+    const transformPromptPromise = costApi.getSummaryByTransformPrompt ? costApi.getSummaryByTransformPrompt(from, to) : Promise.resolve([]);
     Promise.all([
       costApi.getSummaryByFunction(from, to),
       costApi.getSummaryByModel(from, to),
       costApi.getSummaryByDay(from, to),
       targetLangPromise,
       rewriteStylePromise,
+      transformPromptPromise,
     ])
-      .then(([a, b, c, d, e]) => {
+      .then(([a, b, c, d, e, f]) => {
         setByFunction(Array.isArray(a) ? a : []);
         setByModel(Array.isArray(b) ? b : []);
         setByDay(Array.isArray(c) ? c : []);
         setByTargetLang(Array.isArray(d) ? d : []);
         setByRewriteStyle(Array.isArray(e) ? e : []);
+        setByTransformPrompt(Array.isArray(f) ? f : (f?.rows ?? []));
       })
       .catch(() => {
         setByFunction([]);
@@ -364,6 +372,7 @@ const DashboardPage = () => {
         setByDay([]);
         setByTargetLang([]);
         setByRewriteStyle([]);
+        setByTransformPrompt([]);
       })
       .finally(() => setLoading(false));
   }, [filter, costApi]);
@@ -445,6 +454,7 @@ const DashboardPage = () => {
     byFunction.find((r) => r.function === "Total")?.cost ?? 0;
   const translateRow = byFunction.find((r) => r.function === "translate");
   const rewriteRow = byFunction.find((r) => r.function === "rewrite");
+  const transformRow = byFunction.find((r) => r.function === "transform");
   const totalAvgTps = byModel.find((r) => r.model === "Total")?.avg_tps ?? null;
   const modelCount = byModel.filter((r) => r.model !== "Total").length;
   const avgCostPerCall =
@@ -540,6 +550,13 @@ const DashboardPage = () => {
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
+                    <div className={styles.summaryKpiLabel}>Transform</div>
+                    <div className={styles.summaryKpiValue}>
+                      {formatCount(transformRow?.calls)} /{" "}
+                      {formatCost(transformRow?.cost, costFractionStyle)}
+                    </div>
+                  </div>
+                  <div className={styles.summaryKpiCard}>
                     <div className={styles.summaryKpiLabel}>Models used</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCount(modelCount)}
@@ -564,13 +581,16 @@ const DashboardPage = () => {
                       const chronological = [...byDay].reverse();
                       let cumTranslation = 0;
                       let cumRewrite = 0;
+                      let cumTransform = 0;
                       const cumulativeData = chronological.map((row) => {
                         cumTranslation += Number(row.translation_cost) || 0;
                         cumRewrite += Number(row.rewrite_cost) || 0;
+                        cumTransform += Number(row.transform_cost) || 0;
                         return {
                           day: row.day,
                           translation_cost: cumTranslation,
                           rewrite_cost: cumRewrite,
+                          transform_cost: cumTransform,
                         };
                       });
                       return (
@@ -604,6 +624,15 @@ const DashboardPage = () => {
                           fill={CHART_COLORS.rewrite}
                           fillOpacity={0.6}
                           name="Rewrite cost (cumulative)"
+                        />
+                        <Area
+                          type="monotone"
+                          dataKey="transform_cost"
+                          stackId="1"
+                          stroke="#a78bfa"
+                          fill="#a78bfa"
+                          fillOpacity={0.6}
+                          name="Transform cost (cumulative)"
                         />
                       </AreaChart>
                     </ResponsiveContainer>
@@ -734,7 +763,13 @@ const DashboardPage = () => {
                                 {usageData.map((r, i) => (
                                   <Cell
                                     key={i}
-                                    fill={r.function === "translate" ? CHART_COLORS.translation : CHART_COLORS.rewrite}
+                                    fill={
+                                      r.function === "translate"
+                                        ? CHART_COLORS.translation
+                                        : r.function === "rewrite"
+                                        ? CHART_COLORS.rewrite
+                                        : "#a78bfa"
+                                    }
                                   />
                                 ))}
                               </Pie>
@@ -894,6 +929,74 @@ const DashboardPage = () => {
                     )}
                   </div>
                 </div>
+
+              <div className={styles.summaryChartCell}>
+                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+                  Transform prompt
+                </Text>
+                  <div className={styles.summaryChartContainer}>
+                    {byTransformPrompt.length > 0 ? (
+                      (() => {
+                        const totalTransformCalls = byTransformPrompt.reduce((s, r) => s + (Number(r.calls) || 0), 0);
+                        return (
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={byTransformPrompt.map((r) => ({ ...r, label: r.transform_prompt }))}
+                          layout="vertical"
+                          margin={{ left: 140, right: 16, top: 4, bottom: 4 }}
+                          {...chartProps}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
+                          <XAxis
+                            type="number"
+                            style={axisStyle}
+                            tick={tickStyle}
+                            dataKey="calls"
+                            tickFormatter={(v) =>
+                              Number.isFinite(Number(v)) ? Math.round(Number(v)) : v
+                            }
+                          />
+                          <YAxis
+                            type="category"
+                            dataKey="transform_prompt"
+                            width={135}
+                            style={axisStyle}
+                            tick={tickStyle}
+                          />
+                          <Tooltip
+                            contentStyle={{
+                              backgroundColor: tokens.colorNeutralBackground1,
+                              border: `1px solid ${tokens.colorNeutralStroke1}`,
+                              color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            }}
+                            formatter={(value) => {
+                              const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
+                              return [`${formatInteger(value)} (${pct}%)`, "Calls"];
+                            }}
+                          />
+                          <Bar dataKey="calls" fill={CHART_COLORS.barFill} name="Calls">
+                            <LabelList
+                              dataKey="calls"
+                              position="insideLeft"
+                              formatter={(value) => {
+                                const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
+                                return `${formatInteger(value)} (${pct}%)`;
+                              }}
+                              style={{ fill: CHART_COLORS.barLabel, fontSize: 11 }}
+                              offset={4}
+                            />
+                          </Bar>
+                        </BarChart>
+                      </ResponsiveContainer>
+                        );
+                      })()
+                    ) : (
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
+                        No data
+                      </div>
+                    )}
+                  </div>
+                </div>
             </div>
           )}
         </div>
@@ -912,8 +1015,10 @@ const DashboardPage = () => {
                       <th className={styles.th}>Model</th>
                       <th className={styles.th}>Translation calls</th>
                       <th className={styles.th}>Rewrite calls</th>
+                      <th className={styles.th}>Transform calls</th>
                       <th className={styles.th}>Translation cost</th>
                       <th className={styles.th}>Rewrite cost</th>
+                      <th className={styles.th}>Transform cost</th>
                       <th className={styles.th}>Avg translation</th>
                       <th className={styles.th}>Avg rewrite</th>
                       <th className={styles.th}>Avg TPS</th>
@@ -921,7 +1026,7 @@ const DashboardPage = () => {
                   </thead>
                   <tbody>
                     {byModel.filter((r) => r.model !== "Total").length === 0
-                      ? emptyRow(8)
+                      ? emptyRow(11)
                       : byModel
                           .filter((r) => r.model !== "Total")
                           .map((row, i) => (
@@ -947,10 +1052,16 @@ const DashboardPage = () => {
                                 {formatCount(row.rewrite_calls)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCount(row.transform_calls)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatCost(row.translation_cost, costFractionStyle)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatCost(row.rewrite_cost, costFractionStyle)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.transform_cost, costFractionStyle)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatAvgCost(
@@ -988,10 +1099,16 @@ const DashboardPage = () => {
                               {formatCount(rc)}
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCount(total?.transform_calls ?? 0)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
                               {formatCost(total?.translation_cost, costFractionStyle)}
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
                               {formatCost(total?.rewrite_cost, costFractionStyle)}
+                            </td>
+                            <td className={`${styles.td} ${styles.tdValue}`}>
+                              {formatCost(total?.transform_cost, costFractionStyle)}
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
                               {formatAvgCost(
@@ -1054,6 +1171,12 @@ const DashboardPage = () => {
                         fill={CHART_COLORS.rewrite}
                         name="Rewrite"
                       />
+                      <Bar
+                        dataKey="transform_cost"
+                        stackId="a"
+                        fill="#a78bfa"
+                        name="Transform"
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -1097,6 +1220,12 @@ const DashboardPage = () => {
                         dataKey="rewrite_calls"
                         stroke={CHART_COLORS.rewrite}
                         name="Rewrite calls"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="transform_calls"
+                        stroke="#a78bfa"
+                        name="Transform calls"
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -1165,15 +1294,17 @@ const DashboardPage = () => {
                         <th className={styles.th}>Day</th>
                         <th className={styles.th}>Translation calls</th>
                         <th className={styles.th}>Rewrite calls</th>
+                        <th className={styles.th}>Transform calls</th>
                         <th className={styles.th}>Translation cost</th>
                         <th className={styles.th}>Rewrite cost</th>
+                        <th className={styles.th}>Transform cost</th>
                         <th className={styles.th}>Avg translation</th>
                         <th className={styles.th}>Avg rewrite</th>
                       </tr>
                     </thead>
                     <tbody>
                       {byDayPaginatedRows.length === 0
-                        ? emptyRow(7)
+                        ? emptyRow(9)
                         : byDayPaginatedRows.map((row, i) => (
                             <tr key={i} className={styles.tbodyTr}>
                               <td className={styles.td}>{row.day}</td>
@@ -1184,10 +1315,16 @@ const DashboardPage = () => {
                                 {formatCount(row.rewrite_calls)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCount(row.transform_calls)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatCost(row.translation_cost, costFractionStyle)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatCost(row.rewrite_cost, costFractionStyle)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.transform_cost, costFractionStyle)}
                               </td>
                               <td className={`${styles.td} ${styles.tdValue}`}>
                                 {formatAvgCost(
@@ -1275,7 +1412,7 @@ const DashboardPage = () => {
           ) : (
             <div className={styles.tableWrap}>
               <table className={styles.table}>
-                <thead className={styles.thead}>
+                    <thead className={styles.thead}>
                   <tr>
                     <th className={styles.th}>ID</th>
                     <th className={styles.th}>Timestamp</th>
@@ -1284,6 +1421,7 @@ const DashboardPage = () => {
                     <th className={styles.th}>Source</th>
                     <th className={styles.th}>Target</th>
                     <th className={styles.th}>Style</th>
+                    <th className={styles.th}>Transform prompt</th>
                     <th className={styles.th}>Req bytes</th>
                     <th className={styles.th}>Res bytes</th>
                     <th className={styles.th}>Duration</th>
@@ -1293,7 +1431,7 @@ const DashboardPage = () => {
                 </thead>
                 <tbody>
                   {allCallsRows.length === 0
-                    ? emptyRow(12)
+                    ? emptyRow(13)
                     : allCallsRows.map((row) => (
                         <tr key={row.id} className={styles.tbodyTr}>
                           <td className={`${styles.td} ${styles.tdValue}`}>
@@ -1309,7 +1447,9 @@ const DashboardPage = () => {
                               className={`${styles.typeBadge} ${
                                 row.type === "translate"
                                   ? styles.typeTranslate
-                                  : styles.typeRewrite
+                                  : row.type === "rewrite"
+                                  ? styles.typeRewrite
+                                  : styles.typeTransform
                               }`}
                             >
                               {row.type || DASH}
@@ -1320,6 +1460,9 @@ const DashboardPage = () => {
                           <td className={styles.td}>{row.target_lang ?? DASH}</td>
                           <td className={styles.td}>
                             {row.rewrite_style ?? DASH}
+                          </td>
+                          <td className={styles.td}>
+                            {row.transform_prompt ?? DASH}
                           </td>
                           <td className={`${styles.td} ${styles.tdValue}`}>
                             {formatInteger(row.request_bytes)}

@@ -17,6 +17,19 @@
         "</translate> tags in your response. No explanations or extra markup."
       ]
     },
+    "transform": {
+      "common": [
+        "- Preserve all formatting (line breaks, lists, code blocks, etc.)",
+        "- Output only the {{outputDescription}} text without explanations"
+      ],
+      "footer": [
+        "",
+        "---",
+        "Process the content inside the <transform> tags below. Output ONLY the processed",
+        "text - do NOT include <transform> or",
+        "</transform> tags in your response. No explanations or extra markup."
+      ]
+    },
     "rewrite": {
       "common": [
         "- Preserve the original language, meaning, tone, style, and key information",

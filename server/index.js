@@ -34,6 +34,7 @@ const STATE_KEYS = [
   "target_language",
   "app_mode",
   "rewrite_style",
+  "transform_prompt",
   "web_session",
   "web_session_expires_at",
   "web_view",
@@ -46,6 +47,7 @@ const DEFAULT_STATE = {
   target_language: "Spanish",
   app_mode: "translate",
   rewrite_style: "Check Spelling & Grammar",
+  transform_prompt: null,
   web_session: "",
   web_session_expires_at: null,
   web_view: "workspace",
@@ -133,16 +135,40 @@ try {
       id TEXT PRIMARY KEY,
       created_at INTEGER NOT NULL,
       last_seen_at INTEGER NOT NULL,
-      expires_at INTEGER NOT NULL
+      expires_at INTEGER NOT NULL,
+      last_ip TEXT
     )
   `);
   db.exec("CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions (expires_at)");
   db.exec("CREATE INDEX IF NOT EXISTS idx_sessions_last_seen_at ON sessions (last_seen_at)");
   try {
+    db.exec("ALTER TABLE sessions ADD COLUMN last_ip TEXT");
+  } catch (_) {
+    // Column may already exist (e.g. from CREATE or previous migration)
+  }
+  try {
     db.exec("ALTER TABLE api_calls ADD COLUMN tps REAL");
   } catch (_) {
     // Column may already exist (e.g. from CREATE or previous migration)
   }
+  try {
+    db.exec("ALTER TABLE api_calls ADD COLUMN transform_prompt TEXT");
+  } catch (_) {
+    // Column may already exist
+  }
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS custom_prompts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL UNIQUE,
+      role TEXT NOT NULL,
+      instructions TEXT NOT NULL,
+      output_description TEXT DEFAULT 'transformed',
+      temperature REAL DEFAULT 0.4,
+      target_language TEXT DEFAULT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    )
+  `);
 } catch (err) {
   log.error("[SERVER] Failed to init SQLite DB: " + err.message, {
     stack: err.stack,
@@ -176,10 +202,10 @@ function migrateLegacyStateSession() {
     if (legacySessionId && hasValidExpiry) {
       db.prepare(
         `
-          INSERT OR IGNORE INTO sessions (id, created_at, last_seen_at, expires_at)
-          VALUES (?, ?, ?, ?)
+          INSERT OR IGNORE INTO sessions (id, created_at, last_seen_at, expires_at, last_ip)
+          VALUES (?, ?, ?, ?, ?)
         `,
-      ).run(legacySessionId, Date.now(), Date.now(), legacyExpiresAt);
+      ).run(legacySessionId, Date.now(), Date.now(), legacyExpiresAt, null);
     }
     if (legacySessionId || state.web_session_expires_at != null) {
       saveState({ ...state, web_session: "", web_session_expires_at: null });
@@ -259,6 +285,15 @@ function parseCookie(cookieHeader) {
   return out;
 }
 
+function getClientIp(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (forwarded) {
+    const first = typeof forwarded === "string" ? forwarded.split(",")[0] : forwarded[0];
+    if (first) return first.trim();
+  }
+  return req.socket?.remoteAddress || req.connection?.remoteAddress || "";
+}
+
 /** Set session cookie with current config timeout (sliding window). Call on translate/rewrite usage. */
 function setSessionRefreshCookie(req, res) {
   const cookies = parseCookie(req.headers.cookie);
@@ -268,9 +303,10 @@ function setSessionRefreshCookie(req, res) {
   const maxAge = Math.max(60, Number(config.web_session_timeout) || 604800);
   const now = Date.now();
   const expiresAt = now + maxAge * 1000;
+  const ip = getClientIp(req);
   const result = db
-    .prepare("UPDATE sessions SET expires_at = ?, last_seen_at = ? WHERE id = ?")
-    .run(expiresAt, now, sessionId);
+    .prepare("UPDATE sessions SET expires_at = ?, last_seen_at = ?, last_ip = ? WHERE id = ?")
+    .run(expiresAt, now, ip || null, sessionId);
   if (result.changes === 0) return;
   res.setHeader(
     "Set-Cookie",
@@ -570,16 +606,17 @@ app.post("/api/auth/login", async (req, res) => {
     const sessionId = crypto.randomBytes(24).toString("hex");
     const maxAge = Math.max(3600, Number(config.web_session_timeout) || 604800);
     const now = Date.now();
+    const ip = getClientIp(req);
     cleanupStalledSessions(now);
     if (!db) {
       return res.status(503).json({ error: "Database unavailable" });
     }
     db.prepare(
       `
-        INSERT INTO sessions (id, created_at, last_seen_at, expires_at)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO sessions (id, created_at, last_seen_at, expires_at, last_ip)
+        VALUES (?, ?, ?, ?, ?)
       `,
-    ).run(sessionId, now, now, now + maxAge * 1000);
+    ).run(sessionId, now, now, now + maxAge * 1000, ip || null);
     if (!storedHash) {
       const newConfig = {
         ...config,
@@ -680,6 +717,7 @@ app.post("/api/calls", (req, res) => {
     const source_lang = b.source_lang || "";
     const target_lang = b.target_lang || "";
     const rewrite_style = b.rewrite_style || "";
+    const transform_prompt = b.transform_prompt ?? null;
     const req_bytes = b.request_bytes ?? 0;
     const res_bytes = b.response_bytes ?? 0;
     const dur = b.duration_ms ?? 0;
@@ -692,6 +730,18 @@ app.post("/api/calls", (req, res) => {
         model,
         source_lang,
         target_lang,
+        request_bytes: req_bytes,
+        response_bytes: res_bytes,
+        duration_ms: dur,
+        cost,
+        total_cost,
+      });
+    } else if (type === "transform") {
+      log.info("[API call] transform", {
+        timestamp,
+        model,
+        transform_prompt,
+        target_lang: target_lang,
         request_bytes: req_bytes,
         response_bytes: res_bytes,
         duration_ms: dur,
@@ -712,8 +762,8 @@ app.post("/api/calls", (req, res) => {
     }
 
     const stmt = db.prepare(`
-      INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
     stmt.run(
       timestamp,
@@ -722,6 +772,7 @@ app.post("/api/calls", (req, res) => {
       source_lang,
       target_lang,
       rewrite_style,
+      transform_prompt,
       req_bytes,
       res_bytes,
       dur,
@@ -794,8 +845,10 @@ app.get("/api/calls/summary-by-model", (req, res) => {
       SELECT model,
         SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,
         SUM(CASE WHEN type = 'rewrite' THEN 1 ELSE 0 END) AS rewrite_calls,
+        SUM(CASE WHEN type = 'transform' THEN 1 ELSE 0 END) AS transform_calls,
         SUM(CASE WHEN type = 'translate' THEN COALESCE(cost, 0) ELSE 0 END) AS translation_cost,
         SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost,
+        SUM(CASE WHEN type = 'transform' THEN COALESCE(cost, 0) ELSE 0 END) AS transform_cost,
         AVG(CASE WHEN tps IS NOT NULL AND tps > 0 THEN tps ELSE NULL END) AS avg_tps
       FROM api_calls ${where}
       GROUP BY model
@@ -807,7 +860,8 @@ app.get("/api/calls/summary-by-model", (req, res) => {
       (acc, r) => {
         const tc = r.translation_calls || 0;
         const rc = r.rewrite_calls || 0;
-        const totalCalls = tc + rc;
+        const trc = r.transform_calls || 0;
+        const totalCalls = tc + rc + trc;
         const avgTps =
           r.avg_tps != null && Number(r.avg_tps) > 0 ? Number(r.avg_tps) : null;
         if (avgTps != null && totalCalls > 0) {
@@ -817,15 +871,19 @@ app.get("/api/calls/summary-by-model", (req, res) => {
         return {
           translation_calls: acc.translation_calls + tc,
           rewrite_calls: acc.rewrite_calls + rc,
+          transform_calls: acc.transform_calls + trc,
           translation_cost: acc.translation_cost + (r.translation_cost || 0),
           rewrite_cost: acc.rewrite_cost + (r.rewrite_cost || 0),
+          transform_cost: acc.transform_cost + (r.transform_cost || 0),
         };
       },
       {
         translation_calls: 0,
         rewrite_calls: 0,
+        transform_calls: 0,
         translation_cost: 0,
         rewrite_cost: 0,
+        transform_cost: 0,
       },
     );
     const totalAvgTps =
@@ -846,8 +904,10 @@ app.get("/api/calls/summary-by-day", (req, res) => {
       SELECT date(timestamp) AS day,
         SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,
         SUM(CASE WHEN type = 'rewrite' THEN 1 ELSE 0 END) AS rewrite_calls,
+        SUM(CASE WHEN type = 'transform' THEN 1 ELSE 0 END) AS transform_calls,
         SUM(CASE WHEN type = 'translate' THEN COALESCE(cost, 0) ELSE 0 END) AS translation_cost,
-        SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost
+        SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost,
+        SUM(CASE WHEN type = 'transform' THEN COALESCE(cost, 0) ELSE 0 END) AS transform_cost
       FROM api_calls ${where}
       GROUP BY date(timestamp)
       ORDER BY day DESC
@@ -900,6 +960,26 @@ app.get("/api/calls/summary-by-rewrite-style", (req, res) => {
   }
 });
 
+app.get("/api/calls/summary-by-transform-prompt", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+    const andPart = where ? where.replace(" WHERE ", "") : "";
+    const fullWhere = " WHERE type = 'transform'" + (andPart ? " AND " + andPart : "");
+    const sql = `
+      SELECT COALESCE(transform_prompt, '(none)') AS transform_prompt, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+      FROM api_calls ${fullWhere}
+      GROUP BY transform_prompt
+      ORDER BY calls DESC
+    `;
+    const rows = db.prepare(sql).all(...params);
+    res.json({ rows });
+  } catch (err) {
+    log.error("[API] GET /api/calls/summary-by-transform-prompt - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/api/calls/all", (req, res) => {
   if (!db) return res.status(503).json({ error: "Database unavailable" });
   try {
@@ -934,8 +1014,10 @@ app.get("/api/calls/summary-by-day-paginated", (req, res) => {
       SELECT date(timestamp) AS day,
         SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,
         SUM(CASE WHEN type = 'rewrite' THEN 1 ELSE 0 END) AS rewrite_calls,
+        SUM(CASE WHEN type = 'transform' THEN 1 ELSE 0 END) AS transform_calls,
         SUM(CASE WHEN type = 'translate' THEN COALESCE(cost, 0) ELSE 0 END) AS translation_cost,
-        SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost
+        SUM(CASE WHEN type = 'rewrite' THEN COALESCE(cost, 0) ELSE 0 END) AS rewrite_cost,
+        SUM(CASE WHEN type = 'transform' THEN COALESCE(cost, 0) ELSE 0 END) AS transform_cost
       FROM api_calls ${where}
       GROUP BY date(timestamp) ORDER BY day DESC LIMIT ? OFFSET ?
     `;
@@ -985,6 +1067,140 @@ app.delete("/api/calls", (req, res) => {
     res.json({ success: true });
   } catch (err) {
     log.error("[API] DELETE /api/calls - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// --- Custom prompts (Transform feature) ---
+app.get("/api/custom-prompts", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const rows = db.prepare("SELECT * FROM custom_prompts ORDER BY name ASC").all();
+    res.json(rows);
+  } catch (err) {
+    log.error("[API] GET /api/custom-prompts - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/custom-prompts", (req, res) => {
+  setSessionRefreshCookie(req, res);
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const b = req.body || {};
+    const now = new Date().toISOString();
+    const instructions = typeof b.instructions === "string" ? b.instructions : JSON.stringify(b.instructions || []);
+    const result = db.prepare(
+      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    ).run(
+      b.name || "",
+      b.role || "",
+      instructions,
+      b.output_description ?? "transformed",
+      b.temperature ?? 0.4,
+      b.target_language ?? null,
+      now,
+      now
+    );
+    res.status(201).json({ id: result.lastInsertRowid, success: true });
+  } catch (err) {
+    log.error("[API] POST /api/custom-prompts - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/api/custom-prompts/:id", (req, res) => {
+  setSessionRefreshCookie(req, res);
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (!Number.isFinite(id)) return res.status(400).json({ error: "Invalid id" });
+    const b = req.body || {};
+    const now = new Date().toISOString();
+    const instructions = typeof b.instructions === "string" ? b.instructions : JSON.stringify(b.instructions || []);
+    const result = db.prepare(
+      `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE id = ?`
+    ).run(
+      b.name || "",
+      b.role || "",
+      instructions,
+      b.output_description ?? "transformed",
+      b.temperature ?? 0.4,
+      b.target_language ?? null,
+      now,
+      id
+    );
+    if (result.changes === 0) return res.status(404).json({ error: "Prompt not found" });
+    res.json({ success: true });
+  } catch (err) {
+    log.error("[API] PUT /api/custom-prompts/:id - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete("/api/custom-prompts/:id", (req, res) => {
+  setSessionRefreshCookie(req, res);
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (!Number.isFinite(id)) return res.status(400).json({ error: "Invalid id" });
+    const result = db.prepare("DELETE FROM custom_prompts WHERE id = ?").run(id);
+    if (result.changes === 0) return res.status(404).json({ error: "Prompt not found" });
+    res.json({ success: true });
+  } catch (err) {
+    log.error("[API] DELETE /api/custom-prompts/:id - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/custom-prompts/export", (req, res) => {
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const rows = db.prepare("SELECT * FROM custom_prompts ORDER BY name ASC").all();
+    res.json(rows);
+  } catch (err) {
+    log.error("[API] GET /api/custom-prompts/export - Error: " + err.message, { stack: err.stack });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/custom-prompts/import", (req, res) => {
+  setSessionRefreshCookie(req, res);
+  if (!db) return res.status(503).json({ error: "Database unavailable" });
+  try {
+    const body = Array.isArray(req.body) ? req.body : (req.body?.prompts || []);
+    const mode = req.body?.mode || "merge"; // merge | replace
+    const now = new Date().toISOString();
+    if (mode === "replace") {
+      db.prepare("DELETE FROM custom_prompts").run();
+    }
+    const insert = db.prepare(
+      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    );
+    const update = db.prepare(
+      `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE name = ?`
+    );
+    let count = 0;
+    for (const p of body) {
+      if (!p || !p.name) continue;
+      const instructions = typeof p.instructions === "string" ? p.instructions : JSON.stringify(p.instructions || []);
+      try {
+        insert.run(p.name, p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, p.target_language ?? null, p.created_at || now, now);
+        count++;
+      } catch (e) {
+        if (mode === "merge" && /UNIQUE constraint/.test(e.message)) {
+          update.run(p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, p.target_language ?? null, now, p.name);
+          count++;
+        } else {
+          throw e;
+        }
+      }
+    }
+    res.json({ success: true, count });
+  } catch (err) {
+    log.error("[API] POST /api/custom-prompts/import - Error: " + err.message, { stack: err.stack });
     res.status(500).json({ error: err.message });
   }
 });

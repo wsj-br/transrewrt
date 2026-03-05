@@ -61,6 +61,44 @@ function buildRewriteSystemPrompt(styleConfig) {
   return resolvePrompt(lines);
 }
 
+/**
+ * Build system prompt for Transform (custom prompts).
+ * @param {Object} promptConfig - { role, instructions (array or JSON string), output_description, target_language? }
+ * @param {string|null} targetLang - Override target language for this run (e.g. "Spanish")
+ * @returns {string}
+ */
+function buildTransformSystemPrompt(promptConfig, targetLang) {
+  const shared = prompts.shared.transform;
+  if (!shared) throw new Error("prompts.shared.transform not found");
+  const instructions = Array.isArray(promptConfig.instructions)
+    ? promptConfig.instructions
+    : (() => {
+        try {
+          const parsed = JSON.parse(promptConfig.instructions || "[]");
+          return Array.isArray(parsed) ? parsed : [String(promptConfig.instructions || "")];
+        } catch (_) {
+          return [String(promptConfig.instructions || "")];
+        }
+      })();
+  const outputDesc = promptConfig.output_description ?? "transformed";
+  const common = shared.common.map((line) =>
+    line.replace(/\{\{outputDescription\}\}/g, outputDesc)
+  );
+  const lines = [
+    promptConfig.role || "You are a helpful assistant.",
+    "",
+    "Your task:",
+    ...instructions,
+    "",
+    ...common,
+  ];
+  if (targetLang != null && String(targetLang).trim() !== "") {
+    lines.push(`- Write the output in ${targetLang}`);
+  }
+  lines.push("", ...shared.footer);
+  return resolvePrompt(lines);
+}
+
 const BASE_PATH = getBasePath();
 
 // API service to communicate with the backend
@@ -503,6 +541,41 @@ class APIService {
       return {
         error: error.message,
       };
+    }
+  }
+
+  /**
+   * Transform text with a custom prompt config.
+   * @param {string} text - Input text
+   * @param {Object} promptConfig - Custom prompt (name, role, instructions, output_description, temperature, target_language)
+   * @param {string} model - Model id
+   * @param {string|null} targetLang - Override target language (or use prompt's default)
+   * @param {AbortSignal|null} signal
+   * @returns {Promise<Object>} Same shape as rewrite() (content, usage, model, etc.)
+   */
+  async transform(text, promptConfig, model, targetLang = null, signal = null) {
+    try {
+      const systemPrompt = buildTransformSystemPrompt(promptConfig, targetLang);
+      const temperature = Number(promptConfig.temperature) ?? 0.4;
+      const userMessage = `<transform>${text}</transform>`;
+      return await this._streamChatCompletion(
+        systemPrompt,
+        userMessage,
+        model,
+        temperature,
+        signal,
+        "transform",
+        { transform_prompt: promptConfig.name ?? null },
+      );
+    } catch (error) {
+      if (error.name === "AbortError") throw error;
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("Transform error:", error);
+      return { error: error.message };
     }
   }
 

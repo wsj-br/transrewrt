@@ -8,6 +8,7 @@ import {
   Lock,
   DollarSign,
   Info,
+  Sparkles,
 } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
@@ -16,6 +17,7 @@ import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
 import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
 import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
+import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/configManager";
@@ -351,6 +353,13 @@ const SettingsPanel = () => {
         >
           <DollarSign size={16} /> Cost Tracking
         </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === "transform" ? "active" : ""}`}
+          onClick={() => handleTabChange("transform")}
+        >
+          <Sparkles size={16} /> Transform
+        </button>
         {!isWeb && (
           <button
             type="button"
@@ -442,6 +451,8 @@ const SettingsPanel = () => {
             isTabActive={costTabActivationCount}
           />
         )}
+
+        {activeTab === "transform" && <SettingsDialogTransformPromptsTab />}
 
         {!isWeb && activeTab === "api" && (
           <SettingsDialogApiTab

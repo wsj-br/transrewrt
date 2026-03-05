@@ -5,6 +5,10 @@ import MainContent from "./MainContent";
 import TextPanel from "./TextPanel";
 import LanguageSelector from "./LanguageSelector";
 import StyleSelector from "./StyleSelector";
+import TransformPromptSelector from "./TransformPromptSelector";
+import TransformPromptEditor from "./TransformPromptEditor";
+import TransformTestPanel from "./TransformTestPanel";
+import ConfirmModal from "./ConfirmModal";
 import LoginModal from "./LoginModal";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/webApiClient";
@@ -175,7 +179,7 @@ function formatElapsedMmSs(seconds) {
 
 const App = () => {
   const styles = useStyles();
-  const { settings, translate, rewrite, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading } =
+  const { settings, translate, rewrite, transform, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading } =
     useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
@@ -204,6 +208,21 @@ const App = () => {
 
   // Style selection state (persisted as rewrite_style)
   const [rewriteStyle, setRewriteStyle] = useState(() => settings.rewrite_style || "Check Spelling & Grammar");
+
+  // Transform mode state
+  const [transformPrompts, setTransformPrompts] = useState([]);
+  const [transformPromptId, setTransformPromptId] = useState(() => settings.transform_prompt ?? null);
+  const [transformEditMode, setTransformEditMode] = useState(false);
+  const [editingPrompt, setEditingPrompt] = useState(null);
+  const [inputTextTransform, setInputTextTransform] = useState("");
+  const [outputTextTransform, setOutputTextTransform] = useState("");
+  const [transformTargetLang, setTransformTargetLang] = useState("");
+  const [transformTestInput, setTransformTestInput] = useState("");
+  const [transformTestOutput, setTransformTestOutput] = useState("");
+  const [transformTestMeta, setTransformTestMeta] = useState("");
+  const [transformTestRunning, setTransformTestRunning] = useState(false);
+  const [transformEditorDraft, setTransformEditorDraft] = useState(null);
+  const [transformPromptToDelete, setTransformPromptToDelete] = useState(null);
 
   // Sync targetLanguage from settings when config loads
   useEffect(() => {
@@ -242,6 +261,34 @@ const App = () => {
       setRewriteStyle(settings.rewrite_style);
     }
   }, [settings.rewrite_style]);
+
+  // Sync transform_prompt from settings
+  useEffect(() => {
+    if (settings?.transform_prompt !== undefined) {
+      setTransformPromptId(settings.transform_prompt);
+    }
+  }, [settings.transform_prompt]);
+
+  // Load custom prompts when showing the transform workspace (so list is fresh after e.g. import in Settings > Transform)
+  useEffect(() => {
+    if (currentMode !== "transform" || currentView !== "workspace") return;
+    const api = window.electronAPI?.customPrompts ?? webAPI.customPrompts;
+    if (!api?.getAll) return;
+    api.getAll().then((list) => setTransformPrompts(Array.isArray(list) ? list : [])).catch(() => setTransformPrompts([]));
+  }, [currentMode, currentView]);
+
+  // When prompts load: reselect last used if it exists in the list, otherwise select first prompt (so one is always selected when any exist)
+  useEffect(() => {
+    if (transformPrompts.length === 0) return;
+    const match = transformPrompts.find(
+      (p) => String(p.id) === String(transformPromptId) || p.name === transformPromptId
+    );
+    if (!match) {
+      const first = transformPrompts[0];
+      setTransformPromptId(first.id);
+      updateSettings({ transform_prompt: first.name });
+    }
+  }, [transformPrompts, transformPromptId, updateSettings]);
 
   // Persist target language when it changes, but only after config is loaded
   useEffect(() => {
@@ -642,6 +689,257 @@ const App = () => {
     }
   };
 
+  // Transform Run: run transform with selected prompt
+  const runTransform = async (signal) => {
+    const text = inputTextTransform.trim();
+    if (!text) return;
+    const selected = transformPrompts.find(
+      (p) => String(p.id) === String(transformPromptId) || p.name === transformPromptId
+    );
+    if (!selected) return;
+    const promptConfig = {
+      name: selected.name,
+      role: selected.role,
+      instructions: selected.instructions,
+      output_description: selected.output_description ?? "transformed",
+      temperature: Number(selected.temperature) ?? 0.4,
+      target_language: selected.target_language ?? null,
+    };
+    const lang = selected.target_language ? (transformTargetLang || selected.target_language) : null;
+    processingModeRef.current = "transform";
+    setIsProcessing(true);
+    setOutputTextTransform("transforming...");
+    setLastRunCost(0);
+    setLastRunModel(null);
+    setElapsedTime(0);
+    setTokensPerSecond(0);
+    startTimeRef.current = Date.now();
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      if (startTimeRef.current) setElapsedTime((Date.now() - startTimeRef.current) / 1000);
+    }, 100);
+    tpsCalculationRef.current = { startTime: Date.now(), tokens: 0 };
+    try {
+      const result = await transform(text, promptConfig, activeModel, lang, signal);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      startTimeRef.current = null;
+      setIsProcessing(false);
+      const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+      const durationSec = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
+      const tps = durationSec > 0 ? totalTokens / durationSec : 0;
+      setTokensPerSecond(tps);
+      setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+      setLastRunModel(result.model_used || result.model || null);
+      if (cancelledByUserRef.current) return;
+      if (result.content) {
+        const cleaned = result.content.replace(/^\s*\n+/, "");
+        setOutputTextTransform(cleaned);
+        if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
+      }
+      if (result.cancelled) {
+        setOutputTextTransform(
+          result.content
+            ? `Transform stopped by user.\n\nPartial result (${totalTokens} tokens, ${result.calculated_cost ? "$" + result.calculated_cost.toFixed(5) : "free"})`
+            : "Transform stopped by user."
+        );
+      } else if (result.error) {
+        setOutputTextTransform(`Error: ${result.error}`);
+      }
+    } catch (err) {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      startTimeRef.current = null;
+      setIsProcessing(false);
+      setLastRunCost(0);
+      setLastRunModel(null);
+      const isAbort = err.name === "AbortError" || (err.message && String(err.message).includes("Failed to fetch"));
+      if (isAbort && !cancelledByUserRef.current) setOutputTextTransform("Transform stopped by user.");
+      else setOutputTextTransform(`Error: ${err.message}`);
+    } finally {
+      abortControllerRef.current = null;
+      processingModeRef.current = null;
+      if (!cancelledByUserRef.current && currentModeRef.current !== "transform") {
+        setCurrentMode("transform");
+        updateSettings({ app_mode: "transform" });
+      }
+    }
+  };
+
+  const handleTransform = () => {
+    if (isProcessing) {
+      cancelledByUserRef.current = true;
+      setOutputTextTransform("Transform stopped by user.");
+      if (abortControllerRef.current) abortControllerRef.current.abort();
+      stopProcessing();
+      return;
+    }
+    cancelledByUserRef.current = false;
+    abortControllerRef.current = new AbortController();
+    runTransform(abortControllerRef.current.signal);
+  };
+
+  const handleTransformPromptSelect = (id, name) => {
+    setTransformPromptId(id);
+    updateSettings({ transform_prompt: name ?? id });
+    const p = transformPrompts.find((x) => String(x.id) === String(id) || x.name === name);
+    if (p?.target_language) setTransformTargetLang(p.target_language);
+    else setTransformTargetLang("");
+  };
+
+  const handleTransformNewPrompt = () => {
+    setEditingPrompt(null);
+    setTransformEditMode(true);
+  };
+
+  const handleTransformEditPrompt = (prompt) => {
+    setEditingPrompt(prompt ?? null);
+    setTransformEditMode(true);
+  };
+
+  const handleTransformDuplicate = async (prompt) => {
+    if (!prompt) return;
+    const api = window.electronAPI?.customPrompts ?? webAPI.customPrompts;
+    if (!api) return;
+    const baseName = (prompt.name || "Prompt").trim();
+    let copyName = `${baseName} (copy)`;
+    const existingNames = new Set(transformPrompts.map((p) => p.name));
+    for (let n = 2; existingNames.has(copyName); n++) {
+      copyName = `${baseName} (copy ${n})`;
+    }
+    try {
+      const instructions = typeof prompt.instructions === "string" ? prompt.instructions : JSON.stringify(prompt.instructions || []);
+      const res = await api.create({
+        name: copyName,
+        role: prompt.role || "",
+        instructions,
+        output_description: prompt.output_description ?? "transformed",
+        temperature: Number(prompt.temperature) ?? 0.4,
+        target_language: prompt.target_language ?? null,
+      });
+      if (res?.error) throw new Error(res.error);
+      const list = await api.getAll();
+      setTransformPrompts(Array.isArray(list) ? list : []);
+      const added = Array.isArray(list) ? list.find((p) => p.name === copyName) : null;
+      if (added) {
+        setTransformPromptId(added.id);
+        updateSettings({ transform_prompt: added.name });
+        setEditingPrompt(added);
+        setTransformEditMode(true);
+      }
+    } catch (err) {
+      console.error("Duplicate prompt failed:", err);
+      setError(err.message || "Failed to duplicate prompt");
+    }
+  };
+
+  const handleTransformBackToRun = () => {
+    setTransformEditMode(false);
+    setEditingPrompt(null);
+  };
+
+  const handleTransformSave = async (payload) => {
+    const api = window.electronAPI?.customPrompts ?? webAPI.customPrompts;
+    if (!api) return;
+    try {
+      if (editingPrompt?.id != null) {
+        const res = await api.update(editingPrompt.id, payload);
+        if (res?.error) throw new Error(res.error);
+      } else {
+        const res = await api.create(payload);
+        if (res?.error) throw new Error(res.error);
+        const newId = res?.id;
+        if (newId != null) {
+          const list = await api.getAll();
+          const added = Array.isArray(list) ? list.find((p) => p.id === newId || p.name === payload.name) : null;
+          if (added) {
+            setTransformPromptId(added.id);
+            updateSettings({ transform_prompt: added.name });
+          }
+        }
+      }
+      const list = await api.getAll();
+      setTransformPrompts(Array.isArray(list) ? list : []);
+      if (editingPrompt?.id != null) {
+        setTransformPromptId(editingPrompt.id);
+        updateSettings({ transform_prompt: payload.name });
+      }
+      setTransformEditMode(false);
+      setEditingPrompt(null);
+    } catch (err) {
+      console.error("Save prompt failed:", err);
+      setError(err.message || "Failed to save prompt");
+    }
+  };
+
+  const handleTransformDeleteRequest = (prompt) => {
+    if (prompt?.id != null) setTransformPromptToDelete(prompt);
+  };
+
+  const handleConfirmTransformDelete = async () => {
+    const prompt = transformPromptToDelete;
+    if (!prompt?.id) {
+      setTransformPromptToDelete(null);
+      return;
+    }
+    const api = window.electronAPI?.customPrompts ?? webAPI.customPrompts;
+    if (!api) {
+      setTransformPromptToDelete(null);
+      return;
+    }
+    try {
+      const res = await api.delete(prompt.id);
+      if (res?.error) throw new Error(res.error);
+      const list = await api.getAll();
+      setTransformPrompts(Array.isArray(list) ? list : []);
+      setTransformPromptId(null);
+      updateSettings({ transform_prompt: null });
+      setTransformEditMode(false);
+      setEditingPrompt(null);
+    } catch (err) {
+      console.error("Delete prompt failed:", err);
+      setError(err.message || "Failed to delete prompt");
+    } finally {
+      setTransformPromptToDelete(null);
+    }
+  };
+
+  const handleTransformTest = async () => {
+    const text = transformTestInput.trim();
+    const config = transformEditorDraft || editingPrompt;
+    if (!text || !config) return;
+    const promptConfig = {
+      name: config.name,
+      role: config.role,
+      instructions: config.instructions,
+      output_description: config.output_description ?? "transformed",
+      temperature: Number(config.temperature) ?? 0.4,
+      target_language: config.target_language ?? null,
+    };
+    setTransformTestRunning(true);
+    setTransformTestOutput("Testing…");
+    const start = Date.now();
+    try {
+      const result = await transform(text, promptConfig, activeModel, promptConfig.target_language || null, null);
+      const durationSec = (Date.now() - start) / 1000;
+      const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+      const tps = durationSec > 0 ? totalTokens / durationSec : 0;
+      setTransformTestMeta(
+        `Time: ${formatElapsedMmSs(durationSec)} | Cost: ${result.calculated_cost ? `$${result.calculated_cost.toFixed(5)}` : "free"} | TPS: ${tps.toFixed(1)}`
+      );
+      setTransformTestOutput(result.content ? result.content.replace(/^\s*\n+/, "") : result.error ? `Error: ${result.error}` : "—");
+    } catch (err) {
+      setTransformTestMeta("");
+      setTransformTestOutput(`Error: ${err.message}`);
+    } finally {
+      setTransformTestRunning(false);
+    }
+  };
+
   // Start-only action for debounce: never aborts. Prevents mode switch from
   // re-running the debounce and accidentally stopping the in-flight request.
   const runActionStartOnlyRef = useRef(null);
@@ -649,9 +947,10 @@ const App = () => {
     if (isProcessing) return;
     if (currentMode === "translate") {
       handleTranslate();
-    } else {
+    } else if (currentMode === "rewrite") {
       handleRewrite();
     }
+    // Transform: no debounce run
   };
   const handleRunActionStartOnly = useCallback(() => {
     runActionStartOnlyRef.current?.();
@@ -659,21 +958,23 @@ const App = () => {
 
   const handleRunAction = useCallback(() => {
     if (isProcessing) {
-      // Route the stop to whichever mode is actually running so the correct
-      // "stopped" message is written to the right output panel.
       if (processingModeRef.current === "translate") {
         handleTranslate();
-      } else {
+      } else if (processingModeRef.current === "rewrite") {
         handleRewrite();
+      } else if (processingModeRef.current === "transform") {
+        handleTransform();
       }
       return;
     }
     if (currentMode === "translate") {
       handleTranslate();
-    } else {
+    } else if (currentMode === "rewrite") {
       handleRewrite();
+    } else if (currentMode === "transform") {
+      handleTransform();
     }
-  }, [currentMode, isProcessing, handleTranslate, handleRewrite]);
+  }, [currentMode, isProcessing, handleTranslate, handleRewrite, handleTransform]);
 
   const { pasteToInput, handlePasteEvent, shouldAutoProcessRef } = usePasteHandler(
     setInputText,
@@ -706,6 +1007,11 @@ const App = () => {
     return [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) => a.localeCompare(b));
   }, [languages]);
 
+  const selectedTransformPrompt = transformPrompts.find(
+    (p) => String(p.id) === String(transformPromptId) || p.name === transformPromptId
+  );
+  const showTransformLangSelector = selectedTransformPrompt?.target_language != null && selectedTransformPrompt?.target_language !== "";
+
   const leftPanelControls =
     currentMode === "translate" ? (
       <LanguageSelector
@@ -717,7 +1023,7 @@ const App = () => {
         detectLanguage={true}
         iconColor={tokens.colorBrandForeground1}
       />
-    ) : (
+    ) : currentMode === "rewrite" ? (
       <StyleSelector
         label="Style:"
         value={rewriteStyle}
@@ -725,7 +1031,7 @@ const App = () => {
         styles={rewriteStyles}
         iconColor={tokens.colorPaletteLavenderBorderActive}
       />
-    );
+    ) : null;
 
   const rightPanelControls = currentMode === "translate" && (
     <LanguageSelector
@@ -740,74 +1046,200 @@ const App = () => {
 
   const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${formatElapsedMmSs(elapsedTime)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
 
-  const leftPanel = (
-    <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{leftPanelControls}</div>
-      <div className={styles.panelFill}>
-        <TextPanel
-          title="Input"
-          text={inputText}
-          onTextChange={setInputText}
-          placeholder="Enter text here..."
-          footerStats={getInputStats()}
-          onClear={clearInput}
-          onPaste={pasteToInput}
-          onPasteEvent={handlePasteEvent}
-          fontFamily={settings?.font_family}
-          fontSize={settings?.font_size}
-          textColor={settings?.input_text_color}
-        />
+  let leftPanel, rightPanel;
+  if (currentMode === "transform" && transformEditMode) {
+    leftPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelFill}>
+          <TransformPromptEditor
+            initialPrompt={editingPrompt}
+            languages={allLanguages}
+            fontFamily={settings?.font_family}
+            fontSize={settings?.font_size}
+            textColor={settings?.input_text_color}
+            onSave={handleTransformSave}
+            onDelete={handleTransformDeleteRequest}
+            onBackToRun={handleTransformBackToRun}
+            onDraftChange={setTransformEditorDraft}
+          />
+        </div>
       </div>
-      <div className={styles.runButtonContainer}>
-        <Button
-          appearance="primary"
-          onClick={handleRunAction}
-          className={styles.runButton}
-          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
-        >
-          {isProcessing
-            ? `Stop ${processingModeRef.current === "translate" ? "Translate" : "Rewrite"}`
-            : currentMode === "translate"
-            ? "Translate"
-            : "Rewrite"}
-          {!isProcessing && (
-            <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? "(Shift+Enter)" : "(Enter)"}
-            </span>
+    );
+    rightPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelFill}>
+          <TransformTestPanel
+            testInput={transformTestInput}
+            onTestInputChange={setTransformTestInput}
+            onTest={handleTransformTest}
+            output={transformTestOutput}
+            outputMeta={transformTestMeta}
+            isTesting={transformTestRunning}
+            onCopy={() => navigator.clipboard.writeText(transformTestOutput)}
+          />
+        </div>
+      </div>
+    );
+  } else if (currentMode === "transform") {
+    leftPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelControls}>
+          <TransformPromptSelector
+            prompts={transformPrompts}
+            selectedId={transformPromptId}
+            selectedName={selectedTransformPrompt?.name}
+            onSelect={handleTransformPromptSelect}
+            onNew={handleTransformNewPrompt}
+            onEdit={handleTransformEditPrompt}
+            onDuplicate={handleTransformDuplicate}
+            disabled={isProcessing}
+          />
+          {showTransformLangSelector && (
+            <LanguageSelector
+              label="Target:"
+              value={transformTargetLang || selectedTransformPrompt?.target_language}
+              onChange={setTransformTargetLang}
+              languages={languages}
+              allLanguages={allLanguages}
+              iconColor={tokens.colorStatusWarningForeground3}
+            />
           )}
-        </Button>
+        </div>
+        <div className={styles.panelFill}>
+          <TextPanel
+            title="Input"
+            text={inputTextTransform}
+            onTextChange={setInputTextTransform}
+            placeholder="Enter text to transform..."
+            footerStats={(() => {
+              const t = inputTextTransform;
+              const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+              return `Chars: ${t.length} | Words: ${words}`;
+            })()}
+            onClear={() => {
+              setInputTextTransform("");
+              setOutputTextTransform("");
+            }}
+            fontFamily={settings?.font_family}
+            fontSize={settings?.font_size}
+            textColor={settings?.input_text_color}
+          />
+        </div>
+        <div className={styles.runButtonContainer}>
+          <Button
+            appearance="primary"
+            onClick={handleRunAction}
+            className={styles.runButton}
+            icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
+            disabled={!selectedTransformPrompt}
+          >
+            {isProcessing ? "Stop Transform" : "Transform"}
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
+    rightPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelControls} />
+        <div className={styles.panelFill}>
+          <TextPanel
+            title="Output"
+            text={outputTextTransform}
+            onTextChange={setOutputTextTransform}
+            placeholder="Output will appear here..."
+            readOnly={true}
+            headerMeta={outputMeta}
+            footerStats={
+              <>
+                {(() => {
+                  const t = outputTextTransform;
+                  const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+                  return `Chars: ${t.length} | Words: ${words}`;
+                })()}
+                <br />
+                Model: {lastRunModel || "N/A"}
+              </>
+            }
+            footerAlign="left"
+            onCopy={() => navigator.clipboard.writeText(outputTextTransform)}
+            fontFamily={settings?.font_family}
+            fontSize={settings?.font_size}
+            textColor={settings?.output_text_color}
+          />
+        </div>
+        <div className={styles.runButtonContainer} aria-hidden="true" />
+      </div>
+    );
+  } else {
+    leftPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelControls}>{leftPanelControls}</div>
+        <div className={styles.panelFill}>
+          <TextPanel
+            title="Input"
+            text={inputText}
+            onTextChange={setInputText}
+            placeholder="Enter text here..."
+            footerStats={getInputStats()}
+            onClear={clearInput}
+            onPaste={pasteToInput}
+            onPasteEvent={handlePasteEvent}
+            fontFamily={settings?.font_family}
+            fontSize={settings?.font_size}
+            textColor={settings?.input_text_color}
+          />
+        </div>
+        <div className={styles.runButtonContainer}>
+          <Button
+            appearance="primary"
+            onClick={handleRunAction}
+            className={styles.runButton}
+            icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
+          >
+            {isProcessing
+              ? `Stop ${processingModeRef.current === "translate" ? "Translate" : "Rewrite"}`
+              : currentMode === "translate"
+              ? "Translate"
+              : "Rewrite"}
+            {!isProcessing && (
+              <span className={styles.runButtonShortcut}>
+                {settings?.enter_behavior === "Shift-Execute" ? "(Shift+Enter)" : "(Enter)"}
+              </span>
+            )}
+          </Button>
+        </div>
+      </div>
+    );
 
-  const rightPanel = (
-    <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{rightPanelControls}</div>
-      <div className={styles.panelFill}>
-        <TextPanel
-          title="Output"
-          text={outputText}
-          onTextChange={currentMode === "translate" ? setOutputTextTranslate : setOutputTextRewrite}
-          placeholder="Output will appear here..."
-          readOnly={true}
-          headerMeta={outputMeta}
-          footerStats={
-            <>
-              {getOutputStats()}
-              <br />
-              Model: {lastRunModel || "N/A"}
-            </>
-          }
-          footerAlign="left"
-          onCopy={copyOutput}
-          fontFamily={settings?.font_family}
-          fontSize={settings?.font_size}
-          textColor={settings?.output_text_color}
-        />
+    rightPanel = (
+      <div className={styles.panelStack}>
+        <div className={styles.panelControls}>{rightPanelControls}</div>
+        <div className={styles.panelFill}>
+          <TextPanel
+            title="Output"
+            text={outputText}
+            onTextChange={currentMode === "translate" ? setOutputTextTranslate : setOutputTextRewrite}
+            placeholder="Output will appear here..."
+            readOnly={true}
+            headerMeta={outputMeta}
+            footerStats={
+              <>
+                {getOutputStats()}
+                <br />
+                Model: {lastRunModel || "N/A"}
+              </>
+            }
+            footerAlign="left"
+            onCopy={copyOutput}
+            fontFamily={settings?.font_family}
+            fontSize={settings?.font_size}
+            textColor={settings?.output_text_color}
+          />
+        </div>
+        <div className={styles.runButtonContainer} aria-hidden="true" />
       </div>
-      <div className={styles.runButtonContainer} aria-hidden="true" />
-    </div>
-  );
+    );
+  }
 
   // Render API key missing/invalid modal (web: server API_KEY check at startup)
   const renderApiKeyMissingModal = () => {
@@ -880,43 +1312,55 @@ const App = () => {
     const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
     const webFrameClass = useMargin ? styles.webFrame : styles.webFrameSquare;
     return (
-      <div id="root" className={webOuterClass} data-web-outer>
-        <div className={webFrameClass}>
-          <div className={styles.rootInWeb}>
-            {isWeb && needsLogin && (
-              <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
-            )}
-            {renderApiKeyMissingModal()}
-            <div className="app-container">
-              <Sidebar
-                currentMode={currentMode}
-                currentView={currentView}
-                onModeChange={handleModeChange}
-                onDashboardClick={handleDashboardClick}
-                onSettingsClick={() => {
-                  setCurrentView("settings");
-                  if (isWeb) setSetting("web_view", "settings");
-                }}
-              />
-              <MainContent
-                view={currentView}
-                currentMode={currentMode}
-                models={models}
-                activeModel={activeModel}
-                onModelChange={(model) => updateSettings({ last_used_model: model })}
-                onOpenSettingsModels={() => {
-                  updateSettings({ settings_active_tab: "models" });
-                  setCurrentView("settings");
-                  if (isWeb) setSetting("web_view", "settings");
-                }}
-                onRemoveModel={removeModelFromList}
-                leftPanel={leftPanel}
-                rightPanel={rightPanel}
-              />
+      <>
+        <div id="root" className={webOuterClass} data-web-outer>
+          <div className={webFrameClass}>
+            <div className={styles.rootInWeb}>
+              {isWeb && needsLogin && (
+                <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
+              )}
+              {renderApiKeyMissingModal()}
+              <div className="app-container">
+                <Sidebar
+                  currentMode={currentMode}
+                  currentView={currentView}
+                  onModeChange={handleModeChange}
+                  onDashboardClick={handleDashboardClick}
+                  onSettingsClick={() => {
+                    setCurrentView("settings");
+                    if (isWeb) setSetting("web_view", "settings");
+                  }}
+                />
+                <MainContent
+                  view={currentView}
+                  currentMode={currentMode}
+                  models={models}
+                  activeModel={activeModel}
+                  onModelChange={(model) => updateSettings({ last_used_model: model })}
+                  onOpenSettingsModels={() => {
+                    updateSettings({ settings_active_tab: "models" });
+                    setCurrentView("settings");
+                    if (isWeb) setSetting("web_view", "settings");
+                  }}
+                  onRemoveModel={removeModelFromList}
+                  leftPanel={leftPanel}
+                  rightPanel={rightPanel}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        {transformPromptToDelete != null && (
+          <ConfirmModal
+            title="Delete prompt"
+            message={`Delete the prompt "${transformPromptToDelete.name || "Untitled"}"? This cannot be undone.`}
+            confirmLabel="Delete"
+            cancelLabel="Cancel"
+            onConfirm={handleConfirmTransformDelete}
+            onCancel={() => setTransformPromptToDelete(null)}
+          />
+        )}
+      </>
     );
   }
 
@@ -948,6 +1392,16 @@ const App = () => {
           rightPanel={rightPanel}
         />
       </div>
+      {transformPromptToDelete != null && (
+        <ConfirmModal
+          title="Delete prompt"
+          message={`Delete the prompt "${transformPromptToDelete.name || "Untitled"}"? This cannot be undone.`}
+          confirmLabel="Delete"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirmTransformDelete}
+          onCancel={() => setTransformPromptToDelete(null)}
+        />
+      )}
     </div>
   );
 };

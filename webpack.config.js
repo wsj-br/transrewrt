@@ -80,10 +80,10 @@ module.exports = (env, argv) => {
     },
   },
   performance: {
-    // Entry: initial load JS/CSS. Allow ~1.6 MiB for React + Fluent UI + Recharts (web/Docker + Electron).
+    // Entry: initial load JS/CSS. Allow ~1.6 MiB for React + Fluent UI (Dashboard/Settings lazy-loaded).
     maxEntrypointSize: 1600000,
-    // Single asset limit (chunks, etc.). 512KB allows larger vendor chunks and avoids noisy warnings for big icons.
-    maxAssetSize: 512000,
+    // Single asset limit. Vendors (React, Fluent UI, etc.) ~1.1 MiB; Dashboard/Settings in separate lazy chunks.
+    maxAssetSize: 1200000,
     // Only apply size hints to JS/CSS; exclude images/icons so one large .ico doesn't trigger warnings.
     assetFilter(assetFilename) {
       return !/\.(ico|png|jpe?g|gif|svg|webp|woff2?)$/i.test(assetFilename);
@@ -93,7 +93,7 @@ module.exports = (env, argv) => {
     usedExports: true,
     splitChunks: {
       chunks: 'all',
-      maxInitialRequests: 5,
+      maxInitialRequests: 8,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
