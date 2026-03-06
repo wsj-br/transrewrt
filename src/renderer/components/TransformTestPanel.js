@@ -11,16 +11,16 @@ const useStyles = makeStyles({
     gap: tokens.spacingVerticalS,
   },
   inputSection: {
-    flex: "0 0 40%",
+    flex: "1 1 50%",
     minHeight: 0,
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacingVerticalXS,
   },
   inputLabel: {
-    fontSize: "12px",
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground3,
+    fontSize: "14px",
+    fontWeight: 500,
+    color: tokens.colorNeutralForeground1,
   },
   textarea: {
     flex: 1,
@@ -30,14 +30,12 @@ const useStyles = makeStyles({
     borderRadius: tokens.borderRadiusMedium,
     border: `1px solid ${tokens.colorNeutralStroke1}`,
     backgroundColor: tokens.colorNeutralBackground1,
-    fontFamily: "inherit",
-    fontSize: "14px",
   },
   testButton: {
     alignSelf: "flex-start",
   },
   outputSection: {
-    flex: "1 1 60%",
+    flex: "1 1 50%",
     minHeight: 0,
     display: "flex",
     flexDirection: "column",
@@ -54,7 +52,6 @@ const useStyles = makeStyles({
     borderRadius: tokens.borderRadiusMedium,
     border: `1px solid ${tokens.colorNeutralStroke1}`,
     backgroundColor: tokens.colorNeutralBackground2,
-    fontSize: "14px",
     whiteSpace: "pre-wrap",
     wordBreak: "break-word",
     overflow: "auto",
@@ -73,8 +70,28 @@ const TransformTestPanel = ({
   outputMeta,
   isTesting,
   onCopy,
+  fontFamily,
+  fontSize,
+  inputTextColor,
+  outputTextColor,
 }) => {
   const styles = useStyles();
+  const inputStyle = React.useMemo(
+    () => ({
+      ...(fontFamily && { fontFamily }),
+      ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
+      ...(inputTextColor && { color: inputTextColor }),
+    }),
+    [fontFamily, fontSize, inputTextColor]
+  );
+  const outputStyle = React.useMemo(
+    () => ({
+      ...(fontFamily && { fontFamily }),
+      ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
+      ...(outputTextColor && { color: outputTextColor }),
+    }),
+    [fontFamily, fontSize, outputTextColor]
+  );
 
   return (
     <div className={styles.root}>
@@ -86,6 +103,7 @@ const TransformTestPanel = ({
           onChange={(e) => onTestInputChange?.(e.target.value)}
           placeholder="Paste text to test..."
           aria-label="Test input"
+          style={inputStyle}
         />
         <Button
           appearance="primary"
@@ -100,7 +118,7 @@ const TransformTestPanel = ({
       <div className={styles.outputSection}>
         <label className={styles.inputLabel}>Output</label>
         {outputMeta && <div className={styles.outputMeta}>{outputMeta}</div>}
-        <div className={styles.outputArea} role="region" aria-label="Test output">
+        <div className={styles.outputArea} role="region" aria-label="Test output" style={outputStyle}>
           {output || "—"}
         </div>
         {output && (

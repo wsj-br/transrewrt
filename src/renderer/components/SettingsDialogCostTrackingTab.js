@@ -673,6 +673,7 @@ const SettingsDialogCostTrackingTab = ({
           cancelLabel="Cancel"
           onConfirm={executeDeleteCostData}
           onCancel={() => setShowDeleteConfirm(false)}
+          danger
         />
       )}
     </div>

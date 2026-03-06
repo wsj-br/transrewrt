@@ -1,5 +1,6 @@
 /**
- * SQLite cost-tracking DB for Electron (same schema as server).
+ * SQLite app DB for Electron (same schema as server).
+ * Holds api_calls (cost/API log) and custom_prompts (transform prompts).
  * DB path: userData/transrewrt.db. Legacy poliverb.db in userData is migrated on first run.
  */
 
@@ -13,7 +14,7 @@ let userDataPath = null;
 function getDb() {
   if (db) return db;
   if (!userDataPath) {
-    console.error("[costDb] userDataPath not set (registerCostDbHandlers not called or called without getPath)");
+    console.error("[appDb] userDataPath not set (registerAppDbHandlers not called or called without getPath)");
     return null;
   }
   const DB_PATH = path.join(userDataPath, "transrewrt.db");
@@ -27,7 +28,7 @@ function getDb() {
     }
     db = new Database(DB_PATH);
   } catch (err) {
-    console.error("[costDb] Failed to open database at", DB_PATH, err);
+    console.error("[appDb] Failed to open database at", DB_PATH, err);
     return null;
   }
   try {
@@ -66,7 +67,7 @@ function getDb() {
         instructions TEXT NOT NULL,
         output_description TEXT DEFAULT 'transformed',
         temperature REAL DEFAULT 0.4,
-        target_language TEXT DEFAULT NULL,
+        target_language INTEGER DEFAULT 0,
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL
       )
@@ -74,7 +75,48 @@ function getDb() {
   } catch (_) {
     /* table may already exist */
   }
+  try {
+    db.exec("ALTER TABLE custom_prompts ADD COLUMN prompt_instructions TEXT DEFAULT NULL");
+  } catch (_) {
+    /* column may already exist */
+  }
+  // Migrate custom_prompts.target_language from TEXT to INTEGER (boolean 0/1)
+  try {
+    const info = db.prepare("PRAGMA table_info(custom_prompts)").all();
+    const targetLangCol = info.find((c) => c.name === "target_language");
+    if (targetLangCol && String(targetLangCol.type || "").toUpperCase() !== "INTEGER") {
+      db.exec(`
+        CREATE TABLE custom_prompts_new (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL UNIQUE,
+          role TEXT NOT NULL,
+          instructions TEXT NOT NULL,
+          output_description TEXT DEFAULT 'transformed',
+          temperature REAL DEFAULT 0.4,
+          target_language INTEGER DEFAULT 0,
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL,
+          prompt_instructions TEXT DEFAULT NULL
+        )
+      `);
+      db.exec(`
+        INSERT INTO custom_prompts_new (id, name, role, instructions, output_description, temperature, target_language, created_at, updated_at, prompt_instructions)
+        SELECT id, name, role, instructions, output_description, temperature,
+          CASE WHEN target_language IS NOT NULL AND trim(cast(target_language AS TEXT)) != '' AND cast(target_language AS TEXT) != '0' THEN 1 ELSE 0 END,
+          created_at, updated_at, prompt_instructions
+        FROM custom_prompts
+      `);
+      db.exec("DROP TABLE custom_prompts");
+      db.exec("ALTER TABLE custom_prompts_new RENAME TO custom_prompts");
+    }
+  } catch (migErr) {
+    console.warn("[appDb] custom_prompts target_language migration skipped or failed:", migErr.message);
+  }
   return db;
+}
+
+function promptTargetLanguageToDb(value) {
+  return value === true || value === 1 ? 1 : 0;
 }
 
 function buildWhereFromTo(from, to) {
@@ -91,19 +133,19 @@ function buildWhereFromTo(from, to) {
   return { where: parts.length ? " WHERE " + parts.join(" AND ") : "", params };
 }
 
-function registerCostDbHandlers(ipcMain, getUserDataPath) {
+function registerAppDbHandlers(ipcMain, getUserDataPath) {
   userDataPath = getUserDataPath();
   if (!userDataPath) {
-    console.error("[costDb] getUserDataPath() returned empty");
+    console.error("[appDb] getUserDataPath() returned empty");
     return;
   }
   // Initialize DB on startup so transrewrt.db is created and any load error is surfaced
   const d = getDb();
   if (d) {
-    console.log("[costDb] Database ready at", path.join(userDataPath, "transrewrt.db"));
+    console.log("[appDb] Database ready at", path.join(userDataPath, "transrewrt.db"));
   }
 
-  ipcMain.handle("costDb:log", (_, payload) => {
+  ipcMain.handle("appDb:log", (_, payload) => {
     try {
       const d = getDb();
       if (!d) return { success: false, total_cost: 0 };
@@ -129,24 +171,24 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const row = d.prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls").get();
       return { success: true, total_cost: row?.total_cost ?? 0 };
     } catch (err) {
-      console.error("[costDb] log error:", err);
+      console.error("[appDb] log error:", err);
       return { success: false, total_cost: 0 };
     }
   });
 
-  ipcMain.handle("costDb:getTotalCost", () => {
+  ipcMain.handle("appDb:getTotalCost", () => {
     try {
       const d = getDb();
       if (!d) return { total_cost: 0 };
       const row = d.prepare("SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls").get();
       return { total_cost: row?.total_cost ?? 0 };
     } catch (err) {
-      console.error("[costDb] getTotalCost error:", err);
+      console.error("[appDb] getTotalCost error:", err);
       return { total_cost: 0 };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByFunction", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByFunction", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -158,12 +200,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       rows.push({ function: "Total", calls: totalCalls, cost: totalCost });
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByFunction error:", err);
+      console.error("[appDb] getSummaryByFunction error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByModel", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByModel", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -209,12 +251,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       rows.push({ model: "Total", ...totals, avg_tps: totalAvgTps });
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByModel error:", err);
+      console.error("[appDb] getSummaryByModel error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByDay", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByDay", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -234,12 +276,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const rows = d.prepare(sql).all(...params);
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByDay error:", err);
+      console.error("[appDb] getSummaryByDay error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByTargetLang", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByTargetLang", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -255,12 +297,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const rows = d.prepare(sql).all(...params);
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByTargetLang error:", err);
+      console.error("[appDb] getSummaryByTargetLang error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByTransformPrompt", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByTransformPrompt", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -276,12 +318,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const rows = d.prepare(sql).all(...params);
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByTransformPrompt error:", err);
+      console.error("[appDb] getSummaryByTransformPrompt error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByRewriteStyle", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByRewriteStyle", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
@@ -297,12 +339,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const rows = d.prepare(sql).all(...params);
       return { rows };
     } catch (err) {
-      console.error("[costDb] getSummaryByRewriteStyle error:", err);
+      console.error("[appDb] getSummaryByRewriteStyle error:", err);
       return { rows: [] };
     }
   });
 
-  ipcMain.handle("costDb:getAllCalls", (_, from, to, page, pageSize) => {
+  ipcMain.handle("appDb:getAllCalls", (_, from, to, page, pageSize) => {
     try {
       const d = getDb();
       if (!d) return { rows: [], total: 0 };
@@ -316,12 +358,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       ).all(...params, limit, offset);
       return { rows, total };
     } catch (err) {
-      console.error("[costDb] getAllCalls error:", err);
+      console.error("[appDb] getAllCalls error:", err);
       return { rows: [], total: 0 };
     }
   });
 
-  ipcMain.handle("costDb:getSummaryByDayPaginated", (_, from, to, page, pageSize) => {
+  ipcMain.handle("appDb:getSummaryByDayPaginated", (_, from, to, page, pageSize) => {
     try {
       const d = getDb();
       if (!d) return { rows: [], total: 0 };
@@ -345,12 +387,12 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       ).all(...params, limit, offset);
       return { rows, total };
     } catch (err) {
-      console.error("[costDb] getSummaryByDayPaginated error:", err);
+      console.error("[appDb] getSummaryByDayPaginated error:", err);
       return { rows: [], total: 0 };
     }
   });
 
-  ipcMain.handle("costDb:deleteOutsideRange", (_, from, to) => {
+  ipcMain.handle("appDb:deleteOutsideRange", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return;
@@ -361,11 +403,11 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
         d.prepare("DELETE FROM api_calls WHERE timestamp < ?").run(cutoff);
       }
     } catch (err) {
-      console.error("[costDb] deleteOutsideRange error:", err);
+      console.error("[appDb] deleteOutsideRange error:", err);
     }
   });
 
-  ipcMain.handle("costDb:deleteByModel", (_, model) => {
+  ipcMain.handle("appDb:deleteByModel", (_, model) => {
     try {
       const d = getDb();
       if (!d) return { deleted: 0 };
@@ -374,7 +416,7 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const result = d.prepare("DELETE FROM api_calls WHERE model = ?").run(name);
       return { deleted: result.changes };
     } catch (err) {
-      console.error("[costDb] deleteByModel error:", err);
+      console.error("[appDb] deleteByModel error:", err);
       return { deleted: 0 };
     }
   });
@@ -386,7 +428,7 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       if (!d) return [];
       return d.prepare("SELECT * FROM custom_prompts ORDER BY name ASC").all();
     } catch (err) {
-      console.error("[costDb] customPrompts:getAll error:", err);
+      console.error("[appDb] customPrompts:getAll error:", err);
       return [];
     }
   });
@@ -396,22 +438,24 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       const d = getDb();
       if (!d) return { id: null, error: "Database unavailable" };
       const now = new Date().toISOString();
+      const promptInstructions = (prompt.prompt_instructions != null && String(prompt.prompt_instructions).trim()) ? String(prompt.prompt_instructions).trim() : null;
       const result = d.prepare(
-        `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).run(
         prompt.name || "",
         prompt.role || "",
         typeof prompt.instructions === "string" ? prompt.instructions : JSON.stringify(prompt.instructions || []),
         prompt.output_description ?? "transformed",
         prompt.temperature ?? 0.4,
-        prompt.target_language ?? null,
+        promptTargetLanguageToDb(prompt.target_language),
+        promptInstructions,
         now,
         now
       );
       return { id: result.lastInsertRowid, error: null };
     } catch (err) {
-      console.error("[costDb] customPrompts:create error:", err);
+      console.error("[appDb] customPrompts:create error:", err);
       return { id: null, error: err.message };
     }
   });
@@ -422,21 +466,23 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       if (!d) return { success: false, error: "Database unavailable" };
       const now = new Date().toISOString();
       const instructions = typeof prompt.instructions === "string" ? prompt.instructions : JSON.stringify(prompt.instructions || []);
+      const promptInstructions = (prompt.prompt_instructions != null && String(prompt.prompt_instructions).trim()) ? String(prompt.prompt_instructions).trim() : null;
       d.prepare(
-        `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE id = ?`
+        `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE id = ?`
       ).run(
         prompt.name || "",
         prompt.role || "",
         instructions,
         prompt.output_description ?? "transformed",
         prompt.temperature ?? 0.4,
-        prompt.target_language ?? null,
+        promptTargetLanguageToDb(prompt.target_language),
+        promptInstructions,
         now,
         id
       );
       return { success: true, error: null };
     } catch (err) {
-      console.error("[costDb] customPrompts:update error:", err);
+      console.error("[appDb] customPrompts:update error:", err);
       return { success: false, error: err.message };
     }
   });
@@ -448,7 +494,7 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       d.prepare("DELETE FROM custom_prompts WHERE id = ?").run(id);
       return { success: true, error: null };
     } catch (err) {
-      console.error("[costDb] customPrompts:delete error:", err);
+      console.error("[appDb] customPrompts:delete error:", err);
       return { success: false, error: err.message };
     }
   });
@@ -462,15 +508,16 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
       if (mode === "replace") d.prepare("DELETE FROM custom_prompts").run();
       const now = new Date().toISOString();
       const insert = d.prepare(
-        `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
       );
       const update = d.prepare(
-        `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE name = ?`
+        `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ?`
       );
       let count = 0;
       for (const p of list) {
         if (!p?.name) continue;
         const instructions = typeof p.instructions === "string" ? p.instructions : JSON.stringify(p.instructions || []);
+        const promptInstructions = (p.prompt_instructions != null && String(p.prompt_instructions).trim()) ? String(p.prompt_instructions).trim() : null;
         try {
           insert.run(
             p.name,
@@ -478,24 +525,25 @@ function registerCostDbHandlers(ipcMain, getUserDataPath) {
             instructions,
             p.output_description ?? "transformed",
             p.temperature ?? 0.4,
-            p.target_language ?? null,
+            promptTargetLanguageToDb(p.target_language),
+            promptInstructions,
             p.created_at || now,
             now
           );
           count++;
         } catch (e) {
           if (mode === "merge" && /UNIQUE constraint/.test(e.message)) {
-            update.run(p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, p.target_language ?? null, now, p.name);
+            update.run(p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, promptTargetLanguageToDb(p.target_language), promptInstructions, now, p.name);
             count++;
           } else throw e;
         }
       }
       return { success: true, count, error: null };
     } catch (err) {
-      console.error("[costDb] customPrompts:import error:", err);
+      console.error("[appDb] customPrompts:import error:", err);
       return { success: false, count: 0, error: err.message };
     }
   });
 }
 
-module.exports = { registerCostDbHandlers };
+module.exports = { registerAppDbHandlers };

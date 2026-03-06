@@ -102,7 +102,7 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open http://localhost:5000
 
-Optional: `pnpm generate-test-data` to generate test data for the cost dashboard.
+Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `config/custom-prompts.json`, or manage prompts in Settings → Transform.
 
 ---
 
@@ -219,8 +219,10 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [webpack.config.js](../webpack.config.js) | React build, output to `dist/` |
 | [src/main/main.js](../src/main/main.js) | Electron main process entry |
 | [src/main/preload.js](../src/main/preload.js) | Preload script exposing APIs to renderer |
+| [src/main/appDb.js](../src/main/appDb.js) | Electron app DB (api_calls, custom_prompts); IPC handlers |
 | [server/index.js](../server/index.js) | Express server (web/Docker) |
 | [Dockerfile](../Dockerfile) | Multi-stage Docker build |
 | [docker-compose.yml](../docker-compose.yml) | Compose for local web run |
+| [config/custom-prompts.json](../config/custom-prompts.json) | Sample transform prompts (used by “Load sample prompts”) |
 
 For web/Docker architecture and server API reference, see [Web-and-Docker-Deployment.md](Web-and-Docker-Deployment.md).

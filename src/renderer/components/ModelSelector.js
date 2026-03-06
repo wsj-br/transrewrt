@@ -184,6 +184,7 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
           cancelLabel="Cancel"
           onConfirm={handleConfirmRemove}
           onCancel={handleCancelRemove}
+          danger
         />
       )}
     </div>

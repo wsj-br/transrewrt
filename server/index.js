@@ -164,16 +164,56 @@ try {
       instructions TEXT NOT NULL,
       output_description TEXT DEFAULT 'transformed',
       temperature REAL DEFAULT 0.4,
-      target_language TEXT DEFAULT NULL,
+      target_language INTEGER DEFAULT 0,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     )
   `);
+  try {
+    db.exec("ALTER TABLE custom_prompts ADD COLUMN prompt_instructions TEXT DEFAULT NULL");
+  } catch (_) {
+    // Column may already exist
+  }
+  try {
+    const info = db.prepare("PRAGMA table_info(custom_prompts)").all();
+    const targetLangCol = info.find((c) => c.name === "target_language");
+    if (targetLangCol && String(targetLangCol.type || "").toUpperCase() !== "INTEGER") {
+      db.exec(`
+        CREATE TABLE custom_prompts_new (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL UNIQUE,
+          role TEXT NOT NULL,
+          instructions TEXT NOT NULL,
+          output_description TEXT DEFAULT 'transformed',
+          temperature REAL DEFAULT 0.4,
+          target_language INTEGER DEFAULT 0,
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL,
+          prompt_instructions TEXT DEFAULT NULL
+        )
+      `);
+      db.exec(`
+        INSERT INTO custom_prompts_new (id, name, role, instructions, output_description, temperature, target_language, created_at, updated_at, prompt_instructions)
+        SELECT id, name, role, instructions, output_description, temperature,
+          CASE WHEN target_language IS NOT NULL AND trim(cast(target_language AS TEXT)) != '' AND cast(target_language AS TEXT) != '0' THEN 1 ELSE 0 END,
+          created_at, updated_at, prompt_instructions
+        FROM custom_prompts
+      `);
+      db.exec("DROP TABLE custom_prompts");
+      db.exec("ALTER TABLE custom_prompts_new RENAME TO custom_prompts");
+    }
+  } catch (migErr) {
+    log.warn("[SERVER] custom_prompts target_language migration skipped or failed: " + migErr.message);
+  }
 } catch (err) {
   log.error("[SERVER] Failed to init SQLite DB: " + err.message, {
     stack: err.stack,
   });
   db = null;
+}
+
+function promptTargetLanguageToDb(value) {
+  return value === true || value === 1 ? 1 : 0;
 }
 
 function cleanupStalledSessions(now = Date.now()) {
@@ -1090,16 +1130,18 @@ app.post("/api/custom-prompts", (req, res) => {
     const b = req.body || {};
     const now = new Date().toISOString();
     const instructions = typeof b.instructions === "string" ? b.instructions : JSON.stringify(b.instructions || []);
+    const promptInstructions = (b.prompt_instructions != null && String(b.prompt_instructions).trim()) ? String(b.prompt_instructions).trim() : null;
     const result = db.prepare(
-      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).run(
       b.name || "",
       b.role || "",
       instructions,
       b.output_description ?? "transformed",
       b.temperature ?? 0.4,
-      b.target_language ?? null,
+      promptTargetLanguageToDb(b.target_language),
+      promptInstructions,
       now,
       now
     );
@@ -1119,15 +1161,17 @@ app.put("/api/custom-prompts/:id", (req, res) => {
     const b = req.body || {};
     const now = new Date().toISOString();
     const instructions = typeof b.instructions === "string" ? b.instructions : JSON.stringify(b.instructions || []);
+    const promptInstructions = (b.prompt_instructions != null && String(b.prompt_instructions).trim()) ? String(b.prompt_instructions).trim() : null;
     const result = db.prepare(
-      `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE id = ?`
+      `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE id = ?`
     ).run(
       b.name || "",
       b.role || "",
       instructions,
       b.output_description ?? "transformed",
       b.temperature ?? 0.4,
-      b.target_language ?? null,
+      promptTargetLanguageToDb(b.target_language),
+      promptInstructions,
       now,
       id
     );
@@ -1176,22 +1220,23 @@ app.post("/api/custom-prompts/import", (req, res) => {
       db.prepare("DELETE FROM custom_prompts").run();
     }
     const insert = db.prepare(
-      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     );
     const update = db.prepare(
-      `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, updated_at = ? WHERE name = ?`
+      `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ?`
     );
     let count = 0;
     for (const p of body) {
       if (!p || !p.name) continue;
       const instructions = typeof p.instructions === "string" ? p.instructions : JSON.stringify(p.instructions || []);
+      const promptInstructions = (p.prompt_instructions != null && String(p.prompt_instructions).trim()) ? String(p.prompt_instructions).trim() : null;
       try {
-        insert.run(p.name, p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, p.target_language ?? null, p.created_at || now, now);
+        insert.run(p.name, p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, promptTargetLanguageToDb(p.target_language), promptInstructions, p.created_at || now, now);
         count++;
       } catch (e) {
         if (mode === "merge" && /UNIQUE constraint/.test(e.message)) {
-          update.run(p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, p.target_language ?? null, now, p.name);
+          update.run(p.role || "", instructions, p.output_description ?? "transformed", p.temperature ?? 0.4, promptTargetLanguageToDb(p.target_language), promptInstructions, now, p.name);
           count++;
         } else {
           throw e;

@@ -17,14 +17,14 @@ export function useCostTracking() {
     // API call logging is now done on the server side
   };
 
-  const applyCostToResult = (setSetting, result) => {
+  const applyCostToResult = async (setSetting, result) => {
     if (result.usage) {
       const calculatedCost = Number(result.usage.cost) || 0;
       const currentTotal = configManager.get("total_cost") ?? 0;
       const newTotalCost = currentTotal + calculatedCost;
-      setSetting("total_cost", newTotalCost);
       result.calculated_cost = calculatedCost;
       result.total_cost = newTotalCost;
+      await setSetting("total_cost", newTotalCost);
     }
   };
 

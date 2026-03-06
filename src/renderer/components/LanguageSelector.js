@@ -44,7 +44,18 @@ const useStyles = makeStyles({
       color: `${tokens.colorBrandForeground1} !important`,
     },
   },
+  modelDecidesOption: {
+    color: tokens.colorBrandForeground1,
+  },
+  dropdownModelDecides: {
+    "& button": {
+      color: `${tokens.colorBrandForeground1} !important`,
+    },
+  },
 });
+
+/** When allowNone: value for "don't send target language" (auto). */
+export const MODEL_DECIDES = "Auto";
 
 const LanguageSelector = ({
   label,
@@ -53,6 +64,7 @@ const LanguageSelector = ({
   languages = [],
   allLanguages = [],
   detectLanguage = false,
+  allowNone = false,
   iconColor
 }) => {
   const styles = useStyles();
@@ -74,7 +86,12 @@ const LanguageSelector = ({
     languageOptions = [...languages].sort((a, b) => a.localeCompare(b));
   }
 
-  const isDetectLanguage = value === 'Detect Language';
+  if (allowNone) {
+    languageOptions = [MODEL_DECIDES, ...languageOptions];
+  }
+
+  const isDetectLanguage = value === "Detect Language";
+  const isModelDecides = allowNone && (value === MODEL_DECIDES || value === "" || value == null);
 
   return (
     <div className={styles.languageSelector}>
@@ -85,22 +102,34 @@ const LanguageSelector = ({
       <div className={styles.selectContainer}>
         <Dropdown
           appearance="underline"
-          value={value || ""}
-          selectedOptions={value ? [value] : []}
+          value={value === "" || value == null ? MODEL_DECIDES : value}
+          selectedOptions={value === "" || value == null ? [MODEL_DECIDES] : [value]}
           onOptionSelect={(e, data) => onChange(data.optionValue)}
-          className={mergeClasses(styles.select, isDetectLanguage && styles.dropdownDetectLanguage)}
+          className={mergeClasses(
+            styles.select,
+            isDetectLanguage && styles.dropdownDetectLanguage,
+            isModelDecides && styles.dropdownModelDecides
+          )}
           aria-label={label}
         >
-          {languageOptions.map((lang, index) => (
-            <Option
-              key={lang === '---' ? `separator-${index}` : lang}
-              value={lang}
-              disabled={lang === '---'}
-              className={lang === 'Detect Language' ? styles.detectLanguageOption : undefined}
-            >
-              {lang === '---' ? '────────────' : lang}
+          {allowNone && (
+            <Option value={MODEL_DECIDES} className={styles.modelDecidesOption}>
+              {MODEL_DECIDES}
             </Option>
-          ))}
+          )}
+          {languageOptions.map((lang, index) => {
+            if (allowNone && lang === MODEL_DECIDES) return null;
+            return (
+              <Option
+                key={lang === "---" ? `separator-${index}` : lang}
+                value={lang}
+                disabled={lang === "---"}
+                className={lang === "Detect Language" ? styles.detectLanguageOption : undefined}
+              >
+                {lang === "---" ? "────────────" : lang}
+              </Option>
+            );
+          })}
         </Dropdown>
       </div>
     </div>

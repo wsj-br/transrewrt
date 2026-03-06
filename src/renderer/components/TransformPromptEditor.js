@@ -5,11 +5,10 @@ import {
   Button,
   Input,
   Label,
-  Dropdown,
-  Option,
+  Checkbox,
   SpinButton,
 } from "@fluentui/react-components";
-import { ArrowLeft, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, Save, Trash2, X } from "lucide-react";
 
 const useStyles = makeStyles({
   root: {
@@ -18,6 +17,8 @@ const useStyles = makeStyles({
     height: "100%",
     gap: tokens.spacingVerticalM,
     overflow: "auto",
+    paddingRight: "12px",
+    boxSizing: "border-box",
   },
   header: {
     display: "flex",
@@ -27,6 +28,11 @@ const useStyles = makeStyles({
   },
   backButton: {
     flexShrink: 0,
+    backgroundColor: tokens.colorNeutralBackground3,
+    border: "none",
+    ":hover": {
+      backgroundColor: tokens.colorNeutralBackground4,
+    },
   },
   form: {
     display: "flex",
@@ -34,14 +40,18 @@ const useStyles = makeStyles({
     gap: tokens.spacingVerticalM,
     flex: 1,
     minHeight: 0,
+    marginTop: "18px",
+    "& input": { color: "#fff" },
+    "& textarea": { color: "#fff" },
   },
   field: {
     display: "flex",
     flexDirection: "column",
-    gap: tokens.spacingVerticalXS,
+    gap: "2px",
+    marginBottom: "12px",
   },
   textarea: {
-    minHeight: "120px",
+    minHeight: "140px",
     resize: "vertical",
     padding: tokens.spacingVerticalS,
     borderRadius: tokens.borderRadiusMedium,
@@ -84,12 +94,16 @@ function formatInstructionsForDisplay(arr) {
   return Array.isArray(arr) ? arr.join("\n") : "";
 }
 
+/** Normalize DB/import value to boolean: true = ask for target language at run time. */
+function normalizeAskTargetLanguage(value) {
+  if (value === true || value === 1) return true;
+  if (value === false || value === 0 || value === "0") return false;
+  if (typeof value === "string" && (value === "1" || value.toLowerCase() === "true" || value.trim() !== "")) return true;
+  return false;
+}
+
 const TransformPromptEditor = ({
   initialPrompt,
-  languages = [],
-  fontFamily,
-  fontSize,
-  textColor,
   onSave,
   onDelete,
   onBackToRun,
@@ -101,7 +115,8 @@ const TransformPromptEditor = ({
   const [instructionsText, setInstructionsText] = useState("");
   const [outputDescription, setOutputDescription] = useState("transformed");
   const [temperature, setTemperature] = useState(0.4);
-  const [targetLanguage, setTargetLanguage] = useState(null);
+  const [askTargetLanguage, setAskTargetLanguage] = useState(false);
+  const [promptInstructions, setPromptInstructions] = useState("");
 
   useEffect(() => {
     if (initialPrompt) {
@@ -110,14 +125,16 @@ const TransformPromptEditor = ({
       setInstructionsText(formatInstructionsForDisplay(parseInstructions(initialPrompt.instructions)));
       setOutputDescription(initialPrompt.output_description ?? "transformed");
       setTemperature(Number(initialPrompt.temperature) ?? 0.4);
-      setTargetLanguage(initialPrompt.target_language ?? null);
+      setAskTargetLanguage(normalizeAskTargetLanguage(initialPrompt.target_language));
+      setPromptInstructions(initialPrompt.prompt_instructions ?? "");
     } else {
       setName("");
       setRole("");
       setInstructionsText("");
       setOutputDescription("transformed");
       setTemperature(0.4);
-      setTargetLanguage(null);
+      setAskTargetLanguage(false);
+      setPromptInstructions("");
     }
   }, [initialPrompt]);
 
@@ -126,15 +143,17 @@ const TransformPromptEditor = ({
       .split(/\n/)
       .map((s) => s.trim())
       .filter(Boolean);
+    const promptInstructionsTrimmed = promptInstructions.trim();
     return {
       name: name.trim() || "",
       role: role.trim() || "",
       instructions,
       output_description: outputDescription.trim() || "transformed",
       temperature: Math.max(0, Math.min(1, Number(temperature) || 0.4)),
-      target_language: targetLanguage && String(targetLanguage).trim() ? targetLanguage : null,
+      target_language: askTargetLanguage,
+      prompt_instructions: promptInstructionsTrimmed || null,
     };
-  }, [name, role, instructionsText, outputDescription, temperature, targetLanguage]);
+  }, [name, role, instructionsText, outputDescription, temperature, askTargetLanguage, promptInstructions]);
 
   useEffect(() => {
     onDraftChange?.(buildDraft());
@@ -148,20 +167,6 @@ const TransformPromptEditor = ({
 
   const handleDelete = () => {
     if (initialPrompt?.id != null) onDelete?.(initialPrompt);
-  };
-
-  const langOptions = [
-    { value: "", label: "(none)" },
-    ...(Array.isArray(languages) ? languages : []).map((lang) => ({
-      value: typeof lang === "string" ? lang : lang.value || lang.label,
-      label: typeof lang === "string" ? lang : lang.label || lang.value,
-    })),
-  ].filter((o) => o.value !== undefined);
-
-  const inputStyle = {
-    fontFamily: fontFamily || "inherit",
-    fontSize: fontSize ? `${Number(fontSize)}px` : "14px",
-    color: textColor || undefined,
   };
 
   return (
@@ -185,21 +190,29 @@ const TransformPromptEditor = ({
             value={name}
             onChange={(_, data) => setName(data.value)}
             placeholder="e.g. Summarize"
-            style={inputStyle}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-role">Role</Label>
+          <Label htmlFor="transform-prompt-instructions-line">Prompt instructions (optional)</Label>
+          <Input
+            id="transform-prompt-instructions-line"
+            value={promptInstructions}
+            onChange={(_, data) => setPromptInstructions(data.value)}
+            placeholder="e.g. Keep it under 3 sentences."
+            aria-label="Prompt instructions"
+          />
+        </div>
+        <div className={styles.field}>
+          <Label htmlFor="transform-prompt-role">Model Role</Label>
           <Input
             id="transform-prompt-role"
             value={role}
             onChange={(_, data) => setRole(data.value)}
             placeholder="e.g. You are a helpful assistant."
-            style={inputStyle}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-instructions">Instructions (one per line)</Label>
+          <Label htmlFor="transform-prompt-instructions">Model Instructions (one per line)</Label>
           <textarea
             id="transform-prompt-instructions"
             className={styles.textarea}
@@ -207,17 +220,15 @@ const TransformPromptEditor = ({
             onChange={(e) => setInstructionsText(e.target.value)}
             placeholder={"- First instruction\n- Second instruction"}
             aria-label="Instructions"
-            style={inputStyle}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-output-desc">Output description</Label>
+          <Label htmlFor="transform-prompt-output-desc">Output description (e.g. transformed, summarized, etc.)</Label>
           <Input
             id="transform-prompt-output-desc"
             value={outputDescription}
             onChange={(_, data) => setOutputDescription(data.value)}
             placeholder="transformed"
-            style={inputStyle}
           />
         </div>
         <div className={styles.field}>
@@ -242,26 +253,21 @@ const TransformPromptEditor = ({
           </div>
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-target-lang">Target language (optional)</Label>
-          <Dropdown
-            id="transform-prompt-target-lang"
-            placeholder="(none)"
-            value={targetLanguage ?? ""}
-            selectedOptions={targetLanguage ? [String(targetLanguage)] : []}
-            onOptionSelect={(_, data) => setTargetLanguage(data.optionValue && data.optionValue !== "" ? data.optionValue : null)}
-            aria-label="Target language"
-          >
-            {langOptions.map((opt) => (
-              <Option key={opt.value || "__none__"} value={opt.value || ""} text={opt.label}>
-                {opt.label}
-              </Option>
-            ))}
-          </Dropdown>
+          <Checkbox
+            id="transform-prompt-ask-target-lang"
+            label="Ask for target language"
+            checked={askTargetLanguage}
+            onChange={(_, data) => setAskTargetLanguage(!!data.checked)}
+            aria-label="Ask for target language when running this prompt"
+          />
         </div>
       </div>
       <div className={styles.actions}>
         <Button appearance="primary" icon={<Save size={16} />} onClick={handleSave}>
           Save
+        </Button>
+        <Button appearance="secondary" icon={<X size={16} />} onClick={onBackToRun}>
+          Cancel
         </Button>
         {initialPrompt?.id != null && (
           <Button appearance="secondary" icon={<Trash2 size={16} />} onClick={handleDelete}>

@@ -17,7 +17,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation** and **rewrite** (style transformation) using OpenRouter. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (custom prompts) using OpenRouter. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -33,7 +33,7 @@ The application uses **runtime environment detection** to switch between Electro
 ```mermaid
 flowchart TB
   subgraph renderer [Shared React Renderer]
-    UI[Translate / Rewrite / Dashboard / Settings]
+    UI[Translate / Rewrite / Transform / Dashboard / Settings]
     ConfigMgr[configManager]
     ApiSvc[apiService]
     UI --> ConfigMgr
@@ -76,7 +76,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Frontend**   | React 19, Fluent UI 9, Webpack 5, Babel. Build target `web` for both Electron and browser.                                                                                                             |
 | **Desktop**    | Electron 40 (Node 24). Main process: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). Custom `app://` protocol for loading the renderer in production. |
-| **Web server** | Express 5 ([server/index.js](../server/index.js)). Serves static `dist/`, config/state REST API, session auth (Argon2), OpenRouter proxy, SQLite (better-sqlite3) for cost logging.                    |
+| **Web server** | Express 5 ([server/index.js](../server/index.js)). Serves static `dist/`, config/state REST API, session auth (Argon2), OpenRouter proxy, SQLite (better-sqlite3) for app DB (api_calls, custom_prompts). |
 
 ---
 
@@ -85,23 +85,23 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 ```
 ├── src/
 │   ├── main/              # Electron only
-│   │   ├── main.js        # Main process, IPC, config path, costDb
+│   │   ├── main.js        # Main process, IPC, config path, appDb
 │   │   ├── preload.js     # Exposes safe APIs to renderer
-│   │   └── costDb.js      # SQLite cost logging (Electron)
+│   │   └── appDb.js       # SQLite app DB: api_calls, custom_prompts (Electron)
 │   └── renderer/          # Shared React app
-│       ├── components/    # UI (App, Sidebar, panels, dialogs)
+│       ├── components/    # UI (App, Sidebar, workspace panels, dialogs)
 │       ├── contexts/      # AppContext
-│       ├── hooks/         # useDebouncedProcess, useCostTracking, etc.
-│       ├── services/      # apiService (translate, rewrite, models)
+│       ├── hooks/         # useDebouncedProcess, useCostTracking, useProcessing, useTransformPrompts, etc.
+│       ├── services/      # apiService (translate, rewrite, transform, models)
 │       ├── utils/         # configManager, webApiClient, transrewrtProxyKey
 │       ├── styles/        # main.css
 │       └── index.js       # Entry; FluentProvider, AppProvider, App
 ├── server/
-│   ├── index.js           # Express app (static, config, auth, proxy, cost API)
+│   ├── index.js           # Express app (static, config, auth, proxy, app DB API)
 │   └── logger.js          # File/console logging
 ├── config/
 │   ├── config_default.json
-│   └── prompts.json
+│   └── custom-prompts.json   # Sample transform prompts (Load sample prompts)
 ├── scripts/               # electron-rebuild, node-rebuild, docker-deploy, etc.
 ├── build/                 # electron-builder (e.g. installer.nsh)
 ├── dist/                  # Webpack output (production build)
@@ -131,7 +131,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 
 The project uses native Node addons:
 
-- **better-sqlite3**: Cost logging (Electron: [src/main/costDb.js](../src/main/costDb.js); server: SQLite in [server/index.js](../server/index.js)).
+- **better-sqlite3**: App DB (Electron: [src/main/appDb.js](../src/main/appDb.js); server: SQLite in [server/index.js](../server/index.js)).
 - **argon2**: Password hashing for web auth.
 
 These must be compiled for the correct Node ABI:

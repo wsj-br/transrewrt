@@ -212,7 +212,7 @@ export const AppProvider = ({ children }) => {
       );
 
       result.model_used = result.model || model;
-      applyCostToResult(setSetting, result);
+      await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
         type: "translate",
@@ -228,6 +228,7 @@ export const AppProvider = ({ children }) => {
         target_lang: targetLang || "",
       });
 
+      // Log to cost DB / server: include selected target language for this run
       const translatePayload = {
         timestamp: new Date().toISOString(),
         type: "translate",
@@ -247,7 +248,7 @@ export const AppProvider = ({ children }) => {
         })(),
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
-        window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+        window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }
       if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
         webAPI.logApiCall(translatePayload);
@@ -277,7 +278,7 @@ export const AppProvider = ({ children }) => {
       const result = await apiService.rewrite(text, style, model, signal);
 
       result.model_used = result.model || model;
-      applyCostToResult(setSetting, result);
+      await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
         type: "rewrite",
@@ -309,7 +310,7 @@ export const AppProvider = ({ children }) => {
         })(),
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
-        window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+        window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }
       if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
         webAPI.logApiCall(rewritePayload);
@@ -330,7 +331,7 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Transform text with custom prompt
+  // Transform text with custom prompt (cost tracking: same as translate/rewrite — updates total_cost for Settings > Cost tracking)
   const transform = async (text, promptConfig, model, targetLang = null, signal = null) => {
     setLoading(true);
     setError(null);
@@ -339,7 +340,7 @@ export const AppProvider = ({ children }) => {
       const result = await apiService.transform(text, promptConfig, model, targetLang, signal);
 
       result.model_used = result.model || model;
-      applyCostToResult(setSetting, result);
+      await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
         type: "transform",
@@ -350,8 +351,12 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
 
-      logApiCall("transform", result, { transform_prompt: promptConfig?.name ?? "" });
+      logApiCall("transform", result, {
+        transform_prompt: promptConfig?.name ?? "",
+        target_lang: targetLang ?? null,
+      });
 
+      // Log to cost DB / server: include selected target language for this run
       const transformPayload = {
         timestamp: new Date().toISOString(),
         type: "transform",
@@ -372,7 +377,7 @@ export const AppProvider = ({ children }) => {
         })(),
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
-        window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] costDb log failed:", err));
+        window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }
       if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
         webAPI.logApiCall(transformPayload);
@@ -500,6 +505,7 @@ export const AppProvider = ({ children }) => {
     loading,
     configLoading,
     error,
+    setError,
     needsLogin,
     setNeedsLogin,
     sessionExpired,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
-import { COST_FRACTION_STYLE_OPTIONS } from '../utils/costUtils';
+import { COST_FRACTION_STYLE_OPTIONS, formatCost } from '../utils/costUtils';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -286,7 +286,7 @@ const SettingsDialogGeneralTab = ({
           Appearance
         </Text>
         <div style={{ paddingLeft: '24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
           <Label htmlFor="cost-fraction-style" style={{ margin: 0, whiteSpace: 'nowrap' }}>
             Cost fraction digits:
           </Label>
@@ -313,6 +313,18 @@ const SettingsDialogGeneralTab = ({
               </Option>
             ))}
           </Dropdown>
+          <span style={{ marginLeft: '8px', display: 'inline-flex', alignItems: 'baseline', gap: '6px' }}>
+            <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>Sample:</span>
+            <span
+              style={{
+                fontSize: '16px',
+                color: tokens.colorStatusSuccessForeground1,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {formatCost(0.001234, localSettings.cost_fraction_style || 'muted')}
+            </span>
+          </span>
         </div>
         {isWeb && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>

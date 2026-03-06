@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Button,
   tokens,
@@ -98,6 +98,11 @@ const useStyles = makeStyles({
     minHeight: 0,
     overflow: "auto",
   },
+  tabPanelAllCalls: {
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+  },
   tabTableContent: {
     maxWidth: "90%",
     width: "100%",
@@ -105,15 +110,48 @@ const useStyles = makeStyles({
   },
   summaryDashboard: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "1fr 1fr",
-    gap: "20px",
+    gap: "clamp(8px, 1.5vh, 20px)",
     height: "100%",
     minHeight: 0,
     overflow: "hidden",
   },
+  byTypeDashboard: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "1fr 1fr",
+    gap: "clamp(8px, 1.5vh, 20px)",
+    height: "100%",
+    minHeight: 0,
+    overflow: "hidden",
+    "& > *:nth-child(3)": {
+      gridColumn: "1 / -1",
+      justifySelf: "center",
+      width: "calc((100% - 20px) / 2)",
+      minWidth: 0,
+    },
+  },
+  byTypeChartBlock: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: 0,
+    minWidth: 0,
+  },
+  byTypeChartContainer: {
+    flex: 1,
+    minHeight: 0,
+    minWidth: 0,
+    padding: "clamp(6px, 1vh, 12px)",
+  },
+  byTypeTitle: {
+    flexShrink: 0,
+    marginBottom: "2px",
+    fontSize: "clamp(12px, 1.8vh, 14px)",
+  },
   summaryKpiCell: {
     minHeight: 0,
+    minWidth: 0,
     display: "flex",
     flexDirection: "column",
   },
@@ -128,8 +166,8 @@ const useStyles = makeStyles({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)",
-    columnGap: "12px",
-    rowGap: "12px",
+    columnGap: "clamp(6px, 1vw, 12px)",
+    rowGap: "clamp(6px, 1vw, 12px)",
   },
   summaryChartCellUsageSplit: {
     minHeight: 0,
@@ -143,23 +181,39 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   summaryKpiCard: {
-    padding: "12px 14px",
+    padding: "clamp(6px, 1vh, 12px) clamp(8px, 1vw, 14px)",
     borderRadius: "8px",
     border: "1px solid rgba(255, 255, 255, 0.08)",
     backgroundColor: "#222235",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    minHeight: 0,
+    minWidth: 0,
+    overflow: "hidden",
   },
   summaryKpiLabel: {
-    fontSize: "12px",
+    fontSize: "clamp(10px, 1.4vh, 12px)",
     color: tokens.colorNeutralForeground3,
-    marginBottom: "16px",
+    marginBottom: "clamp(4px, 0.6vh, 8px)",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   },
   summaryKpiValue: {
-    fontSize: "18px",
+    fontSize: "clamp(12px, 1.8vh, 18px)",
     fontWeight: 600,
     color: CHART_COLORS.primary,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    wordBreak: "break-word",
+    lineHeight: 1.2,
+  },
+  summaryChartTitle: {
+    marginBottom: "4px",
+    flexShrink: 0,
+    textAlign: "left",
+    fontSize: "clamp(12px, 1.6vh, 14px)",
   },
   summaryChartCell: {
     minHeight: 0,
@@ -206,6 +260,9 @@ const useStyles = makeStyles({
     padding: "12px",
     overflow: "hidden",
   },
+  summaryChartContainerUsagePie: {
+    padding: "clamp(4px, 0.5vh, 8px)",
+  },
   summaryTabPanel: {
     height: "100%",
     overflow: "hidden",
@@ -224,6 +281,7 @@ const useStyles = makeStyles({
   },
   table: {
     width: "100%",
+    minWidth: "max-content",
     tableLayout: "auto",
     borderCollapse: "collapse",
     fontSize: "14px",
@@ -309,6 +367,109 @@ const useStyles = makeStyles({
     backgroundColor: "rgba(167, 139, 250, 0.25)",
     color: "#a78bfa",
   },
+  allCallsTabPanel: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    minHeight: 0,
+    overflow: "hidden",
+  },
+  allCallsTabContent: {
+    flex: 1,
+    minHeight: 0,
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+    maxWidth: "90%",
+    width: "100%",
+  },
+  allCallsTableContainer: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    minHeight: 0,
+    overflow: "hidden",
+  },
+  allCallsTableScroll: {
+    flex: 1,
+    overflowY: "auto",
+    overflowX: "hidden",
+    marginTop: "8px",
+    marginBottom: "0",
+    borderRadius: "8px 8px 0 0",
+    boxShadow: `0 1px 0 0 ${tokens.colorNeutralStroke1}`,
+    border: `1px solid ${tokens.colorNeutralStroke1}`,
+    borderBottom: "none",
+    "&::-webkit-scrollbar": {
+      width: "10px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.28)",
+      borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(255, 255, 255, 0.45)",
+    },
+    "&::-webkit-scrollbar-corner": {
+      background: "transparent",
+    },
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+  },
+  allCallsTableInner: {
+    display: "inline-block",
+    minWidth: "100%",
+    marginRight: "-17px",
+    paddingRight: "17px",
+  },
+  allCallsScrollbarTrack: {
+    flexShrink: 0,
+    minHeight: "10px",
+    height: "10px",
+    overflowX: "auto",
+    overflowY: "hidden",
+    borderRadius: "0 0 8px 8px",
+    border: `1px solid ${tokens.colorNeutralStroke1}`,
+    borderTop: "none",
+    marginBottom: "8px",
+    backgroundColor: "transparent",
+    "&::-webkit-scrollbar": {
+      height: "10px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.28)",
+      borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(255, 255, 255, 0.45)",
+    },
+    "&::-webkit-scrollbar-corner": {
+      background: "transparent",
+    },
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+  },
+  allCallsScrollbarInner: {
+    display: "block",
+    minHeight: "10px",
+    height: "10px",
+  },
+  allCallsThead: {
+    backgroundColor: "#252638",
+    boxShadow: "0 1px 0 0 rgba(96, 205, 255, 0.4)",
+  },
+  allCallsTh: {
+    position: "sticky",
+    top: 0,
+    zIndex: 1,
+    backgroundColor: "#252638",
+  },
 });
 
 const DashboardPage = () => {
@@ -340,6 +501,10 @@ const DashboardPage = () => {
 
   const [modelToDelete, setModelToDelete] = useState(null);
   const [deleteByModelError, setDeleteByModelError] = useState(null);
+
+  const allCallsTableInnerRef = useRef(null);
+  const allCallsScrollbarTrackRef = useRef(null);
+  const allCallsScrollbarInnerRef = useRef(null);
 
   const costApi = getCostApi();
 
@@ -408,6 +573,33 @@ const DashboardPage = () => {
     }
   }, [selectedTab, loadAllCalls]);
 
+  // Keep floating horizontal scrollbar in sync with table width (All Calls tab)
+  useEffect(() => {
+    if (selectedTab !== "allcalls" || !allCallsTableInnerRef.current || !allCallsScrollbarInnerRef.current) return;
+    const tableEl = allCallsTableInnerRef.current;
+    const innerEl = allCallsScrollbarInnerRef.current;
+    const setScrollbarWidth = () => {
+      if (tableEl && innerEl) innerEl.style.width = `${tableEl.offsetWidth}px`;
+    };
+    setScrollbarWidth();
+    const ro = new ResizeObserver(setScrollbarWidth);
+    ro.observe(tableEl);
+    return () => ro.disconnect();
+  }, [selectedTab, allCallsRows]);
+
+  // Sync floating horizontal scrollbar scroll -> table transform (All Calls tab)
+  useEffect(() => {
+    const track = allCallsScrollbarTrackRef.current;
+    const tableInner = allCallsTableInnerRef.current;
+    if (selectedTab !== "allcalls" || !track || !tableInner) return;
+    const syncFromTrack = () => {
+      if (allCallsTableInnerRef.current)
+        allCallsTableInnerRef.current.style.transform = `translateX(-${track.scrollLeft}px)`;
+    };
+    track.addEventListener("scroll", syncFromTrack);
+    return () => track.removeEventListener("scroll", syncFromTrack);
+  }, [selectedTab, allCallsRows]);
+
   const loadByDayPaginated = useCallback(() => {
     if (!costApi.getSummaryByDayPaginated) return;
     const { from, to } = getFilterRange(filter);
@@ -474,6 +666,9 @@ const DashboardPage = () => {
   };
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
+  const byTypeAxisStyle = { stroke: CHART_COLORS.grid, fontSize: "clamp(9px, 1.4vh, 12px)" };
+  const byTypeTickStyle = { fill: tokens.colorNeutralForeground3, fontSize: "clamp(9px, 1.4vh, 12px)" };
+  const byTypeLabelFontSize = "clamp(9px, 1.2vh, 11px)";
 
   return (
     <div className={styles.root}>
@@ -504,12 +699,19 @@ const DashboardPage = () => {
         onTabSelect={(_, data) => setSelectedTab(data.value)}
       >
         <Tab value="summary">Summary</Tab>
+        <Tab value="bytype">By type</Tab>
         <Tab value="bymodel">By Model</Tab>
         <Tab value="byday">By Day</Tab>
         <Tab value="allcalls">All Calls</Tab>
       </TabList>
 
-      <div className={styles.tabPanel}>
+      <div
+        className={
+          selectedTab === "allcalls"
+            ? `${styles.tabPanel} ${styles.tabPanelAllCalls}`
+            : styles.tabPanel
+        }
+      >
         {selectedTab === "summary" && (
         <div role="tabpanel" aria-label="Summary" className={styles.summaryTabPanel}>
           {loading ? (
@@ -571,8 +773,83 @@ const DashboardPage = () => {
                 </div>
               </div>
 
+              <div className={styles.summaryChartCellUsageSplit}>
+                <Text as="h4" size={400} className={styles.summaryChartTitle}>
+                  Usage split
+                </Text>
+                  <div className={`${styles.summaryChartContainer} ${styles.summaryChartContainerUsagePie}`} style={{ overflow: "visible" }}>
+                    {byFunction.filter((r) => r.function !== "Total").length > 0 ? (
+                      (() => {
+                        const usageData = byFunction.filter((r) => r.function !== "Total");
+                        const totalCallsPie = usageData.reduce((s, r) => s + (Number(r.calls) || 0), 0);
+                        const RADIAN = Math.PI / 180;
+                        return (
+                          <ResponsiveContainer width="100%" height="100%">
+                            <PieChart margin={{ top: 4, right: 8, bottom: 4, left: 8 }}>
+                              <Pie
+                                data={usageData}
+                                dataKey="calls"
+                                nameKey="function"
+                                cx="50%"
+                                cy="50%"
+                                outerRadius="85%"
+                                isAnimationActive={false}
+                                label={({ cx, cy, midAngle, outerRadius: or, function: fn, calls }) => {
+                                  const radius = or + 14;
+                                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                  const anchor = x > cx ? "start" : "end";
+                                  const pct = totalCallsPie > 0 ? ((Number(calls) / totalCallsPie) * 100).toFixed(1) : "0";
+                                  const displayName = fn.charAt(0).toUpperCase() + fn.slice(1);
+                                  return (
+                                    <text x={x} y={y} textAnchor={anchor} dominantBaseline="central" fill={tokens.colorNeutralForeground2} style={{ fontSize: "clamp(9px, 1.2vh, 11px)" }}>
+                                      <tspan x={x} dy="-0.65em">{displayName}</tspan>
+                                      <tspan x={x} dy="1.3em" fill={tokens.colorNeutralForeground3}>{formatInteger(calls)} ({pct}%)</tspan>
+                                    </text>
+                                  );
+                                }}
+                                labelLine={{ stroke: "rgba(255,255,255,0.25)", strokeWidth: 1 }}
+                              >
+                                {usageData.map((r, i) => (
+                                  <Cell
+                                    key={i}
+                                    fill={
+                                      r.function === "translate"
+                                        ? CHART_COLORS.translation
+                                        : r.function === "rewrite"
+                                        ? CHART_COLORS.rewrite
+                                        : "#a78bfa"
+                                    }
+                                  />
+                                ))}
+                              </Pie>
+                              <Tooltip
+                                contentStyle={{
+                                  backgroundColor: tokens.colorNeutralBackground1,
+                                  border: `1px solid ${tokens.colorNeutralStroke1}`,
+                                  color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                                }}
+                                itemStyle={{ color: tokens.colorNeutralForeground1 ?? "#e5e7eb" }}
+                                labelStyle={{ color: tokens.colorNeutralForeground1 ?? "#e5e7eb" }}
+                                formatter={(value, name) => {
+                                  const pct = totalCallsPie > 0 ? ((Number(value) / totalCallsPie) * 100).toFixed(1) : "0";
+                                  return [`${value} (${pct}%)`, name];
+                                }}
+                              />
+                            </PieChart>
+                          </ResponsiveContainer>
+                        );
+                      })()
+                    ) : (
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
+                        No data
+                      </div>
+                    )}
+                  </div>
+              </div>
+
               <div className={styles.summaryChartCell}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+                <Text as="h4" size={400} className={styles.summaryChartTitle}>
                   Cost over time
                 </Text>
                 <div className={styles.summaryChartContainer}>
@@ -647,7 +924,7 @@ const DashboardPage = () => {
               </div>
 
               <div className={styles.summaryChartCell}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+                <Text as="h4" size={400} className={styles.summaryChartTitle}>
                   Cost by model
                 </Text>
                 <div className={styles.summaryChartContainer}>
@@ -667,7 +944,7 @@ const DashboardPage = () => {
                       <BarChart
                         data={costByModelData}
                         layout="vertical"
-                        margin={{ left: 100, right: 16 }}
+                        margin={{ left: 220, right: 16 }}
                         {...chartProps}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
@@ -675,12 +952,10 @@ const DashboardPage = () => {
                         <YAxis
                           type="category"
                           dataKey="model"
-                          width={100}
+                          width={215}
                           style={axisStyle}
                           tick={tickStyle}
-                          tickFormatter={(v) =>
-                            v && v.length > 16 ? v.slice(0, 16) + "…" : v
-                          }
+                          tickFormatter={(v) => v ?? ""}
                         />
                         <Tooltip
                           contentStyle={{
@@ -723,86 +998,22 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              <div className={styles.summaryChartCellUsageSplit}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0, textAlign: "left" }}>
-                  Usage split
-                </Text>
-                  <div className={styles.summaryChartContainer} style={{ overflow: "visible" }}>
-                    {byFunction.filter((r) => r.function !== "Total").length > 0 ? (
-                      (() => {
-                        const usageData = byFunction.filter((r) => r.function !== "Total");
-                        const totalCallsPie = usageData.reduce((s, r) => s + (Number(r.calls) || 0), 0);
-                        const RADIAN = Math.PI / 180;
-                        return (
-                          <ResponsiveContainer width="100%" height="100%">
-                            <PieChart margin={{ top: 10, right: 40, bottom: 10, left: 40 }}>
-                              <Pie
-                                data={usageData}
-                                dataKey="calls"
-                                nameKey="function"
-                                cx="50%"
-                                cy="50%"
-                                outerRadius="68%"
-                                isAnimationActive={false}
-                                label={({ cx, cy, midAngle, outerRadius: or, function: fn, calls }) => {
-                                  const radius = or + 14;
-                                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                                  const anchor = x > cx ? "start" : "end";
-                                  const pct = totalCallsPie > 0 ? ((Number(calls) / totalCallsPie) * 100).toFixed(1) : "0";
-                                  const displayName = fn.charAt(0).toUpperCase() + fn.slice(1);
-                                  return (
-                                    <text x={x} y={y} textAnchor={anchor} dominantBaseline="central" fill={tokens.colorNeutralForeground2} fontSize={11}>
-                                      <tspan x={x} dy="-0.65em">{displayName}</tspan>
-                                      <tspan x={x} dy="1.3em" fill={tokens.colorNeutralForeground3}>{formatInteger(calls)} ({pct}%)</tspan>
-                                    </text>
-                                  );
-                                }}
-                                labelLine={{ stroke: "rgba(255,255,255,0.25)", strokeWidth: 1 }}
-                              >
-                                {usageData.map((r, i) => (
-                                  <Cell
-                                    key={i}
-                                    fill={
-                                      r.function === "translate"
-                                        ? CHART_COLORS.translation
-                                        : r.function === "rewrite"
-                                        ? CHART_COLORS.rewrite
-                                        : "#a78bfa"
-                                    }
-                                  />
-                                ))}
-                              </Pie>
-                              <Tooltip
-                                contentStyle={{
-                                  backgroundColor: tokens.colorNeutralBackground1,
-                                  border: `1px solid ${tokens.colorNeutralStroke1}`,
-                                  color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
-                                }}
-                                itemStyle={{ color: tokens.colorNeutralForeground1 ?? "#e5e7eb" }}
-                                labelStyle={{ color: tokens.colorNeutralForeground1 ?? "#e5e7eb" }}
-                                formatter={(value, name) => {
-                                  const pct = totalCallsPie > 0 ? ((Number(value) / totalCallsPie) * 100).toFixed(1) : "0";
-                                  return [`${value} (${pct}%)`, name];
-                                }}
-                              />
-                            </PieChart>
-                          </ResponsiveContainer>
-                        );
-                      })()
-                    ) : (
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                        No data
-                      </div>
-                    )}
-                  </div>
-              </div>
+            </div>
+          )}
+        </div>
+        )}
 
-              <div className={styles.summaryChartCell}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+        {selectedTab === "bytype" && (
+        <div role="tabpanel" aria-label="By type" className={styles.summaryTabPanel}>
+          {loading ? (
+            <p>Loading…</p>
+          ) : (
+            <div className={styles.byTypeDashboard}>
+              <div className={styles.byTypeChartBlock}>
+                <Text as="h4" size={400} className={styles.byTypeTitle}>
                   Translation target language
                 </Text>
-                <div className={styles.summaryChartContainer}>
+                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
                   {byTargetLang.length > 0 ? (
                     (() => {
                       const totalTargetCalls = byTargetLang.reduce((s, r) => s + (Number(r.calls) || 0), 0);
@@ -817,8 +1028,8 @@ const DashboardPage = () => {
                         <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                         <XAxis
                           type="number"
-                          style={axisStyle}
-                          tick={tickStyle}
+                          style={byTypeAxisStyle}
+                          tick={byTypeTickStyle}
                           dataKey="calls"
                           tickFormatter={(v) => (Number.isFinite(Number(v)) ? Math.round(Number(v)) : v)}
                         />
@@ -826,14 +1037,15 @@ const DashboardPage = () => {
                           type="category"
                           dataKey="target_lang"
                           width={135}
-                          style={axisStyle}
-                          tick={tickStyle}
+                          style={byTypeAxisStyle}
+                          tick={byTypeTickStyle}
                         />
                         <Tooltip
                           contentStyle={{
                             backgroundColor: tokens.colorNeutralBackground1,
                             border: `1px solid ${tokens.colorNeutralStroke1}`,
                             color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            fontSize: byTypeLabelFontSize,
                           }}
                           formatter={(value) => {
                             const pct = totalTargetCalls > 0 ? ((Number(value) / totalTargetCalls) * 100).toFixed(1) : "0";
@@ -848,7 +1060,7 @@ const DashboardPage = () => {
                               const pct = totalTargetCalls > 0 ? ((Number(value) / totalTargetCalls) * 100).toFixed(1) : "0";
                               return `${formatInteger(value)} (${pct}%)`;
                             }}
-                            style={{ fill: CHART_COLORS.barLabel, fontSize: 11 }}
+                            style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
                             offset={4}
                           />
                         </Bar>
@@ -864,15 +1076,15 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              <div className={styles.summaryChartCell}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+              <div className={styles.byTypeChartBlock}>
+                <Text as="h4" size={400} className={styles.byTypeTitle}>
                   Rewrite style
                 </Text>
-                  <div className={styles.summaryChartContainer}>
-                    {byRewriteStyle.length > 0 ? (
-                      (() => {
-                        const totalRewriteCalls = byRewriteStyle.reduce((s, r) => s + (Number(r.calls) || 0), 0);
-                        return (
+                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
+                  {byRewriteStyle.length > 0 ? (
+                    (() => {
+                      const totalRewriteCalls = byRewriteStyle.reduce((s, r) => s + (Number(r.calls) || 0), 0);
+                      return (
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={byRewriteStyle.map((r) => ({ ...r, label: r.rewrite_style }))}
@@ -883,8 +1095,8 @@ const DashboardPage = () => {
                           <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                           <XAxis
                             type="number"
-                            style={axisStyle}
-                            tick={tickStyle}
+                            style={byTypeAxisStyle}
+                            tick={byTypeTickStyle}
                             dataKey="calls"
                             tickFormatter={(v) => (Number.isFinite(Number(v)) ? Math.round(Number(v)) : v)}
                           />
@@ -892,14 +1104,15 @@ const DashboardPage = () => {
                             type="category"
                             dataKey="rewrite_style"
                             width={135}
-                            style={axisStyle}
-                            tick={tickStyle}
+                            style={byTypeAxisStyle}
+                            tick={byTypeTickStyle}
                           />
                           <Tooltip
                             contentStyle={{
                               backgroundColor: tokens.colorNeutralBackground1,
                               border: `1px solid ${tokens.colorNeutralStroke1}`,
                               color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                              fontSize: byTypeLabelFontSize,
                             }}
                             formatter={(value) => {
                               const pct = totalRewriteCalls > 0 ? ((Number(value) / totalRewriteCalls) * 100).toFixed(1) : "0";
@@ -914,7 +1127,7 @@ const DashboardPage = () => {
                                 const pct = totalRewriteCalls > 0 ? ((Number(value) / totalRewriteCalls) * 100).toFixed(1) : "0";
                                 return `${formatInteger(value)} (${pct}%)`;
                               }}
-                              style={{ fill: CHART_COLORS.barLabel, fontSize: 11 }}
+                              style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
                               offset={4}
                             />
                           </Bar>
@@ -927,30 +1140,30 @@ const DashboardPage = () => {
                         No data
                       </div>
                     )}
-                  </div>
                 </div>
+              </div>
 
-              <div className={styles.summaryChartCell}>
-                <Text as="h4" size={400} style={{ marginBottom: "4px", flexShrink: 0 }}>
+              <div className={styles.byTypeChartBlock}>
+                <Text as="h4" size={400} className={styles.byTypeTitle}>
                   Transform prompt
                 </Text>
-                  <div className={styles.summaryChartContainer}>
-                    {byTransformPrompt.length > 0 ? (
-                      (() => {
-                        const totalTransformCalls = byTransformPrompt.reduce((s, r) => s + (Number(r.calls) || 0), 0);
-                        return (
+                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
+                  {byTransformPrompt.length > 0 ? (
+                    (() => {
+                      const totalTransformCalls = byTransformPrompt.reduce((s, r) => s + (Number(r.calls) || 0), 0);
+                      return (
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={byTransformPrompt.map((r) => ({ ...r, label: r.transform_prompt }))}
                           layout="vertical"
-                          margin={{ left: 140, right: 16, top: 4, bottom: 4 }}
+                          margin={{ left: 230, right: 16, top: 4, bottom: 4 }}
                           {...chartProps}
                         >
                           <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                           <XAxis
                             type="number"
-                            style={axisStyle}
-                            tick={tickStyle}
+                            style={byTypeAxisStyle}
+                            tick={byTypeTickStyle}
                             dataKey="calls"
                             tickFormatter={(v) =>
                               Number.isFinite(Number(v)) ? Math.round(Number(v)) : v
@@ -959,15 +1172,17 @@ const DashboardPage = () => {
                           <YAxis
                             type="category"
                             dataKey="transform_prompt"
-                            width={135}
-                            style={axisStyle}
-                            tick={tickStyle}
+                            width={225}
+                            interval={0}
+                            style={byTypeAxisStyle}
+                            tick={byTypeTickStyle}
                           />
                           <Tooltip
                             contentStyle={{
                               backgroundColor: tokens.colorNeutralBackground1,
                               border: `1px solid ${tokens.colorNeutralStroke1}`,
                               color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                              fontSize: byTypeLabelFontSize,
                             }}
                             formatter={(value) => {
                               const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
@@ -982,7 +1197,7 @@ const DashboardPage = () => {
                                 const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
                                 return `${formatInteger(value)} (${pct}%)`;
                               }}
-                              style={{ fill: CHART_COLORS.barLabel, fontSize: 11 }}
+                              style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
                               offset={4}
                             />
                           </Bar>
@@ -995,8 +1210,8 @@ const DashboardPage = () => {
                         No data
                       </div>
                     )}
-                  </div>
                 </div>
+              </div>
             </div>
           )}
         </div>
@@ -1352,8 +1567,8 @@ const DashboardPage = () => {
         )}
 
         {selectedTab === "allcalls" && (
-        <div role="tabpanel" aria-label="All Calls">
-          <div className={styles.tabTableContent}>
+        <div role="tabpanel" aria-label="All Calls" className={styles.allCallsTabPanel}>
+          <div className={styles.allCallsTabContent}>
             <Text as="h4" size={400} style={{ marginBottom: "4px" }}>
               All API calls (raw data)
             </Text>
@@ -1410,79 +1625,93 @@ const DashboardPage = () => {
           {allCallsLoading ? (
             <p>Loading…</p>
           ) : (
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                    <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th}>ID</th>
-                    <th className={styles.th}>Timestamp</th>
-                    <th className={styles.th}>Type</th>
-                    <th className={styles.th}>Model</th>
-                    <th className={styles.th}>Source</th>
-                    <th className={styles.th}>Target</th>
-                    <th className={styles.th}>Style</th>
-                    <th className={styles.th}>Transform prompt</th>
-                    <th className={styles.th}>Req bytes</th>
-                    <th className={styles.th}>Res bytes</th>
-                    <th className={styles.th}>Duration</th>
-                    <th className={styles.th}>Cost</th>
-                    <th className={styles.th}>TPS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {allCallsRows.length === 0
-                    ? emptyRow(13)
-                    : allCallsRows.map((row) => (
-                        <tr key={row.id} className={styles.tbodyTr}>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {row.id}
-                          </td>
-                          <td className={styles.td}>
-                            {row.timestamp
-                              ? new Date(row.timestamp).toLocaleString()
-                              : DASH}
-                          </td>
-                          <td className={styles.td}>
-                            <span
-                              className={`${styles.typeBadge} ${
-                                row.type === "translate"
-                                  ? styles.typeTranslate
-                                  : row.type === "rewrite"
-                                  ? styles.typeRewrite
-                                  : styles.typeTransform
-                              }`}
-                            >
-                              {row.type || DASH}
-                            </span>
-                          </td>
-                          <td className={styles.td}>{row.model ?? DASH}</td>
-                          <td className={styles.td}>{row.source_lang ?? DASH}</td>
-                          <td className={styles.td}>{row.target_lang ?? DASH}</td>
-                          <td className={styles.td}>
-                            {row.rewrite_style ?? DASH}
-                          </td>
-                          <td className={styles.td}>
-                            {row.transform_prompt ?? DASH}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatInteger(row.request_bytes)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatInteger(row.response_bytes)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatDurationMs(row.duration_ms)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatCost(row.cost, costFractionStyle)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatAvgTps(row.tps)}
-                          </td>
-                        </tr>
-                      ))}
-                </tbody>
-              </table>
+            <div className={styles.allCallsTableContainer}>
+              <div className={styles.allCallsTableScroll}>
+                <div
+                  ref={allCallsTableInnerRef}
+                  className={styles.allCallsTableInner}
+                >
+                  <table className={styles.table}>
+                    <thead className={`${styles.thead} ${styles.allCallsThead}`}>
+                      <tr>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>ID</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Timestamp</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Type</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Model</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Source</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Target</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Style</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Transform prompt</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Req bytes</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Res bytes</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Duration</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>Cost</th>
+                        <th className={`${styles.th} ${styles.allCallsTh}`}>TPS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allCallsRows.length === 0
+                        ? emptyRow(13)
+                        : allCallsRows.map((row) => (
+                            <tr key={row.id} className={styles.tbodyTr}>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {row.id}
+                              </td>
+                              <td className={styles.td}>
+                                {row.timestamp
+                                  ? new Date(row.timestamp).toLocaleString()
+                                  : DASH}
+                              </td>
+                              <td className={styles.td}>
+                                <span
+                                  className={`${styles.typeBadge} ${
+                                    row.type === "translate"
+                                      ? styles.typeTranslate
+                                      : row.type === "rewrite"
+                                      ? styles.typeRewrite
+                                      : styles.typeTransform
+                                  }`}
+                                >
+                                  {row.type || DASH}
+                                </span>
+                              </td>
+                              <td className={styles.td}>{row.model ?? DASH}</td>
+                              <td className={styles.td}>{row.source_lang ?? DASH}</td>
+                              <td className={styles.td}>{row.target_lang ?? DASH}</td>
+                              <td className={styles.td}>
+                                {row.rewrite_style ?? DASH}
+                              </td>
+                              <td className={styles.td}>
+                                {row.transform_prompt ?? DASH}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatInteger(row.request_bytes)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatInteger(row.response_bytes)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatDurationMs(row.duration_ms)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatCost(row.cost, costFractionStyle)}
+                              </td>
+                              <td className={`${styles.td} ${styles.tdValue}`}>
+                                {formatAvgTps(row.tps)}
+                              </td>
+                            </tr>
+                          ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                ref={allCallsScrollbarTrackRef}
+                className={styles.allCallsScrollbarTrack}
+                aria-label="Horizontal scroll for table"
+              >
+                <div ref={allCallsScrollbarInnerRef} className={styles.allCallsScrollbarInner} />
+              </div>
             </div>
           )}
           </div>
@@ -1505,6 +1734,7 @@ const DashboardPage = () => {
             setModelToDelete(null);
             setDeleteByModelError(null);
           }}
+          danger
         />
       )}
     </div>

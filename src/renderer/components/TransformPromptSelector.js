@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
-import { Sparkles, SquarePen, Plus, Copy } from "lucide-react";
+import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
+import { Sparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   selectContainer: {
     flex: 1,
-    minWidth: 0,
+    minWidth: "300px",
   },
   select: {
     width: "100%",
@@ -30,8 +30,30 @@ const useStyles = makeStyles({
     },
   },
   iconButton: {
-    minWidth: "32px",
-    padding: "4px",
+    minWidth: "24px",
+    padding: "0px",
+    color: "#94a3b8",
+    borderRadius: "4px",
+    transition: "color 150ms ease, background-color 150ms ease",
+    ":hover": {
+      color: "#fff",
+      backgroundColor: "rgba(255, 255, 255, 0.08)",
+    },
+    "& svg": {
+      color: "inherit",
+    },
+  },
+  iconButtonEditActive: {
+    color: "#60a5fa",
+    "& svg": {
+      color: "inherit",
+    },
+  },
+  iconButtonExport: {
+    color: "#64748b",
+    "& svg": {
+      color: "inherit",
+    },
   },
 });
 
@@ -43,7 +65,9 @@ const TransformPromptSelector = ({
   onNew,
   onEdit,
   onDuplicate,
+  onOpenExportImport,
   disabled,
+  editActive = false,
 }) => {
   const styles = useStyles();
   const selectedKey = selectedId != null ? String(selectedId) : selectedName || "";
@@ -61,7 +85,7 @@ const TransformPromptSelector = ({
       </label>
       <div className={styles.selectContainer} title="Choose which custom prompt to use">
         <Dropdown
-          appearance="outline"
+          appearance="underline"
           value={displayValue}
           placeholder={prompts.length === 0 ? "(no prompts, click + to create)" : "Select a prompt"}
           selectedOptions={selectedOptionValue ? [selectedOptionValue] : []}
@@ -81,9 +105,20 @@ const TransformPromptSelector = ({
           ))}
         </Dropdown>
       </div>
+      {selectedPrompt && (
+        <Button
+          appearance="subtle"
+          icon={<PencilLine size={16} />}
+          onClick={() => onEdit?.(selectedPrompt)}
+          className={mergeClasses(styles.iconButton, editActive && styles.iconButtonEditActive)}
+          aria-label="Edit prompt"
+          title="Edit prompt"
+          disabled={disabled}
+        />
+      )}
       <Button
         appearance="subtle"
-        icon={<Plus size={16} />}
+        icon={<MessageSquarePlus size={16} />}
         onClick={onNew}
         className={styles.iconButton}
         aria-label="New prompt"
@@ -91,27 +126,25 @@ const TransformPromptSelector = ({
         disabled={disabled}
       />
       {selectedPrompt && (
-        <>
-          <Button
-            appearance="subtle"
-            icon={<SquarePen size={16} />}
-            onClick={() => onEdit?.(selectedPrompt)}
-            className={styles.iconButton}
-            aria-label="Edit prompt"
-            title="Edit prompt"
-            disabled={disabled}
-          />
-          <Button
-            appearance="subtle"
-            icon={<Copy size={16} />}
-            onClick={() => onDuplicate?.(selectedPrompt)}
-            className={styles.iconButton}
-            aria-label="Duplicate prompt"
-            title="Duplicate prompt"
-            disabled={disabled}
-          />
-        </>
+        <Button
+          appearance="subtle"
+          icon={<CopyPlus size={16} />}
+          onClick={() => onDuplicate?.(selectedPrompt)}
+          className={styles.iconButton}
+          aria-label="Duplicate prompt"
+          title="Duplicate prompt"
+          disabled={disabled}
+        />
       )}
+      <Button
+        appearance="subtle"
+        icon={<FolderSync size={16} />}
+        onClick={onOpenExportImport}
+        className={mergeClasses(styles.iconButton, styles.iconButtonExport)}
+        aria-label="Export/Import prompts"
+        title="Export/Import prompts (opens Settings > Transform)"
+        disabled={disabled}
+      />
     </div>
   );
 };

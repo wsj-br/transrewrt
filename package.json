@@ -1,7 +1,7 @@
 {
   "name": "transrewrt",
-  "version": "1.0.4",
-  "description": "Translate text between languages and rewrite text in different styles using AI.",
+  "version": "1.0.5",
+  "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
     "dev": "node scripts/electron-rebuild.js && node scripts/write-build-timestamp.js && concurrently \"pnpm run watch\" \"pnpm run electron\"",

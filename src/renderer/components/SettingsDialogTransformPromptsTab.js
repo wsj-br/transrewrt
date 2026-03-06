@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fluentui/react-components";
-import { Download, Upload, List } from "lucide-react";
+import { Download, Upload, List, Trash2 } from "lucide-react";
+import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/webApiClient";
+import { resolveDuplicateNames } from "../utils/promptUtils";
 
 const EXPORT_FORMATS = ["json", "csv", "xlsx"];
-const CSV_COLUMNS = ["name", "role", "instructions", "output_description", "temperature", "target_language"];
+const CSV_COLUMNS = ["name", "role", "instructions", "output_description", "temperature", "target_language", "prompt_instructions"];
+
+/** Normalize import/DB value to boolean: true = ask for target language at run time. */
+function normalizeAskTargetLanguage(value) {
+  if (value === true || value === 1) return true;
+  if (value === false || value === 0 || value === "0") return false;
+  if (typeof value === "string") {
+    const s = value.trim().toLowerCase();
+    if (s === "yes" || s === "true" || s === "1") return true;
+    if (s === "no" || s === "false" || s === "") return false;
+    if (s.length > 0) return true;
+  }
+  return false;
+}
 
 /** Instructions (stringified JSON array or array) → newline-separated string for display/CSV/XLSX */
 function instructionsToNewlineString(value) {
@@ -58,13 +73,19 @@ function escapeCsvField(value) {
 function buildCsvFromPrompts(prompts) {
   const header = CSV_COLUMNS.join(",");
   const rows = (Array.isArray(prompts) ? prompts : []).map((p) =>
-    CSV_COLUMNS.map((col) =>
-      escapeCsvField(col === "instructions" ? instructionsToNewlineString(p[col]) : p[col])
-    ).join(",")
+    CSV_COLUMNS.map((col) => {
+      if (col === "instructions") return escapeCsvField(instructionsToNewlineString(p[col]));
+      if (col === "target_language") return escapeCsvField(p.target_language === true || p.target_language === 1 ? "Yes" : "No");
+      return escapeCsvField(p[col]);
+    }).join(",")
   );
   return [header, ...rows].join("\r\n");
 }
 
+/**
+ * Parse a single CSV line respecting quoted fields and escaped quotes ("" → ").
+ * RFC 4180: fields containing comma, quote, or newline are wrapped in "; internal " escaped as "".
+ */
 function parseCsvLine(line) {
   const out = [];
   let field = "";
@@ -72,15 +93,20 @@ function parseCsvLine(line) {
   for (let i = 0; i < line.length; i++) {
     const ch = line[i];
     if (ch === '"') {
-      inQuotes = !inQuotes;
+      if (inQuotes && line[i + 1] === '"') {
+        field += '"';
+        i += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
     } else if (ch === "," && !inQuotes) {
-      out.push(field.replace(/""/g, '"'));
+      out.push(field);
       field = "";
     } else {
       field += ch;
     }
   }
-  out.push((field || "").replace(/""/g, '"'));
+  out.push(field || "");
   return out;
 }
 
@@ -101,7 +127,8 @@ function parseCsvToPrompts(text) {
         instructions: newlineStringToInstructionsArray(obj.instructions),
         output_description: obj.output_description || "transformed",
         temperature: Number(obj.temperature) || 0.4,
-        target_language: obj.target_language || null,
+        target_language: normalizeAskTargetLanguage(obj.target_language),
+        prompt_instructions: (obj.prompt_instructions != null && String(obj.prompt_instructions).trim()) ? String(obj.prompt_instructions).trim() : null,
       });
     }
   }
@@ -179,6 +206,21 @@ const useStyles = makeStyles({
     fontStyle: "italic",
     backgroundColor: tokens.colorNeutralBackground1,
   },
+  nameCell: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    minWidth: 0,
+  },
+  nameCellTrashIcon: {
+    color: tokens.colorNeutralForeground3,
+    cursor: "pointer",
+    flexShrink: 0,
+    marginLeft: "auto",
+    ":hover": {
+      color: tokens.colorNeutralForeground1,
+    },
+  },
 });
 
 const getCustomPromptsApi = () =>
@@ -207,6 +249,7 @@ const SettingsDialogTransformPromptsTab = () => {
   const [importMessage, setImportMessage] = useState("");
   const [importError, setImportError] = useState(false);
   const [exportImportFormat, setExportImportFormat] = useState("json");
+  const [promptToDelete, setPromptToDelete] = useState(null);
   const fileInputRef = React.useRef(null);
 
   const loadPrompts = async () => {
@@ -224,6 +267,25 @@ const SettingsDialogTransformPromptsTab = () => {
       setPrompts([]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleConfirmDeletePrompt = async () => {
+    if (!promptToDelete?.id) {
+      setPromptToDelete(null);
+      return;
+    }
+    const api = getCustomPromptsApi();
+    if (!api?.delete) {
+      setPromptToDelete(null);
+      return;
+    }
+    try {
+      await api.delete(promptToDelete.id);
+      setPromptToDelete(null);
+      await loadPrompts();
+    } catch (_) {
+      setPromptToDelete(null);
     }
   };
 
@@ -263,7 +325,7 @@ const SettingsDialogTransformPromptsTab = () => {
           instructions: "'" + instrStr(p),
           output_description: p.output_description ?? "transformed",
           temperature: p.temperature ?? 0.4,
-          target_language: p.target_language ?? "",
+          target_language: p.target_language === true || p.target_language === 1 ? "Yes" : "No",
         }));
         const ws = XLSX.utils.json_to_sheet(rows);
         const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
@@ -346,7 +408,7 @@ const SettingsDialogTransformPromptsTab = () => {
     instructions: typeof p.instructions === "string" ? p.instructions : JSON.stringify(p.instructions || []),
     output_description: p.output_description ?? "transformed",
     temperature: Number(p.temperature) || 0.4,
-    target_language: p.target_language ?? null,
+    target_language: normalizeAskTargetLanguage(p.target_language),
   });
 
   const handleImportFile = async (e) => {
@@ -390,8 +452,12 @@ const SettingsDialogTransformPromptsTab = () => {
         setImportError(true);
         return;
       }
+      const existing = await api.getAll().catch(() => []);
+      const existingNames = (Array.isArray(existing) ? existing : []).map((p) => p?.name).filter(Boolean);
+      list = resolveDuplicateNames(existingNames, list);
       const result = await api.import(list, "merge");
       if (result?.error) throw new Error(result.error);
+      setExportMessage("");
       setImportMessage(`Imported ${list.length} prompt(s).`);
       loadPrompts();
     } catch (err) {
@@ -492,7 +558,7 @@ const SettingsDialogTransformPromptsTab = () => {
                   {prompts.length === 0 ? (
                     <tr>
                       <td colSpan={6} className={styles.emptyRow}>
-                        No custom prompts yet. Create them in the Transform view.
+                         No custom prompts yet. Import from a file or create in the Transform view.
                       </td>
                     </tr>
                   ) : (
@@ -504,7 +570,20 @@ const SettingsDialogTransformPromptsTab = () => {
                           : instructionsDisplay || "—";
                       return (
                         <tr key={p.id} className={styles.tbodyTr}>
-                          <td className={styles.td}>{p.name}</td>
+                          <td className={styles.td}>
+                            <span className={styles.nameCell}>
+                              <span style={{ minWidth: 0 }}>{p.name}</span>
+                              <Trash2
+                                size={14}
+                                className={styles.nameCellTrashIcon}
+                                title="Delete this prompt"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setPromptToDelete(p);
+                                }}
+                              />
+                            </span>
+                          </td>
                           <td className={styles.td}>
                             {p.role ? `${String(p.role).slice(0, 50)}${String(p.role).length > 50 ? "…" : ""}` : "—"}
                           </td>
@@ -519,7 +598,7 @@ const SettingsDialogTransformPromptsTab = () => {
                             {p.output_description ? String(p.output_description).slice(0, 40) : "—"}
                             {(p.output_description && String(p.output_description).length > 40) ? "…" : ""}
                           </td>
-                          <td className={styles.td}>{p.target_language ?? "—"}</td>
+                          <td className={styles.td}>{p.target_language === true || p.target_language === 1 ? "Yes" : "No"}</td>
                           <td className={styles.td}>{p.temperature ?? "—"}</td>
                         </tr>
                       );
@@ -531,6 +610,18 @@ const SettingsDialogTransformPromptsTab = () => {
           )}
         </div>
       </div>
+
+      {promptToDelete != null && (
+        <ConfirmModal
+          title="Delete prompt"
+          message={`Delete the prompt "${promptToDelete.name || "Untitled"}"? This cannot be undone.`}
+          confirmLabel="Delete"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirmDeletePrompt}
+          onCancel={() => setPromptToDelete(null)}
+          danger
+        />
+      )}
     </div>
   );
 };

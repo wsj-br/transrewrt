@@ -2,15 +2,17 @@ import { useEffect, useRef } from "react";
 
 /**
  * Keeps inputTextRef in sync with inputText and runs debounced process when
- * real_time_translation is enabled. Skips debounce when shouldAutoProcessRef is set
- * (paste handler will run action directly).
+ * real_time_translation is enabled (translate mode only). Skips debounce when
+ * shouldAutoProcessRef is set (paste handler will run action directly).
+ * Transform and rewrite do not use real-time; only translate does.
  */
 export function useDebouncedProcess(
   inputText,
   handleRunAction,
   realTimeTranslation,
   realTimeDelay,
-  shouldAutoProcessRef
+  shouldAutoProcessRef,
+  currentMode = "translate"
 ) {
   const inputTextRef = useRef("");
   const settingsRef = useRef({ real_time_delay: realTimeDelay });
@@ -23,6 +25,7 @@ export function useDebouncedProcess(
   }, [inputText]);
 
   useEffect(() => {
+    if (currentMode !== "translate") return; // real-time only for translate
     if (realTimeTranslation !== true) return;
     if (shouldAutoProcessRef?.current) return; // paste handler will run action
     if (debounceRef.current) {
@@ -39,5 +42,5 @@ export function useDebouncedProcess(
         clearTimeout(debounceRef.current);
       }
     };
-  }, [inputText, realTimeTranslation, handleRunAction]);
+  }, [inputText, realTimeTranslation, handleRunAction, currentMode]);
 }

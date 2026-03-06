@@ -63,8 +63,8 @@ function buildRewriteSystemPrompt(styleConfig) {
 
 /**
  * Build system prompt for Transform (custom prompts).
- * @param {Object} promptConfig - { role, instructions (array or JSON string), output_description, target_language? }
- * @param {string|null} targetLang - Override target language for this run (e.g. "Spanish")
+ * @param {Object} promptConfig - { role, instructions (array or JSON string), output_description, target_language?: boolean }
+ * @param {string|null} targetLang - Target language for this run when prompt has ask-for-target-language (e.g. "Spanish")
  * @returns {string}
  */
 function buildTransformSystemPrompt(promptConfig, targetLang) {
@@ -547,9 +547,9 @@ class APIService {
   /**
    * Transform text with a custom prompt config.
    * @param {string} text - Input text
-   * @param {Object} promptConfig - Custom prompt (name, role, instructions, output_description, temperature, target_language)
+   * @param {Object} promptConfig - Custom prompt (name, role, instructions, output_description, temperature, target_language: boolean)
    * @param {string} model - Model id
-   * @param {string|null} targetLang - Override target language (or use prompt's default)
+   * @param {string|null} targetLang - Target language for this run when prompt has ask-for-target-language enabled
    * @param {AbortSignal|null} signal
    * @returns {Promise<Object>} Same shape as rewrite() (content, usage, model, etc.)
    */

@@ -783,8 +783,8 @@ ipcMain.on("settings-updated", () => {
   });
 });
 
-// Cost-tracking SQLite DB (transrewrt.db in userData)
-const { registerCostDbHandlers } = require("./costDb");
+// App SQLite DB (transrewrt.db in userData: api_calls, custom_prompts)
+const { registerAppDbHandlers } = require("./appDb");
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -843,7 +843,7 @@ app.on("ready", () => {
     });
   }
 
-  registerCostDbHandlers(ipcMain, () => app.getPath("userData"));
+  registerAppDbHandlers(ipcMain, () => app.getPath("userData"));
   loadConfigFromFile();
   loadStateFromFile();
   saveConfigToFile(configCache);

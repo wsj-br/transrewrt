@@ -59,7 +59,7 @@ const useStyles = makeStyles({
     fontSize: "24px",
     color: tokens.colorNeutralForeground2,
     textAlign: "center",
-    maxWidth: "500px",
+    maxWidth: "550px",
     lineHeight: 1.6,
     fontWeight: 600,
     margin: 5,

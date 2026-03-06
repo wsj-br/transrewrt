@@ -35,9 +35,17 @@ const useStyles = makeStyles({
     justifyContent: "flex-end",
     gap: "8px",
   },
+  confirmButtonDanger: {
+    backgroundColor: "#b91c1c",
+    color: tokens.colorNeutralForegroundOnColor,
+    ":hover": {
+      backgroundColor: "#991b1b",
+      color: tokens.colorNeutralForegroundOnColor,
+    },
+  },
 });
 
-const ConfirmModal = ({ title, message, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel }) => {
+const ConfirmModal = ({ title, message, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, danger = false }) => {
   const styles = useStyles();
 
   return (
@@ -49,7 +57,11 @@ const ConfirmModal = ({ title, message, confirmLabel = "Confirm", cancelLabel = 
           <Button appearance="secondary" onClick={onCancel}>
             {cancelLabel}
           </Button>
-          <Button appearance="primary" onClick={onConfirm}>
+          <Button
+            appearance="primary"
+            onClick={onConfirm}
+            className={danger ? styles.confirmButtonDanger : undefined}
+          >
             {confirmLabel}
           </Button>
         </div>
