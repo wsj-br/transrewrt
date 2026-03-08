@@ -7,6 +7,7 @@
  *   node scripts/generate-translations.js --help
  *   node scripts/generate-translations.js --dry-run
  *   node scripts/generate-translations.js --retranslate --model openai/gpt-4o
+ *   node scripts/generate-translations.js --max-tokens 4096
  *
  * Options:
  *   --help, -h           Show usage and exit.
@@ -37,6 +38,7 @@ Options:
   --show-strings, -s      List source strings that need translation (key + text) per language.
   --retranslate, -r       Retranslate all strings (ignore existing translations).
   --model, -m <name>      OpenRouter model to use (default: anthropic/claude-opus-4.6).
+  --max-tokens, -t <n>    Max tokens for completion (default: 32768).
 
 Examples:
   node scripts/generate-translations.js --help
@@ -49,12 +51,15 @@ Examples:
 `);
 }
 
+const DEFAULT_MAX_TOKENS = 32768;
+
 function parseArgs() {
   const args = process.argv.slice(2);
   let retranslate = false;
   let dryRun = false;
   let showStrings = false;
   let model = "anthropic/claude-opus-4.6";
+  let maxTokens = DEFAULT_MAX_TOKENS;
   let help = false;
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -68,12 +73,15 @@ function parseArgs() {
       retranslate = true;
     } else if ((arg === "--model" || arg === "-m") && args[i + 1]) {
       model = args[++i];
+    } else if ((arg === "--max-tokens" || arg === "-t") && args[i + 1]) {
+      const n = parseInt(args[++i], 10);
+      if (!Number.isNaN(n) && n > 0) maxTokens = n;
     }
   }
-  return { retranslate, dryRun, showStrings, model, help };
+  return { retranslate, dryRun, showStrings, model, maxTokens, help };
 }
 
-const { retranslate, dryRun, showStrings, model: cliModel, help } = parseArgs();
+const { retranslate, dryRun, showStrings, model: cliModel, maxTokens, help } = parseArgs();
 
 if (help) {
   printHelp();
@@ -85,6 +93,7 @@ const LOCALES_DIR = path.join(process.cwd(), "src", "renderer", "locales");
 const UI_LANGUAGES_PATH = path.join(process.cwd(), "src", "renderer", "locales", "ui-languages.json");
 const API_KEY = process.env.API_KEY;
 const MODEL = cliModel;
+const MAX_TOKENS = maxTokens;
 
 let LANGUAGES = [];
 if (fs.existsSync(UI_LANGUAGES_PATH)) {
@@ -111,7 +120,7 @@ if (!API_KEY) {
 if (retranslate) {
   console.log("[translate] --retranslate: will translate all strings for each language");
 }
-console.log(`[translate] model: ${MODEL}`);
+console.log(`[translate] model: ${MODEL}, max_tokens: ${MAX_TOKENS}`);
 
 const strings = JSON.parse(fs.readFileSync(STRINGS_FILE, "utf8"));
 const entries = Object.entries(strings);
@@ -218,6 +227,7 @@ async function translateBatch(texts, langName) {
     },
     body: JSON.stringify({
       model: MODEL,
+      max_tokens: MAX_TOKENS,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         {

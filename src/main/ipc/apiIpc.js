@@ -67,6 +67,95 @@ function registerApiIpc(ipcMain, getConfigCache) {
       throw err;
     }
   });
+
+  ipcMain.handle(
+    "api:testConfiguration",
+    async (
+      _,
+      { apiUrl, use_transrewrt_proxy, apiKeyOverride, keySeedOverride }
+    ) => {
+      const configCache = getConfigCache();
+      const apiKey = (
+        apiKeyOverride !== undefined && apiKeyOverride !== null
+          ? String(apiKeyOverride)
+          : configCache.api_key || ""
+      ).trim();
+      const keySeed = (
+        keySeedOverride !== undefined && keySeedOverride !== null
+          ? String(keySeedOverride)
+          : configCache.key_seed || ""
+      ).trim();
+      const baseUrl = (apiUrl || "https://openrouter.ai/api/v1").trim().replace(
+        /\/+$/,
+        ""
+      );
+
+      if (!baseUrl) {
+        return { status: "error", message: "API URL is required" };
+      }
+      if (!apiKey) {
+        return { status: "error", message: "API Key is required" };
+      }
+      if (use_transrewrt_proxy && !keySeed) {
+        return {
+          status: "error",
+          message: "Key Seed is required when using Transrewrt Proxy",
+        };
+      }
+
+      let testUrl;
+      if (use_transrewrt_proxy && keySeed) {
+        const rollingKey = getRollingKeyForProxy(keySeed);
+        testUrl = `${baseUrl}/${rollingKey}/api/v1/key`;
+      } else {
+        testUrl = `${baseUrl}/key`;
+      }
+
+      try {
+        const response = await fetch(testUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+            "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
+            "X-Title": "Transrewrt",
+          },
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+          try {
+            const errorData = JSON.parse(errorText);
+            if (errorData.error?.message) errorMessage = errorData.error.message;
+          } catch (e) {
+            /* ignore */
+          }
+          return { status: "error", message: errorMessage };
+        }
+
+        const data = await response.json();
+        if (data && (data.data || data.id || response.ok)) {
+          const keyInfo = data.data || data;
+          const keyLabel = keyInfo.label || keyInfo.id || "API key";
+          return {
+            status: "success",
+            message: `Success! Connected to API. Valid API key: ${keyLabel}`,
+          };
+        }
+        return {
+          status: "error",
+          message:
+            "Connection successful but unexpected response. Check your API key permissions.",
+        };
+      } catch (error) {
+        return {
+          status: "error",
+          message: `Connection failed: ${error.message}`,
+        };
+      }
+    }
+  );
 }
 
 module.exports = { registerApiIpc };

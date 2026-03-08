@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
-import { getCostFractionStyleOptions, formatCost } from '../features/dashboard/utils/costUtils';
+import { getCostFractionStyleOptions, formatCost } from '../utils/misc/costUtils';
 
 const DEFAULT_FONT = 'Verdana';
 

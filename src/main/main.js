@@ -45,7 +45,7 @@ const DEFAULT_STATE = {
   app_mode: "translate",
   rewrite_style: "Check Spelling & Grammar",
   web_session: "",
-  all_calls_page_size: 50,
+  all_calls_page_size: 10,
 };
 
 function isStateKey(key) {

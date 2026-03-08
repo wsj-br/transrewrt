@@ -56,7 +56,7 @@ const App = () => {
   const [outputTextRewrite, setOutputTextRewrite] = useState("");
   const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
   const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
-  const electronApiKeyMissing = !isWeb && (!settings?.api_key || String(settings?.api_key).trim() === "");
+  const electronApiKeyMissing = !isWeb && !settings?.api_key_configured;
   // Only show modal after initial load has settled (avoids flash when API key is already configured)
   const [apiKeyModalReady, setApiKeyModalReady] = useState(false);
   useEffect(() => {

@@ -4,7 +4,7 @@ import apiService from "../services/apiService";
 import webAPI from "../utils/api/webApiClient";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
-import { useCostTracking } from "../features/dashboard/hooks/useCostTracking";
+import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 

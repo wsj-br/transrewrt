@@ -81,7 +81,7 @@ const useStyles = makeStyles({
     flexShrink: 1,
   },
   meta: {
-    marginTop: "24px",
+    marginTop: "16px",
     fontSize: "14px",
     color: tokens.colorNeutralForeground1,
     textAlign: "center",
@@ -125,10 +125,16 @@ const SettingsDialogAboutTab = () => {
       </div>
       <p className={styles.description}>{t(APP_DESCRIPTION)}</p>
       <div className={styles.meta}>
-        {APP_AUTHOR && <span style={{ fontWeight: 600 }}>{t("Copyright")} © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
+        {APP_AUTHOR && <span style={{ fontWeight: 600 }}>Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
         <br />
-        {APP_LICENSE && <span> {t("Licensed under")} {APP_LICENSE}.</span>}
-        <span> {t("All rights reserved.")}</span>
+        {APP_LICENSE && <span> Licensed under ▪ {t("Licensed under")} {APP_LICENSE}.</span>}  
+        <span style={{ marginLeft: 10 }}>—</span>
+        <span style={{ marginLeft: 10 }}>All rights reserved ▪ {t("All rights reserved.")}</span>
+        <br />
+        <br />
+        <i>Product names and icons belong to their respective owners and are used for identification purposes only.</i>
+        <br />
+        <i>This software is not affiliated with or endorsed by any of the mentioned brands.</i>
         <br />
         <br />
         <i>{t("Product names and icons belong to their respective owners and are used for identification purposes only.")}</i>

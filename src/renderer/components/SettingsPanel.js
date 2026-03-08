@@ -20,14 +20,13 @@ import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
 import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
 import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
-import SettingsDialogCostTrackingTab from "../features/dashboard/components/SettingsDialogCostTrackingTab";
+import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
 import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
-import { getRollingKey } from "../utils/security/transrewrtProxyKey";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -146,8 +145,6 @@ const SettingsPanel = () => {
   const [selectedLanguages, setSelectedLanguages] = useState(new Set());
   const [customLanguage, setCustomLanguage] = useState("");
 
-  const [showApiKey, setShowApiKey] = useState(false);
-  const [showKeySeed, setShowKeySeed] = useState(false);
   const [apiTestStatus, setApiTestStatus] = useState(null);
   const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
@@ -247,78 +244,23 @@ const SettingsPanel = () => {
     }
   };
 
-  const handleTestApi = async () => {
+  const handleTestApi = async (overrides) => {
+    if (!window.electronAPI?.testApiConfiguration) return;
     const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
-    const apiKey = localSettings.api_key || "";
-
-    if (!apiUrl.trim()) {
-      setApiTestStatus("error");
-      setApiTestMessage("API URL is required");
-      return;
-    }
-    if (!apiKey.trim()) {
-      setApiTestStatus("error");
-      setApiTestMessage("API Key is required");
-      return;
-    }
-    if (localSettings.use_transrewrt_proxy && !(localSettings.key_seed || "").trim()) {
-      setApiTestStatus("error");
-      setApiTestMessage("Key Seed is required when using Transrewrt Proxy");
-      return;
-    }
-
     setApiTestStatus("testing");
     setApiTestMessage("Testing connection...");
-
     try {
-      let testUrl;
-      if (localSettings.use_transrewrt_proxy && (localSettings.key_seed || "").trim()) {
-        const proxyBase = String(apiUrl).trim().replace(/\/+$/, "");
-        const rollingKey = await getRollingKey((localSettings.key_seed || "").trim());
-        testUrl = `${proxyBase}/${rollingKey}/api/v1/key`;
-      } else {
-        const base = String(apiUrl).trim().replace(/\/+$/, "");
-        testUrl = `${base}/key`;
-      }
-      const response = await fetch(testUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-          "X-Title": "Transrewrt",
-        },
+      const result = await window.electronAPI.testApiConfiguration({
+        apiUrl,
+        use_transrewrt_proxy: !!localSettings.use_transrewrt_proxy,
+        apiKeyOverride: overrides?.apiKey,
+        keySeedOverride: overrides?.keySeed,
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-        try {
-          const errorData = JSON.parse(errorText);
-          if (errorData.error?.message) errorMessage = errorData.error.message;
-        } catch (e) {
-          /* ignore */
-        }
-        throw new Error(errorMessage);
-      }
-
-      const data = await response.json();
-      if (data && (data.data || data.id || response.ok)) {
-        const keyInfo = data.data || data;
-        setApiTestStatus("success");
-        const keyLabel = keyInfo.label || keyInfo.id || "API key";
-        setApiTestMessage(
-          `Success! Connected to API. Valid API key: ${keyLabel}`,
-        );
-      } else {
-        setApiTestStatus("error");
-        setApiTestMessage(
-          "Connection successful but unexpected response. Check your API key permissions.",
-        );
-      }
+      setApiTestStatus(result.status);
+      setApiTestMessage(result.message || "");
     } catch (error) {
       setApiTestStatus("error");
-      setApiTestMessage(`Connection failed: ${error.message}`);
+      setApiTestMessage(error?.message || "Connection failed");
     }
   };
 
@@ -628,13 +570,11 @@ const SettingsPanel = () => {
         {!isWeb && activeTab === "api" && (
           <SettingsDialogApiTab
             localSettings={localSettings}
-            showApiKey={showApiKey}
-            showKeySeed={showKeySeed}
+            hasApiKey={!!settings.api_key_configured}
+            hasKeySeed={!!settings.key_seed_configured}
             apiTestStatus={apiTestStatus}
             apiTestMessage={apiTestMessage}
             onSettingChange={handleSettingChange}
-            onShowApiKeyChange={setShowApiKey}
-            onShowKeySeedChange={setShowKeySeed}
             onTestApi={handleTestApi}
           />
         )}

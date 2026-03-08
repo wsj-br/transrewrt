@@ -25,8 +25,7 @@ const STATE_PATH = path.join(path.dirname(CONFIG_PATH), "state.json");
 const DEFAULT_CONFIG_PATH = path.join(
   __dirname,
   "..",
-  "..",
-  "config",
+  "config-defaults",
   "config_default.json",
 );
 const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "..", "build_timestamp");

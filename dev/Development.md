@@ -114,7 +114,7 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open http://localhost:5000
 
-Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `config/transform-prompts.json`, or manage prompts in Settings → Transform.
+Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in Settings → Transform.
 
 ---
 
@@ -239,7 +239,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/shared/db/appSchema.js](../src/shared/db/appSchema.js) | Shared DB schema and SQL (used by main + server) |
 | [Dockerfile](../Dockerfile) | Multi-stage Docker build |
 | [docker-compose.yml](../docker-compose.yml) | Compose for local web run |
-| [config/transform-prompts.json](../config/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts") |
+| [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts") |
 | [src/renderer/i18n.js](../src/renderer/i18n.js) | i18n init, RTL handling, dynamic locale loaders |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json) | Extracted UI strings and translation state (from i18n:extract) |
 | [scripts/generate-translations.js](../scripts/generate-translations.js) | OpenRouter translation script (i18n:translate; needs API_KEY) |

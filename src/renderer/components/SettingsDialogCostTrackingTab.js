@@ -9,14 +9,14 @@ import {
   makeStyles,
 } from "@fluentui/react-components";
 import { DollarSign, Copy, Server, RotateCcw, Trash2 } from "lucide-react";
-import webAPI from "../../../utils/api/webApiClient";
-import ConfirmModal from "../../../components/ConfirmModal";
+import webAPI from "../utils/api/webApiClient";
+import ConfirmModal from "./ConfirmModal";
 import {
   getCostApi,
   formatCost,
   formatAvgCost,
   formatCount,
-} from "../utils/costUtils";
+} from "../utils/misc/costUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -200,7 +200,7 @@ const SettingsDialogCostTrackingTab = ({
 
   useEffect(() => {
     fetchKeyInfo();
-  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key, isTabActive]);
+  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key_configured, isTabActive]);
 
   const keyUsageDisplay = useMemo(() => {
     if (keyInfoLoading) return t("Loading…");

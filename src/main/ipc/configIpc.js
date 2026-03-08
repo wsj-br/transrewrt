@@ -54,9 +54,20 @@ function registerConfigIpc(ipcMain, ctx) {
     });
   };
 
-  ipcMain.handle("config:get", () =>
-    Promise.resolve({ ...getConfigCache(), ...getStateCache() }),
-  );
+  ipcMain.handle("config:get", () => {
+    const cache = getConfigCache();
+    const state = getStateCache();
+    const sanitized = { ...cache };
+    delete sanitized.api_key;
+    delete sanitized.key_seed;
+    sanitized.api_key_configured = !!(
+      cache.api_key && String(cache.api_key).trim()
+    );
+    sanitized.key_seed_configured = !!(
+      cache.key_seed && String(cache.key_seed).trim()
+    );
+    return Promise.resolve({ ...sanitized, ...state });
+  });
 
   ipcMain.handle("config:set", (_, key, value) => {
     if (key === undefined) return Promise.resolve(false);
@@ -83,6 +94,7 @@ function registerConfigIpc(ipcMain, ctx) {
     const configPart = {};
     const statePart = {};
     Object.keys(newConfig).forEach((k) => {
+      if (k === "api_key" || k === "key_seed") return;
       if (isStateKey(k)) statePart[k] = newConfig[k];
       else configPart[k] = newConfig[k];
     });
@@ -110,6 +122,14 @@ function registerConfigIpc(ipcMain, ctx) {
     }
     if (configSaved || stateSaved) notifySettingsUpdated();
     return Promise.resolve(true);
+  });
+
+  ipcMain.handle("config:getSecretsForRequest", () => {
+    const cache = getConfigCache();
+    return Promise.resolve({
+      api_key: cache.api_key ?? "",
+      key_seed: cache.key_seed ?? "",
+    });
   });
 
   ipcMain.handle("write-last-api-result", (_, payload) => {

@@ -1,3 +1,24 @@
+const DASH = "—";
+
+/** Format integer for display; null/NaN → DASH. */
+export function formatInteger(n) {
+  return n == null || Number.isNaN(Number(n)) ? DASH : Number(n).toLocaleString();
+}
+
+/** Format duration in ms as "m:ss". */
+export function formatDurationMs(ms) {
+  if (ms == null || Number.isNaN(Number(ms))) return DASH;
+  const totalSec = Math.floor(Number(ms) / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
+/** Replace {{key}} placeholders in a string (used when t() returns key-as-default and i18n does not interpolate). */
+export function interpolateTemplate(str, vars) {
+  return str.replace(/\{\{(\w+)\}\}/g, (_, key) => String(vars[key] ?? ""));
+}
+
 /** Format seconds as "mm:ss.s" (e.g. 191.8 → "03:11.8", 8.9 → "00:08.9") */
 export function formatElapsedMmSs(seconds) {
   const sec = Number(seconds) || 0;

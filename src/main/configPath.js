@@ -65,7 +65,7 @@ const getConfigFilePath = () => {
 };
 
 const getDefaultConfigPath = () =>
-  path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
+  path.join(path.dirname(getConfigFilePath()), "../src/config-defaults/config_default.json");
 
 const getDefaultConfigPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
@@ -75,7 +75,7 @@ const getDefaultConfigPathForLoad = () => {
       "config_default.json",
     );
   }
-  return path.join(__dirname, "../../config/config_default.json");
+  return path.join(__dirname, "../config-defaults/config_default.json");
 };
 
 const getStateFilePath = () =>

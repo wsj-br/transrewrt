@@ -1,7 +1,7 @@
 import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import { getRollingKey } from "../utils/security/transrewrtProxyKey";
-import prompts from "../../../config/prompts.json";
+import prompts from "../../config-defaults/prompts.json";
 
 const PROXY_DEBUG =
   typeof __DEV__ !== "undefined" && __DEV__;
@@ -135,50 +135,62 @@ class APIService {
     }
     const config = require("../utils/config/configManager").default.getAll();
     const useProxy = !!config.use_transrewrt_proxy;
-    const keySeed = (config.key_seed || "").trim();
-    if (useProxy && keySeed && config.api_url) {
-      const proxyBase = String(config.api_url).replace(/\/+$/, "");
-      const rollingKey = await getRollingKey(
-        keySeed,
-        PROXY_DEBUG && typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog
-          ? (msg, data) => {
-              window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(msg, data)).catch(() => {});
-            }
-          : undefined
-      );
-      const pathPart = path.startsWith("/") ? path.slice(1) : path;
-      const url = `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
-      if (PROXY_DEBUG) {
-        proxyDebug("getRequestUrl (proxy)", {
-          proxyBase,
-          pathPart,
-          rollingKeyMasked: rollingKey ? `${rollingKey.slice(0, 2)}***` : "(empty)",
-          fullUrl: url,
-        });
+    if (useProxy && config.api_url && window.electronAPI?.getSecretsForRequest) {
+      const { key_seed } = await window.electronAPI.getSecretsForRequest();
+      const keySeed = (key_seed || "").trim();
+      if (keySeed) {
+        const proxyBase = String(config.api_url).replace(/\/+$/, "");
+        const rollingKey = await getRollingKey(
+          keySeed,
+          PROXY_DEBUG && typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog
+            ? (msg, data) => {
+                window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(msg, data)).catch(() => {});
+              }
+            : undefined
+        );
+        const pathPart = path.startsWith("/") ? path.slice(1) : path;
+        const url = `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
+        if (PROXY_DEBUG) {
+          proxyDebug("getRequestUrl (proxy)", {
+            proxyBase,
+            pathPart,
+            rollingKeyMasked: rollingKey ? `${rollingKey.slice(0, 2)}***` : "(empty)",
+            fullUrl: url,
+          });
+        }
+        return url;
       }
-      return url;
     }
     const base = (this.baseUrl || "").replace(/\/+$/, "");
     const pathPart = path.startsWith("/") ? path : `/${path}`;
     return `${base}${pathPart}`;
   }
 
-  getHeaders() {
+  async getHeaders() {
     if (this._isWebMode) {
       return { "Content-Type": "application/json" };
     }
-    const config = require("../utils/config/configManager").default.getAll();
-    const useProxy = !!config.use_transrewrt_proxy;
-    if (PROXY_DEBUG && useProxy) {
-      proxyDebug("getHeaders (proxy)", {
-        note: "API Key will not shown in the log, check if hasAPIKeyInConfig is true",
-        hasApiKeyInConfig: !!(config.api_key && String(config.api_key).trim()),
-        headerKeys: ["Content-Type", "Authorization", "HTTP-Referer", "X-Title"],
-      });
+    if (window.electronAPI?.getSecretsForRequest) {
+      const { api_key } = await window.electronAPI.getSecretsForRequest();
+      const config = require("../utils/config/configManager").default.getAll();
+      const useProxy = !!config.use_transrewrt_proxy;
+      if (PROXY_DEBUG && useProxy) {
+        proxyDebug("getHeaders (proxy)", {
+          note: "API Key will not be shown in the log",
+          hasApiKey: !!(api_key && String(api_key).trim()),
+          headerKeys: ["Content-Type", "Authorization", "HTTP-Referer", "X-Title"],
+        });
+      }
+      return {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${api_key || ""}`,
+        "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
+        "X-Title": "Transrewrt",
+      };
     }
     return {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${config.api_key || ""}`,
+      Authorization: "Bearer ",
       "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
       "X-Title": "Transrewrt",
     };
@@ -236,7 +248,7 @@ class APIService {
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const url = await this.getRequestUrl(`generation?id=${encodeURIComponent(generationId)}`);
-        const opts = { headers: this.getHeaders() };
+        const opts = { headers: await this.getHeaders() };
         if (this._isWebMode) opts.credentials = "include";
         if (PROXY_DEBUG && useProxy) {
           proxyDebug("getGenerationUsage (proxy)", { attempt: attempt + 1, maxRetries, generationId, url });
@@ -306,7 +318,7 @@ class APIService {
 
     const fetchOptions = {
       method: "POST",
-      headers: this.getHeaders(),
+      headers: await this.getHeaders(),
       body: bodyStr,
     };
     if (signal) fetchOptions.signal = signal;
@@ -586,7 +598,7 @@ class APIService {
    */
   async getModels() {
     try {
-      const opts = { headers: this.getHeaders() };
+      const opts = { headers: await this.getHeaders() };
       if (this._isWebMode) opts.credentials = "include";
       const url = await this.getRequestUrl("models");
       const config = require("../utils/config/configManager").default.getAll();

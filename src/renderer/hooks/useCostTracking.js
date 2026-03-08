@@ -1,4 +1,4 @@
-import configManager from "../../../utils/config/configManager";
+import configManager from "../utils/config/configManager";
 
 /**
  * Cost tracking: persist total cost, write last result (Electron), and log API calls.

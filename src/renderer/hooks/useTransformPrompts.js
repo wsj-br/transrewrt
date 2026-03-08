@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
 import { formatElapsedMmSs } from "../utils/misc/formatUtils";
-import samplePromptsData from "../../../config/transform-prompts.json";
+import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
   return typeof window !== "undefined" && window.electronAPI?.customPrompts

@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.6-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.7-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -178,7 +178,7 @@ Then open [http://localhost:5000](http://localhost:5000).
 
 ## Configuration
 
-On first run, the application copies the default config from `config/config_default.json` to a writable location and then reads and writes settings there:
+On first run, the application copies the default config from `src/config-defaults/config_default.json` to a writable location and then reads and writes settings there:
 
 | Deployment   | Config location                                                          |
 | ------------ | ------------------------------------------------------------------------ |
@@ -354,8 +354,16 @@ To add a new UI language (e.g. Chinese or Arabic): add a loader in `src/renderer
 
 Please follow the existing code style and test your changes in both Electron and web modes before submitting.
 
+
+## Disclamer
+
+Product names and icons belong to their respective owners and are used for identification purposes only. 
+This software is not affiliated with or endorsed by any of the mentioned brands.
+
 ---
 
 ## License
 
-[Apache License 2.0](LICENSE) © 2026 Waldemar Scudeller Jr.
+Copyright © 2026 Waldemar Scudeller Jr.
+
+[Apache License 2.0](LICENSE) 

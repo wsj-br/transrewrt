@@ -106,9 +106,10 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   │   └── …
 │   └── shared/            # Shared DB schema and SQL (main + server)
 │       └── db/appSchema.js
-├── config/
-│   ├── config_default.json
-│   └── transform-prompts.json   # Sample transform prompts (Load sample prompts)
+│   └── config-defaults/
+│       ├── config_default.json
+│       ├── transform-prompts.json   # Sample transform prompts (Load sample prompts)
+│       └── prompts.json
 ├── scripts/               # electron-rebuild, node-rebuild, docker-deploy, etc.
 ├── build/                 # electron-builder (e.g. installer.nsh)
 ├── dist/                  # Webpack output (production build)
@@ -129,7 +130,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 ## Config and State
 
-- **Electron**: Config file path is resolved in the main process (user data dir, project root, or executable dir). Defaults are merged from [config/config_default.json](../config/config_default.json).
+- **Electron**: Config file path is resolved in the main process (user data dir, project root, or executable dir). Defaults are merged from [src/config-defaults/config_default.json](../src/config-defaults/config_default.json).
 - **Web**: Config and state live on the server (e.g. `/app/data/config.json` and `/app/data/state.json` in Docker). The client reads/writes via REST; state keys (e.g. `last_used_model`, `source_language`) are split from config and persisted separately.
 - **UI language**: Config key `ui_locale` (e.g. `en-GB`, `pt-BR`) drives react-i18next; [src/renderer/i18n.js](../src/renderer/i18n.js) and locale files in `src/renderer/locales/`.
 

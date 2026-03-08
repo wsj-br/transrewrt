@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "docker:down": "docker compose down",
     "docker:clean": "./scripts/clean-docker.sh",
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
-    "docker:deploy": "./scripts/docker-deploy.sh",
     "docker:logs": "docker logs transrewrt-web-1",
     "docker:shell": "docker exec -it transrewrt-web-1 /bin/sh",
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
@@ -63,7 +62,7 @@
     },
     "extraFiles": [
       {
-        "from": "config/config_default.json",
+        "from": "src/config-defaults/config_default.json",
         "to": "config/config_default.json"
       }
     ],
@@ -72,10 +71,14 @@
       "buildResources": "images"
     },
     "win": {
-      "target": "nsis",
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
       "forceCodeSigning": false,
       "icon": "transrewrt_logo.ico",
       "artifactName": "${productName} Setup ${version}.${ext}"
+    },
+    "linux": {
+      "target": [{ "target": "AppImage", "arch": ["x64"] }],
+      "artifactName": "${productName}-${version}.${ext}"
     },
     "nsis": {
       "include": "build/installer.nsh",

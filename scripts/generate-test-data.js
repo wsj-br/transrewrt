@@ -5,7 +5,7 @@
  * Transaction cost = (request_bytes + response_bytes) / 4 / 1e6 * cost_per_1M for that model.
  * Uses sql.js so it runs without native better-sqlite3 bindings.
  *
- * Run: pnpm generate-test-data [--translations N] [--rewrites N]
+ * Run: pnpm generate-test-data --web|--app [options]
  */
 
 const path = require("path");
@@ -13,8 +13,12 @@ const fs = require("fs");
 
 const DEFAULT_NUM_TRANSLATIONS = 600;
 const DEFAULT_NUM_REWRITES = 200;
+const DEFAULT_NUM_TRANSFORMS = 150;
 
-function getDataDir() {
+function getDataDir(mode) {
+  if (mode === "web") {
+    return path.join(__dirname, "..", "data");
+  }
   if (process.env.CONFIG_PATH) {
     return path.dirname(process.env.CONFIG_PATH);
   }
@@ -29,10 +33,6 @@ function getDataDir() {
   return path.join(__dirname, "..", "data");
 }
 
-const DATA_DIR = getDataDir();
-const CONFIG_PATH = process.env.CONFIG_PATH || path.join(DATA_DIR, "config.json");
-const DB_PATH = path.join(DATA_DIR, "transrewrt.db");
-
 const REWRITE_STYLES = [
   "Check Spelling & Grammar",
   "Improve Clarity",
@@ -43,25 +43,57 @@ const REWRITE_STYLES = [
   "Make Technical",
 ];
 
+const TRANSFORM_PROMPTS_PATH = path.join(__dirname, "..", "src", "config-defaults", "transform-prompts.json");
+
+function loadTransformPrompts() {
+  if (!fs.existsSync(TRANSFORM_PROMPTS_PATH)) {
+    console.error(`Transform prompts file not found: ${TRANSFORM_PROMPTS_PATH}`);
+    process.exit(1);
+  }
+  let data;
+  try {
+    data = JSON.parse(fs.readFileSync(TRANSFORM_PROMPTS_PATH, "utf8"));
+  } catch (err) {
+    console.error("Could not parse transform-prompts.json:", err.message);
+    process.exit(1);
+  }
+  if (!Array.isArray(data)) {
+    console.error("src/config-defaults/transform-prompts.json must be a JSON array");
+    process.exit(1);
+  }
+  const names = data.map((p) => p && p.name).filter(Boolean);
+  if (names.length === 0) {
+    console.error("src/config-defaults/transform-prompts.json has no entries with a name field");
+    process.exit(1);
+  }
+  return names;
+}
+
 function printUsage() {
-  console.log(`Usage: pnpm generate-test-data [options]
+  console.log(`Usage: pnpm generate-test-data (--web | --app) [options]
+
+Mandatory:
+  --web                  Generate test data to the web database (repo ./data)
+  --app                  Use app data directory (CONFIG_PATH, APPDATA, or repo ./data)
 
 Options:
   -t, --translations N   Number of translation rows to generate (default: ${DEFAULT_NUM_TRANSLATIONS})
   -r, --rewrites N       Number of rewrite rows to generate (default: ${DEFAULT_NUM_REWRITES})
+  -f, --transforms N     Number of transform rows to generate (default: ${DEFAULT_NUM_TRANSFORMS})
   -h, --help             Show this help and exit
 
-Reads models and languages from data/config.json (or CONFIG_PATH).`);
+Reads models and languages from data/config.json (or CONFIG_PATH for --app).
+Transform prompt names from src/config-defaults/transform-prompts.json.`);
 }
 
-function loadConfig() {
-  if (!fs.existsSync(CONFIG_PATH)) {
-    console.error(`Config not found: ${CONFIG_PATH}`);
+function loadConfig(configPath) {
+  if (!fs.existsSync(configPath)) {
+    console.error(`Config not found: ${configPath}`);
     process.exit(1);
   }
   let config;
   try {
-    config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+    config = JSON.parse(fs.readFileSync(configPath, "utf8"));
   } catch (err) {
     console.error("Could not parse config:", err.message);
     process.exit(1);
@@ -87,12 +119,22 @@ function parseArgs() {
     process.exit(0);
   }
 
+  let mode = null;
   let numTranslations = DEFAULT_NUM_TRANSLATIONS;
   let numRewrites = DEFAULT_NUM_REWRITES;
+  let numTransforms = DEFAULT_NUM_TRANSFORMS;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg.startsWith("-")) {
+      if (arg === "--web") {
+        mode = "web";
+        continue;
+      }
+      if (arg === "--app") {
+        mode = "app";
+        continue;
+      }
       if (arg === "--translations" || arg === "-t") {
         const next = argv[i + 1];
         if (next == null || next.startsWith("-")) {
@@ -127,6 +169,23 @@ function parseArgs() {
         i++;
         continue;
       }
+      if (arg === "--transforms" || arg === "-f") {
+        const next = argv[i + 1];
+        if (next == null || next.startsWith("-")) {
+          console.error("--transforms (-f) requires a number");
+          printUsage();
+          process.exit(1);
+        }
+        const n = parseInt(next, 10);
+        if (Number.isNaN(n) || n < 0) {
+          console.error("--transforms must be a non-negative integer");
+          printUsage();
+          process.exit(1);
+        }
+        numTransforms = n;
+        i++;
+        continue;
+      }
       if (arg === "--help" || arg === "-h") {
         continue;
       }
@@ -135,7 +194,14 @@ function parseArgs() {
       process.exit(1);
     }
   }
-  return { numTranslations, numRewrites };
+
+  if (mode === null) {
+    console.error("Error: exactly one of --web or --app is required.");
+    printUsage();
+    process.exit(1);
+  }
+
+  return { mode, numTranslations, numRewrites, numTransforms };
 }
 
 function randomInt(min, max) {
@@ -176,7 +242,7 @@ function randomTimestamp(fromMs, toMs) {
   return new Date(t).toISOString();
 }
 
-function generateRows(models, languages, numTranslations, numRewrites) {
+function generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames) {
   const now = Date.now();
   const twoYearsMs = 2 * 365.25 * 24 * 60 * 60 * 1000;
   const fromMs = now - twoYearsMs;
@@ -203,6 +269,7 @@ function generateRows(models, languages, numTranslations, numRewrites) {
       source_lang: sourceLang,
       target_lang: targetLang,
       rewrite_style: null,
+      transform_prompt: null,
       request_bytes: requestBytes,
       response_bytes: responseBytes,
       duration_ms: durationMs,
@@ -228,6 +295,34 @@ function generateRows(models, languages, numTranslations, numRewrites) {
       source_lang: null,
       target_lang: null,
       rewrite_style: randomChoice(REWRITE_STYLES),
+      transform_prompt: null,
+      request_bytes: requestBytes,
+      response_bytes: responseBytes,
+      duration_ms: durationMs,
+      cost,
+      total_cost: null,
+      tps: tps !== null ? Math.round(tps * 100) / 100 : null,
+    });
+  }
+
+  for (let i = 0; i < numTransforms; i++) {
+    const model = randomChoice(models);
+    const requestBytes = randomInt(50, 8000);
+    const responseBytes = randomInt(50, 8000);
+    const durationMs = randomInt(100, 6000);
+    const cost = calcCost(model, requestBytes, responseBytes, costPer1MMap);
+    const totalTokens = Math.round((requestBytes + responseBytes) / CHARS_PER_TOKEN) || 1;
+    const tps = durationMs > 0 ? totalTokens / (durationMs / 1000) : null;
+    const targetLang = Math.random() < 0.4 ? randomChoice(languages) : null;
+
+    rows.push({
+      timestamp: randomTimestamp(fromMs, now),
+      type: "transform",
+      model,
+      source_lang: null,
+      target_lang: targetLang,
+      rewrite_style: null,
+      transform_prompt: randomChoice(transformPromptNames),
       request_bytes: requestBytes,
       response_bytes: responseBytes,
       duration_ms: durationMs,
@@ -249,19 +344,24 @@ function generateRows(models, languages, numTranslations, numRewrites) {
 }
 
 async function main() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  const { mode, numTranslations, numRewrites, numTransforms } = parseArgs();
+  const dataDir = getDataDir(mode);
+  const configPath = process.env.CONFIG_PATH || path.join(dataDir, "config.json");
+  const dbPath = path.join(dataDir, "transrewrt.db");
+
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
   }
 
-  const { numTranslations, numRewrites } = parseArgs();
-  const { models, languages } = loadConfig();
+  const { models, languages } = loadConfig(configPath);
+  const transformPromptNames = numTransforms > 0 ? loadTransformPrompts() : [];
 
   const initSqlJs = require("sql.js");
   const SQL = await initSqlJs();
 
   let db;
-  if (fs.existsSync(DB_PATH)) {
-    const buf = fs.readFileSync(DB_PATH);
+  if (fs.existsSync(dbPath)) {
+    const buf = fs.readFileSync(dbPath);
     db = new SQL.Database(buf);
   } else {
     db = new SQL.Database();
@@ -276,6 +376,7 @@ async function main() {
       source_lang TEXT,
       target_lang TEXT,
       rewrite_style TEXT,
+      transform_prompt TEXT,
       request_bytes INTEGER,
       response_bytes INTEGER,
       duration_ms INTEGER,
@@ -284,11 +385,14 @@ async function main() {
       tps REAL
     )
   `);
+  try {
+    db.exec("ALTER TABLE api_calls ADD COLUMN transform_prompt TEXT");
+  } catch (_) {}
 
-  const rows = generateRows(models, languages, numTranslations, numRewrites);
+  const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames);
   const insertSql = `
-    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
   for (const row of rows) {
     db.run(insertSql, [
@@ -298,6 +402,7 @@ async function main() {
       row.source_lang,
       row.target_lang,
       row.rewrite_style,
+      row.transform_prompt,
       row.request_bytes,
       row.response_bytes,
       row.duration_ms,
@@ -309,12 +414,13 @@ async function main() {
 
   const data = db.export();
   const buffer = Buffer.from(data);
-  fs.writeFileSync(DB_PATH, buffer);
+  fs.writeFileSync(dbPath, buffer);
   db.close();
 
   const translations = rows.filter((r) => r.type === "translate").length;
   const rewrites = rows.filter((r) => r.type === "rewrite").length;
-  console.log(`Generated ${translations} translations and ${rewrites} rewrites in ${DB_PATH}`);
+  const transforms = rows.filter((r) => r.type === "transform").length;
+  console.log(`Generated ${translations} translations, ${rewrites} rewrites, and ${transforms} transforms in ${dbPath}`);
 }
 
 main().catch((err) => {
