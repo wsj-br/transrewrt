@@ -18,6 +18,8 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en-GB',
   parseMissingKeyHandler: (key) => key,
   interpolation: { escapeValue: false },
+  // Keys can contain colons (e.g. "Sample:"); disable namespace separator so they are not split
+  nsSeparator: false,
 });
 
 i18n.on('languageChanged', (lng) => applyDirection(lng));

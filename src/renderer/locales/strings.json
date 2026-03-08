@@ -2463,34 +2463,6 @@
       "en-GB": "Session remaining:"
     }
   },
-  "e498749f": {
-    "source": "Application",
-    "translated": {
-      "pt-BR": "Aplicação",
-      "de": "Anwendung",
-      "fr": "Application",
-      "es": "Aplicación",
-      "pt": "Aplicação",
-      "ar": "التطبيق",
-      "bn": "অ্যাপ্লিকেশন",
-      "nl": "Toepassing",
-      "en-US": "Application",
-      "hi": "एप्लिकेशन",
-      "it": "Applicazione",
-      "ja": "アプリケーション",
-      "jv": "Aplikasi",
-      "ms": "Aplikasi",
-      "zh-CN": "应用程序",
-      "pl": "Aplikacja",
-      "pa": "ਐਪਲੀਕੇਸ਼ਨ",
-      "ro": "Aplicație",
-      "ru": "Приложение",
-      "te": "అప్లికేషన్",
-      "uk": "Застосунок",
-      "wuu": "应用程序",
-      "en-GB": "Application"
-    }
-  },
   "b39a035a": {
     "source": "Behavior",
     "translated": {

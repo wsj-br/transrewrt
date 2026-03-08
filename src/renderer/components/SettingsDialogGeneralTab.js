@@ -3,9 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { getCostFractionStyleOptions, formatCost } from '../features/dashboard/utils/costUtils';
-import { UI_LANGUAGES } from '../constants';
-import i18n, { loadLocale } from '../i18n';
-import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -68,48 +65,9 @@ const SettingsDialogGeneralTab = ({
 }) => {
   const formStyles = useFormStyles();
   const { t } = useTranslation();
-  const uiLocale = localSettings.ui_locale || 'en-GB';
-  const selectedLang = UI_LANGUAGES.find((l) => l.code === uiLocale) || UI_LANGUAGES[0];
-
-  const handleUiLocaleChange = async (_, data) => {
-    const code = data.optionValue;
-    if (!code) return;
-    await loadLocale(code);
-    i18n.changeLanguage(code);
-    onSettingChange('ui_locale', code);
-  };
 
   return (
     <div className="tab-content">
-      {/* Application Section */}
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '24px' }}>
-          {t('Application')}
-        </Text>
-        <div style={{ paddingLeft: '24px' }}>
-          <Label htmlFor="ui-locale" style={{ display: 'block', marginBottom: '6px' }}>
-            {t('Interface language')}
-          </Label>
-          <Dropdown
-            id="ui-locale"
-            appearance="underline"
-            value={getUILanguageLabel(selectedLang, t)}
-            selectedOptions={[uiLocale]}
-            onOptionSelect={handleUiLocaleChange}
-            style={{ minWidth: '220px' }}
-          >
-            {UI_LANGUAGES.map((lang) => (
-              <Option key={lang.code} value={lang.code}>
-                {getUILanguageLabel(lang, t)}
-              </Option>
-            ))}
-          </Dropdown>
-          <Text size={200} style={{ marginTop: '6px', color: tokens.colorNeutralForeground3 }}>
-            {UI_LANGUAGES.map((l) => getUILanguageLabel(l, t)).join(' · ')}
-          </Text>
-        </div>
-      </div>
-
       {/* Behavior Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
@@ -297,12 +255,14 @@ const SettingsDialogGeneralTab = ({
           </div>
         </div>
         <div style={{ marginTop: '8px' }}>
-          <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>{t('Sample:')}</span>
+          <span style={{ color: tokens.colorNeutralForeground2, fontSize: '13px', fontWeight: 'bold' }}>{t('Sample:')}</span> <br />
           <div
             style={{
               marginTop: '6px',
-              color: tokens.colorNeutralForeground1,
+              marginLeft: '32px',
+              color: tokens.colorNeutralForeground2,
               wordWrap: 'break-word',
+              maxWidth: '300px',
               fontFamily: localSettings.font_family || DEFAULT_FONT,
               fontSize: `${localSettings.font_size || 14}px`,
               lineHeight: '1.5',

@@ -9,6 +9,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Settings > General font sample label "Sample:" was invisible (white on light background); use theme token and Label. i18n: `t('Sample:')` returned empty because i18next treats `:` as namespace separator; set `nsSeparator: false` in i18n init so keys containing colons (e.g. "Sample:") resolve correctly.
+- **Removed**: Settings > General "Application" section (Interface language dropdown); language is now selected via the header globe on all pages.
 - **Added**: Diff toggle on Rewrite output panel to show input vs output differences (same / removed / added styling). "Show diffs" button (File / FileDiff icon) to the left of Copy; diff view uses position-based word alignment and character-level diff for changed words (white unchanged, muted strikethrough removed, blue added).
 - **Removed**: Input and output text color support (config keys and UI); single font/size sample kept in Settings > General.
 - **Changed**: Moved `server/` and `shared/` under `src/` so all application source lives in `src/` (src/server, src/shared). Updated scripts/check-node-version.js, Dockerfile (COPY src/server and src/shared), and docs.
