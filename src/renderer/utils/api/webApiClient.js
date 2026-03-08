@@ -3,8 +3,8 @@
  * Uses fetch() to call the server's REST API.
  */
 
-import { getBasePath } from "./urlUtils";
-import * as sessionExpiredHandler from "./sessionExpiredHandler";
+import { getBasePath } from "../misc/urlUtils";
+import * as sessionExpiredHandler from "../misc/sessionExpiredHandler";
 
 const API_BASE = getBasePath();
 

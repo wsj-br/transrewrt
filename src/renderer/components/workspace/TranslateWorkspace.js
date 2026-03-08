@@ -49,7 +49,6 @@ export function getTranslatePanels({ common, input, output, options }) {
           onPasteEvent={input.handlePasteEvent}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
-          textColor={settings?.input_text_color}
         />
       </div>
       <div className={styles.runButtonContainer}>
@@ -94,7 +93,6 @@ export function getTranslatePanels({ common, input, output, options }) {
           onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
-          textColor={settings?.output_text_color}
         />
       </div>
       <div className={styles.runButtonContainer} aria-hidden="true" />

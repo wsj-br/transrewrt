@@ -20,14 +20,14 @@ import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
 import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
 import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
-import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
+import SettingsDialogCostTrackingTab from "../features/dashboard/components/SettingsDialogCostTrackingTab";
 import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
-import configManager from "../utils/configManager";
+import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
-import { getRollingKey } from "../utils/transrewrtProxyKey";
+import { getRollingKey } from "../utils/security/transrewrtProxyKey";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 

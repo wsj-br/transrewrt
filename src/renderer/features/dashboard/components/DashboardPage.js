@@ -37,8 +37,8 @@ import {
   formatCount,
   formatAvgTps,
 } from "../utils/costUtils";
-import { useAppContext } from "../contexts/AppContext";
-import ConfirmModal from "./ConfirmModal";
+import { useAppContext } from "../../../contexts/AppContext";
+import ConfirmModal from "../../../components/ConfirmModal";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 

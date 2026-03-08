@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
-import configManager from "../utils/configManager";
+import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
-import webAPI from "../utils/webApiClient";
-import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
+import webAPI from "../utils/api/webApiClient";
+import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
-import { useCostTracking } from "../hooks/useCostTracking";
+import { useCostTracking } from "../features/dashboard/hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 

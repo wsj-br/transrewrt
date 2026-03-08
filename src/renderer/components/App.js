@@ -8,14 +8,14 @@ import LoginModal from "./LoginModal";
 import ApiKeyModal from "./ApiKeyModal";
 import { getTranslatePanels, getRewritePanels, getTransformPanels } from "./workspace";
 import { useAppContext } from "../contexts/AppContext";
-import webAPI from "../utils/webApiClient";
+import webAPI from "../utils/api/webApiClient";
 import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
-import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from "../utils/languageConstants";
-import { formatElapsedMmSs, formatCostDisplay, getInputStats, getOutputStats } from "../utils/formatUtils";
+import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from "../utils/misc/languageConstants";
+import { formatElapsedMmSs, formatCostDisplay, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
 import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
 import "../styles/main.css";
@@ -79,6 +79,7 @@ const App = () => {
 
   // Style selection state (persisted as rewrite_style)
   const [rewriteStyle, setRewriteStyle] = useState(() => settings.rewrite_style || "Check Spelling & Grammar");
+  const [showOutputDiff, setShowOutputDiff] = useState(false);
 
   // Determine active model safely (needed by useTransformPrompts and useProcessing)
   const activeModel = useMemo(() => {
@@ -216,6 +217,7 @@ const App = () => {
     tokensPerSecond,
     lastRunCost,
     lastRunModel,
+    rewriteOutputIsModelResult,
     handleTranslate,
     handleRewrite,
     handleTransform,
@@ -379,6 +381,9 @@ const App = () => {
             options: {
               rewriteStyle,
               setRewriteStyle,
+              showOutputDiff,
+              setShowOutputDiff,
+              outputIsModelResult: rewriteOutputIsModelResult,
             },
           })
         : getTransformPanels({

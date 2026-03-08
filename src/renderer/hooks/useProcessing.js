@@ -37,6 +37,7 @@ export function useProcessing({
   const [tokensPerSecond, setTokensPerSecond] = useState(0);
   const [lastRunCost, setLastRunCost] = useState(0);
   const [lastRunModel, setLastRunModel] = useState(null);
+  const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
 
   const timerRef = useRef(null);
   const tpsCalculationRef = useRef({ startTime: null, tokens: 0 });
@@ -184,6 +185,7 @@ export function useProcessing({
 
     if (isProcessing) {
       cancelledByUserRef.current = true;
+      setRewriteOutputIsModelResult(false);
       setOutputTextRewrite("Rewrite stopped by user.");
       if (abortControllerRef.current) abortControllerRef.current.abort();
       stopProcessing();
@@ -194,6 +196,7 @@ export function useProcessing({
     processingModeRef.current = "rewrite";
 
     setIsProcessing(true);
+    setRewriteOutputIsModelResult(false);
     setOutputTextRewrite("rewriting...");
     setLastRunCost(0);
     setLastRunModel(null);
@@ -234,15 +237,18 @@ export function useProcessing({
 
       if (result.content) {
         const cleaned = result.content.replace(/^\s*\n+/, "");
+        setRewriteOutputIsModelResult(true);
         setOutputTextRewrite(cleaned);
         if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
       }
       if (result.cancelled) {
+        setRewriteOutputIsModelResult(false);
         const msg = result.content
           ? `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? "$" + result.calculated_cost.toFixed(5) : "free"})`
           : "Rewrite stopped by user.";
         setOutputTextRewrite(msg);
       } else if (result.error) {
+        setRewriteOutputIsModelResult(false);
         setOutputTextRewrite(`Error: ${result.error}`);
       }
     } catch (error) {
@@ -253,6 +259,7 @@ export function useProcessing({
       startTimeRef.current = null;
       setIsProcessing(false);
       setLastRunCost(0);
+      setRewriteOutputIsModelResult(false);
       const isAbort =
         error.name === "AbortError" ||
         (error.message && String(error.message).includes("Failed to fetch"));
@@ -442,6 +449,7 @@ export function useProcessing({
     tokensPerSecond,
     lastRunCost,
     lastRunModel,
+    rewriteOutputIsModelResult,
     stopProcessing,
     handleTranslate,
     handleRewrite,

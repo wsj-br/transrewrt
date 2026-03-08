@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, mergeClasses, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Languages } from 'lucide-react';
 import { UI_LANGUAGES } from '../constants';
-import { getUILanguageLabel } from '../utils/languageDisplay';
+import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 /** Internal value for "no target / model decides" (used when allowNone). Shown in UI as "No target language / model decides." */
 const AUTO_TARGET = "auto";

@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
 import { UI_LANGUAGES } from '../constants';
-import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from '../utils/languageConstants';
-import { getUILanguageLabel } from '../utils/languageDisplay';
+import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
+import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 /** Minimum width per column so long labels (e.g. "Português (PT) / Portuguese (PT)") don't overlap. */
 const MIN_COLUMN_WIDTH_PX = 220;

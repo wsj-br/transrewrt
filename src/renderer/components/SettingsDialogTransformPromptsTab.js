@@ -4,8 +4,8 @@ import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fl
 import { Download, Upload, List, Trash2 } from "lucide-react";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
-import webAPI from "../utils/webApiClient";
-import { resolveDuplicateNames } from "../utils/promptUtils";
+import webAPI from "../utils/api/webApiClient";
+import { resolveDuplicateNames } from "../utils/misc/promptUtils";
 
 const EXPORT_FORMATS = ["json", "csv", "xlsx"];
 const CSV_COLUMNS = ["name", "role", "instructions", "output_description", "temperature", "target_language", "prompt_instructions"];

@@ -41,8 +41,9 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy built static files from builder
 COPY --from=builder /app/dist ./dist
 
-# Copy server code (index.js, logger.js, and any other server modules)
-COPY server/*.js ./server/
+# Copy server and shared (server requires shared/db for schema and SQL)
+COPY src/server/ ./server/
+COPY src/shared/ ./shared/
 
 # Copy config for initialization
 COPY config/ ./config/

@@ -73,8 +73,6 @@ const TransformTestPanel = ({
   onCopy,
   fontFamily,
   fontSize,
-  inputTextColor,
-  outputTextColor,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -82,17 +80,17 @@ const TransformTestPanel = ({
     () => ({
       ...(fontFamily && { fontFamily }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
-      ...(inputTextColor && { color: inputTextColor }),
+      color: "#e0e0e0",
     }),
-    [fontFamily, fontSize, inputTextColor]
+    [fontFamily, fontSize]
   );
   const outputStyle = React.useMemo(
     () => ({
       ...(fontFamily && { fontFamily }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
-      ...(outputTextColor && { color: outputTextColor }),
+      color: "#e0e0e0",
     }),
-    [fontFamily, fontSize, outputTextColor]
+    [fontFamily, fontSize]
   );
 
   return (

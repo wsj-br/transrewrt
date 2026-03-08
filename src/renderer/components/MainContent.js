@@ -7,7 +7,7 @@ import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ResizablePanels from "./ResizablePanels";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
-const DashboardPage = lazy(() => import("./DashboardPage"));
+const DashboardPage = lazy(() => import("../features/dashboard/components/DashboardPage"));
 
 const useStyles = makeStyles({
   mainPanel: {

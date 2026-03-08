@@ -1,4 +1,4 @@
-import webAPI from "./webApiClient";
+import webAPI from "../api/webApiClient";
 
 // Configuration manager to handle application settings
 // Supports both Electron (file API) and Web/Docker (server API)

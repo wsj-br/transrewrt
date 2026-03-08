@@ -10,4 +10,3 @@ export function getUILanguageLabel(lang, t) {
   if (lang.label === englishName) return lang.label;
   return `${englishName} / ${lang.label}`;
 }
-

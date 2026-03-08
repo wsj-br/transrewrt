@@ -79,6 +79,7 @@ const useAppStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     height: "100vh",
+    backgroundColor: "#12141d",
   },
   webOuter: {
     height: "100vh",
@@ -117,22 +118,24 @@ const useAppStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#12141d",
   },
   loadingScreen: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    gap: "16px",
+    gap: "1rem",
+    fontFamily: "system-ui, sans-serif",
   },
   loadingScreenLogo: {
     width: "64px",
-    height: "64px",
-    objectFit: "contain",
+    height: "auto",
+    flexShrink: 0,
   },
   loadingScreenText: {
     fontSize: "14px",
-    opacity: 0.9,
+    color: "rgba(255,255,255,0.9)",
   },
   rootInWeb: {
     flex: 1,

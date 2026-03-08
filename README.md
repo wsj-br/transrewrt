@@ -290,7 +290,7 @@ graph TD
     end
 
     core -->|Electron| main["src/main/main.js<br/>(IPC · fs · preload · appDb)"]
-    core -->|Web / Docker| server["server/index.js<br/>(Express · proxy · auth · SQLite · cost)"]
+    core -->|Web / Docker| server["src/server/index.js<br/>(Express · proxy · auth · SQLite · cost)"]
 ```
 
 | Concern          | Electron                                          | Web / Docker                                                                |
@@ -307,12 +307,11 @@ For a detailed technical overview (folder structure, tech stack, design decision
 
 ## Development
 
-See **[dev/DEVELOPMENT.MD](dev/DEVELOPMENT.MD)** for the full development guide: setup, build, test, and deploy (Electron, Web, Docker, Raspberry Pi).
+See **[dev/Development.md](dev/Development.md)** for the full development guide: setup, build, test, and deploy (Electron, Web, Docker, Raspberry Pi).
 
 Additional references:
 
-- [dev/Development.md](dev/Development.md) — extended prerequisites and Windows troubleshooting
-- [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) — server API reference and Docker build details
+- [dev/Development.md](dev/Development.md) — setup, build, deploy, server API reference, Docker, and Windows troubleshooting
 - [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md) — i18n implementation detail (key-as-default, scripts, adding languages, RTL)
 
 ### UI translations (i18n)

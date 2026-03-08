@@ -1,6 +1,6 @@
-import { getBasePath } from "../utils/urlUtils";
-import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
-import { getRollingKey } from "../utils/transrewrtProxyKey";
+import { getBasePath } from "../utils/misc/urlUtils";
+import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
+import { getRollingKey } from "../utils/security/transrewrtProxyKey";
 import prompts from "../../../config/prompts.json";
 
 const PROXY_DEBUG =
@@ -133,7 +133,7 @@ class APIService {
       const p = path.startsWith("/") ? path.slice(1) : path;
       return `${this.baseUrl}/${p}`;
     }
-    const config = require("../utils/configManager").default.getAll();
+    const config = require("../utils/config/configManager").default.getAll();
     const useProxy = !!config.use_transrewrt_proxy;
     const keySeed = (config.key_seed || "").trim();
     if (useProxy && keySeed && config.api_url) {
@@ -167,7 +167,7 @@ class APIService {
     if (this._isWebMode) {
       return { "Content-Type": "application/json" };
     }
-    const config = require("../utils/configManager").default.getAll();
+    const config = require("../utils/config/configManager").default.getAll();
     const useProxy = !!config.use_transrewrt_proxy;
     if (PROXY_DEBUG && useProxy) {
       proxyDebug("getHeaders (proxy)", {
@@ -231,7 +231,7 @@ class APIService {
    */
   async getGenerationUsage(generationId, maxRetries = 5) {
     if (!generationId) return null;
-    const config = require("../utils/configManager").default.getAll();
+    const config = require("../utils/config/configManager").default.getAll();
     const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
@@ -313,7 +313,7 @@ class APIService {
     if (this._isWebMode) fetchOptions.credentials = "include";
 
     const url = await this.getRequestUrl("chat/completions");
-    const config = require("../utils/configManager").default.getAll();
+    const config = require("../utils/config/configManager").default.getAll();
     const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
     const requestStartMs = Date.now();
     if (PROXY_DEBUG && useProxy) {
@@ -589,7 +589,7 @@ class APIService {
       const opts = { headers: this.getHeaders() };
       if (this._isWebMode) opts.credentials = "include";
       const url = await this.getRequestUrl("models");
-      const config = require("../utils/configManager").default.getAll();
+      const config = require("../utils/config/configManager").default.getAll();
       const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
       if (PROXY_DEBUG && useProxy) {
         proxyDebug("getModels (proxy) START", { url });

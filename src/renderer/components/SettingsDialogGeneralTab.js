@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
+import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
-import { TinyColor } from '@ctrl/tinycolor';
-import { getCostFractionStyleOptions, formatCost } from '../utils/costUtils';
+import { getCostFractionStyleOptions, formatCost } from '../features/dashboard/utils/costUtils';
 import { UI_LANGUAGES } from '../constants';
 import i18n, { loadLocale } from '../i18n';
-import { getUILanguageLabel } from '../utils/languageDisplay';
+import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -29,36 +28,10 @@ const FONT_VALUES = FONT_OPTIONS.filter((o) => o.type === 'font').map((o) => o.v
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
-// ColorPickerPopup Component remains unchanged (copy from previous version with Palette icon fixes if needed)
-const useColorPickerStyles = makeStyles({
-  colorPickerRow: {
-    display: 'flex',
-    gap: '10px',
-    marginTop: '10px',
-  },
-  colorPickerSliders: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-  },
-  previewColor: {
-    width: '50px',
-    height: '50px',
-    borderRadius: '4px',
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    flexShrink: 0,
-  },
-  colorPickerButtons: {
-    display: 'flex',
-    gap: '8px',
-    marginTop: '12px',
-  },
-});
-
 /** Normalize to the two supported behaviors; map legacy values for existing configs. */
 function normalizeEnterBehavior(value) {
   if (value === "Shift-Execute" || value === "Shift-Translate" || value === "Newline") return "Shift-Execute";
-  return t("Execute");
+  return "Execute";
 }
 
 const useFormStyles = makeStyles({
@@ -88,118 +61,6 @@ const useFormStyles = makeStyles({
     },
   },
 });
-
-// Helper functions for color conversion
-const hexToHsv = (hex) => {
-  const color = new TinyColor(hex);
-  const hsv = color.toHsv();
-  return { h: hsv.h, s: hsv.s, v: hsv.v, a: hsv.a ?? 1 };
-};
-
-const hsvToHex = (hsv) => {
-  return new TinyColor({ h: hsv.h, s: hsv.s, v: hsv.v, a: hsv.a ?? 1 }).toHexString();
-};
-
-// ColorPickerPopup Component
-const ColorPickerPopup = ({ color, onChange, label }) => {
-  const styles = useColorPickerStyles();
-  const { t } = useTranslation();
-  const [previewColor, setPreviewColor] = useState(hexToHsv(color || '#ffffff'));
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const handleColorChange = (_, data) => {
-    setPreviewColor({ ...data.color, a: data.color.a ?? 1 });
-  };
-
-  const handleOk = () => {
-    const hexColor = hsvToHex(previewColor);
-    onChange(hexColor);
-    setPopoverOpen(false);
-  };
-
-  const handleCancel = () => {
-    setPreviewColor(hexToHsv(color || '#ffffff'));
-    setPopoverOpen(false);
-  };
-
-  useEffect(() => {
-    if (!popoverOpen) {
-      setPreviewColor(hexToHsv(color || '#ffffff'));
-    }
-  }, [color, popoverOpen]);
-
-  const currentColorHex = color || '#ffffff';
-  const previewColorHex = new TinyColor(previewColor).toHexString();
-
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <Label htmlFor={`${label}-color-picker`} style={{ margin: 0 }}>
-        <span>{label}:</span>
-      </Label>
-      <Popover
-        open={popoverOpen}
-        trapFocus
-        onOpenChange={(_, data) => setPopoverOpen(data.open)}
-      >
-        <PopoverTrigger disableButtonEnhancement>
-          <Button
-            id={`${label}-color-picker`}
-            appearance="transparent"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '4px',
-                backgroundColor: currentColorHex,
-                border: `1px solid ${tokens.colorNeutralStroke1}`,
-                flexShrink: 0,
-              }}
-            />
-          </Button>
-        </PopoverTrigger>
-
-        <PopoverSurface style={{ padding: '16px', minWidth: '300px' }}>
-          <ColorPicker color={previewColor} onColorChange={handleColorChange}>
-            <ColorArea
-              inputX={{ 'aria-label': 'Saturation' }}
-              inputY={{ 'aria-label': 'Brightness' }}
-            />
-            <div className={styles.colorPickerRow}>
-              <div className={styles.colorPickerSliders}>
-                <ColorSlider aria-label="Hue" />
-              </div>
-              <div
-                className={styles.previewColor}
-                style={{
-                  backgroundColor: previewColorHex,
-                }}
-              />
-            </div>
-          </ColorPicker>
-          <div className={styles.colorPickerButtons}>
-            <Button
-              appearance="primary"
-              onClick={handleOk}
-            >
-              {t('Ok')}
-            </Button>
-            <Button
-              onClick={handleCancel}
-            >
-              {t('Cancel')}
-            </Button>
-          </div>
-        </PopoverSurface>
-      </Popover>
-    </div>
-  );
-};
 
 const SettingsDialogGeneralTab = ({
   localSettings,
@@ -435,46 +296,19 @@ const SettingsDialogGeneralTab = ({
             />
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <ColorPickerPopup
-              color={localSettings.input_text_color || '#ffffff'}
-              onChange={(hexColor) => onSettingChange('input_text_color', hexColor)}
-              label={t('Input Color')}
-            />
-            <div
-              style={{
-                width: '250px',
-                marginTop: '4px',
-                color: localSettings.input_text_color || '#ffffff',
-                wordWrap: 'break-word',
-                fontFamily: localSettings.font_family || DEFAULT_FONT,
-                fontSize: `${localSettings.font_size || 14}px`,
-                lineHeight: '1.5',
-              }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nunc velit. Class aptent taciti.
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <ColorPickerPopup
-              color={localSettings.output_text_color || '#ffffff'}
-              onChange={(hexColor) => onSettingChange('output_text_color', hexColor)}
-              label={t('Output Color')}
-            />
-            <div
-              style={{
-                width: '250px',
-                marginTop: '4px',
-                color: localSettings.output_text_color || '#ffffff',
-                wordWrap: 'break-word',
-                fontFamily: localSettings.font_family || DEFAULT_FONT,
-                fontSize: `${localSettings.font_size || 14}px`,
-                lineHeight: '1.5',
-              }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nunc velit. Class aptent taciti.
-            </div>
+        <div style={{ marginTop: '8px' }}>
+          <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>{t('Sample:')}</span>
+          <div
+            style={{
+              marginTop: '6px',
+              color: tokens.colorNeutralForeground1,
+              wordWrap: 'break-word',
+              fontFamily: localSettings.font_family || DEFAULT_FONT,
+              fontSize: `${localSettings.font_size || 14}px`,
+              lineHeight: '1.5',
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nunc velit. Class aptent taciti.
           </div>
         </div>
         </div>

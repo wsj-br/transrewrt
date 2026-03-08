@@ -51,7 +51,7 @@ flowchart TB
   end
 
   subgraph web [Web / Docker]
-    Server[server/index.js]
+    Server[src/server/index.js]
     ConfigMgr --> Server
     ApiSvc --> Server
     Server --> OpenRouter
@@ -76,11 +76,13 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Frontend**   | React 19, Fluent UI 9, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel. Build target `web` for both Electron and browser.                                                                                                             |
 | **Desktop**    | Electron 40 (Node 24). Main process: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). Custom `app://` protocol for loading the renderer in production. |
-| **Web server** | Express 5 ([server/index.js](../server/index.js)). Serves static `dist/`, config/state REST API, session auth (Argon2), OpenRouter proxy, SQLite (better-sqlite3) for app DB (api_calls, custom_prompts). |
+| **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Serves static `dist/`, config/state REST API, session auth (Argon2), OpenRouter proxy, SQLite (better-sqlite3) for app DB (api_calls, custom_prompts). |
 
 ---
 
 ## Folder Structure
+
+All application source lives under `src/`: main (Electron), renderer (React), server (Express for web/Docker), and shared (DB schema and SQL).
 
 ```
 ├── src/
@@ -97,9 +99,13 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 │       ├── locales/       # i18n JSON (strings.json, pt-BR, de, fr, …)
 │       ├── styles/        # main.css
 │       └── index.js       # Entry; i18n, FluentProvider, AppProvider, App
-├── server/
-│   ├── index.js           # Express app (static, config, auth, proxy, app DB API)
-│   └── logger.js          # File/console logging
+│   ├── server/            # Web/Docker Express server
+│   │   ├── index.js       # Express app (static, config, auth, proxy, app DB API)
+│   │   ├── logger.js
+│   │   ├── db/, routes/, utils/
+│   │   └── …
+│   └── shared/            # Shared DB schema and SQL (main + server)
+│       └── db/appSchema.js
 ├── config/
 │   ├── config_default.json
 │   └── transform-prompts.json   # Sample transform prompts (Load sample prompts)
@@ -133,7 +139,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 
 The project uses native Node addons:
 
-- **better-sqlite3**: App DB (Electron: [src/main/appDb.js](../src/main/appDb.js); server: SQLite in [server/index.js](../server/index.js)).
+- **better-sqlite3**: App DB (Electron: [src/main/appDb.js](../src/main/appDb.js); server: SQLite in [src/server/index.js](../src/server/index.js)).
 - **argon2**: Password hashing for web auth.
 
 These must be compiled for the correct Node ABI:

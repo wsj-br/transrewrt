@@ -9,8 +9,8 @@ import {
   makeStyles,
 } from "@fluentui/react-components";
 import { DollarSign, Copy, Server, RotateCcw, Trash2 } from "lucide-react";
-import webAPI from "../utils/webApiClient";
-import ConfirmModal from "./ConfirmModal";
+import webAPI from "../../../utils/api/webApiClient";
+import ConfirmModal from "../../../components/ConfirmModal";
 import {
   getCostApi,
   formatCost,
@@ -237,10 +237,6 @@ const SettingsDialogCostTrackingTab = ({
       .finally(() => setLoading(false));
   }, [isTabActive]);
 
-  // Do not refresh total_cost from DB when opening this tab. total_cost can be set via
-  // "Sync with API key usage" and persisted in config; overwriting from DB (sum of api_calls)
-  // would revert the synced value when the user returns to the Cost Tracking tab (Electron and web).
-
   const handleCopyCost = async () => {
     const cost = parseFloat(localSettings.total_cost || 0).toFixed(6);
     if (navigator.clipboard?.writeText) {
@@ -306,7 +302,6 @@ const SettingsDialogCostTrackingTab = ({
       const cutoff = getDeleteCutoffIso(deleteRange);
       await costApi.deleteCallsOutsideRange(cutoff, null);
 
-      // Refresh summaries and total cost so UI is up to date
       if (typeof costApi.getSummaryByFunction === "function") {
         try {
           const rows = await costApi.getSummaryByFunction(null, null);

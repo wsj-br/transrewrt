@@ -1,196 +1,30 @@
 const { app, BrowserWindow, screen, ipcMain, protocol } = require("electron");
 const path = require("path");
 const fs = require("fs");
-const os = require("os");
-const crypto = require("crypto");
+const {
+  getConfigFilePath,
+  getDefaultConfigPathForLoad,
+  getStateFilePath,
+} = require("./configPath");
+const {
+  isEncryptedApiKey,
+  isEncryptedKeySeed,
+  encryptApiKey,
+  decryptApiKey,
+  encryptKeySeed,
+  decryptKeySeed,
+} = require("./encryption");
+const { registerConfigIpc } = require("./ipc/configIpc");
+const { registerApiIpc } = require("./ipc/apiIpc");
+const { registerWindowIpc } = require("./ipc/windowIpc");
 
 // Custom protocol for production: serve renderer via app:// instead of file://.
-// Best practice: Electron recommends loadFile()/file:// for local content when it works; in packaged
-// apps file:// can be blocked (e.g. "Not allowed to load local resource" in some sandbox contexts).
-// Using a custom protocol is the documented approach for "the same effect as the file:// protocol"
-// (https://www.electronjs.org/docs/latest/api/protocol) and avoids that restriction.
 protocol.registerSchemesAsPrivileged([
   {
     scheme: "app",
     privileges: { standard: true, secure: true, supportFetchAPI: true },
   },
 ]);
-
-// --- Config path (single source of truth for Electron; must match preload usage when migrating) ---
-const getConfigFilePath = () => {
-  try {
-    const appPath = process.env.PORTABLE_EXECUTABLE_DIR || process.cwd();
-    const homedir = os.homedir();
-    const userDataPath =
-      typeof app !== "undefined" && app.getPath
-        ? path.join(app.getPath("userData"), "config.json")
-        : null;
-    const isSystemPath = (p) => {
-      const normalized = (p || "").toLowerCase();
-      return (
-        normalized.includes("node_modules") ||
-        normalized.includes("electron/dist") ||
-        normalized.includes("resources") ||
-        normalized.includes(".npm")
-      );
-    };
-    const pathsToCheck = [
-      ...(userDataPath ? [userDataPath] : []),
-      path.resolve("config.json"),
-      path.join(appPath, "config.json"),
-      path.join(homedir, "config.json"),
-      path.join(__dirname, "../../config.json"),
-      path.resolve("../config.json"),
-      ...(isSystemPath(process.execPath)
-        ? []
-        : [path.join(path.dirname(process.execPath), "config.json")]),
-    ];
-    for (const p of pathsToCheck) {
-      if (p && fs.existsSync(p) && !isSystemPath(p)) return p;
-    }
-    const writablePathsToTry = [
-      ...(userDataPath ? [userDataPath] : []),
-      path.resolve("config.json"),
-      path.join(appPath, "config.json"),
-      path.join(homedir, "config.json"),
-      path.join(path.dirname(process.execPath), "config.json"),
-    ];
-    for (const p of writablePathsToTry) {
-      try {
-        const dir = path.dirname(p);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-        const testFile = path.join(dir, ".write-test");
-        fs.writeFileSync(testFile, "test", "utf8");
-        fs.unlinkSync(testFile);
-        return p;
-      } catch (_) {
-        continue;
-      }
-    }
-    return path.resolve("config.json");
-  } catch (_) {
-    return path.resolve("config.json");
-  }
-};
-
-const getDefaultConfigPath = () =>
-  path.join(path.dirname(getConfigFilePath()), "../config/config_default.json");
-
-// Path to config_default.json for merging defaults. In packaged app, extraFiles put it next to the exe.
-const getDefaultConfigPathForLoad = () => {
-  if (typeof app !== "undefined" && app.isPackaged) {
-    return path.join(
-      path.dirname(process.execPath),
-      "config",
-      "config_default.json",
-    );
-  }
-  return path.join(__dirname, "../../config/config_default.json");
-};
-
-const getStateFilePath = () =>
-  path.join(path.dirname(getConfigFilePath()), "state.json");
-
-const getConfigDir = () => path.dirname(getConfigFilePath());
-const getKeyFilePath = () => path.join(getConfigDir(), "transrewrt.key");
-const ENC_PREFIX = "enc:";
-const KEY_BYTES = 32;
-const IV_BYTES = 16;
-
-function getOrCreateEncryptionKey() {
-  const keyPath = getKeyFilePath();
-  const dir = path.dirname(keyPath);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  if (fs.existsSync(keyPath)) {
-    const raw = fs.readFileSync(keyPath, "utf8").trim();
-    if (/^[0-9a-fA-F]{64}$/.test(raw)) return Buffer.from(raw, "hex");
-    if (raw.length >= 32) return Buffer.from(raw.slice(0, KEY_BYTES), "utf8");
-    return Buffer.from(raw, "hex");
-  }
-  const key = crypto.randomBytes(KEY_BYTES);
-  fs.writeFileSync(keyPath, key.toString("hex"), "utf8");
-  return key;
-}
-
-function isEncryptedApiKey(value) {
-  return typeof value === "string" && value.startsWith(ENC_PREFIX);
-}
-
-function isEncryptedKeySeed(value) {
-  return typeof value === "string" && value.startsWith(ENC_PREFIX);
-}
-
-function decryptApiKey(encryptedValue) {
-  try {
-    const b64 = encryptedValue.slice(ENC_PREFIX.length);
-    const buf = Buffer.from(b64, "base64");
-    if (buf.length < IV_BYTES) return "";
-    const iv = buf.subarray(0, IV_BYTES);
-    const ciphertext = buf.subarray(IV_BYTES);
-    const key = getOrCreateEncryptionKey();
-    const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
-    return Buffer.concat([
-      decipher.update(ciphertext),
-      decipher.final(),
-    ]).toString("utf8");
-  } catch (err) {
-    console.error("Failed to decrypt api_key:", err.message);
-    return "";
-  }
-}
-
-function encryptApiKey(plainValue) {
-  if (typeof plainValue !== "string" || !plainValue.trim()) return "";
-  try {
-    const key = getOrCreateEncryptionKey();
-    const iv = crypto.randomBytes(IV_BYTES);
-    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
-    const ciphertext = Buffer.concat([
-      cipher.update(plainValue, "utf8"),
-      cipher.final(),
-    ]);
-    return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
-  } catch (err) {
-    console.error("Failed to encrypt api_key:", err.message);
-    return plainValue;
-  }
-}
-
-function decryptKeySeed(encryptedValue) {
-  try {
-    const b64 = encryptedValue.slice(ENC_PREFIX.length);
-    const buf = Buffer.from(b64, "base64");
-    if (buf.length < IV_BYTES) return "";
-    const iv = buf.subarray(0, IV_BYTES);
-    const ciphertext = buf.subarray(IV_BYTES);
-    const key = getOrCreateEncryptionKey();
-    const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
-    return Buffer.concat([
-      decipher.update(ciphertext),
-      decipher.final(),
-    ]).toString("utf8");
-  } catch (err) {
-    console.error("Failed to decrypt key_seed:", err.message);
-    return "";
-  }
-}
-
-function encryptKeySeed(plainValue) {
-  if (typeof plainValue !== "string" || !plainValue.trim()) return "";
-  try {
-    const key = getOrCreateEncryptionKey();
-    const iv = crypto.randomBytes(IV_BYTES);
-    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
-    const ciphertext = Buffer.concat([
-      cipher.update(plainValue, "utf8"),
-      cipher.final(),
-    ]);
-    return ENC_PREFIX + Buffer.concat([iv, ciphertext]).toString("base64");
-  } catch (err) {
-    console.error("Failed to encrypt key_seed:", err.message);
-    return plainValue;
-  }
-}
 
 const STATE_KEYS = [
   "last_used_model",
@@ -226,7 +60,6 @@ function stripStateKeysAndDeprecated(obj) {
 
 let configCache = {};
 let stateCache = {};
-/** State keys read from config file before strip; used for migration when state.json is missing. */
 let stateFromConfigForMigration = {};
 
 function loadConfigFromFile() {
@@ -364,12 +197,10 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-// Get the path to store window state
 const getWindowStatePath = () => {
   return path.join(app.getPath("userData"), "window-state.json");
 };
 
-// Load window state from file
 const loadWindowState = () => {
   try {
     const statePath = getWindowStatePath();
@@ -383,7 +214,6 @@ const loadWindowState = () => {
   return null;
 };
 
-// Save window state to file
 const saveWindowState = (win) => {
   try {
     const statePath = getWindowStatePath();
@@ -401,12 +231,10 @@ const saveWindowState = (win) => {
   }
 };
 
-// Get the path to store SETTINGS window state
 const getSettingsWindowStatePath = () => {
   return path.join(app.getPath("userData"), "settings-window-state.json");
 };
 
-// Load SETTINGS window state
 const loadSettingsWindowState = () => {
   try {
     const statePath = getSettingsWindowStatePath();
@@ -419,7 +247,6 @@ const loadSettingsWindowState = () => {
   return null;
 };
 
-// Save SETTINGS window state
 const saveSettingsWindowState = (win) => {
   try {
     const statePath = getSettingsWindowStatePath();
@@ -439,7 +266,6 @@ const saveSettingsWindowState = (win) => {
 let mainWindow = null;
 let settingsWindow = null;
 
-// Ensure a saved window state is visible and has a minimum size; otherwise fall back.
 const validateWindowState = (state, fallback) => {
   try {
     if (!state) return fallback;
@@ -474,13 +300,11 @@ const validateWindowState = (state, fallback) => {
 };
 
 const createWindow = () => {
-  // Load saved window state and validate it against current displays
   const savedState = validateWindowState(loadWindowState(), {
     width: 1220,
     height: 840,
   });
 
-  // Create the browser window.
   mainWindow = new BrowserWindow({
     x: savedState ? savedState.x : undefined,
     y: savedState ? savedState.y : undefined,
@@ -497,16 +321,13 @@ const createWindow = () => {
       devTools: false,
     },
   });
-  // Restore maximized state
   if (savedState && savedState.isMaximized) {
     mainWindow.maximize();
   }
 
-  // Save window state on resize, move, and close
   mainWindow.on("resize", () => saveWindowState(mainWindow));
   mainWindow.on("move", () => saveWindowState(mainWindow));
 
-  // and load the index.html of the app.
   if (process.env.NODE_ENV === "development") {
     const devUrl = "http://localhost:3030";
     let devLoadRetries = 0;
@@ -514,7 +335,7 @@ const createWindow = () => {
     mainWindow.webContents.on(
       "did-fail-load",
       (_, errorCode, errorDescription, validatedUrl) => {
-        if (errorCode === -3) return; // ERR_ABORTED, e.g. user navigated
+        if (errorCode === -3) return;
         console.error(
           "Main window load failed:",
           errorCode,
@@ -546,10 +367,8 @@ const createWindow = () => {
     );
   }
 
-  // Remove menu bar
   mainWindow.setMenuBarVisibility(false);
 
-  // Add keyboard shortcut to open DevTools (Ctrl+Shift+I or F12)
   mainWindow.webContents.on("before-input-event", (event, input) => {
     if (input.control && input.shift && input.key.toLowerCase() === "i") {
       mainWindow.webContents.toggleDevTools();
@@ -558,10 +377,8 @@ const createWindow = () => {
     }
   });
 
-  // Close settings window when main window closes
   mainWindow.on("close", () => {
     saveWindowState(mainWindow);
-    // Close settings window if it's open
     if (settingsWindow && !settingsWindow.isDestroyed()) {
       settingsWindow.close();
     }
@@ -599,9 +416,8 @@ const createSettingsWindow = () => {
   });
 
   settingsWindow.setMenuBarVisibility(false);
-  settingsWindow.setMinimumSize(780, 300); // Minimum width for 4-column language grid
+  settingsWindow.setMinimumSize(780, 300);
 
-  // Add keyboard shortcut to open DevTools in settings window (Ctrl+Shift+I or F12)
   settingsWindow.webContents.on("before-input-event", (event, input) => {
     if (input.control && input.shift && input.key.toLowerCase() === "i") {
       settingsWindow.webContents.toggleDevTools();
@@ -614,7 +430,6 @@ const createSettingsWindow = () => {
   settingsWindow.on("move", () => saveSettingsWindowState(settingsWindow));
   settingsWindow.on("close", () => saveSettingsWindowState(settingsWindow));
 
-  // Load the same app but with a query param to router
   const startUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3030?window=settings"
@@ -622,140 +437,12 @@ const createSettingsWindow = () => {
 
   settingsWindow.loadURL(startUrl);
 
-  if (process.env.NODE_ENV === "development") {
-    // settingsWindow.webContents.openDevTools();
-  }
-
   settingsWindow.on("closed", () => {
     settingsWindow = null;
   });
 };
 
-// --- IPC: config (main process is single source of truth) ---
-ipcMain.handle("config:get", () =>
-  Promise.resolve({ ...configCache, ...stateCache }),
-);
-
-function configUnchanged(existing, value) {
-  if (existing === value) return true;
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    typeof existing === "object" &&
-    existing !== null
-  ) {
-    return JSON.stringify(existing) === JSON.stringify(value);
-  }
-  return false;
-}
-
-ipcMain.handle("config:set", (_, key, value) => {
-  if (key === undefined) return Promise.resolve(false);
-  if (isStateKey(key)) {
-    if (configUnchanged(stateCache[key], value)) return Promise.resolve(true);
-    stateCache[key] = value;
-    const ok = saveStateToFile(stateCache);
-    if (ok) {
-      BrowserWindow.getAllWindows().forEach((win) => {
-        if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
-      });
-    }
-    return Promise.resolve(ok);
-  }
-  if (configUnchanged(configCache[key], value)) return Promise.resolve(true);
-  configCache[key] = value;
-  const ok = saveConfigToFile(configCache);
-  if (ok) {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
-    });
-  }
-  return Promise.resolve(ok);
-});
-
-ipcMain.handle("config:setAll", (_, newConfig) => {
-  if (typeof newConfig !== "object") return Promise.resolve(false);
-  const configPart = {};
-  const statePart = {};
-  Object.keys(newConfig).forEach((k) => {
-    if (isStateKey(k)) statePart[k] = newConfig[k];
-    else configPart[k] = newConfig[k];
-  });
-  let configSaved = false;
-  let stateSaved = false;
-  if (Object.keys(configPart).length > 0) {
-    const nextConfig = { ...configCache, ...configPart };
-    if (
-      canonicalConfigString(configCache) !== canonicalConfigString(nextConfig)
-    ) {
-      configCache = nextConfig;
-      configSaved = saveConfigToFile(configCache);
-    }
-  }
-  if (Object.keys(statePart).length > 0) {
-    const nextState = { ...stateCache, ...statePart };
-    if (
-      canonicalConfigString(stateCache) !== canonicalConfigString(nextState)
-    ) {
-      stateCache = nextState;
-      stateSaved = saveStateToFile(stateCache);
-    }
-  }
-  if (configSaved || stateSaved) {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
-    });
-  }
-  return Promise.resolve(true);
-});
-
-ipcMain.handle("write-last-api-result", (_, payload) => {
-  try {
-    const dir = app.getPath("userData");
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    const filePath = path.join(dir, "last_api_result.json");
-    // Keep payload serializable: truncate huge raw arrays (stream chunks) to avoid write failures
-    const MAX_RAW_CHUNKS = 20;
-    let toWrite = payload;
-    if (payload && Array.isArray(payload.raw) && payload.raw.length > MAX_RAW_CHUNKS) {
-      toWrite = { ...payload, raw: payload.raw.slice(0, MAX_RAW_CHUNKS) };
-    }
-    const json = JSON.stringify(toWrite, null, 2);
-    fs.writeFileSync(filePath, json, "utf8");
-    return Promise.resolve(true);
-  } catch (err) {
-    console.error("Failed to write last_api_result.json", err);
-    return Promise.resolve(false);
-  }
-});
-
-ipcMain.handle("write-debug-file", (_, filename, data) => {
-  try {
-    const dir = app.getPath("userData");
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    const filePath = path.join(dir, filename);
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-    return Promise.resolve(true);
-  } catch (err) {
-    console.error(`Failed to write ${filename}:`, err);
-    return Promise.resolve(false);
-  }
-});
-
-ipcMain.handle("write-proxy-debug-log", (_, line) => {
-  try {
-    const dir = app.getPath("userData");
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    const filePath = path.join(dir, "proxy-debug.log");
-    const timestamp = new Date().toISOString();
-    fs.appendFileSync(filePath, `${timestamp} ${line}\n`, "utf8");
-    return Promise.resolve(true);
-  } catch (err) {
-    console.error("Failed to write proxy-debug.log", err);
-    return Promise.resolve(false);
-  }
-});
-
+// Build timestamp cache (used by config IPC)
 let buildTimestampCache = null;
 function getBuildTimestamp() {
   if (buildTimestampCache !== null) return buildTimestampCache;
@@ -773,82 +460,31 @@ function getBuildTimestamp() {
     return null;
   }
 }
-ipcMain.handle("get-build-timestamp", () =>
-  Promise.resolve(getBuildTimestamp()),
-);
 
-// Rolling key for Transrewrt proxy (must match renderer utils/transrewrtProxyKey.js)
-const PROXY_WINDOW_SECONDS = 30;
-function getRollingKeyForProxy(keySeed) {
-  if (!keySeed || typeof keySeed !== "string") return "";
-  const timeWindow = Math.floor(Date.now() / 1000 / PROXY_WINDOW_SECONDS);
-  const hmac = crypto.createHmac("sha256", keySeed).update(String(timeWindow)).digest("base64");
-  const base64url = hmac.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  return base64url.substring(0, 16);
-}
-
-// OpenRouter key usage (same as server GET /api/key) – main process fetches so API key stays in main
-ipcMain.handle("getOpenRouterKeyInfo", async () => {
-  const apiKey = (configCache.api_key || "").trim();
-  if (!apiKey) {
-    throw new Error("API key not set");
-  }
-  const apiUrl = (configCache.api_url || "").trim().replace(/\/+$/, "");
-  const keySeed = (configCache.key_seed || "").trim();
-  const looksLikeProxy =
-    apiUrl.length > 0 && !apiUrl.includes("openrouter.ai");
-  const useProxy = looksLikeProxy && keySeed.length > 0;
-
-  let keyUrl;
-  if (useProxy) {
-    const rollingKey = getRollingKeyForProxy(keySeed);
-    keyUrl = `${apiUrl}/${rollingKey}/api/v1/key?_=${Date.now()}`;
-  } else if (looksLikeProxy) {
-    throw new Error("Key seed is required when using the Transrewrt proxy for API key usage.");
-  } else {
-    const baseUrl = apiUrl || "https://openrouter.ai/api/v1";
-    if (!baseUrl.includes("openrouter.ai")) {
-      throw new Error("Key info is only available for OpenRouter API.");
-    }
-    keyUrl = `${baseUrl}/key?_=${Date.now()}`;
-  }
-
-  try {
-    const res = await fetch(keyUrl, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${apiKey}` },
-      cache: "no-store",
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      throw new Error(data.error || `HTTP ${res.status}`);
-    }
-    return data;
-  } catch (err) {
-    console.error("[IPC] getOpenRouterKeyInfo failed:", err.message);
-    throw err;
-  }
+// Register IPC handlers
+registerConfigIpc(ipcMain, {
+  getConfigCache: () => configCache,
+  getStateCache: () => stateCache,
+  setConfigCache: (c) => {
+    configCache = c;
+  },
+  setStateCache: (s) => {
+    stateCache = s;
+  },
+  loadConfigFromFile,
+  saveConfigToFile,
+  loadStateFromFile,
+  saveStateToFile,
+  isStateKey,
+  canonicalConfigString,
+  getBuildTimestamp,
 });
+registerApiIpc(ipcMain, () => configCache);
+registerWindowIpc(ipcMain, createSettingsWindow);
 
-ipcMain.on("open-settings", () => {
-  createSettingsWindow();
-});
-
-ipcMain.on("settings-updated", () => {
-  BrowserWindow.getAllWindows().forEach((win) => {
-    if (win && !win.isDestroyed()) win.webContents.send("settings-updated");
-  });
-});
-
-// App SQLite DB (transrewrt.db in userData: api_calls, custom_prompts)
 const { registerAppDbHandlers } = require("./appDb");
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-  // Serve app assets via app:// in production so we avoid file:// (blocked in some packaged/sandbox contexts).
-  // Use fs.readFile (not net.fetch(file://)) so reading from app.asar works in sandboxed environments.
   if (process.env.NODE_ENV !== "development") {
     const appBase = app.getAppPath();
     const mimeByExt = {
@@ -907,9 +543,6 @@ app.on("ready", () => {
   createWindow();
 });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
@@ -917,12 +550,7 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

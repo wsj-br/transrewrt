@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Input, Text, Checkbox, Dropdown, Option } from "@fluentui/react-components";
 import { Lock, LogOut, Clock } from "lucide-react";
-import webAPI from "../utils/webApiClient";
+import webAPI from "../utils/api/webApiClient";
 import { useAppContext } from "../contexts/AppContext";
 
 /** Format remaining ms: "Xd HH:MM" if ≥1 day, "HH:MM" if <24h. */

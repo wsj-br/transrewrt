@@ -5,7 +5,7 @@
 
 import React from "react";
 import { tokens } from "@fluentui/react-components";
-import webAPI from "./webApiClient";
+import webAPI from "../../../utils/api/webApiClient";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 

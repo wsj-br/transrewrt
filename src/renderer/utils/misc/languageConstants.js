@@ -2,7 +2,7 @@
  * Content language helpers derived from UI_LANGUAGES (single source of truth in constants.js).
  */
 
-import { UI_LANGUAGES } from "../constants";
+import { UI_LANGUAGES } from "../../constants";
 
 /** Sorted list of predefined content language names (English). */
 export const ALL_CONTENT_LANGUAGE_NAMES = [...UI_LANGUAGES]

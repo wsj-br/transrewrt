@@ -235,7 +235,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/main/main.js](../src/main/main.js) | Electron main process entry |
 | [src/main/preload.js](../src/main/preload.js) | Preload script exposing APIs to renderer |
 | [src/main/appDb.js](../src/main/appDb.js) | Electron app DB (api_calls, custom_prompts); IPC handlers |
-| [server/index.js](../server/index.js) | Express server (web/Docker) |
+| [src/server/index.js](../src/server/index.js) | Express server (web/Docker) |
+| [src/shared/db/appSchema.js](../src/shared/db/appSchema.js) | Shared DB schema and SQL (used by main + server) |
 | [Dockerfile](../Dockerfile) | Multi-stage Docker build |
 | [docker-compose.yml](../docker-compose.yml) | Compose for local web run |
 | [config/transform-prompts.json](../config/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts") |
@@ -243,4 +244,4 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json) | Extracted UI strings and translation state (from i18n:extract) |
 | [scripts/generate-translations.js](../scripts/generate-translations.js) | OpenRouter translation script (i18n:translate; needs API_KEY) |
 
-For web/Docker architecture and server API reference, see [Web-and-Docker-Deployment.md](Web-and-Docker-Deployment.md). For i18n (key-as-default, adding languages, RTL), see [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+Web/Docker architecture and server API are covered in this document (Deploy, Docker, Key Configuration Files). For i18n (key-as-default, adding languages, RTL), see [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).

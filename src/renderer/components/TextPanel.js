@@ -12,7 +12,10 @@ import {
   Clipboard,
   FileText,
   FileCheck,
+  File,
+  FileDiff,
 } from "lucide-react";
+import { computeRewriteDiff } from "../utils/misc/rewriteDiff";
 
 const useStyles = makeStyles({
   panelHeaderRow: {
@@ -71,6 +74,24 @@ const useStyles = makeStyles({
     lineHeight: 1.5,
     outline: "none",
   },
+  diffView: {
+    flex: 1,
+    width: "100%",
+    minHeight: 0,
+    overflow: "auto",
+    padding: `${tokens.spacingVerticalXS} 0`,
+    lineHeight: 1.5,
+  },
+  diffSame: {
+    color: "#e0e0e0",
+  },
+  diffRemoved: {
+    color: "#6b6b6b",
+    textDecoration: "line-through",
+  },
+  diffAdded: {
+    color: "#4da6ff",
+  },
   controls: {
     display: "flex",
     justifyContent: "space-between",
@@ -119,6 +140,10 @@ const TextPanel = ({
   fontSize,
   textColor,
   footerAlign = "right",
+  showDiff,
+  inputTextForDiff,
+  outputIsModelResult,
+  onDiffToggle,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -130,10 +155,21 @@ const TextPanel = ({
     const style = {
       ...(fontFamily && { fontFamily }),
       ...(fontSize && { fontSize: `${fontSize}px` }),
-      ...(textColor && { color: textColor }),
+      color: textColor || "#e0e0e0",
     };
     return style;
   }, [fontFamily, fontSize, textColor]);
+
+  const diffSegments = React.useMemo(() => {
+    if (!showDiff || inputTextForDiff == null || text == null) return null;
+    if (!outputIsModelResult) return null;
+    const inputStr = typeof inputTextForDiff === "string" ? inputTextForDiff : "";
+    const outputStr = typeof text === "string" ? text : "";
+    if (!inputStr.trim() || !outputStr.trim()) return null;
+    return computeRewriteDiff(inputStr, outputStr);
+  }, [showDiff, outputIsModelResult, inputTextForDiff, text]);
+
+  const showDiffView = showDiff && outputIsModelResult && Array.isArray(diffSegments) && diffSegments.length > 0;
 
   const getIcon = () => {
     if (icon) return icon;
@@ -158,43 +194,82 @@ const TextPanel = ({
         </div>
       )}
       <div className={mergeClasses(styles.panel, isFocused && styles.panelFocused)}>
-        <textarea
-          className={styles.textarea}
-          value={text}
-          onChange={(e) => onTextChange(e.target.value)}
-          onPaste={(e) => {
-            const pastedText = e.clipboardData.getData('text');
-            if (pastedText && onPasteEvent) {
-              onPasteEvent(pastedText);
-            }
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          spellCheck={false}
-          aria-label={title || placeholder || t("Text panel")}
-          style={textareaStyle}
-        />
+        {showDiffView ? (
+          <div
+            className={styles.diffView}
+            style={{
+              fontFamily: fontFamily || undefined,
+              fontSize: fontSize ? `${fontSize}px` : undefined,
+            }}
+            aria-label={title || t("Text panel")}
+          >
+            {diffSegments.map((seg) => (
+              <span
+                key={seg.key}
+                className={
+                  seg.type === "same"
+                    ? styles.diffSame
+                    : seg.type === "removed"
+                      ? styles.diffRemoved
+                      : styles.diffAdded
+                }
+              >
+                {seg.text}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <textarea
+            className={styles.textarea}
+            value={text}
+            onChange={(e) => onTextChange(e.target.value)}
+            onPaste={(e) => {
+              const pastedText = e.clipboardData.getData('text');
+              if (pastedText && onPasteEvent) {
+                onPasteEvent(pastedText);
+              }
+            }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            spellCheck={false}
+            aria-label={title || placeholder || t("Text panel")}
+            style={textareaStyle}
+          />
+        )}
         <div className={mergeClasses(styles.controls, footerAlign === "left" && styles.leftAligned)}>
           {footerAlign === "left" ? (
-            // Left-aligned layout: stats on left, copy button on right
+            // Left-aligned layout: stats on left, optional Show diffs and Copy on right
             <>
               {footerDisplay && (
                 <div className={styles.stats}>{footerDisplay}</div>
               )}
               <div style={{ marginLeft: "auto" }} />
-              {onCopy && (
-                <Button
-                  appearance="secondary"
-                  icon={<Copy size={16} />}
-                  onClick={onCopy}
-                  size="small"
-                  title={t("Copy")}
-                >
-                  {t("Copy")}
-                </Button>
-              )}
+              <div className={styles.leftButtons}>
+                {onDiffToggle && (
+                  <Button
+                    appearance={showDiff ? "primary" : "secondary"}
+                    icon={showDiff ?  <File size={16} /> : <FileDiff size={16} /> }
+                    onClick={onDiffToggle}
+                    size="small"
+                    title={showDiff ? t("Hide changes between input and output") : t("Show changes between input and output")}
+                  >
+                    {showDiff ? t("Hide changes") : t("Show changes")}
+                  </Button>
+                )}
+                {onCopy && (
+                  <Button
+                    appearance="secondary"
+                    icon={<Copy size={16} />}
+                    onClick={onCopy}
+                    size="small"
+                    title={t("Copy")}
+                  >
+                    {t("Copy")}
+                  </Button>
+                )}
+              </div>
             </>
           ) : (
             // Default right-aligned layout: buttons on left, stats and copy on right

@@ -3,15 +3,18 @@ import { tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import StyleSelector from "../StyleSelector";
 import { Zap, Square } from "lucide-react";
-import { getRewriteStyleOptions } from "../../constants";
+import { getRewriteStyleOptions, REWRITE_STYLE_KEYS } from "../../constants";
+
+const REWRITE_STYLE_GRAMMAR = REWRITE_STYLE_KEYS[0]; // "Check Spelling & Grammar"
 
 /**
  * Returns { leftPanel, rightPanel } for rewrite mode.
- * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite style.
+ * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite style, showOutputDiff.
  */
 export function getRewritePanels({ common, input, output, options }) {
   const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
-  const { rewriteStyle, setRewriteStyle } = options;
+  const { rewriteStyle, setRewriteStyle, showOutputDiff = false, setShowOutputDiff, outputIsModelResult = false } = options;
+  const isGrammarStyle = rewriteStyle === REWRITE_STYLE_GRAMMAR;
 
   const leftPanelControls = (
     <StyleSelector
@@ -38,7 +41,6 @@ export function getRewritePanels({ common, input, output, options }) {
           onPasteEvent={input.handlePasteEvent}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
-          textColor={settings?.input_text_color}
         />
       </div>
       <div className={styles.runButtonContainer}>
@@ -83,7 +85,10 @@ export function getRewritePanels({ common, input, output, options }) {
           onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
-          textColor={settings?.output_text_color}
+          showDiff={isGrammarStyle ? showOutputDiff : false}
+          inputTextForDiff={isGrammarStyle ? input.text : undefined}
+          outputIsModelResult={isGrammarStyle ? outputIsModelResult : false}
+          onDiffToggle={isGrammarStyle && setShowOutputDiff ? () => setShowOutputDiff((v) => !v) : undefined}
         />
       </div>
       <div className={styles.runButtonContainer} aria-hidden="true" />

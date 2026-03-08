@@ -21,8 +21,6 @@
     "web_margin": true,
     "font_family": "Verdana",
     "font_size": 15,
-    "input_text_color": "#FFFFFF",
-    "output_text_color": "#FFFFFF",
     "theme": "System",
     "ui_locale": "en-GB",
     "cost_fraction_style": "muted",

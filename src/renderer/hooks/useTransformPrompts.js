@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import webAPI from "../utils/webApiClient";
-import { resolveDuplicateNames } from "../utils/promptUtils";
-import { formatElapsedMmSs } from "../utils/formatUtils";
+import webAPI from "../utils/api/webApiClient";
+import { resolveDuplicateNames } from "../utils/misc/promptUtils";
+import { formatElapsedMmSs } from "../utils/misc/formatUtils";
 import samplePromptsData from "../../../config/transform-prompts.json";
 
 function getCustomPromptsApi() {

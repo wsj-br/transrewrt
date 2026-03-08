@@ -37,7 +37,7 @@ if (currentMajor < required) {
 }
 
 // Launch server with this same Node binary so PATH in child processes doesn't matter
-const serverPath = path.join(rootDir, "server", "index.js");
+const serverPath = path.join(rootDir, "src", "server", "index.js");
 const result = spawnSync(process.execPath, [serverPath], {
   stdio: "inherit",
   env: process.env,

@@ -14,7 +14,7 @@ import { Globe } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
-import { getUILanguageLabel } from "../utils/languageDisplay";
+import { getUILanguageLabel } from "../utils/misc/languageDisplay";
 
 const GLOBE_COLOR = "#2d881f";
 
