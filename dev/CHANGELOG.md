@@ -9,6 +9,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: SYSTEM-OVERVIEW.md updated to match current codebase: i18n (react-i18next, locales, ui_locale) and renderer folder structure (locales/, index.js i18n entry).
 - **Changed**: Extract script no longer adds UI_LANGUAGES `label` to strings.json (label is already in the local language; only `englishName` is extracted for translation).
 - **Added**: `generate-translations.js`: `--dry-run` / `-d` to show what would be translated per language (no API calls or file writes); `--show-strings` / `-s` to list source strings that need translation (key + text) per language; `--help` / `-h` documented in script and help output.
 - **Changed**: Dashboard "All Calls" table refactored: new layout with separate header and body tables, shared colgroup (flexible column widths, min 1090px); vertical scrollbar overlays last column (no extra width), horizontal scrollbar always visible; columns truncate with ellipsis; header fixed, body scrolls from header bottom to table bottom; paging and cell content unchanged.

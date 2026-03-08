@@ -74,7 +74,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 
 | Layer          | Technology                                                                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Frontend**   | React 19, Fluent UI 9, Webpack 5, Babel. Build target `web` for both Electron and browser.                                                                                                             |
+| **Frontend**   | React 19, Fluent UI 9, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel. Build target `web` for both Electron and browser.                                                                                                             |
 | **Desktop**    | Electron 40 (Node 24). Main process: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). Custom `app://` protocol for loading the renderer in production. |
 | **Web server** | Express 5 ([server/index.js](../server/index.js)). Serves static `dist/`, config/state REST API, session auth (Argon2), OpenRouter proxy, SQLite (better-sqlite3) for app DB (api_calls, custom_prompts). |
 
@@ -93,9 +93,10 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 │       ├── contexts/      # AppContext
 │       ├── hooks/         # useDebouncedProcess, useCostTracking, useProcessing, useTransformPrompts, etc.
 │       ├── services/      # apiService (translate, rewrite, transform, models)
-│       ├── utils/         # configManager, webApiClient, transrewrtProxyKey
+│       ├── utils/         # configManager, webApiClient, transrewrtProxyKey, etc.
+│       ├── locales/       # i18n JSON (strings.json, pt-BR, de, fr, …)
 │       ├── styles/        # main.css
-│       └── index.js       # Entry; FluentProvider, AppProvider, App
+│       └── index.js       # Entry; i18n, FluentProvider, AppProvider, App
 ├── server/
 │   ├── index.js           # Express app (static, config, auth, proxy, app DB API)
 │   └── logger.js          # File/console logging
@@ -124,6 +125,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 
 - **Electron**: Config file path is resolved in the main process (user data dir, project root, or executable dir). Defaults are merged from [config/config_default.json](../config/config_default.json).
 - **Web**: Config and state live on the server (e.g. `/app/data/config.json` and `/app/data/state.json` in Docker). The client reads/writes via REST; state keys (e.g. `last_used_model`, `source_language`) are split from config and persisted separately.
+- **UI language**: Config key `ui_locale` (e.g. `en-GB`, `pt-BR`) drives react-i18next; [src/renderer/i18n.js](../src/renderer/i18n.js) and locale files in `src/renderer/locales/`.
 
 ---
 
