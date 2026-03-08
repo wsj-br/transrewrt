@@ -708,6 +708,8 @@ button {
     border-bottom: 1px solid #454545;
     padding: 0 16px;
     flex-shrink: 0;
+    overflow-x: auto;
+    min-width: 0;
 }
 
 .tab-btn {
@@ -723,6 +725,11 @@ button {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;
+    min-width: max-content;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .tab-btn:hover {
@@ -1260,6 +1267,11 @@ button {
     color: var(--text-primary);
 }
 
+/* Prevent horizontal scrollbar on Settings > Languages tab */
+.tab-content.languages-tab {
+    overflow-x: hidden;
+}
+
 .languages-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1267,6 +1279,11 @@ button {
     width: 100%;
     box-sizing: border-box;
     max-width: 100%;
+    min-width: 0;
+}
+
+.languages-grid > * {
+    min-width: 0;
 }
 
 .lang-checkbox {

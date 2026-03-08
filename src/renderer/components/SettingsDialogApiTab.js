@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Label, Text, Input, Checkbox } from "@fluentui/react-components";
 import { Key } from "lucide-react";
 
@@ -15,18 +16,19 @@ const SettingsDialogApiTab = ({
   onShowKeySeedChange,
   onTestApi,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="tab-content">
       {!isWeb && (
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Key size={20} />
-          API Configuration
+          {t("API Configuration")}
         </Text>
         <div style={{ paddingLeft: "24px" }}>
         <div style={{ marginBottom: '16px' }}>
           <Label htmlFor="api-url" style={{ display: 'block', marginBottom: '6px' }}>
-            API URL:
+            {t("API URL:")}
           </Label>
           <Input
             id="api-url"
@@ -37,8 +39,8 @@ const SettingsDialogApiTab = ({
             style={{ width: 'auto', minWidth: '400px' }}
           />
           {localSettings.use_transrewrt_proxy && (
-            <Text as="p" style={{ fontSize: '12px', color: 'var(--colorNeutralForeground3)', marginTop: '4px' }}>
-              When using proxy, this is the proxy base URL (e.g. http://localhost:6500).
+            <Text as="p" style={{ fontSize: '12px', color: 'var(--colorNeutralForeground3)', marginTop: '4px', marginLeft: '24px' }}>
+              {t("When using proxy, this is the proxy base URL (e.g. http://your.server:6500).")}
             </Text>
           )}
         </div>
@@ -49,13 +51,13 @@ const SettingsDialogApiTab = ({
             onChange={(e) => onSettingChange('use_transrewrt_proxy', e.target.checked)}
           />
           <Label htmlFor="use-transrewrt-proxy" style={{ cursor: 'pointer', marginLeft: '8px' }}>
-            Use Transrewrt Proxy
+            {t("Use Transrewrt Proxy")}
           </Label>
         </div>
         {localSettings.use_transrewrt_proxy && (
           <div style={{ marginBottom: '16px', marginLeft: '24px' }}>
             <Label htmlFor="key-seed" style={{ display: 'block', marginBottom: '6px' }}>
-              Key Seed:
+              {t("Key Seed:")}
             </Label>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Input
@@ -63,7 +65,7 @@ const SettingsDialogApiTab = ({
                 type={showKeySeed ? 'text' : 'password'}
                 value={localSettings.key_seed || ''}
                 onChange={(e) => onSettingChange('key_seed', e.target.value)}
-                placeholder="Shared secret with the proxy"
+                placeholder={t("Shared secret with the proxy")}
                 style={{ width: '400px', minWidth: '300px' }}
               />
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -73,7 +75,7 @@ const SettingsDialogApiTab = ({
                   onChange={(e) => onShowKeySeedChange(e.target.checked)}
                 />
                 <Label htmlFor="show-key-seed" style={{ cursor: 'pointer', margin: 0 }}>
-                  Show
+                  {t("Show")}
                 </Label>
               </div>
             </div>
@@ -81,7 +83,7 @@ const SettingsDialogApiTab = ({
         )}
         <div style={{ marginBottom: '16px' }}>
           <Label htmlFor="api-key" style={{ display: 'block', marginBottom: '6px' }}>
-            OpenRouter API Key:
+            {t("OpenRouter API Key:")}
           </Label>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Input
@@ -99,7 +101,7 @@ const SettingsDialogApiTab = ({
                 onChange={(e) => onShowApiKeyChange(e.target.checked)}
               />
               <Label htmlFor="show-api-key" style={{ cursor: 'pointer', margin: 0 }}>
-                Show
+                {t("Show")}
               </Label>
             </div>
           </div>
@@ -111,7 +113,7 @@ const SettingsDialogApiTab = ({
             disabled={apiTestStatus === 'testing'}
             style={{ width: 'auto' }}
           >
-            {apiTestStatus === 'testing' ? 'Testing...' : 'Test API Configuration'}
+            {apiTestStatus === 'testing' ? t("Testing...") : t("Test API Configuration")}
           </Button>
           {apiTestStatus && (
             <div
@@ -133,7 +135,7 @@ const SettingsDialogApiTab = ({
       </div>
       )}
       {isWeb && (
-        <Text as="p" style={{ marginTop: 0 }}>API is configured on the server.</Text>
+        <Text as="p" style={{ marginTop: 0 }}>{t("API is configured on the server.")}</Text>
       )}
     </div>
   );

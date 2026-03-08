@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Dropdown,
@@ -89,17 +90,6 @@ const useStyles = makeStyles({
   },
 });
 
-const DELETE_RANGE_OPTIONS = [
-  { value: "all", label: "all data (clear)" },
-  { value: "gt_1m", label: "> 1 month" },
-  { value: "gt_2m", label: "> 2 months" },
-  { value: "gt_3m", label: "> 3 months" },
-  { value: "gt_6m", label: "> 6 months" },
-  { value: "gt_9m", label: "> 9 months" },
-  { value: "gt_1y", label: "> 1 year" },
-  { value: "gt_2y", label: "> 2 years" },
-];
-
 function getDeleteCutoffIso(option) {
   if (option === "all") return null;
   const now = new Date();
@@ -138,6 +128,7 @@ const SettingsDialogCostTrackingTab = ({
   isTabActive,
 }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [byFunction, setByFunction] = useState([]);
   const [loading, setLoading] = useState(false);
   const [syncCostError, setSyncCostError] = useState(null);
@@ -152,8 +143,24 @@ const SettingsDialogCostTrackingTab = ({
   const costFractionStyle = localSettings.cost_fraction_style || "muted";
   const keyRefreshIdRef = useRef(0);
 
+  const deleteRangeOptions = useMemo(
+    () => [
+      { value: "all", label: t("all data (clear)") },
+      { value: "gt_1m", label: t("> 1 month") },
+      { value: "gt_2m", label: t("> 2 months") },
+      { value: "gt_3m", label: t("> 3 months") },
+      { value: "gt_6m", label: t("> 6 months") },
+      { value: "gt_9m", label: t("> 9 months") },
+      { value: "gt_1y", label: t("> 1 year") },
+      { value: "gt_2y", label: t("> 2 years") },
+    ],
+    [t]
+  );
+
   const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
-  const isOpenRouter = apiUrl.includes("openrouter.ai");
+  const isOpenRouter =
+    apiUrl.includes("openrouter.ai") ||
+    (!!localSettings.use_transrewrt_proxy && (localSettings.api_url || "").trim().length > 0);
 
   const fetchKeyInfo = async () => {
     if (!isOpenRouter) {
@@ -165,33 +172,24 @@ const SettingsDialogCostTrackingTab = ({
     setKeyInfoError(null);
     setKeyInfoLoading(true);
     try {
+      let data;
       if (isWeb) {
         if (!webAPI.getOpenRouterKeyInfo) return;
-        const data = await webAPI.getOpenRouterKeyInfo();
-        if (thisId !== keyRefreshIdRef.current) return;
-        const raw = data?.data ?? data;
-        setKeyInfo(raw && typeof raw === "object" ? { ...raw } : null);
+        data = await webAPI.getOpenRouterKeyInfo();
       } else {
-        const key = localSettings.api_key || "";
-        if (!key.trim()) {
-          setKeyInfoError("API key not set");
+        if (!window.electronAPI?.getOpenRouterKeyInfo) {
+          setKeyInfoError(t("Failed to load key info"));
           return;
         }
-        const base = apiUrl.replace(/\/$/, "");
-        const res = await fetch(`${base}/key`, {
-          method: "GET",
-          headers: { Authorization: `Bearer ${key}` },
-          cache: "no-store",
-        });
-        const data = await res.json().catch(() => ({}));
-        if (thisId !== keyRefreshIdRef.current) return;
-        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
-        setKeyInfo(data?.data != null ? data.data : data);
+        data = await window.electronAPI.getOpenRouterKeyInfo();
       }
+      if (thisId !== keyRefreshIdRef.current) return;
+      const raw = data?.data ?? data;
+      setKeyInfo(raw && typeof raw === "object" ? { ...raw } : null);
     } catch (err) {
       if (thisId === keyRefreshIdRef.current) {
         setKeyInfo(null);
-        setKeyInfoError(err?.message || "Failed to load key info");
+        setKeyInfoError(err?.message || t("Failed to load key info"));
       }
     } finally {
       if (thisId === keyRefreshIdRef.current) {
@@ -204,6 +202,30 @@ const SettingsDialogCostTrackingTab = ({
     fetchKeyInfo();
   }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key, isTabActive]);
 
+  const keyUsageDisplay = useMemo(() => {
+    if (keyInfoLoading) return t("Loading…");
+    if (keyInfoError) return keyInfoError;
+    if (!keyInfo) return "—";
+    const usage =
+      keyInfo.usage ??
+      (keyInfo.limit != null && keyInfo.limit_remaining != null
+        ? keyInfo.limit - keyInfo.limit_remaining
+        : null);
+    const hasUsage = usage != null && !Number.isNaN(Number(usage));
+    if (!hasUsage && keyInfo.limit == null) return t("no limit configured");
+    return {
+      usage,
+      hasLimit: keyInfo.limit != null,
+      limit: keyInfo.limit,
+      limitReset: keyInfo.limit_reset,
+    };
+  }, [
+    keyInfoLoading,
+    keyInfoError,
+    keyInfo,
+    t,
+  ]);
+
   const costApi = getCostApi();
   useEffect(() => {
     if (!costApi.getSummaryByFunction) return;
@@ -215,22 +237,9 @@ const SettingsDialogCostTrackingTab = ({
       .finally(() => setLoading(false));
   }, [isTabActive]);
 
-  // Refresh total cost from server/DB when user opens the Cost Tracking tab so it's not stale.
-  // In web/Docker mode, skip this: total_cost can be set via "Sync with API key usage" and persisted
-  // in config; overwriting from DB (sum of api_calls) would revert the synced value on tab open or reload.
-  useEffect(() => {
-    if (!isTabActive || isWeb) return;
-    const api = getCostApi();
-    if (!api.getTotalCostFromDatabase) return;
-    api
-      .getTotalCostFromDatabase()
-      .then((data) => {
-        if (data && typeof data.total_cost === "number") {
-          onSettingChange("total_cost", data.total_cost);
-        }
-      })
-      .catch(() => {});
-  }, [isTabActive]);
+  // Do not refresh total_cost from DB when opening this tab. total_cost can be set via
+  // "Sync with API key usage" and persisted in config; overwriting from DB (sum of api_calls)
+  // would revert the synced value when the user returns to the Cost Tracking tab (Electron and web).
 
   const handleCopyCost = async () => {
     const cost = parseFloat(localSettings.total_cost || 0).toFixed(6);
@@ -257,15 +266,17 @@ const SettingsDialogCostTrackingTab = ({
 
   const handleSyncWithKeyUsage = () => {
     setSyncCostError(null);
-    if (!keyInfo || keyInfo.limit == null) {
-      setSyncCostError("No key usage available");
+    if (!keyInfo) {
+      setSyncCostError(t("No key usage available"));
       return;
     }
-    const usage = keyInfo.usage ?? (keyInfo.limit != null && keyInfo.limit_remaining != null
-      ? keyInfo.limit - keyInfo.limit_remaining
-      : null);
+    const usage =
+      keyInfo.usage ??
+      (keyInfo.limit != null && keyInfo.limit_remaining != null
+        ? keyInfo.limit - keyInfo.limit_remaining
+        : null);
     if (usage == null || Number.isNaN(Number(usage))) {
-      setSyncCostError("No key usage available");
+      setSyncCostError(t("No key usage available"));
       return;
     }
     onSettingChange("total_cost", usage);
@@ -282,7 +293,7 @@ const SettingsDialogCostTrackingTab = ({
   const executeDeleteCostData = async () => {
     if (deleteLoading) return;
     if (!costApi || typeof costApi.deleteCallsOutsideRange !== "function") {
-      setDeleteError("Delete operation is not available in this mode.");
+      setDeleteError(t("Delete operation is not available in this mode."));
       setShowDeleteConfirm(false);
       return;
     }
@@ -325,17 +336,17 @@ const SettingsDialogCostTrackingTab = ({
 
   const deleteConfirmTitle =
     deleteRange === "all"
-      ? "Delete all cost data"
-      : "Delete cost data by age";
+      ? t("Delete all cost data")
+      : t("Delete cost data by age");
   const deleteConfirmMessage =
     deleteRange === "all"
-      ? "Permanently delete ALL cost tracking data? This cannot be undone."
-      : `Permanently delete cost tracking data older than ${
-          DELETE_RANGE_OPTIONS.find((o) => o.value === deleteRange)?.label?.replace(
+      ? t("Permanently delete ALL cost tracking data? This cannot be undone.")
+      : t("Permanently delete cost tracking data older than {{range}}? This cannot be undone.", {
+          range: t(deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
             /^>\s*/,
             "",
-          ) ?? ""
-        }? This cannot be undone.`;
+          ) || "",
+        });
 
   return (
     <div className="tab-content">
@@ -353,7 +364,7 @@ const SettingsDialogCostTrackingTab = ({
           }}
         >
           <DollarSign size={20} />
-          Cost Tracking
+          {t("Cost Tracking")}
         </Text>
         <div
           style={{
@@ -367,7 +378,7 @@ const SettingsDialogCostTrackingTab = ({
         >
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "16px", fontWeight: 600 }}>
-              Total Cost:
+              {t("Total Cost:")}
             </span>
             <span
               style={{
@@ -393,24 +404,29 @@ const SettingsDialogCostTrackingTab = ({
               onClick={handleCopyCost}
               icon={<Copy size={14} />}
             >
-              Copy Value
+              {t("Copy Value")}
             </Button>
             <Button
               appearance="secondary"
               size="small"
               onClick={() => onSettingChange("total_cost", 0)}
             >
-              Reset Cost
+              {t("Reset Cost")}
             </Button>
             {isOpenRouter && (
               <Button
                 appearance="secondary"
                 size="small"
                 onClick={handleSyncWithKeyUsage}
-                disabled={keyInfoLoading || !keyInfo || keyInfo.limit == null}
+                disabled={
+                keyInfoLoading ||
+                !keyInfo ||
+                (keyInfo.usage == null &&
+                  (keyInfo.limit == null || keyInfo.limit_remaining == null))
+              }
                 icon={<Server size={14} />}
               >
-                Sync with API key usage
+                {t("Sync with API key usage")}
               </Button>
             )}
             {syncCostError && (
@@ -425,20 +441,19 @@ const SettingsDialogCostTrackingTab = ({
             )}
           </div>
         </div>
-        {isOpenRouter && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              flexWrap: "wrap",
-              marginTop: "18px",
-              marginLeft: "32px",
-            }}
-          >
-            <span style={{ fontSize: "16px", fontWeight: 600 }}>
-              API Key Usage:
-            </span>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            flexWrap: "wrap",
+            marginTop: "18px",
+            marginLeft: "32px",
+          }}
+        >
+          <span style={{ fontSize: "16px", fontWeight: 600 }}>
+            {t("API Key Usage")}:
+          </span>
             <span
               style={{
                 fontSize: "16px",
@@ -448,32 +463,29 @@ const SettingsDialogCostTrackingTab = ({
                 whiteSpace: "nowrap",
               }}
             >
-              {keyInfoLoading ? (
-                "Loading…"
-              ) : keyInfoError ? (
-                keyInfoError
-              ) : !keyInfo ? (
-                "—"
-              ) : keyInfo.limit == null ? (
-                "no limit configured"
-              ) : (
+              {typeof keyUsageDisplay === "string" ? (
+                keyUsageDisplay
+              ) : keyUsageDisplay && keyUsageDisplay.usage != null ? (
                 <>
                   <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                    {formatCost(
-                      keyInfo.usage ?? (keyInfo.limit != null && keyInfo.limit_remaining != null
-                        ? keyInfo.limit - keyInfo.limit_remaining
-                        : null),
-                      costFractionStyle
-                    )}
+                    {formatCost(keyUsageDisplay.usage, costFractionStyle)}
                   </span>
-                  {" / "}
-                  <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                    ${Number(keyInfo.limit).toFixed(2)}
-                  </span>
-                  {keyInfo.limit_reset == null
-                    ? " (no reset)"
-                    : ` (reset ${keyInfo.limit_reset})`}
+                  {keyUsageDisplay.hasLimit ? (
+                    <>
+                      {" / "}
+                      <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
+                        ${Number(keyUsageDisplay.limit).toFixed(2)}
+                      </span>
+                      {keyUsageDisplay.limitReset == null
+                        ? " (no reset)"
+                        : ` (reset ${keyUsageDisplay.limitReset})`}
+                    </>
+                  ) : (
+                    " (unlimited)"
+                  )}
                 </>
+              ) : (
+                "—"
               )}
             </span>
             <Button
@@ -481,7 +493,7 @@ const SettingsDialogCostTrackingTab = ({
               size="small"
               icon={<RotateCcw size={14} />}
               onClick={fetchKeyInfo}
-              title="Refresh API key usage"
+              title={t("Refresh API key usage")}
             />
             <span
               style={{
@@ -490,14 +502,13 @@ const SettingsDialogCostTrackingTab = ({
                 fontStyle: "italic",
               }}
             >
-              Usage updates may have a short delay (15s to 1min), even after refreshing.
+              {t("Usage updates may have a short delay (15s to 1min), even after refreshing.")}
             </span>
-          </div>
-        )}
+        </div>
       </div>
 
       {loading ? (
-        <p style={{ marginTop: "16px" }}>Loading summaries…</p>
+        <p style={{ marginTop: "16px" }}>{t("Loading summaries…")}</p>
       ) : (
         <div className="section" style={{ marginTop: "24px" }}>
           <div style={{ marginLeft: "32px" }}>
@@ -507,16 +518,16 @@ const SettingsDialogCostTrackingTab = ({
               weight="semibold"
               style={{ marginTop: 0, marginBottom: "4px" }}
             >
-              By function
+              {t("By function")}
             </Text>
             <div className={styles.tableWrap}>
               <table className={styles.table}>
                 <thead className={styles.thead}>
                   <tr>
-                    <th className={styles.th}>Function</th>
-                    <th className={styles.th}>Calls</th>
-                    <th className={styles.th}>Cost</th>
-                    <th className={styles.th}>Avg cost</th>
+                    <th className={styles.th}>{t("Function")}</th>
+                    <th className={styles.th}>{t("Calls")}</th>
+                    <th className={styles.th}>{t("Cost")}</th>
+                    <th className={styles.th}>{t("Avg cost")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -590,7 +601,7 @@ const SettingsDialogCostTrackingTab = ({
           }}
         >
           <Trash2 size={20} />
-          Delete cost data
+          {t("Delete cost data")}
         </Text>
         <div
           style={{
@@ -609,12 +620,12 @@ const SettingsDialogCostTrackingTab = ({
               flexWrap: "wrap",
             }}
           >
-            <span>Delete entries older than:</span>
+            <span>{t("Delete entries older than:")}</span>
             <Dropdown
               appearance="underline"
               selectedOptions={[deleteRange]}
               value={
-                DELETE_RANGE_OPTIONS.find((o) => o.value === deleteRange)
+                deleteRangeOptions.find((o) => o.value === deleteRange)
                   ?.label || ""
               }
               onOptionSelect={(_, data) => {
@@ -624,7 +635,7 @@ const SettingsDialogCostTrackingTab = ({
               }}
               style={{ minWidth: "180px" }}
             >
-              {DELETE_RANGE_OPTIONS.map((opt) => (
+              {deleteRangeOptions.map((opt) => (
                 <Option key={opt.value} value={opt.value}>
                   {opt.label}
                 </Option>
@@ -639,7 +650,7 @@ const SettingsDialogCostTrackingTab = ({
                 color: tokens.colorNeutralForegroundOnBrand,
               }}
             >
-              {deleteLoading ? "Deleting…" : "Delete data"}
+              {deleteLoading ? t("Deleting…") : t("Delete data")}
             </Button>
           </div>
           {deleteError && (
@@ -669,8 +680,8 @@ const SettingsDialogCostTrackingTab = ({
         <ConfirmModal
           title={deleteConfirmTitle}
           message={deleteConfirmMessage}
-          confirmLabel="Delete data"
-          cancelLabel="Cancel"
+          confirmLabel={t("Delete data")}
+          cancelLabel={t("Cancel")}
           onConfirm={executeDeleteCostData}
           onCancel={() => setShowDeleteConfirm(false)}
           danger

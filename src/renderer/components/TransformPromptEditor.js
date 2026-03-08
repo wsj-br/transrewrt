@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import {
   makeStyles,
   tokens,
@@ -110,6 +111,7 @@ const TransformPromptEditor = ({
   onDraftChange,
 }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [instructionsText, setInstructionsText] = useState("");
@@ -177,62 +179,62 @@ const TransformPromptEditor = ({
           icon={<ArrowLeft size={18} />}
           onClick={onBackToRun}
           className={styles.backButton}
-          aria-label="Back to Run"
+          aria-label={t("Back to Run")}
         >
-          Back to Run
+          {t("Back to Run")}
         </Button>
       </div>
       <div className={styles.form}>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-name">Prompt name</Label>
+          <Label htmlFor="transform-prompt-name">{t("Prompt name")}</Label>
           <Input
             id="transform-prompt-name"
             value={name}
             onChange={(_, data) => setName(data.value)}
-            placeholder="e.g. Summarize"
+            placeholder={t("e.g. Summarize")}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-instructions-line">Prompt instructions (optional)</Label>
+          <Label htmlFor="transform-prompt-instructions-line">{t("Prompt instructions (optional)")}</Label>
           <Input
             id="transform-prompt-instructions-line"
             value={promptInstructions}
             onChange={(_, data) => setPromptInstructions(data.value)}
-            placeholder="e.g. Keep it under 3 sentences."
-            aria-label="Prompt instructions"
+            placeholder={t("e.g. Keep it under 3 sentences.")}
+            aria-label={t("Prompt instructions")}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-role">Model Role</Label>
+          <Label htmlFor="transform-prompt-role">{t("Model Role")}</Label>
           <Input
             id="transform-prompt-role"
             value={role}
             onChange={(_, data) => setRole(data.value)}
-            placeholder="e.g. You are a helpful assistant."
+            placeholder={t("e.g. You are a helpful assistant.")}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-instructions">Model Instructions (one per line)</Label>
+          <Label htmlFor="transform-prompt-instructions">{t("Model Instructions (one per line)")}</Label>
           <textarea
             id="transform-prompt-instructions"
             className={styles.textarea}
             value={instructionsText}
             onChange={(e) => setInstructionsText(e.target.value)}
-            placeholder={"- First instruction\n- Second instruction"}
-            aria-label="Instructions"
+            placeholder={t("- First instruction\n- Second instruction")}
+            aria-label={t("Instructions")}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-output-desc">Output description (e.g. transformed, summarized, etc.)</Label>
+          <Label htmlFor="transform-prompt-output-desc">{t("Output description (e.g. transformed, summarized, etc.)")}</Label>
           <Input
             id="transform-prompt-output-desc"
             value={outputDescription}
             onChange={(_, data) => setOutputDescription(data.value)}
-            placeholder="transformed"
+            placeholder={t("transformed")}
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-temperature">Temperature (0–1)</Label>
+          <Label htmlFor="transform-prompt-temperature">{t("Temperature (0–1)")}</Label>
           <div className={styles.sliderRow}>
             <SpinButton
               id="transform-prompt-temperature"
@@ -244,34 +246,34 @@ const TransformPromptEditor = ({
                 const v = parseFloat(data.value);
                 if (!Number.isNaN(v) && v >= 0 && v <= 1) setTemperature(v);
               }}
-              aria-label="Temperature"
+              aria-label={t("Temperature")}
               style={{ width: "120px" }}
             />
           </div>
           <div className={styles.temperatureHint}>
-            Low = more deterministic, consistent output. High = more creative and varied output.
+            {t("Low = more deterministic, consistent output. High = more creative and varied output.")}
           </div>
         </div>
         <div className={styles.field}>
           <Checkbox
             id="transform-prompt-ask-target-lang"
-            label="Ask for target language"
+            label={t("Ask for target language")}
             checked={askTargetLanguage}
             onChange={(_, data) => setAskTargetLanguage(!!data.checked)}
-            aria-label="Ask for target language when running this prompt"
+            aria-label={t("Ask for target language when running this prompt")}
           />
         </div>
       </div>
       <div className={styles.actions}>
         <Button appearance="primary" icon={<Save size={16} />} onClick={handleSave}>
-          Save
+          {t("Save")}
         </Button>
         <Button appearance="secondary" icon={<X size={16} />} onClick={onBackToRun}>
-          Cancel
+          {t("Cancel")}
         </Button>
         {initialPrompt?.id != null && (
           <Button appearance="secondary" icon={<Trash2 size={16} />} onClick={handleDelete}>
-            Delete
+            {t("Delete")}
           </Button>
         )}
       </div>

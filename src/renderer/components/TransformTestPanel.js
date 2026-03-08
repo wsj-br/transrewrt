@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import { Zap, Copy } from "lucide-react";
 
@@ -76,6 +77,7 @@ const TransformTestPanel = ({
   outputTextColor,
 }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const inputStyle = React.useMemo(
     () => ({
       ...(fontFamily && { fontFamily }),
@@ -96,13 +98,13 @@ const TransformTestPanel = ({
   return (
     <div className={styles.root}>
       <div className={styles.inputSection}>
-        <label className={styles.inputLabel}>Test input</label>
+        <label className={styles.inputLabel}>{t("Test input")}</label>
         <textarea
           className={styles.textarea}
           value={testInput}
           onChange={(e) => onTestInputChange?.(e.target.value)}
-          placeholder="Paste text to test..."
-          aria-label="Test input"
+          placeholder={t("Paste text to test...")}
+          aria-label={t("Test input")}
           style={inputStyle}
         />
         <Button
@@ -112,13 +114,13 @@ const TransformTestPanel = ({
           disabled={isTesting}
           className={styles.testButton}
         >
-          {isTesting ? "Testing…" : "Test"}
+          {isTesting ? t("Testing…") : t("Test")}
         </Button>
       </div>
       <div className={styles.outputSection}>
-        <label className={styles.inputLabel}>Output</label>
+        <label className={styles.inputLabel}>{t("Output")}</label>
         {outputMeta && <div className={styles.outputMeta}>{outputMeta}</div>}
-        <div className={styles.outputArea} role="region" aria-label="Test output" style={outputStyle}>
+        <div className={styles.outputArea} role="region" aria-label={t("Test output")} style={outputStyle}>
           {output || "—"}
         </div>
         {output && (
@@ -127,9 +129,9 @@ const TransformTestPanel = ({
               appearance="subtle"
               icon={<Copy size={14} />}
               onClick={onCopy}
-              aria-label="Copy output"
+              aria-label={t("Copy output")}
             >
-              Copy
+              {t("Copy")}
             </Button>
           </div>
         )}

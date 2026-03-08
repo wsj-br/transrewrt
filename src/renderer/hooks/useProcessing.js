@@ -300,7 +300,7 @@ export function useProcessing({
         target_language: selected.target_language ?? null,
       };
       const lang =
-        showTransformLangSelector && transformTargetLang && transformTargetLang !== "Auto"
+        showTransformLangSelector && transformTargetLang && transformTargetLang !== "auto"
           ? transformTargetLang
           : null;
 

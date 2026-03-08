@@ -179,8 +179,7 @@ class APIService {
     return {
       "Content-Type": "application/json",
       Authorization: `Bearer ${config.api_key || ""}`,
-      "HTTP-Referer":
-        "https://github.com/wsj-br/transrewrt",
+      "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
       "X-Title": "Transrewrt",
     };
   }

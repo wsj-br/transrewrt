@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
 import {
   Sliders,
@@ -9,6 +10,9 @@ import {
   DollarSign,
   Info,
   Sparkles,
+  Settings as SettingsIcon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsDialogApiTab from "./SettingsDialogApiTab";
@@ -19,6 +23,7 @@ import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
 import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
 import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
+import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
@@ -35,25 +40,97 @@ const useStyles = makeStyles({
     overflow: "hidden",
   },
   header: {
-    padding: "16px 24px",
+    minHeight: "36px",
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
+    backgroundColor: tokens.colorNeutralBackground1,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     flexShrink: 0,
   },
+  headerLeft: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+  },
+  headerIcon: {
+    flexShrink: 0,
+    color: tokens.colorBrandForegroundInverted,
+  },
   headerTitle: {
     margin: 0,
-    fontSize: "20px",
+    fontSize: "18px",
     fontWeight: 600,
+    lineHeight: 1.25,
+    color: tokens.colorNeutralForeground1,
   },
   settingsBody: {
     flex: 1,
+  },
+  tabsHeaderWrap: {
+    display: "flex",
+    alignItems: "center",
+    minWidth: 0,
+    width: "100%",
+    gap: 0,
+    overflow: "hidden",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    boxSizing: "border-box",
+  },
+  tabsHeaderScroll: {
+    flex: 1,
+    minWidth: 0,
+    overflowX: "auto",
+    overflowY: "hidden",
+    scrollbarWidth: "none",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": { display: "none" },
+  },
+  tabsHeaderInner: {
+    display: "flex",
+    alignItems: "stretch",
+    width: "max-content",
+    minHeight: "100%",
+  },
+  tabNavBtn: {
+    flexShrink: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "32px",
+    minWidth: "32px",
+    height: "44px",
+    padding: 0,
+    border: "none",
+    background: "transparent",
+    color: tokens.colorBrandForegroundInverted,
+    cursor: "pointer",
+    transition: "color 0.15s, background 0.15s",
+    ":hover": {
+      color: tokens.colorBrandForegroundInverted,
+      opacity: 0.9,
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+    },
+    ":disabled": {
+      opacity: 0.4,
+      cursor: "default",
+      pointerEvents: "none",
+    },
+  },
+  tabBtn: {
+    flexShrink: 0,
+    minWidth: "max-content",
+    whiteSpace: "nowrap",
+    overflow: "visible",
+    textOverflow: "clip",
   },
 });
 
 const SettingsPanel = () => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const { settings, allModels, updateSettings, setSetting, fetchModels } =
     useAppContext();
 
@@ -77,6 +154,44 @@ const SettingsPanel = () => {
   const [modelsError, setModelsError] = useState(null);
   const hasRestoredTabRef = useRef(false); // in web mode, later context updates can overwrite; only restore tab once per mount
   const [costTabActivationCount, setCostTabActivationCount] = useState(0);
+  const tabStripRef = useRef(null);
+  const [tabScroll, setTabScroll] = useState({
+    hasOverflow: false,
+    canScrollLeft: false,
+    canScrollRight: false,
+  });
+  const TAB_SCROLL_PX = 180;
+
+  const updateTabScrollState = useCallback(() => {
+    const el = tabStripRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const hasOverflow = scrollWidth > clientWidth + 1;
+    setTabScroll({
+      hasOverflow,
+      canScrollLeft: hasOverflow && scrollLeft > 0,
+      canScrollRight: hasOverflow && scrollLeft < scrollWidth - clientWidth - 1,
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = tabStripRef.current;
+    if (!el) return;
+    updateTabScrollState();
+    const ro = new ResizeObserver(updateTabScrollState);
+    ro.observe(el);
+    el.addEventListener("scroll", updateTabScrollState);
+    return () => {
+      ro.disconnect();
+      el.removeEventListener("scroll", updateTabScrollState);
+    };
+  }, [updateTabScrollState, activeTab]);
+
+  const scrollTabs = useCallback((direction) => {
+    const el = tabStripRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * TAB_SCROLL_PX, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     setLocalSettings({ ...settings });
@@ -116,8 +231,14 @@ const SettingsPanel = () => {
     }
   }, [allModels.length, fetchModels]);
 
+  const DEFAULT_API_URL = "https://openrouter.ai/api/v1";
+
   const handleSettingChange = (key, value) => {
-    const newSettings = { ...localSettings, [key]: value };
+    let newSettings = { ...localSettings, [key]: value };
+    if (key === "use_transrewrt_proxy" && !value) {
+      newSettings = { ...newSettings, api_url: DEFAULT_API_URL };
+      setSetting("api_url", DEFAULT_API_URL);
+    }
     setLocalSettings(newSettings);
     setSetting(key, value);
     if (key === "api_url" || key === "api_key" || key === "use_transrewrt_proxy" || key === "key_seed") {
@@ -321,70 +442,120 @@ const SettingsPanel = () => {
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.headerTitle}>Settings</h2>
+        <div className={styles.headerLeft}>
+          <SettingsIcon className={styles.headerIcon} size={20} strokeWidth={1.6} />
+          <h2 className={styles.headerTitle}>{t("Settings")}</h2>
+        </div>
+        <HeaderLanguageSelector compact />
       </div>
 
-      <div className="tabs-header">
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "general" ? "active" : ""}`}
-          onClick={() => handleTabChange("general")}
-        >
-          <Sliders size={16} /> General Settings
-        </button>
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "models" ? "active" : ""}`}
-          onClick={() => handleTabChange("models")}
-        >
-          <Database size={16} /> Models
-        </button>
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "languages" ? "active" : ""}`}
-          onClick={() => handleTabChange("languages")}
-        >
-          <Globe size={16} /> Languages
-        </button>
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "cost" ? "active" : ""}`}
-          onClick={() => handleTabChange("cost")}
-        >
-          <DollarSign size={16} /> Cost Tracking
-        </button>
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "transform" ? "active" : ""}`}
-          onClick={() => handleTabChange("transform")}
-        >
-          <Sparkles size={16} /> Transform
-        </button>
-        {!isWeb && (
+      <div className={mergeClasses("tabs-header", styles.tabsHeaderWrap)}>
+        {tabScroll.hasOverflow && (
           <button
             type="button"
-            className={`tab-btn ${activeTab === "api" ? "active" : ""}`}
-            onClick={() => handleTabChange("api")}
+            className={styles.tabNavBtn}
+            onClick={() => scrollTabs(-1)}
+            disabled={!tabScroll.canScrollLeft}
+            aria-label={t("Previous tabs")}
           >
-            <Key size={16} /> API Config
+            <ChevronLeft size={20} />
           </button>
         )}
-        {isWeb && (
+        <div
+          ref={tabStripRef}
+          className={styles.tabsHeaderScroll}
+          role="tablist"
+        >
+          <div className={styles.tabsHeaderInner}>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "general"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "general" && "active")}
+              onClick={() => handleTabChange("general")}
+            >
+              <Sliders size={16} /> {t("General Settings")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "models"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "models" && "active")}
+              onClick={() => handleTabChange("models")}
+            >
+              <Database size={16} /> {t("Models")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "languages"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "languages" && "active")}
+              onClick={() => handleTabChange("languages")}
+            >
+              <Globe size={16} /> {t("Languages")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "cost"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "cost" && "active")}
+              onClick={() => handleTabChange("cost")}
+            >
+              <DollarSign size={16} /> {t("Cost Tracking")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "transform"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "transform" && "active")}
+              onClick={() => handleTabChange("transform")}
+            >
+              <Sparkles size={16} /> {t("Transform")}
+            </button>
+            {!isWeb && (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "api"}
+                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "api" && "active")}
+                onClick={() => handleTabChange("api")}
+              >
+                <Key size={16} /> {t("API Config")}
+              </button>
+            )}
+            {isWeb && (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "auth"}
+                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "auth" && "active")}
+                onClick={() => handleTabChange("auth")}
+              >
+                <Lock size={16} /> {t("Authentication")}
+              </button>
+            )}
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "about"}
+              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "about" && "active")}
+              onClick={() => handleTabChange("about")}
+            >
+              <Info size={16} /> {t("About")}
+            </button>
+          </div>
+        </div>
+        {tabScroll.hasOverflow && (
           <button
             type="button"
-            className={`tab-btn ${activeTab === "auth" ? "active" : ""}`}
-            onClick={() => handleTabChange("auth")}
+            className={styles.tabNavBtn}
+            onClick={() => scrollTabs(1)}
+            disabled={!tabScroll.canScrollRight}
+            aria-label={t("Next tabs")}
           >
-            <Lock size={16} /> Authentication
+            <ChevronRight size={20} />
           </button>
         )}
-        <button
-          type="button"
-          className={`tab-btn ${activeTab === "about" ? "active" : ""}`}
-          onClick={() => handleTabChange("about")}
-        >
-          <Info size={16} /> About…
-        </button>
       </div>
 
       <div

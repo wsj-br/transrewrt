@@ -17,7 +17,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (custom prompts) using OpenRouter. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using OpenRouter. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -101,7 +101,7 @@ In web mode, the API key is never sent to the browser; the server adds it when p
 │   └── logger.js          # File/console logging
 ├── config/
 │   ├── config_default.json
-│   └── custom-prompts.json   # Sample transform prompts (Load sample prompts)
+│   └── transform-prompts.json   # Sample transform prompts (Load sample prompts)
 ├── scripts/               # electron-rebuild, node-rebuild, docker-deploy, etc.
 ├── build/                 # electron-builder (e.g. installer.nsh)
 ├── dist/                  # Webpack output (production build)

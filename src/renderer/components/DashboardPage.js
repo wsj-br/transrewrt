@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   tokens,
@@ -10,7 +11,7 @@ import {
   Option,
   Label,
 } from "@fluentui/react-components";
-import { BarChart3, Trash2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import {
   AreaChart,
   Area,
@@ -29,7 +30,7 @@ import {
   ResponsiveContainer,
   LabelList,
 } from "recharts";
-import { getCostApi, getFilterRange, FILTERS, DASH } from "../utils/costUtils";
+import { getCostApi, getFilterRange, getFilters, DASH } from "../utils/costUtils";
 import {
   formatCost,
   formatAvgCost,
@@ -39,7 +40,9 @@ import {
 import { useAppContext } from "../contexts/AppContext";
 import ConfirmModal from "./ConfirmModal";
 
-const PAGE_SIZES = [25, 50, 100];
+const PAGE_SIZES = [10, 20, 50, 100];
+
+
 const CHART_COLORS = {
   primary: "#60cdff",
   translation: "#84cc16",
@@ -62,19 +65,19 @@ function formatDurationMs(ms) {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/** Replace {{key}} placeholders in a string (used when t() returns key-as-default and i18n does not interpolate). */
+function interpolateTemplate(str, vars) {
+  return str.replace(/\{\{(\w+)\}\}/g, (_, key) => String(vars[key] ?? ""));
+}
+
 const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
+    width: "100%",
+    minWidth: 0,
     height: "100%",
     overflow: "hidden",
-    padding: "24px",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    marginBottom: "20px",
   },
   filterRow: {
     display: "flex",
@@ -117,7 +120,7 @@ const useStyles = makeStyles({
     minHeight: 0,
     overflow: "hidden",
   },
-  byTypeDashboard: {
+  byUsageDashboard: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "1fr 1fr",
@@ -132,19 +135,19 @@ const useStyles = makeStyles({
       minWidth: 0,
     },
   },
-  byTypeChartBlock: {
+  byUsageChartBlock: {
     display: "flex",
     flexDirection: "column",
     minHeight: 0,
     minWidth: 0,
   },
-  byTypeChartContainer: {
+  byUsageChartContainer: {
     flex: 1,
     minHeight: 0,
     minWidth: 0,
     padding: "clamp(6px, 1vh, 12px)",
   },
-  byTypeTitle: {
+  byUsageTitle: {
     flexShrink: 0,
     marginBottom: "2px",
     fontSize: "clamp(12px, 1.8vh, 14px)",
@@ -380,62 +383,27 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
-    maxWidth: "90%",
+    maxWidth: "100%",
     width: "100%",
   },
-  allCallsTableContainer: {
-    display: "flex",
-    flexDirection: "column",
+  allCallsTableOuter: {
     flex: 1,
     minHeight: 0,
+    display: "flex",
+    flexDirection: "column",
     overflow: "hidden",
-  },
-  allCallsTableScroll: {
-    flex: 1,
-    overflowY: "auto",
-    overflowX: "hidden",
     marginTop: "8px",
-    marginBottom: "0",
-    borderRadius: "8px 8px 0 0",
-    boxShadow: `0 1px 0 0 ${tokens.colorNeutralStroke1}`,
+    borderRadius: "8px",
     border: `1px solid ${tokens.colorNeutralStroke1}`,
-    borderBottom: "none",
-    "&::-webkit-scrollbar": {
-      width: "10px",
-    },
-    "&::-webkit-scrollbar-track": {
-      background: "transparent",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      background: "rgba(255, 255, 255, 0.28)",
-      borderRadius: "5px",
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "rgba(255, 255, 255, 0.45)",
-    },
-    "&::-webkit-scrollbar-corner": {
-      background: "transparent",
-    },
-    scrollbarWidth: "thin",
-    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+    boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
   },
-  allCallsTableInner: {
-    display: "inline-block",
-    minWidth: "100%",
-    marginRight: "-17px",
-    paddingRight: "17px",
-  },
-  allCallsScrollbarTrack: {
-    flexShrink: 0,
-    minHeight: "10px",
-    height: "10px",
-    overflowX: "auto",
+  allCallsHScroll: {
+    flex: 1,
+    minHeight: 0,
+    overflowX: "scroll",
     overflowY: "hidden",
-    borderRadius: "0 0 8px 8px",
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    borderTop: "none",
-    marginBottom: "8px",
-    backgroundColor: "transparent",
+    display: "flex",
+    flexDirection: "column",
     "&::-webkit-scrollbar": {
       height: "10px",
     },
@@ -449,32 +417,176 @@ const useStyles = makeStyles({
     "&::-webkit-scrollbar-thumb:hover": {
       background: "rgba(255, 255, 255, 0.45)",
     },
-    "&::-webkit-scrollbar-corner": {
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+  },
+  allCallsHeaderBlock: {
+    flexShrink: 0,
+  },
+  allCallsHeaderTable: {
+    width: "100%",
+    minWidth: "1090px",
+    tableLayout: "fixed",
+    borderCollapse: "collapse",
+    fontSize: "14px",
+  },
+  allCallsTheadNew: {
+    backgroundColor: "#252638",
+    boxShadow: "0 1px 0 0 rgba(96, 205, 255, 0.4)",
+  },
+  allCallsThNew: {
+    padding: "12px 16px",
+    textAlign: "left",
+    fontWeight: 600,
+    color: "#60cdff",
+    borderBottom: "2px solid rgba(96, 205, 255, 0.4)",
+    fontSize: "13px",
+    backgroundColor: "#252638",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  allCallsBodyScroll: {
+    flex: 1,
+    minHeight: 0,
+    overflowX: "visible",
+    overflowY: "hidden",
+  },
+  allCallsBodyScrollInner: {
+    marginRight: "-17px",
+    paddingRight: "17px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    minWidth: "1090px",
+    height: "100%",
+    "&::-webkit-scrollbar": {
+      width: "10px",
+    },
+    "&::-webkit-scrollbar-track": {
       background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.28)",
+      borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(255, 255, 255, 0.45)",
     },
     scrollbarWidth: "thin",
     scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
   },
-  allCallsScrollbarInner: {
+  allCallsBodyTable: {
+    width: "100%",
+    minWidth: "1090px",
+    tableLayout: "fixed",
+    borderCollapse: "collapse",
+    fontSize: "14px",
+  },
+  allCallsTdTruncate: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  // Refactored All Calls Table Styles
+  refactoredTableWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    minHeight: 0,
+    overflowX: "auto", // Horizontal scrollbar only when needed
+    overflowY: "hidden",
+    border: `1px solid ${tokens.colorNeutralStroke1}`,
+    borderRadius: "8px",
+    marginTop: "8px",
+    boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
+    "&::-webkit-scrollbar": {
+      height: "10px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.28)",
+      borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(255, 255, 255, 0.45)",
+    },
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+  },
+  refactoredHeaderRow: {
+    display: "grid",
+    // Columns: ID, Timestamp, Type, Model, Source, Target, Style, Prompt, Req, Res, Duration, Cost, TPS
+    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(150px, 1.2fr) minmax(100px, 0.8fr) minmax(160px, 1.2fr) minmax(90px, 0.6fr) minmax(90px, 0.6fr) minmax(100px, 0.8fr) minmax(200px, 1.8fr) minmax(110px, 0.7fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(90px, 0.6fr) minmax(70px, 0.5fr)",
+    backgroundColor: "#252638",
+    borderBottom: "2px solid rgba(96, 205, 255, 0.4)",
+    minWidth: "fit-content",
+    width: "100%",
+  },
+  refactoredBodyContainer: {
+    flex: 1,
+    overflowY: "overlay", // Vertical scrollbar overlaying content
+    overflowX: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    minWidth: "fit-content",
+    width: "100%",
+    "&::-webkit-scrollbar": {
+      width: "10px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.28)",
+      borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(255, 255, 255, 0.45)",
+    },
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
+  },
+  refactoredBodyRow: {
+    display: "grid",
+    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(150px, 1.2fr) minmax(100px, 0.8fr) minmax(160px, 1.2fr) minmax(90px, 0.6fr) minmax(90px, 0.6fr) minmax(100px, 0.8fr) minmax(200px, 1.8fr) minmax(110px, 0.7fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(90px, 0.6fr) minmax(70px, 0.5fr)",
+    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    ":hover": {
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+    },
+    width: "100%",
+    color: tokens.colorNeutralForeground1,
+    fontSize: "14px",
+  },
+  refactoredCell: {
+    padding: "12px 16px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
     display: "block",
-    minHeight: "10px",
-    height: "10px",
+    alignItems: "center",
   },
-  allCallsThead: {
-    backgroundColor: "#252638",
-    boxShadow: "0 1px 0 0 rgba(96, 205, 255, 0.4)",
+  refactoredHeaderCell: {
+    padding: "12px 16px",
+    textAlign: "left",
+    fontWeight: 600,
+    color: "#60cdff",
+    fontSize: "13px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    display: "block",
   },
-  allCallsTh: {
-    position: "sticky",
-    top: 0,
-    zIndex: 1,
-    backgroundColor: "#252638",
+  cellRight: {
+    textAlign: "right",
   },
 });
 
 const DashboardPage = () => {
   const styles = useStyles();
-  const { settings } = useAppContext();
+  const { t } = useTranslation();
+  const { settings, setSetting } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
   const [selectedTab, setSelectedTab] = useState("summary");
@@ -488,7 +600,10 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(false);
 
   const [allCallsPage, setAllCallsPage] = useState(1);
-  const [allCallsPageSize, setAllCallsPageSize] = useState(50);
+  const allCallsPageSize = (() => {
+    const v = Number(settings.all_calls_page_size);
+    return PAGE_SIZES.includes(v) ? v : 50;
+  })();
   const [allCallsRows, setAllCallsRows] = useState([]);
   const [allCallsTotal, setAllCallsTotal] = useState(0);
   const [allCallsLoading, setAllCallsLoading] = useState(false);
@@ -502,11 +617,15 @@ const DashboardPage = () => {
   const [modelToDelete, setModelToDelete] = useState(null);
   const [deleteByModelError, setDeleteByModelError] = useState(null);
 
-  const allCallsTableInnerRef = useRef(null);
-  const allCallsScrollbarTrackRef = useRef(null);
-  const allCallsScrollbarInnerRef = useRef(null);
-
   const costApi = getCostApi();
+
+  /** Maps API function key (translate/rewrite/transform) to translated label for charts/tooltips. */
+  const getUsageTypeLabel = (fn) => {
+    if (fn === "translate") return t("Translation");
+    if (fn === "rewrite") return t("Rewrite");
+    if (fn === "transform") return t("Transform");
+    return fn ?? "";
+  };
 
   const loadSummaries = useCallback(() => {
     if (!costApi.getSummaryByFunction) return;
@@ -573,33 +692,6 @@ const DashboardPage = () => {
     }
   }, [selectedTab, loadAllCalls]);
 
-  // Keep floating horizontal scrollbar in sync with table width (All Calls tab)
-  useEffect(() => {
-    if (selectedTab !== "allcalls" || !allCallsTableInnerRef.current || !allCallsScrollbarInnerRef.current) return;
-    const tableEl = allCallsTableInnerRef.current;
-    const innerEl = allCallsScrollbarInnerRef.current;
-    const setScrollbarWidth = () => {
-      if (tableEl && innerEl) innerEl.style.width = `${tableEl.offsetWidth}px`;
-    };
-    setScrollbarWidth();
-    const ro = new ResizeObserver(setScrollbarWidth);
-    ro.observe(tableEl);
-    return () => ro.disconnect();
-  }, [selectedTab, allCallsRows]);
-
-  // Sync floating horizontal scrollbar scroll -> table transform (All Calls tab)
-  useEffect(() => {
-    const track = allCallsScrollbarTrackRef.current;
-    const tableInner = allCallsTableInnerRef.current;
-    if (selectedTab !== "allcalls" || !track || !tableInner) return;
-    const syncFromTrack = () => {
-      if (allCallsTableInnerRef.current)
-        allCallsTableInnerRef.current.style.transform = `translateX(-${track.scrollLeft}px)`;
-    };
-    track.addEventListener("scroll", syncFromTrack);
-    return () => track.removeEventListener("scroll", syncFromTrack);
-  }, [selectedTab, allCallsRows]);
-
   const loadByDayPaginated = useCallback(() => {
     if (!costApi.getSummaryByDayPaginated) return;
     const { from, to } = getFilterRange(filter);
@@ -636,7 +728,7 @@ const DashboardPage = () => {
       setModelToDelete(null);
       loadSummaries();
     } catch (err) {
-      setDeleteByModelError(err?.message || "Failed to delete data");
+      setDeleteByModelError(err?.message || t("Failed to delete data"));
     }
   };
 
@@ -655,7 +747,7 @@ const DashboardPage = () => {
   const emptyRow = (colSpan) => (
     <tr>
       <td colSpan={colSpan} className={styles.emptyRow}>
-        (no information available)
+        {t("(no information available)")}
       </td>
     </tr>
   );
@@ -666,22 +758,15 @@ const DashboardPage = () => {
   };
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
-  const byTypeAxisStyle = { stroke: CHART_COLORS.grid, fontSize: "clamp(9px, 1.4vh, 12px)" };
-  const byTypeTickStyle = { fill: tokens.colorNeutralForeground3, fontSize: "clamp(9px, 1.4vh, 12px)" };
-  const byTypeLabelFontSize = "clamp(9px, 1.2vh, 11px)";
+  const byUsageAxisStyle = { stroke: CHART_COLORS.grid, fontSize: "clamp(9px, 1.4vh, 12px)" };
+  const byUsageTickStyle = { fill: tokens.colorNeutralForeground3, fontSize: "clamp(9px, 1.4vh, 12px)" };
+  const byUsageLabelFontSize = "clamp(9px, 1.2vh, 11px)";
 
   return (
     <div className={styles.root}>
-      <div className={styles.header}>
-        <BarChart3 size={28} color={CHART_COLORS.primary} />
-        <Text as="h2" size={600} weight="bold" style={{ margin: 0 }}>
-          Dashboard
-        </Text>
-      </div>
-
       <div className={styles.filterRow}>
-        <Label style={{ marginRight: "8px" }}>Filter</Label>
-        {FILTERS.map((f) => (
+        <Label style={{ marginRight: "8px" }}>{t("Filter")}</Label>
+        {getFilters(t).map((f) => (
           <Button
             key={f.id}
             size="small"
@@ -698,11 +783,11 @@ const DashboardPage = () => {
         selectedValue={selectedTab}
         onTabSelect={(_, data) => setSelectedTab(data.value)}
       >
-        <Tab value="summary">Summary</Tab>
-        <Tab value="bytype">By type</Tab>
-        <Tab value="bymodel">By Model</Tab>
-        <Tab value="byday">By Day</Tab>
-        <Tab value="allcalls">All Calls</Tab>
+        <Tab value="summary">{t("Summary")}</Tab>
+        <Tab value="byusage">{t("By Usage")}</Tab>
+        <Tab value="bymodel">{t("By Model")}</Tab>
+        <Tab value="byday">{t("By Day")}</Tab>
+        <Tab value="allcalls">{t("All Calls")}</Tab>
       </TabList>
 
       <div
@@ -713,24 +798,24 @@ const DashboardPage = () => {
         }
       >
         {selectedTab === "summary" && (
-        <div role="tabpanel" aria-label="Summary" className={styles.summaryTabPanel}>
+        <div role="tabpanel" aria-label={t("Summary")} className={styles.summaryTabPanel}>
           {loading ? (
-            <p>Loading…</p>
+            <p>{t("Loading…")}</p>
           ) : (
             <div className={styles.summaryDashboard}>
               <div className={styles.summaryKpiCell}>
                 <Text as="h4" size={400} className={styles.summaryKpiTitleSpacer}>
-                  Cost over time
+                  {t("Cost over time")}
                 </Text>
                 <div className={styles.summaryKpiGrid}>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Total Cost</div>
+                    <div className={styles.summaryKpiLabel}>{t("Total Cost")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCost(settings?.total_cost ?? 0, costFractionStyle)}
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Avg cost per call</div>
+                    <div className={styles.summaryKpiLabel}>{t("Avg cost per call")}</div>
                     <div className={styles.summaryKpiValue}>
                       {avgCostPerCall != null
                         ? formatCost(avgCostPerCall, costFractionStyle)
@@ -738,34 +823,34 @@ const DashboardPage = () => {
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Translation</div>
+                    <div className={styles.summaryKpiLabel}>{t("Translation")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCount(translateRow?.calls)} /{" "}
                       {formatCost(translateRow?.cost, costFractionStyle)}
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Rewrite</div>
+                    <div className={styles.summaryKpiLabel}>{t("Rewrite")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCount(rewriteRow?.calls)} /{" "}
                       {formatCost(rewriteRow?.cost, costFractionStyle)}
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Transform</div>
+                    <div className={styles.summaryKpiLabel}>{t("Transform")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCount(transformRow?.calls)} /{" "}
                       {formatCost(transformRow?.cost, costFractionStyle)}
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Models used</div>
+                    <div className={styles.summaryKpiLabel}>{t("Models used")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatCount(modelCount)}
                     </div>
                   </div>
                   <div className={styles.summaryKpiCard}>
-                    <div className={styles.summaryKpiLabel}>Avg TPS</div>
+                    <div className={styles.summaryKpiLabel}>{t("Avg TPS")}</div>
                     <div className={styles.summaryKpiValue}>
                       {formatAvgTps(totalAvgTps)}
                     </div>
@@ -775,7 +860,7 @@ const DashboardPage = () => {
 
               <div className={styles.summaryChartCellUsageSplit}>
                 <Text as="h4" size={400} className={styles.summaryChartTitle}>
-                  Usage split
+                  {t("Usage split")}
                 </Text>
                   <div className={`${styles.summaryChartContainer} ${styles.summaryChartContainerUsagePie}`} style={{ overflow: "visible" }}>
                     {byFunction.filter((r) => r.function !== "Total").length > 0 ? (
@@ -800,7 +885,7 @@ const DashboardPage = () => {
                                   const y = cy + radius * Math.sin(-midAngle * RADIAN);
                                   const anchor = x > cx ? "start" : "end";
                                   const pct = totalCallsPie > 0 ? ((Number(calls) / totalCallsPie) * 100).toFixed(1) : "0";
-                                  const displayName = fn.charAt(0).toUpperCase() + fn.slice(1);
+                                  const displayName = getUsageTypeLabel(fn);
                                   return (
                                     <text x={x} y={y} textAnchor={anchor} dominantBaseline="central" fill={tokens.colorNeutralForeground2} style={{ fontSize: "clamp(9px, 1.2vh, 11px)" }}>
                                       <tspan x={x} dy="-0.65em">{displayName}</tspan>
@@ -833,7 +918,7 @@ const DashboardPage = () => {
                                 labelStyle={{ color: tokens.colorNeutralForeground1 ?? "#e5e7eb" }}
                                 formatter={(value, name) => {
                                   const pct = totalCallsPie > 0 ? ((Number(value) / totalCallsPie) * 100).toFixed(1) : "0";
-                                  return [`${value} (${pct}%)`, name];
+                                  return [`${value} (${pct}%)`, getUsageTypeLabel(name)];
                                 }}
                               />
                             </PieChart>
@@ -842,7 +927,7 @@ const DashboardPage = () => {
                       })()
                     ) : (
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                        No data
+                        {t("No data")}
                       </div>
                     )}
                   </div>
@@ -850,7 +935,7 @@ const DashboardPage = () => {
 
               <div className={styles.summaryChartCell}>
                 <Text as="h4" size={400} className={styles.summaryChartTitle}>
-                  Cost over time
+                  {t("Cost over time")}
                 </Text>
                 <div className={styles.summaryChartContainer}>
                   {byDay.length > 0 ? (
@@ -882,7 +967,10 @@ const DashboardPage = () => {
                             border: `1px solid ${tokens.colorNeutralStroke1}`,
                           }}
                           labelStyle={{ color: tokens.colorNeutralForeground1 }}
-                          formatter={(value, name) => [formatCost(value, costFractionStyle), name]}
+                          formatter={(value, name) => [
+                            formatCost(value, costFractionStyle),
+                            name === "translation_cost" ? t("Translation cost (cumulative)") : name === "rewrite_cost" ? t("Rewrite cost (cumulative)") : t("Transform cost (cumulative)"),
+                          ]}
                         />
                         <Area
                           type="monotone"
@@ -891,7 +979,7 @@ const DashboardPage = () => {
                           stroke={CHART_COLORS.translation}
                           fill={CHART_COLORS.translation}
                           fillOpacity={0.6}
-                          name="Translation cost (cumulative)"
+                          name={t("Translation cost (cumulative)")}
                         />
                         <Area
                           type="monotone"
@@ -900,7 +988,7 @@ const DashboardPage = () => {
                           stroke={CHART_COLORS.rewrite}
                           fill={CHART_COLORS.rewrite}
                           fillOpacity={0.6}
-                          name="Rewrite cost (cumulative)"
+                          name={t("Rewrite cost (cumulative)")}
                         />
                         <Area
                           type="monotone"
@@ -909,7 +997,7 @@ const DashboardPage = () => {
                           stroke="#a78bfa"
                           fill="#a78bfa"
                           fillOpacity={0.6}
-                          name="Transform cost (cumulative)"
+                          name={t("Transform cost (cumulative)")}
                         />
                       </AreaChart>
                     </ResponsiveContainer>
@@ -917,7 +1005,7 @@ const DashboardPage = () => {
                     })()
                   ) : (
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                      No data
+                      {t("No data")}
                     </div>
                   )}
                 </div>
@@ -925,7 +1013,7 @@ const DashboardPage = () => {
 
               <div className={styles.summaryChartCell}>
                 <Text as="h4" size={400} className={styles.summaryChartTitle}>
-                  Cost by model
+                  {t("Cost by model")}
                 </Text>
                 <div className={styles.summaryChartContainer}>
                   {byModel.filter((r) => r.model !== "Total").length > 0 ? (
@@ -964,13 +1052,13 @@ const DashboardPage = () => {
                           }}
                           formatter={(value) => {
                             const pct = totalCostSum > 0 ? ((value / totalCostSum) * 100).toFixed(1) : "0";
-                            return [formatCost(value, costFractionStyle) + ` (${pct}%)`, "Total cost"];
+                            return [formatCost(value, costFractionStyle) + ` (${pct}%)`, t("Total cost")];
                           }}
                         />
                         <Bar
                           dataKey="totalCost"
                           fill={CHART_COLORS.barFill}
-                          name="Total cost"
+                          name={t("Total cost")}
                         >
                           <LabelList
                             dataKey="totalCost"
@@ -992,7 +1080,7 @@ const DashboardPage = () => {
                     })()
                   ) : (
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                      No data
+                      {t("No data")}
                     </div>
                   )}
                 </div>
@@ -1003,17 +1091,17 @@ const DashboardPage = () => {
         </div>
         )}
 
-        {selectedTab === "bytype" && (
-        <div role="tabpanel" aria-label="By type" className={styles.summaryTabPanel}>
+        {selectedTab === "byusage" && (
+        <div role="tabpanel" aria-label={t("By Usage")} className={styles.summaryTabPanel}>
           {loading ? (
-            <p>Loading…</p>
+            <p>{t("Loading…")}</p>
           ) : (
-            <div className={styles.byTypeDashboard}>
-              <div className={styles.byTypeChartBlock}>
-                <Text as="h4" size={400} className={styles.byTypeTitle}>
-                  Translation target language
+            <div className={styles.byUsageDashboard}>
+              <div className={styles.byUsageChartBlock}>
+                <Text as="h4" size={400} className={styles.byUsageTitle}>
+                  {t("Translation target language")}
                 </Text>
-                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
+                <div className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}>
                   {byTargetLang.length > 0 ? (
                     (() => {
                       const totalTargetCalls = byTargetLang.reduce((s, r) => s + (Number(r.calls) || 0), 0);
@@ -1028,8 +1116,8 @@ const DashboardPage = () => {
                         <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                         <XAxis
                           type="number"
-                          style={byTypeAxisStyle}
-                          tick={byTypeTickStyle}
+                          style={byUsageAxisStyle}
+                          tick={byUsageTickStyle}
                           dataKey="calls"
                           tickFormatter={(v) => (Number.isFinite(Number(v)) ? Math.round(Number(v)) : v)}
                         />
@@ -1037,22 +1125,22 @@ const DashboardPage = () => {
                           type="category"
                           dataKey="target_lang"
                           width={135}
-                          style={byTypeAxisStyle}
-                          tick={byTypeTickStyle}
+                          style={byUsageAxisStyle}
+                          tick={byUsageTickStyle}
                         />
                         <Tooltip
                           contentStyle={{
                             backgroundColor: tokens.colorNeutralBackground1,
                             border: `1px solid ${tokens.colorNeutralStroke1}`,
                             color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
-                            fontSize: byTypeLabelFontSize,
+                            fontSize: byUsageLabelFontSize,
                           }}
                           formatter={(value) => {
                             const pct = totalTargetCalls > 0 ? ((Number(value) / totalTargetCalls) * 100).toFixed(1) : "0";
-                            return [`${formatInteger(value)} (${pct}%)`, "Calls"];
+                            return [`${formatInteger(value)} (${pct}%)`, t("Calls")];
                           }}
                         />
-                        <Bar dataKey="calls" fill={CHART_COLORS.barFill} name="Calls">
+                        <Bar dataKey="calls" fill={CHART_COLORS.barFill} name={t("Calls")}>
                           <LabelList
                             dataKey="calls"
                             position="insideLeft"
@@ -1060,7 +1148,7 @@ const DashboardPage = () => {
                               const pct = totalTargetCalls > 0 ? ((Number(value) / totalTargetCalls) * 100).toFixed(1) : "0";
                               return `${formatInteger(value)} (${pct}%)`;
                             }}
-                            style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
+                            style={{ fill: CHART_COLORS.barLabel, fontSize: byUsageLabelFontSize }}
                             offset={4}
                           />
                         </Bar>
@@ -1070,17 +1158,17 @@ const DashboardPage = () => {
                     })()
                   ) : (
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                      No data
+                      {t("No data")}
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className={styles.byTypeChartBlock}>
-                <Text as="h4" size={400} className={styles.byTypeTitle}>
-                  Rewrite style
+              <div className={styles.byUsageChartBlock}>
+                <Text as="h4" size={400} className={styles.byUsageTitle}>
+                  {t("Rewrite style")}
                 </Text>
-                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
+                <div className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}>
                   {byRewriteStyle.length > 0 ? (
                     (() => {
                       const totalRewriteCalls = byRewriteStyle.reduce((s, r) => s + (Number(r.calls) || 0), 0);
@@ -1095,8 +1183,8 @@ const DashboardPage = () => {
                           <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                           <XAxis
                             type="number"
-                            style={byTypeAxisStyle}
-                            tick={byTypeTickStyle}
+                            style={byUsageAxisStyle}
+                            tick={byUsageTickStyle}
                             dataKey="calls"
                             tickFormatter={(v) => (Number.isFinite(Number(v)) ? Math.round(Number(v)) : v)}
                           />
@@ -1104,22 +1192,30 @@ const DashboardPage = () => {
                             type="category"
                             dataKey="rewrite_style"
                             width={135}
-                            style={byTypeAxisStyle}
-                            tick={byTypeTickStyle}
+                            style={byUsageAxisStyle}
+                            tick={byUsageTickStyle}
+                            tickFormatter={(v) => t(v ?? "")}
                           />
                           <Tooltip
                             contentStyle={{
                               backgroundColor: tokens.colorNeutralBackground1,
                               border: `1px solid ${tokens.colorNeutralStroke1}`,
                               color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
-                              fontSize: byTypeLabelFontSize,
+                              fontSize: byUsageLabelFontSize,
                             }}
-                            formatter={(value) => {
+                            content={({ active, payload, label }) => {
+                              if (!active || !payload?.length) return null;
+                              const value = payload[0].value;
                               const pct = totalRewriteCalls > 0 ? ((Number(value) / totalRewriteCalls) * 100).toFixed(1) : "0";
-                              return [`${formatInteger(value)} (${pct}%)`, "Calls"];
+                              return (
+                                <div style={{ padding: "4px 8px" }}>
+                                  <div style={{ marginBottom: 4, fontWeight: 600 }}>{t(label ?? "")}</div>
+                                  <div>{t("Calls")}: {formatInteger(value)} ({pct}%)</div>
+                                </div>
+                              );
                             }}
                           />
-                          <Bar dataKey="calls" fill={CHART_COLORS.barFill} name="Calls">
+                          <Bar dataKey="calls" fill={CHART_COLORS.barFill} name={t("Calls")}>
                             <LabelList
                               dataKey="calls"
                               position="insideLeft"
@@ -1127,7 +1223,7 @@ const DashboardPage = () => {
                                 const pct = totalRewriteCalls > 0 ? ((Number(value) / totalRewriteCalls) * 100).toFixed(1) : "0";
                                 return `${formatInteger(value)} (${pct}%)`;
                               }}
-                              style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
+                              style={{ fill: CHART_COLORS.barLabel, fontSize: byUsageLabelFontSize }}
                               offset={4}
                             />
                           </Bar>
@@ -1137,17 +1233,17 @@ const DashboardPage = () => {
                       })()
                     ) : (
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                        No data
+                        {t("No data")}
                       </div>
                     )}
                 </div>
               </div>
 
-              <div className={styles.byTypeChartBlock}>
-                <Text as="h4" size={400} className={styles.byTypeTitle}>
-                  Transform prompt
+              <div className={styles.byUsageChartBlock}>
+                <Text as="h4" size={400} className={styles.byUsageTitle}>
+                  {t("Transform prompt")}
                 </Text>
-                <div className={`${styles.summaryChartContainer} ${styles.byTypeChartContainer}`}>
+                <div className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}>
                   {byTransformPrompt.length > 0 ? (
                     (() => {
                       const totalTransformCalls = byTransformPrompt.reduce((s, r) => s + (Number(r.calls) || 0), 0);
@@ -1162,8 +1258,8 @@ const DashboardPage = () => {
                           <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                           <XAxis
                             type="number"
-                            style={byTypeAxisStyle}
-                            tick={byTypeTickStyle}
+                            style={byUsageAxisStyle}
+                            tick={byUsageTickStyle}
                             dataKey="calls"
                             tickFormatter={(v) =>
                               Number.isFinite(Number(v)) ? Math.round(Number(v)) : v
@@ -1174,22 +1270,22 @@ const DashboardPage = () => {
                             dataKey="transform_prompt"
                             width={225}
                             interval={0}
-                            style={byTypeAxisStyle}
-                            tick={byTypeTickStyle}
+                            style={byUsageAxisStyle}
+                            tick={byUsageTickStyle}
                           />
                           <Tooltip
                             contentStyle={{
                               backgroundColor: tokens.colorNeutralBackground1,
                               border: `1px solid ${tokens.colorNeutralStroke1}`,
                               color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
-                              fontSize: byTypeLabelFontSize,
+                              fontSize: byUsageLabelFontSize,
                             }}
                             formatter={(value) => {
                               const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
-                              return [`${formatInteger(value)} (${pct}%)`, "Calls"];
+                              return [`${formatInteger(value)} (${pct}%)`, t("Calls")];
                             }}
                           />
-                          <Bar dataKey="calls" fill={CHART_COLORS.barFill} name="Calls">
+                          <Bar dataKey="calls" fill={CHART_COLORS.barFill} name={t("Calls")}>
                             <LabelList
                               dataKey="calls"
                               position="insideLeft"
@@ -1197,7 +1293,7 @@ const DashboardPage = () => {
                                 const pct = totalTransformCalls > 0 ? ((Number(value) / totalTransformCalls) * 100).toFixed(1) : "0";
                                 return `${formatInteger(value)} (${pct}%)`;
                               }}
-                              style={{ fill: CHART_COLORS.barLabel, fontSize: byTypeLabelFontSize }}
+                              style={{ fill: CHART_COLORS.barLabel, fontSize: byUsageLabelFontSize }}
                               offset={4}
                             />
                           </Bar>
@@ -1207,7 +1303,7 @@ const DashboardPage = () => {
                       })()
                     ) : (
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: tokens.colorNeutralForeground3 }}>
-                        No data
+                        {t("No data")}
                       </div>
                     )}
                 </div>
@@ -1218,25 +1314,25 @@ const DashboardPage = () => {
         )}
 
         {selectedTab === "bymodel" && (
-        <div role="tabpanel" aria-label="By Model">
+        <div role="tabpanel" aria-label={t("By Model")}>
           {loading ? (
-            <p>Loading…</p>
+            <p>{t("Loading…")}</p>
           ) : (
             <div className={styles.tabTableContent}>
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <thead className={styles.thead}>
                     <tr>
-                      <th className={styles.th}>Model</th>
-                      <th className={styles.th}>Translation calls</th>
-                      <th className={styles.th}>Rewrite calls</th>
-                      <th className={styles.th}>Transform calls</th>
-                      <th className={styles.th}>Translation cost</th>
-                      <th className={styles.th}>Rewrite cost</th>
-                      <th className={styles.th}>Transform cost</th>
-                      <th className={styles.th}>Avg translation</th>
-                      <th className={styles.th}>Avg rewrite</th>
-                      <th className={styles.th}>Avg TPS</th>
+                      <th className={styles.th}>{t("Model")}</th>
+                      <th className={styles.th}>{t("Translation calls")}</th>
+                      <th className={styles.th}>{t("Rewrite calls")}</th>
+                      <th className={styles.th}>{t("Transform calls")}</th>
+                      <th className={styles.th}>{t("Translation cost")}</th>
+                      <th className={styles.th}>{t("Rewrite cost")}</th>
+                      <th className={styles.th}>{t("Transform cost")}</th>
+                      <th className={styles.th}>{t("Avg translation")}</th>
+                      <th className={styles.th}>{t("Avg rewrite")}</th>
+                      <th className={styles.th}>{t("Avg TPS")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1252,7 +1348,7 @@ const DashboardPage = () => {
                                   <Trash2
                                     size={14}
                                     className={styles.modelTrashIcon}
-                                    title="Exclude all data for this model"
+                                    title={t("Exclude all data for this model")}
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       setModelToDelete(row.model);
@@ -1305,7 +1401,7 @@ const DashboardPage = () => {
                         return (
                           <tr className={styles.totalRow} key="total">
                             <td className={styles.td}>
-                              <strong>Total</strong>
+                              <strong>{t("Total")}</strong>
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
                               {formatCount(tc)}
@@ -1351,7 +1447,7 @@ const DashboardPage = () => {
               {byModel.filter((r) => r.model !== "Total").length > 0 && (
                 <div className={styles.chartContainer}>
                   <Text as="h4" size={400} style={{ marginBottom: "8px" }}>
-                    Cost by model (stacked)
+                    {t("Cost by model (stacked)")}
                   </Text>
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
@@ -1378,19 +1474,19 @@ const DashboardPage = () => {
                         dataKey="translation_cost"
                         stackId="a"
                         fill={CHART_COLORS.translation}
-                        name="Translation"
+                        name={t("Translation")}
                       />
                       <Bar
                         dataKey="rewrite_cost"
                         stackId="a"
                         fill={CHART_COLORS.rewrite}
-                        name="Rewrite"
+                        name={t("Rewrite")}
                       />
                       <Bar
                         dataKey="transform_cost"
                         stackId="a"
                         fill="#a78bfa"
-                        name="Transform"
+                        name={t("Transform")}
                       />
                     </BarChart>
                   </ResponsiveContainer>
@@ -1402,15 +1498,15 @@ const DashboardPage = () => {
         )}
 
         {selectedTab === "byday" && (
-        <div role="tabpanel" aria-label="By Day">
+        <div role="tabpanel" aria-label={t("By Day")}>
           {loading ? (
-            <p>Loading…</p>
+            <p>{t("Loading…")}</p>
           ) : (
             <div className={styles.tabTableContent}>
               {byDay.length > 0 && (
                 <div className={styles.chartContainer}>
                   <Text as="h4" size={400} style={{ marginBottom: "8px" }}>
-                    Daily call volume
+                    {t("Daily call volume")}
                   </Text>
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={[...byDay].reverse()} {...chartProps}>
@@ -1428,29 +1524,29 @@ const DashboardPage = () => {
                         type="monotone"
                         dataKey="translation_calls"
                         stroke={CHART_COLORS.translation}
-                        name="Translation calls"
+                        name={t("Translation calls")}
                       />
                       <Line
                         type="monotone"
                         dataKey="rewrite_calls"
                         stroke={CHART_COLORS.rewrite}
-                        name="Rewrite calls"
+                        name={t("Rewrite calls")}
                       />
                       <Line
                         type="monotone"
                         dataKey="transform_calls"
                         stroke="#a78bfa"
-                        name="Transform calls"
+                        name={t("Transform calls")}
                       />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
               )}
               <Text as="h4" size={400} style={{ marginTop: "16px", marginBottom: "4px" }}>
-                By day (paginated)
+                {t("By day (paginated)")}
               </Text>
               <div className={styles.paginationRow}>
-                <Label>Rows per page</Label>
+                <Label>{t("Rows per page")}</Label>
                 <Dropdown
                   value={String(byDayPageSize)}
                   selectedOptions={[String(byDayPageSize)]}
@@ -1470,8 +1566,14 @@ const DashboardPage = () => {
                   ))}
                 </Dropdown>
                 <span style={{ color: tokens.colorNeutralForeground2 }}>
-                  {byDayPaginatedTotal} day(s) total · Page {byDayPage} of{" "}
-                  {Math.max(1, Math.ceil(byDayPaginatedTotal / byDayPageSize))}
+                  {interpolateTemplate(
+                  t("{{count}} day(s) total · Page {{page}} of {{total}}"),
+                  {
+                    count: byDayPaginatedTotal,
+                    page: byDayPage,
+                    total: Math.max(1, Math.ceil(byDayPaginatedTotal / byDayPageSize)),
+                  }
+                )}
                 </span>
                 <Button
                   size="small"
@@ -1479,7 +1581,7 @@ const DashboardPage = () => {
                   disabled={byDayPage <= 1}
                   onClick={() => setByDayPage((p) => Math.max(1, p - 1))}
                 >
-                  Prev
+                  {t("Prev")}
                 </Button>
                 <Button
                   size="small"
@@ -1496,25 +1598,25 @@ const DashboardPage = () => {
                     )
                   }
                 >
-                  Next
+                  {t("Next")}
                 </Button>
               </div>
               {byDayPaginatedLoading ? (
-                <p>Loading…</p>
+                <p>{t("Loading…")}</p>
               ) : (
                 <div className={styles.tableWrap}>
                   <table className={styles.table}>
                     <thead className={styles.thead}>
                       <tr>
-                        <th className={styles.th}>Day</th>
-                        <th className={styles.th}>Translation calls</th>
-                        <th className={styles.th}>Rewrite calls</th>
-                        <th className={styles.th}>Transform calls</th>
-                        <th className={styles.th}>Translation cost</th>
-                        <th className={styles.th}>Rewrite cost</th>
-                        <th className={styles.th}>Transform cost</th>
-                        <th className={styles.th}>Avg translation</th>
-                        <th className={styles.th}>Avg rewrite</th>
+                        <th className={styles.th}>{t("Day")}</th>
+                        <th className={styles.th}>{t("Translation calls")}</th>
+                        <th className={styles.th}>{t("Rewrite calls")}</th>
+                        <th className={styles.th}>{t("Transform calls")}</th>
+                        <th className={styles.th}>{t("Translation cost")}</th>
+                        <th className={styles.th}>{t("Rewrite cost")}</th>
+                        <th className={styles.th}>{t("Transform cost")}</th>
+                        <th className={styles.th}>{t("Avg translation")}</th>
+                        <th className={styles.th}>{t("Avg rewrite")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1567,20 +1669,20 @@ const DashboardPage = () => {
         )}
 
         {selectedTab === "allcalls" && (
-        <div role="tabpanel" aria-label="All Calls" className={styles.allCallsTabPanel}>
+        <div role="tabpanel" aria-label={t("All Calls")} className={styles.allCallsTabPanel}>
           <div className={styles.allCallsTabContent}>
             <Text as="h4" size={400} style={{ marginBottom: "4px" }}>
-              All API calls (raw data)
+              {t("All API calls (raw data)")}
             </Text>
             <div className={styles.paginationRow}>
-            <Label>Rows per page</Label>
+            <Label>{t("Rows per page")}</Label>
             <Dropdown
               value={String(allCallsPageSize)}
               selectedOptions={[String(allCallsPageSize)]}
               onOptionSelect={(_, data) => {
                 const v = Number(data.optionValue);
                 if (PAGE_SIZES.includes(v)) {
-                  setAllCallsPageSize(v);
+                  setSetting("all_calls_page_size", v);
                   setAllCallsPage(1);
                 }
               }}
@@ -1593,17 +1695,25 @@ const DashboardPage = () => {
               ))}
             </Dropdown>
             <span style={{ color: tokens.colorNeutralForeground2 }}>
-              {allCallsTotal} row(s) total · Page {allCallsPage} of{" "}
-              {Math.max(1, Math.ceil(allCallsTotal / allCallsPageSize))}
+              {interpolateTemplate(t("{{count}} row(s) total"), {
+                count: allCallsTotal,
+              })}
             </span>
             <Button
               size="small"
               appearance="secondary"
               disabled={allCallsPage <= 1}
               onClick={() => setAllCallsPage((p) => Math.max(1, p - 1))}
+              icon={<ChevronLeft size={16} />}
             >
-              Prev
+              {t("Prev")}
             </Button>
+            <span style={{ color: tokens.colorNeutralForeground2, alignSelf: "center" }}>
+              {interpolateTemplate(t("Page {{page}} of {{total}}"), {
+                page: allCallsPage,
+                total: Math.max(1, Math.ceil(allCallsTotal / allCallsPageSize)),
+              })}
+            </span>
             <Button
               size="small"
               appearance="secondary"
@@ -1619,98 +1729,96 @@ const DashboardPage = () => {
                 )
               }
             >
-              Next
+              {t("Next")} <ChevronRight size={16} />
             </Button>
           </div>
           {allCallsLoading ? (
-            <p>Loading…</p>
+            <p>{t("Loading…")}</p>
           ) : (
-            <div className={styles.allCallsTableContainer}>
-              <div className={styles.allCallsTableScroll}>
-                <div
-                  ref={allCallsTableInnerRef}
-                  className={styles.allCallsTableInner}
-                >
-                  <table className={styles.table}>
-                    <thead className={`${styles.thead} ${styles.allCallsThead}`}>
-                      <tr>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>ID</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Timestamp</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Type</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Model</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Source</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Target</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Style</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Transform prompt</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Req bytes</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Res bytes</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Duration</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>Cost</th>
-                        <th className={`${styles.th} ${styles.allCallsTh}`}>TPS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {allCallsRows.length === 0
-                        ? emptyRow(13)
-                        : allCallsRows.map((row) => (
-                            <tr key={row.id} className={styles.tbodyTr}>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {row.id}
-                              </td>
-                              <td className={styles.td}>
-                                {row.timestamp
-                                  ? new Date(row.timestamp).toLocaleString()
-                                  : DASH}
-                              </td>
-                              <td className={styles.td}>
-                                <span
-                                  className={`${styles.typeBadge} ${
-                                    row.type === "translate"
-                                      ? styles.typeTranslate
-                                      : row.type === "rewrite"
-                                      ? styles.typeRewrite
-                                      : styles.typeTransform
-                                  }`}
-                                >
-                                  {row.type || DASH}
-                                </span>
-                              </td>
-                              <td className={styles.td}>{row.model ?? DASH}</td>
-                              <td className={styles.td}>{row.source_lang ?? DASH}</td>
-                              <td className={styles.td}>{row.target_lang ?? DASH}</td>
-                              <td className={styles.td}>
-                                {row.rewrite_style ?? DASH}
-                              </td>
-                              <td className={styles.td}>
-                                {row.transform_prompt ?? DASH}
-                              </td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {formatInteger(row.request_bytes)}
-                              </td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {formatInteger(row.response_bytes)}
-                              </td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {formatDurationMs(row.duration_ms)}
-                              </td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {formatCost(row.cost, costFractionStyle)}
-                              </td>
-                              <td className={`${styles.td} ${styles.tdValue}`}>
-                                {formatAvgTps(row.tps)}
-                              </td>
-                            </tr>
-                          ))}
-                    </tbody>
-                  </table>
-                </div>
+            <div className={styles.refactoredTableWrapper}>
+              {/* Sticky Header */}
+              <div className={styles.refactoredHeaderRow}>
+                <div className={styles.refactoredHeaderCell}>{t("ID")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Timestamp")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Type")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Model")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Source")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Target")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Style")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Transform prompt")}</div>
+                <div className={`${styles.refactoredHeaderCell} ${styles.cellRight}`}>{t("Req bytes")}</div>
+                <div className={`${styles.refactoredHeaderCell} ${styles.cellRight}`}>{t("Res bytes")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Duration")}</div>
+                <div className={styles.refactoredHeaderCell}>{t("Cost")}</div>
+                <div className={`${styles.refactoredHeaderCell} ${styles.cellRight}`}>{t("TPS")}</div>
               </div>
-              <div
-                ref={allCallsScrollbarTrackRef}
-                className={styles.allCallsScrollbarTrack}
-                aria-label="Horizontal scroll for table"
-              >
-                <div ref={allCallsScrollbarInnerRef} className={styles.allCallsScrollbarInner} />
+
+              {/* Scrollable Body */}
+              <div className={styles.refactoredBodyContainer}>
+                {allCallsRows.length === 0 ? (
+                   <div className={styles.emptyRow} style={{ width: "100%", padding: "20px", boxSizing: "border-box" }}>
+                    {t("(no information available)")}
+                  </div>
+                ) : (
+                  allCallsRows.map((row) => (
+                    <div key={row.id} className={styles.refactoredBodyRow}>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue}`}>
+                        {row.id}
+                      </div>
+                      <div className={styles.refactoredCell}>
+                        {row.timestamp
+                          ? new Date(row.timestamp).toLocaleString()
+                          : DASH}
+                      </div>
+                      <div className={styles.refactoredCell}>
+                        <span
+                          className={`${styles.typeBadge} ${
+                            row.type === "translate"
+                              ? styles.typeTranslate
+                              : row.type === "rewrite"
+                              ? styles.typeRewrite
+                              : styles.typeTransform
+                          }`}
+                        >
+                          {row.type || DASH}
+                        </span>
+                      </div>
+                      <div className={styles.refactoredCell} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{row.model ?? DASH}</span>
+                        {row.model && (
+                          <Trash2
+                            size={14}
+                            className={styles.modelTrashIcon}
+                            title={t("Exclude all data for this model")}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setModelToDelete(row.model);
+                            }}
+                          />
+                        )}
+                      </div>
+                      <div className={styles.refactoredCell}>{row.source_lang ?? DASH}</div>
+                      <div className={styles.refactoredCell}>{row.target_lang ?? DASH}</div>
+                      <div className={styles.refactoredCell}>{row.rewrite_style ?? DASH}</div>
+                      <div className={styles.refactoredCell}>{row.transform_prompt ?? DASH}</div>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}>
+                        {formatInteger(row.request_bytes)}
+                      </div>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}>
+                        {formatInteger(row.response_bytes)}
+                      </div>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue}`}>
+                        {formatDurationMs(row.duration_ms)}
+                      </div>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue}`}>
+                        {formatCost(row.cost, costFractionStyle)}
+                      </div>
+                      <div className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}>
+                        {formatAvgTps(row.tps)}
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           )}
@@ -1721,14 +1829,17 @@ const DashboardPage = () => {
 
       {modelToDelete != null && (
         <ConfirmModal
-          title="Exclude all data for this model"
+          title={t("Exclude all data for this model")}
           message={
             deleteByModelError
-              ? `Something went wrong: ${deleteByModelError}`
-              : `Delete all API call records for model "${modelToDelete}"? This cannot be undone.`
+              ? interpolateTemplate(t("Something went wrong: {{error}}"), { error: deleteByModelError })
+              : interpolateTemplate(
+                  t('Delete all API call records for model "{{model}}"? This cannot be undone.'),
+                  { model: modelToDelete }
+                )
           }
-          confirmLabel="Delete"
-          cancelLabel="Cancel"
+          confirmLabel={t("Delete")}
+          cancelLabel={t("Cancel")}
           onConfirm={handleConfirmDeleteByModel}
           onCancel={() => {
             setModelToDelete(null);

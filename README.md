@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.5-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.6-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -77,6 +77,7 @@ It connects to [OpenRouter](https://openrouter.ai) to access a wide range of AI 
 | **Cost tracking**      | SQLite log of every API call with cost summaries by model, operation (translate/rewrite/transform), or day                                                                           |
 | **Cost dashboard**     | Analytics view with Summary (KPIs, charts), By Model, By Day, and All Calls; time-range filters (e.g. today, this week, this month); configurable display style for fractional costs |
 | **Transrewrt proxy**   | Optional external proxy: use a time-based rolling key (HMAC-SHA256 TOTP, 30s window); set the API URL to the proxy base URL and a shared key seed                                    |
+| **UI language (i18n)**  | Interface language selector in Settings → General (Application). Key-as-default: English in source is the key; pt-BR, de, fr, es (and optionally more) via locale files. RTL support (e.g. Arabic, Hebrew) sets `dir="rtl"` automatically. |
 | **Customisation**      | Font family, font size, text colours, light/dark/system theme, enter key behaviour, cost fraction style                                                                              |
 | **Keyboard shortcuts** | Configurable shortcuts for translate, rewrite, copy, clear, etc.                                                                                                                     |
 | **Secure web mode**    | API key stored only on the server — never sent to the browser                                                                                                                       |
@@ -312,6 +313,17 @@ Additional references:
 
 - [dev/Development.md](dev/Development.md) — extended prerequisites and Windows troubleshooting
 - [dev/Web-and-Docker-Deployment.md](dev/Web-and-Docker-Deployment.md) — server API reference and Docker build details
+- [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md) — i18n implementation detail (key-as-default, scripts, adding languages, RTL)
+
+### UI translations (i18n)
+
+The UI uses **react-i18next** with a key-as-default pattern: English strings in source are the keys; locale files (pt-BR, de, fr, es) provide translations. To add or update UI strings:
+
+- **Extract** strings from source and `package.json` description: `pnpm run i18n:extract`
+- **Translate** missing entries via OpenRouter (set `API_KEY`): `pnpm run i18n:translate`
+- **Sync** (extract + translate): `pnpm run i18n:sync`
+
+To add a new UI language (e.g. Chinese or Arabic): add a loader in `src/renderer/i18n.js`, add the option in Settings → General (SettingsDialogGeneralTab), add the language to `scripts/generate-translations.js` (LANGUAGES), then run extract and translate. RTL languages (ar, he, etc.) get `dir="rtl"` automatically. See the [i18n plan](.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md) for the full steps.
 
 ### Quick command reference
 
@@ -323,6 +335,9 @@ Additional references:
 | `pnpm start`          | Run Electron (after build)                |
 | `pnpm serve`          | Build and serve web app at :5000          |
 | `pnpm package`        | Build Electron installer →`release/`   |
+| `pnpm i18n:extract`   | Extract UI strings into `locales/strings.json` |
+| `pnpm i18n:translate` | Translate missing entries via OpenRouter (needs `API_KEY`) |
+| `pnpm i18n:sync`      | Extract then translate                    |
 | `pnpm docker:up`      | Build and run Docker Compose              |
 | `pnpm docker:down`    | Stop Docker Compose                       |
 | `pnpm docker:shell`   | Open shell in running Docker container    |

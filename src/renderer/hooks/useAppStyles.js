@@ -118,6 +118,22 @@ const useAppStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
+  loadingScreen: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "16px",
+  },
+  loadingScreenLogo: {
+    width: "64px",
+    height: "64px",
+    objectFit: "contain",
+  },
+  loadingScreenText: {
+    fontSize: "14px",
+    opacity: 0.9,
+  },
   rootInWeb: {
     flex: 1,
     minHeight: 0,

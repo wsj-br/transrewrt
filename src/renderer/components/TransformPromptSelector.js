@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
 import { Sparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
 
@@ -70,6 +71,7 @@ const TransformPromptSelector = ({
   editActive = false,
 }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const selectedKey = selectedId != null ? String(selectedId) : selectedName || "";
   const options = prompts.map((p) => ({ id: String(p.id), name: p.name }));
   const matchedOption = options.find((o) => o.id === selectedKey || o.name === selectedKey);
@@ -79,15 +81,15 @@ const TransformPromptSelector = ({
 
   return (
     <div className={styles.root}>
-      <label className={styles.label} title="Select a custom prompt to run">
+      <label className={styles.label} title={t("Select a custom prompt to run")}>
         <Sparkles size={18} color={tokens.colorPaletteLavenderBorderActive} />
-        Prompt
+        {t("Prompt")}
       </label>
-      <div className={styles.selectContainer} title="Choose which custom prompt to use">
+      <div className={styles.selectContainer} title={t("Choose which custom prompt to use")}>
         <Dropdown
           appearance="underline"
           value={displayValue}
-          placeholder={prompts.length === 0 ? "(no prompts, click + to create)" : "Select a prompt"}
+          placeholder={prompts.length === 0 ? t("(no prompts, click + to create)") : t("Select a prompt")}
           selectedOptions={selectedOptionValue ? [selectedOptionValue] : []}
           onOptionSelect={(e, data) => {
             const id = data.optionValue;
@@ -95,7 +97,7 @@ const TransformPromptSelector = ({
             onSelect?.(p?.id ?? id, p?.name ?? id);
           }}
           className={styles.select}
-          aria-label="Select prompt"
+          aria-label={t("Select prompt")}
           disabled={disabled}
         >
           {options.map((opt) => (
@@ -111,8 +113,8 @@ const TransformPromptSelector = ({
           icon={<PencilLine size={16} />}
           onClick={() => onEdit?.(selectedPrompt)}
           className={mergeClasses(styles.iconButton, editActive && styles.iconButtonEditActive)}
-          aria-label="Edit prompt"
-          title="Edit prompt"
+          aria-label={t("Edit prompt")}
+          title={t("Edit prompt")}
           disabled={disabled}
         />
       )}
@@ -121,8 +123,8 @@ const TransformPromptSelector = ({
         icon={<MessageSquarePlus size={16} />}
         onClick={onNew}
         className={styles.iconButton}
-        aria-label="New prompt"
-        title="New prompt"
+        aria-label={t("New prompt")}
+        title={t("New prompt")}
         disabled={disabled}
       />
       {selectedPrompt && (
@@ -131,8 +133,8 @@ const TransformPromptSelector = ({
           icon={<CopyPlus size={16} />}
           onClick={() => onDuplicate?.(selectedPrompt)}
           className={styles.iconButton}
-          aria-label="Duplicate prompt"
-          title="Duplicate prompt"
+          aria-label={t("Duplicate prompt")}
+          title={t("Duplicate prompt")}
           disabled={disabled}
         />
       )}
@@ -141,8 +143,8 @@ const TransformPromptSelector = ({
         icon={<FolderSync size={16} />}
         onClick={onOpenExportImport}
         className={mergeClasses(styles.iconButton, styles.iconButtonExport)}
-        aria-label="Export/Import prompts"
-        title="Export/Import prompts (opens Settings > Transform)"
+        aria-label={t("Export/Import prompts")}
+        title={t("Export/Import prompts (opens Settings > Transform)")}
         disabled={disabled}
       />
     </div>

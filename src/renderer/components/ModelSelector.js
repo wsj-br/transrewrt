@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Dropdown, Option } from "@fluentui/react-components";
 import { Bot, Trash2 } from "lucide-react";
 import ProviderIcon from "./ProviderIcon";
@@ -39,13 +40,13 @@ const useStyles = makeStyles({
     border: "none",
     borderRadius: tokens.borderRadiusSmall,
     background: "transparent",
-    color: tokens.colorNeutralForeground3,
+    color: tokens.colorNeutralForeground4 ?? "rgba(255, 255, 255, 0.45)",
     cursor: "pointer",
   },
   removeButtonHover: {
     ":hover": {
       backgroundColor: tokens.colorNeutralBackground1Hover,
-      color: tokens.colorNeutralForeground1,
+      color: tokens.colorNeutralForeground3,
     },
   },
   removeButtonDisabled: {
@@ -74,6 +75,7 @@ const useStyles = makeStyles({
 
 const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, onRemoveModel }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const canRemove = models.length > 1 && onRemoveModel && currentModel;
 
@@ -131,8 +133,8 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
           type="button"
           className={`${styles.modelIcon} ${styles.modelIconButton} ${styles.modelIconButtonHover}`}
           onClick={onIconClick}
-          title="Open Settings → Models"
-          aria-label="Open Settings to manage models"
+          title={t("Open Settings → Models")}
+          aria-label={t("Open Settings to manage models")}
         >
           {iconContent}
         </button>
@@ -147,7 +149,7 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
         }
         onOptionSelect={(e, data) => onModelChange(data.optionValue)}
         className={styles.modelSelect}
-        aria-label="Select Model"
+        aria-label={t("Select Model")}
       >
         {sortedModels.map((model) => {
           const { name, provider } = getModelInfo(model);
@@ -170,18 +172,18 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
           className={`${styles.removeButton} ${styles.removeButtonHover} ${!canRemove ? styles.removeButtonDisabled : ""}`}
           onClick={handleRemoveClick}
           disabled={!canRemove}
-          title={canRemove ? "Remove this model from your list" : "At least one model must remain"}
-          aria-label="Remove current model from list"
+          title={canRemove ? t("Remove this model from your list") : t("At least one model must remain")}
+          aria-label={t("Remove current model from list")}
         >
-          <Trash2 size={16} />
+          <Trash2 size={12} />
         </button>
       )}
       {showRemoveConfirm && (
         <ConfirmModal
-          title="Remove model"
-          message="Remove this model from your list? The next model in the list will be selected."
-          confirmLabel="Remove"
-          cancelLabel="Cancel"
+          title={t("Remove model")}
+          message={t("Remove this model from your list? The next model in the list will be selected.")}
+          confirmLabel={t("Remove")}
+          cancelLabel={t("Cancel")}
           onConfirm={handleConfirmRemove}
           onCancel={handleCancelRemove}
           danger

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
@@ -49,15 +50,16 @@ export default function ApiKeyModal({
   onOpenSettings,
 }) {
   const styles = useStyles();
+  const { t } = useTranslation();
 
   if (!show) return null;
 
   const notSet = isWeb && apiKeyStatus && !apiKeyStatus.apiKeySet;
   const message = notSet
-    ? "You need to set the API_KEY environment variable on the server to use this application."
+    ? t("You need to set the API_KEY environment variable on the server to use this application.")
     : apiKeyStatus?.message
       ? apiKeyStatus.message
-      : "The OpenRouter API key could not be verified. Translation and rewrite may not work.";
+      : t("The OpenRouter API key could not be verified. Translation and rewrite may not work.");
 
   return (
     <div
@@ -69,12 +71,12 @@ export default function ApiKeyModal({
       }}
     >
       <div className={styles.content}>
-        <h2 className={styles.title}>API Key Required</h2>
+        <h2 className={styles.title}>{t("API Key Required")}</h2>
         <p className={styles.message}>{message}</p>
         <div className={styles.actions}>
           {!notSet && (
             <Button appearance="secondary" onClick={onDismiss}>
-              Continue anyway
+              {t("Continue anyway")}
             </Button>
           )}
           <Button
@@ -84,7 +86,7 @@ export default function ApiKeyModal({
               if (!notSet) onOpenSettings();
             }}
           >
-            {notSet ? "OK" : "Open Settings"}
+            {notSet ? t("OK") : t("Open Settings")}
           </Button>
         </div>
       </div>

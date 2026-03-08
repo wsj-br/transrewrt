@@ -4,8 +4,12 @@ export const FREE_MODEL_ID = "openrouter/free";
 /** True when running in web/Docker mode (no Electron). */
 export const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
-/** Available styles for rewrite mode. */
-export const REWRITE_STYLES = [
+/** UI language options for interface language selector (Settings and header globe). Each has code, native label, and English name. Source: locales/ui-languages.json */
+import uiLanguages from "./locales/ui-languages.json";
+export const UI_LANGUAGES = uiLanguages;
+
+/** Value keys for rewrite styles (used for persistence/API). */
+export const REWRITE_STYLE_KEYS = [
   "Check Spelling & Grammar",
   "Improve Clarity",
   "Make Formal",
@@ -14,3 +18,20 @@ export const REWRITE_STYLES = [
   "Expand",
   "Make Technical",
 ];
+
+/**
+ * Returns rewrite style options with translated labels for dropdowns.
+ * @param {(key: string) => string} t - i18n translate function
+ * @returns {{ value: string, label: string }[]}
+ */
+export function getRewriteStyleOptions(t) {
+  return [
+    { value: "Check Spelling & Grammar", label: t("Check Spelling & Grammar") },
+    { value: "Improve Clarity", label: t("Improve Clarity") },
+    { value: "Make Formal", label: t("Make Formal") },
+    { value: "Make Informal", label: t("Make Informal") },
+    { value: "Shorten", label: t("Shorten") },
+    { value: "Expand", label: t("Expand") },
+    { value: "Make Technical", label: t("Make Technical") },
+  ];
+}

@@ -1,7 +1,13 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
-import { ALL_AVAILABLE_LANGUAGES } from '../utils/languageConstants';
+import { UI_LANGUAGES } from '../constants';
+import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from '../utils/languageConstants';
+import { getUILanguageLabel } from '../utils/languageDisplay';
+
+/** Minimum width per column so long labels (e.g. "Português (PT) / Portuguese (PT)") don't overlap. */
+const MIN_COLUMN_WIDTH_PX = 220;
 
 // Function to split languages into columns
 const splitIntoColumns = (languages, numColumns) => {
@@ -24,21 +30,24 @@ const SettingsDialogLanguagesTab = ({
   onCustomLanguageChange,
   onSetting,
 }) => {
-  const [numColumns, setNumColumns] = useState(5);
+  const { t } = useTranslation();
+  const [numColumns, setNumColumns] = useState(1);
+  const gridRef = useRef(null);
 
   // Combine predefined languages with any custom languages from selectedLanguages
   const customLangs = useMemo(() =>
     Array.from(selectedLanguages).filter(
-      lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
+      (lang) => !isPredefinedContentLanguage(lang),
     ),
-    [selectedLanguages]
+    [selectedLanguages],
   );
 
-  const allLangs = useMemo(() =>
-    [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) =>
-      a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true })
-    ),
-    [customLangs]
+  const allLangs = useMemo(
+    () =>
+      [...ALL_CONTENT_LANGUAGE_NAMES, ...customLangs].sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+      ),
+    [customLangs],
   );
 
   // Compute columns directly from allLangs and numColumns
@@ -47,26 +56,25 @@ const SettingsDialogLanguagesTab = ({
     [allLangs, numColumns]
   );
 
-  // Responsive behavior based on window width
+  // Responsive: base column count on actual grid container width to avoid overlap in the dialog
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setNumColumns(1);
-      } else if (width < 768) {
-        setNumColumns(2);
-      } else if (width < 1024) {
-        setNumColumns(3);
-      } else if (width < 1280) {
-        setNumColumns(4);
-      } else {
-        setNumColumns(5);
+    const el = gridRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      const { width } = entries[0]?.contentRect ?? {};
+      if (typeof width === 'number' && width > 0) {
+        const cols = Math.floor(width / MIN_COLUMN_WIDTH_PX);
+        setNumColumns(Math.max(1, Math.min(5, cols)));
       }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    });
+    ro.observe(el);
+    // Initial measure in case ResizeObserver doesn't fire immediately with size
+    const initialWidth = el.getBoundingClientRect().width;
+    if (initialWidth > 0) {
+      const cols = Math.floor(initialWidth / MIN_COLUMN_WIDTH_PX);
+      setNumColumns(Math.max(1, Math.min(5, cols)));
+    }
+    return () => ro.disconnect();
   }, []);
 
   const sectionTitleStyle = { display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' };
@@ -76,11 +84,12 @@ const SettingsDialogLanguagesTab = ({
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
           <Languages size={20} />
-          Selected Languages
+          {t('Selected Languages')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
-          <p>Select languages to appear in dropdowns:</p>
+          <p>{t('Select languages to appear in dropdowns:')}</p>
           <div 
+            ref={gridRef}
             className="languages-grid"
             style={{
               display: 'grid',
@@ -91,7 +100,9 @@ const SettingsDialogLanguagesTab = ({
             {columns.map((column, colIndex) => (
               <div key={colIndex} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {column.map(lang => {
-                  const isCustom = !ALL_AVAILABLE_LANGUAGES.includes(lang);
+                  const isCustom = !isPredefinedContentLanguage(lang);
+                  const uiEntry = UI_LANGUAGES.find((l) => l.englishName === lang);
+                  const displayLabel = uiEntry ? getUILanguageLabel(uiEntry, t) : lang;
                   return (
                     <div key={lang} style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
                       <Checkbox
@@ -104,7 +115,7 @@ const SettingsDialogLanguagesTab = ({
                           // Auto-save: persist immediately
                           onSetting('available_languages', Array.from(newSet));
                         }}
-                        label={lang}
+                        label={displayLabel}
                       />
                       {isCustom && (
                         <button
@@ -128,7 +139,7 @@ const SettingsDialogLanguagesTab = ({
                             alignItems: 'center',
                             color: tokens.colorNeutralForeground3,
                           }}
-                          title="Delete custom language"
+                          title={t('Delete custom language')}
                         >
                           <Trash2 size={14} />
                         </button>
@@ -145,7 +156,7 @@ const SettingsDialogLanguagesTab = ({
       <div className="languages-section section">
         <Text as="h3" size={500} weight="semibold" style={{ ...sectionTitleStyle, marginTop: '36px' }}>
           <Globe size={20} />
-          Custom Language
+          {t('Custom Language')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
           <div className="form-group" style={{ marginTop: 0 }}>
@@ -155,7 +166,7 @@ const SettingsDialogLanguagesTab = ({
             onChange={(e) => onCustomLanguageChange(e.target.value)}
             onBlur={(e) => {
               const lang = e.target.value.trim();
-              if (lang && !selectedLanguages.has(lang) && !ALL_AVAILABLE_LANGUAGES.includes(lang)) {
+              if (lang && !selectedLanguages.has(lang) && !isPredefinedContentLanguage(lang)) {
                 const newSet = new Set(selectedLanguages);
                 newSet.add(lang);
                 onSelectedLanguagesChange(newSet);
@@ -166,7 +177,7 @@ const SettingsDialogLanguagesTab = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 const lang = customLanguage.trim();
-                if (lang && !selectedLanguages.has(lang) && !ALL_AVAILABLE_LANGUAGES.includes(lang)) {
+                if (lang && !selectedLanguages.has(lang) && !isPredefinedContentLanguage(lang)) {
                   const newSet = new Set(selectedLanguages);
                   newSet.add(lang);
                   onSelectedLanguagesChange(newSet);
@@ -176,7 +187,7 @@ const SettingsDialogLanguagesTab = ({
                 }
               }
             }}
-            placeholder="Enter custom language name and press Enter"
+            placeholder={t('Enter custom language name and press Enter')}
             style={{ width: '50%'}}
           />
           </div>

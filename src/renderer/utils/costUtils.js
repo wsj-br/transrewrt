@@ -13,6 +13,7 @@ export function getCostApi() {
   return isWeb ? webAPI : (typeof window !== "undefined" && window.electronAPI) || {};
 }
 
+/** Raw option values for cost fraction style (id-only; use getCostFractionStyleOptions(t) for labels). */
 export const COST_FRACTION_STYLE_OPTIONS = [
   { value: "subscript", label: "Subscript" },
   { value: "muted", label: "Muted gray" },
@@ -20,17 +21,30 @@ export const COST_FRACTION_STYLE_OPTIONS = [
   { value: "small", label: "Small font" },
 ];
 
-export const FILTERS = [
-  { id: "all", label: "All" },
-  { id: "last_hour", label: "Last hour" },
-  { id: "today", label: "Today" },
-  { id: "yesterday", label: "Yesterday" },
-  { id: "this_week", label: "This week" },
-  { id: "this_month", label: "This month" },
-  { id: "last_month", label: "Last month" },
-  { id: "this_year", label: "This year" },
-  { id: "last_year", label: "Last year" },
-];
+/** Returns cost fraction style options with translated labels. Use this in UI so extract finds t() literals. */
+export function getCostFractionStyleOptions(t) {
+  return [
+    { value: "subscript", label: t("Subscript") },
+    { value: "muted", label: t("Muted gray") },
+    { value: "superscript", label: t("Superscript") },
+    { value: "small", label: t("Small font") },
+  ];
+}
+
+/** Returns filters with translated labels. Use this in UI so extract finds t() literals. */
+export function getFilters(t) {
+  return [
+    { id: "all", label: t("All") },
+    { id: "last_hour", label: t("Last hour") },
+    { id: "today", label: t("Today") },
+    { id: "yesterday", label: t("Yesterday") },
+    { id: "this_week", label: t("This week") },
+    { id: "this_month", label: t("This month") },
+    { id: "last_month", label: t("Last month") },
+    { id: "this_year", label: t("This year") },
+    { id: "last_year", label: t("Last year") },
+  ];
+}
 
 export const DASH = "—";
 

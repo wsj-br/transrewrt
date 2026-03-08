@@ -6,35 +6,15 @@ import { Zap, Square } from "lucide-react";
 
 /**
  * Returns { leftPanel, rightPanel } for translate mode.
+ * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: source/target language and language lists.
  */
-export function getTranslatePanels({
-  styles,
-  sourceLanguage,
-  setSourceLanguage,
-  targetLanguage,
-  setTargetLanguage,
-  languages,
-  allLanguages,
-  inputText,
-  setInputText,
-  outputText,
-  setOutputTextTranslate,
-  inputStats,
-  outputStats,
-  clearInput,
-  copyOutput,
-  pasteToInput,
-  handlePasteEvent,
-  settings,
-  handleRunAction,
-  isProcessing,
-  processingModeRef,
-  outputMeta,
-  lastRunModel,
-}) {
+export function getTranslatePanels({ common, input, output, options }) {
+  const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
+  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, languages, allLanguages } = options;
+
   const leftPanelControls = (
     <LanguageSelector
-      label="From:"
+      label={t("From:")}
       value={sourceLanguage}
       onChange={setSourceLanguage}
       languages={languages}
@@ -45,7 +25,7 @@ export function getTranslatePanels({
   );
   const rightPanelControls = (
     <LanguageSelector
-      label="To:"
+      label={t("To:")}
       value={targetLanguage}
       onChange={setTargetLanguage}
       languages={languages}
@@ -59,14 +39,14 @@ export function getTranslatePanels({
       <div className={styles.panelControls}>{leftPanelControls}</div>
       <div className={styles.panelFill}>
         <TextPanel
-          title="Input"
-          text={inputText}
-          onTextChange={setInputText}
-          placeholder="Enter text here..."
-          footerStats={inputStats()}
-          onClear={clearInput}
-          onPaste={pasteToInput}
-          onPasteEvent={handlePasteEvent}
+          title={t("Input")}
+          text={input.text}
+          onTextChange={input.setText}
+          placeholder={t("Enter text here...")}
+          footerStats={input.getStats()}
+          onClear={input.clear}
+          onPaste={input.pasteToInput}
+          onPasteEvent={input.handlePasteEvent}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           textColor={settings?.input_text_color}
@@ -80,11 +60,11 @@ export function getTranslatePanels({
           icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
         >
           {isProcessing
-            ? `Stop ${processingModeRef?.current === "translate" ? "Translate" : "Rewrite"}`
-            : "Translate"}
+            ? `${t("Stop")} ${processingModeRef?.current === "translate" ? t("Translate") : t("Rewrite")}`
+            : t("Translate")}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? "(Shift+Enter)" : "(Enter)"}
+              {settings?.enter_behavior === "Shift-Execute" ? `(${t("Shift+Enter")})` : `(${t("Enter")})`}
             </span>
           )}
         </Button>
@@ -97,21 +77,21 @@ export function getTranslatePanels({
       <div className={styles.panelControls}>{rightPanelControls}</div>
       <div className={styles.panelFill}>
         <TextPanel
-          title="Output"
-          text={outputText}
-          onTextChange={setOutputTextTranslate}
-          placeholder="Output will appear here..."
+          title={t("Output")}
+          text={output.text}
+          onTextChange={output.setText}
+          placeholder={t("Output will appear here...")}
           readOnly={true}
           headerMeta={outputMeta}
           footerStats={
             <>
-              {outputStats()}
+              {output.getStats()}
               <br />
-              Model: {lastRunModel || "N/A"}
+              {t("Model:")} {lastRunModel || t("N/A")}
             </>
           }
           footerAlign="left"
-          onCopy={copyOutput}
+          onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           textColor={settings?.output_text_color}

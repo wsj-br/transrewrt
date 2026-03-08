@@ -3,38 +3,22 @@ import { tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import StyleSelector from "../StyleSelector";
 import { Zap, Square } from "lucide-react";
-import { REWRITE_STYLES } from "../../constants";
+import { getRewriteStyleOptions } from "../../constants";
 
 /**
  * Returns { leftPanel, rightPanel } for rewrite mode.
+ * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite style.
  */
-export function getRewritePanels({
-  styles,
-  rewriteStyle,
-  setRewriteStyle,
-  inputText,
-  setInputText,
-  outputText,
-  setOutputTextRewrite,
-  inputStats,
-  outputStats,
-  clearInput,
-  copyOutput,
-  pasteToInput,
-  handlePasteEvent,
-  settings,
-  handleRunAction,
-  isProcessing,
-  processingModeRef,
-  outputMeta,
-  lastRunModel,
-}) {
+export function getRewritePanels({ common, input, output, options }) {
+  const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
+  const { rewriteStyle, setRewriteStyle } = options;
+
   const leftPanelControls = (
     <StyleSelector
-      label="Style:"
+      label={t("Style:")}
       value={rewriteStyle}
       onChange={setRewriteStyle}
-      styles={REWRITE_STYLES}
+      options={getRewriteStyleOptions(t)}
       iconColor={tokens.colorPaletteLavenderBorderActive}
     />
   );
@@ -44,14 +28,14 @@ export function getRewritePanels({
       <div className={styles.panelControls}>{leftPanelControls}</div>
       <div className={styles.panelFill}>
         <TextPanel
-          title="Input"
-          text={inputText}
-          onTextChange={setInputText}
-          placeholder="Enter text here..."
-          footerStats={inputStats()}
-          onClear={clearInput}
-          onPaste={pasteToInput}
-          onPasteEvent={handlePasteEvent}
+          title={t("Input")}
+          text={input.text}
+          onTextChange={input.setText}
+          placeholder={t("Enter text here...")}
+          footerStats={input.getStats()}
+          onClear={input.clear}
+          onPaste={input.pasteToInput}
+          onPasteEvent={input.handlePasteEvent}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           textColor={settings?.input_text_color}
@@ -65,11 +49,11 @@ export function getRewritePanels({
           icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
         >
           {isProcessing
-            ? `Stop ${processingModeRef?.current === "rewrite" ? "Rewrite" : "Translate"}`
-            : "Rewrite"}
+            ? `${t("Stop")} ${processingModeRef?.current === "rewrite" ? t("Rewrite") : t("Translate")}`
+            : t("Rewrite")}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? "(Shift+Enter)" : "(Enter)"}
+              {settings?.enter_behavior === "Shift-Execute" ? `(${t("Shift+Enter")})` : `(${t("Enter")})`}
             </span>
           )}
         </Button>
@@ -82,21 +66,21 @@ export function getRewritePanels({
       <div className={styles.panelControls} />
       <div className={styles.panelFill}>
         <TextPanel
-          title="Output"
-          text={outputText}
-          onTextChange={setOutputTextRewrite}
-          placeholder="Output will appear here..."
+          title={t("Output")}
+          text={output.text}
+          onTextChange={output.setText}
+          placeholder={t("Output will appear here...")}
           readOnly={true}
           headerMeta={outputMeta}
           footerStats={
             <>
-              {outputStats()}
+              {output.getStats()}
               <br />
-              Model: {lastRunModel || "N/A"}
+              {t("Model:")} {lastRunModel || t("N/A")}
             </>
           }
           footerAlign="left"
-          onCopy={copyOutput}
+          onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           textColor={settings?.output_text_color}

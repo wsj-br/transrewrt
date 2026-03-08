@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   makeStyles,
@@ -120,6 +121,7 @@ const TextPanel = ({
   footerAlign = "right",
 }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [isFocused, setIsFocused] = React.useState(false);
   const headerDisplay = headerMeta ?? stats;
   const footerDisplay = footerStats ?? stats;
@@ -171,7 +173,7 @@ const TextPanel = ({
           placeholder={placeholder}
           readOnly={readOnly}
           spellCheck={false}
-          aria-label={title || placeholder || "Text panel"}
+          aria-label={title || placeholder || t("Text panel")}
           style={textareaStyle}
         />
         <div className={mergeClasses(styles.controls, footerAlign === "left" && styles.leftAligned)}>
@@ -188,9 +190,9 @@ const TextPanel = ({
                   icon={<Copy size={16} />}
                   onClick={onCopy}
                   size="small"
-                  title="Copy"
+                  title={t("Copy")}
                 >
-                  Copy
+                  {t("Copy")}
                 </Button>
               )}
             </>
@@ -204,9 +206,9 @@ const TextPanel = ({
                     icon={<Trash2 size={16} />}
                     onClick={onClear}
                     size="small"
-                    title="Clear (Esc)"
+                    title={t("Clear (Esc)")}
                   >
-                    Clear
+                    {t("Clear")}
                   </Button>
                 )}
                 {onPaste && (
@@ -215,9 +217,9 @@ const TextPanel = ({
                     icon={<Clipboard size={16} />}
                     onClick={onPaste}
                     size="small"
-                    title="Paste"
+                    title={t("Paste")}
                   >
-                    Paste
+                    {t("Paste")}
                   </Button>
                 )}
               </div>
@@ -231,9 +233,9 @@ const TextPanel = ({
                     icon={<Copy size={16} />}
                     onClick={onCopy}
                     size="small"
-                    title="Copy"
+                    title={t("Copy")}
                   >
-                    Copy
+                    {t("Copy")}
                   </Button>
                 )}
               </div>

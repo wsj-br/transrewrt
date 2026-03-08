@@ -86,6 +86,18 @@ On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 | **Electron installer** | `pnpm package` | `release/` (e.g. NSIS `.exe` on Windows) |
 | **Docker image** | `docker build -t transrewrt-web .` | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
 
+### UI translations (i18n)
+
+The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en.json`). Locale files (pt-BR, de, fr, es) live in `src/renderer/locales/`. To update or add UI strings:
+
+| Command | Purpose |
+|---------|---------|
+| `pnpm run i18n:extract` | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations) |
+| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; requires `API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
+| `pnpm run i18n:sync` | Run extract then translate |
+
+To **add a new UI language** (e.g. zh-CN or ar): (1) add a loader in `src/renderer/i18n.js`, (2) add the option in Settings → General (`SettingsDialogGeneralTab.js`), (3) add the language to `LANGUAGES` in `scripts/generate-translations.js`, (4) run `i18n:extract` and `i18n:translate`. RTL languages (ar, he, fa, ur, yi) get `dir="rtl"` on the document automatically. Full detail: [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+
 ---
 
 ## Test
@@ -102,7 +114,7 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open http://localhost:5000
 
-Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `config/custom-prompts.json`, or manage prompts in Settings → Transform.
+Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `config/transform-prompts.json`, or manage prompts in Settings → Transform.
 
 ---
 
@@ -190,6 +202,9 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 | `pnpm serve` | Build then run web server (port 5000) |
 | `pnpm start:server` | Run web server only (e.g. after build or in Docker) |
 | `pnpm package` | Build and create Electron installer |
+| `pnpm run i18n:extract` | Extract UI strings to `locales/strings.json` |
+| `pnpm run i18n:translate` | Translate missing strings via OpenRouter (set `API_KEY`) |
+| `pnpm run i18n:sync` | Extract then translate |
 | `docker build -t transrewrt-web .` | Build Docker image |
 | `pnpm docker:up` | Build and run web app in Docker (compose) |
 | `pnpm docker:down` | Stop Docker compose services |
@@ -223,6 +238,9 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [server/index.js](../server/index.js) | Express server (web/Docker) |
 | [Dockerfile](../Dockerfile) | Multi-stage Docker build |
 | [docker-compose.yml](../docker-compose.yml) | Compose for local web run |
-| [config/custom-prompts.json](../config/custom-prompts.json) | Sample transform prompts (used by “Load sample prompts”) |
+| [config/transform-prompts.json](../config/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts") |
+| [src/renderer/i18n.js](../src/renderer/i18n.js) | i18n init, RTL handling, dynamic locale loaders |
+| [src/renderer/locales/strings.json](../src/renderer/locales/strings.json) | Extracted UI strings and translation state (from i18n:extract) |
+| [scripts/generate-translations.js](../scripts/generate-translations.js) | OpenRouter translation script (i18n:translate; needs API_KEY) |
 
-For web/Docker architecture and server API reference, see [Web-and-Docker-Deployment.md](Web-and-Docker-Deployment.md).
+For web/Docker architecture and server API reference, see [Web-and-Docker-Deployment.md](Web-and-Docker-Deployment.md). For i18n (key-as-default, adding languages, RTL), see [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).

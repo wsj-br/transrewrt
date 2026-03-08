@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -8,11 +8,38 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transrewrt</title>
-
+    <style>
+      html, body { margin: 0; height: 100%; background: #1a1a1a; color: #fff; }
+      .app-loading { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; font-family: system-ui, sans-serif; font-size: 14px; color: rgba(255,255,255,0.9); }
+      .app-loading svg { width: 64px; height: auto; flex-shrink: 0; }
+    </style>
   </head>
   <body>
     <script>if (typeof global === "undefined") { window.global = window; }</script>
-    <div id="root"></div>
-
+    <div id="root">
+      <div class="app-loading">
+        <svg viewBox="0 0 198.76 127.81" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg16"><stop stop-color="#00ff00" stop-opacity=".5" offset=".18"/><stop stop-color="#63e684" stop-opacity="1" offset=".88"/></linearGradient>
+            <linearGradient id="lg17" x1="10.58" y1="231.9" x2="96.62" y2="299.12" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,16.37,-84.3)"><stop stop-color="#00ff00" stop-opacity=".5" offset=".18"/><stop stop-color="#63e684" stop-opacity="1" offset=".88"/></linearGradient>
+            <linearGradient id="lg18"><stop stop-color="#f2ab38" stop-opacity=".5" offset="0"/><stop stop-color="#ed7139" stop-opacity="1" offset="1"/></linearGradient>
+            <linearGradient id="lg19" x1="76.62" y1="265.27" x2="185.8" y2="265.27" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,23.25,-84.3)"><stop stop-color="#f2ab38" stop-opacity=".5" offset="0"/><stop stop-color="#ed7139" stop-opacity="1" offset="1"/></linearGradient>
+            <linearGradient id="lg23"><stop stop-color="#29ff11" offset="0"/><stop stop-color="#7cff77" offset="1"/></linearGradient>
+            <linearGradient id="lg24" x1="34.81" y1="256.57" x2="74.27" y2="256.57" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,16.37,-84.3)"><stop stop-color="#29ff11" offset="0"/><stop stop-color="#7cff77" offset="1"/></linearGradient>
+            <linearGradient id="lg25"><stop stop-color="#f2ab38" offset="0"/><stop stop-color="#96360c" offset="1"/></linearGradient>
+            <linearGradient id="lg26" x1="158.12" y1="256.19" x2="110.91" y2="256.19" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,23.25,-84.3)"><stop stop-color="#f2ab38" offset="0"/><stop stop-color="#96360c" offset="1"/></linearGradient>
+          </defs>
+          <g transform="translate(-6.72,-102.81)">
+            <g transform="matrix(1.1,0,0,1.08,-10.3,-9.25)">
+              <path fill="url(#lg17)" d="m 66.17,103.55 a 50.72,49.19 0 0 0 -50.72,49.19 50.72,49.19 0 0 0 15.74,35.62 l .34,13.46 .48,19.37 13.09,-10.47 11.99,-9.59 a 50.72,49.19 0 0 0 9.08,.8 50.72,49.19 0 0 0 50.72,-49.19 50.72,49.19 0 0 0 -50.72,-49.19 z m 0,21 a 28.19,28.19 0 0 1 28.19,28.19 28.19,28.19 0 0 1 -28.19,28.19 28.19,28.19 0 0 1 -28.19,-28.19 28.19,28.19 0 0 1 28.19,-28.19 z"/>
+              <path fill="url(#lg19)" d="m 145.15,103.34 a 50.72,49.19 0 0 1 50.72,49.19 50.72,49.19 0 0 1 -15.74,35.62 l -.34,13.46 -.48,19.37 -13.09,-10.47 -11.99,-9.59 a 50.72,49.19 0 0 1 -9.08,.8 50.72,49.19 0 0 1 -50.72,-49.19 50.72,49.19 0 0 1 50.72,-49.19 z m 0,21 a 28.19,28.19 0 0 0 -28.19,28.19 28.19,28.19 0 0 0 28.19,28.19 28.19,28.19 0 0 0 28.19,-28.19 28.19,28.19 0 0 0 -28.19,-28.19 z"/>
+              <path fill="url(#lg24)" d="m 67.39,137.95 v 9.46 H 48.71 v 13.11 h 18.68 v 9.68 l 8.99,-8.06 8.99,-8.06 -8.99,-8.06 z"/>
+              <path fill="url(#lg26)" d="m 162.98,135.61 -21.17,20.81 -7.28,-7.17 -8.23,7.31 7.68,7.56 7.83,7.71 7.84,-7.7 20.52,-20.17 z"/>
+            </g>
+          </g>
+        </svg>
+        <span>Loading…</span>
+      </div>
+    </div>
   </body>
 </html>

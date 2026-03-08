@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, Input, SpinButton, Checkbox, Popover, PopoverSurface, PopoverTrigger, ColorPicker, ColorSlider, ColorArea, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
 import { TinyColor } from '@ctrl/tinycolor';
-import { COST_FRACTION_STYLE_OPTIONS, formatCost } from '../utils/costUtils';
+import { getCostFractionStyleOptions, formatCost } from '../utils/costUtils';
+import { UI_LANGUAGES } from '../constants';
+import i18n, { loadLocale } from '../i18n';
+import { getUILanguageLabel } from '../utils/languageDisplay';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -54,10 +58,19 @@ const useColorPickerStyles = makeStyles({
 /** Normalize to the two supported behaviors; map legacy values for existing configs. */
 function normalizeEnterBehavior(value) {
   if (value === "Shift-Execute" || value === "Shift-Translate" || value === "Newline") return "Shift-Execute";
-  return "Execute";
+  return t("Execute");
 }
 
 const useFormStyles = makeStyles({
+  keyBadge: {
+    display: 'inline-block',
+    padding: '2px 8px',
+    borderRadius: '6px',
+    backgroundColor: tokens.colorNeutralBackground3,
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    fontWeight: 500,
+  },
   formControl: {
     width: '100%',
     '& .fui-Dropdown__trigger': {
@@ -90,6 +103,7 @@ const hsvToHex = (hsv) => {
 // ColorPickerPopup Component
 const ColorPickerPopup = ({ color, onChange, label }) => {
   const styles = useColorPickerStyles();
+  const { t } = useTranslation();
   const [previewColor, setPreviewColor] = useState(hexToHsv(color || '#ffffff'));
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -173,12 +187,12 @@ const ColorPickerPopup = ({ color, onChange, label }) => {
               appearance="primary"
               onClick={handleOk}
             >
-              Ok
+              {t('Ok')}
             </Button>
             <Button
               onClick={handleCancel}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
           </div>
         </PopoverSurface>
@@ -192,36 +206,60 @@ const SettingsDialogGeneralTab = ({
   onSettingChange,
 }) => {
   const formStyles = useFormStyles();
+  const { t } = useTranslation();
+  const uiLocale = localSettings.ui_locale || 'en-GB';
+  const selectedLang = UI_LANGUAGES.find((l) => l.code === uiLocale) || UI_LANGUAGES[0];
+
+  const handleUiLocaleChange = async (_, data) => {
+    const code = data.optionValue;
+    if (!code) return;
+    await loadLocale(code);
+    i18n.changeLanguage(code);
+    onSettingChange('ui_locale', code);
+  };
 
   return (
     <div className="tab-content">
+      {/* Application Section */}
+      <div className="section">
+        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '24px' }}>
+          {t('Application')}
+        </Text>
+        <div style={{ paddingLeft: '24px' }}>
+          <Label htmlFor="ui-locale" style={{ display: 'block', marginBottom: '6px' }}>
+            {t('Interface language')}
+          </Label>
+          <Dropdown
+            id="ui-locale"
+            appearance="underline"
+            value={getUILanguageLabel(selectedLang, t)}
+            selectedOptions={[uiLocale]}
+            onOptionSelect={handleUiLocaleChange}
+            style={{ minWidth: '220px' }}
+          >
+            {UI_LANGUAGES.map((lang) => (
+              <Option key={lang.code} value={lang.code}>
+                {getUILanguageLabel(lang, t)}
+              </Option>
+            ))}
+          </Dropdown>
+          <Text size={200} style={{ marginTop: '6px', color: tokens.colorNeutralForeground3 }}>
+            {UI_LANGUAGES.map((l) => getUILanguageLabel(l, t)).join(' · ')}
+          </Text>
+        </div>
+      </div>
+
       {/* Behavior Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
           <Settings size={20} />
-          Behavior
+          {t('Behavior')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  padding: '4px 10px',
-                  border: '2px solid #666',
-                  borderRadius: '6px',
-                  backgroundColor: '#f0f0f0',
-                  color: '#333',
-                  fontWeight: 'bold',
-                  fontSize: '12px',
-                  fontFamily: 'monospace',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1), inset 0 -2px 0 rgba(0,0,0,0.1)',
-                  textTransform: 'uppercase'
-                }}
-              >
-                ENTER
-              </span> <span> Key Behavior:</span>
+             <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span>  <span> {t('Key Behavior:')}</span>
             </span>
           </Label>
           <RadioGroup
@@ -231,8 +269,22 @@ const SettingsDialogGeneralTab = ({
             layout="vertical"
             style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginLeft: '32px' }}
           >
-            <Radio value="Execute" label="ENTER to translate / rewrite" />
-            <Radio value="Shift-Execute" label="SHIFT+ENTER to translate / rewrite" />
+            <Radio
+              value="Execute"
+              label={
+                <>
+                  <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span> {t('to translate / rewrite')}
+                </>
+              }
+            />
+            <Radio
+              value="Shift-Execute"
+              label={
+                <>
+                  <span className={formStyles.keyBadge}>{t('SHIFT+ENTER ↵')}</span> {t('to translate / rewrite')}
+                </>
+              }
+            />
           </RadioGroup>
         </div>
         <div className="checkbox-group" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -241,7 +293,7 @@ const SettingsDialogGeneralTab = ({
               checked={localSettings.auto_translate_on_paste !== false}
               onChange={(e) => onSettingChange('auto_translate_on_paste', e.target.checked)}
             />
-            <Label style={{ margin: 0 }}>Auto-translate on paste</Label>
+            <Label style={{ margin: 0 }}>{t('Auto-translate on paste')}</Label>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox
@@ -249,7 +301,7 @@ const SettingsDialogGeneralTab = ({
               onChange={(e) => onSettingChange('auto_copy', e.target.checked)}
               icon={<ClipboardCheck size={16} />}
             />
-            <Label style={{ margin: 0 }}>Auto-copy result to clipboard</Label>
+            <Label style={{ margin: 0 }}>{t('Auto-copy result to clipboard')}</Label>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox
@@ -257,10 +309,10 @@ const SettingsDialogGeneralTab = ({
               onChange={(e) => onSettingChange('real_time_translation', e.target.checked)}
               icon={<RefreshCw size={16} />}
             />
-            <Label style={{ margin: 0 }}>Real-time translation (while typing)</Label>
+            <Label style={{ margin: 0 }}>{t('Real-time translation (while typing)')}</Label>
           </div>
           <div style={{ marginLeft: '48px', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Label htmlFor="real-time-delay" style={{ margin: 0, whiteSpace: 'nowrap' }}>Timeout (ms):</Label>
+            <Label htmlFor="real-time-delay" style={{ margin: 0, whiteSpace: 'nowrap' }}>{t('Timeout (ms):')}</Label>
             <SpinButton
               id="real-time-delay"
               value={localSettings.real_time_delay || 1000}
@@ -283,38 +335,39 @@ const SettingsDialogGeneralTab = ({
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
           <Palette size={20} />
-          Appearance
+          {t('Appearance')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
           <Label htmlFor="cost-fraction-style" style={{ margin: 0, whiteSpace: 'nowrap' }}>
-            Cost fraction digits:
+            {t('Cost fraction digits:')}
           </Label>
           <Dropdown
             id="cost-fraction-style"
             appearance="underline"
             value={
-              COST_FRACTION_STYLE_OPTIONS.find(
+              getCostFractionStyleOptions(t).find(
                 (o) => o.value === (localSettings.cost_fraction_style || 'muted'),
-              )?.label ?? 'Muted gray'
+              )?.label ?? t('Muted gray')
             }
             selectedOptions={[localSettings.cost_fraction_style || 'muted']}
             onOptionSelect={(e, data) => {
               const v = data.optionValue;
-              if (v && COST_FRACTION_STYLE_OPTIONS.some((o) => o.value === v)) {
+              const options = getCostFractionStyleOptions(t);
+              if (v && options.some((o) => o.value === v)) {
                 onSettingChange('cost_fraction_style', v);
               }
             }}
             style={{ minWidth: '120px' }}
           >
-            {COST_FRACTION_STYLE_OPTIONS.map((o) => (
+            {getCostFractionStyleOptions(t).map((o) => (
               <Option key={o.value} value={o.value}>
                 {o.label}
               </Option>
             ))}
           </Dropdown>
           <span style={{ marginLeft: '8px', display: 'inline-flex', alignItems: 'baseline', gap: '6px' }}>
-            <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>Sample:</span>
+            <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>{t('Sample:')}</span>
             <span
               style={{
                 fontSize: '16px',
@@ -334,13 +387,13 @@ const SettingsDialogGeneralTab = ({
               onChange={(e) => onSettingChange('web_margin', e.target.checked)}
             />
             <Label htmlFor="web-margin" style={{ cursor: 'pointer', margin: 0  }}>
-              show a margin around the app
+              {t('show a margin around the app')}
             </Label>
           </div>
         )}
         <div className="form-row">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
-            <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>Font Family:</Label>
+            <Label htmlFor="font-family" style={{ margin: 0, whiteSpace: 'nowrap' }}>{t('Font Family:')}</Label>
             <Dropdown
               id="font-family"
               appearance="underline"
@@ -360,7 +413,7 @@ const SettingsDialogGeneralTab = ({
               {FONT_OPTIONS.map((item) =>
                 item.type === 'header' ? (
                   <Option key={item.value} value={item.value} disabled>
-                    {item.label}
+                    {t(item.label)}
                   </Option>
                 ) : (
                   <Option key={item.value} value={item.value} style={{ fontFamily: item.value }}>
@@ -387,7 +440,7 @@ const SettingsDialogGeneralTab = ({
             <ColorPickerPopup
               color={localSettings.input_text_color || '#ffffff'}
               onChange={(hexColor) => onSettingChange('input_text_color', hexColor)}
-              label="Input Color"
+              label={t('Input Color')}
             />
             <div
               style={{
@@ -407,7 +460,7 @@ const SettingsDialogGeneralTab = ({
             <ColorPickerPopup
               color={localSettings.output_text_color || '#ffffff'}
               onChange={(hexColor) => onSettingChange('output_text_color', hexColor)}
-              label="Output Color"
+              label={t('Output Color')}
             />
             <div
               style={{

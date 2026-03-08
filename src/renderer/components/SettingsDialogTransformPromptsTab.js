@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fluentui/react-components";
 import { Download, Upload, List, Trash2 } from "lucide-react";
 import ConfirmModal from "./ConfirmModal";
@@ -243,6 +244,7 @@ const getAcceptForFormat = (format) => {
 
 const SettingsDialogTransformPromptsTab = () => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [prompts, setPrompts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [exportMessage, setExportMessage] = useState("");
@@ -298,7 +300,7 @@ const SettingsDialogTransformPromptsTab = () => {
     const api = getCustomPromptsApi();
     const getExportData = api?.export ? () => api.export() : api?.getAll ? () => api.getAll() : null;
     if (!getExportData) {
-      setExportMessage("Export not available.");
+      setExportMessage(t("Export not available."));
       return;
     }
     try {
@@ -312,11 +314,11 @@ const SettingsDialogTransformPromptsTab = () => {
           instructions: instructionsToExportArray(p.instructions),
         }));
         blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-        filename = "transrewrt-custom-prompts.json";
+        filename = "transrewrt-transform-prompts.json";
       } else if (exportImportFormat === "csv") {
         const csv = buildCsvFromPrompts(rawList);
         blob = new Blob([csv], { type: "text/csv" });
-        filename = "transrewrt-custom-prompts.csv";
+        filename = "transrewrt-transform-prompts.csv";
       } else if (exportImportFormat === "xlsx") {
         const instrStr = (p) => instructionsToNewlineString(p.instructions);
         const rows = rawList.map((p) => ({
@@ -379,9 +381,9 @@ const SettingsDialogTransformPromptsTab = () => {
         blob = new Blob([arr], {
           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         });
-        filename = "transrewrt-custom-prompts.xlsx";
+        filename = "transrewrt-transform-prompts.xlsx";
       } else {
-        setExportMessage("Unknown format.");
+        setExportMessage(t("Unknown format."));
         return;
       }
       const url = URL.createObjectURL(blob);
@@ -390,9 +392,9 @@ const SettingsDialogTransformPromptsTab = () => {
       a.download = filename;
       a.click();
       URL.revokeObjectURL(url);
-      setExportMessage("Exported successfully.");
+      setExportMessage(t("Exported successfully."));
     } catch (err) {
-      setExportMessage(err?.message || "Export failed.");
+      setExportMessage(err?.message || t("Export failed."));
     }
   };
 
@@ -419,7 +421,7 @@ const SettingsDialogTransformPromptsTab = () => {
     setImportError(false);
     const api = getCustomPromptsApi();
     if (!api?.import) {
-      setImportMessage("Import not available.");
+      setImportMessage(t("Import not available."));
       setImportError(true);
       return;
     }
@@ -437,7 +439,7 @@ const SettingsDialogTransformPromptsTab = () => {
         const wb = XLSX.read(buf, { type: "array" });
         const firstSheet = wb.Sheets[wb.SheetNames[0]];
         if (!firstSheet) {
-          setImportMessage("No sheet in file.");
+          setImportMessage(t("No sheet in file."));
           setImportError(true);
           return;
         }
@@ -448,7 +450,7 @@ const SettingsDialogTransformPromptsTab = () => {
       }
       list = list.filter((p) => p?.name).map(normalizePrompt);
       if (list.length === 0) {
-        setImportMessage("No prompts in file.");
+        setImportMessage(t("No prompts in file."));
         setImportError(true);
         return;
       }
@@ -458,10 +460,10 @@ const SettingsDialogTransformPromptsTab = () => {
       const result = await api.import(list, "merge");
       if (result?.error) throw new Error(result.error);
       setExportMessage("");
-      setImportMessage(`Imported ${list.length} prompt(s).`);
+      setImportMessage(t("Imported {{count}} prompt(s).", { count: list.length }));
       loadPrompts();
     } catch (err) {
-      setImportMessage(err?.message || "Import failed.");
+      setImportMessage(err?.message || t("Import failed."));
       setImportError(true);
     }
   };
@@ -480,7 +482,7 @@ const SettingsDialogTransformPromptsTab = () => {
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
           <Download size={20} />
-          Export / Import custom prompts
+          {t("Export / Import transform prompts")}
         </Text>
         <div style={indentStyle} className={styles.sectionInner}>
           <div className={styles.formatRow}>
@@ -490,7 +492,7 @@ const SettingsDialogTransformPromptsTab = () => {
               onClick={handleExport}
               disabled={loading}
             >
-              Export
+              {t("Export")}
             </Button>
             <Button
               appearance="secondary"
@@ -498,7 +500,7 @@ const SettingsDialogTransformPromptsTab = () => {
               onClick={handleImportClick}
               disabled={loading}
             >
-              Import (merge)
+              {t("Import (merge)")}
             </Button>
             <input
               ref={fileInputRef}
@@ -514,7 +516,7 @@ const SettingsDialogTransformPromptsTab = () => {
               value={exportImportFormat.toUpperCase()}
               selectedOptions={[exportImportFormat]}
               onOptionSelect={(_, data) => data.optionValue && setExportImportFormat(String(data.optionValue))}
-              aria-label="Export/import format"
+              aria-label={t("Export/import format")}
               className={styles.formatDropdown}
               style={{ minWidth: "72px", width: "fit-content" }}
             >
@@ -536,7 +538,7 @@ const SettingsDialogTransformPromptsTab = () => {
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
           <List size={20} />
-          Custom prompts
+          {t("Transform prompts")}
         </Text>
         <div style={indentStyle}>
           {loading ? (
@@ -546,19 +548,19 @@ const SettingsDialogTransformPromptsTab = () => {
               <table className={styles.table}>
                 <thead className={styles.thead}>
                   <tr>
-                    <th className={styles.th}>Name</th>
-                    <th className={styles.th}>Role</th>
-                    <th className={styles.th}>Instructions</th>
-                    <th className={styles.th}>Output description</th>
-                    <th className={styles.th}>Target language</th>
-                    <th className={styles.th}>Temperature</th>
+                    <th className={styles.th}>{t("Name")}</th>
+                    <th className={styles.th}>{t("Role")}</th>
+                    <th className={styles.th}>{t("Instructions")}</th>
+                    <th className={styles.th}>{t("Output description")}</th>
+                    <th className={styles.th}>{t("Target language")}</th>
+                    <th className={styles.th}>{t("Temperature")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {prompts.length === 0 ? (
                     <tr>
                       <td colSpan={6} className={styles.emptyRow}>
-                         No custom prompts yet. Import from a file or create in the Transform view.
+                         {t("No transform prompts yet. Import from a file or create in the Transform view.")}
                       </td>
                     </tr>
                   ) : (
@@ -576,7 +578,7 @@ const SettingsDialogTransformPromptsTab = () => {
                               <Trash2
                                 size={14}
                                 className={styles.nameCellTrashIcon}
-                                title="Delete this prompt"
+                                title={t("Delete this prompt")}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setPromptToDelete(p);
@@ -598,7 +600,7 @@ const SettingsDialogTransformPromptsTab = () => {
                             {p.output_description ? String(p.output_description).slice(0, 40) : "—"}
                             {(p.output_description && String(p.output_description).length > 40) ? "…" : ""}
                           </td>
-                          <td className={styles.td}>{p.target_language === true || p.target_language === 1 ? "Yes" : "No"}</td>
+                          <td className={styles.td}>{p.target_language === true || p.target_language === 1 ? t("Yes") : t("No")}</td>
                           <td className={styles.td}>{p.temperature ?? "—"}</td>
                         </tr>
                       );
@@ -613,10 +615,10 @@ const SettingsDialogTransformPromptsTab = () => {
 
       {promptToDelete != null && (
         <ConfirmModal
-          title="Delete prompt"
-          message={`Delete the prompt "${promptToDelete.name || "Untitled"}"? This cannot be undone.`}
-          confirmLabel="Delete"
-          cancelLabel="Cancel"
+          title={t("Delete prompt")}
+          message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: promptToDelete.name || t("Untitled") })}
+          confirmLabel={t("Delete")}
+          cancelLabel={t("Cancel")}
           onConfirm={handleConfirmDeletePrompt}
           onCancel={() => setPromptToDelete(null)}
           danger

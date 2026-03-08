@@ -38,12 +38,12 @@ const useStyles = makeStyles({
   },
 });
 
-const StyleSelector = ({ 
+const StyleSelector = ({
   label,
-  value, 
+  value,
   onChange,
-  styles = [],
-  iconColor
+  options = [],
+  iconColor,
 }) => {
   const styleStyles = useStyles();
 
@@ -56,15 +56,15 @@ const StyleSelector = ({
       <div className={styleStyles.selectContainer}>
         <Dropdown
           appearance="underline"
-          value={value || ""}
+          value={options.find((o) => o.value === value)?.label ?? value ?? ""}
           selectedOptions={value ? [value] : []}
           onOptionSelect={(e, data) => onChange(data.optionValue)}
           className={styleStyles.select}
           aria-label={label}
         >
-          {styles.map((style) => (
-            <Option key={style} value={style}>
-              {style}
+          {options.map((opt) => (
+            <Option key={opt.value} value={opt.value} text={opt.label}>
+              {opt.label}
             </Option>
           ))}
         </Dropdown>

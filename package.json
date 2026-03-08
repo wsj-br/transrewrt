@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -27,6 +27,10 @@
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
     "reset-web-password": "node scripts/reset-web-password.js",
+    "i18n:extract": "node scripts/extract-strings.js",
+    "i18n:translate": "node scripts/generate-translations.js",
+    "i18n:sync": "pnpm run i18n:extract && pnpm run i18n:translate",
+    "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js"
   },
   "keywords": [
@@ -128,6 +132,8 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
+    "i18next": "^24.2.0",
+    "react-i18next": "^15.1.0",
     "@fluentui/react-components": "^9.73.0",
     "@fluentui/react-icons": "^2.0.319",
     "argon2": "^0.44.0",

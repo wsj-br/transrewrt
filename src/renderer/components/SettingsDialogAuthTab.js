@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Label, Input, Text, Checkbox, Dropdown, Option } from "@fluentui/react-components";
 import { Lock, LogOut, Clock } from "lucide-react";
 import webAPI from "../utils/webApiClient";
@@ -25,39 +26,46 @@ const gridRow = {
   maxWidth: "400px",
 };
 
-const SESSION_TIMEOUT_OPTIONS = [
-  { label: "1h", seconds: 3600 },
-  { label: "6h", seconds: 21600 },
-  { label: "12h", seconds: 43200 },
-  { label: "1 day", seconds: 86400 },
-  { label: "2 days", seconds: 172800 },
-  { label: "4 days", seconds: 345600 },
-  { label: "7 days", seconds: 604800 },
-];
+/** Seconds values for session timeout options (used for closest-match only). */
+const SESSION_TIMEOUT_SECONDS = [3600, 21600, 43200, 86400, 172800, 345600, 604800];
 
 const DEFAULT_SESSION_TIMEOUT = 604800;
 
 function secondsToClosestOption(seconds) {
   const num = Number(seconds) || DEFAULT_SESSION_TIMEOUT;
-  let closest = SESSION_TIMEOUT_OPTIONS[SESSION_TIMEOUT_OPTIONS.length - 1];
+  let closestSec = SESSION_TIMEOUT_SECONDS[SESSION_TIMEOUT_SECONDS.length - 1];
   let minDiff = Infinity;
-  for (const opt of SESSION_TIMEOUT_OPTIONS) {
-    const diff = Math.abs(opt.seconds - num);
+  for (const sec of SESSION_TIMEOUT_SECONDS) {
+    const diff = Math.abs(sec - num);
     if (diff < minDiff) {
       minDiff = diff;
-      closest = opt;
+      closestSec = sec;
     }
   }
-  return String(closest.seconds);
+  return String(closestSec);
 }
 
 const SettingsDialogAuthTab = () => {
+  const { t } = useTranslation();
   const { settings, setSetting, handleWebLogout } = useAppContext();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState({ type: null, text: "" });
   const [loading, setLoading] = useState(false);
+
+  const sessionTimeoutOptions = useMemo(
+    () => [
+      { label: t("1h"), seconds: 3600 },
+      { label: t("6h"), seconds: 21600 },
+      { label: t("12h"), seconds: 43200 },
+      { label: t("1 day"), seconds: 86400 },
+      { label: t("2 days"), seconds: 172800 },
+      { label: t("4 days"), seconds: 345600 },
+      { label: t("7 days"), seconds: 604800 },
+    ],
+    [t]
+  );
 
   const sessionTimeoutSeconds = Number(settings.web_session_timeout) || DEFAULT_SESSION_TIMEOUT;
   const sessionTimeoutValue = useMemo(
@@ -82,21 +90,21 @@ const SettingsDialogAuthTab = () => {
     e.preventDefault();
     setMessage({ type: null, text: "" });
     if (!showPassword && newPassword !== confirmPassword) {
-      setMessage({ type: "error", text: "New password and confirmation do not match." });
+      setMessage({ type: "error", text: t("New password and confirmation do not match.") });
       return;
     }
     if (newPassword.length < 1) {
-      setMessage({ type: "error", text: "New password is required." });
+      setMessage({ type: "error", text: t("New password is required.") });
       return;
     }
     setLoading(true);
     try {
       await webAPI.changePassword(newPassword);
-      setMessage({ type: "success", text: "Password changed successfully." });
+      setMessage({ type: "success", text: t("Password changed successfully.") });
       setNewPassword("");
       setConfirmPassword("");
     } catch (err) {
-      setMessage({ type: "error", text: err.message || "Failed to change password." });
+      setMessage({ type: "error", text: err.message || t("Failed to change password.") });
     } finally {
       setLoading(false);
     }
@@ -107,31 +115,31 @@ const SettingsDialogAuthTab = () => {
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Lock size={20} />
-          Change password
+          {t("Change password")}
         </Text>
         <div style={{ paddingLeft: "24px" }}>
         <form onSubmit={handleSubmit}>
           <div style={gridRow}>
-            <Label htmlFor="auth-new">New password</Label>
+            <Label htmlFor="auth-new">{t("New password")}</Label>
             <Input
               id="auth-new"
               type={showPassword ? "text" : "password"}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="New password"
+              placeholder={t("New password")}
               disabled={loading}
               autoComplete="new-password"
             />
           </div>
           {!showPassword && (
             <div style={gridRow}>
-              <Label htmlFor="auth-confirm">Confirm password</Label>
+              <Label htmlFor="auth-confirm">{t("Confirm password")}</Label>
               <Input
                 id="auth-confirm"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm new password"
+                placeholder={t("Confirm new password")}
                 disabled={loading}
                 autoComplete="new-password"
               />
@@ -141,7 +149,7 @@ const SettingsDialogAuthTab = () => {
             <span style={{ gridColumn: 1 }} />
             <Checkbox
               id="auth-show-password"
-              label="Show password"
+              label={t("Show password")}
               checked={showPassword}
               onChange={(_, data) => {
                 setShowPassword(!!data.checked);
@@ -165,7 +173,7 @@ const SettingsDialogAuthTab = () => {
             </div>
           )}
           <Button type="submit" appearance="primary" disabled={loading}>
-            {loading ? "Changing…" : "Change password"}
+            {loading ? t("Changing…") : t("Change password")}
           </Button>
         </form>
         </div>
@@ -173,15 +181,15 @@ const SettingsDialogAuthTab = () => {
       <div className="section" style={{ marginTop: "24px" }}>
         <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <Clock size={20} />
-          Session timeout
+          {t("Session timeout")}
         </Text>
         <div style={{ paddingLeft: "24px" }}>
         <div style={gridRow}>
-          <Label htmlFor="auth-session-timeout">Timeout</Label>
+          <Label htmlFor="auth-session-timeout">{t("Timeout")}</Label>
           <Dropdown
             id="auth-session-timeout"
             appearance="underline"
-            value={SESSION_TIMEOUT_OPTIONS.find((o) => String(o.seconds) === sessionTimeoutValue)?.label ?? "7 days"}
+            value={sessionTimeoutOptions.find((o) => String(o.seconds) === sessionTimeoutValue)?.label ?? t("7 days")}
             selectedOptions={[sessionTimeoutValue]}
             onOptionSelect={(e, data) => {
               const seconds = data.optionValue ? parseInt(String(data.optionValue), 10) : NaN;
@@ -189,7 +197,7 @@ const SettingsDialogAuthTab = () => {
             }}
             style={{ minWidth: "140px" }}
           >
-            {SESSION_TIMEOUT_OPTIONS.map((opt) => (
+            {sessionTimeoutOptions.map((opt) => (
               <Option key={opt.seconds} value={String(opt.seconds)}>
                 {opt.label}
               </Option>
@@ -197,14 +205,14 @@ const SettingsDialogAuthTab = () => {
           </Dropdown>
         </div>
         <Text as="p" size={200} style={{ marginTop: "4px", marginBottom: 0, color: "var(--colorNeutralForeground3)" }}>
-          Applies to new logins.
+          {t("Applies to new logins.")}
         </Text>
         </div>
       </div>
       <div className="section" style={{ marginTop: "24px" }}>
         <Text as="h3" size={500} weight="semibold" style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}>
           <LogOut size={20} />
-          Session
+          {t("Session")}
         </Text>
         <div style={{ paddingLeft: "24px" }}>
         <Button
@@ -213,15 +221,15 @@ const SettingsDialogAuthTab = () => {
             try {
               await handleWebLogout();
             } catch (err) {
-              setMessage({ type: "error", text: err.message || "Logout failed." });
+              setMessage({ type: "error", text: err.message || t("Logout failed.") });
             }
           }}
         >
-          Log out
+          {t("Log out")}
         </Button>
         {sessionRemaining != null && (
           <Text as="p" size={200} style={{ marginTop: 0, marginLeft: "12px", color: "var(--colorNeutralForeground3)" }}>
-           <Clock size={12} /> Session remaining: <b>{sessionRemaining}</b>
+           <Clock size={12} /> {t("Session remaining:")} <b>{sessionRemaining}</b>
           </Text>
         )}
         </div>

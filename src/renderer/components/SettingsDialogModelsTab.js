@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Input,
@@ -28,12 +29,12 @@ import {
 import ProviderIcon from './ProviderIcon';
 
 const SORT_OPTIONS = [
-  { value: 'cost-asc', label: 'Cost ↑ Low to High' },
-  { value: 'cost-desc', label: 'Cost ↓ High to Low' },
-  { value: 'model-asc', label: 'Model A→Z' },
-  { value: 'model-desc', label: 'Model Z→A' },
-  { value: 'provider-asc', label: 'Provider A→Z' },
-  { value: 'provider-desc', label: 'Provider Z→A' },
+  { value: 'cost-asc', labelKey: 'Cost ↑ Low to High' },
+  { value: 'cost-desc', labelKey: 'Cost ↓ High to Low' },
+  { value: 'model-asc', labelKey: 'Model A→Z' },
+  { value: 'model-desc', labelKey: 'Model Z→A' },
+  { value: 'provider-asc', labelKey: 'Provider A→Z' },
+  { value: 'provider-desc', labelKey: 'Provider Z→A' },
 ];
 
 const SettingsDialogModelsTab = ({
@@ -57,6 +58,7 @@ const SettingsDialogModelsTab = ({
   onDeselectAllModels,
   getModelName,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="tab-content models-tab">
       <div className="models-split-view">
@@ -66,7 +68,7 @@ const SettingsDialogModelsTab = ({
           <div className="models-pane-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <Cpu size={20} strokeWidth={2} />
-              <Text size={500} weight="semibold">Available Models</Text>
+              <Text size={500} weight="semibold">{t('Available Models')}</Text>
             </div>
           </div>
 
@@ -85,7 +87,7 @@ const SettingsDialogModelsTab = ({
                     />
                   )
                 }
-                placeholder="Search models..."
+                placeholder={t('Search models...')}
                 value={searchTerm}
                 onChange={(e) => onSearchTermChange(e.target.value)}
               />
@@ -98,7 +100,7 @@ const SettingsDialogModelsTab = ({
                 label={
                   <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <Sparkles size={14} />
-                    Free Only
+                    {t('Free Only')}
                   </span>
                 }
               />
@@ -114,7 +116,7 @@ const SettingsDialogModelsTab = ({
               onClick={onRefreshModels}
               disabled={modelsLoading}
             >
-              Refresh
+              {t('Refresh')}
             </Button>
             
             {sortBy.startsWith('provider') && (
@@ -125,7 +127,7 @@ const SettingsDialogModelsTab = ({
                   icon={<ChevronDownRegular />}
                   onClick={onExpandAll}
                 >
-                  Expand All
+                  {t('Expand All')}
                 </Button>
                 <Button
                   appearance="subtle"
@@ -133,7 +135,7 @@ const SettingsDialogModelsTab = ({
                   icon={<ChevronUpRegular />}
                   onClick={onCollapseAll}
                 >
-                  Collapse All
+                  {t('Collapse All')}
                 </Button>
               </>
             )}
@@ -141,13 +143,13 @@ const SettingsDialogModelsTab = ({
             <Dropdown
               appearance="underline"
               size="small"
-              value={SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? sortBy}
+              value={t(SORT_OPTIONS.find((o) => o.value === sortBy)?.labelKey ?? sortBy)}
               selectedOptions={[sortBy]}
               onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
               style={{ minWidth: '200px' }}
             >
               {SORT_OPTIONS.map((opt) => (
-                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+                <Option key={opt.value} value={opt.value}>{t(opt.labelKey)}</Option>
               ))}
             </Dropdown>
           </div>
@@ -157,14 +159,14 @@ const SettingsDialogModelsTab = ({
             {modelsLoading && allModels.length === 0 ? (
               <div className="empty-state-modern">
                 <Spinner size="large" />
-                <Text size={400} weight="medium">Loading models...</Text>
-                <Text size={300}>Please wait while we fetch available models</Text>
+                <Text size={400} weight="medium">{t('Loading models...')}</Text>
+                <Text size={300}>{t('Please wait while we fetch available models')}</Text>
               </div>
             ) : modelsError && allModels.length === 0 ? (
               <div className="empty-state-modern error">
                 <Package size={48} strokeWidth={1.5} style={{ opacity: 0.5 }} />
                 <Text size={400} weight="semibold" style={{ color: 'var(--colorPaletteRedForeground1)' }}>
-                  Error loading models
+                  {t('Error loading models')}
                 </Text>
                 <Text size={300}>{modelsError}</Text>
                 <Button
@@ -174,7 +176,7 @@ const SettingsDialogModelsTab = ({
                   onClick={onRefreshModels}
                   style={{ marginTop: '12px' }}
                 >
-                  Retry
+                  {t('Retry')}
                 </Button>
               </div>
             ) : sortedModelsData.type === 'grouped' ? (
@@ -202,11 +204,11 @@ const SettingsDialogModelsTab = ({
                             size="small"
                             color={selectedCount > 0 ? 'brand' : 'subtle'}
                           >
-                            {models.length} {models.length === 1 ? 'model' : 'models'}
+                            {models.length} {models.length === 1 ? t('model') : t('models')}
                           </Badge>
                           {selectedCount > 0 && (
                             <Badge appearance="filled" size="small" color="success">
-                              {selectedCount} selected
+                              {selectedCount} {t('selected')}
                             </Badge>
                           )}
                         </div>
@@ -237,7 +239,7 @@ const SettingsDialogModelsTab = ({
                                           color="success"
                                           icon={<Sparkles size={12} />}
                                         >
-                                          Free
+                                          {t('Free')}
                                         </Badge>
                                       )}
                                     </div>
@@ -248,14 +250,14 @@ const SettingsDialogModelsTab = ({
                                   <div className="model-action">
                                     {isSelected ? (
                                       <Badge appearance="filled" size="small" color="brand">
-                                        Selected
+                                        {t('Selected')}
                                       </Badge>
                                     ) : (
                                       <Button
                                         appearance="subtle"
                                         size="small"
                                       >
-                                        Add
+                                        {t('Add')}
                                       </Button>
                                     )}
                                   </div>
@@ -301,7 +303,7 @@ const SettingsDialogModelsTab = ({
                                 color="success"
                                 icon={<Sparkles size={12} />}
                               >
-                                Free
+                                {t('Free')}
                               </Badge>
                             )}
                           </div>
@@ -312,14 +314,14 @@ const SettingsDialogModelsTab = ({
                         <div className="model-action">
                           {isSelected ? (
                             <Badge appearance="filled" size="small" color="brand">
-                              Selected
+                              {t('Selected')}
                             </Badge>
                           ) : (
                             <Button
                               appearance="subtle"
                               size="small"
                             >
-                              Add
+                              {t('Add')}
                             </Button>
                           )}
                         </div>
@@ -341,7 +343,7 @@ const SettingsDialogModelsTab = ({
           <div className="models-pane-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <CheckSquare size={20} strokeWidth={2} />
-              <Text size={500} weight="semibold">Selected Models</Text>
+              <Text size={500} weight="semibold">{t('Selected Models')}</Text>
               <Badge appearance="filled" size="medium" color="brand">
                 {selectedModelIds.size}
               </Badge>
@@ -352,7 +354,7 @@ const SettingsDialogModelsTab = ({
               onClick={onDeselectAllModels}
               disabled={selectedModelIds.size === 0}
             >
-              Deselect All
+              {t('Deselect All')}
             </Button>
           </div>
 
@@ -384,7 +386,7 @@ const SettingsDialogModelsTab = ({
                               color="success"
                               icon={<Sparkles size={12} />}
                             >
-                              Free
+                              {t('Free')}
                             </Badge>
                           )}
                         </div>
@@ -401,7 +403,7 @@ const SettingsDialogModelsTab = ({
                           size="small"
                           icon={<DismissRegular />}
                           onClick={() => onToggleModelSelection(modelId)}
-                          aria-label="Remove model"
+                          aria-label={t('Remove model')}
                         />
                       )}
                     </div>

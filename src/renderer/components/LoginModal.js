@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Input, Label } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
@@ -54,6 +55,7 @@ const useStyles = makeStyles({
 
 const LoginModal = ({ onSuccess, sessionExpired = false }) => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -65,7 +67,7 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
     try {
       await onSuccess(password);
     } catch (err) {
-      setError(err.message || "Login failed");
+      setError(err.message || t("Login failed"));
     } finally {
       setLoading(false);
     }
@@ -74,10 +76,10 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2 className={styles.title}>{sessionExpired ? "Session expired" : "Log in"}</h2>
+        <h2 className={styles.title}>{sessionExpired ? t("Session expired") : t("Log in")}</h2>
         {sessionExpired && (
           <p style={{ margin: "0 0 16px 0", fontSize: "14px", color: "var(--colorNeutralForeground2, #605e5c)" }}>
-            Your session has expired. Please log in again.
+            {t("Your session has expired. Please log in again.")}
           </p>
         )}
         <form
@@ -98,14 +100,14 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
             aria-hidden
           />
           <div className={styles.field}>
-            <Label htmlFor="login-password">Password</Label>
+            <Label htmlFor="login-password">{t("Password")}</Label>
             <Input
               id="login-password"
               name="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={t("Password")}
               autoComplete="current-password"
               autoFocus
               disabled={loading}
@@ -115,7 +117,7 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
           {error && <div className={styles.error}>{error}</div>}
           <div className={styles.actions}>
             <Button type="submit" appearance="primary" disabled={loading}>
-              {loading ? "Logging in…" : "Log in"}
+              {loading ? t("Logging in…") : t("Log in")}
             </Button>
           </div>
         </form>

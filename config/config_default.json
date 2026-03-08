@@ -9,7 +9,7 @@
         "z-ai/glm-4.5-air:free"
     ],
     "available_languages": [
-        "Brazilian Portuguese",
+        "Portuguese (BR)",
         "English (UK)",
         "Spanish (ES)"
     ],
@@ -24,6 +24,7 @@
     "input_text_color": "#FFFFFF",
     "output_text_color": "#FFFFFF",
     "theme": "System",
+    "ui_locale": "en-GB",
     "cost_fraction_style": "muted",
     "total_cost": 0,
     "web_session_timeout": 604800,

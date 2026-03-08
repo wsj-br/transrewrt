@@ -3,10 +3,10 @@ import configManager from "../utils/configManager";
 import apiService from "../services/apiService";
 import webAPI from "../utils/webApiClient";
 import * as sessionExpiredHandler from "../utils/sessionExpiredHandler";
-import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
-import { FREE_MODEL_ID } from "../constants";
+import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
 import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
+import i18n, { loadLocale } from "../i18n";
 
 // Create the context
 const AppContext = createContext();
@@ -19,7 +19,7 @@ export const AppProvider = ({ children }) => {
   const [availableModels, setAvailableModels] = useState(
     configManager.get("available_models") || [],
   );
-  const [languages, setLanguages] = useState(
+  const [languages, setLanguages] = useState(() =>
     configManager.get("available_languages") || [],
   );
   const [loading, setLoading] = useState(false);
@@ -42,10 +42,7 @@ export const AppProvider = ({ children }) => {
 
   // Watch for changes in settings.available_languages and update languages state
   useEffect(() => {
-    const currentLangs = settings.available_languages || [];
-    // Always update to ensure we have the latest from settings
-    // Create a new array reference to trigger re-renders
-    setLanguages([...currentLangs]);
+    setLanguages(settings.available_languages || []);
   }, [settings.available_languages]);
 
   // Watch for changes in settings.available_models and update availableModels state
@@ -65,15 +62,13 @@ export const AppProvider = ({ children }) => {
           currentSettings.api_url || "https://openrouter.ai/api/v1",
         );
 
-        const currentLangs = configManager.get("available_languages");
-        if (currentLangs && currentLangs.length > 0) {
-          setLanguages(currentLangs);
+        const rawLangs = configManager.get("available_languages");
+        if (rawLangs && rawLangs.length > 0) {
+          setLanguages(rawLangs);
         } else {
-          const loadedLanguages = ALL_AVAILABLE_LANGUAGES;
-          if (loadedLanguages && loadedLanguages.length > 0) {
-            setLanguages(loadedLanguages);
-            configManager.set("available_languages", loadedLanguages);
-          }
+          const loadedLanguages = UI_LANGUAGES.map((l) => l.englishName);
+          setLanguages(loadedLanguages);
+          configManager.set("available_languages", loadedLanguages);
         }
 
         setSettings(configManager.getAll());
@@ -88,6 +83,9 @@ export const AppProvider = ({ children }) => {
       try {
         await configManager.loadConfig();
         loadLanguages();
+        const uiLocale = configManager.get("ui_locale") || "en-GB";
+        await loadLocale(uiLocale);
+        i18n.changeLanguage(uiLocale);
         const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
         if (isWeb && webAPI.getApiStatus) {
           const status = await webAPI.getApiStatus();
@@ -112,13 +110,17 @@ export const AppProvider = ({ children }) => {
     let settingsCallback = null;
     if (window.electronAPI && window.electronAPI.onSettingsUpdated) {
       settingsCallback = () => {
-        configManager.loadConfig().then(() => {
+        configManager.loadConfig().then(async () => {
           setSettings(configManager.getAll());
           setAvailableModels(configManager.get("available_models") || []);
-          setLanguages(configManager.get("available_languages") || []);
+          const rawLangs = configManager.get("available_languages") || [];
+          setLanguages(rawLangs);
           apiService.setBaseUrl(
             configManager.get("api_url") || "https://openrouter.ai/api/v1",
           );
+          const uiLocale = configManager.get("ui_locale") || "en-GB";
+          await loadLocale(uiLocale);
+          i18n.changeLanguage(uiLocale);
         });
       };
       window.electronAPI.onSettingsUpdated(settingsCallback);

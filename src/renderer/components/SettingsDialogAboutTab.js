@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Link } from "@fluentui/react-components";
 
 import LogoImage from "../../../images/transrewrt_logo.svg";
@@ -89,6 +90,7 @@ const useStyles = makeStyles({
 
 const SettingsDialogAboutTab = () => {
   const styles = useStyles();
+  const { t } = useTranslation();
   const [buildTimestamp, setBuildTimestamp] = useState(buildTimestampCache);
 
   useEffect(() => {
@@ -118,20 +120,20 @@ const SettingsDialogAboutTab = () => {
       />
       <h3 className={styles.name}>{APP_NAME}</h3>
       <div className={styles.versionContainer}>
-        <span className={styles.version}>Version {APP_VERSION}</span>
-        {buildTimestamp ? <span className={styles.build}>Build {buildTimestamp}</span> : null}
+        <span className={styles.version}>{t("Version")} {APP_VERSION}</span>
+        {buildTimestamp ? <span className={styles.build}>{t("Build")} {buildTimestamp}</span> : null}
       </div>
-      <p className={styles.description}>{APP_DESCRIPTION}</p>
+      <p className={styles.description}>{t(APP_DESCRIPTION)}</p>
       <div className={styles.meta}>
-        {APP_AUTHOR && <span style={{ fontWeight: 600 }}>Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
+        {APP_AUTHOR && <span style={{ fontWeight: 600 }}>{t("Copyright")} © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
         <br />
-        {APP_LICENSE && <span> Licensed under {APP_LICENSE}.</span>}
-        <span> All rights reserved.</span>
+        {APP_LICENSE && <span> {t("Licensed under")} {APP_LICENSE}.</span>}
+        <span> {t("All rights reserved.")}</span>
         <br />
         <br />
-        <i>Product names and icons belong to their respective owners and are used for identification purposes only. </i>
+        <i>{t("Product names and icons belong to their respective owners and are used for identification purposes only.")}</i>
         <br />
-        <i>This software is not affiliated with or endorsed by any of the mentioned brands.</i>
+        <i>{t("This software is not affiliated with or endorsed by any of the mentioned brands.")}</i>
       </div>
       <Link
         href={REPO_URL}

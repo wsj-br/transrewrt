@@ -200,6 +200,7 @@ const STATE_KEYS = [
   "app_mode",
   "rewrite_style",
   "web_session",
+  "all_calls_page_size",
 ];
 
 const DEFAULT_STATE = {
@@ -210,6 +211,7 @@ const DEFAULT_STATE = {
   app_mode: "translate",
   rewrite_style: "Check Spelling & Grammar",
   web_session: "",
+  all_calls_page_size: 50,
 };
 
 function isStateKey(key) {
@@ -486,6 +488,7 @@ const createWindow = () => {
     height: savedState ? savedState.height : 840,
     minWidth: 1220,
     minHeight: 840,
+    backgroundColor: "#1a1a1a",
     icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -585,6 +588,7 @@ const createSettingsWindow = () => {
     y: savedState ? savedState.y : undefined,
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
+    backgroundColor: "#1a1a1a",
     icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -772,6 +776,59 @@ function getBuildTimestamp() {
 ipcMain.handle("get-build-timestamp", () =>
   Promise.resolve(getBuildTimestamp()),
 );
+
+// Rolling key for Transrewrt proxy (must match renderer utils/transrewrtProxyKey.js)
+const PROXY_WINDOW_SECONDS = 30;
+function getRollingKeyForProxy(keySeed) {
+  if (!keySeed || typeof keySeed !== "string") return "";
+  const timeWindow = Math.floor(Date.now() / 1000 / PROXY_WINDOW_SECONDS);
+  const hmac = crypto.createHmac("sha256", keySeed).update(String(timeWindow)).digest("base64");
+  const base64url = hmac.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return base64url.substring(0, 16);
+}
+
+// OpenRouter key usage (same as server GET /api/key) – main process fetches so API key stays in main
+ipcMain.handle("getOpenRouterKeyInfo", async () => {
+  const apiKey = (configCache.api_key || "").trim();
+  if (!apiKey) {
+    throw new Error("API key not set");
+  }
+  const apiUrl = (configCache.api_url || "").trim().replace(/\/+$/, "");
+  const keySeed = (configCache.key_seed || "").trim();
+  const looksLikeProxy =
+    apiUrl.length > 0 && !apiUrl.includes("openrouter.ai");
+  const useProxy = looksLikeProxy && keySeed.length > 0;
+
+  let keyUrl;
+  if (useProxy) {
+    const rollingKey = getRollingKeyForProxy(keySeed);
+    keyUrl = `${apiUrl}/${rollingKey}/api/v1/key?_=${Date.now()}`;
+  } else if (looksLikeProxy) {
+    throw new Error("Key seed is required when using the Transrewrt proxy for API key usage.");
+  } else {
+    const baseUrl = apiUrl || "https://openrouter.ai/api/v1";
+    if (!baseUrl.includes("openrouter.ai")) {
+      throw new Error("Key info is only available for OpenRouter API.");
+    }
+    keyUrl = `${baseUrl}/key?_=${Date.now()}`;
+  }
+
+  try {
+    const res = await fetch(keyUrl, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${apiKey}` },
+      cache: "no-store",
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data.error || `HTTP ${res.status}`);
+    }
+    return data;
+  } catch (err) {
+    console.error("[IPC] getOpenRouterKeyInfo failed:", err.message);
+    throw err;
+  }
+});
 
 ipcMain.on("open-settings", () => {
   createSettingsWindow();

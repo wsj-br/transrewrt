@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { mergeClasses } from "@fluentui/react-components";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
@@ -13,14 +14,35 @@ import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
-import { ALL_AVAILABLE_LANGUAGES } from "../utils/languageConstants";
+import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from "../utils/languageConstants";
 import { formatElapsedMmSs, formatCostDisplay, getInputStats, getOutputStats } from "../utils/formatUtils";
 import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
 import "../styles/main.css";
 
+// Inline logo SVG for loading screen so it appears immediately (no image load flash)
+const LoadingLogoSvg = ({ className }) => (
+  <svg viewBox="0 0 198.76 127.81" xmlns="http://www.w3.org/2000/svg" aria-hidden className={className}>
+    <defs>
+      <linearGradient id="loading-lg17" x1="10.58" y1="231.9" x2="96.62" y2="299.12" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,16.37,-84.3)"><stop stopColor="#00ff00" stopOpacity=".5" offset=".18"/><stop stopColor="#63e684" stopOpacity="1" offset=".88"/></linearGradient>
+      <linearGradient id="loading-lg19" x1="76.62" y1="265.27" x2="185.8" y2="265.27" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,23.25,-84.3)"><stop stopColor="#f2ab38" stopOpacity=".5" offset="0"/><stop stopColor="#ed7139" stopOpacity="1" offset="1"/></linearGradient>
+      <linearGradient id="loading-lg24" x1="34.81" y1="256.57" x2="74.27" y2="256.57" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,16.37,-84.3)"><stop stopColor="#29ff11" offset="0"/><stop stopColor="#7cff77" offset="1"/></linearGradient>
+      <linearGradient id="loading-lg26" x1="158.12" y1="256.19" x2="110.91" y2="256.19" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.93,0,0,.93,23.25,-84.3)"><stop stopColor="#f2ab38" offset="0"/><stop stopColor="#96360c" offset="1"/></linearGradient>
+    </defs>
+    <g transform="translate(-6.72,-102.81)">
+      <g transform="matrix(1.1,0,0,1.08,-10.3,-9.25)">
+        <path fill="url(#loading-lg17)" d="m 66.17,103.55 a 50.72,49.19 0 0 0 -50.72,49.19 50.72,49.19 0 0 0 15.74,35.62 l .34,13.46 .48,19.37 13.09,-10.47 11.99,-9.59 a 50.72,49.19 0 0 0 9.08,.8 50.72,49.19 0 0 0 50.72,-49.19 50.72,49.19 0 0 0 -50.72,-49.19 z m 0,21 a 28.19,28.19 0 0 1 28.19,28.19 28.19,28.19 0 0 1 -28.19,28.19 28.19,28.19 0 0 1 -28.19,-28.19 28.19,28.19 0 0 1 28.19,-28.19 z"/>
+        <path fill="url(#loading-lg19)" d="m 145.15,103.34 a 50.72,49.19 0 0 1 50.72,49.19 50.72,49.19 0 0 1 -15.74,35.62 l -.34,13.46 -.48,19.37 -13.09,-10.47 -11.99,-9.59 a 50.72,49.19 0 0 1 -9.08,.8 50.72,49.19 0 0 1 -50.72,-49.19 50.72,49.19 0 0 1 50.72,-49.19 z m 0,21 a 28.19,28.19 0 0 0 -28.19,28.19 28.19,28.19 0 0 0 28.19,28.19 28.19,28.19 0 0 0 28.19,-28.19 28.19,28.19 0 0 0 -28.19,-28.19 z"/>
+        <path fill="url(#loading-lg24)" d="m 67.39,137.95 v 9.46 H 48.71 v 13.11 h 18.68 v 9.68 l 8.99,-8.06 8.99,-8.06 -8.99,-8.06 z"/>
+        <path fill="url(#loading-lg26)" d="m 162.98,135.61 -21.17,20.81 -7.28,-7.17 -8.23,7.31 7.68,7.56 7.83,7.71 7.84,-7.7 20.52,-20.17 z"/>
+      </g>
+    </g>
+  </svg>
+);
+
 const App = () => {
   const styles = useAppStyles();
+  const { t } = useTranslation();
   const { settings, translate, rewrite, transform, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading, setError } =
     useAppContext();
 
@@ -35,7 +57,18 @@ const App = () => {
   const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
   const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
   const electronApiKeyMissing = !isWeb && (!settings?.api_key || String(settings?.api_key).trim() === "");
-  const showApiKeyModal = !apiKeyWarningDismissed && (apiKeyProblem || electronApiKeyMissing);
+  // Only show modal after initial load has settled (avoids flash when API key is already configured)
+  const [apiKeyModalReady, setApiKeyModalReady] = useState(false);
+  useEffect(() => {
+    if (!configLoading) {
+      const id = requestAnimationFrame(() => setApiKeyModalReady(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [configLoading]);
+  const showApiKeyModal =
+    apiKeyModalReady &&
+    !apiKeyWarningDismissed &&
+    (apiKeyProblem || electronApiKeyMissing);
 
   // Language selection states
   const [sourceLanguage, setSourceLanguage] = useState(() => settings.source_language || "Detect Language");
@@ -170,9 +203,8 @@ const App = () => {
     }
   }, [rewriteStyle, configLoaded]);
 
-  // Mark config as loaded after initial render
+  // Mark config as loaded after we have settings (used for persist effects and API key modal gating)
   useEffect(() => {
-    // Check if we have meaningful settings (config has been loaded)
     if (settings && Object.keys(settings).length > 0) {
       setConfigLoaded(true);
     }
@@ -280,112 +312,135 @@ const App = () => {
   const allLanguages = useMemo(() => {
     const selectedSet = new Set(languages);
     const customLangs = Array.from(selectedSet).filter(
-      lang => !ALL_AVAILABLE_LANGUAGES.includes(lang)
+      (lang) => !isPredefinedContentLanguage(lang),
     );
-    return [...ALL_AVAILABLE_LANGUAGES, ...customLangs].sort((a, b) => a.localeCompare(b));
+    return [...ALL_CONTENT_LANGUAGE_NAMES, ...customLangs].sort((a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+    );
   }, [languages]);
 
   const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${formatElapsedMmSs(elapsedTime)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
 
+  const common = {
+    t,
+    styles,
+    settings,
+    isProcessing,
+    processingModeRef,
+    handleRunAction,
+    lastRunModel,
+    outputMeta,
+  };
+
   const { leftPanel, rightPanel } =
     currentMode === "translate"
       ? getTranslatePanels({
-          styles,
-          sourceLanguage,
-          setSourceLanguage,
-          targetLanguage,
-          setTargetLanguage,
-          languages,
-          allLanguages,
-          inputText,
-          setInputText,
-          outputText,
-          setOutputTextTranslate,
-          inputStats,
-          outputStats,
-          clearInput,
-          copyOutput,
-          pasteToInput,
-          handlePasteEvent,
-          settings,
-          handleRunAction,
-          isProcessing,
-          processingModeRef,
-          outputMeta,
-          lastRunModel,
+          common,
+          input: {
+            text: inputText,
+            setText: setInputText,
+            getStats: inputStats,
+            clear: clearInput,
+            pasteToInput,
+            handlePasteEvent,
+          },
+          output: {
+            text: outputText,
+            setText: setOutputTextTranslate,
+            getStats: outputStats,
+            copy: copyOutput,
+          },
+          options: {
+            sourceLanguage,
+            setSourceLanguage,
+            targetLanguage,
+            setTargetLanguage,
+            languages,
+            allLanguages,
+          },
         })
       : currentMode === "rewrite"
         ? getRewritePanels({
-            styles,
-            rewriteStyle,
-            setRewriteStyle,
-            inputText,
-            setInputText,
-            outputText,
-            setOutputTextRewrite,
-            inputStats,
-            outputStats,
-            clearInput,
-            copyOutput,
-            pasteToInput,
-            handlePasteEvent,
-            settings,
-            handleRunAction,
-            isProcessing,
-            processingModeRef,
-            outputMeta,
-            lastRunModel,
+            common,
+            input: {
+              text: inputText,
+              setText: setInputText,
+              getStats: inputStats,
+              clear: clearInput,
+              pasteToInput,
+              handlePasteEvent,
+            },
+            output: {
+              text: outputText,
+              setText: setOutputTextRewrite,
+              getStats: outputStats,
+              copy: copyOutput,
+            },
+            options: {
+              rewriteStyle,
+              setRewriteStyle,
+            },
           })
         : getTransformPanels({
-            styles,
-            transformEditMode,
-            editingPrompt,
-            transformPrompts,
-            transformPromptId,
-            selectedTransformPrompt,
-            showTransformLangSelector,
-            transformTargetLang,
-            setTransformTargetLang,
-            languages,
-            allLanguages,
-            inputTextTransform,
-            setInputTextTransform,
-            outputTextTransform,
-            setOutputTextTransform,
-            handleTransformPromptSelect,
-            handleTransformNewPrompt,
-            handleTransformEditPrompt,
-            handleTransformDuplicate,
-            handleOpenExportImportPrompts,
-            handleTransformSave,
-            handleTransformDeleteRequest,
-            handleTransformBackToRun,
-            setTransformEditorDraft,
-            transformTestInput,
-            setTransformTestInput,
-            handleTransformTest,
-            transformTestOutput,
-            transformTestMeta,
-            transformTestRunning,
-            clearInput,
-            pasteToInput,
-            handlePasteEvent,
-            settings,
-            handleRunAction,
-            isProcessing,
-            setShowLoadSampleConfirm,
-            loadSampleLoading,
-            outputMeta,
-            lastRunModel,
+            common,
+            input: {
+              text: inputTextTransform,
+              setText: setInputTextTransform,
+              getStats: () => getInputStats(inputTextTransform),
+              clear: clearInput,
+              pasteToInput,
+              handlePasteEvent,
+            },
+            output: {
+              text: outputTextTransform,
+              setText: setOutputTextTransform,
+              getStats: () => getOutputStats(outputTextTransform),
+              copy: () => navigator.clipboard.writeText(outputTextTransform),
+            },
+            options: {
+              transformEditMode,
+              editingPrompt,
+              transformPrompts,
+              transformPromptId,
+              selectedTransformPrompt,
+              showTransformLangSelector,
+              transformTargetLang,
+              setTransformTargetLang,
+              languages,
+              allLanguages,
+              handleTransformPromptSelect,
+              handleTransformNewPrompt,
+              handleTransformEditPrompt,
+              handleTransformDuplicate,
+              handleOpenExportImportPrompts,
+              handleTransformSave,
+              handleTransformDeleteRequest,
+              handleTransformBackToRun,
+              setTransformEditorDraft,
+              transformTestInput,
+              setTransformTestInput,
+              handleTransformTest,
+              transformTestOutput,
+              transformTestMeta,
+              transformTestRunning,
+              setShowLoadSampleConfirm,
+              loadSampleLoading,
+            },
           });
 
   if (configLoading) {
+    const loadingContent = (
+      <div className={styles.loadingScreen}>
+        <LoadingLogoSvg className={styles.loadingScreenLogo} />
+        <span className={styles.loadingScreenText}>{t("Loading…")}</span>
+      </div>
+    );
     if (isWeb) {
       return (
         <div id="root" className={styles.webOuterNoMargin} data-web-outer>
           <div className={styles.webFrameSquare}>
             <div className={styles.loadingWebInner}>
-              <span>Loading settings…</span>
+              {loadingContent}
             </div>
           </div>
         </div>
@@ -393,7 +448,7 @@ const App = () => {
     }
     return (
       <div id="root" className={mergeClasses(styles.root, styles.loadingRoot)}>
-        <span>Loading settings…</span>
+        {loadingContent}
       </div>
     );
   }
@@ -449,10 +504,10 @@ const App = () => {
         </div>
         {transformPromptToDelete != null && (
           <ConfirmModal
-            title="Delete prompt"
-            message={`Delete the prompt "${transformPromptToDelete.name || "Untitled"}"? This cannot be undone.`}
-            confirmLabel="Delete"
-            cancelLabel="Cancel"
+            title={t("Delete prompt")}
+            message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+            confirmLabel={t("Delete")}
+            cancelLabel={t("Cancel")}
             onConfirm={handleConfirmTransformDelete}
             onCancel={() => setTransformPromptToDelete(null)}
             danger
@@ -460,10 +515,10 @@ const App = () => {
         )}
         {showLoadSampleConfirm && (
           <ConfirmModal
-            title="Load sample prompts"
-            message="Import the sample prompts from the app config?"
-            confirmLabel="Load"
-            cancelLabel="Cancel"
+            title={t("Load sample prompts")}
+            message={t("Import the sample prompts from the app config?")}
+            confirmLabel={t("Load")}
+            cancelLabel={t("Cancel")}
             onConfirm={handleConfirmLoadSamplePrompts}
             onCancel={() => setShowLoadSampleConfirm(false)}
           />
@@ -508,20 +563,20 @@ const App = () => {
       </div>
       {transformPromptToDelete != null && (
         <ConfirmModal
-          title="Delete prompt"
-          message={`Delete the prompt "${transformPromptToDelete.name || "Untitled"}"? This cannot be undone.`}
-          confirmLabel="Delete"
-          cancelLabel="Cancel"
+          title={t("Delete prompt")}
+          message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+          confirmLabel={t("Delete")}
+          cancelLabel={t("Cancel")}
           onConfirm={handleConfirmTransformDelete}
           onCancel={() => setTransformPromptToDelete(null)}
         />
       )}
       {showLoadSampleConfirm && (
         <ConfirmModal
-          title="Load sample prompts"
-          message="Import the sample prompts from the app config?"
-          confirmLabel="Load"
-          cancelLabel="Cancel"
+          title={t("Load sample prompts")}
+          message={t("Import the sample prompts from the app config?")}
+          confirmLabel={t("Load")}
+          cancelLabel={t("Cancel")}
           onConfirm={handleConfirmLoadSamplePrompts}
           onCancel={() => setShowLoadSampleConfirm(false)}
         />
