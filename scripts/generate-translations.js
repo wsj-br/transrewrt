@@ -14,7 +14,7 @@
  *   --dry-run, -d        Show what would be translated; no API calls or file writes.
  *   --show-strings, -s  List the source strings that need translation (key + text) per language.
  *   --retranslate, -r    Retranslate all strings (ignore existing translations).
- *   --model, -m <name>   OpenRouter model to use (default: anthropic/claude-opus-4.6).
+ *   --model, -m <name>   OpenRouter model to use (default: anthropic/claude-sonnet-4.6).
  */
 
 const fs = require("fs");
@@ -37,7 +37,7 @@ Options:
   --dry-run, -d           Show what would be translated per language; do not call API or write files.
   --show-strings, -s      List source strings that need translation (key + text) per language.
   --retranslate, -r       Retranslate all strings (ignore existing translations).
-  --model, -m <name>      OpenRouter model to use (default: anthropic/claude-opus-4.6).
+  --model, -m <name>      OpenRouter model to use (default: anthropic/claude-sonnet-4.6).
   --max-tokens, -t <n>    Max tokens for completion (default: 32768).
 
 Examples:
@@ -58,7 +58,7 @@ function parseArgs() {
   let retranslate = false;
   let dryRun = false;
   let showStrings = false;
-  let model = "anthropic/claude-opus-4.6";
+  let model = "anthropic/claude-sonnet-4.6";
   let maxTokens = DEFAULT_MAX_TOKENS;
   let help = false;
   for (let i = 0; i < args.length; i++) {
