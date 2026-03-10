@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, TabList, Tab, Label } from "@fluentui/react-components";
+import { Button, TabList, Tab, Label, Dropdown, Option } from "@fluentui/react-components";
 import { getCostApi, getFilterRange, getFilters } from "../utils/misc/costUtils";
 import { useAppContext } from "../contexts/AppContext";
 import { interpolateTemplate } from "../utils/misc/formatUtils";
@@ -11,17 +11,23 @@ import DashboardTabByUsage from "./DashboardTabByUsage";
 import DashboardTabByModel from "./DashboardTabByModel";
 import DashboardTabByDay from "./DashboardTabByDay";
 import DashboardTabAllCalls from "./DashboardTabAllCalls";
+import webAPI from "../utils/api/webApiClient";
 
 const PAGE_SIZES = [10, 20, 50, 100];
+const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const DashboardPage = () => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const { settings, setSetting } = useAppContext();
+  const { settings, setSetting, currentUser } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
   const [selectedTab, setSelectedTab] = useState("summary");
   const [filter, setFilter] = useState("all");
+  const [userFilter, setUserFilter] = useState("");
+  const [userList, setUserList] = useState([]);
+  const isAdmin = currentUser?.role === "admin";
+  const dashboardUsername = isWeb && !isAdmin ? (currentUser?.username || null) : (userFilter || null);
   const [byFunction, setByFunction] = useState([]);
   const [byModel, setByModel] = useState([]);
   const [byDay, setByDay] = useState([]);
@@ -50,25 +56,32 @@ const DashboardPage = () => {
 
   const costApi = getCostApi();
 
+  useEffect(() => {
+    if (!isWeb || !isAdmin || !webAPI.getUsers) return;
+    webAPI.getUsers().then((list) => setUserList(Array.isArray(list) ? list : [])).catch(() => setUserList([]));
+  }, [isWeb, isAdmin]);
+
   /** Maps API function key (translate/rewrite/transform) to translated label for charts/tooltips. */
   const getUsageTypeLabel = (fn) => {
     if (fn === "translate") return t("Translation");
     if (fn === "rewrite") return t("Rewrite");
     if (fn === "transform") return t("Transform");
+    if (fn === "translate-prompt") return t("Translate prompt");
     return fn ?? "";
   };
 
   const loadSummaries = useCallback(() => {
     if (!costApi.getSummaryByFunction) return;
     const { from, to } = getFilterRange(filter);
+    const username = dashboardUsername || undefined;
     setLoading(true);
-    const targetLangPromise = costApi.getSummaryByTargetLang ? costApi.getSummaryByTargetLang(from, to) : Promise.resolve([]);
-    const rewriteStylePromise = costApi.getSummaryByRewriteStyle ? costApi.getSummaryByRewriteStyle(from, to) : Promise.resolve([]);
-    const transformPromptPromise = costApi.getSummaryByTransformPrompt ? costApi.getSummaryByTransformPrompt(from, to) : Promise.resolve([]);
+    const targetLangPromise = costApi.getSummaryByTargetLang ? costApi.getSummaryByTargetLang(from, to, username) : Promise.resolve([]);
+    const rewriteStylePromise = costApi.getSummaryByRewriteStyle ? costApi.getSummaryByRewriteStyle(from, to, username) : Promise.resolve([]);
+    const transformPromptPromise = costApi.getSummaryByTransformPrompt ? costApi.getSummaryByTransformPrompt(from, to, username) : Promise.resolve([]);
     Promise.all([
-      costApi.getSummaryByFunction(from, to),
-      costApi.getSummaryByModel(from, to),
-      costApi.getSummaryByDay(from, to),
+      costApi.getSummaryByFunction(from, to, username),
+      costApi.getSummaryByModel(from, to, username),
+      costApi.getSummaryByDay(from, to, username),
       targetLangPromise,
       rewriteStylePromise,
       transformPromptPromise,
@@ -90,7 +103,7 @@ const DashboardPage = () => {
         setByTransformPrompt([]);
       })
       .finally(() => setLoading(false));
-  }, [filter, costApi]);
+  }, [filter, costApi, dashboardUsername]);
 
   useEffect(() => {
     loadSummaries();
@@ -99,11 +112,12 @@ const DashboardPage = () => {
   const loadAllCalls = useCallback(() => {
     if (!costApi.getAllCalls) return;
     const { from, to } = getFilterRange(filter);
+    const username = dashboardUsername || undefined;
     setAllCallsLoading(true);
     const api = costApi;
     const promise =
       typeof api.getAllCalls === "function"
-        ? api.getAllCalls(from, to, allCallsPage, allCallsPageSize)
+        ? api.getAllCalls(from, to, allCallsPage, allCallsPageSize, username)
         : Promise.resolve({ rows: [], total: 0 });
     promise
       .then((data) => {
@@ -115,7 +129,7 @@ const DashboardPage = () => {
         setAllCallsTotal(0);
       })
       .finally(() => setAllCallsLoading(false));
-  }, [filter, allCallsPage, allCallsPageSize, costApi]);
+  }, [filter, allCallsPage, allCallsPageSize, costApi, dashboardUsername]);
 
   useEffect(() => {
     if (selectedTab === "allcalls") {
@@ -126,11 +140,12 @@ const DashboardPage = () => {
   const loadByDayPaginated = useCallback(() => {
     if (!costApi.getSummaryByDayPaginated) return;
     const { from, to } = getFilterRange(filter);
+    const username = dashboardUsername || undefined;
     setByDayPaginatedLoading(true);
     const api = costApi;
     const promise =
       typeof api.getSummaryByDayPaginated === "function"
-        ? api.getSummaryByDayPaginated(from, to, byDayPage, byDayPageSize)
+        ? api.getSummaryByDayPaginated(from, to, byDayPage, byDayPageSize, username)
         : Promise.resolve({ rows: [], total: 0 });
     promise
       .then((data) => {
@@ -142,7 +157,7 @@ const DashboardPage = () => {
         setByDayPaginatedTotal(0);
       })
       .finally(() => setByDayPaginatedLoading(false));
-  }, [filter, byDayPage, byDayPageSize, costApi]);
+  }, [filter, byDayPage, byDayPageSize, costApi, dashboardUsername]);
 
   useEffect(() => {
     if (selectedTab === "byday") {
@@ -186,6 +201,24 @@ const DashboardPage = () => {
             {f.label}
           </Button>
         ))}
+        {isWeb && isAdmin && userList.length > 0 && (
+          <>
+            <Label style={{ marginLeft: "16px", marginRight: "8px" }}>{t("User")}</Label>
+            <Dropdown
+              value={userFilter === "" ? t("All users") : userFilter}
+              selectedOptions={[userFilter]}
+              onOptionSelect={(_, data) => setUserFilter(data.optionValue ?? "")}
+              style={{ minWidth: "140px" }}
+            >
+              <Option value="">{t("All users")}</Option>
+              {userList.map((u) => (
+                <Option key={u.id} value={u.username || ""}>
+                  {u.username}
+                </Option>
+              ))}
+            </Dropdown>
+          </>
+        )}
       </div>
 
       <TabList

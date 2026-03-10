@@ -48,13 +48,13 @@ COPY src/shared/ ./shared/
 # Copy config for initialization
 COPY config/ ./config/
 
-# Password reset script (run via: docker exec <container> reset-web-password "<new-password>")
-COPY scripts/reset-web-password.js ./scripts/
-COPY scripts/reset-web-password.sh ./reset-web-password
-RUN chmod +x /app/reset-web-password
-
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
+
+# Admin password reset: reset-web-password '<new-password>' or node scripts/reset-web-password.js '<new-password>'
+COPY --from=builder /app/scripts/reset-web-password.js  ./scripts/
+COPY --from=builder --chmod=555 /app/reset-web-password ./reset-web-password
+
 
 # Build timestamp for About tab (same format as write-build-timestamp.js)
 RUN date +"%Y-%m-%dT%H:%M:%S%z" > build_timestamp

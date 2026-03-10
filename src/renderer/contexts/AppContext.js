@@ -28,6 +28,7 @@ export const AppProvider = ({ children }) => {
   const [needsLogin, setNeedsLogin] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   // Web mode: any 401 from API triggers login modal via this callback
   useEffect(() => {
@@ -87,9 +88,28 @@ export const AppProvider = ({ children }) => {
         await loadLocale(uiLocale);
         i18n.changeLanguage(uiLocale);
         const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-        if (isWeb && webAPI.getApiStatus) {
-          const status = await webAPI.getApiStatus();
-          setApiKeyStatus(status);
+        if (isWeb) {
+          if (webAPI.checkAuth) {
+            try {
+              const auth = await webAPI.checkAuth();
+              if (auth && auth.ok) {
+                setCurrentUser({
+                  username: auth.username,
+                  role: auth.role || "user",
+                  mustChangePassword: auth.mustChangePassword,
+                });
+              }
+            } catch (e) {
+              if (e && e.status === 401) {
+                setNeedsLogin(true);
+                setSessionExpired(true);
+              }
+            }
+          }
+          if (webAPI.getApiStatus) {
+            const status = await webAPI.getApiStatus();
+            setApiKeyStatus(status);
+          }
         }
       } catch (err) {
         if (err && err.status === 401) {
@@ -248,6 +268,7 @@ export const AppProvider = ({ children }) => {
           const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
+        username: currentUser?.username ?? null,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
@@ -264,6 +285,110 @@ export const AppProvider = ({ children }) => {
         return await handleUnavailableModel(model);
       }
       setError("Translation failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Translate prompt fields (JSON object in one request; same prompt style as generate-translations)
+  const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, model, signal);
+      if (result.error) return result;
+      result.model_used = result.model || model;
+      await applyCostToResult(setSetting, result);
+      await writeLastApiResult({
+        type: "translate-prompt",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+      logApiCall("translate-prompt", result, { target_lang: targetLang || "" });
+      const payload = {
+        timestamp: new Date().toISOString(),
+        type: "transform",
+        model: result.model_used || model,
+        target_lang: targetLang || null,
+        transform_prompt: "Translate prompt (button)",
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        username: currentUser?.username ?? null,
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(payload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(payload);
+      }
+      return result;
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
+      }
+      setError("Translation failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Improve prompt config (role, instructions, temperature) via model; returns improved JSON
+  const improvePromptConfig = async (configObject, model, signal = null) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await apiService.improvePromptConfigJson(configObject, model, signal);
+      if (result.error) return result;
+      result.model_used = result.model || model;
+      await applyCostToResult(setSetting, result);
+      await writeLastApiResult({
+        type: "improve-prompt-config",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+      logApiCall("improve-prompt-config", result, {});
+      const payload = {
+        timestamp: new Date().toISOString(),
+        type: "transform",
+        model: result.model_used || model,
+        target_lang: null,
+        transform_prompt: "Improve prompt (button)",
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        username: currentUser?.username ?? null,
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(payload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(payload);
+      }
+      return result;
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
+      }
+      setError("Improve prompt config failed");
       console.error(err);
       return { error: err.message };
     } finally {
@@ -310,6 +435,7 @@ export const AppProvider = ({ children }) => {
           const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
+        username: currentUser?.username ?? null,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
@@ -377,6 +503,7 @@ export const AppProvider = ({ children }) => {
           const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
+        username: currentUser?.username ?? null,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
@@ -400,24 +527,27 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const handleWebLogin = async (password) => {
+  const handleWebLogin = (userInfo) => {
     const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     if (!isWeb) return;
-    await webAPI.login(password);
+    setCurrentUser(userInfo);
     setNeedsLogin(false);
     setSessionExpired(false);
-    // So browser may offer to save password
+    setError(null);
     if (typeof window !== "undefined" && window.history?.replaceState) {
       window.history.replaceState(window.history.state, "", window.location.href);
     }
-    await configManager.loadConfig();
-    setSettings(configManager.getAll());
+    configManager.loadConfig().then(() => setSettings(configManager.getAll()));
+    if (webAPI.getApiStatus) {
+      webAPI.getApiStatus().then((status) => setApiKeyStatus(status));
+    }
   };
 
   const handleWebLogout = async () => {
     const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
     if (!isWeb) return;
     await webAPI.logout();
+    setCurrentUser(null);
     setNeedsLogin(true);
   };
 
@@ -498,6 +628,20 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Electron: set currentUser from OS username (no login in Electron)
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !window.electronAPI?.getOsUsername) return;
+    window.electronAPI.getOsUsername().then((name) => {
+      setCurrentUser({
+        username: name || "User",
+        role: "admin",
+        mustChangePassword: false,
+      });
+    }).catch(() => {
+      setCurrentUser({ username: "User", role: "admin", mustChangePassword: false });
+    });
+  }, []);
+
   const contextValue = {
     settings,
     models: availableModels,
@@ -511,12 +655,15 @@ export const AppProvider = ({ children }) => {
     needsLogin,
     setNeedsLogin,
     sessionExpired,
+    currentUser,
     handleWebLogin,
     handleWebLogout,
     apiKeyStatus,
     updateSettings,
     setSetting,
     translate,
+    translatePromptFields,
+    improvePromptConfig,
     rewrite,
     transform,
     fetchModels,

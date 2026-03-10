@@ -5,7 +5,7 @@ import { Languages } from 'lucide-react';
 import { UI_LANGUAGES } from '../constants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
-/** Internal value for "no target / model decides" (used when allowNone). Shown in UI as "No target language / model decides." */
+/** Internal value for "no target / model decides" (used when allowNone). Shown in UI as "No target language / model decides" */
 const AUTO_TARGET = "auto";
 
 /** Convert dropdown option value back to raw language name (for state). */
@@ -76,6 +76,7 @@ const LanguageSelector = ({
   allLanguages = [],
   detectLanguage = false,
   allowNone = false,
+  targetListSameAsSource = false,
   iconColor
 }) => {
   const styles = useStyles();
@@ -84,7 +85,21 @@ const LanguageSelector = ({
   const languageOptions = useMemo(() => {
     let options = [];
 
-    if (detectLanguage) {
+    if (targetListSameAsSource) {
+      const selectedSet = new Set(languages);
+      const selected = [...languages].sort((a, b) => a.localeCompare(b));
+      const remaining = (allLanguages || [])
+        .filter(lang => !selectedSet.has(lang))
+        .sort((a, b) => a.localeCompare(b));
+      options = [...selected];
+      if (remaining.length > 0) {
+        options.push('---');
+        options.push(...remaining);
+      }
+      if (allowNone) {
+        options = [AUTO_TARGET, ...options];
+      }
+    } else if (detectLanguage) {
       const selectedSet = new Set(languages);
       const selected = [...languages].sort((a, b) => a.localeCompare(b));
       const remaining = allLanguages
@@ -96,22 +111,24 @@ const LanguageSelector = ({
         options.push('---');
         options.push(...remaining);
       }
+      if (allowNone) {
+        options = [AUTO_TARGET, ...options];
+      }
     } else {
       options = [...languages].sort((a, b) => a.localeCompare(b));
-    }
-
-    if (allowNone) {
-      options = [AUTO_TARGET, ...options];
+      if (allowNone) {
+        options = [AUTO_TARGET, ...options];
+      }
     }
 
     return options;
-  }, [languages, allLanguages, detectLanguage, allowNone]);
+  }, [languages, allLanguages, detectLanguage, allowNone, targetListSameAsSource]);
 
   const isDetectLanguage = value === "Detect Language";
   const isAutoTarget = allowNone && (value === AUTO_TARGET || value === "" || value == null);
 
   const displayValue = useMemo(() => {
-    if (isAutoTarget) return t("No target language / model decides.");
+    if (isAutoTarget) return t("No target language / model decides");
     if (isDetectLanguage) return t("Detect Language");
     const entry = UI_LANGUAGES.find((e) => e.englishName === value);
     return entry ? getUILanguageLabel(entry, t) : value;
@@ -140,8 +157,8 @@ const LanguageSelector = ({
           aria-label={label}
         >
           {allowNone && (
-            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language / model decides.")}>
-              {t("No target language / model decides.")}
+            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language / model decides")}>
+              {t("No target language / model decides")}
             </Option>
           )}
           {languageOptions.map((lang, index) => {

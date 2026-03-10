@@ -1,13 +1,12 @@
 /**
  * Routes: POST /api/auth/login, change-password, logout; GET /api/auth/check.
  * Middleware: requireWebSession. Helper: setSessionRefreshCookie.
+ * Multi-user: login with username+password; sessions tied to users table.
  */
 
 const crypto = require("crypto");
 const express = require("express");
 const argon2 = require("argon2");
-
-const DEFAULT_WEB_PASSWORD = "transrewrt26";
 
 async function hashPassword(password) {
   return argon2.hash(password, {
@@ -44,12 +43,12 @@ function getClientIp(req) {
 
 /**
  * @param {function} getDb
- * @param {object} configFile - readConfig, writeConfig, loadState, saveState
+ * @param {object} configFile - readConfig, writeConfig (for web_session_timeout only)
  * @param {object} appDb - cleanupStalledSessions
  * @param {object} log
  */
 module.exports = function createAuth(getDb, configFile, appDb, log) {
-  const { readConfig, writeConfig } = configFile;
+  const { readConfig } = configFile;
   const { cleanupStalledSessions } = appDb;
 
   function setSessionRefreshCookie(req, res) {
@@ -91,7 +90,7 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
 
     cleanupStalledSessions();
     const now = Date.now();
-    const row = db.prepare("SELECT id, expires_at FROM sessions WHERE id = ?").get(sessionId);
+    const row = db.prepare("SELECT id, user_id, expires_at FROM sessions WHERE id = ?").get(sessionId);
     if (!row) {
       log.info("[AUTH] 401: session cookie does not match any active DB session");
       return res.status(401).json({ error: "Authentication required" });
@@ -106,7 +105,24 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
       return res.status(401).json({ error: "Authentication required" });
     }
 
-    req.authSession = { id: row.id, expiresAt: Number(row.expires_at) };
+    const user = db.prepare("SELECT id, username, role, must_change_password FROM users WHERE id = ?").get(row.user_id);
+    if (!user) {
+      db.prepare("DELETE FROM sessions WHERE id = ?").run(sessionId);
+      res.setHeader(
+        "Set-Cookie",
+        "transrewrt_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0",
+      );
+      return res.status(401).json({ error: "Authentication required" });
+    }
+
+    req.authSession = {
+      id: row.id,
+      userId: user.id,
+      username: user.username,
+      role: user.role,
+      mustChangePassword: !!user.must_change_password,
+      expiresAt: Number(row.expires_at),
+    };
     return next();
   }
 
@@ -114,42 +130,54 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
 
   router.post("/login", async (req, res) => {
     try {
-      const { password } = req.body || {};
-      const config = readConfig();
-      const storedHash = config.web_password_hash;
-      const valid = storedHash
-        ? await verifyPassword(password, storedHash)
-        : password === DEFAULT_WEB_PASSWORD;
-      if (!valid) {
-        return res.status(401).json({ error: "Invalid password" });
+      const { username, password } = req.body || {};
+      if (!username || typeof username !== "string" || !password || typeof password !== "string") {
+        return res.status(400).json({ error: "Username and password required" });
       }
-      const sessionId = crypto.randomBytes(24).toString("hex");
-      const maxAge = Math.max(3600, Number(config.web_session_timeout) || 604800);
-      const now = Date.now();
-      const ip = getClientIp(req);
-      cleanupStalledSessions(now);
+      const normalizedUsername = username.trim().toLowerCase();
+      if (!normalizedUsername) {
+        return res.status(400).json({ error: "Username required" });
+      }
+
       const db = getDb();
       if (!db) {
         return res.status(503).json({ error: "Database unavailable" });
       }
-      db.prepare(
-        `INSERT INTO sessions (id, created_at, last_seen_at, expires_at, last_ip)
-         VALUES (?, ?, ?, ?, ?)`,
-      ).run(sessionId, now, now, now + maxAge * 1000, ip || null);
-      if (!storedHash) {
-        const newConfig = {
-          ...config,
-          web_password_hash: await hashPassword(DEFAULT_WEB_PASSWORD),
-        };
-        writeConfig(newConfig);
+      const user = db.prepare(
+        "SELECT id, username, password_hash, role, must_change_password FROM users WHERE LOWER(username) = ?",
+      ).get(normalizedUsername);
+      if (!user) {
+        return res.status(401).json({ error: "Invalid username or password" });
       }
+      const valid = await verifyPassword(password, user.password_hash);
+      if (!valid) {
+        return res.status(401).json({ error: "Invalid username or password" });
+      }
+
+      const config = readConfig();
+      const maxAge = Math.max(3600, Number(config.web_session_timeout) || 604800);
+      const now = Date.now();
+      const ip = getClientIp(req);
+      cleanupStalledSessions(now);
+      const sessionId = crypto.randomBytes(24).toString("hex");
+      db.prepare(
+        `INSERT INTO sessions (id, user_id, created_at, last_seen_at, expires_at, last_ip)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+      ).run(sessionId, user.id, now, now, now + maxAge * 1000, ip || null);
+      db.prepare("UPDATE users SET last_login = ? WHERE id = ?").run(now, user.id);
+
       res
         .status(200)
         .setHeader(
           "Set-Cookie",
           `transrewrt_session=${sessionId}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
         )
-        .json({ success: true });
+        .json({
+          success: true,
+          username: user.username,
+          role: user.role,
+          mustChangePassword: !!user.must_change_password,
+        });
     } catch (err) {
       log.error("[API] POST /api/auth/login - Error: " + err.message, { stack: err.stack });
       res.status(500).json({ error: err.message });
@@ -159,19 +187,24 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
   router.post("/change-password", async (req, res) => {
     try {
       const { newPassword } = req.body || {};
-      if (
-        !newPassword ||
-        typeof newPassword !== "string" ||
-        newPassword.length < 1
-      ) {
+      if (!newPassword || typeof newPassword !== "string" || newPassword.length < 1) {
         return res.status(400).json({ error: "New password required" });
       }
-      const config = readConfig();
-      const newConfig = {
-        ...config,
-        web_password_hash: await hashPassword(newPassword),
-      };
-      writeConfig(newConfig);
+      const db = getDb();
+      if (!db) return res.status(503).json({ error: "Database unavailable" });
+      const session = req.authSession;
+      if (!session || !session.userId) {
+        return res.status(401).json({ error: "Authentication required" });
+      }
+      const user = db.prepare("SELECT id FROM users WHERE id = ?").get(session.userId);
+      if (!user) {
+        return res.status(401).json({ error: "User not found" });
+      }
+      const now = Date.now();
+      const passwordHash = await hashPassword(newPassword);
+      db.prepare(
+        "UPDATE users SET password_hash = ?, last_update = ?, must_change_password = 0 WHERE id = ?",
+      ).run(passwordHash, now, session.userId);
       res.json({ success: true });
     } catch (err) {
       log.error("[API] POST /api/auth/change-password - Error: " + err.message, { stack: err.stack });
@@ -201,7 +234,13 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
   });
 
   router.get("/check", (req, res) => {
-    res.json({ ok: true });
+    const session = req.authSession;
+    res.json({
+      ok: true,
+      username: session?.username ?? null,
+      role: session?.role ?? null,
+      mustChangePassword: session?.mustChangePassword ?? false,
+    });
   });
 
   return { router, requireWebSession, setSessionRefreshCookie };

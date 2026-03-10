@@ -221,17 +221,16 @@ These apply only to the web/Docker deployment:
 
 ### Web Authentication
 
-The web app protects all endpoints with session-based authentication.
+The web app protects all endpoints with session-based authentication (multi-user).
 
-- **Default password:**`transrewrt26`
-- Passwords are hashed with**Argon2id** and stored in`config.json`.
-- Sessions use**sliding-window expiry** — successful translate/rewrite/transform activity extends the session.
-- Change the password via**Settings → Auth** in the web UI.
-- **Reset from command line:**
-  - **Docker:**`docker exec <container> reset-web-password "<new-password>"`
-  - **Local (same config path as server):**`pnpm run reset-web-password -- "<new-password>"` or`node scripts/reset-web-password.js "<new-password>"` (set`CONFIG_PATH` if the config file is elsewhere).
+- **Default admin:** username `admin`, password `transrewrt26` (change on first use).
+- Passwords are hashed with **Argon2id** and stored in the database (users table).
+- **Admin users** can add, edit, and remove users in **Settings → Users**; the default `admin` user cannot be deleted.
+- **Regular users** can change their own password via the sidebar user menu or **Settings → Authentication**.
+- Sessions use **sliding-window expiry** — successful activity extends the session.
+- **Reset user password** if lost: `reset-web-password [username] <new-password>`. Omit `username` to reset the default `admin` user. Examples: `pnpm run reset-web-password -- mynewpass` (admin); `pnpm run reset-web-password -- bob mynewpass` (user `bob`). In Docker: `docker exec <container> reset-web-password '<new-password>'` or `docker exec <container> reset-web-password '<username>' '<new-password>'`. If the user does not exist, they are created with admin role. The "must change password on next login" flag is always cleared. Prefer stopping the server first to avoid DB lock.
 
-> **Change the default password immediately** when deploying to a network-accessible host.
+> **Change the default admin password immediately** when deploying to a network-accessible host.
 
 ### Transrewrt proxy (optional)
 

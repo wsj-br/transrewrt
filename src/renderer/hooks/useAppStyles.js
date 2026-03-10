@@ -38,6 +38,11 @@ const useAppStyles = makeStyles({
     alignItems: "center",
     gap: tokens.spacingHorizontalS,
   },
+  rewriteControlsRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: "32px",
+  },
   panelFill: {
     flex: 1,
     display: "flex",

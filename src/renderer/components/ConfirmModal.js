@@ -45,25 +45,41 @@ const useStyles = makeStyles({
   },
 });
 
-const ConfirmModal = ({ title, message, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, danger = false }) => {
+const ConfirmModal = ({
+  title,
+  message,
+  confirmLabel = "Confirm",
+  cancelLabel = "Cancel",
+  onConfirm,
+  onCancel,
+  danger = false,
+  customBody,
+  hideConfirm = false,
+}) => {
   const styles = useStyles();
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.message}>{message}</p>
+        {customBody ? (
+          <div className={styles.message}>{customBody}</div>
+        ) : (
+          <p className={styles.message}>{message}</p>
+        )}
         <div className={styles.actions}>
           <Button appearance="secondary" onClick={onCancel}>
             {cancelLabel}
           </Button>
-          <Button
-            appearance="primary"
-            onClick={onConfirm}
-            className={danger ? styles.confirmButtonDanger : undefined}
-          >
-            {confirmLabel}
-          </Button>
+          {!hideConfirm && (
+            <Button
+              appearance="primary"
+              onClick={onConfirm}
+              className={danger ? styles.confirmButtonDanger : undefined}
+            >
+              {confirmLabel}
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -17,6 +17,7 @@ import {
   formatAvgCost,
   formatCount,
 } from "../utils/misc/costUtils";
+import { interpolateTemplate, formatDecimal } from "../utils/misc/formatUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -49,15 +50,15 @@ const useStyles = makeStyles({
     width: "100%",
   },
   thead: {
-    backgroundColor: "rgba(96, 205, 255, 0.18)",
+    backgroundColor: tokens.colorNeutralBackground3,
   },
   th: {
-    padding: "12px 16px",
+    padding: "10px 12px",
     textAlign: "left",
     fontWeight: 600,
-    color: "#60cdff",
-    borderBottom: "2px solid rgba(96, 205, 255, 0.4)",
-    fontSize: "13px",
+    backgroundColor: tokens.colorNeutralBackground3,
+    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
+    fontSize: "14px",
   },
   td: {
     padding: "12px 16px",
@@ -74,11 +75,11 @@ const useStyles = makeStyles({
   },
   totalRow: {
     fontWeight: 600,
-    backgroundColor: "rgba(96, 205, 255, 0.12)",
-    borderTop: "2px solid rgba(96, 205, 255, 0.4)",
+    backgroundColor: tokens.colorNeutralBackground3,
+    borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
     "& td": {
       borderBottom: "none",
-      color: "#60cdff",
+      color: tokens.colorNeutralForeground1,
     },
   },
   emptyRow: {
@@ -128,7 +129,8 @@ const SettingsDialogCostTrackingTab = ({
   isTabActive,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const [byFunction, setByFunction] = useState([]);
   const [loading, setLoading] = useState(false);
   const [syncCostError, setSyncCostError] = useState(null);
@@ -156,6 +158,12 @@ const SettingsDialogCostTrackingTab = ({
     ],
     [t]
   );
+
+  const intervalLabels = useMemo(() => ({
+    daily: t("daily"),
+    weekly: t("weekly"),
+    monthly: t("monthly"),
+  }), [t]);
 
   const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
   const isOpenRouter =
@@ -238,7 +246,11 @@ const SettingsDialogCostTrackingTab = ({
   }, [isTabActive]);
 
   const handleCopyCost = async () => {
-    const cost = parseFloat(localSettings.total_cost || 0).toFixed(6);
+    const cost = formatDecimal(
+      parseFloat(localSettings.total_cost || 0),
+      locale,
+      { minimumFractionDigits: 6, maximumFractionDigits: 6 }
+    );
     if (navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(cost);
@@ -382,7 +394,7 @@ const SettingsDialogCostTrackingTab = ({
                 whiteSpace: "nowrap",
               }}
             >
-              {formatCost(localSettings.total_cost, costFractionStyle)}
+              {formatCost(localSettings.total_cost, costFractionStyle, locale)}
             </span>
           </div>
           <div
@@ -463,20 +475,20 @@ const SettingsDialogCostTrackingTab = ({
               ) : keyUsageDisplay && keyUsageDisplay.usage != null ? (
                 <>
                   <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                    {formatCost(keyUsageDisplay.usage, costFractionStyle)}
+                    {formatCost(keyUsageDisplay.usage, costFractionStyle, locale)}
                   </span>
                   {keyUsageDisplay.hasLimit ? (
                     <>
                       {" / "}
                       <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                        ${Number(keyUsageDisplay.limit).toFixed(2)}
+                        ${formatDecimal(keyUsageDisplay.limit, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                       {keyUsageDisplay.limitReset == null
-                        ? " (no reset)"
-                        : ` (reset ${keyUsageDisplay.limitReset})`}
+                        ? t("(no reset interval)")
+                        : ` ${interpolateTemplate(t("(reset interval: {{when}})"), { when: t(keyUsageDisplay.limitReset) })}`}
                     </>
                   ) : (
-                    " (unlimited)"
+                    " "
                   )}
                 </>
               ) : (
@@ -534,16 +546,17 @@ const SettingsDialogCostTrackingTab = ({
                           <tr key={i} className={styles.tbodyTr}>
                             <td className={styles.td}>{row.function}</td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
-                              {formatCount(row.calls)}
+                              {formatCount(row.calls, locale)}
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
-                              {formatCost(row.cost, costFractionStyle)}
+                              {formatCost(row.cost, costFractionStyle, locale)}
                             </td>
                             <td className={`${styles.td} ${styles.tdValue}`}>
                               {formatAvgCost(
                                 Number(row.cost || 0),
                                 row.calls ?? 0,
                                 costFractionStyle,
+                                locale,
                               )}
                             </td>
                           </tr>
@@ -560,16 +573,17 @@ const SettingsDialogCostTrackingTab = ({
                             <strong>Total</strong>
                           </td>
                           <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatCount(calls)}
+                            {formatCount(calls, locale)}
                           </td>
                           <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatCost(total?.cost, costFractionStyle)}
+                            {formatCost(total?.cost, costFractionStyle, locale)}
                           </td>
                           <td className={`${styles.td} ${styles.tdValue}`}>
                             {formatAvgCost(
                               Number(total?.cost || 0),
                               calls,
                               costFractionStyle,
+                              locale,
                             )}
                           </td>
                         </tr>

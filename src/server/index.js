@@ -16,6 +16,7 @@ const createStatusRouter = require("./routes/status");
 const createApiProxyRouter = require("./routes/apiProxy");
 const createCallsRouter = require("./routes/calls");
 const createCustomPromptsRouter = require("./routes/customPrompts");
+const createUsersRouter = require("./routes/users");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -151,6 +152,7 @@ app.use(
   "/api",
   createCallsRouter(appDb.getDb, auth.setSessionRefreshCookie, log),
 );
+app.use("/api", createUsersRouter(appDb.getDb, log));
 app.use(
   "/api",
   createCustomPromptsRouter(
@@ -190,26 +192,37 @@ if (!DEV_WEB) {
   });
 }
 
-app.listen(PORT, () => {
-  log.info("=".repeat(60));
-  log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
-  log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
-  log.info("[SERVER] Loading initial config...");
-  const initialConfig = configFile.readConfig();
-  if (ENV_API_KEY) {
-    log.info(
-      "[SERVER] API Key is being loaded from environment variable API_KEY",
-    );
-  } else if (initialConfig.api_key) {
-    log.info(
-      `[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`,
-    );
-  } else {
-    log.info("[SERVER] No API Key in initial config");
+async function startServer() {
+  if (appDb.getDb()) {
+    try {
+      await appDb.seedDefaultAdmin();
+    } catch (err) {
+      log.error("[SERVER] Seed default admin failed: " + err.message, { stack: err.stack });
+    }
   }
-  if (ENV_KEY_SEED) {
-    log.info("[SERVER] KEY_SEED is being loaded from environment variable KEY_SEED");
-  }
-  log.info("[SERVER] Server ready to accept requests");
-  log.info("=".repeat(60));
-});
+  app.listen(PORT, () => {
+    log.info("=".repeat(60));
+    log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
+    log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
+    log.info("[SERVER] Loading initial config...");
+    const initialConfig = configFile.readConfig();
+    if (ENV_API_KEY) {
+      log.info(
+        "[SERVER] API Key is being loaded from environment variable API_KEY",
+      );
+    } else if (initialConfig.api_key) {
+      log.info(
+        `[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`,
+      );
+    } else {
+      log.info("[SERVER] No API Key in initial config");
+    }
+    if (ENV_KEY_SEED) {
+      log.info("[SERVER] KEY_SEED is being loaded from environment variable KEY_SEED");
+    }
+    log.info("[SERVER] Server ready to accept requests");
+    log.info("=".repeat(60));
+  });
+}
+
+startServer();

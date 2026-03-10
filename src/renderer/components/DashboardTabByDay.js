@@ -35,7 +35,8 @@ export default function DashboardTabByDay({
   styles,
   emptyRow,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
 
@@ -175,38 +176,41 @@ export default function DashboardTabByDay({
                       <tr key={i} className={styles.tbodyTr}>
                         <td className={styles.td}>{row.day}</td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.translation_calls)}
+                          {formatCount(row.translation_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.rewrite_calls)}
+                          {formatCount(row.rewrite_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.transform_calls)}
+                          {formatCount(row.transform_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
                           {formatCost(
                             row.translation_cost,
-                            costFractionStyle
+                            costFractionStyle,
+                            locale
                           )}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCost(row.rewrite_cost, costFractionStyle)}
+                          {formatCost(row.rewrite_cost, costFractionStyle, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCost(row.transform_cost, costFractionStyle)}
+                          {formatCost(row.transform_cost, costFractionStyle, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
                           {formatAvgCost(
                             Number(row.translation_cost || 0),
                             row.translation_calls ?? 0,
-                            costFractionStyle
+                            costFractionStyle,
+                            locale
                           )}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
                           {formatAvgCost(
                             Number(row.rewrite_cost || 0),
                             row.rewrite_calls ?? 0,
-                            costFractionStyle
+                            costFractionStyle,
+                            locale
                           )}
                         </td>
                       </tr>

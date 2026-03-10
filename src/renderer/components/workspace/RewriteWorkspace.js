@@ -13,17 +13,25 @@ const REWRITE_STYLE_GRAMMAR = REWRITE_STYLE_KEYS[0]; // "Check Spelling & Gramma
  */
 export function getRewritePanels({ common, input, output, options }) {
   const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
-  const { rewriteStyle, setRewriteStyle, showOutputDiff = false, setShowOutputDiff, outputIsModelResult = false } = options;
+  const {
+    rewriteStyle,
+    setRewriteStyle,
+    showOutputDiff = false,
+    setShowOutputDiff,
+    outputIsModelResult = false,
+  } = options;
   const isGrammarStyle = rewriteStyle === REWRITE_STYLE_GRAMMAR;
 
   const leftPanelControls = (
-    <StyleSelector
-      label={t("Style:")}
-      value={rewriteStyle}
-      onChange={setRewriteStyle}
-      options={getRewriteStyleOptions(t)}
-      iconColor={tokens.colorPaletteLavenderBorderActive}
-    />
+    <div className={styles.rewriteControlsRow}>
+      <StyleSelector
+        label={t("Style:")}
+        value={rewriteStyle}
+        onChange={setRewriteStyle}
+        options={getRewriteStyleOptions(t)}
+        iconColor={tokens.colorPaletteLavenderBorderActive}
+      />
+    </div>
   );
 
   const leftPanel = (

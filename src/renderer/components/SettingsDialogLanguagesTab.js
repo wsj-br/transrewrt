@@ -84,10 +84,10 @@ const SettingsDialogLanguagesTab = ({
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
           <Languages size={20} />
-          {t('Selected Languages')}
+          {t('Most used languages')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
-          <p>{t('Select languages to appear in dropdowns:')}</p>
+          <p>{t('Select languages to appear in the top of list:')}</p>
           <div 
             ref={gridRef}
             className="languages-grid"

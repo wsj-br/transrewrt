@@ -70,6 +70,7 @@ const useStyles = makeStyles({
     display: "inline-flex",
     alignItems: "center",
     gap: "10px",
+    marginTop: "16px",
     color: tokens.colorBrandForegroundLink,
     "&:hover": {
       color: tokens.colorBrandForegroundLinkHover,
@@ -90,7 +91,8 @@ const useStyles = makeStyles({
 
 const SettingsDialogAboutTab = () => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEnglish = i18n.language && String(i18n.language).toLowerCase().startsWith("en");
   const [buildTimestamp, setBuildTimestamp] = useState(buildTimestampCache);
 
   useEffect(() => {
@@ -127,19 +129,34 @@ const SettingsDialogAboutTab = () => {
       <div className={styles.meta}>
         {APP_AUTHOR && <span style={{ fontWeight: 600 }}>Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
         <br />
-        {APP_LICENSE && <span> Licensed under ▪ {t("Licensed under")} {APP_LICENSE}.</span>}  
+        {APP_LICENSE && (
+          <span>
+            {isEnglish ? null : "Licensed under ▪ "}
+            {t("Licensed under")} {APP_LICENSE}.
+          </span>
+        )}
         <span style={{ marginLeft: 10 }}>—</span>
-        <span style={{ marginLeft: 10 }}>All rights reserved ▪ {t("All rights reserved.")}</span>
+        <span style={{ marginLeft: 10 }}>
+          {isEnglish ? null : "All rights reserved ▪ "}
+          {t("All rights reserved.")}
+        </span>
         <br />
         <br />
-        <i>Product names and icons belong to their respective owners and are used for identification purposes only.</i>
-        <br />
-        <i>This software is not affiliated with or endorsed by any of the mentioned brands.</i>
-        <br />
-        <br />
-        <i>{t("Product names and icons belong to their respective owners and are used for identification purposes only.")}</i>
-        <br />
-        <i>{t("This software is not affiliated with or endorsed by any of the mentioned brands.")}</i>
+        <i>
+              Product names and icons belong to their respective owners and are used for identification purposes only.  <br />
+              This software is not affiliated with or endorsed by any of the mentioned brands.
+          
+          {!isEnglish ? (
+            <>
+              <br />
+              ▪
+              <br />
+              {t("Product names and icons belong to their respective owners and are used for identification purposes only.")}
+              <br />
+              {t("This software is not affiliated with or endorsed by any of the mentioned brands.")}
+            </>
+          ) : null}
+        </i>
       </div>
       <Link
         href={REPO_URL}

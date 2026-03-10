@@ -1,4 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { formatCostDisplay } from "../utils/misc/formatUtils";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -38,6 +40,8 @@ export function useProcessing({
   const [lastRunCost, setLastRunCost] = useState(0);
   const [lastRunModel, setLastRunModel] = useState(null);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
 
   const timerRef = useRef(null);
   const tpsCalculationRef = useRef({ startTime: null, tokens: 0 });
@@ -75,7 +79,7 @@ export function useProcessing({
 
       processingModeRef.current = "translate";
       setIsProcessing(true);
-      setOutputTextTranslate("translating...");
+      setOutputTextTranslate(t('Translating...'));
       setLastRunCost(0);
       setLastRunModel(null);
       setElapsedTime(0);
@@ -121,7 +125,7 @@ export function useProcessing({
         }
         if (result.cancelled) {
           const msg = result.content
-            ? `Translation stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? "$" + result.calculated_cost.toFixed(5) : "free"})`
+            ? `Translation stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
             : "Translation stopped by user.";
           setOutputTextTranslate(msg);
         } else if (result.error) {
@@ -154,6 +158,7 @@ export function useProcessing({
       }
     },
     [
+      t,
       inputTextTranslate,
       targetLanguage,
       sourceLanguage,
@@ -244,7 +249,7 @@ export function useProcessing({
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
         const msg = result.content
-          ? `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? "$" + result.calculated_cost.toFixed(5) : "free"})`
+          ? `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
           : "Rewrite stopped by user.";
         setOutputTextRewrite(msg);
       } else if (result.error) {
@@ -313,7 +318,7 @@ export function useProcessing({
 
       processingModeRef.current = "transform";
       setIsProcessing(true);
-      setOutputTextTransform("transforming...");
+      setOutputTextTransform(t('Transforming...'));
       setLastRunCost(0);
       setLastRunModel(null);
       setElapsedTime(0);
@@ -354,7 +359,7 @@ export function useProcessing({
         if (result.cancelled) {
           setOutputTextTransform(
             result.content
-              ? `Transform stopped by user.\n\nPartial result (${totalTokens} tokens, ${result.calculated_cost ? "$" + result.calculated_cost.toFixed(5) : "free"})`
+              ? `Transform stopped by user.\n\nPartial result (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
               : "Transform stopped by user."
           );
         } else if (result.error) {

@@ -3,6 +3,7 @@
  * Creates translations and rewrites with random modes, chars, timestamps (last 2 years).
  * Cost: each model gets a random cost per 1M tokens ($0.5–$15; $0 if model name contains "free").
  * Transaction cost = (request_bytes + response_bytes) / 4 / 1e6 * cost_per_1M for that model.
+ * If a users table exists, assigns each entry a random username from it; otherwise username is null.
  * Uses sql.js so it runs without native better-sqlite3 bindings.
  *
  * Run: pnpm generate-test-data --web|--app [options]
@@ -83,7 +84,8 @@ Options:
   -h, --help             Show this help and exit
 
 Reads models and languages from data/config.json (or CONFIG_PATH for --app).
-Transform prompt names from src/config-defaults/transform-prompts.json.`);
+Transform prompt names from src/config-defaults/transform-prompts.json.
+When the DB has a users table, entries get a random username from it.`);
 }
 
 function loadConfig(configPath) {
@@ -242,11 +244,13 @@ function randomTimestamp(fromMs, toMs) {
   return new Date(t).toISOString();
 }
 
-function generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames) {
+function generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames) {
   const now = Date.now();
   const twoYearsMs = 2 * 365.25 * 24 * 60 * 60 * 1000;
   const fromMs = now - twoYearsMs;
   const costPer1MMap = buildModelCostPer1M(models);
+  const pickUser = () =>
+    usernames && usernames.length > 0 ? randomChoice(usernames) : null;
 
   const rows = [];
 
@@ -276,6 +280,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
+      username: pickUser(),
     });
   }
 
@@ -302,6 +307,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
+      username: pickUser(),
     });
   }
 
@@ -329,6 +335,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
+      username: pickUser(),
     });
   }
 
@@ -382,17 +389,35 @@ async function main() {
       duration_ms INTEGER,
       cost REAL,
       total_cost REAL,
-      tps REAL
+      tps REAL,
+      username TEXT
     )
   `);
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN transform_prompt TEXT");
   } catch (_) {}
+  try {
+    db.exec("ALTER TABLE api_calls ADD COLUMN username TEXT");
+  } catch (_) {}
 
-  const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames);
+  let usernames = [];
+  try {
+    const tableCheck = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='users'");
+    if (tableCheck.length > 0 && tableCheck[0].values.length > 0) {
+      const result = db.exec("SELECT username FROM users");
+      if (result.length > 0 && result[0].values.length > 0) {
+        usernames = result[0].values.map((row) => row[0]);
+      }
+    }
+  } catch (_) {}
+  if (usernames.length > 0) {
+    console.log(`Using ${usernames.length} existing user(s) for test data: ${usernames.join(", ")}`);
+  }
+
+  const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
   const insertSql = `
-    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps, username)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
   for (const row of rows) {
     db.run(insertSql, [
@@ -409,6 +434,7 @@ async function main() {
       row.cost,
       row.total_cost,
       row.tps,
+      row.username,
     ]);
   }
 

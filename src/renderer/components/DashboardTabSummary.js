@@ -17,7 +17,7 @@ import {
   LabelList,
 } from "recharts";
 import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
-import { formatInteger } from "../utils/misc/formatUtils";
+import { formatInteger, formatDecimal } from "../utils/misc/formatUtils";
 import {
   formatCost,
   formatCount,
@@ -35,7 +35,8 @@ export default function DashboardTabSummary({
   styles,
   getUsageTypeLabel,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
 
@@ -69,48 +70,48 @@ export default function DashboardTabSummary({
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Total Cost")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatCost(settings?.total_cost ?? 0, costFractionStyle)}
+                {formatCost(settings?.total_cost ?? 0, costFractionStyle, locale)}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Avg cost per call")}</div>
               <div className={styles.summaryKpiValue}>
                 {avgCostPerCall != null
-                  ? formatCost(avgCostPerCall, costFractionStyle)
+                  ? formatCost(avgCostPerCall, costFractionStyle, locale)
                   : DASH}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Translation")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatCount(translateRow?.calls)} /{" "}
-                {formatCost(translateRow?.cost, costFractionStyle)}
+                {formatCount(translateRow?.calls, locale)} /{" "}
+                {formatCost(translateRow?.cost, costFractionStyle, locale)}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Rewrite")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatCount(rewriteRow?.calls)} /{" "}
-                {formatCost(rewriteRow?.cost, costFractionStyle)}
+                {formatCount(rewriteRow?.calls, locale)} /{" "}
+                {formatCost(rewriteRow?.cost, costFractionStyle, locale)}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Transform")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatCount(transformRow?.calls)} /{" "}
-                {formatCost(transformRow?.cost, costFractionStyle)}
+                {formatCount(transformRow?.calls, locale)} /{" "}
+                {formatCost(transformRow?.cost, costFractionStyle, locale)}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Models used")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatCount(modelCount)}
+                {formatCount(modelCount, locale)}
               </div>
             </div>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Avg TPS")}</div>
               <div className={styles.summaryKpiValue}>
-                {formatAvgTps(totalAvgTps)}
+                {formatAvgTps(totalAvgTps, locale)}
               </div>
             </div>
           </div>
@@ -160,8 +161,10 @@ export default function DashboardTabSummary({
                             cy + radius * Math.sin(-midAngle * RADIAN);
                           const pct =
                             totalCallsPie > 0
-                              ? ((Number(calls) / totalCallsPie) * 100).toFixed(
-                                  1
+                              ? formatDecimal(
+                                  (Number(calls) / totalCallsPie) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           const displayName = getUsageTypeLabel(fn);
@@ -184,7 +187,7 @@ export default function DashboardTabSummary({
                                 dy="1.3em"
                                 fill={tokens.colorNeutralForeground3}
                               >
-                                {formatInteger(calls)} ({pct}%)
+                                {formatInteger(calls, locale)} ({pct}%)
                               </tspan>
                             </text>
                           );
@@ -223,12 +226,14 @@ export default function DashboardTabSummary({
                         formatter={(value, name) => {
                           const pct =
                             totalCallsPie > 0
-                              ? ((Number(value) / totalCallsPie) * 100).toFixed(
-                                  1
+                              ? formatDecimal(
+                                  (Number(value) / totalCallsPie) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           return [
-                            `${value} (${pct}%)`,
+                            `${formatInteger(value, locale)} (${pct}%)`,
                             getUsageTypeLabel(name),
                           ];
                         }}
@@ -295,7 +300,7 @@ export default function DashboardTabSummary({
                         formatter={(value, name, item) => {
                           const dataKey = item?.dataKey ?? name;
                           return [
-                            formatCost(value, costFractionStyle),
+                            formatCost(value, costFractionStyle, locale),
                             dataKey === "translation_cost"
                               ? t("Translation cost (cumulative)")
                               : dataKey === "rewrite_cost"
@@ -400,10 +405,14 @@ export default function DashboardTabSummary({
                         formatter={(value) => {
                           const pct =
                             totalCostSum > 0
-                              ? ((value / totalCostSum) * 100).toFixed(1)
+                              ? formatDecimal(
+                                  (value / totalCostSum) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
+                                )
                               : "0";
                           return [
-                            formatCost(value, costFractionStyle) + ` (${pct}%)`,
+                            <>{formatCost(value, costFractionStyle, locale)} ({pct}%)</>,
                             t("Total cost"),
                           ];
                         }}
@@ -420,11 +429,15 @@ export default function DashboardTabSummary({
                           formatter={(value) => {
                             const pct =
                               totalCostSum > 0
-                                ? ((value / totalCostSum) * 100).toFixed(1)
+                                ? formatDecimal(
+                                    (value / totalCostSum) * 100,
+                                    locale,
+                                    { minimumFractionDigits: 1, maximumFractionDigits: 1 }
+                                  )
                                 : "0";
                             const costStr =
                               value != null && !Number.isNaN(Number(value))
-                                ? `$${Number(value).toFixed(4)}`
+                                ? `$${formatDecimal(value, locale, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}`
                                 : DASH;
                             return `${costStr} (${pct}%)`;
                           }}

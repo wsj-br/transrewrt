@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import {
   formatInteger,
   formatDurationMs,
+  formatDateTime,
   interpolateTemplate,
 } from "../utils/misc/formatUtils";
 import {
@@ -34,7 +35,8 @@ export default function DashboardTabAllCalls({
   setModelToDelete,
   setSetting,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
 
   return (
     <div
@@ -172,7 +174,7 @@ export default function DashboardTabAllCalls({
                     </div>
                     <div className={styles.refactoredCell}>
                       {row.timestamp
-                        ? new Date(row.timestamp).toLocaleString()
+                        ? formatDateTime(new Date(row.timestamp), locale)
                         : DASH}
                     </div>
                     <div className={styles.refactoredCell}>
@@ -231,27 +233,27 @@ export default function DashboardTabAllCalls({
                     <div
                       className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}
                     >
-                      {formatInteger(row.request_bytes)}
+                      {formatInteger(row.request_bytes, locale)}
                     </div>
                     <div
                       className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}
                     >
-                      {formatInteger(row.response_bytes)}
+                      {formatInteger(row.response_bytes, locale)}
                     </div>
                     <div
                       className={`${styles.refactoredCell} ${styles.tdValue}`}
                     >
-                      {formatDurationMs(row.duration_ms)}
+                      {formatDurationMs(row.duration_ms, locale)}
                     </div>
                     <div
                       className={`${styles.refactoredCell} ${styles.tdValue}`}
                     >
-                      {formatCost(row.cost, costFractionStyle)}
+                      {formatCost(row.cost, costFractionStyle, locale)}
                     </div>
                     <div
                       className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}
                     >
-                      {formatAvgTps(row.tps)}
+                      {formatAvgTps(row.tps, locale)}
                     </div>
                   </div>
                 ))

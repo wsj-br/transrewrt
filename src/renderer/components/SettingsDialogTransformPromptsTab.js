@@ -180,15 +180,15 @@ const useStyles = makeStyles({
     fontSize: "14px",
   },
   thead: {
-    backgroundColor: "rgba(96, 205, 255, 0.18)",
+    backgroundColor: tokens.colorNeutralBackground3,
   },
   th: {
-    padding: "12px 16px",
+    padding: "10px 12px",
     textAlign: "left",
     fontWeight: 600,
-    color: "#60cdff",
-    borderBottom: "2px solid rgba(96, 205, 255, 0.4)",
-    fontSize: "13px",
+    backgroundColor: tokens.colorNeutralBackground3,
+    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
+    fontSize: "14px",
   },
   td: {
     padding: "12px 16px",
@@ -219,7 +219,7 @@ const useStyles = makeStyles({
     flexShrink: 0,
     marginLeft: "auto",
     ":hover": {
-      color: tokens.colorNeutralForeground1,
+      color: tokens.colorNeutralForeground2BrandHover,
     },
   },
 });
@@ -575,15 +575,15 @@ const SettingsDialogTransformPromptsTab = () => {
                           <td className={styles.td}>
                             <span className={styles.nameCell}>
                               <span style={{ minWidth: 0 }}>{p.name}</span>
-                              <Trash2
-                                size={14}
-                                className={styles.nameCellTrashIcon}
-                                title={t("Delete this prompt")}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setPromptToDelete(p);
-                                }}
-                              />
+                              <span className={styles.nameCellTrashIcon} title={t("Delete this prompt")}>
+                                <Trash2
+                                  size={14}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setPromptToDelete(p);
+                                  }}
+                                />
+                              </span>
                             </span>
                           </td>
                           <td className={styles.td}>

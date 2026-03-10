@@ -1,6 +1,7 @@
 const { app, BrowserWindow, screen, ipcMain, protocol } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 const {
   getConfigFilePath,
   getDefaultConfigPathForLoad,
@@ -481,6 +482,14 @@ registerConfigIpc(ipcMain, {
 });
 registerApiIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
+
+ipcMain.handle("get-os-username", () => {
+  try {
+    return os.userInfo().username || "";
+  } catch {
+    return "";
+  }
+});
 
 const { registerAppDbHandlers } = require("./appDb");
 

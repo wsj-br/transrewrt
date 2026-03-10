@@ -6,10 +6,10 @@ import {
   Database,
   Globe,
   Key,
-  Lock,
   DollarSign,
   Info,
   Sparkles,
+  Users,
   Settings as SettingsIcon,
   ChevronLeft,
   ChevronRight,
@@ -19,10 +19,10 @@ import SettingsDialogApiTab from "./SettingsDialogApiTab";
 import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
 import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
 import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
-import SettingsDialogAuthTab from "./SettingsDialogAuthTab";
 import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
 import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
 import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
+import SettingsDialogUsersTab from "./SettingsDialogUsersTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
@@ -127,10 +127,10 @@ const useStyles = makeStyles({
   },
 });
 
-const SettingsPanel = () => {
+const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const { settings, allModels, updateSettings, setSetting, fetchModels } =
+  const { settings, allModels, currentUser, updateSettings, setSetting, fetchModels } =
     useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
@@ -198,23 +198,32 @@ const SettingsPanel = () => {
     ]);
     setSelectedModelIds(modelsWithFree);
     setSelectedLanguages(new Set(settings.available_languages || []));
-    // Restore active tab once per mount from configManager, then context. If we had to read from
-    // context (configManager didn't have it), persist it so the next time we open Settings we can
-    // restore from configManager.
+    // Restore active tab once per mount. Prefer openToTab (e.g. from sidebar "User management"),
+    // then configManager, then context.
     if (!hasRestoredTabRef.current) {
       hasRestoredTabRef.current = true;
       let tab =
+        openToTab ||
         configManager.get("settings_active_tab") ||
         settings.settings_active_tab ||
         "general";
-      if (tab === "auth" && !isWeb) tab = "general";
+      if (tab === "auth") tab = isWeb && currentUser?.role === "admin" ? "users" : "general";
       if (tab === "api" && isWeb) tab = "general";
+      if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) tab = "general";
       setActiveTab(tab);
       if (tab && configManager.get("settings_active_tab") !== tab) {
         setSetting("settings_active_tab", tab);
       }
+      if (openToTab) onOpenToTabConsumed?.();
     }
-  }, [settings]);
+  }, [settings, openToTab, onOpenToTabConsumed, currentUser?.role]);
+
+  useEffect(() => {
+    if (activeTab === "users" && (!isWeb || currentUser?.role !== "admin")) {
+      setActiveTab("general");
+      setSetting("settings_active_tab", "general");
+    }
+  }, [activeTab, isWeb, currentUser?.role, setSetting]);
 
   useEffect(() => {
     if (allModels.length === 0) {
@@ -454,6 +463,17 @@ const SettingsPanel = () => {
             >
               <Sparkles size={16} /> {t("Transform")}
             </button>
+            {isWeb && currentUser?.role === "admin" && (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "users"}
+                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "users" && "active")}
+                onClick={() => handleTabChange("users")}
+              >
+                <Users size={16} /> {t("Users")}
+              </button>
+            )}
             {!isWeb && (
               <button
                 type="button"
@@ -463,17 +483,6 @@ const SettingsPanel = () => {
                 onClick={() => handleTabChange("api")}
               >
                 <Key size={16} /> {t("API Config")}
-              </button>
-            )}
-            {isWeb && (
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeTab === "auth"}
-                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "auth" && "active")}
-                onClick={() => handleTabChange("auth")}
-              >
-                <Lock size={16} /> {t("Authentication")}
               </button>
             )}
             <button
@@ -567,6 +576,10 @@ const SettingsPanel = () => {
 
         {activeTab === "transform" && <SettingsDialogTransformPromptsTab />}
 
+        {isWeb && currentUser?.role === "admin" && activeTab === "users" && (
+          <SettingsDialogUsersTab />
+        )}
+
         {!isWeb && activeTab === "api" && (
           <SettingsDialogApiTab
             localSettings={localSettings}
@@ -578,8 +591,6 @@ const SettingsPanel = () => {
             onTestApi={handleTestApi}
           />
         )}
-
-        {isWeb && activeTab === "auth" && <SettingsDialogAuthTab />}
 
         {activeTab === "about" && <SettingsDialogAboutTab />}
       </div>

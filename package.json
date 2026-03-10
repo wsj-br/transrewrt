@@ -25,12 +25,12 @@
     "docker:shell": "docker exec -it transrewrt-web-1 /bin/sh",
     "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
     "generate-test-data": "node scripts/generate-test-data.js",
-    "reset-web-password": "node scripts/reset-web-password.js",
     "i18n:extract": "node scripts/extract-strings.js",
     "i18n:translate": "node scripts/generate-translations.js",
     "i18n:sync": "pnpm run i18n:extract && pnpm run i18n:translate",
     "update-version": "node scripts/update-version.js",
-    "postinstall": "node scripts/electron-rebuild.js"
+    "postinstall": "node scripts/electron-rebuild.js",
+    "reset-web-password": "node scripts/reset-web-password.js"
   },
   "keywords": [
     "electron",

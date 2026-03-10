@@ -19,7 +19,6 @@ module.exports = function createConfigRouter(configFile, defaultConfigPath, envK
         ...config,
         ...state,
         web_session: "",
-        web_session_expires_at: req.authSession?.expiresAt ?? null,
       };
       if (envKeySeed) payload.key_seed = envKeySeed;
       res.json(payload);

@@ -27,7 +27,8 @@ export default function DashboardTabByModel({
   emptyRow,
   setModelToDelete,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
 
@@ -76,39 +77,41 @@ export default function DashboardTabByModel({
                           </span>
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.translation_calls)}
+                          {formatCount(row.translation_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.rewrite_calls)}
+                          {formatCount(row.rewrite_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCount(row.transform_calls)}
+                          {formatCount(row.transform_calls, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCost(row.translation_cost, costFractionStyle)}
+                          {formatCost(row.translation_cost, costFractionStyle, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCost(row.rewrite_cost, costFractionStyle)}
+                          {formatCost(row.rewrite_cost, costFractionStyle, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatCost(row.transform_cost, costFractionStyle)}
+                          {formatCost(row.transform_cost, costFractionStyle, locale)}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
                           {formatAvgCost(
                             Number(row.translation_cost || 0),
                             row.translation_calls ?? 0,
-                            costFractionStyle
+                            costFractionStyle,
+                            locale
                           )}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
                           {formatAvgCost(
                             Number(row.rewrite_cost || 0),
                             row.rewrite_calls ?? 0,
-                            costFractionStyle
+                            costFractionStyle,
+                            locale
                           )}
                         </td>
                         <td className={`${styles.td} ${styles.tdValue}`}>
-                          {formatAvgTps(row.avg_tps)}
+                          {formatAvgTps(row.avg_tps, locale)}
                         </td>
                       </tr>
                     ))}
@@ -123,39 +126,41 @@ export default function DashboardTabByModel({
                         <strong>{t("Total")}</strong>
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCount(tc)}
+                        {formatCount(tc, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCount(rc)}
+                        {formatCount(rc, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCount(total?.transform_calls ?? 0)}
+                        {formatCount(total?.transform_calls ?? 0, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCost(total?.translation_cost, costFractionStyle)}
+                        {formatCost(total?.translation_cost, costFractionStyle, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCost(total?.rewrite_cost, costFractionStyle)}
+                        {formatCost(total?.rewrite_cost, costFractionStyle, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatCost(total?.transform_cost, costFractionStyle)}
+                        {formatCost(total?.transform_cost, costFractionStyle, locale)}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
                         {formatAvgCost(
                           Number(total?.translation_cost || 0),
                           tc,
-                          costFractionStyle
+                          costFractionStyle,
+                          locale
                         )}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
                         {formatAvgCost(
                           Number(total?.rewrite_cost || 0),
                           rc,
-                          costFractionStyle
+                          costFractionStyle,
+                          locale
                         )}
                       </td>
                       <td className={`${styles.td} ${styles.tdValue}`}>
-                        {formatAvgTps(total?.avg_tps)}
+                        {formatAvgTps(total?.avg_tps, locale)}
                       </td>
                     </tr>
                   );

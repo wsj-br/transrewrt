@@ -30,6 +30,7 @@ export function getTranslatePanels({ common, input, output, options }) {
       onChange={setTargetLanguage}
       languages={languages}
       allLanguages={allLanguages}
+      targetListSameAsSource={true}
       iconColor={tokens.colorStatusWarningForeground3}
     />
   );

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
-import { formatElapsedMmSs } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatCostDisplay, formatDecimal } from "../utils/misc/formatUtils";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
@@ -26,6 +27,8 @@ export function useTransformPrompts({
   transform,
   activeModel,
 }) {
+  const { i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const [transformPrompts, setTransformPrompts] = useState([]);
   const [transformPromptId, setTransformPromptId] = useState(
     () => settings?.transform_prompt ?? null
@@ -277,7 +280,7 @@ export function useTransformPrompts({
         (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
       const tps = durationSec > 0 ? totalTokens / durationSec : 0;
       setTransformTestMeta(
-        `Time: ${formatElapsedMmSs(durationSec)} | Cost: ${result.calculated_cost ? `$${result.calculated_cost.toFixed(5)}` : "free"} | TPS: ${tps.toFixed(1)}`
+        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
       );
       setTransformTestOutput(
         result.content

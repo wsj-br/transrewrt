@@ -30,18 +30,25 @@ function resolvePrompt(value) {
   return Array.isArray(value) ? value.join("\n") : value;
 }
 
-function buildTranslatePrompt(withSourceLang) {
-  const config = withSourceLang ? prompts.translate.withSourceLang : prompts.translate.withoutSourceLang;
+function buildTranslatePrompt(sourceLang, targetLang) {
+  const config = prompts.translate;
   const shared = prompts.shared.translate;
+  const taskLines = [config.firstBullet];
+  if (sourceLang && sourceLang !== "Detect Language" && config.withSourceLanguageLine) {
+    taskLines.push(config.withSourceLanguageLine);
+  }
   const lines = [
     config.role,
     "",
     "Your task:",
-    config.firstBullet,
+    ...taskLines,
     ...shared.task,
     ...shared.footer,
   ];
-  return resolvePrompt(lines);
+  const prompt = resolvePrompt(lines);
+  return prompt
+    .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
+    .replace(/\{\{targetLang\}\}/g, targetLang || "");
 }
 
 function buildRewriteSystemPrompt(styleConfig) {
@@ -49,11 +56,12 @@ function buildRewriteSystemPrompt(styleConfig) {
   const common = shared.common.map((line) =>
     line.replace(/\{\{outputDescription\}\}/g, styleConfig.outputDescription || "rewritten")
   );
+  const taskBullets = [...styleConfig.bullets];
   const lines = [
     styleConfig.role,
     "",
     "Your task:",
-    ...styleConfig.bullets,
+    ...taskBullets,
     "",
     ...common,
     ...shared.footer,
@@ -93,7 +101,7 @@ function buildTransformSystemPrompt(promptConfig, targetLang) {
     ...common,
   ];
   if (targetLang != null && String(targetLang).trim() !== "") {
-    lines.push(`- Write the output in ${targetLang}`);
+    lines.push(`- After you process the text, translate the output to ${targetLang}. Just output the translated text.`);
   }
   lines.push("", ...shared.footer);
   return resolvePrompt(lines);
@@ -493,12 +501,7 @@ class APIService {
    */
   async translate(text, targetLang, model, sourceLang = null, signal = null) {
     try {
-      const template = buildTranslatePrompt(
-        !!(sourceLang && sourceLang !== "Detect Language")
-      );
-      const systemPrompt = template
-        .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
-        .replace(/\{\{targetLang\}\}/g, targetLang || "");
+      const systemPrompt = buildTranslatePrompt(sourceLang, targetLang);
       return await this._streamChatCompletion(systemPrompt, `<translate>${text}</translate>`, model, 0.3, signal, "translate", {});
     } catch (error) {
       // Re-throw AbortError so the caller can handle it properly
@@ -519,10 +522,106 @@ class APIService {
   }
 
   /**
+   * Translate a JSON object's string values to target language (one request; same prompt style as generate-translations).
+   * @param {Object} fieldsObject - Object with string values to translate (e.g. { name, prompt_instructions, role, instructions, output_description })
+   * @param {string} targetLang - Target language name
+   * @param {string} model - Model id
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} { content: translatedObject, usage, model, ... } or { error: string }
+   */
+  async translatePromptFieldsJson(fieldsObject, targetLang, model, signal = null) {
+    try {
+      const userMessage = `Translate the string values in this JSON object to ${targetLang}. Return ONLY a JSON object with the same keys and the translated strings. No other text.
+
+${JSON.stringify(fieldsObject, null, 2)}
+
+Respond with ONLY the JSON object. No other text.`;
+      const result = await this._streamChatCompletion(
+        resolvePrompt(prompts.translate_prompt_fields.system),
+        userMessage,
+        model,
+        0.3,
+        signal,
+        "translate-prompt",
+        {}
+      );
+      const raw = (result.content || "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+      let parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (e) {
+        console.error("translatePromptFieldsJson: invalid JSON", e.message, raw?.slice(0, 200));
+        return { error: "Model response is not valid JSON" };
+      }
+      if (parsed == null || typeof parsed !== "object" || Array.isArray(parsed)) {
+        return { error: "Model did not return a JSON object" };
+      }
+      return { ...result, content: parsed };
+    } catch (error) {
+      if (error.name === "AbortError") throw error;
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("translatePromptFieldsJson error:", error);
+      return { error: error.message };
+    }
+  }
+
+  /**
+   * Improve a transform prompt config (role, instructions, temperature) via the model; returns improved JSON.
+   * @param {Object} configObject - Current prompt config (name, role, instructions, output_description, temperature, prompt_instructions, target_language)
+   * @param {string} model - Model id
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} { content: improvedConfigObject, usage, model, ... } or { error: string }
+   */
+  async improvePromptConfigJson(configObject, model, signal = null) {
+    try {
+      const userMessage = `Improve this transform prompt configuration. Return ONLY a JSON object with the same keys and improved values for role, instructions, and temperature.
+
+${JSON.stringify(configObject, null, 2)}
+
+Respond with ONLY the JSON object. No other text.`;
+      const result = await this._streamChatCompletion(
+        resolvePrompt(prompts.improve_prompt_config.system),
+        userMessage,
+        model,
+        0.3,
+        signal,
+        "improve-prompt-config",
+        {}
+      );
+      const raw = (result.content || "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+      let parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (e) {
+        console.error("improvePromptConfigJson: invalid JSON", e.message, raw?.slice(0, 200));
+        return { error: "Model response is not valid JSON" };
+      }
+      if (parsed == null || typeof parsed !== "object" || Array.isArray(parsed)) {
+        return { error: "Model did not return a JSON object" };
+      }
+      return { ...result, content: parsed };
+    } catch (error) {
+      if (error.name === "AbortError") throw error;
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("improvePromptConfigJson error:", error);
+      return { error: error.message };
+    }
+  }
+
+  /**
    * Rewrite text with specified style
    * @param {string} text - Text to rewrite
    * @param {string} style - Style to apply
    * @param {string} model - Model to use for rewriting
+   * @param {AbortSignal|null} signal - Optional abort signal
    * @returns {Promise<Object>} Rewrite result with content and usage
    */
   async rewrite(text, style, model, signal = null) {

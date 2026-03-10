@@ -4,7 +4,7 @@
  * Single source of truth so schema/query changes are made in one place.
  */
 
-/** Run CREATE TABLE (and optional ALTER) for api_calls and custom_prompts. Call once after opening the DB. */
+/** Run CREATE TABLE for api_calls and custom_prompts. Call once after opening the DB. */
 function applyAppSchema(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS api_calls (
@@ -15,20 +15,16 @@ function applyAppSchema(db) {
       source_lang TEXT,
       target_lang TEXT,
       rewrite_style TEXT,
+      transform_prompt TEXT,
       request_bytes INTEGER,
       response_bytes INTEGER,
       duration_ms INTEGER,
       cost REAL,
       total_cost REAL,
-      tps REAL
+      tps REAL,
+      username TEXT
     )
   `);
-  try {
-    db.exec("ALTER TABLE api_calls ADD COLUMN tps REAL");
-  } catch (_) {}
-  try {
-    db.exec("ALTER TABLE api_calls ADD COLUMN transform_prompt TEXT");
-  } catch (_) {}
   db.exec(`
     CREATE TABLE IF NOT EXISTS custom_prompts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,20 +34,18 @@ function applyAppSchema(db) {
       output_description TEXT DEFAULT 'transformed',
       temperature REAL DEFAULT 0.4,
       target_language INTEGER DEFAULT 0,
+      prompt_instructions TEXT,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     )
   `);
-  try {
-    db.exec("ALTER TABLE custom_prompts ADD COLUMN prompt_instructions TEXT DEFAULT NULL");
-  } catch (_) {}
 }
 
 function promptTargetLanguageToDb(value) {
   return value === true || value === 1 ? 1 : 0;
 }
 
-function buildWhereFromTo(from, to) {
+function buildWhereFromTo(from, to, username = null) {
   const parts = [];
   const params = [];
   if (from) {
@@ -62,6 +56,10 @@ function buildWhereFromTo(from, to) {
     parts.push("timestamp <= ?");
     params.push(to);
   }
+  if (username != null && username !== "") {
+    parts.push("username = ?");
+    params.push(username);
+  }
   return { where: parts.length ? " WHERE " + parts.join(" AND ") : "", params };
 }
 
@@ -69,8 +67,8 @@ function buildWhereFromTo(from, to) {
 const WHERE_PLACEHOLDER = "__WHERE__";
 
 const sql = {
-  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps, username)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   GET_TOTAL_COST: "SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls",
   GET_SUMMARY_BY_FUNCTION: `SELECT type AS function, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost FROM api_calls ${WHERE_PLACEHOLDER} GROUP BY type`,
   GET_SUMMARY_BY_MODEL: `SELECT model,

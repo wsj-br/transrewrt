@@ -12,7 +12,7 @@ import {
   LabelList,
 } from "recharts";
 import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
-import { formatInteger } from "../utils/misc/formatUtils";
+import { formatInteger, formatDecimal } from "../utils/misc/formatUtils";
 
 export default function DashboardTabByUsage({
   loading,
@@ -21,7 +21,8 @@ export default function DashboardTabByUsage({
   byTransformPrompt,
   styles,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const byUsageAxisStyle = {
     stroke: CHART_COLORS.grid,
     fontSize: "clamp(9px, 1.4vh, 12px)",
@@ -99,12 +100,14 @@ export default function DashboardTabByUsage({
                         formatter={(value) => {
                           const pct =
                             totalTargetCalls > 0
-                              ? ((Number(value) / totalTargetCalls) * 100).toFixed(
-                                  1
+                              ? formatDecimal(
+                                  (Number(value) / totalTargetCalls) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           return [
-                            `${formatInteger(value)} (${pct}%)`,
+                            `${formatInteger(value, locale)} (${pct}%)`,
                             t("Calls"),
                           ];
                         }}
@@ -121,11 +124,13 @@ export default function DashboardTabByUsage({
                           formatter={(value) => {
                             const pct =
                               totalTargetCalls > 0
-                                ? ((Number(value) / totalTargetCalls) * 100).toFixed(
-                                    1
+                                ? formatDecimal(
+                                    (Number(value) / totalTargetCalls) * 100,
+                                    locale,
+                                    { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                   )
                                 : "0";
-                            return `${formatInteger(value)} (${pct}%)`;
+                            return `${formatInteger(value, locale)} (${pct}%)`;
                           }}
                           style={{
                             fill: CHART_COLORS.barLabel,
@@ -212,12 +217,14 @@ export default function DashboardTabByUsage({
                         formatter={(value) => {
                           const pct =
                             totalRewriteCalls > 0
-                              ? ((Number(value) / totalRewriteCalls) * 100).toFixed(
-                                  1
+                              ? formatDecimal(
+                                  (Number(value) / totalRewriteCalls) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           return [
-                            `${formatInteger(value)} (${pct}%)`,
+                            `${formatInteger(value, locale)} (${pct}%)`,
                             t("Calls"),
                           ];
                         }}
@@ -234,11 +241,13 @@ export default function DashboardTabByUsage({
                           formatter={(value) => {
                             const pct =
                               totalRewriteCalls > 0
-                                ? ((Number(value) / totalRewriteCalls) * 100).toFixed(
-                                    1
+                                ? formatDecimal(
+                                    (Number(value) / totalRewriteCalls) * 100,
+                                    locale,
+                                    { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                   )
                                 : "0";
-                            return `${formatInteger(value)} (${pct}%)`;
+                            return `${formatInteger(value, locale)} (${pct}%)`;
                           }}
                           style={{
                             fill: CHART_COLORS.barLabel,
@@ -326,12 +335,14 @@ export default function DashboardTabByUsage({
                         formatter={(value) => {
                           const pct =
                             totalTransformCalls > 0
-                              ? ((Number(value) / totalTransformCalls) * 100).toFixed(
-                                  1
+                              ? formatDecimal(
+                                  (Number(value) / totalTransformCalls) * 100,
+                                  locale,
+                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           return [
-                            `${formatInteger(value)} (${pct}%)`,
+                            `${formatInteger(value, locale)} (${pct}%)`,
                             t("Calls"),
                           ];
                         }}
@@ -348,11 +359,13 @@ export default function DashboardTabByUsage({
                           formatter={(value) => {
                             const pct =
                               totalTransformCalls > 0
-                                ? ((Number(value) / totalTransformCalls) * 100).toFixed(
-                                    1
+                                ? formatDecimal(
+                                    (Number(value) / totalTransformCalls) * 100,
+                                    locale,
+                                    { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                   )
                                 : "0";
-                            return `${formatInteger(value)} (${pct}%)`;
+                            return `${formatInteger(value, locale)} (${pct}%)`;
                           }}
                           style={{
                             fill: CHART_COLORS.barLabel,

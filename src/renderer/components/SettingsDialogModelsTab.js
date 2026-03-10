@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { formatDecimal } from '../utils/misc/formatUtils';
 import {
   Button,
   Input,
@@ -28,15 +29,6 @@ import {
 } from 'lucide-react';
 import ProviderIcon from './ProviderIcon';
 
-const SORT_OPTIONS = [
-  { value: 'cost-asc', labelKey: 'Cost ↑ Low to High' },
-  { value: 'cost-desc', labelKey: 'Cost ↓ High to Low' },
-  { value: 'model-asc', labelKey: 'Model A→Z' },
-  { value: 'model-desc', labelKey: 'Model Z→A' },
-  { value: 'provider-asc', labelKey: 'Provider A→Z' },
-  { value: 'provider-desc', labelKey: 'Provider Z→A' },
-];
-
 const SettingsDialogModelsTab = ({
   allModels,
   selectedModelIds,
@@ -58,7 +50,19 @@ const SettingsDialogModelsTab = ({
   onDeselectAllModels,
   getModelName,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || 'en-GB';
+  const sortOptions = useMemo(
+    () => [
+      { value: 'cost-asc', label: t('Cost Low to High') },
+      { value: 'cost-desc', label: t('Cost High to Low') },
+      { value: 'model-asc', label: t('Model A→Z') },
+      { value: 'model-desc', label: t('Model Z→A') },
+      { value: 'provider-asc', label: t('Provider A→Z') },
+      { value: 'provider-desc', label: t('Provider Z→A') },
+    ],
+    [t]
+  );
   return (
     <div className="tab-content models-tab">
       <div className="models-split-view">
@@ -143,13 +147,13 @@ const SettingsDialogModelsTab = ({
             <Dropdown
               appearance="underline"
               size="small"
-              value={t(SORT_OPTIONS.find((o) => o.value === sortBy)?.labelKey ?? sortBy)}
+              value={sortOptions.find((o) => o.value === sortBy)?.label ?? sortBy}
               selectedOptions={[sortBy]}
               onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
               style={{ minWidth: '200px' }}
             >
-              {SORT_OPTIONS.map((opt) => (
-                <Option key={opt.value} value={opt.value}>{t(opt.labelKey)}</Option>
+              {sortOptions.map((opt) => (
+                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
               ))}
             </Dropdown>
           </div>
@@ -244,7 +248,7 @@ const SettingsDialogModelsTab = ({
                                       )}
                                     </div>
                                     <Text size={200} className="model-price">
-                                      ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)} / 1M tokens
+                                      ${formatDecimal(parseFloat(model.pricing?.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M tokens
                                     </Text>
                                   </div>
                                   <div className="model-action">
@@ -308,7 +312,7 @@ const SettingsDialogModelsTab = ({
                             )}
                           </div>
                           <Text size={200} className="model-price">
-                            ${(parseFloat(model.pricing?.prompt || 0) * 1000000).toFixed(2)} / 1M tokens
+                            ${formatDecimal(parseFloat(model.pricing?.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M tokens
                           </Text>
                         </div>
                         <div className="model-action">
@@ -393,7 +397,7 @@ const SettingsDialogModelsTab = ({
                         <Text size={200} style={{ opacity: 0.7 }}>
                           {provider}
                           {model.pricing && (
-                            <> • ${(parseFloat(model.pricing.prompt || 0) * 1000000).toFixed(2)} / 1M</>
+                            <> • ${formatDecimal(parseFloat(model.pricing.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M</>
                           )}
                         </Text>
                       </div>

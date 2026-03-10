@@ -9,13 +9,14 @@ const REMOVED = "removed";
 const ADDED = "added";
 
 /**
- * Split text into words (whitespace-separated). Punctuation stays attached to words.
- * @param {string} text
+ * Split a single line into words (whitespace-separated). Punctuation stays attached to words.
+ * Used for line-by-line diff so that newlines are preserved.
+ * @param {string} line
  * @returns {string[]}
  */
-function tokenize(text) {
-  if (typeof text !== "string" || !text.trim()) return [];
-  return text.trim().split(/\s+/);
+function tokenizeLine(line) {
+  if (typeof line !== "string" || !line.trim()) return [];
+  return line.trim().split(/\s+/);
 }
 
 /**
@@ -69,34 +70,61 @@ function charDiff(inputWord, outputWord) {
 }
 
 /**
+ * Compute word-level diff segments for a single line (input line vs output line).
+ * @param {string} inLine
+ * @param {string} outLine
+ * @param {{ key: number }} keyRef - mutable ref for segment keys
+ * @returns {{ key: number, type: 'same'|'removed'|'added', text: string }[]}
+ */
+function computeLineSegments(inLine, outLine, keyRef) {
+  const inputWords = tokenizeLine(inLine);
+  const outputWords = tokenizeLine(outLine);
+  const result = [];
+  if (inputWords.length === 0 && outputWords.length === 0) return result;
+  const alignment = alignWords(inputWords, outputWords);
+  for (let stepIndex = 0; stepIndex < alignment.length; stepIndex++) {
+    const step = alignment[stepIndex];
+    if (step.type === "same") {
+      result.push({ key: keyRef.key++, type: SAME, text: step.out });
+    } else if (step.type === "removed") {
+      result.push({ key: keyRef.key++, type: REMOVED, text: step.in });
+    } else if (step.type === "added") {
+      result.push({ key: keyRef.key++, type: ADDED, text: step.out });
+    } else {
+      const charSegs = charDiff(step.in, step.out);
+      for (const s of charSegs) {
+        result.push({ key: keyRef.key++, type: s.type, text: s.text });
+      }
+    }
+    if (stepIndex < alignment.length - 1) {
+      result.push({ key: keyRef.key++, type: SAME, text: " " });
+    }
+  }
+  return result;
+}
+
+/**
  * Compute diff segments between input and output text.
+ * Uses line-based diff so that newlines and empty lines are preserved.
  * @param {string} inputText
  * @param {string} outputText
  * @returns {{ key: number, type: 'same'|'removed'|'added', text: string }[]}
  */
 export function computeRewriteDiff(inputText, outputText) {
-  const inputWords = tokenize(inputText);
-  const outputWords = tokenize(outputText);
-  if (inputWords.length === 0 && outputWords.length === 0) return [];
-  const alignment = alignWords(inputWords, outputWords);
+  const norm = (s) =>
+    typeof s === "string" ? s.replace(/\r\n/g, "\n").replace(/\r/g, "\n") : "";
+  const inputLines = norm(inputText).split("\n");
+  const outputLines = norm(outputText).split("\n");
+  const maxLen = Math.max(inputLines.length, outputLines.length);
   const result = [];
-  let key = 0;
-  for (let stepIndex = 0; stepIndex < alignment.length; stepIndex++) {
-    const step = alignment[stepIndex];
-    if (step.type === "same") {
-      result.push({ key: key++, type: SAME, text: step.out });
-    } else if (step.type === "removed") {
-      result.push({ key: key++, type: REMOVED, text: step.in });
-    } else if (step.type === "added") {
-      result.push({ key: key++, type: ADDED, text: step.out });
-    } else {
-      const charSegs = charDiff(step.in, step.out);
-      for (const s of charSegs) {
-        result.push({ key: key++, type: s.type, text: s.text });
-      }
-    }
-    if (stepIndex < alignment.length - 1) {
-      result.push({ key: key++, type: SAME, text: " " });
+  const keyRef = { key: 0 };
+  for (let i = 0; i < maxLen; i++) {
+    const inLine = inputLines[i] ?? "";
+    const outLine = outputLines[i] ?? "";
+    const lineSegments = computeLineSegments(inLine, outLine, keyRef);
+    result.push(...lineSegments);
+    if (i < outputLines.length - 1) {
+      result.push({ key: keyRef.key++, type: SAME, text: "\n" });
     }
   }
   return result;

@@ -88,6 +88,8 @@ const MainContent = ({
   onRemoveModel,
   leftPanel,
   rightPanel,
+  openSettingsToTab,
+  onOpenSettingsToTabConsumed,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -96,7 +98,10 @@ const MainContent = ({
     return (
       <main className={styles.mainPanel}>
         <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading settings…")} /></div>}>
-          <SettingsPanel />
+          <SettingsPanel
+            openToTab={openSettingsToTab}
+            onOpenToTabConsumed={onOpenSettingsToTabConsumed}
+          />
         </Suspense>
       </main>
     );

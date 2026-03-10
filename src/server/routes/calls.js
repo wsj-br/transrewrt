@@ -22,6 +22,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     }
     try {
       const b = req.body || {};
+      const username = req.authSession?.username ?? b.username ?? null;
       const timestamp = b.timestamp || new Date().toLocaleString();
       const type = b.type || "";
       const model = b.model || "";
@@ -49,6 +50,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
         cost,
         total_cost,
         b.tps ?? null,
+        username,
       );
       res.json({ success: true });
     } catch (err) {
@@ -61,7 +63,9 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const row = db.prepare(sql.GET_TOTAL_COST).get();
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
+      const sqlStr = where ? "SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls" + where : sql.GET_TOTAL_COST;
+      const row = where ? db.prepare(sqlStr).get(...params) : db.prepare(sqlStr).get();
       const total_cost = row?.total_cost ?? 0;
       res.json({ total_cost });
     } catch (err) {
@@ -74,7 +78,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_FUNCTION, where)).all(...params);
       const totalCalls = rows.reduce((s, r) => s + r.calls, 0);
       const totalCost = rows.reduce((s, r) => s + (r.cost || 0), 0);
@@ -86,8 +90,8 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     }
   });
 
-  function fullWhereForType(type, from, to) {
-    const { where, params } = buildWhereFromTo(from, to);
+  function fullWhereForType(type, from, to, username) {
+    const { where, params } = buildWhereFromTo(from, to, username);
     const andPart = where ? where.replace(" WHERE ", "") : "";
     return { where: " WHERE type = '" + type + "'" + (andPart ? " AND " + andPart : ""), params };
   }
@@ -96,7 +100,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_MODEL, where)).all(...params);
       let weightedTpsNum = 0;
       let weightedTpsDenom = 0;
@@ -144,7 +148,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_DAY, where)).all(...params);
       res.json({ rows });
     } catch (err) {
@@ -157,7 +161,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = fullWhereForType("translate", req.query.from, req.query.to);
+      const { where, params } = fullWhereForType("translate", req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_TARGET_LANG, where)).all(...params);
       res.json({ rows });
     } catch (err) {
@@ -170,7 +174,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = fullWhereForType("rewrite", req.query.from, req.query.to);
+      const { where, params } = fullWhereForType("rewrite", req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_REWRITE_STYLE, where)).all(...params);
       res.json({ rows });
     } catch (err) {
@@ -183,7 +187,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = fullWhereForType("transform", req.query.from, req.query.to);
+      const { where, params } = fullWhereForType("transform", req.query.from, req.query.to, req.query.username);
       const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_TRANSFORM_PROMPT, where)).all(...params);
       res.json({ rows });
     } catch (err) {
@@ -196,7 +200,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
       const page = Math.max(1, parseInt(req.query.page, 10) || 1);
       const pageSize = Math.min(200, Math.max(1, parseInt(req.query.pageSize, 10) || 50));
       const total = db.prepare(replaceWhere(sql.COUNT_API_CALLS, where)).get(...params)?.total ?? 0;
@@ -213,7 +217,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { where, params } = buildWhereFromTo(req.query.from, req.query.to);
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
       const page = Math.max(1, parseInt(req.query.page, 10) || 1);
       const pageSize = Math.min(200, Math.max(1, parseInt(req.query.pageSize, 10) || 50));
       const total = db.prepare(replaceWhere(sql.COUNT_DISTINCT_DAYS, where)).get(...params)?.total ?? 0;

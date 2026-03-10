@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import ConfirmModal from "./ConfirmModal";
 import LoginModal from "./LoginModal";
+import ChangePasswordModal from "./ChangePasswordModal";
 import ApiKeyModal from "./ApiKeyModal";
 import { getTranslatePanels, getRewritePanels, getTransformPanels } from "./workspace";
 import { useAppContext } from "../contexts/AppContext";
@@ -15,7 +16,7 @@ import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from "../utils/misc/languageConstants";
-import { formatElapsedMmSs, formatCostDisplay, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatCostDisplay, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
 import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
 import "../styles/main.css";
@@ -42,12 +43,14 @@ const LoadingLogoSvg = ({ className }) => (
 
 const App = () => {
   const styles = useAppStyles();
-  const { t } = useTranslation();
-  const { settings, translate, rewrite, transform, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, handleWebLogin, apiKeyStatus, configLoading, setError } =
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
+  const { settings, translate, translatePromptFields, improvePromptConfig, rewrite, transform, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState(() => (settings.web_view === "settings" ? "settings" : "workspace"));
+  const [openSettingsToTab, setOpenSettingsToTab] = useState(null);
   const hasRestoredViewRef = useRef(false);
   // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
   const [inputTextTranslate, setInputTextTranslate] = useState("");
@@ -55,6 +58,7 @@ const App = () => {
   const [inputTextRewrite, setInputTextRewrite] = useState("");
   const [outputTextRewrite, setOutputTextRewrite] = useState("");
   const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
   const electronApiKeyMissing = !isWeb && !settings?.api_key_configured;
   // Only show modal after initial load has settled (avoids flash when API key is already configured)
@@ -284,8 +288,8 @@ const App = () => {
     navigator.clipboard.writeText(outputText);
   };
 
-  const inputStats = () => getInputStats(inputText);
-  const outputStats = () => getOutputStats(outputText);
+  const inputStats = () => getInputStats(inputText, t);
+  const outputStats = () => getOutputStats(outputText, t);
 
   const { pasteToInput, handlePasteEvent, shouldAutoProcessRef } = usePasteHandler(
     setInputText,
@@ -321,7 +325,7 @@ const App = () => {
     );
   }, [languages]);
 
-  const outputMeta = `${isProcessing || elapsedTime > 0 ? `Time: ${formatElapsedMmSs(elapsedTime)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `Cost: ${formatCostDisplay(lastRunCost)} | ` : ""}Total: ${formatCostDisplay(settings.total_cost || 0)}${tokensPerSecond ? ` | TPS: ${tokensPerSecond.toFixed(1)}` : ""}`;
+  const outputMeta = `${isProcessing || elapsedTime > 0 ? `${t('Elapsed')}: ${formatElapsedMmSs(elapsedTime, locale)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `${t('Cost')}: ${formatCostDisplay(lastRunCost, locale)} | ` : ""}${t('Total')}: ${formatCostDisplay(settings.total_cost || 0, locale)}${tokensPerSecond ? ` | ${t('TPS')}: ${formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}` : ""}`;
 
   const common = {
     t,
@@ -391,7 +395,7 @@ const App = () => {
             input: {
               text: inputTextTransform,
               setText: setInputTextTransform,
-              getStats: () => getInputStats(inputTextTransform),
+              getStats: () => getInputStats(inputTextTransform, t),
               clear: clearInput,
               pasteToInput,
               handlePasteEvent,
@@ -399,7 +403,7 @@ const App = () => {
             output: {
               text: outputTextTransform,
               setText: setOutputTextTransform,
-              getStats: () => getOutputStats(outputTextTransform),
+              getStats: () => getOutputStats(outputTextTransform, t),
               copy: () => navigator.clipboard.writeText(outputTextTransform),
             },
             options: {
@@ -413,6 +417,11 @@ const App = () => {
               setTransformTargetLang,
               languages,
               allLanguages,
+              translate,
+              translatePromptFields,
+              improvePromptConfig,
+              model: activeModel,
+              models,
               handleTransformPromptSelect,
               handleTransformNewPrompt,
               handleTransformEditPrompt,
@@ -470,6 +479,9 @@ const App = () => {
               {isWeb && needsLogin && (
                 <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
               )}
+              {isWeb && showChangePasswordModal && (
+                <ChangePasswordModal onClose={() => setShowChangePasswordModal(false)} />
+              )}
               <ApiKeyModal
                 show={showApiKeyModal}
                 isWeb={isWeb}
@@ -487,6 +499,14 @@ const App = () => {
                     setCurrentView("settings");
                     if (isWeb) setSetting("web_view", "settings");
                   }}
+                  currentUser={currentUser}
+                  onSignOut={isWeb ? handleWebLogout : undefined}
+                  onChangePassword={isWeb ? () => setShowChangePasswordModal(true) : undefined}
+                  onOpenSettingsUsers={isWeb && currentUser?.role === "admin" ? () => {
+                    setOpenSettingsToTab("users");
+                    setCurrentView("settings");
+                    if (isWeb) setSetting("web_view", "settings");
+                  } : undefined}
                 />
                 <MainContent
                   view={currentView}
@@ -502,6 +522,8 @@ const App = () => {
                   onRemoveModel={removeModelFromList}
                   leftPanel={leftPanel}
                   rightPanel={rightPanel}
+                  openSettingsToTab={openSettingsToTab}
+                  onOpenSettingsToTabConsumed={() => setOpenSettingsToTab(null)}
                 />
               </div>
             </div>
@@ -547,9 +569,8 @@ const App = () => {
           currentView={currentView}
           onModeChange={handleModeChange}
           onDashboardClick={handleDashboardClick}
-          onSettingsClick={() => {
-            setCurrentView("settings");
-          }}
+          onSettingsClick={() => setCurrentView("settings")}
+          currentUser={currentUser}
         />
         <MainContent
           view={currentView}

@@ -51,18 +51,19 @@ const webAPI = {
     }
   },
 
-  login: async (password) => {
+  login: async (username, password) => {
     const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ username, password }),
       credentials: "include",
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       throw new Error(data.error || "Login failed");
     }
-    return true;
+    const data = await res.json();
+    return { username: data.username, role: data.role, mustChangePassword: !!data.mustChangePassword };
   },
 
   changePassword: async (newPassword) => {
@@ -101,6 +102,130 @@ const webAPI = {
     return true;
   },
 
+  checkAuth: async () => {
+    const res = await fetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) return Promise.reject(new Error("Session check failed"));
+    const data = await res.json();
+    return {
+      ok: !!data.ok,
+      username: data.username ?? null,
+      role: data.role ?? null,
+      mustChangePassword: !!data.mustChangePassword,
+    };
+  },
+
+  getUsers: async () => {
+    const res = await fetch(`${API_BASE}/api/users`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to load users");
+    }
+    const data = await res.json();
+    return data.users || [];
+  },
+
+  createUser: async ({ username, password, role, must_change_password }) => {
+    const res = await fetch(`${API_BASE}/api/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        password,
+        role: role || "user",
+        must_change_password: must_change_password === true || must_change_password === 1 ? 1 : 0,
+      }),
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to create user");
+    }
+    return await res.json();
+  },
+
+  updateUser: async (id, { username, role, must_change_password }) => {
+    const res = await fetch(`${API_BASE}/api/users/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, role, must_change_password }),
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to update user");
+    }
+    return await res.json();
+  },
+
+  setUserPassword: async (id, newPassword) => {
+    const res = await fetch(`${API_BASE}/api/users/${id}/change-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ newPassword }),
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to set password");
+    }
+  },
+
+  revokeUserSessions: async (id) => {
+    const res = await fetch(`${API_BASE}/api/users/${id}/revoke-sessions`, {
+      method: "POST",
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to revoke sessions");
+    }
+  },
+
+  deleteUser: async (id) => {
+    const res = await fetch(`${API_BASE}/api/users/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to delete user");
+    }
+  },
+
   logApiCall: async (payload) => {
     try {
       const res = await fetch(`${API_BASE}/api/calls`, {
@@ -117,8 +242,10 @@ const webAPI = {
     }
   },
 
-  getTotalCostFromDatabase: async () => {
-    const res = await fetch(`${API_BASE}/api/calls/total-cost`, { credentials: "include" });
+  getTotalCostFromDatabase: async (username = null) => {
+    const q = new URLSearchParams();
+    if (username) q.set("username", username);
+    const res = await fetch(`${API_BASE}/api/calls/total-cost?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -131,10 +258,11 @@ const webAPI = {
     return { total_cost: data.total_cost ?? 0 };
   },
 
-  getSummaryByFunction: async (from, to) => {
+  getSummaryByFunction: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-function?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -145,10 +273,11 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByModel: async (from, to) => {
+  getSummaryByModel: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-model?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -159,10 +288,11 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByDay: async (from, to) => {
+  getSummaryByDay: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-day?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -173,10 +303,11 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByTargetLang: async (from, to) => {
+  getSummaryByTargetLang: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-target-lang?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -187,10 +318,11 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByRewriteStyle: async (from, to) => {
+  getSummaryByRewriteStyle: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-rewrite-style?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -201,10 +333,11 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByTransformPrompt: async (from, to) => {
+  getSummaryByTransformPrompt: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-transform-prompt?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -215,12 +348,13 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getAllCalls: async (from, to, page, pageSize) => {
+  getAllCalls: async (from, to, page, pageSize, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (page) q.set("page", String(page));
     if (pageSize) q.set("pageSize", String(pageSize));
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/all?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
@@ -230,12 +364,13 @@ const webAPI = {
     return await res.json();
   },
 
-  getSummaryByDayPaginated: async (from, to, page, pageSize) => {
+  getSummaryByDayPaginated: async (from, to, page, pageSize, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (page) q.set("page", String(page));
     if (pageSize) q.set("pageSize", String(pageSize));
+    if (username) q.set("username", username);
     const res = await fetch(`${API_BASE}/api/calls/summary-by-day-paginated?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();

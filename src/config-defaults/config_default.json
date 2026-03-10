@@ -18,7 +18,7 @@
     "real_time_delay": 1000,
     "enter_behavior": "Shift-Execute",
     "auto_translate_on_paste": true,
-    "web_margin": true,
+    "web_margin": false,
     "font_family": "Verdana",
     "font_size": 15,
     "theme": "System",

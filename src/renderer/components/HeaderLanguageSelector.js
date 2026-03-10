@@ -10,7 +10,7 @@ import {
   MenuList,
   MenuItem,
 } from "@fluentui/react-components";
-import { Globe } from "lucide-react";
+import { Globe, Check } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
@@ -36,13 +36,24 @@ const useStyles = makeStyles({
   popoverGrid: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    minWidth: "360px",
-    gap: "2px 16px",
+    minWidth: "500px",
+    gap: "2px 8px",
+    leftMargin: "4px",
+    rightMargin: "4px",
+    topMargin: "4px",
+    bottomMargin: "4px",
+    borderRadius: "4px",
+    border: "1px solid tokens.colorNeutralStroke1",
+    backgroundColor: tokens.colorNeutralBackground1,
+    boxShadow: tokens.shadow48,
   },
   column: {
     display: "flex",
     flexDirection: "column",
     gap: "2px",
+  },
+  selectedItem: {
+    color: tokens.colorBrandForegroundInverted,
   },
 });
 
@@ -76,7 +87,8 @@ const HeaderLanguageSelector = ({ compact = false }) => {
         <Button
           appearance="subtle"
           icon={<Globe size={iconSize} />}
-          aria-label={t("Interface language")}
+          aria-label={t("Interface language")} 
+          title={t("Interface language")}
           className={compact ? `${styles.trigger} ${styles.triggerCompact}` : styles.trigger}
         />
       </PopoverTrigger>
@@ -85,14 +97,25 @@ const HeaderLanguageSelector = ({ compact = false }) => {
           {[0, 1].map((colIndex) => (
             <div key={colIndex} className={styles.column}>
               <MenuList>
-                {UI_LANGUAGES.filter((_, i) => i % 2 === colIndex).map((lang) => (
-                  <MenuItem
-                    key={lang.code}
-                    onClick={() => handleSelect(lang.code)}
-                  >
-                    {getUILanguageLabel(lang, t)}
-                  </MenuItem>
-                ))}
+                {UI_LANGUAGES.filter((_, i) => i % 2 === colIndex).map((lang) => {
+                  const isSelected = lang.code === uiLocale;
+                  return (
+                    <MenuItem
+                      key={lang.code}
+                      onClick={() => handleSelect(lang.code)}
+                      icon={
+                        isSelected ? (
+                          <Check size={16} />
+                        ) : (
+                          <Check size={16} style={{ opacity: 0 }} aria-hidden />
+                        )
+                      }
+                      className={isSelected ? styles.selectedItem : undefined}
+                    >
+                      {getUILanguageLabel(lang, t)}
+                    </MenuItem>
+                  );
+                })}
               </MenuList>
             </div>
           ))}

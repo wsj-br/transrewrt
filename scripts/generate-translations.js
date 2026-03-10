@@ -2,26 +2,48 @@
  * Read locales/strings.json, translate missing entries via OpenRouter, write flat locale JSONs.
  * Requires API_KEY env var (OpenRouter). Run after extract-strings.js.
  *
- * Usage:
- *   node scripts/generate-translations.js [options]
+ * Use --help for usage and options.
  *   node scripts/generate-translations.js --help
- *   node scripts/generate-translations.js --dry-run
- *   node scripts/generate-translations.js --retranslate --model openai/gpt-4o
- *   node scripts/generate-translations.js --max-tokens 4096
- *
- * Options:
- *   --help, -h           Show usage and exit.
- *   --dry-run, -d        Show what would be translated; no API calls or file writes.
- *   --show-strings, -s  List the source strings that need translation (key + text) per language.
- *   --retranslate, -r    Retranslate all strings (ignore existing translations).
- *   --model, -m <name>   OpenRouter model to use (default: anthropic/claude-sonnet-4.6).
  */
 
 const fs = require("fs");
 const path = require("path");
 
+
+const DEFAULT_MODEL = "qwen/qwen3-235b-a22b-2507";
+const ALTERNATIVE_MODELS = [
+  "qwen/qwen3-30b-a3b-instruct-2507",
+  "z-ai/glm-4.7-flash",
+  "minimax/minimax-m2.5",
+  "anthropic/claude-3.5-haiku",
+  "anthropic/claude-haiku-4.5",
+];
+const DEFAULT_MAX_TOKENS = 32768;
+const CHUNK = 50;
+
+function timestamp() {
+  return new Date().toTimeString().slice(0, 8);
+}
+function formatElapsed(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+function log(...args) {
+  console.log(`${timestamp()} - `, ...args);
+}
+function warn(...args) {
+  console.warn(`${timestamp()} - `, ...args);
+}
+function err(...args) {
+  console.error(`${timestamp()} - `, ...args);
+}
+
 function printHelp() {
-  console.log(`
+  log(`
 Generate translations for UI strings using OpenRouter.
 
 Reads src/renderer/locales/strings.json (from i18n:extract), translates missing
@@ -37,8 +59,9 @@ Options:
   --dry-run, -d           Show what would be translated per language; do not call API or write files.
   --show-strings, -s      List source strings that need translation (key + text) per language.
   --retranslate, -r       Retranslate all strings (ignore existing translations).
-  --model, -m <name>      OpenRouter model to use (default: anthropic/claude-sonnet-4.6).
-  --max-tokens, -t <n>    Max tokens for completion (default: 32768).
+  --model, -m <name>      OpenRouter model to use (default: ${DEFAULT_MODEL}).
+  --max-tokens, -t <n>    Max tokens for completion (default: ${DEFAULT_MAX_TOKENS}).
+  --locale, -l <code>     Translate only this locale (e.g. pt-BR, de).
 
 Examples:
   node scripts/generate-translations.js --help
@@ -46,21 +69,23 @@ Examples:
   node scripts/generate-translations.js --show-strings
   node scripts/generate-translations.js
   node scripts/generate-translations.js --retranslate
+  node scripts/generate-translations.js -l pt-BR
   node scripts/generate-translations.js -m openai/gpt-4o
   node scripts/generate-translations.js -r -m anthropic/claude-sonnet-4
 `);
 }
 
-const DEFAULT_MAX_TOKENS = 32768;
+
 
 function parseArgs() {
   const args = process.argv.slice(2);
   let retranslate = false;
   let dryRun = false;
   let showStrings = false;
-  let model = "anthropic/claude-sonnet-4.6";
+  let model = DEFAULT_MODEL;
   let maxTokens = DEFAULT_MAX_TOKENS;
   let help = false;
+  let locale = null;
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--help" || arg === "-h") {
@@ -76,12 +101,14 @@ function parseArgs() {
     } else if ((arg === "--max-tokens" || arg === "-t") && args[i + 1]) {
       const n = parseInt(args[++i], 10);
       if (!Number.isNaN(n) && n > 0) maxTokens = n;
+    } else if ((arg === "--locale" || arg === "-l") && args[i + 1]) {
+      locale = args[++i];
     }
   }
-  return { retranslate, dryRun, showStrings, model, maxTokens, help };
+  return { retranslate, dryRun, showStrings, model, maxTokens, help, locale };
 }
 
-const { retranslate, dryRun, showStrings, model: cliModel, maxTokens, help } = parseArgs();
+const { retranslate, dryRun, showStrings, model: cliModel, maxTokens, help, locale: localeFilter } = parseArgs();
 
 if (help) {
   printHelp();
@@ -96,37 +123,68 @@ const MODEL = cliModel;
 const MAX_TOKENS = maxTokens;
 
 let LANGUAGES = [];
+/** Set of locale codes that are in ui-languages.json (used to prune orphaned translations from strings.json). */
+let ALLOWED_LOCALE_CODES = new Set();
 if (fs.existsSync(UI_LANGUAGES_PATH)) {
   const uiLanguages = JSON.parse(fs.readFileSync(UI_LANGUAGES_PATH, "utf8"));
-  LANGUAGES = Array.isArray(uiLanguages)
+  const all = Array.isArray(uiLanguages)
     ? uiLanguages.map((l) => ({ code: l.code, name: l.englishName }))
     : [];
+  // Source language: no translation needed; keys are already UK English. Skip so we don't call API or write en-GB.json.
+  LANGUAGES = all.filter((l) => l.code !== "en-GB" && l.code !== "en");
+  ALLOWED_LOCALE_CODES = new Set(all.map((l) => l.code));
 }
 
 if (!fs.existsSync(STRINGS_FILE)) {
-  console.error("[translate] Run i18n:extract first to create strings.json");
+  err("[translate] Run i18n:extract first to create strings.json");
   process.exit(1);
 }
 
 if (LANGUAGES.length === 0) {
-  console.error("[translate] No languages in src/renderer/locales/ui-languages.json");
+  err("[translate] No languages in src/renderer/locales/ui-languages.json");
   process.exit(1);
 }
 
+if (localeFilter) {
+  if (localeFilter === "en-GB" || localeFilter === "en") {
+    log("[translate] en-GB is the source language; no translation needed.");
+    process.exit(0);
+  }
+  const match = LANGUAGES.find((l) => l.code === localeFilter);
+  if (!match) {
+    err(`[translate] Locale "${localeFilter}" not found in ui-languages.json. Available: ${LANGUAGES.map((l) => l.code).join(", ")}`);
+    process.exit(1);
+  }
+  LANGUAGES = [match];
+  log(`[translate] single locale: ${localeFilter}`);
+}
+
 if (!API_KEY) {
-  console.warn("[translate] API_KEY not set; will only write locale files from existing strings.json");
+  warn("[translate] API_KEY not set; will only write locale files from existing strings.json");
 }
 
 if (retranslate) {
-  console.log("[translate] --retranslate: will translate all strings for each language");
+  log("[translate] --retranslate: will translate all strings for each language");
 }
-console.log(`[translate] model: ${MODEL}, max_tokens: ${MAX_TOKENS}`);
+log(`[translate] model: ${MODEL}, max_tokens: ${MAX_TOKENS}`);
 
 const strings = JSON.parse(fs.readFileSync(STRINGS_FILE, "utf8"));
+// Remove redundant en-GB entries (source language; keys are used as-is at runtime).
+let stringsCleaned = false;
+for (const entry of Object.values(strings)) {
+  if (entry.translated && entry.translated["en-GB"] !== undefined) {
+    delete entry.translated["en-GB"];
+    stringsCleaned = true;
+  }
+}
+if (stringsCleaned) {
+  fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
+  log("[translate] Removed redundant en-GB entries from strings.json");
+}
 const entries = Object.entries(strings);
 
 if (dryRun) {
-  console.log("[translate] Dry run: showing what would be translated (no API calls, no files written).\n");
+  log("[translate] Dry run: showing what would be translated (no API calls, no files written).\n");
   let totalMissing = 0;
   for (const lang of LANGUAGES) {
     const missing = retranslate
@@ -137,28 +195,28 @@ if (dryRun) {
     if (n > 0) {
       const sample = missing.slice(0, 3).map(([k]) => k);
       const more = n > 3 ? ` ... and ${n - 3} more` : "";
-      console.log(`  ${lang.code} (${lang.name}): ${n} strings to translate`);
-      console.log(`    Sample keys: ${sample.join(", ")}${more}`);
+      log(`  ${lang.code} - ${lang.name} (${lang.name}): ${n} strings to translate`);
+      log(`    Sample keys: ${sample.join(", ")}${more}`);
     } else {
-      console.log(`  ${lang.code} (${lang.name}): up to date (0 to translate)`);
+      log(`  ${lang.code} - ${lang.name} (${lang.name}): up to date (0 to translate)`);
     }
   }
-  console.log(`\nTotal strings that would be translated: ${totalMissing}`);
+  log(`\nTotal strings that would be translated: ${totalMissing}`);
   process.exit(0);
 }
 
 if (showStrings) {
-  console.log("[translate] Strings that need translation (no API calls, no files written).\n");
+  log("[translate] Strings that need translation (no API calls, no files written).\n");
   for (const lang of LANGUAGES) {
     const missing = retranslate
       ? entries
       : entries.filter(([, entry]) => !entry.translated[lang.code]);
-    console.log(`--- ${lang.code} (${lang.name}): ${missing.length} strings ---`);
+    log(`--- ${lang.code} - ${lang.name} (${lang.name}): ${missing.length} strings ---`);
     for (const [key, entry] of missing) {
       const source = (entry.source || "").replace(/\n/g, "\\n");
-      console.log(`  ${key}: ${JSON.stringify(source)}`);
+      log(`  ${key}: ${JSON.stringify(source)}`);
     }
-    console.log("");
+    log("");
   }
   process.exit(0);
 }
@@ -186,16 +244,16 @@ function extractUsage(data) {
 }
 
 function abortWithError(message, details = null) {
-  console.error("\n[translate] ERROR:", message);
+  err("\n[translate] ERROR:", message);
   if (details != null) {
-    console.error("[translate] Details:");
+    err("[translate] Details:");
     if (details instanceof Error) {
-      console.error(details.stack || details.message);
-      if (details.cause) console.error("[translate] Cause:", details.cause);
+      err(details.stack || details.message);
+      if (details.cause) err("[translate] Cause:", details.cause);
     } else if (typeof details === "object") {
-      console.error(JSON.stringify(details, null, 2));
+      err(JSON.stringify(details, null, 2));
     } else {
-      console.error(details);
+      err(details);
     }
   }
   process.exit(1);
@@ -215,8 +273,15 @@ RULES:
 - No markdown, no code fences, no explanation, no preamble, no postamble
 - First character of your response must be [ and last character must be ]`;
 
-async function translateBatch(texts, langName) {
+function translateBatchError(message, details = null) {
+  const err = new Error(message);
+  if (details != null) err.details = details;
+  return err;
+}
+
+async function translateBatch(texts, langName, modelOverride = null) {
   if (!API_KEY) return { translated: texts.map(() => null), usage: { prompt_tokens: 0, completion_tokens: 0, total_cost: 0 } };
+  const model = modelOverride ?? MODEL;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -226,7 +291,7 @@ async function translateBatch(texts, langName) {
       "X-Title": "Transrewrt-generate-translations",
     },
     body: JSON.stringify({
-      model: MODEL,
+      model,
       max_tokens: MAX_TOKENS,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
@@ -247,16 +312,15 @@ Respond with ONLY the JSON array. No other text.`,
   try {
     data = JSON.parse(responseText);
   } catch (e) {
-    abortWithError("Response is not valid JSON", {
+    throw translateBatchError("Response is not valid JSON", {
       status: response.status,
       statusText: response.statusText,
-      rawBody: responseText,
       parseError: e.message,
     });
   }
 
   if (!response.ok) {
-    abortWithError(`API request failed: ${response.status} ${response.statusText}`, {
+    throw translateBatchError(`API request failed: ${response.status} ${response.statusText}`, {
       status: response.status,
       statusText: response.statusText,
       body: data,
@@ -264,7 +328,7 @@ Respond with ONLY the JSON array. No other text.`,
   }
 
   if (data.error) {
-    abortWithError("API returned an error", {
+    throw translateBatchError("API returned an error", {
       error: data.error,
       fullResponse: data,
     });
@@ -281,35 +345,60 @@ Respond with ONLY the JSON array. No other text.`,
   try {
     translated = JSON.parse(cleaned);
   } catch (e) {
-    abortWithError("Model response is not valid JSON array", {
+    throw translateBatchError("Model response is not valid JSON array", {
       parseError: e.message,
       rawContent: content,
-      fullResponse: data,
     });
   }
   return { translated, usage };
 }
 
+function logUsage(label, usage, totalSoFar) {
+  const { prompt_tokens, completion_tokens, total_cost } = usage;
+  const tokens = prompt_tokens + completion_tokens;
+  const costStr = total_cost > 0 ? `$${total_cost.toFixed(6)} USD` : (tokens > 0 ? "(no cost reported)" : "no API calls");
+  const totalStr = totalSoFar != null && totalSoFar > 0 ? `; total so far: $${totalSoFar.toFixed(6)} USD` : "";
+  log(`[translate] ${label}: ${tokens} tokens (${prompt_tokens} prompt + ${completion_tokens} completion), ${costStr}${totalStr}`);
+}
+
 async function generateForLang(lang) {
+  const usageBefore = {
+    prompt_tokens: usageTotal.prompt_tokens,
+    completion_tokens: usageTotal.completion_tokens,
+    total_cost: usageTotal.total_cost,
+  };
+
   const missing = retranslate
     ? entries
     : entries.filter(([, entry]) => !entry.translated[lang.code]);
   if (missing.length === 0) {
-    console.log(`[translate] ${lang.code}: up to date`);
+    log(`[translate] ${lang.code} - ${lang.name}: up to date`);
   } else {
-    console.log(`[translate] ${lang.code}: ${missing.length} strings to translate`);
-    const CHUNK = 50;
+    log(`[translate] ${lang.code} - ${lang.name}: ${missing.length} strings to translate`);
+    const modelsToTry = [MODEL, ...ALTERNATIVE_MODELS.filter((m) => m !== MODEL)];
     for (let i = 0; i < missing.length; i += CHUNK) {
       const chunk = missing.slice(i, i + CHUNK);
       const sources = chunk.map(([, v]) => v.source);
-      try {
-        const { translated } = await translateBatch(sources, lang.name);
+      const chunkNum = Math.floor(i / CHUNK) + 1;
+      const chunkTotal = Math.ceil(missing.length / CHUNK);
+      let result = null;
+      let lastError = null;
+      for (const model of modelsToTry) {
+        try {
+          result = await translateBatch(sources, lang.name, model);
+          break;
+        } catch (e) {
+          lastError = e;
+          warn(`[translate] ${lang.code} chunk ${chunkNum}/${chunkTotal} failed with ${model}:`, e.message);
+        }
+      }
+      if (result) {
         chunk.forEach(([h], idx) => {
-          if (translated[idx]) strings[h].translated[lang.code] = translated[idx];
+          if (result.translated[idx]) strings[h].translated[lang.code] = result.translated[idx];
         });
-        console.log(`  ${lang.code} chunk ${Math.floor(i / CHUNK) + 1}/${Math.ceil(missing.length / CHUNK)} done`);
-      } catch (e) {
-        abortWithError(`Chunk failed (${lang.code}, chunk ${Math.floor(i / CHUNK) + 1})`, e);
+        log(`  ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} done`);
+      } else {
+        warn(`[translate] ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} skipped (all ${modelsToTry.length} models failed). Last: ${lastError?.message}`);
       }
     }
     fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
@@ -322,27 +411,57 @@ async function generateForLang(lang) {
   }
   const localePath = path.join(LOCALES_DIR, `${lang.code}.json`);
   fs.writeFileSync(localePath, JSON.stringify(locale, null, 2), "utf8");
-  console.log(`[translate] ${lang.code}: wrote ${Object.keys(locale).length} strings to ${localePath}`);
+  log(`[translate] ${lang.code} - ${lang.name}: wrote ${Object.keys(locale).length} strings to ${localePath}`);
+
+  const usageForLang = {
+    prompt_tokens: usageTotal.prompt_tokens - usageBefore.prompt_tokens,
+    completion_tokens: usageTotal.completion_tokens - usageBefore.completion_tokens,
+    total_cost: usageTotal.total_cost - usageBefore.total_cost,
+  };
+  logUsage(`${lang.code} - ${lang.name} cost`, usageForLang, usageTotal.total_cost);
+
+  return missing.length; // 0 when already up to date
 }
 
 (async () => {
+  const startTime = Date.now();
   if (!fs.existsSync(LOCALES_DIR)) {
     fs.mkdirSync(LOCALES_DIR, { recursive: true });
   }
+  let totalStringsTranslated = 0;
   for (const lang of LANGUAGES) {
-    await generateForLang(lang);
+    totalStringsTranslated += await generateForLang(lang);
+  }
+
+  // Remove from strings.json any translated keys for locales not in ui-languages.json.
+  let removedByLocale = {};
+  let anyRemoved = false;
+  for (const entry of Object.values(strings)) {
+    if (!entry.translated) continue;
+    for (const code of Object.keys(entry.translated)) {
+      if (!ALLOWED_LOCALE_CODES.has(code)) {
+        removedByLocale[code] = (removedByLocale[code] || 0) + 1;
+        delete entry.translated[code];
+        anyRemoved = true;
+      }
+    }
+  }
+  if (anyRemoved) {
+    fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
+    const totalRemoved = Object.values(removedByLocale).reduce((a, n) => a + n, 0);
+    log(`[translate] Pruned ${totalRemoved} orphaned translation(s) from strings.json (locales not in ui-languages.json): ${Object.entries(removedByLocale).map(([c, n]) => `${c}: ${n}`).join(", ")}`);
   }
 
   const totalTokens = usageTotal.prompt_tokens + usageTotal.completion_tokens;
-  console.log("\n[translate] done");
-  if (totalTokens > 0) {
-    console.log(
-      `[translate] usage: ${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion = ${totalTokens} total tokens`
-    );
-    if (usageTotal.total_cost > 0) {
-      console.log(`[translate] total cost: $${usageTotal.total_cost.toFixed(4)} USD`);
-    } else {
-      console.log("[translate] total cost: (not reported by API; enable usage accounting for cost)");
-    }
+  log("\n[translate] done");
+
+  log("--- totalizer ---");
+  log(`[translate] time elapsed: ${formatElapsed(Date.now() - startTime)}`);
+  log(`[translate] total strings translated: ${totalStringsTranslated}`);
+  log(`[translate] total tokens: ${totalTokens} (${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion)`);
+  if (usageTotal.total_cost > 0) {
+    log(`[translate] total cost: $${usageTotal.total_cost.toFixed(6)} USD`);
+  } else if (totalTokens > 0) {
+    log("[translate] total cost: (not reported by API; enable usage accounting for cost)");
   }
 })();

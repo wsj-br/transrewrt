@@ -24,6 +24,11 @@ export function getTransformPanels({ common, input, output, options }) {
     setTransformTargetLang,
     languages,
     allLanguages,
+    translate,
+    translatePromptFields,
+    improvePromptConfig,
+    model,
+    models,
     handleTransformPromptSelect,
     handleTransformNewPrompt,
     handleTransformEditPrompt,
@@ -53,6 +58,13 @@ export function getTransformPanels({ common, input, output, options }) {
             onDelete={handleTransformDeleteRequest}
             onBackToRun={handleTransformBackToRun}
             onDraftChange={setTransformEditorDraft}
+            translate={translate}
+            translatePromptFields={translatePromptFields}
+            improvePromptConfig={improvePromptConfig}
+            model={model}
+            models={models}
+            languages={languages}
+            allLanguages={allLanguages}
           />
         </div>
       </div>
@@ -150,6 +162,7 @@ export function getTransformPanels({ common, input, output, options }) {
             onChange={(v) => setTransformTargetLang(v === "auto" ? "" : v)}
             languages={languages}
             allLanguages={allLanguages}
+            targetListSameAsSource={true}
             allowNone={true}
             iconColor={tokens.colorStatusWarningForeground3}
           />

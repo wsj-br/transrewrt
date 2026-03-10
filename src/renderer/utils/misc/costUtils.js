@@ -48,6 +48,11 @@ export function getFilters(t) {
 
 export const DASH = "—";
 
+const DEFAULT_LOCALE = "en-GB";
+function resolveLocale(locale) {
+  return locale && typeof locale === "string" ? locale : DEFAULT_LOCALE;
+}
+
 export function getFilterRange(filterId) {
   if (!filterId || filterId === "all") return { from: null, to: null };
   const now = new Date();
@@ -98,13 +103,22 @@ export function getFilterRange(filterId) {
   return { from, to };
 }
 
-/** Returns React node for dollar amount with fraction styling. */
-export function formatDollarAmount(n, costFractionStyle = "muted") {
-  const s = Number(n).toFixed(6);
-  const dot = s.indexOf(".");
-  if (dot === -1) return "$" + s;
-  const main = s.slice(0, dot + 3);
-  const frac = s.slice(dot + 3);
+/** Returns React node for dollar amount with fraction styling. Locale controls decimal separator. */
+export function formatDollarAmount(n, costFractionStyle = "muted", locale) {
+  const loc = resolveLocale(locale);
+  const formatter = new Intl.NumberFormat(loc, {
+    minimumFractionDigits: 6,
+    maximumFractionDigits: 6,
+  });
+  const parts = formatter.formatToParts(Number(n));
+  const decimalPart = parts.find((p) => p.type === "decimal");
+  const fractionPart = parts.find((p) => p.type === "fraction");
+  const integerPart = parts.find((p) => p.type === "integer");
+  const decimalSep = decimalPart ? decimalPart.value : ".";
+  const fraction = fractionPart ? fractionPart.value : "000000";
+  const integer = integerPart ? integerPart.value : "0";
+  const main = integer + decimalSep + fraction.slice(0, 2);
+  const frac = fraction.slice(2);
   const mutedColor = tokens.colorNeutralForeground3 || "#888";
   const fractionNode =
     costFractionStyle === "superscript" ? (
@@ -124,14 +138,14 @@ export function formatDollarAmount(n, costFractionStyle = "muted") {
   );
 }
 
-export function formatCost(cost, costFractionStyle = "muted") {
+export function formatCost(cost, costFractionStyle = "muted", locale) {
   const n = Number(cost);
   return cost == null || Number.isNaN(n) || n === 0
     ? DASH
-    : formatDollarAmount(n, costFractionStyle);
+    : formatDollarAmount(n, costFractionStyle, locale);
 }
 
-export function formatAvgCost(cost, calls, costFractionStyle = "muted") {
+export function formatAvgCost(cost, calls, costFractionStyle = "muted", locale) {
   const n = Number(cost);
   if (
     calls == null ||
@@ -141,14 +155,21 @@ export function formatAvgCost(cost, calls, costFractionStyle = "muted") {
     n === 0
   )
     return DASH;
-  return formatDollarAmount(cost / calls, costFractionStyle);
+  return formatDollarAmount(cost / calls, costFractionStyle, locale);
 }
 
-export function formatAvgTps(avgTps) {
+export function formatAvgTps(avgTps, locale) {
   const n = Number(avgTps);
-  return avgTps == null || Number.isNaN(n) || n === 0 ? DASH : n.toFixed(1);
+  if (avgTps == null || Number.isNaN(n) || n === 0) return DASH;
+  const loc = resolveLocale(locale);
+  return new Intl.NumberFormat(loc, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(n);
 }
 
-export function formatCount(count) {
-  return count == null || Number(count) === 0 ? DASH : Number(count);
+export function formatCount(count, locale) {
+  if (count == null || Number(count) === 0) return DASH;
+  const loc = resolveLocale(locale);
+  return new Intl.NumberFormat(loc).format(Number(count));
 }

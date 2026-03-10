@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import uiLanguages from './locales/ui-languages.json';
 
 /** Language codes that use right-to-left script (e.g. Arabic, Hebrew). */
 const RTL_LANGS = new Set(['ar', 'he', 'fa', 'ur', 'yi']);
@@ -22,33 +23,21 @@ i18n.use(initReactI18next).init({
   nsSeparator: false,
 });
 
+// Normalize lookup key: extract-strings.js stores keys trimmed, so t("Label ") must resolve like t("Label")
+const originalT = i18n.t.bind(i18n);
+i18n.t = function (key, ...rest) {
+  const normalizedKey = typeof key === 'string' ? key.trim() : key;
+  return originalT(normalizedKey, ...rest);
+};
+
 i18n.on('languageChanged', (lng) => applyDirection(lng));
 applyDirection(i18n.language);
 
-const localeLoaders = {
-  'pt-BR': () => import('./locales/pt-BR.json'),
-  de: () => import('./locales/de.json'),
-  fr: () => import('./locales/fr.json'),
-  es: () => import('./locales/es.json'),
-  ar: () => import('./locales/ar.json'),
-  bn: () => import('./locales/bn.json'),
-  nl: () => import('./locales/nl.json'),
-  'en-US': () => import('./locales/en-US.json'),
-  hi: () => import('./locales/hi.json'),
-  it: () => import('./locales/it.json'),
-  ja: () => import('./locales/ja.json'),
-  jv: () => import('./locales/jv.json'),
-  ms: () => import('./locales/ms.json'),
-  'zh-CN': () => import('./locales/zh-CN.json'),
-  pl: () => import('./locales/pl.json'),
-  pt: () => import('./locales/pt.json'),
-  pa: () => import('./locales/pa.json'),
-  ro: () => import('./locales/ro.json'),
-  ru: () => import('./locales/ru.json'),
-  te: () => import('./locales/te.json'),
-  uk: () => import('./locales/uk.json'),
-  wuu: () => import('./locales/wuu.json'),
-};
+const localeLoaders = Object.fromEntries(
+  uiLanguages
+    .filter(({ code }) => code !== 'en' && code !== 'en-GB')
+    .map(({ code }) => [code, () => import(`./locales/${code}.json`)])
+);
 
 /**
  * Load a non-English locale bundle dynamically. UK English (en-GB) uses keys as-is (key-as-default); no file.

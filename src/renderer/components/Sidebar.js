@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
+import { makeStyles, mergeClasses } from "@fluentui/react-components";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverSurface,
+  MenuList,
+  MenuItem,
+} from "@fluentui/react-components";
 import {
   Languages,
   PenTool,
@@ -9,6 +16,10 @@ import {
   Settings,
   PanelLeftClose,
   PanelLeftOpen,
+  LogOut,
+  KeyRound,
+  User,
+  Users,
 } from "lucide-react";
 import Logo from "../../../images/transrewrt_logo.png";
 
@@ -190,6 +201,67 @@ const useStyles = makeStyles({
   footerSectionCollapsed: {
     padding: "8px 6px",
   },
+  userBlock: {
+    marginTop: "8px",
+    paddingTop: "8px",
+  },
+  userTrigger: {
+    width: "100%",
+    minHeight: "40px",
+    borderRadius: "8px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "10px",
+    cursor: "pointer",
+    backgroundColor: "transparent",
+    border: "none",
+    color: "#e0e0e0",
+    padding: "8px 12px",
+    fontSize: "13px",
+    textAlign: "left",
+    ":hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.06)",
+    },
+  },
+  userTriggerCollapsed: {
+    justifyContent: "center",
+    padding: "8px",
+  },
+  userIcon: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    color: "#e0e0e0",
+  },
+  userLabel: {
+    flex: 1,
+    minWidth: 0,
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    fontSize: "14px",
+    marginLeft: "4px",
+    fontWeight: 700,
+  },
+  userLabelHidden: {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    margin: "-1px",
+    padding: 0,
+    overflow: "hidden",
+    clip: "rect(0,0,0,0)",
+    whiteSpace: "nowrap",
+    border: 0,
+  },
+  menuIcon: {
+    display: "inline-flex",
+    marginRight: "8px",
+    verticalAlign: "middle",
+  },
 });
 
 const Sidebar = ({
@@ -198,6 +270,10 @@ const Sidebar = ({
   onModeChange,
   onDashboardClick,
   onSettingsClick,
+  currentUser,
+  onSignOut,
+  onChangePassword,
+  onOpenSettingsUsers,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -394,6 +470,79 @@ const Sidebar = ({
             {t("Settings")}
           </span>
         </button>
+        {currentUser && (
+          <div className={styles.userBlock}>
+            {onSignOut || onChangePassword || (currentUser.role === "admin" && onOpenSettingsUsers) ? (
+              <Popover positioning="top-start">
+                <PopoverTrigger disableButtonEnhancement>
+                  <button
+                    type="button"
+                    className={mergeClasses(
+                      styles.userTrigger,
+                      collapsed && styles.userTriggerCollapsed,
+                    )}
+                    aria-label={t("User menu")}
+                    title={currentUser.username}
+                  >
+                    <span className={styles.userIcon}>
+                      <User size={20} />
+                    </span>
+                    <span
+                      className={mergeClasses(
+                        styles.userLabel,
+                        collapsed && styles.userLabelHidden,
+                      )}
+                    >
+                      {currentUser.username}
+                    </span>
+                  </button>
+                </PopoverTrigger>
+                <PopoverSurface>
+                  <MenuList>
+                    {currentUser.role === "admin" && onOpenSettingsUsers && (
+                      <MenuItem onClick={() => onOpenSettingsUsers()}>
+                        <Users size={16} className={styles.menuIcon} />
+                        {t("User management")}
+                      </MenuItem>
+                    )}
+                    {onChangePassword && (
+                      <MenuItem onClick={() => onChangePassword()}>
+                        <KeyRound size={16} className={styles.menuIcon} />
+                        {t("Change password")}
+                      </MenuItem>
+                    )}
+                    {onSignOut && (
+                      <MenuItem onClick={() => onSignOut()}>
+                        <LogOut size={16} className={styles.menuIcon} />
+                        {t("Sign out")}
+                      </MenuItem>
+                    )}
+                  </MenuList>
+                </PopoverSurface>
+              </Popover>
+            ) : (
+              <div
+                className={mergeClasses(
+                  styles.userTrigger,
+                  collapsed && styles.userTriggerCollapsed,
+                )}
+                title={currentUser.username}
+              >
+                <span className={styles.userIcon}>
+                  <User size={20} />
+                </span>
+                <span
+                  className={mergeClasses(
+                    styles.userLabel,
+                    collapsed && styles.userLabelHidden,
+                  )}
+                >
+                  {currentUser.username}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </aside>
   );

@@ -22,6 +22,7 @@ const api = {
   writeDebugFile: (filename, data) => ipcRenderer.invoke('write-debug-file', filename, data),
   writeProxyDebugLog: (line) => ipcRenderer.invoke('write-proxy-debug-log', line),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
+  getOsUsername: () => ipcRenderer.invoke('get-os-username'),
   getOpenRouterKeyInfo: () => ipcRenderer.invoke('getOpenRouterKeyInfo'),
   // App DB (same surface as webAPI for Cost tab and custom prompts)
   logApiCall: (payload) => ipcRenderer.invoke('appDb:log', payload),

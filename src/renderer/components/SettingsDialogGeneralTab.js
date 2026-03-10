@@ -32,6 +32,10 @@ function normalizeEnterBehavior(value) {
 }
 
 const useFormStyles = makeStyles({
+  label: {
+    fontSize: '16px',
+    fontWeight: 500,
+  },
   keyBadge: {
     display: 'inline-block',
     padding: '2px 8px',
@@ -64,7 +68,8 @@ const SettingsDialogGeneralTab = ({
   onSettingChange,
 }) => {
   const formStyles = useFormStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || 'en-GB';
 
   return (
     <div className="tab-content">
@@ -78,8 +83,24 @@ const SettingsDialogGeneralTab = ({
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-             <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span>  <span> {t('Key Behavior:')}</span>
+            <span className={formStyles.label}> {t('Behavior for ')}</span> <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span><span className={formStyles.label}>:</span>
             </span>
+            <RadioGroup
+            id="enter-behavior"
+            value={normalizeEnterBehavior(localSettings.enter_behavior)}
+            onChange={(e, data) => onSettingChange('enter_behavior', data.value)}
+            layout="vertical"
+            style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginLeft: '32px' }}
+          >
+            <Radio
+              value="Execute"
+              label={
+                <>
+                  <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span> {t('to translate / rewrite')}
+                </>
+              }
+            />
+          </RadioGroup>
           </Label>
           <RadioGroup
             id="enter-behavior"
@@ -194,7 +215,7 @@ const SettingsDialogGeneralTab = ({
                 whiteSpace: 'nowrap',
               }}
             >
-              {formatCost(0.001234, localSettings.cost_fraction_style || 'muted')}
+              {formatCost(0.001234, localSettings.cost_fraction_style || 'muted', locale)}
             </span>
           </span>
         </div>

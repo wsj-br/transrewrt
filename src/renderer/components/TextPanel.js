@@ -81,6 +81,7 @@ const useStyles = makeStyles({
     overflow: "auto",
     padding: `${tokens.spacingVerticalXS} 0`,
     lineHeight: 1.5,
+    whiteSpace: "pre-wrap",
   },
   diffSame: {
     color: "#e0e0e0",
@@ -250,12 +251,12 @@ const TextPanel = ({
                 {onDiffToggle && (
                   <Button
                     appearance={showDiff ? "primary" : "secondary"}
-                    icon={showDiff ?  <File size={16} /> : <FileDiff size={16} /> }
+                    icon={showDiff ?   <FileDiff size={16} /> : <File size={16} /> }
                     onClick={onDiffToggle}
                     size="small"
-                    title={showDiff ? t("Hide changes between input and output") : t("Show changes between input and output")}
+                    title={showDiff ? t("Don't show the changes") : t("Show changes between input and output")}
                   >
-                    {showDiff ? t("Hide changes") : t("Show changes")}
+                    {showDiff ? t("Showing changes") : t("Regular view")}
                   </Button>
                 )}
                 {onCopy && (
