@@ -3,9 +3,9 @@ node_modules
 server/node_modules
 
 # Build outputs (will be generated in container)
-dist
 build
 release
+dist
 
 # Git files
 .git
@@ -49,6 +49,7 @@ scripts/
 !scripts/electron-rebuild.js
 !scripts/node-rebuild.js
 !scripts/reset-web-password.js
+!scripts/reset-web-password
 dev/
 README.md
 DEPLOY.md

@@ -46,14 +46,14 @@ COPY src/server/ ./server/
 COPY src/shared/ ./shared/
 
 # Copy config for initialization
-COPY config/ ./config/
+#COPY config/ ./config/
 
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
 
 # Admin password reset: reset-web-password '<new-password>' or node scripts/reset-web-password.js '<new-password>'
 COPY --from=builder /app/scripts/reset-web-password.js  ./scripts/
-COPY --from=builder --chmod=555 /app/reset-web-password ./reset-web-password
+COPY --from=builder --chmod=555 /app/scripts/reset-web-password ./scripts/
 
 
 # Build timestamp for About tab (same format as write-build-timestamp.js)

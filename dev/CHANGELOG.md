@@ -9,6 +9,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Docker web image: server now resolves `dist` as `/app/dist` instead of `/dist` by using one level up from `__dirname` (Docker layout is `/app/server`; dev layout is `src/server`). Added `dist` to `.dockerignore` so host build output is not copied into the image.
 - **Added**: Improve prompt configuration modal: label "Select the model to improve the prompt" above the model selector; Translate prompt fields modal: label "Model to translate" beside the model selector.
 - **Added**: Transform prompt editor: "Improve prompt configuration" button to get model-suggested improvements for role, instructions, and temperature; improved JSON is applied to the form.
 - **Added**: Model selector in both "Improve prompt configuration" and "Translate prompt fields" modals (reuses header ModelSelector); the model chosen in the modal is used for the API call.

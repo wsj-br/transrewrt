@@ -163,7 +163,8 @@ app.use(
   ),
 );
 
-const distPath = path.join(__dirname, "..", "..", "dist");
+// One level up: dev has src/server → project root; Docker has /app/server → /app
+const distPath = path.resolve(path.join(__dirname, "..", "dist"));
 
 if (!DEV_WEB) {
   app.use(express.static(distPath));
