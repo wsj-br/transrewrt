@@ -159,7 +159,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LoginPage = ({ onSuccess, sessionExpired = false }) => {
+const LoginPage = ({ onSuccess }) => {
   const styles = useStyles();
   const { t } = useTranslation();
   const [username, setUsername] = useState("");
@@ -425,7 +425,6 @@ const LoginPage = ({ onSuccess, sessionExpired = false }) => {
 
 LoginPage.propTypes = {
   onSuccess: PropTypes.func.isRequired,
-  sessionExpired: PropTypes.bool,
 };
 
 export default LoginPage;
