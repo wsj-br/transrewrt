@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { findUILanguageEntry } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
-/** Internal value for "no target / model decides" (used when allowNone). Shown in UI as "No target language / model decides" */
+/** Internal value for "no target" (used when allowNone). Shown in UI as "No target language" */
 const AUTO_TARGET = "auto";
 
 /** Convert dropdown option value back to raw language name (for state). */
@@ -129,7 +129,7 @@ const LanguageSelector = ({
   const isAutoTarget = allowNone && (value === AUTO_TARGET || value === "" || value == null);
 
   const displayValue = useMemo(() => {
-    if (isAutoTarget) return t("No target language / model decides");
+    if (isAutoTarget) return t("No target language");
     if (isDetectLanguage) return t("Detect Language");
     const entry = findUILanguageEntry(value);
     return entry ? getUILanguageLabel(entry, t) : value;
@@ -146,6 +146,7 @@ const LanguageSelector = ({
       </label>
       <div className={styles.selectContainer}>
         <Dropdown
+          key={`${label}-${selectedOptionValue ?? ""}`}
           appearance="underline"
           value={displayValue}
           selectedOptions={[selectedOptionValue]}
@@ -158,8 +159,8 @@ const LanguageSelector = ({
           aria-label={label}
         >
           {allowNone && (
-            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language / model decides")}>
-              {t("No target language / model decides")}
+            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language")}>
+              {t("No target language")}
             </Option>
           )}
           {languageOptions.map((lang, index) => {
@@ -182,7 +183,7 @@ const LanguageSelector = ({
               return (
                 <Option
                   key="detect-language"
-                  value={t("Detect Language")}
+                  value="Detect Language"
                   text={t("Detect Language")}
                   className={styles.detectLanguageOption}
                 >

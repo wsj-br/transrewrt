@@ -9,6 +9,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Translate/rewrite/transform language dropdowns (From, To, Target): selection now updates to show the chosen language. The "Detect Language" option now uses a constant value so it matches `selectedOptions` in all locales; the Dropdown is keyed by the current selection so the trigger display stays in sync when the user changes the selection.
 - **Changed**: RTL language set in `src/renderer/i18n.js` (RTL_LANGS) expanded to cover all common RTL scripts: Arabic-script (ps, sd, ug), Thaana (dv), Adlam (ff), Syriac (syr, aii, cld), N'Ko (nqo), Hanifi Rohingya (rhg), in addition to existing ar, he, fa, ur, yi.
 - **Added**: UI language selector (header globe): language code badge (e.g. pt-BR) to the right of the globe, styled like the Transform "Generate prompt" button.
 - **Added**: dev/i18n.md — documentation for i18n (multi-language support): tools (i18next, react-i18next), usage in source code, translation workflow, pnpm scripts, file layout, RTL, and annex with full source of extract-strings.js and generate-translations.js.
