@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fluentui/react-components";
 import { Download, Upload, List, Trash2 } from "lucide-react";
@@ -252,7 +252,7 @@ const SettingsDialogTransformPromptsTab = () => {
   const [importError, setImportError] = useState(false);
   const [exportImportFormat, setExportImportFormat] = useState("json");
   const [promptToDelete, setPromptToDelete] = useState(null);
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef(null);
 
   const loadPrompts = async () => {
     const api = getCustomPromptsApi();
@@ -265,7 +265,7 @@ const SettingsDialogTransformPromptsTab = () => {
     try {
       const list = await api.getAll();
       setPrompts(Array.isArray(list) ? list : []);
-    } catch (_) {
+    } catch {
       setPrompts([]);
     } finally {
       setLoading(false);
@@ -286,7 +286,7 @@ const SettingsDialogTransformPromptsTab = () => {
       await api.delete(promptToDelete.id);
       setPromptToDelete(null);
       await loadPrompts();
-    } catch (_) {
+    } catch {
       setPromptToDelete(null);
     }
   };

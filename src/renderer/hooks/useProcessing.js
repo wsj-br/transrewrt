@@ -14,7 +14,6 @@ export function useProcessing({
   activeModel,
   settings,
   updateSettings,
-  setSetting,
   currentMode,
   setCurrentMode,
   // Translate
@@ -159,6 +158,7 @@ export function useProcessing({
     },
     [
       t,
+      locale,
       inputTextTranslate,
       targetLanguage,
       sourceLanguage,
@@ -288,6 +288,7 @@ export function useProcessing({
     isProcessing,
     settings.auto_copy,
     rewrite,
+    locale,
     setOutputTextRewrite,
     stopProcessing,
     setCurrentMode,
@@ -308,7 +309,7 @@ export function useProcessing({
         role: selected.role,
         instructions: selected.instructions,
         output_description: selected.output_description ?? "transformed",
-        temperature: Number(selected.temperature) ?? 0.4,
+        temperature: Number(selected.temperature) || 0.4,
         target_language: selected.target_language ?? null,
       };
       const lang =
@@ -400,6 +401,8 @@ export function useProcessing({
       activeModel,
       settings.auto_copy,
       transform,
+      locale,
+      t,
       setOutputTextTransform,
       setCurrentMode,
       updateSettings,

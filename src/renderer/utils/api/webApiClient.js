@@ -51,6 +51,18 @@ const webAPI = {
     }
   },
 
+  getFirstLoginInfo: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/first-login-info`, { credentials: "include" });
+      if (!res.ok) return { firstLogin: false };
+      const data = await res.json().catch(() => ({}));
+      return { firstLogin: !!data.firstLogin };
+    } catch (err) {
+      console.error("[WebAPI] getFirstLoginInfo failed:", err);
+      return { firstLogin: false };
+    }
+  },
+
   login: async (username, password) => {
     const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
@@ -420,7 +432,7 @@ const webAPI = {
         const data = text ? JSON.parse(text) : {};
         if (data.error && typeof data.error === "string") msg = data.error;
         else msg = `${msg} (${res.status} ${res.statusText || ""})`.trim();
-      } catch (_) {
+      } catch {
         msg = `${msg} (${res.status} ${res.statusText || ""})`.trim();
       }
       throw new Error(msg);

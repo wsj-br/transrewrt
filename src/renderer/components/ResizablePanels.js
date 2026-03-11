@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles, tokens } from '@fluentui/react-components';
+import { makeStyles } from '@fluentui/react-components';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   resizablePanels: {
@@ -33,6 +33,11 @@ const ResizablePanels = ({ leftPanel, rightPanel }) => {
       </div>
     </div>
   );
+};
+
+ResizablePanels.propTypes = {
+  leftPanel: PropTypes.node.isRequired,
+  rightPanel: PropTypes.node.isRequired,
 };
 
 export default ResizablePanels;

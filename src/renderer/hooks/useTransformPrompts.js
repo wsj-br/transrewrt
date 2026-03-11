@@ -117,7 +117,7 @@ export function useTransformPrompts({
         role: prompt.role || "",
         instructions,
         output_description: prompt.output_description ?? "transformed",
-        temperature: Number(prompt.temperature) ?? 0.4,
+        temperature: Number(prompt.temperature) || 0.4,
         target_language: prompt.target_language ?? null,
       });
       if (res?.error) throw new Error(res.error);
@@ -155,6 +155,7 @@ export function useTransformPrompts({
       const list = Array.isArray(samplePromptsData) ? samplePromptsData : [];
       const normalized = list
         .filter((p) => p?.name)
+        // eslint-disable-next-line no-unused-vars -- id omitted from rest
         .map(({ id, ...rest }) => ({
           ...rest,
           target_language:
@@ -267,7 +268,7 @@ export function useTransformPrompts({
       role: config.role,
       instructions: config.instructions,
       output_description: config.output_description ?? "transformed",
-      temperature: Number(config.temperature) ?? 0.4,
+      temperature: Number(config.temperature) || 0.4,
       target_language: config.target_language === true || config.target_language === 1,
     };
     setTransformTestRunning(true);

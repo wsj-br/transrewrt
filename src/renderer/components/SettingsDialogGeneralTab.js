@@ -1,7 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
+import PropTypes from 'prop-types';
 import { getCostFractionStyleOptions, formatCost } from '../utils/misc/costUtils';
 
 const DEFAULT_FONT = 'Verdana';
@@ -296,6 +296,21 @@ const SettingsDialogGeneralTab = ({
       </div>
     </div>
   );
+};
+
+SettingsDialogGeneralTab.propTypes = {
+  localSettings: PropTypes.shape({
+    enter_behavior: PropTypes.string,
+    auto_translate_on_paste: PropTypes.bool,
+    auto_copy: PropTypes.bool,
+    real_time_translation: PropTypes.bool,
+    real_time_delay: PropTypes.number,
+    cost_fraction_style: PropTypes.string,
+    web_margin: PropTypes.string,
+    font_family: PropTypes.string,
+    font_size: PropTypes.number,
+  }).isRequired,
+  onSettingChange: PropTypes.func.isRequired,
 };
 
 export default SettingsDialogGeneralTab;

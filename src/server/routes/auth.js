@@ -71,8 +71,17 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
     );
   }
 
+  /** Must match src/renderer/constants.js DEFAULT_ADMIN_USERNAME */
+  const DEFAULT_ADMIN_USERNAME = "admin";
+
   function requireWebSession(req, res, next) {
     if (req.path === "/auth/login" && req.method === "POST") return next();
+    const pathname = (req.originalUrl || req.url || "").split("?")[0] || "";
+    const isFirstLoginInfo = req.method === "GET" && (
+      pathname.includes("/auth/first-login-info") ||
+      (req.path && String(req.path).includes("first-login-info"))
+    );
+    if (isFirstLoginInfo) return next();
     if (req.path === "/status" && req.method === "GET") return next();
     if (req.path === "/build-info" && req.method === "GET") return next();
     const db = getDb();
@@ -127,6 +136,27 @@ module.exports = function createAuth(getDb, configFile, appDb, log) {
   }
 
   const router = express.Router();
+
+  router.get("/first-login-info", (req, res) => {
+    try {
+      const db = getDb();
+      if (!db) {
+        return res.status(503).json({ firstLogin: false });
+      }
+      const adminUsername = (DEFAULT_ADMIN_USERNAME || "").toLowerCase();
+      if (!adminUsername) {
+        return res.json({ firstLogin: false });
+      }
+      const row = db.prepare(
+        "SELECT last_login FROM users WHERE LOWER(username) = ? LIMIT 1",
+      ).get(adminUsername);
+      const firstLogin = !!row && row.last_login == null;
+      return res.json({ firstLogin });
+    } catch (err) {
+      log.error("[API] GET /api/auth/first-login-info - Error: " + err.message, { stack: err.stack });
+      return res.status(500).json({ firstLogin: false });
+    }
+  });
 
   router.post("/login", async (req, res) => {
     try {

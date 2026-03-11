@@ -1,6 +1,6 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Dropdown, Option, Text, tokens } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   LineChart,
   Line,
@@ -223,3 +223,18 @@ export default function DashboardTabByDay({
     </div>
   );
 }
+
+DashboardTabByDay.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  byDay: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byDayPage: PropTypes.number.isRequired,
+  setByDayPage: PropTypes.func.isRequired,
+  byDayPageSize: PropTypes.number.isRequired,
+  setByDayPageSize: PropTypes.func.isRequired,
+  byDayPaginatedRows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byDayPaginatedTotal: PropTypes.number.isRequired,
+  byDayPaginatedLoading: PropTypes.bool.isRequired,
+  costFractionStyle: PropTypes.string.isRequired,
+  styles: PropTypes.object.isRequired,
+  emptyRow: PropTypes.func.isRequired,
+};

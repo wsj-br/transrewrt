@@ -1,7 +1,7 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
 import { WandSparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   root: {
@@ -149,6 +149,19 @@ const TransformPromptSelector = ({
       />
     </div>
   );
+};
+
+TransformPromptSelector.propTypes = {
+  prompts: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), name: PropTypes.string })),
+  selectedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  selectedName: PropTypes.string,
+  onSelect: PropTypes.func,
+  onNew: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
+  onDuplicate: PropTypes.func,
+  onOpenExportImport: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  editActive: PropTypes.bool,
 };
 
 export default TransformPromptSelector;

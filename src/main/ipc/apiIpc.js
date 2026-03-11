@@ -128,7 +128,7 @@ function registerApiIpc(ipcMain, getConfigCache) {
           try {
             const errorData = JSON.parse(errorText);
             if (errorData.error?.message) errorMessage = errorData.error.message;
-          } catch (e) {
+          } catch {
             /* ignore */
           }
           return { status: "error", message: errorMessage };

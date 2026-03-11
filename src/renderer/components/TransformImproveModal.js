@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import ModelSelector from "./ModelSelector";
 
 const useStyles = makeStyles({
@@ -56,7 +57,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ImprovePromptConfigModal = ({
+const TransformImproveModal = ({
   open,
   model,
   models = [],
@@ -70,7 +71,7 @@ const ImprovePromptConfigModal = ({
   const [selectedModel, setSelectedModel] = useState(model || "");
 
   useEffect(() => {
-    if (open) setSelectedModel(model || "");
+    if (open) queueMicrotask(() => setSelectedModel(model || ""));
   }, [open, model]);
 
   if (!open) return null;
@@ -116,4 +117,14 @@ const ImprovePromptConfigModal = ({
   );
 };
 
-export default ImprovePromptConfigModal;
+TransformImproveModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  model: PropTypes.string,
+  models: PropTypes.arrayOf(PropTypes.string),
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+};
+
+export default TransformImproveModal;

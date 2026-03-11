@@ -1,6 +1,6 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Text, tokens } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   BarChart,
   Bar,
@@ -397,3 +397,11 @@ export default function DashboardTabByUsage({
     </div>
   );
 }
+
+DashboardTabByUsage.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  byTargetLang: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byRewriteStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byTransformPrompt: PropTypes.arrayOf(PropTypes.object).isRequired,
+  styles: PropTypes.object.isRequired,
+};

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
 import webAPI from "../utils/api/webApiClient";
@@ -161,60 +162,44 @@ export const AppProvider = ({ children }) => {
   // setSetting(key, value): persist a single key; use for form fields and discrete updates (e.g. last_used_model, settings_active_tab).
   // updateSettings({ ... }): persist multiple keys at once; use when batching related changes (e.g. language + mode from the same UI).
   // Both update React state and notify other windows (Electron). Prefer setSetting for single-key updates to avoid overwriting other keys.
-  const updateSettings = async (newSettings) => {
+  // Memoized so consumers can use them in effect deps without triggering infinite persist loops (e.g. App.js sync effects).
+  const updateSettings = useCallback(async (newSettings) => {
     await configManager.setAll(newSettings);
     const updatedSettings = configManager.getAll();
     setSettings(updatedSettings);
 
-    // Update the API service base URL when settings change
     apiService.setBaseUrl(
       updatedSettings.api_url || "https://openrouter.ai/api/v1",
     );
-    
-    // Update topLanguages state if top_languages changed
     if (newSettings.top_languages !== undefined) {
       setTopLanguages(newSettings.top_languages || []);
     }
-    
-    // Update availableModels state if available_models changed
     if (newSettings.available_models !== undefined) {
       setAvailableModels(newSettings.available_models || []);
     }
-  };
+  }, []);
 
-  // Update a single setting
-  const setSetting = async (key, value) => {
+  const setSetting = useCallback(async (key, value) => {
     await configManager.set(key, value);
-    // Ensure we get a fresh copy of all settings to trigger React re-render
-    // Use JSON parse/stringify to ensure deep copy and new reference
     const allSettings = configManager.getAll();
     const updatedSettings = JSON.parse(JSON.stringify(allSettings));
     setSettings(updatedSettings);
 
-    // Update the API service base URL when settings change
     if (key === "api_url") {
       apiService.setBaseUrl(value || "https://openrouter.ai/api/v1");
     }
-    
-    // Update topLanguages state when top_languages changes
     if (key === "top_languages") {
-      // Create a new array reference to ensure React detects the change
       const newLangs = Array.isArray(value) ? [...value] : (value || []);
       setTopLanguages(newLangs);
     }
-    
-    // Update availableModels state when available_models changes
     if (key === "available_models") {
-      // Create a new array reference to ensure React detects the change
       const newModels = Array.isArray(value) ? [...value] : (value || []);
       setAvailableModels(newModels);
     }
-    
-    // Notify other windows about the settings update (for all settings)
     if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
       window.electronAPI.notifySettingsUpdated();
     }
-  };
+  }, []);
 
   const { writeLastApiResult, logApiCall, applyCostToResult } = useCostTracking();
   const { removeModelFromList, isUnavailableModelError, handleUnavailableModel } = useModelManagement(
@@ -685,7 +670,7 @@ export const AppProvider = ({ children }) => {
   };
 
   // Electron: set currentUser from OS username (no login in Electron)
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined" || !window.electronAPI?.getOsUsername) return;
     window.electronAPI.getOsUsername().then((name) => {
       setCurrentUser({
@@ -730,6 +715,10 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
+};
+
+AppProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 // Hook to use the context

@@ -1,7 +1,7 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Text, tokens } from "@fluentui/react-components";
 import { Trash2 } from "lucide-react";
+import PropTypes from "prop-types";
 import {
   BarChart,
   Bar,
@@ -227,3 +227,12 @@ export default function DashboardTabByModel({
     </div>
   );
 }
+
+DashboardTabByModel.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  byModel: PropTypes.arrayOf(PropTypes.object).isRequired,
+  costFractionStyle: PropTypes.string.isRequired,
+  styles: PropTypes.object.isRequired,
+  emptyRow: PropTypes.func.isRequired,
+  setModelToDelete: PropTypes.func.isRequired,
+};

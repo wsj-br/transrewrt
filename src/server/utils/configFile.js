@@ -112,13 +112,13 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
       let current;
       try {
         current = fs.readFileSync(configPath, "utf8");
-      } catch (_) {
+      } catch {
         current = "";
       }
       let currentParsed;
       try {
         currentParsed = current ? JSON.parse(current) : {};
-      } catch (_) {
+      } catch {
         currentParsed = {};
       }
       if (canonicalStringify(currentParsed) === canonicalStringify(config)) {
@@ -161,7 +161,7 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
           STATE_KEYS.forEach((k) => {
             if (userConfig[k] !== undefined) state[k] = userConfig[k];
           });
-        } catch (_) {}
+        } catch { /* ignore */ }
       }
       saveState(state);
       return state;
@@ -190,13 +190,13 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
       let current;
       try {
         current = fs.readFileSync(statePath, "utf8");
-      } catch (_) {
+      } catch {
         current = "";
       }
       let currentParsed;
       try {
         currentParsed = current ? JSON.parse(current) : {};
-      } catch (_) {
+      } catch {
         currentParsed = {};
       }
       if (canonicalStringify(currentParsed) === canonicalStringify(state)) {

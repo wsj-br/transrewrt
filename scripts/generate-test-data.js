@@ -395,10 +395,10 @@ async function main() {
   `);
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN transform_prompt TEXT");
-  } catch (_) {}
+  } catch { /* ignore */ }
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN username TEXT");
-  } catch (_) {}
+  } catch { /* ignore */ }
 
   let usernames = [];
   try {
@@ -409,7 +409,7 @@ async function main() {
         usernames = result[0].values.map((row) => row[0]);
       }
     }
-  } catch (_) {}
+  } catch { /* ignore */ }
   if (usernames.length > 0) {
     console.log(`Using ${usernames.length} existing user(s) for test data: ${usernames.join(", ")}`);
   }

@@ -1,6 +1,6 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   overlay: {
@@ -93,3 +93,14 @@ export default function ApiKeyModal({
     </div>
   );
 }
+
+ApiKeyModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  isWeb: PropTypes.bool.isRequired,
+  apiKeyStatus: PropTypes.shape({
+    apiKeySet: PropTypes.bool,
+    message: PropTypes.string,
+  }),
+  onDismiss: PropTypes.func.isRequired,
+  onOpenSettings: PropTypes.func.isRequired,
+};

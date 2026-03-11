@@ -20,7 +20,7 @@ function createLogger(dataDir, devWeb) {
     } catch (err) {
       try {
         process.stderr.write(`[logger] failed to write log: ${err.message}\n`);
-      } catch (_) {}
+      } catch { /* ignore */ }
     }
     if (devWeb) {
       if (level === "error" || level === "warn") {

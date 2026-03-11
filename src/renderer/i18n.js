@@ -2,8 +2,21 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import uiLanguages from './locales/ui-languages.json';
 
-/** Language codes that use right-to-left script (e.g. Arabic, Hebrew). */
-const RTL_LANGS = new Set(['ar', 'he', 'fa', 'ur', 'yi']);
+/**
+ * Language codes (ISO 639-1 or 639-3) that use a right-to-left script.
+ * Covers Arabic script (ar, fa, ur, ps, sd, ug, …), Hebrew (he, yi), Syriac (syr, aii, cld),
+ * Thaana (dv), Adlam (ff), N'Ko (nqo), Hanifi Rohingya (rhg). Used to set document dir.
+ * 
+ * see: https://www.w3.org/International/questions/qa-scripts.en.html for more information.
+ */
+const RTL_LANGS = new Set([
+  'ar', 'he', 'fa', 'ur', 'yi',   // Arabic script (core) + Hebrew
+  'ps', 'sd', 'ug',                // Arabic script: Pashto, Sindhi, Uyghur
+  'dv',                            // Thaana: Dhivehi
+  'ff',                            // Adlam: Fulah
+  'syr', 'aii', 'cld',             // Syriac script
+  'rhg', 'nqo',                    // Hanifi Rohingya, N'Ko
+]);
 
 function applyDirection(lng) {
   const base = (lng && lng.split(/[-_]/)[0]) || '';

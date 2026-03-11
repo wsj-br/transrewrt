@@ -54,12 +54,12 @@ const getConfigFilePath = () => {
         fs.writeFileSync(testFile, "test", "utf8");
         fs.unlinkSync(testFile);
         return p;
-      } catch (_) {
+      } catch {
         continue;
       }
     }
     return path.resolve("config.json");
-  } catch (_) {
+  } catch {
     return path.resolve("config.json");
   }
 };

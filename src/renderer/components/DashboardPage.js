@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, TabList, Tab, Label, Dropdown, Option } from "@fluentui/react-components";
 import { getCostApi, getFilterRange, getFilters } from "../utils/misc/costUtils";
@@ -59,7 +59,7 @@ const DashboardPage = () => {
   useEffect(() => {
     if (!isWeb || !isAdmin || !webAPI.getUsers) return;
     webAPI.getUsers().then((list) => setUserList(Array.isArray(list) ? list : [])).catch(() => setUserList([]));
-  }, [isWeb, isAdmin]);
+  }, [isAdmin]);
 
   /** Maps API function key (translate/rewrite/transform) to translated label for charts/tooltips. */
   const getUsageTypeLabel = (fn) => {
@@ -106,7 +106,7 @@ const DashboardPage = () => {
   }, [filter, costApi, dashboardUsername]);
 
   useEffect(() => {
-    loadSummaries();
+    queueMicrotask(() => loadSummaries());
   }, [loadSummaries]);
 
   const loadAllCalls = useCallback(() => {
@@ -133,7 +133,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (selectedTab === "allcalls") {
-      loadAllCalls();
+      queueMicrotask(() => loadAllCalls());
     }
   }, [selectedTab, loadAllCalls]);
 
@@ -161,7 +161,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (selectedTab === "byday") {
-      loadByDayPaginated();
+      queueMicrotask(() => loadByDayPaginated());
     }
   }, [selectedTab, loadByDayPaginated]);
 

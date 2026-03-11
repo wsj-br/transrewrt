@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
-import { UI_LANGUAGES } from '../constants';
+import PropTypes from 'prop-types';
 import { ALL_CONTENT_LANGUAGE_NAMES, findUILanguageEntry, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
@@ -195,6 +195,14 @@ const SettingsDialogLanguagesTab = ({
       </div>
     </div>
   );
+};
+
+SettingsDialogLanguagesTab.propTypes = {
+  selectedLanguages: PropTypes.object.isRequired,
+  customLanguage: PropTypes.string,
+  onSelectedLanguagesChange: PropTypes.func.isRequired,
+  onCustomLanguageChange: PropTypes.func.isRequired,
+  onSetting: PropTypes.func.isRequired,
 };
 
 export default SettingsDialogLanguagesTab;

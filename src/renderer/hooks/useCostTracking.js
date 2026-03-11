@@ -13,7 +13,7 @@ export function useCostTracking() {
     return Promise.resolve();
   };
 
-  const logApiCall = (type, result, extra = {}) => {
+  const logApiCall = (type, result, _extra = {}) => {
     // API call logging is now done on the server side
   };
 

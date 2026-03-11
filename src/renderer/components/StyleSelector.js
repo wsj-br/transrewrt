@@ -1,6 +1,6 @@
-import React from 'react';
 import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Palette } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   styleSelector: {
@@ -71,6 +71,14 @@ const StyleSelector = ({
       </div>
     </div>
   );
+};
+
+StyleSelector.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
+  iconColor: PropTypes.string,
 };
 
 export default StyleSelector;

@@ -107,6 +107,7 @@
     }
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -125,6 +126,7 @@
     "events": "^3.3.0",
     "html-webpack-plugin": "^5.6.6",
     "mini-css-extract-plugin": "^2.10.1",
+    "prop-types": "^15.8.1",
     "react-refresh": "^0.18.0",
     "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",

@@ -3,7 +3,6 @@
  * Used by SettingsDialogCostTrackingTab, DashboardPage, and SettingsDialogGeneralTab.
  */
 
-import React from "react";
 import { tokens } from "@fluentui/react-components";
 import webAPI from "../api/webApiClient";
 

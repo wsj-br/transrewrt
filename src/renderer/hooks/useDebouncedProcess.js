@@ -15,16 +15,15 @@ export function useDebouncedProcess(
   currentMode = "translate"
 ) {
   const inputTextRef = useRef("");
-  const settingsRef = useRef({ real_time_delay: realTimeDelay });
+  const settingsRef = useRef({ real_time_delay: realTimeDelay ?? 1000 });
   const debounceRef = useRef(null);
-
-  settingsRef.current = { real_time_delay: realTimeDelay ?? 1000 };
 
   useEffect(() => {
     inputTextRef.current = inputText;
   }, [inputText]);
 
   useEffect(() => {
+    settingsRef.current = { real_time_delay: realTimeDelay ?? 1000 };
     if (currentMode !== "translate") return; // real-time only for translate
     if (realTimeTranslation !== true) return;
     if (shouldAutoProcessRef?.current) return; // paste handler will run action
@@ -42,5 +41,5 @@ export function useDebouncedProcess(
         clearTimeout(debounceRef.current);
       }
     };
-  }, [inputText, realTimeTranslation, handleRunAction, currentMode]);
+  }, [inputText, realTimeTranslation, handleRunAction, currentMode, shouldAutoProcessRef, realTimeDelay]);
 }

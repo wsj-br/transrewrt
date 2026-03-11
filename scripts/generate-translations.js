@@ -243,6 +243,7 @@ function extractUsage(data) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars -- reserved for future use
 function abortWithError(message, details = null) {
   err("\n[translate] ERROR:", message);
   if (details != null) {

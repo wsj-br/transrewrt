@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -6,6 +6,7 @@ import {
   mergeClasses,
   tokens,
 } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   Trash2,
   Copy,
@@ -148,11 +149,11 @@ const TextPanel = ({
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const [isFocused, setIsFocused] = React.useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const headerDisplay = headerMeta ?? stats;
   const footerDisplay = footerStats ?? stats;
 
-  const textareaStyle = React.useMemo(() => {
+  const textareaStyle = useMemo(() => {
     const style = {
       ...(fontFamily && { fontFamily }),
       ...(fontSize && { fontSize: `${fontSize}px` }),
@@ -161,7 +162,7 @@ const TextPanel = ({
     return style;
   }, [fontFamily, fontSize, textColor]);
 
-  const diffSegments = React.useMemo(() => {
+  const diffSegments = useMemo(() => {
     if (!showDiff || inputTextForDiff == null || text == null) return null;
     if (!outputIsModelResult) return null;
     const inputStr = typeof inputTextForDiff === "string" ? inputTextForDiff : "";
@@ -321,6 +322,30 @@ const TextPanel = ({
       </div>
     </>
   );
+};
+
+TextPanel.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.node,
+  text: PropTypes.string,
+  onTextChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  stats: PropTypes.node,
+  headerMeta: PropTypes.node,
+  footerStats: PropTypes.node,
+  onClear: PropTypes.func,
+  onCopy: PropTypes.func,
+  onPaste: PropTypes.func,
+  onPasteEvent: PropTypes.func,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.number,
+  textColor: PropTypes.string,
+  footerAlign: PropTypes.string,
+  showDiff: PropTypes.bool,
+  inputTextForDiff: PropTypes.string,
+  outputIsModelResult: PropTypes.bool,
+  onDiffToggle: PropTypes.func,
 };
 
 export default TextPanel;

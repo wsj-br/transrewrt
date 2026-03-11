@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   Sliders,
   Database,
@@ -26,7 +27,6 @@ import SettingsDialogUsersTab from "./SettingsDialogUsersTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
-import apiService from "../services/apiService";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -130,7 +130,7 @@ const useStyles = makeStyles({
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const { settings, allModels, currentUser, updateSettings, setSetting, fetchModels } =
+  const { settings, allModels, currentUser, setSetting, fetchModels } =
     useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
@@ -191,53 +191,57 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   }, []);
 
   useEffect(() => {
-    setLocalSettings({ ...settings });
-    const modelsWithFree = new Set([
-      FREE_MODEL_ID,
-      ...(settings.available_models || []),
-    ]);
-    setSelectedModelIds(modelsWithFree);
-    setSelectedLanguages(new Set(settings.top_languages || []));
-    const normalizeTab = (tab) => {
-      if (tab === "auth") return isWeb && currentUser?.role === "admin" ? "users" : "general";
-      if (tab === "api" && isWeb) return "general";
-      if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) return "general";
-      return tab || "general";
-    };
-    // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
-    // so it works even if Settings is already open on another tab.
-    if (openToTab) {
-      hasRestoredTabRef.current = true;
-      const tab = normalizeTab(openToTab);
-      setActiveTab(tab);
-      if (configManager.get("settings_active_tab") !== tab) {
-        setSetting("settings_active_tab", tab);
+    queueMicrotask(() => {
+      setLocalSettings({ ...settings });
+      const modelsWithFree = new Set([
+        FREE_MODEL_ID,
+        ...(settings.available_models || []),
+      ]);
+      setSelectedModelIds(modelsWithFree);
+      setSelectedLanguages(new Set(settings.top_languages || []));
+      const normalizeTab = (tab) => {
+        if (tab === "auth") return isWeb && currentUser?.role === "admin" ? "users" : "general";
+        if (tab === "api" && isWeb) return "general";
+        if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) return "general";
+        return tab || "general";
+      };
+      // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
+      // so it works even if Settings is already open on another tab.
+      if (openToTab) {
+        hasRestoredTabRef.current = true;
+        const tab = normalizeTab(openToTab);
+        setActiveTab(tab);
+        if (configManager.get("settings_active_tab") !== tab) {
+          setSetting("settings_active_tab", tab);
+        }
+        onOpenToTabConsumed?.();
+      } else if (!hasRestoredTabRef.current) {
+        hasRestoredTabRef.current = true;
+        let tab =
+          configManager.get("settings_active_tab") ||
+          settings.settings_active_tab ||
+          "general";
+        tab = normalizeTab(tab);
+        setActiveTab(tab);
+        if (configManager.get("settings_active_tab") !== tab) {
+          setSetting("settings_active_tab", tab);
+        }
       }
-      onOpenToTabConsumed?.();
-    } else if (!hasRestoredTabRef.current) {
-      hasRestoredTabRef.current = true;
-      let tab =
-        configManager.get("settings_active_tab") ||
-        settings.settings_active_tab ||
-        "general";
-      tab = normalizeTab(tab);
-      setActiveTab(tab);
-      if (configManager.get("settings_active_tab") !== tab) {
-        setSetting("settings_active_tab", tab);
-      }
-    }
-  }, [settings, openToTab, onOpenToTabConsumed, currentUser?.role]);
+    });
+  }, [settings, openToTab, onOpenToTabConsumed, currentUser?.role, setSetting]);
 
   useEffect(() => {
     if (activeTab === "users" && (!isWeb || currentUser?.role !== "admin")) {
-      setActiveTab("general");
-      setSetting("settings_active_tab", "general");
+      queueMicrotask(() => {
+        setActiveTab("general");
+        setSetting("settings_active_tab", "general");
+      });
     }
-  }, [activeTab, isWeb, currentUser?.role, setSetting]);
+  }, [activeTab, currentUser?.role, setSetting]);
 
   useEffect(() => {
     if (allModels.length === 0) {
-      setModelsLoading(true);
+      queueMicrotask(() => setModelsLoading(true));
       fetchModels()
         .then(() => setModelsLoading(false))
         .catch((err) => {
@@ -606,6 +610,11 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       </div>
     </div>
   );
+};
+
+SettingsPanel.propTypes = {
+  openToTab: PropTypes.string,
+  onOpenToTabConsumed: PropTypes.func,
 };
 
 export default SettingsPanel;

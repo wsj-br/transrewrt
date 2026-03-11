@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import iconData from '../assets/icons_with_files.json';
 
 // Normalize string: lowercase, remove all non-alphanumeric
@@ -77,6 +77,11 @@ const ProviderIcon = ({ provider, size = 16 }) => {
   // Fallback to generic robot emoji
   const fontSize = size === 20 ? '20px' : '16px';
   return <span style={{ fontSize, lineHeight: 1 }}>🤖</span>;
+};
+
+ProviderIcon.propTypes = {
+  provider: PropTypes.string.isRequired,
+  size: PropTypes.number,
 };
 
 export default ProviderIcon;

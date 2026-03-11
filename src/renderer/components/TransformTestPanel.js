@@ -1,7 +1,8 @@
-import React from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import { Zap, Copy } from "lucide-react";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   root: {
@@ -76,7 +77,7 @@ const TransformTestPanel = ({
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const inputStyle = React.useMemo(
+  const inputStyle = useMemo(
     () => ({
       ...(fontFamily && { fontFamily }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
@@ -84,7 +85,7 @@ const TransformTestPanel = ({
     }),
     [fontFamily, fontSize]
   );
-  const outputStyle = React.useMemo(
+  const outputStyle = useMemo(
     () => ({
       ...(fontFamily && { fontFamily }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
@@ -136,6 +137,18 @@ const TransformTestPanel = ({
       </div>
     </div>
   );
+};
+
+TransformTestPanel.propTypes = {
+  testInput: PropTypes.string.isRequired,
+  onTestInputChange: PropTypes.func.isRequired,
+  onTest: PropTypes.func.isRequired,
+  output: PropTypes.string,
+  outputMeta: PropTypes.string,
+  isTesting: PropTypes.bool,
+  onCopy: PropTypes.func,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default TransformTestPanel;

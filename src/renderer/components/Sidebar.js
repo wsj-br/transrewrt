@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   Popover,
   PopoverTrigger,
@@ -566,6 +567,18 @@ const Sidebar = ({
       </div>
     </aside>
   );
+};
+
+Sidebar.propTypes = {
+  currentMode: PropTypes.string.isRequired,
+  currentView: PropTypes.string.isRequired,
+  onModeChange: PropTypes.func.isRequired,
+  onDashboardClick: PropTypes.func.isRequired,
+  onSettingsClick: PropTypes.func.isRequired,
+  currentUser: PropTypes.object,
+  onSignOut: PropTypes.func,
+  onChangePassword: PropTypes.func,
+  onOpenSettingsUsers: PropTypes.func,
 };
 
 export default Sidebar;

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Text, Input, Checkbox } from "@fluentui/react-components";
 import { Key, Pencil, Eye, EyeOff } from "lucide-react";
+import PropTypes from "prop-types";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -109,6 +110,23 @@ const SecretField = ({
       </div>
     </div>
   );
+};
+
+SecretField.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  configured: PropTypes.bool,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSave: PropTypes.func,
+  onCancel: PropTypes.func,
+  onEdit: PropTypes.func,
+  saveLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
+  configuredMessage: PropTypes.string,
+  editLabel: PropTypes.string,
+  isEditing: PropTypes.bool,
 };
 
 const SettingsDialogApiTab = ({
@@ -290,6 +308,19 @@ const SettingsDialogApiTab = ({
       )}
     </div>
   );
+};
+
+SettingsDialogApiTab.propTypes = {
+  localSettings: PropTypes.shape({
+    api_url: PropTypes.string,
+    use_transrewrt_proxy: PropTypes.bool,
+  }).isRequired,
+  hasApiKey: PropTypes.bool,
+  hasKeySeed: PropTypes.bool,
+  apiTestStatus: PropTypes.string,
+  apiTestMessage: PropTypes.string,
+  onSettingChange: PropTypes.func.isRequired,
+  onTestApi: PropTypes.func.isRequired,
 };
 
 export default SettingsDialogApiTab;

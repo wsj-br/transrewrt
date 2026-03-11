@@ -84,7 +84,7 @@ function buildTransformSystemPrompt(promptConfig, targetLang) {
         try {
           const parsed = JSON.parse(promptConfig.instructions || "[]");
           return Array.isArray(parsed) ? parsed : [String(promptConfig.instructions || "")];
-        } catch (_) {
+        } catch {
           return [String(promptConfig.instructions || "")];
         }
       })();
@@ -713,7 +713,7 @@ Respond with ONLY the JSON object. No other text.`;
   async transform(text, promptConfig, model, targetLang = null, signal = null) {
     try {
       const systemPrompt = buildTransformSystemPrompt(promptConfig, targetLang);
-      const temperature = Number(promptConfig.temperature) ?? 0.4;
+      const temperature = Number(promptConfig.temperature) || 0.4;
       const userMessage = `<transform>${text}</transform>`;
       return await this._streamChatCompletion(
         systemPrompt,

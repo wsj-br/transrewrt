@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import ModelSelector from "./ModelSelector";
 
 const useStyles = makeStyles({
@@ -79,7 +80,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GeneratePromptConfigModal = ({
+const TransformGenerateModal = ({
   open,
   model,
   models = [],
@@ -95,8 +96,10 @@ const GeneratePromptConfigModal = ({
 
   useEffect(() => {
     if (open) {
-      setSelectedModel(model || "");
-      setDescription("");
+      queueMicrotask(() => {
+        setSelectedModel(model || "");
+        setDescription("");
+      });
     }
   }, [open, model]);
 
@@ -156,4 +159,14 @@ const GeneratePromptConfigModal = ({
   );
 };
 
-export default GeneratePromptConfigModal;
+TransformGenerateModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  model: PropTypes.string,
+  models: PropTypes.arrayOf(PropTypes.string),
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+};
+
+export default TransformGenerateModal;

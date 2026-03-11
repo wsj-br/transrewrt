@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
   makeStyles,
@@ -10,9 +10,10 @@ import {
   Slider,
 } from "@fluentui/react-components";
 import { ArrowLeft, Save, Trash2, X, Languages, Bot, Sparkles } from "lucide-react";
-import TranslatePromptFieldsModal from "./TranslatePromptFieldsModal";
-import ImprovePromptConfigModal from "./ImprovePromptConfigModal";
-import GeneratePromptConfigModal from "./GeneratePromptConfigModal";
+import PropTypes from "prop-types";
+import TransformTranslateModal from "./TransformTranslateModal";
+import TransformImproveModal from "./TransformImproveModal";
+import TransformGenerateModal from "./TransformGenerateModal";
 
 const useStyles = makeStyles({
   root: {
@@ -141,7 +142,7 @@ function parseInstructions(value) {
   try {
     const parsed = JSON.parse(value);
     return Array.isArray(parsed) ? parsed.filter((s) => typeof s === "string") : [];
-  } catch (_) {
+  } catch {
     return value.split(/\n/).map((s) => s.trim()).filter(Boolean);
   }
 }
@@ -170,7 +171,6 @@ const TransformPromptEditor = ({
   onDelete,
   onBackToRun,
   onDraftChange,
-  translate,
   translatePromptFields,
   improvePromptConfig,
   generatePromptConfig,
@@ -444,7 +444,7 @@ const TransformPromptEditor = ({
               icon={<Sparkles size={16} />}
               onClick={openGenerateModal}
             >
-              {t("Generate prompt with AI")}
+              {t("Generate prompt")}
             </Button>
           </div>
         )}
@@ -566,7 +566,7 @@ const TransformPromptEditor = ({
         </div>
       </div>
       {showTranslateModal && (
-        <TranslatePromptFieldsModal
+        <TransformTranslateModal
           open={showTranslateModal}
           targetLang={translateTargetLang}
           onTargetLangChange={setTranslateTargetLang}
@@ -581,7 +581,7 @@ const TransformPromptEditor = ({
         />
       )}
       {showImproveModal && (
-        <ImprovePromptConfigModal
+        <TransformImproveModal
           open={showImproveModal}
           model={model}
           models={models}
@@ -592,7 +592,7 @@ const TransformPromptEditor = ({
         />
       )}
       {showGenerateModal && (
-        <GeneratePromptConfigModal
+        <TransformGenerateModal
           open={showGenerateModal}
           model={model}
           models={models}
@@ -604,6 +604,30 @@ const TransformPromptEditor = ({
       )}
     </div>
   );
+};
+
+TransformPromptEditor.propTypes = {
+  initialPrompt: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string,
+    role: PropTypes.string,
+    instructions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    output_description: PropTypes.string,
+    temperature: PropTypes.number,
+    target_language: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    prompt_instructions: PropTypes.string,
+  }),
+  onSave: PropTypes.func,
+  onDelete: PropTypes.func,
+  onBackToRun: PropTypes.func,
+  onDraftChange: PropTypes.func,
+  translatePromptFields: PropTypes.func,
+  improvePromptConfig: PropTypes.func,
+  generatePromptConfig: PropTypes.func,
+  model: PropTypes.string,
+  models: PropTypes.arrayOf(PropTypes.string),
+  topLanguages: PropTypes.arrayOf(PropTypes.string),
+  allLanguages: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default TransformPromptEditor;

@@ -29,7 +29,7 @@ export function formatDecimal(n, locale, options = {}) {
 }
 
 /** Format duration in ms as "m:ss". Optional locale (for consistency; no decimals here). */
-export function formatDurationMs(ms, locale) {
+export function formatDurationMs(ms, _locale) {
   if (ms == null || Number.isNaN(Number(ms))) return DASH;
   const totalSec = Math.floor(Number(ms) / 1000);
   const m = Math.floor(totalSec / 60);

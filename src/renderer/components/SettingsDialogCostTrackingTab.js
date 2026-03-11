@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   makeStyles,
 } from "@fluentui/react-components";
 import { DollarSign, Copy, Server, RotateCcw, Trash2 } from "lucide-react";
+import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import ConfirmModal from "./ConfirmModal";
 import {
@@ -159,12 +160,6 @@ const SettingsDialogCostTrackingTab = ({
     [t]
   );
 
-  const intervalLabels = useMemo(() => ({
-    daily: t("daily"),
-    weekly: t("weekly"),
-    monthly: t("monthly"),
-  }), [t]);
-
   const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
   const isOpenRouter =
     apiUrl.includes("openrouter.ai") ||
@@ -208,6 +203,7 @@ const SettingsDialogCostTrackingTab = ({
 
   useEffect(() => {
     fetchKeyInfo();
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo closes over deps; listing it causes unnecessary reruns
   }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key_configured, isTabActive]);
 
   const keyUsageDisplay = useMemo(() => {
@@ -243,6 +239,7 @@ const SettingsDialogCostTrackingTab = ({
       .then((a) => setByFunction(Array.isArray(a) ? a : []))
       .catch(() => setByFunction([]))
       .finally(() => setLoading(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- costApi from getCostApi() not stable; run only when isTabActive changes
   }, [isTabActive]);
 
   const handleCopyCost = async () => {
@@ -698,6 +695,18 @@ const SettingsDialogCostTrackingTab = ({
       )}
     </div>
   );
+};
+
+SettingsDialogCostTrackingTab.propTypes = {
+  localSettings: PropTypes.shape({
+    api_url: PropTypes.string,
+    use_transrewrt_proxy: PropTypes.bool,
+    api_key_configured: PropTypes.bool,
+    total_cost: PropTypes.number,
+    cost_fraction_style: PropTypes.string,
+  }).isRequired,
+  onSettingChange: PropTypes.func.isRequired,
+  isTabActive: PropTypes.bool,
 };
 
 export default SettingsDialogCostTrackingTab;

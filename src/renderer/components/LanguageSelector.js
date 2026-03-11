@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeStyles, mergeClasses, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Languages } from 'lucide-react';
-import { UI_LANGUAGES } from '../constants';
+import PropTypes from 'prop-types';
 import { findUILanguageEntry } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
@@ -207,6 +207,18 @@ const LanguageSelector = ({
       </div>
     </div>
   );
+};
+
+LanguageSelector.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  topLanguages: PropTypes.arrayOf(PropTypes.string),
+  allLanguages: PropTypes.arrayOf(PropTypes.string),
+  detectLanguage: PropTypes.bool,
+  allowNone: PropTypes.bool,
+  targetListSameAsSource: PropTypes.bool,
+  iconColor: PropTypes.string,
 };
 
 export default LanguageSelector;

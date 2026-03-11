@@ -3,9 +3,10 @@
  * Uses Fluent v9 Field + Input with appearance="outline" and contentAfter for the eye toggle.
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Field, Input } from "@fluentui/react-components";
 import { EyeRegular, EyeOffRegular } from "@fluentui/react-icons";
+import PropTypes from "prop-types";
 
 /**
  * @param {object} props
@@ -93,6 +94,23 @@ const PasswordInput = ({
   }
 
   return <div style={style}>{input}</div>;
+};
+
+PasswordInput.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  autoComplete: PropTypes.string,
+  name: PropTypes.string,
+  style: PropTypes.object,
+  showPasswordAriaLabel: PropTypes.string,
+  hidePasswordAriaLabel: PropTypes.string,
+  showPassword: PropTypes.bool,
+  onShowPasswordChange: PropTypes.func,
 };
 
 export default PasswordInput;

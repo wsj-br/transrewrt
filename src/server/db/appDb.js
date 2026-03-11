@@ -9,8 +9,11 @@ const Database = require("better-sqlite3");
 const argon2 = require("argon2");
 const { applyAppSchema, promptTargetLanguageToDb } = require("../../shared/db/appSchema.js");
 
-const SESSION_STALE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
+/** Must match src/renderer/constants.js DEFAULT_ADMIN_* */
+const DEFAULT_ADMIN_USERNAME = "admin";
 const DEFAULT_ADMIN_PASSWORD = "transrewrt26";
+
+const SESSION_STALE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
 
 let db = null;
 let log = null;
@@ -30,8 +33,8 @@ async function seedDefaultAdmin() {
   db.prepare(
     `INSERT INTO users (id, username, password_hash, role, created_at, last_login, last_update, must_change_password)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-  ).run(id, "admin", passwordHash, "admin", now, null, now, 1);
-  log.info("[SERVER] Seeded default admin user (username: admin)");
+  ).run(id, DEFAULT_ADMIN_USERNAME, passwordHash, "admin", now, null, now, 1);
+  log.info("[SERVER] Seeded default admin user (username: " + DEFAULT_ADMIN_USERNAME + ")");
 }
 
 function initDb(dataDir, logger) {

@@ -13,9 +13,6 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const PKG_PATH = path.join(ROOT, "package.json");
 
-// Semver-like: X.Y.Z or X.Y.Z-prerelease
-const VERSION_REGEX = /\d+\.\d+\.\d+(-[a-zA-Z0-9.-]+)?/;
-
 function getPackageVersion() {
   const pkg = JSON.parse(fs.readFileSync(PKG_PATH, "utf8"));
   const v = pkg.version;

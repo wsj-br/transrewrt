@@ -43,4 +43,6 @@ const result = spawnSync(process.execPath, [serverPath], {
   env: process.env,
   cwd: rootDir,
 });
-process.exit(result.status !== null ? result.status : result.signal ? 128 + result.signal : 0);
+const exitCode =
+  result.status !== null ? result.status : result.signal ? 128 : 0;
+process.exit(exitCode);

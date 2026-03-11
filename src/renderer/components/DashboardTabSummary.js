@@ -1,6 +1,6 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Text, tokens } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import {
   AreaChart,
   Area,
@@ -471,3 +471,14 @@ export default function DashboardTabSummary({
     </div>
   );
 }
+
+DashboardTabSummary.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  byFunction: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byDay: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byModel: PropTypes.arrayOf(PropTypes.object).isRequired,
+  settings: PropTypes.object,
+  costFractionStyle: PropTypes.string.isRequired,
+  styles: PropTypes.object.isRequired,
+  getUsageTypeLabel: PropTypes.func.isRequired,
+};

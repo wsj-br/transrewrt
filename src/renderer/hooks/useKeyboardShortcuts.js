@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 /**
  * Registers keyboard shortcuts: Execute = Enter runs translate/rewrite,
@@ -6,12 +6,9 @@ import { useEffect, useRef } from "react";
  * Only active when currentView === "workspace" so Settings navigation doesn't trigger run/stop.
  */
 export function useKeyboardShortcuts(handleRunAction, inputText, enterBehavior, clearInput, currentView = "workspace") {
-  const currentViewRef = useRef(currentView);
-  currentViewRef.current = currentView;
-
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (currentViewRef.current !== "workspace") return;
+      if (currentView !== "workspace") return;
 
       if (event.key !== "Enter") {
         if (event.key === "Escape") {
@@ -39,5 +36,5 @@ export function useKeyboardShortcuts(handleRunAction, inputText, enterBehavior, 
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [inputText, enterBehavior, handleRunAction, clearInput]);
+  }, [inputText, enterBehavior, handleRunAction, clearInput, currentView]);
 }

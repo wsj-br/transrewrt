@@ -131,7 +131,7 @@ function saveConfigToFile(config) {
       try {
         const raw = fs.readFileSync(configPath, "utf8");
         if (raw.trim()) current = JSON.parse(raw);
-      } catch (_) {}
+      } catch { /* ignore */ }
     }
     const toWrite = { ...config };
     if (typeof toWrite.api_key === "string" && toWrite.api_key.trim() !== "") {
@@ -179,7 +179,7 @@ function saveStateToFile(state) {
       try {
         const raw = fs.readFileSync(statePath, "utf8");
         if (raw.trim()) current = JSON.parse(raw);
-      } catch (_) {}
+      } catch { /* ignore */ }
     }
     if (canonicalConfigString(current) === canonicalConfigString(state))
       return true;
@@ -456,7 +456,7 @@ function getBuildTimestamp() {
     const content = fs.readFileSync(filePath, "utf8").trim();
     buildTimestampCache = content || null;
     return buildTimestampCache;
-  } catch (_) {
+  } catch {
     buildTimestampCache = null;
     return null;
   }
@@ -508,9 +508,10 @@ app.on("ready", () => {
       ".woff": "font/woff",
     };
     protocol.handle("app", async (request) => {
+      let requestPath;
       try {
         const { pathname } = new URL(request.url);
-        const requestPath = pathname.replace(/^\/+/, "").replace(/\\/g, "/");
+        requestPath = pathname.replace(/^\/+/, "").replace(/\\/g, "/");
         const filePath = path.resolve(appBase, requestPath);
         const relative = path.relative(appBase, filePath);
         if (

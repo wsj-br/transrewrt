@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { mergeClasses } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import ConfirmModal from "./ConfirmModal";
-import LoginModal from "./LoginModal";
+import LoginPage from "./LoginPage";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ApiKeyModal from "./ApiKeyModal";
 import { getTranslatePanels, getRewritePanels, getTransformPanels } from "./workspace";
@@ -40,6 +41,7 @@ const LoadingLogoSvg = ({ className }) => (
     </g>
   </svg>
 );
+LoadingLogoSvg.propTypes = { className: PropTypes.string };
 
 const App = () => {
   const styles = useAppStyles();
@@ -108,10 +110,8 @@ const App = () => {
     transformTestInput,
     setTransformTestInput,
     transformTestOutput,
-    setTransformTestOutput,
     transformTestMeta,
     transformTestRunning,
-    transformEditorDraft,
     setTransformEditorDraft,
     transformPromptToDelete,
     setTransformPromptToDelete,
@@ -147,28 +147,27 @@ const App = () => {
   const inputText = currentMode === "translate" ? inputTextTranslate : currentMode === "rewrite" ? inputTextRewrite : inputTextTransform;
   const outputText = currentMode === "translate" ? outputTextTranslate : currentMode === "rewrite" ? outputTextRewrite : outputTextTransform;
   const setInputText = currentMode === "translate" ? setInputTextTranslate : currentMode === "rewrite" ? setInputTextRewrite : setInputTextTransform;
-  const setOutputText = currentMode === "translate" ? setOutputTextTranslate : currentMode === "rewrite" ? setOutputTextRewrite : setOutputTextTransform;
 
-  // Sync targetLanguage from settings when config loads
+  // Sync targetLanguage from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
     if (settings && settings.target_language && settings.target_language !== targetLanguage) {
-      setTargetLanguage(settings.target_language);
+      queueMicrotask(() => setTargetLanguage(settings.target_language));
     }
-  }, [settings.target_language]);
+  }, [settings, settings?.target_language, targetLanguage]);
 
-  // Sync sourceLanguage from settings when config loads
+  // Sync sourceLanguage from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
     if (settings && settings.source_language && settings.source_language !== sourceLanguage) {
-      setSourceLanguage(settings.source_language);
+      queueMicrotask(() => setSourceLanguage(settings.source_language));
     }
-  }, [settings.source_language]);
+  }, [settings, settings?.source_language, sourceLanguage]);
 
-  // Sync currentMode from settings when config loads
+  // Sync currentMode from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
     if (settings?.app_mode) {
-      setCurrentMode(settings.app_mode);
+      queueMicrotask(() => setCurrentMode(settings.app_mode));
     }
-  }, [settings.app_mode]);
+  }, [settings?.app_mode]);
 
   // Restore main view (workspace vs settings vs dashboard) from state once when config has loaded
   useEffect(() => {
@@ -176,42 +175,42 @@ const App = () => {
     const view = settings.web_view;
     if (view === "settings" || view === "workspace" || view === "dashboard") {
       hasRestoredViewRef.current = true;
-      setCurrentView(view);
+      queueMicrotask(() => setCurrentView(view));
     }
   }, [settings, settings?.web_view]);
 
-  // Sync rewriteStyle from settings when config loads
+  // Sync rewriteStyle from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
     if (settings?.rewrite_style) {
-      setRewriteStyle(settings.rewrite_style);
+      queueMicrotask(() => setRewriteStyle(settings.rewrite_style));
     }
-  }, [settings.rewrite_style]);
+  }, [settings?.rewrite_style]);
 
   // Persist target language when it changes, but only after config is loaded
   useEffect(() => {
     if (configLoaded && targetLanguage) {
       updateSettings({ target_language: targetLanguage });
     }
-  }, [targetLanguage, configLoaded]);
+  }, [targetLanguage, configLoaded, updateSettings]);
 
   // Persist source language when it changes, but only after config is loaded
   useEffect(() => {
     if (configLoaded && sourceLanguage) {
       updateSettings({ source_language: sourceLanguage });
     }
-  }, [sourceLanguage, configLoaded]);
+  }, [sourceLanguage, configLoaded, updateSettings]);
 
   // Persist rewrite style when it changes, but only after config is loaded
   useEffect(() => {
     if (configLoaded && rewriteStyle) {
       updateSettings({ rewrite_style: rewriteStyle });
     }
-  }, [rewriteStyle, configLoaded]);
+  }, [rewriteStyle, configLoaded, updateSettings]);
 
   // Mark config as loaded after we have settings (used for persist effects and API key modal gating)
   useEffect(() => {
     if (settings && Object.keys(settings).length > 0) {
-      setConfigLoaded(true);
+      queueMicrotask(() => setConfigLoaded(true));
     }
   }, [settings]);
 
@@ -222,9 +221,6 @@ const App = () => {
     lastRunCost,
     lastRunModel,
     rewriteOutputIsModelResult,
-    handleTranslate,
-    handleRewrite,
-    handleTransform,
     processingModeRef,
     handleRunAction,
     handleRunActionStartOnly,
@@ -282,7 +278,7 @@ const App = () => {
   useEffect(() => {
     if (!isWeb || needsLogin) return;
     webAPI.checkSession().catch(() => {});
-  }, [isWeb, needsLogin, currentView, currentMode]);
+  }, [needsLogin, currentView, currentMode]);
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputText);
@@ -468,6 +464,18 @@ const App = () => {
     );
   }
 
+  if (isWeb && needsLogin) {
+    return (
+      <div id="root" className={styles.webOuterNoMargin} data-web-outer>
+        <div className={styles.webFrameSquare}>
+          <div className={styles.rootInWeb} style={{ padding: 0 }}>
+            <LoginPage onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isWeb) {
     const useMargin = settings?.web_margin === true;
     const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
@@ -477,9 +485,6 @@ const App = () => {
         <div id="root" className={webOuterClass} data-web-outer>
           <div className={webFrameClass}>
             <div className={styles.rootInWeb}>
-              {isWeb && needsLogin && (
-                <LoginModal onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
-              )}
               {isWeb && showChangePasswordModal && (
                 <ChangePasswordModal onClose={() => setShowChangePasswordModal(false)} />
               )}

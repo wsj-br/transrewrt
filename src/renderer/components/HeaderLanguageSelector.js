@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   makeStyles,
@@ -11,27 +11,28 @@ import {
   MenuItem,
 } from "@fluentui/react-components";
 import { Globe, Check } from "lucide-react";
+import PropTypes from "prop-types";
 import { useAppContext } from "../contexts/AppContext";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
 import { getUILanguageLabel } from "../utils/misc/languageDisplay";
 
-const GLOBE_COLOR = "#2d881f";
-
 const useStyles = makeStyles({
-  trigger: {
+  localeBadge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
     minWidth: "unset",
-    padding: "4px 8px",
-    color: GLOBE_COLOR,
+    padding: "2px 6px 2px 4px",
+    borderRadius: "4px",
+    fontSize: "12px",
+    fontWeight: 600,
+    backgroundColor: "#223328",
+    color: "#e8f5e9",
     ":hover": {
-      color: GLOBE_COLOR,
-      opacity: 0.9,
+      backgroundColor: "#2d4532",
+      color: "#e8f5e9",
     },
-  },
-  triggerCompact: {
-    minWidth: "unset",
-    padding: "2px 6px",
-    marginRight: "8px",
   },
   popoverGrid: {
     display: "grid",
@@ -87,10 +88,12 @@ const HeaderLanguageSelector = ({ compact = false }) => {
         <Button
           appearance="subtle"
           icon={<Globe size={iconSize} />}
-          aria-label={t("Interface language")} 
+          className={styles.localeBadge}
+          aria-label={t("Interface language")}
           title={t("Interface language")}
-          className={compact ? `${styles.trigger} ${styles.triggerCompact}` : styles.trigger}
-        />
+        >
+          {uiLocale}
+        </Button>
       </PopoverTrigger>
       <PopoverSurface>
         <div className={styles.popoverGrid}>
@@ -123,6 +126,10 @@ const HeaderLanguageSelector = ({ compact = false }) => {
       </PopoverSurface>
     </Popover>
   );
+};
+
+HeaderLanguageSelector.propTypes = {
+  compact: PropTypes.bool,
 };
 
 export default HeaderLanguageSelector;

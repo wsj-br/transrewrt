@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Spinner } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import { Languages, PenTool, WandSparkles, BarChart3 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
@@ -165,6 +166,20 @@ const MainContent = ({
       </div>
     </main>
   );
+};
+
+MainContent.propTypes = {
+  view: PropTypes.string.isRequired,
+  currentMode: PropTypes.string,
+  models: PropTypes.arrayOf(PropTypes.string),
+  activeModel: PropTypes.string,
+  onModelChange: PropTypes.func,
+  onOpenSettingsModels: PropTypes.func,
+  onRemoveModel: PropTypes.func,
+  leftPanel: PropTypes.node,
+  rightPanel: PropTypes.node,
+  openSettingsToTab: PropTypes.string,
+  onOpenSettingsToTabConsumed: PropTypes.func,
 };
 
 export default MainContent;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import LanguageSelector from "./LanguageSelector";
 import ModelSelector from "./ModelSelector";
 
@@ -62,7 +63,7 @@ const useStyles = makeStyles({
   },
 });
 
-const TranslatePromptFieldsModal = ({
+const TransformTranslateModal = ({
   open,
   targetLang,
   onTargetLangChange,
@@ -80,7 +81,7 @@ const TranslatePromptFieldsModal = ({
   const [selectedModel, setSelectedModel] = useState(model || "");
 
   useEffect(() => {
-    if (open) setSelectedModel(model || "");
+    if (open) queueMicrotask(() => setSelectedModel(model || ""));
   }, [open, model]);
 
   if (!open) return null;
@@ -134,4 +135,18 @@ const TranslatePromptFieldsModal = ({
   );
 };
 
-export default TranslatePromptFieldsModal;
+TransformTranslateModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  targetLang: PropTypes.string,
+  onTargetLangChange: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  topLanguages: PropTypes.arrayOf(PropTypes.string),
+  allLanguages: PropTypes.arrayOf(PropTypes.string),
+  models: PropTypes.arrayOf(PropTypes.string),
+  model: PropTypes.string,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+};
+
+export default TransformTranslateModal;

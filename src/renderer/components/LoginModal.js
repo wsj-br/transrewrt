@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Input, Field } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import PasswordInput from "./PasswordInput";
 
@@ -203,6 +204,11 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
       </div>
     </div>
   );
+};
+
+LoginModal.propTypes = {
+  onSuccess: PropTypes.func.isRequired,
+  sessionExpired: PropTypes.bool,
 };
 
 export default LoginModal;

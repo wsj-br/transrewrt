@@ -1,3 +1,7 @@
+/** Default web admin credentials (first-login message, etc.). Server (appDb, auth) must use matching values. */
+export const DEFAULT_ADMIN_USERNAME = "admin";
+export const DEFAULT_ADMIN_PASSWORD = "transrewrt26";
+
 /** Model ID for the free tier model; always included in the list and cannot be removed. */
 export const FREE_MODEL_ID = "openrouter/free";
 

@@ -1,5 +1,5 @@
-import React from "react";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   overlay: {
@@ -84,6 +84,18 @@ const ConfirmModal = ({
       </div>
     </div>
   );
+};
+
+ConfirmModal.propTypes = {
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  confirmLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  danger: PropTypes.bool,
+  customBody: PropTypes.node,
+  hideConfirm: PropTypes.bool,
 };
 
 export default ConfirmModal;

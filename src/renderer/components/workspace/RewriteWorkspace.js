@@ -1,4 +1,3 @@
-import React from "react";
 import { tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import StyleSelector from "../StyleSelector";

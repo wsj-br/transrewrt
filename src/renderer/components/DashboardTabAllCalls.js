@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -9,6 +8,7 @@ import {
   tokens,
 } from "@fluentui/react-components";
 import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
+import PropTypes from "prop-types";
 import {
   formatInteger,
   formatDurationMs,
@@ -265,3 +265,16 @@ export default function DashboardTabAllCalls({
     </div>
   );
 }
+
+DashboardTabAllCalls.propTypes = {
+  allCallsPage: PropTypes.number.isRequired,
+  setAllCallsPage: PropTypes.func.isRequired,
+  allCallsPageSize: PropTypes.number.isRequired,
+  allCallsRows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  allCallsTotal: PropTypes.number.isRequired,
+  allCallsLoading: PropTypes.bool.isRequired,
+  costFractionStyle: PropTypes.string.isRequired,
+  styles: PropTypes.object.isRequired,
+  setModelToDelete: PropTypes.func.isRequired,
+  setSetting: PropTypes.func.isRequired,
+};

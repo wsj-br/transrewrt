@@ -5,7 +5,7 @@
  * @param {(key: string) => string} t - i18n translate function (unused for UI list; native label is used)
  * @returns {string}
  */
-export function getUILanguageLabel(lang, t) {
+export function getUILanguageLabel(lang, _t) {
   const englishName = lang.englishName ?? lang.label;
   if (lang.label === englishName) return lang.label;
   return `${englishName} / ${lang.label}`;

@@ -15,9 +15,29 @@ module.exports = [
       ...react.configs.flat.recommended.languageOptions,
       ecmaVersion: "latest",
       sourceType: "module",
-      globals: { ...globals.node, ...globals.browser },
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+        // Webpack DefinePlugin (see webpack.config.js)
+        __REPO_URL__: "readonly",
+        __APP_VERSION__: "readonly",
+        __APP_DESCRIPTION__: "readonly",
+        __APP_AUTHOR__: "readonly",
+        __APP_LICENSE__: "readonly",
+        __DEV__: "readonly",
+      },
     },
     settings: { react: { version: "detect" } },
+    rules: {
+      ...react.configs.flat.recommended.rules,
+      // React 17+ new JSX transform: no need for React in scope (build injects jsx-runtime).
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
+      "no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
   },
   reactHooks.configs.flat["recommended-latest"],
 ];

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Dropdown, Option } from "@fluentui/react-components";
 import { Bot, Trash2 } from "lucide-react";
+import PropTypes from "prop-types";
 import ProviderIcon from "./ProviderIcon";
 import ConfirmModal from "./ConfirmModal";
 
@@ -191,6 +192,14 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
       )}
     </div>
   );
+};
+
+ModelSelector.propTypes = {
+  models: PropTypes.arrayOf(PropTypes.string),
+  currentModel: PropTypes.string,
+  onModelChange: PropTypes.func.isRequired,
+  onIconClick: PropTypes.func,
+  onRemoveModel: PropTypes.func,
 };
 
 export default ModelSelector;

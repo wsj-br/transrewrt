@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDecimal } from '../utils/misc/formatUtils';
 import {
@@ -12,6 +12,7 @@ import {
   Text,
   Spinner,
 } from '@fluentui/react-components';
+import PropTypes from 'prop-types';
 import {
   SearchRegular,
   ArrowSyncRegular,
@@ -422,5 +423,26 @@ const SettingsDialogModelsTab = ({
   );
 };
 
+SettingsDialogModelsTab.propTypes = {
+  allModels: PropTypes.arrayOf(PropTypes.object),
+  selectedModelIds: PropTypes.object.isRequired,
+  searchTerm: PropTypes.string,
+  filterFree: PropTypes.bool,
+  sortBy: PropTypes.string,
+  expandedProviders: PropTypes.object,
+  sortedModelsData: PropTypes.arrayOf(PropTypes.object),
+  modelsLoading: PropTypes.bool,
+  modelsError: PropTypes.string,
+  onSearchTermChange: PropTypes.func.isRequired,
+  onFilterFreeChange: PropTypes.func.isRequired,
+  onSortByChange: PropTypes.func.isRequired,
+  onRefreshModels: PropTypes.func.isRequired,
+  onToggleProvider: PropTypes.func.isRequired,
+  onExpandAll: PropTypes.func.isRequired,
+  onCollapseAll: PropTypes.func.isRequired,
+  onToggleModelSelection: PropTypes.func.isRequired,
+  onDeselectAllModels: PropTypes.func.isRequired,
+  getModelName: PropTypes.func.isRequired,
+};
 
 export default SettingsDialogModelsTab;
