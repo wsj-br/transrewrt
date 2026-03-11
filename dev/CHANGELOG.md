@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 - **Added**: Transform Prompt Editor: "Generate prompt with AI" button and modal to generate prompt config (name, instructions, role, output description, temperature) from a short user description; Cancel closes or aborts generation.
 - **Changed**: Sidebar and app-wide Transform mode icon updated from Sparkles to WandSparkles.
+- **Changed**: "Generate prompt with AI" button styled like "Load sample prompts" (green tint); layout: second row between "Back to Run" and "Prompt name", right-aligned, minimal spacing.
+- **Fixed**: Transform Prompt Editor modals (Generate prompt, Translate prompt fields, Improve prompt): modal width capped; long error messages wrap and modal grows vertically instead of horizontally.
+- **Fixed**: Web mode: margin around the app no longer shown on login (or when unset); margin only when Settings > "show a margin around the app" is explicitly enabled; default is no margin.
 - **Changed**: Bumped dependencies to latest: eslint-plugin-react ^7.37.5, eslint-plugin-react-hooks ^7.0.1, globals ^17.4.0, i18next ^25.8.17, react-i18next ^16.5.6, recharts ^3.8.0, lucide-react ^0.577.0. ESLint kept at ^9.15.0 (ESLint 10 not yet supported by eslint-plugin-react). React-hooks config uses flat format for compatibility.
 - **Fixed**: Sidebar user menu now closes when any option is selected (User management, Change password, Sign out); popover is controlled so it closes on item click.
 - **Fixed**: Sidebar user menu "User management" now switches to Settings > Users when Settings is already open on another tab (e.g. About); previously the Users tab was only applied on initial Settings open.

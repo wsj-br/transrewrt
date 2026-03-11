@@ -4,13 +4,16 @@
     "use_transrewrt_proxy": false,
     "key_seed": "",
     "available_models": [
-        "anthropic/claude-3-haiku",
         "openrouter/free",
-        "z-ai/glm-4.5-air:free"
+        "anthropic/claude-3-haiku",
+        "qwen/qwen3-235b-a22b-2507",
+        "minimax/minimax-m2.5",
+        "z-ai/glm-4.7-flash",
+        "stepfun/step-3.5-flash:free"
     ],
     "top_languages": [
-        "Portuguese (BR)",
         "English (UK)",
+        "Portuguese (BR)",
         "Spanish"
     ],
     "auto_copy": false,
