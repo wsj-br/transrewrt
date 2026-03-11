@@ -223,7 +223,7 @@ const SettingsDialogGeneralTab = ({
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
             <Checkbox
               id="web-margin"
-              checked={localSettings.web_margin !== false}
+              checked={localSettings.web_margin === true}
               onChange={(e) => onSettingChange('web_margin', e.target.checked)}
             />
             <Label htmlFor="web-margin" style={{ cursor: 'pointer', margin: 0  }}>

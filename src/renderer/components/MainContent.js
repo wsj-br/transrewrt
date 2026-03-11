@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Spinner } from "@fluentui/react-components";
-import { Languages, PenTool, Sparkles, BarChart3 } from "lucide-react";
+import { Languages, PenTool, WandSparkles, BarChart3 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ResizablePanels from "./ResizablePanels";
@@ -141,7 +141,7 @@ const MainContent = ({
           <div className={styles.toolbarLeft}>
             {currentMode === "translate" && <Languages className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
             {currentMode === "rewrite" && <PenTool className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
-            {currentMode === "transform" && <Sparkles className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
+            {currentMode === "transform" && <WandSparkles className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
             <span className={styles.modeIndicator}>
               {currentMode === "translate" ? t("Translate") : currentMode === "rewrite" ? t("Rewrite") : t("Transform")}
             </span>

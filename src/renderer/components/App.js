@@ -45,7 +45,7 @@ const App = () => {
   const styles = useAppStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const { settings, translate, translatePromptFields, improvePromptConfig, rewrite, transform, languages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, topLanguages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
@@ -316,14 +316,14 @@ const App = () => {
 
   // Get all languages (predefined + any custom languages from settings)
   const allLanguages = useMemo(() => {
-    const selectedSet = new Set(languages);
+    const selectedSet = new Set(topLanguages);
     const customLangs = Array.from(selectedSet).filter(
       (lang) => !isPredefinedContentLanguage(lang),
     );
     return [...ALL_CONTENT_LANGUAGE_NAMES, ...customLangs].sort((a, b) =>
       a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
     );
-  }, [languages]);
+  }, [topLanguages]);
 
   const outputMeta = `${isProcessing || elapsedTime > 0 ? `${t('Elapsed')}: ${formatElapsedMmSs(elapsedTime, locale)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `${t('Cost')}: ${formatCostDisplay(lastRunCost, locale)} | ` : ""}${t('Total')}: ${formatCostDisplay(settings.total_cost || 0, locale)}${tokensPerSecond ? ` | ${t('TPS')}: ${formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}` : ""}`;
 
@@ -361,7 +361,7 @@ const App = () => {
             setSourceLanguage,
             targetLanguage,
             setTargetLanguage,
-            languages,
+            topLanguages,
             allLanguages,
           },
         })
@@ -415,11 +415,12 @@ const App = () => {
               showTransformLangSelector,
               transformTargetLang,
               setTransformTargetLang,
-              languages,
+              topLanguages,
               allLanguages,
               translate,
               translatePromptFields,
               improvePromptConfig,
+              generatePromptConfig,
               model: activeModel,
               models,
               handleTransformPromptSelect,
@@ -468,7 +469,7 @@ const App = () => {
   }
 
   if (isWeb) {
-    const useMargin = settings.web_margin !== false;
+    const useMargin = settings?.web_margin === true;
     const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
     const webFrameClass = useMargin ? styles.webFrame : styles.webFrameSquare;
     return (

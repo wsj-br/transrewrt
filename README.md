@@ -194,7 +194,7 @@ Key settings (editable via the **Settings** dialog or directly in the JSON):
 | `use_transrewrt_proxy`    | `false`                        | Use an external Transrewrt proxy (rolling key auth) instead of sending the API key               |
 | `key_seed`                | *(empty)*                      | Shared secret for the Transrewrt proxy (used to derive the rolling key)                          |
 | `available_models`        | 3 default models                 | List of models shown in the selector                                                             |
-| `available_languages`     | 3 default languages              | List of languages shown in the selector                                                          |
+| `top_languages`           | 3 default languages              | Languages shown at the top of translate/rewrite/transform selectors                               |
 | `real_time_translation`   | `false`                        | Translate as you type                                                                            |
 | `real_time_delay`         | `1000`                         | Debounce interval (ms) for real-time translation                                                 |
 | `auto_copy`               | `false`                        | Copy output to clipboard automatically                                                           |

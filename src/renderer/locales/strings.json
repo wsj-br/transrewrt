@@ -4017,6 +4017,67 @@
       "vi": "Tổng chi phí"
     }
   },
+  "5c044e3b": {
+    "source": "Generate prompt configuration",
+    "translated": {}
+  },
+  "b12e1e41": {
+    "source": "What should this prompt do?",
+    "translated": {}
+  },
+  "2041c0b3": {
+    "source": "e.g. Summarize long text in 3 bullet points, or rewrite for clarity",
+    "translated": {}
+  },
+  "cd8c053f": {
+    "source": "Model to generate prompt",
+    "translated": {}
+  },
+  "f93642ae": {
+    "source": "Generating…",
+    "translated": {}
+  },
+  "32b919d1": {
+    "source": "Generate",
+    "translated": {
+      "pt-BR": "Gerar",
+      "ar": "إنشاء",
+      "bn": "জেনারেট",
+      "ca": "Genera",
+      "zh-CN": "生成",
+      "zh-TW": "產生",
+      "hr": "Generiraj",
+      "cs": "Vygenerovat",
+      "nl": "Genereren",
+      "en-US": "Generate",
+      "tl": "Gumenerate",
+      "fr": "Générer",
+      "es": "Generar",
+      "de": "Generieren",
+      "el": "Δημιουργία",
+      "hi": "उत्पन्न करें",
+      "hu": "Létrehozás",
+      "it": "Genera",
+      "ja": "生成",
+      "jv": "Gawe",
+      "ko": "생성",
+      "ms": "Jana",
+      "fa": "تولید",
+      "pl": "Wygeneruj",
+      "pt": "Gerar",
+      "pa": "ਬਣਾਓ",
+      "ro": "Generează",
+      "ru": "Создать",
+      "sk": "Vygenerovať",
+      "sw": "Zalisha",
+      "sv": "Generera",
+      "te": "ఉత్పత్తి చేయి",
+      "th": "สร้าง",
+      "tr": "Oluştur",
+      "uk": "Згенерувати",
+      "vi": "Tạo"
+    }
+  },
   "b5e4a71c": {
     "source": "Interface language",
     "translated": {
@@ -11397,47 +11458,6 @@
       "vi": "Tạo tài khoản người dùng mới. Đặt mật khẩu hoặc tự động tạo."
     }
   },
-  "32b919d1": {
-    "source": "Generate",
-    "translated": {
-      "pt-BR": "Gerar",
-      "ar": "إنشاء",
-      "bn": "জেনারেট",
-      "ca": "Genera",
-      "zh-CN": "生成",
-      "zh-TW": "產生",
-      "hr": "Generiraj",
-      "cs": "Vygenerovat",
-      "nl": "Genereren",
-      "en-US": "Generate",
-      "tl": "Gumenerate",
-      "fr": "Générer",
-      "es": "Generar",
-      "de": "Generieren",
-      "el": "Δημιουργία",
-      "hi": "उत्पन्न करें",
-      "hu": "Létrehozás",
-      "it": "Genera",
-      "ja": "生成",
-      "jv": "Gawe",
-      "ko": "생성",
-      "ms": "Jana",
-      "fa": "تولید",
-      "pl": "Wygeneruj",
-      "pt": "Gerar",
-      "pa": "ਬਣਾਓ",
-      "ro": "Generează",
-      "ru": "Создать",
-      "sk": "Vygenerovať",
-      "sw": "Zalisha",
-      "sv": "Generera",
-      "te": "ఉత్పత్తి చేయి",
-      "th": "สร้าง",
-      "tr": "Oluştur",
-      "uk": "Згенерувати",
-      "vi": "Tạo"
-    }
-  },
   "26283c4b": {
     "source": "Generate a random password",
     "translated": {
@@ -12955,6 +12975,10 @@
       "vi": "Cải thiện thất bại"
     }
   },
+  "cbd6bc11": {
+    "source": "Generate failed",
+    "translated": {}
+  },
   "7ced7b37": {
     "source": "Back to Run",
     "translated": {
@@ -12995,6 +13019,10 @@
       "tr": "Çalıtır'a geri dön",
       "vi": "Quay lại Chạy"
     }
+  },
+  "3938bb63": {
+    "source": "Generate prompt with AI",
+    "translated": {}
   },
   "a4a3cd9d": {
     "source": "Prompt name",

@@ -617,6 +617,53 @@ Respond with ONLY the JSON object. No other text.`;
   }
 
   /**
+   * Generate a transform prompt config from a user description; returns JSON with name, prompt_instructions, role, instructions, output_description, temperature.
+   * @param {string} userDescription - What the user wants the prompt to do
+   * @param {string} model - Model id
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} { content: configObject, usage, model, ... } or { error: string }
+   */
+  async generatePromptConfigJson(userDescription, model, signal = null) {
+    try {
+      const userMessage = `Generate a transform prompt configuration for the following request. Return ONLY a valid JSON object with keys: name, prompt_instructions, role, instructions (array of strings), output_description, temperature (number 0–1).
+
+User request: ${userDescription}
+
+Respond with ONLY the JSON object. No other text.`;
+      const result = await this._streamChatCompletion(
+        resolvePrompt(prompts.generate_prompt_config.system),
+        userMessage,
+        model,
+        0.3,
+        signal,
+        "generate-prompt-config",
+        {}
+      );
+      const raw = (result.content || "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+      let parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (e) {
+        console.error("generatePromptConfigJson: invalid JSON", e.message, raw?.slice(0, 200));
+        return { error: "Model response is not valid JSON" };
+      }
+      if (parsed == null || typeof parsed !== "object" || Array.isArray(parsed)) {
+        return { error: "Model did not return a JSON object" };
+      }
+      return { ...result, content: parsed };
+    } catch (error) {
+      if (error.name === "AbortError") throw error;
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("generatePromptConfigJson error:", error);
+      return { error: error.message };
+    }
+  }
+
+  /**
    * Rewrite text with specified style
    * @param {string} text - Text to rewrite
    * @param {string} style - Style to apply

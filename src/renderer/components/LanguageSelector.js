@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, mergeClasses, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Languages } from 'lucide-react';
 import { UI_LANGUAGES } from '../constants';
+import { findUILanguageEntry } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 /** Internal value for "no target / model decides" (used when allowNone). Shown in UI as "No target language / model decides" */
@@ -72,7 +73,7 @@ const LanguageSelector = ({
   label,
   value,
   onChange,
-  languages = [],
+  topLanguages = [],
   allLanguages = [],
   detectLanguage = false,
   allowNone = false,
@@ -86,8 +87,8 @@ const LanguageSelector = ({
     let options = [];
 
     if (targetListSameAsSource) {
-      const selectedSet = new Set(languages);
-      const selected = [...languages].sort((a, b) => a.localeCompare(b));
+      const selectedSet = new Set(topLanguages);
+      const selected = [...topLanguages].sort((a, b) => a.localeCompare(b));
       const remaining = (allLanguages || [])
         .filter(lang => !selectedSet.has(lang))
         .sort((a, b) => a.localeCompare(b));
@@ -100,8 +101,8 @@ const LanguageSelector = ({
         options = [AUTO_TARGET, ...options];
       }
     } else if (detectLanguage) {
-      const selectedSet = new Set(languages);
-      const selected = [...languages].sort((a, b) => a.localeCompare(b));
+      const selectedSet = new Set(topLanguages);
+      const selected = [...topLanguages].sort((a, b) => a.localeCompare(b));
       const remaining = allLanguages
         .filter(lang => !selectedSet.has(lang))
         .sort((a, b) => a.localeCompare(b));
@@ -115,14 +116,14 @@ const LanguageSelector = ({
         options = [AUTO_TARGET, ...options];
       }
     } else {
-      options = [...languages].sort((a, b) => a.localeCompare(b));
+      options = [...topLanguages].sort((a, b) => a.localeCompare(b));
       if (allowNone) {
         options = [AUTO_TARGET, ...options];
       }
     }
 
     return options;
-  }, [languages, allLanguages, detectLanguage, allowNone, targetListSameAsSource]);
+  }, [topLanguages, allLanguages, detectLanguage, allowNone, targetListSameAsSource]);
 
   const isDetectLanguage = value === "Detect Language";
   const isAutoTarget = allowNone && (value === AUTO_TARGET || value === "" || value == null);
@@ -130,7 +131,7 @@ const LanguageSelector = ({
   const displayValue = useMemo(() => {
     if (isAutoTarget) return t("No target language / model decides");
     if (isDetectLanguage) return t("Detect Language");
-    const entry = UI_LANGUAGES.find((e) => e.englishName === value);
+    const entry = findUILanguageEntry(value);
     return entry ? getUILanguageLabel(entry, t) : value;
   }, [value, isAutoTarget, isDetectLanguage, t]);
 
@@ -190,7 +191,7 @@ const LanguageSelector = ({
               );
             }
 
-            const entry = UI_LANGUAGES.find((e) => e.englishName === lang);
+            const entry = findUILanguageEntry(lang);
             const displayText = entry ? getUILanguageLabel(entry, t) : lang;
             return (
               <Option

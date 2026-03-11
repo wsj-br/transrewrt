@@ -9,9 +9,10 @@ import {
   Checkbox,
   Slider,
 } from "@fluentui/react-components";
-import { ArrowLeft, Save, Trash2, X, Languages, Bot } from "lucide-react";
+import { ArrowLeft, Save, Trash2, X, Languages, Bot, Sparkles } from "lucide-react";
 import TranslatePromptFieldsModal from "./TranslatePromptFieldsModal";
 import ImprovePromptConfigModal from "./ImprovePromptConfigModal";
+import GeneratePromptConfigModal from "./GeneratePromptConfigModal";
 
 const useStyles = makeStyles({
   root: {
@@ -25,9 +26,29 @@ const useStyles = makeStyles({
   },
   header: {
     display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalS,
+    flexDirection: "column",
+    gap: 0,
     flexShrink: 0,
+  },
+  headerRow1: {
+    display: "flex",
+    alignItems: "center",
+    flexShrink: 0,
+  },
+  headerRow2: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flexShrink: 0,
+    marginTop: "-12px",
+  },
+  generatePromptButton: {
+    backgroundColor: "#223328",
+    color: "#e8f5e9",
+    ":hover": {
+      backgroundColor: "#2d4532",
+      color: "#e8f5e9",
+    },
   },
   backButton: {
     flexShrink: 0,
@@ -43,7 +64,6 @@ const useStyles = makeStyles({
     gap: tokens.spacingVerticalM,
     flex: 1,
     minHeight: 0,
-    marginTop: "18px",
     "& input": { color: "#fff" },
     "& textarea": { color: "#fff" },
   },
@@ -153,15 +173,17 @@ const TransformPromptEditor = ({
   translate,
   translatePromptFields,
   improvePromptConfig,
+  generatePromptConfig,
   model,
   models = [],
-  languages = [],
+  topLanguages = [],
   allLanguages = [],
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
   const translateAbortRef = useRef(null);
   const improveAbortRef = useRef(null);
+  const generateAbortRef = useRef(null);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [instructionsText, setInstructionsText] = useState("");
@@ -176,6 +198,9 @@ const TransformPromptEditor = ({
   const [showImproveModal, setShowImproveModal] = useState(false);
   const [improveLoading, setImproveLoading] = useState(false);
   const [improveError, setImproveError] = useState(null);
+  const [showGenerateModal, setShowGenerateModal] = useState(false);
+  const [generateLoading, setGenerateLoading] = useState(false);
+  const [generateError, setGenerateError] = useState(null);
 
   useEffect(() => {
     if (initialPrompt) {
@@ -230,9 +255,10 @@ const TransformPromptEditor = ({
 
   const canShowTranslateButton = translatePromptFields && (model || (models && models.length > 0)) && typeof translatePromptFields === "function";
   const canShowImproveButton = improvePromptConfig && (model || (models && models.length > 0)) && typeof improvePromptConfig === "function";
+  const canShowGenerateButton = generatePromptConfig && (model || (models && models.length > 0)) && typeof generatePromptConfig === "function";
 
   const openTranslateModal = () => {
-    const firstLang = (languages && languages[0]) || (allLanguages && allLanguages[0]) || "";
+    const firstLang = (topLanguages && topLanguages[0]) || (allLanguages && allLanguages[0]) || "";
     setTranslateTargetLang(firstLang);
     setTranslateError(null);
     setShowTranslateModal(true);
@@ -347,18 +373,81 @@ const TransformPromptEditor = ({
     }
   };
 
+  const openGenerateModal = () => {
+    setGenerateError(null);
+    setShowGenerateModal(true);
+  };
+
+  const handleGenerateCancel = () => {
+    if (generateAbortRef.current) {
+      generateAbortRef.current.abort();
+      generateAbortRef.current = null;
+    }
+    setShowGenerateModal(false);
+    setGenerateLoading(false);
+    setGenerateError(null);
+  };
+
+  const handleGenerateConfirm = async (selectedModel, userDescription) => {
+    if (!generatePromptConfig || !selectedModel || !userDescription) return;
+    const controller = new AbortController();
+    generateAbortRef.current = controller;
+    setGenerateLoading(true);
+    setGenerateError(null);
+    try {
+      const result = await generatePromptConfig(userDescription, selectedModel, controller.signal);
+      if (result?.error) {
+        setGenerateError(result.error || t("Generate failed"));
+        return;
+      }
+      const res = result?.content;
+      if (res && typeof res === "object") {
+        if (res.name != null) setName(String(res.name).trim());
+        if (res.prompt_instructions != null) setPromptInstructions(String(res.prompt_instructions).trim());
+        if (res.role != null) setRole(String(res.role).trim());
+        if (res.instructions != null) setInstructionsText(formatInstructionsForDisplay(Array.isArray(res.instructions) ? res.instructions : [String(res.instructions || "")]));
+        if (res.output_description != null) setOutputDescription(String(res.output_description).trim());
+        if (typeof res.temperature === "number" && !Number.isNaN(res.temperature)) setTemperature(roundToStep(Math.max(0, Math.min(1, res.temperature)), 0.05));
+      }
+      setShowGenerateModal(false);
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        setGenerateError(err?.message || t("Generate failed"));
+      } else {
+        setShowGenerateModal(false);
+      }
+    } finally {
+      setGenerateLoading(false);
+      generateAbortRef.current = null;
+    }
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Button
-          appearance="subtle"
-          icon={<ArrowLeft size={18} />}
-          onClick={onBackToRun}
-          className={styles.backButton}
-          aria-label={t("Back to Run")}
-        >
-          {t("Back to Run")}
-        </Button>
+        <div className={styles.headerRow1}>
+          <Button
+            appearance="subtle"
+            icon={<ArrowLeft size={18} />}
+            onClick={onBackToRun}
+            className={styles.backButton}
+            aria-label={t("Back to Run")}
+          >
+            {t("Back to Run")}
+          </Button>
+        </div>
+        {canShowGenerateButton && (
+          <div className={styles.headerRow2}>
+            <Button
+              appearance="secondary"
+              className={styles.generatePromptButton}
+              icon={<Sparkles size={16} />}
+              onClick={openGenerateModal}
+            >
+              {t("Generate prompt with AI")}
+            </Button>
+          </div>
+        )}
       </div>
       <div className={styles.form}>
         <div className={styles.field}>
@@ -483,7 +572,7 @@ const TransformPromptEditor = ({
           onTargetLangChange={setTranslateTargetLang}
           onConfirm={handleTranslateConfirm}
           onCancel={handleTranslateCancel}
-          languages={languages}
+          topLanguages={topLanguages}
           allLanguages={allLanguages}
           models={models}
           model={model}
@@ -500,6 +589,17 @@ const TransformPromptEditor = ({
           onCancel={handleImproveCancel}
           loading={improveLoading}
           error={improveError}
+        />
+      )}
+      {showGenerateModal && (
+        <GeneratePromptConfigModal
+          open={showGenerateModal}
+          model={model}
+          models={models}
+          onConfirm={handleGenerateConfirm}
+          onCancel={handleGenerateCancel}
+          loading={generateLoading}
+          error={generateError}
         />
       )}
     </div>

@@ -20,7 +20,9 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     boxShadow: tokens.shadow28,
     minWidth: "320px",
-    maxWidth: "90vw",
+    width: "100%",
+    maxWidth: "min(480px, 90vw)",
+    boxSizing: "border-box",
   },
   title: {
     margin: "0 0 32px 0",
@@ -29,12 +31,14 @@ const useStyles = makeStyles({
   },
   body: {
     margin: "0 0 20px 0",
+    minWidth: 0,
   },
   error: {
     marginTop: "12px",
     fontSize: "14px",
     color: tokens.colorPaletteRedForeground1,
     lineHeight: 1.4,
+    minWidth: 0,
     maxWidth: "100%",
     overflowWrap: "break-word",
     wordBreak: "break-word",
@@ -64,7 +68,7 @@ const TranslatePromptFieldsModal = ({
   onTargetLangChange,
   onConfirm,
   onCancel,
-  languages = [],
+  topLanguages = [],
   allLanguages = [],
   models = [],
   model,
@@ -94,7 +98,7 @@ const TranslatePromptFieldsModal = ({
             label={t("Target language:")}
             value={targetLang}
             onChange={onTargetLangChange}
-            languages={languages}
+            topLanguages={topLanguages}
             allLanguages={allLanguages}
             targetListSameAsSource={true}
           />

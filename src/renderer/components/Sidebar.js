@@ -11,7 +11,7 @@ import {
 import {
   Languages,
   PenTool,
-  Sparkles,
+  WandSparkles,
   BarChart3,
   Settings,
   PanelLeftClose,
@@ -278,6 +278,7 @@ const Sidebar = ({
   const styles = useStyles();
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const isSettingsActive = currentView === "settings";
   const isDashboardActive = currentView === "dashboard";
   const isTranslateActive =
@@ -307,7 +308,7 @@ const Sidebar = ({
     {
       id: "transform",
       label: t("Transform"),
-      icon: Sparkles,
+      icon: WandSparkles,
       isActive: isTransformActive,
       onClick: () => onModeChange("transform"),
     },
@@ -473,7 +474,11 @@ const Sidebar = ({
         {currentUser && (
           <div className={styles.userBlock}>
             {onSignOut || onChangePassword || (currentUser.role === "admin" && onOpenSettingsUsers) ? (
-              <Popover positioning="top-start">
+              <Popover
+                open={userMenuOpen}
+                onOpenChange={(_, data) => setUserMenuOpen(data.open)}
+                positioning={{ position: "top", align: "start", onPositioningEnd: () => {} }}
+              >
                 <PopoverTrigger disableButtonEnhancement>
                   <button
                     type="button"
@@ -500,19 +505,34 @@ const Sidebar = ({
                 <PopoverSurface>
                   <MenuList>
                     {currentUser.role === "admin" && onOpenSettingsUsers && (
-                      <MenuItem onClick={() => onOpenSettingsUsers()}>
+                      <MenuItem
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          onOpenSettingsUsers();
+                        }}
+                      >
                         <Users size={16} className={styles.menuIcon} />
                         {t("User management")}
                       </MenuItem>
                     )}
                     {onChangePassword && (
-                      <MenuItem onClick={() => onChangePassword()}>
+                      <MenuItem
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          onChangePassword();
+                        }}
+                      >
                         <KeyRound size={16} className={styles.menuIcon} />
                         {t("Change password")}
                       </MenuItem>
                     )}
                     {onSignOut && (
-                      <MenuItem onClick={() => onSignOut()}>
+                      <MenuItem
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          onSignOut();
+                        }}
+                      >
                         <LogOut size={16} className={styles.menuIcon} />
                         {t("Sign out")}
                       </MenuItem>

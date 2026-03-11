@@ -23,7 +23,7 @@ import {
 import { FREE_MODEL_ID } from "../constants";
 import {
   Cpu,
-  Sparkles,
+  WandSparkles,
   CheckSquare,
   Package,
 } from 'lucide-react';
@@ -103,7 +103,7 @@ const SettingsDialogModelsTab = ({
                 onChange={(e, data) => onFilterFreeChange(data.checked)}
                 label={
                   <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Sparkles size={14} />
+                    <WandSparkles size={14} />
                     {t('Free Only')}
                   </span>
                 }
@@ -241,7 +241,7 @@ const SettingsDialogModelsTab = ({
                                           appearance="tint"
                                           size="small"
                                           color="success"
-                                          icon={<Sparkles size={12} />}
+                                          icon={<WandSparkles size={12} />}
                                         >
                                           {t('Free')}
                                         </Badge>
@@ -305,7 +305,7 @@ const SettingsDialogModelsTab = ({
                                 appearance="tint"
                                 size="small"
                                 color="success"
-                                icon={<Sparkles size={12} />}
+                                icon={<WandSparkles size={12} />}
                               >
                                 {t('Free')}
                               </Badge>
@@ -388,7 +388,7 @@ const SettingsDialogModelsTab = ({
                               appearance="tint"
                               size="small"
                               color="success"
-                              icon={<Sparkles size={12} />}
+                              icon={<WandSparkles size={12} />}
                             >
                               {t('Free')}
                             </Badge>

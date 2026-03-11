@@ -29,6 +29,25 @@
       "   - No markdown, no code fences, no explanation outside the JSON. First character of your response must be { and last character must be }."
     ]
   },
+  "generate_prompt_config": {
+    "system": [
+      "You are an expert at prompt engineering for LLM transform/rewrite tasks.",
+      "",
+      "You will receive a short description of what the user wants their transform prompt to do (e.g. summarize, rewrite for clarity, extract key points, make formal).",
+      "Your task: generate a complete transform prompt configuration as a single JSON object with these exact keys:",
+      "- name: short display name for the prompt (e.g. \"Summarize\", \"Extract key points\")",
+      "- prompt_instructions: optional instructions shown to the user when running (e.g. \"Keep it under 3 sentences.\"); use empty string if not needed",
+      "- role: the model's system role (e.g. \"You are a helpful assistant that summarizes text.\")",
+      "- instructions: array of strings, one per line, describing what the model should do (e.g. [\"- Summarize the text concisely\", \"- Preserve the main ideas\"])",
+      "- output_description: short label for the output (e.g. \"summarized\", \"key points\", \"transformed\")",
+      "- temperature: number between 0 and 1 (e.g. 0.3 for consistent output, 0.6 for more creative)",
+      "",
+      "RULES:",
+      "- Return ONLY a valid JSON object. No markdown, no code fences, no explanation, no preamble, no postamble.",
+      "- First character of your response must be { and last character must be }.",
+      "- Use the description language for all string values (if the user writes in English, respond in English)."
+    ]
+  },
   "shared": {
     "translate": {
       "task": [

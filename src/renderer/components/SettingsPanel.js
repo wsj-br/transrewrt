@@ -8,7 +8,7 @@ import {
   Key,
   DollarSign,
   Info,
-  Sparkles,
+  WandSparkles,
   Users,
   Settings as SettingsIcon,
   ChevronLeft,
@@ -197,24 +197,34 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       ...(settings.available_models || []),
     ]);
     setSelectedModelIds(modelsWithFree);
-    setSelectedLanguages(new Set(settings.available_languages || []));
-    // Restore active tab once per mount. Prefer openToTab (e.g. from sidebar "User management"),
-    // then configManager, then context.
-    if (!hasRestoredTabRef.current) {
+    setSelectedLanguages(new Set(settings.top_languages || []));
+    const normalizeTab = (tab) => {
+      if (tab === "auth") return isWeb && currentUser?.role === "admin" ? "users" : "general";
+      if (tab === "api" && isWeb) return "general";
+      if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) return "general";
+      return tab || "general";
+    };
+    // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
+    // so it works even if Settings is already open on another tab.
+    if (openToTab) {
+      hasRestoredTabRef.current = true;
+      const tab = normalizeTab(openToTab);
+      setActiveTab(tab);
+      if (configManager.get("settings_active_tab") !== tab) {
+        setSetting("settings_active_tab", tab);
+      }
+      onOpenToTabConsumed?.();
+    } else if (!hasRestoredTabRef.current) {
       hasRestoredTabRef.current = true;
       let tab =
-        openToTab ||
         configManager.get("settings_active_tab") ||
         settings.settings_active_tab ||
         "general";
-      if (tab === "auth") tab = isWeb && currentUser?.role === "admin" ? "users" : "general";
-      if (tab === "api" && isWeb) tab = "general";
-      if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) tab = "general";
+      tab = normalizeTab(tab);
       setActiveTab(tab);
-      if (tab && configManager.get("settings_active_tab") !== tab) {
+      if (configManager.get("settings_active_tab") !== tab) {
         setSetting("settings_active_tab", tab);
       }
-      if (openToTab) onOpenToTabConsumed?.();
     }
   }, [settings, openToTab, onOpenToTabConsumed, currentUser?.role]);
 
@@ -461,7 +471,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
               className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "transform" && "active")}
               onClick={() => handleTabChange("transform")}
             >
-              <Sparkles size={16} /> {t("Transform")}
+              <WandSparkles size={16} /> {t("Transform")}
             </button>
             {isWeb && currentUser?.role === "admin" && (
               <button

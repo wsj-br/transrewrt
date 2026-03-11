@@ -17,6 +17,8 @@
     "start:server:rebuild": "pnpm run postinstall && pnpm run start:server",
     "serve": "pnpm run build-renderer && pnpm run start:server",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:clean": "./scripts/clean-docker.sh",
@@ -71,13 +73,27 @@
       "buildResources": "images"
     },
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "forceCodeSigning": false,
       "icon": "transrewrt_logo.ico",
       "artifactName": "${productName} Setup ${version}.${ext}"
     },
     "linux": {
-      "target": [{ "target": "AppImage", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "artifactName": "${productName}-${version}.${ext}"
     },
     "nsis": {
@@ -91,25 +107,29 @@
     }
   },
   "devDependencies": {
+    "eslint": "^9.15.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.4.0",
     "@babel/core": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
     "@electron/rebuild": "^4.0.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
-    "babel-loader": "^10.0.0",
+    "babel-loader": "^10.1.1",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
-    "electron": "^40.4.1",
-    "electron-builder": "^26.7.0",
-    "electron-reload": "^2.0.0-alpha.1",
+    "electron": "^40.8.0",
+    "electron-builder": "^26.8.1",
+    "electron-reload": "2.0.0-alpha.1",
     "events": "^3.3.0",
     "html-webpack-plugin": "^5.6.6",
-    "mini-css-extract-plugin": "^2.10.0",
+    "mini-css-extract-plugin": "^2.10.1",
     "react-refresh": "^0.18.0",
-    "sql.js": "^1.14.0",
+    "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",
     "wait-on": "^9.0.4",
-    "webpack": "^5.105.2",
+    "webpack": "^5.105.4",
     "webpack-cli": "^6.0.1"
   },
   "pnpm": {
@@ -135,20 +155,19 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "i18next": "^24.2.0",
-    "react-i18next": "^15.1.0",
-    "@fluentui/react-components": "^9.73.0",
-    "@fluentui/react-icons": "^2.0.319",
+    "@fluentui/react-components": "^9.73.2",
+    "@fluentui/react-icons": "^2.0.320",
     "argon2": "^0.44.0",
-    "better-sqlite3": "^12.4.2",
+    "better-sqlite3": "^12.6.2",
     "express": "^5.2.1",
-    "lucide-react": "^0.574.0",
+    "i18next": "^25.8.17",
+    "lucide-react": "^0.577.0",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "recharts": "^2.15.0",
+    "react-i18next": "^16.5.6",
+    "recharts": "^3.8.0",
     "webpack-dev-server": "^5.2.3",
-    "xlsx": "^0.18.5",
     "xlsx-js-style": "^1.2.0"
   }
 }

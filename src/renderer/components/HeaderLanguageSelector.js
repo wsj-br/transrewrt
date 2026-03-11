@@ -82,7 +82,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
   };
 
   return (
-    <Popover open={open} onOpenChange={(_, data) => setOpen(data.open)}>
+    <Popover open={open} onOpenChange={(_, data) => setOpen(data.open)} positioning={{ onPositioningEnd: () => {} }}>
       <PopoverTrigger disableButtonEnhancement>
         <Button
           appearance="subtle"

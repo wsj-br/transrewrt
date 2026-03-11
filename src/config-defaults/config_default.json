@@ -8,10 +8,10 @@
         "openrouter/free",
         "z-ai/glm-4.5-air:free"
     ],
-    "available_languages": [
+    "top_languages": [
         "Portuguese (BR)",
         "English (UK)",
-        "Spanish (ES)"
+        "Spanish"
     ],
     "auto_copy": false,
     "real_time_translation": false,

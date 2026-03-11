@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     boxShadow: tokens.shadow28,
     minWidth: "320px",
     width: "100%",
-    maxWidth: "min(480px, 90vw)",
+    maxWidth: "min(520px, 90vw)",
     boxSizing: "border-box",
   },
   title: {
@@ -32,11 +32,34 @@ const useStyles = makeStyles({
     margin: "0 0 20px 0",
     minWidth: 0,
   },
-  modelLabel: {
+  descriptionLabel: {
     display: "block",
     marginBottom: "8px",
     fontSize: "14px",
-    fontWeight: 500,
+    fontWeight: 400,
+  },
+  descriptionInput: {
+    width: "100%",
+    minHeight: "160px",
+    padding: tokens.spacingVerticalS,
+    borderRadius: tokens.borderRadiusMedium,
+    border: `1px solid ${tokens.colorNeutralStroke1}`,
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorNeutralForeground1,
+    fontSize: "14px",
+    resize: "vertical",
+    boxSizing: "border-box",
+    marginLeft: "0%",
+  },
+  modelLabel: {
+    display: "block",
+    marginTop: "16px",
+    marginBottom: "8px",
+    fontSize: "14px",
+    fontWeight: 400,
+  },
+  modelSelector: {
+    marginLeft: "0%",
   },
   error: {
     marginTop: "12px",
@@ -56,7 +79,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ImprovePromptConfigModal = ({
+const GeneratePromptConfigModal = ({
   open,
   model,
   models = [],
@@ -68,32 +91,49 @@ const ImprovePromptConfigModal = ({
   const styles = useStyles();
   const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState(model || "");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
-    if (open) setSelectedModel(model || "");
+    if (open) {
+      setSelectedModel(model || "");
+      setDescription("");
+    }
   }, [open, model]);
 
   if (!open) return null;
 
   const handleConfirm = () => {
-    onConfirm(selectedModel);
+    onConfirm(selectedModel, description.trim());
   };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2 className={styles.title}>{t("Improve prompt configuration")}</h2>
+        <h2 className={styles.title}>{t("Generate prompt configuration")}</h2>
         <div className={styles.body}>
+          <label className={styles.descriptionLabel} htmlFor="generate-prompt-description">
+            {t("What should this prompt do?")}
+          </label>
+          <textarea
+            id="generate-prompt-description"
+            className={styles.descriptionInput}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder={t("e.g. Summarize long text in 3 bullet points, or rewrite for clarity")}
+            aria-label={t("What should this prompt do?")}
+          />
           {models.length > 0 && (
             <>
               <label className={styles.modelLabel}>
-                {t("Select the model to improve the prompt")}
+                {t("Model to generate prompt")}
               </label>
-              <ModelSelector
-                models={models}
-                currentModel={selectedModel}
-                onModelChange={setSelectedModel}
-              />
+              <div className={styles.modelSelector}>
+                <ModelSelector
+                  models={models}
+                  currentModel={selectedModel}
+                  onModelChange={setSelectedModel}
+                />
+              </div>
             </>
           )}
           {error && <div className={styles.error}>{error}</div>}
@@ -105,10 +145,10 @@ const ImprovePromptConfigModal = ({
           <Button
             appearance="primary"
             onClick={handleConfirm}
-            disabled={loading || !selectedModel}
+            disabled={loading || !selectedModel || !description.trim()}
             icon={loading ? <Spinner size="tiny" /> : undefined}
           >
-            {loading ? t("Improving…") : t("Improve")}
+            {loading ? t("Generating…") : t("Generate")}
           </Button>
         </div>
       </div>
@@ -116,4 +156,4 @@ const ImprovePromptConfigModal = ({
   );
 };
 
-export default ImprovePromptConfigModal;
+export default GeneratePromptConfigModal;

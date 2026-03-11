@@ -1,5 +1,5 @@
 #!/bin/bash
-# upgrade-dependencies.sh
+# upgrade-tools.sh
 #
 # This script upgrades the dependencies in the project to the latest versions.
 #

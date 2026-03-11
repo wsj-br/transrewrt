@@ -24,3 +24,16 @@ export function isPredefinedContentLanguage(name) {
 export function codeFromEnglishName(name) {
   return UI_LANGUAGES.find((l) => l.englishName === name)?.code;
 }
+
+/**
+ * Find UI language entry by English name or by BCP 47 code (so stored "most used" or legacy code values display consistently).
+ * @param {string} value - English name (e.g. "French") or code (e.g. "fr")
+ * @returns {{ code: string, label: string, englishName: string } | undefined}
+ */
+export function findUILanguageEntry(value) {
+  if (!value || typeof value !== "string") return undefined;
+  return (
+    UI_LANGUAGES.find((l) => l.englishName === value) ??
+    UI_LANGUAGES.find((l) => l.code === value)
+  );
+}

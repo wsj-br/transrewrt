@@ -104,12 +104,12 @@ function loadConfig(configPath) {
     console.error("config.json must contain a non-empty available_models array");
     process.exit(1);
   }
-  if (!Array.isArray(config.available_languages) || config.available_languages.length === 0) {
-    console.error("config.json must contain a non-empty available_languages array");
+  if (!Array.isArray(config.top_languages) || config.top_languages.length === 0) {
+    console.error("config.json must contain a non-empty top_languages array");
     process.exit(1);
   }
   const models = config.available_models;
-  const languages = ["Detect Language", ...config.available_languages];
+  const languages = ["Detect Language", ...config.top_languages];
   return { models, languages };
 }
 

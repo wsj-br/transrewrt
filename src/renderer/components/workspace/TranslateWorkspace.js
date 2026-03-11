@@ -10,14 +10,14 @@ import { Zap, Square } from "lucide-react";
  */
 export function getTranslatePanels({ common, input, output, options }) {
   const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
-  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, languages, allLanguages } = options;
+  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, topLanguages, allLanguages } = options;
 
   const leftPanelControls = (
     <LanguageSelector
       label={t("From:")}
       value={sourceLanguage}
       onChange={setSourceLanguage}
-      languages={languages}
+      topLanguages={topLanguages}
       allLanguages={allLanguages}
       detectLanguage={true}
       iconColor={tokens.colorBrandForeground1}
@@ -28,7 +28,7 @@ export function getTranslatePanels({ common, input, output, options }) {
       label={t("To:")}
       value={targetLanguage}
       onChange={setTargetLanguage}
-      languages={languages}
+      topLanguages={topLanguages}
       allLanguages={allLanguages}
       targetListSameAsSource={true}
       iconColor={tokens.colorStatusWarningForeground3}

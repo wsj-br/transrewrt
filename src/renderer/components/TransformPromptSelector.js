@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
-import { Sparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
+import { WandSparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
 
 const useStyles = makeStyles({
   root: {
@@ -82,7 +82,7 @@ const TransformPromptSelector = ({
   return (
     <div className={styles.root}>
       <label className={styles.label} title={t("Select a custom prompt to run")}>
-        <Sparkles size={18} color={tokens.colorPaletteLavenderBorderActive} />
+        <WandSparkles size={18} color={tokens.colorPaletteLavenderBorderActive} />
         {t("Prompt")}
       </label>
       <div className={styles.selectContainer} title={t("Choose which custom prompt to use")}>

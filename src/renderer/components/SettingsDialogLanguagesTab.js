@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
 import { UI_LANGUAGES } from '../constants';
-import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
+import { ALL_CONTENT_LANGUAGE_NAMES, findUILanguageEntry, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 /** Minimum width per column so long labels (e.g. "Português (PT) / Portuguese (PT)") don't overlap. */
@@ -101,7 +101,7 @@ const SettingsDialogLanguagesTab = ({
               <div key={colIndex} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {column.map(lang => {
                   const isCustom = !isPredefinedContentLanguage(lang);
-                  const uiEntry = UI_LANGUAGES.find((l) => l.englishName === lang);
+                  const uiEntry = findUILanguageEntry(lang);
                   const displayLabel = uiEntry ? getUILanguageLabel(uiEntry, t) : lang;
                   return (
                     <div key={lang} style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
@@ -113,7 +113,7 @@ const SettingsDialogLanguagesTab = ({
                           else newSet.delete(lang);
                           onSelectedLanguagesChange(newSet);
                           // Auto-save: persist immediately
-                          onSetting('available_languages', Array.from(newSet));
+                          onSetting('top_languages', Array.from(newSet));
                         }}
                         label={displayLabel}
                       />
@@ -128,7 +128,7 @@ const SettingsDialogLanguagesTab = ({
                             newSet.delete(lang);
                             onSelectedLanguagesChange(newSet);
                             // Auto-save: persist immediately
-                            onSetting('available_languages', Array.from(newSet));
+                            onSetting('top_languages', Array.from(newSet));
                           }}
                           style={{
                             background: 'none',
@@ -171,7 +171,7 @@ const SettingsDialogLanguagesTab = ({
                 newSet.add(lang);
                 onSelectedLanguagesChange(newSet);
                 // Auto-save: persist immediately
-                onSetting('available_languages', Array.from(newSet));
+                onSetting('top_languages', Array.from(newSet));
               }
             }}
             onKeyDown={(e) => {
@@ -183,7 +183,7 @@ const SettingsDialogLanguagesTab = ({
                   onSelectedLanguagesChange(newSet);
                   onCustomLanguageChange('');
                   // Auto-save: persist immediately
-                  onSetting('available_languages', Array.from(newSet));
+                  onSetting('top_languages', Array.from(newSet));
                 }
               }
             }}

@@ -19,8 +19,8 @@ export const AppProvider = ({ children }) => {
   const [availableModels, setAvailableModels] = useState(
     configManager.get("available_models") || [],
   );
-  const [languages, setLanguages] = useState(() =>
-    configManager.get("available_languages") || [],
+  const [topLanguages, setTopLanguages] = useState(() =>
+    configManager.get("top_languages") || [],
   );
   const [loading, setLoading] = useState(false);
   const [configLoading, setConfigLoading] = useState(true);
@@ -41,10 +41,10 @@ export const AppProvider = ({ children }) => {
     return () => sessionExpiredHandler.register(null);
   }, []);
 
-  // Watch for changes in settings.available_languages and update languages state
+  // Watch for changes in settings.top_languages and update topLanguages state
   useEffect(() => {
-    setLanguages(settings.available_languages || []);
-  }, [settings.available_languages]);
+    setTopLanguages(settings.top_languages || []);
+  }, [settings.top_languages]);
 
   // Watch for changes in settings.available_models and update availableModels state
   useEffect(() => {
@@ -63,13 +63,17 @@ export const AppProvider = ({ children }) => {
           currentSettings.api_url || "https://openrouter.ai/api/v1",
         );
 
-        const rawLangs = configManager.get("available_languages");
+        let rawLangs = configManager.get("top_languages");
+        if (!rawLangs?.length && configManager.get("available_languages")?.length) {
+          rawLangs = configManager.get("available_languages");
+          configManager.set("top_languages", rawLangs);
+        }
         if (rawLangs && rawLangs.length > 0) {
-          setLanguages(rawLangs);
+          setTopLanguages(rawLangs);
         } else {
           const loadedLanguages = UI_LANGUAGES.map((l) => l.englishName);
-          setLanguages(loadedLanguages);
-          configManager.set("available_languages", loadedLanguages);
+          setTopLanguages(loadedLanguages);
+          configManager.set("top_languages", loadedLanguages);
         }
 
         setSettings(configManager.getAll());
@@ -133,8 +137,8 @@ export const AppProvider = ({ children }) => {
         configManager.loadConfig().then(async () => {
           setSettings(configManager.getAll());
           setAvailableModels(configManager.get("available_models") || []);
-          const rawLangs = configManager.get("available_languages") || [];
-          setLanguages(rawLangs);
+          const rawLangs = configManager.get("top_languages") || [];
+          setTopLanguages(rawLangs);
           apiService.setBaseUrl(
             configManager.get("api_url") || "https://openrouter.ai/api/v1",
           );
@@ -167,9 +171,9 @@ export const AppProvider = ({ children }) => {
       updatedSettings.api_url || "https://openrouter.ai/api/v1",
     );
     
-    // Update languages state if available_languages changed
-    if (newSettings.available_languages !== undefined) {
-      setLanguages(newSettings.available_languages || []);
+    // Update topLanguages state if top_languages changed
+    if (newSettings.top_languages !== undefined) {
+      setTopLanguages(newSettings.top_languages || []);
     }
     
     // Update availableModels state if available_models changed
@@ -192,11 +196,11 @@ export const AppProvider = ({ children }) => {
       apiService.setBaseUrl(value || "https://openrouter.ai/api/v1");
     }
     
-    // Update languages state when available_languages changes
-    if (key === "available_languages") {
+    // Update topLanguages state when top_languages changes
+    if (key === "top_languages") {
       // Create a new array reference to ensure React detects the change
-      const newLanguages = Array.isArray(value) ? [...value] : (value || []);
-      setLanguages(newLanguages);
+      const newLangs = Array.isArray(value) ? [...value] : (value || []);
+      setTopLanguages(newLangs);
     }
     
     // Update availableModels state when available_models changes
@@ -389,6 +393,58 @@ export const AppProvider = ({ children }) => {
         return await handleUnavailableModel(model);
       }
       setError("Improve prompt config failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Generate prompt config from user description; returns JSON with name, prompt_instructions, role, instructions, output_description, temperature
+  const generatePromptConfig = async (userDescription, model, signal = null) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await apiService.generatePromptConfigJson(userDescription, model, signal);
+      if (result.error) return result;
+      result.model_used = result.model || model;
+      await applyCostToResult(setSetting, result);
+      await writeLastApiResult({
+        type: "generate-prompt-config",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+      logApiCall("generate-prompt-config", result, {});
+      const payload = {
+        timestamp: new Date().toISOString(),
+        type: "transform",
+        model: result.model_used || model,
+        target_lang: null,
+        transform_prompt: "Generate prompt (button)",
+        request_bytes: result.request_bytes ?? null,
+        response_bytes: result.response_bytes ?? null,
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        username: currentUser?.username ?? null,
+      };
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(payload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(payload);
+      }
+      return result;
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        return await handleUnavailableModel(model);
+      }
+      setError("Generate prompt config failed");
       console.error(err);
       return { error: err.message };
     } finally {
@@ -647,7 +703,7 @@ export const AppProvider = ({ children }) => {
     models: availableModels,
     allModels,
     availableModels,
-    languages,
+    topLanguages,
     loading,
     configLoading,
     error,
@@ -664,6 +720,7 @@ export const AppProvider = ({ children }) => {
     translate,
     translatePromptFields,
     improvePromptConfig,
+    generatePromptConfig,
     rewrite,
     transform,
     fetchModels,
