@@ -213,12 +213,20 @@ export const useStyles = makeStyles({
     boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
     border: `1px solid ${tokens.colorNeutralStroke1}`,
   },
+  byModelTableWrapper: {
+    "& table": { fontSize: "12px" },
+    "& th": { fontSize: "12px" },
+  },
+  byDayTableWrapper: {
+    "& table": { fontSize: "14px" },
+    "& th": { fontSize: "14px" },
+  },
   table: {
     width: "100%",
     minWidth: "max-content",
     tableLayout: "auto",
     borderCollapse: "collapse",
-    fontSize: "14px",
+    fontSize: "13px",
   },
   thead: {
     backgroundColor: tokens.colorNeutralBackground3,
@@ -229,7 +237,7 @@ export const useStyles = makeStyles({
     fontWeight: 600,
     backgroundColor: tokens.colorNeutralBackground3,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    fontSize: "14px",
+    fontSize: "13px",
   },
   td: {
     padding: "12px 16px",
@@ -282,6 +290,30 @@ export const useStyles = makeStyles({
     flexWrap: "wrap",
     marginTop: "12px",
     marginBottom: "12px",
+  },
+  paginationSpacer: {
+    minWidth: "72px",
+  },
+  downloadBlock: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+  },
+  downloadButton: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    minWidth: "unset",
+    padding: "2px 6px 2px 4px",
+    borderRadius: "4px",
+    fontSize: "12px",
+    fontWeight: 600,
+    backgroundColor: "#1e3a5f",
+    color: "#e3f2fd",
+    ":hover": {
+      backgroundColor: "#2d4a6f",
+      color: "#e3f2fd",
+    },
   },
   typeBadge: {
     padding: "2px 8px",
@@ -431,6 +463,7 @@ export const useStyles = makeStyles({
     borderRadius: "8px",
     marginTop: "8px",
     boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
+    fontSize: "13px",
     "&::-webkit-scrollbar": {
       height: "10px",
     },
@@ -449,7 +482,7 @@ export const useStyles = makeStyles({
   },
   refactoredHeaderRow: {
     display: "grid",
-    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(150px, 1.2fr) minmax(100px, 0.8fr) minmax(160px, 1.2fr) minmax(90px, 0.6fr) minmax(90px, 0.6fr) minmax(100px, 0.8fr) minmax(200px, 1.8fr) minmax(110px, 0.7fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(90px, 0.6fr) minmax(70px, 0.5fr)",
+    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(90px, 0.7fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(70px, 0.5fr)",
     backgroundColor: tokens.colorNeutralBackground3,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
     minWidth: "fit-content",
@@ -482,14 +515,21 @@ export const useStyles = makeStyles({
   },
   refactoredBodyRow: {
     display: "grid",
-    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(150px, 1.2fr) minmax(100px, 0.8fr) minmax(160px, 1.2fr) minmax(90px, 0.6fr) minmax(90px, 0.6fr) minmax(100px, 0.8fr) minmax(200px, 1.8fr) minmax(110px, 0.7fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(90px, 0.6fr) minmax(70px, 0.5fr)",
+    gridTemplateColumns: "minmax(60px, 0.5fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(90px, 0.7fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(70px, 0.5fr)",
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    cursor: "pointer",
     ":hover": {
       backgroundColor: tokens.colorNeutralBackground1Hover,
     },
     width: "100%",
     color: tokens.colorNeutralForeground1,
-    fontSize: "14px",
+  },
+  refactoredExpandedRow: {
+    width: "100%",
+    padding: "16px 20px",
+    backgroundColor: tokens.colorNeutralBackground2,
+    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    boxSizing: "border-box",
   },
   refactoredCell: {
     padding: "12px 16px",
@@ -504,13 +544,17 @@ export const useStyles = makeStyles({
     textAlign: "left",
     fontWeight: 600,
     color: tokens.colorNeutralForeground1,
-    fontSize: "14px",
     overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    display: "block",
+    overflowWrap: "break-word",
+    whiteSpace: "normal",
+    display: "flex",
+    alignItems: "center",
   },
   cellRight: {
     textAlign: "right",
+  },
+  cellCenter: {
+    textAlign: "center",
+    justifyContent: "center",
   },
 });

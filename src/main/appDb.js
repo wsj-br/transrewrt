@@ -68,11 +68,10 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
         b.target_lang ?? null,
         b.rewrite_style ?? null,
         b.transform_prompt ?? null,
-        b.request_bytes ?? null,
-        b.response_bytes ?? null,
+        b.prompt_tokens ?? null,
+        b.completion_tokens ?? null,
         b.duration_ms ?? null,
         b.cost ?? null,
-        b.total_cost ?? null,
         b.tps ?? null,
         b.username ?? null
       );
@@ -216,6 +215,19 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     } catch (err) {
       console.error("[appDb] getAllCalls error:", err);
       return { rows: [], total: 0 };
+    }
+  });
+
+  ipcMain.handle("appDb:getAllCallsExport", (_, from, to) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [] };
+      const { where, params } = buildWhereFromTo(from, to);
+      const rows = d.prepare(replaceWhere(sql.GET_ALL_CALLS_EXPORT, where)).all(...params);
+      return { rows };
+    } catch (err) {
+      console.error("[appDb] getAllCallsExport error:", err);
+      return { rows: [] };
     }
   });
 

@@ -16,15 +16,16 @@ function applyAppSchema(db) {
       target_lang TEXT,
       rewrite_style TEXT,
       transform_prompt TEXT,
-      request_bytes INTEGER,
-      response_bytes INTEGER,
+      prompt_tokens INTEGER,
+      completion_tokens INTEGER,
       duration_ms INTEGER,
       cost REAL,
-      total_cost REAL,
       tps REAL,
       username TEXT
     )
   `);
+  migrateApiCallsToTokens(db);
+  migrateApiCallsDropTotalCost(db);
   db.exec(`
     CREATE TABLE IF NOT EXISTS custom_prompts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,6 +40,40 @@ function applyAppSchema(db) {
       updated_at TEXT NOT NULL
     )
   `);
+}
+
+/** Migrate existing api_calls from request_bytes/response_bytes to prompt_tokens/completion_tokens (4 bytes = 1 token). */
+function migrateApiCallsToTokens(db) {
+  const columns = db.prepare("PRAGMA table_info(api_calls)").all();
+  const hasRequestBytes = columns.some((c) => c.name === "request_bytes");
+  const hasPromptTokens = columns.some((c) => c.name === "prompt_tokens");
+  if (!hasRequestBytes || hasPromptTokens) return;
+  try {
+    db.exec("ALTER TABLE api_calls ADD COLUMN prompt_tokens INTEGER");
+    db.exec("ALTER TABLE api_calls ADD COLUMN completion_tokens INTEGER");
+    db.exec("UPDATE api_calls SET prompt_tokens = request_bytes / 4 WHERE request_bytes IS NOT NULL");
+    db.exec("UPDATE api_calls SET completion_tokens = response_bytes / 4 WHERE response_bytes IS NOT NULL");
+  } catch (err) {
+    throw err;
+  }
+  try {
+    db.exec("ALTER TABLE api_calls DROP COLUMN request_bytes");
+    db.exec("ALTER TABLE api_calls DROP COLUMN response_bytes");
+  } catch (_) {
+    /* DROP COLUMN requires SQLite 3.35+; old columns remain, app uses new ones */
+  }
+}
+
+/** Drop total_cost from api_calls if present (column was deprecated; total is derived from SUM(cost)). */
+function migrateApiCallsDropTotalCost(db) {
+  const columns = db.prepare("PRAGMA table_info(api_calls)").all();
+  const hasTotalCost = columns.some((c) => c.name === "total_cost");
+  if (!hasTotalCost) return;
+  try {
+    db.exec("ALTER TABLE api_calls DROP COLUMN total_cost");
+  } catch (_) {
+    /* DROP COLUMN requires SQLite 3.35+; old DBs keep the column, app no longer reads/writes it */
+  }
 }
 
 function promptTargetLanguageToDb(value) {
@@ -67,8 +102,8 @@ function buildWhereFromTo(from, to, username = null) {
 const WHERE_PLACEHOLDER = "__WHERE__";
 
 const sql = {
-  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps, username)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   GET_TOTAL_COST: "SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls",
   GET_SUMMARY_BY_FUNCTION: `SELECT type AS function, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost FROM api_calls ${WHERE_PLACEHOLDER} GROUP BY type`,
   GET_SUMMARY_BY_MODEL: `SELECT model,
@@ -104,7 +139,8 @@ const sql = {
   GROUP BY rewrite_style
   ORDER BY calls DESC`,
   COUNT_API_CALLS: `SELECT COUNT(*) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
-  GET_ALL_CALLS: `SELECT * FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
+  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
+  GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
   COUNT_DISTINCT_DAYS: `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
   GET_SUMMARY_BY_DAY_PAGINATED: `SELECT date(timestamp) AS day,
     SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,

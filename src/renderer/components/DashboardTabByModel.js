@@ -1,6 +1,8 @@
+import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Text, tokens } from "@fluentui/react-components";
-import { Trash2 } from "lucide-react";
+import { Text, Button, tokens } from "@fluentui/react-components";
+import { Trash2, Download } from "lucide-react";
+import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
   BarChart,
@@ -18,6 +20,40 @@ import {
   formatAvgCost,
   formatAvgTps,
 } from "../utils/misc/costUtils";
+import {
+  rowsToCsvWithLabels,
+  triggerDownload,
+} from "../utils/misc/exportUtils";
+
+const EXPORT_FILENAME_BY_MODEL = "transrewrt-bymodel";
+
+/** Export column order. labelKey used for CSV/XLSX headers. */
+const EXPORT_COLUMNS_BY_MODEL = [
+  { key: "model", labelKey: "Model" },
+  { key: "translation_calls", labelKey: "Translation calls" },
+  { key: "rewrite_calls", labelKey: "Rewrite calls" },
+  { key: "transform_calls", labelKey: "Transform calls" },
+  { key: "translation_cost", labelKey: "Translation cost" },
+  { key: "rewrite_cost", labelKey: "Rewrite cost" },
+  { key: "transform_cost", labelKey: "Transform cost" },
+  { key: "avg_translation", labelKey: "Avg translation" },
+  { key: "avg_rewrite", labelKey: "Avg rewrite" },
+  { key: "avg_tps", labelKey: "Avg TPS" },
+];
+
+function buildExportRowsByModel(byModel) {
+  return (byModel || []).map((row) => {
+    const tc = row.translation_calls ?? 0;
+    const rc = row.rewrite_calls ?? 0;
+    const translationCost = Number(row.translation_cost) || 0;
+    const rewriteCost = Number(row.rewrite_cost) || 0;
+    return {
+      ...row,
+      avg_translation: tc > 0 ? translationCost / tc : null,
+      avg_rewrite: rc > 0 ? rewriteCost / rc : null,
+    };
+  });
+}
 
 export default function DashboardTabByModel({
   loading,
@@ -29,8 +65,105 @@ export default function DashboardTabByModel({
 }) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+  const [exportLoading, setExportLoading] = useState(false);
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
+
+  const handleExport = useCallback(
+    (format) => {
+      const rows = buildExportRowsByModel(byModel);
+      setExportLoading(true);
+      try {
+        if (format === "json") {
+          const blob = new Blob([JSON.stringify(rows, null, 2)], {
+            type: "application/json",
+          });
+          triggerDownload(blob, `${EXPORT_FILENAME_BY_MODEL}.json`);
+        } else if (format === "csv") {
+          const csv = rowsToCsvWithLabels(rows, EXPORT_COLUMNS_BY_MODEL, t);
+          const blob = new Blob([csv], { type: "text/csv" });
+          triggerDownload(blob, `${EXPORT_FILENAME_BY_MODEL}.csv`);
+        } else if (format === "xlsx") {
+          const costKeys = [
+            "translation_cost",
+            "rewrite_cost",
+            "transform_cost",
+            "avg_translation",
+            "avg_rewrite",
+          ];
+          const costColIndices = new Set(
+            costKeys.map((k) =>
+              EXPORT_COLUMNS_BY_MODEL.findIndex((c) => c.key === k)
+            )
+          );
+          const tpsColIndex = EXPORT_COLUMNS_BY_MODEL.findIndex(
+            (c) => c.key === "avg_tps"
+          );
+          const headerRow = EXPORT_COLUMNS_BY_MODEL.map((c) => t(c.labelKey));
+          const dataRows = rows.map((row) =>
+            EXPORT_COLUMNS_BY_MODEL.map((c) => row[c.key])
+          );
+          const aoa = [headerRow, ...dataRows];
+          const ws = XLSX.utils.aoa_to_sheet(aoa);
+          const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
+          const headerStyle = {
+            fill: { patternType: "solid", fgColor: { rgb: "BDD7EE" } },
+            font: { bold: true },
+            alignment: { vertical: "top" },
+          };
+          const cellStyleTop = { alignment: { vertical: "top" } };
+          const cellStyleCost = {
+            alignment: { vertical: "top" },
+            numFmt: "0.000000",
+          };
+          const cellStyleTps = {
+            alignment: { vertical: "top" },
+            numFmt: "0.0",
+          };
+          for (let C = range.s.c; C <= range.e.c; C++) {
+            const addr = XLSX.utils.encode_cell({ r: 0, c: C });
+            if (ws[addr]) ws[addr].s = headerStyle;
+          }
+          for (let R = range.s.r + 1; R <= range.e.r; R++) {
+            for (let C = range.s.c; C <= range.e.c; C++) {
+              const addr = XLSX.utils.encode_cell({ r: R, c: C });
+              const style =
+                costColIndices.has(C)
+                  ? cellStyleCost
+                  : C === tpsColIndex
+                    ? cellStyleTps
+                    : cellStyleTop;
+              if (ws[addr]) ws[addr].s = style;
+            }
+          }
+          const numCols = range.e.c - range.s.c + 1;
+          const colWidths = [];
+          for (let c = 0; c < numCols; c++) {
+            let maxCh = 10;
+            for (let r = 0; r <= range.e.r; r++) {
+              const addr = XLSX.utils.encode_cell({ r, c });
+              const cell = ws[addr];
+              if (!cell || cell.v == null) continue;
+              const str = String(cell.v);
+              maxCh = Math.min(Math.max(maxCh, str.length + 2), 80);
+            }
+            colWidths.push({ wch: maxCh });
+          }
+          ws["!cols"] = colWidths;
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "By Model");
+          const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+          const blob = new Blob([arr], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          });
+          triggerDownload(blob, `${EXPORT_FILENAME_BY_MODEL}.xlsx`);
+        }
+      } finally {
+        setExportLoading(false);
+      }
+    },
+    [byModel, t]
+  );
 
   if (loading) {
     return <p>{t("Loading…")}</p>;
@@ -39,22 +172,59 @@ export default function DashboardTabByModel({
   return (
     <div role="tabpanel" aria-label={t("By Model")}>
       <div className={styles.tabTableContent}>
-        <div className={styles.tableWrap}>
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr>
-                <th className={styles.th}>{t("Model")}</th>
-                <th className={styles.th}>{t("Translation calls")}</th>
-                <th className={styles.th}>{t("Rewrite calls")}</th>
-                <th className={styles.th}>{t("Transform calls")}</th>
-                <th className={styles.th}>{t("Translation cost")}</th>
-                <th className={styles.th}>{t("Rewrite cost")}</th>
-                <th className={styles.th}>{t("Transform cost")}</th>
-                <th className={styles.th}>{t("Avg translation")}</th>
-                <th className={styles.th}>{t("Avg rewrite")}</th>
-                <th className={styles.th}>{t("Avg TPS")}</th>
-              </tr>
-            </thead>
+        <div
+          className={styles.paginationRow}
+          style={{ marginBottom: "8px", marginLeft: "70%" }}
+        >
+          <div className={styles.downloadBlock}>
+            <Download size={16} aria-hidden />
+            <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
+            <Button
+              size="small"
+              appearance="subtle"
+              className={styles.downloadButton}
+              disabled={exportLoading}
+              onClick={() => handleExport("json")}
+            >
+              {t("JSON")}
+            </Button>
+            <Button
+              size="small"
+              appearance="subtle"
+              className={styles.downloadButton}
+              disabled={exportLoading}
+              onClick={() => handleExport("csv")}
+            >
+              {t("CSV")}
+            </Button>
+            <Button
+              size="small"
+              appearance="subtle"
+              className={styles.downloadButton}
+              disabled={exportLoading}
+              onClick={() => handleExport("xlsx")}
+            >
+              {t("XLSX")}
+            </Button>
+          </div>
+        </div>
+        <div className={styles.byModelTableWrapper}>
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
+              <thead className={styles.thead}>
+                <tr>
+                  <th className={styles.th}>{t("Model")}</th>
+                  <th className={styles.th}>{t("Translation calls")}</th>
+                  <th className={styles.th}>{t("Rewrite calls")}</th>
+                  <th className={styles.th}>{t("Transform calls")}</th>
+                  <th className={styles.th}>{t("Translation cost")}</th>
+                  <th className={styles.th}>{t("Rewrite cost")}</th>
+                  <th className={styles.th}>{t("Transform cost")}</th>
+                  <th className={styles.th}>{t("Avg translation")}</th>
+                  <th className={styles.th}>{t("Avg rewrite")}</th>
+                  <th className={styles.th}>{t("Avg TPS")}</th>
+                </tr>
+              </thead>
             <tbody>
               {byModel.filter((r) => r.model !== "Total").length === 0
                 ? emptyRow(11)
@@ -168,12 +338,22 @@ export default function DashboardTabByModel({
             </tbody>
           </table>
         </div>
+        </div>
         {byModel.filter((r) => r.model !== "Total").length > 0 && (
-          <div className={styles.chartContainer}>
-            <Text as="h4" size={400} style={{ marginBottom: "8px" }}>
+          <div
+            className={styles.chartContainer}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              paddingTop: "0px",
+              gap: "0px",
+            }}
+          >
+            <Text as="h4" size={400} style={{ flexShrink: 0 }}>
               {t("Cost by model (stacked)")}
             </Text>
-            <ResponsiveContainer width="100%" height="100%">
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={byModel.filter((r) => r.model !== "Total")}
                 {...chartProps}
@@ -220,7 +400,8 @@ export default function DashboardTabByModel({
                   name={t("Transform")}
                 />
               </BarChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
+            </div>
           </div>
         )}
       </div>

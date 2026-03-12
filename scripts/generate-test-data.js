@@ -2,7 +2,7 @@
  * Generate test data for transrewrt.db (api_calls table).
  * Creates translations and rewrites with random modes, chars, timestamps (last 2 years).
  * Cost: each model gets a random cost per 1M tokens ($0.5–$15; $0 if model name contains "free").
- * Transaction cost = (request_bytes + response_bytes) / 4 / 1e6 * cost_per_1M for that model.
+ * Transaction cost = (prompt_tokens + completion_tokens) / 1e6 * cost_per_1M for that model.
  * If a users table exists, assigns each entry a random username from it; otherwise username is null.
  * Uses sql.js so it runs without native better-sqlite3 bindings.
  *
@@ -216,7 +216,6 @@ function randomChoice(arr) {
 
 const COST_PER_1M_MIN = 0.5;
 const COST_PER_1M_MAX = 15;
-const CHARS_PER_TOKEN = 4;
 
 function buildModelCostPer1M(models) {
   const unique = [...new Set(models)];
@@ -232,10 +231,10 @@ function buildModelCostPer1M(models) {
   return map;
 }
 
-function calcCost(model, requestBytes, responseBytes, costPer1MMap) {
+function calcCost(model, promptTokens, completionTokens, costPer1MMap) {
   const per1M = costPer1MMap.get(model) ?? 0;
-  const tokens = (requestBytes + responseBytes) / CHARS_PER_TOKEN;
-  const cost = (tokens / 1e6) * per1M;
+  const totalTokens = promptTokens + completionTokens;
+  const cost = (totalTokens / 1e6) * per1M;
   return Math.round(cost * 1e6) / 1e6;
 }
 
@@ -259,11 +258,11 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
     const sourceLang = randomChoice(languages);
     let targetLang = randomChoice(languages);
     while (targetLang === sourceLang) targetLang = randomChoice(languages);
-    const requestBytes = randomInt(50, 8000);
-    const responseBytes = randomInt(50, 8000);
+    const promptTokens = randomInt(12, 2000);
+    const completionTokens = randomInt(12, 2000);
     const durationMs = randomInt(100, 6000);
-    const cost = calcCost(model, requestBytes, responseBytes, costPer1MMap);
-    const totalTokens = Math.round((requestBytes + responseBytes) / CHARS_PER_TOKEN) || 1;
+    const cost = calcCost(model, promptTokens, completionTokens, costPer1MMap);
+    const totalTokens = promptTokens + completionTokens;
     const tps = durationMs > 0 ? totalTokens / (durationMs / 1000) : null;
 
     rows.push({
@@ -274,11 +273,10 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       target_lang: targetLang,
       rewrite_style: null,
       transform_prompt: null,
-      request_bytes: requestBytes,
-      response_bytes: responseBytes,
+      prompt_tokens: promptTokens,
+      completion_tokens: completionTokens,
       duration_ms: durationMs,
       cost,
-      total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
     });
@@ -286,11 +284,11 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
 
   for (let i = 0; i < numRewrites; i++) {
     const model = randomChoice(models);
-    const requestBytes = randomInt(50, 8000);
-    const responseBytes = randomInt(50, 8000);
+    const promptTokens = randomInt(12, 2000);
+    const completionTokens = randomInt(12, 2000);
     const durationMs = randomInt(100, 6000);
-    const cost = calcCost(model, requestBytes, responseBytes, costPer1MMap);
-    const totalTokens = Math.round((requestBytes + responseBytes) / CHARS_PER_TOKEN) || 1;
+    const cost = calcCost(model, promptTokens, completionTokens, costPer1MMap);
+    const totalTokens = promptTokens + completionTokens;
     const tps = durationMs > 0 ? totalTokens / (durationMs / 1000) : null;
 
     rows.push({
@@ -301,11 +299,10 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       target_lang: null,
       rewrite_style: randomChoice(REWRITE_STYLES),
       transform_prompt: null,
-      request_bytes: requestBytes,
-      response_bytes: responseBytes,
+      prompt_tokens: promptTokens,
+      completion_tokens: completionTokens,
       duration_ms: durationMs,
       cost,
-      total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
     });
@@ -313,11 +310,11 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
 
   for (let i = 0; i < numTransforms; i++) {
     const model = randomChoice(models);
-    const requestBytes = randomInt(50, 8000);
-    const responseBytes = randomInt(50, 8000);
+    const promptTokens = randomInt(12, 2000);
+    const completionTokens = randomInt(12, 2000);
     const durationMs = randomInt(100, 6000);
-    const cost = calcCost(model, requestBytes, responseBytes, costPer1MMap);
-    const totalTokens = Math.round((requestBytes + responseBytes) / CHARS_PER_TOKEN) || 1;
+    const cost = calcCost(model, promptTokens, completionTokens, costPer1MMap);
+    const totalTokens = promptTokens + completionTokens;
     const tps = durationMs > 0 ? totalTokens / (durationMs / 1000) : null;
     const targetLang = Math.random() < 0.4 ? randomChoice(languages) : null;
 
@@ -329,24 +326,16 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       target_lang: targetLang,
       rewrite_style: null,
       transform_prompt: randomChoice(transformPromptNames),
-      request_bytes: requestBytes,
-      response_bytes: responseBytes,
+      prompt_tokens: promptTokens,
+      completion_tokens: completionTokens,
       duration_ms: durationMs,
       cost,
-      total_cost: null,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
     });
   }
 
   rows.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
-  let runningTotal = 0;
-  for (const row of rows) {
-    runningTotal += row.cost;
-    row.total_cost = Math.round(runningTotal * 1e6) / 1e6;
-  }
-
   return rows;
 }
 
@@ -384,11 +373,10 @@ async function main() {
       target_lang TEXT,
       rewrite_style TEXT,
       transform_prompt TEXT,
-      request_bytes INTEGER,
-      response_bytes INTEGER,
+      prompt_tokens INTEGER,
+      completion_tokens INTEGER,
       duration_ms INTEGER,
       cost REAL,
-      total_cost REAL,
       tps REAL,
       username TEXT
     )
@@ -416,8 +404,8 @@ async function main() {
 
   const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
   const insertSql = `
-    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, request_bytes, response_bytes, duration_ms, cost, total_cost, tps, username)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
   for (const row of rows) {
     db.run(insertSql, [
@@ -428,11 +416,10 @@ async function main() {
       row.target_lang,
       row.rewrite_style,
       row.transform_prompt,
-      row.request_bytes,
-      row.response_bytes,
+      row.prompt_tokens,
+      row.completion_tokens,
       row.duration_ms,
       row.cost,
-      row.total_cost,
       row.tps,
       row.username,
     ]);

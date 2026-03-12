@@ -30,11 +30,10 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       const target_lang = b.target_lang || "";
       const rewrite_style = b.rewrite_style || "";
       const transform_prompt = b.transform_prompt ?? null;
-      const req_bytes = b.request_bytes ?? 0;
-      const res_bytes = b.response_bytes ?? 0;
+      const prompt_tokens = b.prompt_tokens ?? (b.request_bytes != null ? Math.round(b.request_bytes / 4) : null);
+      const completion_tokens = b.completion_tokens ?? (b.response_bytes != null ? Math.round(b.response_bytes / 4) : null);
       const dur = b.duration_ms ?? 0;
       const cost = b.cost ?? 0;
-      const total_cost = b.total_cost ?? 0;
 
       db.prepare(sql.INSERT_API_CALL).run(
         timestamp,
@@ -44,11 +43,10 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
         target_lang,
         rewrite_style,
         transform_prompt,
-        req_bytes,
-        res_bytes,
+        prompt_tokens,
+        completion_tokens,
         dur,
         cost,
-        total_cost,
         b.tps ?? null,
         username,
       );
@@ -209,6 +207,21 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       res.json({ rows, total, page, pageSize });
     } catch (err) {
       log.error("[API] GET /api/calls/all - Error: " + err.message, { stack: err.stack });
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  router.get("/calls/export", (req, res) => {
+    const db = getDb();
+    if (!db) return res.status(503).json({ error: "Database unavailable" });
+    try {
+      const { where, params } = buildWhereFromTo(req.query.from, req.query.to, req.query.username);
+      const limit = Math.min(10000, Math.max(1, parseInt(req.query.limit, 10) || 10000));
+      const stmt = db.prepare(replaceWhere(sql.GET_ALL_CALLS_EXPORT, where));
+      const rows = stmt.all(...params).slice(0, limit);
+      res.json({ rows });
+    } catch (err) {
+      log.error("[API] GET /api/calls/export - Error: " + err.message, { stack: err.stack });
       res.status(500).json({ error: err.message });
     }
   });

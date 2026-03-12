@@ -35,6 +35,8 @@ const api = {
   getSummaryByTransformPrompt: (from, to) => ipcRenderer.invoke('appDb:getSummaryByTransformPrompt', from, to).then((r) => r?.rows ?? []),
   getAllCalls: (from, to, page, pageSize) =>
     ipcRenderer.invoke('appDb:getAllCalls', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
+  getAllCallsExport: (from, to) =>
+    ipcRenderer.invoke('appDb:getAllCallsExport', from, to).then((r) => r?.rows ?? []),
   getSummaryByDayPaginated: (from, to, page, pageSize) =>
     ipcRenderer.invoke('appDb:getSummaryByDayPaginated', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('appDb:deleteOutsideRange', from, to),

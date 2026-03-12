@@ -131,6 +131,13 @@ const DashboardPage = () => {
       .finally(() => setAllCallsLoading(false));
   }, [filter, allCallsPage, allCallsPageSize, costApi, dashboardUsername]);
 
+  const getExportAllCalls = useCallback(() => {
+    if (typeof costApi.getAllCallsExport !== "function") return Promise.resolve([]);
+    const { from, to } = getFilterRange(filter);
+    const username = dashboardUsername || undefined;
+    return Promise.resolve(costApi.getAllCallsExport(from, to, username)).then((rows) => rows ?? []);
+  }, [filter, costApi, dashboardUsername]);
+
   useEffect(() => {
     if (selectedTab === "allcalls") {
       queueMicrotask(() => loadAllCalls());
@@ -298,6 +305,7 @@ const DashboardPage = () => {
             styles={styles}
             setModelToDelete={setModelToDelete}
             setSetting={setSetting}
+            getExportAllCalls={getExportAllCalls}
           />
         )}
       </div>

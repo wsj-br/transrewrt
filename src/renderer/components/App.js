@@ -148,19 +148,20 @@ const App = () => {
   const outputText = currentMode === "translate" ? outputTextTranslate : currentMode === "rewrite" ? outputTextRewrite : outputTextTransform;
   const setInputText = currentMode === "translate" ? setInputTextTranslate : currentMode === "rewrite" ? setInputTextRewrite : setInputTextTransform;
 
-  // Sync targetLanguage from settings when config loads (deferred to avoid sync setState in effect)
+  // Sync language from settings when settings change (e.g. config load). Intentionally omit
+  // sourceLanguage/targetLanguage from deps so we don't overwrite the user's dropdown selection
+  // when they change it (persist effect calls updateSettings async; sync would run with stale settings).
   useEffect(() => {
-    if (settings && settings.target_language && settings.target_language !== targetLanguage) {
+    if (settings?.target_language) {
       queueMicrotask(() => setTargetLanguage(settings.target_language));
     }
-  }, [settings, settings?.target_language, targetLanguage]);
+  }, [settings, settings?.target_language]);
 
-  // Sync sourceLanguage from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
-    if (settings && settings.source_language && settings.source_language !== sourceLanguage) {
+    if (settings?.source_language) {
       queueMicrotask(() => setSourceLanguage(settings.source_language));
     }
-  }, [settings, settings?.source_language, sourceLanguage]);
+  }, [settings, settings?.source_language]);
 
   // Sync currentMode from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
