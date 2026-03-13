@@ -1,25 +1,38 @@
+
 # Transrewrt — Development Guide
 
 Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker).
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
 - [Build](#build)
+  - [UI translations (i18n)](#ui-translations-i18n)
 - [Test](#test)
+  - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
+  - [Production-style (smoke test)](#production-style-smoke-test)
 - [Deploy](#deploy)
+  - [Electron (standalone installers)](#electron-standalone-installers)
+  - [Web (Docker)](#web-docker)
+  - [Raspberry Pi (arm64)](#raspberry-pi-arm64)
 - [Commands by Target](#commands-by-target)
+  - [Electron (Desktop)](#electron-desktop)
+  - [Web (browser, local server)](#web-browser-local-server)
+  - [Docker (web in container)](#docker-web-in-container)
 - [Useful Commands Summary](#useful-commands-summary)
 - [Troubleshooting](#troubleshooting)
 - [Key Configuration Files](#key-configuration-files)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ---
 
 ## Prerequisites
 
-- **Node.js 24** (LTS). The project uses Electron 40, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
+- **Node.js 24** (LTS). The project uses Electron 41, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
 - **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated.
@@ -222,7 +235,7 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 - **Symlink errors on Windows:** Enable Developer Mode (Settings → For developers) or run the terminal as Administrator.
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
-For more detail (including Node version alignment and Windows-specific issues), see [Development.md](Development.md) §6 and [troubleshooting-node-version.md](troubleshooting-node-version.md).
+For more detail (including Node version alignment and Windows-specific issues), see [DEVELOPMENT.md](DEVELOPMENT.md) §6 and [troubleshooting-node-version.md](troubleshooting-node-version.md).
 
 ---
 

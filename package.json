@@ -32,7 +32,8 @@
     "i18n:sync": "pnpm run i18n:extract && pnpm run i18n:translate",
     "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js",
-    "reset-web-password": "node scripts/reset-web-password.js"
+    "reset-web-password": "node scripts/reset-web-password.js",
+    "take-screenshots": "node scripts/take-screenshots.js"
   },
   "keywords": [
     "electron",
@@ -110,16 +111,16 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
     "@electron/rebuild": "^4.0.3",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.39.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "babel-loader": "^10.1.1",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
-    "electron": "^40.8.0",
+    "electron": "^40.8.2",
     "electron-builder": "^26.8.1",
     "electron-reload": "2.0.0-alpha.1",
-    "eslint": "^9.15.0",
+    "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "events": "^3.3.0",
@@ -128,12 +129,13 @@
     "i18next-scanner": "^4.6.0",
     "mini-css-extract-plugin": "^2.10.1",
     "prop-types": "^15.8.1",
+    "puppeteer": "^24.39.1",
     "react-refresh": "^0.18.0",
     "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",
     "wait-on": "^9.0.4",
     "webpack": "^5.105.4",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^7.0.0"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
@@ -141,6 +143,7 @@
     },
     "overrides": {
       "lodash-es": "^4.17.23",
+      "yauzl": ">=3.2.1",
       "rimraf": "^5.0.0",
       "glob": "^13.0.0",
       "global-agent": "^4.1.2",
@@ -149,27 +152,28 @@
       "serialize-javascript": ">=7.0.3"
     },
     "onlyBuiltDependencies": [
+      "argon2",
+      "better-sqlite3",
       "core-js-pure",
       "electron",
       "electron-winstaller",
-      "better-sqlite3",
-      "argon2"
+      "puppeteer"
     ]
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "@fluentui/react-components": "^9.73.2",
-    "@fluentui/react-icons": "^2.0.320",
+    "@fluentui/react-components": "^9.73.3",
+    "@fluentui/react-icons": "^2.0.321",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.6.2",
-    "diff": "^6.0.0",
+    "diff": "^8.0.3",
     "express": "^5.2.1",
-    "i18next": "^25.8.17",
+    "i18next": "^25.8.18",
     "lucide-react": "^0.577.0",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-i18next": "^16.5.6",
+    "react-i18next": "^16.5.8",
     "recharts": "^3.8.0",
     "webpack-dev-server": "^5.2.3",
     "xlsx-js-style": "^1.2.0"
