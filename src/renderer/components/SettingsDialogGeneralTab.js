@@ -83,24 +83,10 @@ const SettingsDialogGeneralTab = ({
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <span className={formStyles.label}> {t('Behavior for ')}</span> <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span><span className={formStyles.label}>:</span>
+              <span className={formStyles.label}>{t('Behavior for ')}</span> 
+              <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span>
+              <span className={formStyles.label}>:</span>
             </span>
-            <RadioGroup
-            id="enter-behavior"
-            value={normalizeEnterBehavior(localSettings.enter_behavior)}
-            onChange={(e, data) => onSettingChange('enter_behavior', data.value)}
-            layout="vertical"
-            style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginLeft: '32px' }}
-          >
-            <Radio
-              value="Execute"
-              label={
-                <>
-                  <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span> {t('to translate / rewrite')}
-                </>
-              }
-            />
-          </RadioGroup>
           </Label>
           <RadioGroup
             id="enter-behavior"
@@ -121,7 +107,8 @@ const SettingsDialogGeneralTab = ({
               value="Shift-Execute"
               label={
                 <>
-                  <span className={formStyles.keyBadge}>{t('SHIFT+ENTER ↵')}</span> {t('to translate / rewrite')}
+                  <span className={formStyles.keyBadge}>{t('⇧ SHIFT')}</span>  +
+                  <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span>  {t('to translate / rewrite')}
                 </>
               }
             />

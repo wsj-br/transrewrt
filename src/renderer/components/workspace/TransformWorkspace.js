@@ -6,6 +6,11 @@ import TransformPromptEditor from "../TransformPromptEditor";
 import TransformTestPanel from "../TransformTestPanel";
 import { Zap, Square, BookOpenText } from "lucide-react";
 
+/** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
+function stripKeySymbols(str) {
+  return String(str).replace(/[⇧↵]/g, "").trim();
+}
+
 /**
  * Returns { leftPanel, rightPanel } for transform mode (run view and edit view).
  * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: transform prompts, edit state, test panel, language selector, etc.
@@ -145,7 +150,7 @@ export function getTransformPanels({ common, input, output, options }) {
           {isProcessing ? t("Stop Transform") : t("Transform")}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? `(${t("Shift+Enter")})` : `(${t("Enter")})`}
+              {settings?.enter_behavior === "Shift-Execute" ? `(${stripKeySymbols(t('⇧ SHIFT'))}+${stripKeySymbols(t('ENTER ↵'))})` : `(${stripKeySymbols(t('ENTER ↵'))})`}
             </span>
           )}
         </Button>

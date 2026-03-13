@@ -35,8 +35,10 @@ const manualMap = {
 };
 
 
-function getIconUrl(provider) {
-  // Try manual override
+// In-memory cache: provider -> resolved URL (avoids re-resolving and helps browser cache)
+const urlCache = new Map();
+
+function resolveIconUrl(provider) {
   const normProvider = normalize(provider);
   if (manualMap[provider] && fileToUrl[manualMap[provider]]) {
     return fileToUrl[manualMap[provider]];
@@ -44,19 +46,30 @@ function getIconUrl(provider) {
   if (manualMap[normProvider] && fileToUrl[manualMap[normProvider]]) {
     return fileToUrl[manualMap[normProvider]];
   }
-
-  // Try to find by normalized name -> file mapping
   const file = providerIdToFile[normProvider];
   if (file && fileToUrl[file]) {
     return fileToUrl[file];
   }
-
-  // Try direct filename match (provider as is, maybe already includes .ico? unlikely)
   if (fileToUrl[provider]) {
     return fileToUrl[provider];
   }
-
   return null;
+}
+
+function getIconUrl(provider) {
+  const cached = urlCache.get(provider);
+  if (cached !== undefined) return cached;
+  const url = resolveIconUrl(provider);
+  urlCache.set(provider, url);
+  return url;
+}
+
+export function preloadProviderIcons() {
+  const urls = new Set(Object.values(fileToUrl));
+  urls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
 }
 
 const ProviderIcon = ({ provider, size = 16 }) => {

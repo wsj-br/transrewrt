@@ -102,8 +102,11 @@ export function getFilterRange(filterId) {
   return { from, to };
 }
 
-/** Returns React node for dollar amount with fraction styling. Locale controls decimal separator. */
-export function formatDollarAmount(n, costFractionStyle = "muted", locale) {
+/** Returns React node for dollar amount with fraction styling. Locale controls decimal separator.
+ * @param {object} [options] - Optional. mainPartSuccess: true to render the main part (through cents) in success green.
+ */
+export function formatDollarAmount(n, costFractionStyle = "muted", locale, options = {}) {
+  const { mainPartSuccess = false } = options;
   const loc = resolveLocale(locale);
   const formatter = new Intl.NumberFormat(loc, {
     minimumFractionDigits: 6,
@@ -129,19 +132,24 @@ export function formatDollarAmount(n, costFractionStyle = "muted", locale) {
     ) : (
       <sub>{frac}</sub>
     );
+  const mainPart = "$" + main;
   return (
     <>
-      {"$" + main}
+      {mainPartSuccess ? (
+        <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{mainPart}</span>
+      ) : (
+        mainPart
+      )}
       {fractionNode}
     </>
   );
 }
 
-export function formatCost(cost, costFractionStyle = "muted", locale) {
+export function formatCost(cost, costFractionStyle = "muted", locale, options = {}) {
   const n = Number(cost);
   return cost == null || Number.isNaN(n) || n === 0
     ? DASH
-    : formatDollarAmount(n, costFractionStyle, locale);
+    : formatDollarAmount(n, costFractionStyle, locale, options);
 }
 
 export function formatAvgCost(cost, calls, costFractionStyle = "muted", locale) {

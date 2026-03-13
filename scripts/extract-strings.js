@@ -15,16 +15,7 @@ const OUT_FILE = path.join(process.cwd(), "src", "renderer", "locales", "strings
 const PACKAGE_JSON = path.join(process.cwd(), "package.json");
 const UI_LANGUAGES_PATH = path.join(process.cwd(), "src", "renderer", "locales", "ui-languages.json");
 
-// Match t("..."), t('...'), t(`...`) and i18n.t("...") etc. - capture the string content.
-// Use one pattern per delimiter so that the other quote types can appear inside.
-const T_PATTERNS = [
-  /\bt\s*\(\s*"((?:[^"\\]|\\.)*)"\s*\)/g,
-  /\bt\s*\(\s*'((?:[^'\\]|\\.)*)'\s*\)/g,
-  /\bt\s*\(\s*`((?:[^`\\]|\\.)*)`\s*\)/g,
-  /\bi18n\.t\s*\(\s*"((?:[^"\\]|\\.)*)"\s*\)/g,
-  /\bi18n\.t\s*\(\s*'((?:[^'\\]|\\.)*)'\s*\)/g,
-  /\bi18n\.t\s*\(\s*`((?:[^`\\]|\\.)*)`\s*\)/g,
-];
+const { Parser } = require("i18next-scanner");
 
 function hash(str) {
   return crypto.createHash("md5").update(str).digest("hex").slice(0, 8);
@@ -46,16 +37,19 @@ function* walkDir(dir) {
 
 const found = new Map(); // hash -> source string
 
+const parser = new Parser({
+  func: { list: ["t", "i18n.t"], extensions: [".js", ".jsx"] },
+  nsSeparator: false,
+  keySeparator: false,
+});
+
 for (const file of walkDir(SRC_DIR)) {
   const content = fs.readFileSync(file, "utf8");
-  for (const pattern of T_PATTERNS) {
-    let match;
-    while ((match = pattern.exec(content)) !== null) {
-      // Trim so one canonical key per meaning; runtime t() trims the key before lookup (see i18n.js)
-      const str = match[1].replace(/\\(.)/g, "$1").trim();
-      if (str) found.set(hash(str), str);
-    }
-  }
+  parser.parseFuncFromString(content, (key) => {
+    // Trim so one canonical key per meaning; runtime t() trims the key before lookup (see i18n.js)
+    const str = key.trim();
+    if (str) found.set(hash(str), str);
+  });
 }
 
 // Include package.json description (displayed in About tab via t(APP_DESCRIPTION))

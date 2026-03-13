@@ -11,12 +11,11 @@ export function escapeCsvCell(value) {
 
 /**
  * @param {Array<Record<string, unknown>>} rows
- * @param {Array<{ key: string, labelKey: string }>} columns
- * @param {(key: string) => string} t
+ * @param {Array<{ key: string, labelKey: string }>} columns - labelKey is the translated header (use t("...") when building columns)
  */
-export function rowsToCsvWithLabels(rows, columns, t) {
+export function rowsToCsvWithLabels(rows, columns) {
   if (rows.length === 0 && columns.length === 0) return "";
-  const header = columns.map((c) => escapeCsvCell(t(c.labelKey))).join(",");
+  const header = columns.map((c) => escapeCsvCell(c.labelKey)).join(",");
   const body = rows.map((row) =>
     columns.map((c) => escapeCsvCell(row[c.key])).join(",")
   );

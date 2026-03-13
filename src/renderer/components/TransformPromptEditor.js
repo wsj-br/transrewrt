@@ -63,8 +63,6 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacingVerticalM,
-    flex: 1,
-    minHeight: 0,
     "& input": { color: "#fff" },
     "& textarea": { color: "#fff" },
   },
@@ -75,7 +73,7 @@ const useStyles = makeStyles({
     marginBottom: "12px",
   },
   textarea: {
-    minHeight: "140px",
+    minHeight: "100px",
     resize: "vertical",
     padding: tokens.spacingVerticalS,
     borderRadius: tokens.borderRadiusMedium,
@@ -233,7 +231,7 @@ const TransformPromptEditor = ({
       role: role.trim() || "",
       instructions,
       output_description: outputDescription.trim() || "transformed",
-      temperature: Math.max(0, Math.min(1, Number(temperature) || 0.4)),
+      temperature: Number((Math.max(0, Math.min(1, Number(temperature) || 0.4))).toFixed(2)),
       target_language: askTargetLanguage,
       prompt_instructions: promptInstructionsTrimmed || null,
     };
@@ -512,7 +510,7 @@ const TransformPromptEditor = ({
               max={1}
               step={0.05}
               value={temperature}
-              onChange={(_, data) => setTemperature(data.value)}
+              onChange={(_, data) => setTemperature(Number(Number(data.value).toFixed(2)))}
               aria-label={t("Temperature")}
             />
             <span className={styles.temperatureLabelRight}>

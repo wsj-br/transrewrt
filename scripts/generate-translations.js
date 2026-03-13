@@ -10,9 +10,9 @@ const fs = require("fs");
 const path = require("path");
 
 
-const DEFAULT_MODEL = "qwen/qwen3-235b-a22b-2507";
+const DEFAULT_MODEL = "anthropic/claude-3-haiku";
 const ALTERNATIVE_MODELS = [
-  "qwen/qwen3-30b-a3b-instruct-2507",
+  "qwen/qwen3-235b-a22b-2507",
   "z-ai/glm-4.7-flash",
   "minimax/minimax-m2.5",
   "anthropic/claude-3.5-haiku",
@@ -289,7 +289,7 @@ async function translateBatch(texts, langName, modelOverride = null) {
       Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
       "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-      "X-Title": "Transrewrt-generate-translations",
+      "X-Title": "Transrewrt-ui-translations",
     },
     body: JSON.stringify({
       model,
@@ -382,9 +382,13 @@ async function generateForLang(lang) {
       const sources = chunk.map(([, v]) => v.source);
       const chunkNum = Math.floor(i / CHUNK) + 1;
       const chunkTotal = Math.ceil(missing.length / CHUNK);
+      log(`  ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} starting (model: ${modelsToTry[0]})`);
       let result = null;
       let lastError = null;
       for (const model of modelsToTry) {
+        if (model !== modelsToTry[0]) {
+          log(`  ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} starting (model: ${model})`);
+        }
         try {
           result = await translateBatch(sources, lang.name, model);
           break;
@@ -464,5 +468,15 @@ async function generateForLang(lang) {
     log(`[translate] total cost: $${usageTotal.total_cost.toFixed(6)} USD`);
   } else if (totalTokens > 0) {
     log("[translate] total cost: (not reported by API; enable usage accounting for cost)");
+  }
+
+  if (totalStringsTranslated > 0) {
+    const elapsed = formatElapsed(Date.now() - startTime);
+    const costStr = usageTotal.total_cost > 0 ? `$${usageTotal.total_cost.toFixed(6)} USD` : "(not reported)";
+    const logLine = `${new Date().toISOString()} | model: ${MODEL} | elapsed: ${elapsed} | strings: ${totalStringsTranslated} | tokens: ${totalTokens} | cost: ${costStr}\n`;
+    const logPath = path.join(process.cwd(), "dev", "translations.log");
+    const devDir = path.dirname(logPath);
+    if (!fs.existsSync(devDir)) fs.mkdirSync(devDir, { recursive: true });
+    fs.appendFileSync(logPath, logLine, "utf8");
   }
 })();

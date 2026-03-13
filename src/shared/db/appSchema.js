@@ -21,11 +21,18 @@ function applyAppSchema(db) {
       duration_ms INTEGER,
       cost REAL,
       tps REAL,
-      username TEXT
+      username TEXT,
+      input_chars INTEGER,
+      input_words INTEGER,
+      input_paragraphs INTEGER,
+      output_chars INTEGER,
+      output_words INTEGER,
+      output_paragraphs INTEGER
     )
   `);
   migrateApiCallsToTokens(db);
   migrateApiCallsDropTotalCost(db);
+  migrateApiCallsAddTextStats(db);
   db.exec(`
     CREATE TABLE IF NOT EXISTS custom_prompts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,18 +55,14 @@ function migrateApiCallsToTokens(db) {
   const hasRequestBytes = columns.some((c) => c.name === "request_bytes");
   const hasPromptTokens = columns.some((c) => c.name === "prompt_tokens");
   if (!hasRequestBytes || hasPromptTokens) return;
-  try {
-    db.exec("ALTER TABLE api_calls ADD COLUMN prompt_tokens INTEGER");
-    db.exec("ALTER TABLE api_calls ADD COLUMN completion_tokens INTEGER");
-    db.exec("UPDATE api_calls SET prompt_tokens = request_bytes / 4 WHERE request_bytes IS NOT NULL");
-    db.exec("UPDATE api_calls SET completion_tokens = response_bytes / 4 WHERE response_bytes IS NOT NULL");
-  } catch (err) {
-    throw err;
-  }
+  db.exec("ALTER TABLE api_calls ADD COLUMN prompt_tokens INTEGER");
+  db.exec("ALTER TABLE api_calls ADD COLUMN completion_tokens INTEGER");
+  db.exec("UPDATE api_calls SET prompt_tokens = request_bytes / 4 WHERE request_bytes IS NOT NULL");
+  db.exec("UPDATE api_calls SET completion_tokens = response_bytes / 4 WHERE response_bytes IS NOT NULL");
   try {
     db.exec("ALTER TABLE api_calls DROP COLUMN request_bytes");
     db.exec("ALTER TABLE api_calls DROP COLUMN response_bytes");
-  } catch (_) {
+  } catch {
     /* DROP COLUMN requires SQLite 3.35+; old columns remain, app uses new ones */
   }
 }
@@ -71,8 +74,26 @@ function migrateApiCallsDropTotalCost(db) {
   if (!hasTotalCost) return;
   try {
     db.exec("ALTER TABLE api_calls DROP COLUMN total_cost");
-  } catch (_) {
+  } catch {
     /* DROP COLUMN requires SQLite 3.35+; old DBs keep the column, app no longer reads/writes it */
+  }
+}
+
+/** Add input/output text stats columns to api_calls if missing. */
+function migrateApiCallsAddTextStats(db) {
+  const columns = db.prepare("PRAGMA table_info(api_calls)").all();
+  const names = new Set(columns.map((c) => c.name));
+  const toAdd = [
+    "input_chars",
+    "input_words",
+    "input_paragraphs",
+    "output_chars",
+    "output_words",
+    "output_paragraphs",
+  ];
+  for (const col of toAdd) {
+    if (names.has(col)) continue;
+    db.exec(`ALTER TABLE api_calls ADD COLUMN ${col} INTEGER`);
   }
 }
 
@@ -102,8 +123,8 @@ function buildWhereFromTo(from, to, username = null) {
 const WHERE_PLACEHOLDER = "__WHERE__";
 
 const sql = {
-  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   GET_TOTAL_COST: "SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls",
   GET_SUMMARY_BY_FUNCTION: `SELECT type AS function, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost FROM api_calls ${WHERE_PLACEHOLDER} GROUP BY type`,
   GET_SUMMARY_BY_MODEL: `SELECT model,
@@ -139,8 +160,8 @@ const sql = {
   GROUP BY rewrite_style
   ORDER BY calls DESC`,
   COUNT_API_CALLS: `SELECT COUNT(*) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
-  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
-  GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
+  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
+  GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
   COUNT_DISTINCT_DAYS: `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
   GET_SUMMARY_BY_DAY_PAGINATED: `SELECT date(timestamp) AS day,
     SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,

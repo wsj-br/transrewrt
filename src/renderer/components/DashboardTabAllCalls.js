@@ -1,4 +1,4 @@
-import { useState, useCallback, Fragment } from "react";
+import { useState, useCallback, Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -12,8 +12,6 @@ import { ChevronLeft, ChevronRight, Trash2, Download } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
-  formatInteger,
-  formatDurationMs,
   formatDateTime,
   interpolateTemplate,
 } from "../utils/misc/formatUtils";
@@ -23,7 +21,6 @@ import {
   DASH,
 } from "../utils/misc/costUtils";
 import {
-  escapeCsvCell,
   rowsToCsvWithLabels,
   triggerDownload,
 } from "../utils/misc/exportUtils";
@@ -31,24 +28,6 @@ import CallDetailsContent from "./CallDetailsContent";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME = "transrewrt-calls";
-
-/** Export column order. labelKey used for CSV/XLSX headers. */
-const EXPORT_COLUMNS = [
-  { key: "id", labelKey: "ID" },
-  { key: "timestamp", labelKey: "Timestamp" },
-  { key: "type", labelKey: "Type" },
-  { key: "username", labelKey: "Username" },
-  { key: "model", labelKey: "Model" },
-  { key: "source_lang", labelKey: "Source" },
-  { key: "target_lang", labelKey: "Target" },
-  { key: "rewrite_style", labelKey: "Style" },
-  { key: "transform_prompt", labelKey: "Transform prompt" },
-  { key: "prompt_tokens", labelKey: "Prompt tokens" },
-  { key: "completion_tokens", labelKey: "Completion tokens" },
-  { key: "duration_ms", labelKey: "Duration" },
-  { key: "cost", labelKey: "Cost" },
-  { key: "tps", labelKey: "TPS" },
-];
 
 function orDash(val) {
   if (val == null) return DASH;
@@ -74,6 +53,32 @@ export default function DashboardTabAllCalls({
   const [exportLoading, setExportLoading] = useState(false);
   const [selectedCallRow, setSelectedCallRow] = useState(null);
 
+  const exportColumns = useMemo(
+    () => [
+      { key: "id", labelKey: t("ID") },
+      { key: "timestamp", labelKey: t("Timestamp") },
+      { key: "type", labelKey: t("Type") },
+      { key: "username", labelKey: t("Username") },
+      { key: "model", labelKey: t("Model") },
+      { key: "source_lang", labelKey: t("Source") },
+      { key: "target_lang", labelKey: t("Target") },
+      { key: "rewrite_style", labelKey: t("Style") },
+      { key: "transform_prompt", labelKey: t("Transform prompt") },
+      { key: "prompt_tokens", labelKey: t("Prompt tokens") },
+      { key: "completion_tokens", labelKey: t("Completion tokens") },
+      { key: "duration_ms", labelKey: t("Duration") },
+      { key: "cost", labelKey: t("Cost") },
+      { key: "tps", labelKey: t("TPS") },
+      { key: "input_chars", labelKey: t("Input chars") },
+      { key: "input_words", labelKey: t("Input words") },
+      { key: "input_paragraphs", labelKey: t("Input paragraphs") },
+      { key: "output_chars", labelKey: t("Output chars") },
+      { key: "output_words", labelKey: t("Output words") },
+      { key: "output_paragraphs", labelKey: t("Output paragraphs") },
+    ],
+    [t]
+  );
+
   const handleExport = useCallback(
     async (format) => {
       if (typeof getExportAllCalls !== "function") return;
@@ -86,15 +91,15 @@ export default function DashboardTabAllCalls({
           });
           triggerDownload(blob, `${EXPORT_FILENAME}.json`);
         } else if (format === "csv") {
-          const csv = rowsToCsvWithLabels(rows, EXPORT_COLUMNS, t);
+          const csv = rowsToCsvWithLabels(rows, exportColumns);
           const blob = new Blob([csv], { type: "text/csv" });
           triggerDownload(blob, `${EXPORT_FILENAME}.csv`);
         } else if (format === "xlsx") {
-          const costColIndex = EXPORT_COLUMNS.findIndex((c) => c.key === "cost");
-          const tpsColIndex = EXPORT_COLUMNS.findIndex((c) => c.key === "tps");
-          const headerRow = EXPORT_COLUMNS.map((c) => t(c.labelKey));
+          const costColIndex = exportColumns.findIndex((c) => c.key === "cost");
+          const tpsColIndex = exportColumns.findIndex((c) => c.key === "tps");
+          const headerRow = exportColumns.map((c) => c.labelKey);
           const dataRows = rows.map((row) =>
-            EXPORT_COLUMNS.map((c) => row[c.key])
+            exportColumns.map((c) => row[c.key])
           );
           const aoa = [headerRow, ...dataRows];
           const ws = XLSX.utils.aoa_to_sheet(aoa);
@@ -150,7 +155,7 @@ export default function DashboardTabAllCalls({
         setExportLoading(false);
       }
     },
-    [getExportAllCalls, t]
+    [getExportAllCalls, exportColumns]
   );
 
   return (
@@ -264,24 +269,24 @@ export default function DashboardTabAllCalls({
         {allCallsLoading ? (
           <p>{t("Loading…")}</p>
         ) : (
-          <div className={styles.refactoredTableWrapper}>
-            <div className={styles.refactoredHeaderRow}>
-              <div className={styles.refactoredHeaderCell}>{t("ID")}</div>
-              <div className={styles.refactoredHeaderCell}>
+          <div className={styles.allCallsTableWrapper}>
+            <div className={styles.allCallsHeaderRow}>
+              <div className={styles.allCallsHeaderCell}>{t("ID")}</div>
+              <div className={styles.allCallsHeaderCell}>
                 {t("Timestamp")}
               </div>
-              <div className={styles.refactoredHeaderCell}>{t("Type")}</div>
-              <div className={styles.refactoredHeaderCell}>{t("Username")}</div>
-              <div className={styles.refactoredHeaderCell}>{t("Model")}</div>
-              <div className={styles.refactoredHeaderCell}>{t("Cost")}</div>
+              <div className={styles.allCallsHeaderCell}>{t("Type")}</div>
+              <div className={styles.allCallsHeaderCell}>{t("Username")}</div>
+              <div className={styles.allCallsHeaderCell}>{t("Model")}</div>
+              <div className={styles.allCallsHeaderCell}>{t("Cost")}</div>
               <div
-                className={`${styles.refactoredHeaderCell} ${styles.cellRight}`}
+                className={`${styles.allCallsHeaderCell} ${styles.cellRight}`}
               >
                 {t("TPS")}
               </div>
             </div>
 
-            <div className={styles.refactoredBodyContainer}>
+            <div className={styles.allCallsBodyContainer}>
               {allCallsRows.length === 0 ? (
                 <div
                   className={styles.emptyRow}
@@ -297,7 +302,7 @@ export default function DashboardTabAllCalls({
                 allCallsRows.map((row) => (
                   <Fragment key={row.id}>
                     <div
-                      className={styles.refactoredBodyRow}
+                      className={styles.allCallsBodyRow}
                       role="button"
                       tabIndex={0}
                       onClick={() =>
@@ -315,16 +320,16 @@ export default function DashboardTabAllCalls({
                       }}
                     >
                       <div
-                        className={`${styles.refactoredCell} ${styles.tdValue}`}
+                        className={`${styles.allCallsCell} ${styles.tdValue}`}
                       >
                         {row.id}
                       </div>
-                      <div className={styles.refactoredCell}>
+                      <div className={styles.allCallsCell}>
                         {row.timestamp
                           ? formatDateTime(new Date(row.timestamp), locale)
                           : DASH}
                       </div>
-                      <div className={styles.refactoredCell}>
+                      <div className={styles.allCallsCell}>
                         <span
                           className={`${styles.typeBadge} ${
                             row.type === "translate"
@@ -337,11 +342,11 @@ export default function DashboardTabAllCalls({
                           {row.type || DASH}
                         </span>
                       </div>
-                      <div className={styles.refactoredCell}>
+                      <div className={styles.allCallsCell}>
                         {orDash(row.username)}
                       </div>
                       <div
-                        className={styles.refactoredCell}
+                        className={styles.allCallsCell}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -369,18 +374,18 @@ export default function DashboardTabAllCalls({
                         )}
                       </div>
                       <div
-                        className={`${styles.refactoredCell} ${styles.tdValue}`}
+                        className={`${styles.allCallsCell} ${styles.tdValue}`}
                       >
                         {formatCost(row.cost, costFractionStyle, locale)}
                       </div>
                       <div
-                        className={`${styles.refactoredCell} ${styles.tdValue} ${styles.cellRight}`}
+                        className={`${styles.allCallsCell} ${styles.tdValue} ${styles.cellRight}`}
                       >
                         {formatAvgTps(row.tps, locale)}
                       </div>
                     </div>
                     {selectedCallRow?.id === row.id && (
-                      <div className={styles.refactoredExpandedRow}>
+                      <div className={styles.allCallsExpandedRow}>
                         <CallDetailsContent row={row} />
                       </div>
                     )}

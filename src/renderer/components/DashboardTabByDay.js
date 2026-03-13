@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Dropdown, Option, Text, tokens } from "@fluentui/react-components";
 import { Download } from "lucide-react";
@@ -28,19 +28,6 @@ import {
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME_BY_DAY = "transrewrt-byday";
-
-/** Export column order. labelKey used for CSV/XLSX headers. */
-const EXPORT_COLUMNS_BY_DAY = [
-  { key: "day", labelKey: "Day" },
-  { key: "translation_calls", labelKey: "Translation calls" },
-  { key: "rewrite_calls", labelKey: "Rewrite calls" },
-  { key: "transform_calls", labelKey: "Transform calls" },
-  { key: "translation_cost", labelKey: "Translation cost" },
-  { key: "rewrite_cost", labelKey: "Rewrite cost" },
-  { key: "transform_cost", labelKey: "Transform cost" },
-  { key: "avg_translation", labelKey: "Avg translation" },
-  { key: "avg_rewrite", labelKey: "Avg rewrite" },
-];
 
 function buildExportRowsByDay(byDay) {
   return (byDay || []).map((row) => {
@@ -76,6 +63,21 @@ export default function DashboardTabByDay({
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: tokens.colorNeutralForeground3 };
 
+  const exportColumnsByDay = useMemo(
+    () => [
+      { key: "day", labelKey: t("Day") },
+      { key: "translation_calls", labelKey: t("Translation calls") },
+      { key: "rewrite_calls", labelKey: t("Rewrite calls") },
+      { key: "transform_calls", labelKey: t("Transform calls") },
+      { key: "translation_cost", labelKey: t("Translation cost") },
+      { key: "rewrite_cost", labelKey: t("Rewrite cost") },
+      { key: "transform_cost", labelKey: t("Transform cost") },
+      { key: "avg_translation", labelKey: t("Avg translation") },
+      { key: "avg_rewrite", labelKey: t("Avg rewrite") },
+    ],
+    [t]
+  );
+
   const handleExport = useCallback(
     (format) => {
       const rows = buildExportRowsByDay(byDay);
@@ -87,7 +89,7 @@ export default function DashboardTabByDay({
           });
           triggerDownload(blob, `${EXPORT_FILENAME_BY_DAY}.json`);
         } else if (format === "csv") {
-          const csv = rowsToCsvWithLabels(rows, EXPORT_COLUMNS_BY_DAY, t);
+          const csv = rowsToCsvWithLabels(rows, exportColumnsByDay);
           const blob = new Blob([csv], { type: "text/csv" });
           triggerDownload(blob, `${EXPORT_FILENAME_BY_DAY}.csv`);
         } else if (format === "xlsx") {
@@ -100,12 +102,12 @@ export default function DashboardTabByDay({
           ];
           const costColIndices = new Set(
             costKeys.map((k) =>
-              EXPORT_COLUMNS_BY_DAY.findIndex((c) => c.key === k)
+              exportColumnsByDay.findIndex((c) => c.key === k)
             )
           );
-          const headerRow = EXPORT_COLUMNS_BY_DAY.map((c) => t(c.labelKey));
+          const headerRow = exportColumnsByDay.map((c) => c.labelKey);
           const dataRows = rows.map((row) =>
-            EXPORT_COLUMNS_BY_DAY.map((c) => row[c.key])
+            exportColumnsByDay.map((c) => row[c.key])
           );
           const aoa = [headerRow, ...dataRows];
           const ws = XLSX.utils.aoa_to_sheet(aoa);
@@ -157,7 +159,7 @@ export default function DashboardTabByDay({
         setExportLoading(false);
       }
     },
-    [byDay, t]
+    [byDay, exportColumnsByDay]
   );
 
   if (loading) {

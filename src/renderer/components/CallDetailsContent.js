@@ -65,6 +65,17 @@ const useStyles = makeStyles({
   },
 });
 
+function formatInputOutputStats(row, prefix, locale) {
+  const chars = row[`${prefix}_chars`];
+  const words = row[`${prefix}_words`];
+  const paragraphs = row[`${prefix}_paragraphs`];
+  if (chars == null && words == null && paragraphs == null) return DASH;
+  const c = formatInteger(chars ?? 0, locale);
+  const w = formatInteger(words ?? 0, locale);
+  const p = formatInteger(paragraphs ?? 0, locale);
+  return `${c} chars · ${w} words · ${p} paragraphs`;
+}
+
 /** Expanded row only: fields not already shown in the table row (ID, Timestamp, Type, Username, Model, Cost, TPS). */
 const FIELDS = [
   { key: "source_lang", labelKey: "Source", format: (row) => orDash(row.source_lang) },
@@ -74,6 +85,8 @@ const FIELDS = [
   { key: "prompt_tokens", labelKey: "Prompt tokens", format: (row, locale) => formatInteger(row.prompt_tokens, locale) },
   { key: "completion_tokens", labelKey: "Completion tokens", format: (row, locale) => formatInteger(row.completion_tokens, locale) },
   { key: "duration_ms", labelKey: "Duration", format: (row, locale) => formatDurationMs(row.duration_ms, locale) },
+  { key: "input_stats", labelKey: "Input", format: (row, locale) => formatInputOutputStats(row, "input", locale) },
+  { key: "output_stats", labelKey: "Output", format: (row, locale) => formatInputOutputStats(row, "output", locale) },
 ];
 
 function getValueColorClass(type, styles) {

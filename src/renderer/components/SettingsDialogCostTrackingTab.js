@@ -344,13 +344,17 @@ const SettingsDialogCostTrackingTab = ({
       : t("Delete cost data by age");
   const deleteConfirmMessage =
     deleteRange === "all"
-      ? t("Permanently delete ALL cost tracking data? This cannot be undone.")
-      : t("Permanently delete cost tracking data older than {{range}}? This cannot be undone.", {
-          range: t(deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
-            /^>\s*/,
-            "",
-          ) || "",
-        });
+      ? t("Permanently delete ALL cost tracking data?\n\nThis cannot be undone.")
+      : interpolateTemplate(
+          t("Permanently delete cost tracking data older than {{range}}?\n\nThis cannot be undone."),
+          {
+            range:
+              (deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
+                /^>\s*/,
+                "",
+              ) || "",
+          }
+        );
 
   return (
     <div className="tab-content">

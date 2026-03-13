@@ -20,15 +20,18 @@ const useStyles = makeStyles({
     maxWidth: "90vw",
   },
   title: {
-    margin: "0 0 16px 0",
+    margin: "0 0 36px 0",
     fontSize: "18px",
     fontWeight: 600,
   },
   message: {
-    margin: "0 0 20px 0",
+    margin: "0 0 36px 0",
     fontSize: "14px",
     color: tokens.colorNeutralForeground1,
     lineHeight: 1.4,
+    overflowWrap: "break-word",
+    wordBreak: "break-word",
+    whiteSpace: "pre-line",
   },
   actions: {
     display: "flex",
@@ -55,12 +58,16 @@ const ConfirmModal = ({
   danger = false,
   customBody,
   hideConfirm = false,
+  maxWidth,
 }) => {
   const styles = useStyles();
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal}>
+      <div
+        className={styles.modal}
+        style={maxWidth != null ? { maxWidth } : undefined}
+      >
         <h2 className={styles.title}>{title}</h2>
         {customBody ? (
           <div className={styles.message}>{customBody}</div>
@@ -96,6 +103,7 @@ ConfirmModal.propTypes = {
   danger: PropTypes.bool,
   customBody: PropTypes.node,
   hideConfirm: PropTypes.bool,
+  maxWidth: PropTypes.string,
 };
 
 export default ConfirmModal;

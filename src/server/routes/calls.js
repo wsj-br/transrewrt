@@ -49,6 +49,12 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
         cost,
         b.tps ?? null,
         username,
+        b.input_chars ?? null,
+        b.input_words ?? null,
+        b.input_paragraphs ?? null,
+        b.output_chars ?? null,
+        b.output_words ?? null,
+        b.output_paragraphs ?? null,
       );
       res.json({ success: true });
     } catch (err) {

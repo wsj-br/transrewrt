@@ -73,7 +73,13 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
         b.duration_ms ?? null,
         b.cost ?? null,
         b.tps ?? null,
-        b.username ?? null
+        b.username ?? null,
+        b.input_chars ?? null,
+        b.input_words ?? null,
+        b.input_paragraphs ?? null,
+        b.output_chars ?? null,
+        b.output_words ?? null,
+        b.output_paragraphs ?? null
       );
       const row = d.prepare(sql.GET_TOTAL_COST).get();
       return { success: true, total_cost: row?.total_cost ?? 0 };

@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { formatCostDisplay } from "../utils/misc/formatUtils";
+import { formatCostDisplay, interpolateTemplate } from "../utils/misc/formatUtils";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -41,6 +41,16 @@ export function useProcessing({
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+
+  const isAbortMessage = useCallback((msg) => {
+    if (msg == null || typeof msg !== "string") return false;
+    const s = msg.toLowerCase();
+    return (
+      s.includes("aborted") ||
+      s.includes("failed to fetch") ||
+      s.includes("signal is aborted")
+    );
+  }, []);
 
   const timerRef = useRef(null);
   const tpsCalculationRef = useRef({ startTime: null, tokens: 0 });
@@ -124,11 +134,15 @@ export function useProcessing({
         }
         if (result.cancelled) {
           const msg = result.content
-            ? `Translation stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
-            : "Translation stopped by user.";
+            ? `${t("Translation stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
+            : t("Translation stopped by user.");
           setOutputTextTranslate(msg);
         } else if (result.error) {
-          setOutputTextTranslate(`Error: ${result.error}`);
+          if (isAbortMessage(result.error)) {
+            setOutputTextTranslate(t("Translation stopped by user."));
+          } else {
+            setOutputTextTranslate(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+          }
         }
       } catch (error) {
         if (timerRef.current) {
@@ -141,11 +155,11 @@ export function useProcessing({
         setLastRunModel(null);
         const isAbort =
           error.name === "AbortError" ||
-          (error.message && String(error.message).includes("Failed to fetch"));
+          (error.message && (String(error.message).includes("Failed to fetch") || isAbortMessage(error.message)));
         if (isAbort && !cancelledByUserRef.current) {
-          setOutputTextTranslate("Translation stopped by user.");
+          setOutputTextTranslate(t("Translation stopped by user."));
         } else {
-          setOutputTextTranslate(`Error: ${error.message}`);
+          setOutputTextTranslate(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
         }
       } finally {
         abortControllerRef.current = null;
@@ -159,6 +173,7 @@ export function useProcessing({
     [
       t,
       locale,
+      isAbortMessage,
       inputTextTranslate,
       targetLanguage,
       sourceLanguage,
@@ -174,7 +189,7 @@ export function useProcessing({
   const handleTranslate = useCallback(() => {
     if (isProcessing) {
       cancelledByUserRef.current = true;
-      setOutputTextTranslate("Translation stopped by user.");
+      setOutputTextTranslate(t("Translation stopped by user."));
       if (abortControllerRef.current) abortControllerRef.current.abort();
       stopProcessing();
       return;
@@ -182,7 +197,7 @@ export function useProcessing({
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
     translateText(abortControllerRef.current.signal);
-  }, [isProcessing, stopProcessing, translateText, setOutputTextTranslate]);
+  }, [isProcessing, stopProcessing, translateText, setOutputTextTranslate, t]);
 
   const handleRewrite = useCallback(async () => {
     const text = inputTextRewrite;
@@ -191,7 +206,7 @@ export function useProcessing({
     if (isProcessing) {
       cancelledByUserRef.current = true;
       setRewriteOutputIsModelResult(false);
-      setOutputTextRewrite("Rewrite stopped by user.");
+      setOutputTextRewrite(t("Rewrite stopped by user."));
       if (abortControllerRef.current) abortControllerRef.current.abort();
       stopProcessing();
       return;
@@ -202,7 +217,7 @@ export function useProcessing({
 
     setIsProcessing(true);
     setRewriteOutputIsModelResult(false);
-    setOutputTextRewrite("rewriting...");
+    setOutputTextRewrite(t("rewriting..."));
     setLastRunCost(0);
     setLastRunModel(null);
     setElapsedTime(0);
@@ -249,12 +264,16 @@ export function useProcessing({
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
         const msg = result.content
-          ? `Rewrite stopped by user.\n\nPartial result captured (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
-          : "Rewrite stopped by user.";
+          ? `${t("Rewrite stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
+          : t("Rewrite stopped by user.");
         setOutputTextRewrite(msg);
       } else if (result.error) {
         setRewriteOutputIsModelResult(false);
-        setOutputTextRewrite(`Error: ${result.error}`);
+        if (isAbortMessage(result.error)) {
+          setOutputTextRewrite(t("Rewrite stopped by user."));
+        } else {
+          setOutputTextRewrite(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+        }
       }
     } catch (error) {
       if (timerRef.current) {
@@ -267,11 +286,11 @@ export function useProcessing({
       setRewriteOutputIsModelResult(false);
       const isAbort =
         error.name === "AbortError" ||
-        (error.message && String(error.message).includes("Failed to fetch"));
+        (error.message && (String(error.message).includes("Failed to fetch") || isAbortMessage(error.message)));
       if (isAbort && !cancelledByUserRef.current) {
-        setOutputTextRewrite("Rewrite stopped by user.");
+        setOutputTextRewrite(t("Rewrite stopped by user."));
       } else {
-        setOutputTextRewrite(`Error: ${error.message}`);
+        setOutputTextRewrite(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
       }
     } finally {
       abortControllerRef.current = null;
@@ -282,6 +301,7 @@ export function useProcessing({
       }
     }
   }, [
+    t,
     inputTextRewrite,
     rewriteStyle,
     activeModel,
@@ -289,6 +309,7 @@ export function useProcessing({
     settings.auto_copy,
     rewrite,
     locale,
+    isAbortMessage,
     setOutputTextRewrite,
     stopProcessing,
     setCurrentMode,
@@ -360,11 +381,15 @@ export function useProcessing({
         if (result.cancelled) {
           setOutputTextTransform(
             result.content
-              ? `Transform stopped by user.\n\nPartial result (${totalTokens} tokens, ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"})`
-              : "Transform stopped by user."
+              ? `${t("Transform stopped by user.")}\n\n${interpolateTemplate(t("Partial result ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
+              : t("Transform stopped by user.")
           );
         } else if (result.error) {
-          setOutputTextTransform(`Error: ${result.error}`);
+          if (isAbortMessage(result.error)) {
+            setOutputTextTransform(t("Transform stopped by user."));
+          } else {
+            setOutputTextTransform(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+          }
         }
       } catch (err) {
         if (timerRef.current) {
@@ -377,11 +402,11 @@ export function useProcessing({
         setLastRunModel(null);
         const isAbort =
           err.name === "AbortError" ||
-          (err.message && String(err.message).includes("Failed to fetch"));
+          (err.message && (String(err.message).includes("Failed to fetch") || isAbortMessage(err.message)));
         if (isAbort && !cancelledByUserRef.current) {
-          setOutputTextTransform("Transform stopped by user.");
+          setOutputTextTransform(t("Transform stopped by user."));
         } else {
-          setOutputTextTransform(`Error: ${err.message}`);
+          setOutputTextTransform(interpolateTemplate(t("Error: {{message}}"), { message: err.message }));
         }
       } finally {
         abortControllerRef.current = null;
@@ -403,6 +428,7 @@ export function useProcessing({
       transform,
       locale,
       t,
+      isAbortMessage,
       setOutputTextTransform,
       setCurrentMode,
       updateSettings,
@@ -412,7 +438,7 @@ export function useProcessing({
   const handleTransform = useCallback(() => {
     if (isProcessing) {
       cancelledByUserRef.current = true;
-      setOutputTextTransform("Transform stopped by user.");
+      setOutputTextTransform(t("Transform stopped by user."));
       if (abortControllerRef.current) abortControllerRef.current.abort();
       stopProcessing();
       return;
@@ -420,7 +446,7 @@ export function useProcessing({
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
     runTransform(abortControllerRef.current.signal);
-  }, [isProcessing, stopProcessing, runTransform, setOutputTextTransform]);
+  }, [isProcessing, stopProcessing, runTransform, setOutputTextTransform, t]);
 
   const runActionStartOnlyRef = useRef(null);
   runActionStartOnlyRef.current = () => {

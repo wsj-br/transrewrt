@@ -5,9 +5,11 @@ import apiService from "../services/apiService";
 import webAPI from "../utils/api/webApiClient";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
+import { getTextStats } from "../utils/misc/formatUtils";
 import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
+import { preloadProviderIcons } from "../components/ProviderIcon";
 
 // Create the context
 const AppContext = createContext();
@@ -89,33 +91,35 @@ export const AppProvider = ({ children }) => {
       try {
         await configManager.loadConfig();
         loadLanguages();
+        preloadProviderIcons();
         const uiLocale = configManager.get("ui_locale") || "en-GB";
-        await loadLocale(uiLocale);
-        i18n.changeLanguage(uiLocale);
         const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-        if (isWeb) {
-          if (webAPI.checkAuth) {
-            try {
-              const auth = await webAPI.checkAuth();
-              if (auth && auth.ok) {
-                setCurrentUser({
-                  username: auth.username,
-                  role: auth.role || "user",
-                  mustChangePassword: auth.mustChangePassword,
-                });
+
+        const localePromise = loadLocale(uiLocale);
+        const authPromise = isWeb && webAPI.checkAuth
+          ? webAPI.checkAuth().then(
+              (auth) => {
+                if (auth && auth.ok) {
+                  setCurrentUser({
+                    username: auth.username,
+                    role: auth.role || "user",
+                    mustChangePassword: auth.mustChangePassword,
+                  });
+                }
+              },
+              (e) => {
+                if (e && e.status === 401) {
+                  setNeedsLogin(true);
+                  setSessionExpired(true);
+                }
               }
-            } catch (e) {
-              if (e && e.status === 401) {
-                setNeedsLogin(true);
-                setSessionExpired(true);
-              }
-            }
-          }
-          if (webAPI.getApiStatus) {
-            const status = await webAPI.getApiStatus();
-            setApiKeyStatus(status);
-          }
-        }
+            )
+          : Promise.resolve();
+        const statusPromise =
+          isWeb && webAPI.getApiStatus ? webAPI.getApiStatus().then((status) => setApiKeyStatus(status)) : Promise.resolve();
+
+        await Promise.all([localePromise, authPromise, statusPromise]);
+        i18n.changeLanguage(uiLocale);
       } catch (err) {
         if (err && err.status === 401) {
           setNeedsLogin(true);
@@ -179,7 +183,25 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  const setSetting = useCallback(async (key, value) => {
+  const setSetting = useCallback(async (key, value, options = {}) => {
+    const optimistic = options.optimistic === true && key === "last_used_model";
+
+    if (optimistic) {
+      const previousSettings = configManager.getAll();
+      configManager.config[key] = value;
+      setSettings((prev) => ({ ...prev, [key]: value }));
+      configManager.set(key, value).catch((err) => {
+        console.error("[AppContext] Failed to persist last_used_model:", err);
+        configManager.config[key] = previousSettings[key];
+        setSettings(configManager.getAll());
+        setError("Failed to save model preference");
+      });
+      if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
+        window.electronAPI.notifySettingsUpdated();
+      }
+      return;
+    }
+
     await configManager.set(key, value);
     const allSettings = configManager.getAll();
     const updatedSettings = JSON.parse(JSON.stringify(allSettings));
@@ -240,6 +262,8 @@ export const AppProvider = ({ children }) => {
       });
 
       // Log to cost DB / server: include selected target language for this run
+      const translateInputStats = getTextStats(typeof text === "string" ? text : "");
+      const translateOutputStats = getTextStats(result.content ?? "");
       const translatePayload = {
         timestamp: new Date().toISOString(),
         type: "translate",
@@ -258,6 +282,12 @@ export const AppProvider = ({ children }) => {
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
         username: currentUser?.username ?? null,
+        input_chars: translateInputStats.chars,
+        input_words: translateInputStats.words,
+        input_paragraphs: translateInputStats.paragraphs,
+        output_chars: translateOutputStats.chars,
+        output_words: translateOutputStats.words,
+        output_paragraphs: translateOutputStats.paragraphs,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
@@ -459,6 +489,8 @@ export const AppProvider = ({ children }) => {
 
       logApiCall("rewrite", result, { rewrite_style: style || "" });
 
+      const rewriteInputStats = getTextStats(typeof text === "string" ? text : "");
+      const rewriteOutputStats = getTextStats(result.content ?? "");
       const rewritePayload = {
         timestamp: new Date().toISOString(),
         type: "rewrite",
@@ -477,6 +509,12 @@ export const AppProvider = ({ children }) => {
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
         username: currentUser?.username ?? null,
+        input_chars: rewriteInputStats.chars,
+        input_words: rewriteInputStats.words,
+        input_paragraphs: rewriteInputStats.paragraphs,
+        output_chars: rewriteOutputStats.chars,
+        output_words: rewriteOutputStats.words,
+        output_paragraphs: rewriteOutputStats.paragraphs,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
@@ -526,6 +564,8 @@ export const AppProvider = ({ children }) => {
       });
 
       // Log to cost DB / server: include selected target language for this run
+      const transformInputStats = getTextStats(typeof text === "string" ? text : "");
+      const transformOutputStats = getTextStats(result.content ?? "");
       const transformPayload = {
         timestamp: new Date().toISOString(),
         type: "transform",
@@ -545,6 +585,12 @@ export const AppProvider = ({ children }) => {
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
         username: currentUser?.username ?? null,
+        input_chars: transformInputStats.chars,
+        input_words: transformInputStats.words,
+        input_paragraphs: transformInputStats.paragraphs,
+        output_chars: transformOutputStats.chars,
+        output_words: transformOutputStats.words,
+        output_paragraphs: transformOutputStats.paragraphs,
       };
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));

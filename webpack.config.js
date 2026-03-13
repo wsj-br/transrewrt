@@ -34,8 +34,25 @@ module.exports = (env, argv) => {
           },
         },
       },
+      // Favicon from images/ stays as emitted file (used by HtmlWebpackPlugin).
       {
-        test: /\.(png|jpe?g|gif|svg|ico)$/i,
+        test: /\.ico$/i,
+        include: (resourcePath) => {
+          const n = resourcePath.replace(/\\/g, "/");
+          return n.includes("/images/");
+        },
+        type: "asset/resource",
+        generator: {
+          filename: "[name][hash][ext][query]",
+        },
+      },
+      // Inline all other .ico (e.g. provider icons from renderer/assets) so they load with the bundle.
+      {
+        test: /\.ico$/i,
+        type: "asset/inline",
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset/resource",
         generator: {
           filename: "assets/[name][hash][ext][query]",
@@ -81,7 +98,7 @@ module.exports = (env, argv) => {
   },
   performance: {
     // Entry: initial load JS + vendors + CSS. Current main entrypoint ~2 MiB (React, Fluent UI, app).
-    maxEntrypointSize: 2.5 * 1024 * 1024, // 2.5 MiB
+    maxEntrypointSize: 3 * 1024 * 1024, // 3 MiB
     // Single asset limit. vendors.js (React, Fluent UI, etc.) is ~1.9 MiB in production.
     maxAssetSize: 2.5 * 1024 * 1024, // 2.5 MiB
     // Only apply size hints to JS/CSS; exclude images/icons so one large .ico doesn't trigger warnings.

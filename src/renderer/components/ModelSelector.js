@@ -156,7 +156,7 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
           const { name, provider } = getModelInfo(model);
           const displayName = provider ? `${name} (${provider})` : name;
           return (
-            <Option key={model} value={model}>
+            <Option key={model} value={model} text={displayName}>
                {provider && (
                  <span style={{ marginRight: "8px", display: "inline-flex", alignItems: "center" }}>
                    <ProviderIcon provider={provider} size={16} />
@@ -182,7 +182,7 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
       {showRemoveConfirm && (
         <ConfirmModal
           title={t("Remove model")}
-          message={t("Remove this model from your list? The next model in the list will be selected.")}
+          message={t("Remove this model from your list?\n\nThe next model in the list will be selected.")}
           confirmLabel={t("Remove")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmRemove}

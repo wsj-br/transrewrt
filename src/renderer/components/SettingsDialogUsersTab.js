@@ -773,7 +773,7 @@ const SettingsDialogUsersTab = () => {
       {revokeUser && (
         <ConfirmModal
           title={t("Revoke all sessions")}
-          message={interpolateTemplate(t('Revoke all sessions for user "{{name}}"? They will need to log in again.'), {
+          message={interpolateTemplate(t('Revoke all sessions for user "{{name}}"?\n\nThey will need to log in again.'), {
             name: revokeUser.username,
           })}
           confirmLabel={t("Revoke")}
@@ -785,7 +785,7 @@ const SettingsDialogUsersTab = () => {
       {deleteUser && (
         <ConfirmModal
           title={t("Delete user")}
-          message={interpolateTemplate(t('Delete user "{{name}}"? This cannot be undone.'), {
+          message={interpolateTemplate(t('Delete user "{{name}}"?\n\nThis cannot be undone.'), {
             name: deleteUser.username,
           })}
           confirmLabel={t("Delete")}

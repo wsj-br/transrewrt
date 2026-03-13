@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
-import { formatElapsedMmSs, formatCostDisplay, formatDecimal } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatCostDisplay, formatDecimal, interpolateTemplate } from "../utils/misc/formatUtils";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
@@ -27,8 +27,14 @@ export function useTransformPrompts({
   transform,
   activeModel,
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+
+  const isAbortMessage = (msg) => {
+    if (msg == null || typeof msg !== "string") return false;
+    const s = msg.toLowerCase();
+    return s.includes("aborted") || s.includes("failed to fetch") || s.includes("signal is aborted");
+  };
   const [transformPrompts, setTransformPrompts] = useState([]);
   const [transformPromptId, setTransformPromptId] = useState(
     () => settings?.transform_prompt ?? null
@@ -272,7 +278,7 @@ export function useTransformPrompts({
       target_language: config.target_language === true || config.target_language === 1,
     };
     setTransformTestRunning(true);
-    setTransformTestOutput("Testing…");
+    setTransformTestOutput(t("Testing…"));
     const start = Date.now();
     try {
       const result = await transform(text, promptConfig, activeModel, null, null);
@@ -281,18 +287,23 @@ export function useTransformPrompts({
         (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
       const tps = durationSec > 0 ? totalTokens / durationSec : 0;
       setTransformTestMeta(
-        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : "free"} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
+        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free")} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
       );
-      setTransformTestOutput(
-        result.content
-          ? result.content.replace(/^\s*\n+/, "")
-          : result.error
-            ? `Error: ${result.error}`
-            : "—"
-      );
+      const outputContent = result.content
+        ? result.content.replace(/^\s*\n+/, "")
+        : result.error
+          ? isAbortMessage(result.error)
+            ? t("Transform stopped by user.")
+            : interpolateTemplate(t("Error: {{message}}"), { message: result.error })
+          : "—";
+      setTransformTestOutput(outputContent);
     } catch (err) {
       setTransformTestMeta("");
-      setTransformTestOutput(`Error: ${err.message}`);
+      setTransformTestOutput(
+        (err.name === "AbortError" || isAbortMessage(err?.message))
+          ? t("Transform stopped by user.")
+          : interpolateTemplate(t("Error: {{message}}"), { message: err?.message })
+      );
     } finally {
       setTransformTestRunning(false);
     }

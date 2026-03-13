@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { mergeClasses } from "@fluentui/react-components";
+import { mergeClasses, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
@@ -16,8 +16,9 @@ import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
-import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage } from "../utils/misc/languageConstants";
-import { formatElapsedMmSs, formatCostDisplay, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
+import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage, findUILanguageEntry } from "../utils/misc/languageConstants";
+import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats, interpolateTemplate } from "../utils/misc/formatUtils";
+import { formatCost } from "../utils/misc/costUtils";
 import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
 import "../styles/main.css";
@@ -322,7 +323,22 @@ const App = () => {
     );
   }, [topLanguages]);
 
-  const outputMeta = `${isProcessing || elapsedTime > 0 ? `${t('Elapsed')}: ${formatElapsedMmSs(elapsedTime, locale)} | ` : ""}${!isProcessing && lastRunCost > 0 ? `${t('Cost')}: ${formatCostDisplay(lastRunCost, locale)} | ` : ""}${t('Total')}: ${formatCostDisplay(settings.total_cost || 0, locale)}${tokensPerSecond ? ` | ${t('TPS')}: ${formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}` : ""}`;
+  const costFractionStyle = settings?.cost_fraction_style || "muted";
+  const totalCostNum = Number(settings.total_cost) || 0;
+  const outputMeta = (
+    <>
+      {isProcessing || elapsedTime > 0 ? (
+        <>{t("Elapsed")}: {formatElapsedMmSs(elapsedTime, locale)} | </>
+      ) : null}
+      {!isProcessing && lastRunCost > 0 ? (
+        <>{t("Cost")}: {formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })} | </>
+      ) : null}
+      {t("Total")}: {totalCostNum > 0 ? formatCost(totalCostNum, costFractionStyle, locale, { mainPartSuccess: true }) : <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>}
+      {tokensPerSecond ? (
+        <> | {t("TPS")}: {formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</>
+      ) : null}
+    </>
+  );
 
   const common = {
     t,
@@ -477,6 +493,20 @@ const App = () => {
     );
   }
 
+  const loadSampleConfirmModal = showLoadSampleConfirm && (
+    <ConfirmModal
+      title={t("Load sample prompts")}
+      message={interpolateTemplate(t("Import the sample prompts from the app config?\n\nThe prompts are in english, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."), {
+        language: findUILanguageEntry(locale)?.label ?? t("your language"),
+      })}
+      confirmLabel={t("Load")}
+      cancelLabel={t("Cancel")}
+      onConfirm={handleConfirmLoadSamplePrompts}
+      onCancel={() => setShowLoadSampleConfirm(false)}
+      maxWidth="600px"
+    />
+  );
+
   if (isWeb) {
     const useMargin = settings?.web_margin === true;
     const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
@@ -520,7 +550,7 @@ const App = () => {
                   currentMode={currentMode}
                   models={models}
                   activeModel={activeModel}
-                  onModelChange={(model) => updateSettings({ last_used_model: model })}
+                  onModelChange={(model) => setSetting("last_used_model", model, { optimistic: true })}
                   onOpenSettingsModels={() => {
                     updateSettings({ settings_active_tab: "models" });
                     setCurrentView("settings");
@@ -539,7 +569,7 @@ const App = () => {
         {transformPromptToDelete != null && (
           <ConfirmModal
             title={t("Delete prompt")}
-            message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+            message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
             confirmLabel={t("Delete")}
             cancelLabel={t("Cancel")}
             onConfirm={handleConfirmTransformDelete}
@@ -547,16 +577,7 @@ const App = () => {
             danger
           />
         )}
-        {showLoadSampleConfirm && (
-          <ConfirmModal
-            title={t("Load sample prompts")}
-            message={t("Import the sample prompts from the app config?")}
-            confirmLabel={t("Load")}
-            cancelLabel={t("Cancel")}
-            onConfirm={handleConfirmLoadSamplePrompts}
-            onCancel={() => setShowLoadSampleConfirm(false)}
-          />
-        )}
+        {loadSampleConfirmModal}
       </>
     );
   }
@@ -584,7 +605,7 @@ const App = () => {
           currentMode={currentMode}
           models={models}
           activeModel={activeModel}
-          onModelChange={(model) => updateSettings({ last_used_model: model })}
+          onModelChange={(model) => setSetting("last_used_model", model, { optimistic: true })}
           onOpenSettingsModels={() => {
             updateSettings({ settings_active_tab: "models" });
             setCurrentView("settings");
@@ -597,23 +618,14 @@ const App = () => {
       {transformPromptToDelete != null && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+          message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmTransformDelete}
           onCancel={() => setTransformPromptToDelete(null)}
         />
       )}
-      {showLoadSampleConfirm && (
-        <ConfirmModal
-          title={t("Load sample prompts")}
-          message={t("Import the sample prompts from the app config?")}
-          confirmLabel={t("Load")}
-          cancelLabel={t("Cancel")}
-          onConfirm={handleConfirmLoadSamplePrompts}
-          onCancel={() => setShowLoadSampleConfirm(false)}
-        />
-      )}
+      {loadSampleConfirmModal}
     </div>
   );
 };

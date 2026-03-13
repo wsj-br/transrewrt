@@ -30,6 +30,14 @@ function resolvePrompt(value) {
   return Array.isArray(value) ? value.join("\n") : value;
 }
 
+/** True if the error is from the user aborting the request (AbortError or abort-like message). */
+function isAbortError(error) {
+  if (!error || typeof error.message !== "string") return false;
+  if (error.name === "AbortError") return true;
+  const m = error.message.toLowerCase();
+  return m.includes("aborted") || m.includes("failed to fetch");
+}
+
 function buildTranslatePrompt(sourceLang, targetLang) {
   const config = prompts.translate;
   const shared = prompts.shared.translate;
@@ -101,7 +109,13 @@ function buildTransformSystemPrompt(promptConfig, targetLang) {
     ...common,
   ];
   if (targetLang != null && String(targetLang).trim() !== "") {
-    lines.push(`- After you process the text, translate the output to ${targetLang}. Just output the translated text.`);
+    const translateLines = shared.translateToTargetLang;
+    if (Array.isArray(translateLines) && translateLines.length > 0) {
+      const substituted = translateLines.map((line) =>
+        line.replace(/\{\{targetLang\}\}/g, targetLang)
+      );
+      lines.push("", ...substituted);
+    }
   }
   lines.push("", ...shared.footer);
   return resolvePrompt(lines);
@@ -504,11 +518,9 @@ class APIService {
       const systemPrompt = buildTranslatePrompt(sourceLang, targetLang);
       return await this._streamChatCompletion(systemPrompt, `<translate>${text}</translate>`, model, 0.3, signal, "translate", {});
     } catch (error) {
-      // Re-throw AbortError so the caller can handle it properly
-      if (error.name === 'AbortError') {
-        throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: "", usage: null };
       }
-      // Re-throw 404/400 so AppContext can remove the model from the list and switch to fallback
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
@@ -558,7 +570,9 @@ Respond with ONLY the JSON object. No other text.`;
       }
       return { ...result, content: parsed };
     } catch (error) {
-      if (error.name === "AbortError") throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: null, usage: null };
+      }
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
@@ -605,7 +619,9 @@ Respond with ONLY the JSON object. No other text.`;
       }
       return { ...result, content: parsed };
     } catch (error) {
-      if (error.name === "AbortError") throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: null, usage: null };
+      }
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
@@ -652,7 +668,9 @@ Respond with ONLY the JSON object. No other text.`;
       }
       return { ...result, content: parsed };
     } catch (error) {
-      if (error.name === "AbortError") throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: null, usage: null };
+      }
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
@@ -685,10 +703,9 @@ Respond with ONLY the JSON object. No other text.`;
         { style },
       );
     } catch (error) {
-      if (error.name === "AbortError") {
-        throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: "", usage: null };
       }
-      // Re-throw 404/400 so AppContext can remove the model from the list and switch to fallback
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
@@ -725,7 +742,9 @@ Respond with ONLY the JSON object. No other text.`;
         { transform_prompt: promptConfig.name ?? null },
       );
     } catch (error) {
-      if (error.name === "AbortError") throw error;
+      if (isAbortError(error)) {
+        return { cancelled: true, content: "", usage: null };
+      }
       const isUnavailable = error && (
         error.status === 404 || error.status === 400 ||
         (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))

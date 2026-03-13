@@ -6,6 +6,11 @@ import { getRewriteStyleOptions, REWRITE_STYLE_KEYS } from "../../constants";
 
 const REWRITE_STYLE_GRAMMAR = REWRITE_STYLE_KEYS[0]; // "Check Spelling & Grammar"
 
+/** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
+function stripKeySymbols(str) {
+  return String(str).replace(/[⇧↵]/g, "").trim();
+}
+
 /**
  * Returns { leftPanel, rightPanel } for rewrite mode.
  * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite style, showOutputDiff.
@@ -62,7 +67,7 @@ export function getRewritePanels({ common, input, output, options }) {
             : t("Rewrite")}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? `(${t("Shift+Enter")})` : `(${t("Enter")})`}
+              {settings?.enter_behavior === "Shift-Execute" ? `(${stripKeySymbols(t('⇧ SHIFT'))}+${stripKeySymbols(t('ENTER ↵'))})` : `(${stripKeySymbols(t('ENTER ↵'))})`}
             </span>
           )}
         </Button>

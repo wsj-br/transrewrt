@@ -5,6 +5,7 @@ import { Download, Upload, List, Trash2 } from "lucide-react";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
+import { interpolateTemplate } from "../utils/misc/formatUtils";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
 
 const EXPORT_FORMATS = ["json", "csv", "xlsx"];
@@ -616,7 +617,7 @@ const SettingsDialogTransformPromptsTab = () => {
       {promptToDelete != null && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={t('Delete the prompt "{{name}}"? This cannot be undone.', { name: promptToDelete.name || t("Untitled") })}
+          message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: promptToDelete.name || t("Untitled") })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmDeletePrompt}

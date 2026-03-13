@@ -317,7 +317,7 @@ const DashboardPage = () => {
             deleteByModelError
               ? interpolateTemplate(t("Something went wrong: {{error}}"), { error: deleteByModelError })
               : interpolateTemplate(
-                  t('Delete all API call records for model "{{model}}"? This cannot be undone.'),
+                  t('Delete all API call records for model "{{model}}"?\n\nThis cannot be undone.'),
                   { model: modelToDelete }
                 )
           }

@@ -3,6 +3,11 @@ import TextPanel from "../TextPanel";
 import LanguageSelector from "../LanguageSelector";
 import { Zap, Square } from "lucide-react";
 
+/** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
+function stripKeySymbols(str) {
+  return String(str).replace(/[⇧↵]/g, "").trim();
+}
+
 /**
  * Returns { leftPanel, rightPanel } for translate mode.
  * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: source/target language and language lists.
@@ -63,7 +68,7 @@ export function getTranslatePanels({ common, input, output, options }) {
             : t("Translate")}
           {!isProcessing && (
             <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? `(${t("Shift+Enter")})` : `(${t("Enter")})`}
+              {settings?.enter_behavior === "Shift-Execute" ? `(${stripKeySymbols(t('⇧ SHIFT'))}+${stripKeySymbols(t('ENTER ↵'))})` : `(${stripKeySymbols(t('ENTER ↵'))})`}
             </span>
           )}
         </Button>

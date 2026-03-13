@@ -20,11 +20,17 @@ export const useStyles = makeStyles({
   filterButtonUnselected: {
     backgroundColor: "rgba(96, 205, 255, 0.12)",
     color: "#ffffff",
-    borderColor: "rgba(96, 205, 255, 0.3)",
+    borderTopColor: "rgba(96, 205, 255, 0.3)",
+    borderRightColor: "rgba(96, 205, 255, 0.3)",
+    borderBottomColor: "rgba(96, 205, 255, 0.3)",
+    borderLeftColor: "rgba(96, 205, 255, 0.3)",
     ":hover": {
       backgroundColor: "rgba(96, 205, 255, 0.28)",
       color: "#fff",
-      borderColor: "rgba(96, 205, 255, 0.5)",
+      borderTopColor: "rgba(96, 205, 255, 0.5)",
+      borderRightColor: "rgba(96, 205, 255, 0.5)",
+      borderBottomColor: "rgba(96, 205, 255, 0.5)",
+      borderLeftColor: "rgba(96, 205, 255, 0.5)",
     },
   },
   tabPanel: {
@@ -40,15 +46,15 @@ export const useStyles = makeStyles({
   tabTableContent: {
     maxWidth: "90%",
     width: "100%",
-    "& $table": { tableLayout: "fixed" },
+    "& table": { tableLayout: "fixed" },
   },
   summaryDashboard: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "1fr 1fr",
     gap: "clamp(8px, 1.5vh, 20px)",
-    height: "100%",
-    minHeight: 0,
+    flex: "1 0 auto",
+    minHeight: "360px",
     overflow: "hidden",
   },
   byUsageDashboard: {
@@ -74,7 +80,7 @@ export const useStyles = makeStyles({
   },
   byUsageChartContainer: {
     flex: 1,
-    minHeight: 0,
+    minHeight: 100,
     minWidth: 0,
     padding: "clamp(6px, 1vh, 12px)",
   },
@@ -99,9 +105,9 @@ export const useStyles = makeStyles({
     minHeight: 0,
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)",
-    columnGap: "clamp(6px, 1vw, 12px)",
-    rowGap: "clamp(6px, 1vw, 12px)",
+    gridTemplateRows: "minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)",
+    columnGap: "clamp(4px, 0.8vw, 12px)",
+    rowGap: "clamp(4px, 0.6vh, 12px)",
   },
   summaryChartCellUsageSplit: {
     minHeight: 0,
@@ -109,13 +115,8 @@ export const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-  summaryChartCellRow2: {
-    minHeight: 0,
-    display: "flex",
-    flexDirection: "column",
-  },
   summaryKpiCard: {
-    padding: "clamp(6px, 1vh, 12px) clamp(8px, 1vw, 14px)",
+    padding: "clamp(4px, 0.8vh, 12px) clamp(6px, 0.8vw, 14px)",
     borderRadius: "8px",
     border: "1px solid rgba(255, 255, 255, 0.08)",
     backgroundColor: "#222235",
@@ -125,14 +126,24 @@ export const useStyles = makeStyles({
     minHeight: 0,
     minWidth: 0,
     overflow: "hidden",
+    "@media (max-height: 480px)": {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: "6px",
+      padding: "4px 6px",
+    },
   },
   summaryKpiLabel: {
     fontSize: "clamp(10px, 1.4vh, 12px)",
     color: tokens.colorNeutralForeground3,
-    marginBottom: "clamp(4px, 0.6vh, 8px)",
+    marginBottom: "clamp(2px, 0.4vh, 8px)",
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+    flexShrink: 0,
+    "@media (max-height: 480px)": {
+      marginBottom: 0,
+    },
   },
   summaryKpiValue: {
     fontSize: "clamp(12px, 1.8vh, 18px)",
@@ -142,6 +153,11 @@ export const useStyles = makeStyles({
     textOverflow: "ellipsis",
     wordBreak: "break-word",
     lineHeight: 1.2,
+    minWidth: 0,
+    "@media (max-height: 480px)": {
+      flex: "1 1 auto",
+      textAlign: "right",
+    },
   },
   summaryChartTitle: {
     marginBottom: "4px",
@@ -155,28 +171,6 @@ export const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-  kpiGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
-    gap: "16px",
-    marginBottom: "24px",
-  },
-  kpiCard: {
-    padding: "16px",
-    borderRadius: "8px",
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-  kpiLabel: {
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground3,
-    marginBottom: "4px",
-  },
-  kpiValue: {
-    fontSize: "18px",
-    fontWeight: 600,
-    color: CHART_COLORS.primary,
-  },
   chartContainer: {
     width: "100%",
     height: "280px",
@@ -184,7 +178,7 @@ export const useStyles = makeStyles({
   },
   summaryChartContainer: {
     flex: 1,
-    minHeight: 0,
+    minHeight: 100,
     minWidth: 0,
     width: "100%",
     boxSizing: "border-box",
@@ -199,7 +193,9 @@ export const useStyles = makeStyles({
   },
   summaryTabPanel: {
     height: "100%",
-    overflow: "hidden",
+    minHeight: 0,
+    overflowY: "auto",
+    overflowX: "hidden",
     display: "flex",
     flexDirection: "column",
   },
@@ -214,12 +210,22 @@ export const useStyles = makeStyles({
     border: `1px solid ${tokens.colorNeutralStroke1}`,
   },
   byModelTableWrapper: {
-    "& table": { fontSize: "12px" },
-    "& th": { fontSize: "12px" },
+    "& table": { fontSize: "12px", tableLayout: "fixed" },
+    "& th": { fontSize: "12px", whiteSpace: "normal", width: "100px" },
+    "& th:first-of-type, & td:first-of-type": {
+      width: "200px",
+      minWidth: "200px",
+      whiteSpace: "nowrap",
+    },
   },
   byDayTableWrapper: {
-    "& table": { fontSize: "14px" },
-    "& th": { fontSize: "14px" },
+    "& table": { fontSize: "13px", tableLayout: "fixed" },
+    "& th": { fontSize: "13px", whiteSpace: "normal", width: "100px" },
+    "& th:first-of-type, & td:first-of-type": {
+      width: "100px",
+      minWidth: "100px",
+      whiteSpace: "nowrap",
+    },
   },
   table: {
     width: "100%",
@@ -269,11 +275,10 @@ export const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
   },
   modelCell: {
-    minWidth: "200px",
-    whiteSpace: "nowrap",
     display: "flex",
     alignItems: "center",
     gap: "6px",
+    whiteSpace: "nowrap",
   },
   modelTrashIcon: {
     color: "#6b7280",
@@ -349,112 +354,10 @@ export const useStyles = makeStyles({
     maxWidth: "100%",
     width: "100%",
   },
-  allCallsTableOuter: {
-    flex: 1,
-    minHeight: 0,
+  allCallsTableWrapper: {
     display: "flex",
     flexDirection: "column",
-    overflow: "hidden",
-    marginTop: "8px",
-    borderRadius: "8px",
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
-  },
-  allCallsHScroll: {
-    flex: 1,
-    minHeight: 0,
-    overflowX: "scroll",
-    overflowY: "hidden",
-    display: "flex",
-    flexDirection: "column",
-    "&::-webkit-scrollbar": {
-      height: "10px",
-    },
-    "&::-webkit-scrollbar-track": {
-      background: "transparent",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      background: "rgba(255, 255, 255, 0.28)",
-      borderRadius: "5px",
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "rgba(255, 255, 255, 0.45)",
-    },
-    scrollbarWidth: "thin",
-    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
-  },
-  allCallsHeaderBlock: {
-    flexShrink: 0,
-  },
-  allCallsHeaderTable: {
-    width: "100%",
-    minWidth: "1090px",
-    tableLayout: "fixed",
-    borderCollapse: "collapse",
-    fontSize: "14px",
-  },
-  allCallsTheadNew: {
-    backgroundColor: tokens.colorNeutralBackground3,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-  },
-  allCallsThNew: {
-    padding: "10px 12px",
-    textAlign: "left",
-    fontWeight: 600,
-    backgroundColor: tokens.colorNeutralBackground3,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground1,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
-  allCallsBodyScroll: {
-    flex: 1,
-    minHeight: 0,
-    overflowX: "visible",
-    overflowY: "hidden",
-  },
-  allCallsBodyScrollInner: {
-    marginRight: "-17px",
-    paddingRight: "17px",
-    overflowY: "auto",
-    overflowX: "hidden",
-    minWidth: "1090px",
-    height: "100%",
-    "&::-webkit-scrollbar": {
-      width: "10px",
-    },
-    "&::-webkit-scrollbar-track": {
-      background: "transparent",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      background: "rgba(255, 255, 255, 0.28)",
-      borderRadius: "5px",
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "rgba(255, 255, 255, 0.45)",
-    },
-    scrollbarWidth: "thin",
-    scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
-  },
-  allCallsBodyTable: {
-    width: "100%",
-    minWidth: "1090px",
-    tableLayout: "fixed",
-    borderCollapse: "collapse",
-    fontSize: "14px",
-  },
-  allCallsTdTruncate: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
-  refactoredTableWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    flex: "0 1 auto",
-    alignSelf: "flex-start",
+    width: "80%",
     maxHeight: "100%",
     minHeight: 0,
     overflowX: "auto",
@@ -480,7 +383,7 @@ export const useStyles = makeStyles({
     scrollbarWidth: "thin",
     scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
   },
-  refactoredHeaderRow: {
+  allCallsHeaderRow: {
     display: "grid",
     gridTemplateColumns: "minmax(60px, 0.5fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(90px, 0.7fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(70px, 0.5fr)",
     backgroundColor: tokens.colorNeutralBackground3,
@@ -488,7 +391,7 @@ export const useStyles = makeStyles({
     minWidth: "fit-content",
     width: "100%",
   },
-  refactoredBodyContainer: {
+  allCallsBodyContainer: {
     flex: "1 1 auto",
     minHeight: 0,
     overflowY: "auto",
@@ -513,7 +416,7 @@ export const useStyles = makeStyles({
     scrollbarWidth: "thin",
     scrollbarColor: "rgba(255, 255, 255, 0.35) transparent",
   },
-  refactoredBodyRow: {
+  allCallsBodyRow: {
     display: "grid",
     gridTemplateColumns: "minmax(60px, 0.5fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(90px, 0.7fr) minmax(140px, 1.2fr) minmax(80px, 0.6fr) minmax(70px, 0.5fr)",
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
@@ -524,14 +427,14 @@ export const useStyles = makeStyles({
     width: "100%",
     color: tokens.colorNeutralForeground1,
   },
-  refactoredExpandedRow: {
+  allCallsExpandedRow: {
     width: "100%",
     padding: "16px 20px",
     backgroundColor: tokens.colorNeutralBackground2,
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     boxSizing: "border-box",
   },
-  refactoredCell: {
+  allCallsCell: {
     padding: "12px 16px",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -539,7 +442,7 @@ export const useStyles = makeStyles({
     display: "block",
     alignItems: "center",
   },
-  refactoredHeaderCell: {
+  allCallsHeaderCell: {
     padding: "10px 12px",
     textAlign: "left",
     fontWeight: 600,
@@ -552,9 +455,5 @@ export const useStyles = makeStyles({
   },
   cellRight: {
     textAlign: "right",
-  },
-  cellCenter: {
-    textAlign: "center",
-    justifyContent: "center",
   },
 });
