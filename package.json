@@ -162,7 +162,7 @@
     "@fluentui/react-icons": "^2.0.320",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.6.2",
-    "diff": "^6.0.0",
+    "diff": "^8.0.3",
     "express": "^5.2.1",
     "i18next": "^25.8.17",
     "lucide-react": "^0.577.0",
