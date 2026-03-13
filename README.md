@@ -1,27 +1,15 @@
-<p align="center">
-  <img src="images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
-</p>
+# Transrewrt
 
-<h1 align="center">Transrewrt</h1>
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-<p align="center">
-  Translate text between languages, rewrite text in different styles, and transform text using AI.<br/>
-  Available as a desktop app (Electron) and a self-hosted web app (Docker).
-</p>
+AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — all via [OpenRouter](https://openrouter.ai). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.10-blue" alt="Version"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-40-47848F?logo=electron" alt="Electron 40">
-</p>
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
+- **Translate** — between dozens of languages, with automatic source detection
+- **Rewrite** — fix grammar, improve clarity, formal/informal, shorten, expand, technical
+- **Transform** — custom AI prompts; create and manage prompts, optional target language per prompt
+- **Models & cost** — choose any OpenRouter model; cost dashboard with SQLite log, summaries by model/operation/day
+- **UI** — i18n (pt-BR, de, fr, es, RTL), themes, fonts, keyboard shortcuts; secure web mode (API key on server only)
+- **Deploy** — Electron (Windows, Linux) or Docker (amd64, arm64 e.g. Raspberry Pi); optional [Transrewrt proxy](#configuration-and-environment)
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
