@@ -2,7 +2,7 @@
 /**
  * Translate README.md and USER-GUIDE.md (British English) to all UI languages via OpenRouter.
  * Writes translated-docs/README.<code>.md and translated-docs/USER-GUIDE.<code>.md.
- * Section-based chunking with hash cache in translated-docs/.section-cache/ (only changed sections sent to API).
+ * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
  * Requires API_KEY for translation; en-GB is the source (repo root), no copy. Run from project root.
  *
  *   node scripts/translate-docs.js --help
@@ -13,17 +13,23 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
-const DEFAULT_MODEL = "anthropic/claude-3-haiku";
+const DEFAULT_MODEL = "stepfun/step-3.5-flash:free";
 const ALTERNATIVE_MODELS = [
   "qwen/qwen3-235b-a22b-2507",
+  "anthropic/claude-3-haiku",
   "z-ai/glm-4.7-flash",
   "minimax/minimax-m2.5",
   "anthropic/claude-3.5-haiku",
-  "anthropic/claude-haiku-4.5",
 ];
-const DEFAULT_MAX_TOKENS = 32768;
+
+const DEFAULT_MAX_TOKENS = 32768; // 32KB
 const DEFAULT_CONCURRENCY = 4;
-const MAX_SECTION_CHARS = 8000;
+const BLOCK_SIZE = 4096; // 4KB
+const RED = "\x1b[31m";
+const YELLOW = "\x1b[33m";
+const BLUE = "\x1b[34m";
+const GREEN = "\x1b[32m";
+const RESET = "\x1b[0m";
 
 const DOC_NAMES = [
   { key: "README", sourceFile: "README.md" },
@@ -33,8 +39,6 @@ const DOC_NAMES = [
 const ROOT = process.cwd();
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
 const TRANSLATED_DOCS_DIR = path.join(ROOT, "translated-docs");
-const SECTION_CACHE_DIR = path.join(TRANSLATED_DOCS_DIR, ".section-cache");
-const DOCS_DIR = path.join(ROOT, "docs");
 
 let logFileStream = null;
 
@@ -71,24 +75,24 @@ function log(...args) {
 }
 function warn(...args) {
   const prefix = `${timestamp()} - `;
-  console.warn(prefix, ...args);
+  console.warn(YELLOW + prefix, ...args, RESET);
   if (logFileStream && logFileStream.writable) {
     logFileStream.write(prefix + "[WARN] " + toLogLine(...args) + "\n");
   }
 }
 function err(...args) {
   const prefix = `${timestamp()} - `;
-  console.error(prefix, ...args);
+  console.error(RED + prefix, ...args, RESET);
   if (logFileStream && logFileStream.writable) {
     logFileStream.write(prefix + "[ERROR] " + toLogLine(...args) + "\n");
   }
 }
 
 function printHelp() {
-  log(`
+  log(BLUE + `
 Translate README.md and USER-GUIDE.md to all UI languages (source: British English).
 Output: translated-docs/README.<code>.md, translated-docs/USER-GUIDE.<code>.md.
-Section cache: translated-docs/.section-cache/ (only changed sections are sent to API). Requires API_KEY.
+Documents are sent whole; if > 16k chars they are split at markdown section boundaries. Requires API_KEY.
 
 Usage:
   node scripts/translate-docs.js [options]
@@ -96,37 +100,36 @@ Usage:
 
 Options:
   --help, -h              Show this help and exit.
-  --dry-run, -d            List what would be translated; no API calls or file writes.
-  --retranslate, -r        Ignore section cache; translate all sections.
-  --doc <name>             README | USER-GUIDE | both (default: both).
-  --locale, -l <code>      Translate only this locale (e.g. pt-BR, ja).
-  --model, -m <name>       OpenRouter model (default: ${DEFAULT_MODEL}).
-  --max-tokens, -t <n>     Max tokens (default: ${DEFAULT_MAX_TOKENS}).
-  --concurrency, -c <n>    Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
+  --force, -f             Force translation even when source hash matches existing file (ignore skip).
+  --doc <name>            README | USER-GUIDE | both (default: both).
+  --locale, -l <codes>    Translate only these locale(s), comma-separated (e.g. pt-BR, es, ja).
+  --model, -m <name>      OpenRouter model (default: ${DEFAULT_MODEL}).
+  --max-tokens, -t <n>    Max tokens (default: ${DEFAULT_MAX_TOKENS}).
+  --concurrency, -c <n>   Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
 
 Examples:
   node scripts/translate-docs.js --help
-  node scripts/translate-docs.js --dry-run
   API_KEY=sk-or-... node scripts/translate-docs.js
-  API_KEY=sk-or-... node scripts/translate-docs.js --doc USER-GUIDE --locale pt-BR
-`);
+  API_KEY=sk-or-... node scripts/translate-docs.js --doc USER-GUIDE --locale pt-BR,es,ja
+  API_KEY=sk-or-... node scripts/translate-docs.js --force
+
+`+ RESET);
 }
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  let dryRun = false;
-  let retranslate = false;
+  let force = false;
   let doc = "both";
   let locale = null;
   let model = DEFAULT_MODEL;
   let maxTokens = DEFAULT_MAX_TOKENS;
   let concurrency = DEFAULT_CONCURRENCY;
   let help = false;
+  const unknown = [];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--help" || arg === "-h") help = true;
-    else if (arg === "--dry-run" || arg === "-d") dryRun = true;
-    else if (arg === "--retranslate" || arg === "-r") retranslate = true;
+    else if (arg === "--force" || arg === "-f") force = true;
     else if (arg === "--doc" && args[i + 1]) {
       const v = args[++i];
       if (v === "README" || v === "USER-GUIDE" || v === "both") doc = v;
@@ -138,15 +141,20 @@ function parseArgs() {
     } else if ((arg === "--concurrency" || arg === "-c") && args[i + 1]) {
       const n = parseInt(args[++i], 10);
       if (!Number.isNaN(n) && n >= 1) concurrency = n;
-    }
+    } else unknown.push(arg);
   }
-  return { help, dryRun, retranslate, doc, locale, model, maxTokens, concurrency };
+  return { help, force, doc, locale, model, maxTokens, concurrency, unknown };
 }
 
 const args = parseArgs();
 if (args.help) {
   printHelp();
   process.exit(0);
+}
+if (args.unknown.length > 0) {
+  console.error(RED + "Unknown option(s): " + args.unknown.join(", ") + RESET);
+  console.error(RED + "Use --help to see usage." + RESET + "\n");
+  process.exit(1);
 }
 
 const API_KEY = process.env.API_KEY;
@@ -168,102 +176,107 @@ const DOCS_TO_PROCESS = args.doc === "both"
   ? DOC_NAMES
   : DOC_NAMES.filter((d) => d.key === args.doc);
 if (DOCS_TO_PROCESS.length === 0) {
-  err("[translate-docs] --doc must be README, USER-GUIDE, or both");
+  err("--doc must be README, USER-GUIDE, or both");
   process.exit(1);
 }
 
 if (args.locale) {
-  const match = LANGUAGES.find((l) => l.code === args.locale);
-  if (!match) {
-    err(`[translate-docs] Locale "${args.locale}" not in ui-languages.json`);
+  const codes = args.locale.split(",").map((c) => c.trim()).filter(Boolean);
+  const byCode = new Map(LANGUAGES.map((l) => [l.code, l]));
+  const matched = [];
+  const invalid = [];
+  for (const code of codes) {
+    const lang = byCode.get(code);
+    if (lang) matched.push(lang);
+    else invalid.push(code);
+  }
+  if (invalid.length > 0) {
+    err(`Locale(s) not in ui-languages.json: ${invalid.join(", ")}`);
     process.exit(1);
   }
-  LANGUAGES = [match];
+  LANGUAGES = matched;
 }
 
 if (LANGUAGES.length === 0) {
-  err("[translate-docs] No languages in ui-languages.json");
+  err("No languages in ui-languages.json");
   process.exit(1);
 }
 
 if (!API_KEY && LANGUAGES.some((l) => l.code !== "en-GB")) {
-  warn("[translate-docs] API_KEY not set; only en-GB (source) will be done for non–en-GB locales.");
+  warn("API_KEY not set; only en-GB (source) will be done for non–en-GB locales.");
 }
 
-function hashSection(content) {
-  return crypto.createHash("sha256").update(content, "utf8").digest("hex").slice(0, 16);
+function hashSource(content) {
+  return crypto.createHash("sha256").update(content, "utf8").digest("hex");
 }
 
-function splitIntoSections(content, maxChars = MAX_SECTION_CHARS) {
-  const sections = [];
-  const parts = content.split(/(?=^## )/m);
-  for (const part of parts) {
-    const trimmed = part.trim();
-    if (!trimmed) continue;
-    if (trimmed.length <= maxChars) {
-      sections.push(trimmed);
-      continue;
+/**
+ * Parse YAML frontmatter from the start of a file. Returns { source_hash } or {} if missing/invalid.
+ */
+function parseFrontmatter(fileContent) {
+  if (typeof fileContent !== "string" || !fileContent.startsWith("---\n")) return {};
+  const end = fileContent.indexOf("\n---", 4);
+  if (end === -1) return {};
+  const block = fileContent.slice(4, end);
+  const out = {};
+  for (const line of block.split("\n")) {
+    const m = line.match(/^(\w+):\s*(.*)$/);
+    if (m) {
+      let val = m[2].trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      out[m[1].trim()] = val;
     }
-    const subParts = trimmed.split(/(?=^### )/m);
-    let current = "";
-    for (const sp of subParts) {
-      if (current.length + sp.length <= maxChars) {
-        current += (current ? "\n\n" : "") + sp.trim();
-        continue;
-      }
-      if (current) {
-        sections.push(current);
-        current = "";
-      }
-      if (sp.length > maxChars) {
-        const lines = sp.split(/\n/);
-        let chunk = "";
-        for (const line of lines) {
-          if (chunk.length + line.length + 1 > maxChars && chunk) {
-            sections.push(chunk.trim());
-            chunk = "";
-          }
-          chunk += (chunk ? "\n" : "") + line;
-        }
-        if (chunk.trim()) sections.push(chunk.trim());
+  }
+  return out;
+}
+
+function buildFrontmatter({ translated_at, source_hash, source_mtime, model }) {
+  const lines = [
+    "---",
+    `translated_at: "${translated_at}"`,
+    `source_hash: "${source_hash}"`,
+    `source_mtime: ${Number(source_mtime)}`,
+    `model: "${(model || "").replace(/"/g, '\\"')}"`,
+    "---",
+    "",
+  ];
+  return lines.join("\n");
+}
+
+/**
+ * Split document into blocks of at most maxChars, cutting at the nearest markdown heading.
+ * If the whole document fits, returns [content]. Otherwise splits at ^#{1,6} boundaries.
+ * If a single section is itself > maxChars it is returned as one oversized block.
+ */
+function splitIntoBlocks(content, maxChars = BLOCK_SIZE) {
+  const trimmed = (content && typeof content === "string") ? content.trim() : "";
+  if (!trimmed) return [];
+  if (trimmed.length <= maxChars) return [trimmed];
+
+  const blocks = [];
+  const lines = trimmed.split(/\n/);
+  const headingRe = /^#{1,6}\s/;
+  let current = "";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const isHeading = headingRe.test(line);
+    const lineWithSep = (current ? "\n" : "") + line;
+    const wouldExceed = current.length + lineWithSep.length > maxChars;
+    if (current && wouldExceed) {
+      if (isHeading) {
+        blocks.push(current.trim());
+        current = line;
       } else {
-        current = sp.trim();
+        current += lineWithSep;
       }
-    }
-    if (current) sections.push(current);
-  }
-  return sections;
-}
-
-function loadCache(docKey) {
-  const p = path.join(SECTION_CACHE_DIR, `${docKey}.json`);
-  if (!fs.existsSync(p)) return {};
-  try {
-    return JSON.parse(fs.readFileSync(p, "utf8"));
-  } catch (e) {
-    warn(`[translate-docs] Could not load cache ${p}:`, e.message);
-    return {};
-  }
-}
-
-function saveCache(docKey, cache) {
-  if (!fs.existsSync(SECTION_CACHE_DIR)) {
-    fs.mkdirSync(SECTION_CACHE_DIR, { recursive: true });
-  }
-  const p = path.join(SECTION_CACHE_DIR, `${docKey}.json`);
-  fs.writeFileSync(p, JSON.stringify(cache, null, 2), "utf8");
-}
-
-function pruneCache(cache, validHashes) {
-  const set = new Set(validHashes);
-  let removed = 0;
-  for (const hash of Object.keys(cache)) {
-    if (!set.has(hash)) {
-      delete cache[hash];
-      removed++;
+    } else {
+      current = current ? current + lineWithSep : line;
     }
   }
-  return removed;
+  if (current.trim()) blocks.push(current.trim());
+  return blocks;
 }
 
 function extractUsage(data) {
@@ -274,26 +287,33 @@ function extractUsage(data) {
     : typeof rawCost === "string"
       ? Number.parseFloat(rawCost) || 0
       : 0;
+  const details = u.completion_tokens_details || {};
+  const reasoning_tokens = Number(details.reasoning_tokens ?? u.reasoning_tokens) || 0;
   return {
     prompt_tokens: Number(u.prompt_tokens) || 0,
     completion_tokens: Number(u.completion_tokens) || 0,
+    reasoning_tokens,
     total_cost: cost,
   };
 }
 
 const DOC_SYSTEM_PROMPT = `You are a professional translator for technical documentation.
 
-Translate the following markdown section from British English to the target language.
+Translate the following markdown document (or document block) from British English to the target language.
+Your entire response must be the translated markdown and nothing else.
 
 RULES:
 - Preserve markdown structure (headers, lists, bold, links, code fences).
-- Keep fenced code blocks unchanged (content and language tag).
+- Keep fenced code blocks and inline code spans (backtick-wrapped) unchanged.
 - Keep URLs, [text](url), ![alt](path) link targets unchanged; translate only the visible link text where appropriate.
 - Keep HTML tags and attribute values that are paths or technical (e.g. alt text can be translated).
 - Keep product names as-is: Transrewrt, OpenRouter, Electron, Docker, unless there is a common localized form.
-- Output ONLY the translated markdown. No preamble, no explanation, no code fence around the whole response.`;
+- Do NOT add any introduction, explanation, or note before or after the translation.
+- Do NOT wrap your response in a markdown code fence (no \`\`\`markdown ... \`\`\`).
+- Do NOT include the original text in your response.
+- Keep all internal link fragments and anchor IDs unchanged: do not translate the fragment part of links (e.g. \`#quick-start\`) or the \`id\` attribute in \`<a id="..."></a>\` anchors; only the visible link text and heading text may be translated.`;
 
-async function translateSection(sectionContent, langName, modelOverride = null) {
+async function translateBlock(blockContent, langName, modelOverride = null) {
   const model = modelOverride ?? MODEL;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
@@ -310,7 +330,7 @@ async function translateSection(sectionContent, langName, modelOverride = null) 
         { role: "system", content: DOC_SYSTEM_PROMPT },
         {
           role: "user",
-          content: `Translate this markdown section to ${langName}.\n\n${sectionContent}`,
+          content: `Translate this markdown to ${langName}.\n\n${blockContent}`,
         },
       ],
     }),
@@ -331,35 +351,103 @@ async function translateSection(sectionContent, langName, modelOverride = null) 
   const content = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "";
   const translated = content.trim().replace(/^```(?:markdown)?\s*|\s*```$/g, "").trim();
   const usage = extractUsage(data);
-  return { translated, usage };
+  return { translated, usage, model };
 }
 
-async function translateSectionWithFallback(sectionContent, langName, docKey, chunkIndex) {
+async function translateBlockWithFallback(blockContent, langName, docKey, blockIndex) {
   const modelsToTry = [MODEL, ...ALTERNATIVE_MODELS.filter((m) => m !== MODEL)];
   let lastError = null;
   for (let mi = 0; mi < modelsToTry.length; mi++) {
     const model = modelsToTry[mi];
-    log(`[translate-docs] ${docKey} chunk ${chunkIndex + 1}: trying model ${model}${mi > 0 ? ` (fallback ${mi + 1}/${modelsToTry.length})` : ""}...`);
+    log(`  ${docKey} block ${blockIndex + 1}: trying model ${model}${mi > 0 ? ` (fallback ${mi + 1}/${modelsToTry.length})` : ""}...`);
     try {
-      const result = await translateSection(sectionContent, langName, model);
+      const result = await translateBlock(blockContent, langName, model);
       return result;
     } catch (e) {
       lastError = e;
-      warn(`[translate-docs] ${docKey} ${langName} chunk ${chunkIndex + 1} failed with ${model}:`, e.message);
+      warn(`${docKey} block ${blockIndex + 1} failed with ${model}:`, e.message);
     }
   }
   throw lastError || new Error("No model succeeded");
 }
 
 function logUsage(label, usage, totalSoFar) {
-  const { prompt_tokens, completion_tokens, total_cost } = usage;
+  const { prompt_tokens, completion_tokens, reasoning_tokens, total_cost } = usage;
   const tokens = prompt_tokens + completion_tokens;
   const costStr = total_cost > 0 ? `$${total_cost.toFixed(6)} USD` : (tokens > 0 ? "(no cost reported)" : "no API calls");
   const totalStr = totalSoFar != null && totalSoFar > 0 ? `; total so far: $${totalSoFar.toFixed(6)} USD` : "";
-  log(`[translate-docs] ${label}: ${tokens} tokens (${prompt_tokens} prompt + ${completion_tokens} completion), ${costStr}${totalStr}`);
+  const reasoningStr = reasoning_tokens > 0 ? `, ${reasoning_tokens} reasoning` : "";
+  log(GREEN + `💵 ${label}: ${tokens} tokens (${prompt_tokens} prompt + ${completion_tokens} completion${reasoningStr}), ${costStr}${totalStr}` + RESET);
 }
 
-async function processLocale(locale, docContents, caches, retranslate, dryRun) {
+/**
+ * Translate a single document for one locale. Returns cost/tokens/status for aggregation.
+ * Used so docs (README, USER-GUIDE) can run in parallel within a locale.
+ */
+async function processDoc(locale, doc, content) {
+  const result = { cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok" };
+  const currentHash = hashSource(content);
+  const outPath = path.join(TRANSLATED_DOCS_DIR, `${doc.key}.${locale.code}.md`);
+  if (!args.force && fs.existsSync(outPath)) {
+    const existingContent = fs.readFileSync(outPath, "utf8");
+    const parsed = parseFrontmatter(existingContent);
+    if (parsed.source_hash && parsed.source_hash === currentHash) {
+      log(YELLOW + `⏭️ ${locale.code} ${doc.key}: skipping (source unchanged)` + RESET);
+      return result;
+    }
+  }
+
+  const blocks = splitIntoBlocks(content);
+  log(YELLOW + `🔍 ${locale.code} ${doc.key}: ${blocks.length} block(s) (max ${BLOCK_SIZE} chars each)` + RESET);
+
+  const translatedParts = [];
+  let modelUsed = null;
+
+  for (let i = 0; i < blocks.length; i++) {
+    try {
+      const res = await translateBlockWithFallback(blocks[i], locale.englishName, doc.key, i);
+      const { translated, usage, model } = res;
+      translatedParts.push(translated);
+      if (modelUsed == null) modelUsed = model;
+      result.cost += usage.total_cost;
+      result.tokens += usage.prompt_tokens + usage.completion_tokens;
+      result.reasoning_tokens += usage.reasoning_tokens || 0;
+      const reasoningStr = (usage.reasoning_tokens > 0) ? `, ${usage.reasoning_tokens} reasoning` : "";
+      log(`  ✔️  ${locale.code} ${doc.key}: block ${i + 1}/${blocks.length}: done (${usage.prompt_tokens + usage.completion_tokens} tokens${reasoningStr})`);
+    } catch (e) {
+      warn(`  ❌  ${locale.code} ${doc.key} block ${i + 1} failed:`, e.message);
+      result.status = "failed";
+      translatedParts.push(blocks[i]);
+    }
+  }
+
+  {
+    const sourcePath = path.join(ROOT, doc.sourceFile);
+    const sourceMtime = fs.statSync(sourcePath).mtimeMs;
+    const body = translatedParts.join("\n\n");
+    const bodyWithLocalePaths = body
+      .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
+      .replace(/src="images\//g, 'src="../images/')
+      .replace(/\]\(images\//g, '](../images/')
+      .replace(/\]\(README\.md\)/g, '](../README.md)')
+      .replace(/\]\(USER-GUIDE\.md\)/g, '](../USER-GUIDE.md)')
+      .replace(/\]\(translated-docs\/README\./g, '](README.')
+      .replace(/\]\(translated-docs\/USER-GUIDE\./g, '](USER-GUIDE.')
+      .replace(/\]\(dev\//g, '](../dev/');
+    const frontmatter = buildFrontmatter({
+      translated_at: new Date().toISOString(),
+      source_hash: currentHash,
+      source_mtime: sourceMtime,
+      model: modelUsed || MODEL,
+    });
+    if (!fs.existsSync(TRANSLATED_DOCS_DIR)) fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
+    fs.writeFileSync(outPath, frontmatter + bodyWithLocalePaths, "utf8");
+    log(BLUE + `💾 ${locale.code} - ${locale.englishName}: wrote ${doc.key} -> ${doc.key}.${locale.code}.md` + RESET);
+  }
+  return result;
+}
+
+async function processLocale(locale, docContents) {
   const start = Date.now();
   const stats = {
     code: locale.code,
@@ -368,97 +456,43 @@ async function processLocale(locale, docContents, caches, retranslate, dryRun) {
     elapsedMs: 0,
     cost: 0,
     tokens: 0,
+    reasoning_tokens: 0,
     status: "ok",
-    cacheUpdates: {},
   };
 
-  log(`[translate-docs] starting locale: ${locale.code} (${locale.englishName})`);
+  log("--------------------------------"	);
+  log(`starting locale: ${locale.code} (${locale.englishName})`);
 
   if (locale.code === "en-GB") {
-    log(`[translate-docs] en-GB: source (repo root ${DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ")}); no copy`);
+    log(`en-GB: source (repo root ${DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ")}); no copy`);
     stats.elapsedMs = Date.now() - start;
     stats.status = "source";
     return stats;
   }
 
   if (!API_KEY) {
-    log(`[translate-docs] ${locale.code}: skipping (no API_KEY)`);
+    log(`${locale.code}: skipping (no API_KEY)`);
     stats.status = "failed";
     stats.elapsedMs = Date.now() - start;
     return stats;
   }
 
-  let totalCost = 0;
-  let totalTokens = 0;
+  const docResults = await Promise.all(
+    DOCS_TO_PROCESS.map((doc) => {
+      const content = docContents[doc.key];
+      if (!content) return Promise.resolve({ cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok" });
+      return processDoc(locale, doc, content);
+    })
+  );
 
-  for (const doc of DOCS_TO_PROCESS) {
-    const content = docContents[doc.key];
-    if (!content) continue;
-
-    log(`[translate-docs] ${locale.code} ${doc.key}: splitting into sections (max ${MAX_SECTION_CHARS} chars)...`);
-    const sections = splitIntoSections(content);
-    log(`[translate-docs] ${locale.code} ${doc.key}: split into ${sections.length} chunk(s)`);
-
-    log(`[translate-docs] ${locale.code} ${doc.key}: calculating hashes for ${sections.length} section(s)...`);
-    const hashes = sections.map((s) => hashSection(s));
-    log(`[translate-docs] ${locale.code} ${doc.key}: hashes: ${hashes.join(", ")}`);
-
-    const cache = JSON.parse(JSON.stringify(caches[doc.key] || {}));
-    const validHashes = new Set(hashes);
-    const pruned = pruneCache(cache, validHashes);
-    if (pruned > 0) {
-      log(`[translate-docs] ${locale.code} ${doc.key}: pruned ${pruned} orphan hash(es) from cache`);
-    }
-
-    const translatedParts = [];
-    let docFailed = false;
-    for (let i = 0; i < sections.length; i++) {
-      const section = sections[i];
-      const hash = hashes[i];
-      const cached = !retranslate && cache[hash] && cache[hash][locale.code];
-      if (cached) {
-        log(`[translate-docs] ${locale.code} ${doc.key}: chunk ${i + 1}/${sections.length}: using cache (hash ${hash})`);
-        translatedParts.push(cached);
-        continue;
-      }
-      if (dryRun) {
-        log(`[translate-docs] ${locale.code} ${doc.key}: chunk ${i + 1}/${sections.length}: would translate`);
-        translatedParts.push(`[would translate chunk ${i + 1}]`);
-        continue;
-      }
-      log(`[translate-docs] ${locale.code} ${doc.key}: chunk ${i + 1}/${sections.length}: sending to OpenRouter (hash ${hash})...`);
-      try {
-        const { translated, usage } = await translateSectionWithFallback(section, locale.englishName, doc.key, i);
-        log(`[translate-docs] ${locale.code} ${doc.key}: chunk ${i + 1}/${sections.length}: done (${usage.prompt_tokens + usage.completion_tokens} tokens)`);
-        translatedParts.push(translated);
-        if (!cache[hash]) cache[hash] = {};
-        cache[hash][locale.code] = translated;
-        if (!stats.cacheUpdates[doc.key]) stats.cacheUpdates[doc.key] = {};
-        if (!stats.cacheUpdates[doc.key][hash]) stats.cacheUpdates[doc.key][hash] = {};
-        stats.cacheUpdates[doc.key][hash][locale.code] = translated;
-        totalCost += usage.total_cost;
-        totalTokens += usage.prompt_tokens + usage.completion_tokens;
-      } catch (e) {
-        warn(`[translate-docs] ${locale.code} ${doc.key} chunk ${i + 1} failed:`, e.message);
-        docFailed = true;
-        translatedParts.push(section);
-      }
-    }
-    if (!dryRun) {
-      const outPath = path.join(TRANSLATED_DOCS_DIR, `${doc.key}.${locale.code}.md`);
-      if (!fs.existsSync(TRANSLATED_DOCS_DIR)) fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
-      log(`[translate-docs] ${locale.code} ${doc.key}: writing ${doc.key}.${locale.code}.md...`);
-      fs.writeFileSync(outPath, translatedParts.join("\n\n"), "utf8");
-      log(`[translate-docs] ${locale.code} - ${locale.englishName}: wrote ${doc.key} -> ${doc.key}.${locale.code}.md`);
-    }
-    if (docFailed) stats.status = "failed";
-  }
+  stats.cost = docResults.reduce((s, r) => s + r.cost, 0);
+  stats.tokens = docResults.reduce((s, r) => s + r.tokens, 0);
+  stats.reasoning_tokens = docResults.reduce((s, r) => s + (r.reasoning_tokens || 0), 0);
+  if (docResults.some((r) => r.status === "failed")) stats.status = "failed";
 
   stats.elapsedMs = Date.now() - start;
-  stats.cost = totalCost;
-  stats.tokens = totalTokens;
-  if (stats.status === "ok" && !dryRun) {
-    logUsage(`${locale.code} - ${locale.englishName} cost`, { prompt_tokens: 0, completion_tokens: stats.tokens, total_cost: stats.cost }, stats.cost);
+  if (stats.status === "ok") {
+    logUsage(`${locale.code} - ${locale.englishName} cost`, { prompt_tokens: 0, completion_tokens: stats.tokens, reasoning_tokens: stats.reasoning_tokens, total_cost: stats.cost }, stats.cost);
   }
   return stats;
 }
@@ -473,97 +507,45 @@ async function runInBatches(items, batchSize, fn) {
 }
 
 async function main() {
-  if (!fs.existsSync(DOCS_DIR)) {
-    fs.mkdirSync(DOCS_DIR, { recursive: true });
+  if (!fs.existsSync(TRANSLATED_DOCS_DIR)) {
+    fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
   }
-  const logPath = path.join(DOCS_DIR, `translate-docs_${logFilenameTimestamp()}.log`);
+  const logPath = path.join(TRANSLATED_DOCS_DIR, `translate-docs_${logFilenameTimestamp()}.log`);
   logFileStream = fs.createWriteStream(logPath, { flags: "a" });
-  log("[translate-docs] logging to " + logPath);
+  log("logging to " + logPath);
 
   const startTime = Date.now();
-  log("[translate-docs] starting (docs: " + DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ") + "; locales: " + LANGUAGES.length + "; concurrency: " + CONCURRENCY + (args.retranslate ? "; retranslate" : "") + ")");
+  log("starting (docs: " + DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ") + "; locales: " + LANGUAGES.length + "; concurrency: " + CONCURRENCY + (args.force ? "; force" : "") + ")");
 
   const docContents = {};
   for (const doc of DOCS_TO_PROCESS) {
     const p = path.join(ROOT, doc.sourceFile);
     if (!fs.existsSync(p)) {
-      err(`[translate-docs] ${doc.sourceFile} not found`);
+      err(`${doc.sourceFile} not found`);
       if (logFileStream) {
         logFileStream.end();
         logFileStream = null;
       }
       process.exit(1);
     }
-    log(`[translate-docs] loading source: ${doc.sourceFile}...`);
+    log(`loading source: ${doc.sourceFile}...`);
     docContents[doc.key] = fs.readFileSync(p, "utf8");
-    log(`[translate-docs] loaded ${doc.sourceFile}: ${docContents[doc.key].length} chars`);
+    log(`loaded ${doc.sourceFile}: ${docContents[doc.key].length} chars`);
   }
 
-  log("[translate-docs] loading section caches...");
-  const caches = {};
-  for (const doc of DOCS_TO_PROCESS) {
-    caches[doc.key] = loadCache(doc.key);
-    const count = Object.keys(caches[doc.key]).length;
-    log(`[translate-docs] cache ${doc.key}: ${count} section hash(es)`);
-  }
-
-  if (args.dryRun) {
-    log("[translate-docs] Dry run: no API calls, no files written.");
-    for (const locale of LANGUAGES) {
-      const docList = DOCS_TO_PROCESS.map((d) => d.key).join(", ");
-      if (locale.code === "en-GB") {
-        log(`  ${locale.code} - ${locale.englishName}: source (repo root) ${docList}`);
-      } else {
-        log(`  ${locale.code} - ${locale.englishName}: translate ${docList}`);
-      }
-    }
-    if (logFileStream) {
-      logFileStream.end();
-      logFileStream = null;
-    }
-    process.exit(0);
-  }
-
-  log("[translate-docs] processing locales (batches of " + CONCURRENCY + ")...");
+  log("processing locales (batches of " + CONCURRENCY + ")...");
   const allStats = await runInBatches(
     LANGUAGES,
     CONCURRENCY,
-    (locale) => processLocale(locale, docContents, caches, args.retranslate, false)
+    (locale) => processLocale(locale, docContents)
   );
-
-  log("[translate-docs] merging cache updates from all locales...");
-  for (const s of allStats) {
-    if (s.cacheUpdates && typeof s.cacheUpdates === "object") {
-      for (const [docKey, updates] of Object.entries(s.cacheUpdates)) {
-        if (!caches[docKey]) caches[docKey] = {};
-        for (const [hash, byLocale] of Object.entries(updates)) {
-          if (!caches[docKey][hash]) caches[docKey][hash] = {};
-          Object.assign(caches[docKey][hash], byLocale);
-        }
-      }
-    }
-  }
-  log("[translate-docs] pruning orphan hashes and saving caches...");
-  for (const doc of DOCS_TO_PROCESS) {
-    const content = docContents[doc.key];
-    if (content && caches[doc.key]) {
-      const hashes = splitIntoSections(content).map((s) => hashSection(s));
-      const pruned = pruneCache(caches[doc.key], hashes);
-      if (pruned > 0) {
-        log(`[translate-docs] pruned ${pruned} orphan(s) from ${doc.key} cache`);
-      }
-    }
-    if (caches[doc.key] && Object.keys(caches[doc.key]).length > 0) {
-      saveCache(doc.key, caches[doc.key]);
-      log(`[translate-docs] saved ${doc.key} cache (${Object.keys(caches[doc.key]).length} hashes)`);
-    }
-  }
 
   const totalElapsed = Date.now() - startTime;
   const totalCost = allStats.reduce((s, r) => s + r.cost, 0);
   const totalTokens = allStats.reduce((s, r) => s + r.tokens, 0);
+  const totalReasoningTokens = allStats.reduce((s, r) => s + (r.reasoning_tokens || 0), 0);
 
-  log("\n[translate-docs] done");
+  log("\ndone");
   log("--- summary ---");
   const col = (str, w) => String(str).padEnd(w).slice(0, w);
   const localeW = 10;
@@ -587,12 +569,13 @@ async function main() {
     );
   }
   log("");
-  log(`[translate-docs] total time: ${formatElapsed(totalElapsed)}`);
-  log(`[translate-docs] total tokens: ${totalTokens} (${allStats.reduce((a, s) => a + (s.tokens || 0), 0)} from API)`);
+  log(`total time: ${formatElapsed(totalElapsed)}`);
+  const reasoningSummary = totalReasoningTokens > 0 ? `, ${totalReasoningTokens} reasoning` : "";
+  log(`total tokens: ${totalTokens} (${allStats.reduce((a, s) => a + (s.tokens || 0), 0)} from API${reasoningSummary})`);
   if (totalCost > 0) {
-    log(`[translate-docs] total cost: $${totalCost.toFixed(6)} USD`);
+    log(`total cost: $${totalCost.toFixed(6)} USD`);
   } else if (totalTokens > 0) {
-    log("[translate-docs] total cost: (not reported by API)");
+    log("total cost: (not reported by API)");
   }
   if (logFileStream) {
     logFileStream.end();

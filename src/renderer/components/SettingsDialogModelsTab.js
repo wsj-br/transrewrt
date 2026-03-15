@@ -11,6 +11,7 @@ import {
   Card,
   Text,
   Spinner,
+  tokens,
 } from '@fluentui/react-components';
 import PropTypes from 'prop-types';
 import {
@@ -53,6 +54,38 @@ const SettingsDialogModelsTab = ({
 }) => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
+
+  const sortedSelectedModelIds = useMemo(() => {
+    const ids = Array.from(selectedModelIds);
+    const [sortType, sortDir] = (sortBy || 'model-asc').split('-');
+    const ascending = sortDir === 'asc';
+    const getModel = (id) => allModels.find((m) => m.id === id) || { id };
+    const getCost = (model) =>
+      (parseFloat(model.pricing?.prompt || 0) + parseFloat(model.pricing?.completion || 0)) || 0;
+    return ids.slice().sort((idA, idB) => {
+      const a = getModel(idA);
+      const b = getModel(idB);
+      let cmp = 0;
+      if (sortType === 'cost') {
+        cmp = getCost(a) - getCost(b);
+      } else if (sortType === 'provider') {
+        const provA = (idA.split('/')[0] || 'Other').toLowerCase();
+        const provB = (idB.split('/')[0] || 'Other').toLowerCase();
+        cmp = provA.localeCompare(provB);
+        if (cmp === 0) {
+          const nameA = (getModelName(a) || idA).trim().toLowerCase();
+          const nameB = (getModelName(b) || idB).trim().toLowerCase();
+          cmp = nameA.localeCompare(nameB);
+        }
+      } else {
+        const nameA = (getModelName(a) || idA).trim().toLowerCase();
+        const nameB = (getModelName(b) || idB).trim().toLowerCase();
+        cmp = nameA.localeCompare(nameB);
+      }
+      return ascending ? cmp : -cmp;
+    });
+  }, [selectedModelIds, sortBy, allModels, getModelName]);
+
   const sortOptions = useMemo(
     () => [
       { value: 'cost-asc', label: t('Cost Low to High') },
@@ -64,6 +97,22 @@ const SettingsDialogModelsTab = ({
     ],
     [t]
   );
+
+  const formatPricePer1M = (pricePerToken) =>
+    pricePerToken == null || Number.isNaN(pricePerToken)
+      ? '0.00'
+      : formatDecimal(parseFloat(pricePerToken) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const renderModelPricing = (pricing) => {
+    const inCost = formatPricePer1M(pricing?.prompt);
+    const outCost = formatPricePer1M(pricing?.completion);
+    return (
+      <>
+        {t('Input')}: ${inCost} / 1M · {t('Output')}: ${outCost} / 1M {t('tokens')}
+      </>
+    );
+  };
+
   return (
     <div className="tab-content models-tab">
       <div className="models-split-view">
@@ -248,8 +297,8 @@ const SettingsDialogModelsTab = ({
                                         </Badge>
                                       )}
                                     </div>
-                                    <Text size={200} className="model-price">
-                                      ${formatDecimal(parseFloat(model.pricing?.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M tokens
+                                    <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                                      {renderModelPricing(model.pricing)}
                                     </Text>
                                   </div>
                                   <div className="model-action">
@@ -312,8 +361,8 @@ const SettingsDialogModelsTab = ({
                               </Badge>
                             )}
                           </div>
-                          <Text size={200} className="model-price">
-                            ${formatDecimal(parseFloat(model.pricing?.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M tokens
+                          <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                            {renderModelPricing(model.pricing)}
                           </Text>
                         </div>
                         <div className="model-action">
@@ -366,7 +415,7 @@ const SettingsDialogModelsTab = ({
           {/* Selected Models List */}
           <div className="selected-models-container">
             <div className="selected-models-list">
-              {Array.from(selectedModelIds).sort().map(modelId => {
+              {sortedSelectedModelIds.map(modelId => {
                 const model = allModels.find(m => m.id === modelId) || { id: modelId };
                 const provider = modelId.split('/')[0] || 'Other';
                 const isFree = model.pricing && parseFloat(model.pricing.prompt || 0) === 0;
@@ -395,12 +444,11 @@ const SettingsDialogModelsTab = ({
                             </Badge>
                           )}
                         </div>
-                        <Text size={200} style={{ opacity: 0.7 }}>
-                          {provider}
-                          {model.pricing && (
-                            <> • ${formatDecimal(parseFloat(model.pricing.prompt || 0) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / 1M</>
-                          )}
-                        </Text>
+                        {model.pricing && (
+                          <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                            {renderModelPricing(model.pricing)}
+                          </Text>
+                        )}
                       </div>
                       {!isRequiredFree && (
                         <Button

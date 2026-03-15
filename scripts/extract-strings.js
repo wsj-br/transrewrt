@@ -7,6 +7,23 @@
  */
 
 const fs = require("fs");
+
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
+
+const extraArgs = process.argv.slice(2);
+if (extraArgs.length === 1 && (extraArgs[0] === "--help" || extraArgs[0] === "-h")) {
+  console.log("Extract t(\"...\") / t('...') from renderer source into src/renderer/locales/strings.json.\n");
+  console.log("Usage: node scripts/extract-strings.js");
+  console.log("       pnpm run i18n:extract\n");
+  console.log("Options:\n  --help, -h   Show this help and exit.\n");
+  process.exit(0);
+}
+if (extraArgs.length > 0) {
+  console.error(RED + "Unknown option(s): " + extraArgs.join(", ") + RESET);
+  console.error(RED + "Use --help to see usage." + RESET + "\n");
+  process.exit(1);
+}
 const path = require("path");
 const crypto = require("crypto");
 

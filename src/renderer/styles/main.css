@@ -1128,7 +1128,7 @@ button {
 }
 
 .model-price {
-    color: var(--text-secondary);
+    color: var(--colorNeutralForeground3, var(--text-secondary));
     font-size: 12px;
 }
 

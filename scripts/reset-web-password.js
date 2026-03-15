@@ -23,6 +23,25 @@ const CONFIG_PATH =
   process.env.CONFIG_PATH ||
   path.join(__dirname, "..", "data", "config.json");
 
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
+
+function printHelp() {
+  console.log(`Reset a user's password (web multi-user mode).
+
+Usage: reset-web-password [username] <new-password>
+
+  username     Optional (default: admin). Created with admin role if missing.
+  new-password Mandatory; stored hashed (Argon2id). Same data dir as server (CONFIG_PATH or data/config.json).
+
+Options:
+  --help, -h   Show this help and exit.
+
+Example: reset-web-password mypassword
+         reset-web-password bob mypassword
+`);
+}
+
 async function hashPassword(password) {
   return argon2.hash(password, {
     type: argon2.argon2id,
@@ -33,8 +52,19 @@ async function hashPassword(password) {
 }
 
 async function main() {
-  const arg1 = process.argv[2];
-  const arg2 = process.argv[3];
+  const argv = process.argv.slice(2);
+  if (argv.includes("--help") || argv.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+  const unknown = argv.filter((a) => typeof a === "string" && a.startsWith("-"));
+  if (unknown.length > 0) {
+    console.error(RED + "Unknown option(s): " + unknown.join(", ") + RESET);
+    console.error(RED + "Use --help to see usage." + RESET + "\n");
+    process.exit(1);
+  }
+  const arg1 = argv[0];
+  const arg2 = argv[1];
   const username = arg2 !== undefined ? arg1 : "admin";
   const newPassword = arg2 !== undefined ? arg2 : arg1;
 

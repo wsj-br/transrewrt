@@ -318,13 +318,13 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const getModelName = (model) => {
     if (model.name) {
       const nameParts = model.name.split(":");
-      if (nameParts.length > 1) return nameParts.slice(1).join(":");
+      if (nameParts.length > 1) return nameParts.slice(1).join(":").trim();
     }
     const id = model.id || "";
     const idParts = id.split(":");
-    if (idParts.length > 1) return idParts.slice(1).join(":");
+    if (idParts.length > 1) return idParts.slice(1).join(":").trim();
     const slashParts = id.split("/");
-    if (slashParts.length > 1) return slashParts.slice(1).join("/");
+    if (slashParts.length > 1) return slashParts.slice(1).join("/").trim();
     return model.name || id;
   };
 
@@ -346,12 +346,17 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   }, [filteredModels]);
 
   const sortedModelsData = useMemo(() => {
-    const [sortType, sortDir] = sortBy.split("-");
+    const [sortType, sortDir] = (sortBy || "model-asc").split("-");
     const ascending = sortDir === "asc";
+    const modelSortKey = (m) =>
+      String(getModelName(m) ?? m?.id ?? "").trim().toLowerCase();
+    const providerSortKey = (p) => String(p ?? "").toLowerCase();
+
     if (sortType === "provider") {
-      const sortedProviders = Object.keys(groupedModels).sort((a, b) =>
-        ascending ? a.localeCompare(b) : b.localeCompare(a),
-      );
+      const sortedProviders = Object.keys(groupedModels).sort((a, b) => {
+        const cmp = providerSortKey(a).localeCompare(providerSortKey(b));
+        return ascending ? cmp : -cmp;
+      });
       const sortedGroups = {};
       sortedProviders.forEach(
         (provider) => (sortedGroups[provider] = groupedModels[provider]),
@@ -363,9 +368,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       if (sortType === "cost") {
         comparison = getModelCost(a) - getModelCost(b);
       } else if (sortType === "model") {
-        comparison = getModelName(a)
-          .toLowerCase()
-          .localeCompare(getModelName(b).toLowerCase());
+        comparison = modelSortKey(a).localeCompare(modelSortKey(b));
       }
       return ascending ? comparison : -comparison;
     });

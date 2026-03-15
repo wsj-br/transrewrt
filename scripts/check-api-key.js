@@ -15,6 +15,25 @@
  */
 
 const DEFAULT_BASE_URL = "https://openrouter.ai/api/v1";
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
+
+function printHelp() {
+  console.log(`Check OpenRouter API key and print key value (masked) and limit info.
+
+Usage:
+  API_KEY=sk-or-... node scripts/check-api-key.js
+  node scripts/check-api-key.js <key>
+  node scripts/check-api-key.js --key <key> [--url <baseUrl>]
+
+Options:
+  --help, -h    Show this help and exit.
+  --key <key>   OpenRouter API key (or set API_KEY / OPENROUTER_API_KEY).
+  --url <url>   Base API URL (default: ${DEFAULT_BASE_URL}). Uses OPENROUTER_API_URL if set.
+
+Env: API_KEY, OPENROUTER_API_KEY, OPENROUTER_API_URL
+`);
+}
 
 function maskKey(key) {
   if (!key || typeof key !== "string") return "(no key)";
@@ -27,24 +46,39 @@ function parseArgs() {
   const args = process.argv.slice(2);
   let key = process.env.API_KEY || process.env.OPENROUTER_API_KEY || "";
   let baseUrl = process.env.OPENROUTER_API_URL || DEFAULT_BASE_URL;
+  let help = false;
+  const unknown = [];
 
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === "--key" && args[i + 1]) {
+    if (args[i] === "--help" || args[i] === "-h") {
+      help = true;
+    } else if (args[i] === "--key" && args[i + 1]) {
       key = args[++i];
     } else if (args[i] === "--url" && args[i + 1]) {
       baseUrl = args[++i];
     } else if (!args[i].startsWith("-") && !key) {
       key = args[i];
+    } else {
+      unknown.push(args[i]);
     }
   }
 
   baseUrl = baseUrl.replace(/\/+$/, "");
-  return { key: key.trim(), baseUrl };
+  return { key: key.trim(), baseUrl, unknown, help };
 }
 
 async function main() {
-  const { key, baseUrl } = parseArgs();
+  const { key, baseUrl, unknown, help } = parseArgs();
 
+  if (help) {
+    printHelp();
+    process.exit(0);
+  }
+  if (unknown.length > 0) {
+    console.error(RED + "Unknown option(s): " + unknown.join(", ") + RESET);
+    console.error(RED + "Use --help to see usage." + RESET + "\n");
+    process.exit(1);
+  }
   if (!key) {
     console.error("Error: API key required. Set API_KEY (or OPENROUTER_API_KEY) or pass --key <key> or the key as first argument.");
     process.exit(1);

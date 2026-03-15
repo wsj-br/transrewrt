@@ -17,6 +17,8 @@ const fs = require("fs");
 const DEFAULT_NUM_TRANSLATIONS = 100;
 const DEFAULT_NUM_REWRITES = 50;
 const DEFAULT_NUM_TRANSFORMS = 20;
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
 
 function getDataDir(mode) {
   if (mode === "web") {
@@ -202,7 +204,8 @@ function parseArgs() {
       if (arg === "--help" || arg === "-h") {
         continue;
       }
-      console.error(`Invalid option: ${arg}`);
+      console.error(RED + `Unknown option: ${arg}` + RESET);
+      console.error(RED + "Use --help to see usage." + RESET + "\n");
       printUsage();
       process.exit(1);
     }

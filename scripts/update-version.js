@@ -10,6 +10,23 @@
 const fs = require("fs");
 const path = require("path");
 
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
+
+const extraArgs = process.argv.slice(2);
+if (extraArgs.length === 1 && (extraArgs[0] === "--help" || extraArgs[0] === "-h")) {
+  console.log("Sync app version from package.json into README badge and other references.\n");
+  console.log("Usage: node scripts/update-version.js");
+  console.log("       pnpm run update-version\n");
+  console.log("Options:\n  --help, -h   Show this help and exit.\n");
+  process.exit(0);
+}
+if (extraArgs.length > 0) {
+  console.error(RED + "Unknown option(s): " + extraArgs.join(", ") + RESET);
+  console.error(RED + "Use --help to see usage." + RESET + "\n");
+  process.exit(1);
+}
+
 const ROOT = path.resolve(__dirname, "..");
 const PKG_PATH = path.join(ROOT, "package.json");
 

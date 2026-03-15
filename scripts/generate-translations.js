@@ -10,14 +10,15 @@ const fs = require("fs");
 const path = require("path");
 
 
-const DEFAULT_MODEL = "anthropic/claude-3-haiku";
+const DEFAULT_MODEL = "stepfun/step-3.5-flash:free";
 const ALTERNATIVE_MODELS = [
   "qwen/qwen3-235b-a22b-2507",
+  "anthropic/claude-3-haiku",
   "z-ai/glm-4.7-flash",
   "minimax/minimax-m2.5",
   "anthropic/claude-3.5-haiku",
-  "anthropic/claude-haiku-4.5",
 ];
+
 const DEFAULT_MAX_TOKENS = 32768;
 const CHUNK = 50;
 /** Max number of languages to translate in parallel (reduces total time). */
@@ -25,6 +26,7 @@ const PARALLEL_LANGUAGES = 4;
 
 const GREEN = "\x1b[32m";
 const BLUE = "\x1b[34m";
+const RED = "\x1b[31m";
 const YELLOW = "\x1b[33m";
 const BROWN = "\x1b[33m";
 const RESET = "\x1b[0m";
@@ -64,7 +66,6 @@ Usage:
 
 Options:
   --help, -h              Show this help and exit.
-  --dry-run, -d           Show what would be translated per language; do not call API or write files.
   --show-strings, -s      List source strings that need translation (key + text) per language.
   --retranslate, -r       Retranslate all strings (ignore existing translations).
   --model, -m <name>      OpenRouter model to use (default: ${DEFAULT_MODEL}).
@@ -73,7 +74,6 @@ Options:
 
 Examples:
   node scripts/generate-translations.js --help
-  node scripts/generate-translations.js --dry-run
   node scripts/generate-translations.js --show-strings
   node scripts/generate-translations.js
   node scripts/generate-translations.js --retranslate
@@ -89,18 +89,16 @@ Examples:
 function parseArgs() {
   const args = process.argv.slice(2);
   let retranslate = false;
-  let dryRun = false;
   let showStrings = false;
   let model = DEFAULT_MODEL;
   let maxTokens = DEFAULT_MAX_TOKENS;
   let help = false;
   let locale = null;
+  const unknown = [];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--help" || arg === "-h") {
       help = true;
-    } else if (arg === "--dry-run" || arg === "-d") {
-      dryRun = true;
     } else if (arg === "--show-strings" || arg === "-s") {
       showStrings = true;
     } else if (arg === "--retranslate" || arg === "-r") {
@@ -112,16 +110,24 @@ function parseArgs() {
       if (!Number.isNaN(n) && n > 0) maxTokens = n;
     } else if ((arg === "--locale" || arg === "-l") && args[i + 1]) {
       locale = args[++i];
+    } else {
+      unknown.push(arg);
     }
   }
-  return { retranslate, dryRun, showStrings, model, maxTokens, help, locale };
+  return { retranslate, showStrings, model, maxTokens, help, locale, unknown };
 }
 
-const { retranslate, dryRun, showStrings, model: cliModel, maxTokens, help, locale: localeFilter } = parseArgs();
+const parsed = parseArgs();
+const { retranslate, showStrings, model: cliModel, maxTokens, help, locale: localeFilter, unknown } = parsed;
 
 if (help) {
   printHelp();
   process.exit(0);
+}
+if (unknown.length > 0) {
+  console.error(RED + "Unknown option(s): " + unknown.join(", ") + RESET);
+  console.error(RED + "Use --help to see usage." + RESET + "\n");
+  process.exit(1);
 }
 
 const STRINGS_FILE = path.join(process.cwd(), "src", "renderer", "locales", "strings.json");
@@ -194,28 +200,6 @@ if (stringsCleaned) {
   log(BLUE + "Removed redundant en-GB entries from strings.json" + RESET);
 }
 const entries = Object.entries(strings);
-
-if (dryRun) {
-  log(YELLOW + "Dry run: showing what would be translated (no API calls, no files written).\n" + RESET);
-  let totalMissing = 0;
-  for (const lang of LANGUAGES) {
-    const missing = retranslate
-      ? entries
-      : entries.filter(([, entry]) => !entry.translated[lang.code]);
-    const n = missing.length;
-    totalMissing += n;
-    if (n > 0) {
-      const sample = missing.slice(0, 3).map(([k]) => k);
-      const more = n > 3 ? ` ... and ${n - 3} more` : "";
-      log(`  ${lang.code} - ${lang.name} (${lang.name}): ${n} strings to translate`);
-      log(`    Sample keys: ${sample.join(", ")}${more}`);
-    } else {
-      log(`  ${lang.code} - ${lang.name} (${lang.name}): up to date (0 to translate)`);
-    }
-  }
-  log(`\nTotal strings that would be translated: ${totalMissing}`);
-  process.exit(0);
-}
 
 if (showStrings) {
   log("Strings that need translation (no API calls, no files written).\n");

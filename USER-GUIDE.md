@@ -1,23 +1,25 @@
 
+<a id="transrewrt-user-guide"></a>
 # Transrewrt User Guide
 
 <br />
 
+<a id="introduction"></a>
 ## Introduction
 
 Transrewrt helps you work with text in three main ways:
 
-- **Translate** text from one language to another.
-- **Rewrite** text in a different style, such as clearer, shorter, or more formal.
-- **Transform** text using custom AI instructions called prompts.
+- **Translate** - convert text from one language to another.
+- **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
+- **Transform** - process text using custom AI instructions called prompts.
 
 <br />
 
-This guide explains how to use the app after it is installed and open. For installation steps, see the main [README](README.md).
+This guide explains how to use the app once it is installed and running. For installation steps, see the main [README](README.md).
 
 <br />
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > Transrewrt is available as a desktop app for Windows and Linux, and as a self-hosted web app. This guide focuses on everyday use of the app. Where something only applies to one version, it is clearly marked.
 
 <small>**Read in other languages:** [English (UK)](USER-GUIDE.md) · [Português (BR)](translated-docs/USER-GUIDE.pt-BR.md) · [العربية](translated-docs/USER-GUIDE.ar.md) · [বাংলা](translated-docs/USER-GUIDE.bn.md) · [Català](translated-docs/USER-GUIDE.ca.md) · [简体中文](translated-docs/USER-GUIDE.zh-CN.md) · [繁體中文](translated-docs/USER-GUIDE.zh-TW.md) · [Hrvatski](translated-docs/USER-GUIDE.hr.md) · [Čeština](translated-docs/USER-GUIDE.cs.md) · [Nederlands](translated-docs/USER-GUIDE.nl.md) · [English (US)](translated-docs/USER-GUIDE.en-US.md) · [Filipino](translated-docs/USER-GUIDE.tl.md) · [Français](translated-docs/USER-GUIDE.fr.md) · [Deutsch](translated-docs/USER-GUIDE.de.md) · [Ελληνικά](translated-docs/USER-GUIDE.el.md) · [हिन्दी](translated-docs/USER-GUIDE.hi.md) · [Magyar](translated-docs/USER-GUIDE.hu.md) · [Italiano](translated-docs/USER-GUIDE.it.md) · [日本語](translated-docs/USER-GUIDE.ja.md) · [Basa Jawa](translated-docs/USER-GUIDE.jv.md) · [한국어](translated-docs/USER-GUIDE.ko.md) · [Bahasa Melayu](translated-docs/USER-GUIDE.ms.md) · [فارسی](translated-docs/USER-GUIDE.fa.md) · [Polski](translated-docs/USER-GUIDE.pl.md) · [Português (PT)](translated-docs/USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](translated-docs/USER-GUIDE.pa.md) · [Română](translated-docs/USER-GUIDE.ro.md) · [Русский](translated-docs/USER-GUIDE.ru.md) · [Slovenčina](translated-docs/USER-GUIDE.sk.md) · [Español](translated-docs/USER-GUIDE.es.md) · [Kiswahili](translated-docs/USER-GUIDE.sw.md) · [Svenska](translated-docs/USER-GUIDE.sv.md) · [తెలుగు](translated-docs/USER-GUIDE.te.md) · [ภาษาไทย](translated-docs/USER-GUIDE.th.md) · [Türkçe](translated-docs/USER-GUIDE.tr.md) · [Українська](translated-docs/USER-GUIDE.uk.md) · [Tiếng Việt](translated-docs/USER-GUIDE.vi.md)</small>
@@ -76,23 +78,25 @@ This guide explains how to use the app after it is installed and open. For insta
 
 <br /><br />
 
+<a id="before-you-start"></a>
 ## Before you start
 
-To use Transrewrt, you need access to the AI service through OpenRouter.
+To use Transrewrt, you need access to the AI service via OpenRouter.
 
-You do not need to choose a paid model before you start. The app always includes the built-in **free** model, so in normal use that is enough to begin translating, rewriting, and transforming text.
+You do not need to choose a paid model before you start. The app always includes a built-in **free** model, so for normal use that is enough to begin translating, rewriting, and transforming text.
 
 In plain language:
 
 - A **model** is the AI engine that does the work.
-- An **API key** is your access key for that service.
+- An **API key** is your personal access credential for that service.
 
 If you are using the **desktop app**, you will need an API key. For detailed steps, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. In short: create an account at [OpenRouter](https://openrouter.ai), open the [Keys](https://openrouter.ai/keys) page, create a new key, and paste it into [**Settings** > **API Config**](#api-config) in Transrewrt.
 
-If you are using the **web version**, the server owner usually sets this up for you. You do not normally enter an API key in the web app.
+If you are using the **web version**, the server owner usually sets this up for you, so you will not normally need to enter an API key yourself.
 
 <br />
 
+<a id="how-to-get-an-api-key-desktop-app"></a>
 ### How to get an API key (desktop app)
 
 If you are using the desktop app, follow these steps:
@@ -107,11 +111,12 @@ If you are using the desktop app, follow these steps:
 8. Paste the key into **OpenRouter API Key**.
 9. Click **Test API Configuration** to make sure it works.
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > You can start with OpenRouter's free route or any of the other free models available. In many cases, that is enough to begin using Transrewrt without choosing a paid model.
 
 <br /><br />
 
+<a id="getting-started"></a>
 ## Getting started
 
 If this is your first time using Transrewrt, follow this order:
@@ -128,6 +133,7 @@ This order matters. It prevents the most common first-use problem: trying to run
 
 <br /><br />
 
+<a id="main-parts-of-the-window"></a>
 ## Main parts of the window
 
 The app is divided into three main areas:
@@ -138,6 +144,7 @@ The app is divided into three main areas:
 
 <br />
 
+<a id="sidebar"></a>
 ### Sidebar
 
 Use the sidebar to move around the app:
@@ -147,7 +154,7 @@ Use the sidebar to move around the app:
 <table>
   <tr>
     <td valign="top">
-       <img src="images/screenshots/sidebar.png" alt="Application Sidebar" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+       <img src="images/screenshots/en-GB/sidebar.png" alt="Application Sidebar" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
       <br />
@@ -167,6 +174,7 @@ Use the sidebar to move around the app:
 
 <br />
 
+<a id="toolbar"></a>
 ### Toolbar
 
 The toolbar changes slightly depending on where you are in the app.
@@ -176,18 +184,19 @@ The toolbar changes slightly depending on where you are in the app.
 
 The **model selector** lets you choose which AI engine to use for the current task.
 
-  ![Model selector](images/screenshots/model-selector.png)
+  ![Model selector](images/screenshots/en-GB/model-selector.png)
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > Some free models may stop working temporarily if they are unavailable or have reached a usage limit. If that happens, the app will remove that model from your list automatically.
 
 
 The **globe icon + language code** changes the app interface language, such as menus and buttons. It does **not** change the translation languages used in **Translate**.
 
-  ![Interface language selector](images/screenshots/language-selector.png)
+  ![Interface language selector](images/screenshots/en-GB/language-selector.png)
 
 <br />
 
+<a id="input-and-output-panels"></a>
 ### Input and output panels
 
 Most workspaces use a left-hand **Input** panel and a right-hand **Output** panel.
@@ -214,14 +223,16 @@ If you are wondering about the technical terms:
 
 <br /><br />
 
+<a id="translate"></a>
 ## Translate
 
 Use **Translate** when you want to convert text from one language to another.
 
-![Translate workspace](images/screenshots/translate.png)
+![Translate workspace](images/screenshots/en-GB/translate.png)
 
 <br />
 
+<a id="translate-text"></a>
 ### Translate text
 
 1. Open **Translate**.
@@ -235,6 +246,7 @@ Use **Translate** when you want to convert text from one language to another.
 
 <br />
 
+<a id="language-selection"></a>
 ### Language selection
 
 - **From** can be a specific language or **Detect Language**.
@@ -244,6 +256,7 @@ Your selected **Top languages** appear at the top of the list. You can set these
 
 <br />
 
+<a id="helpful-translation-settings"></a>
 ### Helpful translation settings
 
 In [**Settings** > **General Settings**](#general-settings), you can change how translation behaves:
@@ -255,9 +268,10 @@ In [**Settings** > **General Settings**](#general-settings), you can change how 
 
 <br />
 
+<a id="keyboard-shortcuts"></a>
 ### Keyboard shortcuts
 
-In [**Settings** > **General Settings**](#general-settings), **Behavior for ENTER** controls what happens when you press Enter:
+In [**Settings** > **General Settings**](#general-settings), **Behaviour for ENTER** controls what happens when you press Enter:
 
 - **Enter** can run the task and **Shift+Enter** can add a new line.
 - Or the app can do the reverse.
@@ -266,12 +280,12 @@ The current shortcut is also shown on the **Translate** button.
 
 <br /><br />
 
+<a id="rewrite"></a>
 ## Rewrite
 
 Use **Rewrite** when you want to improve wording without changing the main meaning.
 
-
-![Rewrite workspace](images/screenshots/rewrite.png)
+![Rewrite workspace](images/screenshots/en-GB/rewrite.png)
 
 This is useful for:
 
@@ -283,6 +297,7 @@ This is useful for:
 
 <br />
 
+<a id="rewrite-text"></a>
 ### Rewrite text
 
 1. Open **Rewrite**.
@@ -293,17 +308,16 @@ This is useful for:
 6. Review the result in **Output**.
 
 
-The same Enter key behaviour from [**Translate**](#keyboard-shortcuts) also applies here.
+The same Enter key behaviour described in [**Translate**](#keyboard-shortcuts) also applies here.
 
 <br /><br />
 
+<a id="transform"></a>
 ## Transform
 
 Use **Transform** when you want the AI to follow a custom set of instructions.
 
-
-
-![Transform workspace](images/screenshots/transform.png)
+![Transform workspace](images/screenshots/en-GB/transform.png)
 
 This is the most flexible area of the app. You can use it for tasks such as:
 
@@ -314,6 +328,7 @@ This is the most flexible area of the app. You can use it for tasks such as:
 
 <br />
 
+<a id="run-an-existing-prompt"></a>
 ### Run an existing prompt
 
 1. Open **Transform**.
@@ -325,17 +340,18 @@ This is the most flexible area of the app. You can use it for tasks such as:
 
 <br />
 
+<a id="if-you-have-no-prompts-yet"></a>
 ### If you have no prompts yet
 
 If your prompt list is empty, click **Load sample prompts**. This adds built-in examples so you can start quickly.
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > Sample prompts are provided in English. After loading them, you can edit a prompt and use **Translate prompt** if you want to adapt the prompt text for another language.
 
 <br />
 
+<a id="create-a-prompt-quickly"></a>
 ### Create a prompt quickly
-
 
 The fastest way to create a prompt is:
 
@@ -346,7 +362,7 @@ The fastest way to create a prompt is:
 5. Let the app create a draft for you.
 6. Review the draft and click **Save**.
 
-![Generate prompt](images/screenshots/transform-generate.png)
+![Generate prompt](images/screenshots/en-GB/transform-generate.png)
 
 
 <br />
@@ -355,17 +371,17 @@ The fastest way to create a prompt is:
 
 When you create or edit a prompt, the editor appears on the left and a test area appears on the right.
 
-![Transform prompt editor](images/screenshots/transform-prompt-edit.png)
+![Transform prompt editor](images/screenshots/en-GB/transform-prompt-edit.png)
 
 The main fields are:
 
-- **Prompt name**: the name you see in the prompt list.
-- **Prompt instructions (optional)**: a short helper line shown to the user.
-- **Model Role**: the overall role for the AI, such as "You are a helpful assistant."
-- **Model Instructions (one per line)**: the rules you want the AI to follow.
-- **Output description**: a short word that describes the result, such as "summary" or "rewrite".
-- **Temperature (0.0 -> 1.0)**: a creativity slider.
-- **Ask for target language**: adds a target language choice when you run the prompt.
+- **Prompt name**: the name shown in the prompt list.
+- **Prompt instructions (optional)**: a short hint displayed to the user when running the prompt.
+- **Model Role**: the overall role assigned to the AI, such as 'You are a helpful assistant.'
+- **Model Instructions (one per line)**: the specific rules you want the AI to follow.
+- **Output description**: a short word describing the result, such as 'summary' or 'rewrite'.
+- **Temperature (0.0 → 1.0)**: a creativity slider.
+- **Ask for target language**: adds a target language selector when the prompt is run.
 
 If the technical term **Temperature** is new to you, think of it like this:
 
@@ -378,11 +394,12 @@ You can also use:
 - **`Improve prompt`** to refine an existing prompt
 - **`Translate prompt`** to translate the prompt fields
 
-> [!WARNING]
+> ⚠️ **WARNING**<br/>
 > Click **`Save`** before you click **`Back to Run`**. If you go back without saving, your changes will be lost.
 
 <br />
 
+<a id="test-a-prompt-before-using-it"></a>
 ### Test a prompt before using it
 
 The test panel on the right lets you try your prompt with sample text before you use it in day-to-day work.
@@ -395,6 +412,7 @@ This is useful when:
 
 <br />
 
+<a id="manage-saved-prompts"></a>
 ### Manage saved prompts
 
 To manage saved prompts in one place, open [**Settings** > **Transform Prompts**](#transform-prompts).
@@ -409,23 +427,25 @@ There you can:
 
 ## Dashboard
 
-Use **Dashboard** to see how much you are using the app and how much it is costing.
+Use **Dashboard** to see how much you are using the app and what it is costing.
 
-![Dashboard summary](images/screenshots/dashboard-summary.png)
+![Dashboard summary](images/screenshots/en-GB/dashboard-summary.png)
 
 <br />
 
+<a id="filter-the-data"></a>
 ### Filter the data
 
 Use the filter buttons at the top to change the time range.
 
-![Dashboard filters](images/screenshots/dashboard-filter.png)
+![Dashboard filters](images/screenshots/en-GB/dashboard-filter.png)
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > In the web version, administrators may also see a **User** filter. This lets them switch between **All users** and an individual user.
 
 <br />
 
+<a id="dashboard-tabs"></a>
 ### Dashboard tabs
 
 - **Summary** gives you an overview of usage and cost.
@@ -436,6 +456,7 @@ Use the filter buttons at the top to change the time range.
 
 <br />
 
+<a id="export-data"></a>
 ### Export data
 
 The dashboard tables can export data in:
@@ -448,36 +469,39 @@ This is useful if you want to review activity outside the app or share a report.
 
 <br />
 
+<a id="delete-stored-records-for-a-model"></a>
 ### Delete stored records for a model
 
 In **By Model** or **All Calls**, you can remove stored records for a model.
 
-> [!WARNING]
+> ⚠️ **WARNING**<br/>
 > Deleting stored records cannot be undone. Only use this if you are sure you no longer need that history.
 
 To delete all data or remove records based on their age, go to [**Settings** > **Cost Tracking**](#cost-tracking). There you will find options to delete all stored data or only data older than a certain date.
 
 <br /><br />
 
+<a id="settings"></a>
 ## Settings
 
-Open **Settings** from the sidebar to customise how the app works.
+Open **Settings** from the sidebar to customise how the app behaves.
 
 The available tabs may vary:
 
-- **API Config** is available only in the desktop app.
-- **Users** is available only in the web app for administrators.
+- **API Config** is only available in the desktop app.
+- **Users** is only available in the web app, and only for administrators.
 
 <br />
 
+<a id="general-settings"></a>
 ### General settings
 
 Use **General Settings** to control typing behaviour and appearance.
 
 **Behaviour**
 
-- **Behavior for ENTER** chooses whether Enter runs the task or adds a new line.
-- **Auto-translate on paste** starts translation after you paste text.
+- **Behavior for ENTER** chooses whether Enter runs the task or inserts a new line.
+- **Auto-translate on paste** starts translation as soon as you paste text.
 - **Auto-copy result to clipboard** copies successful results automatically.
 - **Real-time translation (while typing)** translates while you type.
 - **Timeout (ms)** sets the wait time for real-time translation.
@@ -491,11 +515,12 @@ Use **General Settings** to control typing behaviour and appearance.
 
 <br />
 
+<a id="models"></a>
 ### Models
 
 Use **Settings** > **Models** to choose which models appear in the toolbar.
 
-![Settings Models tab](images/screenshots/settings-models.png)
+![Settings Models tab](images/screenshots/en-GB/settings-models.png)
 
 The page has two lists:
 
@@ -513,24 +538,26 @@ To add a model, click **Add**.
 
 To remove a model, click **X** next to it in **Selected Models**.
 
-To clear the list, click **Deselect all**. The required free model stays in the list.
+To clear the list, click **Deselect all**. The required free model will remain in the list.
 
-> [!NOTE]
+> ℹ️ **NOTE**<br/>
 > If you do not want to add credits to OpenRouter straight away, start by enabling **Free Only** and choosing the free models.
 
 <br />
 
+<a id="languages"></a>
 ### Languages
 
 Use **Settings** > **Languages** to organise the language lists used in the app.
 
 - **Top languages** are pinned near the top of the language lists in **Translate** and **Transform**.
-- **Custom language** lets you add a language that is not already in the built-in list.
+- **Custom language** lets you add a language that is not in the built-in list.
 
-If you add a custom language, it appears in the language selectors like the built-in options.
+If you add a custom language, it appears in the language selectors alongside the built-in options.
 
 <br />
 
+<a id="cost-tracking"></a>
 ### Cost tracking
 
 Use **Settings** > **Cost Tracking** to manage cost information.
@@ -540,13 +567,14 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 - **Reset Cost** resets the stored total to zero.
 - **Sync with API key usage** sets the total to match the usage reported by OpenRouter.
 - **API Key Usage** shows usage details, if available.
-- **Delete cost data** removes all data or only entries older than a selected date.
+- **Delete cost data** removes all data, or only entries older than a selected date.
 
-> [!WARNING]
+> ⚠️ **WARNING**<br/>
 > Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently.
 
 <br />
 
+<a id="transform-prompts"></a>
 ### Transform prompts
 
 Use **Settings** > **Transform Prompts** to manage prompts in bulk.
@@ -560,14 +588,16 @@ You can:
 
 <br />
 
+<a id="users"></a>
 ### Users
 
-**Web only, administrator only**
+**Web only - administrator only**
 
-Use **Users** to manage user accounts in the web version. This includes adding users, changing details, resetting passwords, and deleting accounts.
+Use **Users** to manage user accounts in the web version. You can add users, update their details, reset passwords, and delete accounts.
 
 <br />
 
+<a id="api-config"></a>
 ### API config
 
 **Desktop only**
@@ -575,21 +605,20 @@ Use **Users** to manage user accounts in the web version. This includes adding u
 Use **API Config** to connect the desktop app to OpenRouter or to a Transrewrt proxy.
 
 - **OpenRouter API Key** is where you paste your key.
-- **API URL** is the service address. Leave it at the default unless you were given a different one.
-- **Use Transrewrt Proxy** sends requests through a proxy service instead of directly to OpenRouter.
+- **API URL** is the service address. Leave this at the default unless you have been given a different one.
+- **Use Transrewrt Proxy** routes requests through a proxy service instead of directly to OpenRouter.
 - **Key Seed** appears when the proxy option is enabled.
-- **Test API Configuration** checks whether the current setup works.
+- **Test API Configuration** checks whether the current setup is working.
 
 For detailed steps on obtaining your API key, see [How to get an API key](#how-to-get-an-api-key-desktop-app) above.
 
-> [!NOTE]
-> If you are not sure what **API URL**, **Use Transrewrt Proxy**, or **Key Seed** mean, leave them 
-> unchanged and use the default OpenRouter setup. More information about the proxy is available in 
-> the [Transrewrt Proxy repository](https://github.com/wsj-br/transrewrt-proxy).
+> ℹ️ **NOTE**<br/>
+> If you are not sure what **API URL**, **Use Transrewrt Proxy**, or **Key Seed** mean, leave them unchanged and use the default OpenRouter setup. More information about the proxy is available in the [Transrewrt Proxy repository](https://github.com/wsj-br/transrewrt-proxy).
 
 
 <br />
 
+<a id="about"></a>
 ### About
 
 The **About** tab shows:
@@ -601,12 +630,14 @@ The **About** tab shows:
 
 <br /><br />
 
+<a id="common-issues"></a>
 ## Common issues
 
-If something does not work as expected, check these points first.
+If something does not work as expected, check the following points first.
 
 <br />
 
+<a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
 ### The app will not translate, rewrite, or transform text
 
 Check that:
@@ -615,7 +646,7 @@ Check that:
 - at least one model is listed in [**Settings** > **Models**](#models)
 - your API setup is working
 
-If you are on the desktop app:
+If you are using the desktop app:
 
 1. Open [**Settings** > **API Config**](#api-config).
 2. Check that your API key is saved.
@@ -623,6 +654,7 @@ If you are on the desktop app:
 
 <br />
 
+<a id="the-model-list-is-empty"></a>
 ### The model list is empty
 
 Open [**Settings** > **Models**](#models) and click **Refresh**.
@@ -635,6 +667,7 @@ If needed:
 
 <br />
 
+<a id="the-result-is-too-slow-or-too-expensive"></a>
 ### The result is too slow or too expensive
 
 Try one or more of these:
@@ -646,12 +679,14 @@ Try one or more of these:
 
 <br />
 
+<a id="the-interface-is-in-the-wrong-language"></a>
 ### The interface is in the wrong language
 
 Click the globe icon in the [toolbar](#toolbar) and choose your preferred **Interface language**.
 
 <br />
 
+<a id="the-text-is-too-small-or-hard-to-read"></a>
 ### The text is too small or hard to read
 
 Open [**Settings** > **General Settings**](#general-settings) and change:
@@ -661,12 +696,14 @@ Open [**Settings** > **General Settings**](#general-settings) and change:
 
 <br />
 
+<a id="i-changed-a-prompt-and-lost-the-edits"></a>
 ### I changed a prompt and lost the edits
 
-When editing prompts, always click **Save** before **Back to Run**.
+When editing a prompt, always click **Save** before clicking **Back to Run**.
 
 <br /><br />
 
+<a id="quick-tips"></a>
 ## Quick tips
 
 - Start with [**Translate**](#translate) to make sure your setup works before you move on to [**Rewrite**](#rewrite) or [**Transform**](#transform).
@@ -675,3 +712,18 @@ When editing prompts, always click **Save** before **Back to Run**.
 - Use [**Dashboard**](#dashboard) if you want to keep an eye on usage and cost.
 - Export prompts regularly if you build a prompt library you want to keep safe (see [Transform Prompts](#transform-prompts)).
 
+<br /><br />
+
+<a id="disclaimer"></a>
+## Disclaimer
+
+Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands.
+
+<br /><br />
+
+<a id="license"></a>
+## License
+
+Copyright © 2026 Waldemar Scudeller Jr.
+
+[Apache License 2.0](LICENSE)

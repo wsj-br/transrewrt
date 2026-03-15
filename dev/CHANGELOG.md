@@ -9,6 +9,22 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Dashboard > All Calls expanded row: label column now grows to fit translated labels (e.g. "Prompt de transformation") instead of truncating; uses `minmax(110px, max-content)`.
+- **Added**: Call details "Input"/"Output" stats line (chars · words · paragraphs) is now translatable via i18n and `interpolateTemplate`.
+- **Changed**: README and USER-GUIDE: GitHub-style alerts (`[!NOTE]`, `[!WARNING]`) replaced with standard markdown blockquotes using emojis (ℹ️ NOTE, ⚠️ WARNING) and `<br/>` for compatibility.
+- **Changed**: USER-GUIDE.md copy-edited for clarity and consistency; removed duplicate anchor IDs, tightened wording, and standardised UK English throughout.
+- **Changed**: README now links to the User Guide after the feature summary and at the end of the Quick Start section.
+- **Removed**: `--dry-run` / `-d` option from `translate-docs` and `generate-translations` scripts.
+- **Changed**: `translate-docs` now logs and totals `reasoning_tokens` (from `usage.completion_tokens_details.reasoning_tokens`) in per-block, per-locale, and summary lines when a thinking model reports them.
+- **Fixed**: Settings > Models: ordering by model name or provider now uses case-insensitive sort in both Available and Selected lists.
+- **Changed**: translate-docs now runs documents (README, USER-GUIDE) in parallel within each locale to reduce per-language translation time.
+- **Added**: Translated docs (translate-docs) now include YAML frontmatter: `translated_at`, `source_hash`, `source_mtime`, `model`; translation is skipped when existing file's `source_hash` matches the current source (no API calls, no write). `--force` / `-f` forces translation even when the hash matches.
+- **Changed**: README and USER-GUIDE screenshot paths now use `images/screenshots/en-GB/`; translate-docs substitutes `../images/screenshots/<locale>/` (and `../images/` for other image paths) in translated outputs so images resolve correctly from the `translated-docs/` folder. Doc links are rewritten: en-GB source links (`README.md`, `USER-GUIDE.md`) become `../README.md`, `../USER-GUIDE.md`; other-language links (`translated-docs/README.xx.md`) become same-folder links (`README.xx.md`) so all links work from `translated-docs/`.
+- **Added**: README and USER-GUIDE use stable fragment IDs via `<a id="slug"></a>` above headings so internal links work after translation; translate-docs prompt instructs to keep fragment and anchor ids unchanged.
+- **Changed**: Settings > Models now shows input and output cost per 1M tokens separately (Input: $X / 1M · Output: $X / 1M tokens) instead of a single average.
+- **Changed**: `translate-docs` simplified: sends the whole document per API call; if document exceeds 16k chars, splits at nearest markdown heading into blocks of at most 16k. Section hash cache and batch-JSON logic removed; `--retranslate` option removed.
+- **Changed**: All scripts that accept CLI arguments now reject unknown options: they print an error message in red and exit with code 1. Scripts with no supported options (extract-strings, update-version, electron-rebuild, write-build-timestamp, check-node-version, node-rebuild) reject any argument; scripts with options (take-screenshots, generate-translations, translate-docs, generate-test-data, check-api-key, reset-web-password) reject only options they do not support.
+- **Added**: All scripts now support `--help` and `-h` to print usage and exit: check-api-key, reset-web-password, extract-strings, update-version, electron-rebuild, write-build-timestamp, check-node-version, and node-rebuild (take-screenshots, generate-translations, translate-docs, generate-test-data already had help).
 - **Changed**: `take-screenshots` transform-prompt-edit now runs a final teardown that clicks "Back to Run", leaving the app in Transform run view (known state); important when using `--screenshot=transform-prompt-edit` or other subsets.
 - **Fixed**: `take-screenshots` transform-generate: when run after transform-prompt-edit, the app stays in the transform editor (no prompt selector). Initial prepare now clicks "Back to Run" when the editor is open so the prompt selector is visible before selecting "Rewrite with Synonyms" and opening the editor again.
 - **Changed**: `generate-translations.js` now translates up to 4 languages in parallel (configurable via `PARALLEL_LANGUAGES`) to reduce total run time; `strings.json` is written once after each batch to avoid write races.
