@@ -2,9 +2,9 @@ import { tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import StyleSelector from "../StyleSelector";
 import { Zap, Square } from "lucide-react";
-import { getRewriteStyleOptions, REWRITE_STYLE_KEYS } from "../../constants";
+import { getRewriteModeOptions, REWRITE_MODE_KEYS } from "../../constants";
 
-const REWRITE_STYLE_GRAMMAR = REWRITE_STYLE_KEYS[0]; // "Check Spelling & Grammar"
+const REWRITE_MODE_GRAMMAR = REWRITE_MODE_KEYS[0]; // "Check Spelling & Grammar"
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str) {
@@ -13,26 +13,26 @@ function stripKeySymbols(str) {
 
 /**
  * Returns { leftPanel, rightPanel } for rewrite mode.
- * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite style, showOutputDiff.
+ * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: rewrite mode, showOutputDiff.
  */
 export function getRewritePanels({ common, input, output, options }) {
   const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
   const {
-    rewriteStyle,
-    setRewriteStyle,
+    rewriteMode,
+    setRewriteMode,
     showOutputDiff = false,
     setShowOutputDiff,
     outputIsModelResult = false,
   } = options;
-  const isGrammarStyle = rewriteStyle === REWRITE_STYLE_GRAMMAR;
+  const isGrammarMode = rewriteMode === REWRITE_MODE_GRAMMAR;
 
   const leftPanelControls = (
     <div className={styles.rewriteControlsRow}>
       <StyleSelector
-        label={t("Style:")}
-        value={rewriteStyle}
-        onChange={setRewriteStyle}
-        options={getRewriteStyleOptions(t)}
+        label={t("Mode:")}
+        value={rewriteMode}
+        onChange={setRewriteMode}
+        options={getRewriteModeOptions(t)}
         iconColor={tokens.colorPaletteLavenderBorderActive}
       />
     </div>
@@ -97,10 +97,10 @@ export function getRewritePanels({ common, input, output, options }) {
           onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
-          showDiff={isGrammarStyle ? showOutputDiff : false}
-          inputTextForDiff={isGrammarStyle ? input.text : undefined}
-          outputIsModelResult={isGrammarStyle ? outputIsModelResult : false}
-          onDiffToggle={isGrammarStyle && setShowOutputDiff ? () => setShowOutputDiff((v) => !v) : undefined}
+          showDiff={isGrammarMode ? showOutputDiff : false}
+          inputTextForDiff={isGrammarMode ? input.text : undefined}
+          outputIsModelResult={isGrammarMode ? outputIsModelResult : false}
+          onDiffToggle={isGrammarMode && setShowOutputDiff ? () => setShowOutputDiff((v) => !v) : undefined}
         />
       </div>
       <div className={styles.runButtonContainer} aria-hidden="true" />

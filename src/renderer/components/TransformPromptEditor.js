@@ -11,6 +11,7 @@ import {
 } from "@fluentui/react-components";
 import { ArrowLeft, Save, Trash2, X, Languages, Bot, Sparkles } from "lucide-react";
 import PropTypes from "prop-types";
+import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import TransformTranslateModal from "./TransformTranslateModal";
 import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
@@ -174,11 +175,10 @@ const TransformPromptEditor = ({
   generatePromptConfig,
   model,
   models = [],
-  topLanguages = [],
-  allLanguages = [],
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
+  const { topLanguages, allLanguages } = useContentLanguageLists();
   const translateAbortRef = useRef(null);
   const improveAbortRef = useRef(null);
   const generateAbortRef = useRef(null);
@@ -430,6 +430,7 @@ const TransformPromptEditor = ({
             onClick={onBackToRun}
             className={styles.backButton}
             aria-label={t("Back to Run")}
+            data-testid="transform-editor-back-to-run"
           >
             {t("Back to Run")}
           </Button>
@@ -441,6 +442,7 @@ const TransformPromptEditor = ({
               className={styles.generatePromptButton}
               icon={<Sparkles size={16} />}
               onClick={openGenerateModal}
+              data-testid="generate-prompt-button"
             >
               {t("Generate prompt")}
             </Button>
@@ -454,7 +456,7 @@ const TransformPromptEditor = ({
             id="transform-prompt-name"
             value={name}
             onChange={(_, data) => setName(data.value)}
-            placeholder={t("e.g. Summarize")}
+            placeholder={t("e.g. Summarise")}
           />
         </div>
         <div className={styles.field}>
@@ -488,7 +490,7 @@ const TransformPromptEditor = ({
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-output-desc">{t("Output description (e.g. transformed, summarized, etc.)")}</Label>
+          <Label htmlFor="transform-prompt-output-desc">{t("Output description (e.g. transformed, summarised, etc.)")}</Label>
           <Input
             id="transform-prompt-output-desc"
             value={outputDescription}
@@ -570,8 +572,6 @@ const TransformPromptEditor = ({
           onTargetLangChange={setTranslateTargetLang}
           onConfirm={handleTranslateConfirm}
           onCancel={handleTranslateCancel}
-          topLanguages={topLanguages}
-          allLanguages={allLanguages}
           models={models}
           model={model}
           loading={translateLoading}
@@ -624,8 +624,6 @@ TransformPromptEditor.propTypes = {
   generatePromptConfig: PropTypes.func,
   model: PropTypes.string,
   models: PropTypes.arrayOf(PropTypes.string),
-  topLanguages: PropTypes.arrayOf(PropTypes.string),
-  allLanguages: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default TransformPromptEditor;

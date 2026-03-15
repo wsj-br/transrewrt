@@ -24,7 +24,7 @@ export function useProcessing({
   // Rewrite
   inputTextRewrite,
   setOutputTextRewrite,
-  rewriteStyle,
+  rewriteMode,
   // Transform
   inputTextTransform,
   setOutputTextTransform,
@@ -233,7 +233,7 @@ export function useProcessing({
     try {
       const result = await rewrite(
         text,
-        rewriteStyle,
+        rewriteMode,
         activeModel,
         abortControllerRef.current.signal
       );
@@ -303,7 +303,7 @@ export function useProcessing({
   }, [
     t,
     inputTextRewrite,
-    rewriteStyle,
+    rewriteMode,
     activeModel,
     isProcessing,
     settings.auto_copy,

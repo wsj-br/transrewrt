@@ -17,7 +17,7 @@ import { formatInteger, formatDecimal } from "../utils/misc/formatUtils";
 export default function DashboardTabByUsage({
   loading,
   byTargetLang,
-  byRewriteStyle,
+  byRewriteMode,
   byTransformPrompt,
   styles,
 }) {
@@ -161,23 +161,23 @@ export default function DashboardTabByUsage({
 
         <div className={styles.byUsageChartBlock}>
           <Text as="h4" size={400} className={styles.byUsageTitle}>
-            {t("Rewrite style")}
+            {t("Rewrite mode")}
           </Text>
           <div
             className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}
           >
-            {byRewriteStyle.length > 0 ? (
+            {byRewriteMode.length > 0 ? (
               (() => {
-                const totalRewriteCalls = byRewriteStyle.reduce(
+                const totalRewriteCalls = byRewriteMode.reduce(
                   (s, r) => s + (Number(r.calls) || 0),
                   0
                 );
                 return (
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
-                      data={byRewriteStyle.map((r) => ({
+                      data={byRewriteMode.map((r) => ({
                         ...r,
-                        label: r.rewrite_style,
+                        label: r.rewrite_mode,
                       }))}
                       layout="vertical"
                       margin={{ left: 140, right: 16, top: 4, bottom: 4 }}
@@ -198,7 +198,7 @@ export default function DashboardTabByUsage({
                       />
                       <YAxis
                         type="category"
-                        dataKey="rewrite_style"
+                        dataKey="rewrite_mode"
                         width={135}
                         style={byUsageAxisStyle}
                         tick={byUsageTickStyle}
@@ -401,7 +401,7 @@ export default function DashboardTabByUsage({
 DashboardTabByUsage.propTypes = {
   loading: PropTypes.bool.isRequired,
   byTargetLang: PropTypes.arrayOf(PropTypes.object).isRequired,
-  byRewriteStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
+  byRewriteMode: PropTypes.arrayOf(PropTypes.object).isRequired,
   byTransformPrompt: PropTypes.arrayOf(PropTypes.object).isRequired,
   styles: PropTypes.object.isRequired,
 };

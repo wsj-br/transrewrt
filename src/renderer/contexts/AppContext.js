@@ -270,7 +270,7 @@ export const AppProvider = ({ children }) => {
         model: result.model_used || model,
         source_lang: sourceLang || null,
         target_lang: targetLang || null,
-        rewrite_style: null,
+        rewrite_mode: null,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
         completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
@@ -468,12 +468,12 @@ export const AppProvider = ({ children }) => {
   };
 
   // Rewrite text
-  const rewrite = async (text, style, model, signal = null) => {
+  const rewrite = async (text, mode, model, signal = null) => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await apiService.rewrite(text, style, model, signal);
+      const result = await apiService.rewrite(text, mode, model, signal);
 
       result.model_used = result.model || model;
       await applyCostToResult(setSetting, result);
@@ -487,7 +487,7 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
 
-      logApiCall("rewrite", result, { rewrite_style: style || "" });
+      logApiCall("rewrite", result, { rewrite_mode: mode || "" });
 
       const rewriteInputStats = getTextStats(typeof text === "string" ? text : "");
       const rewriteOutputStats = getTextStats(result.content ?? "");
@@ -497,7 +497,7 @@ export const AppProvider = ({ children }) => {
         model: result.model_used || model,
         source_lang: null,
         target_lang: null,
-        rewrite_style: style || null,
+        rewrite_mode: mode || null,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
         completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
@@ -572,7 +572,7 @@ export const AppProvider = ({ children }) => {
         model: result.model_used || model,
         source_lang: null,
         target_lang: targetLang ?? null,
-        rewrite_style: null,
+        rewrite_mode: null,
         transform_prompt: promptConfig?.name ?? null,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
         completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),

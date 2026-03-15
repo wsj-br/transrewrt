@@ -20,6 +20,14 @@ const ALTERNATIVE_MODELS = [
 ];
 const DEFAULT_MAX_TOKENS = 32768;
 const CHUNK = 50;
+/** Max number of languages to translate in parallel (reduces total time). */
+const PARALLEL_LANGUAGES = 4;
+
+const GREEN = "\x1b[32m";
+const BLUE = "\x1b[34m";
+const YELLOW = "\x1b[33m";
+const BROWN = "\x1b[33m";
+const RESET = "\x1b[0m";
 
 function timestamp() {
   return new Date().toTimeString().slice(0, 8);
@@ -43,7 +51,7 @@ function err(...args) {
 }
 
 function printHelp() {
-  log(`
+  log(BLUE + `
 Generate translations for UI strings using OpenRouter.
 
 Reads src/renderer/locales/strings.json (from i18n:extract), translates missing
@@ -72,7 +80,8 @@ Examples:
   node scripts/generate-translations.js -l pt-BR
   node scripts/generate-translations.js -m openai/gpt-4o
   node scripts/generate-translations.js -r -m anthropic/claude-sonnet-4
-`);
+
+`+ RESET);
 }
 
 
@@ -136,37 +145,40 @@ if (fs.existsSync(UI_LANGUAGES_PATH)) {
 }
 
 if (!fs.existsSync(STRINGS_FILE)) {
-  err("[translate] Run i18n:extract first to create strings.json");
+  err("Run i18n:extract first to create strings.json");
   process.exit(1);
 }
 
 if (LANGUAGES.length === 0) {
-  err("[translate] No languages in src/renderer/locales/ui-languages.json");
+  err("No languages in src/renderer/locales/ui-languages.json");
   process.exit(1);
 }
 
 if (localeFilter) {
   if (localeFilter === "en-GB" || localeFilter === "en") {
-    log("[translate] en-GB is the source language; no translation needed.");
+    log("en-GB is the source language; no translation needed.");
     process.exit(0);
   }
   const match = LANGUAGES.find((l) => l.code === localeFilter);
   if (!match) {
-    err(`[translate] Locale "${localeFilter}" not found in ui-languages.json. Available: ${LANGUAGES.map((l) => l.code).join(", ")}`);
+    err(`Locale "${localeFilter}" not found in ui-languages.json. Available: ${LANGUAGES.map((l) => l.code).join(", ")}`);
     process.exit(1);
   }
   LANGUAGES = [match];
-  log(`[translate] single locale: ${localeFilter}`);
+  log(`single locale: ${localeFilter}`);
 }
 
 if (!API_KEY) {
-  warn("[translate] API_KEY not set; will only write locale files from existing strings.json");
+  warn("API_KEY not set; will only write locale files from existing strings.json");
 }
 
 if (retranslate) {
-  log("[translate] --retranslate: will translate all strings for each language");
+  log("--retranslate: will translate all strings for each language");
 }
-log(`[translate] model: ${MODEL}, max_tokens: ${MAX_TOKENS}`);
+log(BLUE + `🤖 model: ${MODEL}, max_tokens: ${MAX_TOKENS}` + RESET);
+if (LANGUAGES.length > 1) {
+  log(BLUE + `🌐 ${LANGUAGES.length} languages; up to ${Math.min(PARALLEL_LANGUAGES, LANGUAGES.length)} in parallel` + RESET);
+}
 
 const strings = JSON.parse(fs.readFileSync(STRINGS_FILE, "utf8"));
 // Remove redundant en-GB entries (source language; keys are used as-is at runtime).
@@ -179,12 +191,12 @@ for (const entry of Object.values(strings)) {
 }
 if (stringsCleaned) {
   fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
-  log("[translate] Removed redundant en-GB entries from strings.json");
+  log(BLUE + "Removed redundant en-GB entries from strings.json" + RESET);
 }
 const entries = Object.entries(strings);
 
 if (dryRun) {
-  log("[translate] Dry run: showing what would be translated (no API calls, no files written).\n");
+  log(YELLOW + "Dry run: showing what would be translated (no API calls, no files written).\n" + RESET);
   let totalMissing = 0;
   for (const lang of LANGUAGES) {
     const missing = retranslate
@@ -206,7 +218,7 @@ if (dryRun) {
 }
 
 if (showStrings) {
-  log("[translate] Strings that need translation (no API calls, no files written).\n");
+  log("Strings that need translation (no API calls, no files written).\n");
   for (const lang of LANGUAGES) {
     const missing = retranslate
       ? entries
@@ -245,12 +257,12 @@ function extractUsage(data) {
 
 // eslint-disable-next-line no-unused-vars -- reserved for future use
 function abortWithError(message, details = null) {
-  err("\n[translate] ERROR:", message);
+  err("\nERROR:", message);
   if (details != null) {
-    err("[translate] Details:");
+    err("Details:");
     if (details instanceof Error) {
       err(details.stack || details.message);
-      if (details.cause) err("[translate] Cause:", details.cause);
+      if (details.cause) err("Cause:", details.cause);
     } else if (typeof details === "object") {
       err(JSON.stringify(details, null, 2));
     } else {
@@ -359,10 +371,15 @@ function logUsage(label, usage, totalSoFar) {
   const tokens = prompt_tokens + completion_tokens;
   const costStr = total_cost > 0 ? `$${total_cost.toFixed(6)} USD` : (tokens > 0 ? "(no cost reported)" : "no API calls");
   const totalStr = totalSoFar != null && totalSoFar > 0 ? `; total so far: $${totalSoFar.toFixed(6)} USD` : "";
-  log(`[translate] ${label}: ${tokens} tokens (${prompt_tokens} prompt + ${completion_tokens} completion), ${costStr}${totalStr}`);
+  log(GREEN + `💵 ${label}: ${tokens} tokens (${prompt_tokens} prompt + ${completion_tokens} completion), ${costStr}${totalStr}` + RESET);
 }
 
-async function generateForLang(lang) {
+/**
+ * @param {{ code: string; name: string }} lang
+ * @param {{ writeStringsFile?: boolean }} options - writeStringsFile: if false, do not write STRINGS_FILE (caller writes once after parallel batch).
+ */
+async function generateForLang(lang, options = {}) {
+  const writeStringsFile = options.writeStringsFile !== false;
   const usageBefore = {
     prompt_tokens: usageTotal.prompt_tokens,
     completion_tokens: usageTotal.completion_tokens,
@@ -373,9 +390,9 @@ async function generateForLang(lang) {
     ? entries
     : entries.filter(([, entry]) => !entry.translated[lang.code]);
   if (missing.length === 0) {
-    log(`[translate] ${lang.code} - ${lang.name}: up to date`);
+    log(`${lang.code} - ${lang.name}: up to date`);
   } else {
-    log(`[translate] ${lang.code} - ${lang.name}: ${missing.length} strings to translate`);
+    log(`${lang.code} - ${lang.name}: ${missing.length} strings to translate`);
     const modelsToTry = [MODEL, ...ALTERNATIVE_MODELS.filter((m) => m !== MODEL)];
     for (let i = 0; i < missing.length; i += CHUNK) {
       const chunk = missing.slice(i, i + CHUNK);
@@ -394,7 +411,7 @@ async function generateForLang(lang) {
           break;
         } catch (e) {
           lastError = e;
-          warn(`[translate] ${lang.code} chunk ${chunkNum}/${chunkTotal} failed with ${model}:`, e.message);
+          warn(`${lang.code} chunk ${chunkNum}/${chunkTotal} failed with ${model}:`, e.message);
         }
       }
       if (result) {
@@ -403,10 +420,12 @@ async function generateForLang(lang) {
         });
         log(`  ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} done`);
       } else {
-        warn(`[translate] ${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} skipped (all ${modelsToTry.length} models failed). Last: ${lastError?.message}`);
+        warn(`${lang.code} - ${lang.name} chunk ${chunkNum}/${chunkTotal} skipped (all ${modelsToTry.length} models failed). Last: ${lastError?.message}`);
       }
     }
-    fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
+    if (writeStringsFile) {
+      fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
+    }
   }
 
   const locale = {};
@@ -416,7 +435,7 @@ async function generateForLang(lang) {
   }
   const localePath = path.join(LOCALES_DIR, `${lang.code}.json`);
   fs.writeFileSync(localePath, JSON.stringify(locale, null, 2), "utf8");
-  log(`[translate] ${lang.code} - ${lang.name}: wrote ${Object.keys(locale).length} strings to ${localePath}`);
+  log(`${lang.code} - ${lang.name}: wrote ${Object.keys(locale).length} strings to ${localePath}`);
 
   const usageForLang = {
     prompt_tokens: usageTotal.prompt_tokens - usageBefore.prompt_tokens,
@@ -434,8 +453,23 @@ async function generateForLang(lang) {
     fs.mkdirSync(LOCALES_DIR, { recursive: true });
   }
   let totalStringsTranslated = 0;
-  for (const lang of LANGUAGES) {
-    totalStringsTranslated += await generateForLang(lang);
+  const runParallel = LANGUAGES.length > 1;
+  if (runParallel) {
+    for (let i = 0; i < LANGUAGES.length; i += PARALLEL_LANGUAGES) {
+      const batch = LANGUAGES.slice(i, i + PARALLEL_LANGUAGES);
+      const langList = batch.map(l => `${l.name} (${l.code})`).join(' • ');
+      log(BROWN + "------------------------------------------------------------------------------------------------------------" + RESET);
+      log(BROWN + " 🚀 Running in parallel:    " + langList + RESET);
+      log(BROWN + "------------------------------------------------------------------------------------------------------------" + RESET);
+      const results = await Promise.all(
+        batch.map((lang) => generateForLang(lang, { writeStringsFile: false }))
+      );
+      totalStringsTranslated += results.reduce((a, n) => a + n, 0);
+      log(BLUE + "💾 Writing strings.json" + RESET);
+      fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
+    }
+  } else {
+    totalStringsTranslated += await generateForLang(LANGUAGES[0]);
   }
 
   // Remove from strings.json any translated keys for locales not in ui-languages.json.
@@ -454,20 +488,20 @@ async function generateForLang(lang) {
   if (anyRemoved) {
     fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
     const totalRemoved = Object.values(removedByLocale).reduce((a, n) => a + n, 0);
-    log(`[translate] Pruned ${totalRemoved} orphaned translation(s) from strings.json (locales not in ui-languages.json): ${Object.entries(removedByLocale).map(([c, n]) => `${c}: ${n}`).join(", ")}`);
+    log(`Pruned ${totalRemoved} orphaned translation(s) from strings.json (locales not in ui-languages.json): ${Object.entries(removedByLocale).map(([c, n]) => `${c}: ${n}`).join(", ")}`);
   }
 
   const totalTokens = usageTotal.prompt_tokens + usageTotal.completion_tokens;
-  log("\n[translate] done");
+  log("\ndone");
 
   log("--- totalizer ---");
-  log(`[translate] time elapsed: ${formatElapsed(Date.now() - startTime)}`);
-  log(`[translate] total strings translated: ${totalStringsTranslated}`);
-  log(`[translate] total tokens: ${totalTokens} (${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion)`);
+  log(`time elapsed: ${formatElapsed(Date.now() - startTime)}`);
+  log(`total strings translated: ${totalStringsTranslated}`);
+  log(`total tokens: ${totalTokens} (${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion)`);
   if (usageTotal.total_cost > 0) {
-    log(`[translate] total cost: $${usageTotal.total_cost.toFixed(6)} USD`);
+    log(`total cost: $${usageTotal.total_cost.toFixed(6)} USD`);
   } else if (totalTokens > 0) {
-    log("[translate] total cost: (not reported by API; enable usage accounting for cost)");
+    log("total cost: (not reported by API; enable usage accounting for cost)");
   }
 
   if (totalStringsTranslated > 0) {

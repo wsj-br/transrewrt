@@ -80,7 +80,7 @@ function formatInputOutputStats(row, prefix, locale) {
 const FIELDS = [
   { key: "source_lang", labelKey: "Source", format: (row) => orDash(row.source_lang) },
   { key: "target_lang", labelKey: "Target", format: (row) => orDash(row.target_lang) },
-  { key: "rewrite_style", labelKey: "Style", format: (row) => orDash(row.rewrite_style) },
+  { key: "rewrite_mode", labelKey: "Mode", format: (row) => orDash(row.rewrite_mode) },
   { key: "transform_prompt", labelKey: "Transform prompt", format: (row) => orDash(row.transform_prompt) },
   { key: "prompt_tokens", labelKey: "Prompt tokens", format: (row, locale) => formatInteger(row.prompt_tokens, locale) },
   { key: "completion_tokens", labelKey: "Completion tokens", format: (row, locale) => formatInteger(row.completion_tokens, locale) },

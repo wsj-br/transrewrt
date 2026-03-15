@@ -31,7 +31,7 @@ const api = {
   getSummaryByModel: (from, to) => ipcRenderer.invoke('appDb:getSummaryByModel', from, to).then((r) => r?.rows ?? []),
   getSummaryByDay: (from, to) => ipcRenderer.invoke('appDb:getSummaryByDay', from, to).then((r) => r?.rows ?? []),
   getSummaryByTargetLang: (from, to) => ipcRenderer.invoke('appDb:getSummaryByTargetLang', from, to).then((r) => r?.rows ?? []),
-  getSummaryByRewriteStyle: (from, to) => ipcRenderer.invoke('appDb:getSummaryByRewriteStyle', from, to).then((r) => r?.rows ?? []),
+  getSummaryByRewriteMode: (from, to) => ipcRenderer.invoke('appDb:getSummaryByRewriteMode', from, to).then((r) => r?.rows ?? []),
   getSummaryByTransformPrompt: (from, to) => ipcRenderer.invoke('appDb:getSummaryByTransformPrompt', from, to).then((r) => r?.rows ?? []),
   getAllCalls: (from, to, page, pageSize) =>
     ipcRenderer.invoke('appDb:getAllCalls', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),

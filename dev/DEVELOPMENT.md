@@ -35,6 +35,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **Node.js 24** (LTS). The project uses Electron 41, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
+- **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
 - **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated.
 
 ### Windows 11
@@ -56,8 +57,14 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 1. **Node 24**: Install [nvm](https://github.com/nvm-sh/nvm), then `nvm install 24` and `nvm use 24`.
 2. **Electron dependencies**:  
    `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-3. **Optional – direnv**: `sudo apt install direnv` and add `eval "$(direnv hook bash)"` (or zsh) to your shell rc; run `direnv allow` in the project root.
-4. **Docker**: `sudo apt install docker.io docker-compose` and `sudo usermod -aG docker $USER` (log out and back in).
+3. **Chromium** (for `pnpm take-screenshots`):  
+   `sudo apt install chromium`  
+   On ARM (e.g. Raspberry Pi) Puppeteer’s bundled Chrome is x64; use system Chromium and set `export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium` (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
+4. **Noto fonts** (optional, for language-selector screenshot):  
+   `sudo apt install fonts-noto-cjk fonts-noto-core`  
+   Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
+5. **Optional – direnv**: `sudo apt install direnv` and add `eval "$(direnv hook bash)"` (or zsh) to your shell rc; run `direnv allow` in the project root.
+6. **Docker**: `sudo apt install docker.io docker-compose` and `sudo usermod -aG docker $USER` (log out and back in).
 
 ---
 

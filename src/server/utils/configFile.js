@@ -12,7 +12,7 @@ const STATE_KEYS = [
   "source_language",
   "target_language",
   "app_mode",
-  "rewrite_style",
+  "rewrite_mode",
   "transform_prompt",
   "web_session",
   "web_session_expires_at",
@@ -25,7 +25,7 @@ const DEFAULT_STATE = {
   source_language: "Detect Language",
   target_language: "Spanish",
   app_mode: "translate",
-  rewrite_style: "Check Spelling & Grammar",
+  rewrite_mode: "Check Spelling & Grammar",
   transform_prompt: null,
   web_session: "",
   web_session_expires_at: null,
@@ -151,7 +151,9 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
         release = lockfile.lockSync(statePath, lockOpts);
         const data = fs.readFileSync(statePath, "utf8");
         const fileState = data.trim() ? JSON.parse(data) : {};
-        return { ...DEFAULT_STATE, ...fileState };
+        const state = { ...DEFAULT_STATE, ...fileState };
+        state.rewrite_mode = state.rewrite_mode ?? state.rewrite_style;
+        return state;
       }
       const state = { ...DEFAULT_STATE };
       if (fs.existsSync(configPath)) {
@@ -161,6 +163,7 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
           STATE_KEYS.forEach((k) => {
             if (userConfig[k] !== undefined) state[k] = userConfig[k];
           });
+          state.rewrite_mode = state.rewrite_mode ?? userConfig.rewrite_style;
         } catch { /* ignore */ }
       }
       saveState(state);

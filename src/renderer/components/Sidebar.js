@@ -319,6 +319,7 @@ const Sidebar = ({
     <aside
       className={mergeClasses(styles.sidebar, collapsed && styles.sidebarCollapsed)}
       aria-expanded={!collapsed}
+      data-testid="app-sidebar"
     >
       <div
         className={mergeClasses(
@@ -376,6 +377,7 @@ const Sidebar = ({
         )}
         role="navigation"
         aria-label="Main"
+        data-testid="main-nav"
       >
         {navItems.map((item) => {
           const IconComponent = item.icon;
@@ -383,6 +385,7 @@ const Sidebar = ({
             <button
               key={item.id}
               type="button"
+              data-testid={`nav-${item.id}`}
               className={mergeClasses(
                 styles.navItem,
                 item.isActive && styles.navItemActive,
@@ -420,6 +423,7 @@ const Sidebar = ({
       >
         <button
           type="button"
+          data-testid="nav-dashboard"
           className={mergeClasses(
             styles.navItem,
             isDashboardActive && styles.navItemActive,
@@ -447,6 +451,7 @@ const Sidebar = ({
         </button>
         <button
           type="button"
+          data-testid="nav-settings"
           className={mergeClasses(
             styles.navItem,
             isSettingsActive && styles.navItemActive,

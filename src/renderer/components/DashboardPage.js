@@ -32,7 +32,7 @@ const DashboardPage = () => {
   const [byModel, setByModel] = useState([]);
   const [byDay, setByDay] = useState([]);
   const [byTargetLang, setByTargetLang] = useState([]);
-  const [byRewriteStyle, setByRewriteStyle] = useState([]);
+  const [byRewriteMode, setByRewriteMode] = useState([]);
   const [byTransformPrompt, setByTransformPrompt] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -76,14 +76,14 @@ const DashboardPage = () => {
     const username = dashboardUsername || undefined;
     setLoading(true);
     const targetLangPromise = costApi.getSummaryByTargetLang ? costApi.getSummaryByTargetLang(from, to, username) : Promise.resolve([]);
-    const rewriteStylePromise = costApi.getSummaryByRewriteStyle ? costApi.getSummaryByRewriteStyle(from, to, username) : Promise.resolve([]);
+    const rewriteModePromise = costApi.getSummaryByRewriteMode ? costApi.getSummaryByRewriteMode(from, to, username) : Promise.resolve([]);
     const transformPromptPromise = costApi.getSummaryByTransformPrompt ? costApi.getSummaryByTransformPrompt(from, to, username) : Promise.resolve([]);
     Promise.all([
       costApi.getSummaryByFunction(from, to, username),
       costApi.getSummaryByModel(from, to, username),
       costApi.getSummaryByDay(from, to, username),
       targetLangPromise,
-      rewriteStylePromise,
+      rewriteModePromise,
       transformPromptPromise,
     ])
       .then(([a, b, c, d, e, f]) => {
@@ -91,7 +91,7 @@ const DashboardPage = () => {
         setByModel(Array.isArray(b) ? b : []);
         setByDay(Array.isArray(c) ? c : []);
         setByTargetLang(Array.isArray(d) ? d : []);
-        setByRewriteStyle(Array.isArray(e) ? e : []);
+        setByRewriteMode(Array.isArray(e) ? e : []);
         setByTransformPrompt(Array.isArray(f) ? f : (f?.rows ?? []));
       })
       .catch(() => {
@@ -99,7 +99,7 @@ const DashboardPage = () => {
         setByModel([]);
         setByDay([]);
         setByTargetLang([]);
-        setByRewriteStyle([]);
+        setByRewriteMode([]);
         setByTransformPrompt([]);
       })
       .finally(() => setLoading(false));
@@ -195,7 +195,7 @@ const DashboardPage = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.filterRow}>
+      <div className={styles.filterRow} data-testid="dashboard-filter-row">
         <Label style={{ marginRight: "8px" }}>{t("Filter")}</Label>
         {getFilters(t).map((f) => (
           <Button
@@ -232,7 +232,7 @@ const DashboardPage = () => {
         selectedValue={selectedTab}
         onTabSelect={(_, data) => setSelectedTab(data.value)}
       >
-        <Tab value="summary">{t("Summary")}</Tab>
+        <Tab value="summary" data-testid="dashboard-tab-summary">{t("Summary")}</Tab>
         <Tab value="byusage">{t("By Usage")}</Tab>
         <Tab value="bymodel">{t("By Model")}</Tab>
         <Tab value="byday">{t("By Day")}</Tab>
@@ -262,7 +262,7 @@ const DashboardPage = () => {
           <DashboardTabByUsage
             loading={loading}
             byTargetLang={byTargetLang}
-            byRewriteStyle={byRewriteStyle}
+            byRewriteMode={byRewriteMode}
             byTransformPrompt={byTransformPrompt}
             styles={styles}
           />

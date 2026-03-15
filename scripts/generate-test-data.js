@@ -1,10 +1,12 @@
 /**
  * Generate test data for transrewrt.db (api_calls table).
- * Creates translations and rewrites with random modes, chars, timestamps (last 2 years).
+ * Creates translations and rewrites with random modes, chars, timestamps (last 2 months).
  * Cost: each model gets a random cost per 1M tokens ($0.5–$15; $0 if model name contains "free").
  * Transaction cost = (prompt_tokens + completion_tokens) / 1e6 * cost_per_1M for that model.
  * If a users table exists, assigns each entry a random username from it; otherwise username is null.
  * Uses sql.js so it runs without native better-sqlite3 bindings.
+ *
+ * Each run clears existing api_calls rows before inserting fresh test data.
  *
  * Run: pnpm generate-test-data --web|--app [options]
  */
@@ -12,9 +14,9 @@
 const path = require("path");
 const fs = require("fs");
 
-const DEFAULT_NUM_TRANSLATIONS = 600;
-const DEFAULT_NUM_REWRITES = 200;
-const DEFAULT_NUM_TRANSFORMS = 150;
+const DEFAULT_NUM_TRANSLATIONS = 100;
+const DEFAULT_NUM_REWRITES = 50;
+const DEFAULT_NUM_TRANSFORMS = 20;
 
 function getDataDir(mode) {
   if (mode === "web") {
@@ -34,7 +36,7 @@ function getDataDir(mode) {
   return path.join(__dirname, "..", "data");
 }
 
-const REWRITE_STYLES = [
+const REWRITE_MODES = [
   "Check Spelling & Grammar",
   "Improve Clarity",
   "Make Formal",
@@ -85,7 +87,8 @@ Options:
 
 Reads models and languages from data/config.json (or CONFIG_PATH for --app).
 Transform prompt names from src/config-defaults/transform-prompts.json.
-When the DB has a users table, entries get a random username from it.`);
+When the DB has a users table, entries get a random username from it.
+Existing api_calls rows are deleted before new test data is inserted.`);
 }
 
 function loadConfig(configPath) {
@@ -110,7 +113,15 @@ function loadConfig(configPath) {
   }
   const models = config.available_models;
   const languages = ["Detect Language", ...config.top_languages];
-  return { models, languages };
+  return { config, models, languages };
+}
+
+function saveTotalCost(configPath, config, totalCost) {
+  const updatedConfig = {
+    ...config,
+    total_cost: totalCost,
+  };
+  fs.writeFileSync(configPath, JSON.stringify(updatedConfig, null, 2) + "\n", "utf8");
 }
 
 function parseArgs() {
@@ -215,7 +226,7 @@ function randomChoice(arr) {
 }
 
 const COST_PER_1M_MIN = 0.5;
-const COST_PER_1M_MAX = 15;
+const COST_PER_1M_MAX = 5;
 
 function buildModelCostPer1M(models) {
   const unique = [...new Set(models)];
@@ -245,8 +256,8 @@ function randomTimestamp(fromMs, toMs) {
 
 function generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames) {
   const now = Date.now();
-  const twoYearsMs = 2 * 365.25 * 24 * 60 * 60 * 1000;
-  const fromMs = now - twoYearsMs;
+  const twoMonthsMs = 2 * 30.4375 * 24 * 60 * 60 * 1000;
+  const fromMs = now - twoMonthsMs;
   const costPer1MMap = buildModelCostPer1M(models);
   const pickUser = () =>
     usernames && usernames.length > 0 ? randomChoice(usernames) : null;
@@ -271,7 +282,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       model,
       source_lang: sourceLang,
       target_lang: targetLang,
-      rewrite_style: null,
+      rewrite_mode: null,
       transform_prompt: null,
       prompt_tokens: promptTokens,
       completion_tokens: completionTokens,
@@ -297,7 +308,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       model,
       source_lang: null,
       target_lang: null,
-      rewrite_style: randomChoice(REWRITE_STYLES),
+      rewrite_mode: randomChoice(REWRITE_MODES),
       transform_prompt: null,
       prompt_tokens: promptTokens,
       completion_tokens: completionTokens,
@@ -324,7 +335,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       model,
       source_lang: null,
       target_lang: targetLang,
-      rewrite_style: null,
+      rewrite_mode: null,
       transform_prompt: randomChoice(transformPromptNames),
       prompt_tokens: promptTokens,
       completion_tokens: completionTokens,
@@ -345,11 +356,13 @@ async function main() {
   const configPath = process.env.CONFIG_PATH || path.join(dataDir, "config.json");
   const dbPath = path.join(dataDir, "transrewrt.db");
 
+  console.log(`[generate-test-data] Using database: ${dbPath}`);
+
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
   }
 
-  const { models, languages } = loadConfig(configPath);
+  const { config, models, languages } = loadConfig(configPath);
   const transformPromptNames = numTransforms > 0 ? loadTransformPrompts() : [];
 
   const initSqlJs = require("sql.js");
@@ -371,7 +384,7 @@ async function main() {
       model TEXT,
       source_lang TEXT,
       target_lang TEXT,
-      rewrite_style TEXT,
+      rewrite_mode TEXT,
       transform_prompt TEXT,
       prompt_tokens INTEGER,
       completion_tokens INTEGER,
@@ -386,6 +399,11 @@ async function main() {
   } catch { /* ignore */ }
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN username TEXT");
+  } catch { /* ignore */ }
+
+  db.run("DELETE FROM api_calls");
+  try {
+    db.run("DELETE FROM sqlite_sequence WHERE name = 'api_calls'");
   } catch { /* ignore */ }
 
   let usernames = [];
@@ -403,8 +421,11 @@ async function main() {
   }
 
   const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
+  const totalCost = Math.round(
+    rows.reduce((sum, row) => sum + (Number(row.cost) || 0), 0) * 1e6,
+  ) / 1e6;
   const insertSql = `
-    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
+    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
   for (const row of rows) {
@@ -414,7 +435,7 @@ async function main() {
       row.model,
       row.source_lang,
       row.target_lang,
-      row.rewrite_style,
+      row.rewrite_mode,
       row.transform_prompt,
       row.prompt_tokens,
       row.completion_tokens,
@@ -429,11 +450,13 @@ async function main() {
   const buffer = Buffer.from(data);
   fs.writeFileSync(dbPath, buffer);
   db.close();
+  saveTotalCost(configPath, config, totalCost);
 
   const translations = rows.filter((r) => r.type === "translate").length;
   const rewrites = rows.filter((r) => r.type === "rewrite").length;
   const transforms = rows.filter((r) => r.type === "transform").length;
   console.log(`Generated ${translations} translations, ${rewrites} rewrites, and ${transforms} transforms in ${dbPath}`);
+  console.log(`[generate-test-data] Updated total_cost in ${configPath}: ${totalCost.toFixed(6)}`);
 }
 
 main().catch((err) => {

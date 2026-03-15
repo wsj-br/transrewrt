@@ -28,7 +28,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       const model = b.model || "";
       const source_lang = b.source_lang || "";
       const target_lang = b.target_lang || "";
-      const rewrite_style = b.rewrite_style || "";
+      const rewrite_mode = b.rewrite_mode || "";
       const transform_prompt = b.transform_prompt ?? null;
       const prompt_tokens = b.prompt_tokens ?? (b.request_bytes != null ? Math.round(b.request_bytes / 4) : null);
       const completion_tokens = b.completion_tokens ?? (b.response_bytes != null ? Math.round(b.response_bytes / 4) : null);
@@ -41,7 +41,7 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
         model,
         source_lang,
         target_lang,
-        rewrite_style,
+        rewrite_mode,
         transform_prompt,
         prompt_tokens,
         completion_tokens,
@@ -174,15 +174,15 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     }
   });
 
-  router.get("/calls/summary-by-rewrite-style", (req, res) => {
+  router.get("/calls/summary-by-rewrite-mode", (req, res) => {
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
       const { where, params } = fullWhereForType("rewrite", req.query.from, req.query.to, req.query.username);
-      const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_REWRITE_STYLE, where)).all(...params);
+      const rows = db.prepare(replaceWhere(sql.GET_SUMMARY_BY_REWRITE_MODE, where)).all(...params);
       res.json({ rows });
     } catch (err) {
-      log.error("[API] GET /api/calls/summary-by-rewrite-style - Error: " + err.message, { stack: err.stack });
+      log.error("[API] GET /api/calls/summary-by-rewrite-mode - Error: " + err.message, { stack: err.stack });
       res.status(500).json({ error: err.message });
     }
   });

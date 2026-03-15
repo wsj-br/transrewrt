@@ -62,7 +62,7 @@ export default function DashboardTabAllCalls({
       { key: "model", labelKey: t("Model") },
       { key: "source_lang", labelKey: t("Source") },
       { key: "target_lang", labelKey: t("Target") },
-      { key: "rewrite_style", labelKey: t("Style") },
+      { key: "rewrite_mode", labelKey: t("Mode") },
       { key: "transform_prompt", labelKey: t("Transform prompt") },
       { key: "prompt_tokens", labelKey: t("Prompt tokens") },
       { key: "completion_tokens", labelKey: t("Completion tokens") },

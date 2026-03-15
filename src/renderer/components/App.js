@@ -16,7 +16,7 @@ import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
-import { ALL_CONTENT_LANGUAGE_NAMES, isPredefinedContentLanguage, findUILanguageEntry } from "../utils/misc/languageConstants";
+import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats, interpolateTemplate } from "../utils/misc/formatUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import useAppStyles from "../hooks/useAppStyles";
@@ -48,7 +48,7 @@ const App = () => {
   const styles = useAppStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, topLanguages, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
@@ -84,8 +84,8 @@ const App = () => {
   // Track if initial config has been loaded
   const [configLoaded, setConfigLoaded] = useState(false);
 
-  // Style selection state (persisted as rewrite_style)
-  const [rewriteStyle, setRewriteStyle] = useState(() => settings.rewrite_style || "Check Spelling & Grammar");
+  // Rewrite mode selection state (persisted as rewrite_mode)
+  const [rewriteMode, setRewriteMode] = useState(() => (settings.rewrite_mode ?? settings.rewrite_style) || "Check Spelling & Grammar");
   const [showOutputDiff, setShowOutputDiff] = useState(false);
 
   // Determine active model safely (needed by useTransformPrompts and useProcessing)
@@ -181,12 +181,13 @@ const App = () => {
     }
   }, [settings, settings?.web_view]);
 
-  // Sync rewriteStyle from settings when config loads (deferred to avoid sync setState in effect)
+  // Sync rewriteMode from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
-    if (settings?.rewrite_style) {
-      queueMicrotask(() => setRewriteStyle(settings.rewrite_style));
+    const mode = settings?.rewrite_mode ?? settings?.rewrite_style;
+    if (mode) {
+      queueMicrotask(() => setRewriteMode(mode));
     }
-  }, [settings?.rewrite_style]);
+  }, [settings?.rewrite_mode, settings?.rewrite_style]);
 
   // Persist target language when it changes, but only after config is loaded
   useEffect(() => {
@@ -202,12 +203,12 @@ const App = () => {
     }
   }, [sourceLanguage, configLoaded, updateSettings]);
 
-  // Persist rewrite style when it changes, but only after config is loaded
+  // Persist rewrite mode when it changes, but only after config is loaded
   useEffect(() => {
-    if (configLoaded && rewriteStyle) {
-      updateSettings({ rewrite_style: rewriteStyle });
+    if (configLoaded && rewriteMode) {
+      updateSettings({ rewrite_mode: rewriteMode });
     }
-  }, [rewriteStyle, configLoaded, updateSettings]);
+  }, [rewriteMode, configLoaded, updateSettings]);
 
   // Mark config as loaded after we have settings (used for persist effects and API key modal gating)
   useEffect(() => {
@@ -242,7 +243,7 @@ const App = () => {
     sourceLanguage,
     inputTextRewrite,
     setOutputTextRewrite,
-    rewriteStyle,
+    rewriteMode,
     inputTextTransform,
     setOutputTextTransform,
     transformPrompts,
@@ -312,17 +313,6 @@ const App = () => {
     document.body.className = settings.theme || "light";
   }, [settings.theme]);
 
-  // Get all languages (predefined + any custom languages from settings)
-  const allLanguages = useMemo(() => {
-    const selectedSet = new Set(topLanguages);
-    const customLangs = Array.from(selectedSet).filter(
-      (lang) => !isPredefinedContentLanguage(lang),
-    );
-    return [...ALL_CONTENT_LANGUAGE_NAMES, ...customLangs].sort((a, b) =>
-      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
-    );
-  }, [topLanguages]);
-
   const costFractionStyle = settings?.cost_fraction_style || "muted";
   const totalCostNum = Number(settings.total_cost) || 0;
   const outputMeta = (
@@ -374,8 +364,6 @@ const App = () => {
             setSourceLanguage,
             targetLanguage,
             setTargetLanguage,
-            topLanguages,
-            allLanguages,
           },
         })
       : currentMode === "rewrite"
@@ -396,8 +384,8 @@ const App = () => {
               copy: copyOutput,
             },
             options: {
-              rewriteStyle,
-              setRewriteStyle,
+              rewriteMode,
+              setRewriteMode,
               showOutputDiff,
               setShowOutputDiff,
               outputIsModelResult: rewriteOutputIsModelResult,
@@ -428,8 +416,6 @@ const App = () => {
               showTransformLangSelector,
               transformTargetLang,
               setTransformTargetLang,
-              topLanguages,
-              allLanguages,
               translate,
               translatePromptFields,
               improvePromptConfig,
@@ -496,7 +482,7 @@ const App = () => {
   const loadSampleConfirmModal = showLoadSampleConfirm && (
     <ConfirmModal
       title={t("Load sample prompts")}
-      message={interpolateTemplate(t("Import the sample prompts from the app config?\n\nThe prompts are in english, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."), {
+      message={interpolateTemplate(t("Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."), {
         language: findUILanguageEntry(locale)?.label ?? t("your language"),
       })}
       confirmLabel={t("Load")}

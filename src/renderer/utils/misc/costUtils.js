@@ -15,7 +15,7 @@ export function getCostApi() {
 /** Raw option values for cost fraction style (id-only; use getCostFractionStyleOptions(t) for labels). */
 export const COST_FRACTION_STYLE_OPTIONS = [
   { value: "subscript", label: "Subscript" },
-  { value: "muted", label: "Muted gray" },
+  { value: "muted", label: "Muted grey" },
   { value: "superscript", label: "Superscript" },
   { value: "small", label: "Small font" },
 ];
@@ -24,7 +24,7 @@ export const COST_FRACTION_STYLE_OPTIONS = [
 export function getCostFractionStyleOptions(t) {
   return [
     { value: "subscript", label: t("Subscript") },
-    { value: "muted", label: t("Muted gray") },
+    { value: "muted", label: t("Muted grey") },
     { value: "superscript", label: t("Superscript") },
     { value: "small", label: t("Small font") },
   ];

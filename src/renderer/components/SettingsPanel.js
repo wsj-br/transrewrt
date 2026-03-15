@@ -447,6 +447,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
               aria-selected={activeTab === "models"}
               className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "models" && "active")}
               onClick={() => handleTabChange("models")}
+              data-testid="settings-tab-models"
             >
               <Database size={16} /> {t("Models")}
             </button>

@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Text, Button, tokens } from "@fluentui/react-components";
-import { Trash2, Download } from "lucide-react";
+import { Text, Button, Badge, tokens } from "@fluentui/react-components";
+import { Trash2, Download, WandSparkles } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
@@ -159,25 +159,31 @@ export default function DashboardTabByModel({
   return (
     <div role="tabpanel" aria-label={t("By Model")}>
       <div className={styles.tabTableContent}>
-        {byModel.filter((r) => r.model !== "Total").length > 0 && (
-          <div
-            className={styles.chartContainer}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              paddingTop: "0px",
-              gap: "0px",
-            }}
-          >
-            <Text as="h4" size={400} style={{ flexShrink: 0 }}>
-              {t("Cost by model (stacked)")}
-            </Text>
-            <div style={{ flex: 1, minHeight: 100 }}>
-              <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={byModel.filter((r) => r.model !== "Total")}
-                {...chartProps}
-              >
+        {(() => {
+          const nonTotal = byModel.filter((r) => r.model !== "Total");
+          const chartData = nonTotal.filter(
+            (r) =>
+              (Number(r.translation_cost) || 0) +
+                (Number(r.rewrite_cost) || 0) +
+                (Number(r.transform_cost) || 0) >
+              0
+          );
+          return chartData.length > 0 ? (
+            <div
+              className={styles.chartContainer}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                paddingTop: "0px",
+                gap: "0px",
+              }}
+            >
+              <Text as="h4" size={400} style={{ flexShrink: 0 }}>
+                {t("Cost by model (stacked)")}
+              </Text>
+              <div style={{ flex: 1, minHeight: 100 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData} {...chartProps}>
                 <CartesianGrid
                   strokeDasharray="3 3"
                   stroke={CHART_COLORS.grid}
@@ -219,11 +225,12 @@ export default function DashboardTabByModel({
                   activeBar={{ fill: CHART_COLORS.transformHover }}
                   name={t("Transform")}
                 />
-              </BarChart>
-              </ResponsiveContainer>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-          </div>
-        )}
+          ) : null;
+        })()}
         <div
           className={styles.paginationRow}
           style={{ marginBottom: "8px", marginLeft: "70%" }}
@@ -285,6 +292,19 @@ export default function DashboardTabByModel({
                         <td className={styles.td}>
                           <span className={styles.modelCell}>
                             <span title={row.model}>{row.model}</span>
+                            {(Number(row.translation_cost) || 0) +
+                              (Number(row.rewrite_cost) || 0) +
+                              (Number(row.transform_cost) || 0) ===
+                            0 && (
+                              <Badge
+                                appearance="tint"
+                                size="small"
+                                color="success"
+                                icon={<WandSparkles size={12} />}
+                              >
+                                {t("Free")}
+                              </Badge>
+                            )}
                             <Trash2
                               size={14}
                               className={styles.modelTrashIcon}

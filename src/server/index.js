@@ -39,6 +39,7 @@ const ENV_API_URL = (
 const ENV_KEY_SEED = (process.env.KEY_SEED || "").trim();
 
 const dataDir = path.dirname(CONFIG_PATH);
+const dbPath = path.join(dataDir, "transrewrt.db");
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
@@ -61,6 +62,7 @@ log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
 log.info(`[SERVER] Default config path: ${DEFAULT_CONFIG_PATH}`);
 log.info("=".repeat(60));
 log.info(`[SERVER] Data directory: ${dataDir}`);
+log.info(`[SERVER] Database path: ${dbPath}`);
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
   log.info("[SERVER] Data directory created successfully");

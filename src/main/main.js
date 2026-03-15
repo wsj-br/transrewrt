@@ -33,7 +33,7 @@ const STATE_KEYS = [
   "source_language",
   "target_language",
   "app_mode",
-  "rewrite_style",
+  "rewrite_mode",
   "web_session",
   "all_calls_page_size",
 ];
@@ -44,7 +44,7 @@ const DEFAULT_STATE = {
   source_language: "Detect Language",
   target_language: "Spanish",
   app_mode: "translate",
-  rewrite_style: "Check Spelling & Grammar",
+  rewrite_mode: "Check Spelling & Grammar",
   web_session: "",
   all_calls_page_size: 10,
 };
@@ -87,6 +87,7 @@ function loadConfigFromFile() {
     STATE_KEYS.forEach((k) => {
       if (merged[k] !== undefined) stateFromConfigForMigration[k] = merged[k];
     });
+    stateFromConfigForMigration.rewrite_mode = stateFromConfigForMigration.rewrite_mode ?? merged.rewrite_style;
     configCache = stripStateKeysAndDeprecated(merged);
     if (!fs.existsSync(configPath) && Object.keys(defaultConfig).length > 0) {
       const dir = path.dirname(configPath);
@@ -157,9 +158,11 @@ function loadStateFromFile() {
       const data = fs.readFileSync(statePath, "utf8");
       const fileState = data.trim() ? JSON.parse(data) : {};
       stateCache = { ...DEFAULT_STATE, ...fileState };
+      stateCache.rewrite_mode = stateCache.rewrite_mode ?? stateCache.rewrite_style;
       return stateCache;
     }
     stateCache = { ...DEFAULT_STATE, ...stateFromConfigForMigration };
+    stateCache.rewrite_mode = stateCache.rewrite_mode ?? stateFromConfigForMigration.rewrite_style;
     saveStateToFile(stateCache);
     return stateCache;
   } catch (err) {

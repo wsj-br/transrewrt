@@ -111,7 +111,7 @@ const TransformGenerateModal = ({
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal}>
+      <div className={styles.modal} data-testid="generate-prompt-modal">
         <h2 className={styles.title}>{t("Generate prompt configuration")}</h2>
         <div className={styles.body}>
           <label className={styles.descriptionLabel} htmlFor="generate-prompt-description">
@@ -122,7 +122,7 @@ const TransformGenerateModal = ({
             className={styles.descriptionInput}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder={t("e.g. Summarize long text in 3 bullet points, or rewrite for clarity")}
+            placeholder={t("e.g. Summarise long text in 3 bullet points, or rewrite for clarity")}
             aria-label={t("What should this prompt do?")}
           />
           {models.length > 0 && (
@@ -142,7 +142,7 @@ const TransformGenerateModal = ({
           {error && <div className={styles.error}>{error}</div>}
         </div>
         <div className={styles.actions}>
-          <Button appearance="secondary" onClick={onCancel}>
+          <Button appearance="secondary" onClick={onCancel} data-testid="generate-prompt-cancel">
             {t("Cancel")}
           </Button>
           <Button

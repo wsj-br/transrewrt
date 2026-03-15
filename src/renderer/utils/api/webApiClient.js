@@ -330,12 +330,12 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getSummaryByRewriteStyle: async (from, to, username = null) => {
+  getSummaryByRewriteMode: async (from, to, username = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-rewrite-style?${q}`, { credentials: "include" });
+    const res = await fetch(`${API_BASE}/api/calls/summary-by-rewrite-mode?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });

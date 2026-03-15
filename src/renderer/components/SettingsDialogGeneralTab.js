@@ -77,13 +77,13 @@ const SettingsDialogGeneralTab = ({
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
           <Settings size={20} />
-          {t('Behavior')}
+          {t('Behaviour')}
         </Text>
         <div style={{ paddingLeft: '24px' }}>
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <span className={formStyles.label}>{t('Behavior for ')}</span> 
+              <span className={formStyles.label}>{t('Behaviour for ')}</span> 
               <span className={formStyles.keyBadge}>{t('ENTER ↵')}</span>
               <span className={formStyles.label}>:</span>
             </span>
@@ -175,7 +175,7 @@ const SettingsDialogGeneralTab = ({
             value={
               getCostFractionStyleOptions(t).find(
                 (o) => o.value === (localSettings.cost_fraction_style || 'muted'),
-              )?.label ?? t('Muted gray')
+              )?.label ?? t('Muted grey')
             }
             selectedOptions={[localSettings.cost_fraction_style || 'muted']}
             onOptionSelect={(e, data) => {

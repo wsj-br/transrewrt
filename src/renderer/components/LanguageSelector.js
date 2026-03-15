@@ -3,11 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, mergeClasses, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Languages } from 'lucide-react';
 import PropTypes from 'prop-types';
+import { useContentLanguageLists } from '../hooks/useContentLanguageLists';
 import { findUILanguageEntry } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from '../utils/misc/languageDisplay';
 
 /** Internal value for "no target" (used when allowNone). Shown in UI as "No target language" */
 const AUTO_TARGET = "auto";
+
+/** Slug for data-testid: "Detect Language" -> "detect-language", "pt-BR" -> "pt-br". */
+function optionSlug(value) {
+  return String(value).replace(/\s+/g, "-").toLowerCase().replace(/[^a-z0-9-]/g, "");
+}
 
 /** Convert dropdown option value back to raw language name (for state). */
 function optionValueToRaw(optionValue, t) {
@@ -73,15 +79,15 @@ const LanguageSelector = ({
   label,
   value,
   onChange,
-  topLanguages = [],
-  allLanguages = [],
   detectLanguage = false,
   allowNone = false,
   targetListSameAsSource = false,
-  iconColor
+  iconColor,
+  dataTestId,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
+  const { topLanguages, allLanguages } = useContentLanguageLists();
 
   const languageOptions = useMemo(() => {
     let options = [];
@@ -139,7 +145,7 @@ const LanguageSelector = ({
     value === "" || value == null ? AUTO_TARGET : isDetectLanguage ? "Detect Language" : value;
 
   return (
-    <div className={styles.languageSelector}>
+    <div className={styles.languageSelector} data-testid={dataTestId || undefined}>
       <label className={styles.label}>
         <Languages size={20} color={iconColor} />
         {label}
@@ -159,7 +165,7 @@ const LanguageSelector = ({
           aria-label={label}
         >
           {allowNone && (
-            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language")}>
+            <Option value={AUTO_TARGET} className={styles.modelDecidesOption} text={t("No target language")} data-testid={dataTestId ? `${dataTestId}-option-${optionSlug(AUTO_TARGET)}` : undefined}>
               {t("No target language")}
             </Option>
           )}
@@ -186,6 +192,7 @@ const LanguageSelector = ({
                   value="Detect Language"
                   text={t("Detect Language")}
                   className={styles.detectLanguageOption}
+                  data-testid={dataTestId ? `${dataTestId}-option-detect-language` : undefined}
                 >
                   {t("Detect Language")}
                 </Option>
@@ -199,6 +206,7 @@ const LanguageSelector = ({
                 key={lang}
                 value={lang}
                 text={displayText}
+                data-testid={dataTestId ? `${dataTestId}-option-${optionSlug(lang)}` : undefined}
               >
                 {displayText}
               </Option>
@@ -214,12 +222,11 @@ LanguageSelector.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  topLanguages: PropTypes.arrayOf(PropTypes.string),
-  allLanguages: PropTypes.arrayOf(PropTypes.string),
   detectLanguage: PropTypes.bool,
   allowNone: PropTypes.bool,
   targetListSameAsSource: PropTypes.bool,
   iconColor: PropTypes.string,
+  dataTestId: PropTypes.string,
 };
 
 export default LanguageSelector;

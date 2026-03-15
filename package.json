@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -33,7 +33,9 @@
     "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",
-    "take-screenshots": "node scripts/take-screenshots.js"
+    "take-screenshots": "node scripts/take-screenshots.js",
+    "check-api-key": "node scripts/check-api-key.js",
+    "translate-docs": "node scripts/translate-docs.js"
   },
   "keywords": [
     "electron",
@@ -130,6 +132,7 @@
     "mini-css-extract-plugin": "^2.10.1",
     "prop-types": "^15.8.1",
     "puppeteer": "^24.39.1",
+    "sharp": "^0.33.5",
     "react-refresh": "^0.18.0",
     "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",

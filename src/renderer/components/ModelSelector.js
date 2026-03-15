@@ -151,12 +151,14 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
         onOptionSelect={(e, data) => onModelChange(data.optionValue)}
         className={styles.modelSelect}
         aria-label={t("Select Model")}
+        data-testid="model-selector"
       >
         {sortedModels.map((model) => {
           const { name, provider } = getModelInfo(model);
           const displayName = provider ? `${name} (${provider})` : name;
+          const optionSlug = String(model).replace(/\//g, "-");
           return (
-            <Option key={model} value={model} text={displayName}>
+            <Option key={model} value={model} text={displayName} data-testid={`model-option-${optionSlug}`}>
                {provider && (
                  <span style={{ marginRight: "8px", display: "inline-flex", alignItems: "center" }}>
                    <ProviderIcon provider={provider} size={16} />

@@ -26,8 +26,6 @@ export function getTransformPanels({ common, input, output, options }) {
     showTransformLangSelector,
     transformTargetLang,
     setTransformTargetLang,
-    topLanguages,
-    allLanguages,
     translate,
     translatePromptFields,
     improvePromptConfig,
@@ -69,8 +67,6 @@ export function getTransformPanels({ common, input, output, options }) {
             generatePromptConfig={generatePromptConfig}
             model={model}
             models={models}
-            topLanguages={topLanguages}
-            allLanguages={allLanguages}
           />
         </div>
       </div>
@@ -166,8 +162,6 @@ export function getTransformPanels({ common, input, output, options }) {
             label={t("Target:")}
             value={transformTargetLang || "auto"}
             onChange={(v) => setTransformTargetLang(v === "auto" ? "" : v)}
-            topLanguages={topLanguages}
-            allLanguages={allLanguages}
             targetListSameAsSource={true}
             allowNone={true}
             iconColor={tokens.colorStatusWarningForeground3}

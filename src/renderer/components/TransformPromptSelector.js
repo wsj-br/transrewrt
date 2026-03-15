@@ -85,7 +85,7 @@ const TransformPromptSelector = ({
         <WandSparkles size={18} color={tokens.colorPaletteLavenderBorderActive} />
         {t("Prompt")}
       </label>
-      <div className={styles.selectContainer} title={t("Choose which custom prompt to use")}>
+      <div className={styles.selectContainer} title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
         <Dropdown
           appearance="underline"
           value={displayValue}
@@ -100,11 +100,17 @@ const TransformPromptSelector = ({
           aria-label={t("Select prompt")}
           disabled={disabled}
         >
-          {options.map((opt) => (
-            <Option key={opt.id} value={opt.id} text={opt.name}>
-              {opt.name}
-            </Option>
-          ))}
+          {options.map((opt) => {
+            const slug = String(opt.name || opt.id)
+              .toLowerCase()
+              .replace(/\s+/g, "-")
+              .replace(/[^a-z0-9-]/g, "");
+            return (
+              <Option key={opt.id} value={opt.id} text={opt.name} data-testid={slug ? `prompt-option-${slug}` : undefined}>
+                {opt.name}
+              </Option>
+            );
+          })}
         </Dropdown>
       </div>
       {selectedPrompt && (
@@ -116,6 +122,7 @@ const TransformPromptSelector = ({
           aria-label={t("Edit prompt")}
           title={t("Edit prompt")}
           disabled={disabled}
+          data-testid="edit-prompt-button"
         />
       )}
       <Button
@@ -126,6 +133,7 @@ const TransformPromptSelector = ({
         aria-label={t("New prompt")}
         title={t("New prompt")}
         disabled={disabled}
+        data-testid="new-prompt-button"
       />
       {selectedPrompt && (
         <Button

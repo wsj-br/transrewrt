@@ -14,7 +14,7 @@ function applyAppSchema(db) {
       model TEXT,
       source_lang TEXT,
       target_lang TEXT,
-      rewrite_style TEXT,
+      rewrite_mode TEXT,
       transform_prompt TEXT,
       prompt_tokens INTEGER,
       completion_tokens INTEGER,
@@ -33,6 +33,7 @@ function applyAppSchema(db) {
   migrateApiCallsToTokens(db);
   migrateApiCallsDropTotalCost(db);
   migrateApiCallsAddTextStats(db);
+  migrateApiCallsRenameRewriteStyleToMode(db);
   db.exec(`
     CREATE TABLE IF NOT EXISTS custom_prompts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -97,6 +98,22 @@ function migrateApiCallsAddTextStats(db) {
   }
 }
 
+/** Rename rewrite_style to rewrite_mode (SQLite 3.35+). */
+function migrateApiCallsRenameRewriteStyleToMode(db) {
+  const columns = db.prepare("PRAGMA table_info(api_calls)").all();
+  const names = columns.map((c) => c.name);
+  const hasOld = names.includes("rewrite_style");
+  const hasNew = names.includes("rewrite_mode");
+  if (!hasOld || hasNew) return;
+  try {
+    db.exec("ALTER TABLE api_calls RENAME COLUMN rewrite_style TO rewrite_mode");
+  } catch {
+    /* SQLite < 3.35: column stays rewrite_style; app uses rewrite_mode in new code, so add column and backfill */
+    db.exec("ALTER TABLE api_calls ADD COLUMN rewrite_mode TEXT");
+    db.exec("UPDATE api_calls SET rewrite_mode = rewrite_style WHERE rewrite_style IS NOT NULL");
+  }
+}
+
 function promptTargetLanguageToDb(value) {
   return value === true || value === 1 ? 1 : 0;
 }
@@ -123,7 +140,7 @@ function buildWhereFromTo(from, to, username = null) {
 const WHERE_PLACEHOLDER = "__WHERE__";
 
 const sql = {
-  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs)
+  INSERT_API_CALL: `INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   GET_TOTAL_COST: "SELECT COALESCE(SUM(cost), 0) AS total_cost FROM api_calls",
   GET_SUMMARY_BY_FUNCTION: `SELECT type AS function, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost FROM api_calls ${WHERE_PLACEHOLDER} GROUP BY type`,
@@ -155,13 +172,13 @@ const sql = {
   FROM api_calls ${WHERE_PLACEHOLDER}
   GROUP BY transform_prompt
   ORDER BY calls DESC`,
-  GET_SUMMARY_BY_REWRITE_STYLE: `SELECT COALESCE(rewrite_style, '(none)') AS rewrite_style, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
+  GET_SUMMARY_BY_REWRITE_MODE: `SELECT COALESCE(rewrite_mode, '(none)') AS rewrite_mode, COUNT(*) AS calls, COALESCE(SUM(cost), 0) AS cost
   FROM api_calls ${WHERE_PLACEHOLDER}
-  GROUP BY rewrite_style
+  GROUP BY rewrite_mode
   ORDER BY calls DESC`,
   COUNT_API_CALLS: `SELECT COUNT(*) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
-  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
-  GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_style, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
+  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
+  GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
   COUNT_DISTINCT_DAYS: `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
   GET_SUMMARY_BY_DAY_PAGINATED: `SELECT date(timestamp) AS day,
     SUM(CASE WHEN type = 'translate' THEN 1 ELSE 0 END) AS translation_calls,

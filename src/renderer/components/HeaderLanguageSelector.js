@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import { useAppContext } from "../contexts/AppContext";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
-import { getUILanguageLabel } from "../utils/misc/languageDisplay";
+import { getUILanguageLabelNative } from "../utils/misc/languageDisplay";
 
 const useStyles = makeStyles({
   localeBadge: {
@@ -83,7 +83,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
   };
 
   return (
-    <Popover open={open} onOpenChange={(_, data) => setOpen(data.open)} positioning={{ onPositioningEnd: () => {} }}>
+    <Popover open={open} onOpenChange={(_, data) => setOpen(data.open)} positioning={{ onPositioningEnd: () => {} }}  data-testid="language-selector">
       <PopoverTrigger disableButtonEnhancement>
         <Button
           appearance="subtle"
@@ -91,6 +91,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
           className={styles.localeBadge}
           aria-label={t("Interface language")}
           title={t("Interface language")}
+          data-testid="language-selector-trigger"
         >
           {uiLocale}
         </Button>
@@ -105,6 +106,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
                   return (
                     <MenuItem
                       key={lang.code}
+                      data-testid={`language-option-${lang.code}`}
                       onClick={() => handleSelect(lang.code)}
                       icon={
                         isSelected ? (
@@ -115,7 +117,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
                       }
                       className={isSelected ? styles.selectedItem : undefined}
                     >
-                      {getUILanguageLabel(lang, t)}
+                      {getUILanguageLabelNative(lang)}
                     </MenuItem>
                   );
                 })}

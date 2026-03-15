@@ -60,6 +60,7 @@ export default function DashboardTabSummary({
       role="tabpanel"
       aria-label={t("Summary")}
       className={styles.summaryTabPanel}
+      data-testid="dashboard-tabpanel-summary"
     >
       <div className={styles.summaryDashboard}>
         <div className={styles.summaryKpiCell}>
@@ -361,24 +362,41 @@ export default function DashboardTabSummary({
             {t("Cost by model")}
           </Text>
           <div className={styles.summaryChartContainer}>
-            {byModel.filter((r) => r.model !== "Total").length > 0 ? (
-              (() => {
-                const costByModelData = byModel
-                  .filter((r) => r.model !== "Total")
-                  .map((r) => ({
-                    ...r,
-                    totalCost:
-                      (Number(r.translation_cost) || 0) +
-                      (Number(r.rewrite_cost) || 0),
-                  }));
-                const totalCostSum = costByModelData.reduce(
-                  (s, r) => s + (r.totalCost || 0),
-                  0
-                );
+            {(() => {
+              const costByModelData = byModel
+                .filter((r) => r.model !== "Total")
+                .map((r) => ({
+                  ...r,
+                  totalCost:
+                    (Number(r.translation_cost) || 0) +
+                    (Number(r.rewrite_cost) || 0),
+                }));
+              const costByModelDataFiltered = costByModelData.filter(
+                (r) => (r.totalCost || 0) > 0
+              );
+              if (costByModelDataFiltered.length === 0) {
                 return (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                      data={costByModelData}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      height: "100%",
+                      color: tokens.colorNeutralForeground3,
+                    }}
+                  >
+                    {t("No data")}
+                  </div>
+                );
+              }
+              const totalCostSum = costByModelDataFiltered.reduce(
+                (s, r) => s + (r.totalCost || 0),
+                0
+              );
+              return (
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={costByModelDataFiltered}
                       layout="vertical"
                       margin={{ left: 220, right: 16 }}
                       {...chartProps}
@@ -451,20 +469,7 @@ export default function DashboardTabSummary({
                     </BarChart>
                   </ResponsiveContainer>
                 );
-              })()
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "100%",
-                  color: tokens.colorNeutralForeground3,
-                }}
-              >
-                {t("No data")}
-              </div>
-            )}
+            })()}
           </div>
         </div>
       </div>

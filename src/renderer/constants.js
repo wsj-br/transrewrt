@@ -12,8 +12,8 @@ export const isWeb = typeof window !== "undefined" && !window.electronAPI?.getCo
 import uiLanguages from "./locales/ui-languages.json";
 export const UI_LANGUAGES = uiLanguages;
 
-/** Value keys for rewrite styles (used for persistence/API). */
-export const REWRITE_STYLE_KEYS = [
+/** Value keys for rewrite modes (used for persistence/API). */
+export const REWRITE_MODE_KEYS = [
   "Check Spelling & Grammar",
   "Improve Clarity",
   "Make Formal",
@@ -24,11 +24,11 @@ export const REWRITE_STYLE_KEYS = [
 ];
 
 /**
- * Returns rewrite style options with translated labels for dropdowns.
+ * Returns rewrite mode options with translated labels for dropdowns.
  * @param {(key: string) => string} t - i18n translate function
  * @returns {{ value: string, label: string }[]}
  */
-export function getRewriteStyleOptions(t) {
+export function getRewriteModeOptions(t) {
   return [
     { value: "Check Spelling & Grammar", label: t("Check Spelling & Grammar") },
     { value: "Improve Clarity", label: t("Improve Clarity") },

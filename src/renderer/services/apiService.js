@@ -682,25 +682,25 @@ Respond with ONLY the JSON object. No other text.`;
   }
 
   /**
-   * Rewrite text with specified style
+   * Rewrite text with specified mode
    * @param {string} text - Text to rewrite
-   * @param {string} style - Style to apply
+   * @param {string} mode - Rewrite mode to apply
    * @param {string} model - Model to use for rewriting
    * @param {AbortSignal|null} signal - Optional abort signal
    * @returns {Promise<Object>} Rewrite result with content and usage
    */
-  async rewrite(text, style, model, signal = null) {
+  async rewrite(text, mode, model, signal = null) {
     try {
-      const styleConfig = prompts.rewrite.styles[style] || prompts.rewrite.fallback;
+      const modeConfig = prompts.rewrite.modes[mode] || prompts.rewrite.fallback;
 
       return await this._streamChatCompletion(
-        buildRewriteSystemPrompt(styleConfig),
+        buildRewriteSystemPrompt(modeConfig),
         `<rewrite>${text}</rewrite>`,
         model,
-        styleConfig.temperature,
+        modeConfig.temperature,
         signal,
         "rewrite",
-        { style },
+        { mode },
       );
     } catch (error) {
       if (isAbortError(error)) {

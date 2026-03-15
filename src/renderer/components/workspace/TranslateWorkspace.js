@@ -14,17 +14,16 @@ function stripKeySymbols(str) {
  */
 export function getTranslatePanels({ common, input, output, options }) {
   const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
-  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, topLanguages, allLanguages } = options;
+  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage } = options;
 
   const leftPanelControls = (
     <LanguageSelector
       label={t("From:")}
       value={sourceLanguage}
       onChange={setSourceLanguage}
-      topLanguages={topLanguages}
-      allLanguages={allLanguages}
       detectLanguage={true}
       iconColor={tokens.colorBrandForeground1}
+      dataTestId="translate-from"
     />
   );
   const rightPanelControls = (
@@ -32,10 +31,9 @@ export function getTranslatePanels({ common, input, output, options }) {
       label={t("To:")}
       value={targetLanguage}
       onChange={setTargetLanguage}
-      topLanguages={topLanguages}
-      allLanguages={allLanguages}
       targetListSameAsSource={true}
       iconColor={tokens.colorStatusWarningForeground3}
+      dataTestId="translate-to"
     />
   );
 

@@ -65,7 +65,7 @@
     "withSourceLanguageLine": "- The input text is in {{sourceLang}}."
   },
   "rewrite": {
-    "styles": {
+    "modes": {
       "Check Spelling & Grammar": {
         "role": "You are a meticulous proofreader and copy editor.",
         "bullets": [
@@ -188,13 +188,13 @@
     "system": [
       "You are an expert at prompt engineering for LLM transform/rewrite tasks.",
       "",
-      "You will receive a short description of what the user wants their transform prompt to do (e.g. summarize, rewrite for clarity, extract key points, make formal).",
+      "You will receive a short description of what the user wants their transform prompt to do (e.g. summarise, rewrite for clarity, extract key points, make formal).",
       "Your task: generate a complete transform prompt configuration as a single JSON object with these exact keys:",
-      "- name: short display name for the prompt (e.g. \"Summarize\", \"Extract key points\")",
+      "- name: short display name for the prompt (e.g. \"Summarise\", \"Extract key points\")",
       "- prompt_instructions: optional instructions shown to the user when running (e.g. \"Keep it under 3 sentences.\"); use empty string if not needed",
-      "- role: the model's system role (e.g. \"You are a helpful assistant that summarizes text.\")",
-      "- instructions: array of strings, one per line, describing what the model should do (e.g. [\"- Summarize the text concisely\", \"- Preserve the main ideas\"])",
-      "- output_description: short label for the output (e.g. \"summarized\", \"key points\", \"transformed\")",
+      "- role: the model's system role (e.g. \"You are a helpful assistant that summarises text.\")",
+      "- instructions: array of strings, one per line, describing what the model should do (e.g. [\"- Summarise the text concisely\", \"- Preserve the main ideas\"])",
+      "- output_description: short label for the output (e.g. \"summarised\", \"key points\", \"transformed\")",
       "- temperature: number between 0 and 1 (e.g. 0.3 for consistent output, 0.6 for more creative)",
       "",
       "RULES:",

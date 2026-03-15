@@ -5,13 +5,12 @@ import { Download } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
@@ -175,7 +174,16 @@ export default function DashboardTabByDay({
               {t("Daily call volume")}
             </Text>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={[...byDay].reverse()} {...chartProps}>
+              <AreaChart
+                data={[...byDay].reverse().map((row) => ({
+                  ...row,
+                  totalCalls:
+                    (Number(row.translation_calls) || 0) +
+                    (Number(row.rewrite_calls) || 0) +
+                    (Number(row.transform_calls) || 0),
+                }))}
+                {...chartProps}
+              >
                 <CartesianGrid
                   strokeDasharray="3 3"
                   stroke={CHART_COLORS.grid}
@@ -187,27 +195,20 @@ export default function DashboardTabByDay({
                     backgroundColor: tokens.colorNeutralBackground1,
                     border: `1px solid ${tokens.colorNeutralStroke1}`,
                   }}
+                  formatter={(value) => [
+                    formatCount(value, locale),
+                    t("Total calls"),
+                  ]}
                 />
-                <Legend />
-                <Line
+                <Area
                   type="monotone"
-                  dataKey="translation_calls"
-                  stroke={CHART_COLORS.translation}
-                  name={t("Translation calls")}
+                  dataKey="totalCalls"
+                  stroke={CHART_COLORS.barFill}
+                  fill={CHART_COLORS.barFill}
+                  fillOpacity={0.6}
+                  name={t("Total calls")}
                 />
-                <Line
-                  type="monotone"
-                  dataKey="rewrite_calls"
-                  stroke={CHART_COLORS.rewrite}
-                  name={t("Rewrite calls")}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="transform_calls"
-                  stroke="#a78bfa"
-                  name={t("Transform calls")}
-                />
-              </LineChart>
+              </AreaChart>
             </ResponsiveContainer>
           </div>
         )}

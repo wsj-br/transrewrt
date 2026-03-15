@@ -69,8 +69,6 @@ const TransformTranslateModal = ({
   onTargetLangChange,
   onConfirm,
   onCancel,
-  topLanguages = [],
-  allLanguages = [],
   models = [],
   model,
   loading = false,
@@ -99,8 +97,6 @@ const TransformTranslateModal = ({
             label={t("Target language:")}
             value={targetLang}
             onChange={onTargetLangChange}
-            topLanguages={topLanguages}
-            allLanguages={allLanguages}
             targetListSameAsSource={true}
           />
           {models.length > 0 && (
@@ -141,8 +137,6 @@ TransformTranslateModal.propTypes = {
   onTargetLangChange: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  topLanguages: PropTypes.arrayOf(PropTypes.string),
-  allLanguages: PropTypes.arrayOf(PropTypes.string),
   models: PropTypes.arrayOf(PropTypes.string),
   model: PropTypes.string,
   loading: PropTypes.bool,

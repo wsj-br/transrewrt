@@ -66,7 +66,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
         b.model ?? null,
         b.source_lang ?? null,
         b.target_lang ?? null,
-        b.rewrite_style ?? null,
+        b.rewrite_mode ?? null,
         b.transform_prompt ?? null,
         b.prompt_tokens ?? null,
         b.completion_tokens ?? null,
@@ -195,15 +195,15 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     }
   });
 
-  ipcMain.handle("appDb:getSummaryByRewriteStyle", (_, from, to) => {
+  ipcMain.handle("appDb:getSummaryByRewriteMode", (_, from, to) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
       const { where, params } = fullWhereForType("rewrite", from, to);
-      const rows = d.prepare(replaceWhere(sql.GET_SUMMARY_BY_REWRITE_STYLE, where)).all(...params);
+      const rows = d.prepare(replaceWhere(sql.GET_SUMMARY_BY_REWRITE_MODE, where)).all(...params);
       return { rows };
     } catch (err) {
-      console.error("[appDb] getSummaryByRewriteStyle error:", err);
+      console.error("[appDb] getSummaryByRewriteMode error:", err);
       return { rows: [] };
     }
   });
