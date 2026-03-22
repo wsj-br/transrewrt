@@ -31,6 +31,14 @@ const useStyles = makeStyles({
     alignItems: "start",
     width: "100%",
   },
+  outerGridTwo: {
+    display: "grid",
+    gridTemplateColumns: `1fr 1px 1fr`,
+    columnGap: COLUMN_GAP,
+    rowGap: 0,
+    alignItems: "start",
+    width: "100%",
+  },
   column: {
     display: "grid",
     gridTemplateColumns: `minmax(${LABEL_COLUMN_MIN}, max-content) 1fr`,
@@ -108,58 +116,71 @@ function renderField(row, field, locale, opts) {
   return field.format(row, locale, opts);
 }
 
-export default function CallDetailsContent({ row }) {
+function splitFieldsIntoColumns(fields, columnCount) {
+  const n = columnCount === 2 ? 2 : 3;
+  const perCol = Math.ceil(fields.length / n);
+  const chunks = [];
+  for (let i = 0; i < n; i += 1) {
+    chunks.push(fields.slice(i * perCol, (i + 1) * perCol));
+  }
+  return chunks;
+}
+
+export default function CallDetailsContent({
+  row,
+  excludeFieldKeys = null,
+  prependFields = null,
+  costFractionStyle = "muted",
+  columnCount = 3,
+}) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const styles = useStyles();
 
   if (!row) return null;
 
+  const exclude = excludeFieldKeys && excludeFieldKeys.length > 0 ? new Set(excludeFieldKeys) : null;
+  const baseFields = exclude ? FIELDS.filter((f) => !exclude.has(f.key)) : FIELDS;
+  const prepended = Array.isArray(prependFields) ? prependFields : [];
+  const fields = [...prepended, ...baseFields];
+  if (fields.length === 0) return null;
+
   const valueColorClass = getValueColorClass(row.type, styles);
-  const opts = { t };
-  const third = Math.ceil(FIELDS.length / 3);
-  const col1 = FIELDS.slice(0, third);
-  const col2 = FIELDS.slice(third, 2 * third);
-  const col3 = FIELDS.slice(2 * third);
+  const opts = { t, costFractionStyle: costFractionStyle || "muted" };
+  const cols = splitFieldsIntoColumns(fields, columnCount);
+  const outerClass = columnCount === 2 ? styles.outerGridTwo : styles.outerGrid;
 
   return (
-    <div className={styles.outerGrid}>
-      <div className={styles.column}>
-        {col1.map(({ key, labelKey, format }) => (
-          <Fragment key={key}>
-            <div className={styles.label}>{t(labelKey)}</div>
-            <div className={`${styles.value} ${valueColorClass}`}>
-              {renderField(row, { key, labelKey, format }, locale, opts)}
-            </div>
-          </Fragment>
-        ))}
-      </div>
-      <div className={styles.divider} aria-hidden />
-      <div className={styles.column}>
-        {col2.map(({ key, labelKey, format }) => (
-          <Fragment key={key}>
-            <div className={styles.label}>{t(labelKey)}</div>
-            <div className={`${styles.value} ${valueColorClass}`}>
-              {renderField(row, { key, labelKey, format }, locale, opts)}
-            </div>
-          </Fragment>
-        ))}
-      </div>
-      <div className={styles.divider} aria-hidden />
-      <div className={styles.column}>
-        {col3.map(({ key, labelKey, format }) => (
-          <Fragment key={key}>
-            <div className={styles.label}>{t(labelKey)}</div>
-            <div className={`${styles.value} ${valueColorClass}`}>
-              {renderField(row, { key, labelKey, format }, locale, opts)}
-            </div>
-          </Fragment>
-        ))}
-      </div>
+    <div className={outerClass}>
+      {cols.map((chunk, colIdx) => (
+        <Fragment key={colIdx}>
+          {colIdx > 0 ? <div className={styles.divider} aria-hidden /> : null}
+          <div className={styles.column}>
+            {chunk.map(({ key, labelKey, format }) => (
+              <Fragment key={key}>
+                <div className={styles.label}>{t(labelKey)}</div>
+                <div className={`${styles.value} ${valueColorClass}`}>
+                  {renderField(row, { key, labelKey, format }, locale, opts)}
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </Fragment>
+      ))}
     </div>
   );
 }
 
 CallDetailsContent.propTypes = {
   row: PropTypes.object,
+  excludeFieldKeys: PropTypes.arrayOf(PropTypes.string),
+  prependFields: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      labelKey: PropTypes.string.isRequired,
+      format: PropTypes.func.isRequired,
+    }),
+  ),
+  costFractionStyle: PropTypes.string,
+  columnCount: PropTypes.oneOf([2, 3]),
 };

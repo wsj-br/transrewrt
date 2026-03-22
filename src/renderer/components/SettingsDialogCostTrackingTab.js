@@ -17,6 +17,7 @@ import {
   formatCost,
   formatAvgCost,
   formatCount,
+  getDeleteCutoffIso,
 } from "../utils/misc/costUtils";
 import { interpolateTemplate, formatDecimal } from "../utils/misc/formatUtils";
 
@@ -91,38 +92,6 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
   },
 });
-
-function getDeleteCutoffIso(option) {
-  if (option === "all") return null;
-  const now = new Date();
-  const d = new Date(now);
-  switch (option) {
-    case "gt_1m":
-      d.setMonth(d.getMonth() - 1);
-      break;
-    case "gt_2m":
-      d.setMonth(d.getMonth() - 2);
-      break;
-    case "gt_3m":
-      d.setMonth(d.getMonth() - 3);
-      break;
-    case "gt_6m":
-      d.setMonth(d.getMonth() - 6);
-      break;
-    case "gt_9m":
-      d.setMonth(d.getMonth() - 9);
-      break;
-    case "gt_1y":
-      d.setFullYear(d.getFullYear() - 1);
-      break;
-    case "gt_2y":
-      d.setFullYear(d.getFullYear() - 2);
-      break;
-    default:
-      return null;
-  }
-  return d.toISOString();
-}
 
 const SettingsDialogCostTrackingTab = ({
   localSettings,

@@ -106,9 +106,21 @@ const useStyles = makeStyles({
     minHeight: "60px",
     boxSizing: "border-box",
   },
+  controlsCompact: {
+    minHeight: "unset",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: tokens.spacingVerticalXS,
+    paddingBottom: 0,
+    gap: tokens.spacingHorizontalM,
+  },
   stats: {
     fontSize: "12px",
     color: tokens.colorNeutralForeground3,
+  },
+  statsCompact: {
+    flex: 1,
+    minWidth: 0,
   },
   leftButtons: {
     display: "flex",
@@ -146,6 +158,7 @@ const TextPanel = ({
   inputTextForDiff,
   outputIsModelResult,
   onDiffToggle,
+  footerMinimal = false,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -172,6 +185,15 @@ const TextPanel = ({
   }, [showDiff, outputIsModelResult, inputTextForDiff, text]);
 
   const showDiffView = showDiff && outputIsModelResult && Array.isArray(diffSegments) && diffSegments.length > 0;
+
+  const copyMinimalFooter =
+    onCopy ??
+    (footerMinimal && readOnly
+      ? () => {
+          const s = text == null ? "" : String(text);
+          void navigator.clipboard.writeText(s);
+        }
+      : null);
 
   const getIcon = () => {
     if (icon) return icon;
@@ -240,6 +262,22 @@ const TextPanel = ({
             style={textareaStyle}
           />
         )}
+        {footerMinimal && footerDisplay ? (
+          <div className={mergeClasses(styles.controls, styles.controlsCompact)}>
+            <div className={mergeClasses(styles.stats, styles.statsCompact)}>{footerDisplay}</div>
+            {copyMinimalFooter ? (
+              <Button
+                appearance="secondary"
+                icon={<Copy size={16} />}
+                onClick={copyMinimalFooter}
+                size="small"
+                title={t("Copy")}
+              >
+                {t("Copy")}
+              </Button>
+            ) : null}
+          </div>
+        ) : !footerMinimal ? (
         <div className={mergeClasses(styles.controls, footerAlign === "left" && styles.leftAligned)}>
           {footerAlign === "left" ? (
             // Left-aligned layout: stats on left, optional Show diffs and Copy on right
@@ -257,7 +295,7 @@ const TextPanel = ({
                     size="small"
                     title={showDiff ? t("Don't show the changes") : t("Show changes between input and output")}
                   >
-                    {showDiff ? t("Showing changes") : t("Regular view")}
+                    {t("Show changes")}
                   </Button>
                 )}
                 {onCopy && (
@@ -319,6 +357,7 @@ const TextPanel = ({
             </>
           )}
         </div>
+        ) : null}
       </div>
     </>
   );
@@ -346,6 +385,7 @@ TextPanel.propTypes = {
   inputTextForDiff: PropTypes.string,
   outputIsModelResult: PropTypes.bool,
   onDiffToggle: PropTypes.func,
+  footerMinimal: PropTypes.bool,
 };
 
 export default TextPanel;

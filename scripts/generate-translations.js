@@ -360,10 +360,11 @@ function logUsage(label, usage, totalSoFar) {
 
 /**
  * @param {{ code: string; name: string }} lang
- * @param {{ writeStringsFile?: boolean }} options - writeStringsFile: if false, do not write STRINGS_FILE (caller writes once after parallel batch).
+ * @param {{ writeStringsFile?: boolean; langProgress?: { completed: number; total: number } }} options - writeStringsFile: if false, do not write STRINGS_FILE (caller writes once after parallel batch). langProgress: run-level language completion counts (e.g. parallel batch header done/total).
  */
 async function generateForLang(lang, options = {}) {
   const writeStringsFile = options.writeStringsFile !== false;
+  const langProgress = options.langProgress;
   const usageBefore = {
     prompt_tokens: usageTotal.prompt_tokens,
     completion_tokens: usageTotal.completion_tokens,
@@ -428,6 +429,8 @@ async function generateForLang(lang, options = {}) {
   };
   logUsage(`${lang.code} - ${lang.name} cost`, usageForLang, usageTotal.total_cost);
 
+  if (langProgress) langProgress.completed += 1;
+
   return missing.length; // 0 when already up to date
 }
 
@@ -437,23 +440,24 @@ async function generateForLang(lang, options = {}) {
     fs.mkdirSync(LOCALES_DIR, { recursive: true });
   }
   let totalStringsTranslated = 0;
+  const langProgress = { completed: 0, total: LANGUAGES.length };
   const runParallel = LANGUAGES.length > 1;
   if (runParallel) {
     for (let i = 0; i < LANGUAGES.length; i += PARALLEL_LANGUAGES) {
       const batch = LANGUAGES.slice(i, i + PARALLEL_LANGUAGES);
       const langList = batch.map(l => `${l.name} (${l.code})`).join(' • ');
       log(BROWN + "------------------------------------------------------------------------------------------------------------" + RESET);
-      log(BROWN + " 🚀 Running in parallel:    " + langList + RESET);
+      log(BROWN + " 🚀 Running in parallel:    " + langList + "   " + langProgress.completed + "/" + langProgress.total + RESET);
       log(BROWN + "------------------------------------------------------------------------------------------------------------" + RESET);
       const results = await Promise.all(
-        batch.map((lang) => generateForLang(lang, { writeStringsFile: false }))
+        batch.map((lang) => generateForLang(lang, { writeStringsFile: false, langProgress }))
       );
       totalStringsTranslated += results.reduce((a, n) => a + n, 0);
       log(BLUE + "💾 Writing strings.json" + RESET);
       fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
     }
   } else {
-    totalStringsTranslated += await generateForLang(LANGUAGES[0]);
+    totalStringsTranslated += await generateForLang(LANGUAGES[0], { langProgress });
   }
 
   // Remove from strings.json any translated keys for locales not in ui-languages.json.

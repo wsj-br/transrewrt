@@ -102,6 +102,43 @@ export function getFilterRange(filterId) {
   return { from, to };
 }
 
+/**
+ * ISO cutoff for "delete older than" age options (cost data, execution history).
+ * @param {string} option - e.g. "all", "gt_3m", "gt_1y"
+ * @returns {string|null} cutoff timestamp, or null for "all"
+ */
+export function getDeleteCutoffIso(option) {
+  if (option === "all") return null;
+  const now = new Date();
+  const d = new Date(now);
+  switch (option) {
+    case "gt_1m":
+      d.setMonth(d.getMonth() - 1);
+      break;
+    case "gt_2m":
+      d.setMonth(d.getMonth() - 2);
+      break;
+    case "gt_3m":
+      d.setMonth(d.getMonth() - 3);
+      break;
+    case "gt_6m":
+      d.setMonth(d.getMonth() - 6);
+      break;
+    case "gt_9m":
+      d.setMonth(d.getMonth() - 9);
+      break;
+    case "gt_1y":
+      d.setFullYear(d.getFullYear() - 1);
+      break;
+    case "gt_2y":
+      d.setFullYear(d.getFullYear() - 2);
+      break;
+    default:
+      return null;
+  }
+  return d.toISOString();
+}
+
 /** Returns React node for dollar amount with fraction styling. Locale controls decimal separator.
  * @param {object} [options] - Optional. mainPartSuccess: true to render the main part (through cents) in success green.
  */

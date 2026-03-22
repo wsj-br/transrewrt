@@ -9,7 +9,7 @@
  */
 
 const path = require("path");
-const { execSync } = require("child_process");
+const { spawnSync } = require("child_process");
 
 const RED = "\x1b[31m";
 const RESET = "\x1b[0m";
@@ -31,7 +31,15 @@ const root = path.resolve(__dirname, "..");
 const electronPkg = require(path.join(root, "node_modules/electron/package.json"));
 const version = electronPkg.version;
 
-execSync(
-  `electron-rebuild -f -o better-sqlite3 -v ${version}`,
+const rebuildCli = path.join(path.dirname(require.resolve("@electron/rebuild")), "cli.js");
+const result = spawnSync(
+  process.execPath,
+  [rebuildCli, "-f", "-o", "better-sqlite3", "-v", version],
   { stdio: "inherit", cwd: root }
 );
+if (result.error) {
+  throw result.error;
+}
+if (result.status !== 0) {
+  process.exit(result.status == null ? 1 : result.status);
+}

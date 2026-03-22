@@ -1,5 +1,5 @@
 /**
- * Shared DB schema and query SQL for api_calls and custom_prompts.
+ * Shared DB schema and query SQL for api_calls, action_content, and custom_prompts.
  * Used by Electron (src/main/appDb.js) and server (src/server/db/appDb.js + routes).
  * Single source of truth so schema/query changes are made in one place.
  */
@@ -46,6 +46,13 @@ function applyAppSchema(db) {
       prompt_instructions TEXT,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
+    )
+  `);
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS action_content (
+      api_call_id INTEGER PRIMARY KEY,
+      input_text TEXT NOT NULL,
+      output_text TEXT NOT NULL
     )
   `);
 }
@@ -118,22 +125,42 @@ function promptTargetLanguageToDb(value) {
   return value === true || value === 1 ? 1 : 0;
 }
 
-function buildWhereFromTo(from, to, username = null) {
+/**
+ * @param {string|null} from
+ * @param {string|null} to
+ * @param {string|null} username
+ * @param {string|null} tableAlias - e.g. "a" for JOIN queries (a.timestamp, a.username)
+ */
+function buildWhereFromTo(from, to, username = null, tableAlias = null) {
+  const q = (field) => (tableAlias ? `${tableAlias}.${field}` : field);
   const parts = [];
   const params = [];
   if (from) {
-    parts.push("timestamp >= ?");
+    parts.push(`${q("timestamp")} >= ?`);
     params.push(from);
   }
   if (to) {
-    parts.push("timestamp <= ?");
+    parts.push(`${q("timestamp")} <= ?`);
     params.push(to);
   }
   if (username != null && username !== "") {
-    parts.push("username = ?");
+    parts.push(`${q("username")} = ?`);
     params.push(username);
   }
   return { where: parts.length ? " WHERE " + parts.join(" AND ") : "", params };
+}
+
+/**
+ * WHERE clause for GET_EXECUTION_HISTORY: same date/username filters as buildWhereFromTo, plus
+ * exclude cancelled/incomplete rows (no completion tokens or zero TPS).
+ * @param {string|null} tableAlias - e.g. "a" for JOIN queries on api_calls
+ */
+function buildExecutionHistoryWhere(from, to, username = null, tableAlias = "a") {
+  const { where, params } = buildWhereFromTo(from, to, username, tableAlias);
+  const q = (field) => `${tableAlias}.${field}`;
+  const completed = `${q("completion_tokens")} IS NOT NULL AND ${q("completion_tokens")} > 0 AND ${q("tps")} IS NOT NULL AND ${q("tps")} > 0`;
+  const whereClause = where ? `${where} AND ${completed}` : ` WHERE ${completed}`;
+  return { whereClause, params };
 }
 
 /** Placeholder for dynamic WHERE clause in query strings. Replace with buildWhereFromTo(from, to).where */
@@ -192,6 +219,11 @@ const sql = {
   DELETE_API_CALLS: "DELETE FROM api_calls",
   DELETE_API_CALLS_BEFORE: "DELETE FROM api_calls WHERE timestamp < ?",
   DELETE_API_CALLS_BY_MODEL: "DELETE FROM api_calls WHERE model = ?",
+  INSERT_ACTION_CONTENT: "INSERT INTO action_content (api_call_id, input_text, output_text) VALUES (?, ?, ?)",
+  GET_EXECUTION_HISTORY: `SELECT a.id, a.timestamp, a.type, a.model, a.source_lang, a.target_lang, a.rewrite_mode, a.transform_prompt, a.prompt_tokens, a.completion_tokens, a.duration_ms, a.cost, a.tps, a.username, a.input_chars, a.input_words, a.input_paragraphs, a.output_chars, a.output_words, a.output_paragraphs, c.input_text, c.output_text
+    FROM action_content c INNER JOIN api_calls a ON a.id = c.api_call_id${WHERE_PLACEHOLDER} ORDER BY a.timestamp DESC`,
+  DELETE_ACTION_CONTENT_ALL: "DELETE FROM action_content",
+  DELETE_ACTION_CONTENT_BEFORE: "DELETE FROM action_content WHERE api_call_id IN (SELECT id FROM api_calls WHERE timestamp < ?)",
   CUSTOM_PROMPTS_GET_ALL: "SELECT * FROM custom_prompts ORDER BY name ASC",
   CUSTOM_PROMPTS_INSERT: `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -209,6 +241,7 @@ module.exports = {
   applyAppSchema,
   promptTargetLanguageToDb,
   buildWhereFromTo,
+  buildExecutionHistoryWhere,
   sql,
   replaceWhere,
   WHERE_PLACEHOLDER,

@@ -9,6 +9,23 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `scripts/generate-translations.js` parallel batch header (`🚀 Running in parallel:`) appends run-wide progress `done/total` languages (e.g. `32/36`).
+- **Changed**: History detail summary card: translate rows show source/target via `t()` on language keys (UI locale only) / `t("auto")`; rewrite mode via `t()`; transform row keeps prompt text as stored but translates target language only.
+- **Changed**: Electron desktop: sidebar no longer shows the user block (username / user menu); web app unchanged.
+- **Changed**: History detail top summary: timestamp and username use neutral foreground and bold weight instead of the type accent colour.
+- **Changed**: Execution history list (`getExecutionHistory` / `GET /api/calls/history`) omits cancelled or incomplete rows: requires `completion_tokens > 0` and `tps > 0` (shared `buildExecutionHistoryWhere` in `appSchema.js`).
+
+- **Changed**: History detail header: first card shows type-specific summary (translate: auto → target, rewrite: mode, transform: prompt with target in brackets); second card uses a two-column label/value grid for ID, model, cost, TPS, tokens, duration, etc.; redundant Input/Output stats rows removed from that card (shown under the text panels). `CallDetailsContent` supports `prependFields`, `excludeFieldKeys`, `costFractionStyle`, and `columnCount` (Dashboard expanded rows stay three columns).
+- **Changed**: History Input/Output `TextPanel` footers use a compact row (chars · words · paragraphs) with a **Copy** button on the right; `footerMinimal` + `readOnly` defaults copy to `navigator.clipboard.writeText` when `onCopy` is omitted.
+- **Changed**: Settings > General Settings: main content uses a two-column layout (Behaviour and History on the left, Appearance on the right), stacking to one column below 800px width.
+- **Added**: Execution history: optional storage of translate/rewrite/transform input and output in SQLite `action_content`, History view (Dashboard-style) with filters and detail panels, Settings > General controls (`keep_execution_history`, delete by age); APIs `GET`/`DELETE` `/api/calls/history` and Electron IPC `getExecutionHistory` / `deleteExecutionHistory`.
+- **Fixed**: Windows `installer.nsh` desktop shortcut UI wrapped in `!ifndef BUILD_UNINSTALLER` so the NSIS uninstaller pass does not compile unused page functions (avoids warning 6010 / `-WX` failure).
+- **Fixed**: Windows `installer.nsh` desktop page no longer calls `StdUtils::TestParameter` (StdUtils plugin is not loaded for the NSIS uninstaller build pass, so `makensis` failed with "Plugin not found").
+- **Changed**: Windows NSIS installer uses assisted mode (`oneClick: false`) with a "Create a desktop shortcut" checkbox; built-in desktop shortcut creation is disabled so the choice matches user selection (silent installs skip the page and keep default: create shortcut).
+- **Fixed**: Electron packaged app: include `src/shared/**/*.js` in electron-builder `files` so `src/main/appDb.js` can require `../shared/db/appSchema.js` inside `app.asar` (was missing, causing main-process crash after install).
+- **Changed**: `scripts/electron-rebuild.js` runs the `@electron/rebuild` CLI via `spawnSync(process.execPath, [cli.js, ...])` so rebuild works without relying on `electron-rebuild` being on `PATH` (e.g. when invoking the script with plain `node`).
+- **Changed**: DevDependencies: keep `eslint` and `@eslint/js` on 9.x until `eslint-plugin-react` / `eslint-plugin-react-hooks` declare ESLint 10 support (ESLint 10 breaks `react/display-name` with current plugins); Electron 41 and `sharp` 0.34.x remain upgraded.
+- **Fixed**: `scripts/upgrade-tools.ps1`: Node version in the success message shows the semver (e.g. 24.14.0), not `System.Collections.Hashtable[1]` (use a variable or `$($Matches[1])` inside double quotes).
 - **Fixed**: Dashboard > All Calls expanded row: label column now grows to fit translated labels (e.g. "Prompt de transformation") instead of truncating; uses `minmax(110px, max-content)`.
 - **Added**: Call details "Input"/"Output" stats line (chars · words · paragraphs) is now translatable via i18n and `interpolateTemplate`.
 - **Changed**: README and USER-GUIDE: GitHub-style alerts (`[!NOTE]`, `[!WARNING]`) replaced with standard markdown blockquotes using emojis (ℹ️ NOTE, ⚠️ WARNING) and `<br/>` for compatibility.

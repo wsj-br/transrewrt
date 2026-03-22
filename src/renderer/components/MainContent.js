@@ -2,13 +2,14 @@ import { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Spinner } from "@fluentui/react-components";
 import PropTypes from "prop-types";
-import { Languages, PenTool, WandSparkles, BarChart3 } from "lucide-react";
+import { Languages, PenTool, WandSparkles, BarChart3, History } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ResizablePanels from "./ResizablePanels";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
+const HistoryPage = lazy(() => import("./HistoryPage"));
 
 const useStyles = makeStyles({
   mainPanel: {
@@ -127,6 +128,33 @@ const MainContent = ({
             <div className={styles.contentFill}>
               <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading dashboard…")} /></div>}>
                 <DashboardPage />
+              </Suspense>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (view === "history") {
+    return (
+      <main className={styles.mainPanel}>
+        <div className={styles.workspace}>
+          <div className={styles.toolbar}>
+            <div className={styles.toolbarLeft}>
+              <History className={styles.toolbarIcon} size={20} strokeWidth={1.6} />
+              <span className={styles.modeIndicator}>{t("History")}</span>
+            </div>
+            <div className={styles.toolbarRight}>
+              <span className={styles.globeWrap}>
+                <HeaderLanguageSelector compact />
+              </span>
+            </div>
+          </div>
+          <div className={styles.content}>
+            <div className={styles.contentFill}>
+              <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading…")} /></div>}>
+                <HistoryPage />
               </Suspense>
             </div>
           </div>

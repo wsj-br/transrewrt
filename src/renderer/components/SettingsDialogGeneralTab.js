@@ -1,8 +1,16 @@
+import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles } from '@fluentui/react-components';
-import { Settings, Palette, ClipboardCheck, RefreshCw } from 'lucide-react';
+import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles, Button } from '@fluentui/react-components';
+import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2 } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { getCostFractionStyleOptions, formatCost } from '../utils/misc/costUtils';
+import {
+  getCostFractionStyleOptions,
+  formatCost,
+  getCostApi,
+  getDeleteCutoffIso,
+} from '../utils/misc/costUtils';
+import { interpolateTemplate } from '../utils/misc/formatUtils';
+import ConfirmModal from './ConfirmModal';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -30,6 +38,25 @@ function normalizeEnterBehavior(value) {
   if (value === "Shift-Execute" || value === "Shift-Translate" || value === "Newline") return "Shift-Execute";
   return "Execute";
 }
+
+const useLayoutStyles = makeStyles({
+  columns: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+    gap: tokens.spacingHorizontalXXL,
+    alignItems: "start",
+    width: "100%",
+    "@media (max-width: 800px)": {
+      gridTemplateColumns: "1fr",
+    },
+  },
+  column: {
+    minWidth: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacingVerticalXL,
+  },
+});
 
 const useFormStyles = makeStyles({
   label: {
@@ -67,12 +94,72 @@ const SettingsDialogGeneralTab = ({
   localSettings,
   onSettingChange,
 }) => {
+  const layoutStyles = useLayoutStyles();
   const formStyles = useFormStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
 
+  const [showDisableHistoryConfirm, setShowDisableHistoryConfirm] = useState(false);
+  const [historyDeleteRange, setHistoryDeleteRange] = useState('gt_3m');
+  const [historyDeleteLoading, setHistoryDeleteLoading] = useState(false);
+  const [historyDeleteError, setHistoryDeleteError] = useState(null);
+  const [historyDeleteSuccess, setHistoryDeleteSuccess] = useState(null);
+  const [showHistoryDeleteConfirm, setShowHistoryDeleteConfirm] = useState(false);
+
+  const historyDeleteRangeOptions = useMemo(
+    () => [
+      { value: 'all', label: t('all data (clear)') },
+      { value: 'gt_1m', label: t('> 1 month') },
+      { value: 'gt_2m', label: t('> 2 months') },
+      { value: 'gt_3m', label: t('> 3 months') },
+      { value: 'gt_6m', label: t('> 6 months') },
+      { value: 'gt_9m', label: t('> 9 months') },
+      { value: 'gt_1y', label: t('> 1 year') },
+      { value: 'gt_2y', label: t('> 2 years') },
+    ],
+    [t],
+  );
+
+  const executeHistoryDelete = async () => {
+    if (historyDeleteLoading) return;
+    const costApi = getCostApi();
+    if (typeof costApi.deleteExecutionHistory !== 'function') {
+      setHistoryDeleteError(t('Delete operation is not available in this mode.'));
+      setShowHistoryDeleteConfirm(false);
+      return;
+    }
+    setHistoryDeleteLoading(true);
+    setHistoryDeleteError(null);
+    setHistoryDeleteSuccess(null);
+    setShowHistoryDeleteConfirm(false);
+    try {
+      const cutoff = getDeleteCutoffIso(historyDeleteRange);
+      await costApi.deleteExecutionHistory(cutoff, null);
+      setHistoryDeleteSuccess(t('History data deleted successfully.'));
+    } catch (err) {
+      setHistoryDeleteError(err?.message || t('Failed to delete history data.'));
+    } finally {
+      setHistoryDeleteLoading(false);
+    }
+  };
+
+  const confirmDisableHistory = async () => {
+    const costApi = getCostApi();
+    if (typeof costApi.deleteExecutionHistory === 'function') {
+      try {
+        await costApi.deleteExecutionHistory(null, null);
+      } catch {
+        /* still turn setting off */
+      }
+    }
+    onSettingChange('keep_execution_history', false);
+    setShowDisableHistoryConfirm(false);
+  };
+
   return (
     <div className="tab-content">
+      <div className={layoutStyles.columns}>
+        <div className={layoutStyles.column}>
       {/* Behavior Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
@@ -158,6 +245,97 @@ const SettingsDialogGeneralTab = ({
         </div>
       </div>
 
+      {/* History Section */}
+      <div className="section">
+        <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
+          <History size={20} />
+          {t('History')}
+        </Text>
+        <div style={{ paddingLeft: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+            <Checkbox
+              id="keep-execution-history"
+              checked={localSettings.keep_execution_history !== false}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  onSettingChange('keep_execution_history', true);
+                } else {
+                  setShowDisableHistoryConfirm(true);
+                }
+              }}
+            />
+            <Label htmlFor="keep-execution-history" style={{ margin: 0, cursor: 'pointer' }}>
+              {t('Keep execution history')}
+            </Label>
+          </div>
+          <div
+            className="section"
+            style={{ marginTop: '24px', marginLeft: '0', paddingLeft: '0' }}
+          >
+            <Text
+              as="h4"
+              size={400}
+              weight="semibold"
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}
+            >
+              <Trash2 size={18} />
+              {t('Delete history data')}
+            </Text>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                flexWrap: 'wrap',
+                marginLeft: '8px',
+              }}
+            >
+              <span>{t('Delete entries older than:')}</span>
+              <Dropdown
+                appearance="underline"
+                selectedOptions={[historyDeleteRange]}
+                value={
+                  historyDeleteRangeOptions.find((o) => o.value === historyDeleteRange)?.label || ''
+                }
+                onOptionSelect={(_, data) => {
+                  if (data.optionValue) setHistoryDeleteRange(data.optionValue);
+                }}
+                style={{ minWidth: '180px' }}
+              >
+                {historyDeleteRangeOptions.map((opt) => (
+                  <Option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </Option>
+                ))}
+              </Dropdown>
+              <Button
+                appearance="primary"
+                disabled={historyDeleteLoading}
+                onClick={() => setShowHistoryDeleteConfirm(true)}
+                style={{
+                  backgroundColor: tokens.colorStatusDangerBackground1,
+                  color: tokens.colorNeutralForegroundOnBrand,
+                }}
+              >
+                {historyDeleteLoading ? t('Deleting…') : t('Delete data')}
+              </Button>
+            </div>
+            {historyDeleteError && (
+              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginLeft: '8px' }}>
+                {historyDeleteError}
+              </span>
+            )}
+            {historyDeleteSuccess && (
+              <span style={{ color: tokens.colorStatusSuccessForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginLeft: '8px' }}>
+                {historyDeleteSuccess}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div className={layoutStyles.column}>
       {/* Appearance Section */}
       <div className="section">
         <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
@@ -281,6 +459,49 @@ const SettingsDialogGeneralTab = ({
         </div>
         </div>
       </div>
+
+        </div>
+      </div>
+
+      {showDisableHistoryConfirm && (
+        <ConfirmModal
+          title={t('Turn off execution history?')}
+          message={t('Stored input and output text for past runs will be removed from the database. Cost tracking rows are not removed.\n\nThis cannot be undone.')}
+          confirmLabel={t('Remove history and turn off')}
+          cancelLabel={t('Cancel')}
+          onConfirm={confirmDisableHistory}
+          onCancel={() => setShowDisableHistoryConfirm(false)}
+          danger
+        />
+      )}
+      {showHistoryDeleteConfirm && (
+        <ConfirmModal
+          title={
+            historyDeleteRange === 'all'
+              ? t('Delete all history text')
+              : t('Delete history data by age')
+          }
+          message={
+            historyDeleteRange === 'all'
+              ? t('Permanently delete ALL stored input/output history?\n\nAPI call metadata is not removed.\n\nThis cannot be undone.')
+              : interpolateTemplate(
+                  t('Permanently delete history text older than {{range}}?\n\nAPI call metadata is not removed.\n\nThis cannot be undone.'),
+                  {
+                    range:
+                      (historyDeleteRangeOptions.find((o) => o.value === historyDeleteRange)?.label ?? '').replace(
+                        /^>\s*/,
+                        '',
+                      ) || '',
+                  },
+                )
+          }
+          confirmLabel={t('Delete')}
+          cancelLabel={t('Cancel')}
+          onConfirm={executeHistoryDelete}
+          onCancel={() => setShowHistoryDeleteConfirm(false)}
+          danger
+        />
+      )}
     </div>
   );
 };
@@ -292,6 +513,7 @@ SettingsDialogGeneralTab.propTypes = {
     auto_copy: PropTypes.bool,
     real_time_translation: PropTypes.bool,
     real_time_delay: PropTypes.number,
+    keep_execution_history: PropTypes.bool,
     cost_fraction_style: PropTypes.string,
     web_margin: PropTypes.string,
     font_family: PropTypes.string,

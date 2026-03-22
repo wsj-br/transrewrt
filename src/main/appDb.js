@@ -11,6 +11,7 @@ const {
   applyAppSchema,
   promptTargetLanguageToDb,
   buildWhereFromTo,
+  buildExecutionHistoryWhere,
   sql,
   replaceWhere,
 } = require("../shared/db/appSchema.js");
@@ -60,27 +61,39 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
       const d = getDb();
       if (!d) return { success: false, total_cost: 0 };
       const b = payload || {};
-      d.prepare(sql.INSERT_API_CALL).run(
-        b.timestamp || new Date().toISOString(),
-        b.type || "",
-        b.model ?? null,
-        b.source_lang ?? null,
-        b.target_lang ?? null,
-        b.rewrite_mode ?? null,
-        b.transform_prompt ?? null,
-        b.prompt_tokens ?? null,
-        b.completion_tokens ?? null,
-        b.duration_ms ?? null,
-        b.cost ?? null,
-        b.tps ?? null,
-        b.username ?? null,
-        b.input_chars ?? null,
-        b.input_words ?? null,
-        b.input_paragraphs ?? null,
-        b.output_chars ?? null,
-        b.output_words ?? null,
-        b.output_paragraphs ?? null
-      );
+      const insertCall = d.prepare(sql.INSERT_API_CALL);
+      const insertContent = d.prepare(sql.INSERT_ACTION_CONTENT);
+      const runLog = d.transaction(() => {
+        const info = insertCall.run(
+          b.timestamp || new Date().toISOString(),
+          b.type || "",
+          b.model ?? null,
+          b.source_lang ?? null,
+          b.target_lang ?? null,
+          b.rewrite_mode ?? null,
+          b.transform_prompt ?? null,
+          b.prompt_tokens ?? null,
+          b.completion_tokens ?? null,
+          b.duration_ms ?? null,
+          b.cost ?? null,
+          b.tps ?? null,
+          b.username ?? null,
+          b.input_chars ?? null,
+          b.input_words ?? null,
+          b.input_paragraphs ?? null,
+          b.output_chars ?? null,
+          b.output_words ?? null,
+          b.output_paragraphs ?? null,
+        );
+        if (Object.prototype.hasOwnProperty.call(b, "input_text") && Object.prototype.hasOwnProperty.call(b, "output_text")) {
+          insertContent.run(
+            info.lastInsertRowid,
+            b.input_text != null ? String(b.input_text) : "",
+            b.output_text != null ? String(b.output_text) : "",
+          );
+        }
+      });
+      runLog();
       const row = d.prepare(sql.GET_TOTAL_COST).get();
       return { success: true, total_cost: row?.total_cost ?? 0 };
     } catch (err) {
@@ -264,6 +277,33 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
       }
     } catch (err) {
       console.error("[appDb] deleteOutsideRange error:", err);
+    }
+  });
+
+  ipcMain.handle("appDb:getExecutionHistory", (_, from, to, username) => {
+    try {
+      const d = getDb();
+      if (!d) return { rows: [] };
+      const { whereClause, params } = buildExecutionHistoryWhere(from, to, username, "a");
+      const rows = d.prepare(replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause)).all(...params);
+      return { rows };
+    } catch (err) {
+      console.error("[appDb] getExecutionHistory error:", err);
+      return { rows: [] };
+    }
+  });
+
+  ipcMain.handle("appDb:deleteExecutionHistory", (_, from, to) => {
+    try {
+      const d = getDb();
+      if (!d) return;
+      if (!from && !to) {
+        d.prepare(sql.DELETE_ACTION_CONTENT_ALL).run();
+      } else {
+        d.prepare(sql.DELETE_ACTION_CONTENT_BEFORE).run(from || to);
+      }
+    } catch (err) {
+      console.error("[appDb] deleteExecutionHistory error:", err);
     }
   });
 

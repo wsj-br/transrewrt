@@ -18,9 +18,13 @@ if (Get-Command nvm -ErrorAction SilentlyContinue) {
     # nvm-windows: use the LTS we just installed (current version has * in "nvm list")
     $nvmList = nvm list 2>&1 | Out-String
     if ($nvmList -match "\*\s*(\d+\.\d+\.\d+)") {
-        nvm use $Matches[1]
+        $nodeVer = $Matches[1]
+        Write-Host "Using Node.js version $nodeVer" -ForegroundColor Green
+        nvm use $nodeVer
     } elseif ($nvmList -match "(\d+\.\d+\.\d+)") {
-        nvm use $Matches[1]
+        $nodeVer = $Matches[1]
+        Write-Host "Using Node.js version $nodeVer" -ForegroundColor Green
+        nvm use $nodeVer
     }
 } else {
     Write-Host "nvm not found. Install nvm-windows (https://github.com/coreybutler/nvm-windows) to upgrade Node.js, or skip this step." -ForegroundColor Yellow

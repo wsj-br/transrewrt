@@ -289,6 +289,10 @@ export const AppProvider = ({ children }) => {
         output_words: translateOutputStats.words,
         output_paragraphs: translateOutputStats.paragraphs,
       };
+      if (settings.keep_execution_history !== false) {
+        translatePayload.input_text = typeof text === "string" ? text : "";
+        translatePayload.output_text = result.content ?? "";
+      }
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(translatePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }
@@ -516,6 +520,10 @@ export const AppProvider = ({ children }) => {
         output_words: rewriteOutputStats.words,
         output_paragraphs: rewriteOutputStats.paragraphs,
       };
+      if (settings.keep_execution_history !== false) {
+        rewritePayload.input_text = typeof text === "string" ? text : "";
+        rewritePayload.output_text = result.content ?? "";
+      }
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(rewritePayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }
@@ -592,6 +600,10 @@ export const AppProvider = ({ children }) => {
         output_words: transformOutputStats.words,
         output_paragraphs: transformOutputStats.paragraphs,
       };
+      if (settings.keep_execution_history !== false) {
+        transformPayload.input_text = typeof text === "string" ? text : "";
+        transformPayload.output_text = result.content ?? "";
+      }
       if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
         window.electronAPI.logApiCall(transformPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
       }

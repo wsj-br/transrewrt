@@ -1,10 +1,15 @@
 /**
- * Routes: POST /api/calls, GET /api/calls/total-cost, summary-*, all, delete-by-model, DELETE /api/calls
+ * Routes: POST /api/calls, GET /api/calls/total-cost, summary-*, all, history, delete-by-model, DELETE /api/calls, DELETE /api/calls/history
  * Uses src/shared/db/appSchema.js for SQL and buildWhereFromTo.
  */
 
 const express = require("express");
-const { buildWhereFromTo, sql, replaceWhere } = require("../../shared/db/appSchema.js");
+const {
+  buildWhereFromTo,
+  buildExecutionHistoryWhere,
+  sql,
+  replaceWhere,
+} = require("../../shared/db/appSchema.js");
 
 /**
  * @param {function} getDb
@@ -35,27 +40,39 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       const dur = b.duration_ms ?? 0;
       const cost = b.cost ?? 0;
 
-      db.prepare(sql.INSERT_API_CALL).run(
-        timestamp,
-        type,
-        model,
-        source_lang,
-        target_lang,
-        rewrite_mode,
-        transform_prompt,
-        prompt_tokens,
-        completion_tokens,
-        dur,
-        cost,
-        b.tps ?? null,
-        username,
-        b.input_chars ?? null,
-        b.input_words ?? null,
-        b.input_paragraphs ?? null,
-        b.output_chars ?? null,
-        b.output_words ?? null,
-        b.output_paragraphs ?? null,
-      );
+      const insertCall = db.prepare(sql.INSERT_API_CALL);
+      const insertContent = db.prepare(sql.INSERT_ACTION_CONTENT);
+      const runLog = db.transaction(() => {
+        const info = insertCall.run(
+          timestamp,
+          type,
+          model,
+          source_lang,
+          target_lang,
+          rewrite_mode,
+          transform_prompt,
+          prompt_tokens,
+          completion_tokens,
+          dur,
+          cost,
+          b.tps ?? null,
+          username,
+          b.input_chars ?? null,
+          b.input_words ?? null,
+          b.input_paragraphs ?? null,
+          b.output_chars ?? null,
+          b.output_words ?? null,
+          b.output_paragraphs ?? null,
+        );
+        if (Object.prototype.hasOwnProperty.call(b, "input_text") && Object.prototype.hasOwnProperty.call(b, "output_text")) {
+          insertContent.run(
+            info.lastInsertRowid,
+            b.input_text != null ? String(b.input_text) : "",
+            b.output_text != null ? String(b.output_text) : "",
+          );
+        }
+      });
+      runLog();
       res.json({ success: true });
     } catch (err) {
       log.error("[API] POST /api/calls - Error: " + err.message, { stack: err.stack });
@@ -200,6 +217,19 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     }
   });
 
+  router.get("/calls/history", (req, res) => {
+    const db = getDb();
+    if (!db) return res.status(503).json({ error: "Database unavailable" });
+    try {
+      const { whereClause, params } = buildExecutionHistoryWhere(req.query.from, req.query.to, req.query.username, "a");
+      const rows = db.prepare(replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause)).all(...params);
+      res.json({ rows });
+    } catch (err) {
+      log.error("[API] GET /api/calls/history - Error: " + err.message, { stack: err.stack });
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   router.get("/calls/all", (req, res) => {
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
@@ -281,6 +311,25 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       res.json({ success: true });
     } catch (err) {
       log.error("[API] DELETE /api/calls - Error: " + err.message, { stack: err.stack });
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  router.delete("/calls/history", (req, res) => {
+    setSessionRefreshCookie(req, res);
+    const db = getDb();
+    if (!db) return res.status(503).json({ error: "Database unavailable" });
+    const from = req.query.from || null;
+    const to = req.query.to || null;
+    try {
+      if (!from && !to) {
+        db.prepare(sql.DELETE_ACTION_CONTENT_ALL).run();
+      } else {
+        db.prepare(sql.DELETE_ACTION_CONTENT_BEFORE).run(from || to);
+      }
+      res.json({ success: true });
+    } catch (err) {
+      log.error("[API] DELETE /api/calls/history - Error: " + err.message, { stack: err.stack });
       res.status(500).json({ error: err.message });
     }
   });

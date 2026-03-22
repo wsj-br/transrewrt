@@ -454,6 +454,39 @@ const webAPI = {
     }
   },
 
+  getExecutionHistory: async (from, to, username = null) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    if (username) q.set("username", username);
+    const res = await fetch(`${API_BASE}/api/calls/history?${q}`, { credentials: "include" });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) throw new Error("Failed to load execution history");
+    const data = await res.json();
+    return data.rows ?? [];
+  },
+
+  deleteExecutionHistory: async (from, to) => {
+    const q = new URLSearchParams();
+    if (from) q.set("from", from);
+    if (to) q.set("to", to);
+    const res = await fetch(`${API_BASE}/api/calls/history?${q}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Failed to delete history data");
+    }
+  },
+
   customPrompts: {
     getAll: async () => {
       const res = await fetch(`${API_BASE}/api/custom-prompts`, { credentials: "include" });

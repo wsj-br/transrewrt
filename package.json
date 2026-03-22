@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -54,6 +54,7 @@
     "files": [
       "dist/**/*",
       "src/main/**/*",
+      "src/shared/**/*.js",
       "images/**/*",
       "package.json",
       "build_timestamp",
@@ -101,10 +102,11 @@
     },
     "nsis": {
       "include": "build/installer.nsh",
+      "oneClick": false,
       "installerIcon": "transrewrt_logo.ico",
       "uninstallerIcon": "transrewrt_logo.ico",
       "installerHeaderIcon": "transrewrt_logo.ico",
-      "createDesktopShortcut": true,
+      "createDesktopShortcut": false,
       "createStartMenuShortcut": true,
       "shortcutName": "Transrewrt"
     }
@@ -119,7 +121,7 @@
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
-    "electron": "^40.8.2",
+    "electron": "^41.0.3",
     "electron-builder": "^26.8.1",
     "electron-reload": "2.0.0-alpha.1",
     "eslint": "^9.39.4",
@@ -131,14 +133,14 @@
     "i18next-scanner": "^4.6.0",
     "mini-css-extract-plugin": "^2.10.1",
     "prop-types": "^15.8.1",
-    "puppeteer": "^24.39.1",
-    "sharp": "^0.33.5",
+    "puppeteer": "^24.40.0",
     "react-refresh": "^0.18.0",
+    "sharp": "^0.34.5",
     "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",
     "wait-on": "^9.0.4",
     "webpack": "^5.105.4",
-    "webpack-cli": "^7.0.0"
+    "webpack-cli": "^7.0.2"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
@@ -160,23 +162,24 @@
       "core-js-pure",
       "electron",
       "electron-winstaller",
-      "puppeteer"
+      "puppeteer",
+      "sharp"
     ]
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "@fluentui/react-components": "^9.73.3",
+    "@fluentui/react-components": "^9.73.4",
     "@fluentui/react-icons": "^2.0.321",
     "argon2": "^0.44.0",
-    "better-sqlite3": "^12.6.2",
+    "better-sqlite3": "^12.8.0",
     "diff": "^8.0.3",
     "express": "^5.2.1",
-    "i18next": "^25.8.18",
+    "i18next": "^25.10.2",
     "lucide-react": "^0.577.0",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-i18next": "^16.5.8",
+    "react-i18next": "^16.6.0",
     "recharts": "^3.8.0",
     "webpack-dev-server": "^5.2.3",
     "xlsx-js-style": "^1.2.0"

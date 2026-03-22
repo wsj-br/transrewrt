@@ -14,6 +14,7 @@ import {
   PenTool,
   WandSparkles,
   BarChart3,
+  History,
   Settings,
   PanelLeftClose,
   PanelLeftOpen,
@@ -270,7 +271,9 @@ const Sidebar = ({
   currentView,
   onModeChange,
   onDashboardClick,
+  onHistoryClick,
   onSettingsClick,
+  showExecutionHistory = true,
   currentUser,
   onSignOut,
   onChangePassword,
@@ -282,6 +285,7 @@ const Sidebar = ({
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const isSettingsActive = currentView === "settings";
   const isDashboardActive = currentView === "dashboard";
+  const isHistoryActive = currentView === "history";
   const isTranslateActive =
     currentMode === "translate" && currentView === "workspace";
   const isRewriteActive =
@@ -449,6 +453,33 @@ const Sidebar = ({
             {t("Dashboard")}
           </span>
         </button>
+        {showExecutionHistory && onHistoryClick && (
+          <button
+            type="button"
+            data-testid="nav-history"
+            className={mergeClasses(
+              styles.navItem,
+              isHistoryActive && styles.navItemActive,
+              collapsed && styles.navItemCollapsed,
+            )}
+            onClick={() => onHistoryClick()}
+            aria-label={t("History")}
+            aria-current={isHistoryActive ? "page" : undefined}
+            title={t("History")}
+          >
+            <span className={styles.navItemIcon}>
+              <History size={iconSize} strokeWidth={isHistoryActive ? 2.2 : 1.6} />
+            </span>
+            <span
+              className={mergeClasses(
+                styles.navItemLabel,
+                collapsed && styles.navItemLabelHidden,
+              )}
+            >
+              {t("History")}
+            </span>
+          </button>
+        )}
         <button
           type="button"
           data-testid="nav-settings"
@@ -579,7 +610,9 @@ Sidebar.propTypes = {
   currentView: PropTypes.string.isRequired,
   onModeChange: PropTypes.func.isRequired,
   onDashboardClick: PropTypes.func.isRequired,
+  onHistoryClick: PropTypes.func,
   onSettingsClick: PropTypes.func.isRequired,
+  showExecutionHistory: PropTypes.bool,
   currentUser: PropTypes.object,
   onSignOut: PropTypes.func,
   onChangePassword: PropTypes.func,

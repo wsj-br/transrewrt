@@ -26,6 +26,7 @@
     "font_size": 15,
     "theme": "System",
     "ui_locale": "en-GB",
+    "keep_execution_history": true,
     "cost_fraction_style": "muted",
     "total_cost": 0,
     "web_session_timeout": 604800,

@@ -171,15 +171,18 @@ const App = () => {
     }
   }, [settings?.app_mode]);
 
-  // Restore main view (workspace vs settings vs dashboard) from state once when config has loaded
+  // Restore main view (workspace vs settings vs dashboard vs history) from state once when config has loaded
   useEffect(() => {
     if (hasRestoredViewRef.current || !settings || Object.keys(settings).length === 0) return;
-    const view = settings.web_view;
-    if (view === "settings" || view === "workspace" || view === "dashboard") {
+    let view = settings.web_view;
+    if (view === "history" && settings.keep_execution_history === false) {
+      view = "workspace";
+    }
+    if (view === "settings" || view === "workspace" || view === "dashboard" || view === "history") {
       hasRestoredViewRef.current = true;
       queueMicrotask(() => setCurrentView(view));
     }
-  }, [settings, settings?.web_view]);
+  }, [settings, settings?.web_view, settings?.keep_execution_history]);
 
   // Sync rewriteMode from settings when config loads (deferred to avoid sync setState in effect)
   useEffect(() => {
@@ -263,6 +266,18 @@ const App = () => {
     setCurrentView("dashboard");
     if (isWeb) setSetting("web_view", "dashboard");
   };
+
+  const handleHistoryClick = () => {
+    setCurrentView("history");
+    if (isWeb) setSetting("web_view", "history");
+  };
+
+  useEffect(() => {
+    if (settings.keep_execution_history === false && currentView === "history") {
+      setCurrentView("workspace");
+      if (isWeb) setSetting("web_view", "workspace");
+    }
+  }, [settings.keep_execution_history, currentView, isWeb, setSetting]);
 
   const clearInput = () => {
     if (currentMode === "translate") {
@@ -518,6 +533,8 @@ const App = () => {
                   currentView={currentView}
                   onModeChange={handleModeChange}
                   onDashboardClick={handleDashboardClick}
+                  onHistoryClick={handleHistoryClick}
+                  showExecutionHistory={settings.keep_execution_history !== false}
                   onSettingsClick={() => {
                     setCurrentView("settings");
                     if (isWeb) setSetting("web_view", "settings");
@@ -583,8 +600,9 @@ const App = () => {
           currentView={currentView}
           onModeChange={handleModeChange}
           onDashboardClick={handleDashboardClick}
+          onHistoryClick={handleHistoryClick}
+          showExecutionHistory={settings.keep_execution_history !== false}
           onSettingsClick={() => setCurrentView("settings")}
-          currentUser={currentUser}
         />
         <MainContent
           view={currentView}

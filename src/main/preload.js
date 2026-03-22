@@ -41,6 +41,9 @@ const api = {
     ipcRenderer.invoke('appDb:getSummaryByDayPaginated', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('appDb:deleteOutsideRange', from, to),
   deleteCallsByModel: (model) => ipcRenderer.invoke('appDb:deleteByModel', model),
+  getExecutionHistory: (from, to, username) =>
+    ipcRenderer.invoke('appDb:getExecutionHistory', from, to, username).then((r) => r?.rows ?? []),
+  deleteExecutionHistory: (from, to) => ipcRenderer.invoke('appDb:deleteExecutionHistory', from, to),
   customPrompts: {
     getAll: () => ipcRenderer.invoke('customPrompts:getAll'),
     create: (prompt) => ipcRenderer.invoke('customPrompts:create', prompt),
