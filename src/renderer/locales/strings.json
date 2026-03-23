@@ -6399,14 +6399,6 @@
     "source": "Add API keys for each provider you use.",
     "translated": {}
   },
-  "e9e2dff7": {
-    "source": "Don't want to pay?",
-    "translated": {}
-  },
-  "ec2bbdd5": {
-    "source": "Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.",
-    "translated": {}
-  },
   "c9cc8cce": {
     "source": "Save",
     "translated": {
@@ -6652,6 +6644,14 @@
       "tr": "Test",
       "vi": "Thử"
     }
+  },
+  "e9e2dff7": {
+    "source": "Don't want to pay?",
+    "translated": {}
+  },
+  "ec2bbdd5": {
+    "source": "Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.",
+    "translated": {}
   },
   "8b5ad287": {
     "source": "Admin access is required.",
