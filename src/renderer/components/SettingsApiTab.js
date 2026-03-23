@@ -260,12 +260,6 @@ const SettingsApiTab = ({
               {t("Add API keys for each provider you use.")}
             </Text>
             
-            <div style={{ marginBottom: "24px", padding: "12px 16px", backgroundColor: "var(--colorNeutralBackground2)", borderRadius: "6px", maxWidth: "800px" }}>
-              <Text as="p" style={{ margin: 0, fontSize: "14px" }}>
-                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.")}
-              </Text>
-            </div>
-
             <div
               style={{
                 display: "grid",
@@ -362,6 +356,12 @@ const SettingsApiTab = ({
                   {testResults.ollama.message}
                 </Text>
               ) : null}
+            </div>
+
+            <div style={{ marginTop: "24px", padding: "12px 16px", backgroundColor: "var(--colorNeutralBackground2)", borderRadius: "6px", maxWidth: "800px" }}>
+              <Text as="p" style={{ margin: 0, fontSize: "14px" }}>
+                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.")}
+              </Text>
             </div>
 
           </div>
