@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Text, Input } from "@fluentui/react-components";
-import { Key, Pencil, Eye, EyeOff } from "lucide-react";
+import { Key, Eye, EyeOff } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 
@@ -62,11 +62,10 @@ const SecretField = ({
             </span>
           </span>
           <Button
-            appearance="subtle"
-            icon={<Pencil size={16} />}
+            appearance="secondary"
             onClick={onEdit}
             aria-label={editLabel}
-            style={{ minWidth: "auto" }}
+            size="small"
           >
             {editLabel}
           </Button>
@@ -129,7 +128,7 @@ const SecretField = ({
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
-        <Button appearance="primary" onClick={onSave} size="small">
+        <Button appearance="secondary" onClick={onSave} size="small">
           {saveLabel}
         </Button>
         {configured && (
@@ -137,14 +136,16 @@ const SecretField = ({
             {cancelLabel}
           </Button>
         )}
-        <Button
-          appearance="secondary"
-          onClick={onTest}
-          disabled={testState?.status === "testing"}
-          size="small"
-        >
-          {testState?.status === "testing" ? "Testing..." : "Test"}
-        </Button>
+        {!configured && (
+          <Button
+            appearance="secondary"
+            onClick={onTest}
+            disabled={testState?.status === "testing"}
+            size="small"
+          >
+            {testState?.status === "testing" ? "Testing..." : "Test"}
+          </Button>
+        )}
       </div>
       {testState?.message ? (
         <Text

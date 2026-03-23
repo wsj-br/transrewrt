@@ -22,11 +22,11 @@ const useStyles = makeStyles({
   },
 });
 
-const ResizablePanels = ({ leftPanel, rightPanel, leftGrow = 1, rightGrow = 1 }) => {
+const ResizablePanels = ({ leftPanel, rightPanel, leftGrow = 1, rightGrow = 1, gap = "48px" }) => {
   const styles = useStyles();
 
   return (
-    <div className={styles.resizablePanels}>
+    <div className={styles.resizablePanels} style={{ gap }}>
       <div
         className={styles.panelContainer}
         style={{ flex: `${leftGrow} ${leftGrow} 0`, minWidth: leftGrow < rightGrow ? "200px" : "300px" }}
@@ -48,6 +48,7 @@ ResizablePanels.propTypes = {
   rightPanel: PropTypes.node.isRequired,
   leftGrow: PropTypes.number,
   rightGrow: PropTypes.number,
+  gap: PropTypes.string,
 };
 
 export default ResizablePanels;

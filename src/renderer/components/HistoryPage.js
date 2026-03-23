@@ -10,6 +10,8 @@ import {
   makeStyles,
   mergeClasses,
 } from "@fluentui/react-components";
+import { Download } from "lucide-react";
+import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
   getFilters,
@@ -20,6 +22,7 @@ import {
   DASH,
 } from "../utils/misc/costUtils";
 import { formatDateTime, interpolateTemplate, getTextStats } from "../utils/misc/formatUtils";
+import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
 import ResizablePanels from "./ResizablePanels";
@@ -27,6 +30,8 @@ import TextPanel from "./TextPanel";
 import CallDetailsContent from "./CallDetailsContent";
 import { useStyles as useDashboardStyles } from "./DashboardPage-styles";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
+
+const EXPORT_FILENAME = "transrewrt-history";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -327,6 +332,7 @@ export default function HistoryPage() {
   const [userList, setUserList] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exportLoading, setExportLoading] = useState(false);
   const [selected, setSelected] = useState(null);
 
   const isAdmin = currentUser?.role === "admin";
@@ -386,6 +392,110 @@ export default function HistoryPage() {
   const historyPrependFields = useMemo(
     () => buildHistoryPrependFields(costFractionStyle),
     [costFractionStyle],
+  );
+
+  const exportColumns = useMemo(
+    () => [
+      { key: "id", labelKey: t("ID") },
+      { key: "timestamp", labelKey: t("Timestamp") },
+      { key: "type", labelKey: t("Type") },
+      { key: "username", labelKey: t("Username") },
+      { key: "model", labelKey: t("Model") },
+      { key: "source_lang", labelKey: t("Source") },
+      { key: "target_lang", labelKey: t("Target") },
+      { key: "rewrite_mode", labelKey: t("Mode") },
+      { key: "transform_prompt", labelKey: t("Transform prompt") },
+      { key: "prompt_tokens", labelKey: t("Prompt tokens") },
+      { key: "completion_tokens", labelKey: t("Completion tokens") },
+      { key: "duration_ms", labelKey: t("Duration") },
+      { key: "cost", labelKey: t("Cost") },
+      { key: "tps", labelKey: t("TPS") },
+      { key: "input_chars", labelKey: t("Input chars") },
+      { key: "input_words", labelKey: t("Input words") },
+      { key: "input_paragraphs", labelKey: t("Input paragraphs") },
+      { key: "output_chars", labelKey: t("Output chars") },
+      { key: "output_words", labelKey: t("Output words") },
+      { key: "output_paragraphs", labelKey: t("Output paragraphs") },
+      { key: "input_text", labelKey: t("Input text") },
+      { key: "output_text", labelKey: t("Output text") },
+    ],
+    [t],
+  );
+
+  const handleExport = useCallback(
+    async (format) => {
+      setExportLoading(true);
+      try {
+        const data = rows;
+        if (format === "json") {
+          const blob = new Blob([JSON.stringify(data, null, 2)], {
+            type: "application/json",
+          });
+          triggerDownload(blob, `${EXPORT_FILENAME}.json`);
+        } else if (format === "csv") {
+          const csv = rowsToCsvWithLabels(data, exportColumns);
+          const blob = new Blob([csv], { type: "text/csv" });
+          triggerDownload(blob, `${EXPORT_FILENAME}.csv`);
+        } else if (format === "xlsx") {
+          const costColIndex = exportColumns.findIndex((c) => c.key === "cost");
+          const tpsColIndex = exportColumns.findIndex((c) => c.key === "tps");
+          const headerRow = exportColumns.map((c) => c.labelKey);
+          const dataRows = data.map((row) => exportColumns.map((c) => row[c.key]));
+          const aoa = [headerRow, ...dataRows];
+          const ws = XLSX.utils.aoa_to_sheet(aoa);
+          const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
+          const headerStyle = {
+            fill: { patternType: "solid", fgColor: { rgb: "BDD7EE" } },
+            font: { bold: true },
+            alignment: { vertical: "top" },
+          };
+          const cellStyleTop = { alignment: { vertical: "top" } };
+          const cellStyleCost = { alignment: { vertical: "top" }, numFmt: "0.000000" };
+          const cellStyleTps = { alignment: { vertical: "top" }, numFmt: "0.0" };
+          for (let C = range.s.c; C <= range.e.c; C++) {
+            const addr = XLSX.utils.encode_cell({ r: 0, c: C });
+            if (ws[addr]) ws[addr].s = headerStyle;
+          }
+          for (let R = range.s.r + 1; R <= range.e.r; R++) {
+            for (let C = range.s.c; C <= range.e.c; C++) {
+              const addr = XLSX.utils.encode_cell({ r: R, c: C });
+              const style =
+                C === costColIndex
+                  ? cellStyleCost
+                  : C === tpsColIndex
+                    ? cellStyleTps
+                    : cellStyleTop;
+              if (ws[addr]) ws[addr].s = style;
+            }
+          }
+          const numCols = range.e.c - range.s.c + 1;
+          const colWidths = [];
+          for (let c = 0; c < numCols; c++) {
+            let maxCh = 10;
+            for (let r = 0; r <= range.e.r; r++) {
+              const addr = XLSX.utils.encode_cell({ r, c });
+              const cell = ws[addr];
+              if (!cell || cell.v == null) continue;
+              const str = String(cell.v);
+              const len = str.length;
+              maxCh = Math.min(Math.max(maxCh, len + 2), 80);
+            }
+            colWidths.push({ wch: maxCh });
+          }
+          ws["!cols"] = colWidths;
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "History");
+          const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+          const blob = new Blob([arr], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          });
+          triggerDownload(blob, `${EXPORT_FILENAME}.xlsx`);
+        }
+      } finally {
+        setExportLoading(false);
+      }
+    },
+    [rows, exportColumns],
   );
 
   const inputStatsStr = selected
@@ -448,6 +558,37 @@ export default function HistoryPage() {
             </Dropdown>
           </>
         )}
+        <div className={dashStyles.downloadBlock} style={{ marginLeft: "32px" }}>
+          <Download size={16} aria-hidden />
+          <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
+          <Button
+            size="small"
+            appearance="subtle"
+            className={dashStyles.downloadButton}
+            disabled={exportLoading || loading}
+            onClick={() => handleExport("json")}
+          >
+            {t("JSON")}
+          </Button>
+          <Button
+            size="small"
+            appearance="subtle"
+            className={dashStyles.downloadButton}
+            disabled={exportLoading || loading}
+            onClick={() => handleExport("csv")}
+          >
+            {t("CSV")}
+          </Button>
+          <Button
+            size="small"
+            appearance="subtle"
+            className={dashStyles.downloadButton}
+            disabled={exportLoading || loading}
+            onClick={() => handleExport("xlsx")}
+          >
+            {t("XLSX")}
+          </Button>
+        </div>
       </div>
 
       <ResizablePanels
@@ -466,6 +607,8 @@ export default function HistoryPage() {
                     <button
                       key={row.id}
                       type="button"
+                      data-testid="history-list-item"
+                      data-history-type={row.type || ""}
                       className={mergeClasses(
                         styles.historyCard,
                         selected?.id === row.id && styles.historyCardSelected,
@@ -521,6 +664,7 @@ export default function HistoryPage() {
                 </div>
                 <div className={styles.metaPanels}>
                   <ResizablePanels
+                    gap="8px"
                     leftGrow={1}
                     rightGrow={1}
                     leftPanel={

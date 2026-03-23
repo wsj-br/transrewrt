@@ -1,12 +1,12 @@
 "use strict";
 
 /**
- * Takes screenshots of the Transrewrt web app (Translate, Rewrite, Transform, etc.)
+ * Takes screenshots of the Transrewrt web app (Translate, Rewrite, Transform, History, etc.)
  * and saves them to images/screenshots/.
  *
  * Prerequisites:
  * - Web app running (e.g. pnpm run dev:web → http://localhost:5000).
- * - For web auth: set ADMIN_USERNAME and ADMIN_PASSWORD in the environment.
+ * - Set ADMIN_USERNAME and ADMIN_PASSWORD in the environment (required; script exits if missing).
  *
  * Usage: pnpm run take-screenshots [--screenshot=NAME] [--locale=CODE[,CODE...]]
  *   --screenshot=NAME  (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
@@ -28,7 +28,13 @@ const util = require("util");
 const puppeteer = require("puppeteer");
 const sharp = require("sharp");
 const Database = require("better-sqlite3");
-const { applyAppSchema, sql, promptTargetLanguageToDb } = require("../src/shared/db/appSchema.js");
+const {
+  applyAppSchema,
+  sql,
+  promptTargetLanguageToDb,
+  buildExecutionHistoryWhere,
+  replaceWhere,
+} = require("../src/shared/db/appSchema.js");
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
@@ -66,7 +72,7 @@ and save them to images/screenshots/<locale>/.
 
 Prerequisites:
   - Web app running (e.g. pnpm run dev:web → ${baseUrl}).
-  - For web auth: set ADMIN_USERNAME and ADMIN_PASSWORD in the environment.
+  - ADMIN_USERNAME and ADMIN_PASSWORD set in the environment (required; script exits if missing).
 
 Usage:
   node scripts/take-screenshots.js [options]
@@ -183,6 +189,75 @@ function ensureRewriteWithSynonymsPrompt() {
   db.close();
 }
 
+/** Ensures at least one execution-history row exists so History screenshots show a populated list (web + Electron DB). */
+function ensureHistorySampleForScreenshots() {
+  const dataDir = getDataDir();
+  const dbPath = path.join(dataDir, "transrewrt.db");
+  if (!fs.existsSync(path.dirname(dbPath))) {
+    log("Data directory %s does not exist; skipping history sample.", dataDir);
+    return;
+  }
+  let db;
+  try {
+    db = new Database(dbPath);
+    applyAppSchema(db);
+    const { whereClause, params } = buildExecutionHistoryWhere(null, null, null, "a");
+    const q = replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause);
+    const existing = db.prepare(q).all(...params);
+    if (existing.length > 0) {
+      log("Execution history already has %d row(s); skipping sample insert.", existing.length);
+      db.close();
+      return;
+    }
+  } catch (err) {
+    log("Could not check execution history: %s", err.message);
+    if (db) db.close();
+    return;
+  }
+  const now = new Date().toISOString();
+  const inputText =
+    "Screenshot sample: Hello world. This is sample translation input used for marketing screenshots.";
+  const outputText =
+    "Screenshot sample: Olá mundo. Este é um exemplo de texto traduzido para capturas de ecrã.";
+  const username =
+    process.env.ADMIN_USERNAME != null && String(process.env.ADMIN_USERNAME).trim()
+      ? String(process.env.ADMIN_USERNAME).trim()
+      : null;
+  try {
+    const insertCall = db.prepare(sql.INSERT_API_CALL);
+    const insertContent = db.prepare(sql.INSERT_ACTION_CONTENT);
+    const tx = db.transaction(() => {
+      const info = insertCall.run(
+        now,
+        "translate",
+        "openrouter/free",
+        "Detect Language",
+        "pt-BR",
+        "",
+        null,
+        12,
+        48,
+        1200,
+        0.0001,
+        42.5,
+        username,
+        inputText.length,
+        8,
+        1,
+        outputText.length,
+        12,
+        1,
+      );
+      insertContent.run(info.lastInsertRowid, inputText, outputText);
+    });
+    tx();
+    log("Inserted sample translate row for history screenshots.");
+  } catch (err) {
+    log("Failed to insert history sample: %s", err.message);
+  }
+  db.close();
+}
+
 const OUT_DIR = path.join(__dirname, "..", "images", "screenshots");
 let logStream = null;
 /** When inside a screenshot set loop, prepended to log lines (e.g. "  "). Deeper indent for "Selected"/"Saved" uses 5 spaces. */
@@ -270,6 +345,7 @@ const SCREENSHOTS = [
   { name: "language-selector", prepare: prepareLanguageSelector, capture: captureLanguageSelector },
   { name: "model-selector", prepare: prepareModelSelector, capture: captureModelSelector },
   { name: "sidebar", prepare: prepareSidebar, capture: captureSidebar },
+  { name: "history", prepare: prepareHistory, capture: captureHistory },
 ];
 
 async function wait(ms) {
@@ -802,6 +878,20 @@ async function prepareSidebar(page) {
   await wait(400);
 }
 
+async function prepareHistory(page) {
+  await clickByTestId(page, "nav-history");
+  await wait(600);
+  const translateSel = '[data-testid="history-list-item"][data-history-type="translate"]';
+  log("Waiting for first translate history item...");
+  await waitForSelectorWithRetry(page, translateSel, { timeout: 15000 });
+  await page.click(translateSel);
+  await wait(600);
+}
+
+async function captureHistory(page, filePath) {
+  await page.screenshot({ path: filePath });
+}
+
 async function captureSidebar(page, filePath) {
   const sidebar = await page.$("[data-testid=\"app-sidebar\"]");
   if (!sidebar) return;
@@ -916,12 +1006,30 @@ async function main() {
     process.exit(1);
   }
 
+  const adminUser = process.env.ADMIN_USERNAME;
+  const adminPass = process.env.ADMIN_PASSWORD;
+  const hasUser = adminUser != null && String(adminUser).trim() !== "";
+  const hasPass = adminPass != null && String(adminPass).trim() !== "";
+  if (!hasUser || !hasPass) {
+    console.error(
+      RED +
+        "ADMIN_USERNAME and ADMIN_PASSWORD must both be set in the environment (required for web login during screenshots)." +
+        RESET,
+    );
+    console.error(
+      "Set them in `.env` (loaded by your shell or tooling) or export before running, e.g.:",
+    );
+    console.error("  ADMIN_USERNAME=admin ADMIN_PASSWORD=yourpassword pnpm run take-screenshots\n");
+    process.exit(1);
+  }
+
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const logPath = initLogFile();
   log("Log file: %s", logPath);
 
   log("Ensuring prompt '%s' exists in custom_prompts...", REWRITE_WITH_SYNONYMS_NAME);
   ensureRewriteWithSynonymsPrompt();
+  ensureHistorySampleForScreenshots();
 
   log("Checking if server is online at %s...", BASE_URL);
   if (!(await checkAppResponding())) {

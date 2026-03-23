@@ -34,6 +34,7 @@
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",
     "take-screenshots": "node scripts/take-screenshots.js",
+    "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
     "translate-docs": "node scripts/translate-docs.js"
   },
