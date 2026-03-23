@@ -176,7 +176,6 @@ const SettingsCostTrackingTab = ({
   useEffect(() => {
     fetchKeyInfo();
   // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo closes over deps; listing it causes unnecessary reruns
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo uses t(); i18n t identity is unstable
   }, [canUseOpenRouterKeyInfo, isWeb, localSettings.openrouter_api_key_configured, isTabActive]);
 
   const keyUsageDisplay = useMemo(() => {

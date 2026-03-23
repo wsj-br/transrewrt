@@ -275,10 +275,12 @@ const App = () => {
 
   useEffect(() => {
     if (settings.keep_execution_history === false && currentView === "history") {
-      setCurrentView("workspace");
-      if (isWeb) setSetting("web_view", "workspace");
+      queueMicrotask(() => {
+        setCurrentView("workspace");
+        if (isWeb) setSetting("web_view", "workspace");
+      });
     }
-  }, [settings.keep_execution_history, currentView, isWeb, setSetting]);
+  }, [settings.keep_execution_history, currentView, setSetting]);
 
   const clearInput = () => {
     if (currentMode === "translate") {

@@ -1051,7 +1051,7 @@ async function main() {
             if (prepareTeardownPerLocale && teardown) {
               try {
                 await teardown(page);
-              } catch (_) {
+              } catch {
                 // ignore teardown error when capture failed
               }
             }

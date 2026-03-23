@@ -141,7 +141,6 @@ module.exports = function createStatusRouter(
   router.get("/provider-keys", requireAdmin, async (req, res) => {
     try {
       const providers = ENGINE_IDS.map((provider) => {
-        const configKey = CONFIG_KEY_BY_ENGINE[provider];
         const envKey = ENV_KEY_BY_ENGINE[provider];
         const envConfigured = !!((process.env[envKey] || "").trim());
         const configured = envConfigured;

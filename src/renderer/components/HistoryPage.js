@@ -369,7 +369,9 @@ export default function HistoryPage() {
   }, [loadHistory]);
 
   useEffect(() => {
-    setSelected(null);
+    queueMicrotask(() => {
+      setSelected(null);
+    });
   }, [filter, historyUsername]);
 
   const typeBadgeClass = (type) => {
