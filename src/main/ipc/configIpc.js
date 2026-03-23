@@ -5,6 +5,13 @@
 const path = require("path");
 const fs = require("fs");
 const { app, BrowserWindow } = require("electron");
+const { ENCRYPTED_CONFIG_KEYS } = require(path.join(
+  __dirname,
+  "..",
+  "..",
+  "shared",
+  "llm",
+));
 
 function configUnchanged(existing, value) {
   if (existing === value) return true;
@@ -58,14 +65,17 @@ function registerConfigIpc(ipcMain, ctx) {
     const cache = getConfigCache();
     const state = getStateCache();
     const sanitized = { ...cache };
-    delete sanitized.api_key;
-    delete sanitized.key_seed;
-    sanitized.api_key_configured = !!(
-      cache.api_key && String(cache.api_key).trim()
-    );
-    sanitized.key_seed_configured = !!(
-      cache.key_seed && String(cache.key_seed).trim()
-    );
+    for (const field of ENCRYPTED_CONFIG_KEYS) {
+      delete sanitized[field];
+      sanitized[`${field}_configured`] = !!(
+        cache[field] && String(cache[field]).trim()
+      );
+    }
+    sanitized.llm_configured =
+      ENCRYPTED_CONFIG_KEYS.some(
+        (f) => cache[f] && String(cache[f]).trim(),
+      ) ||
+      !!(cache.ollama_base_url && String(cache.ollama_base_url).trim());
     return Promise.resolve({ ...sanitized, ...state });
   });
 
@@ -94,7 +104,7 @@ function registerConfigIpc(ipcMain, ctx) {
     const configPart = {};
     const statePart = {};
     Object.keys(newConfig).forEach((k) => {
-      if (k === "api_key" || k === "key_seed") return;
+      if (ENCRYPTED_CONFIG_KEYS.includes(k)) return;
       if (isStateKey(k)) statePart[k] = newConfig[k];
       else configPart[k] = newConfig[k];
     });
@@ -126,10 +136,8 @@ function registerConfigIpc(ipcMain, ctx) {
 
   ipcMain.handle("config:getSecretsForRequest", () => {
     const cache = getConfigCache();
-    return Promise.resolve({
-      api_key: cache.api_key ?? "",
-      key_seed: cache.key_seed ?? "",
-    });
+    const { mergeKeys } = require(path.join(__dirname, "..", "..", "shared", "llm"));
+    return Promise.resolve(mergeKeys(cache));
   });
 
   ipcMain.handle("write-last-api-result", (_, payload) => {
@@ -160,20 +168,6 @@ function registerConfigIpc(ipcMain, ctx) {
       return Promise.resolve(true);
     } catch (err) {
       console.error(`Failed to write ${filename}:`, err);
-      return Promise.resolve(false);
-    }
-  });
-
-  ipcMain.handle("write-proxy-debug-log", (_, line) => {
-    try {
-      const dir = app.getPath("userData");
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      const filePath = path.join(dir, "proxy-debug.log");
-      const timestamp = new Date().toISOString();
-      fs.appendFileSync(filePath, `${timestamp} ${line}\n`, "utf8");
-      return Promise.resolve(true);
-    } catch (err) {
-      console.error("Failed to write proxy-debug.log", err);
       return Promise.resolve(false);
     }
   });

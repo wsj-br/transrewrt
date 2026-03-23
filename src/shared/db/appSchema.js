@@ -34,20 +34,7 @@ function applyAppSchema(db) {
   migrateApiCallsDropTotalCost(db);
   migrateApiCallsAddTextStats(db);
   migrateApiCallsRenameRewriteStyleToMode(db);
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS custom_prompts (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL UNIQUE,
-      role TEXT NOT NULL,
-      instructions TEXT NOT NULL,
-      output_description TEXT DEFAULT 'transformed',
-      temperature REAL DEFAULT 0.4,
-      target_language INTEGER DEFAULT 0,
-      prompt_instructions TEXT,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    )
-  `);
+  migrateCustomPromptsUserId(db);
   db.exec(`
     CREATE TABLE IF NOT EXISTS action_content (
       api_call_id INTEGER PRIMARY KEY,
@@ -119,6 +106,51 @@ function migrateApiCallsRenameRewriteStyleToMode(db) {
     db.exec("ALTER TABLE api_calls ADD COLUMN rewrite_mode TEXT");
     db.exec("UPDATE api_calls SET rewrite_mode = rewrite_style WHERE rewrite_style IS NOT NULL");
   }
+}
+
+/** Rebuild custom_prompts with user_id and UNIQUE(user_id, name); Electron uses user_id NULL. */
+function migrateCustomPromptsUserId(db) {
+  const cols = db.prepare("PRAGMA table_info(custom_prompts)").all();
+  if (cols.length === 0) {
+    db.exec(`
+      CREATE TABLE custom_prompts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        role TEXT NOT NULL,
+        instructions TEXT NOT NULL,
+        output_description TEXT DEFAULT 'transformed',
+        temperature REAL DEFAULT 0.4,
+        target_language INTEGER DEFAULT 0,
+        prompt_instructions TEXT,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        user_id TEXT,
+        UNIQUE(user_id, name)
+      )
+    `);
+    return;
+  }
+  if (cols.some((c) => c.name === "user_id")) return;
+  db.exec(`
+    CREATE TABLE custom_prompts_new (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      role TEXT NOT NULL,
+      instructions TEXT NOT NULL,
+      output_description TEXT DEFAULT 'transformed',
+      temperature REAL DEFAULT 0.4,
+      target_language INTEGER DEFAULT 0,
+      prompt_instructions TEXT,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      user_id TEXT,
+      UNIQUE(user_id, name)
+    );
+    INSERT INTO custom_prompts_new (id, name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at, user_id)
+    SELECT id, name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at, NULL FROM custom_prompts;
+    DROP TABLE custom_prompts;
+    ALTER TABLE custom_prompts_new RENAME TO custom_prompts;
+  `);
 }
 
 function promptTargetLanguageToDb(value) {
@@ -224,13 +256,19 @@ const sql = {
     FROM action_content c INNER JOIN api_calls a ON a.id = c.api_call_id${WHERE_PLACEHOLDER} ORDER BY a.timestamp DESC`,
   DELETE_ACTION_CONTENT_ALL: "DELETE FROM action_content",
   DELETE_ACTION_CONTENT_BEFORE: "DELETE FROM action_content WHERE api_call_id IN (SELECT id FROM api_calls WHERE timestamp < ?)",
-  CUSTOM_PROMPTS_GET_ALL: "SELECT * FROM custom_prompts ORDER BY name ASC",
-  CUSTOM_PROMPTS_INSERT: `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-  CUSTOM_PROMPTS_UPDATE: `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE id = ?`,
-  CUSTOM_PROMPTS_DELETE: "DELETE FROM custom_prompts WHERE id = ?",
-  CUSTOM_PROMPTS_DELETE_ALL: "DELETE FROM custom_prompts",
-  CUSTOM_PROMPTS_UPDATE_BY_NAME: `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ?`,
+  /** Electron: single-user rows use user_id IS NULL */
+  CUSTOM_PROMPTS_GET_ALL: "SELECT * FROM custom_prompts WHERE user_id IS NULL ORDER BY name ASC",
+  CUSTOM_PROMPTS_GET_ALL_FOR_USER: "SELECT * FROM custom_prompts WHERE user_id = ? ORDER BY name ASC",
+  CUSTOM_PROMPTS_INSERT: `INSERT INTO custom_prompts (name, role, instructions, output_description, temperature, target_language, prompt_instructions, created_at, updated_at, user_id)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  CUSTOM_PROMPTS_UPDATE: `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE id = ? AND user_id IS NULL`,
+  CUSTOM_PROMPTS_UPDATE_FOR_USER: `UPDATE custom_prompts SET name = ?, role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE id = ? AND user_id = ?`,
+  CUSTOM_PROMPTS_DELETE: "DELETE FROM custom_prompts WHERE id = ? AND user_id IS NULL",
+  CUSTOM_PROMPTS_DELETE_FOR_USER: "DELETE FROM custom_prompts WHERE id = ? AND user_id = ?",
+  CUSTOM_PROMPTS_DELETE_ALL: "DELETE FROM custom_prompts WHERE user_id IS NULL",
+  CUSTOM_PROMPTS_DELETE_ALL_FOR_USER: "DELETE FROM custom_prompts WHERE user_id = ?",
+  CUSTOM_PROMPTS_UPDATE_BY_NAME: `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ? AND user_id IS NULL`,
+  CUSTOM_PROMPTS_UPDATE_BY_NAME_FOR_USER: `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ? AND user_id = ?`,
 };
 
 function replaceWhere(sqlStr, whereClause) {

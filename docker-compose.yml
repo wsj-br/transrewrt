@@ -8,8 +8,16 @@ services:
     environment:
       - PORT=5000
       - CONFIG_PATH=/app/data/config.json
-      # Pass API key from host (e.g. .env or: API_KEY=sk-... pnpm docker:up)
-      - API_KEY=${API_KEY}
+      # LLM keys (at minimum set OPENROUTER_KEY or another provider your models use)
+      - OPENROUTER_KEY=${OPENROUTER_KEY:-}
+      - OPENAI_KEY=${OPENAI_KEY:-}
+      - ANTHROPIC_KEY=${ANTHROPIC_KEY:-}
+      - GOOGLE_KEY=${GOOGLE_KEY:-}
+      - DEEPSEEK_KEY=${DEEPSEEK_KEY:-}
+      - GROQ_KEY=${GROQ_KEY:-}
+      - MISTRAL_KEY=${MISTRAL_KEY:-}
+      - OLLAMA_URL=${OLLAMA_URL:-}
+      - XAI_KEY=${XAI_KEY:-}
 
 volumes:
   transrewrt-data:

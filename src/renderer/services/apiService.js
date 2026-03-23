@@ -1,41 +1,38 @@
 import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
-import { getRollingKey } from "../utils/security/transrewrtProxyKey";
 import prompts from "../../config-defaults/prompts.json";
 
-const PROXY_DEBUG =
-  typeof __DEV__ !== "undefined" && __DEV__;
-
-let _proxyDebugLoggedOnce = false;
-
-function formatProxyDebugLine(...args) {
-  const parts = args.map((a) => (typeof a === "object" ? JSON.stringify(a) : String(a)));
-  return "[Transrewrt Proxy] " + parts.join(" ");
-}
-
-function proxyDebug(...args) {
-  if (!PROXY_DEBUG || args.length === 0) return;
-  if (typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog) {
-    if (!_proxyDebugLoggedOnce) {
-      _proxyDebugLoggedOnce = true;
-      window.electronAPI.writeProxyDebugLog(
-        formatProxyDebugLine("Debug logging active (development mode). All proxy requests and rolling key usage logged to proxy-debug.log.")
-      ).catch(() => {});
-    }
-    window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(...args)).catch(() => {});
-  }
+function randomRequestId() {
+  return globalThis.crypto?.randomUUID?.() || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
 function resolvePrompt(value) {
   return Array.isArray(value) ? value.join("\n") : value;
 }
 
-/** True if the error is from the user aborting the request (AbortError or abort-like message). */
+/** True only for an explicit user abort (AbortSignal), not network failures ("Failed to fetch"). */
 function isAbortError(error) {
-  if (!error || typeof error.message !== "string") return false;
-  if (error.name === "AbortError") return true;
-  const m = error.message.toLowerCase();
-  return m.includes("aborted") || m.includes("failed to fetch");
+  return Boolean(error && error.name === "AbortError");
+}
+
+/** Normalize OpenAI-style streaming `delta.content` (string or multipart array) for SSE parsing. */
+function sseDeltaContentToString(delta) {
+  if (!delta) return "";
+  const c = delta.content;
+  if (typeof c === "string") return c;
+  if (Array.isArray(c)) {
+    return c
+      .map((part) => {
+        if (typeof part === "string") return part;
+        if (part && typeof part === "object" && part.type === "text" && typeof part.text === "string") {
+          return part.text;
+        }
+        return "";
+      })
+      .join("");
+  }
+  if (c != null) return String(c);
+  return "";
 }
 
 function buildTranslatePrompt(sourceLang, targetLang) {
@@ -123,99 +120,73 @@ function buildTransformSystemPrompt(promptConfig, targetLang) {
 
 const BASE_PATH = getBasePath();
 
-// API service to communicate with the backend
-// In Electron: calls OpenRouter directly or via Transrewrt proxy (transparent; client sends Authorization Bearer on every request).
-// In Web/Docker: calls server proxy (API key stays on server; server adds it when proxying).
+const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
+
+// API service: Electron uses main-process LLM IPC; web uses authenticated /api/llm/* routes.
 class APIService {
   constructor() {
     this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-    this.baseUrl = this._isWebMode ? `${BASE_PATH}/api/proxy` : "https://openrouter.ai/api/v1";
+  }
+
+  setBaseUrl(_url) {
+    /* Legacy no-op; model routing is namespaced per provider. */
   }
 
   /**
-   * Set the base URL for API requests
-   * In web mode we use /api/proxy (server adds API key). In Electron we use OpenRouter URL or Transrewrt proxy (transparent; client sends Bearer in all proxy calls).
+   * @param {string} modelId - Canonical model id (used to gate OpenRouter-only endpoints).
    */
-  setBaseUrl(url) {
-    if (this._isWebMode) {
-      this.baseUrl = `${BASE_PATH}/api/proxy`;
-    } else {
-      this.baseUrl = url || "https://openrouter.ai/api/v1";
-    }
-  }
+  async getGenerationUsage(generationId, maxRetries = 5, modelId = "") {
+    if (!generationId) return null;
+    if (modelId && !String(modelId).startsWith("openrouter/")) return null;
 
-  /**
-   * Build the request URL: when Transrewrt proxy is enabled, use proxy base + rolling key + path.
-   * The proxy is transparent: the client must send Authorization Bearer (API key) on every request.
-   * @param {string} path - Path segment (e.g. "chat/completions", "models", "generation?id=...")
-   * @returns {Promise<string>} Full URL for the request
-   */
-  async getRequestUrl(path) {
-    if (this._isWebMode) {
-      const p = path.startsWith("/") ? path.slice(1) : path;
-      return `${this.baseUrl}/${p}`;
-    }
-    const config = require("../utils/config/configManager").default.getAll();
-    const useProxy = !!config.use_transrewrt_proxy;
-    if (useProxy && config.api_url && window.electronAPI?.getSecretsForRequest) {
-      const { key_seed } = await window.electronAPI.getSecretsForRequest();
-      const keySeed = (key_seed || "").trim();
-      if (keySeed) {
-        const proxyBase = String(config.api_url).replace(/\/+$/, "");
-        const rollingKey = await getRollingKey(
-          keySeed,
-          PROXY_DEBUG && typeof window !== "undefined" && window.electronAPI?.writeProxyDebugLog
-            ? (msg, data) => {
-                window.electronAPI.writeProxyDebugLog(formatProxyDebugLine(msg, data)).catch(() => {});
-              }
-            : undefined
-        );
-        const pathPart = path.startsWith("/") ? path.slice(1) : path;
-        const url = `${proxyBase}/${rollingKey}/api/v1/${pathPart}`;
-        if (PROXY_DEBUG) {
-          proxyDebug("getRequestUrl (proxy)", {
-            proxyBase,
-            pathPart,
-            rollingKeyMasked: rollingKey ? `${rollingKey.slice(0, 2)}***` : "(empty)",
-            fullUrl: url,
-          });
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        let url;
+        const opts = { headers: { "Content-Type": "application/json" } };
+        if (this._isWebMode) {
+          url = `${BASE_PATH}/api/llm/generation?id=${encodeURIComponent(generationId)}`;
+          opts.credentials = "include";
+        } else {
+          const secrets = await window.electronAPI.getSecretsForRequest();
+          const key = (secrets?.openrouter_api_key || "").trim();
+          if (!key) return null;
+          url = `${OPENROUTER_API_BASE}/generation?id=${encodeURIComponent(generationId)}`;
+          opts.headers = {
+            ...opts.headers,
+            Authorization: `Bearer ${key}`,
+            "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
+            "X-Title": "Transrewrt",
+          };
         }
-        return url;
+        const response = await fetch(url, opts);
+        if (response.status === 401) {
+          if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
+          return null;
+        }
+        if (response.status === 404 && attempt < maxRetries - 1) {
+          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+          continue;
+        }
+        if (!response.ok) return null;
+        const json = await response.json();
+        const data = json.data;
+        if (!data) return null;
+        return {
+          cost: data.total_cost ?? 0,
+          prompt_tokens: data.tokens_prompt ?? 0,
+          completion_tokens: data.tokens_completion ?? 0,
+          total_tokens: (data.tokens_prompt ?? 0) + (data.tokens_completion ?? 0),
+        };
+      } catch (err) {
+        if (attempt < maxRetries - 1) {
+          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+        } else {
+          console.warn("Failed to fetch generation usage:", err);
+          return null;
+        }
       }
     }
-    const base = (this.baseUrl || "").replace(/\/+$/, "");
-    const pathPart = path.startsWith("/") ? path : `/${path}`;
-    return `${base}${pathPart}`;
-  }
-
-  async getHeaders() {
-    if (this._isWebMode) {
-      return { "Content-Type": "application/json" };
-    }
-    if (window.electronAPI?.getSecretsForRequest) {
-      const { api_key } = await window.electronAPI.getSecretsForRequest();
-      const config = require("../utils/config/configManager").default.getAll();
-      const useProxy = !!config.use_transrewrt_proxy;
-      if (PROXY_DEBUG && useProxy) {
-        proxyDebug("getHeaders (proxy)", {
-          note: "API Key will not be shown in the log",
-          hasApiKey: !!(api_key && String(api_key).trim()),
-          headerKeys: ["Content-Type", "Authorization", "HTTP-Referer", "X-Title"],
-        });
-      }
-      return {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${api_key || ""}`,
-        "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-        "X-Title": "Transrewrt",
-      };
-    }
-    return {
-      "Content-Type": "application/json",
-      Authorization: "Bearer ",
-      "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-      "X-Title": "Transrewrt",
-    };
+    return null;
   }
 
   writeDebugFile(filename, data) {
@@ -257,121 +228,82 @@ class APIService {
   }
 
   /**
-   * Fetch usage/cost for a generation by ID (OpenRouter API).
-   * Used when stream is cancelled before receiving the final usage chunk.
-   * @param {string} generationId - The generation ID from stream chunks
-   * @param {number} maxRetries - Max retries with delay (generation may take a moment to finalize)
-   * @returns {Promise<Object|null>} Usage object { cost, prompt_tokens, completion_tokens } or null
-   */
-  async getGenerationUsage(generationId, maxRetries = 5) {
-    if (!generationId) return null;
-    const config = require("../utils/config/configManager").default.getAll();
-    const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
-    for (let attempt = 0; attempt < maxRetries; attempt++) {
-      try {
-        const url = await this.getRequestUrl(`generation?id=${encodeURIComponent(generationId)}`);
-        const opts = { headers: await this.getHeaders() };
-        if (this._isWebMode) opts.credentials = "include";
-        if (PROXY_DEBUG && useProxy) {
-          proxyDebug("getGenerationUsage (proxy)", { attempt: attempt + 1, maxRetries, generationId, url });
-        }
-        const response = await fetch(url, opts);
-        if (PROXY_DEBUG && useProxy) {
-          proxyDebug("getGenerationUsage (proxy) RESPONSE", { generationId, status: response.status, ok: response.ok });
-        }
-        if (response.status === 401) {
-          if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
-          return null;
-        }
-        if (response.status === 404 && attempt < maxRetries - 1) {
-          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
-          continue;
-        }
-        if (!response.ok) return null;
-        const json = await response.json();
-        const data = json.data;
-        if (PROXY_DEBUG && useProxy) {
-          proxyDebug("getGenerationUsage (proxy) DATA", { generationId, json, data });
-        }
-        if (!data) return null;
-        return {
-          cost: data.total_cost ?? 0,
-          prompt_tokens: data.tokens_prompt ?? 0,
-          completion_tokens: data.tokens_completion ?? 0,
-          total_tokens: (data.tokens_prompt ?? 0) + (data.tokens_completion ?? 0),
-        };
-      } catch (err) {
-        if (attempt < maxRetries - 1) {
-          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
-        } else {
-          console.warn("Failed to fetch generation usage:", err);
-          return null;
-        }
-      }
-    }
-    return null;
-  }
-
-  /**
    * Shared streaming chat completion (translate and rewrite).
    * @private
-   * @param {string} systemPrompt
-   * @param {string} userText
-   * @param {string} model
-   * @param {number} temperature
-   * @param {AbortSignal|null} signal
-   * @param {string} type - "translate" | "rewrite" (for logging)
-   * @param {Object} extraMetadata - e.g. { style } for rewrite
-   * @returns {Promise<Object>} { content, usage, model, cancelled, request_bytes, response_bytes, duration_ms }
    */
   async _streamChatCompletion(systemPrompt, userText, model, temperature, signal, type, extraMetadata = {}) {
-    const body = {
-      model,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userText },
-      ],
+    const messages = [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userText },
+    ];
+    const payloadObj = {
+      canonicalModelId: model,
+      messages,
       temperature,
-      stream: true,
     };
-    const bodyStr = JSON.stringify(body);
-    const request_bytes = new TextEncoder().encode(bodyStr).length;
+    const request_bytes = new TextEncoder().encode(JSON.stringify(payloadObj)).length;
     const startTime = Date.now();
 
+    if (!this._isWebMode && window.electronAPI?.llmStream) {
+      const requestId = randomRequestId();
+      if (signal) {
+        signal.addEventListener(
+          "abort",
+          () => {
+            window.electronAPI.llmAbort(requestId).catch(() => {});
+          },
+          { once: true },
+        );
+      }
+      try {
+        const { content, usage } = await window.electronAPI.llmStream({
+          requestId,
+          canonicalModelId: model,
+          messages,
+          temperature,
+        });
+        const duration_ms = Date.now() - startTime;
+        const result = {
+          content: content || "",
+          usage,
+          model,
+          cancelled: false,
+          request_bytes,
+          response_bytes: 0,
+          duration_ms,
+        };
+        this.writeLastApiResult({ type, model, usage, cancelled: false, raw: [], ...extraMetadata });
+        return result;
+      } catch (error) {
+        if (isAbortError(error) || error?.name === "AbortError") {
+          const result = {
+            content: "",
+            usage: null,
+            model,
+            cancelled: true,
+            request_bytes,
+            response_bytes: 0,
+            duration_ms: Date.now() - startTime,
+          };
+          this.writeLastApiResult({ type, model, usage: null, cancelled: true, raw: [], ...extraMetadata });
+          return result;
+        }
+        throw error;
+      }
+    }
+
+    const url = `${BASE_PATH}/api/llm/stream`;
     const fetchOptions = {
       method: "POST",
-      headers: await this.getHeaders(),
-      body: bodyStr,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payloadObj),
+      credentials: "include",
     };
     if (signal) fetchOptions.signal = signal;
-    if (this._isWebMode) fetchOptions.credentials = "include";
 
-    const url = await this.getRequestUrl("chat/completions");
-    const config = require("../utils/config/configManager").default.getAll();
-    const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
-    const requestStartMs = Date.now();
-    if (PROXY_DEBUG && useProxy) {
-      proxyDebug("_streamChatCompletion (proxy) START", {
-        type,
-        model,
-        temperature,
-        url,
-        requestBytes: request_bytes,
-        hasSignal: !!signal,
-      });
-    }
     const response = await fetch(url, fetchOptions);
-    if (PROXY_DEBUG && useProxy) {
-      proxyDebug("_streamChatCompletion (proxy) RESPONSE", {
-        type,
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok,
-        elapsedMs: Date.now() - requestStartMs,
-      });
-    }
     if (response.status === 401) {
-      if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
+      sessionExpiredHandler.onSessionExpired();
       throw Object.assign(new Error("Unauthorized"), { status: 401 });
     }
     if (!response.ok) {
@@ -399,7 +331,8 @@ class APIService {
         const data = JSON.parse(dataStr);
         rawChunks.push(data);
         if (data.id && !generationId) generationId = data.id;
-        if (data.choices?.[0]?.delta?.content) content += data.choices[0].delta.content;
+        const deltaPiece = sseDeltaContentToString(data.choices?.[0]?.delta);
+        if (deltaPiece) content += deltaPiece;
         if (data.usage) usage = data.usage;
         if (data.error) {
           const msg = data.error.message || "Stream error";
@@ -409,7 +342,6 @@ class APIService {
             Object.assign(err, { status: 404 });
           }
           streamError = err;
-          return;
         }
       } catch (parseErr) {
         if (parseErr.message?.includes("Unexpected end of JSON input")) return;
@@ -457,7 +389,7 @@ class APIService {
     } catch (error) {
       if (error.name === "AbortError") {
         const id = generationId || rawChunks.find((c) => c?.id)?.id;
-        if (!usage && id) usage = await this.getGenerationUsage(id);
+        if (!usage && id) usage = await this.getGenerationUsage(id, 5, model);
         const result = {
           content,
           usage,
@@ -474,8 +406,8 @@ class APIService {
     }
 
     const idForUsage = generationId || rawChunks.find((c) => c?.id)?.id;
-    if (!usage && idForUsage) usage = await this.getGenerationUsage(idForUsage);
-    if (streamError && !content && streamError.status === 404) throw streamError;
+    if (!usage && idForUsage) usage = await this.getGenerationUsage(idForUsage, 5, model);
+    if (streamError && !content) throw streamError;
     const duration_ms = Date.now() - startTime;
     const result = {
       content,
@@ -486,21 +418,6 @@ class APIService {
       response_bytes,
       duration_ms,
     };
-    if (PROXY_DEBUG && useProxy) {
-      proxyDebug("_streamChatCompletion (proxy) DONE", {
-        type,
-        model,
-        cancelled: aborted,
-        duration_ms,
-        response_bytes,
-        prompt_tokens: usage?.prompt_tokens,
-        completion_tokens: usage?.completion_tokens,
-        generationId: idForUsage || generationId,
-        contentLength: content?.length ?? 0,
-        contentPreview: content ? content.slice(0, 80) + (content.length > 80 ? "..." : "") : "",
-        usage,
-      });
-    }
     this.writeLastApiResult({ type, model, usage, cancelled: aborted, raw: rawChunks, ...extraMetadata });
     return result;
   }
@@ -756,106 +673,51 @@ Respond with ONLY the JSON object. No other text.`;
   }
 
   /**
-   * Get list of available models.
-   * When using Transrewrt proxy, the proxy must buffer GET /models (not stream) so the client
-   * receives the full JSON; otherwise upstream may be cancelled and the body truncated.
-   * @returns {Promise<Array>} List of available models
+   * @returns {Promise<Array>} List of available models { id, name, pricing }
    */
   async getModels() {
     try {
-      const opts = { headers: await this.getHeaders() };
-      if (this._isWebMode) opts.credentials = "include";
-      const url = await this.getRequestUrl("models");
-      const config = require("../utils/config/configManager").default.getAll();
-      const useProxy = !this._isWebMode && !!config.use_transrewrt_proxy;
-      if (PROXY_DEBUG && useProxy) {
-        proxyDebug("getModels (proxy) START", { url });
-      }
-      const response = await fetch(url, opts);
-      if (PROXY_DEBUG && useProxy) {
-        proxyDebug("getModels (proxy) RESPONSE", { status: response.status, ok: response.ok });
-      }
-      if (response.status === 401) {
-        if (this._isWebMode) sessionExpiredHandler.onSessionExpired();
-        throw Object.assign(new Error("Unauthorized"), { status: 401 });
-      }
-      if (!response.ok) {
-        throw new Error(this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`));
-      }
-
-      // Read body as text; wrap in try/catch because if the proxy streamed and cancelled,
-      // response.text() itself will throw a network/TypeError.
-      let rawText;
-      try {
-        rawText = await response.text();
-      } catch (bodyErr) {
-        if (PROXY_DEBUG && useProxy) {
-          proxyDebug("getModels (proxy) BODY READ FAILED", {
-            error: bodyErr.message,
-            name: bodyErr.name,
-          });
-        }
-        throw bodyErr;
-      }
-
-      let data;
-      try {
-        data = JSON.parse(rawText);
-      } catch (parseErr) {
-        if (PROXY_DEBUG && useProxy) {
-          proxyDebug("getModels (proxy) BODY PARSE FAILED", {
-            error: parseErr.message,
-            bodyLength: rawText.length,
-            bodyPreview: rawText.slice(0, 200) + (rawText.length > 200 ? "..." : ""),
-          });
-        }
-        throw parseErr;
-      }
-
-      this.writeDebugFile("models_api_raw.json", data);
-
-      const models = data.data || [];
-      if (PROXY_DEBUG && useProxy) {
-        proxyDebug("getModels (proxy) DATA", {
-          modelCount: models.length,
-          modelIds: models.slice(0, 20).map((m) => m?.id).filter(Boolean),
-          hasMore: models.length > 20,
+      let models;
+      if (!this._isWebMode && window.electronAPI?.llmModels) {
+        models = await window.electronAPI.llmModels();
+      } else {
+        const response = await fetch(`${BASE_PATH}/api/llm/models`, {
+          credentials: "include",
         });
+        if (response.status === 401) {
+          sessionExpiredHandler.onSessionExpired();
+          throw Object.assign(new Error("Unauthorized"), { status: 401 });
+        }
+        if (!response.ok) {
+          throw new Error(
+            this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`),
+          );
+        }
+        const data = await response.json();
+        models = data.data || [];
       }
 
-      // Filter out invalid/incomplete models
-      const validModels = models.filter(model => {
-        // Must have an ID
-        if (!model.id || typeof model.id !== 'string' || !model.id.trim()) {
-          console.warn('[getModels] Filtering out model with missing/invalid id:', model);
+      this.writeDebugFile("models_api_raw.json", { data: models });
+
+      const validModels = models.filter((model) => {
+        if (!model.id || typeof model.id !== "string" || !model.id.trim()) {
+          console.warn("[getModels] Filtering out model with missing/invalid id:", model);
           return false;
         }
-
-        // Must have pricing information
-        if (!model.pricing || typeof model.pricing !== 'object') {
+        if (!model.pricing || typeof model.pricing !== "object") {
           console.warn(`[getModels] Filtering out model "${model.id}" - missing pricing info`);
           return false;
         }
-
-        // Pricing should have prompt and completion fields (even if 0)
         const prompt = parseFloat(model.pricing.prompt);
         const completion = parseFloat(model.pricing.completion);
-        if (isNaN(prompt) || isNaN(completion)) {
+        if (Number.isNaN(prompt) || Number.isNaN(completion)) {
           console.warn(`[getModels] Filtering out model "${model.id}" - invalid pricing values`);
           return false;
         }
-
         return true;
       });
 
-      const filteredCount = models.length - validModels.length;
-      if (filteredCount > 0) {
-        console.log(`[getModels] Filtered out ${filteredCount} invalid/incomplete model(s). Returning ${validModels.length} valid models.`);
-      }
-
-      // Write valid models to debug file
-      this.writeDebugFile('models_valid.json', validModels);
-
+      this.writeDebugFile("models_valid.json", validModels);
       return validModels;
     } catch (error) {
       console.error("Error fetching models:", error?.name, error?.message || error);
@@ -864,12 +726,6 @@ Respond with ONLY the JSON object. No other text.`;
         message: error?.message,
         stack: error?.stack,
       });
-      if (PROXY_DEBUG) {
-        proxyDebug("getModels ERROR", {
-          name: error?.name,
-          message: error?.message,
-        });
-      }
       return [];
     }
   }

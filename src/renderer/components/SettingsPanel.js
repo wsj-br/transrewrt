@@ -16,17 +16,23 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
-import SettingsDialogApiTab from "./SettingsDialogApiTab";
-import SettingsDialogGeneralTab from "./SettingsDialogGeneralTab";
-import SettingsDialogModelsTab from "./SettingsDialogModelsTab";
-import SettingsDialogLanguagesTab from "./SettingsDialogLanguagesTab";
-import SettingsDialogCostTrackingTab from "./SettingsDialogCostTrackingTab";
-import SettingsDialogTransformPromptsTab from "./SettingsDialogTransformPromptsTab";
-import SettingsDialogAboutTab from "./SettingsDialogAboutTab";
-import SettingsDialogUsersTab from "./SettingsDialogUsersTab";
+import SettingsApiTab from "./SettingsApiTab";
+import SettingsGeneralTab from "./SettingsGeneralTab";
+import SettingsModelsTab from "./SettingsModelsTab";
+import SettingsLanguagesTab from "./SettingsLanguagesTab";
+import SettingsCostTrackingTab from "./SettingsCostTrackingTab";
+import SettingsTransformPromptsTab from "./SettingsTransformPromptsTab";
+import SettingsAboutTab from "./SettingsAboutTab";
+import SettingsUsersTab from "./SettingsUsersTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
+import webAPI from "../utils/api/webApiClient";
+import { providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
+import {
+  isConfirmedFreeModel,
+  modelCostSortValue,
+} from "../utils/misc/modelPricingUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -137,6 +143,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const [activeTab, setActiveTab] = useState(null); // Restored from settings on mount; no tab selected until then to avoid flash
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterEngine, setFilterEngine] = useState("");
   const [filterFree, setFilterFree] = useState(false);
   const [expandedProviders, setExpandedProviders] = useState(new Set());
   const [selectedModelIds, setSelectedModelIds] = useState(new Set());
@@ -145,8 +152,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const [selectedLanguages, setSelectedLanguages] = useState(new Set());
   const [customLanguage, setCustomLanguage] = useState("");
 
-  const [apiTestStatus, setApiTestStatus] = useState(null);
-  const [apiTestMessage, setApiTestMessage] = useState("");
   const [modelsLoading, setModelsLoading] = useState(false);
   const [modelsError, setModelsError] = useState(null);
   const hasRestoredTabRef = useRef(false); // in web mode, later context updates can overwrite; only restore tab once per mount
@@ -170,6 +175,10 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       canScrollRight: hasOverflow && scrollLeft < scrollWidth - clientWidth - 1,
     });
   }, []);
+
+  const canAccessApiTab = !isWeb || currentUser?.role === "admin";
+  const canAccessUsersTab = isWeb && currentUser?.role === "admin";
+  const canAccessCostTab = !isWeb || currentUser?.role === "admin";
 
   useEffect(() => {
     const el = tabStripRef.current;
@@ -200,9 +209,10 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       setSelectedModelIds(modelsWithFree);
       setSelectedLanguages(new Set(settings.top_languages || []));
       const normalizeTab = (tab) => {
-        if (tab === "auth") return isWeb && currentUser?.role === "admin" ? "users" : "general";
-        if (tab === "api" && isWeb) return "general";
-        if (tab === "users" && (!isWeb || currentUser?.role !== "admin")) return "general";
+        if (tab === "auth") return canAccessUsersTab ? "users" : "general";
+        if (tab === "api" && !canAccessApiTab) return "general";
+        if (tab === "users" && !canAccessUsersTab) return "general";
+        if (tab === "cost" && !canAccessCostTab) return "general";
         return tab || "general";
       };
       // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
@@ -228,16 +238,16 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         }
       }
     });
-  }, [settings, openToTab, onOpenToTabConsumed, currentUser?.role, setSetting]);
+  }, [settings, openToTab, onOpenToTabConsumed, canAccessApiTab, canAccessUsersTab, canAccessCostTab, setSetting]);
 
   useEffect(() => {
-    if (activeTab === "users" && (!isWeb || currentUser?.role !== "admin")) {
+    if ((activeTab === "users" && !canAccessUsersTab) || (activeTab === "api" && !canAccessApiTab)) {
       queueMicrotask(() => {
         setActiveTab("general");
         setSetting("settings_active_tab", "general");
       });
     }
-  }, [activeTab, currentUser?.role, setSetting]);
+  }, [activeTab, canAccessUsersTab, canAccessApiTab, setSetting]);
 
   useEffect(() => {
     if (allModels.length === 0) {
@@ -251,41 +261,54 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     }
   }, [allModels.length, fetchModels]);
 
-  const DEFAULT_API_URL = "https://openrouter.ai/api/v1";
-
   const handleSettingChange = (key, value) => {
-    let newSettings = { ...localSettings, [key]: value };
-    if (key === "use_transrewrt_proxy" && !value) {
-      newSettings = { ...newSettings, api_url: DEFAULT_API_URL };
-      setSetting("api_url", DEFAULT_API_URL);
-    }
-    setLocalSettings(newSettings);
+    setLocalSettings((prev) => ({ ...prev, [key]: value }));
     setSetting(key, value);
-    if (key === "api_url" || key === "api_key" || key === "use_transrewrt_proxy" || key === "key_seed") {
-      setApiTestStatus(null);
-      setApiTestMessage("");
+  };
+
+  const handleTestApi = async ({ provider, overrideValue } = {}) => {
+    const normalizedProvider = String(provider || "").trim();
+    if (!normalizedProvider) {
+      return { status: "error", message: "Provider is required." };
+    }
+
+    if (isWeb && webAPI.testProviderApiKey) {
+      return webAPI.testProviderApiKey(normalizedProvider);
+    }
+
+    if (!window.electronAPI?.testProviderApiKey) {
+      return { status: "error", message: "API test is not available." };
+    }
+
+    try {
+      const result = await window.electronAPI.testProviderApiKey({
+        provider: normalizedProvider,
+        overrideValue,
+      });
+      return result;
+    } catch (error) {
+      return {
+        status: "error",
+        message: error?.message || "Connection failed",
+      };
     }
   };
 
-  const handleTestApi = async (overrides) => {
-    if (!window.electronAPI?.testApiConfiguration) return;
-    const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
-    setApiTestStatus("testing");
-    setApiTestMessage("Testing connection...");
-    try {
-      const result = await window.electronAPI.testApiConfiguration({
-        apiUrl,
-        use_transrewrt_proxy: !!localSettings.use_transrewrt_proxy,
-        apiKeyOverride: overrides?.apiKey,
-        keySeedOverride: overrides?.keySeed,
-      });
-      setApiTestStatus(result.status);
-      setApiTestMessage(result.message || "");
-    } catch (error) {
-      setApiTestStatus("error");
-      setApiTestMessage(error?.message || "Connection failed");
-    }
-  };
+  const engineFilterOptions = useMemo(
+    () => [
+      { value: "", label: t("All providers") },
+      { value: "openrouter", label: t("OpenRouter") },
+      { value: "openai", label: t("OpenAI") },
+      { value: "anthropic", label: t("Anthropic") },
+      { value: "google", label: t("Google") },
+      { value: "deepseek", label: t("DeepSeek") },
+      { value: "groq", label: t("Groq") },
+      { value: "mistralai", label: t("Mistral") },
+      { value: "ollama", label: t("Ollama") },
+      { value: "xai", label: t("xAI") },
+    ],
+    [t],
+  );
 
   const toggleModelSelection = (modelId) => {
     if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID))
@@ -303,17 +326,17 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         model.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (model.name &&
           model.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      let matchesEngine = true;
+      if (filterEngine) {
+        matchesEngine = model.id.startsWith(`${filterEngine}/`);
+      }
       let matchesFree = true;
       if (filterFree) {
-        const pricing = model.pricing || {};
-        const isFree =
-          parseFloat(pricing.prompt || 0) === 0 &&
-          parseFloat(pricing.completion || 0) === 0;
-        matchesFree = isFree;
+        matchesFree = isConfirmedFreeModel(model);
       }
-      return matchesSearch && matchesFree;
+      return matchesSearch && matchesEngine && matchesFree;
     });
-  }, [allModels, searchTerm, filterFree]);
+  }, [allModels, searchTerm, filterEngine, filterFree]);
 
   const getModelName = (model) => {
     if (model.name) {
@@ -328,17 +351,10 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     return model.name || id;
   };
 
-  const getModelCost = (model) => {
-    const pricing = model.pricing || {};
-    return (
-      parseFloat(pricing.prompt || 0) + parseFloat(pricing.completion || 0)
-    );
-  };
-
   const groupedModels = useMemo(() => {
     const groups = {};
     filteredModels.forEach((model) => {
-      const provider = model.id.split("/")[0] || "Other";
+      const provider = providerSortKeyFromModelId(model.id);
       if (!groups[provider]) groups[provider] = [];
       groups[provider].push(model);
     });
@@ -366,7 +382,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     const sorted = [...filteredModels].sort((a, b) => {
       let comparison = 0;
       if (sortType === "cost") {
-        comparison = getModelCost(a) - getModelCost(b);
+        comparison = modelCostSortValue(a) - modelCostSortValue(b);
       } else if (sortType === "model") {
         comparison = modelSortKey(a).localeCompare(modelSortKey(b));
       }
@@ -463,15 +479,17 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             >
               <Globe size={16} /> {t("Languages")}
             </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "cost"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "cost" && "active")}
-              onClick={() => handleTabChange("cost")}
-            >
-              <DollarSign size={16} /> {t("Cost Tracking")}
-            </button>
+            {canAccessCostTab && (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "cost"}
+                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "cost" && "active")}
+                onClick={() => handleTabChange("cost")}
+              >
+                <DollarSign size={16} /> {t("Cost Tracking")}
+              </button>
+            )}
             <button
               type="button"
               role="tab"
@@ -481,7 +499,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             >
               <WandSparkles size={16} /> {t("Transform")}
             </button>
-            {isWeb && currentUser?.role === "admin" && (
+            {canAccessUsersTab && (
               <button
                 type="button"
                 role="tab"
@@ -492,7 +510,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
                 <Users size={16} /> {t("Users")}
               </button>
             )}
-            {!isWeb && (
+            {canAccessApiTab && (
               <button
                 type="button"
                 role="tab"
@@ -535,17 +553,19 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
       >
         {activeTab === "general" && (
-          <SettingsDialogGeneralTab
+          <SettingsGeneralTab
             localSettings={localSettings}
             onSettingChange={handleSettingChange}
           />
         )}
 
         {activeTab === "models" && (
-          <SettingsDialogModelsTab
+          <SettingsModelsTab
             allModels={allModels}
             selectedModelIds={selectedModelIds}
             searchTerm={searchTerm}
+            filterEngine={filterEngine}
+            engineFilterOptions={engineFilterOptions}
             filterFree={filterFree}
             sortBy={sortBy}
             expandedProviders={expandedProviders}
@@ -553,6 +573,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             modelsLoading={modelsLoading}
             modelsError={modelsError}
             onSearchTermChange={setSearchTerm}
+            onFilterEngineChange={setFilterEngine}
             onFilterFreeChange={setFilterFree}
             onSortByChange={setSortBy}
             onRefreshModels={() => {
@@ -575,7 +596,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
 
         {activeTab === "languages" && (
-          <SettingsDialogLanguagesTab
+          <SettingsLanguagesTab
             selectedLanguages={selectedLanguages}
             customLanguage={customLanguage}
             onSelectedLanguagesChange={setSelectedLanguages}
@@ -584,33 +605,30 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
           />
         )}
 
-        {activeTab === "cost" && (
-          <SettingsDialogCostTrackingTab
+        {canAccessCostTab && activeTab === "cost" && (
+          <SettingsCostTrackingTab
             localSettings={localSettings}
             onSettingChange={handleSettingChange}
             isTabActive={costTabActivationCount}
           />
         )}
 
-        {activeTab === "transform" && <SettingsDialogTransformPromptsTab />}
+        {activeTab === "transform" && <SettingsTransformPromptsTab />}
 
-        {isWeb && currentUser?.role === "admin" && activeTab === "users" && (
-          <SettingsDialogUsersTab />
+        {canAccessUsersTab && activeTab === "users" && (
+          <SettingsUsersTab />
         )}
 
-        {!isWeb && activeTab === "api" && (
-          <SettingsDialogApiTab
+        {canAccessApiTab && activeTab === "api" && (
+          <SettingsApiTab
             localSettings={localSettings}
-            hasApiKey={!!settings.api_key_configured}
-            hasKeySeed={!!settings.key_seed_configured}
-            apiTestStatus={apiTestStatus}
-            apiTestMessage={apiTestMessage}
             onSettingChange={handleSettingChange}
             onTestApi={handleTestApi}
+            currentUserRole={currentUser?.role || "user"}
           />
         )}
 
-        {activeTab === "about" && <SettingsDialogAboutTab />}
+        {activeTab === "about" && <SettingsAboutTab />}
       </div>
     </div>
   );

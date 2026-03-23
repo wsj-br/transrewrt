@@ -29,8 +29,7 @@ export function useModelManagement(configManager, setSetting, setError) {
     await setSetting("last_used_model", FREE_MODEL_ID);
     setError(null);
     return {
-      error:
-        'Model unavailable (404/400). The model has been removed from your list and "openrouter/free" has been selected.',
+      error: `Model unavailable (404/400). The model has been removed from your list and "${FREE_MODEL_ID}" has been selected.`,
     };
   };
 

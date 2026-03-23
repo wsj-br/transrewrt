@@ -3,7 +3,7 @@
  * Fluent UI React provides most component styling (buttons, inputs, tabs, etc.)
  * This file contains only:
  * - Essential Electron-specific styles (window dragging, etc.)
- * - Custom modal/dialog positioning (for draggable SettingsDialog)
+ * - Custom modal/dialog positioning (for draggable Settings)
  * - Layout utilities not provided by Fluent UI
  * - Legacy styles for components not yet fully migrated
  */
@@ -856,7 +856,7 @@ button {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     min-width: 0;
     min-height: 520px;
     width: 100%;
@@ -877,8 +877,38 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+}
+
+/* Available models: title | centered search | balance */
+.models-available-header-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 12px;
+}
+
+.models-available-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    justify-self: start;
+}
+
+.models-header-search {
+    justify-self: center;
+    width: min(100%, 320px);
+    min-width: 140px;
+}
+
+.models-header-search-input {
+    width: 100%;
+}
+
+.models-header-search-balance {
+    min-width: 0;
 }
 
 .models-pane h4 {
@@ -898,11 +928,6 @@ button {
 .search-box-container {
     flex: 1;
     min-width: 200px;
-}
-
-.free-only-toggle {
-    display: flex;
-    align-items: center;
 }
 
 /* Legacy controls (fallback) */
@@ -925,10 +950,36 @@ button {
 /* Toolbar */
 .models-toolbar {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
     flex-wrap: wrap;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
+}
+
+.models-toolbar-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.models-toolbar-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.models-toolbar-free-only-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fontSizeBase200, 12px);
+    line-height: var(--lineHeightBase200, 16px);
 }
 
 .models-actions {

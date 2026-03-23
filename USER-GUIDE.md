@@ -81,18 +81,18 @@ This guide explains how to use the app once it is installed and running. For ins
 <a id="before-you-start"></a>
 ## Before you start
 
-To use Transrewrt, you need access to the AI service via OpenRouter.
+To use Transrewrt, you need access to at least one AI provider (often [OpenRouter](https://openrouter.ai), which aggregates many models).
 
-You do not need to choose a paid model before you start. The app always includes a built-in **free** model, so for normal use that is enough to begin translating, rewriting, and transforming text.
+You do not need to choose a paid model before you start. The app always includes a built-in **free** OpenRouter route when you configure an OpenRouter key, so that is enough to begin translating, rewriting, and transforming text.
 
 In plain language:
 
-- A **model** is the AI engine that does the work.
-- An **API key** is your personal access credential for that service.
+- A **model** is the AI engine that does the work. Models are listed with a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
+- An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
-If you are using the **desktop app**, you will need an API key. For detailed steps, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. In short: create an account at [OpenRouter](https://openrouter.ai), open the [Keys](https://openrouter.ai/keys) page, create a new key, and paste it into [**Settings** > **API Config**](#api-config) in Transrewrt.
+If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you don't want to use an API key, you can install Ollama (from ollama.com) and use local models instead.
 
-If you are using the **web version**, the server owner usually sets this up for you, so you will not normally need to enter an API key yourself.
+If you are using the **web version**, the server owner configures providers with environment variables, so you will not normally enter API keys yourself.
 
 <br />
 
@@ -108,11 +108,11 @@ If you are using the desktop app, follow these steps:
 5. Give the key a name so you can recognise it later.
 6. Copy the new API key.
 7. Return to Transrewrt and open **Settings** > **API Config**.
-8. Paste the key into **OpenRouter API Key**.
-9. Click **Test API Configuration** to make sure it works.
+8. Paste the key into **OpenRouter API key** (under **Settings** > **API Config**).
+9. Click **Test OpenRouter key** to make sure it works.
 
 > ℹ️ **NOTE**<br/>
-> You can start with OpenRouter's free route or any of the other free models available. In many cases, that is enough to begin using Transrewrt without choosing a paid model.
+> You can start with OpenRouter's free route or any of the other free models available without adding a credit card. In many cases, that is enough to begin using Transrewrt without choosing a paid model. Alternatively, you can use Ollama to run models locally without any API key.
 
 <br /><br />
 
@@ -123,7 +123,7 @@ If this is your first time using Transrewrt, follow this order:
 
 1. Open the app.
 2. Choose your **Interface language** from the globe icon if needed.
-3. If you are on the **desktop app**, open [**Settings** > **API Config**](#api-config), paste your OpenRouter API key, and click **Test API Configuration**.
+3. If you are on the **desktop app**, open [**Settings** > **API Config**](#api-config), add your OpenRouter API key, and click **Test OpenRouter key**.
 4. Open [**Settings** > **Models**](#models) and add one or more models to **Selected Models**.
 5. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
 6. Go to **Translate** and run a simple translation to confirm everything is working.
@@ -530,9 +530,12 @@ The page has two lists:
 Useful controls include:
 
 - **Search models...** to find a model by name
+- **Provider** chips to narrow the list to one engine (OpenRouter, OpenAI, Ollama, …)
 - **Free Only** to show only free models
 - **Refresh** to reload the list
 - **Expand All** and **Collapse All** when you are sorting by provider
+
+Model ids include the provider prefix (for example `openrouter/…` vs `openai/…`). Badges such as **OpenAI (OpenRouter)** vs **OpenAI (direct)** show how traffic is routed.
 
 To add a model, click **Add**.
 
@@ -541,7 +544,7 @@ To remove a model, click **X** next to it in **Selected Models**.
 To clear the list, click **Deselect all**. The required free model will remain in the list.
 
 > ℹ️ **NOTE**<br/>
-> If you do not want to add credits to OpenRouter straight away, start by enabling **Free Only** and choosing the free models.
+> If you do not want to add credits to OpenRouter straight away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
 
 <br />
 
@@ -602,18 +605,16 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 
 **Desktop only**
 
-Use **API Config** to connect the desktop app to OpenRouter or to a Transrewrt proxy.
+Use **API Config** to store API keys for each provider you use: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and an **Ollama base URL** for local models. 
 
-- **OpenRouter API Key** is where you paste your key.
-- **API URL** is the service address. Leave this at the default unless you have been given a different one.
-- **Use Transrewrt Proxy** routes requests through a proxy service instead of directly to OpenRouter.
-- **Key Seed** appears when the proxy option is enabled.
-- **Test API Configuration** checks whether the current setup is working.
+> 💡 **Tip**: If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models.
 
-For detailed steps on obtaining your API key, see [How to get an API key](#how-to-get-an-api-key-desktop-app) above.
+- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- **Test OpenRouter key** checks your OpenRouter credential (other providers are not probed from this button).
 
-> ℹ️ **NOTE**<br/>
-> If you are not sure what **API URL**, **Use Transrewrt Proxy**, or **Key Seed** mean, leave them unchanged and use the default OpenRouter setup. More information about the proxy is available in the [Transrewrt Proxy repository](https://github.com/wsj-br/transrewrt-proxy).
+For detailed steps on obtaining an OpenRouter key, see [How to get an API key](#how-to-get-an-api-key-desktop-app) above.
+
+> **Cost tracking:** Exact spend from OpenRouter is available when you use OpenRouter models. Costs for other providers may be **estimated** from public pricing (and can be zero if no OpenRouter key is available for pricing lookup). Estimates are not billing statements.
 
 
 <br />
@@ -650,7 +651,7 @@ If you are using the desktop app:
 
 1. Open [**Settings** > **API Config**](#api-config).
 2. Check that your API key is saved.
-3. Click **Test API Configuration**.
+3. Click **Test OpenRouter key** (or confirm your provider keys are saved).
 
 <br />
 

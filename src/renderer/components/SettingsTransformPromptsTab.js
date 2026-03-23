@@ -243,7 +243,7 @@ const getAcceptForFormat = (format) => {
   }
 };
 
-const SettingsDialogTransformPromptsTab = () => {
+const SettingsTransformPromptsTab = () => {
   const styles = useStyles();
   const { t } = useTranslation();
   const [prompts, setPrompts] = useState([]);
@@ -629,4 +629,4 @@ const SettingsDialogTransformPromptsTab = () => {
   );
 };
 
-export default SettingsDialogTransformPromptsTab;
+export default SettingsTransformPromptsTab;

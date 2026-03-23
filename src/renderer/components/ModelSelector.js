@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Dropdown, Option } from "@fluentui/react-components";
-import { Bot, Trash2 } from "lucide-react";
+import {
+  makeStyles,
+  tokens,
+  Popover,
+  PopoverTrigger,
+  PopoverSurface,
+  MenuList,
+  MenuItem,
+  Button,
+  Badge,
+} from "@fluentui/react-components";
+import { ChevronDownRegular } from "@fluentui/react-icons";
+import { Bot, Trash2, Check } from "lucide-react";
 import PropTypes from "prop-types";
 import ProviderIcon from "./ProviderIcon";
 import ConfirmModal from "./ConfirmModal";
+import { modelHeaderDisplayId, providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
+import { modelRouteBadgeProps } from "../utils/misc/modelRouteBadge";
 
 const useStyles = makeStyles({
   container: {
@@ -54,29 +67,127 @@ const useStyles = makeStyles({
     opacity: 0.4,
     cursor: "not-allowed",
   },
-  modelSelect: {
+  modelTrigger: {
     minWidth: "300px",
-    "& .fui-Dropdown__trigger": {
-      borderRadius: "0 !important",
-      border: "none !important",
-      borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
-      backgroundColor: "transparent !important",
-      paddingLeft: "0 !important",
-      paddingRight: "0 !important",
-    },
-    "& .fui-Dropdown__trigger:hover": {
+    maxWidth: "min(420px, 100vw - 120px)",
+    justifyContent: "space-between",
+    borderRadius: "0 !important",
+    border: "none !important",
+    borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
+    backgroundColor: "transparent !important",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
+    paddingTop: `${tokens.spacingVerticalXS} !important`,
+    paddingBottom: `${tokens.spacingVerticalXS} !important`,
+    height: "auto",
+    ":hover": {
       borderBottomColor: `${tokens.colorNeutralForeground1} !important`,
     },
-    "& .fui-Dropdown__trigger:focus-visible": {
+    ":focus-visible": {
       borderBottomColor: `${tokens.colorBrandBackground} !important`,
       borderBottomWidth: "3px !important",
     },
   },
+  triggerInner: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalS,
+    overflow: "hidden",
+    flex: 1,
+    minWidth: 0,
+    textAlign: "left",
+  },
+  triggerLabel: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    fontWeight: 500,
+    fontSize: tokens.fontSizeBase300,
+  },
+  popoverSurface: {
+    minWidth: "420px",
+    width: "max-content",
+    maxWidth: "min(900px, calc(100vw - 24px))",
+    maxHeight: "min(400px, 70vh)",
+    overflowY: "auto",
+    overflowX: "visible",
+    padding: tokens.spacingVerticalXS,
+    boxSizing: "border-box",
+  },
+  menuListFull: {
+    width: "100%",
+    minWidth: 0,
+  },
+  menuItemModel: {
+    maxWidth: "none !important",
+    width: "100%",
+    minWidth: 0,
+    boxSizing: "border-box",
+    alignItems: "center",
+    [`& .fui-MenuItem__content`]: {
+      display: "flex",
+      minWidth: 0,
+      flex: 1,
+    },
+  },
+  pickerRow: {
+    display: "grid",
+    gridTemplateColumns: "auto minmax(0, 1fr) auto",
+    alignItems: "center",
+    columnGap: tokens.spacingHorizontalS,
+    width: "100%",
+    minWidth: 0,
+  },
+  pickerRowLabel: {
+    minWidth: 0,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    fontWeight: 500,
+  },
+  badgeNoShrink: {
+    flexShrink: 0,
+  },
+  badgeSlot: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    justifySelf: "end",
+  },
+  selectedMenuItem: {
+    color: tokens.colorBrandForeground1,
+  },
 });
+
+function ModelPickerRow({ modelId, t, styles, iconSize = 16, showIcon = true }) {
+  const displayId = modelHeaderDisplayId(modelId);
+  const iconProv = providerSortKeyFromModelId(modelId);
+  const route = modelRouteBadgeProps(modelId, t);
+  return (
+    <div className={styles.pickerRow}>
+      {showIcon ? <ProviderIcon provider={iconProv} size={iconSize} /> : null}
+      <span className={styles.pickerRowLabel}>{displayId}</span>
+      <span className={styles.badgeSlot}>
+        <Badge appearance="outline" size="small" color={route.color} className={styles.badgeNoShrink}>
+          {route.text}
+        </Badge>
+      </span>
+    </div>
+  );
+}
+
+ModelPickerRow.propTypes = {
+  modelId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
+  styles: PropTypes.object.isRequired,
+  iconSize: PropTypes.number,
+  showIcon: PropTypes.bool,
+};
 
 const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, onRemoveModel }) => {
   const styles = useStyles();
   const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const canRemove = models.length > 1 && onRemoveModel && currentModel;
 
@@ -96,36 +207,28 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
 
   if (models.length === 0) return null;
 
-  // Determine model display name and provider
-  const getModelInfo = (model) => {
-    if (!model) return { name: "", provider: "" };
-    const parts = model.split("/");
-    return {
-      name: parts.length > 1 ? parts[parts.length - 1] : model,
-      provider: parts.length > 1 ? parts[0] : "",
-    };
-  };
+  const sortedModels = [...models].sort((a, b) =>
+    modelHeaderDisplayId(a).localeCompare(modelHeaderDisplayId(b), undefined, { sensitivity: "base" }),
+  );
 
-  // Sort models alphabetically by name
-  const sortedModels = [...models].sort((a, b) => {
-    const infoA = getModelInfo(a);
-    const infoB = getModelInfo(b);
-    return infoA.name.localeCompare(infoB.name);
-  });
-
-  // Determine which model to show icon for (current or first in original list)
   const displayModel = currentModel || models[0] || "";
-  const displayInfo = getModelInfo(displayModel);
+  const iconProv = providerSortKeyFromModelId(displayModel);
 
   const iconContent = (
     <>
-      {displayInfo.provider ? (
-        <ProviderIcon provider={displayInfo.provider} size={18} />
+      {displayModel ? (
+        <ProviderIcon provider={iconProv} size={18} />
       ) : (
         <Bot size={18} />
       )}
     </>
   );
+
+  const handleSelectModel = (model) => {
+    if (!model) return;
+    setOpen(false);
+    onModelChange(model);
+  };
 
   return (
     <div className={styles.container}>
@@ -142,33 +245,54 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
       ) : (
         <div className={styles.modelIcon}>{iconContent}</div>
       )}
-      <Dropdown
-        appearance="underline"
-        value={currentModel || models[0] || ""}
-        selectedOptions={
-          currentModel ? [currentModel] : models.length > 0 ? [models[0]] : []
-        }
-        onOptionSelect={(e, data) => onModelChange(data.optionValue)}
-        className={styles.modelSelect}
-        aria-label={t("Select Model")}
-        data-testid="model-selector"
+      <Popover
+        open={open}
+        onOpenChange={(_, data) => setOpen(data.open)}
+        positioning={{ position: "below", align: "end", autoSize: "width", onPositioningEnd: () => {} }}
       >
-        {sortedModels.map((model) => {
-          const { name, provider } = getModelInfo(model);
-          const displayName = provider ? `${name} (${provider})` : name;
-          const optionSlug = String(model).replace(/\//g, "-");
-          return (
-            <Option key={model} value={model} text={displayName} data-testid={`model-option-${optionSlug}`}>
-               {provider && (
-                 <span style={{ marginRight: "8px", display: "inline-flex", alignItems: "center" }}>
-                   <ProviderIcon provider={provider} size={16} />
-                 </span>
-               )}
-              {displayName}
-            </Option>
-          );
-        })}
-      </Dropdown>
+        <PopoverTrigger disableButtonEnhancement>
+          <Button
+            appearance="transparent"
+            className={styles.modelTrigger}
+            aria-label={t("Select Model")}
+            title={displayModel}
+            data-testid="model-selector"
+            icon={<ChevronDownRegular />}
+            iconPosition="after"
+          >
+            <span className={styles.triggerInner}>
+              {displayModel ? (
+                <ModelPickerRow modelId={displayModel} t={t} styles={styles} iconSize={16} showIcon={false} />
+              ) : null}
+            </span>
+          </Button>
+        </PopoverTrigger>
+        <PopoverSurface className={styles.popoverSurface} data-testid="model-selector-menu">
+          <MenuList className={styles.menuListFull}>
+            {sortedModels.map((model) => {
+              const isSelected = model === (currentModel || models[0]);
+              const optionSlug = String(model).replace(/\//g, "-");
+              return (
+                <MenuItem
+                  key={model}
+                  data-testid={`model-option-${optionSlug}`}
+                  onClick={() => handleSelectModel(model)}
+                  icon={
+                    isSelected ? (
+                      <Check size={16} />
+                    ) : (
+                      <Check size={16} style={{ opacity: 0 }} aria-hidden />
+                    )
+                  }
+                  className={`${styles.menuItemModel} ${isSelected ? styles.selectedMenuItem : ""}`}
+                >
+                  <ModelPickerRow modelId={model} t={t} styles={styles} iconSize={16} />
+                </MenuItem>
+              );
+            })}
+          </MenuList>
+        </PopoverSurface>
+      </Popover>
       {onRemoveModel && (
         <button
           type="button"

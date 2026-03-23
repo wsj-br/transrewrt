@@ -347,7 +347,8 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
         promptTargetLanguageToDb(prompt.target_language),
         promptInstructions,
         now,
-        now
+        now,
+        null,
       );
       return { id: result.lastInsertRowid, error: null };
     } catch (err) {
@@ -418,7 +419,8 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
             promptTargetLanguageToDb(p.target_language),
             promptInstructions,
             p.created_at || now,
-            now
+            now,
+            null,
           );
           count++;
         } catch (e) {

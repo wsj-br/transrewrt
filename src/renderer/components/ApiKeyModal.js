@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 });
 
 /**
- * Modal shown when API key is missing or invalid (web: server API_KEY; Electron: settings).
+ * Modal shown when API key is missing or invalid (web: server OPENROUTER_KEY; Electron: settings).
  * Props: show, isWeb, apiKeyStatus, onDismiss (continue anyway), onOpenSettings (dismiss and open settings).
  */
 export default function ApiKeyModal({
@@ -56,7 +56,7 @@ export default function ApiKeyModal({
 
   const notSet = isWeb && apiKeyStatus && !apiKeyStatus.apiKeySet;
   const message = notSet
-    ? t("You need to set the API_KEY environment variable on the server to use this application.")
+    ? t("You need to set the OPENROUTER_KEY environment variable on the server to use this application.")
     : apiKeyStatus?.message
       ? apiKeyStatus.message
       : t("The OpenRouter API key could not be verified. Translation and rewrite may not work.");

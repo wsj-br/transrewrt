@@ -7,6 +7,8 @@ const useStyles = makeStyles({
     flex: 1,
     gap: "48px",
     width: "100%",
+    minHeight: 0,
+    minWidth: 0,
     alignItems: "stretch",
     position: "relative",
   },

@@ -90,7 +90,7 @@ const useFormStyles = makeStyles({
   },
 });
 
-const SettingsDialogGeneralTab = ({
+const SettingsGeneralTab = ({
   localSettings,
   onSettingChange,
 }) => {
@@ -506,7 +506,7 @@ const SettingsDialogGeneralTab = ({
   );
 };
 
-SettingsDialogGeneralTab.propTypes = {
+SettingsGeneralTab.propTypes = {
   localSettings: PropTypes.shape({
     enter_behavior: PropTypes.string,
     auto_translate_on_paste: PropTypes.bool,
@@ -522,4 +522,4 @@ SettingsDialogGeneralTab.propTypes = {
   onSettingChange: PropTypes.func.isRequired,
 };
 
-export default SettingsDialogGeneralTab;
+export default SettingsGeneralTab;

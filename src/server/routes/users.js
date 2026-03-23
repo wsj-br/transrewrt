@@ -7,6 +7,7 @@
 const crypto = require("crypto");
 const express = require("express");
 const argon2 = require("argon2");
+const { buildDefaultUserPreferencesPayload } = require("../utils/defaultUserPreferences.js");
 
 async function hashPassword(password) {
   return argon2.hash(password, {
@@ -27,8 +28,11 @@ function requireAdmin(req, res, next) {
 /**
  * @param {function} getDb
  * @param {object} log
+ * @param {object} appDb - mergeUserPreferencesData, etc.
+ * @param {object} configFile - createConfigFile() result (DEFAULT_STATE)
+ * @param {string} defaultConfigPath - path to config_default.json
  */
-module.exports = function createUsersRouter(getDb, log) {
+module.exports = function createUsersRouter(getDb, log, appDb, configFile, defaultConfigPath) {
   const router = express.Router();
 
   router.use(requireAdmin);
@@ -72,6 +76,12 @@ module.exports = function createUsersRouter(getDb, log) {
         `INSERT INTO users (id, username, password_hash, role, created_at, last_login, last_update, must_change_password)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       ).run(id, normalizedUsername, passwordHash, r, now, null, now, mustChange);
+      if (appDb?.mergeUserPreferencesData && configFile && defaultConfigPath) {
+        const payload = buildDefaultUserPreferencesPayload(defaultConfigPath, configFile.DEFAULT_STATE);
+        if (Object.keys(payload).length > 0) {
+          appDb.mergeUserPreferencesData(id, payload);
+        }
+      }
       res.status(201).json({
         id,
         username: normalizedUsername,
@@ -177,6 +187,8 @@ module.exports = function createUsersRouter(getDb, log) {
         return res.status(400).json({ error: "Admin user cannot be deleted" });
       }
       db.prepare("DELETE FROM sessions WHERE user_id = ?").run(id);
+      db.prepare("DELETE FROM user_preferences WHERE user_id = ?").run(id);
+      db.prepare("DELETE FROM custom_prompts WHERE user_id = ?").run(id);
       db.prepare("DELETE FROM users WHERE id = ?").run(id);
       res.json({ success: true });
     } catch (err) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
-import { formatElapsedMmSs, formatCostDisplay, formatDecimal, interpolateTemplate } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatPartialRunCostLabel, formatDecimal, interpolateTemplate } from "../utils/misc/formatUtils";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
@@ -287,7 +287,7 @@ export function useTransformPrompts({
         (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
       const tps = durationSec > 0 ? totalTokens / durationSec : 0;
       setTransformTestMeta(
-        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free")} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
+        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${formatPartialRunCostLabel(result, locale, t)} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
       );
       const outputContent = result.content
         ? result.content.replace(/^\s*\n+/, "")

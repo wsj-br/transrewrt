@@ -63,7 +63,7 @@ export function formatElapsedMmSs(seconds, locale) {
   return `${mm}:${ss}`;
 }
 
-/** Format cost for display (e.g. "$0.00123"); "free" for zero. Decimal separator follows locale. */
+/** Format cost for display (e.g. "$0.00123"); English "free" for zero (prefer {@link formatPartialRunCostLabel} when `cost_known` matters). */
 export function formatCostDisplay(cost, locale) {
   if (!cost || cost <= 0) return "free";
   const loc = resolveLocale(locale);
@@ -72,6 +72,32 @@ export function formatCostDisplay(cost, locale) {
     maximumFractionDigits: 5,
   }).format(cost);
   return `$${formatted}`;
+}
+
+/**
+ * Classify run cost for the status line: amount, free ($0 with known pricing or OpenRouter), or unknown.
+ * @param {{ calculated_cost?: number, usage?: { cost?: number, cost_known?: boolean }, model?: string, model_used?: string }} result
+ * @returns {{ kind: "amount", value: number } | { kind: "free" } | { kind: "unknown" }}
+ */
+export function resolveRunCostLine(result) {
+  const c = Number(result?.calculated_cost ?? result?.usage?.cost ?? 0);
+  const known = result?.usage?.cost_known;
+  const model = String(result?.model_used || result?.model || "");
+  const openrouter = model.startsWith("openrouter/");
+  if (c > 0) return { kind: "amount", value: c };
+  if (known === false) return { kind: "unknown" };
+  if (known === true || openrouter) return { kind: "free" };
+  return { kind: "unknown" };
+}
+
+/**
+ * Cost snippet for partial-result / test meta lines (localised free vs not available).
+ */
+export function formatPartialRunCostLabel(result, locale, t) {
+  const line = resolveRunCostLine(result);
+  if (line.kind === "amount") return formatCostDisplay(line.value, locale);
+  if (line.kind === "free") return t("free");
+  return t("Cost not available");
 }
 
 /** Format date and time for display; format follows locale (e.g. 09.03.2026 in de, 2026/03/09 in ja). Time is HH:mm:ss. */

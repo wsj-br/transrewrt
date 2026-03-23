@@ -93,7 +93,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SettingsDialogCostTrackingTab = ({
+const SettingsCostTrackingTab = ({
   localSettings,
   onSettingChange,
   isTabActive,
@@ -129,15 +129,18 @@ const SettingsDialogCostTrackingTab = ({
     [t]
   );
 
-  const apiUrl = localSettings.api_url || "https://openrouter.ai/api/v1";
-  const isOpenRouter =
-    apiUrl.includes("openrouter.ai") ||
-    (!!localSettings.use_transrewrt_proxy && (localSettings.api_url || "").trim().length > 0);
+  const canUseOpenRouterKeyInfo =
+    isWeb || !!localSettings.openrouter_api_key_configured;
 
   const fetchKeyInfo = async () => {
-    if (!isOpenRouter) {
+    if (!canUseOpenRouterKeyInfo) {
       setKeyInfo(null);
-      setKeyInfoError(null);
+      setKeyInfoError(
+        t(
+          "API key usage from OpenRouter is not available. Add an OpenRouter API key in Settings → API.",
+        ),
+      );
+      setKeyInfoLoading(false);
       return;
     }
     const thisId = ++keyRefreshIdRef.current;
@@ -173,7 +176,8 @@ const SettingsDialogCostTrackingTab = ({
   useEffect(() => {
     fetchKeyInfo();
   // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo closes over deps; listing it causes unnecessary reruns
-  }, [isOpenRouter, isWeb, apiUrl, localSettings.api_key_configured, isTabActive]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo uses t(); i18n t identity is unstable
+  }, [canUseOpenRouterKeyInfo, isWeb, localSettings.openrouter_api_key_configured, isTabActive]);
 
   const keyUsageDisplay = useMemo(() => {
     if (keyInfoLoading) return t("Loading…");
@@ -390,7 +394,7 @@ const SettingsDialogCostTrackingTab = ({
             >
               {t("Reset Cost")}
             </Button>
-            {isOpenRouter && (
+            {canUseOpenRouterKeyInfo && (
               <Button
                 appearance="secondary"
                 size="small"
@@ -670,11 +674,9 @@ const SettingsDialogCostTrackingTab = ({
   );
 };
 
-SettingsDialogCostTrackingTab.propTypes = {
+SettingsCostTrackingTab.propTypes = {
   localSettings: PropTypes.shape({
-    api_url: PropTypes.string,
-    use_transrewrt_proxy: PropTypes.bool,
-    api_key_configured: PropTypes.bool,
+    openrouter_api_key_configured: PropTypes.bool,
     total_cost: PropTypes.number,
     cost_fraction_style: PropTypes.string,
   }).isRequired,
@@ -682,4 +684,4 @@ SettingsDialogCostTrackingTab.propTypes = {
   isTabActive: PropTypes.bool,
 };
 
-export default SettingsDialogCostTrackingTab;
+export default SettingsCostTrackingTab;

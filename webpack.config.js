@@ -131,7 +131,8 @@ module.exports = (env, argv) => {
     static: {
       directory: path.join(__dirname, "dist"),
     },
-    compress: true,
+    // SSE via /api proxy: compression can buffer streamed responses and break incremental reads.
+    compress: false,
     port: 3030,
     hot: true,
     liveReload: false, // Disable liveReload when using HMR

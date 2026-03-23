@@ -1,6 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { formatCostDisplay, interpolateTemplate } from "../utils/misc/formatUtils";
+import {
+  formatPartialRunCostLabel,
+  interpolateTemplate,
+  resolveRunCostLine,
+} from "../utils/misc/formatUtils";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -37,6 +41,8 @@ export function useProcessing({
   const [elapsedTime, setElapsedTime] = useState(0);
   const [tokensPerSecond, setTokensPerSecond] = useState(0);
   const [lastRunCost, setLastRunCost] = useState(0);
+  /** none: idle; amount/free/unknown: last completed run (for status line). */
+  const [lastRunCostKind, setLastRunCostKind] = useState("none");
   const [lastRunModel, setLastRunModel] = useState(null);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
   const { t, i18n } = useTranslation();
@@ -45,11 +51,8 @@ export function useProcessing({
   const isAbortMessage = useCallback((msg) => {
     if (msg == null || typeof msg !== "string") return false;
     const s = msg.toLowerCase();
-    return (
-      s.includes("aborted") ||
-      s.includes("failed to fetch") ||
-      s.includes("signal is aborted")
-    );
+    // Do not treat "failed to fetch" as user cancel — that is usually network/CORS/proxy.
+    return s.includes("aborted") || s.includes("signal is aborted");
   }, []);
 
   const timerRef = useRef(null);
@@ -67,7 +70,8 @@ export function useProcessing({
   useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
-      if (abortControllerRef.current) abortControllerRef.current.abort();
+      // Do not abort fetch here: React 18 Strict Mode (dev) unmount/remount would cancel
+      // in-flight translate/rewrite/transform and show a false "stopped by user" message.
     };
   }, []);
 
@@ -90,6 +94,7 @@ export function useProcessing({
       setIsProcessing(true);
       setOutputTextTranslate(t('Translating...'));
       setLastRunCost(0);
+      setLastRunCostKind("none");
       setLastRunModel(null);
       setElapsedTime(0);
       setTokensPerSecond(0);
@@ -122,7 +127,13 @@ export function useProcessing({
         const durationSeconds = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
         const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
         setTokensPerSecond(tps);
-        setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+        const costLine = resolveRunCostLine({
+          calculated_cost: result.calculated_cost,
+          usage: result.usage,
+          model_used: result.model_used || result.model || activeModel,
+        });
+        setLastRunCost(costLine.kind === "amount" ? costLine.value : 0);
+        setLastRunCostKind(costLine.kind);
         setLastRunModel(result.model_used || result.model || null);
 
         if (cancelledByUserRef.current) return;
@@ -133,10 +144,18 @@ export function useProcessing({
           if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
         }
         if (result.cancelled) {
-          const msg = result.content
-            ? `${t("Translation stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
-            : t("Translation stopped by user.");
-          setOutputTextTranslate(msg);
+          if (cancelledByUserRef.current) {
+            const msg = result.content
+              ? `${t("Translation stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+              : t("Translation stopped by user.");
+            setOutputTextTranslate(msg);
+          } else {
+            setOutputTextTranslate(
+              result.content
+                ? `${t("The request ended before completion.")}\n\n${result.content}`
+                : t("The request ended before completion. Try again."),
+            );
+          }
         } else if (result.error) {
           if (isAbortMessage(result.error)) {
             setOutputTextTranslate(t("Translation stopped by user."));
@@ -153,10 +172,11 @@ export function useProcessing({
         setIsProcessing(false);
         setLastRunCost(0);
         setLastRunModel(null);
-        const isAbort =
+        const userAbort =
+          cancelledByUserRef.current ||
           error.name === "AbortError" ||
-          (error.message && (String(error.message).includes("Failed to fetch") || isAbortMessage(error.message)));
-        if (isAbort && !cancelledByUserRef.current) {
+          (error.message && isAbortMessage(error.message));
+        if (userAbort) {
           setOutputTextTranslate(t("Translation stopped by user."));
         } else {
           setOutputTextTranslate(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
@@ -219,6 +239,7 @@ export function useProcessing({
     setRewriteOutputIsModelResult(false);
     setOutputTextRewrite(t("rewriting..."));
     setLastRunCost(0);
+    setLastRunCostKind("none");
     setLastRunModel(null);
     setElapsedTime(0);
     setTokensPerSecond(0);
@@ -250,7 +271,13 @@ export function useProcessing({
       const durationSeconds = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
       const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
       setTokensPerSecond(tps);
-      setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+      const rewriteCostLine = resolveRunCostLine({
+        calculated_cost: result.calculated_cost,
+        usage: result.usage,
+        model_used: result.model_used || result.model || activeModel,
+      });
+      setLastRunCost(rewriteCostLine.kind === "amount" ? rewriteCostLine.value : 0);
+      setLastRunCostKind(rewriteCostLine.kind);
       setLastRunModel(result.model_used || result.model || null);
 
       if (cancelledByUserRef.current) return;
@@ -263,10 +290,18 @@ export function useProcessing({
       }
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
-        const msg = result.content
-          ? `${t("Rewrite stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
-          : t("Rewrite stopped by user.");
-        setOutputTextRewrite(msg);
+        if (cancelledByUserRef.current) {
+          const msg = result.content
+            ? `${t("Rewrite stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+            : t("Rewrite stopped by user.");
+          setOutputTextRewrite(msg);
+        } else {
+          setOutputTextRewrite(
+            result.content
+              ? `${t("The request ended before completion.")}\n\n${result.content}`
+              : t("The request ended before completion. Try again."),
+          );
+        }
       } else if (result.error) {
         setRewriteOutputIsModelResult(false);
         if (isAbortMessage(result.error)) {
@@ -284,10 +319,11 @@ export function useProcessing({
       setIsProcessing(false);
       setLastRunCost(0);
       setRewriteOutputIsModelResult(false);
-      const isAbort =
+      const userAbort =
+        cancelledByUserRef.current ||
         error.name === "AbortError" ||
-        (error.message && (String(error.message).includes("Failed to fetch") || isAbortMessage(error.message)));
-      if (isAbort && !cancelledByUserRef.current) {
+        (error.message && isAbortMessage(error.message));
+      if (userAbort) {
         setOutputTextRewrite(t("Rewrite stopped by user."));
       } else {
         setOutputTextRewrite(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
@@ -342,6 +378,7 @@ export function useProcessing({
       setIsProcessing(true);
       setOutputTextTransform(t('Transforming...'));
       setLastRunCost(0);
+      setLastRunCostKind("none");
       setLastRunModel(null);
       setElapsedTime(0);
       setTokensPerSecond(0);
@@ -368,7 +405,13 @@ export function useProcessing({
         const durationSec = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
         const tps = durationSec > 0 ? totalTokens / durationSec : 0;
         setTokensPerSecond(tps);
-        setLastRunCost(result.calculated_cost ?? result.usage?.cost ?? 0);
+        const xfCostLine = resolveRunCostLine({
+          calculated_cost: result.calculated_cost,
+          usage: result.usage,
+          model_used: result.model_used || result.model || activeModel,
+        });
+        setLastRunCost(xfCostLine.kind === "amount" ? xfCostLine.value : 0);
+        setLastRunCostKind(xfCostLine.kind);
         setLastRunModel(result.model_used || result.model || null);
 
         if (cancelledByUserRef.current) return;
@@ -379,11 +422,19 @@ export function useProcessing({
           if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
         }
         if (result.cancelled) {
-          setOutputTextTransform(
-            result.content
-              ? `${t("Transform stopped by user.")}\n\n${interpolateTemplate(t("Partial result ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: result.calculated_cost ? formatCostDisplay(result.calculated_cost, locale) : t("free") })}`
-              : t("Transform stopped by user.")
-          );
+          if (cancelledByUserRef.current) {
+            setOutputTextTransform(
+              result.content
+                ? `${t("Transform stopped by user.")}\n\n${interpolateTemplate(t("Partial result ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+                : t("Transform stopped by user."),
+            );
+          } else {
+            setOutputTextTransform(
+              result.content
+                ? `${t("The request ended before completion.")}\n\n${result.content}`
+                : t("The request ended before completion. Try again."),
+            );
+          }
         } else if (result.error) {
           if (isAbortMessage(result.error)) {
             setOutputTextTransform(t("Transform stopped by user."));
@@ -399,11 +450,13 @@ export function useProcessing({
         startTimeRef.current = null;
         setIsProcessing(false);
         setLastRunCost(0);
+        setLastRunCostKind("none");
         setLastRunModel(null);
-        const isAbort =
+        const userAbort =
+          cancelledByUserRef.current ||
           err.name === "AbortError" ||
-          (err.message && (String(err.message).includes("Failed to fetch") || isAbortMessage(err.message)));
-        if (isAbort && !cancelledByUserRef.current) {
+          (err.message && isAbortMessage(err.message));
+        if (userAbort) {
           setOutputTextTransform(t("Transform stopped by user."));
         } else {
           setOutputTextTransform(interpolateTemplate(t("Error: {{message}}"), { message: err.message }));
@@ -482,6 +535,7 @@ export function useProcessing({
     elapsedTime,
     tokensPerSecond,
     lastRunCost,
+    lastRunCostKind,
     lastRunModel,
     rewriteOutputIsModelResult,
     stopProcessing,

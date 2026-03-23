@@ -590,6 +590,57 @@ const webAPI = {
     }
   },
 
+  getProviderKeysStatus: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/provider-keys`, {
+        credentials: "include",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to load provider key status");
+      }
+      const data = await res.json();
+      return Array.isArray(data.providers) ? data.providers : [];
+    } catch (err) {
+      if (err && err.status === 401) throw err;
+      console.error("[WebAPI] getProviderKeysStatus failed:", err);
+      throw err;
+    }
+  },
+
+  testProviderApiKey: async (provider) => {
+    const normalizedProvider = String(provider || "").trim();
+    const res = await fetch(`${API_BASE}/api/provider-test`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provider: normalizedProvider }),
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) return Promise.reject(new Error("Admin access required"));
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      return {
+        provider: normalizedProvider,
+        status: "error",
+        message: data.error || data.message || "Authentication test failed.",
+      };
+    }
+    return {
+      provider: normalizedProvider,
+      status: data.status || "success",
+      message: data.message || "Authentication succeeded.",
+    };
+  },
+
   getOpenRouterKeyInfo: async () => {
     try {
       const res = await fetch(`${API_BASE}/api/key?_=${Date.now()}`, {

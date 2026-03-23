@@ -20,7 +20,7 @@ const STATE_KEYS = [
 ];
 
 const DEFAULT_STATE = {
-  last_used_model: "openrouter/free",
+  last_used_model: "openrouter/openrouter/free",
   settings_active_tab: "api",
   source_language: "Detect Language",
   target_language: "Spanish",

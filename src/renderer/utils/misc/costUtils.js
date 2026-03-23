@@ -1,6 +1,6 @@
 /**
  * Shared cost-tracking utilities: filters, formatters, and API access.
- * Used by SettingsDialogCostTrackingTab, DashboardPage, and SettingsDialogGeneralTab.
+ * Used by SettingsCostTrackingTab, DashboardPage, and SettingsGeneralTab.
  */
 
 import { tokens } from "@fluentui/react-components";

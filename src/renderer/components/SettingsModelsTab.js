@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDecimal } from '../utils/misc/formatUtils';
+import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import {
   Button,
   Input,
@@ -30,11 +31,19 @@ import {
   Package,
 } from 'lucide-react';
 import ProviderIcon from './ProviderIcon';
+import {
+  isPricingKnown,
+  isConfirmedFreeModel,
+  modelCostSortValue,
+} from '../utils/misc/modelPricingUtils';
+import { modelRouteBadgeProps } from '../utils/misc/modelRouteBadge';
 
-const SettingsDialogModelsTab = ({
+const SettingsModelsTab = ({
   allModels,
   selectedModelIds,
   searchTerm,
+  filterEngine,
+  engineFilterOptions,
   filterFree,
   sortBy,
   expandedProviders,
@@ -42,6 +51,7 @@ const SettingsDialogModelsTab = ({
   modelsLoading,
   modelsError,
   onSearchTermChange,
+  onFilterEngineChange,
   onFilterFreeChange,
   onSortByChange,
   onRefreshModels,
@@ -60,8 +70,7 @@ const SettingsDialogModelsTab = ({
     const [sortType, sortDir] = (sortBy || 'model-asc').split('-');
     const ascending = sortDir === 'asc';
     const getModel = (id) => allModels.find((m) => m.id === id) || { id };
-    const getCost = (model) =>
-      (parseFloat(model.pricing?.prompt || 0) + parseFloat(model.pricing?.completion || 0)) || 0;
+    const getCost = (model) => modelCostSortValue(model);
     return ids.slice().sort((idA, idB) => {
       const a = getModel(idA);
       const b = getModel(idB);
@@ -69,8 +78,8 @@ const SettingsDialogModelsTab = ({
       if (sortType === 'cost') {
         cmp = getCost(a) - getCost(b);
       } else if (sortType === 'provider') {
-        const provA = (idA.split('/')[0] || 'Other').toLowerCase();
-        const provB = (idB.split('/')[0] || 'Other').toLowerCase();
+        const provA = providerSortKeyFromModelId(idA);
+        const provB = providerSortKeyFromModelId(idB);
         cmp = provA.localeCompare(provB);
         if (cmp === 0) {
           const nameA = (getModelName(a) || idA).trim().toLowerCase();
@@ -103,12 +112,15 @@ const SettingsDialogModelsTab = ({
       ? '0.00'
       : formatDecimal(parseFloat(pricePerToken) * 1000000, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-  const renderModelPricing = (pricing) => {
-    const inCost = formatPricePer1M(pricing?.prompt);
-    const outCost = formatPricePer1M(pricing?.completion);
+  const renderModelPricingLine = (model) => {
+    if (!isPricingKnown(model)) {
+      return t("Cost not available");
+    }
+    const inCost = formatPricePer1M(model.pricing?.prompt);
+    const outCost = formatPricePer1M(model.pricing?.completion);
     return (
       <>
-        {t('Input')}: ${inCost} / 1M · {t('Output')}: ${outCost} / 1M {t('tokens')}
+        {t("Input")}: ${inCost} / 1M · {t("Output")}: ${outCost} / 1M {t("tokens")}
       </>
     );
   };
@@ -118,18 +130,15 @@ const SettingsDialogModelsTab = ({
       <div className="models-split-view">
         {/* LEFT: AVAILABLE MODELS */}
         <div className="models-pane left">
-          {/* Header */}
-          <div className="models-pane-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Header: title + centered search */}
+          <div className="models-pane-header models-available-header-row">
+            <div className="models-available-title">
               <Cpu size={20} strokeWidth={2} />
               <Text size={500} weight="semibold">{t('Available Models')}</Text>
             </div>
-          </div>
-
-          {/* Search and Filter Controls */}
-          <div className="models-controls-modern">
-            <div className="search-box-container">
+            <div className="models-header-search">
               <Input
+                className="models-header-search-input"
                 contentBefore={<SearchRegular />}
                 contentAfter={
                   searchTerm && (
@@ -146,66 +155,86 @@ const SettingsDialogModelsTab = ({
                 onChange={(e) => onSearchTermChange(e.target.value)}
               />
             </div>
-            
-            <div className="free-only-toggle">
+            <div className="models-header-search-balance" aria-hidden />
+          </div>
+
+          {/* Filter Controls */}
+          <div className="models-controls-modern">
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', alignItems: 'center' }}>
+              <Text size={200} weight="semibold" style={{ width: '100%', marginBottom: '2px' }}>{t('Provider')}</Text>
+              {(engineFilterOptions || []).map((opt) => (
+                <Button
+                  key={opt.value === '' ? '__all__' : opt.value}
+                  size="small"
+                  appearance={filterEngine === opt.value ? 'primary' : 'secondary'}
+                  onClick={() => onFilterEngineChange(opt.value)}
+                >
+                  {opt.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Action Toolbar */}
+          <div className="models-toolbar">
+            <div className="models-toolbar-left">
+              <Button
+                appearance="subtle"
+                size="small"
+                icon={<ArrowSyncRegular />}
+                onClick={onRefreshModels}
+                disabled={modelsLoading}
+              >
+                {t('Refresh')}
+              </Button>
+
+              {sortBy.startsWith('provider') && (
+                <>
+                  <Button
+                    appearance="subtle"
+                    size="small"
+                    icon={<ChevronDownRegular />}
+                    onClick={onExpandAll}
+                  >
+                    {t('Expand All')}
+                  </Button>
+                  <Button
+                    appearance="subtle"
+                    size="small"
+                    icon={<ChevronUpRegular />}
+                    onClick={onCollapseAll}
+                  >
+                    {t('Collapse All')}
+                  </Button>
+                </>
+              )}
+
+              <Dropdown
+                appearance="underline"
+                size="small"
+                value={sortOptions.find((o) => o.value === sortBy)?.label ?? sortBy}
+                selectedOptions={[sortBy]}
+                onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
+                style={{ minWidth: '200px' }}
+              >
+                {sortOptions.map((opt) => (
+                  <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+                ))}
+              </Dropdown>
+            </div>
+            <div className="models-toolbar-right">
               <Checkbox
+                className="models-toolbar-free-only"
                 checked={filterFree}
                 onChange={(e, data) => onFilterFreeChange(data.checked)}
                 label={
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span className="models-toolbar-free-only-label">
                     <WandSparkles size={14} />
                     {t('Free Only')}
                   </span>
                 }
               />
             </div>
-          </div>
-
-          {/* Action Toolbar */}
-          <div className="models-toolbar">
-            <Button
-              appearance="subtle"
-              size="small"
-              icon={<ArrowSyncRegular />}
-              onClick={onRefreshModels}
-              disabled={modelsLoading}
-            >
-              {t('Refresh')}
-            </Button>
-            
-            {sortBy.startsWith('provider') && (
-              <>
-                <Button
-                  appearance="subtle"
-                  size="small"
-                  icon={<ChevronDownRegular />}
-                  onClick={onExpandAll}
-                >
-                  {t('Expand All')}
-                </Button>
-                <Button
-                  appearance="subtle"
-                  size="small"
-                  icon={<ChevronUpRegular />}
-                  onClick={onCollapseAll}
-                >
-                  {t('Collapse All')}
-                </Button>
-              </>
-            )}
-            
-            <Dropdown
-              appearance="underline"
-              size="small"
-              value={sortOptions.find((o) => o.value === sortBy)?.label ?? sortBy}
-              selectedOptions={[sortBy]}
-              onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
-              style={{ minWidth: '200px' }}
-            >
-              {sortOptions.map((opt) => (
-                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
-              ))}
-            </Dropdown>
           </div>
 
           {/* Models List */}
@@ -252,7 +281,9 @@ const SettingsDialogModelsTab = ({
                             {isExpanded ? <ChevronDownRegular /> : <ChevronRightRegular />}
                           </span>
                            <ProviderIcon provider={provider} size={20} />
-                          <Text weight="semibold" size={400}>{provider}</Text>
+                          <Text weight="semibold" size={400}>
+                            {provider.length ? provider.charAt(0).toUpperCase() + provider.slice(1) : provider}
+                          </Text>
                           <Badge
                             appearance="tint"
                             size="small"
@@ -272,8 +303,9 @@ const SettingsDialogModelsTab = ({
                         <div className="provider-models-modern">
                           {models.map(model => {
                             const isSelected = selectedModelIds.has(model.id);
-                            const isFree = parseFloat(model.pricing?.prompt || 0) === 0;
-                            
+                            const showFreeBadge = isConfirmedFreeModel(model);
+                            const routeBadge = modelRouteBadgeProps(model.id, t);
+
                             return (
                               <Card
                                 key={model.id}
@@ -286,7 +318,14 @@ const SettingsDialogModelsTab = ({
                                       <Text weight="medium" size={300}>
                                         {model.name || model.id}
                                       </Text>
-                                      {isFree && (
+                                      <Badge
+                                        appearance="outline"
+                                        size="small"
+                                        color={routeBadge.color}
+                                      >
+                                        {routeBadge.text}
+                                      </Badge>
+                                      {showFreeBadge && (
                                         <Badge
                                           appearance="tint"
                                           size="small"
@@ -298,7 +337,7 @@ const SettingsDialogModelsTab = ({
                                       )}
                                     </div>
                                     <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
-                                      {renderModelPricing(model.pricing)}
+                                      {renderModelPricingLine(model)}
                                     </Text>
                                   </div>
                                   <div className="model-action">
@@ -329,10 +368,11 @@ const SettingsDialogModelsTab = ({
               // FLAT LIST VIEW (by Cost or Model name)
               <div className="models-list-flat">
                 {sortedModelsData.data.map(model => {
-                  const provider = model.id.split('/')[0] || 'Other';
+                  const provider = providerSortKeyFromModelId(model.id);
                   const modelName = getModelName(model);
                   const isSelected = selectedModelIds.has(model.id);
-                  const isFree = parseFloat(model.pricing?.prompt || 0) === 0;
+                  const showFreeBadge = isConfirmedFreeModel(model);
+                  const routeBadge = modelRouteBadgeProps(model.id, t);
 
                   return (
                     <Card
@@ -347,10 +387,13 @@ const SettingsDialogModelsTab = ({
                             <Text weight="medium" size={300}>
                               {modelName}
                             </Text>
+                            <Badge appearance="outline" size="small" color={routeBadge.color}>
+                              {routeBadge.text}
+                            </Badge>
                             <Text size={200} style={{ opacity: 0.7 }}>
-                              ({provider})
+                              ({provider.length ? provider.charAt(0).toUpperCase() + provider.slice(1) : provider})
                             </Text>
-                            {isFree && (
+                            {showFreeBadge && (
                               <Badge
                                 appearance="tint"
                                 size="small"
@@ -362,7 +405,7 @@ const SettingsDialogModelsTab = ({
                             )}
                           </div>
                           <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
-                            {renderModelPricing(model.pricing)}
+                            {renderModelPricingLine(model)}
                           </Text>
                         </div>
                         <div className="model-action">
@@ -417,8 +460,9 @@ const SettingsDialogModelsTab = ({
             <div className="selected-models-list">
               {sortedSelectedModelIds.map(modelId => {
                 const model = allModels.find(m => m.id === modelId) || { id: modelId };
-                const provider = modelId.split('/')[0] || 'Other';
-                const isFree = model.pricing && parseFloat(model.pricing.prompt || 0) === 0;
+                const provider = providerSortKeyFromModelId(modelId);
+                const showFreeBadge = isConfirmedFreeModel(model);
+                const routeBadge = modelRouteBadgeProps(modelId, t);
                 const isRequiredFree = modelId === FREE_MODEL_ID;
 
                 return (
@@ -433,7 +477,10 @@ const SettingsDialogModelsTab = ({
                           <Text weight="semibold" size={400}>
                             {model.name || model.id}
                           </Text>
-                          {isFree && (
+                          <Badge appearance="outline" size="small" color={routeBadge.color}>
+                            {routeBadge.text}
+                          </Badge>
+                          {showFreeBadge && (
                             <Badge
                               appearance="tint"
                               size="small"
@@ -444,11 +491,9 @@ const SettingsDialogModelsTab = ({
                             </Badge>
                           )}
                         </div>
-                        {model.pricing && (
-                          <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
-                            {renderModelPricing(model.pricing)}
-                          </Text>
-                        )}
+                        <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                          {renderModelPricingLine(model)}
+                        </Text>
                       </div>
                       {!isRequiredFree && (
                         <Button
@@ -471,17 +516,20 @@ const SettingsDialogModelsTab = ({
   );
 };
 
-SettingsDialogModelsTab.propTypes = {
+SettingsModelsTab.propTypes = {
   allModels: PropTypes.arrayOf(PropTypes.object),
   selectedModelIds: PropTypes.object.isRequired,
   searchTerm: PropTypes.string,
+  filterEngine: PropTypes.string,
+  engineFilterOptions: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
   filterFree: PropTypes.bool,
   sortBy: PropTypes.string,
   expandedProviders: PropTypes.object,
-  sortedModelsData: PropTypes.arrayOf(PropTypes.object),
+  sortedModelsData: PropTypes.object,
   modelsLoading: PropTypes.bool,
   modelsError: PropTypes.string,
   onSearchTermChange: PropTypes.func.isRequired,
+  onFilterEngineChange: PropTypes.func.isRequired,
   onFilterFreeChange: PropTypes.func.isRequired,
   onSortByChange: PropTypes.func.isRequired,
   onRefreshModels: PropTypes.func.isRequired,
@@ -493,4 +541,4 @@ SettingsDialogModelsTab.propTypes = {
   getModelName: PropTypes.func.isRequired,
 };
 
-export default SettingsDialogModelsTab;
+export default SettingsModelsTab;

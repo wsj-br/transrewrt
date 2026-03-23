@@ -3,6 +3,39 @@
 
 const { contextBridge, ipcRenderer } = require('electron');
 
+function llmStreamWithAccumulation(payload) {
+  return new Promise((resolve, reject) => {
+    const { requestId } = payload;
+    let content = '';
+    const onChunk = (_e, d) => {
+      if (d.requestId !== requestId) return;
+      content += d.text || '';
+    };
+    const onEnd = (_e, d) => {
+      if (d.requestId !== requestId) return;
+      cleanup();
+      resolve({ content, usage: d.usage, cancelled: false });
+    };
+    const onErr = (_e, d) => {
+      if (d.requestId !== requestId) return;
+      cleanup();
+      reject(new Error(d.error || 'LLM stream error'));
+    };
+    function cleanup() {
+      ipcRenderer.removeListener('llm:chunk', onChunk);
+      ipcRenderer.removeListener('llm:end', onEnd);
+      ipcRenderer.removeListener('llm:error', onErr);
+    }
+    ipcRenderer.on('llm:chunk', onChunk);
+    ipcRenderer.on('llm:end', onEnd);
+    ipcRenderer.on('llm:error', onErr);
+    ipcRenderer.invoke('llm:stream', payload).catch((e) => {
+      cleanup();
+      reject(e);
+    });
+  });
+}
+
 // Config and file writes go through main process (contextIsolation: true, no nodeIntegration in renderer).
 const api = {
   getConfig: () => ipcRenderer.invoke('config:get'),
@@ -10,6 +43,7 @@ const api = {
   setAllConfig: (config) => ipcRenderer.invoke('config:setAll', config),
   getSecretsForRequest: () => ipcRenderer.invoke('config:getSecretsForRequest'),
   testApiConfiguration: (opts) => ipcRenderer.invoke('api:testConfiguration', opts),
+  testProviderApiKey: (opts) => ipcRenderer.invoke('api:testProvider', opts),
   openSettings: () => ipcRenderer.send('open-settings'),
   notifySettingsUpdated: () => ipcRenderer.send('settings-updated'),
   onSettingsUpdated: (callback) => {
@@ -20,7 +54,9 @@ const api = {
   },
   writeLastApiResult: (payload) => ipcRenderer.invoke('write-last-api-result', payload),
   writeDebugFile: (filename, data) => ipcRenderer.invoke('write-debug-file', filename, data),
-  writeProxyDebugLog: (line) => ipcRenderer.invoke('write-proxy-debug-log', line),
+  llmStream: (payload) => llmStreamWithAccumulation(payload),
+  llmAbort: (requestId) => ipcRenderer.invoke('llm:abort', { requestId }),
+  llmModels: () => ipcRenderer.invoke('llm:models'),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
   getOsUsername: () => ipcRenderer.invoke('get-os-username'),
   getOpenRouterKeyInfo: () => ipcRenderer.invoke('getOpenRouterKeyInfo'),

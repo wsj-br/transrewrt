@@ -166,7 +166,7 @@ function generateRandomPassword(length = 10) {
   return result;
 }
 
-const SettingsDialogUsersTab = () => {
+const SettingsUsersTab = () => {
   const styles = useStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
@@ -798,4 +798,4 @@ const SettingsDialogUsersTab = () => {
   );
 };
 
-export default SettingsDialogUsersTab;
+export default SettingsUsersTab;

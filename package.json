@@ -164,7 +164,10 @@
       "electron-winstaller",
       "puppeteer",
       "sharp"
-    ]
+    ],
+    "patchedDependencies": {
+      "multi-llm-ts@5.1.0-beta4": "patches/multi-llm-ts@5.1.0-beta4.patch"
+    }
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
@@ -176,6 +179,7 @@
     "express": "^5.2.1",
     "i18next": "^25.10.2",
     "lucide-react": "^0.577.0",
+    "multi-llm-ts": "5.1.0-beta4",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

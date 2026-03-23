@@ -83,26 +83,26 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
+Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
 <br />
 
 > ℹ️ **NOTE**<br/>
-> In Docker the OpenRouter API key is set only via the `API_KEY` environment variable (not in the web UI). On desktop (Electron) you paste it in **Settings → API**.
+> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_KEY`, `OPENAI_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
 
 <br />
 
 **Windows**
 
-Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your OpenRouter API key in **Settings → API**.
+Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API** (at minimum the providers you use; OpenRouter is common for hosted models).
 
 <br />
 
@@ -114,7 +114,7 @@ Download the `.AppImage` from [Releases](https://github.com/wsj-br/transrewrt/re
 chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
 ```
 
-Enter your OpenRouter API key in **Settings → API**. On Debian/Ubuntu you may need to install extra dependencies first:
+Enter your API keys in **Settings → API** (at minimum the providers you use; OpenRouter is common for hosted models). On Debian/Ubuntu you may need to install extra dependencies first:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -159,16 +159,16 @@ Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to
 ### Docker
 
 - Pull: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- The OpenRouter API key **must** be set via the `API_KEY` environment variable. Pass it with `-e API_KEY` (or via `docker compose` / `.env`) so the key is not visible in the process list.
-- The API key cannot be entered in the web UI.
+- Set at least one provider key via environment (for example `OPENROUTER_KEY` for OpenRouter). Pass variables with `-e` or `docker compose` / `.env` so secrets are not baked into the image.
+- Provider keys are **not** entered in the web UI; the server reads them from the environment.
 
-Example - named volume for persistence (API key passed via env, not in the command line):
+Example - named volume for persistence (OpenRouter key via env):
 
 ```bash
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -179,7 +179,7 @@ API_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (map with `-p 5000:5000`)                                                                              |
 | Volume   | Mount `/app/data` for config and database persistence                                                         |
-| Env vars | `PORT`, `CONFIG_PATH`, `API_KEY`, `API_URL`, `KEY_SEED` - see [Configuration](#configuration-and-environment) |
+| Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
 To build and run from source: `docker compose up --build -d` or `pnpm run docker:up` - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
 
@@ -192,7 +192,7 @@ Transrewrt uses [OpenRouter](https://openrouter.ai) for AI models. You need an A
 
 1. Sign up or log in at [openrouter.ai](https://openrouter.ai).
 2. Open the [Keys](https://openrouter.ai/keys) page and create a new key (name it, and optionally set a credit limit). You can use free models without adding credit.
-3. **Desktop (Electron):** paste the key in **Settings → API**. **Docker:** set the `API_KEY` environment variable (see [Quick start](#quick-start)).
+3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set env vars such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
 
 For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
@@ -213,17 +213,29 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 
 **Environment variables** (web/Docker only; Electron uses the local config file)
 
-| Variable      | Default                        | Description                                                   |
-| ------------- | ------------------------------ | ------------------------------------------------------------- |
-| `PORT`        | `5000`                         | Server listening port                                         |
-| `CONFIG_PATH` | `/app/data/config.json`        | Path to the config file                                       |
-| `API_KEY`     | *(empty)*                      | OpenRouter API key (required for Docker; set via env, not UI) |
-| `API_URL`     | `https://openrouter.ai/api/v1` | Upstream AI API base URL                                      |
-| `KEY_SEED`    | *(empty)*                      | Transrewrt proxy key seed (overrides config if set)           |
+| Variable         | Default                 | Description |
+| ---------------- | ----------------------- | ----------- |
+| `PORT`           | `5000`                  | Server listening port |
+| `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
+| `OPENROUTER_KEY` | *(empty)*               | OpenRouter API key |
+| `OPENAI_KEY`     | *(empty)*               | OpenAI API key |
+| `ANTHROPIC_KEY`  | *(empty)*               | Anthropic API key |
+| `GOOGLE_KEY`     | *(empty)*               | Google Gemini API key |
+| `DEEPSEEK_KEY`   | *(empty)*               | DeepSeek API key |
+| `GROQ_KEY`       | *(empty)*               | Groq API key |
+| `MISTRAL_KEY`    | *(empty)*               | Mistral API key |
+| `OLLAMA_URL`     | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
+| `XAI_KEY`        | *(empty)*               | xAI API key |
+
+Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `ollama/…`, etc.).
+
+**Cost display:** OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available; without it, non-OpenRouter cost may show as `0`. Estimates are not invoices.
 
 <br />
 
 **Data and persistence:** For Docker, mount a volume at `/app/data` so `config.json` and the SQLite database persist across container restarts. Without a volume, all data is lost when the container stops.
+
+**Developers:** After pulling changes that replace the old single-key config, reset or merge `data/config.json` with the new default shape from `src/config-defaults/config_default.json` if your local file still uses removed fields (`api_key`, `api_url`, proxy options).
 
 <br />
 
@@ -241,8 +253,6 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 
 <br />
 
-**Transrewrt proxy (optional):** You can route API traffic through an external proxy that uses a time-based rolling key. In **Settings → API**, enable **Use Transrewrt Proxy**, set **Key seed**, and set **API URL** to the proxy base URL. See [dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md) for details.
-
 Key settings (theme, font, models, languages, etc.) are available in the Settings dialog or can be edited directly in the config JSON. The full list and defaults are documented in [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
 
 <br /><br />
@@ -251,7 +261,7 @@ Key settings (theme, font, models, languages, etc.) are available in the Setting
 ## Development and architecture
 
 - **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](dev/DEVELOPMENT.md)**.
-- **Architecture and system overview:** Folder structure, tech stack, design decisions, Transrewrt proxy - see **[dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md)**.
+- **Architecture and system overview:** Folder structure, tech stack, design decisions - see **[dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md)**.
 
 ```mermaid
 graph TD

@@ -7,17 +7,17 @@ const {
   getDefaultConfigPathForLoad,
   getStateFilePath,
 } = require("./configPath");
-const {
-  isEncryptedApiKey,
-  isEncryptedKeySeed,
-  encryptApiKey,
-  decryptApiKey,
-  encryptKeySeed,
-  decryptKeySeed,
-} = require("./encryption");
+const { isEncryptedApiKey, encryptApiKey, decryptApiKey } = require("./encryption");
 const { registerConfigIpc } = require("./ipc/configIpc");
 const { registerApiIpc } = require("./ipc/apiIpc");
+const { registerLlmIpc } = require("./ipc/llmIpc");
 const { registerWindowIpc } = require("./ipc/windowIpc");
+const {
+  ENCRYPTED_CONFIG_KEYS,
+  ENGINE_IDS,
+  CONFIG_KEY_BY_ENGINE,
+  ENV_KEY_BY_ENGINE,
+} = require("../shared/llm");
 
 // Custom protocol for production: serve renderer via app:// instead of file://.
 protocol.registerSchemesAsPrivileged([
@@ -39,7 +39,7 @@ const STATE_KEYS = [
 ];
 
 const DEFAULT_STATE = {
-  last_used_model: "openrouter/free",
+  last_used_model: "openrouter/openrouter/free",
   settings_active_tab: "api",
   source_language: "Detect Language",
   target_language: "Spanish",
@@ -63,6 +63,23 @@ let configCache = {};
 let stateCache = {};
 let stateFromConfigForMigration = {};
 
+function syncMissingEnvKeysIntoConfig(config) {
+  const next = { ...config };
+  let changed = false;
+  for (const engine of ENGINE_IDS) {
+    const configKey = CONFIG_KEY_BY_ENGINE[engine];
+    const envKey = ENV_KEY_BY_ENGINE[engine];
+    if (!configKey || !envKey) continue;
+    const currentValue = next[configKey] != null ? String(next[configKey]).trim() : "";
+    const envValue = (process.env[envKey] || "").trim();
+    if (!currentValue && envValue) {
+      next[configKey] = envValue;
+      changed = true;
+    }
+  }
+  return { next, changed };
+}
+
 function loadConfigFromFile() {
   try {
     const configPath = getConfigFilePath();
@@ -77,18 +94,19 @@ function loadConfigFromFile() {
       defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));
     }
     const merged = { ...defaultConfig, ...userConfig };
-    if (merged.api_key != null && isEncryptedApiKey(merged.api_key)) {
-      merged.api_key = decryptApiKey(merged.api_key);
-    }
-    if (merged.key_seed != null && isEncryptedKeySeed(merged.key_seed)) {
-      merged.key_seed = decryptKeySeed(merged.key_seed);
+    for (const field of ENCRYPTED_CONFIG_KEYS) {
+      if (merged[field] != null && isEncryptedApiKey(merged[field])) {
+        merged[field] = decryptApiKey(merged[field]);
+      }
     }
     stateFromConfigForMigration = {};
     STATE_KEYS.forEach((k) => {
       if (merged[k] !== undefined) stateFromConfigForMigration[k] = merged[k];
     });
     stateFromConfigForMigration.rewrite_mode = stateFromConfigForMigration.rewrite_mode ?? merged.rewrite_style;
-    configCache = stripStateKeysAndDeprecated(merged);
+    const stripped = stripStateKeysAndDeprecated(merged);
+    const synced = syncMissingEnvKeysIntoConfig(stripped);
+    configCache = synced.next;
     if (!fs.existsSync(configPath) && Object.keys(defaultConfig).length > 0) {
       const dir = path.dirname(configPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -97,6 +115,8 @@ function loadConfigFromFile() {
         JSON.stringify(configCache, null, 2),
         "utf8",
       );
+    } else if (synced.changed) {
+      saveConfigToFile(configCache);
     }
     return configCache;
   } catch (err) {
@@ -135,11 +155,10 @@ function saveConfigToFile(config) {
       } catch { /* ignore */ }
     }
     const toWrite = { ...config };
-    if (typeof toWrite.api_key === "string" && toWrite.api_key.trim() !== "") {
-      toWrite.api_key = encryptApiKey(toWrite.api_key);
-    }
-    if (typeof toWrite.key_seed === "string" && toWrite.key_seed.trim() !== "") {
-      toWrite.key_seed = encryptKeySeed(toWrite.key_seed);
+    for (const field of ENCRYPTED_CONFIG_KEYS) {
+      if (typeof toWrite[field] === "string" && toWrite[field].trim() !== "") {
+        toWrite[field] = encryptApiKey(toWrite[field]);
+      }
     }
     if (canonicalConfigString(current) === canonicalConfigString(toWrite))
       return true;
@@ -484,6 +503,7 @@ registerConfigIpc(ipcMain, {
   getBuildTimestamp,
 });
 registerApiIpc(ipcMain, () => configCache);
+registerLlmIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
 
 ipcMain.handle("get-os-username", () => {

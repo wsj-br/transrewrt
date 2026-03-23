@@ -1,60 +1,37 @@
 /**
- * IPC handlers for OpenRouter key info and proxy rolling key.
+ * IPC handlers for OpenRouter key info and API connectivity test.
  */
 
-const crypto = require("crypto");
-
-const PROXY_WINDOW_SECONDS = 30;
-
-function getRollingKeyForProxy(keySeed) {
-  if (!keySeed || typeof keySeed !== "string") return "";
-  const timeWindow = Math.floor(Date.now() / 1000 / PROXY_WINDOW_SECONDS);
-  const hmac = crypto
-    .createHmac("sha256", keySeed)
-    .update(String(timeWindow))
-    .digest("base64");
-  const base64url = hmac.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  return base64url.substring(0, 16);
-}
+const path = require("path");
+const {
+  OPENROUTER_BASE,
+  mergeKeys,
+  CONFIG_KEY_BY_ENGINE,
+  testProviderAuth,
+} = require(path.join(__dirname, "..", "..", "shared", "llm"));
 
 /**
- * Register API-related IPC handlers (key info, proxy).
+ * Register API-related IPC handlers (key info, test).
  * @param {import("electron").IpcMain} ipcMain
  * @param {() => object} getConfigCache - Returns current config cache from main
  */
 function registerApiIpc(ipcMain, getConfigCache) {
   ipcMain.handle("getOpenRouterKeyInfo", async () => {
     const configCache = getConfigCache();
-    const apiKey = (configCache.api_key || "").trim();
+    const merged = mergeKeys(configCache);
+    const apiKey = (merged.openrouter_api_key || "").trim();
     if (!apiKey) {
-      throw new Error("API key not set");
+      throw new Error("OpenRouter API key not set");
     }
-    const apiUrl = (configCache.api_url || "").trim().replace(/\/+$/, "");
-    const keySeed = (configCache.key_seed || "").trim();
-    const looksLikeProxy =
-      apiUrl.length > 0 && !apiUrl.includes("openrouter.ai");
-    const useProxy = looksLikeProxy && keySeed.length > 0;
-
-    let keyUrl;
-    if (useProxy) {
-      const rollingKey = getRollingKeyForProxy(keySeed);
-      keyUrl = `${apiUrl}/${rollingKey}/api/v1/key?_=${Date.now()}`;
-    } else if (looksLikeProxy) {
-      throw new Error(
-        "Key seed is required when using the Transrewrt proxy for API key usage.",
-      );
-    } else {
-      const baseUrl = apiUrl || "https://openrouter.ai/api/v1";
-      if (!baseUrl.includes("openrouter.ai")) {
-        throw new Error("Key info is only available for OpenRouter API.");
-      }
-      keyUrl = `${baseUrl}/key?_=${Date.now()}`;
-    }
-
+    const keyUrl = `${OPENROUTER_BASE}/key?_=${Date.now()}`;
     try {
       const res = await fetch(keyUrl, {
         method: "GET",
-        headers: { Authorization: `Bearer ${apiKey}` },
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
+          "X-Title": "Transrewrt",
+        },
         cache: "no-store",
       });
       const data = await res.json().catch(() => ({}));
@@ -70,92 +47,39 @@ function registerApiIpc(ipcMain, getConfigCache) {
 
   ipcMain.handle(
     "api:testConfiguration",
-    async (
-      _,
-      { apiUrl, use_transrewrt_proxy, apiKeyOverride, keySeedOverride }
-    ) => {
+    async (_, { openrouterApiKeyOverride } = {}) => {
       const configCache = getConfigCache();
-      const apiKey = (
-        apiKeyOverride !== undefined && apiKeyOverride !== null
-          ? String(apiKeyOverride)
-          : configCache.api_key || ""
-      ).trim();
-      const keySeed = (
-        keySeedOverride !== undefined && keySeedOverride !== null
-          ? String(keySeedOverride)
-          : configCache.key_seed || ""
-      ).trim();
-      const baseUrl = (apiUrl || "https://openrouter.ai/api/v1").trim().replace(
-        /\/+$/,
-        ""
-      );
-
-      if (!baseUrl) {
-        return { status: "error", message: "API URL is required" };
-      }
-      if (!apiKey) {
-        return { status: "error", message: "API Key is required" };
-      }
-      if (use_transrewrt_proxy && !keySeed) {
-        return {
-          status: "error",
-          message: "Key Seed is required when using Transrewrt Proxy",
-        };
-      }
-
-      let testUrl;
-      if (use_transrewrt_proxy && keySeed) {
-        const rollingKey = getRollingKeyForProxy(keySeed);
-        testUrl = `${baseUrl}/${rollingKey}/api/v1/key`;
-      } else {
-        testUrl = `${baseUrl}/key`;
-      }
-
-      try {
-        const response = await fetch(testUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-            "X-Title": "Transrewrt",
-          },
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-          try {
-            const errorData = JSON.parse(errorText);
-            if (errorData.error?.message) errorMessage = errorData.error.message;
-          } catch {
-            /* ignore */
-          }
-          return { status: "error", message: errorMessage };
-        }
-
-        const data = await response.json();
-        if (data && (data.data || data.id || response.ok)) {
-          const keyInfo = data.data || data;
-          const keyLabel = keyInfo.label || keyInfo.id || "API key";
-          return {
-            status: "success",
-            message: `Success! Connected to API. Valid API key: ${keyLabel}`,
-          };
-        }
-        return {
-          status: "error",
-          message:
-            "Connection successful but unexpected response. Check your API key permissions.",
-        };
-      } catch (error) {
-        return {
-          status: "error",
-          message: `Connection failed: ${error.message}`,
-        };
-      }
-    }
+      const merged = mergeKeys(configCache);
+      const value =
+        openrouterApiKeyOverride !== undefined && openrouterApiKeyOverride !== null
+          ? String(openrouterApiKeyOverride)
+          : merged.openrouter_api_key || "";
+      const result = await testProviderAuth("openrouter", value);
+      return {
+        status: result.ok ? "success" : "error",
+        message: result.message,
+      };
+    },
   );
+
+  ipcMain.handle("api:testProvider", async (_, { provider, overrideValue } = {}) => {
+    const normalizedProvider = String(provider || "").trim();
+    const configCache = getConfigCache();
+    const merged = mergeKeys(configCache);
+    const configField = CONFIG_KEY_BY_ENGINE[normalizedProvider];
+    const value =
+      overrideValue !== undefined && overrideValue !== null
+        ? String(overrideValue)
+        : configField
+          ? merged[configField]
+          : "";
+    const result = await testProviderAuth(normalizedProvider, value);
+    return {
+      provider: result.provider,
+      status: result.ok ? "success" : "error",
+      message: result.message,
+    };
+  });
 }
 
 module.exports = { registerApiIpc };

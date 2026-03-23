@@ -4,13 +4,12 @@
  * like Settings > Cost tracking tab.
  *
  * Usage:
- *   API_KEY=sk-or-... node scripts/check-api-key.js
+ *   OPENROUTER_KEY=sk-or-... node scripts/check-api-key.js
  *   node scripts/check-api-key.js sk-or-v1-xxxx
  *   node scripts/check-api-key.js --key sk-or-v1-xxxx [--url https://openrouter.ai/api/v1]
  *
  * Env:
- *   API_KEY - API key (used if no --key or positional arg); same as server/Docker
- *   OPENROUTER_API_KEY - fallback if API_KEY not set
+ *   OPENROUTER_KEY - same as server/Docker (if no --key / first arg)
  *   OPENROUTER_API_URL - Base API URL (default https://openrouter.ai/api/v1)
  */
 
@@ -22,16 +21,16 @@ function printHelp() {
   console.log(`Check OpenRouter API key and print key value (masked) and limit info.
 
 Usage:
-  API_KEY=sk-or-... node scripts/check-api-key.js
+  OPENROUTER_KEY=sk-or-... node scripts/check-api-key.js
   node scripts/check-api-key.js <key>
   node scripts/check-api-key.js --key <key> [--url <baseUrl>]
 
 Options:
   --help, -h    Show this help and exit.
-  --key <key>   OpenRouter API key (or set API_KEY / OPENROUTER_API_KEY).
+  --key <key>   OpenRouter API key (or set OPENROUTER_KEY).
   --url <url>   Base API URL (default: ${DEFAULT_BASE_URL}). Uses OPENROUTER_API_URL if set.
 
-Env: API_KEY, OPENROUTER_API_KEY, OPENROUTER_API_URL
+Env: OPENROUTER_KEY, OPENROUTER_API_URL
 `);
 }
 
@@ -44,7 +43,7 @@ function maskKey(key) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  let key = process.env.API_KEY || process.env.OPENROUTER_API_KEY || "";
+  let key = (process.env.OPENROUTER_KEY || "").trim();
   let baseUrl = process.env.OPENROUTER_API_URL || DEFAULT_BASE_URL;
   let help = false;
   const unknown = [];
@@ -80,7 +79,9 @@ async function main() {
     process.exit(1);
   }
   if (!key) {
-    console.error("Error: API key required. Set API_KEY (or OPENROUTER_API_KEY) or pass --key <key> or the key as first argument.");
+    console.error(
+      "Error: API key required. Set OPENROUTER_KEY or pass --key <key> or the key as first argument.",
+    );
     process.exit(1);
   }
 

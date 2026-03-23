@@ -61,11 +61,6 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const loadLanguages = () => {
       try {
-        const currentSettings = configManager.getAll();
-        apiService.setBaseUrl(
-          currentSettings.api_url || "https://openrouter.ai/api/v1",
-        );
-
         let rawLangs = configManager.get("top_languages");
         if (!rawLangs?.length && configManager.get("available_languages")?.length) {
           rawLangs = configManager.get("available_languages");
@@ -144,9 +139,6 @@ export const AppProvider = ({ children }) => {
           setAvailableModels(configManager.get("available_models") || []);
           const rawLangs = configManager.get("top_languages") || [];
           setTopLanguages(rawLangs);
-          apiService.setBaseUrl(
-            configManager.get("api_url") || "https://openrouter.ai/api/v1",
-          );
           const uiLocale = configManager.get("ui_locale") || "en-GB";
           await loadLocale(uiLocale);
           i18n.changeLanguage(uiLocale);
@@ -172,9 +164,6 @@ export const AppProvider = ({ children }) => {
     const updatedSettings = configManager.getAll();
     setSettings(updatedSettings);
 
-    apiService.setBaseUrl(
-      updatedSettings.api_url || "https://openrouter.ai/api/v1",
-    );
     if (newSettings.top_languages !== undefined) {
       setTopLanguages(newSettings.top_languages || []);
     }
@@ -207,9 +196,6 @@ export const AppProvider = ({ children }) => {
     const updatedSettings = JSON.parse(JSON.stringify(allSettings));
     setSettings(updatedSettings);
 
-    if (key === "api_url") {
-      apiService.setBaseUrl(value || "https://openrouter.ai/api/v1");
-    }
     if (key === "top_languages") {
       const newLangs = Array.isArray(value) ? [...value] : (value || []);
       setTopLanguages(newLangs);
@@ -653,12 +639,6 @@ export const AppProvider = ({ children }) => {
   // Fetch models from API (called when Settings opens)
   const fetchModels = async () => {
     try {
-      // Set the API base URL from settings
-      const currentSettings = configManager.getAll();
-      apiService.setBaseUrl(
-        currentSettings.api_url || "https://openrouter.ai/api/v1",
-      );
-
       const loadedModels = await apiService.getModels();
 
       if (loadedModels && loadedModels.length > 0) {
@@ -683,7 +663,7 @@ export const AppProvider = ({ children }) => {
           configManager.set("available_models", Array.from(selectedSet));
         }
 
-        // Always ensure "openrouter/free" is available
+        // Always ensure free route model is available
         if (!loadedModelIds.has(FREE_MODEL_ID)) {
           console.log(`[fetchModels] Adding special model "${FREE_MODEL_ID}" to the model list`);
           loadedModels.push({
@@ -694,7 +674,7 @@ export const AppProvider = ({ children }) => {
           });
         }
 
-        // Ensure "openrouter/free" is always selected
+        // Ensure the free model id is always selected
         selectedSet.add(FREE_MODEL_ID);
 
         setAllModels(loadedModels);

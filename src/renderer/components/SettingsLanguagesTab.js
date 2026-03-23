@@ -23,7 +23,7 @@ const splitIntoColumns = (languages, numColumns) => {
   return columns;
 };
 
-const SettingsDialogLanguagesTab = ({
+const SettingsLanguagesTab = ({
   selectedLanguages,
   customLanguage,
   onSelectedLanguagesChange,
@@ -197,7 +197,7 @@ const SettingsDialogLanguagesTab = ({
   );
 };
 
-SettingsDialogLanguagesTab.propTypes = {
+SettingsLanguagesTab.propTypes = {
   selectedLanguages: PropTypes.object.isRequired,
   customLanguage: PropTypes.string,
   onSelectedLanguagesChange: PropTypes.func.isRequired,
@@ -205,5 +205,5 @@ SettingsDialogLanguagesTab.propTypes = {
   onSetting: PropTypes.func.isRequired,
 };
 
-export default SettingsDialogLanguagesTab;
+export default SettingsLanguagesTab;
 

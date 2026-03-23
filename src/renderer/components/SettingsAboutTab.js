@@ -89,7 +89,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SettingsDialogAboutTab = () => {
+const SettingsAboutTab = () => {
   const styles = useStyles();
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language && String(i18n.language).toLowerCase().startsWith("en");
@@ -172,4 +172,4 @@ const SettingsDialogAboutTab = () => {
   );
 };
 
-export default SettingsDialogAboutTab;
+export default SettingsAboutTab;

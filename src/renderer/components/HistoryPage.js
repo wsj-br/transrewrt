@@ -262,6 +262,7 @@ const useLocalStyles = makeStyles({
     minHeight: 0,
     minWidth: 0,
     gap: tokens.spacingVerticalM,
+    overflow: "hidden",
   },
   summaryCard: {
     flexShrink: 0,
@@ -302,14 +303,8 @@ const useLocalStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     minHeight: 0,
-    gap: tokens.spacingVerticalM,
+    minWidth: 0,
     overflow: "hidden",
-  },
-  metaPanelHalf: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    minHeight: 0,
   },
   detailsWrap: {
     flexShrink: 0,
@@ -523,30 +518,34 @@ export default function HistoryPage() {
                   </div>
                 </div>
                 <div className={styles.metaPanels}>
-                  <div className={styles.metaPanelHalf}>
-                    <TextPanel
-                      title={t("Input")}
-                      text={selected.input_text ?? ""}
-                      onTextChange={noop}
-                      readOnly
-                      footerStats={inputStatsStr}
-                      footerMinimal
-                      fontFamily={settings?.font_family}
-                      fontSize={settings?.font_size}
-                    />
-                  </div>
-                  <div className={styles.metaPanelHalf}>
-                    <TextPanel
-                      title={t("Output")}
-                      text={selected.output_text ?? ""}
-                      onTextChange={noop}
-                      readOnly
-                      footerStats={outputStatsStr}
-                      footerMinimal
-                      fontFamily={settings?.font_family}
-                      fontSize={settings?.font_size}
-                    />
-                  </div>
+                  <ResizablePanels
+                    leftGrow={1}
+                    rightGrow={1}
+                    leftPanel={
+                      <TextPanel
+                        title={t("Input")}
+                        text={selected.input_text ?? ""}
+                        onTextChange={noop}
+                        readOnly
+                        footerStats={inputStatsStr}
+                        footerMinimal
+                        fontFamily={settings?.font_family}
+                        fontSize={settings?.font_size}
+                      />
+                    }
+                    rightPanel={
+                      <TextPanel
+                        title={t("Output")}
+                        text={selected.output_text ?? ""}
+                        onTextChange={noop}
+                        readOnly
+                        footerStats={outputStatsStr}
+                        footerMinimal
+                        fontFamily={settings?.font_family}
+                        fontSize={settings?.font_size}
+                      />
+                    }
+                  />
                 </div>
               </>
             )}

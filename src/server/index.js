@@ -13,10 +13,11 @@ const { createConfigFile } = require("./utils/configFile");
 const createConfigRouter = require("./routes/config");
 const createAuth = require("./routes/auth");
 const createStatusRouter = require("./routes/status");
-const createApiProxyRouter = require("./routes/apiProxy");
+const createApiLlmRouter = require("./routes/apiLlm");
 const createCallsRouter = require("./routes/calls");
 const createCustomPromptsRouter = require("./routes/customPrompts");
 const createUsersRouter = require("./routes/users");
+const { listLlmEnvVarsPresent } = require("../shared/llm");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,11 +33,6 @@ const DEFAULT_CONFIG_PATH = path.join(
 const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "..", "build_timestamp");
 
 const DEV_WEB = process.env.DEV_WEB === "true";
-const ENV_API_KEY = process.env.API_KEY || "";
-const ENV_API_URL = (
-  process.env.API_URL || "https://openrouter.ai/api/v1"
-).replace(/\/$/, "");
-const ENV_KEY_SEED = (process.env.KEY_SEED || "").trim();
 
 const dataDir = path.dirname(CONFIG_PATH);
 const dbPath = path.join(dataDir, "transrewrt.db");
@@ -82,25 +78,6 @@ if (appDb.getDb()) {
   setInterval(() => appDb.cleanupStalledSessions(), 5 * 60 * 1000);
 }
 
-function getProxyHeaders() {
-  const apiKey = ENV_API_KEY || configFile.readConfig().api_key || "";
-  return {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
-    "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-    "X-Title": "Transrewrt",
-  };
-}
-
-function getProxyBaseUrl() {
-  return ENV_API_KEY
-    ? ENV_API_URL
-    : (configFile.readConfig().api_url || "https://openrouter.ai/api/v1").replace(
-        /\/$/,
-        "",
-      );
-}
-
 app.use(express.json({ limit: "10mb" }));
 
 app.use("/api", (req, res, next) => {
@@ -126,26 +103,18 @@ app.use("/api", auth.requireWebSession);
 
 app.use(
   "/api/config",
-  createConfigRouter(configFile, DEFAULT_CONFIG_PATH, ENV_KEY_SEED),
+  createConfigRouter(configFile, DEFAULT_CONFIG_PATH, appDb),
 );
 app.use("/api/auth", auth.router);
 
 app.use(
   "/api",
-  createStatusRouter(
-    configFile.readConfig,
-    getProxyHeaders,
-    getProxyBaseUrl,
-    BUILD_TIMESTAMP_PATH,
-    ENV_API_KEY,
-    log,
-  ),
+  createStatusRouter(configFile.readConfig, BUILD_TIMESTAMP_PATH, log),
 );
 app.use(
   "/api",
-  createApiProxyRouter(
-    getProxyHeaders,
-    getProxyBaseUrl,
+  createApiLlmRouter(
+    configFile.readConfig,
     auth.setSessionRefreshCookie,
     log,
   ),
@@ -154,7 +123,7 @@ app.use(
   "/api",
   createCallsRouter(appDb.getDb, auth.setSessionRefreshCookie, log),
 );
-app.use("/api", createUsersRouter(appDb.getDb, log));
+app.use("/api", createUsersRouter(appDb.getDb, log, appDb, configFile, DEFAULT_CONFIG_PATH));
 app.use(
   "/api",
   createCustomPromptsRouter(
@@ -198,31 +167,26 @@ if (!DEV_WEB) {
 async function startServer() {
   if (appDb.getDb()) {
     try {
-      await appDb.seedDefaultAdmin();
+      await appDb.seedDefaultAdmin(configFile, DEFAULT_CONFIG_PATH);
+      appDb.assignCustomPromptsToAdmin();
+      appDb.migrateUserPreferencesFromGlobalConfig(configFile, DEFAULT_CONFIG_PATH);
     } catch (err) {
       log.error("[SERVER] Seed default admin failed: " + err.message, { stack: err.stack });
     }
   }
+
+  const llmEnvSet = listLlmEnvVarsPresent();
+  log.info(
+    llmEnvSet.length > 0
+      ? `[SERVER] LLM environment variables set: ${llmEnvSet.join(", ")}`
+      : "[SERVER] LLM environment variables set: (none; keys may load from config file only)",
+  );
+
   app.listen(PORT, () => {
     log.info("=".repeat(60));
     log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
     log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
     log.info("[SERVER] Loading initial config...");
-    const initialConfig = configFile.readConfig();
-    if (ENV_API_KEY) {
-      log.info(
-        "[SERVER] API Key is being loaded from environment variable API_KEY",
-      );
-    } else if (initialConfig.api_key) {
-      log.info(
-        `[SERVER] API Key present in initial config: ${initialConfig.api_key.substring(0, 8)}...`,
-      );
-    } else {
-      log.info("[SERVER] No API Key in initial config");
-    }
-    if (ENV_KEY_SEED) {
-      log.info("[SERVER] KEY_SEED is being loaded from environment variable KEY_SEED");
-    }
     log.info("[SERVER] Server ready to accept requests");
     log.info("=".repeat(60));
   });

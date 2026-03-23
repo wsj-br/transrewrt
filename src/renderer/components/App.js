@@ -63,7 +63,7 @@ const App = () => {
   const [apiKeyWarningDismissed, setApiKeyWarningDismissed] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const apiKeyProblem = isWeb && apiKeyStatus && (!apiKeyStatus.apiKeySet || !apiKeyStatus.apiKeyValid);
-  const electronApiKeyMissing = !isWeb && !settings?.api_key_configured;
+  const electronApiKeyMissing = !isWeb && !settings?.llm_configured;
   // Only show modal after initial load has settled (avoids flash when API key is already configured)
   const [apiKeyModalReady, setApiKeyModalReady] = useState(false);
   useEffect(() => {
@@ -225,6 +225,7 @@ const App = () => {
     elapsedTime,
     tokensPerSecond,
     lastRunCost,
+    lastRunCostKind,
     lastRunModel,
     rewriteOutputIsModelResult,
     processingModeRef,
@@ -333,10 +334,18 @@ const App = () => {
   const outputMeta = (
     <>
       {isProcessing || elapsedTime > 0 ? (
-        <>{t("Elapsed")}: {formatElapsedMmSs(elapsedTime, locale)} | </>
+        <>{t("Elapsed")}:{" "} {formatElapsedMmSs(elapsedTime, locale)} | </>
       ) : null}
-      {!isProcessing && lastRunCost > 0 ? (
-        <>{t("Cost")}: {formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })} | </>
+      {!isProcessing && lastRunCostKind !== "none" ? (
+        <>
+          {t("Cost")}:{" "}
+          {lastRunCostKind === "amount"
+            ? formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })
+            : lastRunCostKind === "free"
+              ? <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>
+              : t("not available")}
+          {" | "}
+        </>
       ) : null}
       {t("Total")}: {totalCostNum > 0 ? formatCost(totalCostNum, costFractionStyle, locale, { mainPartSuccess: true }) : <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>}
       {tokensPerSecond ? (

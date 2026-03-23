@@ -760,7 +760,9 @@ async function captureModelSelector(page, filePath) {
   const clip = await page.evaluate(() => {
     const trigger = document.querySelector("[data-testid=\"model-selector\"]");
     if (!trigger) return null;
-    const listbox = document.querySelector("[role=\"listbox\"]");
+    const listbox =
+      document.querySelector("[data-testid=\"model-selector-menu\"]") ||
+      document.querySelector("[role=\"listbox\"]");
     const padding = 8;
     let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
     const addRect = (el) => {
