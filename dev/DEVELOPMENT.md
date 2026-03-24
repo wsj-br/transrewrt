@@ -291,8 +291,8 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm docker:down`                 | Stop compose stack                                                          |
 | `pnpm docker:clean`                | Remove image/volumes (runs `scripts/clean-docker.sh`; Bash)                 |
 | `pnpm docker:devel`                | Build image tagged `wsj-br/transrewrt:devel`                                |
-| `pnpm docker:logs`                 | Tail logs from container `transrewrt-web-1` (default compose name)          |
-| `pnpm docker:shell`                | Shell into `transrewrt-web-1`                                               |
+| `pnpm docker:logs`                 | Tail logs from container `transrewt`                                         |
+| `pnpm docker:shell`                | Shell into `transrewt`                                                       |
 | `pnpm docker:deploy`               | Production deploy ([scripts/docker-deploy.sh](../scripts/docker-deploy.sh)) |
 
 ### Toolchain
