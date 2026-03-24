@@ -10905,6 +10905,10 @@
       "tr": "DeepSeek"
     }
   },
+  "20ed44d2": {
+    "source": "Cerebras",
+    "translated": {}
+  },
   "747168b2": {
     "source": "Groq",
     "translated": {

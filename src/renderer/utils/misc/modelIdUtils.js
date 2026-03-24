@@ -1,4 +1,18 @@
 /**
+ * Top-level engine segment in a namespaced model id (matches Settings → Models provider filter).
+ * E.g. `openai/gpt-4o` → `openai`, `openrouter/google/gemini-2.5-flash` → `openrouter`.
+ * @param {string} modelId
+ * @returns {string}
+ */
+export function filterEngineFromModelId(modelId) {
+  const id = String(modelId || "").trim();
+  if (!id) return "";
+  const slash = id.indexOf("/");
+  if (slash <= 0) return "";
+  return id.slice(0, slash).toLowerCase();
+}
+
+/**
  * Provider key for grouping/sorting: OpenRouter rows use inner vendor (e.g. openai for openrouter/openai/gpt-4o).
  * @param {string} modelId
  * @returns {string}

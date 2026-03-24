@@ -23,6 +23,7 @@ const ENGINE_IDS = [
   "mistralai",
   "ollama",
   "xai",
+  "cerebras",
 ];
 
 const CONFIG_KEY_BY_ENGINE = {
@@ -35,6 +36,7 @@ const CONFIG_KEY_BY_ENGINE = {
   mistralai: "mistralai_api_key",
   ollama: "ollama_base_url",
   xai: "xai_api_key",
+  cerebras: "cerebras_api_key",
 };
 
 /** Config keys stored encrypted on disk (Electron). */
@@ -52,6 +54,7 @@ const ENV_KEY_BY_ENGINE = {
   mistralai: "MISTRAL_KEY",
   ollama: "OLLAMA_URL",
   xai: "XAI_KEY",
+  cerebras: "CEREBRAS_KEY",
 };
 
 /** In-memory catalog: engine -> ChatModel[] (from last getAllModels). */
@@ -112,6 +115,20 @@ function resolveEngine(canonicalId) {
 }
 
 /**
+ * Read a provider env var: missing or whitespace-only values are treated as unset ("").
+ * @param {NodeJS.ProcessEnv} [env]
+ * @param {string} key
+ * @returns {string}
+ */
+function readEnvNonBlank(env, key) {
+  if (!env || key == null) return "";
+  const raw = env[key];
+  if (raw == null) return "";
+  const s = String(raw).trim();
+  return s === "" ? "" : s;
+}
+
+/**
  * Build provider key map from plain config + process.env (config wins).
  * @param {Record<string, string|undefined>} config
  * @param {NodeJS.ProcessEnv} [env]
@@ -122,7 +139,7 @@ function mergeKeys(config, env = process.env) {
   for (const engine of ENGINE_IDS) {
     const ck = CONFIG_KEY_BY_ENGINE[engine];
     const ek = ENV_KEY_BY_ENGINE[engine];
-    const fromEnv = (env[ek] || "").trim();
+    const fromEnv = readEnvNonBlank(env, ek);
     const fromCfg =
       config && config[ck] != null ? String(config[ck]).trim() : "";
     out[ck] = fromCfg || fromEnv;
@@ -140,6 +157,7 @@ const PROVIDER_LABELS = {
   mistralai: "Mistral",
   ollama: "Ollama",
   xai: "xAI",
+  cerebras: "Cerebras",
 };
 
 function providerDisplayName(provider) {
@@ -218,6 +236,11 @@ function buildProviderTestRequest(provider, value) {
         url: "https://api.x.ai/v1/models",
         options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
       };
+    case "cerebras":
+      return {
+        url: "https://api.cerebras.ai/v1/models",
+        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
+      };
     default:
       return { missingMessage: `Unsupported provider "${provider}"` };
   }
@@ -287,7 +310,7 @@ function listLlmEnvVarsPresent(env = process.env) {
   const names = [];
   for (const engine of ENGINE_IDS) {
     const ek = ENV_KEY_BY_ENGINE[engine];
-    if ((env[ek] || "").trim()) names.push(ek);
+    if (readEnvNonBlank(env, ek)) names.push(ek);
   }
   return names;
 }
@@ -847,6 +870,7 @@ module.exports = {
   FREE_INNER_ID,
   resolveEngine,
   mergeKeys,
+  readEnvNonBlank,
   providerDisplayName,
   testProviderAuth,
   listLlmEnvVarsPresent,

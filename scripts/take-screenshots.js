@@ -18,8 +18,9 @@
  * Noto fonts are used (e.g. on Debian/Raspbian: apt install fonts-noto-cjk fonts-noto-core).
  *
  * Screenshots are taken in every UI language from src/renderer/locales/ui-languages.json and saved
- * under images/screenshots/LANGCODE/ (e.g. images/screenshots/pt-BR/rewrite.png). Navigation/setup
- * runs once per screenshot type in en-GB; then the UI language is cycled and each capture is saved in that language's folder.
+ * under images/screenshots/LANGCODE/ (e.g. images/screenshots/pt-BR/rewrite.png). Session logs are written
+ * to dev/take-screenshots-YYYYMMDD-HHMMSS.log. Navigation/setup runs once per screenshot type in en-GB;
+ * then the UI language is cycled and each capture is saved in that language's folder.
  */
 
 const fs = require("fs");
@@ -102,8 +103,8 @@ Environment:
   PUPPETEER_EXECUTABLE_PATH  Path to Chrome/Chromium (e.g. on Linux ARM if bundled binary is x64 only).
 
 Screenshots are taken per UI language from src/renderer/locales/ui-languages.json and saved under
-images/screenshots/<code>/ (e.g. images/screenshots/pt-BR/rewrite.png). A log file is written to
-images/screenshots/take-screenshots-YYYYMMDD-HHMMSS.log.
+images/screenshots/<code>/ (e.g. images/screenshots/pt-BR/rewrite.png). A session log file is written to
+dev/take-screenshots-YYYYMMDD-HHMMSS.log.
 
 Examples:
   node scripts/take-screenshots.js --help
@@ -271,6 +272,7 @@ function ensureHistorySampleForScreenshots() {
 }
 
 const OUT_DIR = path.join(__dirname, "..", "images", "screenshots");
+const LOG_DIR = path.join(__dirname, "..", "dev");
 let logStream = null;
 /** When inside a screenshot set loop, prepended to log lines (e.g. "  "). Deeper indent for "Selected"/"Saved" uses 5 spaces. */
 let logIndent = "";
@@ -291,7 +293,8 @@ function initLogFile() {
   const h = String(d.getHours()).padStart(2, "0");
   const m = String(d.getMinutes()).padStart(2, "0");
   const s = String(d.getSeconds()).padStart(2, "0");
-  const logPath = path.join(OUT_DIR, `take-screenshots-${Y}${M}${D}-${h}${m}${s}.log`);
+  fs.mkdirSync(LOG_DIR, { recursive: true });
+  const logPath = path.join(LOG_DIR, `take-screenshots-${Y}${M}${D}-${h}${m}${s}.log`);
   logStream = fs.createWriteStream(logPath, { flags: "a" });
   return logPath;
 }
@@ -1209,6 +1212,7 @@ async function main() {
   log("Closing browser.");
   await browser.close();
   log("Done. Screenshots in %s", OUT_DIR);
+  log("Session log available at: %s", path.resolve(logPath));
   if (logStream) {
     logStream.end();
     logStream = null;

@@ -12,6 +12,7 @@ services:
       # LLM keys (at minimum set OPENROUTER_KEY or another provider your models use)
       - OPENROUTER_KEY=${OPENROUTER_KEY:-}
       - OPENAI_KEY=${OPENAI_KEY:-}
+      - CEREBRAS_KEY=${CEREBRAS_KEY:-}
       - ANTHROPIC_KEY=${ANTHROPIC_KEY:-}
       - GOOGLE_KEY=${GOOGLE_KEY:-}
       - DEEPSEEK_KEY=${DEEPSEEK_KEY:-}

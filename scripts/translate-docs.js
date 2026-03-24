@@ -5,6 +5,7 @@
  * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md.
  * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
  * Requires OPENROUTER_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
+ * Session log: dev/translate-docs_YYYYMMDD_HHMMSS.log; per-doc summaries append to dev/translations.log.
  *
  *   node scripts/translate-docs.js --help
  *   OPENROUTER_KEY=sk-or-... pnpm run translate-docs
@@ -42,6 +43,8 @@ const DOC_NAMES = [
 const ROOT = process.cwd();
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
 const TRANSLATED_DOCS_DIR = path.join(ROOT, "translated-docs");
+const DEV_DIR = path.join(ROOT, "dev");
+const TRANSLATIONS_SUMMARY_LOG = path.join(DEV_DIR, "translations.log");
 
 let logFileStream = null;
 
@@ -402,7 +405,8 @@ function logUsage(label, usage, totalSoFar) {
  * Used so docs (README, USER-GUIDE) can run in parallel within a locale.
  */
 async function processDoc(locale, doc, content) {
-  const result = { cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok" };
+  const docStart = Date.now();
+  const result = { cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok", elapsedMs: 0 };
   const currentHash = hashSource(content);
   const outPath = path.join(TRANSLATED_DOCS_DIR, `${doc.key}.${locale.code}.md`);
   if (!args.force && fs.existsSync(outPath)) {
@@ -410,6 +414,7 @@ async function processDoc(locale, doc, content) {
     const parsed = parseFrontmatter(existingContent);
     if (parsed.source_hash && parsed.source_hash === currentHash) {
       log(YELLOW + `⏭️ ${locale.code} ${doc.key}: skipping (source unchanged)` + RESET);
+      result.elapsedMs = Date.now() - docStart;
       return result;
     }
   }
@@ -462,6 +467,7 @@ async function processDoc(locale, doc, content) {
     fs.writeFileSync(outPath, frontmatter + bodyWithLocalePaths, "utf8");
     log(BLUE + `💾 ${locale.code} - ${locale.englishName}: wrote ${doc.key} -> ${doc.key}.${locale.code}.md` + RESET);
   }
+  result.elapsedMs = Date.now() - docStart;
   return result;
 }
 
@@ -485,6 +491,7 @@ async function processLocale(locale, docContents) {
     log(`en-GB: source (repo root ${DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ")}); no copy`);
     stats.elapsedMs = Date.now() - start;
     stats.status = "source";
+    stats.byDoc = {};
     return stats;
   }
 
@@ -492,16 +499,36 @@ async function processLocale(locale, docContents) {
     log(`${locale.code}: skipping (no OPENROUTER_KEY)`);
     stats.status = "failed";
     stats.elapsedMs = Date.now() - start;
+    stats.byDoc = {};
     return stats;
   }
 
   const docResults = await Promise.all(
     DOCS_TO_PROCESS.map((doc) => {
       const content = docContents[doc.key];
-      if (!content) return Promise.resolve({ cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok" });
+      if (!content) {
+        return Promise.resolve({
+          cost: 0,
+          tokens: 0,
+          reasoning_tokens: 0,
+          status: "ok",
+          elapsedMs: 0,
+        });
+      }
       return processDoc(locale, doc, content);
     })
   );
+
+  stats.byDoc = {};
+  for (let i = 0; i < DOCS_TO_PROCESS.length; i++) {
+    const key = DOCS_TO_PROCESS[i].key;
+    const r = docResults[i];
+    stats.byDoc[key] = {
+      cost: r.cost,
+      tokens: r.tokens,
+      elapsedMs: r.elapsedMs || 0,
+    };
+  }
 
   stats.cost = docResults.reduce((s, r) => s + r.cost, 0);
   stats.tokens = docResults.reduce((s, r) => s + r.tokens, 0);
@@ -524,11 +551,28 @@ async function runInBatches(items, batchSize, fn) {
   return results;
 }
 
+/**
+ * One line per doc run: ISO time, primary model, sum of per-locale processDoc wall times, tokens, cost.
+ */
+function appendDocTranslationSummaryLine(docKey, tokens, cost, elapsedMsSum) {
+  const ts = new Date().toISOString();
+  const elapsed = formatElapsed(elapsedMsSum);
+  let costStr;
+  if (cost > 0) costStr = `$${cost.toFixed(6)} USD`;
+  else if (tokens > 0) costStr = "(not reported)";
+  else costStr = "$0.000000 USD";
+  const line = `${ts} | model: ${MODEL} | elapsed: ${elapsed} | doc: ${docKey} | tokens: ${tokens} | cost: ${costStr}\n`;
+  fs.appendFileSync(TRANSLATIONS_SUMMARY_LOG, line, "utf8");
+}
+
 async function main() {
   if (!fs.existsSync(TRANSLATED_DOCS_DIR)) {
     fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
   }
-  const logPath = path.join(TRANSLATED_DOCS_DIR, `translate-docs_${logFilenameTimestamp()}.log`);
+  if (!fs.existsSync(DEV_DIR)) {
+    fs.mkdirSync(DEV_DIR, { recursive: true });
+  }
+  const logPath = path.join(DEV_DIR, `translate-docs_${logFilenameTimestamp()}.log`);
   logFileStream = fs.createWriteStream(logPath, { flags: "a" });
   log("logging to " + logPath);
 
@@ -595,6 +639,22 @@ async function main() {
   } else if (totalTokens > 0) {
     log("total cost: (not reported by API)");
   }
+
+  for (const doc of DOCS_TO_PROCESS) {
+    let docTokens = 0;
+    let docCost = 0;
+    let docElapsedSum = 0;
+    for (const s of allStats) {
+      const b = s.byDoc && s.byDoc[doc.key];
+      if (!b) continue;
+      docTokens += b.tokens;
+      docCost += b.cost;
+      docElapsedSum += b.elapsedMs || 0;
+    }
+    appendDocTranslationSummaryLine(doc.key, docTokens, docCost, docElapsedSum);
+  }
+  log(`appended doc summaries to ${TRANSLATIONS_SUMMARY_LOG}`);
+
   if (logFileStream) {
     logFileStream.end();
     logFileStream = null;

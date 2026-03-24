@@ -17,6 +17,7 @@ const {
   ENGINE_IDS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
+  readEnvNonBlank,
 } = require("../shared/llm");
 
 // Custom protocol for production: serve renderer via app:// instead of file://.
@@ -71,7 +72,7 @@ function syncMissingEnvKeysIntoConfig(config) {
     const envKey = ENV_KEY_BY_ENGINE[engine];
     if (!configKey || !envKey) continue;
     const currentValue = next[configKey] != null ? String(next[configKey]).trim() : "";
-    const envValue = (process.env[envKey] || "").trim();
+    const envValue = readEnvNonBlank(process.env, envKey);
     if (!currentValue && envValue) {
       next[configKey] = envValue;
       changed = true;

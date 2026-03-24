@@ -103,7 +103,7 @@ The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/
 | Engine | Role |
 |--------|------|
 | **openrouter** | Routed OpenRouter models (`openrouter/<innerId>`); catalog and pricing; can stream via direct HTTP where needed for usage/cost. |
-| **openai**, **anthropic**, **google**, **deepseek**, **groq**, **mistralai**, **xai** | Direct vendor APIs; model ids look like `openai/gpt-4o`, `google/gemini-2.5-flash`, etc. |
+| **openai**, **anthropic**, **google**, **deepseek**, **groq**, **mistralai**, **xai**, **cerebras** | Direct vendor APIs via multi-llm-ts; model ids look like `openai/gpt-4o`, `google/gemini-2.5-flash`, `cerebras/…`, etc. |
 | **ollama** | Local server URL (`ollama_base_url` / `OLLAMA_URL`); not a secret key. |
 
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.

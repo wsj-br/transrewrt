@@ -7,6 +7,7 @@ const express = require("express");
 const {
   mergeKeys,
   engineConfigured,
+  readEnvNonBlank,
   ENGINE_IDS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
@@ -142,7 +143,7 @@ module.exports = function createStatusRouter(
     try {
       const providers = ENGINE_IDS.map((provider) => {
         const envKey = ENV_KEY_BY_ENGINE[provider];
-        const envConfigured = !!((process.env[envKey] || "").trim());
+        const envConfigured = !!readEnvNonBlank(process.env, envKey);
         const configured = envConfigured;
         return {
           provider,

@@ -31,6 +31,7 @@ const manualMap = {
   'googlevertex': 'google_vertex.ico',
   'amazon': 'amazon_bedrock.ico',
   'mistralai': 'mistral.ico',
+  cerebras: 'cerebras.ico',
   'openrouter': 'openrouter.ico', // if we had one
 };
 

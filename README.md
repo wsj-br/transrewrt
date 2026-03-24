@@ -110,7 +110,7 @@ Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/ke
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_KEY`, `OPENAI_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
+> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
 
 <br/>
 
@@ -210,7 +210,7 @@ Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) i
 2. Open the [Keys](https://openrouter.ai/keys) page and create a new key (name it, and optionally set a credit limit). You can use free models without adding credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set env vars such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
 
-You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
+You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
 For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
@@ -237,6 +237,7 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 | `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
 | `OPENROUTER_KEY` | *(empty)*               | OpenRouter API key |
 | `OPENAI_KEY`     | *(empty)*               | OpenAI API key |
+| `CEREBRAS_KEY`   | *(empty)*               | Cerebras API key |
 | `ANTHROPIC_KEY`  | *(empty)*               | Anthropic API key |
 | `GOOGLE_KEY`     | *(empty)*               | Google Gemini API key |
 | `DEEPSEEK_KEY`   | *(empty)*               | DeepSeek API key |
@@ -245,7 +246,7 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 | `OLLAMA_URL`     | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
 | `XAI_KEY`        | *(empty)*               | xAI API key |
 
-Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `ollama/…`, etc.).
+Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
 **Cost display:** OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available; without it, non-OpenRouter cost may show as `0`. Estimates are not invoices.
 

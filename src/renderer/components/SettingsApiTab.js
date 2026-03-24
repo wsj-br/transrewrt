@@ -197,6 +197,7 @@ const PROVIDER_SECRET_FIELDS = [
   { key: "groq_api_key", labelKey: "Groq API key", placeholder: "" },
   { key: "mistralai_api_key", labelKey: "Mistral API key", placeholder: "" },
   { key: "xai_api_key", labelKey: "xAI API key", placeholder: "" },
+  { key: "cerebras_api_key", labelKey: "Cerebras API key", placeholder: "" },
 ];
 
 const SettingsApiTab = ({

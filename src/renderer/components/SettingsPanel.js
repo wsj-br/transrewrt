@@ -28,7 +28,10 @@ import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
 import webAPI from "../utils/api/webApiClient";
-import { providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
+import {
+  filterEngineFromModelId,
+  providerSortKeyFromModelId,
+} from "../utils/misc/modelIdUtils";
 import {
   isConfirmedFreeModel,
   modelCostSortValue,
@@ -294,21 +297,44 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     }
   };
 
-  const engineFilterOptions = useMemo(
-    () => [
-      { value: "", label: t("All providers") },
+  /** Engines that have at least one model in the catalog (same source as /api/llm/models / Electron fetch). */
+  const enginesWithModels = useMemo(() => {
+    const set = new Set();
+    for (const m of allModels || []) {
+      const eng = filterEngineFromModelId(m.id);
+      if (eng) set.add(eng);
+    }
+    return set;
+  }, [allModels]);
+
+  const engineFilterOptions = useMemo(() => {
+    const allRows = [
       { value: "openrouter", label: t("OpenRouter") },
       { value: "openai", label: t("OpenAI") },
       { value: "anthropic", label: t("Anthropic") },
       { value: "google", label: t("Google") },
       { value: "deepseek", label: t("DeepSeek") },
+      { value: "cerebras", label: t("Cerebras") },
       { value: "groq", label: t("Groq") },
       { value: "mistralai", label: t("Mistral") },
       { value: "ollama", label: t("Ollama") },
       { value: "xai", label: t("xAI") },
-    ],
-    [t],
-  );
+    ];
+    const allLabel = { value: "", label: t("All providers") };
+    if (enginesWithModels.size === 0) {
+      return [allLabel];
+    }
+    const rows = allRows.filter((row) => enginesWithModels.has(row.value));
+    return [allLabel, ...rows];
+  }, [t, enginesWithModels]);
+
+  useEffect(() => {
+    if (!filterEngine) return;
+    const allowed = new Set(
+      (engineFilterOptions || []).map((o) => o.value).filter(Boolean),
+    );
+    if (!allowed.has(filterEngine)) setFilterEngine("");
+  }, [filterEngine, engineFilterOptions]);
 
   const toggleModelSelection = (modelId) => {
     if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID))

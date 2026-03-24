@@ -58,10 +58,14 @@ function orDash(val) {
   return val;
 }
 
+/** Single-line preview for the history list only; does not alter stored input_text in the detail panel. */
 function firstLinePreview(text) {
   if (text == null || text === "") return "";
-  const line = String(text).split(/\r\n|\n|\r/)[0].trim();
-  return line.length > 180 ? `${line.slice(0, 180)}…` : line;
+  const normalized = String(text)
+    .replace(/\r\n|\r|\n/g, " ")
+    .replace(/ +/g, " ")
+    .trim();
+  return normalized.length > 180 ? `${normalized.slice(0, 180)}…` : normalized;
 }
 
 /** Treat as auto-detect when no source or explicit detect option (stored like translate UI). */

@@ -9,6 +9,14 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: History list input preview: newlines are replaced with spaces (single-line preview); full `input_text` unchanged in the detail panel.
+- **Fixed**: **ProviderIcon** maps native **`cerebras`** engine to `cerebras.ico` (vendor absent from OpenRouter `icons_with_files.json` catalog).
+- **Changed**: LLM provider env vars: missing or blank/whitespace-only values are ignored (`readEnvNonBlank` in shared LLM `mergeKeys`, Electron env sync, `listLlmEnvVarsPresent`, web `/api/provider-keys` env flags).
+- **Changed**: `scripts/translate-docs.js` writes its session log under `dev/translate-docs_YYYYMMDD_HHMMSS.log` (was `translated-docs/`); appends one summary line per processed doc (`README`, `USER-GUIDE`) to `dev/translations.log` (timestamp, primary `--model`, summed per-locale doc elapsed time, tokens, cost).
+- **Added**: Cerebras provider support (`CEREBRAS_KEY`; desktop **Settings → API** and **Settings → Models** provider filter; `docker-compose.yml`). README, USER-GUIDE, and SYSTEM-OVERVIEW updated.
+- **Changed**: Settings → Models provider filter lists only engines that have at least one model in the current catalog (`allModels`, same source as `/api/llm/models` / Electron `fetchModels`).
+- **Removed**: SambaNova env/UI/compose wiring (not a native **multi-llm-ts** engine in the pinned version).
+- **Changed**: `scripts/take-screenshots.js` session log file is written to `dev/take-screenshots-YYYYMMDD-HHMMSS.log` (was `images/screenshots/`); successful runs log the resolved log path at the end.
 - **Changed**: [DEVELOPMENT.md](DEVELOPMENT.md): aligned with **SYSTEM-OVERVIEW** — intro + **Related documentation** table; Docker **`/app/data`** describes **`transrewrt.db`** / **`user_preferences`**; key files add **`shared/llm`**, **`llmIpc`**, **`apiLlm`**, **`config`** route, **`webConfigKeys`**, **`encryption`**; closing pointer defers architecture to SYSTEM-OVERVIEW.
 - **Changed**: [SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md): new sections **Multi-llm-ts and provider support** (engines, namespaced ids, `mergeKeys`, pricing cache) and **Security and encryption** (Electron AES-256-CBC + `transrewrt.key`, sanitized IPC / `getSecretsForRequest`, web Argon2id / session cookies / admin config); removed **Transrewrt proxy**; documents web **`user_preferences`**, **`state.json`** migration, mermaid + folder tree fixes.
 - **Changed**: [DEVELOPMENT.md](DEVELOPMENT.md): expanded **Useful Commands Summary** (grouped subsections; extra scripts and `docker:*`); **UI translations** and **Key configuration files** document OpenRouter model list in `scripts/openrouter-script-models.js` for `i18n:translate`, `translate-docs`, `generate-test-data`.

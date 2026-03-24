@@ -95,7 +95,7 @@ This guide explains how to use the app once it is installed and running. For ins
 <a id="before-you-start"></a>
 ## Before you start
 
-To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and [Ollama](https://ollama.com) for local models.
+To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
 
 You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. 
 
@@ -729,7 +729,7 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 <a id="api-config"></a>
 ### API config
 
-The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
+The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
 
 **Web application: administrator only**
 
