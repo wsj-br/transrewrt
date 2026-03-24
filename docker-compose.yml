@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: transrewt
+    container_name: transrewrt
     build: .
     ports:
       - "5000:5000"
