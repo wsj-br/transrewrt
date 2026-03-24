@@ -15,6 +15,8 @@ import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import TransformTranslateModal from "./TransformTranslateModal";
 import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
+import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
+import { getTextDirection } from "../i18n";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +25,7 @@ const useStyles = makeStyles({
     height: "100%",
     gap: tokens.spacingVerticalM,
     overflow: "auto",
-    paddingRight: "12px",
+    paddingInlineEnd: "12px",
     boxSizing: "border-box",
   },
   header: {
@@ -177,7 +179,8 @@ const TransformPromptEditor = ({
   models = [],
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRtl = getTextDirection(i18n.language) === "rtl";
   const { topLanguages, allLanguages } = useContentLanguageLists();
   const translateAbortRef = useRef(null);
   const improveAbortRef = useRef(null);
@@ -426,7 +429,7 @@ const TransformPromptEditor = ({
         <div className={styles.headerRow1}>
           <Button
             appearance="subtle"
-            icon={<ArrowLeft size={18} />}
+            icon={<ArrowLeft size={18} className="rtl-icon-mirror" />}
             onClick={onBackToRun}
             className={styles.backButton}
             aria-label={t("Back to Run")}
@@ -457,6 +460,7 @@ const TransformPromptEditor = ({
             value={name}
             onChange={(_, data) => setName(data.value)}
             placeholder={t("e.g. Summarise")}
+            dir="auto"
           />
         </div>
         <div className={styles.field}>
@@ -476,6 +480,7 @@ const TransformPromptEditor = ({
             value={role}
             onChange={(_, data) => setRole(data.value)}
             placeholder={t("e.g. You are a helpful assistant.")}
+            dir="auto"
           />
         </div>
         <div className={styles.field}>
@@ -483,6 +488,7 @@ const TransformPromptEditor = ({
           <textarea
             id="transform-prompt-instructions"
             className={styles.textarea}
+            dir="auto"
             value={instructionsText}
             onChange={(e) => setInstructionsText(e.target.value)}
             placeholder={t("- First instruction\n- Second instruction")}
@@ -496,10 +502,13 @@ const TransformPromptEditor = ({
             value={outputDescription}
             onChange={(_, data) => setOutputDescription(data.value)}
             placeholder={t("transformed")}
+            dir="auto"
           />
         </div>
         <div className={styles.field}>
-          <Label htmlFor="transform-prompt-temperature">{t("Temperature (0.0 → 1.0)")}</Label>
+          <Label htmlFor="transform-prompt-temperature">
+            {flipUiArrowsForRtl(t("Temperature (0.0 → 1.0)"), isRtl)}
+          </Label>
           <div className={styles.temperatureSliderGrid}>
             <div className={styles.temperatureValue}>{temperature.toFixed(2)}</div>
             <span className={styles.temperatureLabelLeft}>

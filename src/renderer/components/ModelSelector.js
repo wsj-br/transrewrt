@@ -18,6 +18,8 @@ import ProviderIcon from "./ProviderIcon";
 import ConfirmModal from "./ConfirmModal";
 import { modelHeaderDisplayId, providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
 import { modelRouteBadgeProps } from "../utils/misc/modelRouteBadge";
+import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
+import { getTextDirection } from "../i18n";
 
 const useStyles = makeStyles({
   container: {
@@ -75,8 +77,8 @@ const useStyles = makeStyles({
     border: "none !important",
     borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
     backgroundColor: "transparent !important",
-    paddingLeft: "0 !important",
-    paddingRight: "0 !important",
+    paddingInlineStart: "0 !important",
+    paddingInlineEnd: "0 !important",
     paddingTop: `${tokens.spacingVerticalXS} !important`,
     paddingBottom: `${tokens.spacingVerticalXS} !important`,
     height: "auto",
@@ -95,7 +97,7 @@ const useStyles = makeStyles({
     overflow: "hidden",
     flex: 1,
     minWidth: 0,
-    textAlign: "left",
+    textAlign: "start",
   },
   triggerLabel: {
     overflow: "hidden",
@@ -186,7 +188,8 @@ ModelPickerRow.propTypes = {
 
 const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, onRemoveModel }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRtl = getTextDirection(i18n.language) === "rtl";
   const [open, setOpen] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const canRemove = models.length > 1 && onRemoveModel && currentModel;
@@ -237,7 +240,7 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
           type="button"
           className={`${styles.modelIcon} ${styles.modelIconButton} ${styles.modelIconButtonHover}`}
           onClick={onIconClick}
-          title={t("Open Settings → Models")}
+          title={flipUiArrowsForRtl(t("Open Settings → Models"), isRtl)}
           aria-label={t("Open Settings to manage models")}
         >
           {iconContent}

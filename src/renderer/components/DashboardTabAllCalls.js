@@ -198,7 +198,7 @@ export default function DashboardTabAllCalls({
             appearance="secondary"
             disabled={allCallsPage <= 1}
             onClick={() => setAllCallsPage((p) => Math.max(1, p - 1))}
-            icon={<ChevronLeft size={16} />}
+            icon={<ChevronLeft size={16} className="rtl-icon-mirror" />}
           >
             {t("Prev")}
           </Button>
@@ -231,7 +231,8 @@ export default function DashboardTabAllCalls({
               )
             }
           >
-            {t("Next")} <ChevronRight size={16} />
+            {t("Next")}{" "}
+            <ChevronRight size={16} className="rtl-icon-mirror" />
           </Button>
           <div className={styles.paginationSpacer} />
           <div className={styles.downloadBlock}>

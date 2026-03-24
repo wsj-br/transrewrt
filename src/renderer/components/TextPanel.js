@@ -42,10 +42,10 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   panelMeta: {
-    marginLeft: "auto",
+    marginInlineStart: "auto",
     color: tokens.colorNeutralForeground3,
     fontSize: "12px",
-    textAlign: "right",
+    textAlign: "end",
     flex: "1",
     whiteSpace: "nowrap",
   },
@@ -245,6 +245,7 @@ const TextPanel = ({
         ) : (
           <textarea
             className={styles.textarea}
+            dir="auto"
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
             onPaste={(e) => {
@@ -285,7 +286,7 @@ const TextPanel = ({
               {footerDisplay && (
                 <div className={styles.stats}>{footerDisplay}</div>
               )}
-              <div style={{ marginLeft: "auto" }} />
+              <div style={{ marginInlineStart: "auto" }} />
               <div className={styles.leftButtons}>
                 {onDiffToggle && (
                   <Button

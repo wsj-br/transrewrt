@@ -196,7 +196,7 @@ const DashboardPage = () => {
   return (
     <div className={styles.root}>
       <div className={styles.filterRow} data-testid="dashboard-filter-row">
-        <Label style={{ marginRight: "8px" }}>{t("Filter")}</Label>
+        <Label style={{ marginInlineEnd: "8px" }}>{t("Filter")}</Label>
         {getFilters(t).map((f) => (
           <Button
             key={f.id}
@@ -210,7 +210,7 @@ const DashboardPage = () => {
         ))}
         {isWeb && isAdmin && userList.length > 0 && (
           <>
-            <Label style={{ marginLeft: "16px", marginRight: "8px" }}>{t("User")}</Label>
+            <Label style={{ marginInlineStart: "16px", marginInlineEnd: "8px" }}>{t("User")}</Label>
             <Dropdown
               value={userFilter === "" ? t("All users") : userFilter}
               selectedOptions={[userFilter]}

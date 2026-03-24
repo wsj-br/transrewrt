@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatDecimal } from '../utils/misc/formatUtils';
+import { formatDecimal, flipUiArrowsForRtl } from '../utils/misc/formatUtils';
+import { getTextDirection } from '../i18n';
 import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import {
   Button,
@@ -64,6 +65,7 @@ const SettingsModelsTab = ({
 }) => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
+  const isRtl = getTextDirection(i18n.language) === 'rtl';
 
   const sortedSelectedModelIds = useMemo(() => {
     const ids = Array.from(selectedModelIds);
@@ -97,14 +99,14 @@ const SettingsModelsTab = ({
 
   const sortOptions = useMemo(
     () => [
-      { value: 'cost-asc', label: t('Cost Low to High') },
-      { value: 'cost-desc', label: t('Cost High to Low') },
-      { value: 'model-asc', label: t('Model A→Z') },
-      { value: 'model-desc', label: t('Model Z→A') },
-      { value: 'provider-asc', label: t('Provider A→Z') },
-      { value: 'provider-desc', label: t('Provider Z→A') },
+      { value: 'cost-asc', label: flipUiArrowsForRtl(t('Cost Low to High'), isRtl) },
+      { value: 'cost-desc', label: flipUiArrowsForRtl(t('Cost High to Low'), isRtl) },
+      { value: 'model-asc', label: flipUiArrowsForRtl(t('Model A→Z'), isRtl) },
+      { value: 'model-desc', label: flipUiArrowsForRtl(t('Model Z→A'), isRtl) },
+      { value: 'provider-asc', label: flipUiArrowsForRtl(t('Provider A→Z'), isRtl) },
+      { value: 'provider-desc', label: flipUiArrowsForRtl(t('Provider Z→A'), isRtl) },
     ],
-    [t]
+    [t, isRtl]
   );
 
   const formatPricePer1M = (pricePerToken) =>
@@ -278,7 +280,11 @@ const SettingsModelsTab = ({
                       >
                         <div className="provider-info">
                           <span className="provider-icon">
-                            {isExpanded ? <ChevronDownRegular /> : <ChevronRightRegular />}
+                            {isExpanded ? (
+                              <ChevronDownRegular />
+                            ) : (
+                              <ChevronRightRegular className="rtl-icon-mirror" />
+                            )}
                           </span>
                            <ProviderIcon provider={provider} size={20} />
                           <Text weight="semibold" size={400}>

@@ -1,161 +1,177 @@
 ---
-translated_at: "2026-03-15T22:30:24.968Z"
-source_hash: "69732149de931f2a0059ecf9073871caedaa431362e32c010e7d93bd3cbd76bc"
-source_mtime: 1773611603946.006
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T03:12:34.099Z"
+source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
+source_mtime: 1774306679773.736
+model: "qwen/qwen3-235b-a22b-2507"
 ---
-<a id="transrewrt-user-guide"></a>
-# Transrewrt – Používateľská príručka
+![Transrewrt banner](../images/transrewrt_banner.png)
 
-<br />
+
+<a id="transrewrt-user-guide"></a>
+# Príručka pre používateľa
+
+<br/>
 
 <a id="introduction"></a>
 ## Úvod
 
-Transrewrt vám pomôže pracovať s textom tromi hlavnými spôsobmi:
+Transrewrt vám pomáha pracovať s textom tromi hlavnými spôsobmi:
 
-- **Preložiť** – premeniť text z jedného jazyka na iný.
-- **Prepísať** – prepísať text iným štýlom, napríklad jasnejším, kratším alebo formálnejším.
-- **Transformovať** – spracovať text pomocou vlastných AI pokynov nazývaných prompty.
+- **Preklad** – preklad textu z jedného jazyka do druhého.
+- **Preformulovanie** – preformulovanie textu v inom štýle, napríklad jasnejšie, stručnejšie alebo formálnejšie.
+- **Úprava** – spracovanie textu pomocou vlastných inštrukcií pre umelú inteligenciu, tzv. promptov.
 
-<br />
+<br/>
 
-Táto príručka vysvetľuje, ako používať aplikáciu po jej inštalácii a spustení. Kroky inštalácie nájdete v hlavnom [README](../README.md).
+Táto príručka vysvetľuje, ako aplikáciu používať po jej nainštalovaní a spustení. Inštrukcie k inštalácii nájdete v hlavnom súbore **[README](README.sk.md)**.
 
-<br />
+<br/>
 
-> ℹ️ **POZNÁMKA**<br/>
-> Transrewrt je dostupná ako desktopová aplikácia pre Windows a Linux a ako samohostočná webová aplikácia. Táto príruča sa zameriava na každodenné používanie aplikácie. kde sa niečo vzťahuje iba na jednu verziu, je to jasne označené.
+> ℹ️ **Poznámka**<br/>
+> Transrewrt je dostupný ako desktopová aplikácia pre systémy Windows a Linux a zároveň ako webová aplikácia, ktorú si môžete hostovať sami. Táto príručka sa zameriava na bežné používanie aplikácie. Pokiaľ sa určitá funkcionalita týka len jednej verzie, je to jasne označené.
 
-<small>**Čítajte v iných jazykoch:** [Angličtina (UK)](../USER-GUIDE.md) · [Portugalčina (BR)](USER-GUIDE.pt-BR.md) · [Arabčina](USER-GUIDE.ar.md) · [Benglčina](USER-GUIDE.bn.md) · [Katalánčina](USER-GUIDE.ca.md) · [Čínština (zjedn.)](USER-GUIDE.zh-CN.md) · [Čínština (trad.)](USER-GUIDE.zh-TW.md) · [Chorvátčina](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Holandčina](USER-GUIDE.nl.md) · [Angličtina (US)](USER-GUIDE.en-US.md) · [Filipínčina](USER-GUIDE.tl.md) · [Francúzština](USER-GUIDE.fr.md) · [Nemčina](USER-GUIDE.de.md) · [Gréčtina](USER-GUIDE.el.md) · [Hindčina](USER-GUIDE.hi.md) · [Maďarčina](USER-GUIDE.hu.md) · [Taliančina](USER-GUIDE.it.md) · [Japončina](USER-GUIDE.ja.md) · [Jávčina](USER-GUIDE.jv.md) · [Kórejčina](USER-GUIDE.ko.md) · [Malajčina](USER-GUIDE.ms.md) · [Perzština](USER-GUIDE.fa.md) · [Poľština](USER-GUIDE.pl.md) · [Portugalčina (PT)](USER-GUIDE.pt.md) · [Pandžábčina](USER-GUIDE.pa.md) · [Rumunčina](USER-GUIDE.ro.md) · [Ruština](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Španielčina](USER-GUIDE.es.md) · [Svahilčina](USER-GUIDE.sw.md) · [Švédčina](USER-GUIDE.sv.md) · [Telugčina](USER-GUIDE.te.md) · [Thajčina](USER-GUIDE.th.md) · [Turečtina](USER-GUIDE.tr.md) · [Ukrajinčina](USER-GUIDE.uk.md) · [Vietnamčina](USER-GUIDE.vi.md)</small>
+<small>**Prečítajte si v iných jazykoch:** [English (UK)](USER-GUIDE.sk.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
-<br />
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Obsah**
+**Obsah** 
 
-- [Pred začiatkom](#pred-začiatkom)
-  - [Ako získať API kľúč (desktopová aplikácia)](#ako-získavať-api-kľúč-desktopová-aplikácia)
-- [Začíname](#začíname)
-- [Hlavné časti okna](#hlavné-časti-okna)
-  - [Bočný panel](#bočný-panel)
-  - [Panel nástrojov](#panel-nástrojov)
-  - [Vstupný a výstupný panel](#vstupný-a-výstupný-panel)
-- [Preložiť](#preložiť)
-  - [Preloženie textu](#preloženie-textu)
-  - [Výber jazyka](#výber-jazyka)
-  - [Užitočné nastavenia prekladu](#užitočné-nastavenia-prekladu)
-  - [Klávesové skratky](#klávesové-skratky)
-- [Prepísať](#prepísať)
-  - [Prepísanie textu](#prepísanie-textu)
-- [Transformovať](#transformovať)
-  - [Spustiť existujúci prompt](#spustiť-existujúci-prompt)
-  - [Ak ešte nemáte žiadne prompty](#ak-ešte-nemáte-žiadne-prompty)
-  - [Rýchlo vytvoriť prompt](#rýchlo-vytvoriť-prompt)
-  - [Upraviť prompt](#upraviť-prompt)
-  - [Otestovať prompt pred použitím](#otestovať-prompt-pred-použitím)
-  - [Správa uložených promptov](#správa-uložených-promptov)
-- [Ovládací panel](#ovládací-panel)
-  - [Filtrovanie údajov](#filtrovanie-údajov)
-  - [Nástenky ovládacieho panelu](#nástenky-ovládacieho-panela)
-  - [Export údajov](#export-údajov)
-  - [Vymazať uložené záznamy pre model](#vymazať-uložené-záznamy-pre-model)
-- [Nastavenia](#nastavenia)
-  - [Všeobecné nastavenia](#všeobecné-nastavenia)
-  - [Modely](#modely)
-  - [Jazyky](#jazyky)
-  - [Sledovanie nákladov](#sledovanie-nákladov)
-  - [Transformačné prompty](#transformačné-prompty)
-  - [Používatelia](#používatelia)
-  - [Konfigurácia API](#konfigurácia-api)
-  - [O aplikácii](#o-aplikácii)
-- [Bežné problémy](#bežné-problémy)
-  - [Aplikácia nebude preložiť, prepísať ani transformovať text](#aplikácia-nebude-preložiť-prepísať-ani-transformovať-text)
-  - [Zoznam modelov je prázdny](#zoznam-modelov-je-prázdny)
-  - [Výsledok je príliš pomalý alebo drahý](#výsledok-je-príliš-pomalý-alebo-drahý)
-  - [Rozhranie je v nesprávnom jazyku](#rozhranie-je-v-nesprávnom-jazyku)
-  - [Text je príliš malý alebo ťažko čitateľný](#text-je-príliš-malý-alebo-ťažko-čitateľný)
-  - [Zmenil som prompt a stratil som úpravy](#zmenil-som-prompt-a-stratil-som-úpravy)
-- [Rýchle tipy](#rýchle-tipy)
+- [Pred spustením](#before-you-start)
+  - [Ako získať bezplatný OpenRouter API kľúč (desktopová aplikácia)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Začíname](#getting-started)
+- [Hlavné časti okna](#main-parts-of-the-window)
+  - [Bočný panel](#sidebar)
+  - [Panel nástrojov](#toolbar)
+  - [Vstupné a výstupné panely](#input-and-output-panels)
+- [Preklad](#translate)
+  - [Preklad textu](#translate-text)
+  - [Výber jazyka](#language-selection)
+  - [Užitočné nastavenia prekladu](#helpful-translation-settings)
+  - [Klávesové skratky](#keyboard-shortcuts)
+- [Preformulovanie](#rewrite)
+  - [Preformulovanie textu](#rewrite-text)
+- [Úprava](#transform)
+  - [Spustenie už existujúceho promptu](#run-an-existing-prompt)
+  - [Ak nemáte žiadne prompty](#if-you-have-no-prompts-yet)
+  - [Rýchle vytvorenie promptu](#create-a-prompt-quickly)
+  - [Upravenie promptu](#edit-a-prompt)
+  - [Otestovanie promptu pred použitím](#test-a-prompt-before-using-it)
+  - [Správa uložených promptov](#manage-saved-prompts)
+- [Dashboard](#dashboard)
+  - [Filtrovanie údajov](#filter-the-data)
+  - [Záložky dashboardu](#dashboard-tabs)
+  - [Export dát](#export-data)
+  - [Vymazanie uložených záznamov pre model](#delete-stored-records-for-a-model)
+- [História](#history)
+  - [Filtrovanie údajov](#filter-the-data-1)
+  - [Export dát histórie](#export-history-data)
+- [Nastavenia](#settings)
+  - [Všeobecné nastavenia](#general-settings)
+  - [Modely](#models)
+  - [Jazyky](#languages)
+  - [Sledovanie nákladov](#cost-tracking)
+  - [Prompty na úpravu](#transform-prompts)
+  - [Používatelia](#users)
+  - [Konfigurácia API](#api-config)
+  - [O aplikácii](#about)
+- [Bežné problémy](#common-issues)
+  - [Aplikácia neprekladá, neupravuje ani nepremieňa text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Zoznam modelov je prázdny](#the-model-list-is-empty)
+  - [Výsledok je príliš pomalý alebo drahý](#the-result-is-too-slow-or-too-expensive)
+  - [Rozhranie je v nesprávnom jazyku](#the-interface-is-in-the-wrong-language)
+  - [Text je príliš malý alebo ťažko čitateľný](#the-text-is-too-small-or-hard-to-read)
+  - [Grafy na dashboardu sú prázdne](#dashboard-charts-are-empty)
+  - [Náklady sú „nedostupné“ alebo nesprávne](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady sa nezhodujú s účtom poskytovateľa](#total-cost-does-not-match-my-provider-bill)
+  - [Stránka História chýba v bočnom paneli](#the-history-page-is-missing-from-the-sidebar)
+  - [Webová aplikácia: neočakávane presmerovanie na prihlasovaciu stránku](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Dashboard nezobrazuje dáta iných používateľov (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Upravil som prompt a stratil som úpravy](#i-changed-a-prompt-and-lost-the-edits)
+- [Rýchle tipy](#quick-tips)
+- [Zrieknutie sa zodpovednosti](#disclaimer)
+- [Licencia](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
-<a id="pred-začiatkom"></a>
+<a id="before-you-start"></a>
 
-## Predtým než začnete
+## Pred začiatkom
 
-Na používanie Transrewrt potrebujete prístup k AI službe cez OpenRouter.
+Na používanie aplikácie Transrewrt potrebujete prístup aspoň k jednému poskytovateľovi umelej inteligencie. Podporovaní poskytovatelia sú: [OpenRouter](https://openrouter.ai) (ktorý agreguje veľa modelov), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a [Ollama](https://ollama.com) pre lokálne modely.
 
-Pred začiatkom vám nie je potrebné vybrať platený model. Aplikácia vždy obsahuje zabudovaný **bezplatný** model, takže na bežné použitie to stačí na preklad, prepisovanie a transformáciu textu.
+Na začatie nemusíte vybrať platený model. Akonáhle pridáte svoj kľúč OpenRouter API, aplikácia automaticky povolí vstavanú **bezplatnú** možnosť OpenRouter. To vám umožní okamžite začať s prekladom, prepisovaním a transformáciou textu.
 
-V jednoduchom jazyku:
+Jednoducho povedané:
 
-- **Model** je AI engine, ktorý vykonáva prácu.
-- **API kľúč** je vaša osobná prístupová poverenie pre túto službu.
+- **Model** je AI systém, ktorý vykonáva prácu. Modely sú uvedené s **predvoľbou poskytovateľa** (napríklad `openrouter/…`, `openai/…`, `ollama/…`).
+- **API kľúč** (alebo pre Ollama **základná URL**) je spôsob, ako aplikácia komunikuje s daným poskytovateľom.
 
-Ak používate **desktopovú aplikáciu**, bude vám potrebný API kľúč. Podrobné kroky nájdete nižšie v časti [Ako získať API kľúč](#how-to-get-an-api-key-desktop-app). V skratke: vytvorte si účet na [OpenRouter](https://openrouter.ai), otvorte stránku [Keys](https://openrouter.ai/keys), vytvorte nový kľúč a vložte ho do [**Nastavenia** > **API Konfigurácia**](#api-config) v Transrewrt.
+Ak používate **desktopovú aplikáciu**, kľúče pridajte v časti [**Nastavenia** > **Konfigurácia API**](#api-config) pre každého poskytovateľa, ktorého využívate. Ak používate len OpenRouter, pozrite si nižšie uvedené pokyny [Ako získať API kľúč](#how-to-get-an-api-key-desktop-app). Ak nechcete používať API kľúč, môžete nainštalovať Ollama (z [ollama.com](https://ollama.com)) a používať namiesto toho lokálne modely.
 
-Ak používate **webovú verziu**, vlastník servera to zvyčajne nastaví za vás, takže vám normálne nemusíte vkladať API kľúč.
+Ak používate **webovú verziu**, správca servera nakonfiguruje poskytovateľov pomocou premenných prostredia – bežne teda nebudete zadávať API kľúče sami.
 
-<br />
+<br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Ako získať API kľúč (desktopová aplikácia)
+### Ako získať bezplatný kľúč OpenRouter API (desktopová aplikácia)
 
-Ak používate desktopovú aplikáciu, postupujte podľa týchto krokov:
+Ak používate desktopovú aplikáciu, postupujte nasledovne:
 
-1. Prejdite na [OpenRouter](https://openrouter.ai) vo svojom webovom prehliadači.
+1. Otvorte [OpenRouter](https://openrouter.ai) vo svojom webovom prehliadači.
 2. Vytvorte si účet alebo sa prihláste.
-3. Otvorte stránku [Keys](https://openrouter.ai/keys).
+3. Otvorte stránku [Kľúče](https://openrouter.ai/keys).
 4. Kliknite na tlačidlo na vytvorenie nového API kľúča.
-5. Pomenujte kľúč tak, aby ste ho neskôr poznali.
+5. Kľúču pridajte názov, ktorý si potom dokážete ľahko zapamätať.
 6. Skopírujte nový API kľúč.
-7. Vráťte sa do Transrewrt a otvorte **Nastavenia** > **API Konfigurácia**.
-8. Vložte kľúč do **OpenRouter API Key**.
-9. Kliknite na **Test API Konfigurácie** a overte, či funguje.
+7. Vráťte sa do Transrewrt a otvorte **Nastavenia** > **Konfigurácia API**.
+8. Vložte kľúč do poľa **OpenRouter API kľúč** (v časti **Nastavenia** > **Konfigurácia API**).
+9. Kliknite na **Testovať OpenRouter kľúč**, aby ste skontrolovali, či funguje.
 
-> ℹ️ **POZNÁMKA**<br/>
-> Môžete začať s bezplatnou cestou OpenRouter alebo ľubovoľným z ďalších dostupných bezplatných modelov. V mnohých prípadoch to stačí na začiatok používania Transrewrt bez výberu plateného modelu.
+<br/>
 
-<br /><br />
+> ℹ️ **Poznámka**<br/>
+> Môžete začať s bezplatnou možnosťou OpenRouter alebo ľubovoľným iným bezplatným modelom, aniž by ste museli zadať údaje kreditnej karty. V mnohých prípadoch je to dostatočné na začatie práce s Transrewrt bez nutnosti výberu plateného modelu. Alternatívne môžete použiť Ollama a spúšťať modely lokálne bez potreby akéhokoľvek API kľúča.
+
+<br/><br/>
 
 <a id="getting-started"></a>
 ## Začíname
 
-Ak to je váš prvýkrát používanie Transrewrt, postupujte v tomto poradí:
+Ak používate Transrewrt po prvýkrát, postupujte v nasledujúcom poradí:
 
 1. Otvorte aplikáciu.
-2. Pri potrebe si vyberte **Jazyk rozhrania** z ikony glóbusu.
-3. Ak ste na **desktopovej aplikácii**, otvorte [**Nastavenia** > **API Konfigurácia**](#api-config), vložte váš OpenRouter API kľúč a kliknite na **Test API Konfigurácie**.
+2. V prípade potreby vyberte svoj **jazyk rozhrania** pomocou ikony gule.
+3. Ak používate **desktopovú aplikáciu**, otvorte [**Nastavenia** > **Konfigurácia API**](#api-config), pridajte API kľúč aspoň pre jedného poskytovateľa (napríklad OpenRouter) a kliknite na **Testovať**, aby ste overili, či funguje.
 4. Otvorte [**Nastavenia** > **Modely**](#models) a pridajte jeden alebo viac modelov do **Vybrané modely**.
-5. Otvorte [**Nastavenia** > **Jazyky**](#languages) a vyberte svoje **Hlavné jazyky**, ak chcete, aby sa najpoužívanejšie jazyky zobrazovali ako prvé.
-6. Prejdite na **Preklad** a spustite jednoduchý preklad na overenie, či všetko funguje.
-7. Keď to funguje, skúste **Prepísať** a potom **Transformovať**.
+5. Otvorte [**Nastavenia** > **Jazyky**](#languages) a vyberte svoje **Najčastejšie jazyky**, ak chcete, aby sa vaše najpoužívanejšie jazyky zobrazovali ako prvé.
+6. Prejdite na **Preložiť** a spustite jednoduchý preklad, aby ste overili, či všetko funguje.
+7. Keď to funguje, vyskúšajte **Preformulovať** a potom **Transformovať**.
 
-Toto poradie je dôležité. Zabraňuje najčastejšiemu problému pri prvom použití: pokusu o spustenie úlohy skôr, ako má aplikácia fungujúce API spojenie alebo vybraný model.
+Tohto poradia si vážime. Zabraňuje to najčastejšiemu problému pri prvom použití: pokúšaniu sa vykonať úlohu skôr, ako má aplikácia fungujúce pripojenie k API alebo vybraný model.
 
-<br /><br />
+<br/><br/>
 
 <a id="main-parts-of-the-window"></a>
 ## Hlavné časti okna
 
-Aplikácia je rozdelená do troch hlavných oblastí:
+Aplikácia je rozdelená na tri hlavné oblasti:
 
 - **Bočný panel** na ľavej strane.
-- **Nástrojový panel** v hornej časti.
+- **Panel nástrojov** v hornej časti.
 - **Pracovná oblasť** v strede.
 
-<br />
+<br/>
 
 <a id="sidebar"></a>
 ### Bočný panel
 
-Použite bočný panel na pohyb v rámci aplikácie:
+Bočný panel slúži na pohyb po aplikácii. Bočný panel môžete skrútiť, aby ste získali viac miesta – stačí kliknúť na ikonu vedľa loga aplikácie.
 
-<br />
+<br/>
 
 <table>
   <tr>
@@ -163,47 +179,50 @@ Použite bočný panel na pohyb v rámci aplikácie:
        <img src="../images/screenshots/sk/sidebar.png" alt="Bočný panel aplikácie" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
-      <br />
+      <br/><br/>
       <ul>
-        <li><strong>Preklad</strong> otvára pracovisko prekladu.</li>
-        <li><strong>Prepísanie</strong> otvára pracovisko prepisu.</li>
-        <li><strong>Transformácia</strong> otvára pracovisko pre vlastné príkazy.</li>
-        <li><strong>Dashboard</strong> zobrazuje informácie o použití a nákladoch.</li>
-        <li><strong>Nastavenia</strong> otvára panel nastavení.</li>
-        <li><strong>Používateľ</strong> zobrazuje používateľské meno prihláseného používateľa (len web).</li>
+        <li><strong>Preložiť</strong> otvorí pracovnú plochu prekladu.</li><br/>
+        <li><strong>Preformulovať</strong> otvorí pracovnú plochu prepisovania.</li><br/>
+        <li><strong>Transformovať</strong> otvorí pracovnú plochu vlastných výziev.</li><br/>
+        <li><strong>Početnica</strong> zobrazuje informácie o využití a nákladoch.</li><br/>
+        <li><strong>Nastavenia</strong> otvorí panel nastavení.</li><br/>
+        <li><strong>História</strong> zobrazuje históriu používania vrátane zadanej a výslednej zostavy textu</li><br/>
+        <li><strong>Používateľ</strong> zobrazuje používateľské meno prihláseného používateľa (iba pre webovú verziu).</li>
       </ul>
-      <br />
-      <p>Bočný panel môžete tiež zbaliť pre viac miesta kliknutím na ikonu vedľa loga aplikácie.</p>
     </td>
   </tr>
 </table>
 
-<br />
+<br/>
 
 <a id="toolbar"></a>
-### Nástrojový panel
 
-Nástrojový panel sa mierne mení v závislosti od toho, kde sa v aplikácii nachádzate.
+### Panel s nástrojmi
 
-- Vľavo zobrazuje názov aktuálnej stránky.
-- Vpravo zobrazuje **výber modelu** a ovládanie **Jazyk rozhrania**.
+Panel s nástrojmi sa mierne líši v závislosti od toho, kde sa v aplikácii nachádzate.
 
-**Výber modelu** vám umožňuje vybrať, ktorý AI engine použiť pre aktuálnu úlohu.
+- Vľavo sa zobrazuje názov aktuálnej stránky.
+- Vpravo sa nachádza **výber modelu** a ovládanie **jazyka rozhrania**.
+
+**Výber modelu** vám umožní zvoliť, ktorý model umelého inteligentného systému použiť pre aktuálnu úlohu.
 
   ![Výber modelu](../images/screenshots/sk/model-selector.png)
 
-> ℹ️ **POZNÁMKA**<br/>
-> Niektoré bezplatné modely môžu dočasne prestať fungovať, ak sú nedostupné alebo dosiahli limit použitia. Ak sa tak stane, aplikácia automaticky odstráni ten model z vášho zoznamu.
+> ℹ️ **Poznámka**<br/>
+> Niektoré bezplatné modely nemusia byť vždy dostupné – niekedy sú nedostupné alebo majú obmedzenie používania. V takom prípade aplikácia automaticky odstráni daný model zo zoznamu dostupných.<br/>
+> Ak chcete určiť, ktoré modely sa zobrazujú, prejdite do časti [**Nastavenia** > **Modely**](#models) a upravte si zoznam modelov. 
+> Nastavenia pre konkrétny model môžete otvoriť aj priamo kliknutím na ikonu poskytovateľa vľavo od názvu modelu na paneli s nástrojmi.
 
-**Ikona glóbusu + kód jazyka** mení jazyk rozhrania aplikácie, ako súpony a tlačidlá. **Nezmení** jazyky používané v **Preklade**.
+<br/>
+
+Ikona **gule sveta + kód jazyka** mení jazyk používateľského rozhrania, ako sú ponuky či tlačidlá. **Nemenuje** jazyky prekladu používané v **Preložiť**.
 
   ![Výber jazyka rozhrania](../images/screenshots/sk/language-selector.png)
 
-<br />
+<br/>
 
 <a id="input-and-output-panels"></a>
-
-### Vstupné a výstupné panely
+### Panel vstupu a výstupu
 
 Väčšina pracovných priestorov používa ľavý panel **Vstup** a pravý panel **Výstup**.
 
@@ -211,525 +230,697 @@ Panel **Vstup** zobrazuje:
 
 - Počet znakov
 - Počet slov
-- Počet odstavcov
+- Počet odsekov
 
 Panel **Výstup** môže zobrazovať:
 
-- Dĺžku trvania úlohy
-- Náklady na danú úlohu
+- Ako dlho trvala úloha
+- Náklady na túto úlohu (ak sú dostupné)
 - Vaše celkové náklady
-- **TPS** (tokenov za sekundu), čo je jednoduchý miera rýchlosti
-- Počty znakov, slov a odstavcov
+- **TPS** (tokeny za sekundu)
+- Počet znakov, slov a odsekov
 - Použitý model
 
-Ak vás zaujímajú technické termíny:
+Ak sa pýtate na technické termíny:
 
-- **Token** znamená malý kus textu. Môžete ho predstavovať ako časť slova alebo krátke slovo.
-- **TPS** znamená, koľko takýchto textových kusov model spracoval za sekundu.
+- **Token** znamená malý blok textu. Môžete si ho predstaviť ako časť slova alebo krátke slovo.
+- **TPS** znamená, koľko takýchto textových blokov spracoval model každú sekundu.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
-## Prekladať
+## Preložiť
 
-Použite **Prekladať**, keď chcete previesť text z jedného jazyka do druhého.
+Použite **Preložiť**, ak chcete premeniť text z jedného jazyka do druhého.
 
-![Pracovný priestor Prekladať](../images/screenshots/sk/translate.png)
+![Pracovný priestor Preložiť](../images/screenshots/sk/translate.png)
 
-<br />
+<br/>
 
 <a id="translate-text"></a>
-### Prekladanie textu
+### Preloženie textu
 
-1. Otvorte **Prekladať**.
-2. Vyberte jazyk v poli **Z**.
-3. Vyberte jazyk v poli **Do**.
-4. Vyberte model na paneli nástrojov.
-5. Zadajte alebo vložte text do poľa **Vstup**.
-6. Kliknite na **Prekladať**.
-7. Prečítajte výsledok v poli **Výstup**.
-8. Použite tlačidlo na kopírovanie, ak chcete skopírovať výsledok.
+1. Otvorte **Preložiť**.
+2. Vo výbere **Z** zvoľte jazyk.
+3. Vo výbere **Do** zvoľte jazyk.
+4. Na paneli s nástrojmi zvoľte model.
+5. Napíšte alebo vložte text do poľa **Vstup**.
+6. Kliknite na tlačidlo **Preložiť**.
+7. Výsledok si prečítajte v poli **Výstup**.
+8. Ak chcete výsledok kopírovať, použite tlačidlo na kopírovanie.
 
-<br />
+<br/>
 
 <a id="language-selection"></a>
-### Voľba jazyka
+### Výber jazyka
 
-- Pole **Z** môže byť konkrétny jazyk alebo **Zistiť jazyk**.
-- Pole **Do** je jazyk, do ktorého chcete preložiť výsledok.
+- **Z** môže byť konkrétny jazyk alebo možnosť **Zistiť jazyk**.
+- **Do** je jazyk, do ktorého chcete preložiť.
 
-Vami vybrané **Hlavné jazyky** sa zobrazia na vrchu zoznamu. Môžete ich nastaviť v [**Nastavenia** > **Jazyky**](#languages).
+Vaše zvolené **Najobľúbenejšie jazyky** sa zobrazia na vrchu zoznamu. Tieto jazyky môžete nastaviť v časti [**Nastavenia** > **Jazyky**](#languages).
 
-<br />
+<br/>
 
 <a id="helpful-translation-settings"></a>
-### Nápomocné nastavenia prekladu
+### Užitočné nastavenia prekladu
 
-V [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) môžete zmeniť správanie prekladu:
+V časti [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) môžete zmeniť správanie prekladu:
 
-- **Automatický preklad pri vložení** spustí preklad hneď po vložení textu.
-- **Automatické kopírovanie výsledku do schránky** skopíruje výsledok automaticky po úspešnom preklade.
-- **Preklad v reálnom čase (počas písania)** spúšťa preklady počas písania.
-- **Časový limit (ms)** určuje, ako dlho aplikácia čaká pred spustením prekladu v reálnom čase.
+- **Prekladať pri vkladaní** automaticky spustí preklad ihneď po vložení textu.
+- **Automaticky kopírovať výsledok do schránky** skopíruje výsledok automaticky po úspešnom preklade.
+- **Preklad v reálnom čase (pčas písania)** prekladá text priamo počas písania.
+- **Časový limit (ms)** určuje, ako dlho počká aplikácia pred spustením prekladu v reálnom čase.
 
-<br />
+<br/>
 
 <a id="keyboard-shortcuts"></a>
 ### Klávesové skratky
 
-V [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) položka **Správanie pre kláves ENTER** určuje, čo sa stane, keď stlačíte Enter:
+V časti [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) ovláda možnosť **Správanie klávesy ENTER**, čo sa stane po stlačení klávesu `Enter`:
 
-- Stlačenie **Enter** môže spustiť úlohu a **Shift+Enter** môže vložiť nový riadok.
-- Alebo aplikácia môže konať opačne.
+- **Enter** môže spustiť úlohu a **Shift+Enter** môže pridať nový riadok.
+- Alebo môže aplikácia fungovať opačne.
 
-Aktuálna skratka je tiež zobrazená na tlačidle **Prekladať**.
+Aktuálny režim sa zobrazuje aj na tlačidle **Preložiť**.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
-## Preformulovať
+## Prepísať
 
-Použite **Preformulovať**, keď chcete vylepšiť znenie bez zmeny hlavného významu.
+Použite **Prepísať**, ak chcete zlepšiť formuláciu bez zmeny hlavného významu.
 
-![Pracovný priestor Preformulovať](../images/screenshots/sk/rewrite.png)
+![Pracovný priestor Prepísať](../images/screenshots/sk/rewrite.png)
 
 Toto je užitočné na:
 
 - opravu pravopisu a gramatiky
-- vyjasnenie textu
-- dosiahnutie formálnejšieho alebo menej formálneho tónu
+- ujasnenie textu
+- urobienie textu formálnejšieho alebo menej formálneho
 - skrátenie alebo rozšírenie textu
-- aby text znel technickejšie
+- zvýšenie odbornosti jazyka textu
 
-<br />
+<br/>
 
 <a id="rewrite-text"></a>
-### Preformulovanie textu
 
-1. Otvorte **Preformulovať**.
+### Prepísať text
+
+1. Otvorte **Prepísať**.
 2. Vyberte **Režim**.
-3. Vyberte model na paneli nástrojov.
-4. Zadajte alebo vložte text do poľa **Vstup**.
-5. Kliknite na **Preformulovať**.
-6. Skontrolujte výsledok v poli **Výstup**.
+3. Vo vybranom paneli vyberte model.
+4. Do poľa **Vstup** napíšte alebo prilepte text.
+5. Kliknite na **Prepísať**.
+6. Výsledok skontrolujte v sekcii **Výstup**.
 
-Rovnaké správanie klávesu Enter, ako je popísané v časti [**Prekladať**](#keyboard-shortcuts), platí aj tu.
+Správanie klávesy Enter opísané v sekcii [**Preložiť**](#keyboard-shortcuts) platí aj tu.
 
-<br /><br />
+<br/>
+
+> 💡 **TIP**<br/>
+> Keď použijete režim "**Skontrolovať pravopis a gramatiku**", vo výstupnom paneli sa objaví tlačidlo `Zobraziť zmeny`. Kliknutím na toto tlačidlo prepnete zobrazenie korektúr a ukážete alebo skryjete konkrétne zmeny vykonané vo vašom texte.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
-## Transformovať
+## Transformácia
 
-Použite **Transformovať**, keď chcete, aby AI postupovala podľa vlastných pokynov.
+Použite **Transformáciu**, keď chcete, aby umelá inteligencia nasledovala vlastnú sadu inštrukcií.
 
-![Pracovný priestor Transformovať](../images/screenshots/sk/transform.png)
+![Pracovná plocha Transformácia](../images/screenshots/sk/transform.png)
 
-Toto je najflexibilnejšia časť aplikácie. Môžete ju použiť na úlohy, ako sú:
+Ide o najpružnejšiu časť aplikácie. Môžete ju použiť na úlohy ako napríklad:
 
-- sumarizácia poznámok
-- premenovanie hrubého textu na dôkladne spísaný e-mail
-- extrakcia kľúčových bodov
-- konverzia textu do špecifického formátu
+- zhrnutie poznámok
+- premena hrubého textu na vylepšený e-mail
+- extrahovanie kľúčových bodov
+- prevod textu do konkrétneho formátu
 
-<br />
+<br/>
 
 <a id="run-an-existing-prompt"></a>
-### Spustenie existujúceho výzvy (prompt)
+### Spustite existujúci výzva
 
-1. Otvorte **Transformovať**.
+1. Otvorte **Transformáciu**.
 2. Vyberte výzvu zo zoznamu výziev.
-3. Ak sa zobrazí pole **Cieľový jazyk**, vyberte jazyk, ak ho chcete.
-4. Zadajte alebo vložte text do poľa **Vstup**.
+3. Ak sa zobrazí pole **Cieľový jazyk**, vyberte jazyk, ak ho chcete použiť.
+4. Do poľa **Vstup** napíšte alebo prilepte text.
 5. Kliknite na **Transformovať**.
-6. Prečítajte výsledok v poli **Výstup**.
+6. Prečítajte si výsledok v sekcii **Výstup**.
 
-<br />
+<br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Ak ešte nemáte žiadne výzvy
+### Ak zatiaľ nemáte žiadne výzvy
 
-Ak je váš zoznam výziev prázdny, kliknite na **Načítať vzorové výzvy**. Toto pridá vstavané príklady, aby ste mohli rýchlo začať.
+Ak je váš zoznam výziev prázdny, kliknite na **Načítať ukážkové výzvy**. Tým sa pridajú zabudované príklady a môžete rýchlo začať.
 
-> ℹ️ **POZNÁMKA**<br/>
-> Vzorové výzvy sú poskytnuté v angličtine. Po ich načítaní môžete výzvu upraviť a použiť **Prekladať výzvu**, ak chcete prispôsobiť text výzvy pre iný jazyk.
+<br/>
 
-<br />
+> ℹ️ **Poznámka**<br/>
+> Ukážkové výzvy sú dodané v angličtine. Po ich načítaní môžete výzvu upraviť a použiť funkciu **Preložiť výzvu**, aby ste ju preložili do svojho jazyka.
+
+<br/>
 
 <a id="create-a-prompt-quickly"></a>
+### Rýchlo vytvorte výzvu
 
-### Rýchlo vytvoriť prompt
+Najrýchlejší spôsob, ako vytvoriť výzvu, je:
 
-Najrýchlejšia cesta, ako vytvoriť prompt:
-
-1. Kliknite na **Nový prompt**.
-2. Kliknite na **Generovať prompt**.
-3. Opíšte, čo má prompt urobiť.
+1. Kliknite na **Nová výzva**.
+2. Kliknite na **Vygenerovať výzvu**.
+3. Popíšte, čo má výzva robiť.
 4. Vyberte model.
-5. Nechajte aplikáciu vytvoriť návrh.
-6. Skontrolujte návrh a kliknite na **Uložiť**.
+5. Nechajte aplikáciu vytvoriť koncept pre vás.
+6. Skontrolujte koncept a kliknite na **Uložiť**.
 
-![Generovať prompt](../images/screenshots/sk/transform-generate.png)
+![Vygenerovať výzvu](../images/screenshots/sk/transform-generate.png)
 
-<br />
 
-### Upraviť prompt
+<br/>
 
-Keď vytvoríte alebo upravíte prompt, editor sa zobrazí na ľavej strane a testovacia oblasť na pravej.
+<a id="edit-a-prompt"></a>
+### Upraviť výzvu
 
-![Editor transformácie promptu](../images/screenshots/sk/transform-prompt-edit.png)
+Keď vytvoríte alebo upravujete výzvu, editor sa zobrazí vľavo a vpravo sa zobrazí testovacia oblasť.
+
+![Editor výziev pre transformáciu](../images/screenshots/sk/transform-prompt-edit.png)
 
 Hlavné polia sú:
 
-- **Názov promptu**: názov zobrazený v zozname promptov.
-- **Inštrukcie k promptu (voliteľné)**: krátka nápoveda zobrazená používateľovi pri spustení promptu.
-- **Rola modelu**: celková rola priradená AI, napríklad 'You are a helpful assistant.'
-- **Inštrukcie modelu (jedna na riadok)**: konkrétne pravidlá, ktoré má AI dodržiavať.
-- **Opis výstupu**: krátke slovo popisujúce výsledok, napríklad 'summary' alebo 'rewrite'.
-- **Teplota (0.0 → 1.0)**: posuvník kreativity.
-- **Pýtať na cieľový jazyk**: pridá výber cieľového jazyka pri spustení promptu.
+- **Názov výzvy**: názov, ktorý sa zobrazuje v zozname výziev.
+- **Inštrukcie k výzve (nepovinné)**: krátky tip zobrazený používateľovi pri spúšťaní výzvy.
+- **Úloha modelu**: všeobecná úloha pridelená k IA, napríklad „Si užitočný asistent.“
+- **Inštrukcie modelu (jedna na riadok)**: konkrétne pravidlá, ktoré sa chce, aby IA dodržiavala.
+- **Popis výstupu**: krátky výraz popisujúci výsledok, napríklad „zhrnutie“ alebo „prepísanie“.
+- **Teplota (0,0 → 1,0)**: správanie modelu; pozri nižšie.
+- **Požiadať o cieľový jazyk**: pridá výber cieľového jazyka pri spustení výzvy.
 
-Ak je technický termín **Teplota** pre vás nový, predstavte si ho takto:
+Ak pojem **Teplota** pre vás nie je poznaný, môžete to pochopiť takto:
 
-- **Nižšia** teplota dáva stabilnejšie, predvídateľnejšie výsledky.
-- **Vyššia** teplota dáva viac rôznorodosti a kreativity.
+- **Nižšia** teplota poskytuje stabilnejšie a predpovedateľnejšie výsledky.
+- **Vyššia** teplota poskytuje väčšiu rozmanitosť a kreativitu.
 
 Môžete tiež použiť:
 
-- **`Generovať prompt`** na vytvorenie nového návrhu z jednoduchého opisu
-- **`Vylepšiť prompt`** na vylepšenie existujúceho promptu
-- **`Preložiť prompt`** na preklad polí promptu
+- **`Vygenerovať výzvu`** na vytvorenie konceptu z jednoduchého popisu
+- **`Zlepšiť výzvu`** na vylepšenie existujúcej výzvy
+- **`Preložiť výzvu`** na preloženie polí výzvy
+
+<br/>
 
 > ⚠️ **VAROVANIE**<br/>
-> Kliknite na **`Uložiť`** skôr, než kliknete na **`Späť na Spustenie`**. Ak sa vrátime bez uloženia, vaše zmeny budú stratené.
+> Skôr než kliknete na **`Späť na spustenie`**, kliknite na **`Uložiť`**. Ak sa vrátite bez uloženia, všetky zmeny budú stratené.
 
-<br />
+<br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Otestovať prompt pred použitím
+### Otestujte si výzvu pred použitím
 
-Testovací panel na pravej strane vám umožní vyskúšať váš prompt s testovacím textom, skôr ako ho použijete v bežnej práci.
+Testovací panel vpravo vám umožní otestovať svoju výzvu s ukážkovým textom ešte predtým, ako ju začnete používať pravidelne.
 
-To je užitočné, keď:
+To je užitočné v prípadoch, keď:
 
-- vytvárate nový prompt
-- porovnáte dve verzie promptu
+- vytvárate novú výzvu
+- porovnávate dve verzie výzvy
 - chcete skontrolovať tón, dĺžku alebo formát výstupu
 
-<br />
+<br/>
 
 <a id="manage-saved-prompts"></a>
-### Spravovať uložené prompty
+### Spravujte ul
 
-Na spravovanie uložených promptov na jednom mieste otvorte [**Nastavenia** > **Transformácie promptov**](#transform-prompts).
+## Nástenka
 
-Tam môžete:
+Použite **Nástenku**, aby ste videli, ako veľmi aplikáciu používate a aké to má náklady (pre platené modely).
 
-- zobraziť a odstrániť vaše prompty
-- exportovať prompty ako **JSON**, **CSV** alebo **XLSX**
-- importovať prompty zo súboru
+![Zhrnutie nástenky](../images/screenshots/sk/dashboard-summary.png)
 
-<br /><br />
 
-## Dashboard
+<br/>
 
-Použite **Dashboard** na zobrazenie, ako veľa aplikáciu používate a čo to stojí.
+> ℹ️ **Poznámka**<br/>
+> Ak používate len bezplatné modely, grafy súvisiace s nákladmi budú prázdne.
 
-![Súhrn dashboardu](../images/screenshots/sk/dashboard-summary.png)
-
-<br />
+<br/>
 
 <a id="filter-the-data"></a>
-### Filtrovať údaje
+### Filtrovanie údajov
 
-Použite tlačidlá filtrov na vrchu na zmenu časového rozsahu.
+Použite tlačidlá filtrov na hornej časti stránky na zmenu časového obdobia.
 
-![Filtre dashboardu](../images/screenshots/sk/dashboard-filter.png)
+![Filtre nástenky](../images/screenshots/sk/dashboard-filter.png)
 
-> ℹ️ **POZNÁMKA**<br/>
-> Vo webovej verzii môžu administrátori vidieť aj filter **Používateľ**. To im umožňuje prepínať medzi **Všetci používatelia** a konkrétnym používateľom.
+<br/>
 
-<br />
+> ℹ️ **Poznám problemas**<br/>
+> Filter **Používateľ** je vo webovej verzii viditeľný len pre správcov. Bežní používatelia tento filter neuvidia a vo verzii pre desktop aplikáciu nie je k dispozícii.
+
+<br/>
 
 <a id="dashboard-tabs"></a>
-### Karty dashboardu
+### Záložky nástenky
 
-- **Súhrn** poskytuje prehľad o použití a nákladoch.
-- **Podľa použitia** rozkladá aktivitu podľa prekladacieho jazyka, režimu prepisu a transform promptu.
-- **Podľa modelu** zobrazuje, ktoré modely ste použili a aké sú ich náklady.
+- **Zhrnutie** vám poskytuje prehľad o používaní a nákladoch.
+- **Podľa použitia** rozdeľuje aktivitu podľa prekladového jazyka, režimu prepisovania a prepisovacích výziev.
+- **Podľa modelu** zobrazuje, ktoré modely ste použili a koľko vás stáli.
 - **Podľa dňa** zobrazuje denné celky.
-- **Všetky volania** zobrazuje kompletnú históriu volaní a umožňuje jej export.
+- **Všetky volania** zobrazuje kompletný záznam volaní a umožňuje ich exportovať.
 
-<br />
+<br/>
 
 <a id="export-data"></a>
 ### Export údajov
 
-Tabuľky dashboardu môžu exportovať údaje v:
+Tabuľky na nástenke umožňujú exportovať údaje vo formáte:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-To je užitočné, ak chcete skontrolovať aktivitu mimo aplikácie alebo zdieľať správu.
+To je užitočné, ak chcete prevziať aktivitu mimo aplikácie alebo zdielať správu.
 
-<br />
+<br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Odstrániť uložené záznamy pre model
+### Vymazanie uložených záznamov pre model
 
-V **Podľa modelu** alebo **Všetky volania** môžete odstrániť uložené záznamy pre model.
+V záložkách **Podľa modelu** alebo **Všetky volania** môžete vymazať uložené záznamy pre daný model kliknutím na ikonu „koša“.
 
 > ⚠️ **VAROVANIE**<br/>
-> Odstránenie uložených záznamov sa nedá vrátiť. Použite to iba ak ste si istí, že túto históriu už nepotrebujete.
+> Vymazanie uložených záznamov je nezvratné. Používajte to iba vtedy, ak ste si istý, že už túto históriu nepotrebujete.
 
-Ak chcete odstrániť všetky údaje alebo odstrániť záznamy podľa ich veku, prejdite na [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking). Tam nájdete možnosti odstrániť všetky uložené údaje alebo len údaje staršie ako určité dátum.
+Ak chcete vymazať všetky údaje alebo odstrániť záznamy podľa ich veku, prejdite do [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking). Tam nájdete možnosti na vymazanie všetkých uložených údajov alebo iba údajov starších ako určitý dátum.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="history"></a>
+## História
+
+Kliknite na **História**, aby ste videli históriu svojich činností v rámci aplikácie **Transrewrt**, vrátane vstupu a výstupu každej operácie.
+
+![Stránka História](../images/screenshots/sk/history.png)
+
+<br/>
+
+<a id="filter-the-history"></a>
+### Filtrovanie histórie
+
+**História** používa rovnaké filtre ako stránka **Nástenka**. Použite ich na výber časového obdobia.
+
+![Filtre nástenky](../images/screenshots/sk/dashboard-filter.png)
+
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> Filter **Používateľ** je vo webovej verzii viditeľný len pre správcov. Bežní používatelia tento filter neuvidia a vo verzii pre desktop aplikáciu nie je k dispozícii.
+
+<br/>
+
+<a id="export-history-data"></a>
+###  Export údajov histórie
+
+Stránka História umožňuje exportovať filtrované údaje vo formáte:
+
+- **JSON**
+- **CSV**
+- **XLS slash X**
+
+Toto je užitočné, ak chcete posúdiť aktivitu mimo aplikácie alebo zdieľať správu.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="settings"></a>
 ## Nastavenia
 
-Otvorte **Nastavenia** z bočného panela na prispôsobenie správania aplikácie.
+Otvorte **Nastavenia** zostrany pomocného panelu, aby ste prispôsobili správanie aplikácie.
 
-Dostupné karty sa môžu líšiť:
+Dostupné záložky závisia od platformy a vašej úlohy:
 
-- **Konfigurácia API** je dostupná len v desktopovej aplikácii.
-- **Používatelia** je dostupné len vo webovej aplikácii a len pre administrátorov.
+  | Záložka               | Desktop | Web (správca) | Web (bežný používateľ) |
+  |-----------------------|:-------:|:-------------:|:----------------------:|
+  | Všeobecné nastavenia  |   áno   |      áno      |          áno           |
+  | Modely                |   áno   |      áno      |          áno           |
+  | Jazyky                |   áno   |      áno      |          áno           |
+  | Sledovanie nákladov   |   áno   |      áno      |           –            |
+  | Prepisovacie výzvy    |   áno   |      áno      |          áno           |
+  | Používatelia          |   –     |      áno      |           –            |
+  | Konfigurácia API      |   áno   |      áno      |           –            |
+  | O aplikácii           |   áno   |      áno      |          áno           |
 
-<br />
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> Vo webovej verzii má každý používateľ vlastné nastavenia. Nastavenia ako vybrané modely, jazyky, všeobecné voľby a prepisovacie výzvy sa ukladajú pre každého používateľa zvlášť. Zmeny, ktoré urobíte, neovplyvnia ostatných používateľov.
+
+<br/>
+
+
+[------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
 
 ### Všeobecné nastavenia
 
-Použite **Všeobecné nastavenia** na kontrolu správania pri písaní a vzhľadu.
+Použite **Všeobecné nastavenia** na nastavenie správania pri písaní, či sa podrobnosti spustenia ukladajú do **Histórie** a vzhľadu.
 
 **Správanie**
 
-- **Správanie pre ENTER** určuje, či Enter spustí úlohu alebo vloží nový riadok.
-- **Automatický preklad pri vložení** spustí preklad hneď po vložení textu.
-- **Automatické kopírovanie výsledku do schránky** automaticky kopíruje úspešné výsledky.
-- **Preklad v reálnom čase (počas písania)** prekladá počas písania.
-- **Časový limit (ms)** nastavuje čas čakania na preklad v reálnom čase.
+- **Správanie klávesy ENTER** určuje, či `Enter` spustí úlohu alebo vloží nový riadok.
+- **Automatický preklad po vložení** spustí preklad okamžite po vložení textu.
+- **Automatické skopírovanie výsledku do schránky** automaticky kopíruje úspešné výsledky.
+- **Preklad v reálnom čase (počas písania)** prekladá text, kým píšete.
+- **Časový limit (ms)** nastavuje dobu čakania pre preklad v reálnom čase.
+
+**História**
+
+- **Uchovávať históriu spustení** určuje, či každý preklad, prepísanie a transformácia ukladajú **vstupný a výstupný text** pre zobrazenie [**História**](#history) na bočnom paneli. Ak je funkcia vypnutá, zobrazí sa potvrdzovací výzva; ak potvrdíte, uložený text z histórie sa odstráni z databázy.
+- **Odstrániť dátá histórie** vám umožní odstrániť uložený text podľa veku (napríklad staršie ako niekoľko mesiacov alebo **všetky dáta (vyčistiť)**) pomocou tlačidla **Odstrániť dáta**. Toto ovplyvní iba uložený text spustení pre zobrazenie **História**; **nezmaže** to celkové náklady ani údaje o využití. Ak chcete odstrániť alebo skrátiť údaje o **nákladoch**, použite [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking).
 
 **Vzhľad**
 
-- **Počet desatinných miest nákladov** mení, ako sa zobrazujú desatinné miesta nákladov.
-- **Rodina písiem** mení písmo v textových paneloch.
+- **Desatinné miesta pre náklady** mení spôsob zobrazenia desatinných miest nákladov.
+- **Iba web:** **zobraziť okraj okolo aplikácie** pridáva dodatočný priestor okolo rozhrania.
+- **Rodina písma** mení písmo v textových paneloch.
 - **Veľkosť** mení veľkosť písma.
-- **Iba pre web:** **zobraziť okraj okolo aplikácie** pridá extra priestor okolo rozhrania.
 
-<br />
+<br/>
 
 <a id="models"></a>
 ### Modely
 
-Použite **Nastavenia** > **Modely** na výber modelov, ktoré sa zobrazia na paneli nástrojov.
+Použite **Nastavenia** > **Modely** na výber modelov, ktoré sa zobrazia v paneli nástrojov.
 
-![Karta Modely v Nastaveniach](../images/screenshots/sk/settings-models.png)
+![Karta Nastavenia modelov](../images/screenshots/sk/settings-models.png)
 
 Stránka má dva zoznamy:
 
-- **Dostupné modely** naľavo
-- **Vybrané modely** napravo
+- **Dostupné modely** vľavo
+- **Vybrané modely** vpravo
 
 Užitočné ovládacie prvky zahŕňajú:
 
-- **Hľadať modely...** na nájdenie modelu podľa mena
-- **Iba bezplatné** na zobrazenie len bezplatných modelov
+- **Hľadať modely...** na vyhľadanie modelu podľa názvu
+- **Štítky dodávateľa** na zúženie zoznamu na jedného dodávateľa (OpenRouter, OpenAI, Ollama, …)
+- **Iba zadarmo** na zobrazenie iba bezplatných modelov
 - **Obnoviť** na opätovné načítanie zoznamu
-- **Rozbaliť všetko** a **Zbaliť všetko**, keď triedenie podľa poskytovateľa
+- **Rozbaliť všetko** a **Zbaliť všetko** pri triedení podľa dodávateľa
 
-Na pridanie modelu kliknite **Pridať**.
+ID modelov obsahujú predponu dodávateľa (napríklad `openrouter/…` oproti `openai/…`). Označenia ako **OpenAI (OpenRouter)** oproti **OpenAI (priamo)** ukazujú, ako je prenášaný prenos.
 
-Na odstránenie modelu kliknite **X** vedľa neho v **Vybrané modely**.
+Akcie:
 
-Na vyčistenie zoznamu kliknite **Zrušiť výber všetkých**. Požadovaný bezplatný model zostane v zozname.
+ - Ak chcete pridať model, kliknite na **Pridať** alebo kdekoľvek v zázname.
 
-> ℹ️ **POZNÁMKA**<br/>
-> Ak nechcete ihneď pridať kredity do OpenRouter, začnite povolením **Iba bezplatné** a výberom bezplatných modelov.
+ - Ak chcete odstrániť model, kliknite na **X** vedľa neho v **Vybraných modeloch** alebo na **Vybrané** vo vstupe v dostupných modeloch.
 
-<br />
+ - Ak chcete zrušiť výber zoznamu, kliknite na **Zrušiť výber všetkých**. Požadovaný bezplatný model v zozname zostane.
+
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> Ak nechcete okamžite pridávať kredit na OpenRouter, začnite tým, že povolíte **Iba zadarmo** a vyberiete si bezplatné modely (nie je potrebná kreditná karta). Môžete tiež použiť Ollama na spustenie modelov lokálne bez akéhokoľvek API kľúča.
+
+<br/>
 
 <a id="languages"></a>
 ### Jazyky
 
 Použite **Nastavenia** > **Jazyky** na organizáciu zoznamov jazykov používaných v aplikácii.
 
-- **Hlavné jazyky** sú pripnuté blízko vrchu zoznamov jazykov v **Preklade** a **Transformácii**.
-- **Vlastný jazyk** umožňuje pridať jazyk, ktorý nie je v predvolenom zozname.
+- **Najvyššie jazyky** sú pripnuté k hornému okraju zoznamov jazykov v funkcii **Preložiť** a **Transformovať**.
+- **Vlastný jazyk** vám umožňuje pridať jazyk, ktorý nie je vo vstavanej ponuke.
 
-Ak pridáte vlastný jazyk, objaví sa vo výberoch jazykov vedľa predvolených možností.
+Ak pridáte vlastný jazyk, objaví sa výber jazykov spolu s vopred určenými možnosťami.
 
-<br />
+<br/>
 
 <a id="cost-tracking"></a>
 ### Sledovanie nákladov
 
 Použite **Nastavenia** > **Sledovanie nákladov** na správu informácií o nákladoch.
 
-- **Celkový náklad** zobrazuje aktuálny súčet.
-- **Kopírovať hodnotu** kopíruje súčet do schránky.
-- **Resetovať náklad** resetuje uložený súčet na nulu.
-- **Synchronizovať s použitím API kľúča** nastaví súčet tak, aby zodpovedal používaniu oznámenému OpenRouter.
-- **Použitie API kľúča** zobrazuje podrobnosti o použití, ak sú dostupné.
-- **Vymazať údaje o nákladoch** odstráni všetky údaje, alebo len záznamy staršie ako vybraný dátum.
+- **Celkové náklady** zobrazujú bežiaci súčet.
+- **Kopírovať hodnotu** kopíruje celkový súčet do schránky.
+- **Obnoviť náklady** obnoví uložený súčet na nulu.
+- **Synchronizovať s využitím API kľúča** nastaví súčet tak, aby zodpovedal údajom o využití uvedeným vo vašom účte OpenRouter (iba OpenRouter).
+- **Použitie API kľúča** zobrazuje podrobnosti o využití OpenRouter, ak sú dostupné.
+- **Odstrániť údaje o nákladoch** odstráni všetky údaje alebo iba položky staršie ako vybraný dátum.
 
-> ⚠️ **VAROVANIE**<br/>
-> Vymazanie údajov sa nedá vrátiť. Pred vymazaním sa uistite, že zálohujete údaje alebo ich exportujete cez [**Tabuľa** > **Všetky hovory**](#dashboard-tabs), inak budú navždy stratené.
 
-<br />
+ **Sledovanie nákladov:** Keď používate modely OpenRouter, aplikácia zobrazuje skutočné využitie a výdavky na základe údajov od OpenRouter. Pre všetkých ostatných dodávateľov aplikácia odhaduje náklady pomocou cien uverejnených OpenRouter. Ak nie je cena dostupná, odhad môže byť nulový.
+
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> **Všetky údaje o nákladoch sú len pre vašu orientáciu, nie oficiálne fakturačné vyúčtovania.**
+
+
+<br/>
+
+> ⚠️ **Upozornenie**<br/>
+> Odstránenie údajov sa nedá vrátiť späť. Pred odstránením sa uistite, že ste svoje dáta zálohovaní alebo exportovaní cez [**Ovládací panel** > **Všetky volania**](#dashboard-tabs), inak sa natrvalo stratia.<br/> 
+> Odstránia sa tiež všetky historické údaje súvisiace s každým záznamom API volania.
+
+
+<br/>
 
 <a id="transform-prompts"></a>
-### Výzvy transformácie
 
-Použite **Nastavenia** > **Výzvy transformácie** na hromadnú správu výziev.
+### Transformácie výziev
+
+Použite **Nastavenia** > **Transformovať výzvy** na hromadnú správu výziev.
 
 Môžete:
 
 - skontrolovať uložené výzvy
 - odstrániť výzvy
 - importovať výzvy zo súboru
-- exportovať výzvy na zálohu alebo zdieľanie
+- exportovať výzvy na zálohovanie alebo zdieľanie
 
-<br />
+<br/>
 
 <a id="users"></a>
 ### Používatelia
 
-**Iba pre web - iba pre administrátora**
+**Webová verzia: len administrátor**
 
-Použite **Používatelia** na správu účtov používateľov vo webovej verzii. Môžete pridávať používateľov, aktualizovať ich údaje, resetovať heslá a odstraňovať účty.
+Použite **Používatelia** na správu používateľských účtov vo webovej verzii. Môžete pridávať používateľov, aktualizovať ich údaje, obnoviť heslá a odstraňovať účty.
 
-<br />
+<br/>
 
 <a id="api-config"></a>
-### Konfigurácia API
+### Nastavenie API
 
-**Iba pre desktop**
+Podporovaní poskytovatelia sú: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a **Ollama** (lokálne modely cez základnú URL). Stačí nakonfigurovať len poskytovateľov, ktorých používate.
 
-Použite **Konfigurácia API** na pripojenie desktopovej aplikácie k OpenRouter alebo k Transrewrt proxy.
+**Webová aplikácia: len administrátor**
 
-- **OpenRouter API kľúč** je miesto, kde vložíte svoj kľúč.
-- **API URL** je adresa služby. Ponechajte to na predvolenom nastavení, pokiaľ vám nebola poskytnutá iná.
-- **Použiť Transrewrt Proxy** smeruje požiadavky cez proxy službu namiesto priameho prístupu k OpenRouter.
-- **Kľúčový seed** sa zobrazí, keď je povolená možnosť proxy.
-- **Testovať konfiguráciu API** skontroluje, či aktuálne nastavenie funguje.
+API kľúče sú nastavené prostredníctvom systémových alebo Dockerových premenných prostredia – nezadávajú sa do webovej aplikácie. Táto stránka ukazuje, pre ktorých poskytovateľov je kľúč nakonfigurovaný a umožňuje otestovať každého kliknutím na tlačidlo **`Test`**.
 
-Pre podrobné kroky na získanie vášho API kľúča, pozrite [**Tabuľa** > **Všetky hovory**](#how-to-get-an-api-key-desktop-app) vyššie.
+<br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Ak si nie ste istí, čo znamená **API URL**, **Použiť Transrewrt Proxy** alebo **Kľúčový seed**, ponechajte ich bez zmeny a použite predvolené nastavenie OpenRouter. Viac informácií o proxy je dostupných v [Transrewrt Proxy repozitár](https://github.com/wsj-br/transrewrt-proxy).
+> Ak chcete zmeniť API kľúč, aktualizujte premennú prostredia vo vašom systéme alebo v konfigurácii Docker a reštartujte server alebo kontajner.
 
-<br />
+<br/>
+
+**Desktopová aplikácia**
+
+Použite **Nastavenie API** na uloženie API kľúčov pre každého poskytovateľa, ktorého používate. Pre Ollamu namiesto API kľúča zadajte **základnú URL**.
+
+<br/>
+
+> 💡 **Tip** <br/>
+> Ak nechcete používať API kľúč alebo platiť za využitie, môžete si [stiahnuť Ollamu](https://ollama.com) a bežne lokálne modely zadarmo. Prípadne môžete vytvoriť bezplatný účet OpenRouter (bez platobnej karty) na používanie ich bezplatných modelov.
+
+- Pridajte len poskytovateľov, ktorých potrebujete. V časti **Nastavenia** > **Modely** každé id modelu začína na poskytovateľa (napr. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Ak chcete pridať API kľúč, napíšte hodnotu do textového poľa a kliknite na **`Uložiť`**. Na nahradenie existujúceho kľúča kliknite **`Upraviť`**. Na overenie, či kľúč funguje, kliknite na **`Test`**.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> Aktuálnu hodnotu API kľúča nemôžete zobraziť – môžete ho len nahradiť pomocou tlačidla **`Upraviť`**.
+> API kľúče sú v konfiguračnom súbore uložené zašifrované.
+
+<br/>
+
+Podrobný postup získania OpenRouter kľúča nájdete v časti [Ako získať API kľúč](#how-to-get-an-api-key-desktop-app) vyššie.
+
+
+
+<br/>
 
 <a id="about"></a>
+### O aplikácii
 
-### O programe
-
-Karta **O programe** zobrazuje:
+Karta **O aplikácii** zobrazuje:
 
 - názov aplikácie
 - číslo verzie
-- dátum zostavy
+- dátum zostavenia
 - odkaz na repozitár projektu
 
-<br /><br />
+<br/><br/>
 
 <a id="common-issues"></a>
-## Čo robiť, keď niečo nefunguje
+## Bežné problémy
 
-Ak niečo nefunguje podľa očakávania, skontrolujte najprv tieto body.
+Ak niečo nefunguje očakávaným spôsobom, skontrolujte najskôr nasledujúce body.
 
-<br />
+<br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Aplikácia neprekladá, prepíše ani neprevádza text
+### Aplikácia neprekladá, neprepisuje alebo netransformuje text
 
-Skontrolujte, že:
+Skontrolujte, či:
 
-- v paneli nástrojov ste vybrali model
-- v [**Nastavenia** > **Modely**](#models) je uvedený aspoň jeden model
-- funguje vaše nastavenie API
+- ste vybrali model v paneli nástrojov
+- je aspoň jeden model uvedený v časti [**Nastavenia** > **Modely**](#models)
+- je vaše nastavenie API funkčné
 
 Ak používate desktopovú aplikáciu:
 
-1. Otvorte [**Nastavenia** > **Konfigurácia API**](#api-config).
-2. Skontrolujte, či je uložený váš kľúč API.
-3. Kliknite na **Otestovať konfiguráciu API**.
+1. Otvorte [**Nastavenia** > **Nastavenie API**](#api-config).
+2. Skontrolujte, či je uložený aspoň jeden API kľúč.
+3. Kliknite na **Test** vedľa poskytovateľa, aby ste potvrdili, že kľúč funguje.
 
-<br />
+<br/>
 
 <a id="the-model-list-is-empty"></a>
 ### Zoznam modelov je prázdny
 
 Otvorte [**Nastavenia** > **Modely**](#models) a kliknite na **Obnoviť**.
 
-Ak je to potrebné:
+Ak je potrebné:
 
 - vyhľadajte model
-- zapnite **Iba bezplatné**
-- pridajte jeden alebo viac modelov do **Vybraných modelov**
+- zapnite **Len zadarmo**
+- pridajte jeden alebo viac modelov do **Vybrané modely**
 
-<br />
+<br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Výsledok je príliš pomalý alebo drahý
 
-Vyskúšajte jednu alebo viac z týchto možností:
+Skúste jeden alebo viac z nasledujúcich krokov:
 
 - vyberte iný model
 - použite kratší vstup
-- vypnite **Preklad v reálnom čase (počas písania)** v [**Nastavenia** > **Všeobecné nastavenia**](#general-settings)
-- použite bezplatné modely pre jednoduché úlohy (pozri [Modely](#models))
+- vypnite **Preklad v reálnom čase (počas písania)** v časti [**Nastavenia** > **Všeobecné nastavenia**](#general-settings)
+- na jednoduché úlohy použite modely zadarmo (pozri [Modely](#models))
 
-<br />
+<br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
-### Rozhranie je v zlom jazyku
+### Rozhranie je v nesprávnom jazyku
 
-Kliknite na ikonu glóbu v [paneli nástrojov](#toolbar) a vyberte váš uprednostňovaný **Jazyk rozhrania**.
+Kliknite na ikonu gule v [paneli nástrojov](#toolbar) a vyberte si požadovaný **Jazyk rozhrania**.
 
-<br />
+<br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Text je príliš malý alebo ťažko čitateľný
 
 Otvorte [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) a zmeňte:
 
-- **Rodina písiem**
+- **Rodinu písma**
 - **Veľkosť**
 
-<br />
+<br/>
+
+<a id="dashboard-charts-are-empty"></a>
+### Grafy na nástenke sú prázdne
+
+To je normálne, ak:
+
+- používate len **modely zadarmo** (grafy nákladov budú prázdne)
+- zvolený **časový filter** nezahŕňa obdobie, kedy boli požiadavky vykonané – skúste **Všetko** na kontrolu
+
+Ak grafy zostanú prázdne aj po výbere **Všetko**, skontrolujte, či sa volania zobrazujú v záložke [**História**](#history) alebo v karte **Všetky volania**.
+
+<br/>
+
+<a id="cost-shows-not-available-or-seems-wrong"></a>
+
+### Náklady ukazujú „nedostupné“ alebo sú nesprávne
+
+Keď používate modely cez **OpenRouter**, aplikácia zobrazuje skutočné náklady hlásené OpenRouterom.
+
+Pre **ostatných poskytovateľov** (OpenAI priamo, Anthropic priamo atď.) sú náklady odhadované z cenových údajov zverejnených OpenRouterom. Ak sa pre model nenájde zhoda v cenách, náklady budú zobrazené ako **nedostupné** a nebudú pripočítané do bežiaceho súčtu.
+
+<br/>
+
+<a id="total-cost-does-not-match-my-provider-bill"></a>
+### Celkové náklady sa nezhodujú s faktúrou poskytovateľa
+
+Všetky údaje o nákladoch v aplikácii sú **iba odhadmi na orientáciu**, nie oficiálnymi fakturačnými vyhláseniami.
+
+Ak chcete, aby celková suma lepšie zodpovedala vašim skutočným výdavkom na OpenRouter, otvorte [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking) a kliknite na **Synchronizovať s využitím API kľúča**.
+
+<br/>
+
+<a id="the-history-page-is-missing-from-the-sidebar"></a>
+### Stránka História chýba v bočnom paneli
+
+Možno je vypnutá voľba **Uchovávať históriu vykonaní**. Otvorte [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) a zapnite ju. Upozorňujeme, že zapnutie tejto voľby neobnoví už odstránené údaje z histórie.
+
+<br/>
+
+<a id="web-app-session-expired"></a>
+### Webová aplikácia: nepredvídateľne presmerovaný na prihlasovaciu stránku
+
+Vaša relácia mohla vypršať. Prihláste sa znova. Ak sa to deje často, skontrolujte nastavenia servera pre dobu trvania relácie.
+
+<br/>
+
+<a id="dashboard-shows-no-data-for-other-users"></a>
+### Informačný panel nezobrazuje údaje o iných používateľoch (webová verzia)
+
+Iba **administrátori** môžu prostredníctvom filtra **Používateľ** zobraziť údaje všetkých používateľov. Bežní používatelia vidia iba svoju vlastnú aktivitu, ako je to navrhnuté.
+
+<br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Zmenil som výzvu a stratím úpravy
+### Zmenil som výzvu a stratil som úpravy
 
-Pri úprave výzvy vždy kliknite na **Uložiť** pred kliknutím na **Späť na Spustenie**.
+Pri úprave výzvy vždy kliknite na **Uložiť**, predtým ako kliknete na **Späť na spustenie**.
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-tips"></a>
 ## Rýchle tipy
 
-- Začnite s [**Prekladom**](#translate), aby ste overili, že vaše nastavenie funguje, než prejdete k [**Prepisu**](#rewrite) alebo [**Transformácii**](#transform).
-- Použite [**Prepis**](#rewrite) na každodenné vylepšenia formulácie.
-- Použite [**Transformáciu**](#transform), keď potrebujete opakovateľný workflow pre konkrétnu úlohu.
-- Použite [**Tabuľu**](#dashboard), ak chcete sledovať využitie a náklady.
-- Pravidelne exportujte výzvy, ak vytvárate knižnicu výziev, ktorú chcete bezpečne uchovávať (pozri [Transformovať výzvy](#transform-prompts)).
+- Začnite s [**Prekladom**](#translate), aby ste sa uistili, že vaša konfigurácia funguje, než prejdete k [**Preformulovaniu**](#rewrite) alebo [**Transformácii**](#transform).
+- Používajte [**Preformulovanie**](#rewrite) na každodenné zlepšovanie textu.
+- Používajte [**Transformáciu**](#transform), keď potrebujete opakovateľný pracovný postup pre konkrétnu úlohu.
+- Používajte [**Informačný panel**](#dashboard), ak chcete sledovať využitie a náklady.
+- Používajte [**Históriu**](#history), aby ste mohli prehliadnuť minulé operácie vrátane úplného vstupného a výstupného textu.
+- Pravidelne exportujte výzvy, ak vytvárate knižnicu výziev, ktorú chcete uchovať v bezpečí (pozri [Transformácia výziev](#transform-prompts)) alebo ak ich chcete zdieľať s inými.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
-## Vylúčenie zodpovednosti
+## Zrieknutie sa zodpovednosti
 
-Názvy produktov a ikony patria ich príslušným vlastníkom a sú použité len na účely identifikácie. Tento softvér nie je spojený s ani schválený žadnou z uvedených značiek.
+Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa iba na identifikačné účely. Tento softvér nie je s žiadnou z zmienených značiek spojený alebo od nich schválený.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Licencia
 
-Autorské práva © 2026 Waldemar Scudeller Jr.
+Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](LICENSE)

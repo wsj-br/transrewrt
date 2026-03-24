@@ -80,8 +80,8 @@ const useStyles = makeStyles({
     width: "100%",
     gap: 0,
     overflow: "hidden",
-    paddingLeft: "12px",
-    paddingRight: "12px",
+    paddingInlineStart: "12px",
+    paddingInlineEnd: "12px",
     boxSizing: "border-box",
   },
   tabsHeaderScroll: {
@@ -442,7 +442,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             disabled={!tabScroll.canScrollLeft}
             aria-label={t("Previous tabs")}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} className="rtl-icon-mirror" />
           </button>
         )}
         <div
@@ -540,7 +540,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             disabled={!tabScroll.canScrollRight}
             aria-label={t("Next tabs")}
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={20} className="rtl-icon-mirror" />
           </button>
         )}
       </div>

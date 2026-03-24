@@ -1,13 +1,16 @@
 # Transrewrt — Development Guide
 
-Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker).
+Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For **architecture** (Electron vs web, **multi-llm-ts** / **`/api/llm/*`**, config and SQLite **`user_preferences`**, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
 
-## Table of Contents
+---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents** 
 
-
-
-
+- [Prerequisites](#prerequisites)
+  - [Windows 11](#windows-11)
+  - [Linux (Debian-based: Ubuntu, Debian, Mint)](#linux-debian-based-ubuntu-debian-mint)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
 - [Build](#build)
@@ -24,10 +27,17 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Web (browser, local server)](#web-browser-local-server)
   - [Docker (web in container)](#docker-web-in-container)
 - [Useful Commands Summary](#useful-commands-summary)
+  - [Develop, build, and run](#develop-build-and-run)
+  - [Code quality](#code-quality)
+  - [UI translations (i18n)](#ui-translations-i18n-1)
+  - [Data, assets, and docs scripts](#data-assets-and-docs-scripts)
+  - [Docker and deploy](#docker-and-deploy)
+  - [Toolchain](#toolchain)
 - [Troubleshooting](#troubleshooting)
+- [Related documentation](#related-documentation)
 - [Key Configuration Files](#key-configuration-files)
 
-
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -121,14 +131,15 @@ On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en.json`). Locale files (pt-BR, de, fr, es) live in `src/renderer/locales/`. To update or add UI strings:
 
 
-| Command                   | Purpose                                                                                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                 |
+| Command                   | Purpose                                                                                                                                                |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                   |
 | `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
-| `pnpm run i18n:sync`      | Run extract then translate                                                                                                                           |
+| `pnpm run i18n:sync`      | Run extract then translate                                                                                                                             |
 
+The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), `scripts/translate-docs.js` (`pnpm translate-docs`), and `scripts/generate-test-data.js`. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
 
-To **add a new UI language** (e.g. zh-CN or ar): (1) add a loader in `src/renderer/i18n.js`, (2) add the option in Settings → General (`SettingsGeneralTab.js`), (3) add the language to `LANGUAGES` in `scripts/generate-translations.js`, (4) run `i18n:extract` and `i18n:translate`. RTL languages (ar, he, fa, ur, yi) get `dir="rtl"` on the document automatically. Full detail: [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+To **add a new UI language** (e.g. zh-CN or ar): (1) add an entry to `src/renderer/locales/ui-languages.json` (dynamic locale loaders in `src/renderer/i18n.js` are built from this list), (2) run `pnpm run i18n:extract` then `pnpm run i18n:translate` (or `i18n:sync`) so `strings.json` and `locales/<code>.json` are created/updated. RTL script languages listed in `RTL_LANGS` in `i18n.js` get `dir="rtl"` on the document and on Fluent’s root provider (see [i18n.md](i18n.md)). Full detail: [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
 
 ---
 
@@ -146,7 +157,7 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open [http://localhost:5000](http://localhost:5000)
 
-Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in Settings → Transform.
+Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
 ---
 
@@ -160,7 +171,7 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 ### Web (Docker)
 
-- **Local:** `docker compose up -d` or `pnpm docker:up`. Uses volume `transrewrt-data` at `/app/data` for config persistence. Open [http://localhost:5000](http://localhost:5000).
+- **Local:** `docker compose up -d` or `pnpm docker:up`. Volume `transrewrt-data` is mounted at **`/app/data`**: server **`config.json`**, SQLite **`transrewrt.db`** (users, sessions, **`user_preferences`**, calls, history text, custom prompts), and related files — see [SYSTEM-OVERVIEW.md § Config and State](SYSTEM-OVERVIEW.md#config-and-state). Open [http://localhost:5000](http://localhost:5000).
 - **Production:** `pnpm docker:deploy` runs [scripts/docker-deploy.sh](../scripts/docker-deploy.sh) (build, transfer to host, create volume, run container).
 
 ### Raspberry Pi (arm64)
@@ -217,7 +228,7 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 | Phase              | Command                                                                            | Notes                   |
 | ------------------ | ---------------------------------------------------------------------------------- | ----------------------- |
 | **Build image**    | `docker build -t transrewrt-web .`                                                 | Multi-stage build       |
-| **Run**            | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Config in volume        |
+| **Run**            | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Data dir: `config.json` + `transrewrt.db` (see SYSTEM-OVERVIEW) |
 | **Run (compose)**  | `docker compose up --build -d` or `pnpm docker:up`                                 | Uses docker-compose.yml |
 | **Stop (compose)** | `docker compose down` or `pnpm docker:down`                                        | Stop services           |
 | **Test**           | Open [http://localhost:5000](http://localhost:5000)                                | Config at `/api/config` |
@@ -227,27 +238,69 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 
 ## Useful Commands Summary
 
+### Develop, build, and run
 
-| Command                                                                       | Purpose                                                  |
-| ----------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `pnpm install`                                                                | Install dependencies                                     |
-| `pnpm dev`                                                                    | Development with hot reload (Electron)                   |
-| `pnpm dev:web`                                                                | Development with hot reload (Web; API proxied to server) |
-| `pnpm build` / `pnpm build-renderer`                                          | Production build of React app                            |
-| `pnpm start`                                                                  | Run Electron (after build)                               |
-| `pnpm start-x11`                                                              | Run Electron with X11 (Linux)                            |
-| `pnpm serve`                                                                  | Build then run web server (port 5000)                    |
-| `pnpm start:server`                                                           | Run web server only (e.g. after build or in Docker)      |
-| `pnpm package`                                                                | Build and create Electron installer                      |
-| `pnpm run i18n:extract`                                                       | Extract UI strings to `locales/strings.json`             |
-| `pnpm run i18n:translate`                                                     | Translate missing strings via OpenRouter (set `OPENROUTER_KEY`) |
-| `pnpm run i18n:sync`                                                          | Extract then translate                                   |
-| `docker build -t transrewrt-web .`                                            | Build Docker image                                       |
-| `pnpm docker:up`                                                              | Build and run web app in Docker (compose)                |
-| `pnpm docker:down`                                                            | Stop Docker compose services                             |
-| `pnpm docker:clean`                                                           | Remove Docker image and volumes                          |
-| `pnpm docker:deploy`                                                          | Deploy to production (runs deploy script)                |
-| `.\scripts\upgrade-tools.ps1` (Windows) / `./scripts/upgrade-tools.sh` (Bash) | Upgrade Node (LTS via nvm) and global tools              |
+| Command                              | Purpose                                                                                                                                         |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pnpm install`                       | Install dependencies (runs `postinstall` / Electron native rebuild)                                                                             |
+| `pnpm dev`                           | Electron dev: webpack on **:3030**, hot reload, native rebuild for Electron                                                                     |
+| `pnpm dev:web`                       | Web dev: webpack on **:5000**, API server on **:3030** (proxied as `/api`)                                                                      |
+| `pnpm build` / `pnpm build-renderer` | Production webpack build → `dist/`                                                                                                              |
+| `pnpm start`                         | Run Electron against current `dist/` (run `build-renderer` first if needed)                                                                     |
+| `pnpm start-x11`                     | Electron on Linux with X11 flags (if Wayland causes issues)                                                                                     |
+| `pnpm serve`                         | `build-renderer` then `start:server` (web smoke test, **:5000**)                                                                                |
+| `pnpm start:server`                  | Web server only (serves `dist/`; use when build already exists)                                                                                 |
+| `pnpm start:server:rebuild`          | `postinstall` (Electron rebuild) then `start:server` — use if native addons were last built for Electron but you need the server on system Node |
+| `pnpm package`                       | Production build + `electron-builder` → installer in `release/`                                                                                 |
+
+### Code quality
+
+| Command         | Purpose                |
+|-----------------|------------------------|
+| `pnpm lint`     | Run ESLint on the repo |
+| `pnpm lint:fix` | ESLint with `--fix`    |
+
+### UI translations (i18n)
+
+| Command                   | Purpose                                                              |
+|---------------------------|----------------------------------------------------------------------|
+| `pnpm run i18n:extract`   | Scan renderer → `src/renderer/locales/strings.json`                  |
+| `pnpm run i18n:translate` | Fill missing locales via OpenRouter (`OPENROUTER_KEY`); see `--help` |
+| `pnpm run i18n:sync`      | `i18n:extract` then `i18n:translate`                                 |
+
+Shared **translation script** model list (defaults + fallbacks): [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) — not app config; per-run override via `--model` where the script supports it.
+
+### Data, assets, and docs scripts
+
+| Command                   | Purpose                                                                              |
+|---------------------------|--------------------------------------------------------------------------------------|
+| `pnpm generate-test-data` | Seed SQLite with sample API/history rows (cost dashboard / dev)                      |
+| `pnpm take-screenshots`   | Puppeteer capture of UI shots (needs app reachable; see script/env vars)             |
+| `pnpm generate-banner`    | Writes `images/transrewrt_banner.svg` and `.png`                                     |
+| `pnpm translate-docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_KEY`) |
+| `pnpm reset-web-password` | Web multi-user: set password in SQLite (`[username] <password>`; default `admin`; `CONFIG_PATH` or `data/config.json`) |
+| `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_KEY` or `node scripts/check-api-key.js --key …`)                      |
+| `pnpm update-version`     | Propagate `package.json` `version` into README badge and other references (run after you bump the version manually)   |
+
+### Docker and deploy
+
+| Command                            | Purpose                                                                     |
+|------------------------------------|-----------------------------------------------------------------------------|
+| `docker build -t transrewrt-web .` | Build production web image                                                  |
+| `pnpm docker:up`                   | `docker compose up --build -d`                                              |
+| `pnpm docker:down`                 | Stop compose stack                                                          |
+| `pnpm docker:clean`                | Remove image/volumes (runs `scripts/clean-docker.sh`; Bash)                 |
+| `pnpm docker:devel`                | Build image tagged `wsj-br/transrewrt:devel`                                |
+| `pnpm docker:logs`                 | Tail logs from container `transrewrt-web-1` (default compose name)          |
+| `pnpm docker:shell`                | Shell into `transrewrt-web-1`                                               |
+| `pnpm docker:deploy`               | Production deploy ([scripts/docker-deploy.sh](../scripts/docker-deploy.sh)) |
+
+### Toolchain
+
+
+| Command                                                                       | Purpose                                                   |
+|-------------------------------------------------------------------------------|-----------------------------------------------------------|
+| `.\scripts\upgrade-tools.ps1` (Windows) / `./scripts/upgrade-tools.sh` (Unix) | Upgrade Node (nvm LTS) and global tools (pnpm, ncu, etc.) |
 
 
 ---
@@ -260,28 +313,49 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 - **Symlink errors on Windows:** Enable Developer Mode (Settings → For developers) or run the terminal as Administrator.
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
-For more detail (including Node version alignment and Windows-specific issues), see [DEVELOPMENT.md](DEVELOPMENT.md) §6 and [troubleshooting-node-version.md](troubleshooting-node-version.md).
+For more detail (including Node version alignment and Windows-specific issues), see [troubleshooting-node-version.md](troubleshooting-node-version.md).
+
+---
+
+## Related documentation
+
+| Document                                                                                                                                  | Contents                                                                                                                                                                                                                                                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**                                                                                              | Product and **runtime architecture** (Electron IPC **`llm:*`** vs web **`/api/llm/stream`** SSE), **multi-llm-ts** and supported providers, **config/state** (desktop `config.json` + encryption; web global config vs **`user_preferences`** / **`transrewrt.db`**), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules. |
+| **[i18n.md](i18n.md)**                                                                                                                    | UI strings: extract/translate workflow, key-as-default, RTL, `interpolateTemplate`.                                                                                                                                                                                                                                                                       |
+| [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md) | Extended i18n plan (historical / detail).                                                                                                                                                                                                                                                                                                                 |
 
 ---
 
 ## Key Configuration Files
 
 
-| File                                                                                        | Description                                                    |
-| ------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [package.json](../package.json)                                                             | Scripts, dependencies, electron-builder config                 |
-| [webpack.config.js](../webpack.config.js)                                                   | React build, output to `dist/`                                 |
-| [src/main/main.js](../src/main/main.js)                                                     | Electron main process entry                                    |
-| [src/main/preload.js](../src/main/preload.js)                                               | Preload script exposing APIs to renderer                       |
-| [src/main/appDb.js](../src/main/appDb.js)                                                   | Electron app DB (api_calls, custom_prompts); IPC handlers      |
-| [src/server/index.js](../src/server/index.js)                                               | Express server (web/Docker)                                    |
-| [src/shared/db/appSchema.js](../src/shared/db/appSchema.js)                                 | Shared DB schema and SQL (used by main + server)               |
-| [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build                                       |
-| [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                      |
-| [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")       |
-| [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                |
-| [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract) |
-| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_KEY`)  |
+| File                                                                                        | Description                                                                                                           |
+|---------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| [package.json](../package.json)                                                             | Scripts, dependencies, electron-builder config                                                                        |
+| [webpack.config.js](../webpack.config.js)                                                   | React build, output to `dist/`                                                                                        |
+| [src/main/main.js](../src/main/main.js)                                                     | Electron main process entry                                                                                           |
+| [src/main/preload.js](../src/main/preload.js)                                               | Preload script exposing APIs to renderer                                                                              |
+| [src/main/appDb.js](../src/main/appDb.js)                                                   | Electron app DB (api_calls, action_content, custom_prompts); IPC                                                      |
+| [src/server/index.js](../src/server/index.js)                                               | Express server (web/Docker): static app, auth, **`/api/config`**, **`/api/llm/*`**, calls, users, prompts             |
+| [src/shared/llm/index.js](../src/shared/llm/index.js)                                       | **multi-llm-ts** bridge, provider key map, streaming; used by **main** and **server**                                  |
+| [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js)                                         | Electron **`llm:stream`** / **`llm:abort`** / **`llm:models`** IPC                                                    |
+| [src/server/routes/apiLlm.js](../src/server/routes/apiLlm.js)                               | Web **`POST /api/llm/stream`** (SSE) and related LLM routes                                                            |
+| [src/server/db/appDb.js](../src/server/db/appDb.js)                                         | Web SQLite init, **`user_preferences`**, migrations, session cleanup                                                   |
+| [src/server/routes/config.js](../src/server/routes/config.js)                               | **`GET/POST /api/config`**: merge **`user_preferences`** + server-global keys (admin rules)                            |
+| [src/server/utils/webConfigKeys.js](../src/server/utils/webConfigKeys.js)                  | Which keys stay in global **`config.json`** vs per-user prefs                                                          |
+| [src/main/encryption.js](../src/main/encryption.js)                                         | Electron: **AES-256-CBC** for provider secrets at rest; **`transrewrt.key`** beside `config.json`                       |
+| [src/shared/db/appSchema.js](../src/shared/db/appSchema.js)                                 | Shared DB schema and SQL (used by main + server)                                                                      |
+| [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                        |
+| [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                                   |
+| [src/renderer/components/SettingsPanel.js](../src/renderer/components/SettingsPanel.js)     | Settings tabs (General, Models, Languages, Cost, Transform, Users, API, About)                                        |
+| [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build                                                                                              |
+| [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                             |
+| [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                              |
+| [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
+| [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
+| [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
+| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_KEY`)                                                |
 
 
-Web/Docker architecture and server API are covered in this document (Deploy, Docker, Key Configuration Files). For i18n (key-as-default, adding languages, RTL), see [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** and [Related documentation](#related-documentation).

@@ -1,8 +1,8 @@
 ---
-translated_at: "2026-03-15T22:06:31.760Z"
-source_hash: "b0c865b5c3a974ee09fb533d8ca52413ddab37aacda108239395719b8c2588b2"
-source_mtime: 1773611628537.9895
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T01:21:29.305Z"
+source_hash: "718acd12f14755cd75ebf7d09b86d9a1df37ebe1898710080fa8e80c1221d58b"
+source_mtime: 1774311390366.3484
+model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
   <img src="../images/transrewrt_logo.svg" alt="Logo Transrewrt" width="120" />
@@ -11,29 +11,35 @@ model: "stepfun/step-3.5-flash:free"
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.11-blue" alt="Verze"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="Verze"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Licence: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platforma">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-podporovaný textový nástroj: překládejte mezi jazyky, přepisujte v různých stylech a transformujte pomocí vlastních promptů – vše prostřednictvím [OpenRouter](https://openrouter.ai). Funguje jako desktopová aplikace (Electron) nebo jako self-hostovaná webová aplikace (Docker).
+Nástroj na zpracování textu s využitím umělé inteligence: překládejte mezi jazyky, přepisujte do různých stylů a transformujte pomocí vlastních pokynů – s podporou více AI poskytovatelů (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokální Ollama). Funguje jako desktopová aplikace (Electron) nebo webová aplikace pro vlastní hostování (Docker).
 
-- **Překlady** – mezi desítkami jazyků, s automatickým rozpoznáním zdrojového jazyka
-- **Přepis** – oprava gramatiky, vylepšení srozumitelnosti, formální/neformální, zkrácení, rozšíření, technické
-- **Transformace** – vlastní AI prompty; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
-- **Modely a náklady** – výběr libovolného modelu OpenRouter; přehled nákladů s SQLite logem, souhrny podle modelu/operace/dne
-- **UI** – internationalizace (pt-BR, de, fr, es, RTL), motivy, písma, klávesové zkratky; bezpečný webový režim (API klíč pouze na serveru)
-- **Desktop** – Electron aplikace pro Windows a Linux
-- **Self-hostování** – Docker image pro amd64 & arm64 (připraveno pro Raspberry Pi)
+- **Překlad** — mezi desítkami jazyků, včetně automatické detekce výchozího jazyka
+- **Přepisování** — oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkracování, rozšiřování, technický styl
+- **Transformace** — vlastní pokyny pro AI; vytvářejte a spravujte pokyny, volitelný cílový jazyk pro každý pokyn
+- **Historie** — kompletní záznam provedených operací s vstupním a výstupním textem, filtrem a možností exportu
+- **Modely a náklady** — vybírejte modely z jakéhokoli nakonfigurovaného poskytovatele; přehled nákladů s protokolem v SQLite, shrnutí podle modelu/operace/dne
+- **Uživatelské rozhraní** — vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma,...
+- **Webový režim** — podpora více uživatelů s rolí správce; klíče API zůstávají na straně serveru a nejsou nikdy vystaveny prohlížeči
+- **Desktop** — desktopová aplikace pro Windows a Linux
+- **Vlastní hostování** — image pro Docker pro architekturu amd64 a arm64 (vhodné i pro Raspberry Pi)
 
-Po instalaci si projděte **[Uživatelská příručka](../USER-GUIDE.md)** pro úplný průvodce všemi funkcemi.
+Po instalaci si přečtěte **[Průvodce uživatele](USER-GUIDE.cs.md)**, který podrobně popisuje všechny funkce.
 
-<small>**Přečtěte si v jiných jazycích:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Přečtěte si v jiných jazycích:** [Angličtina (UK)](README.cs.md) · [Portugalština (BR)](README.pt-BR.md) · [Arabština](README.ar.md) · [Bengálština](README.bn.md) · [Katalánština](README.ca.md) · [Zjednodušená čínština](README.zh-CN.md) · [Tradiční čínština](README.zh-TW.md) · [Chorvatština](README.hr.md) · [Čeština](README.cs.md) · [Nizozemština](README.nl.md) · [Angličtina (US)](README.en-US.md) · [Filipínština](README.tl.md) · [Francouzština](README.fr.md) · [Němčina](README.de.md) · [Řečtina](README.el.md) · [Hindština](README.hi.md) · [Maďarština](README.hu.md) · [Italština](README.it.md) · [Japonština](README.ja.md) · [Jávština](README.jv.md) · [Korejština](README.ko.md) · [Malajština](README.ms.md) · [Perština](README.fa.md) · [Polština](README.pl.md) · [Portugalština (PT)](README.pt.md) · [Punjabština](README.pa.md) · [Rumunština](README.ro.md) · [Ruština](README.ru.md) · [Slovenština](README.sk.md) · [Španělština](README.es.md) · [Svahilština](README.sw.md) · [Švédština](README.sv.md) · [Telugština](README.te.md) · [Thajština](README.th.md) · [Turečtina](README.tr.md) · [Ukrajinština](README.uk.md) · [Vietnamština](README.vi.md)</small>
+
+<br/>
+
+**Poznámka k překladům rozhraní a dokumentace:** Všechny jazykové verze rozhraní s výjimkou angličtiny (UK) byly přeloženy s využitím modelů umělé inteligence. Proto mohou být formulace nepřesné nebo obsahovat chyby.
 
 <a id="screenshots"></a>
-## Screenshoty
+## Snímky obrazovky
 
 **Výběr jazyka**
 
@@ -43,21 +49,26 @@ Po instalaci si projděte **[Uživatelská příručka](../USER-GUIDE.md)** pro 
 
 ![Překlad](../images/screenshots/cs/translate.png)
 
-**Transformace - editor promptů**
+**Transformace – editor pokynů**
 
-![Transformace - editor promptů](../images/screenshots/cs/transform-prompt-edit.png)
+![Transformace – editor pokynů](../images/screenshots/cs/transform-prompt-edit.png)
 
 **Řídicí panel**
 
 ![Řídicí panel nákladů](../images/screenshots/cs/dashboard-summary.png)
 
-**Nastavení - výběr modelu**
+**Historie**
 
-![Nastavení - výběr modelu](../images/screenshots/cs/settings-models.png)
+![Historie](../images/screenshots/cs/history.png)
 
-<br /><br />
+**Nastavení – výběr modelu**
+
+![Nastavení – výběr modelu](../images/screenshots/cs/settings-models.png)
+
+<br/><br/>
 
 <a id="table-of-contents"></a>
+
 ## Obsah
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -71,73 +82,74 @@ Po instalaci si projděte **[Uživatelská příručka](../USER-GUIDE.md)** pro 
 - [Získání OpenRouter API klíče](#getting-an-openrouter-api-key)
 - [Konfigurace a prostředí](#configuration-and-environment)
 - [Vývoj a architektura](#development-and-architecture)
-- [Vydání a tagy](#releases-and-tags)
+- [Verze a značky](#releases-and-tags)
 - [Přispívání](#contributing)
 - [Právní upozornění](#disclaimer)
 - [Licence](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-start"></a>
-
 ## Rychlý start
 
-**Docker (doporučeno pro vlastní hostování)**
+**Docker (doporučeno pro samostatné hostování)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Nahraďte `sk-or-your-key` svým [API klíčem OpenRouter](https://openrouter.ai/keys). Otevřete [http://localhost:5000](http://localhost:5000) a změňte výchozí heslo správce, než službu zpřístupníte.
+Nahraďte `sk-or-your-key` svým [OpenRouter API klíčem](https://openrouter.ai/keys) (nebo nastavte klíč jiného poskytovatele; viz [Konfigurace](#configuration-and-environment)). Otevřete [http://localhost:5000](http://localhost:5000) a změňte výchozí admin heslo před tím, než službu zpřístupníte.
 
-<br />
+<br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> V Dockeru je API klíč OpenRouter nastaven pouze pomocí proměnné prostředí `API_KEY` (ne v webovém rozhraní). Na ploše (Electron) jej vložíte v **Nastavení → API**.
+> V Dockeru se přihlašovací údaje k LLM nastavují prostřednictvím proměnných prostředí, např. `OPENROUTER_KEY`, `OPENAI_KEY`, … (nikoli přes webové rozhraní). Na ploše (Electron) nastavujete klíče v **Nastavení → API**.
 
-<br />
+<br/>
 
 **Windows**
 
-Stáhněte si nejnovější `Transrewrt Setup x.y.z.exe` z [Releases](https://github.com/wsj-br/transrewrt/releases), spusťte instalátor a poté aplikaci spusťte z nabídky Start nebo z ikony na ploše. Zadejte svůj API klíč OpenRouter v **Nastavení → API**.
+Stáhněte si nejnovější `Transrewrt Setup x.y.z.exe` z části [Verze](https://github.com/wsj-br/transrewrt/releases), spusťte instalátor a poté spusťte aplikaci z nabídky Start nebo z ikony na pracovní ploše. Zadejte své klíče API v **Nastavení → API**. Musíte nakonfigurovat alespoň jednoho poskytovatele; OpenRouter je běžná volba pro bezplatné modely.
 
-<br />
+<br/>
 
 **Linux**
 
-Stáhněte si `.AppImage` soubor z [Releases](https://github.com/wsj-br/transrewrt/releases), poté:
+Stáhněte soubor `.AppImage` z [verzí](https://github.com/wsj-br/transrewrt/releases), poté:
 
 ```bash
 chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
 ```
 
-Zadejte svůj API klíč OpenRouter v **Nastavení → API**. Na Debianu/Ubuntu může být potřeba nejprve nainstalovat další závislosti:
+Zadejte své API klíče v **Nastavení → API**. Je třeba nakonfigurovat alespoň jednoho poskytovatele; OpenRouter je běžný poskytovatel bezplatných modelů.
+
+V Debianu/Ubuntu možná budete muset nejprve nainstalovat další závislosti:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-Podrobnosti naleznete v [Instalace → Linux](#linux-electron).
+Podrobnosti naleznete v sekci [Instalace → Linux](#linux-electron).
 
-<br />
+<br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> macOS aktuálně není podporován. Transrewrt je dostupný pro Windows, Linux a Docker.
+> macOS není aktuálně podporován. Transrewrt je dostupný pro Windows, Linux a Docker.
 
-<br />
+<br/>
 
-Jakmile je aplikace spuštěna, podívejte se na **[Uživatelská příručka](../USER-GUIDE.md)**, kde se dozvíte, jak překládat, přepisovat a transformovat text, spravovat výzvy a konfigurovat modely.
+Jakmile běží aplikace, přečtěte si **[Uživatelskou příručku](USER-GUIDE.cs.md)**, kde se dozvíte, jak překládat, přepisovat a transformovat text, spravovat výzvy (prompty) a konfigurovat modely.
 
-<br /><br />
+<br/><br/>
 
 <a id="installation"></a>
 ## Instalace
@@ -145,172 +157,170 @@ Jakmile je aplikace spuštěna, podívejte se na **[Uživatelská příručka](.
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Stáhněte si nejnovější instalátor z [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Spusťte `.exe` soubor a postupujte podle instalačního programu.
-- První spuštění: spusťte aplikaci z nabídky Start nebo z ikony na ploše. Konfigurace je uložena v `%APPDATA%\transrewrt\`.
+- Stáhněte si nejnovější instalační program z [verzí](https://github.com/wsj-br/transrewrt/releases).
+- Spusťte `.exe` a postupujte podle pokynů instalátoru.
+- Poprvé: spusťte aplikaci z nabídky Start nebo zkratky na ploše.
 
-<br />
+<br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Stáhněte si `.AppImage` soubor z [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Stáhněte si `.AppImage` ze [verzí](https://github.com/wsj-br/transrewrt/releases).
 - Spusťte: `chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage`
-- Další závislosti (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Další informace naleznete v [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- Doplňkové závislosti (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+- Další informace viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
-<br />
+<br/>
 
 <a id="docker"></a>
 ### Docker
 
-- Stáhněte image: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- API klíč OpenRouter **musí** být nastaven pomocí proměnné prostředí `API_KEY`. Předávejte jej s `-e API_KEY` (nebo přes `docker compose` / `.env`), aby nebyl klíč viditelný v seznamu procesů.
-- API klíč nelze zadat ve webovém rozhraní.
+- Stažení: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Nastavte alespoň jeden klíč poskytovatele prostřednictvím proměnné prostředí (např. `OPENROUTER_KEY` pro OpenRouter). Proměnné předejte pomocí `-e` nebo `docker compose` / `.env`, aby se tajemství nedostala do obrazu.
+- Klíče poskytovatelů **se** nezadávají přes webové rozhraní; server je čte z prostředí.
 
-Příklad - pojmenovaný svazek pro trvalost (API klíč předán prostřednictvím env, ne na příkazovém řádku):
+Příklad – pojmenovaný svazek pro trvalá data (OpenRouter klíč přes proměnnou prostředí):
 
 ```bash
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-<br />
+<br/>
 
 | Možnost   | Popis                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (mapovat s `-p 5000:5000`)                                                                       |
-| Svazek   | Připojte `/app/data` pro trvalost konfigurace a databáze                                               |
-| Proměnné prostředí | `PORT`, `CONFIG_PATH`, `API_KEY`, `API_URL`, `KEY_SEED` - viz [Konfigurace](#configuration-and-environment) |
+| Port     | `5000` (mapujte pomocí `-p 5000:5000`)                                                                  |
+| Svazek   | Připojte `/app/data` pro trvalé uložení konfigurace a databáze                                          |
+| Proměnné prostředí | `PORT`, `CONFIG_PATH`, a klíče k LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – viz [Konfigurace](#configuration-and-environment) |
 
-Pro sestavení a spuštění ze zdrojového kódu: `docker compose up --build -d` nebo `pnpm run docker:up` - viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Sestavení a spuštění ze zdrojového kódu: `docker compose up --build -d` nebo `pnpm docker:up` – viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
-## Získání API klíče OpenRouter
 
-Transrewrt používá [OpenRouter](https://openrouter.ai) pro AI modely. Pro překlad, přepis nebo transformaci textu potřebujete API klíč.
+## Získání OpenRouter API klíče
 
-1. Zaregistrujte se nebo přihlaste na [openrouter.ai](https://openrouter.ai).
-2. Otevřete stránku [Klíče](https://openrouter.ai/keys) a vytvořte nový klíč (pojmenujte jej a případně nastavte kreditní limit). Můžete používat bezplatné modely bez přidání kreditu.
-3. **Plocha (Electron):** vložte klíč v **Nastavení → API**. **Docker:** nastavte proměnnou prostředí `API_KEY` (viz [Rychlý start](#quick-start)).
+Transrewrt podporuje více poskytovatelů umělé inteligence. [OpenRouter](https://openrouter.ai) je oblíbenou volbou, protože agreguje mnoho modelů pod jeden klíč a nabízí i zdarma dostupné modely.
 
-Informace o limitech, BYOK a dalších naleznete v [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
+1. Zaregistrujte se nebo se přihlaste na [openrouter.ai](https://openrouter.ai).
+2. Otevřete stránku [Keys](https://openrouter.ai/keys) a vytvořte nový klíč (zadejte mu název a volitelně nastavte limit kreditu). Můžete používat zdarma dostupné modely i bez přidání kreditu.
+3. **Desktop (Electron):** klíče vkládejte do **Nastavení → API**. **Docker:** nastavte proměnné prostředí, například `OPENROUTER_KEY` (viz [Rychlý start](#quick-start)).
 
-<br /><br />
+Můžete také používat jiné poskytovatele (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI) nebo spouštět modely lokálně pomocí [Ollama](https://ollama.com). Úplný seznam podporovaných poskytovatelů a proměnných prostředí najdete v části [Konfigurace](#configuration-and-environment).
+
+Informace o limitech, použití vlastních klíčů (BYOK) a dalších funkcích najdete v dokumentaci [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
+
+<br/><br/>
 
 <a id="configuration-and-environment"></a>
-
 ## Konfigurace a prostředí
 
 **Umístění konfiguračních souborů**
 
-| Nasazení         | Umístění konfigurace                                   |
-| ---------------- | ----------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                            |
-| Electron (Linux)   | `~/.config/transrewrt/`                            |
-| Web / Docker       | `/app/data/config.json` (pro trvalost použijte svazek) |
+| Nasazení         | Umístění konfigurace                             |
+| ------------------ | ------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Web / Docker       | `/app/data/config.json` (použijte svazek pro trvalé uložení) |
 
-<br />
+<br/>
 
-**Proměnné prostředí** (pouze web/Docker; Electron používá místní konfigurační soubor)
+**Proměnné prostředí** (pouze webová verze/Docker; Electron používá místní konfigurační soubor)
 
-| Proměnná      | Výchozí                        | Popis                                                   |
-| ------------- | ------------------------------ | ------------------------------------------------------- |
-| `PORT`        | `5000`                         | Port, na kterém naslouchá server                        |
-| `CONFIG_PATH` | `/app/data/config.json`        | Cesta ke konfiguračnímu souboru                         |
-| `API_KEY`     | *(prázdné)*                    | OpenRouter API klíč (vyžadován pro Docker; nastavte přes env, ne UI) |
-| `API_URL`     | `https://openrouter.ai/api/v1` | Základní URL nadřazeného AI API                        |
-| `KEY_SEED`    | *(prázdné)*                    | Transrewrt proxy klíčový seed (přepíše konfiguraci, pokud je nastaven) |
+| Proměnná         | Výchozí                 | Popis |
+| ---------------- | ----------------------- | ----------- |
+| `PORT`           | `5000`                  | Port, na kterém naslouchá server |
+| `CONFIG_PATH`    | `/app/data/config.json` | Cesta ke konfiguračnímu souboru |
+| `OPENROUTER_KEY` | *(prázdné)*             | OpenRouter API klíč |
+| `OPENAI_KEY`     | *(prázdné)*             | OpenAI API klíč |
+| `ANTHROPIC_KEY`  | *(prázdné)*             | Anthropic API klíč |
+| `GOOGLE_KEY`     | *(prázdné)*             | Google Gemini API klíč |
+| `DEEPSEEK_KEY`   | *(prázdné)*             | DeepSeek API klíč |
+| `GROQ_KEY`       | *(prázdné)*             | Groq API klíč |
+| `MISTRAL_KEY`    | *(prázdné)*             | Mistral API klíč |
+| `OLLAMA_URL`     | *(prázdné)*             | Základní URL Ollama (např. `http://host.docker.internal:11434`) |
+| `XAI_KEY`        | *(prázdné)*             | xAI API klíč |
 
-<br />
+Nakonfigurujte pouze ty poskytovatele, které používáte. Identifikátory modelů jsou jmennými prostory (`openrouter/…`, `openai/…`, `ollama/…`, atd.).
 
-**Data a trvalost:** Pro Docker namontujte svazek na `/app/data`, aby `config.json` a SQLite databáze přetrvaly restart kontejneru. Bez svazku se všechna data po zastavení kontejneru ztratí.
+**Zobrazení nákladů:** OpenRouter vrací přesné fakturované náklady, pokud je to možné. Jiní poskytovatelé používají **odhad** nákladů z veřejných cenových struktur modelů OpenRouteru, pokud je dostupný OpenRouter klíč; bez něj mohou být náklady na jiné poskytovatele zobrazeny jako `0`. Odhady nejsou faktury.
 
-<br />
+<br/>
 
-**Webová autentizace:**
+**Data a trvalost:** Pro Docker připojte svazek (volume) do `/app/data`, abyste zajistili, že `config.json` a databáze SQLite přetrvaly restart kontejneru. Bez svazku se všechna data ztratí při zastavení kontejneru.
 
-- Výchozí admin: `admin` / `transrewrt26`.
-- Správa uživatelů v **Nastavení → Uživatelé**.
-- Reset hesla: `docker exec <kontejner> reset-web-password '<uživatelské_jméno>' '<nové_heslo>'`
-  (ze zdroje: `pnpm run reset-web-password -- <uživatelské_jméno> <nové_heslo>`)
+**Vývojáři:** Po stažení změn, které nahrádějí starou konfiguraci s jediným klíčem, si buďto obnovte nebo sloučte `data/config.json` s novým výchozím tvarem z `src/config-defaults/config_default.json`, pokud váš místní soubor stále používá odstraněná pole (`api_key`, `api_url`, možnosti proxy).
 
-<br />
+<br/>
 
-> ⚠️ **VAROVÁNÍ**<br/>
-> Okamžitě změňte výchozí heslo admina na každém hostiteli přístupném přes síť.
+**Webové ověřování:**
 
-<br />
+- Výchozí administrátor: `admin` / `transrewrt26`.
+- Správa uživatelů: **Nastavení → Uživatelé**.
+- Obnovení hesla: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (ze zdrojového kódu: `pnpm run reset-web-password -- <username> <new-password>`)
 
-**Transrewrt proxy (volitelné):** Můžete směrovat provoz API přes externí proxy, které používá časově založený rotující klíč. V **Nastavení → API**, povolte **Použít Transrewrt Proxy**, nastavte **Klíčový seed** a nastavte **API URL** na základní URL proxy. Podrobnosti viz [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
+<br/>
 
-Klíčové nastavení (téma, písmo, modely, jazyky atd.) jsou k dispozici v dialogu Nastavení nebo je lze přímo upravit v konfiguračním JSON. Úplný seznam a výchozí hodnoty jsou zdokumentovány v [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+> ⚠️ **UPOZORNĚNÍ**<br/>
+> Okamžitě změňte výchozí heslo administrátora na každém zařízení přístupném z sítě.
 
-<br /><br />
+<br/>
+
+Základní nastavení (písmo, modely, jazyky atd.) jsou dostupná v nastaveních aplikace.
+
+<br/><br/>
 
 <a id="development-and-architecture"></a>
 ## Vývoj a architektura
 
 - **Vývoj:** Nastavení, sestavení, testování a nasazení (Electron, Web, Docker) – viz **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektura a přehled systému:** Struktura složek, technologický stack, rozhodnutí o designu, Transrewrt proxy – viz **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Přehled architektury a systému:** Struktura složek, technologický stack, rozhodnutí o návrhu – viz **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-```mermaid
-graph TD
-    subgraph renderer["src/renderer/ (sdílená React aplikace)"]
-        T[Překlady]
-        R[Přepisování]
-        TR[Transformace]
-        D[Ovládací panel]
-        S[Nastavení]
-        T & R & TR & D & S --> core["configManager / apiService / costUtils"]
-    end
-    core -->|Electron| main["src/main/main.js"]
-    core -->|Web / Docker| server["src/server/index.js"]
-```
-
-<br /><br />
+<br/><br/>
 
 <a id="releases-and-tags"></a>
-## Vydání a tagy
 
-- **Git tagy** `v`* (např. `v1.0.10`) spouští [vydávací workflow](.github/workflows/release.yml). **GitHub Releases** připojují instalační program pro Windows (`.exe`) a Linux AppImage.
-- **Docker obrazy** jsou publikovány na `ghcr.io/wsj-br/transrewrt`. Tagy imagí odpovídají Git verzi (např. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) a navíc `latest`. Multi-arch: `linux/amd64` a `linux/arm64` (např. Raspberry Pi).
+## Vydání a štítky
 
-<br /><br />
+- **Git štítky** `v`* (například `v1.0.10`) spouštějí [pracovní postup vydání](.github/workflows/release.yml). **GitHub Releases** přidávají Windows instalační soubor (`.exe`) a Linux AppImage.
+- **Docker image** jsou publikovány do `ghcr.io/wsj-br/transrewrt`. Značky imagí odpovídají verzi Git (např. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) a navíc `latest`. Multi-arch: `linux/amd64` a `linux/arm64` (např. Raspberry Pi).
+
+<br/><br/>
 
 <a id="contributing"></a>
 ## Přispívání
 
-1. Vytvořte fork repozitáře.
-2. Vytvořte větev pro funkci: `git checkout -b feature/moje-funkce`
-3. Potvrďte své změny s jasnou zprávou.
-4. Odešlete a otevřete Pull Request proti `main`.
+1. Vytvořte kopii repozitáře.
+2. Vytvořte větev s funkcí: `git checkout -b feature/moje-funkce`
+3. Potvrďte své změny s jasným popisem.
+4. Nahrajte a otevřete Pull Request proti větvi `main`.
 
-Respektujte existující styl kódu a otestujte své změny v režimech Electron i web před odesláním. Pokyny k sestavení a testování viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Dodržujte prosím stávající styl kódu a otestujte své změny v režimu Electron i webovém před odesláním. Pokyny k sestavení a testování najdete v souboru [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
-<br />
+<br/>
 
-**Hlášení problémů:** Otevřete issue na [GitHubu](https://github.com/wsj-br/transrewrt/issues). Uveďte svoji platformu (Windows / Linux / Docker) a verzi aplikace (zobrazenou v dialogu O aplikaci nebo na stránce Releases).
+**Hlášení chyb:** Otevřete záležitost na [GitHubu](https://github.com/wsj-br/transrewrt/issues). Uveďte svou platformu (Windows / Linux / Docker) a verzi aplikace (zobrazenou v dialogu O aplikaci nebo na stránce Vydání).
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
+## Zřeknutí se odpovědnosti
 
-## Upozornění
+Názvy produktů a ikony patří příslušným vlastníkům a používají se pouze pro identifikační účely. Tento software není spjatý s žádnými zmíněnými značkami a není jimi podporován.
 
-Názvy produktů a ikony patří jejich příslušným vlastníkům a jsou používány pouze pro identifikační účely. Tento software není spjat ani podporován žádnou z uvedených značek.
-
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Licence
 
-Copyright © 2026 Waldemar Scudeller Jr.
+Autorská práva © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](LICENSE)
+[Licence Apache 2.0](LICENSE)

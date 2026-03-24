@@ -1,126 +1,142 @@
 ---
-translated_at: "2026-03-15T22:17:39.411Z"
-source_hash: "69732149de931f2a0059ecf9073871caedaa431362e32c010e7d93bd3cbd76bc"
-source_mtime: 1773611603946.006
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T01:49:59.151Z"
+source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
+source_mtime: 1774306679773.736
+model: "qwen/qwen3-235b-a22b-2507"
 ---
-<a id="transrewrt-user-guide"></a>
-# Guida Utente di Transrewrt
+![Transrewrt banner](../images/transrewrt_banner.png)
 
-<br />
+
+<a id="transrewrt-user-guide"></a>
+# Guida utente
+
+<br/>
 
 <a id="introduction"></a>
 ## Introduzione
 
 Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 
-- **Traduci** - converti il testo da una lingua all'altra.
-- **Riscrivi** - riformula il testo in uno stile diverso, come più chiaro, più breve o più formale.
-- **Trasforma** - elabora il testo utilizzando istruzioni AI personalizzate chiamate prompt.
+- **Tradurre** - convertire il testo da una lingua a un'altra.
+- **Riformulare** - riproporre il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
+- **Trasformare** - elaborare il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale, chiamate prompt.
 
-<br />
+<br/>
 
-Questa guida spiega come utilizzare l'app una volta installata e in esecuzione. Per i passaggi di installazione, consulta il [README](../README.md) principale.
+Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per le istruzioni di installazione, consulta il file **[README](README.it.md)** principale.
 
-<br />
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Transrewrt è disponibile come app desktop per Windows e Linux e come web app self-hosted. Questa guida si concentra sull'uso quotidiano dell'app. Quando qualcosa si applica solo a una versione, è chiaramente indicato.
+> Transrewrt è disponibile come app desktop per Windows e Linux e come app web ospitata autonomamente. Questa guida si concentra sull'utilizzo quotidiano dell'app. Quando qualcosa riguarda solo una versione specifica, è indicato chiaramente.
 
-<small>**Leggi in altre lingue:** [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small>**Leggi in altre lingue:** [English (UK)](USER-GUIDE.it.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
-<br />
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Indice dei Contenuti** 
+**Indice**
 
 - [Prima di iniziare](#before-you-start)
-  - [Come ottenere una chiave API (app desktop)](#how-to-get-an-api-key-desktop-app)
-- [Per iniziare](#getting-started)
+  - [Come ottenere una chiave API gratuita di OpenRouter (app desktop)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Iniziare](#getting-started)
 - [Parti principali della finestra](#main-parts-of-the-window)
   - [Barra laterale](#sidebar)
   - [Barra degli strumenti](#toolbar)
   - [Pannelli di input e output](#input-and-output-panels)
-- [Traduci](#translate)
-  - [Tradurre testo](#translate-text)
+- [Tradurre](#translate)
+  - [Tradurre il testo](#translate-text)
   - [Selezione della lingua](#language-selection)
-  - [Impostazioni di traduzione utili](#helpful-translation-settings)
+  - [Impostazioni utili per la traduzione](#helpful-translation-settings)
   - [Scorciatoie da tastiera](#keyboard-shortcuts)
-- [Riscrivi](#rewrite)
-  - [Riscrivere testo](#rewrite-text)
-- [Trasforma](#transform)
+- [Riformulare](#rewrite)
+  - [Riformulare il testo](#rewrite-text)
+- [Trasformare](#transform)
   - [Eseguire un prompt esistente](#run-an-existing-prompt)
-  - [Se non hai ancora prompt](#if-you-have-no-prompts-yet)
+  - [Se non hai ancora nessun prompt](#if-you-have-no-prompts-yet)
   - [Creare rapidamente un prompt](#create-a-prompt-quickly)
   - [Modificare un prompt](#edit-a-prompt)
-  - [Testare un prompt prima di usarlo](#test-a-prompt-before-using-it)
+  - [Provare un prompt prima dell'uso](#test-a-prompt-before-using-it)
   - [Gestire i prompt salvati](#manage-saved-prompts)
 - [Dashboard](#dashboard)
-  - [Filtrare i dati](#filter-the-data)
+  - [Filtra i dati](#filter-the-data)
   - [Schede della dashboard](#dashboard-tabs)
-  - [Esportare i dati](#export-data)
-  - [Eliminare i record memorizzati per un modello](#delete-stored-records-for-a-model)
+  - [Esporta i dati](#export-data)
+  - [Elimina i record memorizzati per un modello](#delete-stored-records-for-a-model)
+- [Cronologia](#history)
+  - [Filtra i dati](#filter-the-data-1)
+  - [Esporta i dati della cronologia](#export-history-data)
 - [Impostazioni](#settings)
   - [Impostazioni generali](#general-settings)
   - [Modelli](#models)
   - [Lingue](#languages)
-  - [Tracciamento dei costi](#cost-tracking)
+  - [Monitoraggio dei costi](#cost-tracking)
   - [Prompt di trasformazione](#transform-prompts)
   - [Utenti](#users)
   - [Configurazione API](#api-config)
   - [Informazioni](#about)
 - [Problemi comuni](#common-issues)
-  - [L'app non traduce, riscrive o trasforma il testo](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [La lista dei modelli è vuota](#the-model-list-is-empty)
+  - [L'app non traduce, riformula o trasforma il testo](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'elenco dei modelli è vuoto](#the-model-list-is-empty)
   - [Il risultato è troppo lento o troppo costoso](#the-result-is-too-slow-or-too-expensive)
   - [L'interfaccia è nella lingua sbagliata](#the-interface-is-in-the-wrong-language)
   - [Il testo è troppo piccolo o difficile da leggere](#the-text-is-too-small-or-hard-to-read)
+  - [I grafici della dashboard sono vuoti](#dashboard-charts-are-empty)
+  - [Il costo mostra "non disponibile" o sembra errato](#cost-shows-not-available-or-seems-wrong)
+  - [Il costo totale non corrisponde al conto del fornitore](#total-cost-does-not-match-my-provider-bill)
+  - [La pagina Cronologia manca dalla barra laterale](#the-history-page-is-missing-from-the-sidebar)
+  - [App web: reindirizzato alla pagina di accesso inaspettatamente](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [La dashboard non mostra dati per altri utenti (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Ho modificato un prompt e perso le modifiche](#i-changed-a-prompt-and-lost-the-edits)
 - [Consigli rapidi](#quick-tips)
+- [Avviso legale](#disclaimer)
+- [Licenza](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="before-you-start"></a>
 
 ## Prima di iniziare
 
-Per utilizzare Transrewrt, è necessario accedere al servizio AI tramite OpenRouter.
+Per usare Transrewrt, hai bisogno dell'accesso ad almeno un fornitore di intelligenza artificiale. I fornitori supportati sono: [OpenRouter](https://openrouter.ai) (che aggrega molti modelli), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e [Ollama](https://ollama.com) per modelli locali.
 
-Non è necessario scegliere un modello a pagamento prima di iniziare. L'app include sempre un **modello gratuito** integrato, quindi per l'uso normale è sufficiente per iniziare a tradurre, riscrivere e trasformare il testo.
+Non è necessario selezionare un modello a pagamento per iniziare. Non appena aggiungi la tua chiave API OpenRouter, l'app abilita automaticamente un'opzione **gratuita** integrata di OpenRouter. Ciò ti permette di iniziare immediatamente a tradurre, riscrivere e trasformare il testo.
 
-In parole semplici:
+In termini semplici:
 
-- Un **modello** è il motore AI che esegue il lavoro.
-- Una **chiave API** è la tua credenziale di accesso personale per quel servizio.
+- Un **modello** è il motore AI che svolge il lavoro. I modelli vengono elencati con un **prefisso del fornitore** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **chiave API** (oppure, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge quel fornitore.
 
-Se si utilizza l'**app desktop**, sarà necessaria una chiave API. Per passaggi dettagliati, vedere [Come ottenere una chiave API](#how-to-get-an-api-key-desktop-app) qui sotto. In sintesi: crea un account su [OpenRouter](https://openrouter.ai), apri la pagina [Chiavi](https://openrouter.ai/keys), crea una nuova chiave e incollala in [**Impostazioni** > **Configurazione API**](#api-config) in Transrewrt.
+Se stai usando l'**app desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ciascun fornitore che utilizzi. Per l'uso solo con OpenRouter, vedi [Come ottenere una chiave API](#how-to-get-an-api-key-desktop-app) di seguito. Se non vuoi usare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali al posto di quelli in rete.
 
-Se si utilizza la **versione web**, il proprietario del server di solito la configura per te, quindi in normali circostanze non sarà necessario inserire manualmente una chiave API.
+Se stai usando la **versione web**, il proprietario del server configura i fornitori tramite variabili d'ambiente, quindi normalmente non dovrai inserire personalmente le chiavi API.
 
-<br />
+<br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Come ottenere una chiave API (app desktop)
+### Come ottenere una chiave API OpenRouter gratuita (app desktop)
 
-Se si utilizza l'app desktop, seguire questi passaggi:
+Se stai usando l'app desktop, segui questi passaggi:
 
-1. Vai su [OpenRouter](https://openrouter.ai) nel browser web.
+1. Vai su [OpenRouter](https://openrouter.ai) con il tuo browser web.
 2. Crea un account o accedi.
 3. Apri la pagina [Chiavi](https://openrouter.ai/keys).
 4. Fai clic sul pulsante per creare una nuova chiave API.
-5. Assegna un nome alla chiave in modo da riconoscerla in seguito.
+5. Assegna un nome alla chiave in modo da poterla riconoscere in seguito.
 6. Copia la nuova chiave API.
 7. Torna a Transrewrt e apri **Impostazioni** > **Configurazione API**.
-8. Incolla la chiave in **Chiave API OpenRouter**.
-9. Fai clic su **Testa configurazione API** per assicurarti che funzioni.
+8. Incolla la chiave nel campo **Chiave API OpenRouter** (sotto **Impostazioni** > **Configurazione API**).
+9. Fai clic su **Prova chiave OpenRouter** per verificare che funzioni.
+
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Puoi iniziare con il percorso gratuito di OpenRouter o con qualsiasi altro modello gratuito disponibile. In molti casi, è sufficiente per iniziare a usare Transrewrt senza scegliere un modello a pagamento.
+> Puoi iniziare utilizzando il percorso gratuito di OpenRouter o uno qualsiasi degli altri modelli gratuiti disponibili, senza dover aggiungere una carta di credito. In molti casi, questo è sufficiente per iniziare a usare Transrewrt senza dover scegliere un modello a pagamento. In alternativa, puoi usare Ollama per eseguire modelli in locale senza alcuna chiave API.
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-started"></a>
 ## Per iniziare
@@ -128,34 +144,34 @@ Se si utilizza l'app desktop, seguire questi passaggi:
 Se è la prima volta che usi Transrewrt, segui questo ordine:
 
 1. Apri l'app.
-2. Scegli la tua **lingua dell'interfaccia** dall'icona del globo se necessario.
-3. Se sei sull'**app desktop**, apri [**Impostazioni** > **Configurazione API**](#api-config), incolla la tua chiave API OpenRouter e fai clic su **Testa configurazione API**.
-4. Apri [**Impostazioni** > **Modelli**](#models) e aggiungi uno o più modelli a **Modelli selezionati**.
-5. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se vuoi che le lingue più utilizzate appaiano per prime.
-6. Vai a **Traduci** ed esegui una semplice traduzione per confermare che tutto funzioni.
-7. Una volta che funziona, prova **Riscrivi** e poi **Trasforma**.
+2. Se necessario, scegli la tua **lingua dell'interfaccia** cliccando sull'icona del globo.
+3. Se stai usando l'**app desktop**, apri [**Impostazioni** > **Configurazione API**](#api-config), aggiungi una chiave API per almeno un fornitore (ad esempio OpenRouter) e fai clic su **Prova** per verificarne il funzionamento.
+4. Apri [**Impostazioni** > **Modelli**](#models) e aggiungi uno o più modelli alla sezione **Modelli selezionati**.
+5. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali**, se vuoi che le lingue usate più di frequente appaiano per prime.
+6. Vai su **Traduci** ed esegui una traduzione semplice per verificare che tutto funzioni correttamente.
+7. Una volta confermato, prova **Riscrivi** e poi **Trasforma**.
 
-Questo ordine è importante. Previene il problema più comune al primo utilizzo: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o un modello selezionato.
+L'ordine è importante. Evita il problema più comune all'uso iniziale: tentare di eseguire un'operazione prima che l'app abbia una connessione API funzionante o un modello selezionato.
 
-<br /><br />
+<br/><br/>
 
 <a id="main-parts-of-the-window"></a>
 ## Parti principali della finestra
 
-L'app è divisa in tre aree principali:
+L'app è suddivisa in tre aree principali:
 
 - La **barra laterale** a sinistra.
 - La **barra degli strumenti** nella parte superiore.
 - L'**area di lavoro** al centro.
 
-<br />
+<br/>
 
 <a id="sidebar"></a>
 ### Barra laterale
 
-Utilizza la barra laterale per spostarti all'interno dell'app:
+Usa la barra laterale per spostarti all'interno dell'app. Puoi ridurre la barra laterale per guadagnare spazio, cliccando sull'icona accanto al logo dell'app.
 
-<br />
+<br/>
 
 <table>
   <tr>
@@ -163,471 +179,606 @@ Utilizza la barra laterale per spostarti all'interno dell'app:
        <img src="../images/screenshots/it/sidebar.png" alt="Barra laterale dell'applicazione" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
-      <br />
+      <br/><br/>
       <ul>
-        <li><strong>Traduci</strong> apre l'area di lavoro per la traduzione.</li>
-        <li><strong>Riscrivi</strong> apre l'area di lavoro per la riscrittura.</li>
-        <li><strong>Trasforma</strong> apre l'area di lavoro per il prompt personalizzato.</li>
-        <li><strong>Dashboard</strong> mostra informazioni sull'utilizzo e sui costi.</li>
-        <li><strong>Impostazioni</strong> apre il pannello delle impostazioni.</li>
-        <li><strong>Utente</strong> mostra il nome utente dell'utente connesso (solo web).</li>
+        <li><strong>Traduci</strong> apre l'area di lavoro per la traduzione.</li><br/>
+        <li><strong>Riscrivi</strong> apre l'area di lavoro per la riscrittura.</li><br/>
+        <li><strong>Trasforma</strong> apre l'area di lavoro per i prompt personalizzati.</li><br/>
+        <li><strong>Dashboard</strong> mostra informazioni sull'utilizzo e sui costi.</li><br/>
+        <li><strong>Impostazioni</strong> apre il pannello delle impostazioni.</li><br/>
+        <li><strong>Cronologia</strong> mostra la cronologia delle attività con testo inserito e risultato ottenuto.</li><br/>
+        <li><strong>Utente</strong> mostra il nome dell'utente connesso (solo nella versione web).</li>
       </ul>
-      <br />
-      <p>Puoi anche comprimere la barra laterale per avere più spazio facendo clic sull'icona accanto al logo dell'app.</p>
     </td>
   </tr>
 </table>
 
-<br />
+<br/>
 
 <a id="toolbar"></a>
+
 ### Barra degli strumenti
 
-La barra degli strumenti cambia leggermente a seconda della posizione all'interno dell'app.
+La barra degli strumenti cambia leggermente a seconda della posizione nell'app.
 
-- A sinistra, mostra il nome della pagina corrente.
-- A destra, mostra il **selettore del modello** e il controllo della **lingua dell'interfaccia**.
+- A sinistra mostra il nome della pagina corrente.
+- A destra mostra il **selettore del modello** e il controllo della **lingua dell'interfaccia**.
 
-Il **selettore del modello** permette di scegliere quale motore AI utilizzare per l'attività corrente.
+Il **selettore del modello** ti permette di scegliere quale motore IA utilizzare per il compito corrente.
 
   ![Selettore del modello](../images/screenshots/it/model-selector.png)
 
 > ℹ️ **NOTA**<br/>
-> Alcuni modelli gratuiti potrebbero smettere di funzionare temporaneamente se non sono disponibili o hanno raggiunto un limite di utilizzo. Se ciò accade, l'app rimuoverà automaticamente quel modello dalla tua lista.
+> Alcuni modelli gratuiti potrebbero non essere sempre disponibili: a volte sono offline o hanno un limite di utilizzo. In tal caso, l'app rimuoverà automaticamente quel modello dall'elenco disponibile.<br/>
+> Per controllare quali modelli vengono visualizzati, vai su [**Impostazioni** > **Modelli**](#models) e modifica il tuo elenco di modelli. 
+> Puoi anche aprire le impostazioni del modello direttamente cliccando sull'icona del fornitore a sinistra del nome del modello sulla barra degli strumenti.
 
+<br/>
 
-L'**icona del globo + codice lingua** cambia la lingua dell'interfaccia dell'app, come menu e pulsanti. **Non** cambia le lingue di traduzione utilizzate in **Traduci**.
+L'**icona del globo + codice della lingua** cambia la lingua dell'interfaccia dell'app, come menu e pulsanti. Non modifica invece le lingue di traduzione utilizzate in **Traduci**.
 
   ![Selettore della lingua dell'interfaccia](../images/screenshots/it/language-selector.png)
 
-<br />
+<br/>
 
 <a id="input-and-output-panels"></a>
-
 ### Pannelli di input e output
 
 La maggior parte degli spazi di lavoro utilizza un pannello **Input** a sinistra e un pannello **Output** a destra.
 
 Il pannello **Input** mostra:
 
-- Conteggio caratteri
-- Conteggio parole
-- Conteggio paragrafi
+- Numero di caratteri
+- Numero di parole
+- Numero di paragrafi
 
 Il pannello **Output** può mostrare:
 
-- La durata del task
-- Il costo del task
-- Il costo totale cumulativo
-- **TPS** (token al secondo), una semplice misura di velocità
-- Conteggi di caratteri, parole e paragrafi
+- Durata dell'operazione
+- Costo dell'operazione (se disponibile)
+- Costo totale cumulativo
+- **TPS** (token al secondo)
+- Numero di caratteri, parole e paragrafi
 - Il modello utilizzato
 
-Se sei curioso sui termini tecnici:
+Se ti stai chiedendo cosa significano i termini tecnici:
 
-- **Token** indica una piccola porzione di testo. Puoi pensarlo come parte di una parola o una parola breve.
-- **TPS** indica quante di queste porzioni di testo il modello ha elaborato ogni secondo.
+- **Token** indica un frammento di testo di piccole dimensioni. Puoi pensarci come a una parte di parola o a una parola breve.
+- **TPS** indica quanti di questi frammenti di testo il modello ha elaborato ogni secondo.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
 ## Traduci
 
-Utilizza **Traduci** per convertire il testo da una lingua all'altra.
+Utilizza **Traduci** quando desideri convertire del testo da una lingua all'altra.
 
 ![Spazio di lavoro Traduci](../images/screenshots/it/translate.png)
 
-<br />
+<br/>
 
 <a id="translate-text"></a>
-### Traduci testo
+### Tradurre il testo
 
 1. Apri **Traduci**.
 2. Scegli una lingua in **Da**.
 3. Scegli una lingua in **A**.
 4. Scegli un modello nella barra degli strumenti.
-5. Digita o incolla il testo in **Input**.
-6. Fai clic su **Traduci**.
-7. Leggi il risultato in **Output**.
-8. Usa il pulsante di copia se vuoi copiare il risultato.
+5. Digita o incolla del testo nel campo **Input**.
+6. Clicca su **Traduci**.
+7. Leggi il risultato nel campo **Output**.
+8. Usa il pulsante di copia se desideri copiare il risultato.
 
-<br />
+<br/>
 
 <a id="language-selection"></a>
 ### Selezione della lingua
 
 - **Da** può essere una lingua specifica o **Rileva lingua**.
-- **A** è la lingua in cui vuoi il risultato.
+- **A** è la lingua in cui vuoi ottenere il risultato.
 
-Le tue **Lingue principali** selezionate appaiono in cima alla lista. Puoi impostarle in [**Impostazioni** > **Lingue**](#languages).
+Le tue **Lingue principali** selezionate appaiono in alto nella lista. Puoi impostarle in [**Impostazioni** > **Lingue**](#languages).
 
-<br />
+<br/>
 
 <a id="helpful-translation-settings"></a>
-### Impostazioni di traduzione utili
+### Impostazioni utili per la traduzione
 
 In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modificare il comportamento della traduzione:
 
-- **Traduzione automatica all'incollamento** avvia una traduzione non appena incolli il testo.
-- **Copia automatica del risultato negli appunti** copia il risultato automaticamente dopo un'esecuzione riuscita.
-- **Traduzione in tempo reale (mentre digiti)** avvia le traduzioni mentre digiti.
-- **Timeout (ms)** controlla quanto tempo l'app attende prima di eseguire una traduzione in tempo reale.
+- **Traduci automaticamente al momento dell'incollamento** esegue immediatamente una traduzione non appena incolli del testo.
+- **Copia automaticamente il risultato negli appunti** copia automaticamente il risultato al termine di una traduzione riuscita.
+- **Traduzione in tempo reale (durante la digitazione)** esegue traduzioni mentre digiti.
+- **Timeout (ms)** determina per quanto tempo l'app attende prima di eseguire una traduzione in tempo reale.
 
-<br />
+<br/>
 
 <a id="keyboard-shortcuts"></a>
 ### Scorciatoie da tastiera
 
-In [**Impostazioni** > **Impostazioni generali**](#general-settings), **Comportamento per INVIO** controlla cosa succede quando premi Invio:
+In [**Impostazioni** > **Impostazioni generali**](#general-settings), l'opzione **Comportamento del tasto INVIO** regola cosa accade quando premi `Invio`:
 
-- **Invio** può eseguire il task e **Shift+Invio** può aggiungere una nuova riga.
-- Oppure l'app può fare il contrario.
+- **Invio** può eseguire l'operazione e **Maiusc+Invio** può inserire una nuova riga.
+- Oppure l'app può fare l'opposto.
 
-La scorciatoia corrente è mostrata anche sul pulsante **Traduci**.
+La modalità corrente viene mostrata anche sul pulsante **Traduci**.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
-## Riscrivi
+## Riformula
 
-Utilizza **Riscrivi** quando vuoi migliorare la formulazione senza cambiarne il significato principale.
+Utilizza **Riformula** quando desideri migliorare il testo senza cambiarne il significato principale.
 
-![Spazio di lavoro Riscrivi](../images/screenshots/it/rewrite.png)
+![Spazio di lavoro Riformula](../images/screenshots/it/rewrite.png)
 
 Questo è utile per:
 
-- correggere ortografia e grammatica
+- correggere errori ortografici e grammaticali
 - rendere il testo più chiaro
-- rendere il testo più formale o più informale
+- rendere il testo più formale o informale
 - accorciare o espandere il testo
-- far sembrare il testo più tecnico
+- rendere il testo più tecnico
 
-<br />
+<br/>
 
 <a id="rewrite-text"></a>
-### Riscrivi testo
+
+### Riscrivere il testo
 
 1. Apri **Riscrivi**.
 2. Scegli una **Modalità**.
 3. Scegli un modello nella barra degli strumenti.
-4. Digita o incolla il testo in **Input**.
+4. Digita o incolla del testo nell'area **Input**.
 5. Fai clic su **Riscrivi**.
-6. Esamina il risultato in **Output**.
+6. Esamina il risultato nell'area **Output**.
 
-Lo stesso comportamento del tasto Invio descritto in [**Traduci**](#keyboard-shortcuts) si applica qui.
+Anche qui vale lo stesso comportamento del tasto Invio descritto in [**Traduci**](#keyboard-shortcuts).
 
-<br /><br />
+<br/>
+
+> 💡 **CONSIGLIO**<br/>
+> Quando utilizzi la modalità "**Controllo ortografico e grammaticale**", nel pannello di output appare un pulsante `Mostra modifiche`.
+> Fai clic su questo pulsante per alternare la visualizzazione delle correzioni, mostrando o nascondendo i cambiamenti specifici apportati al testo.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
 ## Trasforma
 
 Utilizza **Trasforma** quando vuoi che l'IA segua un insieme personalizzato di istruzioni.
 
-![Spazio di lavoro Trasforma](../images/screenshots/it/transform.png)
+![Area di lavoro Trasforma](../images/screenshots/it/transform.png)
 
-Questa è l'area più flessibile dell'app. Puoi usarla per compiti come:
+Questa è l'area dell'applicazione più flessibile. Puoi usarla per eseguire attività come:
 
-- riassumere note
-- trasformare testo grezzo in un'email rifinita
+- riassumere appunti
+- trasformare un testo grezzo in un'email curata
 - estrarre punti chiave
-- convertire il testo in un formato specifico
+- convertire un testo in un formato specifico
 
-<br />
+<br/>
 
 <a id="run-an-existing-prompt"></a>
-### Esegui un prompt esistente
+### Eseguire un prompt esistente
 
 1. Apri **Trasforma**.
-2. Scegli un prompt dalla lista dei prompt.
-3. Se appare una casella lingua **Target**, scegli una lingua se lo desideri.
-4. Digita o incolla il testo in **Input**.
+2. Scegli un prompt dall'elenco dei prompt.
+3. Se appare un campo per la **Lingua di destinazione**, seleziona una lingua, se necessario.
+4. Digita o incolla del testo nell'area **Input**.
 5. Fai clic su **Trasforma**.
-6. Leggi il risultato in **Output**.
+6. Leggi il risultato nell'area **Output**.
 
-<br />
+<br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Se non hai ancora prompt
+### Se non hai ancora nessun prompt
 
-Se la tua lista dei prompt è vuota, fai clic su **Carica prompt di esempio**. Questo aggiunge esempi predefiniti in modo che tu possa iniziare rapidamente.
+Se l'elenco dei prompt è vuoto, fai clic su **Carica prompt di esempio**. Verranno aggiunti esempi predefiniti che ti permetteranno di iniziare rapidamente.
+
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> I prompt di esempio sono forniti in inglese. Dopo averli caricati, puoi modificare un prompt e usare **Traduci prompt** se desideri adattare il testo del prompt a un'altra lingua.
+> I prompt di esempio sono forniti in inglese. Dopo averli caricati, puoi modificare un prompt e usare **Traduci prompt** per tradurlo nella tua lingua.
 
-<br />
+<br/>
 
 <a id="create-a-prompt-quickly"></a>
-
 ### Creare rapidamente un prompt
 
-Il modo più veloce per creare un prompt è:
+Il modo più veloce per creare un prompt è il seguente:
 
-1. Fare clic su **New prompt**.
-2. Fare clic su **Generate prompt**.
-3. Descrivere ciò che si desidera che il prompt faccia.
-4. Scegliere un modello.
-5. Lasciare che l'app crei una bozza per te.
-6. Esaminare la bozza e fare clic su **Save**.
+1. Fai clic su **Nuovo prompt**.
+2. Fai clic su **Genera prompt**.
+3. Descrivi cosa deve fare il prompt.
+4. Scegli un modello.
+5. Lascia che l'app crei una bozza per te.
+6. Esamina la bozza e fai clic su **Salva**.
 
 ![Genera prompt](../images/screenshots/it/transform-generate.png)
 
 
-<br />
+<br/>
 
+<a id="edit-a-prompt"></a>
 ### Modificare un prompt
 
-Quando si crea o modifica un prompt, l'editor appare a sinistra e l'area di test appare a destra.
+Quando crei o modifichi un prompt, l'editor appare sulla sinistra e un'area di prova appare sulla destra.
 
-![Editor prompt di trasformazione](../images/screenshots/it/transform-prompt-edit.png)
+![Editor di prompt Trasforma](../images/screenshots/it/transform-prompt-edit.png)
 
 I campi principali sono:
 
-- **Nome prompt**: il nome mostrato nell'elenco dei prompt.
-- **Istruzioni per il prompt (opzionale)**: un breve suggerimento mostrato all'utente durante l'esecuzione del prompt.
-- **Ruolo del modello**: il ruolo complessivo assegnato all'IA, ad esempio 'Sei un assistente utile.'
-- **Istruzioni per il modello (una per riga)**: le regole specifiche che si desidera che l'IA segua.
-- **Descrizione dell'output**: una breve parola che descrive il risultato, ad esempio 'summary' o 'rewrite'.
-- **Temperatura (0.0 → 1.0)**: un cursore per la creatività.
-- **Chiedi la lingua di destinazione**: aggiunge un selettore della lingua di destinazione all'esecuzione del prompt.
+- **Nome del prompt**: il nome visualizzato nell'elenco dei prompt.
+- **Istruzioni per il prompt (facoltativo)**: un breve suggerimento mostrato all'utente durante l'esecuzione del prompt.
+- **Ruolo del modello**: il ruolo generale assegnato all'IA, ad esempio 'Sei un assistente utile.'
+- **Istruzioni per il modello (una per riga)**: le regole specifiche che l'IA deve seguire.
+- **Descrizione output**: una breve parola che descrive il risultato, come 'riassunto' oppure 'riscrittura'.
+- **Temperatura (0,0 → 1,0)**: il comportamento del modello; vedi sotto.
+- **Chiedi lingua di destinazione**: aggiunge un selettore della lingua di destinazione quando il prompt viene eseguito.
 
-Se il termine tecnico **Temperatura** è nuovo per te, consideralo in questo modo:
+Se il termine tecnico **Temperatura** ti è nuovo, pensalo in questo modo:
 
-- Una **più bassa** temperatura produce risultati più stabili e prevedibili.
-- Una **più alta** temperatura produce maggiore varietà e creatività.
+- Una **temperatura più bassa** produce risultati più stabili e prevedibili.
+- Una **temperatura più alta** produce maggiore varietà e creatività.
 
 Puoi anche utilizzare:
 
-- **`Generate prompt`** per creare una nuova bozza da una descrizione semplice
-- **`Improve prompt`** per perfezionare un prompt esistente
-- **`Translate prompt`** per tradurre i campi del prompt
+- **`Genera prompt`** per creare una nuova bozza da una semplice descrizione
+- **`Migliora prompt`** per affinare un prompt esistente
+- **`Traduci prompt`** per tradurre i campi del prompt
 
-> ⚠️ **AVVISO**<br/>
-> Fare clic su **`Save`** prima di fare clic su **`Back to Run`**. Se torni indietro senza salvare, le modifiche andranno perse.
+<br/>
 
-<br />
+> ⚠️ **ATTENZIONE**<br/>
+> Fai clic su **`Salva`** prima di fare clic su **`Torna all'esecuzione`**. Se torni indietro senza salvare, le modifiche andranno perse.
+
+<br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Testare un prompt prima di utilizzarlo
+### Prova un prompt prima di utilizzarlo
 
-Il pannello di prova sulla destra permette di provare il prompt con testo di esempio prima di utilizzarlo nel lavoro quotidiano.
+Il pannello di prova a destra ti permette di testare il prompt con un testo di esempio prima di usarlo nel lavoro quotidiano.
 
-Ciò è utile quando:
+Ciò risulta utile quando:
 
-- si crea un nuovo prompt
-- si confrontano due versioni di un prompt
-- si desidera verificare tono, lunghezza o formato dell'output
+- stai creando un nuovo prompt
+- stai confrontando due versioni di uno stesso prompt
+- vuoi verificare il tono, la lunghezza o il formato dell'output
 
-<br />
+<br/>
 
 <a id="manage-saved-prompts"></a>
 ### Gestire i prompt salvati
 
-Per gestire i prompt salvati in un unico posto, apri [**Impostazioni** > **Prompt di trasformazione**](#transform-prompts).
+Per gestire tutti i prompt salvati in un unico posto, apri [**Impostazioni** > **Prompt Trasforma**](#transform-prompts).
 
 Qui puoi:
 
 - elencare ed eliminare i tuoi prompt
-- esportare i prompt come **JSON**, **CSV** o **XLSX**
-- importare i prompt da un file
+- esportare i prompt in formato **JSON**, **CSV** oppure **XLSX**
+- importare prompt da un file
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="dashboard"></a>
 
 ## Dashboard
 
-Usa la **Dashboard** per vedere quanto stai utilizzando l'app e quanto ti costa.
+Utilizza **Dashboard** per vedere quanto stai utilizzando l'app e quanto ti costa (per i modelli a pagamento).
 
-![Riepilogo dashboard](../images/screenshots/it/dashboard-summary.png)
+![Riepilogo del dashboard](../images/screenshots/it/dashboard-summary.png)
 
-<br />
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Se utilizzi soltanto modelli gratuiti, i grafici relativi ai costi saranno vuoti.
+
+<br/>
 
 <a id="filter-the-data"></a>
 ### Filtrare i dati
 
-Utilizza i pulsanti di filtro in alto per modificare l'intervallo di tempo.
+Utilizza i pulsanti di filtro nella parte superiore per modificare l'intervallo temporale.
 
-![Filtri dashboard](../images/screenshots/it/dashboard-filter.png)
+![Filtri del dashboard](../images/screenshots/it/dashboard-filter.png)
+
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Nella versione web, gli amministratori possono anche vedere un filtro **Utente**. Questo consente di passare tra **Tutti gli utenti** e un utente specifico.
+> Il filtro **Utente** è visibile solo agli amministratori nella versione web. Gli utenti standard non vedranno questo filtro, e non è disponibile nell'app desktop.
 
-<br />
+<br/>
 
 <a id="dashboard-tabs"></a>
-### Schede della dashboard
+### Schede del dashboard
 
-- **Riepilogo** fornisce una panoramica dell'utilizzo e dei costi.
+- **Riepilogo** fornisce una panoramica sull'utilizzo e sui costi.
 - **Per utilizzo** suddivide l'attività per lingua di traduzione, modalità di riscrittura e prompt di trasformazione.
-- **Per modello** mostra i modelli che hai utilizzato e il relativo costo.
+- **Per modello** mostra quali modelli hai utilizzato e quanto ti sono costati.
 - **Per giorno** mostra i totali giornalieri.
-- **Tutte le chiamate** mostra la cronologia completa delle chiamate e permette di esportarla.
+- **Tutte le chiamate** mostra la cronologia completa delle chiamate e ti permette di esportarla.
 
-<br />
+<br/>
 
 <a id="export-data"></a>
 ### Esportare i dati
 
-Le tabelle della dashboard possono esportare i dati in:
+Le tabelle del dashboard possono esportare i dati nei seguenti formati:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Ciò è utile se si desidera esaminare l'attività al di fuori dell'app o condividere un report.
+Questa funzione è utile se vuoi esaminare le attività al di fuori dell'app o condividere un rapporto.
 
-<br />
+<br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Eliminare i record archiviati per un modello
+### Eliminare i record memorizzati per un modello
 
-In **Per modello** o **Tutte le chiamate**, è possibile rimuovere i record archiviati per un modello.
+Nella sezione **Per modello** o **Tutte le chiamate**, puoi rimuovere i record memorizzati per un modello cliccando sull'icona del "cestino".
 
-> ⚠️ **AVVISO**<br/>
-> L'eliminazione dei record archiviati non può essere annullata. Utilizzare questa operazione solo se si è certi di non aver più bisogno di questa cronologia.
+> ⚠️ **ATTENZIONE**<br/>
+> L'eliminazione dei record memorizzati non può essere annullata. Utilizza questa funzione solo se sei sicuro di non aver più bisogno di quella cronologia.
 
-Per eliminare tutti i dati o rimuovere i record in base alla loro età, vai a [**Impostazioni** > **Tracciamento costi**](#cost-tracking). Lì troverai le opzioni per eliminare tutti i dati archiviati o solo i dati più vecchi di una certa data.
+Per eliminare tutti i dati o rimuovere i record in base alla loro data, vai a [**Impostazioni** > **Tracciamento costi**](#cost-tracking). Lì troverai le opzioni per eliminare tutti i dati memorizzati o soltanto quelli anteriori a una certa data.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="history"></a>
+## Cronologia
+
+Clicca su **Cronologia** per visualizzare la cronologia delle tue azioni all'interno di **Transrewrt**, inclusi input e output di ogni operazione.
+
+![Pagina cronologia](../images/screenshots/it/history.png)
+
+<br/>
+
+<a id="filter-the-history"></a>
+### Filtrare la cronologia
+
+La **Cronologia** utilizza gli stessi filtri della pagina **Dashboard**. Usali per selezionare l'intervallo temporale.
+
+![Filtri del dashboard](../images/screenshots/it/dashboard-filter.png)
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Il filtro **Utente** è visibile solo agli amministratori nella versione web. Gli utenti standard non vedranno questo filtro, e non è disponibile nell'app desktop.
+
+<br/>
+
+<a id="export-history-data"></a>
+###  Esportare i dati della cronologia
+
+La pagina della cronologia può esportare i dati filtrati nei seguenti formati:
+
+- **JSON**
+- **CSV**
+- **XLSX**
+
+Questa funzione è utile se vuoi esaminare le attività al di fuori dell'app o condividere un rapporto.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="settings"></a>
 ## Impostazioni
 
 Apri **Impostazioni** dalla barra laterale per personalizzare il comportamento dell'app.
 
-Le schede disponibili possono variare:
+Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
 
-- **Configurazione API** è disponibile solo nell'app desktop.
-- **Utenti** è disponibile solo nell'app web e solo per gli amministratori.
+  | Scheda                 | Desktop | Web (amministratore) | Web (utente standard) |
+  |------------------------|:-------:|:---------------------:|:---------------------:|
+  | Impostazioni generali  |   sì    |          sì           |           sì          |
+  | Modelli                |   sì    |          sì           |           sì          |
+  | Lingue                 |   sì    |          sì           |           sì          |
+  | Tracciamento costi     |   sì    |          sì           |            —          |
+  | Prompt di trasformazione | sì  |          sì           |           sì          |
+  | Utenti                 |    —    |          sì           |            —          |
+  | Configurazione API     |   sì    |          sì           |            —          |
+  | Informazioni           |   sì    |          sì           |           sì          |
 
-<br />
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Nella versione web, ogni utente ha la propria configurazione. Impostazioni come modelli selezionati, lingue, opzioni generali e prompt di trasformazione sono memorizzate per utente. Le modifiche che apporti non influiscono sugli altri utenti.
+
+<br/>
+
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
 
 ### Impostazioni generali
 
-Usa **Impostazioni generali** per controllare il comportamento di digitazione e l'aspetto.
+Utilizza **Impostazioni generali** per controllare il comportamento della digitazione, se i dettagli delle operazioni vengono salvati in **Cronologia**, e l'aspetto dell'app.
 
 **Comportamento**
 
-- **Comportamento per INVIO** sceglie se Invio esegue il compito o inserisce una nuova riga.
-- **Traduzione automatica al incolla** avvia la traduzione non appena incolli il testo.
-- **Copia automatica del risultato negli appunti** copia automaticamente i risultati riusciti.
+- **Comportamento del tasto INVIO** determina se `Invio` esegue l'operazione o va a capo.
+- **Auto-traduzione al momento dell'incollamento** avvia la traduzione non appena incolli del testo.
+- **Copia automaticamente il risultato negli appunti** copia automaticamente i risultati con successo.
 - **Traduzione in tempo reale (durante la digitazione)** traduce mentre digiti.
 - **Timeout (ms)** imposta il tempo di attesa per la traduzione in tempo reale.
 
+**Cronologia**
+
+- **Conserva la cronologia delle operazioni** determina se ogni traduzione, riscrittura e trasformazione salvino il **testo in input e output** per la vista laterale [**Cronologia**](#history). Disattivandolo verrà richiesta una conferma; in caso di conferma, il testo della cronologia verrà rimosso dal database.
+- **Elimina dati cronologia** ti permette di rimuovere i testi salvati in base all'età (ad esempio, più vecchi di alcuni mesi, oppure **tutti i dati (azzera)**) usando **Elimina dati**. Questo influisce solo sul testo delle operazioni salvate nella vista **Cronologia**; **non** elimina i totali di costi o utilizzi. Per rimuovere o ridurre i dati relativi ai **costi**, utilizza [**Impostazioni** > **Monitoraggio costi**](#cost-tracking).
+
 **Aspetto**
 
-- **Cifre decimali del costo** modifica come vengono visualizzati i decimali del costo.
-- **Famiglia di caratteri** modifica il carattere di scrittura nei pannelli di testo.
+- **Decimali costi** modifica il numero di cifre decimali visualizzate per i costi.
+- **Solo web:** **mostra un margine attorno all'app** aggiunge spazio extra intorno all'interfaccia.
+- **Famiglia carattere** modifica il tipo di carattere nei riquadri di testo.
 - **Dimensione** modifica la dimensione del carattere.
-- **Solo web:** **mostra un margine intorno all'app** aggiunge spazio extra attorno all'interfaccia.
 
-<br />
+
+<br/>
 
 <a id="models"></a>
 ### Modelli
 
-Usa **Impostazioni** > **Modelli** per scegliere quali modelli apparire nella barra degli strumenti.
+Utilizza **Impostazioni** > **Modelli** per scegliere quali modelli appariranno nella barra degli strumenti.
 
-![Scheda Modelli delle impostazioni](../images/screenshots/it/settings-models.png)
+![Scheda Modelli impostazioni](../images/screenshots/it/settings-models.png)
 
-La pagina ha due elenchi:
+La pagina mostra due elenchi:
 
 - **Modelli disponibili** a sinistra
 - **Modelli selezionati** a destra
 
-I controlli utili includono:
+Tra i controlli utili ci sono:
 
 - **Cerca modelli...** per trovare un modello per nome
-- **Solo gratuiti** per mostrare solo i modelli gratuiti
+- **Etichette fornitore** per filtrare l'elenco per singolo motore (OpenRouter, OpenAI, Ollama, …)
+- **Solo gratuiti** per mostrare soltanto i modelli gratuiti
 - **Aggiorna** per ricaricare l'elenco
-- **Espandi tutto** e **Comprimi tutto** quando ordini per provider
+- **Espandi tutto** e **Comprimi tutto** quando si ordina per fornitore
 
-Per aggiungere un modello, fai clic su **Aggiungi**.
+Gli ID dei modelli includono il prefisso del fornitore (ad esempio `openrouter/…` rispetto a `openai/…`). Badge come **OpenAI (OpenRouter)** rispetto a **OpenAI (diretto)** indicano come viene instradato il traffico.
 
-Per rimuovere un modello, fai clic su **X** accanto ad esso in **Modelli selezionati**.
+Azioni:
 
-Per cancellare l'elenco, fai clic su **Deseleziona tutto**. Il modello gratuito richiesto rimarrà nell'elenco.
+ - Per aggiungere un modello, fai clic su **Aggiungi** o ovunque nella voce elenco.
+
+ - Per rimuoverne uno, fai clic su **X** accanto al modello in **Modelli selezionati** o su **Selezionato** nella voce corrispondente in Modelli disponibili.
+
+ - Per svuotare l'elenco, fai clic su **Deseleziona tutti**. Il modello gratuito obbligatorio rimarrà comunque nell'elenco.
+
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Se non vuoi aggiungere crediti a OpenRouter subito, inizia abilitando **Solo gratuiti** e scegliendo i modelli gratuiti.
+> Se non desideri aggiungere crediti a OpenRouter subito, inizia abilitando **Solo gratuiti** e scegliendo i modelli gratuiti (nessuna carta di credito richiesta). Puoi anche usare Ollama per eseguire modelli in locale senza alcuna chiave API.
 
-<br />
+<br/>
 
 <a id="languages"></a>
 ### Lingue
 
-Usa **Impostazioni** > **Lingue** per organizzare gli elenchi di lingue utilizzati nell'app.
+Utilizza **Impostazioni** > **Lingue** per organizzare gli elenchi di lingue utilizzati nell'app.
 
-- **Lingue principali** sono bloccate vicino alla parte superiore degli elenchi di lingue in **Traduci** e **Trasforma**.
-- **Lingua personalizzata** ti consente di aggiungere una lingua non presente nell'elenco predefinito.
+- **Lingue principali** vengono fissate in alto negli elenchi delle lingue in **Traduci** e **Trasforma**.
+- **Lingua personalizzata** ti permette di aggiungere una lingua non presente nell'elenco predefinito.
 
-Se aggiungi una lingua personalizzata, apparirà nei selettori di lingua insieme alle opzioni predefinite.
+Se aggiungi una lingua personalizzata, apparirà nei menu a tendina delle lingue insieme alle opzioni predefinite.
 
-<br />
+<br/>
 
 <a id="cost-tracking"></a>
-### Tracciamento dei costi
+### Monitoraggio costi
 
-Usa **Impostazioni** > **Tracciamento costi** per gestire le informazioni sui costi.
+Utilizza **Impostazioni** > **Monitoraggio costi** per gestire le informazioni sui costi.
 
-- **Costo totale** mostra il totale in corso.
+- **Costo totale** mostra il totale cumulativo.
 - **Copia valore** copia il totale negli appunti.
-- **Reimposta costo** reimposta il totale memorizzato a zero.
-- **Sincronizza con l'utilizzo della chiave API** imposta il totale per corrispondere all'utilizzo riportato da OpenRouter.
-- **Utilizzo della chiave API** mostra i dettagli di utilizzo, se disponibili.
-- **Elimina dati dei costi** rimuove tutti i dati o solo le voci più vecchie di una data selezionata.
+- **Azzera costo** reimposta il totale registrato a zero.
+- **Sincronizza con l'utilizzo della chiave API** imposta il totale in modo che corrisponda all'utilizzo riportato dal tuo account OpenRouter (solo OpenRouter).
+- **Utilizzo chiave API** mostra i dettagli sull'utilizzo OpenRouter, se disponibili.
+- **Elimina dati costi** rimuove tutti i dati, oppure solo quelli anteriori a una determinata data.
 
-> ⚠️ **AVVISO**<br/>
-> L'eliminazione dei dati non può essere annullata. Prima di eliminare, assicurati di eseguire il backup dei dati o esportarli tramite [**Dashboard** > **Tutte le chiamate**](#dashboard-tabs), altrimenti andranno persi permanentemente.
+**Monitoraggio costi:** Quando utilizzi modelli OpenRouter, l'app mostra il tuo utilizzo e costo effettivi in base ai dati di OpenRouter. Per tutti gli altri provider, l'app calcola un costo stimato basandosi sui prezzi pubblicati da OpenRouter. Se un prezzo non è disponibile, la stima potrebbe essere zero.
 
-<br />
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Tutte le cifre relative ai costi sono stime fornite solo a scopo informativo, non costituiscono bollette ufficiali.
+
+
+<br/>
+
+> ⚠️ **ATTENZIONE**<br/>
+> L'eliminazione dei dati è irreversibile. Prima di cancellare, assicurati di effettuare un backup dei tuoi dati o di esportarli tramite [**Cruscotto** > **Tutte le chiamate**](#dashboard-tabs), altrimenti saranno persi in modo definitivo. <br/> 
+> Verrà eliminata anche tutta la cronologia associata a ogni voce di chiamata API.
+
+
+<br/>
 
 <a id="transform-prompts"></a>
-### Prompt di trasformazione
 
-Usa **Impostazioni** > **Prompt di trasformazione** per gestire i prompt in blocco.
+### Trasforma prompt
+
+Utilizza **Impostazioni** > **Trasforma prompt** per gestire i prompt in blocco.
 
 Puoi:
 
-- esaminare i prompt salvati
-- eliminare i prompt
+- rivedere i prompt salvati
+- eliminare prompt
 - importare prompt da un file
-- esportare prompt per backup o condivisione
+- esportare prompt per il backup o la condivisione
 
-<br />
+<br/>
 
 <a id="users"></a>
 ### Utenti
 
-**Solo web - solo amministratore**
+**Web: solo amministratore**
 
-Usa **Utenti** per gestire gli account utente nella versione web. Puoi aggiungere utenti, aggiornare i loro dati, reimpostare le password ed eliminare gli account.
+Utilizza **Utenti** per gestire gli account utente nella versione web. Puoi aggiungere utenti, aggiornarne i dettagli, reimpostare le password ed eliminare account.
 
-<br />
+<br/>
 
 <a id="api-config"></a>
 ### Configurazione API
 
-**Solo desktop**
+I provider supportati sono: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e **Ollama** (modelli locali tramite un URL di base). Devi configurare solo i provider che utilizzi.
 
-Usa **Configurazione API** per collegare l'app desktop a OpenRouter o a un proxy Transrewrt.
+**Applicazione web: solo amministratore**
 
-- **Chiave API di OpenRouter** è dove incolli la tua chiave.
-- **URL API** è l'indirizzo del servizio. Lascia il valore predefinito a meno che non ti sia stato fornito uno diverso.
-- **Usa proxy Transrewrt** instrada le richieste attraverso un servizio proxy invece che direttamente a OpenRouter.
-- **Seme della chiave** appare quando l'opzione proxy è abilitata.
-- **Testa configurazione API** verifica se la configurazione attuale funziona.
+Le chiavi API sono configurate tramite variabili d'ambiente di sistema o Docker — non vengono inserite nell'interfaccia web. Questa pagina mostra quali provider hanno una chiave configurata e ti permette di testarli cliccando sul pulsante **`Test`**.
 
-Per passaggi dettagliati su come ottenere la tua chiave API, consulta [Come ottenere una chiave API](#how-to-get-an-api-key-desktop-app) sopra.
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Se non sei sicuro di cosa significhino **URL API**, **Usa proxy Transrewrt** o **Seme della chiave**, lasciali invariati e utilizza la configurazione OpenRouter predefinita. Maggiori informazioni sul proxy sono disponibili nel [repository Transrewrt Proxy](https://github.com/wsj-br/transrewrt-proxy).
+> Per modificare una chiave API, aggiorna la variabile d'ambiente nella configurazione del sistema o di Docker e riavvia il server o il contenitore.
+
+<br/>
+
+**Applicazione desktop**
+
+Utilizza **Configurazione API** per memorizzare le chiavi API per ciascun provider utilizzato. Per Ollama, inserisci l'**URL di base** invece di una chiave API.
 
 
-<br />
+<br/>
+
+> 💡 **Suggerimento** <br/>
+> Se non desideri utilizzare una chiave API o pagare per l'uso, puoi [scaricare Ollama](https://ollama.com) ed eseguire modelli localmente sul tuo computer gratuitamente. In alternativa, puoi creare un account OpenRouter gratuito (senza carta di credito) per utilizzare i loro modelli gratuiti.
+
+- Aggiungi solo i provider di cui hai bisogno. In **Impostazioni** > **Modelli**, ogni ID modello inizia con il provider (ad esempio `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Per aggiungere una chiave API, digita il valore nel campo di testo e clicca su **`Salva`**. Per sostituire una chiave esistente, clicca su **`Modifica`**. Per verificare che una chiave funzioni, clicca su **`Test`**.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Non puoi visualizzare il valore corrente di una chiave API. Puoi solo sostituirla utilizzando il pulsante **`Modifica`**.
+> Le chiavi API sono memorizzate cifrate nel file di configurazione.
+
+<br/>
+
+Per istruzioni dettagliate su come ottenere una chiave OpenRouter, vedi [Come ottenere una chiave API](#how-to-get-an-api-key-desktop-app) sopra.
+
+
+
+<br/>
 
 <a id="about"></a>
-
 ### Informazioni
 
 La scheda **Informazioni** mostra:
@@ -637,36 +788,36 @@ La scheda **Informazioni** mostra:
 - la data di compilazione
 - un collegamento al repository del progetto
 
-<br /><br />
+<br/><br/>
 
 <a id="common-issues"></a>
 ## Problemi comuni
 
-Se qualcosa non funziona come previsto, controlla prima i seguenti punti.
+Se qualcosa non funziona come previsto, verifica innanzitutto i seguenti punti.
 
-<br />
+<br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
 ### L'app non traduce, riscrive o trasforma il testo
 
 Verifica che:
 
-- hai selezionato un modello nella barra degli strumenti
-- almeno un modello sia elencato in [**Impostazioni** > **Modelli**](#models)
+- tu abbia selezionato un modello nella barra degli strumenti
+- almeno un modello sia presente in [**Impostazioni** > **Modelli**](#models)
 - la configurazione API funzioni
 
-Se stai utilizzando l'app desktop:
+Se utilizzi l'app desktop:
 
 1. Apri [**Impostazioni** > **Configurazione API**](#api-config).
-2. Verifica che la tua chiave API sia salvata.
-3. fai clic su **Test API Configuration**.
+2. Verifica che almeno una chiave API sia salvata.
+3. Clicca su **Test** accanto al provider per confermare che la chiave funzioni.
 
-<br />
+<br/>
 
 <a id="the-model-list-is-empty"></a>
 ### L'elenco dei modelli è vuoto
 
-Apri [**Impostazioni** > **Modelli**](#models) e fai clic su **Refresh**.
+Apri [**Impostazioni** > **Modelli**](#models) e clicca su **Aggiorna**.
 
 Se necessario:
 
@@ -674,61 +825,114 @@ Se necessario:
 - attiva **Solo gratuiti**
 - aggiungi uno o più modelli a **Modelli selezionati**
 
-<br />
+<br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
-### Il risultato è troppo lento o troppo costoso
+### Il risultato è troppo lento o costoso
 
-Prova uno o più di questi:
+Prova una o più di queste opzioni:
 
 - scegli un modello diverso
 - usa un input più breve
-- disattiva **Traduzione in tempo reale (mentre si digita)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
-- usa modelli gratuiti per attività semplici (vedi [Modelli](#models))
+- disattiva **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
+- usa modelli gratuiti per compiti semplici (vedi [Modelli](#models))
 
-<br />
+<br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### L'interfaccia è nella lingua sbagliata
 
-Fai clic sull'icona del globo nella [barra degli strumenti](#toolbar) e scegli la tua **Lingua dell'interfaccia** preferita.
+Clicca sull'icona del globo nella [barra degli strumenti](#toolbar) e seleziona la **Lingua dell'interfaccia** desiderata.
 
-<br />
+<br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Il testo è troppo piccolo o difficile da leggere
 
 Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e modifica:
 
-- **Famiglia di caratteri**
+- **Famiglia caratteri**
 - **Dimensione**
 
-<br />
+<br/>
+
+<a id="dashboard-charts-are-empty"></a>
+### I grafici del cruscotto sono vuoti
+
+Questo è normale se:
+
+- utilizzi solo **modelli gratuiti** (i grafici dei costi saranno vuoti)
+- il **filtro temporale** selezionato non include il periodo in cui sono state effettuate le chiamate — prova **Tutto** per verificare
+
+Se i grafici restano vuoti dopo aver selezionato **Tutto**, conferma che le chiamate compaiano nella sezione [**Storico**](#history) o nella scheda **Tutte le chiamate**.
+
+<br/>
+
+<a id="cost-shows-not-available-or-seems-wrong"></a>
+
+### Il costo mostra "non disponibile" o sembra errato
+
+Quando utilizzi modelli tramite **OpenRouter**, l'app mostra la spesa effettiva comunicata da OpenRouter.
+
+Per **altri provider** (OpenAI diretto, Anthropic diretto, ecc.), il costo è stimato in base ai dati tariffari pubblicati da OpenRouter. Se non viene trovato un prezzo corrispondente per un modello, il costo verrà visualizzato come **non disponibile** e non sarà aggiunto al totale cumulativo.
+
+<br/>
+
+<a id="total-cost-does-not-match-my-provider-bill"></a>
+### Il costo totale non corrisponde al mio conto del fornitore
+
+Tutte le cifre relative ai costi nell'app sono **stime solo indicative**, non rappresentano fatture ufficiali.
+
+Per avvicinare il totale alla spesa effettiva su OpenRouter, apri [**Impostazioni** > **Tracciamento costi**](#cost-tracking) e clicca su **Sincronizza con l'utilizzo della chiave API**.
+
+<br/>
+
+<a id="the-history-page-is-missing-from-the-sidebar"></a>
+### La pagina Cronologia non appare nella barra laterale
+
+L'opzione **Mantieni la cronologia delle esecuzioni** potrebbe essere disattivata. Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e attivala. Tieni presente che l'attivazione non recupera i dati della cronologia precedentemente eliminati.
+
+<br/>
+
+<a id="web-app-session-expired"></a>
+### App web: reindirizzamento imprevisto alla pagina di accesso
+
+La sessione potrebbe essere scaduta. Accedi nuovamente. Se il problema si ripete frequentemente, controlla la configurazione del server riguardo le impostazioni della durata della sessione.
+
+<br/>
+
+<a id="dashboard-shows-no-data-for-other-users"></a>
+### La bacheca non mostra dati di altri utenti (web)
+
+Solo gli **amministratori** possono visualizzare i dati di tutti gli utenti tramite il filtro **Utente**. Gli utenti standard vedono solo la propria attività, come previsto dal design.
+
+<br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
 ### Ho modificato un prompt e ho perso le modifiche
 
-Quando modifichi un prompt, fai sempre clic su **Salva** prima di fare clic su **Torna a Esegui**.
+Quando modifichi un prompt, fai sempre clic su **Salva** prima di cliccare su **Torna all'esecuzione**.
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-tips"></a>
-## Consigli rapidi
+## Suggerimenti rapidi
 
-- Inizia con [**Traduci**](#translate) per assicurarti che la configurazione funzioni prima di passare a [**Riscrivi**](#rewrite) o [**Trasforma**](#transform).
-- Usa [**Riscrivi**](#rewrite) per miglioramenti quotidiani della formulazione.
-- Usa [**Trasforma**](#transform) quando hai bisogno di un flusso di lavoro ripetibile per un'attività specifica.
-- Usa il [**Dashboard**](#dashboard) se vuoi tenere sott'occhio l'utilizzo e i costi.
-- Esporta i prompt regolarmente se crei una libreria di prompt che vuoi conservare in sicurezza (vedi [Prompt di trasformazione](#transform-prompts)).
+- Inizia con [**Traduci**](#translate) per verificare che la configurazione funzioni prima di passare a [**Riscrivi**](#rewrite) o [**Trasforma**](#transform).
+- Usa [**Riscrivi**](#rewrite) per miglioramenti quotidiani del testo.
+- Usa [**Trasforma**](#transform) quando hai bisogno di un flusso di lavoro ripetibile per un compito specifico.
+- Usa [**Bacheca**](#dashboard) se desideri monitorare utilizzo e costi.
+- Usa [**Cronologia**](#history) per rivedere operazioni passate e i relativi testi completi di input/output.
+- Esporta regolarmente i prompt se stai creando una libreria che vuoi conservare al sicuro (vedi [Transform Prompts](#transform-prompts)) o se desideri condividerla con altri.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
-## Dichiarazione di non responsabilità
+## Avviso legale
 
-I nomi dei prodotti e le icone appartengono ai rispettivi proprietari e sono utilizzati solo a scopo identificativo. Questo software non è affiliato né approvato da nessuno dei marchi menzionati.
+I nomi dei prodotti e le icone appartengono ai rispettivi proprietari e sono utilizzati solo a scopo identificativo. Questo software non è affiliato né sponsorizzato da nessuno dei marchi menzionati.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Licenza

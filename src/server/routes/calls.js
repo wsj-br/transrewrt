@@ -312,11 +312,14 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     const from = req.query.from || null;
     const to = req.query.to || null;
     try {
-      if (!from && !to) {
-        db.prepare(sql.DELETE_API_CALLS).run();
-      } else {
-        db.prepare(sql.DELETE_API_CALLS_BEFORE).run(from || to);
-      }
+      const run = () => {
+        if (!from && !to) {
+          db.prepare(sql.DELETE_API_CALLS).run();
+        } else {
+          db.prepare(sql.DELETE_API_CALLS_BEFORE).run(from || to);
+        }
+      };
+      db.transaction(run)();
       res.json({ success: true });
     } catch (err) {
       log.error("[API] DELETE /api/calls - Error: " + err.message, { stack: err.stack });

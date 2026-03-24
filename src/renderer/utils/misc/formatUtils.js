@@ -42,6 +42,15 @@ export function interpolateTemplate(str, vars) {
   return str.replace(/\{\{(\w+)\}\}/g, (_, key) => String(vars[key] ?? ""));
 }
 
+/**
+ * Map U+2192 (→) to U+2190 (←) when the UI is RTL so navigation/range arrows match reading direction.
+ * Apply to user-visible strings that may contain → (including translated text).
+ */
+export function flipUiArrowsForRtl(text, isRtl) {
+  if (!isRtl || text == null || typeof text !== "string") return text;
+  return text.replace(/\u2192/g, "\u2190");
+}
+
 /** Format seconds as "mm:ss.s" (e.g. 191.8 → "03:11.8", 8.9 → "00:08.9"); decimal separator follows locale. */
 export function formatElapsedMmSs(seconds, locale) {
   const sec = Number(seconds) || 0;

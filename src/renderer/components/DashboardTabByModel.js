@@ -233,7 +233,7 @@ export default function DashboardTabByModel({
         })()}
         <div
           className={styles.paginationRow}
-          style={{ marginBottom: "8px", marginLeft: "70%" }}
+          style={{ marginBottom: "8px", marginInlineStart: "70%" }}
         >
           <div className={styles.downloadBlock}>
             <Download size={16} aria-hidden />

@@ -270,11 +270,14 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     try {
       const d = getDb();
       if (!d) return;
-      if (!from && !to) {
-        d.prepare(sql.DELETE_API_CALLS).run();
-      } else {
-        d.prepare(sql.DELETE_API_CALLS_BEFORE).run(from || to);
-      }
+      const run = () => {
+        if (!from && !to) {
+          d.prepare(sql.DELETE_API_CALLS).run();
+        } else {
+          d.prepare(sql.DELETE_API_CALLS_BEFORE).run(from || to);
+        }
+      };
+      d.transaction(run)();
     } catch (err) {
       console.error("[appDb] deleteOutsideRange error:", err);
     }

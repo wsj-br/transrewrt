@@ -21,7 +21,13 @@ import {
   formatAvgTps,
   DASH,
 } from "../utils/misc/costUtils";
-import { formatDateTime, interpolateTemplate, getTextStats } from "../utils/misc/formatUtils";
+import {
+  formatDateTime,
+  interpolateTemplate,
+  getTextStats,
+  flipUiArrowsForRtl,
+} from "../utils/misc/formatUtils";
+import { getTextDirection } from "../i18n";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
@@ -112,7 +118,17 @@ function summaryAccentClass(type, styles) {
 /**
  * Top summary card: type-specific (translate / rewrite / transform); order per product spec.
  */
-function HistoryEntrySummary({ row, t, locale, typeBadgeClass, orDash, styles, mergeClasses, formatDateTime }) {
+function HistoryEntrySummary({
+  row,
+  t,
+  locale,
+  typeBadgeClass,
+  orDash,
+  styles,
+  mergeClasses,
+  formatDateTime,
+  isRtl,
+}) {
   const type = row?.type;
   const accent = summaryAccentClass(type, styles);
 
@@ -138,7 +154,8 @@ function HistoryEntrySummary({ row, t, locale, typeBadgeClass, orDash, styles, m
       : formatHistoryContentLanguage(row.source_lang, t);
     const tgtRaw = row.target_lang != null ? String(row.target_lang).trim() : "";
     const tgt = tgtRaw === "" ? "" : formatHistoryContentLanguage(tgtRaw, t);
-    const pair = tgt === "" ? src : `${src} → ${tgt}`;
+    const pair =
+      tgt === "" ? src : flipUiArrowsForRtl(`${src} → ${tgt}`, isRtl);
     return (
       <div className={styles.summaryCard}>
         {badge}
@@ -197,6 +214,7 @@ HistoryEntrySummary.propTypes = {
   styles: PropTypes.object.isRequired,
   mergeClasses: PropTypes.func.isRequired,
   formatDateTime: PropTypes.func.isRequired,
+  isRtl: PropTypes.bool.isRequired,
 };
 
 const useLocalStyles = makeStyles({
@@ -220,7 +238,7 @@ const useLocalStyles = makeStyles({
     minHeight: 0,
     overflowY: "auto",
     overflowX: "hidden",
-    paddingRight: "4px",
+    paddingInlineEnd: "4px",
     display: "flex",
     flexDirection: "column",
     gap: "8px",
@@ -233,7 +251,7 @@ const useLocalStyles = makeStyles({
     border: `1px solid ${tokens.colorNeutralStroke1}`,
     backgroundColor: tokens.colorNeutralBackground1,
     cursor: "pointer",
-    textAlign: "left",
+    textAlign: "start",
     transition: "background-color 0.15s ease, border-color 0.15s ease",
     ":hover": {
       backgroundColor: tokens.colorNeutralBackground1Hover,
@@ -322,6 +340,7 @@ const useLocalStyles = makeStyles({
 export default function HistoryPage() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+  const isRtl = getTextDirection(i18n.language) === "rtl";
   const { settings, currentUser } = useAppContext();
   const dashStyles = useDashboardStyles();
   const styles = useLocalStyles();
@@ -542,7 +561,7 @@ export default function HistoryPage() {
         ))}
         {isWeb && isAdmin && userList.length > 0 && (
           <>
-            <Label style={{ marginLeft: "16px", marginRight: "8px" }}>{t("User")}</Label>
+            <Label style={{ marginInlineStart: "16px", marginInlineEnd: "8px" }}>{t("User")}</Label>
             <Dropdown
               value={userFilter === "" ? t("All users") : userFilter}
               selectedOptions={[userFilter]}
@@ -558,7 +577,7 @@ export default function HistoryPage() {
             </Dropdown>
           </>
         )}
-        <div className={dashStyles.downloadBlock} style={{ marginLeft: "32px" }}>
+        <div className={dashStyles.downloadBlock} style={{ marginInlineStart: "32px" }}>
           <Download size={16} aria-hidden />
           <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
           <Button
@@ -650,6 +669,7 @@ export default function HistoryPage() {
                   styles={styles}
                   mergeClasses={mergeClasses}
                   formatDateTime={formatDateTime}
+                  isRtl={isRtl}
                 />
                 <div className={styles.metricsCard}>
                   <div className={styles.detailsWrap}>

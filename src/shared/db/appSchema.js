@@ -4,8 +4,12 @@
  * Single source of truth so schema/query changes are made in one place.
  */
 
-/** Run CREATE TABLE for api_calls and custom_prompts. Call once after opening the DB. */
+/**
+ * Run CREATE TABLE for api_calls, action_content (FK to api_calls), and custom_prompts.
+ * Call once after opening the DB. Enables SQLite foreign keys (required for REFERENCES / CASCADE).
+ */
 function applyAppSchema(db) {
+  db.exec("PRAGMA foreign_keys = ON");
   db.exec(`
     CREATE TABLE IF NOT EXISTS api_calls (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,13 +39,46 @@ function applyAppSchema(db) {
   migrateApiCallsAddTextStats(db);
   migrateApiCallsRenameRewriteStyleToMode(db);
   migrateCustomPromptsUserId(db);
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS action_content (
-      api_call_id INTEGER PRIMARY KEY,
-      input_text TEXT NOT NULL,
-      output_text TEXT NOT NULL
-    )
-  `);
+  migrateActionContentForeignKey(db);
+}
+
+/** Link action_content → api_calls with ON DELETE CASCADE; rebuild table if an old DB has no FK. */
+function migrateActionContentForeignKey(db) {
+  const exists = db
+    .prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'action_content'")
+    .get();
+  if (!exists) {
+    db.exec(`
+      CREATE TABLE action_content (
+        api_call_id INTEGER PRIMARY KEY NOT NULL REFERENCES api_calls(id) ON DELETE CASCADE,
+        input_text TEXT NOT NULL,
+        output_text TEXT NOT NULL
+      )
+    `);
+    return;
+  }
+  const fks = db.prepare("PRAGMA foreign_key_list(action_content)").all();
+  if (fks.some((fk) => fk.table === "api_calls")) return;
+
+  db.exec("PRAGMA foreign_keys = OFF");
+  try {
+    db.exec("DELETE FROM action_content WHERE api_call_id NOT IN (SELECT id FROM api_calls)");
+    db.exec(`
+      CREATE TABLE action_content_new (
+        api_call_id INTEGER PRIMARY KEY NOT NULL REFERENCES api_calls(id) ON DELETE CASCADE,
+        input_text TEXT NOT NULL,
+        output_text TEXT NOT NULL
+      )
+    `);
+    db.exec(`
+      INSERT INTO action_content_new (api_call_id, input_text, output_text)
+      SELECT api_call_id, input_text, output_text FROM action_content
+    `);
+    db.exec("DROP TABLE action_content");
+    db.exec("ALTER TABLE action_content_new RENAME TO action_content");
+  } finally {
+    db.exec("PRAGMA foreign_keys = ON");
+  }
 }
 
 /** Migrate existing api_calls from request_bytes/response_bytes to prompt_tokens/completion_tokens (4 bytes = 1 token). */

@@ -2,25 +2,28 @@
 /**
  * Translate README.md and USER-GUIDE.md (British English) to all UI languages via OpenRouter.
  * Writes translated-docs/README.<code>.md and translated-docs/USER-GUIDE.<code>.md.
+ * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md.
  * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
  * Requires OPENROUTER_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
  *
  *   node scripts/translate-docs.js --help
  *   OPENROUTER_KEY=sk-or-... pnpm run translate-docs
+ *
+ * Model list: scripts/openrouter-script-models.js (not app config).
  */
 
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
 
-const DEFAULT_MODEL = "stepfun/step-3.5-flash:free";
-const ALTERNATIVE_MODELS = [
-  "qwen/qwen3-235b-a22b-2507",
-  "anthropic/claude-3-haiku",
-  "z-ai/glm-4.7-flash",
-  "minimax/minimax-m2.5",
-  "anthropic/claude-3.5-haiku",
-];
+const DEFAULT_MODEL = TRANSLATION_MODELS[0];
+
+/** @param {string} primary - from --model or DEFAULT_MODEL */
+function buildModelsToTry(primary) {
+  const first = primary || DEFAULT_MODEL;
+  return [first, ...TRANSLATION_MODELS.filter((m) => m !== first)];
+}
 
 const DEFAULT_MAX_TOKENS = 32768; // 32KB
 const DEFAULT_CONCURRENCY = 4;
@@ -355,7 +358,7 @@ async function translateBlock(blockContent, langName, modelOverride = null) {
 }
 
 async function translateBlockWithFallback(blockContent, langName, docKey, blockIndex) {
-  const modelsToTry = [MODEL, ...ALTERNATIVE_MODELS.filter((m) => m !== MODEL)];
+  const modelsToTry = buildModelsToTry(MODEL);
   let lastError = null;
   for (let mi = 0; mi < modelsToTry.length; mi++) {
     const model = modelsToTry[mi];
@@ -369,6 +372,20 @@ async function translateBlockWithFallback(blockContent, langName, docKey, blockI
     }
   }
   throw lastError || new Error("No model succeeded");
+}
+
+/**
+ * Point cross-doc links at the locale file in translated-docs/ (same folder as output).
+ * Handles optional #fragments and legacy ../README.md from older script versions.
+ */
+function rewriteCrossDocLinksToLocale(body, localeCode) {
+  const readme = (_, frag) => `](README.${localeCode}.md${frag || ""})`;
+  const userGuide = (_, frag) => `](USER-GUIDE.${localeCode}.md${frag || ""})`;
+  return body
+    .replace(/\]\(\.\.\/README\.md(#[^)]*)?\)/g, readme)
+    .replace(/\]\(\.\.\/USER-GUIDE\.md(#[^)]*)?\)/g, userGuide)
+    .replace(/\]\(README\.md(#[^)]*)?\)/g, readme)
+    .replace(/\]\(USER-GUIDE\.md(#[^)]*)?\)/g, userGuide);
 }
 
 function logUsage(label, usage, totalSoFar) {
@@ -425,15 +442,16 @@ async function processDoc(locale, doc, content) {
     const sourcePath = path.join(ROOT, doc.sourceFile);
     const sourceMtime = fs.statSync(sourcePath).mtimeMs;
     const body = translatedParts.join("\n\n");
-    const bodyWithLocalePaths = body
-      .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
-      .replace(/src="images\//g, 'src="../images/')
-      .replace(/\]\(images\//g, '](../images/')
-      .replace(/\]\(README\.md\)/g, '](../README.md)')
-      .replace(/\]\(USER-GUIDE\.md\)/g, '](../USER-GUIDE.md)')
-      .replace(/\]\(translated-docs\/README\./g, '](README.')
-      .replace(/\]\(translated-docs\/USER-GUIDE\./g, '](USER-GUIDE.')
-      .replace(/\]\(dev\//g, '](../dev/');
+    const bodyWithLocalePaths = rewriteCrossDocLinksToLocale(
+      body
+        .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
+        .replace(/src="images\//g, 'src="../images/')
+        .replace(/\]\(images\//g, '](../images/')
+        .replace(/\]\(translated-docs\/README\./g, '](README.')
+        .replace(/\]\(translated-docs\/USER-GUIDE\./g, '](USER-GUIDE.')
+        .replace(/\]\(dev\//g, '](../dev/'),
+      locale.code
+    );
     const frontmatter = buildFrontmatter({
       translated_at: new Date().toISOString(),
       source_hash: currentHash,

@@ -19,7 +19,12 @@ import {
   formatCount,
   getDeleteCutoffIso,
 } from "../utils/misc/costUtils";
-import { interpolateTemplate, formatDecimal } from "../utils/misc/formatUtils";
+import {
+  interpolateTemplate,
+  formatDecimal,
+  flipUiArrowsForRtl,
+} from "../utils/misc/formatUtils";
+import { getTextDirection } from "../i18n";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -56,7 +61,7 @@ const useStyles = makeStyles({
   },
   th: {
     padding: "10px 12px",
-    textAlign: "left",
+    textAlign: "start",
     fontWeight: 600,
     backgroundColor: tokens.colorNeutralBackground3,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
@@ -101,6 +106,7 @@ const SettingsCostTrackingTab = ({
   const styles = useStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+  const isRtl = getTextDirection(i18n.language) === "rtl";
   const [byFunction, setByFunction] = useState([]);
   const [loading, setLoading] = useState(false);
   const [syncCostError, setSyncCostError] = useState(null);
@@ -180,7 +186,7 @@ const SettingsCostTrackingTab = ({
 
   const keyUsageDisplay = useMemo(() => {
     if (keyInfoLoading) return t("Loading…");
-    if (keyInfoError) return keyInfoError;
+    if (keyInfoError) return flipUiArrowsForRtl(keyInfoError, isRtl);
     if (!keyInfo) return "—";
     const usage =
       keyInfo.usage ??
@@ -195,12 +201,7 @@ const SettingsCostTrackingTab = ({
       limit: keyInfo.limit,
       limitReset: keyInfo.limit_reset,
     };
-  }, [
-    keyInfoLoading,
-    keyInfoError,
-    keyInfo,
-    t,
-  ]);
+  }, [keyInfoLoading, keyInfoError, keyInfo, t, isRtl]);
 
   const costApi = getCostApi();
   useEffect(() => {
@@ -350,7 +351,7 @@ const SettingsCostTrackingTab = ({
           style={{
             display: "flex",
             alignItems: "center",
-            marginLeft: "64px",
+            marginInlineStart: "64px",
             marginTop: "12px",
             gap: "16px",
             flexWrap: "wrap",
@@ -428,7 +429,7 @@ const SettingsCostTrackingTab = ({
             gap: "8px",
             flexWrap: "wrap",
             marginTop: "18px",
-            marginLeft: "32px",
+            marginInlineStart: "32px",
           }}
         >
           <span style={{ fontSize: "16px", fontWeight: 600 }}>
@@ -491,7 +492,7 @@ const SettingsCostTrackingTab = ({
         <p style={{ marginTop: "16px" }}>{t("Loading summaries…")}</p>
       ) : (
         <div className="section" style={{ marginTop: "24px" }}>
-          <div style={{ marginLeft: "32px" }}>
+          <div style={{ marginInlineStart: "32px" }}>
             <Text
               as="h4"
               size={400}
@@ -590,7 +591,7 @@ const SettingsCostTrackingTab = ({
             display: "flex",
             flexDirection: "column",
             gap: "8px",
-            marginLeft: "64px",
+            marginInlineStart: "64px",
             marginTop: "12px",
           }}
         >

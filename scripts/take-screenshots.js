@@ -10,7 +10,7 @@
  *
  * Usage: pnpm run take-screenshots [--screenshot=NAME] [--locale=CODE[,CODE...]]
  *   --screenshot=NAME  (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
- *   --locale=CODE      (or comma-separated) Only run for these locale(s) (e.g. --locale=pt-BR or --locale=pt-BR,es,ja).
+ *   --locale=CODE      (comma- or space-separated) Only run for these locale(s). On PowerShell, quote commas: '--locale=pt-BR,es' or use spaces: --locale=pt-BR es.
  * Env: BASE_URL (default http://localhost:5000), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
@@ -47,6 +47,16 @@ function loadUILanguages() {
   return Array.isArray(raw) ? raw : [];
 }
 
+/** Loads `ui-languages.json` and applies `--locale=` filter when set. */
+function loadAndFilterUILanguages(localeFilter) {
+  let list = loadUILanguages();
+  if (localeFilter && localeFilter.length > 0) {
+    const codes = new Set(localeFilter);
+    list = list.filter((l) => codes.has(l.code));
+  }
+  return list;
+}
+
 function parseArgs() {
   const out = { help: false, screenshotFilter: null, localeFilter: null, unknown: [] };
   for (const arg of process.argv.slice(2)) {
@@ -56,7 +66,8 @@ function parseArgs() {
       out.screenshotFilter = arg.split("=", 2)[1].trim();
     } else if (arg.startsWith("--locale=")) {
       const val = arg.split("=", 2)[1].trim();
-      out.localeFilter = val ? val.split(",").map((c) => c.trim()).filter(Boolean) : null;
+      // PowerShell parses unquoted "a,b,c" after = as an array, then passes "a b c" as one argv token — split on whitespace too.
+      out.localeFilter = val ? val.split(/[,\s]+/).map((c) => c.trim()).filter(Boolean) : null;
     } else {
       out.unknown.push(arg);
     }
@@ -81,7 +92,7 @@ Usage:
 Options:
   --help, -h              Show this help and exit.
   --screenshot=NAME        (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
-  --locale=CODE            Only run for these locale(s). Comma-separated for multiple (e.g. --locale=pt-BR,es,ja).
+  --locale=CODE            Only run for these locale(s). Comma- or space-separated (e.g. --locale=pt-BR,es,ja). On PowerShell, quote the value if using commas: '--locale=pt-BR,es,ja'.
 
 Environment:
   BASE_URL                   Base URL of the web app (default: ${baseUrl}).
@@ -180,7 +191,8 @@ function ensureRewriteWithSynonymsPrompt() {
       promptTargetLanguageToDb(entry.target_language),
       promptInstructions,
       entry.created_at || now,
-      now
+      now,
+      null,
     );
     log("Imported '%s' into custom_prompts from %s.", REWRITE_WITH_SYNONYMS_NAME, TRANSFORM_PROMPTS_PATH);
   } catch (err) {
@@ -920,7 +932,12 @@ async function captureSidebar(page, filePath) {
       }
       return { x: Math.round(r.left), y: Math.round(r.top), width: Math.round(r.width), height: Math.round(bottom - r.top) };
     });
-    if (clip) await page.screenshot({ path: filePath, clip });
+    if (clip) {
+      const buffer = await page.screenshot({ clip, encoding: "binary" });
+      const w = Math.max(1, Math.round(clip.width * 0.7));
+      const h = Math.max(1, Math.round(clip.height * 0.7));
+      await sharp(buffer).resize(w, h).toFile(filePath);
+    }
   } finally {
     await page.evaluate((styles) => {
       const sidebarEl = document.querySelector("[data-testid=\"app-sidebar\"]");
@@ -1006,6 +1023,18 @@ async function main() {
     process.exit(1);
   }
 
+  let uiLanguages = loadAndFilterUILanguages(args.localeFilter);
+  if (args.localeFilter && args.localeFilter.length > 0) {
+    log("Filtering to %d locale(s): %s", uiLanguages.length, args.localeFilter.join(", "));
+  }
+  if (uiLanguages.length === 0) {
+    console.error(
+      RED + "No UI languages found or matched filter in " + UI_LANGUAGES_PATH + RESET,
+    );
+    process.exit(1);
+  }
+  log("Loaded %d UI languages; will capture each screenshot per language.", uiLanguages.length);
+
   const adminUser = process.env.ADMIN_USERNAME;
   const adminPass = process.env.ADMIN_PASSWORD;
   const hasUser = adminUser != null && String(adminUser).trim() !== "";
@@ -1082,19 +1111,6 @@ async function main() {
   await maybeLogin(page);
   await ensureAppShell(page);
 
-  let uiLanguages = loadUILanguages();
-  if (args.localeFilter && args.localeFilter.length > 0) {
-    const codes = new Set(args.localeFilter);
-    uiLanguages = uiLanguages.filter((l) => codes.has(l.code));
-    log("Filtering to %d locale(s): %s", uiLanguages.length, args.localeFilter.join(", "));
-  }
-  if (uiLanguages.length === 0) {
-    log("No UI languages found or matched filter in %s", UI_LANGUAGES_PATH);
-    await browser.close();
-    if (logStream) logStream.end();
-    process.exit(1);
-  }
-
   let screenshotSets = SCREENSHOTS;
   if (args.screenshotFilter) {
     screenshotSets = SCREENSHOTS.filter((s) => s.name === args.screenshotFilter);
@@ -1106,8 +1122,6 @@ async function main() {
     }
     log("Filtering to screenshot set: %s", args.screenshotFilter);
   }
-
-  log("Loaded %d UI languages; will capture each screenshot per language.", uiLanguages.length);
 
   await setUILanguage(page, "en-GB");
   await setModelToOpenRouterFree(page);

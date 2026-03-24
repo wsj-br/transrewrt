@@ -6,26 +6,35 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.12-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - all via [OpenRouter](https://openrouter.ai). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
+AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- **Translate** - between dozens of languages, with automatic source detection
-- **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
-- **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
-- **Models & cost** - choose any OpenRouter model; cost dashboard with SQLite log, summaries by model/operation/day
-- **UI** - i18n (pt-BR, de, fr, es, RTL), themes, fonts, keyboard shortcuts; secure web mode (API key on server only)
-- **Desktop** - Electron app for Windows and Linux
-- **Self-hosted** - Docker image for amd64 & arm64 (Raspberry Pi-ready)
+- **Translate** — between dozens of languages, with automatic source detection
+- **Rewrite** — fix grammar, improve clarity, formal/informal, shorten, expand, technical
+- **Transform** — custom AI prompts; create and manage prompts, optional target language per prompt
+- **History** — full execution history with input/output text, filtering, and export
+- **Models & cost** — choose models from any configured provider; cost dashboard with SQLite log, summaries by model/operation/day
+- **UI** — multilingual interface (30+ languages, RTL support), fonts, ...
+- **Web mode** — multi-user support with admin roles; API keys stay server-side, never exposed to the browser
+- **Desktop** — Electron app for Windows and Linux
+- **Self-hosted** — Docker image for amd64 & arm64 (Raspberry Pi-ready)
 
 Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough of all features.
 
 <small>**Read in other languages:** [English (UK)](README.md) · [Português (BR)](translated-docs/README.pt-BR.md) · [العربية](translated-docs/README.ar.md) · [বাংলা](translated-docs/README.bn.md) · [Català](translated-docs/README.ca.md) · [简体中文](translated-docs/README.zh-CN.md) · [繁體中文](translated-docs/README.zh-TW.md) · [Hrvatski](translated-docs/README.hr.md) · [Čeština](translated-docs/README.cs.md) · [Nederlands](translated-docs/README.nl.md) · [English (US)](translated-docs/README.en-US.md) · [Filipino](translated-docs/README.tl.md) · [Français](translated-docs/README.fr.md) · [Deutsch](translated-docs/README.de.md) · [Ελληνικά](translated-docs/README.el.md) · [हिन्दी](translated-docs/README.hi.md) · [Magyar](translated-docs/README.hu.md) · [Italiano](translated-docs/README.it.md) · [日本語](translated-docs/README.ja.md) · [Basa Jawa](translated-docs/README.jv.md) · [한국어](translated-docs/README.ko.md) · [Bahasa Melayu](translated-docs/README.ms.md) · [فارسی](translated-docs/README.fa.md) · [Polski](translated-docs/README.pl.md) · [Português (PT)](translated-docs/README.pt.md) · [ਪੰਜਾਬੀ](translated-docs/README.pa.md) · [Română](translated-docs/README.ro.md) · [Русский](translated-docs/README.ru.md) · [Slovenčina](translated-docs/README.sk.md) · [Español](translated-docs/README.es.md) · [Kiswahili](translated-docs/README.sw.md) · [Svenska](translated-docs/README.sv.md) · [తెలుగు](translated-docs/README.te.md) · [ภาษาไทย](translated-docs/README.th.md) · [Türkçe](translated-docs/README.tr.md) · [Українська](translated-docs/README.uk.md) · [Tiếng Việt](translated-docs/README.vi.md)</small>
+
+
+<br/>
+
+**Note on UI and documentation translations:** All interface languages except English (UK) were translated using AI models; the wording may be imprecise or contain errors.
+
+
 
 <a id="screenshots"></a>
 ## Screenshots
@@ -46,17 +55,22 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 
 ![Cost dashboard](images/screenshots/en-GB/dashboard-summary.png)
 
+**History**
+
+![History](images/screenshots/en-GB/history.png)
+
 **Settings - model selection**
 
 ![Settings - model selection](images/screenshots/en-GB/settings-models.png)
 
-<br /><br />
+<br/><br/>
 
 <a id="table-of-contents"></a>
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 
 - [Quick start](#quick-start)
 - [Installation](#installation)
@@ -73,7 +87,7 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-start"></a>
 ## Quick start
@@ -93,18 +107,18 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
-<br />
+<br/>
 
 > ℹ️ **NOTE**<br/>
 > In Docker, LLM credentials are set with environment variables such as `OPENROUTER_KEY`, `OPENAI_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
 
-<br />
+<br/>
 
 **Windows**
 
-Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API** (at minimum the providers you use; OpenRouter is common for hosted models).
+Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
 
-<br />
+<br/>
 
 **Linux**
 
@@ -114,7 +128,9 @@ Download the `.AppImage` from [Releases](https://github.com/wsj-br/transrewrt/re
 chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
 ```
 
-Enter your API keys in **Settings → API** (at minimum the providers you use; OpenRouter is common for hosted models). On Debian/Ubuntu you may need to install extra dependencies first:
+Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
+
+On Debian/Ubuntu you may need to install extra dependencies first:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -122,16 +138,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 
 See [Installation → Linux](#linux-electron) for details.
 
-<br />
+<br/>
 
 > ℹ️ **NOTE**<br/>
 > macOS is not currently supported. Transrewrt is available for Windows, Linux, and Docker.
 
-<br />
+<br/>
 
 Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
-<br /><br />
+<br/><br/>
 
 <a id="installation"></a>
 ## Installation
@@ -141,9 +157,9 @@ Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to
 
 - Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run the `.exe` and follow the installer.
-- First run: start the app from the Start menu or desktop shortcut. Config is stored in `%APPDATA%\transrewrt\`.
+- First run: start the app from the Start menu or desktop shortcut. 
 
-<br />
+<br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
@@ -153,7 +169,7 @@ Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to
 - Extra dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - See [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) for more.
 
-<br />
+<br/>
 
 <a id="docker"></a>
 ### Docker
@@ -173,7 +189,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-<br />
+<br/>
 
 | Option   | Description                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
@@ -181,22 +197,24 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | Volume   | Mount `/app/data` for config and database persistence                                                         |
 | Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
-To build and run from source: `docker compose up --build -d` or `pnpm run docker:up` - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
+To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
 ## Getting an OpenRouter API key
 
-Transrewrt uses [OpenRouter](https://openrouter.ai) for AI models. You need an API key to translate, rewrite, or transform text.
+Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) is a popular choice because it aggregates many models under one key and offers free models.
 
 1. Sign up or log in at [openrouter.ai](https://openrouter.ai).
 2. Open the [Keys](https://openrouter.ai/keys) page and create a new key (name it, and optionally set a credit limit). You can use free models without adding credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set env vars such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
 
+You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
+
 For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
-<br /><br />
+<br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Configuration and environment
@@ -209,7 +227,7 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (use a volume to persist) |
 
-<br />
+<br/>
 
 **Environment variables** (web/Docker only; Electron uses the local config file)
 
@@ -231,13 +249,13 @@ Configure only the providers you use. Model IDs are namespaced (`openrouter/…`
 
 **Cost display:** OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available; without it, non-OpenRouter cost may show as `0`. Estimates are not invoices.
 
-<br />
+<br/>
 
 **Data and persistence:** For Docker, mount a volume at `/app/data` so `config.json` and the SQLite database persist across container restarts. Without a volume, all data is lost when the container stops.
 
 **Developers:** After pulling changes that replace the old single-key config, reset or merge `data/config.json` with the new default shape from `src/config-defaults/config_default.json` if your local file still uses removed fields (`api_key`, `api_url`, proxy options).
 
-<br />
+<br/>
 
 **Web authentication:**
 
@@ -246,16 +264,16 @@ Configure only the providers you use. Model IDs are namespaced (`openrouter/…`
 - Reset a password: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (from source: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br />
+<br/>
 
 > ⚠️ **WARNING**<br/>
 > Change the default admin password immediately on any network-accessible host.
 
-<br />
+<br/>
 
-Key settings (theme, font, models, languages, etc.) are available in the Settings dialog or can be edited directly in the config JSON. The full list and defaults are documented in [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
+Key settings (font, models, languages, etc.) are available in the application Settings.
 
-<br /><br />
+<br/><br/>
 
 <a id="development-and-architecture"></a>
 ## Development and architecture
@@ -263,21 +281,7 @@ Key settings (theme, font, models, languages, etc.) are available in the Setting
 - **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](dev/DEVELOPMENT.md)**.
 - **Architecture and system overview:** Folder structure, tech stack, design decisions - see **[dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md)**.
 
-```mermaid
-graph TD
-    subgraph renderer["src/renderer/ (shared React application)"]
-        T[Translate]
-        R[Rewrite]
-        TR[Transform]
-        D[Dashboard]
-        S[Settings]
-        T & R & TR & D & S --> core["configManager / apiService / costUtils"]
-    end
-    core -->|Electron| main["src/main/main.js"]
-    core -->|Web / Docker| server["src/server/index.js"]
-```
-
-<br /><br />
+<br/><br/>
 
 <a id="releases-and-tags"></a>
 ## Releases and tags
@@ -285,7 +289,7 @@ graph TD
 - **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** attach the Windows installer (`.exe`) and Linux AppImage.
 - **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
 
-<br /><br />
+<br/><br/>
 
 <a id="contributing"></a>
 ## Contributing
@@ -297,18 +301,18 @@ graph TD
 
 Please follow the existing code style and test your changes in both Electron and web modes before submitting. See [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) for build and test instructions.
 
-<br />
+<br/>
 
 **Reporting issues:** Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (shown in the About dialog or on the Releases page).
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
 ## Disclaimer
 
 Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## License

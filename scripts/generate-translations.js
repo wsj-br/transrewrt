@@ -1,6 +1,7 @@
 /**
  * Read locales/strings.json, translate missing entries via OpenRouter, write flat locale JSONs.
  * Requires OPENROUTER_KEY (same as server/Docker). Run after extract-strings.js.
+ * Model list: scripts/openrouter-script-models.js (not app config).
  *
  * Use --help for usage and options.
  *   node scripts/generate-translations.js --help
@@ -8,16 +9,15 @@
 
 const fs = require("fs");
 const path = require("path");
+const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
 
+const DEFAULT_MODEL = TRANSLATION_MODELS[0];
 
-const DEFAULT_MODEL = "qwen/qwen3-235b-a22b-2507";
-const ALTERNATIVE_MODELS = [
-  "stepfun/step-3.5-flash:free",
-  "anthropic/claude-3-haiku",
-  "z-ai/glm-4.7-flash",
-  "minimax/minimax-m2.5",
-  "anthropic/claude-3.5-haiku",
-];
+/** @param {string} primary - from --model or DEFAULT_MODEL */
+function buildModelsToTry(primary) {
+  const first = primary || DEFAULT_MODEL;
+  return [first, ...TRANSLATION_MODELS.filter((m) => m !== first)];
+}
 
 const DEFAULT_MAX_TOKENS = 32768;
 const CHUNK = 50;
@@ -377,7 +377,7 @@ async function generateForLang(lang, options = {}) {
     log(`${lang.code} - ${lang.name}: up to date`);
   } else {
     log(`${lang.code} - ${lang.name}: ${missing.length} strings to translate`);
-    const modelsToTry = [MODEL, ...ALTERNATIVE_MODELS.filter((m) => m !== MODEL)];
+    const modelsToTry = buildModelsToTry(MODEL);
     for (let i = 0; i < missing.length; i += CHUNK) {
       const chunk = missing.slice(i, i + CHUNK);
       const sources = chunk.map(([, v]) => v.source);

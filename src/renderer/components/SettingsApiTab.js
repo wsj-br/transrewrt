@@ -107,7 +107,7 @@ const SecretField = ({
             value={value ?? ""}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
-            style={{ width: "400px", minWidth: "300px", paddingRight: "36px" }}
+            style={{ width: "400px", minWidth: "300px", paddingInlineEnd: "36px" }}
           />
           <button
             type="button"
@@ -115,7 +115,7 @@ const SecretField = ({
             aria-label={showPassword ? "Hide" : "Show"}
             style={{
               position: "absolute",
-              right: "8px",
+              insetInlineEnd: "8px",
               top: "50%",
               transform: "translateY(-50%)",
               background: "none",
@@ -253,7 +253,7 @@ const SettingsApiTab = ({
             {t("API Configuration")}
           </Text>
 
-          <div style={{ paddingLeft: "24px" }}>
+          <div style={{ paddingInlineStart: "24px" }}>
             <Text
               as="p"
               style={{ display: "block", marginBottom: "20px", maxWidth: "560px" }}
@@ -379,7 +379,7 @@ const SettingsApiTab = ({
             <Key size={20} />
             {t("API Configuration")}
           </Text>
-          <div style={{ paddingLeft: "24px" }}>
+          <div style={{ paddingInlineStart: "24px" }}>
             {currentUserRole !== "admin" ? (
               <Text as="p">{t("Admin access is required.")}</Text>
             ) : (
@@ -423,7 +423,7 @@ const SettingsApiTab = ({
                           size="small"
                           onClick={() => runProviderTest(item.provider)}
                           disabled={!item.configured || testResults[item.provider]?.status === "testing"}
-                          style={{ marginLeft: "48px" }}
+                          style={{ marginInlineStart: "48px" }}
                         >
                           {testResults[item.provider]?.status === "testing" ? t("Testing...") : t("Test")}
                         </Button>

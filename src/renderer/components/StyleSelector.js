@@ -26,8 +26,8 @@ const useStyles = makeStyles({
       border: "none !important",
       borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
       backgroundColor: "transparent !important",
-      paddingLeft: "0 !important",
-      paddingRight: "0 !important",
+      paddingInlineStart: "0 !important",
+      paddingInlineEnd: "0 !important",
     },
     "& .fui-Dropdown__trigger:hover": {
       borderBottom: `2px solid ${tokens.colorNeutralForeground1} !important`,

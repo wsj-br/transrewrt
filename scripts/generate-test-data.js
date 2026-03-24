@@ -1,24 +1,64 @@
 /**
- * Generate test data for transrewrt.db (api_calls table).
+ * Generate test data for transrewrt.db (api_calls + action_content).
+ * DDL here must stay aligned with src/shared/db/appSchema.js (columns + action_content FK).
  * Creates translations and rewrites with random modes, chars, timestamps (last 2 months).
  * Cost: each model gets a random cost per 1M tokens ($0.5–$15; $0 if model name contains "free").
  * Transaction cost = (prompt_tokens + completion_tokens) / 1e6 * cost_per_1M for that model.
  * If a users table exists, assigns each entry a random username from it; otherwise username is null.
  * Uses sql.js so it runs without native better-sqlite3 bindings.
  *
- * Each run clears existing api_calls rows before inserting fresh test data.
+ * Schema matches src/shared/db/appSchema.js (including input/output text stats columns).
+ *
+ * Each run drops action_content, clears api_calls, recreates action_content (FK to api_calls, CASCADE),
+ * then inserts api_calls plus linked action_content rows (same sample input/output text per action).
  *
  * Run: pnpm generate-test-data --web|--app [options]
  */
 
 const path = require("path");
 const fs = require("fs");
+const { sql } = require("../src/shared/db/appSchema.js");
+const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
 
 const DEFAULT_NUM_TRANSLATIONS = 100;
 const DEFAULT_NUM_REWRITES = 50;
 const DEFAULT_NUM_TRANSFORMS = 20;
 const RED = "\x1b[31m";
 const RESET = "\x1b[0m";
+
+/** Same body text for every generated action (linked in action_content). */
+const SAMPLE_INPUT_TEXT =
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+
+const SAMPLE_OUTPUT_TEXT =
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
+
+/** Same rules as src/renderer/utils/misc/formatUtils.js getTextStats. */
+function getTextStats(text) {
+  const chars = text.length;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const paragraphs = text.trim()
+    ? text.split(/\n\s*\n/).filter((p) => p.trim()).length
+    : 0;
+  return { chars, words, paragraphs };
+}
+
+/**
+ * api_calls input_* / output_* columns: chars, words, paragraphs from SAMPLE_INPUT_TEXT /
+ * SAMPLE_OUTPUT_TEXT only (same strings as action_content.input_text / output_text).
+ */
+function statsColumnsFromSampleTexts() {
+  const input = getTextStats(SAMPLE_INPUT_TEXT);
+  const output = getTextStats(SAMPLE_OUTPUT_TEXT);
+  return {
+    input_chars: input.chars,
+    input_words: input.words,
+    input_paragraphs: input.paragraphs,
+    output_chars: output.chars,
+    output_words: output.words,
+    output_paragraphs: output.paragraphs,
+  };
+}
 
 function getDataDir(mode) {
   if (mode === "web") {
@@ -87,10 +127,11 @@ Options:
   -f, --transforms N     Number of transform rows to generate (default: ${DEFAULT_NUM_TRANSFORMS})
   -h, --help             Show this help and exit
 
-Reads models and languages from data/config.json (or CONFIG_PATH for --app).
+Reads languages from data/config.json (or CONFIG_PATH for --app). Models from
+scripts/openrouter-script-models.js (same list as i18n translate script).
 Transform prompt names from src/config-defaults/transform-prompts.json.
 When the DB has a users table, entries get a random username from it.
-Existing api_calls rows are deleted before new test data is inserted.`);
+Drops action_content, clears api_calls, recreates action_content (FK), then inserts rows.`);
 }
 
 function loadConfig(configPath) {
@@ -105,15 +146,11 @@ function loadConfig(configPath) {
     console.error("Could not parse config:", err.message);
     process.exit(1);
   }
-  if (!Array.isArray(config.available_models) || config.available_models.length === 0) {
-    console.error("config.json must contain a non-empty available_models array");
-    process.exit(1);
-  }
   if (!Array.isArray(config.top_languages) || config.top_languages.length === 0) {
     console.error("config.json must contain a non-empty top_languages array");
     process.exit(1);
   }
-  const models = config.available_models;
+  const models = TRANSLATION_MODELS;
   const languages = ["Detect Language", ...config.top_languages];
   return { config, models, languages };
 }
@@ -264,6 +301,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
   const costPer1MMap = buildModelCostPer1M(models);
   const pickUser = () =>
     usernames && usernames.length > 0 ? randomChoice(usernames) : null;
+  const textStats = statsColumnsFromSampleTexts();
 
   const rows = [];
 
@@ -293,6 +331,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
+      ...textStats,
     });
   }
 
@@ -319,6 +358,7 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
+      ...textStats,
     });
   }
 
@@ -346,10 +386,21 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
       cost,
       tps: tps !== null ? Math.round(tps * 100) / 100 : null,
       username: pickUser(),
+      ...textStats,
     });
   }
 
   rows.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+  /** Chronologically last translate row: auto-detect → Portuguese (Brazil). */
+  for (let i = rows.length - 1; i >= 0; i--) {
+    if (rows[i].type === "translate") {
+      rows[i].source_lang = "Detect Language";
+      rows[i].target_lang = "Portuguese (BR)";
+      break;
+    }
+  }
+
   return rows;
 }
 
@@ -379,6 +430,7 @@ async function main() {
     db = new SQL.Database();
   }
 
+  /* Keep column list in sync with applyAppSchema() in src/shared/db/appSchema.js (sql.js has no shared apply). */
   db.run(`
     CREATE TABLE IF NOT EXISTS api_calls (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -394,7 +446,13 @@ async function main() {
       duration_ms INTEGER,
       cost REAL,
       tps REAL,
-      username TEXT
+      username TEXT,
+      input_chars INTEGER,
+      input_words INTEGER,
+      input_paragraphs INTEGER,
+      output_chars INTEGER,
+      output_words INTEGER,
+      output_paragraphs INTEGER
     )
   `);
   try {
@@ -403,11 +461,33 @@ async function main() {
   try {
     db.exec("ALTER TABLE api_calls ADD COLUMN username TEXT");
   } catch { /* ignore */ }
+  for (const col of [
+    "input_chars",
+    "input_words",
+    "input_paragraphs",
+    "output_chars",
+    "output_words",
+    "output_paragraphs",
+  ]) {
+    try {
+      db.exec(`ALTER TABLE api_calls ADD COLUMN ${col} INTEGER`);
+    } catch { /* ignore */ }
+  }
 
+  db.run("DROP TABLE IF EXISTS action_content");
   db.run("DELETE FROM api_calls");
   try {
     db.run("DELETE FROM sqlite_sequence WHERE name = 'api_calls'");
   } catch { /* ignore */ }
+
+  db.run("PRAGMA foreign_keys = ON");
+  db.run(`
+    CREATE TABLE action_content (
+      api_call_id INTEGER PRIMARY KEY NOT NULL REFERENCES api_calls(id) ON DELETE CASCADE,
+      input_text TEXT NOT NULL,
+      output_text TEXT NOT NULL
+    )
+  `);
 
   let usernames = [];
   try {
@@ -427,10 +507,15 @@ async function main() {
   const totalCost = Math.round(
     rows.reduce((sum, row) => sum + (Number(row.cost) || 0), 0) * 1e6,
   ) / 1e6;
-  const insertSql = `
-    INSERT INTO api_calls (timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `;
+  const insertSql = sql.INSERT_API_CALL;
+  const insertContentSql = sql.INSERT_ACTION_CONTENT;
+
+  function readLastInsertRowid() {
+    const r = db.exec("SELECT last_insert_rowid() AS id");
+    if (!r.length || !r[0].values || !r[0].values.length) return null;
+    return r[0].values[0][0];
+  }
+
   for (const row of rows) {
     db.run(insertSql, [
       row.timestamp,
@@ -446,7 +531,18 @@ async function main() {
       row.cost,
       row.tps,
       row.username,
+      row.input_chars,
+      row.input_words,
+      row.input_paragraphs,
+      row.output_chars,
+      row.output_words,
+      row.output_paragraphs,
     ]);
+    const apiCallId = readLastInsertRowid();
+    if (apiCallId == null) {
+      throw new Error("last_insert_rowid() missing after INSERT INTO api_calls");
+    }
+    db.run(insertContentSql, [apiCallId, SAMPLE_INPUT_TEXT, SAMPLE_OUTPUT_TEXT]);
   }
 
   const data = db.export();

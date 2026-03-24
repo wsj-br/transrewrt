@@ -152,7 +152,7 @@ const useStyles = makeStyles({
       "'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
     fontSize: "14px",
     fontWeight: 500,
-    textAlign: "left",
+    textAlign: "start",
     ":hover": {
       backgroundColor: "rgba(255, 255, 255, 0.06)",
     },
@@ -222,7 +222,7 @@ const useStyles = makeStyles({
     color: "#e0e0e0",
     padding: "8px 12px",
     fontSize: "13px",
-    textAlign: "left",
+    textAlign: "start",
     ":hover": {
       backgroundColor: "rgba(255, 255, 255, 0.06)",
     },
@@ -245,7 +245,7 @@ const useStyles = makeStyles({
     overflow: "hidden",
     textOverflow: "ellipsis",
     fontSize: "14px",
-    marginLeft: "4px",
+    marginInlineStart: "4px",
     fontWeight: 700,
   },
   userLabelHidden: {
@@ -261,7 +261,7 @@ const useStyles = makeStyles({
   },
   menuIcon: {
     display: "inline-flex",
-    marginRight: "8px",
+    marginInlineEnd: "8px",
     verticalAlign: "middle",
   },
 });

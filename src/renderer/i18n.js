@@ -18,9 +18,17 @@ const RTL_LANGS = new Set([
   'rhg', 'nqo',                    // Hanifi Rohingya, N'Ko
 ]);
 
-function applyDirection(lng) {
+/**
+ * @param {string} [lng] - i18n language code (e.g. 'ar', 'fa-IR')
+ * @returns {'ltr' | 'rtl'}
+ */
+export function getTextDirection(lng) {
   const base = (lng && lng.split(/[-_]/)[0]) || '';
-  const dir = RTL_LANGS.has(base) ? 'rtl' : 'ltr';
+  return RTL_LANGS.has(base) ? 'rtl' : 'ltr';
+}
+
+function applyDirection(lng) {
+  const dir = getTextDirection(lng);
   if (typeof document !== 'undefined' && document.documentElement) {
     document.documentElement.setAttribute('dir', dir);
   }

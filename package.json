@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -176,15 +176,15 @@
     "@fluentui/react-icons": "^2.0.321",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.8.0",
-    "diff": "^8.0.3",
+    "diff": "^8.0.4",
     "express": "^5.2.1",
-    "i18next": "^25.10.2",
-    "lucide-react": "^0.577.0",
+    "i18next": "^25.10.5",
+    "lucide-react": "^1.0.1",
     "multi-llm-ts": "5.1.0-beta4",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-i18next": "^16.6.0",
+    "react-i18next": "^16.6.2",
     "recharts": "^3.8.0",
     "webpack-dev-server": "^5.2.3",
     "xlsx-js-style": "^1.2.0"

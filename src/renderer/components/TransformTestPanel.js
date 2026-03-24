@@ -100,6 +100,7 @@ const TransformTestPanel = ({
         <label className={styles.inputLabel}>{t("Test input")}</label>
         <textarea
           className={styles.textarea}
+          dir="auto"
           value={testInput}
           onChange={(e) => onTestInputChange?.(e.target.value)}
           placeholder={t("Paste text to test...")}

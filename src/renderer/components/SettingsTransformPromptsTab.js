@@ -150,7 +150,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
   },
   formatRowSpacer: {
-    marginLeft: "48px",
+    marginInlineStart: "48px",
     flexShrink: 0,
   },
   formatDropdown: {
@@ -185,7 +185,7 @@ const useStyles = makeStyles({
   },
   th: {
     padding: "10px 12px",
-    textAlign: "left",
+    textAlign: "start",
     fontWeight: 600,
     backgroundColor: tokens.colorNeutralBackground3,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
@@ -218,7 +218,7 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
     cursor: "pointer",
     flexShrink: 0,
-    marginLeft: "auto",
+    marginInlineStart: "auto",
     ":hover": {
       color: tokens.colorNeutralForeground2BrandHover,
     },
@@ -476,7 +476,7 @@ const SettingsTransformPromptsTab = () => {
     marginTop: 0,
     marginBottom: "36px",
   };
-  const indentStyle = { paddingLeft: "24px" };
+  const indentStyle = { paddingInlineStart: "24px" };
 
   return (
     <div className="tab-content">

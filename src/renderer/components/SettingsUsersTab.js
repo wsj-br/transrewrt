@@ -76,7 +76,7 @@ const useStyles = makeStyles({
     fontSize: "14px",
   },
   th: {
-    textAlign: "left",
+    textAlign: "start",
     padding: "10px 12px",
     fontWeight: 600,
     backgroundColor: tokens.colorNeutralBackground3,
@@ -97,7 +97,7 @@ const useStyles = makeStyles({
   actionBtn: {
     minWidth: "32px",
     padding: "4px 8px",
-    marginRight: "4px",
+    marginInlineEnd: "4px",
     color: tokens.colorNeutralForeground1,
   },
   toolsRow: {

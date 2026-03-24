@@ -1,9 +1,7 @@
 import "./i18n";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { FluentProvider, webDarkTheme } from "@fluentui/react-components";
-import App from "./components/App";
-import { AppProvider } from "./contexts/AppContext";
+import AppRoot from "./components/AppRoot";
 
 // Store root reference for HMR
 let root = null;
@@ -20,16 +18,9 @@ const initializeApp = () => {
     root = ReactDOM.createRoot(rootElement);
   }
 
-  // Use dark theme for Windows 11 look
-  const theme = webDarkTheme;
-
   root.render(
     <React.StrictMode>
-      <FluentProvider theme={theme}>
-        <AppProvider>
-          <App />
-        </AppProvider>
-      </FluentProvider>
+      <AppRoot />
     </React.StrictMode>,
   );
 };

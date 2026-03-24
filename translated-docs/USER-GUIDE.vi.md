@@ -1,161 +1,177 @@
 ---
-translated_at: "2026-03-15T22:35:25.166Z"
-source_hash: "69732149de931f2a0059ecf9073871caedaa431362e32c010e7d93bd3cbd76bc"
-source_mtime: 1773611603946.006
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T04:10:13.356Z"
+source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
+source_mtime: 1774306679773.736
+model: "qwen/qwen3-235b-a22b-2507"
 ---
-<a id="transrewrt-user-guide"></a>
-# Hướng dẫn sử dụng Transrewrt
+![Transrewrt banner](../images/transrewrt_banner.png)
 
-<br />
+
+<a id="transrewrt-user-guide"></a>
+# Hướng dẫn người dùng
+
+<br/>
 
 <a id="introduction"></a>
 ## Giới thiệu
 
-Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
+Transrewrt giúp bạn xử lý văn bản theo ba cách chính:
 
-- **Dịch** - chuyển văn bản từ ngôn ngữ này sang ngôn ngữ khác.
-- **Viết lại** - diễn đạt lại văn bản theo phong cách khác, chẳng hạn rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
-- **Biến đổi** - xử lý văn bản bằng các hướng dẫn AI tùy chỉnh được gọi là prompt.
+- **Dịch** - chuyển đổi văn bản từ một ngôn ngữ sang ngôn ngữ khác.
+- **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
+- **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn AI tùy chỉnh gọi là các lời nhắc.
 
-<br />
+<br/>
 
-Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã cài đặt và chạy. Đối với các bước cài đặt, xem [README](../README.md) chính.
+Hướng dẫn này mô tả cách sử dụng ứng dụng sau khi đã cài đặt và chạy. Để biết các bước cài đặt, vui lòng xem phần **[README](README.vi.md)** chính.
 
-<br />
+<br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Transrewrt có sẵn dưới dạng ứng dụng desktop cho Windows và Linux, và dưới dạng ứng dụng web tự host. Hướng dẫn này tập trung vào việc sử dụng hàng ngày của ứng dụng. Nếu một tính năng chỉ áp dụng cho một phiên bản, nó sẽ được đánh dấu rõ ràng.
+> Transrewrt có sẵn dưới dạng ứng dụng máy tính để bàn dành cho Windows và Linux, và dưới dạng ứng dụng web tự lưu trữ. Hướng dẫn này tập trung vào việc sử dụng hàng ngày của ứng dụng. Những nội dung chỉ áp dụng cho một phiên bản cụ thể sẽ được đánh dấu rõ ràng.
 
-<small>**Đọc bằng các ngôn ngữ khác:** [Tiếng Anh (UK)](../USER-GUIDE.md) · [Tiếng Bồ Đào Nha (BR)](USER-GUIDE.pt-BR.md) · [Tiếng Ả Rập](USER-GUIDE.ar.md) · [Tiếng Bengal](USER-GUIDE.bn.md) · [Tiếng Catalan](USER-GUIDE.ca.md) · [Tiếng Trung (Giản thể)](USER-GUIDE.zh-CN.md) · [Tiếng Trung (Phồn thể)](USER-GUIDE.zh-TW.md) · [Tiếng Croatia](USER-GUIDE.hr.md) · [Tiếng Séc](USER-GUIDE.cs.md) · [Tiếng Hà Lan](USER-GUIDE.nl.md) · [Tiếng Anh (US)](USER-GUIDE.en-US.md) · [Tiếng Philippines](USER-GUIDE.tl.md) · [Tiếng Pháp](USER-GUIDE.fr.md) · [Tiếng Đức](USER-GUIDE.de.md) · [Tiếng Hy Lạp](USER-GUIDE.el.md) · [Tiếng Hindi](USER-GUIDE.hi.md) · [Tiếng Hungary](USER-GUIDE.hu.md) · [Tiếng Ý](USER-GUIDE.it.md) · [Tiếng Nhật](USER-GUIDE.ja.md) · [Tiếng Java](USER-GUIDE.jv.md) · [Tiếng Hàn](USER-GUIDE.ko.md) · [Tiếng Malay](USER-GUIDE.ms.md) · [Tiếng Ba Tư](USER-GUIDE.fa.md) · [Tiếng Ba Lan](USER-GUIDE.pl.md) · [Tiếng Bồ Đào Nha (PT)](USER-GUIDE.pt.md) · [Tiếng Punjab](USER-GUIDE.pa.md) · [Tiếng Romania](USER-GUIDE.ro.md) · [Tiếng Nga](USER-GUIDE.ru.md) · [Tiếng Slovakia](USER-GUIDE.sk.md) · [Tiếng Tây Ban Nha](USER-GUIDE.es.md) · [Tiếng Swahili](USER-GUIDE.sw.md) · [Tiếng Thụy Điển](USER-GUIDE.sv.md) · [Tiếng Telugu](USER-GUIDE.te.md) · [Tiếng Thái](USER-GUIDE.th.md) · [Tiếng Thổ Nhĩ Kỳ](USER-GUIDE.tr.md) · [Tiếng Ukraine](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small>**Đọc bằng các ngôn ngữ khác:** [English (UK)](USER-GUIDE.vi.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
-<br />
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Mục lục** 
 
 - [Trước khi bắt đầu](#before-you-start)
-  - [Làm thế nào để lấy API key (ứng dụng desktop)](#how-to-get-an-api-key-desktop-app)
+  - [Cách lấy khóa API OpenRouter miễn phí (dành cho ứng dụng để bàn)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Bắt đầu](#getting-started)
-- [Các phần chính của cửa sổ](#main-parts-of-the-window)
+- [Các thành phần chính của cửa sổ](#main-parts-of-the-window)
   - [Thanh bên](#sidebar)
   - [Thanh công cụ](#toolbar)
-  - [Bảng nhập liệu và xuất](#input-and-output-panels)
+  - [Các khu vực nhập và xuất nội dung](#input-and-output-panels)
 - [Dịch](#translate)
   - [Dịch văn bản](#translate-text)
-  - [Lựa chọn ngôn ngữ](#language-selection)
-  - [Cài đặt dịch hữu ích](#helpful-translation-settings)
+  - [Chọn ngôn ngữ](#language-selection)
+  - [Các cài đặt hữu ích cho dịch](#helpful-translation-settings)
   - [Phím tắt](#keyboard-shortcuts)
 - [Viết lại](#rewrite)
   - [Viết lại văn bản](#rewrite-text)
-- [Biến đổi](#transform)
-  - [Chạy một prompt đã lưu](#run-an-existing-prompt)
-  - [Nếu bạn chưa có prompt nào](#if-you-have-no-prompts-yet)
-  - [Tạo prompt nhanh chóng](#create-a-prompt-quickly)
-  - [Chỉnh sửa prompt](#edit-a-prompt)
-  - [Kiểm tra prompt trước khi sử dụng](#test-a-prompt-before-using-it)
-  - [Quản lý các prompt đã lưu](#manage-saved-prompts)
+- [Chuyển đổi](#transform)
+  - [Chạy một lời nhắc đã có](#run-an-existing-prompt)
+  - [Nếu bạn chưa có lời nhắc nào](#if-you-have-no-prompts-yet)
+  - [Tạo lời nhắc nhanh chóng](#create-a-prompt-quickly)
+  - [Chỉnh sửa lời nhắc](#edit-a-prompt)
+  - [Thử lời nhắc trước khi sử dụng](#test-a-prompt-before-using-it)
+  - [Quản lý các lời nhắc đã lưu](#manage-saved-prompts)
 - [Bảng điều khiển](#dashboard)
   - [Lọc dữ liệu](#filter-the-data)
-  - [Các thẻ bảng điều khiển](#dashboard-tabs)
+  - [Các tab bảng điều khiển](#dashboard-tabs)
   - [Xuất dữ liệu](#export-data)
   - [Xóa các bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
+- [Lịch sử](#history)
+  - [Lọc dữ liệu](#filter-the-data-1)
+  - [Xuất dữ liệu lịch sử](#export-history-data)
 - [Cài đặt](#settings)
   - [Cài đặt chung](#general-settings)
-  - [Mô hình](#models)
+  - [Các mô hình](#models)
   - [Ngôn ngữ](#languages)
   - [Theo dõi chi phí](#cost-tracking)
-  - [Prompt biến đổi](#transform-prompts)
+  - [Các lời nhắc chuyển đổi](#transform-prompts)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
-- [Các vấn đề thường gặp](#common-issues)
-  - [Ứng dụng không dịch, viết lại hoặc biến đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Các sự cố thường gặp](#common-issues)
+  - [Ứng dụng không thể dịch, viết lại hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Danh sách mô hình trống](#the-model-list-is-empty)
   - [Kết quả quá chậm hoặc quá đắt](#the-result-is-too-slow-or-too-expensive)
-  - [Giao diện ở ngôn ngữ sai](#the-interface-is-in-the-wrong-language)
+  - [Giao diện hiển thị bằng ngôn ngữ sai](#the-interface-is-in-the-wrong-language)
   - [Văn bản quá nhỏ hoặc khó đọc](#the-text-is-too-small-or-hard-to-read)
-  - [Tôi đã thay đổi prompt và mất các chỉnh sửa](#i-changed-a-prompt-and-lost-the-edits)
+  - [Biểu đồ bảng điều khiển trống](#dashboard-charts-are-empty)
+  - [Chi phí hiển thị "không khả dụng" hoặc sai](#cost-shows-not-available-or-seems-wrong)
+  - [Tổng chi phí không khớp với hóa đơn của nhà cung cấp](#total-cost-does-not-match-my-provider-bill)
+  - [Trang Lịch sử không hiện ra ở thanh bên](#the-history-page-is-missing-from-the-sidebar)
+  - [Ứng dụng web: bị chuyển hướng về trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Bảng điều khiển không hiển thị dữ liệu của người dùng khác (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Tôi đã chỉnh sửa lời nhắc nhưng bị mất thay đổi](#i-changed-a-prompt-and-lost-the-edits)
 - [Mẹo nhanh](#quick-tips)
+- [Thông báo miễn trừ trách nhiệm](#disclaimer)
+- [Giấy phép](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="before-you-start"></a>
 
 ## Trước khi bắt đầu
 
-Để sử dụng Transrewrt, bạn cần có quyền truy cập vào dịch vụ AI thông qua OpenRouter.
+Để sử dụng Transrewrt, bạn cần truy cập vào ít nhất một nhà cung cấp AI. Các nhà cung cấp được hỗ trợ bao gồm: [OpenRouter](https://openrouter.ai) (tích hợp nhiều mô hình), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, và [Ollama](https://ollama.com) dành cho mô hình cục bộ.
 
-Bạn không cần phải chọn một mô hình trả phí trước khi bắt đầu. Ứng dụng luôn bao gồm một **mô hình miễn phí** tích hợp sẵn, vì vậy với mục đích sử dụng thông thường, điều đó là đủ để bắt đầu dịch, viết lại và biến đổi văn bản.
+Bạn không cần phải chọn mô hình trả phí để bắt đầu. Ngay khi bạn thêm khóa API OpenRouter, ứng dụng sẽ tự động kích hoạt tùy chọn **miễn phí** tích hợp của OpenRouter. Điều này cho phép bạn bắt đầu dịch, viết lại và biến đổi văn bản ngay lập tức.
 
 Nói một cách đơn giản:
 
-- Một **mô hình** là công cụ AI thực hiện công việc.
-- Một **khóa API** là thông tin xác thực truy cập cá nhân của bạn cho dịch vụ đó.
+- Một **mô hình** là động cơ AI thực hiện công việc. Các mô hình được liệt kê kèm theo **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
+- Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối đến nhà cung cấp đó.
 
-Nếu bạn đang sử dụng **ứng dụng dành cho máy tính**, bạn sẽ cần một khóa API. Để biết các bước chi tiết, hãy xem [Cách lấy khóa API](#how-to-get-an-api-key-desktop-app) bên dưới. Tóm lại: tạo tài khoản tại [OpenRouter](https://openrouter.ai), mở trang [Keys](https://openrouter.ai/keys), tạo một khóa mới và dán nó vào [**Cài đặt** > **Cấu hình API**](#api-config) trong Transrewrt.
+Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa trong mục [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, xem phần [Cách lấy khóa API](#how-to-get-an-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình cục bộ thay thế.
 
-Nếu bạn đang sử dụng **phiên bản web**, chủ sở hữu máy chủ thường sẽ thiết lập điều này cho bạn, do đó bạn thường không cần tự mình nhập khóa API.
+Nếu bạn đang sử dụng **phiên bản web**, người quản trị máy chủ sẽ cấu hình các nhà cung cấp thông qua các biến môi trường, vì vậy thông thường bạn sẽ không cần tự nhập khóa API.
 
-<br />
+<br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Cách lấy khóa API (ứng dụng dành cho máy tính)
+### Cách lấy khóa API miễn phí OpenRouter (ứng dụng máy tính để bàn)
 
-Nếu bạn đang sử dụng ứng dụng dành cho máy tính, hãy làm theo các bước sau:
+Nếu bạn đang dùng ứng dụng máy tính để bàn, hãy làm theo các bước sau:
 
-1. Truy cập [OpenRouter](https://openrouter.ai) trong trình duyệt web của bạn.
+1. Truy cập [OpenRouter](https://openrouter.ai) bằng trình duyệt web.
 2. Tạo tài khoản hoặc đăng nhập.
 3. Mở trang [Keys](https://openrouter.ai/keys).
-4. Nhấp vào nút để tạo một khóa API mới.
-5. Đặt tên cho khóa để bạn có thể nhận diện nó sau này.
-6. Sao chép khóa API mới.
+4. Nhấp vào nút để tạo khóa API mới.
+5. Đặt tên cho khóa để bạn nhận biết dễ dàng sau này.
+6. Sao chép khóa API vừa tạo.
 7. Quay lại Transrewrt và mở **Cài đặt** > **Cấu hình API**.
-8. Dán khóa vào ô **OpenRouter API Key**.
-9. Nhấp vào **Kiểm tra cấu hình API** để đảm bảo nó hoạt động.
+8. Dán khóa vào ô **OpenRouter API key** (trong mục **Cài đặt** > **Cấu hình API**).
+9. Nhấp vào **Test OpenRouter key** để kiểm tra khóa hoạt động.
 
-> ℹ️ **GHI CHÚ**<br/>
-> Bạn có thể bắt đầu với đường dẫn miễn phí của OpenRouter hoặc bất kỳ mô hình miễn phí nào khác có sẵn. Trong nhiều trường hợp, điều đó là đủ để bắt đầu sử dụng Transrewrt mà không cần chọn mô hình trả phí.
+<br/>
 
-<br /><br />
+> ℹ️ **LƯU Ý**<br/>
+> Bạn có thể bắt đầu với tuyến đường miễn phí của OpenRouter hoặc bất kỳ mô hình miễn phí nào khác mà không cần thêm thẻ tín dụng. Trong nhiều trường hợp, điều này là đủ để bắt đầu sử dụng Transrewrt mà không cần chọn mô hình trả phí. Ngoài ra, bạn có thể dùng Ollama để chạy mô hình cục bộ mà không cần khóa API.
+
+<br/><br/>
 
 <a id="getting-started"></a>
 ## Bắt đầu
 
-Nếu đây là lần đầu tiên bạn sử dụng Transrewrt, hãy làm theo thứ tự này:
+Nếu đây là lần đầu tiên bạn sử dụng Transrewrt, hãy làm theo thứ tự sau:
 
 1. Mở ứng dụng.
-2. Chọn **Ngôn ngữ giao diện** của bạn từ biểu tượng hình quả cầu nếu cần.
-3. Nếu bạn đang dùng **ứng dụng dành cho máy tính**, hãy mở [**Cài đặt** > **Cấu hình API**](#api-config), dán khóa OpenRouter API của bạn và nhấp vào **Kiểm tra cấu hình API**.
-4. Mở [**Cài đặt** > **Mô hình**](#models) và thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**.
-5. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** của bạn nếu bạn muốn các ngôn ngữ được sử dụng thường xuyên nhất xuất hiện đầu tiên.
-6. Chuyển sang **Dịch** và chạy một bản dịch đơn giản để xác nhận mọi thứ đều hoạt động.
-7. Một khi nó hoạt động, hãy thử **Viết lại** rồi đến **Biến đổi**.
+2. Nếu cần, hãy chọn **Ngôn ngữ giao diện** bằng cách nhấn vào biểu tượng quả địa cầu.
+3. Nếu bạn dùng **ứng dụng máy tính để bàn**, hãy mở [**Cài đặt** > **Cấu hình API**](#api-config), thêm khóa API cho ít nhất một nhà cung cấp (ví dụ: OpenRouter), sau đó nhấn **Test** để kiểm tra.
+4. Mở [**Cài đặt** > **Mô hình**](#models), thêm một hoặc nhiều mô hình vào phần **Mô hình đã chọn**.
+5. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ ưa thích** nếu bạn muốn các ngôn ngữ thường dùng xuất hiện đầu tiên.
+6. Chuyển sang mục **Dịch** và thực hiện một bản dịch đơn giản để xác nhận mọi thứ hoạt động.
+7. Sau khi thành công, thử dùng **Viết lại** rồi đến **Biến đổi**.
 
-Thứ tự này rất quan trọng. Nó ngăn chặn vấn đề phổ biến nhất khi sử dụng lần đầu: cố gắng chạy một tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc một mô hình đã chọn.
+Thứ tự này rất quan trọng. Nó giúp tránh vấn đề thường gặp khi dùng lần đầu: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoặc chưa chọn mô hình.
 
-<br /><br />
+<br/><br/>
 
 <a id="main-parts-of-the-window"></a>
 ## Các phần chính của cửa sổ
 
 Ứng dụng được chia thành ba khu vực chính:
 
-- **Thanh bên** ở bên trái.
+- **Bảng điều hướng** ở bên trái.
 - **Thanh công cụ** ở phía trên.
 - **Khu vực làm việc** ở giữa.
 
-<br />
+<br/>
 
 <a id="sidebar"></a>
-### Thanh bên
+### Bảng điều hướng
 
-Sử dụng thanh bên để di chuyển xung quanh ứng dụng:
+Sử dụng bảng điều hướng để di chuyển trong ứng dụng. Bạn có thể thu gọn bảng điều hướng để tiết kiệm không gian bằng cách nhấp vào biểu tượng cạnh logo ứng dụng.
 
-<br />
+<br/>
 
 <table>
   <tr>
@@ -163,571 +179,760 @@ Sử dụng thanh bên để di chuyển xung quanh ứng dụng:
        <img src="../images/screenshots/vi/sidebar.png" alt="Thanh bên ứng dụng" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
-      <br />
+      <br/><br/>
       <ul>
-        <li><strong>Dịch</strong> mở không gian làm việc dịch thuật.</li>
-        <li><strong>Viết lại</strong> mở không gian làm việc viết lại.</li>
-        <li><strong>Biến đổi</strong> mở không gian nhắc lệnh tùy chỉnh.</li>
-        <li><strong>Bảng điều khiển</strong> hiển thị thông tin về mức độ sử dụng và chi phí.</li>
-        <li><strong>Cài đặt</strong> mở bảng cài đặt.</li>
-        <li><strong>Người dùng</strong> hiển thị tên người dùng đã đăng nhập (chỉ trên web).</li>
+        <li><strong>Dịch</strong> mở không gian làm việc dịch.</li><br/>
+        <li><strong>Viết lại</strong> mở không gian làm việc viết lại nội dung.</li><br/>
+        <li><strong>Biến đổi</strong> mở không gian làm việc với lời nhắc tùy chỉnh.</li><br/>
+        <li><strong>Bảng điều khiển</strong> hiển thị thông tin sử dụng và chi phí.</li><br/>
+        <li><strong>Cài đặt</strong> mở bảng cài đặt.</li><br/>
+        <li><strong>Lịch sử</strong> hiển thị lịch sử sử dụng cùng văn bản đầu vào và đầu ra.</li><br/>
+        <li><strong>Người dùng</strong> hiển thị tên người dùng đã đăng nhập (chỉ ở phiên bản web).</li>
       </ul>
-      <br />
-      <p>Bạn cũng có thể thu gọn thanh bên để có thêm không gian bằng cách nhấp vào biểu tượng bên cạnh logo ứng dụng.</p>
     </td>
   </tr>
 </table>
 
-<br />
+<br/>
 
 <a id="toolbar"></a>
+
 ### Thanh công cụ
 
-Thanh công cụ thay đổi một chút tùy thuộc vào vị trí của bạn trong ứng dụng.
+Thanh công cụ thay đổi đôi chút tùy theo vị trí bạn đang ở trong ứng dụng.
 
-- Ở bên trái, nó hiển thị tên trang hiện tại.
-- Ở bên phải, nó hiển thị **bộ chọn mô hình** và điều khiển **Ngôn ngữ giao diện**.
+- Bên trái, thanh hiển thị tên trang hiện tại.
+- Bên phải, than palp hiển thị **trình chọn mô hình** và điều khiển **Ngôn ngữ giao diện**.
 
-**Bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ được sử dụng cho tác vụ hiện tại.
+**Trình chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ sử dụng cho nhiệm vụ hiện tại.
 
-  ![Bộ chọn mô hình](../images/screenshots/vi/model-selector.png)
+  ![Trình chọn mô hình](../images/screenshots/vi/model-selector.png)
 
-> ℹ️ **GHI CHÚ**<br/>
-> Một số mô hình miễn phí có thể tạm ngừng hoạt động nếu chúng không khả dụng hoặc đã đạt đến giới hạn sử dụng. Nếu điều đó xảy ra, ứng dụng sẽ tự động xóa mô hình đó khỏi danh sách của bạn.
+> ℹ️ **LƯU Ý**<br/>
+> Một số mô hình miễn phí có thể không luôn sẵn sàng — đôi khi chúng ngoại tuyến hoặc có giới hạn sử dụng. Nếu điều này xảy ra, ứng dụng sẽ tự động loại mô hình đó khỏi danh sách khả dụng của bạn.<br/>
+> Để kiểm soát các mô hình xuất hiện, hãy vào [**Cài đặt** > **Mô hình**](#models) và chỉnh sửa danh sách mô hình của bạn. 
+> Bạn cũng có thể mở cài đặt mô hình trực tiếp bằng cách nhấn vào biểu tượng nhà cung cấp bên trái tên mô hình trên thanh công cụ.
 
+<br/>
 
-**Biểu tượng hình quả cầu + mã ngôn ngữ** thay đổi ngôn ngữ giao diện của ứng dụng, chẳng hạn như menu và nút bấm. Nó **không** thay đổi các ngôn ngữ dịch được sử dụng trong **Dịch**.
+Biểu tượng **hình quả địa cầu + mã ngôn ngữ** thay đổi ngôn ngữ giao diện của ứng dụng, như menu và các nút. Nó **không thay đổi** ngôn ngữ dịch được sử dụng trong phần **Dịch**.
 
-  ![Bộ chọn ngôn ngữ giao diện](../images/screenshots/vi/language-selector.png)
+  ![Trình chọn ngôn ngữ giao diện](../images/screenshots/vi/language-selector.png)
 
-<br />
+<br/>
 
 <a id="input-and-output-panels"></a>
+### Bảng nhập và xuất
 
-### Các bảng đầu vào và đầu ra
+Hầu hết các không gian làm việc đều sử dụng bảng **Nhập** ở bên trái và bảng **Xuất** ở bên phải.
 
-Hầu hết các không gian làm việc sử dụng bảng **Đầu vào** ở bên trái và bảng **Đầu ra** ở bên phải.
+Bảng **Nhập** hiển thị:
 
-Bảng **Đầu vào** hiển thị:
+- Số lượng ký tự
+- Số lượng từ
+- Số lượng đoạn văn
 
-- Số ký tự
-- Số từ
-- Số đoạn văn
+Bảng **Xuất** có thể hiển thị:
 
-Bảng **Đầu ra** có thể hiển thị:
-
-- Thời gian thực hiện tác vụ
-- Chi phí của tác vụ đó
-- Tổng chi phí tích lũy của bạn
-- **TPS** (token trên mỗi giây), là một đo lường tốc độ đơn giản
-- Số ký tự, từ và đoạn văn
+- Thời gian hoàn thành tác vụ
+- Chi phí cho tác vụ đó (nếu có)
+- Tổng chi phí đang tích lũy
+- **TPS** (số token mỗi giây)
+- Số lượng ký tự, từ, đoạn văn
 - Mô hình được sử dụng
 
-Nếu bạn phân vân về các thuật ngữ kỹ thuật:
+Nếu bạn thắc mắc về các thuật ngữ kỹ thuật:
 
-- **Token** có nghĩa là một phần nhỏ văn bản. Bạn có thể nghĩ đến nó như một phần của từ hoặc một từ ngắn.
-- **TPS** có nghĩa là số phần văn bản đó mà mô hình xử lý mỗi giây.
+- **Token** là một đoạn văn bản nhỏ. Bạn có thể hiểu đó là một phần của từ hoặc một từ ngắn.
+- **TPS** là số lượng đoạn văn bản như vậy mà mô hình xử lý mỗi giây.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
 ## Dịch
 
-Sử dụng **Dịch** khi bạn muốn chuyển đổi văn bản từ ngôn ngữ này sang ngôn ngữ khác.
+Sử dụng **Dịch** khi bạn muốn chuyển văn bản từ một ngôn ngữ sang ngôn ngữ khác.
 
 ![Không gian làm việc Dịch](../images/screenshots/vi/translate.png)
 
-<br />
+<br/>
 
 <a id="translate-text"></a>
 ### Dịch văn bản
 
 1. Mở **Dịch**.
-2. Chọn ngôn ngữ trong **Từ**.
-3. Chọn ngôn ngữ trong **Đến**.
-4. Chọn một mô hình trên thanh công cụ.
-5. Gõ hoặc dán văn bản vào **Đầu vào**.
-6. Nhấp vào **Dịch**.
-7. Đọc kết quả trong **Đầu ra**.
-8. Sử dụng nút sao chép nếu bạn muốn sao chép kết quả.
+2. Chọn một ngôn ngữ ở mục **Từ**.
+3. Chọn một ngôn ngữ ở mục **Sang**.
+4. Chọn một mô hình trong thanh công cụ.
+5. Nhập hoặc dán văn bản vào ô **Nhập**.
+6. Nhấn **Dịch**.
+7. Đọc kết quả ở ô **Xuất**.
+8. Sử dụng nút sao chép nếu bạn muốn chép kết quả ra bộ nhớ tạm.
 
-<br />
+<br/>
 
 <a id="language-selection"></a>
-### Lựa chọn ngôn ngữ
+### Chọn ngôn ngữ
 
-- **Từ** có thể là một ngôn ngữ cụ thể hoặc **Phát hiện ngôn ngữ**.
-- **Đến** là ngôn ngữ bạn muốn kết quả đầu ra.
+- **Từ** có thể là một ngôn ngữ cụ thể hoặc **Nhận diện ngôn ngữ**.
+- **Sang** là ngôn ngữ bạn muốn kết quả hiển thị.
 
-Các **Ngôn ngữ hàng đầu** đã chọn của bạn sẽ xuất hiện ở đầu danh sách. Bạn có thể đặt chúng trong [**Cài đặt** > **Ngôn ngữ**](#languages).
+Các **Ngôn ngữ hàng đầu** đã chọn của bạn sẽ xuất hiện ở đầu danh sách. Bạn có thể thiết lập chúng tại [**Cài đặt** > **Ngôn ngữ**](#languages).
 
-<br />
+<br/>
 
 <a id="helpful-translation-settings"></a>
-### Cài đặt dịch hữu ích
+### Các cài đặt dịch hữu ích
 
-Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có thể thay đổi cách thức dịch hoạt động:
+Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có thể thay đổi cách thức hoạt động của tính năng dịch:
 
-- **Tự động dịch khi dán** chạy một bản dịch ngay khi bạn dán văn bản.
-- **Tự động sao chép kết quả vào bảng nhớ tạm** sao chép kết quả tự động sau khi chạy thành công.
-- **Dịch theo thời gian thực (trong khi gõ)** chạy các bản dịch trong khi bạn gõ.
-- **Thời gian chờ (ms)** kiểm soát thời gian ứng dụng chờ trước khi chạy bản dịch theo thời gian thực.
+- **Tự động dịch khi dán** sẽ thực hiện dịch ngay khi bạn dán văn bản.
+-.
+- **Tự động sao chép kết quả vào bộ nhớ tạm** sẽ tự động sao chép kết quả sau khi dịch thành công.
+- **Dịch thời gian thực (trong khi gõ)** sẽ thực hiện dịch trong lúc bạn gõ.
+- **Thời gian chờ (ms)** quy định thời gian ứng dụng chờ trước khi thực hiện dịch thời gian thực.
 
-<br />
+<br/>
 
 <a id="keyboard-shortcuts"></a>
 ### Phím tắt
 
-Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), **Hành vi cho PHẼ** kiểm soát điều gì xảy ra khi bạn nhấn Enter:
+Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), tùy chọn **Hành vi của phím ENTER** kiểm soát điều sẽ xảy ra khi bạn nhấn phím `Enter`:
 
-- **Enter** có thể chạy tác vụ và **Shift+Enter** có thể thêm một dòng mới.
-- Hoặc ứng dụng có thể làm ngược lại.
+- **Enter** có thể thực hiện tác vụ và **Shift+Enter** để xuống dòng.
+- Hoặc ứng dụng có thể đảo ngược chức năng.
 
-Phím tắt hiện tại cũng được hiển thị trên nút **Dịch**.
+Chế độ hiện tại cũng được hiển thị trên nút **Dịch**.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
 ## Viết lại
 
-Sử dụng **Viết lại** khi bạn muốn cải thiện cách diễn đạt mà không thay đổi ý chính.
+Sử dụng **Viết lại** khi bạn muốn cải thiện cách diễn đạt mà không thay đổi ý nghĩa chính.
 
 ![Không gian làm việc Viết lại](../images/screenshots/vi/rewrite.png)
 
-Điều này hữu ích để:
+Tính năng này hữu ích để:
 
-- sửa lỗi chính tả và ngữ pháp
-- làm văn bản rõ ràng hơn
-- làm văn bản trang trọng hơn hoặc thân mật hơn
-- rút ngắn hoặc mở rộng văn bản
-- làm cho văn bản nghe có vẻ kỹ thuật hơn
+- Sửa lỗi chính tả và ngữ pháp
+- Làm cho văn bản rõ ràng hơn
+- Làm cho văn bản trang trọng hơn hoặc thân mật hơn
+- Rút ngắn hoặc mở rộng văn bản
+- Làm cho văn bản mang âm hưởng kỹ thuật hơn
 
-<br />
+<br/>
 
 <a id="rewrite-text"></a>
+
 ### Viết lại văn bản
 
 1. Mở **Viết lại**.
 2. Chọn một **Chế độ**.
-3. Chọn một mô hình trên thanh công cụ.
-4. Gõ hoặc dán văn bản vào **Đầu vào**.
+3. Chọn mô hình trong thanh công cụ.
+4. Gõ hoặc dán văn bản vào ô **Đầu vào**.
 5. Nhấp vào **Viết lại**.
-6. Xem xét kết quả trong **Đầu ra**.
+6. Xem lại kết quả ở ô **Đầu ra**.
 
+Hành vi tương tự của phím Enter như đã mô tả trong phần [**Dịch**](#keyboard-shortcuts) cũng áp dụng tại đây.
 
-Hành vi phím Enter tương tự được mô tả trong [**Dịch**](#keyboard-shortcuts) cũng áp dụng ở đây.
+<br/>
 
-<br /><br />
+> 💡 **MẸO**<br/>
+> Khi bạn sử dụng chế độ "**Kiểm tra chính tả & ngữ pháp**", một nút `Hiển thị thay đổi` sẽ xuất hiện trong bảng kết quả.
+> Nhấp vào nút này để bật/tắt việc hiển thị các sửa đổi, cho phép hiện hoặc ẩn các thay đổi cụ thể đối với văn bản của bạn.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
 ## Biến đổi
 
-Sử dụng **Biến đổi** khi bạn muốn AI tuân theo một bộ hướng dẫn tùy chỉnh.
+Sử dụng **Biến đổi** khi bạn muốn AI tuân theo một tập hướng dẫn do bạn tự tạo.
 
 ![Không gian làm việc Biến đổi](../images/screenshots/vi/transform.png)
 
-Đây là khu vực linh hoạt nhất của ứng dụng. Bạn có thể sử dụng nó cho các tác vụ như:
+Đây là khu vực linh hoạt nhất trong ứng dụng. Bạn có thể dùng nó cho các tác vụ như:
 
 - tóm tắt ghi chú
-- biến văn bản thô thành email tinh tế
+- biến văn bản thô thành email hoàn chỉnh
 - trích xuất các điểm chính
-- chuyển đổi văn bản thành một định dạng cụ thể
+- chuyển đổi văn bản sang định dạng cụ thể
 
-<br />
+<br/>
 
 <a id="run-an-existing-prompt"></a>
-### Chạy một lời nhắc hiện có
+### Chạy một lời nhắc có sẵn
 
 1. Mở **Biến đổi**.
 2. Chọn một lời nhắc từ danh sách lời nhắc.
-3. Nếu hộp ngôn ngữ **Đích** xuất hiện, hãy chọn một ngôn ngữ nếu bạn muốn.
-4. Gõ hoặc dán văn bản vào **Đầu vào**.
-5. Nhấp vào **Biến đổi**.
-6. Đọc kết quả trong **Đầu ra**.
+3. Nếu xuất hiện ô chọn ngôn ngữ **Mục tiêu**, hãy chọn ngôn ngữ nếu bạn cần.
+4. Gõ hoặc dán văn bản vào ô **Đầu vào**.
+5. Nhấp **Biến đổi**.
+6. Đọc kết quả trong ô **Đầu ra**.
 
-<br />
+<br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
 ### Nếu bạn chưa có lời nhắc nào
 
-Nếu danh sách lời nhắc của bạn trống, hãy nhấp vào **Tải lời nhắc mẫu**. Điều này thêm các ví dụ có sẵn để bạn có thể bắt đầu nhanh chóng.
+Nếu danh sách lời nhắc của bạn trống, hãy nhấp vào **Tải lời nhắc mẫu**. Thao tác này sẽ thêm vào các ví dụ tích hợp sẵn để bạn có thể bắt đầu nhanh chóng.
 
-> ℹ️ **GHI CHÚ**<br/>
-> Các lời nhắc mẫu được cung cấp bằng tiếng Anh. Sau khi tải chúng, bạn có thể chỉnh sửa một lời nhắc và sử dụng **Dịch lời nhắc** nếu bạn muốn thích nghi văn bản lời nhắc cho ngôn ngữ khác.
+<br/>
 
-<br />
+> ℹ️ **LƯU Ý**<br/>
+> Các lời nhắc mẫu được cung cấp bằng tiếng Anh. Sau khi tải xong, bạn có thể chỉnh sửa lời nhắc và sử dụng chức năng **Dịch lời nhắc** để chuyển sang ngôn ngữ của mình.
+
+<br/>
 
 <a id="create-a-prompt-quickly"></a>
-
 ### Tạo lời nhắc nhanh chóng
 
-Cách nhanh nhất để tạo lời nhắc là:
+Cách nhanh nhất để tạo một lời nhắc là:
 
 1. Nhấp vào **Lời nhắc mới**.
 2. Nhấp vào **Tạo lời nhắc**.
-3. Mô tả những gì bạn muốn lời nhắc thực hiện.
-4. Chọn một mô hình.
-5. Để ứng dụng tự tạo bản nháp cho bạn.
-6. Xem xét bản nháp và nhấp vào **Lưu**.
+3. Mô tả điều bạn muốn lời nhắc thực hiện.
+4. Chọn mô hình.
+5. Để ứng dụng tạo bản nháp cho bạn.
+6. Xem lại bản nháp và nhấp **Lưu**.
 
 ![Tạo lời nhắc](../images/screenshots/vi/transform-generate.png)
 
 
-<br />
+<br/>
 
+<a id="edit-a-prompt"></a>
 ### Chỉnh sửa lời nhắc
 
-Khi bạn tạo hoặc chỉnh sửa một lời nhắc, trình chỉnh sửa sẽ xuất hiện bên trái và khu vực kiểm tra xuất hiện bên phải.
+Khi bạn tạo hoặc chỉnh sửa một lời nhắc, khu vực soạn thảo xuất hiện ở bên trái và một khu vực kiểm thử xuất hiện ở bên phải.
 
-![Trình chỉnh sửa lời nhắc Transform](../images/screenshots/vi/transform-prompt-edit.png)
+![Trình soạn thảo lời nhắc Biến đổi](../images/screenshots/vi/transform-prompt-edit.png)
 
-Các trường chính là:
+Các trường chính gồm:
 
-- **Tên lời nhắc**: tên được hiển thị trong danh sách lời nhắc.
-- **Hướng dẫn lời nhắc (tùy chọn)**: một gợi ý ngắn hiển thị cho người dùng khi chạy lời nhắc.
-- **Vai trò mô hình**: vai trò tổng thể được gán cho AI, chẳng hạn như 'Bạn là một trợ lý hữu ích.'
-- **Hướng dẫn mô hình (mỗi dòng một cái)**: các quy tắc cụ thể bạn muốn AI tuân theo.
-- **Mô tả đầu ra**: một từ ngắn mô tả kết quả, chẳng hạn như 'tóm tắt' hoặc 'viết lại'.
-- **Nhiệt độ (0.0 → 1.0)**: thanh trượt sự sáng tạo.
+- **Tên lời nhắc**: tên hiển thị trong danh sách lời nhắc.
+- **Hướng dẫn lời nhắc (tùy chọn)**: gợi ý ngắn được hiển thị cho người dùng khi chạy lời nhắc.
+- **Vai trò mô hình**: vai trò tổng thể được gán cho AI, ví dụ: 'Bạn là trợ lý hữu ích.'
+- **Hướng dẫn mô hình (mỗi dòng một hướng dẫn)**: những quy tắc cụ thể mà bạn muốn AI tuân theo.
+- **Mô tả đầu ra**: một từ ngắn mô tả kết quả, như 'tóm tắt' hoặc 'viết lại'.
+- **Nhiệt độ (0.0 → 1.0)**: cách mô hình hành xử; xem giải thích bên dưới.
+- **Yêu cầu ngôn ngữ mục tiêu**: thêm bộ chọn ngôn ngữ khi thực thi lời nhắc.
 
-Nếu thuật ngữ kỹ thuật **Nhiệt độ** là mới với bạn, hãy nghĩ về nó như thế này:
+Nếu thuật ngữ kỹ thuật **Nhiệt độ** còn mới mẻ với bạn, hãy hiểu theo cách sau:
 
-- Một **nhiệt độ thấp hơn** cho kết quả ổn định và có thể dự đoán hơn.
-- Một **nhiệt độ cao hơn** cho sự đa dạng và sáng tạo hơn.
+- **Nhiệt độ thấp** hơn mang lại kết quả ổn định và dễ dự đoán hơn.
+- **Nhiệt độ cao** hơn mang lại sự đa dạng và sáng tạo hơn.
 
 Bạn cũng có thể sử dụng:
 
-- **`Tạo lời nhắc`** để tạo một bản nháp mới từ một mô tả đơn giản
-- **`Cải thiện lời nhắc`** để hoàn thiện một lời nhắc hiện có
-- **`Dịch lời nhắc`** để dịch các trường lời nhắc
+- **`Tạo lời nhắc`** để tạo một bản nháp mới từ mô tả đơn giản
+- **`Cải thiện lời nhắc`** để tinh chỉnh lời nhắc hiện có
+- **`Dịch lời nhắc`** để dịch các trường của lời nhắc
+
+<br/>
 
 > ⚠️ **CẢNH BÁO**<br/>
-> Nhấp **`Lưu`** trước khi bạn nhấp **`Quay lại để chạy`**. Nếu bạn quay lại mà không lưu, các thay đổi của bạn sẽ bị mất.
+> Nhấp **`Lưu`** trước khi nhấp **`Quay lại để chạy`**. Nếu bạn quay lại mà chưa lưu, các thay đổi sẽ bị mất.
 
-<br />
+<br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Kiểm tra lời nhắc trước khi sử dụng
+### Kiểm thử lời nhắc trước khi sử dụng
 
-Bảng kiểm tra bên phải cho phép bạn thử lời nhắc của mình với văn bản mẫu trước khi sử dụng nó trong công việc hàng ngày.
+Bảng kiểm thử ở bên phải cho phép bạn thử lời nhắc với văn bản mẫu trước khi dùng vào công việc hàng ngày.
 
-Điều này hữu ích khi:
+Tính năng này hữu ích khi:
 
-- bạn đang xây dựng một lời nhắc mới
-- bạn đang so sánh hai phiên bản của một lời nhắc
-- bạn muốn kiểm tra giọng điệu, độ dài hoặc định dạng đầu ra
+- bạn đang tạo một lời nhắc mới
+- bạn đang so sánh hai phiên bản lời nhắc
+- bạn muốn kiểm tra giọng điệu, độ dài hay định dạng đầu ra
 
-<br />
+<br/>
 
 <a id="manage-saved-prompts"></a>
 ### Quản lý các lời nhắc đã lưu
 
-Để quản lý các lời nhắc đã lưu tại một nơi, mở [**Cài đặt** > **Lời nhắc Transform**](#transform-prompts).
+Để quản lý các lời nhắc đã lưu tại một nơi duy nhất, hãy mở [**Cài đặt** > **Lời nhắc Biến đổi**](#transform-prompts).
 
-Tại đó bạn có thể:
+Tại đây bạn có thể:
 
-- liệt kê và xóa các lời nhắc của mình
-- xuất lời nhắc dưới dạng **JSON**, **CSV**, hoặc **XLSX**
+- liệt kê và xóa lời nhắc
+- xuất lời nhắc dưới dạng **JSON**, **CSV** hoặc **XLSX**
 - nhập lời nhắc từ một tệp
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="dashboard"></a>
 
 ## Bảng điều khiển
 
-Sử dụng **Bảng điều khiển** để xem mức độ bạn sử dụng ứng dụng và chi phí của nó là bao nhiêu.
+Sử dụng **Bảng điều khiển** để xem bạn đang sử dụng ứng dụng bao nhiêu và chi phí hiện tại (đối với các mô hình có phí).
 
-![Tóm tắt bảng điều khiển](../images/screenshots/vi/dashboard-summary.png)
+![Tóm tắt Bảng điều khiển](../images/screenshots/vi/dashboard-summary.png)
 
-<br />
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Nếu bạn chỉ sử dụng các mô hình miễn phí, các biểu đồ liên quan đến chi phí sẽ trống.
+
+<br/>
 
 <a id="filter-the-data"></a>
 ### Lọc dữ liệu
 
-Sử dụng các nút lọc ở trên cùng để thay đổi khoảng thời gian.
+Sử dụng các nút lọc ở phía trên để thay đổi phạm vi thời gian.
 
-![Bộ lọc bảng điều khiển](../images/screenshots/vi/dashboard-filter.png)
+![Các bộ lọc Bảng điều khiển](../images/screenshots/vi/dashboard-filter.png)
 
-> ℹ️ **GHI CHÚ**<br/>
-> Trong phiên bản web, các quản trị viên cũng có thể thấy bộ lọc **Người dùng**. Điều này cho phép họ chuyển đổi giữa **Tất cả người dùng** và một người dùng riêng lẻ.
+<br/>
 
-<br />
+> ℹ️ **LƯU Ý**<br/>
+> Bộ lọc **Người dùng** chỉ hiển thị với quản trị viên trong phiên bản web. Người dùng thông thường sẽ không thấy bộ lọc này, và nó cũng không khả dụng trong ứng dụng máy tính để bàn.
+
+<br/>
 
 <a id="dashboard-tabs"></a>
-### Các thẻ bảng điều khiển
+### Các tab Bảng điều khiển
 
-- **Tóm tắt** cung cấp cho bạn cái nhìn tổng quan về mức độ sử dụng và chi phí.
-- **Theo mức sử dụng** phân chia hoạt động theo ngôn ngữ dịch thuật, chế độ viết lại và lời nhắc transform.
-- **Theo mô hình** cho thấy bạn đã sử dụng các mô hình nào và chúng tốn bao nhiêu chi phí.
-- **Theo ngày** hiển thị tổng hàng ngày.
-- **Tất cả cuộc gọi** hiển thị lịch sử cuộc gọi đầy đủ và cho phép bạn xuất nó.
+- **Tóm tắt** cung cấp cái nhìn tổng quan về lượng sử dụng và chi phí.
+- **Theo sử dụng** phân tích hoạt động theo ngôn ngữ dịch, chế độ viết lại và lời nhắc chuyển đổi.
+- **Theo mô hình** cho biết các mô hình bạn đã sử dụng và chi phí tương ứng.
+- **Theo ngày** hiển thị tổng lượng sử dụng hàng ngày.
+- **Tất cả các yêu cầu** hiển thị toàn bộ lịch sử yêu cầu và cho phép bạn xuất dữ liệu.
 
-<br />
+<br/>
 
 <a id="export-data"></a>
 ### Xuất dữ liệu
 
-Các bảng bảng điều khiển có thể xuất dữ liệu dưới dạng:
+Các bảng trong bảng điều khiển có thể xuất dữ liệu ở định dạng:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Điều này hữu ích nếu bạn muốn xem xét hoạt động bên ngoài ứng dụng hoặc chia sẻ một báo cáo.
+Tính năng này hữu ích nếu bạn muốn xem lại hoạt động bên ngoài ứng dụng hoặc chia sẻ báo cáo.
 
-<br />
+<br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Xóa các bản ghi đã lưu cho một mô hình
+### Xóa bản ghi đã lưu cho một mô hình
 
-Trong **Theo mô hình** hoặc **Tất cả cuộc gọi**, bạn có thể xóa các bản ghi đã lưu cho một mô hình.
+Trong tab **Theo mô hình** hoặc **Tất cả các yêu cầu**, bạn có thể xóa các bản ghi đã lưu cho một mô hình bằng cách nhấp vào biểu tượng "thùng rác".
 
 > ⚠️ **CẢNH BÁO**<br/>
-> Việc xóa các bản ghi đã lưu không thể phục hồi. Chỉ sử dụng tính năng này nếu bạn chắc chắn rằng bạn không còn cần lịch sử đó nữa.
+> Việc xóa các bản ghi đã lưu là không thể hoàn tác. Chỉ thực hiện khi bạn chắc chắn rằng không cần lưu lịch sử đó nữa.
 
-Để xóa tất cả dữ liệu hoặc xóa các bản ghi dựa trên tuổi tác của chúng, hãy truy cập [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking). Tại đó bạn sẽ thấy các tùy chọn để xóa tất cả dữ liệu đã lưu hoặc chỉ xóa dữ liệu cũ hơn một ngày nhất định.
+Để xóa toàn bộ dữ liệu hoặc xóa các bản ghi dựa trên thời gian lưu trữ, hãy vào mục [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking). Tại đây, bạn sẽ thấy các tùy chọn để xóa tất cả dữ liệu đã lưu hoặc chỉ xóa những dữ liệu cũ hơn một ngày nhất định.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="history"></a>
+## Lịch sử
+
+Nhấp vào **Lịch sử** để xem lịch sử các thao tác của bạn trong **Transrewrt**, bao gồm đầu vào và đầu ra của từng thao tác.
+
+![Trang Lịch sử](../images/screenshots/vi/history.png)
+
+<br/>
+
+<a id="filter-the-history"></a>
+### Lọc dữ liệu lịch sử
+
+**Lịch sử** sử dụng cùng các bộ lọc như trang **Bảng điều khiển**. Hãy dùng chúng để chọn phạm vi thời gian.
+
+![Các bộ lọc Bảng điều khiển](../images/screenshots/vi/dashboard-filter.png)
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Bộ lọc **Người dùng** chỉ hiển thị với quản trị viên trong phiên bản web. Người dùng thông thường sẽ không thấy bộ lọc này, và nó cũng không khả dụng trong ứng dụng máy tính để bàn.
+
+<br/>
+
+<a id="export-history-data"></a>
+### Xuất dữ liệu lịch sử
+
+Trang lịch sử có thể xuất dữ liệu đã lọc ở các định dạng sau:
+
+- **JSON**
+- **CSV**
+- **XLSX**
+
+Tính năng này hữu ích nếu bạn muốn xem lại hoạt động bên ngoài ứng dụng hoặc chia sẻ báo cáo.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="settings"></a>
 ## Cài đặt
 
-Mở **Cài đặt** từ thanh bên để tùy chỉnh cách ứng dụng hoạt động.
+Mở **Cài đặt** từ thanh bên để tùy chỉnh cách hoạt động của ứng dụng.
 
-Các thẻ có sẵn có thể khác nhau:
+Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
 
-- **Cấu hình API** chỉ có sẵn trong ứng dụng desktop.
-- **Người dùng** chỉ có sẵn trong ứng dụng web, và chỉ dành cho quản trị viên.
+  | Tab                       | Máy tính để bàn | Web (quản trị viên) | Web (người dùng thường) |
+  |---------------------------|:---------------:|:-------------------:|:----------------------:|
+  | Cài đặt chung             |      có         |         có          |           có           |
+  | Mô hình                   |      có         |         có          |           có           |
+  | Ngôn ngữ                  |      có         |         có          |           có           |
+  | Theo dõi chi phí          |      có         |         có          |            —           |
+  | Lời nhắc chuyển đổi       |      có         |         có          |           có           |
+  | Người dùng                |       —         |         có          |            —           |
+  | Cấu hình API              |      có         |         có          |            —           |
+  | Giới thiệu                |      có         |         có          |           có           |
 
-<br />
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Trên phiên bản web, mỗi người dùng có cấu hình riêng. Các cài đặt như mô hình được chọn, ngôn ngữ, tùy chọn chung và lời nhắc chuyển đổi được lưu riêng theo từng người dùng. Những thay đổi bạn thực hiện sẽ không ảnh hưởng đến những người dùng khác.
+
+<br/>
+
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
 
 ### Cài đặt chung
 
-Sử dụng **Cài đặt chung** để kiểm soát hành vi gõ và giao diện.
+Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ phím, việc lưu trữ chi tiết thực thi cho **Lịch sử**, và giao diện người dùng.
 
 **Hành vi**
 
-- **Hành vi cho ENTER** chọn xem phím Enter sẽ thực thi tác vụ hay chèn dòng mới.
-- **Dịch tự động khi dán** bắt đầu dịch ngay khi bạn dán văn bản.
-- **Sao chép kết quả tự động vào clipboard** tự động sao chép kết quả thành công.
-- **Dịch thời gian thực (trong khi gõ)** dịch trong khi bạn gõ.
-- **Thời gian chờ (ms)** đặt thời gian chờ cho dịch thời gian thực.
+- **Hành vi của phím ENTER** chọn việc phím `Enter` sẽ thực thi tác vụ hay chèn dòng mới.
+- **Tự động dịch khi dán** bắt đầu dịch ngay khi bạn dán văn bản.
+- **Tự động sao chép kết quả vào bộ nhớ tạm** tự động sao chép các kết quả thành công.
+- **Dịch thời gian thực (khi đang gõ)** dịch trong khi bạn gõ văn bản.
+- **Thời gian chờ (ms)** đặt khoảng thời gian chờ cho dịch thời gian thực.
+
+**Lịch sử**
+
+- **Giữ lịch sử thực thi** quyết định việc có lưu **văn bản đầu vào và đầu ra** cho chế độ xem [**Lịch sử**](#history) ở thanh bên hay không. Tắt chức năng này sẽ yêu cầu xác nhận; nếu bạn xác nhận, dữ liệu lịch sử đã lưu sẽ bị xóa khỏi cơ sở dữ liệu.
+- **Xóa dữ liệu lịch sử** cho phép bạn xóa văn bản đã lưu theo độ tuổi (ví dụ: lâu hơn vài tháng, hoặc **tất cả dữ liệu (dọn sạch)**) bằng cách sử dụng **Xóa dữ liệu**. Thao tác này chỉ ảnh hưởng đến văn bản thực thi đã lưu cho chế độ xem **Lịch sử**, và **không** xóa tổng chi phí hay dữ liệu sử dụng. Để xóa hoặc thu gọn dữ liệu **chi phí**, hãy sử dụng [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking).
 
 **Giao diện**
 
-- **Chữ số phần thập phân chi phí** thay đổi cách hiển thị số thập phân chi phí.
-- **Font Family** thay đổi phông chữ trong các bảng văn bản.
-- **Cỡ chữ** thay đổi kích thước phông chữ.
-- **Chỉ web:** **hiển thị lề xung quanh ứng dụng** thêm không gian xung quanh giao diện.
+- **Số chữ số phần thập phân chi phí** thay đổi cách hiển thị số thập phân chi phí.
+- **Chỉ trên Web:** **hiển thị lề xung quanh ứng dụng** thêm khoảng trống xung quanh giao diện.
+- **Phông chữ** thay đổi phông chữ viết trong các bảng văn bản.
+- **Kích cỡ** thay đổi kích thước phông chữ.
 
-<br />
+<br/>
 
 <a id="models"></a>
-### Mô hình
+### Các mô hình
 
-Sử dụng **Cài đặt** > **Mô hình** để chọn các mô hình xuất hiện trên thanh công cụ.
+Sử dụng **Cài đặt** > **Mô hình** để chọn những mô hình sẽ xuất hiện trên thanh công cụ.
 
 ![Tab Mô hình trong Cài đặt](../images/screenshots/vi/settings-models.png)
 
-Trang gồm hai danh sách:
+Trang này có hai danh sách:
 
-- **Mô hình có sẵn** bên trái
-- **Mô hình đã chọn** bên phải
+- **Các mô hình khả dụng** ở bên trái
+- **Các mô hình đã chọn** ở bên phải
 
 Các điều khiển hữu ích bao gồm:
 
 - **Tìm kiếm mô hình...** để tìm mô hình theo tên
-- **Chỉ miễn phí** để chỉ hiển thị các mô hình miễn phí
-- **Làm mới** để tải lại danh sách
-- **Mở rộng tất cả** và **Thu gọn tất cả** khi bạn đang sắp xếp theo nhà cung cấp
+- Các thẻ **Nhà cung cấp** để thu hẹp danh sách theo một nền tảng (OpenRouter, OpenAI, Ollama, …)
+- **Chỉ mô hình miễn phí** để chỉ hiển thị các mô hình miễn phí
+- **Tải lại** để làm mới danh sách
+- **Mở rộng tất cả** và **Thu gọn tất cả** khi bạn sắp xếp theo nhà cung cấp
 
-Để thêm mô hình, hãy nhấp vào **Thêm**.
+ID mô hình bao gồm tiền tố nhà cung cấp (ví dụ `openrouter/…` so với `openai/…`). Các nhãn như **OpenAI (OpenRouter)** hay **OpenAI (trực tiếp)** cho biết cách định tuyến lưu lượng truy cập.
 
-Để xóa mô hình, nhấp vào **X** bên cạnh nó trong **Mô hình đã chọn**.
+Các hành động:
 
-Để xóa danh sách, nhấp vào **Bỏ chọn tất cả**. Mô hình miễn phí bắt buộc sẽ vẫn còn trong danh sách.
+ - Để thêm một mô hình, nhấn vào **Thêm** hoặc bất kỳ đâu trong mục đó.
 
-> ℹ️ **GHI CHÚ**<br/>
-> Nếu bạn không muốn nạp tiền vào OpenRouter ngay lập tức, hãy bắt đầu bằng việc bật **Chỉ miễn phí** và chọn các mô hình miễn phí.
+ - Để xóa một mô hình, nhấn vào **X** kế bên nó trong **Các mô hình đã chọn** hoặc **Đã chọn** trên mục trong Danh sách mô hình khả dụng.
 
-<br />
+ - Để dọn sạch danh sách, nhấn **Bỏ chọn tất cả**. Mô hình miễn phí bắt buộc sẽ vẫn được giữ lại.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Nếu bạn không muốn nạp tiền vào tài khoản OpenRouter ngay lập tức, hãy bắt đầu bằng cách bật **Chỉ mô hình miễn phí** và chọn các mô hình miễn phí (không yêu cầu thẻ tín dụng). Bạn cũng có thể sử dụng Ollama để chạy mô hình cục bộ mà không cần bất kỳ khóa API nào.
+
+<br/>
 
 <a id="languages"></a>
 ### Ngôn ngữ
 
-Sử dụng **Cài đặt** > **Ngôn ngữ** để tổ chức các danh sách ngôn ngữ được sử dụng trong ứng dụng.
+Sử dụng **Cài đặt** > **Ngôn ngữ** để sắp xếp lại danh sách ngôn ngữ được dùng trong ứng dụng.
 
-- **Ngôn ngữ hàng đầu** được ghim gần đầu các danh sách ngôn ngữ trong **Dịch** và **Biến đổi**.
-- **Ngôn ngữ tùy chỉnh** cho phép bạn thêm ngôn ngữ không có trong danh sách có sẵn.
+- **Ngôn ngữ thường dùng** sẽ được ghim gần đầu danh sách ngôn ngữ trong **Dịch** và **Biến đổi**.
+- **Ngôn ngữ tùy chỉnh** cho phép bạn thêm một ngôn ngữ không có trong danh sách mặc định.
 
-Nếu bạn thêm ngôn ngữ tùy chỉnh, nó sẽ xuất hiện trong bộ chọn ngôn ngữ cùng với các tùy chọn có sẵn.
+Nếu bạn thêm một ngôn ngữ tùy chỉnh, nó sẽ xuất hiện trong các trình chọn ngôn ngữ cùng với các tùy chọn mặc định.
 
-<br />
+<br/>
 
 <a id="cost-tracking"></a>
 ### Theo dõi chi phí
 
-Sử dụng **Cài đặt** > **Theo dõi chi phí** để quản lý thông tin chi phí.
+Sử dụng **Cài đặt** > **Theo dõi chi phí** để quản lý thông tin về chi phí.
 
-- **Tổng chi phí** hiển thị tổng tích lũy.
-- **Sao chép giá trị** sao chép tổng vào clipboard.
-- **Đặt lại chi phí** đặt tổng đã lưu về 0.
-- **Đồng bộ với mức sử dụng khóa API** đặt tổng khớp với mức sử dụng được báo cáo bởi OpenRouter.
-- **Mức sử dụng khóa API** hiển thị chi tiết sử dụng, nếu có.
-- **Xóa dữ liệu chi phí** xóa tất cả dữ liệu, hoặc chỉ các mục cũ hơn ngày đã chọn.
+- **Tổng chi phí** hiển thị tổng số tích lũy.
+- **Sao chép giá trị** sao chép tổng số vào bộ nhớ tạm.
+- **Đặt lại chi phí** đặt lại tổng số đã lưu về không.
+- **Đồng bộ với mức sử dụng khóa API** đặt tổng số bằng với mức sử dụng ghi nhận bởi tài khoản OpenRouter của bạn (chỉ dành cho OpenRouter).
+- **Sử dụng khóa API** hiển thị chi tiết mức sử dụng OpenRouter, nếu có sẵn.
+- **Xóa dữ liệu chi phí** xóa tất cả dữ liệu, hoặc chỉ những mục cũ hơn ngày đã chọn.
+
+**Theo dõi chi phí:** Khi bạn sử dụng các mô hình OpenRouter, ứng dụng sẽ hiển thị mức sử dụng và chi tiêu thực tế dựa trên dữ liệu từ OpenRouter. Với tất cả nhà cung cấp khác, ứng dụng ước tính chi phí bằng giá do OpenRouter công bố; nếu giá không khả dụng, mức ước tính có thể bằng không.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> **Tất cả các con số chi phí chỉ mang tính chất tham khảo, không phải là sao kê chính thức.**
+
+
+<br/>
 
 > ⚠️ **CẢNH BÁO**<br/>
-> Việc xóa dữ liệu không thể hoàn tác. Trước khi xóa, hãy đảm bảo sao lưu dữ liệu hoặc xuất dữ liệu thông qua [**Bảng điều khiển** > **Tất cả các cuộc gọi**](#dashboard-tabs), nếu không dữ liệu sẽ bị mất vĩnh viễn.
+> Việc xóa dữ liệu là không thể hoàn tác. Trước khi xóa, hãy sao lưu dữ liệu hoặc xuất ra thông qua [**Bảng điều khiển** > **Tất cả yêu cầu**](#dashboard-tabs), nếu không dữ liệu sẽ bị mất vĩnh viễn. <br/>
+> Tất cả lịch sử liên quan đến từng yêu cầu API cũng sẽ bị xóa.
 
-<br />
+
+<br/>
 
 <a id="transform-prompts"></a>
-### Lời nhắc biến đổi
 
-Sử dụng **Cài đặt** > **Lời nhắc biến đổi** để quản lý lời nhắc theo lô.
+### Chuyển đổi lời nhắc
+
+Sử dụng **Cài đặt** > **Chuyển đổi lời nhắc** để quản lý các lời nhắc theo nhóm.
 
 Bạn có thể:
 
-- xem xét các lời nhắc đã lưu
+- xem lại các lời nhắc đã lưu
 - xóa lời nhắc
 - nhập lời nhắc từ tệp
 - xuất lời nhắc để sao lưu hoặc chia sẻ
 
-<br />
+<br/>
 
 <a id="users"></a>
 ### Người dùng
 
-**Chỉ web - chỉ quản trị viên**
+**Web: chỉ dành cho quản trị viên**
 
-Sử dụng **Người dùng** để quản lý tài khoản người dùng trong phiên bản web. Bạn có thể thêm người dùng, cập nhật thông tin của họ, đặt lại mật khẩu và xóa tài khoản.
+Sử dụng **Người dùng** để quản lý tài khoản người dùng trong phiên bản web. Bạn có thể thêm người dùng, cập nhật thông tin chi tiết, đặt lại mật khẩu và xóa tài khoản.
 
-<br />
+<br/>
 
 <a id="api-config"></a>
 ### Cấu hình API
 
-**Chỉ máy tính để bàn**
+Các nhà cung cấp được hỗ trợ bao gồm: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và **Ollama** (mô hình cục bộ thông qua URL gốc). Bạn chỉ cần cấu hình những nhà cung cấp mà bạn sử dụng.
 
-Sử dụng **Cấu hình API** để kết nối ứng dụng máy tính để bàn với OpenRouter hoặc với proxy Transrewrt.
+**Ứng dụng web: chỉ dành cho quản trị viên**
 
-- **Khóa API OpenRouter** là nơi bạn dán khóa của mình.
-- **URL API** là địa chỉ dịch vụ. Giữ nguyên mặc định trừ khi bạn được cung cấp địa chỉ khác.
-- **Sử dụng Proxy Transrewrt** định tuyến yêu cầu thông qua dịch vụ proxy thay vì trực tiếp đến OpenRouter.
-- **Seed khóa** xuất hiện khi tùy chọn proxy được bật.
-- **Kiểm tra cấu hình API** kiểm tra xem thiết lập hiện tại có hoạt động không.
+Khóa API được cấu hình thông qua biến môi trường hệ thống hoặc Docker — chúng không được nhập vào giao diện web. Trang này hiển thị các nhà cung cấp đã cấu hình khóa và cho phép bạn kiểm tra từng nhà cung cấp bằng cách nhấn vào nút **`Kiểm tra`**.
 
-Để biết các bước chi tiết về việc lấy khóa API, hãy xem [Cách lấy khóa API](#how-to-get-an-api-key-desktop-app) ở trên.
+<br/>
 
-> ℹ️ **GHI CHÚ**<br/>
-> Nếu bạn không chắc **URL API**, **Sử dụng Proxy Transrewrt**, hay **Seed khóa** là gì, hãy giữ nguyên chúng và sử dụng thiết lập mặc định OpenRouter. Thông tin thêm về proxy có sẵn trong kho lưu trữ [Transrewrt Proxy](https://github.com/wsj-br/transrewrt-proxy).
+> ℹ️ **LƯU Ý**<br/>
+> Để thay đổi khóa API, hãy cập nhật biến môi trường trong cấu hình hệ thống hoặc Docker của bạn rồi khởi động lại máy chủ hoặc bộ chứa.
 
-<br />
+<br/>
+
+**Ứng dụng máy tính để bàn**
+
+Sử dụng **Cấu hình API** để lưu trữ khóa API cho từng nhà cung cấp bạn sử dụng. Đối với Ollama, nhập **URL gốc** thay vì khóa API.
+
+
+<br/>
+
+> 💡 **Mẹo** <br/>
+> Nếu bạn không muốn sử dụng khóa API hay trả phí sử dụng, bạn có thể [tải Ollama](https://ollama.com) và chạy mô hình trên máy tính của bạn miễn phí. Ngoài ra, bạn cũng có thể tạo tài khoản OpenRouter miễn phí (không cần thẻ tín dụng) để sử dụng các mô hình miễn phí của họ.
+
+- Chỉ thêm các nhà cung cấp mà bạn cần. Trong phần **Cài đặt** > **Mô hình**, từng mã định danh mô hình đều bắt đầu bằng tên nhà cung cấp (ví dụ: `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Để thêm khóa API, gõ giá trị vào ô nhập liệu và nhấn **`Lưu`**. Để thay thế khóa hiện có, nhấn **`Sửa`**. Để kiểm tra khóa có hoạt động hay không, nhấn **`Kiểm tra`**.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Bạn không thể xem giá trị hiện tại của một khóa API. Bạn chỉ có thể thay thế nó bằng cách sử dụng nút **`Sửa`**.
+> Các khóa API được lưu theo dạng mã hóa trong tập tin cấu hình.
+
+<br/>
+
+Để biết các bước chi tiết về cách lấy khóa OpenRouter, xem phần [Cách lấy khóa API](#how-to-get-an-api-key-desktop-app) ở trên.
+
+
+
+<br/>
 
 <a id="about"></a>
+### Giới thiệu
 
-### Về
-
-Tab **Về** hiển thị:
+Tab **Giới thiệu** hiển thị:
 
 - tên ứng dụng
 - số phiên bản
-- ngày build
-- liên kết đến kho lưu trữ dự án
+- ngày xây dựng
+- liên kết đến kho dự án
 
-<br /><br />
+<br/><br/>
 
 <a id="common-issues"></a>
-## Vấn đề thường gặp
+## Các vấn đề thường gặp
 
-Nếu có điều gì đó không hoạt động như mong đợi, hãy kiểm tra các điểm sau trước tiên.
+Nếu một điều gì đó không hoạt động như mong đợi, hãy kiểm tra các điểm sau trước tiên.
 
-<br />
+<br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
 ### Ứng dụng không dịch, viết lại hoặc biến đổi văn bản
 
 Kiểm tra xem:
 
-- bạn đã chọn một mô hình trên thanh công cụ
-- ít nhất một mô hình được liệt kê trong [**Cài đặt** > **Mô hình**](#models)
-- cấu hình API của bạn đang hoạt động
+- bạn đã chọn một mô hình trên thanh công cụ chưa
+- ít nhất một mô hình được liệt kê trong phần [**Cài đặt** > **Mô hình**](#models)
+- thiết lập API của bạn đang hoạt động
 
-Nếu bạn đang sử dụng ứng dụng desktop:
+Nếu bạn đang sử dụng ứng dụng máy tính:
 
 1. Mở [**Cài đặt** > **Cấu hình API**](#api-config).
-2. Kiểm tra xem khóa API của bạn đã được lưu.
-3. Nhấp vào **Kiểm tra Cấu hình API**.
+2. Kiểm tra xem ít nhất một khóa API đã được lưu chưa.
+3. Nhấn **Kiểm tra** bên cạnh nhà cung cấp để xác nhận khóa có hoạt động không.
 
-<br />
+<br/>
 
 <a id="the-model-list-is-empty"></a>
 ### Danh sách mô hình trống
 
-Mở [**Cài đặt** > **Mô hình**](#models) và nhấp vào **Làm mới**.
+Mở [**Cài đặt** > **Mô hình**](#models) và nhấn **Làm mới**.
 
 Nếu cần:
 
-- tìm kiếm một mô hình
+- tìm kiếm mô hình
 - bật **Chỉ miễn phí**
-- thêm một hoặc nhiều mô hình vào **Mô hình Đã chọn**
+- thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**
 
-<br />
+<br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Kết quả quá chậm hoặc quá tốn kém
 
 Hãy thử một hoặc nhiều cách sau:
 
-- chọn một mô hình khác
-- sử dụng đầu vào ngắn hơn
-- tắt **Dịch thuật thời gian thực (trong khi gõ)** trong [**Cài đặt** > **Cài đặt Chung**](#general-settings)
-- sử dụng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
+- chọn mô hình khác
+- sử dụng văn bản đầu vào ngắn hơn
+- tắt **Dịch thời gian thực (trong khi nhập)** trong [**Cài đặt** > **Cài đặt chung**](#general-settings)
+- dùng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
 
-<br />
+<br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
-### Giao diện ở ngôn ngữ sai
+### Giao diện hiển thị ngôn ngữ không đúng
 
-Nhấp vào biểu tượng quả cầu trên [thanh công cụ](#toolbar) và chọn **Ngôn ngữ giao diện** bạn muốn.
+Nhấp vào biểu tượng quả địa cầu trên [thanh công cụ](#toolbar) và chọn **Ngôn ngữ giao diện** bạn muốn.
 
-<br />
+<br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Văn bản quá nhỏ hoặc khó đọc
 
-Mở [**Cài đặt** > **Cài đặt Chung**](#general-settings) và thay đổi:
+Mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và thay đổi:
 
-- **Họ font chữ**
-- **Cỡ**
+- **Họ phông chữ**
+- **Cỡ chữ**
 
-<br />
+<br/>
+
+<a id="dashboard-charts-are-empty"></a>
+### Biểu đồ trên bảng điều khiển trống
+
+Điều này là bình thường nếu:
+
+- bạn chỉ sử dụng **mô hình miễn phí** (biểu đồ chi phí sẽ trống)
+- **bộ lọc thời gian** đã chọn không bao gồm khoảng thời gian thực hiện các yêu cầu — hãy thử chọn **Tất cả** để kiểm tra
+
+Nếu biểu đồ vẫn trống sau khi chọn **Tất cả**, hãy xác nhận các yêu cầu xuất hiện trong phần [**Lịch sử**](#history) hoặc tab **Tất cả yêu cầu**.
+
+<br/>
+
+<a id="cost-shows-not-available-or-seems-wrong"></a>
+
+### Chi phí hiển thị là "không khả dụng" hoặc có vẻ sai
+
+Khi bạn sử dụng các mô hình thông qua **OpenRouter**, ứng dụng sẽ hiển thị chi phí thực tế mà OpenRouter báo cáo.
+
+Đối với **các nhà cung cấp khác** (OpenAI trực tiếp, Anthropic trực tiếp, v.v.), chi phí được ước tính dựa trên dữ liệu giá công bố bởi OpenRouter. Nếu không tìm thấy mức giá phù hợp cho một mô hình, chi phí sẽ hiển thị là **không khả dụng** và sẽ không được cộng vào tổng chi phí của bạn.
+
+<br/>
+
+<a id="total-cost-does-not-match-my-provider-bill"></a>
+### Tổng chi phí không khớp với hóa đơn của nhà cung cấp
+
+Tất cả các con số chi phí trong ứng dụng đều là **ước tính để tham khảo**, không phải hóa đơn chính thức.
+
+Để làm cho tổng chi phí gần đúng hơn với chi phí thực tế trên OpenRouter, hãy mở [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking) và nhấn **Đồng bộ với việc sử dụng khóa API**.
+
+<br/>
+
+<a id="the-history-page-is-missing-from-the-sidebar"></a>
+### Trang Lịch sử bị mất trong thanh bên
+
+Tính năng **giữ lịch sử thực thi** có thể đã bị tắt. Hãy mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và bật nó lên. Lưu ý rằng việc bật lên không thể khôi phục dữ liệu lịch sử đã bị xóa trước đó.
+
+<br/>
+
+<a id="web-app-session-expired"></a>
+### Ứng dụng web: bị chuyển về trang đăng nhập một cách bất ngờ
+
+Phiên làm việc của bạn có thể đã hết hạn. Vui lòng đăng nhập lại. Nếu hiện tượng này xảy ra thường xuyên, hãy kiểm tra cấu hình máy chủ về thời gian sống của phiên.
+
+<br/>
+
+<a id="dashboard-shows-no-data-for-other-users"></a>
+### Bảng điều khiển không hiển thị dữ liệu của người dùng khác (web)
+
+Chỉ **quản trị viên** mới có thể xem dữ liệu của tất cả người dùng thông qua bộ lọc **Người dùng**. Người dùng thông thường chỉ có thể xem hoạt động của chính họ theo thiết kế.
+
+<br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Tôi đã thay đổi một lời nhắc và mất các chỉnh sửa
+### Tôi đã thay đổi một lời nhắc nhưng mất các chỉnh sửa
 
-Khi chỉnh sửa một lời nhắc, luôn nhấp vào **Lưu** trước khi nhấp vào **Quay lại để Chạy**.
+Khi chỉnh sửa lời nhắc, hãy luôn nhấn **Lưu** trước khi nhấn **Quay lại Chạy**.
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-tips"></a>
 ## Mẹo nhanh
 
-- Bắt đầu với [**Dịch**](#translate) để đảm bảo cấu hình của bạn hoạt động trước khi chuyển sang [**Viết lại**](#rewrite) hoặc [**Biến đổi**](#transform).
-- Sử dụng [**Viết lại**](#rewrite) cho các cải thiện cách diễn đạt hàng ngày.
-- Sử dụng [**Biến đổi**](#transform) khi bạn cần một quy trình có thể lặp lại cho một tác vụ cụ thể.
-- Sử dụng [**Bảng điều khiển**](#dashboard) nếu bạn muốn theo dõi mức độ sử dụng và chi phí.
-- Xuất các lời nhắc định kỳ nếu bạn xây dựng một thư viện lời nhắc muốn bảo vệ (xem [Lời nhắc Biến đổi](#transform-prompts)).
+- Bắt đầu với [**Dịch**](#translate) để đảm bảo cấu hình của bạn hoạt động trước khi chuyển sang [**Viết lại**](#rewrite) hoặc [**Chuyển đổi**](#transform).
+- Sử dụng [**Viết lại**](#rewrite) để cải thiện văn phong hằng ngày.
+- Sử dụng [**Chuyển đổi**](#transform) khi bạn cần một quy trình lặp lại cho một nhiệm vụ cụ thể.
+- Sử dụng [**Bảng điều khiển**](#dashboard) nếu bạn muốn theo dõi việc sử dụng và chi phí.
+- Sử dụng [**Lịch sử**](#history) để xem lại các thao tác trước đây cùng toàn bộ văn bản đầu vào/đầu ra.
+- Xuất lời nhắc thường xuyên nếu bạn đang xây dựng một thư viện lời nhắc mà bạn muốn duy trì an toàn (xem phần [Chuyển đổi lời nhắc](#transform-prompts)) hoặc nếu bạn muốn chia sẻ với người khác.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
-## Tuyên bố miễn trừ trách nhiệm
+## Từ chối trách nhiệm
 
-Các tên sản phẩm và biểu tượng thuộc về các chủ sở hữu tương ứng và chỉ được sử dụng cho mục đích nhận dạng. Phần mềm này không liên kết hoặc được hỗ trợ bởi bất kỳ thương hiệu nào được đề cập.
+Các tên sản phẩm và biểu tượng thuộc về chủ sở hữu tương ứng và chỉ được sử dụng để nhận dạng. Phần mềm này không liên kết hoặc được cấp phép bởi bất kỳ thương hiệu nào được đề cập.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Giấy phép

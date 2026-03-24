@@ -135,8 +135,8 @@ const SettingsAboutTab = () => {
             {t("Licensed under")} {APP_LICENSE}.
           </span>
         )}
-        <span style={{ marginLeft: 10 }}>—</span>
-        <span style={{ marginLeft: 10 }}>
+        <span style={{ marginInlineStart: 10 }}>—</span>
+        <span style={{ marginInlineStart: 10 }}>
           {isEnglish ? null : "All rights reserved ▪ "}
           {t("All rights reserved.")}
         </span>

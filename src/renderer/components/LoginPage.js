@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   langWrapper: {
     position: "absolute",
     top: "24px",
-    right: "24px",
+    insetInlineEnd: "24px",
     zIndex: 10,
   },
   langTrigger: {
@@ -124,7 +124,7 @@ const useStyles = makeStyles({
   },
   firstLoginCredentials: {
     marginTop: "16px",
-    marginLeft: "24px",
+    marginInlineStart: "24px",
     fontWeight: 600,
     color: tokens.colorNeutralForeground1,
     fontFamily: "ui-monospace, monospace",
@@ -248,7 +248,7 @@ const LoginPage = ({ onSuccess }) => {
             <PopoverTrigger disableButtonEnhancement>
               <button type="button" className={styles.langTrigger} aria-label={t("Interface language")}>
                 <Languages size={18} />
-                <span style={{ flex: 1, textAlign: "left" }}>{getUILanguageLabel(currentLang, t)}</span>
+                <span style={{ flex: 1, textAlign: "start" }}>{getUILanguageLabel(currentLang, t)}</span>
                 <ChevronDown size={16} />
               </button>
             </PopoverTrigger>
@@ -329,7 +329,7 @@ const LoginPage = ({ onSuccess }) => {
           <PopoverTrigger disableButtonEnhancement>
             <button type="button" className={styles.langTrigger} aria-label={t("Interface language")}>
               <Languages size={18} />
-              <span style={{ flex: 1, textAlign: "left" }}>{getUILanguageLabel(currentLang, t)}</span>
+              <span style={{ flex: 1, textAlign: "start" }}>{getUILanguageLabel(currentLang, t)}</span>
               <ChevronDown size={16} />
             </button>
           </PopoverTrigger>

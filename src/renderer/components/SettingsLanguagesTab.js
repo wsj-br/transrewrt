@@ -86,7 +86,7 @@ const SettingsLanguagesTab = ({
           <Languages size={20} />
           {t('Most used languages')}
         </Text>
-        <div style={{ paddingLeft: '24px' }}>
+        <div style={{ paddingInlineStart: '24px' }}>
           <p>{t('Select languages to appear in the top of list:')}</p>
           <div 
             ref={gridRef}
@@ -158,7 +158,7 @@ const SettingsLanguagesTab = ({
           <Globe size={20} />
           {t('Custom Language')}
         </Text>
-        <div style={{ paddingLeft: '24px' }}>
+        <div style={{ paddingInlineStart: '24px' }}>
           <div className="form-group" style={{ marginTop: 0 }}>
             <Input
             type="text"

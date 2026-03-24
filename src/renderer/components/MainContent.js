@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     gap: "48px",
   },
   globeWrap: {
-    marginLeft: "4px",
+    marginInlineStart: "4px",
   },
   toolbarLeft: {
     display: "flex",

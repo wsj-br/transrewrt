@@ -156,13 +156,13 @@ export const useStyles = makeStyles({
     minWidth: 0,
     "@media (max-height: 480px)": {
       flex: "1 1 auto",
-      textAlign: "right",
+      textAlign: "end",
     },
   },
   summaryChartTitle: {
     marginBottom: "4px",
     flexShrink: 0,
-    textAlign: "left",
+    textAlign: "start",
     fontSize: "clamp(12px, 1.6vh, 14px)",
   },
   summaryChartCell: {
@@ -239,7 +239,7 @@ export const useStyles = makeStyles({
   },
   th: {
     padding: "10px 12px",
-    textAlign: "left",
+    textAlign: "start",
     fontWeight: 600,
     backgroundColor: tokens.colorNeutralBackground3,
     borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
@@ -309,7 +309,9 @@ export const useStyles = makeStyles({
     alignItems: "center",
     gap: "6px",
     minWidth: "unset",
-    padding: "2px 6px 2px 4px",
+    paddingBlock: "2px",
+    paddingInlineEnd: "6px",
+    paddingInlineStart: "4px",
     borderRadius: "4px",
     fontSize: "12px",
     fontWeight: 600,
@@ -444,7 +446,7 @@ export const useStyles = makeStyles({
   },
   allCallsHeaderCell: {
     padding: "10px 12px",
-    textAlign: "left",
+    textAlign: "start",
     fontWeight: 600,
     color: tokens.colorNeutralForeground1,
     overflow: "hidden",
@@ -454,6 +456,6 @@ export const useStyles = makeStyles({
     alignItems: "center",
   },
   cellRight: {
-    textAlign: "right",
+    textAlign: "end",
   },
 });

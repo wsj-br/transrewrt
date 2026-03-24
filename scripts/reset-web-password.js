@@ -92,6 +92,7 @@ async function main() {
   }
 
   try {
+    db.exec("PRAGMA foreign_keys = ON");
     db.exec(`
       CREATE TABLE IF NOT EXISTS users (
         id TEXT PRIMARY KEY,

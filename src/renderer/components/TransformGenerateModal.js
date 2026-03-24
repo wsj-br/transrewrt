@@ -50,7 +50,7 @@ const useStyles = makeStyles({
     fontSize: "14px",
     resize: "vertical",
     boxSizing: "border-box",
-    marginLeft: "0%",
+    marginInlineStart: "0%",
   },
   modelLabel: {
     display: "block",
@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     fontWeight: 400,
   },
   modelSelector: {
-    marginLeft: "0%",
+    marginInlineStart: "0%",
   },
   error: {
     marginTop: "12px",
@@ -120,6 +120,7 @@ const TransformGenerateModal = ({
           <textarea
             id="generate-prompt-description"
             className={styles.descriptionInput}
+            dir="auto"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder={t("e.g. Summarise long text in 3 bullet points, or rewrite for clarity")}

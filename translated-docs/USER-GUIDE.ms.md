@@ -1,731 +1,939 @@
 ---
-translated_at: "2026-03-15T22:21:23.276Z"
-source_hash: "69732149de931f2a0059ecf9073871caedaa431362e32c010e7d93bd3cbd76bc"
-source_mtime: 1773611603946.006
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T02:02:01.494Z"
+source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
+source_mtime: 1774306679773.736
+model: "qwen/qwen3-235b-a22b-2507"
 ---
-<a id="transrewrt-user-guide"></a>
-# Panduan Pengguna Transrewrt
+![Transrewrt bendera](../images/transrewrt_banner.png)
 
-<br />
+
+<a id="transrewrt-user-guide"></a>
+# Panduan Pengguna
+
+<br/>
 
 <a id="introduction"></a>
 ## Pengenalan
 
 Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 
-- **Terjemah** - menukar teks dari satu bahasa kepada bahasa lain.
-- **Tulis Semula** - menukar gaya teks, seperti lebih jelas, lebih ringkas, atau lebih formal.
-- **Transformasi** - memproses teks menggunakan arahan AI tersuai yang dipanggil prompt.
+- **Terjemah** - tukar teks dari satu bahasa ke bahasa lain.
+- **Tulis semula** - ulang perkataan dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas atau lebih formal.
+- **Ubahsuai** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai arahan (prompts).
 
-<br />
+<br/>
 
-Panduan ini menjelaskan cara menggunakan aplikasi selepas ia dipasang dan berjalan. Untuk langkah pemasangan, lihat [README](../README.md) utama.
+Panduan ini menerangkan cara menggunakan aplikasi setelah ia dipasang dan berjalan. Untuk langkah pemasangan, rujuk **[README](README.ms.md)** utama.
 
-<br />
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Transrewrt tersedia sebagai aplikasi desktop untuk Windows dan Linux, serta aplikasi web yang dihoskan sendiri. Panduan ini berfokus pada penggunaan harian aplikasi. Di mana sesuatu hanya terpakai untuk satu versi, ia ditandakan dengan jelas.
+> Transrewrt tersedia sebagai aplikasi desktop untuk Windows dan Linux, serta aplikasi web yang boleh hos sendiri. Panduan ini menekankan penggunaan harian aplikasi. Jika sesuatu hanya berlaku kepada satu versi, ia akan dinyatakan dengan jelas.
 
-<small>**Baca dalam bahasa lain:** [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small>**Baca dalam bahasa lain:** [English (UK)](USER-GUIDE.ms.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
-<br />
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Kandungan** 
+**Jadual Kandungan** 
 
-- [Sebelum anda mula](#before-you-start)
-  - [Cara mendapatkan kekunci API (aplikasi desktop)](#how-to-get-an-api-key-desktop-app)
-- [Permulaan](#getting-started)
+- [Sebelum bermula](#before-you-start)
+  - [Cara mendapatkan kunci API OpenRouter percuma (aplikasi desktop)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Memulakan](#getting-started)
 - [Bahagian utama tetingkap](#main-parts-of-the-window)
   - [Bar sisi](#sidebar)
-  - [Bar alatan](#toolbar)
+  - [Bar alat](#toolbar)
   - [Panel input dan output](#input-and-output-panels)
 - [Terjemah](#translate)
   - [Terjemah teks](#translate-text)
-  - [Pilihan bahasa](#language-selection)
-  - [Tetapan terjemah yang membantu](#helpful-translation-settings)
+  - [Pemilihan bahasa](#language-selection)
+  - [Tetapan terjemahan yang berguna](#helpful-translation-settings)
   - [Pintasan papan kekunci](#keyboard-shortcuts)
-- [Tulis Semula](#rewrite)
+- [Tulis semula](#rewrite)
   - [Tulis semula teks](#rewrite-text)
-- [Transformasi](#transform)
-  - [Jalankan prompt sedia ada](#run-an-existing-prompt)
-  - [Jika anda belum mempunyai prompt](#if-you-have-no-prompts-yet)
-  - [Cipta prompt dengan cepat](#create-a-prompt-quickly)
-  - [Sunting prompt](#edit-a-prompt)
-  - [Uji prompt sebelum menggunakannya](#test-a-prompt-before-using-it)
-  - [Urus prompt yang disimpan](#manage-saved-prompts)
+- [Ubahsuai](#transform)
+  - [Jalankan arahan sedia ada](#run-an-existing-prompt)
+  - [Jika tiada arahan lagi](#if-you-have-no-prompts-yet)
+  - [Cipta arahan dengan cepat](#create-a-prompt-quickly)
+  - [Edit arahan](#edit-a-prompt)
+  - [Uji arahan sebelum menggunakannya](#test-a-prompt-before-using-it)
+  - [Urus arahan tersimpan](#manage-saved-prompts)
 - [Papan pemuka](#dashboard)
   - [Tapis data](#filter-the-data)
   - [Tab papan pemuka](#dashboard-tabs)
   - [Eksport data](#export-data)
-  - [Padam rekod yang disimpan bagi model](#delete-stored-records-for-a-model)
+  - [Padam rekod yang disimpan untuk model](#delete-stored-records-for-a-model)
+- [Sejarah](#history)
+  - [Tapis data](#filter-the-data-1)
+  - [Eksport data sejarah](#export-history-data)
 - [Tetapan](#settings)
-  - [Tetapan umum](#general-settings)
+  - [Tetapan am](#general-settings)
   - [Model](#models)
   - [Bahasa](#languages)
-  - [Penjejakan kos](#cost-tracking)
-  - [Prompt transformasi](#transform-prompts)
+  - [Pengesanan kos](#cost-tracking)
+  - [Arahan ubahsuai](#transform-prompts)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
-  - [Perihal](#about)
+  - [Tentang](#about)
 - [Masalah biasa](#common-issues)
-  - [Aplikasi tidak akan menterjemah, menulis semula, atau mentransformasi teks](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikasi tidak menterjemah, menulis semula atau mengubahsuai teks](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Senarai model kosong](#the-model-list-is-empty)
-  - [Hasil terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
-  - [Antaramuka berada dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
+  - [Keputusan terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
+  - [Antaramuka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
   - [Teks terlalu kecil atau sukar dibaca](#the-text-is-too-small-or-hard-to-read)
-  - [Saya mengubah prompt dan kehilangan editan](#i-changed-a-prompt-and-lost-the-edits)
-- [Pet pantas](#quick-tips)
+  - [Carta papan pemuka kosong](#dashboard-charts-are-empty)
+  - [Kos menunjukkan "tidak tersedia" atau nampak salah](#cost-shows-not-available-or-seems-wrong)
+  - [Jumlah kos tidak sepadan dengan bil penyedia perkhidmatan](#total-cost-does-not-match-my-provider-bill)
+  - [Halaman Sejarah hilang dari bar sisi](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: diarahkan ke halaman log masuk tanpa jangkaan](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Papan pemuka tiada data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Saya mengubah arahan dan kehilangan suntingan](#i-changed-a-prompt-and-lost-the-edits)
+- [Petua pantas](#quick-tips)
+- [Penafian](#disclaimer)
+- [Lesen](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="before-you-start"></a>
 
-## Sebelum Anda mula
+## Sebelum bermula
 
-Untuk menggunakan Transrewrt, anda memerlukan akses kepada perkhidmatan AI melalui OpenRouter.
+Untuk menggunakan Transrewrt, anda perlu akses kepada sekurang-kurangnya satu penyedia AI. Penyedia yang disokong ialah: [OpenRouter](https://openrouter.ai) (yang mengagregasi banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan [Ollama](https://ollama.com) untuk model tempatan.
 
-Anda tidak perlu memilih model berbayar sebelum mula. Aplikasi ini sentiasa termasuk model **percuma** terbina dalam, jadi untuk penggunaan biasa, ia cukup untuk mula menerjemah, menulis semula, dan mengubah teks.
+Anda tidak perlu memilih model berbayar untuk memulakan. Segera selepas anda menambah kunci API OpenRouter anda, aplikasi secara automatik akan mengaktifkan pilihan OpenRouter **percuma** terbina dalam. Ini membolehkan anda mula menterjemah, menulis semula, dan mengubah teks serta-merta.
 
-Dalam bahasa mudah:
+Dalam bahasa yang mudah difahami:
 
-- Sebuah **model** ialah enjin AI yang melakukan kerja.
-- Sebuah **kekunci API** ialah kelayakan akses peribadi anda untuk perkhidmatan itu.
+- **Model** adalah enjin AI yang melakukan kerja. Model disenaraikan dengan awalan penyedia **(provider prefix)** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
+- **Kunci API** (atau, untuk Ollama, **URL asas**) adalah cara aplikasi menghubungi penyedia tersebut.
 
-Jika anda menggunakan **aplikasi desktop**, anda akan memerlukan kekunci API. Untuk langkah terperinci, lihat [Cara mendapatkan kekunci API](#how-to-get-an-api-key-desktop-app) di bawah. Secara ringkas: buat akaun di [OpenRouter](https://openrouter.ai), buka halaman [Keys](https://openrouter.ai/keys), buat kekunci baharu, dan tampalkan ke dalam [**Tetapan** > **Konfigurasi API**](#api-config) dalam Transrewrt.
+Jika anda menggunakan **aplikasi mudah alih**, tambah kunci dalam [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, rujuk [Cara mendapatkan kunci API](#how-to-get-an-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh pasang Ollama (dari [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai gantinya.
 
-Jika anda menggunakan **versi web**, pemilik pelayan biasanya mengkonfigurasikannya untuk anda, jadi biasanya anda tidak perlu memasukkan kekunci API sendiri.
+Jika anda menggunakan **versi web**, pemilik pelayan akan mengkonfigurasikan penyedia menggunakan pemboleh ubah persekitaran, maka biasanya anda tidak perlu memasukkan kunci API secara manual.
 
-<br />
+<br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Cara mendapatkan kekunci API (aplikasi desktop)
+### Cara mendapatkan kunci API OpenRouter percuma (aplikasi mudah alih)
 
-Jika anda menggunakan aplikasi desktop, ikut langkah ini:
+Jika anda menggunakan aplikasi mudah alih, ikuti langkah berikut:
 
 1. Pergi ke [OpenRouter](https://openrouter.ai) dalam pelayar web anda.
-2. Buat akaun atau log masuk.
+2. Cipta akaun atau log masuk.
 3. Buka halaman [Keys](https://openrouter.ai/keys).
-4. Klik butang untuk membuat kekunci API baharu.
-5. Beri nama kekunci itu agar anda boleh mengenalinya kemudian.
-6. Salin kekunci API baharu.
+4. Klik butang untuk mencipta kunci API baharu.
+5. Beri nama kepada kunci supaya anda boleh mengenal pastinya kemudian.
+6. Salin kunci API baharu tersebut.
 7. Kembali ke Transrewrt dan buka **Tetapan** > **Konfigurasi API**.
-8. Tampal kekunci itu ke dalam **Kekunci API OpenRouter**.
-9. Klik **Uji Konfigurasi API** untuk memastikannya berfungsi.
+8. Tampal kunci ke dalam ruangan **Kunci API OpenRouter** (di bawah **Tetapan** > **Konfigurasi API**).
+9. Klik **Uji kunci OpenRouter** untuk memastikan ia berfungsi.
+
+<br/>
 
 > ℹ️ **NOTA**<br/>
-> Anda boleh mula dengan laluan percuma OpenRouter atau sebarang model percuma lain yang tersedia. Dalam kebanyakan kes, itu cukup untuk mula menggunakan Transrewrt tanpa memilih model berbayar.
+> Anda boleh mula dengan laluan percuma OpenRouter atau mana-mana model percuma lain yang tersedia tanpa menambah kad kredit. Dalam kebanyakan kes, ini sudah mencukupi untuk mula menggunakan Transrewrt tanpa memilih model berbayar. Sebagai alternatif, anda boleh gunakan Ollama untuk melaksanakan model secara tempatan tanpa kunci API.
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-started"></a>
-## Bermula
+## Memulakan
 
-Jika ini kali pertama anda menggunakan Transrewrt, ikut urutan ini:
+Jika ini kali pertama anda menggunakan Transrewrt, ikuti susunan berikut:
 
 1. Buka aplikasi.
-2. Pilih **bahasa antara muka** anda daripada ikon globe jika perlu.
-3. Jika anda berada di **aplikasi desktop**, buka [**Tetapan** > **Konfigurasi API**](#api-config), tampalkan kekunci API OpenRouter anda, dan klik **Uji Konfigurasi API**.
-4. Buka [**Tetapan** > **Model**](#models) dan tambah satu atau lebih model ke dalam **Model Terpilih**.
-5. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Teratas** anda jika anda ingin bahasa yang paling sering digunakan muncul pertama.
-6. Pergi ke **Translate** dan jalankan terjemahan mudah untuk mengesahkan segala-galanya berfungsi.
-7. Selepas itu berfungsi, cuba **Rewrite** kemudian **Transform**.
+2. Pilih **bahasa antaramuka** anda daripada ikon dunia jika perlu.
+3. Jika anda menggunakan **aplikasi mudah alih**, buka [**Tetapan** > **Konfigurasi API**](#api-config), tambah kunci API untuk sekurang-kurangnya satu penyedia (contohnya OpenRouter), dan klik **Uji** untuk mengesahkannya berfungsi.
+4. Buka [**Tetapan** > **Model**](#models) dan tambah satu atau lebih model ke **Model Terpilih**.
+5. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Utama** anda jika anda mahu bahasa yang sering digunakan muncul dahulu.
+6. Pergi ke **Terjemah** dan jalankan terjemahan mudah untuk mengesahkan segala-galanya berfungsi.
+7. Setelah berjaya, cuba **Tulis Semula** dan seterusnya **Transform**.
 
-Urutan ini penting. Ia mengelakkan masalah penggunaan pertama yang paling biasa: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau model yang dipilih.
+Susunan ini penting. Ia mengelakkan masalah biasa pertama kali guna: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau model terpilih.
 
-<br /><br />
+<br/><br/>
 
 <a id="main-parts-of-the-window"></a>
 ## Bahagian utama tetingkap
 
-Aplikasi ini dibahagikan kepada tiga bahagian utama:
+Aplikasi ini dibahagikan kepada tiga kawasan utama:
 
-- **Sidebar** di sebelah kiri.
-- **Toolbar** di bahagian atas.
-- **Kawasan kerja** di tengah.
+- **Bar sisi** di sebelah kiri.
+- **Bar alat** di bahagian atas.
+- **Kawasan kerja** di bahagian tengah.
 
-<br />
+<br/>
 
 <a id="sidebar"></a>
-### Sidebar
+### Bar Sisi
 
-Gunakan sidebar untuk bergerak ke seluruh aplikasi:
+Gunakan bar sisi untuk berpindah sekitar aplikasi. Anda boleh meruntuhkan bar sisi untuk mendapatkan lebih banyak ruang dengan mengklik ikon di sebelah logo aplikasi.
+
+<br/>
 
 <table>
   <tr>
     <td valign="top">
-       <img src="../images/screenshots/ms/sidebar.png" alt="Sidebar Aplikasi" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+       <img src="../images/screenshots/ms/sidebar.png" alt="Bar Sisi Aplikasi" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
-      <br />
+      <br/><br/>
       <ul>
-        <li><strong>Translate</strong> membuka ruang kerja terjemahan.</li>
-        <li><strong>Rewrite</strong> membuka ruang kerja penulisan semula.</li>
-        <li><strong>Transform</strong> membuka ruang kerja prompt tersuai.</li>
-        <li><strong>Papan Pemuka</strong> menunjukkan maklumat penggunaan dan kos.</li>
-        <li><strong>Tetapan</strong> membuka panel tetapan.</li>
-        <li><strong>Pengguna</strong> menunjukkan nama pengguna yang log masuk (web sahaja).</li>
+        <li><strong>Terjemah</strong> membuka ruang kerja terjemahan.</li><br/>
+        <li><strong>Tulis Semula</strong> membuka ruang kerja penulisan semula.</li><br/>
+        <li><strong>Transform</strong> membuka ruang kerja arahan tersuai.</li><br/>
+        <li><strong>Dasbor</strong> menunjukkan maklumat penggunaan dan kos.</li><br/>
+        <li><strong>Tetapan</strong> membuka panel tetapan.</li><br/>
+        <li><strong>Sejarah</strong> menunjukkan sejarah penggunaan dengan teks input dan output.</li><br/>
+        <li><strong>Pengguna</strong> menunjukkan nama pengguna yang sedang log masuk (versi web sahaja).</li>
       </ul>
-      <br />
-      <p>Anda juga boleh menciutkan sidebar untuk lebih ruang dengan mengklik ikon di sebelah logo aplikasi.</p>
     </td>
   </tr>
 </table>
 
-<br />
+<br/>
 
 <a id="toolbar"></a>
-### Toolbar
 
-Toolbar berubah sedikit bergantung pada di mana anda berada dalam aplikasi.
+### Bar Alat
+
+Bar alat berubah sedikit bergantung kepada lokasi anda dalam aplikasi.
 
 - Di sebelah kiri, ia menunjukkan nama halaman semasa.
-- Di sebelah kanan, ia menunjukkan **pemilih model** dan kawalan **bahasa antara muka**.
+- Di sebelah kanan, ia menunjukkan **pemilih model** dan kawalan **Bahasa Antara Muka**.
 
-**Pemilih model** membolehkan anda memilih enjin AI yang akan digunakan untuk tugas semasa.
+**Pemilih model** membolehkan anda memilih enjin AI yang ingin digunakan untuk tugas semasa.
 
   ![Pemilih model](../images/screenshots/ms/model-selector.png)
 
-> ℹ️ **NOTA**<br/>
-> Beberapa model percuma mungkin berhenti berfungsi sebentar jika ia tidak tersedia atau telah mencapai had penggunaan. Jika itu berlaku, aplikasi akan mengalih keluar model itu dari senarai anda secara automatik.
+> ℹ️ **PERHATIAN**<br/>
+> Sesetengah model percuma mungkin tidak sentiasa tersedia—kadangkala model tersebut sedang offline atau mempunyai had penggunaan. Jika ini berlaku, aplikasi akan secara automatik mengalih keluar model tersebut daripada senarai anda.<br/>
+> Untuk mengawal model yang muncul, pergi ke [**Tetapan** > **Model**](#models) dan edit senarai model anda.  
+> Anda juga boleh membuka tetapan model secara langsung dengan mengklik ikon penyedia di sebelah kiri nama model dalam bar alat.
 
-**Ikon globe + kod bahasa** mengubah bahasa antara muka aplikasi, seperti menu dan butang. Ia **tidak** mengubah bahasa terjemahan yang digunakan dalam **Translate**.
+<br/>
+
+**Ikon globe + kod bahasa** mengubah bahasa antara muka aplikasi, seperti menu dan butang. Ia **tidak mengubah** bahasa terjemahan yang digunakan dalam **Terjemah**.
 
   ![Pemilih bahasa antara muka](../images/screenshots/ms/language-selector.png)
 
-<br />
+<br/>
 
 <a id="input-and-output-panels"></a>
-## Bahagian utama tetingkap
-
-### Panel input dan output
+### Panel Input dan Output
 
 Kebanyakan ruang kerja menggunakan panel **Input** di sebelah kiri dan panel **Output** di sebelah kanan.
 
 Panel **Input** menunjukkan:
 
-- Kiraan aksara
-- Kiraan perkataan
-- Kiraan perenggan
+- Jumlah aksara
+- Jumlah perkataan
+- Jumlah perenggan
 
 Panel **Output** boleh menunjukkan:
 
-- Berapa lama tugas diambil
-- Kos tugas tersebut
-- Jumlah kos berjalan
-- **TPS** (token per saat), yang merupakan ukuran kelajuan mudah
+- Tempoh tugas dijalankan
+- Kos tugas tersebut (jika tersedia)
+- Jumlah kos larian semasa
+- **TPS** (token per saat)
 - Kiraan aksara, perkataan, dan perenggan
 - Model yang digunakan
 
-Jika anda bertanya tentang istilah teknikal:
+Jika anda ingin tahu maksud istilah teknikal:
 
-- **Token** bermaksud potongan teks kecil. Anda boleh fikirkannya sebagai sebahagian daripada perkataan atau perkataan pendek.
-- **TPS** bermaksud berapa banyak potongan teks itu diproses oleh model setiap saat.
+- **Token** bermaksud satu bahagian kecil teks. Anda boleh anggap ia sebagai sebahagian daripada perkataan atau perkataan pendek.
+- **TPS** bermaksud berapa banyak bahagian teks yang diproses oleh model setiap saat.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="translate"></a>
 ## Terjemah
 
-Gunakan **Terjemah** apabila anda ingin menukar teks dari satu bahasa ke bahasa lain.
+Gunakan **Terjemah** apabila anda ingin menukar teks daripada satu bahasa ke bahasa lain.
 
 ![Ruang kerja Terjemah](../images/screenshots/ms/translate.png)
 
-<br />
+<br/>
 
 <a id="translate-text"></a>
-### Terjemah teks
+### Terjemahkan teks
 
 1. Buka **Terjemah**.
-2. Pilih bahasa dalam **Dari**.
-3. Pilih bahasa dalam **Ke**.
+2. Pilih bahasa di **Dari**.
+3. Pilih bahasa di **Ke**.
 4. Pilih model dalam bar alat.
 5. Taip atau tampal teks ke dalam **Input**.
 6. Klik **Terjemah**.
-7. Baca hasilnya dalam **Output**.
-8. Guna butang salin jika anda ingin menyalin hasilnya.
+7. Baca hasilnya di **Output**.
+8. Gunakan butang salin jika anda ingin menyalin hasilnya.
 
-<br />
+<br/>
 
 <a id="language-selection"></a>
-### Pilihan bahasa
+### Pemilihan bahasa
 
-- **Dari** boleh menjadi bahasa tertentu atau **Deteksi Bahasa**.
-- **Ke** ialah bahasa yang anda inginkan untuk hasilnya.
+- **Dari** boleh menjadi bahasa tertentu atau **Kenal Pasti Bahasa**.
+- **Ke** ialah bahasa yang anda mahu hasil terjemahan diterima dalamnya.
 
-Bahasa **Top Languages** yang dipilih anda akan muncul di senarai. Anda boleh menetapkan ini dalam [**Tetapan** > **Bahasa**](#languages).
+**Bahasa Utama** yang anda pilih akan muncul di bahagian atas senarai. Anda boleh menetapkannya di [**Tetapan** > **Bahasa**](#languages).
 
-<br />
+<br/>
 
 <a id="helpful-translation-settings"></a>
-### Tetapan terjemah yang berguna
+### Tetapan terjemahan berguna
 
-Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh tukar cara terjemah berfungsi:
+Di [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh menukar tingkah laku terjemahan:
 
-- **Auto-terjemah upon paste** menjalankan terjemah sebaik sahaja anda menampal teks.
-- **Auto-copy result to clipboard** menyalin hasilnya secara automatik selepas berjaya dijalankan.
-- **Real-time translation (while typing)** menjalankan terjemah semasa anda menaip.
-- **Timeout (ms)** mengawal berapa lama aplikasi menunggu sebelum menjalankan terjemah masa nyata.
+- **Terjemah automatik apabila tampal** akan menjalankan terjemahan sebaik sahaja anda menampal teks.
+- **Salin hasil ke papan keratan secara automatik** akan menyalin hasil dengan automatik selepas berjaya dijalankan.
+- **Terjemahan masa sebenar (semasa menaip)** akan menjalankan terjemahan ketika anda menaip.
+- **Had masa (ms)** mengawal tempoh menunggu aplikasi sebelum menjalankan terjemahan masa sebenar.
 
-<br />
+<br/>
 
 <a id="keyboard-shortcuts"></a>
 ### Pintasan papan kekunci
 
-Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), **Behaviour for ENTER** mengawal apa yang terjadi apabila anda menekan Enter:
+Di [**Tetapan** > **Tetapan Umum**](#general-settings), **Tingkah laku untuk ENTER** mengawal apa yang berlaku apabila anda menekan `Enter`:
 
 - **Enter** boleh menjalankan tugas dan **Shift+Enter** boleh menambah baris baru.
 - Atau aplikasi boleh melakukan sebaliknya.
 
-Pintasan semasa juga ditunjukkan pada butang **Terjemah**.
+Mod semasa juga dipaparkan pada butang **Terjemah**.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="rewrite"></a>
 ## Tulis Semula
 
-Gunakan **Tulis Semula** apabila anda ingin memperbaiki frasa tanpa mengubah maksud asas.
+Gunakan **Tulis Semula** apabila anda ingin memperbaiki penggunaan perkataan tanpa mengubah makna utama.
 
 ![Ruang kerja Tulis Semula](../images/screenshots/ms/rewrite.png)
 
-Ini berguna untuk:
+Ciri ini berguna untuk:
 
-- memperbaiki ejaan dan tatabahu
+- membetulkan ejaan dan tatabahasa
 - membuat teks lebih jelas
-- membuat teks lebih formal atau lebih informal
-- memendekkan atau melanjutkan teks
+- membuat teks lebih formal atau tidak formal
+- memendekkan atau mengembangkan teks
 - membuat teks kedengaran lebih teknikal
 
-<br />
+<br/>
 
 <a id="rewrite-text"></a>
+
 ### Tulis semula teks
 
 1. Buka **Tulis Semula**.
-2. Pilih **Mode**.
+2. Pilih satu **Mod**.
 3. Pilih model dalam bar alat.
 4. Taip atau tampal teks ke dalam **Input**.
 5. Klik **Tulis Semula**.
-6. Tinjau hasilnya dalam **Output**.
+6. Semak hasilnya dalam **Output**.
 
-Perilaku kekunci Enter yang sama yang diterangkan dalam [**Terjemah**](#keyboard-shortcuts) juga terpakai di sini.
+Kelakuan kekunci Enter yang diterangkan dalam [**Terjemah**](#keyboard-shortcuts) juga digunakan di sini.
 
-<br /><br />
+<br/>
+
+> 💡 **PETUA**<br/>
+> Apabila anda menggunakan mod "**Periksa Ejaan & Tatabahasa**", butang `Tunjukkan perubahan` akan muncul di panel output.
+> Klik butang ini untuk bertukar paparan pembetulan, sama ada menunjukkan atau menyembunyikan perubahan khusus yang dibuat pada teks anda.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
-## Transform
+## Transformasi
 
-Gunakan **Transform** apabila anda ingin AI mengikuti set arahan istimewa.
+Gunakan **Transformasi** apabila anda ingin AI mengikuti arahan tersuai.
 
-![Ruang kerja Transform](../images/screenshots/ms/transform.png)
+![Ruang kerja Transformasi](../images/screenshots/ms/transform.png)
 
-Ini adalah bahagian paling fleksibel aplikasi. Anda boleh menggunakannya untuk tugas seperti:
+Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya untuk tugas-tugas seperti:
 
-- merumuskan nota
-- mengubah teks kasar menjadi e-mel yang polek
-- mengekstrak poin penting
-- menukar teks kepada format tertentu
+- meringkaskan nota
+- menukar teks kasar kepada e-mel yang dikemas
+- mengekstrak titik-titik utama
+- menukar teks ke format tertentu
 
-<br />
+<br/>
 
 <a id="run-an-existing-prompt"></a>
-### Jalankan prompt sedia ada
+### Jalankan arahan sedia ada
 
-1. Buka **Transform**.
-2. Pilih prompt dari senarai prompt.
-3. Jika kotak bahasa **Target** muncul, pilih bahasa jika anda menginginkannya.
+1. Buka **Transformasi**.
+2. Pilih arahan daripada senarai arahan.
+3. Jika kotak **Bahasa Destinasi** muncul, pilih bahasa sekiranya diinginkan.
 4. Taip atau tampal teks ke dalam **Input**.
-5. Klik **Transform**.
+5. Klik **Transformasi**.
 6. Baca hasilnya dalam **Output**.
 
-<br />
+<br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Jika anda masih tiada prompt
+### Jika anda belum ada arahan
 
-Jika senarai prompt anda kosong, klik **Mu sample prompts**. Ini menambah contoh terbina-dalam agar anda boleh Bermula dengan cepat.
+Jika senarai arahan anda kosong, klik **Muat arahan sampel**. Ini akan menambah contoh binaan untuk anda bermula dengan cepat.
 
-> ℹ️ **PERHATIAN**<br/>
-> Sample prompt diberikan dalam bahasa Inggeris. Selepas memuatkannya, anda boleh mengedit prompt dan menggunakan **Terjemah prompt** jika anda ingin menyesuaikan teks prompt untuk bahasa lain.
+<br/>
 
-<br />
+> ℹ️ **NOTA**<br/>
+> Arahan sampel disediakan dalam Bahasa Inggeris. Selepas memuatnya, anda boleh edit arahan tersebut dan gunakan **Terjemah arahan** untuk menterjemahkannya ke bahasa anda.
+
+<br/>
 
 <a id="create-a-prompt-quickly"></a>
+### Cipta arahan dengan cepat
 
-### Cipta prompt dengan cepat
+Cara terpantas untuk mencipta arahan ialah:
 
-Cara terpantas untuk mencipta prompt adalah:
-
-1. Klik **New prompt**.
-2. Klik **Generate prompt**.
-3. Terangkan apa yang anda ingin prompt lakukan.
+1. Klik **Arahan Baru**.
+2. Klik **Jana arahan**.
+3. Huraikan apakah yang ingin arahan itu lakukan.
 4. Pilih model.
-5. Biarkan app mencipta draf untuk anda.
-6. Semak draf dan klik **Save**.
+5. Biarkan aplikasi mencipta draf untuk anda.
+6. Semak draf tersebut dan klik **Simpan**.
 
-![Generate prompt](../images/screenshots/ms/transform-generate.png)
+![Jana arahan](../images/screenshots/ms/transform-generate.png)
 
 
-<br />
+<br/>
 
-### Edit prompt
+<a id="edit-a-prompt"></a>
+### Edit arahan
 
-Apabila anda mencipta atau mengedit prompt, penyunting akan muncul di sebelah kiri dan kawasan ujian di sebelah kanan.
+Apabila anda mencipta atau mengedit arahan, editor akan muncul di sebelah kiri dan kawasan ujian muncul di sebelah kanan.
 
-![Transform prompt editor](../images/screenshots/ms/transform-prompt-edit.png)
+![Editor arahan Transformasi](../images/screenshots/ms/transform-prompt-edit.png)
 
-Bidang utamanya adalah:
+Medan utama adalah:
 
-- **Nama Prompt**: nama yang dipaparkan dalam senarai prompt.
-- **Arahan Prompt (pilihan)**: petunjuk Ringkas yang dipaparkan kepada pengguna apabila menjalankan prompt.
-- **Peranan Model**: peranan keseluruhan yang diumpukkan kepada AI, seperti 'Anda adalah Pembantu yang membantu.'
-- **Arahan Model (satu setiap baris)**: peraturan khusus yang anda ingin AI ikuti.
-- **Penerangan output**: sepatah kata ringkas menerangkan hasil, seperti 'ringkasan' atau 'tulis semula'.
-- **Suhu (0.0 → 1.0))** tetikus kreativiti.
-- **Minta bahasa sasaran**: menambah pemilih bahasa sasaran apabila prompt dijalankan.
+- **Nama arahan**: nama yang dipaparkan dalam senarai arahan.
+- **Arahan arahan (pilihan)**: petua ringkas yang dipaparkan kepada pengguna apabila menjalankan arahan.
+- **Peranan Model**: peranan umum yang diberikan kepada AI, seperti 'Anda adalah pembantu yang membantu.'
+- **Arahan Model (satu per baris)**: petunjuk khusus yang anda mahukan AI ikuti.
+- **Penerangan output**: perkataan ringkas menggambarkan hasil, seperti 'ringkasan' atau 'tulis semula'.
+- **Suhu (0.0 → 1.0)**: kelakuan model; sila rujuk di bawah.
+- **Minta bahasa destinasi**: menambah pemilih bahasa destinasi apabila arahan dijalankan.
 
-Jika istilah teknikal **Suhu** adalah baharu untuk anda, fikirkan seperti ini:
+Jika istilah teknikal **Suhu** baru kepada anda, fahamkan seperti berikut:
 
-- **Suhu yang lebih RENDAH** memberikan hasil yang lebih mantap dan boleh diramalkan.
-- **Suhu yang lebih TINGGI** memberikan lebih banyak variasi dan kreativiti.
+- Suhu yang **lebih rendah** memberi hasil yang lebih stabil dan boleh diramal.
+- Suhu yang **lebih tinggi** memberi lebih variasi dan kreativiti.
 
-Anda juga boleh menggunakan:
+Anda juga boleh gunakan:
 
-- **`Generate prompt`** untuk mencipta draf baharu daripada penerangan ringkas
-- **`Improve prompt`** untuk mengoptimumkan prompt sedia ada
-- **`Translate prompt`** untuk menerjemahkan bidang prompt
+- **`Jana arahan`** untuk mencipta draf baharu daripada huraian ringkas
+- **`Tingkatkan arahan`** untuk menyempurnakan arahan sedia ada
+- **`Terjemah arahan`** untuk menterjemah medan arahan
+
+<br/>
 
 > ⚠️ **AMARAN**<br/>
-- Klik **`Save`** sebelum anda klik **`Back to Run`**. Jika anda kembali tanpa menyimpan, perubahan anda akan hilang.
+> Klik **`Simpan`** sebelum klik **`Kembali ke Jalankan`**. Jika anda kembali tanpa menyimpan, perubahan anda akan hilang.
 
-<br />
+<br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Uji prompt sebelum menggunakannya
+### Uji arahan sebelum menggunakannya
 
-Panel ujian di sebelah kanan membolehkan anda mencuba prompt anda dengan teks sampel sebelum menggunakannya dalam kerja harian.
+Panel ujian di sebelah kanan membolehkan anda mencuba arahan anda dengan teks sampel sebelum digunakan dalam kerja harian.
 
 Ini berguna apabila:
 
-- anda membina prompt baharu
-- anda membandingkan dua versi prompt
-- anda ingin mengeset nada, panjang, atau format output
+- anda sedang membina arahan baharu
+- anda sedang membandingkan dua versi arahan
+- anda ingin menyemak nada, panjang, atau format output
 
-<br />
+<br/>
 
 <a id="manage-saved-prompts"></a>
-### Urus prompt yang disimpan
+### Urus arahan tersimpan
 
-Untuk mengurus prompt yang disimpan di satu tempat, buka [**Settings** > **Transform Prompts**](#transform-prompts).
+Untuk mengurus arahan tersimpan di satu tempat, buka [**Tetapan** > **Arahan Transformasi**](#transform-prompts).
 
-Di situ anda boleh:
+Di sana anda boleh:
 
-- senarai dan padam prompt anda
-- eksport prompt sebagai **JSON**, **CSV**, atau **XLSX**
-- import prompt daripada fail
+- senaraikan dan padamkan arahan anda
+- eksport arahan sebagai **JSON**, **CSV**, atau **XLSX**
+- import arahan daripada fail
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="dashboard"></a>
 
 ## Papan Pemuka
 
-Gunakan **Dashboard** untuk melihat penggunaan app dan kosnya.
+Gunakan **Papan Pemuka** untuk melihat sejauh mana anda menggunakan aplikasi ini dan berapakah kos yang terlibat (untuk model berbayar).
 
-![Dashboard summary](../images/screenshots/ms/dashboard-summary.png)
+![Ringkasan papan pemuka](../images/screenshots/ms/dashboard-summary.png)
 
-<br />
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Jika anda hanya menggunakan model percuma, carta yang berkaitan dengan kos akan kosong. 
+
+<br/>
 
 <a id="filter-the-data"></a>
 ### Tapis data
 
-Guna butang penapis di bahagian atas untuk mengubah julat masa.
+Gunakan butang penapis di bahagian atas untuk menukar julat masa.
 
-![Dashboard filters](../images/screenshots/ms/dashboard-filter.png)
+![Penapis papan pemuka](../images/screenshots/ms/dashboard-filter.png)
 
-> ℹ️ **NOTE**<br/>
-- Dalam versi web, pentadbir juga mungkin melihat penapis **Pengguna**. Ini membolehkan mereka bertukar antara **Semua pengguna** dan pengguna individu.
+<br/>
 
-<br />
+> ℹ️ **NOTA**<br/>
+> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak dapat melihat penapis ini, dan ia tidak tersedia dalam aplikasi desktop.
+
+<br/>
 
 <a id="dashboard-tabs"></a>
-### Tab Dashboard
+### Tab papan pemuka
 
-- **Summary** memberikan gambaran keseluruhan penggunaan dan kos.
-- **By Usage** menguraikan aktiviti mengikut bahasa terjemahan, mod tulis semula, dan transform prompt.
-- **By Model** menunjukkan model mana yang anda gunakan dan berapa kosnya.
-- **By Day** menunjukkan jumlah harian.
-- **All Calls** menunjukkan sepenuhnya sejarah panggilan dan membolehkan anda mengeksportnya.
+- **Ringkasan** memberi gambaran keseluruhan tentang penggunaan dan kos.
+- **Mengikut Penggunaan** memecahkan aktiviti mengikut bahasa terjemahan, mod tulis semula, dan petua transformasi.
+- **Mengikut Model** menunjukkan model yang digunakan dan kos masing-masing.
+- **Mengikut Hari** menunjukkan jumlah harian.
+- **Semua Panggilan** menunjukkan sejarah panggilan penuh dan membolehkan anda mengeksportnya.
 
-<br />
+<br/>
 
 <a id="export-data"></a>
 ### Eksport data
 
-Jadual dashboard dapat mengeksport data dalam:
+Jadual papan pemuka boleh mengeksport data dalam:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Ini berguna jika anda ingin mengulas aktiviti di luar app atau berkongsi laporan.
+Ini berguna jika anda ingin menyemak aktiviti di luar aplikasi atau berkongsi laporan.
 
-<br />
+<br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Padam rekod yang disimpan untuk model
+### Padam rekod tersimpan untuk model
 
-Dalam **By Model** atau **All Calls**, anda boleh membuang rekod yang disimpan untuk model.
+Dalam **Mengikut Model** atau **Semua Panggilan**, anda boleh mengalih keluar rekod tersimpan untuk model dengan mengklik ikon "tong sampah".
 
 > ⚠️ **AMARAN**<br/>
-- Memadam rekod yang disimpan tidak boleh dibatalkan. Hanya gunakan ini jika anda pasti tidak lagi perlu sejarah tersebut.
+> Pemadaman rekod tersimpan adalah tindakan yang tidak boleh dibatalkan. Gunakan hanya jika anda pasti bahawa sejarah tersebut tidak diperlukan lagi.
 
-Untuk memadam semua data atau membuang rekod berdasarkan usia, pergi ke [**Settings** > **Cost Tracking**](#cost-tracking). Di situ anda akan menemukan pilihan untuk memadam semua data yang disimpan atau hanya data yang lebih lama daripada tarikh tertentu.
+Untuk memadamkan semua data atau mengalih keluar rekod berdasarkan umurnya, pergi ke [**Tetapan** > **Penjejakan Kos**](#cost-tracking). Di sana, anda akan menjumpai pilihan untuk memadamkan semua data tersimpan atau hanya data yang lebih lama daripada tarikh tertentu.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="history"></a>
+## Sejarah
+
+Klik pada **Sejarah** untuk melihat rekod tindakan anda dalam **Transrewrt**, termasuk input dan output bagi setiap operasi. 
+
+![Laman sejarah](../images/screenshots/ms/history.png)
+
+<br/>
+
+<a id="filter-the-history"></a>
+### Tapis sejarah
+
+**Sejarah** menggunakan penapis yang sama seperti halaman **Papan Pemuka**. Gunakan penapis ini untuk memilih julat masa.
+
+![Penapis papan pemuka](../images/screenshots/ms/dashboard-filter.png)
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak dapat melihat penapis ini, dan ia tidak tersedia dalam aplikasi desktop.
+
+<br/>
+
+<a id="export-history-data"></a>
+### Eksport data sejarah
+
+Halaman sejarah boleh mengeksport data yang telah ditapis ke dalam format:
+
+- **JSON**
+- **CSV**
+- **XLSX**
+
+Ini berguna jika anda ingin menyemak aktiviti di luar aplikasi atau berkongsi laporan.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="settings"></a>
-## Settings
+## Tetapan
 
-Buka **Settings** daripada bar tepi untuk menyesuaikan how app berbehave.
+Buka **Tetapan** dari bar sisi untuk menyesuaikan cara aplikasi berkelakuan.
 
-Tab yang tersedia mungkin berbeza:
+Tab yang tersedia bergantung kepada platform dan peranan anda:
 
-- **API Config** hanya tersedia dalam desktop app.
-- **Users** hanya tersedia dalam web app, dan hanya untuk pentadbir.
+  | Tab                    | Desktop | Web (pentadbir) | Web (pengguna biasa) |
+  |------------------------|:-------:|:---------------:|:--------------------:|
+  | Tetapan Am             |   ya    |       ya        |          ya          |
+  | Model                  |   ya    |       ya        |          ya          |
+  | Bahasa                 |   ya    |       ya        |          ya          |
+  | Penjejakan Kos         |   ya    |       ya        |           —          |
+  | Petua Transformasi     |   ya    |       ya        |          ya          |
+  | Pengguna               |    —    |       ya        |           —          |
+  | Konfigurasi API        |   ya    |       ya        |           —          |
+  | Perihal               |   ya    |       ya        |          ya          |
 
-<br />
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Dalam versi web, setiap pengguna mempunyai konfigurasi tersendiri. Tetapan seperti model terpilih, bahasa, pilihan am, dan petua transformasi disimpan mengikut pengguna. Perubahan yang anda buat tidak akan menjejaskan pengguna lain.
+
+<br/>
+
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
 
-### Tetapan umum
+### Tetapan Umum
 
-Gunakan **Tetapan Umum** untuk mengawal tingkah laku menaip dan penampilan.
+Gunakan **Tetapan Umum** untuk mengawal tingkah laku menaip, sama ada maklumat pelaksanaan disimpan untuk **Sejarah**, dan paparan.
 
 **Tingkah Laku**
 
-- **Tingkah laku untuk ENTER** memilih sama ada Enter menjalankan tugas atau menyisip baris baru.
-- **Terjemah auto pada tampalan** memulakan terjemahan sebaik sahaja anda tampal teks.
-- **Salin hasil auto ke papan klip** menyalin hasil yang berjaya secara automatik.
-- **Terjemah masa sebenar (ketika menaip)** menterjemahkan ketika anda menaip.
-- **Masa tamat (ms)** mengtetapkan masa menunggu untuk terjemahan masa sebenar.
+- **Tingkah laku untuk ENTER** memilih sama ada `Enter` melaksanakan tugas atau memasukkan baris baharu.
+- **Auto-terjemah semasa tampal** memulakan terjemahan sebaik sahaja anda menampal teks.
+- **Salin hasil ke papan klip secara automatik** menyalin hasil yang berjaya secara automatik.
+- **Terjemahan masa nyata (semasa menaip)** menterjemah sambil anda menaip.
+- **Tempoh tamat (ms)** menetapkan masa tunggu untuk terjemahan masa nyata.
 
-**Penampilan**
+**Sejarah**
 
-- **Digit pecahan kos** mengubah cara perpuluhan kos dipaparkan.
-- **Keluarga Fon** mengubah fon penulisan dalam panel teks.
+- **Simpan sejarah pelaksanaan** mengawal sama ada setiap terjemahan, tulis semula, dan transformasi menyimpan **teks input dan output** untuk paparan [**Sejarah**](#history) di panel sisi. Mematikan fungsi ini akan meminta pengesahan; jika anda mengesahkannya, teks sejarah yang disimpan akan dipadamkan dari pangkalan data.
+- **Padam data sejarah** membolehkan anda memadam teks disimpan mengikut usia (contohnya lebih lama daripada beberapa bulan, atau **semua data (hapuskan)**) menggunakan **Padam data**. Ini hanya mempengaruhi teks pelaksanaan yang disimpan untuk paparan **Sejarah**; ia **tidak** memadam jumlah kos atau penggunaan. Untuk memadamkan atau memotong data **kos**, gunakan [**Tetapan** > **Pengesanan Kos**](#cost-tracking).
+
+**Rupa**
+
+- **Perpuluhan kos** mengubah cara perpuluhan kos dipaparkan.
+- **Hanya Web:** **tunjukkan margin di sekeliling aplikasi** menambahkan ruang tambahan di sekitar antara muka.
+- **Famili Fon** mengubah fon penulisan dalam panel teks.
 - **Saiz** mengubah saiz fon.
-- **Web sahaja:** **tunjukkan margin di sekeliling aplikasi** menambah ruang ekstra di sekeliling antaramuka.
 
-<br />
+<br/>
 
 <a id="models"></a>
 ### Model
 
-Gunakan **Tetapan** > **Model** untuk memilih model mana yang muncul dalam toolbar.
+Gunakan **Tetapan** > **Model** untuk memilih model mana yang muncul dalam bar alat.
 
-![Tab Models Tetapan](../images/screenshots/ms/settings-models.png)
+![Tab Model Tetapan](../images/screenshots/ms/settings-models.png)
 
-Halaman tersebut mempunyai dua senarai:
+Halaman ini mempunyai dua senarai:
 
-- **Model Tersedia** di sebelah kiri
-- **Model Dipilih** di sebelah kanan
+- **Model yang Tersedia** di sebelah kiri
+- **Model yang Dipilih** di sebelah kanan
 
 Kawalan berguna termasuk:
 
-- **Cari model...** untuk mencari model mengikut nama
-- **Percuma Sahaja** untuk menunjukkan hanya model percuma
-- **Segar Semula** untuk memuatkan semula senarai
-- **Kembangkan Semua** dan **Runtuhkan Semua** apabila anda mengisih mengikut pembekal
+- **Cari model...** untuk mencari model berdasarkan nama
+- **Chip Penyedia** untuk mengecilkan senarai kepada enjin tertentu (OpenRouter, OpenAI, Ollama, …)
+- **Hanya Percuma** untuk memaparkan hanya model percuma
+- **Segarkan** untuk memuat semula senarai
+- **Kembangkan Semua** dan **Runtuhkan Semua** apabila anda menyusun mengikut penyedia
 
-Untuk menambah model, klik **Tambah**.
+ID model termasuk awalan penyedia (contohnya `openrouter/…` berbanding `openai/…`). Lencana seperti **OpenAI (OpenRouter)** berbanding **OpenAI (langsung)** menunjukkan cara lalu lintas dihantar.
 
-Untuk membuang model, klik **X** bersebelahan dengannya di **Model Dipilih**.
+Tindakan:
 
-Untuk menyelakkan senarai, klik **Nyahpilih semua**. Model percuma diperlukan akan kekal dalam senarai.
+ - Untuk menambah model, klik **Tambah** atau mana-mana bahagian dalam entri.
 
-> ℹ️ **CATATAN**<br/>
-> Jika anda tidak mahu menambah kredit ke OpenRouter terus, mulakan dengan membenarkan **Percuma Sahaja** dan memilih model percuma.
+ - Untuk mengalih keluar model, klik **X** di sebelahnya dalam **Model yang Dipilih** atau **Dipilih** pada entri dalam Model yang Tersedia.
 
-<br />
+ - Untuk membersihkan senarai, klik **Nyahpilih semua**. Model percuma yang diperlukan akan kekal dalam senarai.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Jika anda tidak mahu menambah kredit ke OpenRouter serta-merta, mulakan dengan mengaktifkan **Hanya Percuma** dan memilih model percuma (tiada kad kredit diperlukan). Anda juga boleh menggunakan Ollama untuk melaksanakan model secara tempatan tanpa sebarang kunci API.
+
+<br/>
 
 <a id="languages"></a>
 ### Bahasa
 
-Gunakan **Tetapan** > **Bahasa** untuk mengatur senarai bahasa yang digunakan dalam aplikasi.
+Gunakan **Tetapan** > **Bahasa** untuk menyusun senarai bahasa yang digunakan dalam aplikasi.
 
-- **Bahasa pilihan** disemat berdekatan di bahagian atas senarai bahasa dalam **Terjemah** dan **Pertukar**.
-- **Bahasa suai** membolehkan anda menambah bahasa yang tidak dalam senarai terbina dalam.
+- **Bahasa utama** dipautkan di bahagian atas senarai bahasa dalam **Terjemah** dan **Transform**.
+- **Bahasa tersuai** membolehkan anda menambah bahasa yang tidak terdapat dalam senarai lalai.
 
-Jika anda menambah bahasa suai, ia muncul dalam pemilih bahasa bersebelahan dengan pilihan terbina dalam.
+Jika anda menambah bahasa tersuai, ia akan muncul dalam pemilih bahasa bersama pilihan lalai.
 
-<br />
+<br/>
 
 <a id="cost-tracking"></a>
-### Penjejakan kos
+### Pengesanan Kos
 
-Gunakan **Tetapan** > **Penjejakan Kos** untuk mengurus maklumat kos.
+Gunakan **Tetapan** > **Pengesanan Kos** untuk mengurus maklumat kos.
 
-- **Jumlah Kos** menunjukkan jumlah berterusan.
-- **Salin Nilai** menyalin jumlah ke papan klip.
-- **Tetapkan Semula Kos** mengatur semula jumlah yang disimpan kepada sifar.
-- **Segerakkan dengan penggunaan kekunci API** menetapkan jumlah untuk sepadan dengan penggunaan yang dilaporkan oleh OpenRouter.
-- **Penggunaan Kekunci API** menunjukkan perincian penggunaan, jika tersedia.
-- **Padam data kos** membuang semua data, atau hanya entri yang lebih lama daripada tarikh dipilih.
+- **Jumlah Kos** menunjukkan jumlah terkini.
+- **Salin Nilai** menyalin jumlah tersebut ke papan klip.
+- **Tetapkan Semula Kos** menetapkan semula jumlah disimpan kepada sifar.
+- **Sejajar dengan penggunaan kunci API** menetapkan jumlah tersebut sama dengan penggunaan yang dilaporkan oleh akaun OpenRouter anda (hanya untuk OpenRouter).
+- **Penggunaan Kunci API** menunjukkan butiran penggunaan OpenRouter, jika tersedia.
+- **Padam data kos** memadamkan semua data, atau hanya entri yang lebih lama daripada tarikh terpilih.
+
+**Pengesanan kos:** Apabila anda menggunakan model OpenRouter, aplikasi menunjukkan penggunaan dan perbelanjaan sebenar anda berdasarkan data daripada OpenRouter. Untuk semua penyedia lain, aplikasi menganggarkan kos menggunakan harga yang diterbitkan oleh OpenRouter; jika tiada harga tersedia, anggaran mungkin sifar.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+>  **Semua angka kos adalah anggaran untuk rujukan anda sahaja, bukan penyata bil rasmi.**
+
+<br/>
 
 > ⚠️ **AMARAN**<br/>
-> Penentepan data tidak boleh dibatalkan. Sebelum memadam, pastikan anda membuat sandaran data atau mengeksportnya melalui [**Dashboard** > **Segala Panggilan**](#dashboard-tabs), jika tidak ia akan hilang secara kekal.
+> Pemadaman data tidak boleh diterbalikkan. Sebelum memadam, pastikan untuk membuat sandaran data anda atau mengeksportnya melalui [**Dasbor** > **Semua Panggilan**](#dashboard-tabs), jika tidak ia akan hilang secara kekal.<br/>
+> Semua sejarah yang berkaitan dengan setiap entri panggilan API juga akan dipadamkan.
 
-<br />
+<br/>
 
 <a id="transform-prompts"></a>
-### Pertukaran prompt
 
-Gunakan **Tetapan** > **Pertukaran Prompt** untuk mengurus prompt secara pukal.
+### Mengubah suai arahan
+
+Gunakan **Tetapan** > **Ubah Suai Arahan** untuk menguruskan arahan secara pukal.
 
 Anda boleh:
 
-- meninjau prompt yang disimpan
-- memadam prompt
-- mengimport prompt dari fail
-- mengeksport prompt untuk sandaran atau perkongsian
+- mengkaji arahan yang telah disimpan
+- memadam arahan
+- mengimport arahan dari fail
+- mengeksport arahan untuk sandaran atau perkongsian
 
-<br />
+<br/>
 
 <a id="users"></a>
 ### Pengguna
 
-**Web sahaja - pentadbir sahaja**
+**Web: pentadbir sahaja**
 
-Gunakan **Pengguna** untuk mengurus akaun pengguna dalam versi web. Anda boleh menambah pengguna, mengemas kini perincian mereka, menetapkan semula kata laluan, dan memadam akaun.
+Gunakan **Pengguna** untuk mengurus akaun pengguna dalam versi web. Anda boleh menambah pengguna, mengemas kini maklumat mereka, menetapkan semula kata laluan, dan memadam akaun.
 
-<br />
+<br/>
 
 <a id="api-config"></a>
 ### Konfigurasi API
 
-**Desktop sahaja**
+Penyedia yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan **Ollama** (model tempatan melalui URL asas). Anda hanya perlu mengkonfigurasikan penyedia yang anda gunakan.
 
-Gunakan **Konfigurasi API** untuk menyambung aplikasi desktop ke OpenRouter atau kepada proksi Transrewrt.
+**Aplikasi web: pentadbir sahaja**
 
-- **Kekunci API OpenRouter** adalah di mana anda tampal kekunci anda.
-- **URL API** adalah alamat perkhidmatan. Tinggalkannya pada Lalai melainkan anda diberi yang berbeza.
-- **Gunakan Proksi Transrewrt** mengarahkan permintaan melalui perkhidmatan proksi bukan terus ke OpenRouter.
-- **Benih Kekunci** muncul apabila pilihan proksi dibenarkan.
-- **Uji Konfigurasi API** memeriksa sama ada tetapan semasa berfungsi.
+Kunci API dikonfigur melalui pemboleh ubah persekitaran sistem atau Docker — kunci ini tidak dimasukkan dalam antara muka web. Halaman ini menunjukkan penyedia mana yang mempunyai kunci yang telah dikonfigur dan membolehkan anda menguji setiap satu dengan mengklik butang **`Uji`**.
 
-Untuk langkah terperinci mendapatkan kekunci API anda, lihat [Bagaimana untuk mendapatkan kekunci API](#how-to-get-an-api-key-desktop-app) di atas.
+<br/>
 
-> ℹ️ **CATATAN**<br/>
-> Jika anda tidak pasti apa yang dimaksudkan oleh **URL API**, **Gunakan Proksi Transrewrt**, atau **Benih Kekunci**, tinggalkannya tidak diubah dan gunakan tetapan Lalai OpenRouter. Maklumat lanjut tentang proksi tersedia dalam [Repositori Proksi Transrewrt](https://github.com/wsj-br/transrewrt-proxy).
+> ℹ️ **NOTA**<br/>
+> Untuk menukar kunci API, kemaskini pemboleh ubah persekitaran dalam konfigurasi sistem atau Docker anda dan mulakan semula pelayan atau kontena.
+
+<br/>
+
+**Aplikasi desktop**
+
+Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap penyedia yang anda gunakan. Untuk Ollama, masukkan **URL asas** sebagai ganti kunci API.
 
 
-<br />
+<br/>
+
+> 💡 **Petua** <br/>
+> Jika anda tidak mahu menggunakan kunci API atau membayar untuk penggunaan, anda boleh [muat turun Ollama](https://ollama.com) dan jalankan model secara tempatan pada komputer anda secara percuma. Sebagai alternatif, anda boleh buat akaun OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma mereka.
+
+- Tambahkan hanya penyedia yang diperlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan nama penyedia (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Untuk menambah kunci API, taip nilai dalam ruangan teks dan klik **`Simpan`**. Untuk menggantikan kunci sedia ada, klik **`Sunting`**. Untuk memeriksa sama ada kunci berfungsi, klik **`Uji`**.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Anda tidak boleh melihat nilai semasa kunci API. Anda hanya boleh menggantikannya menggunakan butang **`Sunting`**.
+> Kunci API disimpan secara mengekod dalam fail konfigurasi.
+
+<br/>
+
+Untuk langkah terperinci bagaimana mendapatkan kunci OpenRouter, sila rujuk [Cara mendapatkan kunci API](#how-to-get-an-api-key-desktop-app) di atas.
+
+
+
+<br/>
 
 <a id="about"></a>
+### Perihal
 
-### Tentang
+Tab **Perihal** menunjukkan:
 
-Tab **Tentang** menunjukkan:
 - nama aplikasi
 - nombor versi
-- tarikh bina
+- tarikh binaan
 - pautan ke repositori projek
 
-<br /><br />
+<br/><br/>
 
 <a id="common-issues"></a>
 ## Masalah lazim
 
-Jika sesuatu tidak berfungsi seperti yang dijangka, semak perkara berikut terlebih dahulu.
+Jika sesuatu perkara tidak berfungsi seperti diharapkan, semak perkara berikut terlebih dahulu.
 
-<br />
+<br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Aplikasi tidak dapat menerjemah, menulis semula, atau mengubah teks
+### Aplikasi tidak menterjemah, menulis semula, atau mengubah suai teks
 
-Semak:
-- anda telah memilih model dalam palang alat
-- sekurang-kurangnya satu model tersenarai dalam [**Tetapan** > **Model**](#models)
-- persediaan API anda berfungsi
+Semak perkara berikut:
+
+- anda telah memilih model dalam bar alat
+- sekurang-kurangnya satu model disenaraikan dalam [**Tetapan** > **Model**](#models)
+- konfigurasi API anda berfungsi
 
 Jika anda menggunakan aplikasi desktop:
 
 1. Buka [**Tetapan** > **Konfigurasi API**](#api-config).
-2. Pastikan kunci API anda disimpan.
-3. Klik **Uji Konfigurasi API**.
+2. Periksa sama ada sekurang-kurangnya satu kunci API telah disimpan.
+3. Klik **Uji** di sebelah penyedia untuk mengesahkan kunci berfungsi.
 
-<br />
+<br/>
 
 <a id="the-model-list-is-empty"></a>
 ### Senarai model kosong
 
-Buka [**Tetapan** > **Model**](#models) dan klik **Segar Semula**.
+Buka [**Tetapan** > **Model**](#models) dan klik **Segarkan**.
 
-Jika diperlukan:
+Jika perlu:
+
 - cari model
-- hidupkan **Hanya Percuma**
-- tambah satu atau lebih model ke **Model Dipilih**
+- dayakan **Hanya Percuma**
+- tambah satu atau lebih model ke **Model Terpilih**
 
-<br />
+<br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Keputusan terlalu perlahan atau terlalu mahal
 
-Cuba satu atau lebih pilihan berikut:
-- pilih model yang lain
-- guna input yang lebih pendek
-- matikan **Terjemahan masa nyata (ketika mengetik)** dalam [**Tetapan** > **Tetapan Am**](#general-settings)
-- guna model percuma untuk tugas mudah (lihat [Model](#models))
+Cuba salah satu atau lebih perkara berikut:
 
-<br />
+- pilih model lain
+- gunakan input yang lebih ringkas
+- matikan **Terjemahan masa nyata (semasa menaip)** dalam [**Tetapan** > **Tetapan Umum**](#general-settings)
+- gunakan model percuma untuk tugas-tugas ringkas (rujuk [Model](#models))
+
+<br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Antaramuka dalam bahasa yang salah
 
-Klik ikon globe di [palang alat](#toolbar) dan pilih **Bahasa antaramuka** yang diingini.
+Klik ikon globe dalam [bar alat](#toolbar) dan pilih **Bahasa Antaramuka** yang anda kehendaki.
 
-<br />
+<br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Teks terlalu kecil atau sukar dibaca
 
-Buka [**Tetapan** > **Tetapan Am**](#general-settings) dan ubah:
-- **Keluarga Fon**
+Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan ubah:
+
+- **Famili Fon**
 - **Saiz**
 
-<br />
+<br/>
+
+<a id="dashboard-charts-are-empty"></a>
+### Carta papan pemuka kosong
+
+Ini adalah perkara biasa jika:
+
+- anda hanya menggunakan **model percuma** (carta kos akan kosong)
+- **penapis masa** yang dipilih tidak merangkumi tempoh panggilan dibuat — cuba **Semua** untuk mengesahkannya
+
+Jika carta masih kosong selepas memilih **Semua**, pastikan panggilan kelihatan dalam [**Sejarah**](#history) atau dalam tab **Semua Panggilan**.
+
+<br/>
+
+<a id="cost-shows-not-available-or-seems-wrong"></a>
+
+### Kos dipaparkan sebagai "tidak tersedia" atau kelihatan salah
+
+Apabila anda menggunakan model melalui **OpenRouter**, aplikasi ini akan memaparkan perbelanjaan sebenar yang dilaporkan oleh OpenRouter.
+
+Bagi **penyedia lain** (OpenAI secara langsung, Anthropic secara langsung, dll.), kos dikira secara anggaran berdasarkan data harga yang diterbitkan oleh OpenRouter. Jika tiada harga yang sepadan ditemui untuk model tertentu, kos akan dipaparkan sebagai **tidak tersedia** dan tidak akan ditambahkan ke jumlah perbelanjaan anda.
+
+<br/>
+
+<a id="total-cost-does-not-match-my-provider-bill"></a>
+### Jumlah kos tidak sepadan dengan bil penyedia saya
+
+Semua angka kos dalam aplikasi ini adalah **anggaran untuk rujukan sahaja**, bukan penyata rasmi bil.
+
+Untuk menjadikan jumlah ini lebih hampir dengan perbelanjaan OpenRouter sebenar anda, buka [**Tetapan** > **Pengesanan Kos**](#cost-tracking) dan klik **Sinkroni dengan penggunaan kunci API**.
+
+<br/>
+
+<a id="the-history-page-is-missing-from-the-sidebar"></a>
+### Halaman Sejarah tiada dalam bar sisi
+
+Fungsi **Simpan sejarah pelaksanaan** mungkin dimatikan. Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan dayakannya. Perhatikan bahawa menghidupkannya tidak akan memulihkan data sejarah yang telah dihapuskan sebelum ini.
+
+<br/>
+
+<a id="web-app-session-expired"></a>
+### Aplikasi web: diarahkan semula ke halaman log masuk secara tidak dijangka
+
+Sesi anda mungkin telah tamat tempoh. Sila log masuk semula. Jika ini berlaku kerap, semak konfigurasi pelayan untuk tetapan tempoh hayat sesi.
+
+<br/>
+
+<a id="dashboard-shows-no-data-for-other-users"></a>
+### Papan pemuka tidak memaparkan data untuk pengguna lain (web)
+
+Hanya **pentadbir** yang boleh melihat data semua pengguna menerusi penapis **Pengguna**. Pengguna biasa hanya dapat melihat aktiviti mereka sendiri sebagaimana yang dirancang.
+
+<br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Saya mengubah prompt dan kehilangan suntingan
+### Saya telah mengubah prompt tetapi kehilangan suntingan
 
-Apabila menyunting prompt, selalu klik **Simpan** sebelum mengklik **Kembali ke Jalankan**.
+Apabila menyunting prompt, sentiasa klik **Simpan** sebelum klik **Kembali ke Jalankan**.
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-tips"></a>
-## Petua pantas
+## Petua Pantas
 
-- Mulakan dengan [**Terjemah**](#translate) untuk memastikan persediaan anda berfungsi sebelum anda beralih ke [**Tulis Semula**](#rewrite) atau [**Ubah**](#transform).
-- Gunakan [**Tulis Semula**](#rewrite) untuk penambahbaikan percakapan harian.
-- Gunakan [**Ubah**](#transform) apabila anda memerlukan aliran kerja yang boleh diulang untuk tugas tertentu.
-- Gunakan [**Papan Pemuka**](#dashboard) jika anda ingin mengawasi penggunaan dan kos.
-- Eksport prompt secara berkala jika anda membina pustaka prompt yang ingin anda selamatkan (lihat [Ubah Prompt](#transform-prompts)).
+- Mulakan dengan [**Terjemah**](#translate) untuk memastikan konfigurasi anda berfungsi sebelum beralih ke [**Tulis Semula**](#rewrite) atau [**Ubahsuai**](#transform).
+- Gunakan [**Tulis Semula**](#rewrite) untuk penambahbaikan perkataan harian.
+- Gunakan [**Ubahsuai**](#transform) apabila anda memerlukan alur kerja yang boleh diulang untuk tugas tertentu.
+- Gunakan [**Papan Pemuka**](#dashboard) jika anda ingin memantau penggunaan dan kos.
+- Gunakan [**Sejarah**](#history) untuk meninjau operasi lampau dan teks input/output penuh.
+- Eksport prompt secara berkala jika anda membina perpustakaan prompt yang ingin anda simpan dengan selamat (rujuk [Ubahsuai Prompt](#transform-prompts)) atau jika anda ingin kongsi dengan orang lain.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
 ## Penafian
 
-Nama produk dan ikon adalah hak milik pemilik masing-masing dan digunakan hanya bagi tujuan pengenalan. Perisian ini tidak berafiliasi atau didukung oleh mana-mana jenama yang disebut.
+Nama produk dan ikon milik pemilik masing-masing dan digunakan semata-mata untuk tujuan pengenalan. Perisian ini tidak berafiliasi atau disokong oleh mana-mana jenama yang disebutkan.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Lesen
 
-Hak cipta © 2026 Waldemar Scudeller Jr.
+Hak Cipta © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](LICENSE)
+[Lesen Apache 2.0](LICENSE)

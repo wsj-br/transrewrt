@@ -166,7 +166,7 @@ const SettingsGeneralTab = ({
           <Settings size={20} />
           {t('Behaviour')}
         </Text>
-        <div style={{ paddingLeft: '24px' }}>
+        <div style={{ paddingInlineStart: '24px' }}>
         <div style={{ marginBottom: '16px' }}>
           <Label style={{ display: 'block', marginBottom: '6px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -180,7 +180,7 @@ const SettingsGeneralTab = ({
             value={normalizeEnterBehavior(localSettings.enter_behavior)}
             onChange={(e, data) => onSettingChange('enter_behavior', data.value)}
             layout="vertical"
-            style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginLeft: '32px' }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px', marginInlineStart: '32px' }}
           >
             <Radio
               value="Execute"
@@ -225,7 +225,7 @@ const SettingsGeneralTab = ({
             />
             <Label style={{ margin: 0 }}>{t('Real-time translation (while typing)')}</Label>
           </div>
-          <div style={{ marginLeft: '48px', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ marginInlineStart: '48px', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Label htmlFor="real-time-delay" style={{ margin: 0, whiteSpace: 'nowrap' }}>{t('Timeout (ms):')}</Label>
             <SpinButton
               id="real-time-delay"
@@ -251,7 +251,7 @@ const SettingsGeneralTab = ({
           <History size={20} />
           {t('History')}
         </Text>
-        <div style={{ paddingLeft: '24px' }}>
+        <div style={{ paddingInlineStart: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
             <Checkbox
               id="keep-execution-history"
@@ -270,7 +270,7 @@ const SettingsGeneralTab = ({
           </div>
           <div
             className="section"
-            style={{ marginTop: '24px', marginLeft: '0', paddingLeft: '0' }}
+            style={{ marginTop: '24px', marginInlineStart: '0', paddingInlineStart: '0' }}
           >
             <Text
               as="h4"
@@ -287,7 +287,7 @@ const SettingsGeneralTab = ({
                 alignItems: 'center',
                 gap: '12px',
                 flexWrap: 'wrap',
-                marginLeft: '8px',
+                marginInlineStart: '8px',
               }}
             >
               <span>{t('Delete entries older than:')}</span>
@@ -321,12 +321,12 @@ const SettingsGeneralTab = ({
               </Button>
             </div>
             {historyDeleteError && (
-              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginLeft: '8px' }}>
+              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginInlineStart: '8px' }}>
                 {historyDeleteError}
               </span>
             )}
             {historyDeleteSuccess && (
-              <span style={{ color: tokens.colorStatusSuccessForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginLeft: '8px' }}>
+              <span style={{ color: tokens.colorStatusSuccessForeground1, fontSize: '13px', display: 'block', marginTop: '8px', marginInlineStart: '8px' }}>
                 {historyDeleteSuccess}
               </span>
             )}
@@ -342,7 +342,7 @@ const SettingsGeneralTab = ({
           <Palette size={20} />
           {t('Appearance')}
         </Text>
-        <div style={{ paddingLeft: '24px' }}>
+        <div style={{ paddingInlineStart: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
           <Label htmlFor="cost-fraction-style" style={{ margin: 0, whiteSpace: 'nowrap' }}>
             {t('Cost fraction digits:')}
@@ -371,7 +371,7 @@ const SettingsGeneralTab = ({
               </Option>
             ))}
           </Dropdown>
-          <span style={{ marginLeft: '8px', display: 'inline-flex', alignItems: 'baseline', gap: '6px' }}>
+          <span style={{ marginInlineStart: '8px', display: 'inline-flex', alignItems: 'baseline', gap: '6px' }}>
             <span style={{ color: tokens.colorNeutralForeground3, fontSize: '13px' }}>{t('Sample:')}</span>
             <span
               style={{
@@ -445,7 +445,7 @@ const SettingsGeneralTab = ({
           <div
             style={{
               marginTop: '6px',
-              marginLeft: '32px',
+              marginInlineStart: '32px',
               color: tokens.colorNeutralForeground2,
               wordWrap: 'break-word',
               maxWidth: '300px',

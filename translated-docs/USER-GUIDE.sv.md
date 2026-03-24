@@ -1,243 +1,262 @@
 ---
-translated_at: "2026-03-15T22:28:06.088Z"
-source_hash: "69732149de931f2a0059ecf9073871caedaa431362e32c010e7d93bd3cbd76bc"
-source_mtime: 1773611603946.006
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T03:39:14.659Z"
+source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
+source_mtime: 1774306679773.736
+model: "qwen/qwen3-235b-a22b-2507"
 ---
-<a id="transrewrt-user-guide"></a>
-# Transrewrt Användarguide
+![Transrewrt-banner](../images/transrewrt_banner.png)
 
-<br />
+<a id="transrewrt-användarhandledning"></a>
+# Användarhandledning
 
-<a id="introduction"></a>
-## Inledning
+<br/>
 
-Transrewrt hjälper dig att arbeta med text på tre huvudsakliga sätt:
+<a id="introduktion"></a>
+## Introduktion
 
-- **Översätt** - konvertera text från ett språk till ett annat.
-- **Omskriv** - omformulera text i en annan stil, så som tydligare, kortare eller mer formell.
-- **Transformera** - bearbeta text med anpassade AI-instruktioner kallade promptar.
+Transrewrt hjälper dig att arbeta med text på tre sätt:
 
-<br />
+- **Översätt** – konvertera text från ett språk till ett annat.
+- **Skriv om** – formulera om text på en annan stil, till exempel tydligare, kortare eller mer formell.
+- **Transformera** – bearbeta text med anpassade AI-instruktioner kallade prompts.
 
-Denna guide förklarar hur du använder appen när den är installerad och igång. För installationssteg, se huvud-[README](../README.md).
+<br/>
 
-<br />
+Den här handledningen förklarar hur du använder appen när den är installerad och igång. Installationsanvisningar finns i huvudfilen **[README](README.sv.md)**.
 
-> ℹ️ **OBS!**<br/>
-> Transrewrt finns som en desktopapp för Windows och Linux, och som en självhostad webbapp. Denna guide fokuserar på daglig användning av appen. Om något endast gäller en version, är det tydligt markerat.
+<br/>
 
-<small>**Läs på andra språk:** [Engelska (Storbritannien)](../USER-GUIDE.md) · [Portugisiska (Brasilien)](USER-GUIDE.pt-BR.md) · [Arabiska](USER-GUIDE.ar.md) · [Bengali](USER-GUIDE.bn.md) · [Katalanska](USER-GUIDE.ca.md) · [Förenklad kinesiska](USER-GUIDE.zh-CN.md) · [Traditionell kinesiska](USER-GUIDE.zh-TW.md) · [Kroatiska](USER-GUIDE.hr.md) · [Tjeckiska](USER-GUIDE.cs.md) · [Nederländska](USER-GUIDE.nl.md) · [Engelska (USA)](USER-GUIDE.en-US.md) · [Filippinska](USER-GUIDE.tl.md) · [Franska](USER-GUIDE.fr.md) · [Tyska](USER-GUIDE.de.md) · [Grekiska](USER-GUIDE.el.md) · [Hindi](USER-GUIDE.hi.md) · [Ungerska](USER-GUIDE.hu.md) · [Italienska](USER-GUIDE.it.md) · [Japanska](USER-GUIDE.ja.md) · [Javanesiska](USER-GUIDE.jv.md) · [Koreanska](USER-GUIDE.ko.md) · [Malajiska](USER-GUIDE.ms.md) · [Persiska](USER-GUIDE.fa.md) · [Polska](USER-GUIDE.pl.md) · [Portugisiska (Portugal)](USER-GUIDE.pt.md) · [Punjabi](USER-GUIDE.pa.md) · [Rumänska](USER-GUIDE.ro.md) · [Ryska](USER-GUIDE.ru.md) · [Slovakiska](USER-GUIDE.sk.md) · [Spanska](USER-GUIDE.es.md) · [Swahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [Telugu](USER-GUIDE.te.md) · [Thailändska](USER-GUIDE.th.md) · [Turkiska](USER-GUIDE.tr.md) · [Ukrainska](USER-GUIDE.uk.md) · [Vietnamesiska](USER-GUIDE.vi.md)</small>
+> ℹ️ **OBS**<br/>
+> Transrewrt finns som skrivbordsapp för Windows och Linux, och som självvärd webbapp. Denna handledning fokuserar på daglig användning av appen. När något endast gäller en viss version är det tydligt markerat.
 
-<br />
+<small>**Läs på andra språk:** [English (UK)](USER-GUIDE.sv.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Innehållsförteckning** 
 
-- [Innan du börjar](#innan-du-borjar)
-  - [Hur du skaffar en API-nyckel (desktopapp)](#hur-du-skaffar-en-api-nyckel-desktopapp)
-- [Kom igång](#kom-igang)
-- [Huvuddelarna i fönstret](#huvuddelenarna-i-fonstret)
-  - [Sidofält](#sidofalt)
-  - [Verktygsfält](#verktygsfalt)
-  - [In- och utmatningspaneler](#in--och-utmatningspaneler)
-- [Översätt](#oversatt)
-  - [Översätt text](#oversatt-text)
-  - [Språkval](#sprakval)
-  - [Användbara översättningsinställningar](#användbara-oversattningsinställningar)
-  - [Tangentbordsgenvägar](#tangentbordsgenvagar)
-- [Omskriv](#omskriv)
-  - [Omskriv text](#omskriv-text)
+- [Innan du börjar](#innan-du-börjar)
+  - [Hämta en gratis OpenRouter API-nyckel (skrivbordsapp)](#hur-man-hämtar-en-gratis-openrouter-api-nyckel-skrivbordsapp)
+- [Kom igång](#kom-igång)
+- [Huvuddelar i fönstret](#huvuddelar-i-fönstret)
+  - [Sidofält](#sidofält)
+  - [Verktygsfält](#verktygsfält)
+  - [In- och utmatningsfält](#in-och-utmatningsfält)
+- [Översätt](#översätt)
+  - [Översätt text](#översätt-text)
+  - [Språkval](#språkval)
+  - [Användbara översättningsinställningar](#användbara-översättningsinställningar)
+  - [Snabbtangenter](#snabbtangenter)
+- [Skriv om](#skriv-om)
+  - [Skriv om text](#skriv-om-text)
 - [Transformera](#transformera)
-  - [Kör en befintlig prompt](#kor-en-befintlig-prompt)
-  - [Om du inte har några promptar ännu](#om-du-inte-har-nagra-promptar-annu)
+  - [Kör en befintlig prompt](#kör-en-befintlig-prompt)
+  - [Om du inte har några prompts än](#om-du-inte-har-några-prompts-än)
   - [Skapa en prompt snabbt](#skapa-en-prompt-snabbt)
   - [Redigera en prompt](#redigera-en-prompt)
-  - [Testa en prompt innan du använder den](#testa-en-prompt-innan-du-anvander-den)
-  - [Hantera sparade promptar](#hantera-sparade-promptar)
-- [Instrumentpanel](#instrumentpanel)
-  - [Filtrera data](#filtrera-data)
-  - [Instrumentpanelflöden](#instrumentpanelfloden)
+  - [Testa en prompt innan du använder den](#testa-en-prompt-innan-du-använder-den)
+  - [Hantera sparade prompts](#hantera-sparade-prompts)
+- [Översikt](#översikt)
+  - [Filtrera datan](#filtrera-datan)
+  - [Översikt-flikar](#översikt-flikar)
   - [Exportera data](#exportera-data)
-  - [Radera lagrade poster för en modell](#radera-lagrade-poster-for-en-modell)
+  - [Ta bort lagrade poster för en modell](#ta-bort-lagrade-poster-för-en-modell)
+- [Historik](#historik)
+  - [Filtrera datan](#filtrera-datan-1)
+  - [Exportera historikdata](#exportera-historikdata)
 - [Inställningar](#inställningar)
-  - [Allmänna inställningar](#allmanna-inställningar)
+  - [Allmänna inställningar](#allmänna-inställningar)
   - [Modeller](#modeller)
-  - [Språk](#sprak)
-  - [Kostnadsspårning](#kostnadssparning)
-  - [Transform-promptar](#transform-promptar)
+  - [Språk](#språk)
+  - [Kostnadsövervakning](#kostnadsövervakning)
+  - [Transformationsprompts](#transformationsprompts)
   - [Användare](#användare)
   - [API-konfiguration](#api-konfiguration)
   - [Om](#om)
 - [Vanliga problem](#vanliga-problem)
-  - [Appen översätter, omskriver eller transformerar inte text](#appen-oversatter-omskriver-eller-transformerar-inte-text)
-  - [Modellistan är tom](#modellistan-ar-tom)
-  - [Resultatet är för långsamt eller för dyrt](#resultatet-ar-for-langsamt-eller-for-dyrt)
-  - [Gränssnittet är på fel språk](#granssnittet-ar-pa-fel-sprak)
-  - [Texten är för liten eller svår att läsa](#texten-ar-for-liten-eller-svart-att-lasa)
-  - [Jag ändrade en prompt och förlorade ändringarna](#jag-andrade-en-prompt-och-forlorade-andringarna)
-- [Snabbtips](#snabbtips)
+  - [Appen översätter, skriver om eller transformerar inte text](#appen-översätter-skriv-om-eller-transformerar-inte-text)
+  - [Modellistan är tom](#modellistan-är-tom)
+  - [Svaret är långsamt eller för dyrt](#svaret-är-långsamt-eller-för-dyrt)
+  - [Gränssnittet är på fel språk](#gränssnittet-är-på-fel-språk)
+  - [Texten är för liten eller svår att läsa](#texten-är-för-liten-eller-svår-att-läsa)
+  - [Översikt-diagrammen är tomma](#översikt-diagrammen-är-tomma)
+  - [Kostnaden visar "inte tillgänglig" eller verkar fel](#kostnaden-visar-inte-tillgänglig-eller-verkar-fel)
+  - [Totalkostnaden stämmer inte med leverantörens faktura](#totalkostnaden-stämmer-inte-med-leverantörens-faktura)
+  - [Historiksida saknas i sidofältet](#historiksida-saknas-i-sidofältet)
+  - [Webbapp: omdirigeras till inloggningssidan oväntat](#webbapp-omdirigeras-till-inloggningssidan-oväntat)
+  - [Översikten visar ingen data för andra användare (webb)](#översikten-visar-ingen-data-för-andra-användare-webb)
+  - [Jag ändrade en prompt och förlorade redigeringen](#jag-ändrade-en-prompt-och-förlorade-redigeringen)
+- [Snabba tips](#snabba-tips)
+- [Ansvarsfriskrivning](#ansvarsfriskrivning)
+- [Licens](#licens)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
-<a id="before-you-start"></a>
+<a id="innan-du-börjar"></a>
 
 ## Innan du börjar
 
-För att använda Transrewrt behöver du tillgång till AI-tjänsten via OpenRouter.
+För att använda Transrewrt behöver du tillgång till minst en AI-leverantör. De leverantörer som stöds är: [OpenRouter](https://openrouter.ai) (som samlar många modeller), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI samt [Ollama](https://ollama.com) för lokala modeller.
 
-Du behöver inte välja en betaltjänst innan du börjar. Appen inkluderar alltid en inbyggd **gratis** modell, så för vanlig användning räcker det för att börja översätta, omskriva och transformera text.
+Du behöver inte välja en betalmodell för att komma igång. Så fort du lägger till din OpenRouter-API-nyckel aktiverar appen automatiskt ett inbyggt **gratis** OpenRouter-alternativ. Detta gör att du kan börja översätta, skriva om och omvandla text direkt.
 
-På enkelt svenska:
+Med andra ord:
 
-- En **modell** är den AI-motor som utför arbetet.
-- En **API-nyckel** är ditt personliga åtkomstbevis för den tjänsten.
+- En **modell** är den AI-motor som utför arbetet. Modeller listas med ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
+- En **API-nyckel** (eller för Ollama, en **bas-URL**) är hur appen kommunicerar med leverantören.
 
-Om du använder **desktop-appen**, behöver du en API-nyckel. För detaljerade steg, se [Så här får du en API-nyckel](#how-to-get-an-api-key-desktop-app) nedan. I korthet: skapa ett konto på [OpenRouter](https://openrouter.ai), gå till sidan [Keys](https://openrouter.ai/keys), skapa en ny nyckel och klistra in den i [**Inställningar** > **API-konfiguration**](#api-config) i Transrewrt.
+Om du använder **skrivbordsappen** lägger du till nycklar under [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter, se [Hämta en API-nyckel](#how-to-get-an-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du istället installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller.
 
-Om du använder **webbversionen**, ställer vanligtvis serverägaren upp detta åt dig, så du kommer vanligtvis inte att behöva ange en API-nyckel själv.
+Om du använder **webbversionen** konfigurerar serverägaren leverantörerna via miljövariabler, så du behöver normalt inte ange API-nycklar själv.
 
-<br />
+<br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Så här får du en API-nyckel (desktop-app)
+### Så här hämtar du en gratis OpenRouter-API-nyckel (skrivbordsappen)
 
-Om du använder desktop-appen, följ dessa steg:
+Om du använder skrivbordsappen följer du dessa steg:
 
 1. Gå till [OpenRouter](https://openrouter.ai) i din webbläsare.
 2. Skapa ett konto eller logga in.
-3. Öppna sidan [Keys](https://openrouter.ai/keys).
+3. Öppna sidan [Nycklar](https://openrouter.ai/keys).
 4. Klicka på knappen för att skapa en ny API-nyckel.
-5. Ge nyckeln ett namn så du kan känna igen den senare.
+5. Ge nyckeln ett namn så att du kan identifiera den senare.
 6. Kopiera den nya API-nyckeln.
 7. Gå tillbaka till Transrewrt och öppna **Inställningar** > **API-konfiguration**.
-8. Klistra in nyckeln i **OpenRouter API-nyckel**.
-9. Klicka på **Testa API-konfiguration** för att kontrollera att det fungerar.
+8. Klistra in nyckeln i fältet **OpenRouter-API-nyckel** (under **Inställningar** > **API-konfiguration**).
+9. Klicka på **Testa OpenRouter-nyckel** för att säkerställa att den fungerar.
+
+<br/>
 
 > ℹ️ **OBS**<br/>
-> Du kan börja med OpenRouters gratis väg eller någon av de andra gratis modellerna som är tillgängliga. I många fall räcker det för att börja använda Transrewrt utan att välja en betaltjänst.
+> Du kan börja med OpenRouters fria väg eller någon av de andra tillgängliga gratismodellerna utan att lägga till ett kreditkort. I många fall räcker det för att kunna använda Transrewrt utan att välja en betalmodell. Alternativt kan du använda Ollama för att köra modeller lokalt utan API-nyckel.
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-started"></a>
-## Kom igång
+## Komma igång
 
-Om detta är din första gång med Transrewrt, följ denna ordning:
+Om det här är första gången du använder Transrewrt, följ den här ordningen:
 
 1. Öppna appen.
-2. Välj ditt **gränssnittsspråk** från glob-ikonen om det behövs.
-3. Om du använder **desktop-appen**, öppna [**Inställningar** > **API-konfiguration**](#api-config), klistra in din OpenRouter API-nyckel och klicka på **Testa API-konfiguration**.
+2. Välj ditt **gränssnittsspråk** från globikonen om det behövs.
+3. Om du använder **skrivbordsappen**, öppna [**Inställningar** > **API-konfiguration**](#api-config), lägg till en API-nyckel för minst en leverantör (till exempel OpenRouter) och klicka på **Testa** för att verifiera att den fungerar.
 4. Öppna [**Inställningar** > **Modeller**](#models) och lägg till en eller flera modeller i **Valda modeller**.
-5. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina mest använda språk ska visas först.
-6. Gå till **Översätt** och kör en enkel översättning för att kontrollera att allt fungerar.
-7. När det fungerar, prova **Omskriv** och sedan **Transformera**.
+5. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina vanligaste språk ska visas först.
+6. Gå till **Översätt** och kör en enkel översättning för att bekräfta att allt fungerar.
+7. När det fungerar kan du prova **Skriv om** och sedan **Omvandla**.
 
-Denna ordning är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald modell.
+Ordningen spelar roll. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald modell.
 
-<br /><br />
+<br/><br/>
 
 <a id="main-parts-of-the-window"></a>
-## Huvuddelar av fönstret
+## Huvuddelar i fönstret
 
-Appen är indelad i tre huvudområden:
+Appen är uppdelad i tre huvuddelar:
 
 - **Sidofältet** till vänster.
 - **Verktygsfältet** högst upp.
 - **Arbetsytan** i mitten.
 
-<br />
+<br/>
 
 <a id="sidebar"></a>
 ### Sidofält
 
-Använd sidofältet för att flytta runt i appen:
+Använd sidofältet för att navigera i appen. Du kan dölja sidofältet för mer utrymme genom att klicka på ikonen bredvid applogotypen.
 
-<br />
+<br/>
 
 <table>
   <tr>
     <td valign="top">
-       <img src="../images/screenshots/sv/sidebar.png" alt="Programmets sidofält" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+       <img src="../images/screenshots/sv/sidebar.png" alt="Applikationens sidofält" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
-      <br />
+      <br/><br/>
       <ul>
-        <li><strong>Översätt</strong> öppnar översättningsarbetsytan.</li>
-        <li><strong>Omskriv</strong> öppnar omskrivningsarbetsytan.</li>
-        <li><strong>Transformera</strong> öppnar anpassad prompt-arbetsyta.</li>
-        <li><strong>Dashboard</strong> visar användnings- och kostnadsinformation.</li>
-        <li><strong>Inställningar</strong> öppnar inställningspanelen.</li>
-        <li><strong>Användare</strong> visar inloggad användarnamn (enbart webb).</li>
+        <li><strong>Översätt</strong> öppnar arbetsytan för översättning.</li><br/>
+        <li><strong>Skriv om</strong> öppnar arbetsytan för omformulering.</li><br/>
+        <li><strong>Omvandla</strong> öppnar arbetsytan för anpassade prompter.</li><br/>
+        <li><strong>Instrumentpanel</strong> visar användnings- och kostnadsinformation.</li><br/>
+        <li><strong>Inställningar</strong> öppnar inställningsfönstret.</li><br/>
+        <li><strong>Historik</strong> visar användningshistorik med indata och utdata.</li><br/>
+        <li><strong>Användare</strong> visar inloggad användares användarnamn (endast webb).</li>
       </ul>
-      <br />
-      <p>Du kan också fälla ihop sidofältet för mer utrymme genom att klicka på ikonen bredvid appens logotyp.</p>
     </td>
   </tr>
 </table>
 
-<br />
+<br/>
 
 <a id="toolbar"></a>
+
 ### Verktygsfält
 
-Verktygsfältet ändras lite beroende på var du är i appen.
+Verktygsfältet ändras något beroende på var du befinner dig i appen.
 
-- Till vänster visar det aktuellt sidonamn.
-- Till höger visar det **modellväljaren** och kontrollen för **gränssnittsspråk**.
+- Till vänster visas namnet på den aktuella sidan.
+- Till höger visas **modellväljaren** och kontrollen för **gränssnittsspråk**.
 
-**Modellväljaren** låter dig välja vilken AI-motor som ska användas för den nuvarande uppgiften.
+**Modellväljaren** låter dig välja vilken AI-motor som ska användas för den aktuella uppgiften.
 
   ![Modellväljare](../images/screenshots/sv/model-selector.png)
 
 > ℹ️ **OBS**<br/>
-> Vissa gratis modeller kan sluta fungera tillfälligt om de är otillgängliga eller har nått en användningsgräns. Om det händer kommer appen att ta bort den modellen från din lista automatiskt.
+> Vissa kostnadsfria modeller kanske inte alltid är tillgängliga – ibland är de frånkopplade eller har en användningsbegränsning. Om detta händer tar appen automatiskt bort den modellen från din tillgängliga lista.<br/>
+> För att kontrollera vilka modeller som visas, gå till [**Inställningar** > **Modeller**](#models) och redigera din modelllista. 
+> Du kan också öppna modellinställningar direkt genom att klicka på leverantörens ikon till vänster om modellens namn i verktygsfältet.
 
+<br/>
 
-**Glob-ikonen + språkkoden** ändrar appens gränssnittsspråk, såsom menyer och knappar. Det ändrar **inte** översättningsspråken som används i **Översätt**.
+**Globikonen + språkkoden** ändrar appens gränssnittsspråk, till exempel menyer och knappar. Det ändrar **inte** översättningsspråken som används i **Översätt**.
 
-  ![Gränssnittsspråksväljare](../images/screenshots/sv/language-selector.png)
+  ![Språkväljare för gränssnitt](../images/screenshots/sv/language-selector.png)
 
-<br />
+<br/>
 
 <a id="input-and-output-panels"></a>
+### Inmatnings- och utmatningsfält
 
-### In- och utpaneler
+De flesta arbetsytorna använder ett vänster **Inmatningsfält** och ett höger **Utmvningsfält**.
 
-De flesta arbetsytorna använder ett vänster **In**-panel och en höger **Ut**-panel.
+**Inmatningsfältet** visar:
 
-**In**-panelen visar:
+- Teckenantal
+- Ordantal
+- Styckenantal
 
-- Antal tecken
-- Antal ord
-- Antal stycken
+**Utmvningsfältet** kan visa:
 
-**Ut**-panelen kan visa:
-
-- Hur lång tid uppgriften tog
-- Kostnaden för den uppgiften
-- Din sammanlagda kostnad
-- **TPS** (token per sekund), som är ett enkelt hastighetsmått
+- Hur lång tid uppgiften tog
+- Kostnaden för uppgiften (om tillgänglig)
+- Din totala löpande kostnad
+- **TPS** (tokens per sekund)
 - Antal tecken, ord och stycken
-- Den använda modellen
+- Den modell som använts
 
 Om du undrar över de tekniska termerna:
 
-- **Token** betyder en liten textdel. Du kan tänka på det som en del av ett ord eller ett kort ord.
-- **TPS** betyder hur många av dessa textdelar modellen bearbetade per sekund.
+- **Token** betyder en liten textenhet. Du kan tänka på det som en del av ett ord eller ett kort ord.
+- **TPS** betyder hur många sådana textenheter modellen bearbetade per sekund.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
 ## Översätt
 
 Använd **Översätt** när du vill konvertera text från ett språk till ett annat.
 
-![Översätt arbetsyta](../images/screenshots/sv/translate.png)
+![Arbetsyta för översättning](../images/screenshots/sv/translate.png)
 
-<br />
+<br/>
 
 <a id="translate-text"></a>
 ### Översätt text
@@ -245,119 +264,131 @@ Använd **Översätt** när du vill konvertera text från ett språk till ett an
 1. Öppna **Översätt**.
 2. Välj ett språk i **Från**.
 3. Välj ett språk i **Till**.
-4. Välj en modell iverktygsfältet.
-5. Skriv eller klistra in text i **In**.
+4. Välj en modell i verktygsfältet.
+5. Skriv in eller klistra in text i **Inmatning**.
 6. Klicka på **Översätt**.
-7. Läs resultatet i **Ut**.
+7. Läs resultatet i **Utmatning**.
 8. Använd kopieringsknappen om du vill kopiera resultatet.
 
-<br />
+<br/>
 
 <a id="language-selection"></a>
-### Språköval
+### Språkval
 
-- **Från** kan vara ett specifikt språk eller **Detektera språk**.
+- **Från** kan vara ett specifikt språk eller **Identifiera språk**.
 - **Till** är det språk du vill ha resultatet på.
 
-Dina valda **Topp språk** visas överst i listan. Du kan ställa in dessa i [**Inställningar** > **Språk**](#languages).
+Dina valda **Topp-språk** visas överst i listan. Du kan ställa in dem i [**Inställningar** > **Språk**](#languages).
 
-<br />
+<br/>
 
 <a id="helpful-translation-settings"></a>
 ### Användbara översättningsinställningar
 
-I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du ändra hur översättning beter sig:
+I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du ändra hur översättning fungerar:
 
-- **Autoöversätt vid klistra in** kör en översättning så snart du klistrar in text.
-- **Kopiera resultat automatiskt till klippbordet** kopierar resultatet automatiskt efter en lyckad körning.
-- **Realtidsöversättning (medan du skriver)** kör översättningar medan du skriver.
-- **Tidsgräns (ms)** styr hur länge appen väntar innan den kör en realtidsöversättning.
+- **Automatisk översättning vid klistra in** kör en översättning så snart du klistrar in text.
+- **Kopiera resultat automatiskt till urklipp** kopierar resultatet automatiskt efter en lyckad körning.
+- **Översättning i realtid (medan du skriver)** kör översättningar medan du skriver.
+- **Tidsgräns (ms)** styr hur länge appen väntar innan den kör en översättning i realtid.
 
-<br />
+<br/>
 
 <a id="keyboard-shortcuts"></a>
-### Tangentbordsgenvägar
+### Kortkommandon
 
-I [**Inställningar** > **Allmänna inställningar**](#general-settings) styr **Beteende för ENTER** vad som händer när du trycker på Enter:
+I [**Inställningar** > **Allmänna inställningar**](#general-settings) kontrollerar **Beteende vid ENTER** vad som händer när du trycker på `Enter`:
 
 - **Enter** kan köra uppgiften och **Shift+Enter** kan lägga till en ny rad.
-- Eller appen kan göra det omvända.
+- Eller så kan appen göra tvärtom.
 
-Den aktuella genvägen visas också på **Översätt**-knappen.
+Den aktuella läget visas även på knappen **Översätt**.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
-## Omskriv
+## Skriv om
 
-Använd **Omskriv** när du vill förbättra ordval utan att ändra huvudbetydelsen.
+Använd **Skriv om** när du vill förbättra formuleringen utan att ändra huvudbudskapet.
 
-![Omskriv arbetsyta](../images/screenshots/sv/rewrite.png)
+![Arbetsyta för omformulering](../images/screenshots/sv/rewrite.png)
 
-Det här är användbart för:
+Detta är användbart för:
 
-- att åtgärda stavfel och grammatik
-- att göra texten tydligare
-- att göra texten mer formell eller mer informell
-- att förkorta eller utöka text
-- att få texten att låta mer teknisk
+- rätta stavning och grammatik
+- göra texten tydligare
+- göra texten mer formell eller mindre formell
+- förkorta eller utöka text
+- få texten att låta mer teknisk
 
-<br />
+<br/>
 
 <a id="rewrite-text"></a>
-### Omskriv text
 
-1. Öppna **Omskriv**.
-2. Välj ett **Läge**.
+### Skriv om text
+
+1. Öppna **Skriv om**.
+2. Välj en **läge**.
 3. Välj en modell i verktygsfältet.
-4. Skriv eller klistra in text i **In**.
-5. Klicka på **Omskriv**.
-6. Granska resultatet i **Ut**.
+4. Skriv eller klistra in text i **Input**.
+5. Klicka på **Skriv om**.
+6. Granska resultatet i **Output**.
 
-Samma Enter-tangentbeteende som beskrivs i [**Översätt**](#keyboard-shortcuts) gäller också här.
+Samma beteende för Enter-tangenten som beskrivs i [**Översätt**](#keyboard-shortcuts) gäller även här.
 
-<br /><br />
+<br/>
+
+> 💡 **TIPS**<br/>
+> När du använder läget "**Kontrollera stavning och grammatik**" visas en knapp `Visa ändringar` i utdatafönstret.
+> Klicka på den här knappen för att växla visning av korrigeringar, så att de specifika ändringarna i din text visas eller döljs.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
 ## Transformera
 
-Använd **Transformera** när du vill att AI:n ska följa en anpassad uppsättning instruktioner.
+Använd **Transformera** när du vill att AI:n ska följa en egenuppsatt uppsättning instruktioner.
 
-![Transformera arbetsyta](../images/screenshots/sv/transform.png)
+![Arbetsytan Transformera](../images/screenshots/sv/transform.png)
 
-Det här är det mest flexibla området i appen. Du kan använda det för uppgifter som:
+Detta är det mest flexibla området i appen. Du kan använda det för uppgifter såsom:
 
-- summera anteckningar
-- omvandla grov text till en polerad e-post
-- extrahera nyckelpoänger
+- sammanfatta anteckningar
+- omvandla rå text till ett polerat e-postmeddelande
+- extrahera nyckelpunkter
 - konvertera text till ett specifikt format
 
-<br />
+<br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Kör en befintlig prompt
 
 1. Öppna **Transformera**.
 2. Välj en prompt från promptlistan.
-3. Om en **Målspråk**-ruta visas, välj ett språk om du vill ha ett.
-4. Skriv eller klistra in text i **In**.
+3. Om en ruta för **Målspråk** visas, välj ett språk om du vill.
+4. Skriv eller klistra in text i **Input**.
 5. Klicka på **Transformera**.
-6. Läs resultatet i **Ut**.
+6. Läs resultatet i **Output**.
 
-<br />
+<br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Om du inte har några prompt ännu
+### Om du inte har några prompts än
 
-Om din promptlista är tom, klicka på **Läs in exempelprompter**. Detta lägger till inbyggda exempel så du kan komma igång snabbt.
+Om din promptlista är tom, klicka på **Läs in exempelprompts**. Detta lägger till inbyggda exempel så att du kan komma igång snabbt.
 
-> ℹ️ **NOTERA**<br/>
-> Exempelprompter tillhandahålls på engelska. Efter att du läst in dem kan du redigera en prompt och använda **Översätt prompt** om du vill anpassa prompttexten för ett annat språk.
+<br/>
 
-<br />
+> ℹ️ **OBS!**<br/>
+> Exempelprompts tillhandahålls på engelska. När du läst in dem kan du redigera en prompt och använda **Översätt prompt** för att översätta den till ditt språk.
+
+<br/>
 
 <a id="create-a-prompt-quickly"></a>
-
 ### Skapa en prompt snabbt
 
 Det snabbaste sättet att skapa en prompt är:
@@ -372,57 +403,60 @@ Det snabbaste sättet att skapa en prompt är:
 ![Generera prompt](../images/screenshots/sv/transform-generate.png)
 
 
-<br />
+<br/>
 
+<a id="edit-a-prompt"></a>
 ### Redigera en prompt
 
-När du skapar eller redigerar en prompt, visas redigeraren till vänster och ett testområde till höger.
+När du skapar eller redigerar en prompt visas redigeraren till vänster och ett testfält visas till höger.
 
-![Transformera prompt-redigerare](../images/screenshots/sv/transform-prompt-edit.png)
+![Redigeraren för transformprompt](../images/screenshots/sv/transform-prompt-edit.png)
 
-De huvudsakliga fälten är:
+De viktigaste fälten är:
 
-- **Promptnamn**: namnet som visas i promptlistan.
-- **Promptinstruktioner (valfritt)**: en kort hint som visas för användaren när prompten körs.
-- **Modroll**: den övergripande roll som tilldelats AI:en, till exempel 'Du är en hjälpsam assistent.'
-- **Modellinstruktioner (en per rad)**: de specifika regler du vill att AI:en ska följa.
-- **Utdata-beskrivning**: ett kort ord som beskriver resultatet, som 'sammanfattning' eller 'omskrivning'.
-- **Temperatur (0,0 → 1,0)**: en kreativitetsreglage.
-- **Be om målspråk**: lägger till en målspråksväljare när prompten körs.
+- **Namn på prompt**: namnet som visas i promptlistan.
+- **Promptinstruktioner (frivilligt)**: en kort handledning som visas för användaren när prompten körs.
+- **Modellroll**: den övergripande roll som tilldelas AI, till exempel "Du är en hjälpsam assistent."
+- **Modellinstruktioner (en per rad)**: de specifika regler du vill att AI:n ska följa.
+- **Beskrivning av utdata**: ett kort ord som beskriver resultatet, till exempel "sammanfattning" eller "omskrivning".
+- **Temperatur (0,0 → 1,0)**: hur modellen kommer att bete sig; se nedan.
+- **Fråga efter målspråk**: lägger till en väljare för målspråk när prompten körs.
 
-Om den tekniska termen **Temperatur** är ny för dig, tänk så här:
+Om det tekniska begreppet **Temperatur** är nytt för dig, tänk på det så här:
 
 - En **lägre** temperatur ger stabilare, mer förutsägbara resultat.
 - En **högre** temperatur ger mer variation och kreativitet.
 
-Du kan även använda:
+Du kan också använda:
 
 - **`Generera prompt`** för att skapa ett nytt utkast från en enkel beskrivning
-- **`Förbättra prompt`** för att förfina en befintlig prompt
-- **`Översätt prompt`** för att översätta promptfälten
+- **`Förbättra prompt`** för att förfinare en befintlig prompt
+- **`Översätt prompt`** för att översätta promptens fält
+
+<br/>
 
 > ⚠️ **VARNING**<br/>
-> Klicka på **`Spara`** innan du klickar på **`Tillbaka till Kör`**. Om du går tillbaka utan att spara går dina ändringar förlorade.
+> Klicka på **`Spara`** innan du klickar på **`Tillbaka till körning`**. Om du återvänder utan att spara kommer dina ändringar att gå förlorade.
 
-<br />
+<br/>
 
 <a id="test-a-prompt-before-using-it"></a>
 ### Testa en prompt innan du använder den
 
-Testpanelen till höger låter dig prova din prompt med exempeltext innan du använder den i dagligt arbete.
+Testfältet till höger låter dig prova din prompt med exempeltext innan du använder den i dagliga arbetsuppgifter.
 
 Det är användbart när:
 
-- du bygger en ny prompt
+- du skapar en ny prompt
 - du jämför två versioner av en prompt
 - du vill kontrollera ton, längd eller utdataformat
 
-<br />
+<br/>
 
 <a id="manage-saved-prompts"></a>
 ### Hantera sparade prompts
 
-För att hantera sparade prompts på ett ställe, öppna [**Inställningar** > **Transformera Prompts**](#transform-prompts).
+För att hantera sparade prompts på ett ställe, öppna [**Inställningar** > **Transformera-prompts**](#transform-prompts).
 
 Där kan du:
 
@@ -430,105 +464,179 @@ Där kan du:
 - exportera prompts som **JSON**, **CSV** eller **XLSX**
 - importera prompts från en fil
 
-<br /><br />
+<br/><br/>
 
-## Dashboard
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
-Använd **Dashboard** för att se hur mycket du använder appen och vad det kostar.
+<a id="dashboard"></a>
 
-![Dashboard-sammanfattning](../images/screenshots/sv/dashboard-summary.png)
+## Instrumentpanel
 
-<br />
+Använd **Instrumentpanel** för att se hur mycket du använder appen och vad det kostar (för betalmodeller).
+
+![Sammanfattning av instrumentpanel](../images/screenshots/sv/dashboard-summary.png)
+
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> Om du endast använder kostnadsfria modeller kommer kostnadsrelaterade diagram att vara tomma.
+
+<br/>
 
 <a id="filter-the-data"></a>
 ### Filtrera data
 
-Använd filterknapparna högst upp för att ändra tidsramen.
+Använd filterknapparna längst upp för att ändra tidsperioden.
 
-![Dashboard-filter](../images/screenshots/sv/dashboard-filter.png)
+![Filter för instrumentpanel](../images/screenshots/sv/dashboard-filter.png)
 
-> ℹ️ **NOTERING**<br/>
-> I webbversionen kan administratörer också se ett **Användare**-filter. Det gör att de kan växla mellan **Alla användare** och en enskild användare.
+<br/>
 
-<br />
+> ℹ️ **OBS**<br/>
+> **Användar**-filtret är endast synligt för administratörer i webbversionen. Vanliga användare kommer inte att se detta filter, och det är inte tillgängligt i skrivbordsappen.
+
+<br/>
 
 <a id="dashboard-tabs"></a>
-### Dashboard-flikar
+### Flikar i instrumentpanelen
 
-- **Sammanfattning** ger dig en översikt över användning och kostnad.
-- **Efter användning** bryter ner aktiviteten efter översättningsspråk, omskrivningsläge och transform-prompt.
-- **Efter modell** visar vilka modeller du använde och hur mycket de kostade.
-- **Efter dag** visar dagliga totalsummor.
-- **Alla sökningar** visar den fullständiga sökhistoriken och låter dig exportera den.
+- **Sammanfattning** ger en översikt av användning och kostnad.
+- **Per användning** delar upp aktiviteten per översättningsspråk, omskrivningsläge och transformering av prompt.
+- **Per modell** visar vilka modeller du använt och hur mycket de kostat.
+- **Per dag** visar totalsiffror per dag.
+- **Alla anrop** visar den fullständiga anropsjournalen och låter dig exportera den.
 
-<br />
+<br/>
 
 <a id="export-data"></a>
 ### Exportera data
 
-Dashboard-tabeller kan exportera data i:
+Instrumentpanelens tabeller kan exportera data i:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Det är användbart om du vill granska aktivitet utanför appen eller dela en rapport.
+Detta är användbart om du vill granska aktiviteter utanför appen eller dela en rapport.
 
-<br />
+<br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Ta bort lagrade poster för en modell
+### Ta bort sparade poster för en modell
 
-I **Efter modell** eller **Alla sökningar**, kan du ta bort lagrade poster för en modell.
+På fliken **Per modell** eller **Alla anrop** kan du ta bort sparade poster för en modell genom att klicka på papperskorgsikonen.
 
 > ⚠️ **VARNING**<br/>
-> Att ta bort lagrade poster kan inte ångras. Använd endast detta om du är säker på att du inte längre behöver den historiken.
+> Borttagning av sparade poster kan inte ångras. Använd detta endast om du är säker på att du inte längre behöver den historiken.
 
-För att ta bort all data eller ta bort poster baserat på deras ålder, gå till [**Inställningar** > **Kostnadsspårning**](#cost-tracking). Där hittar du alternativ för att ta bort all lagrad data eller endast data äldre än ett visst datum.
+Om du vill ta bort alla data eller ta bort poster baserat på ålder går du till [**Inställningar** > **Kostnadsspårning**](#cost-tracking). Där hittar du alternativ för att ta bort all sparad data eller endast data som är äldre än ett visst datum.
 
-<br /><br />
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
+
+<a id="history"></a>
+## Historik
+
+Klicka på **Historik** för att se din aktivitetshistorik i **Transrewrt**, inklusive indata och utdata för varje åtgärd.
+
+![Historiksida](../images/screenshots/sv/history.png)
+
+<br/>
+
+<a id="filter-the-history"></a>
+### Filtrera historiken
+
+**Historik** använder samma filter som sidan **Instrumentpanel**. Använd dem för att välja tidsperiod.
+
+![Filter för instrumentpanel](../images/screenshots/sv/dashboard-filter.png)
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> **Användar**-filtret är endast synligt för administratörer i webbversionen. Vanliga användare kommer inte att se detta filter, och det är inte tillgängligt i skrivbordsappen.
+
+<br/>
+
+<a id="export-history-data"></a>
+### Exportera historikdata
+
+Historiksidan kan exportera filtrerade data i:
+
+- **JSON**
+- **CSV**
+- **XLSX**
+
+Detta är användbart om du vill granska aktiviteter utanför appen eller dela en rapport.
+
+<br/><br/>
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="settings"></a>
 ## Inställningar
 
-Öppna **Inställningar** från sidofältet för att anpassa hur appen beter sig.
+Öppna **Inställningar** från sidofältet för att anpassa hur appen fungerar.
 
-De tillgängliga flikarna kan variera:
+De tillgängliga flikarna beror på plattform och din roll:
 
-- **API-konfiguration** är endast tillgänglig i desktop-appen.
-- **Användare** är endast tillgänglig i webbappar, och endast för administratörer.
+  | Flik                | Skrivbord | Webb (admin) | Webb (vanlig användare) |
+  |---------------------|:---------:|:-----------:|:-----------------------:|
+  | Allmänna inställningar |   ja    |     ja      |          ja             |
+  | Modeller            |   ja    |     ja      |          ja             |
+  | Språk               |   ja    |     ja      |          ja             |
+  | Kostnadsspårning    |   ja    |     ja      |           –             |
+  | Transformera prompts|   ja    |     ja      |          ja             |
+  | Användare           |    –    |     ja      |           –             |
+  | API-konfiguration   |   ja    |     ja      |           –             |
+  | Om                  |   ja    |     ja      |          ja             |
 
-<br />
+<br/>
+
+> ℹ️ **OBS**<br/>
+> I webbversionen har varje användare sin egen konfiguration. Inställningar som valda modeller, språk, allmänna alternativ och transformsprång sparas per användare. Ändringar du gör påverkar inte andra användare.
+
+<br/>
+
+
+[--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
 
 ### Allmänna inställningar
 
-Använd **Allmänna inställningar** för att kontrollera skrivbeteende och utseende.
+Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om körningsdetaljer sparas för **Historik** och utseendet.
 
 **Beteende**
 
-- **Beteende för ENTER** väljer om Enter kör uppgiften eller infogar en ny rad.
-- **Översätt automatiskt vid inklistring** startar översättning så fort du klistrar in text.
-- **Kopiera resultat automatiskt till urklipp** kopierar lyckade resultat automatiskt.
-- **Realtidsöversättning (medan du skriver)** översätter medan du skriver.
-- **Tidsgräns (ms)** anger väntetiden för realtidsöversättning.
+- **Beteende för RETUR** avgör om `RETUR` kör uppgiften eller infogar en ny rad.
+- **Automatisk översättning vid klistra in** startar översättning så fort du klistrar in text.
+- **Automatiskt kopiera resultat till urklipp** kopierar framgångsrika resultat automatiskt.
+- **Översättning i realtid (medan du skriver)** översätter medan du skriver.
+- **Tidsgräns (ms)** anger väntetiden för översättning i realtid.
+
+**Historik**
+
+- **Spara körningshistorik** avgör om varje översättning, omskrivning och omvandling lagrar **indata och utdata** för sidofältets [**Historik**](#history)-vy. Om du stänger av det här måste du bekräfta; om du gör det tas den lagrade historiktexten bort från databasen.
+- **Ta bort historikdata** låter dig ta bort lagrad text baserat på ålder (t.ex. äldre än några månader eller **alla data (rensning)**) med **Ta bort data**. Det påverkar endast sparad körningstext i **Historik**-vyn; det tar **inte** bort kostnads- eller användningsdata. För att ta bort eller trimma **kostnadsdata** använder du [**Inställningar** > **Kostnadsövervakning**](#cost-tracking).
 
 **Utseende**
 
-- **Antal decimaler för kostnad** ändrar hur kostnadsdecimals visas.
-- **Teckensnittsfamilj** ändrar skrifttecknet i textpanelerna.
+- **Antal decimaler för kostnad** ändrar hur antalet decimaler i kostnaden visas.
+- **Endast webb:** **visa marginal runt appen** lägger till extra utrymme runt gränssnittet.
+- **Typsnitt** ändrar skrivtypen i textfälten.
 - **Storlek** ändrar teckenstorleken.
-- **Endast webb:** **visa en marginal runt appen** lägger till extra utrymme kring gränssnittet.
 
-<br />
+
+<br/>
 
 <a id="models"></a>
 ### Modeller
 
-Använd **Inställningar** > **Modeller** för att välja vilka modeller som ska visas i verktygsfältet.
+Använd **Inställningar** > **Modeller** för att välja vilka modeller som visas i verktygsfältet.
 
-![Inställningar-fliken Modeller](../images/screenshots/sv-SE/settings-models.png)
+![Inställningar fliken Modeller](../images/screenshots/sv/settings-models.png)
 
 Sidan har två listor:
 
@@ -537,130 +645,174 @@ Sidan har två listor:
 
 Användbara kontroller inkluderar:
 
-- **Sök modeller...** för att hitta en modell efter namn
-- **Endast gratis** för att visa endast gratis modeller
-- **Uppdatera** för att läsa om listan
-- **Expandera alla** och **Kollapsa alla** när du sorterar efter leverantör
+- **Sök efter modeller...** för att hitta en modell efter namn
+- **Leverantörs-flikar** för att begränsa listan till en motor (OpenRouter, OpenAI, Ollama, …)
+- **Endast gratis** för att endast visa gratis modeller
+- **Uppdatera** för att ladda om listan
+- **Expandera alla** och **Komprimera alla** när du sorterar efter leverantör
 
-För att lägga till en modell, klicka på **Lägg till**.
+Modell-ID:n inkluderar leverantörens prefix (t.ex. `openrouter/…` jämfört med `openai/…`). Badges som **OpenAI (OpenRouter)** jämfört med **OpenAI (direkt)** visar hur trafiken dirigeras.
 
-För att ta bort en modell, klicka på **X** bredvid den i **Valda modeller**.
+Åtgärder:
 
-För att rensa listan, klicka på **Avmarkera alla**. Den nödvändiga gratismodellen kommer att förbli i listan.
+ - För att lägga till en modell klickar du på **Lägg till** eller var som helst i posten.
 
-> ℹ️ **NOTERA**<br/>
-> Om du inte vill lägga till krediter till OpenRouter direkt, börja med att aktivera **Endast gratis** och välja de gratis modellerna.
+ - För att ta bort en modell klicka på **X** bredvid den i **Valda modeller** eller **Vald** i posten i Tillgängliga modeller.
 
-<br />
+ - För att rensa listan, klicka på **Avmarkera alla**. Den obligatoriska kostnadsfria modellen kommer att finnas kvar i listan.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> Om du inte vill lägga till krediter till OpenRouter direkt, börja med att aktivera **Endast gratis** och välja de kostnadsfria modellerna (inget kreditkort krävs). Du kan också använda Ollama för att köra modeller lokalt utan API-nyckel.
+
+<br/>
 
 <a id="languages"></a>
 ### Språk
 
-Använd **Inställningar** > **Språk** för att organisera språklistorna som används i appen.
+Använd **Inställningar** > **Språk** för att organisera språklistorna används i appen.
 
-- **Toppspråk** är fästa nära toppen av språklistorna i **Översätt** och **Transformer**.
+- **Topp-språk** fästs högst upp i språklistorna i **Översätt** och **Omvandla**.
 - **Anpassat språk** låter dig lägga till ett språk som inte finns i den inbyggda listan.
 
-Om du lägger till ett anpassat språk, visas det i språkväljarna tillsammans med de inbyggda alternativen.
+Om du lägger till ett anpassat språk visas det i språkväljarna tillsammans med de inbyggda alternativen.
 
-<br />
+<br/>
 
 <a id="cost-tracking"></a>
-### Kostnadsspårning
+### Kostnadsövervakning
 
-Använd **Inställningar** > **Kostnadsspårning** för att hantera kostnadinformation.
+Använd **Inställningar** > **Kostnadsövervakning** för att hantera kostnadsinformation.
 
-- **Total kostnad** visar den löpande summan.
-- **Kopiera värde** kopierar totalen till urklipp.
-- **Återställ kostnad** nollställer den lagda summan.
-- **Synkronisera med API-nyckelanvändning** sätter totalen att motsvara användningen rapporterad av OpenRouter.
-- **API-nyckelanvändning** visar användningsdetaljer, om tillgängligt.
-- **Ta bort kostnadsdata** tar bort all data, eller endast poster äldre än ett valt datum.
+- **Total kostnad** visar löpande totalsumma.
+- **Kopiera värde** kopierar totalsumman till urklipp.
+- **Återställ kostnad** nollställer den lagrade totalsumman.
+- **Synkronisera med API-nyckelns användning** ställer in totalsumman så att den matchar användningen rapporterad av ditt OpenRouter-konto (endast OpenRouter).
+- **API-nyckelns användning** visar OpenRouter-användningsdetaljer, om tillgängligt.
+- **Ta bort kostnadsdata** tar bort alla data eller endast poster äldre än ett valt datum.
+
+
+ **Kostnadsövervakning:** När du använder OpenRouter-modeller visar appen din faktiska användning och utgifter baserat på data från OpenRouter. För alla andra leverantörer uppskattar appen kostnader med priser som är publicerade av OpenRouter. Om ett pris inte är tillgängligt kan uppskattningen vara noll.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> **Alla kostnadsbelopp är endast uppskattningar för din information, inte officiella fakturor.**
+
+
+<br/>
 
 > ⚠️ **VARNING**<br/>
-> Dataåterställning kan inte ångras. Innan du tar bort data, se till att säkerhetskopiera din data eller exportera den via [**Dashboard** > **Alla samtal**](#dashboard-flikar), annars försvinner den permanent.
+> Borttagning av data kan inte ångras. Innan du tar bort data bör du säkerhetskopiera eller exportera dem via [**Instrumentpanel** > **Alla anrop**](#dashboard-tabs), annars kommer de att förloras för alltid. <br/>
+> All historik relaterad till varje API-anropspost kommer också att tas bort.
 
-<br />
+
+<br/>
 
 <a id="transform-prompts"></a>
-### Transformeringsprompter
 
-Använd **Inställningar** > **Transformeringsprompter** för att hantera prompts i bulk.
+### Omvandla prompter
+
+Använd **Inställningar** > **Omvandla prompter** för att hantera prompter i större skala.
 
 Du kan:
 
-- granska dina sparade prompts
-- ta bort prompts
-- importera prompts från en fil
-- exportera prompts för säkerhetskopiering eller delning
+- granska dina sparade prompter
+- ta bort prompter
+- importera prompter från en fil
+- exportera prompter för säkerhetskopiering eller delning
 
-<br />
+<br/>
 
 <a id="users"></a>
 ### Användare
 
-**Endast webb - endast administratör**
+**Webb: endast administratör**
 
-Använd **Användare** för att hantera användarkonton i webbversionen. Du kan lägga till användare, uppdatera deras detaljer, återställa lösenord och ta bort konton.
+Använd **Användare** för att hantera användarkonton i webbversionen. Du kan lägga till användare, uppdatera deras uppgifter, återställa lösenord och ta bort konton.
 
-<br />
+<br/>
 
 <a id="api-config"></a>
 ### API-konfiguration
 
-**Endast skrivbord**
+De leverantörer som stöds är: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och **Ollama** (lokala modeller via en bas-URL). Du behöver endast konfigurera de leverantörer du använder.
 
-Använd **API-konfiguration** för att koppla skrivbordsappen till OpenRouter eller till en Transrewrt-proxy.
+**Webbapplikation: endast administratör**
 
-- **OpenRouter API-nyckel** är där du klistrar in din nyckel.
-- **API-URL** är tjänstaddressen. Låt den vara standard om du inte har fått en annan.
-- **Använd Transrewrt-proxy** dirigerar förfrågningar via en proxytjänst istället för direkt till OpenRouter.
-- **Nyckelstart** visas när proxy-alternativet är aktiverat.
-- **Testa API-konfiguration** kontrollerar om den aktuella konfigurationen fungerar.
+API-nycklar konfigureras via system- eller Docker-miljövariabler – de matas inte in i webbgränssnittet. På den här sidan visas vilka leverantörer som har en nyckel konfigurerad, och du kan testa varje leverantör genom att klicka på knappen **`Test`**.
 
-För detaljerade steg för att skaffa din API-nyckel, se [Hur man får en API-nyckel](#hur-man-får-en-api-nyckel-skrivbordsapp) ovan.
+<br/>
 
-> ℹ️ **NOTERA**<br/>
-> Om du inte är säker på vad **API-URL**, **Använd Transrewrt-proxy**, eller **Nyckelstart** betyder, låt dem oförändrade och använd standard OpenRouter-konfigurationen. Mer information om proxyn finns i [Transrewrt Proxy-lagringsplatsen](https://github.com/wsj-br/transrewrt-proxy).
+> ℹ️ **OBS**<br/>
+> För att ändra en API-nyckel måste du uppdatera miljövariabeln i din system- eller Docker-konfiguration och sedan starta om servern eller containern.
 
-<br />
+<br/>
+
+**Skrivbordsapplikation**
+
+Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör du använder. För Ollama anger du **bas-URL** istället för en API-nyckel.
+
+
+<br/>
+
+> 💡 **Tips** <br/>
+> Om du inte vill använda en API-nyckel eller betala för användning kan du [ladda ner Ollama](https://ollama.com) och köra modeller lokalt på din dator helt kostnadsfritt. Alternativt kan du skapa ett kostnadsfritt OpenRouter-konto (inget kreditkort krävs) för att använda deras fria modeller.
+
+- Lägg endast till de leverantörer du behöver. I **Inställningar** > **Modeller** börjar varje modell-id med leverantörens namn (t.ex. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+För att lägga till en API-nyckel, skriv in värdet i textfältet och klicka på **`Spara`**. För att ersätta en befintlig nyckel, klicka på **`Redigera`**. För att kontrollera om en nyckel fungerar, klicka på **`Test`**.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> Du kan inte se det aktuella värdet för en API-nyckel. Du kan endast ersätta den genom att använda knappen **`Redigera`**.
+> API-nycklar lagras krypterade i konfigurationsfilen.
+
+<br/>
+
+För detaljerade anvisningar om hur du får tag på en OpenRouter-nyckel, se [Så här skaffar du en API-nyckel](#how-to-get-an-api-key-desktop-app) ovan.
+
+
+
+<br/>
 
 <a id="about"></a>
-
 ### Om
 
 Fliken **Om** visar:
 
-- programnamnet
-- versionsnumret
-- byggdatumet
-- en länk till projektrepositoriet
+- applikationens namn
+- versionsnummer
+- byggdatum
+- en länk till projektdatabasen
 
-<br /><br />
+<br/><br/>
 
 <a id="common-issues"></a>
 ## Vanliga problem
 
-Om något inte fungerar som förväntat, kontrollera först dessa punkter.
+Om något inte fungerar som det ska, kontrollera först följande punkter.
 
-<br />
+<br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Programmet översätter, omskriver eller transformerar inte text
+### Appen översätter, skriver om eller omvandlar inte text
 
 Kontrollera att:
 
 - du har valt en modell i verktygsfältet
-- minst en modell finns listad under [**Inställningar** > **Modeller**](#models)
-- ditt API-uppsättning fungerar
+- minst en modell finns i [**Inställningar** > **Modeller**](#models)
+- din API-konfiguration fungerar
 
 Om du använder skrivbordsappen:
 
 1. Öppna [**Inställningar** > **API-konfiguration**](#api-config).
-2. Kontrollera att ditt API-nyckel är sparad.
-3. Klicka på **Testa API-konfiguration**.
+2. Kontrollera att minst en API-nyckel har sparats.
+3. Klicka på **Test** bredvid leverantören för att bekräfta att nyckeln fungerar.
 
-<br />
+<br/>
 
 <a id="the-model-list-is-empty"></a>
 ### Modellistan är tom
@@ -670,68 +822,121 @@ Om du använder skrivbordsappen:
 Om det behövs:
 
 - sök efter en modell
-- slå på **Endast gratis**
-- lägg till en eller flera modeller till **Valda modeller**
+- aktivera **Endast gratis**
+- lägg till en eller flera modeller i **Valda modeller**
 
-<br />
+<br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Resultatet är för långsamt eller för dyrt
 
-Prova en eller flera av dessa:
+Prova ett eller flera av följande alternativ:
 
 - välj en annan modell
-- använd en kortare inmatning
-- slå av **Realtidsöversättning (medan du skriver)** under [**Inställningar** > **Allmänna inställningar**](#general-settings)
-- använd gratismodeller för enkla uppgifter (se [Modeller](#models))
+- använd kortare indata
+- stäng av **Översättning i realtid (medan du skriver)** i [**Inställningar** > **Allmänna inställningar**](#general-settings)
+- använd fria modeller för enklare uppgifter (se [Modeller](#models))
 
-<br />
+<br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Gränssnittet är på fel språk
 
-Klicka på glob-ikonen i [verktygsfältet](#toolbar) och välj ditt föredragna **Gränssnittsspråk**.
+Klicka på globikonen i [verktygsfältet](#toolbar) och välj önskat **Gränssnittsspråk**.
 
-<br />
+<br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Texten är för liten eller svår att läsa
 
 Öppna [**Inställningar** > **Allmänna inställningar**](#general-settings) och ändra:
 
-- **Typsnittsfamilj**
+- **Teckensnitt**
 - **Storlek**
 
-<br />
+<br/>
+
+<a id="dashboard-charts-are-empty"></a>
+### Diagrammen på instrumentpanelen är tomma
+
+Detta är normalt om:
+
+- du använder endast **gratis modeller** (kostnadsdiagram kommer att vara tomma)
+- det valda **tidsfiltret** inte täcker den period då anrop gjordes – prova med **Alla** för att kontrollera
+
+Om diagrammen fortfarande är tomma efter att du valt **Alla**, bekräfta att anrop visas i [**Historik**](#history) eller i fliken **Alla anrop**.
+
+<br/>
+
+<a id="cost-shows-not-available-or-seems-wrong"></a>
+
+### Kostnaden visar "inte tillgänglig" eller verkar felaktig
+
+När du använder modeller via **OpenRouter** visar appen din faktiska förbrukning enligt uppgifter från OpenRouter.
+
+För **andra leverantörer** (OpenAI direkt, Anthropic direkt osv.) är kostnaden uppskattad utifrån prissättning från OpenRouter. Om inget matchande pris hittas för en modell kommer kostnaden att visas som **inte tillgänglig** och läggs inte till i din löpande total.
+
+<br/>
+
+<a id="total-cost-does-not-match-my-provider-bill"></a>
+### Totalkostnaden matchar inte min leverantörsfaktura
+
+Alla kostnadsuppgifter i appen är **uppskattningar endast för vägledning**, inte officiella fakturor.
+
+För att anpassa totalen närmare din faktiska OpenRouter-förbrukning, öppna [**Inställningar** > **Kostnadsspårning**](#cost-tracking) och klicka på **Synkronisera med API-nyckelns användning**.
+
+<br/>
+
+<a id="the-history-page-is-missing-from-the-sidebar"></a>
+### Historiksidan saknas i sidofältet
+
+Alternativet **Behåll körningshistorik** kan vara inaktiverat. Öppna [**Inställningar** > **Allmänna inställningar**](#general-settings) och aktivera det. Observera att aktivering inte återställer tidigare borttagna historikdata.
+
+<br/>
+
+<a id="web-app-session-expired"></a>
+### Webbappen: omdirigerad till inloggningssidan oväntat
+
+Din session kan ha löpt ut. Logga in igen. Om det händer ofta, kontrollera serverkonfigurationen för inställningar av sessionens livslängd.
+
+<br/>
+
+<a id="dashboard-shows-no-data-for-other-users"></a>
+### Översikten visar ingen data för andra användare (webb)
+
+Endast **administratörer** kan se data från alla användare via filtret **Användare**. Regelbundna användare ser enbart sin egen aktivitet enligt design.
+
+<br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Jag ändrade en prompt och förlorade redigeringarna
+### Jag ändrade en prompt och förlorade ändringarna
 
-När du redigerar en prompt, klicka alltid på **Spara** innan du klickar på **Tillbaka till Köring**.
+När du redigerar en prompt, kom ihåg att alltid klicka på **Spara** innan du klickar på **Tillbaka till körning**.
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-tips"></a>
 ## Snabbtips
 
-- Börja med [**Översätt**](#translate) för att säkerställa att din konfiguration fungerar innan du fortsätter till [**Omskriv**](#rewrite) eller [**Transformera**](#transform).
-- Använd [**Omskriv**](#rewrite) för dagliga förbättringar av uttryck.
-- Använd [**Transformera**](#transform) när du behöver ett repeatable workflow för en specifik uppgift.
-- Använd [**Dashboard**](#dashboard) om du vill hålla koll på användning och kostnad.
-- Exportera prompts regelbundet om du bygger en prompt-bibliotek som du vill hålla säkert (se [Transformera Prompts](#transform-prompts)).
+- Börja med [**Översätt**](#translate) för att säkerställa att din installation fungerar innan du går vidare till [**Skriv om**](#rewrite) eller [**Transformera**](#transform).
+- Använd [**Skriv om**](#rewrite) för dagliga formuleringsoptimeringar.
+- Använd [**Transformera**](#transform) när du behöver ett återanvänt arbetsflöde för en specifik uppgift.
+- Använd [**Översikt**](#dashboard) om du vill hålla koll på användning och kostnader.
+- Använd [**Historik**](#history) för att granska tidigare åtgärder och deras fullständiga in- och utdata.
+- Exportera regelbundet dina prompts om du bygger en promptbibliotek som du vill spara säkert (se [Transformera prompts](#transform-prompts)) eller om du vill dela den med andra.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
 ## Ansvarsfriskrivning
 
-Produktnamn och ikoner tillhör sina respektive ägare och används endast för identifieringsändamål. Denna programvara är inte tillknytet eller godkänd av någon av de nämnda varumärkena.
+Produktnamn och ikoner tillhör sina respektive ägare och används endast för identifieringssyfte. Denna programvara är inte ansluten till eller godkänd av någon av de nämnda varumärkena.
 
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## Licens
 
-Copyright © 2026 Waldemar Scudeller Jr.
+Upphovsrätt © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](LICENSE)

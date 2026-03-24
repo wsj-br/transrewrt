@@ -1,63 +1,77 @@
 ---
-translated_at: "2026-03-15T22:18:41.988Z"
-source_hash: "b0c865b5c3a974ee09fb533d8ca52413ddab37aacda108239395719b8c2588b2"
-source_mtime: 1773611628537.9895
-model: "stepfun/step-3.5-flash:free"
+translated_at: "2026-03-24T02:06:35.086Z"
+source_hash: "718acd12f14755cd75ebf7d09b86d9a1df37ebe1898710080fa8e80c1221d58b"
+source_mtime: 1774311390366.3484
+model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="لوگو Transrewrt" width="120" />
+  <img src="../images/transrewrt_logo.svg" alt="لوگوی Transrewrt" width="120" />
 </p>
 
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.11-blue" alt="Version"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="نسخه"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="مجوز: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="پلتفرم">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی با سبک‌های مختلف، و تبدیل با دستورالعمل‌های سفارشی - همه از طریق [OpenRouter](https://openrouter.ai). به صورت برنامه دسکتاپ (الکترون) یا برنامه وب خود-میزبانی شده (داکر) اجرا می‌شود.
+ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی به سبک‌های مختلف و تبدیل متن با دستورات سفارشی — با استفاده از چندین ارائه‌دهنده هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI و Ollama محلی). قابل اجرا به صورت برنامه رومیزی (Electron) یا برنامه تحت وب مستقرشده توسط کاربر (Docker).
 
-- **ترجمه** - بین ده‌ها زبان، با تشخیص خودکار زبان مبدا
-- **بازنویسی** - رفع اشتباهات گرامری، بهبود وضوح، رسمی/غیررسمی، کوتاه‌کردن، گسترش‌دادن، فنی
-- **تبدیل** - دستورالعمل‌های سفارشی هوش مصنوعی؛ ایجاد و مدیریت دستورالعمل‌ها، زبان هدف اختیاری به ازای هر دستورالعمل
-- **مدل‌ها و هزینه** - انتخاب هر مدل OpenRouter؛ صفحه‌ی کنترل هزینه با لاگ SQLite، خلاصه‌ها به تفکیک مدل/عملیات/روز
-- **رابط کاربری** - بین‌الملالی‌سازی (pt-BR, de, fr, es, RTL)، تم‌ها، فونت‌ها، میان‌برهای کیبورد؛ حالت وب امن (کلید API فقط روی سرور)
-- **دسکتاپ** - برنامه الکترون برای ویندوز و لینوکس
-- **خود-میزبانی** - تصویر داکر برای amd64 و arm64 (آماده Raspberry Pi)
+- **ترجمه** — بین ده‌ها زبان، با تشخیص خودکار زبان مبدأ
+- **بازنویسی** — اصلاح دستور زبان، بهبود وضوح، فرمول‌بندی رسمی/غیررسمی، خلاصه‌کردن، گسترش دادن، تبدیل به متون تخصصی
+- **تبدیل** — دستورات سفارشی هوش مصنوعی؛ ایجاد و مدیریت دستورات، امکان تعیین زبان مقصد اختیاری برای هر دستور
+- **تاریخچه** — تاریخچه کامل اجراها همراه با متن ورودی و خروجی، امکان فیلتر کردن و صدور داده‌ها
+- **مدل‌ها و هزینه‌ها** — انتخاب مدل از هر ارائه‌دهنده پیکربندی‌شده؛ داشبورد هزینه با ثبت در SQLite، خلاصه‌های مبتنی بر مدل/عملیات/روز
+- **رابط کاربری** — رابط چندزبانه (بیش از 30 زبان، پشتیبانی از زبان‌های راست‌به‌چپ)، قلم‌ها، ...
+- **حالت وب** — پشتیبانی از چندکاربره با نقش‌های مدیریتی؛ کلیدهای API در سمت سرور باقی می‌مانند و هرگز در مرورگر نمایش داده نمی‌شوند
+- **نسخه رومیزی** — برنامه Electron برای ویندوز و لینوکس
+- **مستقرشده توسط کاربر** — تصویر Docker برای amd64 و arm64 (سازگار با Raspberry Pi)
 
-پس از نصب، **[راهنمای کاربر](../USER-GUIDE.md)** را برای مروری کامل بر تمامی ویژگی‌ها مشاهده کنید.
+پس از نصب، برای دیدن راهنمای کامل تمام ویژگی‌ها به **[راهنمای کاربر](USER-GUIDE.fa.md)** مراجعه کنید.
 
-<small>**خواندن به زبان‌های دیگر:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**مطالعه به زبان‌های دیگر:** [English (UK)](README.fa.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+
+<br/>
+
+**توجه درباره ترجمه‌های رابط کاربری و مستندات:** تمام زبان‌های رابط کاربری به جز انگلیسی (UK) با استفاده از مدل‌های هوش مصنوعی ترجمه شده‌اند؛ ممکن است بیان‌ها دقیق نباشند یا دارای اشتباهاتی باشند.
+
+
 
 <a id="screenshots"></a>
-## تصاویر
+## تصاویر از برنامه
 
-**انتخاب‌گر زبان**
+**انتخابگر زبان**
 
-![انتخاب‌گر زبان](../images/screenshots/fa/language-selector.png)
+![انتخابگر زبان](../images/screenshots/fa/language-selector.png)
 
 **ترجمه**
 
 ![ترجمه](../images/screenshots/fa/translate.png)
 
-**تبدیل - ویرایش‌گر دستورالعمل**
+**تبدیل — ویرایشگر دستورات**
 
-![تبدیل - ویرایش‌گر دستورالعمل](../images/screenshots/fa/transform-prompt-edit.png)
+![تبدیل — ویرایشگر دستورات](../images/screenshots/fa/transform-prompt-edit.png)
 
 **داشبورد**
 
 ![داشبورد هزینه](../images/screenshots/fa/dashboard-summary.png)
 
-**تنظیمات - انتخاب مدل**
+**تاریخچه**
 
-![تنظیمات - انتخاب مدل](../images/screenshots/fa/settings-models.png)
+![تاریخچه](../images/screenshots/fa/history.png)
 
-<br /><br />
+**تنظیمات — انتخاب مدل**
+
+![تنظیمات — انتخاب مدل](../images/screenshots/fa/settings-models.png)
+
+<br/><br/>
 
 <a id="table-of-contents"></a>
+
 ## فهرست مطالب
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -67,251 +81,249 @@ model: "stepfun/step-3.5-flash:free"
 - [نصب](#installation)
   - [ویندوز (الکترون)](#windows-electron)
   - [لینوکس (الکترون)](#linux-electron)
-  - [داکر](#docker)
+  - [دوکر](#docker)
 - [دریافت کلید API OpenRouter](#getting-an-openrouter-api-key)
 - [پیکربندی و محیط](#configuration-and-environment)
 - [توسعه و معماری](#development-and-architecture)
-- [انتشارات و تگ‌ها](#releases-and-tags)
-- [ مشارکت](#contributing)
+- [انتشارات و برچسب‌ها](#releases-and-tags)
+- [همکاری در پروژه](#contributing)
 - [سلب مسئولیت](#disclaimer)
 - [مجوز](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br /><br />
+<br/><br/>
 
 <a id="quick-start"></a>
-
 ## شروع سریع
 
-**Docker (توصیه شده برای میزبانی شخصی)**
+**دوکر (توصیه‌شده برای میزبانی خودکار)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`sk-or-your-key` را با [کلید API OpenRouter](https://openrouter.ai/keys) خود جایگزین کنید. [http://localhost:5000](http://localhost:5000) را باز کرده و رمز عبور پیش‌فرض مدیر را قبل از در دسترس قرار دادن سرویس تغییر دهید.
+عبارت `sk-or-your-key` را با [کلید API OpenRouter](https://openrouter.ai/keys) خود جایگزین کنید (یا کلید سایر ارائه‌دهندگان را تنظیم کنید؛ بخش [پیکربندی](#configuration-and-environment) را ببینید). آدرس [http://localhost:5000](http://localhost:5000) را باز کنید و قبل از نمایش عمومی سرویس، رمز عبور پیش‌فرض مدیر را تغییر دهید.
 
-<br />
+<br/>
 
 > ℹ️ **توجه**<br/>
-> در Docker کلید API OpenRouter تنها از طریق متغیر محیطی `API_KEY` تنظیم می‌شود (نه در رابط وب). در نسخه دسکتاپ (Electron) آن را در **تنظیمات → API** قرار می‌دهید.
+> در دوکر، اعتبارهای LLM با متغیرهای محیطی مانند `OPENROUTER_KEY`، `OPENAI_KEY` و غیره تنظیم می‌شوند (نه در رابط کاربری تحت وب). در نسخه دسکتاپ (الکترون)، کلیدها را در بخش **تنظیمات → API** تنظیم می‌کنید.
 
-<br />
+<br/>
 
 **ویندوز**
 
-آخرین `Transrewrt Setup x.y.z.exe` را از [Releases](https://github.com/wsj-br/transrewrt/releases) دانلود کنید، نصب‌کننده را اجرا کرده و سپس از منوی شروع یا میان‌بر دسکتاپ راه‌اندازی کنید. کلید API OpenRouter خود را در **تنظیمات → API** وارد کنید.
+از بخش [انتشارات](https://github.com/wsj-br/transrewrt/releases) آخرین فایل `Transrewrt Setup x.y.z.exe` را دانلود کنید، نصب‌کننده را اجرا کنید و سپس برنامه را از منوی شروع یا میان‌بر دسکتاپ اجرا کنید. کلید API خود را در بخش **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید، که OpenRouter برای مدل‌های رایگان متداول است.
 
-<br />
+<br/>
 
 **لینوکس**
 
-فایل `.AppImage` را از [Releases](https://github.com/wsj-br/transrewrt/releases) دانلود کرده و سپس:
+فایل `.AppImage` را از بخش [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید، سپس:
 
 ```bash
 chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
 ```
 
-کلید API OpenRouter خود را در **تنظیمات → API** وارد کنید. در دبیان/اوبونتو ممکن است ابتدا وابستگی‌های اضافی را نصب کنید:
+کلیدهای API خود را در بخش **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید، که OpenRouter برای مدل‌های رایگان متداول است.
+
+در توزیع‌های دبیان/اوبونتو ممکن است ابتدا نیاز به نصب وابستگی‌های اضافی داشته باشید:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-برای جزئیات بیشتر به [نصب → لینوکس](#linux-electron) مراجعه کنید.
+جزئیات بیشتر در بخش [نصب → لینوکس](#linux-electron) موجود است.
 
-<br />
+<br/>
 
 > ℹ️ **توجه**<br/>
-> در حال حاضر macOS پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و Docker موجود است.
+> سیستم عامل macOS در حال حاضر پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و دوکر در دسترس است.
 
-<br />
+<br/>
 
-پس از اجرای برنامه، به **[راهنمای کاربر](../USER-GUIDE.md)** مراجعه کنید تا نحوه ترجمه، بازنویسی و تبدیل متن، مدیریت دستورات و پیکربندی مدل‌ها را بیاموزید.
+پس از راه‌اندازی برنامه، [راهنمای کاربر](USER-GUIDE.fa.md) را بخوانید تا بیاموزید چگونه متن را ترجمه، بازنویسی و تغییر دهید، پرامپت‌ها را مدیریت کنید و مدل‌ها را پیکربندی کنید.
 
-<br /><br />
+<br/><br/>
 
 <a id="installation"></a>
 ## نصب
 
 <a id="windows-electron"></a>
-### ویندوز (Electron)
+### ویندوز (الکترون)
 
-- آخرین نصب‌کننده را از [Releases](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
+- آخرین نصب‌کننده را از بخش [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
 - فایل `.exe` را اجرا کرده و مراحل نصب را دنبال کنید.
-- اجرای اول: برنامه را از منوی شروع یا میان‌بر دسکتاپ راه‌اندازی کنید. تنظیمات در `%APPDATA%\transrewrt\` ذخیره می‌شود.
+- در اجرای اول: برنامه را از منوی شروع یا میان‌بر دسکتاپ اجرا کنید.
 
-<br />
+<br/>
 
 <a id="linux-electron"></a>
-### لینوکس (Electron)
+### لینوکس (الکترون)
 
-- فایل `.AppImage` را از [Releases](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
+- فایل `.AppImage` را از بخش [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
 - اجرا: `chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage`
 - وابستگی‌های اضافی (دبیان/اوبونتو): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - برای اطلاعات بیشتر به [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مراجعه کنید.
 
-<br />
+<br/>
 
 <a id="docker"></a>
-### Docker
+### دوکر
 
-- دریافت: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- کلید API OpenRouter **باید** از طریق متغیر محیطی `API_KEY` تنظیم شود. آن را با `-e API_KEY` (یا از طریق `docker compose` / `.env`) ارسال کنید تا کلید در لیست فرآیندها قابل مشاهده نباشد.
-- امکان وارد کردن کلید API در رابط وب وجود ندارد.
+- دریافت تصویر: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- حداقل یک کلید ارائه‌دهنده را از طریق متغیرهای محیط (مثلاً `OPENROUTER_KEY` برای OpenRouter) تنظیم کنید. از `-e` یا `docker compose` / `.env` برای انتقال متغیرها استفاده کنید تا اطلاعات محرمانه در تصویر ذخیره نشوند.
+- کلیدهای ارائه‌دهنده در رابط کاربری تحت وب وارد نمی‌شوند؛ سرور آن‌ها را از محیط می‌خواند.
 
-مثال - برای پیوستگی با volume نام‌دار (کلید API از طریق env ارسال می‌شود، نه در خط فرمان):
+مثال — استفاده از حجم نام‌گذاری‌شده برای حفظ داده (کلید OpenRouter از طریق متغیر محیطی):
 
 ```bash
-API_KEY=sk-or-your-key docker run -d \
+OPENROUTER_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e API_KEY \
+  -e OPENROUTER_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-<br />
+<br/>
 
 | گزینه   | توضیحات                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| پورت     | `5000` (نقشه‌برداری با `-p 5000:5000`)                                                                              |
-| volume   | mount `/app/data` برای preserved کردن تنظیمات و پایگاه داده                                                         |
-| متغیرهای محیطی | `PORT`, `CONFIG_PATH`, `API_KEY`, `API_URL`, `KEY_SEED` - به [پیکربندی](#configuration-and-environment) مراجعه کنید |
+|--------|-------------------------------------------------------------------------------------------------------------|
+| پورت   | `5000` (با استفاده از `-p 5000:5000` نگاشت شود)                                                                              |
+| حجم    | `/app/data` را برای حفظ تنظیمات و پایگاه داده mount کنید                                                         |
+| متغیرهای محیطی | `PORT`, `CONFIG_PATH`، و همچنین کلیدهای LLM (`OPENROUTER_KEY`, `OPENAI_KEY` و غیره) - بخش [پیکربندی](#configuration-and-environment) را ببینید |
 
-برای ساخت و اجرا از منبع: `docker compose up --build -d` یا `pnpm run docker:up` - به [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مراجعه کنید.
+برای ساخت و اجرای محلی از سورس: `docker compose up --build -d` یا `pnpm docker:up` - بخش [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) را ببینید.
 
-<br /><br />
+<br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
+
 ## دریافت کلید API OpenRouter
 
-Transrewrt از [OpenRouter](https://openrouter.ai) برای مدل‌های هوش مصنوعی استفاده می‌کند. برای ترجمه، بازنویسی یا تبدیل متن به یک کلید API نیاز دارید.
+Transrewrt از چندین ارائه‌دهنده هوش مصنوعی پشتیبانی می‌کند. [OpenRouter](https://openrouter.ai) یک انتخاب محبوب است، زیرا بسیاری از مدل‌ها را زیر یک کلید جمع‌آوری می‌کند و مدل‌های رایگانی نیز ارائه می‌دهد.
 
-1. در [openrouter.ai](https://openrouter.ai) ثبت‌نام یا ورود کنید.
-2. صفحه [Keys](https://openrouter.ai/keys) را باز کرده و یک کلید جدید ایجاد کنید (نامی برای آن انتخاب کرده و اختیاریاً محدودیت اعتبار تنظیم کنید). می‌توانید از مدل‌های رایگان بدون افزودن اعتبار استفاده کنید.
-3. **دسکتاپ (Electron):** کلید را در **تنظیمات → API** قرار دهید. **Docker:** متغیر محیطی `API_KEY` را تنظیم کنید (به [شروع سریع](#quick-start) مراجعه کنید).
+1. در [openrouter.ai](https://openrouter.ai) ثبت‌نام کنید یا وارد شوید.
+2. صفحهٔ [Keys](https://openrouter.ai/keys) را باز کنید و یک کلید جدید ایجاد کنید (نام آن را تعیین کنید و در صورت تمایل محدودیت اعتبار قرار دهید). می‌توانید بدون افزودن اعتبار از مدل‌های رایگان استفاده کنید.
+3. **دسکتاپ (الکترون):** کلیدها را در **تنظیمات → API** وارد کنید. **داکر:** متغیرهای محیطی مانند `OPENROUTER_KEY` را تنظیم کنید (نگاه کنید به [شروع سریع](#quick-start)).
 
-برای محدودیت‌ها، استفاده از کلید شخصی (BYOK) و موارد دیگر، به [احراز هویت OpenRouter](https://openrouter.ai/docs/api/reference/authentication) مراجعه کنید.
+همچنین می‌توانید از سایر ارائه‌دهندگان (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI) استفاده کنید یا مدل‌ها را به‌صورت محلی با [Ollama](https://ollama.com) اجرا کنید. برای دیدن فهرست کامل ارائه‌دهندگان پشتیبانی‌شده و متغیرهای محیطی، بخش [پیکربندی](#configuration-and-environment) را مشاهده کنید.
 
-<br /><br />
+برای محدودیت‌ها، استفاده از کلید شخصی (BYOK) و اطلاعات بیشتر، صفحهٔ [athentication در OpenRouter](https://openrouter.ai/docs/api/reference/authentication) را ببینید.
+
+<br/><br/>
 
 <a id="configuration-and-environment"></a>
-
 ## پیکربندی و محیط
 
 **مکان‌های فایل پیکربندی**
 
-| راه‌اندازی         | مکان پیکربندی                                   |
-| ------------------ | ------------------------------------------------- |
-| الکترون (ویندوز)   | `%APPDATA%\transrewrt\`                           |
-| الکترون (لینوکس)   | `~/.config/transrewrt/`                           |
-| وب / داکر          | `/app/data/config.json` (برای تداوم، از volume استفاده کنید) |
+| روش اجرا         | مکان پیکربندی                                  |
+| ------------------ | ------------------------------------------------ |
+| الکترون (ویندوز)  | `%APPDATA%\transrewrt\`                          |
+| الکترون (لینوکس)   | `~/.config/transrewrt/`                          |
+| وب / داکر          | `/app/data/config.json` (از ولوم برای ماندگاری استفاده کنید) |
 
-<br />
+<br/>
 
-**متغیرهای محیطی** (فقط برای وب/داکر؛ الکترون از فایل پیکربندی محلی استفاده می‌کند)
+**متغیرهای محیطی** (فقط وب/داکر؛ الکترون از فایل پیکربندی محلی استفاده می‌کند)
 
-| متغیر      | پیش‌فرض                        | توضیحات                                                   |
-| ------------- | ------------------------------ | ------------------------------------------------------------- |
-| `PORT`        | `5000`                         | پورت گوش دادن سرور                                         |
-| `CONFIG_PATH` | `/app/data/config.json`        | مسیر فایل پیکربندی                                       |
-| `API_KEY`     | *(خالی)*                      | کلید API OpenRouter (برای داکر لازم است؛ از طریق env تنظیم شود، نه UI) |
-| `API_URL`     | `https://openrouter.ai/api/v1` | پایه URL API هوش مصنوعی بالادست                                      |
-| `KEY_SEED`    | *(خالی)*                      | مولد کلید پروکسی Transrewrt (اگر تنظیم شود، پیکربندی را نادیده می‌گیرد) |
+| متغیر             | پیش‌فرض               | توضیحات |
+| ------------------ | --------------------- | ------- |
+| `PORT`             | `5000`                | پورت گوش دادن سرور |
+| `CONFIG_PATH`      | `/app/data/config.json` | مسیر فایل پیکربندی |
+| `OPENROUTER_KEY`   | *(تهی)*                | کلید API OpenRouter |
+| `OPENAI_KEY`       | *(تهی)*                | کلید API OpenAI |
+| `ANTHROPIC_KEY`    | *(تهی)*                | کلید API Anthropic |
+| `GOOGLE_KEY`       | *(تهی)*                | کلید API Google Gemini |
+| `DEEPSEEK_KEY`     | *(تهی)*                | کلید API DeepSeek |
+| `GROQ_KEY`         | *(تهی)*                | کلید API Groq |
+| `MISTRAL_KEY`      | *(تهی)*                | کلید API Mistral |
+| `OLLAMA_URL`       | *(تهی)*                | آدرس پایهٔ Ollama (مثلاً `http://host.docker.internal:11434`) |
+| `XAI_KEY`          | *(تهی)*                | کلید API xAI |
 
-<br />
+فقط ارائه‌دهندگانی را پیکربندی کنید که از آنها استفاده می‌کنید. شناسه مدل‌ها فضای نام‌دار هستند (`openrouter/…`, `openai/…`, `ollama/…` و غیره).
 
-**داده‌ها و پایداری:** برای داکر، یک volume در `/app/data` وصل کنید تا `config.json` و پایگاه داده SQLite پس از ریستارت کانتینر حفظ شوند. بدون volume، تمام داده‌ها هنگام توقف کانتینر از بین می‌روند.
+**نمایش هزینه:** OpenRouter در صورت امکان، هزینه واقعی صورتحساب را برمی‌گرداند. سایر ارائه‌دهندگان از **هزینه تخمینی** بر اساس قیمت عمومی مدل‌های OpenRouter استفاده می‌کنند در صورتی که یک کلید OpenRouter موجود باشد؛ در غیر این صورت، هزینه‌های غیر OpenRouter ممکن است `0` نشان داده شوند. این تخمین‌ها فاکتور رسمی نیستند.
 
-<br />
+<br/>
+
+**داده‌ها و ماندگاری:** در داکر، یک ولوم را در `/app/data` متصل کنید تا `config.json` و پایگاه داده SQLite بین راه‌اندازی‌های مجدد کانتینر حفظ شوند. بدون ولوم، تمام داده‌ها پس از متوقف شدن کانتینر از دست می‌روند.
+
+**توسعه‌دهندگان:** پس از دریافت تغییراتی که پیکربندی قدیمی تک‌کلیدی را جایگزین می‌کنند، در صورتی که فایل محلی شما هنوز از فیلدهای حذف‌شده (`api_key`, `api_url`, گزینه‌های پروکسی) استفاده می‌کند، فایل `data/config.json` را با ساختار پیش‌فرض جدید از `src/config-defaults/config_default.json` ریست کنید یا ادغام نمایید.
+
+<br/>
 
 **احراز هویت وب:**
 
-- پیش‌فرز مدیر: `admin` / `transrewrt26`.
-- مدیریت کاربران در **تنظیمات → کاربران**.
-- ریست کردن رمز عبور: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+- مدیر پیش‌فرض: `admin` / `transrewrt26`.
+- مدیریت کاربران در بخش **تنظیمات → کاربران**.
+- تغییر رمز: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (از منبع: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br />
+<br/>
 
 > ⚠️ **هشدار**<br/>
-> فوراً پس از نصب روی هر میزبان قابل دسترسی شبکه‌ای، رمز عبور پیش‌فرض مدیر را تغییر دهید.
+> بلافاصله پس از اجرای برنامه روی هر سرویس‌دهنده‌ای که از شبکه قابل دسترسی است، رمز عبور پیش‌فرض مدیر را تغییر دهید.
 
-<br />
+<br/>
 
-**پروکسی Transrewrt (اختیاری):** می‌توانید ترافیک API را از طریق یک پروکسی خارجی با کلید چرخش مبتنی بر زمان هدایت کنید. در **تنظیمات → API**، **استفاده از پروکسی Transrewrt** را فعال کنید، **مولد کلید** را تنظیم و **URL API** را به URL پایه پروکسی تغییر دهید. جزئیات بیشتر در [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
+تنظیمات مهم (فونت، مدل‌ها، زبان‌ها و غیره) از طریق بخش تنظیمات برنامه در دسترس هستند.
 
-تنظیمات اصلی (تم، فونت، مدل‌ها، زبان‌ها و غیره) در دیالوگ تنظیمات در دسترس هستند یا می‌توانید مستقیماً در JSON پیکربندی ویرایش کنید. لیست کامل و پیش‌فرض‌ها در [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مستند شده‌اند.
-
-<br /><br />
+<br/><br/>
 
 <a id="development-and-architecture"></a>
 ## توسعه و معماری
 
-- **توسعه:** راه‌اندازی، ساخت، تست و استقرار (الکترون، وب، داکر) - See **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **معماری و مرور سیستم:** ساختار پوشه، پشته فناوری، تصمیمات طراحی، پروکسی Transrewrt - See **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **توسعه:** راه‌اندازی، ساخت، تست و انتشار (الکترون، وب، داکر) — نگاه کنید به **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **مرور معماری و سیستم:** ساختار پوشه‌ها، پشته فناوری، تصمیمات طراحی — نگاه کنید به **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-```mermaid
-graph TD
-    subgraph renderer["src/renderer/ (shared React application)"]
-        T[Translate]
-        R[Rewrite]
-        TR[Transform]
-        D[Dashboard]
-        S[Settings]
-        T & R & TR & D & S --> core["configManager / apiService / costUtils"]
-    end
-    core -->|Electron| main["src/main/main.js"]
-    core -->|Web / Docker| server["src/server/index.js"]
-```
-
-<br /><br />
+<br/><br/>
 
 <a id="releases-and-tags"></a>
-## انتشارها و برچسب‌ها
 
-- **برچسب‌های گیت** `v`* (مثلاً `v1.0.10`) [جریان کار انتشار](.github/workflows/release.yml) را فعال می‌کنند. **انتشارهای GitHub** نصب‌کننده ویندوز (`.exe`) و AppImage لینوکس را ضمیمه می‌کنند.
-- **تصاویر داکر** در `ghcr.io/wsj-br/transrewrt` منتشر می‌شوند. برچسب‌های تصویر با نسخه گیت تطبیق دارند (مثلاً `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) به علاوه `latest`. چند-معماری: `linux/amd64` و `linux/arm64` (مثلاً رزی‌بری پای).
+## انتشارات و برچسب‌ها
 
-<br /><br />
+- **برچسب‌های Git** با پیشوند `v`* (مثلاً `v1.0.10`) فعال‌سازی [فرآیند انتشار](.github/workflows/release.yml) می‌شوند. **انتشارات GitHub** شامل نصب‌کننده ویندوز (`.exe`) و فایل AppImage لینوکس می‌شوند.
+- **تصاویر داکر** در `ghcr.io/wsj-br/transrewrt` منتشر می‌شوند. برچسب تصاویر با نسخه Git مطابقت دارند (مثلاً `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) به علاوه برچسب `latest`. معماری چندگانه: `linux/amd64` و `linux/arm64` (مثلاً برای رزبری پای).
+
+<br/><br/>
 
 <a id="contributing"></a>
-## مشارکت
+## همکاری در توسعه
 
-1. مخزن را فurk کنید.
-2. یک شاخه ویژگی بسازید: `git checkout -b feature/my-feature`
-3. تغییرات خود را با پیام واضح کامیت کنید.
-4. بفرستید و یک Pull Request بر `main` باز کنید.
+1. مخزن را برای خود کپی‌برداری کنید.
+2. یک شاخه ویژگی ایجاد کنید: `git checkout -b feature/my-feature`
+3. تغییرات خود را با پیامی شفاف ذخیره کنید.
+4. تغییرات را ارسال کنید و یک درخواست ادغام (Pull Request) نسبت به شاخه `main` باز کنید.
 
-لطفاً سبک کد موجود را دنبال کنید و تغییرات خود را هر دو حالت الکترون و وب قبل از ارسال تست کنید. برای دستورات ساخت و تست به [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) رجوع کنید.
+لطفاً سبک کدنویسی موجود را رعایت کنید و قبل از ارسال، تغییرات خود را در هر دو حالت Electron و وب تست کنید. دستورالعمل‌های ساخت و تست را در [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مشاهده کنید.
 
-<br />
+<br/>
 
-**گزارش مشکلات:** یک issue در [GitHub](https://github.com/wsj-br/transrewrt/issues) باز کنید. پلتفرم خود (ویندوز / لینوکس / داکر) و نسخه برنامه (در دیالوگ About یا صفحه Releases نشان داده می‌شود) را ذکر کنید.
+**گزارش مشکلات:** یک مشکل جدید در [GitHub](https://github.com/wsj-br/transrewrt/issues) ایجاد کنید. سیستم‌عامل خود (ویندوز / لینوکس / داکر) و نسخه برنامه (که در کادر درباره یا در صفحه انتشارات نمایش داده می‌شود) را ذکر کنید.
 
-<br /><br />
+<br/><br/>
 
 <a id="disclaimer"></a>
 ## سلب مسئولیت
 
-## سلب مسئولیت
+نام و آیکون محصولات متعلق به صاحبان آن‌ها بوده و صرفاً جهت شناسایی استفاده شده‌اند. این نرم‌افزار با هیچ یک از برندهای ذکر شده همکاری یا تأیید رسمی نداشته است.
 
-نام محصولات و آیکون‌ها متعلق به مالکان مربوطه هستند و فقط برای اهداف شناسایی به کار می‌روند. این نرم‌افزار با هیچ‌یک از برندهای ذکر شده وابسته یا تأیید شده نیست.
-
-<br /><br />
+<br/><br/>
 
 <a id="license"></a>
 ## مجوز
 
-حق نشر © ۲۰۲۶ والدیمار اسکودلر جوانر.
+کپی‌رایت © 2026 والدرمار اسکودلر جونیور
 
-[Apache License 2.0](LICENSE)
+[مجوز آپاچی 2.0](LICENSE)
