@@ -324,17 +324,25 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     if (enginesWithModels.size === 0) {
       return [allLabel];
     }
-    const rows = allRows.filter((row) => enginesWithModels.has(row.value));
+    const rows = allRows
+      .filter((row) => enginesWithModels.has(row.value))
+      .sort((a, b) =>
+        a.label.localeCompare(b.label, undefined, { sensitivity: "base" }),
+      );
     return [allLabel, ...rows];
   }, [t, enginesWithModels]);
 
-  useEffect(() => {
-    if (!filterEngine) return;
-    const allowed = new Set(
-      (engineFilterOptions || []).map((o) => o.value).filter(Boolean),
-    );
-    if (!allowed.has(filterEngine)) setFilterEngine("");
-  }, [filterEngine, engineFilterOptions]);
+  const allowedEngineFilterValues = useMemo(
+    () =>
+      new Set(
+        (engineFilterOptions || []).map((o) => o.value).filter(Boolean),
+      ),
+    [engineFilterOptions],
+  );
+  const effectiveFilterEngine =
+    filterEngine && allowedEngineFilterValues.has(filterEngine)
+      ? filterEngine
+      : "";
 
   const toggleModelSelection = (modelId) => {
     if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID))
@@ -353,8 +361,8 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         (model.name &&
           model.name.toLowerCase().includes(searchTerm.toLowerCase()));
       let matchesEngine = true;
-      if (filterEngine) {
-        matchesEngine = model.id.startsWith(`${filterEngine}/`);
+      if (effectiveFilterEngine) {
+        matchesEngine = model.id.startsWith(`${effectiveFilterEngine}/`);
       }
       let matchesFree = true;
       if (filterFree) {
@@ -362,7 +370,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       }
       return matchesSearch && matchesEngine && matchesFree;
     });
-  }, [allModels, searchTerm, filterEngine, filterFree]);
+  }, [allModels, searchTerm, effectiveFilterEngine, filterFree]);
 
   const getModelName = (model) => {
     if (model.name) {
@@ -590,7 +598,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             allModels={allModels}
             selectedModelIds={selectedModelIds}
             searchTerm={searchTerm}
-            filterEngine={filterEngine}
+            filterEngine={effectiveFilterEngine}
             engineFilterOptions={engineFilterOptions}
             filterFree={filterFree}
             sortBy={sortBy}

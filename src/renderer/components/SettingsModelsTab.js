@@ -120,9 +120,10 @@ const SettingsModelsTab = ({
     }
     const inCost = formatPricePer1M(model.pricing?.prompt);
     const outCost = formatPricePer1M(model.pricing?.completion);
+    const estimatedSuffix = model?.pricingEstimated ? ` (${t("estimated")})` : "";
     return (
       <>
-        {t("Input")}: ${inCost} / 1M · {t("Output")}: ${outCost} / 1M {t("tokens")}
+        {t("Input")}: ${inCost} / 1M · {t("Output")}: ${outCost} / 1M {t("tokens")}{estimatedSuffix}
       </>
     );
   };

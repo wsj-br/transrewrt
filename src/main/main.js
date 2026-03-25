@@ -1,4 +1,4 @@
-const { app, BrowserWindow, screen, ipcMain, protocol } = require("electron");
+const { app, BrowserWindow, screen, ipcMain, protocol, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
@@ -513,6 +513,13 @@ ipcMain.handle("get-os-username", () => {
   } catch {
     return "";
   }
+});
+
+ipcMain.handle("shell:openExternal", async (_event, url) => {
+  const candidate = String(url || "").trim();
+  if (!candidate) return false;
+  await shell.openExternal(candidate);
+  return true;
 });
 
 const { registerAppDbHandlers } = require("./appDb");

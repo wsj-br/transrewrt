@@ -286,8 +286,18 @@ export function useTransformPrompts({
       const totalTokens =
         (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
       const tps = durationSec > 0 ? totalTokens / durationSec : 0;
+      const modelUsed = String(result.model_used || result.model || activeModel || "");
+      const estimatedCostPrefix =
+        Number(result.calculated_cost ?? result.usage?.cost ?? 0) > 0 &&
+        !modelUsed.startsWith("openrouter/")
+          ? "~"
+          : "";
+      const showCostOnActions = settings?.show_cost_on_actions !== false;
+      const tpsPart = formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
       setTransformTestMeta(
-        `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${formatPartialRunCostLabel(result, locale, t)} | TPS: ${formatDecimal(tps, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`
+        showCostOnActions
+          ? `Time: ${formatElapsedMmSs(durationSec, locale)} | Cost: ${estimatedCostPrefix}${formatPartialRunCostLabel(result, locale, t)} | TPS: ${tpsPart}`
+          : `Time: ${formatElapsedMmSs(durationSec, locale)} | TPS: ${tpsPart}`,
       );
       const outputContent = result.content
         ? result.content.replace(/^\s*\n+/, "")

@@ -1,11 +1,36 @@
 import { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, Text, Input } from "@fluentui/react-components";
-import { Key, Eye, EyeOff } from "lucide-react";
+import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
+import iconsWithFiles from "../assets/icons_with_files.json";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+const OLLAMA_URL = "https://ollama.com/";
+
+const normalizeProviderKey = (value) =>
+  String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+
+function findProviderUrlById(providerId, providers) {
+  const needle = normalizeProviderKey(providerId);
+  if (!needle) return "";
+  const match = (providers || []).find(
+    (entry) => normalizeProviderKey(entry?.provider_id) === needle,
+  );
+  return match?.url || "";
+}
+
+function openExternalUrl(url) {
+  if (!url) return;
+  if (window.electronAPI?.openExternalUrl) {
+    window.electronAPI.openExternalUrl(url).catch(() => {});
+    return;
+  }
+  window.open(url, "_blank", "noopener,noreferrer");
+}
 
 /** Success/error use semantic colours; in-progress uses regular body colour. */
 function testStatusMessageColor(status) {
@@ -31,6 +56,9 @@ const SecretField = ({
   isEditing,
   onTest,
   testState,
+  docUrl,
+  onOpenDoc,
+  docLinkLabel,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -54,7 +82,29 @@ const SecretField = ({
   if (configured && !isEditing) {
     return (
       <div style={{ marginBottom: "16px" }}>
-        <Label style={{ display: "block", marginBottom: "6px" }}>{label}</Label>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+          <Label style={{ display: "block", marginBottom: 0 }}>{label}</Label>
+          {docUrl ? (
+            <button
+              type="button"
+              onClick={() => onOpenDoc(docUrl)}
+              aria-label={docLinkLabel}
+              title={docLinkLabel}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "var(--colorNeutralForeground2)",
+                padding: 0,
+              }}
+            >
+              <ExternalLink size={14} />
+            </button>
+          ) : null}
+        </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
           <span style={inputBoxStyle}>
             <span style={configuredMessageStyle}>
@@ -96,9 +146,31 @@ const SecretField = ({
 
   return (
     <div style={{ marginBottom: "16px" }}>
-      <Label htmlFor={id} style={{ display: "block", marginBottom: "6px" }}>
-        {label}
-      </Label>
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+        <Label htmlFor={id} style={{ display: "block", marginBottom: 0 }}>
+          {label}
+        </Label>
+        {docUrl ? (
+          <button
+            type="button"
+            onClick={() => onOpenDoc(docUrl)}
+            aria-label={docLinkLabel}
+            title={docLinkLabel}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "var(--colorNeutralForeground2)",
+              padding: 0,
+            }}
+          >
+            <ExternalLink size={14} />
+          </button>
+        ) : null}
+      </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <div style={{ position: "relative", display: "inline-flex" }}>
           <Input
@@ -182,6 +254,9 @@ SecretField.propTypes = {
   editLabel: PropTypes.string,
   isEditing: PropTypes.bool,
   onTest: PropTypes.func,
+  docUrl: PropTypes.string,
+  onOpenDoc: PropTypes.func,
+  docLinkLabel: PropTypes.string,
   testState: PropTypes.shape({
     status: PropTypes.string,
     message: PropTypes.string,
@@ -208,9 +283,11 @@ const SettingsApiTab = ({
 }) => {
   const { t } = useTranslation();
   const [editingKey, setEditingKey] = useState(null);
-  const [draftValue, setDraftValue] = useState("");
+  const [draftValues, setDraftValues] = useState({});
   const [webProviderStatus, setWebProviderStatus] = useState([]);
   const [testResults, setTestResults] = useState({});
+  const savedOllamaBaseUrl = localSettings.ollama_base_url ?? "http://localhost:11434";
+  const [ollamaDraft, setOllamaDraft] = useState(savedOllamaBaseUrl);
 
   const providerByKey = useMemo(() => {
     const map = {};
@@ -220,6 +297,15 @@ const SettingsApiTab = ({
     return map;
   }, []);
 
+  const providerDocUrlByKey = useMemo(() => {
+    const out = {};
+    for (const { key } of PROVIDER_SECRET_FIELDS) {
+      const provider = key.replace("_api_key", "");
+      out[key] = findProviderUrlById(provider, iconsWithFiles);
+    }
+    return out;
+  }, []);
+
   useEffect(() => {
     if (!isWeb || currentUserRole !== "admin") return;
     webAPI
@@ -227,6 +313,10 @@ const SettingsApiTab = ({
       .then((rows) => setWebProviderStatus(rows.filter((r) => r.provider !== "ollama")))
       .catch(() => setWebProviderStatus([]));
   }, [currentUserRole]);
+
+  useEffect(() => {
+    setOllamaDraft(savedOllamaBaseUrl);
+  }, [savedOllamaBaseUrl]);
 
   const runProviderTest = async (provider, overrideValue) => {
     setTestResults((prev) => ({
@@ -274,7 +364,9 @@ const SettingsApiTab = ({
                 const configured = !!localSettings[`${key}_configured`];
                 const isEditing = editingKey === key;
                 const provider = providerByKey[key];
-                const overrideValue = isEditing ? (draftValue ?? "").trim() : undefined;
+                const draftValue = draftValues[key] ?? "";
+                const overrideValue =
+                  isEditing || !configured ? (draftValue ?? "").trim() : undefined;
                 return (
                   <SecretField
                     key={key}
@@ -282,21 +374,23 @@ const SettingsApiTab = ({
                     label={t(labelKey)}
                     placeholder={placeholder}
                     configured={configured}
-                    value={isEditing ? draftValue : ""}
-                    onChange={setDraftValue}
+                    value={configured && !isEditing ? "" : draftValue}
+                    onChange={(nextValue) =>
+                      setDraftValues((prev) => ({ ...prev, [key]: nextValue }))
+                    }
                     onSave={() => {
                       const trimmed = (draftValue ?? "").trim();
                       onSettingChange(key, trimmed);
-                      setDraftValue("");
+                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
                       setEditingKey(null);
                     }}
                     onCancel={() => {
-                      setDraftValue("");
+                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
                       setEditingKey(null);
                     }}
                     onEdit={() => {
                       setEditingKey(key);
-                      setDraftValue("");
+                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
                       setTestResults((prev) => {
                         const next = { ...prev };
                         delete next[provider];
@@ -310,22 +404,55 @@ const SettingsApiTab = ({
                     configuredMessage={t("API key is configured")}
                     editLabel={t("Edit")}
                     isEditing={isEditing}
+                    docUrl={providerDocUrlByKey[key]}
+                    onOpenDoc={openExternalUrl}
+                    docLinkLabel={t("Open provider website")}
                   />
                 );
               })}
             </div>
 
             <div style={{ marginBottom: "16px" }}>
-              <Label htmlFor="ollama-base-url" style={{ display: "block", marginBottom: "6px" }}>
-                {t("Ollama base URL")}
-              </Label>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                <Label htmlFor="ollama-base-url" style={{ display: "block", marginBottom: 0 }}>
+                  {t("Ollama base URL")}
+                </Label>
+                <button
+                  type="button"
+                  onClick={() => openExternalUrl(OLLAMA_URL)}
+                  aria-label={t("Open Ollama website")}
+                  title={t("Open Ollama website")}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "var(--colorNeutralForeground2)",
+                    padding: 0,
+                  }}
+                >
+                  <ExternalLink size={14} />
+                </button>
+              </div>
               <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", flexWrap: "wrap" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <Input
                     id="ollama-base-url"
                     type="text"
-                    value={localSettings.ollama_base_url ?? "http://localhost:11434"}
-                    onChange={(e) => onSettingChange("ollama_base_url", e.target.value)}
+                    value={ollamaDraft}
+                    onChange={(e) => setOllamaDraft(e.target.value)}
+                    onBlur={() => {
+                      const next = (ollamaDraft ?? "").trim();
+                      if (next !== savedOllamaBaseUrl) {
+                        onSettingChange("ollama_base_url", next);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key !== "Enter") return;
+                      e.currentTarget.blur();
+                    }}
                     placeholder="http://localhost:11434"
                     style={{ width: "400px", minWidth: "300px" }}
                   />
@@ -334,12 +461,12 @@ const SettingsApiTab = ({
                     size={200}
                     style={{ marginTop: "6px", marginBottom: 0, color: "var(--colorNeutralForeground3)" }}
                   >
-                    {t("Local Ollama has no API key. Leave default if Ollama runs on this machine.")}
+                    {t("Use http://localhost:11434 if you are running Ollama on this machine.")}
                   </Text>
                 </div>
                 <Button
                   appearance="secondary"
-                  onClick={() => runProviderTest("ollama")}
+                  onClick={() => runProviderTest("ollama", (ollamaDraft ?? "").trim())}
                   disabled={testResults.ollama?.status === "testing"}
                   size="small"
                 >
@@ -362,7 +489,7 @@ const SettingsApiTab = ({
 
             <div style={{ marginTop: "24px", padding: "12px 16px", backgroundColor: "var(--colorNeutralBackground2)", borderRadius: "6px", maxWidth: "800px" }}>
               <Text as="p" style={{ margin: 0, fontSize: "14px" }}>
-                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.")}
+                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.")}
               </Text>
             </div>
 

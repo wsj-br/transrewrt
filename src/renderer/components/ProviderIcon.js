@@ -25,34 +25,33 @@ iconContext.keys().forEach(key => {
   fileToUrl[file] = iconContext(key);
 });
 
-// Manual overrides for providers that don't match directly (use .ico filenames)
-const manualMap = {
-  'google': 'google_ai_studio.ico',
-  'googlevertex': 'google_vertex.ico',
-  'amazon': 'amazon_bedrock.ico',
-  'mistralai': 'mistral.ico',
-  cerebras: 'cerebras.ico',
-  'openrouter': 'openrouter.ico', // if we had one
-};
-
-
 // In-memory cache: provider -> resolved URL (avoids re-resolving and helps browser cache)
 const urlCache = new Map();
 
 function resolveIconUrl(provider) {
-  const normProvider = normalize(provider);
-  if (manualMap[provider] && fileToUrl[manualMap[provider]]) {
-    return fileToUrl[manualMap[provider]];
+  const rawProvider = String(provider || "").trim();
+  const normProvider = normalize(rawProvider);
+  const firstSegment = rawProvider.includes("/") ? rawProvider.split("/")[0] : "";
+  const normFirstSegment = normalize(firstSegment);
+
+  const candidates = [
+    rawProvider,
+    normProvider,
+    firstSegment,
+    normFirstSegment,
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    const file = providerIdToFile[candidate];
+    if (file && fileToUrl[file]) {
+      return fileToUrl[file];
+    }
   }
-  if (manualMap[normProvider] && fileToUrl[manualMap[normProvider]]) {
-    return fileToUrl[manualMap[normProvider]];
-  }
-  const file = providerIdToFile[normProvider];
-  if (file && fileToUrl[file]) {
-    return fileToUrl[file];
-  }
-  if (fileToUrl[provider]) {
-    return fileToUrl[provider];
+
+  for (const candidate of candidates) {
+    if (fileToUrl[candidate]) {
+      return fileToUrl[candidate];
+    }
   }
   return null;
 }

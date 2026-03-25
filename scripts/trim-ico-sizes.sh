@@ -3,7 +3,15 @@ set -euo pipefail
 
 # Requires: ImageMagick (identify, convert)
 
-for ico in *.ico; do
+if ! command -v identify >/dev/null 2>&1 || ! command -v convert >/dev/null 2>&1; then
+  echo "Error: ImageMagick is not available (missing 'identify' and/or 'convert')."
+  echo "Install it with: sudo apt install imagemagick"
+  exit 1
+fi
+
+assets_dir="./src/renderer/assets"
+
+for ico in "$assets_dir"/*.ico; do
   # Skip if no .ico files
   [ -e "$ico" ] || continue
 

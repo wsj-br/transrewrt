@@ -176,7 +176,6 @@ function buildProviderTestRequest(provider, value) {
     return {
       url: `${sanitizedBase}/api/tags`,
       options: { method: "GET" },
-      missingMessage: "Ollama base URL is required",
     };
   }
   if (!normalized) {
@@ -269,10 +268,14 @@ async function testProviderAuth(provider, value) {
   try {
     const response = await fetch(req.url, req.options);
     if (response.ok) {
+      const successMessage =
+        normalizedProvider === "ollama"
+          ? "Ollama configuration is working."
+          : `${providerDisplayName(normalizedProvider)} credentials are valid.`;
       return {
         provider: normalizedProvider,
         ok: true,
-        message: `${providerDisplayName(normalizedProvider)} credentials are valid.`,
+        message: successMessage,
       };
     }
     const body = await response.text().catch(() => "");
@@ -491,7 +494,7 @@ function estimateCostDollars(engine, innerModelId, usage) {
 
 /**
  * @param {Record<string, string>} keysMap
- * @returns {Promise<Array<{ id: string, name: string, pricing: { prompt: number, completion: number }, pricingKnown: boolean }>>}
+ * @returns {Promise<Array<{ id: string, name: string, pricing: { prompt: number, completion: number }, pricingKnown: boolean, pricingEstimated?: boolean }>>}
  */
 async function getAllModels(keysMap) {
   const orKey = (keysMap.openrouter_api_key || "").trim();
@@ -525,12 +528,14 @@ async function getAllModels(keysMap) {
       let prompt = raw.prompt;
       let completion = raw.completion;
       let pricingKnown = raw.known;
+      let pricingEstimated = false;
       if (engine !== "openrouter" && orKey) {
         const est = lookupOpenRouterPricingRow(engine, m.id);
         if (est) {
           prompt = est.prompt;
           completion = est.completion;
           pricingKnown = true;
+          pricingEstimated = true;
         }
       }
       normalized.push({
@@ -538,6 +543,7 @@ async function getAllModels(keysMap) {
         name: m.name || m.id,
         pricing: { prompt, completion },
         pricingKnown,
+        pricingEstimated,
       });
     }
   }

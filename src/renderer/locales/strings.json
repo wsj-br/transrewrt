@@ -737,88 +737,6 @@
       "vi": "Chi phí"
     }
   },
-  "aa2d6e4f": {
-    "source": "free",
-    "translated": {
-      "pt-BR": "grátis",
-      "ar": "مجاناً",
-      "bn": "বিনামূল্যে",
-      "ca": "gratuït",
-      "zh-CN": "免费",
-      "zh-TW": "免費",
-      "hr": "besplatno",
-      "cs": "zdarma",
-      "nl": "gratis",
-      "en-US": "Free",
-      "tl": "libre",
-      "fr": "gratuit",
-      "de": "kostenlos",
-      "el": "δωρεάν",
-      "hi": "मुफ्त",
-      "hu": "ingyenes",
-      "it": "gratuito",
-      "ja": "無料",
-      "jv": "gratis",
-      "ko": "무료",
-      "ms": "percuma",
-      "fa": "رایگان",
-      "pl": "za darmo",
-      "pt": "gratuito",
-      "pa": "ਮੁਫਤ",
-      "ro": "gratuit",
-      "ru": "бесплатно",
-      "sk": "zadarmo",
-      "es": "gratis",
-      "sw": "bila malipo",
-      "sv": "gratis",
-      "te": "ఉచిత",
-      "th": "ฟรี",
-      "tr": "ücretsiz",
-      "uk": "безкоштовно",
-      "vi": "miễn phí"
-    }
-  },
-  "b2f8489b": {
-    "source": "not available",
-    "translated": {
-      "pt-BR": "não disponível",
-      "ar": "غير متاح",
-      "ca": "no disponible",
-      "bn": "পাওয়া যাচ্ছে না",
-      "hr": "nije dostupno",
-      "zh-CN": "不可用",
-      "zh-TW": "不適用",
-      "cs": "není k dispozici",
-      "fr": "non disponible",
-      "nl": "niet beschikbaar",
-      "en-US": "not available",
-      "tl": "hindi available",
-      "el": "μη διαθέσιμο",
-      "hi": "उपलब्ध नहीं",
-      "hu": "nem elérhető",
-      "de": "nicht verfügbar",
-      "jv": "ora kasedhiya",
-      "it": "non disponibile",
-      "ko": "사용 불가능",
-      "ja": "利用不可",
-      "pt": "não disponível",
-      "fa": "در دسترس نیست",
-      "pl": "nie dostępne",
-      "ms": "tidak tersedia",
-      "pa": "ਉਪਲਬਧ ਨਹੀਂ",
-      "ru": "недоступно",
-      "sk": "nie je dostupné",
-      "ro": "nu este disponibil",
-      "es": "no disponible",
-      "sv": "inte tillgänglig",
-      "sw": "haitumiki",
-      "te": "లభ్యం కాదు",
-      "vi": "không khả dụng",
-      "tr": "kullanılamıyor",
-      "uk": "недоступний",
-      "th": "ไม่พร้อมใช้งาน"
-    }
-  },
   "96b01412": {
     "source": "Total",
     "translated": {
@@ -858,6 +776,47 @@
       "th": "รวมทั้งหมด",
       "tr": "Toplam",
       "vi": "Tổng cộng"
+    }
+  },
+  "aa2d6e4f": {
+    "source": "free",
+    "translated": {
+      "pt-BR": "grátis",
+      "ar": "مجاناً",
+      "bn": "বিনামূল্যে",
+      "ca": "gratuït",
+      "zh-CN": "免费",
+      "zh-TW": "免費",
+      "hr": "besplatno",
+      "cs": "zdarma",
+      "nl": "gratis",
+      "en-US": "Free",
+      "tl": "libre",
+      "fr": "gratuit",
+      "de": "kostenlos",
+      "el": "δωρεάν",
+      "hi": "मुफ्त",
+      "hu": "ingyenes",
+      "it": "gratuito",
+      "ja": "無料",
+      "jv": "gratis",
+      "ko": "무료",
+      "ms": "percuma",
+      "fa": "رایگان",
+      "pl": "za darmo",
+      "pt": "gratuito",
+      "pa": "ਮੁਫਤ",
+      "ro": "gratuit",
+      "ru": "бесплатно",
+      "sk": "zadarmo",
+      "es": "gratis",
+      "sw": "bila malipo",
+      "sv": "gratis",
+      "te": "ఉచిత",
+      "th": "ฟรี",
+      "tr": "ücretsiz",
+      "uk": "безкоштовно",
+      "vi": "miễn phí"
     }
   },
   "03859a04": {
@@ -6641,6 +6600,10 @@
       "vi": "Chỉnh sửa"
     }
   },
+  "25cf4b81": {
+    "source": "Open provider website",
+    "translated": {}
+  },
   "e559ae25": {
     "source": "Ollama base URL",
     "translated": {
@@ -6682,46 +6645,13 @@
       "tr": "Ollama taban URL'si"
     }
   },
-  "25fe3f1d": {
-    "source": "Local Ollama has no API key. Leave default if Ollama runs on this machine.",
-    "translated": {
-      "ar": "أولاما المحلي ليس له مفتاح API. اترك الافتراضي إذا كان أولاما يعمل على هذا الجهاز.",
-      "pt-BR": "O Ollama local não tem chave de API. Mantenha o padrão se o Ollama estiver rodando nesta máquina.",
-      "ca": "L'Ollama local no té clau d'API. Deixa el valor per defecte si l'Ollama s'executa en aquest ordinador.",
-      "bn": "স্থানীয় ওলামার কোনো API কী নেই। যদি ওলামা এই মেশিনে চলছে তবে ডিফল্টে ছেড়ে দিন।",
-      "zh-CN": "本地 Ollama 无需 API 密钥。如果 Ollama 在本机运行，请保持默认设置。",
-      "zh-TW": "本機 Ollama 無需 API 金鑰。若 Ollama 在此機器上執行，請保留預設值。",
-      "hr": "Lokalni Ollama nema API ključ. Ostavite zadano ako Ollama radi na ovom računalu.",
-      "cs": "Místní Ollama nemá klíč API. Ponechte výchozí hodnotu, pokud Ollama běží na tomto počítači.",
-      "fr": "Ollama local n'a pas de clé API. Conservez la valeur par défaut si Ollama s'exécute sur cette machine.",
-      "en-US": "Local Ollama has no API key. Leave default if Ollama runs on this machine.",
-      "nl": "Lokale Ollama heeft geen API-sleutel. Laat standaard instellingen staan als Ollama draait op deze machine.",
-      "tl": "Ang lokal na Ollama ay walang API key. Iwanang default kung ang Ollama ay tumatakbo sa makina na ito.",
-      "hu": "A helyi Ollama nem igényel API-kulcsot. Hagyja alapértelmezett értéken, ha az Ollama ezen a gépen fut.",
-      "el": "Το τοπικό Ollama δεν έχει κλειδί API. Αφήστε την προκαθορισμένη τιμή αν το Ollama εκτελείται σε αυτόν τον υπολογιστή.",
-      "de": "Lokales Ollama hat keinen API-Schlüssel. Standard belassen, wenn Ollama auf diesem Gerät läuft.",
-      "hi": "स्थानीय Ollama की कोई API कुंजी नहीं होती। यदि Ollama इस मशीन पर चल रहा है तो डिफ़ॉल्ट छोड़ दें।",
-      "ja": "ローカルOllamaにはAPIキーはありません。Ollamaがこのマシン上で実行されている場合は、既定のままにしてください。",
-      "ko": "로컬 Ollama에는 API 키가 없습니다. Ollama가 이 기기에서 실행 중이라면 기본값을 그대로 두세요.",
-      "it": "Ollama locale non richiede chiave API. Lascia il valore predefinito se Ollama è in esecuzione su questo dispositivo.",
-      "jv": "Ollama lokal ora duwe kunci API. Biaréna minangka sing standar yen Ollama mlaku ing komputer iki.",
-      "pt": "O Ollama local não possui chave de API. Mantenha o padrão se o Ollama estiver rodando nesta máquina.",
-      "fa": "سیستم محلی Ollama کلید API ندارد. اگر Ollama روی همین دستگاه اجرا می‌شود، مقدار پیش‌فرض را حفظ کنید.",
-      "pl": "Lokalny Ollama nie wymaga klucza API. Pozostaw wartość domyślną, jeśli Ollama działa na tej maszynie.",
-      "ms": "Ollama tempatan tidak memerlukan kunci API. Biarkan nilai lalai jika Ollama berjalan pada mesin ini.",
-      "ru": "Локальный Ollama не требует API-ключ. Оставьте значение по умолчанию, если Ollama запущен на этом устройстве.",
-      "pa": "ਸਥਾਨਕ Ollama ਦੀ ਕੋਈ API ਕੁੰਜੀ ਨਹੀਂ ਹੈ। ਜੇਕਰ Ollama ਇਸ ਮਸ਼ੀਨ ਤੇ ਚੱਲ ਰਿਹਾ ਹੈ ਤਾਂ ਡਿਫਾਲਟ ਨੂੰ ਛੱਡ ਦਿਓ।",
-      "ro": "Ollama local nu are cheie API. Păstrați valoarea implicită dacă Ollama rulează pe acest dispozitiv.",
-      "sk": "Lokálna Ollama nemá API kľúč. Ponechajte predvolené nastavenie, ak beží Ollama na tomto počítači.",
-      "sv": "Lokal Ollama har ingen API-nyckel. Låt vara standard om Ollama körs på denna maskin.",
-      "sw": "Ollama ya kijitihima haina kitufe cha API. Acha chaguo msingi ikiwa Ollama inafanya kazi kwenye kifaa hiki.",
-      "te": "స్థానిక ఓలామాకు API కీ అవసరం లేదు. ఓలామా ఈ యంత్రంలో నడుస్తుంటే డిఫాల్ట్ గా ఉంచండి.",
-      "es": "Ollama local no tiene clave API. Deje el valor predeterminado si Ollama se ejecuta en esta máquina.",
-      "vi": "Ollama cục bộ không cần khóa API. Giữ nguyên mặc định nếu Ollama chạy trên máy này.",
-      "uk": "Локальний Ollama не потребує API-ключа. Залиште за замовчуванням, якщо Ollama працює на цьому комп'ютері.",
-      "th": "Ollama แบบท้องถิ่นไม่ต้องใช้คีย์ API ปล่อยค่าเริ่มต้นไว้หาก Ollama ทำงานบนเครื่องนี้",
-      "tr": "Yerel Ollama'nın API anahtarı yok. Bu makine üzerinde Ollama çalışıyorsa, varsayılanı bırakın."
-    }
+  "7dff59e8": {
+    "source": "Open Ollama website",
+    "translated": {}
+  },
+  "48d67b51": {
+    "source": "Use http://localhost:11434 if you are running Ollama on this machine.",
+    "translated": {}
   },
   "0cbc6611": {
     "source": "Test",
@@ -6805,46 +6735,9 @@
       "tr": "Ödemek istemiyor musunuz?"
     }
   },
-  "ec2bbdd5": {
-    "source": "Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.",
-    "translated": {
-      "ar": "أنشئ مفتاح OpenRouter مجاني (بدون الحاجة إلى بطاقة ائتمان) لاستخدام النماذج المجانية، أو قم بتثبيت Ollama لتشغيل النماذج محليًا دون الحاجة إلى أي مفتاح API.",
-      "pt-BR": "Gere uma chave OpenRouter gratuita (sem cartão de crédito necessário) para usar modelos gratuitos, ou instale o Ollama para executar modelos localmente sem nenhuma chave de API.",
-      "ca": "Genera una clau OpenRouter gratuïta (sense targeta de crèdit necessària) per utilitzar models gratuïts, o instal·la Ollama per executar models localment sense cap clau d'API.",
-      "bn": "বিনামূল্যে মডেল ব্যবহার করতে একটি বিনামূল্যের ওপেনরাউটার কী তৈরি করুন (ক্রেডিট কার্ড প্রয়োজন হয় না), অথবা কোনও এপিআই কী ছাড়াই মডেলগুলি স্থানীয়ভাবে চালাতে ওলামা ইনস্টল করুন।",
-      "zh-TW": "生成一個免費的 OpenRouter 金鑰（無需信用卡）以使用免費模型，或安裝 Ollama 來在本地運行模型，無需任何 API 金鑰。",
-      "cs": "Vygenerujte si bezplatný klíč OpenRouter (bez platební karty) pro používání bezplatných modelů nebo nainstalujte Ollama pro běh modelů místně bez jakéhokoli klíče API.",
-      "zh-CN": "生成一个免费的OpenRouter密钥（无需信用卡）以使用免费模型，或安装Ollama以在本地运行模型而无需任何API密钥。",
-      "hr": "Generirajte besplatni OpenRouter ključ (bez potrebe za kreditnom karticom) za korištenje besplatnih modela ili instalirajte Ollama za pokretanje modela lokalno bez bilo kakvog API ključa.",
-      "fr": "Générez une clé OpenRouter gratuite (aucune carte de crédit requise) pour utiliser des modèles gratuits, ou installez Ollama pour exécuter des modèles localement sans clé API.",
-      "nl": "Genereer een gratis OpenRouter-sleutel (geen creditcard vereist) om gratis modellen te gebruiken, of installeer Ollama om modellen lokaal uit te voeren zonder API-sleutel.",
-      "en-US": "Generate a free OpenRouter key (no credit card required) to use free models, or install Ollama to run models locally without any API key.",
-      "tl": "Bumuo ng libreng OpenRouter key (walang kaukulay credit card) para gamitin ang libreng mga modelo, o i-install ang Ollama para patakbuhin ang mga modelo nang lokal nang walang API key.",
-      "de": "Generieren Sie einen kostenlosen OpenRouter-Schlüssel (keine Kreditkarte erforderlich), um kostenlose Modelle zu nutzen, oder installieren Sie Ollama, um Modelle lokal ohne API-Schlüssel auszuführen.",
-      "hu": "Generáljon egy ingyenes OpenRouter kulcsot (hitelkártya nélkül) az ingyenes modellek használatához, vagy telepítsen Ollamát a modellek helyi futtatásához API-kulcs nélkül.",
-      "el": "Δημιουργήστε ένα δωρεάν κλειδί OpenRouter (χωρίς απαίτηση πιστωτικής κάρτας) για να χρησιμοποιήσετε δωρεάν μοντέλα, ή εγκαταστήστε το Ollama για να εκτελέσετε μοντέλα τοπικά χωρίς κλειδί API.",
-      "hi": "मुफ्त मॉडल का उपयोग करने के लिए मुफ्त OpenRouter कुंजी उत्पन्न करें (क्रेडिट कार्ड की आवश्यकता नहीं है), या किसी भी API कुंजी के बिना स्थानीय रूप से मॉडल चलाने के लिए Ollama स्थापित करें।",
-      "ja": "無料モデルを使用するには、無料のOpenRouterキーを生成してください（クレジットカード不要）。または、Ollamaをインストールして、APIキーなしでローカルでモデルを実行してください。",
-      "it": "Genera una chiave OpenRouter gratuita (nessuna carta di credito richiesta) per utilizzare modelli gratuiti, oppure installa Ollama per eseguire modelli in locale senza alcuna chiave API.",
-      "ko": "무료 모델을 사용하려면 무료 OpenRouter 키를 생성하세요(신용카드 필요 없음), 또는 API 키 없이 로컬에서 모델을 실행하려면 Ollama를 설치하세요.",
-      "jv": "Buat kunci OpenRouter gratis (ora kudu kartu kredit) kanggo migunakake model gratis, utawa pasang Ollama kanggo nggunakake model lokal tanpa kunci API.",
-      "pt": "Gere uma chave gratuita do OpenRouter (sem cartão de crédito necessário) para usar modelos gratuitos ou instale o Ollama para executar modelos localmente sem chave de API.",
-      "fa": "یک کلید رایگان OpenRouter تولید کنید (نیازی به کارت اعتباری نیست) تا از مدل‌های رایگان استفاده کنید، یا Ollama را نصب کنید تا مدل‌ها را به صورت محلی و بدون هیچ کلید API اجرا کنید.",
-      "ms": "Jana kunci OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma, atau pasang Ollama untuk menjalankan model secara tempatan tanpa sebarang kunci API.",
-      "pl": "Wygeneruj bezpłatny klucz OpenRouter (bez potrzeby podawania danych karty kredytowej), aby korzystać z darmowych modeli lub zainstaluj Ollama, by uruchamiać modele lokalnie bez klucza API.",
-      "ru": "Создайте бесплатный ключ OpenRouter (без необходимости указывать кредитную карту), чтобы использовать бесплатные модели, или установите Ollama для запуска моделей локально без ключа API.",
-      "ro": "Generați o cheie OpenRouter gratuită (fără card de credit) pentru a utiliza modele gratuite sau instalați Ollama pentru a rula modele local, fără nicio cheie API.",
-      "sk": "Vygenerujte bezplatný OpenRouter kľúč (bez potreby kreditnej karty) na používanie bezplatných modelov alebo nainštalujte Ollama na spúšťanie modelov lokálne bez akéhokoľvek API kľúča.",
-      "pa": "ਮੁਫਤ ਮਾਡਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਇੱਕ ਮੁਫਤ OpenRouter ਕੁੰਜੀ ਪੈਦਾ ਕਰੋ (ਕ੍ਰੈਡਿਟ ਕਾਰਡ ਦੀ ਲੋੜ ਨਹੀਂ), ਜਾਂ ਕਿਸੇ ਵੀ API ਕੁੰਜੀ ਦੀ ਲੋੜ ਤੋਂ ਬਿਨਾਂ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਮਾਡਲ ਚਲਾਉਣ ਲਈ Ollama ਸਥਾਪਤ ਕਰੋ।",
-      "es": "Genere una clave gratuita de OpenRouter (sin necesidad de tarjeta de crédito) para usar modelos gratuitos, o instale Ollama para ejecutar modelos localmente sin ninguna clave API.",
-      "sv": "Generera en gratis OpenRouter-nyckel (inget kreditkort krävs) för att använda gratismodeller, eller installera Ollama för att köra modeller lokalt utan någon API-nyckel.",
-      "sw": "Zalisha bima ya OpenRouter bila malipo (bila kadi ya sarakasi) ili kutumia mitindo iliyo ya bure, au weka Ollama kupumua mitindo kwa namna ya kiondo bila bima lolote ya API.",
-      "te": "ఉచిత మాడల్స్ ఉపయోగించడానికి ఉచిత OpenRouter కీని సృష్టించండి (క్రెడిట్ కార్డ్ అవసరం లేదు), లేదా ఎటువంటి API కీ లేకుండా మాడల్స్ ను స్థానికంగా నడపడానికి Ollamaని ఇన్‌స్టాల్ చేయండి.",
-      "uk": "Створіть безкоштовний ключ OpenRouter (кредитна картка не потрібна) для використання безкоштовних моделей або встановіть Ollama, щоб запускати моделі локально без будь-якого ключа API.",
-      "th": "สร้างคีย์ OpenRouter ฟรี (ไม่ต้องใช้บัตรเครดิต) เพื่อใช้โมเดลฟรี หรือติดตั้ง Ollama เพื่อรันโมเดลแบบท้องถิ่นโดยไม่ต้องใช้คีย์ API",
-      "vi": "Tạo khóa OpenRouter miễn phí (không cần thẻ tín dụng) để sử dụng các mô hình miễn phí, hoặc cài đặt Ollama để chạy mô hình cục bộ mà không cần bất kỳ khóa API nào.",
-      "tr": "Ücretsiz modelleri kullanmak için ücretsiz bir OpenRouter anahtarı oluşturun (kredi kartı gerekmez) veya herhangi bir API anahtarı olmadan yerel olarak model çalıştırmak için Ollama'yı yükleyin."
-    }
+  "a3ff4f4a": {
+    "source": "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.",
+    "translated": {}
   },
   "8b5ad287": {
     "source": "Admin access is required.",
@@ -8978,6 +8871,10 @@
       "vi": "Giao diện"
     }
   },
+  "69cb8508": {
+    "source": "Show cost information on the actions",
+    "translated": {}
+  },
   "f53e7e27": {
     "source": "Cost fraction digits:",
     "translated": {
@@ -9921,6 +9818,10 @@
       "tr": "Maliyet mevcut değil"
     }
   },
+  "2c36802b": {
+    "source": "estimated",
+    "translated": {}
+  },
   "25d7186f": {
     "source": "tokens",
     "translated": {
@@ -10659,47 +10560,6 @@
       "vi": "Bỏ chọn tất cả"
     }
   },
-  "a2d46748": {
-    "source": "All providers",
-    "translated": {
-      "ar": "جميع الموفرين",
-      "pt-BR": "Todos os provedores",
-      "ca": "Tots els proveïdors",
-      "bn": "সমস্ত প্রদানকারী",
-      "zh-CN": "所有提供商",
-      "zh-TW": "所有供應商",
-      "hr": "Svi davatelji",
-      "cs": "Všichni poskytovatelé",
-      "fr": "Tous les fournisseurs",
-      "en-US": "All providers",
-      "nl": "Alle providers",
-      "tl": "Lahat ng provider",
-      "hu": "Minden szolgáltató",
-      "el": "Όλοι οι πάροχοι",
-      "de": "Alle Anbieter",
-      "hi": "सभी प्रदाता",
-      "ja": "すべてのプロバイダー",
-      "ko": "모든 제공업체",
-      "it": "Tutti i provider",
-      "jv": "Kabeh panyedhiya",
-      "pt": "Todos os provedores",
-      "fa": "همه ارائه‌دهندگان",
-      "pl": "Wszyscy dostawcy",
-      "ms": "Semua penyedia",
-      "ru": "Все провайдеры",
-      "pa": "ਸਾਰੇ ਪ੍ਰਦਾਤਾ",
-      "ro": "Toți furnizorii",
-      "sk": "Všetci poskytovatelia",
-      "sv": "Alla leverantörer",
-      "sw": "Watoa huduma wote",
-      "te": "అన్ని ప్రదాతలు",
-      "es": "Todos los proveedores",
-      "vi": "Tất cả nhà cung cấp",
-      "uk": "Усі постачальники",
-      "th": "ทุกผู้ให้บริการ",
-      "tr": "Tüm sağlayıcılar"
-    }
-  },
   "a0607683": {
     "source": "OpenRouter",
     "translated": {
@@ -11071,6 +10931,47 @@
       "uk": "xAI",
       "th": "xAI",
       "tr": "xAI"
+    }
+  },
+  "a2d46748": {
+    "source": "All providers",
+    "translated": {
+      "ar": "جميع الموفرين",
+      "pt-BR": "Todos os provedores",
+      "ca": "Tots els proveïdors",
+      "bn": "সমস্ত প্রদানকারী",
+      "zh-CN": "所有提供商",
+      "zh-TW": "所有供應商",
+      "hr": "Svi davatelji",
+      "cs": "Všichni poskytovatelé",
+      "fr": "Tous les fournisseurs",
+      "en-US": "All providers",
+      "nl": "Alle providers",
+      "tl": "Lahat ng provider",
+      "hu": "Minden szolgáltató",
+      "el": "Όλοι οι πάροχοι",
+      "de": "Alle Anbieter",
+      "hi": "सभी प्रदाता",
+      "ja": "すべてのプロバイダー",
+      "ko": "모든 제공업체",
+      "it": "Tutti i provider",
+      "jv": "Kabeh panyedhiya",
+      "pt": "Todos os provedores",
+      "fa": "همه ارائه‌دهندگان",
+      "pl": "Wszyscy dostawcy",
+      "ms": "Semua penyedia",
+      "ru": "Все провайдеры",
+      "pa": "ਸਾਰੇ ਪ੍ਰਦਾਤਾ",
+      "ro": "Toți furnizorii",
+      "sk": "Všetci poskytovatelia",
+      "sv": "Alla leverantörer",
+      "sw": "Watoa huduma wote",
+      "te": "అన్ని ప్రదాతలు",
+      "es": "Todos los proveedores",
+      "vi": "Tất cả nhà cung cấp",
+      "uk": "Усі постачальники",
+      "th": "ทุกผู้ให้บริการ",
+      "tr": "Tüm sağlayıcılar"
     }
   },
   "f4f70727": {

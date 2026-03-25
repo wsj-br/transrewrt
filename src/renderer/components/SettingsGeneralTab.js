@@ -343,6 +343,16 @@ const SettingsGeneralTab = ({
           {t('Appearance')}
         </Text>
         <div style={{ paddingInlineStart: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+          <Checkbox
+            id="show-cost-on-actions"
+            checked={localSettings.show_cost_on_actions !== false}
+            onChange={(e) => onSettingChange('show_cost_on_actions', e.target.checked)}
+          />
+          <Label htmlFor="show-cost-on-actions" style={{ margin: 0, cursor: 'pointer' }}>
+            {t('Show cost information on the actions')}
+          </Label>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
           <Label htmlFor="cost-fraction-style" style={{ margin: 0, whiteSpace: 'nowrap' }}>
             {t('Cost fraction digits:')}
@@ -514,6 +524,7 @@ SettingsGeneralTab.propTypes = {
     real_time_translation: PropTypes.bool,
     real_time_delay: PropTypes.number,
     keep_execution_history: PropTypes.bool,
+    show_cost_on_actions: PropTypes.bool,
     cost_fraction_style: PropTypes.string,
     web_margin: PropTypes.string,
     font_family: PropTypes.string,

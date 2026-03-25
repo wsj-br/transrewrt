@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { mergeClasses, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
@@ -333,28 +333,71 @@ const App = () => {
 
   const costFractionStyle = settings?.cost_fraction_style || "muted";
   const totalCostNum = Number(settings.total_cost) || 0;
-  const outputMeta = (
-    <>
-      {isProcessing || elapsedTime > 0 ? (
-        <>{t("Elapsed")}:{" "} {formatElapsedMmSs(elapsedTime, locale)} | </>
-      ) : null}
-      {!isProcessing && lastRunCostKind !== "none" ? (
-        <>
-          {t("Cost")}:{" "}
-          {lastRunCostKind === "amount"
-            ? formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })
-            : lastRunCostKind === "free"
-              ? <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>
-              : t("not available")}
-          {" | "}
-        </>
-      ) : null}
-      {t("Total")}: {totalCostNum > 0 ? formatCost(totalCostNum, costFractionStyle, locale, { mainPartSuccess: true }) : <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>}
-      {tokensPerSecond ? (
-        <> | {t("TPS")}: {formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</>
-      ) : null}
-    </>
-  );
+  const showCostOnActions = settings?.show_cost_on_actions !== false;
+  const isLastRunCostEstimated =
+    lastRunCostKind === "amount" &&
+    typeof lastRunModel === "string" &&
+    !lastRunModel.startsWith("openrouter/");
+  const outputMeta = useMemo(() => {
+    const segments = [];
+    if (isProcessing || elapsedTime > 0) {
+      segments.push(
+        <span key="elapsed">
+          {t("Elapsed")}: {formatElapsedMmSs(elapsedTime, locale)}
+        </span>,
+      );
+    }
+    if (showCostOnActions && !isProcessing && lastRunCostKind === "amount") {
+      segments.push(
+        <span key="cost">
+          {t("Cost")}: {isLastRunCostEstimated ? "~" : ""}
+          {formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })}
+        </span>,
+      );
+    }
+    if (showCostOnActions) {
+      segments.push(
+        <span key="total">
+          {t("Total")}:{" "}
+          {totalCostNum > 0 ? (
+            formatCost(totalCostNum, costFractionStyle, locale, { mainPartSuccess: true })
+          ) : (
+            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>
+          )}
+        </span>,
+      );
+    }
+    if (tokensPerSecond) {
+      segments.push(
+        <span key="tps">
+          {t("TPS")}: {formatDecimal(tokensPerSecond, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+        </span>,
+      );
+    }
+    if (segments.length === 0) return null;
+    return (
+      <>
+        {segments.map((node, i) => (
+          <Fragment key={node.key ?? i}>
+            {i > 0 ? " | " : null}
+            {node}
+          </Fragment>
+        ))}
+      </>
+    );
+  }, [
+    costFractionStyle,
+    elapsedTime,
+    isLastRunCostEstimated,
+    isProcessing,
+    lastRunCost,
+    lastRunCostKind,
+    locale,
+    showCostOnActions,
+    t,
+    tokensPerSecond,
+    totalCostNum,
+  ]);
 
   const common = {
     t,

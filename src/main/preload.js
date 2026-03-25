@@ -59,6 +59,7 @@ const api = {
   llmModels: () => ipcRenderer.invoke('llm:models'),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
   getOsUsername: () => ipcRenderer.invoke('get-os-username'),
+  openExternalUrl: (url) => ipcRenderer.invoke('shell:openExternal', url),
   getOpenRouterKeyInfo: () => ipcRenderer.invoke('getOpenRouterKeyInfo'),
   // App DB (same surface as webAPI for Cost tab and custom prompts)
   logApiCall: (payload) => ipcRenderer.invoke('appDb:log', payload),

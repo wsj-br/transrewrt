@@ -6,7 +6,7 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -19,9 +19,9 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Rewrite** — fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** — custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** — full execution history with input/output text, filtering, and export
-- **Models & cost** — choose models from any configured provider; cost dashboard with SQLite log, summaries by model/operation/day
+- **Models & cost** — choose models from any configured provider; cost and usage dashboards with log, summaries by model/operation/day
 - **UI** — multilingual interface (30+ languages, RTL support), fonts, ...
-- **Web mode** — multi-user support with admin roles; API keys stay server-side, never exposed to the browser
+- **Web mode** — multi-user support with admin roles
 - **Desktop** — Electron app for Windows and Linux
 - **Self-hosted** — Docker image for amd64 & arm64 (Raspberry Pi-ready)
 
@@ -29,12 +29,14 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 
 <small>**Read in other languages:** [English (UK)](README.md) · [Português (BR)](translated-docs/README.pt-BR.md) · [العربية](translated-docs/README.ar.md) · [বাংলা](translated-docs/README.bn.md) · [Català](translated-docs/README.ca.md) · [简体中文](translated-docs/README.zh-CN.md) · [繁體中文](translated-docs/README.zh-TW.md) · [Hrvatski](translated-docs/README.hr.md) · [Čeština](translated-docs/README.cs.md) · [Nederlands](translated-docs/README.nl.md) · [English (US)](translated-docs/README.en-US.md) · [Filipino](translated-docs/README.tl.md) · [Français](translated-docs/README.fr.md) · [Deutsch](translated-docs/README.de.md) · [Ελληνικά](translated-docs/README.el.md) · [हिन्दी](translated-docs/README.hi.md) · [Magyar](translated-docs/README.hu.md) · [Italiano](translated-docs/README.it.md) · [日本語](translated-docs/README.ja.md) · [Basa Jawa](translated-docs/README.jv.md) · [한국어](translated-docs/README.ko.md) · [Bahasa Melayu](translated-docs/README.ms.md) · [فارسی](translated-docs/README.fa.md) · [Polski](translated-docs/README.pl.md) · [Português (PT)](translated-docs/README.pt.md) · [ਪੰਜਾਬੀ](translated-docs/README.pa.md) · [Română](translated-docs/README.ro.md) · [Русский](translated-docs/README.ru.md) · [Slovenčina](translated-docs/README.sk.md) · [Español](translated-docs/README.es.md) · [Kiswahili](translated-docs/README.sw.md) · [Svenska](translated-docs/README.sv.md) · [తెలుగు](translated-docs/README.te.md) · [ภาษาไทย](translated-docs/README.th.md) · [Türkçe](translated-docs/README.tr.md) · [Українська](translated-docs/README.uk.md) · [Tiếng Việt](translated-docs/README.vi.md)</small>
 
+<small>
+
+> **Note on UI and documentation translations:** All interface languages except the original English (UK) 
+> were translated using AI models; the wording may be imprecise or contain errors.
+
+</small>
 
 <br/>
-
-**Note on UI and documentation translations:** All interface languages except English (UK) were translated using AI models; the wording may be imprecise or contain errors.
-
-
 
 <a id="screenshots"></a>
 ## Screenshots
@@ -210,7 +212,13 @@ Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) i
 2. Open the [Keys](https://openrouter.ai/keys) page and create a new key (name it, and optionally set a credit limit). You can use free models without adding credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set env vars such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
 
+Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translate, rewrite, or transform: it returns JSON request payloads, not the completed text for those tasks. See [Settings → Models](USER-GUIDE.md#models) in the User Guide.
+
 You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
+
+> ⚠️ **WARNING**<br/>
+> If you are using Ollama from another device, container, or service, remember to configure Ollama to allow external connections (not localhost-only).
+
 
 For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 

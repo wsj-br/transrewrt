@@ -27,7 +27,15 @@ This guide explains how to use the app once it is installed and running. For ins
 
 <small>**Read in other languages:** [English (UK)](USER-GUIDE.md) · [Português (BR)](translated-docs/USER-GUIDE.pt-BR.md) · [العربية](translated-docs/USER-GUIDE.ar.md) · [বাংলা](translated-docs/USER-GUIDE.bn.md) · [Català](translated-docs/USER-GUIDE.ca.md) · [简体中文](translated-docs/USER-GUIDE.zh-CN.md) · [繁體中文](translated-docs/USER-GUIDE.zh-TW.md) · [Hrvatski](translated-docs/USER-GUIDE.hr.md) · [Čeština](translated-docs/USER-GUIDE.cs.md) · [Nederlands](translated-docs/USER-GUIDE.nl.md) · [English (US)](translated-docs/USER-GUIDE.en-US.md) · [Filipino](translated-docs/USER-GUIDE.tl.md) · [Français](translated-docs/USER-GUIDE.fr.md) · [Deutsch](translated-docs/USER-GUIDE.de.md) · [Ελληνικά](translated-docs/USER-GUIDE.el.md) · [हिन्दी](translated-docs/USER-GUIDE.hi.md) · [Magyar](translated-docs/USER-GUIDE.hu.md) · [Italiano](translated-docs/USER-GUIDE.it.md) · [日本語](translated-docs/USER-GUIDE.ja.md) · [Basa Jawa](translated-docs/USER-GUIDE.jv.md) · [한국어](translated-docs/USER-GUIDE.ko.md) · [Bahasa Melayu](translated-docs/USER-GUIDE.ms.md) · [فارسی](translated-docs/USER-GUIDE.fa.md) · [Polski](translated-docs/USER-GUIDE.pl.md) · [Português (PT)](translated-docs/USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](translated-docs/USER-GUIDE.pa.md) · [Română](translated-docs/USER-GUIDE.ro.md) · [Русский](translated-docs/USER-GUIDE.ru.md) · [Slovenčina](translated-docs/USER-GUIDE.sk.md) · [Español](translated-docs/USER-GUIDE.es.md) · [Kiswahili](translated-docs/USER-GUIDE.sw.md) · [Svenska](translated-docs/USER-GUIDE.sv.md) · [తెలుగు](translated-docs/USER-GUIDE.te.md) · [ภาษาไทย](translated-docs/USER-GUIDE.th.md) · [Türkçe](translated-docs/USER-GUIDE.tr.md) · [Українська](translated-docs/USER-GUIDE.uk.md) · [Tiếng Việt](translated-docs/USER-GUIDE.vi.md)</small>
 
+<small>
+
+> **Note on UI and documentation translations:** All interface languages except the original English (UK) 
+> were translated using AI models; the wording may be imprecise or contain errors.
+
+</small>
+
 <br/>
+
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -44,16 +52,13 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Translate text](#translate-text)
   - [Language selection](#language-selection)
   - [Helpful translation settings](#helpful-translation-settings)
-  - [Keyboard shortcuts](#keyboard-shortcuts)
 - [Rewrite](#rewrite)
-  - [Rewrite text](#rewrite-text)
 - [Transform](#transform)
   - [Run an existing prompt](#run-an-existing-prompt)
   - [If you have no prompts yet](#if-you-have-no-prompts-yet)
   - [Create a prompt quickly](#create-a-prompt-quickly)
   - [Edit a prompt](#edit-a-prompt)
   - [Test a prompt before using it](#test-a-prompt-before-using-it)
-  - [Manage saved prompts](#manage-saved-prompts)
 - [Dashboard](#dashboard)
   - [Filter the data](#filter-the-data)
   - [Dashboard tabs](#dashboard-tabs)
@@ -97,16 +102,16 @@ This guide explains how to use the app once it is installed and running. For ins
 
 To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
 
-You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. 
+You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
 
 In plain language:
 
 - A **model** is the AI engine that does the work. Models are listed with a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
 - An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
-If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you don't want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead.
+If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
 
-If you are using the **web version**, the server owner configures providers with environment variables, so you will not normally enter API keys yourself.
+If you are using the **web version**, the server owner configures providers with environment variables, so you cannot enter API keys directly in the application.
 
 <br/>
 
@@ -124,11 +129,6 @@ If you are using the desktop app, follow these steps:
 7. Return to Transrewrt and open **Settings** > **API Config**.
 8. Paste the key into **OpenRouter API key** (under **Settings** > **API Config**).
 9. Click **Test OpenRouter key** to make sure it works.
-
-<br/>
-
-> ℹ️ **NOTE**<br/>
-> You can start with OpenRouter's free route or any of the other free models available without adding a credit card. In many cases, that is enough to begin using Transrewrt without choosing a paid model. Alternatively, you can use Ollama to run models locally without any API key.
 
 <br/><br/>
 
@@ -201,10 +201,8 @@ The **model selector** lets you choose which AI engine to use for the current ta
 
   ![Model selector](images/screenshots/en-GB/model-selector.png)
 
-> ℹ️ **NOTE**<br/>
-> Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list.<br/>
-> To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
-> You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
+ Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
+ You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
 
 <br/>
 
@@ -219,26 +217,22 @@ The **globe icon + language code** changes the app interface language, such as m
 
 Most workspaces use a left-hand **Input** panel and a right-hand **Output** panel.
 
-The **Input** panel shows:
+Each panel also shows:
 
-- Character count
-- Word count
-- Paragraph count
+| **Input**                                                          | **Output**                                                                                                                  |
+|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| - Character count <br/>- Word count <br/>- Paragraph count   <br/> | - How long the task took<br/>- **TPS** (tokens per second)<br/>- Character, word, and paragraph counts<br/>- The model used |
 
-The **Output** panel can show:
-
-- How long the task took
-- The cost of that task (if available)
-- Your running total cost
-- **TPS** (tokens per second)
-- Character, word, and paragraph counts
-- The model used
 
 If you are wondering about the technical terms:
 
 - **Token** means a small chunk of text. You can think of it as part of a word or a short word.
 - **TPS** means how many of those text chunks the model processed each second.
 
+<br/>
+
+You can also monitor the cost of each operation (if available) and the total cost, enabling the option `Show cost information on the actions` at [**Settings** > **General settings**](#general-settings). 
+ 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
@@ -285,18 +279,7 @@ In [**Settings** > **General Settings**](#general-settings), you can change how 
 - **Auto-copy result to clipboard** copies the result automatically after a successful run.
 - **Real-time translation (while typing)** runs translations while you type.
 - **Timeout (ms)** controls how long the app waits before running a real-time translation.
-
-<br/>
-
-<a id="keyboard-shortcuts"></a>
-### Keyboard shortcuts
-
-In [**Settings** > **General Settings**](#general-settings), **Behaviour for ENTER** controls what happens when you press `Enter`:
-
-- **Enter** can run the task and **Shift+Enter** can add a new line.
-- Or the app can do the reverse.
-
-The current mode is also shown on the **Translate** button.
+- **Enter** controls what happens when you press `Enter`:
 
 <br/><br/>
 
@@ -316,21 +299,6 @@ This is useful for:
 - making text more formal or more informal
 - shortening or expanding text
 - making text sound more technical
-
-<br/>
-
-<a id="rewrite-text"></a>
-### Rewrite text
-
-1. Open **Rewrite**.
-2. Choose a **Mode**.
-3. Choose a model in the toolbar.
-4. Type or paste text into **Input**.
-5. Click **Rewrite**.
-6. Review the result in **Output**.
-
-
-The same Enter key behaviour described in [**Translate**](#keyboard-shortcuts) also applies here.
 
 <br/>
 
@@ -356,6 +324,7 @@ This is the most flexible area of the app. You can use it for tasks such as:
 - turning rough text into a polished email
 - extracting key points
 - converting text into a specific format
+- any other custom activity with the input text
 
 <br/>
 
@@ -448,16 +417,8 @@ This is useful when:
 
 <br/>
 
-<a id="manage-saved-prompts"></a>
-### Manage saved prompts
-
-To manage saved prompts in one place, open [**Settings** > **Transform Prompts**](#transform-prompts).
-
-There you can:
-
-- list and delete your prompts
-- export prompts as **JSON**, **CSV**, or **XLSX**
-- import prompts from a file
+> ℹ️ **NOTE**<br/>
+> You can export and import saved prompts in [**Settings** > **Transform Prompts**](#transform-prompts).
 
 <br/><br/>
 
@@ -616,6 +577,7 @@ Use **General Settings** to control typing behaviour, whether execution details 
 
 **Appearance**
 
+- **Show cost information on the actions** controls the display of the cost per operation (if available) and the total cost on the Translate, Rewrite, and Transform output panels.
 - **Cost fraction digits** changes how cost decimals are displayed.
 - **Web only:** **show a margin around the app** adds extra space around the interface.
 - **Font Family** changes the writing font in the text panels.
@@ -645,6 +607,9 @@ Useful controls include:
 - **Expand All** and **Collapse All** when you are sorting by provider
 
 Model ids include the provider prefix (for example `openrouter/…` vs `openai/…`). Badges such as **OpenAI (OpenRouter)** vs **OpenAI (direct)** show how traffic is routed.
+
+> ℹ️ **NOTE**<br/>
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) is a router model, not a general chat model: its reply is JSON that describes OpenRouter API request bodies (for example a `requests` array with `model` and `messages`). If you use it for **Translate**, **Rewrite**, or **Transform**, the output panel will show that JSON instead of finished text. Choose a normal text model for those tasks. See the [Body Builder model page](https://openrouter.ai/openrouter/bodybuilder) on OpenRouter.
 
 Actions:
 
@@ -686,7 +651,7 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 - **Delete cost data** removes all data, or only entries older than a selected date.
 
 
- **Cost tracking:** When you use OpenRouter models, the app shows your actual usage and spending based on data from OpenRouter. For all other providers, the app estimates costs using prices published by OpenRouter, if a price is unavailable, the estimate may be zero.
+ **Cost tracking:** When you use OpenRouter models, the app shows your actual usage and spending based on cost information from OpenRouter. For all other providers, the app estimates costs using prices published by OpenRouter, if a price is unavailable, the estimate may be zero.
 
 <br/>
 
@@ -697,8 +662,9 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently. <br/> 
-> All history related to each API call entry will also be deleted.
+> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**History**](#history) 
+> or [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently. 
+> All input/output history related to each API call entry will also be deleted.
 
 
 <br/>
@@ -719,8 +685,6 @@ You can:
 
 <a id="users"></a>
 ### Users
-
-**Web: administrator only**
 
 Use **Users** to manage user accounts in the web version. You can add users, update their details, reset passwords, and delete accounts.
 
@@ -750,23 +714,19 @@ Use **API Config** to store API keys for each provider you use. For Ollama, ente
 <br/>
 
 > 💡 **Tip** <br/>
-> If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models.
+> If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models (such as `translategemma:4b`) locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models, or obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
+
+<br/>
 
 - Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-To add an API key, type the value in the text field and click **`Save`**. To replace an existing key, click **`Edit`**. To check whether a key is working, click **`Test`**.
+To add an API key, enter the value in the text field and click **`Save`**. To replace an existing key, click **`Edit`**. To verify that a key is working, click **`Test`**. For the Ollama base URL, always click **`Test`** to check the connection.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
 > You cannot see the current value of an API key. You can only replace it using the **`Edit`** button.
-> API keys are stored encrypted in the configuration file.
-
-<br/>
-
-For detailed steps on obtaining an OpenRouter key, see [How to get an API key](#how-to-get-an-api-key-desktop-app) above.
-
-
+> API keys are stored encrypted in the configuration.
 
 <br/>
 

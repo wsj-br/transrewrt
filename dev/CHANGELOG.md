@@ -9,6 +9,30 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Settings models provider filter: `SettingsPanel` derives `effectiveFilterEngine` during render when the stored engine is no longer in `engineFilterOptions`, removing a disallowed `setState` in `useEffect` (eslint `react-hooks/set-state-in-effect`).
+- **Fixed**: `scripts/upgrade-tools.ps1` now runs `nvm use` on the LTS version from `nvm install lts` output instead of the previously active (`*`) version in `nvm list`.
+- **Added**: USER-GUIDE and README note that OpenRouter **Body Builder** (`openrouter/bodybuilder`) outputs JSON API request bodies, not plain text—avoid it for Translate, Rewrite, and Transform.
+- **Added**: Settings → General → Appearance: **Show cost information on the actions** (default on); when off, translate/rewrite/transform output meta and transform prompt test output hide run/total cost lines while tracking and persistence stay unchanged.
+- **Changed**: Output meta last-run cost line in `App.js` uses two clear branches (`amount` / `free`) instead of a nested ternary and empty fallback for `unknown` / `none`.
+- **Changed**: README and USER-GUIDE now warn that Ollama must be configured to allow external/network access when used from other devices, containers, or services.
+- **Changed**: Translate/Rewrite/Transform output meta now prefixes run cost with `~` only when the amount is estimated (non-OpenRouter direct-provider runs); exact OpenRouter amounts remain without `~`.
+- **Changed**: Transform > Prompt Edit test usage line now also prefixes estimated cost amounts with `~`, matching the main run output meta behavior.
+- **Changed**: Settings > Models now appends `(estimated)` to pricing lines when direct-provider model costs are inferred from OpenRouter pricing matches.
+- **Changed**: Settings → Models provider filter list is now sorted alphabetically (by provider label in the current UI language), with "All providers" kept first.
+- **Fixed**: Electron external-link actions in Settings → API now open provider/Ollama URLs in the OS default browser via `shell.openExternal` (preload IPC bridge) instead of opening inside a new Electron window.
+- **Fixed**: Electron Settings → API Config provider external-link icon now appears in both field states (configured view and edit/input view); previously it was rendered only in edit/input mode.
+- **Changed**: Electron API-provider link lookup now matches `provider_id` case-insensitively (normalized compare) when resolving URLs from `icons_with_files.json`.
+- **Changed**: Electron Settings → API Config now shows an external-link icon beside provider API-key labels (and beside Ollama base URL) when a provider URL exists in `icons_with_files.json`; clicking opens the provider website in the browser.
+- **Changed**: Provider icon mappings for `cerebras`, `google` (now `google.ico`), and `google-vertex` are now explicit in `icons_with_files.json`; removed redundant `ProviderIcon` manual override map.
+- **Changed**: Sorted `src/renderer/assets/icons_with_files.json` entries by `provider_id` for consistent maintenance and diffs.
+- **Changed**: Cleaned new provider icon catalog entries (`icons_with_files.json`) with normalized provider names (brand casing) and populated known official URLs.
+- **Changed**: Added missing provider icon entries in `src/renderer/assets/icons_with_files.json` so existing `.ico` assets resolve in `ProviderIcon` instead of falling back to the generic icon.
+- **Changed**: `scripts/trim-ico-sizes.sh` now processes icon files from `./src/renderer/assets` when run from the repository root.
+- **Changed**: `scripts/trim-ico-sizes.sh` now exits early with an install hint (`sudo apt install imagemagick`) when ImageMagick tools are missing.
+- **Changed**: Provider icons now also resolve from `provider/model` identifiers by trying the first segment as the provider key, and Google provider icon mapping now uses `google.ico`.
+- **Changed**: Successful **Ollama** API test message is now “Ollama configuration is working.” instead of “Ollama credentials are valid.”
+- **Fixed**: API provider test for **Ollama** no longer always reported “Ollama base URL is required” — `buildProviderTestRequest` incorrectly attached `missingMessage` on the successful branch so `testProviderAuth` never ran the `/api/tags` check.
+- **Fixed**: Settings > API Config inputs now keep per-provider draft values so unconfigured API key fields are editable; Ollama base URL editing is buffered locally and saved on blur/Enter to prevent cursor jumps while typing.
 - **Changed**: History list input preview: newlines are replaced with spaces (single-line preview); full `input_text` unchanged in the detail panel.
 - **Fixed**: **ProviderIcon** maps native **`cerebras`** engine to `cerebras.ico` (vendor absent from OpenRouter `icons_with_files.json` catalog).
 - **Changed**: LLM provider env vars: missing or blank/whitespace-only values are ignored (`readEnvNonBlank` in shared LLM `mergeKeys`, Electron env sync, `listLlmEnvVarsPresent`, web `/api/provider-keys` env flags).

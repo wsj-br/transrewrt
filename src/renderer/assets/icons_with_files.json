@@ -60,10 +60,34 @@
     "iconFile": "arcee_ai.ico"
   },
   {
+    "provider_id": "atlascloud",
+    "name": "AtlasCloud",
+    "url": "https://atlascloud.ai",
+    "iconFile": "atlascloud.ico"
+  },
+  {
+    "provider_id": "azure",
+    "name": "Azure",
+    "url": "https://azure.microsoft.com",
+    "iconFile": "azure.ico"
+  },
+  {
     "provider_id": "baidu",
     "name": "Baidu",
     "url": "https://www.baidu.com",
     "iconFile": "baidu.ico"
+  },
+  {
+    "provider_id": "baseten",
+    "name": "Baseten",
+    "url": "https://www.baseten.co",
+    "iconFile": "baseten.ico"
+  },
+  {
+    "provider_id": "black-forest-labs",
+    "name": "Black Forest Labs",
+    "url": "https://blackforestlabs.ai",
+    "iconFile": "black_forest_labs.ico"
   },
   {
     "provider_id": "bytedance",
@@ -78,6 +102,36 @@
     "iconFile": "seed.ico"
   },
   {
+    "provider_id": "cerebras",
+    "name": "Cerebras",
+    "url": "https://www.cerebras.ai",
+    "iconFile": "cerebras.ico"
+  },
+  {
+    "provider_id": "chutes",
+    "name": "Chutes",
+    "url": "",
+    "iconFile": "chutes.ico"
+  },
+  {
+    "provider_id": "cirrascale",
+    "name": "Cirrascale",
+    "url": "https://cirrascale.com",
+    "iconFile": "cirrascale.ico"
+  },
+  {
+    "provider_id": "clarifai",
+    "name": "Clarifai",
+    "url": "https://www.clarifai.com",
+    "iconFile": "clarifai.ico"
+  },
+  {
+    "provider_id": "cloudflare",
+    "name": "Cloudflare",
+    "url": "https://www.cloudflare.com",
+    "iconFile": "cloudflare.ico"
+  },
+  {
     "provider_id": "cognitivecomputations",
     "name": "Cognitive Computations",
     "url": "https://huggingface.co/cognitivecomputations",
@@ -90,10 +144,22 @@
     "iconFile": "cohere.ico"
   },
   {
+    "provider_id": "crusoe",
+    "name": "Crusoe",
+    "url": "https://crusoe.ai",
+    "iconFile": "crusoe.ico"
+  },
+  {
     "provider_id": "deepcogito",
     "name": "DeepCogito",
     "url": "https://huggingface.co/deepcogito",
     "iconFile": "deepcogito.ico"
+  },
+  {
+    "provider_id": "deepinfra",
+    "name": "DeepInfra",
+    "url": "https://deepinfra.com",
+    "iconFile": "deepinfra.ico"
   },
   {
     "provider_id": "deepseek",
@@ -114,16 +180,64 @@
     "iconFile": "essentialai.ico"
   },
   {
+    "provider_id": "featherless",
+    "name": "Featherless",
+    "url": "",
+    "iconFile": "featherless.ico"
+  },
+  {
+    "provider_id": "fireworks",
+    "name": "Fireworks AI",
+    "url": "https://fireworks.ai",
+    "iconFile": "fireworks.ico"
+  },
+  {
+    "provider_id": "friendli",
+    "name": "Friendli",
+    "url": "https://friendli.ai",
+    "iconFile": "friendli.ico"
+  },
+  {
+    "provider_id": "gmicloud",
+    "name": "GMICloud",
+    "url": "https://www.gmicloud.ai",
+    "iconFile": "gmicloud.ico"
+  },
+  {
     "provider_id": "google",
+    "name": "Google",
+    "url": "https://ai.google.dev",
+    "iconFile": "google.ico"
+  },
+  {
+    "provider_id": "google-ai-studio",
     "name": "Google AI Studio",
     "url": "https://ai.google.dev",
     "iconFile": "google_ai_studio.ico"
+  },
+  {
+    "provider_id": "google-vertex",
+    "name": "Google Vertex",
+    "url": "https://cloud.google.com/vertex-ai",
+    "iconFile": "google_vertex.ico"
+  },
+  {
+    "provider_id": "groq",
+    "name": "Groq",
+    "url": "https://groq.com",
+    "iconFile": "groq.ico"
   },
   {
     "provider_id": "gryphe",
     "name": "Gryphe",
     "url": "https://huggingface.co/Gryphe",
     "iconFile": "gryphe.ico"
+  },
+  {
+    "provider_id": "hyperbolic",
+    "name": "Hyperbolic",
+    "url": "https://hyperbolic.xyz",
+    "iconFile": "hyperbolic.ico"
   },
   {
     "provider_id": "ibm-granite",
@@ -136,6 +250,12 @@
     "name": "Inception",
     "url": "https://www.inceptionlabs.ai",
     "iconFile": "inception.ico"
+  },
+  {
+    "provider_id": "infermatic",
+    "name": "Infermatic",
+    "url": "",
+    "iconFile": "infermatic.ico"
   },
   {
     "provider_id": "inflection",
@@ -204,6 +324,18 @@
     "iconFile": "morph.ico"
   },
   {
+    "provider_id": "ncompass",
+    "name": "Ncompass",
+    "url": "",
+    "iconFile": "ncompass.ico"
+  },
+  {
+    "provider_id": "nebius-token-factory",
+    "name": "Nebius Token Factory",
+    "url": "https://nebius.com",
+    "iconFile": "nebius_token_factory.ico"
+  },
+  {
     "provider_id": "neversleep",
     "name": "NeverSleep",
     "url": "https://huggingface.co/NeverSleep",
@@ -216,16 +348,34 @@
     "iconFile": "nex_agi.ico"
   },
   {
+    "provider_id": "nextbit",
+    "name": "Nextbit",
+    "url": "",
+    "iconFile": "nextbit.ico"
+  },
+  {
     "provider_id": "nousresearch",
     "name": "NousResearch",
     "url": "https://nousresearch.com",
     "iconFile": "nousresearch.ico"
   },
   {
+    "provider_id": "novitaai",
+    "name": "Novita AI",
+    "url": "https://novita.ai",
+    "iconFile": "novitaai.ico"
+  },
+  {
     "provider_id": "nvidia",
     "name": "NVIDIA",
     "url": "https://www.nvidia.com",
     "iconFile": "nvidia.ico"
+  },
+  {
+    "provider_id": "ollama",
+    "name": "Ollama",
+    "url": "https://ollama.com",
+    "iconFile": "ollama.ico"
   },
   {
     "provider_id": "openai",
@@ -240,16 +390,34 @@
     "iconFile": "opengvlab.ico"
   },
   {
+    "provider_id": "openinference",
+    "name": "Openinference",
+    "url": "",
+    "iconFile": "openinference.ico"
+  },
+  {
     "provider_id": "openrouter",
     "name": "OpenRouter",
     "url": "https://openrouter.ai",
     "iconFile": "openrouter.ico"
   },
   {
+    "provider_id": "parasail",
+    "name": "Parasail",
+    "url": "",
+    "iconFile": "parasail.ico"
+  },
+  {
     "provider_id": "perplexity",
     "name": "Perplexity",
     "url": "https://perplexity.ai",
     "iconFile": "perplexity.ico"
+  },
+  {
+    "provider_id": "phala",
+    "name": "Phala",
+    "url": "https://phala.network",
+    "iconFile": "phala.ico"
   },
   {
     "provider_id": "prime-intellect",
@@ -270,10 +438,21 @@
     "iconFile": "raifle.ico"
   },
   {
+    "provider_id": "reka",
+    "name": "Reka AI",
+    "url": "https://reka.ai/",
+    "iconFile": "reka.ico"
+  },  {
     "provider_id": "relace",
     "name": "Relace",
     "url": "https://relace.ai",
     "iconFile": "relace.ico"
+  },
+  {
+    "provider_id": "sambanova",
+    "name": "SambaNova",
+    "url": "https://sambanova.ai",
+    "iconFile": "sambanova.ico"
   },
   {
     "provider_id": "sao10k",
@@ -282,10 +461,28 @@
     "iconFile": "sao10k.ico"
   },
   {
+    "provider_id": "siliconflow",
+    "name": "SiliconFlow",
+    "url": "https://siliconflow.ai",
+    "iconFile": "siliconflow.ico"
+  },
+  {
+    "provider_id": "sourceful",
+    "name": "Sourceful",
+    "url": "",
+    "iconFile": "sourceful.ico"
+  },
+  {
     "provider_id": "stepfun",
     "name": "StepFun",
     "url": "https://huggingface.co/stepfun",
     "iconFile": "stepfun.ico"
+  },
+  {
+    "provider_id": "streamlake",
+    "name": "Streamlake",
+    "url": "",
+    "iconFile": "streamlake.ico"
   },
   {
     "provider_id": "switchpoint",
@@ -312,6 +509,12 @@
     "iconFile": "tngtech.ico"
   },
   {
+    "provider_id": "together",
+    "name": "Together",
+    "url": "https://www.together.ai",
+    "iconFile": "together.ico"
+  },
+  {
     "provider_id": "undi95",
     "name": "Undi95",
     "url": "https://huggingface.co/Undi95",
@@ -322,6 +525,18 @@
     "name": "Upstage",
     "url": "https://www.upstage.ai",
     "iconFile": "upstage.ico"
+  },
+  {
+    "provider_id": "venice",
+    "name": "Venice",
+    "url": "https://venice.ai",
+    "iconFile": "venice.ico"
+  },
+  {
+    "provider_id": "weights-biases",
+    "name": "Weights & Biases",
+    "url": "https://wandb.ai",
+    "iconFile": "weights_biases.ico"
   },
   {
     "provider_id": "writer",
