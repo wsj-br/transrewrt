@@ -108,7 +108,7 @@ Options:
   --help, -h              Show this help and exit.
   --force, -f             Force translation even when source hash matches existing file (ignore skip).
   --doc <name>            README | USER-GUIDE | both (default: both).
-  --locale, -l <codes>    Translate only these locale(s), comma-separated (e.g. pt-BR, es, ja).
+  --locale, -l <codes>    Translate only these locale(s), comma- or space-separated inside a single argv token (e.g. pt-BR, es, ja or --locale "pt-BR es ja").
   --model, -m <name>      OpenRouter model (default: ${DEFAULT_MODEL}).
   --max-tokens, -t <n>    Max tokens (default: ${DEFAULT_MAX_TOKENS}).
   --concurrency, -c <n>   Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
@@ -139,6 +139,9 @@ function parseArgs() {
     else if (arg === "--doc" && args[i + 1]) {
       const v = args[++i];
       if (v === "README" || v === "USER-GUIDE" || v === "both") doc = v;
+    } else if (arg.startsWith("--locale=")) {
+      const v = arg.split("=", 2)[1];
+      locale = v;
     } else if ((arg === "--locale" || arg === "-l") && args[i + 1]) locale = args[++i];
     else if ((arg === "--model" || arg === "-m") && args[i + 1]) model = args[++i];
     else if ((arg === "--max-tokens" || arg === "-t") && args[i + 1]) {
@@ -187,7 +190,7 @@ if (DOCS_TO_PROCESS.length === 0) {
 }
 
 if (args.locale) {
-  const codes = args.locale.split(",").map((c) => c.trim()).filter(Boolean);
+  const codes = args.locale.split(/[,\s]+/).map((c) => c.trim()).filter(Boolean);
   const byCode = new Map(LANGUAGES.map((l) => [l.code, l]));
   const matched = [];
   const invalid = [];
@@ -314,6 +317,7 @@ RULES:
 - Keep URLs, [text](url), ![alt](path) link targets unchanged; translate only the visible link text where appropriate.
 - Keep HTML tags and attribute values that are paths or technical (e.g. alt text can be translated).
 - Keep product names as-is: Transrewrt, OpenRouter, Electron, Docker, unless there is a common localized form.
+- Keep the language names in the paragraph "Read in other languages:" as-is.
 - Do NOT add any introduction, explanation, or note before or after the translation.
 - Do NOT wrap your response in a markdown code fence (no \`\`\`markdown ... \`\`\`).
 - Do NOT include the original text in your response.

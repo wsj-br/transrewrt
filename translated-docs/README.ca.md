@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-24T01:10:01.027Z"
-source_hash: "718acd12f14755cd75ebf7d09b86d9a1df37ebe1898710080fa8e80c1221d58b"
-source_mtime: 1774311390366.3484
+translated_at: "2026-03-25T22:07:43.344Z"
+source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
+source_mtime: 1774475429145.525
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -11,54 +11,56 @@ model: "qwen/qwen3-235b-a22b-2507"
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="Versió"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Versió"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Llicència: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Plataforma">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb indicacions personalitzades — utilitzant múltiples proveïdors d’IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d’escriptori (Electron) o com a aplicació web autoallotjada (Docker).
+Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb indicacions personalitzades — utilitzant múltiples proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- **Traduir** — entre desenes d’idiomes, amb detecció automàtica de l’idioma d’origen
-- **Reescriure** — corregir gramàtica, millorar la claredat, formal/informal, resumir, estendre, tècnic
-- **Transformar** — indicacions personalitzades d’IA; crea i gestiona indicacions, idioma de destinació opcional per a cada indicació
-- **Historial** — historial complet d’execucions amb text d’entrada i sortida, filtres i exportació
-- **Models i costos** — tria models de qualsevol proveïdor configurat; tauler de control de costos amb registre SQLite, resums per model/operació/dia
-- **Interfície** — interfície multilingüe (més de 30 idiomes, suport RTL), tipografies, ...
-- **Mode web** — suport multiusuari amb rols d’administrador; les claus d’API romanen al servidor, mai exposades al navegador
+- **Traduir** — entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
+- **Reescriure** — corregir gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
+- **Transformar** — indicacions personalitzades d'IA; crea i gestiona indicacions, idioma de destinació opcional per cada indicació
+- **Historial** — historial complet d'execucions amb text d'entrada i sortida, filtres i exportació
+- **Models i costos** — tria models de qualsevol proveïdor configurat; taulells de costos i ús amb registre, resums per model/operació/dia
+- **Interfície** — interfície multilingüe (més de 30 idiomes, suport RTL), fonts, ...
+- **Mode web** — suport multiusuari amb rols d'administrador
 - **Escriptori** — aplicació Electron per a Windows i Linux
-- **Autoallotjat** — imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
+- **Autoallotjada** — imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
 
-Un cop instal·lat, consulta la **[Guia d’usuari](USER-GUIDE.ca.md)** per obtenir una descripció completa de totes les funcionalitats.
+Un cop instal·lada, consulteu la **[Guia d'Usuari](USER-GUIDE.ca.md)** per a una descripció completa de totes les funcionalitats.
 
-<small>**Llegeix en altres idiomes:** [Anglès (UK)](README.ca.md) · [Portuguès (BR)](README.pt-BR.md) · [Àrab](README.ar.md) · [Bengalí](README.bn.md) · [Català](README.ca.md) · [Xinès simplificat](README.zh-CN.md) · [Xinès tradicional](README.zh-TW.md) · [Croata](README.hr.md) · [Txec](README.cs.md) · [Neerlandès](README.nl.md) · [Anglès (US)](README.en-US.md) · [Filipí](README.tl.md) · [Francès](README.fr.md) · [Alemany](README.de.md) · [Grec](README.el.md) · [Hindi](README.hi.md) · [Hongarès](README.hu.md) · [Italià](README.it.md) · [Japonès](README.ja.md) · [Javanès](README.jv.md) · [Coreà](README.ko.md) · [Malai](README.ms.md) · [Persa](README.fa.md) · [Polonès](README.pl.md) · [Portuguès (PT)](README.pt.md) · [Panjabi](README.pa.md) · [Romanès](README.ro.md) · [Rus](README.ru.md) · [Eslovac](README.sk.md) · [Castellà](README.es.md) · [Swahili](README.sw.md) · [Suec](README.sv.md) · [Telugu](README.te.md) · [Tailandès](README.th.md) · [Turc](README.tr.md) · [Ucraïnès](README.uk.md) · [Vietnamita](README.vi.md)</small>
+<small>**Llegiu en altres idiomes:** [English (UK)](README.ca.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
+<small>
+
+> **Nota sobre les traduccions de la interfície i la documentació:** Tots els idiomes de la interfície, excepte l'anglès (UK) original, 
+> s'han traduït mitjançant models d'IA; l'expressió pot ser imprecisa o contenir errors.
+
+</small>
 
 <br/>
-
-**Nota sobre les traduccions de la interfície i la documentació:** Tots els idiomes de la interfície, excepte l’anglès (UK), han estat traduïts mitjançant models d’IA; l’expressió pot ser imprecisa o contenir errors.
-
-
 
 <a id="screenshots"></a>
 ## Captures de pantalla
 
-**Selector d’idiomes**
+**Selector d'idioma**
 
-![Selector d’idiomes](../images/screenshots/ca/language-selector.png)
+![Selector d'idioma](../images/screenshots/ca/language-selector.png)
 
 **Traduir**
 
 ![Traduir](../images/screenshots/ca/translate.png)
 
-**Transformar - editor d’indicacions**
+**Transformar - editor d'indicacions**
 
-![Transformar - editor d’indicacions](../images/screenshots/ca/transform-prompt-edit.png)
+![Transformar - editor d'indicacions](../images/screenshots/ca/transform-prompt-edit.png)
 
-**Tauler de control**
+**Taulell**
 
-![Tauler de control de costos](../images/screenshots/ca/dashboard-summary.png)
+![Taulell de costos](../images/screenshots/ca/dashboard-summary.png)
 
 **Historial**
 
@@ -77,27 +79,28 @@ Un cop instal·lat, consulta la **[Guia d’usuari](USER-GUIDE.ca.md)** per obte
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Inici ràpid](#inici-ràpid)
-- [Instal·lació](#instal·lació)
+
+- [Inici ràpid](#quick-start)
+- [Instal·lació](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
-- [Obtenció d'una clau API d'OpenRouter](#obtenció-duna-clau-api-dopenrouter)
-- [Configuració i entorn](#configuració-i-entorn)
-- [Desenvolupament i arquitectura](#desenvolupament-i-arquitectura)
-- [Llençaments i etiquetes](#llençaments-i-etiquetes)
-- [Col·laboració](#col·laboració)
-- [Avís legal](#avís-legal)
-- [Llicència](#llicència)
+- [Obtenció d'una clau API d'OpenRouter](#getting-an-openrouter-api-key)
+- [Configuració i entorn](#configuration-and-environment)
+- [Desenvolupament i arquitectura](#development-and-architecture)
+- [Publicacions i etiquetes](#releases-and-tags)
+- [Contribució](#contributing)
+- [Avís legal](#disclaimer)
+- [Llicència](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <br/><br/>
 
-<a id="inici-ràpid"></a>
+<a id="quick-start"></a>
 ## Inici ràpid
 
-**Docker (recomanat per autoallotjament)**
+**Docker (recomanat per autogestionar)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -110,32 +113,32 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Substituïu `sk-or-your-key` per la vostra [clau API d'OpenRouter](https://openrouter.ai/keys) (o configureu claus d'altres proves; vegeu [Configuració](#configuració-i-entorn)). Obriu [http://localhost:5000](http://localhost:5000) i canvieu la contrasenya d'administrador per defecte abans d'exposar el servei.
+Substituïu `sk-or-your-key` per la vostra [clau API d'OpenRouter](https://openrouter.ai/keys) (o configureu claus d'altres proveïdors; vegeu [Configuració](#configuration-and-environment)). Obriu [http://localhost:5000](http://localhost:5000) i canvieu la contrasenya d'administrador predeterminada abans d'exposar el servei.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Amb Docker, les credencials dels LLM es configuren mitjançant variables d'entorn com ara `OPENROUTER_KEY`, `OPENAI_KEY`, … (no a través de la interfície web). Amb l'aplicació d'escriptori (Electron) les claus es configuren a **Configuració → API**.
+> En Docker, les credencials de LLM es configuren amb variables d'entorn com `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (no a través de la interfície web). En l'equip (Electron) configureu les claus a **Configuració → API**.
 
 <br/>
 
 **Windows**
 
-Baixeu l'última versió de `Transrewrt Setup x.y.z.exe` des de [Llençaments](https://github.com/wsj-br/transrewrt/releases), executeu el programa d'instal·lació i llanceu l'aplicació des del menú d'inici o l'accés directe d'escriptori. Introduïu les claus API a **Configuració → API**. Cal configurar almenys un proveïdor; OpenRouter és habitual per a models gratuïts.
+Descarregueu l'últim `Transrewrt Setup x.y.z.exe` de [Publicacions](https://github.com/wsj-br/transrewrt/releases), executeu el instal·lador i, després, inicieu l'aplicació pel menú d'Inici o l'accés directe d'escriptori. Introduïu les claus API a **Configuració → API**. Heu de configurar com a mínim un proveïdor; OpenRouter és habitual per a models gratuïts.
 
 <br/>
 
 **Linux**
 
-Baixeu el fitxer `.AppImage` des de [Llençaments](https://github.com/wsj-br/transrewrt/releases), i després:
+Descarregueu l'`.AppImage` adequat per al vostre processador de [Publicacions](https://github.com/wsj-br/transrewrt/releases) (`x64` per ordinadors típics, `arm64` per dispositius ARM, incloent Raspberry Pi 4+), i llavors:
 
 ```bash
-chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Introduïu les claus API a **Configuració → API**. Cal configurar almenys un proveïdor; OpenRouter és habitual per a models gratuïts.
+Introduïu les claus API a **Configuració → API**. Heu de configurar com a mínim un proveïdor; OpenRouter és habitual per a models gratuïts.
 
-A Debian/Ubuntu potser calgui instal·lar dependències addicionals:
+A Debian/Ubuntu pot caler instal·lar dependències addicionals abans:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -146,44 +149,44 @@ Vegeu [Instal·lació → Linux](#linux-electron) per més detalls.
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> macOS no està suportat actualment. Transrewrt està disponible per a Windows, Linux i Docker.
+> macOS no és actualment compatible. Transrewrt està disponible per a Windows, Linux i Docker.
 
 <br/>
 
-Un cop l'aplicació estigui en marxa, consulteu el **[Guia d'usuari](USER-GUIDE.ca.md)** per aprendre a traduir, reescriure i transformar textos, gestionar indicacions i configurar models.
+Un cop l'aplicació estigui en funcionament, consulteu el **[Manual d'usuari](USER-GUIDE.ca.md)** per saber com traduir, reescriure i transformar text, gestionar indicacions i configurar models.
 
 <br/><br/>
 
-<a id="instal·lació"></a>
+<a id="installation"></a>
 ## Instal·lació
 
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Baixeu el darrer instal·lador des de [Llençaments](https://github.com/wsj-br/transrewrt/releases).
-- Executeu el fitxer `.exe` i seguiu les instruccions de l'instal·lador.
-- Primera execució: inicieu l'aplicació des del menú d'inici o un accés directe d'escriptori.
+- Descarregueu l'instal·lador més recent des de [Publicacions](https://github.com/wsj-br/transrewrt/releases).
+- Executeu el `.exe` i seguiu les instruccions de l'instal·lador.
+- Primera execució: inicieu l'aplicació des del menú d'Inici o des de l'accés directe d'escriptori.
 
 <br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Baixeu el fitxer `.AppImage` des de [Llençaments](https://github.com/wsj-br/transrewrt/releases).
-- Executeu: `chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage`
+- Descarregueu l'`.AppImage` adequat (`x64` o `arm64`) des de [Publicacions](https://github.com/wsj-br/transrewrt/releases).
+- Executeu: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` en x86_64/amd64, o utilitzeu el nom de fitxer `...-arm64.AppImage` en ARM64.
 - Dependències addicionals (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Vegeu [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) per més informació.
+- Vegeu [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) per obtenir més informació.
 
 <br/>
 
 <a id="docker"></a>
 ### Docker
 
-- Baixeu: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Configureu almenys una clau de proveïdor mitjançant variables d'entorn (per exemple `OPENROUTER_KEY` per a OpenRouter). Passeu les variables amb `-e` o `docker compose` / `.env` per tal que les contrasenyes no quedin incrustades a la imatge.
-- Les claus del proveïdor **no** s'introdueixen a la interfície web; el servidor les llegeix des de l'entorn.
+- Descarrega: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Establiu com a mínim una clau de proveïdor mitjançant l'entorn (per exemple `OPENROUTER_KEY` per a OpenRouter). Passeu les variables amb `-e` o mitjançant `docker compose` / `.env` perquè els secrets no quedin incrustats a la imatge.
+- Les claus del proveïdor **no** es poden introduir a la interfície web; el servidor les llegeix des de l'entorn.
 
-Exemple - volum amb nom per persistència (clau OpenRouter via entorn):
+Exemple - volum amb nom per a persistència (clau OpenRouter via entorn):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -196,29 +199,35 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-| Opció   | Descripció                                                                                                |
-| -------- | ---------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (assigneu amb `-p 5000:5000`)                                                                       |
-| Volum    | Montegeu `/app/data` per a la persistència de configuració i base de dades                                 |
-| Variables d'entorn | `PORT`, `CONFIG_PATH`, i claus de LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - vegeu [Configuració](#configuració-i-entorn) |
+| Opció    | Descripció                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------------- |
+| Port     | `5000` (mapat amb `-p 5000:5000`)                                                                              |
+| Volum    | Munteu `/app/data` per a persistència de la configuració i la base de dades                                   |
+| Variables d'entorn | `PORT`, `CONFIG_PATH`, més claus LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - vegeu [Configuració](#configuration-and-environment) |
 
 Per compilar i executar des del codi font: `docker compose up --build -d` o `pnpm docker:up` - vegeu [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/><br/>
 
-<a id="obtenció-duna-clau-api-dopenrouter"></a>
+<a id="getting-an-openrouter-api-key"></a>
 
-## Com obtenir una clau API d'OpenRouter
+## Obtenir una clau API d'OpenRouter
 
-Transrewrt admet diversos proveïdors d'IA. [OpenRouter](https://openrouter.ai) és una opció popular perquè agrega molts models sota una única clau i ofereix models gratuïts.
+Transrewrt admet diversos proveïdors d'IA. [OpenRouter](https://openrouter.ai) és una opció popular perquè agrega múltiples models sota una sola clau i ofereix models gratuïts.
 
 1. Registreu-vos o inicieu sessió a [openrouter.ai](https://openrouter.ai).
-2. Obriu la pàgina de [Claus](https://openrouter.ai/keys) i creeu una nova clau (doneu-li un nom i, opcionalment, establiu un límit de crèdit). Podeu utilitzar models gratuïts sense afegir crèdit.
-3. **Ordinador (Electron):** enganxeu les claus a **Configuració → API**. **Docker:** definiu variables d'entorn com ara `OPENROUTER_KEY` (vegeu [Inici ràpid](#quick-start)).
+2. Obriu la pàgina de [Claus](https://openrouter.ai/keys) i creeu una nova clau (doneu-li un nom i, opcionalment, estableixeu un límit de crèdit). Podeu utilitzar models gratuïts sense afegir crèdit.
+3. **Ordinador (Electron):** enganxeu les claus a **Configuració → API**. **Docker:** definiu variables d'entorn com `OPENROUTER_KEY` (vegeu [Inici ràpid](#quick-start)).
 
-També podeu utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI) o executar models localment amb [Ollama](https://ollama.com). Vegeu [Configuració](#configuration-and-environment) per obtenir la llista completa de proveïdors suportats i variables d'entorn.
+No utilitzeu el model **Body Builder** d'OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) per traduir, reescriure o transformar: retorna càrregues útils de sol·licituds JSON, no el text completat per aquestes tasques. Vegeu [Configuració → Models](USER-GUIDE.ca.md#models) al Manual d'usuari.
 
-Per a límits, BYOK i més informació, consulteu [Autenticació d'OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
+També podeu utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) o executar models localment amb [Ollama](https://ollama.com). Consulteu [Configuració](#configuration-and-environment) per obtenir la llista completa de proveïdors compatibles i variables d'entorn.
+
+> ⚠️ **ADVERTÈNCIA**<br/>
+> Si utilitzeu Ollama des d'un altre dispositiu, contenidor o servei, recordeu configurar Ollama per permetre connexions externes (no només localhost).
+
+
+Per a límits, BYOK i més, consulteu [autenticació d'OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
@@ -227,11 +236,11 @@ Per a límits, BYOK i més informació, consulteu [Autenticació d'OpenRouter](h
 
 **Ubicacions del fitxer de configuració**
 
-| Desplegament       | Ubicació de la configuració                      |
-| ------------------ | ------------------------------------------------ |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                          |
-| Electron (Linux)   | `~/.config/transrewrt/`                          |
-| Web / Docker       | `/app/data/config.json` (utilitzeu un volum per persistir) |
+| Desplegament         | Ubicació del fitxer de configuració              |
+| ------------------ | ------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Web / Docker       | `/app/data/config.json` (utilitzeu un volum per persistir-ho) |
 
 <br/>
 
@@ -243,6 +252,7 @@ Per a límits, BYOK i més informació, consulteu [Autenticació d'OpenRouter](h
 | `CONFIG_PATH`    | `/app/data/config.json` | Ruta al fitxer de configuració |
 | `OPENROUTER_KEY` | *(buit)*                | Clau API d'OpenRouter |
 | `OPENAI_KEY`     | *(buit)*                | Clau API d'OpenAI |
+| `CEREBRAS_KEY`   | *(buit)*                | Clau API de Cerebras |
 | `ANTHROPIC_KEY`  | *(buit)*                | Clau API d'Anthropic |
 | `GOOGLE_KEY`     | *(buit)*                | Clau API de Google Gemini |
 | `DEEPSEEK_KEY`   | *(buit)*                | Clau API de DeepSeek |
@@ -251,73 +261,73 @@ Per a límits, BYOK i més informació, consulteu [Autenticació d'OpenRouter](h
 | `OLLAMA_URL`     | *(buit)*                | URL base d'Ollama (p. ex. `http://host.docker.internal:11434`) |
 | `XAI_KEY`        | *(buit)*                | Clau API de xAI |
 
-Configureu només els proveïdors que utilitzeu. Els IDs dels models tenen espai de noms (`openrouter/…`, `openai/…`, `ollama/…`, etc.).
+Configureu només els proveïdors que utilitzeu. Els ID de models tenen espai de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
-**Visualització de costos:** OpenRouter retorna el cost facturat exacte quan escau. Els altres proveïdors utilitzen un cost **estimat** basat en els preus públics dels models d'OpenRouter si hi ha una clau d'OpenRouter disponible; si no, el cost dels altres proveïdors pot mostrar-se com a `0`. Els estimats no són factures.
+**Mostra de costos:** OpenRouter retorna el cost facturat exacte quan és aplicable. Altres proveïdors utilitzen el cost **estimat** a partir dels preus públics dels models d'OpenRouter si està disponible una clau d'OpenRouter; sinó, el cost de no-OpenRouter pot mostrar-se com a `0`. Les estimacions no són factures.
 
 <br/>
 
-**Dades i persistència:** Per a Docker, munteu un volum a `/app/data` perquè `config.json` i la base de dades SQLite persisteixin entre reinicialitzacions del contenidor. Sense un volum, totes les dades es perden quan s'atura el contenidor.
+**Dades i persistència:** Per a Docker, monteu un volum a `/app/data` per tal que `config.json` i la base de dades SQLite persisteixin entre reinicis del contenidor. Sense un volum, totes les dades es perden quan el contenidor s'aturi.
 
-**Desenvolupadors:** Després d'actualitzar canvis que substitueixen l'antiga configuració basada en una sola clau, restabliu o combineu `data/config.json` amb la nova estructura per defecte de `src/config-defaults/config_default.json` si el vostre fitxer local encara fa servir camps eliminats (`api_key`, `api_url`, opcions de proxy).
+**Desenvolupadors:** Després de descarregar canvis que substitueixen la configuració antiga d'una sola clau, reinicieu o combineu `data/config.json` amb la nova estructura per defecte des de `src/config-defaults/config_default.json` si el vostre fitxer local encara utilitza camps eliminats (`api_key`, `api_url`, opcions de servidor intermedi).
 
 <br/>
 
 **Autenticació web:**
 
 - Administrador per defecte: `admin` / `transrewrt26`.
-- Gestioneu usuaris a **Configuració → Usuaris**.
-- Reinicieu una contrasenya: `docker exec <contenidor> reset-web-password '<nom_usuari>' '<nova_contrasenya>'`
-  (des del codi font: `pnpm run reset-web-password -- <nom_usuari> <nova_contrasenya>`)
+- Gestionau usuaris a **Configuració → Usuaris**.
+- Reinicieu una contrasenya: `docker exec <contenidor> reset-web-password '<nom d'usuari>' '<nova contrasenya>'`
+  (des del codi font: `pnpm run reset-web-password -- <nom d'usuari> <nova contrasenya>`)
 
 <br/>
 
-> ⚠️ **AVÍS**<br/>
-> Canvieu immediatament la contrasenya per defecte de l'administrador en qualsevol equip accessible per xarxa.
+> ⚠️ **ADVERTÈNCIA**<br/>
+> Canvieu immediatament la contrasenya d'administrador per defecte a qualsevol amfitrió accessible a través de xarxa.
 
 <br/>
 
-Els principals paràmetres (tipus de lletra, models, idiomes, etc.) es troben a la configuració de l'aplicació.
+Els paràmetres principals (tipus de lletra, models, idiomes, etc.) estan disponibles a la configuració de l'aplicació.
 
 <br/><br/>
 
 <a id="development-and-architecture"></a>
+
 ## Desenvolupament i arquitectura
 
 - **Desenvolupament:** Configuració, construcció, proves i desplegament (Electron, Web, Docker) - consulteu **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arquitectura i visió general del sistema:** Estructura de carpetes, tecnologies, decisions de disseny - consulteu **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Arquitectura i visió general del sistema:** Estructura de carpetes, tecnologies utilitzades, decisions de disseny - consulteu **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
-
 ## Versions i etiquetes
 
-- Les **etiquetes de Git** `v`* (per exemple, `v1.0.10`) activen el [flux de treball de publicació](.github/workflows/release.yml). Les **publicacions de GitHub** inclouen el programa d'instal·lació per a Windows (`.exe`) i l'AppImage per a Linux.
-- Les **imatges de Docker** es publiquen a `ghcr.io/wsj-br/transrewrt`. Les etiquetes de les imatges coincideixen amb la versió de Git (per exemple, `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`), a més de l'etiqueta `latest`. Multi-arquitectura: `linux/amd64` i `linux/arm64` (per exemple, Raspberry Pi).
+- Les **etiquetes de Git** `v`* (per exemple, `v1.0.10`) activen el [flux de treball de publicació](.github/workflows/release.yml). Les **Versions de GitHub** inclouen l'instal·lador per a Windows (`.exe`) i imatges AppImage per a Linux (**x64** i **arm64**).
+- Les **imatges Docker** s'han publicat a `ghcr.io/wsj-br/transrewrt`. Les etiquetes de les imatges coincideixen amb la versió de Git (per exemple, `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) a més de la etiqueta `latest`. Multi-arquitectura: `linux/amd64` i `linux/arm64` (per exemple, Raspberry Pi).
 
 <br/><br/>
 
 <a id="contributing"></a>
-## Contribució
+## Col·laboració
 
-1. Crea un fork del repositori.
-2. Crea una branca de funcionalitat: `git checkout -b feature/my-feature`
-3. Fes un commit dels canvis amb un missatge clar.
-4. Puja els canvis i obre una sol·licitud d'incorporació (Pull Request) cap a `main`.
+1. Bifurqueu el repositori.
+2. Creeu una branca de funcionalitat: `git checkout -b feature/my-feature`
+3. Feu un commit dels vostres canvis amb un missatge clar.
+4. Pugeu el codi i obriu una sol·licitud d'extracció (Pull Request) contra `main`.
 
-Si us plau, segueix l'estil de codi existent i prova els canvis tant en mode Electron com en mode web abans de presentar-los. Consulta [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) per obtenir instruccions de compilació i proves.
+Seguiu l'estil de codi existent i proveu els vostres canvis tant en mode Electron com en mode web abans de fer la sol·licitud. Consulteu [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) per a instruccions sobre com compilar i provar.
 
 <br/>
 
-**Informar de problemes:** Obre una incidència a [GitHub](https://github.com/wsj-br/transrewrt/issues). Inclou la teva plataforma (Windows / Linux / Docker) i la versió de l'aplicació (mostrada al diàleg "Quant a" o a la pàgina de versions). 
+**Informar de problemes:** Obriu un problema a [GitHub](https://github.com/wsj-br/transrewrt/issues). Incloeu la vostra plataforma (Windows / Linux / Docker) i la versió de l'aplicació (mostrada al diàleg Quant a o a la pàgina de versions).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
 ## Avís legal
 
-Els noms i icones de productes pertanyen als seus respectius propietaris i s'utilitzen només amb finalitats d'identificació. Aquest programari no està afiliat ni endosat per cap de les marques esmentades.
+Els noms i icones de productes pertanyen als seus respectius propietaris i s'utilitzen únicament amb finalitats d'identificació. Aquest programari no està afiliat ni patrocinat per cap de les marques esmentades.
 
 <br/><br/>
 

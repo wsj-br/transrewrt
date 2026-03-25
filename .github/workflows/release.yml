@@ -1,4 +1,4 @@
-# Build and publish all deliverables: Windows NSIS, Linux AppImage, multi-arch Docker (GHCR).
+--help# Build and publish all deliverables: Windows NSIS, Linux AppImage (x64 + arm64), multi-arch Docker (GHCR).
 # Trigger: push tag v* or workflow_dispatch.
 # Uses native runners (no QEMU): amd64 on ubuntu-latest, arm64 on ubuntu-24.04-arm.
 
@@ -44,8 +44,16 @@ jobs:
           path: release/*.exe
 
   build-linux:
-    name: Linux (AppImage)
-    runs-on: ubuntu-latest
+    name: Linux (AppImage, ${{ matrix.electron_arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - electron_arch: x64
+            runner: ubuntu-latest
+          - electron_arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -68,12 +76,12 @@ jobs:
         run: pnpm install
 
       - name: Build and package (Linux)
-        run: pnpm run package -- --linux
+        run: pnpm run package -- --linux --${{ matrix.electron_arch }}
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v4
         with:
-          name: linux-appimage
+          name: linux-appimage-${{ matrix.electron_arch }}
           path: release/*.AppImage
 
   build-docker:

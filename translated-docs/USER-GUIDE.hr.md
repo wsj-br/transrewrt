@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-24T01:14:28.064Z"
-source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
-source_mtime: 1774306679773.736
+translated_at: "2026-03-25T21:03:46.747Z"
+source_hash: "6ca7b21e820e8ee121cd93bbf98806547c5c3ce7914799891d923201bd2c4466"
+source_mtime: 1774468804877.8855
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 ![Transrewrt baner](../images/transrewrt_banner.png)
@@ -15,82 +15,87 @@ model: "qwen/qwen3-235b-a22b-2507"
 <a id="introduction"></a>
 ## Uvod
 
-Transrewrt vam pomaže raditi sa tekstom na tri glavna načina:
+Transrewrt vam pomaže u radu s tekstom na tri glavna načina:
 
-- **Prijevod** - pretvorba teksta s jednog jezika na drugi.
-- **Preuređivanje** - redefiniranje teksta u drugačijem stilu, kao što je jasniji, kraći ili formalniji.
-- **Transformacija** - obrada teksta pomoću prilagođenih uputa za umjetnu inteligenciju koje se nazivaju upitima (promptima).
+- **Prevođenje** - pretvaranje teksta s jednog jezika na drugi.
+- **Ponovno pisanje** - prepričavanje teksta u drugačijem stilu, recimo jasnijem, kraćem ili formalnijem.
+- **Transformacija** - obrada teksta pomoću prilagođenih AI uputa koje se zovu upiti.
 
 <br/>
 
-Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i pokrenuta. Za korake tijekom instalacije pogledajte glavni **[README](README.hr.md)**.
+Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i pokrenuta. Upute za instalaciju potražite u glavnom dokumentu **[README](README.hr.md)**.
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Transrewrt je dostupan kao stolna aplikacija za Windows i Linux, te kao samostojeća web aplikacija (self-hosted). Ovaj vodič fokusira se na svakodnevnu upotrebu aplikacije. Ako neka značajka vrijedi samo za jednu verziju, to je jasno naznačeno.
+> Transrewrt je dostupan kao desktop aplikacija za Windows i Linux, te kao samostalno hostirana web aplikacija. Ovaj vodič usredotočen je na svakodnevnu uporabu aplikacije. Ako neka značajka vrijedi samo za određenu verziju, to će biti posebno istaknuto.
 
-<small>**Pročitajte na drugim jezicima:** [Engleski (UK)](USER-GUIDE.hr.md) · [Portugalski (BR)](USER-GUIDE.pt-BR.md) · [Arapski](USER-GUIDE.ar.md) · [Bengalski](USER-GUIDE.bn.md) · [Katalonski](USER-GUIDE.ca.md) · [Pojednostavljeni kineski](USER-GUIDE.zh-CN.md) · [Tradicionalni kineski](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Češki](USER-GUIDE.cs.md) · [Nizozemski](USER-GUIDE.nl.md) · [Engleski (SAD)](USER-GUIDE.en-US.md) · [Filipinski](USER-GUIDE.tl.md) · [Francuski](USER-GUIDE.fr.md) · [Njemački](USER-GUIDE.de.md) · [Grčki](USER-GUIDE.el.md) · [Hindski](USER-GUIDE.hi.md) · [Mađarski](USER-GUIDE.hu.md) · [Talijanski](USER-GUIDE.it.md) · [Japanski](USER-GUIDE.ja.md) · [Javanski](USER-GUIDE.jv.md) · [Korejski](USER-GUIDE.ko.md) · [Malezijski](USER-GUIDE.ms.md) · [Perzijski](USER-GUIDE.fa.md) · [Poljski](USER-GUIDE.pl.md) · [Portugalski (PT)](USER-GUIDE.pt.md) · [Punjabski](USER-GUIDE.pa.md) · [Rumunjski](USER-GUIDE.ro.md) · [Ruski](USER-GUIDE.ru.md) · [Slovački](USER-GUIDE.sk.md) · [Španjolski](USER-GUIDE.es.md) · [Svahili](USER-GUIDE.sw.md) · [Švedski](USER-GUIDE.sv.md) · [Telugu](USER-GUIDE.te.md) · [Tajlandski](USER-GUIDE.th.md) · [Turski](USER-GUIDE.tr.md) · [Ukrajinski](USER-GUIDE.uk.md) · [Vijetnamski](USER-GUIDE.vi.md)</small>
+<small>**Pročitajte na drugim jezicima:** [English (UK)](USER-GUIDE.hr.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<small>
+
+> **Napomena o prijevodu sučelja i dokumentacije:** Svi prijevodi korisničkog sučelja osim izvornog engleskog (UK)
+> izrađeni su pomoću AI modela; izrazi mogu biti neprecizni ili sadržavati pogreške.
+
+</small>
 
 <br/>
 
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Sadržaj** 
+**Sadržaj**
 
-- [Prije nego što krenete](#before-you-start)
-  - [Kako do besplatnog OpenRouter API ključa (stolna aplikacija)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Prije početka](#before-you-start)
+  - [Kako dobiti besplatni OpenRouter API ključ (desktop aplikacija)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Početak rada](#getting-started)
 - [Glavni dijelovi prozora](#main-parts-of-the-window)
   - [Bočna traka](#sidebar)
   - [Alatna traka](#toolbar)
   - [Ulazni i izlazni paneli](#input-and-output-panels)
-- [Prijevod](#translate)
-  - [Prijevod teksta](#translate-text)
+- [Prevođenje](#translate)
+  - [Prevedite tekst](#translate-text)
   - [Odabir jezika](#language-selection)
-  - [Korisne postavke prijevoda](#helpful-translation-settings)
-  - [Prečaci na tipkovnici](#keyboard-shortcuts)
-- [Preuređivanje](#rewrite)
-  - [Preuređivanje teksta](#rewrite-text)
+  - [Korisne postavke prevođenja](#helpful-translation-settings)
+- [Ponovno pisanje](#rewrite)
 - [Transformacija](#transform)
-  - [Pokretanje postojećeg upita](#run-an-existing-prompt)
+  - [Pokrenite postojeći upit](#run-an-existing-prompt)
   - [Ako još nemate upite](#if-you-have-no-prompts-yet)
-  - [Brzo stvaranje upita](#create-a-prompt-quickly)
-  - [Uređivanje upita](#edit-a-prompt)
-  - [Testiranje upita prije korištenja](#test-a-prompt-before-using-it)
-  - [Upravljanje spremljenim upitima](#manage-saved-prompts)
-- [Ploča sa svim podacima](#dashboard)
-  - [Filtriranje podataka](#filter-the-data)
-  - [Kartice ploče](#dashboard-tabs)
-  - [Izvoz podataka](#export-data)
-  - [Brisanje spremljenih zapisa za model](#delete-stored-records-for-a-model)
+  - [Brzo kreirajte upit](#create-a-prompt-quickly)
+  - [Uredite upit](#edit-a-prompt)
+  - [Ispitajte upit prije korištenja](#test-a-prompt-before-using-it)
+- [Nadzorna ploča](#dashboard)
+  - [Filtrirajte podatke](#filter-the-data)
+  - [Kartice nadzorne ploče](#dashboard-tabs)
+  - [Izvezi podatke](#export-data)
+  - [Izbrišite pohranjene zapise za model](#delete-stored-records-for-a-model)
 - [Povijest](#history)
-  - [Filtriranje podataka](#filter-the-data-1)
-  - [Izvoz podataka povijesti](#export-history-data)
+  - [Filtrirajte podatke](#filter-the-data-1)
+  - [Izvoz podataka iz povijesti](#export-history-data)
 - [Postavke](#settings)
   - [Opće postavke](#general-settings)
   - [Modeli](#models)
   - [Jezici](#languages)
   - [Praćenje troškova](#cost-tracking)
-  - [Transformacijski upiti](#transform-prompts)
+  - [Upiti za transformaciju](#transform-prompts)
   - [Korisnici](#users)
-  - [API postavke](#api-config)
+  - [Konfiguracija API-ja](#api-config)
   - [O aplikaciji](#about)
 - [Uobičajeni problemi](#common-issues)
-  - [Aplikacija ne prevodi, ne preuređuje niti transformira tekst](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikacija ne prenosi, ne prepričava niti ne transformira tekst](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista modela je prazna](#the-model-list-is-empty)
-  - [Rezultat je previše spor ili skup](#the-result-is-too-slow-or-too-expensive)
+  - [Rezultat je pre spor ili pre skup](#the-result-is-too-slow-or-too-expensive)
   - [Sučelje je na pogrešnom jeziku](#the-interface-is-in-the-wrong-language)
-  - [Tekst je premalen ili teško čitljiv](#the-text-is-too-small-or-hard-to-read)
-  - [Dijagrami na ploči su prazni](#dashboard-charts-are-empty)
-  - [Trošak prikazuje „nije dostupan“ ili je pogrešan](#cost-shows-not-available-or-seems-wrong)
-  - [Ukupni trošak se ne podudara sa računom provajdera](#total-cost-does-not-match-my-provider-bill)
+  - [Tekst je previše malen ili teško čitljiv](#the-text-is-too-small-or-hard-to-read)
+  - [Grafovi na nadzornoj ploči su prazni](#dashboard-charts-are-empty)
+  - [Trošak prikazuje „nije dostupan“ ili izgleda pogrešno](#cost-shows-not-available-or-seems-wrong)
+  - [Ukupni trošak se ne podudara sa računom davatelja usluge](#total-cost-does-not-match-my-provider-bill)
   - [Stranica Povijest nedostaje u bočnoj traci](#the-history-page-is-missing-from-the-sidebar)
-  - [Web aplikacija: neočekivano preusmjeravanje na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Ploča ne prikazuje podatke za druge korisnike (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Web aplikacija: Neočekivano preusmjeravanje na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Na nadzornoj ploči nema podataka za druge korisnike (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Promijenio sam upit i izgubio izmjene](#i-changed-a-prompt-and-lost-the-edits)
 - [Brzi savjeti](#quick-tips)
-- [Pravna odricanja](#disclaimer)
+- [Odgovornost](#disclaimer)
 - [Licenca](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -101,18 +106,18 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
 
 ## Prije nego što započnete
 
-Kako biste koristili Transrewrt, potreban vam je pristup barem jednom AI pružatelju usluga. Podržani pružatelji su: [OpenRouter](https://openrouter.ai) (koji nudi mnoge modele), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI te [Ollama](https://ollama.com) za lokalne modele.
+Kako biste koristili Transrewrt, morate imati pristup barem jednom AI pružatelju usluga. Podržani pružatelji su: [OpenRouter](https://openrouter.ai) (koji nudi pristup brojnim modelima), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i [Ollama](https://ollama.com) za lokalne modele.
 
-Ne morate odabrati plaćeni model da biste započeli. Čim unesete svoj OpenRouter API ključ, aplikacija automatski omogućuje ugrađenu **besplatnu** OpenRouter opciju. To vam omogućuje trenutno prevođenje, prepisivanje i transformaciju teksta.
+Ne morate odabrati plaćeni model kako biste započeli. Čim dodate svoj OpenRouter API ključ, aplikacija automatski omogućuje ugrađenu **besplatnu** OpenRouter opciju. To vam omogućuje odmah započeti s prevodenjem, prepisivanjem i transformacijom teksta. Alternativno, možete dobiti besplatni API ključ od Cerebras, Googlea, Groqa ili Mistral AI.
 
-Jednostavnim riječima:
+Jednostavnim rječnikom:
 
-- **Model** je AI motor koji obavlja posao. Modeli se prikazuju s **prefiksom davatelja usluge** (npr. `openrouter/…`, `openai/…`, `ollama/…`).
-- **API ključ** (ili za Ollamу, **temeljni URL**) je način kojim aplikacija komunicira s tim davateljem usluga.
+- **Model** je AI motor koji obavlja posao. Modeli su navedeni s prefiksom **pokazatelja davatelja** (na primjer `openrouter/…`, `openai/…`, `ollama/…`).
+- **API ključ** (ili za Ollamu, **osnovni URL**) služi kao način kojim aplikacija pristupa određenom pružatelju usluga.
 
-Ako koristite **desktop aplikaciju**, dodajte ključeve u odjeljku [**Postavke** > **API konfiguracija**](#api-config) za svakog davatelja kojeg koristite. Ako koristite isključivo OpenRouter, pogledajte upute u nastavku [Kako dobiti API ključ](#how-to-get-an-api-key-desktop-app). Ako ne želite koristiti API ključ, možete instalirati Ollamu (s [ollama.com](https://ollama.com)) i koristiti lokalne modele.
+Ako koristite **desktop aplikaciju**, dodajte ključeve u odjeljku [**Postavke** > **Konfiguracija API-ja**](#api-config) za svakog pružatelja kojeg koristite. Ako koristite isključivo OpenRouter, pogledajte [Kako dobiti API ključ](#how-to-get-an-api-key-desktop-app) u nastavku. Ako ne želite koristiti API ključ, možete instalirati Ollamu (s [ollama.com](https://ollama.com)) i koristiti lokalne modele poput `translategemma:4b`.
 
-Ako koristite **web verziju**, vlasnik poslužitelja konfigurira davatelje korištenjem okolišnih varijabli, pa obično nećete sami unositi API ključeve.
+Ako koristite **web verziju**, vlasnik poslužitelja konfigurira davatelje putem varijabli okruženja, pa ne možete izravno unijeti API ključeve u aplikaciju.
 
 <br/>
 
@@ -121,20 +126,15 @@ Ako koristite **web verziju**, vlasnik poslužitelja konfigurira davatelje kori�
 
 Ako koristite desktop aplikaciju, slijedite ove korake:
 
-1. Otvorite [OpenRouter](https://openrouter.ai) u svom web pregledniku.
-2. Stvorite račun ili se prijavite.
+1. Posjetite [OpenRouter](https://openrouter.ai) u svom web pregledniku.
+2. Stvorite korisnički račun ili se prijavite.
 3. Otvorite stranicu [Keys](https://openrouter.ai/keys).
-4. Kliknite tipku za stvaranje novog API ključa.
-5. Dajte ključu naziv kako biste ga mogli prepoznati u budućnosti.
+4. Kliknite gumb za stvaranje novog API ključa.
+5. Dajte ključu ime kako biste ga mogli prepoznati kasnije.
 6. Kopirajte novi API ključ.
-7. Vratite se u Transrewrt i otvorite **Postavke** > **API konfiguracija**.
-8. Zalijepite ključ u polje **OpenRouter API ključ** (ispod **Postavke** > **API konfiguracija**).
-9. Kliknite **Testiraj OpenRouter ključ** kako biste provjerili radi li ispravno.
-
-<br/>
-
-> ℹ️ **NAPOMENA**<br/>
-> Možete započeti besplatnim putem kroz OpenRouter ili bilo kojim drugim dostupnim besplatnim modelom, bez dodavanja kreditne kartice. U mnogim slučajevima, to je dovoljno za početak rada s Transrewrt-om, bez potrebe za odabirom plaćenog modela. Alternativno, možete koristiti Ollamu za pokretanje modela lokalno, bez potrebe za API ključem.
+7. Vratite se u Transrewrt i otvorite **Postavke** > **Konfiguracija API-ja**.
+8. Zalijepite ključ u polje **OpenRouter API ključ** (ispod **Postavke** > **Konfiguracija API-ja**).
+9. Kliknite **Testiraj OpenRouter ključ** kako biste potvrdili da radi.
 
 <br/><br/>
 
@@ -143,15 +143,15 @@ Ako koristite desktop aplikaciju, slijedite ove korake:
 
 Ako prvi put koristite Transrewrt, slijedite ovaj redoslijed:
 
-1. Otvorite aplikaciju.
-2. Po želji odaberite svoj **jezik sučelja** s ikonom zemaljskog globusa.
-3. Ako koristite **desktop aplikaciju**, otvorite [**Postavke** > **API konfiguracija**](#api-config), dodajte API ključ barem za jednog davatelja usluga (npr. za OpenRouter) te kliknite **Testiraj** kako biste provjerili funkcionira li.
+1. Pokrenite aplikaciju.
+2. Ako je potrebno, odaberite svoj **jezik sučelja** preko ikone kugle.
+3. Ako koristite **desktop aplikaciju**, otvorite [**Postavke** > **Konfiguracija API-ja**](#api-config), dodajte API ključ za barem jednog pružatelja (npr. OpenRouter) i kliknite **Test** da provjerite radi li sve.
 4. Otvorite [**Postavke** > **Modeli**](#models) i dodajte jedan ili više modela u **Odabrane modele**.
-5. Otvorite [**Postavke** > **Jezici**](#languages) i odaberite svoje **Prve jezike**, ako želite da se najčešće korišteni jezici prikazuju prvi.
-6. Idite na **Prijevodi** i izvršite jednostavno prevođenje kako biste potvrdili da sve ispravno radi.
-7. Kada to uspije, pokušajte s **Prepisivanjem**, a zatim i s **Transformacijom**.
+5. Otvorite [**Postavke** > **Jezici**](#languages) i odaberite svoje **Vrhunsko jezike** ako želite da vam najčešće korišteni jezici budu prikazani prvi.
+6. Idite na **Prevedi** i provodite jednostavan prijevod kako biste potvrdili da sve radi.
+7. Kada to uspije, isprobajte **Prepiši**, a zatim i **Transformiraj**.
 
-Redoslijed je važan. On spriječava najčešći problem kod prvog korištenja: pokušaj pokretanja zadatka prije nego što aplikacija ima radnu API vezu ili odabran model.
+Ovaj redoslijed je bitan. On sprječava najčešći problem prilikom prvog korištenja: pokušaj pokretanja zadatka prije nego što aplikacija ima funkcionirajuću API vezu ili odabrani model.
 
 <br/><br/>
 
@@ -160,16 +160,16 @@ Redoslijed je važan. On spriječava najčešći problem kod prvog korištenja: 
 
 Aplikacija je podijeljena u tri glavna područja:
 
-- **Bočni trak** s lijeve strane.
-- **Alatna traka** na vrhu.
-- **Radno područje** u središtu.
+- **Bočni traka** s lijeve strane.
+- **Traka alata** na vrhu.
+- **Radno područje** u sredini.
 
 <br/>
 
 <a id="sidebar"></a>
-### Bočni trak
+### Bočna traka
 
-Koristite bočnu traku za kretanje kroz aplikaciju. Možete smanjiti bočnu traku kako biste oslobodili više prostora klikom na ikonu uz logotip aplikacije.
+Koristite bočnu traku za navigaciju po aplikaciji. Možete sažeti bočnu traku kako biste imali više prostora, klikom na ikonu pored logotipa aplikacije.
 
 <br/>
 
@@ -181,13 +181,13 @@ Koristite bočnu traku za kretanje kroz aplikaciju. Možete smanjiti bočnu trak
     <td valign="top">
       <br/><br/>
       <ul>
-        <li><strong>Prevod</strong> otvara radno područje za prevođenje.</li><br/>
-        <li><strong>Prepisi</strong> otvara radno područje za prepisivanje.</li><br/>
+        <li><strong>Prevedi</strong> otvara radno područje za prijevod.</li><br/>
+        <li><strong>Prepiši</strong> otvara radno područje za prepisivanje.</li><br/>
         <li><strong>Transformiraj</strong> otvara radno područje za prilagođene upite.</li><br/>
         <li><strong>Nadzorna ploča</strong> prikazuje informacije o korištenju i troškovima.</li><br/>
-        <li><strong>Postavke</strong> otvaraju ploču s postavkama.</li><br/>
+        <li><strong>Postavke</strong> otvara ploču postavki.</li><br/>
         <li><strong>Povijest</strong> prikazuje povijest korištenja s ulaznim i izlaznim tekstom.</li><br/>
-        <li><strong>Korisnik</strong> prikazuje korisničko ime prijavljenog korisnika (samo za web verziju).</li>
+        <li><strong>Korisnik</strong> prikazuje korisničko ime prijavljenog korisnika (samo na webu).</li>
       </ul>
     </td>
   </tr>
@@ -197,242 +197,213 @@ Koristite bočnu traku za kretanje kroz aplikaciju. Možete smanjiti bočnu trak
 
 <a id="toolbar"></a>
 
-### Alatna traka
+### Traka s alatima
 
-Alatna traka se neznatno mijenja ovisno o tome gdje ste u aplikaciji.
+Traka s alatima malo varira ovisno o tome gdje ste unutar aplikacije.
 
-- S lijeve strane prikazuje naziv trenutne stranice.
-- S desne strane prikazuje **odabir modela** i upravljački element za **jezik sučelja**.
+- S lijeve strane prikazuje naziv trenutačne stranice.
+- S desne strane prikazuje **odabir modela** i upravljanje **jezikom sučelja**.
 
-**Odabir modela** omogućuje vam da odaberete koji AI motor ćete koristiti za trenutni zadatak.
+**Odabir modela** omogućuje vam odabir AI motora za trenutačni zadatak.
 
   ![Odabir modela](../images/screenshots/hr/model-selector.png)
 
-> ℹ️ **NAPOMENA**<br/>
-> Neke besplatne modele možda neće uvijek biti dostupne — ponekad su offline ili imaju ograničenje u korištenju. Ako se to dogodi, aplikacija će automatski ukloniti taj model s vašeg popisa dostupnih.<br/>
-> Da biste upravljali modelima koji se prikazuju, idite na [**Postavke** > **Modeli**](#models) i uredite svoj popis modela.  
-> Također možete otvoriti postavke modela izravno tako da kliknete ikonu davatelja usluge s lijeve strane naziva modela na alatnoj traci.
+Neke besplatne modele možda neće uvijek biti dostupne – ponekad su offline ili imaju ograničenje korištenja. Ako se to dogodi, aplikacija će automatski ukloniti taj model s dostupnog popisa. Da biste upravljali kojim se modelima prikazuju, idite na [**Postavke** > **Modeli**](#models) i uredite svoj popis modela. 
+Također možete otvoriti postavke modela izravno klikom na ikonu davatelja usluge s lijeve strane naziva modela na traci s alatima.
 
 <br/>
 
-**Ikona zemaljskog globusa + oznaka jezika** mijenjaju jezik korisničkog sučelja, kao što su izbornici i tipke. To **ne mijenja** jezike prevođenja korištene u funkciji **Prevođenje**.
+**Ikona zemaljske kugle + kôd jezika** mijenja jezik aplikacijskog sučelja, poput izbornika i gumba. **Ne mijenja** jezike prevođenja koji se koriste u izborniku **Prevedi**.
 
   ![Odabir jezika sučelja](../images/screenshots/hr/language-selector.png)
 
 <br/>
 
 <a id="input-and-output-panels"></a>
-### Ulazni i izlazni okviri
+### Ulazni i izlazni paneli
 
-Većina radnih prostora koristi lijevi **Ulazni** okvir i desni **Izlazni** okvir.
+Većina radnih prostora koristi ulazni panel s lijeve strane i izlazni panel s desne strane.
 
-**Ulazni** okvir prikazuje:
+Svaki panel prikazuje i sljedeće:
 
-- Broj znakova
-- Broj riječi
-- Broj odlomaka
+| **Ulaz**                                                            | **Izlaz**                                                                                                                    |
+|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| - Broj znakova <br/>- Broj riječi <br/>- Broj odlomaka          <br/> | - Vrijeme trajanja zadatka<br/>- **TPS** (tokena po sekundi)<br/>- Broj znakova, riječi i odlomaka<br/>- Korišteni model |
 
-**Izlazni** okvir može prikazati:
 
-- Vrijeme potrebno za izvršenje zadatka
-- Trošak zadatka (ako je dostupno)
-- Ukupne tekuće troškove
-- **TPS** (tokeni po sekundi)
-- Broj znakova, riječi i odlomaka
-- Korišteni model
+Ako se pitate o tehničkim izrazima:
 
-Ako niste sigurni što znače tehnički izrazi:
+- **Token** znači mali dio teksta. Možete to shvatiti kao dio riječi ili kratku riječ.
+- **TPS** znači koliko takvih dijelova teksta model obradi u jednoj sekundi.
 
-- **Token** označava mali dio teksta. Možete ga shvatiti kao dio riječi ili kratku riječ.
-- **TPS** znači koliko se takvih dijelova teksta obrađuje svake sekunde.
+<br/>
 
+Možete također pratiti trošak svake operacije (ako je dostupan) i ukupni trošak, uključivanjem opcije `Prikaži informacije o trošku radnji` u [**Postavkama** > **Opće postavke**](#general-settings). 
+ 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
-## Prevođenje
+## Prevedi
 
-Koristite funkciju **Prevođenje** kada želite prevesti tekst s jednog jezika na drugi.
+Koristite **Prevedi** kada želite pretvoriti tekst s jednog jezika na drugi.
 
-![Radni prostor Prevođenja](../images/screenshots/hr/translate.png)
+![Radni prostor Prevedi](../images/screenshots/hr/translate.png)
 
 <br/>
 
 <a id="translate-text"></a>
-### Prevođenje teksta
+### Prevedite tekst
 
-1. Otvorite **Prevođenje**.
-2. Odaberite jezik u polju **S**.
-3. Odaberite jezik u polju **Na**.
-4. Odaberite model na alatnoj traci.
-5. Upišite ili zalijepite tekst u **Ulazni** okvir.
+1. Otvorite **Prevedi**.
+2. Odaberite jezik u **S**.
+3. Odaberite jezik u **Na**.
+4. Odaberite model na traci s alatima.
+5. Upišite ili zalijepite tekst u **Ulaz**.
 6. Kliknite **Prevedi**.
-7. Pročitajte rezultat u **Izlaznom** okviru.
-8. Iskoristite gumb za kopiranje ako želite kopirati rezultat.
+7. Pročitajte rezultat u **Izlazu**.
+8. Koristite gumb za kopiranje ako želite kopirati rezultat.
 
 <br/>
 
 <a id="language-selection"></a>
 ### Odabir jezika
 
-- **S** može biti određeni jezik ili **Otkrivanje jezika**.
-- **Na** je jezik u koji želite prevesti.
+- **S** može biti određeni jezik ili **Otkrij jezik**.
+- **Na** je jezik u koji želite dobiti rezultat.
 
-Vaši odabrani **najčešći jezici** pojavljuju se na vrhu popisa. Možete ih postaviti u [**Postavke** > **Jezici**](#languages).
+Vaši odabrani **Vrhunski jezici** pojavljuju se na vrhu popisa. Možete ih postaviti u [**Postavkama** > **Jezici**](#languages).
 
 <br/>
 
 <a id="helpful-translation-settings"></a>
 ### Korisne postavke prevođenja
 
-U dijelu [**Postavke** > **Opće postavke**](#general-settings) možete promijeniti ponašanje prevođenja:
+U [**Postavkama** > **Opće postavke**](#general-settings) možete promijeniti kako se prevođenje ponaša:
 
-- **Automatski prevedi nakon lijepljenja** pokreće prevođenje čim zalijepite tekst.
-- **Automatski kopiraj rezultat u međuspremnik** kopira rezultat odmah nakon uspješnog prevođenja.
-- **Prevođenje u stvarnom vremenu (tijekom pisanja)** pokreće prevođenje dok pišete.
-- **Istek (ms)** određuje koliko dugo aplikacija čeka prije nego pokrene prevođenje u stvarnom vremenu.
-
-<br/>
-
-<a id="keyboard-shortcuts"></a>
-### Prečaci na tipkovnici
-
-U dijelu [**Postavke** > **Opće postavke**](#general-settings), opcija **Ponašanje tipke ENTER** određuje što se događa kad pritisnete `Enter`:
-
-- **Enter** može pokrenuti zadatak, dok **Shift+Enter** dodaje novi redak.
-- Ili aplikacija može raditi obrnuto.
-
-Trenutni način rada također je prikazan na tipki **Prevedi**.
+- **Automatski prevedi nakon lijepljenja** automatski započinje prevod nakon što zalijepite tekst.
+- **Automatski kopiraj rezultat u međuspremnik** automatski kopira rezultat nakon uspješnog prevođenja.
+- **Trenutno prevodjenje (tijekom tipkanja)** pokreće prevode dok tipkate.
+- **Vrijeme čekanja (ms)** određuje koliko dugo aplikacija čeka prije nego što pokrene trenutno prevođenje.
+- **Enter** određuje što će se dogoditi kada pritisnete `Enter`:
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
-## Prepisivanje
+## Prepiši
 
-Koristite **Prepisivanje** kad želite poboljšati redak bez da mijenjate glavno značenje.
+Koristite **Prepiši** za poboljšanje formulacije bez promjene osnovnog značenja.
 
-![Radni prostor Prepisivanja](../images/screenshots/hr/rewrite.png)
+![Radni prostor Prepiši](../images/screenshots/hr/rewrite.png)
 
 Ovo je korisno za:
 
 - ispravljanje pravopisa i gramatike
-- učinjivanje teksta jasnijim
-- učinjivanje teksta formalnijim ili neformalnijim
+- učinkovitiji tekst
+- prilagodbu formalnosti teksta (formalniji ili neformalniji)
 - skraćivanje ili proširivanje teksta
-- učinjivanje teksta tehničkijim
-
-<br/>
-
-<a id="rewrite-text"></a>
-
-### Prepisi tekst
-
-1. Otvorite **Prepisi**.
-2. Odaberite **Način**.
-3. Odaberite model u alatnoj traci.
-4. Upišite ili zalijepite tekst u polje **Unos**.
-5. Kliknite **Prepisi**.
-6. Pregledajte rezultat u polju **Izlaz**.
-
-Isto ponašanje tipke Enter opisano u [**Prijevod**](#keyboard-shortcuts) vrijedi i ovdje.
+- činjenje teksta tehničkijim
 
 <br/>
 
 > 💡 **SAVJET**<br/>
-> Kada koristite način "**Provjeri pravopis i gramatiku**", u izlaznom panelu pojavi se gumb `Pokaži izmjene`.
-> Kliknite ovaj gumb da biste uključili ili isključili prikaz ispravaka i prikazali ili sakrili određene izmjene učinjene u vašem tekstu.
+> Kada koristite način "**Provjera pravopisa i gramatike**", u izlaznom panelu pojavi se gumb `Prikaži izmjene`.
+> Kliknite ovaj gumb da uključite/isključite prikaz ispravki, prikazujući ili sakrivajući točne izmjene učinjene u vašem tekstu.
+
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
-## Transformiraj
 
-Koristite opciju **Transformiraj** kada želite da AI slijedi skup prilagođenih uputa.
+## Transformacija
 
-![Radno područje Transformiraj](../images/screenshots/hr/transform.png)
+Koristite **Transformaciju** kada želite da umjetna inteligencija slijedi vaša prilagođena uputstva.
 
-Ovo je najfleksibilniji dio aplikacije. Možete je koristiti za zadatke poput:
+![Radno područje transformacije](../images/screenshots/hr/transform.png)
 
-- sažimanja bilješki
-- pretvaranja sirovog teksta u detaljno uređeni e-poštni unos
-- izdvajanja ključnih točaka
-- pretvaranja teksta u određeni format
+Ovo je najprilagodljivije područje aplikacije. Možete je koristiti za zadatke kao što su:
+
+- sažimanje bilješki
+- pretvaranje grubog teksta u korektnu e-poštu
+- izdvajanje ključnih točaka
+- pretvaranje teksta u određeni format
+- bilo koja druga prilagođena aktivnost s ulaznim tekstom
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
-### Pokreni postojeći upit
+### Pokretanje postojeće upute
 
-1. Otvorite **Transformiraj**.
-2. Odaberite upit s popisa upita.
-3. Ako se pojavi polje za **Ciljni** jezik, odaberite jezik, ako želite.
-4. Upišite ili zalijepite tekst u polje **Unos**.
+1. Otvorite **Transformaciju**.
+2. Odaberite uputu s popisa uputa.
+3. Ako se pojavi okvir **Ciljni** jezik, odaberite jezik ako želite.
+4. Upišite ili zalijepite tekst u polje **Ulaz**.
 5. Kliknite **Transformiraj**.
-6. Pročitajte rezultat u polju **Izlaz**.
+6. Pročitajte rezultat u **Izlazu**.
 
 <br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Ako još nemate upite
+### Ako još nemate nijednu uputu
 
-Ako je vaš popis upita prazan, kliknite **Učitaj primjere upita**. Time se dodaju ugrađeni primjeri kako biste mogli brzo započeti.
+Ako je vaš popis uputa prazan, kliknite **Učitajte primjere uputa**. Time se dodaju ugrađeni primjeri kako biste mogli odmah početi.
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Primjeri upita dostavljaju se na engleskom jeziku. Nakon što ih učitate, možete urediti upit i koristiti opciju **Prevedi upit** kako biste ga preveli na svoj jezik.
+> Primjeri uputa su na engleskom jeziku. Nakon što ih učitate, možete urediti uputu te koristiti opciju **Prevedi uputu** kako biste ju preveli na svoj jezik.
 
 <br/>
 
 <a id="create-a-prompt-quickly"></a>
-### Brzo stvorite upit
+### Brzo stvaranje upute
 
-Najbrži način da stvorite upit je:
+Najbrži način za stvaranje upute je:
 
-1. Kliknite **Novi upit**.
-2. Kliknite **Generiraj upit**.
-3. Opisite što želite da upit radi.
+1. Kliknite **Nova uputa**.
+2. Kliknite **Generiraj uputu**.
+3. Opisite što želite da uputa čini.
 4. Odaberite model.
-5. Dopustite aplikaciji da vam generira skicu.
+5. Dopustite aplikaciji da stvori skicu za vas.
 6. Pregledajte skicu i kliknite **Spremi**.
 
-![Generiraj upit](../images/screenshots/hr/transform-generate.png)
+![Generiraj uputu](../images/screenshots/hr/transform-generate.png)
 
 
 <br/>
 
 <a id="edit-a-prompt"></a>
-### Uredite upit
+### Uređivanje upute
 
-Kada stvarate ili uređujete upit, uređivač se pojavljuje s lijeve strane, a područje za testiranje s desne.
+Kada stvarate ili uređujete uputu, urednik se pojavljuje s lijeve strane, a područje za testiranje s desne strane.
 
-![Uređivač upita Transformiraj](../images/screenshots/hr/transform-prompt-edit.png)
+![Uređivač uputa transformacije](../images/screenshots/hr/transform-prompt-edit.png)
 
 Glavna polja su:
 
-- **Naziv upita**: naziv koji se prikazuje na popisu upita.
-- **Upute za upit (neobavezno)**: kratka napomena koja se prikazuje korisniku pri pokretanju upita.
-- **Uloga modela**: opća uloga dodijeljena AI-u, npr. 'Vi ste koristan pomoćnik.'
-- **Upute modela (jedna po retku)**: određena pravila koja AI treba slijediti.
-- **Opis izlaza**: kratka riječ koja opisuje rezultat, npr. 'sažetak' ili 'prepis'.
+- **Naziv upute**: naziv koji se prikazuje na popisu uputa.
+- **Uputa (neobavezno)**: kratko upozorenje koje se prikazuje korisniku prilikom pokretanja upute.
+- **Uloga modela**: opća uloga dodijeljena umjetnoj inteligenciji, npr. 'Vi ste korisne pomoćnik.'
+- **Upute modelu (jedna po retku)**: specifična pravila koja AI treba slijediti.
+- **Opis izlaza**: kratka riječ kojom se opisuje rezultat, npr. 'sažetak' ili 'prepravak'.
 - **Temperatura (0,0 → 1,0)**: ponašanje modela; pogledajte niže.
-- **Zatraži ciljni jezik**: dodaje odabir ciljnog jezika kada se upit pokreće.
+- **Zatraži ciljni jezik**: dodaje odabir ciljnog jezika prilikom pokretanja upute.
 
-Ako je tehnički izraz **Temperatura** nov za vas, razmislite o slijedećem:
+Ako vam je tehnički izraz **Temperatura** nepoznat, razmislite o ovom načinu:
 
-- **Niža** temperatura daje stabilnije, predvidljivije rezultate.
+- **Niža** temperatura daje stabilnije i predvidljivije rezultate.
 - **Viša** temperatura daje veću raznolikost i kreativnost.
 
 Također možete koristiti:
 
-- **`Generiraj upit`** za stvaranje nove skice iz jednostavnog opisa
-- **`Unaprijedi upit`** za poboljšanje postojećeg upita
-- **`Prevedi upit`** za prijevod polja upita
+- **`Generiraj uputu`** za stvaranje nove skice iz jednostavnog opisa
+- **`Unaprijedi uputu`** za poboljšanje postojeće upute
+- **`Prevedi uputu`** za prevođenje polja uputa
 
 <br/>
 
@@ -442,40 +413,31 @@ Također možete koristiti:
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Testirajte upit prije korištenja
+### Testiranje upute prije korištenja
 
-Testno područje s desne strane omogućuje vam isprobavanje upita na uzorku teksta prije korištenja u svakodnevnom radu.
+Ploča za testiranje s desne strane omogućuje isprobavanje uputa s primjerima teksta prije korištenja u svakodnevnom radu.
 
-To je korisno kada:
+Ovo je korisno kada:
 
-- stvarate novi upit
-- uspoređujete dvije verzije upita
+- stvarate novu uputu
+- uspoređujete dvije verzije upute
 - želite provjeriti ton, duljinu ili format izlaza
 
 <br/>
 
-<a id="manage-saved-prompts"></a>
-### Upravljanje spremljenim upitima
-
-Da biste upravljali spremljenim upitima na jednom mjestu, otvorite [**Postavke** > **Transformiraj upite**](#transform-prompts).
-
-Tamo možete:
-
-- popisati i brisati svoje upite
-- izvesti upite kao **JSON**, **CSV** ili **XLSX**
-- uvesti upite iz datoteke
+> ℹ️ **NAPOMENA**<br/>
+> Možete izvoziti i uvoziti spremljene upute u odjeljku [**Postavke** > **Transformacijske upute**](#transform-prompts).
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="dashboard"></a>
-
 ## Nadzorna ploča
 
-Koristite **Nadzornu ploču** da biste vidjeli koliko koristite aplikaciju i koliko vas to košta (za modele koji se naplaćuju).
+Koristite **Nadzornu ploču** za pregled korištenja aplikacije i trenutačnih troškova (za naplaćene modele).
 
-![Pregled nadzorne ploče](../images/screenshots/hr/dashboard-summary.png)
+![Sažetak nadzorne ploče](../images/screenshots/hr/dashboard-summary.png)
 
 
 <br/>
@@ -488,50 +450,51 @@ Koristite **Nadzornu ploču** da biste vidjeli koliko koristite aplikaciju i kol
 <a id="filter-the-data"></a>
 ### Filtriranje podataka
 
-Koristite gumbe za filtriranje na vrhu kako biste promijenili vremenski raspon.
+Koristite gumbe za filtriranje na vrhu za promjenu vremenskog raspona.
 
 ![Filteri nadzorne ploče](../images/screenshots/hr/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Filter **Korisnik** vidljiv je samo administratorima u web verziji. Redovni korisnici neće vidjeti ovaj filter, a nije dostupan ni u desktop aplikaciji.
+> Filter **Korisnik** dostupan je samo administratorima u web verziji. Obični korisnici neće vidjeti ovaj filter, a nije dostupan ni u desktop aplikaciji.
 
 <br/>
 
 <a id="dashboard-tabs"></a>
+
 ### Kartice nadzorne ploče
 
 - **Pregled** daje vam uvid u korištenje i troškove.
-- **Po korištenju** razrađuje aktivnost po jeziku prijevoda, načinu prepisivanja i promptu transformacije.
-- **Po modelu** prikazuje koje modele ste koristili i koliko su vas koštali.
+- **Po korištenju** razdvaja aktivnosti po jeziku prijevoda, načinu prepisivanja i upitima za transformaciju.
+- **Po modelu** prikazuje koje ste modele koristili i koliko su vam koštali.
 - **Po danu** prikazuje dnevne ukupne iznose.
-- **Svi pozivi** prikazuje potpovijest poziva i omogućuje vam izvoz iste.
+- **Svi pozivi** prikazuje punu povijest poziva i omogućuje izvoz.
 
 <br/>
 
 <a id="export-data"></a>
 ### Izvoz podataka
 
-Tablice na nadzornoj ploči mogu izvesti podatke u:
+Tablice na nadzornoj ploči mogu izvesti podatke u formatima:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-To je korisno ako želite pregledati aktivnosti izvan aplikacije ili podijeliti izvještaj.
+To je korisno ako želite pregledati aktivnosti izvan aplikacije ili podijeliti izvješće.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
 ### Brisanje pohranjenih zapisa za model
 
-U odjeljcima **Po modelu** ili **Svi pozivi**, možete ukloniti pohranjene zapise za model klikom na ikonu „smeća“.
+U karticama **Po modelu** ili **Svi pozivi**, možete ukloniti pohranjene zapise za model klikom na ikonu "kanta za smeće".
 
 > ⚠️ **UPOZORENJE**<br/>
-> Brisanje pohranjenih zapisa nije povratno. Koristite ovo samo ako ste sigurni da više ne trebate tu povijest.
+> Brisanje pohranjenih zapisa nije povratno. Koristite to samo ako ste sigurni da više ne trebate tu povijest.
 
-Da biste obrisali sve podatke ili uklonili zapise prema starosti, idite na [**Postavke** > **Praćenje troškova**](#cost-tracking). Tu ćete pronaći opcije za brisanje svih pohranjenih podataka ili samo onih starijih od određenog datuma.
+Da biste obrisali sve podatke ili uklonili zapise na temelju njihove starosti, idite na [**Postavke** > **Praćenje troškova**](#cost-tracking). Tamo ćete pronaći opcije za brisanje svih pohranjenih podataka ili samo podataka starijih od određenog datuma.
 
 <br/><br/>
 
@@ -540,23 +503,23 @@ Da biste obrisali sve podatke ili uklonili zapise prema starosti, idite na [**Po
 <a id="history"></a>
 ## Povijest
 
-Kliknite na **Povijest** da biste vidjeli povijest svojih akcija unutar **Transrewrt-a**, uključujući ulaz i izlaz svake operacije.
+Kliknite na **Povijest** da biste vidjeli povijest svojih radnji unutar **Transrewrt**, uključujući ulazne i izlazne podatke svake operacije.
 
-![Stranica Povijest](../images/screenshots/hr/history.png)
+![Stranica povijesti](../images/screenshots/hr/history.png)
 
 <br/>
 
 <a id="filter-the-history"></a>
-### Filtriranje povijesti
+### Filtriranje podataka
 
-**Povijest** koristi iste filtre kao i stranica **Nadzorne ploče** datraži da biste odabrali vremenski raspon.
+**Povijest** koristi iste filtre kao i stranica **Nadzorne ploče**. Koristite ih za odabir vremenskog raspona.
 
-![Filteri nadzorne p游戏副本](../images/screenshots/hr/dashboard-filter.png)
+![Filteri nadzorne ploče](../images/screenshots/hr/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Filter **Korisnik** vidljiv je samo administratorima u web verziji. Redovni korisnici neće vidjet SDK  ovaj filter, a nije dostupan ni u desktop aplikaciji.
+> Filter **Korisnik** vidljiv je samo administratorima u web verziji. Redovni korisnici neće vidjeti ovaj filter, a nije dostupan ni u desktop aplikaciji.
 
 <br/>
 
@@ -569,7 +532,7 @@ Stranica povijesti može izvesti filtrirane podatke u:
 - **CSV**
 - **XLSX**
 
-To je korisno ako želite pregledati aktivnosti izvan aplikacije ili podijeliti izvještaj.
+To je korisno ako želite pregledati aktivnosti izvan aplikacije ili podijeliti izvješće.
 
 <br/><br/>
 
@@ -578,25 +541,25 @@ To je korisno ako želite pregledati aktivnosti izvan aplikacije ili podijeliti 
 <a id="settings"></a>
 ## Postavke
 
-Otvorite **Postavke** s bočne trake da biste prilagodili ponašanje aplikacije.
+Otvorite **Postavke** s bočnog izbornika da biste prilagodili ponašanje aplikacije.
 
 Dostupne kartice ovise o platformi i vašoj ulozi:
 
-  | Kartica                   | Desktop | Web (admin) | Web (redovni korisnik) |
-  |---------------------------|:-------:|:-----------:|:----------------------:|
-  | Opće postavke             |   da    |     da      |           da            |
-  | Modeli                    |   da    |     da      |           da            |
-  | Jezici                    |   da    |     da      |           da            |
-  | Praćenje troškova         |   da    |     da      |            —            |
-  | Prompti transformacije    |   da    |     da      |           da            |
-  | Korisnici                 |    —    |     da      |            —            |
-  | Konfiguracija API-ja      |   da    |     da      |            —            |
-  | O programu                |   da    |     da      |           da            |
+  | Kartica               | Desktop | Web (admin) | Web (običan korisnik) |
+  |-----------------------|:-------:|:-----------:|:---------------------:|
+  | Opće postavke         |   da    |      da     |          da           |
+  | Modeli                |   da    |      da     |          da           |
+  | Jezici                |   da    |      da     |          da           |
+  | Praćenje troškova     |   da    |      da     |           —           |
+  | Upiti za transformaciju |   da  |      da     |          da           |
+  | Korisnici             |   —     |      da     |           —           |
+  | API konfiguracija     |   da    |      da     |           —           |
+  | O aplikaciji          |   da    |      da     |          da           |
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> U web verziji, svaki korisnik ima vlastitu konfiguraciju. Postavke poput odabranih modela, jezika, općih opcija i prompta za transformaciju pohranjuju se po korisniku. Promjene koje napravite ne utječu na druge korisnike.
+> U web verziji, svaki korisnik ima svoju konfiguraciju. Postavke poput odabranih modela, jezika, općih opcija i upita za transformaciju pohranjuju se po korisniku. Izmjene koje napravite ne utječu na druge korisnike.
 
 <br/>
 
@@ -604,80 +567,84 @@ Dostupne kartice ovise o platformi i vašoj ulozi:
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
-
 ### Opće postavke
 
-Koristite **Opće postavke** za upravljanje ponašanjem tipkanja, pohranjivanjem detalja izvršavanja za **Povijest** te izgledom aplikacije.
+Koristite **Opće postavke** za upravljanje ponašanjem tipkanja, pohranjivanjem detalja izvođenja za **Povijest** i izgledom aplikacije.
 
 **Ponašanje**
 
 - **Ponašanje tipke ENTER** određuje hoće li `Enter` pokrenuti zadatak ili umetnuti novi redak.
-- **Automatski prijevodi pri umetanju** pokreće prijevod čim zalijepite tekst.
-- **Automatski kopiraj rezultat u međuspremnik** automatski kopira uspješne rezultate.
-- **Prijevod u stvarnom vremenu (tijekom tipkanja)** prenosi tekst dok kucate.
+- **Automatski prijevod pri lijepljenju** pokreće prijevod čim zalijepite tekst.
+- **Automatsko kopiranje rezultata u međuspremnik** automatski kopira uspješne rezultate.
+- **Prijevod u stvarnom vremenu (tijekom tipkanja)** prijevodi tijekom tipkanja.
 - **Vrijeme čekanja (ms)** postavlja vrijeme čekanja za prijevod u stvarnom vremenu.
 
 **Povijest**
 
-- **Zadrži povijest izvršavanja** određuje hoće li svaki prijevod, prepisivanje i transformacija pohraniti **ulazni i izlazni tekst** za prikaz [**Povijesti**](#history) u bočnoj traci. Onemogućavanje ove opcije zahtijeva potvrdu; ukoliko potvrdite, pohranjeni tekst povijesti će biti uklonjen iz baze podataka.
-- **Izbriši podatke povijesti** omogućuje vam uklanjanje pohranjenih tekstova prema dobi (npr. starijih od nekoliko mjeseci ili **svi podaci (izbriši)**) korištenjem opcije **Izbriši podatke**. To utječe samo na pohranjeni tekst izvršavanja za prikaz **Povijesti**; **ne** briše podatke o troškovima ili ukupnom korištenju. Za uklanjanje ili skraćivanje **podataka o troškovima**, koristite [**Postavke** > **Praćenje troškova**](#cost-tracking).
+- **Spremanje povijesti izvođenja** upravlja tim da li svaki prijevod, prepisivanje i transformacija spremaju **ulazni i izlazni tekst** za prikaz [**Povijesti**](#history) u bočnom izborniku. Isključivanje ove opcije zahtijeva potvrdu; ako potvrdite, spremljeni tekst povijesti uklanja se iz baze podataka.
+- **Brisanje podataka povijesti** omogućuje uklanjanje pohranjenog teksta po starosti (npr. starijih od nekoliko mjeseci, ili **svih podataka (čišćenje)**) korištenjem opcije **Izbriši podatke**. To utječe isključivo na spremljeni tekst izvođenja za prikaz **Povijesti**; **ne briše** podatke o troškovima ili ukupnom korištenju. Da biste uklonili ili smanjili podatke o **troškovima**, koristite [**Postavke** > **Praćenje troškova**](#cost-tracking).
 
 **Izgled**
 
-- **Decimalna mjesta za trošak** mijenja prikaz decimalnih brojki za trošak.
-- **Samo za web:** **prikaži margine oko aplikacije** dodaje dodatni razmak oko sučelja.
-- **Obitelj fonta** mijenja font u tekstovnim panelima.
+- **Prikaz informacija o troškovima na radnjama** upravlja prikazom troška po operaciji (ako je dostupno) i ukupnog troška na pločama izlaza za Prijevod, Prepisivanje i Transformaciju.
+- **Broj decimalnih mjesta troška** mijenja kako će se prikazivati decimale troška.
+- **Samo web:** **prikaži marginu oko aplikacije** dodaje dodatni prostor oko sučelja.
+- **Obitelj fonta** mijenja font za tekst u tekstualnim poljima.
 - **Veličina** mijenja veličinu fonta.
 
 
 <br/>
 
 <a id="models"></a>
+
 ### Modeli
 
-Koristite **Postavke** > **Modeli** za odabir modela koji će se pojaviti na alatnoj traci.
+Koristite **Postavke** > **Modeli** da odaberete koji modeli pojavljuju u alatnoj traci.
 
-![Kartica postavke modela](../images/screenshots/hr/settings-models.png)
+![Kartica modela u postavkama](../images/screenshots/hr/settings-models.png)
 
 Stranica sadrži dvije liste:
 
 - **Dostupni modeli** s lijeve strane
 - **Odabrani modeli** s desne strane
 
-Korisni elementi uključuju:
+Korisni alati uključuju:
 
-- **Pretraži modele...** za pronalaženje modela po imenu
-- **Chips za davatelje usluga** za sužavanje liste na jedan motor (OpenRouter, OpenAI, Ollama, …)
+- **Pretraži modele...** da pronađete model po imenu
+- žariće **Davatelj usluge** za sužavanje liste na jedan motor (OpenRouter, OpenAI, Ollama, …)
 - **Samo besplatni** za prikaz samo besplatnih modela
 - **Osvježi** za ponovno učitavanje liste
-- **Proširi sve** i **Sažmi sve** dok sortirate po davatelju usluge
+- **Proširi sve** i **Sažmi sve** kada sortirate po davatelju usluge
 
-Identifikatori modela uključuju prefiks davatelja usluga (npr. `openrouter/…` nasuprot `openai/…`). Oznake poput **OpenAI (OpenRouter)** nasuprot **OpenAI (izravno)** pokazuju kako se promet usmjerava.
+Identifikatori modela uključuju prefiks davatelja usluge (npr. `openrouter/…` nasuprot `openai/…`). Značke poput **OpenAI (OpenRouter)** nasuprot **OpenAI (izravno)** pokazuju kako se promet usmjerava.
+
+> ℹ️ **NAPOMENA**<br/>
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) je usmjerivački model, a ne opći chat model: njegov odgovor je JSON koji opisuje tijela zahtjeva API-ja OpenRouter-a (npr. niz `requests` s `model` i `messages`). Ako koristite ovaj model za **Prijevod**, **Preuređivanje** ili **Transformaciju**, izlazni panel će prikazati taj JSON umjesto gotovog teksta. Za ove zadatke odaberite normalan tekstualni model. Pogledajte [stranicu modela Body Builder](https://openrouter.ai/openrouter/bodybuilder) na OpenRouter-u.
 
 Radnje:
 
-- Da biste dodali model, kliknite **Dodaj** ili bilo gdje unutar stavke.
+ - Za dodavanje modela, kliknite **Dodaj** ili bilo gdje na zapisu.
 
-- Da biste uklonili model, kliknite **X** pored njega u **Odabranim modelima** ili na **Odabrani** u stavci Dostupnih modela.
+ - Za uklanjanje modela, kliknite **X** pored njega u **Odabranim modelima** ili **Odaberi** u dostupnim modelima.
 
-- Da biste očistili listu, kliknite **Poništi sve**. Potreban besplatni model ostaje na listi.
+ - Za brisanje liste, kliknite **Odznači sve**. Obavezni besplatni model ostat će u listi.
 
 <br/>
 
-> ℹ️ **BILJEŠKA**<br/>
-> Ako ne želite odmah dodavati kredite na OpenRouter, započnite omogućivanjem opcije **Samo besplatni** i odabirom besplatnih modela (bez potrebe za kreditnom karticom). Također možete koristiti Ollamu za pokretanje modela lokalno bez bilo kojeg API ključa.
+> ℹ️ **NAPOMENA**<br/>
+> Ako ne želite odmah dodati kredite na OpenRouter, započnite uključivanjem **Samo besplatni** i odabirom besplatnih modela (kreditna kartica nije potrebna). Također možete koristiti Ollama za pokretanje modela lokalno bez bilo kakvog API ključa.
 
 <br/>
 
 <a id="languages"></a>
 ### Jezici
 
-Koristite **Postavke** > **Jezici** za uređivanje popisa jezika koji se koriste u aplikaciji.
+Koristite **Postavke** > **Jezici** za uređivanje popisa jezika korištenih u aplikaciji.
 
-- **Vrhunski jezici** prikvačeni su na vrhu popisa jezika u **Prijevodu** i **Transformaciji**.
+- **Najčešći jezici** prikvačeni su na vrh popisa jezika u funkcijama **Prijevod** i **Transformacija**.
 - **Prilagođeni jezik** omogućuje vam dodavanje jezika koji nije u ugrađenom popisu.
 
-Ako dodate prilagođeni jezik, on će se pojaviti u izbornicima jezika zajedno s ugrađenim opcijama.
+Ako dodate prilagođeni jezik, pojavit će se u odabiračima jezika uz ugrađene opcije.
 
 <br/>
 
@@ -687,95 +654,90 @@ Ako dodate prilagođeni jezik, on će se pojaviti u izbornicima jezika zajedno s
 Koristite **Postavke** > **Praćenje troškova** za upravljanje informacijama o troškovima.
 
 - **Ukupni trošak** prikazuje tekući zbroj.
-- **Kopiraj vrijednost** kopira ukupan iznos u međuspremnik.
-- **Resetiraj trošak** vraća spremljeni ukupni iznos na nulu.
-- **Sinkroniziraj s korištenjem API ključa** postavlja zbroj da odgovara prijavljenom korištenju s vašeg OpenRouter računa (samo za OpenRouter).
+- **Kopiraj vrijednost** kopira ukupni iznos na međuspremnik.
+- **Poništi trošak** postavlja pohranjeni zbroj na nulu.
+- **Sinkroniziraj s korištenjem API ključa** postavlja zbroj prema korištenju prikazanom u vašem OpenRouter računu (isključivo za OpenRouter).
 - **Korištenje API ključa** prikazuje pojedinosti o korištenju OpenRouter-a, ako su dostupne.
-- **Izbriši podatke o troškovima** uklanja sve podatke ili samo one starije od određenog datuma.
+- **Izbriši podatke o troškovima** uklanja sve podatke ili samo one starije od odabranog datuma.
 
-**Praćenje troškova:** Kada koristite modele OpenRouter-a, aplikacija prikazuje vaše stvarno korištenje i troškove temeljene na podacima s OpenRouter-a. Za sve ostale davatelje usluga, aplikacija procjenjuje troškove koristeći cijene objavljene od strane OpenRouter-a; ako cijena nije dostupna, procjena može biti nula.
+**Praćenje troškova:** Kada koristite modele OpenRouter-a, aplikacija prikazuje stvarno korištenje i izdatke temeljene na cijenama koje nudi OpenRouter. Za sve druge davatelje usluga aplikacija procjenjuje troškove na temelju cijena objavljenih od strane OpenRouter-a; ako cijena nije dostupna, procjena može biti nula.
 
 <br/>
 
-> ℹ️ **BILJEŠKA**<br/>
-> **Svi iznosi troškova su samo procjene radi vaše orijentacije, ne predstavljaju službene naplatne račune.**
-
+> ℹ️ **NAPOMENA**<br/>
+> Svi iznosi su samo procjene u informativne svrhe, a ne službeni računi.
 
 <br/>
 
 > ⚠️ **UPOZORENJE**<br/>
-> Brisanje podataka nije moguće poništiti. Prije brisanja provjerite jeste li napravili sigurnosnu kopiju ili izvezli svoje podatke putem [**Nadzorne ploče** > **Svi pozivi**](#dashboard-tabs), inače će trajno biti izgubljeni. <br/> 
-> Također će biti izbrisana sva povezana povijest pojedinih unosa poziva API-ja.
-
+> Brisanje podataka ne može se poništiti. Prije brisanja, obavezno napravite sigurnosnu kopiju podataka ili ih izvezite putem [**Povijest**](#history) 
+> ili [**Nadzorna ploča** > **Svi pozivi**](#dashboard-tabs), inače će trajno biti izgubljeni.
+> Sva povijest ulaza/izlaza vezana uz svaki unos API poziva također će biti izbrisana.
 
 <br/>
 
 <a id="transform-prompts"></a>
+### Prompts za transformaciju
 
-### Transformacija uputa
-
-Koristite **Postavke** > **Transformacija uputa** za skupno upravljanje uputama.
+Koristite **Postavke** > **Prompts za transformaciju** za masovno upravljanje upitima.
 
 Možete:
 
-- pregledati spremljene upute
-- izbrisati upute
-- uvesti upute iz datoteke
-- izvesti upute za sigurnosnu kopiju ili dijeljenje
+- pregledati spremljene upite
+- izbrisati upite
+- uvesti upite iz datoteke
+- izvesti upite za sigurnosnu kopiju ili dijeljenje
 
 <br/>
 
 <a id="users"></a>
 ### Korisnici
 
-**Web: samo administrator**
-
-Koristite **Korisnici** za upravljanje korisničkim računima u web verziji. Možete dodavati korisnike, ažurirati njihove podatke, poništiti lozinke i brisati račune.
+Koristite **Korisnici** za upravljanje korisničkim računima u web verziji. Možete dodavati korisnike, ažurirati njihove podatke, resetirati lozinke te brisati račune.
 
 <br/>
 
 <a id="api-config"></a>
 ### Konfiguracija API-ja
 
-Podržani davatelji usluga su: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i **Ollama** (lokalni modeli putem osnovnog URL-a). Potrebno je konfigurirati samo davatelje usluga koje koristite.
+Podržani davatelji usluga su: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i **Ollama** (lokalni modeli putem osnovnog URL-a). Potrebno je konfigurirati samo davatelje koje koristite.
 
 **Web aplikacija: samo administrator**
 
-API ključevi se konfiguriraju putem sustavnih ili Docker okolišnih varijabli — ne unose se u web sučelju. Ova stranica prikazuje kojim davateljima usluga je konfiguriran ključ i omogućuje testiranje svakog pojedinog ključa klikom na gumb **`Test`**.
+API ključevi konfiguriraju se kroz sistemsku ili Docker okolišne varijable — ne unose se preko web sučelja. Ova stranica prikazuje koji davatelji imaju konfiguriran ključ i omogućuje testiranje svakog ključa klikom na gumb **`Test`**.
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Za promjenu API ključa, ažurirajte okolišnu varijablu u konfiguraciji vašeg sustava ili Docker okruženja te ponovo pokrenite poslužitelj ili spremnik.
+> Za promjenu API ključa, ažurirajte odgovarajuću okolišnu varijablu u sustavskoj ili Docker konfiguraciji te ponovo pokrenite poslužitelj ili spremnik.
 
 <br/>
 
 **Desktop aplikacija**
 
-Koristite **Konfiguraciju API-ja** za pohranu API ključeva za svakog davatelja usluge kojega koristite. Za Ollamu, unesite **osnovni URL** umjesto API ključa.
+Koristite **Konfiguraciju API-ja** za pohranu API ključeva za svakog davatelja usluga kojeg koristite. Za Ollama, umjesto API ključa unesite **osnovni URL**.
 
 <br/>
 
 > 💡 **Savjet** <br/>
-> Ako ne želite koristiti API ključeve niti plaćati za korištenje, možete [preuzeti Ollamu](https://ollama.com) i besplatno pokretati modele lokalno na svom uređaju. Alternativno, možete kreirati besplatni OpenRouter račun (bez potrebe za kreditnom karticom) kako biste koristili njihove besplatne modele.
+> Ako ne želite koristiti API ključeve ili plaćati za korištenje, možete [preuzeti Ollama](https://ollama.com) i besplatno pokretati modele (poput `translategemma:4b`) lokalno na svojem uređaju. Alternativno, možete kreirati besplatni OpenRouter račun (kreditna kartica nije potrebna) za korištenje njihovih besplatnih modela, ili dobiti besplatni API ključ od Cerebras, Google, Groq ili Mistral AI.
 
-- Dodajte samo davatelje usluga koje trebate. U **Postavkama** > **Modeli**, svaki identifikator modela počinje s imenom davatelja usluge (npr. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+<br/>
 
-Za dodavanje API ključa, upišite vrijednost u tekstualno polje i kliknite **`Spremi`**. Za zamjenu postojećeg ključa, kliknite **`Uredi`**. Za provjeru funkcionira li ključ, kliknite **`Test`**.
+- Dodajte samo davatelje koje trebate. U **Postavkama** > **Modelima**, svaki ID modela počinje imenom davatelja (npr. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Za dodavanje API ključa, unesite vrijednost u tekstualno polje te kliknite **`Spremi`**. Da biste zamijenili postojeći ključ, kliknite **`Uredi`**. Da biste provjerili funkcionira li ključ, kliknite **`Test`**. Za Ollama osnovni URL, uvijek kliknite **`Test`** da provjerite vezu.
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> Trenutnu vrijednost API ključa ne možete vidjeti. Možete je samo zamijeniti pomoću gumba **`Uredi`**.
-> API ključevi su pohranjeni šifrirano u konfiguracijskoj datoteci.
-
-<br/>
-
-Za detaljne upute o postupku dobivanja OpenRouter ključa, pogledajte gore [Kako dobiti API ključ](#how-to-get-an-api-key-desktop-app).
+> Trenutačnu vrijednost API ključa ne možete vidjeti. Možete je samo zamijeniti pomoću gumba **`Uredi`**.
+> API ključevi pohranjuju se šifrirano u konfiguraciji.
 
 <br/>
 
 <a id="about"></a>
+
 ### O aplikaciji
 
 Kartica **O aplikaciji** prikazuje:
@@ -783,31 +745,31 @@ Kartica **O aplikaciji** prikazuje:
 - naziv aplikacije
 - broj verzije
 - datum izrade
-- poveznicu do repozitorija projekta
+- poveznicu na repozitorij projekta
 
 <br/><br/>
 
 <a id="common-issues"></a>
-## Česti problemi
+## Uobičajeni problemi
 
-Ako nešto ne funkcionira kao što očekujete, prvo provjerite sljedeće točke.
+Ako nešto ne radi kako treba, prvo provjerite sljedeće točke.
 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Aplikacija ne prevodi, prepisuje ili transformira tekst
+### Aplikacija ne prevodi, ne prepisuje niti pretvara tekst
 
-Provjerite:
+Provjerite sljedeće:
 
-- odabran li je model u alatnoj traci
-- da je barem jedan model naveden u [**Postavkama** > **Modeli**](#models)
-- da vaša API konfiguracija ispravno funkcionira
+- odabrali ste model u alatnoj traci
+- barem jedan model je naveden u odjeljku [**Postavke** > **Modeli**](#models)
+- vaša API postavka ispravno funkcionira
 
-Ako koristite desktop aplikaciju:
+Ako koristite stolnu aplikaciju:
 
 1. Otvorite [**Postavke** > **Konfiguracija API-ja**](#api-config).
 2. Provjerite je li spremljen barem jedan API ključ.
-3. Kliknite **Test** uz davatelja usluge kako biste potvrdili da ključ funkcionira.
+3. Kliknite **Test** pokraj davatelja usluge kako biste potvrdili da ključ ispravno funkcionira.
 
 <br/>
 
@@ -818,8 +780,8 @@ Otvorite [**Postavke** > **Modeli**](#models) i kliknite **Osvježi**.
 
 Ako je potrebno:
 
-- pretražite model
-- uključite opciju **Samo besplatno**
+- potražite model
+- uključite mogućnost **Samo besplatni**
 - dodajte jedan ili više modela u **Odabrane modele**
 
 <br/>
@@ -827,11 +789,11 @@ Ako je potrebno:
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Rezultat je pre spor ili pre skup
 
-Pokušajte jednu ili više od sljedećih opcija:
+Pokušajte jedno ili više od sljedećeg:
 
 - odaberite drugi model
-- koristite kraći ulazni tekst
-- isključite opciju **Prijevod u stvarnom vremenu (tijekom kucanja)** u [**Postavkama** > **Opće postavke**](#general-settings)
+- koristite kraći unos
+- isključite **Prijevod u stvarnom vremenu (tijekom tipkanja)** u odjeljku [**Postavke** > **Opće postavke**](#general-settings)
 - koristite besplatne modele za jednostavne zadatke (pogledajte [Modeli](#models))
 
 <br/>
@@ -839,12 +801,12 @@ Pokušajte jednu ili više od sljedećih opcija:
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Sučelje je na pogrešnom jeziku
 
-Kliknite na ikonu zemaljskog globusa u [alatnoj traci](#toolbar) i odaberite željeni **jezik sučelja**.
+Kliknite ikonu globusa u [alatnoj traci](#toolbar) i odaberite željeni **jezik sučelja**.
 
 <br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
-### Tekst je premalen ili teško čitljiv
+### Tekst je premalen ili teško ga je pročitati
 
 Otvorite [**Postavke** > **Opće postavke**](#general-settings) i promijenite:
 
@@ -858,82 +820,82 @@ Otvorite [**Postavke** > **Opće postavke**](#general-settings) i promijenite:
 
 To je normalno ako:
 
-- koristite **samo besplatne modele** (grafikoni troškova će biti prazni)
-- odabrani **filtar vremena** ne obuhvaća razdoblje u kojemu su izvršene pozive — pokušajte s opcijom **Sve** kako biste provjerili
+- koristite samo **besplatne modele** (dijagrami troškova će biti prazni)
+- odabrani filtar **vremena** ne pokriva razdoblje kada su napravljeni pozivi — pokušajte odabrati **Sve** kako biste provjerili
 
 Ako su grafikoni i dalje prazni nakon što odaberete **Sve**, provjerite pojavljuju li se pozivi u [**Povijesti**](#history) ili u kartici **Svi pozivi**.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
+### Trošak prikazuje "nije dostupan" ili izgleda netočno
 
-### Trošak prikazuje "nije dostupan" ili izgleda pogrešno
+Kada koristite modele putem **OpenRoutera**, aplikacija prikazuje stvarne troškove koje izvještava OpenRouter.
 
-Kada koristite modele putem **OpenRoutera**, aplikacija prikazuje vaš stvarni trošak prijavljen od strane OpenRoutera.
-
-Za **druge pružatelje usluga** (OpenAI izravno, Anthropic izravno itd.), trošak se procjenjuje na temelju cijena objavljenih od strane OpenRoutera. Ako se za model ne pronađe odgovarajuća cijena, trošak će se prikazati kao **nije dostupan** i neće se dodati u ukupni iznos.
+Za **druge davatelje usluga** (izravno OpenAI, izravno Anthropic itd.), troškovi se procjenjuju na temelju cijena koje objavljuje OpenRouter. Ako za model nije pronađena odgovarajuća cijena, trošak će se prikazati kao **nije dostupan** i neće se dodati na vaš ukupni trošak.
 
 <br/>
 
 <a id="total-cost-does-not-match-my-provider-bill"></a>
-### Ukupni trošak se ne podudara s računom pružatelja usluga
+### Ukupni trošak se ne podudara s računom davatelja usluga
 
-Svi prikazani iznosi troškova u aplikaciji su **procjene samo za referencu**, a ne službeni računi.
+Svi iznosi u aplikaciji su **procijenjeni samo kao referenca**, a ne službeni računi za naplatu.
 
-Kako biste ukupan iznos približili stvarnom iznosu troška na OpenRouteru, otvorite [**Postavke** > **Praćenje troškova**](#cost-tracking) i kliknite **Sinkroniziraj s korištenjem API ključa**.
+Da biste ukupni trošak približili stvarnom trošku na OpenRouteru, otvorite [**Postavke** > **Praćenje troškova**](#cost-tracking) i kliknite **Sinkroniziraj s korištenjem API ključa**.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
-### Stranica Povijest nedostaje u bočnom traku
+### Stranica Povijest nedostaje s bočne trake
 
-Moguće je da je isključena opcija **Zadrži povijest izvođenja**. Otvorite [**Postavke** > **Opće postavke**](#general-settings) i omogućite je. Imajte na umu da uključivanje ove opcije ne vraća ranije izbrisane podatke iz povijesti.
+Postavka **Zadrži povijest izvršavanja** može biti isključena. Otvorite [**Postavke** > **Opće postavke**](#general-settings) i uključite je. Imajte na umu da uključivanje ove postavke neće vratiti ranije izbrisane podatke povijesti.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
-### Web aplikacija: neočekivano ste preusmjereni na stranicu za prijavu
+### Web aplikacija: preusmjerena na stranicu za prijavu iznenada
 
-Vaša sesija možda je istekla. Prijavite se ponovno. Ako se to događa učešće, provjerite konfiguraciju poslužitelja za postavke vremenskog trajanja sesije.
+Vaša sesija možda je istekla. Prijavite se ponovno. Ako se to događa često, provjerite konfiguraciju poslužitelja vezano uz postavke trajanja sesije.
 
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
 ### Nadzorna ploča ne prikazuje podatke za druge korisnike (web)
 
-Samo **administratori** mogu vidjeti podatke svih korisnika kroz **Korisnički** filter. Redoviti korisnici vide samo vlastitu aktivnost kako je predviđeno.
+Samo **administratori** mogu pregledavati podatke svih korisnika preko filtera **Korisnik**. Redovni korisnici vide samo svoje aktivnosti, što je u skladu s projektiranjem.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Promijenio sam upit i izgubio izmjene
+### Izmijenio sam upit i izgubio izmjene
 
-Prilikom uređivanja upita, uvijek kliknite na **Spremi** prije nego što kliknete **Natrag na pokretanje**.
+Tijekom uređivanja upita, uvijek kliknite **Spremi** prije nego što kliknete **Natrag na pokretanje**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
 ## Brzi savjeti
 
-- Počnite s [**Prijevodom**](#translate) kako biste provjerili radi li vam konfiguracija prije nego što pređete na [**Ponovno pisanje**](#rewrite) ili [**Transformaciju**](#transform).
-- Koristite [**Ponovno pisanje**](#rewrite) za svakodnevna poboljšanja formulacije.
-- Koristite [**Transformaciju**](#transform) kada vam treba ponovljiv tijek posla za određeni zadatak.
-- Koristite [**Nadzornu ploču**](#dashboard) ako želite prati korištenje i troškove.
-- Koristite [**Povijest**](#history) za pregleđivanje prošlih aktivnosti i njihovih potpunih ulaznih/izlaznih teksta.
-- Redovito izvozite upite ako gradite knjižnicu upita koju želite sačuvati (vidite [Transformacija upita](#transform-prompts)) ili ako ih želite dijeliti s drugima.
+- Počnite s [**Prijevodom**](#translate) kako biste osigurali da vam je postavka ispravna prije nego što prijeđete na [**Prepisi**](#rewrite) ili [**Pretvori**](#transform).
+- Koristite [**Prepisi**](#rewrite) za svakodnevna poboljšanja izraza.
+- Koristite [**Pretvori**](#transform) kada vam treba ponovljiv tijek rada za određeni zadatak.
+- Koristite [**Nadzorne ploče**](#dashboard) ako želite pratiti korištenje i troškove.
+- Koristite [**Povijest**](#history) za pregled prijašnjih operacija i cijelog unosa/izlaza teksta.
+- Redovito izvozite upite ako gradite biblioteku upita koju želite sačuvati (pogledajte [Pretvori upite](#transform-prompts)) ili ako ih želite podijeliti s drugima.
 
 <br/><br/>
 
 <a id="disclaimer"></a>
+
 ## Odricanje od odgovornosti
 
-Imena proizvoda i ikone pripadaju njihovim vlasnicima i koriste se isključivo u svrhu identifikacije. Ovaj softver nije povezan niti odobren od strane bilo kojeg od spomenutih brendova.
+Nazivi proizvoda i ikone pripadaju svojim vlasnicima i koriste se isključivo u svrhu identifikacije. Ovaj softver nije povezan s bilo kojim od spomenutih brendova niti im je odobren od njih.
 
 <br/><br/>
 
 <a id="license"></a>
 ## Licenca
 
-Autorska prava © 2026 Waldemar Scudeller Jr.
+Autorska prava © 2026. Waldemar Scudeller Jr.
 
 [Apache licenca 2.0](LICENSE)

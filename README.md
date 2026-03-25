@@ -124,10 +124,10 @@ Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.
 
 **Linux**
 
-Download the `.AppImage` from [Releases](https://github.com/wsj-br/transrewrt/releases), then:
+Download the `.AppImage` for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
 
 ```bash
-chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
 Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
@@ -166,8 +166,8 @@ Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Download the `.AppImage` from [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Run: `chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage`
+- Download the matching `.AppImage` (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Run: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` on x86_64/amd64, or use the `...-arm64.AppImage` filename on ARM64.
 - Extra dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - See [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) for more.
 
@@ -295,7 +295,7 @@ Key settings (font, models, languages, etc.) are available in the application Se
 <a id="releases-and-tags"></a>
 ## Releases and tags
 
-- **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** attach the Windows installer (`.exe`) and Linux AppImage.
+- **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** attach the Windows installer (`.exe`) and Linux AppImages (**x64** and **arm64**).
 - **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
 
 <br/><br/>

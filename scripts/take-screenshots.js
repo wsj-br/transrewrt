@@ -14,6 +14,9 @@
  * Env: BASE_URL (default http://localhost:5000), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
+ * Before capture, the script sets `available_models` and `top_languages` in data/config.json and (web) in SQLite
+ * user_preferences for ADMIN_USERNAME so model/language UI matches across runs.
+ *
  * The language-selector screenshot applies font-family for Noto Sans KR/Telugu/Thai so system-installed
  * Noto fonts are used (e.g. on Debian/Raspbian: apt install fonts-noto-cjk fonts-noto-core).
  *
@@ -60,15 +63,30 @@ function loadAndFilterUILanguages(localeFilter) {
 
 function parseArgs() {
   const out = { help: false, screenshotFilter: null, localeFilter: null, unknown: [] };
-  for (const arg of process.argv.slice(2)) {
+  const argv = process.argv.slice(2);
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
     if (arg === "--help" || arg === "-h") {
       out.help = true;
-    } else if (arg.startsWith("--screenshot=")) {
+    } else if (arg.startsWith("--screenshot=") || arg.startsWith("--screen=")) {
       out.screenshotFilter = arg.split("=", 2)[1].trim();
     } else if (arg.startsWith("--locale=")) {
       const val = arg.split("=", 2)[1].trim();
       // PowerShell parses unquoted "a,b,c" after = as an array, then passes "a b c" as one argv token — split on whitespace too.
       out.localeFilter = val ? val.split(/[,\s]+/).map((c) => c.trim()).filter(Boolean) : null;
+    } else if (arg === "--locale" || arg === "-l") {
+      const next = argv[i + 1];
+      if (next == null) {
+        out.unknown.push(arg);
+      } else {
+        // Accept both comma- and whitespace-separated lists in a single argv token.
+        out.localeFilter = String(next)
+          .split(/[,\s]+/)
+          .map((c) => c.trim())
+          .filter(Boolean);
+        if (out.localeFilter.length === 0) out.localeFilter = null;
+        i++;
+      }
     } else {
       out.unknown.push(arg);
     }
@@ -93,7 +111,8 @@ Usage:
 Options:
   --help, -h              Show this help and exit.
   --screenshot=NAME        (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
-  --locale=CODE            Only run for these locale(s). Comma- or space-separated (e.g. --locale=pt-BR,es,ja). On PowerShell, quote the value if using commas: '--locale=pt-BR,es,ja'.
+  --locale=CODE            Only run for these locale(s). Comma- or space-separated (e.g. --locale=pt-BR,es,ja).
+  --locale CODE, -l CODE  Only run for these locale(s). The locale list must be a single argv token: --locale pt-BR,es,ja or --locale "pt-BR es ja".
 
 Environment:
   BASE_URL                   Base URL of the web app (default: ${baseUrl}).
@@ -128,6 +147,96 @@ function getDataDir() {
     return path.dirname(process.env.CONFIG_PATH);
   }
   return path.join(__dirname, "..", "data");
+}
+
+/** Fixed lists for marketing screenshots (written to config.json + web `user_preferences` for the login user). Must match `ModelSelector` slug: model id with `/` → `-`. */
+const SCREENSHOT_AVAILABLE_MODELS = [
+  "openrouter/openrouter/free", 
+  "cerebras/qwen-3-235b-a22b-instruct-2507", 
+  "openrouter/qwen/qwen3-235b-a22b-2507", 
+  "openrouter/stepfun/step-3.5-flash:free", 
+  "openrouter/anthropic/claude-3-haiku", 
+  "deepseek/deepseek-chat", 
+  "google/gemma-3n-e4b-it"
+];
+const SCREENSHOT_TOP_LANGUAGES = ["English (UK)", "Portuguese (BR)", "Spanish"];
+/** Selected model in the UI and history sample; must appear in `SCREENSHOT_AVAILABLE_MODELS`. */
+const SCREENSHOT_DEFAULT_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b-2507";
+
+function screenshotModelOptionSelector(modelId) {
+  const slug = String(modelId).replace(/\//g, "-");
+  return `[data-testid="model-option-${slug}"]`;
+}
+
+/**
+ * Web: merged config uses per-user SQLite prefs for these keys. Electron: `data/config.json`.
+ * Ensures screenshot runs share the same model list and top content languages.
+ */
+function applyScreenshotConfigConsistency() {
+  const dataDir = getDataDir();
+  const configPath = path.join(dataDir, "config.json");
+  let cfg = {};
+  if (fs.existsSync(configPath)) {
+    try {
+      cfg = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    } catch (err) {
+      log("Screenshot config: could not parse %s: %s (using {}).", configPath, err.message);
+      cfg = {};
+    }
+  }
+  cfg.available_models = [...SCREENSHOT_AVAILABLE_MODELS];
+  cfg.top_languages = [...SCREENSHOT_TOP_LANGUAGES];
+  cfg.last_used_model = SCREENSHOT_DEFAULT_MODEL_ID;
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(configPath, JSON.stringify(cfg, null, 2) + "\n", "utf8");
+  log("Screenshot config: wrote available_models (%d) and top_languages to %s.", SCREENSHOT_AVAILABLE_MODELS.length, configPath);
+
+  const username =
+    process.env.ADMIN_USERNAME != null && String(process.env.ADMIN_USERNAME).trim()
+      ? String(process.env.ADMIN_USERNAME).trim()
+      : null;
+  if (!username) {
+    return;
+  }
+  const dbPath = path.join(dataDir, "transrewrt.db");
+  if (!fs.existsSync(dbPath)) {
+    log("Screenshot config: no DB at %s; skipped user_preferences.", dbPath);
+    return;
+  }
+  let db;
+  try {
+    db = new Database(dbPath);
+    applyAppSchema(db);
+    const row = db.prepare("SELECT id FROM users WHERE username = ?").get(username);
+    if (!row) {
+      log("Screenshot config: no user %s in users table; config.json only.", username);
+      return;
+    }
+    const prefRow = db.prepare("SELECT data FROM user_preferences WHERE user_id = ?").get(row.id);
+    let current = {};
+    if (prefRow && prefRow.data) {
+      try {
+        const parsed = JSON.parse(prefRow.data);
+        if (parsed && typeof parsed === "object") current = parsed;
+      } catch {
+        /* keep current = {} */
+      }
+    }
+    const next = {
+      ...current,
+      available_models: [...SCREENSHOT_AVAILABLE_MODELS],
+      top_languages: [...SCREENSHOT_TOP_LANGUAGES],
+      last_used_model: SCREENSHOT_DEFAULT_MODEL_ID,
+    };
+    db.prepare(
+      "INSERT INTO user_preferences (user_id, data) VALUES (?, ?) ON CONFLICT(user_id) DO UPDATE SET data = excluded.data",
+    ).run(row.id, JSON.stringify(next));
+    log("Screenshot config: merged into user_preferences for %s.", username);
+  } catch (err) {
+    log("Screenshot config: user_preferences merge failed: %s", err.message);
+  } finally {
+    if (db) db.close();
+  }
 }
 
 function ensureRewriteWithSynonymsPrompt() {
@@ -243,7 +352,7 @@ function ensureHistorySampleForScreenshots() {
       const info = insertCall.run(
         now,
         "translate",
-        "openrouter/free",
+        SCREENSHOT_DEFAULT_MODEL_ID,
         "Detect Language",
         "pt-BR",
         "",
@@ -551,8 +660,9 @@ async function setUILanguage(page, targetCode, options = {}) {
   await wait(500);
 }
 
-async function setModelToOpenRouterFree(page) {
-  log("Selecting model openrouter/free...");
+async function setScreenshotDefaultModel(page) {
+  const modelId = SCREENSHOT_DEFAULT_MODEL_ID;
+  log("Selecting default screenshot model %s...", modelId);
   const triggerSel = "[data-testid=\"model-selector\"]";
   const trigger = await page.$(triggerSel);
   if (!trigger) {
@@ -566,23 +676,23 @@ async function setModelToOpenRouterFree(page) {
     await trigger.click();
   }
   await wait(300);
-  const optionSel = "[data-testid=\"model-option-openrouter-free\"]";
+  const optionSel = screenshotModelOptionSelector(modelId);
   const optionReady = await page.waitForSelector(optionSel, { timeout: 8000 }).then(() => true).catch(() => false);
   if (!optionReady) {
-    log("Model option openrouter-free not found; continuing.");
+    log("Model option for %s not found (%s); continuing.", modelId, optionSel);
     await page.keyboard.press("Escape");
     await wait(200);
     return;
   }
   await wait(200);
   await page.click(optionSel);
-  log("Selected model openrouter/free.");
+  log("Selected model %s.", modelId);
   await wait(400);
   await page.keyboard.press("Escape");
   await wait(200);
 }
 
-/** Set Translate page From: Detect Language, To: Portuguese (BR). Run after setModelToOpenRouterFree. */
+/** Set Translate page From: Detect Language, To: Portuguese (BR). Run after setScreenshotDefaultModel. */
 async function setTranslateFromToLanguages(page) {
   await clickByTestId(page, "nav-translate");
   await wait(500);
@@ -1062,6 +1172,7 @@ async function main() {
   log("Ensuring prompt '%s' exists in custom_prompts...", REWRITE_WITH_SYNONYMS_NAME);
   ensureRewriteWithSynonymsPrompt();
   ensureHistorySampleForScreenshots();
+  applyScreenshotConfigConsistency();
 
   log("Checking if server is online at %s...", BASE_URL);
   if (!(await checkAppResponding())) {
@@ -1127,7 +1238,7 @@ async function main() {
   }
 
   await setUILanguage(page, "en-GB");
-  await setModelToOpenRouterFree(page);
+  await setScreenshotDefaultModel(page);
   await setTranslateFromToLanguages(page);
 
   const captureResults = {};

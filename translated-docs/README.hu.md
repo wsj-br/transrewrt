@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-24T01:50:10.265Z"
-source_hash: "718acd12f14755cd75ebf7d09b86d9a1df37ebe1898710080fa8e80c1221d58b"
-source_mtime: 1774311390366.3484
+translated_at: "2026-03-25T22:22:04.705Z"
+source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
+source_mtime: 1774475429145.525
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -11,36 +11,36 @@ model: "qwen/qwen3-235b-a22b-2507"
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.14-blue" alt="Verzió"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Verzió"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Licenc: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Mesterséges intelligenciával vezérelt szövegfeldolgozó eszköz: fordítás nyelvek között, stílusváltás és egyéni promptokkal történő átalakítás – több MI-szolgáltatót (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama) használva. Asztali alkalmazásként (Electron) vagy önállóan üzemeltetett webalkalmazásként (Docker) futtatható.
+AI-alapú szövegfeldolgozó eszköz: nyelvek közötti fordítás, stílusváltás, egyéni utasításokkal történő átalakítás – több AI-szolgáltató használatával (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Futtatható asztali alkalmazásként (Electron) vagy önállóan futó webalkalmazásként (Docker).
 
-- **Fordítás** — tucatnyi nyelv között, automatikus forrásnyelv-felismeréssel
-- **Átírás** — helyesírás-javítás, világosabbá tétel, formális/társalgási stílus, rövidítés, bővítés, technikai leírás
-- **Átalakítás** — egyéni MI promptok; promptok készítése és kezelése, lehetőség célnyelv megadására promptonként
-- **Előzmények** — teljes végrehajtási előzmény a bemeneti/kimeneti szövegekkel, szűrési lehetőséggel és exportálással
-- **Modellek és költségek** — modellválasztás bármely beállított szolgáltatóból; költségfelügyeleti irányítópult SQLite naplózással, összefoglalók modellek/műveletek/napok szerint
-- **Felhasználói felület (UI)** — többnyelvű felület (több mint 30 nyelv, RTL támogatással), betűtípusok, ...
-- **Webes mód** — többfelhasználós támogatás adminisztrációs szerepkörökkel; az API-kulcsok kizárólag a szerver oldalon vannak, soha nem jelennek meg a böngészőben
-- **Asztali verzió** — Electron alkalmazás Windows és Linux rendszerekre
-- **Önálló üzemeltetés** — Docker-rendszerkép amd64 & arm64 architektúrákhoz (beleértve a Raspberry Pi-t is)
+- **Fordítás** — több tucat nyelv között, automatikus forrásnyelv-felismeréssel
+- **Átírás** — helyesírás javítása, érthetőség növelése, formális/mendemes, rövidítés, bővítés, technikai stílus
+- **Átalakítás** — egyéni AI-utasítások; utasítások létrehozása és kezelése, nyelvcél megadható utasításonként
+- **Előzmények** — teljes végrehajtási előzmények, bemenet/kimenet szövegekkel, szűrési lehetőségekkel és exportálással
+- **Modellek és költség** — modellek választhatók bármely beállított szolgáltatótól; költség- és használatimérő-eszközök naplózással, összegzésekkel modellek, műveletek és napok szerint
+- **Felület** — többnyelvű felhasználói felület (több mint 30 nyelv, RTL támogatással), betűtípusok, ...
+- **Web mód** — többfelhasználós támogatás adminisztrátori szerepkörökkel
+- **Asztali változat** — Electron alkalmazás Windows és Linux rendszerekre
+- **Önállóan futtatható** — Docker kép amd64 & arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 
-Telepítés után tekintse át az **[Útmutatót](USER-GUIDE.hu.md)** az összes funkció részletes ismertetéséért.
+Telepítés után tekintse meg a **[Felhasználói útmutató](USER-GUIDE.hu.md)** minden funkció bemutatását.
 
-<small>**Más nyelveken olvasható:** [English (UK)](README.hu.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Más nyelveken is elérhető:** [English (UK)](README.hu.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
+<small>
 
+> **Megjegyzés a felhasználói felület és a dokumentáció fordításához:** Az eredeti angol (UK) nyelven kívüli összes felület fordítása mesterséges intelligenciát használt; a szöveg fordítása pontatlan vagy hibás lehet.
+
+</small>
 
 <br/>
-
-**Megjegyzés a felhasználói felület és dokumentáció fordításához:** A brit angol nyelv kivételével minden felületfordítás mesterséges intelligenciás modell segítségével készült; a szöveg pontatlanságokat vagy hibákat tartalmazhat.
-
-
 
 <a id="screenshots"></a>
 ## Képernyőképek
@@ -53,21 +53,21 @@ Telepítés után tekintse át az **[Útmutatót](USER-GUIDE.hu.md)** az összes
 
 ![Fordítás](../images/screenshots/hu/translate.png)
 
-**Átalakítás – prompt szerkesztő**
+**Átalakítás – utasítás szerkesztő**
 
-![Átalakítás – prompt szerkesztő](../images/screenshots/hu/transform-prompt-edit.png)
+![Átalakítás – utasítás szerkesztő](../images/screenshots/hu/transform-prompt-edit.png)
 
-**Irányítópult**
+**Vezérlőpult**
 
-![Költségfelügyeleti irányítópult](../images/screenshots/hu/dashboard-summary.png)
+![Költségmérő vezérlőpult](../images/screenshots/hu/dashboard-summary.png)
 
 **Előzmények**
 
 ![Előzmények](../images/screenshots/hu/history.png)
 
-**Beállítások – modellkiválasztás**
+**Beállítások – modell kiválasztása**
 
-![Beállítások – modellkiválasztás](../images/screenshots/hu/settings-models.png)
+![Beállítások – modell kiválasztása](../images/screenshots/hu/settings-models.png)
 
 <br/><br/>
 
@@ -77,6 +77,7 @@ Telepítés után tekintse át az **[Útmutatót](USER-GUIDE.hu.md)** az összes
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 
 - [Gyors indítás](#quick-start)
 - [Telepítés](#installation)
@@ -88,7 +89,7 @@ Telepítés után tekintse át az **[Útmutatót](USER-GUIDE.hu.md)** az összes
 - [Fejlesztés és architektúra](#development-and-architecture)
 - [Kiadások és címkék](#releases-and-tags)
 - [Közreműködés](#contributing)
-- [Felelősségkizárás](#disclaimer)
+- [Felelősség kizárása](#disclaimer)
 - [Licenc](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -98,7 +99,7 @@ Telepítés után tekintse át az **[Útmutatót](USER-GUIDE.hu.md)** az összes
 <a id="quick-start"></a>
 ## Gyors indítás
 
-**Docker (ajánlott saját üzemeltetéshez)**
+**Docker (ajánlott önálló üzemeltetéshez)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -111,32 +112,32 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Helyettesítse be a `sk-or-your-key` részt a [OpenRouter API-kulcsával](https://openrouter.ai/keys) (vagy állítson be más szolgáltatói kulcsokat; lásd: [Konfiguráció](#configuration-and-environment)). Nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és változtassa meg az alapértelmezett admin jelszót, mielőtt a szolgáltatás nyilvánosságra kerülne.
+Helyettesítse be a `sk-or-your-key` részt a saját [OpenRouter API-kulcsával](https://openrouter.ai/keys) (vagy állítson be más szolgáltatói kulcsokat; lásd: [Konfiguráció](#configuration-and-environment)). Nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és szolgáltatás elérhetővé tétele előtt módosítsa az alapértelmezett admin jelszót.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Dockerben az LLM hitelesítő adatokat környezeti változókkal kell beállítani, például `OPENROUTER_KEY`, `OPENAI_KEY`, … (nem a webes felhasználói felületen). Asztali (Electron) környezetben a kulcsokat a **Beállítások → API** menüpontban állíthatja be.
+> Dockerben az LLM-hitelesítő adatok környezeti változókkal (például `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, …) vannak beállítva (nem a webes felhasználói felületen). Asztali (Electron) verzióban pedig a **Beállítások → API** menüpontban.
 
 <br/>
 
 **Windows**
 
-Töltse le a legújabb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, futtassa a telepítőt, majd indítsa el a Start menüből vagy asztali hivatkozásból. Adja meg az API-kulcsait a **Beállítások → API** menüben. Legalább egy szolgáltatót be kell állítania; az OpenRouter gyakori választás ingyenes modellekhez.
+Töltse le a legfrissebb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldaláról, futtassa a telepítőt, majd indítsa el a Start menüből vagy munkaasztali hivatkozásból. Adja meg az API-kulcsait a **Beállítások → API** menüpontban. Legalább egy szolgáltatót konfigurálnia kell, az OpenRouter a leggyakoribb ingyenes modellekhez.
 
 <br/>
 
 **Linux**
 
-Töltse le az `.AppImage` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, majd:
+Töltse le a CPU-nak megfelelő `.AppImage` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldaláról (`x64` tipikus PC-khez, `arm64` sok ARM-eszközhöz, beleértve a Raspberry Pi 4+-t is), majd:
 
 ```bash
-chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Adja meg az API-kulcsait a **Beállítások → API** menüben. Legalább egy szolgáltatót be kell állítania; az OpenRouter gyakori választás ingyenes modellekhez.
+Adja meg az API-kulcsait a **Beállítások → API** menüpontban. Legalább egy szolgáltatót konfigurálnia kell, az OpenRouter a leggyakoribb ingyenes modellekhez.
 
-Debian/Ubuntu esetén előfordulhat, hogy először extra függőségeket kell telepítenie:
+Debian/Ubuntu esetén előfordulhat, hogy először további függőségeket kell telepítenie:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -147,11 +148,11 @@ Részletekért lásd: [Telepítés → Linux](#linux-electron).
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Jelenleg macOS nincs támogatva. A Transrewrt Windows, Linux és Docker rendszerekre érhető el.
+> Jelenleg macOS nincs támogatva. A Transrewrt Windowsra, Linuxra és Dockerre érhető el.
 
 <br/>
 
-Amint az alkalmazás fut, olvassa el a **[Felhasználói útmutatót](USER-GUIDE.hu.md)**, amelyből megtudhatja, hogyan lehet szöveget fordítani, átírni és átalakítani, kezelni a promptokat, valamint konfigurálni a modelleket.
+Miután az alkalmazás fut, olvassa el a **[Felhasználói útmutatót](USER-GUIDE.hu.md)**, hogy megtanulja, hogyan fordíthat, írhat át és alakíthat szöveget, hogyan kezelheti a promptokat, valamint hogyan konfigurálhatja a modelleket.
 
 <br/><br/>
 
@@ -161,19 +162,19 @@ Amint az alkalmazás fut, olvassa el a **[Felhasználói útmutatót](USER-GUIDE
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Töltse le a legújabb telepítőt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról.
+- Töltse le a legfrissebb telepítőt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldaláról.
 - Futtassa a `.exe` fájlt, és kövesse a telepítő utasításait.
-- Első futtatás: indítsa el az alkalmazást a Start menüből vagy asztali hivatkozásból.
+- Első indításkor: indítsa el az alkalmazást a Start menüből vagy munkaasztali hivatkozásból.
 
 <br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Töltse le az `.AppImage` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról.
-- Futtassa: `chmod +x Transrewrt-x.y.z.AppImage && ./Transrewrt-x.y.z.AppImage`
+- Töltse le a megfelelő `.AppImage` fájlt (`x64` vagy `arm64`) a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldaláról.
+- Futtassa: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64 gépeken, vagy használja az `...-arm64.AppImage` fájlnevet ARM64 rendszereken.
 - További függőségek (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- További információkért lásd a [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) fájlt.
+- További információk: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/>
 
@@ -181,10 +182,10 @@ Amint az alkalmazás fut, olvassa el a **[Felhasználói útmutatót](USER-GUIDE
 ### Docker
 
 - Letöltés: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Állítson be legalább egy szolgáltatói kulcsot környezeti változóban (például `OPENROUTER_KEY` az OpenRouterhez). Adja meg a változókat `-e` kapcsolóval vagy `docker compose` / `.env` fájllal, hogy a titkos kulcsok ne kerüljenek közvetlenül a rendszerképbe.
-- A szolgáltatói kulcsokat **nem** a webes felhasználói felületen kell megadni; a szerver a környezetből olvassa be őket.
+- Állítson be legalább egy szolgáltatói kulcsot környezeti változóban (például `OPENROUTER_KEY` az OpenRouterhez). A változókat az `-e` kapcsolóval vagy `docker compose` / `.env` fájllal adja át, hogy a bizalmas adatok ne kerüljenek a képbe.
+- A szolgáltatói kulcsokat **nem** a webes felhasználói felületen adja meg; a szerver a környezetből olvassa őket.
 
-Példa – névvel ellátott kötet adatmegőrzéshez (OpenRouter kulcs környezeti változóból):
+Példa - elnevezett kötet az adatmegőrzéshez (OpenRouter kulcs környezeti változóban):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -197,13 +198,13 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-| Beállítás   | Leírás                                                                                                   |
+| Beállítás | Leírás                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (hozzárendelés `-p 5000:5000` kapcsolóval)                                                                              |
-| Kötet   | `/app/data` csatolása a konfiguráció és adatbázis megőrzéséhez                                                         |
+| Port     | `5000` (lehet átirányítani a `-p 5000:5000` kapcsolóval)                                                                              |
+| Kötet   | Csatolja a `/app/data` mappát a konfiguráció és az adatbázis megőrzéséhez                                                         |
 | Környezeti változók | `PORT`, `CONFIG_PATH`, valamint LLM kulcsok (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – lásd: [Konfiguráció](#configuration-and-environment) |
 
-Forráskódból történő buildelés és futtatás: `docker compose up --build -d` vagy `pnpm docker:up` – részletekért lásd: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Forráskódból történő buildelés és futtatás: `docker compose up --build -d` vagy `pnpm docker:up` – lásd: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/><br/>
 
@@ -211,15 +212,20 @@ Forráskódból történő buildelés és futtatás: `docker compose up --build 
 
 ## OpenRouter API-kulcs beszerzése
 
-A Transrewrt több MI-szolgáltatót is támogat. Az [OpenRouter](https://openrouter.ai) népszerű választás, mivel sok modellt egyesít egyetlen kulcson belül, és ingyenes modelleket is kínál.
+A Transrewrt több AI-szolgáltatót támogat. Az [OpenRouter](https://openrouter.ai) egy népszerű választás, mert sok modellt egyetlen kulccsal elérhetővé tesz, és ingyenes modelleket is kínál.
 
 1. Regisztrálj vagy jelentkezz be az [openrouter.ai](https://openrouter.ai) oldalon.
-2. Nyisd meg a [Kulcsok](https://openrouter.ai/keys) oldalt, és hozz létre egy új kulcsot (nevezd el, és választhatóan állíts be hitelkeretet). Ingyenes modellek használhatók hitel hozzáadása nélkül.
-3. **Asztali (Electron):** másold be a kulcsot a **Beállítások → API** részbe. **Docker:** állítsd be a környezeti változókat, például `OPENROUTER_KEY` (lásd: [Gyors indítás](#quick-start)).
+2. Nyisd meg a [Kulcsok](https://openrouter.ai/keys) oldalt, és hozz létre egy új kulcsot (nevezd el, és opcionálisan állíts be hitelkorlátot). Ingyenes modelleket használhatsz hitel hozzáadása nélkül.
+3. **Asztali (Electron):** illeszd be a kulcsot a **Beállítások → API** menüpontban. **Docker:** állítsd be a környezeti változókat (pl. `OPENROUTER_KEY`, lásd: [Gyors indítás](#quick-start)).
 
-Más szolgáltatókat is használhatsz (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI) vagy helyben futtathatsz modelleket az [Ollama](https://ollama.com) segítségével. A támogatott szolgáltatók és környezeti változók teljes listájáért lásd a [Konfiguráció](#configuration-and-environment) fejezetet.
+Ne használd az OpenRouter **Body Builder** modelljét ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) fordításhoz, átíráshoz vagy átalakításhoz: ez a modell JSON kérésfeladatot ad vissza, nem a feladatokhoz tartozó befejezett szöveget. Lásd: [Beállítások → Modellek](USER-GUIDE.hu.md#models) a Felhasználói útmutatóban.
 
-Az OpenRouter korlátokról, saját kulcs használatáról (BYOK) és egyebekről lásd: [OpenRouter hitelesítés](https://openrouter.ai/docs/api/reference/authentication).
+Más szolgáltatókat is használhatsz (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras), vagy helyben futtathatsz modelleket az [Ollama](https://ollama.com) segítségével. Lásd: [Konfiguráció](#configuration-and-environment) a támogatott szolgáltatók teljes listájáért és a környezeti változókért.
+
+> ⚠️ **FIGYELMEZTETÉS**<br/>
+> Ha az Ollama-t más eszközön, konténerben vagy szolgáltatásban használod, győződj meg róla, hogy az Ollama engedélyezi a külső kapcsolatokat (ne csak localhost-on legyen elérhető).
+
+Korlátokra, saját kulcs használatára (BYOK) és egyebekre lásd az [OpenRouter hitelesítés](https://openrouter.ai/docs/api/reference/authentication) dokumentációját.
 
 <br/><br/>
 
@@ -228,39 +234,40 @@ Az OpenRouter korlátokról, saját kulcs használatáról (BYOK) és egyebekrő
 
 **Konfigurációs fájlok helye**
 
-| Telepítés          | Konfiguráció helye                           |
-| ------------------ | -------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                      |
-| Electron (Linux)   | `~/.config/transrewrt/`                      |
-| Web / Docker       | `/app/data/config.json` (használj kötetet a megőrzéshez) |
+| Telepítés         | Konfiguráció helye                                  |
+| ------------------ | ------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Web / Docker       | `/app/data/config.json` (kötést használj az adatmegőrzéshez) |
 
 <br/>
 
-**Környezeti változók** (csak web/Docker; az Electron a helyi konfigurációs fájlt használja)
+**Környezeti változók** (csak web/Docker esetén; az Electron a helyi konfigurációs fájlt használja)
 
-| Változó            | Alapértelmezett          | Leírás |
-| ------------------ | ------------------------ | ------ |
-| `PORT`             | `5000`                   | Szerver figyelő portja |
-| `CONFIG_PATH`      | `/app/data/config.json`  | A konfigurációs fájl elérési útja |
-| `OPENROUTER_KEY`   | *(üres)*                 | OpenRouter API-kulcs |
-| `OPENAI_KEY`       | *(üres)*                 | OpenAI API-kulcs |
-| `ANTHROPIC_KEY`    | *(üres)*                 | Anthropic API-kulcs |
-| `GOOGLE_KEY`       | *(üres)*                 | Google Gemini API-kulcs |
-| `DEEPSEEK_KEY`     | *(üres)*                 | DeepSeek API-kulcs |
-| `GROQ_KEY`         | *(üres)*                 | Groq API-kulcs |
-| `MISTRAL_KEY`      | *(üres)*                 | Mistral API-kulcs |
-| `OLLAMA_URL`       | *(üres)*                 | Ollama alap URL (pl. `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(üres)*                 | xAI API-kulcs |
+| Változó         | Alapértelmezett           | Leírás |
+| ---------------- | ------------------------- | ------ |
+| `PORT`           | `5000`                    | Szerver figyelő portja |
+| `CONFIG_PATH`    | `/app/data/config.json`   | A konfigurációs fájl elérési útja |
+| `OPENROUTER_KEY` | *(üres)*                  | OpenRouter API-kulcs |
+| `OPENAI_KEY`     | *(üres)*                  | OpenAI API-kulcs |
+| `CEREBRAS_KEY`   | *(üres)*                  | Cerebras API-kulcs |
+| `ANTHROPIC_KEY`  | *(üres)*                  | Anthropic API-kulcs |
+| `GOOGLE_KEY`     | *(üres)*                  | Google Gemini API-kulcs |
+| `DEEPSEEK_KEY`   | *(üres)*                  | DeepSeek API-kulcs |
+| `GROQ_KEY`       | *(üres)*                  | Groq API-kulcs |
+| `MISTRAL_KEY`    | *(üres)*                  | Mistral API-kulcs |
+| `OLLAMA_URL`     | *(üres)*                  | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
+| `XAI_KEY`        | *(üres)*                  | xAI API-kulcs |
 
-Csak azokat a szolgáltatókat konfiguráld, amelyeket használsz. A modell-azonosítók névtereket használnak (`openrouter/…`, `openai/…`, `ollama/…`, stb.).
+Csak az általad használt szolgáltatókat konfiguráld. A modellazonosítók névteresek (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, stb.).
 
-**Költségmegjelenítés:** Az OpenRouter alkalmazkodó esetben az aktuálisan felszámított összeget adja vissza. Más szolgáltatóknál, ha rendelkezésre áll OpenRouter-kulcs, az OpenRouter nyilvános árképzési adatai alapján **becsült** költség jelenik meg; OpenRouter-kulcs hiányában a nem-OpenRouter szolgáltatók költsége `0`-ként jelenhet meg. A becslések nem számlák.
+**Költsékmegjelenítés:** Az OpenRouter indokolt esetben a ténylegesen felszámított költséget adja vissza. Más szolgáltatók esetében az **becsült** költség jelenik meg az OpenRouter nyilvános árazása alapján, amennyiben rendelkezésre áll OpenRouter-kulcs; ha nincs, más szolgáltatók költsége `0` lehet. A becslések nem számlák.
 
 <br/>
 
-**Adatok és megőrzés:** Docker esetén csatolj egy kötetet a `/app/data` helyre, hogy a `config.json` és az SQLite adatbázis megmaradjon a tároló újraindítása után. Kötet nélkül minden adat elveszik, amikor a tároló leáll.
+**Adatok és adatmegőrzés:** Docker esetén kösd be egy kötetet a `/app/data` helyre, hogy a `config.json` és az SQLite adatbázis megmaradjon a konténer újraindításai között. Kötet nélkül minden adat elveszik, amikor a konténer leáll.
 
-**Fejlesztőknek:** Ha letöltötted a változásokat, amelyek lecserélik a régi egyszerű kulcsos konfigurációt, akkor a helyi `data/config.json` fájlt vissza kell állítani vagy egyesíteni kell az új alapértelmezett szerkezettel a `src/config-defaults/config_default.json` fájlból, ha a helyi fájl még a törlésre került mezőket használja (`api_key`, `api_url`, proxy beállítások).
+**Fejlesztőknek:** Ha frissítést hajtasz végre, amely lecseréli a régi egyetlen kulcsos konfigurációt, akkor add vissza vagy egyesítsd a `data/config.json` fájlt az új alapértelmezett szerkezettel a `src/config-defaults/config_default.json` fájlból, ha a helyi fájlod még használja a megszűnt mezőket (`api_key`, `api_url`, proxybeállítások).
 
 <br/>
 
@@ -268,63 +275,63 @@ Csak azokat a szolgáltatókat konfiguráld, amelyeket használsz. A modell-azon
 
 - Alapértelmezett admin: `admin` / `transrewrt26`.
 - Felhasználók kezelése: **Beállítások → Felhasználók**.
-- Jelszó visszaállítása: `docker exec <tároló> reset-web-password '<felhasználónév>' '<új jelszó>'`
-  (forráskódból: `pnpm run reset-web-password -- <felhasználónév> <új jelszó>`)
+- Jelszó visszaállítása: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (forráskódból: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 
 > ⚠️ **FIGYELMEZTETÉS**<br/>
-> Az alapértelmezett admin jelszót azonnal cseréld le minden hálózatról elérhető gépen.
+> Azonnal változtasd meg az alapértelmezett admin jelszót minden hálózaton elérhető gépen.
 
 <br/>
 
-Alapvető beállítások (betűtípus, modellek, nyelvek stb.) az alkalmazás Beállítások menüpontjában érhetők el.
+A kulcsbeállítások (betűtípus, modellek, nyelvek, stb.) az alkalmazás Beállítások menüpontjában érhetők el.
 
 <br/><br/>
 
 <a id="development-and-architecture"></a>
+
 ## Fejlesztés és architektúra
 
-- **Fejlesztés:** Beállítás, fordítás, tesztelés, telepítés (Electron, Web, Docker) – lásd: **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektúra és rendszer áttekintése:** Mappaszerkezet, technológiai verem, tervezési döntések – lásd: **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Fejlesztés:** Telepítés, fordítás, tesztelés és üzembe helyezés (Electron, Web, Docker) – lásd a **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** dokumentumot.
+- **Architektúra és rendszeráttekintés:** Mappastruktúra, technológiai stack, tervezési döntések – lásd a **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** dokumentumot.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
-
 ## Kiadások és címkék
 
-- A **Git címkék** `v`* (például `v1.0.10`) elindítják a [kiadási munkafolyamatot](.github/workflows/release.yml). A **GitHub Releases** mellékelni fogja a Windows telepítőt (`.exe`) és a Linux AppImage fájlt.
-- A **Docker képek** itt lesznek közzétéve: `ghcr.io/wsj-br/transrewrt`. A képcímkék megegyeznek a Git verzióval (pl. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`), valamint a `latest` címkével. Több architektúrára is: `linux/amd64` és `linux/arm64` (pl. Raspberry Pi).
+- A **Git címkék** `v`* formátumúak (pl. `v1.0.10`) és a [kiadási munkafolyamatot](.github/workflows/release.yml) indítják el. A **GitHub Kiadások** tartalmazzák a Windows telepítőt (`.exe`) és Linux AppImage-eket (**x64** és **arm64**).
+- A **Docker képek** a `ghcr.io/wsj-br/transrewrt` tárhelyre kerülnek. A képcímkék a Git verzióval megegyezőek (pl. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) és kiegészülnek a `latest` címkével. Több platformon használható: `linux/amd64` és `linux/arm64` (pl. Raspberry Pi).
 
 <br/><br/>
 
 <a id="contributing"></a>
 ## Közreműködés
 
-1. Készíts egy másolatot az adattárból.
-2. Hozz létre egy funkcióágat: `git checkout -b feature/my-feature`
-3. Végezd el a változtatásokat egyértelmű üzenettel.
-4. Küldd el és nyiss egy beágyazási kérelmet (`Pull Request`) az `main` ágba.
+1. Készíts egy másolatot a tárhelyről (fork).
+2. Hozz létre egy új funkcióággat: `git checkout -b feature/my-feature`
+3. Készíts commitot a változásaidról egyértelmű üzenettel.
+4. Küldd fel a módosításokat, majd nyiss egy Pull Requestet a `main` ágra.
 
-Kérjük, kövesd a meglévő kód stílust, és teszteld a módosításokat Electron és webes módokon is, mielőtt elküldenéd. A fordítási és tesztelési utasításokért lásd a [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) fájlt.
+Kérjük, kövesd az aktuális kódstílust, és teszteld a változtatásaidat Electron és webes módban is beküldés előtt. A fordítási és tesztelési utasításokat lásd a [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) fájlban.
 
 <br/>
 
-**Hibabejelentés:** Nyiss egy hibajegyet a [GitHubon](https://github.com/wsj-br/transrewrt/issues). Add meg a platformodat (Windows / Linux / Docker) és az alkalmazás verzióját (ez látható az „Információ” párbeszédablakban vagy a Kiadások oldalon).
+**Hibajelentések:** Nyiss hibajegyet a [GitHubon](https://github.com/wsj-br/transrewrt/issues). Add meg a platformodat (Windows / Linux / Docker) és az alkalmazás verzióját (amely az „Névjegy” ablakban vagy a Kiadások oldalon található).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
-## Felelősségkizárás
+## Felelősségi nyilatkozat
 
-A terméknevek és -ikonok tulajdonosaikhoz tartoznak, és kizárólag azonosítási célból használjuk őket. Ez a szoftver semmilyen módon nem kapcsolódik a megnevezett márkákhoz, és azok nem támogatják.
+A terméknevek és ikonok a jogosultak tulajdonát képezik, kizárólag azonosítási céllal kerülnek felhasználásra. Ez a szoftver nem kapcsolódik semmilyen módon, sem támogatást nem kap a megemlített márkákhoz.
 
 <br/><br/>
 
 <a id="license"></a>
 ## Licenc
 
-Copyright © 2026 Waldemar Scudeller Jr.
+Szerzői jog © 2026 Waldemar Scudeller Jr.
 
-[Apache Licenc 2.0](LICENSE)
+[Apache License 2.0](LICENSE)

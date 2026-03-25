@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-24T01:23:01.974Z"
-source_hash: "fc671c16dd34a2c355752935670712beb8abd2ae65453de44983a2f2f0701696"
-source_mtime: 1774306679773.736
+translated_at: "2026-03-25T21:14:13.930Z"
+source_hash: "6ca7b21e820e8ee121cd93bbf98806547c5c3ce7914799891d923201bd2c4466"
+source_mtime: 1774468804877.8855
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -15,83 +15,87 @@ model: "qwen/qwen3-235b-a22b-2507"
 <a id="introduction"></a>
 ## Panimula
 
-Tinutulungan ka ng Transrewrt na magtrabaho sa teksto sa tatlong pangunahing paraan:
+Nakatutulong ang Transrewrt sa paggamit ng teksto sa tatlong pangunahing paraan:
 
-- **Isalin** - i-convert ang teksto mula sa isang wika patungo sa isa pa.
-- **Muling isulat** - baguhin ang paraan ng pagkaka-parafrase sa teksto, tulad ng mas malinaw, mas maikli, o mas pormal.
-- **Baguhin** - i-proseso ang teksto gamit ang mga pasadyang AI na tagubilin na tinatawag na mga prompt.
-
-<br/>
-
-Ipapaliwanag ng gabay na ito kung paano gamitin ang app kapag nainstall at tumatakbo na ito. Para sa mga hakbang sa pag-install, tingnan ang pangunahing **[README](README.tl.md)**.
+- **Isalin (Translate)** - i-convert ang teksto mula sa isang wika patungo sa isa pa.
+- **Muling-isulat (Rewrite)** - baguhin ang pagkakabuo ng teksto sa iba't ibang istilo, tulad ng mas malinaw, mas maikli, o mas pormal.
+- **Baguhin (Transform)** - proseso ang teksto gamit ang mga pasadyang AI na tagubilin na tinatawag na "mga prompt".
 
 <br/>
 
-> ℹ️ **PAUNAWA**<br/>
-> Magagamit ang Transrewrt bilang desktop app para sa Windows at Linux, at bilang isang self-hosted web app. Tumutuon ang gabay na ito sa pang-araw-araw na paggamit ng app. Kung may kinalaman lamang ang isang bagay sa isang bersyon, malinaw itong tinatak.
-
-<small>**Basahin sa ibang mga wika:** [English (UK)](USER-GUIDE.tl.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+Ipinapaliwanag ng gabay na ito kung paano gamitin ang app kapag nai-install at tumatakbo na ito. Para sa hakbang-hakbang na pag-install, tingnan ang pangunahing **[README](README.tl.md)**.
 
 <br/>
+
+> ℹ️ **TALA**<br/>
+> Ang Transrewrt ay magagamit bilang desktop app para sa Windows at Linux, at bilang self-hosted web app. Ang gabay na ito ay nakatuon sa pang-araw-araw na paggamit ng app. Kung ang ilang bahagi ay para lamang sa isang bersyon, ito ay malinaw na minarkahan.
+
+<small>**Basahin sa ibang wika:** [English (UK)](USER-GUIDE.tl.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<small>
+
+> **Tala sa pagsasalin ng UI at dokumentasyon:** Ang lahat ng wika sa interface maliban sa orihinal na English (UK) ay isinalin gamit ang mga AI model; maaaring hindi tumpak o may mga kamalian ang mga salita.
+
+</small>
+
+<br/>
+
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Talamang ng Nilalaman** 
+**Talaan ng Nilalaman** 
 
-- [Bago simulan](#bago-simulan)
-  - [Paano makakuha ng libreng OpenRouter API key (desktop app)](#paano-makakuha-ng-libreng-openrouter-api-key-desktop-app)
-- [Magsimula na](#magsimula-na)
-- [Mga pangunahing bahagi ng window](#mga-pangunahing-bahagi-ng-window)
+- [Bago mag-umpisa](#before-you-start)
+  - [Paano makakuha ng libreng OpenRouter API key (desktop app)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Mga hakbang upang mag-umpisa](#getting-started)
+- [Mga pangunahing bahagi ng window](#main-parts-of-the-window)
   - [Sidebar](#sidebar)
   - [Toolbar](#toolbar)
-  - [Mga panel para sa input at output](#mga-panel-para-sa-input-at-output)
-- [Isalin](#isalin)
-  - [Isalin ang teksto](#isalin-ang-teksto)
-  - [Pagpili ng wika](#pagpili-ng-wika)
-  - [Makakatulong na mga setting sa pagsasalin](#makakatulong-na-mga-setting-sa-pagsasalin)
-  - [Mga keyboard shortcut](#mga-keyboard-shortcut)
-- [Muling Isulat](#muling-isulat)
-  - [Muling isulat ang teksto](#muling-isulat-ang-teksto)
-- [Baguhin](#baguhin)
-  - [I-run ang umiiral nang prompt](#i-run-ang-umiiral-nang-prompt)
-  - [Kung wala ka pang mga prompt](#kung-wala-ka-pang-mga-prompt)
-  - [Gumawa ng prompt nang mabilisan](#gumawa-ng-prompt-nang-mabilisan)
-  - [I-edit ang prompt](#i-edit-ang-prompt)
-  - [Subukan ang prompt bago gamitin](#subukan-ang-prompt-bago-gamitin)
-  - [Pamahalaan ang naka-save na mga prompt](#pamahalaan-ang-naka-save-na-mga-prompt)
+  - [Input at output na panel](#input-and-output-panels)
+- [Isalin](#translate)
+  - [Isalin ang teksto](#translate-text)
+  - [Paggawa ng pagpili ng wika](#language-selection)
+  - [Mga kapakipakinabang na setting sa pagsasalin](#helpful-translation-settings)
+- [Muling-isulat](#rewrite)
+- [Baguhin](#transform)
+  - [Patakbuhin ang umiiral nang prompt](#run-an-existing-prompt)
+  - [Kung wala pang mga prompt](#if-you-have-no-prompts-yet)
+  - [Lumikha agad ng isang prompt](#create-a-prompt-quickly)
+  - [I-edit ang isang prompt](#edit-a-prompt)
+  - [Subukan ang isang prompt bago gamitin](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [I-filter ang data](#i-filter-ang-data)
-  - [Mga tab sa dashboard](#mga-tab-sa-dashboard)
-  - [I-export ang data](#i-export-ang-data)
-  - [Tanggalin ang naka-imbak na mga tala para sa modelo](#tanggalin-ang-naka-imbak-na-mga-tala-para-sa-modelo)
-- [Kasaysayan](#kasaysayan)
-  - [I-filter ang data](#i-filter-ang-data-1)
-  - [I-export ang data sa kasaysayan](#i-export-ang-data-sa-kasaysayan)
-- [Mga Setting](#mga-setting)
-  - [Mga pangkalahatang setting](#mga-pangkalahatang-setting)
-  - [Mga modelo](#mga-modelo)
-  - [Mga wika](#mga-wika)
-  - [Pagsubaybay sa gastos](#pagsubaybay-sa-gastos)
-  - [Mga prompt sa pagbabago](#mga-prompt-sa-pagbabago)
-  - [Mga gumagamit](#mga-gumagamit)
-  - [Pag-setup ng API](#pag-setup-ng-api)
-  - [Tungkol dito](#tungkol-dito)
-- [Karaniwang Suliranin](#karaniwang-suliranin)
-  - [Hindi mailipat, muling maisulat, o mabagoh ang teksto ng app](#hindi-mailipat-muling-maisulat-o-mabagoh-ang-teksto-ng-app)
-  - [Walang laman ang listahan ng modelo](#walang-laman-ang-listahan-ng-modelo)
-  - [Masyadong dahan-dahan o mahal ang resulta](#masyadong-dahan-dahan-o-mahal-ang-resulta)
-  - [Nasa maling wika ang interface](#nasa-maling-wika-ang-interface)
-  - [Maliit o mahirap basahin ang teksto](#maliit-o-mahirap-basahin-ang-teksto)
-  - [Walang laman ang mga graph sa dashboard](#walang-laman-ang-mga-graph-sa-dashboard)
-  - [Nagpapakita ng "hindi available" o mali ang gastos](#nagpapakita-ng-hindi-available-o-mali-ang-gastos)
-  - [Hindi tugma ang kabuuang gastos sa bill ng aking provider](#hindi-tugma-ang-kabuuang-gastos-sa-bill-ng-aking-provider)
-  - [Nawawala ang pahina ng Kasaysayan sa sidebar](#nawawala-ang-pahina-ng-kasaysayan-sa-sidebar)
-  - [Web app: biglang nailigaw sa pahina ng login](#web-app-biglang-inailigaw-sa-pahina-ng-login)
-  - [Walang data para sa ibang user ang ipinapakita ng dashboard (web)](#walang-data-para-sa-ibang-user-ang-iphone-indicates-dashboard-web)
-  - [Nagbago ako ng prompt at nawala ang edits](#nagbago-ako-ng-prompt-at-nawala-ang-edits)
-- [Mga Mabilis na Tip](#mga-mabilis-na-tip)
-- [Pahina sa Pagtatanggi](#pahina-sa-pagtatanggi)
-- [Lisensya](#lisensya)
+  - [I-filter ang datos](#filter-the-data)
+  - [Mga tab sa dashboard](#dashboard-tabs)
+  - [I-export ang datos](#export-data)
+  - [Tanggalin ang naka-imbak na tala para sa isang modelo](#delete-stored-records-for-a-model)
+- [Kasaysayan](#history)
+  - [I-filter ang datos](#filter-the-data-1)
+  - [I-export ang datos sa kasaysayan](#export-history-data)
+- [Mga Setting](#settings)
+  - [Pangkalahatang setting](#general-settings)
+  - [Mga modelo](#models)
+  - [Mga wika](#languages)
+  - [Pagsusubaybay sa gastos](#cost-tracking)
+  - [Mga prompt sa pagbabago](#transform-prompts)
+  - [Mga gumagamit](#users)
+  - [API config](#api-config)
+  - [Tungkol dito](#about)
+- [Karaniwang mga isyu](#common-issues)
+  - [Hindi nagsasalin, muling-isinusulat o binabago ng app ang teksto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Walang laman ang listahan ng mga modelo](#the-model-list-is-empty)
+  - [Mabagal o sobrang mahal ang resulta](#the-result-is-too-slow-or-too-expensive)
+  - [Nakasulat sa maling wika ang interface](#the-interface-is-in-the-wrong-language)
+  - [Maliit o mahirap basahin ang teksto](#the-text-is-too-small-or-hard-to-read)
+  - [Walang laman ang mga tsart sa dashboard](#dashboard-charts-are-empty)
+  - [Nagpapakita ng "hindi available" o mali ang gastos](#cost-shows-not-available-or-seems-wrong)
+  - [Hindi tugma ang kabuuang gastos sa bill ng nagbibigay ng serbisyo](#total-cost-does-not-match-my-provider-bill)
+  - [Nawawala ang page ng Kasaysayan sa sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Web app: biglang naililigaw sa login page](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Walang datos para sa ibang gumagamit ang dashboard (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Nabago ko ang isang prompt at nawala ang mga pag-edit](#i-changed-a-prompt-and-lost-the-edits)
+- [Mga mabilis na tip](#quick-tips)
+- [Paalala](#disclaimer)
+- [Lisensya](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -99,20 +103,20 @@ Ipapaliwanag ng gabay na ito kung paano gamitin ang app kapag nainstall at tumat
 
 <a id="before-you-start"></a>
 
-## Bago magsimula
+## Bago mag-umpisa
 
-Para gamitin ang Transrewrt, kailangan mo ng access sa kahit isang AI provider. Ang mga suportadong provider ay: [OpenRouter](https://openrouter.ai) (nagpopondok ng maraming modelo), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at [Ollama](https://ollama.com) para sa lokal na modelo.
+Para gamitin ang Transrewrt, kailangan mo ng access sa kahit isang AI provider. Ang mga suportadong provider ay: [OpenRouter](https://openrouter.ai) (na nag-aagregate ng maraming modelo), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, at [Ollama](https://ollama.com) para sa mga lokal na modelo.
 
-Hindi mo kailangang pumili ng bayad na modelo para magsimula. Pagkatapos mong idagdag ang iyong OpenRouter API key, awtomatikong pinapagana ng app ang isang naka-built-in na **libre** na OpenRouter option. Nito, maaari ka nang magsimulang sumalin, muling isulat, at baguhin ang teksto.
+Hindi mo kailangang pumili ng bayad na modelo upang simulan. Kapag inilagay mo na ang iyong OpenRouter API key, awtomatikong pinapagana ng app ang isang built-in na **libre** OpenRouter option. Pinapayagan ka nitong magsimulang mag-salin, muling-isulat, at baguhin ang teksto agad. Bilang alternatibo, maaari mo ring makuha ang libreng API key mula sa Cerebras, Google, Groq, o Mistral AI.
 
-Nang mas madaling salita:
+Mas payak na sabihin:
 
-- Ang isang **modelo** ay ang AI engine na gumaganap ng trabaho. Ang mga modelo ay nakalista na may **prefix ng provider** (halimbawa `openrouter/…`, `openai/…`, `ollama/…`).
-- Ang isang **API key** (o para sa Ollama, ang **base URL**) ay ang paraan ng app para makontak ang provider.
+- Ang isang **modelo** ay ang AI engine na gumaganap ng gawain. Ang mga modelo ay nakalista na may **naka-prefix na provider** (halimbawa: `openrouter/…`, `openai/…`, `ollama/…`).
+- Ang isang **API key** (o para sa Ollama, ang **base URL**) ang ginagamit ng app upang maabot ang provider.
 
-Kung gumagamit ka ng **desktop app**, magdagdag ng mga key sa [**Mga Setting** > **Pangkahayag ng API**](#api-config) para sa bawat provider na gagamitin mo. Para sa paggamit ng OpenRouter lamang, tingnan ang [Paano makakuha ng API key](#how-to-get-an-api-key-desktop-app) sa ibaba. Kung ayaw mong gamitin ang API key, maaari mong i-install ang Ollama (mula sa [ollama.com](https://ollama.com)) at gamitin ang lokal na modelo.
+Kung gumagamit ka ng **desktop app**, maglagay ng mga key sa [**Settings** > **API Config**](#api-config) para sa bawat ginagamit mong provider. Para sa OpenRouter lamang, tingnan ang [Paano makakuha ng API key](#how-to-get-an-api-key-desktop-app) sa ibaba. Kung ayaw mong gamitin ang API key, maaari mong i-install ang Ollama (mula sa [ollama.com](https://ollama.com)) at gamitin ang lokal na modelo, tulad ng `translategemma:4b`.
 
-Kung gumagamit ka ng **web na bersyon**, ang server owner ang nagko-configure ng mga provider gamit ang mga environment variable, kaya hindi mo kailangang maglagay ng API key.
+Kung gumagamit ka ng **web version**, ang server owner ang nagko-configure ng mga provider gamit ang environment variables, kaya hindi mo maaaring diretsahang ilagay ang mga API key sa loob ng application.
 
 <br/>
 
@@ -121,37 +125,32 @@ Kung gumagamit ka ng **web na bersyon**, ang server owner ang nagko-configure ng
 
 Kung gumagamit ka ng desktop app, sundin ang mga hakbang na ito:
 
-1. Pumunta sa [OpenRouter](https://openrouter.ai) gamit ang iyong web browser.
+1. Pumunta sa [OpenRouter](https://openrouter.ai) sa iyong web browser.
 2. Gumawa ng account o mag-sign in.
-3. Buksan ang pahina ng [Mga Key](https://openrouter.ai/keys).
-4. I-click ang button para gumawa ng bagong API key.
-5. Bigyan mo ng pangalan ang key para maalala mo ito sa susunod.
+3. Buksan ang pahina ng [Keys](https://openrouter.ai/keys).
+4. I-click ang button para lumikha ng bagong API key.
+5. Bigyan ng pangalan ang key upang madaling makilala sa hinaharap.
 6. Kopyahin ang bagong API key.
-7. Bumalik sa Transrewrt at buksan ang **Mga Setting** > **Pangkahayag ng API**.
-8. I-paste ang key sa **OpenRouter API key** (sa ilalim ng **Mga Setting** > **Pangkahayag ng API**).
-9. I-click ang **Subukan ang OpenRouter key** upang masiguro na gumagana ito.
-
-<br/>
-
-> ℹ️ **TANDAAN**<br/>
-> Maaari kang magsimula sa libreng ruta ng OpenRouter o anumang iba pang libreng modelo nang walang pagdagdag ng credit card. Sa maraming kaso, sapat na iyon para magsimulang gamitin ang Transrewrt nang hindi pa pumipili ng bayad na modelo. Bilang kahalili, maaari mong gamitin ang Ollama upang patakbuhin ang mga modelo nang lokal nang walang anumang API key.
+7. Bumalik sa Transrewrt at buksan ang **Settings** > **API Config**.
+8. I-paste ang key sa **OpenRouter API key** (sa ilalim ng **Settings** > **API Config**).
+9. I-click ang **Test OpenRouter key** upang tiyakin na gumagana ito.
 
 <br/><br/>
 
 <a id="getting-started"></a>
-## Simula
+## Pagsisimula
 
-Kung ito ang unang pagkakataon mong gamitin ang Transrewrt, sundin mo ang pagkakasunud-sunod na ito:
+Kung ito ang iyong unang pagkakataon na gumamit ng Transrewrt, sundin ang sumusunod na pagkakasunod-sunod:
 
-1. Bungkalin ang app.
-2. Pumili ng iyong **wika sa interface** sa pamamagitan ng icon ng mundo kung kinakailangan.
-3. Kung nasa **desktop app** ka, buksan mo ang [**Settings** > **API Config**](#api-config), magdagdag ng API key para sa kahit isang provider (halimbawa ang OpenRouter), at i-click ang **Test** upang paganahin na gumagana ito.
-4. Buksan ang [**Settings** > **Mga Modelo**](#models) at idagdag ang isa o higit pang modelo sa **Mga Piniling Modelo**.
-5. Buksan ang [**Settings** > **Mga Wika**](#languages) at pumili ng iyong **Nangungunang mga wika** kung gusto mong lumabas muna ang iyong pinakaginagamit na mga wika.
-6. Pumunta sa **Isalin** at i-run ang simpleng pagsasalin upang kumpirmahin na gumagana ang lahat.
-7. Kapag gumana na, subukan ang **Muling Isulat** at pagkatapos ay ang **Baguhin**.
+1. Buksan ang app.
+2. Pumili ng **wika ng Interface** mula sa icon ng mundo kung kinakailangan.
+3. Kung gumagamit ka ng **desktop app**, buksan ang [**Settings** > **API Config**](#api-config), maglagay ng API key para sa kahit isang provider (halimbawa: OpenRouter), at i-click ang **Test** upang i-verify kung gumagana.
+4. Buksan ang [**Settings** > **Models**](#models) at magdagdag ng isa o higit pang modelo sa **Selected Models**.
+5. Buksan ang [**Settings** > **Languages**](#languages) at pumili ng iyong **Mga Top na wika** kung gusto mong unahin ang iyong mga pinakaginagamit na wika.
+6. Pumunta sa **Translate** at gawin ang simpleng pagsasalin upang kumpirmahin na gumagana ang lahat.
+7. Kapag gumana na, subukan ang **Rewrite** at pagkatapos ay ang **Transform**.
 
-Mahalaga ang pagkakasunud-sunod na ito. Pinipigilan nito ang pinakakaraniwang problema, ang pagsubok na gawin ang isang gawain bago pa gumagana ang API connection o ang napiling modelo.
+Mahalaga ang pagkakasunod-sunod na ito. Ito ay maiiwasan ang pinakakaraniwang problema sa unang paggamit: subukang patakbuhin ang isang gawain bago pa man may gumaganang API connection o napiling modelo ang app.
 
 <br/><br/>
 
@@ -169,7 +168,7 @@ Hinati ang app sa tatlong pangunahing bahagi:
 <a id="sidebar"></a>
 ### Sidebar
 
-Gumamit ng sidebar upang maggalaw sa loob ng app. Maaari mong ikulong ang sidebar para magkaroon ng mas maraming puwang sa pamamagitan ng pag-click sa icon katabi ng logo ng app.
+Gamitin ang sidebar upang makagalaw sa loob ng app. Maaari mong ilipat sa tabi ang sidebar para mas maraming espasyo sa pamamagitan ng pag-click sa icon sa tabi ng logo ng app.
 
 <br/>
 
@@ -181,13 +180,13 @@ Gumamit ng sidebar upang maggalaw sa loob ng app. Maaari mong ikulong ang sideba
     <td valign="top">
       <br/><br/>
       <ul>
-        <li><strong>Isalin</strong> ay bubukas sa workspace ng pagsasalin.</li><br/>
-        <li><strong>Muling Isulat</strong> ay bubukas sa workspace ng pagkakasulat muli.</li><br/>
-        <li><strong>Baguhin</strong> ay bubukas sa workspace ng pasadyang prompt.</li><br/>
-        <li><strong>Dashboard</strong> ay nagpapakita ng impormasyon tungkol sa paggamit at gastos.</li><br/>
-        <li><strong>Mga Setting</strong> ay bubukas sa panel ng mga setting.</li><br/>
-        <li><strong>Kasaysayan</strong> ay nagpapakita ng kasaysayan ng paggamit na may input at output na teksto</li><br/>
-        <li><strong>User</strong> ay nagpapakita ng username ng naka-log-in na user (sa web lamang).</li>
+        <li><strong>Translate</strong> – buksan ang workspace para sa pagsasalin.</li><br/>
+        <li><strong>Rewrite</strong> – buksan ang workspace para sa pagkopya ulit.</li><br/>
+        <li><strong>Transform</strong> – buksan ang workspace para sa custom na prompt.</li><br/>
+        <li><strong>Dashboard</strong> – ipinapakita ang impormasyon tungkol sa paggamit at gastos.</li><br/>
+        <li><strong>Settings</strong> – buksan ang panel ng mga setting.</li><br/>
+        <li><strong>History</strong> – ipinapakita ang kasaysayan ng paggamit kasama ang input at output na teksto.</li><br/>
+        <li><strong>User</strong> – ipinapakita ang username ng naka-log in na user (web lamang).</li>
       </ul>
     </td>
   </tr>
@@ -199,87 +198,81 @@ Gumamit ng sidebar upang maggalaw sa loob ng app. Maaari mong ikulong ang sideba
 
 ### Toolbar
 
-Ang toolbar ay kaunti lamang nagbago depende sa kung saan ka nasa loob ng app.
+Ang toolbar ay bahagyang nagbabago depende sa kung nasaan ka sa app.
 
 - Sa kaliwa, ipinapakita nito ang pangalan ng kasalukuyang pahina.
-- Sa kanan, ipinapakita nito ang **pumili ng modelo** at kontrol para sa **Wika ng Interface**.
+- Sa kanan, ipinapakita nito ang **pang-selector ng modelo** at ang **kontrol ng wika ng interface**.
 
-Ang **pumili ng modelo** ay nagbibigay-daan sa iyo na pumili kung aling AI engine ang gagamitin para sa kasalukuyang gawain.
+Ang **pang-selector ng modelo** ay nagbibigay-daan sa iyo na pumili kung aling AI engine ang gagamitin para sa kasalukuyang gawain.
 
-  ![Pumili ng modelo](../images/screenshots/tl/model-selector.png)
+  ![Model selector](../images/screenshots/tl/model-selector.png)
 
-> ℹ️ **TALA**<br/>
-> Ang ilang libreng modelo ay hindi laging available—minsa'y offline sila o may limitasyon sa paggamit. Kung mangyari ito, awtomatikong aalisin ng app ang modelong ito sa iyong listahan.<br/>
-> Para kontrolin kung aling mga modelo ang makikita, pumunta sa [**Settings** > **Models**](#models) at baguhin ang iyong listahan ng modelo. 
-> Maaari mo ring buksan nang direkta ang mga setting ng modelo sa pamamagitan ng pag-click sa icon ng provider sa kaliwa ng pangalan ng modelo sa toolbar.
+Maaaring hindi lagi available ang ilang libreng modelo—kung minsan ay offline ang mga ito o may limitasyon sa paggamit. Kung mangyari ito, awtomatikong alisin ng app ang naturang modelo sa iyong listahan ng available. Para kontrolin kung aling mga modelo ang lilitaw, pumunta sa [**Settings** > **Models**](#models) at i-edit ang iyong listahan ng modelo.  
+Maaari mo ring buksan nang direkta ang mga setting ng modelo sa pamamagitan ng pag-click sa icon ng provider sa kaliwa ng pangalan ng modelo sa toolbar.
 
 <br/>
 
-Ang **globe icon + wika code** ay nagbabago ng wika ng interface ng app, tulad ng mga menu at button. Hindi nito binabago ang mga wikang isinasalin sa **Salin**.
+Ang **ikon ng mundo + code ng wika** ay nagbabago sa wika ng interface ng app, tulad ng mga menu at button. Hindi nito binabago ang mga wikang ginagamit sa pagsasalin sa **Translate**.
 
-  ![Pumili ng wika ng interface](../images/screenshots/tl/language-selector.png)
+  ![Interface language selector](../images/screenshots/tl/language-selector.png)
 
 <br/>
 
 <a id="input-and-output-panels"></a>
-### Input at output panels
+### Mga panel ng input at output
 
-Karamihan sa mga workspace ay gumagamit ng nasa kaliwang **Input** panel at nasa kanang **Output** panel.
+Karamihan sa mga workspace ay gumagamit ng kaliwang panel na **Input** at kanang panel na **Output**.
 
-Ang **Input** panel ay nagpapakita ng:
+Ang bawat panel ay nagpapakita rin ng:
 
-- Bilang ng karakter
-- Bilang ng salita
-- Bilang ng talata
+| **Input**                                                          | **Output**                                                                                                                  |
+|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| - Bilang ng karakter <br/>- Bilang ng salita <br/>- Bilang ng talata   <br/> | - Gaano katagal ang gawain<br/>- **TPS** (tokens kada segundo)<br/>- Bilang ng karakter, salita, at talata<br/>- Ang modelo na ginamit |
 
-Ang **Output** panel ay maaaring magpakita ng:
 
-- Suhulon kung gaano katagal ang gawain
-- Ang gastos ng gawain (kung available)
-- Kabuuang gastos mo
-- **TPS** (mga token kada segundo)
-- Bilang ng karakter, salita, at talata
-- Ang modelo na ginamit
+Kung nagtatanong ka tungkol sa mga teknikal na termino:
 
-Kung naiisip mo ang mga teknikal na termino:
+- Ang **Token** ay nangangahulugang maliit na bahagi ng teksto. Maaari mong iisipin ito bilang bahagi ng isang salita o maikling salita.
+- Ang **TPS** ay nangangahulugang kung ilang mga bahagi ng teksto ang na-process ng modelo kada segundo.
 
-- **Token** ay nangangahulugang isang maliit na bahagi ng teksto. Maaari mong isipin ito bilang bahagi ng isang salita o isang maikling salita.
-- **TPS** ay nangangahulugan ng kung gaano karaming mga bahaging teksto ang naproseso ng modelo sa bawat segundo.
+<br/>
 
+Maaari mo ring subaybayan ang gastos ng bawat operasyon (kung available) at ang kabuuang gastos, sa pamamagitan ng pag-activate ng opsyon na `Show cost information on the actions` sa [**Settings** > **General settings**](#general-settings). 
+ 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="translate"></a>
-## Isalin
+## Salin
 
-Gamitin ang **Isalin** kapag gusto mong i-convert ang isang teksto mula sa isang wika patungo sa isa pa.
+Gumamit ng **Translate** kapag nais mong i-convert ang teksto mula sa isang wika papunta sa isa pa.
 
-![Salin workspace](../images/screenshots/tl/translate.png)
+![Translate workspace](../images/screenshots/tl/translate.png)
 
 <br/>
 
 <a id="translate-text"></a>
-### Isalin ang teksto
+### I-salin ang teksto
 
-1. Buhayin ang **Salin**.
-2. Pumili ng wika sa **Mula sa**.
-3. Pumili ng wika sa **Patungo sa**.
+1. Buksan ang **Translate**.
+2. Pumili ng wika sa **From**.
+3. Pumili ng wika sa **To**.
 4. Pumili ng modelo sa toolbar.
 5. I-type o i-paste ang teksto sa **Input**.
-6. I-click ang **Isalin**.
+6. Pindutin ang **Translate**.
 7. Basahin ang resulta sa **Output**.
-8. Gamitin ang pindutan ng kopya kung gusto mong kopyahin ang resulta.
+8. Gamitin ang button na copy kung gusto mong kopyahin ang resulta.
 
 <br/>
 
 <a id="language-selection"></a>
 ### Pagpili ng wika
 
-- **Mula sa** ay maaaring partikular na wika o **Tukuyin ang Wika**.
-- **Patungo sa** ay ang wika na gusto mong maging resulta.
+- Maaaring tiyak na wika o **Detect Language** ang **From**.
+- Ang **To** ay ang wika kung saan mo gustong lumabas ang resulta.
 
-Ang napiling iyong **Nangungunang mga wika** ay lilitaw sa tuktok ng listahan. Maaari mong itakda ito sa [**Settings** > **Languages**](#languages).
+Ang iyong napiling **Top languages** ay lilitaw sa tuktok ng listahan. Maaari mong itakda ang mga ito sa [**Settings** > **Languages**](#languages).
 
 <br/>
 
@@ -288,120 +281,97 @@ Ang napiling iyong **Nangungunang mga wika** ay lilitaw sa tuktok ng listahan. M
 
 Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin kung paano gumagana ang pagsasalin:
 
-- **Awtomatikong isalin kapag kinopya** ay magpapatakbo ng pagsasalin ng agad kapag ikaw ay nakapag-paste ng teksto.
-- **Awtomatikong kopyahin ang resulta sa clipboard** ay awtomatikong kokopyahin ang resulta pagkatapos ng matagumpay na pagpapatakbo.
-- **Real-time na pagsasalin (habang nagtatype)** ay magpapatakbo ng pagsasalin habang nagtatatype ka.
-- **Timeout (ms)** ay kontrol kung gaano katagal maghihintay ang app bago magpatakbo ng real-time na pagsasalin.
-
-<br/>
-
-<a id="keyboard-shortcuts"></a>
-### Mga keyboard shortcut
-
-Sa [**Settings** > **General Settings**](#general-settings), ang **Pag-uugali para sa ENTER** ay kontrolin kung ano ang mangyayari kapag pinindot mo ang `Enter`:
-
-- Ang **Enter** ay maaaring magpatakbo ng gawain at ang **Shift+Enter** ay maaaring magdagdag ng bagong linya.
-- O kaya maaaring gawin ng app ang kabaligtaran.
-
-Ipapakita rin ang kasalukuyang mode sa **Salin** na pindutan.
+- Ang **Auto-translate on paste** ay mang-aactivate ng pagsasalin pagkatapos mong i-paste ang teksto.
+- Ang **Auto-copy result to clipboard** ay kukuhanin nang awtomatiko ang resulta pagkatapos ng matagumpay na pagsasalin.
+- Ang **Real-time translation (while typing)** ay mang-aactivate ng pagsasalin habang nagta-type ka.
+- Ang **Timeout (ms)** ay nagko-control kung gaano katagal hihintayin ng app bago mag-run ng real-time translation.
+- Ang **Enter** ay nagdi-determine kung ano ang mangyayari kapag pinindot mo ang `Enter`:
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="rewrite"></a>
-## Muling-isulat
+## Muling Isulat
 
-Gamitin ang **Muling-isulat** kapag gusto mong mapabuti ang pagkakasulat nang hindi binabago ang pangunahing kahulugan.
+Gamitin ang **Rewrite** kapag gusto mong mapabuti ang pagkakasulat nang hindi binabago ang pangunahing kahulugan.
 
 ![Rewrite workspace](../images/screenshots/tl/rewrite.png)
 
-Makakatulong ito sa:
+Mainam ito para sa:
 
-- pag-ayos ng pagbaybay at gramatika
+- pag-aayos ng pagbaybay at gramatika
 - paggawa ng teksto na mas malinaw
-- paggawa ng teksto na mas pormal o di-pormal
-- pagliit o pagpapalawak ng teksto
-- paggawa ng teksto na mas mukhang teknikal
-
-<br/>
-
-<a id="rewrite-text"></a>
-
-### Muling isulat ang teksto
-
-1. Buksan ang **Muling Isulat (Rewrite)**.
-2. Pumili ng **Paraan (Mode)**.
-3. Pumili ng isang modelo sa toolbar.
-4. I-type o i-paste ang teksto sa **Input**.
-5. I-click ang **Muling Isulat (Rewrite)**.
-6. Suriin ang resulta sa **Output**.
-
-Gumagana rin dito ang parehong Enter key na nabanggit sa [**Isalin (Translate)**](#keyboard-shortcuts).
+- paggawa ng teksto na mas pormal o mas di-pormal
+- pagpapahabang o pagpapaikli ng teksto
+- pagpapataas ng antas ng teknikalidad ng teksto
 
 <br/>
 
 > 💡 **TIP**<br/>
-> Kapag ginamit mo ang "**I-check ang Eja at Bantas**" na paraan, lumilitaw ang pindutan na `Ipakita ang mga pagbabago` sa output panel.
-> I-click ang pindutang ito para ipakita o itago ang mga partikular na pagbabago sa iyong teksto.
+> Kapag gumamit ka ng mode na "**Check Spelling & Grammar**", lilitaw ang button na `Show changes` sa output panel.
+> I-click ang button na ito para i-toggle ang display ng mga pagkakamali, na nagpapakita o nagtatago sa mga partikular na pagbabago sa iyong teksto.
+
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="transform"></a>
-## Baguhin (Transform)
 
-Gumamit ng **Baguhin (Transform)** kapag gusto mong sundin ng AI ang isang pasadyang set ng mga tagubilin.
+## Ibigay ang Bagong Anyo
 
-![Baguhin (Transform) workspace](../images/screenshots/tl/transform.png)
+Gumamit ng **Ibigay ang Bagong Anyo** kapag gusto mong sundin ng AI ang isang pasadyang set ng mga tagubilin.
 
-Ito ang pinakamalayang bahagi ng app. Maaari mo itong gamitin sa mga gawain tulad ng:
+![Ibigay ang Bagong Anyo workspace](../images/screenshots/tl/transform.png)
 
-- pagsusuma ng mga tala
-- pagbabago ng mga di-pormal na teksto sa nakahanay na email
+Ito ang pinaka-malayang bahagi ng app. Maaari mo itong gamitin sa mga gawain tulad ng:
+
+- pagbuod ng mga tala
+- pagpapaganda ng isang payak na teksto upang maging isang mahusay na email
 - pagkuha ng mga pangunahing punto
 - pagbabago ng teksto sa isang tiyak na format
+- anumang iba pang pasadyang gawain sa input na teksto
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
-### Patakbuhin ang umiiral nang prompt
+### Patakbuhin ang umiiral na prompt
 
-1. Buksan ang **Baguhin (Transform)**.
-2. Pumili ng isang prompt mula sa listahan ng prompt.
-3. Kung lumitaw ang **Target** na kahon ng wika, pumili ng wika kung gusto mo.
+1. Buksan ang **Ibigay ang Bagong Anyo**.
+2. Pumili ng isang prompt mula sa listahan ng mga prompt.
+3. Kung may lumitaw na kahon para sa **Wika ng Layunin**, pumili ng wika kung kailangan mo.
 4. I-type o i-paste ang teksto sa **Input**.
-5. I-click ang **Baguhin (Transform)**.
+5. I-click ang **Ibigay ang Bagong Anyo**.
 6. Basahin ang resulta sa **Output**.
 
 <br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Kung wala pang anumang prompt
+### Kung wala ka pang mga prompt
 
-Kung walang laman ang iyong listahan ng prompt, i-click ang **Mag-load ng mga halimbawang prompt**. Idaragdag nito ang mga built-in halimbawa para mabilis kang makapagsimula.
+Kung walang laman ang iyong listahan ng mga prompt, i-click ang **Ikarga ang mga halimbawang prompt**. Dadagdagan nito ang mga halimbawa na kasama na sa app upang mabilis mong masimulan.
 
 <br/>
 
-> ℹ️ **TANDAAN**<br/>
-> Ang mga halimbawang prompt ay ibinibigay sa wikang Ingles. Matapos maidagdag ang mga ito, maaari mong baguhin ang isang prompt at gamitin ang **Isalin ang Prompt** upang isalin ito sa iyong wika.
+> ℹ️ **TALA**<br/>
+> Ang mga halimbawang prompt ay nasa Ingles. Pagkatapos mong i-load ang mga ito, maaari mong i-edit ang isang prompt at gamitin ang **Isalin ang prompt** para maisalin ito sa iyong wika.
 
 <br/>
 
 <a id="create-a-prompt-quickly"></a>
-### Gumawa ng prompt nang mabilisan
+### Gumawa ng prompt nang mabilis
 
-Pinakamabilis na paraan para gumawa ng prompt:
+Ang pinakamabilis na paraan para lumikha ng prompt ay:
 
-1. I-click ang **Bagong Prompt**.
-2. I-click ang **Bumuo ng Prompt**.
-3. Ipaliwanag kung ano ang nais mong gawin ng prompt.
+1. I-click ang **Bagong prompt**.
+2. I-click ang **Bumuo ng prompt**.
+3. Ilarawan kung ano ang nais mong gawin ng prompt.
 4. Pumili ng isang modelo.
-5. Hayaan ang app na bumuo ng draft para sa iyo.
+5. Hayaan ang app na lumikha ng isang draft para sa iyo.
 6. Suriin ang draft at i-click ang **I-save**.
 
-![Bumuo ng Prompt](../images/screenshots/tl/transform-generate.png)
+![Bumuo ng prompt](../images/screenshots/tl/transform-generate.png)
 
 
 <br/>
@@ -409,71 +379,62 @@ Pinakamabilis na paraan para gumawa ng prompt:
 <a id="edit-a-prompt"></a>
 ### I-edit ang isang prompt
 
-Kapag gumawa o gumawa ng prompt, lumilitaw ang editor sa kaliwa at ang test area naman sa kanan.
+Kapag gumagawa o nag-eedit ka ng prompt, ang editor ay lilitaw sa kaliwa at isang lugar para subukan ang prompt nasa kanan.
 
-![Baguhin (Transform) prompt editor](../images/screenshots/tl/transform-prompt-edit.png)
+![Ibigay ang Bagong Anyo prompt editor](../images/screenshots/tl/transform-prompt-edit.png)
 
 Ang mga pangunahing field ay:
 
-- **Pangalan ng prompt**: ang pangalan na ipinapakita sa listahan ng prompt.
-- **Mga Tagubilin sa Prompt (opsyonal)**: maikling tulong na ipinapakita sa user kapag pinapagana ang prompt.
-- **Tungkulin ng Modelo**: ang pangkalahatang papel na nakatalaga sa AI, tulad ng 'Ikaw ay isang mapaglingkod na kasamahan.'
-- **Mga Tagubilin sa Modelo (isa bawat linya)**: mga tiyak na alituntunin na dapat sundin ng AI.
-- **Deskripsyon ng Output**: maikling salita na naglalarawan sa resulta, tulad ng 'buod' o 'muling pagsusulat'.
-- **Temperature (0.0 → 1.0)**: kung paano kikilos ang modelo; tingnan sa ibaba.
-- **Humingi ng wika ng target**: idinadagdag ang selector ng wika ng target kapag pinapagana ang prompt.
+- **Pangalan ng prompt**: ang pangalan na ipinapakita sa listahan ng mga prompt.
+- **Mga tagubilin sa prompt (opsyonal)**: isang maikling tulong na ipinapakita sa user kapag tinatakbo ang prompt.
+- **Tungkulin ng Modelo**: ang pangkalahatang papel na iginagawad sa AI, tulad ng 'Ikaw ay isang kapaki-pakinabang na katulong.'
+- **Mga Tagubilin sa Modelo (isa bawat hanay)**: ang tiyak na mga alituntunin na gusto mong sundin ng AI.
+- **Paglalarawan ng output**: isang maikling salita na naglalarawan sa resulta, tulad ng 'buod' o 'muling pagsulat'.
+- **Temperature (0.0 → 1.0)**: kung paano kumikilos ang modelo; tingnan sa ibaba.
+- **Magtanong para sa wika ng layunin**: nagdaragdag ng pumili ng wika ng layunin kapag pinatatakbo ang prompt.
 
-Kung bago sa iyo ang teknikal na terminong **Temperature**, isipin mo ito:
+Kung bago sa iyo ang teknikal na terminong **Temperature**, isipin mo ito nang ganito:
 
-- Ang **mas mababang** temperature ay nagbibigay ng mas matatag at higit na maasahang resultado.
-- Ang **mas mataas** na temperature ay nagbibigay ng mas maraming pagkakaiba at pagkamalikhain.
+- Ang **mas mababa** ang temperatura ay nagbibigay ng mas matatag at mas maasahan na mga resulta.
+- Ang **mas mataas** ang temperatura ay nagbibigay ng mas maraming pagkakaiba at malikhain.
 
-Maaari mo ring gamitin:
+Maaari mo ring gamitin ang:
 
-- **`Bumuo ng Prompt`** upang lumikha ng bagong draft mula sa simpleng deskripsyon
-- **`Pabutihin ang Prompt`** upang paunlarin ang umiiral na prompt
-- **`Isalin ang Prompt`** upang isalin ang mga field ng prompt
+- **`Bumuo ng prompt`** upang lumikha ng bagong draft mula sa simpleng paglalarawan
+- **`Pahusayin ang prompt`** upang mapabuti ang umiiral nang prompt
+- **`Isalin ang prompt`** upang maisalin ang mga field ng prompt
 
 <br/>
 
-> ⚠️ **BABALA**<br/>
-> I-click ang **`I-save`** bago pindutin ang **`Bumalik sa Paggawa`**. Kung babalik ka nang hindi iyon iko-save, mawawala ang iyong mga pagbabago.
+> ⚠️ **BABAALA**<br/>
+> I-click ang **`I-Save`** bago mo i-click ang **`Bumalik sa Pagpatakbo`**. Kung babalik ka nang walang pag-save, mawawala ang iyong mga pagbabago.
 
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
 ### Subukan ang prompt bago gamitin
 
-Ang test panel sa kanan ay nagbibigay-daan sa iyo na subukan ang iyong prompt gamit ang sample na teksto bago gamitin ito sa araw-araw na trabaho.
+Ang panel ng pagsusuri sa kanan ay nagbibigay-daan sa iyo na subukan ang iyong prompt gamit ang sample na teksto bago mo ito gamitin sa araw-araw na gawain.
 
 Makakatulong ito kapag:
 
-- gumagawa ka ng bagong prompt
-- inihahambing mo ang dalawang bersyon ng prompt
-- gusto mong suriin ang tono, haba, o format ng output
+- bumubuo ka ng bagong prompt
+- ihahambing mo ang dalawang bersyon ng isang prompt
+- nais mong suriin ang tono, haba, o format ng output
 
 <br/>
 
-<a id="manage-saved-prompts"></a>
-### Pamahalaan ang mga na-save na prompt
-
-Para pamahalaan ang mga na-save na prompt sa isang lugar, buksan ang [**Mga Setting** > **Mga Prompt sa Pagbabago (Transform Prompts)**](#transform-prompts).
-
-Doon, maaari mong:
-
-- tingnan at tanggalin ang iyong mga prompt
-- ilabas ang mga prompt bilang **JSON**, **CSV**, o **XLSX**
-- i-import ang mga prompt mula sa isang file
+> ℹ️ **TALA**<br/>
+> Maaari mong i-export at i-import ang mga nai-save na prompt sa [**Mga Setting** > **Mga Transform na Prompt**](#transform-prompts).
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="dashboard"></a>
-
 ## Dashboard
 
-Gumamit ng **Dashboard** upang makita kung gaano karaming beses mo ginagamit ang app at kung magkano ang gastos nito (para sa mga bayad na modelo).
+Gumamit ng **Dashboard** upang makita kung gaano mo ginagamit ang app at kung magkano ang gastos nito (para sa mga bayad na modelo).
 
 ![Buod ng Dashboard](../images/screenshots/tl/dashboard-summary.png)
 
@@ -481,12 +442,12 @@ Gumamit ng **Dashboard** upang makita kung gaano karaming beses mo ginagamit ang
 <br/>
 
 > ℹ️ **TALA**<br/>
-> Kung gumagamit ka lamang ng libreng mga modelo, ang mga tsart na may kinalaman sa gastos ay magiging blangko.
+> Kung gumagamit ka lamang ng libreng modelo, walang laman ang mga graph na may kinalaman sa gastos.
 
 <br/>
 
 <a id="filter-the-data"></a>
-### I-filter ang data
+### I-filter ang mga datos
 
 Gumamit ng mga pindutan ng filter sa itaas upang baguhin ang saklaw ng oras.
 
@@ -495,43 +456,44 @@ Gumamit ng mga pindutan ng filter sa itaas upang baguhin ang saklaw ng oras.
 <br/>
 
 > ℹ️ **TALA**<br/>
-> Ang filter na **User** ay nakikita lamang ng mga administrator sa bersyon ng web. Hindi makikita ng karaniwang gumagamit ang filter na ito, at hindi ito available sa desktop app.
+> Ang filter na **User** ay nakikita lamang ng mga administrator sa bersyon sa web. Ang karaniwang mga user ay hindi makakakita ng filter na ito, at hindi rin ito available sa desktop app.
 
 <br/>
 
 <a id="dashboard-tabs"></a>
+
 ### Mga tab ng Dashboard
 
-- Ang **Summary** ay nagbibigay ng pangkalahatang-ideya tungkol sa paggamit at gastos.
-- Ang **By Usage** ay nagpapakita ng detalye batay sa wika ng pagsasalin, rewrite mode, at transform prompt.
-- Ang **By Model** ay nagpapakita kung aling mga modelo ang iyong ginamit at kung magkano ang gastos nito.
-- Ang **By Day** ay nagpapakita ng kabuuang araw-araw.
-- Ang **All Calls** ay nagpapakita ng kompletong kasaysayan ng mga tawag at nagbibigay-daan upang i-export ito.
+- Ang **Buod** ay nagbibigay ng pangkalahatang-ideya tungkol sa paggamit at gastos.
+- Ang **Ayos sa Paggamit** ay nagpapakita ng mga gawain na pinaghiwalay ayon sa wika ng pagsasalin, mode ng pagbabago, at prompt para sa pagbabago.
+- Ang **Ayos sa Modelo** ay nagpapakita kung anong mga modelo ang iyong ginamit at kung magkano ang kanilang gastos.
+- Ang **Ayos sa Araw** ay nagtatampok ng kabuuang gastos bawat araw.
+- Ang **Lahat ng Tawag** ay nagpapakita ng kompletong kasaysayan ng mga tawag at nagbibigay-daan sa iyo na i-export ito.
 
 <br/>
 
 <a id="export-data"></a>
-### I-export ang data
+### I-export ang datos
 
-Maaaring i-export ng mga table sa dashboard ang data sa:
+Ang mga talahanayan sa dashboard ay maaaring mag-export ng datos sa:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Makakatulong ito kung gusto mong suriin ang aktibidad sa labas ng app o ibahagi ang isang ulat.
+Makakatulong ito kung gusto mong tingnan ang mga gawain nang hindi nakakabit sa app o kung ibabahagi mo ang isang ulat.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Alisin ang naka-imbak na tala para sa isang modelo
+### Burahin ang naka-imbak na tala para sa isang modelo
 
-Sa **By Model** o **All Calls**, maaari mong alisin ang naka-imbak na mga tala para sa isang modelo sa pamamagitan ng pag-click sa icon na "basurahan".
+Sa **Ayos sa Modelo** o **Lahat ng Tawag**, maaari mong alisin ang naka-imbak na tala para sa isang modelo sa pamamagitan ng pag-click sa “trash bin” na icon.
 
 > ⚠️ **BABALA**<br/>
-> Hindi maibabalik ang pag-alis ng naka-imbak na tala. Gamitin lamang ito kung sigurado kang hindi mo na kailangan ang kasaysayang iyon.
+> Ang pagbura sa naka-imbak na tala ay hindi maiuulit. Gamitin lamang ito kung sigurado ka nang hindi mo na kailangan ang kasaysayang iyon.
 
-Upang tanggalin ang lahat ng data o alisin ang mga tala batay sa kanilang petsa, pumunta sa [**Settings** > **Cost Tracking**](#cost-tracking). Doon makikita mo ang mga opsyon para i-delete ang lahat ng naka-imbak na data o mga datos na mas matanda kaysa isang tiyak na petsa.
+Para i-delete ang lahat ng datos o alisin ang mga tala batay sa kanilang edad, pumunta sa [**Settings** > **Cost Tracking**](#cost-tracking). Doon makikita mo ang mga opsyon para i-delete ang lahat ng naka-imbak na datos o mga datos na mas matanda kaysa isang tiyak na petsa.
 
 <br/><br/>
 
@@ -540,36 +502,36 @@ Upang tanggalin ang lahat ng data o alisin ang mga tala batay sa kanilang petsa,
 <a id="history"></a>
 ## Kasaysayan
 
-I-click ang **History** upang makita ang kasaysayan ng iyong mga aksyon sa loob ng **Transrewrt**, kabilang ang input at output ng bawat operasyon.
+I-click ang **Kasaysayan** para makita ang kasaysayan ng iyong mga gawain sa loob ng **Transrewrt**, kasama ang input at output ng bawat operasyon. 
 
-![Pahina ng History](../images/screenshots/tl/history.png)
+![Pahina ng Kasaysayan](../images/screenshots/tl/history.png)
 
 <br/>
 
 <a id="filter-the-history"></a>
-### I-filter ang kasaysayan
+### Pag-filter sa datos
 
-Ginagamit ng **History** ang parehong mga filter ng pahina ng **Dashboard**. Gamitin mo ito upang piliin ang saklaw ng oras.
+Gumagamit ang **Kasaysayan** ng parehong mga filter tulad ng **Dashboard** pahina. Gamitin mo ang mga ito para pumili ng saklaw ng oras.
 
-![Mga filter ng Dashboard](../images/screenshots/tl/dashboard-filter.png)
+![Mga filter sa Dashboard](../images/screenshots/tl/dashboard-filter.png)
 
 <br/>
 
-> ℹ️ **TALA**<br/>
-> Ang filter na **User** ay nakikita lamang ng mga administrator sa bersyon ng web. Hindi makikita ng karaniwang gumagamit ang filter na ito, at hindi ito available sa desktop app.
+> ℹ️ **PAUNAWA**<br/>
+> Ang filter na **User** ay nakikita lamang ng mga administrador sa web na bersyon. Hindi ito makikita ng karaniwang gumagamit, at wala ito sa desktop app.
 
 <br/>
 
 <a id="export-history-data"></a>
-### I-export ang data ng kasaysayan
+### I-export ang datos ng kasaysayan
 
-Maaaring i-export ng pahina ng History ang nafilter na datos sa:
+Ang pahina ng kasaysayan ay maaaring mag-export ng nafilter na datos sa:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Makakatulong ito kung gusto mong suriin ang aktibidad sa labas ng app o ibahagi ang isang ulat.
+Makakatulong ito kung gusto mong suriin ang mga gawain nang palabas sa app o ibahagi ang isang ulat.
 
 <br/><br/>
 
@@ -578,25 +540,25 @@ Makakatulong ito kung gusto mong suriin ang aktibidad sa labas ng app o ibahagi 
 <a id="settings"></a>
 ## Mga Setting
 
-Buksan ang **Settings** mula sa sidebar upang ipasadya kung paano gumagana ang app.
+Buksan ang **Mga Setting** mula sa sidebar para i-customise ang pagkiyos ng app.
 
-Ang mga available na tab ay nakadepende sa platform at sa iyong tungkulin:
+Ang mga magagamit na tab ay nakadepende sa platform at sa iyong tungkulin:
 
   | Tab               | Desktop | Web (admin) | Web (karaniwang gumagamit) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | General Settings  |   yes   |     yes     |        yes         |
-  | Models            |   yes   |     yes     |        yes         |
-  | Languages         |   yes   |     yes     |        yes         |
-  | Cost Tracking     |   yes   |     yes     |         —          |
-  | Transform Prompts |   yes   |     yes     |        yes         |
-  | Users             |    —    |     yes     |         —          |
-  | API Config        |   yes   |     yes     |         —          |
-  | About             |   yes   |     yes     |        yes         |
+  |-------------------|:-------:|:-----------:|:--------------------------:|
+  | Mga Pangkalahatang Setting  |   oo   |     oo     |        oo         |
+  | Mga Modelo            |   oo   |     oo     |        oo         |
+  | Mga Wika         |   oo   |     oo     |        oo         |
+  | Pagsubaybay sa Gastos     |   oo   |     oo     |         —          |
+  | Mga Prompt sa Pagbabago |   oo   |     oo     |        oo         |
+  | Mga Gumagamit             |    —    |     oo     |         —          |
+  | API Config        |   oo   |     oo     |         —          |
+  | Tungkol            |   oo   |     oo     |        oo         |
 
 <br/>
 
-> ℹ️ **TALA**<br/>
-> Sa bersyon ng web, bawat gumagamit ay may sariling configuration. Ang mga setting tulad ng napiling modelo, mga wika, pangkalahatang opsyon, at mga transform prompt ay iniimbak bawat gumagamit. Hindi maapektuhan ng mga pagbabagong ginawa mo ang iba pang mga gumagamit.
+> ℹ️ **PAUNAWA**<br/>
+> Sa bersyon ng web, bawat gumagamit ay may sariling configuration. Ang mga setting tulad ng napiling modelo, wika, pangkalahatang opsyon, at mga prompt sa pagbabago ay iniimbak bawat gumagamit. Ang anumang pagbabago mo ay hindi makaapekto sa ibang mga gumagamit.
 
 <br/>
 
@@ -604,210 +566,207 @@ Ang mga available na tab ay nakadepende sa platform at sa iyong tungkulin:
 [--------------------------------------------------------------------------------------------------------------------------]: # 
 
 <a id="general-settings"></a>
+### Mga pangkalahatang setting
 
-### Pangkalahatang mga Setting
-
-Gumamit ng **Pangkalahatang Mga Setting** para kontrolin ang pag-uugali sa pag-type, kung ang mga detalye ng pagpapatakbo ay iniimbak para sa **Kasaysayan**, at ang hitsura.
+Gamitin ang **Mga Pangkalahatang Setting** para kontrolin ang pag-uugali ng pagpi-print, kung iniimbak ang detalye ng pagpapatakbo para sa **Kasaysayan**, at sa hitsura ng interface.
 
 **Pag-uugali**
 
-- **Pag-uugali para sa ENTER** ang pumipili kung ang `Enter` ay papatakbuhin ang gawain o mag-i-insert ng bagong linya.
-- **Awtomatikong isalin sa pag-paste** ay nagsisimulang isalin agad-agad kapag kumopya ka ng teksto.
-- **Awtomatikong i-copy ang resulta sa clipboard** ay awtomatikong kinokopya ang matagumpay na resulta.
-- **Pagsasalin sa totoong oras (habang nag-tatype)** ay nagsasalin habang ikaw ay nagtatype.
-- **Timeout (ms)** ay nakakustisya ng oras na hintayin para sa pagsasaling real-time.
+- **Pag-uugali ng ENTER** ay pipili kung ang `Enter` ay papatakbuhin ang gawain o mag-i-insert ng bagong linya.
+- **Auto-salin kapag binibihis** ay magsisimulang isalin agad-agad pagkalagay mo ng teksto.
+- **Auto-kopya ng resulta sa clipboard** ay awtomatikong kukuhanin ang matagumpay na resulta.
+- **Real-time na pagsasalin (habang nagta-type)** ay isinasalin habang ikaw ay nagta-type.
+- **Timeout (ms)** ay nagtatakda ng oras ng paghihintay para sa real-time na pagsasalin.
 
 **Kasaysayan**
 
-- **Ipinagkakapalit ang kasaysayan ng pagpapatakbo** ay kontrol kung ang bawat isalin, muling pagsulat, at pagbabago ay nag-iimbak ng **input at output na teksto** para sa [**Kasaysayan**](#history) sa sidebar. Kung ito ay i-off, magtatanong muna para sa kumpirmasyon; kung ikaw ay kumumpirma, aalisin ang naka-imbak na teksto ng kasaysayan mula sa database.
-- **Tanggalin ang datos ng kasaysayan** ay nagpapahintulot sa iyo na alisin ang naka-imbak na teksto batay sa edad (halimbawa, mga ilang buwan ang nakararaan, o **lahat ng data (malinis)**) gamit ang **Tanggalin ang Data**. Ito ay **tanging tumutugon** sa naka-save na teksto ng pagpapatakbo para sa **Kasaysayan**; _hindi_ ito tinatanggal ang kabuuang gastos o paggamit. Para alisin o bawasan ang **gastos**, gamitin ang [**Mga Setting** > **Pagsusubaybay sa Gastos**](#cost-tracking).
+- **Ipanatili ang kasaysayan ng pagpapatakbo** ay nagkukontrol kung ang bawat salin, pagbabago, at pagbabago ng prompt ay mag-iimbak ng **input at output na teksto** para sa [**Kasaysayan**](#history) sa sidebar. Ang pag-off dito ay magtatanong ng kumpirmasyon; kung ikukumpirma mo, ang mga naka-imbak na teksto ng kasaysayan ay tatanggalin mula sa database.
+- **Tanggalin ang datos ng kasaysayan** ay nagbibigay-daan na alisin ang mga naka-imbak na teksto batay sa edad (hal. mas matanda kaysa ilang buwan, o **lahat ng datos (linisin)**) gamit ang **Tanggalin ang datos**. Limitado lang ito sa mga na-save na teksto ng pagpapatakbo para sa tignan sa **Kasaysayan**; **hindi** ito tinatanggal ang datos tungkol sa gastos o kabuuang paggamit. Para alisin o putulin ang datos ng **gastos**, gamitin ang [**Settings** > **Cost Tracking**](#cost-tracking).
 
 **Hitsura**
 
-- **Mga digit sa bahaging gastos** ay nagbabago kung paano ipinapakita ang mga desimal sa gastos.
-- **Para lang sa Web:** **ipakita ang margin sa paligid ng app** ay nagdaragdag ng karagdagang puwang sa paligid ng interface.
-- **Pamilya ng Font** ay nagbabago sa font ng pag-type sa mga panel ng teksto.
+- **Ipakita ang impormasyon ng gastos sa mga gawain** ay kinokontrol ang pagpapakita ng gastos bawat operasyon (kung available) at kabuuang gastos sa mga panel ng output para sa Salin, Pagbabago, at Pagbabago ng tekstura.
+- **Cost fraction digits** ay nagbabago kung paano ipapakita ang mga desimal ng gastos.
+- **Web lang:** **ipakita ang margin sa paligid ng app** ay nagdadagdag ng extra na puwang paligid ng interface.
+- **Pamilya ng Font** ay nagbabago sa font ng teksto sa mga panel.
 - **Laki** ay nagbabago sa laki ng font.
+
 
 <br/>
 
 <a id="models"></a>
+
 ### Mga Modelo
 
-Gamitin ang **Mga Setting** > **Mga Modelo** para pumili kung aling mga modelo ang lilitaw sa toolbar.
+Gamitin ang **Mga Setting** > **Mga Modelo** upang pumili kung aling mga modelo ang lalabas sa toolbar.
 
-![Settings Models tab](../images/screenshots/tl/settings-models.png)
+![Mga tab ng mga setting ng modelo](../images/screenshots/tl/settings-models.png)
 
-May dalawang listahan ang pahina:
+Ang pahina ay may dalawang listahan:
 
 - **Mga Available na Modelo** sa kaliwa
-- **Napiling Mga Modelo** sa kanan
+- **Mga Napiling Modelo** sa kanan
 
-Kasama sa mga kapaki-pakinabang na kontrol:
+Kasama ang mga kapaki-pakinabang na kontrol tulad ng:
 
-- **Hanapin ang mga modelo...** para hanapin ang isang modelo batay sa pangalan
-- Mga **Provider** chips para i-narrow ang listahan sa isang engine (OpenRouter, OpenAI, Ollama, ...)
-- **Free Lamang** para ipakita ang mga libreng modelo lamang
-- **I-refresh** para i-reload ang listahan
-- **I-expand Lahat** at **I-collapse Lahat** kapag nagso-sort ayon sa provider
+- **Hanapin ang mga modelo...** upang hanapin ang isang modelo batay sa pangalan
+- Mga **chip ng Provider** upang paikliin ang listahan sa isang engine (OpenRouter, OpenAI, Ollama, …)
+- **Libre Lamang** upang ipakita ang mga libreng modelo lamang
+- **I-refresh** upang i-load muli ang listahan
+- **Palawakin Lahat** at **I-collapse Lahat** kapag nagso-sort ayon sa provider
 
-Ang mga model ID ay kasama ang provider prefix (halimbawa `openrouter/...` vs `openai/...`). Ang mga badge tulad ng **OpenAI (OpenRouter)** laban sa **OpenAI (direkta)** ay nagpapakita kung paano na-roroute ang trapiko.
+Ang mga id ng modelo ay kasama ang prefix ng provider (halimbawa `openrouter/…` laban sa `openai/…`). Ang mga badge tulad ng **OpenAI (OpenRouter)** laban sa **OpenAI (direkta)** ay nagpapakita kung paano na-ruroute ang trapiko.
+
+> ℹ️ **PAUNAWA**<br/>
+> Ang **OpenRouter Body Builder** (`openrouter/bodybuilder`) ay isang router model, hindi isang pangkalahatang chat model: ang kanyang tugon ay JSON na naglalarawan sa OpenRouter API request bodies (halimbawa ay isang `requests` array na may `model` at `messages`). Kung gagamitin mo ito para sa **Isalin**, **Muling Isulat**, o **Baguhin**, ipapakita ng output panel ang JSON sa halip na natapos na teksto. Pumili ng normal na text model para sa mga gawaing ito. Tingnan ang [pahina ng Body Builder model](https://openrouter.ai/openrouter/bodybuilder) sa OpenRouter.
 
 Mga Aksyon:
 
- - Para magdagdag ng modelo, i-click ang **Idagdag** o kahit saan sa entry.
+ - Para magdagdag ng isang modelo, i-click ang **Idagdag** o kahit saan sa entri.
 
- - Para matanggal ang isang modelo, i-click ang **X** sa tabi nito sa **Napiling Mga Modelo** o **Napili** sa entry sa Mga Available na Modelo.
+ - Para tanggalin ang isang modelo, i-click ang **X** sa tabi nito sa **Mga Napiling Modelo** o **Napili** sa entri sa Mga Available na Modelo.
 
- - Para mai-clear ang listahan, i-click ang **Huwag Piliin ang Lahat**. Ang kailangang libreng modelo ay mananatili sa listahan.
+ - Para i-clear ang listahan, i-click ang **Huwag Piliin ang Lahat**. Ang kailangang libreng modelo ay mananatili pa rin sa listahan.
 
 <br/>
 
-> ℹ️ **TANDAAN**<br/>
-> Kung hindi mo gustong magdagdag ng credit agad sa OpenRouter, simulan na i-enable ang **Libre Lamang** at piliin ang mga walang bayad na modelo (walang credit card ang kailangan). Puwede ka ring gumamit ng Ollama para patatakbo ang mga modelo nang lokal nang walang anumang API key.
+> ℹ️ **PAUNAWA**<br/>
+> Kung hindi mo agad gustong magdagdag ng credits sa OpenRouter, magsimula sa pamamagitan ng pag-activate ng **Libre Lamang** at pumili ng mga libreng modelo (walang kinakailangang credit card). Maaari mo ring gamitin ang Ollama upang patakbuhin ang mga modelo nang lokal nang walang anumang API key.
 
 <br/>
 
 <a id="languages"></a>
 ### Mga Wika
 
-Gamitin ang **Mga Setting** > **Mga Wika** para ayusin ang mga listahan ng wika na ginagamit sa app.
+Gamitin ang **Mga Setting** > **Mga Wika** upang ayusin ang mga listahan ng wika na ginagamit sa app.
 
-- **Mga Nangungunang Wika** ay naka-pin malapit sa itaas ng mga listahan ng wika sa **Isalin** at **Baguhin**.
-- **Pasadyang Wika** ay nagpapahintulot sa iyo na magdagdag ng wika na hindi kasama sa default na listahan.
+- Ang **Mga Nangungunang Wika** ay nakapirmi sa tuktok ng mga listahan ng wika sa **Isalin** at **Baguhin**.
+- Ang **Pasadyang Wika** ay nagbibigay-daan upang magdagdag ng wika na hindi kasama sa listahan.
 
-Kung magdagdag ka ng isang pasadyang wika, lilitaw ito sa mga pumili ng wika kasama ang mga naka-build-in na opsyon.
+Kung magdagdag ka ng pasadyang wika, ito ay lalabas sa mga selector ng wika kasama ang mga built-in na opsyon.
 
 <br/>
 
 <a id="cost-tracking"></a>
-### Pagsusubaybay sa Gastos
+### Pagsubaybay sa Gastos
 
-Gamitin ang **Mga Setting** > **Pagsusubaybay sa Gastos** para pamahalaan ang impormasyon sa gastos.
+Gamitin ang **Mga Setting** > **Pagsubaybay sa Gastos** upang pamahalaan ang impormasyon ng gastos.
 
-- **Kabuuang Gastos** ay nagpapakita ng kabuuang patuloy.
-- **Kopyahin ang Halaga** ay kinokopya ang kabuuan sa clipboard.
-- **I-reset ang Gastos** ay nai-reset ang naka-imbak na kabuuan sa zero.
-- **I-sync ang Gastos sa API Key Usage** ay nagtatakda ng kabuuan upang tumugma sa paggamit na naiulat ng iyong OpenRouter account (OpenRouter lamang).
-- **Paggamit ng API Key** ay nagpapakita ng detalye ng paggamit ng OpenRouter, kung available.
-- **Tanggalin ang datos ng gastos** ay nag-aalis ng lahat ng datos, o tanging mga entry na mas lumang kaysa sa napiling petsa.
+- **Kabuuang Gastos** ay nagpapakita ng kabuuang running total.
+- **Kopyahin ang Halaga** ay kumokopya sa kabuuan sa clipboard.
+- **I-reset ang Gastos** ay ini-reset ang naka-imbak na kabuuan sa zero.
+- **I-sync ang Gastos sa Paggamit ng API Key** ay nagtatakda sa kabuuan upang tumugma sa paggamit na iniulat ng iyong OpenRouter account (OpenRouter lamang).
+- **Paggamit ng API Key** ay nagpapakita ng mga detalye ng OpenRouter, kung available.
+- **Tanggalin ang datos ng gastos** ay tinatanggal ang lahat ng datos, o mga entry lamang na mas matanda kaysa sa napiling petsa.
 
-**Pagsusubaybay sa Gastos:** Kapag gumagamit ka ng mga modelo ng OpenRouter, ipinapakita ng app ang iyong aktwal na paggamit at gastusin batay sa mga datos mula sa OpenRouter. Para sa lahat ng iba pang mga provider, sinusuri ng app ang mga gastos gamit ang mga presyo na inilathala ng OpenRouter; kung hindi available ang presyo, maaaring maging zero ang pagtatantiya.
-
-<br/>
-
-> ℹ️ **TANDAAN**<br/>
-> Ang **lahat ng mga numero ng gastos ay mga pagtatantiya lamang para sa iyong pagbabase, hindi opisyal na pahayag ng pagbili.**
+**Pagsubaybay sa gastos:** Kapag gumagamit ka ng mga modelo ng OpenRouter, ipinapakita ng app ang iyong aktwal na paggamit at paggastos batay sa impormasyon ng gastos mula sa OpenRouter. Para sa lahat ng iba pang mga provider, hinuhulaan ng app ang mga gastos gamit ang mga presyo na inilathala ng OpenRouter; kung hindi available ang presyo, baka zero ang pagtatantiya.
 
 <br/>
 
-> ⚠️ **BABAALA**<br/>
-> Ang pagtanggal ng datos ay hindi maisasagawa muli. Bago tanggalin, siguraduhing i-back up ang iyong datos o i-export ito sa pamamagitan ng [**Dashboard** > **Lahat ng Tawag**](#dashboard-tabs), kung hindi ay mawawala ito nang permanente. <br/>
-> Ang lahat ng kasaysayan na may kinalaman sa bawat API call entry ay matatanggal din.
+> ℹ️ **PAUNAWA**<br/>
+> **Lahat ng mga halaga ng gastos ay mga pagtatantiya lamang para sa iyong sanggunian, hindi opisyales na pahayag ng singil.**
+
+<br/>
+
+> ⚠️ **BABALA**<br/>
+> Ang pagtanggal ng datos ay hindi maibabalik. Bago tanggalin, siguraduhin na i-back up ang iyong datos o i-export ito sa pamamagitan ng [**Kasaysayan**](#history) o [**Dashboard** > **Lahat ng Tawag**](#dashboard-tabs), kung hindi man ito ay mawawala na permanente. Ang lahat ng kasaysayan ng input/output na kaugnay sa bawat entry ng tawag sa API ay matatanggal din.
 
 <br/>
 
 <a id="transform-prompts"></a>
+### Mga prompt sa Pagbabagong-anyo
 
-### I-transform ang mga prompt
-
-Gumamit ng **Mga Setting** > **I-transform ang mga Prompt** para pamahalaan ang mga prompt nang sabay-sabay.
+Gamitin ang **Mga Setting** > **Mga Prompt sa Pagbabago** para pamahalaan ang mga prompt nang sabay-sabay.
 
 Maaari mong:
 
-- suriin ang mga na-save mong prompt
+- suriin ang mga naka-save mong prompt
 - tanggalin ang mga prompt
 - i-import ang mga prompt mula sa isang file
-- i-export ang mga prompt para i-backup o i-share
+- i-export ang mga prompt para sa backup o pagbabahagi
 
 <br/>
 
 <a id="users"></a>
-### Mga User
+### Mga Gumagamit
 
-**Web: tagapangasiwa lamang**
-
-Gumamit ng **Mga User** para pamahalaan ang mga user account sa bersyon ng web. Maaari kang magdagdag ng mga user, i-update ang kanilang mga detalye, i-reset ang mga password, at tanggalin ang mga account.
+Gamitin ang **Mga Gumagamit** upang pamahalaan ang mga account ng gumagamit sa web na bersyon. Maaari kang magdagdag ng mga gumagamit, i-update ang kanilang mga detalye, i-reset ang mga password, at tanggalin ang mga account.
 
 <br/>
 
 <a id="api-config"></a>
-### Konpigurasyon ng API
+### Pagsasaayos ng API
 
-Ang mga suportadong provider ay: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at **Ollama** (mga lokal na modelo sa pamamagitan ng base URL). Kailangan mo lang i-configure ang mga provider na gagamitin mo.
+Ang mga suportadong provider ay: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, at **Ollama** (mga lokal na modelo sa pamamagitan ng base URL). Kailangan mo lamang i-configure ang mga provider na ginagamit mo.
 
-**Aplikasyon sa web: tagapangasiwa lamang**
+**Web application: administrator lamang**
 
-Ang mga API key ay ini-configure sa pamamagitan ng mga system o Docker environment variables — hindi ito i-type sa web UI. Pinapakita ng pahinang ito kung aling mga provider ang may nakakonfigurang key at hinahayaan ka nitong subukan ang bawat isa sa pamamagitan ng pag-click sa pindutang **`Test`**.
-
-<br/>
-
-> ℹ️ **TANDAAN**<br/>
-> Para baguhin ang isang API key, i-update mo ang environment variable sa iyong system o konpigurasyon ng Docker at i-restart ang server o container.
+Ang mga API key ay ini-configure sa pamamagitan ng system o Docker environment variables — hindi ito ini-enter sa web UI. Ang pahinang ito ay nagpapakita kung aling mga provider ang may naka-configure na key at nagbibigay-daan sa iyo na subukan ang bawat isa sa pamamagitan ng pag-click sa pindutang **`Subukan`**.
 
 <br/>
 
-**Aplikasyon sa desktop**
+> ℹ️ **PAUNAWA**<br/>
+> Upang baguhin ang isang API key, i-update ang environment variable sa iyong sistema o pagsasaayos ng Docker at i-restart ang server o container.
 
-Gumamit ng **API Config** para iimbak ang mga API key para sa bawat provider na ginagamit mo. Para sa Ollama, i-type ang **base URL** sa halip na isang API key.
+<br/>
 
+**Desktop application**
+
+Gamitin ang **API Config** upang mag-imbak ng mga API key para sa bawat gumagamit na provider. Para sa Ollama, ipasok ang **base URL** sa halip na isang API key.
 
 <br/>
 
 > 💡 **Tip** <br/>
-> Kung ayaw mong magamit ang isang API key o magbayad para sa paggamit, maaari kang [i-download ang Ollama](https://ollama.com) at i-run ang mga modelo nang lokal sa iyong makina nang libre. Bilang kahalili, maaari mong likhain ang isang libreng OpenRouter account (walang kinakailangang credit card) para gamitin ang kanilang libreng mga modelo.
-
-- Magdagdag lamang ng mga provider na kailangan mo. Sa **Mga Setting** > **Mga Modelo**, ang bawat model id ay nagsisimula sa provider (halimbawa `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
-
-Para magdagdag ng isang API key, i-type mo ang halaga sa text field at i-click ang **`I-save`**. Para palitan ang umiiral nang key, i-click ang **`I-edit`**. Para i-check kung gumagana ang isang key, i-click ang **`Subukan`**.
+> Kung hindi mo gustong gumamit ng API key o magbayad para sa paggamit, maaari kang [i-download ang Ollama](https://ollama.com) at patakbuhin ang mga modelo (tulad ng `translategemma:4b`) nang lokal sa iyong makina nang libre. Bilang kahalili, maaari kang gumawa ng libreng OpenRouter account (walang kinakailangang credit card) upang gamitin ang kanilang libreng mga modelo, o kumuha ng libreng API key mula sa Cerebras, Google, Groq, o Mistral AI.
 
 <br/>
 
-> ℹ️ **TANDAAN**<br/>
-> Hindi mo makikita ang kasalukuyang halaga ng isang API key. Maaari mo lamang itong palitan gamit ang pindutang **`I-edit`**.
-> Ang mga API key ay iniimbak nang naka-encrypt sa configuration file.
+- Magdagdag lamang ng mga provider na kailangan mo. Sa **Mga Setting** > **Mga Modelo**, ang bawat id ng modelo ay nagsisimula sa provider (halimbawa `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+
+Upang magdagdag ng isang API key, ipasok ang halaga sa text field at i-click ang **`I-save`**. Upang palitan ang umiiral na key, i-click ang **`I-edit`**. Upang i-verify na gumagana ang key, i-click ang **`Subukan`**. Para sa Ollama base URL, laging i-click ang **`Subukan`** upang i-check ang koneksyon.
 
 <br/>
 
-Para sa detalyadong hakbang kung paano makakuha ng isang OpenRouter key, tingnan ang [Paano makakuha ng isang API key](#how-to-get-an-api-key-desktop-app) sa itaas.
-
-
+> ℹ️ **PAUNAWA**<br/>
+> Hindi mo maaaring tingnan ang kasalukuyang halaga ng isang API key. Maaari mo lamang palitan ito gamit ang pindutang **`I-edit`**.
+> Ang mga API key ay naka-imbak nang naka-encrypt sa pagsasaayos.
 
 <br/>
 
 <a id="about"></a>
+
 ### Tungkol
 
-Ipapakita ng tab na **Tungkol**:
+Ang tab na **Tungkol** ay nagpapakita ng:
 
-- ang pangalan ng app
-- ang numero ng bersyon
-- petsa ng build
+- pangalan ng app
+- numero ng bersyon
+- petsa ng pagbuo
 - link sa repository ng proyekto
 
 <br/><br/>
 
 <a id="common-issues"></a>
-## Karaniwang mga isyu
+## Karaniwang Isyu
 
-Kung may hindi gumagana ayon sa inaasahan, una nang tingnan ang mga sumusunod.
+Kung may isyu sa pag-andar, suriin muna ang mga sumusunod.
 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Hindi naisasalin, ini-rerewrite, o i-tratransform ng app ang teksto
+### Hindi maipapapalit, maipapalit ang salita, o baguhin ang teksto ang app
 
 Suriin ang mga sumusunod:
 
-- pinili mo na ang modelo sa toolbar
-- nakalista ang kahit isang modelo sa [**Mga Setting** > **Mga Modelo**](#models)
+- napili mo ang isang modelo sa toolbar
+- may kahit isang modelo sa [**Mga Setting** > **Mga Modelo**](#models)
 - gumagana ang iyong API setup
 
 Kung gumagamit ka ng desktop app:
 
 1. Buksan ang [**Mga Setting** > **API Config**](#api-config).
-2. Siguraduhing naka-save na ang kahit isang API key.
-3. I-click ang **Subukan** sa tabi ng provider para kumpirmahing gumagana ang key.
+2. Tiyaking may nakasave nang kahit isang API key.
+3. I-click ang **Test** sa tabi ng provider upang kumpirmahin na gumagana ang key.
 
 <br/>
 
@@ -818,116 +777,116 @@ Buksan ang [**Mga Setting** > **Mga Modelo**](#models) at i-click ang **I-refres
 
 Kung kinakailangan:
 
-- maghanap ng isang modelo
-- i-on ang **Libre Lamang**
-- magdagdag ng isa o higit pang modelo sa **Mga Napiling Modelo**
+- maghanap ng modelo
+- i-on ang **Free Only**
+- idagdag ang kahit isang modelo sa **Napiling Mga Modelo**
 
 <br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
-### Mabagal o masyadong mahal ang resulta
+### Mabagal o mahal ang resulta
 
-Subukan ang isa o higit pang mga sumusunod:
+Subukan ang isa o higit pa sa mga sumusunod:
 
 - pumili ng ibang modelo
 - gumamit ng mas maikling input
-- i-off ang **Real-time na pagsasalin (habang nag-type)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
-- gamitin ang mga libreng modelo para sa mga simpleng gawain (tingnan ang [Mga Modelo](#models))
+- i-off ang **Real-time translation (habang nagtatatype)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
+- gamitin ang libreng mga modelo para sa simpleng mga gawain (tingnan [Mga Modelo](#models))
 
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
-### Hindi tamang wika ang ginagamit sa interface
+### Hindi tamang wika ang interface
 
-I-click ang icon ng mundo sa [toolbar](#toolbar) at pumili ng iyong gustong **Wika sa Interface**.
+I-click ang icon ng mundo sa [toolbar](#toolbar) at pumili ng iyong gusto **wika ng interface**.
 
 <br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
-### Napakaliit o mahirap basahin ang teksto
+### Napakaliit o mahirap basahin ng teksto
 
-Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) at baguhin ang:
+Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) at baguhin:
 
 - **Pamilya ng Font**
-- **Laki**
+- **Sukat**
 
 <br/>
 
 <a id="dashboard-charts-are-empty"></a>
-### Walang laman ang mga chart sa dashboard
+### Walang laman ang mga graph sa dashboard
 
-Normal ito kung:
+Normal ito kapag:
 
-- gamit mo lamang ang **mga libreng modelo** (maga-magkakawala ang mga cost chart)
-- ang napiling **filter sa oras** ay hindi sakop ang panahon kung kailan ginawa ang mga tawag — subukan ang **Lahat** para i-check
+- gumagamit ka lamang ng **libreng mga modelo** (ang graph ng gastos ay blanko)
+- ang napiling **time filter** ay hindi sumasaklaw sa panahon kung kailan nagsagawa ng mga tawag — subukan ang **Lahat** upang suriin
 
-Kung wala pa rin ang mga chart pagkatapos piliin ang **Lahat**, kumpirmahing lumilitaw ang mga tawag sa [**Kasaysayan**](#history) o sa tab na **Lahat ng Tawag**.
+Kung patuloy na walang laman ang mga graph pagkatapos piliin ang **Lahat**, kumpirmahin kung nakalista ang mga tawag sa [**Kasaysayan**](#history) o sa tab na **Lahat ng Tawag**.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
+### Nagpapakita ng "hindi available" o mukhang mali ang gastos
 
-### Ang gastos ay "hindi available" o mukhang mali
+Kapag gumagamit ka ng mga modelo sa pamamagitan ng **OpenRouter**, ipinapakita ng app ang tunay mong ginastos na iniulat ng OpenRouter.
 
-Kapag gumagamit ka ng mga modelo sa pamamagitan ng **OpenRouter**, ipinapakita ng app ang aktwal mong gastusin na iniulat ng OpenRouter.
-
-Para sa **mga ibang provider** (OpenAI direktang, Anthropic direktang, atbp.), tinataya ang gastos batay sa mga presyong inilathala ng OpenRouter. Kung walang nahanap na tumutugmang presyo para sa isang modelo, ang gastos ay ipapakitang **hindi available** at hindi isasanib sa kabuuang gastos mo.
+Para sa **mga ibang provider** (OpenAI direct, Anthropic direct, atbp.), ang gastos ay isang pagtataya batay sa mga nai-publish na presyo ng OpenRouter. Kung walang tumutugmang presyo para sa isang modelo, ang gastos ay ipapakita bilang **hindi available** at hindi idaragdag sa kabuuang gastos mo.
 
 <br/>
 
 <a id="total-cost-does-not-match-my-provider-bill"></a>
-### Ang kabuuang gastos ay hindi tugma sa bill ng aking provider
+### Hindi tugma ang kabuuang gastos sa bill ng aking provider
 
-Ang lahat ng mga halaga ng gastos sa app ay **mga tinatayang halaga para sa reperensya lamang**, at hindi opisyal na mga pahayag ng pagbibilang.
+Ang lahat ng halaga ng gastos sa app ay mga **pagtataya para sa reperensya lamang**, at hindi opisyales na pahayag ng singil.
 
-Upang palapit na gawing tugma ang kabuuan sa iyong aktwal na gastos sa OpenRouter, buksan ang [**Mga Setting** > **Pagsasailalim ng Gastos**](#cost-tracking) at pindutin ang **I-sync sa paggamit ng API key**.
+Upang ilapit ang kabuuan sa tunay mong ginastos sa OpenRouter, buksan ang [**Mga Setting** > **Cost Tracking**](#cost-tracking) at i-click ang **Sync with API key usage**.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
-### Nawawala ang History page sa sidebar
+### Nawawala ang pahina ng History sa tabi
 
-Maaaring naka-off ang **Panatilihin ang kasaysayan ng pagpapatakbo**. Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) at i-enable ito. Tandaan na ang pag-on dito ay hindi naibabalik ang dating natanggal na data ng kasaysayan.
+Maaaring **hindi pinagana ang pag-iimbak ng kasaysayan ng pagpapalit**. Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) at paganahin ito. Tandaan na ang pag-on dito ay hindi ibabalik ang mga dating inalis na datos ng kasaysayan.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
-### Web app: biglang binalik sa page ng pag-login
+### Web app: inilipat papunta sa pahina ng pag-login nang hindi inaasahan
 
-Maaaring lumagpas sa oras ang sesyon mo. Mag-login muli. Kung madalas itong nangyayari, suriin ang server configuration para sa mga setting ng haba ng sesyon.
+Maaaring natapos ang session mo. Muling mag-login. Kung madalas nangyari ito, suriin ang configuration ng server para sa mga setting ng haba ng session.
 
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
-### Walang data na ipinapakita ang dashboard para sa ibang gumagamit (web)
+### Walang datos ang dashboard para sa ibang user (web)
 
-Tanging ang **mga administrador** ang nakakakita ng data mula sa lahat ng gumagamit gamit ang filter na **Gumagamit**. Awtomatikong nakakakita ang karaniwang gumagamit lamang sa kanilang sariling gawain.
+Tanging ang **mga administrator** lamang ang maaaring tingnan ang datos ng lahat ng user sa pamamagitan ng **User filter**. Ang karaniwang user ay nakikita lamang ang kanilang sariling gawain bilang disenyo.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Nabago ko ang prompt at nawala ang mga pag-edit
+### Binago ko ang prompt at nawala ang mga pag-edit
 
-Kapag nag-e-edit ng prompt, palaging pindutin ang **I-save** bago pindutin ang **Bumalik sa Run**.
+Kapag nag-e-edit ng prompt, siguraduhing i-click **I-save** bago i-click ang **Bumalik sa Run**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
-## Mga mabilis na tips
+## Mga Mabilis na Tip
 
-- Magsimula sa [**Isalin**](#translate) upang matiyak na gumagana ang iyong setup bago ka lumipat sa [**Muling-isulat**](#rewrite) o [**Baguhin**](#transform).
-- Gamitin ang [**Muling-isulat**](#rewrite) para sa pang-araw-araw na pagpapabuti ng mga salita.
-- Gamitin ang [**Baguhin**](#transform) kapag kailangan mo ng paulit-ulit na workflow para sa isang partikular na gawain.
-- Gamitin ang [**Dashboard**](#dashboard) kung nais mong bantayan ang paggamit at gastos.
-- Gamitin ang [**Kasaysayan**](#history) upang suriin ang mga nakaraang operasyon at ang buong input/output text nito.
-- I-export ang mga prompt nang regular kung gumagawa ka ng aklatan ng mga prompt na nais mong mapagkatiwalaan (tingnan ang [Baguhin ang mga Prompt](#transform-prompts)) o kung ibabahagi mo ito sa iba.
+- Simulan sa [**Isalin**](#translate) upang masiguro na gumagana ang iyong setup bago lumipat sa [**Muling-isulat**](#rewrite) o [**Baguhin**](#transform).
+- Gamitin ang [**Muling-isulat**](#rewrite) para sa pang-araw-araw na pagpapabuti sa mga salita.
+- Gamitin ang [**Baguhin**](#transform) kailangan mo ng paulit-ulit na workflow para sa isang tiyak na gawain.
+- Gamitin ang [**Dashboard**](#dashboard) kung gusto mong subaybayan ang paggamit at gastos.
+- Gamitin ang [**Kasaysayan**](#history) upang repasuhin ang nakaraang operasyon at ang buong input/output nito.
+- I-export ang mga prompt nang regular kung nagtatayo ka ng library ng mga prompt na gusto mong panatilihing ligtas (tingnan [Mga Transform na Prompt](#transform-prompts)) o kung gusto mong ibahagi sa iba.
 
 <br/><br/>
 
 <a id="disclaimer"></a>
+
 ## Paunawa
 
-Ang mga pangalan at mga icon ng produkto ay pag-aari ng kani-kanilang may-ari at ginagamit lamang para sa pagkilala. Ang software na ito ay hindi kaugnay o sinusuportahan ng alinman sa mga nabanggit na tatak.
+Ang mga pangalan ng produkto at mga icon ay pag-aari ng kaukulang may-ari at ginagamit lamang para sa layuning pagkilala. Ang software na ito ay hindi kaugnay o pinagkakatiwalaan ng anumang mga brand na binanggit.
 
 <br/><br/>
 

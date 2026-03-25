@@ -69,7 +69,7 @@ Options:
   --retranslate, -r       Retranslate all strings (ignore existing translations).
   --model, -m <name>      OpenRouter model to use (default: ${DEFAULT_MODEL}).
   --max-tokens, -t <n>    Max tokens for completion (default: ${DEFAULT_MAX_TOKENS}).
-  --locale, -l <code>     Translate only this locale (e.g. pt-BR, de).
+  --locale, -l <codes>   Translate only these locale(s). Comma- or space-separated inside a single argv token (e.g. --locale=pt-BR,es or --locale "pt-BR es").
 
 Examples:
   node scripts/generate-translations.js --help
@@ -107,6 +107,8 @@ function parseArgs() {
     } else if ((arg === "--max-tokens" || arg === "-t") && args[i + 1]) {
       const n = parseInt(args[++i], 10);
       if (!Number.isNaN(n) && n > 0) maxTokens = n;
+    } else if (arg.startsWith("--locale=")) {
+      locale = arg.split("=", 2)[1];
     } else if ((arg === "--locale" || arg === "-l") && args[i + 1]) {
       locale = args[++i];
     } else {
@@ -160,17 +162,40 @@ if (LANGUAGES.length === 0) {
 }
 
 if (localeFilter) {
-  if (localeFilter === "en-GB" || localeFilter === "en") {
-    log("en-GB is the source language; no translation needed.");
+  const codes = String(localeFilter)
+    .split(/[,\s]+/)
+    .map((c) => c.trim())
+    .filter(Boolean);
+
+  const sourceCodes = new Set(["en-GB", "en"]);
+  const requestedNonSource = codes.filter((c) => !sourceCodes.has(c));
+  const ignoredSource = codes.filter((c) => sourceCodes.has(c));
+
+  if (ignoredSource.length > 0) {
+    log(`Ignoring source locale(s) in --locale filter: ${ignoredSource.join(", ")}.`);
+  }
+
+  if (requestedNonSource.length === 0) {
+    log("No target locales requested (only source locales). Nothing to translate.");
     process.exit(0);
   }
-  const match = LANGUAGES.find((l) => l.code === localeFilter);
-  if (!match) {
-    err(`Locale "${localeFilter}" not found in ui-languages.json. Available: ${LANGUAGES.map((l) => l.code).join(", ")}`);
+
+  const byCode = new Map(LANGUAGES.map((l) => [l.code, l]));
+  const matched = [];
+  const invalid = [];
+  for (const code of requestedNonSource) {
+    const lang = byCode.get(code);
+    if (lang) matched.push(lang);
+    else invalid.push(code);
+  }
+
+  if (invalid.length > 0) {
+    err(`Locale(s) not in ui-languages.json: ${invalid.join(", ")}`);
     process.exit(1);
   }
-  LANGUAGES = [match];
-  log(`single locale: ${localeFilter}`);
+
+  LANGUAGES = matched;
+  log(LANGUAGES.length === 1 ? `single locale: ${LANGUAGES[0].code}` : `filtering to ${LANGUAGES.length} locale(s): ${LANGUAGES.map((l) => l.code).join(", ")}`);
 }
 
 if (!OPENROUTER_KEY) {
