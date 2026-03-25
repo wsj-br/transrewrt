@@ -381,6 +381,25 @@ async function translateBlockWithFallback(blockContent, langName, docKey, blockI
   throw lastError || new Error("No model succeeded");
 }
 
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * The "English (UK)" language-switcher link must point at the repo-root source (`../README.md` / `../USER-GUIDE.md`),
+ * not the current locale file. `rewriteCrossDocLinksToLocale` rewrites every bare `README.md` / `USER-GUIDE.md`
+ * link, which incorrectly retargets that entry too.
+ */
+function fixEnglishUkSwitcherLink(body, localeCode, docKey) {
+  if (docKey !== "README" && docKey !== "USER-GUIDE") return body;
+  const escaped = escapeRegExp(localeCode);
+  const re = new RegExp(
+    `\\[English \\(UK\\)\\]\\(${docKey}\\.${escaped}\\.md(#[^)]*)?\\)`,
+    "g"
+  );
+  return body.replace(re, (_, frag) => `[English (UK)](../${docKey}.md${frag || ""})`);
+}
+
 /**
  * Point cross-doc links at the locale file in translated-docs/ (same folder as output).
  * Handles optional #fragments and legacy ../README.md from older script versions.
@@ -451,15 +470,19 @@ async function processDoc(locale, doc, content) {
     const sourcePath = path.join(ROOT, doc.sourceFile);
     const sourceMtime = fs.statSync(sourcePath).mtimeMs;
     const body = translatedParts.join("\n\n");
-    const bodyWithLocalePaths = rewriteCrossDocLinksToLocale(
-      body
-        .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
-        .replace(/src="images\//g, 'src="../images/')
-        .replace(/\]\(images\//g, '](../images/')
-        .replace(/\]\(translated-docs\/README\./g, '](README.')
-        .replace(/\]\(translated-docs\/USER-GUIDE\./g, '](USER-GUIDE.')
-        .replace(/\]\(dev\//g, '](../dev/'),
-      locale.code
+    const bodyWithLocalePaths = fixEnglishUkSwitcherLink(
+      rewriteCrossDocLinksToLocale(
+        body
+          .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
+          .replace(/src="images\//g, 'src="../images/')
+          .replace(/\]\(images\//g, '](../images/')
+          .replace(/\]\(translated-docs\/README\./g, '](README.')
+          .replace(/\]\(translated-docs\/USER-GUIDE\./g, '](USER-GUIDE.')
+          .replace(/\]\(dev\//g, '](../dev/'),
+        locale.code
+      ),
+      locale.code,
+      doc.key
     );
     const frontmatter = buildFrontmatter({
       translated_at: new Date().toISOString(),
