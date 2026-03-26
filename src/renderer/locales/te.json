@@ -154,6 +154,8 @@
   "All rights reserved.": "అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "ఉత్పత్తి పేర్లు మరియు చిహ్నాలు వాటి సంబంధిత యజమానులకు చెందినవి మరియు గుర్తింపు ప్రయోజనాల కోసం మాత్రమే ఉపయోగించబడతాయి.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "ఈ సాఫ్ట్‌వేర్ పేర్కొన్న బ్రాండ్‌లలో దేనితోనూ అనుబంధించబడలేదు లేదా ఆమోదించబడలేదు.",
+  "Ollama configuration is working.": "Ollama కాన్ఫిగరేషన్ పని చేస్తోంది.",
+  "{{provider}} credentials are valid.": "{{provider}} అనుమతి ధృవీకరణలు చెల్లుబాటు అవుతాయి.",
   "Testing...": "పరీక్షిస్తోంది...",
   "API Configuration": "API కాన్ఫిగరేషన్",
   "Add API keys for each provider you use.": "మీరు ఉపయోగించే ప్రతి ప్రొవైడర్‌కు API కీలను జోడించండి.",

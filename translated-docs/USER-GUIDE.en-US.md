@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-25T21:08:10.611Z"
-source_hash: "6ca7b21e820e8ee121cd93bbf98806547c5c3ce7914799891d923201bd2c4466"
-source_mtime: 1774468804877.8855
+translated_at: "2026-03-26T00:30:53.504Z"
+source_hash: "87f5e7618cbfd3084efeecba28440ecccb03450da2ae8fe4c6f91c75cb7f4981"
+source_mtime: 1774482557035.2158
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -29,7 +29,8 @@ This guide explains how to use the app once it is installed and running. For ins
 > ℹ️ **NOTE**<br/>
 > Transrewrt is available as a desktop app for Windows and Linux, and as a self-hosted web app. This guide focuses on everyday use of the app. Where something only applies to one version, it is clearly marked.
 
-<small>**Read in other languages:** [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small>**Read in other languages:** </small>
+<small id="lang-list"> [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -42,7 +43,7 @@ This guide explains how to use the app once it is installed and running. For ins
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents** 
+**Table of Contents**
 
 - [Before you start](#before-you-start)
   - [How to get a free OpenRouter API key (desktop app)](#how-to-get-a-free-openrouter-api-key-desktop-app)
@@ -106,57 +107,57 @@ This guide explains how to use the app once it is installed and running. For ins
 
 To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
 
-You do not need to select a paid model to get started. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This allows you to begin translating, rewriting, and transforming text immediately. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
+You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
 
-In plain terms:
+In plain language:
 
-- A **model** is the AI engine that performs the work. Models are listed with a **provider prefix** (for example, `openrouter/…`, `openai/…`, `ollama/…`).
-- An **API key** (or, for Ollama, a **base URL**) is how the app connects to that provider.
+- A **model** is the AI engine that does the work. Models are listed with a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
+- An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
-If you're using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you plan to use. For OpenRouter-only usage, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you prefer not to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
+If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
 
-If you're using the **web version**, the server administrator configures providers via environment variables, so you cannot enter API keys directly in the application.
+If you are using the **web version**, the server owner configures providers with environment variables, so you cannot enter API keys directly in the application.
 
 <br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
 ### How to get a free OpenRouter API key (desktop app)
 
-If you're using the desktop app, follow these steps:
+If you are using the desktop app, follow these steps:
 
 1. Go to [OpenRouter](https://openrouter.ai) in your web browser.
 2. Create an account or sign in.
-3. Visit the [Keys](https://openrouter.ai/keys) page.
+3. Open the [Keys](https://openrouter.ai/keys) page.
 4. Click the button to create a new API key.
-5. Name the key so you can identify it later.
+5. Give the key a name so you can recognize it later.
 6. Copy the new API key.
 7. Return to Transrewrt and open **Settings** > **API Config**.
-8. Paste the key into the **OpenRouter API key** field (under **Settings** > **API Config**).
-9. Click **Test OpenRouter key** to confirm it works.
+8. Paste the key into **OpenRouter API key** (under **Settings** > **API Config**).
+9. Click **Test OpenRouter key** to make sure it works.
 
 <br/><br/>
 
 <a id="getting-started"></a>
 ## Getting started
 
-If this is your first time using Transrewrt, follow these steps in order:
+If this is your first time using Transrewrt, follow this order:
 
-1. Launch the app.
-2. Select your **Interface language** from the globe icon if needed.
-3. If you're using the **desktop app**, open [**Settings** > **API Config**](#api-config), add an API key for at least one provider (such as OpenRouter), and click **Test** to verify it's working.
+1. Open the app.
+2. Choose your **Interface language** from the globe icon if needed.
+3. If you are on the **desktop app**, open [**Settings** > **API Config**](#api-config), add an API key for at least one provider (for example OpenRouter), and click **Test** to verify it works.
 4. Open [**Settings** > **Models**](#models) and add one or more models to **Selected Models**.
-5. Open [**Settings** > **Languages**](#languages) and set your **Top languages** if you'd like your most frequently used languages to appear first.
-6. Go to **Translate** and run a simple translation to ensure everything works.
-7. Once that's successful, try **Rewrite** and then **Transform**.
+5. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
+6. Go to **Translate** and run a simple translation to confirm everything is working.
+7. Once that works, try **Rewrite** and then **Transform**.
 
-The order matters. It helps prevent the most common first-time issue: attempting to run a task before the app has a working API connection or a selected model.
+This order matters. It prevents the most common first-use problem: trying to run a task before the app has a working API connection or a selected model.
 
 <br/><br/>
 
 <a id="main-parts-of-the-window"></a>
 ## Main parts of the window
 
-The app is divided into three primary areas:
+The app is divided into three main areas:
 
 - The **sidebar** on the left.
 - The **toolbar** at the top.
@@ -167,7 +168,7 @@ The app is divided into three primary areas:
 <a id="sidebar"></a>
 ### Sidebar
 
-Use the sidebar to navigate the app. You can collapse it for more space by clicking the icon next to the app logo.
+Use the sidebar to move around the app. You can collapse the sidebar for more space by clicking the icon next to the app logo.
 
 <br/>
 
@@ -182,10 +183,10 @@ Use the sidebar to navigate the app. You can collapse it for more space by click
         <li><strong>Translate</strong> opens the translation workspace.</li><br/>
         <li><strong>Rewrite</strong> opens the rewriting workspace.</li><br/>
         <li><strong>Transform</strong> opens the custom prompt workspace.</li><br/>
-        <li><strong>Dashboard</strong> displays usage and cost information.</li><br/>
+        <li><strong>Dashboard</strong> shows usage and cost information.</li><br/>
         <li><strong>Settings</strong> opens the settings panel.</li><br/>
-        <li><strong>History</strong> shows your usage history including input and output text.</li><br/>
-        <li><strong>User</strong> displays the username of the logged-in user (web only).</li>
+        <li><strong>History</strong> shows the usage history with the input and output text</li><br/>
+        <li><strong>User</strong> shows the username of the logged-in user (web only).</li>
       </ul>
     </td>
   </tr>
@@ -199,14 +200,14 @@ Use the sidebar to navigate the app. You can collapse it for more space by click
 
 The toolbar changes slightly depending on where you are in the app.
 
-- On the left, it shows the current page name.
+- On the left, it displays the current page name.
 - On the right, it shows the **model selector** and the **Interface language** control.
 
 The **model selector** allows you to choose which AI engine to use for the current task.
 
   ![Model selector](../images/screenshots/en-US/model-selector.png)
 
-Some free models may not always be available—sometimes they are offline or have usage limits. If this happens, the app will automatically remove that model from your list of available options. To manage which models appear, go to [**Settings** > **Models**](#models) and edit your model list.  
+Some free models may not always be available—sometimes they are offline or have a usage limit. If this occurs, the app will automatically remove that model from your available list. To manage which models appear, go to [**Settings** > **Models**](#models) and edit your model list.  
 You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
 
 <br/>
@@ -229,14 +230,14 @@ Each panel also displays:
 | - Character count <br/>- Word count <br/>- Paragraph count   <br/> | - How long the task took<br/>- **TPS** (tokens per second)<br/>- Character, word, and paragraph counts<br/>- The model used |
 
 
-If you're unfamiliar with the technical terms:
+If you're unsure about the technical terms:
 
-- **Token** refers to a small unit of text. Think of it as part of a word or a short word.
-- **TPS** indicates how many of these text units the model processed each second.
+- **Token** means a small chunk of text. You can think of it as part of a word or a short word.
+- **TPS** means how many of those text chunks the model processed each second.
 
 <br/>
 
-You can also track the cost of each operation (if available) and the total cost by enabling the option `Show cost information on the actions` in [**Settings** > **General settings**](#general-settings). 
+You can also monitor the cost of each operation (if available) and the total cost by enabling the option `Show cost information on the actions` in [**Settings** > **General settings**](#general-settings). 
  
 <br/><br/>
 
@@ -255,8 +256,8 @@ Use **Translate** when you want to convert text from one language to another.
 ### Translate text
 
 1. Open **Translate**.
-2. Choose a language in **From**.
-3. Choose a language in **To**.
+2. Select a language in **From**.
+3. Select a language in **To**.
 4. Choose a model in the toolbar.
 5. Type or paste text into **Input**.
 6. Click **Translate**.
@@ -269,7 +270,7 @@ Use **Translate** when you want to convert text from one language to another.
 ### Language selection
 
 - **From** can be a specific language or **Detect Language**.
-- **To** is the language you want the output in.
+- **To** is the language you want the result in.
 
 Your selected **Top languages** appear at the top of the list. You can set these in [**Settings** > **Languages**](#languages).
 
@@ -278,13 +279,13 @@ Your selected **Top languages** appear at the top of the list. You can set these
 <a id="helpful-translation-settings"></a>
 ### Helpful translation settings
 
-In [**Settings** > **General Settings**](#general-settings), you can adjust how translation behaves:
+In [**Settings** > **General Settings**](#general-settings), you can change how translation behaves:
 
-- **Auto-translate on paste** automatically starts a translation as soon as you paste text.
-- **Auto-copy result to clipboard** automatically copies the result after a successful translation.
-- **Real-time translation (while typing)** performs translations as you type.
-- **Timeout (ms)** sets how long the app waits before triggering a real-time translation.
-- **Enter** determines what happens when you press `Enter`:
+- **Auto-translate on paste** runs a translation as soon as you paste text.
+- **Auto-copy result to clipboard** copies the result automatically after a successful run.
+- **Real-time translation (while typing)** runs translations while you type.
+- **Timeout (ms)** controls how long the app waits before running a real-time translation.
+- **Enter** controls what happens when you press `Enter`:
 
 <br/><br/>
 
@@ -293,7 +294,7 @@ In [**Settings** > **General Settings**](#general-settings), you can adjust how 
 <a id="rewrite"></a>
 ## Rewrite
 
-Use **Rewrite** when you want to improve wording without changing the core meaning.
+Use **Rewrite** when you want to improve wording without changing the main meaning.
 
 ![Rewrite workspace](../images/screenshots/en-US/rewrite.png)
 
@@ -301,14 +302,14 @@ This is useful for:
 
 - fixing spelling and grammar
 - making text clearer
-- adjusting tone (more formal or informal)
-- shortening or expanding content
+- making text more formal or more informal
+- shortening or expanding text
 - making text sound more technical
 
 <br/>
 
 > 💡 **TIP**<br/>
-> When using the "**Check Spelling & Grammar**" mode, a `Show changes` button appears in the output panel.  
+> When you use the "**Check Spelling & Grammar**" mode, a `Show changes` button appears in the output panel.
 > Click this button to toggle the display of corrections, showing or hiding the specific changes made to your text.
 
 <br/><br/>
@@ -371,6 +372,7 @@ The fastest way to create a prompt is:
 
 ![Generate prompt](../images/screenshots/en-US/transform-generate.png)
 
+
 <br/>
 
 <a id="edit-a-prompt"></a>
@@ -404,7 +406,7 @@ You can also use:
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Click **`Save`** before you click **`Back to Run`**. If you go back without saving, your changes will be lost.
+> Click **`Save`** before clicking **`Back to Run`**. If you go back without saving, your changes will be lost.
 
 <br/>
 
@@ -415,8 +417,8 @@ The test panel on the right lets you try your prompt with sample text before usi
 
 This is useful when:
 
-- you are building a new prompt
-- you are comparing two versions of a prompt
+- you're creating a new prompt
+- you're comparing two versions of a prompt
 - you want to check tone, length, or output format
 
 <br/>
@@ -431,14 +433,15 @@ This is useful when:
 <a id="dashboard"></a>
 ## Dashboard
 
-Use **Dashboard** to see how much you are using the app and what it is costing (for paid models).
+Use **Dashboard** to see how much you're using the app and what it's costing (for paid models).
 
 ![Dashboard summary](../images/screenshots/en-US/dashboard-summary.png)
+
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you only use free models, the cost-related charts will be blank.
+> If you only use free models, the cost-related charts will be blank. 
 
 <br/>
 
@@ -460,36 +463,36 @@ Use the filter buttons at the top to change the time range.
 
 ### Dashboard tabs
 
-- **Summary** gives you an overview of usage and cost.
-- **By Usage** breaks activity down by translation language, rewrite mode, and transform prompt.
-- **By Model** shows which models you used and how much they cost.
-- **By Day** shows daily totals.
-- **All Calls** shows the full call history and lets you export it.
+- **Summary** provides an overview of usage and cost.
+- **By Usage** breaks down activity by translation language, rewrite mode, and transform prompt.
+- **By Model** shows which models you've used and their associated costs.
+- **By Day** displays daily totals.
+- **All Calls** shows the complete call history and allows you to export it.
 
 <br/>
 
 <a id="export-data"></a>
 ### Export data
 
-The dashboard tables can export data in:
+Dashboard tables can export data in the following formats:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-This is useful if you want to review activity outside the app or share a report.
+This is helpful if you want to analyze activity outside the app or share a report.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
 ### Delete stored records for a model
 
-In **By Model** or **All Calls**, you can remove stored records for a model by clicking the "trash bin" icon.
+In **By Model** or **All Calls**, you can delete stored records for a specific model by clicking the "trash bin" icon.
 
 > ⚠️ **WARNING**<br/>
-> Deleting stored records cannot be undone. Only use this if you are sure you no longer need that history.
+> Deleting stored records is irreversible. Only proceed if you're certain you no longer need that history.
 
-To delete all data or remove records based on their age, go to [**Settings** > **Cost Tracking**](#cost-tracking). There you will find options to delete all stored data or only data older than a certain date.
+To delete all data or remove records based on age, go to [**Settings** > **Cost Tracking**](#cost-tracking). There, you can choose to delete all stored data or only data older than a specified date.
 
 <br/><br/>
 
@@ -498,7 +501,7 @@ To delete all data or remove records based on their age, go to [**Settings** > *
 <a id="history"></a>
 ## History
 
-Click **History** to view your activity history within **Transrewrt**, including the input and output of each operation.
+Click **History** to view a record of your actions within **Transrewrt**, including the input and output of each operation.
 
 ![History page](../images/screenshots/en-US/history.png)
 
@@ -507,27 +510,27 @@ Click **History** to view your activity history within **Transrewrt**, including
 <a id="filter-the-history"></a>
 ### Filter the data
 
-**History** uses the same filters as the **Dashboard** page. Use them to select the time range.
+**History** uses the same filters as the **Dashboard** page. Use them to select a specific time range.
 
 ![Dashboard filters](../images/screenshots/en-US/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> The **User** filter is visible only to administrators in the web version. Regular users will not see this filter, and it is not available in the desktop app.
+> The **User** filter is only visible to administrators in the web version. Regular users won't see this filter, and it's not available in the desktop app.
 
 <br/>
 
 <a id="export-history-data"></a>
 ### Export history data
 
-The history page can export filtered data in:
+The History page allows you to export filtered data in:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-This is useful if you want to review activity outside the app or share a report.
+This is useful for reviewing activity outside the app or sharing reports.
 
 <br/><br/>
 
@@ -536,9 +539,9 @@ This is useful if you want to review activity outside the app or share a report.
 <a id="settings"></a>
 ## Settings
 
-Open **Settings** from the sidebar to customize how the app behaves.
+Open **Settings** from the sidebar to customize the app's behavior.
 
-Available tabs depend on the platform and your role:
+Available tabs depend on the platform and your user role:
 
   | Tab               | Desktop | Web (admin) | Web (regular user) |
   |-------------------|:-------:|:-----------:|:------------------:|
@@ -547,14 +550,14 @@ Available tabs depend on the platform and your role:
   | Languages         |   yes   |     yes     |        yes         |
   | Cost Tracking     |   yes   |     yes     |         —          |
   | Transform Prompts |   yes   |     yes     |        yes         |
-  | Users             |    —    |     yes     |         —          |
-  | API Config        |   yes   |     yes     |         —          |
+  | Users             |    | —     |     yes     |         —          |
+ 1. **API Config**    |   yes   |     yes     |         —          |
   | About             |   yes   |     yes     |        yes         |
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In the web version, each user has their own configuration. Settings such as selected models, languages, general options, and transform prompts are stored per user. Changes you make do not affect other users.
+> In the web version, each user has their own configuration. Settings such as selected models, languages, general options, and transform prompts are saved per user. Your changes won't affect other users.
 
 <br/>
 
@@ -564,29 +567,28 @@ Available tabs depend on the platform and your role:
 <a id="general-settings"></a>
 ### General settings
 
-Use **General Settings** to control typing behavior, whether execution details are stored for **History**, and appearance.
+Use **General Settings** to control typing behavior, whether execution details are saved to **History**, and the app's appearance.
 
 **Behavior**
 
-- **Behavior for ENTER** chooses whether `Enter` runs the task or inserts a new line.
-- **Auto-translate on paste** starts translation as soon as you paste text.
-- **Auto-copy result to clipboard** automatically copies successful results.
-- **Real-time translation (while typing)** translates while you type.
+- **Behaviour for ENTER** determines whether `Enter` runs the task or inserts a new line.
+- **Auto-translate on paste** automatically starts translation when you paste text.
+- **Auto-copy result to clipboard** automatically copies successful results to the clipboard.
+- **Real-time translation (while typing)** enables translation as you type.
 - **Timeout (ms)** sets the delay for real-time translation.
 
 **History**
 
-- **Keep execution history** determines whether each translation, rewrite, and transform operation stores **input and output text** for the sidebar [**History**](#history) view. Turning it off prompts for confirmation; if confirmed, stored history text is removed from the database.
-- **Delete history data** allows you to remove stored text by age (e.g., older than a few months, or **all data (clear)**) using **Delete data**. This affects only saved execution text for the **History** view; it does **not** delete cost or usage totals. To remove or trim **cost** data, use [**Settings** > **Cost Tracking**](#cost-tracking).
+- **Keep execution history** controls whether each translate, rewrite, and transform operation saves **input and output text** for the sidebar [**History**](#history) view. Disabling this prompts for confirmation; confirming removes stored history text from the database.
+- **Delete history data** allows you to delete stored text based on age (e.g., older than a few months) or **all data (clear)** using **Delete data**. This only affects saved execution text in the **History** view and does **not** remove cost or usage totals. To manage **cost** data, use [**Settings** > **Cost Tracking**](#cost-tracking).
 
 **Appearance**
 
-- **Show cost information on the actions** controls whether the cost per operation (if available) and total cost are displayed on the Translate, Rewrite, and Transform output panels.
-- **Cost fraction digits** changes how cost decimals are displayed.
-- **Web only:** **show a margin around the app** adds extra space around the interface.
+- **Show cost information on the actions** toggles display of cost per operation (if available) and total cost on the Translate, Rewrite, and Transform output panels.
+- **Cost fraction digits** adjusts how many decimal places are shown for costs.
+- **Web only:** **show a margin around the app** adds extra spacing around the interface.
 - **Font Family** changes the font used in text panels.
-- **Size** changes the font size.
-
+- **Size** adjusts the font size.
 
 <br/>
 
@@ -609,12 +611,12 @@ Useful controls include:
 - **Provider** chips to narrow the list to one engine (OpenRouter, OpenAI, Ollama, …)
 - **Free Only** to show only free models
 - **Refresh** to reload the list
-- **Expand All** and **Collapse All** when sorting by provider
+- **Expand All** and **Collapse All** when you are sorting by provider
 
 Model IDs include the provider prefix (for example `openrouter/…` vs `openai/…`). Badges such as **OpenAI (OpenRouter)** vs **OpenAI (direct)** show how traffic is routed.
 
 > ℹ️ **NOTE**<br/>
-> **OpenRouter Body Builder** (`openrouter/bodybuilder`) is a routing model, not a general chat model: its response is JSON that describes OpenRouter API request bodies (for example a `requests` array with `model` and `messages`). If you use it for **Translate**, **Rewrite**, or **Transform**, the output panel will show that JSON instead of finished text. Choose a normal text model for those tasks. See the [Body Builder model page](https://openrouter.ai/openrouter/bodybuilder) on OpenRouter.
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) is a router model, not a general chat model: its reply is JSON that describes OpenRouter API request bodies (for example a `requests` array with `model` and `messages`). If you use it for **Translate**, **Rewrite**, or **Transform**, the output panel will show that JSON instead of finished text. Choose a normal text model for those tasks. See the [Body Builder model page](https://openrouter.ai/openrouter/bodybuilder) on OpenRouter.
 
 Actions:
 
@@ -627,7 +629,7 @@ Actions:
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you don’t want to add credits to OpenRouter right away, start by enabling **Free Only** and selecting the free models (no credit card required). You can also use Ollama to run models locally without any API key.
+> If you do not want to add credits to OpenRouter right away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
 
 <br/>
 
@@ -637,7 +639,7 @@ Actions:
 Use **Settings** > **Languages** to organize the language lists used in the app.
 
 - **Top languages** are pinned near the top of the language lists in **Translate** and **Transform**.
-- **Custom language** allows you to add a language not included in the built-in list.
+- **Custom language** lets you add a language that is not in the built-in list.
 
 If you add a custom language, it appears in the language selectors alongside the built-in options.
 
@@ -655,12 +657,12 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 - **API Key Usage** shows OpenRouter usage details, if available.
 - **Delete cost data** removes all data, or only entries older than a selected date.
 
-**Cost tracking:** When using OpenRouter models, the app displays your actual usage and spending based on cost data from OpenRouter. For all other providers, the app estimates costs using prices published by OpenRouter; if a price is unavailable, the estimate may be zero.
+**Cost tracking:** When you use OpenRouter models, the app shows your actual usage and spending based on cost information from OpenRouter. For all other providers, the app estimates costs using prices published by OpenRouter; if a price is unavailable, the estimate may be zero.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> All cost figures are estimates for your reference only, not official billing statements.
+> **All cost figures are estimates for your reference only, not official billing statements.**
 
 <br/>
 
@@ -678,10 +680,10 @@ Use **Settings** > **Transform Prompts** to manage prompts in bulk.
 
 You can:
 
-- review your saved prompts
-- delete prompts
-- import prompts from a file
-- export prompts for backup or sharing
+- Review your saved prompts
+- Delete prompts
+- Import prompts from a file
+- Export prompts for backup or sharing
 
 <br/>
 
@@ -695,7 +697,7 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 <a id="api-config"></a>
 ### API config
 
-Supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
+The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
 
 **Web application: administrator only**
 
@@ -715,7 +717,7 @@ Use **API Config** to store API keys for each provider you use. For Ollama, ente
 <br/>
 
 > 💡 **Tip** <br/>
-> If you don’t want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models (such as `translategemma:4b`) locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models, or obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
+> If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models (such as `translategemma:4b`) locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models, or obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
 
 <br/>
 
@@ -726,7 +728,7 @@ To add an API key, enter the value in the text field and click **`Save`**. To re
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> You cannot view the current value of an API key. You can only replace it using the **`Edit`** button.
+> You cannot see the current value of an API key. You can only replace it using the **`Edit`** button.
 > API keys are stored encrypted in the configuration.
 
 <br/>
@@ -752,19 +754,19 @@ If something isn't working as expected, review the following points first.
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### The app won't translate, rewrite, or transform text
+### The app will not translate, rewrite, or transform text
 
-Ensure that:
+Verify the following:
 
-- you've selected a model in the toolbar
+- you have selected a model in the toolbar
 - at least one model is listed in [**Settings** > **Models**](#models)
-- your API setup is functioning correctly
+- your API setup is working
 
 If you're using the desktop app:
 
 1. Open [**Settings** > **API Config**](#api-config).
-2. Verify that at least one API key is saved.
-3. Click **Test** next to the provider to confirm the key is working.
+2. Make sure at least one API key is saved.
+3. Click **Test** next to the provider to confirm the key is functional.
 
 <br/>
 
@@ -788,7 +790,7 @@ Try one or more of the following:
 
 - choose a different model
 - use a shorter input
-- disable **Real-time translation (while typing)** in [**Settings** > **General Settings**](#general-settings)
+- turn off **Real-time translation (while typing)** in [**Settings** > **General Settings**](#general-settings)
 - use free models for simple tasks (see [Models](#models))
 
 <br/>
@@ -813,70 +815,70 @@ Open [**Settings** > **General Settings**](#general-settings) and adjust:
 <a id="dashboard-charts-are-empty"></a>
 ### Dashboard charts are empty
 
-This is expected if:
+This is normal if:
 
-- you only use **free models** (cost charts will be blank)
-- the selected **time filter** doesn't cover the period when calls were made — try **All** to verify
+- you are only using **free models** (cost charts will be blank)
+- the selected **time filter** doesn't include the period when calls were made — try **All** to check
 
-If charts remain empty after selecting **All**, confirm that calls appear in [**History**](#history) or in the **All Calls** tab.
+If charts remain empty after selecting **All**, verify that calls appear in [**History**](#history) or in the **All Calls** tab.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
-### Cost shows "not available" or appears incorrect
+### Cost shows "not available" or seems incorrect
 
-When using models through **OpenRouter**, the app displays your actual spend as reported by OpenRouter.
+When using models through **OpenRouter**, the app displays your actual spending as reported by OpenRouter.
 
-For **other providers** (such as OpenAI direct, Anthropic direct, etc.), cost is estimated using pricing data published by OpenRouter. If no matching price is found for a model, the cost will appear as **not available** and won't be included in your running total.
+For **other providers** (OpenAI direct, Anthropic direct, etc.), cost is estimated using pricing data published by OpenRouter. If no matching price is found for a model, the cost will be shown as **not available** and won't be included in your running total.
 
 <br/>
 
 <a id="total-cost-does-not-match-my-provider-bill"></a>
-### Total cost doesn't match my provider bill
+### Total cost does not match my provider bill
 
 All cost figures in the app are **estimates for reference only**, not official billing statements.
 
-To align the total more closely with your actual OpenRouter spend, go to [**Settings** > **Cost Tracking**](#cost-tracking) and click **Sync with API key usage**.
+To align the total more closely with your actual OpenRouter spending, open [**Settings** > **Cost Tracking**](#cost-tracking) and click **Sync with API key usage**.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### The History page is missing from the sidebar
 
-The **Keep execution history** setting might be disabled. Open [**Settings** > **General Settings**](#general-settings) and enable it. Note that enabling it won't restore previously deleted history data.
+The **Keep execution history** option might be disabled. Go to [**Settings** > **General Settings**](#general-settings) and turn it on. Note that enabling it won't restore any previously deleted history.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
 ### Web app: redirected to the login page unexpectedly
 
-Your session might have expired. Log in again. If this happens frequently, check the server configuration for session timeout settings.
+Your session may have expired. Please log in again. If this occurs frequently, check the server configuration for session timeout settings.
 
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
 ### Dashboard shows no data for other users (web)
 
-Only **administrators** can view data from all users using the **User** filter. Regular users see only their own activity by design.
+Only **administrators** can view data from all users via the **User** filter. Regular users can only see their own activity, by design.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
 ### I changed a prompt and lost the edits
 
-When editing a prompt, always click **Save** before selecting **Back to Run**.
+When editing a prompt, always click **Save** before clicking **Back to Run**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
 ## Quick tips
 
-- Start with [**Translate**](#translate) to confirm your setup works before moving on to [**Rewrite**](#rewrite) or [**Transform**](#transform).
-- Use [**Rewrite**](#rewrite) for everyday improvements to wording.
+- Begin with [**Translate**](#translate) to confirm your setup is working before moving on to [**Rewrite**](#rewrite) or [**Transform**](#transform).
+- Use [**Rewrite**](#rewrite) for everyday wording improvements.
 - Use [**Transform**](#transform) when you need a repeatable workflow for a specific task.
 - Use [**Dashboard**](#dashboard) to monitor usage and cost.
-- Use [**History**](#history) to review past operations and their full input/output text.
-- Regularly export prompts if you're building a prompt library you want to preserve (see [Transform Prompts](#transform-prompts)) or plan to share with others.
+- Use [**History**](#history) to review past operations and their full input/output content.
+- Regularly export prompts if you're building a prompt library you want to keep safe (see [Transform Prompts](#transform-prompts)) or if you plan to share it with others.
 
 <br/><br/>
 

@@ -154,6 +154,8 @@
   "All rights reserved.": "Sva prava pridržana.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Imena proizvoda i ikone vlasništvo su njihovih vlasnika i koriste se samo u svrhe identifikacije.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Ovaj softver nije povezan s niti ga podržavaju navedene marke.",
+  "Ollama configuration is working.": "Ollama konfiguracija radi.",
+  "{{provider}} credentials are valid.": "Vrijedeći podaci za {{provider}}.",
   "Testing...": "Testiranje...",
   "API Configuration": "API konfiguracija",
   "Add API keys for each provider you use.": "Dodajte API ključeve za svakog davatelja usluga koje koristite.",

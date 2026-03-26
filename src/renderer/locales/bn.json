@@ -154,6 +154,8 @@
   "All rights reserved.": "সর্বস্বত্ব সংরক্ষিত।",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "পণ্যের নাম ও আইকন তাদের নিজ নিজ মালিকদের সম্পত্তি এবং শুধুমাত্র শনাক্তকরণের উদ্দেশ্যে ব্যবহৃত।",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "এই সফ্টওয়্যারটি উল্লিখিত কোনো ব্র্যান্ডের সাথে সম্পর্কিত বা তাদের দ্বারা অনুমোদিত নয়।",
+  "Ollama configuration is working.": "ওলামা কনফিগারেশন কাজ করছে।",
+  "{{provider}} credentials are valid.": "{{provider}} ক্রেডেনশিয়াল বৈধ।",
   "Testing...": "পরীক্ষা হচ্ছে...",
   "API Configuration": "API কনফিগারেশন",
   "Add API keys for each provider you use.": "আপনি যে প্রদানকারী ব্যবহার করেন তার প্রত্যেকটির জন্য এপিআই কী যুক্ত করুন।",

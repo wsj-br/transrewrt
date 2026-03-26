@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-25T22:07:04.661Z"
-source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
-source_mtime: 1774475429145.525
+translated_at: "2026-03-26T00:07:46.128Z"
+source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
+source_mtime: 1774482559451.2136
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -11,32 +11,33 @@ model: "qwen/qwen3-235b-a22b-2507"
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="الإصدار"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="الترخيص: Apache 2.0"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="النسخة"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="الرخصة: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="المنصة">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-أداة نصية مدعومة بالذكاء الاصطناعي: الترجمة بين اللغات، وإعادة الصياغة بأساليب مختلفة، وتحويل النصوص باستخدام أوامر مخصصة — وذلك باستخدام عدة مزودي ذكاء اصطناعي (مثل OpenRouter وOpenAI وAnthropic وGoogle Gemini وDeepSeek وGroq وMistral وxAI، ومخدم Ollama محلياً). يمكن تشغيلها كتطبيق سطح مكتب (Electron) أو كتطبيق ويب يمكن استضافته ذاتياً (عبر Docker).
+أداة نصية مدعومة بالذكاء الاصطناعي: ترجمة بين اللغات، إعادة كتابة بأساليب مختلفة، وتحويل النصوص باستخدام تعليمات مخصصة — باستخدام مزودات ذكاء اصطناعي متعددة (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، وOllama محلي). تعمل كتطبيق سطح مكتب (Electron) أو تطبيق ويب ذاتي الاستضافة (Docker).
 
 - **الترجمة** — بين عشرات اللغات، مع اكتشاف تلقائي للغة المصدر
-- **إعادة الصياغة** — تصحيح القواعد، تحسين الوضوح، أسلوب رسمي/غير رسمي، تقصير، توسيع، صياغة تقنية
-- **التحويل** — أوامر ذكاء اصطناعي مخصصة؛ إنشاء وإدارة الأوامر، مع إمكانية تحديد لغة مستهدفة لكل أمر
-- **الأرشيف** — سجل كامل للاستخدام مع النصوص المدخلة والمخرجة، والتصفية، والتصدير
-- **النماذج والتكلفة** — اختيار النماذج من أي مزود تم تهيئته؛ لوحات مراقبة للتكاليف والاستخدام مع السجلات، وتلخيص الاستخدام حسب النموذج/العملية/اليوم
-- **واجهة المستخدم** — واجهة متعددة اللغات (أكثر من 30 لغة، مع دعم الكتابة من اليمين إلى اليسار)، خطوط، وما إلى ذلك
-- **وضع الويب** — دعم المستخدمين المتعددين مع أدوار الإدارة
-- **سطح المكتب** — تطبيق Electron لنظامي Windows وLinux
-- **الاستضافة الذاتية** — صورة Docker متوافقة مع معالجات amd64 وarm64 (جاهزة لجهاز Raspberry Pi)
+- **إعادة الكتابة** — إصلاح القواعد، تحسين الوضوح، شكل رسمي/غير رسمي، التقصير، التوسيع، الأسلوب التقني
+- **التحويل** — تعليمات ذكاء اصطناعي مخصصة؛ إنشاء وإدارة التعليمات، مع إمكانية تعيين لغة مستهدفة لكل تعليمة
+- **السجل** — سجل تنفيذ كامل يحتوي على النصوص المدخلة والمستخلصة، مع تصفية وتصدير
+- **النماذج والتكلفة** — اختيار النماذج من أي مزوّد تم تهيئته؛ لوحة مراقبة للتكلفة والاستخدام مع سجل وملخصات حسب النموذج/العملية/اليوم
+- **واجهة المستخدم** — واجهة متعددة اللغات (أكثر من 30 لغة، دعم كتابة من اليمين إلى اليسار)، الخطوط، وما إلى ذلك
+- **الوضع الويب** — دعم المستخدمين المتعددين مع أدوار المشرف
+- **سطح المكتب** — تطبيق Electron لـ Windows وLinux
+- **ذاتي الاستضافة** — صورة Docker متوفرة لـ amd64 وarm64 (جاهزة لـ Raspberry Pi)
 
-بعد التثبيت، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** للحصول على شرح كامل لجميع الميزات.
+بعد التثبيت، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** للحصول على دليل شامل حول جميع الميزات.
 
-<small>**قراءة بلغات أخرى:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**اقرأ بلغات أخرى:** </small>
+<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
 <small>
 
-> **ملاحظة حول ترجمات الواجهة والوثائق:** تم ترجمة جميع لغات الواجهة ما عدا الإنجليزية (المملكة المتحدة) الأصلية باستخدام نماذج ذكاء اصطناعي؛ وقد تكون الصيغ غير دقيقة أو تحتوي على أخطاء.
+> **ملاحظة حول ترجمات واجهة المستخدم والتوثيق:** جميع لغات الواجهة ما عدا اللغة الأصلية الإنجليزية (المملكة المتحدة) تمت ترجمتها باستخدام نماذج ذكاء اصطناعي؛ قد تكون الصيغة غير دقيقة أو تحتوي على أخطاء.
 
 </small>
 
@@ -53,17 +54,17 @@ model: "qwen/qwen3-235b-a22b-2507"
 
 ![الترجمة](../images/screenshots/ar/translate.png)
 
-**التحويل - محرر الأوامر**
+**التحويل - محرر التعليمات**
 
-![التحويل - محرر الأوامر](../images/screenshots/ar/transform-prompt-edit.png)
+![التحويل - محرر التعليمات](../images/screenshots/ar/transform-prompt-edit.png)
 
 **لوحة التحكم**
 
-![لوحة تحليل التكلفة](../images/screenshots/ar/dashboard-summary.png)
+![لوحة تكلفة](../images/screenshots/ar/dashboard-summary.png)
 
-**الأرشيف**
+**السجل**
 
-![الأرشيف](../images/screenshots/ar/history.png)
+![السجل](../images/screenshots/ar/history.png)
 
 **الإعدادات - اختيار النموذج**
 
@@ -73,7 +74,7 @@ model: "qwen/qwen3-235b-a22b-2507"
 
 <a id="table-of-contents"></a>
 
-## فهرس المحتويات
+## جدول المحتويات
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -81,16 +82,16 @@ model: "qwen/qwen3-235b-a22b-2507"
 
 - [البدء السريع](#quick-start)
 - [التثبيت](#installation)
-  - [ويندوز (Electron)](#windows-electron)
-  - [لينكس (Electron)](#linux-electron)
-  - [Docker](#docker)
+  - [ويندوز (إلكترون)](#windows-electron)
+  - [لينكس (إلكترون)](#linux-electron)
+  - [دوكير](#docker)
 - [الحصول على مفتاح OpenRouter API](#getting-an-openrouter-api-key)
 - [التكوين والبيئة](#configuration-and-environment)
-- [التطوير والهندسة](#development-and-architecture)
-- [الإصدارات والوسوم](#releases-and-tags)
-- [كيفية المساهمة](#contributing)
+- [التطوير والهندسة المعمارية](#development-and-architecture)
+- [الإصدارات والوسم](#releases-and-tags)
+- [المساهمة](#contributing)
 - [إخلاء المسؤولية](#disclaimer)
-- [الترخيص](#license)
+- [الرخصة](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -99,7 +100,7 @@ model: "qwen/qwen3-235b-a22b-2507"
 <a id="quick-start"></a>
 ## البدء السريع
 
-**Docker (مُوصى به للتشغيل الذاتي)**
+**دوكير (مُوصى به للتشغيل الذاتي)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -112,47 +113,47 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-استبدل `sk-or-your-key` بمفتاح [OpenRouter API](https://openrouter.ai/keys) الخاص بك (أو قم بتعيين مفاتيح موفر آخر؛ راجع [التكوين](#configuration-and-environment)). افتح [http://localhost:5000](http://localhost:5000) وغيّر كلمة مرور المسؤول الافتراضية قبل نشر الخدمة.
+استبدل `sk-or-your-key` بمفتاح [OpenRouter API](https://openrouter.ai/keys) الخاص بك (أو عيّن مفاتيح مزودين آخرين؛ راجع [التكوين](#configuration-and-environment)). ثم افتح [http://localhost:5000](http://localhost:5000) وغيّر كلمة المرور الافتراضية قبل التعرض للخدمة.
 
 <br/>
 
 > ℹ️ **ملاحظة**<br/>
-> في Docker، يتم تعيين بيانات اعتماد نموذج اللغة الكبير (LLM) باستخدام متغيرات البيئة مثل `OPENROUTER_KEY` و`OPENAI_KEY` و`CEREBRAS_KEY`، ... (وليست من واجهة الويب). أما على سطح المكتب (Electron)، فتتم تهيئة المفاتيح من خلال **الإعدادات → API**.
+> في دوكير، تُضبط بيانات اعتماد نموذج اللغة (LLM) باستخدام متغيرات البيئة مثل `OPENROUTER_KEY`، `OPENAI_KEY`، `CEREBRAS_KEY`... (وليس من واجهة المستخدم الرسومية). أما على سطح المكتب (إلكترون) فتُضبط المفاتيح من خلال **الإعدادات → API**.
 
 <br/>
 
 **ويندوز**
 
-قم بتنزيل آخر إصدار من `Transrewrt Setup x.y.z.exe` من صفحة [الإصدارات](https://github.com/wsj-br/transrewrt/releases)، ثم شغّل البرنامج التثبيتي، وابدأ تشغيله من قائمة ابدأ أو اختصار سطح المكتب. أدخل مفاتيح API الخاصة بك في علامة التبويب **الإعدادات → API**. تحتاج إلى تهيئة مزود واحد على الأقل، ويعد OpenRouter خيارًا شائعًا للنماذج المجانية.
+نزّل أحدث إصدار `Transrewrt Setup x.y.z.exe` من [الإصدارات](https://github.com/wsj-br/transrewrt/releases)، وشغّل البرنامج التثبيت، ثم ابدأ التطبيق من قائمة ابدأ أو اختصار سطح المكتب. أدخل مفاتيح API في **الإعدادات → API**. يجب أن تقوم بتكوين مزود واحد على الأقل، ويُستخدم OpenRouter غالبًا مع النماذج المجانية.
 
 <br/>
 
 **لينكس**
 
-قم بتنزيل ملف `.AppImage` المناسب لمعالجك من [الإصدارات](https://github.com/wsj-br/transrewrt/releases) (`x64` لأجهزة الحاسوب النموذجية، و`arm64` لأغلب الأجهزة التي تعمل بمعمارية ARM، مثل راسبيري باي 4 فما فوق)، ثم نفّذ ما يلي:
+نزّل ملف `.AppImage` المناسب لوحدة المعالجة المركزية الخاصة بك من [الإصدارات](https://github.com/wsj-br/transrewrt/releases) (`x64` لأجهزة الكمبيوتر الشائعة، `arm64` لمعظم أجهزة ARM بما فيها Raspberry Pi 4+)، ثم:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-أدخل مفاتيح API الخاصة بك في **الإعدادات → API**. يجب تهيئة مزود واحد على الأقل، ويعد OpenRouter الخيار الشائع للنماذج المجانية.
+أدخل مفاتيح API في **الإعدادات → API**. يجب أن تقوم بتكوين مزود واحد على الأقل، ويُستخدم OpenRouter غالبًا مع النماذج المجانية.
 
-على أنظمة ديبيان/أوبونتو، قد تحتاج إلى تثبيت حزم إضافية أولاً:
+في ديبيان/أوبونتو قد تحتاج إلى تثبيت تبعيات إضافية أولًا:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-انظر [Installation → Linux](#linux-electron) للمزيد من التفاصيل.
+راجع [التثبيت → لينكس](#linux-electron) للتفاصيل.
 
 <br/>
 
 > ℹ️ **ملاحظة**<br/>
-> نظام macOS غير مدعوم حاليًا. يتوفر Transrewrt لأنظمة ويندوز ولينكس وDocker.
+> نظام التشغيل macOS غير مدعوم حاليًا. يتوفر Transrewrt لنظامي ويندوز ولينكس، وكذلك عبر دوكير.
 
 <br/>
 
-بمجرد تشغيل التطبيق، اطلع على [**دليل المستخدم (User Guide)**](USER-GUIDE.ar.md) لمعرفة كيفية ترجمة النصوص وإعادة صياغتها وتحويلها، وإدارة المطالبات، وتكوين النماذج.
+بمجرد تشغيل التطبيق، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** لتعلم كيفية ترجمة النصوص، وإعادة صياغتها، وتحويلها، وإدارة الأوامر، وتكوين النماذج.
 
 <br/><br/>
 
@@ -160,32 +161,32 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ## التثبيت
 
 <a id="windows-electron"></a>
-### ويندوز (Electron)
+### ويندوز (إلكترون)
 
-- قم بتنزيل أحدث برنامج تثبيت من [الإصدارات](https://github.com/wsj-br/transrewrt/releases).
-- شغّل ملف `.exe` ثم اتبع التعليمات في البرنامج التثبيتي.
-- عند التشغيل لأول مرة: ابدأ التطبيق من قائمة ابدأ أو الاختصار على سطح المكتب.
+- نزّل أحدث برنامج تثبيت من [الإصدارات](https://github.com/wsj-br/transrewrt/releases).
+- شغّل الملف `.exe` واتبع التعليمات.
+- في التشغيل الأول: ابدأ التطبيق من قائمة ابدأ أو اختصار سطح المكتب. 
 
 <br/>
 
 <a id="linux-electron"></a>
-### لينكس (Electron)
+### لينكس (إلكترون)
 
-- قم بتنزيل ملف `.AppImage` المناسب (إما `x64` أو `arm64`) من [الإصدارات](https://github.com/wsj-br/transrewrt/releases).
-- نفّذ الأمر التالي: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` على أنظمة x86_64/amd64، أو استخدم اسم ملف `...-arm64.AppImage` على معالجات ARM64.
-- التبعيات الإضافية (لأنظمة ديبيان/أوبونتو): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) للمزيد.
+- نزّل ملف `.AppImage` المناسب (`x64` أو `arm64`) من [الإصدارات](https://github.com/wsj-br/transrewrt/releases).
+- شغّله: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` على x86_64/amd64، أو استخدم اسم الملف `...-arm64.AppImage` على ARM64.
+- التبعيات الإضافية (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+- راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) لمزيد من المعلومات.
 
 <br/>
 
 <a id="docker"></a>
-### Docker
+### دوكير
 
 - جرّب: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- عيّن مفتاح مزود واحد على الأقل عبر بيئة النظام (مثل `OPENROUTER_KEY` لمستخدمي OpenRouter). مرر المتغيرات باستخدام `-e` أو `docker compose` / `.env` لضمان عدم إدراج الأسرار داخل الصورة.
-- **لا يتم** إدخال مفاتيح المزود من خلال واجهة الويب؛ بل يقوم الخادم بقراءتها مباشرة من بيئة النظام.
+- عيّن مفتاح مزود واحد على الأقل عبر بيئة التشغيل (مثلاً `OPENROUTER_KEY` لـ OpenRouter). مرّر المتغيرات باستخدام `-e` أو `docker compose` / `.env` حتى لا تكون الأسرار مدمجة في الصورة.
+- **لا تُدخل** مفاتيح المزودين في واجهة المستخدم الرسومية؛ بل يقرأ الخادمها من بيئة التشغيل.
 
-مثال - استخدام مجلد مُسمى للحفاظ على البيانات (مفتاح OpenRouter عبر البيئة):
+مثال - استخدام وحدة تخزين ذات اسم للحفاظ على البيانات (مفتاح OpenRouter عبر بيئة):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -200,11 +201,11 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 | الخيار   | الوصف                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
-| المنفذ     | `5000` (يتم ربطه باستخدام `-p 5000:5000`)                                                                              |
-| المجلد | ربط `/app/data` للحفاظ على التكوين وقاعدة البيانات                                                    |
+| المنفذ     | `5000` (يُقرن باستخدام `-p 5000:5000`)                                                                              |
+| وحدة التخزين   | وصل `/app/data` للحفاظ على إعدادات التكوين وقاعدة البيانات                                                   |
 | متغيرات البيئة | `PORT`، `CONFIG_PATH`، بالإضافة إلى مفاتيح LLM (`OPENROUTER_KEY`، `OPENAI_KEY`، …) - راجع [التكوين](#configuration-and-environment) |
 
-لبناء تشغيل من المصدر: `docker compose up --build -d` أو `pnpm docker:up` - انظر [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+لبناء التطبيق وتشغيله من المصدر: `docker compose up --build -d` أو `pnpm docker:up` - راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/><br/>
 
@@ -212,80 +213,81 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 ## الحصول على مفتاح واجهة برمجة تطبيقات OpenRouter
 
-يدعم Transrewrt العديد من مزودي الذكاء الاصطناعي. ويشتهر [OpenRouter](https://openrouter.ai) لأنه يجمع العديد من النماذج تحت مفتاح واحد ويقدم نماذج مجانية.
+يدعم تطبيق Transrewrt موفري الذكاء الاصطناعي المتعددين. تُعد [OpenRouter](https://openrouter.ai) خيارًا شائعًا لأنها تدمج نماذج متعددة تحت مفتاح واحد وتوفر نماذج مجانية.
 
-1. سجّل حسابًا أو سجل الدخول عبر [openrouter.ai](https://openrouter.ai).
-2. افتح صفحة [Keys](https://openrouter.ai/keys) وأنشئ مفتاحًا جديدًا (سمّه، ويمكنك تحديد حد ائتمان اختياريًا). يمكنك استخدام النماذج المجانية دون إضافة رصيد.
-3. **النسخة المكتبية (Electron):** الصق المفاتيح في **الإعدادات → واجهة برمجة التطبيقات (API)**. **Docker:** قم بتعيين متغيرات البيئة مثل `OPENROUTER_KEY` (انظر [البدء السريع](#quick-start)).
+1. اشترك أو سجّل الدخول على [openrouter.ai](https://openrouter.ai).
+2. افتح صفحة [Keys](https://openrouter.ai/keys) وأنشئ مفتاحًا جديدًا (سمّه، واختر بحد أقصى حد ائتماني). يمكنك استخدام النماذج المجانية دون إضافة رصيد.
+3. **النسخة المكتبية (Electron):** الصق المفاتيح في **الإعدادات → واجهة برمجة التطبيقات (API)**. **Docker:** عيّن متغيرات البيئة مثل `OPENROUTER_KEY` (انظر [البدء السريع](#quick-start)).
 
-لا تستخدم نموذج **Body Builder** الخاص بـ OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) للترجمة أو إعادة الصياغة أو التحويل: لأنه يُرجع حمولات طلب بتنسيق JSON، وليس النص المكتمل لهذه المهام. راجع [الإعدادات → النماذج](USER-GUIDE.ar.md#models) في الدليل التعليمي.
+لا تستخدم نموذج **Body Builder** من OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) للترجمة أو إعادة الصياغة أو التحويل: فهو يُرجع حُمولات طلبات بصيغة JSON، وليست النصوص المكتملة لهذه المهام. راجع [الإعدادات → النماذج](USER-GUIDE.ar.md#models) في دليل المستخدم.
 
-يمكنك أيضًا استخدام مزودين آخرين (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras) أو تشغيل النماذج محليًا باستخدام [Ollama](https://ollama.com). راجع [التكوين](#configuration-and-environment) للحصول على قائمة كاملة بالمزودين الداعمين والمتغيرات البيئية.
+يمكنك أيضًا استخدام موفرين آخرين (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras) أو تشغيل النماذج محليًا باستخدام [Ollama](https://ollama.com). راجع [التكوين](#configuration-and-environment) للحصول على القائمة الكاملة للموفرين المدعومين ومتغيرات البيئة.
 
 > ⚠️ **تحذير**<br/>
-> إذا كنت تستخدم Ollama من جهاز آخر أو حاوية أو خدمة، فتذكر تهيئة Ollama للسماح بالاتصالات الخارجية (ليست فقط على localhost).
+> إذا كنت تستخدم Ollama من جهاز آخر، أو حاوية، أو خدمة، فتذكر تكوين Ollama للسماح بالاتصالات الخارجية (وليست محدودة بـ localhost فقط).
 
-للمزيد حول الحدود، ونموذج "استخدم مفتاحك الخاص" (BYOK)، وغير ذلك، راجع [مصادقة OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
+
+للاطلاع على الحدود، وخاصية "استخدم مفاتيحك الخاصة (BYOK)" والمزيد، راجع [مصادقة OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
-## الإعداد والبيئة
+## التهيئة والبيئة
 
-**مواقع ملفات الإعداد**
+**مواقع ملف التهيئة**
 
-| النشر | موقع الإعداد |
-| ------------------ | ------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\` |
-| Electron (Linux) | `~/.config/transrewrt/` |
-| الويب / Docker | `/app/data/config.json` (استخدم تخزينًا مثبتًا للحفاظ على البيانات) |
-
-<br/>
-
-**متغيرات البيئة** (للويب/Docker فقط؛ بينما Electron يستخدم ملف الإعداد المحلي)
-
-| المتغير | القيمة الافتراضية | الوصف |
-| ---------------- | ----------------------- | ----------- |
-| `PORT` | `5000` | منفذ الاستماع للخادم |
-| `CONFIG_PATH` | `/app/data/config.json` | مسار ملف الإعداد |
-| `OPENROUTER_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات OpenRouter |
-| `OPENAI_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات OpenAI |
-| `CEREBRAS_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات Cerebras |
-| `ANTHROPIC_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات Anthropic |
-| `GOOGLE_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات Google Gemini |
-| `DEEPSEEK_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات DeepSeek |
-| `GROQ_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات Groq |
-| `MISTRAL_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات Mistral |
-| `OLLAMA_URL` | *(فارغ)* | عنوان URL الأساسي لـ Ollama (مثلاً: `http://host.docker.internal:11434`) |
-| `XAI_KEY` | *(فارغ)* | مفتاح واجهة برمجة تطبيقات xAI |
-
-يجب أن تقوم بتهيئة المزودين الذين تستخدمهم فقط. وتتبع معرفات النماذج مجالات معينة (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ.).
-
-**عرض التكلفة:** تقوم OpenRouter بإعادة التكلفة الفعلية المستحقة عند توفرها. أما المزودون الآخرون فيستخدمون التكلفة **المُقدّرة** استنادًا إلى أسعار النماذج العامة من OpenRouter إن توفر مفتاح OpenRouter؛ وإذا لم يتوفر، فقد تُعرض تكلفة المزودين غير التابعين لـ OpenRouter كقيمة `0`. هذه التقديرات ليست فواتير.
+| النوع              | مكان التهيئة                                  |
+| ------------------ | --------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                       |
+| Electron (Linux)   | `~/.config/transrewrt/`                       |
+| الويب / Docker     | `/app/data/config.json` (استخدم وحدة تخزين للحفظ) |
 
 <br/>
 
-**البيانات وحُسن البقاء (persistence):** للنظام يعمل بـ Docker، قم بتركيب تخزين (volume) في المسار `/app/data` لضمان بقاء `config.json` وقاعدة بيانات SQLite عند إعادة تشغيل الحاوية. في حال عدم استخدام تخزين، ستُفقد جميع البيانات عند توقف الحاوية.
+**متغيرات البيئة** (للويب/Docker فقط؛ Electron يستخدم ملف التهيئة المحلي)
 
-**المطورون:** بعد استرجاع التحديثات التي تُستبدل فيها صيغة الإعداد القديمة ذات المفتاح الفردي، قم بإعادة تعيين أو دمج `data/config.json` مع البنية الافتراضية الجديدة من `src/config-defaults/config_default.json` إذا كان ملفك المحلي لا يزال يستخدم الحقول الملغاة (`api_key`، `api_url`، خيارات البروكسي).
+| المتغير             | القيمة الافتراضية        | الوصف |
+| ------------------- | ------------------------ | ----- |
+| `PORT`              | `5000`                   | منفذ الاستماع للخادم |
+| `CONFIG_PATH`       | `/app/data/config.json`  | مسار ملف التهيئة |
+| `OPENROUTER_KEY`    | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenRouter |
+| `OPENAI_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenAI |
+| `CEREBRAS_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Cerebras |
+| `ANTHROPIC_KEY`     | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Anthropic |
+| `GOOGLE_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Google Gemini |
+| `DEEPSEEK_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات DeepSeek |
+| `GROQ_KEY`          | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Groq |
+| `MISTRAL_KEY`       | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Mistral |
+| `OLLAMA_URL`        | *(فارغ)*                 | الرابط الأساسي لـ Ollama (مثل `http://host.docker.internal:11434`) |
+| `XAI_KEY`           | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات xAI |
+
+قم بتهيئة الموفرين الذين تستخدمهم فقط. أسماء نماذج النماذج تكون ضمن نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ).
+
+**عرض التكلفة:** تُرجع OpenRouter التكلفة الفعلية عند توفرها. أما الموفرون الآخرون فيستخدمون **تكلفة تقديرية** من واقع تسعير النماذج العام من OpenRouter عندما يكون مفتاح OpenRouter متاحًا؛ وإذا لم يكن كذلك، فقد تظهر التكلفة من غير OpenRouter بقيمة `0`. التقديرات ليست فواتير.
+
+<br/>
+
+**البيانات والحفظ المستمر:** بالنسبة لـ Docker، قم بربط وحدة تخزين في المسار `/app/data` لحفظ ملف `config.json` وقاعدة بيانات SQLite عند إعادة تشغيل الحاوية. بدون هذه الوحدة، يتم فقدان جميع البيانات عند توقف الحاوية.
+
+**للمطورين:** بعد استيراد التغييرات التي تستبدل تهيئة المفتاح الواحد القديمة، أعد تعيين أو دمج ملف `data/config.json` مع الشكل الجديد الافتراضي الموجود في `src/config-defaults/config_default.json` إذا كان ملفك المحلي لا يزال يستخدم حقولًا محذوفة (`api_key`، `api_url`، خيارات البروكسي).
 
 <br/>
 
 **مصادقة الويب:**
 
 - المسؤول الافتراضي: `admin` / `transrewrt26`.
-- إدارة المستخدمين من خلال **الإعدادات → المستخدمون**.
-- إعادة تعيين كلمة المرور: `docker exec <container> reset-web-password '<username>' '<new-password>'`  
+- إدارة المستخدمين في **الإعدادات → المستخدمون**.
+- إعادة تعيين كلمة المرور: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (من المصدر: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 
 > ⚠️ **تحذير**<br/>
-> قم بتغيير كلمة مرور المسؤول الافتراضية فورًا على أي خادم يمكن الوصول إليه عبر الشبكة.
+> قم بتغيير كلمة مرور المسؤول الافتراضية فورًا على أي جهاز يمكن الوصول إليه عبر الشبكة.
 
 <br/>
 
-تتوفر الإعدادات المهمة (الخط، النماذج، اللغات، إلخ) داخل إعدادات التطبيق.
+الإعدادات المهمة (الخط، النماذج، اللغات، إلخ) متوفرة في إعدادات التطبيق.
 
 <br/><br/>
 
@@ -293,45 +295,45 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 ## التطوير والهندسة المعمارية
 
-- **التطوير:** الإعداد، والبناء، والاختبار، والنشر (Electron، الويب، Docker) - انظر **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **الهندسة المعمارية ونظرة عامة على النظام:** هيكل المجلدات، الحزمة التقنية، وقرارات التصميم - انظر **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **التطوير:** الإعداد، البناء، الاختبار والنشر (Electron، الويب، Docker) - انظر **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **نظرة عامة على العمارة والأنظمة:** هيكل المجلدات، التقنيات المستخدمة، وقرارات التصميم - انظر **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
 ## الإصدارات والوسوم
 
-- تُشغّل **الوسوم في Git** `v`* (مثلاً `v1.0.10`) عملية [مخطط الإصدار](.github/workflows/release.yml). وتأرفق **إصدارات GitHub** ملفات التثبيت الخاصة بنظام ويندوز (`.exe`) وصيغ AppImage الخاصة بنظام لينكس (**x64** و **arm64**).
-- تُنشر **صور Docker** على `ghcr.io/wsj-br/transrewrt`. وتتطابق وسوم الصور مع إصدار Git (مثلاً `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) بالاضافة إلى الوسم `latest`. متعددة الأنظمة: `linux/amd64` و `linux/arm64` (مثلاً على جهاز Raspberry Pi).
+- تنطلق **الوسوم في Git** التي تبدأ بـ `v`* (مثلاً `v1.0.10`) تدفق [العمل لإصدار](.github/workflows/release.yml). تُرفق **إصدارات GitHub** بملف تثبيت ويندوز (`.exe`) وملفات Linux AppImage (لنسخة **x64** و **arm64**).
+- يتم نشر **صور Docker** على العنوان `ghcr.io/wsj-br/transrewrt`. وتطابق وسوم الصور إصدار Git (مثلاً `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) بالإضافة إلى الوسم `latest`. دعم متعدد الأنظمة: `linux/amd64` و`linux/arm64` (مثلاً على Raspberry Pi).
 
 <br/><br/>
 
 <a id="contributing"></a>
 ## المساهمة
 
-1. قم بعمل نسخة (Fork) من المستودع.
-2. أنشئ فرع ميزة: `git checkout -b feature/my-feature`
-3. أرسل تعديلاتك مع رسالة واضحة.
-4. ادفع التعديلات وافتح طلب سحب (Pull Request) إلى الفرع `main`.
+1. قم بإنشاء نسخة م forks من المستودع.
+2. قم بإنشاء فرع للميزة: `git checkout -b feature/my-feature`
+3. أضف التعديلات مع رسالة واضحة.
+4. ادفع التعديلات وافتح طلب دمج (Pull Request) إلى الفرع `main`.
 
-يُرجى اتباع نمط الكود القائم واختبار التغييرات الخاصة بك في كلا الوضعين (Electron والويب) قبل إرسالها. راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) للحصول على تعليمات البناء والاختبار.
+يرجى اتباع نمط الكود الموجود واجراء اختباراتك على طريقي Electron والويب قبل الإرسال. راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) للحصول على تعليمات البناء والاختبار.
 
 <br/>
 
-**إبلاغ عن المشاكل:** افتح تذكرة (Issue) على [GitHub](https://github.com/wsj-br/transrewrt/issues). وقم بتضمين نظامك (ويندوز / لينكس / Docker) وإصدار التطبيق (موجود في نافذة "حول" أو صفحة الإصدارات).
+**إبلاغ عن المشاكل:** افتح تذكرة على [GitHub](https://github.com/wsj-br/transrewrt/issues). شمل نظام التشغيل الخاص بك (Windows / Linux / Docker) وإصدار التطبيق (موجود في نافذة "حول" أو على صفحة الإصدارات).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
-## إخلاء المسؤولية
+## إخلاء مسؤولية
 
-أسماء المنتجات والأيقونات مملوكة لأصحابها وتصنفهم لأغراض التعريف فقط. هذا البرنامج غير تابع بأي من العلامات التجارية المذكورة ولا يخضع لموافقتها.
+أسماء المنتجات والأيقونات مملوكة لأصحابها، وتُستخدم لأغراض التعريف فقط. هذا البرنامج غير مرتبط أو مدعوم من أي علامات تجارية مذكورة.
 
 <br/><br/>
 
 <a id="license"></a>
-## الترخيص
+## الرخصة
 
-حقوق النشر © 2026 والديمار سكودلر جونيور.
+جميع الحقوق محفوظة © 2026 والديمار سكوديلر جونيور.
 
-[ترخيص أباتشي 2.0](LICENSE)
+[رخصة أباتشي 2.0](LICENSE)

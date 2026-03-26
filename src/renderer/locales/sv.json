@@ -154,6 +154,8 @@
   "All rights reserved.": "Alla rättigheter förbehållna.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Produktnamn och ikoner tillhör sina respektive ägare och används endast för identifiering.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Denna programvara är inte ansluten till eller godkänd av något av de nämnda varumärkena.",
+  "Ollama configuration is working.": "Ollama-konfigurationen fungerar.",
+  "{{provider}} credentials are valid.": "{{provider}}-autentiseringsuppgifter är giltiga.",
   "Testing...": "Testar...",
   "API Configuration": "API-konfiguration",
   "Add API keys for each provider you use.": "Lägg till API-nycklar för varje leverantör du använder.",

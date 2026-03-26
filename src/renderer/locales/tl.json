@@ -154,6 +154,8 @@
   "All rights reserved.": "Lahat ng karapatan ay nakalaan.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Ang mga pangalan ng produkto at icon ay pagmamay-ari ng kanilang mga respektibong may-ari at ginagamit lamang para sa identification.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Ang software na ito ay hindi konektado o iniindorso ng anumang mga banggit na brand.",
+  "Ollama configuration is working.": "Ang pagsasaayos ng Ollama ay gumagana.",
+  "{{provider}} credentials are valid.": "Ang mga kredensyal ng {{provider}} ay wasto.",
   "Testing...": "Sinusubok...",
   "API Configuration": "API Configuration",
   "Add API keys for each provider you use.": "Magdagdag ng mga API key para sa bawat provider na ginagamit mo.",

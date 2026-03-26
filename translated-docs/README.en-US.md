@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-25T22:13:08.420Z"
-source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
-source_mtime: 1774475429145.525
+translated_at: "2026-03-26T00:30:02.443Z"
+source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
+source_mtime: 1774482559451.2136
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -32,7 +32,8 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 
 Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthrough of all features.
 
-<small>**Read in other languages:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Read in other languages:** </small>
+<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
 <small>
 
@@ -130,7 +131,7 @@ Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.
 
 **Linux**
 
-Download the `.AppImage` file for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
+Download the `.AppImage` for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
@@ -138,7 +139,7 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 Enter your API keys in **Settings → API**. You need to configure at least one provider; OpenRouter is commonly used for free models.
 
-On Debian/Ubuntu, you may need to install additional dependencies first:
+On Debian/Ubuntu you may need to install extra dependencies first:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -153,7 +154,7 @@ See [Installation → Linux](#linux-electron) for details.
 
 <br/>
 
-Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+Once the app is running, see the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
 <br/><br/>
 
@@ -164,17 +165,17 @@ Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to l
 ### Windows (Electron)
 
 - Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Run the `.exe` and follow the installation instructions.
-- On first run: launch the app from the Start menu or desktop shortcut.
+- Run the `.exe` and follow the installer.
+- First run: start the app from the Start menu or desktop shortcut. 
 
 <br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Download the correct `.AppImage` (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Download the matching `.AppImage` (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` on x86_64/amd64, or use the `...-arm64.AppImage` filename on ARM64.
-- Additional dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+- Extra dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for more.
 
 <br/>
@@ -183,10 +184,10 @@ Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to l
 ### Docker
 
 - Pull: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Set at least one provider key via environment variables (e.g., `OPENROUTER_KEY` for OpenRouter). Pass variables using `-e` or via `docker compose` / `.env` so secrets aren't baked into the image.
+- Set at least one provider key via environment (for example `OPENROUTER_KEY` for OpenRouter). Pass variables with `-e` or `docker compose` / `.env` so secrets are not baked into the image.
 - Provider keys are **not** entered in the web UI; the server reads them from the environment.
 
-Example - using a named volume for persistence (OpenRouter key via environment):
+Example - named volume for persistence (OpenRouter key via env):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -202,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | Option   | Description                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (map with `-p 5000:5000`)                                                                              |
-| Volume   | Mount `/app/data` for configuration and database persistence                                                  |
+| Volume   | Mount `/app/data` for config and database persistence                                                         |
 | Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
 To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
@@ -213,22 +214,22 @@ To build and run from source: `docker compose up --build -d` or `pnpm docker:up`
 
 ## Getting an OpenRouter API key
 
-Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) is a popular choice because it aggregates access to many models under a single API key and offers free models.
+Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) is a popular choice because it aggregates many models under one key and offers free models.
 
 1. Sign up or log in at [openrouter.ai](https://openrouter.ai).
-2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (name it, and optionally set a credit limit). You can use free models without adding credit.
+2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (give it a name, and optionally set a credit limit). You can use free models without adding any credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set environment variables such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
 
-Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation tasks: it returns JSON request payloads, not the final completed text for these operations. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
+Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation: it returns JSON request payloads, not the completed text for these tasks. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
 
-You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally using [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
+You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
 > ⚠️ **WARNING**<br/>
-> If you are accessing Ollama from another device, container, or service, make sure Ollama is configured to allow external connections (not just localhost).
-
-For API limits, bring-your-own-key (BYOK), and more details, refer to [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
+> If you're using Ollama from another device, container, or service, make sure to configure Ollama to allow external connections (not just localhost).
 
 <br/><br/>
+
+For rate limits, bring-your-own-key (BYOK), and more details, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
 <a id="configuration-and-environment"></a>
 ## Configuration and environment
@@ -262,19 +263,19 @@ For API limits, bring-your-own-key (BYOK), and more details, refer to [OpenRoute
 
 Configure only the providers you plan to use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
-**Cost display:** OpenRouter returns the exact billed cost when applicable. For other providers, **estimated** costs are shown using OpenRouter’s public model pricing if an OpenRouter API key is available; otherwise, non-OpenRouter costs may appear as `0`. These estimates are not official invoices.
+**Cost display:** OpenRouter returns the exact billed cost when applicable. Other providers use **estimated** costs based on OpenRouter’s public model pricing if an OpenRouter key is available; otherwise, non-OpenRouter costs may display as `0`. These estimates are not invoices.
 
 <br/>
 
-**Data and persistence:** When using Docker, mount a volume at `/app/data` so that `config.json` and the SQLite database persist across container restarts. Without a volume, all data will be lost when the container stops.
+**Data and persistence:** For Docker, mount a volume at `/app/data` so that `config.json` and the SQLite database persist across container restarts. Without a volume, all data will be lost when the container stops.
 
-**Developers:** After pulling updates that replace the old single-key configuration, reset or merge your `data/config.json` with the new default structure from `src/config-defaults/config_default.json`, especially if your current config still uses deprecated fields (`api_key`, `api_url`, proxy settings).
+**Developers:** After pulling updates that replace the old single-key configuration, reset or merge your `data/config.json` with the new default structure from `src/config-defaults/config_default.json` if your local file still contains deprecated fields (`api_key`, `api_url`, proxy options).
 
 <br/>
 
 **Web authentication:**
 
-- Default admin credentials: `admin` / `transrewrt26`.
+- Default admin: `admin` / `transrewrt26`.
 - Manage users in **Settings → Users**.
 - Reset a password: `docker exec <container> reset-web-password '<username>' '<new-password>'`  
   (from source: `pnpm run reset-web-password -- <username> <new-password>`)
@@ -286,7 +287,7 @@ Configure only the providers you plan to use. Model IDs are namespaced (`openrou
 
 <br/>
 
-Key settings (font, models, languages, etc.) can be adjusted in the application's Settings.
+Key settings (font, models, languages, etc.) are available in the application Settings.
 
 <br/><br/>
 
@@ -303,7 +304,7 @@ Key settings (font, models, languages, etc.) can be adjusted in the application'
 ## Releases and tags
 
 - **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** include the Windows installer (`.exe`) and Linux AppImages (**x64** and **arm64**).
-- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) as well as `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
+- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
 
 <br/><br/>
 

@@ -154,6 +154,8 @@
   "All rights reserved.": "Všetky práva vyhradené.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa výlučne na identifikačné účely.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Tento softvér nie je spojený ani odporúčaný žiadnou z uvedených značiek.",
+  "Ollama configuration is working.": "Konfigurácia Ollama funguje.",
+  "{{provider}} credentials are valid.": "Prihlasovacie údaje {{provider}} sú platné.",
   "Testing...": "Testovanie...",
   "API Configuration": "Nastavenie API",
   "Add API keys for each provider you use.": "Pridajte API kľúče pre každého poskytovateľa, ktorého používate.",

@@ -154,6 +154,8 @@
   "All rights reserved.": "Hak cipta terpelihara.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Nama produk dan ikon adalah milik pemilik masing-masing dan digunakan untuk tujuan pengenalan sahaja.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Perisian ini tidak berkaitan dengan atau disokong oleh mana-mana jenama yang disebutkan.",
+  "Ollama configuration is working.": "Konfigurasi Ollama berfungsi.",
+  "{{provider}} credentials are valid.": "Kelayakan kredensial {{provider}}.",
   "Testing...": "Menguji...",
   "API Configuration": "Konfigurasi API",
   "Add API keys for each provider you use.": "Tambah kunci API untuk setiap penyedia yang anda gunakan.",

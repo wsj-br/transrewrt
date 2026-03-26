@@ -154,6 +154,8 @@
   "All rights reserved.": "کلیه حقوق محفوظ است.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "نام محصولات و آیکون‌ها متعلق به صاحبان خود بوده و فقط برای اهداف شناسایی استفاده شده‌اند.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "این نرم‌افزار با برندهای ذکر شده هیچ گونه وابستگی یا تأیید رسمی ندارد.",
+  "Ollama configuration is working.": "پیکربندی Ollama در حال کار است.",
+  "{{provider}} credentials are valid.": "اعتبارنامه‌های {{provider}} معتبر هستند.",
   "Testing...": "در حال آزمایش...",
   "API Configuration": "پیکربندی API",
   "Add API keys for each provider you use.": "کلیدهای API را برای هر ارائه‌دهنده‌ای که استفاده می‌کنید اضافه کنید.",

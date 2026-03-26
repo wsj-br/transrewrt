@@ -5,6 +5,7 @@ import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import iconsWithFiles from "../assets/icons_with_files.json";
+import { interpolateTemplate } from "../utils/misc/formatUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 const OLLAMA_URL = "https://ollama.com/";
@@ -37,6 +38,24 @@ function testStatusMessageColor(status) {
   if (status === "success") return "var(--colorPaletteGreenForeground1)";
   if (status === "testing") return "var(--colorNeutralForeground1)";
   return "var(--colorPaletteRedForeground1)";
+}
+
+/**
+ * Localized provider test success line (keys must match src/shared/llm/index.js PROVIDER_TEST_SUCCESS_I18N).
+ * @param {{ key: string, params?: Record<string, string> } | undefined} successI18n
+ * @param {(key: string) => string} t
+ * @returns {string | null}
+ */
+function formatProviderTestSuccessMessage(successI18n, t) {
+  if (!successI18n || typeof successI18n.key !== "string") return null;
+  const { key, params } = successI18n;
+  if (key === "Ollama configuration is working.") {
+    return t("Ollama configuration is working.");
+  }
+  if (key === "{{provider}} credentials are valid.") {
+    return interpolateTemplate(t("{{provider}} credentials are valid."), params || {});
+  }
+  return null;
 }
 
 const SecretField = ({
@@ -324,9 +343,14 @@ const SettingsApiTab = ({
       [provider]: { status: "testing", message: t("Testing...") },
     }));
     const result = await onTestApi({ provider, overrideValue });
+    let message = result.message || "";
+    if (result.status === "success") {
+      const translated = formatProviderTestSuccessMessage(result.successI18n, t);
+      if (translated != null) message = translated;
+    }
     setTestResults((prev) => ({
       ...prev,
-      [provider]: { status: result.status, message: result.message || "" },
+      [provider]: { status: result.status, message },
     }));
   };
 

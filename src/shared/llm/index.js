@@ -165,6 +165,14 @@ function providerDisplayName(provider) {
 }
 
 /**
+ * English strings used as i18n keys for {@link testProviderAuth} success (renderer calls `t(key)`).
+ */
+const PROVIDER_TEST_SUCCESS_I18N = {
+  ollamaOk: "Ollama configuration is working.",
+  credentialsOk: "{{provider}} credentials are valid.",
+};
+
+/**
  * @param {string} provider
  * @param {string} value
  */
@@ -248,7 +256,7 @@ function buildProviderTestRequest(provider, value) {
 /**
  * @param {string} provider
  * @param {string} value
- * @returns {Promise<{ provider: string, ok: boolean, message: string }>}
+ * @returns {Promise<{ provider: string, ok: boolean, message: string, successI18n?: { key: string, params?: Record<string, string> } }>}
  */
 async function testProviderAuth(provider, value) {
   const normalizedProvider = String(provider || "").trim();
@@ -268,14 +276,22 @@ async function testProviderAuth(provider, value) {
   try {
     const response = await fetch(req.url, req.options);
     if (response.ok) {
+      const successI18n =
+        normalizedProvider === "ollama"
+          ? { key: PROVIDER_TEST_SUCCESS_I18N.ollamaOk }
+          : {
+              key: PROVIDER_TEST_SUCCESS_I18N.credentialsOk,
+              params: { provider: providerDisplayName(normalizedProvider) },
+            };
       const successMessage =
         normalizedProvider === "ollama"
-          ? "Ollama configuration is working."
+          ? PROVIDER_TEST_SUCCESS_I18N.ollamaOk
           : `${providerDisplayName(normalizedProvider)} credentials are valid.`;
       return {
         provider: normalizedProvider,
         ok: true,
         message: successMessage,
+        successI18n,
       };
     }
     const body = await response.text().catch(() => "");
@@ -874,6 +890,7 @@ module.exports = {
   ENV_KEY_BY_ENGINE,
   ENCRYPTED_CONFIG_KEYS,
   FREE_INNER_ID,
+  PROVIDER_TEST_SUCCESS_I18N,
   resolveEngine,
   mergeKeys,
   readEnvNonBlank,

@@ -154,6 +154,8 @@
   "All rights reserved.": "판권 소유.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "제품 이름 및 아이콘은 각 소유자에게 속하며 식별 용도로만 사용됩니다.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "이 소프트웨어는 언급된 브랜드와 제휴하거나 승인받지 않았습니다.",
+  "Ollama configuration is working.": "Ollama 구성이 작동 중입니다.",
+  "{{provider}} credentials are valid.": "{{provider}} 자격 증명이 유효합니다.",
   "Testing...": "테스트 중...",
   "API Configuration": "API 설정",
   "Add API keys for each provider you use.": "사용하는 각 제공업체에 대한 API 키를 추가하세요.",

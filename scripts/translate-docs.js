@@ -2,7 +2,8 @@
 /**
  * Translate README.md and USER-GUIDE.md (British English) to all UI languages via OpenRouter.
  * Writes translated-docs/README.<code>.md and translated-docs/USER-GUIDE.<code>.md.
- * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md.
+ * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md,
+ * then replaces `<small id="lang-list">…</small>` with the British English source block (canonical links; English UK → `../README.md` / `../USER-GUIDE.md`).
  * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
  * Requires OPENROUTER_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
  * Session log: dev/translate-docs_YYYYMMDD_HHMMSS.log; per-doc summaries append to dev/translations.log.
@@ -28,6 +29,8 @@ function buildModelsToTry(primary) {
 
 const DEFAULT_MAX_TOKENS = 32768; // 32KB
 const DEFAULT_CONCURRENCY = 4;
+/** Max parallel API calls translating blocks within one doc+locale (see --block-concurrency). */
+const DEFAULT_BLOCK_CONCURRENCY = 2;
 const BLOCK_SIZE = 4096; // 4KB
 const RED = "\x1b[31m";
 const YELLOW = "\x1b[33m";
@@ -112,6 +115,7 @@ Options:
   --model, -m <name>      OpenRouter model (default: ${DEFAULT_MODEL}).
   --max-tokens, -t <n>    Max tokens (default: ${DEFAULT_MAX_TOKENS}).
   --concurrency, -c <n>   Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
+  --block-concurrency, -b <n>  Max parallel blocks per language per document (default: ${DEFAULT_BLOCK_CONCURRENCY}; with defaults, up to ${DEFAULT_CONCURRENCY}×${DEFAULT_BLOCK_CONCURRENCY} simultaneous translations).
 
 Examples:
   node scripts/translate-docs.js --help
@@ -130,6 +134,7 @@ function parseArgs() {
   let model = DEFAULT_MODEL;
   let maxTokens = DEFAULT_MAX_TOKENS;
   let concurrency = DEFAULT_CONCURRENCY;
+  let blockConcurrency = DEFAULT_BLOCK_CONCURRENCY;
   let help = false;
   const unknown = [];
   for (let i = 0; i < args.length; i++) {
@@ -150,9 +155,16 @@ function parseArgs() {
     } else if ((arg === "--concurrency" || arg === "-c") && args[i + 1]) {
       const n = parseInt(args[++i], 10);
       if (!Number.isNaN(n) && n >= 1) concurrency = n;
+    } else if (arg.startsWith("--block-concurrency=")) {
+      const v = arg.split("=", 2)[1];
+      const n = parseInt(v, 10);
+      if (!Number.isNaN(n) && n >= 1) blockConcurrency = n;
+    } else if ((arg === "--block-concurrency" || arg === "-b") && args[i + 1]) {
+      const n = parseInt(args[++i], 10);
+      if (!Number.isNaN(n) && n >= 1) blockConcurrency = n;
     } else unknown.push(arg);
   }
-  return { help, force, doc, locale, model, maxTokens, concurrency, unknown };
+  return { help, force, doc, locale, model, maxTokens, concurrency, blockConcurrency, unknown };
 }
 
 const args = parseArgs();
@@ -170,6 +182,7 @@ const OPENROUTER_KEY = (process.env.OPENROUTER_KEY || "").trim();
 const MODEL = args.model;
 const MAX_TOKENS = args.maxTokens;
 const CONCURRENCY = args.concurrency;
+const BLOCK_CONCURRENCY = args.blockConcurrency;
 
 let LANGUAGES = [];
 if (fs.existsSync(UI_LANGUAGES_PATH)) {
@@ -317,7 +330,7 @@ RULES:
 - Keep URLs, [text](url), ![alt](path) link targets unchanged; translate only the visible link text where appropriate.
 - Keep HTML tags and attribute values that are paths or technical (e.g. alt text can be translated).
 - Keep product names as-is: Transrewrt, OpenRouter, Electron, Docker, unless there is a common localized form.
-- Keep the language names in the paragraph "Read in other languages:" as-is.
+- Preserve the tag \`<small id="lang-list">\` through its closing \`</small>\` exactly (same attribute \`id="lang-list"\`); do not translate language names or link targets inside that block (it is restored from source after translation).
 - Do NOT add any introduction, explanation, or note before or after the translation.
 - Do NOT wrap your response in a markdown code fence (no \`\`\`markdown ... \`\`\`).
 - Do NOT include the original text in your response.
@@ -381,8 +394,53 @@ async function translateBlockWithFallback(blockContent, langName, docKey, blockI
   throw lastError || new Error("No model succeeded");
 }
 
+const LANG_LIST_SMALL_RE = /<small id="lang-list">[\s\S]*?<\/small>/;
+
 function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Extract `<small id="lang-list">...</small>` from British English source (repo root).
+ * @param {string} sourceMarkdown
+ * @returns {string | null}
+ */
+function extractLangListBlock(sourceMarkdown) {
+  const m = sourceMarkdown.match(LANG_LIST_SMALL_RE);
+  return m ? m[0] : null;
+}
+
+/**
+ * Build the lang-list block for `translated-docs/` output: same links as source, strip `translated-docs/`,
+ * and point English (UK) at the repo-root source via `../`.
+ * @param {string} sourceMarkdown
+ * @param {string} docKey - "README" | "USER-GUIDE"
+ * @returns {string | null}
+ */
+function buildLangListSmallForTranslatedDoc(sourceMarkdown, docKey) {
+  const block = extractLangListBlock(sourceMarkdown);
+  if (!block) return null;
+  let out = block
+    .replace(/\]\(translated-docs\/README\./g, "](README.")
+    .replace(/\]\(translated-docs\/USER-GUIDE\./g, "](USER-GUIDE.");
+  if (docKey === "README") {
+    out = out.replace("[English (UK)](README.md)", "[English (UK)](../README.md)");
+  } else if (docKey === "USER-GUIDE") {
+    out = out.replace("[English (UK)](USER-GUIDE.md)", "[English (UK)](../USER-GUIDE.md)");
+  }
+  return out;
+}
+
+/**
+ * Replace `<small id="lang-list">...</small>` in translated output with the canonical block from source.
+ * @param {string} body
+ * @param {string} canonicalBlock
+ * @returns {{ body: string, matched: boolean }} `matched` is true when the pattern was found (replace ran; body may be unchanged if canonical already matched).
+ */
+function replaceTranslatedLangListBlock(body, canonicalBlock) {
+  if (!canonicalBlock) return { body, matched: false };
+  if (!LANG_LIST_SMALL_RE.test(body)) return { body, matched: false };
+  return { body: body.replace(LANG_LIST_SMALL_RE, canonicalBlock), matched: true };
 }
 
 /**
@@ -445,24 +503,32 @@ async function processDoc(locale, doc, content) {
   const blocks = splitIntoBlocks(content);
   log(YELLOW + `🔍 ${locale.code} ${doc.key}: ${blocks.length} block(s) (max ${BLOCK_SIZE} chars each)` + RESET);
 
-  const translatedParts = [];
-  let modelUsed = null;
-
-  for (let i = 0; i < blocks.length; i++) {
+  const blockOutcomes = await runMapWithConcurrency(blocks, BLOCK_CONCURRENCY, async (blockText, i) => {
     try {
-      const res = await translateBlockWithFallback(blocks[i], locale.englishName, doc.key, i);
+      const res = await translateBlockWithFallback(blockText, locale.englishName, doc.key, i);
       const { translated, usage, model } = res;
-      translatedParts.push(translated);
-      if (modelUsed == null) modelUsed = model;
-      result.cost += usage.total_cost;
-      result.tokens += usage.prompt_tokens + usage.completion_tokens;
-      result.reasoning_tokens += usage.reasoning_tokens || 0;
       const reasoningStr = (usage.reasoning_tokens > 0) ? `, ${usage.reasoning_tokens} reasoning` : "";
       log(`  ✔️  ${locale.code} ${doc.key}: block ${i + 1}/${blocks.length}: done (${usage.prompt_tokens + usage.completion_tokens} tokens${reasoningStr})`);
+      return { ok: true, translated, usage, model };
     } catch (e) {
       warn(`  ❌  ${locale.code} ${doc.key} block ${i + 1} failed:`, e.message);
+      return { ok: false, fallback: blockText };
+    }
+  });
+
+  const translatedParts = [];
+  let modelUsed = null;
+  for (let i = 0; i < blockOutcomes.length; i++) {
+    const o = blockOutcomes[i];
+    if (o.ok) {
+      translatedParts.push(o.translated);
+      if (modelUsed == null) modelUsed = o.model;
+      result.cost += o.usage.total_cost;
+      result.tokens += o.usage.prompt_tokens + o.usage.completion_tokens;
+      result.reasoning_tokens += o.usage.reasoning_tokens || 0;
+    } else {
+      translatedParts.push(o.fallback);
       result.status = "failed";
-      translatedParts.push(blocks[i]);
     }
   }
 
@@ -470,7 +536,7 @@ async function processDoc(locale, doc, content) {
     const sourcePath = path.join(ROOT, doc.sourceFile);
     const sourceMtime = fs.statSync(sourcePath).mtimeMs;
     const body = translatedParts.join("\n\n");
-    const bodyWithLocalePaths = fixEnglishUkSwitcherLink(
+    let bodyWithLocalePaths = fixEnglishUkSwitcherLink(
       rewriteCrossDocLinksToLocale(
         body
           .replace(/images\/screenshots\/en-GB\//g, `../images/screenshots/${locale.code}/`)
@@ -484,6 +550,16 @@ async function processDoc(locale, doc, content) {
       locale.code,
       doc.key
     );
+    const canonicalLangList = buildLangListSmallForTranslatedDoc(content, doc.key);
+    if (!canonicalLangList) {
+      warn(`${locale.code} ${doc.key}: source missing <small id="lang-list">; skipped lang-list injection`);
+    } else {
+      const { body: patched, matched } = replaceTranslatedLangListBlock(bodyWithLocalePaths, canonicalLangList);
+      bodyWithLocalePaths = patched;
+      if (!matched) {
+        warn(`${locale.code} ${doc.key}: translated output had no <small id="lang-list">; lang-list not replaced`);
+      }
+    }
     const frontmatter = buildFrontmatter({
       translated_at: new Date().toISOString(),
       source_hash: currentHash,
@@ -579,6 +655,31 @@ async function runInBatches(items, batchSize, fn) {
 }
 
 /**
+ * Run async fn(item, index) for each item with at most `limit` concurrent executions.
+ * Results are in the same order as `items`.
+ * @template T, R
+ * @param {T[]} items
+ * @param {number} limit
+ * @param {(item: T, index: number) => Promise<R>} fn
+ * @returns {Promise<R[]>}
+ */
+async function runMapWithConcurrency(items, limit, fn) {
+  if (items.length === 0) return [];
+  const cap = Math.max(1, Math.min(limit, items.length));
+  const results = /** @type {R[]} */ (new Array(items.length));
+  let nextIndex = 0;
+  async function worker() {
+    for (;;) {
+      const i = nextIndex++;
+      if (i >= items.length) return;
+      results[i] = await fn(items[i], i);
+    }
+  }
+  await Promise.all(Array.from({ length: cap }, () => worker()));
+  return results;
+}
+
+/**
  * One line per doc run: ISO time, primary model, sum of per-locale processDoc wall times, tokens, cost.
  */
 function appendDocTranslationSummaryLine(docKey, tokens, cost, elapsedMsSum) {
@@ -604,7 +705,18 @@ async function main() {
   log("logging to " + logPath);
 
   const startTime = Date.now();
-  log("starting (docs: " + DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ") + "; locales: " + LANGUAGES.length + "; concurrency: " + CONCURRENCY + (args.force ? "; force" : "") + ")");
+  log(
+    "starting (docs: " +
+      DOCS_TO_PROCESS.map((d) => d.sourceFile).join(", ") +
+      "; locales: " +
+      LANGUAGES.length +
+      "; locale concurrency: " +
+      CONCURRENCY +
+      "; block concurrency: " +
+      BLOCK_CONCURRENCY +
+      (args.force ? "; force" : "") +
+      ")"
+  );
 
   const docContents = {};
   for (const doc of DOCS_TO_PROCESS) {

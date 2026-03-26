@@ -154,6 +154,8 @@
   "All rights reserved.": "Усі права захищені.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Назви продуктів та іконки належать їхнім відповідним власникам і використовуються лише з метою ідентифікації.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Це програмне забезпечення не пов'язане з жодним із згаданих брендів і не схвалене ними.",
+  "Ollama configuration is working.": "Налаштування Ollama працює.",
+  "{{provider}} credentials are valid.": "Облікові дані {{provider}} дійсні.",
   "Testing...": "Тестування...",
   "API Configuration": "Конфігурація API",
   "Add API keys for each provider you use.": "Додайте ключі API для кожного провайдера, який ви використовуєте.",

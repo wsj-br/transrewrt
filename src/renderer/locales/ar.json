@@ -154,6 +154,8 @@
   "All rights reserved.": "جميع الحقوق محفوظة.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "أسماء المنتجات والأيقونات ملك لأصحابها وتُستخدم لأغراض التعريف فقط.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "هذا البرنامج غير تابع لأي من العلامات التجارية المذكورة أو معتمد منها.",
+  "Ollama configuration is working.": "تكوين Ollama يعمل بشكل صحيح.",
+  "{{provider}} credentials are valid.": "بيانات اعتماد {{provider}} صالحة.",
   "Testing...": "جارٍ الاختبار...",
   "API Configuration": "إعدادات API",
   "Add API keys for each provider you use.": "أضف مفاتيح API لكل مزود تستخدمه.",

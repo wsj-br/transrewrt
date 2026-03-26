@@ -154,6 +154,8 @@
   "All rights reserved.": "Tots els drets reservats.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Els noms dels productes i les icones pertanyen als seus respectius propietaris i s'utilitzen únicament amb finalitats d'identificació.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Aquest programari no està afiliat ni patrocinat per cap de les marques esmentades.",
+  "Ollama configuration is working.": "La configuració d'Ollama està funcionant.",
+  "{{provider}} credentials are valid.": "Les credencials de {{provider}} són vàlides.",
   "Testing...": "S'està provant...",
   "API Configuration": "Configuració de l'API",
   "Add API keys for each provider you use.": "Afegeix claus d'API per a cada proveïdor que utilitzis.",

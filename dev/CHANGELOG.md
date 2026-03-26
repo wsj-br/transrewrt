@@ -9,7 +9,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Fixed**: `scripts/translate-docs.js` restores the **English (UK)** language-switcher link to `../README.md` / `../USER-GUIDE.md` after locale path rewriting (it was incorrectly pointing at the same locale as the translated file).
+- **Changed**: API provider test success messages (`Ollama configuration is working.`, `{{provider}} credentials are valid.`) are translated in the UI via i18n; `testProviderAuth` returns `successI18n` metadata for the renderer (Electron IPC and web `/api/provider-test`).
+- **Fixed**: `scripts/translate-docs.js` no longer logs a false “missing lang-list” warning when the canonical block matches the translated text already (the old check compared strings before/after replace).
+- **Changed**: `scripts/translate-docs.js` translates document blocks in parallel within each locale (`--block-concurrency` / `-b`, default **2**); with default locale concurrency (**4**), up to **8** simultaneous block translations.
+- **Changed**: `scripts/translate-docs.js` replaces the translated `<small id="lang-list">…</small>` block with the British English source block (canonical language names and links; English (UK) → `../README.md` / `../USER-GUIDE.md`); keeps the English (UK) link fix for any other bare `README.md` / `USER-GUIDE.md` links after locale rewriting.
 - **Added**: Release workflow builds Linux **AppImage** for **x64** and **arm64** (native runners); Linux artifact names include the arch (e.g. `Transrewrt-1.0.0-arm64.AppImage`).
 - **Changed**: `scripts/take-screenshots.js` applies fixed `available_models` and `top_languages` to `data/config.json` and web `user_preferences` for `ADMIN_USERNAME` before capture; default `last_used_model`, picker selection, and history sample use `openrouter/qwen/qwen3-235b-a22b-2507`.
 - **Fixed**: Webpack dev server (`pnpm dev:web` / `watch:web`) sets `devServer.allowedHosts: "all"` so reverse proxies (nginx, Tailscale hostname, etc.) no longer trigger **Invalid Host header**. Development `output.publicPath` defaults to **`/`** again so **GET /** works (relative `./` broke webpack-dev-server’s index route). For a reverse-proxy **subpath** (e.g. nginx `/translator/`), run with **`WEBPACK_PUBLIC_PATH=/translator`** (trailing slash optional).

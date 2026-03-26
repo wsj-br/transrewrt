@@ -154,6 +154,8 @@
   "All rights reserved.": "Toate drepturile rezervate.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Numele produselor și pictogramele aparțin proprietarilor respectivi și sunt utilizate doar în scopuri de identificare.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Acest software nu este afiliat cu și nu este susținut de niciunul dintre brandurile menționate.",
+  "Ollama configuration is working.": "Configurația Ollama funcționează.",
+  "{{provider}} credentials are valid.": "Credențialele {{provider}} sunt valide.",
   "Testing...": "Se testează...",
   "API Configuration": "Configurare API",
   "Add API keys for each provider you use.": "Adăugați chei API pentru fiecare furnizor pe care îl folosiți.",

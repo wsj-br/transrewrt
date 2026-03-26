@@ -183,6 +183,7 @@ module.exports = function createStatusRouter(
         message: result.ok
           ? result.message
           : `${result.message} Review this API key in your Docker environment configuration.`,
+        successI18n: result.successI18n,
       };
       return res.status(result.ok ? 200 : 400).json(response);
     } catch (err) {

@@ -154,6 +154,8 @@
   "All rights reserved.": "Minden jog fenntartva.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "A terméknevek és ikonok a jogosultak tulajdonát képezik, kizárólag azonosítási célokra használjuk őket.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Ez a szoftver nem kapcsolódik a megemlített márkákhoz, és azok nem is támogatják azt.",
+  "Ollama configuration is working.": "Az Ollama konfiguráció működik.",
+  "{{provider}} credentials are valid.": "{{provider}} hitelesítő adatok érvényesek.",
   "Testing...": "Tesztelés...",
   "API Configuration": "API-beállítások",
   "Add API keys for each provider you use.": "Adja hozzá az API-kulcsokat minden használt szolgáltatóhoz.",

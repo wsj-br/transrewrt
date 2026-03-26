@@ -154,6 +154,8 @@
   "All rights reserved.": "Tutti i diritti riservati.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "I nomi dei prodotti e le icone appartengono ai rispettivi proprietari e sono utilizzati solo a scopo identificativo.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Questo software non è affiliato né approvato da nessuno dei marchi menzionati.",
+  "Ollama configuration is working.": "La configurazione di Ollama funziona correttamente.",
+  "{{provider}} credentials are valid.": "Le credenziali di {{provider}} sono valide.",
   "Testing...": "Test in corso...",
   "API Configuration": "Configurazione API",
   "Add API keys for each provider you use.": "Aggiungi le chiavi API per ogni provider che utilizzi.",

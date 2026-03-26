@@ -154,6 +154,8 @@
   "All rights reserved.": "All rights reserved.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "製品名およびアイコンはそれぞれの所有者に帰属し、識別目的でのみ使用されています。",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "本ソフトウェアは、記載されたブランドとの提携や承認を受けたものではありません。",
+  "Ollama configuration is working.": "Ollamaの設定は正常に動作しています。",
+  "{{provider}} credentials are valid.": "{{provider}}の認証情報は有効です。",
   "Testing...": "テスト中...",
   "API Configuration": "API設定",
   "Add API keys for each provider you use.": "使用する各プロバイダーのAPIキーを追加してください。",

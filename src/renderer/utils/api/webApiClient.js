@@ -638,6 +638,7 @@ const webAPI = {
       provider: normalizedProvider,
       status: data.status || "success",
       message: data.message || "Authentication succeeded.",
+      successI18n: data.successI18n,
     };
   },
 

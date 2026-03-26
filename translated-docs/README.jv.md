@@ -1,11 +1,11 @@
 ---
-translated_at: "2026-03-25T22:20:23.250Z"
-source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
-source_mtime: 1774475429145.525
+translated_at: "2026-03-26T00:47:15.100Z"
+source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
+source_mtime: 1774482559451.2136
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="logo Transrewrt" width="120" />
+  <img src="../images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
 </p>
 
 <h1 align="center">Transrewrt</h1>
@@ -18,79 +18,80 @@ model: "qwen/qwen3-235b-a22b-2507"
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat teks kanthi daya AI: ngalih basa, nulis ulang gaya beda, lan ngowahi nganggo prompt kustom — nggunakake pirang-pirang penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan Ollama lokal). Bisa dijalanake minangka aplikasi desktop (Electron) utawa aplikasi web kanggo dipasang piyambak (Docker).
+Piranti teks kanthi tenaga AI: nerjemahake antar basa, nulis ulang kanthi gaya beda, lan ngowahi nganggo prompt khusus — nggunakake pirang-pirang penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan Ollama lokal). Jalan minangka aplikasi desktop (Electron) utawa aplikasi web sing dijejaki dhewe (Docker).
 
-- **Terjemah** — antara puluhan basa, nganggo deteksi sumber otomatis
-- **Nulis Ulang** — perbaiki tata basa, tingkatake kapracayan, formal/informal, nggawe cendhak, mbabarake, teknis
-- **Ngowahi** — prompt AI kustom; gawe lan atur prompt, pilihan basa tujuan saben prompt
-- **Riwayat** — riwayat lengkap eksekusi kanthi teks input/output, saringan, lan ekspor
-- **Model & biaya** — pilih model saka sembarang penyedia sing wis dikonfigurasi; papan kontrol biaya lan panggunaan kanthi log, ringkesan miturut model/operasi/hari
-- **UI** — antarmuka multibasa (30+ basa, dhukungan RTL), font, ...
-- **Mode Web** — dhukungan pangguna akeh kanthi peran admin
+- **Nerjemahake** — antar puluhan basa, kanthi deteksi otomatis sumber
+- **Nulis ulang** — ngoreksi tata basa, ningkatake kasarjane, formal/informal, mungkile, nambahi, teknis
+- **Ngowahi** — prompt AI khusus; nggawe lan ngatur prompt, pilihan basa tujuan saben prompt
+- **Riwayat** — riwayat pelaksanaan lengkap kanthi teks input/ouput, penyaringan, lan ekspor
+- **Model lan biaya** — pilih model saka penyedia sing dikonfigurasi; dashboard biaya lan panggunaan kanthi log, ringkesan miturut model/operasi/dina
+- **UI** — antarmuka multibahasa (30+ basa, nyengkuyung RTL), font, ...
+- **Modha web** — dhukungan multi-panganggo kanthi peran admin
 - **Desktop** — aplikasi Electron kanggo Windows lan Linux
-- **Panggonan dhewe** — gambar Docker kanggo amd64 & arm64 (siap digunakake ing Raspberry Pi)
+- **Dijejaki dhewe** — gambar Docker kanggo amd64 & arm64 (siap kanggo Raspberry Pi)
 
-Sawise dipasang, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo penjelajahan lengkap kabeh fitur.
+Sawise dipasang, deleng **[Pandhuan Panganggo](USER-GUIDE.jv.md)** kanggo pandhuan lengkap kabeh fitur.
 
-<small>**Macca ing basa liya:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Waca ing basa liyane:** </small>
+<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
 <small>
 
-> **Cathetan babagan penerjemahan UI lan dokumen:** Kabeh basa antarmuka kajaba asline, English (UK), 
-> diterjemahaké nggunakake model AI; tembung-tembung bisa kurang precisi utawa ngandhut kesa salah.
+> **Cathetan bab terjemahan UI lan dokumentasi:** Kabeh basa antarmuka sanalika basa asliné Inggris (UK)
+> diterjemahaké nggunakake model AI; ukara bisa ora tepat utawa ngandhut késalahan.
 
 </small>
 
 <br/>
 
 <a id="screenshots"></a>
-## Tangkapan Layar
+## Tangkapan layar
 
 **Pemilih basa**
 
 ![Pemilih basa](../images/screenshots/jv/language-selector.png)
 
-**Terjemah**
+**Nerjemahake**
 
-![Terjemah](../images/screenshots/jv/translate.png)
+![Nerjemahake](../images/screenshots/jv/translate.png)
 
 **Ngowahi - panyunting prompt**
 
 ![Ngowahi - panyunting prompt](../images/screenshots/jv/transform-prompt-edit.png)
 
-**Dasbor**
+**Dashboard**
 
-![Dasbor biaya](../images/screenshots/jv/dashboard-summary.png)
+![Dashboard biaya](../images/screenshots/jv/dashboard-summary.png)
 
 **Riwayat**
 
 ![Riwayat](../images/screenshots/jv/history.png)
 
-**Setelan - pamilihan model**
+**Setelan - pilihan model**
 
-![Setelan - pamilihan model](../images/screenshots/jv/settings-models.png)
+![Setelan - pilihan model](../images/screenshots/jv/settings-models.png)
 
 <br/><br/>
 
 <a id="table-of-contents"></a>
 
-## Tabel Isi
+## Daftra Isi
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Panduan Cepet](#quick-start)
+- [Mlebu cepet](#quick-start)
 - [Instalasi](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
-- [Ngoleh Kunci API OpenRouter](#getting-an-openrouter-api-key)
+- [Entuk kunci API OpenRouter](#getting-an-openrouter-api-key)
 - [Konfigurasi lan lingkungan](#configuration-and-environment)
 - [Pengembangan lan arsitektur](#development-and-architecture)
 - [Rilis lan tag](#releases-and-tags)
 - [Kontribusi](#contributing)
-- [Penafian](#disclaimer)
+- [Penyangkalan](#disclaimer)
 - [Lisensi](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -98,9 +99,9 @@ Sawise dipasang, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo penjela
 <br/><br/>
 
 <a id="quick-start"></a>
-## Panduan Cepet
+## Mlebu cepet
 
-**Docker (direkomendasikake kanggo self-hosting)**
+**Docker (disarankan kanggo njaga dhewe)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,32 +114,32 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Ganti `sk-or-your-key` nganggo [kunci API OpenRouter](https://openrouter.ai/keys) (utawa setel kunci penyedia liyane; deleng [Konfigurasi](#configuration-and-environment)). Bukak [http://localhost:5000](http://localhost:5000) lan ganti sandhi admin baku sadurunge layanan dibukak.
+Ganti `sk-or-your-key` nganggo [kunci API OpenRouter](https://openrouter.ai/keys) sampeyan (utawa atur kunci penyedia liyane; deleng [Konfigurasi](#configuration-and-environment)). Bukak [http://localhost:5000](http://localhost:5000) lan ganti sandhi admin asline sadurunge ngekspos layanan kasebut.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Ing Docker, kredensial LLM diatur nganggo variabel lingkungan kayata `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ora ing antarmuka web). Ing desktop (Electron) sampeyan ngonfigurasi kunci ing **Setelan → API**.
+> Ing Docker, kredensial LLM diatur nganggo variabel lingkungan kaya `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ora ing UI web). Ing desktop (Electron) sampeyan ngatur kunci ing **Setelan → API**.
 
 <br/>
 
 **Windows**
 
-Unduh berkas `Transrewrt Setup x.y.z.exe` paling anyar saka [Rilis](https://github.com/wsj-br/transrewrt/releases), jalanke instalasi, banjur bukak saka menu Start utawa shortcut desktop. Masukkan kunci API sampeyan ing **Setelan → API**. Sampeyan kudu ngonfigurasi paling ora siji penyedia, OpenRouter biasane digunakake kanggo model gratis.
+Unduh `Transrewrt Setup x.y.z.exe` paling anyar saka [Rilis](https://github.com/wsj-br/transrewrt/releases), jalanen installer, banjur miwiti saka menu Start utawa pintasan desktop. Masukkan kunci API sampeyan ing **Setelan → API**. Sampeyan kudu ngonfigurasi paling ora siji penyedia, OpenRouter umum digunakake kanggo model gratis.
 
 <br/>
 
 **Linux**
 
-Unduh `.AppImage` kanggo CPU sampeyan saka [Rilis](https://github.com/wsj-br/transrewrt/releases) (`x64` kanggo PC biasa, `arm64` kanggo piranti ARM, kalebu Raspberry Pi 4+), banjur:
+Unduh `.AppImage` kanggo CPU sampeyan saka [Rilis](https://github.com/wsj-br/transrewrt/releases) (`x64` kanggo PC umum, `arm64` kanggo piranti ARM akeh, kalebu Raspberry Pi 4+), banjur:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Masukkan kunci API sampeyan ing **Setelan → API**. Sampeyan kudu ngonfigurasi paling ora siji penyedia, OpenRouter biasane digunakake kanggo model gratis.
+Masukkan kunci API sampeyan ing **Setelan → API**. Sampeyan kudu ngonfigurasi paling ora siji penyedia, OpenRouter umum digunakake kanggo model gratis.
 
-Ing Debian/Ubuntu, sampeyan kudu nginstal dependensi tambahan dhisik:
+Ing Debian/Ubuntu sampeyan perlu nginstal dependensi tambahan dhisik:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -149,11 +150,11 @@ Deleng [Instalasi → Linux](#linux-electron) kanggo rincian.
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> macOS durung didhukung. Transrewrt kasedhiya kanggo Windows, Linux, lan Docker.
+> macOS durung didhukung saiki. Transrewrt kasedhiya kanggo Windows, Linux, lan Docker.
 
 <br/>
 
-Sawise aplikasi diuripake, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo sinau carane nerjemahake, nulis maneh, lan ngowahi teks, ngatur prompt, lan ngonfigurasi model.
+Sawise aplikasi dijalanke, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo mangerteni carane nerjemahake, nulis maneh, lan ngowahi tèks, ngatur prompt, lan ngonfigurasi model.
 
 <br/><br/>
 
@@ -163,9 +164,9 @@ Sawise aplikasi diuripake, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kang
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Unduh instalasi paling anyar saka [Rilis](https://github.com/wsj-br/transrewrt/releases).
-- Jalanke berkas `.exe` lan tindakake proses instalasi.
-- Pertama mbukak: miwiti aplikasi saka menu Start utawa shortcut desktop. 
+- Unduh installer paling anyar saka [Rilis](https://github.com/wsj-br/transrewrt/releases).
+- Jalanen file `.exe` lan tindakake installer.
+- Mbukak pisanan: miwiti aplikasi saka menu Start utawa pintasan desktop. 
 
 <br/>
 
@@ -173,7 +174,7 @@ Sawise aplikasi diuripake, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kang
 ### Linux (Electron)
 
 - Unduh `.AppImage` sing cocog (`x64` utawa `arm64`) saka [Rilis](https://github.com/wsj-br/transrewrt/releases).
-- Jalanke: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` ing x86_64/amd64, utawa gunakake jeneng berkas `...-arm64.AppImage` ing ARM64.
+- Jalanen: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` ing x86_64/amd64, utawa gunakna jeneng file `...-arm64.AppImage` ing ARM64.
 - Dependensi tambahan (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - Deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) kanggo informasi liyane.
 
@@ -183,10 +184,10 @@ Sawise aplikasi diuripake, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kang
 ### Docker
 
 - Ambil: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Atur paling ora siji kunci penyedia liwat lingkungan (contone `OPENROUTER_KEY` kanggo OpenRouter). Oper variabel karo `-e` utawa `docker compose` / `.env` supaya rahasia ora dikode dadi bagéan saka gambar.
-- Kunci penyedia **ora** dimasukkan ing antarmuka web; server maca saka lingkungan.
+- Atur paling ora siji kunci penyedia liwat lingkungan (contone `OPENROUTER_KEY` kanggo OpenRouter). Lulus variabel nganggo `-e` utawa `docker compose` / `.env` supaya rahasia ora kalebu ing gambar.
+- Kunci penyedia **ora** dimasukkan ing UI web; server maca saka lingkungan.
 
-Conto - volume mawa jeneng kanggo persistensi (kunci OpenRouter liwat env):
+Conto - volume dijenengi kanggo persistensi (kunci OpenRouter liwat env):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -199,13 +200,13 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-| Opsi   | Katerangan                                                                                                   |
-| ------ | ------------------------------------------------------------------------------------------------------------- |
-| Port   | `5000` (peta nganggo `-p 5000:5000`)                                                                          |
-| Volume | Mount `/app/data` kanggo keberlanjutan konfigurasi lan database                                               |
-| Variabel lingkungan | `PORT`, `CONFIG_PATH`, lan kunci LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - deleng [Konfigurasi](#configuration-and-environment) |
+| Pilihan  | Katerangan                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------------- |
+| Port     | `5000` (petakake nganggo `-p 5000:5000`)                                                                              |
+| Volume   | Mount `/app/data` kanggo persistensi konfigurasi lan basis data                                                         |
+| Variabel lingkungan | `PORT`, `CONFIG_PATH`, ditambah kunci LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - deleng [Konfigurasi](#configuration-and-environment) |
 
-Kanggo mbangun lan nguripake saka sumber: `docker compose up --build -d` utawa `pnpm docker:up` - deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Kanggo mbangun lan jalanake saka sumber: `docker compose up --build -d` utawa `pnpm docker:up` - deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/><br/>
 
@@ -213,20 +214,20 @@ Kanggo mbangun lan nguripake saka sumber: `docker compose up --build -d` utawa `
 
 ## Entuk Kunci API OpenRouter
 
-Transrewrt ndhukung pirang-pirang penyedia AI. [OpenRouter](https://openrouter.ai) minangka pilihan populer amarga nggabungake akeh model ing siji kunci lan nawakake model gratis.
+Transrewrt nyengkuyung akèh penyedia AI. [OpenRouter](https://openrouter.ai) minangka pilihan sing populer amarga munggahaké akeh model ing siji kunci lan nawakaké model gratis.
 
-1. Mlebu utawa mlebu menyang [openrouter.ai](https://openrouter.ai).
-2. Buka kaca [Keys](https://openrouter.ai/keys) lan gawe kunci anyar (kasih jeneng, lan opsional atur watesan kredit). Sampeyan bisa nggunakake model gratis tanpa nambah kredit.
-3. **Desktop (Electron):** tempel kuncine ing **Settings → API**. **Docker:** atur variabel lingkungan kaya `OPENROUTER_KEY` (deleng [Quick start](#quick-start)).
+1. Daftar utawa mlebu ing [openrouter.ai](https://openrouter.ai).
+2. Bukak kaca [Keys](https://openrouter.ai/keys) lan gawé kunci énggal (jenengi, lan pilihan atur watesan kredit). Sampeyan bisa migunakaké model gratis tanpa nambahi kredit.
+3. **Desktop (Electron):** Tempel kunci ing **Setelan → API**. **Docker:** Atur variabel lingkungan kaya `OPENROUTER_KEY` (deleng [Miwiti Cepet](#quick-start)).
 
-Aja nggunakake model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kanggo ngedol, nulis maneh, utawa ngedol: model iki maringi muatan permintaan JSON, dudu teks rampung kanggo tugas-tugas kasebut. Deleng [Settings → Models](USER-GUIDE.jv.md#models) ing Pandhuan Panganggo.
+Aja nggunakake model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kanggo terjemahan, nulis maneh, utawa transformasi: model iki maringi muatan jeneng panjaluk JSON, bukan teks rampung kanggo tugas-tugas kasebut. Deleng [Setelan → Model](USER-GUIDE.jv.md#models) ing Pandhuan Panganggo.
 
-Sampeyan uga bisa nggunakke penyedia liya (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) utawa mlakuake model lokal nganggo [Ollama](https://ollama.com). Deleng [Konfigurasi](#configuration-and-environment) kanggo daftar lengkap penyedia sing didhukung lan variabel lingkungan.
+Sampeyan uga bisa nggunakake penyedia liya (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) utawa mlakuake model lokal kanthi [Ollama](https://ollama.com). Deleng [Konfigurasi](#configuration-and-environment) kanggo daftar lengkap penyedia sing didhukung lan variabel lingkungan.
 
-> ⚠️ **PERINGATAN**<br/>
-> Yen sampeyan nggunakake Ollama saka piranti, wadah, utawa layanan liya, eling konfigurasi Ollama supaya ngidini sambungan eksternal (dudu mung localhost).
+> ⚠️ **PÉRINGATAN**<br/>
+> Yèn sampeyan nggunakake Ollama saka piranti, wadah, utawa layanan liya, eling konfigurasia Ollama kanggo ngidinake sambungan eksternal (dudu mung localhost).
 
-Deleng [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication) kanggo informasi watesan, BYOK, lan liyane.
+Deleng [otentikasi OpenRouter](https://openrouter.ai/docs/api/reference/authentication) kanggo watesan, BYOK (Bring Your Own Key), lan liya-liyané.
 
 <br/><br/>
 
@@ -235,58 +236,58 @@ Deleng [OpenRouter authentication](https://openrouter.ai/docs/api/reference/auth
 
 **Lokasi berkas konfigurasi**
 
-| Penyebaran        | Lokasi konfigurasi                                 |
-| ------------------ | --------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                             |
-| Electron (Linux)   | `~/.config/transrewrt/`                             |
-| Web / Docker       | `/app/data/config.json` (gunakake volume kanggo ngawetake) |
+| Deploy             | Lokasi konfigurasi                             |
+| ------------------ | ---------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                        |
+| Electron (Linux)   | `~/.config/transrewrt/`                        |
+| Web / Docker       | `/app/data/config.json` (nggunakake volume kanggo nyimpen) |
 
 <br/>
 
-**Variabel lingkungan** (web/Docker mung; Electron nggunakake berkas konfigurasi lokal)
+**Variabel lingkungan** (mung kanggo web/Docker; Electron nggunakake berkas konfigurasi lokal)
 
-| Variabel         | Asal                  | Katerangan |
-| ---------------- | --------------------- | ---------- |
-| `PORT`           | `5000`                | Port pendenge server |
-| `CONFIG_PATH`    | `/app/data/config.json` | Path menyang berkas konfigurasi |
-| `OPENROUTER_KEY` | *(kosong)*            | Kunci API OpenRouter |
-| `OPENAI_KEY`     | *(kosong)*            | Kunci API OpenAI |
-| `CEREBRAS_KEY`   | *(kosong)*            | Kunci API Cerebras |
-| `ANTHROPIC_KEY`  | *(kosong)*            | Kunci API Anthropic |
-| `GOOGLE_KEY`     | *(kosong)*            | Kunci API Google Gemini |
-| `DEEPSEEK_KEY`   | *(kosong)*            | Kunci API DeepSeek |
-| `GROQ_KEY`       | *(kosong)*            | Kunci API Groq |
-| `MISTRAL_KEY`    | *(kosong)*            | Kunci API Mistral |
-| `OLLAMA_URL`     | *(kosong)*            | URL dhasar Ollama (contone `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(kosong)*            | Kunci API xAI |
+| Variabel           | Asali                   | Katerangan |
+| ------------------ | ----------------------- | ----------- |
+| `PORT`            | `5000`                  | Port peladen |
+| `CONFIG_PATH`     | `/app/data/config.json` | Path menyang berkas konfigurasi |
+| `OPENROUTER_KEY`  | *(kosong)*              | Kunci API OpenRouter |
+| `OPENAI_KEY`      | *(kosong)*              | Kunci API OpenAI |
+| `CEREBRAS_KEY`    | *(kosong)*              | Kunci API Cerebras |
+| `ANTHROPIC_KEY`   | *(kosong)*              | Kunci API Anthropic |
+| `GOOGLE_KEY`      | *(kosong)*              | Kunci API Google Gemini |
+| `DEEPSEEK_KEY`    | *(kosong)*              | Kunci API DeepSeek |
+| `GROQ_KEY`        | *(kosong)*              | Kunci API Groq |
+| `MISTRAL_KEY`     | *(kosong)*              | Kunci API Mistral |
+| `OLLAMA_URL`      | *(kosong)*              | URL dhasar Ollama (contone `http://host.docker.internal:11434`) |
+| `XAI_KEY`         | *(kosong)*              | Kunci API xAI |
 
-Konfigurasine mung penyedia sing sampeyan panganggo. ID model duwe namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, lsp.).
+Konfigurasia mung penyedia sing digunakaké. ID model duwé ruang jeneng (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, lsp.).
 
-**Tampilan biaya:** OpenRouter maringi biaya sing dibayar kanthi tepat yen bisa digunakake. Penyedia liya nggunakake biaya **perkiraan** saka rega model umum OpenRouter yen ana kunci OpenRouter; tanpa iki, biaya non-OpenRouter bisa katon minangka `0`. Perkiraan ora kalebu invoice.
-
-<br/>
-
-**Data lan persistensi:** Kanggo Docker, pasang volume ing `/app/data` supaya `config.json` lan database SQLite tetep ana sawise wadah diuripake maneh. Tanpa volume, kabeh data bakal ilang nalika wadah mati.
-
-**Pangembang:** Sawise narik owah-owahan sing nggantikake konfigurasi kunci tunggal lawas, setel maneh utawa gabungke `data/config.json` karo bentuk standar anyar saka `src/config-defaults/config_default.json` yen berkas lokal isih nganggo bidang sing wis dibusek (`api_key`, `api_url`, opsi proxy).
+**Tampilan biaya:** OpenRouter mulihaké biaya sajatine yen cocog. Penyedia liyane migunakaké biaya **perkiraan** saka rega model OpenRouter umum nalika ana kunci OpenRouter; yen ora, biaya non-OpenRouter bisa ditampilaké minangka `0`. Perkiraan ora minangka invoice.
 
 <br/>
 
-**Autentikasi web:**
+**Data lan kelestarian:** Kanggo Docker, pasang volume ing `/app/data` supaya `config.json` lan database SQLite tetep ana sawise wadah diuripake maneh. Tanpa volume, kabeh data ilang nalika wadah mandheg.
 
-- Admin standar: `admin` / `transrewrt26`.
-- Atur pangguna ing **Settings → Users**.
-- Reset sandhi: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (saka sumber: `pnpm run reset-web-password -- <username> <new-password>`)
+**Panembang:** Sawise narik owah-owahan sing nggantikake konfigurasi kunci tunggal lawas, reset utawa gabung `data/config.json` karo bentuk standar anyar saka `src/config-defaults/config_default.json` yèn berkas lokal isih nggunakake kolom sing dihapus (`api_key`, `api_url`, opsi proxy).
 
 <br/>
 
-> ⚠️ **PERINGATAN**<br/>
-> Ganti sakcepete sandhi admin standar ing saben host sing bisa diakses liwat jaringan.
+**Otentikasi Web:**
+
+- Admin asali: `admin` / `transrewrt26`.
+- Atur pangguna ing **Setelan → Pangguna**.
+- Reset sandhi: `docker exec <wadah> reset-web-password '<jeneng pangguna>' '<sandhi anyar>'`
+  (saka sumber: `pnpm run reset-web-password -- <jeneng pangguna> <sandhi anyar>`)
 
 <br/>
 
-Setelan penting (font, model, basa, lsp.) ana ing Setelan aplikasi.
+> ⚠️ **PÉRINGATAN**<br/>
+> Gantos langsung sandhi admin asli ing saben host sing bisa diakses jaringan.
+
+<br/>
+
+Setelan utama (font, model, basa, lsp.) kasedhiya ing Setelan aplikasi.
 
 <br/><br/>
 
@@ -294,16 +295,16 @@ Setelan penting (font, model, basa, lsp.) ana ing Setelan aplikasi.
 
 ## Pangembangan lan arsitektur
 
-- **Pangembangan:** Setup, nggawe, nguji, lan ngunggah (Electron, Web, Docker) - delengen **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Gambaran arsitektur lan sistem:** Struktur folder, tumpukan teknologi, keputusan desain - delengen **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Pangembangan:** Ngatur, mbangun, nguji, lan ngedeploy (Electron, Web, Docker) - deleng **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Gambaran arsitektur lan sistem:** Struktur folder, tumpukan teknologi, sawetara keputusan rancangan - deleng **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
-## Rilisan lan tag
+## Rilis lan tag
 
-- **Tag Git** `v`* (contone `v1.0.10`) ngaktifake [alur kerja rilis](.github/workflows/release.yml). **Rilisan GitHub** nyertakake installer Windows (`.exe`) lan AppImage Linux (**x64** lan **arm64**).
-- **Gambar Docker** dipublikasikake menyang `ghcr.io/wsj-br/transrewrt`. Tag gambar cocog karo versi Git (contone `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) ditambah `latest`. Multi-arsitektur: `linux/amd64` lan `linux/arm64` (contone Raspberry Pi).
+- **Tag Git** `v`* (contone, `v1.0.10`) ngaktifake [alur kerja rilis](.github/workflows/release.yml). **GitHub Releases** nyertakake installer Windows (`.exe`) lan AppImage Linux (**x64** lan **arm64**).
+- **Cithakan Docker** diterbitake menyang `ghcr.io/wsj-br/transrewrt`. Tag cithakan pas karo versi Git (contone `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) ditambah tag `latest`. Multi-arsitektur: `linux/amd64` lan `linux/arm64` (kayata Raspberry Pi).
 
 <br/><br/>
 
@@ -311,22 +312,22 @@ Setelan penting (font, model, basa, lsp.) ana ing Setelan aplikasi.
 ## Kontribusi
 
 1. Salin repositori.
-2. Gawe cabang fitur: `git checkout -b feature/fitur-ku`
-3. Commit owahane kanthi pesen sing jelas.
-4. Push lan buka Permintaan Tarik (Pull Request) marang `main`.
+2. Gawe cabang fitur: `git checkout -b feature/my-feature`
+3. Simpen owah-owahanmu kanthi pesen sing jelas.
+4. Push lan mbukak Permintaan Tarik (Pull Request) marang `main`.
 
-Monggo tindakake gaya kode sing ana lan uji owahanmu ing mode Electron lan web sakdurunge dikirim. Deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) kanggo pandhuan nggawe lan nguji.
+Monggo nututi gaya koding sing wis ana lan nyoba owah-owahanmu ing loro-liyane mode Electron lan web sadurunge ngirim. Deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) kanggo instruksi mbangun lan nguji.
 
 <br/>
 
-**Dolanan masalah:** Buka masalah ing [GitHub](https://github.com/wsj-br/transrewrt/issues). Sertakake platform (Windows / Linux / Docker) lan versi aplikasi (katon ing dialog Tentang utawa kaca Rilis).
+**Dolan masalah:** Buka isu ing [GitHub](https://github.com/wsj-br/transrewrt/issues). Sertakake platformmu (Windows / Linux / Docker) lan versi aplikasi (katon ing dialog About utawa ing kaca Rilis).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
-## Penyangkalan
+## Kabebasan Gugatan
 
-Jeneng produk lan ikon duweni pemilik dhewe-dhewe lan mung digunakake kanggo keperluan identifikasi. Piranti lunak iki ora duwe hubungan utawa direkomendasi dening merk sing dijupuk.
+Jeneng produk lan ikon kepunyèn pemiliké dhéwé lan mung digunakaké kanggo tujuan identifikasi. Piranti lunak iki ora ana gandhèngan utawa ora direkomendasikaké déning salah siji merek sing disebutake.
 
 <br/><br/>
 

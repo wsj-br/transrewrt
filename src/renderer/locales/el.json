@@ -154,6 +154,8 @@
   "All rights reserved.": "Όλα τα δικαιώματα διατηρούνται.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Τα ονόματα και τα εικονίδια προϊόντων ανήκουν στους νόμιμους ιδιοκτήτες τους και χρησιμοποιούνται αποκλειστικά για αναγνώριση.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Αυτό το λογισμικό δεν σχετίζεται ούτε εγκρίνεται από οποιαδήποτε από τις αναφερόμενες μάρκες.",
+  "Ollama configuration is working.": "Η διαμόρφωση του Ollama λειτουργεί.",
+  "{{provider}} credentials are valid.": "Τα στοιχεία πιστοποίησης του {{provider}} είναι έγκυρα.",
   "Testing...": "Δοκιμή...",
   "API Configuration": "Διαμόρφωση API",
   "Add API keys for each provider you use.": "Προσθήκη κλειδιών API για κάθε πάροχο που χρησιμοποιείτε.",

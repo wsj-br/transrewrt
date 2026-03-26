@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-25T22:12:27.911Z"
-source_hash: "7b3703140b5006a6bfb0700c530b1afcc6e9b0fc364d69c57960ab4609dccbd9"
-source_mtime: 1774475429145.525
+translated_at: "2026-03-26T00:37:52.234Z"
+source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
+source_mtime: 1774482559451.2136
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -18,33 +18,34 @@ model: "qwen/qwen3-235b-a22b-2507"
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Ein KI-gestütztes Textwerkzeug: Übersetzen zwischen Sprachen, umschreiben in verschiedenen Stilen sowie transformieren mit benutzerdefinierten Prompts – unter Nutzung mehrerer KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI und lokales Ollama). Läuft als Desktop-Anwendung (Electron) oder als selbstgehostete Webanwendung (Docker).
+KI-gestütztes Textwerkzeug: Übersetzung zwischen Sprachen, Umschreibung in verschiedenen Stilen und Textumwandlung mittels benutzerdefinierter Anweisungen – mit Unterstützung mehrerer KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI und lokales Ollama). Läuft als Desktop-Anwendung (Electron) oder als selbstgehostete Webanwendung (Docker).
 
-- **Übersetzen** – zwischen Dutzenden Sprachen, mit automatischer Erkennung der Ausgangssprache
-- **Umschreiben** – Grammatik korrigieren, Verständlichkeit verbessern, formell/informell umformulieren, kürzen, erweitern, technisch anpassen
-- **Transformieren** – benutzerdefinierte KI-Prompts; Erstellen und Verwalten von Prompts, optionale Zielsprache pro Prompt
-- **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterfunktion und Exportmöglichkeit
-- **Modelle & Kosten** – Auswahl von Modellen aller konfigurierten Anbieter; Dashboard zur Kosten- und Verbrauchsanalyse mit Protokoll, Zusammenfassungen nach Modell/Operation/Tag
-- **Benutzeroberfläche** – mehrsprachige Oberfläche (über 30 Sprachen, inklusive RTL-Unterstützung), Schriftarten, …
-- **Webmodus** – Unterstützung mehrerer Benutzer mit Administratorrollen
-- **Desktop** – Electron-App für Windows und Linux
-- **Selbstgehostet** – Docker-Image für amd64 und arm64 (auch Raspberry Pi tauglich)
+- **Übersetzen** — zwischen Dutzenden von Sprachen, mit automatischer Erkennung der Ausgangssprache
+- **Umschreiben** — Grammatik korrigieren, Verständlichkeit verbessern, formell/informell, kürzen, erweitern, technisch anpassen
+- **Umwandeln** — benutzerdefinierte KI-Anweisungen; Anlegen und Verwalten eigener Anweisungen, optionale Zielsprache pro Anweisung
+- **Verlauf** — vollständiger Ausführungsverlauf mit Eingabe- und Ausgabetext, Filterfunktion und Exportmöglichkeit
+- **Modelle & Kosten** — Auswahl von Modellen aller konfigurierten Anbieter; Kosten- und Nutzungsübersichten mit Protokoll, Zusammenfassungen nach Modell/Aktion/Tag
+- **Benutzeroberfläche** — mehrsprachige Oberfläche (über 30 Sprachen, inkl. RTL-Unterstützung), Schriftarten, ...
+- **Webmodus** — Unterstützung mehrerer Nutzer mit Admin-Rollen
+- **Desktop** — Electron-Anwendung für Windows und Linux
+- **Selbstgehostet** — Docker-Image für amd64 & arm64 (auch für Raspberry Pi geeignet)
 
-Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** eine ausführliche Anleitung zu allen Funktionen.
+Nach der Installation lesen Sie bitte die **[Benutzeranleitung](USER-GUIDE.de.md)** für eine vollständige Übersicht über alle Funktionen.
 
-<small>**In anderen Sprachen lesen:** [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**In anderen Sprachen lesen:** </small>
+<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
 <small>
 
-> **Hinweis zu Übersetzungen der Benutzeroberfläche und Dokumentation:** Alle Sprachversionen der Benutzeroberfläche außer dem Original (Englisch UK) 
-> wurden mithilfe von KI-Modellen übersetzt; die Formulierungen können ungenau sein oder Fehler enthalten.
+> **Hinweis zu Übersetzungen der Benutzeroberfläche und Dokumentation:** Alle Sprachversionen der Benutzeroberfläche außer dem ursprünglichen Englisch (UK) 
+> wurden mit KI-Modellen übersetzt; die Formulierungen können ungenau oder fehlerbehaftet sein.
 
 </small>
 
 <br/>
 
 <a id="screenshots"></a>
-## Bildschirmfotos
+## Screenshots
 
 **Sprachauswahl**
 
@@ -54,9 +55,9 @@ Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** ein
 
 ![Übersetzen](../images/screenshots/de/translate.png)
 
-**Transformieren – Prompt-Editor**
+**Umwandeln – Anweisungs-Editor**
 
-![Transformieren – Prompt-Editor](../images/screenshots/de/transform-prompt-edit.png)
+![Umwandeln – Anweisungs-Editor](../images/screenshots/de/transform-prompt-edit.png)
 
 **Dashboard**
 
@@ -80,17 +81,17 @@ Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** ein
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Schnellstart](#schnellstart)
+- [Schnellstart](#quick-start)
 - [Installation](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
-- [Beschaffung eines OpenRouter-API-Schlüssels](#beschaffung-eines-openrouter-api-schlüssels)
-- [Konfiguration und Umgebung](#konfiguration-und-umgebung)
-- [Entwicklung und Architektur](#entwicklung-und-architektur)
-- [Veröffentlichungen und Tags](#veröffentlichungen-und-tags)
-- [Mitwirken](#mitwirken)
-- [Haftungsausschluss](#haftungsausschluss)
+- [Erhalt eines OpenRouter-API-Schlüssels](#getting-an-openrouter-api-key)
+- [Konfiguration und Umgebung](#configuration-and-environment)
+- [Entwicklung und Architektur](#development-and-architecture)
+- [Versionen und Tags](#releases-and-tags)
+- [Mitwirken](#contributing)
+- [Haftungsausschluss](#disclaimer)
 - [Lizenz](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -113,32 +114,32 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Ersetzen Sie `sk-or-your-key` durch Ihren [OpenRouter-API-Schlüssel](https://openrouter.ai/keys) (oder legen Sie Schlüssel anderer Anbieter fest; siehe [Konfiguration](#konfiguration-und-umgebung)). Rufen Sie [http://localhost:5000](http://localhost:5000) auf und ändern Sie das Standard-Admin-Passwort, bevor Sie den Dienst nach außen freigeben.
+Ersetzen Sie `sk-or-your-key` durch Ihren [OpenRouter-API-Schlüssel](https://openrouter.ai/keys) (oder setzen Sie Schlüssel anderer Anbieter; siehe [Konfiguration](#configuration-and-environment)). Öffnen Sie [http://localhost:5000](http://localhost:5000) und ändern Sie das Standard-Admin-Passwort, bevor Sie den Dienst öffentlich zugänglich machen.
 
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> Bei Docker werden die Anmeldeinformationen für große Sprachmodelle (LLM) über Umgebungsvariablen wie `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … festgelegt (nicht über die Web-Oberfläche). Bei der Desktop-Version (Electron) konfigurieren Sie die Schlüssel unter **Einstellungen → API**.
+> In Docker werden LLM-Zugangsdaten über Umgebungsvariablen wie `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … gesetzt (nicht über die Web-Oberfläche). Bei der Desktop-Version (Electron) konfigurieren Sie die Schlüssel unter **Einstellungen → API**.
 
 <br/>
 
 **Windows**
 
-Laden Sie die neueste `Transrewrt Setup x.y.z.exe` von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter, führen Sie das Installationsprogramm aus und starten Sie die Anwendung über das Startmenü oder eine Desktop-Verknüpfung. Geben Sie Ihre API-Schlüssel unter **Einstellungen → API** ein. Sie müssen mindestens einen Anbieter konfigurieren; OpenRouter ist eine übliche Wahl für kostenlose Modelle.
+Laden Sie die neueste `Transrewrt Setup x.y.z.exe` von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter, führen Sie den Installer aus und starten Sie die Anwendung über das Startmenü oder die Desktopverknüpfung. Geben Sie Ihre API-Schlüssel unter **Einstellungen → API** ein. Sie müssen mindestens einen Anbieter konfigurieren; OpenRouter wird häufig für kostenlose Modelle verwendet.
 
 <br/>
 
 **Linux**
 
-Laden Sie die passende `.AppImage`-Datei für Ihre CPU von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter (`x64` für typische PCs, `arm64` für viele ARM-Geräte, einschließlich Raspberry Pi 4+), dann:
+Laden Sie die `.AppImage`-Datei für Ihre CPU von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter (`x64` für typische PCs, `arm64` für viele ARM-Geräte, inklusive Raspberry Pi 4+), dann:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Geben Sie Ihre API-Schlüssel unter **Einstellungen → API** ein. Sie müssen mindestens einen Anbieter konfigurieren; OpenRouter ist eine übliche Wahl für kostenlose Modelle.
+Geben Sie Ihre API-Schlüssel unter **Einstellungen → API** ein. Sie müssen mindestens einen Anbieter konfigurieren; OpenRouter wird häufig für kostenlose Modelle verwendet.
 
-Unter Debian/Ubuntu müssen vorher ggf. zusätzliche Abhängigkeiten installiert werden:
+Unter Debian/Ubuntu müssen Sie möglicherweise zuerst zusätzliche Abhängigkeiten installieren:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
@@ -153,7 +154,7 @@ Weitere Details finden Sie unter [Installation → Linux](#linux-electron).
 
 <br/>
 
-Sobald die Anwendung läuft, lesen Sie den **[Benutzerleitfaden](USER-GUIDE.de.md)**, um zu erfahren, wie Sie Text übersetzen, umschreiben und transformieren, Prompts verwalten und Modelle konfigurieren können.
+Sobald die Anwendung läuft, lesen Sie das **[Benutzerhandbuch (User Guide)](USER-GUIDE.de.md)**, um zu erfahren, wie Sie Text übersetzen, umschreiben und umformen, Prompts verwalten und Modelle konfigurieren.
 
 <br/><br/>
 
@@ -163,9 +164,9 @@ Sobald die Anwendung läuft, lesen Sie den **[Benutzerleitfaden](USER-GUIDE.de.m
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Laden Sie das neueste Installationsprogramm von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter.
-- Führen Sie die `.exe`-Datei aus und folgen Sie dem Installationsassistenten.
-- Beim ersten Start: Starten Sie die Anwendung über das Startmenü oder eine Desktop-Verknüpfung.
+- Laden Sie den neuesten Installer von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter.
+- Führen Sie die `.exe` aus und folgen Sie den Installationsanweisungen.
+- Beim ersten Start: öffnen Sie die Anwendung über das Startmenü oder die Desktopverknüpfung.
 
 <br/>
 
@@ -173,7 +174,7 @@ Sobald die Anwendung läuft, lesen Sie den **[Benutzerleitfaden](USER-GUIDE.de.m
 ### Linux (Electron)
 
 - Laden Sie die passende `.AppImage`-Datei (`x64` oder `arm64`) von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter.
-- Ausführen: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` auf x86_64/amd64 oder verwenden Sie die `...-arm64.AppImage`-Datei auf ARM64.
+- Ausführen: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` auf x86_64/amd64, oder verwenden Sie die Datei `...-arm64.AppImage` auf ARM64.
 - Zusätzliche Abhängigkeiten (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
 - Weitere Informationen finden Sie in [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -183,10 +184,10 @@ Sobald die Anwendung läuft, lesen Sie den **[Benutzerleitfaden](USER-GUIDE.de.m
 ### Docker
 
 - Herunterladen: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Legen Sie mindestens einen Anbieter-Schlüssel über die Umgebung fest (z. B. `OPENROUTER_KEY` für OpenRouter). Übergeben Sie Variablen mit `-e` oder `docker compose` / `.env`, damit Geheimnisse nicht im Image eingebettet werden.
-- Anbieter-Schlüssel werden **nicht** in der Web-Oberfläche eingegeben; der Server liest sie aus der Umgebung.
+- Mindestens einen Anbieterschlüssel über die Umgebungsvariablen setzen (z. B. `OPENROUTER_KEY` für OpenRouter). Variablen mit `-e` oder über `docker compose` / `.env` übergeben, damit Geheimnisse nicht im Image enthalten sind.
+- Anbieterschlüssel werden **nicht** in der Web-Oberfläche eingegeben; der Server liest sie aus der Umgebung.
 
-Beispiel – Named Volume für Datenspeicherung (OpenRouter-Schlüssel via Umgebung):
+Beispiel – benanntes Volume für Datenspeicherung (OpenRouter-Schlüssel über Umgebung):
 
 ```bash
 OPENROUTER_KEY=sk-or-your-key docker run -d \
@@ -202,8 +203,8 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | Option   | Beschreibung                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (Zuordnung mit `-p 5000:5000`)                                                                          |
-| Volume   | Mounten Sie `/app/data` für persistente Konfiguration und Datenbank                                           |
-| Umgebungsvariablen | `PORT`, `CONFIG_PATH`, sowie LLM-Schlüssel (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – siehe [Konfiguration](#konfiguration-und-umgebung) |
+| Volume   | Mounten von `/app/data` für die Persistenz von Konfiguration und Datenbank                                     |
+| Umgebungsvariablen | `PORT`, `CONFIG_PATH`, sowie LLM-Schlüssel (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – siehe [Konfiguration](#configuration-and-environment) |
 
 Zum Bauen und Ausführen aus dem Quellcode: `docker compose up --build -d` oder `pnpm docker:up` – siehe [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -211,20 +212,20 @@ Zum Bauen und Ausführen aus dem Quellcode: `docker compose up --build -d` oder 
 
 <a id="getting-an-openrouter-api-key"></a>
 
-## So erhalten Sie einen OpenRouter-API-Schlüssel
+## Abrufen eines OpenRouter-API-Schlüssels
 
 Transrewrt unterstützt mehrere KI-Anbieter. [OpenRouter](https://openrouter.ai) ist eine beliebte Wahl, da es viele Modelle unter einem einzigen Schlüssel bündelt und auch kostenlose Modelle anbietet.
 
-1. Registrieren Sie sich unter [openrouter.ai](https://openrouter.ai) oder melden Sie sich dort an.
-2. Rufen Sie die Seite [Keys](https://openrouter.ai/keys) auf und erstellen Sie einen neuen Schlüssel (geben Sie einen Namen ein und legen Sie optional ein Guthabenlimit fest). Sie können kostenlose Modelle nutzen, ohne Guthaben hinzuzufügen.
+1. Registrieren Sie sich oder melden Sie sich auf [openrouter.ai](https://openrouter.ai) an.
+2. Öffnen Sie die Seite [Keys](https://openrouter.ai/keys) und erstellen Sie einen neuen Schlüssel (geben Sie einen Namen ein und optional ein Kontingent). Sie können kostenlose Modelle nutzen, ohne Guthaben hinzuzufügen.
 3. **Desktop (Electron):** Schlüssel in **Einstellungen → API** einfügen. **Docker:** Umgebungsvariablen wie `OPENROUTER_KEY` setzen (siehe [Schnellstart](#quick-start)).
 
-Verwenden Sie **nicht** das **Body Builder**-Modell von OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) für Übersetzungen, Umschreibungen oder Transformationen: Es gibt JSON-Anfrage-Strukturen zurück, nicht den fertigen Text für diese Aufgaben. Siehe [Einstellungen → Modelle](USER-GUIDE.de.md#models) im Benutzerhandbuch.
+Verwenden Sie nicht OpenRouters Modell **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) für Übersetzungen, Umschreibungen oder Transformationen: Es gibt JSON-Anfragetexte zurück, nicht den fertigen bearbeiteten Text. Siehe [Einstellungen → Modelle](USER-GUIDE.de.md#models) im Benutzerhandbuch.
 
-Sie können auch andere Anbieter nutzen (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) oder Modelle lokal mit [Ollama](https://ollama.com) betreiben. Eine vollständige Liste der unterstützten Anbieter und Umgebungsvariablen finden Sie unter [Konfiguration](#configuration-and-environment).
+Sie können auch andere Anbieter verwenden (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) oder Modelle lokal mit [Ollama](https://ollama.com) ausführen. Eine vollständige Liste der unterstützten Anbieter und Umgebungsvariablen finden Sie unter [Konfiguration](#configuration-and-environment).
 
 > ⚠️ **WARNUNG**<br/>
-> Wenn Sie Ollama von einem anderen Gerät, Container oder Dienst aus nutzen, konfigurieren Sie Ollama so, dass externe Verbindungen erlaubt sind (nicht nur localhost).
+> Wenn Sie Ollama von einem anderen Gerät, Container oder Dienst nutzen, denken Sie daran, Ollama so zu konfigurieren, dass externe Verbindungen erlaubt sind (nicht nur localhost).
 
 Weitere Informationen zu Limits, BYOK usw. finden Sie unter [OpenRouter-Authentifizierung](https://openrouter.ai/docs/api/reference/authentication).
 
@@ -235,58 +236,58 @@ Weitere Informationen zu Limits, BYOK usw. finden Sie unter [OpenRouter-Authenti
 
 **Speicherorte der Konfigurationsdatei**
 
-| Installation        | Konfigurationspfad                                 |
-| ------------------ | ------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
-| Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (Verwenden Sie ein Volume zur dauerhaften Speicherung) |
+| Bereitstellung           | Konfigurationsort                                 |
+| ------------------------ | ------------------------------------------------- |
+| Electron (Windows)       | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)         | `~/.config/transrewrt/`                           |
+| Web / Docker             | `/app/data/config.json` (Volume verwenden für Persistenz) |
 
 <br/>
 
-**Umgebungsvariablen** (nur Web / Docker; Electron verwendet die lokale Konfigurationsdatei)
+**Umgebungsvariablen** (nur Web/Docker; Electron verwendet die lokale Konfigurationsdatei)
 
-| Variable         | Standardwert            | Beschreibung |
-| ---------------- | ----------------------- | ----------- |
-| `PORT`           | `5000`                  | Server-Port |
-| `CONFIG_PATH`    | `/app/data/config.json` | Pfad zur Konfigurationsdatei |
-| `OPENROUTER_KEY` | *(leer)*                | OpenRouter-API-Schlüssel |
-| `OPENAI_KEY`     | *(leer)*                | OpenAI-API-Schlüssel |
-| `CEREBRAS_KEY`   | *(leer)*                | Cerebras-API-Schlüssel |
-| `ANTHROPIC_KEY`  | *(leer)*                | Anthropic-API-Schlüssel |
-| `GOOGLE_KEY`     | *(leer)*                | Google Gemini-API-Schlüssel |
-| `DEEPSEEK_KEY`   | *(leer)*                | DeepSeek-API-Schlüssel |
-| `GROQ_KEY`       | *(leer)*                | Groq-API-Schlüssel |
-| `MISTRAL_KEY`    | *(leer)*                | Mistral-API-Schlüssel |
-| `OLLAMA_URL`     | *(leer)*                | Basis-URL von Ollama (z. B. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(leer)*                | xAI-API-Schlüssel |
+| Variable           | Standardwert            | Beschreibung |
+| ------------------ | ----------------------- | ------------ |
+| `PORT`             | `5000`                  | Server-Port |
+| `CONFIG_PATH`      | `/app/data/config.json` | Pfad zur Konfigurationsdatei |
+| `OPENROUTER_KEY`   | *(leer)*                | OpenRouter-API-Schlüssel |
+| `OPENAI_KEY`       | *(leer)*                | OpenAI-API-Schlüssel |
+| `CEREBRAS_KEY`     | *(leer)*                | Cerebras-API-Schlüssel |
+| `ANTHROPIC_KEY`    | *(leer)*                | Anthropic-API-Schlüssel |
+| `GOOGLE_KEY`       | *(leer)*                | Google-Gemini-API-Schlüssel |
+| `DEEPSEEK_KEY`     | *(leer)*                | DeepSeek-API-Schlüssel |
+| `GROQ_KEY`         | *(leer)*                | Groq-API-Schlüssel |
+| `MISTRAL_KEY`      | *(leer)*                | Mistral-API-Schlüssel |
+| `OLLAMA_URL`       | *(leer)*                | Basis-URL von Ollama (z. B. `http://host.docker.internal:11434`) |
+| `XAI_KEY`          | *(leer)*                | xAI-API-Schlüssel |
 
-Konfigurieren Sie nur die Anbieter, die Sie tatsächlich verwenden. Die Modell-IDs sind namensgegliedert (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` usw.).
+Konfigurieren Sie nur die Anbieter, die Sie nutzen. Die Modell-IDs sind namensgekürzt (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, usw.).
 
-**Kostenanzeige:** OpenRouter gibt – wenn zutreffend – die genauen Abrechnungskosten zurück. Bei anderen Anbietern werden **geschätzte** Kosten auf Grundlage der öffentlichen Preisgestaltung von OpenRouter verwendet, sofern ein OpenRouter-Schlüssel vorhanden ist; andernfalls können die Kosten für Nicht-OpenRouter-Anbieter als `0` angezeigt werden. Die Schätzungen sind keine Rechnungen.
+**Kostenanzeige:** OpenRouter gibt bei Bedarf die exakten Abrechnungskosten zurück. Bei anderen Anbietern werden **geschätzte** Kosten aus OpenRouters öffentlichen Preisangaben verwendet, wenn ein OpenRouter-Schlüssel vorhanden ist. Ohne diesen wird die Kostenangabe für Nicht-OpenRouter-Anbieter möglicherweise als `0` angezeigt. Die Schätzungen sind keine Rechnungen.
 
 <br/>
 
-**Daten und Persistenz:** Bei Docker mounten Sie ein Volume unter `/app/data`, damit `config.json` und die SQLite-Datenbank bei Neustarts des Containers erhalten bleiben. Ohne Volume gehen alle Daten beim Anhalten des Containers verloren.
+**Daten und Persistenz:** Verwenden Sie bei Docker ein gemountetes Volume unter `/app/data`, damit `config.json` und die SQLite-Datenbank auch nach einem Neustart des Containers erhalten bleiben. Ohne ein Volume gehen alle Daten beim Stoppen des Containers verloren.
 
-**Entwickler:** Nachdem Sie Änderungen übernommen haben, die die alte Einzelschlüssel-Konfiguration ersetzen, setzen Sie `data/config.json` zurück oder führen Sie sie mit der neuen Standardstruktur aus `src/config-defaults/config_default.json` zusammen, falls Ihre lokale Datei noch entfernte Felder verwendet (`api_key`, `api_url`, Proxy-Optionen).
+**Entwickler:** Nach Aktualisierung des Codes, in dem die alte Einzelschlüssel-Konfiguration ersetzt wurde, setzen Sie Ihre `data/config.json` zurück oder passen sie an die neue Standardstruktur in `src/config-defaults/config_default.json` an, falls in Ihrer lokalen Datei noch entfernte Felder wie (`api_key`, `api_url`, Proxy-Optionen) verwendet werden.
 
 <br/>
 
 **Web-Authentifizierung:**
 
-- Standard-Administrator: `admin` / `transrewrt26`.
-- Benutzer verwalten unter **Einstellungen → Benutzer**.
-- Passwort zurücksetzen: `docker exec <container> reset-web-password '<username>' '<new-password>'`  
-  (aus der Quelle: `pnpm run reset-web-password -- <username> <new-password>`)
+- Standard-Admin: `admin` / `transrewrt26`.
+- Verwalten Sie Benutzer unter **Einstellungen → Benutzer**.
+- Ein Passwort zurücksetzen: `docker exec <container> reset-web-password '<Benutzername>' '<neues-passwort>'`
+  (aus Quellcode: `pnpm run reset-web-password -- <Benutzername> <neues-passwort>`)
 
 <br/>
 
 > ⚠️ **WARNUNG**<br/>
-> Ändern Sie das Standard-Administrator-Passwort umgehend auf jedem netzwerkzugänglichen Host.
+> Ändern Sie das Standard-Admin-Passwort sofort auf jedem host, der über das Netzwerk erreichbar ist.
 
 <br/>
 
-Wichtige Einstellungen (Schriftart, Modelle, Sprachen usw.) finden Sie im Anwendungsbereich „Einstellungen“.
+Wichtige Einstellungen (Schriftart, Modelle, Sprachen usw.) sind in den Anwendungseinstellungen verfügbar.
 
 <br/><br/>
 
@@ -294,45 +295,45 @@ Wichtige Einstellungen (Schriftart, Modelle, Sprachen usw.) finden Sie im Anwend
 
 ## Entwicklung und Architektur
 
-- **Entwicklung:** Einrichtung, Erstellen, Testen und Bereitstellung (Electron, Web, Docker) – siehe **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektur und Systemübersicht:** Ordnerstruktur, Technologiestapel, Designentscheidungen – siehe **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Entwicklung:** Einrichten, Erstellen, Testen und Bereitstellen (Electron, Web, Docker) – siehe **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Architektur und Systemübersicht:** Ordnerstruktur, Technologie-Stack, Designentscheidungen – siehe **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
-## Versionen und Tags
+## Releases und Tags
 
-- **Git-Tags** `v`* (z. B. `v1.0.10`) lösen den [Veröffentlichungs-Workflow](.github/workflows/release.yml) aus. **GitHub Releases** enthalten den Windows-Installer (`.exe`) und Linux-AppImages (**x64** und **arm64**).
-- **Docker-Images** werden nach `ghcr.io/wsj-br/transrewrt` veröffentlicht. Die Image-Tags entsprechen der Git-Version (z. B. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) sowie dem Tag `latest`. Mehrfach-Architekturen: `linux/amd64` und `linux/arm64` (z. B. Raspberry Pi).
+- **Git-Tags** `v`* (z. B. `v1.0.10`) lösen den [Release-Workflow](.github/workflows/release.yml) aus. **GitHub Releases** enthalten den Windows-Installer (`.exe`) und Linux-AppImages (**x64** und **arm64**).
+- **Docker-Images** werden nach `ghcr.io/wsj-br/transrewrt` veröffentlicht. Die Image-Tags entsprechen der Git-Version (z. B. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) sowie dem `latest`-Tag. Multi-Architektur: `linux/amd64` und `linux/arm64` (z. B. Raspberry Pi).
 
 <br/><br/>
 
 <a id="contributing"></a>
 ## Mitwirken
 
-1. Forken Sie das Repository.
-2. Erstellen Sie einen Feature-Branch: `git checkout -b feature/mein-feature`
+1. Erstellen Sie einen Fork des Repositorys.
+2. Erstellen Sie einen Feature-Zweig: `git checkout -b feature/feature-name`
 3. Führen Sie Ihre Änderungen mit einer klaren Commit-Nachricht durch.
-4. Pushen Sie und öffnen Sie eine Pull Request gegen `main`.
+4. Übertragen Sie Ihre Änderungen und öffnen Sie eine Pull Request gegen `main`.
 
-Bitte halten Sie den bestehenden Code-Stil ein und testen Sie Ihre Änderungen vor dem Einreichen sowohl im Electron- als auch im Web-Modus. Anleitungen zum Erstellen und Testen finden Sie in [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Beachten Sie den bestehenden Code-Stil und testen Sie Ihre Änderungen vor der Abgabe sowohl im Electron- als auch im Web-Modus. Anleitungen zum Erstellen und Testen finden Sie in [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/>
 
-**Fehler melden:** Eröffnen Sie ein Ticket auf [GitHub](https://github.com/wsj-br/transrewrt/issues). Geben Sie Ihre Plattform (Windows / Linux / Docker) und die App-Version an (angezeigt im „Info“-Dialog oder auf der Releases-Seite).
+**Probleme melden:** Öffnen Sie ein Ticket auf [GitHub](https://github.com/wsj-br/transrewrt/issues). Geben Sie dabei Ihre Plattform (Windows / Linux / Docker) und die App-Version an (ersichtlich im Info-Dialog oder auf der Releases-Seite).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
 ## Haftungsausschluss
 
-Produktnamen und Symbole unterliegen dem Urheberrecht ihrer jeweiligen Inhaber und dienen ausschließlich der Identifikation. Diese Software ist nicht mit irgendwelchen genannten Marken verbunden oder von ihnen genehmigt.
+Produktnamen und Symbole gehören ihren jeweiligen Eigentümern und dienen ausschließlich der Identifikation. Diese Software ist nicht mit den genannten Marken verbunden oder von diesen unterstützt.
 
 <br/><br/>
 
 <a id="license"></a>
 ## Lizenz
 
-Urheberrecht © 2026 Waldemar Scudeller Jr.
+Copyright © 2026 Waldemar Scudeller Jr.
 
-[Apache-Lizenz 2.0](LICENSE)
+[Apache License 2.0](LICENSE)

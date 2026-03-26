@@ -58,6 +58,7 @@ function registerApiIpc(ipcMain, getConfigCache) {
       return {
         status: result.ok ? "success" : "error",
         message: result.message,
+        successI18n: result.successI18n,
       };
     },
   );
@@ -78,6 +79,7 @@ function registerApiIpc(ipcMain, getConfigCache) {
       provider: result.provider,
       status: result.ok ? "success" : "error",
       message: result.message,
+      successI18n: result.successI18n,
     };
   });
 }

@@ -154,6 +154,8 @@
   "All rights reserved.": "Kabèh hak dilindungi.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Jeneng produk lan ikon dadi duwèké sing nduwèni lan mung digunakake kanggo tujuan identifikasi.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Piranti lunak iki ora afiliasi karo utawa didukung déning merek-merek sing kasebut.",
+  "Ollama configuration is working.": "Konfigurasi Ollama lagi makaryan.",
+  "{{provider}} credentials are valid.": "Kredensial {{provider}} sah.",
   "Testing...": "Nguji...",
   "API Configuration": "Konfigurasi API",
   "Add API keys for each provider you use.": "Tambahi kunci API kanggo unggah penyedia sing digunakake.",

@@ -154,6 +154,8 @@
   "All rights reserved.": "Tüm hakları saklıdır.",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "Ürün adları ve simgeleri ilgili sahiplerine aittir ve sadece tanımlama amacıyla kullanılır.",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "Bu yazılım, bahsedilen markalarla bağlantılı değildir veya onların desteğiyle değildir.",
+  "Ollama configuration is working.": "Ollama yapılandırması çalışıyor.",
+  "{{provider}} credentials are valid.": "{{provider}} kimlik bilgileri geçerli.",
   "Testing...": "Test ediliyor...",
   "API Configuration": "API Yapılandırması",
   "Add API keys for each provider you use.": "Kullandığınız her sağlayıcı için API anahtarları ekleyin.",

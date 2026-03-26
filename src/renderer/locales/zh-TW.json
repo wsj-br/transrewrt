@@ -154,6 +154,8 @@
   "All rights reserved.": "版權所有。",
   "Product names and icons belong to their respective owners and are used for identification purposes only.": "產品名稱與圖示屬於其各自擁有者，僅供識別用途使用。",
   "This software is not affiliated with or endorsed by any of the mentioned brands.": "本軟體未經任何提及品牌之授權或背書。",
+  "Ollama configuration is working.": "Ollama 設定運作正常。",
+  "{{provider}} credentials are valid.": "{{provider}} 憑證有效。",
   "Testing...": "測試中...",
   "API Configuration": "API 設定",
   "Add API keys for each provider you use.": "為您使用的每個供應商新增 API 金鑰。",
