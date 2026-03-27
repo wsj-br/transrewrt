@@ -9,6 +9,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `scripts/translate-docs.js` front matter field `source_mtime` is written as an ISO 8601 timestamp instead of raw filesystem `mtimeMs`.
 - **Changed**: renamed the api keys environment variables names (`*_KEY` → `*_API_KEY`) across source files, Markdown docs, and `.env*` files
 - **Changed**: API provider test success messages (`Ollama configuration is working.`, `{{provider}} credentials are valid.`) are translated in the UI via i18n; `testProviderAuth` returns `successI18n` metadata for the renderer (Electron IPC and web `/api/provider-test`).
 - **Fixed**: `scripts/translate-docs.js` no longer logs a false “missing lang-list” warning when the canonical block matches the translated text already (the old check compared strings before/after replace).

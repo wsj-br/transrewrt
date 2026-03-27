@@ -255,11 +255,12 @@ function parseFrontmatter(fileContent) {
 }
 
 function buildFrontmatter({ translated_at, source_hash, source_mtime, model }) {
+  const sourceMtimeIso = new Date(Number(source_mtime)).toISOString();
   const lines = [
     "---",
     `translated_at: "${translated_at}"`,
     `source_hash: "${source_hash}"`,
-    `source_mtime: ${Number(source_mtime)}`,
+    `source_mtime: "${sourceMtimeIso}"`,
     `model: "${(model || "").replace(/"/g, '\\"')}"`,
     "---",
     "",
