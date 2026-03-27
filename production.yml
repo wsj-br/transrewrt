@@ -2,7 +2,9 @@
 #
 services:
   transrewrt:
+    image: ghcr.io/wsj-br/transrewrt:latest
     container_name: transrewrt
+    restart: unless-stopped
     ports:
       - "5000:5000"
     volumes:
