@@ -9,6 +9,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Release workflow Docker merge step only tags `latest` when the published release is the newest repo tag (or manual `workflow_dispatch` with `tag_as_latest`); per-arch digest builds now set `name=` on push-by-digest output; removed stray `--help` prefix from workflow comment.
 - **Added**: Root `production.yml` Compose file (optional `.env` via `env_file` with `required: false`) plus a commented environment-variable reference for new-machine Docker runs.
 - **Changed**: DEVELOPMENT.md Prerequisites describe installing and using direnv (`.envrc`, shell hooks, `direnv allow`); Linux direnv step defers to that section.
 - **Changed**: `scripts/translate-docs.js` front matter field `source_mtime` is written as an ISO 8601 timestamp instead of raw filesystem `mtimeMs`.
