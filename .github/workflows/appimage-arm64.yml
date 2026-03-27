@@ -5,25 +5,6 @@ name: AppImage (Linux arm64)
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - ".github/workflows/appimage-arm64.yml"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "webpack.config.js"
-      - "build/electron-builder.linux-arm64.json"
-      - "src/**"
-      - "scripts/**"
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/appimage-arm64.yml"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "webpack.config.js"
-      - "build/electron-builder.linux-arm64.json"
-      - "src/**"
-      - "scripts/**"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
