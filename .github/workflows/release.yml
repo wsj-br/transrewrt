@@ -136,14 +136,14 @@ jobs:
         run: |
           pnpm run build
           node scripts/write-build-timestamp.js
-          pnpm exec electron-builder --linux AppImage --x64
+          pnpm exec electron-builder --linux AppImage --x64 --publish never
 
       - name: Build and package (Linux, arm64)
         if: matrix.electron_arch == 'arm64'
         run: |
           pnpm run build
           node scripts/write-build-timestamp.js
-          pnpm exec electron-builder --linux AppImage --arm64 --config build/electron-builder.linux-arm64.json
+          pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.json
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v6

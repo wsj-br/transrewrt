@@ -18,8 +18,12 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Linux AppImage/desktop packaging uses [images/transrewrt_logo_512x512.png](images/transrewrt_logo_512x512.png) (`build.linux.icon`) so the Transrewrt logo is embedded instead of the default Electron icon.
+- **Added**: [`.github/workflows/appimage-x64.yml`](.github/workflows/appimage-x64.yml) — `workflow_dispatch` that builds only the Linux **x64** AppImage on `ubuntu-latest` (same packaging steps as release), for quick validation without arm64, Windows, or Docker.
 - **Added**: [`.github/workflows/appimage-arm64.yml`](.github/workflows/appimage-arm64.yml) — workflow_dispatch and path-filtered PR/push runs that build only the Linux **arm64** AppImage (same steps as the release workflow) for quick validation without Windows, Docker, or x64 jobs.
+- **Changed**: [`.github/workflows/release.yml`](.github/workflows/release.yml) Linux x64 AppImage step passes `--publish never` (aligned with arm64).
 - **Changed**: Linux AppImage `electron-builder` target lists only `x64` in `package.json`; CI x64 uses `electron-builder --linux AppImage --x64` directly; arm64 merges [build/electron-builder.linux-arm64.json](build/electron-builder.linux-arm64.json) so `@electron/rebuild` targets arm64 (avoids x64 `argon2` compile on arm64 runners and duplicate AppImages on x64).
+- **Fixed**: Linux arm64 AppImage CI (`--config build/electron-builder.linux-arm64.json`) sets `--publish never` and `publish: null` in that config so `electron-builder` does not require `GH_TOKEN` (“GitHub Personal Access Token is not set”).
 - **Changed**: Release workflow artifact names include the app version: `Transrewrt-<version>-windows-installer-x64`, `Transrewrt-AppImage-<version>-x64` / `-arm64`; `build-windows` / `build-linux` depend on `prepare` for the version.
 - **Added**: `publish-release-assets` job (on `release` / `published` only) uploads Windows `.exe` and Linux `.AppImage` files to the GitHub Release via `softprops/action-gh-release`.
 - **Changed**: Comment on Docker `build-push` step: GHCR `unknown/unknown` manifest rows are BuildKit provenance attestations, not missing `linux/amd64` / `linux/arm64` images (attestations kept).

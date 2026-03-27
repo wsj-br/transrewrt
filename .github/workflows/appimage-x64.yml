@@ -1,7 +1,7 @@
-# Build Linux AppImage for arm64 only (native ubuntu-24.04-arm). Use this to validate the arm64
-# pipeline without Windows, Docker, or x64 AppImage jobs.
+# Build Linux AppImage for x64 (amd64) only. Use this to validate the x64 AppImage pipeline
+# without Windows, Docker, or arm64 jobs.
 
-name: AppImage (Linux arm64)
+name: AppImage (Linux x64)
 
 on:
   workflow_dispatch:
@@ -10,9 +10,9 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  appimage-arm64:
-    name: Linux AppImage (arm64)
-    runs-on: ubuntu-24.04-arm
+  appimage-x64:
+    name: Linux AppImage (x64)
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -43,14 +43,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build AppImage (arm64)
+      - name: Build AppImage (x64)
         run: |
           pnpm run build
           node scripts/write-build-timestamp.js
-          pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.json
+          pnpm exec electron-builder --linux AppImage --x64 --publish never
 
       - name: Upload AppImage artifact
         uses: actions/upload-artifact@v6
         with:
-          name: Transrewrt-AppImage-${{ steps.pkg.outputs.version }}-arm64-ci
+          name: Transrewrt-AppImage-${{ steps.pkg.outputs.version }}-x64-ci
           path: release/*.AppImage

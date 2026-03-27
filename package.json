@@ -92,6 +92,7 @@
       "artifactName": "${productName} Setup ${version}.${ext}"
     },
     "linux": {
+      "icon": "transrewrt_logo_512x512.png",
       "target": [
         {
           "target": "AppImage",
