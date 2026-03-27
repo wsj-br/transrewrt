@@ -106,6 +106,8 @@
     "nsis": {
       "include": "build/installer.nsh",
       "oneClick": false,
+      "installerSidebar": "installerSidebar.bmp",
+      "uninstallerSidebar": "installerSidebar.bmp",
       "installerIcon": "transrewrt_logo.ico",
       "uninstallerIcon": "transrewrt_logo.ico",
       "installerHeaderIcon": "transrewrt_logo.ico",
