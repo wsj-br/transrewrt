@@ -106,10 +106,10 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk panduan
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Gantikan `sk-or-your-key` dengan kunci [API OpenRouter](https://openrouter.ai/ke
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Dalam Docker, kredensial LLM ditetapkan menggunakan pemboleh ubah persekitaran seperti `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (bukan dalam UI sesawang). Pada versi desktop (Electron), anda mengkonfigurasi kunci di **Tetapan → API**.
+> Dalam Docker, kredensial LLM ditetapkan menggunakan pemboleh ubah persekitaran seperti `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (bukan dalam UI sesawang). Pada versi desktop (Electron), anda mengkonfigurasi kunci di **Tetapan → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Selepas aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk 
 ### Docker
 
 - Tarik: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_KEY` untuk OpenRouter). Hantar pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak disematkan ke dalam imej.
+- Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_API_KEY` untuk OpenRouter). Hantar pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak disematkan ke dalam imej.
 - Kunci penyedia **tidak** dimasukkan dalam UI sesawang; pelayan membacanya daripada persekitaran.
 
 Contoh - volum bernama untuk kekal (kunci OpenRouter melalui env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (padankan dengan `-p 5000:5000`)                                                                              |
 | Volum   | Pasang `/app/data` untuk konfigurasi dan kekal pangkalan data                                                         |
-| Pemboleh ubah persekitaran | `PORT`, `CONFIG_PATH`, ditambah kunci LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - rujuk [Konfigurasi](#configuration-and-environment) |
+| Pemboleh ubah persekitaran | `PORT`, `CONFIG_PATH`, ditambah kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - rujuk [Konfigurasi](#configuration-and-environment) |
 
 Untuk membina dan menjalankan daripada sumber: `docker compose up --build -d` atau `pnpm docker:up` - rujuk [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) mer
 
 1. Daftar atau log masuk di [openrouter.ai](https://openrouter.ai).
 2. Buka halaman [Keys](https://openrouter.ai/keys) dan buat kunci baharu (beri nama, dan secara pilihan tetapkan had kredit). Anda boleh menggunakan model percuma tanpa menambah kredit.
-3. **Desktop (Electron):** tampal kunci di **Tetapan → API**. **Docker:** tetapkan pemboleh ubah alam (env vars) seperti `OPENROUTER_KEY` (lihat [Permulaan cepat](#quick-start)).
+3. **Desktop (Electron):** tampal kunci di **Tetapan → API**. **Docker:** tetapkan pemboleh ubah alam (env vars) seperti `OPENROUTER_API_KEY` (lihat [Permulaan cepat](#quick-start)).
 
 Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) untuk terjemahan, penulisan semula, atau transformasi: ia mengembalikan beban permintaan JSON, bukan teks lengkap bagi tugas-tugas tersebut. Lihat [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
 
@@ -251,16 +251,16 @@ Untuk had, BYOK, dan lain-lain, lihat [Pengesahan OpenRouter](https://openrouter
 | -------------------- | ----------------------- | --------- |
 | `PORT`               | `5000`                  | Pelabuhan pelayan yang sedang mendengar |
 | `CONFIG_PATH`        | `/app/data/config.json` | Laluan ke fail konfigurasi |
-| `OPENROUTER_KEY`     | *(kosong)*              | Kunci API OpenRouter |
-| `OPENAI_KEY`         | *(kosong)*              | Kunci API OpenAI |
-| `CEREBRAS_KEY`       | *(kosong)*              | Kunci API Cerebras |
-| `ANTHROPIC_KEY`      | *(kosong)*              | Kunci API Anthropic |
-| `GOOGLE_KEY`         | *(kosong)*              | Kunci API Google Gemini |
-| `DEEPSEEK_KEY`       | *(kosong)*              | Kunci API DeepSeek |
-| `GROQ_KEY`           | *(kosong)*              | Kunci API Groq |
-| `MISTRAL_KEY`        | *(kosong)*              | Kunci API Mistral |
+| `OPENROUTER_API_KEY`     | *(kosong)*              | Kunci API OpenRouter |
+| `OPENAI_API_KEY`         | *(kosong)*              | Kunci API OpenAI |
+| `CEREBRAS_API_KEY`       | *(kosong)*              | Kunci API Cerebras |
+| `ANTHROPIC_API_KEY`      | *(kosong)*              | Kunci API Anthropic |
+| `GOOGLE_API_KEY`         | *(kosong)*              | Kunci API Google Gemini |
+| `DEEPSEEK_API_KEY`       | *(kosong)*              | Kunci API DeepSeek |
+| `GROQ_API_KEY`           | *(kosong)*              | Kunci API Groq |
+| `MISTRAL_API_KEY`        | *(kosong)*              | Kunci API Mistral |
 | `OLLAMA_URL`         | *(kosong)*              | URL asas Ollama (cth. `http://host.docker.internal:11434`) |
-| `XAI_KEY`            | *(kosong)*              | Kunci API xAI |
+| `XAI_API_KEY`            | *(kosong)*              | Kunci API xAI |
 
 Konfigurasikan hanya penyedia yang anda gunakan. ID model menggunakan ruang nama (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dsb.).
 

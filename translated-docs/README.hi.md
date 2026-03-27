@@ -105,10 +105,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **नोट**<br/>
-> डॉकर में, LLM क्रेडेंशियल्स को `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … जैसे वातावरण चरों के साथ सेट किया जाता है (वेब यूआई में नहीं)। डेस्कटॉप (इलेक्ट्रॉन) पर, आप **सेटिंग्स → API** में कुंजियाँ कॉन्फ़िगर करते हैं।
+> डॉकर में, LLM क्रेडेंशियल्स को `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … जैसे वातावरण चरों के साथ सेट किया जाता है (वेब यूआई में नहीं)। डेस्कटॉप (इलेक्ट्रॉन) पर, आप **सेटिंग्स → API** में कुंजियाँ कॉन्फ़िगर करते हैं।
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### डॉकर
 
 - पुल करें: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- कम से कम एक प्रदाता कुंजी को वातावरण के माध्यम से सेट करें (उदाहरण के लिए ओपनराउटर के लिए `OPENROUTER_KEY`)। `-e` या `docker compose` / `.env` के साथ चरों को पास करें ताकि गुप्त क्रेडेंशियल्स इमेज में न जमा हों।
+- कम से कम एक प्रदाता कुंजी को वातावरण के माध्यम से सेट करें (उदाहरण के लिए ओपनराउटर के लिए `OPENROUTER_API_KEY`)। `-e` या `docker compose` / `.env` के साथ चरों को पास करें ताकि गुप्त क्रेडेंशियल्स इमेज में न जमा हों।
 - प्रदाता की कुंजियाँ वेब यूआई में **नहीं दर्ज** की जाती हैं; सर्वर उन्हें वातावरण से पढ़ता है।
 
 उदाहरण - प्रचलन के लिए एक नामित वॉल्यूम (env के माध्यम से ओपनराउटर कुंजी):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | पोर्ट     | `5000` (`-p 5000:5000` के साथ मैप करें)                                                                              |
 | वॉल्यूम   | कॉन्फ़िग और डेटाबेस प्रचलन के लिए `/app/data` माउंट करें                                                         |
-| वातावरण चर | `PORT`, `CONFIG_PATH`, साथ ही LLM कुंजियाँ (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - देखें [कॉन्फ़िगरेशन](#configuration-and-environment) |
+| वातावरण चर | `PORT`, `CONFIG_PATH`, साथ ही LLM कुंजियाँ (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - देखें [कॉन्फ़िगरेशन](#configuration-and-environment) |
 
 स्रोत से बनाने और चलाने के लिए: `docker compose up --build -d` या `pnpm docker:up` - देखें [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)।
 
@@ -217,7 +217,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 1. [openrouter.ai](https://openrouter.ai) पर साइन अप करें या लॉग इन करें।
 2. [Keys](https://openrouter.ai/keys) पृष्ठ खोलें और एक नई कुंजी बनाएं (इसका नाम दें, और वैकल्पिक रूप से एक क्रेडिट सीमा सेट करें)। आप क्रेडिट जोड़े बिना निःशुल्क मॉडल का उपयोग कर सकते हैं।
-3. **डेस्कटॉप (इलेक्ट्रॉन):** **सेटिंग्स → एपीआई** में कुंजी चिपकाएं। **डॉकर:** एन्वायरनमेंट वेरिएबल्स जैसे `OPENROUTER_KEY` सेट करें (देखें [शीघ्र सुरुआत](#quick-start))।
+3. **डेस्कटॉप (इलेक्ट्रॉन):** **सेटिंग्स → एपीआई** में कुंजी चिपकाएं। **डॉकर:** एन्वायरनमेंट वेरिएबल्स जैसे `OPENROUTER_API_KEY` सेट करें (देखें [शीघ्र सुरुआत](#quick-start))।
 
 अनुवाद, पुनर्लेखन या परिवर्तन के लिए ओपनराउटर के **बॉडी बिल्डर** मॉडल ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) का उपयोग न करें: यह तैयार पाठ के बजाय JSON अनुरोध पेलोड लौटाता है। समर्थित मॉडल्स के लिए उपयोगकर्ता गाइड में [सेटिंग्स → मॉडल](USER-GUIDE.hi.md#models) देखें।
 
@@ -249,16 +249,16 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | सर्वर सुनने वाला पोर्ट |
 | `CONFIG_PATH`    | `/app/data/config.json` | कॉन्फ़िग फ़ाइल का मार्ग |
-| `OPENROUTER_KEY` | *(खाली)*               | ओपनराउटर एपीआई कुंजी |
-| `OPENAI_KEY`     | *(खाली)*               | ओपनएआई एपीआई कुंजी |
-| `CEREBRAS_KEY`   | *(खाली)*               | सेरेब्रास एपीआई कुंजी |
-| `ANTHROPIC_KEY`  | *(खाली)*               | एंथ्रोपिक एपीआई कुंजी |
-| `GOOGLE_KEY`     | *(खाली)*               | गूगल जेमिनी एपीआई कुंजी |
-| `DEEPSEEK_KEY`   | *(खाली)*               | डीपसीक एपीआई कुंजी |
-| `GROQ_KEY`       | *(खाली)*               | ग्रॉक एपीआई कुंजी |
-| `MISTRAL_KEY`    | *(खाली)*               | मिस्ट्रल एपीआई कुंजी |
+| `OPENROUTER_API_KEY` | *(खाली)*               | ओपनराउटर एपीआई कुंजी |
+| `OPENAI_API_KEY`     | *(खाली)*               | ओपनएआई एपीआई कुंजी |
+| `CEREBRAS_API_KEY`   | *(खाली)*               | सेरेब्रास एपीआई कुंजी |
+| `ANTHROPIC_API_KEY`  | *(खाली)*               | एंथ्रोपिक एपीआई कुंजी |
+| `GOOGLE_API_KEY`     | *(खाली)*               | गूगल जेमिनी एपीआई कुंजी |
+| `DEEPSEEK_API_KEY`   | *(खाली)*               | डीपसीक एपीआई कुंजी |
+| `GROQ_API_KEY`       | *(खाली)*               | ग्रॉक एपीआई कुंजी |
+| `MISTRAL_API_KEY`    | *(खाली)*               | मिस्ट्रल एपीआई कुंजी |
 | `OLLAMA_URL`     | *(खाली)*               | ओलामा बेस यूआरएल (उदा॰ `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(खाली)*               | एक्सएआई एपीआई कुंजी |
+| `XAI_API_KEY`        | *(खाली)*               | एक्सएआई एपीआई कुंजी |
 
 केवल उन प्रदाताओं को कॉन्फ़िगर करें जिनका आप उपयोग करते हैं। मॉडल आईडी नामस्थानित हैं (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, आदि)।
 

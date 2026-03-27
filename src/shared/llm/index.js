@@ -45,16 +45,16 @@ const ENCRYPTED_CONFIG_KEYS = ENGINE_IDS.filter((e) => e !== "ollama").map(
 );
 
 const ENV_KEY_BY_ENGINE = {
-  openrouter: "OPENROUTER_KEY",
-  openai: "OPENAI_KEY",
-  anthropic: "ANTHROPIC_KEY",
-  google: "GOOGLE_KEY",
-  deepseek: "DEEPSEEK_KEY",
-  groq: "GROQ_KEY",
-  mistralai: "MISTRAL_KEY",
+  openrouter: "OPENROUTER_API_KEY",
+  openai: "OPENAI_API_KEY",
+  anthropic: "ANTHROPIC_API_KEY",
+  google: "GOOGLE_API_KEY",
+  deepseek: "DEEPSEEK_API_KEY",
+  groq: "GROQ_API_KEY",
+  mistralai: "MISTRAL_API_KEY",
   ollama: "OLLAMA_URL",
-  xai: "XAI_KEY",
-  cerebras: "CEREBRAS_KEY",
+  xai: "XAI_API_KEY",
+  cerebras: "CEREBRAS_API_KEY",
 };
 
 /** In-memory catalog: engine -> ChatModel[] (from last getAllModels). */

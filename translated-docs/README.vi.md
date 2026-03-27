@@ -105,10 +105,10 @@ Sau khi cài đặt, xem **[Hướng dẫn người dùng](USER-GUIDE.vi.md)** �
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ Thay `sk-or-your-key` bằng [khóa API OpenRouter](https://openrouter.ai/keys) 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Trong Docker, thông tin xác thực LLM được đặt bằng biến môi trường như `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (không trong giao diện web). Trên máy tính để bàn (Electron), bạn cấu hình khóa trong **Cài đặt → API**.
+> Trong Docker, thông tin xác thực LLM được đặt bằng biến môi trường như `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (không trong giao diện web). Trên máy tính để bàn (Electron), bạn cấu hình khóa trong **Cài đặt → API**.
 
 <br/>
 
@@ -183,16 +183,16 @@ Một khi ứng dụng đang chạy, xem **[Hướng dẫn người dùng](USER-
 ### Docker
 
 - Kéo: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Đặt ít nhất một khóa nhà cung cấp qua môi trường (ví dụ `OPENROUTER_KEY` cho OpenRouter). Truyền biến với `-e` hoặc `docker compose` / `.env` để bí mật không được đóng gói vào image.
+- Đặt ít nhất một khóa nhà cung cấp qua môi trường (ví dụ `OPENROUTER_API_KEY` cho OpenRouter). Truyền biến với `-e` hoặc `docker compose` / `.env` để bí mật không được đóng gói vào image.
 - Khóa nhà cung cấp **không** được nhập trong giao diện web; máy chủ đọc chúng từ môi trường.
 
 Ví dụ - volume đặt tên để lưu trữ (khóa OpenRouter qua env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------- | ------------------------------------------------------------------------------------------------------- |
 | Cổng       | `5000` (ánh xạ với `-p 5000:5000`)                                                                      |
 | Volume     | Gắn `/app/data` để cấu hình và cơ sở dữ liệu lưu trữ                                                  |
-| Biến env   | `PORT`, `CONFIG_PATH`, cùng khóa LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - xem [Cấu hình](#configuration-and-environment) |
+| Biến env   | `PORT`, `CONFIG_PATH`, cùng khóa LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - xem [Cấu hình](#configuration-and-environment) |
 
 Để build và chạy từ mã nguồn: `docker compose up --build -d` hoặc `pnpm docker:up` - xem [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ Transrewrt hỗ trợ nhiều nhà cung cấp AI. [OpenRouter](https://openroute
 
 1. Đăng ký hoặc đăng nhập tại [openrouter.ai](https://openrouter.ai).
 2. Mở trang [Keys](https://openrouter.ai/keys) và tạo một khóa mới (đặt tên, và tùy chọn đặt giới hạn tín dụng). Bạn có thể sử dụng các mô hình miễn phí mà không cần thêm tín dụng.
-3. **Desktop (Electron):** dán khóa trong **Cài đặt → API**. **Docker:** đặt biến môi trường như `OPENROUTER_KEY` (xem [Bắt đầu nhanh](#quick-start)).
+3. **Desktop (Electron):** dán khóa trong **Cài đặt → API**. **Docker:** đặt biến môi trường như `OPENROUTER_API_KEY` (xem [Bắt đầu nhanh](#quick-start)).
 
 Không sử dụng mô hình **Body Builder** của OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) để dịch, viết lại hoặc biến đổi: nó trả về payload yêu cầu JSON, không phải văn bản hoàn thành cho các tác vụ đó. Xem [Cài đặt → Mô hình](USER-GUIDE.vi.md#models) trong Hướng dẫn Người dùng.
 
@@ -250,16 +250,16 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 | ----------------------- | ------------------------ | ----- |
 | `PORT`                  | `5000`                   | Cổng lắng nghe của máy chủ |
 | `CONFIG_PATH`           | `/app/data/config.json`  | Đường dẫn tới file cấu hình |
-| `OPENROUTER_KEY`        | *(trống)*                | Khóa API OpenRouter |
-| `OPENAI_KEY`            | *(trống)*                | Khóa API OpenAI |
-| `CEREBRAS_KEY`          | *(trống)*                | Khóa API Cerebras |
-| `ANTHROPIC_KEY`         | *(trống)*                | Khóa API Anthropic |
-| `GOOGLE_KEY`            | *(trống)*                | Khóa API Google Gemini |
-| `DEEPSEEK_KEY`          | *(trống)*                | Khóa API DeepSeek |
-| `GROQ_KEY`              | *(trống)*                | Khóa API Groq |
-| `MISTRAL_KEY`           | *(trống)*                | Khóa API Mistral |
+| `OPENROUTER_API_KEY`        | *(trống)*                | Khóa API OpenRouter |
+| `OPENAI_API_KEY`            | *(trống)*                | Khóa API OpenAI |
+| `CEREBRAS_API_KEY`          | *(trống)*                | Khóa API Cerebras |
+| `ANTHROPIC_API_KEY`         | *(trống)*                | Khóa API Anthropic |
+| `GOOGLE_API_KEY`            | *(trống)*                | Khóa API Google Gemini |
+| `DEEPSEEK_API_KEY`          | *(trống)*                | Khóa API DeepSeek |
+| `GROQ_API_KEY`              | *(trống)*                | Khóa API Groq |
+| `MISTRAL_API_KEY`           | *(trống)*                | Khóa API Mistral |
 | `OLLAMA_URL`            | *(trống)*                | URL cơ sở Ollama (ví dụ: `http://host.docker.internal:11434`) |
-| `XAI_KEY`               | *(trống)*                | Khóa API xAI |
+| `XAI_API_KEY`               | *(trống)*                | Khóa API xAI |
 
 Chỉ cấu hình các nhà cung cấp bạn sử dụng. ID mô hình có không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, v.v.).
 

@@ -9,7 +9,7 @@
   "Function": "Fungsi",
   "Import not available.": "Impor ora kasedhiya.",
   "Edit user account. Optionally set a new password or generate one.": "Sunting akun panganggo. Opsional nemtokaké sandhi anyar utawa nggawé siji.",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "Sampeyan kudu nyetel variabel lingkungan OPENROUTER_KEY ing server kanggo nggunakake aplikasi iki.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Sampeyan kudu nyetel variabel lingkungan OPENROUTER_API_KEY ing server kanggo nggunakake aplikasi iki.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Kunci API OpenRouter ora bisa diverifikasi. Terjemahan lan tulis ulang bisa uga ora bisa digunakake.",
   "API Key Required": "Kunci API Dibutuhake",
   "Continue anyway": "Terusake wae",

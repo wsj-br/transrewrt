@@ -9,7 +9,7 @@
   "Function": "Fungsi",
   "Import not available.": "Import tidak tersedia.",
   "Edit user account. Optionally set a new password or generate one.": "Sunting akaun pengguna. Opsyen tetapkan kata laluan baharu atau hasilkan satu.",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "Anda perlu menetapkan pemboleh ubah persekitaran OPENROUTER_KEY pada pelayan untuk menggunakan aplikasi ini.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Anda perlu menetapkan pemboleh ubah persekitaran OPENROUTER_API_KEY pada pelayan untuk menggunakan aplikasi ini.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Kunci API OpenRouter tidak dapat disahkan. Terjemahan dan penulisan semula mungkin tidak berfungsi.",
   "API Key Required": "Kunci API Diperlukan",
   "Continue anyway": "Teruskan sahaja",

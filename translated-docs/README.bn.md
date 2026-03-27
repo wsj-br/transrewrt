@@ -106,10 +106,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **নোট**<br/>
-> ডকারে, LLM ক্রেডেনশিয়ালগুলি `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, …-এর মতো পরিবেশ ভেরিয়েবল ব্যবহার করে সেট করা হয় (ওয়েব UI-এ নয়)। ডেস্কটপে (ইলেকট্রন), আপনি **সেটিংস → API**-এ কী কনফিগার করবেন। কমপক্ষে একটি প্রদানকারী কনফিগার করা প্রয়োজন; বিনামূল্যের মডেলগুলির জন্য OpenRouter সাধারণত ব্যবহৃত হয়।
+> ডকারে, LLM ক্রেডেনশিয়ালগুলি `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, …-এর মতো পরিবেশ ভেরিয়েবল ব্যবহার করে সেট করা হয় (ওয়েব UI-এ নয়)। ডেস্কটপে (ইলেকট্রন), আপনি **সেটিংস → API**-এ কী কনফিগার করবেন। কমপক্ষে একটি প্রদানকারী কনফিগার করা প্রয়োজন; বিনামূল্যের মডেলগুলির জন্য OpenRouter সাধারণত ব্যবহৃত হয়।
 
 <br/>
 
@@ -184,16 +184,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### ডকার
 
 - পুল করুন: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- পরিবেশের মাধ্যমে কমপক্ষে একটি প্রদানকারী কী সেট করুন (উদাহরণস্বরূপ OpenRouter-এর জন্য `OPENROUTER_KEY`)। গোপন কীগুলি ইমেজে জমাট বাঁধার আগে `-e` বা `docker compose` / `.env` এর মাধ্যমে ভেরিয়েবলগুলি পাস করুন।
+- পরিবেশের মাধ্যমে কমপক্ষে একটি প্রদানকারী কী সেট করুন (উদাহরণস্বরূপ OpenRouter-এর জন্য `OPENROUTER_API_KEY`)। গোপন কীগুলি ইমেজে জমাট বাঁধার আগে `-e` বা `docker compose` / `.env` এর মাধ্যমে ভেরিয়েবলগুলি পাস করুন।
 - প্রদানকারীর কীগুলি ওয়েব UI-এ প্রবেশ করানো **হয় না**; সার্ভারটি পরিবেশ থেকে সেগুলি পড়ে।
 
 উদাহরণ - ধারাবাহিকতার জন্য নামযুক্ত ভলিউম (env এর মাধ্যমে OpenRouter কী):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | পোর্ট     | `5000` ( `-p 5000:5000` ব্যবহার করে ম্যাপ করুন)                                                                              |
 | ভলিউম   | কনফিগ এবং ডাটাবেস ধারাবাহিকতার জন্য `/app/data` মাউন্ট করুন                                                         |
-| পরিবেশ ভেরিয়েবল | `PORT`, `CONFIG_PATH`, পাশাপাশি LLM কী (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - [কনফিগারেশন](#configuration-and-environment) দেখুন |
+| পরিবেশ ভেরিয়েবল | `PORT`, `CONFIG_PATH`, পাশাপাশি LLM কী (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - [কনফিগারেশন](#configuration-and-environment) দেখুন |
 
 সোর্স থেকে তৈরি করে চালানোর জন্য: `docker compose up --build -d` বা `pnpm docker:up` - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) দেখুন।
 
@@ -218,7 +218,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 1. [openrouter.ai](https://openrouter.ai-এ সাইন আপ করুন অথবা লগ ইন করুন।
 2. [Keys](https://openrouter.ai/keys) পৃষ্ঠাটি খুলুন এবং একটি নতুন কী তৈরি করুন (এটিকে নাম দিন, এবং ঐচ্ছিকভাবে একটি ক্রেডিট সীমা নির্ধারণ করুন)। আপনি ক্রেডিট যোগ না করেই বিনামূল্যে মডেল ব্যবহার করতে পারেন।
-3. **ডেস্কটপ (ইলেকট্রন):** কীগুলি **Settings → API**-এ পেস্ট করুন। **ডকার:** `OPENROUTER_KEY` এর মতো এনভি ভেরিয়েবল সেট করুন (দেখুন [দ্রুত শুরু](#quick-start))।
+3. **ডেস্কটপ (ইলেকট্রন):** কীগুলি **Settings → API**-এ পেস্ট করুন। **ডকার:** `OPENROUTER_API_KEY` এর মতো এনভি ভেরিয়েবল সেট করুন (দেখুন [দ্রুত শুরু](#quick-start))।
 
 অনুবাদ, পুনঃলেখন বা রূপান্তরের জন্য ওপেনরাউটারের **বডি বিল্ডার** মডেল ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ব্যবহার করবেন না: এটি সম্পূর্ণ টেক্সট না দিয়ে জেসন অনুরোধ পেলোড প্রদান করে। ব্যবহারকারী গাইডে [Settings → Models](USER-GUIDE.bn.md#models) দেখুন।
 
@@ -248,16 +248,16 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | সার্ভারের শুনছে পোর্ট |
 | `CONFIG_PATH`    | `/app/data/config.json` | কনফিগ ফাইলটির পাথ |
-| `OPENROUTER_KEY` | *(খালি)*               | ওপেনরাউটার এপিআই কী |
-| `OPENAI_KEY`     | *(খালি)*               | ওপেনএআই এপিআই কী |
-| `CEREBRAS_KEY`   | *(খালি)*               | সেরেব্রাস এপিআই কী |
-| `ANTHROPIC_KEY`  | *(খালি)*               | অ্যানথ্রোপিক এপিআই কী |
-| `GOOGLE_KEY`     | *(খালি)*               | গুগল জেমিনি এপিআই কী |
-| `DEEPSEEK_KEY`   | *(খালি)*               | ডিপসিক এপিআই কী |
-| `GROQ_KEY`       | *(খালি)*               | গ্রক এপিআই কী |
-| `MISTRAL_KEY`    | *(খালি)*               | মিস্ট্রাল এপিআই কী |
+| `OPENROUTER_API_KEY` | *(খালি)*               | ওপেনরাউটার এপিআই কী |
+| `OPENAI_API_KEY`     | *(খালি)*               | ওপেনএআই এপিআই কী |
+| `CEREBRAS_API_KEY`   | *(খালি)*               | সেরেব্রাস এপিআই কী |
+| `ANTHROPIC_API_KEY`  | *(খালি)*               | অ্যানথ্রোপিক এপিআই কী |
+| `GOOGLE_API_KEY`     | *(খালি)*               | গুগল জেমিনি এপিআই কী |
+| `DEEPSEEK_API_KEY`   | *(খালি)*               | ডিপসিক এপিআই কী |
+| `GROQ_API_KEY`       | *(খালি)*               | গ্রক এপিআই কী |
+| `MISTRAL_API_KEY`    | *(খালি)*               | মিস্ট্রাল এপিআই কী |
 | `OLLAMA_URL`     | *(খালি)*               | ওলামার বেজ ইউআরএল (যেমন `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(খালি)*               | এক্সএআই এপিআই কী |
+| `XAI_API_KEY`        | *(খালি)*               | এক্সএআই এপিআই কী |
 
 শুধুমাত্র আপনি যে প্রদানকারীদের ব্যবহার করেন তাদের কনফিগার করুন। মডেল আইডি নেমস্পেস করা হয় (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ইত্যাদি)।
 

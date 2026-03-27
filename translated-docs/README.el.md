@@ -106,10 +106,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **ΣΗΜΕΙΩΣΗ**<br/>
-> Στο Docker, τα πιστοποιητικά LLM ορίζονται μέσω μεταβλητών περιβάλλοντος όπως `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (όχι μέσω του περιβάλλοντος εργασίας ιστού). Στον υπολογιστή (Electron), ρυθμίζετε τα κλειδιά στο **Ρυθμίσεις → API**.
+> Στο Docker, τα πιστοποιητικά LLM ορίζονται μέσω μεταβλητών περιβάλλοντος όπως `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (όχι μέσω του περιβάλλοντος εργασίας ιστού). Στον υπολογιστή (Electron), ρυθμίζετε τα κλειδιά στο **Ρυθμίσεις → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - Λήψη: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Ορίστε τουλάχιστον ένα κλειδί παρόχου μέσω περιβάλλοντος (π.χ. `OPENROUTER_KEY` για το OpenRouter). Περάστε μεταβλητές με `-e` ή χρησιμοποιήστε `docker compose` / `.env` για να μην ενσωματωθούν τα μυστικά στην εικόνα.
+- Ορίστε τουλάχιστον ένα κλειδί παρόχου μέσω περιβάλλοντος (π.χ. `OPENROUTER_API_KEY` για το OpenRouter). Περάστε μεταβλητές με `-e` ή χρησιμοποιήστε `docker compose` / `.env` για να μην ενσωματωθούν τα μυστικά στην εικόνα.
 - Τα κλειδιά παρόχων **δεν** εισάγονται στο διαδικτυακό περιβάλλον εργασίας· ο διακομιστής τα διαβάζει από το περιβάλλον.
 
 Παράδειγμα: ονομαστή ένωση για διαρκή αποθήκευση (κλειδί OpenRouter μέσω env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Θύρα     | `5000` (χρησιμοποιήστε `-p 5000:5000` για απεικόνιση)                                                                              |
 | Ένωση   | Προσαρτήστε το `/app/data` για διατήρηση επιλογών και βάσης δεδομένων                                                         |
-| Μεταβλητές περιβάλλοντος | `PORT`, `CONFIG_PATH`, καθώς και κλειδιά LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - δείτε [Διαμόρφωση](#configuration-and-environment) |
+| Μεταβλητές περιβάλλοντος | `PORT`, `CONFIG_PATH`, καθώς και κλειδιά LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - δείτε [Διαμόρφωση](#configuration-and-environment) |
 
 Για δημιουργία και εκτέλεση από τον πηγαίο κώδικα: `docker compose up --build -d` ή `pnpm docker:up` - δείτε [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 1. Εγγραφείτε ή συνδεθείτε στη διεύθυνση [openrouter.ai](https://openrouter.ai).
 2. Ανοίξτε τη σελίδα [Keys](https://openrouter.ai/keys) και δημιουργήστε ένα νέο κλειδί (δώστε του όνομα και, προαιρετικά, ορίστε όριο πιστωτικού). Μπορείτε να χρησιμοποιήσετε δωρεάν μοντέλα χωρίς να προσθέσετε πίστωση.
-3. **Desktop (Electron):** επικολλήστε τα κλειδιά στο **Ρυθμίσεις → API**. **Docker:** ορίστε μεταβλητές περιβάλλοντος όπως το `OPENROUTER_KEY` (δείτε [Γρήγορη έναρξη](#quick-start)).
+3. **Desktop (Electron):** επικολλήστε τα κλειδιά στο **Ρυθμίσεις → API**. **Docker:** ορίστε μεταβλητές περιβάλλοντος όπως το `OPENROUTER_API_KEY` (δείτε [Γρήγορη έναρξη](#quick-start)).
 
 Μην χρησιμοποιείτε το μοντέλο **Body Builder** του OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) για μετάφραση, αναδιατύπωση ή μετασχηματισμό: επιστρέφει JSON φορτία αιτήσεων, όχι το ολοκληρωμένο κείμενο για αυτές τις εργασίες. Δείτε [Ρυθμίσεις → Μοντέλα](USER-GUIDE.el.md#models) στον Οδηγό Χρήστη.
 
@@ -251,16 +251,16 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Θύρα ακρόασης διακομιστή |
 | `CONFIG_PATH`    | `/app/data/config.json` | Διαδρομή προς το αρχείο ρυθμίσεων |
-| `OPENROUTER_KEY` | *(κενό)*                 | Κλειδί API OpenRouter |
-| `OPENAI_KEY`     | *(κενό)*                 | Κλειδί API OpenAI |
-| `CEREBRAS_KEY`   | *(κενό)*                 | Κλειδί API Cerebras |
-| `ANTHROPIC_KEY`  | *(κενό)*                 | Κλειδί API Anthropic |
-| `GOOGLE_KEY`     | *(κενό)*                 | Κλειδί API Google Gemini |
-| `DEEPSEEK_KEY`   | *(κενό)*                 | Κλειδί API DeepSeek |
-| `GROQ_KEY`       | *(κενό)*                 | Κλειδί API Groq |
-| `MISTRAL_KEY`    | *(κενό)*                 | Κλειδί API Mistral |
+| `OPENROUTER_API_KEY` | *(κενό)*                 | Κλειδί API OpenRouter |
+| `OPENAI_API_KEY`     | *(κενό)*                 | Κλειδί API OpenAI |
+| `CEREBRAS_API_KEY`   | *(κενό)*                 | Κλειδί API Cerebras |
+| `ANTHROPIC_API_KEY`  | *(κενό)*                 | Κλειδί API Anthropic |
+| `GOOGLE_API_KEY`     | *(κενό)*                 | Κλειδί API Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(κενό)*                 | Κλειδί API DeepSeek |
+| `GROQ_API_KEY`       | *(κενό)*                 | Κλειδί API Groq |
+| `MISTRAL_API_KEY`    | *(κενό)*                 | Κλειδί API Mistral |
 | `OLLAMA_URL`     | *(κενό)*                 | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(κενό)*                 | Κλειδί API xAI |
+| `XAI_API_KEY`        | *(κενό)*                 | Κλειδί API xAI |
 
 Ρυθμίζετε μόνο τους παρόχους που χρησιμοποιείτε. Οι ταυτότητες μοντέλων είναι υπό χώρο ονομάτων (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, κλπ).
 

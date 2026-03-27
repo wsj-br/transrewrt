@@ -105,10 +105,10 @@ Yükledikten sonra tüm özellikleri kapsamlı bir şekilde öğrenmek için **[
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **NOT**<br/>
-> Docker kullanırken, LLM kimlik bilgileri, `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY` gibi ortam değişkenleriyle ayarlanır (web arayüzünde değil). Masaüstünde (Electron) anahtarları **Ayarlar → API** bölümünde yapılandırırsınız.
+> Docker kullanırken, LLM kimlik bilgileri, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY` gibi ortam değişkenleriyle ayarlanır (web arayüzünde değil). Masaüstünde (Electron) anahtarları **Ayarlar → API** bölümünde yapılandırırsınız.
 
 <br/>
 
@@ -183,16 +183,16 @@ Uygulama başladıktan sonra, metin çeviri, yeniden yazma ve dönüştürme iş
 ### Docker
 
 - İndirin: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- En az bir sağlayıcı anahtarı ortam değişkeni ile ayarlayın (örneğin OpenRouter için `OPENROUTER_KEY`). Gizli bilgilerin imaj içine gömülmemesi için değişkenleri `-e` veya `docker compose` / `.env` ile aktarın.
+- En az bir sağlayıcı anahtarı ortam değişkeni ile ayarlayın (örneğin OpenRouter için `OPENROUTER_API_KEY`). Gizli bilgilerin imaj içine gömülmemesi için değişkenleri `-e` veya `docker compose` / `.env` ile aktarın.
 - Sağlayıcı anahtarları web arayüzünde değil, sunucu tarafından ortamdan okunur.
 
 Örnek - Kalıcı olarak kullanılan isimlendirilmiş birim (OpenRouter anahtarı ortamdan alınır):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Bağlantı noktası  | `5000` (bağlamak için `-p 5000:5000` kullanın)                                                                              |
 | Birim   | Kalıcılık için `/app/data` dizinini bağlayın                                                        |
-| Ortam değişkenleri | `PORT`, `CONFIG_PATH`, artı LLM anahtarları (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - bkz. [Yapılandırma](#configuration-and-environment) |
+| Ortam değişkenleri | `PORT`, `CONFIG_PATH`, artı LLM anahtarları (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - bkz. [Yapılandırma](#configuration-and-environment) |
 
 Kaynaktan inşa etmek ve çalıştırmak için: `docker compose up --build -d` veya `pnpm docker:up` - detaylar için [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) bölümüne bakın.
 
@@ -217,7 +217,7 @@ Transrewrt, birden fazla yapay zeka sağlayıcısını destekler. [OpenRouter](h
 
 1. [openrouter.ai](https://openrouter.ai) adresinden üye olun ya da oturum açın.
 2. [Keys](https://openrouter.ai/keys) sayfasını açın ve yeni bir anahtar oluşturun (isimlendirin, isteğe bağlı olarak kredi limiti ayarlayabilirsiniz). Kredi eklemeye gerek kalmadan ücretsiz modelleri kullanabilirsiniz.
-3. **Masaüstü (Electron):** Anahtarları **Ayarlar → API** bölümüne yapıştırın. **Docker:** `OPENROUTER_KEY` gibi ortam değişkenlerini belirtin (bkz. [Hızlı başlangıç](#quick-start)).
+3. **Masaüstü (Electron):** Anahtarları **Ayarlar → API** bölümüne yapıştırın. **Docker:** `OPENROUTER_API_KEY` gibi ortam değişkenlerini belirtin (bkz. [Hızlı başlangıç](#quick-start)).
 
 Çeviri, yeniden yazma veya dönüştürme işlemleri için OpenRouter'ın **Body Builder** modelini ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kullanmayın: bu model tamamlanmış metin değil, JSON istekleri döndürür. Kullanım kılavuzundaki [Ayarlar → Modeller](USER-GUIDE.tr.md#models) bölümüne bakın.
 
@@ -250,16 +250,16 @@ Sınırlar, BYOK (kendi anahtarınızla getirin) ve daha fazlası için [OpenRou
 | ------------------ | ---------------------- | -------- |
 | `PORT`             | `5000`                 | Sunucunun dinlediği port |
 | `CONFIG_PATH`      | `/app/data/config.json`| Yapılandırma dosyasının yolu |
-| `OPENROUTER_KEY`   | *(boş)*                | OpenRouter API anahtarı |
-| `OPENAI_KEY`       | *(boş)*                | OpenAI API anahtarı |
-| `CEREBRAS_KEY`     | *(boş)*                | Cerebras API anahtarı |
-| `ANTHROPIC_KEY`    | *(boş)*                | Anthropic API anahtarı |
-| `GOOGLE_KEY`       | *(boş)*                | Google Gemini API anahtarı |
-| `DEEPSEEK_KEY`     | *(boş)*                | DeepSeek API anahtarı |
-| `GROQ_KEY`         | *(boş)*                | Groq API anahtarı |
-| `MISTRAL_KEY`      | *(boş)*                | Mistral API anahtarı |
+| `OPENROUTER_API_KEY`   | *(boş)*                | OpenRouter API anahtarı |
+| `OPENAI_API_KEY`       | *(boş)*                | OpenAI API anahtarı |
+| `CEREBRAS_API_KEY`     | *(boş)*                | Cerebras API anahtarı |
+| `ANTHROPIC_API_KEY`    | *(boş)*                | Anthropic API anahtarı |
+| `GOOGLE_API_KEY`       | *(boş)*                | Google Gemini API anahtarı |
+| `DEEPSEEK_API_KEY`     | *(boş)*                | DeepSeek API anahtarı |
+| `GROQ_API_KEY`         | *(boş)*                | Groq API anahtarı |
+| `MISTRAL_API_KEY`      | *(boş)*                | Mistral API anahtarı |
 | `OLLAMA_URL`       | *(boş)*                | Ollama temel URL'si (örn. `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(boş)*                | xAI API anahtarı |
+| `XAI_API_KEY`          | *(boş)*                | xAI API anahtarı |
 
 Kullandığınız sağlayıcıları yapılandırın. Model kimlikleri isim alanı kullanır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, vs.).
 

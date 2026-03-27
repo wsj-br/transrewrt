@@ -105,10 +105,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **ملاحظة**<br/>
-> في دوكير، تُضبط بيانات اعتماد نموذج اللغة (LLM) باستخدام متغيرات البيئة مثل `OPENROUTER_KEY`، `OPENAI_KEY`، `CEREBRAS_KEY`... (وليس من واجهة المستخدم الرسومية). أما على سطح المكتب (إلكترون) فتُضبط المفاتيح من خلال **الإعدادات → API**.
+> في دوكير، تُضبط بيانات اعتماد نموذج اللغة (LLM) باستخدام متغيرات البيئة مثل `OPENROUTER_API_KEY`، `OPENAI_API_KEY`، `CEREBRAS_API_KEY`... (وليس من واجهة المستخدم الرسومية). أما على سطح المكتب (إلكترون) فتُضبط المفاتيح من خلال **الإعدادات → API**.
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### دوكير
 
 - جرّب: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- عيّن مفتاح مزود واحد على الأقل عبر بيئة التشغيل (مثلاً `OPENROUTER_KEY` لـ OpenRouter). مرّر المتغيرات باستخدام `-e` أو `docker compose` / `.env` حتى لا تكون الأسرار مدمجة في الصورة.
+- عيّن مفتاح مزود واحد على الأقل عبر بيئة التشغيل (مثلاً `OPENROUTER_API_KEY` لـ OpenRouter). مرّر المتغيرات باستخدام `-e` أو `docker compose` / `.env` حتى لا تكون الأسرار مدمجة في الصورة.
 - **لا تُدخل** مفاتيح المزودين في واجهة المستخدم الرسومية؛ بل يقرأ الخادمها من بيئة التشغيل.
 
 مثال - استخدام وحدة تخزين ذات اسم للحفاظ على البيانات (مفتاح OpenRouter عبر بيئة):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | المنفذ     | `5000` (يُقرن باستخدام `-p 5000:5000`)                                                                              |
 | وحدة التخزين   | وصل `/app/data` للحفاظ على إعدادات التكوين وقاعدة البيانات                                                   |
-| متغيرات البيئة | `PORT`، `CONFIG_PATH`، بالإضافة إلى مفاتيح LLM (`OPENROUTER_KEY`، `OPENAI_KEY`، …) - راجع [التكوين](#configuration-and-environment) |
+| متغيرات البيئة | `PORT`، `CONFIG_PATH`، بالإضافة إلى مفاتيح LLM (`OPENROUTER_API_KEY`، `OPENAI_API_KEY`، …) - راجع [التكوين](#configuration-and-environment) |
 
 لبناء التطبيق وتشغيله من المصدر: `docker compose up --build -d` أو `pnpm docker:up` - راجع [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 1. اشترك أو سجّل الدخول على [openrouter.ai](https://openrouter.ai).
 2. افتح صفحة [Keys](https://openrouter.ai/keys) وأنشئ مفتاحًا جديدًا (سمّه، واختر بحد أقصى حد ائتماني). يمكنك استخدام النماذج المجانية دون إضافة رصيد.
-3. **النسخة المكتبية (Electron):** الصق المفاتيح في **الإعدادات → واجهة برمجة التطبيقات (API)**. **Docker:** عيّن متغيرات البيئة مثل `OPENROUTER_KEY` (انظر [البدء السريع](#quick-start)).
+3. **النسخة المكتبية (Electron):** الصق المفاتيح في **الإعدادات → واجهة برمجة التطبيقات (API)**. **Docker:** عيّن متغيرات البيئة مثل `OPENROUTER_API_KEY` (انظر [البدء السريع](#quick-start)).
 
 لا تستخدم نموذج **Body Builder** من OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) للترجمة أو إعادة الصياغة أو التحويل: فهو يُرجع حُمولات طلبات بصيغة JSON، وليست النصوص المكتملة لهذه المهام. راجع [الإعدادات → النماذج](USER-GUIDE.ar.md#models) في دليل المستخدم.
 
@@ -250,16 +250,16 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ------------------- | ------------------------ | ----- |
 | `PORT`              | `5000`                   | منفذ الاستماع للخادم |
 | `CONFIG_PATH`       | `/app/data/config.json`  | مسار ملف التهيئة |
-| `OPENROUTER_KEY`    | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenRouter |
-| `OPENAI_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenAI |
-| `CEREBRAS_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Cerebras |
-| `ANTHROPIC_KEY`     | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Anthropic |
-| `GOOGLE_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Google Gemini |
-| `DEEPSEEK_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات DeepSeek |
-| `GROQ_KEY`          | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Groq |
-| `MISTRAL_KEY`       | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Mistral |
+| `OPENROUTER_API_KEY`    | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenRouter |
+| `OPENAI_API_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات OpenAI |
+| `CEREBRAS_API_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Cerebras |
+| `ANTHROPIC_API_KEY`     | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Anthropic |
+| `GOOGLE_API_KEY`        | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Google Gemini |
+| `DEEPSEEK_API_KEY`      | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات DeepSeek |
+| `GROQ_API_KEY`          | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Groq |
+| `MISTRAL_API_KEY`       | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات Mistral |
 | `OLLAMA_URL`        | *(فارغ)*                 | الرابط الأساسي لـ Ollama (مثل `http://host.docker.internal:11434`) |
-| `XAI_KEY`           | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات xAI |
+| `XAI_API_KEY`           | *(فارغ)*                 | مفتاح واجهة برمجة تطبيقات xAI |
 
 قم بتهيئة الموفرين الذين تستخدمهم فقط. أسماء نماذج النماذج تكون ضمن نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ).
 

@@ -5,11 +5,11 @@
  * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md,
  * then replaces `<small id="lang-list">…</small>` with the British English source block (canonical links; English UK → `../README.md` / `../USER-GUIDE.md`).
  * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
- * Requires OPENROUTER_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
+ * Requires OPENROUTER_API_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
  * Session log: dev/translate-docs_YYYYMMDD_HHMMSS.log; per-doc summaries append to dev/translations.log.
  *
  *   node scripts/translate-docs.js --help
- *   OPENROUTER_KEY=sk-or-... pnpm run translate-docs
+ *   OPENROUTER_API_KEY=sk-or-... pnpm run translate-docs
  *
  * Model list: scripts/openrouter-script-models.js (not app config).
  */
@@ -101,11 +101,11 @@ function printHelp() {
   log(BLUE + `
 Translate README.md and USER-GUIDE.md to all UI languages (source: British English).
 Output: translated-docs/README.<code>.md, translated-docs/USER-GUIDE.<code>.md.
-Documents are sent whole; if > 16k chars they are split at markdown section boundaries. Requires OPENROUTER_KEY.
+Documents are sent whole; if > 16k chars they are split at markdown section boundaries. Requires OPENROUTER_API_KEY.
 
 Usage:
   node scripts/translate-docs.js [options]
-  OPENROUTER_KEY=sk-or-... pnpm run translate-docs -- [options]
+  OPENROUTER_API_KEY=sk-or-... pnpm run translate-docs -- [options]
 
 Options:
   --help, -h              Show this help and exit.
@@ -119,9 +119,9 @@ Options:
 
 Examples:
   node scripts/translate-docs.js --help
-  OPENROUTER_KEY=sk-or-... node scripts/translate-docs.js
-  OPENROUTER_KEY=sk-or-... node scripts/translate-docs.js --doc USER-GUIDE --locale pt-BR,es,ja
-  OPENROUTER_KEY=sk-or-... node scripts/translate-docs.js --force
+  OPENROUTER_API_KEY=sk-or-... node scripts/translate-docs.js
+  OPENROUTER_API_KEY=sk-or-... node scripts/translate-docs.js --doc USER-GUIDE --locale pt-BR,es,ja
+  OPENROUTER_API_KEY=sk-or-... node scripts/translate-docs.js --force
 
 `+ RESET);
 }
@@ -178,7 +178,7 @@ if (args.unknown.length > 0) {
   process.exit(1);
 }
 
-const OPENROUTER_KEY = (process.env.OPENROUTER_KEY || "").trim();
+const OPENROUTER_API_KEY = (process.env.OPENROUTER_API_KEY || "").trim();
 const MODEL = args.model;
 const MAX_TOKENS = args.maxTokens;
 const CONCURRENCY = args.concurrency;
@@ -224,8 +224,8 @@ if (LANGUAGES.length === 0) {
   process.exit(1);
 }
 
-if (!OPENROUTER_KEY && LANGUAGES.some((l) => l.code !== "en-GB")) {
-  warn("OPENROUTER_KEY not set; only en-GB (source) will be done for non–en-GB locales.");
+if (!OPENROUTER_API_KEY && LANGUAGES.some((l) => l.code !== "en-GB")) {
+  warn("OPENROUTER_API_KEY not set; only en-GB (source) will be done for non–en-GB locales.");
 }
 
 function hashSource(content) {
@@ -341,7 +341,7 @@ async function translateBlock(blockContent, langName, modelOverride = null) {
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${OPENROUTER_KEY}`,
+      Authorization: `Bearer ${OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
       "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
       "X-Title": "Transrewrt-doc-translations",
@@ -598,8 +598,8 @@ async function processLocale(locale, docContents) {
     return stats;
   }
 
-  if (!OPENROUTER_KEY) {
-    log(`${locale.code}: skipping (no OPENROUTER_KEY)`);
+  if (!OPENROUTER_API_KEY) {
+    log(`${locale.code}: skipping (no OPENROUTER_API_KEY)`);
     stats.status = "failed";
     stats.elapsedMs = Date.now() - start;
     stats.byDoc = {};

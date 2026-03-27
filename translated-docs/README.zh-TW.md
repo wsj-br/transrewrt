@@ -105,10 +105,10 @@ AI 驅動的文字工具：支援多語言翻譯、不同風格重寫，以及�
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **注意**<br/>
-> 在 Docker 中，LLM 憑證需透過 `OPENROUTER_KEY`、`OPENAI_KEY`、`CEREBRAS_KEY` 等環境變數設定（非透過網頁介面）。在桌面端（Electron）中，您可在 **設定 → API** 中設定金鑰。
+> 在 Docker 中，LLM 憑證需透過 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` 等環境變數設定（非透過網頁介面）。在桌面端（Electron）中，您可在 **設定 → API** 中設定金鑰。
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - 拉取映像檔：`docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 透過環境變數至少設定一個供應商金鑰（例如 OpenRouter 使用 `OPENROUTER_KEY`）。使用 `-e` 或 `docker compose` / `.env` 傳遞變數，以避免機密資訊被封裝進映像檔中。
+- 透過環境變數至少設定一個供應商金鑰（例如 OpenRouter 使用 `OPENROUTER_API_KEY`）。使用 `-e` 或 `docker compose` / `.env` 傳遞變數，以避免機密資訊被封裝進映像檔中。
 - **不可**在 Web UI 中輸入供應商金鑰；伺服器會從環境變數讀取。
 
 範例 – 使用命名卷保持資料（透過環境變數設定 OpenRouter 金鑰）：
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 |--------|-------------------------------------------------------------------------------------------------------------|
 | 埠號    | `5000`（使用 `-p 5000:5000` 進行映射）                                                                       |
 | 卷     | 掛載 `/app/data` 以保留設定與資料庫                                                                         |
-| 環境變數 | `PORT`、`CONFIG_PATH`，以及 LLM 金鑰（`OPENROUTER_KEY`、`OPENAI_KEY` 等）– 詳見 [設定](#configuration-and-environment) |
+| 環境變數 | `PORT`、`CONFIG_PATH`，以及 LLM 金鑰（`OPENROUTER_API_KEY`、`OPENAI_API_KEY` 等）– 詳見 [設定](#configuration-and-environment) |
 
 欲從原始碼建置並執行：`docker compose up --build -d` 或 `pnpm docker:up` – 請見 [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)。
 
@@ -217,7 +217,7 @@ Transrewrt 支援多種 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 
 1. 前往 [openrouter.ai](https://openrouter.ai) 註冊帳號或登入。
 2. 打開 [金鑰頁面](https://openrouter.ai/keys) 並建立新金鑰（可命名，並選擇性設定信用額度上限）。使用免費模型時，無需新增信用額度。
-3. **桌面版 (Electron)**：將金鑰貼入 **設定 → API** 中。**Docker**：設定如 `OPENROUTER_KEY` 的環境變數（參見 [快速開始](#quick-start)）。
+3. **桌面版 (Electron)**：將金鑰貼入 **設定 → API** 中。**Docker**：設定如 `OPENROUTER_API_KEY` 的環境變數（參見 [快速開始](#quick-start)）。
 
 請勿使用 OpenRouter 的 **Body Builder** 模型（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）進行翻譯、改寫或轉換，因為此模型僅回傳 JSON 請求內容，而非完成的文本。詳情請見使用者指南中的 [設定 → 模型](USER-GUIDE.zh-TW.md#models)。
 
@@ -249,16 +249,16 @@ Transrewrt 支援多種 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | 伺服器監聽埠號 |
 | `CONFIG_PATH`    | `/app/data/config.json` | 設定檔路徑 |
-| `OPENROUTER_KEY` | *(空)*               | OpenRouter API 金鑰 |
-| `OPENAI_KEY`     | *(空)*               | OpenAI API 金鑰 |
-| `CEREBRAS_KEY`   | *(空)*               | Cerebras API 金鑰 |
-| `ANTHROPIC_KEY`  | *(空)*               | Anthropic API 金鑰 |
-| `GOOGLE_KEY`     | *(空)*               | Google Gemini API 金鑰 |
-| `DEEPSEEK_KEY`   | *(空)*               | DeepSeek API 金鑰 |
-| `GROQ_KEY`       | *(空)*               | Groq API 金鑰 |
-| `MISTRAL_KEY`    | *(空)*               | Mistral API 金鑰 |
+| `OPENROUTER_API_KEY` | *(空)*               | OpenRouter API 金鑰 |
+| `OPENAI_API_KEY`     | *(空)*               | OpenAI API 金鑰 |
+| `CEREBRAS_API_KEY`   | *(空)*               | Cerebras API 金鑰 |
+| `ANTHROPIC_API_KEY`  | *(空)*               | Anthropic API 金鑰 |
+| `GOOGLE_API_KEY`     | *(空)*               | Google Gemini API 金鑰 |
+| `DEEPSEEK_API_KEY`   | *(空)*               | DeepSeek API 金鑰 |
+| `GROQ_API_KEY`       | *(空)*               | Groq API 金鑰 |
+| `MISTRAL_API_KEY`    | *(空)*               | Mistral API 金鑰 |
 | `OLLAMA_URL`     | *(空)*               | Ollama 基本 URL（例如 `http://host.docker.internal:11434`） |
-| `XAI_KEY`        | *(空)*               | xAI API 金鑰 |
+| `XAI_API_KEY`        | *(空)*               | xAI API 金鑰 |
 
 請僅設定您使用的提供商。模型 ID 採用命名空間格式（如 `openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。
 

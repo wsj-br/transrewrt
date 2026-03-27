@@ -106,10 +106,10 @@ Sawise dipasang, deleng **[Pandhuan Panganggo](USER-GUIDE.jv.md)** kanggo pandhu
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Ganti `sk-or-your-key` nganggo [kunci API OpenRouter](https://openrouter.ai/keys
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Ing Docker, kredensial LLM diatur nganggo variabel lingkungan kaya `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ora ing UI web). Ing desktop (Electron) sampeyan ngatur kunci ing **Setelan → API**.
+> Ing Docker, kredensial LLM diatur nganggo variabel lingkungan kaya `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ora ing UI web). Ing desktop (Electron) sampeyan ngatur kunci ing **Setelan → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Sawise aplikasi dijalanke, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kang
 ### Docker
 
 - Ambil: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Atur paling ora siji kunci penyedia liwat lingkungan (contone `OPENROUTER_KEY` kanggo OpenRouter). Lulus variabel nganggo `-e` utawa `docker compose` / `.env` supaya rahasia ora kalebu ing gambar.
+- Atur paling ora siji kunci penyedia liwat lingkungan (contone `OPENROUTER_API_KEY` kanggo OpenRouter). Lulus variabel nganggo `-e` utawa `docker compose` / `.env` supaya rahasia ora kalebu ing gambar.
 - Kunci penyedia **ora** dimasukkan ing UI web; server maca saka lingkungan.
 
 Conto - volume dijenengi kanggo persistensi (kunci OpenRouter liwat env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (petakake nganggo `-p 5000:5000`)                                                                              |
 | Volume   | Mount `/app/data` kanggo persistensi konfigurasi lan basis data                                                         |
-| Variabel lingkungan | `PORT`, `CONFIG_PATH`, ditambah kunci LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - deleng [Konfigurasi](#configuration-and-environment) |
+| Variabel lingkungan | `PORT`, `CONFIG_PATH`, ditambah kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - deleng [Konfigurasi](#configuration-and-environment) |
 
 Kanggo mbangun lan jalanake saka sumber: `docker compose up --build -d` utawa `pnpm docker:up` - deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt nyengkuyung akèh penyedia AI. [OpenRouter](https://openrouter.ai) mi
 
 1. Daftar utawa mlebu ing [openrouter.ai](https://openrouter.ai).
 2. Bukak kaca [Keys](https://openrouter.ai/keys) lan gawé kunci énggal (jenengi, lan pilihan atur watesan kredit). Sampeyan bisa migunakaké model gratis tanpa nambahi kredit.
-3. **Desktop (Electron):** Tempel kunci ing **Setelan → API**. **Docker:** Atur variabel lingkungan kaya `OPENROUTER_KEY` (deleng [Miwiti Cepet](#quick-start)).
+3. **Desktop (Electron):** Tempel kunci ing **Setelan → API**. **Docker:** Atur variabel lingkungan kaya `OPENROUTER_API_KEY` (deleng [Miwiti Cepet](#quick-start)).
 
 Aja nggunakake model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kanggo terjemahan, nulis maneh, utawa transformasi: model iki maringi muatan jeneng panjaluk JSON, bukan teks rampung kanggo tugas-tugas kasebut. Deleng [Setelan → Model](USER-GUIDE.jv.md#models) ing Pandhuan Panganggo.
 
@@ -250,16 +250,16 @@ Deleng [otentikasi OpenRouter](https://openrouter.ai/docs/api/reference/authenti
 | ------------------ | ----------------------- | ----------- |
 | `PORT`            | `5000`                  | Port peladen |
 | `CONFIG_PATH`     | `/app/data/config.json` | Path menyang berkas konfigurasi |
-| `OPENROUTER_KEY`  | *(kosong)*              | Kunci API OpenRouter |
-| `OPENAI_KEY`      | *(kosong)*              | Kunci API OpenAI |
-| `CEREBRAS_KEY`    | *(kosong)*              | Kunci API Cerebras |
-| `ANTHROPIC_KEY`   | *(kosong)*              | Kunci API Anthropic |
-| `GOOGLE_KEY`      | *(kosong)*              | Kunci API Google Gemini |
-| `DEEPSEEK_KEY`    | *(kosong)*              | Kunci API DeepSeek |
-| `GROQ_KEY`        | *(kosong)*              | Kunci API Groq |
-| `MISTRAL_KEY`     | *(kosong)*              | Kunci API Mistral |
+| `OPENROUTER_API_KEY`  | *(kosong)*              | Kunci API OpenRouter |
+| `OPENAI_API_KEY`      | *(kosong)*              | Kunci API OpenAI |
+| `CEREBRAS_API_KEY`    | *(kosong)*              | Kunci API Cerebras |
+| `ANTHROPIC_API_KEY`   | *(kosong)*              | Kunci API Anthropic |
+| `GOOGLE_API_KEY`      | *(kosong)*              | Kunci API Google Gemini |
+| `DEEPSEEK_API_KEY`    | *(kosong)*              | Kunci API DeepSeek |
+| `GROQ_API_KEY`        | *(kosong)*              | Kunci API Groq |
+| `MISTRAL_API_KEY`     | *(kosong)*              | Kunci API Mistral |
 | `OLLAMA_URL`      | *(kosong)*              | URL dhasar Ollama (contone `http://host.docker.internal:11434`) |
-| `XAI_KEY`         | *(kosong)*              | Kunci API xAI |
+| `XAI_API_KEY`         | *(kosong)*              | Kunci API xAI |
 
 Konfigurasia mung penyedia sing digunakaké. ID model duwé ruang jeneng (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, lsp.).
 

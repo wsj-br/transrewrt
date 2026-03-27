@@ -134,7 +134,7 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | Command                   | Purpose                                                                                                                                                |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                   |
-| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
+| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
 | `pnpm run i18n:sync`      | Run extract then translate                                                                                                                             |
 
 The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), `scripts/translate-docs.js` (`pnpm translate-docs`), and `scripts/generate-test-data.js`. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
@@ -265,7 +265,7 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 | Command                   | Purpose                                                              |
 |---------------------------|----------------------------------------------------------------------|
 | `pnpm run i18n:extract`   | Scan renderer → `src/renderer/locales/strings.json`                  |
-| `pnpm run i18n:translate` | Fill missing locales via OpenRouter (`OPENROUTER_KEY`); see `--help` |
+| `pnpm run i18n:translate` | Fill missing locales via OpenRouter (`OPENROUTER_API_KEY`); see `--help` |
 | `pnpm run i18n:sync`      | `i18n:extract` then `i18n:translate`                                 |
 
 Shared **translation script** model list (defaults + fallbacks): [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) — not app config; per-run override via `--model` where the script supports it.
@@ -277,9 +277,9 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm generate-test-data` | Seed SQLite with sample API/history rows (cost dashboard / dev)                      |
 | `pnpm take-screenshots`   | Puppeteer capture of UI shots (needs app reachable; see script/env vars)             |
 | `pnpm generate-banner`    | Writes `images/transrewrt_banner.svg` and `.png`                                     |
-| `pnpm translate-docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_KEY`) |
+| `pnpm translate-docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`) |
 | `pnpm reset-web-password` | Web multi-user: set password in SQLite (`[username] <password>`; default `admin`; `CONFIG_PATH` or `data/config.json`) |
-| `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_KEY` or `node scripts/check-api-key.js --key …`)                      |
+| `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                      |
 | `pnpm update-version`     | Propagate `package.json` `version` into README badge and other references (run after you bump the version manually)   |
 
 ### Docker and deploy
@@ -355,7 +355,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
 | [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
-| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_KEY`)                                                |
+| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                                |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** and [Related documentation](#related-documentation).

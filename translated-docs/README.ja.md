@@ -105,10 +105,10 @@ AI搭載のテキスト変換ツール：複数のAIプロバイダー（OpenRou
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **注記**<br/>
-> Docker では、LLM の認証情報は `OPENROUTER_KEY`、`OPENAI_KEY`、`CEREBRAS_KEY` などの環境変数で設定します（Web UI ではありません）。デスクトップ版（Electron）では、**設定 → API** からキーを設定します。
+> Docker では、LLM の認証情報は `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` などの環境変数で設定します（Web UI ではありません）。デスクトップ版（Electron）では、**設定 → API** からキーを設定します。
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - プル: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 少なくとも1つのプロバイダーのキー（例：OpenRouter の `OPENROUTER_KEY`）を環境変数で設定します。`-e` や `docker compose`、`.env` ファイルを使用して秘密情報をイメージに含めないようにしてください。
+- 少なくとも1つのプロバイダーのキー（例：OpenRouter の `OPENROUTER_API_KEY`）を環境変数で設定します。`-e` や `docker compose`、`.env` ファイルを使用して秘密情報をイメージに含めないようにしてください。
 - プロバイダーのキーは **Web UI には入力しません**。サーバーは環境変数から読み取ります。
 
 例：永続化用の名前付きボリューム（環境変数で OpenRouter キー指定）：
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | ポート     | `5000`（`-p 5000:5000` でマッピング）                                                                              |
 | ボリューム   | コンフィグとデータベースの永続化のために `/app/data` をマウント                                                         |
-| 環境変数 | `PORT`、`CONFIG_PATH`、およびLLMキー（`OPENROUTER_KEY`、`OPENAI_KEY`…） - 詳細は [設定](#configuration-and-environment) を参照 |
+| 環境変数 | `PORT`、`CONFIG_PATH`、およびLLMキー（`OPENROUTER_API_KEY`、`OPENAI_API_KEY`…） - 詳細は [設定](#configuration-and-environment) を参照 |
 
 ソースからビルド・実行するには：`docker compose up --build -d` または `pnpm docker:up` - 詳細は [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) を参照。
 
@@ -217,7 +217,7 @@ Transrewrt は複数のAIプロバイダーをサポートしています。[Ope
 
 1. [openrouter.ai](https://openrouter.ai) で登録またはログインします。
 2. [Keys](https://openrouter.ai/keys) ページを開き、新しいキーを作成します（名前を付け、必要に応じてクレジット制限を設定可能）。クレジットを追加せずに無料モデルを利用できます。
-3. **デスクトップ版 (Electron):** **設定 → API** にキーを貼り付けます。**Docker版:** `OPENROUTER_KEY` などの環境変数を設定します（[クイックスタート](#quick-start) を参照）。
+3. **デスクトップ版 (Electron):** **設定 → API** にキーを貼り付けます。**Docker版:** `OPENROUTER_API_KEY` などの環境変数を設定します（[クイックスタート](#quick-start) を参照）。
 
 翻訳、リライト、変換タスクでは、OpenRouterの **Body Builder** モデル（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）は使用しないでください。このモデルは完了したテキストではなくJSON形式のリクエストペイロードを返すためです。詳細はユーザーガイドの [設定 → モデル](USER-GUIDE.ja.md#models) をご参照ください。
 
@@ -250,16 +250,16 @@ OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras�
 | ------------------ | ----------------------- | ---- |
 | `PORT`             | `5000`                  | サーバーのリッスンポート |
 | `CONFIG_PATH`      | `/app/data/config.json` | 設定ファイルのパス |
-| `OPENROUTER_KEY`   | *(空)*                  | OpenRouter APIキー |
-| `OPENAI_KEY`       | *(空)*                  | OpenAI APIキー |
-| `CEREBRAS_KEY`     | *(空)*                  | Cerebras APIキー |
-| `ANTHROPIC_KEY`    | *(空)*                  | Anthropic APIキー |
-| `GOOGLE_KEY`       | *(空)*                  | Google Gemini APIキー |
-| `DEEPSEEK_KEY`     | *(空)*                  | DeepSeek APIキー |
-| `GROQ_KEY`         | *(空)*                  | Groq APIキー |
-| `MISTRAL_KEY`      | *(空)*                  | Mistral APIキー |
+| `OPENROUTER_API_KEY`   | *(空)*                  | OpenRouter APIキー |
+| `OPENAI_API_KEY`       | *(空)*                  | OpenAI APIキー |
+| `CEREBRAS_API_KEY`     | *(空)*                  | Cerebras APIキー |
+| `ANTHROPIC_API_KEY`    | *(空)*                  | Anthropic APIキー |
+| `GOOGLE_API_KEY`       | *(空)*                  | Google Gemini APIキー |
+| `DEEPSEEK_API_KEY`     | *(空)*                  | DeepSeek APIキー |
+| `GROQ_API_KEY`         | *(空)*                  | Groq APIキー |
+| `MISTRAL_API_KEY`      | *(空)*                  | Mistral APIキー |
 | `OLLAMA_URL`       | *(空)*                  | OllamaのベースURL（例: `http://host.docker.internal:11434`） |
-| `XAI_KEY`          | *(空)*                  | xAI APIキー |
+| `XAI_API_KEY`          | *(空)*                  | xAI APIキー |
 
 使用するプロバイダーのみを設定してください。モデルIDは名前空間付きで指定されます（`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` など）。
 

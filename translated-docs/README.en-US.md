@@ -106,10 +106,10 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/ke
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
+> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Once the app is running, see the **[User Guide](USER-GUIDE.en-US.md)** to learn 
 ### Docker
 
 - Pull: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Set at least one provider key via environment (for example `OPENROUTER_KEY` for OpenRouter). Pass variables with `-e` or `docker compose` / `.env` so secrets are not baked into the image.
+- Set at least one provider key via environment (for example `OPENROUTER_API_KEY` for OpenRouter). Pass variables with `-e` or `docker compose` / `.env` so secrets are not baked into the image.
 - Provider keys are **not** entered in the web UI; the server reads them from the environment.
 
 Example - named volume for persistence (OpenRouter key via env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (map with `-p 5000:5000`)                                                                              |
 | Volume   | Mount `/app/data` for config and database persistence                                                         |
-| Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - see [Configuration](#configuration-and-environment) |
+| Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
 To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) i
 
 1. Sign up or log in at [openrouter.ai](https://openrouter.ai).
 2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (give it a name, and optionally set a credit limit). You can use free models without adding any credit.
-3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set environment variables such as `OPENROUTER_KEY` (see [Quick start](#quick-start)).
+3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set environment variables such as `OPENROUTER_API_KEY` (see [Quick start](#quick-start)).
 
 Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation: it returns JSON request payloads, not the completed text for these tasks. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
 
@@ -250,16 +250,16 @@ For rate limits, bring-your-own-key (BYOK), and more details, see [OpenRouter au
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Server listening port |
 | `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
-| `OPENROUTER_KEY` | *(empty)*               | OpenRouter API key |
-| `OPENAI_KEY`     | *(empty)*               | OpenAI API key |
-| `CEREBRAS_KEY`   | *(empty)*               | Cerebras API key |
-| `ANTHROPIC_KEY`  | *(empty)*               | Anthropic API key |
-| `GOOGLE_KEY`     | *(empty)*               | Google Gemini API key |
-| `DEEPSEEK_KEY`   | *(empty)*               | DeepSeek API key |
-| `GROQ_KEY`       | *(empty)*               | Groq API key |
-| `MISTRAL_KEY`    | *(empty)*               | Mistral API key |
+| `OPENROUTER_API_KEY` | *(empty)*               | OpenRouter API key |
+| `OPENAI_API_KEY`     | *(empty)*               | OpenAI API key |
+| `CEREBRAS_API_KEY`   | *(empty)*               | Cerebras API key |
+| `ANTHROPIC_API_KEY`  | *(empty)*               | Anthropic API key |
+| `GOOGLE_API_KEY`     | *(empty)*               | Google Gemini API key |
+| `DEEPSEEK_API_KEY`   | *(empty)*               | DeepSeek API key |
+| `GROQ_API_KEY`       | *(empty)*               | Groq API key |
+| `MISTRAL_API_KEY`    | *(empty)*               | Mistral API key |
 | `OLLAMA_URL`     | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(empty)*               | xAI API key |
+| `XAI_API_KEY`        | *(empty)*               | xAI API key |
 
 Configure only the providers you plan to use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

@@ -105,10 +105,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **注意**<br/>
-> 在 Docker 中，LLM 凭据需通过环境变量设置，如 `OPENROUTER_KEY`、`OPENAI_KEY`、`CEREBRAS_KEY` 等（**不在 Web UI 中设置**）。桌面版（Electron）则在 **设置 → API** 中配置密钥。
+> 在 Docker 中，LLM 凭据需通过环境变量设置，如 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` 等（**不在 Web UI 中设置**）。桌面版（Electron）则在 **设置 → API** 中配置密钥。
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - 拉取镜像：`docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 至少通过环境变量设置一个供应商密钥（例如使用 `OPENROUTER_KEY` 设置 OpenRouter）。使用 `-e` 参数或 `docker compose` / `.env` 文件传入变量，避免密钥被固化到镜像中。
+- 至少通过环境变量设置一个供应商密钥（例如使用 `OPENROUTER_API_KEY` 设置 OpenRouter）。使用 `-e` 参数或 `docker compose` / `.env` 文件传入变量，避免密钥被固化到镜像中。
 - **不可**在 Web UI 中输入供应商密钥；服务器将从环境变量中读取。
 
 示例 —— 使用命名卷持久化数据（通过环境变量设置 OpenRouter 密钥）：
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | 端口     | `5000`（使用 `-p 5000:5000` 映射）                                                                             |
 | 卷       | 挂载 `/app/data` 以持久保存配置和数据库                                                       |
-| 环境变量 | `PORT`, `CONFIG_PATH` 以及 LLM 密钥（`OPENROUTER_KEY`, `OPENAI_KEY`, …）— 参见 [配置](#configuration-and-environment) |
+| 环境变量 | `PORT`, `CONFIG_PATH` 以及 LLM 密钥（`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …）— 参见 [配置](#configuration-and-environment) |
 
 从源码构建并运行：使用 `docker compose up --build -d` 或 `pnpm docker:up` — 详情请见 [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)。
 
@@ -217,7 +217,7 @@ Transrewrt 支持多种 AI 服务提供商。[OpenRouter](https://openrouter.ai)
 
 1. 在 [openrouter.ai](https://openrouter.ai) 注册或登录。
 2. 打开 [Keys](https://openrouter.ai/keys) 页面并创建一个新的密钥（为其命名，可选择性设置信用额度）。即使不添加信用余额，也可以使用免费模型。
-3. **桌面版 (Electron):** 在 **设置 → API** 中粘贴密钥。**Docker 版:** 设置如 `OPENROUTER_KEY` 的环境变量（参见 [快速开始](#quick-start)）。
+3. **桌面版 (Electron):** 在 **设置 → API** 中粘贴密钥。**Docker 版:** 设置如 `OPENROUTER_API_KEY` 的环境变量（参见 [快速开始](#quick-start)）。
 
 请勿使用 OpenRouter 的 **Body Builder** 模型（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）进行翻译、改写或转换操作：该模型返回的是 JSON 请求负载，而不是这些任务所需的完整文本结果。详情请参阅用户指南中的 [设置 → 模型](USER-GUIDE.zh-CN.md#models)。
 
@@ -249,16 +249,16 @@ Transrewrt 支持多种 AI 服务提供商。[OpenRouter](https://openrouter.ai)
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | 服务监听端口 |
 | `CONFIG_PATH`    | `/app/data/config.json` | 配置文件路径 |
-| `OPENROUTER_KEY` | *(空)*               | OpenRouter API 密钥 |
-| `OPENAI_KEY`     | *(空)*               | OpenAI API 密钥 |
-| `CEREBRAS_KEY`   | *(空)*               | Cerebras API 密钥 |
-| `ANTHROPIC_KEY`  | *(空)*               | Anthropic API 密钥 |
-| `GOOGLE_KEY`     | *(空)*               | Google Gemini API 密钥 |
-| `DEEPSEEK_KEY`   | *(空)*               | DeepSeek API 密钥 |
-| `GROQ_KEY`       | *(空)*               | Groq API 密钥 |
-| `MISTRAL_KEY`    | *(空)*               | Mistral API 密钥 |
+| `OPENROUTER_API_KEY` | *(空)*               | OpenRouter API 密钥 |
+| `OPENAI_API_KEY`     | *(空)*               | OpenAI API 密钥 |
+| `CEREBRAS_API_KEY`   | *(空)*               | Cerebras API 密钥 |
+| `ANTHROPIC_API_KEY`  | *(空)*               | Anthropic API 密钥 |
+| `GOOGLE_API_KEY`     | *(空)*               | Google Gemini API 密钥 |
+| `DEEPSEEK_API_KEY`   | *(空)*               | DeepSeek API 密钥 |
+| `GROQ_API_KEY`       | *(空)*               | Groq API 密钥 |
+| `MISTRAL_API_KEY`    | *(空)*               | Mistral API 密钥 |
 | `OLLAMA_URL`     | *(空)*               | Ollama 基础 URL（例如 `http://host.docker.internal:11434`） |
-| `XAI_KEY`        | *(空)*               | xAI API 密钥 |
+| `XAI_API_KEY`        | *(空)*               | xAI API 密钥 |
 
 请仅配置您使用的提供商。模型 ID 采用命名空间形式（如 `openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。
 

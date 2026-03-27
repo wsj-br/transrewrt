@@ -9,7 +9,7 @@
   "Function": "ফাংশন",
   "Import not available.": "ইমপোর্ট উপলভ্য নয়।",
   "Edit user account. Optionally set a new password or generate one.": "ব্যবহারকারী অ্যাকাউন্ট সম্পাদনা করুন। নতুন পাসওয়ার্ড সেট করুন অথবা জেনারেট করুন।",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "এই অ্যাপ্লিকেশন ব্যবহার করতে সার্ভারে OPENROUTER_KEY এনভায়রনমেন্ট ভেরিয়েবল সেট করতে হবে।",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "এই অ্যাপ্লিকেশন ব্যবহার করতে সার্ভারে OPENROUTER_API_KEY এনভায়রনমেন্ট ভেরিয়েবল সেট করতে হবে।",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter API কী যাচাই করা যায়নি। অনুবাদ ও পুনর্লিখন কাজ নাও করতে পারে।",
   "API Key Required": "API কী প্রয়োজন",
   "Continue anyway": "যেভাবেই হোক চালিয়ে যাও",

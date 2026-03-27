@@ -105,10 +105,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **توجه**<br/>
-> در داکر، اعتبارنامه‌های LLM با متغیرهای محیطی مانند `OPENROUTER_KEY`، `OPENAI_KEY`، `CEREBRAS_KEY` و غیره تنظیم می‌شوند (نه در رابط کاربری وب). در نسخه دسکتاپ (الکترون) کلیدها را از طریق **تنظیمات → API** پیکربندی کنید.
+> در داکر، اعتبارنامه‌های LLM با متغیرهای محیطی مانند `OPENROUTER_API_KEY`، `OPENAI_API_KEY`، `CEREBRAS_API_KEY` و غیره تنظیم می‌شوند (نه در رابط کاربری وب). در نسخه دسکتاپ (الکترون) کلیدها را از طریق **تنظیمات → API** پیکربندی کنید.
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### داکر
 
 - دریافت: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- حداقل یک کلید ارائه‌دهنده را از طریق محیط تنظیم کنید (مثلاً `OPENROUTER_KEY` برای OpenRouter). متغیرها را با `-e` یا `docker compose` / `.env` منتقل کنید تا اطلاعات محرمانه در تصویر ثبت نشود.
+- حداقل یک کلید ارائه‌دهنده را از طریق محیط تنظیم کنید (مثلاً `OPENROUTER_API_KEY` برای OpenRouter). متغیرها را با `-e` یا `docker compose` / `.env` منتقل کنید تا اطلاعات محرمانه در تصویر ثبت نشود.
 - کلیدهای ارائه‌دهنده در رابط کاربری وب وارد نمی‌شوند؛ سرور آن‌ها را از محیط می‌خواند.
 
 مثال - حجم نام‌گذاری‌شده برای ذخیره‌سازی (کلید OpenRouter از طریق محیط):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | پورت     | `5000` (با استفاده از `-p 5000:5000` تخصیص دهید)                                                                              |
 | حجم   | مونت کردن `/app/data` برای ذخیره‌سازی پیکربندی و پایگاه داده                                                         |
-| متغیرهای محیطی | `PORT`، `CONFIG_PATH` و همچنین کلیدهای LLM (`OPENROUTER_KEY`، `OPENAI_KEY` و غیره) - به بخش [پیکربندی](#configuration-and-environment) مراجعه کنید |
+| متغیرهای محیطی | `PORT`، `CONFIG_PATH` و همچنین کلیدهای LLM (`OPENROUTER_API_KEY`، `OPENAI_API_KEY` و غیره) - به بخش [پیکربندی](#configuration-and-environment) مراجعه کنید |
 
 برای ساخت و اجرا از سورس: `docker compose up --build -d` یا `pnpm docker:up` - برای اطلاعات بیشتر به [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مراجعه کنید.
 
@@ -217,7 +217,7 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 1. در [openrouter.ai](https://openrouter.ai) ثبت‌نام کنید یا وارد شوید.
 2. به صفحه [Keys](https://openrouter.ai/keys) بروید و یک کلید جدید ایجاد کنید (نامی برای آن تعیین کنید و به صورت اختیاری می‌توانید سقف اعتبار تعیین کنید). می‌توانید بدون افزودن اعتبار، از مدل‌های رایگان استفاده کنید.
-3. **نسخه دسکتاپ (الکترون):** کلیدها را در بخش **تنظیمات → API** وارد کنید. **داکر:** متغیرهای محیطی مانند `OPENROUTER_KEY` را تنظیم کنید (نگاه کنید به [شروع سریع](#quick-start)).
+3. **نسخه دسکتاپ (الکترون):** کلیدها را در بخش **تنظیمات → API** وارد کنید. **داکر:** متغیرهای محیطی مانند `OPENROUTER_API_KEY` را تنظیم کنید (نگاه کنید به [شروع سریع](#quick-start)).
 
 از مدل **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) برای ترجمه، بازنویسی یا تبدیل استفاده نکنید: این مدل بار درخواست‌های JSON را بازمی‌گرداند، نه متن نهایی برای این وظایف. برای اطلاعات بیشتر به بخش [تنظیمات → مدل‌ها](USER-GUIDE.fa.md#models) در راهنمای کاربر مراجعه کنید.
 
@@ -251,16 +251,16 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 | ---------------- | ---------------------- | -------- |
 | `PORT`           | `5000`                 | پورت شنود سرور |
 | `CONFIG_PATH`    | `/app/data/config.json`| مسیر فایل پیکربندی |
-| `OPENROUTER_KEY` | *(خالی)*               | کلید API OpenRouter |
-| `OPENAI_KEY`     | *(خالی)*               | کلید API OpenAI |
-| `CEREBRAS_KEY`   | *(خالی)*               | کلید API Cerebras |
-| `ANTHROPIC_KEY`  | *(خالی)*               | کلید API Anthropic |
-| `GOOGLE_KEY`     | *(خالی)*               | کلید API Google Gemini |
-| `DEEPSEEK_KEY`   | *(خالی)*               | کلید API DeepSeek |
-| `GROQ_KEY`       | *(خالی)*               | کلید API Groq |
-| `MISTRAL_KEY`    | *(خالی)*               | کلید API Mistral |
+| `OPENROUTER_API_KEY` | *(خالی)*               | کلید API OpenRouter |
+| `OPENAI_API_KEY`     | *(خالی)*               | کلید API OpenAI |
+| `CEREBRAS_API_KEY`   | *(خالی)*               | کلید API Cerebras |
+| `ANTHROPIC_API_KEY`  | *(خالی)*               | کلید API Anthropic |
+| `GOOGLE_API_KEY`     | *(خالی)*               | کلید API Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(خالی)*               | کلید API DeepSeek |
+| `GROQ_API_KEY`       | *(خالی)*               | کلید API Groq |
+| `MISTRAL_API_KEY`    | *(خالی)*               | کلید API Mistral |
 | `OLLAMA_URL`     | *(خالی)*               | آدرس پایه Ollama (مثل `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(خالی)*               | کلید API xAI |
+| `XAI_API_KEY`        | *(خالی)*               | کلید API xAI |
 
 فقط ارائه‌دهندگانی را که استفاده می‌کنید پیکربندی کنید. شناسه‌های مدل دارای فضای نام هستند (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` و غیره).
 

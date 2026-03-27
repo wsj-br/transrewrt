@@ -106,10 +106,10 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Nahraďte `sk-or-your-key` svým [klíčem OpenRouter API](https://openrouter.ai
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí jako `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (nikoli ve webovém rozhraní). Na desktopu (Electron) klíče nakonfigurujete v **Nastavení → API**.
+> V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí jako `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nikoli ve webovém rozhraní). Na desktopu (Electron) klíče nakonfigurujete v **Nastavení → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Po spuštění aplikace si přečtěte **[Průvodce uživatele (User Guide)](USE
 ### Docker
 
 - Stažení: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Nastavte alespoň jeden klíč poskytovatele prostřednictvím proměnné prostředí (např. `OPENROUTER_KEY` pro OpenRouter). Předejte proměnné pomocí `-e` nebo prostřednictvím `docker compose` / `.env`, abyste zajistili, že tajemství nebudou pevně zakódována v imagi.
+- Nastavte alespoň jeden klíč poskytovatele prostřednictvím proměnné prostředí (např. `OPENROUTER_API_KEY` pro OpenRouter). Předejte proměnné pomocí `-e` nebo prostřednictvím `docker compose` / `.env`, abyste zajistili, že tajemství nebudou pevně zakódována v imagi.
 - Klíče poskytovatelů **nejsou** zadávány ve webovém rozhraní; server je čte z prostředí.
 
 Příklad – pojmenovaný svazek (volume) pro trvalá data (klíč OpenRouter z prostředí):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (mapování parametrem `-p 5000:5000`)                                                                              |
 | Svazek (Volume)   | Připojte `/app/data` pro trvalé ukládání konfigurace a databáze                                                         |
-| Proměnné prostředí | `PORT`, `CONFIG_PATH`, plus klíče LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – viz [Konfigurace](#configuration-and-environment) |
+| Proměnné prostředí | `PORT`, `CONFIG_PATH`, plus klíče LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) – viz [Konfigurace](#configuration-and-environment) |
 
 Sestavení a spuštění ze zdrojového kódu: `docker compose up --build -d` nebo `pnpm docker:up`. Viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt podporuje více poskytovatelů umělé inteligence. [OpenRouter](http
 
 1. Zaregistrujte se nebo se přihlaste na [openrouter.ai](https://openrouter.ai).
 2. Otevřete stránku [Keys](https://openrouter.ai/keys) a vytvořte nový klíč (uveďte mu název a volitelně i limit kreditu). Bez přidání kreditu můžete používat bezplatné modely.
-3. **Desktop (Electron):** vložte klíče do **Nastavení → API**. **Docker:** nastavte proměnné prostředí, např. `OPENROUTER_KEY` (viz [Rychlý start](#quick-start)).
+3. **Desktop (Electron):** vložte klíče do **Nastavení → API**. **Docker:** nastavte proměnné prostředí, např. `OPENROUTER_API_KEY` (viz [Rychlý start](#quick-start)).
 
 Nepoužívejte OpenRouterův model **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) pro překlad, přepis ani transformaci: vrací datové části žádosti ve formátu JSON, nikoli dokončený text pro tyto úkoly. Viz [Nastavení → Modely](USER-GUIDE.cs.md#models) v uživatelské příručce.
 
@@ -250,16 +250,16 @@ Další informace o limitech, BYOK a dalším najdete v tématu [OpenRouter auth
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Port, na kterém naslouchá server |
 | `CONFIG_PATH`    | `/app/data/config.json` | Cesta ke konfiguračnímu souboru |
-| `OPENROUTER_KEY` | *(prázdné)*             | API klíč OpenRouteru |
-| `OPENAI_KEY`     | *(prázdné)*             | API klíč OpenAI |
-| `CEREBRAS_KEY`   | *(prázdné)*             | API klíč Cerebras |
-| `ANTHROPIC_KEY`  | *(prázdné)*             | API klíč Anthropic |
-| `GOOGLE_KEY`     | *(prázdné)*             | API klíč Google Gemini |
-| `DEEPSEEK_KEY`   | *(prázdné)*             | API klíč DeepSeek |
-| `GROQ_KEY`       | *(prázdné)*             | API klíč Groq |
-| `MISTRAL_KEY`    | *(prázdné)*             | API klíč Mistral |
+| `OPENROUTER_API_KEY` | *(prázdné)*             | API klíč OpenRouteru |
+| `OPENAI_API_KEY`     | *(prázdné)*             | API klíč OpenAI |
+| `CEREBRAS_API_KEY`   | *(prázdné)*             | API klíč Cerebras |
+| `ANTHROPIC_API_KEY`  | *(prázdné)*             | API klíč Anthropic |
+| `GOOGLE_API_KEY`     | *(prázdné)*             | API klíč Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(prázdné)*             | API klíč DeepSeek |
+| `GROQ_API_KEY`       | *(prázdné)*             | API klíč Groq |
+| `MISTRAL_API_KEY`    | *(prázdné)*             | API klíč Mistral |
 | `OLLAMA_URL`     | *(prázdné)*             | Základní URL Ollamy (např. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(prázdné)*             | API klíč xAI |
+| `XAI_API_KEY`        | *(prázdné)*             | API klíč xAI |
 
 Konfigurujte pouze poskytovatele, které používáte. Názvy modelů jsou rozdělené do jmenných prostorů (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atd.).
 

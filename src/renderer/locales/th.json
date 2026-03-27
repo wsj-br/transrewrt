@@ -9,7 +9,7 @@
   "Function": "ฟังก์ชัน",
   "Import not available.": "ไม่สามารถนำเข้าได้",
   "Edit user account. Optionally set a new password or generate one.": "แก้ไขบัญชีผู้ใช้ ตั้งรหัสผ่านใหม่หรือสร้างรหัสผ่านใหม่ได้ตามต้องการ",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "คุณต้องตั้งค่าตัวแปรสภาพแวดล้อม OPENROUTER_KEY บนเซิร์ฟเวอร์เพื่อใช้งานแอปพลิเคชันนี้",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "คุณต้องตั้งค่าตัวแปรสภาพแวดล้อม OPENROUTER_API_KEY บนเซิร์ฟเวอร์เพื่อใช้งานแอปพลิเคชันนี้",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "ไม่สามารถยืนยันความถูกต้องของ OpenRouter API key ได้ การแปลและการเขียนใหม่อาจไม่ทำงาน",
   "API Key Required": "ต้องการ API Key",
   "Continue anyway": "ดำเนินการต่ออย่างไรก็ตาม",

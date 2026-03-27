@@ -106,10 +106,10 @@ Baada ya kuwekwa, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa mchor
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Badilisha `sk-or-your-key` kwa ufunguo wako wa [OpenRouter API](https://openrout
 <br/>
 
 > ℹ️ **TAARIFA**<br/>
-> Katika Docker, vitambulisho vya LLM vinawekwa kwa kutumia kinyume kama vile `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (si kwa njia ya UI ya wavuti). Katika kompyuta (Electron) hutengeneza ufunguo kwenye **Mipangilio → API**.
+> Katika Docker, vitambulisho vya LLM vinawekwa kwa kutumia kinyume kama vile `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (si kwa njia ya UI ya wavuti). Katika kompyuta (Electron) hutengeneza ufunguo kwenye **Mipangilio → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Mara baada ya kuweza kuinua programu, angalia **[Mwongozo wa Mtumiaji](USER-GUID
 ### Docker
 
 - Pakua: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Weka angalau mmoja wa mtoaji kwa njia ya mazingira (kama vile `OPENROUTER_KEY` kwa OpenRouter). Tungeza kinyume kwa `-e` au kwa kutumia `docker compose` / `.env` ili vitambulisho visichanganyiki kwenye picha.
+- Weka angalau mmoja wa mtoaji kwa njia ya mazingira (kama vile `OPENROUTER_API_KEY` kwa OpenRouter). Tungeza kinyume kwa `-e` au kwa kutumia `docker compose` / `.env` ili vitambulisho visichanganyiki kwenye picha.
 - Ufunguo wa mtoaji **hauwezi** kuandikwa kwenye UI ya wavuti; seriver inasoma kuma kwa mazingira.
 
 Mfano - kiasi kimewekwa kwa ajili ya kuendelea (ufunguo wa OpenRouter kwa ajili ya mazingira):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Lango     | `5000` (unganisha kwa `-p 5000:5000`)                                                                              |
 | Kiasi   | Sanii `/app/data` kwa ajili ya uendelezaji wa usanidi na hifadhi ya takwimu                                                         |
-| Kinyume  | `PORT`, `CONFIG_PATH`, pamoja na ufunguo wa LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - angalia [Usanidi](#configuration-and-environment) |
+| Kinyume  | `PORT`, `CONFIG_PATH`, pamoja na ufunguo wa LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - angalia [Usanidi](#configuration-and-environment) |
 
 Ili kujenga na kuanza kutoka kwa chanzo: `docker compose up --build -d` au `pnpm docker:up` - angalia [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt unatumia mtoaji mbalimbali wa AI. [OpenRouter](https://openrouter.ai)
 
 1. Jiandikishe au uingie kwenye [openrouter.ai](https://openrouter.ai).
 2. Fungua ukurasa wa [Vifunguo](https://openrouter.ai/keys) utekeleze ufunguo mpya (jitayarisha jina, na si lazima uweke kikomo cha sifa). Unaweza kutumia mitambo ya bure bila kuongeza sifa.
-3. **Kivinjari (Electron):** wachangie ufunguo katika **Mipangilio → API**. **Docker:** weka ambatisho kama vile `OPENROUTER_KEY` (tazama [Kuanza haraka](#quick-start)).
+3. **Kivinjari (Electron):** wachangie ufunguo katika **Mipangilio → API**. **Docker:** weka ambatisho kama vile `OPENROUTER_API_KEY` (tazama [Kuanza haraka](#quick-start)).
 
 Usitumie ufunguo wa OpenRouter wa muduli wa **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kwa kutafsiri, kuandikisha upya, au kubadili: unarudisha vyanzo vinavyotumika kutuma ombi la JSON, si maandishi yaliyotimia kwa zoezi hilo. Angalia [Mipangilio → Mitambo](USER-GUIDE.sw.md#models) katika Mwongozi wa Mtumiaji.
 
@@ -251,16 +251,16 @@ Kwa vikomo, BYOK, na zaidi, angalia [Ubao wa OpenRouter](https://openrouter.ai/d
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Lango la kusikiliza kwa seva |
 | `CONFIG_PATH`    | `/app/data/config.json` | Njia kuelekea faili ya usanidi |
-| `OPENROUTER_KEY` | *(hakuna)*               | Ufunguo wa OpenRouter API |
-| `OPENAI_KEY`     | *(hakuna)*               | Ufunguo wa OpenAI API |
-| `CEREBRAS_KEY`   | *(hakuna)*               | Ufunguo wa Cerebras API |
-| `ANTHROPIC_KEY`  | *(hakuna)*               | Ufunguo wa Anthropic API |
-| `GOOGLE_KEY`     | *(hakuna)*               | Ufunguo wa Google Gemini API |
-| `DEEPSEEK_KEY`   | *(hakuna)*               | Ufunguo wa DeepSeek API |
-| `GROQ_KEY`       | *(hakuna)*               | Ufunguo wa Groq API |
-| `MISTRAL_KEY`    | *(hakuna)*               | Ufunguo wa Mistral API |
+| `OPENROUTER_API_KEY` | *(hakuna)*               | Ufunguo wa OpenRouter API |
+| `OPENAI_API_KEY`     | *(hakuna)*               | Ufunguo wa OpenAI API |
+| `CEREBRAS_API_KEY`   | *(hakuna)*               | Ufunguo wa Cerebras API |
+| `ANTHROPIC_API_KEY`  | *(hakuna)*               | Ufunguo wa Anthropic API |
+| `GOOGLE_API_KEY`     | *(hakuna)*               | Ufunguo wa Google Gemini API |
+| `DEEPSEEK_API_KEY`   | *(hakuna)*               | Ufunguo wa DeepSeek API |
+| `GROQ_API_KEY`       | *(hakuna)*               | Ufunguo wa Groq API |
+| `MISTRAL_API_KEY`    | *(hakuna)*               | Ufunguo wa Mistral API |
 | `OLLAMA_URL`     | *(hakuna)*               | URL ya msingi wa Ollama (mfano: `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(hakuna)*               | Ufunguo wa xAI API |
+| `XAI_API_KEY`        | *(hakuna)*               | Ufunguo wa xAI API |
 
 Wasilisha tu mtoaji uliowasili kutumia. Viambatisho vya muduli vina sehemu zinazopangwa (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, n.k.).
 

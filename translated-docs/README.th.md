@@ -105,10 +105,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **หมายเหตุ**<br/>
-> ใน Docker ข้อมูลรับรองของ LLM จะถูกตั้งค่าผ่านตัวแปรสภาพแวดล้อม เช่น `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ไม่ใช่ทางเว็บยูไอ) ส่วนบนเดสก์ท็อป (Electron) คุณตั้งค่าคีย์ภายใต้ **Settings → API**
+> ใน Docker ข้อมูลรับรองของ LLM จะถูกตั้งค่าผ่านตัวแปรสภาพแวดล้อม เช่น `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ไม่ใช่ทางเว็บยูไอ) ส่วนบนเดสก์ท็อป (Electron) คุณตั้งค่าคีย์ภายใต้ **Settings → API**
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - ดึงไฟล์: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- ตั้งค่าอย่างน้อยหนึ่งคีย์ผู้ให้บริการผ่าน environment (ตัวอย่างเช่น `OPENROUTER_KEY` สำหรับ OpenRouter) ผ่านตัวแปรด้วย `-e` หรือ `docker compose` / `.env` เพื่อไม่ให้รหัสลับถูกฝังไว้ในภาพ
+- ตั้งค่าอย่างน้อยหนึ่งคีย์ผู้ให้บริการผ่าน environment (ตัวอย่างเช่น `OPENROUTER_API_KEY` สำหรับ OpenRouter) ผ่านตัวแปรด้วย `-e` หรือ `docker compose` / `.env` เพื่อไม่ให้รหัสลับถูกฝังไว้ในภาพ
 - คีย์ผู้ให้บริการจะ **ไม่** ถูกป้อนผ่านเว็บยูไอ; เซิร์ฟเวอร์จะอ่านค่าจาก environment โดยตรง
 
 ตัวอย่าง - ใช้ volume ชื่อนามเพื่อเก็บข้อมูลคงที่ (ใช้คีย์ OpenRouter ผ่าน env):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | พอร์ต     | `5000` (แมปด้วย `-p 5000:5000`)                                                                              |
 | เวอร์ชัน   | ติดตั้ง `/app/data` เพื่อเก็บข้อมูลการตั้งค่าและฐานข้อมูลให้คงที่                                                         |
-| ตัวแปรสภาพแวดล้อม | `PORT`, `CONFIG_PATH`, และคีย์ LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - ดูเพิ่มเติมได้ที่ [การตั้งค่า](#configuration-and-environment) |
+| ตัวแปรสภาพแวดล้อม | `PORT`, `CONFIG_PATH`, และคีย์ LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - ดูเพิ่มเติมได้ที่ [การตั้งค่า](#configuration-and-environment) |
 
 ในการสร้างและรันจากซอร์สโค้ด: `docker compose up --build -d` หรือ `pnpm docker:up` - ดู [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)
 
@@ -217,7 +217,7 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 
 1. สมัครหรือเข้าสู่ระบบที่ [openrouter.ai](https://openrouter.ai)
 2. เปิดหน้า [Keys](https://openrouter.ai/keys) และสร้างคีย์ใหม่ (ตั้งชื่อ และตั้งวงเงินได้ตามต้องการ) คุณสามารถใช้โมเดลฟรีโดยไม่ต้องเติมเครดิต
-3. **เดสก์ท็อป (Electron):** วางคีย์ในส่วน **Settings → API** **Docker:** ตั้งตัวแปรสภาพแวดล้อม เช่น `OPENROUTER_KEY` (ดูเพิ่มเติมที่ [เริ่มต้นอย่างรวดเร็ว](#quick-start))
+3. **เดสก์ท็อป (Electron):** วางคีย์ในส่วน **Settings → API** **Docker:** ตั้งตัวแปรสภาพแวดล้อม เช่น `OPENROUTER_API_KEY` (ดูเพิ่มเติมที่ [เริ่มต้นอย่างรวดเร็ว](#quick-start))
 
 ห้ามใช้โมเดล **Body Builder** ของ OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) สำหรับการแปล เขียนใหม่ หรือเปลี่ยนรูปแบบ: เพราะคืนข้อมูลโหลดคำร้องขอในรูปแบบ JSON ไม่ใช่รูปแบบข้อความที่เสร็จสมบูรณ์สำหรับงานดังกล่าว ดูเพิ่มเติมที่ [Settings → Models](USER-GUIDE.th.md#models) ในคู่มือผู้ใช้
 
@@ -249,16 +249,16 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 | ------------------ | ----------------------- | ----------- |
 | `PORT`             | `5000`                  | พอร์ตที่เซิร์ฟเวอร์ใช้รับฟัง |
 | `CONFIG_PATH`      | `/app/data/config.json` | เส้นทางไปยังไฟล์กำหนดค่า |
-| `OPENROUTER_KEY`   | *(ว่าง)*                 | คีย์ OpenRouter API |
-| `OPENAI_KEY`       | *(ว่าง)*                 | คีย์ OpenAI API |
-| `CEREBRAS_KEY`     | *(ว่าง)*                 | คีย์ Cerebras API |
-| `ANTHROPIC_KEY`    | *(ว่าง)*                 | คีย์ Anthropic API |
-| `GOOGLE_KEY`       | *(ว่าง)*                 | คีย์ Google Gemini API |
-| `DEEPSEEK_KEY`     | *(ว่าง)*                 | คีย์ DeepSeek API |
-| `GROQ_KEY`         | *(ว่าง)*                 | คีย์ Groq API |
-| `MISTRAL_KEY`      | *(ว่าง)*                 | คีย์ Mistral API |
+| `OPENROUTER_API_KEY`   | *(ว่าง)*                 | คีย์ OpenRouter API |
+| `OPENAI_API_KEY`       | *(ว่าง)*                 | คีย์ OpenAI API |
+| `CEREBRAS_API_KEY`     | *(ว่าง)*                 | คีย์ Cerebras API |
+| `ANTHROPIC_API_KEY`    | *(ว่าง)*                 | คีย์ Anthropic API |
+| `GOOGLE_API_KEY`       | *(ว่าง)*                 | คีย์ Google Gemini API |
+| `DEEPSEEK_API_KEY`     | *(ว่าง)*                 | คีย์ DeepSeek API |
+| `GROQ_API_KEY`         | *(ว่าง)*                 | คีย์ Groq API |
+| `MISTRAL_API_KEY`      | *(ว่าง)*                 | คีย์ Mistral API |
 | `OLLAMA_URL`       | *(ว่าง)*                 | URL พื้นฐานของ Ollama (เช่น `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(ว่าง)*                 | คีย์ xAI API |
+| `XAI_API_KEY`          | *(ว่าง)*                 | คีย์ xAI API |
 
 กรุณาตั้งค่าเฉพาะผู้ให้บริการที่คุณใช้งานเท่านั้น รหัสโมเดลจะมีการจัดชื่อในลักษณะที่มี namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, เป็นต้น)
 

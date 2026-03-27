@@ -105,10 +105,10 @@ AI-ਸੰਚਾਲਿਤ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵਾਂ ਵ
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **ਨੋਟ**<br/>
-> ਡੌਕਰ ਵਿੱਚ, LLM ਕੁੰਜੀਆਂ ਵਾਤਾਵਰਣ ਚਲਣਾਂ ਨਾਲ ਜਿਵੇਂ `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ਵੈੱਬ UI ਵਿੱਚ ਨਹੀਂ) ਸੈੱਟ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ) ਵਿੱਚ ਤੁਸੀਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਸੈੱਟ ਕਰਦੇ ਹੋ।
+> ਡੌਕਰ ਵਿੱਚ, LLM ਕੁੰਜੀਆਂ ਵਾਤਾਵਰਣ ਚਲਣਾਂ ਨਾਲ ਜਿਵੇਂ `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ਵੈੱਬ UI ਵਿੱਚ ਨਹੀਂ) ਸੈੱਟ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ) ਵਿੱਚ ਤੁਸੀਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਸੈੱਟ ਕਰਦੇ ਹੋ।
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### ਡੌਕਰ
 
 - ਪੁੱਲ: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- ਵਾਤਾਵਰਣ ਰਾਹੀਂ ਘੱਟ ਤੋਂ ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਦੀ ਕੁੰਜੀ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਲਈ OpenRouter ਲਈ `OPENROUTER_KEY`)। ਰਹੱਸਾਂ ਨੂੰ ਇਮੇਜ ਵਿੱਚ ਨਾ ਸਮੋਣ ਲਈ ਵੇਰੀਏਬਲ ਨੂੰ `-e` ਜਾਂ `docker compose` / `.env` ਰਾਹੀਂ ਪਾਸ ਕਰੋ।
+- ਵਾਤਾਵਰਣ ਰਾਹੀਂ ਘੱਟ ਤੋਂ ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਦੀ ਕੁੰਜੀ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਲਈ OpenRouter ਲਈ `OPENROUTER_API_KEY`)। ਰਹੱਸਾਂ ਨੂੰ ਇਮੇਜ ਵਿੱਚ ਨਾ ਸਮੋਣ ਲਈ ਵੇਰੀਏਬਲ ਨੂੰ `-e` ਜਾਂ `docker compose` / `.env` ਰਾਹੀਂ ਪਾਸ ਕਰੋ।
 - ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ **ਵੈੱਬ UI** ਵਿੱਚ ਦਰਜ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ; ਸਰਵਰ ਉਹਨਾਂ ਨੂੰ ਵਾਤਾਵਰਣ ਵਿੱਚੋਂ ਪੜ੍ਹਦਾ ਹੈ।
 
 ਉਦਾਹਰਨ - ਟਿਕਾਊਤਾ ਲਈ ਨਾਮ ਵਾਲੀ ਵਾਲੀਓਮ (env ਵਿੱਚ OpenRouter ਕੁੰਜੀ ਨਾਲ):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | ਪੋਰਟ     | `5000` (ਮੈਪ ਕਰੋ `-p 5000:5000` ਨਾਲ)                                                                              |
 | ਵਾਲੀਓਮ   | ਕੌਨਫਿਗ ਅਤੇ ਡੇਟਾਬੇਸ ਟਿਕਾਊਤਾ ਲਈ `/app/data` ਮਾਊਂਟ ਕਰੋ                                                         |
-| Env vars | `PORT`, `CONFIG_PATH`, ਤੋਂ ਬਾਅਦ LLM ਕੁੰਜੀ (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - [ਕੌਨਫ਼ੀਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ |
+| Env vars | `PORT`, `CONFIG_PATH`, ਤੋਂ ਬਾਅਦ LLM ਕੁੰਜੀ (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - [ਕੌਨਫ਼ੀਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ |
 
 ਸਰੋਤ ਤੋਂ ਬਣਾਉਣ ਅਤੇ ਚਲਾਉਣ ਲਈ: `docker compose up --build -d` ਜਾਂ `pnpm docker:up` - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) ਵੇਖੋ।
 
@@ -217,7 +217,7 @@ Transrewrt ਮਲਟੀਪਲ AI ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮ
 
 1. [openrouter.ai](https://openrouter.ai) 'ਤੇ ਸਾਈਨ ਅੱਪ ਕਰੋ ਜਾਂ ਲਾਗਇਨ ਕਰੋ।
 2. [Keys](https://openrouter.ai/keys) ਪੇਜ ਖੋਲ੍ਹੋ ਅਤੇ ਇੱਕ ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਓ (ਇਸ ਦਾ ਨਾਮ ਰੱਖੋ, ਅਤੇ ਵਿਕਲਪਿਕ ਤੌਰ 'ਤੇ ਇੱਕ ਕ੍ਰੈਡਿਟ ਸੀਮਾ ਸੈੱਟ ਕਰੋ)। ਤੁਸੀਂ ਬਿਨਾਂ ਕ੍ਰੈਡਿਟ ਜੋੜੇ ਮੁਫ਼ਤ ਮਾਡਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।
-3. **ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ):** **Settings → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਪੇਸਟ ਕਰੋ। **ਡਾਕਰ:** `OPENROUTER_KEY` ਵਰਗੇ env ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ (ਵੇਖੋ [Quick start](#quick-start))।
+3. **ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ):** **Settings → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਪੇਸਟ ਕਰੋ। **ਡਾਕਰ:** `OPENROUTER_API_KEY` ਵਰਗੇ env ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ (ਵੇਖੋ [Quick start](#quick-start))।
 
 ਟਰਾਂਸਲੇਟ, ਰੀਆਰਾਈਟ ਜਾਂ ਟਰਾਂਸਫਾਰਮ ਲਈ OpenRouter ਦੇ **ਬਾਡੀ ਬਿਲਡਰ** ਮਾਡਲ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ: ਇਹ ਉਹਨਾਂ ਕਾਰਜਾਂ ਲਈ ਪੂਰਾ ਹੋਇਆ ਪਾਠ ਨਹੀਂ ਸਗੋਂ JSON ਰਿਕੁਐਸਟ ਪੇਲੋਡ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਪੂਰਨ ਸੈਟਿੰਗਾਂ ਬਾਰੇ ਵੇਰਵੇ ਲਈ ਵਰਤੋਂਕਰਤਾ ਗਾਈਡ ਵਿੱਚ [Settings → Models](USER-GUIDE.pa.md#models) ਵੇਖੋ।
 
@@ -249,16 +249,16 @@ Transrewrt ਮਲਟੀਪਲ AI ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮ
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | ਸਰਵਰ ਲੀਸਨਿੰਗ ਪੋਰਟ |
 | `CONFIG_PATH`    | `/app/data/config.json` | ਕਨਫਿਗ ਫਾਈਲ ਦਾ ਮਾਰਗ |
-| `OPENROUTER_KEY` | *(ਖਾਲੀ)*               | OpenRouter API ਕੁੰਜੀ |
-| `OPENAI_KEY`     | *(ਖਾਲੀ)*               | OpenAI API ਕੁੰਜੀ |
-| `CEREBRAS_KEY`   | *(ਖਾਲੀ)*               | Cerebras API ਕੁੰਜੀ |
-| `ANTHROPIC_KEY`  | *(ਖਾਲੀ)*               | Anthropic API ਕੁੰਜੀ |
-| `GOOGLE_KEY`     | *(ਖਾਲੀ)*               | Google Gemini API ਕੁੰਜੀ |
-| `DEEPSEEK_KEY`   | *(ਖਾਲੀ)*               | DeepSeek API ਕੁੰਜੀ |
-| `GROQ_KEY`       | *(ਖਾਲੀ)*               | Groq API ਕੁੰਜੀ |
-| `MISTRAL_KEY`    | *(ਖਾਲੀ)*               | Mistral API ਕੁੰਜੀ |
+| `OPENROUTER_API_KEY` | *(ਖਾਲੀ)*               | OpenRouter API ਕੁੰਜੀ |
+| `OPENAI_API_KEY`     | *(ਖਾਲੀ)*               | OpenAI API ਕੁੰਜੀ |
+| `CEREBRAS_API_KEY`   | *(ਖਾਲੀ)*               | Cerebras API ਕੁੰਜੀ |
+| `ANTHROPIC_API_KEY`  | *(ਖਾਲੀ)*               | Anthropic API ਕੁੰਜੀ |
+| `GOOGLE_API_KEY`     | *(ਖਾਲੀ)*               | Google Gemini API ਕੁੰਜੀ |
+| `DEEPSEEK_API_KEY`   | *(ਖਾਲੀ)*               | DeepSeek API ਕੁੰਜੀ |
+| `GROQ_API_KEY`       | *(ਖਾਲੀ)*               | Groq API ਕੁੰਜੀ |
+| `MISTRAL_API_KEY`    | *(ਖਾਲੀ)*               | Mistral API ਕੁੰਜੀ |
 | `OLLAMA_URL`     | *(ਖਾਲੀ)*               | Ollama ਬੇਸ URL (ਜਿਵੇਂ `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(ਖਾਲੀ)*               | xAI API ਕੁੰਜੀ |
+| `XAI_API_KEY`        | *(ਖਾਲੀ)*               | xAI API ਕੁੰਜੀ |
 
 ਤੁਸੀਂ ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ੀਗਰ ਕਰੋ ਜੋ ਤੁਸੀਂ ਵਰਤ ਰਹੇ ਹੋ। ਮਾਡਲ ID ਨੇਮਸਪੇਸ ਵਿੱਚ ਹਨ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ)।
 

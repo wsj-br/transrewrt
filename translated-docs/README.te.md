@@ -105,10 +105,10 @@ AI సామర్థ్యం కలిగిన పాఠ్య సాధన�
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **గమనిక**<br/>
-> డాకర్‌లో, LLM ప్రమాణపత్రాలు `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY` వంటి పరిసర వేరియబుల్స్‌తో సెట్ చేయబడతాయి (వెబ్ UIలో కాదు). డెస్క్‌టాప్ (ఎలక్ట్రాన్)లో **సెట్టింగ్స్ → API** లో మీ కీలు కాన్పిగర్ చేస్తారు.
+> డాకర్‌లో, LLM ప్రమాణపత్రాలు `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY` వంటి పరిసర వేరియబుల్స్‌తో సెట్ చేయబడతాయి (వెబ్ UIలో కాదు). డెస్క్‌టాప్ (ఎలక్ట్రాన్)లో **సెట్టింగ్స్ → API** లో మీ కీలు కాన్పిగర్ చేస్తారు.
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### డాకర్
 
 - పుల్: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- పరిసరాల ద్వారా కనీసం ఒక ప్రొవైడర్ కీ సెట్ చేయండి (ఉదాహరణకు, ఓపెన్‌రౌటర్ కోసం `OPENROUTER_KEY`). రహస్యాలు ఇమేజ్‌లో చొరబడకుండా ఉండేందుకు `-e` లేదా `docker compose` / `.env` తో వేరియబుల్స్ పాస్ చేయండి.
+- పరిసరాల ద్వారా కనీసం ఒక ప్రొవైడర్ కీ సెట్ చేయండి (ఉదాహరణకు, ఓపెన్‌రౌటర్ కోసం `OPENROUTER_API_KEY`). రహస్యాలు ఇమేజ్‌లో చొరబడకుండా ఉండేందుకు `-e` లేదా `docker compose` / `.env` తో వేరియబుల్స్ పాస్ చేయండి.
 - ప్రొవైడర్ కీలు వెబ్ UIలో **ఉపయోగించబడవు**; సర్వర్ పరిసరాల నుండి వాటిని చదుస్తుంది.
 
 ఉదాహరణ - కొనసాగే కోసం పేరు కలిగిన వాల్యూమ్ (పరిసర వేరియబుల్ ద్వారా ఓపెన్‌రౌటర్ కీ):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | పోర్ట్ | `5000` ( `-p 5000:5000` తో మ్యాప్ చేయండి) |
 | వాల్యూమ్ | కాన్ఫిగరేషన్ మరియు డేటాబేస్ కొనసాగింపు కోసం `/app/data` మౌంట్ చేయండి |
-| పరిసర వేరియబుల్స్ | `PORT`, `CONFIG_PATH`, ప్లస్ LLM కీలు (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి |
+| పరిసర వేరియబుల్స్ | `PORT`, `CONFIG_PATH`, ప్లస్ LLM కీలు (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి |
 
 మూలం నుండి రూపొందించడం మరియు రన్ చేయడం: `docker compose up --build -d` లేదా `pnpm docker:up` - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) చూడండి.
 
@@ -217,7 +217,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 
 1. [openrouter.ai](https://openrouter.ai) లో సైన్ అప్ చేసుకోండి లేదా లాగిన్ అవ్వండి.
 2. [Keys](https://openrouter.ai/keys) పేజీని తెరచి కొత్త కీని సృష్టించండి (పేరు ఇవ్వండి, ఎంపికను బట్టి క్రెడిట్ పరిమితిని సెట్ చేయండి). క్రెడిట్ జోడించకుండానే ఉచిత మోడళ్లను ఉపయోగించవచ్చు.
-3. **డెస్క్‌టాప్ (ఎలక్ట్రాన్):** **సెట్టింగ్స్ → API** లో కీలను పేస్ట్ చేయండి. **డాకర్:** `OPENROUTER_KEY` వంటి వాతావరణ వేరియబుల్స్‌ను సెట్ చేయండి ( [త్వరిత ప్రారంభం](#quick-start) చూడండి).
+3. **డెస్క్‌టాప్ (ఎలక్ట్రాన్):** **సెట్టింగ్స్ → API** లో కీలను పేస్ట్ చేయండి. **డాకర్:** `OPENROUTER_API_KEY` వంటి వాతావరణ వేరియబుల్స్‌ను సెట్ చేయండి ( [త్వరిత ప్రారంభం](#quick-start) చూడండి).
 
 అనువాదం, తిరిగి రాయడం లేదా మార్చడం కోసం ఓపెన్ రూటర్ **బాడీ బిల్డర్** మోడల్ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ఉపయోగించవద్దు: ఆ పనుల కోసం పూర్తి చేసిన టెక్స్ట్ కాకుండా JSON రిక్వెస్ట్ పేలోడ్స్ ను ఇస్తుంది. సహాయ పుస్తకంలోని [సెట్టింగ్స్ → మోడళ్లు](USER-GUIDE.te.md#models) చూడండి.
 
@@ -249,16 +249,16 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | సర్వర్ వినడానికి పోర్ట్ |
 | `CONFIG_PATH`    | `/app/data/config.json` | కాన్ఫిగరేషన్ ఫైల్ మార్గం |
-| `OPENROUTER_KEY` | *(ఖాళీగా ఉంది)*               | ఓపెన్ రూటర్ API కీ |
-| `OPENAI_KEY`     | *(ఖాళీగా ఉంది)*               | OpenAI API కీ |
-| `CEREBRAS_KEY`   | *(ఖాళీగా ఉంది)*               | Cerebras API కీ |
-| `ANTHROPIC_KEY`  | *(ఖాళీగా ఉంది)*               | Anthropic API కీ |
-| `GOOGLE_KEY`     | *(ఖాళీగా ఉంది)*               | Google Gemini API కీ |
-| `DEEPSEEK_KEY`   | *(ఖాళీగా ఉంది)*               | DeepSeek API కీ |
-| `GROQ_KEY`       | *(ఖాళీగా ఉంది)*               | Groq API కీ |
-| `MISTRAL_KEY`    | *(ఖాళీగా ఉంది)*               | Mistral API కీ |
+| `OPENROUTER_API_KEY` | *(ఖాళీగా ఉంది)*               | ఓపెన్ రూటర్ API కీ |
+| `OPENAI_API_KEY`     | *(ఖాళీగా ఉంది)*               | OpenAI API కీ |
+| `CEREBRAS_API_KEY`   | *(ఖాళీగా ఉంది)*               | Cerebras API కీ |
+| `ANTHROPIC_API_KEY`  | *(ఖాళీగా ఉంది)*               | Anthropic API కీ |
+| `GOOGLE_API_KEY`     | *(ఖాళీగా ఉంది)*               | Google Gemini API కీ |
+| `DEEPSEEK_API_KEY`   | *(ఖాళీగా ఉంది)*               | DeepSeek API కీ |
+| `GROQ_API_KEY`       | *(ఖాళీగా ఉంది)*               | Groq API కీ |
+| `MISTRAL_API_KEY`    | *(ఖాళీగా ఉంది)*               | Mistral API కీ |
 | `OLLAMA_URL`     | *(ఖాళీగా ఉంది)*               | Ollama బేస్ URL (ఉదా: `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(ఖాళీగా ఉంది)*               | xAI API కీ |
+| `XAI_API_KEY`        | *(ఖాళీగా ఉంది)*               | xAI API కీ |
 
 మీరు ఉపయోగించే ప్రొవైడర్ల మాత్రమే కాన్ఫిగర్ చేయండి. మోడల్ ఐడిలు పేర్లతో విభజించబడతాయి (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, మొదలైనవి).
 

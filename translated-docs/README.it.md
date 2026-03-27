@@ -106,10 +106,10 @@ Dopo l'installazione, consulta la **[Guida utente](USER-GUIDE.it.md)** per una p
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Sostituire `sk-or-your-key` con la propria [chiave API OpenRouter](https://openr
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> In Docker, le credenziali LLM vengono impostate tramite variabili d'ambiente come `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (non nell'interfaccia web). Su desktop (Electron), si configurano le chiavi in **Impostazioni → API**.
+> In Docker, le credenziali LLM vengono impostate tramite variabili d'ambiente come `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (non nell'interfaccia web). Su desktop (Electron), si configurano le chiavi in **Impostazioni → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Una volta avviata l'app, consultare la **[Guida utente](USER-GUIDE.it.md)** per 
 ### Docker
 
 - Scaricare: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Impostare almeno una chiave del provider tramite ambiente (ad esempio `OPENROUTER_KEY` per OpenRouter). Passare le variabili con `-e` oppure mediante `docker compose` / `.env` per evitare che i segreti siano inseriti nell'immagine.
+- Impostare almeno una chiave del provider tramite ambiente (ad esempio `OPENROUTER_API_KEY` per OpenRouter). Passare le variabili con `-e` oppure mediante `docker compose` / `.env` per evitare che i segreti siano inseriti nell'immagine.
 - Le chiavi del provider **non** vengono inserite nell'interfaccia web; il server le legge dall'ambiente.
 
 Esempio – volume con nome per la persistenza (chiave OpenRouter tramite variabile d'ambiente):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Porta    | `5000` (da mappare con `-p 5000:5000`)                                                                        |
 | Volume   | Montare `/app/data` per mantenere configurazione e database                                                   |
-| Variabili d'ambiente | `PORT`, `CONFIG_PATH`, più chiavi LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - vedere [Configurazione](#configuration-and-environment) |
+| Variabili d'ambiente | `PORT`, `CONFIG_PATH`, più chiavi LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - vedere [Configurazione](#configuration-and-environment) |
 
 Per eseguire la build e avviare da sorgente: `docker compose up --build -d` oppure `pnpm docker:up` - vedere [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt supporta diversi fornitori di intelligenza artificiale. [OpenRouter](
 
 1. Registrati o accedi su [openrouter.ai](https://openrouter.ai).
 2. Apri la pagina [Keys](https://openrouter.ai/keys) e crea una nuova chiave (assegnale un nome e, opzionalmente, un limite di credito). Puoi usare modelli gratuiti senza aggiungere credito.
-3. **Versione desktop (Electron):** incolla le chiavi in **Impostazioni → API**. **Docker:** imposta le variabili d'ambiente come `OPENROUTER_KEY` (vedi [Avvio rapido](#quick-start)).
+3. **Versione desktop (Electron):** incolla le chiavi in **Impostazioni → API**. **Docker:** imposta le variabili d'ambiente come `OPENROUTER_API_KEY` (vedi [Avvio rapido](#quick-start)).
 
 Non usare il modello **Body Builder** di OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) per tradurre, riscrivere o trasformare: restituisce payload JSON delle richieste, non il testo completato per queste operazioni. Consulta [Impostazioni → Modelli](USER-GUIDE.it.md#models) nella Guida Utente.
 
@@ -250,16 +250,16 @@ Per informazioni su limiti, BYOK e altro, visita [Autenticazione OpenRouter](htt
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Porta di ascolto del server |
 | `CONFIG_PATH`    | `/app/data/config.json` | Percorso del file di configurazione |
-| `OPENROUTER_KEY` | *(vuoto)*               | Chiave API di OpenRouter |
-| `OPENAI_KEY`     | *(vuoto)*               | Chiave API di OpenAI |
-| `CEREBRAS_KEY`   | *(vuoto)*               | Chiave API di Cerebras |
-| `ANTHROPIC_KEY`  | *(vuoto)*               | Chiave API di Anthropic |
-| `GOOGLE_KEY`     | *(vuoto)*               | Chiave API di Google Gemini |
-| `DEEPSEEK_KEY`   | *(vuoto)*               | Chiave API di DeepSeek |
-| `GROQ_KEY`       | *(vuoto)*               | Chiave API di Groq |
-| `MISTRAL_KEY`    | *(vuoto)*               | Chiave API di Mistral |
+| `OPENROUTER_API_KEY` | *(vuoto)*               | Chiave API di OpenRouter |
+| `OPENAI_API_KEY`     | *(vuoto)*               | Chiave API di OpenAI |
+| `CEREBRAS_API_KEY`   | *(vuoto)*               | Chiave API di Cerebras |
+| `ANTHROPIC_API_KEY`  | *(vuoto)*               | Chiave API di Anthropic |
+| `GOOGLE_API_KEY`     | *(vuoto)*               | Chiave API di Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(vuoto)*               | Chiave API di DeepSeek |
+| `GROQ_API_KEY`       | *(vuoto)*               | Chiave API di Groq |
+| `MISTRAL_API_KEY`    | *(vuoto)*               | Chiave API di Mistral |
 | `OLLAMA_URL`     | *(vuoto)*               | URL base di Ollama (es. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(vuoto)*               | Chiave API di xAI |
+| `XAI_API_KEY`        | *(vuoto)*               | Chiave API di xAI |
 
 Configura solo i provider che utilizzi. Gli ID del modello utilizzano namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ecc.).
 

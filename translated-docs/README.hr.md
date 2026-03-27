@@ -106,10 +106,10 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Zamijenite `sk-or-your-key` s vašim [OpenRouter API ključem](https://openroute
 <br/>
 
 > ℹ️ **BILJEŠKA**<br/>
-> U Dockery, vjerodajnice za LLM postavljaju se kroz varijable okoline poput `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (ne putem web sučelja). Na desktopu (Electron) ključeve konfigurirate putem **Postavke → API**.
+> U Dockery, vjerodajnice za LLM postavljaju se kroz varijable okoline poput `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ne putem web sučelja). Na desktopu (Electron) ključeve konfigurirate putem **Postavke → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Kada se aplikacija pokrene, pogledajte [**Vodič za korisnike**](USER-GUIDE.hr.m
 ### Docker
 
 - Preuzmite sliku: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Postavite barem jedan ključ davatelja usluge putem okolišnih varijabli (npr. `OPENROUTER_KEY` za OpenRouter). Prosljedite varijable s `-e` ili kroz `docker compose` / `.env`, kako se tajni ne bi ugradili u sliku.
+- Postavite barem jedan ključ davatelja usluge putem okolišnih varijabli (npr. `OPENROUTER_API_KEY` za OpenRouter). Prosljedite varijable s `-e` ili kroz `docker compose` / `.env`, kako se tajni ne bi ugradili u sliku.
 - Ključevi davatelja usluga **se ne unose** putem web sučelja; poslužitelj ih čita iz okoline.
 
 Primjer - imenovani volumen za trajnost (OpenRouter ključ putem varijable okoline):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (mapirajte s `-p 5000:5000`)                                                                              |
 | Volumen  | Montirajte `/app/data` za trajnost postavki i baze podataka                                                         |
-| Var. okoline | `PORT`, `CONFIG_PATH`, te ključevi za LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - pogledajte [Konfiguracija](#configuration-and-environment) |
+| Var. okoline | `PORT`, `CONFIG_PATH`, te ključevi za LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - pogledajte [Konfiguracija](#configuration-and-environment) |
 
 Za izgradnju i pokretanje iz izvornog kôda: `docker compose up --build -d` ili `pnpm docker:up` - pogledajte [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt podržava više davatelja AI usluga. [OpenRouter](https://openrouter.
 
 1. Registrirajte se ili se prijavite na [openrouter.ai](https://openrouter.ai).
 2. Otvorite stranicu [Keys](https://openrouter.ai/keys) i kreirajte novi ključ (dodijelite mu naziv i po želji postavite ograničenje kredita). Možete koristiti besplatne modele bez dodavanja kredita.
-3. **Računalo (Electron):** zalijepite ključeve u **Postavke → API**. **Docker:** postavite varijable okruženja kao što je `OPENROUTER_KEY` (pogledajte [Brzi početak](#quick-start)).
+3. **Računalo (Electron):** zalijepite ključeve u **Postavke → API**. **Docker:** postavite varijable okruženja kao što je `OPENROUTER_API_KEY` (pogledajte [Brzi početak](#quick-start)).
 
 Ne koristite OpenRouter-ov model **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) za prevođenje, prepisivanje ili transformaciju: on vraća JSON pakete zahtjeva, a ne gotov tekst za te zadatke. Više pogledajte u [Postavke → Modeli](USER-GUIDE.hr.md#models) u Priručniku za korisnike.
 
@@ -250,16 +250,16 @@ Više o ograničenjima, vlastitim ključevima (BYOK) i drugom pogledajte na [Ope
 | -------------------- | ------------------------- | ---- |
 | `PORT`               | `5000`                    | Port na kojem sluša poslužitelj |
 | `CONFIG_PATH`        | `/app/data/config.json`   | Put do konfiguracijske datoteke |
-| `OPENROUTER_KEY`     | *(prazno)*                | OpenRouter API ključ |
-| `OPENAI_KEY`         | *(prazno)*                | OpenAI API ključ |
-| `CEREBRAS_KEY`       | *(prazno)*                | Cerebras API ključ |
-| `ANTHROPIC_KEY`      | *(prazno)*                | Anthropic API ključ |
-| `GOOGLE_KEY`         | *(prazno)*                | Google Gemini API ključ |
-| `DEEPSEEK_KEY`       | *(prazno)*                | DeepSeek API ključ |
-| `GROQ_KEY`           | *(prazno)*                | Groq API ključ |
-| `MISTRAL_KEY`        | *(prazno)*                | Mistral API ključ |
+| `OPENROUTER_API_KEY`     | *(prazno)*                | OpenRouter API ključ |
+| `OPENAI_API_KEY`         | *(prazno)*                | OpenAI API ključ |
+| `CEREBRAS_API_KEY`       | *(prazno)*                | Cerebras API ključ |
+| `ANTHROPIC_API_KEY`      | *(prazno)*                | Anthropic API ključ |
+| `GOOGLE_API_KEY`         | *(prazno)*                | Google Gemini API ključ |
+| `DEEPSEEK_API_KEY`       | *(prazno)*                | DeepSeek API ključ |
+| `GROQ_API_KEY`           | *(prazno)*                | Groq API ključ |
+| `MISTRAL_API_KEY`        | *(prazno)*                | Mistral API ključ |
 | `OLLAMA_URL`         | *(prazno)*                | Osnovni URL za Ollamu (npr. `http://host.docker.internal:11434`) |
-| `XAI_KEY`            | *(prazno)*                | xAI API ključ |
+| `XAI_API_KEY`            | *(prazno)*                | xAI API ključ |
 
 Konfigurirajte samo davatelje usluga koje koristite. ID-ovi modela koriste imenske prostore (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, itd.).
 

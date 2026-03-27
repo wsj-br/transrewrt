@@ -105,10 +105,10 @@ När appen är installerad, se **[användarhandboken](USER-GUIDE.sv.md)** för e
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ Ersätt `sk-or-your-key` med din [OpenRouter API-nyckel](https://openrouter.ai/k
 <br/>
 
 > ℹ️ **OBS**<br/>
-> I Docker anges LLM-autentiseringsuppgifter via miljövariabler som `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (inte i webbgränssnittet). I skrivbordsversionen (Electron) konfigurerar du nycklarna under **Inställningar → API**.
+> I Docker anges LLM-autentiseringsuppgifter via miljövariabler som `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (inte i webbgränssnittet). I skrivbordsversionen (Electron) konfigurerar du nycklarna under **Inställningar → API**.
 
 <br/>
 
@@ -183,16 +183,16 @@ När appen körs, se **[Användarhandledningen](USER-GUIDE.sv.md)** för att lä
 ### Docker
 
 - Ladda ner: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Ange minst en leverantörsnyckel via miljö (t.ex. `OPENROUTER_KEY` för OpenRouter). Skicka variabler med `-e` eller genom `docker compose` / `.env` så att hemligheter inte inkorporeras i avbilden.
+- Ange minst en leverantörsnyckel via miljö (t.ex. `OPENROUTER_API_KEY` för OpenRouter). Skicka variabler med `-e` eller genom `docker compose` / `.env` så att hemligheter inte inkorporeras i avbilden.
 - Leverantörsnycklar anges **inte** i webbgränssnittet; servern läser dem från miljön.
 
 Exempel – namngiven volym för persistence (OpenRouter-nyckel via miljö):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (mappa med `-p 5000:5000`)                                                                              |
 | Volym   | Montera `/app/data` för konfigurations- och databaspersistence                                                         |
-| Miljövariabler | `PORT`, `CONFIG_PATH`, samt LLM-nycklar (`OPENROUTER_KEY`, `OPENAI_KEY`, …) – se [Konfiguration](#konfiguration-och-miljö) |
+| Miljövariabler | `PORT`, `CONFIG_PATH`, samt LLM-nycklar (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) – se [Konfiguration](#konfiguration-och-miljö) |
 
 För att bygga och köra från källkod: `docker compose up --build -d` eller `pnpm docker:up` – se [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ Transrewrt stöder flera AI-leverantörer. [OpenRouter](https://openrouter.ai) �
 
 1. Skapa ett konto eller logga in på [openrouter.ai](https://openrouter.ai).
 2. Öppna sidan [Keys](https://openrouter.ai/keys) och skapa en ny nyckel (ge den ett namn och ange eventuellt en kreditgräns). Du kan använda gratismodeller utan att lägga till kredit.
-3. **Skrivbord (Electron):** klistra in nycklar i **Inställningar → API**. **Docker:** ange miljövariabler som t.ex. `OPENROUTER_KEY` (se [Snabbstart](#quick-start)).
+3. **Skrivbord (Electron):** klistra in nycklar i **Inställningar → API**. **Docker:** ange miljövariabler som t.ex. `OPENROUTER_API_KEY` (se [Snabbstart](#quick-start)).
 
 Använd inte OpenRouters modell **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) för översättning, omskrivning eller omvandling: den returnerar JSON-begäranden, inte den färdiga texten för dessa uppgifter. Se [Inställningar → Modeller](USER-GUIDE.sv.md#models) i användarhandboken.
 
@@ -250,16 +250,16 @@ För begränsningar, BYOK och mer, se [OpenRouter authentication](https://openro
 | ------------------ | ----------------------- | ----------- |
 | `PORT`             | `5000`                  | Serverns lyssningsport |
 | `CONFIG_PATH`      | `/app/data/config.json` | Sökväg till konfigurationsfilen |
-| `OPENROUTER_KEY`   | *(tom)*                 | OpenRouter API-nyckel |
-| `OPENAI_KEY`       | *(tom)*                 | OpenAI API-nyckel |
-| `CEREBRAS_KEY`     | *(tom)*                 | Cerebras API-nyckel |
-| `ANTHROPIC_KEY`    | *(tom)*                 | Anthropic API-nyckel |
-| `GOOGLE_KEY`       | *(tom)*                 | Google Gemini API-nyckel |
-| `DEEPSEEK_KEY`     | *(tom)*                 | DeepSeek API-nyckel |
-| `GROQ_KEY`         | *(tom)*                 | Groq API-nyckel |
-| `MISTRAL_KEY`      | *(tom)*                 | Mistral API-nyckel |
+| `OPENROUTER_API_KEY`   | *(tom)*                 | OpenRouter API-nyckel |
+| `OPENAI_API_KEY`       | *(tom)*                 | OpenAI API-nyckel |
+| `CEREBRAS_API_KEY`     | *(tom)*                 | Cerebras API-nyckel |
+| `ANTHROPIC_API_KEY`    | *(tom)*                 | Anthropic API-nyckel |
+| `GOOGLE_API_KEY`       | *(tom)*                 | Google Gemini API-nyckel |
+| `DEEPSEEK_API_KEY`     | *(tom)*                 | DeepSeek API-nyckel |
+| `GROQ_API_KEY`         | *(tom)*                 | Groq API-nyckel |
+| `MISTRAL_API_KEY`      | *(tom)*                 | Mistral API-nyckel |
 | `OLLAMA_URL`       | *(tom)*                 | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(tom)*                 | xAI API-nyckel |
+| `XAI_API_KEY`          | *(tom)*                 | xAI API-nyckel |
 
 Konfigurera endast de leverantörer du använder. Modell-ID-namnrymder är försedda (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

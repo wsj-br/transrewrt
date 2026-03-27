@@ -105,10 +105,10 @@ Telepítés után tekintse meg a **[Felhasználói útmutatót](USER-GUIDE.hu.md
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ Cserélje le a `sk-or-your-key` részt [OpenRouter API-kulcsára](https://openro
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Dockerben az LLM hitelesítő adatok környezeti változókkal állíthatók be, például `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (nem a webes felületen). Asztali (Electron) verzióban a kulcsokat a **Beállítások → API** menüpontban konfigurálhatja.
+> Dockerben az LLM hitelesítő adatok környezeti változókkal állíthatók be, például `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nem a webes felületen). Asztali (Electron) verzióban a kulcsokat a **Beállítások → API** menüpontban konfigurálhatja.
 
 <br/>
 
@@ -183,16 +183,16 @@ Miután az alkalmazás fut, olvassa el az **[Felhasználói útmutatót](USER-GU
 ### Docker
 
 - Letöltés: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Állítson be legalább egy szolgáltató kulcsot környezeti változón keresztül (pl. `OPENROUTER_KEY` az OpenRouterhez). Adja át a változókat `-e` paraméterrel, vagy `docker compose` / `.env` fájllal, hogy a titkok ne kerüljenek a képbe.
+- Állítson be legalább egy szolgáltató kulcsot környezeti változón keresztül (pl. `OPENROUTER_API_KEY` az OpenRouterhez). Adja át a változókat `-e` paraméterrel, vagy `docker compose` / `.env` fájllal, hogy a titkok ne kerüljenek a képbe.
 - A szolgáltatói kulcsokat **nem** a webes felületen kell megadni; a szerver a környezetből olvassa be őket.
 
 Példa – névvel ellátott kötet adatmegőrzéshez (OpenRouter kulcs környezeti változóból):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (lehet leképezni a `-p 5000:5000` paraméterrel)                                                                              |
 | Kötet   | Csatolja a `/app/data` könyvtárt a konfiguráció és az adatbázis megőrzéséhez                                                         |
-| Környezeti változók | `PORT`, `CONFIG_PATH`, plusz az LLM kulcsok (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - lásd: [Konfiguráció](#konfiguracio-es-kornyezet) |
+| Környezeti változók | `PORT`, `CONFIG_PATH`, plusz az LLM kulcsok (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - lásd: [Konfiguráció](#konfiguracio-es-kornyezet) |
 
 Forráskódból történő fordítás és futtatás: `docker compose up --build -d` vagy `pnpm docker:up` – lásd: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ A Transrewrt több AI-szolgáltatót is támogat. Az [OpenRouter](https://openro
 
 1. Regisztráljon vagy jelentkezzen be az [openrouter.ai](https://openrouter.ai) oldalon.
 2. Látogasson el a [Kulcsok](https://openrouter.ai/keys) oldalra, és hozzon létre egy új kulcsot (nevezze el, és opcionálisan állítsa be a hitelkeretet). Ingyenes modelleket használhat hitel hozzáadása nélkül.
-3. **Asztali (Electron):** illessze be a kulcsot a **Beállítások → API** menüpontban. **Docker:** állítsa be a környezeti változókat, például az `OPENROUTER_KEY`-t (lásd: [Gyorsindítás](#quick-start)).
+3. **Asztali (Electron):** illessze be a kulcsot a **Beállítások → API** menüpontban. **Docker:** állítsa be a környezeti változókat, például az `OPENROUTER_API_KEY`-t (lásd: [Gyorsindítás](#quick-start)).
 
 Ne használja az OpenRouter **Body Builder** modelljét ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder`)) fordításhoz, újraíráshoz vagy átalakításhoz: ez a modell JSON kérést küld vissza, nem a feladathoz kész kimeneti szöveget. Lásd: [Beállítások → Modellek](USER-GUIDE.hu.md#models) a Felhasználói útmutatóban.
 
@@ -249,16 +249,16 @@ Korlátokról, saját kulcs használatáról és egyéb információkról lásd:
 | ------------------ | -------------------------- | ----------- |
 | `PORT`             | `5000`                     | Szerver figyelő portja |
 | `CONFIG_PATH`      | `/app/data/config.json`    | Konfigurációs fájl elérési útja |
-| `OPENROUTER_KEY`   | *(üres)*                   | OpenRouter API-kulcs |
-| `OPENAI_KEY`       | *(üres)*                   | OpenAI API-kulcs |
-| `CEREBRAS_KEY`     | *(üres)*                   | Cerebras API-kulcs |
-| `ANTHROPIC_KEY`    | *(üres)*                  | Anthropic API-kulcs |
-| `GOOGLE_KEY`       | *(üres)*                   | Google Gemini API-kulcs |
-| `DEEPSEEK_KEY`     | *(üres)*                   | DeepSeek API-kulcs |
-| `GROQ_KEY`         | *(üres)*                   | Groq API-kulcs |
-| `MISTRAL_KEY`      | *(üres)*                   | Mistral API-kulcs |
+| `OPENROUTER_API_KEY`   | *(üres)*                   | OpenRouter API-kulcs |
+| `OPENAI_API_KEY`       | *(üres)*                   | OpenAI API-kulcs |
+| `CEREBRAS_API_KEY`     | *(üres)*                   | Cerebras API-kulcs |
+| `ANTHROPIC_API_KEY`    | *(üres)*                  | Anthropic API-kulcs |
+| `GOOGLE_API_KEY`       | *(üres)*                   | Google Gemini API-kulcs |
+| `DEEPSEEK_API_KEY`     | *(üres)*                   | DeepSeek API-kulcs |
+| `GROQ_API_KEY`         | *(üres)*                   | Groq API-kulcs |
+| `MISTRAL_API_KEY`      | *(üres)*                   | Mistral API-kulcs |
 | `OLLAMA_URL`       | *(üres)*                   | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(üres)*                   | xAI API-kulcs |
+| `XAI_API_KEY`          | *(üres)*                   | xAI API-kulcs |
 
 Csak azokat a szolgáltatókat állítsa be, melyeket használ. A modellazonosítók névteresek (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, stb.).
 

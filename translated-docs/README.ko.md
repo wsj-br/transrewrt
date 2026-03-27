@@ -105,10 +105,10 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **참고**<br/>
-> Docker에서는 LLM 자격 증명을 환경 변수(`OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY` 등)로 설정하며, 웹 UI에서는 설정하지 않습니다. 데스크탑(Electron)에서는 **설정 → API**에서 키를 설정합니다.
+> Docker에서는 LLM 자격 증명을 환경 변수(`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY` 등)로 설정하며, 웹 UI에서는 설정하지 않습니다. 데스크탑(Electron)에서는 **설정 → API**에서 키를 설정합니다.
 
 <br/>
 
@@ -183,16 +183,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - 풀(Pull): `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 최소한 하나 이상의 공급자 키를 환경 변수를 통해 설정하세요 (예: OpenRouter 용 `OPENROUTER_KEY`). `-e` 또는 `docker compose` / `.env`를 사용하여 비밀 정보가 이미지에 포함되지 않도록 하세요.
+- 최소한 하나 이상의 공급자 키를 환경 변수를 통해 설정하세요 (예: OpenRouter 용 `OPENROUTER_API_KEY`). `-e` 또는 `docker compose` / `.env`를 사용하여 비밀 정보가 이미지에 포함되지 않도록 하세요.
 - 공급자 키는 **웹 UI에서 입력하지 않습니다**. 서버는 환경 변수에서 키를 읽어옵니다.
 
 예시 - 지속성을 위한 명명된 볼륨 사용 (환경 변수로 OpenRouter 키 전달):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 |--------|--------------------------------------------------------------------------------------------------------|
 | 포트   | `5000` (`-p 5000:5000`로 매핑)                                                                         |
 | 볼륨   | 설정 및 데이터베이스 지속성을 위해 `/app/data` 마운트                                                  |
-| 환경 변수 | `PORT`, `CONFIG_PATH`, 및 LLM 키(`OPENROUTER_KEY`, `OPENAI_KEY`, …) - 자세한 내용은 [설정](#configuration-and-environment) 참조 |
+| 환경 변수 | `PORT`, `CONFIG_PATH`, 및 LLM 키(`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - 자세한 내용은 [설정](#configuration-and-environment) 참조 |
 
 소스에서 빌드하고 실행하려면: `docker compose up --build -d` 또는 `pnpm docker:up` - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) 참조.
 
@@ -217,7 +217,7 @@ Transrewrt는 다수의 AI 제공업체를 지원합니다. [OpenRouter](https:/
 
 1. [openrouter.ai](https://openrouter.ai)에서 회원 가입하거나 로그인하세요.
 2. [Keys](https://openrouter.ai/keys) 페이지를 열고 새 키를 생성하세요(이름을 지정하고 필요 시 크레딧 한도를 설정할 수 있음). 크레딧을 추가하지 않아도 무료 모델을 사용할 수 있습니다.
-3. **데스크톱 (Electron)의 경우:** 키를 **설정 → API** 에 붙여넣으세요. **도커(Docker)의 경우:** `OPENROUTER_KEY` 와 같은 환경 변수를 설정하세요 (자세한 내용은 [빠른 시작](#quick-start) 참조).
+3. **데스크톱 (Electron)의 경우:** 키를 **설정 → API** 에 붙여넣으세요. **도커(Docker)의 경우:** `OPENROUTER_API_KEY` 와 같은 환경 변수를 설정하세요 (자세한 내용은 [빠른 시작](#quick-start) 참조).
 
 번역, 재작성 또는 변환 작업에 OpenRouter의 **Body Builder** 모델([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder))을 사용하지 마세요. 이 모델은 완성된 텍스트가 아닌 JSON 요청 페이로드를 반환합니다. 자세한 내용은 사용자 안내서의 [설정 → 모델](USER-GUIDE.ko.md#models)을 참조하세요.
 
@@ -249,16 +249,16 @@ Transrewrt는 다수의 AI 제공업체를 지원합니다. [OpenRouter](https:/
 | ------------------ | ----------------------- | ---- |
 | `PORT`             | `5000`                  | 서버가 수신 대기하는 포트 |
 | `CONFIG_PATH`      | `/app/data/config.json` | 설정 파일 경로 |
-| `OPENROUTER_KEY`   | *(비어 있음)*             | OpenRouter API 키 |
-| `OPENAI_KEY`       | *(비어 있음)*             | OpenAI API 키 |
-| `CEREBRAS_KEY`     | *(비어 있음)*             | Cerebras API 키 |
-| `ANTHROPIC_KEY`    | *(비어 있음)*             | Anthropic API 키 |
-| `GOOGLE_KEY`       | *(비어 있음)*             | Google Gemini API 키 |
-| `DEEPSEEK_KEY`     | *(비어 있음)*             | DeepSeek API 키 |
-| `GROQ_KEY`         | *(비어 있음)*             | Groq API 키 |
-| `MISTRAL_KEY`      | *(비어 있음)*             | Mistral API 키 |
+| `OPENROUTER_API_KEY`   | *(비어 있음)*             | OpenRouter API 키 |
+| `OPENAI_API_KEY`       | *(비어 있음)*             | OpenAI API 키 |
+| `CEREBRAS_API_KEY`     | *(비어 있음)*             | Cerebras API 키 |
+| `ANTHROPIC_API_KEY`    | *(비어 있음)*             | Anthropic API 키 |
+| `GOOGLE_API_KEY`       | *(비어 있음)*             | Google Gemini API 키 |
+| `DEEPSEEK_API_KEY`     | *(비어 있음)*             | DeepSeek API 키 |
+| `GROQ_API_KEY`         | *(비어 있음)*             | Groq API 키 |
+| `MISTRAL_API_KEY`      | *(비어 있음)*             | Mistral API 키 |
 | `OLLAMA_URL`       | *(비어 있음)*             | Ollama 기본 URL (예: `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(비어 있음)*             | xAI API 키 |
+| `XAI_API_KEY`          | *(비어 있음)*             | xAI API 키 |
 
 사용하는 제공업체에 대해서만 구성하세요. 모델 ID는 네임스페이스화됨(`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` 등).
 

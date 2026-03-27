@@ -105,10 +105,10 @@ Odată instalat, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentr
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> În Docker, acreditările LLM sunt setate prin variabile de mediu precum `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (nu în interfața web). Pe desktop (Electron) configurați cheile în **Setări → API**.
+> În Docker, acreditările LLM sunt setate prin variabile de mediu precum `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nu în interfața web). Pe desktop (Electron) configurați cheile în **Setări → API**.
 
 <br/>
 
@@ -183,16 +183,16 @@ Odată ce aplicația rulează, consultați **[Ghidul utilizatorului](USER-GUIDE.
 ### Docker
 
 - Descărcați imaginea: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Setați cel puțin o cheie de furnizor prin mediu (de exemplu, `OPENROUTER_KEY` pentru OpenRouter). Pasați variabilele folosind `-e` sau `docker compose` / `.env` pentru ca secretele să nu fie încorporate în imagine.
+- Setați cel puțin o cheie de furnizor prin mediu (de exemplu, `OPENROUTER_API_KEY` pentru OpenRouter). Pasați variabilele folosind `-e` sau `docker compose` / `.env` pentru ca secretele să nu fie încorporate în imagine.
 - Cheile furnizorilor **nu** se introduc în interfața web; serverul le citește din mediul de execuție.
 
 Exemplu – volum denumit pentru persistență (cheia OpenRouter printr-un mediu):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (mapați cu `-p 5000:5000`)                                                                              |
 | Volum    | Montați `/app/data` pentru persistența configurației și a bazei de date                                        |
-| Variabile de mediu | `PORT`, `CONFIG_PATH`, plus cheile LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, ...) - consultați [Configurare](#configurare-si-mediu) |
+| Variabile de mediu | `PORT`, `CONFIG_PATH`, plus cheile LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, ...) - consultați [Configurare](#configurare-si-mediu) |
 
 Pentru a construi și rula din sursă: `docker compose up --build -d` sau `pnpm docker:up` - consultați [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ Transrewrt suportă mai mulți furnizori de IA. [OpenRouter](https://openrouter.
 
 1. Înregistrează-te sau autentifică-te pe [openrouter.ai](https://openrouter.ai).
 2. Accesează pagina [Keys](https://openrouter.ai/keys) și creează o cheie nouă (denumește-o și, opțional, setează un limită de credit). Poți folosi modele gratuite fără a adăuga credit.
-3. **Desktop (Electron):** lipește cheile în **Settings → API**. **Docker:** setează variabilele de mediu precum `OPENROUTER_KEY` (vezi [Quick start](#quick-start)).
+3. **Desktop (Electron):** lipește cheile în **Settings → API**. **Docker:** setează variabilele de mediu precum `OPENROUTER_API_KEY` (vezi [Quick start](#quick-start)).
 
 Nu folosi modelul **Body Builder** al OpenRouter-ului ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) pentru traducere, rescriere sau transformare: acesta returnează sarcini utile JSON, nu textul finalizat pentru aceste sarcini. Vezi [Settings → Models](USER-GUIDE.ro.md#models) din Ghidul utilizatorului.
 
@@ -249,16 +249,16 @@ Pentru limite, BYOK și altele, consultă [OpenRouter authentication](https://op
 | ------------------ | ---------------------- | --------- |
 | `PORT`             | `5000`                 | Portul pe care ascultă serverul |
 | `CONFIG_PATH`      | `/app/data/config.json`| Calea către fișierul de configurare |
-| `OPENROUTER_KEY`   | *(gol)*                | Cheia API OpenRouter |
-| `OPENAI_KEY`       | *(gol)*                | Cheia API OpenAI |
-| `CEREBRAS_KEY`     | *(gol)*                | Cheia API Cerebras |
-| `ANTHROPIC_KEY`    | *(gol)*                | Cheia API Anthropic |
-| `GOOGLE_KEY`       | *(gol)*                | Cheia API Google Gemini |
-| `DEEPSEEK_KEY`     | *(gol)*                | Cheia API DeepSeek |
-| `GROQ_KEY`         | *(gol)*                | Cheia API Groq |
-| `MISTRAL_KEY`      | *(gol)*                | Cheia API Mistral |
+| `OPENROUTER_API_KEY`   | *(gol)*                | Cheia API OpenRouter |
+| `OPENAI_API_KEY`       | *(gol)*                | Cheia API OpenAI |
+| `CEREBRAS_API_KEY`     | *(gol)*                | Cheia API Cerebras |
+| `ANTHROPIC_API_KEY`    | *(gol)*                | Cheia API Anthropic |
+| `GOOGLE_API_KEY`       | *(gol)*                | Cheia API Google Gemini |
+| `DEEPSEEK_API_KEY`     | *(gol)*                | Cheia API DeepSeek |
+| `GROQ_API_KEY`         | *(gol)*                | Cheia API Groq |
+| `MISTRAL_API_KEY`      | *(gol)*                | Cheia API Mistral |
 | `OLLAMA_URL`       | *(gol)*                | URL-ul de bază Ollama (ex: `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(gol)*                | Cheia API xAI |
+| `XAI_API_KEY`          | *(gol)*                | Cheia API xAI |
 
 Configurează doar furnizorii pe care îi folosești. ID-urile modelelor sunt grupate în nume spațiate (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

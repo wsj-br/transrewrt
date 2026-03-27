@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Compare OpenRouter model ids (suffix after last "/") with native Google catalog ids
- * from multi-llm-ts / Google API. Requires GOOGLE_KEY in env for the Google half.
+ * from multi-llm-ts / Google API. Requires GOOGLE_API_KEY in env for the Google half.
  *
  * Usage: node scripts/debug-openrouter-vs-native-model-ids.js
  */
@@ -23,9 +23,9 @@ async function main() {
     console.log(`  ${x.full}  →  suffix: ${x.suffix}`);
   }
 
-  const googleKey = (process.env.GOOGLE_KEY || "").trim();
+  const googleKey = (process.env.GOOGLE_API_KEY || "").trim();
   if (!googleKey) {
-    console.log("\nSkip Google list: set GOOGLE_KEY to compare native ids.");
+    console.log("\nSkip Google list: set GOOGLE_API_KEY to compare native ids.");
     return;
   }
 

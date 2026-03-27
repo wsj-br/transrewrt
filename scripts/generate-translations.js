@@ -1,6 +1,6 @@
 /**
  * Read locales/strings.json, translate missing entries via OpenRouter, write flat locale JSONs.
- * Requires OPENROUTER_KEY (same as server/Docker). Run after extract-strings.js.
+ * Requires OPENROUTER_API_KEY (same as server/Docker). Run after extract-strings.js.
  * Model list: scripts/openrouter-script-models.js (not app config).
  *
  * Use --help for usage and options.
@@ -57,7 +57,7 @@ Generate translations for UI strings using OpenRouter.
 
 Reads src/renderer/locales/strings.json (from i18n:extract), translates missing
 entries per language via OpenRouter, and writes flat locale JSON files
-(pt-BR.json, de.json, fr.json, es.json). Requires OPENROUTER_KEY.
+(pt-BR.json, de.json, fr.json, es.json). Requires OPENROUTER_API_KEY.
 
 Usage:
   node scripts/generate-translations.js [options]
@@ -134,7 +134,7 @@ if (unknown.length > 0) {
 const STRINGS_FILE = path.join(process.cwd(), "src", "renderer", "locales", "strings.json");
 const LOCALES_DIR = path.join(process.cwd(), "src", "renderer", "locales");
 const UI_LANGUAGES_PATH = path.join(process.cwd(), "src", "renderer", "locales", "ui-languages.json");
-const OPENROUTER_KEY = (process.env.OPENROUTER_KEY || "").trim();
+const OPENROUTER_API_KEY = (process.env.OPENROUTER_API_KEY || "").trim();
 const MODEL = cliModel;
 const MAX_TOKENS = maxTokens;
 
@@ -198,8 +198,8 @@ if (localeFilter) {
   log(LANGUAGES.length === 1 ? `single locale: ${LANGUAGES[0].code}` : `filtering to ${LANGUAGES.length} locale(s): ${LANGUAGES.map((l) => l.code).join(", ")}`);
 }
 
-if (!OPENROUTER_KEY) {
-  warn("OPENROUTER_KEY not set; will only write locale files from existing strings.json");
+if (!OPENROUTER_API_KEY) {
+  warn("OPENROUTER_API_KEY not set; will only write locale files from existing strings.json");
 }
 
 if (retranslate) {
@@ -301,12 +301,12 @@ function translateBatchError(message, details = null) {
 }
 
 async function translateBatch(texts, langName, modelOverride = null) {
-  if (!OPENROUTER_KEY) return { translated: texts.map(() => null), usage: { prompt_tokens: 0, completion_tokens: 0, total_cost: 0 } };
+  if (!OPENROUTER_API_KEY) return { translated: texts.map(() => null), usage: { prompt_tokens: 0, completion_tokens: 0, total_cost: 0 } };
   const model = modelOverride ?? MODEL;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${OPENROUTER_KEY}`,
+      Authorization: `Bearer ${OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
       "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
       "X-Title": "Transrewrt-ui-translations",

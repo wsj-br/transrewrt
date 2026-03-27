@@ -9,7 +9,7 @@
   "Function": "Функція",
   "Import not available.": "Імпорт недоступний.",
   "Edit user account. Optionally set a new password or generate one.": "Редагувати обліковий запис користувача. При бажанні встановити новий пароль або згенерувати його.",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "Для використання цього застосунку потрібно встановити змінну середовища OPENROUTER_KEY на сервері.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Для використання цього застосунку потрібно встановити змінну середовища OPENROUTER_API_KEY на сервері.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Не вдалося перевірити ключ API OpenRouter. Переклад та перефразування можуть не працювати.",
   "API Key Required": "Потрібен ключ API",
   "Continue anyway": "Продовжити все одно",

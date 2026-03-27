@@ -106,10 +106,10 @@ Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt-BR.md)** par
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Substitua `sk-or-your-key` pela sua [chave de API OpenRouter](https://openrouter
 <br/>
 
 > ℹ️ **OBSERVAÇÃO**<br/>
-> No Docker, as credenciais do LLM são definidas por meio de variáveis de ambiente, como `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (não na interface da web). Em ambientes desktop (Electron), você configura as chaves em **Configurações → API**.
+> No Docker, as credenciais do LLM são definidas por meio de variáveis de ambiente, como `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (não na interface da web). Em ambientes desktop (Electron), você configura as chaves em **Configurações → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Após iniciar o aplicativo, consulte o **[Guia do Usuário](USER-GUIDE.pt-BR.md)
 ### Docker
 
 - Baixe: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Configure pelo menos uma chave de provedor via ambiente (por exemplo, `OPENROUTER_KEY` para o OpenRouter). Passe as variáveis com `-e` ou via `docker compose` / `.env` para que segredos não sejam embutidos na imagem.
+- Configure pelo menos uma chave de provedor via ambiente (por exemplo, `OPENROUTER_API_KEY` para o OpenRouter). Passe as variáveis com `-e` ou via `docker compose` / `.env` para que segredos não sejam embutidos na imagem.
 - Chaves de provedores **não** são inseridas na interface web; o servidor as lê diretamente do ambiente.
 
 Exemplo - volume nomeado para persistência (chave OpenRouter via ambiente):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Porta    | `5000` (mapeie com `-p 5000:5000`)                                                                              |
 | Volume   | Monte `/app/data` para manter configurações e banco de dados persistentes                                                         |
-| Variáveis de ambiente | `PORT`, `CONFIG_PATH`, além das chaves de LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - veja [Configuração](#configuração-e-ambiente) |
+| Variáveis de ambiente | `PORT`, `CONFIG_PATH`, além das chaves de LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - veja [Configuração](#configuração-e-ambiente) |
 
 Para compilar e executar a partir do código-fonte: `docker compose up --build -d` ou `pnpm docker:up` - veja [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ O Transrewrt suporta múltiplos provedores de IA. O [OpenRouter](https://openrou
 
 1. Cadastre-se ou faça login em [openrouter.ai](https://openrouter.ai).
 2. Acesse a página [Keys](https://openrouter.ai/keys) e crie uma nova chave (dê um nome e, opcionalmente, defina um limite de crédito). Você pode usar modelos gratuitos sem adicionar créditos.
-3. **Desktop (Electron):** cole as chaves em **Configurações → API**. **Docker:** defina variáveis de ambiente como `OPENROUTER_KEY` (veja [Início rápido](#quick-start)).
+3. **Desktop (Electron):** cole as chaves em **Configurações → API**. **Docker:** defina variáveis de ambiente como `OPENROUTER_API_KEY` (veja [Início rápido](#quick-start)).
 
 Não use o modelo **Body Builder** do OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) para traduzir, reescrever ou transformar: ele retorna cargas JSON de solicitações, não o texto finalizado para essas tarefas. Veja [Configurações → Modelos](USER-GUIDE.pt-BR.md#models) no Guia do Usuário.
 
@@ -251,16 +251,16 @@ Para limites, BYOK e mais, veja [autenticação OpenRouter](https://openrouter.a
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Porta de escuta do servidor |
 | `CONFIG_PATH`    | `/app/data/config.json` | Caminho para o arquivo de configuração |
-| `OPENROUTER_KEY` | *(vazio)*               | Chave da API do OpenRouter |
-| `OPENAI_KEY`     | *(vazio)*               | Chave da API do OpenAI |
-| `CEREBRAS_KEY`   | *(vazio)*               | Chave da API do Cerebras |
-| `ANTHROPIC_KEY`  | *(vazio)*               | Chave da API do Anthropic |
-| `GOOGLE_KEY`     | *(vazio)*               | Chave da API do Google Gemini |
-| `DEEPSEEK_KEY`   | *(vazio)*               | Chave da API do DeepSeek |
-| `GROQ_KEY`       | *(vazio)*               | Chave da API do Groq |
-| `MISTRAL_KEY`    | *(vazio)*               | Chave da API do Mistral |
+| `OPENROUTER_API_KEY` | *(vazio)*               | Chave da API do OpenRouter |
+| `OPENAI_API_KEY`     | *(vazio)*               | Chave da API do OpenAI |
+| `CEREBRAS_API_KEY`   | *(vazio)*               | Chave da API do Cerebras |
+| `ANTHROPIC_API_KEY`  | *(vazio)*               | Chave da API do Anthropic |
+| `GOOGLE_API_KEY`     | *(vazio)*               | Chave da API do Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(vazio)*               | Chave da API do DeepSeek |
+| `GROQ_API_KEY`       | *(vazio)*               | Chave da API do Groq |
+| `MISTRAL_API_KEY`    | *(vazio)*               | Chave da API do Mistral |
 | `OLLAMA_URL`     | *(vazio)*               | URL base do Ollama (ex: `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(vazio)*               | Chave da API do xAI |
+| `XAI_API_KEY`        | *(vazio)*               | Chave da API do xAI |
 
 Configure apenas os provedores que você utiliza. Os IDs dos modelos são organizados por namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

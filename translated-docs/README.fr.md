@@ -105,10 +105,10 @@ Après installation, consultez le **[Guide utilisateur](USER-GUIDE.fr.md)** pour
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -118,7 +118,7 @@ Remplacez `sk-or-your-key` par votre [clé API OpenRouter](https://openrouter.ai
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> Avec Docker, les identifiants LLM sont définis via des variables d’environnement comme `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (pas dans l’interface web). Sur le poste de travail (Electron), vous configurez les clés dans **Paramètres → API**.
+> Avec Docker, les identifiants LLM sont définis via des variables d’environnement comme `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (pas dans l’interface web). Sur le poste de travail (Electron), vous configurez les clés dans **Paramètres → API**.
 
 <br/>
 
@@ -183,16 +183,16 @@ Une fois l’application lancée, consultez le **[Guide utilisateur](USER-GUIDE.
 ### Docker
 
 - Téléchargez l’image : `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Définissez au moins une clé de fournisseur via les variables d’environnement (par exemple `OPENROUTER_KEY` pour OpenRouter). Passez les variables avec `-e` ou via `docker compose` / `.env` pour que les secrets ne soient pas intégrés à l’image.
+- Définissez au moins une clé de fournisseur via les variables d’environnement (par exemple `OPENROUTER_API_KEY` pour OpenRouter). Passez les variables avec `-e` ou via `docker compose` / `.env` pour que les secrets ne soient pas intégrés à l’image.
 - Les clés de fournisseur ne sont **pas** saisies dans l’interface web ; le serveur les lit depuis l’environnement.
 
 Exemple — volume nommé pour la persistance (clé OpenRouter via variable d’environnement) :
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -203,7 +203,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------- | ------------------------------------------------------------------------------------------------------------- |
 | Port       | `5000` (à mapper avec `-p 5000:5000`)                                                                         |
 | Volume     | Monter `/app/data` pour la persistance de la configuration et de la base de données                           |
-| Variables d’environnement | `PORT`, `CONFIG_PATH`, ainsi que les clés LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) — voir [Configuration](#configuration-et-environnement) |
+| Variables d’environnement | `PORT`, `CONFIG_PATH`, ainsi que les clés LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) — voir [Configuration](#configuration-et-environnement) |
 
 Pour construire et exécuter depuis les sources : `docker compose up --build -d` ou `pnpm docker:up` — voir [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -217,7 +217,7 @@ Transrewrt prend en charge plusieurs fournisseurs d'IA. [OpenRouter](https://ope
 
 1. Inscrivez-vous ou connectez-vous sur [openrouter.ai](https://openrouter.ai).
 2. Ouvrez la page [Keys](https://openrouter.ai/keys) et créez une nouvelle clé (donnez-lui un nom, et éventuellement fixez une limite de crédit). Vous pouvez utiliser les modèles gratuits sans ajouter de crédit.
-3. **Bureau (Electron)** : collez les clés dans **Paramètres → API**. **Docker** : définissez des variables d'environnement comme `OPENROUTER_KEY` (voir [Démarrage rapide](#quick-start)).
+3. **Bureau (Electron)** : collez les clés dans **Paramètres → API**. **Docker** : définissez des variables d'environnement comme `OPENROUTER_API_KEY` (voir [Démarrage rapide](#quick-start)).
 
 N’utilisez pas le modèle **Body Builder** d’OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) pour traduire, réécrire ou transformer : il renvoie des charges utiles JSON de requête, pas le texte finalisé pour ces tâches. Consultez [Paramètres → Modèles](USER-GUIDE.fr.md#models) dans le guide utilisateur.
 
@@ -250,16 +250,16 @@ Pour plus d’informations sur les limites, BYOK, etc., consultez [OpenRouter au
 |-------------------|-------------------------|-----------|
 | `PORT`           | `5000`                  | Port d'écoute du serveur |
 | `CONFIG_PATH`    | `/app/data/config.json` | Chemin vers le fichier de configuration |
-| `OPENROUTER_KEY` | *(vide)*                | Clé API OpenRouter |
-| `OPENAI_KEY`     | *(vide)*                | Clé API OpenAI |
-| `CEREBRAS_KEY`   | *(vide)*                | Clé API Cerebras |
-| `ANTHROPIC_KEY`  | *(vide)*                | Clé API Anthropic |
-| `GOOGLE_KEY`     | *(vide)*                | Clé API Google Gemini |
-| `DEEPSEEK_KEY`   | *(vide)*                | Clé API DeepSeek |
-| `GROQ_KEY`       | *(vide)*                | Clé API Groq |
-| `MISTRAL_KEY`    | *(vide)*                | Clé API Mistral |
+| `OPENROUTER_API_KEY` | *(vide)*                | Clé API OpenRouter |
+| `OPENAI_API_KEY`     | *(vide)*                | Clé API OpenAI |
+| `CEREBRAS_API_KEY`   | *(vide)*                | Clé API Cerebras |
+| `ANTHROPIC_API_KEY`  | *(vide)*                | Clé API Anthropic |
+| `GOOGLE_API_KEY`     | *(vide)*                | Clé API Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(vide)*                | Clé API DeepSeek |
+| `GROQ_API_KEY`       | *(vide)*                | Clé API Groq |
+| `MISTRAL_API_KEY`    | *(vide)*                | Clé API Mistral |
 | `OLLAMA_URL`     | *(vide)*                | URL de base d’Ollama (ex. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(vide)*                | Clé API xAI |
+| `XAI_API_KEY`        | *(vide)*                | Clé API xAI |
 
 Configurez uniquement les fournisseurs que vous utilisez. Les identifiants de modèle sont espacés par un espace de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

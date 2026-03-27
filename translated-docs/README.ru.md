@@ -106,10 +106,10 @@ model: "qwen/qwen3-235b-a22b-2507"
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 <br/>
 
 > ℹ️ **ПРИМЕЧАНИЕ**<br/>
-> В Docker учетные данные LLM задаются с помощью переменных окружения, таких как `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (не в веб-интерфейсе). В настольной версии (Electron) вы настраиваете ключи в разделе **Настройки → API**.
+> В Docker учетные данные LLM задаются с помощью переменных окружения, таких как `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (не в веб-интерфейсе). В настольной версии (Electron) вы настраиваете ключи в разделе **Настройки → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xa
 ### Docker
 
 - Загрузите: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Установите хотя бы один ключ провайдера через переменные окружения (например, `OPENROUTER_KEY` для OpenRouter). Передавайте переменные с помощью `-e` или `docker compose` / `.env`, чтобы секреты не внедрялись в образ.
+- Установите хотя бы один ключ провайдера через переменные окружения (например, `OPENROUTER_API_KEY` для OpenRouter). Передавайте переменные с помощью `-e` или `docker compose` / `.env`, чтобы секреты не внедрялись в образ.
 - Ключи провайдеров **не** вводятся в веб-интерфейсе; сервер считывает их из окружения.
 
 Пример — именованный том для сохранения данных (ключ OpenRouter через переменную окружения):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Порт     | `5000` (откройте через `-p 5000:5000`)                                                                              |
 | Том      | Смонтируйте `/app/data` для сохранения настроек и базы данных                                                         |
-| Переменные среды | `PORT`, `CONFIG_PATH`, а также ключи LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) — см. [Конфигурация](#configuration-and-environment) |
+| Переменные среды | `PORT`, `CONFIG_PATH`, а также ключи LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) — см. [Конфигурация](#configuration-and-environment) |
 
 Чтобы собрать и запустить из исходников: `docker compose up --build -d` или `pnpm docker:up` — см. [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt поддерживает несколько поставщиков И
 
 1. Зарегистрируйтесь или войдите на сайте [openrouter.ai](https://openrouter.ai).
 2. Перейдите на страницу [Keys](https://openrouter.ai/keys) и создайте новый ключ (укажите имя и при необходимости установите лимит средств). Вы можете использовать бесплатные модели без добавления средств.
-3. **Десктоп (Electron):** вставьте ключ в разделе **Настройки → API**. **Docker:** задайте переменные окружения, например `OPENROUTER_KEY` (см. [Быстрый старт](#quick-start)).
+3. **Десктоп (Electron):** вставьте ключ в разделе **Настройки → API**. **Docker:** задайте переменные окружения, например `OPENROUTER_API_KEY` (см. [Быстрый старт](#quick-start)).
 
 Не используйте модель **Body Builder** от OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) для перевода, переписывания или преобразования текста: она возвращает JSON-тела запросов, а не готовый текст. Подробнее см. в разделе [Настройки → Модели](USER-GUIDE.ru.md#models) Руководства пользователя.
 
@@ -250,16 +250,16 @@ Transrewrt поддерживает несколько поставщиков И
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Порт, на котором работает сервер |
 | `CONFIG_PATH`    | `/app/data/config.json` | Путь к файлу конфигурации |
-| `OPENROUTER_KEY` | *(пусто)*               | Ключ API OpenRouter |
-| `OPENAI_KEY`     | *(пусто)*               | Ключ API OpenAI |
-| `CEREBRAS_KEY`   | *(пусто)*               | Ключ API Cerebras |
-| `ANTHROPIC_KEY`  | *(пусто)*               | Ключ API Anthropic |
-| `GOOGLE_KEY`     | *(пусто)*               | Ключ API Google Gemini |
-| `DEEPSEEK_KEY`   | *(пусто)*               | Ключ API DeepSeek |
-| `GROQ_KEY`       | *(пусто)*               | Ключ API Groq |
-| `MISTRAL_KEY`    | *(пусто)*               | Ключ API Mistral |
+| `OPENROUTER_API_KEY` | *(пусто)*               | Ключ API OpenRouter |
+| `OPENAI_API_KEY`     | *(пусто)*               | Ключ API OpenAI |
+| `CEREBRAS_API_KEY`   | *(пусто)*               | Ключ API Cerebras |
+| `ANTHROPIC_API_KEY`  | *(пусто)*               | Ключ API Anthropic |
+| `GOOGLE_API_KEY`     | *(пусто)*               | Ключ API Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(пусто)*               | Ключ API DeepSeek |
+| `GROQ_API_KEY`       | *(пусто)*               | Ключ API Groq |
+| `MISTRAL_API_KEY`    | *(пусто)*               | Ключ API Mistral |
 | `OLLAMA_URL`     | *(пусто)*               | Базовый URL Ollama (например, `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(пусто)*               | Ключ API xAI |
+| `XAI_API_KEY`        | *(пусто)*               | Ключ API xAI |
 
 Настройте только тех провайдеров, которых вы планируете использовать. Идентификаторы моделей пространственны-именованы (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` и т. д.).
 

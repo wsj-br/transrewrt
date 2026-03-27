@@ -9,7 +9,7 @@
   "Function": "関数",
   "Import not available.": "インポートは利用できません。",
   "Edit user account. Optionally set a new password or generate one.": "ユーザーのアカウントを編集します。必要に応じて新しいパスワードを設定するか、自動生成します。",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "このアプリケーションを使用するには、サーバーにOPENROUTER_KEY環境変数を設定する必要があります。",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "このアプリケーションを使用するには、サーバーにOPENROUTER_API_KEY環境変数を設定する必要があります。",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter APIキーを検証できませんでした。翻訳とリライトが機能しない可能性があります。",
   "API Key Required": "APIキーが必要です",
   "Continue anyway": "続行する",

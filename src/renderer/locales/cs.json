@@ -9,7 +9,7 @@
   "Function": "Funkce",
   "Import not available.": "Import není dostupný.",
   "Edit user account. Optionally set a new password or generate one.": "Upravit uživatelský účet. Volitelně nastavit nové heslo nebo vygenerovat nové.",
-  "You need to set the OPENROUTER_KEY environment variable on the server to use this application.": "Pro použití této aplikace musíš na serveru nastavit proměnnou prostředí OPENROUTER_KEY.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Pro použití této aplikace musíš na serveru nastavit proměnnou prostředí OPENROUTER_API_KEY.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Klíč API OpenRouter se nepodařilo ověřit. Překlad a přepisování nemusí fungovat.",
   "API Key Required": "Vyžadován klíč API",
   "Continue anyway": "Přesto pokračovat",

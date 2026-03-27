@@ -106,10 +106,10 @@ Na installatie raadpleeg de **[Gebruikersgids](USER-GUIDE.nl.md)** voor een voll
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Vervang `sk-or-your-key` door je [OpenRouter API-sleutel](https://openrouter.ai/
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> Bij Docker worden LLM-referenties ingesteld via omgevingsvariabelen zoals `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (niet in de webinterface). Bij de desktopversie (Electron) configureer je de sleutels in **Instellingen → API**.
+> Bij Docker worden LLM-referenties ingesteld via omgevingsvariabelen zoals `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (niet in de webinterface). Bij de desktopversie (Electron) configureer je de sleutels in **Instellingen → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Zodra de app draait, raadpleeg de **[Gebruikershandleiding](USER-GUIDE.nl.md)** 
 ### Docker
 
 - Ophalen: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Stel minstens één providersleutel in via omgevingsvariabelen (bijvoorbeeld `OPENROUTER_KEY` voor OpenRouter). Geef variabelen door met `-e` of gebruik `docker compose` / `.env`, zodat geheimen niet in de afbeelding worden opgeslagen.
+- Stel minstens één providersleutel in via omgevingsvariabelen (bijvoorbeeld `OPENROUTER_API_KEY` voor OpenRouter). Geef variabelen door met `-e` of gebruik `docker compose` / `.env`, zodat geheimen niet in de afbeelding worden opgeslagen.
 - Providersleutels worden **niet** ingevoerd in de webinterface; de server leest ze uit de omgeving.
 
 Voorbeeld - benoemde volume voor duurzaamheid (OpenRouter-sleutel via omgeving):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | ---------- | ------------------------------------------------------------------------------------------------------------- |
 | Poort      | `5000` (koppel met `-p 5000:5000`)                                                                            |
 | Volume     | Koppel `/app/data` voor behoud van configuratie en database                                                   |
-| Omgevingsvariabelen | `PORT`, `CONFIG_PATH`, plus LLM-sleutels (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - zie [Configuratie](#configuratie-en-omgeving) |
+| Omgevingsvariabelen | `PORT`, `CONFIG_PATH`, plus LLM-sleutels (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - zie [Configuratie](#configuratie-en-omgeving) |
 
 Om uit broncode te bouwen en uit te voeren: `docker compose up --build -d` of `pnpm docker:up` - zie [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt ondersteunt meerdere AI-aanbieders. [OpenRouter](https://openrouter.a
 
 1. Meld u aan of log in op [openrouter.ai](https://openrouter.ai).
 2. Ga naar de [Keys-pagina](https://openrouter.ai/keys) en maak een nieuwe sleutel aan (geef deze een naam, en optioneel een kredietlimiet). U kunt gratis modellen gebruiken zonder krediet toe te voegen.
-3. **Bureaublad (Electron):** plak de sleutels in **Instellingen → API**. **Docker:** stel omgevingsvariabelen in, zoals `OPENROUTER_KEY` (zie [Snelle start](#quick-start)).
+3. **Bureaublad (Electron):** plak de sleutels in **Instellingen → API**. **Docker:** stel omgevingsvariabelen in, zoals `OPENROUTER_API_KEY` (zie [Snelle start](#quick-start)).
 
 Gebruik OpenRouter’s **Body Builder**-model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) niet voor vertalen, herschrijven of transformeren: dit retourneert JSON-aanvraaginhoud, niet de voltooide tekst voor deze taken. Zie [Instellingen → Modellen](USER-GUIDE.nl.md#models) in de gebruikershandleiding.
 
@@ -251,16 +251,16 @@ Zie [OpenRouter authenticatie](https://openrouter.ai/docs/api/reference/authenti
 | ------------------ | --------------------- | ------------ |
 | `PORT`             | `5000`                | Serverluisterpoort |
 | `CONFIG_PATH`      | `/app/data/config.json` | Pad naar het configuratiebestand |
-| `OPENROUTER_KEY`   | *(leeg)*              | OpenRouter API-sleutel |
-| `OPENAI_KEY`       | *(leeg)*              | OpenAI API-sleutel |
-| `CEREBRAS_KEY`     | *(leeg)*              | Cerebras API-sleutel |
-| `ANTHROPIC_KEY`    | *(leeg)*              | Anthropic API-sleutel |
-| `GOOGLE_KEY`       | *(leeg)*              | Google Gemini API-sleutel |
-| `DEEPSEEK_KEY`     | *(leeg)*              | DeepSeek API-sleutel |
-| `GROQ_KEY`         | *(leeg)*              | Groq API-sleutel |
-| `MISTRAL_KEY`      | *(leeg)*              | Mistral API-sleutel |
+| `OPENROUTER_API_KEY`   | *(leeg)*              | OpenRouter API-sleutel |
+| `OPENAI_API_KEY`       | *(leeg)*              | OpenAI API-sleutel |
+| `CEREBRAS_API_KEY`     | *(leeg)*              | Cerebras API-sleutel |
+| `ANTHROPIC_API_KEY`    | *(leeg)*              | Anthropic API-sleutel |
+| `GOOGLE_API_KEY`       | *(leeg)*              | Google Gemini API-sleutel |
+| `DEEPSEEK_API_KEY`     | *(leeg)*              | DeepSeek API-sleutel |
+| `GROQ_API_KEY`         | *(leeg)*              | Groq API-sleutel |
+| `MISTRAL_API_KEY`      | *(leeg)*              | Mistral API-sleutel |
 | `OLLAMA_URL`       | *(leeg)*              | Basis-URL van Ollama (bijv. `http://host.docker.internal:11434`) |
-| `XAI_KEY`          | *(leeg)*              | xAI API-sleutel |
+| `XAI_API_KEY`          | *(leeg)*              | xAI API-sleutel |
 
 Configureer alleen de aanbieders die u gebruikt. Model-ID’s zijn genamespace’d (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

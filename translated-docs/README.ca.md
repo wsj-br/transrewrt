@@ -106,10 +106,10 @@ Un cop instal·lat, vegeu el **[Manual d'usuari](USER-GUIDE.ca.md)** per una gui
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -119,7 +119,7 @@ Substituïu `sk-or-your-key` per la vostra [clau API d'OpenRouter](https://openr
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> A Docker, les credencials dels LLM es configuren mitjançant variables d'entorn com `OPENROUTER_KEY`, `OPENAI_KEY`, `CEREBRAS_KEY`, … (no en la interfície web). A l'escriptori (Electron) configureu les claus a **Configuració → API**.
+> A Docker, les credencials dels LLM es configuren mitjançant variables d'entorn com `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (no en la interfície web). A l'escriptori (Electron) configureu les claus a **Configuració → API**.
 
 <br/>
 
@@ -184,16 +184,16 @@ Un cop l'aplicació s'estigui executant, vegeu el **[Guia d'usuari](USER-GUIDE.c
 ### Docker
 
 - Descarregueu: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Configureu almenys una clau de proveïdor mitjançant variables d'entorn (per exemple, `OPENROUTER_KEY` per a OpenRouter). Passeu les variables amb `-e` o utilitzeu `docker compose` / `.env` perquè els secrets no s'inclouen dins la imatge.
+- Configureu almenys una clau de proveïdor mitjançant variables d'entorn (per exemple, `OPENROUTER_API_KEY` per a OpenRouter). Passeu les variables amb `-e` o utilitzeu `docker compose` / `.env` perquè els secrets no s'inclouen dins la imatge.
 - Les claus del proveïdor **no** s'introdueixen a la interfície web; el servidor les llegeix des de l'entorn.
 
 Exemple - volum amb nom per a persistència (clau OpenRouter mitjançant entorn):
 
 ```bash
-OPENROUTER_KEY=sk-or-your-key docker run -d \
+OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_KEY \
+  -e OPENROUTER_API_KEY \
   --name transrewrt-web \
   ghcr.io/wsj-br/transrewrt:latest
 ```
@@ -204,7 +204,7 @@ OPENROUTER_KEY=sk-or-your-key docker run -d \
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Port     | `5000` (mapatge amb `-p 5000:5000`)                                                                     |
 | Volum    | Munteu `/app/data` per a persistència de configuració i base de dades                                   |
-| Variables d'entorn | `PORT`, `CONFIG_PATH`, a més de claus LLM (`OPENROUTER_KEY`, `OPENAI_KEY`, …) - vegeu [Configuració](#configuration-and-environment) |
+| Variables d'entorn | `PORT`, `CONFIG_PATH`, a més de claus LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - vegeu [Configuració](#configuration-and-environment) |
 
 Per compilar i executar des del codi font: `docker compose up --build -d` o `pnpm docker:up`. Vegeu [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
@@ -218,7 +218,7 @@ Transrewrt admet diversos proveïdors d'IA. [OpenRouter](https://openrouter.ai) 
 
 1. Registra't o inicia sessió a [openrouter.ai](https://openrouter.ai).
 2. Obre la pàgina de [Keys](https://openrouter.ai/keys) i crea una nova clau (posa-li un nom i, opcionalment, estableix un límit de crèdit). Pots utilitzar models gratuïts sense afegir crèdit.
-3. **Escriptori (Electron):** enganxa les claus a **Configuració → API**. **Docker:** estableix variables d'entorn com ara `OPENROUTER_KEY` (vegeu [Inici ràpid](#quick-start)).
+3. **Escriptori (Electron):** enganxa les claus a **Configuració → API**. **Docker:** estableix variables d'entorn com ara `OPENROUTER_API_KEY` (vegeu [Inici ràpid](#quick-start)).
 
 No utilitzis el model **Body Builder** d'OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) per traduir, reescriure o transformar: retorna les càrregues útils de les sol·licituds en format JSON, no el text completat per a aquestes tasques. Consulteu [Configuració → Models](USER-GUIDE.ca.md#models) al Manual d'usuari.
 
@@ -250,16 +250,16 @@ Per a límits, BYOK i més informació, consulteu [autenticació d'OpenRouter](h
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Port d'escolta del servidor |
 | `CONFIG_PATH`    | `/app/data/config.json` | Ruta al fitxer de configuració |
-| `OPENROUTER_KEY` | *(buit)*                | Clau API d'OpenRouter |
-| `OPENAI_KEY`     | *(buit)*                | Clau API d'OpenAI |
-| `CEREBRAS_KEY`   | *(buit)*                | Clau API de Cerebras |
-| `ANTHROPIC_KEY`  | *(buit)*                | Clau API d'Anthropic |
-| `GOOGLE_KEY`     | *(buit)*                | Clau API de Google Gemini |
-| `DEEPSEEK_KEY`   | *(buit)*                | Clau API de DeepSeek |
-| `GROQ_KEY`       | *(buit)*                | Clau API de Groq |
-| `MISTRAL_KEY`    | *(buit)*                | Clau API de Mistral |
+| `OPENROUTER_API_KEY` | *(buit)*                | Clau API d'OpenRouter |
+| `OPENAI_API_KEY`     | *(buit)*                | Clau API d'OpenAI |
+| `CEREBRAS_API_KEY`   | *(buit)*                | Clau API de Cerebras |
+| `ANTHROPIC_API_KEY`  | *(buit)*                | Clau API d'Anthropic |
+| `GOOGLE_API_KEY`     | *(buit)*                | Clau API de Google Gemini |
+| `DEEPSEEK_API_KEY`   | *(buit)*                | Clau API de DeepSeek |
+| `GROQ_API_KEY`       | *(buit)*                | Clau API de Groq |
+| `MISTRAL_API_KEY`    | *(buit)*                | Clau API de Mistral |
 | `OLLAMA_URL`     | *(buit)*                | URL base d'Ollama (p. ex. `http://host.docker.internal:11434`) |
-| `XAI_KEY`        | *(buit)*                | Clau API de xAI |
+| `XAI_API_KEY`        | *(buit)*                | Clau API de xAI |
 
 Configureu només els proveïdors que utilitzeu. Els ID de models estan organitzats per espais de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
