@@ -9,6 +9,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Root `production.yml` Compose file (optional `.env` via `env_file` with `required: false`) plus a commented environment-variable reference for new-machine Docker runs.
+- **Changed**: DEVELOPMENT.md Prerequisites describe installing and using direnv (`.envrc`, shell hooks, `direnv allow`); Linux direnv step defers to that section.
 - **Changed**: `scripts/translate-docs.js` front matter field `source_mtime` is written as an ISO 8601 timestamp instead of raw filesystem `mtimeMs`.
 - **Changed**: renamed the api keys environment variables names (`*_KEY` → `*_API_KEY`) across source files, Markdown docs, and `.env*` files
 - **Changed**: API provider test success messages (`Ollama configuration is working.`, `{{provider}} credentials are valid.`) are translated in the UI via i18n; `testProviderAuth` returns `successI18n` metadata for the renderer (Electron IPC and web `/api/provider-test`).

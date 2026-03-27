@@ -46,6 +46,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **Node.js 24** (LTS). The project uses Electron 41, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
+- **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook — Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run **`direnv allow`** once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
 - **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
 - **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated.
 
@@ -81,7 +82,7 @@ nvm use 24
 3. **Noto fonts** (optional, for language-selector screenshot):
   `sudo apt install fonts-noto-cjk fonts-noto-core`  
    Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
-4. **Optional – direnv**: `sudo apt install direnv` and add `eval "$(direnv hook bash)"` (or zsh) to your shell rc; run `direnv allow` in the project root.
+4. **direnv**: `sudo apt install direnv` — shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
 5. **Docker**: `sudo apt install docker.io docker-compose` and `sudo usermod -aG docker $USER` (log out and back in).
 
 ---
@@ -120,7 +121,7 @@ On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 
 
 | Target                 | Command                               | Output                                                                                                             |
-| ---------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+|------------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **Renderer**           | `pnpm build-renderer` or `pnpm build` | `dist/` (production assets)                                                                                        |
 | **Electron installer** | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows)                                                                           |
 | **Docker image**       | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
@@ -131,11 +132,11 @@ On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en.json`). Locale files (pt-BR, de, fr, es) live in `src/renderer/locales/`. To update or add UI strings:
 
 
-| Command                   | Purpose                                                                                                                                                |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                   |
+| Command                   | Purpose                                                                                                                                                    |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                       |
 | `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
-| `pnpm run i18n:sync`      | Run extract then translate                                                                                                                             |
+| `pnpm run i18n:sync`      | Run extract then translate                                                                                                                                 |
 
 The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), `scripts/translate-docs.js` (`pnpm translate-docs`), and `scripts/generate-test-data.js`. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
 
@@ -204,7 +205,7 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 
 
 | Phase            | Command                                     | Notes                           |
-| ---------------- | ------------------------------------------- | ------------------------------- |
+|------------------|---------------------------------------------|---------------------------------|
 | **Develop**      | `pnpm dev`                                  | Hot reload, Webpack on :3030    |
 | **Test**         | `pnpm build-renderer` then `pnpm start`     | Run built app                   |
 | **Test (Linux)** | `pnpm build-renderer` then `pnpm start-x11` | Use X11 if Wayland fails        |
@@ -215,7 +216,7 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 
 
 | Phase       | Command                               | Notes                                                              |
-| ----------- | ------------------------------------- | ------------------------------------------------------------------ |
+|-------------|---------------------------------------|--------------------------------------------------------------------|
 | **Develop** | `pnpm dev:web`                        | Webpack on :5000, API on :3030 (proxied via /api)                  |
 | **Build**   | `pnpm build` or `pnpm build-renderer` | Output to `dist/`                                                  |
 | **Test**    | `pnpm serve`                          | Build then serve at [http://localhost:5000](http://localhost:5000) |
@@ -323,7 +324,6 @@ For more detail (including Node version alignment and Windows-specific issues), 
 |-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**                                                                                              | Product and **runtime architecture** (Electron IPC **`llm:*`** vs web **`/api/llm/stream`** SSE), **multi-llm-ts** and supported providers, **config/state** (desktop `config.json` + encryption; web global config vs **`user_preferences`** / **`transrewrt.db`**), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules. |
 | **[i18n.md](i18n.md)**                                                                                                                    | UI strings: extract/translate workflow, key-as-default, RTL, `interpolateTemplate`.                                                                                                                                                                                                                                                                       |
-| [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md) | Extended i18n plan (historical / detail).                                                                                                                                                                                                                                                                                                                 |
 
 ---
 
@@ -338,13 +338,13 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/main/preload.js](../src/main/preload.js)                                               | Preload script exposing APIs to renderer                                                                              |
 | [src/main/appDb.js](../src/main/appDb.js)                                                   | Electron app DB (api_calls, action_content, custom_prompts); IPC                                                      |
 | [src/server/index.js](../src/server/index.js)                                               | Express server (web/Docker): static app, auth, **`/api/config`**, **`/api/llm/*`**, calls, users, prompts             |
-| [src/shared/llm/index.js](../src/shared/llm/index.js)                                       | **multi-llm-ts** bridge, provider key map, streaming; used by **main** and **server**                                  |
+| [src/shared/llm/index.js](../src/shared/llm/index.js)                                       | **multi-llm-ts** bridge, provider key map, streaming; used by **main** and **server**                                 |
 | [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js)                                         | Electron **`llm:stream`** / **`llm:abort`** / **`llm:models`** IPC                                                    |
-| [src/server/routes/apiLlm.js](../src/server/routes/apiLlm.js)                               | Web **`POST /api/llm/stream`** (SSE) and related LLM routes                                                            |
-| [src/server/db/appDb.js](../src/server/db/appDb.js)                                         | Web SQLite init, **`user_preferences`**, migrations, session cleanup                                                   |
-| [src/server/routes/config.js](../src/server/routes/config.js)                               | **`GET/POST /api/config`**: merge **`user_preferences`** + server-global keys (admin rules)                            |
-| [src/server/utils/webConfigKeys.js](../src/server/utils/webConfigKeys.js)                  | Which keys stay in global **`config.json`** vs per-user prefs                                                          |
-| [src/main/encryption.js](../src/main/encryption.js)                                         | Electron: **AES-256-CBC** for provider secrets at rest; **`transrewrt.key`** beside `config.json`                       |
+| [src/server/routes/apiLlm.js](../src/server/routes/apiLlm.js)                               | Web **`POST /api/llm/stream`** (SSE) and related LLM routes                                                           |
+| [src/server/db/appDb.js](../src/server/db/appDb.js)                                         | Web SQLite init, **`user_preferences`**, migrations, session cleanup                                                  |
+| [src/server/routes/config.js](../src/server/routes/config.js)                               | **`GET/POST /api/config`**: merge **`user_preferences`** + server-global keys (admin rules)                           |
+| [src/server/utils/webConfigKeys.js](../src/server/utils/webConfigKeys.js)                   | Which keys stay in global **`config.json`** vs per-user prefs                                                         |
+| [src/main/encryption.js](../src/main/encryption.js)                                         | Electron: **AES-256-CBC** for provider secrets at rest; **`transrewrt.key`** beside `config.json`                     |
 | [src/shared/db/appSchema.js](../src/shared/db/appSchema.js)                                 | Shared DB schema and SQL (used by main + server)                                                                      |
 | [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                        |
 | [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                                   |
@@ -355,7 +355,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
 | [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
-| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                                |
+| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                            |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** and [Related documentation](#related-documentation).

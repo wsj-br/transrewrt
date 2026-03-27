@@ -192,12 +192,23 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
+or if you prefer to use Docker Compose, use:
+
+```
+# download the compose file
+wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
+# edit the file to add the API_KEYS
+vi transrewrt.yml
+# start the container
+docker compose -f transrewrt.yml up -d
+```
+
 <br/>
 
-| Option   | Description                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (map with `-p 5000:5000`)                                                                              |
-| Volume   | Mount `/app/data` for config and database persistence                                                         |
+| Option   | Description                                                                                                                            |
+|----------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Port     | `5000` (map with `-p 5000:5000`)                                                                                                       |
+| Volume   | Mount `/app/data` for config and database persistence                                                                                  |
 | Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
 To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
