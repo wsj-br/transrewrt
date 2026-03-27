@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Changelog](#changelog)
+  - [Unreleased](#unreleased)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -9,9 +18,14 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Linux AppImage `electron-builder` target lists only `x64` in `package.json`; CI passes `--arm64` or `--x64` so each matrix job builds a single architecture (fixes duplicate AppImages in one artifact and arm64 job failing on x64 native rebuild).
+- **Changed**: Release workflow artifact names include the app version: `Transrewrt-<version>-windows-installer-x64`, `Transrewrt-AppImage-<version>-x64` / `-arm64`; `build-windows` / `build-linux` depend on `prepare` for the version.
+- **Added**: `publish-release-assets` job (on `release` / `published` only) uploads Windows `.exe` and Linux `.AppImage` files to the GitHub Release via `softprops/action-gh-release`.
+- **Changed**: Comment on Docker `build-push` step: GHCR `unknown/unknown` manifest rows are BuildKit provenance attestations, not missing `linux/amd64` / `linux/arm64` images (attestations kept).
+- **Added**: [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) **Releasing** section: version bump, changelog, `pnpm run update-version`, tag `vX.Y.Z`, GitHub Release notes, CI behavior.
 - **Fixed**: `electron-builder` no longer attempts GitHub Release publishing during `pnpm run package` (`build.publish` is `null`). CI builds only produce installers/AppImages; release assets are uploaded by the workflow, so a `GH_TOKEN` was not required and was missing (“GitHub Personal Access Token is not set”).
 - **Fixed**: [`.github/workflows/release.yml`](.github/workflows/release.yml) grants `packages: write` on Docker build/merge jobs so `GITHUB_TOKEN` can push to `ghcr.io` under an organization (avoids “installation not allowed to Create organization package”).
-- **Changed**: [`.github/workflows/release.yml`](.github/workflows/release.yml) bumps `actions/checkout` to v6, `actions/setup-node` to v6, `pnpm/action-setup` to v5, `actions/upload-artifact` / `download-artifact` to v6; sets `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` to avoid Node 20 deprecation warnings on GitHub-hosted runners ([changelog](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/)).
+- **Changed**: [`.github/workflows/release.yml`](.github/workflows/release.yml) bumps `actions/checkout` to v6, `actions/setup-node` to v6, `pnpm/action-setup` to v5, `actions/upload-artifact` / `download-artifact` to v6; `docker/setup-buildx-action` to v4 and `docker/build-push-action` to v7 ([Node 24 runtimes](https://github.com/docker/build-push-action/releases/tag/v7.0.0)); sets `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` for any remaining actions still on Node 20 ([deprecation notice](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/)).
 - **Added**: [scripts/eslint-react-peers-allow-eslint10.js](scripts/eslint-react-peers-allow-eslint10.js) queries `pnpm view … peerDependencies` for `eslint-plugin-react` and `eslint-plugin-react-hooks` and uses semver to test ESLint 10; [scripts/upgrade-dependencies.sh](scripts/upgrade-dependencies.sh) runs it before `ncu` and only passes `-x eslint,…` when peers still exclude ESLint 10 (or the check fails).
 - **Changed**: `scripts/upgrade-tools.sh` and `scripts/upgrade-dependencies.sh` update nvm-sh when `NVM_DIR` is a git clone (quiet fetch/checkout), resolve LTS Node via `scripts/nvm-lts-resolve-version.sh`, must be run with `source` in bash ([nvm-sh#2124](https://github.com/nvm-sh/nvm/issues/2124)); running as `./scripts/…` aborts unless `CI=1` or `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`. [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) documents the upgrade flow.
 - **Fixed**: LTS Node version detection no longer treats the **npm** semver in `nvm install --lts` output (e.g. `(npm v11.11.0)`) as the Node version; resolution uses `Now using node v…`, then `nvm list` lines such as `default -> lts/* (-> vX.Y.Z)`, via `scripts/nvm-lts-resolve-version.sh`.

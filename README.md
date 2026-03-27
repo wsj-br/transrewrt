@@ -74,7 +74,6 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Quick start](#quick-start)
 - [Installation](#installation)
   - [Windows (Electron)](#windows-electron)

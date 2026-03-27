@@ -23,6 +23,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Electron (standalone installers)](#electron-standalone-installers)
   - [Web (Docker)](#web-docker)
   - [Raspberry Pi (arm64)](#raspberry-pi-arm64)
+  - [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release)
 - [Commands by Target](#commands-by-target)
   - [Electron (Desktop)](#electron-desktop)
   - [Web (browser, local server)](#web-browser-local-server)
@@ -222,6 +223,35 @@ For deploying the web app to a Pi (e.g. host `pi-piro`):
    Access at [http://pi-piro:5000](http://pi-piro:5000).
 
 See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md) for full steps.
+
+### Releasing (CI builds and GitHub Release)
+
+Official desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR). To cut a full release end-to-end:
+
+1. **Changelog** — In [CHANGELOG.md](CHANGELOG.md), move the bullets under `## Unreleased` into a new section `## [X.Y.Z] — YYYY-MM-DD` (Keep a Changelog style). Leave an empty `## Unreleased` heading for the next cycle.
+2. **Version** — Set `"version": "X.Y.Z"` in [package.json](../package.json) (SemVer).
+3. **Sync references** — Run **`pnpm run update-version`** so the README badge and other files updated by [scripts/update-version.js](../scripts/update-version.js) match `package.json`.
+4. **Commit** — Commit the changelog, `package.json`, and any `update-version` output (e.g. `chore: release vX.Y.Z`).
+5. **Tag** — Create an **annotated** tag matching the release (e.g. **`vX.Y.Z`**, consistent with the GitHub Release tag):
+
+   ```bash
+   git tag -a vX.Y.Z -m "Release vX.Y.Z"
+   ```
+
+6. **Push** — Push the branch and the tag, for example:
+
+   ```bash
+   git push origin main
+   git push origin vX.Y.Z
+   ```
+
+7. **GitHub Release** — In the repo: **Releases → Draft a new release** → choose tag **`vX.Y.Z`** → set the **title** (e.g. `Transrewrt X.Y.Z`) → paste or adapt the **`[X.Y.Z]`** section from `CHANGELOG.md` into the **description** → **Publish release** (not a draft). Publishing runs the Release workflow; the **Publish GitHub Release assets** job attaches the Windows installer and Linux AppImages to that release.
+
+   Alternatively, with the [GitHub CLI](https://cli.github.com/) (`gh auth login` first): `gh release create vX.Y.Z --title "Transrewrt X.Y.Z" --notes-file path/to/notes.md` (or `--generate-notes`), then open the release on GitHub if you need to edit the description.
+
+8. **Artifacts elsewhere** — CI also uploads **workflow artifacts** (same naming pattern). The **container image** is **`ghcr.io/wsj-br/transrewrt:X.Y.Z`** (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+
+**Manual workflow run** — You can run the Release workflow from the **Actions** tab without a new release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the **`tag_as_latest`** input if you need the Docker `latest` tag on that manual run.
 
 ---
 
