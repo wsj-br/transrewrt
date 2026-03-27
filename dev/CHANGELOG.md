@@ -18,7 +18,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Changed**: Linux AppImage `electron-builder` target lists only `x64` in `package.json`; CI passes `--arm64` or `--x64` so each matrix job builds a single architecture (fixes duplicate AppImages in one artifact and arm64 job failing on x64 native rebuild).
+- **Added**: [`.github/workflows/appimage-arm64.yml`](.github/workflows/appimage-arm64.yml) — workflow_dispatch and path-filtered PR/push runs that build only the Linux **arm64** AppImage (same steps as the release workflow) for quick validation without Windows, Docker, or x64 jobs.
+- **Changed**: Linux AppImage `electron-builder` target lists only `x64` in `package.json`; CI x64 uses `electron-builder --linux AppImage --x64` directly; arm64 merges [build/electron-builder.linux-arm64.json](build/electron-builder.linux-arm64.json) so `@electron/rebuild` targets arm64 (avoids x64 `argon2` compile on arm64 runners and duplicate AppImages on x64).
 - **Changed**: Release workflow artifact names include the app version: `Transrewrt-<version>-windows-installer-x64`, `Transrewrt-AppImage-<version>-x64` / `-arm64`; `build-windows` / `build-linux` depend on `prepare` for the version.
 - **Added**: `publish-release-assets` job (on `release` / `published` only) uploads Windows `.exe` and Linux `.AppImage` files to the GitHub Release via `softprops/action-gh-release`.
 - **Changed**: Comment on Docker `build-push` step: GHCR `unknown/unknown` manifest rows are BuildKit provenance attestations, not missing `linux/amd64` / `linux/arm64` images (attestations kept).
