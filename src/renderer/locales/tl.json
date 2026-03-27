@@ -9,7 +9,7 @@
   "Function": "Function",
   "Import not available.": "Hindi available ang import.",
   "Edit user account. Optionally set a new password or generate one.": "I-edit ang account ng user. Maaaring mag-set ng bagong password o mag-generate ng isa.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Kailangan mong i-set ang OPENROUTER_API_KEY environment variable sa server para magamit ang application na ito.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Kailangan mong itakda ang OPENROUTER_API_KEY environment variable sa server para gamitin ang aplikasyong ito.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Hindi ma-verify ang OpenRouter API key. Ang translation at rewrite ay baka hindi gumana.",
   "API Key Required": "Kailangan ng API Key",
   "Continue anyway": "Magpatuloy pa rin",

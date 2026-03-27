@@ -7,6 +7,7 @@
  * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
  * Requires OPENROUTER_API_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
  * Session log: dev/translate-docs_YYYYMMDD_HHMMSS.log; per-doc summaries append to dev/translations.log.
+ * With --debug, separated source blocks are also written to dev/translate-docs-blocks_<same-stamp>.log.
  *
  *   node scripts/translate-docs.js --help
  *   OPENROUTER_API_KEY=sk-or-... pnpm run translate-docs
@@ -28,10 +29,16 @@ function buildModelsToTry(primary) {
 }
 
 const DEFAULT_MAX_TOKENS = 32768; // 32KB
-const DEFAULT_CONCURRENCY = 4;
+const DEFAULT_CONCURRENCY = 3;
 /** Max parallel API calls translating blocks within one doc+locale (see --block-concurrency). */
-const DEFAULT_BLOCK_CONCURRENCY = 2;
-const BLOCK_SIZE = 4096; // 4KB
+const DEFAULT_BLOCK_CONCURRENCY = 4;
+/** Default max characters per split block when a document exceeds this size (split at markdown headings). */
+const DEFAULT_BLOCK_SIZE = 1024;
+/** OpenRouter: prefer highest-throughput provider; allow backup providers. https://openrouter.ai/docs/guides/routing/provider-selection */
+const OPENROUTER_PROVIDER = {
+  sort: "throughput",
+  allow_fallbacks: true,
+};
 const RED = "\x1b[31m";
 const YELLOW = "\x1b[33m";
 const BLUE = "\x1b[34m";
@@ -50,6 +57,8 @@ const DEV_DIR = path.join(ROOT, "dev");
 const TRANSLATIONS_SUMMARY_LOG = path.join(DEV_DIR, "translations.log");
 
 let logFileStream = null;
+/** Set in main() when --debug; appendDebugBlocks writes separated block text here. */
+let debugBlocksPath = null;
 
 function timestamp() {
   return new Date().toTimeString().slice(0, 8);
@@ -116,6 +125,8 @@ Options:
   --max-tokens, -t <n>    Max tokens (default: ${DEFAULT_MAX_TOKENS}).
   --concurrency, -c <n>   Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
   --block-concurrency, -b <n>  Max parallel blocks per language per document (default: ${DEFAULT_BLOCK_CONCURRENCY}; with defaults, up to ${DEFAULT_CONCURRENCY}×${DEFAULT_BLOCK_CONCURRENCY} simultaneous translations).
+  --block-size <n>        Max characters per block when splitting large docs (default: ${DEFAULT_BLOCK_SIZE}).
+  --debug                 Write each doc’s split source blocks to dev/translate-docs-blocks_<run>.log (same run id as the session log).
 
 Examples:
   node scripts/translate-docs.js --help
@@ -135,12 +146,15 @@ function parseArgs() {
   let maxTokens = DEFAULT_MAX_TOKENS;
   let concurrency = DEFAULT_CONCURRENCY;
   let blockConcurrency = DEFAULT_BLOCK_CONCURRENCY;
+  let blockSize = DEFAULT_BLOCK_SIZE;
+  let debug = false;
   let help = false;
   const unknown = [];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--help" || arg === "-h") help = true;
     else if (arg === "--force" || arg === "-f") force = true;
+    else if (arg === "--debug") debug = true;
     else if (arg === "--doc" && args[i + 1]) {
       const v = args[++i];
       if (v === "README" || v === "USER-GUIDE" || v === "both") doc = v;
@@ -162,9 +176,16 @@ function parseArgs() {
     } else if ((arg === "--block-concurrency" || arg === "-b") && args[i + 1]) {
       const n = parseInt(args[++i], 10);
       if (!Number.isNaN(n) && n >= 1) blockConcurrency = n;
+    } else if (arg.startsWith("--block-size=")) {
+      const v = arg.split("=", 2)[1];
+      const n = parseInt(v, 10);
+      if (!Number.isNaN(n) && n >= 1) blockSize = n;
+    } else if (arg === "--block-size" && args[i + 1]) {
+      const n = parseInt(args[++i], 10);
+      if (!Number.isNaN(n) && n >= 1) blockSize = n;
     } else unknown.push(arg);
   }
-  return { help, force, doc, locale, model, maxTokens, concurrency, blockConcurrency, unknown };
+  return { help, force, doc, locale, model, maxTokens, concurrency, blockConcurrency, blockSize, debug, unknown };
 }
 
 const args = parseArgs();
@@ -183,6 +204,7 @@ const MODEL = args.model;
 const MAX_TOKENS = args.maxTokens;
 const CONCURRENCY = args.concurrency;
 const BLOCK_CONCURRENCY = args.blockConcurrency;
+const BLOCK_SIZE = args.blockSize;
 
 let LANGUAGES = [];
 if (fs.existsSync(UI_LANGUAGES_PATH)) {
@@ -302,6 +324,25 @@ function splitIntoBlocks(content, maxChars = BLOCK_SIZE) {
   return blocks;
 }
 
+function appendDebugBlocks(localeCode, docKey, blocks) {
+  if (!debugBlocksPath) return;
+  let out = "";
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    out +=
+      "\n" +
+      "=".repeat(72) +
+      "\n" +
+      `locale: ${localeCode} | doc: ${docKey} | block ${i + 1}/${blocks.length} | ${b.length} chars` +
+      "\n" +
+      "=".repeat(72) +
+      "\n" +
+      b +
+      "\n";
+  }
+  fs.appendFileSync(debugBlocksPath, out, "utf8");
+}
+
 function extractUsage(data) {
   const u = data.usage || {};
   const rawCost = data.total_cost ?? data.cost ?? u.total_cost ?? u.cost;
@@ -350,6 +391,7 @@ async function translateBlock(blockContent, langName, modelOverride = null) {
     body: JSON.stringify({
       model,
       max_tokens: MAX_TOKENS,
+      provider: OPENROUTER_PROVIDER,
       messages: [
         { role: "system", content: DOC_SYSTEM_PROMPT },
         {
@@ -378,18 +420,18 @@ async function translateBlock(blockContent, langName, modelOverride = null) {
   return { translated, usage, model };
 }
 
-async function translateBlockWithFallback(blockContent, langName, docKey, blockIndex) {
+async function translateBlockWithFallback(blockContent, langName, localeCode, docKey, blockIndex) {
   const modelsToTry = buildModelsToTry(MODEL);
   let lastError = null;
   for (let mi = 0; mi < modelsToTry.length; mi++) {
     const model = modelsToTry[mi];
-    log(`  ${docKey} block ${blockIndex + 1}: trying model ${model}${mi > 0 ? ` (fallback ${mi + 1}/${modelsToTry.length})` : ""}...`);
+    log(`  ${localeCode} ${docKey} block ${blockIndex + 1}: trying model ${model}${mi > 0 ? ` (fallback ${mi + 1}/${modelsToTry.length})` : ""}...`);
     try {
       const result = await translateBlock(blockContent, langName, model);
       return result;
     } catch (e) {
       lastError = e;
-      warn(`${docKey} block ${blockIndex + 1} failed with ${model}:`, e.message);
+      warn(`${localeCode} ${docKey} block ${blockIndex + 1} failed with ${model}:`, e.message);
     }
   }
   throw lastError || new Error("No model succeeded");
@@ -491,6 +533,12 @@ async function processDoc(locale, doc, content) {
   const result = { cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok", elapsedMs: 0 };
   const currentHash = hashSource(content);
   const outPath = path.join(TRANSLATED_DOCS_DIR, `${doc.key}.${locale.code}.md`);
+
+  const blocks = splitIntoBlocks(content);
+  if (args.debug) {
+    appendDebugBlocks(locale.code, doc.key, blocks);
+  }
+
   if (!args.force && fs.existsSync(outPath)) {
     const existingContent = fs.readFileSync(outPath, "utf8");
     const parsed = parseFrontmatter(existingContent);
@@ -501,12 +549,11 @@ async function processDoc(locale, doc, content) {
     }
   }
 
-  const blocks = splitIntoBlocks(content);
   log(YELLOW + `🔍 ${locale.code} ${doc.key}: ${blocks.length} block(s) (max ${BLOCK_SIZE} chars each)` + RESET);
 
   const blockOutcomes = await runMapWithConcurrency(blocks, BLOCK_CONCURRENCY, async (blockText, i) => {
     try {
-      const res = await translateBlockWithFallback(blockText, locale.englishName, doc.key, i);
+      const res = await translateBlockWithFallback(blockText, locale.englishName, locale.code, doc.key, i);
       const { translated, usage, model } = res;
       const reasoningStr = (usage.reasoning_tokens > 0) ? `, ${usage.reasoning_tokens} reasoning` : "";
       log(`  ✔️  ${locale.code} ${doc.key}: block ${i + 1}/${blocks.length}: done (${usage.prompt_tokens + usage.completion_tokens} tokens${reasoningStr})`);
@@ -701,9 +748,20 @@ async function main() {
   if (!fs.existsSync(DEV_DIR)) {
     fs.mkdirSync(DEV_DIR, { recursive: true });
   }
-  const logPath = path.join(DEV_DIR, `translate-docs_${logFilenameTimestamp()}.log`);
+  const runId = logFilenameTimestamp();
+  const logPath = path.join(DEV_DIR, `translate-docs_${runId}.log`);
   logFileStream = fs.createWriteStream(logPath, { flags: "a" });
   log("logging to " + logPath);
+
+  if (args.debug) {
+    debugBlocksPath = path.join(DEV_DIR, `translate-docs-blocks_${runId}.log`);
+    fs.writeFileSync(
+      debugBlocksPath,
+      `translate-docs --debug: separated source blocks (max ${BLOCK_SIZE} chars; split at markdown headings)\n${"=".repeat(72)}\n`,
+      "utf8"
+    );
+    log("debug blocks log: " + path.relative(ROOT, debugBlocksPath));
+  }
 
   const startTime = Date.now();
   log(
@@ -716,6 +774,7 @@ async function main() {
       "; block concurrency: " +
       BLOCK_CONCURRENCY +
       (args.force ? "; force" : "") +
+      (args.debug ? "; debug" : "") +
       ")"
   );
 
@@ -794,6 +853,10 @@ async function main() {
     appendDocTranslationSummaryLine(doc.key, docTokens, docCost, docElapsedSum);
   }
   log(`appended doc summaries to ${TRANSLATIONS_SUMMARY_LOG}`);
+  log(`session log file: ${path.relative(ROOT, logPath)}`);
+  if (debugBlocksPath) {
+    log(`debug blocks file: ${path.relative(ROOT, debugBlocksPath)}`);
+  }
 
   if (logFileStream) {
     logFileStream.end();

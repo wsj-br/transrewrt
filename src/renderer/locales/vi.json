@@ -9,7 +9,7 @@
   "Function": "Hàm",
   "Import not available.": "Chức năng nhập không khả dụng.",
   "Edit user account. Optionally set a new password or generate one.": "Chỉnh sửa tài khoản người dùng. Tùy chọn đặt mật khẩu mới hoặc tự động tạo một mật khẩu.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Bạn cần thiết lập biến môi trường OPENROUTER_API_KEY trên máy chủ để sử dụng ứng dụng này.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Bạn cần đặt biến môi trường OPENROUTER_API_KEY trên máy chủ để sử dụng ứng dụng này.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Không thể xác minh khóa API OpenRouter. Chức năng dịch và viết lại có thể không hoạt động.",
   "API Key Required": "Yêu cầu khóa API",
   "Continue anyway": "Tiếp tục anyway",

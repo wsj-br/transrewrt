@@ -23,6 +23,11 @@ const DEFAULT_MAX_TOKENS = 32768;
 const CHUNK = 50;
 /** Max number of languages to translate in parallel (reduces total time). */
 const PARALLEL_LANGUAGES = 4;
+/** OpenRouter: prefer highest-throughput provider; allow backup providers. https://openrouter.ai/docs/guides/routing/provider-selection */
+const OPENROUTER_PROVIDER = {
+  sort: "throughput",
+  allow_fallbacks: true,
+};
 
 const GREEN = "\x1b[32m";
 const BLUE = "\x1b[34m";
@@ -314,6 +319,7 @@ async function translateBatch(texts, langName, modelOverride = null) {
     body: JSON.stringify({
       model,
       max_tokens: MAX_TOKENS,
+      provider: OPENROUTER_PROVIDER,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         {

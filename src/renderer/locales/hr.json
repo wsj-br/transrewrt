@@ -9,7 +9,7 @@
   "Function": "Funkcija",
   "Import not available.": "Uvoz nije dostupan.",
   "Edit user account. Optionally set a new password or generate one.": "Uredi korisnički račun. Opcionalno postavi novu lozinku ili generiraj jednu.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Da bi koristio ovu aplikaciju, moraš postaviti varijablu okruženja OPENROUTER_API_KEY na serveru.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Morate postaviti OPENROUTER_API_KEY varijablu okoline na poslužitelju da biste koristili ovu aplikaciju.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter API ključ nije moguće potvrditi. Prijevod i prepravak možda neće raditi.",
   "API Key Required": "Potreban API ključ",
   "Continue anyway": "Svejedno nastavi",

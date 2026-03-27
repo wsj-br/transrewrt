@@ -9,7 +9,7 @@
   "Function": "Kazi",
   "Import not available.": "Uhakiki haupatikani.",
   "Edit user account. Optionally set a new password or generate one.": "Hariri akaunti ya mtumiaji. Si lazima weke nenosiri jipya au utengeze jipya.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Lazima uweke tuchaguzi la OPENROUTER_API_KEY kwenye seva ili kutumia programu hii.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Unahitaji kuweka yale ya mazingira OPENROUTER_API_KEY kwenye seva ili kutumia programu hii.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Ufunguo wa OpenRouter API hautakiwa kuthibitishwa. Tafsiri na kuandika upya bado haikukamilika.",
   "API Key Required": "Ufunguo wa API Unahitajika",
   "Continue anyway": "Endelea bado",

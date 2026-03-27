@@ -9,7 +9,7 @@
   "Function": "ఫంక్షన్",
   "Import not available.": "ఇంపోర్ట్ అందుబాటులో లేదు.",
   "Edit user account. Optionally set a new password or generate one.": "వాడుకరి ఖాతాను సవరించండి. ఎంపికని అనుసరించి కొత్త పాస్వర్డ్‌ను సెట్ చేయండి లేదా సృష్టించండి.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "ఈ అప్లికేషన్‌ను ఉపయోగించడానికి సర్వర్‌లో OPENROUTER_API_KEY ఎన్విరాన్‌మెంట్ వేరియబుల్‌ను సెట్ చేయాలి.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "ఈ అప్లికేషన్‌ను ఉపయోగించడానికి మీరు సర్వర్‌లో OPENROUTER_API_KEY పర్యావరణ వేరియబుల్‌ను సెట్ చేయాలి.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter API కీ ధృవీకరించబడలేదు. అనువాదం మరియు రీరైట్ పని చేయకపోవచ్చు.",
   "API Key Required": "API కీ అవసరం",
   "Continue anyway": "ఏమైనా కొనసాగించు",

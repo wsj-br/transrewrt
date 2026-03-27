@@ -9,7 +9,7 @@
   "Function": "Fonksiyon",
   "Import not available.": "İçe aktarma mevcut değil.",
   "Edit user account. Optionally set a new password or generate one.": "Kullanıcı hesabını düzenle. İsteğe bağlı olarak yeni bir şifre ayarlayın veya oluşturun.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Bu uygulamayı kullanmak için sunucuda OPENROUTER_API_KEY ortam değişkenini ayarlamalısınız.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Bu uygulamayı kullanmak için sunucuda OPENROUTER_API_KEY ortam değişkenini ayarlamanız gerekir.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter API anahtarı doğrulanamadı. Çeviri ve yeniden yazma çalışmayabilir.",
   "API Key Required": "API Anahtarı Gerekli",
   "Continue anyway": "Yine devam et",

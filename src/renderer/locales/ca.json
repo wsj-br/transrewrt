@@ -9,7 +9,7 @@
   "Function": "Funció",
   "Import not available.": "Importació no disponible.",
   "Edit user account. Optionally set a new password or generate one.": "Edita el compte d'usuari. Opcionalment, estableix una contrasenya nova o genera-ne una.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Cal que defineixis la variable d'entorn OPENROUTER_API_KEY al servidor per utilitzar aquesta aplicació.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Heu de definir la variable d'entorn OPENROUTER_API_KEY al servidor per utilitzar aquesta aplicació.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "No s'ha pogut verificar la clau de l'API d'OpenRouter. És possible que la traducció i la reescriptura no funcionin.",
   "API Key Required": "Cal una clau de l'API",
   "Continue anyway": "Continua igualment",

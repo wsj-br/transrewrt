@@ -9,7 +9,7 @@
   "Function": "تابع",
   "Import not available.": "وارد کردن در دسترس نیست.",
   "Edit user account. Optionally set a new password or generate one.": "ویرایش حساب کاربری. به صورت اختیاری رمز عبور جدیدی تنظیم کنید یا یکی را ایجاد کنید.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "شما باید متغیر محیطی OPENROUTER_API_KEY را روی سرور تنظیم کنید تا از این برنامه استفاده نمایید.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "برای استفاده از این برنامه، باید متغیر محیطی OPENROUTER_API_KEY را در سرور تنظیم کنید.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "کلید API OpenRouter تأیید نشد. ترجمه و بازنویسی ممکن است کار نکنند.",
   "API Key Required": "نیاز به کلید API",
   "Continue anyway": "با این حال ادامه دهید",

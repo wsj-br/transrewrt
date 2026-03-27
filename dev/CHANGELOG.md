@@ -1,11 +1,4 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Changelog](#changelog)
-  - [Unreleased](#unreleased)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DOCTOC SKIP -->
 
 # Changelog
 
@@ -18,6 +11,16 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+
+## 1.0.15 - 2026-03-27
+
+- **Changed**: `scripts/take-screenshots.js` logs wall-clock elapsed time (HH:MM:SS) on its own line before the session log path at the end of a successful run.
+- **Added**: `scripts/translate-docs.js` `--debug` writes each locale/doc’s split source blocks to `dev/translate-docs-blocks_<run>.log` (same run id as the session log).
+- **Changed**: `scripts/translate-docs.js` per-block “trying model” / fallback-failure lines include the locale code (e.g. `ms README block 1: …`).
+- **Changed**: `scripts/translate-docs.js` and `scripts/generate-translations.js` pass OpenRouter `provider.sort: "throughput"` (and `allow_fallbacks: true`) so requests prefer the fastest provider for the model ([provider routing](https://openrouter.ai/docs/guides/routing/provider-selection#provider-sorting)).
+- **Added**: `scripts/translate-docs.js` `--block-size <n>` to override the default max characters per split block (default 4096).
+- **Added**: `scripts/translate-docs.js` prints the session log path at the end of a successful run (`session log file: dev/translate-docs_….log`).
+- **Added**: [RELEASE-NOTES-v1.0.15.md](RELEASE-NOTES-v1.0.15.md) — generic release notes for the initial official release (v1.0.15).
 - **Changed**: Windows NSIS assisted installer uses [images/installerSidebar.bmp](images/installerSidebar.bmp) for the wizard sidebar (`build.nsis.installerSidebar` / `uninstallerSidebar`).
 - **Fixed**: [build/electron-builder.linux-arm64.json](build/electron-builder.linux-arm64.json) sets `directories.buildResources` to `images` and `directories.output` to `release`. A standalone `--config` file does not inherit `package.json` `build`, so defaults used `build/` and missed the Linux PNG; electron-builder fell back to the default Electron icon and wrote AppImages under `dist/` instead of `release/`.
 - **Changed**: Linux AppImage/desktop packaging uses [images/transrewrt_logo_512x512.png](images/transrewrt_logo_512x512.png) (`build.linux.icon`) so the Transrewrt logo is embedded instead of the default Electron icon.

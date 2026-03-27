@@ -1,7 +1,7 @@
 ---
-translated_at: "2026-03-26T00:30:02.443Z"
-source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
-source_mtime: 1774482559451.2136
+translated_at: "2026-03-27T23:08:53.587Z"
+source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
+source_mtime: "2026-03-27T20:34:13.877Z"
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
@@ -45,6 +45,7 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 <br/>
 
 <a id="screenshots"></a>
+
 ## Screenshots
 
 **Language selector**
@@ -74,12 +75,10 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 <br/><br/>
 
 <a id="table-of-contents"></a>
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Quick start](#quick-start)
 - [Installation](#installation)
@@ -99,6 +98,7 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 <br/><br/>
 
 <a id="quick-start"></a>
+
 ## Quick start
 
 **Docker (recommended for self-hosting)**
@@ -114,80 +114,81 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
+Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set keys for other providers; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
+> In Docker, LLM credentials are set using environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not via the web UI). For the desktop version (Electron), configure keys in **Settings → API**.
 
 <br/>
 
 **Windows**
 
-Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You need to configure at least one provider; OpenRouter is commonly used for free models.
+Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch it from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You must configure at least one provider; OpenRouter is commonly used for free models.
 
 <br/>
 
 **Linux**
 
-Download the `.AppImage` for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
+Download the appropriate `.AppImage` file for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for standard PCs, `arm64` for most ARM devices including Raspberry Pi 4+), then run:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Enter your API keys in **Settings → API**. You need to configure at least one provider; OpenRouter is commonly used for free models.
+Enter your API keys in **Settings → API**. You must configure at least one provider; OpenRouter is commonly used for free models.
 
-On Debian/Ubuntu you may need to install extra dependencies first:
+On Debian/Ubuntu, you may first need to install additional dependencies:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-See [Installation → Linux](#linux-electron) for details.
+See [Installation → Linux](#linux-electron) for more details.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> macOS is not currently supported. Transrewrt is available for Windows, Linux, and Docker.
+> macOS is currently not supported. Transrewrt is available for Windows, Linux, and Docker.
 
 <br/>
 
-Once the app is running, see the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
 <br/><br/>
 
 <a id="installation"></a>
+
 ## Installation
 
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Run the `.exe` and follow the installer.
-- First run: start the app from the Start menu or desktop shortcut. 
+- Run the `.exe` file and follow the installation instructions.
+- On first run: launch the app from the Start menu or desktop shortcut.
 
 <br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Download the matching `.AppImage` (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Download the appropriate `.AppImage` file (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` on x86_64/amd64, or use the `...-arm64.AppImage` filename on ARM64.
-- Extra dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for more.
+- Additional dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+- See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for more information.
 
 <br/>
 
 <a id="docker"></a>
 ### Docker
 
-- Pull: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Set at least one provider key via environment (for example `OPENROUTER_API_KEY` for OpenRouter). Pass variables with `-e` or `docker compose` / `.env` so secrets are not baked into the image.
-- Provider keys are **not** entered in the web UI; the server reads them from the environment.
+- Pull the image: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Set at least one provider key using environment variables (for example, `OPENROUTER_API_KEY` for OpenRouter). Pass variables using `-e` or via `docker compose` / `.env` to ensure secrets are not built into the image.
+- Provider keys are **not** entered in the web UI; the server reads them directly from the environment.
 
-Example - named volume for persistence (OpenRouter key via env):
+Example – using a named volume for data persistence (OpenRouter key via environment variable):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -198,12 +199,23 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
+Or, if you prefer Docker Compose, use:
+
+# Download the compose file
+```bash
+wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
+# Edit the file to add the API_KEYS
+vi transrewrt.yml
+# Start the container
+docker compose -f transrewrt.yml up -d
+```
+
 <br/>
 
-| Option   | Description                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (map with `-p 5000:5000`)                                                                              |
-| Volume   | Mount `/app/data` for config and database persistence                                                         |
+| Option   | Description                                                                                                                            |
+|----------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Port     | `5000` (map with `-p 5000:5000`)                                                                                                       |
+| Volume   | Mount `/app/data` for config and database persistence                                                                                  |
 | Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - see [Configuration](#configuration-and-environment) |
 
 To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
@@ -217,21 +229,22 @@ To build and run from source: `docker compose up --build -d` or `pnpm docker:up`
 Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) is a popular choice because it aggregates many models under one key and offers free models.
 
 1. Sign up or log in at [openrouter.ai](https://openrouter.ai).
-2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (give it a name, and optionally set a credit limit). You can use free models without adding any credit.
+2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (give it a name, and optionally set a credit limit). You can use free models without adding credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set environment variables such as `OPENROUTER_API_KEY` (see [Quick start](#quick-start)).
 
-Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation: it returns JSON request payloads, not the completed text for these tasks. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
+Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation tasks: it returns JSON request payloads, not the completed text needed for these operations. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
 
 You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
 > ⚠️ **WARNING**<br/>
-> If you're using Ollama from another device, container, or service, make sure to configure Ollama to allow external connections (not just localhost).
+> If you are using Ollama from another device, container, or service, remember to configure Ollama to allow external connections (not just localhost).
+
+For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
-For rate limits, bring-your-own-key (BYOK), and more details, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
-
 <a id="configuration-and-environment"></a>
+
 ## Configuration and environment
 
 **Config file locations**
@@ -246,10 +259,10 @@ For rate limits, bring-your-own-key (BYOK), and more details, see [OpenRouter au
 
 **Environment variables** (web/Docker only; Electron uses the local config file)
 
-| Variable         | Default                 | Description |
-| ---------------- | ----------------------- | ----------- |
-| `PORT`           | `5000`                  | Server listening port |
-| `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
+| Variable             | Default                 | Description |
+| -------------------- | ----------------------- | ----------- |
+| `PORT`               | `5000`                  | Server listening port |
+| `CONFIG_PATH`        | `/app/data/config.json` | Path to the config file |
 | `OPENROUTER_API_KEY` | *(empty)*               | OpenRouter API key |
 | `OPENAI_API_KEY`     | *(empty)*               | OpenAI API key |
 | `CEREBRAS_API_KEY`   | *(empty)*               | Cerebras API key |
@@ -258,18 +271,18 @@ For rate limits, bring-your-own-key (BYOK), and more details, see [OpenRouter au
 | `DEEPSEEK_API_KEY`   | *(empty)*               | DeepSeek API key |
 | `GROQ_API_KEY`       | *(empty)*               | Groq API key |
 | `MISTRAL_API_KEY`    | *(empty)*               | Mistral API key |
-| `OLLAMA_URL`     | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
+| `OLLAMA_URL`         | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | *(empty)*               | xAI API key |
 
-Configure only the providers you plan to use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
-**Cost display:** OpenRouter returns the exact billed cost when applicable. Other providers use **estimated** costs based on OpenRouter’s public model pricing if an OpenRouter key is available; otherwise, non-OpenRouter costs may display as `0`. These estimates are not invoices.
+**Cost display:** OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available; without it, non-OpenRouter cost may show as `0`. Estimates are not invoices.
 
 <br/>
 
-**Data and persistence:** For Docker, mount a volume at `/app/data` so that `config.json` and the SQLite database persist across container restarts. Without a volume, all data will be lost when the container stops.
+**Data and persistence:** For Docker, mount a volume at `/app/data` so `config.json` and the SQLite database persist across container restarts. Without a volume, all data is lost when the container stops.
 
-**Developers:** After pulling updates that replace the old single-key configuration, reset or merge your `data/config.json` with the new default structure from `src/config-defaults/config_default.json` if your local file still contains deprecated fields (`api_key`, `api_url`, proxy options).
+**Developers:** After pulling changes that replace the old single-key config, reset or merge `data/config.json` with the new default shape from `src/config-defaults/config_default.json` if your local file still uses removed fields (`api_key`, `api_url`, proxy options).
 
 <br/>
 
@@ -283,7 +296,7 @@ Configure only the providers you plan to use. Model IDs are namespaced (`openrou
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Immediately change the default admin password on any host accessible over a network.
+> Change the default admin password immediately on any network-accessible host.
 
 <br/>
 
@@ -304,7 +317,7 @@ Key settings (font, models, languages, etc.) are available in the application Se
 ## Releases and tags
 
 - **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** include the Windows installer (`.exe`) and Linux AppImages (**x64** and **arm64**).
-- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
+- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) as well as `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
 
 <br/><br/>
 
@@ -325,6 +338,7 @@ Please follow the existing code style and test your changes in both Electron and
 <br/><br/>
 
 <a id="disclaimer"></a>
+
 ## Disclaimer
 
 Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands.

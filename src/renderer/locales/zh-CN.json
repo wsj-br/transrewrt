@@ -9,7 +9,7 @@
   "Function": "函数",
   "Import not available.": "导入不可用。",
   "Edit user account. Optionally set a new password or generate one.": "编辑用户帐户。可选择设置新密码或生成密码。",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "你需要在服务器上设置 OPENROUTER_API_KEY 环境变量才能使用此应用。",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "您需要在服务器上设置 OPENROUTER_API_KEY 环境变量才能使用此应用。",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "无法验证 OpenRouter API 密钥。翻译和改写功能可能无法使用。",
   "API Key Required": "需要 API 密钥",
   "Continue anyway": "仍然继续",

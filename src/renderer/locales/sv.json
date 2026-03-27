@@ -9,7 +9,7 @@
   "Function": "Funktion",
   "Import not available.": "Import inte tillgänglig.",
   "Edit user account. Optionally set a new password or generate one.": "Redigera användarkonto. Du kan eventuellt ange ett nytt lösenord eller generera ett.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Du måste ange OPENROUTER_API_KEY-miljövariabeln på servern för att använda detta program.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Du måste ange miljövariabeln OPENROUTER_API_KEY på servern för att använda detta program.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "OpenRouter API-nyckeln kunde inte verifieras. Översättning och omskrivning kanske inte fungerar.",
   "API Key Required": "API-nyckel krävs",
   "Continue anyway": "Fortsätt ändå",

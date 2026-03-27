@@ -9,7 +9,7 @@
   "Function": "Συνάρτηση",
   "Import not available.": "Εισαγωγή μη διαθέσιμη.",
   "Edit user account. Optionally set a new password or generate one.": "Επεξεργασία λογαριασμού χρήστη. Προαιρετικά, ορίστε ένα νέο συνθηματικό ή δημιουργήστε ένα.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Πρέπει να ορίσετε τη μεταβλητή περιβάλλοντος OPENROUTER_API_KEY στο διακομιστή για να χρησιμοποιήσετε αυτήν την εφαρμογή.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Πρέπει να ορίσετε τη μεταβλητή περιβάλλοντος OPENROUTER_API_KEY στον διακομιστή για να χρησιμοποιήσετε αυτήν την εφαρμογή.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Το κλειδί OpenRouter API δεν μπορεί να επαληθευτεί. Η μετάφραση και η αναδιατύπωση ενδέχεται να μην λειτουργήσουν.",
   "API Key Required": "Απαιτείται κλειδί API",
   "Continue anyway": "Συνέχιση ούτως ή άλλως",

@@ -9,7 +9,7 @@
   "Function": "دالة",
   "Import not available.": "الاستيراد غير متاح.",
   "Edit user account. Optionally set a new password or generate one.": "تعديل حساب المستخدم. يمكنك اختيارياً تعيين كلمة مرور جديدة أو إنشاؤها.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "يجب عليك تعيين متغير البيئة OPENROUTER_API_KEY على الخادم لاستخدام هذا التطبيق.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "تحتاج إلى تعيين متغير البيئة OPENROUTER_API_KEY على الخادم لاستخدام هذا التطبيق.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "تعذّر التحقق من مفتاح OpenRouter API. قد لا تعمل الترجمة وإعادة الصياغة.",
   "API Key Required": "مفتاح API مطلوب",
   "Continue anyway": "متابعة على أي حال",

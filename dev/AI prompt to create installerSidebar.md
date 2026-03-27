@@ -1,3 +1,5 @@
+<!-- DOCTOC SKIP -->
+
 # AI prompt to generate the NSIS installer image for Transrewrt in Gemini
 
 

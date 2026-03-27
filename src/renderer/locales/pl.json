@@ -9,7 +9,7 @@
   "Function": "Funkcja",
   "Import not available.": "Import niedostępny.",
   "Edit user account. Optionally set a new password or generate one.": "Edytuj konto użytkownika. Opcjonalnie ustaw nowe hasło lub wygeneruj je.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Musisz ustawić zmienną środowiskową OPENROUTER_API_KEY na serwerze, aby korzystać z tej aplikacji.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Musisz ustawić zmienną środowiskową OPENROUTER_API_KEY na serwerze, aby używać tej aplikacji.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Nie udało się zweryfikować klucza API OpenRouter. Tłumaczenie i przeformułowanie mogą nie działać.",
   "API Key Required": "Wymagany klucz API",
   "Continue anyway": "Kontynuuj mimo to",

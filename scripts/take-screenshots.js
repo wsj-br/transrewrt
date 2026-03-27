@@ -394,6 +394,16 @@ function getTimestamp() {
   return `${h}:${m}:${s}`;
 }
 
+/** Wall-clock duration as HH:MM:SS (same idea as translate-docs). */
+function formatElapsed(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+
 function initLogFile() {
   const d = new Date();
   const Y = d.getFullYear();
@@ -1168,6 +1178,7 @@ async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const logPath = initLogFile();
   log("Log file: %s", logPath);
+  const sessionStartMs = Date.now();
 
   log("Ensuring prompt '%s' exists in custom_prompts...", REWRITE_WITH_SYNONYMS_NAME);
   ensureRewriteWithSynonymsPrompt();
@@ -1323,6 +1334,9 @@ async function main() {
   log("Closing browser.");
   await browser.close();
   log("Done. Screenshots in %s", OUT_DIR);
+
+  const elapsedMs = Date.now() - sessionStartMs;
+  log("Elapsed: %s", formatElapsed(elapsedMs));
   log("Session log available at: %s", path.resolve(logPath));
   if (logStream) {
     logStream.end();

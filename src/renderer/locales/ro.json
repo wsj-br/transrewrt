@@ -9,7 +9,7 @@
   "Function": "Funcție",
   "Import not available.": "Import indisponibil.",
   "Edit user account. Optionally set a new password or generate one.": "Editați contul utilizatorului. Opțional, setați o parolă nouă sau generați una.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Trebuie să setezi variabila de mediu OPENROUTER_API_KEY pe server pentru a utiliza această aplicație.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Trebuie să setați variabila de mediu OPENROUTER_API_KEY pe server pentru a utiliza această aplicație.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Cheia API OpenRouter nu a putut fi verificată. Traducerea și rescrierea ar putea să nu funcționeze.",
   "API Key Required": "Cheie API necesară",
   "Continue anyway": "Continuă oricum",

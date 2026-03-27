@@ -1,11 +1,11 @@
 ---
-translated_at: "2026-03-26T00:27:13.338Z"
-source_hash: "d5d19d18eadc9060d8db2f32f47dc8174ee783feea992030f3c686debc714a88"
-source_mtime: 1774482559451.2136
+translated_at: "2026-03-27T23:08:35.318Z"
+source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
+source_mtime: "2026-03-27T20:34:13.877Z"
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
+  <img src="../images/transrewrt_logo.svg" alt="Transrewrt logotip" width="120" />
 </p>
 
 <h1 align="center">Transrewrt</h1>
@@ -18,34 +18,35 @@ model: "qwen/qwen3-235b-a22b-2507"
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat za obradu teksta snажen umjetnom inteligencijom: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija pomoću prilagođenih upita — koristeći više pružatelja umjetne inteligencije (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao aplikacija za radnu površinu (Electron) ili samo-pohranjena web aplikacija (Docker).
+Alatom koji koristi umjetnu inteligenciju za obradu teksta: prevodite između jezika, prepisujte u različitim stilovima i transformirajte prilagođenim upitima – koristeći više davatelja usluga umjetne inteligencije (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao desktop aplikacija (Electron) ili samo-hostirana web aplikacija (Docker).
 
-- **Prevođenje** — između desetak jezika, s automatskom detekcijom izvornog jezika
-- **Prepisi** — ispravi gramatiku, poboljšaj jasnoću, formalno/neformalno, skrati, proširi, tehnički stil
-- **Transformiraj** — prilagođeni AI upiti; stvori i upravljaj upitima, po želji odaberi ciljani jezik za svaki upit
-- **Povijest** — potpuna povijest obrade s ulaznim/izlaznim tekstovima, filtriranjem i izvozom
-- **Modeli i trošak** — odaberite modele iz bilo kojeg konfiguriranog pružatelja; nadzorna ploča za troškove i korištenje s zapisima, sažecima po modelu/operaciji/danu
-- **Sučelje** — višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
-- **Web način** — podrška za više korisnika s ulogama administratora
-- **Radna površina** — Electron aplikacija za Windows i Linux
-- **Samo-pohrana** — Docker slika za amd64 i arm64 (spremna za Raspberry Pi)
+- **Prijevod** — između desetakaka jezika, s automatskom detekcijom izvornog jezika
+- **Prepisi** — ispravi gramatiku, poboljšaj jasnoću, formalni/neformalni, skrati, proširi, tehnički
+- **Transformiraj** — prilagođeni upiti AI; stvaranje i upravljanje upitima, izborno ciljani jezik po upitu
+- **Povijest** — puna povijest izvršenja s ulaznim/izlaznim tekstom, filtriranjem i mogućnošću izvoza
+- **Modeli i trošak** — odabir modela od bilo kojeg konfiguriranog davatelja; nadzorne ploče troškova i korištenja s dnevnim zapisima, sažecima po modelu/operaciji/danu
+- **Korisničko sučelje** — višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
+- **Web način rada** — podrška za više korisnika s administratorskim ulogama
+- **Desktop** — Electron aplikacija za Windows i Linux
+- **Samo-hostirano** — Docker slika za amd64 i arm64 (spreman za Raspberry Pi)
 
-Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za potpuni prikaz svih značajki.
+Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za sveobuhvatan prikaz svih značajki.
 
 <small>**Pročitajte na drugim jezicima:** </small>
 <small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
 
 <small>
 
-> **Napomena o prijevodu sučelja i dokumentacije:** Svi jezici sučelja osim izvornog engleskog (UK)
-> prijeđeni su pomoću modela umjetne inteligencije; izrazi mogu biti neprecizni ili sadržavati pogreške.
+> **Napomena o prijevodima korisničkog sučelja i dokumentacije:** Svi jezici sučelja osim izvornog engleskog (UK)
+> su prevedeni pomoću AI modela; riječi mogu biti neprecizne ili sadržavati pogreške.
 
 </small>
 
 <br/>
 
 <a id="screenshots"></a>
-## Slike zaslona
+
+## Snimke zaslona
 
 **Odabir jezika**
 
@@ -55,31 +56,29 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 
 ![Prijevod](../images/screenshots/hr/translate.png)
 
-**Transformiranje - urednik upita**
+**Transformacije – uređivač upita**
 
-![Transformiranje - urednik upita](../images/screenshots/hr/transform-prompt-edit.png)
+![Transformacije – uređivač upita](../images/screenshots/hr/transform-prompt-edit.png)
 
 **Nadzorna ploča**
 
-![Nadzorna ploča za troškove](../images/screenshots/hr/dashboard-summary.png)
+![Nadzorna ploča](../images/screenshots/hr/dashboard-summary.png)
 
 **Povijest**
 
 ![Povijest](../images/screenshots/hr/history.png)
 
-**Postavke - odabir modela**
+**Postavke – odabir modela**
 
-![Postavke - odabir modela](../images/screenshots/hr/settings-models.png)
+![Postavke – odabir modela](../images/screenshots/hr/settings-models.png)
 
 <br/><br/>
 
 <a id="table-of-contents"></a>
-
 ## Sadržaj
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Brzi početak](#quick-start)
 - [Instalacija](#installation)
@@ -87,11 +86,11 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
 - [Dobivanje OpenRouter API ključa](#getting-an-openrouter-api-key)
-- [Konfiguracija i okolina](#configuration-and-environment)
+- [Konfiguracija i okruženje](#configuration-and-environment)
 - [Razvoj i arhitektura](#development-and-architecture)
-- [Izdani i oznake](#releases-and-tags)
+- [Izdavanje verzija i oznake](#releases-and-tags)
 - [Doprinos](#contributing)
-- [Odgovornost](#disclaimer)
+- [Zaključak](#disclaimer)
 - [Licenca](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -99,9 +98,10 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 <br/><br/>
 
 <a id="quick-start"></a>
+
 ## Brzi početak
 
-**Docker (preporučeno za samostalno hostiranje)**
+**Docker (preporučeno za samostalno hostingovanje)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -114,80 +114,81 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Zamijenite `sk-or-your-key` s vašim [OpenRouter API ključem](https://openrouter.ai/keys) (ili postavite ključeve drugih davatelja usluga; pogledajte [Konfiguracija](#configuration-and-environment)). Otvorite [http://localhost:5000](http://localhost:5000) i promijenite zadano administratorsko lozinku prije nego što izložite uslugu.
+Zamijenite `sk-or-your-key` s vašim [OpenRouter API ključem](https://openrouter.ai/keys) (ili postavite ključeve drugih provajdera; pogledajte [Konfiguraciju](#configuration-and-environment)). Otvorite [http://localhost:5000](http://localhost:5000) i promijenite zadani administratorski lozinku prije nego što servis bude dostupan izvana.
 
 <br/>
 
-> ℹ️ **BILJEŠKA**<br/>
-> U Dockery, vjerodajnice za LLM postavljaju se kroz varijable okoline poput `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ne putem web sučelja). Na desktopu (Electron) ključeve konfigurirate putem **Postavke → API**.
+> ℹ️ **NAPOMENA**<br/>
+> Kod Dockera, vjerodajnice za LLM postavljaju se putem varijabli okoline kao što su `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ne preko web sučelja). Kod desktop verzije (Electron) ključeve konfigurirate u **Postavke → API**.
 
 <br/>
 
 **Windows**
 
-Preuzmite najnoviju datoteku `Transrewrt Setup x.y.z.exe` s [izdanja](https://github.com/wsj-br/transrewrt/releases), pokrenite instalacijski program, a zatim pokrenite aplikaciju iz izbornika Start ili prečaca na radnoj površini. Unesite svoje API ključeve u **Postavke → API**. Morate konfigurirati barem jednog davatelja usluga; OpenRouter je čest izbor za besplatne modele.
+Preuzmite najnoviju verziju `Transrewrt Setup x.y.z.exe` s [izdanja (Releases)](https://github.com/wsj-br/transrewrt/releases), pokrenite instalacijski program, a zatim pokrenite aplikaciju preko izbornika Start ili prečaca na radnoj površini. Unesite svoje API ključeve u **Postavke → API**. Potrebno je konfigurirati barem jednog pružatelja usluga; OpenRouter je često korišten za besplatne modele.
 
 <br/>
 
 **Linux**
 
-Preuzmite `.AppImage` datoteku za svoj procesor s [izdanja](https://github.com/wsj-br/transrewrt/releases) (`x64` za uobičajena računala, `arm64` za mnoge ARM uređaje, uključujući Raspberry Pi 4+), zatim:
+Preuzmite `.AppImage` datoteku za svoj CPU s [izdanja (Releases)](https://github.com/wsj-br/transrewrt/releases) (`x64` za uobičajena računala, `arm64` za ARM uređaje uključujući Raspberry Pi 4+), a zatim:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Unesite svoje API ključeve u **Postavke → API**. Morate konfigurirati barem jednog davatelja usluga; OpenRouter je čest izbor za besplatne modele.
+Unesite svoje API ključeve u **Postavke → API**. Potrebno je konfigurirati barem jednog pružatelja usluga; OpenRouter je često korišten za besplatne modele.
 
-Na Debian/Ubuntu sustavima možda ćete prvo morati instalirati dodatne ovisnosti:
+Na Debian/Ubuntu sustavima možda ćete prvo trebati instalirati dodatne ovisnosti:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-Detaljnije informacije potražite u [Instalacija → Linux](#linux-electron).
+Detaljne informacije pogledajte u odjeljku [Instalacija → Linux](#linux-electron).
 
 <br/>
 
-> ℹ️ **BILJEŠKA**<br/>
-> Trenutačno macOS nije podržan. Transrewrt je dostupan za Windows, Linux i Docker.
+> ℹ️ **NAPOMENA**<br/>
+> Trenutačno nije podržan macOS. Transrewrt je dostupan za Windows, Linux i Docker.
 
 <br/>
 
-Kada se aplikacija pokrene, pogledajte [**Vodič za korisnike**](USER-GUIDE.hr.md) kako biste naučili prevoditi, prepisivati i transformirati tekst, upravljati upitima te konfigurirati modele.
+Kada aplikacija počne raditi, pogledajte **[Vodič za korisnike (User Guide)](USER-GUIDE.hr.md)** kako biste naučili kako prevesti, prepisati i transformirati tekst, upravljati upitima i konfigurirati modele.
 
 <br/><br/>
 
 <a id="installation"></a>
+
 ## Instalacija
 
 <a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Preuzmite najnoviji instalacijski program s [izdanja](https://github.com/wsj-br/transrewrt/releases).
-- Pokrenite `.exe` datoteku i slijedite upute instalacijskog programa.
-- Prvi pokret: pokrenite aplikaciju iz izbornika Start ili prečaca na radnoj površini.
+- Preuzmite najnoviju instalacijsku datoteku s [Izdavanja](https://github.com/wsj-br/transrewrt/releases).
+- Pokrenite `.exe` datoteku i slijedite upute instalacije.
+- Prvi pokretanje: pokrenite aplikaciju iz izbornika Start ili prečaca na radnoj površini.
 
 <br/>
 
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Preuzmite odgovarajuću `.AppImage` datoteku (`x64` ili `arm64`) s [izdanja](https://github.com/wsj-br/transrewrt/releases).
-- Pokrenite: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` na x86_64/amd64, ili upotrijebite naziv datoteke `...-arm64.AppImage` na ARM64.
+- Preuzmite odgovarajuću `.AppImage` datoteku (`x64` ili `arm64`) s [Izdavanja](https://github.com/wsj-br/transrewrt/releases).
+- Pokretanje: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` za x86_64/amd64, ili koristite datoteku `...-arm64.AppImage` za ARM64.
 - Dodatne ovisnosti (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Dodatne informacije potražite u [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- Više informacija pogledajte u [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/>
 
 <a id="docker"></a>
 ### Docker
 
-- Preuzmite sliku: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Postavite barem jedan ključ davatelja usluge putem okolišnih varijabli (npr. `OPENROUTER_API_KEY` za OpenRouter). Prosljedite varijable s `-e` ili kroz `docker compose` / `.env`, kako se tajni ne bi ugradili u sliku.
-- Ključevi davatelja usluga **se ne unose** putem web sučelja; poslužitelj ih čita iz okoline.
+- Preuzmite: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Postavite najmanje jedan ključ davatelja usluge putem okoline (npr. `OPENROUTER_API_KEY` za OpenRouter). Prosljedite varijable s `-e` ili putem `docker compose` / `.env` kako tajne ne bi bile ugrađene u sliku.
+- Ključevi davatelja usluga **ne unose se** u web sučelje; poslužitelj ih čita iz okoline.
 
-Primjer - imenovani volumen za trajnost (OpenRouter ključ putem varijable okoline):
+Primjer - nazvani volumen za trajnost (OpenRouter ključ putem env):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -198,15 +199,25 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
+ili ako više volite koristiti Docker Compose, koristite:
+
+# preuzimanje datoteke za sastavljanje
+wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
+# uredi datoteku kako bi dodao API ključeve
+vi transrewrt.yml
+# pokreni kontejner
+docker compose -f transrewrt.yml up -d
+```
+
 <br/>
 
-| Opcija   | Opis                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Port     | `5000` (mapirajte s `-p 5000:5000`)                                                                              |
-| Volumen  | Montirajte `/app/data` za trajnost postavki i baze podataka                                                         |
-| Var. okoline | `PORT`, `CONFIG_PATH`, te ključevi za LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - pogledajte [Konfiguracija](#configuration-and-environment) |
+| Opcija   | Opis                                                                                                                            |
+|----------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Port     | `5000` (mapiraj s `-p 5000:5000`)                                                                                                       |
+| Spremnik | Montiraj `/app/data` za trajno pohranjivanje konfiguracije i baze podataka                                                                                  |
+| Varijable okoline | `PORT`, `CONFIG_PATH`, te ključevi za LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - pogledaj [Konfiguracija](#configuration-and-environment) |
 
-Za izgradnju i pokretanje iz izvornog kôda: `docker compose up --build -d` ili `pnpm docker:up` - pogledajte [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Za izgradnju i pokretanje iz izvornog kôda: `docker compose up --build -d` ili `pnpm docker:up` - pogledaj [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
 
 <br/><br/>
 
@@ -214,80 +225,81 @@ Za izgradnju i pokretanje iz izvornog kôda: `docker compose up --build -d` ili 
 
 ## Dobivanje OpenRouter API ključa
 
-Transrewrt podržava više davatelja AI usluga. [OpenRouter](https://openrouter.ai) je popularan izbor jer nudi pristup mnogim modelima putem jednog ključa i uključuje besplatne modele.
+Transrewrt podržava više AI davatelja usluga. [OpenRouter](https://openrouter.ai) je popularan izbor jer grupira mnoge modele pod jednim ključem te nudi besplatne modele.
 
-1. Registrirajte se ili se prijavite na [openrouter.ai](https://openrouter.ai).
-2. Otvorite stranicu [Keys](https://openrouter.ai/keys) i kreirajte novi ključ (dodijelite mu naziv i po želji postavite ograničenje kredita). Možete koristiti besplatne modele bez dodavanja kredita.
-3. **Računalo (Electron):** zalijepite ključeve u **Postavke → API**. **Docker:** postavite varijable okruženja kao što je `OPENROUTER_API_KEY` (pogledajte [Brzi početak](#quick-start)).
+1. Registrirajte se ili prijavite na [openrouter.ai](https://openrouter.ai).
+2. Otvorite stranicu [Keys](https://openrouter.ai/keys) i stvorite novi ključ (dodijelite mu naziv i po želji postavite ograničenje kredita). Možete koristiti besplatne modele bez dodavanja kredita.
+3. **Desktop (Electron):** zalijepite ključeve u **Postavke → API**. **Docker:** postavite varijable okruženja poput `OPENROUTER_API_KEY` (vidi [Brzi početak](#quick-start)).
 
-Ne koristite OpenRouter-ov model **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) za prevođenje, prepisivanje ili transformaciju: on vraća JSON pakete zahtjeva, a ne gotov tekst za te zadatke. Više pogledajte u [Postavke → Modeli](USER-GUIDE.hr.md#models) u Priručniku za korisnike.
+Nemojte koristiti OpenRouterov model **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) za prijevod, prepisivanje ili transformaciju: taj model vraća JSON pakete zahtjeva, a ne gotov tekst za te zadatke. Pogledajte [Postavke → Modeli](USER-GUIDE.hr.md#models) u Vodiču za korisnike.
 
-Također možete koristiti i druge davatelje usluga (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ili lokalno pokretati modele s [Ollama](https://ollama.com). Pogledajte [Konfiguracija](#configuration-and-environment) za potpuni popis podržanih davatelja usluga i varijabli okruženja.
+Također možete koristiti druge davatelje usluga (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ili pokretati modele lokalno s [Ollama](https://ollama.com). Potpunu listu podržanih davatelja usluga i varijabli okruženja pogledajte u odjeljku [Konfiguracija](#configuration-and-environment).
 
 > ⚠️ **UPOZORENJE**<br/>
-> Ako koristite Ollama s drugog uređaja, kontejnera ili usluge, ne zaboravite konfigurirati Ollama tako da dopušta vanjske veze (ne samo lokalne veze).
+> Ako koristite Ollama s drugog uređaja, spremnika ili usluge, sjetite se konfigurirati Ollam-u tako da dopušta vanjske veze (ne samo lokalne veze).
 
-Više o ograničenjima, vlastitim ključevima (BYOK) i drugom pogledajte na [OpenRouter autentifikacija](https://openrouter.ai/docs/api/reference/authentication).
+Informacije o ograničenjima, BYOK-u i ostalom dostupne su na [OpenRouter autentifikacija](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
+
 ## Konfiguracija i okruženje
 
 **Lokacije konfiguracijskih datoteka**
 
-| Implementacija     | Lokacija konfiguracije                         |
-| ------------------ | ---------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                        |
-| Electron (Linux)   | `~/.config/transrewrt/`                        |
-| Web / Docker       | `/app/data/config.json` (koristite volumen za trajnost) |
+| Implementacija     | Lokacija konfiguracije                                   |
+| ------------------ | -------------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                                  |
+| Electron (Linux)   | `~/.config/transrewrt/`                                  |
+| Web / Docker       | `/app/data/config.json` (koristite glas da biste sačuvali podatke) |
 
 <br/>
 
-**Varijable okruženja** (samo web/Docker; Electron koristi lokalnu konfiguracijsku datoteku)
+**Varijable okruženja** (samo za web/Docker; Electron koristi lokalnu konfiguracijsku datoteku)
 
-| Varijabla            | Zadano                    | Opis |
-| -------------------- | ------------------------- | ---- |
-| `PORT`               | `5000`                    | Port na kojem sluša poslužitelj |
-| `CONFIG_PATH`        | `/app/data/config.json`   | Put do konfiguracijske datoteke |
-| `OPENROUTER_API_KEY`     | *(prazno)*                | OpenRouter API ključ |
-| `OPENAI_API_KEY`         | *(prazno)*                | OpenAI API ključ |
-| `CEREBRAS_API_KEY`       | *(prazno)*                | Cerebras API ključ |
-| `ANTHROPIC_API_KEY`      | *(prazno)*                | Anthropic API ključ |
-| `GOOGLE_API_KEY`         | *(prazno)*                | Google Gemini API ključ |
-| `DEEPSEEK_API_KEY`       | *(prazno)*                | DeepSeek API ključ |
-| `GROQ_API_KEY`           | *(prazno)*                | Groq API ključ |
-| `MISTRAL_API_KEY`        | *(prazno)*                | Mistral API ključ |
-| `OLLAMA_URL`         | *(prazno)*                | Osnovni URL za Ollamu (npr. `http://host.docker.internal:11434`) |
-| `XAI_API_KEY`            | *(prazno)*                | xAI API ključ |
+| Varijabla          | Zadano                  | Opis |
+| ------------------ | ----------------------- | ---- |
+| `PORT`             | `5000`                  | Port na kojemu sluša poslužitelj |
+| `CONFIG_PATH`      | `/app/data/config.json` | Put do konfiguracijske datoteke |
+| `OPENROUTER_API_KEY` | *(prazno)*               | OpenRouter API ključ |
+| `OPENAI_API_KEY`     | *(prazno)*               | OpenAI API ključ |
+| `CEREBRAS_API_KEY`   | *(prazno)*               | Cerebras API ključ |
+| `ANTHROPIC_API_KEY`  | *(prazno)*               | Anthropic API ključ |
+| `GOOGLE_API_KEY`     | *(prazno)*               | Google Gemini API ključ |
+| `DEEPSEEK_API_KEY`   | *(prazno)*               | DeepSeek API ključ |
+| `GROQ_API_KEY`       | *(prazno)*               | Groq API ključ |
+| `MISTRAL_API_KEY`    | *(prazno)*               | Mistral API ključ |
+| `OLLAMA_URL`     | *(prazno)*               | Temeljni URL za Ollama (npr. `http://host.docker.internal:11434`) |
+| `XAI_API_KEY`        | *(prazno)*               | xAI API ključ |
 
-Konfigurirajte samo davatelje usluga koje koristite. ID-ovi modela koriste imenske prostore (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, itd.).
+Konfigurirajte samo pružatelje usluga koje koristite. ID-ovi modela su imenski organizirani (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, itd.).
 
-**Prikaz troškova:** OpenRouter vraća točne naplaćene troškove kad god je to moguće. Ostali davatelji koriste **procijenjene** troškove iz javnih cijena modela OpenRoutera ako je dostupan OpenRouter ključ; bez njega, troškovi za ne-OpenRouter izvore mogu se prikazati kao `0`. Procjene nisu računi.
-
-<br/>
-
-**Podaci i trajnost:** Za Docker postavite volumen na `/app/data` kako bi se `config.json` i SQLite baza podataka čuvali nakon ponovnog pokretanja kontejnera. Bez volumena, svi podaci će biti izgubljeni kada se kontejner zaustavi.
-
-**Razvijatelji:** Nakon ažuriranja koja mijenjaju staru konfiguraciju s jednim ključem, ponovo postavite ili sjedinite `data/config.json` s novim zadanim oblikom iz `src/config-defaults/config_default.json` ako vaša lokalna datoteka još uvijek koristi uklonjena polja (`api_key`, `api_url`, opcije proxyja).
+**Prikaz troškova:** OpenRouter vraća točan naplaćeni iznos kad god je to moguće. Ostali pružatelji koriste **procijenjene** troškove iz javnih cijena modela na OpenRouteru ako je dostupan OpenRouter ključ; ako nije, troškovi za pružatelje osim OpenRoutera mogu se prikazati kao `0`. Procjene nisu računi.
 
 <br/>
 
-**Web autentifikacija:**
+**Podaci i trajnost:** Za Docker, priključite glas na `/app/data` kako bi `config.json` i SQLite baza podataka ostali sačuvani i nakon ponovnog pokretanja spremnika. Bez glasa, svi podaci će biti izgubljeni kada se spremnik zaustavi.
+
+**Za programere:** Nakon preuzimanja promjena koje mijenjaju staru konfiguraciju s jednim ključem, resetirajte ili spojite `data/config.json` s novim zadanim oblikom iz `src/config-defaults/config_default.json` ako vaša lokalna datoteka i dalje koristi uklonjena polja (`api_key`, `api_url`, opcije proxyja).
+
+<br/>
+
+**Web autentikacija:**
 
 - Zadani administrator: `admin` / `transrewrt26`.
-- Upravljajte korisnicima u **Postavke → Korisnici**.
-- Ponovno postavite lozinku: `docker exec <kontejner> reset-web-password '<korisničko ime>' '<nova lozinka>'`
-  (iz izvorne kôde: `pnpm run reset-web-password -- <korisničko ime> <nova lozinka>`)
+- Upravljanje korisnicima: **Postavke → Korisnici**.
+- Resetiranje lozinke: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (iz izvora: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 
 > ⚠️ **UPOZORENJE**<br/>
-> Promijenite zadane lozinke administratora čim aplikacija bude dostupna na mreži.
+> Odmah promijenite zadano korisničko ime i lozinku administratora na bilo kojem hostu koji je dostupan preko mreže.
 
 <br/>
 
-Glavne postavke (font, modeli, jezici itd.) dostupne su unutar aplikacije u Postavkama.
+Postavke poput fonta, modela, jezika itd. dostupne su u Postavkama aplikacije.
 
 <br/><br/>
 
@@ -295,45 +307,46 @@ Glavne postavke (font, modeli, jezici itd.) dostupne su unutar aplikacije u Post
 
 ## Razvoj i arhitektura
 
-- **Razvoj:** Postavljanje, kompiliranje, testiranje i objavljivanje (Electron, Web, Docker) - pogledajte **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arhitektura i pregled sustava:** Struktura mapa, tehnološki stack, odluke o dizajnu - pogledajte **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Razvoj:** Postavljanje, kompilacija, testiranje i implementacija (Electron, Web, Docker) – pogledajte **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Pregled arhitekture i sustava:** Struktura mapa, tehnološki stog, dizajnerske odluke – pogledajte **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
 <a id="releases-and-tags"></a>
-## Izdanja i oznake
+## Izdavanje verzija i oznake
 
-- **Git oznake** `v`* (npr. `v1.0.10`) pokreću [tijek rada objave](.github/workflows/release.yml). **GitHub izdanja** prilažu Windows instalacijski program (`.exe`) i Linux AppImage datoteke (**x64** i **arm64**).
-- **Docker slike** se objavljuju na `ghcr.io/wsj-br/transrewrt`. Oznake slika odgovaraju Git verziji (npr. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) te dodatno `latest`. Višestruki arhitekturi: `linux/amd64` i `linux/arm64` (npr. Raspberry Pi).
+- **Git oznake** `v`* (npr. `v1.0.10`) pokreću [radni tijek izdavanja](.github/workflows/release.yml). **GitHub verzije** prilažu Windows instalacijski program (`.exe`) i Linux AppImage datoteke (**x64** i **arm64**).
+- **Docker slike** objavljuju se na `ghcr.io/wsj-br/transrewrt`. Oznake slike odgovaraju Git verziji (npr. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus oznaka `latest`. Višestruki arhitektonski okviri: `linux/amd64` i `linux/arm64` (npr. Raspberry Pi).
 
 <br/><br/>
 
 <a id="contributing"></a>
 ## Doprinos
 
-1. Napravite forku repozitorija.
+1. Forkajte spremište.
 2. Stvorite granu za značajku: `git checkout -b feature/my-feature`
-3. Pošaljite svoje izmjene s jasnom porukom.
-4. Pritisnite i otvorite Pull Request prema `main`.
+3. Fiksirajte svoje promjene s jasnom porukom.
+4. Objavite promjene i otvorite Zahtjev za spajanje na `main`.
 
-Pratite postojeći stil kôda i testirajte svoje izmjene u Electron i web načinima prije slanja. Vidi [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) za upute za izgradnju i testiranje.
+Molimo poštivanje postojećeg stila koda te testiranje promjena u Electron i web načinu rada prije slanja. Pogledajte [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) za upute o kompilaciji i testiranju.
 
 <br/>
 
-**Prijavljivanje problema:** Otvorite problem na [GitHubu](https://github.com/wsj-br/transrewrt/issues). Navedite platformu (Windows / Linux / Docker) i verziju aplikacije (prikazano u dijalogu "O programu" ili na stranici izdanja).
+**Prijavljivanje problema:** Otvorite problem na [GitHub-u](https://github.com/wsj-br/transrewrt/issues). Uključite svoju platformu (Windows / Linux / Docker) i verziju aplikacije (prikazano u dijalogu O programu ili na stranici verzija).
 
 <br/><br/>
 
 <a id="disclaimer"></a>
+
 ## Ograničenje odgovornosti
 
-Nazivi i ikone proizvoda pripadaju svojim vlasnicima i koriste se isključivo u svrhu prepoznavanja. Ovaj softver nije u vezi s navedenim brendovima, niti im je odobren.
+Nazivi proizvoda i ikone pripadaju svojim vlasnicima i koriste se isključivo u svrhu identifikacije. Ovaj softver nije u vezi niti ga ne podržava niti jedan od spomenutih brendova.
 
 <br/><br/>
 
 <a id="license"></a>
 ## Licenca
 
-Autorsko pravo © 2026 Waldemar Scudeller Jr.
+Autorska prava © 2026 Waldemar Scudeller Jr.
 
 [Apache licenca 2.0](LICENSE)

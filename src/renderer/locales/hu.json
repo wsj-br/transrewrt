@@ -9,7 +9,7 @@
   "Function": "Függvény",
   "Import not available.": "Importálás nem elérhető.",
   "Edit user account. Optionally set a new password or generate one.": "Felhasználói fiók szerkesztése. Opcionálisan állíthat új jelszót, vagy generálhat egyet.",
-  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Be kell állítania az OPENROUTER_API_KEY környezeti változót a kiszolgálón ahhoz, hogy ezt az alkalmazást használhassa.",
+  "You need to set the OPENROUTER_API_KEY environment variable on the server to use this application.": "Be kell állítani a(z) OPENROUTER_API_KEY környezeti változót a kiszolgálón ahhoz, hogy használni lehessen ezt az alkalmazást.",
   "The OpenRouter API key could not be verified. Translation and rewrite may not work.": "Az OpenRouter API-kulcsot nem sikerült ellenőrizni. A fordítás és átírás nem működhet.",
   "API Key Required": "API-kulcs szükséges",
   "Continue anyway": "Folytatás így is",
