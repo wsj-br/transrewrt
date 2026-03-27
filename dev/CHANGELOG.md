@@ -9,6 +9,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: [scripts/eslint-react-peers-allow-eslint10.js](scripts/eslint-react-peers-allow-eslint10.js) queries `pnpm view … peerDependencies` for `eslint-plugin-react` and `eslint-plugin-react-hooks` and uses semver to test ESLint 10; [scripts/upgrade-dependencies.sh](scripts/upgrade-dependencies.sh) runs it before `ncu` and only passes `-x eslint,…` when peers still exclude ESLint 10 (or the check fails).
+- **Changed**: `scripts/upgrade-tools.sh` and `scripts/upgrade-dependencies.sh` update nvm-sh when `NVM_DIR` is a git clone (quiet fetch/checkout), resolve LTS Node via `scripts/nvm-lts-resolve-version.sh`, must be run with `source` in bash ([nvm-sh#2124](https://github.com/nvm-sh/nvm/issues/2124)); running as `./scripts/…` aborts unless `CI=1` or `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`. [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) documents the upgrade flow.
+- **Fixed**: LTS Node version detection no longer treats the **npm** semver in `nvm install --lts` output (e.g. `(npm v11.11.0)`) as the Node version; resolution uses `Now using node v…`, then `nvm list` lines such as `default -> lts/* (-> vX.Y.Z)`, via `scripts/nvm-lts-resolve-version.sh`.
+- **Changed**: `scripts/upgrade-dependencies.sh` runs `ncu` with `--reject` for `eslint`, `@eslint/js`, and the React ESLint plugins so bulk upgrades do not jump to ESLint 10 before those plugins support it.
 - **Fixed**: Release workflow Docker merge step only tags `latest` when the published release is the newest repo tag (or manual `workflow_dispatch` with `tag_as_latest`); per-arch digest builds now set `name=` on push-by-digest output; removed stray `--help` prefix from workflow comment.
 - **Added**: Root `production.yml` Compose file (optional `.env` via `env_file` with `required: false`) plus a commented environment-variable reference for new-machine Docker runs.
 - **Changed**: DEVELOPMENT.md Prerequisites describe installing and using direnv (`.envrc`, shell hooks, `direnv allow`); Linux direnv step defers to that section.

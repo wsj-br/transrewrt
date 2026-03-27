@@ -13,6 +13,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Linux (Debian-based: Ubuntu, Debian, Mint)](#linux-debian-based-ubuntu-debian-mint)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
+  - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
   - [UI translations (i18n)](#ui-translations-i18n)
 - [Test](#test)
@@ -113,7 +114,32 @@ pnpm start
 
 On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 
-**Upgrading tools:** From repo root run `.\scripts\upgrade-tools.ps1` (Windows) or `./scripts/upgrade-tools.sh` (Linux/macOS) to upgrade Node (LTS via nvm) and global tools (pnpm, npm-check-updates, doctoc).
+### Upgrading Node and dependencies (nvm)
+
+These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) also runs `ncu`, `pnpm install`, and `pnpm audit` / `pnpm audit fix`.
+
+| Environment | Command |
+|-------------|---------|
+| **Windows** | From repo root: `.\scripts\upgrade-tools.ps1` (tools only) — use your usual workflow to stay on Node 24 / LTS as needed. |
+| **Linux / macOS (bash)** | **Use `source`** so `nvm use` runs in your **current** shell. Otherwise the script runs in a subprocess and your terminal keeps the old Node after the script exits. |
+
+**Unix/bash (recommended):**
+
+```bash
+# Tools only: refresh nvm (if ~/.nvm is a git clone), install LTS Node, upgrade pnpm / ncu / doctoc
+source ./scripts/upgrade-tools.sh
+
+# Full dependency upgrade: same as above, then ncu on package.json, pnpm install, audits
+source ./scripts/upgrade-dependencies.sh
+```
+
+Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js): it reads the **latest** `peerDependencies.eslint` from the registry for `eslint-plugin-react` and `eslint-plugin-react-hooks` and only skips pinning `eslint` / `@eslint/js` / those plugins when both ranges allow ESLint 10. You can run the same check alone: `node scripts/eslint-react-peers-allow-eslint10.js` (exit 0 = allow ESLint 10 upgrade, 1 = still pinned, 2 = error).
+
+**Why `source`:** A normal `./script.sh` starts a **child process**. Environment changes (including nvm’s `PATH`) cannot propagate back to the parent shell ([nvm-sh#2124](https://github.com/nvm-sh/nvm/issues/2124)). Sourcing runs the script in your interactive shell, so the LTS Node you selected stays active when the script finishes.
+
+**Executing with `./`:** The scripts **exit with an error** if you run `./scripts/upgrade-tools.sh` or `./scripts/upgrade-dependencies.sh` directly, and print a reminder to use `source`. For **CI** or other automation, set **`CI=1`** (common on GitHub Actions and similar) or **`TRANSREWRT_UPGRADE_ALLOW_EXEC=1`** to allow execution without `source`.
+
+**Shell note:** The `.sh` scripts target **bash**. On zsh/fish, run them under bash, e.g. `bash -c 'source ./scripts/upgrade-dependencies.sh'`, or open a bash session for the upgrade.
 
 ---
 
@@ -298,10 +324,12 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 
 ### Toolchain
 
+See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm) for **why `source`**, `./` vs CI, and shell notes.
 
 | Command                                                                       | Purpose                                                   |
 |-------------------------------------------------------------------------------|-----------------------------------------------------------|
-| `.\scripts\upgrade-tools.ps1` (Windows) / `./scripts/upgrade-tools.sh` (Unix) | Upgrade Node (nvm LTS) and global tools (pnpm, ncu, etc.) |
+| `.\scripts\upgrade-tools.ps1` (Windows) / `source ./scripts/upgrade-tools.sh` (Unix bash) | Upgrade Node (nvm LTS) and global tools (pnpm, ncu, etc.) |
+| `source ./scripts/upgrade-dependencies.sh` (Unix bash)                         | Same nvm behaviour as above, then `ncu`, `pnpm install`, audits |
 
 
 ---

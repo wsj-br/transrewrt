@@ -12,8 +12,7 @@ RUN npm install -g pnpm
 # Copy package files and scripts needed by postinstall (electron-rebuild.js)
 COPY package.json pnpm-lock.yaml ./
 COPY scripts/ ./scripts/
-COPY patches/ ./patches/
-COPY patches/ ./patches/
+
 
 # Install all dependencies (native modules built for Node 24 here).
 # --ignore-scripts: skip postinstall (electron-rebuild); we run plain Node in prod, not Electron.

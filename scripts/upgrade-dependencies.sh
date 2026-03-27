@@ -3,10 +3,22 @@
 #
 # This script upgrades the dependencies in the project to the latest versions.
 #
+# Shells cannot export environment changes to a parent process; nvm must run in your
+# interactive shell (see https://github.com/nvm-sh/nvm/issues/2124). Run:
+#   source ./scripts/upgrade-dependencies.sh
+# This file aborts if executed as ./scripts/upgrade-dependencies.sh unless CI=1 or
+# TRANSREWRT_UPGRADE_ALLOW_EXEC=1 (for automation).
+#
 
-
-
-set -e  # Exit on error
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+  if [ -z "${TRANSREWRT_UPGRADE_ALLOW_EXEC:-}" ] && [ -z "${CI:-}" ]; then
+    echo "Abort: run this script with source so nvm applies to your current shell." >&2
+    echo "  source ${SCRIPT_DIR}/upgrade-dependencies.sh" >&2
+    echo "(Automation: set CI=1 or TRANSREWRT_UPGRADE_ALLOW_EXEC=1 to allow execution without source.)" >&2
+    exit 1
+  fi
+fi
 
 # Load nvm (it's a shell function, not available in script subshells by default)
 export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
@@ -15,43 +27,112 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
 fi
 
-# Color codes
-BLUE='\033[0;34m'
-RESET='\033[0m'
+# shellcheck source=scripts/nvm-lts-resolve-version.sh
+. "$SCRIPT_DIR/nvm-lts-resolve-version.sh"
 
-echo ""
-echo "--------------------------------"
-echo "🔄 Upgrading dependencies "
-echo "--------------------------------"
+_transrewrt_upgrade_dependencies() {
+  set -e
 
-# upgrade Node.js to the latest LTS version
-echo -e "${BLUE}🔄  Upgrading Node.js to the latest LTS version...${RESET}"
-nvm install --lts
-nvm use --lts
+  # Color codes
+  BLUE='\033[0;34m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  RESET='\033[0m'
 
-# ensure pnpm is installed
-echo -e "${BLUE}🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...${RESET}"
-npm install -g pnpm npm-check-updates doctoc
+  echo ""
+  echo "--------------------------------"
+  echo "🔄 Upgrading dependencies "
+  echo "--------------------------------"
 
+  # Upgrade nvm itself to the latest tagged release (nvm-sh is installed as a git clone).
+  if [ -d "$NVM_DIR/.git" ]; then
+    echo -e "${BLUE}Upgrading nvm to the latest release...${RESET}"
+    (
+      cd "$NVM_DIR" || exit 1
+      git fetch -q --tags origin
+      git checkout -q "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
+    )
+    # shellcheck source=/dev/null
+    . "$NVM_DIR/nvm.sh"
+  fi
 
-# Update package.json with latest versions using npm-check-updates
-echo -e "${BLUE}📦  Running npm-check-updates...${RESET}"
-ncu --upgrade 2>&1 | pr -o 4 -T
+  # Upgrade Node.js to the latest LTS (same idea as upgrade-tools.ps1: capture install output,
+  # parse the version, and nvm use that version.)
+  if declare -F nvm >/dev/null 2>&1; then
+    echo -e "${BLUE}🔄  Upgrading Node.js to the latest LTS version...${RESET}"
+    install_out=$(nvm install --lts 2>&1)
+    printf '%s\n' "$install_out"
+    nvm_resolve_lts_node_version "$install_out" || true
+    if [ -n "$node_ver" ]; then
+      echo -e "${GREEN}Using Node.js version ${node_ver}${RESET}"
+      nvm use "$node_ver"
+    else
+      echo -e "${YELLOW}Could not parse installed LTS version; using nvm use --lts${RESET}"
+      nvm use --lts
+    fi
+    resolved_node_ver=$(nvm current 2>/dev/null)
+    resolved_node_ver=${resolved_node_ver#v}
+    if [ -z "$resolved_node_ver" ] || [ "$resolved_node_ver" = "system" ]; then
+      resolved_node_ver=$node_ver
+    fi
+    # Only when executed as ./script (subshell): parent shell still has old Node.
+    if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" = "${0}" ] && [ -n "$resolved_node_ver" ] && [ "$resolved_node_ver" != "system" ]; then
+      echo ""
+      echo -e "${YELLOW}Tip:${RESET} This run was a separate process; your prompt may still show an older Node until you run this script with ${GREEN}source${RESET} so nvm runs in this shell:"
+      echo -e "  ${GREEN}source ${SCRIPT_DIR}/upgrade-dependencies.sh${RESET}"
+    fi
+  else
+    echo -e "${YELLOW}nvm not found. Install nvm (https://github.com/nvm-sh/nvm) to upgrade Node.js, or skip this step.${RESET}"
+  fi
 
-# Update pnpm lockfile and install updated dependencies
-echo -e "${BLUE}⬆️  Running pnpm install...${RESET}"
-pnpm install 2>&1 | pr -o 4 -T
+  # ensure pnpm is installed
+  echo -e "${BLUE}🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...${RESET}"
+  npm install -g pnpm npm-check-updates doctoc
 
-# check for vulnerabilities
-echo -e "${BLUE}🔍  Checking for vulnerabilities...${RESET}"
-pnpm audit 2>&1 | pr -o 4 -T
+  # npm-check-updates: optionally pin eslint, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks
+  # until the latest published plugins declare peerDependencies.eslint that allows ESLint 10
+  # (see scripts/eslint-react-peers-allow-eslint10.js).
+  _eslint_ncu_reject='eslint,@eslint/js,eslint-plugin-react,eslint-plugin-react-hooks'
+  echo -e "${BLUE}📦  Checking registry: do latest react ESLint plugins allow ESLint 10?${RESET}"
+  set +e
+  _eslint10_peer_out=$(node "${SCRIPT_DIR}/eslint-react-peers-allow-eslint10.js" 2>&1)
+  _eslint10_peer_ok=$?
+  set -e
+  printf '%s\n' "$_eslint10_peer_out" | pr -o 4 -T
+  echo -e "${BLUE}📦  Running npm-check-updates...${RESET}"
+  if [ "$_eslint10_peer_ok" -eq 0 ]; then
+    echo -e "${GREEN}Peer ranges include ESLint 10; upgrading the ESLint stack with everything else.${RESET}"
+    ncu --upgrade 2>&1 | pr -o 4 -T
+  elif [ "$_eslint10_peer_ok" -eq 1 ]; then
+    echo -e "${YELLOW}Peer ranges still exclude ESLint 10; pinning ${_eslint_ncu_reject}${RESET}"
+    ncu --upgrade -x "$_eslint_ncu_reject" 2>&1 | pr -o 4 -T
+  else
+    echo -e "${YELLOW}Could not verify peer ranges (offline or error). Pinning ${_eslint_ncu_reject}${RESET}"
+    ncu --upgrade -x "$_eslint_ncu_reject" 2>&1 | pr -o 4 -T
+  fi
 
-# fix vulnerabilities
-echo -e "${BLUE}🔧  Fixing vulnerabilities...${RESET}"
-pnpm audit fix 2>&1 | pr -o 4 -T
+  # Update pnpm lockfile and install updated dependencies
+  echo -e "${BLUE}⬆️  Running pnpm install...${RESET}"
+  pnpm install 2>&1 | pr -o 4 -T
 
-# check for vulnerabilities again
-echo -e "${BLUE}🔍  Checking for vulnerabilities again...${RESET}"
-pnpm audit 2>&1 | pr -o 4 -T
+  # check for vulnerabilities
+  echo -e "${BLUE}🔍  Checking for vulnerabilities...${RESET}"
+  pnpm audit 2>&1 | pr -o 4 -T
 
+  # fix vulnerabilities
+  echo -e "${BLUE}🔧  Fixing vulnerabilities...${RESET}"
+  pnpm audit fix 2>&1 | pr -o 4 -T
 
+  # check for vulnerabilities again
+  echo -e "${BLUE}🔍  Checking for vulnerabilities again...${RESET}"
+  pnpm audit 2>&1 | pr -o 4 -T
+}
+
+# When sourced from bash, run in the caller's shell so nvm PATH changes persist.
+if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+  _transrewrt_upgrade_dependencies "$@"
+  return 0
+fi
+
+_transrewrt_upgrade_dependencies "$@"
+exit $?
