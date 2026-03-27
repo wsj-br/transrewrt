@@ -18,6 +18,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: [build/electron-builder.linux-arm64.json](build/electron-builder.linux-arm64.json) sets `directories.buildResources` to `images` and `directories.output` to `release`. A standalone `--config` file does not inherit `package.json` `build`, so defaults used `build/` and missed the Linux PNG; electron-builder fell back to the default Electron icon and wrote AppImages under `dist/` instead of `release/`.
 - **Changed**: Linux AppImage/desktop packaging uses [images/transrewrt_logo_512x512.png](images/transrewrt_logo_512x512.png) (`build.linux.icon`) so the Transrewrt logo is embedded instead of the default Electron icon.
 - **Added**: [`.github/workflows/appimage-x64.yml`](.github/workflows/appimage-x64.yml) — `workflow_dispatch` that builds only the Linux **x64** AppImage on `ubuntu-latest` (same packaging steps as release), for quick validation without arm64, Windows, or Docker.
 - **Added**: [`.github/workflows/appimage-arm64.yml`](.github/workflows/appimage-arm64.yml) — workflow_dispatch and path-filtered PR/push runs that build only the Linux **arm64** AppImage (same steps as the release workflow) for quick validation without Windows, Docker, or x64 jobs.

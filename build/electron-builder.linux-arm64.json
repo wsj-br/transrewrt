@@ -1,5 +1,9 @@
 {
   "publish": null,
+  "directories": {
+    "output": "release",
+    "buildResources": "images"
+  },
   "linux": {
     "icon": "transrewrt_logo_512x512.png",
     "target": [
