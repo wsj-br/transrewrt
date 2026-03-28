@@ -685,6 +685,66 @@ const webAPI = {
   onSettingsUpdated: () => {
     // No-op in web mode - no IPC
   },
+
+  downloadConfigBackup: async () => {
+    const res = await fetch(`${API_BASE}/api/config/backup`, {
+      credentials: "include",
+      cache: "no-store",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) {
+      throw new Error("Admin access required");
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Backup failed");
+    }
+    const blob = await res.blob();
+    const cd = res.headers.get("Content-Disposition");
+    let filename = "transrewrt-config-backup.zip";
+    if (cd) {
+      const star = /filename\*=(?:UTF-8'')?([^;\n]+)/i.exec(cd);
+      const plain = /filename="([^"]+)"/i.exec(cd) || /filename=([^;\n]+)/i.exec(cd);
+      if (star) {
+        filename = decodeURIComponent(star[1].trim().replace(/^["']|["']$/g, ""));
+      } else if (plain) {
+        filename = plain[1].trim().replace(/^["']|["']$/g, "");
+      }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+    return { ok: true, filename };
+  },
+
+  restoreConfigBackup: async (file, { clearHistory = false } = {}) => {
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("clearHistory", clearHistory ? "true" : "false");
+    const res = await fetch(`${API_BASE}/api/config/backup/restore`, {
+      method: "POST",
+      body: fd,
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      handle401();
+      return Promise.reject({ status: 401 });
+    }
+    if (res.status === 403) {
+      throw new Error("Admin access required");
+    }
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data.error || "Restore failed");
+    }
+    return data;
+  },
 };
 
 export default webAPI;

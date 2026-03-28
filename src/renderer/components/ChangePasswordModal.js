@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Field } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
+import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
+import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
 
 const useStyles = makeStyles({
@@ -56,7 +58,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChangePasswordModal = ({ onClose }) => {
+const ChangePasswordModal = ({ onClose, username = "" }) => {
   const styles = useStyles();
   const { t } = useTranslation();
   const [newPassword, setNewPassword] = useState("");
@@ -95,7 +97,16 @@ const ChangePasswordModal = ({ onClose }) => {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <h2 className={styles.title}>{t("Change password")}</h2>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+          method="post"
+          action={getWebAuthFormAction()}
+          autoComplete="on"
+          id="transrewrt-change-password-form"
+          style={{ position: "relative" }}
+        >
+          <HiddenUsernameForPasswordManager username={username} id="change-password-modal-username" />
           {message.text && (
             <div
               className={
@@ -110,6 +121,7 @@ const ChangePasswordModal = ({ onClose }) => {
           <Field label={t("New password")}>
             <PasswordInput
               id="change-pwd-new"
+              name="new_password"
               value={newPassword}
               onChange={setNewPassword}
               placeholder={t("New password")}
@@ -122,6 +134,7 @@ const ChangePasswordModal = ({ onClose }) => {
           <Field label={t("Confirm password")}>
             <PasswordInput
               id="change-pwd-confirm"
+              name="new_password_confirm"
               value={confirmPassword}
               onChange={setConfirmPassword}
               placeholder={t("Confirm new password")}
@@ -147,6 +160,7 @@ const ChangePasswordModal = ({ onClose }) => {
 
 ChangePasswordModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  username: PropTypes.string,
 };
 
 export default ChangePasswordModal;

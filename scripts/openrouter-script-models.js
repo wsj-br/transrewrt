@@ -1,7 +1,14 @@
 /**
- * Shared OpenRouter model ids for CLI scripts (i18n, test data).
+ * Shared OpenRouter model ids and routing for CLI scripts (i18n, docs, test data).
  * Not loaded from app config.json.
  */
+
+/** OpenRouter: prefer highest-throughput provider; allow backup providers. https://openrouter.ai/docs/guides/routing/provider-selection */
+const OPENROUTER_PROVIDER = {
+  sort: "throughput",
+  allow_fallbacks: true,
+};
+
 const TRANSLATION_MODELS = [
   "qwen/qwen3-235b-a22b-2507",
   "stepfun/step-3.5-flash:free",
@@ -11,4 +18,4 @@ const TRANSLATION_MODELS = [
   "anthropic/claude-3.5-haiku",
 ];
 
-module.exports = { TRANSLATION_MODELS };
+module.exports = { TRANSLATION_MODELS, OPENROUTER_PROVIDER };

@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles, Button } from '@fluentui/react-components';
-import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2 } from 'lucide-react';
+import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2, DatabaseBackup } from 'lucide-react';
 import PropTypes from 'prop-types';
 import {
   getCostFractionStyleOptions,
@@ -11,6 +11,7 @@ import {
 } from '../utils/misc/costUtils';
 import { interpolateTemplate } from '../utils/misc/formatUtils';
 import ConfirmModal from './ConfirmModal';
+import webAPI from '../utils/api/webApiClient';
 
 const DEFAULT_FONT = 'Verdana';
 
@@ -93,6 +94,7 @@ const useFormStyles = makeStyles({
 const SettingsGeneralTab = ({
   localSettings,
   onSettingChange,
+  canConfigBackup = false,
 }) => {
   const layoutStyles = useLayoutStyles();
   const formStyles = useFormStyles();
@@ -105,6 +107,14 @@ const SettingsGeneralTab = ({
   const [historyDeleteError, setHistoryDeleteError] = useState(null);
   const [historyDeleteSuccess, setHistoryDeleteSuccess] = useState(null);
   const [showHistoryDeleteConfirm, setShowHistoryDeleteConfirm] = useState(false);
+
+  const [backupBusy, setBackupBusy] = useState(false);
+  const [backupError, setBackupError] = useState(null);
+  const [backupSuccess, setBackupSuccess] = useState(null);
+  const [showRestoreBackupConfirm, setShowRestoreBackupConfirm] = useState(false);
+  const [restoreClearHistory, setRestoreClearHistory] = useState(false);
+  const [pendingRestoreFile, setPendingRestoreFile] = useState(null);
+  const restoreFileInputRef = useRef(null);
 
   const historyDeleteRangeOptions = useMemo(
     () => [
@@ -154,6 +164,91 @@ const SettingsGeneralTab = ({
     }
     onSettingChange('keep_execution_history', false);
     setShowDisableHistoryConfirm(false);
+  };
+
+  const backupSuccessMessage = (filename) =>
+    interpolateTemplate(t('Backup generated: {{filename}}'), {
+      filename: filename || '',
+    });
+
+  const runConfigBackup = async () => {
+    setBackupError(null);
+    setBackupSuccess(null);
+    setBackupBusy(true);
+    try {
+      if (isWeb) {
+        const r = await webAPI.downloadConfigBackup();
+        setBackupSuccess(backupSuccessMessage(r?.filename));
+      } else if (window.electronAPI?.exportConfigBackup) {
+        const r = await window.electronAPI.exportConfigBackup();
+        if (r?.canceled) {
+          /* user dismissed save dialog */
+        } else if (r?.ok) {
+          setBackupSuccess(backupSuccessMessage(r.filename));
+        } else {
+          setBackupError(t('Backup failed.'));
+        }
+      }
+    } catch (err) {
+      setBackupError(err?.message || t('Backup failed.'));
+    } finally {
+      setBackupBusy(false);
+    }
+  };
+
+  const onRestoreBackupClick = () => {
+    setBackupError(null);
+    setBackupSuccess(null);
+    if (isWeb) {
+      restoreFileInputRef.current?.click();
+    } else {
+      setPendingRestoreFile(null);
+      setRestoreClearHistory(false);
+      setShowRestoreBackupConfirm(true);
+    }
+  };
+
+  const onWebRestoreFileSelected = (e) => {
+    const f = e.target.files?.[0];
+    e.target.value = '';
+    if (!f) return;
+    setPendingRestoreFile(f);
+    setRestoreClearHistory(false);
+    setShowRestoreBackupConfirm(true);
+  };
+
+  const confirmRestoreBackup = async () => {
+    if (backupBusy) return;
+    setBackupBusy(true);
+    setBackupError(null);
+    try {
+      if (isWeb) {
+        if (!pendingRestoreFile) {
+          throw new Error(t('No file selected.'));
+        }
+        await webAPI.restoreConfigBackup(pendingRestoreFile, { clearHistory: restoreClearHistory });
+      } else if (window.electronAPI?.importConfigBackup) {
+        const r = await window.electronAPI.importConfigBackup({ clearHistory: restoreClearHistory });
+        if (r?.canceled) {
+          setShowRestoreBackupConfirm(false);
+          return;
+        }
+        if (!r?.ok) {
+          throw new Error(t('Restore failed.'));
+        }
+      }
+      setBackupSuccess(
+        isWeb
+          ? t('Configuration restored. You may need to sign in again. Reload the page if settings look out of date.')
+          : t('Configuration restored. Reload the page if settings look out of date.'),
+      );
+      setShowRestoreBackupConfirm(false);
+      setPendingRestoreFile(null);
+    } catch (err) {
+      setBackupError(err?.message || t('Restore failed.'));
+    } finally {
+      setBackupBusy(false);
+    }
   };
 
   return (
@@ -470,6 +565,44 @@ const SettingsGeneralTab = ({
         </div>
       </div>
 
+      {canConfigBackup && (
+        <div className="section">
+          <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
+            <DatabaseBackup size={20} />
+            {t('Configuration Backup')}
+          </Text>
+          <div style={{ paddingInlineStart: '24px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '12px' }}>
+              <Button appearance="primary" disabled={backupBusy} onClick={runConfigBackup}>
+                {backupBusy ? t('Working…') : t('Backup configuration')}
+              </Button>
+              <Button appearance="secondary" disabled={backupBusy} onClick={onRestoreBackupClick}>
+                {t('Restore from backup')}
+              </Button>
+              {isWeb ? (
+                <input
+                  ref={restoreFileInputRef}
+                  type="file"
+                  accept=".zip,application/zip"
+                  style={{ display: 'none' }}
+                  onChange={onWebRestoreFileSelected}
+                />
+              ) : null}
+            </div>
+            {backupError && (
+              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block' }}>
+                {backupError}
+              </span>
+            )}
+            {backupSuccess && (
+              <span style={{ color: tokens.colorStatusSuccessForeground1, fontSize: '13px', display: 'block' }}>
+                {backupSuccess}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
         </div>
       </div>
 
@@ -481,6 +614,38 @@ const SettingsGeneralTab = ({
           cancelLabel={t('Cancel')}
           onConfirm={confirmDisableHistory}
           onCancel={() => setShowDisableHistoryConfirm(false)}
+          danger
+        />
+      )}
+      {showRestoreBackupConfirm && (
+        <ConfirmModal
+          title={t('Restore configuration backup?')}
+          customBody={
+            <div>
+              <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: 1.4 }}>
+                {isWeb
+                  ? t(
+                      'This replaces users, preferences, transform prompts, and server configuration. All signed-in sessions will be logged out.\n\nThis cannot be undone.',
+                    )
+                  : t(
+                      'This replaces local configuration files, transform prompts, and optional API history (if selected).\n\nThis cannot be undone.',
+                    )}
+              </p>
+              <Checkbox
+                id="restore-clear-history"
+                checked={restoreClearHistory}
+                onChange={(e) => setRestoreClearHistory(!!e.target.checked)}
+                label={t('Also clear execution history and API call data (cost rows removed)')}
+              />
+            </div>
+          }
+          confirmLabel={backupBusy ? t('Working…') : t('Restore')}
+          cancelLabel={t('Cancel')}
+          onConfirm={confirmRestoreBackup}
+          onCancel={() => {
+            setShowRestoreBackupConfirm(false);
+            setPendingRestoreFile(null);
+          }}
           danger
         />
       )}
@@ -531,6 +696,7 @@ SettingsGeneralTab.propTypes = {
     font_size: PropTypes.number,
   }).isRequired,
   onSettingChange: PropTypes.func.isRequired,
+  canConfigBackup: PropTypes.bool,
 };
 
 export default SettingsGeneralTab;

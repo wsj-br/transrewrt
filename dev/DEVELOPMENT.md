@@ -16,6 +16,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
   - [UI translations (i18n)](#ui-translations-i18n)
+  - [Third-party licenses (`3p-licenses`)](#third-party-licenses-3p-licenses)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
   - [Production-style (smoke test)](#production-style-smoke-test)
@@ -162,12 +163,26 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | Command                   | Purpose                                                                                                                                                    |
 |---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                       |
-| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--retranslate`, `--model`) |
+| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--force`, `--model`) |
 | `pnpm run i18n:sync`      | Run extract then translate                                                                                                                                 |
 
 The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), `scripts/translate-docs.js` (`pnpm translate-docs`), and `scripts/generate-test-data.js`. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
 
 To **add a new UI language** (e.g. zh-CN or ar): (1) add an entry to `src/renderer/locales/ui-languages.json` (dynamic locale loaders in `src/renderer/i18n.js` are built from this list), (2) run `pnpm run i18n:extract` then `pnpm run i18n:translate` (or `i18n:sync`) so `strings.json` and `locales/<code>.json` are created/updated. RTL script languages listed in `RTL_LANGS` in `i18n.js` get `dir="rtl"` on the document and on Fluent’s root provider (see [i18n.md](i18n.md)). Full detail: [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+
+### Third-party licenses (`3p-licenses`)
+
+Regenerate the **production** dependency license bundle for releases and compliance:
+
+| Command                 | Purpose |
+|-------------------------|---------|
+| `pnpm run 3p-licenses`  | Writes [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt) at the repo root. |
+
+Implementation: [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js) runs **`license-checker-rseidelsohn`** (devDependency) with `--production`, `--json`, [license-clarifications.json](../license-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
+
+**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `license-clarifications.json`. Commit the updated `THIRD-PARTY-NOTICES.txt` with the dependency change when appropriate.
+
+**Overrides:** Edit [license-clarifications.json](../license-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `@fluentui/react-icons@^2.0.0` or `@fluentui/react-components@^9.0.0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
 
 ---
 
@@ -338,6 +353,7 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm reset-web-password` | Web multi-user: set password in SQLite (`[username] <password>`; default `admin`; `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                      |
 | `pnpm update-version`     | Propagate `package.json` `version` into README badge and other references (run after you bump the version manually)   |
+| `pnpm run 3p-licenses`   | Regenerate [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt) from production deps (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
 
 ### Docker and deploy
 
@@ -414,6 +430,10 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
 | [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
 | [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                            |
+| [license-clarifications.json](../license-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-licenses` (`licenseText`, etc.)                                        |
+| [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |
+| [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `THIRD-PARTY-NOTICES.txt`                                                            |
+| [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                                       |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** and [Related documentation](#related-documentation).

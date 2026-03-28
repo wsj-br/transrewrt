@@ -522,7 +522,8 @@ ipcMain.handle("shell:openExternal", async (_event, url) => {
   return true;
 });
 
-const { registerAppDbHandlers } = require("./appDb");
+const { registerAppDbHandlers, getDb } = require("./appDb");
+const { registerConfigBackupIpc } = require("./configBackupIpc");
 
 app.on("ready", () => {
   if (process.env.NODE_ENV !== "development") {
@@ -578,6 +579,22 @@ app.on("ready", () => {
   }
 
   registerAppDbHandlers(ipcMain, () => app.getPath("userData"));
+  registerConfigBackupIpc(
+    ipcMain,
+    () => getDb(),
+    app.getPath("userData"),
+    () => {
+      loadConfigFromFile();
+      loadStateFromFile();
+      BrowserWindow.getAllWindows().forEach((w) => {
+        try {
+          w.webContents.send("settings-updated");
+        } catch {
+          /* ignore */
+        }
+      });
+    },
+  );
   loadConfigFromFile();
   loadStateFromFile();
   saveConfigToFile(configCache);

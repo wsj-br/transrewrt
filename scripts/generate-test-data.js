@@ -81,10 +81,11 @@ function getDataDir(mode) {
 const REWRITE_MODES = [
   "Check Spelling & Grammar",
   "Improve Clarity",
-  "Make Formal",
-  "Make Informal",
+  "Alternative versions",
   "Shorten",
   "Expand",
+  "Make Formal",
+  "Make Informal",
   "Make Technical",
 ];
 

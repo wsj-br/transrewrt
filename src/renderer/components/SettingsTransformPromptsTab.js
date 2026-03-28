@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fluentui/react-components";
-import { Download, Upload, List, Trash2 } from "lucide-react";
+import { BookOpenText, Download, Upload, List, Trash2 } from "lucide-react";
+import samplePromptsData from "../../config-defaults/transform-prompts.json";
+import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
@@ -150,7 +152,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
   },
   formatRowSpacer: {
-    marginInlineStart: "48px",
+    marginInlineStart: "24px",
     flexShrink: 0,
   },
   formatDropdown: {
@@ -223,6 +225,14 @@ const useStyles = makeStyles({
       color: tokens.colorNeutralForeground2BrandHover,
     },
   },
+  loadSampleButton: {
+    backgroundColor: "#223328",
+    color: "#e8f5e9",
+    ":hover": {
+      backgroundColor: "#2d4532",
+      color: "#e8f5e9",
+    },
+  },
 });
 
 const getCustomPromptsApi = () =>
@@ -245,7 +255,8 @@ const getAcceptForFormat = (format) => {
 
 const SettingsTransformPromptsTab = () => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language || "en-GB";
   const [prompts, setPrompts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [exportMessage, setExportMessage] = useState("");
@@ -253,6 +264,8 @@ const SettingsTransformPromptsTab = () => {
   const [importError, setImportError] = useState(false);
   const [exportImportFormat, setExportImportFormat] = useState("json");
   const [promptToDelete, setPromptToDelete] = useState(null);
+  const [showLoadSampleConfirm, setShowLoadSampleConfirm] = useState(false);
+  const [loadSampleLoading, setLoadSampleLoading] = useState(false);
   const fileInputRef = useRef(null);
 
   const loadPrompts = async () => {
@@ -455,7 +468,7 @@ const SettingsTransformPromptsTab = () => {
         setImportError(true);
         return;
       }
-      const existing = await api.getAll().catch(() => []);
+      const existing = await api.getAll();
       const existingNames = (Array.isArray(existing) ? existing : []).map((p) => p?.name).filter(Boolean);
       list = resolveDuplicateNames(existingNames, list);
       const result = await api.import(list, "merge");
@@ -466,6 +479,54 @@ const SettingsTransformPromptsTab = () => {
     } catch (err) {
       setImportMessage(err?.message || t("Import failed."));
       setImportError(true);
+    }
+  };
+
+  const handleConfirmLoadSamplePrompts = async () => {
+    setLoadSampleLoading(true);
+    setShowLoadSampleConfirm(false);
+    setImportMessage("");
+    setImportError(false);
+    try {
+      const api = getCustomPromptsApi();
+      if (!api?.import) {
+        setImportMessage(t("Import not available."));
+        setImportError(true);
+        return;
+      }
+      const list = Array.isArray(samplePromptsData) ? samplePromptsData : [];
+      const normalized = list
+        .filter((p) => p?.name)
+        // eslint-disable-next-line no-unused-vars -- id omitted from bundled defaults
+        .map(({ id, ...rest }) => ({
+          ...rest,
+          target_language:
+            rest.target_language === true ||
+            rest.target_language === 1 ||
+            (typeof rest.target_language === "string" &&
+              rest.target_language.trim() !== "" &&
+              rest.target_language !== "0"),
+        }));
+      if (normalized.length === 0) {
+        setImportMessage(t("No prompts in sample file."));
+        setImportError(true);
+        return;
+      }
+      const existing = await api.getAll();
+      const existingNames = (Array.isArray(existing) ? existing : [])
+        .map((p) => p?.name)
+        .filter(Boolean);
+      const toImport = resolveDuplicateNames(existingNames, normalized);
+      const result = await api.import(toImport, "merge");
+      if (result?.error) throw new Error(result.error);
+      setExportMessage("");
+      setImportMessage(t("Imported {{count}} prompt(s).", { count: toImport.length }));
+      await loadPrompts();
+    } catch (err) {
+      setImportMessage(err?.message || t("Import failed."));
+      setImportError(true);
+    } finally {
+      setLoadSampleLoading(false);
     }
   };
 
@@ -527,6 +588,16 @@ const SettingsTransformPromptsTab = () => {
                 </Option>
               ))}
             </Dropdown>
+            <span className={styles.formatRowSpacer} aria-hidden="true" />
+            <Button
+              appearance="secondary"
+              className={styles.loadSampleButton}
+              icon={loadSampleLoading ? undefined : <BookOpenText size={16} />}
+              onClick={() => setShowLoadSampleConfirm(true)}
+              disabled={loading || loadSampleLoading}
+            >
+              {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
+            </Button>
           </div>
           {exportMessage && <div className={styles.message}>{exportMessage}</div>}
           {importMessage && (
@@ -623,6 +694,24 @@ const SettingsTransformPromptsTab = () => {
           onConfirm={handleConfirmDeletePrompt}
           onCancel={() => setPromptToDelete(null)}
           danger
+        />
+      )}
+      {showLoadSampleConfirm && (
+        <ConfirmModal
+          title={t("Load sample prompts")}
+          message={interpolateTemplate(
+            t(
+              "Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."
+            ),
+            {
+              language: findUILanguageEntry(locale)?.label ?? t("your language"),
+            }
+          )}
+          confirmLabel={t("Load")}
+          cancelLabel={t("Cancel")}
+          onConfirm={handleConfirmLoadSamplePrompts}
+          onCancel={() => setShowLoadSampleConfirm(false)}
+          maxWidth="600px"
         />
       )}
     </div>

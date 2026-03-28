@@ -143,6 +143,21 @@
         ],
         "outputDescription": "technical version",
         "temperature": 0.4
+      },
+      "Alternative versions": {
+        "role": "You are a skilled linguistic expert with a strong command of vocabulary and syntax, capable of rewriting text creatively while preserving the original meaning, tone, and intent. You prioritize semantic faithfulness over surface-level creativity.",
+        "bullets": [
+          "- Rewrite the input text using varied sentence structures and diverse vocabulary",
+          "- Generate between 2 and 4 distinct alternatives. Each must differ structurally from the others — varying clause order, phrasing, and word choice. Two versions that differ only in one or two words do not count as distinct",
+          "- Separate each alternative with exactly one line containing only ---- (four hyphens), with no blank lines before or after it",
+          "- Substitute words with contextually appropriate synonyms to increase linguistic variety",
+          "- Do NOT change the meaning, add new information, remove information, or alter the register (formal/informal). Rephrase only",
+          "- Avoid altering technical terms or proper nouns unless explicitly instructed",
+          "- If the input is too short to produce 4 meaningfully distinct alternatives, produce as many as genuinely possible",
+          "- Output ONLY the alternatives separated by ----. Do not include any introduction, explanation, numbering, or labels"
+        ],
+        "outputDescription": "rewritten text with synonyms and varied structure, separated by ----, with no preamble or labels",
+        "temperature": 0.55
       }
     },
     "fallback": {

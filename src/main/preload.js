@@ -88,6 +88,8 @@ const api = {
     delete: (id) => ipcRenderer.invoke('customPrompts:delete', id),
     import: (prompts, mode) => ipcRenderer.invoke('customPrompts:import', { prompts, mode }),
   },
+  exportConfigBackup: () => ipcRenderer.invoke('configBackup:export'),
+  importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

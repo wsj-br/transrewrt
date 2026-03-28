@@ -18,7 +18,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
+const { TRANSLATION_MODELS, OPENROUTER_PROVIDER } = require("./openrouter-script-models.js");
 
 const DEFAULT_MODEL = TRANSLATION_MODELS[0];
 
@@ -34,11 +34,6 @@ const DEFAULT_CONCURRENCY = 3;
 const DEFAULT_BLOCK_CONCURRENCY = 4;
 /** Default max characters per split block when a document exceeds this size (split at markdown headings). */
 const DEFAULT_BLOCK_SIZE = 1024;
-/** OpenRouter: prefer highest-throughput provider; allow backup providers. https://openrouter.ai/docs/guides/routing/provider-selection */
-const OPENROUTER_PROVIDER = {
-  sort: "throughput",
-  allow_fallbacks: true,
-};
 const RED = "\x1b[31m";
 const YELLOW = "\x1b[33m";
 const BLUE = "\x1b[34m";

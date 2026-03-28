@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.15",
+  "version": "1.1.0",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -36,7 +36,8 @@
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
-    "translate-docs": "node scripts/translate-docs.js"
+    "translate-docs": "node scripts/translate-docs.js",
+    "3p-licenses": "node scripts/write-third-party-notices.js"
   },
   "keywords": [
     "electron",
@@ -136,6 +137,7 @@
     "globals": "^17.4.0",
     "html-webpack-plugin": "^5.6.6",
     "i18next-scanner": "^4.6.0",
+    "license-checker-rseidelsohn": "^4.4.2",
     "mini-css-extract-plugin": "^2.10.2",
     "prop-types": "^15.8.1",
     "puppeteer": "^24.40.0",
@@ -176,12 +178,15 @@
     "@ctrl/tinycolor": "^4.2.0",
     "@fluentui/react-components": "^9.73.5",
     "@fluentui/react-icons": "^2.0.323",
+    "adm-zip": "^0.5.16",
+    "archiver": "^7.0.1",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.8.0",
     "diff": "^8.0.4",
     "express": "^5.2.1",
     "i18next": "^25.10.10",
     "lucide-react": "^1.7.0",
+    "multer": "^2.1.1",
     "multi-llm-ts": "5.1.0-beta4",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",

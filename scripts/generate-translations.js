@@ -5,11 +5,16 @@
  *
  * Use --help for usage and options.
  *   node scripts/generate-translations.js --help
+ *
+ * On runs that translate at least one string, appends one cost/summary line to dev/translations.log.
+ * Unique source strings pending translation are printed after "done", before the totalizer (console + session log; not translations.log).
+ * All log/warn/err output is also copied to dev/generate-translations-YYYYMMDD-HHMMSS.log for that run.
  */
 
 const fs = require("fs");
 const path = require("path");
-const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
+const util = require("util");
+const { TRANSLATION_MODELS, OPENROUTER_PROVIDER } = require("./openrouter-script-models.js");
 
 const DEFAULT_MODEL = TRANSLATION_MODELS[0];
 
@@ -23,11 +28,6 @@ const DEFAULT_MAX_TOKENS = 32768;
 const CHUNK = 50;
 /** Max number of languages to translate in parallel (reduces total time). */
 const PARALLEL_LANGUAGES = 4;
-/** OpenRouter: prefer highest-throughput provider; allow backup providers. https://openrouter.ai/docs/guides/routing/provider-selection */
-const OPENROUTER_PROVIDER = {
-  sort: "throughput",
-  allow_fallbacks: true,
-};
 
 const GREEN = "\x1b[32m";
 const BLUE = "\x1b[34m";
@@ -46,14 +46,29 @@ function formatElapsed(ms) {
   const pad = (n) => String(n).padStart(2, "0");
   return `${pad(h)}:${pad(m)}:${pad(s)}`;
 }
+/** Set to [] after argv validation; each line mirrors console (no ANSI strip). */
+let generateTranslationsSessionLines = null;
+
 function log(...args) {
-  console.log(`${timestamp()} - `, ...args);
+  const prefix = `${timestamp()} - `;
+  console.log(prefix, ...args);
+  if (generateTranslationsSessionLines) {
+    generateTranslationsSessionLines.push(prefix + util.format(...args));
+  }
 }
 function warn(...args) {
-  console.warn(`${timestamp()} - `, ...args);
+  const prefix = `${timestamp()} - `;
+  console.warn(prefix, ...args);
+  if (generateTranslationsSessionLines) {
+    generateTranslationsSessionLines.push(prefix + util.format(...args));
+  }
 }
 function err(...args) {
-  console.error(`${timestamp()} - `, ...args);
+  const prefix = `${timestamp()} - `;
+  console.error(prefix, ...args);
+  if (generateTranslationsSessionLines) {
+    generateTranslationsSessionLines.push(prefix + util.format(...args));
+  }
 }
 
 function printHelp() {
@@ -71,7 +86,7 @@ Usage:
 Options:
   --help, -h              Show this help and exit.
   --show-strings, -s      List source strings that need translation (key + text) per language.
-  --retranslate, -r       Retranslate all strings (ignore existing translations).
+  --force, -f             Translate all strings again (ignore existing translations).
   --model, -m <name>      OpenRouter model to use (default: ${DEFAULT_MODEL}).
   --max-tokens, -t <n>    Max tokens for completion (default: ${DEFAULT_MAX_TOKENS}).
   --locale, -l <codes>   Translate only these locale(s). Comma- or space-separated inside a single argv token (e.g. --locale=pt-BR,es or --locale "pt-BR es").
@@ -80,10 +95,10 @@ Examples:
   node scripts/generate-translations.js --help
   node scripts/generate-translations.js --show-strings
   node scripts/generate-translations.js
-  node scripts/generate-translations.js --retranslate
+  node scripts/generate-translations.js --force
   node scripts/generate-translations.js -l pt-BR
   node scripts/generate-translations.js -m openai/gpt-4o
-  node scripts/generate-translations.js -r -m anthropic/claude-sonnet-4
+  node scripts/generate-translations.js -f -m anthropic/claude-sonnet-4
 
 `+ RESET);
 }
@@ -92,7 +107,7 @@ Examples:
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  let retranslate = false;
+  let force = false;
   let showStrings = false;
   let model = DEFAULT_MODEL;
   let maxTokens = DEFAULT_MAX_TOKENS;
@@ -105,8 +120,8 @@ function parseArgs() {
       help = true;
     } else if (arg === "--show-strings" || arg === "-s") {
       showStrings = true;
-    } else if (arg === "--retranslate" || arg === "-r") {
-      retranslate = true;
+    } else if (arg === "--force" || arg === "-f") {
+      force = true;
     } else if ((arg === "--model" || arg === "-m") && args[i + 1]) {
       model = args[++i];
     } else if ((arg === "--max-tokens" || arg === "-t") && args[i + 1]) {
@@ -120,11 +135,11 @@ function parseArgs() {
       unknown.push(arg);
     }
   }
-  return { retranslate, showStrings, model, maxTokens, help, locale, unknown };
+  return { force, showStrings, model, maxTokens, help, locale, unknown };
 }
 
 const parsed = parseArgs();
-const { retranslate, showStrings, model: cliModel, maxTokens, help, locale: localeFilter, unknown } = parsed;
+const { force, showStrings, model: cliModel, maxTokens, help, locale: localeFilter, unknown } = parsed;
 
 if (help) {
   printHelp();
@@ -134,6 +149,35 @@ if (unknown.length > 0) {
   console.error(RED + "Unknown option(s): " + unknown.join(", ") + RESET);
   console.error(RED + "Use --help to see usage." + RESET + "\n");
   process.exit(1);
+}
+
+function sessionLogFileStamp(d = new Date()) {
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+}
+
+const GENERATE_TRANSLATIONS_SESSION_LOG = path.join(
+  process.cwd(),
+  "dev",
+  `generate-translations-${sessionLogFileStamp()}.log`,
+);
+
+generateTranslationsSessionLines = [];
+
+function flushGenerateTranslationsSessionLog() {
+  if (!generateTranslationsSessionLines) return;
+  const dir = path.dirname(GENERATE_TRANSLATIONS_SESSION_LOG);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(
+    GENERATE_TRANSLATIONS_SESSION_LOG,
+    generateTranslationsSessionLines.join("\n") + (generateTranslationsSessionLines.length ? "\n" : ""),
+    "utf8",
+  );
+}
+
+function exitProcess(code) {
+  flushGenerateTranslationsSessionLog();
+  process.exit(code);
 }
 
 const STRINGS_FILE = path.join(process.cwd(), "src", "renderer", "locales", "strings.json");
@@ -158,12 +202,12 @@ if (fs.existsSync(UI_LANGUAGES_PATH)) {
 
 if (!fs.existsSync(STRINGS_FILE)) {
   err("Run i18n:extract first to create strings.json");
-  process.exit(1);
+  exitProcess(1);
 }
 
 if (LANGUAGES.length === 0) {
   err("No languages in src/renderer/locales/ui-languages.json");
-  process.exit(1);
+  exitProcess(1);
 }
 
 if (localeFilter) {
@@ -182,7 +226,7 @@ if (localeFilter) {
 
   if (requestedNonSource.length === 0) {
     log("No target locales requested (only source locales). Nothing to translate.");
-    process.exit(0);
+    exitProcess(0);
   }
 
   const byCode = new Map(LANGUAGES.map((l) => [l.code, l]));
@@ -196,7 +240,7 @@ if (localeFilter) {
 
   if (invalid.length > 0) {
     err(`Locale(s) not in ui-languages.json: ${invalid.join(", ")}`);
-    process.exit(1);
+    exitProcess(1);
   }
 
   LANGUAGES = matched;
@@ -207,8 +251,8 @@ if (!OPENROUTER_API_KEY) {
   warn("OPENROUTER_API_KEY not set; will only write locale files from existing strings.json");
 }
 
-if (retranslate) {
-  log("--retranslate: will translate all strings for each language");
+if (force) {
+  log("--force: will translate all strings for each language");
 }
 log(BLUE + `🤖 model: ${MODEL}, max_tokens: ${MAX_TOKENS}` + RESET);
 if (LANGUAGES.length > 1) {
@@ -233,7 +277,7 @@ const entries = Object.entries(strings);
 if (showStrings) {
   log("Strings that need translation (no API calls, no files written).\n");
   for (const lang of LANGUAGES) {
-    const missing = retranslate
+    const missing = force
       ? entries
       : entries.filter(([, entry]) => !entry.translated[lang.code]);
     log(`--- ${lang.code} - ${lang.name} (${lang.name}): ${missing.length} strings ---`);
@@ -243,7 +287,7 @@ if (showStrings) {
     }
     log("");
   }
-  process.exit(0);
+  exitProcess(0);
 }
 
 const usageTotal = {
@@ -282,7 +326,7 @@ function abortWithError(message, details = null) {
       err(details);
     }
   }
-  process.exit(1);
+  exitProcess(1);
 }
 
 const SYSTEM_PROMPT = `You are a professional UI/UX translator specializing in software interfaces.
@@ -390,23 +434,29 @@ function logUsage(label, usage, totalSoFar) {
 
 /**
  * @param {{ code: string; name: string }} lang
- * @param {{ writeStringsFile?: boolean; langProgress?: { completed: number; total: number } }} options - writeStringsFile: if false, do not write STRINGS_FILE (caller writes once after parallel batch). langProgress: run-level language completion counts (e.g. parallel batch header done/total).
+ * @param {{ writeStringsFile?: boolean; langProgress?: { completed: number; total: number }; sourcesNeedingTranslationThisRun?: Set<string> }} options - writeStringsFile: if false, do not write STRINGS_FILE (caller writes once after parallel batch). langProgress: run-level language completion counts (e.g. parallel batch header done/total). sourcesNeedingTranslationThisRun: collect unique source strings (logged to console at end).
  */
 async function generateForLang(lang, options = {}) {
   const writeStringsFile = options.writeStringsFile !== false;
   const langProgress = options.langProgress;
+  const sourcesSet = options.sourcesNeedingTranslationThisRun;
   const usageBefore = {
     prompt_tokens: usageTotal.prompt_tokens,
     completion_tokens: usageTotal.completion_tokens,
     total_cost: usageTotal.total_cost,
   };
 
-  const missing = retranslate
+  const missing = force
     ? entries
     : entries.filter(([, entry]) => !entry.translated[lang.code]);
   if (missing.length === 0) {
     log(`${lang.code} - ${lang.name}: up to date`);
   } else {
+    if (sourcesSet) {
+      for (const [, entry] of missing) {
+        sourcesSet.add(entry.source ?? "");
+      }
+    }
     log(`${lang.code} - ${lang.name}: ${missing.length} strings to translate`);
     const modelsToTry = buildModelsToTry(MODEL);
     for (let i = 0; i < missing.length; i += CHUNK) {
@@ -465,11 +515,14 @@ async function generateForLang(lang, options = {}) {
 }
 
 (async () => {
+  try {
   const startTime = Date.now();
   if (!fs.existsSync(LOCALES_DIR)) {
     fs.mkdirSync(LOCALES_DIR, { recursive: true });
   }
   let totalStringsTranslated = 0;
+  /** Unique `source` texts that were missing (or slated for --force) in at least one target locale this run. */
+  const sourcesNeedingTranslationThisRun = new Set();
   const langProgress = { completed: 0, total: LANGUAGES.length };
   const runParallel = LANGUAGES.length > 1;
   if (runParallel) {
@@ -480,14 +533,23 @@ async function generateForLang(lang, options = {}) {
       log(BROWN + " 🚀 Running in parallel:    " + langList + "   " + langProgress.completed + "/" + langProgress.total + RESET);
       log(BROWN + "------------------------------------------------------------------------------------------------------------" + RESET);
       const results = await Promise.all(
-        batch.map((lang) => generateForLang(lang, { writeStringsFile: false, langProgress }))
+        batch.map((lang) =>
+          generateForLang(lang, {
+            writeStringsFile: false,
+            langProgress,
+            sourcesNeedingTranslationThisRun,
+          }),
+        ),
       );
       totalStringsTranslated += results.reduce((a, n) => a + n, 0);
       log(BLUE + "💾 Writing strings.json" + RESET);
       fs.writeFileSync(STRINGS_FILE, JSON.stringify(strings, null, 2), "utf8");
     }
   } else {
-    totalStringsTranslated += await generateForLang(LANGUAGES[0], { langProgress });
+    totalStringsTranslated += await generateForLang(LANGUAGES[0], {
+      langProgress,
+      sourcesNeedingTranslationThisRun,
+    });
   }
 
   // Remove from strings.json any translated keys for locales not in ui-languages.json.
@@ -510,17 +572,26 @@ async function generateForLang(lang, options = {}) {
   }
 
   const totalTokens = usageTotal.prompt_tokens + usageTotal.completion_tokens;
-  log("\ndone");
 
+  if (sourcesNeedingTranslationThisRun.size > 0) {
+    log(" ");
+    log("--- strings needing translation (consolidated from all languages) ---");
+    for (const s of Array.from(sourcesNeedingTranslationThisRun).sort()) {
+      log("  " + BROWN + JSON.stringify(s) + RESET);
+    }
+  }
+
+  log(" ");
   log("--- totalizer ---");
-  log(`time elapsed: ${formatElapsed(Date.now() - startTime)}`);
-  log(`total strings translated: ${totalStringsTranslated}`);
-  log(`total tokens: ${totalTokens} (${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion)`);
+  log("  " + BLUE + `time elapsed: ${formatElapsed(Date.now() - startTime)}` + RESET);
+  log("  " + BLUE + `total strings translated: ${totalStringsTranslated}` + RESET);
+  log("  " + BLUE + `total tokens: ${totalTokens} (${usageTotal.prompt_tokens} prompt + ${usageTotal.completion_tokens} completion)` + RESET);
   if (usageTotal.total_cost > 0) {
-    log(`total cost: $${usageTotal.total_cost.toFixed(6)} USD`);
+    log("  " + BLUE + `total cost: $${usageTotal.total_cost.toFixed(6)} USD` + RESET);
   } else if (totalTokens > 0) {
     log("total cost: (not reported by API; enable usage accounting for cost)");
   }
+  log("---");
 
   if (totalStringsTranslated > 0) {
     const elapsed = formatElapsed(Date.now() - startTime);
@@ -530,5 +601,8 @@ async function generateForLang(lang, options = {}) {
     const devDir = path.dirname(logPath);
     if (!fs.existsSync(devDir)) fs.mkdirSync(devDir, { recursive: true });
     fs.appendFileSync(logPath, logLine, "utf8");
+  }
+  } finally {
+    flushGenerateTranslationsSessionLog();
   }
 })();

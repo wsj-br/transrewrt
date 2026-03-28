@@ -16,10 +16,11 @@ export const UI_LANGUAGES = uiLanguages;
 export const REWRITE_MODE_KEYS = [
   "Check Spelling & Grammar",
   "Improve Clarity",
-  "Make Formal",
-  "Make Informal",
+  "Alternative versions",
   "Shorten",
   "Expand",
+  "Make Formal",
+  "Make Informal",
   "Make Technical",
 ];
 
@@ -32,10 +33,11 @@ export function getRewriteModeOptions(t) {
   return [
     { value: "Check Spelling & Grammar", label: t("Check Spelling & Grammar") },
     { value: "Improve Clarity", label: t("Improve Clarity") },
-    { value: "Make Formal", label: t("Make Formal") },
-    { value: "Make Informal", label: t("Make Informal") },
+    { value: "Alternative versions", label: t("Alternative versions") },
     { value: "Shorten", label: t("Shorten") },
     { value: "Expand", label: t("Expand") },
+    { value: "Make Formal", label: t("Make Formal") },
+    { value: "Make Informal", label: t("Make Informal") },
     { value: "Make Technical", label: t("Make Technical") },
   ];
 }

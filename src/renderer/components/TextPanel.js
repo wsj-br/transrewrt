@@ -25,12 +25,15 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     gap: tokens.spacingHorizontalM,
     marginBottom: tokens.spacingVerticalS,
+    minWidth: 0,
+    maxWidth: "100%",
   },
   panelTitle: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
     margin: 0,
+    flexShrink: 0,
     fontSize: "14px",
     fontWeight: 600,
     color: tokens.colorNeutralForeground1,
@@ -46,7 +49,10 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
     fontSize: "12px",
     textAlign: "end",
-    flex: "1",
+    flex: "1 1 0%",
+    minWidth: 0,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
   panel: {
@@ -211,7 +217,10 @@ const TextPanel = ({
             {title}
           </div>
           {headerDisplay && (
-            <div className={styles.panelMeta}>
+            <div
+              className={styles.panelMeta}
+              title={typeof headerDisplay === "string" ? headerDisplay : undefined}
+            >
               {headerDisplay}
             </div>
           )}

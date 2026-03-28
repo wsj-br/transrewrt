@@ -441,4 +441,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
   });
 }
 
-module.exports = { registerAppDbHandlers };
+module.exports = {
+  registerAppDbHandlers,
+  getDb: () => getDb(),
+};
