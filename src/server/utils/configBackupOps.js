@@ -11,6 +11,7 @@ const {
   BACKUP_VERSION,
   zipBufferToMap,
 } = require("../../shared/configBackup/zipUtils.js");
+const { mergeKeys } = require("../../shared/llm");
 const {
   pickUserPreferenceEntries,
   pickServerGlobalEntries,
@@ -60,7 +61,11 @@ function buildWebBackupMap(opts) {
   const map = new Map();
   const included = [];
 
-  const configObj = readConfigFileOnly();
+  const fileConfig = readConfigFileOnly();
+  const fileOnly =
+    fileConfig && typeof fileConfig === "object" && !Array.isArray(fileConfig) ? fileConfig : {};
+  const keysEffective = mergeKeys(fileOnly);
+  const configObj = { ...fileOnly, ...keysEffective };
   map.set("files/config.json", Buffer.from(JSON.stringify(configObj, null, 2), "utf8"));
   included.push("files/config.json");
 
