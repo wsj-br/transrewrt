@@ -1,7 +1,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
 function llmStreamWithAccumulation(payload) {
   return new Promise((resolve, reject) => {
@@ -90,6 +90,7 @@ const api = {
   },
   exportConfigBackup: () => ipcRenderer.invoke('configBackup:export'),
   importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
+  getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

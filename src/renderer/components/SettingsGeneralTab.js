@@ -199,22 +199,18 @@ const SettingsGeneralTab = ({
   const onRestoreBackupClick = () => {
     setBackupError(null);
     setBackupSuccess(null);
-    if (isWeb) {
-      restoreFileInputRef.current?.click();
-    } else {
-      setPendingRestoreFile(null);
-      setRestoreClearHistory(false);
-      setShowRestoreBackupConfirm(true);
+    setPendingRestoreFile(null);
+    setRestoreClearHistory(false);
+    if (restoreFileInputRef.current) {
+      restoreFileInputRef.current.value = '';
     }
+    setShowRestoreBackupConfirm(true);
   };
 
-  const onWebRestoreFileSelected = (e) => {
+  const onRestoreBackupFileSelected = (e) => {
     const f = e.target.files?.[0];
-    e.target.value = '';
     if (!f) return;
     setPendingRestoreFile(f);
-    setRestoreClearHistory(false);
-    setShowRestoreBackupConfirm(true);
   };
 
   const confirmRestoreBackup = async () => {
@@ -228,11 +224,26 @@ const SettingsGeneralTab = ({
         }
         await webAPI.restoreConfigBackup(pendingRestoreFile, { clearHistory: restoreClearHistory });
       } else if (window.electronAPI?.importConfigBackup) {
-        const r = await window.electronAPI.importConfigBackup({ clearHistory: restoreClearHistory });
-        if (r?.canceled) {
-          setShowRestoreBackupConfirm(false);
-          return;
+        if (!pendingRestoreFile) {
+          throw new Error(t('No file selected.'));
         }
+        const getPath = window.electronAPI.getPathForFile;
+        if (typeof getPath !== 'function') {
+          throw new Error(t('Restore failed.'));
+        }
+        let filePath;
+        try {
+          filePath = getPath(pendingRestoreFile);
+        } catch {
+          filePath = '';
+        }
+        if (!filePath) {
+          throw new Error(t('No file selected.'));
+        }
+        const r = await window.electronAPI.importConfigBackup({
+          filePath,
+          clearHistory: restoreClearHistory,
+        });
         if (!r?.ok) {
           throw new Error(t('Restore failed.'));
         }
@@ -579,15 +590,6 @@ const SettingsGeneralTab = ({
               <Button appearance="secondary" disabled={backupBusy} onClick={onRestoreBackupClick}>
                 {t('Restore from backup')}
               </Button>
-              {isWeb ? (
-                <input
-                  ref={restoreFileInputRef}
-                  type="file"
-                  accept=".zip,application/zip"
-                  style={{ display: 'none' }}
-                  onChange={onWebRestoreFileSelected}
-                />
-              ) : null}
             </div>
             {backupError && (
               <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block' }}>
@@ -631,6 +633,31 @@ const SettingsGeneralTab = ({
                       'This replaces local configuration files, transform prompts, and optional API history (if selected).\n\nThis cannot be undone.',
                     )}
               </p>
+              <div style={{ marginBottom: '16px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+                <input
+                  ref={restoreFileInputRef}
+                  type="file"
+                  accept=".zip,application/zip"
+                  style={{ display: 'none' }}
+                  onChange={onRestoreBackupFileSelected}
+                />
+                <Button
+                  appearance="secondary"
+                  type="button"
+                  onClick={() => restoreFileInputRef.current?.click()}
+                >
+                  {t('Select backup ZIP…')}
+                </Button>
+                <span
+                  style={{
+                    fontSize: '13px',
+                    color: tokens.colorNeutralForeground2,
+                    overflowWrap: 'anywhere',
+                  }}
+                >
+                  {pendingRestoreFile?.name || t('No file selected yet.')}
+                </span>
+              </div>
               <Checkbox
                 id="restore-clear-history"
                 checked={restoreClearHistory}
@@ -645,7 +672,11 @@ const SettingsGeneralTab = ({
           onCancel={() => {
             setShowRestoreBackupConfirm(false);
             setPendingRestoreFile(null);
+            if (restoreFileInputRef.current) {
+              restoreFileInputRef.current.value = '';
+            }
           }}
+          confirmDisabled={backupBusy || !pendingRestoreFile}
           danger
         />
       )}

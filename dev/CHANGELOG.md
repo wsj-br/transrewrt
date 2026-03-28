@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Settings → General — restore backup opens a confirmation modal first; ZIP is chosen inside the modal (browse + filename), then **Restore** runs. Desktop uses `getPathForFile` + existing IPC `filePath` path instead of a second native open dialog after confirm.
 - **Changed**: OpenRouter chat completions use `provider` routing (`sort: throughput`, `allow_fallbacks: true`): app via `src/shared/openRouterProviderRouting.js`; CLI scripts via `OPENROUTER_PROVIDER` in `scripts/openrouter-script-models.js`.
 - **Changed**: `scripts/generate-translations.js` — CLI flag `--retranslate`/`-r` renamed to `--force`/`-f` (translate all strings, ignoring existing entries).
 - **Changed**: `scripts/generate-translations.js` — unique source strings pending translation are logged to the **console** (and session transcript) after `done`, before the totalizer (not to `dev/translations.log`). `dev/translations.log` still receives one cost/summary line per run when work was done. Full console output (log/warn/err) is copied to `dev/generate-translations-YYYYMMDD-HHMMSS.log` per run.

@@ -1,4 +1,8 @@
 {
+  "15243696": {
+    "source": "Select backup ZIP…",
+    "translated": {}
+  },
   "15635515": {
     "source": "Check Spelling & Grammar",
     "translated": {
@@ -9961,6 +9965,10 @@
       "th": "สิ่งนี้จะแทนที่ไฟล์การตั้งค่าในเครื่อง คำสั่งแปลง และประวัติการใช้งาน API (ถ้าเลือก)\n\nการดำเนินการนี้ไม่สามารถยกเลิกได้",
       "uk": "Це замінить локальні конфігураційні файли, запити перетворення та необов’язкову історію API (якщо вибрано).\n\nЦю дію не можна скасувати."
     }
+  },
+  "7c4b9db5": {
+    "source": "No file selected yet.",
+    "translated": {}
   },
   "9826bb1c": {
     "source": "Also clear execution history and API call data (cost rows removed)",
