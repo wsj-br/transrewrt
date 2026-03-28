@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Web configuration restore never writes LLM provider keys into `config.json` (web and Electron-origin ZIPs), so environment-based keys keep working and backups that embed keys do not lock the server to stale file values.
 - **Changed**: Web configuration backup (`GET /api/config/backup`) embeds resolved LLM provider keys in `config.json` (file values plus environment fallbacks via `mergeKeys`), matching desktop backups that include keys from disk.
 - **Changed**: Settings → General — restore backup opens a confirmation modal first; ZIP is chosen inside the modal (browse + filename), then **Restore** runs. Desktop uses `getPathForFile` + existing IPC `filePath` path instead of a second native open dialog after confirm.
 - **Changed**: OpenRouter chat completions use `provider` routing (`sort: throughput`, `allow_fallbacks: true`): app via `src/shared/openRouterProviderRouting.js`; CLI scripts via `OPENROUTER_PROVIDER` in `scripts/openrouter-script-models.js`.

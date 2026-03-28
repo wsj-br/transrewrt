@@ -11,11 +11,21 @@ const {
   BACKUP_VERSION,
   zipBufferToMap,
 } = require("../../shared/configBackup/zipUtils.js");
-const { mergeKeys } = require("../../shared/llm");
+const { mergeKeys, CONFIG_KEY_BY_ENGINE } = require("../../shared/llm");
 const {
   pickUserPreferenceEntries,
   pickServerGlobalEntries,
 } = require("./webConfigKeys.js");
+
+/** Web restore: never persist LLM keys to config.json (env / server-only). */
+function omitLlmProviderKeysFromConfig(config) {
+  const out =
+    config && typeof config === "object" && !Array.isArray(config) ? { ...config } : {};
+  for (const k of Object.values(CONFIG_KEY_BY_ENGINE)) {
+    delete out[k];
+  }
+  return out;
+}
 
 function parseJsonEntry(map, key, fallback) {
   const buf = map.get(key);
@@ -244,10 +254,10 @@ async function applyWebRestore(ctx, zipBuffer, options) {
   tx();
 
   if (fullWebUserRestore) {
-    writeConfigFileOnly(configFromZip);
+    writeConfigFileOnly(omitLlmProviderKeysFromConfig(configFromZip));
     writeStateFileOnly(stateToWrite);
   } else {
-    writeConfigFileOnly(electronStyleConfigWrite || {});
+    writeConfigFileOnly(omitLlmProviderKeysFromConfig(electronStyleConfigWrite || {}));
     writeStateFileOnly(stateToWrite);
   }
 
