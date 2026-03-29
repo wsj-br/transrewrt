@@ -88,7 +88,7 @@ const api = {
     delete: (id) => ipcRenderer.invoke('customPrompts:delete', id),
     import: (prompts, mode) => ipcRenderer.invoke('customPrompts:import', { prompts, mode }),
   },
-  exportConfigBackup: () => ipcRenderer.invoke('configBackup:export'),
+  exportConfigBackup: (opts) => ipcRenderer.invoke('configBackup:export', opts || {}),
   importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
   getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
 };

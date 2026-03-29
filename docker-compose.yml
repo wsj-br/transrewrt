@@ -9,6 +9,7 @@ services:
     environment:
       - PORT=5000
       - CONFIG_PATH=/app/data/config.json
+      - TZ=${TZ:-Europe/London}
       # LLM keys (at minimum set OPENROUTER_API_KEY or another provider your models use)
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}

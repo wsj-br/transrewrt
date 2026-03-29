@@ -1,12 +1,10 @@
 
 <p align="center">
-  <img src="images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
+  <img src="images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
-<h1 align="center">Transrewrt</h1>
-
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -56,7 +54,7 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 
 **Dashboard**
 
-![Cost dashboard](images/screenshots/en-GB/dashboard-summary.png)
+![Dashboard summary — usage](images/screenshots/en-GB/dashboard-summary.png)
 
 **History**
 
@@ -74,16 +72,17 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Quick start](#quick-start)
 - [Installation](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
+  - [Configuring the timezone](#configuring-the-timezone)
 - [Getting an OpenRouter API key](#getting-an-openrouter-api-key)
 - [Configuration and environment](#configuration-and-environment)
 - [Development and architecture](#development-and-architecture)
-- [Releases and tags](#releases-and-tags)
-- [Contributing](#contributing)
+- [Reporting issues](#reporting-issues)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
@@ -163,6 +162,16 @@ Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to
 
 <br/>
 
+> ℹ️ **NOTE**<br/>
+> Windows may show one of these security warnings (normal for unsigned/indie apps):
+>   - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
+>   - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
+>
+> This happens because the app isn't signed by Microsoft or a major publisher—it's safe if downloaded from our official GitHub releases
+>  (verify the SHA256 checksum below).
+
+<br/>
+
 <a id="linux-electron"></a>
 ### Linux (Electron)
 
@@ -196,21 +205,39 @@ or if you prefer to use Docker Compose, use:
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
 ```
 
-<br/>
+See [Configuration](#configuration-and-environment) for all environment variables, such as `PORT`, `CONFIG_PATH`, `TZ`, and LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-| Option   | Description                                                                                                                            |
-|----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| Port     | `5000` (map with `-p 5000:5000`)                                                                                                       |
-| Volume   | Mount `/app/data` for config and database persistence                                                                                  |
-| Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - see [Configuration](#configuration-and-environment) |
+<a id="configuring-the-timezone"></a>
+### Configuring the timezone
 
-To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
+The application user interface date and time follow the **browser’s** locale and timezone. For **server-side** behaviour (logging and similar), the container uses the `TZ` environment variable. The default is `TZ=Europe/London`.
+
+To use another timezone, set `TZ` in your Compose file, for example:
+
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
+```
+
+Or pass it when running the container (Docker):
+
+```bash
+--env TZ=America/Sao_Paulo
+```
+
+On many Linux hosts you can copy the system timezone name with:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+A list of valid timezone names is maintained in the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
 <br/><br/>
 
@@ -254,6 +281,7 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 | ---------------- | ----------------------- | ----------- |
 | `PORT`           | `5000`                  | Server listening port |
 | `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
+| `TZ`             | `Europe/London`         | IANA timezone for server-side time (logging, etc.); UI still follows the browser. See [Docker → timezone](#docker-timezone) |
 | `OPENROUTER_API_KEY` | *(empty)*               | OpenRouter API key |
 | `OPENAI_API_KEY`     | *(empty)*               | OpenAI API key |
 | `CEREBRAS_API_KEY`   | *(empty)*               | Cerebras API key |
@@ -303,27 +331,10 @@ Key settings (font, models, languages, etc.) are available in the application Se
 
 <br/><br/>
 
-<a id="releases-and-tags"></a>
-## Releases and tags
+<a id="reporting-issues"></a>
+## Reporting issues
 
-- **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** attach the Windows installer (`.exe`) and Linux AppImages (**x64** and **arm64**).
-- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) plus `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
-
-<br/><br/>
-
-<a id="contributing"></a>
-## Contributing
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Commit your changes with a clear message.
-4. Push and open a Pull Request against `main`.
-
-Please follow the existing code style and test your changes in both Electron and web modes before submitting. See [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) for build and test instructions.
-
-<br/>
-
-**Reporting issues:** Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (shown in the About dialog or on the Releases page).
+Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (shown in the About dialog or on the Releases page).
 
 <br/><br/>
 

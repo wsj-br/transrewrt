@@ -686,8 +686,9 @@ const webAPI = {
     // No-op in web mode - no IPC
   },
 
-  downloadConfigBackup: async () => {
-    const res = await fetch(`${API_BASE}/api/config/backup`, {
+  downloadConfigBackup: async ({ includeUsageData = false } = {}) => {
+    const q = includeUsageData ? "?includeUsageData=true" : "";
+    const res = await fetch(`${API_BASE}/api/config/backup${q}`, {
       credentials: "include",
       cache: "no-store",
     });
@@ -723,10 +724,11 @@ const webAPI = {
     return { ok: true, filename };
   },
 
-  restoreConfigBackup: async (file, { clearHistory = false } = {}) => {
+  restoreConfigBackup: async (file, { clearHistory = false, restoreUsageData = false } = {}) => {
     const fd = new FormData();
     fd.append("file", file);
     fd.append("clearHistory", clearHistory ? "true" : "false");
+    fd.append("restoreUsageData", restoreUsageData ? "true" : "false");
     const res = await fetch(`${API_BASE}/api/config/backup/restore`, {
       method: "POST",
       body: fd,

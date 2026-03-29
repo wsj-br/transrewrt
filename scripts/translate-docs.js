@@ -4,7 +4,9 @@
  * Writes translated-docs/README.<code>.md and translated-docs/USER-GUIDE.<code>.md.
  * After translation, rewrites sibling links (README.md / USER-GUIDE.md) to README.<code>.md / USER-GUIDE.<code>.md,
  * then replaces `<small id="lang-list">…</small>` with the British English source block (canonical links; English UK → `../README.md` / `../USER-GUIDE.md`).
- * Sends the whole document per call; if larger than 16k chars, splits at nearest markdown section.
+ * Splits source at markdown headings (outside fenced code blocks); oversized sections sub-split at paragraphs (--block-size).
+ * Fenced code blocks (``` / ~~~) and GFM pipe tables are kept whole per block so joins do not split fences or table rows.
+ * Per-block translations are cached under translated-docs/.cache/<locale>.json (key = SHA-256 of source block; value includes translated, model, timestamp, id).
  * Requires OPENROUTER_API_KEY (same as server/Docker). en-GB is the source (repo root), no copy. Run from project root.
  * Session log: dev/translate-docs_YYYYMMDD_HHMMSS.log; per-doc summaries append to dev/translations.log.
  * With --debug, separated source blocks are also written to dev/translate-docs-blocks_<same-stamp>.log.
@@ -32,7 +34,7 @@ const DEFAULT_MAX_TOKENS = 32768; // 32KB
 const DEFAULT_CONCURRENCY = 3;
 /** Max parallel API calls translating blocks within one doc+locale (see --block-concurrency). */
 const DEFAULT_BLOCK_CONCURRENCY = 4;
-/** Default max characters per split block when a document exceeds this size (split at markdown headings). */
+/** Max characters per block after heading-based split; larger sections sub-split at paragraph boundaries (fenced code and pipe tables stay whole). */
 const DEFAULT_BLOCK_SIZE = 1024;
 const RED = "\x1b[31m";
 const YELLOW = "\x1b[33m";
@@ -48,6 +50,8 @@ const DOC_NAMES = [
 const ROOT = process.cwd();
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
 const TRANSLATED_DOCS_DIR = path.join(ROOT, "translated-docs");
+/** Per-locale JSON cache of translated blocks (keys: doc key → block hash → entry). */
+const TRANSLATED_DOCS_CACHE_DIR = path.join(TRANSLATED_DOCS_DIR, ".cache");
 const DEV_DIR = path.join(ROOT, "dev");
 const TRANSLATIONS_SUMMARY_LOG = path.join(DEV_DIR, "translations.log");
 
@@ -105,7 +109,7 @@ function printHelp() {
   log(BLUE + `
 Translate README.md and USER-GUIDE.md to all UI languages (source: British English).
 Output: translated-docs/README.<code>.md, translated-docs/USER-GUIDE.<code>.md.
-Documents are sent whole; if > 16k chars they are split at markdown section boundaries. Requires OPENROUTER_API_KEY.
+Documents split by markdown headings (not inside code fences); large sections split further at paragraphs, keeping each fenced code block and pipe table in one piece. Block cache: translated-docs/.cache/. Requires OPENROUTER_API_KEY.
 
 Usage:
   node scripts/translate-docs.js [options]
@@ -120,7 +124,7 @@ Options:
   --max-tokens, -t <n>    Max tokens (default: ${DEFAULT_MAX_TOKENS}).
   --concurrency, -c <n>   Max parallel languages (default: ${DEFAULT_CONCURRENCY}).
   --block-concurrency, -b <n>  Max parallel blocks per language per document (default: ${DEFAULT_BLOCK_CONCURRENCY}; with defaults, up to ${DEFAULT_CONCURRENCY}×${DEFAULT_BLOCK_CONCURRENCY} simultaneous translations).
-  --block-size <n>        Max characters per block when splitting large docs (default: ${DEFAULT_BLOCK_SIZE}).
+  --block-size <n>        Max characters per block after heading split; larger sections sub-split at paragraphs; fenced code blocks and pipe tables are not split (default: ${DEFAULT_BLOCK_SIZE}).
   --debug                 Write each doc’s split source blocks to dev/translate-docs-blocks_<run>.log (same run id as the session log).
 
 Examples:
@@ -249,6 +253,83 @@ function hashSource(content) {
   return crypto.createHash("sha256").update(content, "utf8").digest("hex");
 }
 
+/** SHA-256 of trimmed block text (cache key). */
+function hashBlock(text) {
+  const t = typeof text === "string" ? text.trim() : "";
+  return crypto.createHash("sha256").update(t, "utf8").digest("hex");
+}
+
+/**
+ * @param {string} localeCode
+ * @returns {Record<string, Record<string, { translated: string, model: string, timestamp: string, id?: string }>>}
+ */
+function loadCache(localeCode) {
+  const p = path.join(TRANSLATED_DOCS_CACHE_DIR, `${localeCode}.json`);
+  if (!fs.existsSync(p)) return {};
+  try {
+    const raw = fs.readFileSync(p, "utf8");
+    const data = JSON.parse(raw);
+    return typeof data === "object" && data !== null && !Array.isArray(data) ? data : {};
+  } catch {
+    warn(`cache corrupt or unreadable: ${p}; starting empty`);
+    return {};
+  }
+}
+
+/**
+ * Sort dotted block ids ("0", "3.1", "10") for stable cache file order.
+ * @param {string | undefined} a
+ * @param {string | undefined} b
+ */
+function compareBlockIds(a, b) {
+  const sa = a == null ? "" : String(a);
+  const sb = b == null ? "" : String(b);
+  if (!sa && !sb) return 0;
+  if (!sa) return 1;
+  if (!sb) return -1;
+  return sa.localeCompare(sb, undefined, { numeric: true });
+}
+
+/**
+ * Return a copy of the locale cache with each doc bucket's hash keys ordered by entry `id`.
+ * @param {Record<string, Record<string, { translated: string, model: string, timestamp: string, id?: string }>>} cacheObj
+ */
+function sortCacheByBlockId(cacheObj) {
+  if (typeof cacheObj !== "object" || cacheObj === null || Array.isArray(cacheObj)) {
+    return cacheObj;
+  }
+  const out = {};
+  for (const docKey of Object.keys(cacheObj).sort()) {
+    const bucket = cacheObj[docKey];
+    if (!bucket || typeof bucket !== "object" || Array.isArray(bucket)) {
+      out[docKey] = bucket;
+      continue;
+    }
+    const pairs = Object.entries(bucket);
+    pairs.sort(([, ea], [, eb]) => compareBlockIds(ea && ea.id, eb && eb.id));
+    out[docKey] = {};
+    for (const [h, e] of pairs) {
+      out[docKey][h] = e;
+    }
+  }
+  return out;
+}
+
+/**
+ * @param {string} localeCode
+ * @param {Record<string, Record<string, { translated: string, model: string, timestamp: string, id?: string }>>} cacheObj
+ */
+function saveCache(localeCode, cacheObj) {
+  if (!fs.existsSync(TRANSLATED_DOCS_CACHE_DIR)) {
+    fs.mkdirSync(TRANSLATED_DOCS_CACHE_DIR, { recursive: true });
+  }
+  const p = path.join(TRANSLATED_DOCS_CACHE_DIR, `${localeCode}.json`);
+  const tmp = p + ".tmp";
+  const sorted = sortCacheByBlockId(cacheObj);
+  fs.writeFileSync(tmp, `${JSON.stringify(sorted, null, 2)}\n`, "utf8");
+  fs.renameSync(tmp, p);
+}
+
 /**
  * Parse YAML frontmatter from the start of a file. Returns { source_hash } or {} if missing/invalid.
  */
@@ -285,50 +366,260 @@ function buildFrontmatter({ translated_at, source_hash, source_mtime, model }) {
   return lines.join("\n");
 }
 
-/**
- * Split document into blocks of at most maxChars, cutting at the nearest markdown heading.
- * If the whole document fits, returns [content]. Otherwise splits at ^#{1,6} boundaries.
- * If a single section is itself > maxChars it is returned as one oversized block.
- */
-function splitIntoBlocks(content, maxChars = BLOCK_SIZE) {
-  const trimmed = (content && typeof content === "string") ? content.trim() : "";
-  if (!trimmed) return [];
-  if (trimmed.length <= maxChars) return [trimmed];
+const MD_HEADING_RE = /^#{1,6}\s/;
 
-  const blocks = [];
-  const lines = trimmed.split(/\n/);
-  const headingRe = /^#{1,6}\s/;
-  let current = "";
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const isHeading = headingRe.test(line);
-    const lineWithSep = (current ? "\n" : "") + line;
-    const wouldExceed = current.length + lineWithSep.length > maxChars;
-    if (current && wouldExceed) {
-      if (isHeading) {
-        blocks.push(current.trim());
-        current = line;
-      } else {
-        current += lineWithSep;
-      }
-    } else {
-      current = current ? current + lineWithSep : line;
-    }
-  }
-  if (current.trim()) blocks.push(current.trim());
-  return blocks;
+/** True if trimmed line opens/closes a fenced code block (``` or ~~~). */
+function isFenceDelimiterLine(line) {
+  const t = line.trimStart();
+  return /^(```|~~~)/.test(t);
 }
 
-function appendDebugBlocks(localeCode, docKey, blocks) {
+/**
+ * Split section body into text runs and complete fenced blocks (opening delimiter through closing line).
+ * Prevents paragraph splitting on blank lines inside code fences; unclosed fence at EOF is one trailing fence segment.
+ * @param {string} sectionText
+ * @returns {{ kind: "text" | "fence", content: string }[]}
+ */
+function segmentFencedBlocksAndText(sectionText) {
+  const lines = (typeof sectionText === "string" ? sectionText : "").split("\n");
+  /** @type {{ kind: "text" | "fence", content: string }[]} */
+  const segments = [];
+  const textBuf = [];
+  let insideFence = false;
+  /** @type {string[] | null} */
+  let fenceBuf = null;
+
+  function flushText() {
+    if (textBuf.length === 0) return;
+    const s = textBuf.join("\n");
+    textBuf.length = 0;
+    if (s.length > 0) {
+      segments.push({ kind: "text", content: s });
+    }
+  }
+
+  for (const line of lines) {
+    if (isFenceDelimiterLine(line)) {
+      if (!insideFence) {
+        flushText();
+        insideFence = true;
+        fenceBuf = [line];
+      } else {
+        fenceBuf.push(line);
+        segments.push({ kind: "fence", content: fenceBuf.join("\n") });
+        fenceBuf = null;
+        insideFence = false;
+      }
+      continue;
+    }
+    if (insideFence) {
+      fenceBuf.push(line);
+    } else {
+      textBuf.push(line);
+    }
+  }
+  flushText();
+  if (insideFence && fenceBuf != null && fenceBuf.length > 0) {
+    segments.push({ kind: "fence", content: fenceBuf.join("\n") });
+  }
+  return segments;
+}
+
+/**
+ * GFM-style pipe table row: leading pipe, another pipe later (excludes most prose with a single |).
+ * @param {string} line
+ */
+function isMarkdownTableRowLine(line) {
+  const t = typeof line === "string" ? line.trim() : "";
+  if (!t || isFenceDelimiterLine(line)) return false;
+  return /^\|.*\|/.test(t);
+}
+
+/**
+ * Split an oversized paragraph into chunks without breaking markdown pipe tables.
+ * Tables are emitted as whole units (may exceed maxSize) so block joins do not insert a blank line between rows.
+ * @param {string} para
+ * @param {number} maxSize
+ * @returns {string[]}
+ */
+function splitOversizedParagraphPreservingTables(para, maxSize) {
+  const lines = para.split("\n");
+  /** @type {({ kind: "table", text: string } | { kind: "line", line: string })[]} */
+  const runs = [];
+  let i = 0;
+  while (i < lines.length) {
+    const ln = lines[i];
+    if (isMarkdownTableRowLine(ln)) {
+      const start = i;
+      while (i < lines.length && isMarkdownTableRowLine(lines[i])) {
+        i++;
+      }
+      runs.push({ kind: "table", text: lines.slice(start, i).join("\n") });
+      continue;
+    }
+    runs.push({ kind: "line", line: ln });
+    i++;
+  }
+
+  const chunks = [];
+  let lineBuf = "";
+
+  function flushLines() {
+    if (lineBuf) {
+      chunks.push(lineBuf);
+      lineBuf = "";
+    }
+  }
+
+  for (const run of runs) {
+    if (run.kind === "table") {
+      flushLines();
+      chunks.push(run.text);
+      continue;
+    }
+    const ln = run.line;
+    const cand = lineBuf ? `${lineBuf}\n${ln}` : ln;
+    if (cand.length <= maxSize) {
+      lineBuf = cand;
+    } else {
+      flushLines();
+      if (ln.length <= maxSize) {
+        lineBuf = ln;
+      } else {
+        for (let o = 0; o < ln.length; o += maxSize) {
+          chunks.push(ln.slice(o, Math.min(o + maxSize, ln.length)));
+        }
+      }
+    }
+  }
+  flushLines();
+  return chunks;
+}
+
+/**
+ * Sub-split one section when longer than maxSize: pack text paragraphs and fenced blocks up to maxSize.
+ * Fenced code is never split; pipe tables are never split mid-table (see splitOversizedParagraphPreservingTables).
+ * @returns {{ text: string, heading: string | null }[]}
+ */
+function splitSectionByMaxSize(sectionText, maxSize, headingLine) {
+  const trimmed = sectionText.trim();
+  if (trimmed.length <= maxSize) {
+    return [{ text: trimmed, heading: headingLine }];
+  }
+
+  /** @type {string[]} */
+  const pieces = [];
+  for (const seg of segmentFencedBlocksAndText(trimmed)) {
+    if (seg.kind === "fence") {
+      pieces.push(seg.content);
+      continue;
+    }
+    const paras = seg.content.split(/\n\n+/).filter((p) => p.length > 0);
+    for (const para of paras) {
+      if (para.length > maxSize) {
+        pieces.push(...splitOversizedParagraphPreservingTables(para, maxSize));
+      } else {
+        pieces.push(para);
+      }
+    }
+  }
+
+  const chunks = [];
+  let current = "";
+  for (const piece of pieces) {
+    if (piece.length > maxSize) {
+      if (current) {
+        chunks.push(current);
+        current = "";
+      }
+      chunks.push(piece);
+      continue;
+    }
+    const candidate = current ? `${current}\n\n${piece}` : piece;
+    if (candidate.length <= maxSize) {
+      current = candidate;
+    } else {
+      if (current) {
+        chunks.push(current);
+      }
+      current = piece;
+    }
+  }
+  if (current) {
+    chunks.push(current);
+  }
+
+  return chunks.map((text, i) => ({
+    text,
+    heading: i === 0 ? headingLine : null,
+  }));
+}
+
+/**
+ * Split at markdown headings (#–######) only outside fenced code blocks; sub-split long sections (paragraphs + whole fences/tables).
+ * @returns {{ id: string, heading: string | null, text: string }[]}
+ */
+function splitIntoSections(content, maxSectionSize = BLOCK_SIZE) {
+  const trimmed = (content && typeof content === "string") ? content.trim() : "";
+  if (!trimmed) return [];
+
+  const lines = trimmed.split(/\n/);
+  let insideFence = false;
+  const rawSections = [];
+  let currentLines = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (isFenceDelimiterLine(line)) {
+      insideFence = !insideFence;
+    }
+    const isHeading = !insideFence && MD_HEADING_RE.test(line);
+    if (isHeading && currentLines.length > 0) {
+      rawSections.push(currentLines);
+      currentLines = [];
+    }
+    currentLines.push(line);
+  }
+  if (currentLines.length > 0) {
+    rawSections.push(currentLines);
+  }
+
+  const out = [];
+  let sectionIndex = 0;
+  for (const secLines of rawSections) {
+    const text = secLines.join("\n");
+    const firstLine = secLines[0] || "";
+    const headingLine = MD_HEADING_RE.test(firstLine) ? firstLine : null;
+    const subBlocks = splitSectionByMaxSize(text, maxSectionSize, headingLine);
+    for (let j = 0; j < subBlocks.length; j++) {
+      const id = j === 0 ? String(sectionIndex) : `${sectionIndex}.${j}`;
+      out.push({
+        id,
+        heading: subBlocks[j].heading,
+        text: subBlocks[j].text,
+      });
+    }
+    sectionIndex += 1;
+  }
+  return out;
+}
+
+/** All block hashes currently valid for this source (for cache orphan cleanup). */
+function collectBlockHashesForContent(content) {
+  return new Set(splitIntoSections(content, BLOCK_SIZE).map((s) => hashBlock(s.text)));
+}
+
+function appendDebugBlocks(localeCode, docKey, sections) {
   if (!debugBlocksPath) return;
   let out = "";
-  for (let i = 0; i < blocks.length; i++) {
-    const b = blocks[i];
+  for (let i = 0; i < sections.length; i++) {
+    const s = sections[i];
+    const b = s.text;
     out +=
       "\n" +
       "=".repeat(72) +
       "\n" +
-      `locale: ${localeCode} | doc: ${docKey} | block ${i + 1}/${blocks.length} | ${b.length} chars` +
+      `locale: ${localeCode} | doc: ${docKey} | block ${i + 1}/${sections.length} | id: ${s.id} | ${b.length} chars` +
       "\n" +
       "=".repeat(72) +
       "\n" +
@@ -520,18 +811,18 @@ function logUsage(label, usage, totalSoFar) {
 }
 
 /**
- * Translate a single document for one locale. Returns cost/tokens/status for aggregation.
- * Used so docs (README, USER-GUIDE) can run in parallel within a locale.
+ * Translate a single document for one locale. Mutates localeCache for this locale (saved by processLocale).
+ * @param {Record<string, Record<string, { translated: string, model: string, timestamp: string, id?: string }>>} localeCache
  */
-async function processDoc(locale, doc, content) {
+async function processDoc(locale, doc, content, localeCache) {
   const docStart = Date.now();
   const result = { cost: 0, tokens: 0, reasoning_tokens: 0, status: "ok", elapsedMs: 0 };
   const currentHash = hashSource(content);
   const outPath = path.join(TRANSLATED_DOCS_DIR, `${doc.key}.${locale.code}.md`);
 
-  const blocks = splitIntoBlocks(content);
+  const sections = splitIntoSections(content, BLOCK_SIZE);
   if (args.debug) {
-    appendDebugBlocks(locale.code, doc.key, blocks);
+    appendDebugBlocks(locale.code, doc.key, sections);
   }
 
   if (!args.force && fs.existsSync(outPath)) {
@@ -544,36 +835,67 @@ async function processDoc(locale, doc, content) {
     }
   }
 
-  log(YELLOW + `🔍 ${locale.code} ${doc.key}: ${blocks.length} block(s) (max ${BLOCK_SIZE} chars each)` + RESET);
+  log(YELLOW + `🔍 ${locale.code} ${doc.key}: ${sections.length} block(s) (headings + max ${BLOCK_SIZE} chars)` + RESET);
 
-  const blockOutcomes = await runMapWithConcurrency(blocks, BLOCK_CONCURRENCY, async (blockText, i) => {
+  if (!localeCache[doc.key] || typeof localeCache[doc.key] !== "object") {
+    localeCache[doc.key] = {};
+  }
+  const docBlockCache = localeCache[doc.key];
+
+  const blockTasks = sections.map((sec, i) => ({ sec, i, h: hashBlock(sec.text) }));
+
+  const blockOutcomes = await runMapWithConcurrency(blockTasks, BLOCK_CONCURRENCY, async ({ sec, i, h }) => {
+    if (!args.force && docBlockCache[h]) {
+      const entry = docBlockCache[h];
+      docBlockCache[h] = { ...entry, id: sec.id };
+      log(`  📦 ${locale.code} ${doc.key}: block ${i + 1}/${sections.length} (id ${sec.id}): cache hit`);
+      return {
+        ok: true,
+        translated: entry.translated,
+        usage: { prompt_tokens: 0, completion_tokens: 0, reasoning_tokens: 0, total_cost: 0 },
+        model: entry.model,
+        timestamp: entry.timestamp,
+        fromCache: true,
+      };
+    }
     try {
-      const res = await translateBlockWithFallback(blockText, locale.englishName, locale.code, doc.key, i);
+      const res = await translateBlockWithFallback(sec.text, locale.englishName, locale.code, doc.key, i);
       const { translated, usage, model } = res;
+      const ts = new Date().toISOString();
+      docBlockCache[h] = { translated, model, timestamp: ts, id: sec.id };
       const reasoningStr = (usage.reasoning_tokens > 0) ? `, ${usage.reasoning_tokens} reasoning` : "";
-      log(`  ✔️  ${locale.code} ${doc.key}: block ${i + 1}/${blocks.length}: done (${usage.prompt_tokens + usage.completion_tokens} tokens${reasoningStr})`);
-      return { ok: true, translated, usage, model };
+      log(`  ✔️  ${locale.code} ${doc.key}: block ${i + 1}/${sections.length} (id ${sec.id}): done (${usage.prompt_tokens + usage.completion_tokens} tokens${reasoningStr})`);
+      return { ok: true, translated, usage, model, timestamp: ts, fromCache: false };
     } catch (e) {
-      warn(`  ❌  ${locale.code} ${doc.key} block ${i + 1} failed:`, e.message);
-      return { ok: false, fallback: blockText };
+      warn(`  ❌  ${locale.code} ${doc.key} block ${i + 1} (id ${sec.id}) failed:`, e.message);
+      return { ok: false, fallback: sec.text, timestamp: new Date().toISOString() };
     }
   });
 
   const translatedParts = [];
-  let modelUsed = null;
+  const timestamps = [];
+  const modelsUsed = new Set();
   for (let i = 0; i < blockOutcomes.length; i++) {
     const o = blockOutcomes[i];
     if (o.ok) {
       translatedParts.push(o.translated);
-      if (modelUsed == null) modelUsed = o.model;
+      if (o.timestamp) timestamps.push(o.timestamp);
+      if (o.model) modelsUsed.add(o.model);
       result.cost += o.usage.total_cost;
       result.tokens += o.usage.prompt_tokens + o.usage.completion_tokens;
       result.reasoning_tokens += o.usage.reasoning_tokens || 0;
     } else {
       translatedParts.push(o.fallback);
+      if (o.timestamp) timestamps.push(o.timestamp);
       result.status = "failed";
     }
   }
+
+  let translatedAtIso = new Date().toISOString();
+  if (timestamps.length > 0) {
+    translatedAtIso = timestamps.reduce((best, t) => (new Date(t) > new Date(best) ? t : best));
+  }
+  const modelListStr = modelsUsed.size > 0 ? [...modelsUsed].join(", ") : MODEL;
 
   {
     const sourcePath = path.join(ROOT, doc.sourceFile);
@@ -604,10 +926,10 @@ async function processDoc(locale, doc, content) {
       }
     }
     const frontmatter = buildFrontmatter({
-      translated_at: new Date().toISOString(),
+      translated_at: translatedAtIso,
       source_hash: currentHash,
       source_mtime: sourceMtime,
-      model: modelUsed || MODEL,
+      model: modelListStr,
     });
     if (!fs.existsSync(TRANSLATED_DOCS_DIR)) fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
     fs.writeFileSync(outPath, frontmatter + bodyWithLocalePaths, "utf8");
@@ -649,6 +971,7 @@ async function processLocale(locale, docContents) {
     return stats;
   }
 
+  const localeCache = loadCache(locale.code);
   const docResults = await Promise.all(
     DOCS_TO_PROCESS.map((doc) => {
       const content = docContents[doc.key];
@@ -661,9 +984,10 @@ async function processLocale(locale, docContents) {
           elapsedMs: 0,
         });
       }
-      return processDoc(locale, doc, content);
+      return processDoc(locale, doc, content, localeCache);
     })
   );
+  saveCache(locale.code, localeCache);
 
   stats.byDoc = {};
   for (let i = 0; i < DOCS_TO_PROCESS.length; i++) {
@@ -736,6 +1060,52 @@ function appendDocTranslationSummaryLine(docKey, tokens, cost, elapsedMsSum) {
   fs.appendFileSync(TRANSLATIONS_SUMMARY_LOG, line, "utf8");
 }
 
+/**
+ * Remove cache entries whose block hash no longer exists in the current source (per doc key).
+ * @param {Record<string, string>} docByKey - README / USER-GUIDE source text
+ */
+function pruneStaleCacheEntries(docByKey) {
+  if (!fs.existsSync(TRANSLATED_DOCS_CACHE_DIR)) return;
+  let totalRemoved = 0;
+  for (const file of fs.readdirSync(TRANSLATED_DOCS_CACHE_DIR)) {
+    if (!file.endsWith(".json")) continue;
+    const localeCode = path.basename(file, ".json");
+    let cache;
+    try {
+      cache = JSON.parse(fs.readFileSync(path.join(TRANSLATED_DOCS_CACHE_DIR, file), "utf8"));
+    } catch {
+      warn(`cache prune: skip unreadable ${file}`);
+      continue;
+    }
+    if (typeof cache !== "object" || cache === null || Array.isArray(cache)) continue;
+    let removed = 0;
+    for (const docKey of Object.keys(cache)) {
+      const content = docByKey[docKey];
+      if (typeof content !== "string") continue;
+      const valid = collectBlockHashesForContent(content);
+      const bucket = cache[docKey];
+      if (!bucket || typeof bucket !== "object" || Array.isArray(bucket)) continue;
+      for (const h of Object.keys(bucket)) {
+        if (!valid.has(h)) {
+          delete bucket[h];
+          removed++;
+        }
+      }
+      if (Object.keys(bucket).length === 0) {
+        delete cache[docKey];
+      }
+    }
+    if (removed > 0) {
+      saveCache(localeCode, cache);
+      totalRemoved += removed;
+      log(`cache prune ${localeCode}: removed ${removed} stale block entr${removed === 1 ? "y" : "ies"}`);
+    }
+  }
+  if (totalRemoved > 0) {
+    log(`cache prune: total ${totalRemoved} stale block entr${totalRemoved === 1 ? "y" : "ies"} removed`);
+  }
+}
+
 async function main() {
   if (!fs.existsSync(TRANSLATED_DOCS_DIR)) {
     fs.mkdirSync(TRANSLATED_DOCS_DIR, { recursive: true });
@@ -752,7 +1122,7 @@ async function main() {
     debugBlocksPath = path.join(DEV_DIR, `translate-docs-blocks_${runId}.log`);
     fs.writeFileSync(
       debugBlocksPath,
-      `translate-docs --debug: separated source blocks (max ${BLOCK_SIZE} chars; split at markdown headings)\n${"=".repeat(72)}\n`,
+      `translate-docs --debug: source blocks (headings outside fences; max ${BLOCK_SIZE} chars; paragraphs + whole fences/tables)\n${"=".repeat(72)}\n`,
       "utf8"
     );
     log("debug blocks log: " + path.relative(ROOT, debugBlocksPath));
@@ -795,6 +1165,17 @@ async function main() {
     CONCURRENCY,
     (locale) => processLocale(locale, docContents)
   );
+
+  const cleanupDocByKey = { ...docContents };
+  for (const d of DOC_NAMES) {
+    if (typeof cleanupDocByKey[d.key] !== "string") {
+      const p = path.join(ROOT, d.sourceFile);
+      if (fs.existsSync(p)) {
+        cleanupDocByKey[d.key] = fs.readFileSync(p, "utf8");
+      }
+    }
+  }
+  pruneStaleCacheEntries(cleanupDocByKey);
 
   const totalElapsed = Date.now() - startTime;
   const totalCost = allStats.reduce((s, r) => s + r.cost, 0);

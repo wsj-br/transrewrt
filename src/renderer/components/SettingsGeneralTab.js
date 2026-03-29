@@ -113,6 +113,8 @@ const SettingsGeneralTab = ({
   const [backupSuccess, setBackupSuccess] = useState(null);
   const [showRestoreBackupConfirm, setShowRestoreBackupConfirm] = useState(false);
   const [restoreClearHistory, setRestoreClearHistory] = useState(false);
+  const [restoreUsageData, setRestoreUsageData] = useState(false);
+  const [backupIncludeUsage, setBackupIncludeUsage] = useState(false);
   const [pendingRestoreFile, setPendingRestoreFile] = useState(null);
   const restoreFileInputRef = useRef(null);
 
@@ -177,10 +179,10 @@ const SettingsGeneralTab = ({
     setBackupBusy(true);
     try {
       if (isWeb) {
-        const r = await webAPI.downloadConfigBackup();
+        const r = await webAPI.downloadConfigBackup({ includeUsageData: backupIncludeUsage });
         setBackupSuccess(backupSuccessMessage(r?.filename));
       } else if (window.electronAPI?.exportConfigBackup) {
-        const r = await window.electronAPI.exportConfigBackup();
+        const r = await window.electronAPI.exportConfigBackup({ includeUsageData: backupIncludeUsage });
         if (r?.canceled) {
           /* user dismissed save dialog */
         } else if (r?.ok) {
@@ -201,6 +203,7 @@ const SettingsGeneralTab = ({
     setBackupSuccess(null);
     setPendingRestoreFile(null);
     setRestoreClearHistory(false);
+    setRestoreUsageData(false);
     if (restoreFileInputRef.current) {
       restoreFileInputRef.current.value = '';
     }
@@ -222,7 +225,10 @@ const SettingsGeneralTab = ({
         if (!pendingRestoreFile) {
           throw new Error(t('No file selected.'));
         }
-        await webAPI.restoreConfigBackup(pendingRestoreFile, { clearHistory: restoreClearHistory });
+        await webAPI.restoreConfigBackup(pendingRestoreFile, {
+          clearHistory: restoreClearHistory,
+          restoreUsageData,
+        });
       } else if (window.electronAPI?.importConfigBackup) {
         if (!pendingRestoreFile) {
           throw new Error(t('No file selected.'));
@@ -243,6 +249,7 @@ const SettingsGeneralTab = ({
         const r = await window.electronAPI.importConfigBackup({
           filePath,
           clearHistory: restoreClearHistory,
+          restoreUsageData,
         });
         if (!r?.ok) {
           throw new Error(t('Restore failed.'));
@@ -250,8 +257,8 @@ const SettingsGeneralTab = ({
       }
       setBackupSuccess(
         isWeb
-          ? t('Configuration restored. You may need to sign in again. Reload the page if settings look out of date.')
-          : t('Configuration restored. Reload the page if settings look out of date.'),
+          ? t('Configuration restored. You may need to sign in again.')
+          : t('Configuration restored.'),
       );
       setShowRestoreBackupConfirm(false);
       setPendingRestoreFile(null);
@@ -583,6 +590,14 @@ const SettingsGeneralTab = ({
             {t('Configuration Backup')}
           </Text>
           <div style={{ paddingInlineStart: '24px' }}>
+            <div style={{ marginBottom: '12px' }}>
+              <Checkbox
+                id="backup-include-usage"
+                checked={backupIncludeUsage}
+                onChange={(e) => setBackupIncludeUsage(!!e.target.checked)}
+                label={t('Include usage data in the backup')}
+              />
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '12px' }}>
               <Button appearance="primary" disabled={backupBusy} onClick={runConfigBackup}>
                 {backupBusy ? t('Working…') : t('Backup configuration')}
@@ -658,12 +673,20 @@ const SettingsGeneralTab = ({
                   {pendingRestoreFile?.name || t('No file selected yet.')}
                 </span>
               </div>
-              <Checkbox
-                id="restore-clear-history"
-                checked={restoreClearHistory}
-                onChange={(e) => setRestoreClearHistory(!!e.target.checked)}
-                label={t('Also clear execution history and API call data (cost rows removed)')}
-              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Checkbox
+                  id="restore-usage-data"
+                  checked={restoreUsageData}
+                  onChange={(e) => setRestoreUsageData(!!e.target.checked)}
+                  label={t('Restore the usage data')}
+                />
+                <Checkbox
+                  id="restore-clear-history"
+                  checked={restoreClearHistory}
+                  onChange={(e) => setRestoreClearHistory(!!e.target.checked)}
+                  label={t('Clear the old usage data before restoring')}
+                />
+              </div>
             </div>
           }
           confirmLabel={backupBusy ? t('Working…') : t('Restore')}

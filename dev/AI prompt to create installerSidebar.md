@@ -29,4 +29,4 @@ Create a 164×314 px vertical installer banner image for a Windows application.
 
 ⚠️ **NOTE:** Select "Create image" and attach the transrewrt_log.png and transrewrt_name.png to the prompt
 
-💾 **Generated file:** Gemini_Generated_Image_7va2lb7va2lb7va2.png scaled in GIMP using LoHalo interpolation.
+💾 **Generated file:** Gemini_Generated_Image_7va2lb7va2lb7va2.png scaled to 164x314 in GIMP using NoHalo interpolation, exporting to 24bits

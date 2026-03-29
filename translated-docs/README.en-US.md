@@ -1,17 +1,15 @@
 ---
-translated_at: "2026-03-27T23:08:53.587Z"
-source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
-source_mtime: "2026-03-27T20:34:13.877Z"
+translated_at: "2026-03-29T01:54:35.076Z"
+source_hash: "f26a12ca888393b55a064bfcf8fe2b74a425c383f1ad6f7ecbb32b67b7c9f897"
+source_mtime: "2026-03-29T01:54:18.655Z"
 model: "qwen/qwen3-235b-a22b-2507"
 ---
 <p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Transrewrt logo" width="120" />
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
-<h1 align="center">Transrewrt</h1>
-
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -32,8 +30,11 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 
 Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthrough of all features.
 
-<small>**Read in other languages:** </small>
 <small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) </small>
+
+E.pl.md) · [Portuguese (PT)](README.pt.md) · [Punjabi](README.pa.md) · [Romanian](README.ro.md) · [Russian](README.ru.md) · [Slovak](README.sk.md) · [Spanish](README.es.md) · [Swahili](README.sw.md) · [Swedish](README.sv.md) · [Telugu](README.te.md) · [Thai](README.th.md) · [Turkish](README.tr.md) · [Ukrainian](README.uk.md) · [Vietnamese](README.vi.md)</small>
 
 <small>
 
@@ -62,7 +63,7 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 
 **Dashboard**
 
-![Cost dashboard](../images/screenshots/en-US/dashboard-summary.png)
+![Dashboard summary — usage](../images/screenshots/en-US/dashboard-summary.png)
 
 **History**
 
@@ -75,6 +76,7 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
 <br/><br/>
 
 <a id="table-of-contents"></a>
+
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -85,11 +87,11 @@ Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthr
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
+  - [Configuring the timezone](#configuring-the-timezone)
 - [Getting an OpenRouter API key](#getting-an-openrouter-api-key)
 - [Configuration and environment](#configuration-and-environment)
 - [Development and architecture](#development-and-architecture)
-- [Releases and tags](#releases-and-tags)
-- [Contributing](#contributing)
+- [Reporting issues](#reporting-issues)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
@@ -114,47 +116,48 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set keys for other providers; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
+Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In Docker, LLM credentials are set using environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not via the web UI). For the desktop version (Electron), configure keys in **Settings → API**.
+> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
 
 <br/>
 
 **Windows**
 
-Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch it from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You must configure at least one provider; OpenRouter is commonly used for free models.
+Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch it from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You need to configure at least one provider; OpenRouter is commonly used for free models.
 
 <br/>
 
 **Linux**
 
-Download the appropriate `.AppImage` file for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for standard PCs, `arm64` for most ARM devices including Raspberry Pi 4+), then run:
+Download the `.AppImage` file for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then run:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Enter your API keys in **Settings → API**. You must configure at least one provider; OpenRouter is commonly used for free models.
+Enter your API keys in **Settings → API**. You need to configure at least one provider; OpenRouter is commonly used for free models.
 
-On Debian/Ubuntu, you may first need to install additional dependencies:
+On Debian/Ubuntu, you may need to install additional dependencies first:
 
 ```bash
 sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
 ```
 
-See [Installation → Linux](#linux-electron) for more details.
+See [Installation → Linux](#linux-electron) for details.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
+
 > macOS is currently not supported. Transrewrt is available for Windows, Linux, and Docker.
 
 <br/>
 
-Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+Once the app is running, see the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
 <br/><br/>
 
@@ -163,32 +166,44 @@ Once the app is running, refer to the **[User Guide](USER-GUIDE.en-US.md)** to l
 ## Installation
 
 <a id="windows-electron"></a>
+
 ### Windows (Electron)
 
 - Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run the `.exe` file and follow the installation instructions.
-- On first run: launch the app from the Start menu or desktop shortcut.
+- First run: launch the app from the Start menu or desktop shortcut.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> Windows might display one of the following security warnings (common for unsigned or independent apps):
+>   - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
+>   - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
+>
+> These warnings appear because the app isn't signed by Microsoft or a major publisher. It's safe to proceed if downloaded from our official GitHub releases (verify the SHA256 checksum below).
 
 <br/>
 
 <a id="linux-electron"></a>
+
 ### Linux (Electron)
 
-- Download the appropriate `.AppImage` file (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Download the matching `.AppImage` (`x64` or `arm64`) from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` on x86_64/amd64, or use the `...-arm64.AppImage` filename on ARM64.
-- Additional dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for more information.
+- Extra dependencies (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+- See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for more.
 
 <br/>
 
 <a id="docker"></a>
+
 ### Docker
 
-- Pull the image: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Set at least one provider key using environment variables (for example, `OPENROUTER_API_KEY` for OpenRouter). Pass variables using `-e` or via `docker compose` / `.env` to ensure secrets are not built into the image.
+- Pull: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Set at least one provider key via environment variable (for example, `OPENROUTER_API_KEY` for OpenRouter). Pass variables using `-e` or via `docker compose` / `.env` so secrets are not baked into the image.
 - Provider keys are **not** entered in the web UI; the server reads them directly from the environment.
 
-Example – using a named volume for data persistence (OpenRouter key via environment variable):
+Example – using a named volume for persistence (OpenRouter key via environment variable):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -201,24 +216,42 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Or, if you prefer Docker Compose, use:
 
-# Download the compose file
 ```bash
+# download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# Edit the file to add the API_KEYS
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
-# Start the container
+# start the container
 docker compose -f transrewrt.yml up -d
+
+See [Configuration](#configuration-and-environment) for all environment variables, such as `PORT`, `CONFIG_PATH`, `TZ`, and LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
+
+<a id="configuring-the-timezone"></a>
+
+### Configuring the timezone
+
+The application user interface date and time follow the **browser's** locale and timezone. For **server-side** behavior (logging and similar), the container uses the `TZ` environment variable. The default is `TZ=Europe/London`.
+
+To use another timezone, set `TZ` in your Compose file, for example:
+
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
 ```
 
-<br/>
+Or pass it when running the container (Docker):
 
-| Option   | Description                                                                                                                            |
-|----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| Port     | `5000` (map with `-p 5000:5000`)                                                                                                       |
-| Volume   | Mount `/app/data` for config and database persistence                                                                                  |
-| Env vars | `PORT`, `CONFIG_PATH`, plus LLM keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - see [Configuration](#configuration-and-environment) |
+```bash
+--env TZ=America/Sao_Paulo
+```
 
-To build and run from source: `docker compose up --build -d` or `pnpm docker:up` - see [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+On many Linux hosts you can copy the system timezone name with:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+A list of valid timezone names is maintained in the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
 <br/><br/>
 
@@ -232,12 +265,12 @@ Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) i
 2. Go to the [Keys](https://openrouter.ai/keys) page and create a new key (give it a name, and optionally set a credit limit). You can use free models without adding credit.
 3. **Desktop (Electron):** paste keys in **Settings → API**. **Docker:** set environment variables such as `OPENROUTER_API_KEY` (see [Quick start](#quick-start)).
 
-Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation tasks: it returns JSON request payloads, not the completed text needed for these operations. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
+Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translation, rewriting, or transformation: it returns JSON request payloads, not the completed text for these tasks. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
 
 You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
 > ⚠️ **WARNING**<br/>
-> If you are using Ollama from another device, container, or service, remember to configure Ollama to allow external connections (not just localhost).
+> If you are using Ollama from another device, container, or service, remember to configure Ollama to allow external connections (not localhost-only).
 
 For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
@@ -259,10 +292,11 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 
 **Environment variables** (web/Docker only; Electron uses the local config file)
 
-| Variable             | Default                 | Description |
-| -------------------- | ----------------------- | ----------- |
-| `PORT`               | `5000`                  | Server listening port |
-| `CONFIG_PATH`        | `/app/data/config.json` | Path to the config file |
+| Variable         | Default                 | Description |
+| ---------------- | ----------------------- | ----------- |
+| `PORT`           | `5000`                  | Server listening port |
+| `CONFIG_PATH`    | `/app/data/config.json` | Path to the config file |
+| `TZ`             | `Europe/London`         | IANA timezone for server-side time (logging, etc.); UI still follows the browser. See [Docker → timezone](#docker-timezone) |
 | `OPENROUTER_API_KEY` | *(empty)*               | OpenRouter API key |
 | `OPENAI_API_KEY`     | *(empty)*               | OpenAI API key |
 | `CEREBRAS_API_KEY`   | *(empty)*               | Cerebras API key |
@@ -271,7 +305,7 @@ For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.a
 | `DEEPSEEK_API_KEY`   | *(empty)*               | DeepSeek API key |
 | `GROQ_API_KEY`       | *(empty)*               | Groq API key |
 | `MISTRAL_API_KEY`    | *(empty)*               | Mistral API key |
-| `OLLAMA_URL`         | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
+| `OLLAMA_URL`     | *(empty)*               | Ollama base URL (e.g. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | *(empty)*               | xAI API key |
 
 Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
@@ -290,6 +324,7 @@ Configure only the providers you use. Model IDs are namespaced (`openrouter/…`
 
 - Default admin: `admin` / `transrewrt26`.
 - Manage users in **Settings → Users**.
+
 - Reset a password: `docker exec <container> reset-web-password '<username>' '<new-password>'`  
   (from source: `pnpm run reset-web-password -- <username> <new-password>`)
 
@@ -308,32 +343,16 @@ Key settings (font, models, languages, etc.) are available in the application Se
 
 ## Development and architecture
 
-- **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Development:** Set up, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
 - **Architecture and system overview:** Folder structure, tech stack, design decisions - see **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 
-<a id="releases-and-tags"></a>
-## Releases and tags
+<a id="reporting-issues"></a>
 
-- **Git tags** `v`* (e.g. `v1.0.10`) trigger the [release workflow](.github/workflows/release.yml). **GitHub Releases** include the Windows installer (`.exe`) and Linux AppImages (**x64** and **arm64**).
-- **Docker images** are published to `ghcr.io/wsj-br/transrewrt`. Image tags match the Git version (e.g. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) as well as `latest`. Multi-arch: `linux/amd64` and `linux/arm64` (e.g. Raspberry Pi).
+## Reporting issues
 
-<br/><br/>
-
-<a id="contributing"></a>
-## Contributing
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Commit your changes with a clear message.
-4. Push and open a Pull Request against `main`.
-
-Please follow the existing code style and test your changes in both Electron and web modes before submitting. See [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) for build and test instructions.
-
-<br/>
-
-**Reporting issues:** Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (shown in the About dialog or on the Releases page).
+Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (shown in the About dialog or on the Releases page).
 
 <br/><br/>
 
@@ -346,6 +365,7 @@ Product names and icons belong to their respective owners and are used for ident
 <br/><br/>
 
 <a id="license"></a>
+
 ## License
 
 Copyright © 2026 Waldemar Scudeller Jr.

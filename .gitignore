@@ -29,6 +29,7 @@ models_api_raw.json
 models_valid.json
 last_api_result.json
 
-# translated-docs section cache (local/CI only; translated .md files are committed)
+# translated-docs translation caches (local/CI only; translated .md files are committed)
 translated-docs/.section-cache/
+translated-docs/.cache/
 

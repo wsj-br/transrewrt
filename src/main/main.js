@@ -337,7 +337,7 @@ const createWindow = () => {
     minWidth: 1220,
     minHeight: 840,
     backgroundColor: "#1a1a1a",
-    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
+    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -430,7 +430,7 @@ const createSettingsWindow = () => {
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
     backgroundColor: "#1a1a1a",
-    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
+    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,

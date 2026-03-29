@@ -2,12 +2,11 @@
  * IPC: llm:stream, llm:abort, llm:models — streams LLM completions to renderer via llm:chunk / llm:end / llm:error.
  */
 
-const path = require("path");
 const {
   mergeKeys,
   getAllModels,
   streamCompletion,
-} = require(path.join(__dirname, "..", "..", "shared", "llm"));
+} = require("../../shared/llm");
 
 /**
  * @param {import("electron").IpcMain} ipcMain

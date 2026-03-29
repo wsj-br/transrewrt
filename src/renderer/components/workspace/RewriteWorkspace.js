@@ -100,7 +100,9 @@ export function getRewritePanels({ common, input, output, options }) {
           showDiff={isGrammarMode ? showOutputDiff : false}
           inputTextForDiff={isGrammarMode ? input.text : undefined}
           outputIsModelResult={isGrammarMode ? outputIsModelResult : false}
-          onDiffToggle={isGrammarMode && setShowOutputDiff ? () => setShowOutputDiff((v) => !v) : undefined}
+          onShowDiffChange={
+            isGrammarMode && setShowOutputDiff ? (checked) => setShowOutputDiff(checked) : undefined
+          }
         />
       </div>
       <div className={styles.runButtonContainer} aria-hidden="true" />

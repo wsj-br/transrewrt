@@ -39,6 +39,50 @@ function parseJsonEntry(map, key, fallback) {
   }
 }
 
+/** Insert api_calls + action_content from backup ZIP map (INSERT OR IGNORE). */
+function restoreUsageDataFromBackup(db, map) {
+  const apiCallRows = parseJsonEntry(map, "data/api_calls.json", []);
+  if (!Array.isArray(apiCallRows) || apiCallRows.length === 0) return;
+  const insCall = db.prepare(
+    `INSERT OR IGNORE INTO api_calls (id, timestamp, type, model, source_lang, target_lang,
+      rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps,
+      username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  );
+  for (const r of apiCallRows) {
+    insCall.run(
+      r.id,
+      r.timestamp,
+      r.type,
+      r.model,
+      r.source_lang,
+      r.target_lang,
+      r.rewrite_mode,
+      r.transform_prompt,
+      r.prompt_tokens,
+      r.completion_tokens,
+      r.duration_ms,
+      r.cost,
+      r.tps,
+      r.username,
+      r.input_chars,
+      r.input_words,
+      r.input_paragraphs,
+      r.output_chars,
+      r.output_words,
+      r.output_paragraphs,
+    );
+  }
+  const contentRows = parseJsonEntry(map, "data/action_content.json", []);
+  if (!Array.isArray(contentRows) || contentRows.length === 0) return;
+  const insContent = db.prepare(
+    "INSERT OR IGNORE INTO action_content (api_call_id, input_text, output_text) VALUES (?, ?, ?)",
+  );
+  for (const c of contentRows) {
+    insContent.run(c.api_call_id, c.input_text, c.output_text);
+  }
+}
+
 function insertPromptRow(db, stmt, row, promptTargetLanguageToDb) {
   stmt.run(
     row.name || "",
@@ -67,7 +111,8 @@ function insertPromptRow(db, stmt, row, promptTargetLanguageToDb) {
  * @returns {Map<string, Buffer>}
  */
 function buildWebBackupMap(opts) {
-  const { getDb, readConfigFileOnly, readStateFileOnly, dataDir } = opts;
+  const { getDb, readConfigFileOnly, readStateFileOnly, dataDir, includeUsageData } = opts;
+  const withUsage = includeUsageData === true;
   const map = new Map();
   const included = [];
 
@@ -106,6 +151,15 @@ function buildWebBackupMap(opts) {
   map.set("data/custom_prompts.json", Buffer.from(JSON.stringify(prompts, null, 2), "utf8"));
   included.push("data/custom_prompts.json");
 
+  if (withUsage) {
+    const apiCalls = db.prepare("SELECT * FROM api_calls ORDER BY id ASC").all();
+    map.set("data/api_calls.json", Buffer.from(JSON.stringify(apiCalls, null, 2), "utf8"));
+    included.push("data/api_calls.json");
+    const actionContent = db.prepare("SELECT * FROM action_content ORDER BY api_call_id ASC").all();
+    map.set("data/action_content.json", Buffer.from(JSON.stringify(actionContent, null, 2), "utf8"));
+    included.push("data/action_content.json");
+  }
+
   const manifest = {
     format: BACKUP_FORMAT,
     version: BACKUP_VERSION,
@@ -120,7 +174,7 @@ function buildWebBackupMap(opts) {
 /**
  * @param {object} ctx
  * @param {Buffer} zipBuffer
- * @param {{ clearHistory?: boolean }} options
+ * @param {{ clearHistory?: boolean, restoreUsageData?: boolean }} options
  */
 async function applyWebRestore(ctx, zipBuffer, options) {
   const {
@@ -137,6 +191,7 @@ async function applyWebRestore(ctx, zipBuffer, options) {
   } = ctx;
 
   const clearHistory = options?.clearHistory === true;
+  const restoreUsageData = options?.restoreUsageData === true;
   const map = zipBufferToMap(zipBuffer);
 
   const manifest = parseJsonEntry(map, "manifest.json", null);
@@ -215,6 +270,9 @@ async function applyWebRestore(ctx, zipBuffer, options) {
           insertPromptRow(db, insPrompt, row, promptTargetLanguageToDb);
         }
       }
+      if (restoreUsageData) {
+        restoreUsageDataFromBackup(db, map);
+      }
       return;
     }
 
@@ -248,6 +306,9 @@ async function applyWebRestore(ctx, zipBuffer, options) {
           promptTargetLanguageToDb,
         );
       }
+    }
+    if (restoreUsageData) {
+      restoreUsageDataFromBackup(db, map);
     }
   });
 

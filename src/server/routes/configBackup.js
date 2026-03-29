@@ -33,11 +33,13 @@ module.exports = function createConfigBackupRouter(configFile, getDb, appDb, dat
 
   router.get("/config/backup", requireAdmin, (req, res) => {
     try {
+      const includeUsageData = req.query?.includeUsageData === "true";
       const map = buildWebBackupMap({
         getDb,
         readConfigFileOnly: configFile.readConfigFileOnly,
         readStateFileOnly: configFile.readStateFileOnly,
         dataDir,
+        includeUsageData,
       });
 
       const stem = configBackupFileStem();
@@ -80,6 +82,8 @@ module.exports = function createConfigBackupRouter(configFile, getDb, appDb, dat
           req.body?.clearHistory === "true" ||
           req.body?.clearHistory === true ||
           req.body?.clear_execution_data === "true";
+        const restoreUsageData =
+          req.body?.restoreUsageData === "true" || req.body?.restoreUsageData === true;
 
         const ctx = {
           getDb,
@@ -94,7 +98,7 @@ module.exports = function createConfigBackupRouter(configFile, getDb, appDb, dat
           seedDefaultAdmin: appDb.seedDefaultAdmin,
         };
 
-        await applyWebRestore(ctx, req.file.buffer, { clearHistory });
+        await applyWebRestore(ctx, req.file.buffer, { clearHistory, restoreUsageData });
         log.info("[BACKUP] Restore completed successfully");
         res.json({ ok: true });
       } catch (err) {

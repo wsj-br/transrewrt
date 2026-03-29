@@ -88,6 +88,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Total cost does not match my provider bill](#total-cost-does-not-match-my-provider-bill)
   - [The History page is missing from the sidebar](#the-history-page-is-missing-from-the-sidebar)
   - [Web app: redirected to the login page unexpectedly](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web admin: forgot or lost a password](#web-admin-forgot-or-lost-a-password)
   - [Dashboard shows no data for other users (web)](#dashboard-shows-no-data-for-other-users-web)
   - [I changed a prompt and lost the edits](#i-changed-a-prompt-and-lost-the-edits)
 - [Quick tips](#quick-tips)
@@ -295,17 +296,18 @@ Use **Rewrite** when you want to improve wording without changing the main meani
 
 This is useful for:
 
-- fixing spelling and grammar
-- making text clearer
-- making text more formal or more informal
-- shortening or expanding text
-- making text sound more technical
+- fixing spelling and grammar (**Check Spelling & Grammar**)
+- making text clearer (**Improve Clarity**)
+- several distinct reformulations in one run (**Alternative versions**)
+- making text more formal or more informal (**Formal** / **Informal**)
+- shortening or expanding text (**Shorten** / **Expand**)
+- making text sound more technical (**Make Technical**)
 
 <br/>
 
 > 💡 **TIP**<br/>
-> When you use the "**Check Spelling & Grammar**" mode, a `Show changes` button appears in the output panel.
-> Click this button to toggle the display of corrections, showing or hiding the specific changes made to your text.
+> When you use the "**Check Spelling & Grammar**" mode, a **Show changes** switch appears in the output panel (next to **Copy**).
+> Turn it on or off to show or hide the specific corrections applied to your text.
 
 
 <br/><br/>
@@ -344,7 +346,7 @@ This is the most flexible area of the app. You can use it for tasks such as:
 <a id="if-you-have-no-prompts-yet"></a>
 ### If you have no prompts yet
 
-If your prompt list is empty, click **Load sample prompts**. This adds built-in examples so you can start quickly.
+If your prompt list is empty, click **Load sample prompts** in the Transform workspace. The same control is always available in [**Settings** > **Transform Prompts**](#transform-prompts) on the export/import row. Both add built-in examples so you can start quickly.
 
 <br/>
 
@@ -436,7 +438,7 @@ Use **Dashboard** to see how much you are using the app and what it is costing (
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you only use free models, the cost-related charts will be blank. 
+> If you only use **free** models, **cost** amounts may be zero and cost-focused summaries can look empty. On **Summary**, **Usage over time** and **Usage by model** still show **numbers of calls** (translate, rewrite, and transform) when you have activity in the selected period.
 
 <br/>
 
@@ -457,7 +459,7 @@ Use the filter buttons at the top to change the time range.
 <a id="dashboard-tabs"></a>
 ### Dashboard tabs
 
-- **Summary** gives you an overview of usage and cost.
+- **Summary** gives you an overview of usage and cost. It includes a **Usage over time** (stacked cumulative **call counts** by day for translate, rewrite, and transform) and **Usage by model** (total **calls per model**, including transform).
 - **By Usage** breaks activity down by translation language, rewrite mode, and transform prompt.
 - **By Model** shows which models you used and how much they cost.
 - **By Day** shows daily totals.
@@ -584,6 +586,16 @@ Use **General Settings** to control typing behaviour, whether execution details 
 - **Font Family** changes the writing font in the text panels.
 - **Size** changes the font size.
 
+**Configuration Backup**
+
+- **Include usage data in the backup** — when enabled, the ZIP also contains execution history and API call data. 
+- **Backup configuration** — creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
+- **Restore from backup** — opens a **confirmation dialog first**. Choose the backup ZIP inside the dialog (**Browse** / file picker or drag-and-drop where supported), then review the options:
+  - **Restore the usage data** — import usage/history from the ZIP when it was backed up with usage included; leave off if you only want settings and prompts.
+  - **Clear the old usage data before restoring** — remove existing usage/history on this install before applying the backup (optional; use when you want a clean replace).
+
+Backups created in either the web or desktop version can be restored in the other. When restoring a desktop backup in the web version, the data will be restored to the administrator user.
+
 
 <br/>
 
@@ -681,6 +693,7 @@ You can:
 - delete prompts
 - import prompts from a file
 - export prompts for backup or sharing
+- load sample prompts to the prompt list
 
 <br/>
 
@@ -704,6 +717,9 @@ API keys are configured through system or Docker environment variables — they 
 
 > ℹ️ **NOTE**<br/>
 > To change an API key, update the environment variable in your system or Docker configuration and restart the server or container.
+
+> ℹ️ **NOTE**<br/>
+> **Configuration backups** (see [**General settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file — live keys still come from the environment and existing file state as described there.
 
 <br/>
 
@@ -814,7 +830,7 @@ Open [**Settings** > **General Settings**](#general-settings) and change:
 
 This is normal if:
 
-- you only use **free models** (cost charts will be blank)
+- you only use **free models** and you are looking at **cost** figures (they may be zero); **usage** call-count charts on **Summary** still need data from the selected period
 - the selected **time filter** does not cover the period when calls were made — try **All** to check
 
 If charts are still empty after selecting **All**, confirm that calls appear in [**History**](#history) or in the **All Calls** tab.
@@ -850,6 +866,31 @@ To bring the total closer to your real OpenRouter spend, open [**Settings** > **
 ### Web app: redirected to the login page unexpectedly
 
 Your session may have timed out. Log in again. If it happens frequently, check the server configuration for session lifetime settings.
+
+<br/>
+
+<a id="web-admin-forgot-or-lost-a-password"></a>
+### Web admin: forgot or lost a password
+
+This applies to the **self-hosted web app** (Docker), not the desktop (Electron) app.
+
+- If another administrator can still sign in, they can open [**Settings** > **Users**](#users), choose the account, and set a **new password** there.
+- If you are **locked out** but have **shell access** to the machine or container, reset the password with the helper that ships with the image (replace `transrewrt` if you change the default name, and quote the password if it contains spaces or special characters):
+
+```bash
+docker exec transrewrt reset-web-password '<username>' '<new-password>'
+```
+
+The default admin username is `admin` if you never created other accounts. When you pass only one argument, it is treated as the new password for `admin`.
+
+If you run from a **source checkout** instead of Docker, use:
+
+```bash
+pnpm run reset-web-password -- <username> <new-password>
+```
+
+The script updates the user record in the SQLite database (and can create the `admin` user if it is missing). After resetting, sign in with the new password.
+
 
 <br/>
 

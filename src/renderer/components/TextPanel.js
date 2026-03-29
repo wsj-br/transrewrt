@@ -4,6 +4,7 @@ import {
   Button,
   makeStyles,
   mergeClasses,
+  Switch,
   tokens,
 } from "@fluentui/react-components";
 import PropTypes from "prop-types";
@@ -13,8 +14,6 @@ import {
   Clipboard,
   FileText,
   FileCheck,
-  File,
-  FileDiff,
 } from "lucide-react";
 import { computeRewriteDiff } from "../utils/misc/rewriteDiff";
 
@@ -130,7 +129,12 @@ const useStyles = makeStyles({
   },
   leftButtons: {
     display: "flex",
+    alignItems: "center",
     gap: tokens.spacingHorizontalS,
+  },
+  showChangesSwitchLabel: {
+    fontSize: tokens.fontSizeBase200,
+    lineHeight: tokens.lineHeightBase200,
   },
   rightButtons: {
     display: "flex",
@@ -163,7 +167,7 @@ const TextPanel = ({
   showDiff,
   inputTextForDiff,
   outputIsModelResult,
-  onDiffToggle,
+  onShowDiffChange,
   footerMinimal = false,
 }) => {
   const styles = useStyles();
@@ -297,16 +301,20 @@ const TextPanel = ({
               )}
               <div style={{ marginInlineStart: "auto" }} />
               <div className={styles.leftButtons}>
-                {onDiffToggle && (
-                  <Button
-                    appearance={showDiff ? "primary" : "secondary"}
-                    icon={showDiff ?   <FileDiff size={16} /> : <File size={16} /> }
-                    onClick={onDiffToggle}
+                {onShowDiffChange && (
+                  <Switch
                     size="small"
-                    title={showDiff ? t("Don't show the changes") : t("Show changes between input and output")}
-                  >
-                    {t("Show changes")}
-                  </Button>
+                    checked={!!showDiff}
+                    onChange={(_, data) => onShowDiffChange(data.checked)}
+                    label={{
+                      children: t("Show changes"),
+                      className: styles.showChangesSwitchLabel,
+                    }}
+                    labelPosition="before"
+                    title={
+                      showDiff ? t("Don't show the changes") : t("Show changes between input and output")
+                    }
+                  />
                 )}
                 {onCopy && (
                   <Button
@@ -394,7 +402,7 @@ TextPanel.propTypes = {
   showDiff: PropTypes.bool,
   inputTextForDiff: PropTypes.string,
   outputIsModelResult: PropTypes.bool,
-  onDiffToggle: PropTypes.func,
+  onShowDiffChange: PropTypes.func,
   footerMinimal: PropTypes.bool,
 };
 

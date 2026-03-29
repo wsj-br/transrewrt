@@ -33,6 +33,8 @@ RUN pnpm prune --prod --ignore-scripts
 # Stage 2: Production server – copy resolved deps from builder, no install
 FROM node:24-alpine AS production
 
+RUN apk add --no-cache tzdata
+
 WORKDIR /app
 
 # Copy package files and resolved node_modules from builder (no pnpm install)
@@ -62,9 +64,16 @@ RUN date +"%Y-%m-%dT%H:%M:%S%z" > build_timestamp
 
 ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
+ENV TZ=Europe/London
 ENV PORT=5000
 ENV LOG_TO_CONSOLE=1
 ENV PATH="/app:/app/scripts:${PATH}"
+
+# Labels
+LABEL org.opencontainers.image.source=https://github.com/wsj-br/transrewrt
+LABEL org.opencontainers.image.description="Transrewrt Container Image"
+LABEL org.opencontainers.image.licenses=Apache-2.0
+
 
 EXPOSE 5000
 
