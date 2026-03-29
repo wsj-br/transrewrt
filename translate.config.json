@@ -1,0 +1,37 @@
+{
+    "batchSize": 20,
+    "maxBatchChars": 4096,
+    "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "translationModels": [
+            "qwen/qwen3-235b-a22b-2507",
+            "stepfun/step-3.5-flash:free",
+            "anthropic/claude-3-haiku",
+            "z-ai/glm-4.7-flash",
+            "minimax/minimax-m2.5",
+            "anthropic/claude-3.5-haiku"
+        ],
+        "maxTokens": 8192,
+        "temperature": 0.2
+    },
+    "locales": {
+        "source": "en-GB",
+        "targets": "./src/renderer/locales/ui-languages.json"
+    },
+    "paths": {
+        "docs": "./",
+        "source-files": [
+            "./README.md",
+            "./USER-GUIDE.md"
+        ],
+        "i18n": "./translated-docs",
+        "cache": "./translated-docs/.cache",
+        "log-folder": "./dev/",
+        "ui-glossary": "./src/renderer/locales/strings.json",
+        "user-glossary": "./glossary-user.csv"
+    },
+    "cache": {
+        "enabled": true,
+        "segmentLevel": true
+    }
+}
