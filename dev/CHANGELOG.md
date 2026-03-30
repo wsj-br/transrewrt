@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Settings > General: turning off **Keep execution history** opens the data-deletion confirmation only when at least one execution-history row exists; otherwise the setting turns off immediately. `GET /api/calls/history` and desktop `getExecutionHistory` accept optional `limit` (capped at 500) for lightweight checks.
+- **Fixed**: Docker image — run `pnpm rebuild better-sqlite3 argon2` after `pnpm prune --prod` so native SQLite/argon2 bindings are present in the copied `node_modules` (avoids "Could not locate the bindings file" on Linux/arm64 Alpine).
 - **Added**: `pnpm clear-logs` — `scripts/clear-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
 - **Changed**: `.gitignore` — `translated-docs/.cache/cache.db` is tracked; other files under `translated-docs/.cache/` (logs, backup DBs, etc.) stay ignored.
 - **Changed**: `scripts/translate/config.ts` — default OpenRouter config uses `translationModels` (ordered fallback chain) aligned with `translate.config.json`; default `maxBatchChars` 4096; removed unused `paths.staticImg` default and type field.

@@ -29,6 +29,8 @@ RUN pnpm run build-renderer
 # Keep only production dependencies so production stage can copy them as-is
 # --ignore-scripts: avoid re-running postinstall (electron-rebuild), since electron was just pruned
 RUN pnpm prune --prod --ignore-scripts
+# Prune can relink deps from the store without the compiled .node files; rebuild for final graph.
+RUN pnpm rebuild better-sqlite3 argon2
 
 # Stage 2: Production server – copy resolved deps from builder, no install
 FROM node:24-alpine AS production

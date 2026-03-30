@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles, Button } from '@fluentui/react-components';
 import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2, DatabaseBackup } from 'lucide-react';
@@ -167,6 +167,24 @@ const SettingsGeneralTab = ({
     onSettingChange('keep_execution_history', false);
     setShowDisableHistoryConfirm(false);
   };
+
+  const onUncheckKeepExecutionHistory = useCallback(async () => {
+    const costApi = getCostApi();
+    if (typeof costApi.getExecutionHistory !== 'function') {
+      setShowDisableHistoryConfirm(true);
+      return;
+    }
+    try {
+      const rows = await costApi.getExecutionHistory(null, null, null, 1);
+      if (Array.isArray(rows) && rows.length > 0) {
+        setShowDisableHistoryConfirm(true);
+      } else {
+        onSettingChange('keep_execution_history', false);
+      }
+    } catch {
+      setShowDisableHistoryConfirm(true);
+    }
+  }, [onSettingChange]);
 
   const backupSuccessMessage = (filename) =>
     interpolateTemplate(t('Backup generated: {{filename}}'), {
@@ -373,7 +391,7 @@ const SettingsGeneralTab = ({
                 if (e.target.checked) {
                   onSettingChange('keep_execution_history', true);
                 } else {
-                  setShowDisableHistoryConfirm(true);
+                  void onUncheckKeepExecutionHistory();
                 }
               }}
             />

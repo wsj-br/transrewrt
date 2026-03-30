@@ -283,12 +283,18 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     }
   });
 
-  ipcMain.handle("appDb:getExecutionHistory", (_, from, to, username) => {
+  ipcMain.handle("appDb:getExecutionHistory", (_, from, to, username, limit) => {
     try {
       const d = getDb();
       if (!d) return { rows: [] };
       const { whereClause, params } = buildExecutionHistoryWhere(from, to, username, "a");
-      const rows = d.prepare(replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause)).all(...params);
+      const base = replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause);
+      const lim =
+        limit != null && Number.isFinite(Number(limit)) && Number(limit) > 0
+          ? Math.min(500, Math.floor(Number(limit)))
+          : null;
+      const q = lim != null ? `${base} LIMIT ?` : base;
+      const rows = lim != null ? d.prepare(q).all(...params, lim) : d.prepare(q).all(...params);
       return { rows };
     } catch (err) {
       console.error("[appDb] getExecutionHistory error:", err);

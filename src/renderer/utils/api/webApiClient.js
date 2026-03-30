@@ -454,11 +454,14 @@ const webAPI = {
     }
   },
 
-  getExecutionHistory: async (from, to, username = null) => {
+  getExecutionHistory: async (from, to, username = null, limit = null) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
+    if (limit != null && Number.isFinite(Number(limit)) && Number(limit) > 0) {
+      q.set("limit", String(Math.min(500, Math.floor(Number(limit)))));
+    }
     const res = await fetch(`${API_BASE}/api/calls/history?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
