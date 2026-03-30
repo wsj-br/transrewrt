@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: `pnpm clear-logs` — `scripts/clear-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
 - **Changed**: `.gitignore` — `translated-docs/.cache/cache.db` is tracked; other files under `translated-docs/.cache/` (logs, backup DBs, etc.) stay ignored.
 - **Changed**: `scripts/translate/config.ts` — default OpenRouter config uses `translationModels` (ordered fallback chain) aligned with `translate.config.json`; default `maxBatchChars` 4096; removed unused `paths.staticImg` default and type field.
 - **Fixed**: `scripts/translate/index.ts` — `rewriteDocLinksForI18nOutput` was producing `]](url)` for every markdown link (double `]`) due to `textPart` already including the closing `]` while the return template also prepended `](`.

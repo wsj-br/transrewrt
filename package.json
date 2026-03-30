@@ -34,6 +34,7 @@
     "translate:docs": "node scripts/node-rebuild.js && tsx scripts/translate/index.ts",
     "translate:clean": "tsx scripts/translate/index.ts --force-update && tsx scripts/translate/cache-cleanup.ts",
     "translate:cleanup": "tsx scripts/translate/index.ts --force-update && tsx scripts/translate/cache-cleanup.ts",
+    "clear-logs": "node scripts/clear-translation-logs.js",
     "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",
