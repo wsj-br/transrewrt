@@ -4,13 +4,19 @@ import { TranslationConfig } from "./types";
 
 const DEFAULT_CONFIG: TranslationConfig = {
   batchSize: 20,
-  maxBatchChars: 5000,
+  maxBatchChars: 4096,
   concurrency: 3,
   batchConcurrency: 4,
   openrouter: {
     baseUrl: "https://openrouter.ai/api/v1",
-    defaultModel: "anthropic/claude-haiku-4.5",
-    fallbackModel: "nvidia/nemotron-nano-12b-v2-vl:free",
+    translationModels: [
+      "qwen/qwen3-235b-a22b-2507",
+      "stepfun/step-3.5-flash:free",
+      "anthropic/claude-3-haiku",
+      "z-ai/glm-4.7-flash",
+      "minimax/minimax-m2.5",
+      "anthropic/claude-3.5-haiku",
+    ],
     maxTokens: 8192,
     temperature: 0.2,
   },
@@ -25,7 +31,6 @@ const DEFAULT_CONFIG: TranslationConfig = {
     cache: "./.translation-cache",
     glossary: "./glossary-ui.csv",
     glossaryUser: "./glossary-user.csv",
-    staticImg: "./static/img",
     logFolder: ".translation-cache",
   },
   cache: {
@@ -37,6 +42,8 @@ const DEFAULT_CONFIG: TranslationConfig = {
 export type LocaleResolution = {
   targets: string[];
   displayNames: Record<string, string>;
+  /** All locales in file order (including source) when loaded from ui-languages.json. */
+  allLanguages?: Array<{ code: string; label: string }>;
 };
 
 /**
@@ -145,7 +152,12 @@ export function resolveLocales(
     for (const c of t) {
       setName(c, c);
     }
-    return { targets: t.sort(), displayNames };
+    const sorted = t.sort();
+    const allLanguages: Array<{ code: string; label: string }> = [
+      { code: srcNorm, label: displayNames[srcNorm] ?? srcNorm },
+      ...sorted.map((c) => ({ code: c, label: displayNames[c] ?? c })),
+    ];
+    return { targets: sorted, displayNames, allLanguages };
   }
 
   if (typeof targets === "string" && targets.trim().length > 0) {
@@ -162,6 +174,7 @@ export function resolveLocales(
 
     const targetList: string[] = [];
     const seen = new Set<string>();
+    const allLanguages: Array<{ code: string; label: string }> = [];
 
     for (const row of raw) {
       if (!row || typeof row !== "object") continue;
@@ -173,6 +186,12 @@ export function resolveLocales(
       const codeRaw = typeof r.code === "string" ? r.code : "";
       if (!codeRaw.trim()) continue;
       const code = normalizeLocale(codeRaw);
+      const label =
+        typeof r.label === "string" && r.label.trim()
+          ? r.label.trim()
+          : typeof r.englishName === "string" && r.englishName.trim()
+            ? r.englishName.trim()
+            : code;
       const name =
         typeof r.englishName === "string" && r.englishName.trim()
           ? r.englishName.trim()
@@ -180,12 +199,13 @@ export function resolveLocales(
             ? r.label.trim()
             : code;
       setName(code, name);
+      allLanguages.push({ code, label });
       if (code !== srcNorm && !seen.has(code)) {
         seen.add(code);
         targetList.push(code);
       }
     }
-    return { targets: targetList, displayNames };
+    return { targets: targetList, displayNames, allLanguages };
   }
 
   return { targets: [], displayNames: {} };
@@ -230,11 +250,44 @@ export function loadConfig(configPath?: string): TranslationConfig {
         ? (userConfig.locales as { targets: unknown }).targets
         : [];
 
-    const { targets, displayNames } = resolveLocales(
+    const { targets, displayNames, allLanguages } = resolveLocales(
       targetsRaw,
       sourceLocale,
       configDir
     );
+
+    const rawLangList = userConfig["language-list-block"] as
+      | Record<string, unknown>
+      | undefined;
+    const languageListBlock =
+      rawLangList &&
+      typeof rawLangList.start === "string" &&
+      typeof rawLangList.end === "string" &&
+      typeof rawLangList.separator === "string"
+        ? {
+            start: rawLangList.start,
+            end: rawLangList.end,
+            separator: rawLangList.separator,
+          }
+        : undefined;
+
+    const rawAdjustments = userConfig["additional-adjustments"] as
+      | Record<string, unknown>
+      | undefined;
+    const additionalAdjustments: TranslationConfig["additional-adjustments"] =
+      {};
+    if (rawAdjustments && typeof rawAdjustments === "object") {
+      for (const [key, val] of Object.entries(rawAdjustments)) {
+        if (!val || typeof val !== "object") continue;
+        const r = val as { search?: unknown; replace?: unknown };
+        if (typeof r.search === "string" && typeof r.replace === "string") {
+          additionalAdjustments[key] = {
+            search: r.search,
+            replace: r.replace,
+          };
+        }
+      }
+    }
 
     return {
       batchSize: (userConfig.batchSize as number) ?? DEFAULT_CONFIG.batchSize,
@@ -253,7 +306,14 @@ export function loadConfig(configPath?: string): TranslationConfig {
         source: sourceLocale,
         targets,
         displayNames,
+        allLanguages,
       },
+      ...(languageListBlock
+        ? { "language-list-block": languageListBlock }
+        : {}),
+      ...(Object.keys(additionalAdjustments).length > 0
+        ? { "additional-adjustments": additionalAdjustments }
+        : {}),
       paths: {
         ...DEFAULT_CONFIG.paths,
         ...(userConfig.paths as TranslationConfig["paths"]),
@@ -291,7 +351,7 @@ export function validateConfig(config: TranslationConfig): void {
   const models = resolveTranslationModels(config.openrouter);
   if (models.length === 0) {
     throw new Error(
-      "openrouter.translationModels (non-empty array) or defaultModel is required"
+      "openrouter.translationModels (non-empty array), or legacy defaultModel, is required"
     );
   }
 

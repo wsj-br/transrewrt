@@ -25,7 +25,32 @@ export interface TranslationConfig {
      * Normalized locale code → display name for LLM prompts (from ui-languages.json when used as targets).
      */
     displayNames?: Record<string, string>;
+    /**
+     * Ordered `{ code, label }` for every locale (including source) when targets come from ui-languages.json;
+     * used to generate doc language switcher blocks.
+     */
+    allLanguages?: Array<{ code: string; label: string }>;
   };
+  /**
+   * Wrapper for the markdown language switcher block. JSON key: `language-list-block`.
+   */
+  "language-list-block"?: {
+    start: string;
+    end: string;
+    separator: string;
+  };
+  /**
+   * Named find/replace rules applied to translated markdown before link depth rewriting.
+   * JSON key: `additional-adjustments`.
+   * Each rule: `search` is a regex pattern; use plain string + default flag `g`, or `/pattern/flags` only when the
+   * pattern has no `/`. `replace` supports `${sourceLocale}`, `${translatedLocale}`, `${sourceFullPath}`,
+   * `${sourceFilename}`, `${sourceBaseName}`, `${sourceExtension}`, `${translatedFullPath}`, `${translatedFilename}`,
+   * `${translatedBaseName}`, `${translatedExtension}`, `${sourceBasedir}`, `${translatedBasedir}`.
+   */
+  "additional-adjustments"?: Record<
+    string,
+    { search: string; replace: string }
+  >;
   paths: {
     docs: string;
     i18n: string;
@@ -33,8 +58,6 @@ export interface TranslationConfig {
     glossary: string;
     /** Optional: user glossary (en, locale, translation) - overrides glossary-ui */
     glossaryUser?: string;
-    /** Optional: path to static img (SVG source). Default: ./static/img */
-    staticImg?: string;
     /** Optional: path to JSON source files (i18n source). */
     jsonSource?: string;
     /**

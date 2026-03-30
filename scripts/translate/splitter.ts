@@ -2,6 +2,9 @@ import matter from "gray-matter";
 import { Segment } from "./types";
 import { TranslationCache } from "./cache";
 
+/** CommonMark fenced code: line starts (after optional indent) with 3+ ``` or 3+ ~~~. */
+const MD_CODE_FENCE_LINE_RE = /^\s*(?:`{3,}|~{3,})/;
+
 export class DocumentSplitter {
   /**
    * Split a markdown document into translatable segments
@@ -72,8 +75,8 @@ export class DocumentSplitter {
 
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
       const line = lines[lineIndex];
-      // Handle code blocks (allow optional leading whitespace so indented fences are recognized)
-      if (/^\s*```/.test(line)) {
+      // Handle fenced code blocks (``` and ~~~); allow optional leading whitespace
+      if (MD_CODE_FENCE_LINE_RE.test(line)) {
         if (inCodeBlock) {
           // End of code block
           codeBlockContent.push(line);

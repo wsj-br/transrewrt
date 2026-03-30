@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-29T20:53:50.005Z'
-source_file_mtime: '2026-03-29T01:41:58.369Z'
-source_file_hash: 418a9aa7293a9fb4
+translation_last_updated: '2026-03-30T00:46:34.381Z'
+source_file_mtime: '2026-03-30T00:37:44.601Z'
+source_file_hash: e1b91eca0124d467
 translation_language: te
 source_file_path: USER-GUIDE.md
 ---
@@ -31,7 +31,7 @@ source_file_path: USER-GUIDE.md
 > ట్రాన్స్‌రీవర్ట్ Windows మరియు Linux కోసం డెస్క్‌టాప్ అప్లికేషన్ గాను, స్వంతంగా హోస్ట్ చేయబడిన వెబ్ అప్లికేషన్ గాను అందుబాటులో ఉంది. ఈ మార్గదర్శకం అప్లికేషన్ యొక్క రోజువారీ ఉపయోగాన్ని దృష్టిలో పెట్టుకుంటుంది. ఒక వెర్షన్‌కు మాత్రమే వర్తించే ఏదైనా స్పష్టంగా గుర్తించబడుతుంది.
 
 <small>**ఇతర భాషలలో చదవండి:** </small>
-<small id="lang-list"> [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -207,7 +207,7 @@ Transrewrt ఉపయోగించడానికి, మీరు కనీస
 
 ![Model selector](../images/screenshots/te/model-selector.png)
 
-కొన్ని ఉచిత మోడల్‌లు ఎల్లప్పుడూ అందుబాటులో ఉండవు—కొన్నిసార్లు అవి ఆఫ్‌లైన్‌లో ఉంటాయి లేదా ఉపయోగం పరిమితి ఉంటుంది. ఇలా జరిగితే, అప్లికేషన్ ఆ మోడల్‌ను మీ అందుబాటు జాబితా నుండి స్వయంచాలకంగా తొలగిస్తుంది. ఏయే మోడల్‌లు కనిపించాలో నియంత్రించడానికి, [**సెట్టింగ్‌లు** > **మోడల్‌లు**]({{URL_PLACE HOLDER_0}})కు వెళ్లి మీ మోడల్ జాబితాను సవరించండి.
+కొన్ని ఉచిత మోడల్‌లు ఎల్లప్పుడూ అందుబాటులో ఉండవు—కొన్నిసార్లు అవి ఆఫ్‌లైన్‌లో ఉంటాయి లేదా ఉపయోగం పరిమితి ఉంటుంది. ఇలా జరిగితే, అప్లికేషన్ ఆ మోడల్‌ను మీ అందుబాటు జాబితా నుండి స్వయంచాలకంగా తొలగిస్తుంది. ఏయే మోడల్‌లు కనిపించాలో నియంత్రించడానికి, [**సెట్టింగ్‌లు** > **మోడల్‌లు**](../{{URL_PLACE HOLDER_0}})కు వెళ్లి మీ మోడల్ జాబితాను సవరించండి.
  టూల్‌బార్‌లో మోడల్ పేరుకు ఎడమవైపు ఉన్న ప్రదాత ఐకాన్‌పై క్లిక్ చేయడం ద్వారా మీరు మోడల్ సెట్టింగ్‌లను నేరుగా తెరవవచ్చు.
 
 <br/>
@@ -923,4 +923,4 @@ pnpm run reset-web-password -- <username> <new-password>
 
 కాపీరైట్ © 2026 వాల్డెమార్ స్కుడెల్లర్ జూనియర్.
 
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

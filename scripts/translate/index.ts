@@ -35,6 +35,10 @@ import {
   getAllDocFiles,
   toPosixPath,
 } from "./file-utils";
+import {
+  applyAdditionalAdjustmentsToBody,
+  buildAdditionalAdjustmentVars,
+} from "./additional-adjustments";
 import { protectMarkdownUrls, restoreMarkdownUrls } from "./url-placeholders";
 import {
   protectAdmonitionSyntax,
@@ -65,115 +69,223 @@ function formatElapsedMmSs(ms: number): string {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-const LANG_LIST_SMALL_RE = /<small id="lang-list">[\s\S]*?<\/small>/;
 const MD_EXT = /\.mdx?$/i;
 
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const DEFAULT_LANGUAGE_LIST_BLOCK = {
+  start: '<small id="lang-list">',
+  end: "</small>",
+  separator: " · ",
+} as const;
+
+type LanguageListBlockConfig = {
+  start: string;
+  end: string;
+  separator: string;
+};
+
+function resolveLanguageListBlockConfig(
+  config: TranslationConfig
+): LanguageListBlockConfig {
+  const raw = config["language-list-block"];
+  return {
+    start: raw?.start ?? DEFAULT_LANGUAGE_LIST_BLOCK.start,
+    end: raw?.end ?? DEFAULT_LANGUAGE_LIST_BLOCK.end,
+    separator: raw?.separator ?? DEFAULT_LANGUAGE_LIST_BLOCK.separator,
+  };
 }
 
-function extractLangListBlock(sourceMarkdown: string): string | null {
-  const m = sourceMarkdown.match(LANG_LIST_SMALL_RE);
-  return m ? m[0] : null;
+function splitBodyLines(body: string): string[] {
+  return body.split(/\r?\n/);
+}
+
+function joinBodyLines(lines: string[]): string {
+  return lines.join("\n");
 }
 
 /**
- * Lang-list block for translated-docs output: strip `translated-docs/` prefix from links;
- * point English (UK) at repo-root source via `../` for README / USER-GUIDE.
+ * Find the language-list block by scanning lines for `cfg.start` then `cfg.end` (no regex across lines).
  */
-function buildLangListSmallForTranslatedDoc(
-  sourceMarkdown: string,
-  docKey: string
-): string | null {
-  const block = extractLangListBlock(sourceMarkdown);
-  if (!block) return null;
-  let out = block
-    .replace(/\]\(translated-docs\/README\./g, "](README.")
-    .replace(/\]\(translated-docs\/USER-GUIDE\./g, "](USER-GUIDE.");
-  if (docKey === "README") {
-    out = out.replace(
-      "[English (UK)](README.md)",
-      "[English (UK)](../README.md)"
+function extractLanguageListBlock(
+  body: string,
+  cfg: LanguageListBlockConfig
+): { block: string; startLine: number; endLine: number } | null {
+  const lines = splitBodyLines(body);
+  const startLine = lines.findIndex((line) => line.includes(cfg.start));
+  if (startLine === -1) return null;
+
+  let endLine = startLine;
+  if (lines[startLine].includes(cfg.end)) {
+    endLine = startLine;
+  } else {
+    const found = lines.findIndex(
+      (line, idx) => idx > startLine && line.includes(cfg.end)
     );
-  } else if (docKey === "USER-GUIDE") {
-    out = out.replace(
-      "[English (UK)](USER-GUIDE.md)",
-      "[English (UK)](../USER-GUIDE.md)"
-    );
+    if (found === -1) return null;
+    endLine = found;
   }
+
+  const block = lines.slice(startLine, endLine + 1).join("\n");
+  return { block, startLine, endLine };
+}
+
+function replaceLanguageListBlockInBody(
+  body: string,
+  cfg: LanguageListBlockConfig,
+  replacement: string
+): { body: string; replaced: boolean } {
+  const ext = extractLanguageListBlock(body, cfg);
+  if (!ext) return { body, replaced: false };
+  const lines = splitBodyLines(body);
+  const replacementLines = splitBodyLines(replacement);
+  const newLines = [
+    ...lines.slice(0, ext.startLine),
+    ...replacementLines,
+    ...lines.slice(ext.endLine + 1),
+  ];
+  return { body: joinBodyLines(newLines), replaced: true };
+}
+
+/**
+ * Build `<start>…<end>` language switcher with paths relative to `paths.docs` (source perspective).
+ */
+function generateLangListBlock(
+  sourceBasename: string,
+  allLanguages: Array<{ code: string; label: string }>,
+  sourceLocale: string,
+  i18nPrefix: string,
+  langListCfg: LanguageListBlockConfig
+): string {
+  const srcNorm = normalizeLocale(sourceLocale);
+  const ext = path.extname(sourceBasename);
+  const stem = ext ? path.basename(sourceBasename, ext) : sourceBasename;
+  const parts: string[] = [];
+  for (const { code, label } of allLanguages) {
+    const c = normalizeLocale(code);
+    const href =
+      c === srcNorm
+        ? sourceBasename
+        : i18nPrefix
+          ? `${i18nPrefix}/${stem}.${c}${ext}`
+          : `${stem}.${c}${ext}`;
+    parts.push(`[${label}](${href})`);
+  }
+  return `${langListCfg.start}${parts.join(langListCfg.separator)}${langListCfg.end}`;
+}
+
+/**
+ * If the language list in the source file differs from the canonical block, rewrite the file.
+ * Only the markdown body (after frontmatter) is scanned — same as translated post-process.
+ */
+function maybeSyncLanguageListInSource(
+  filepath: string,
+  content: string,
+  canonicalBlock: string,
+  langListCfg: LanguageListBlockConfig
+): { content: string; updated: boolean } {
+  const parsed = matter(content);
+  const ext = extractLanguageListBlock(parsed.content, langListCfg);
+  if (!ext) return { content, updated: false };
+  if (ext.block === canonicalBlock) return { content, updated: false };
+  const { body: newBody } = replaceLanguageListBlockInBody(
+    parsed.content,
+    langListCfg,
+    canonicalBlock
+  );
+  const newContent = matter.stringify(newBody, parsed.data);
+  fs.writeFileSync(filepath, newContent, "utf-8");
+  return { content: newContent, updated: true };
+}
+
+function rewriteOneRelativePathForI18nOutput(
+  pathOnly: string,
+  query: string,
+  fragment: string,
+  locale: string,
+  i18nPrefix: string,
+  depthPrefix: string,
+  sourceFileBasenames: string[],
+  currentSourceBasename: string
+): string {
+  const pathTrim = pathOnly.replace(/^\.\//u, "").trim();
+  if (!pathTrim) return `${pathOnly}${query}${fragment}`;
+
+  let rest = pathTrim;
+  const prefixWithSlash = i18nPrefix ? `${i18nPrefix}/` : "";
+  if (prefixWithSlash && rest.startsWith(prefixWithSlash)) {
+    rest = rest.slice(prefixWithSlash.length);
+    return `${rest}${query}${fragment}`;
+  }
+
+  const base = path.posix.basename(rest);
+  if (base === currentSourceBasename) {
+    return `${depthPrefix}${base}${query}${fragment}`;
+  }
+  if (
+    sourceFileBasenames.includes(base) &&
+    base !== currentSourceBasename
+  ) {
+    const ext = path.extname(base);
+    const stem = ext ? path.basename(base, ext) : base;
+    return `${stem}.${locale}${ext}${query}${fragment}`;
+  }
+
+  return `${depthPrefix}${rest}${query}${fragment}`;
+}
+
+/**
+ * Adjust markdown links and `src="…"` for files written under `paths.i18n` (config-driven).
+ */
+function rewriteDocLinksForI18nOutput(
+  body: string,
+  locale: string,
+  i18nPrefix: string,
+  depthPrefix: string,
+  sourceFileBasenames: string[],
+  currentSourceBasename: string
+): string {
+  const rewriteUrl = (trimmed: string): string => {
+    if (!trimmed) return trimmed;
+    if (/^#/u.test(trimmed)) return trimmed;
+    if (/^(?:https?:|mailto:)/iu.test(trimmed)) return trimmed;
+    if (trimmed.startsWith("//")) return trimmed;
+
+    const hashIdx = trimmed.indexOf("#");
+    const pathQuery = hashIdx >= 0 ? trimmed.slice(0, hashIdx) : trimmed;
+    const fragment = hashIdx >= 0 ? trimmed.slice(hashIdx) : "";
+
+    const qIdx = pathQuery.indexOf("?");
+    const pathOnly = qIdx >= 0 ? pathQuery.slice(0, qIdx) : pathQuery;
+    const query = qIdx >= 0 ? pathQuery.slice(qIdx) : "";
+
+    if (!pathOnly) return trimmed;
+    if (/^[a-zA-Z]:[\\/]/u.test(pathOnly)) return trimmed;
+
+    const newPath = rewriteOneRelativePathForI18nOutput(
+      pathOnly,
+      query,
+      fragment,
+      locale,
+      i18nPrefix,
+      depthPrefix,
+      sourceFileBasenames,
+      currentSourceBasename
+    );
+    return newPath;
+  };
+
+  let out = body.replace(/\[[^\]]*\]\(([^)]+)\)/g, (full) => {
+    const sep = full.indexOf("](");
+    if (sep === -1) return full;
+    const textPart = full.slice(0, sep + 1);
+    const rawUrl = full.slice(sep + 2, -1);
+    return `${textPart}(${rewriteUrl(rawUrl.trim())})`;
+  });
+
+  out = out.replace(/src="([^"]*)"/g, (_full, url: string) => {
+    return `src="${rewriteUrl(url.trim())}"`;
+  });
+
   return out;
-}
-
-function replaceTranslatedLangListBlock(
-  body: string,
-  canonicalBlock: string
-): { body: string; matched: boolean } {
-  if (!canonicalBlock) return { body, matched: false };
-  if (!LANG_LIST_SMALL_RE.test(body)) return { body, matched: false };
-  return { body: body.replace(LANG_LIST_SMALL_RE, canonicalBlock), matched: true };
-}
-
-/**
- * Keep the "English (UK)" switcher pointing at repo-root source, not the locale file.
- */
-function fixEnglishUkSwitcherLink(
-  body: string,
-  localeCode: string,
-  docKey: string
-): string {
-  if (docKey !== "README" && docKey !== "USER-GUIDE") return body;
-  const escaped = escapeRegExp(localeCode);
-  const re = new RegExp(
-    `\\[English \\(UK\\)\\]\\(${docKey}\\.${escaped}\\.md(#[^)]*)?\\)`,
-    "g"
-  );
-  return body.replace(
-    re,
-    (_m, frag: string | undefined) =>
-      `[English (UK)](../${docKey}.md${frag || ""})`
-  );
-}
-
-/**
- * Point cross-doc links at locale files in the same output folder.
- */
-function rewriteCrossDocLinksToLocale(body: string, localeCode: string): string {
-  const readme = (_: string, frag?: string) => `](README.${localeCode}.md${frag || ""})`;
-  const userGuide = (_: string, frag?: string) =>
-    `](USER-GUIDE.${localeCode}.md${frag || ""})`;
-  return body
-    .replace(/\]\(\.\.\/README\.md(#[^)]*)?\)/g, readme)
-    .replace(/\]\(\.\.\/USER-GUIDE\.md(#[^)]*)?\)/g, userGuide)
-    .replace(/\]\(README\.md(#[^)]*)?\)/g, readme)
-    .replace(/\]\(USER-GUIDE\.md(#[^)]*)?\)/g, userGuide);
-}
-
-/**
- * Output lives under `paths.i18n` (e.g. translated-docs/) while images stay at repo root — same as
- * `scripts/translate-docs.js`: point screenshots at the target locale folder and prefix `images/` with `../`.
- */
-function rewriteTranslatedDocAssetPaths(
-  body: string,
-  targetLocaleCode: string,
-  sourceLocaleCode: string
-): string {
-  const target = normalizeLocale(targetLocaleCode);
-  const source = normalizeLocale(sourceLocaleCode);
-  const srcSeg = escapeRegExp(source);
-  const screenshotRe = new RegExp(
-    `images/screenshots/${srcSeg}/`,
-    "g"
-  );
-  return body
-    .replace(
-      screenshotRe,
-      `../images/screenshots/${target}/`
-    )
-    .replace(/src="images\//g, 'src="../images/')
-    .replace(/\]\(images\//g, "](../images/")
-    .replace(/\]\(translated-docs\/README\./g, "](README.")
-    .replace(/\]\(translated-docs\/USER-GUIDE\./g, "](USER-GUIDE.")
-    .replace(/\]\(dev\//g, "](../dev/");
 }
 
 /**
@@ -196,38 +308,98 @@ function repairOrphanOpeningBoldLines(markdown: string): string {
     .join("\n");
 }
 
+/**
+ * Replace the translated doc's language switcher with a canonical block (source-relative links).
+ * Call only with the **full** markdown body after `splitter.reassemble()` — never on a single segment.
+ */
+function replaceTranslatedLanguageListInMarkdownBody(
+  body: string,
+  docStem: string,
+  verbose: boolean,
+  currentSourceBasename: string,
+  allLanguages: Array<{ code: string; label: string }> | undefined,
+  sourceLocale: string,
+  i18nPrefix: string,
+  langListCfg: LanguageListBlockConfig
+): string {
+  if (!allLanguages || allLanguages.length === 0) return body;
+  const canonicalBlock = generateLangListBlock(
+    currentSourceBasename,
+    allLanguages,
+    sourceLocale,
+    i18nPrefix,
+    langListCfg
+  );
+  const { body: patched, replaced } = replaceLanguageListBlockInBody(
+    body,
+    langListCfg,
+    canonicalBlock
+  );
+  if (replaced) return patched;
+  if (verbose) {
+    console.warn(
+      chalk.yellow(
+        `   ${docStem}: translated output had no language-list block (${langListCfg.start}…${langListCfg.end}); lang-list not replaced`
+      )
+    );
+  }
+  return body;
+}
+
 function applyTransrewrtDocPostProcess(
   assembledMarkdown: string,
   locale: string,
   docStem: string,
-  sourceMarkdown: string,
+  verbose: boolean,
+  i18nPrefix: string,
+  depthPrefix: string,
+  sourceFileBasenames: string[],
+  currentSourceBasename: string,
+  langListCfg: LanguageListBlockConfig,
+  allLanguages: Array<{ code: string; label: string }> | undefined,
   sourceLocale: string,
-  verbose: boolean
+  sourceFileAbsPath: string,
+  outputFileAbsPath: string,
+  additionalAdjustments: TranslationConfig["additional-adjustments"] | undefined
 ): string {
   const parsed = matter(assembledMarkdown);
   let body = parsed.content;
   body = repairOrphanOpeningBoldLines(body);
-  body = rewriteTranslatedDocAssetPaths(body, locale, sourceLocale);
-  body = rewriteCrossDocLinksToLocale(body, locale);
-  body = fixEnglishUkSwitcherLink(body, locale, docStem);
-  const canonicalLangList = buildLangListSmallForTranslatedDoc(
-    sourceMarkdown,
+  const adjVars = buildAdditionalAdjustmentVars(
+    sourceFileAbsPath,
+    outputFileAbsPath,
+    sourceLocale,
+    locale
+  );
+  body = applyAdditionalAdjustmentsToBody(
+    body,
+    additionalAdjustments,
+    adjVars,
+    verbose,
     docStem
   );
-  if (canonicalLangList) {
-    const { body: patched, matched } = replaceTranslatedLangListBlock(
-      body,
-      canonicalLangList
-    );
-    body = patched;
-    if (!matched && verbose) {
-      console.warn(
-        chalk.yellow(
-          `   ${docStem}: translated output had no <small id="lang-list">; lang-list not replaced`
-        )
-      );
-    }
-  }
+
+  // Whole reassembled body only (see `replaceTranslatedLanguageListInMarkdownBody`); before link rewrite.
+  body = replaceTranslatedLanguageListInMarkdownBody(
+    body,
+    docStem,
+    verbose,
+    currentSourceBasename,
+    allLanguages,
+    sourceLocale,
+    i18nPrefix,
+    langListCfg
+  );
+
+  body = rewriteDocLinksForI18nOutput(
+    body,
+    locale,
+    i18nPrefix,
+    depthPrefix,
+    sourceFileBasenames,
+    currentSourceBasename
+  );
+
   return matter.stringify(body, parsed.data);
 }
 
@@ -312,13 +484,59 @@ async function translateFile(
   batchConcurrency: number = 1
 ): Promise<void> {
   const fileStartTime = Date.now();
-  const content = fs.readFileSync(filepath, "utf-8");
-  const fileHash = TranslationCache.computeHash(content);
   const cwd = process.cwd();
   const relativePath = path.relative(cwd, filepath);
   const cachePath = toPosixPath(relativePath);
   const outputPath = getOutputPath(filepath, locale, config.paths.i18n);
   const docStem = path.parse(filepath).name;
+  const currentSourceBasename = path.basename(filepath);
+
+  const langListCfg = resolveLanguageListBlockConfig(config);
+  const i18nRelDir = path.relative(
+    path.resolve(config.paths.docs),
+    path.resolve(config.paths.i18n)
+  );
+  const i18nPrefix = toPosixPath(i18nRelDir);
+  const depth = i18nPrefix === "" ? 0 : i18nPrefix.split("/").length;
+  const depthPrefix = "../".repeat(depth);
+  const sourceFiles = expandSourceFilePatterns(
+    config.paths.sourceFiles ?? [],
+    cwd
+  );
+  const sourceFileBasenames = sourceFiles.map((f) => path.basename(f));
+  const sourceLocaleNorm = normalizeLocale(config.locales.source);
+
+  let content = fs.readFileSync(filepath, "utf-8");
+
+  if (
+    config.locales.allLanguages &&
+    config.locales.allLanguages.length > 0 &&
+    !dryRun
+  ) {
+    const canonicalLangList = generateLangListBlock(
+      currentSourceBasename,
+      config.locales.allLanguages,
+      sourceLocaleNorm,
+      i18nPrefix,
+      langListCfg
+    );
+    const sync = maybeSyncLanguageListInSource(
+      filepath,
+      content,
+      canonicalLangList,
+      langListCfg
+    );
+    if (sync.updated) {
+      content = sync.content;
+      if (verbose) {
+        console.log(
+          chalk.cyan(`📝 Updated language list in source: ${relativePath}`)
+        );
+      }
+    }
+  }
+
+  const fileHash = TranslationCache.computeHash(content);
 
   const sourceStats = fs.statSync(filepath);
   const sourceFileMtime = sourceStats.mtime.toISOString();
@@ -895,13 +1113,22 @@ async function translateFile(
   let translatedContent = splitter.reassemble(translatedSegments);
 
   if (!dryRun) {
+    // Post-process (incl. language-list replacement) runs on this full string only, not per segment.
     translatedContent = applyTransrewrtDocPostProcess(
       translatedContent,
       locale,
       docStem,
-      content,
+      verbose,
+      i18nPrefix,
+      depthPrefix,
+      sourceFileBasenames,
+      currentSourceBasename,
+      langListCfg,
+      config.locales.allLanguages,
       config.locales.source,
-      verbose
+      path.resolve(filepath),
+      path.resolve(outputPath),
+      config["additional-adjustments"]
     );
     translatedContent = addTranslationMetadata(
       translatedContent,

@@ -1,6 +1,8 @@
 {
     "batchSize": 20,
     "maxBatchChars": 4096,
+    "concurrency": 4,
+    "batchConcurrency": 4,
     "openrouter": {
         "baseUrl": "https://openrouter.ai/api/v1",
         "translationModels": [
@@ -29,6 +31,17 @@
         "log-folder": "./dev/",
         "ui-glossary": "./src/renderer/locales/strings.json",
         "user-glossary": "./glossary-user.csv"
+    },
+    "language-list-block": {
+        "start": "<small id=\"lang-list\">",
+        "end": "</small>",
+        "separator": " · "
+    },
+    "additional-adjustments": {
+        "screenshots-paths": {
+            "search": "images/screenshots/[^/]+/",
+            "replace": "images/screenshots/${translatedLocale}/"
+        }
     },
     "cache": {
         "enabled": true,

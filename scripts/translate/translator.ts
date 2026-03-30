@@ -17,7 +17,7 @@ import {
 
 /**
  * Extra system-prompt guidance so models do not break CommonMark / GFM structure.
- * Fenced ``` blocks are not sent to the model (`DocumentSplitter` marks them non-translatable).
+ * Fenced ``` / ~~~ blocks are not sent to the model (`DocumentSplitter` marks them non-translatable).
  */
 const MARKDOWN_PRESERVATION_RULES = `Markdown structure: Preserve heading levels (#–######), list markers and indentation, blockquotes (>), horizontal rules, and meaningful line breaks. Keep **bold**, *italic*, and \`inline code\` spans intact with balanced delimiters (do not drop closing **, *, or backticks). In [visible text](url), ![alt](path), and HTML like <img …> / <a …>, translate only the visible link text or alt; keep URLs, paths, angle-bracket links, and attribute names unchanged. Preserve GFM pipe tables (| cells |).`;
 
