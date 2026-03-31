@@ -1,30 +1,21 @@
 ---
-translation_last_updated: '2026-03-31T22:57:45.567Z'
-source_file_mtime: '2026-03-31T22:20:13.182Z'
-source_file_hash: bf6416a9ca259a19
+translation_last_updated: '2026-03-31T23:45:28.217Z'
+source_file_mtime: '2026-03-31T23:34:44.122Z'
+source_file_hash: 4c9fbb976bec3529
 translation_language: sk
 source_file_path: README.md
 ---
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Obsah**
+<p align="center">
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
 
-- [Snímky obrazovky](#screenshots)
-- [Obsah](#table-of-contents)
-- [Rýchly štart](#quick-start)
-- [Inštalácia](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Konfigurácia časového pásma](#configuring-the-timezone)
-- [Získanie kľúča OpenRouter API](#getting-an-openrouter-api-key)
-- [Konfigurácia a prostredie](#configuration-and-environment)
-- [Vývoj a architektúra](#development-and-architecture)
-- [Hlásenie problémov](#reporting-issues)
-- [Zrieknutie sa zodpovednosti](#disclaimer)
-- [Licencia](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p align="center">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Verzia"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Licencia: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platforma">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+</p>
 
 Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov umelej inteligencie (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spustiteľný ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
 
@@ -40,39 +31,52 @@ Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi ja
 
 Po inštalácii si prečítajte **[Používateľskú príručku](USER-GUIDE.sk.md)**, ktorá obsahuje podrobný prehľad všetkých funkcií.
 
-**Prečítajte si v iných jazykoch:**
-[Angličtina (VB)](../README.md) · [Portugalčina (BR)](README.pt-BR.md) · [Arabčina](README.ar.md) · [Bengálčina](README.bn.md) · [Katalánčina](README.ca.md) · [Zjednodušená čínština](README.zh-CN.md) · [Tradičná čínština](README.zh-TW.md) · [Chorvátčina](README.hr.md) · [Čeština](README.cs.md) · [Holandčina](README.nl.md) · [Angličtina (USA)](README.en-US.md) · [Filipínčina](README.tl.md) · [Francúzština](README.fr.md) · [Nemčina](README.de.md) · [Gréčtina](README.el.md) · [Hindčina](README.hi.md) · [Maďarčina](README.hu.md) · [Taliančina](README.it.md) · [Japončina](README.ja.md) · [Javánčina](README.jv.md) · [Kórejčina](README.ko.md) · [Malajčina](README.ms.md) · [Perzština](README.fa.md) · [Poľština](README.pl.md) · [Portugalčina (PT)](README.pt.md) · [Punjábčina](README.pa.md) · [Rumunčina](README.ro.md) · [Ruština](README.ru.md) · [Slovenčina](README.sk.md) · [Španielčina](README.es.md) · [Svahilčina](README.sw.md) · [Švédčina](README.sv.md) · [Telugčina](README.te.md) · [Thajčina](README.th.md) · [Turečtina](README.tr.md) · [Ukrajinčina](README.uk.md) · [Vietnamčina](README.vi.md)
+<small>**Prečítajte si v iných jazykoch:** </small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small>
 
 > **Poznámka k prekladom rozhrania a dokumentácie:** Všetky jazyky rozhrania okrem pôvodnej angličtiny (VB)
 > boli preložené pomocou modelov umelej inteligencie; slovné znenie môže byť nepresné alebo obsahovať chyby.
 
+</small>
+
+<br/>
+
+<a id="screenshots"></a>
 ## Snímky obrazovky
 
 **Výber jazyka**
 
-Výber jazyka
+![Language selector](../images/screenshots/sk/language-selector.png)
 
 **Preložiť**
 
-Preložiť
+![Translate](../images/screenshots/sk/translate.png)
 
 **Transformovať – editor výziev**
 
-Transformovať – editor výziev
+![Transform - prompt editor](../images/screenshots/sk/transform-prompt-edit.png)
 
 **Nástenka**
 
-Zhrnutie nástenky – využitie
+![Dashboard summary — usage](../images/screenshots/sk/dashboard-summary.png)
 
 **História**
 
-História
+![History](../images/screenshots/sk/history.png)
 
 **Nastavenia – výber modelu**
 
-Nastavenia – výber modelu
+![Settings - model selection](../images/screenshots/sk/settings-models.png)
 
+<br/><br/>
+
+<a id="table-of-contents"></a>
 ## Obsah
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Rýchly štart](#quick-start)
 - [Inštalácia](#installation)
@@ -87,6 +91,11 @@ Nastavenia – výber modelu
 - [Zrieknutie sa zodpovednosti](#disclaimer)
 - [Licencia](#license)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
+<a id="quick-start"></a>
 ## Rýchly štart
 
 **Docker (odporúčané pre samostatné hostovanie)**
@@ -104,13 +113,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Nahraďte `sk-or-your-key` svojím [OpenRouter API kľúčom](https://openrouter.ai/keys) (alebo nastavte kľúče iných poskytovateľov; pozri [Konfigurácia](#configuration-and-environment)). Otvorte [http://localhost:5000](http://localhost:5000) a zmeňte predvolené heslo správcu pred tým, ako službu zverejníte.
 
-> ℹ️ **Poznámka**  
->
-> V prostredí Docker sa poverenia LLM nastavujú pomocou premenných prostredia, ako napríklad `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nie cez webové rozhranie). Na desktopovej verzii (Electron) kľúče konfigurujete v **Nastavenia → API**.
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> V Dockeri sa prihlasovacie údaje k jazykovým modelom nastavujú prostredníctvom premenných prostredia, ako napríklad `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nie cez webové rozhranie). Na desktopovej verzii (Electron) kľúče konfigurujete v **Nastavenia → API**.
+
+<br/>
 
 **Windows**
 
 Stiahnite najnovší súbor `Transrewrt Setup x.y.z.exe` z časti [Releases](https://github.com/wsj-br/transrewrt/releases), spustite inštalátor a potom spustite aplikáciu z ponuky Štart alebo z odkazu na ploche. Zadajte svoje API kľúče v **Nastavenia → API**. Musíte nakonfigurovať aspoň jedného poskytovateľa, OpenRouter je bežný pre modely zadarmo.
+
+<br/>
 
 **Linux**
 
@@ -138,32 +152,40 @@ sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
 
 Minimálne alebo vlastné inštalácie môžu naďalej zlyhať kvôli chýbajúcemu `.so`; nainštalujte balík, ktorý je uvedený v chybovej správe (časté doplnky: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Niektoré prostredia vyžadujú FUSE na spustenie AppImages (napr. `libfuse2` na Ubuntu 22.04+), alebo použite `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-Rovnaké zhrnutie nájdete v časti [Inštalácia → Linux](#linux-electron).
+<br/>
 
-> ℹ️ **Poznámka**  
->
+> ℹ️ **Poznámka**<br/>
 > macOS nie je momentálne podporovaný. Transrewrt je dostupný pre Windows, Linux a Docker.
+
+<br/>
 
 Keď je aplikácia spustená, pozrite si **[Používateľskú príručku](USER-GUIDE.sk.md)**, kde sa dozviete, ako prekladať, prepisovať a transformovať text, spravovať výzvy a konfigurovať modely.
 
+<br/><br/>
+
+<a id="installation"></a>
 ## Inštalácia
 
+<a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Stiahnite najnovší inštalátor z [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Spustite súbor `.exe` a postupujte podľa inštalátora.
 - Pri prvom spustení: spustite aplikáciu z ponuky Štart alebo z odkazu na ploche.
 
-> ℹ️ **Poznámka**  
+<br/>
+
+> ℹ️ **Poznámka**<br/>
+> Windows môže zobraziť jedno z týchto upozornení na zabezpečenie (bežné pre nepodpísané alebo nezávislé aplikácie):
+>   - **Kontrola účtu používateľa (UAC)**: „Chcete povoliť tejto aplikácii od neznámeho vydavateľa zmeny na vašom zariadení?“ → Kliknite na **Áno**.
+>   - **Microsoft Defender SmartScreen**: „Windows ochránilo váš počítač“ → Kliknite na **Ďalšie informácie** → **Aj napriek tomu spustiť**.
 >
-> Windows môže zobraziť jedno z týchto upozornení na bezpečnosť (bežné pre nepodpísané alebo nezávislé aplikácie):
->
-> - **Kontrola účtu používateľa (UAC)**: „Chcete umožniť tejto aplikácii od neznámeho vydavateľa zmeniť váš počítač?“ → Kliknite na **Áno**.
-> - **Microsoft Defender SmartScreen**: „Windows ochránil váš počítač“ → Kliknite na **Ďalšie informácie** → **Aj napriek tomu spustiť**.
->
-> K tomu dochádza preto, lebo aplikácia nie je podpísaná spoločnosťou Microsoft ani veľkým vydavateľom – je bezpečná, ak bola stiahnutá z našich oficiálnych vydania na GitHub-e
+> K tomu dochádza, pretože aplikácia nie je podpísaná spoločnosťou Microsoft ani veľkým vydavateľom – je bezpečná, ak bola stiahnutá z našich oficiálnych vydania na GitHube
 >  (overte kontrolný súčet SHA256 uvedený nižšie).
 
+<br/>
+
+<a id="linux-electron"></a>
 ### Linux (Electron)
 
 - Stiahnite si zodpovedajúci súbor `.AppImage` (`x64` alebo `arm64`) z časti [Vydania](https://github.com/wsj-br/transrewrt/releases).
@@ -171,6 +193,9 @@ Keď je aplikácia spustená, pozrite si **[Používateľskú príručku](USER-G
 - **Bežiace knižnice Debian/Ubuntu** (Electron/Chromium; rovnaké ako v časti [Rýchly štart → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — použite **`libnotify4`**, nie `libnotify-dev`. Na minimálnych systémoch nainštalujte všetky chýbajúce `.so`, ktoré sú hlásené v termináli; často sú potrebné doplnky ako `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`. AppImage môže vyžadovať `libfuse2` (Ubuntu 22.04+) alebo `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
 - **Správy GPU:** Chromium môže zaznamenávať chyby inicializácie GPU alebo EGL na niektorých systémoch (najmä ARM); aplikácia sa môže napriek tomu bežne spustiť. Ak chcete tieto správy zabrániť, spustite aplikáciu s vypnutým hardvérovým zrýchlením: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (alebo použite názov pre `arm64`).
 
+<br/>
+
+<a id="docker"></a>
 ### Docker
 
 - Stiahnite obrázok: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -201,7 +226,8 @@ docker compose -f transrewrt.yml up -d
 
 Zoznam všetkých premenných prostredia, ako napr. `PORT`, `CONFIG_PATH`, `TZ` a kľúče LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …), nájdete v časti [Konfigurácia](#configuration-and-environment).
 
-### Konfigurácia časovej zóny
+<a id="configuring-the-timezone"></a>
+### Nastavenie časového pásma
 
 Dátum a čas v užívateľskom rozhraní aplikácie nasledujú **prehliadačové** lokalizácie a časové pásmo. Pre **serverové** správanie (napr. logovanie) kontajner používa premennú prostredia `TZ`. Predvolená hodnota je `TZ=Europe/London`.
 
@@ -226,7 +252,10 @@ echo TZ=\"$(</etc/timezone)\"
 
 Zoznam platných názvov časových pásiem je udržiavaný v [tz databáze](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
-## Získanie API kľúča OpenRouter
+<br/><br/>
+
+<a id="getting-an-openrouter-api-key"></a>
+## Získanie API kľúča pre OpenRouter
 
 Transrewrt podporuje viacerých poskytovateľov umelej inteligencie. [OpenRouter](https://openrouter.ai) je obľúbenou voľbou, pretože agreguje množstvo modelov pod jedným kľúčom a ponúka aj modely zadarmo.
 
@@ -234,16 +263,18 @@ Transrewrt podporuje viacerých poskytovateľov umelej inteligencie. [OpenRouter
 2. Otvorte stránku [Keys](https://openrouter.ai/keys) a vytvorte nový kľúč (pomenujte ho a voliteľne nastavte limit kreditu). Môžete používať modely zadarmo bez pridania kreditu.
 3. **Desktop (Electron):** vložte kľúče do **Nastavenia → API**. **Docker:** nastavte premenné prostredia ako `OPENROUTER_API_KEY` (pozri [Rýchly štart](#quick-start)).
 
-Nepoužívajte model **Body Builder** od OpenRouter (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) na preklad, prepisovanie alebo transformáciu: tento model vracia iba JSON dátové zaťaženie požiadavky, nie dokončený text pre tieto úlohy. Viac informácií nájdete v časti [Nastavenia → Modely](USER-GUIDE.sk.md#models) v Používateľskej príručke.
+Nepoužívajte model **Body Builder** od OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) na preklad, prepisovanie alebo transformáciu: tento model vracia iba JSON dátové balíky požiadaviek, nie dokončený text pre tieto úlohy. Pozrite si [Nastavenia → Modely](USER-GUIDE.sk.md#models) v Používateľskej príručke.
 
 Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) alebo spúšťať modely lokálne pomocou [Ollama](https://ollama.com). Úplný zoznam podporovaných poskytovateľov a premenných prostredia nájdete v časti [Konfigurácia](#configuration-and-environment).
 
-> ⚠️ **VAROVANIE**  
->
-> Ak používate Ollamu z iného zariadenia, kontajnera alebo služby, nezabudnite nakonfigurovať Ollamu tak, aby umožnila externé pripojenia (nie iba localhost).
+> ⚠️ **VAROVANIE**<br/>
+> Ak používate Ollamu z iného zariadenia, kontajnera alebo služby, nezabudnite Ollamu nakonfigurovať tak, aby umožňovala externé pripojenia (nie iba localhost).
 
 Pre limity, BYOK a ďalšie informácie pozrite [OpenRouter overenie totožnosti](https://openrouter.ai/docs/api/reference/authentication).
 
+<br/><br/>
+
+<a id="configuration-and-environment"></a>
 ## Konfigurácia a prostredie
 
 **Umiestnenia konfiguračných súborov**
@@ -254,31 +285,37 @@ Pre limity, BYOK a ďalšie informácie pozrite [OpenRouter overenie totožnosti
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (použite zväzok na uchovanie) |
 
+<br/>
+
 **Premenné prostredia** (iba web/Docker; Electron používa lokálny konfiguračný súbor)
 
-| Premenná              | Predvolené              | Popis                                                                                                                 |
-| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `PORT`               | `5000`                  | Port, na ktorom počúva server                                                                                                       |
-| `CONFIG_PATH`        | `/app/data/config.json` | Cesta k konfiguračnému súboru                                                                                                     |
-| `TZ`                 | `Europe/London`         | IANA časová zóna pre čas na strane servera (logovanie atď.); používateľské rozhranie stále sleduje prehliadač. Viac v časti [Docker → časová zóna](#docker-timezone) |
-| `OPENROUTER_API_KEY` | *(prázdne)*             | API kľúč OpenRouter                                                                                                          |
-| `OPENAI_API_KEY`     | *(prázdne)*             | API kľúč OpenAI                                                                                                              |
-| `CEREBRAS_API_KEY`   | *(prázdne)*             | API kľúč Cerebras                                                                                                            |
-| `ANTHROPIC_API_KEY`  | *(prázdne)*             | API kľúč Anthropic                                                                                                           |
-| `GOOGLE_API_KEY`     | *(prázdne)*             | API kľúč Google Gemini                                                                                                       |
-| `DEEPSEEK_API_KEY`   | *(prázdne)*             | API kľúč DeepSeek                                                                                                            |
-| `GROQ_API_KEY`       | *(prázdne)*             | API kľúč Groq                                                                                                                |
-| `MISTRAL_API_KEY`    | *(prázdne)*             | API kľúč Mistral                                                                                                             |
-| `OLLAMA_URL`         | *(prázdne)*             | Základné URL Ollamy (napr. `http://host.docker.internal:11434`)                                                                  |
-| `XAI_API_KEY`        | *(prázdne)*             | API kľúč xAI                                                                                                                 |
+| Premenná              | Popis                                                                          |
+|----------------------|--------------------------------------------------------------------------------|
+| `PORT`               | Port, na ktorom počúva server (predvolené `5000`)                               |
+| `CONFIG_PATH`        | Cesta k konfiguračnému súboru (predvolené `/app/data/config.json`)              |
+| `TZ`                 | časové pásmo pre čas na strane servera (logovanie atď.) (predvolené `Europe/London`) |
+| `OPENROUTER_API_KEY` | API kľúč pre OpenRouter                                                          |
+| `OPENAI_API_KEY`     | API kľúč pre OpenAI                                                              |
+| `CEREBRAS_API_KEY`   | API kľúč pre Cerebras                                                            |
+| `ANTHROPIC_API_KEY`  | API kľúč pre Anthropic                                                           |
+| `GOOGLE_API_KEY`     | API kľúč pre Google Gemini                                                       |
+| `DEEPSEEK_API_KEY`   | API kľúč pre DeepSeek                                                            |
+| `GROQ_API_KEY`       | API kľúč pre Groq                                                                |
+| `MISTRAL_API_KEY`    | API kľúč pre Mistral                                                             |
+| `OLLAMA_URL`         | základné URL Ollamy (napr. `http://host.docker.internal:11434`)                 |
+| `XAI_API_KEY`        | API kľúč pre xAI                                                                 |
 
 Nakonfigurujte len poskytovateľov, ktorých používate. Identifikátory modelov sú menovane (napr. `openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atď.).
 
 **Zobrazenie nákladov:** OpenRouter vracia presné vyúčtované náklady, keď je to možné. Ostatní poskytovatelia používajú **odhadované** náklady z verejného cenníka modelov OpenRouter, ak je k dispozícii kľúč OpenRouter; bez neho môžu náklady pre ne-OpenRouter poskytovateľov zobraziť ako `0`. Odhady nie sú faktúrami.
 
+<br/>
+
 **Údaje a trvalosť:** Pre Docker pripojte zväzok do `/app/data`, aby sa `config.json` a databáza SQLite uchovávali aj po reštarte kontajnera. Bez zväzku sa všetky údaje stratia po zastavení kontajnera.
 
 **Vývojári:** Po stiahnutí zmien, ktoré nahradzujú starú konfiguráciu s jedným kľúčom, obnovte alebo zlúčte `data/config.json` s novým predvoleným tvarom z `src/config-defaults/config_default.json`, ak váš lokálny súbor stále používa odstránené polia (`api_key`, `api_url`, proxy možnosti).
+
+<br/>
 
 **Overenie totožnosti na webe:**
 
@@ -287,25 +324,40 @@ Nakonfigurujte len poskytovateľov, ktorých používate. Identifikátory modelo
 - Obnovenie hesla: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (zo zdrojového kódu: `pnpm run reset-web-password -- <username> <new-password>`)
 
-> ⚠️ **UPOZORNENIE**  
->
+<br/>
+
+> ⚠️ **UPOZORNENIE**<br/>
 > Okamžite zmeňte predvolené heslo správcu na akomkoľvek hostiteľovi prístupnom cez sieť.
+
+<br/>
 
 Kľúčové nastavenia (písmo, modely, jazyky atď.) sú k dispozícii v nastaveniach aplikácie.
 
+<br/><br/>
+
+<a id="development-and-architecture"></a>
 ## Vývoj a architektúra
 
 - **Vývoj:** Nastavenie, zostavenie, testovanie a nasadenie (Electron, Web, Docker) – pozrite **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
 - **Architektúra a prehľad systému:** Štruktúra priečinkov, technologický zásobník, návrhové rozhodnutia – pozrite **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-## Nahlásenie problémov
+<br/><br/>
+
+<a id="reporting-issues"></a>
+## Hlásenie problémov
 
 Otvorte problém na [GitHub](https://github.com/wsj-br/transrewrt/issues). Uveďte svoju platformu (Windows / Linux / Docker) a verziu aplikácie (uvedená v dialógu O aplikácii alebo na stránke Releases).
 
+<br/><br/>
+
+<a id="disclaimer"></a>
 ## Zrieknutie sa zodpovednosti
 
 Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa výlučne na identifikačné účely. Tento softvér nie je spojený ani odporúčaný žiadnou z uvedených značiek.
 
+<br/><br/>
+
+<a id="license"></a>
 ## Licencia
 
 Autorské práva © 2026 Waldemar Scudeller Jr.

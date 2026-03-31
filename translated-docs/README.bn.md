@@ -1,30 +1,21 @@
 ---
-translation_last_updated: '2026-03-31T22:56:50.575Z'
-source_file_mtime: '2026-03-31T22:20:13.182Z'
-source_file_hash: bf6416a9ca259a19
+translation_last_updated: '2026-03-31T23:41:20.787Z'
+source_file_mtime: '2026-03-31T23:34:44.122Z'
+source_file_hash: 4c9fbb976bec3529
 translation_language: bn
 source_file_path: README.md
 ---
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**সূচিপত্র**
+<p align="center">
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt ব্যানার"  />
+</p>
 
-- [স্ক্রিনশট](#screenshots)
-- [তালিকা](#table-of-contents)
-- [দ্রুত শুরু করা](#quick-start)
-- [ইনস্টলেশন](#installation)
-  - [উইন্ডোজ (ইলেকট্রন)](#windows-electron)
-  - [লিনাক্স (ইলেকট্রন)](#linux-electron)
-  - [ডকার](#docker)
-  - [টাইমজোন কনফিগার করা](#configuring-the-timezone)
-- [ওপেনরাউটার API কী পাওয়া](#getting-an-openrouter-api-key)
-- [কনফিগারেশন এবং পরিবেশ](#configuration-and-environment)
-- [ডেভেলপমেন্ট এবং আর্কিটেকচার](#development-and-architecture)
-- [ইস্যু রিপোর্ট করা](#reporting-issues)
-- [ডিসক্লেইমার](#disclaimer)
-- [লাইসেন্স](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p align="center">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="সংস্করণ"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="লাইসেন্স: অ্যাপাচি ২.০"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="প্ল্যাটফর্ম">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+</p>
 
 AI-চালিত টেক্সট টুল: বিভিন্ন ভাষায় অনুবাদ করুন, বিভিন্ন শৈলীতে পুনর্লিখন করুন এবং কাস্টম প্রম্পট ব্যবহার করে রূপান্তর করুন — একাধিক AI প্রদানকারী (ওপেনরাউটার, ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই এবং স্থানীয় ওলামা) ব্যবহার করে। ডেস্কটপ অ্যাপ (ইলেকট্রন) বা স্ব-হোস্টেড ওয়েব অ্যাপ (ডকার) হিসাবে চালানো যায়।
 
@@ -40,38 +31,51 @@ AI-চালিত টেক্সট টুল: বিভিন্ন ভাষ
 
 ইনস্টল করার পর, সমস্ত বৈশিষ্ট্যের সম্পূর্ণ গাইড দেখতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
 
-**অন্যান্য ভাষায় পড়ুন:**
-[ইংরেজি (যুক্তরাজ্য)](../README.md) · [পর্তুগিজ (BR)](README.pt-BR.md) · [আরবি](README.ar.md) · [বাংলা](README.bn.md) · [ক্যাটালা](README.ca.md) · [সরল চীনা](README.zh-CN.md) · [জটিল চীনা](README.zh-TW.md) · [ক্রোয়েশিয়ান](README.hr.md) · [চেক](README.cs.md) · [ওলন্দাজ](README.nl.md) · [ইংরেজি (যুক্তরাষ্ট্র)](README.en-US.md) · [ফিলিপিনো](README.tl.md) · [ফরাসি](README.fr.md) · [জার্মান](README.de.md) · [গ্রিক](README.el.md) · [হিন্দি](README.hi.md) · [হাঙ্গেরিয়ান](README.hu.md) · [ইতালীয়](README.it.md) · [জাপানি](README.ja.md) · [জাভানিজ](README.jv.md) · [কোরিয়ান](README.ko.md) · [মালয়](README.ms.md) · [ফার্সি](README.fa.md) · [পোলিশ](README.pl.md) · [পর্তুগিজ (PT)](README.pt.md) · [পাঞ্জাবি](README.pa.md) · [রোমানিয়ান](README.ro.md) · [রাশিয়ান](README.ru.md) · [স্লোভাক](README.sk.md) · [স্প্যানিশ](README.es.md) · [সোয়াহিলি](README.sw.md) · [সুইডিশ](README.sv.md) · [তেলুগু](README.te.md) · [থাই](README.th.md) · [তুর্কি](README.tr.md) · [ইউক্রেনীয়](README.uk.md) · [ভিয়েতনামি](README.vi.md)
+<small>**অন্যান্য ভাষায় পড়ুন:** </small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small>
 
 > **UI এবং ডকুমেন্টেশন অনুবাদ সম্পর্কে দ্রষ্টব্য:** মূল ইংরেজি (যুক্তরাজ্য) ছাড়া সমস্ত ইন্টারফেস ভাষা AI মডেল ব্যবহার করে অনুবাদ করা হয়েছে; শব্দচয়ন অস্পষ্ট হতে পারে বা ত্রুটি থাকতে পারে।
 
+</small>
+
+<br/>
+
+<a id="screenshots"></a>
 ## স্ক্রিনশট
 
 **ভাষা নির্বাচক**
 
-ভাষা নির্বাচক
+![Language selector](../images/screenshots/bn/language-selector.png)
 
 **অনুবাদ**
 
-অনুবাদ
+![Translate](../images/screenshots/bn/translate.png)
 
 **রূপান্তর - প্রম্পট সম্পাদক**
 
-রূপান্তর - প্রম্পট সম্পাদক
+![Transform - prompt editor](../images/screenshots/bn/transform-prompt-edit.png)
 
 **ড্যাশবোর্ড**
 
-ড্যাশবোর্ড সারসংক্ষেপ — ব্যবহার
+![Dashboard summary — usage](../images/screenshots/bn/dashboard-summary.png)
 
 **ইতিহাস**
 
-ইতিহাস
+![History](../images/screenshots/bn/history.png)
 
 **সেটিংস - মডেল নির্বাচন**
 
-সেটিংস - মডেল নির্বাচন
+![Settings - model selection](../images/screenshots/bn/settings-models.png)
 
-## তালিকা
+<br/><br/>
+
+<a id="table-of-contents"></a>
+## সূচিপত্র
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [দ্রুত শুরু](#quick-start)
 - [ইনস্টলেশন](#installation)
@@ -86,7 +90,12 @@ AI-চালিত টেক্সট টুল: বিভিন্ন ভাষ
 - [দাবি অস্বীকার](#disclaimer)
 - [লাইসেন্স](#license)
 
-## দ্রুত শুরু করা
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
+<a id="quick-start"></a>
+## দ্রুত শুরু করুন
 
 **ডকার (স্ব-হোস্টিংয়ের জন্য সুপারিশকৃত)**
 
@@ -103,13 +112,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 `sk-or-your-key`-এর স্থানে আপনার [ওপেনরাউটার API কী](https://openrouter.ai/keys) ব্যবহার করুন (অথবা অন্যান্য প্রদানকারীদের কী সেট করুন; [কনফিগারেশন](#configuration-and-environment) দেখুন)। [http://localhost:5000](http://localhost:5000) খুলুন এবং সার্ভিস প্রকাশ করার আগে ডিফল্ট অ্যাডমিন পাসওয়ার্ড পরিবর্তন করুন।
 
-> ℹ️ **নোট**  
->
-> ডকারে, LLM ক্রেডেনশিয়ালগুলি পরিবেশ ভেরিয়েবল দিয়ে সেট করা হয় যেমন `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ওয়েব UI-এ নয়)। ডেস্কটপে (ইলেকট্রন) আপনি **সেটিংস → API**-এ কী কনফিগার করেন।
+<br/>
+
+> ℹ️ **নোট**<br/>
+> ডকারে, LLM ক্রেডেনশিয়ালগুলি পরিবেশ ভেরিয়েবল যেমন `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … দিয়ে সেট করা হয় (ওয়েব UI-তে নয়)। ডেস্কটপে (Electron) আপনি **সেটিংস → API**-তে কী কনফিগার করবেন।
+
+<br/>
 
 **উইন্ডোজ**
 
 [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে সর্বশেষ `Transrewrt সেটআপ x.y.z.exe` ডাউনলোড করুন, ইনস্টলার চালান, তারপর স্টার্ট মেনু বা ডেস্কটপ শর্টকাট থেকে চালু করুন। **সেটিংস → API**-এ আপনার API কী প্রবেশ করান। আপনাকে কমপক্ষে একটি প্রদানকারী কনফিগার করতে হবে, বিনামূল্যে মডেলের জন্য ওপেনরাউটার সাধারণত ব্যবহৃত হয়।
+
+<br/>
 
 **লিনাক্স**
 
@@ -137,39 +151,50 @@ sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
 
 মিনিমাল বা কাস্টম ইমেজগুলি এখনও অনুপস্থিত `.so` এর সাথে ব্যর্থ হতে পারে; ত্রুটির নামকৃত প্যাকেজটি ইনস্টল করুন (সাধারণ অতিরিক্ত: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। কিছু পরিবেশে AppImages চালানোর জন্য FUSE প্রয়োজন (যেমন উবুন্টু 22.04+ এ `libfuse2`), অথবা `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ব্যবহার করুন।
 
-একই সারাংশের জন্য [ইনস্টলেশন → লিনাক্স](#linux-electron) দেখুন।
+<br/>
 
-> ℹ️ **নোট**  
->
+> ℹ️ **নোট**<br/>
 > ম্যাকওএস বর্তমানে সমর্থিত নয়। উইন্ডোজ, লিনাক্স এবং ডকারের জন্য Transrewrt উপলব্ধ।
+
+<br/>
 
 অ্যাপটি চালু হওয়ার পর, টেক্সট অনুবাদ, পুনর্লিখন এবং রূপান্তর করা, প্রম্পট পরিচালনা করা এবং মডেল কনফিগার করা সম্পর্কে জানতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
 
+<br/><br/>
+
+<a id="installation"></a>
 ## ইনস্টলেশন
 
-### উইন্ডোজ (ইলেকট্রন)
+<a id="windows-electron"></a>
+### উইন্ডোজ (Electron)
 
 - [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে সর্বশেষ ইনস্টলার ডাউনলোড করুন।
 - `.exe` ফাইলটি চালান এবং ইনস্টলার অনুসরণ করুন।
 - প্রথম বার চালানোর সময়: স্টার্ট মেনু বা ডেস্কটপ শর্টকাট থেকে অ্যাপটি শুরু করুন।
 
-> ℹ️ **নোট**  
-> 
-> উইন্ডোজ এই ধরনের একটি নিরাপত্তা সতর্কতা দেখাতে পারে (স্বাক্ষরিত নয় বা স্বাধীন অ্যাপের জন্য স্বাভাবিক):
-> 
-> - **ব্যবহারকারী অ্যাকাউন্ট নিয়ন্ত্রণ (UAC)**: "অজ্ঞাত প্রকাশকের এই অ্যাপটি আপনার ডিভাইসে পরিবর্তন করার অনুমতি দিতে চান?" → **হ্যাঁ** ক্লিক করুন।
-> - **মাইক্রোসফট ডিফেন্ডার স্মার্টস্ক্রিন**: "উইন্ডোজ আপনার পিসি সুরক্ষিত করেছে" → **আরও তথ্য** ক্লিক করুন → **তবুও চালান**।
-> 
-> এটি ঘটে কারণ অ্যাপটি মাইক্রোসফট বা কোনো বড় প্রকাশক দ্বারা স্বাক্ষরিত নয়—এটি নিরাপদ যদি আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে ডাউনলোড করা হয়ে থাকে
-> (নিচের SHA256 চেকসামটি যাচাই করুন)।
+<br/>
 
-### লিনাক্স (ইলেকট্রন)
+> ℹ️ **নোট**<br/>
+> উইন্ডোজ এই নিরাপত্তা সতর্কতাগুলির মধ্যে একটি দেখাতে পারে (স্বাক্ষরিত/স্বাধীন অ্যাপ্লিকেশনের জন্য স্বাভাবিক):
+>   - **ব্যবহারকারী অ্যাকাউন্ট নিয়ন্ত্রণ (UAC)**: "আপনি কি অজানা প্রকাশকের এই অ্যাপটিকে আপনার ডিভাইসে পরিবর্তন করার অনুমতি দিতে চান?" → **হ্যাঁ** ক্লিক করুন।
+>   - **মাইক্রোসফট ডিফেন্ডার স্মার্টস্ক্রিন**: "উইন্ডোজ আপনার পিসি সুরক্ষিত করেছে" → **আরও তথ্য** ক্লিক করুন → **যাইহোক চালান**।
+>
+> কারণ অ্যাপটি মাইক্রোসফট বা কোনো বড় প্রকাশক দ্বারা স্বাক্ষরিত নয়—এটি নিরাপদ যদি আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে ডাউনলোড করা হয়
+>  (নীচের SHA256 চেকসাম যাচাই করুন)।
+
+<br/>
+
+<a id="linux-electron"></a>
+### লিনাক্স (Electron)
 
 - [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে মিলে যাওয়া `.AppImage` (`x64` বা `arm64`) ডাউনলোড করুন।
 - চালান: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64-এ, অথবা ARM64-এ `...-arm64.AppImage` ফাইলনাম ব্যবহার করুন।
 - **ডেবিয়ান/উবুন্টু রানটাইম লাইব্রেরি** (ইলেকট্রন/ক্রোমিয়াম; [কুইক স্টার্ট → লিনাক্স](#quick-start) একই রকম): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** ব্যবহার করুন, `libnotify-dev` নয়। ন্যূনতম সিস্টেমে, টার্মিনালে প্রদর্শিত কোনো অনুপস্থিত `.so` ইনস্টল করুন; প্রায়শই `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` এর মতো অতিরিক্ত লাইব্রেরি প্রয়োজন হয়। AppImage-এ `libfuse2` (উবুন্টু 22.04+) বা `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` প্রয়োজন হতে পারে।
 - **GPU বার্তা:** কিছু সিস্টেমে (বিশেষ করে ARM-এ) ক্রোমিয়াম GPU বা EGL ইনিশিয়ালাইজেশন ত্রুটি লগ করতে পারে; তবুও অ্যাপটি স্বাভাবিকভাবে চলতে পারে। এই বার্তাগুলি এড়াতে, হার্ডওয়্যার ত্বরণ বন্ধ করে চালান: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (অথবা আপনার `arm64` ফাইলনাম)।
 
+<br/>
+
+<a id="docker"></a>
 ### ডকার
 
 - পুল করুন: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -200,6 +225,7 @@ docker compose -f transrewrt.yml up -d
 
 `PORT`, `CONFIG_PATH`, `TZ`, এবং এলএলএম কী (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) সহ সমস্ত পরিবেশ চলকের জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
 
+<a id="configuring-the-timezone"></a>
 ### সময় অঞ্চল কনফিগার করা
 
 অ্যাপ্লিকেশন ইন্টারফেসের তারিখ এবং সময় **ব্রাউজারের** স্থানীয় সেটিংস এবং সময়ক্ষেত্র অনুসরণ করে। **সার্ভার-সাইড** আচরণের (লগিং এবং অনুরূপ) জন্য, কনটেইনার `TZ` পরিবেশ চলক ব্যবহার করে। ডিফল্ট হল `TZ=Europe/London`।
@@ -225,7 +251,10 @@ echo TZ=\"$(</etc/timezone)\"
 
 [tz ডাটাবেস](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (উইকিপিডিয়া) এ বৈধ সময়ক্ষেত্রের নামগুলির একটি তালিকা রয়েছে।
 
-## ওপেনরাউটার API কী পাওয়া
+<br/><br/>
+
+<a id="getting-an-openrouter-api-key"></a>
+## একটি OpenRouter API কী পাওয়া
 
 ট্রান্সরিওয়ার্ট একাধিক এআই প্রদানকারীকে সমর্থন করে। [ওপেনরাউটার](https://openrouter.ai) একটি জনপ্রিয় পছন্দ কারণ এটি একটি কী-এর অধীনে অনেকগুলি মডেল একত্রিত করে এবং বিনামূল্যে মডেল অফার করে।
 
@@ -233,16 +262,18 @@ echo TZ=\"$(</etc/timezone)\"
 2. [কী](https://openrouter.ai/keys) পৃষ্ঠাটি খুলুন এবং একটি নতুন কী তৈরি করুন (এটি নাম দিন, এবং ঐচ্ছিকভাবে একটি ক্রেডিট সীমা সেট করুন)। ক্রেডিট যোগ না করেই আপনি বিনামূল্যে মডেলগুলি ব্যবহার করতে পারেন।
 3. **ডেস্কটপ (ইলেকট্রন):** **সেটিংস → এপিআই**-এ কী পেস্ট করুন। **ডকার:** `OPENROUTER_API_KEY` এর মতো পরিবেশ চলক সেট করুন (দেখুন [দ্রুত শুরু](#quick-start))।
 
-অনুবাদ, পুনর্লিখন বা রূপান্তরের জন্য ওপেনরাউটারের **বডি বিল্ডার** মডেল (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) ব্যবহার করবেন না: এটি সম্পূর্ণ টেক্সট না দিয়ে শুধুমাত্র JSON অনুরোধ পেলোড ফেরত দেয়। ব্যবহারকারী গাইডে [সেটিংস → মডেল](USER-GUIDE.bn.md#models) দেখুন।
+অনুবাদ, পুনর্লিখন বা রূপান্তরের জন্য OpenRouter-এর **বডি বিল্ডার** মডেল ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ব্যবহার করবেন না: এটি সম্পূর্ণ টেক্সট নয়, বরং সেই কাজগুলির জন্য JSON অনুরোধ পেলোড ফেরত দেয়। ব্যবহারকারী গাইডে [সেটিংস → মডেল](USER-GUIDE.bn.md#models) দেখুন।
 
 আপনি অন্যান্য প্রদানকারী (ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই, সেরেব্রাস) ব্যবহার করতে পারেন বা [ওলামা](https://ollama.com) সহ স্থানীয়ভাবে মডেল চালাতে পারেন। সমর্থিত প্রদানকারী এবং পরিবেশ চলকগুলির সম্পূর্ণ তালিকার জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
 
-> ⚠️ **সতর্কতা**  
-> 
-> যদি আপনি অন্য ডিভাইস, কনটেইনার বা সেবা থেকে Ollama ব্যবহার করেন, তবে Ollama-কে বাহ্যিক সংযোগ গ্রহণের জন্য কনফিগার করতে ভুলবেন না (শুধুমাত্র localhost নয়)।
+> ⚠️ **সতর্কতা**<br/>
+> যদি আপনি অন্য ডিভাইস, কনটেইনার বা সেবা থেকে Ollama ব্যবহার করেন, তবে বাহ্যিক সংযোগের অনুমতি দেওয়ার জন্য Ollama কনফিগার করতে ভুলবেন না (শুধুমাত্র localhost নয়)।
 
 সীমাবদ্ধতা, BYOK এবং আরও অনেক কিছুর জন্য, [ওপেনরাউটার প্রমাণীকরণ](https://openrouter.ai/docs/api/reference/authentication) দেখুন।
 
+<br/><br/>
+
+<a id="configuration-and-environment"></a>
 ## কনফিগারেশন এবং পরিবেশ
 
 **কনফিগ ফাইলের অবস্থান**
@@ -253,31 +284,37 @@ echo TZ=\"$(</etc/timezone)\"
 | ইলেকট্রন (লিনাক্স)   | `~/.config/transrewrt/`                           |
 | ওয়েব / ডকার       | `/app/data/config.json` (স্থায়ী করতে ভলিউম ব্যবহার করুন)
 
+<br/>
+
 **পরিবেশ চলক** (শুধুমাত্র ওয়েব/ডকারের জন্য; ইলেকট্রন স্থানীয় কনফিগ ফাইল ব্যবহার করে)
 
-| চলক | ডিফল্ট | বিবরণ |
-| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `PORT` | `5000` | সার্ভার শোনার পোর্ট |
-| `CONFIG_PATH` | `/app/data/config.json` | কনফিগ ফাইলের পথ |
-| `TZ` | `Europe/London` | সার্ভার-সাইড সময়ের জন্য IANA সময় অঞ্চল (লগিং ইত্যাদি); UI এখনও ব্রাউজার অনুসরণ করে। [ডকার → সময় অঞ্চল](#docker-timezone) দেখুন |
-| `OPENROUTER_API_KEY` | *(খালি)* | ওপেনরাউটার API কী |
-| `OPENAI_API_KEY` | *(খালি)* | ওপেনএআই API কী |
-| `CEREBRAS_API_KEY` | *(খালি)* | Cerebras API কী |
-| `ANTHROPIC_API_KEY` | *(খালি)* | অ্যানথ্রোপিক API কী |
-| `GOOGLE_API_KEY` | *(খালি)* | গুগল জেমিনি API কী |
-| `DEEPSEEK_API_KEY` | *(খালি)* | ডিপসিক API কী |
-| `GROQ_API_KEY` | *(খালি)* | গ্রোক API কী |
-| `MISTRAL_API_KEY` | *(খালি)* | মিস্ট্রাল API কী |
-| `OLLAMA_URL` | *(খালি)* | ওলামা বেস ইউআরএল (যেমন `http://host.docker.internal:11434`) |
-| `XAI_API_KEY` | *(খালি)* | এক্সএআই API কী |
+| ভেরিয়েবল             | বিবরণ                                                                  |
+|----------------------|------------------------------------------------------------------------------|
+| `PORT`               | সার্ভার শোনার পোর্ট  (ডিফল্ট `5000`)                                  |
+| `CONFIG_PATH`        | কনফিগ ফাইলের পথ (ডিফল্ট `/app/data/config.json)`                 |
+| `TZ`                 | সার্ভার-সাইড সময়ের জন্য সময় অঞ্চল (লগিং, ইত্যাদি) (ডিফল্ট `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API কী                                                           |
+| `OPENAI_API_KEY`     | OpenAI API কী                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API কী                                                             |
+| `ANTHROPIC_API_KEY`  | অ্যানথ্রোপিক API কী                                                            |
+| `GOOGLE_API_KEY`     | গুগল জেমিনি API কী                                                        |
+| `DEEPSEEK_API_KEY`   | ডিপসিক API কী                                                             |
+| `GROQ_API_KEY`       | গ্রোক API কী                                                                 |
+| `MISTRAL_API_KEY`    | মিস্ট্রাল API কী                                                              |
+| `OLLAMA_URL`         | ওলামা বেস ইউআরএল (যেমন `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | এক্সএআই API কী                                                                  |
 
 শুধুমাত্র আপনি যে প্রদানকারীদের ব্যবহার করেন তাদের কনফিগার করুন। মডেল আইডি নেমস্পেস করা হয় (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ইত্যাদি)।
 
 **খরচ প্রদর্শন:** ওপেনরাউটার প্রযোজ্য ক্ষেত্রে সঠিক বিল করা খরচ প্রদান করে। অন্যান্য প্রদানকারীরা ওপেনরাউটার কী উপলব্ধ থাকলে ওপেনরাউটারের পাবলিক মডেল মূল্য থেকে **আনুমানিক** খরচ ব্যবহার করে; এটি ছাড়া, ওপেনরাউটার নয় এমন খরচ `0` হিসাবে দেখানো যেতে পারে। অনুমানগুলি চালান নয়।
 
+<br/>
+
 **ডেটা এবং স্থায়িত্ব:** ডকারের জন্য, `/app/data`-এ একটি ভলিউম মাউন্ট করুন যাতে `config.json` এবং SQLite ডাটাবেস কনটেইনার পুনরায় চালু হওয়ার সময় স্থায়ী থাকে। ভলিউম ছাড়া, কনটেইনার থামানোর সময় সমস্ত ডেটা হারিয়ে যায়।
 
 **ডেভেলপারদের জন্য:** পুরানো একক-কী কনফিগকে প্রতিস্থাপন করে পরিবর্তন টানার পর, আপনার স্থানীয় ফাইল এখনও সরানো ক্ষেত্রগুলি ব্যবহার করে (যেমন `api_key`, `api_url`, প্রক্সি বিকল্প) তবে `data/config.json` রিসেট বা মার্জ করুন `src/config-defaults/config_default.json`-এর নতুন ডিফল্ট আকৃতির সাথে।
+
+<br/>
 
 **ওয়েব প্রমাণীকরণ:**
 
@@ -286,25 +323,40 @@ echo TZ=\"$(</etc/timezone)\"
 - পাসওয়ার্ড রিসেট করুন: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (সোর্স থেকে: `pnpm run reset-web-password -- <username> <new-password>`)
 
-> ⚠️ **সতর্কতা**  
->
+<br/>
+
+> ⚠️ **সতর্কতা**<br/>
 > যেকোনো নেটওয়ার্ক-অ্যাক্সেসযোগ্য হোস্টে ডিফল্ট অ্যাডমিন পাসওয়ার্ড তাৎক্ষণিকভাবে পরিবর্তন করুন।
+
+<br/>
 
 কী সেটিংস (ফন্ট, মডেল, ভাষা ইত্যাদি) অ্যাপ্লিকেশন সেটিংসে উপলব্ধ।
 
+<br/><br/>
+
+<a id="development-and-architecture"></a>
 ## ডেভেলপমেন্ট এবং আর্কিটেকচার
 
 - **ডেভেলপমেন্ট:** সেটআপ, বিল্ড, পরীক্ষা এবং ডেপ্লয় (ইলেকট্রন, ওয়েব, ডকার) - দেখুন **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**।
 - **আর্কিটেকচার এবং সিস্টেম ওভারভিউ:** ফোল্ডার কাঠামো, টেক স্ট্যাক, ডিজাইন সিদ্ধান্ত - দেখুন **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**।
 
+<br/><br/>
+
+<a id="reporting-issues"></a>
 ## সমস্যা রিপোর্ট করা
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues) এ একটি ইস্যু খুলুন। আপনার প্ল্যাটফর্ম (Windows / Linux / Docker) এবং অ্যাপ সংস্করণ (About ডায়ালগ বা Releases পৃষ্ঠায় দেখানো হয়েছে) অন্তর্ভুক্ত করুন।
 
+<br/><br/>
+
+<a id="disclaimer"></a>
 ## ডিসক্লেইমার
 
 পণ্যের নাম ও আইকন তাদের নিজ নিজ মালিকদের সম্পত্তি এবং শুধুমাত্র শনাক্তকরণের উদ্দেশ্যে ব্যবহৃত। এই সফ্টওয়্যারটি উল্লিখিত কোনো ব্র্যান্ডের সাথে সম্পর্কিত বা তাদের দ্বারা অনুমোদিত নয়।
 
+<br/><br/>
+
+<a id="license"></a>
 ## লাইসেন্স
 
 কপিরাইট © 2026 ওয়ালডেমার স্কুডেলার জুনিয়র।

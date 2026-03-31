@@ -1,30 +1,21 @@
 ---
-translation_last_updated: '2026-03-31T22:57:32.845Z'
-source_file_mtime: '2026-03-31T22:20:13.182Z'
-source_file_hash: bf6416a9ca259a19
+translation_last_updated: '2026-03-31T23:44:19.735Z'
+source_file_mtime: '2026-03-31T23:34:44.122Z'
+source_file_hash: 4c9fbb976bec3529
 translation_language: ms
 source_file_path: README.md
 ---
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Jadual Kandungan**
+<p align="center">
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
 
-- [Tangkapan Skrin](#screenshots)
-- [Jadual Kandungan](#table-of-contents)
-- [Mula Pantas](#quick-start)
-- [Pemasangan](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Mengkonfigurasi zon masa](#configuring-the-timezone)
-- [Mendapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
-- [Konfigurasi dan persekitaran](#configuration-and-environment)
-- [Pembangunan dan arsitektur](#development-and-architecture)
-- [Melapor isu](#reporting-issues)
-- [Penafian](#disclaimer)
-- [Lesen](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p align="center">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Versi"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Lesen: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+</p>
 
 Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web sendiri (Docker).
 
@@ -40,39 +31,52 @@ Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, 
 
 Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk penerangan lengkap semua ciri.
 
-**Baca dalam bahasa lain:**
-[Bahasa Inggeris (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [Bahasa Inggeris (AS)](README.en-US.md) · [Bahasa Filipina](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)
+<small>**Baca dalam bahasa lain:** </small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small>
 
 > **Nota mengenai terjemahan UI dan dokumentasi:** Semua bahasa antara muka kecuali asal Bahasa Inggeris (UK)
 > diterjemahkan menggunakan model AI; perkataan mungkin tidak tepat atau mengandungi ralat.
 
+</small>
+
+<br/>
+
+<a id="screenshots"></a>
 ## Tangkapan Skrin
 
 **Pemilih bahasa**
 
-Pemilih bahasa
+![Language selector](../images/screenshots/ms/language-selector.png)
 
 **Terjemah**
 
-Terjemah
+![Translate](../images/screenshots/ms/translate.png)
 
 **Transformasi - editor prompt**
 
-Transformasi - editor prompt
+![Transform - prompt editor](../images/screenshots/ms/transform-prompt-edit.png)
 
 **Papan Pemuka**
 
-Ringkasan Papan Pemuka — penggunaan
+![Dashboard summary — usage](../images/screenshots/ms/dashboard-summary.png)
 
 **Sejarah**
 
-Sejarah
+![History](../images/screenshots/ms/history.png)
 
 **Tetapan - pemilihan model**
 
-Tetapan - pemilihan model
+![Settings - model selection](../images/screenshots/ms/settings-models.png)
 
+<br/><br/>
+
+<a id="table-of-contents"></a>
 ## Jadual Kandungan
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Permulaan pantas](#quick-start)
 - [Pemasangan](#installation)
@@ -87,6 +91,11 @@ Tetapan - pemilihan model
 - [Penafian](#disclaimer)
 - [Lesen](#license)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
+<a id="quick-start"></a>
 ## Mula Pantas
 
 **Docker (disyorkan untuk penyediaan sendiri)**
@@ -104,13 +113,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Gantikan `sk-or-your-key` dengan [kunci API OpenRouter](https://openrouter.ai/keys) anda (atau tetapkan kunci penyedia lain; lihat [Konfigurasi](#configuration-and-environment)). Buka [http://localhost:5000](http://localhost:5000) dan tukar kata laluan pentadbir lalai sebelum mendedahkan perkhidmatan.
 
-> ℹ️ **NOTA**  
->
+<br/>
+
+> ℹ️ **NOTA**<br/>
 > Dalam Docker, kredensial LLM ditetapkan dengan pemboleh ubah persekitaran seperti `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (bukan dalam UI web). Pada desktop (Electron), anda mengkonfigurasi kunci di **Tetapan → API**.
+
+<br/>
 
 **Windows**
 
 Muat turun `Transrewrt Setup x.y.z.exe` terkini dari [Releases](https://github.com/wsj-br/transrewrt/releases), jalankan pemasang, kemudian mulakan dari menu Start atau pintasan desktop. Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigurasi sekurang-kurangnya satu penyedia, OpenRouter adalah biasa digunakan untuk model percuma.
+
+<br/>
 
 **Linux**
 
@@ -138,32 +152,40 @@ sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
 
 Imej minima atau tersuai mungkin masih gagal dengan fail `.so` yang hilang; pasang pakej yang dinamakan dalam ralat tersebut (tambahan biasa: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Sesetengah persekitaran memerlukan FUSE untuk menjalankan AppImages (contohnya `libfuse2` pada Ubuntu 22.04+), atau gunakan `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-Rujuk [Pemasangan → Linux](#linux-electron) untuk ringkasan yang sama.
+<br/>
 
-> ℹ️ **NOTA**  
->
+> ℹ️ **NOTA**<br/>
 > macOS tidak disokong buat masa ini. Transrewrt tersedia untuk Windows, Linux, dan Docker.
+
+<br/>
 
 Apabila aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mempelajari cara menterjemah, menulis semula, dan mengubah teks, menguruskan arahan, serta mengkonfigurasi model.
 
+<br/><br/>
+
+<a id="installation"></a>
 ## Pemasangan
 
+<a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Muat turun pemasang terkini dari [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Jalankan fail `.exe` dan ikuti pemasangan.
 - Pada permulaan pertama: mulakan aplikasi dari menu Start atau pintasan desktop.
 
-> ℹ️ **NOTA**  
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tidak ditandatangani/bebas):
+>   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak diketahui membuat perubahan pada peranti anda?" → Klik **Ya**.
+>   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan sahaja**.
 >
-> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tanpa tanda tangan/pengguna bebas):
->
-> - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak dikenali membuat perubahan pada peranti anda?" → Klik **Ya**.
-> - **Microsoft Defender SmartScreen**: "Windows telah melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan sahaja**.
->
-> Ini berlaku kerana aplikasi tersebut tidak ditandatangani oleh Microsoft atau penerbit besar—ia selamat jika dimuat turun daripada pelepasan rasmi GitHub kami
+> Ini berlaku kerana aplikasi tersebut tidak ditandatangani oleh Microsoft atau penerbit utama—ia selamat jika dimuat turun daripada pelepasan rasmi GitHub kami
 >  (sahkan checksum SHA256 di bawah).
 
+<br/>
+
+<a id="linux-electron"></a>
 ### Linux (Electron)
 
 - Muat turun `.AppImage` yang sepadan (`x64` atau `arm64`) daripada [Pelepasan](https://github.com/wsj-br/transrewrt/releases).
@@ -171,6 +193,9 @@ Apabila aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk 
 - **Pustaka runtime Debian/Ubuntu** (Electron/Chromium; sama seperti [Permulaan pantas → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — gunakan **`libnotify4`**, bukan `libnotify-dev`. Pada sistem minimum, pasang mana-mana `.so` yang hilang yang dilaporkan di terminal; tambahan seperti `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` biasanya diperlukan. AppImage mungkin memerlukan `libfuse2` (Ubuntu 22.04+) atau `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
 - **Mesej GPU:** Chromium mungkin mencatat ralat penginisialan GPU atau EGL pada sesetengah sistem (terutamanya ARM); aplikasi masih boleh berjalan seperti biasa. Untuk mengelakkan mesej tersebut, jalankan dengan pecutan perkakasan dimatikan: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (atau nama fail `arm64` anda).
 
+<br/>
+
+<a id="docker"></a>
 ### Docker
 
 - Tarik: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -201,7 +226,8 @@ docker compose -f transrewrt.yml up -d
 
 Rujuk [Configuration](#configuration-and-environment) untuk semua pemboleh ubah persekitaran, seperti `PORT`, `CONFIG_PATH`, `TZ`, dan kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-### Mengkonfigurasikan zon masa
+<a id="configuring-the-timezone"></a>
+### Mengkonfigurasi zon waktu
 
 Tarikh dan masa antara muka pengguna mengikut zon waktu dan setempat **pelayar**. Untuk tingkah laku **sisi pelayan** (log dan sebagainya), bekas menggunakan pemboleh ubah persekitaran `TZ`. Lalai ialah `TZ=Europe/London`.
 
@@ -226,6 +252,9 @@ echo TZ=\"$(</etc/timezone)\"
 
 Senarai nama zon waktu yang sah diselenggara dalam [pangkalan data tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+<br/><br/>
+
+<a id="getting-an-openrouter-api-key"></a>
 ## Mendapatkan kunci API OpenRouter
 
 Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) merupakan pilihan popular kerana menggabungkan banyak model di bawah satu kunci dan menawarkan model percuma.
@@ -234,16 +263,18 @@ Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) mer
 2. Buka halaman [Keys](https://openrouter.ai/keys) dan cipta kunci baharu (beri nama, dan secara pilihan tetapkan had kredit). Anda boleh gunakan model percuma tanpa menambah kredit.
 3. **Desktop (Electron):** tampal kunci di **Tetapan → API**. **Docker:** tetapkan pemboleh ubah persekitaran seperti `OPENROUTER_API_KEY` (rujuk [Quick start](#quick-start)).
 
-Jangan gunakan model **Body Builder** OpenRouter (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) untuk terjemah, tulis semula, atau transformasi: ia mengembalikan muatan permintaan JSON, bukan teks lengkap untuk tugas-tugas tersebut. Rujuk [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
+Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) untuk terjemah, tulis semula, atau transformasi: ia mengembalikan muatan permintaan JSON, bukan teks lengkap untuk tugas-tugas tersebut. Rujuk [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
 
 Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) atau jalankan model secara tempatan dengan [Ollama](https://ollama.com). Rujuk [Configuration](#configuration-and-environment) untuk senarai penuh penyedia yang disokong dan pemboleh ubah persekitaran.
 
-> ⚠️ **AMARAN**  
->
-> Jika anda menggunakan Ollama daripada peranti, bekas, atau perkhidmatan lain, ingat untuk mengkonfigurasi Ollama agar membenarkan sambungan luaran (bukan hanya localhost).
+> ⚠️ **AMARAN**<br/>
+> Jika anda menggunakan Ollama daripada peranti, bekas, atau perkhidmatan lain, ingat untuk mengkonfigurasi Ollama agar membenarkan sambungan luaran (bukan localhost sahaja).
 
 Untuk had, BYOK, dan lain-lain, lihat [pengesahan OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
+<br/><br/>
+
+<a id="configuration-and-environment"></a>
 ## Konfigurasi dan persekitaran
 
 **Lokasi fail konfigurasi**
@@ -254,31 +285,37 @@ Untuk had, BYOK, dan lain-lain, lihat [pengesahan OpenRouter](https://openrouter
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (gunakan isi padu untuk kekal) |
 
+<br/>
+
 **Pemboleh ubah persekitaran** (web/Docker sahaja; Electron menggunakan fail konfigurasi tempatan)
 
-| Pemboleh ubah             | Lalai                 | Penerangan                                                                                                                 |
-| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `PORT`               | `5000`                  | Port pelayan mendengar                                                                                                       |
-| `CONFIG_PATH`        | `/app/data/config.json` | Laluan ke fail konfigurasi                                                                                                     |
-| `TZ`                 | `Europe/London`         | Zon masa IANA untuk masa sisi pelayan (log, dsb.); UI masih mengikut pelayar. Rujuk [Docker → zon masa](#docker-timezone) |
-| `OPENROUTER_API_KEY` | *(kosong)*               | Kunci API OpenRouter                                                                                                          |
-| `OPENAI_API_KEY`     | *(kosong)*               | Kunci API OpenAI                                                                                                              |
-| `CEREBRAS_API_KEY`   | *(kosong)*               | Kunci API Cerebras                                                                                                            |
-| `ANTHROPIC_API_KEY`  | *(kosong)*               | Kunci API Anthropic                                                                                                           |
-| `GOOGLE_API_KEY`     | *(kosong)*               | Kunci API Google Gemini                                                                                                       |
-| `DEEPSEEK_API_KEY`   | *(kosong)*               | Kunci API DeepSeek                                                                                                            |
-| `GROQ_API_KEY`       | *(kosong)*               | Kunci API Groq                                                                                                                |
-| `MISTRAL_API_KEY`    | *(kosong)*               | Kunci API Mistral                                                                                                             |
-| `OLLAMA_URL`         | *(kosong)*               | URL asas Ollama (contoh: `http://host.docker.internal:11434`)                                                                  |
-| `XAI_API_KEY`        | *(kosong)*               | Kunci API xAI                                                                                                                 |
+| Pemboleh ubah             | Penerangan                                                                  |
+|----------------------|------------------------------------------------------------------------------|
+| `PORT`               | Port pelayan mendengar  (lalai ke `5000`)                                  |
+| `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json)                 |
+| `TZ`                 | zon waktu untuk masa sisi pelayan (log, dsb.) (lalai ke  `Europe/London`) |
+| `OPENROUTER_API_KEY` | Kunci API OpenRouter                                                           |
+| `OPENAI_API_KEY`     | Kunci API OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | Kunci API Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | Kunci API Anthropic                                                            |
+| `GOOGLE_API_KEY`     | Kunci API Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | Kunci API DeepSeek                                                             |
+| `GROQ_API_KEY`       | Kunci API Groq                                                                 |
+| `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
+| `OLLAMA_URL`         | URL asas Ollama (contohnya `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | Kunci API xAI                                                                  |
 
 Konfigurasikan hanya penyedia yang anda gunakan. ID model mempunyai ruang nama (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dsb.).
 
 **Paparan kos:** OpenRouter mengembalikan kos yang dikenakan secara tepat apabila berkaitan. Penyedia lain menggunakan kos **anggaran** daripada penetapan harga model awam OpenRouter jika kunci OpenRouter tersedia; jika tidak, kos bukan OpenRouter mungkin dipaparkan sebagai `0`. Anggaran bukan invois.
 
+<br/>
+
 **Data dan kekalan:** Untuk Docker, pasang isi padu di `/app/data` supaya `config.json` dan pangkalan data SQLite kekal merentasi permulaan semula bekas. Tanpa isi padu, semua data hilang apabila bekas berhenti.
 
 **Pembangun:** Selepas menarik perubahan yang menggantikan konfigurasi kunci tunggal lama, tetapkan semula atau gabungkan `data/config.json` dengan bentuk lalai baharu daripada `src/config-defaults/config_default.json` jika fail tempatan anda masih menggunakan medan yang telah dibuang (`api_key`, `api_url`, pilihan proksi).
+
+<br/>
 
 **Pengesahan web:**
 
@@ -287,25 +324,40 @@ Konfigurasikan hanya penyedia yang anda gunakan. ID model mempunyai ruang nama (
 - Tetapkan semula kata laluan: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (daripada sumber: `pnpm run reset-web-password -- <username> <new-password>`)
 
-> ⚠️ **AMARAN**  
->
-> Tukar kata laluan pentadbir lalai segera pada sebarang hos yang boleh dicapai melalui rangkaian.
+<br/>
+
+> ⚠️ **AMARAN**<br/>
+> Tukar kata laluan pentadbir lalai serta-merta pada sebarang hos yang boleh dicapai melalui rangkaian.
+
+<br/>
 
 Tetapan utama (fon, model, bahasa, dsb.) boleh didapati dalam Tetapan aplikasi.
 
+<br/><br/>
+
+<a id="development-and-architecture"></a>
 ## Pembangunan dan arsitektur
 
 - **Pembangunan:** Persediaan, binaan, ujian, dan pelaksanaan (Electron, Web, Docker) - lihat **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
 - **Gambaran seni bina dan sistem:** Struktur folder, gudang teknologi, keputusan rekabentuk - lihat **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
+<br/><br/>
+
+<a id="reporting-issues"></a>
 ## Melapor isu
 
 Buka isu di [GitHub](https://github.com/wsj-br/transrewrt/issues). Sertakan platform anda (Windows / Linux / Docker) dan versi aplikasi (ditunjukkan dalam dialog Perihal atau di halaman Releases).
 
+<br/><br/>
+
+<a id="disclaimer"></a>
 ## Penafian
 
 Nama produk dan ikon adalah milik pemilik masing-masing dan digunakan untuk tujuan pengenalan sahaja. Perisian ini tidak berkaitan dengan atau disokong oleh mana-mana jenama yang disebutkan.
 
+<br/><br/>
+
+<a id="license"></a>
 ## Lesen
 
 Hak Cipta © 2026 Waldemar Scudeller Jr.

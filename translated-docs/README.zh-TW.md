@@ -1,30 +1,21 @@
 ---
-translation_last_updated: '2026-03-31T22:56:58.987Z'
-source_file_mtime: '2026-03-31T22:20:13.182Z'
-source_file_hash: bf6416a9ca259a19
+translation_last_updated: '2026-03-31T23:41:37.919Z'
+source_file_mtime: '2026-03-31T23:34:44.122Z'
+source_file_hash: 4c9fbb976bec3529
 translation_language: zh-TW
 source_file_path: README.md
 ---
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**目錄**
+<p align="center">
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
 
-- [螢幕截圖](#screenshots)
-- [目錄](#table-of-contents)
-- [快速開始](#quick-start)
-- [安裝](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [設定時區](#configuring-the-timezone)
-- [取得 OpenRouter API 金鑰](#getting-an-openrouter-api-key)
-- [設定與環境](#configuration-and-environment)
-- [開發與架構](#development-and-architecture)
-- [回報問題](#reporting-issues)
-- [免責聲明](#disclaimer)
-- [授權條款](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p align="center">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="版本"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="授權：Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="平台">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+</p>
 
 AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以及自訂提示詞轉換 — 使用多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和 local Ollama）。可作為桌面應用程式（Electron）或自託管網頁應用程式（Docker）運行。
 
@@ -40,38 +31,51 @@ AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以�
 
 安裝後，請參閱 **[使用者指南](USER-GUIDE.zh-TW.md)** 以全面了解所有功能。
 
-**以其他語言閱讀：**
-[英語（英國）](../README.md) · [葡萄牙語（巴西）](README.pt-BR.md) · [阿拉伯語](README.ar.md) · [孟加拉語](README.bn.md) · [加泰隆尼亞語](README.ca.md) · [簡體中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [克羅埃西亞語](README.hr.md) · [捷克語](README.cs.md) · [荷蘭語](README.nl.md) · [英語（美國）](README.en-US.md) · [菲律賓語](README.tl.md) · [法語](README.fr.md) · [德語](README.de.md) · [希臘語](README.el.md) · [印地語](README.hi.md) · [匈牙利語](README.hu.md) · [義大利語](README.it.md) · [日語](README.ja.md) · [爪哇語](README.jv.md) · [韓語](README.ko.md) · [馬來語](README.ms.md) · [波斯語](README.fa.md) · [波蘭語](README.pl.md) · [葡萄牙語（葡萄牙）](README.pt.md) · [旁遮普語](README.pa.md) · [羅馬尼亞語](README.ro.md) · [俄語](README.ru.md) · [斯洛伐克語](README.sk.md) · [西班牙語](README.es.md) · [斯瓦希里語](README.sw.md) · [瑞典語](README.sv.md) · [泰盧固語](README.te.md) · [泰語](README.th.md) · [土耳其語](README.tr.md) · [烏克蘭語](README.uk.md) · [越南語](README.vi.md)
+<small>**以其他語言閱讀：** </small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small>
 
 > **關於使用者介面與文件翻譯的說明：** 除了原始的英語（英國）之外，所有介面語言皆由 AI 模型翻譯；文字可能不精確或包含錯誤。
 
-## 螢幕截圖
+</small>
+
+<br/>
+
+<a id="screenshots"></a>
+## 截圖
 
 **語言選擇器**
 
-語言選擇器
+![Language selector](../images/screenshots/zh-TW/language-selector.png)
 
 **翻譯**
 
-翻譯
+![Translate](../images/screenshots/zh-TW/translate.png)
 
 **轉換 - 提示詞編輯器**
 
-轉換 - 提示詞編輯器
+![Transform - prompt editor](../images/screenshots/zh-TW/transform-prompt-edit.png)
 
 **儀表板**
 
-儀表板摘要 — 使用量
+![Dashboard summary — usage](../images/screenshots/zh-TW/dashboard-summary.png)
 
 **歷史**
 
-歷史
+![History](../images/screenshots/zh-TW/history.png)
 
 **設定 - 模型選擇**
 
-設定 - 模型選擇
+![Settings - model selection](../images/screenshots/zh-TW/settings-models.png)
 
+<br/><br/>
+
+<a id="table-of-contents"></a>
 ## 目錄
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [快速開始](#quick-start)
 - [安裝](#installation)
@@ -86,6 +90,11 @@ AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以�
 - [免責聲明](#disclaimer)
 - [授權](#license)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
+<a id="quick-start"></a>
 ## 快速開始
 
 **Docker（推薦用於自托管）**
@@ -103,13 +112,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 將 `sk-or-your-key` 替換為您的 [OpenRouter API 金鑰](https://openrouter.ai/keys)（或設定其他供應商金鑰；請參閱 [設定](#configuration-and-environment)）。開啟 [http://localhost:5000](http://localhost:5000) 並在公開服務前變更預設的管理員密碼。
 
-> ℹ️ **注意**  
->
-> 在 Docker 中，LLM 憑證是使用環境變數（例如 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` 等）設定的（而非在 Web 介面中設定）。在桌面版（Electron）中，您可在 **設定 → API** 中設定金鑰。
+<br/>
+
+> ℹ️ **注意**<br/>
+> 在 Docker 中，LLM 憑證是透過環境變數（例如 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` 等）設定的（不在網頁介面中設定）。在桌面端（Electron）中，您可以在 **設定 → API** 中設定金鑰。
+
+<br/>
 
 **Windows**
 
 從 [發行版本](https://github.com/wsj-br/transrewrt/releases) 下載最新的 `Transrewrt Setup x.y.z.exe`，執行安裝程式，然後從開始功能表或桌面捷徑啟動。在 **設定 → API** 中輸入您的 API 金鑰。您至少需要設定一個供應商，OpenRouter 是免費模型的常見選擇。
+
+<br/>
 
 **Linux**
 
@@ -137,39 +151,50 @@ sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
 
 最小化或自訂映像可能仍會因缺少 `.so` 檔案而失敗；請安裝錯誤訊息中提到的套件（常見的額外套件：`libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2`）。某些環境需要 FUSE 才能執行 AppImages（例如 Ubuntu 22.04+ 上的 `libfuse2`），或使用 `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`。
 
-相同摘要請參閱 [安裝 → Linux](#linux-electron)。
+<br/>
 
-> ℹ️ **注意**  
->
+> ℹ️ **注意**<br/>
 > 目前不支援 macOS。Transrewrt 可用於 Windows、Linux 和 Docker。
+
+<br/>
 
 應用程式啟動後，請參閱 **[使用者指南](USER-GUIDE.zh-TW.md)** 以了解如何翻譯、重寫和轉換文字，管理提示詞，以及設定模型。
 
+<br/><br/>
+
+<a id="installation"></a>
 ## 安裝
 
-### Windows (Electron)
+<a id="windows-electron"></a>
+### Windows（Electron）
 
 - 從 [發行版本](https://github.com/wsj-br/transrewrt/releases) 下載最新的安裝程式。
 - 執行 `.exe` 並依照安裝程式指示操作。
 - 首次執行：從開始功能表或桌面捷徑啟動應用程式。
 
-> ℹ️ **注意**  
-> 
-> Windows 可能會顯示以下其中一個安全性警告（對於未簽署/獨立應用程式來說是正常的）：
-> 
-> - **使用者帳戶控制 (UAC)**：「您要允許這項來自未知發行者的應用程式對您的裝置進行變更嗎？」→ 按一下 **是**。
-> - **Microsoft Defender SmartScreen**：「Windows 保護了您的電腦」→ 按一下 **更多資訊** → **仍然執行**。
-> 
-> 此情況發生的原因是此應用程式未經 Microsoft 或主要發行者簽署——只要從我們官方的 GitHub 發行版下載即是安全的
-> （請驗證下方的 SHA256 校驗碼）。
+<br/>
 
-### Linux (Electron)
+> ℹ️ **注意**<br/>
+> Windows 可能會顯示以下其中一種安全性警告（對未簽署/獨立應用程式來說屬正常現象）：
+>   - **使用者帳戶控制 (UAC)**：「您要允許這項來自未知發行者的應用程式對您的裝置進行變更嗎？」→ 按一下 **是**。
+>   - **Microsoft Defender SmartScreen**：「Windows 保護了您的電腦」→ 按一下 **更多資訊** → **仍要執行**。
+>
+> 此情況發生是因為應用程式未經 Microsoft 或主要發行者簽署——只要從我們的官方 GitHub 發行頁面下載即為安全
+>  （請驗證下方的 SHA256 校驗碼）。
+
+<br/>
+
+<a id="linux-electron"></a>
+### Linux（Electron）
 
 - 從 [發行版](https://github.com/wsj-br/transrewrt/releases) 下載對應的 `.AppImage` 檔案（`x64` 或 `arm64`）。
 - 執行：在 x86_64/amd64 上使用 `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage`，在 ARM64 上則使用 `...-arm64.AppImage` 檔名。
 - **Debian/Ubuntu 執行階段函式庫**（Electron/Chromium；與 [快速入門 → Linux](#quick-start) 相同）：`sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — 請使用 **`libnotify4`**，而非 `libnotify-dev`。在精簡系統上，請安裝終端機中報告缺失的任何 `.so` 檔案；通常需要 `libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2` 等附加元件。AppImage 可能需要 `libfuse2`（Ubuntu 22.04+）或使用 `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`。
 - **GPU 訊息**：在某些系統（特別是 ARM）上，Chromium 可能會記錄 GPU 或 EGL 初始化錯誤；應用程式仍可正常運行。若要避免這些訊息，可關閉硬體加速啟動：`TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage`（或您的 `arm64` 檔名）。
 
+<br/>
+
+<a id="docker"></a>
 ### Docker
 
 - 拉取映像檔：`docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -200,6 +225,7 @@ docker compose -f transrewrt.yml up -d
 
 請參閱 [Configuration](#configuration-and-environment) 以取得所有環境變數的詳細資訊，例如 `PORT`、`CONFIG_PATH`、`TZ` 以及 LLM 金鑰（`OPENROUTER_API_KEY`、`OPENAI_API_KEY` 等）。
 
+<a id="configuring-the-timezone"></a>
 ### 設定時區
 
 應用程式的使用者介面日期與時間會遵循**瀏覽器**的地區與時區設定。對於**伺服器端**的行為（如記錄日誌等），容器則會使用 `TZ` 環境變數。預設值為 `TZ=Europe/London`。
@@ -225,6 +251,9 @@ echo TZ=\"$(</etc/timezone)\"
 
 有效時區名稱列表可於 [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)（維基百科）中查閱。
 
+<br/><br/>
+
+<a id="getting-an-openrouter-api-key"></a>
 ## 取得 OpenRouter API 金鑰
 
 Transrewrt 支援多種 AI 供應商。[OpenRouter](https://openrouter.ai) 是一個熱門選擇，因其整合多種模型於單一金鑰下，並提供免費模型。
@@ -233,16 +262,18 @@ Transrewrt 支援多種 AI 供應商。[OpenRouter](https://openrouter.ai) 是�
 2. 開啟 [Keys](https://openrouter.ai/keys) 頁面並建立新金鑰（可命名，並可選擇設定信用額度上限）。即使不加值，您仍可使用免費模型。
 3. **桌面版 (Electron)**：將金鑰貼上至 **設定 → API**。**Docker**：設定環境變數如 `OPENROUTER_API_KEY`（詳見 [快速入門](#quick-start)）。
 
-請勿使用 OpenRouter 的 **Body Builder** 模型（`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`）進行翻譯、重寫或轉換：它會回傳 JSON 請求載體，而非這些任務所需的完成文字。詳情請見使用者指南中的 [設定 → 模型](USER-GUIDE.zh-TW.md#models)。
+請勿使用 OpenRouter 的 **Body Builder** 模型（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）進行翻譯、重寫或轉換：它會回傳 JSON 請求載體，而非這些任務所需的完成文字。詳情請見使用者指南中的 [設定 → 模型](USER-GUIDE.zh-TW.md#models)。
 
 您也可以使用其他供應商（OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras）或透過 [Ollama](https://ollama.com) 在本地執行模型。完整支援的供應商與環境變數清單請見 [Configuration](#configuration-and-environment)。
 
-> ⚠️ **警告**  
-> 
-> 如果您從其他裝置、容器或服務使用 Ollama，請記得設定 Ollama 以允許外部連線（不要僅限於 localhost）。
+> ⚠️ **警告**<br/>
+> 如果您從其他裝置、容器或服務使用 Ollama，請記得設定 Ollama 以允許外部連線（不能僅限於 localhost）。
 
 關於限制、BYOK 等更多資訊，請參閱 [OpenRouter 認證](https://openrouter.ai/docs/api/reference/authentication)。
 
+<br/><br/>
+
+<a id="configuration-and-environment"></a>
 ## 設定與環境
 
 **設定檔位置**
@@ -253,31 +284,37 @@ Transrewrt 支援多種 AI 供應商。[OpenRouter](https://openrouter.ai) 是�
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (請使用 volume 來持久儲存) |
 
+<br/>
+
 **環境變數** (僅限 Web / Docker；Electron 使用 local 設定檔)
 
-| 變數                 | 預設值                    | 說明                                                                                                                 |
-| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `PORT`               | `5000`                  | 伺服器監聽埠                                                                                                       |
-| `CONFIG_PATH`        | `/app/data/config.json` | 設定檔路徑                                                                                                     |
-| `TZ`                 | `Europe/London`         | 伺服器端時間的 IANA 時區（用於記錄等）；UI 仍遵循瀏覽器設定。詳見 [Docker → 時區](#docker-timezone) |
-| `OPENROUTER_API_KEY` | *(空白)*               | OpenRouter API 金鑰                                                                                                          |
-| `OPENAI_API_KEY`     | *(空白)*               | OpenAI API 金鑰                                                                                                              |
-| `CEREBRAS_API_KEY`   | *(空白)*               | Cerebras API 金鑰                                                                                                            |
-| `ANTHROPIC_API_KEY`  | *(空白)*               | Anthropic API 金鑰                                                                                                           |
-| `GOOGLE_API_KEY`     | *(空白)*               | Google Gemini API 金鑰                                                                                                       |
-| `DEEPSEEK_API_KEY`   | *(空白)*               | DeepSeek API 金鑰                                                                                                            |
-| `GROQ_API_KEY`       | *(空白)*               | Groq API 金鑰                                                                                                                |
-| `MISTRAL_API_KEY`    | *(空白)*               | Mistral API 金鑰                                                                                                             |
-| `OLLAMA_URL`         | *(空白)*               | Ollama 基本 URL（例如 `http://host.docker.internal:11434`）                                                                  |
-| `XAI_API_KEY`        | *(空白)*               | xAI API 金鑰                                                                                                                 |
+| 變數                 | 說明                                                                  |
+|----------------------|------------------------------------------------------------------------------|
+| `PORT`               | 伺服器監聽埠（預設為 `5000`）                                  |
+| `CONFIG_PATH`        | 設定檔路徑（預設為 `/app/data/config.json)`                 |
+| `TZ`                 | 伺服器端時區（用於記錄等，預設為 `Europe/London`） |
+| `OPENROUTER_API_KEY` | OpenRouter API 金鑰                                                           |
+| `OPENAI_API_KEY`     | OpenAI API 金鑰                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API 金鑰                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API 金鑰                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API 金鑰                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API 金鑰                                                             |
+| `GROQ_API_KEY`       | Groq API 金鑰                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API 金鑰                                                              |
+| `OLLAMA_URL`         | Ollama 基本 URL（例如 `http://host.docker.internal:11434`）                   |
+| `XAI_API_KEY`        | xAI API 金鑰                                                                  |
 
 僅設定您使用的供應商。模型 ID 是命名空間化的（例如 `openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。
 
 **費用顯示：** 當適用時，OpenRouter 會回傳確切的計費成本。其他供應商在有 OpenRouter 金鑰時，會使用 OpenRouter 公開模型定價的**估計**成本；若無 OpenRouter 金鑰，非 OpenRouter 的成本可能顯示為 `0`。這些估計值並非正式帳單。
 
+<br/>
+
 **資料與持久性：** 對於 Docker，請在 `/app/data` 掛載一個 volume，以確保 `config.json` 和 SQLite 資料庫在容器重新啟動時仍能保留。若無 volume，容器停止時所有資料將遺失。
 
 **開發者：** 當拉取取代舊有單一金鑰設定的變更後，若您本地的 `data/config.json` 仍使用已移除的欄位（`api_key`、`api_url`、proxy 選項），請將其重設或合併為 `src/config-defaults/config_default.json` 中的新預設結構。
+
+<br/>
 
 **Web 認證：**
 
@@ -286,25 +323,40 @@ Transrewrt 支援多種 AI 供應商。[OpenRouter](https://openrouter.ai) 是�
 - 重設密碼：`docker exec <container> reset-web-password '<username>' '<new-password>'`
   (從原始碼執行：`pnpm run reset-web-password -- <username> <new-password>`)
 
-> ⚠️ **警告**  
->
+<br/>
+
+> ⚠️ **警告**<br/>
 > 在任何可透過網路存取的主機上，請立即變更預設的管理員密碼。
+
+<br/>
 
 主要設定（字型、模型、語言等）可在應用程式的「設定」中進行。
 
+<br/><br/>
+
+<a id="development-and-architecture"></a>
 ## 開發與架構
 
 - **開發：** 設定、建置、測試與部署 (Electron、Web、Docker) - 請參閱 **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**。
 - **架構與系統概覽：** 資料夾結構、技術堆疊、設計決策 - 請參閱 **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**。
 
+<br/><br/>
+
+<a id="reporting-issues"></a>
 ## 回報問題
 
 在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上提出問題。請包含您的平台（Windows / Linux / Docker）以及應用程式版本（顯示於「關於」對話框或「發行版本」頁面中）。
 
+<br/><br/>
+
+<a id="disclaimer"></a>
 ## 免責聲明
 
 產品名稱與圖示屬於其各自擁有者，僅供識別用途使用。本軟體未經任何提及品牌之授權或背書。
 
+<br/><br/>
+
+<a id="license"></a>
 ## 授權條款
 
 版權所有 © 2026 Waldemar Scudeller Jr.

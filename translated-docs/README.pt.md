@@ -1,30 +1,21 @@
 ---
-translation_last_updated: '2026-03-31T22:57:32.871Z'
-source_file_mtime: '2026-03-31T22:20:13.182Z'
-source_file_hash: bf6416a9ca259a19
+translation_last_updated: '2026-03-31T23:44:46.242Z'
+source_file_mtime: '2026-03-31T23:34:44.122Z'
+source_file_hash: 4c9fbb976bec3529
 translation_language: pt
 source_file_path: README.md
 ---
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Índice**
+<p align="center">
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
 
-- [Capturas de tela](#screenshots)
-- [Índice](#table-of-contents)
-- [Início rápido](#quick-start)
-- [Instalação](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Configurar o fuso horário](#configuring-the-timezone)
-- [Obter uma chave de API do OpenRouter](#getting-an-openrouter-api-key)
-- [Configuração e ambiente](#configuration-and-environment)
-- [Desenvolvimento e arquitetura](#development-and-architecture)
-- [Relatar problemas](#reporting-issues)
-- [Aviso legal](#disclaimer)
-- [Licença](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p align="center">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Versão"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Licença: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Plataforma">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+</p>
 
 Ferramenta de texto com IA: traduzir entre idiomas, reescrever em diferentes estilos e transformar com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
@@ -40,39 +31,52 @@ Ferramenta de texto com IA: traduzir entre idiomas, reescrever em diferentes est
 
 Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para um guia completo de todas as funcionalidades.
 
-**Leia em outros idiomas:**
-[Inglês (RU)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [Inglês (EUA)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)
+<small>**Leia em outros idiomas:** </small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small>
 
 > **Observação sobre traduções da interface e documentação:** Todos os idiomas da interface, exceto o inglês (RU) original,
 > foram traduzidos usando modelos de IA; a redação pode ser imprecisa ou conter erros.
 
+</small>
+
+<br/>
+
+<a id="screenshots"></a>
 ## Capturas de tela
 
 **Seletor de idioma**
 
-Seletor de idioma
+![Language selector](../images/screenshots/pt/language-selector.png)
 
 **Traduzir**
 
-Traduzir
+![Translate](../images/screenshots/pt/translate.png)
 
 **Transformação - editor de prompt**
 
-Transformação - editor de prompt
+![Transform - prompt editor](../images/screenshots/pt/transform-prompt-edit.png)
 
 **Painel**
 
-Resumo do painel — utilização
+![Dashboard summary — usage](../images/screenshots/pt/dashboard-summary.png)
 
 **Histórico**
 
-Histórico
+![History](../images/screenshots/pt/history.png)
 
 **Definições - seleção de modelo**
 
-Definições - seleção de modelo
+![Settings - model selection](../images/screenshots/pt/settings-models.png)
 
+<br/><br/>
+
+<a id="table-of-contents"></a>
 ## Índice
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Primeiros passos](#quick-start)
 - [Instalação](#installation)
@@ -87,6 +91,11 @@ Definições - seleção de modelo
 - [Aviso legal](#disclaimer)
 - [Licença](#license)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
+<a id="quick-start"></a>
 ## Início rápido
 
 **Docker (recomendado para auto-hospedagem)**
@@ -104,13 +113,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Substitua `sk-or-your-key` pela sua [chave API OpenRouter](https://openrouter.ai/keys) (ou defina chaves de outros provedores; veja [Configuração](#configuration-and-environment)). Abra [http://localhost:5000](http://localhost:5000) e altere a palavra-passe padrão do administrador antes de expor o serviço.
 
-> ℹ️ **NOTA**  
->
-> No Docker, as credenciais do LLM são definidas com variáveis de ambiente como `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (não na interface web). No ambiente desktop (Electron), você configura as chaves em **Definições → API**.
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> No Docker, as credenciais do LLM são definidas com variáveis de ambiente como `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (não na interface web). No desktop (Electron), você configura as chaves em **Definições → API**.
+
+<br/>
 
 **Windows**
 
 Transfira o mais recente `Transrewrt Setup x.y.z.exe` em [Releases](https://github.com/wsj-br/transrewrt/releases), execute o instalador e depois inicie a partir do menu Iniciar ou atalho no ambiente de trabalho. Insira as suas chaves API em **Definições → API**. Você precisa configurar pelo menos um provedor; o OpenRouter é comum para modelos gratuitos.
+
+<br/>
 
 **Linux**
 
@@ -138,32 +152,40 @@ sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
 
 Imagens mínimas ou personalizadas ainda podem falhar com uma biblioteca `.so` ausente; instale o pacote indicado no erro (extras comuns: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Alguns ambientes precisam do FUSE para executar AppImages (por exemplo, `libfuse2` no Ubuntu 22.04+), ou use `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-Veja [Instalação → Linux](#linux-electron) para o mesmo resumo.
+<br/>
 
-> ℹ️ **NOTA**  
->
+> ℹ️ **NOTA**<br/>
 > O macOS não é atualmente suportado. O Transrewrt está disponível para Windows, Linux e Docker.
+
+<br/>
 
 Uma vez que a aplicação esteja em execução, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para aprender a traduzir, reescrever e transformar texto, gerir prompts e configurar modelos.
 
+<br/><br/>
+
+<a id="installation"></a>
 ## Instalação
 
+<a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Transfira o instalador mais recente em [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Execute o `.exe` e siga as instruções do instalador.
 - Primeira execução: inicie a aplicação pelo menu Iniciar ou atalho no ambiente de trabalho.
 
-> ℹ️ **NOTA**  
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> O Windows pode exibir um destes avisos de segurança (normal para aplicativos não assinados ou independentes):
+>   - **Controle de Conta de Usuário (UAC)**: "Você deseja permitir que este aplicativo de um editor desconhecido faça alterações no seu dispositivo?" → Clique em **Sim**.
+>   - **Microsoft Defender SmartScreen**: "O Windows protegeu seu PC" → Clique em **Mais informações** → **Executar mesmo assim**.
 >
-> O Windows pode exibir um destes avisos de segurança (normal para aplicações não assinadas ou independentes):
->
-> - **Controlo de Conta de Utilizador (UAC)**: "Pretende permitir que esta aplicação de um editor desconhecido faça alterações ao seu dispositivo?" → Clique em **Sim**.
-> - **Microsoft Defender SmartScreen**: "O Windows protegeu o seu PC" → Clique em **Mais informações** → **Executar na mesma**.
->
-> Isto acontece porque a aplicação não está assinada pela Microsoft ou por um editor importante — é segura se for descarregada a partir das nossas versões oficiais no GitHub
+> Isso ocorre porque o aplicativo não é assinado pela Microsoft ou por um editor importante — é seguro se baixado a partir das nossas versões oficiais no GitHub
 >  (verifique a soma de verificação SHA256 abaixo).
 
+<br/>
+
+<a id="linux-electron"></a>
 ### Linux (Electron)
 
 - Descarregue o ficheiro `.AppImage` correspondente (`x64` ou `arm64`) em [Versões](https://github.com/wsj-br/transrewrt/releases).
@@ -171,6 +193,9 @@ Uma vez que a aplicação esteja em execução, consulte o **[Guia do Usuário](
 - **Bibliotecas de runtime do Debian/Ubuntu** (Electron/Chromium; iguais às [Início rápido → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — utilize **`libnotify4`**, não `libnotify-dev`. Em sistemas mínimos, instale quaisquer `.so` em falta indicados no terminal; complementos como `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` são frequentemente necessários. O AppImage pode precisar de `libfuse2` (Ubuntu 22.04+) ou `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
 - **Mensagens da GPU:** O Chromium pode registar erros de inicialização da GPU ou EGL em alguns sistemas (especialmente ARM); a aplicação ainda pode funcionar normalmente. Para evitar essas mensagens, inicie com a aceleração por hardware desativada: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (ou o nome do seu ficheiro `arm64`).
 
+<br/>
+
+<a id="docker"></a>
 ### Docker
 
 - Baixar: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -201,7 +226,8 @@ docker compose -f transrewrt.yml up -d
 
 Veja [Configuração](#configuration-and-environment) para todas as variáveis de ambiente, como `PORT`, `CONFIG_PATH`, `TZ` e chaves de LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-### Configurar o fuso horário
+<a id="configuring-the-timezone"></a>
+### Configurando o fuso horário
 
 A data e hora da interface do usuário seguem o idioma e o fuso horário do **navegador**. Para o comportamento no **lado do servidor** (registros e similares), o contêiner usa a variável de ambiente `TZ`. O padrão é `TZ=Europe/London`.
 
@@ -226,7 +252,10 @@ echo TZ=\"$(</etc/timezone)\"
 
 Uma lista de nomes válidos de fusos horários é mantida na [banco de dados tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
-## Obter uma chave de API OpenRouter
+<br/><br/>
+
+<a id="getting-an-openrouter-api-key"></a>
+## Obtendo uma chave de API do OpenRouter
 
 O Transrewrt suporta múltiplos provedores de IA. [OpenRouter](https://openrouter.ai) é uma escolha popular porque agrega muitos modelos sob uma única chave e oferece modelos gratuitos.
 
@@ -234,16 +263,18 @@ O Transrewrt suporta múltiplos provedores de IA. [OpenRouter](https://openroute
 2. Acesse a página [Keys](https://openrouter.ai/keys) e crie uma nova chave (dê um nome e, opcionalmente, defina um limite de crédito). Você pode usar modelos gratuitos sem adicionar crédito.
 3. **Desktop (Electron):** cole as chaves em **Definições → API**. **Docker:** defina variáveis de ambiente como `OPENROUTER_API_KEY` (veja [Início rápido](#quick-start)).
 
-Não utilize o modelo **Body Builder** do OpenRouter (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) para traduzir, reescrever ou transformar: ele devolve cargas JSON de pedidos, não o texto completo para essas tarefas. Veja [Definições → Modelos](USER-GUIDE.pt.md#models) no Guia do Utilizador.
+Não use o modelo **Body Builder** do OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) para traduzir, reescrever ou transformar: ele retorna cargas JSON de solicitação, não o texto completo para essas tarefas. Veja [Definições → Modelos](USER-GUIDE.pt.md#models) no Guia do Usuário.
 
 Você também pode usar outros provedores (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ou executar modelos localmente com [Ollama](https://ollama.com). Veja [Configuração](#configuration-and-environment) para a lista completa de provedores suportados e variáveis de ambiente.
 
-> ⚠️ **AVISO**  
->
-> Se estiver a utilizar o Ollama a partir de outro dispositivo, contentor ou serviço, lembre-se de configurar o Ollama para permitir ligações externas (não apenas localhost).
+> ⚠️ **AVISO**<br/>
+> Se você estiver usando o Ollama a partir de outro dispositivo, contêiner ou serviço, lembre-se de configurar o Ollama para permitir conexões externas (não apenas localhost).
 
 Para limites, BYOK e mais, consulte [autenticação OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
+<br/><br/>
+
+<a id="configuration-and-environment"></a>
 ## Configuração e ambiente
 
 **Localizações do ficheiro de configuração**
@@ -254,31 +285,37 @@ Para limites, BYOK e mais, consulte [autenticação OpenRouter](https://openrout
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (use um volume para manter os dados) |
 
+<br/>
+
 **Variáveis de ambiente** (apenas web/Docker; o Electron utiliza o ficheiro de configuração local)
 
-| Variável             | Predefinição                 | Descrição                                                                                                                 |
-| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `PORT`               | `5000`                  | Porta de escuta do servidor                                                                                                       |
-| `CONFIG_PATH`        | `/app/data/config.json` | Caminho para o ficheiro de configuração                                                                                                     |
-| `TZ`                 | `Europe/London`         | Fuso horário IANA para hora do lado do servidor (registos, etc.); a interface segue ainda o navegador. Veja [Docker → fuso horário](#docker-timezone) |
-| `OPENROUTER_API_KEY` | *(vazio)*               | Chave de API OpenRouter                                                                                                          |
-| `OPENAI_API_KEY`     | *(vazio)*               | Chave de API OpenAI                                                                                                              |
-| `CEREBRAS_API_KEY`   | *(vazio)*               | Chave de API Cerebras                                                                                                            |
-| `ANTHROPIC_API_KEY`  | *(vazio)*               | Chave de API Anthropic                                                                                                           |
-| `GOOGLE_API_KEY`     | *(vazio)*               | Chave de API Gemini do Google                                                                                                       |
-| `DEEPSEEK_API_KEY`   | *(vazio)*               | Chave de API DeepSeek                                                                                                            |
-| `GROQ_API_KEY`       | *(vazio)*               | Chave de API Groq                                                                                                                |
-| `MISTRAL_API_KEY`    | *(vazio)*               | Chave de API Mistral                                                                                                             |
-| `OLLAMA_URL`         | *(vazio)*               | URL base do Ollama (ex: `http://host.docker.internal:11434`)                                                                  |
-| `XAI_API_KEY`        | *(vazio)*               | Chave de API xAI                                                                                                                 |
+| Variável             | Descrição                                                                  |
+|----------------------|------------------------------------------------------------------------------|
+| `PORT`               | Porta de escuta do servidor (padrão: `5000`)                                  |
+| `CONFIG_PATH`        | Caminho para o arquivo de configuração (padrão: `/app/data/config.json`)     |
+| `TZ`                 | fuso horário para o tempo no servidor (logs, etc.) (padrão: `Europe/London`) |
+| `OPENROUTER_API_KEY` | Chave de API do OpenRouter                                                   |
+| `OPENAI_API_KEY`     | Chave de API do OpenAI                                                       |
+| `CEREBRAS_API_KEY`   | Chave de API do Cerebras                                                     |
+| `ANTHROPIC_API_KEY`  | Chave de API do Anthropic                                                    |
+| `GOOGLE_API_KEY`     | Chave de API do Google Gemini                                                |
+| `DEEPSEEK_API_KEY`   | Chave de API do DeepSeek                                                     |
+| `GROQ_API_KEY`       | Chave de API do Groq                                                         |
+| `MISTRAL_API_KEY`    | Chave de API do Mistral                                                      |
+| `OLLAMA_URL`         | URL base do Ollama (ex: `http://host.docker.internal:11434`)                 |
+| `XAI_API_KEY`        | Chave de API do xAI                                                          |
 
 Configure apenas os fornecedores que utilizar. Os IDs dos modelos são agrupados por namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
 **Exibição de custo:** O OpenRouter devolve o custo faturado exato quando aplicável. Outros fornecedores utilizam o custo **estimado** a partir dos preços públicos dos modelos do OpenRouter quando uma chave OpenRouter está disponível; sem ela, o custo de não-OpenRouter pode aparecer como `0`. As estimativas não são faturas.
 
+<br/>
+
 **Dados e persistência:** Para Docker, monte um volume em `/app/data` para que o `config.json` e a base de dados SQLite persistam entre reinícios do contentor. Sem um volume, todos os dados são perdidos quando o contentor é encerrado.
 
 **Programadores:** Após atualizar alterações que substituem a configuração antiga de chave única, redefina ou una `data/config.json` com a nova estrutura padrão de `src/config-defaults/config_default.json`, caso o seu ficheiro local ainda utilize campos removidos (`api_key`, `api_url`, opções de proxy).
+
+<br/>
 
 **Autenticação web:**
 
@@ -287,25 +324,40 @@ Configure apenas os fornecedores que utilizar. Os IDs dos modelos são agrupados
 - Repor palavra-passe: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (a partir da origem: `pnpm run reset-web-password -- <username> <new-password>`)
 
-> ⚠️ **AVISO**  
->
+<br/>
+
+> ⚠️ **AVISO**<br/>
 > Altere imediatamente a palavra-passe padrão do administrador em qualquer anfitrião acessível pela rede.
+
+<br/>
 
 As definições principais (tipo de letra, modelos, idiomas, etc.) estão disponíveis nas Definições da aplicação.
 
+<br/><br/>
+
+<a id="development-and-architecture"></a>
 ## Desenvolvimento e arquitetura
 
 - **Desenvolvimento:** Configuração, compilação, teste e implementação (Electron, Web, Docker) - veja **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
 - **Arquitetura e visão geral do sistema:** Estrutura de pastas, pilha tecnológica, decisões de design - veja **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
+<br/><br/>
+
+<a id="reporting-issues"></a>
 ## Relato de problemas
 
 Abra uma questão no [GitHub](https://github.com/wsj-br/transrewrt/issues). Inclua a sua plataforma (Windows / Linux / Docker) e a versão da aplicação (mostrada na janela "Sobre" ou na página de Lançamentos).
 
-## Isenção de responsabilidade
+<br/><br/>
+
+<a id="disclaimer"></a>
+## Aviso
 
 Os nomes e ícones dos produtos pertencem aos respetivos proprietários e são utilizados apenas para fins de identificação. Este software não é afiliado nem endossado por nenhuma das marcas mencionadas.
 
+<br/><br/>
+
+<a id="license"></a>
 ## Licença
 
 Direitos autorais © 2026 Waldemar Scudeller Jr.
