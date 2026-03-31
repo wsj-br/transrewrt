@@ -192,7 +192,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "@fluentui/react-components": "^9.73.5",
+    "@fluentui/react-components": "^9.73.6",
     "@fluentui/react-icons": "^2.0.323",
     "adm-zip": "^0.5.16",
     "archiver": "^7.0.1",
@@ -200,7 +200,7 @@
     "better-sqlite3": "^12.8.0",
     "diff": "^8.0.4",
     "express": "^5.2.1",
-    "i18next": "^26.0.1",
+    "i18next": "^26.0.2",
     "lucide-react": "^1.7.0",
     "multer": "^2.1.1",
     "multi-llm-ts": "5.1.0-beta4",
