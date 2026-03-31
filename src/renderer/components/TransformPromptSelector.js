@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
-import { WandSparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync } from "lucide-react";
+import { WandSparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync, BookOpenText } from "lucide-react";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
@@ -56,6 +56,10 @@ const useStyles = makeStyles({
       color: "inherit",
     },
   },
+  loadSampleAfterActions: {
+    marginLeft: "24px",
+    flexShrink: 0,
+  },
 });
 
 const TransformPromptSelector = ({
@@ -69,6 +73,10 @@ const TransformPromptSelector = ({
   onOpenExportImport,
   disabled,
   editActive = false,
+  showLoadSampleButton = false,
+  onLoadSamplePrompts,
+  loadSampleLoading = false,
+  loadSampleButtonClassName,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -155,6 +163,17 @@ const TransformPromptSelector = ({
         title={t("Export/Import prompts (opens Settings > Transform)")}
         disabled={disabled}
       />
+      {showLoadSampleButton && onLoadSamplePrompts && (
+        <Button
+          appearance="secondary"
+          className={mergeClasses(styles.loadSampleAfterActions, loadSampleButtonClassName)}
+          icon={loadSampleLoading ? undefined : <BookOpenText size={16} />}
+          onClick={onLoadSamplePrompts}
+          disabled={disabled || loadSampleLoading}
+        >
+          {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
+        </Button>
+      )}
     </div>
   );
 };
@@ -170,6 +189,10 @@ TransformPromptSelector.propTypes = {
   onOpenExportImport: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   editActive: PropTypes.bool,
+  showLoadSampleButton: PropTypes.bool,
+  onLoadSamplePrompts: PropTypes.func,
+  loadSampleLoading: PropTypes.bool,
+  loadSampleButtonClassName: PropTypes.string,
 };
 
 export default TransformPromptSelector;

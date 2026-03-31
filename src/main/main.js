@@ -1,4 +1,13 @@
+// Before any other import: suppress Node deprecation noise (e.g. punycode) on packaged Linux.
+if (process.platform === "linux" && process.env.NODE_ENV !== "development") {
+  process.noDeprecation = true;
+}
+
 const { app, BrowserWindow, screen, ipcMain, protocol, shell } = require("electron");
+
+if (process.env.TRANSREWRT_DISABLE_GPU === "1") {
+  app.disableHardwareAcceleration();
+}
 const path = require("path");
 const fs = require("fs");
 const os = require("os");

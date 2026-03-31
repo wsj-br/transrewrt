@@ -11,7 +11,17 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Fixed**: Web/Docker third-party licenses — fetch uses a URL relative to `document.baseURI` (matches production `./` public path and reverse-proxy path prefixes); `build` / `build-renderer` copy `THIRD-PARTY-LICENSES.txt` into `dist/` and the server resolves that path so the file ships with the static bundle (Docker no longer needs a separate root copy).
+- **Changed**: Electron `appDb` — log database path only when `NODE_ENV === "development"` (quiet production startup).
+- **Changed**: `dist-main/` is gitignored and no longer tracked — Electron main/preload webpack output from `pnpm run build:main` only; CI and `pnpm package` / `package-arm64` already run that step before electron-builder.
+- **Changed**: Renderer production build — `THIRD-PARTY-LICENSES.txt` is copied to `dist/` via `CopyWebpackPlugin` in `webpack.config.js` instead of a post-build `copyFileSync` one-liner in `build` / `build-renderer` scripts.
+- **Added**: `pnpm run package-arm64` — production build and Linux **arm64** AppImage (same steps as CI) via `build/electron-builder.linux-arm64.cjs`.
+- **Fixed**: Linux **arm64** AppImage crashed at startup (`Cannot find module 'brace-expansion'`, `minimatch` via `multi-llm-ts`): `--config build/electron-builder.linux-arm64.json` did not merge `package.json` `build`, so `extraMetadata.main` was missing and the app ran `src/main/main.js` instead of the webpack main bundle. Replaced with `electron-builder.linux-arm64.cjs` that spreads `package.json` `build` and overrides `linux.target` to arm64; release Linux jobs run `pnpm run build:main` like Windows packaging.
+- **Changed**: Electron Linux packaged builds — suppress Node deprecation warnings when `NODE_ENV` is not `development` (quieter AppImage/console startup from transitive `punycode` use).
+- **Added**: `TRANSREWRT_DISABLE_GPU=1` — disables hardware acceleration so systems with broken GLES/EGL avoid noisy Chromium GPU-init errors (optional; all platforms).
+- **Changed**: README — Linux AppImage quick start and installation notes on console deprecation suppression and `TRANSREWRT_DISABLE_GPU=1`.
+- **Fixed**: README / `dev/DEVELOPMENT.md` — Linux Electron/AppImage dependency line uses **`libnotify4`** (runtime) instead of `libnotify-dev`; notes on minimal `.so` deps, FUSE/AppImage extract-and-run.
+- **Fixed**: Transform workspace — empty prompt list: **Load sample prompts** is placed after the prompt row icon buttons (24px gap) so it no longer overlaps the dropdown on narrow layouts.
+- **Fixed**: Web/Docker third-party licenses — fetch uses a URL relative to `document.baseURI` (matches production `./` public path and reverse-proxy path prefixes); production webpack copies `THIRD-PARTY-LICENSES.txt` into `dist/` and the server resolves that path so the file ships with the static bundle (Docker no longer needs a separate root copy).
 - **Changed**: `scripts/translate/index.ts` — no longer prints per-locale `Files: … processed … skipped` and `Segments: … cached … translated` lines (aggregate summary unchanged).
 - **Changed**: Settings → Appearance — default (Windows/macOS) monospace presets use **Courier New** instead of **Menlo** so the third choice is visually distinct in the browser (Menlo often substituted to the same face as Consolas / `ui-monospace` on Windows web). Saved **Menlo** still resolves with a `Courier New` fallback stack.
 - **Fixed**: `license-clarifications.json` — `@epic-web/invariant` ships no `LICENSE` on npm (checker used `README.md`); clarification supplies standard MIT text so `THIRD-PARTY-LICENSES.txt` no longer embeds the full readme.

@@ -25,6 +25,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Web (Docker)](#web-docker)
   - [Raspberry Pi (arm64)](#raspberry-pi-arm64)
   - [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release)
+  - [Prepare commits on the version branch](#prepare-commits-on-the-version-branch)
+  - [Merge into `main` (GitHub)](#merge-into-main-github)
+  - [Publish the GitHub Release](#publish-the-github-release)
+  - [Release artifacts and manual workflow run](#release-artifacts-and-manual-workflow-run)
 - [Commands by Target](#commands-by-target)
   - [Electron (Desktop)](#electron-desktop)
   - [Web (browser, local server)](#web-browser-local-server)
@@ -77,8 +81,9 @@ nvm install 24
 nvm use 24
 ```
 
-1. **Electron dependencies**:
-  `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
+1. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use **`libnotify4`**, not `libnotify-dev`):
+  `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth`
+  Minimal images may also need packages such as `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` if the linker reports a missing library.
 2. **Chromium** (for `pnpm take-screenshots`):
   `sudo apt install chromium`  
    On ARM (e.g. Raspberry Pi) Puppeteer’s bundled Chrome is x64; use system Chromium and set `export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium` (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
@@ -241,32 +246,52 @@ See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md)
 
 ### Releasing (CI builds and GitHub Release)
 
-Official desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR). To cut a full release end-to-end:
+Official desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
+
+Use a **long-lived version branch** for patch lines (for example **`v1.1.x`** — any name such as `1.1.x` works if your team uses that convention). Do release prep there, merge into **`main`** through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
+
+---
+
+### Prepare commits on the version branch
+
+Do this on the branch you will merge (e.g. **`v1.1.x`**), then push it to GitHub so the pull request below can target it.
 
 1. **Changelog** — In [CHANGELOG.md](CHANGELOG.md), move the bullets under `## Unreleased` into a new section `## [X.Y.Z] — YYYY-MM-DD` (Keep a Changelog style). Leave an empty `## Unreleased` heading for the next cycle.
 2. **Version** — Set `"version": "X.Y.Z"` in [package.json](../package.json) (SemVer).
 3. **Sync references** — Run **`pnpm run update-version`** so the README badge and other files updated by [scripts/update-version.js](../scripts/update-version.js) match `package.json`.
-4. **Commit** — Commit the changelog, `package.json`, and any `update-version` output (e.g. `chore: release vX.Y.Z`).
-5. **Tag** — Create an **annotated** tag matching the release (e.g. **`vX.Y.Z`**, consistent with the GitHub Release tag):
+4. **Commit and push** — Commit the changelog, `package.json`, and any `update-version` output (e.g. `chore: release vX.Y.Z`), then push your version branch to the remote (your usual Git client or desktop tool is fine).
 
-   ```bash
-   git tag -a vX.Y.Z -m "Release vX.Y.Z"
-   ```
+---
 
-6. **Push** — Push the branch and the tag, for example:
+### Merge into `main` (GitHub)
 
-   ```bash
-   git push origin main
-   git push origin vX.Y.Z
-   ```
+1. Open the repository on GitHub (e.g. `https://github.com/wsj-br/transrewrt`).
+2. Go to **Pull requests** → **New pull request**.
+3. Set **base:** **`main`** and **compare:** your version branch (e.g. **`v1.1.x`** or another release branch).
+4. Open **Create pull request**, add a title/description if helpful, then merge when ready (**Merge pull request** — use your team’s preferred merge option). Resolve any conflicts in the GitHub UI or locally, then push updates to the compare branch until the PR merges.
+5. Confirm **`main`** on GitHub shows the new commits (e.g. **Code** tab, branch selector **`main`**, latest commit).
 
-7. **GitHub Release** — In the repo: **Releases → Draft a new release** → choose tag **`vX.Y.Z`** → set the **title** (e.g. `Transrewrt X.Y.Z`) → paste or adapt the **`[X.Y.Z]`** section from `CHANGELOG.md` into the **description** → **Publish release** (not a draft). Publishing runs the Release workflow; the **Publish GitHub Release assets** job attaches the Windows installer and Linux AppImages to that release.
+---
 
-   Alternatively, with the [GitHub CLI](https://cli.github.com/) (`gh auth login` first): `gh release create vX.Y.Z --title "Transrewrt X.Y.Z" --notes-file path/to/notes.md` (or `--generate-notes`), then open the release on GitHub if you need to edit the description.
+### Publish the GitHub Release
 
-8. **Artifacts elsewhere** — CI also uploads **workflow artifacts** (same naming pattern). The **container image** is **`ghcr.io/wsj-br/transrewrt:X.Y.Z`** (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+After **`main`** contains the release commit(s), create the tag and release in one flow in the browser (no local `git tag` / `git push` required unless you prefer it).
 
-**Manual workflow run** — You can run the Release workflow from the **Actions** tab without a new release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the **`tag_as_latest`** input if you need the Docker `latest` tag on that manual run.
+1. Go to **Releases** (right-hand **Releases** link on the repo home page, or **Code** → **Releases**).
+2. Click **Draft a new release**.
+3. Click **Choose a tag**, type a **new** tag name (e.g. **`vX.Y.Z`**) matching [Semantic Versioning](https://semver.org/) and this repo’s release workflow. When GitHub offers to create the tag when the release is published, confirm the tag **target** is **`main`** (the tip of **`main`** after your merge) so the tag points at the release commit.
+4. **Release title** — e.g. `Transrewrt X.Y.Z`.
+5. **Describe this release** — paste or adapt the **`[X.Y.Z]`** section from [CHANGELOG.md](CHANGELOG.md).
+6. Click **Publish release** (not “Save draft”). That publishes the tag and triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml); the **Publish GitHub Release assets** job attaches the Windows installer and Linux AppImages once the build finishes.
+
+If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it earlier), use **Choose a tag** → pick that **existing** tag instead of creating a new one, then publish the release the same way.
+
+---
+
+### Release artifacts and manual workflow run
+
+- **Artifacts** — CI also uploads **workflow artifacts** (same naming pattern). The **container image** is **`ghcr.io/wsj-br/transrewrt:X.Y.Z`** (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+- **Manual workflow run** — From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the **`tag_as_latest`** input if you need the Docker `latest` tag on that manual run.
 
 ---
 

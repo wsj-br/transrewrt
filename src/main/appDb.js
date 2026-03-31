@@ -52,7 +52,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     return;
   }
   const d = getDb();
-  if (d) {
+  if (d && process.env.NODE_ENV === "development") {
     console.log("[appDb] Database ready at", path.join(userDataPath, "transrewrt.db"));
   }
 

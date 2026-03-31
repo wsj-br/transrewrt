@@ -4,7 +4,7 @@ import LanguageSelector from "../LanguageSelector";
 import TransformPromptSelector from "../TransformPromptSelector";
 import TransformPromptEditor from "../TransformPromptEditor";
 import TransformTestPanel from "../TransformTestPanel";
-import { Zap, Square, BookOpenText } from "lucide-react";
+import { Zap, Square } from "lucide-react";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str) {
@@ -106,19 +106,12 @@ export function getTransformPanels({ common, input, output, options }) {
             onOpenExportImport={handleOpenExportImportPrompts}
             disabled={isProcessing}
             editActive={!!editingPrompt}
+            showLoadSampleButton={transformPrompts.length === 0}
+            onLoadSamplePrompts={() => setShowLoadSampleConfirm(true)}
+            loadSampleLoading={loadSampleLoading}
+            loadSampleButtonClassName={styles.loadSampleButton}
           />
         </div>
-        {transformPrompts.length === 0 && (
-          <Button
-            appearance="secondary"
-            className={styles.loadSampleButton}
-            icon={loadSampleLoading ? undefined : <BookOpenText size={16} />}
-            onClick={() => setShowLoadSampleConfirm(true)}
-            disabled={isProcessing || loadSampleLoading}
-          >
-            {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
-          </Button>
-        )}
       </div>
       <div className={styles.panelFill}>
         <TextPanel

@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const pkg = require("./package.json");
 
 module.exports = (env, argv) => {
@@ -86,6 +87,15 @@ module.exports = (env, argv) => {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+    !isDevelopment &&
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, "THIRD-PARTY-LICENSES.txt"),
+            to: "THIRD-PARTY-LICENSES.txt",
+          },
+        ],
+      }),
     isDevelopment && new ReactRefreshWebpackPlugin({
       overlay: false,
     }),

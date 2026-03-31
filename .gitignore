@@ -9,6 +9,7 @@ env/
 venv/
 node_modules
 dist
+dist-main
 cache
 .coverage*
 *.tmp

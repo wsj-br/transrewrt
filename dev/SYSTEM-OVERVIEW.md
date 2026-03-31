@@ -7,7 +7,6 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Product](#product)
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
