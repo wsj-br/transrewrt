@@ -29,18 +29,6 @@ function pickUserPreferenceEntries(obj) {
 }
 
 /**
- * Strip user-preference keys from a global config object (for one-time migration).
- */
-function stripUserKeysFromGlobalConfig(obj) {
-  if (!obj || typeof obj !== "object") return {};
-  const out = { ...obj };
-  for (const k of Object.keys(out)) {
-    if (!isServerGlobalKey(k)) delete out[k];
-  }
-  return out;
-}
-
-/**
  * For GET /api/config: attach server-global values only for admin.
  */
 function pickServerGlobalEntries(globalConfig, includeValues) {
@@ -56,6 +44,5 @@ module.exports = {
   SERVER_GLOBAL_KEYS,
   isServerGlobalKey,
   pickUserPreferenceEntries,
-  stripUserKeysFromGlobalConfig,
   pickServerGlobalEntries,
 };

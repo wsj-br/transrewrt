@@ -10,6 +10,8 @@ const {
   defaultCapabilities,
 } = require("multi-llm-ts");
 
+const { OPENROUTER_PROVIDER } = require("../openRouterProviderRouting");
+
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 
 /** @type {Record<string, string>} config key / env internal name -> multi-llm-ts engine id */
@@ -702,6 +704,7 @@ async function streamOpenRouterCompletion({
     model: innerModelId,
     messages,
     temperature,
+    provider: OPENROUTER_PROVIDER,
     stream: true,
     stream_options: { include_usage: true },
   };

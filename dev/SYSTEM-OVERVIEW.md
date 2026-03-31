@@ -2,10 +2,9 @@
 
 Technical architecture, folder structure, tech stack, and design decisions for the Transrewrt application.
 
-## Table of Contents
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
 - [Product](#product)
 - [Architecture](#architecture)

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button, Input, Field } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
+import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
+import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
 
 const useStyles = makeStyles({
@@ -113,10 +115,18 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
           <p className={styles.instruction}>
             {t("You must change your password before continuing.")}
           </p>
-          <form onSubmit={handleChangePasswordSubmit} method="post" action="#" autoComplete="off">
+          <form
+            onSubmit={handleChangePasswordSubmit}
+            method="post"
+            action={getWebAuthFormAction()}
+            autoComplete="on"
+            style={{ position: "relative" }}
+          >
+            <HiddenUsernameForPasswordManager username={loggedInUser?.username} id="login-modal-change-username" />
             <div className={styles.field}>
               <PasswordInput
-                id="login-new-password"
+                id="login-modal-new-password"
+                name="new_password"
                 label={t("New password")}
                 value={newPassword}
                 onChange={setNewPassword}
@@ -130,7 +140,8 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
             </div>
             <div className={styles.field}>
               <PasswordInput
-                id="login-confirm-password"
+                id="login-modal-confirm-password"
+                name="new_password_confirm"
                 label={t("Confirm new password")}
                 value={confirmPassword}
                 onChange={setConfirmPassword}
@@ -162,17 +173,28 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
             ? t("Your session has expired. Please log in again.")
             : t("Enter your credentials to access your account.")}
         </p>
-        <form onSubmit={handleLoginSubmit} method="post" action="#" autoComplete="on">
+        <form
+          onSubmit={handleLoginSubmit}
+          method="post"
+          action={getWebAuthFormAction()}
+          autoComplete="on"
+          id="transrewrt-web-login-modal-form"
+          style={{ position: "relative" }}
+        >
           <div className={styles.field}>
             <Field label={t("Username")}>
               <Input
-                id="login-username"
+                id="login-modal-username"
                 name="username"
                 type="text"
                 value={username}
                 onChange={(_, data) => setUsername(typeof data?.value === "string" ? data.value : "")}
                 placeholder={t("Username")}
                 autoComplete="username"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                inputMode="text"
                 autoFocus
                 disabled={loading}
                 appearance="outline"
@@ -182,7 +204,7 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
           </div>
           <div className={styles.field}>
             <PasswordInput
-              id="login-password"
+              id="login-modal-password"
               name="password"
               label={t("Password")}
               value={password}

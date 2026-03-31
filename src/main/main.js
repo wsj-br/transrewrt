@@ -1,4 +1,13 @@
+// Before any other import: suppress Node deprecation noise (e.g. punycode) on packaged Linux.
+if (process.platform === "linux" && process.env.NODE_ENV !== "development") {
+  process.noDeprecation = true;
+}
+
 const { app, BrowserWindow, screen, ipcMain, protocol, shell } = require("electron");
+
+if (process.env.TRANSREWRT_DISABLE_GPU === "1") {
+  app.disableHardwareAcceleration();
+}
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
@@ -337,7 +346,7 @@ const createWindow = () => {
     minWidth: 1220,
     minHeight: 840,
     backgroundColor: "#1a1a1a",
-    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
+    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -430,7 +439,7 @@ const createSettingsWindow = () => {
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
     backgroundColor: "#1a1a1a",
-    icon: path.join(__dirname, "../../images/transrewrt_logo.ico"),
+    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -522,7 +531,37 @@ ipcMain.handle("shell:openExternal", async (_event, url) => {
   return true;
 });
 
-const { registerAppDbHandlers } = require("./appDb");
+/** Packaged: extraFiles place file in resources. Dev: repo root next to package.json. */
+function getThirdPartyLicensesPath() {
+  const candidates = [];
+  if (app.isPackaged) {
+    candidates.push(path.join(process.resourcesPath, "THIRD-PARTY-LICENSES.txt"));
+  }
+  candidates.push(path.join(app.getAppPath(), "THIRD-PARTY-LICENSES.txt"));
+  candidates.push(path.join(process.cwd(), "THIRD-PARTY-LICENSES.txt"));
+  for (const p of candidates) {
+    try {
+      if (p && fs.existsSync(p)) return p;
+    } catch {
+      /* ignore */
+    }
+  }
+  return null;
+}
+
+ipcMain.handle("shell:readThirdPartyLicenses", async () => {
+  const filePath = getThirdPartyLicensesPath();
+  if (!filePath) return { ok: false, error: "not_found" };
+  try {
+    const fileText = await fs.promises.readFile(filePath, "utf8");
+    return { ok: true, text: fileText };
+  } catch (e) {
+    return { ok: false, error: e?.message || "read_failed" };
+  }
+});
+
+const { registerAppDbHandlers, getDb } = require("./appDb");
+const { registerConfigBackupIpc } = require("./configBackupIpc");
 
 app.on("ready", () => {
   if (process.env.NODE_ENV !== "development") {
@@ -578,6 +617,22 @@ app.on("ready", () => {
   }
 
   registerAppDbHandlers(ipcMain, () => app.getPath("userData"));
+  registerConfigBackupIpc(
+    ipcMain,
+    () => getDb(),
+    app.getPath("userData"),
+    () => {
+      loadConfigFromFile();
+      loadStateFromFile();
+      BrowserWindow.getAllWindows().forEach((w) => {
+        try {
+          w.webContents.send("settings-updated");
+        } catch {
+          /* ignore */
+        }
+      });
+    },
+  );
   loadConfigFromFile();
   loadStateFromFile();
   saveConfigToFile(configCache);

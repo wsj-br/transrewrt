@@ -1,8 +1,10 @@
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const pkg = require("./package.json");
 
 module.exports = (env, argv) => {
@@ -85,6 +87,15 @@ module.exports = (env, argv) => {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+    !isDevelopment &&
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, "THIRD-PARTY-LICENSES.txt"),
+            to: "THIRD-PARTY-LICENSES.txt",
+          },
+        ],
+      }),
     isDevelopment && new ReactRefreshWebpackPlugin({
       overlay: false,
     }),
@@ -147,6 +158,21 @@ module.exports = (env, argv) => {
         changeOrigin: false,
       },
     ],
+    ...(isDevelopment
+      ? {
+          setupMiddlewares: (middlewares, devServer) => {
+            devServer.app.get("/THIRD-PARTY-LICENSES.txt", (_req, res) => {
+              const licensePath = path.join(__dirname, "THIRD-PARTY-LICENSES.txt");
+              if (!fs.existsSync(licensePath)) {
+                res.status(404).type("text/plain").send("Third-party licenses file not found.");
+                return;
+              }
+              res.type("text/plain; charset=utf-8").sendFile(path.resolve(licensePath));
+            });
+            return middlewares;
+          },
+        }
+      : {}),
     client: {
       // default host/port so HMR works for both watch (3030) and watch:web (5000)
       overlay: {

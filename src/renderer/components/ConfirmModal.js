@@ -59,6 +59,7 @@ const ConfirmModal = ({
   customBody,
   hideConfirm = false,
   maxWidth,
+  confirmDisabled = false,
 }) => {
   const styles = useStyles();
 
@@ -82,6 +83,7 @@ const ConfirmModal = ({
             <Button
               appearance="primary"
               onClick={onConfirm}
+              disabled={confirmDisabled}
               className={danger ? styles.confirmButtonDanger : undefined}
             >
               {confirmLabel}
@@ -104,6 +106,7 @@ ConfirmModal.propTypes = {
   customBody: PropTypes.node,
   hideConfirm: PropTypes.bool,
   maxWidth: PropTypes.string,
+  confirmDisabled: PropTypes.bool,
 };
 
 export default ConfirmModal;

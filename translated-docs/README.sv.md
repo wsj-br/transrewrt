@@ -1,107 +1,95 @@
 ---
-translated_at: "2026-03-27T23:15:18.407Z"
-source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
-source_mtime: "2026-03-27T20:34:13.877Z"
-model: "qwen/qwen3-235b-a22b-2507"
+translation_last_updated: '2026-03-31T22:58:02.516Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
+translation_language: sv
+source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Transrewrt-logotyp" width="120" />
-</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Innehållsförteckning**
 
-<h1 align="center">Transrewrt</h1>
+- [Skärmdumpar](#screenshots)
+- [Innehållsförteckning](#table-of-contents)
+- [Snabbstart](#quick-start)
+- [Installation](#installation)
+  - [Windows (Electron)](#windows-electron)
+  - [Linux (Electron)](#linux-electron)
+  - [Docker](#docker)
+  - [Konfigurera tidszon](#configuring-the-timezone)
+- [Hämta en OpenRouter API-nyckel](#getting-an-openrouter-api-key)
+- [Konfiguration och miljö](#configuration-and-environment)
+- [Utveckling och arkitektur](#development-and-architecture)
+- [Rapportera problem](#reporting-issues)
+- [Ansvarsfriskrivning](#disclaimer)
+- [Licens](#license)
 
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Version"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Licens: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Plattform">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade prompter – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller som självvärd webbapplikation (Docker).
+AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller som självvärdd webbapp (Docker).
 
-- **Översätt** — mellan dussintals språk, med automatisk källdetektering
-- **Omskriver** — korrigerar grammatik, förbättrar klarhet, formellt/informellt, förkortar, expanderar, tekniskt
-- **Omvandla** — anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
-- **Historik** — fullständig körningshistorik med in-/ut-data, filtrering och export
-- **Modeller och kostnader** — välj modeller från alla konfigurerade leverantörer; kostnads- och användningsöversikter med loggar, sammanfattningar per modell/åtgärd/dag
-- **UI** — stöd för flera språk (30+ språk, stöd för RTL), teckensnitt, ...
+- **Översätt** — mellan dussintals språk, med automatisk källspråksidentifiering
+- **Omskriv** — korrigerar grammatik, förbättrar tydlighet, formellt/informellt, kortast, utöka, tekniskt
+- **Omvandla** — anpassade AI-frågor; skapa och hantera frågor, valfritt målspråk per fråga
+- **Historik** — fullständig körningshistorik med inmatning/utmatning, filtrering och export
+- **Modeller & kostnad** — välj modeller från alla konfigurerade leverantörer; kostnads- och användningsöversikter med loggar, sammanfattningar per modell/operation/dag
+- **Användargränssnitt** — flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
 - **Webbläge** — stöd för flera användare med administratörsroller
 - **Skrivbord** — Electron-app för Windows och Linux
-- **Självvärd** — Docker-avbild för amd64 & arm64 (klar för Raspberry Pi)
+- **Självvärdd** — Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
 
-När du har installerat programmet, se **[Användarhandboken](USER-GUIDE.sv.md)** för en genomgång av alla funktioner.
+När du har installerat programmet, se **[Användarhandbok](USER-GUIDE.sv.md)** för en fullständig genomgång av alla funktioner.
 
-<small>**Läs på andra språk:** </small>
-<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+**Läs på andra språk:**
+[Engelska (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [Förenklad kinesiska](README.zh-CN.md) · [Traditionell kinesiska](README.zh-TW.md) · [Kroatiska](README.hr.md) · [Tjeckiska](README.cs.md) · [Nederländska](README.nl.md) · [Engelska (US)](README.en-US.md) · [Filippinska](README.tl.md) · [Franska](README.fr.md) · [Tyska](README.de.md) · [Grekiska](README.el.md) · [Hindi](README.hi.md) · [Ungerska](README.hu.md) · [Italienska](README.it.md) · [Japanska](README.ja.md) · [Javanesiska](README.jv.md) · [Koreanska](README.ko.md) · [Malajiska](README.ms.md) · [Persiska](README.fa.md) · [Polska](README.pl.md) · [Portugisiska (PT)](README.pt.md) · [Punjabi](README.pa.md) · [Rumänska](README.ro.md) · [Ryska](README.ru.md) · [Slovakiska](README.sk.md) · [Spanska](README.es.md) · [Swahili](README.sw.md) · [Svenska](README.sv.md) · [Telugu](README.te.md) · [Thailändska](README.th.md) · [Turkiska](README.tr.md) · [Ukrainska](README.uk.md) · [Vietnamesiska](README.vi.md)
 
-<small>
-
-> **Obs! Översättning av gränssnitt och dokumentation:** Alla gränssnittsspråk utom det originala engelska (UK) 
+> **Obs om översättningar av användargränssnitt och dokumentation:** Alla gränssnittsspråk utom det ursprungliga engelska (UK)
 > har översatts med hjälp av AI-modeller; formuleringarna kan vara otydliga eller innehålla fel.
-
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
 
 ## Skärmdumpar
 
 **Språkval**
 
-![Språkval](../images/screenshots/sv/language-selector.png)
+Språkval
 
 **Översätt**
 
-![Översätt](../images/screenshots/sv/translate.png)
+Översätt
 
-**Transformera – frågeredigerare**
+**Omvandla – frågeredigerare**
 
-![Transformera – frågeredigerare](../images/screenshots/sv/transform-prompt-edit.png)
+Omvandla – frågeredigerare
 
-**Instrumentpanel**
+**Översiktspanel**
 
-![Kostnadsinstrumentpanel](../images/screenshots/sv/dashboard-summary.png)
+Översiktspanel – sammanfattning av användning
 
 **Historik**
 
-![Historik](../images/screenshots/sv/history.png)
+Historik
 
 **Inställningar – modellval**
 
-![Inställningar – modellval](../images/screenshots/sv/settings-models.png)
+Inställningar – modellval
 
-<br/><br/>
-
-<a id="table-of-contents"></a>
 ## Innehållsförteckning
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Snabbstart](#quick-start)
 - [Installation](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
+  - [Konfigurera tidszon](#configuring-the-timezone)
 - [Hämta en OpenRouter API-nyckel](#getting-an-openrouter-api-key)
 - [Konfiguration och miljö](#configuration-and-environment)
 - [Utveckling och arkitektur](#development-and-architecture)
-- [Versioner och taggar](#releases-and-tags)
-- [Bidra](#contributing)
+- [Rapportera problem](#reporting-issues)
 - [Ansvarsfriskrivning](#disclaimer)
 - [Licens](#license)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## Snabbstart
 
-<br/><br/>
-
-<a id="quick-start"></a>
-
-## Komma igång snabbt
-
-**Docker (rekommenderas för lokal värdtjänst)**
+**Docker (rekommenderas för självvärdbaserad drift)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -114,81 +102,82 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Ersätt `sk-or-your-key` med din [OpenRouter API-nyckel](https://openrouter.ai/keys) (eller ställ in nycklar för andra leverantörer; se [Konfiguration](#configuration-and-environment)). Öppna [http://localhost:5000](http://localhost:5000) och ändra standardadministratörslösenordet innan du exponerar tjänsten.
+Ersätt `sk-or-your-key` med din [OpenRouter API-nyckel](https://openrouter.ai/keys) (eller ange nycklar för andra leverantörer; se [Konfiguration](#configuration-and-environment)). Öppna [http://localhost:5000](http://localhost:5000) och ändra standardlösenordet för administratör innan du exponerar tjänsten.
 
-<br/>
-
-> ℹ️ **OBS**<br/>
-> I Docker så ställs LLM-autentiseringsuppgifter in via miljövariabler som t.ex. `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (inte i webbgränssnittet). I skrivbordsversionen (Electron) konfigurerar du nycklar i **Inställningar → API**.
-
-<br/>
+> ℹ️ **OBS**  
+>
+> I Docker anges LLM-inloggningsuppgifter med miljövariabler som `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (inte i webbgränssnittet). På skrivbordet (Electron) konfigurerar du nycklar i **Inställningar → API**.
 
 **Windows**
 
-Ladda ner den senaste `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases), kör installationsprogrammet och starta sedan från Start-menyn eller genvägen på skrivbordet. Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för kostnadsfria modeller.
-
-<br/>
+Ladda ner den senaste `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases), kör installationsprogrammet och starta sedan via Start-menyn eller genvägen på skrivbordet. Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för gratis modeller.
 
 **Linux**
 
-Ladda ner `.AppImage`-filen för din processor från [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` för vanliga datorer, `arm64` för många ARM-enheter, inklusive Raspberry Pi 4+), därefter:
+Ladda ner `.AppImage`-filen för din processor från [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` för vanliga datorer, `arm64` för många ARM-enheter, inklusive Raspberry Pi 4+), och gör sedan följande:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för kostnadsfria modeller.
+Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för gratis modeller.
 
-På Debian/Ubuntu kan du behöva installera ytterligare beroenden först:
+**Konsolmeddelanden:** Paketerade Linux-versioner (`x64` och `arm64` AppImages) undertrycker Node-avvecklingsvarningar i terminalen (till exempel det inbyggda `punycode`-modulen). Om Chromium skriver ut GPU-/EGL-fel som "GLES3 stöds inte" men appen fungerar kan du tysta dem genom att inaktivera hårdvaruacceleration:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Se [Installation → Linux](#linux-electron) för detaljer.
+Det gäller även på amd64; ändra filnamnet så att det matchar din nedladdning. Se [Installation → Linux (Electron)](#linux-electron) för mer detaljer.
 
-<br/>
+På Debian/Ubuntu kan du behöva extra **körtidsbibliotek** som Chromium förväntar sig (ofta redan finns på fullständiga skrivbord). Använd **`libnotify4`** för skrivbordsaviseringar – **inte** `libnotify-dev` (det är för att bygga programvara, inte för att köra det paketerade AppImage):
 
-> ℹ️ **OBS**<br/>
-> macOS stöds inte för närvarande. Transrewrt finns tillgängligt för Windows, Linux och Docker.
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+Minimala eller anpassade avbildningar kan fortfarande misslyckas med en saknad `.so`; installera det paket som nämns i felet (vanliga tillägg: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Vissa miljöer kräver FUSE för att köra AppImages (t.ex. `libfuse2` på Ubuntu 22.04+), eller använd `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-När appen körs, se **[Användarhandbok](USER-GUIDE.sv.md)** för att lära dig hur du översätter, skriver om och omvandlar text, hanterar prompts och konfigurerar modeller.
+Se [Installation → Linux](#linux-electron) för samma sammanfattning.
 
-<br/><br/>
+> ℹ️ **OBS**  
+>
+> macOS stöds för närvarande inte. Transrewrt finns tillgängligt för Windows, Linux och Docker.
 
-<a id="installation"></a>
+När appen körs, se **[Användarhandbok](USER-GUIDE.sv.md)** för att lära dig hur du översätter, omskriver och omvandlar text, hanterar prompts och konfigurerar modeller.
 
 ## Installation
 
-<a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Ladda ner den senaste installationsfilen från [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Kör `.exe`-filen och följ installationsguiden.
-- Första körningen: starta appen från Start-menyn eller en genväg på skrivbordet.
+- Kör `.exe`-filen och följ installationsprogrammet.
+- Första körningen: starta appen från Start-menyn eller genvägen på skrivbordet.
 
-<br/>
+> ℹ️ **OBS**  
+>
+> Windows kan visa en av dessa säkerhetsvarningar (normalt för osignerade/oberoende appar):
+>
+> - **Anvarkontroll (UAC)**: "Vill du tillåta att den här appen från en okänd utgivare gör ändringar i din enhet?" → Klicka på **Ja**.
+> - **Microsoft Defender SmartScreen**: "Windows skyddade din dator" → Klicka på **Mer info** → **Kör ändå**.
+>
+> Detta sker eftersom appen inte är signerad av Microsoft eller en större utgivare – den är säker om den laddats ner från våra officiella GitHub-utgåvor
+>  (verifiera SHA256-kontrollsumman nedan).
 
-<a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Ladda ner rätt `.AppImage`-fil (`x64` eller `arm64`) från [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Ladda ner rätt `.AppImage`-fil (`x64` eller `arm64`) från [Utgåvor](https://github.com/wsj-br/transrewrt/releases).
 - Kör: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` på x86_64/amd64, eller använd filnamnet `...-arm64.AppImage` på ARM64.
-- Ytterligare beroenden (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Se [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) för mer information.
+- **Körningsbibliotek för Debian/Ubuntu** (Electron/Chromium; samma som i [Snabbstart → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — använd **`libnotify4`**, inte `libnotify-dev`. På minimala system, installera eventuella saknade `.so` som rapporteras i terminalen; tillägg som `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` krävs ofta. AppImage kan behöva `libfuse2` (Ubuntu 22.04+) eller `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
+- **GPU-meddelanden:** Chromium kan logga GPU- eller EGL-initieringsfel på vissa system (särskilt ARM); appen kan ändå köras normalt. För att undvika dessa meddelanden, starta med hårdvaruacceleration avstängd: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (eller ditt `arm64`-filnamn).
 
-<br/>
-
-<a id="docker"></a>
 ### Docker
 
 - Hämta: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Ange minst en providernyckel via miljövariabler (till exempel `OPENROUTER_API_KEY` för OpenRouter). Skicka variabler med `-e` eller via `docker compose` / `.env` så att hemligheter inte blir inbakade i avbildningen.
-- Providernycklar anges **inte** i webbgränssnittet; servern läser dem från miljön.
+- Ange minst en leverantörsnyckel via miljövariabel (till exempel `OPENROUTER_API_KEY` för OpenRouter). Skicka variabler med `-e` eller via `docker compose` / `.env` så att hemligheter inte läggs in i avbildningen.
+- Leverantörsnycklar **anges inte** i webbgränssnittet; servern läser dem från miljön.
 
-Exempel – namngiven volym för persistent lagring (OpenRouter-nyckel via env):
+Exempel – namngiven volym för beständighet (OpenRouter-nyckel via env):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -199,154 +188,126 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-eller om du föredrar att använda Docker Compose:
+eller om du föredrar att använda Docker Compose, använd:
 
-# ladda ner compose-filen
+```
+# download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# redigera filen för att lägga till API-nycklarna
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
-# starta containern
+# start the container
 docker compose -f transrewrt.yml up -d
 ```
 
-<br/>
+Se [Configuration](#configuration-and-environment) för alla miljövariabler, såsom `PORT`, `CONFIG_PATH`, `TZ` och LLM-nycklar (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-| Alternativ | Beskrivning                                                                                                                            |
-|----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| Port     | `5000` (mappa med `-p 5000:5000`)                                                                                                       |
-| Volume   | Montera `/app/data` för konfigurations- och databaspersistens                                                                          |
-| Miljövariabler | `PORT`, `CONFIG_PATH`, samt LLM-nycklar (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - se [Konfiguration](#configuration-and-environment) |
+### Konfigurera tidszonen
 
-För att bygga och köra från källkod: `docker compose up --build -d` eller `pnpm docker:up` - se [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Applikationens användargränssnitt följer webbläsarens **lokalinställningar och tidszon**. För **serversidan** (loggning och liknande) använder containern miljövariabeln `TZ`. Standard är `TZ=Europe/London`.
 
-<br/><br/>
+För att använda en annan tidszon, ange `TZ` i din Compose-fil, till exempel:
 
-<a id="getting-an-openrouter-api-key"></a>
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
+```
 
-## Få en OpenRouter API-nyckel
+Eller skicka den när containern körs (Docker):
 
-Transrewrt stöder flera AI-leverantörer. [OpenRouter](https://openrouter.ai) är ett populärt val eftersom det samlar många modeller under en enda nyckel och erbjuder gratismodeller.
+```bash
+--env TZ=America/Sao_Paulo
+```
+
+På många Linux-system kan du kopiera systemets tidszonsnamn med:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+En lista över giltiga tidszonsnamn finns i [tz-databasen](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
+
+## Hämta en OpenRouter API-nyckel
+
+Transrewrt stöder flera AI-leverantörer. [OpenRouter](https://openrouter.ai) är ett populärt val eftersom det samlar många modeller under en nyckel och erbjuder gratis modeller.
 
 1. Skapa ett konto eller logga in på [openrouter.ai](https://openrouter.ai).
-2. Öppna sidan [Keys](https://openrouter.ai/keys) och skapa en ny nyckel (ge den ett namn och ange eventuellt en kreditgräns). Du kan använda gratismodeller utan att lägga till kredit.
-3. **Skrivbord (Electron):** klistra in nycklar i **Inställningar → API**. **Docker:** ange miljövariabler som t.ex. `OPENROUTER_API_KEY` (se [Snabbstart](#quick-start)).
+2. Öppna sidan [Keys](https://openrouter.ai/keys) och skapa en ny nyckel (ge den ett namn och ange eventuellt en kreditgräns). Du kan använda gratis modeller utan att lägga till kredit.
+3. **Skrivbord (Electron):** klistra in nycklar i **Inställningar → API**. **Docker:** ange miljövariabler som `OPENROUTER_API_KEY` (se [Snabbstart](#quick-start)).
 
-Använd inte OpenRouters modell **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) för översättning, omskrivning eller omvandling: den returnerar JSON-begärandenyttolaster, inte den färdiga texten för dessa uppgifter. Se [Inställningar → Modeller](USER-GUIDE.sv.md#models) i Användarhandboken.
+Använd inte OpenRouters **Body Builder**-modell (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) för översätt, omskriv eller omvandla: den returnerar JSON-begärandenyttolaster, inte den färdiga texten för dessa uppgifter. Se [Inställningar → Modeller](USER-GUIDE.sv.md#models) i användarhandboken.
 
-Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) eller köra modeller lokalt med [Ollama](https://ollama.com). Se [Konfiguration](#configuration-and-environment) för en fullständig lista över tillgängliga leverantörer och miljövariabler.
+Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) eller köra modeller lokalt med [Ollama](https://ollama.com). Se [Configuration](#configuration-and-environment) för en fullständig lista över stödda leverantörer och miljövariabler.
 
-> ⚠️ **VARNING**<br/>
-> Om du använder Ollama från en annan enhet, container eller tjänst, kom ihåg att konfigurera Ollama så att externa anslutningar tillåts (inte endast localhost).
+> ⚠️ **VARNING**  
+>
+> Om du använder Ollama från en annan enhet, container eller tjänst, kom ihåg att konfigurera Ollama för att tillåta externa anslutningar (inte endast localhost).
 
-Mer information om begränsningar, BYOK och annat finns i [OpenRouter-authentisering](https://openrouter.ai/docs/api/reference/authentication).
-
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
+För begränsningar, BYOK och mer, se [OpenRouter-autentisering](https://openrouter.ai/docs/api/reference/authentication).
 
 ## Konfiguration och miljö
 
 **Placering av konfigurationsfiler**
 
-| Distribution | Konfigurationsplats |
-| ------------ | ------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\` |
-| Electron (Linux) | `~/.config/transrewrt/` |
-| Webb / Docker | `/app/data/config.json` (använd en volym för beständighet) |
+| Distribution         | Konfigurationsplats                                   |
+| ------------------ | ------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Web / Docker       | `/app/data/config.json` (använd en volym för att spara) |
 
-<br/>
+**Miljövariabler** (endast webb/Docker; Electron använder den lokala konfigurationsfilen)
 
-**Miljövariabler** (endast för webb/Docker; Electron använder lokal konfigurationsfil)
+| Variabel             | Standard                | Beskrivning                                                                                                                 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`               | `5000`                  | Serverns lyssningsport                                                                                                       |
+| `CONFIG_PATH`        | `/app/data/config.json` | Sökväg till konfigurationsfilen                                                                                                     |
+| `TZ`                 | `Europe/London`         | IANA-tidszon för serversidig tid (loggning, etc.); användargränssnittet följer fortfarande webbläsarens. Se [Docker → tidszon](#docker-timezone) |
+| `OPENROUTER_API_KEY` | *(tom)*               | OpenRouter API-nyckel                                                                                                          |
+| `OPENAI_API_KEY`     | *(tom)*               | OpenAI API-nyckel                                                                                                              |
+| `CEREBRAS_API_KEY`   | *(tom)*               | Cerebras API-nyckel                                                                                                            |
+| `ANTHROPIC_API_KEY`  | *(tom)*               | Anthropic API-nyckel                                                                                                           |
+| `GOOGLE_API_KEY`     | *(tom)*               | Google Gemini API-nyckel                                                                                                       |
+| `DEEPSEEK_API_KEY`   | *(tom)*               | DeepSeek API-nyckel                                                                                                            |
+| `GROQ_API_KEY`       | *(tom)*               | Groq API-nyckel                                                                                                                |
+| `MISTRAL_API_KEY`    | *(tom)*               | Mistral API-nyckel                                                                                                             |
+| `OLLAMA_URL`         | *(tom)*               | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`)                                                                  |
+| `XAI_API_KEY`        | *(tom)*               | xAI API-nyckel                                                                                                                 |
 
-| Variabel | Standard | Beskrivning |
-| ------ | -------- | ----------- |
-| `PORT` | `5000` | Serverns lyssningsport |
-| `CONFIG_PATH` | `/app/data/config.json` | Sökväg till konfigurationsfilen |
-| `OPENROUTER_API_KEY` | *(tom)* | OpenRouter API-nyckel |
-| `OPENAI_API_KEY` | *(tom)* | OpenAI API-nyckel |
-| `CEREBRAS_API_KEY` | *(tom)* | Cerebras API-nyckel |
-| `ANTHROPIC_API_KEY` | *(tom)* | Anthropic API-nyckel |
-| `GOOGLE_API_KEY` | *(tom)* | Google Gemini API-nyckel |
-| `DEEPSEEK_API_KEY` | *(tom)* | DeepSeek API-nyckel |
-| `GROQ_API_KEY` | *(tom)* | Groq API-nyckel |
-| `MISTRAL_API_KEY` | *(tom)* | Mistral API-nyckel |
-| `OLLAMA_URL` | *(tom)* | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`) |
-| `XAI_API_KEY` | *(tom)* | xAI API-nyckel |
+Konfigurera endast de leverantörer du använder. Modell-ID:n är namngivna med namnrymd (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
-Konfigurera endast de leverantörer du använder. Modell-ID:n är namnrymdsmärkta (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, osv.).
+**Kostnadsvisning:** OpenRouter returnerar exakt fakturerad kostnad när det är tillämpligt. Andra leverantörer använder **uppskattad** kostnad från OpenRouters publika modellprissättning när en OpenRouter-nyckel är tillgänglig; utan den kan kostnaden för icke-OpenRouter visas som `0`. Uppskattningar är inte fakturor.
 
-**Kostnadsvisning:** OpenRouter returnerar exakt fakturerad kostnad vid tillämplighet. Andra leverantörer använder **uppskattad** kostnad från OpenRouters publika modellprissättning om en OpenRouter-nyckel är tillgänglig; annars kan kostnaden för icke-OpenRouter visas som `0`. Uppskattningar är inte fakturor.
+**Data och beständighet:** För Docker, montera en volym vid `/app/data` så att `config.json` och SQLite-databasen bevaras över containeromstarter. Utan en volym förloras all data när containern stoppas.
 
-<br/>
-
-**Data och beständighet:** För Docker, montera en volym på `/app/data` så att `config.json` och SQLite-databasen sparas vid omstart av containern. Utan volym förloras all data när containern stoppas.
-
-**Utvecklare:** Efter att ha hämtat ändringar som ersätter den gamla enskilda nyckelkonfigurationen, återställ eller slå samman `data/config.json` med den nya standardformen från `src/config-defaults/config_default.json` om din lokala fil fortfarande använder borttagna fält (`api_key`, `api_url`, proxyinställningar).
-
-<br/>
+**Utvecklare:** Efter att ha hämtat ändringar som ersätter den gamla enkelnyckelkonfigurationen, återställ eller slå ihop `data/config.json` med den nya standardstrukturen från `src/config-defaults/config_default.json` om din lokala fil fortfarande använder borttagna fält (`api_key`, `api_url`, proxyinställningar).
 
 **Webbautentisering:**
 
-- Standardadmin: `admin` / `transrewrt26`.
+- Standardadministratör: `admin` / `transrewrt26`.
 - Hantera användare i **Inställningar → Användare**.
-- Återställ lösenord: `docker exec <container> reset-web-password '<användarnamn>' '<nytt-lösenord>'`
-  (från källkod: `pnpm run reset-web-password -- <användarnamn> <nytt-lösenord>`)
+- Återställ ett lösenord: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (från källkod: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
+> ⚠️ **VARNING**  
+>
+> Ändra standardlösenordet för administratören omedelbart på alla värdar med nätverksåtkomst.
 
-> ⚠️ **VARNING**<br/>
-> Byt det standardiserade administratörslösenordet omedelbart på varje värd som är tillgänglig från nätverket.
-
-<br/>
-
-Nyckelinställningar (typsnitt, modeller, språk, osv.) är tillgängliga i programmets Inställningar.
-
-<br/><br/>
-
-<a id="development-and-architecture"></a>
+Nyckelinställningar (typsnitt, modeller, språk, etc.) finns tillgängliga i applikationens Inställningar.
 
 ## Utveckling och arkitektur
 
-- **Utveckling:** Installation, bygge, test och distribution (Electron, Webb, Docker) – se **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arkitektur och systemöversikt:** Mappstruktur, teknikstack, designbeslut – se **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Utveckling:** Konfiguration, version, test och distribution (Electron, Webb, Docker) - se **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Arkitektur och systemöversikt:** Mappstruktur, teknikstack, designbeslut - se **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-<br/><br/>
+## Rapportera problem
 
-<a id="releases-and-tags"></a>
-## Versioner och taggar
-
-- **Git-taggar** `v`* (t.ex. `v1.0.10`) utlöser [utgivningsarbetsflödet](.github/workflows/release.yml). **GitHub-releases** bifogar Windows-installationsprogram (`.exe`) och Linux AppImages (**x64** och **arm64**).
-- **Docker-avbildningar** publiceras till `ghcr.io/wsj-br/transrewrt`. Avbildningstaggar matchar Git-versionen (t.ex. `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) samt `latest`. Flera arkitekturer: `linux/amd64` och `linux/arm64` (t.ex. Raspberry Pi).
-
-<br/><br/>
-
-<a id="contributing"></a>
-## Bidra
-
-1. Flaska databasen.
-2. Skapa en funktionsgren: `git checkout -b feature/min-funktion`
-3. Genomför dina ändringar med ett tydligt meddelande.
-4. Skicka och öppna en pull-begäran mot `main`.
-
-Följ gärna den befintliga kodstilen och testa dina ändringar i både Electron- och webbläge innan du skickar in dem. Se [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) för instruktioner om bygge och testning.
-
-<br/>
-
-**Rapportera problem:** Öppna en issue på [GitHub](https://github.com/wsj-br/transrewrt/issues). Inkludera din plattform (Windows / Linux / Docker) och appversion (visas i dialogrutan Om eller på Releases-sidan).
-
-<br/><br/>
-
-<a id="disclaimer"></a>
+Öppna en ärende på [GitHub](https://github.com/wsj-br/transrewrt/issues). Inkludera din plattform (Windows / Linux / Docker) och appversion (visas i dialogrutan Om eller på sidan Releases).
 
 ## Ansvarsfriskrivning
 
-Produktnamn och ikoner tillhör sina respektive ägare och används enbart för identifikationsändamål. Denna mjukvara är inte ansluten till eller godkänd av något av de nämnda varumärkena.
+Produktnamn och ikoner tillhör sina respektive ägare och används endast för identifiering. Denna programvara är inte ansluten till eller godkänd av något av de nämnda varumärkena.
 
-<br/><br/>
-
-<a id="license"></a>
 ## Licens
 
-Upphovsrätt © 2026 Waldemar Scudeller Jr.
+Copyright © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

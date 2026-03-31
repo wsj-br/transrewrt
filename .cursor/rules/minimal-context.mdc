@@ -29,5 +29,6 @@ alwaysApply: true
 ## CHANGELOG
 
 - For **any notable change** (features, fixes, refactors, config, dependencies), **add an entry** under the **Unreleased** section of **dev/CHANGELOG.md**.
+- Don't keep changes to the documentation files.
 - Use **Keep a Changelog** types: Added, Changed, Deprecated, Removed, Fixed, Security.
 - One short line per change; no need to duplicate full commit messages.

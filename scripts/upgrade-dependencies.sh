@@ -20,16 +20,6 @@ if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" = "${0}" ]; then
   fi
 fi
 
-# Load nvm (it's a shell function, not available in script subshells by default)
-export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  # shellcheck source=/dev/null
-  . "$NVM_DIR/nvm.sh"
-fi
-
-# shellcheck source=scripts/nvm-lts-resolve-version.sh
-. "$SCRIPT_DIR/nvm-lts-resolve-version.sh"
-
 _transrewrt_upgrade_dependencies() {
   set -e
 
@@ -44,50 +34,23 @@ _transrewrt_upgrade_dependencies() {
   echo "🔄 Upgrading dependencies "
   echo "--------------------------------"
 
-  # Upgrade nvm itself to the latest tagged release (nvm-sh is installed as a git clone).
-  if [ -d "$NVM_DIR/.git" ]; then
-    echo -e "${BLUE}Upgrading nvm to the latest release...${RESET}"
-    (
-      cd "$NVM_DIR" || exit 1
-      git fetch -q --tags origin
-      git checkout -q "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
-    )
-    # shellcheck source=/dev/null
-    . "$NVM_DIR/nvm.sh"
+  _transrewrt_suppress_done_was_set=0
+  _transrewrt_suppress_done_prev=
+  if [ -n "${TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE+x}" ]; then
+    _transrewrt_suppress_done_prev=$TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE
+    _transrewrt_suppress_done_was_set=1
   fi
-
-  # Upgrade Node.js to the latest LTS (same idea as upgrade-tools.ps1: capture install output,
-  # parse the version, and nvm use that version.)
-  if declare -F nvm >/dev/null 2>&1; then
-    echo -e "${BLUE}🔄  Upgrading Node.js to the latest LTS version...${RESET}"
-    install_out=$(nvm install --lts 2>&1)
-    printf '%s\n' "$install_out"
-    nvm_resolve_lts_node_version "$install_out" || true
-    if [ -n "$node_ver" ]; then
-      echo -e "${GREEN}Using Node.js version ${node_ver}${RESET}"
-      nvm use "$node_ver"
-    else
-      echo -e "${YELLOW}Could not parse installed LTS version; using nvm use --lts${RESET}"
-      nvm use --lts
-    fi
-    resolved_node_ver=$(nvm current 2>/dev/null)
-    resolved_node_ver=${resolved_node_ver#v}
-    if [ -z "$resolved_node_ver" ] || [ "$resolved_node_ver" = "system" ]; then
-      resolved_node_ver=$node_ver
-    fi
-    # Only when executed as ./script (subshell): parent shell still has old Node.
-    if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" = "${0}" ] && [ -n "$resolved_node_ver" ] && [ "$resolved_node_ver" != "system" ]; then
-      echo ""
-      echo -e "${YELLOW}Tip:${RESET} This run was a separate process; your prompt may still show an older Node until you run this script with ${GREEN}source${RESET} so nvm runs in this shell:"
-      echo -e "  ${GREEN}source ${SCRIPT_DIR}/upgrade-dependencies.sh${RESET}"
-    fi
+  TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE=1
+  export TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE
+  # shellcheck source=scripts/upgrade-tools.sh
+  . "${SCRIPT_DIR}/upgrade-tools.sh"
+  if [ "$_transrewrt_suppress_done_was_set" -eq 1 ]; then
+    TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE=$_transrewrt_suppress_done_prev
+    export TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE
   else
-    echo -e "${YELLOW}nvm not found. Install nvm (https://github.com/nvm-sh/nvm) to upgrade Node.js, or skip this step.${RESET}"
+    unset TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE
   fi
-
-  # ensure pnpm is installed
-  echo -e "${BLUE}🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...${RESET}"
-  npm install -g pnpm npm-check-updates doctoc
+  unset _transrewrt_suppress_done_prev _transrewrt_suppress_done_was_set
 
   # npm-check-updates: optionally pin eslint, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks
   # until the latest published plugins declare peerDependencies.eslint that allows ESLint 10

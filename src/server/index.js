@@ -17,6 +17,7 @@ const createApiLlmRouter = require("./routes/apiLlm");
 const createCallsRouter = require("./routes/calls");
 const createCustomPromptsRouter = require("./routes/customPrompts");
 const createUsersRouter = require("./routes/users");
+const createConfigBackupRouter = require("./routes/configBackup");
 const { listLlmEnvVarsPresent } = require("../shared/llm");
 
 const app = express();
@@ -30,7 +31,26 @@ const DEFAULT_CONFIG_PATH = path.join(
   "config-defaults",
   "config_default.json",
 );
-const BUILD_TIMESTAMP_PATH = path.join(__dirname, "..", "..", "build_timestamp");
+/** Docker layout: /app/server/index.js + /app/build_timestamp (one level up). Dev: src/server + repo-root file (two levels up). */
+function resolveBuildTimestampPath() {
+  const dockerLayout = path.join(__dirname, "..", "build_timestamp");
+  const devLayout = path.join(__dirname, "..", "..", "build_timestamp");
+  if (fs.existsSync(dockerLayout)) return dockerLayout;
+  if (fs.existsSync(devLayout)) return devLayout;
+  return devLayout;
+}
+const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
+
+/** Docker: /app/THIRD-PARTY-LICENSES.txt or /app/dist/THIRD-PARTY-LICENSES.txt (after build). Dev: repo root via src/server → ../.. */
+function resolveThirdPartyLicensesPath() {
+  const oneUp = path.join(__dirname, "..", "THIRD-PARTY-LICENSES.txt");
+  const inDist = path.join(__dirname, "..", "dist", "THIRD-PARTY-LICENSES.txt");
+  const twoUp = path.join(__dirname, "..", "..", "THIRD-PARTY-LICENSES.txt");
+  if (fs.existsSync(oneUp)) return oneUp;
+  if (fs.existsSync(inDist)) return inDist;
+  if (fs.existsSync(twoUp)) return twoUp;
+  return null;
+}
 
 const DEV_WEB = process.env.DEV_WEB === "true";
 
@@ -126,6 +146,10 @@ app.use(
 app.use("/api", createUsersRouter(appDb.getDb, log, appDb, configFile, DEFAULT_CONFIG_PATH));
 app.use(
   "/api",
+  createConfigBackupRouter(configFile, appDb.getDb, appDb, dataDir, DEFAULT_CONFIG_PATH, log),
+);
+app.use(
+  "/api",
   createCustomPromptsRouter(
     appDb.getDb,
     appDb.promptTargetLanguageToDb,
@@ -136,6 +160,14 @@ app.use(
 
 // One level up: dev has src/server → project root; Docker has /app/server → /app
 const distPath = path.resolve(path.join(__dirname, "..", "dist"));
+
+app.get("/THIRD-PARTY-LICENSES.txt", (req, res) => {
+  const licensePath = resolveThirdPartyLicensesPath();
+  if (!licensePath) {
+    return res.status(404).type("text/plain").send("Third-party licenses file not found.");
+  }
+  return res.type("text/plain; charset=utf-8").sendFile(path.resolve(licensePath));
+});
 
 if (!DEV_WEB) {
   app.use(express.static(distPath));
@@ -169,7 +201,6 @@ async function startServer() {
     try {
       await appDb.seedDefaultAdmin(configFile, DEFAULT_CONFIG_PATH);
       appDb.assignCustomPromptsToAdmin();
-      appDb.migrateUserPreferencesFromGlobalConfig(configFile, DEFAULT_CONFIG_PATH);
     } catch (err) {
       log.error("[SERVER] Seed default admin failed: " + err.message, { stack: err.stack });
     }

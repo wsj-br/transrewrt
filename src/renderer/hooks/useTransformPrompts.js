@@ -175,7 +175,7 @@ export function useTransformPrompts({
         setError("No prompts in sample file.");
         return;
       }
-      const existing = await api.getAll().catch(() => []);
+      const existing = await api.getAll();
       const existingNames = (Array.isArray(existing) ? existing : [])
         .map((p) => p?.name)
         .filter(Boolean);
@@ -201,29 +201,36 @@ export function useTransformPrompts({
     const api = getCustomPromptsApi();
     if (!api) return;
     try {
+      let createdRowId = null;
       if (editingPrompt?.id != null) {
         const res = await api.update(editingPrompt.id, payload);
         if (res?.error) throw new Error(res.error);
       } else {
         const res = await api.create(payload);
         if (res?.error) throw new Error(res.error);
-        const newId = res?.id;
-        if (newId != null) {
-          const list = await api.getAll();
-          const added = Array.isArray(list)
-            ? list.find((p) => p.id === newId || p.name === payload.name)
-            : null;
-          if (added) {
-            setTransformPromptId(added.id);
-            updateSettings({ transform_prompt: added.name });
-          }
-        }
+        if (res?.id != null) createdRowId = res.id;
       }
       const list = await api.getAll();
-      setTransformPrompts(Array.isArray(list) ? list : []);
+      const prompts = Array.isArray(list) ? list : [];
+      // Set list and selection in one synchronous stretch so no render runs with
+      // a selected id that is not yet in transformPrompts (avoids the "pick first"
+      // effect resetting the dropdown after creating a new prompt).
+      setTransformPrompts(prompts);
       if (editingPrompt?.id != null) {
         setTransformPromptId(editingPrompt.id);
         updateSettings({ transform_prompt: payload.name });
+      } else {
+        const added =
+          createdRowId != null
+            ? prompts.find(
+                (p) =>
+                  String(p.id) === String(createdRowId) || p.name === payload.name,
+              )
+            : prompts.find((p) => p.name === payload.name);
+        if (added) {
+          setTransformPromptId(added.id);
+          updateSettings({ transform_prompt: added.name });
+        }
       }
       setTransformEditMode(false);
       setEditingPrompt(null);

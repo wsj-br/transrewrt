@@ -572,7 +572,7 @@ const App = () => {
           <div className={webFrameClass}>
             <div className={styles.rootInWeb}>
               {isWeb && showChangePasswordModal && (
-                <ChangePasswordModal onClose={() => setShowChangePasswordModal(false)} />
+                <ChangePasswordModal username={currentUser?.username} onClose={() => setShowChangePasswordModal(false)} />
               )}
               <ApiKeyModal
                 show={showApiKeyModal}
@@ -626,7 +626,7 @@ const App = () => {
         {transformPromptToDelete != null && (
           <ConfirmModal
             title={t("Delete prompt")}
-            message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+            message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: transformPromptToDelete.name || t("Untitled") })}
             confirmLabel={t("Delete")}
             cancelLabel={t("Cancel")}
             onConfirm={handleConfirmTransformDelete}
@@ -676,7 +676,7 @@ const App = () => {
       {transformPromptToDelete != null && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
+          message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: transformPromptToDelete.name || t("Untitled") })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmTransformDelete}

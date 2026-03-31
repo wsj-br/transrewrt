@@ -231,7 +231,12 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
       const { whereClause, params } = buildExecutionHistoryWhere(req.query.from, req.query.to, getUsernameForCallsQuery(req), "a");
-      const rows = db.prepare(replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause)).all(...params);
+      const base = replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause);
+      const rawLim = req.query.limit != null ? parseInt(req.query.limit, 10) : NaN;
+      const lim =
+        Number.isFinite(rawLim) && rawLim > 0 ? Math.min(500, Math.floor(rawLim)) : null;
+      const q = lim != null ? `${base} LIMIT ?` : base;
+      const rows = lim != null ? db.prepare(q).all(...params, lim) : db.prepare(q).all(...params);
       res.json({ rows });
     } catch (err) {
       log.error("[API] GET /api/calls/history - Error: " + err.message, { stack: err.stack });

@@ -1,107 +1,95 @@
 ---
-translated_at: "2026-03-27T23:15:22.454Z"
-source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
-source_mtime: "2026-03-27T20:34:13.877Z"
-model: "qwen/qwen3-235b-a22b-2507"
+translation_last_updated: '2026-03-31T22:58:02.502Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
+translation_language: sw
+source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Logo la Transrewrt" width="120" />
-</p>
-
-<h1 align="center">Transrewrt</h1>
-
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Toa"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Leseni: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Jukwaa">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
-
-Zana ya maandishi yenye uwezo wa AI: tafsiri kati ya lugha mbalimbali, andika upya kikamilifu, na ubadilishe kwa maagizo maalum — ukitumia tovuti nyingi za AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama ya kawaida). Imeinuliwa kama programu ya kompyuta (Electron) au kama programu ya wavuti inayohifadhiwa na mtumiaji (Docker).
-
-- **Tafsiri** — kati ya lugha kuna kumbe kila, na ustawi wa kiotomatiki wa lugha ya msingi
-- **Andikisha upya** — sahihi sarufi, wezesha uwazi, wa rasmi/wa kawaida, fupisha, urefu, wa kisayansi
-- **Badilisha** — maagizo ya AI yanayotolewa kibinafsi; unda na usimamie maagizo, lugha ya kuchukua kama moja kwa moja kwa kila maagizo
-- **Historia** — historia kamili ya utekelezaji ikiwa na maandishi ya pembe juu na chini, uvunjaji, na uwezo wa kusafirisha
-- **Mifumo na gharama** — chagua mifumo kutoka kwa mtoa fulani ambaye umeweka; dashibodi za gharama na matumizi pamoja na kumbukumbu, muhimu kwa kila mifumo/kitendo/siku
-- **UI** — kuingiliana kibao cha lugha nyingi (zaidi ya 30, msaada wa kulia-kulia), fonti, ...
-- **Hali ya wavuti** — msaada wa wanatumia wengi wenye vipaji vya usimamizi
-- **Kikompyuta** — programu ya Electron kwa Windows na Linux
-- **Inahifadhiwa na mtumiaji mwenyewe** — picha ya Docker kwa amd64 & arm64 (inayotayarika kwa Raspberry Pi)
-
-Baada ya kuwekwa, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa muhtasari kamili wa vipengele vyote.
-
-<small>**Soma kwa lugha nyingine:** </small>
-<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
-
-> **Kurasa kuhusu tafsiri za UI na ujumbe:** Lugha zote za kuingiliana bila ya Kiingereza cha asili (UK)
-> zimeanzishwa kwa kutumia mfumo wa AI; maneno yanaweza kuwa si sahihi au yaweza kuwa na makosa.
-
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
-
-## Picha za skrini
-
-**Kichagua lugha**
-
-![Kichagua lugha](../images/screenshots/sw/language-selector.png)
-
-**Tafsiri**
-
-![Tafsiri](../images/screenshots/sw/translate.png)
-
-**Badilisha - kuhariri mahojiano**
-
-![Badilisha - kuhariri mahojiano](../images/screenshots/sw/transform-prompt-edit.png)
-
-**Ubao wa uwakilishi**
-
-![Ubao wa bei](../images/screenshots/sw/dashboard-summary.png)
-
-**Historia**
-
-![Historia](../images/screenshots/sw/history.png)
-
-**Mipangilio - kuchagua mfumo**
-
-![Mipangilio - kuchagua mfumo](../images/screenshots/sw/settings-models.png)
-
-<br/><br/>
-
-<a id="table-of-contents"></a>
-## Orodha ya Maudhui
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Jedwali la Maudhui**
 
-- [Anza haraka](#quick-start)
-- [Sakinisha](#installation)
+- [Wachangiazo](#screenshots)
+- [Jedwali la Yaliyomo](#table-of-contents)
+- [Kuanza haraka](#quick-start)
+- [Sakinisho](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
-- [Pata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
-- [Upendeleo na mazingira](#configuration-and-environment)
-- [Maendeleo na kipekee cha mfumo](#development-and-architecture)
-- [Matoleo na kigezo](#releases-and-tags)
-- [Jitoaji](#contributing)
-- [Kukumbushwa](#disclaimer)
+  - [Kusanidi saa kulingana na eneo](#configuring-the-timezone)
+- [Kupata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
+- [Usanidi na mazingira](#configuration-and-environment)
+- [Uundaji na utando](#development-and-architecture)
+- [Kuwasilisha matatizo](#reporting-issues)
+- [Kujitolewa](#disclaimer)
 - [Leseni](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br/><br/>
+Zana ya maandishi yenye nguvu za AI: tafsiri kati ya lugha, andika upya kwa mitindo tofauti, na ubadilishe kwa mandhari maalum — kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama kijitihima). Inatumia kama programu ya kompyuta (Electron) au kama programu ya wavuti inayohifadhiwa kibinafsi (Docker).
 
-<a id="quick-start"></a>
+- **Tafsiri** — kati ya lugha nyingi, na ukaguzi otomatiki wa lugha ya chanzo
+- **Andika upya** — sahihi sarufi, boresha uwazi, muundo rasmi/lofani, fupisha, panua, kwa mitindo ya kiufundi
+- **Badilisha** — mandhari maalum ya AI; tengeneza na usimamize mandhari, lugha ya mpangilio ya kuchagua kwa kila mandhari
+- **Historia** — historia kamili ya utekelezaji ikiwa na maandishi ya pembejeo/ya pato, kupanga kwa kipengele, na toa
+- **Mifano & gharama** — chagua mifano kutoka kwa mtoa huduma yeyote uliyowekwa; ubao wa gharama na matumizi kwa kumbukumbu, muhtasari kwa kifaa/kitendo/siku
+- **UI** — kipindi cha lugha nyingi (zaidi ya 30, msaada wa RTL), fonti, ...
+- **Kipindi cha wavuti** — msaada wa wanatumia wengi wenye majukumu ya msimamizi
+- **Kipengee cha kompyuta** — programu ya Electron kwa Windows na Linux
+- **Inahifadhiwa kibinafsi** — picha ya Docker kwa amd64 & arm64 (inayotayarishwa kwa Raspberry Pi)
+
+Baada ya kusakinisha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa muhtasari wa kipimo kikubwa cha vipengele vyote.
+
+**Soma kwa lugha nyingine:**
+[Kiingereza (Ukingereza)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [Kiingereza (AS)](README.en-US.md) · [Kifilipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)
+
+> **Kumbusho juu ya tafsiri za UI na ukweli:** Lugha zote za kipindi cha mtumiaji isipokuwa Kiingereza (Ukingereza) 
+> zimeketwa kwa kutumia mifano ya AI; maandishi yanaweza kuwa si sahihi au kuwa na makosa.
+
+## Wachangiazo
+
+**Kichagua cha lugha**
+
+Kichagua lugha
+
+**Tafsiri**
+
+Tafsiri
+
+**Badilisha - hariri ya mandhari**
+
+Badilisha - kiredakti cha mandhari
+
+**Ubao**
+
+Muhtasari wa ubao — matumizi
+
+**Historia**
+
+Historia
+
+**Mipangilio - uteuzi wa kifaa**
+
+Mipangilio - kuchagua kifaa
+
+## Jedwali la Yaliyomo
+
+- [Kuanza haraka](#quick-start)
+- [Sakinisha](#installation)
+  - [Windows (Electron)](#windows-electron)
+  - [Linux (Electron)](#linux-electron)
+  - [Docker](#docker)
+  - [Kuweka saa ya eneo](#configuring-the-timezone)
+- [Kupata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
+- [Uwekaji na mazingira](#configuration-and-environment)
+- [Maendeleo na utando](#development-and-architecture)
+- [Ripoti ya matatizo](#reporting-issues)
+- [Kuondoa wajibu](#disclaimer)
+- [Leseni](#license)
 
 ## Kuanza haraka
 
-**Docker (inapatikana kwa ajili ya kusambaza binafsi)**
+**Docker (inashauriwa kwa ajili ya kujitolea)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -114,81 +102,82 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Badilisha `sk-or-your-key` kwa [ufunguo wako wa OpenRouter API](https://openrouter.ai/keys) (au uweke ufunguo wa mtoa mwingine; angalia [Uwiano na Mazingira](#configuration-and-environment)). Fungua [http://localhost:5000](http://localhost:5000) na ubadilishe nenosiri la msimamizi chaguomsingi kabla ya kuwezesha huduma hiyo.
+Badilisha `sk-or-your-key` kufungua [kifungu cha API cha OpenRouter](https://openrouter.ai/keys) (au weka vifungu vya watoa huduma wengine; angalia [Mipangilio](#configuration-and-environment)). Fungua [http://localhost:5000](http://localhost:5000) na ubadilishe nenosiri la msimamizi la chaguo-msingi kabla ya kufichua huduma.
 
-<br/>
-
-> ℹ️ **TAARIFA**<br/>
-> Katika Docker, vitambulisho vya LLM vinawekwa kwa kusaidia vigezo vya mazingira kama vile `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (sio katika UI ya wavuti). Kwenye kompyuta (Electron) unawezawezesha ufunguo kwenye **Mipangilio → API**.
-
-<br/>
+> ℹ️ **TAARIFA**  
+>
+> Katika Docker, vitambulisho vya LLM vinawekwa kwa kutumia vigezo vya mazingira kama vile `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (sio katika UI ya wavuti). Kwenye kompyuta (Electron) unawezesha vitambulisho katika **Mipangilio → API**.
 
 **Windows**
 
-Pakua `Transrewrt Setup x.y.z.exe` ya hivi karibuni kutoka kwenye [Matoleo](https://github.com/wsj-br/transrewrt/releases), sajili, kisha anza kwenye menyu ya Start au kipashio cha desktop. Weka ufanisi wako wa API kwenye **Mipangilio → API**. Wanahitaji kuweza kusanidi mpangilio wa mtoa angalau mmoja, OpenRouter ni kawaida kwa vitengo vinavyopatikana kibure.
-
-<br/>
+Pakua `Transrewrt Setup x.y.z.exe` ya hivi karibuni kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases), endesha kifaa cha kusanidi, kisha anza kutoka kwenye menyu ya Start au kifupisho cha dawati. Weka vifungu vako vya API katika **Mipangilio → API**. Unahitaji kusanidi angalau watoa huduma mmoja, OpenRouter ni kawaida kwa Mifano ya bure.
 
 **Linux**
 
-Pakua `.AppImage` kwa ajili ya CPU yako kutoka kwenye [Matoleo](https://github.com/wsj-br/transrewrt/releases) (`x64` kwa kompyuta za kawaida, `arm64` kwa vifaa vingi vya ARM, ikiwemo Raspberry Pi 4+), kisha:
+Pakua `.AppImage` kwa CPU yako kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases) (`x64` kwa PC za kawaida, `arm64` kwa vifaa vingi vya ARM, ikiwemo Raspberry Pi 4+), kisha:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Weke ufanisi wako wa API kwenye **Mipangilio → API**. Wanahitaji kuweza kusanidi mpangilio wa mtoa angalau mmoja, OpenRouter ni kawaida kwa vitengo vinavyopatikana kibure.
+Weka vifungu vako vya API katika **Mipangilio → API**. Unahitaji kusanidi angalau watoa huduma mmoja, OpenRouter ni kawaida kwa Mifano ya bure.
 
-Kwenye Debian/Ubuntu basi unahitaji kusakinisha zana mbalimbali kwanza:
+**Ujumbe wa konsoli:** Matumizi ya Linux yaliyopakia (`x64` na `arm64` AppImages) huwasha onyo la Node kuhusu vitambulisho vilivyotolewa (kama vile moduli ya ndani `punycode`). Ikiwa Chromium inaonyesha makosa ya GPU / EGL kama vile “GLES3 ni isiyotumika” lakini programu inafanya kazi, unaweza kuzima kwa kutoa ushauri wa harware:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Angalia [Uwekaji → Linux](#linux-electron) kwa maelezo zaidi.
+Hii inatumika pia kwenye amd64; badilisha jina la faili ili linganishe na ulichopakua. Angalia [Sakinisho → Linux (Electron)](#linux-electron) kwa maelezo zaidi.
 
-<br/>
+Kwenye Debian/Ubuntu labda utahitaji **maktaba ya runtime** zaidi ambazo Chromium inazitaka (mara nyingi tayari kwenye desktop kamili). Tumia **`libnotify4`** kwa arifa za desktop—**sio** `libnotify-dev` (hii ni kwa kujenga programu, si kwa kuendesha AppImage iliyopakia):
 
-> ℹ️ **TAARIFA**<br/>
-> macOS haijawezeshwaji kwa sasa. Transrewrt inapatikana kwa ajili ya Windows, Linux, na Docker.
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+Picha rahisi au zilizobadilishwa bado zinaweza kushindwa kwa `.so` inayopokuwa; weka kifurushi kilicho na jina la makosa (ziada za kawaida: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Baadhi ya mazingira yanahitaji FUSE kuendesha AppImages (kama vile `libfuse2` kwenye Ubuntu 22.04+), au tumia `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-Baada ya programu kuanza kuendesha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** ili ujifunze jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, udhibiti wa maagizo, na kuweka vitengo.
+Angalia [Sakinisho → Linux](#linux-electron) kwa muhtasari sawa.
 
-<br/><br/>
+> ℹ️ **TAARIFA**  
+>
+> macOS haiwatakiwi sasa. Transrewrt inapatikana kwa Windows, Linux, na Docker.
 
-<a id="installation"></a>
+Mara programu inapoanza, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kujifunza jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, kudhibiti maelezo, na kusanidi Mifano.
 
-## Sakinisha
+## Sakinisho
 
-<a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Pakua mtumizi wa mpya mno kutoka [Machapisho](https://github.com/wsj-br/transrewrt/releases).
-- Endesha `.exe` na fuata maagizo ya mtumizi.
-- Kuanza kwa mara ya kwanza: anza programu kutoka menyu ya Kuanza au kwa kipashi cha desktope.
+- Pakua kifaa cha kusanidi cha hivi karibuni kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases).
+- Endesha `.exe` na ufuate mchakato wa kusanidi.
+- Uwiano wa kwanza: anza programu kutoka kwenye menyu ya Start au kifupisho cha dawati.
 
-<br/>
+> ℹ️ **KUMBUKA**  
+>
+> Windows inaweza kuonyesha ukumbusho mmoja wa usalama haya (kawaida kwa maombi yasiyosainiwa/ya mtu binafsi):
+>
+> - **Uwawezeshaji wa Akaunti ya Mtumiaji (UAC)**: "Unataka kuruhusu programu hii kutoka kwa mwandishi asiyeshimili kufanya mabadiliko kwenye kifaa chako?" → Bonyeza **Ndio**.
+> - **Microsoft Defender SmartScreen**: "Windows ulilinda kompyuta yako" → Bonyeza **Maelezo zaidi** → **Endesha bado**.
+>
+> Hii inatokea kwa sababu programu haijasainiwa na Microsoft au msawazo mkuu—ni salama ikiwa imepakuliwa kutoka kwa toleo letu rasmi la GitHub
+>  (thibitisha kiasi cha SHA256 kilichopakuliwa).
 
-<a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Pakua `.AppImage` inayofanana (`x64` au `arm64`) kutoka [Machapisho](https://github.com/wsj-br/transrewrt/releases).
-- Endesha: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` kwa x86_64/amd64, au tumia jina la faili `...-arm64.AppImage` kwa ARM64.
-- Zana zaidi (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Angalia [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) kwa maelezo zaidi.
+- Pakua `.AppImage` inayofaa (`x64` au `arm64`) kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases).
+- Endesha: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` kwenye x86_64/amd64, au tumia jina la faili `...-arm64.AppImage` kwenye ARM64.
+- **Vifaa vya Debian/Ubuntu** (Electron/Chromium; sawa na [Kuanza haraka → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — tumia **`libnotify4`**, si `libnotify-dev`. Kwenye mfumo mdogo, weka vifaa vya `.so` vilivyotajwa kwenye terminal; vifaa kama vile `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` vinahitajika mara kwa mara. AppImage inaweza kuhitaji `libfuse2` (Ubuntu 22.04+) au `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
+- **Ujumbe wa GPU:** Chromium unaweza kuweka ujumbe wa GPU au makosa ya awali ya EGL kwenye baadhi ya mifumo (hasa ARM); programu bado inaweza kufanya kazi kama kawaida. Ili kuepuka ujumbe huo, endesha bila kasi ya hardware: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (au jina lako la `arm64`).
 
-<br/>
-
-<a id="docker"></a>
 ### Docker
 
 - Pakua: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Weka angalau moja ya ufunguo wa mtoa kwa njia ya mazingira (kwa mfano, `OPENROUTER_API_KEY` kwa OpenRouter). Hamisha kigezo kwa kutumia `-e` au `docker compose` / `.env` ili siri isizimwe ndani ya picha.
-- Ufunguo wa mtoa **hauingii** kwenye UI ya wavuti; seva unausoma kutoka kwenye mazingira.
+- Weka angalau moja ya fomu ya mtoa huduma kupitia mazingira (kwa mfano `OPENROUTER_API_KEY` kwa OpenRouter). Hamisha kigezo kwa kutumia `-e` au `docker compose` / `.env` ili siri zisizikumbukumbu zisijumuishwe katika picha.
+- Fomu za mtoa huduma **hazitumiki** kwenye UI ya wavuti; seva inasoma kutoa kwa mazingira.
 
-Mfano - kiasi kilichopangwa kwa ajili ya kudumu (ufunguo wa OpenRouter kwa njia ya mazingira):
+Mfano - kiasi kilichopewa jina kwa ajili ya uwezo wa kudumu (fomu ya OpenRouter kupitia mazingira):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -199,155 +188,126 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-au ikiwa unapenda kutumia Docker Compose, tumia:
+au ikiwa unapendelea kutumia Docker Compose, tumia:
 
-# pakuza faili ya compose
+```
+# download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# hariri faili ili uongeze API_KEYS
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
-# anza kibao
+# start the container
 docker compose -f transrewrt.yml up -d
 ```
 
-<br/>
+Angalia [Configuration](#configuration-and-environment) kwa kigezo chote cha mazingira, kama vile `PORT`, `CONFIG_PATH`, `TZ`, na fomu za LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-| Chaguo   | Maelezo                                                                                                                                 |
-|----------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Port     | `5000` (ramba kwa `-p 5000:5000`)                                                                                                      |
-| Volume   | Funga `/app/data` kwa ajili ya usimamizi wa config na kuwanyanya vyanzo vya data                                               |
-| Env vars | `PORT`, `CONFIG_PATH`, pamoja na bango la LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) - tazama [Usanidi](#configuration-and-environment) |
+### Kusanidi saa ya maeneo
 
-Ili jengi na uanzishe kwenye chanzo: `docker compose up --build -d` au `pnpm docker:up` - tazama [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Saa na tarehe za kiolesura cha programu zinaziamua **browser** na saa ya eneo lake. Kwa ajili ya **tabia ya upande wa seva** (kutambua na vitu vingine), wanyama hutumia kigezo cha mazingira `TZ`. Chaguo-msingi ni `TZ=Europe/London`.
 
-<br/><br/>
+Ikiwa unataka kutumia saa ya eneo nyingine, weka `TZ` katika faili yako ya Compose, kwa mfano:
 
-<a id="getting-an-openrouter-api-key"></a>
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
+```
+
+Au hamisha kigezo wakati wa kuendesha wanyama (Docker):
+
+```bash
+--env TZ=America/Sao_Paulo
+```
+
+Kwenye Linux wengi, unaweza nakili jina la saa ya mfumo kwa kutumia:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+Orodha ya majina sahihi ya saa ya eneo inahifadhiwa kwenye [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
 ## Kupata ufunguo wa OpenRouter API
 
-Transrewrt unampokea watoa wa AI wengi. [OpenRouter](https://openrouter.ai) ni chaguo maarufu kwa sababu unapunguza moduli mengi kwenye ufunguo mmoja na unatoa moduli ya bure.
+Transrewrt inasaidia mtoa huduma wengi wa AI. [OpenRouter](https://openrouter.ai) ni chaguo maarufu kwa sababu inakusanya mifano mingi chini ya fomu moja na inatoa mifano bure.
 
 1. Jiandikishe au ingia kwenye [openrouter.ai](https://openrouter.ai).
-2. Fungua ukurasa wa [Ufunguo](https://openrouter.ai/keys) na unda ufunguo mpya (wapa jina, na kama uhitaji, weka kikomo cha mkopo). Unaweza kutumia moduli ya bure bila kuongeza mkopo.
-3. **Kivinjari (Electron):** weka ufunguo kwenye **Mipangilio → API**. **Docker:** weka vipengele vya mazingira kama vile `OPENROUTER_API_KEY` (tazama [Kuanza Haraka](#quick-start)).
+2. Fungua ukurasa wa [Fomu](https://openrouter.ai/keys) na unda fomu mpya (wapa jina, na si lazima weke kikomo cha mkopo). Unaweza kutumia mifano bure bila kuongeza mkopo.
+3. **Kivinjari (Electron):** bindisha fomu kwenye **Mipangilio → API**. **Docker:** weka kigezo cha mazingira kama vile `OPENROUTER_API_KEY` (angalia [Kuanza Haraka](#quick-start)).
 
-Usitumie mfumo wa OpenRouter **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kwa kutafsiri, kuandika upya, au kubadilisha: unarudisha vipengele vya ombi la JSON, si maandishi yaliyotimia kwa kazi hizo. Angalia [Mipangilio → Moduli](USER-GUIDE.sw.md#models) kwenye Mwongozi wa Mtumiaji.
+Usitumie kifaa cha OpenRouter **Body Builder** (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) kwa tafsiri, kuandika upya, au kubadilisha: kinarudisha payload za JSON za ombi, si maandishi yaliyotimia kwa kazi hizo. Angalia [Mipangilio → Mifano](USER-GUIDE.sw.md#models) katika Mwongozo wa Mtumiaji.
 
-Unaweza pia kutumia watoa wengine (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) au kuendesha moduli kibinafsi kwa kutumia [Ollama](https://ollama.com). Angalia [Upendeleo](#configuration-and-environment) kwa orodha kamili ya watoa waliopokelewa na vipengele vya mazingira.
+Unaweza pia kutumia mtoa huduma mengine (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) au kuendesha mifano kivinjari kwa kutumia [Ollama](https://ollama.com). Angalia [Configuration](#configuration-and-environment) kwa orodha kamili ya mtoa huduma waliopokelewa na kigezo cha mazingira.
 
-> ⚠️ **ONDOA**<br/>
-> Ikiwa unatumia Ollama kutoka kifaa kingine, chumba, au huduma, ukumbuke kuweka mpangilio wa Ollama kuidhinisha muunganisho wa nje (sio kwa localhost tu).
+> ⚠️ **ONDOA**  
+>
+> Ikiwa unatumia Ollama kutoka kifaa kingine, container, au huduma, kumbuka kusanidi Ollama kukuza muunganisho za nje (sio localhost tu).
 
+Kwa ajili ya vikwazo, BYOK, na zaidi, tazama [uthibitishaji wa OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
-Kwa vikomo, BYOK, na zaidi, tazama [uthibitishaji wa OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
+## Usanidi na mazingira
 
-<br/><br/>
+**Mahali pa faili ya usanidi**
 
-<a id="configuration-and-environment"></a>
-
-## Uwekezaji na mazingira
-
-**Mahali pa faili ya uwekezaji**
-
-| Usimamizi | Mahali pa uwekezaji |
+| Uwekaji | Mahali pa usanidi |
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
-| Web / Docker | `/app/data/config.json` (tumia kiasi cha kuhifadhi) |
+| Web / Docker | `/app/data/config.json` (tumia kiasi cha kudumu) |
 
-<br/>
+**Vigezo vya mazingira** (web/Docker tu; Electron hutumia faili ya usanidi ya kijitihima)
 
-**Vigezo vya mazingira** (web/Docker tu; Electron hutumia faili ya uwekezaji wa kiongozi)
+| Variable             | Chaguo-msingi           | Maelezo                                                                                                                 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`               | `5000`                  | Lango la kikasha kilichosikiliza                                                                                                       |
+| `CONFIG_PATH`        | `/app/data/config.json` | Njia kwa faili ya usanidi                                                                                                     |
+| `TZ`                 | `Europe/London`         | Saa ya maeneo ya IANA kwa wakati wa upande wa kikasha (kujikumbusha, nk.); UI bado inafuata kivinjari. Angalia [Docker → saa ya maeneo](#docker-timezone) |
+| `OPENROUTER_API_KEY` | *(hakuna)*               | Ufunguo wa OpenRouter API                                                                                                          |
+| `OPENAI_API_KEY`     | *(hakuna)*               | Ufunguo wa OpenAI API                                                                                                              |
+| `CEREBRAS_API_KEY`   | *(hakuna)*               | Ufunguo wa Cerebras API                                                                                                            |
+| `ANTHROPIC_API_KEY`  | *(hakuna)*               | Ufunguo wa Anthropic API                                                                                                           |
+| `GOOGLE_API_KEY`     | *(hakuna)*               | Ufunguo wa Google Gemini API                                                                                                       |
+| `DEEPSEEK_API_KEY`   | *(hakuna)*               | Ufunguo wa DeepSeek API                                                                                                            |
+| `GROQ_API_KEY`       | *(hakuna)*               | Ufunguo wa Groq API                                                                                                                |
+| `MISTRAL_API_KEY`    | *(hakuna)*               | Ufunguo wa Mistral API                                                                                                             |
+| `OLLAMA_URL`         | *(hakuna)*               | URL ya msingi wa Ollama (mfano `http://host.docker.internal:11434`)                                                                  |
+| `XAI_API_KEY`        | *(hakuna)*               | Ufunguo wa xAI API                                                                                                                 |
 
-| Vigezo | Chaguo-msingi | Maelezo |
-| ---------------- | ----------------------- | ----------- |
-| `PORT` | `5000` | Lando la kusikiliza kwa seva |
-| `CONFIG_PATH` | `/app/data/config.json` | Njia kwa faili ya uwekezaji |
-| `OPENROUTER_API_KEY` | *(tupu)* | Kitufe cha API cha OpenRouter |
-| `OPENAI_API_KEY` | *(tupu)* | Kitufe cha API cha OpenAI |
-| `CEREBRAS_API_KEY` | *(tupu)* | Kitufe cha API cha Cerebras |
-| `ANTHROPIC_API_KEY` | *(tupu)* | Kitufe cha API cha Anthropic |
-| `GOOGLE_API_KEY` | *(tupu)* | Kitufe cha API cha Google Gemini |
-| `DEEPSEEK_API_KEY` | *(tupu)* | Kitufe cha API cha DeepSeek |
-| `GROQ_API_KEY` | *(tupu)* | Kitufe cha API cha Groq |
-| `MISTRAL_API_KEY` | *(tupu)* | Kitufe cha API cha Mistral |
-| `OLLAMA_URL` | *(tupu)* | URL ya msingi wa Ollama (mfano: `http://host.docker.internal:11434`) |
-| `XAI_API_KEY` | *(tupu)* | Kitufe cha API cha xAI |
+Washa wizara tu ambazo unayotumia. Vitambulisho vya kifaa vina nafasi ya jina (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, n.k.).
 
-Wekeza tu watoa ambao unawatumia. Vitambaa vya mfumo (model IDs) vina manebi (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, n.k.).
+**Onesha gharama:** OpenRouter hurudisha gharama halisi iliyotajwa pale inapofaa. Watokeaji wengine hutumia gharama **inayozamiwa** kutoka kwa bei ya kifaa cha OpenRouter ikiwa kitufe cha OpenRouter kiko; bila hiyo, gharama isiyo ya OpenRouter inaweza kuonekana kama `0`. Takwimu zinazozamiwa zisichukuliwa kama anwani.
 
-**Onesha gharama:** OpenRouter hurejesha gharama halisi ya malipo pale inapowezekana. Wawezeshaji wengine hutumia gharama **imekiria** kutoka kwa bei za wazi za OpenRouter pale kitufe cha OpenRouter kipokuwepo; bila kitufe hicho, gharama isiyo ya OpenRouter inaweza kuonekana kama `0`. Viwango hazilingani na anadi.
+**Data na udumu:** Kwa Docker, weka kiasi cha kudumu kwenye `/app/data` ili `config.json` na hifadhidata ya SQLite zilinde baada ya kuanza upya wa chombo. Bila kiasi, data yote hutolewa wakati wa kuzima chombo.
 
-<br/>
-
-**Data na uhifadhi:** Kwa Docker, weka kiasi cha kuhifadhi kwenye `/app/data` ili `config.json` na kitabu cha Punguzo cha SQLite kihifadhiwe kwenye kurudisha kwa jumba (container). Bila kiasi, data yote itapotea mara jumba linapozimwa.
-
-**Wanaofanikiwa:** Baada ya kupata mabadiliko ambayo yanabadili uwekezaji wa ujumla wa kitufe, weka upya au uunganishe `data/config.json` ukifanya umbo mpya kutoka `src/config-defaults/config_default.json` ikiwa faili yako bado inatumia vigezo viliovumbazwa (`api_key`, `api_url`, chaguo za wavuti).
-
-<br/>
+**Wanafunzi:** Baada ya kupata mabadiliko ambayo yanabadilisha usanidi wa kitufe kimoja uliopita, weka upya au uunganishe `data/config.json` na muundo mpya wa chaguo-msingi kutoka `src/config-defaults/config_default.json` ikiwa faili yako ya kijitihima bado inatumia mashamba yaliyofutwa (`api_key`, `api_url`, chaguzi za wavuti).
 
 **Uthibitishaji wa wavuti:**
 
-- Msimamizi chaguo-msingi: `admin` / `transrewrt26`.
-- Dhibiti watumiaji kwenye **Mipange → Watumiaji**.
-- Weka upya siri: `docker exec <jumba> reset-web-password '<jina la mtumiaji>' '<siri mpya>'`
-  (kutoka chanzo: `pnpm run reset-web-password -- <jina la mtumiaji> <siri mpya>`)
+- Msimamizi wa chaguo-msingi: `admin` / `transrewrt26`.
+- Dhibiti watumiaji kwenye **Mipangilio → Watumiaji**.
+- Weka upya nenosiri: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (kutoka kwa chanzo: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
+> ⚠️ **ONYOVA**  
+>
+> Badilisha nenosiri la msimamizi kwa mara ya kwanza mara moja kwenye kila kikoa kinachopatikana kwenye mtandao.
 
-> ⚠️ **ONYO**<br/>
-> Badilisha siri ya msimamizi chaguo-msingi mara moja kwenye kipengee chochote cha mtandao kinachoweza kufikwa.
+Mipangilio muhimu (fonti, mifano, lugha, n.k.) yanapatikana kwenye Mipangilio ya programu.
 
-<br/>
+## Maendeleo na utungaji
 
-Mipangilio muhimu (font, vitambaa, lugha, n.k.) yanapatikana kwenye Mipangilio ya programu.
+- **Uundaji:** Weka, jenga, jaribu, na uweke (Electron, Web, Docker) - tazama **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Muhtasari wa architekia na mfumo:** Mwisho wa folda, stack ya teknolojia, maamuzi ya uundaji - tazama **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-<br/><br/>
+## Kutoa matatizo
 
-<a id="development-and-architecture"></a>
+Fungua tatizo kwenye [GitHub](https://github.com/wsj-br/transrewrt/issues). Jumuisha jukwaa lako (Windows / Linux / Docker) na toleo la programu (linaloonyeshwa kwenye kisanduku cha Kuhusu au kwenye ukurasa wa Matoleo).
 
-## Maendeleo na usimamizi
+## Tahadhari
 
-- **Maendeleo:** Weka, jenga, jaribu, na uwasilishe (Electron, Web, Docker) - tazama **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Usimamizi na muhtasari wa mfumo:** Mbinu za folda, kiwango cha teknolojia, maamuzi ya ubunifu - tazama **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+Majina ya bidhaa na ishara husidhimana na wamiliki wake na hutumika kwa kutambua tu. Programu hii haifananishi na chakula kimepokelewa na lolote la vipengele vilivyoleta.
 
-<br/><br/>
-
-<a id="releases-and-tags"></a>
-## Matoleo na lebo
-
-- **Lebo za Git** `v`* (kama vile `v1.0.10`) zinawaiita **[mchakato wa uchaguzi](.github/workflows/release.yml)**. **Matoleo ya GitHub** huambatana na kiolesura cha Windows (`.exe`) na vitambaa vya Linux AppImage (**x64** na **arm64**).
-- **Picha za Docker** zinachapishwa kwa `ghcr.io/wsj-br/transrewrt`. Lebo za picha zinalingana na toleo la Git (kama vile `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`) pamoja na `latest`. Aina mbalimbali: `linux/amd64` na `linux/arm64` (kama vile Raspberry Pi).
-
-<br/><br/>
-
-<a id="contributing"></a>
-## Kushirikia
-
-1. Fanya nakala ya hifadhi.
-2. Unda tawi la kipengele: `git checkout -b feature/my-feature`
-3. Weka mabadiliko yako kwa ujumbe wazi.
-4. Funika na wafungua Ombi la Kuvutia (Pull Request) dhidi ya `main`.
-
-Tafadhali ufuatilie mtindo wa msimbo uliopo na ujaribu mabadiliko yako katika rejisti za Electron na web kabla ya kuwasilisha. Tazama [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) kwa maelekezo ya kujenga na kujaribu.
-
-<br/>
-
-**Kuwasilisha matatizo:** Fungua tatizo kwenye [GitHub](https://github.com/wsj-br/transrewrt/issues). Jumuisha mfumo wako (Windows / Linux / Docker) na toleo la programu (linaloonekana katika dirisha la Kuhusu au kwenye ukurasa wa Matoleo).
-
-<br/><br/>
-
-<a id="disclaimer"></a>
-
-## Toa Hatia
-
-Jina na alama za bidhaa linamilikiwa na wamiliki wake kwa ajili ya utambulisho tu. Programu hii haifanyi kazi kama chumba cha akili na kumeshindwa kuheshimiwa na watu wowote ambao watu wanaotajwa kama watu wenye biashara.
-
-<br/><br/>
-
-<a id="license"></a>
 ## Leseni
 
 Haki za kuleta © 2026 Waldemar Scudeller Jr.
 
-[Leseni ya Apache 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

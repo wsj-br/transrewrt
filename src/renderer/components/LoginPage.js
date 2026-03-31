@@ -18,6 +18,8 @@ import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES, DEFAULT_ADMIN_USERNAME, DEFAULT_ADMIN_PASSWORD } from "../constants";
 import { getUILanguageLabel } from "../utils/misc/languageDisplay";
 import webAPI from "../utils/api/webApiClient";
+import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
+import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
 import Logo from "../../../images/transrewrt_logo.png";
 
@@ -281,10 +283,18 @@ const LoginPage = ({ onSuccess }) => {
           <div className={styles.box}>
             <h2 className={styles.title}>{t("Change password")}</h2>
             <p className={styles.instruction}>{t("You must change your password before continuing.")}</p>
-            <form onSubmit={handleChangePasswordSubmit} method="post" action="#" autoComplete="off">
+            <form
+              onSubmit={handleChangePasswordSubmit}
+              method="post"
+              action={getWebAuthFormAction()}
+              autoComplete="on"
+              style={{ position: "relative" }}
+            >
+              <HiddenUsernameForPasswordManager username={loggedInUser?.username} id="first-login-change-username" />
               <div className={styles.field}>
                 <PasswordInput
                   id="login-new-password"
+                  name="new_password"
                   label={t("New password")}
                   value={newPassword}
                   onChange={setNewPassword}
@@ -299,6 +309,7 @@ const LoginPage = ({ onSuccess }) => {
               <div className={styles.field}>
                 <PasswordInput
                   id="login-confirm-password"
+                  name="new_password_confirm"
                   label={t("Confirm new password")}
                   value={confirmPassword}
                   onChange={setConfirmPassword}
@@ -378,7 +389,14 @@ const LoginPage = ({ onSuccess }) => {
               </div>
             </div>
           )}
-          <form onSubmit={handleLoginSubmit} method="post" action="#" autoComplete="on">
+          <form
+            onSubmit={handleLoginSubmit}
+            method="post"
+            action={getWebAuthFormAction()}
+            autoComplete="on"
+            id="transrewrt-web-login-form"
+            style={{ position: "relative" }}
+          >
             <div className={styles.field}>
               <Field label={t("Username")}>
                 <Input
@@ -389,6 +407,10 @@ const LoginPage = ({ onSuccess }) => {
                   onChange={(_, data) => setUsername(typeof data?.value === "string" ? data.value : "")}
                   placeholder={t("Username")}
                   autoComplete="username"
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  inputMode="text"
                   autoFocus
                   disabled={loading}
                   appearance="outline"

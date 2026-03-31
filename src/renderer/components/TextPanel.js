@@ -4,6 +4,7 @@ import {
   Button,
   makeStyles,
   mergeClasses,
+  Switch,
   tokens,
 } from "@fluentui/react-components";
 import PropTypes from "prop-types";
@@ -13,10 +14,9 @@ import {
   Clipboard,
   FileText,
   FileCheck,
-  File,
-  FileDiff,
 } from "lucide-react";
 import { computeRewriteDiff } from "../utils/misc/rewriteDiff";
+import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
 
 const useStyles = makeStyles({
   panelHeaderRow: {
@@ -25,12 +25,15 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     gap: tokens.spacingHorizontalM,
     marginBottom: tokens.spacingVerticalS,
+    minWidth: 0,
+    maxWidth: "100%",
   },
   panelTitle: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
     margin: 0,
+    flexShrink: 0,
     fontSize: "14px",
     fontWeight: 600,
     color: tokens.colorNeutralForeground1,
@@ -46,7 +49,10 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
     fontSize: "12px",
     textAlign: "end",
-    flex: "1",
+    flex: "1 1 0%",
+    minWidth: 0,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
   panel: {
@@ -124,7 +130,12 @@ const useStyles = makeStyles({
   },
   leftButtons: {
     display: "flex",
+    alignItems: "center",
     gap: tokens.spacingHorizontalS,
+  },
+  showChangesSwitchLabel: {
+    fontSize: tokens.fontSizeBase200,
+    lineHeight: tokens.lineHeightBase200,
   },
   rightButtons: {
     display: "flex",
@@ -157,7 +168,7 @@ const TextPanel = ({
   showDiff,
   inputTextForDiff,
   outputIsModelResult,
-  onDiffToggle,
+  onShowDiffChange,
   footerMinimal = false,
 }) => {
   const styles = useStyles();
@@ -167,8 +178,9 @@ const TextPanel = ({
   const footerDisplay = footerStats ?? stats;
 
   const textareaStyle = useMemo(() => {
+    const resolved = fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined;
     const style = {
-      ...(fontFamily && { fontFamily }),
+      ...(resolved && { fontFamily: resolved }),
       ...(fontSize && { fontSize: `${fontSize}px` }),
       color: textColor || "#e0e0e0",
     };
@@ -211,7 +223,10 @@ const TextPanel = ({
             {title}
           </div>
           {headerDisplay && (
-            <div className={styles.panelMeta}>
+            <div
+              className={styles.panelMeta}
+              title={typeof headerDisplay === "string" ? headerDisplay : undefined}
+            >
               {headerDisplay}
             </div>
           )}
@@ -222,7 +237,7 @@ const TextPanel = ({
           <div
             className={styles.diffView}
             style={{
-              fontFamily: fontFamily || undefined,
+              fontFamily: fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined,
               fontSize: fontSize ? `${fontSize}px` : undefined,
             }}
             aria-label={title || t("Text panel")}
@@ -288,16 +303,20 @@ const TextPanel = ({
               )}
               <div style={{ marginInlineStart: "auto" }} />
               <div className={styles.leftButtons}>
-                {onDiffToggle && (
-                  <Button
-                    appearance={showDiff ? "primary" : "secondary"}
-                    icon={showDiff ?   <FileDiff size={16} /> : <File size={16} /> }
-                    onClick={onDiffToggle}
+                {onShowDiffChange && (
+                  <Switch
                     size="small"
-                    title={showDiff ? t("Don't show the changes") : t("Show changes between input and output")}
-                  >
-                    {t("Show changes")}
-                  </Button>
+                    checked={!!showDiff}
+                    onChange={(_, data) => onShowDiffChange(data.checked)}
+                    label={{
+                      children: t("Show changes"),
+                      className: styles.showChangesSwitchLabel,
+                    }}
+                    labelPosition="before"
+                    title={
+                      showDiff ? t("Don't show the changes") : t("Show changes between input and output")
+                    }
+                  />
                 )}
                 {onCopy && (
                   <Button
@@ -385,7 +404,7 @@ TextPanel.propTypes = {
   showDiff: PropTypes.bool,
   inputTextForDiff: PropTypes.string,
   outputIsModelResult: PropTypes.bool,
-  onDiffToggle: PropTypes.func,
+  onShowDiffChange: PropTypes.func,
   footerMinimal: PropTypes.bool,
 };
 

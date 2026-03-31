@@ -2,13 +2,12 @@
  * IPC handlers for OpenRouter key info and API connectivity test.
  */
 
-const path = require("path");
 const {
   OPENROUTER_BASE,
   mergeKeys,
   CONFIG_KEY_BY_ENGINE,
   testProviderAuth,
-} = require(path.join(__dirname, "..", "..", "shared", "llm"));
+} = require("../../shared/llm");
 
 /**
  * Register API-related IPC handlers (key info, test).

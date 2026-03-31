@@ -8,8 +8,8 @@
  * - Web app running (e.g. pnpm run dev:web → http://localhost:5000).
  * - Set ADMIN_USERNAME and ADMIN_PASSWORD in the environment (required; script exits if missing).
  *
- * Usage: pnpm run take-screenshots [--screenshot=NAME] [--locale=CODE[,CODE...]]
- *   --screenshot=NAME  (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
+ * Usage: pnpm run take-screenshots [--screenshot=NAME[,NAME...]] [--locale=CODE[,CODE...]]
+ *   --screenshot=…  (or --screen=…)  One or more sets, comma- or space-separated (e.g. --screenshot=translate,rewrite).
  *   --locale=CODE      (comma- or space-separated) Only run for these locale(s). On PowerShell, quote commas: '--locale=pt-BR,es' or use spaces: --locale=pt-BR es.
  * Env: BASE_URL (default http://localhost:5000), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
@@ -42,7 +42,9 @@ const {
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
-const REWRITE_WITH_SYNONYMS_NAME = "Rewrite with Synonyms";
+/** Transform screenshot flows select this prompt; seeded into custom_prompts if missing. */
+const DICTIONARY_ENTRY_PROMPT_NAME = "Dictionary Entry";
+const DICTIONARY_ENTRY_PROMPT_SLUG = "dictionary-entry";
 const TRANSFORM_PROMPTS_PATH = path.join(__dirname, "..", "src", "config-defaults", "transform-prompts.json");
 const UI_LANGUAGES_PATH = path.join(__dirname, "..", "src", "renderer", "locales", "ui-languages.json");
 
@@ -62,14 +64,16 @@ function loadAndFilterUILanguages(localeFilter) {
 }
 
 function parseArgs() {
-  const out = { help: false, screenshotFilter: null, localeFilter: null, unknown: [] };
+  const out = { help: false, screenshotFilters: null, localeFilter: null, unknown: [] };
   const argv = process.argv.slice(2);
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--help" || arg === "-h") {
       out.help = true;
     } else if (arg.startsWith("--screenshot=") || arg.startsWith("--screen=")) {
-      out.screenshotFilter = arg.split("=", 2)[1].trim();
+      const raw = arg.split("=", 2)[1].trim();
+      const names = raw ? [...new Set(raw.split(/[,\s]+/).map((c) => c.trim()).filter(Boolean))] : [];
+      out.screenshotFilters = names.length > 0 ? names : [];
     } else if (arg.startsWith("--locale=")) {
       const val = arg.split("=", 2)[1].trim();
       // PowerShell parses unquoted "a,b,c" after = as an array, then passes "a b c" as one argv token — split on whitespace too.
@@ -94,8 +98,12 @@ function parseArgs() {
   return out;
 }
 
-function printHelp() {
+function printHelp(availableScreenshotNames) {
   const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+  const setList =
+    availableScreenshotNames && availableScreenshotNames.length > 0
+      ? availableScreenshotNames.map((n) => `    ${n}`).join("\n")
+      : "    (none configured)";
   console.log(BLUE + `
 Take screenshots of the Transrewrt web app (Translate, Rewrite, Transform, etc.)
 and save them to images/screenshots/<locale>/.
@@ -110,9 +118,13 @@ Usage:
 
 Options:
   --help, -h              Show this help and exit.
-  --screenshot=NAME        (or --screen=NAME)  Only run this screenshot set (e.g. --screenshot=translate).
+  --screenshot=LIST       (or --screen=LIST)  Run only these screenshot sets. Comma- or space-separated
+                          names (e.g. --screenshot=translate,rewrite). Omit to run all sets below.
   --locale=CODE            Only run for these locale(s). Comma- or space-separated (e.g. --locale=pt-BR,es,ja).
   --locale CODE, -l CODE  Only run for these locale(s). The locale list must be a single argv token: --locale pt-BR,es,ja or --locale "pt-BR es ja".
+
+Configured screenshot sets (${availableScreenshotNames?.length ?? 0}):
+${setList}
 
 Environment:
   BASE_URL                   Base URL of the web app (default: ${baseUrl}).
@@ -129,6 +141,7 @@ Examples:
   node scripts/take-screenshots.js --help
   pnpm run take-screenshots
   pnpm run take-screenshots -- --screenshot=translate
+  pnpm run take-screenshots -- --screenshot=translate,rewrite,history
   pnpm run take-screenshots -- --locale=pt-BR,ja
 
 
@@ -162,6 +175,11 @@ const SCREENSHOT_AVAILABLE_MODELS = [
 const SCREENSHOT_TOP_LANGUAGES = ["English (UK)", "Portuguese (BR)", "Spanish"];
 /** Selected model in the UI and history sample; must appear in `SCREENSHOT_AVAILABLE_MODELS`. */
 const SCREENSHOT_DEFAULT_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b-2507";
+/** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
+const HISTORY_SAMPLE_INPUT =
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+const HISTORY_SAMPLE_OUTPUT =
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
 function screenshotModelOptionSelector(modelId) {
   const slug = String(modelId).replace(/\//g, "-");
@@ -239,7 +257,7 @@ function applyScreenshotConfigConsistency() {
   }
 }
 
-function ensureRewriteWithSynonymsPrompt() {
+function ensureDictionaryEntryPrompt() {
   const dataDir = getDataDir();
   const dbPath = path.join(dataDir, "transrewrt.db");
   if (!fs.existsSync(path.dirname(dbPath))) {
@@ -250,9 +268,9 @@ function ensureRewriteWithSynonymsPrompt() {
   try {
     db = new Database(dbPath);
     applyAppSchema(db);
-    const existing = db.prepare("SELECT 1 FROM custom_prompts WHERE name = ?").get(REWRITE_WITH_SYNONYMS_NAME);
+    const existing = db.prepare("SELECT 1 FROM custom_prompts WHERE name = ?").get(DICTIONARY_ENTRY_PROMPT_NAME);
     if (existing) {
-      log("Prompt '%s' already in custom_prompts.", REWRITE_WITH_SYNONYMS_NAME);
+      log("Prompt '%s' already in custom_prompts.", DICTIONARY_ENTRY_PROMPT_NAME);
       db.close();
       return;
     }
@@ -275,10 +293,10 @@ function ensureRewriteWithSynonymsPrompt() {
     return;
   }
   const entry = Array.isArray(prompts)
-    ? prompts.find((p) => p && p.name === REWRITE_WITH_SYNONYMS_NAME)
+    ? prompts.find((p) => p && p.name === DICTIONARY_ENTRY_PROMPT_NAME)
     : null;
   if (!entry) {
-    log("'%s' not found in %s.", REWRITE_WITH_SYNONYMS_NAME, TRANSFORM_PROMPTS_PATH);
+    log("'%s' not found in %s.", DICTIONARY_ENTRY_PROMPT_NAME, TRANSFORM_PROMPTS_PATH);
     db.close();
     return;
   }
@@ -304,14 +322,18 @@ function ensureRewriteWithSynonymsPrompt() {
       now,
       null,
     );
-    log("Imported '%s' into custom_prompts from %s.", REWRITE_WITH_SYNONYMS_NAME, TRANSFORM_PROMPTS_PATH);
+    log("Imported '%s' into custom_prompts from %s.", DICTIONARY_ENTRY_PROMPT_NAME, TRANSFORM_PROMPTS_PATH);
   } catch (err) {
-    log("Failed to insert '%s': %s", REWRITE_WITH_SYNONYMS_NAME, err.message);
+    log("Failed to insert '%s': %s", DICTIONARY_ENTRY_PROMPT_NAME, err.message);
   }
   db.close();
 }
 
-/** Ensures at least one execution-history row exists so History screenshots show a populated list (web + Electron DB). */
+/**
+ * Ensures the first **translate** row in execution history (same order as History page: timestamp DESC,
+ * mixed types) uses the canonical sample input — that is what `prepareHistory` clicks. If it already does,
+ * skip insert to avoid duplicate sample rows.
+ */
 function ensureHistorySampleForScreenshots() {
   const dataDir = getDataDir();
   const dbPath = path.join(dataDir, "transrewrt.db");
@@ -323,28 +345,33 @@ function ensureHistorySampleForScreenshots() {
   try {
     db = new Database(dbPath);
     applyAppSchema(db);
+  } catch (err) {
+    log("Could not open DB for history sample: %s", err.message);
+    if (db) db.close();
+    return;
+  }
+  try {
     const { whereClause, params } = buildExecutionHistoryWhere(null, null, null, "a");
     const q = replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause);
-    const existing = db.prepare(q).all(...params);
-    if (existing.length > 0) {
-      log("Execution history already has %d row(s); skipping sample insert.", existing.length);
+    const rows = db.prepare(q).all(...params);
+    const firstTranslate = rows.find((r) => r && r.type === "translate");
+    if (firstTranslate && firstTranslate.input_text === HISTORY_SAMPLE_INPUT) {
+      log("First translate in history list is already the screenshot sample; skipping insert.");
       db.close();
       return;
     }
   } catch (err) {
-    log("Could not check execution history: %s", err.message);
-    if (db) db.close();
+    log("Could not read execution history for sample check: %s", err.message);
+    db.close();
     return;
   }
   const now = new Date().toISOString();
-  const inputText =
-    "Screenshot sample: Hello world. This is sample translation input used for marketing screenshots.";
-  const outputText =
-    "Screenshot sample: Olá mundo. Este é um exemplo de texto traduzido para capturas de ecrã.";
   const username =
     process.env.ADMIN_USERNAME != null && String(process.env.ADMIN_USERNAME).trim()
       ? String(process.env.ADMIN_USERNAME).trim()
       : null;
+  const inputText = HISTORY_SAMPLE_INPUT;
+  const outputText = HISTORY_SAMPLE_OUTPUT;
   try {
     const insertCall = db.prepare(sql.INSERT_API_CALL);
     const insertContent = db.prepare(sql.INSERT_ACTION_CONTENT);
@@ -373,7 +400,7 @@ function ensureHistorySampleForScreenshots() {
       insertContent.run(info.lastInsertRowid, inputText, outputText);
     });
     tx();
-    log("Inserted sample translate row for history screenshots.");
+    log("Inserted execution history sample translate row (newest timestamp → first in list).");
   } catch (err) {
     log("Failed to insert history sample: %s", err.message);
   }
@@ -779,13 +806,13 @@ async function prepareTransform(page) {
     if (combobox) await combobox.click();
     else await page.click(promptSel);
     await wait(400);
-    const optionSel = "[data-testid=\"prompt-option-rewrite-with-synonyms\"]";
+    const optionSel = `[data-testid="prompt-option-${DICTIONARY_ENTRY_PROMPT_SLUG}"]`;
     const opt = await page.$(optionSel);
     if (opt) {
       await opt.click();
       await wait(300);
     } else {
-      log("Prompt option rewrite-with-synonyms not found; continuing.");
+      log("Prompt option %s not found; continuing.", DICTIONARY_ENTRY_PROMPT_SLUG);
     }
   }
 }
@@ -814,8 +841,6 @@ async function finalTeardownTransformPromptEdit(page) {
   }
 }
 
-const REWRITE_WITH_SYNONYMS_SLUG = "rewrite-with-synonyms";
-
 /** Runs once before the locale loop: Transform → select prompt → Edit prompt (opens editor). */
 async function initialPrepareTransformGenerate(page) {
   await clickByTestId(page, "nav-transform");
@@ -826,7 +851,7 @@ async function initialPrepareTransformGenerate(page) {
     await backToRun.click();
     await wait(600);
   }
-  // Open prompt dropdown and select "Rewrite with Synonyms" so "Edit prompt" is visible
+  // Open prompt dropdown and select Dictionary Entry so "Edit prompt" is visible
   const selectorTrigger = await page.$("[data-testid=\"prompt-selector\"] [role=\"combobox\"]");
   if (selectorTrigger) {
     await selectorTrigger.click();
@@ -835,7 +860,7 @@ async function initialPrepareTransformGenerate(page) {
     await page.click("[data-testid=\"prompt-selector\"]");
     await wait(400);
   }
-  await clickByTestId(page, `prompt-option-${REWRITE_WITH_SYNONYMS_SLUG}`);
+  await clickByTestId(page, `prompt-option-${DICTIONARY_ENTRY_PROMPT_SLUG}`);
   await wait(400);
   await clickByTestId(page, "edit-prompt-button");
   await wait(600);
@@ -1137,7 +1162,7 @@ function printSummaryTable(uiLanguages, screenshotSets, captureResults) {
 async function main() {
   const args = parseArgs();
   if (args.help) {
-    printHelp();
+    printHelp(SCREENSHOTS.map((s) => s.name));
     process.exit(0);
   }
   if (args.unknown.length > 0) {
@@ -1180,8 +1205,8 @@ async function main() {
   log("Log file: %s", logPath);
   const sessionStartMs = Date.now();
 
-  log("Ensuring prompt '%s' exists in custom_prompts...", REWRITE_WITH_SYNONYMS_NAME);
-  ensureRewriteWithSynonymsPrompt();
+  log("Ensuring prompt '%s' exists in custom_prompts...", DICTIONARY_ENTRY_PROMPT_NAME);
+  ensureDictionaryEntryPrompt();
   ensureHistorySampleForScreenshots();
   applyScreenshotConfigConsistency();
 
@@ -1237,15 +1262,23 @@ async function main() {
   await ensureAppShell(page);
 
   let screenshotSets = SCREENSHOTS;
-  if (args.screenshotFilter) {
-    screenshotSets = SCREENSHOTS.filter((s) => s.name === args.screenshotFilter);
-    if (screenshotSets.length === 0) {
-      log("No screenshot set named '%s'; available: %s", args.screenshotFilter, SCREENSHOTS.map((s) => s.name).join(", "));
+  if (args.screenshotFilters != null && args.screenshotFilters.length > 0) {
+    const requested = args.screenshotFilters;
+    const available = new Set(SCREENSHOTS.map((s) => s.name));
+    const unknown = requested.filter((n) => !available.has(n));
+    if (unknown.length > 0) {
+      log(
+        "Unknown screenshot set(s): %s; available: %s",
+        unknown.join(", "),
+        [...available].join(", "),
+      );
       await browser.close();
       if (logStream) logStream.end();
       process.exit(1);
     }
-    log("Filtering to screenshot set: %s", args.screenshotFilter);
+    const pick = new Set(requested);
+    screenshotSets = SCREENSHOTS.filter((s) => pick.has(s.name));
+    log("Filtering to screenshot set(s): %s", requested.join(", "));
   }
 
   await setUILanguage(page, "en-GB");
@@ -1255,10 +1288,13 @@ async function main() {
   const captureResults = {};
   const totalLangs = uiLanguages.length;
 
-  for (const set of screenshotSets) {
+  const setTotal = screenshotSets.length;
+  for (let setIndex = 0; setIndex < screenshotSets.length; setIndex++) {
+    const set = screenshotSets[setIndex];
     const { name, prepare, capture, teardown, finalTeardown, prepareTeardownPerLocale, initialPrepare } = set;
+    const setNum = setIndex + 1;
     log("--------------------------------");
-    log("Screenshot set: %s", name);
+    log("Screenshot set: %s (%d/%d)", name, setNum, setTotal);
     logIndent = "  ";
     try {
       if (!prepareTeardownPerLocale) {

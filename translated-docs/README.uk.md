@@ -1,107 +1,95 @@
 ---
-translated_at: "2026-03-27T23:16:31.767Z"
-source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
-source_mtime: "2026-03-27T20:34:13.877Z"
-model: "qwen/qwen3-235b-a22b-2507"
+translation_last_updated: '2026-03-31T22:58:19.432Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
+translation_language: uk
+source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Логотип Transrewrt" width="120" />
-</p>
-
-<h1 align="center">Transrewrt</h1>
-
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="Версія"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Ліцензія: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Платформа">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
-
-Інструмент для обробки тексту з підтримкою штучного інтелекту: переклад між мовами, перефразування у різних стилях і перетворення за допомогою користувацьких запитів — із використанням декількох постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI та локальний Ollama). Працює як настільний додаток (Electron) або як веб-застосунок для самостійного розгортання (Docker).
-
-- **Переклад** — між десятками мов із автоматичним визначенням мови оригіналу
-- **Переписання** — виправлення граматики, підвищення зрозумілості, формальний/неформальний стиль, скорочення, розширення, технічний текст
-- **Перетворення** — користувацькі запити до ШІ; створення та керування запитами, необов’язкова цільова мова для кожного запиту
-- **Історія** — повна історія виконання з вхідним і вихідним текстом, фільтрація та експорт
-- **Моделі та вартість** — вибір моделей із будь-якого налаштованого постачальника; панелі вартості та використання з журналами, підсумками за моделями/операціями/днями
-- **Інтерфейс** — багатомовний інтерфейс (понад 30 мов, підтримка RTL), шрифти, ...
-- **Веб-режим** — підтримка кількох користувачів із ролями адміністратора
-- **Настільна версія** — застосунок на Electron для Windows та Linux
-- **Самостійне розгортання** — образ Docker для amd64 та arm64 (підходить для Raspberry Pi)
-
-Після встановлення ознайомтеся з **[Посібником користувача](USER-GUIDE.uk.md)**, щоб детально вивчити всі функції.
-
-<small>**Читати іншими мовами:** </small>
-<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
-
-> **Примітка щодо перекладу інтерфейсу та документації:** Усі мови інтерфейсу, крім оригіналу англійської (UK),
-> були перекладені за допомогою моделей ШІ; формулювання можуть бути неточними або містити помилки.
-
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
-
-## Знімки екрана
-
-**Вибір мови**
-
-![Вибір мови](../images/screenshots/uk/language-selector.png)
-
-**Переклад**
-
-![Переклад](../images/screenshots/uk/translate.png)
-
-**Трансформація – редактор запитів**
-
-![Трансформація – редактор запитів](../images/screenshots/uk/transform-prompt-edit.png)
-
-**Інформаційна панель**
-
-![Панель вартості](../images/screenshots/uk/dashboard-summary.png)
-
-**Історія**
-
-![Історія](../images/screenshots/uk/history.png)
-
-**Налаштування – вибір моделі**
-
-![Налаштування – вибір моделі](../images/screenshots/uk/settings-models.png)
-
-<br/><br/>
-
-<a id="table-of-contents"></a>
-## Зміст
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Зміст**
 
-- [Швидкий початок](#quick-start)
+- [Скріншоти](#screenshots)
+- [Зміст](#table-of-contents)
+- [Швидкий старт](#quick-start)
 - [Встановлення](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
+  - [Налаштування часовго поясу](#configuring-the-timezone)
 - [Отримання ключа OpenRouter API](#getting-an-openrouter-api-key)
 - [Конфігурація та середовище](#configuration-and-environment)
 - [Розробка та архітектура](#development-and-architecture)
-- [Випуски та мітки](#releases-and-tags)
-- [Як зробити внесок](#contributing)
-- [Правова оголошення](#disclaimer)
+- [Повідомлення про проблеми](#reporting-issues)
+- [Відмова від відповідальності](#disclaimer)
 - [Ліцензія](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br/><br/>
+Інструмент для обробки тексту на основі ШІ: переклад між мовами, перефразування в різних стилях та трансформація за допомогою користувацьких промптів — з використанням декількох постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI та локальний Ollama). Працює як настільний додаток (Electron) або самостійно розміщений веб-додаток (Docker).
 
-<a id="quick-start"></a>
+- **Перекласти** — між десятками мов, з автоматичним визначенням мови джерела
+- **Перефразування** — виправлення граматики, покращення ясності, формальний/неформальний стиль, скорочення, розширення, технічний стиль
+- **Трансформація** — користувацькі промпти ШІ; створення та керування промптами, необов’язкова цільова мова для кожного промпту
+- **Історія** — повна історія виконання з вхідним/вихідним текстом, фільтрацією та експортом
+- **Моделі та вартість** — вибір моделей з будь-якого налаштованого постачальника; панелі вартості та використання з журналом, зведеннями за моделями/операціями/днями
+- **Інтерфейс користувача** — багатомовний інтерфейс (понад 30 мов, підтримка RTL), шрифти, ...
+- **Веб-режим** — підтримка кількох користувачів із ролями адміністратора
+- **Настільний додаток** — додаток Electron для Windows та Linux
+- **Самостійне розміщення** — образ Docker для amd64 та arm64 (готовий до використання на Raspberry Pi)
+
+Після встановлення перегляньте **[Керівництво користувача](USER-GUIDE.uk.md)** для повного огляду всіх функцій.
+
+**Читати іншими мовами:**
+[Англійська (Великобританія)](../README.md) · [Португальська (Бразилія)](README.pt-BR.md) · [Арабська](README.ar.md) · [Бенгальська](README.bn.md) · [Каталанська](README.ca.md) · [Китайська (спрощена)](README.zh-CN.md) · [Китайська (традиційна)](README.zh-TW.md) · [Хорватська](README.hr.md) · [Чеська](README.cs.md) · [Нідерландська](README.nl.md) · [Англійська (США)](README.en-US.md) · [Філіппінська](README.tl.md) · [Французька](README.fr.md) · [Німецька](README.de.md) · [Грецька](README.el.md) · [Гінді](README.hi.md) · [Угорська](README.hu.md) · [Італійська](README.it.md) · [Японська](README.ja.md) · [Ява](README.jv.md) · [Корейська](README.ko.md) · [Малайська](README.ms.md) · [Перська](README.fa.md) · [Польська](README.pl.md) · [Португальська (Португалія)](README.pt.md) · [Панджабі](README.pa.md) · [Румунська](README.ro.md) · [Російська](README.ru.md) · [Словацька](README.sk.md) · [Іспанська](README.es.md) · [Суахілі](README.sw.md) · [Шведська](README.sv.md) · [Телугу](README.te.md) · [Тайська](README.th.md) · [Турецька](README.tr.md) · [Українська](README.uk.md) · [В'єтнамська](README.vi.md)
+
+> **Примітка щодо перекладів інтерфейсу та документації:** Усі мови інтерфейсу, окрім оригінальної англійської (Великобританія),
+> були перекладені за допомогою моделей ШІ; формулювання можуть бути неточними або містити помилки.
+
+## Скріншоти
+
+**Вибір мови**
+
+Вибір мови
+
+**Перекласти**
+
+Перекласти
+
+**Трансформація — редактор промптів**
+
+Трансформація — редактор промптів
+
+**Панель**
+
+Підсумок панелі — використання
+
+**Історія**
+
+Історія
+
+**Налаштування — вибір моделі**
+
+Налаштування — вибір моделі
+
+## Зміст
+
+- [Швидкий старт](#quick-start)
+- [Встановлення](#installation)
+  - [Windows (Electron)](#windows-electron)
+  - [Linux (Electron)](#linux-electron)
+  - [Docker](#docker)
+  - [Налаштування часовго поясу](#configuring-the-timezone)
+- [Отримання ключа API OpenRouter](#getting-an-openrouter-api-key)
+- [Налаштування та середовище](#configuration-and-environment)
+- [Розробка та архітектура](#development-and-architecture)
+- [Повідомлення про проблеми](#reporting-issues)
+- [Застереження](#disclaimer)
+- [Ліцензія](#license)
 
 ## Швидкий старт
 
-**Docker (рекомендується для самостійного розгортання)**
+**Docker (рекомендовано для самостійного хостингу)**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -114,81 +102,82 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Замініть `sk-or-your-key` на ваш [ключ OpenRouter API](https://openrouter.ai/keys) (або встановіть ключі інших провайдерів; див. [Налаштування](#configuration-and-environment)). Відкрийте [http://localhost:5000](http://localhost:5000) та змініть пароль адміністратора за замовчуванням перед тим, як робити сервіс доступним ззовні.
+Замініть `sk-or-your-key` на свій [ключ API OpenRouter](https://openrouter.ai/keys) (або встановіть ключі інших постачальників; див. [Конфігурація](#configuration-and-environment)). Відкрийте [http://localhost:5000](http://localhost:5000) і змініть пароль адміністратора за замовчуванням, перш ніж виставляти сервіс у мережу.
 
-<br/>
-
-> ℹ️ **ПРИМІТКА**<br/>
-> У Docker, облікові дані LLM встановлюються через змінні середовища, як-от `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (не через веб-інтерфейс). У настільній версії (Electron) ключі налаштовуються в розділі **Налаштування → API**.
-
-<br/>
+> ℹ️ **ПРИМІТКА**  
+>
+> У Docker облікові дані LLM встановлюються через змінні середовища, такі як `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (не через веб-інтерфейс). У настільній версії (Electron) ключі налаштовуються в розділі **Налаштування → API**.
 
 **Windows**
 
-Завантажте останній `Transrewrt Setup x.y.z.exe` з [релізів](https://github.com/wsj-br/transrewrt/releases), запустіть інсталятор і запустіть програму через меню «Пуск» або ярлик на робочому столі. Введіть свої ключі API в розділі **Налаштування → API**. Вам потрібно налаштувати хоча б одного провайдера; OpenRouter — популярний варіант для безкоштовних моделей.
-
-<br/>
+Завантажте останній `Transrewrt Setup x.y.z.exe` з [релізів](https://github.com/wsj-br/transrewrt/releases), запустіть установник, потім запустіть програму через меню «Пуск» або ярлик на робочому столі. Введіть свої ключі API в розділі **Налаштування → API**. Потрібно налаштувати принаймні одного постачальника; OpenRouter — поширений варіант для безкоштовних моделей.
 
 **Linux**
 
-Завантажте `.AppImage` для вашого процесора з [релізів](https://github.com/wsj-br/transrewrt/releases) (`x64` для звичайних ПК, `arm64` для багатьох ARM-пристроїв, включаючи Raspberry Pi 4+), потім виконайте:
+Завантажте `.AppImage` для вашого процесора з [релізів](https://github.com/wsj-br/transrewrt/releases) (`x64` для звичайних ПК, `arm64` для багатьох пристроїв ARM, включаючи Raspberry Pi 4+), потім:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Введіть свої ключі API в розділі **Налаштування → API**. Вам потрібно налаштувати хоча б одного провайдера; OpenRouter — популярний варіант для безкоштовних моделей.
+Введіть свої ключі API в розділі **Налаштування → API**. Потрібно налаштувати принаймні одного постачальника; OpenRouter — поширений варіант для безкоштовних моделей.
 
-У Debian/Ubuntu може знадобитися попередня установка додаткових залежностей:
+**Повідомлення консолі:** Упаковані збірки для Linux (`x64` та `arm64` AppImages) приховують попередження про застарілість Node у терміналі (наприклад, вбудований модуль `punycode`). Якщо Chromium виводить помилки GPU / EGL, такі як «GLES3 не підтримується», але додаток працює, їх можна вимкнути, відключивши апаратне прискорення:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Детальніше див. у розділі [Установка → Linux](#linux-electron).
+Це стосується також amd64; змініть ім’я файлу відповідно до вашого завантаження. Див. [Встановлення → Linux (Electron)](#linux-electron) для додаткових відомостей.
 
-<br/>
+У Debian/Ubuntu можуть знадобитися додаткові **виконавчі** бібліотеки, які очікує Chromium (часто вже присутні на повноцінних стільницях). Використовуйте **`libnotify4`** для сповіщень на стільниці — **не** `libnotify-dev` (це для збирання програмного забезпечення, а не для запуску упакованого AppImage):
 
-> ℹ️ **ПРИМІТКА**<br/>
-> Підтримка macOS наразі відсутня. Transrewrt доступний для Windows, Linux і Docker.
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+Мінімальні або спеціальні образи можуть все ще завершуватися з помилкою про відсутній `.so`; встановіть пакет, названий у повідомленні про помилку (поширені додаткові пакети: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). У деяких середовищах потрібен FUSE для запуску AppImages (наприклад, `libfuse2` у Ubuntu 22.04+), або використовуйте `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
-Після запуску додатка ознайомтеся з **[Посібником користувача](USER-GUIDE.uk.md)**, щоб дізнатися, як перекладати, переписувати та перетворювати текст, керувати промптами та налаштовувати моделі.
+Див. [Встановлення → Linux](#linux-electron) для аналогічного підсумку.
 
-<br/><br/>
+> ℹ️ **ПРИМІТКА**  
+>
+> macOS наразі не підтримується. Transrewrt доступний для Windows, Linux та Docker.
 
-<a id="installation"></a>
+Після запуску додатка ознайомтеся з **[Посібником для користувача](USER-GUIDE.uk.md)**, щоб дізнатися, як перекладати, перефразовувати та трансформувати текст, керувати запитами та налаштовувати моделі.
 
 ## Встановлення
 
-<a id="windows-electron"></a>
 ### Windows (Electron)
 
-- Завантажте найновіший установник з розділу [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Запустіть `.exe` файл та дотримуйтесь інструкцій установника.
-- Перший запуск: запустіть додаток через меню «Пуск» або ярлик на робочому столі.
+- Завантажте останній установник з [релізів](https://github.com/wsj-br/transrewrt/releases).
+- Запустіть `.exe` та дотримуйтесь інструкцій установника.
+- При першому запуску: запустіть додаток через меню «Пуск» або ярлик на робочому столі.
 
-<br/>
+> ℹ️ **ПРИМІТКА**  
+>
+> У Windows може з’явитися одне з цих попереджень безпеки (нормально для непідписаних/незалежних додатків):
+>
+> - **Контроль облікових записів користувачів (UAC)**: «Чи дозволити цій програмі від невідомого видавця вносити зміни на вашому пристрої?» → Натисніть **Так**.
+> - **Microsoft Defender SmartScreen**: «Windows захистив ваш комп’ютер» → Натисніть **Додаткові відомості** → **Все одно запустити**.
+>
+> Це відбувається тому, що додаток не підписаний Microsoft або великим видавцем — він безпечний, якщо ви завантажили його з нашого офіційного релізу на GitHub
+>  (перевірте контрольну суму SHA256 нижче).
 
-<a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Завантажте відповідний `.AppImage` файл (`x64` або `arm64`) з розділу [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Запуск: виконайте `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` для x86_64/amd64, або використовуйте файл `...-arm64.AppImage` для платформи ARM64.
-- Додаткові залежності (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Дивіться [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) для більш детальної інформації.
+- Завантажте відповідний `.AppImage` (`x64` або `arm64`) з [релізів](https://github.com/wsj-br/transrewrt/releases).
+- Запустіть: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` для x86_64/amd64 або використовуйте файл `...-arm64.AppImage` для ARM64.
+- **Бібліотеки часу виконання Debian/Ubuntu** (Electron/Chromium; такі самі, як у [Швидкий старт → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — використовуйте **`libnotify4`**, а не `libnotify-dev`. У мінімальних системах встановлюйте будь-які відсутні `.so`, які виводяться в терміналі; часто потрібні додаткові компоненти, такі як `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`. AppImage може потребувати `libfuse2` (Ubuntu 22.04+) або `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
+- **Повідомлення GPU:** Chromium може виводити помилки ініціалізації GPU або EGL у деяких системах (особливо ARM); додаток все одно може працювати нормально. Щоб уникнути цих повідомлень, запустіть з вимкненою апаратною акселерацією: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (або ваш файл для `arm64`).
 
-<br/>
-
-<a id="docker"></a>
 ### Docker
 
-- Завантажте образ: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Встановіть хоча б один ключ постачальника через змінні оточення (наприклад, `OPENROUTER_API_KEY` для OpenRouter). Передавайте змінні за допомогою `-e` або `docker compose` / `.env`, щоб секрети не потрапили в образ.
-- Ключі постачальників **не вводяться** в веб-інтерфейсі; сервер зчитує їх з оточення.
+- Отримайте образ: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- Встановіть принаймні один ключ постачальника через змінні середовища (наприклад, `OPENROUTER_API_KEY` для OpenRouter). Передавайте змінні за допомогою `-e` або `docker compose` / `.env`, щоб секрети не потрапляли в образ.
+- Ключі постачальників **не** вводяться у веб-інтерфейсі; сервер читає їх із середовища.
 
-Приклад — іменований том для збереження даних (ключ OpenRouter через змінну оточення):
+Приклад — іменований том для збереження даних (ключ OpenRouter через змінну середовища):
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -199,154 +188,126 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-або, якщо ви віддаєте перевагу Docker Compose, скористайтеся:
+або, якщо ви віддаєте перевагу Docker Compose, використовуйте:
 
-# завантажте файл компонування
+```
+# download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# відредагуйте файл, щоб додати API_KEYS
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
-# запустіть контейнер
+# start the container
 docker compose -f transrewrt.yml up -d
 ```
 
-<br/>
+Див. [Конфігурація](#configuration-and-environment) для всіх змінних середовища, таких як `PORT`, `CONFIG_PATH`, `TZ` та ключі LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-| Параметр   | Опис                                                                                                                            |
-|----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| Порт     | `5000` (відобразіть за допомогою `-p 5000:5000`)                                                                                                       |
-| Том      | Монтування `/app/data` для збереження конфігурації та бази даних                                                                                  |
-| Змінні середовища | `PORT`, `CONFIG_PATH`, а також ключі LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) — див. [Конфігурація](#configuration-and-environment) |
+### Налаштування часового поясу
 
-Щоб зібрати та запустити з вихідного коду: `docker compose up --build -d` або `pnpm docker:up` — див. [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+Дата та час у інтерфейсі користувача дотримуються локалі та часового поясу **браузера**. Для **поведінки на стороні сервера** (логування тощо) контейнер використовує змінну середовища `TZ`. За замовчуванням встановлено `TZ=Europe/London`.
 
-<br/><br/>
+Щоб використовувати інший часовий пояс, встановіть `TZ` у вашому файлі Compose, наприклад:
 
-<a id="getting-an-openrouter-api-key"></a>
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
+```
+
+Або передайте її під час запуску контейнера (Docker):
+
+```bash
+--env TZ=America/Sao_Paulo
+```
+
+На багатьох Linux-хостах ви можете скопіювати назву системного часового поясу за допомогою:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+Список дійсних назв часових поясів підтримується в [базі даних tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
 ## Отримання API-ключа OpenRouter
 
-Transrewrt підтримує кілька провайдерів штучного інтелекту. [OpenRouter](https://openrouter.ai) — популярний варіант, оскільки об'єднує багато моделей під одним ключем і пропонує безкоштовні моделі.
+Transrewrt підтримує кілька постачальників штучного інтелекту. [OpenRouter](https://openrouter.ai) — популярний варіант, оскільки об’єднує багато моделей під одним ключем і пропонує безкоштовні моделі.
 
-1. Зареєструйтеся або увійдіть на сайт [openrouter.ai](https://openrouter.ai).
-2. Відкрийте сторінку [Keys](https://openrouter.ai/keys) та створіть новий ключ (надайте йому назву, і за бажанням встановіть ліміт коштів). Ви можете використовувати безкоштовні моделі, не поповнюючи рахунок.
-3. **Десктоп (Electron):** вставте ключі в розділі **Налаштування → API**. **Docker:** встановіть змінні середовища, такі як `OPENROUTER_API_KEY` (див. [Швидкий старт](#quick-start)).
+1. Зареєструйтеся або увійдіть на [openrouter.ai](https://openrouter.ai).
+2. Відкрийте сторінку [Keys](https://openrouter.ai/keys) та створіть новий ключ (надайте йому назву, і за бажанням встановіть ліміт коштів). Ви можете використовувати безкоштовні моделі без додавання коштів.
+3. **Desktop (Electron):** вставте ключі в **Налаштування → API**. **Docker:** встановіть змінні середовища, такі як `OPENROUTER_API_KEY` (див. [Швидкий старт](#quick-start)).
 
-Не використовуйте модель **Body Builder** від OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) для перекладу, переписування чи перетворення: вона повертає JSON-навантаження запитів, а не готовий текст для цих завдань. Див. [Налаштування → Моделі](USER-GUIDE.uk.md#models) у Користувацькому посібнику.
+Не використовуйте модель **Body Builder** від OpenRouter (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) для перекладу, перефразування чи трансформації: вона повертає JSON-запити, а не готовий текст для цих завдань. Див. [Налаштування → Моделі](USER-GUIDE.uk.md#models) у Керівництві для користувача.
 
-Ви також можете використовувати інших провайдерів (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) або запускати моделі локально за допомогою [Ollama](https://ollama.com). Див. [Налаштування](#configuration-and-environment), щоб побачити повний список підтримуваних провайдерів і змінних середовища.
+Ви також можете використовувати інших постачальників (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) або запускати моделі локально за допомогою [Ollama](https://ollama.com). Див. [Конфігурація](#configuration-and-environment) для повного списку підтримуваних постачальників та змінних середовища.
 
-> ⚠️ **ПОПЕРЕДЖЕННЯ**<br/>
-> Якщо ви використовуєте Ollama з іншого пристрою, контейнера чи сервісу, не забудьте налаштувати Ollama на прийняття зовнішніх підключень (не лише localhost).
+> ⚠️ **ПОПЕРЕДЖЕННЯ**  
+>
+> Якщо ви використовуєте Ollama з іншого пристрою, контейнера чи служби, не забудьте налаштувати Ollama на дозвіл зовнішніх підключень (не тільки localhost).
 
-Для отримання інформації щодо обмежень, BYOK тощо, див. [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
-
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
+Щодо обмежень, BYOK тощо, див. [аутентифікація OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 ## Налаштування та середовище
 
 **Розташування файлів конфігурації**
 
-| Розгортання          | Розташування конфігурації                           |
-| --------------------- | --------------------------------------------------- |
-| Electron (Windows)    | `%APPDATA%\transrewrt\`                           |
-| Electron (Linux)      | `~/.config/transrewrt/`                           |
-| Веб / Docker          | `/app/data/config.json` (використовуйте том для зберігання) |
+| Розгортання         | Розташування конфігурації                                   |
+| ------------------ | ------------------------------------------------- |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Веб / Docker       | `/app/data/config.json` (використовуйте том для збереження) |
 
-<br/>
+**Змінні середовища** (лише для веб/Docker; Electron використовує локальний файл конфігурації)
 
-**Змінні середовища** (лише веб/Docker; Electron використовує локальний файл конфігурації)
+| Змінна             | За замовчуванням                 | Опис                                                                                                                 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`               | `5000`                  | Порт, на якому слухає сервер                                                                                                       |
+| `CONFIG_PATH`        | `/app/data/config.json` | Шлях до файлу конфігурації                                                                                                     |
+| `TZ`                 | `Europe/London`         | Часовий пояс IANA для часу на стороні сервера (логування тощо); інтерфейс все ще слідує за браузером. Див. [Docker → timezone](#docker-timezone) |
+| `OPENROUTER_API_KEY` | *(порожньо)*               | API-ключ OpenRouter                                                                                                          |
+| `OPENAI_API_KEY`     | *(порожньо)*               | API-ключ OpenAI                                                                                                              |
+| `CEREBRAS_API_KEY`   | *(порожньо)*               | API-ключ Cerebras                                                                                                            |
+| `ANTHROPIC_API_KEY`  | *(порожньо)*               | API-ключ Anthropic                                                                                                           |
+| `GOOGLE_API_KEY`     | *(порожньо)*               | API-ключ Google Gemini                                                                                                       |
+| `DEEPSEEK_API_KEY`   | *(порожньо)*               | API-ключ DeepSeek                                                                                                            |
+| `GROQ_API_KEY`       | *(порожньо)*               | API-ключ Groq                                                                                                                |
+| `MISTRAL_API_KEY`    | *(порожньо)*               | API-ключ Mistral                                                                                                             |
+| `OLLAMA_URL`         | *(порожньо)*               | Базова URL-адреса Ollama (наприклад, `http://host.docker.internal:11434`)                                                                  |
+| `XAI_API_KEY`        | *(порожньо)*               | API-ключ xAI                                                                                                                 |
 
-| Змінна               | За замовчуванням         | Опис |
-| -------------------- | ------------------------ | ---- |
-| `PORT`               | `5000`                   | Порт, на якому слухає сервер |
-| `CONFIG_PATH`        | `/app/data/config.json`  | Шлях до файлу конфігурації |
-| `OPENROUTER_API_KEY` | *(порожньо)*              | Ключ API OpenRouter |
-| `OPENAI_API_KEY`     | *(порожньо)*              | Ключ API OpenAI |
-| `CEREBRAS_API_KEY`   | *(порожньо)*              | Ключ API Cerebras |
-| `ANTHROPIC_API_KEY`  | *(порожньо)*              | Ключ API Anthropic |
-| `GOOGLE_API_KEY`     | *(порожньо)*              | Ключ API Google Gemini |
-| `DEEPSEEK_API_KEY`   | *(порожньо)*              | Ключ API DeepSeek |
-| `GROQ_API_KEY`       | *(порожньо)*              | Ключ API Groq |
-| `MISTRAL_API_KEY`    | *(порожньо)*              | Ключ API Mistral |
-| `OLLAMA_URL`         | *(порожньо)*              | Базовий URL Ollama (наприклад, `http://host.docker.internal:11434`) |
-| `XAI_API_KEY`        | *(порожньо)*              | Ключ API xAI |
+Налаштовуйте лише тих постачальників, яких використовуєте. Ідентифікатори моделей мають простір імен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, тощо).
 
-Налаштовуйте лише тих постачальників, яких використовуєте. Ідентифікатори моделей мають простір імен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…` тощо).
+**Відображення вартості:** OpenRouter повертає точну виставлену вартість, коли це можливо. Інші постачальники використовують **приблизну** вартість із публічного ціноутворення моделей OpenRouter, якщо ключ OpenRouter доступний; без нього вартість не-OpenRouter може відображатися як `0`. Оцінки не є рахунками.
 
-**Відображення вартості:** OpenRouter повертає точну суму рахунку, коли це можливо. Інші постачальники використовують **розрахункову** вартість на основі публічних цін OpenRouter, якщо доступний ключ OpenRouter; в іншому випадку вартість не-OpenRouter може відображатися як `0`. Розрахунки не є офіційними рахунками.
+**Дані та збереження:** Для Docker змонтуйте том у `/app/data`, щоб `config.json` та база даних SQLite зберігалися після перезапуску контейнера. Без тому всі дані будуть втрачені після зупинки контейнера.
 
-<br/>
-
-**Дані та збереження:** Для Docker створіть том у каталозі `/app/data`, щоб файл `config.json` та база даних SQLite зберігалися після перезапуску контейнера. Без тому всі дані втрачаються після зупинки контейнера.
-
-**Розробники:** Після оновлення змін, які замінюють стару конфігурацію з одним ключем, скиньте або об'єднайте `data/config.json` з новою структурою за замовчуванням із `src/config-defaults/config_default.json`, якщо ваш локальний файл ще використовує видалені поля (`api_key`, `api_url`, параметри проксі).
-
-<br/>
+**Розробники:** Після отримання змін, які замінюють стару конфігурацію з одним ключем, скиньте або об’єднайте `data/config.json` з новою формою за замовчуванням із `src/config-defaults/config_default.json`, якщо ваш локальний файл ще використовує видалені поля (`api_key`, `api_url`, параметри проксі).
 
 **Веб-аутентифікація:**
 
 - Адміністратор за замовчуванням: `admin` / `transrewrt26`.
 - Керуйте користувачами в розділі **Налаштування → Користувачі**.
-- Скидання пароля: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (з вихідного коду: `pnpm run reset-web-password -- <username> <new-password>`)
+- Скиньте пароль: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+  (з коду: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
+> ⚠️ **ПОПЕРЕДЖЕННЯ**  
+>
+> Негайно змініть пароль адміністратора за замовчуванням на будь-якому хості, доступному в мережі.
 
-> ⚠️ **ПОПЕРЕДЖЕННЯ**<br/>
-> Негайно змініть пароль адміністратора за замовчуванням на будь-якому хості, доступному у мережі.
-
-<br/>
-
-Основні параметри (шрифт, моделі, мови тощо) доступні в Налаштуваннях програми.
-
-<br/><br/>
-
-<a id="development-and-architecture"></a>
+Основні параметри (шрифт, моделі, мови тощо) доступні в Налаштуваннях додатку.
 
 ## Розробка та архітектура
 
-- **Розробка:** Налаштування, збірка, тестування та розгортання (Electron, Web, Docker) — див. **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Архітектура та огляд системи:** Структура папок, технологічний стек, архітектурні рішення — див. **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Розробка:** Налаштування, збірка, тестування та розгортання (Electron, Веб, Docker) — див. **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Архітектура та огляд системи:** Структура папок, технологічний стек, рішення щодо дизайну — див. **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-<br/><br/>
+## Повідомлення про проблеми
 
-<a id="releases-and-tags"></a>
-## Релізи та теги
-
-- **Git-теги** `v`* (наприклад, `v1.0.10`) запускають [робочий процес релізу](.github/workflows/release.yml). **GitHub Releases** додають Windows-установник (`.exe`) та Linux AppImage (**x64** та **arm64**).
-- **Docker-образи** публікуються в `ghcr.io/wsj-br/transrewrt`. Теги образів відповідають Git-версії (наприклад, `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`), а також використовується тег `latest`. Мультиархітектура: `linux/amd64` та `linux/arm64` (наприклад, Raspberry Pi).
-
-<br/><br/>
-
-<a id="contributing"></a>
-## Як приєднатися до розробки
-
-1. Зробіть форк репозиторію.
-2. Створіть гілку для функції: `git checkout -b feature/my-feature`
-3. Запишіть зміни з'ясовним коментарем.
-4. Відправте зміни та створіть Pull Request до гілки `main`.
-
-Будь ласка, дотримуйтесь існуючого стилю коду та перевіряйте свої зміни в режимах Electron і веб перед відправкою. Інструкції щодо збірки та тестування наведені в [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
-
-<br/>
-
-**Повідомлення про помилки:** Створюйте issue на [GitHub](https://github.com/wsj-br/transrewrt/issues). Вкажіть вашу платформу (Windows / Linux / Docker) та версію додатка (вказана у діалозі «Про програму» або на сторінці релізів).
-
-<br/><br/>
-
-<a id="disclaimer"></a>
+Відкрийте питання на [GitHub](https://github.com/wsj-br/transrewrt/issues). Вкажіть вашу платформу (Windows / Linux / Docker) та версію програми (вказана у діалозі «Про програму» або на сторінці релізів).
 
 ## Відмова від відповідальності
 
-Назви та іконки продуктів належать їх власникам і використовуються виключно з метою ідентифікації. Це програмне забезпечення не пов’язане зі згаданими брендами і не підтримується ними.
+Назви продуктів та іконки належать їхнім відповідним власникам і використовуються лише з метою ідентифікації. Це програмне забезпечення не пов'язане з жодним із згаданих брендів і не схвалене ними.
 
-<br/><br/>
-
-<a id="license"></a>
 ## Ліцензія
 
-Авторське право © 2026 Вальдемар Скуделлер молодший.
+Авторське право © 2026 Вальдемар Скуделлер-молодший.
 
-[Ліцензія Apache 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

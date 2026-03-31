@@ -1,7 +1,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
 function llmStreamWithAccumulation(payload) {
   return new Promise((resolve, reject) => {
@@ -60,6 +60,7 @@ const api = {
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
   getOsUsername: () => ipcRenderer.invoke('get-os-username'),
   openExternalUrl: (url) => ipcRenderer.invoke('shell:openExternal', url),
+  readThirdPartyLicenses: () => ipcRenderer.invoke('shell:readThirdPartyLicenses'),
   getOpenRouterKeyInfo: () => ipcRenderer.invoke('getOpenRouterKeyInfo'),
   // App DB (same surface as webAPI for Cost tab and custom prompts)
   logApiCall: (payload) => ipcRenderer.invoke('appDb:log', payload),
@@ -78,8 +79,8 @@ const api = {
     ipcRenderer.invoke('appDb:getSummaryByDayPaginated', from, to, page, pageSize).then((r) => r ?? { rows: [], total: 0 }),
   deleteCallsOutsideRange: (from, to) => ipcRenderer.invoke('appDb:deleteOutsideRange', from, to),
   deleteCallsByModel: (model) => ipcRenderer.invoke('appDb:deleteByModel', model),
-  getExecutionHistory: (from, to, username) =>
-    ipcRenderer.invoke('appDb:getExecutionHistory', from, to, username).then((r) => r?.rows ?? []),
+  getExecutionHistory: (from, to, username, limit) =>
+    ipcRenderer.invoke('appDb:getExecutionHistory', from, to, username, limit).then((r) => r?.rows ?? []),
   deleteExecutionHistory: (from, to) => ipcRenderer.invoke('appDb:deleteExecutionHistory', from, to),
   customPrompts: {
     getAll: () => ipcRenderer.invoke('customPrompts:getAll'),
@@ -88,6 +89,10 @@ const api = {
     delete: (id) => ipcRenderer.invoke('customPrompts:delete', id),
     import: (prompts, mode) => ipcRenderer.invoke('customPrompts:import', { prompts, mode }),
   },
+  exportConfigBackup: (opts) => ipcRenderer.invoke('configBackup:export', opts || {}),
+  importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
+  getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
+  getRuntimePlatform: () => process.platform,
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

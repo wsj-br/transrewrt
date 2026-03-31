@@ -1,8 +1,9 @@
 ---
-translated_at: "2026-03-26T00:49:38.165Z"
-source_hash: "87f5e7618cbfd3084efeecba28440ecccb03450da2ae8fe4c6f91c75cb7f4981"
-source_mtime: 1774482557035.2158
-model: "qwen/qwen3-235b-a22b-2507"
+translation_last_updated: '2026-03-31T22:57:22.145Z'
+source_file_mtime: '2026-03-30T09:57:25.622Z'
+source_file_hash: e1b91eca0124d467
+translation_language: hu
+source_file_path: USER-GUIDE.md
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -14,27 +15,27 @@ model: "qwen/qwen3-235b-a22b-2507"
 <a id="introduction"></a>
 ## Bevezetés
 
-A Transrewrt három fő módon segít a szöveggel való munkában:
+A Transrewrt segít a szövegekkel három fő módon dolgozni:
 
-- **Fordítás** – szöveg egyik nyelvről másikra alakítása.
-- **Átírás** – szöveg újra fogalmazása más stílusban, például érthetőbben, rövidebben vagy formálisabban.
-- **Átalakítás** – szöveg feldolgozása egyéni, AI-utasításokkal, melyeket „promptok”-nak nevezünk.
+- **Fordítás** – szöveg átalakítása egyik nyelvről a másikra.
+- **Átírás** – szöveg újraformázása más stílusban, például érthetőbb, rövidebb vagy formálisabb változatra.
+- **Átalakítás** – szöveg feldolgozása egyéni, AI-utasításokkal, amelyeket parancsoknak (promptoknak) nevezünk.
 
 <br/>
 
-Ez az útmutató a telepítést követő használatot mutatja be. A telepítési lépéseket a fő **[README](README.hu.md)** tartalmazza.
+Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés és indítás után. A telepítési lépésekért lásd a fő **[README](README.hu.md)** fájlt.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A Transrewrt elérhető asztali alkalmazásként Windows és Linux rendszerre, valamint önkiszolgáló (self-hosted) webes alkalmazásként is. Ez az útmutató az alkalmazás mindennapi használatára koncentrál. Ha egy adott funkció csak egy változatra vonatkozik, azt egyértelműen jelöljük.
+> A Transrewrt elérhető asztali alkalmazásként Windows és Linux rendszerekre, valamint önkiszolgáló webalkalmazásként. Ez az útmutató az alkalmazás mindennapi használatára fókuszál. Ha egy adott információ csak egy verzióra vonatkozik, azt egyértelműen megjelöljük.
 
-<small>**Egyéb nyelveken is elolvasható:** </small>
-<small id="lang-list"> [English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+<small>**Más nyelveken olvasható:** </small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
 
 <small>
 
-> **Megjegyzés a felhasználói felület és dokumentációk fordításához:** Az angol (UK) eredeti nyelvén kívül minden más felhasználói felület fordítása mesterséges intelligenciás modellekkel történt, ezért a szövegek lehetnek pontatlanok vagy hibákat tartalmazhatnak.
+> **Megjegyzés a felhasználói felület és a dokumentáció fordításához:** A felhasználói felület minden nyelve, kivéve az eredeti angol (Egyesült Királyság) változatát, mesterséges intelligencia modellekkel lett lefordítva; a szöveg pontatlan vagy hibás lehet.
 
 </small>
 
@@ -45,7 +46,7 @@ Ez az útmutató a telepítést követő használatot mutatja be. A telepítési
 **Tartalomjegyzék**
 
 - [Előkészületek](#before-you-start)
-  - [Hogyan szerezzünk ingyenes OpenRouter API kulcsot (asztali alkalmazáshoz)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+  - [Ingyenes OpenRouter API-kulcs beszerzése (asztali alkalmazás)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Első lépések](#getting-started)
 - [Az ablak fő részei](#main-parts-of-the-window)
   - [Oldalsáv](#sidebar)
@@ -53,20 +54,20 @@ Ez az útmutató a telepítést követő használatot mutatja be. A telepítési
   - [Bemeneti és kimeneti panel](#input-and-output-panels)
 - [Fordítás](#translate)
   - [Szöveg fordítása](#translate-text)
-  - [Nyelv kiválasztása](#language-selection)
-  - [Hasznos beállítások a fordításhoz](#helpful-translation-settings)
+  - [Nyelvválasztás](#language-selection)
+  - [Hasznos fordítási beállítások](#helpful-translation-settings)
 - [Átírás](#rewrite)
 - [Átalakítás](#transform)
-  - [Meglévő prompt futtatása](#run-an-existing-prompt)
-  - [Ha még nincsenek promptjaink](#if-you-have-no-prompts-yet)
-  - [Gyors prompt létrehozása](#create-a-prompt-quickly)
-  - [Prompt szerkesztése](#edit-a-prompt)
-  - [Prompt tesztelése használat előtt](#test-a-prompt-before-using-it)
-- [Irányítópult](#dashboard)
+  - [Meglévő parancs futtatása](#run-an-existing-prompt)
+  - [Ha még nincsenek parancsai](#if-you-have-no-prompts-yet)
+  - [Parancs gyors létrehozása](#create-a-prompt-quickly)
+  - [Parancs szerkesztése](#edit-a-prompt)
+  - [Parancs tesztelése használat előtt](#test-a-prompt-before-using-it)
+- [Műszerfal](#dashboard)
   - [Adatok szűrése](#filter-the-data)
-  - [Fülek az irányítópulton](#dashboard-tabs)
+  - [Műszerfal fülei](#dashboard-tabs)
   - [Adatok exportálása](#export-data)
-  - [Rekordok törlése modell szerint](#delete-stored-records-for-a-model)
+  - [Egy modellhez tartozó tárolt rekordok törlése](#delete-stored-records-for-a-model)
 - [Előzmények](#history)
   - [Adatok szűrése](#filter-the-data-1)
   - [Előzmények exportálása](#export-history-data)
@@ -75,25 +76,26 @@ Ez az útmutató a telepítést követő használatot mutatja be. A telepítési
   - [Modellek](#models)
   - [Nyelvek](#languages)
   - [Költségkövetés](#cost-tracking)
-  - [Átalakítási promptok](#transform-prompts)
+  - [Átalakítási sablonok](#transform-prompts)
   - [Felhasználók](#users)
   - [API konfiguráció](#api-config)
   - [Névjegy](#about)
 - [Gyakori problémák](#common-issues)
-  - [Az alkalmazás nem fordít, nem ír át, vagy nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Az alkalmazás nem fordít, nem írja át vagy nem alakítja át a szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
   - [A modelllista üres](#the-model-list-is-empty)
-  - [A válasz túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
-  - [A felhasználói felület rossz nyelven jelenik meg](#the-interface-is-in-the-wrong-language)
+  - [Az eredmény túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
+  - [A felület rossz nyelven jelenik meg](#the-interface-is-in-the-wrong-language)
   - [A szöveg túl kicsi vagy nehezen olvasható](#the-text-is-too-small-or-hard-to-read)
-  - [Az irányítópult grafikonjai üresek](#dashboard-charts-are-empty)
-  - [A költség „nem elérhető” üzenetet mutat, vagy helytelennek tűnik](#cost-shows-not-available-or-seems-wrong)
-  - [Az összesített költség nem egyezik meg a szolgáltató számlájával](#total-cost-does-not-match-my-provider-bill)
+  - [A műszerfal diagramjai üresek](#dashboard-charts-are-empty)
+  - [A költség „nem elérhető” vagy helytelennek tűnik](#cost-shows-not-available-or-seems-wrong)
+  - [A teljes költség nem egyezik meg a szolgáltató számlájával](#total-cost-does-not-match-my-provider-bill)
   - [Az Előzmények oldal hiányzik az oldalsávon](#the-history-page-is-missing-from-the-sidebar)
-  - [Webes alkalmazás: váratlanul a bejelentkezési oldalra kerülöm átirányítva](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Az irányítópulton nincs adat más felhasználók számára (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Módosítottam egy promptot, de elveszett a változtatás](#i-changed-a-prompt-and-lost-the-edits)
+  - [Webalkalmazás: váratlanul a bejelentkező oldalra irányít](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webes admin: elfelejtett vagy elveszett jelszó](#web-admin-forgot-or-lost-a-password)
+  - [A műszerfalon más felhasználók adatai nem jelennek meg (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Egy parancsot módosítottam, és elveszítettem a változtatásokat](#i-changed-a-prompt-and-lost-the-edits)
 - [Gyors tippek](#quick-tips)
-- [Jognyilatkozat](#disclaimer)
+- [Felelősségkizárás](#disclaimer)
 - [Licenc](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -101,55 +103,54 @@ Ez az útmutató a telepítést követő használatot mutatja be. A telepítési
 <br/><br/>
 
 <a id="before-you-start"></a>
+## Kezdés előtt
 
-## Előkészületek
+A Transrewrt használatához legalább egy AI-szolgáltatóhoz kell hozzáférnie. A támogatott szolgáltatók: [OpenRouter](https://openrouter.ai) (amely sok modellt egyesít), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, és [Ollama](https://ollama.com) a helyi modellekhez.
 
-A Transrewrt használatához legalább egy MI-szolgáltatóhoz kell hozzáférésed. A támogatott szolgáltatók: [OpenRouter](https://openrouter.ai) (amely sok modellt egyesít), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, és [Ollama](https://ollama.com) helyi modellekhez.
-
-Nem szükséges fizetős modellt választanod az induláshoz. Amint hozzáadod az OpenRouter API-kulcsodat, az alkalmazás automatikusan engedélyez egy beépített **ingyenes** OpenRouter lehetőséget. Ez lehetővé teszi, hogy azonnal elkezdhesd a szövegek fordítását, újraírását és átalakítását. Másik lehetőségként ingyenes API-kulcsot szerezhet be a Cerebras, a Google, a Groq vagy a Mistral AI szolgáltatóktól is.
+Nem szükséges fizetős modellt választania az indításhoz. Amint hozzáadja az OpenRouter API-kulcsát, az alkalmazás automatikusan engedélyezi a beépített **ingyenes** OpenRouter lehetőséget. Ez lehetővé teszi, hogy azonnal elkezdjen szöveget fordítani, átírni és átalakítani. Másik lehetőségként ingyenes API-kulcsot szerezhet be a Cerebras, Google, Groq vagy Mistral AI szolgáltatóktól.
 
 Egyszerű nyelven:
 
-- Egy **modell** az az MI-motor, amely elvégzi a munkát. A modelleket egy **szolgáltató előtaggal** soroljuk fel (például `openrouter/…`, `openai/…`, `ollama/…`).
-- Egy **API-kulcs** (vagy Ollama esetén egy **alap URL**) az, amellyel az alkalmazás kapcsolódik a szolgáltatóhoz.
+- Egy **modell** az az AI-motor, amely elvégzi a munkát. A modelleket **szolgáltató előtaggal** soroljuk fel (például `openrouter/…`, `openai/…`, `ollama/…`).
+- Egy **API-kulcs** (vagy Ollama esetén egy **alap URL**) az, amellyel az alkalmazás eléri a szolgáltatót.
 
-Ha a **desktop alkalmazást** használod, add hozzá az API-kulcsokat [**Beállítások** > **API-konfiguráció**](#api-config) részben minden egyes használt szolgáltatóhoz. Ha kizárólag OpenRouter-t használsz, lásd lentebb „Hogyan szerezz be ingyenes OpenRouter API-kulcsot” című fejezetet. Ha nem szeretnél API-kulcsot használni, telepíthetsz Ollamát [ollama.com](https://ollama.com) címről, és helyi modelleket használhatsz, például a `translategemma:4b`-t.
+Ha a **desktop alkalmazást** használja, adja hozzá az API-kulcsokat a használt szolgáltatókhoz a [**Beállítások** > **API konfiguráció**](#api-config) menüpontban. Ha csak OpenRouter-t használ, lásd alább: [Hogyan szerezhetek be API-kulcsot](#how-to-get-an-api-key-desktop-app). Ha nem szeretne API-kulcsot használni, telepítheti az Ollama-t ([ollama.com](https://ollama.com) címről), és helyi modelleket használhat, például a `translategemma:4b`-t.
 
-Ha a **webes verziót** használod, a szerver üzemeltetője konfigurálja a szolgáltatókat környezeti változók segítségével, így az alkalmazásban nem tudsz közvetlenül API-kulcsokat megadni.
+Ha a **webes verziót** használja, a szerver üzemeltetője konfigurálja a szolgáltatókat környezeti változók segítségével, így nem adhat be közvetlenül API-kulcsokat az alkalmazásban.
 
 <br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Hogyan szerezz be ingyenes OpenRouter API-kulcsot (desktop alkalmazás)
+### Hogyan szerezhetek ingyenes OpenRouter API-kulcsot (desktop alkalmazás)
 
-Ha a desktop alkalmazást használod, kövesd az alábbi lépéseket:
+Ha a desktop alkalmazást használja, kövesse az alábbi lépéseket:
 
-1. Látogass el a [OpenRouter](https://openrouter.ai) oldalára webböngészőben.
-2. Hozz létre fiókot, vagy jelentkezz be.
-3. Nyisd meg a [Kulcsok](https://openrouter.ai/keys) oldalt.
-4. Kattints a gombra, amellyel új API-kulcsot hozhatsz létre.
-5. Addj meg nevet a kulcsnak, hogy később felismerd.
-6. Másold ki az új API-kulcsot.
-7. Térj vissza a Transrewrt-be, és nyisd meg a **Beállítások** > **API-konfiguráció** menüpontot.
-8. Illeszd be a kulcsot a **OpenRouter API-kulcs** mezőbe (**Beállítások** > **API-konfiguráció**).
-9. Kattints a **OpenRouter kulcs tesztelése** gombra, hogy ellenőrizd, működik-e.
+1. Látogasson el a [OpenRouter](https://openrouter.ai) oldalra webböngészőjében.
+2. Hozzon létre egy fiókot, vagy jelentkezzen be.
+3. Nyissa meg a [Kulcsok](https://openrouter.ai/keys) oldalt.
+4. Kattintson a gombra, hogy új API-kulcsot hozzon létre.
+5. Adjon nevet a kulcsnak, hogy később felismerje.
+6. Másolja ki az új API-kulcsot.
+7. Térjen vissza a Transrewrt-be, és nyissa meg a **Beállítások** > **API konfiguráció** menüpontot.
+8. Illessze be a kulcsot a **OpenRouter API-kulcs** mezőbe (**Beállítások** > **API konfiguráció** alatt).
+9. Kattintson a **OpenRouter kulcs tesztelése** gombra, hogy ellenőrizze, működik-e.
 
 <br/><br/>
 
 <a id="getting-started"></a>
 ## Első lépések
 
-Ha most használod először a Transrewrt-ot, kövesd az alábbi sorrendet:
+Ha először használja a Transrewrt-et, kövesse ezt a sorrendet:
 
-1. Indítsd el az alkalmazást.
-2. Szükség esetén válaszd ki az **Interfésznyelvet** a földgömb ikonról.
-3. Ha a **desktop alkalmazást** használod, nyisd meg [**Beállítások** > **API-konfiguráció**](#api-config), adj hozzá legalább egy szolgáltatóhoz API-kulcsot (például OpenRouter), majd kattints **Tesztelés**-re az ellenőrzéshez.
-4. Nyisd meg [**Beállítások** > **Modellek**](#models) menüpontot, és adj hozzá egy vagy több modellt a **Kiválasztott modellek** részhez.
-5. Nyisd meg [**Beállítások** > **Nyelvek**](#languages) menüpontot, és válaszd ki a **Legfontosabb nyelveidet**, ha azt szeretnéd, hogy a leggyakrabban használt nyelveid elől legyenek.
-6. Menj a **Fordítás** oldalra, és futtass le egy egyszerű fordítást, hogy ellenőrizd, minden működik-e.
-7. Amikor ez működik, próbáld ki a **Újraírás** és azután a **Átalakítás** lehetőséget.
+1. Nyissa meg az alkalmazást.
+2. Szükség esetén válassza ki a **Felület nyelvét** a földgömb ikonról.
+3. Ha a **desktop alkalmazást** használja, nyissa meg a [**Beállítások** > **API konfiguráció**](#api-config) menüpontot, adjon hozzá legalább egy szolgáltatóhoz API-kulcsot (például OpenRouter), majd kattintson a **Teszt** gombra az ellenőrzéshez.
+4. Nyissa meg a [**Beállítások** > **Modellek**](#models) menüpontot, és adjon hozzá egy vagy több modellt a **Kiválasztott modellek** közé.
+5. Nyissa meg a [**Beállítások** > **Nyelvek**](#languages) menüpontot, és válassza ki a **Legfontosabb nyelveket**, ha a leggyakrabban használt nyelvek elsőként jelenjenek meg.
+6. Menjen a **Fordítás** fülre, és futtasson egy egyszerű fordítást, hogy megerősítse, minden működik.
+7. Ha ez működik, próbálja ki a **Átírás** és majd a **Átalakítás** funkciót.
 
-Ez a sorrend fontos. Elkerüli azt a leggyakoribb kezdői problémát, hogy valaki elindít egy feladatot, mielőtt az alkalmazásnak megfelelő API-kapcsolata vagy kiválasztott modellje lenne.
+Ez a sorrend fontos. Ez megelőzi a leggyakoribb kezdői problémát: feladat indítását mielőtt az alkalmazásnak működő API-kapcsolata vagy kiválasztott modellje lenne.
 
 <br/><br/>
 
@@ -158,34 +159,34 @@ Ez a sorrend fontos. Elkerüli azt a leggyakoribb kezdői problémát, hogy vala
 
 Az alkalmazás három fő részre oszlik:
 
-- A bal oldalon a **oldalsáv**.
-- A tetején az **eszköztár**.
-- A középső részben a **munkaterület**.
+- A bal oldalon található **oldalsáv**.
+- A tetején lévő **eszköztár**.
+- A középső **munkaterület**.
 
 <br/>
 
 <a id="sidebar"></a>
 ### Oldalsáv
 
-Az oldalsáv segítségével navigálhatsz az alkalmazásban. Az oldalsáv elrejthető, hogy több hely legyen, ha az alkalmazás logójához tartozó ikonra kattintasz.
+Az oldalsáv segítségével navigálhat az alkalmazásban. Az oldalsáv összecsukható, hogy több helyet szabadítson fel, ehhez kattintson az alkalmazás logójának melletti ikonra.
 
 <br/>
 
 <table>
   <tr>
     <td valign="top">
-       <img src="../images/screenshots/hu/sidebar.png" alt="Alkalmazás oldalsávja" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+       <img src="../images/screenshots/hu/sidebar.png" alt="Application Sidebar" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
       <br/><br/>
       <ul>
         <li><strong>Fordítás</strong> megnyitja a fordítási munkaterületet.</li><br/>
-        <li><strong>Újraírás</strong> megnyitja az újraírási munkaterületet.</li><br/>
-        <li><strong>Átalakítás</strong> megnyitja az egyéni prompt munkaterületet.</li><br/>
-        <li><strong>Vezérlőpult</strong> megjeleníti a használati és költséginformációkat.</li><br/>
+        <li><strong>Átírás</strong> megnyitja az átírási munkaterületet.</li><br/>
+        <li><strong>Átalakítás</strong> megnyitja az egyéni parancs munkaterületet.</li><br/>
+        <li><strong>Irányítópult</strong> megjeleníti a használati és költséginformációkat.</li><br/>
         <li><strong>Beállítások</strong> megnyitja a beállítások panelt.</li><br/>
-        <li><strong>Előzmények</strong> megmutatja a használati előzményeket a be- és kimeneti szöveggel</li><br/>
-        <li><strong>Felhasználó</strong> megjeleníti a bejelentkezett felhasználó nevét (csak webes verzióban).</li>
+        <li><strong>Előzmények</strong> megjeleníti a használati előzményeket a bemeneti és kimeneti szöveggel</li><br/>
+        <li><strong>Felhasználó</strong> megjeleníti a bejelentkezett felhasználó felhasználónevét (csak webes verzióban).</li>
       </ul>
     </td>
   </tr>
@@ -194,334 +195,329 @@ Az oldalsáv segítségével navigálhatsz az alkalmazásban. Az oldalsáv elrej
 <br/>
 
 <a id="toolbar"></a>
-
 ### Eszköztár
 
-Az eszköztár kicsit megváltozik attól függően, hogy az alkalmazás melyik részén tartasz.
+Az eszköztár kicsit megváltozik attól függően, hogy hol tart az alkalmazásban.
 
-- Bal oldalon az aktuális oldal neve jelenik meg.
-- Jobb oldalon a **modellválasztó** és az **Interfésnyelv** szabályozó látható.
+- Bal oldalon megjelenik az aktuális oldal neve.
+- Jobb oldalon a **modellválasztó** és a **Felület nyelve** vezérlő látható.
 
-A **modellválasztó** lehetővé teszi, hogy kiválaszd, melyik MI-motor legyen használva az aktuális feladathoz.
+A **modellválasztó** lehetővé teszi, hogy kiválassza, melyik MI motort használja az aktuális feladathoz.
 
-  ![Modellválasztó](../images/screenshots/hu/model-selector.png)
+![Model selector](../images/screenshots/hu/model-selector.png)
 
-Néhány ingyenes modell nem mindig elérhető — néha offline állapotban van, vagy korlátozva van a használata. Ha ez történik, az alkalmazás automatikusan eltávolítja a modellt az elérhető listádról. A megjelenő modellek szabályozásához lépj a [**Beállítások** > **Modellek**](#models) menüpontba, és szerkeszd a modelllistádat.  
-A modellbeállításokat közvetlenül is megnyithatod, ha a modell neve melletti szolgáltató ikonra kattintasz az eszköztárban.
+Egyes ingyenes modellek nem mindig érhetők el – néha kapcsolat nélkül vannak, vagy korlátozva van a használatuk. Ha ez történik, az alkalmazás automatikusan eltávolítja a modellt a rendelkezésre álló listáról. A megjelenő modellek szabályozásához menjen a [**Beállítások** > **Modellek**](#models) menüponthoz, és szerkessze a modelllistáját.
+A modellbeállításokat közvetlenül is megnyithatja, ha rákattint a szolgáltató ikonjára a modell neve mellett az eszköztáron.
 
 <br/>
 
-A **gömb ikon + nyelvkód** megváltoztatja az alkalmazás interfésznvét, például a menüket és gombokat. **Nem** változtatja meg a fordításnél használt nyelveket a **Fordítás** funkcióban.
+A **földgömb ikon + nyelvkód** megváltoztatja az alkalmazás felületi nyelvét, például a menüket és gombokat. Ez **nem** változtatja meg a **Fordítás** funkcióban használt fordítási nyelveket.
 
-  ![Interfésynelv-választó](../images/screenshots/hu/language-selector.png)
+![Interface language selector](../images/screenshots/hu/language-selector.png)
 
 <br/>
 
 <a id="input-and-output-panels"></a>
 ### Bemeneti és kimeneti panel
 
-A legtöbb munkaterület bal oldalon egy **Bemeneti**, jobb oldalon pedig egy **Kimeneti** panelt használ.
+A legtöbb munkaterület bal oldali **Bemenet** és jobb oldali **Kimenet** panelt használ.
 
-Ezenkívül minden panel a következőt is mutatja:
+Minden panel a következőket is mutatja:
 
-| **Bemenet**                                                         | **Kimenet**                                                                                                                       |
-|---------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| - Karakterek száma <br/>- Szavak száma <br/>- Bekezdések száma    | - A feladat végrehajtási ideje<br/>- **TPS** (jel/s másodperc)<br/>- Karakterek, szavak és bekezdések száma<br/>- A használt modell |
+| **Bemenet**                                                          | **Kimenet**                                                                                                                  |
+|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| - Karakterek száma <br/>- Szavak száma <br/>- Bekezdések száma   <br/> | - Mennyi ideig tartott a feladat<br/>- **LPS** (tokenek másodpercenként)<br/>- Karakterek, szavak és bekezdések száma<br/>- A használt modell |
 
+Ha a technikai kifejezésekkel kapcsolatban kérdése merül fel:
 
-Ha a technikai kifejezések érdekelnek:
-
-- **Jel (token)** egy kis szövegrészletet jelent. Gondolj rá úgy, mint egy szó részére vagy egy rövid szóra.
-- **TPS** jelenti, hogy másodpercenként hány ilyen szövegrészletet dolgozott fel a modell.
+- **Token** egy kis szövegrészletet jelent. Gondolhat rá úgy, mint egy szó részére vagy egy rövid szóra.
+- **LPS** azt jelenti, hogy másodpercenként hány ilyen szövegrészletet dolgozott fel a modell.
 
 <br/>
 
-Figyelheted a műveletek költségét is (ha elérhető), valamint az összesített költséget, ha engedélyezed a `Költséginformációk megjelenítése a műveleteknél` lehetőséget a [**Beállítások** > **Általános beállítások**](#general-settings) menüben. 
- 
+A műveletek költségét (ha elérhető) és a teljes költséget is figyelemmel kísérheti, ha engedélyezi a `Költséginformációk megjelenítése a műveleteknél` lehetőséget a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban.
+
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="translate"></a>
 ## Fordítás
 
-Használd a **Fordítás** funkciót, ha szöveget szeretnél egyik nyelvről a másikra átalakítani.
+Használja a **Fordítás** funkciót, ha szöveget szeretne egyik nyelvről a másikra átalakítani.
 
-![Fordítás munkaterület](../images/screenshots/hu/translate.png)
+![Translate workspace](../images/screenshots/hu/translate.png)
 
 <br/>
 
 <a id="translate-text"></a>
 ### Szöveg fordítása
 
-1. Nyisd meg a **Fordítás** funkciót.
-2. Válassz nyelvet a **Honnan** mezőben.
-3. Válassz nyelvet a **Hova** mezőben.
-4. Válassz modellt az eszköztárból.
-5. Írj vagy másolj be szöveget a **Bemenet** mezőbe.
-6. Kattints a **Fordítás** gombra.
-7. Olvasd el az eredményt a **Kimenet** mezőben.
-8. Használd a másolás gombot, ha az eredményt másolni szeretnéd.
+1. Nyissa meg a **Fordítás** funkciót.
+2. Válasszon nyelvet a **Honnan** mezőben.
+3. Válasszon nyelvet a **Hova** mezőben.
+4. Válasszon modellt az eszköztárból.
+5. Írja be vagy illessze be a szöveget a **Bemenet** mezőbe.
+6. Kattintson a **Fordítás** gombra.
+7. Olvassa el az eredményt a **Kimenet** mezőben.
+8. Használja a másolás gombot, ha másolni szeretné az eredményt.
 
 <br/>
 
 <a id="language-selection"></a>
 ### Nyelvválasztás
 
-- **Honnan** lehet konkrét nyelv vagy **Nyelv felismerése**.
-- **Hova** az a nyelv, amelyre a fordítás készül.
+- **Honnan** lehet konkrét nyelv vagy **Nyelvfelismerés**.
+- **Hova** az a nyelv, amelyre az eredményt szeretné fordítani.
 
-A kiválasztott **Legfontosabb nyelveid** a lista tetején jelennek meg. Ezeket a [**Beállítások** > **Nyelvek**](#languages) menüben állíthatod be.
+A kiválasztott **Legfontosabb nyelvek** a lista tetején jelennek meg. Ezeket beállíthatja a [**Beállítások** > **Nyelvek**](#languages) menüpontban.
 
 <br/>
 
 <a id="helpful-translation-settings"></a>
 ### Hasznos fordítási beállítások
 
-A [**Beállítások** > **Általános beállítások**](#general-settings) menüben módosíthatod a fordítás viselkedését:
+A [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban módosíthatja a fordítás működését:
 
-- **Automatikus fordítás beillesztéskor**: a fordítás azonnal elindul, amint beilleszted a szöveget.
-- **Eredmény automatikus másolása a vágólapra**: sikeres művelet után az eredmény automatikusan a vágólapra másolódik.
-- **Valós idejű fordítás (gépelés közben)**: a fordítás automatikusan elindul a szöveg gépelése során.
-- **Időtúllépés (ms)**: beállítja, hogy mennyi ideig várjon az alkalmazás, mielőtt valós idejű fordítást indít.
-- **Enter**: határozza meg, mi történjik, ha megnyomod az `Enter` billentyűt:
+- A **Automatikus fordítás beillesztéskor** azonnal lefordítja a beillesztett szöveget.
+- Az **Eredmény automatikus másolása a vágólapra** az eredményt automatikusan a vágólapra másolja a sikeres futtatás után.
+- A **Valós idejű fordítás (gépelés közben)** gépelés közben futtat fordításokat.
+- Az **Időtúllépés (ms)** határozza meg, mennyi ideig várjon az alkalmazás, mielőtt valós idejű fordítást indít.
+- Az **Enter** gomb hatására történő műveletet szabályozza:
 
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="rewrite"></a>
-## Újraírás
+## Átírás
 
-Használd az **Újraírás** funkciót, ha a megfogalmazást szeretnéd javítani úgy, hogy közben megtartsd az eredeti értelmet.
+Használja az **Átírás** funkciót, ha a szöveg megfogalmazását szeretné javítani anélkül, hogy megváltoztatná a fő jelentést.
 
-![Újraírás munkaterület](../images/screenshots/hu/rewrite.png)
+![Rewrite workspace](../images/screenshots/hu/rewrite.png)
 
-Ez hasznos a következők esetén:
+Ez akkor hasznos, ha:
 
-- helyesírási és nyelvhelyességi hibák javítása
-- szöveg érthetőbbé tétele
-- szöveg formálisabbá vagy kevésbé formálissá tétele  
-- szöveg rövidítése vagy kiterjesztése
-- szöveg technikásabbá tétele
+- helyesírási és nyelvtani hibákat szeretne javítani (**Helyesírás- és nyelvtanellenőrzés**)
+- érthetőbbé szeretné tenni a szöveget (**Érthetőség javítása**)
+- több különböző átfogalmazást szeretne egyszerre (**Alternatív változatok**)
+- formálisabbá vagy informálisabbá szeretné tenni a szöveget (**Formális** / **Informális**)
+- rövidebbé vagy hosszabbá szeretné tenni a szöveget (**Rövidítése** / **Kibontás**)
+- technikaiabbá szeretné tenni a szöveget (**Technikai móddá alakítás**)
 
 <br/>
 
 > 💡 **TIPP**<br/>
-> Amikor a "**Helyesírás és nyelvhelyesség ellenőrzése**" módot használod, a kimeneti panelben megjelenik egy `Változtatások megjelenítése` gomb.  
-> Kattints erre a gombra, hogy kapcsolja a javítások megjelenítését — így megjelennek vagy elrejtődnek a szövegedben tett konkrét változtatások.
+> Ha a „**Helyesírás- és nyelvtanellenőrzés**” módot választja, akkor a kimeneti panelen megjelenik egy **Változások megjelenítése** kapcsoló (a **Másolás** mellett).
+> Kapcsolja be vagy ki, hogy láthatóvá vagy rejtetté tegye a szövegre alkalmazott konkrét javításokat.
 
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="transform"></a>
-
 ## Átalakítás
 
-Használja az **Átalakítás** funkciót, ha az MI-nek egyéni utasításokat szeretne adni.
+Használja az **Átalakítás** funkciót, ha azt szeretné, hogy a MI egyéni utasításokat kövessen.
 
-![Átalakítás munkaterület](../images/screenshots/hu/transform.png)
+![Transform workspace](../images/screenshots/hu/transform.png)
 
-Ez az alkalmazás legrugalmasabb területe. Használhatja olyan feladatokra, mint például:
+Ez az alkalmazás legrugalmazabb része. Ilyen feladatokra használható, mint:
 
 - jegyzetek összegzése
-- nyers szöveg átalakítása kifinomult e-mailré
-- kulcsfontosságú pontok kiemelése
-- szövegek adott formátumba konvertálása
-- bármely egyéb egyéni tevékenység a bemeneti szöveggel
+- durva szöveg átalakítása finomított e-mailré
+- kulcsfontosságú pontok kinyerése
+- szöveg átalakítása adott formátumba
+- bármilyen egyéni feladat a bemeneti szöveggel
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
-### Létező utasítás futtatása
+### Már meglévő parancs futtatása
 
-1. Nyissa meg az **Átalakítás** fület.
-2. Válasszon egy utasítást az utasításlista közül.
+1. Nyissa meg az **Átalakítás** funkciót.
+2. Válasszon parancsot a parancslista menüből.
 3. Ha megjelenik egy **Cél** nyelv mező, válasszon nyelvet, ha szeretne.
-4. Írjon vagy illesszen be szöveget a **Bemenet** mezőbe.
+4. Írja be vagy illessze be a szöveget a **Bemenet** mezőbe.
 5. Kattintson az **Átalakítás** gombra.
-6. Olvassa el az eredményt az **Eredmény** mezőben.
+6. Olvassa el az eredményt a **Kimenet** mezőben.
 
 <br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Ha még nincsenek utasításai
+### Ha még nincsenek parancsai
 
-Ha az utasításlistája üres, kattintson a **Mintautasítások betöltése** lehetőségre. Ez beépített példákat ad hozzá, így gyorsan elkezdheti a munkát.
+Ha a parancslistája üres, kattintson az **Átalakítás** munkaterületen a **Mintaparancsok betöltése** gombra. Ugyanez az elem mindig elérhető a [**Beállítások** > **Átalakítási sablonok**](#transform-prompts) menüpontban az exportálás/importálás sorában. Mindkettő beépített példákat ad hozzá, így gyorsan elkezdheti.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A mintautasítások angol nyelven érhetők el. A betöltésük után szerkesztheti az utasításokat, és **Utasítás fordítása** segítségével lefordíthatja őket a saját nyelvére.
+> A mintaparancsok angol nyelven kerülnek biztosításra. A betöltésük után szerkesztheti a parancsot, és használhatja a **Kérés lefordítása** funkciót, hogy lefordítsa saját nyelvére.
 
 <br/>
 
 <a id="create-a-prompt-quickly"></a>
-### Gyorsan új utasítás létrehozása
+### Gyorsan hozzon létre egy parancsot
 
-Az utasítás létrehozásának leggyorsabb módja:
+A parancs gyors létrehozásának legegyszerűbb módja:
 
-1. Kattintson a **Új utasítás** gombra.
-2. Kattintson a **Utasítás generálása** gombra.
-3. Írja le, mit szeretne, hogy az utasítás csináljon.
-4. Válasszon egy modellt.
-5. Hagyja, hogy az alkalmazás elkészítse a vázlatot Önnek.
+1. Kattintson az **Új parancs** gombra.
+2. Kattintson a **Parancs generálása** gombra.
+3. Írja le, mit szeretne, hogy a parancs csináljon.
+4. Válasszon modellt.
+5. Hagyja, hogy az alkalmazás vázlatot készítsen Önnek.
 6. Tekintse át a vázlatot, majd kattintson a **Mentés** gombra.
 
-![Utasítás generálása](../images/screenshots/hu/transform-generate.png)
-
+![Generate prompt](../images/screenshots/hu/transform-generate.png)
 
 <br/>
 
 <a id="edit-a-prompt"></a>
-### Urasítás szerkesztése
+### Parancs szerkesztése
 
-Amikor új utasítást hoz létre vagy meglévőt szerkeszt, a szerkesztő a bal oldalon jelenik meg, a jobb oldalon pedig egy teszterület válik láthatóvá.
+Ha létrehoz vagy szerkeszt egy parancsot, a szerkesztő a bal oldalon jelenik meg, a jobb oldalon pedig egy tesztelési terület jelenik meg.
 
-![Átalakítás utasításszerkesztő](../images/screenshots/hu/transform-prompt-edit.png)
+![Transform prompt editor](../images/screenshots/hu/transform-prompt-edit.png)
 
-A fő mezők:
+A fő mezők a következők:
 
-- **Utasítás neve**: a név, amely az utasításlistában jelenik meg.
-- **Utasítás utasításai (opcionális)**: egy rövid útmutató, amelyet a felhasználó lát, amikor futtatja az utasítást.
-- **Modell szerepe**: az MI általános szerepe, például: „Te egy segítőkész asszisztens vagy.”
-- **Modell utasításai (soronként egy)**: a konkrét szabályok, amelyeket az MI-nek követnie kell.
-- **Kimenet leírása**: egy rövid szó, amely az eredményt írja le, például „összegzés” vagy „újrafogalmazás”.
-- **Hőmérséklet (0,0 → 1,0)**: a modell viselkedését befolyásolja; lásd alább.
-- **Célnyelv kérése**: a futtatáskor nyelvválasztó mezőt jelenít meg.
+- **Parancs neve**: a parancslistában megjelenő név.
+- **Parancs utasításai (nem kötelező)**: rövid útmutató, amely megjelenik a felhasználó számára a parancs futtatásakor.
+- **Modell szerepe**: az MI-nek kiosztott általános szerep, például: „Te egy segítőkész asszisztens vagy.”
+- **Modell utasításai (soronként egy)**: azok a konkrét szabályok, amelyeket az MI-nek követnie kell.
+- **Kimenet leírása**: a kimenetet röviden jellemző szó, például „összegzés” vagy „átírás”.
+- **Hőmérséklet (0,0 → 1,0)**: a modell viselkedését befolyásoló érték; lásd lentebb.
+- **Célnyelv kérése**: célnyelv-választót ad hozzá a parancs futtatásakor.
 
-Ha az idegen kifejezés **Hőmérséklet** új Önnek, képzelje így:
+Ha az **Hőmérséklet** technikai kifejezés új az Ön számára, képzelje el a következőképpen:
 
-- Egy **alacsonyabb** hőmérséklet stabilabb, előrejelezhetőbb eredményt ad.
-- Egy **magasabb** hőmérséklet változatosabb, kreatívabb eredményt ad.
+- Az **alacsonyabb** hőmérséklet stabilabb, kiszámíthatóbb eredményeket ad.
+- A **magasabb** hőmérséklet változatosabb és kreatívabb eredményeket eredményez.
 
-Használhatja továbbá:
+Használhatja még:
 
-- **`Utasítás generálása`** új vázlat létrehozásához egyszerű leírásból
-- **`Utasítás javítása`** meglévő utasítás finomhangolásához
-- **`Utasítás fordítása`** az utasítás mezőinek lefordításához
+- **`Parancs generálása`** egy új változat létrehozásához egyszerű leírásból
+- **`Parancs javítása`** egy meglévő parancs finomhangolásához
+- **`Parancs fordítása`** a parancsmezők lefordításához
 
 <br/>
 
 > ⚠️ **FIGYELMEZTETÉS**<br/>
-> Kattintson a **`Mentés`** gombra a **`Vissza a futtatáshoz`** gomb megnyomása előtt. Ha mentés nélkül tér vissza, a módosításai el fognak veszni.
+> Kattintson a **`Mentés`** gombra, mielőtt a **`Vissza a futtatáshoz`** gombra kattintana. Ha visszamegy mentés nélkül, a módosításai elvesznek.
 
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Urasítás tesztelése használat előtt
+### Parancs tesztelése használat előtt
 
-A jobb oldali tesztpanel lehetővé teszi, hogy kipróbálja az utasítását mintaszöveggel, mielőtt napi alkalmazásban használja azt.
+A jobb oldali tesztpanel lehetővé teszi, hogy kipróbálja a parancsot mintaszöveggel, mielőtt napi munkája során használná.
 
 Ez akkor hasznos, ha:
 
-- új utasítást készít
-- két utasításváltozatot szeretne összehasonlítani
-- a hangnemet, hosszúságot vagy a kimenet formátumát szeretné ellenőrizni
+- új parancsot készít
+- két parancsváltozatot hasonlít össze
+- ellenőrizni szeretné a stílust, a hosszúságot vagy a kimenet formátumát
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Exportálhatja és importálhatja a mentett utasításokat a [**Beállítások** > **Átalakítási utasítások**Beállítjtások** > **Átalakítási utasítások**](#transform-prompts).
+> A mentett parancsokat exportálhatja és importálhatja a [**Beállítások** > **Átalakítási sablonok**](#transform-prompts) menüpontban.
 
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="dashboard"></a>
-## Vezérlőpult
+## Műszerfal
 
-Használja a **Vezérlőpultot**, hogy lássa, mennyire használja az alkalmazást, és mennyibe kerül (fizetős modelleknél).
+A **Műszerfal** használatával nyomon követheti, mennyit használja az alkalmazást, és mennyibe kerül (fizetős modellek esetén).
 
-![Vezérlőppult összegzés](../images/screenshots/hu/dashboard-summary.png)
-
+![Dashboard summary](../images/screenshots/hu/dashboard-summary.png)
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Ha csak ingyenes modelleket használ, a költségekkel kapcsolatos diagramok üresek lesznek.
+> Ha csak **ingyenes** modelleket használ, a **költség** értéke nulla lehet, és a költségekre fókuszáló összegzések üresen jelenhetnek meg. A **Összegzés**, **Használat időbeli alakulása** és **Használat modell szerint** füleken továbbra is megjelennek a **hívások száma** (fordítás, átírás és átalakítás), ha tevékenység volt a kiválasztott időszakban.
 
 <br/>
 
 <a id="filter-the-data"></a>
 ### Adatok szűrése
 
-Használja a felső szűrőgombokat az időtartomány megváltoztatásához.
+A szűréshez használja a felső részen található szűrőgombokat az időtartomány módosításához.
 
-![Vezérlőpult szűrők](../images/screenshots/hu/dashboard-filter.png)
+![Dashboard filters](../images/screenshots/hu/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A **Felhasználó** szűrő csak a webes verzióban lévő adminisztrátorok számára látható. A rendes felhasználók nem látják ezt a szűrőt, és az asztali alkalmazásban sem érhető el.
+> A **Felhasználó** szűrő csak az adminisztrátorok számára látható a webes verzióban. A rendes felhasználók nem látják ezt a szűrőt, és az asztali alkalmazásban sem érhető el.
 
 <br/>
 
 <a id="dashboard-tabs"></a>
+### Műszerfal lapok
 
-### Irányítópult fülek
-
-- A **Összegzés** áttekintést nyújt a használatról és a költségekről.
-- A **Felhasználás szerint** a tevékenységet lebontja fordítási nyelv, átírási mód és átalakítási prompt szerint.
-- A **Modell szerint** megjeleníti, mely modelleket használta, és azok mennyibe kerültek.
-- A **Naponként** napi összesítéseket mutat.
-- Az **Összes hívás** a teljes hívásnaplót jeleníti meg, és lehetővé teszi annak exportálását.
+- A **Összegzés** áttekintést nyújt a használatról és a költségekről. Tartalmazza a **Használat időbeli alakulása** (napi bontásban halmozott **hívásszámok** fordítás, átírás és átalakítás műveletekhez) és a **Használat modell szerint** (összes **hívás modell szerint**, beleértve az átalakítást) diagramokat.
+- A **Használat szerint** a tevékenységet fordítási nyelvek, újraírási módok és átalakítási kérések szerint bontja le.
+- A **Modell szerint** megjeleníti, mely modelleket használta, és mennyibe kerültek.
+- A **Nap szerint** napi összesítéseket mutat.
+- Az **Összes hívás** az összes híváselőzményt megjeleníti, és lehetővé teszi azok exportálását.
 
 <br/>
 
 <a id="export-data"></a>
 ### Adatok exportálása
 
-Az irányítópult táblái a következő formátumokban exportálhatók:
+A műszerfal táblái a következő formátumokban exportálhatók:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Ez akkor praktikus, ha az alkalmazáson kívül szeretné áttekinteni a tevékenységet, vagy meg szeretne osztani egy jelentést.
+Ez akkor hasznos, ha az alkalmazáson kívül szeretné átnézni a tevékenységet, vagy meg szeretne osztani egy jelentést.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
 ### Tárolt rekordok törlése modell szerint
 
-A **Modell szerint** vagy az **Összes hívás** fülön el tudja távolítani egy adott modellhez tartozó tárolt adatokat a "kukás ikon" megnyomásával.
+A **Modell szerint** vagy az **Összes hívás** nézetben eltávolíthatja egy adott modellhez tartozó tárolt rekordokat a „kukára” kattintva.
 
-> ⚠️ **FIGYELEM**<br/>
-> A tárolt adatok törlése végleges, nem vonható vissza. Csak akkor használja, ha biztosan nincs szüksége többé az adott előzményre.
+> ⚠️ **FIGYELMEZTETÉS**<br/>
+> A tárolt rekordok törlése végleges, és nem vonható vissza. Csak akkor használja ezt, ha biztosan nincs szüksége többé az előzményekre.
 
-Ha az összes adatot szeretné törölni, vagy az adatokat kor alapján szeretné eltávolítani, lépjen a [**Beállítások** > **Költség nyomon követése**](#cost-tracking) menüpontra. Ott megtalálja a beállításokat az összes tárolt adat törlésére, vagy csak az adott időnél régebbi adatokra.
+Az összes adat törléséhez vagy az adatok koruk alapján történő eltávolításához látogasson el a [**Beállítások** > **Költségkövetés**](#cost-tracking) oldalra. Ott lehetősége van az összes tárolt adat törlésére, vagy csak az adott dátumnál régebbi adatok eltávolítására.
 
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="history"></a>
 ## Előzmények
 
-Kattintson az **Előzmények** menüpontra a **Transrewrt** alkalmazáson belüli műveletei előzményeinek megtekintéséhez, beleértve minden művelet bemenetét és kimenetét.
+Kattintson az **Előzmények** elemre a **Transrewrt** belüli műveletei előzményeinek megtekintéséhez, beleértve az egyes műveletek bemenetét és kimenetét.
 
-![Előzmények oldal](../images/screenshots/hu/history.png)
+![History page](../images/screenshots/hu/history.png)
 
 <br/>
 
 <a id="filter-the-history"></a>
 ### Adatok szűrése
 
-Az **Előzmények** ugyanazokat a szűrőket használja, mint az **Irányítópult** oldal. Ezekkel válassza ki az időintervallumot.
+Az **Előzmények** ugyanazokat a szűrőket használja, mint a **Műszerfal** oldal. Használja őket a megfelelő időtartomány kiválasztásához.
 
-![Irányítópult szűrők](../images/screenshots/hu/dashboard-filter.png)
+![Dashboard filters](../images/screenshots/hu/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A **Felhasználó** szűrő csak a webes verzió adminisztrátorai számára látható. A rendes felhasználók nem látják ezt a szűrőt, és az asztali alkalmazásban sem érhető el.
+> A **Felhasználó** szűrő csak az adminisztrátorok számára látható a webes verzióban. A rendes felhasználók nem látják ezt a szűrőt, és az asztali alkalmazásban sem érhető el.
 
 <br/>
 
 <a id="export-history-data"></a>
-### Előzmények exportálása
+### Előzményadatok exportálása
 
 Az előzmények oldal a szűrt adatokat a következő formátumokban tudja exportálni:
 
@@ -529,284 +525,292 @@ Az előzmények oldal a szűrt adatokat a következő formátumokban tudja expor
 - **CSV**
 - **XLSX**
 
-Ez akkor praktikus, ha az alkalmazáson kívül szeretné áttekinteni a tevékenységet, vagy meg szeretne osztani egy jelentést.
+Ez akkor hasznos, ha az alkalmazáson kívül szeretné átnézni a tevékenységet, vagy meg szeretne osztani egy jelentést.
 
 <br/><br/>
 
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="settings"></a>
 ## Beállítások
 
-Nyissa meg a **Beállítások** menüpontot az oldalsávon az alkalmazás viselkedésének testreszabásához.
+Nyissa meg a **Beállításokat** az oldalsávon, hogy testre szabja az alkalmazás viselkedését.
 
-A rendelkezésre álló fülek a platformtól és felhasználói szerepkörtől függenek:
+A rendelkezésre álló fülek a platformtól és a szerepkörtől függenek:
 
-  | Fül               | Asztali | Web (admin) | Web (rendes felhasználó) |
+| Fül               | Asztali | Web (admin) | Web (rendes felhasználó) |
   |-------------------|:-------:|:-----------:|:------------------------:|
   | Általános beállítások  |   igen   |     igen     |        igen         |
   | Modellek            |   igen   |     igen     |        igen         |
   | Nyelvek         |   igen   |     igen     |        igen         |
-  | Költség nyomon követése     |   igen   |     igen     |         —          |
-  | Átalakítási promptok |   igen   |     igen     |        igen         |
+  | Költségkövetés     |   igen   |     igen     |         —          |
+  | Átalakítási sablonok |   igen   |     igen     |        igen         |
   | Felhasználók             |    —    |     igen     |         —          |
-  | API beállítások        |   igen   |     igen     |         —          |
+  | API konfiguráció        |   igen   |     igen     |         —          |
   | Névjegy             |   igen   |     igen     |        igen         |
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A webes verzióban minden felhasználó saját konfigurációval rendelkezik. A kiválasztott modellek, nyelvek, általános beállítások és átalakítási promptok felhasználónként kerülnek tárolásra. A beállításokban végzett változtatások csak Önt érintik, harmadik személyek nem érintettek.
+> A webes verzióban minden felhasználó saját konfigurációval rendelkezik. A kiválasztott modellek, nyelvek, általános beállítások és átalakítási sablonok felhasználónként kerülnek tárolásra. A módosításai nem befolyásolják más felhasználók beállításait.
 
 <br/>
 
-
-[--------------------------------------------------------------------------------------------------------------------------]: # 
+[--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="general-settings"></a>
 ### Általános beállítások
 
-Az **Általános beállítások** segítségével szabályozható a gépelés működése, hogy tárolódnak-e a végrehajtási részletek az **Előzmények** számára, valamint az alkalmazás megjelenése.
+Az **Általános beállítások** használatával szabályozhatja a gépelés viselkedését, hogy az **Előzmények** számára tárolódnak-e a végrehajtási részletek, valamint a megjelenést.
 
-**Működés**
+**Viselkedés**
 
-- A **ENTER működése** választja ki, hogy az `Enter` billentyű futtatja-e a feladatot, vagy új sort szúr be.
-- **Automatikus fordítás beillesztéskor** a szöveg beillesztésekor azonnal elindítja a fordítást.
-- **Eredmény automatikus másolása a vágólapra** az eredményt sikeres végrehajtás után automatikusan másolja a vágólapra.
-- **Valós idejű fordítás (gépelés közben)** a gépelés közben fordít.
-- **Időtúllépés (ms)** beállítja a várakozási időt a valós idejű fordításhoz.
+- A **ENTER viselkedése** határozza meg, hogy az `Enter` gomb futtatja-e a feladatot, vagy új sort szúr be.
+- **Automatikus fordítás beillesztéskor** – a szöveg beillesztésekor azonnal elindítja a fordítást.
+- **Eredmény automatikus másolása a vágólapra** – sikeres eredményeket automatikusan másol a vágólapra.
+- **Valós idejű fordítás (gépelés közben)** – gépelés közben fordít.
+- **Időtúllépés (ms)** – beállítja a várakozási időt a valós idejű fordításhoz.
 
 **Előzmények**
 
-- Az **Végrehajtási előzmények megőrzése** határozza meg, hogy a fordítási, átírási és átalakítási műveletek **bemeneti és kimeneti szövegét** tárolni kell-e az oldalsávon található [**Előzmények**](#history) nézethez. Ha kikapcsolja, megerősítést fog kérni; ha megerősíti, a tárolt előzmények szövege törlődik az adatbázisból.
-- Az **Előzményadatok törlése** lehetővé teszi a tárolt szövegek kor alapján történő eltávolítását (például néhány hónapnál régebbiek, vagy **az összes adat (törlés)**) a **Törlési adatok** menüpont használatával. Ez csak a mentett végrehajtási szövegekre vonatkozik az **Előzmények** nézethez; a **költség vagy használati összesítők törlésére nem** vonatkozik. A **költség** adatainak törléséhez vagy rövidítéséhez használja a [**Beállítások** > **Költség nyomon követése**](#cost-tracking) lehetőséget.
+- **Végrehajtási előzmények megőrzése** – szabályozza, hogy a fordítás, átírás és átalakítás minden egyes esetében tárolódjon-e a **bemeneti és kimeneti szöveg** az oldalsáv [**Előzmények**](#history) nézete számára. Ha kikapcsolja, megerősítést kér; ha megerősíti, az előzmények szövege eltávolításra kerül az adatbázisból.
+- **Előzményadatok törlése** – lehetővé teszi a tárolt szöveg eltávolítását kor alapján (például néhány hónapnál régebbi, vagy **az összes adat (törlés)**) a **Adatok törlése** funkcióval. Ez csak a **Előzmények** nézethez mentett végrehajtási szöveget érinti; **nem** törli a költség- vagy használati összesítőket. A **költség** adatok eltávolításához vagy csökkentéséhez használja a [**Beállítások** > **Költségkövetés**](#cost-tracking) lehetőséget.
 
 **Megjelenés**
 
-- A **Költséginformációk megjelenítése a műveleteknél** szabályozza a műveletenkénti költség (ha rendelkezésre áll) és az összesített költség megjelenítését a Fordítás, Átírás és Átalakítás kimeneti paneljein.
-- **Költség tizedesjegyek száma** megváltoztatja a költségszámok tizedesjegyeinek megjelenítését.
-- **Csak web:** **margó megjelenítése az alkalmazás körül** extra térrel látja el az alkalmazás felületét.
-- **Betűtípus** megváltoztatja a szövegpanelek betűtípusát.
-- **Méret** megváltoztatja a betűméretet.
+- **Költséginformációk megjelenítése a műveleteken** – szabályozza az egyes műveletek költségének (ha elérhető) és a teljes költségnek a megjelenítését a Fordítás, Átírás és Átalakítás kimeneti paneljein.
+- **Költség tizedesjegyek száma** – módosítja a költség tizedesjegyeinek megjelenítését.
+- **Csak webes verzió:** **margó megjelenítése az alkalmazás körül** – további teret ad az interfész körül.
+- **Betűtípus** – megváltoztatja a szövegpanelek betűtípusát.
+- **Méret** – megváltoztatja a betűméretet.
 
+**Konfiguráció biztonsági mentése**
+
+- **Használati adatok belefoglalása a biztonsági mentésbe** – ha engedélyezve van, a ZIP fájl tartalmazza az előzményeket és az API hívások adatait is.
+- **Konfiguráció mentése biztonsági másolatként** – egyetlen ZIP fájlt hoz létre (`transrewrt-config-backup-ÉÉÉÉ-HH-NN_ÓÓPPMM.zip`, alapértelmezés szerint UTC idő szerint), amely tartalmazza a `config.json`, `state.json`, opcionális titkosítási kulcsot, felhasználókat, beállításokat, egyéni sablonokat, és ha belefoglalta, a használati adatokat is. A sikeres mentés után a megerősítés megjeleníti a mentett fájl nevét.
+- **Visszaállítás biztonsági másolatból** – először egy **megerősítő párbeszédablakot** nyit meg. Válassza ki a biztonsági másolat ZIP fájlját a párbeszédablakban (**Tallózás** / fájlválasztó vagy húzd és ejtsd, ahol támogatott), majd tekintse át a beállításokat:
+  - **Használati adatok visszaállítása** – a ZIP-ből visszaállítja a használati/előzményadatokat, ha a biztonsági mentés készítésekor ezek be lettek foglalva; hagyja ki, ha csak a beállításokat és sablonokat szeretné.
+  - **Régi használati adatok törlése a visszaállítás előtt** – eltávolítja a jelenlegi telepítésben lévő használati/előzményadatokat a biztonsági másolat alkalmazása előtt (nem kötelező; használja, ha tiszta cserét szeretne).
+
+A webes vagy asztali verzióban készült biztonsági másolatokat a másik verzióban is vissza lehet állítani. Ha asztali biztonsági másolatot állít vissza a webes verzióban, az adatok az adminisztrátori felhasználóhoz kerülnek visszaállításra.
 
 <br/>
 
 <a id="models"></a>
-
 ### Modellek
 
-A **Beállítások** > **Modellek** menüpont használatával választhatja ki, mely modellek jelenjenek meg az eszköztáron.
+Használja a **Beállítások** > **Modellek** lehetőséget a szerszársávon megjelenő modellek kiválasztásához.
 
-![Beállítások – Modellek lap](../images/screenshots/hu/settings-models.png)
+![Settings Models tab](../images/screenshots/hu/settings-models.png)
 
 Az oldal két listát tartalmaz:
 
 - **Elérhető modellek** bal oldalon
 - **Kiválasztott modellek** jobb oldalon
 
-Hasznos vezérlők:
+Hasznos vezérlők közé tartoznak:
 
-- **Modellek keresése...** név alapján keres
-- **Szolgáltató** címkék, amelyekkel szűkítheti a listát egyetlen motorra (OpenRouter, OpenAI, Ollama, …)
-- **Csak ingyenes**, hogy csak az ingyenes modelleket mutassa
-- **Frissítés** a lista újratöltéséhez
-- **Minden kibontása** és **Minden összecsukása**, amikor szolgáltató szerint rendez
+- **Modellek keresése...** – modell neve alapján keres
+- **Szolgáltató** címkék – szűkíti a listát egy motorra (OpenRouter, OpenAI, Ollama, …)
+- **Csak ingyenes** – csak ingyenes modelleket jelenít meg
+- **Frissítés** – újratölti a listát
+- **Összes kibontása** és **Összes behajtása**, amikor szolgáltató szerint rendez
 
-A modellszűrők tartalmazzák a szolgáltató előtagját (pl. `openrouter/…` vagy `openai/…`). Címkék, mint például az **OpenAI (OpenRouter)** vagy **OpenAI (közvetlen)** mutatják, hogyan irányul a forgalom.
+A modellazonosítók tartalmazzák a szolgáltató előtagját (például `openrouter/…` és `openai/…`). A jelölők, mint például a **OpenAI (OpenRouter)** vagy a **OpenAI (közvetlen)**, azt mutatják, hogyan irányul a forgalom.
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A **OpenRouter Body Builder** (`openrouter/bodybuilder`) útválasztó modell, nem általános csevegőmodell: a válasza az OpenRouter API kéréstörzseket írja le JSON formátumban (pl. egy `requests` tömb `model` és `messages` mezőkkel). Ha ezt modellt a **Fordítás**, **Átírás** vagy **Átalakítás** funkciókhoz használja, a kimeneti panelen ez a JSON jelenik meg ahelyett, hogy befejezett szöveg lenne. Ezekhez a feladatokhoz válasszon normál szövegalapú modellt. Lásd: [Body Builder modell oldal](https://openrouter.ai/openrouter/bodybuilder) az OpenRouter-en.
+> Az **OpenRouter Body Builder** (`openrouter/bodybuilder`) egy útválasztó modell, nem általános csevegési modell: a válasza JSON formátumú, amely az OpenRouter API kérési törzseit írja le (például egy `requests` tömb `model` és `messages` mezőkkel). Ha **Fordítás**, **Átírás** vagy **Átalakítás** céljára használja, a kimeneti panel ezt a JSON-t fogja megjeleníteni, nem pedig a kész szöveget. Ezekhez a feladatokhoz válasszon normál szöveges modellt. További információkért lásd az [OpenRouter Body Builder modell oldalát](https://openrouter.ai/openrouter/bodybuilder).
 
 Műveletek:
 
- - Modell hozzáadásához kattintson a **Hozzáadás** gombra, vagy a bejegyzés bármely pontjára.
+- Modell hozzáadásához kattintson a **Hozzáadás** gombra, vagy bárhová a bejegyzésben.
 
- - Modell eltávolításához kattintson az **X**-re a **Kiválasztott modellek** mellett, vagy a **Kiválasztott** kapcsolón a modell a megfelelő sávban.
+- Modell eltávolításához kattintson az **X** ikonra a **Kiválasztott modellek** mellett, vagy a **Kiválasztva** opcióra az Elérhető modellek listában.
 
- - A lista törléséhez kattintson a **Kijelölés megszűntetése** gombra. A szükséges ingyenes modell továbbra is a listában marad.
+- A lista törléséhez kattintson a **Kiválasztás törlése** gombra. A szükséges ingyenes modell továbbra is a listában marad.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Ha nem szeretne azonnal hitelt vállalni az OpenRouter-nél, először aktiválja a **Csak ingyenes** lehetőséget, és válassza az ingyenes modelleket (bankkártya nélkül is használhatók). Ollama használatával helyben is futtathat modelleket, anélkül, hogy API kulcsra szükség lenne.
+> Ha nem szeretne azonnal hitelt felvenni az OpenRouter számlájára, kezdje a **Csak ingyenes** lehetőség engedélyezésével, és válassza az ingyenes modelleket (bankkártya nélkül is használhatók). Emellett az Ollama használatával helyileg is futtathat modelleket API kulcs nélkül.
 
 <br/>
 
 <a id="languages"></a>
 ### Nyelvek
 
-A **Beállítások** > **Nyelvek** lehetőséggel kezelheti az alkalmazásban használt nyelvi listákat.
+Használja a **Beállítások** > **Nyelvek** menüpontot a nyelvlisták kezeléséhez az alkalmazásban.
 
-- A **Legfelső nyelvek** fent, a listák tetején rögzítve jelennek meg a **Fordítás** és **Átalakítás** funkciókban.
-- **Egyéni nyelv** lehetőséggel hozzáadhat olyan nyelveket, amelyek nincsenek az alapértelmezett listában.
+- A **Legfontosabb nyelvek** a **Fordítás** és **Átalakítás** nyelvlistáinak tetején maradnak rögzítve.
+- Az **Egyéni nyelv** lehetővé teszi egy, a beépített listán nem szereplő nyelv hozzáadását.
 
-Ha egyéni nyelvet ad hozzá, az megjelenik a nyelvválasztók menüjében az alapnyelvek mellett.
+Ha egyéni nyelvet ad hozzá, az megjelenik a nyelvválasztókban a beépített lehetőségek mellett.
 
 <br/>
 
 <a id="cost-tracking"></a>
-### Költségek követése
+### Költségkövetés
 
-A **Beállítások** > **Költségek nyomon követése** lehetőséggel kezelheti a költségekre vonatkozó információkat.
+Használja a **Beállítások** > **Költségkövetés** menüpontot a költséginformációk kezeléséhez.
 
-- **Teljes költség**: folyamatosan frissített összeg.
-- **Érték másolása**: a teljes összeget a vágólapra másolja.
-- **Költség alaphelyzetbe állítása**: a tárolt értéket nullára állítja.
-- **Szinkronizálás API-kulcs használattal**: az összeg egyeztetése az OpenRouter fiókja által jelentett használattal (csak OpenRouter).
-- **API-kulcs használat**: a OpenRouter használatának részletei, ha elérhetők.
-- **Költségadatok törlése**: az összes adatot, vagy csak a kiválasztott dátum előttieket eltávolítja.
+- A **Teljes költség** a futó összeget jeleníti meg.
+- Az **Érték másolása** a teljes összeget a vágólapra másolja.
+- A **Költség alaphelyzetbe állítása** a tárolt összeget nullára állítja vissza.
+- A **Szinkronizálás az API kulcs használatával** az összeget az OpenRouter fiókja által jelentett használattal igazítja (csak OpenRouter esetén).
+- Az **API kulcs használat** megjeleníti az OpenRouter használat részleteit, ha elérhető.
+- A **Költségadatok törlése** az összes adatot eltávolítja, vagy csak a kiválasztott dátumnál régebbi bejegyzéseket.
 
-**Költségek nyomon követése:** Amikor OpenRouter modelleket használ, az alkalmazás a valós felhasználását és költségét mutatja az OpenRouter adatai alapján. Más szolgáltatók esetében az app az OpenRouter által közzétett árak alapján becsli a költségeket. Ha az adott modell ára nem ismert, a becslés lehet nulla.
+**Költségkövetés:** Ha OpenRouter modelleket használ, az alkalmazás a tényleges használatot és kiadásokat jeleníti meg az OpenRouter által szolgáltatott költséginformációk alapján. Minden más szolgáltató esetében az alkalmazás az OpenRouter által közzétett árak alapján becsüli a költségeket; ha ár nem érhető el, a becslés nulla lehet.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> **Minden költségadat csak tájékoztató jellegű becslés, nem hivatalos számla.**
-
+>  **Minden költségadat csak tájékoztató jellegű becslés, nem hivatalos számla.**
 
 <br/>
 
 > ⚠️ **FIGYELMEZTETÉS**<br/>
-> Az adatok törlése visszafordíthatatlan. Törlés előtt biztosítsa, hogy mentse vagy exportálja az adatait a [**Előzmények**](#history)
-> vagy [**Irányítópult** > **Összes hívás**](#dashboard-tabs) menüben, különben az adatok véglegesen elvesznek.
-> Az egyes API hívásokhoz tartozó összes bemeneti/kimeneti előzmény is törlésre kerül.
+> Az adatok törlése visszafordíthatatlan. A törlés előtt készítsen biztonsági másolatot az adatairól, vagy exportálja azokat a [**Előzmények**](#history) vagy a [**Műszerfal** > **Összes hívás**](#dashboard-tabs) menüponton keresztül, különben az adatok véglegesen elvesznek. 
+> Az egyes API hívásokhoz kapcsolódó összes bemeneti/kimeneti előzmény is törlődik.
 
 <br/>
 
 <a id="transform-prompts"></a>
-### Átalakítási utasítások
+### Átalakítási sablonok
 
-A **Beállítások** > **Átalakítási utasítások** lehetőséggel tömegesen kezelheti az utasításokat.
+Használja a **Beállítások** > **Átalakítási sablonok** menüpontot a sablonok tömeges kezeléséhez.
 
 Lehetősége van:
 
-- mentett utasítások áttekintésére
-- utasítások törlésére
-- utasítások importálására fájlból
-- utasítások exportálására mentés vagy megosztás céljából
+- áttekintheti a mentett parancsokat
+- törölhet parancsokat
+- importálhat parancsokat fájlból
+- exportálhat parancsokat biztonsági mentéshez vagy megosztáshoz
+- betölthet mintaparancsokat a parancslistába
 
 <br/>
 
 <a id="users"></a>
 ### Felhasználók
 
-A webes verzióban a **Felhasználók** lehetőséggel kezelheti a felhasználói fiókokat. Hozzáadhat felhasználókat, frissítheti adataikat, visszaállíthatja jelszavaikat és törölhet fiókokat.
+A **Felhasználók** használatával kezelheti a webes verzióban lévő felhasználói fiókokat. Hozzáadhat felhasználókat, frissítheti az adataikat, visszaállíthatja a jelszavaikat, és törölheti a fiókokat.
 
 <br/>
 
 <a id="api-config"></a>
-### API beállítások
+### API konfiguráció
 
-A támogatott szolgáltatók: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, és **Ollama** (helyi modellek egy alap URL-cím használatával). Csak azokat a szolgáltatókat kell beállítania, amelyeket használni kíván.
+A támogatott szolgáltatók: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras és **Ollama** (helyi modellek alap URL-en keresztül). Csak azokat a szolgáltatókat kell konfigurálnia, amelyeket használ.
 
 **Webalkalmazás: csak rendszergazda**
 
-Az API kulcsokat a rendszer- vagy Docker környezeti változók segítségével konfiguráljuk — nem a webes felületen adjuk meg őket. Ez az oldal mutatja, mely szolgáltatók rendelkeznek konfigurált kulccsal, és lehetővé teszi mindegyik tesztelését a **`Teszt`** gombra kattintva.
+Az API-kulcsokat a rendszer- vagy Docker-környezeti változókban kell beállítani – a webes felhasználói felületen nem adhatók meg. Ez az oldal megjeleníti, hogy mely szolgáltatóknál van kulcs konfigurálva, és lehetővé teszi mindegyik tesztelését a **`Teszt`** gombra kattintva.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> Egy API kulcs módosításához frissítenie kell a környezeti változót a rendszer- vagy Docker-konfigurációban, majd újra kell indítania a szervert vagy a konténert.
+> Egy API-kulcs módosításához frissítse a környezeti változót a rendszerében vagy a Docker-konfigurációban, majd indítsa újra a szervert vagy a konténert.
+
+> ℹ️ **MEGJEGYZÉS**<br/>
+> A **Konfiguráció biztonsági mentései** ([**Általános beállítások** → Konfiguráció biztonsági mentése](#general-settings) lásd) beágyazhatják a **feloldott** szolgáltatói kulcsokat a ZIP `config.json` fájljába. A ZIP visszaállítása **nem** másolja vissza ezeket a kulcsokat a szerver meglévő konfigurációs fájljába – az éles kulcsok továbbra is a környezetből és a meglévő fájlállapotból származnak, ahogyan ott le van írva.
 
 <br/>
 
 **Asztali alkalmazás**
 
-Az **API beállítás** lehetőséggel mentheti az API kulcsokat az egyes használt szolgáltatókhoz. Az Ollama esetében egy **alap URL-t** adjon meg API kulcs helyett.
+Használja az **API konfigurációt** az Ön által használt szolgáltatók API-kulcsainak tárolásához. Az Ollama esetében az API-kulcs helyett adja meg az **alap URL-t**.
 
 <br/>
 
 > 💡 **Tipp** <br/>
-> Ha nem használna API kulcsot vagy nem szeretne fizetni, [letöltheti az Ollama-t](https://ollama.com) és ingyen futtathat modelleket (pl. `translategemma:4b`) gépének helyi környezetében. Alternatív megoldásként ingyenes OpenRouter fiókot hozhat létre (bankkártya nélkül), és azok ingyenes modelljeit használhatja, vagy ingyenes API kulcsot szerezhet a Cerebras-tól, a Google-től, Groq-tól vagy Mistral AI-től.
+> Ha nem szeretne API-kulcsot használni, vagy nem szeretne fizetni a használatért, [letöltheti az Ollamát](https://ollama.com) és ingyen futtathat modelleket (például `translategemma:4b`) a saját gépén. Másik lehetőségként ingyenes OpenRouter-fiókot hozhat létre (bankkártya nélkül), és használhatja az ingyenes modelleiket, vagy beszerezhet ingyenes API-kulcsot a Cerebras, Google, Groq vagy Mistral AI szolgáltatóktól.
 
 <br/>
 
-- Csak azokat a szolgáltatókat adja hozzá, amelyekre szüksége van. A **Beállítások** > **Modellek** beállításnál minden modell azonosítója a szolgáltató nevével kezdődik (pl. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Csak azokat a szolgáltatókat adja hozzá, amelyekre szüksége van. A **Beállítások** > **Modellek** menüpontban minden modellazonosító a szolgáltató nevével kezdődik (például `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-API kulcs hozzáadásához írja be az értéket a szövegmezőbe, majd kattintson a **`Mentés`** gombra. Már meglévő kulcs cseréjéhez kattintson az **`Szerkesztés`** gombra. A kulcs működésének ellenőrzéséhez kattintson a **`Teszt`** gombra. Ollama alap URL esetén mindig kattintson a **`Teszt`** gombra, hogy ellenőrizze a kapcsolatot.
+API-kulcs hozzáadásához írja be az értéket a szövegmezőbe, majd kattintson a **`Mentés`** gombra. Meglévő kulcs lecseréléséhez kattintson az **`Szerkesztés`** gombra. Annak ellenőrzéséhez, hogy egy kulcs működik-e, kattintson a **`Teszt`** gombra. Az Ollama alap URL-jének esetében mindig kattintson a **`Teszt`** gombra a kapcsolat ellenőrzéséhez.
 
 <br/>
 
 > ℹ️ **MEGJEGYZÉS**<br/>
-> A jelenlegi API kulcs értékét nem látja. Csak az **`Szerkesztés`** gomb használatával cserélheti le.
-> Az API kulcsok titkosítva tárolódnak a konfigurációban.
+> Jelenleg nem tekintheti meg egy API-kulcs aktuális értékét. Csak az **`Szerkesztés`** gomb használatával cserélheti le.
+> Az API-kulcsok titkosítva kerülnek tárolásra a konfigurációban.
 
 <br/>
 
 <a id="about"></a>
-
 ### Névjegy
 
-A **Névjegy** lap mutatja:
+A **Névjegy** fül a következőket jeleníti meg:
 
 - az alkalmazás nevét
 - a verziószámot
-- a fordítás dátumát
-- egy hivatkozást a projekt adattárához
+- a készítés dátumát
+- egy hivatkozást a projektrepositóriumhoz
 
 <br/><br/>
 
 <a id="common-issues"></a>
 ## Gyakori problémák
 
-Ha valami nem úgy működik, ahogy várná, először ellenőrizze az alábbiakat.
+Ha valami nem úgy működik, ahogy várná, először ellenőrizze az alábbi pontokat.
 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Az alkalmazás nem fordít, nem ír át vagy nem alakít át szöveget
+### Az alkalmazás nem fogja lefordítani, átírni vagy átalakítani a szöveget
 
-Ellenőrizze, hogy:
+Ellenőrizze a következőket:
 
-- kiválasztott-e egy modellt az eszköztáron
-- legalább egy modell szerepel-e a [**Beállítások** > **Modellek**](#models) részben
-- az API-beállítás megfelelően működik-e
+- kiválasztott egy modellt az eszköztáron
+- legalább egy modell szerepel a [**Beállítások** > **Modellek**](#models) menüpontban
+- az API-beállítás működőképes
 
 Ha az asztali alkalmazást használja:
 
-1. Nyissa meg a [**Beállítások** > **API beállítások**](#api-config) menüpontot.
+1. Nyissa meg a [**Beállítások** > **API konfiguráció**](#api-config) menüt.
 2. Ellenőrizze, hogy legalább egy API-kulcs el van-e mentve.
-3. Kattintson a **Teszt** gombra a szolgáltató neve mellett, hogy megerősítse a kulcs működését.
+3. Kattintson a szolgáltatónál található **Teszt** gombra a kulcs működésének megerősítéséhez.
 
 <br/>
 
 <a id="the-model-list-is-empty"></a>
-### A modellek listája üres
+### A modelllista üres
 
-Nyissa meg a [**Beállítások** > **Modellek**](#models) menüpontot, és kattintson a **Frissítés** gombra.
+Nyissa meg a [**Beállítások** > **Modellek**](#models) menüt, és kattintson a **Frissítés** gombra.
 
 Ha szükséges:
 
 - keressen egy modellt
-- kapcsolja be a **Csak ingyenes** opciót
+- kapcsolja be a **Csak ingyenes** lehetőséget
 - adjon hozzá egy vagy több modellt a **Kiválasztott modellek** közé
 
 <br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
-### Az eredmény túl lassú vagy túl drága
+### Az eredmény túl lassú vagy túl költséges
 
-Próbálja ki a következők egyikét vagy többjét:
+Próbálja ki az alábbiak egyikét vagy többjét:
 
 - válasszon másik modellt
-- rövidebb bemeneti szöveget használjon
-- kapcsolja ki a **Valós idejű fordítás (írás közben)** opciót a [**Beállítások** > **Általános beállítások**](#general-settings) alatt
-- egyszerűbb feladatokhoz használjon ingyenes modelleket (lásd: [Modellek](#models))
+- használjon rövidebb bemenetet
+- kapcsolja ki a **Valós idejű fordítás (gépelés közben)** funkciót a [**Beállítások** > **Általános beállítások**](#general-settings) menüben
+- használjon ingyenes modelleket egyszerű feladatokhoz (lásd: [Modellek](#models))
 
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### A felület rossz nyelven jelenik meg
 
-Kattintson a földgömb ikonra az [eszköztáron](#toolbar), és válassza ki a kívánt **Felület nyelve** beállítást.
+Kattintson a földgömb ikonra az [eszköztáron](#toolbar), és válassza ki a kívánt **Felület nyelvét**.
 
 <br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### A szöveg túl kicsi vagy nehezen olvasható
 
-Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontot, és változtassa meg:
+Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-settings) menüt, és módosítsa a következőket:
 
 - **Betűtípus**
 - **Méret**
@@ -818,76 +822,99 @@ Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-sett
 
 Ez normális, ha:
 
-- csak **ingyenes modelleket** használ (a költségek diagramjai üresek lesznek)
-- a kiválasztott **időszűrő** nem fedi le azokat az időszakokat, amikor kérések érkeztek – próbálja a **Mind** beállítást
+- csak **ingyenes modelleket** használ, és **költség** adatokat néz (lehet, hogy nulla); a **hívásszám** diagramok a **Összegzés** lapon még mindig nem rendelkeznek elegendő adattal a kiválasztott időszakból
+- a kiválasztott **időszűrő** nem fedi le a hívások időszakát – próbálja ki az **Összes** lehetőséget a ellenőrzéshez
 
-Ha a diagramok továbbra is üresek a **Mind** kiválasztása után is, ellenőrizze, hogy megjelennek-e a hívások a [**Előzmények**](#history) vagy az **Összes hívás** lapban.
+Ha a diagramok továbbra is üresek az **Összes** kiválasztása után, erősítse meg, hogy a hívások megjelennek az [**Előzmények**](#history) vagy az **Összes hívás** fülön.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
-### A költség "nem elérhető" vagy hibásnak tűnik
+### A költség „nem elérhető” vagy helytelennek tűnik
 
-Ha **OpenRouter** által továbbított modelleket használ, az alkalmazás a OpenRouter által jelentett tényleges költséget jeleníti meg.
+Ha **OpenRouter** segítségével használ modelleket, az alkalmazás az OpenRouter által jelentett tényleges költséget jeleníti meg.
 
-**Egyéb szolgáltatók esetén** (közvetlen OpenAI, közvetlen Anthropic stb.) a költség az OpenRouter által közzétett árazási adatok alapján történő becslés. Ha egy modellhez nincs megfelelő ár, a költség **nem elérhető**ként jelenik meg, és nem kerül be a teljes összeg felé.
+**Más szolgáltatók** (közvetlen OpenAI, közvetlen Anthropic stb.) esetén a költség az OpenRouter által közzétett árazási adatok alapján kerül becslésre. Ha nem található ár egy modellhez, a költség **nem elérhetőként** jelenik meg, és nem kerül hozzáadásra a futó összeghez.
 
 <br/>
 
 <a id="total-cost-does-not-match-my-provider-bill"></a>
-### A teljes költség nem egyezik a szolgáltatói számlámmal
+### A teljes költség nem egyezik meg a szolgáltató számlájával
 
-Az alkalmazásban szereplő összes költségösszeg **csak tájékoztató célú becsült érték**, nem hivatalos számlázási kimutatás.
+Az alkalmazásban szereplő összes költségadat **csak tájékoztató jellegű becslés**, nem hivatalos számla.
 
-A teljes költséget közelebb hozva a tényleges OpenRouter-fizetéshez, nyissa meg a [**Beállítások** > **Költségkövetés**](#cost-tracking) menüpontot, és kattintson a **Szinkronizálás az API-kulcs használatával** gombra.
+Ahhoz, hogy a teljes összeg közelebb kerüljön a tényleges OpenRouter-költséghez, nyissa meg a [**Beállítások** > **Költségkövetés**](#cost-tracking) menüpontot, és kattintson a **Szinkronizálás az API kulcs használatával** lehetőségre.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Az Előzmények oldal hiányzik az oldalsávon
 
-Lehetséges, hogy ki van kapcsolva a **Kéréselőzmények megőrzése**. Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontot, és kapcsolja be. Figyelem: az bekapcsolása nem állítja vissza a korábban törölt előzményeket.
+Lehetséges, hogy a **végrehajtási előzmények megőrzése** ki van kapcsolva. Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontot, és engedélyezze. Figyelem: a bekapcsolás nem állítja vissza a korábban törölt előzményadatokat.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
-### Webes alkalmazás: váratlanul átirányítva a bejelentkezési oldalra
+### Webalkalmazás: váratlanul a bejelentkező oldalra irányít át
 
-A munkamenet lejárhatott. Jelentkezzen be újra. Ha gyakran történik meg, ellenőrizze a szerver beállításait a munkamenet élettartamának konfigurálásához.
+Lehet, hogy lejárt a munkamenete. Jelentkezzen be újra. Ha gyakran előfordul, ellenőrizze a szerver konfigurációját a munkamenet élettartamára vonatkozó beállításokkal.
+
+<br/>
+
+<a id="web-admin-forgot-or-lost-a-password"></a>
+### Webes admin: elfelejtette vagy elvesztette a jelszavát
+
+Ez a **saját gépen üzemeltetett webalkalmazásra** (Docker) vonatkozik, nem az asztali (Electron) alkalmazásra.
+
+- Ha egy másik rendszergazda még be tud jelentkezni, az megnyithatja a [**Beállítások** > **Felhasználók**](#users) menüpontot, kiválaszthatja a fiókot, és ott beállíthat egy **új jelszót**.
+- Ha **kizárva van**, de **héjhozzáférése** van a géphez vagy a konténerhez, akkor állítsa vissza a jelszót a képhez tartozó segédprogrammal (cserélje le a `transrewrt`-t, ha módosította az alapértelmezett nevet, és idézőjelek közé tegye a jelszót, ha szóközt vagy speciális karaktert tartalmaz):
+
+```bash
+docker exec transrewrt reset-web-password '<username>' '<new-password>'
+```
+
+Az alapértelmezett admin felhasználónév az `admin`, ha még soha nem hozott létre más fiókot. Ha csak egy argumentumot ad meg, azt az `admin` új jelszavaként kezeli.
+
+Ha **forráskód-ből indítja** az alkalmazást Docker helyett, akkor használja ezt:
+
+```bash
+pnpm run reset-web-password -- <username> <new-password>
+```
+
+A szkript frissíti a felhasználói rekordot az SQLite adatbázisban (és létrehozhatja az `admin` felhasználót, ha az hiányzik). A visszaállítás után jelentkezzen be az új jelszóval.
 
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
-### Irányítópult nem jelenít meg adatot más felhasználók számára (web)
+### A Műszerfal nem jelenít meg adatot más felhasználókról (web)
 
-Csak az **adminisztrátorok** tekinthetik meg minden felhasználó adatait a **Felhasználó** szűrő segítségével. Rendszeres felhasználók csak saját tevékenységeiket láthatják, ez a működés szándékos.
+Csak az **adminisztrátorok** tekinthetik meg az összes felhasználó adatait a **Felhasználó** szűrőn keresztül. A rendes felhasználók csak a saját tevékenységüket látják, ez a tervezett működés.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Módosítottam egy utasítást, de elveszítettem a változtatásokat
+### Módosítottam egy parancsot, és elveszítettem a változtatásokat
 
-A prompt szerkesztésekor mindig kattintson **Mentés** gombra, mielőtt a **Vissza a futtatáshoz** lehetőségre kattintana.
+A parancs szerkesztésekor mindig kattintson a **Mentés** lehetőségre, mielőtt a **Vissza a Futtatáshoz** gombra kattint.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
 ## Gyors tippek
 
-- Kezdje a [**Fordítás**](#translate) használatával, hogy meggyőződjön arról, a beállítás megfelelően működik, mielőtt áttérne az [**Átírásra**](#rewrite) vagy a [**Transzformálásra**](#transform).
-- Használja az [**Átírást**](#rewrite) mindennapi szövegjavításokhoz.
-- Használja a [**Transzformálást**](#transform), ha ismételhető munkafolyamatot szeretne egy adott feladathoz.
-- Használja az [**Irányítópultot**](#dashboard), ha nyomon szeretné követni a használatot és a költségeket.
-- Használja az [**Előzményeket**](#history), hogy áttekintse a korábbi műveleteket, beleértve a teljes bemeneti és kimeneti szöveget.
-- Rendszeresen exportálja a promptokat, ha promptkönyvtárat épít, amit meg szeretne őrizni (lásd: [Transzformáló promptok](#transform-prompts)) vagy ha másokkal meg szeretné osztani.
+- Kezdje a [**Fordítás**](#translate) lehetőséggel annak ellenőrzéséhez, hogy a beállítás megfelelően működik, mielőtt továbblép a [**Átírás**](#rewrite) vagy az [**Átalakítás**](#transform) lehetőségre.
+- Használja a [**Átírás**](#rewrite) funkciót mindennapi szövegjavításokhoz.
+- Használja az [**Átalakítás**](#transform) funkciót, ha ismételhető munkafolyamatra van szüksége egy adott feladat elvégzéséhez.
+- Használja a [**Műszerfal**](#dashboard) lehetőséget, ha nyomon szeretné követni a használatot és a költségeket.
+- Használja az [**Előzmények**](#history) funkciót a korábbi műveletek és teljes bemeneti/kimeneti szövegeik áttekintéséhez.
+- Rendszeresen exportálja a parancsokat, ha olyan parancs könyvtárat hoz létre, amelyet biztonságban szeretne tartani (lásd: [Átalakítási sablonok](#transform-prompts)), vagy ha meg szeretné osztani másokkal.
 
 <br/><br/>
 
 <a id="disclaimer"></a>
-
 ## Felelősségkizárás
 
-A terméknevek és ikonok a jogosultak tulajdonát képezik, és kizárólag azonosítási célokból használatosak. Ez a szoftver nem kapcsolódik egyetlen említett márkához sem, és azok nem is támogatják.
+A terméknevek és ikonok a jogosultak tulajdonát képezik, kizárólag azonosítási célokra használjuk őket. Ez a szoftver nem kapcsolódik a megemlített márkákhoz, és azok nem is támogatják azt.
 
 <br/><br/>
 
@@ -896,4 +923,4 @@ A terméknevek és ikonok a jogosultak tulajdonát képezik, és kizárólag azo
 
 Szerzői jog © 2026 Waldemar Scudeller Jr.
 
-[Apache Licenc 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

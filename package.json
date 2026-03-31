@@ -1,6 +1,6 @@
 {
   "name": "transrewrt",
-  "version": "1.0.15",
+  "version": "1.1.1",
   "description": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
   "main": "src/main/main.js",
   "scripts": {
@@ -25,18 +25,25 @@
     "docker:devel": "docker build . -t wsj-br/transrewrt:devel",
     "docker:logs": "docker logs transrewrt",
     "docker:shell": "docker exec -it transrewrt /bin/sh",
-    "package": "pnpm run build && node scripts/write-build-timestamp.js && electron-builder",
+    "build:main": "node node_modules/webpack/bin/webpack.js --config webpack.main.config.js",
+    "package": "pnpm run build && pnpm run build:main && node scripts/write-build-timestamp.js && electron-builder",
+    "package-arm64": "pnpm run build && pnpm run build:main && node scripts/write-build-timestamp.js && pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.cjs",
     "generate-test-data": "node scripts/generate-test-data.js",
     "i18n:extract": "node scripts/extract-strings.js",
     "i18n:translate": "node scripts/generate-translations.js",
     "i18n:sync": "pnpm run i18n:extract && pnpm run i18n:translate",
+    "i18n:sync-md-annex": "node scripts/sync-i18n-md-script-sources.js",
+    "translate:docs": "node scripts/node-rebuild.js && tsx scripts/translate/index.ts",
+    "translate:clean": "tsx scripts/translate/index.ts --force-update && tsx scripts/translate/cache-cleanup.ts",
+    "translate:cleanup": "tsx scripts/translate/index.ts --force-update && tsx scripts/translate/cache-cleanup.ts",
+    "clean-logs": "node scripts/clean-translation-logs.js",
     "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
-    "translate-docs": "node scripts/translate-docs.js"
+    "3p-licenses": "node scripts/write-third-party-licenses.js"
   },
   "keywords": [
     "electron",
@@ -52,10 +59,12 @@
   "build": {
     "appId": "br.com.wsj.transrewrt",
     "productName": "Transrewrt",
+    "extraMetadata": {
+      "main": "dist-main/main.js"
+    },
     "files": [
       "dist/**/*",
-      "src/main/**/*",
-      "src/shared/**/*.js",
+      "dist-main/**/*",
       "images/**/*",
       "package.json",
       "build_timestamp",
@@ -71,6 +80,10 @@
       {
         "from": "src/config-defaults/config_default.json",
         "to": "config/config_default.json"
+      },
+      {
+        "from": "THIRD-PARTY-LICENSES.txt",
+        "to": "THIRD-PARTY-LICENSES.txt"
       }
     ],
     "directories": {
@@ -122,8 +135,12 @@
     "@electron/rebuild": "^4.0.3",
     "@eslint/js": "^9.39.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
+    "@types/papaparse": "^5.5.2",
     "babel-loader": "^10.1.1",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
     "concurrently": "^9.2.1",
+    "copy-webpack-plugin": "^14.0.0",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
     "electron": "^41.1.0",
@@ -133,16 +150,21 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "events": "^3.3.0",
+    "glob": "^13.0.6",
     "globals": "^17.4.0",
+    "gray-matter": "^4.0.3",
     "html-webpack-plugin": "^5.6.6",
     "i18next-scanner": "^4.6.0",
+    "license-checker-rseidelsohn": "^4.4.2",
     "mini-css-extract-plugin": "^2.10.2",
+    "papaparse": "^5.5.3",
     "prop-types": "^15.8.1",
     "puppeteer": "^24.40.0",
     "react-refresh": "^0.18.0",
     "sharp": "^0.34.5",
     "sql.js": "^1.14.1",
     "style-loader": "^4.0.0",
+    "tsx": "^4.21.0",
     "wait-on": "^9.0.4",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
@@ -152,14 +174,12 @@
       "prebuild-install": "7.1.3"
     },
     "overrides": {
-      "lodash-es": "^4.17.23",
       "yauzl": ">=3.2.1",
       "rimraf": "^5.0.0",
       "glob": "^13.0.0",
       "global-agent": "^4.1.2",
       "qs": ">=6.14.2",
-      "minimatch": ">=10.2.1",
-      "serialize-javascript": ">=7.0.3"
+      "minimatch": ">=10.2.1"
     },
     "onlyBuiltDependencies": [
       "argon2",
@@ -167,6 +187,7 @@
       "core-js-pure",
       "electron",
       "electron-winstaller",
+      "esbuild",
       "protobufjs",
       "puppeteer",
       "sharp"
@@ -174,19 +195,22 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.2.0",
-    "@fluentui/react-components": "^9.73.5",
+    "@fluentui/react-components": "^9.73.6",
     "@fluentui/react-icons": "^2.0.323",
+    "adm-zip": "^0.5.16",
+    "archiver": "^7.0.1",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.8.0",
     "diff": "^8.0.4",
     "express": "^5.2.1",
-    "i18next": "^25.10.10",
+    "i18next": "^26.0.2",
     "lucide-react": "^1.7.0",
+    "multer": "^2.1.1",
     "multi-llm-ts": "5.1.0-beta4",
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-i18next": "^17.0.0",
+    "react-i18next": "^17.0.1",
     "recharts": "^3.8.1",
     "webpack-dev-server": "^5.2.3",
     "xlsx-js-style": "^1.2.0"

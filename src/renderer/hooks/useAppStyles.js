@@ -28,7 +28,6 @@ const useAppStyles = makeStyles({
     marginBottom: tokens.spacingVerticalS,
   },
   transformPanelControlsRow: {
-    justifyContent: "space-between",
     gap: tokens.spacingHorizontalM,
   },
   transformPanelControlsLeft: {

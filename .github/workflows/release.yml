@@ -129,12 +129,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # package.json linux target lists only x64; arm64 needs a merged --config so @electron/rebuild uses arch=arm64.
+      # package.json linux target lists only x64; arm64 uses build/electron-builder.linux-arm64.cjs (spreads package.json `build`, arm64 linux target) so @electron/rebuild matches the arch.
       # Call electron-builder directly (not pnpm run package -- …) to avoid a stray "--" before flags.
       - name: Build and package (Linux, x64)
         if: matrix.electron_arch == 'x64'
         run: |
           pnpm run build
+          pnpm run build:main
           node scripts/write-build-timestamp.js
           pnpm exec electron-builder --linux AppImage --x64 --publish never
 
@@ -142,8 +143,9 @@ jobs:
         if: matrix.electron_arch == 'arm64'
         run: |
           pnpm run build
+          pnpm run build:main
           node scripts/write-build-timestamp.js
-          pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.json
+          pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.cjs
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v6

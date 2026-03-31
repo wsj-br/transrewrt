@@ -9,6 +9,7 @@ env/
 venv/
 node_modules
 dist
+dist-main
 cache
 .coverage*
 *.tmp
@@ -17,6 +18,13 @@ build_timestamp
 *.log
 *.exe
 .specstory
+.cache
+
+
+# Doc translation SQLite cache: commit only DB, not logs/backups under translated-docs/.cache/
+!translated-docs/.cache/
+translated-docs/.cache/**
+!translated-docs/.cache/cache.db
 
 # local data (keep out of repo)
 data/
@@ -29,6 +37,5 @@ models_api_raw.json
 models_valid.json
 last_api_result.json
 
-# translated-docs section cache (local/CI only; translated .md files are committed)
-translated-docs/.section-cache/
+
 

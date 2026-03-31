@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { tokens, Label, Text, Dropdown, Option, Radio, RadioGroup, SpinButton, Checkbox, makeStyles, Button } from '@fluentui/react-components';
-import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2 } from 'lucide-react';
+import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2, DatabaseBackup } from 'lucide-react';
 import PropTypes from 'prop-types';
 import {
   getCostFractionStyleOptions,
@@ -11,27 +11,19 @@ import {
 } from '../utils/misc/costUtils';
 import { interpolateTemplate } from '../utils/misc/formatUtils';
 import ConfirmModal from './ConfirmModal';
-
-const DEFAULT_FONT = 'Verdana';
-
-const FONT_OPTIONS = [
-  { type: 'header', value: '__sans__', label: '— Sans-serif —' },
-  { type: 'font', value: 'system-ui', label: 'system-ui' },
-  { type: 'font', value: 'Segoe UI', label: 'Segoe UI' },
-  { type: 'font', value: 'Verdana', label: 'Verdana' },
-  { type: 'header', value: '__serif__', label: '— Serif —' },
-  { type: 'font', value: 'Georgia', label: 'Georgia' },
-  { type: 'font', value: 'Times New Roman', label: 'Times New Roman' },
-  { type: 'font', value: 'Cambria', label: 'Cambria' },
-  { type: 'header', value: '__mono__', label: '— Monospace —' },
-  { type: 'font', value: 'ui-monospace', label: 'ui-monospace' },
-  { type: 'font', value: 'Consolas', label: 'Consolas' },
-  { type: 'font', value: 'Menlo', label: 'Menlo' },
-];
-
-const FONT_VALUES = FONT_OPTIONS.filter((o) => o.type === 'font').map((o) => o.value);
+import webAPI from '../utils/api/webApiClient';
+import { getAppearanceFontOptions, resolveAppearanceFontFamilyCss } from '../utils/misc/appearanceFontOptions';
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+
+function getAppearanceFontContext() {
+  const isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+  const platform =
+    !isWebMode && typeof window.electronAPI?.getRuntimePlatform === "function"
+      ? window.electronAPI.getRuntimePlatform()
+      : undefined;
+  return getAppearanceFontOptions({ isElectron: !isWebMode, platform });
+}
 
 /** Normalize to the two supported behaviors; map legacy values for existing configs. */
 function normalizeEnterBehavior(value) {
@@ -93,11 +85,18 @@ const useFormStyles = makeStyles({
 const SettingsGeneralTab = ({
   localSettings,
   onSettingChange,
+  canConfigBackup = false,
 }) => {
   const layoutStyles = useLayoutStyles();
   const formStyles = useFormStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
+
+  const { options: FONT_OPTIONS, defaultFont: DEFAULT_FONT, fontValues: FONT_VALUES } = useMemo(() => {
+    const { options, defaultFont } = getAppearanceFontContext();
+    const fontValues = options.filter((o) => o.type === "font").map((o) => o.value);
+    return { options, defaultFont, fontValues };
+  }, []);
 
   const [showDisableHistoryConfirm, setShowDisableHistoryConfirm] = useState(false);
   const [historyDeleteRange, setHistoryDeleteRange] = useState('gt_3m');
@@ -105,6 +104,16 @@ const SettingsGeneralTab = ({
   const [historyDeleteError, setHistoryDeleteError] = useState(null);
   const [historyDeleteSuccess, setHistoryDeleteSuccess] = useState(null);
   const [showHistoryDeleteConfirm, setShowHistoryDeleteConfirm] = useState(false);
+
+  const [backupBusy, setBackupBusy] = useState(false);
+  const [backupError, setBackupError] = useState(null);
+  const [backupSuccess, setBackupSuccess] = useState(null);
+  const [showRestoreBackupConfirm, setShowRestoreBackupConfirm] = useState(false);
+  const [restoreClearHistory, setRestoreClearHistory] = useState(false);
+  const [restoreUsageData, setRestoreUsageData] = useState(false);
+  const [backupIncludeUsage, setBackupIncludeUsage] = useState(false);
+  const [pendingRestoreFile, setPendingRestoreFile] = useState(null);
+  const restoreFileInputRef = useRef(null);
 
   const historyDeleteRangeOptions = useMemo(
     () => [
@@ -154,6 +163,125 @@ const SettingsGeneralTab = ({
     }
     onSettingChange('keep_execution_history', false);
     setShowDisableHistoryConfirm(false);
+  };
+
+  const onUncheckKeepExecutionHistory = useCallback(async () => {
+    const costApi = getCostApi();
+    if (typeof costApi.getExecutionHistory !== 'function') {
+      setShowDisableHistoryConfirm(true);
+      return;
+    }
+    try {
+      const rows = await costApi.getExecutionHistory(null, null, null, 1);
+      if (Array.isArray(rows) && rows.length > 0) {
+        setShowDisableHistoryConfirm(true);
+      } else {
+        onSettingChange('keep_execution_history', false);
+      }
+    } catch {
+      setShowDisableHistoryConfirm(true);
+    }
+  }, [onSettingChange]);
+
+  const backupSuccessMessage = (filename) =>
+    interpolateTemplate(t('Backup generated: {{filename}}'), {
+      filename: filename || '',
+    });
+
+  const runConfigBackup = async () => {
+    setBackupError(null);
+    setBackupSuccess(null);
+    setBackupBusy(true);
+    try {
+      if (isWeb) {
+        const r = await webAPI.downloadConfigBackup({ includeUsageData: backupIncludeUsage });
+        setBackupSuccess(backupSuccessMessage(r?.filename));
+      } else if (window.electronAPI?.exportConfigBackup) {
+        const r = await window.electronAPI.exportConfigBackup({ includeUsageData: backupIncludeUsage });
+        if (r?.canceled) {
+          /* user dismissed save dialog */
+        } else if (r?.ok) {
+          setBackupSuccess(backupSuccessMessage(r.filename));
+        } else {
+          setBackupError(t('Backup failed.'));
+        }
+      }
+    } catch (err) {
+      setBackupError(err?.message || t('Backup failed.'));
+    } finally {
+      setBackupBusy(false);
+    }
+  };
+
+  const onRestoreBackupClick = () => {
+    setBackupError(null);
+    setBackupSuccess(null);
+    setPendingRestoreFile(null);
+    setRestoreClearHistory(false);
+    setRestoreUsageData(false);
+    if (restoreFileInputRef.current) {
+      restoreFileInputRef.current.value = '';
+    }
+    setShowRestoreBackupConfirm(true);
+  };
+
+  const onRestoreBackupFileSelected = (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    setPendingRestoreFile(f);
+  };
+
+  const confirmRestoreBackup = async () => {
+    if (backupBusy) return;
+    setBackupBusy(true);
+    setBackupError(null);
+    try {
+      if (isWeb) {
+        if (!pendingRestoreFile) {
+          throw new Error(t('No file selected.'));
+        }
+        await webAPI.restoreConfigBackup(pendingRestoreFile, {
+          clearHistory: restoreClearHistory,
+          restoreUsageData,
+        });
+      } else if (window.electronAPI?.importConfigBackup) {
+        if (!pendingRestoreFile) {
+          throw new Error(t('No file selected.'));
+        }
+        const getPath = window.electronAPI.getPathForFile;
+        if (typeof getPath !== 'function') {
+          throw new Error(t('Restore failed.'));
+        }
+        let filePath;
+        try {
+          filePath = getPath(pendingRestoreFile);
+        } catch {
+          filePath = '';
+        }
+        if (!filePath) {
+          throw new Error(t('No file selected.'));
+        }
+        const r = await window.electronAPI.importConfigBackup({
+          filePath,
+          clearHistory: restoreClearHistory,
+          restoreUsageData,
+        });
+        if (!r?.ok) {
+          throw new Error(t('Restore failed.'));
+        }
+      }
+      setBackupSuccess(
+        isWeb
+          ? t('Configuration restored. You may need to sign in again.')
+          : t('Configuration restored.'),
+      );
+      setShowRestoreBackupConfirm(false);
+      setPendingRestoreFile(null);
+    } catch (err) {
+      setBackupError(err?.message || t('Restore failed.'));
+    } finally {
+      setBackupBusy(false);
+    }
   };
 
   return (
@@ -260,7 +388,7 @@ const SettingsGeneralTab = ({
                 if (e.target.checked) {
                   onSettingChange('keep_execution_history', true);
                 } else {
-                  setShowDisableHistoryConfirm(true);
+                  void onUncheckKeepExecutionHistory();
                 }
               }}
             />
@@ -421,7 +549,13 @@ const SettingsGeneralTab = ({
               style={{ width: 'auto', minWidth: '200px' }}
             >
               {localSettings.font_family && !FONT_VALUES.includes(localSettings.font_family) ? (
-                <Option value={localSettings.font_family} style={{ fontFamily: localSettings.font_family }}>
+                <Option
+                  value={localSettings.font_family}
+                  style={{
+                    fontFamily:
+                      resolveAppearanceFontFamilyCss(localSettings.font_family) || localSettings.font_family,
+                  }}
+                >
                   {localSettings.font_family}
                 </Option>
               ) : null}
@@ -431,7 +565,13 @@ const SettingsGeneralTab = ({
                     {t(item.label)}
                   </Option>
                 ) : (
-                  <Option key={item.value} value={item.value} style={{ fontFamily: item.value }}>
+                  <Option
+                    key={item.value}
+                    value={item.value}
+                    style={{
+                      fontFamily: resolveAppearanceFontFamilyCss(item.value) || item.value,
+                    }}
+                  >
                     {item.label}
                   </Option>
                 )
@@ -459,7 +599,10 @@ const SettingsGeneralTab = ({
               color: tokens.colorNeutralForeground2,
               wordWrap: 'break-word',
               maxWidth: '300px',
-              fontFamily: localSettings.font_family || DEFAULT_FONT,
+              fontFamily:
+              resolveAppearanceFontFamilyCss(localSettings.font_family || DEFAULT_FONT) ||
+              localSettings.font_family ||
+              DEFAULT_FONT,
               fontSize: `${localSettings.font_size || 14}px`,
               lineHeight: '1.5',
             }}
@@ -469,6 +612,43 @@ const SettingsGeneralTab = ({
         </div>
         </div>
       </div>
+
+      {canConfigBackup && (
+        <div className="section">
+          <Text as="h3" size={500} weight="semibold" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' }}>
+            <DatabaseBackup size={20} />
+            {t('Configuration Backup')}
+          </Text>
+          <div style={{ paddingInlineStart: '24px' }}>
+            <div style={{ marginBottom: '12px' }}>
+              <Checkbox
+                id="backup-include-usage"
+                checked={backupIncludeUsage}
+                onChange={(e) => setBackupIncludeUsage(!!e.target.checked)}
+                label={t('Include usage data in the backup')}
+              />
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '12px' }}>
+              <Button appearance="primary" disabled={backupBusy} onClick={runConfigBackup}>
+                {backupBusy ? t('Working…') : t('Backup configuration')}
+              </Button>
+              <Button appearance="secondary" disabled={backupBusy} onClick={onRestoreBackupClick}>
+                {t('Restore from backup')}
+              </Button>
+            </div>
+            {backupError && (
+              <span style={{ color: tokens.colorStatusDangerForeground1, fontSize: '13px', display: 'block' }}>
+                {backupError}
+              </span>
+            )}
+            {backupSuccess && (
+              <span style={{ color: tokens.colorStatusSuccessForeground1, fontSize: '13px', display: 'block' }}>
+                {backupSuccess}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
 
         </div>
       </div>
@@ -481,6 +661,75 @@ const SettingsGeneralTab = ({
           cancelLabel={t('Cancel')}
           onConfirm={confirmDisableHistory}
           onCancel={() => setShowDisableHistoryConfirm(false)}
+          danger
+        />
+      )}
+      {showRestoreBackupConfirm && (
+        <ConfirmModal
+          title={t('Restore configuration backup?')}
+          customBody={
+            <div>
+              <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: 1.4 }}>
+                {isWeb
+                  ? t(
+                      'This replaces users, preferences, transform prompts, and server configuration. All signed-in sessions will be logged out.\n\nThis cannot be undone.',
+                    )
+                  : t(
+                      'This replaces local configuration files, transform prompts, and optional API history (if selected).\n\nThis cannot be undone.',
+                    )}
+              </p>
+              <div style={{ marginBottom: '16px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+                <input
+                  ref={restoreFileInputRef}
+                  type="file"
+                  accept=".zip,application/zip"
+                  style={{ display: 'none' }}
+                  onChange={onRestoreBackupFileSelected}
+                />
+                <Button
+                  appearance="secondary"
+                  type="button"
+                  onClick={() => restoreFileInputRef.current?.click()}
+                >
+                  {t('Select backup ZIP…')}
+                </Button>
+                <span
+                  style={{
+                    fontSize: '13px',
+                    color: tokens.colorNeutralForeground2,
+                    overflowWrap: 'anywhere',
+                  }}
+                >
+                  {pendingRestoreFile?.name || t('No file selected yet.')}
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Checkbox
+                  id="restore-usage-data"
+                  checked={restoreUsageData}
+                  onChange={(e) => setRestoreUsageData(!!e.target.checked)}
+                  label={t('Restore the usage data')}
+                />
+                <Checkbox
+                  id="restore-clear-history"
+                  checked={restoreClearHistory}
+                  onChange={(e) => setRestoreClearHistory(!!e.target.checked)}
+                  label={t('Clear the old usage data before restoring')}
+                />
+              </div>
+            </div>
+          }
+          confirmLabel={backupBusy ? t('Working…') : t('Restore')}
+          cancelLabel={t('Cancel')}
+          onConfirm={confirmRestoreBackup}
+          onCancel={() => {
+            setShowRestoreBackupConfirm(false);
+            setPendingRestoreFile(null);
+            if (restoreFileInputRef.current) {
+              restoreFileInputRef.current.value = '';
+            }
+          }}
+          confirmDisabled={backupBusy || !pendingRestoreFile}
           danger
         />
       )}
@@ -531,6 +780,7 @@ SettingsGeneralTab.propTypes = {
     font_size: PropTypes.number,
   }).isRequired,
   onSettingChange: PropTypes.func.isRequired,
+  canConfigBackup: PropTypes.bool,
 };
 
 export default SettingsGeneralTab;

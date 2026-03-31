@@ -1,106 +1,94 @@
 ---
-translated_at: "2026-03-27T23:10:40.901Z"
-source_hash: "076eff841a5f0e4f5c43a00dd28f2702bd2dde0602a830890285b5ffdc38ad5a"
-source_mtime: "2026-03-27T20:34:13.877Z"
-model: "qwen/qwen3-235b-a22b-2507"
+translation_last_updated: '2026-03-31T22:57:24.399Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
+translation_language: ja
+source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_logo.svg" alt="Transrewrt ロゴ" width="120" />
-</p>
-
-<h1 align="center">Transrewrt</h1>
-
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.0.15-blue" alt="バージョン"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="ライセンス: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="プラットフォーム">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
-
-AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、およびローカルOllama）を使用して、言語間の翻訳、さまざまなスタイルへの言い換え、カスタムプロンプトによる変換を実行できます。デスクトップアプリ（Electron）またはセルフホスト型のWebアプリ（Docker）として実行可能です。
-
-- **翻訳** — 数十の言語間で翻訳可能。ソース言語の自動検出付き
-- **言い換え** — 文法の修正、明確さの向上、フォーマル／カジュアルへの変換、短縮、展開、技術文書への調整など
-- **変換** — カスタムAIプロンプトを使用。プロンプトの作成・管理が可能。プロンプトごとに目標言語を個別設定可能
-- **履歴** — 入出力テキストを含む完全な実行履歴、フィルタリングおよびエクスポート機能
-- **モデルと費用** — 設定済みプロバイダーのいずれかからモデルを選択可能。コストと使用状況のダッシュボード（ログ、モデル／操作／日別サマリー付き）
-- **UI** — 多言語インターフェース（30以上の言語対応、RTL対応）、フォント等
-- **Webモード** — 管理者ロール付きの多ユーザー対応
-- **デスクトップ版** — WindowsおよびLinux用Electronアプリ
-- **セルフホスト対応** — amd64およびarm64（Raspberry Pi対応）用Dockerイメージ
-
-インストール後は、すべての機能の使い方を解説する **[ユーザーガイド](USER-GUIDE.ja.md)** をご確認ください。
-
-<small>**他の言語で読む：** </small>
-<small id="lang-list"> [English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
-
-> **UIおよびドキュメント翻訳に関する注意:** 英語（イギリス）の原文を除くすべての言語のインターフェース翻訳はAIモデルを使用して行っています。表現が不正確であったり、誤りが含まれている場合があります。
-
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
-
-## スクリーンショット
-
-**言語セレクタ**
-
-![言語セレクタ](../images/screenshots/ja/language-selector.png)
-
-**翻訳**
-
-![翻訳](../images/screenshots/ja/translate.png)
-
-**変換 - プロンプトエディタ**
-
-![変換 - プロンプトエディタ](../images/screenshots/ja/transform-prompt-edit.png)
-
-**ダッシュボード**
-
-![コストダッシュボード](../images/screenshots/ja/dashboard-summary.png)
-
-**履歴**
-
-![履歴](../images/screenshots/ja/history.png)
-
-**設定 - モデル選択**
-
-![設定 - モデル選択](../images/screenshots/ja/settings-models.png)
-
-<br/><br/>
-
-<a id="table-of-contents"></a>
-## 目次
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**目次**
 
-- [すぐに始める](#quick-start)
+- [スクリーンショット](#screenshots)
+- [目次](#table-of-contents)
+- [クイックスタート](#quick-start)
 - [インストール](#installation)
   - [Windows (Electron)](#windows-electron)
   - [Linux (Electron)](#linux-electron)
   - [Docker](#docker)
-- [OpenRouter APIキーの取得](#getting-an-openrouter-api-key)
-- [設定と環境](#configuration-and-environment)
+  - [タイムゾーンの設定](#configuring-the-timezone)
+- [OpenRouter API キーの取得](#getting-an-openrouter-api-key)
+- [構成と環境](#configuration-and-environment)
 - [開発とアーキテクチャ](#development-and-architecture)
-- [リリースとタグ](#releases-and-tags)
-- [貢献方法](#contributing)
+- [問題の報告](#reporting-issues)
 - [免責事項](#disclaimer)
 - [ライセンス](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<br/><br/>
+AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、およびローカルOllama）を使用して、言語間の翻訳、さまざまなスタイルへのリライト、カスタムプロンプトによる変換が可能。デスクトップアプリ（Electron）またはセルフホスト型Webアプリ（Docker）として実行できます。
 
-<a id="quick-start"></a>
+- **翻訳** — 数十の言語間で翻訳可能。ソース言語の自動検出付き
+- **リライト** — 文法の修正、明瞭さの改善、フォーマル／インフォーマル、短くする、展開する、技術的表現など
+- **変換** — カスタムAIプロンプト。プロンプトの作成と管理、プロンプトごとのオプションのターゲット言語指定
+- **履歴** — 入力／出力テキスト、フィルタリング、エクスポート機能を備えた完全な実行履歴
+- **モデルとコスト** — 設定済みプロバイダーからモデルを選択可能。ログ、モデル／操作／日ごとの集計を含むコストと使用状況のダッシュボード
+- **UI** — 多言語言語対応インターフェース（30以上の言語、RTL対応）、フォント、...
+- **Webモード** — 管理者ロール付きのマルチユーザー対応
+- **デスクトップ** — WindowsおよびLinux用Electronアプリ
+- **セルフホスト** — amd64およびarm64（Raspberry Pi対応）用Dockerイメージ
+
+インストール後は、すべての機能の詳細なガイドとして **[ユーザーガイド](USER-GUIDE.ja.md)** をご確認ください。
+
+**他の言語で読む:**
+[英語 (英国)](../README.md) · [ポルトガル語 (ブラジル)](README.pt-BR.md) · [アラビア語](README.ar.md) · [ベンガル語](README.bn.md) · [カタロニア語](README.ca.md) · [簡体字中国語](README.zh-CN.md) · [繁体字中国語](README.zh-TW.md) · [クロアチア語](README.hr.md) · [チェコ語](README.cs.md) · [オランダ語](README.nl.md) · [英語 (アメリカ)](README.en-US.md) · [フィリピン語](README.tl.md) · [フランス語](README.fr.md) · [ドイツ語](README.de.md) · [ギリシャ語](README.el.md) · [ヒンディー語](README.hi.md) · [ハンガリー語](README.hu.md) · [イタリア語](README.it.md) · [日本語](README.ja.md) · [ジャワ語](README.jv.md) · [韓国語](README.ko.md) · [マレー語](README.ms.md) · [ペルシア語](README.fa.md) · [ポーランド語](README.pl.md) · [ポルトガル語 (ポルトガル)](README.pt.md) · [パンジャブ語](README.pa.md) · [ルーマニア語](README.ro.md) · [ロシア語](README.ru.md) · [スロバキア語](README.sk.md) · [スペイン語](README.es.md) · [スワヒリ語](README.sw.md) · [スウェーデン語](README.sv.md) · [テルグ語](README.te.md) · [タイ語](README.th.md) · [トルコ語](README.tr.md) · [ウクライナ語](README.uk.md) · [ベトナム語](README.vi.md)
+
+> **UIおよびドキュメント翻訳に関する注意：** 英語 (英国) を除くすべてのインターフェース言語はAIモデルを使用して翻訳されています。表現が不正確である場合や誤りが含まれる可能性があります。
+
+## スクリーンショット
+
+**言語セレクター**
+
+言語セレクタ
+
+**翻訳**
+
+翻訳
+
+**変換 - プロンプトエディター**
+
+変換 - プロンプトエディタ
+
+**ダッシュボード**
+
+ダッシュボード概要 — 使用状況
+
+**履歴**
+
+履歴
+
+**設定 - モデル選択**
+
+設定 - モデル選択
+
+## 目次
+
+- [クイックスタート](#quick-start)
+- [インストール](#installation)
+  - [Windows (Electron)](#windows-electron)
+  - [Linux (Electron)](#linux-electron)
+  - [Docker](#docker)
+  - [タイムゾーンの設定](#configuring-the-timezone)
+- [OpenRouter APIキーの取得](#getting-an-openrouter-api-key)
+- [構成と環境](#configuration-and-environment)
+- [開発とアーキテクチャ](#development-and-architecture)
+- [問題の報告](#reporting-issues)
+- [免責事項](#disclaimer)
+- [ライセンス](#license)
 
 ## クイックスタート
 
-**Docker（セルフホスティングに推奨）**
+**Docker（セルフホスティングの場合に推奨）**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,81 +101,82 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`sk-or-your-key` の部分を [OpenRouter APIキー](https://openrouter.ai/keys) に置き換えてください（または他のプロバイダーのキーを設定することも可。詳細は[設定と環境](#configuration-and-environment)を参照）。[http://localhost:5000](http://localhost:5000) を開いて、サービスを外部に公開する前に既定の管理者パスワードを変更してください。
+`sk-or-your-key` を [OpenRouter APIキー](https://openrouter.ai/keys) に置き換えるか、他のプロバイダーのキーを設定してください（[構成](#configuration-and-environment)を参照）。[http://localhost:5000](http://localhost:5000) を開き、サービスを外部に公開する前に既定の管理者パスワードを変更してください。
 
-<br/>
-
-> ℹ️ **注意**<br/>
-> Dockerでは、LLMの認証情報は環境変数（`OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY` など）で設定します（Web UIではありません）。デスクトップ版（Electron）では、**設定 → API** からキーを設定できます。
-
-<br/>
+> ℹ️ **注記**  
+>
+> Dockerでは、LLMの認証情報は`OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`CEREBRAS_API_KEY`などの環境変数で設定されます（Web UIでは設定しません）。デスクトップ版（Electron）では、**設定 → API** でキーを設定します。
 
 **Windows**
 
-[リリース](https://github.com/wsj-br/transrewrt/releases) から最新の `Transrewrt Setup x.y.z.exe` をダウンロードし、インストーラーを実行してから、スタートメニューまたはデスクトップのショートカットから起動します。**設定 → API** でAPIキーを入力してください。少なくとも1つのプロバイダーを設定する必要があります。無料モデルを利用するにはOpenRouterが一般的です。
-
-<br/>
+[リリース](https://github.com/wsj-br/transrewrt/releases) から最新の `Transrewrt Setup x.y.z.exe` をダウンロードし、インストーラーを実行してから、スタートメニューまたはデスクトップのショートカットから起動します。**設定 → API** でAPIキーを入力してください。少なくとも1つのプロバイダーを設定する必要があります。無料のモデルを利用するにはOpenRouterが一般的です。
 
 **Linux**
 
-[リリース](https://github.com/wsj-br/transrewrt/releases) からお使いのCPUに合った `.AppImage` ファイルをダウンロードしてください（通常のPCには `x64`、Raspberry Pi 4以降を含む多くのARMデバイスには `arm64`）。その後、以下を実行します：
+[リリース](https://github.com/wsj-br/transrewrt/releases) からCPUに合った `.AppImage` ファイルをダウンロードしてください（一般的なPCには `x64`、Raspberry Pi 4以降を含む多くのARMデバイスには `arm64` を使用）。その後、以下の手順を実行します。
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-**設定 → API** でAPIキーを入力してください。少なくとも1つのプロバイダーを設定する必要があります。無料モデルを利用するにはOpenRouterが一般的です。
+**設定 → API** でAPIキーを入力してください。少なくとも1つのプロバイダーを設定する必要があります。無料のモデルを利用するにはOpenRouterが一般的です。
 
-Debian/Ubuntuをお使いの場合は、事前に以下の依存パッケージをインストールする必要があるかもしれません：
+**コンソールメッセージ:** パッケージ化されたLinuxビルド（`x64`および`arm64`のAppImage）は、端末でのNodeの非推奨警告（たとえば組み込みの`punycode`モジュールなど）を抑制します。Chromiumが「GLES3はサポートされていません」などのGPU / EGLエラーを出力してもアプリが正常に動作する場合は、ハードウェアアクセラレーションを無効にしてこれらのメッセージを非表示にできます。
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-詳細は [インストール → Linux](#linux-electron) を参照してください。
+これはamd64でも同様に適用されます。ダウンロードしたファイル名に合わせて変更してください。詳細は[インストール → Linux (Electron)](#linux-electron)を参照してください。
 
-<br/>
+Debian/Ubuntuでは、Chromiumが期待する追加の**ランタイム**ライブラリが必要になる場合があります（通常のデスクトップ環境では既にインストールされています）。デスクトップ通知には**`libnotify4`**を使用してください。**`libnotify-dev`**は使用しないでください（これはソフトウェアのビルド用であり、パッケージ化されたAppImageの実行用ではありません）。
 
-> ℹ️ **注意**<br/>
-> 現在、macOSはサポートされていません。TransrewrtはWindows、Linux、Docker向けに提供されています。
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+最小構成またはカスタムイメージでは、不足する`.so`ファイルにより依然として失敗する可能性があります。エラーに表示されたパッケージをインストールしてください（よく使う追加パッケージ: `libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2`）。一部の環境ではAppImageを実行するためにFUSEが必要です（例: Ubuntu 22.04+では`libfuse2`）、または`APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`を使用してください。
 
-アプリが起動したら、**[ユーザーガイド](USER-GUIDE.ja.md)** を参照して、テキストの翻訳・書き換え・変換、プロンプトの管理、モデルの設定方法などを学んでください。
+同じ要約については[インストール → Linux](#linux-electron)を参照してください。
 
-<br/><br/>
+> ℹ️ **注記**  
+>
+> 現在、macOSはサポートされていません。TransrewrtはWindows、Linux、Docker向けに利用可能です。
 
-<a id="installation"></a>
+アプリが起動したら、**[ユーザーガイド](USER-GUIDE.ja.md)** を参照して、テキストの翻訳、リライト、変換、プロンプトの管理、モデルの設定方法を学んでください。
 
 ## インストール
 
-<a id="windows-electron"></a>
 ### Windows (Electron)
 
-- 最新のインストーラーを [リリースページ](https://github.com/wsj-br/transrewrt/releases) からダウンロードしてください。
-- `.exe`ファイルを実行し、インストーラーの指示に従ってください。
+- [リリース](https://github.com/wsj-br/transrewrt/releases) から最新のインストーラーをダウンロードしてください。
+- `.exe` を実行し、インストーラーの指示に従ってください。
 - 初回起動：スタートメニューまたはデスクトップのショートカットからアプリを起動してください。
 
-<br/>
+> ℹ️ **注記**  
+>
+> Windowsでは、これらのセキュリティ警告のいずれかが表示される場合があります（署名されていないアプリや独立系アプリでは通常の現象です）：
+>
+> - **ユーザーアカウント制御 (UAC)**: 「不明な発行元のアプリがお使いのデバイスに変更を加えることを許可しますか？」 → **はい** をクリックしてください。
+> - **Microsoft Defender SmartScreen**: 「Windows により PC が保護されました」 → **詳細情報** → ** anyway 実行** をクリックしてください。
+>
+> これは、アプリがMicrosoftまたは主要な発行元によって署名されていないためです。公式の GitHub リリース からダウンロードした場合、安全です。
+> （以下のSHA256チェックサムを確認してください）。
 
-<a id="linux-electron"></a>
 ### Linux (Electron)
 
-- [リリースページ](https://github.com/wsj-br/transrewrt/releases) から対応する `.AppImage` ファイル（`x64` または `arm64`）をダウンロードしてください。
-- 実行：x86_64/amd64環境では `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` を実行。ARM64環境では `...-arm64.AppImage` ファイルを使用してください。
-- 追加の依存関係（Debian/Ubuntu）：`sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- 詳細は [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) を参照してください。
+- [リリース](https://github.com/wsj-br/transrewrt/releases) から対応する `.AppImage` ファイル（`x64` または `arm64`）をダウンロードします。
+- 実行: x86_64/amd64 の場合 `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage`、ARM64 の場合は `...-arm64.AppImage` ファイル名を使用します。
+- **Debian/Ubuntu ランタイムライブラリ** (Electron/Chromium; [クイックスタート → Linux](#quick-start)と同じ): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** を使用し、`libnotify-dev` は使用しないでください。最小構成のシステムでは、端末に表示される不足している `.so` ファイルをインストールしてください。`libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2` などの追加ライブラリが必要になる場合があります。AppImage では `libfuse2`（Ubuntu 22.04+）または `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` が必要な場合があります。
+- **GPU メッセージ**: Chromium は、一部のシステム（特に ARM）で GPU や EGL の初期化エラーをログに出力することがありますが、アプリは通常通り動作する可能性があります。これらのメッセージを避けるには、ハードウェアアクセラレーションを無効にして起動します: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage`（または使用している `arm64` ファイル名）。
 
-<br/>
-
-<a id="docker"></a>
 ### Docker
 
-- 取得：`docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 少なくとも1つのプロバイダーのキーを環境変数経由で設定してください（例：OpenRouterの場合は `OPENROUTER_API_KEY`）。`-e` オプション、または `docker compose`／`.env` ファイルを使って変数を渡し、シークレット情報をイメージに組み込まないようにしてください。
-- プロバイダーキーは**Web UI上では入力しないでください**。サーバーは環境変数からそれらを読み取ります。
+- プル: `docker pull ghcr.io/wsj-br/transrewrt:latest`
+- 少なくとも1つのプロバイダーキーを環境変数で設定します（例: OpenRouter の `OPENROUTER_API_KEY`）。`-e` オプションまたは `docker compose` / `.env` ファイルで変数を渡し、シークレットがイメージに組み込まれないようにします。
+- プロバイダーのキーは**Web UIで入力しません**。サーバーは環境変数から読み取ります。
 
-例：永続化のため名前付きボリュームを使用（OpenRouterキーは環境変数経由）：
+例 - 永続化のための名前付きボリューム（環境変数でOpenRouterキーを設定）:
 
 ```bash
 OPENROUTER_API_KEY=sk-or-your-key docker run -d \
@@ -198,154 +187,126 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-または、Docker Compose を使う場合は以下を使用してください：
+またはDocker Composeを使用する場合は、以下を使用します:
 
-# コンポーズファイルをダウンロードする
+```
+# download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# API_KEYSを追加するためにファイルを編集する
+# edit the file to add the API_KEYS and adjust the timezone (TZ)
 vi transrewrt.yml
-# コンテナを起動する
+# start the container
 docker compose -f transrewrt.yml up -d
 ```
 
-<br/>
+`PORT`、`CONFIG_PATH`、`TZ`、LLMキー（`OPENROUTER_API_KEY`、`OPENAI_API_KEY` など）を含むすべての環境変数については、[設定](#configuration-and-environment) を参照してください。
 
-| オプション   | 説明                                                                                                                            |
-|----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| ポート     | `5000`（`-p 5000:5000`でマッピング）                                                                                                       |
-| ボリューム   | 設定およびデータベースの永続化のために`/app/data`をマウント                                                                                  |
-| 環境変数 | `PORT`, `CONFIG_PATH`、およびLLMのキー（`OPENROUTER_API_KEY`, `OPENAI_API_KEY` など） - [設定](#configuration-and-environment) を参照してください |
+### タイムゾーンの設定
 
-ソースコードからビルドして実行するには：`docker compose up --build -d` または `pnpm docker:up` - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) を参照してください。
+アプリケーションのユーザーインターフェースの日付と時刻は、**ブラウザーの**ロケールおよびタイムゾーンに従います。**サーバー側**の動作（ログ記録など）については、コンテナは `TZ` 環境変数を使用します。デフォルトは `TZ=Europe/London` です。
 
-<br/><br/>
+他のタイムゾーンを使用するには、Composeファイルで `TZ` を設定します。例:
 
-<a id="getting-an-openrouter-api-key"></a>
+```yaml
+environment:
+  - TZ=America/Sao_Paulo
+```
 
-## OpenRouter API キーの取得方法
+またはコンテナ実行時に（Dockerで）渡すこともできます:
 
-Transrewrt は複数の AI プロバイダーをサポートしています。[OpenRouter](https://openrouter.ai) は、多数のモデルを1つのキーで利用でき、無料モデルも提供しているため、人気のある選択肢です。
+```bash
+--env TZ=America/Sao_Paulo
+```
+
+多くのLinuxホストでは、以下のコマンドでシステムのタイムゾーン名をコピーできます:
+
+```bash
+echo TZ=\"$(</etc/timezone)\"
+```
+
+有効なタイムゾーン名のリストは [tzデータベース](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)（Wikipedia）で管理されています。
+
+## OpenRouter API キーの取得
+
+Transrewrtは複数のAIプロバイダーをサポートしています。[OpenRouter](https://openrouter.ai) は、多数のモデルを1つのキーで利用でき、無料モデルも提供しているため、人気の選択肢です。
 
 1. [openrouter.ai](https://openrouter.ai) でサインアップまたはログインします。
-2. [Keys](https://openrouter.ai/keys) ページを開き、新しいキーを作成してください（名前を付け、必要に応じてクレジットの上限を設定できます）。クレジットを追加しなくても、無料モデルは利用可能です。
-3. **デスクトップ版 (Electron)**：**設定 → API** にキーを貼り付けます。**Docker**：`OPENROUTER_API_KEY` などの環境変数を設定してください（[クイックスタート](#quick-start)を参照）。
+2. [Keys](https://openrouter.ai/keys) ページを開き、新しいキーを作成します（名前を付け、必要に応じてクレジットの上限を設定できます）。クレジットを追加せずに無料モデルを使用できます。
+3. **デスクトップ（Electron）:** キーは **設定 → API** に貼り付けます。**Docker:** `OPENROUTER_API_KEY` などの環境変数を設定します（[クイックスタート](#quick-start) を参照）。
 
-翻訳・書き換え・変換タスクには、OpenRouter の **Body Builder** モデル（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）を使用しないでください。このモデルは、処理済みのテキストではなく、JSON 形式のリクエストペイロードを返すためです。詳細はユーザーガイドの [設定 → モデル](USER-GUIDE.ja.md#models) をご覧ください。
+翻訳、リライト、変換には、OpenRouter の **Body Builder** モデル (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) を使用しないでください。このモデルは、それらのタスクの完了したテキストではなく、JSONリクエストペイロードを返します。[設定 → モデル](USER-GUIDE.ja.md#models) をユーザーガイドでご確認ください。
 
-その他のプロバイダー（OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras）を使用したり、[Ollama](https://ollama.com) を使ってモデルをローカルで実行することも可能です。サポートされているプロバイダーと環境変数の一覧は、[設定と環境](#configuration-and-environment) をご確認ください。
+OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras などの他のプロバイダーを使用することもできますし、[Ollama](https://ollama.com) を使用してローカルでモデルを実行することも可能です。サポートされているプロバイダーと環境変数の完全なリストについては、[設定](#configuration-and-environment) を参照してください。
 
-> ⚠️ **警告**<br/>
-> 他のデバイス、コンテナ、またはサービスから Ollama を使用する場合は、Ollama を外部接続（localhost 限定ではない）を許可するように設定し忘れないでください。
+> ⚠️ **警告**  
+>
+> 別のデバイス、コンテナ、またはサービスからOllamaを使用している場合は、Ollamaを外部接続（localhostのみではない）を許可するように設定することを忘れないでください。
 
-制限事項、BYOK（Bring Your Own Key）、その他の詳細は、[OpenRouter 認証](https://openrouter.ai/docs/api/reference/authentication) を参照してください。
-
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
+制限、BYOK、およびその他の詳細については、[OpenRouter認証](https://openrouter.ai/docs/api/reference/authentication)を参照してください。
 
 ## 設定と環境
 
 **設定ファイルの場所**
 
-| デプロイ方法       | 設定ファイルの場所                                |
+| デプロイメント         | 設定ファイルの場所                                   |
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (永続化にはボリュームを使用) |
+| Web / Docker       | `/app/data/config.json` (ボリュームを使用して永続化) |
 
-<br/>
+**環境変数** (Web / Dockerのみ。Electronはローカルの設定ファイルを使用)
 
-**環境変数** (Web/Dockerのみ使用; Electronはローカルの設定ファイルを使用)
+| 変数 | デフォルト | 説明 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT` | `5000` | サーバーのリスニングポート |
+| `CONFIG_PATH` | `/app/data/config.json` | 設定ファイルのパス |
+| `TZ` | `Europe/London` | サーバー側の時間（ログなど）用のIANAタイムゾーン。UIは引き続きブラウザの設定に従います。[Docker → timezone](#docker-timezone) を参照してください。 |
+| `OPENROUTER_API_KEY` | *(空)* | OpenRouter API キー |
+| `OPENAI_API_KEY` | *(空)* | OpenAI API キー |
+| `CEREBRAS_API_KEY` | *(空)* | Cerebras API キー |
+| `ANTHROPIC_API_KEY` | *(空)* | Anthropic API キー |
+| `GOOGLE_API_KEY` | *(空)* | Google Gemini API キー |
+| `DEEPSEEK_API_KEY` | *(空)* | DeepSeek API キー |
+| `GROQ_API_KEY` | *(空)* | Groq API キー |
+| `MISTRAL_API_KEY` | *(空)* | Mistral API キー |
+| `OLLAMA_URL` | *(空)* | OllamaベースURL（例: `http://host.docker.internal:11434`） |
+| `XAI_API_KEY` | *(空)* | xAI API キー |
 
-| 変数名               | デフォルト値            | 説明 |
-| -------------------- | ----------------------- | ---- |
-| `PORT`               | `5000`                  | サーバーのリッスンポート |
-| `CONFIG_PATH`        | `/app/data/config.json` | 設定ファイルのパス |
-| `OPENROUTER_API_KEY` | *(空)*                  | OpenRouter APIキー |
-| `OPENAI_API_KEY`     | *(空)*                  | OpenAI APIキー |
-| `CEREBRAS_API_KEY`   | *(空)*                  | Cerebras APIキー |
-| `ANTHROPIC_API_KEY`  | *(空)*                  | Anthropic APIキー |
-| `GOOGLE_API_KEY`     | *(空)*                  | Google Gemini APIキー |
-| `DEEPSEEK_API_KEY`   | *(空)*                  | DeepSeek APIキー |
-| `GROQ_API_KEY`       | *(空)*                  | Groq APIキー |
-| `MISTRAL_API_KEY`    | *(空)*                  | Mistral APIキー |
-| `OLLAMA_URL`         | *(空)*                  | OllamaのベースURL (例: `http://host.docker.internal:11434`) |
-| `XAI_API_KEY`        | *(空)*                  | xAI APIキー |
+使用するプロバイダーのみを設定してください。モデルIDは名前空間付きです（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` など）。
 
-利用するプロバイダーのみを設定してください。モデルIDは名前空間付きです（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` など）。
+**コスト表示：** OpenRouterは該当する場合、請求された正確なコストを返します。その他のプロバイダーは、OpenRouterキーが利用可能な場合、OpenRouterの公開モデル価格に基づく**推定**コストを使用します。OpenRouterキーがない場合、非OpenRouterのコストは`0`と表示されることがあります。推定値は請求書ではありません。
 
-**コスト表示について:** OpenRouterは、該当する場合に正確な請求額を返します。それ以外のプロバイダーは、OpenRouterキーが利用可能な場合にOpenRouterの公開価格に基づく**推定コスト**を使用します。OpenRouterキーがない場合、OpenRouter以外のコストは`0`と表示されることがあります。これらの推定値は請求書ではありません。
+**データと永続化：** Dockerでは、`/app/data`にボリュームをマウントして、`config.json`およびSQLiteデータベースがコンテナの再起動後も保持されるようにしてください。ボリュームがない場合、コンテナ停止時にすべてのデータが失われます。
 
-<br/>
+**開発者向け：** 古い単一キー構成を置き換える変更をプルした後、ローカルファイルが削除されたフィールド（`api_key`、`api_url`、プロキシオプション）を使用している場合は、`data/config.json`を`src/config-defaults/config_default.json`の新しいデフォルト構造にリセットまたはマージしてください。
 
-**データと永続化:** Dockerでは、コンテナ再起動時に`config.json`およびSQLiteデータベースが保持されるよう、`/app/data`にボリュームをマウントしてください。ボリュームがない場合、コンテナ停止時にすべてのデータが失われます。
+**Web認証：**
 
-**開発者向け:** 古い単一キーの設定を置き換える変更を取得した後、ローカルの`data/config.json`ファイルが削除されたフィールド（`api_key`、`api_url`、プロキシ設定など）を使用している場合は、`src/config-defaults/config_default.json`にある新しいデフォルトの構造に従って、設定ファイルをリセットまたはマージしてください。
-
-<br/>
-
-**Web認証:**
-
-- デフォルトの管理者アカウント: `admin` / `transrewrt26`。
-- ユーザー管理は **設定 → ユーザー** から行えます。
+- デフォルト管理者: `admin` / `transrewrt26`。
+- ユーザー管理は **設定 → ユーザー** で行います。
 - パスワードのリセット: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (ソースコードから実行する場合: `pnpm run reset-web-password -- <username> <new-password>`)
+  (ソースから実行: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
+> ⚠️ **警告**  
+>
+> ネットワーク経由でアクセス可能なホストでは、直ちにデフォルトの管理者パスワードを変更してください。
 
-> ⚠️ **警告**<br/>
-> 任意のネットワーク経由でアクセス可能なホストでは、直ちにデフォルトの管理者パスワードを変更してください。
+フォント、モデル、言語などの主要な設定は、アプリケーションの「設定」で利用可能です。
 
-<br/>
+## 開発およびアーキテクチャ
 
-主要な設定（フォント、モデル、言語など）は、アプリケーションの「設定」から変更できます。
+- **開発：** セットアップ、ビルド、テスト、デプロイ（Electron、Web、Docker）については、**[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** を参照してください。
+- **アーキテクチャとシステム概要：** フォルダー構造、技術スタック、設計の意思決定については、**[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** を参照してください。
 
-<br/><br/>
+## 問題の報告
 
-<a id="development-and-architecture"></a>
-
-## 開発とアーキテクチャ
-
-- **開発:** セットアップ、ビルド、テスト、デプロイ（Electron、Web、Docker）については、**[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** を参照してください。
-- **アーキテクチャとシステム概要:** フォルダ構成、技術スタック、設計上の意思決定については、**[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** を参照してください。
-
-<br/><br/>
-
-<a id="releases-and-tags"></a>
-## リリースとタグ
-
-- **Gitタグ** `v`*（例: `v1.0.10`）は[リリースワークフロー](.github/workflows/release.yml)をトリガーします。**GitHub Releases**では、Windowsインストーラー（`.exe`）とLinux用AppImage（**x64** および **arm64**）が添付されます。
-- **Dockerイメージ**は `ghcr.io/wsj-br/transrewrt` に公開されます。イメージのタグはGitのバージョンに対応しています（例: `v1.0.10` → `ghcr.io/wsj-br/transrewrt:1.0.10`）の他に、`latest` も含まれます。マルチアーキテクチャ対応: `linux/amd64` および `linux/arm64`（例: Raspberry Pi）。
-
-<br/><br/>
-
-<a id="contributing"></a>
-## コントリビュートについて
-
-1. リポジトリをフォークしてください。
-2. 機能ブランチを作成: `git checkout -b feature/my-feature`
-3. 明確なメッセージで変更をコミット
-4. 変更をプッシュし、`main` ブランチに対してプルリクエストを開いてください。
-
-提出前に、既存のコードスタイルに従い、ElectronおよびWebの両モードで変更内容をテストしてください。ビルドおよびテスト手順については、[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) を参照してください。
-
-<br/>
-
-**問題の報告:** [GitHub](https://github.com/wsj-br/transrewrt/issues)でイシューを作成してください。使用しているプラットフォーム（Windows / Linux / Docker）およびアプリのバージョン（「情報」ダイアログまたはリリースページに記載）を含めて報告してください。
-
-<br/><br/>
-
-<a id="disclaimer"></a>
+[GitHub](https://github.com/wsj-br/transrewrt/issues) で問題を報告してください。使用しているプラットフォーム（Windows / Linux / Docker）およびアプリのバージョン（「概要」ダイアログまたはリリースページに表示）を含めてください。
 
 ## 免責事項
 
-製品名およびアイコンはそれぞれの所有者に帰属しており、識別目的でのみ使用されています。本ソフトウェアは、記載されているブランドと関係ありませんし、それらのブランドによる推奨や承認を受けていません。
+製品名およびアイコンはそれぞれの所有者に帰属し、識別目的でのみ使用されています。本ソフトウェアは、記載されたブランドとの提携や承認を受けたものではありません。
 
-<br/><br/>
-
-<a id="license"></a>
 ## ライセンス
 
 Copyright © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](../LICENSE)

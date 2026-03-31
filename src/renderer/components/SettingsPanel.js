@@ -182,6 +182,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const canAccessApiTab = !isWeb || currentUser?.role === "admin";
   const canAccessUsersTab = isWeb && currentUser?.role === "admin";
   const canAccessCostTab = !isWeb || currentUser?.role === "admin";
+  const canConfigBackup = !isWeb || currentUser?.role === "admin";
 
   useEffect(() => {
     const el = tabStripRef.current;
@@ -590,6 +591,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
           <SettingsGeneralTab
             localSettings={localSettings}
             onSettingChange={handleSettingChange}
+            canConfigBackup={canConfigBackup}
           />
         )}
 

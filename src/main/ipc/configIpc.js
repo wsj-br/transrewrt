@@ -5,13 +5,7 @@
 const path = require("path");
 const fs = require("fs");
 const { app, BrowserWindow } = require("electron");
-const { ENCRYPTED_CONFIG_KEYS } = require(path.join(
-  __dirname,
-  "..",
-  "..",
-  "shared",
-  "llm",
-));
+const { ENCRYPTED_CONFIG_KEYS } = require("../../shared/llm");
 
 function configUnchanged(existing, value) {
   if (existing === value) return true;
@@ -136,7 +130,7 @@ function registerConfigIpc(ipcMain, ctx) {
 
   ipcMain.handle("config:getSecretsForRequest", () => {
     const cache = getConfigCache();
-    const { mergeKeys } = require(path.join(__dirname, "..", "..", "shared", "llm"));
+    const { mergeKeys } = require("../../shared/llm");
     return Promise.resolve(mergeKeys(cache));
   });
 

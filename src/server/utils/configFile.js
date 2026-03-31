@@ -182,6 +182,116 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
     }
   }
 
+  /** On-disk config.json only (no merge with config_default.json). Missing file → {}. */
+  function readConfigFileOnly() {
+    const lockOpts = { realpath: false };
+    let release;
+    try {
+      const dir = require("path").dirname(configPath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      if (!fs.existsSync(configPath)) return {};
+      release = lockfile.lockSync(configPath, lockOpts);
+      const data = fs.readFileSync(configPath, "utf8");
+      if (!data.trim()) return {};
+      return JSON.parse(data);
+    } catch (err) {
+      logger.error("[CONFIG] readConfigFileOnly failed: " + err.message, { stack: err.stack });
+      return {};
+    } finally {
+      if (release) {
+        try {
+          release();
+        } catch (e) {
+          logger.error("[CONFIG] Failed to release config lock:", e.message);
+        }
+      }
+    }
+  }
+
+  /** Write config.json as given (no default merge). */
+  function writeConfigFileOnly(obj) {
+    const lockOpts = { realpath: false };
+    let release;
+    try {
+      const dir = require("path").dirname(configPath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      if (!fs.existsSync(configPath)) fs.writeFileSync(configPath, "{}", "utf8");
+      release = lockfile.lockSync(configPath, lockOpts);
+      const next = obj && typeof obj === "object" ? obj : {};
+      const newContent = JSON.stringify(next, null, 2);
+      fs.writeFileSync(configPath, newContent, "utf8");
+      logger.info("[CONFIG] Config file written (backup restore).");
+      return true;
+    } catch (err) {
+      logger.error("[CONFIG] writeConfigFileOnly failed: " + err.message, { stack: err.stack });
+      return false;
+    } finally {
+      if (release) {
+        try {
+          release();
+        } catch (e) {
+          logger.error("[CONFIG] Failed to release config lock:", e.message);
+        }
+      }
+    }
+  }
+
+  /** On-disk state.json only (no DEFAULT_STATE fill). Missing file → {}. */
+  function readStateFileOnly() {
+    const lockOpts = { realpath: false };
+    let release;
+    try {
+      const dir = require("path").dirname(statePath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      if (!fs.existsSync(statePath)) return {};
+      release = lockfile.lockSync(statePath, lockOpts);
+      const data = fs.readFileSync(statePath, "utf8");
+      if (!data.trim()) return {};
+      const fileState = JSON.parse(data);
+      if (fileState && typeof fileState === "object") {
+        fileState.rewrite_mode = fileState.rewrite_mode ?? fileState.rewrite_style;
+      }
+      return fileState && typeof fileState === "object" ? fileState : {};
+    } catch (err) {
+      logger.error("[STATE] readStateFileOnly failed: " + err.message, { stack: err.stack });
+      return {};
+    } finally {
+      if (release) {
+        try {
+          release();
+        } catch (e) {
+          logger.error("[STATE] Failed to release state lock:", e.message);
+        }
+      }
+    }
+  }
+
+  /** Write state.json as given (no DEFAULT_STATE merge). */
+  function writeStateFileOnly(obj) {
+    const lockOpts = { realpath: false };
+    let release;
+    try {
+      const dir = require("path").dirname(statePath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      if (!fs.existsSync(statePath)) fs.writeFileSync(statePath, "{}", "utf8");
+      release = lockfile.lockSync(statePath, lockOpts);
+      const next = obj && typeof obj === "object" ? obj : {};
+      fs.writeFileSync(statePath, JSON.stringify(next, null, 2), "utf8");
+      return true;
+    } catch (err) {
+      logger.error("[STATE] writeStateFileOnly failed: " + err.message, { stack: err.stack });
+      return false;
+    } finally {
+      if (release) {
+        try {
+          release();
+        } catch (e) {
+          logger.error("[STATE] Failed to release state lock:", e.message);
+        }
+      }
+    }
+  }
+
   function saveState(state) {
     const lockOpts = { realpath: false };
     let release;
@@ -226,6 +336,10 @@ function createConfigFile(configPath, statePath, defaultConfigPath, log) {
     writeConfig,
     loadState,
     saveState,
+    readConfigFileOnly,
+    writeConfigFileOnly,
+    readStateFileOnly,
+    writeStateFileOnly,
     isStateKey,
     stripStateKeysAndDeprecated,
     canonicalStringify,

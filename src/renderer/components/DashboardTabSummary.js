@@ -261,7 +261,7 @@ export default function DashboardTabSummary({
 
         <div className={styles.summaryChartCell}>
           <Text as="h4" size={400} className={styles.summaryChartTitle}>
-            {t("Cost over time")}
+            {t("Usage over time")}
           </Text>
           <div className={styles.summaryChartContainer}>
             {byDay.length > 0 ? (
@@ -271,14 +271,14 @@ export default function DashboardTabSummary({
                 let cumRewrite = 0;
                 let cumTransform = 0;
                 const cumulativeData = chronological.map((row) => {
-                  cumTranslation += Number(row.translation_cost) || 0;
-                  cumRewrite += Number(row.rewrite_cost) || 0;
-                  cumTransform += Number(row.transform_cost) || 0;
+                  cumTranslation += Number(row.translation_calls) || 0;
+                  cumRewrite += Number(row.rewrite_calls) || 0;
+                  cumTransform += Number(row.transform_calls) || 0;
                   return {
                     day: row.day,
-                    translation_cost: cumTranslation,
-                    rewrite_cost: cumRewrite,
-                    transform_cost: cumTransform,
+                    translation_calls: cumTranslation,
+                    rewrite_calls: cumRewrite,
+                    transform_calls: cumTransform,
                   };
                 });
                 return (
@@ -289,7 +289,11 @@ export default function DashboardTabSummary({
                         stroke={CHART_COLORS.grid}
                       />
                       <XAxis dataKey="day" style={axisStyle} tick={tickStyle} />
-                      <YAxis style={axisStyle} tick={tickStyle} />
+                      <YAxis
+                        style={axisStyle}
+                        tick={tickStyle}
+                        tickFormatter={(v) => formatInteger(v, locale)}
+                      />
                       <Tooltip
                         contentStyle={{
                           backgroundColor: tokens.colorNeutralBackground1,
@@ -301,41 +305,41 @@ export default function DashboardTabSummary({
                         formatter={(value, name, item) => {
                           const dataKey = item?.dataKey ?? name;
                           return [
-                            formatCost(value, costFractionStyle, locale),
-                            dataKey === "translation_cost"
-                              ? t("Translation cost (cumulative)")
-                              : dataKey === "rewrite_cost"
-                              ? t("Rewrite cost (cumulative)")
-                              : t("Transform cost (cumulative)"),
+                            formatInteger(value, locale),
+                            dataKey === "translation_calls"
+                              ? t("Translation calls (cumulative)")
+                              : dataKey === "rewrite_calls"
+                              ? t("Rewrite calls (cumulative)")
+                              : t("Transform calls (cumulative)"),
                           ];
                         }}
                       />
                       <Area
                         type="monotone"
-                        dataKey="translation_cost"
+                        dataKey="translation_calls"
                         stackId="1"
                         stroke={CHART_COLORS.translation}
                         fill={CHART_COLORS.translation}
                         fillOpacity={0.6}
-                        name={t("Translation cost (cumulative)")}
+                        name={t("Translation calls (cumulative)")}
                       />
                       <Area
                         type="monotone"
-                        dataKey="rewrite_cost"
+                        dataKey="rewrite_calls"
                         stackId="1"
                         stroke={CHART_COLORS.rewrite}
                         fill={CHART_COLORS.rewrite}
                         fillOpacity={0.6}
-                        name={t("Rewrite cost (cumulative)")}
+                        name={t("Rewrite calls (cumulative)")}
                       />
                       <Area
                         type="monotone"
-                        dataKey="transform_cost"
+                        dataKey="transform_calls"
                         stackId="1"
                         stroke="#a78bfa"
                         fill="#a78bfa"
                         fillOpacity={0.6}
-                        name={t("Transform cost (cumulative)")}
+                        name={t("Transform calls (cumulative)")}
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -359,22 +363,23 @@ export default function DashboardTabSummary({
 
         <div className={styles.summaryChartCell}>
           <Text as="h4" size={400} className={styles.summaryChartTitle}>
-            {t("Cost by model")}
+            {t("Usage by model")}
           </Text>
           <div className={styles.summaryChartContainer}>
             {(() => {
-              const costByModelData = byModel
+              const usageByModelData = byModel
                 .filter((r) => r.model !== "Total")
                 .map((r) => ({
                   ...r,
-                  totalCost:
-                    (Number(r.translation_cost) || 0) +
-                    (Number(r.rewrite_cost) || 0),
+                  totalCalls:
+                    (Number(r.translation_calls) || 0) +
+                    (Number(r.rewrite_calls) || 0) +
+                    (Number(r.transform_calls) || 0),
                 }));
-              const costByModelDataFiltered = costByModelData.filter(
-                (r) => (r.totalCost || 0) > 0
+              const usageByModelDataFiltered = usageByModelData.filter(
+                (r) => (r.totalCalls || 0) > 0
               );
-              if (costByModelDataFiltered.length === 0) {
+              if (usageByModelDataFiltered.length === 0) {
                 return (
                   <div
                     style={{
@@ -389,14 +394,14 @@ export default function DashboardTabSummary({
                   </div>
                 );
               }
-              const totalCostSum = costByModelDataFiltered.reduce(
-                (s, r) => s + (r.totalCost || 0),
+              const totalCallsSum = usageByModelDataFiltered.reduce(
+                (s, r) => s + (r.totalCalls || 0),
                 0
               );
               return (
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
-                    data={costByModelDataFiltered}
+                    data={usageByModelDataFiltered}
                       layout="vertical"
                       margin={{ left: 220, right: 16 }}
                       {...chartProps}
@@ -405,7 +410,12 @@ export default function DashboardTabSummary({
                         strokeDasharray="3 3"
                         stroke={CHART_COLORS.grid}
                       />
-                      <XAxis type="number" style={axisStyle} tick={tickStyle} />
+                      <XAxis
+                        type="number"
+                        style={axisStyle}
+                        tick={tickStyle}
+                        tickFormatter={(v) => formatInteger(v, locale)}
+                      />
                       <YAxis
                         type="category"
                         dataKey="model"
@@ -422,42 +432,42 @@ export default function DashboardTabSummary({
                         }}
                         formatter={(value) => {
                           const pct =
-                            totalCostSum > 0
+                            totalCallsSum > 0
                               ? formatDecimal(
-                                  (value / totalCostSum) * 100,
+                                  (value / totalCallsSum) * 100,
                                   locale,
                                   { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                 )
                               : "0";
                           return [
-                            <>{formatCost(value, costFractionStyle, locale)} ({pct}%)</>,
-                            t("Total cost"),
+                            `${formatInteger(value, locale)} (${pct}%)`,
+                            t("Total calls"),
                           ];
                         }}
                       />
                       <Bar
-                        dataKey="totalCost"
+                        dataKey="totalCalls"
                         fill={CHART_COLORS.barFill}
                         activeBar={{ fill: CHART_COLORS.barFillHover }}
-                        name={t("Total cost")}
+                        name={t("Total calls")}
                       >
                         <LabelList
-                          dataKey="totalCost"
+                          dataKey="totalCalls"
                           position="insideLeft"
                           formatter={(value) => {
                             const pct =
-                              totalCostSum > 0
+                              totalCallsSum > 0
                                 ? formatDecimal(
-                                    (value / totalCostSum) * 100,
+                                    (value / totalCallsSum) * 100,
                                     locale,
                                     { minimumFractionDigits: 1, maximumFractionDigits: 1 }
                                   )
                                 : "0";
-                            const costStr =
+                            const n =
                               value != null && !Number.isNaN(Number(value))
-                                ? `$${formatDecimal(value, locale, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}`
+                                ? formatInteger(value, locale)
                                 : DASH;
-                            return `${costStr} (${pct}%)`;
+                            return `${n} (${pct}%)`;
                           }}
                           style={{
                             fill: CHART_COLORS.barLabel,

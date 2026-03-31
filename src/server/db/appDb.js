@@ -8,10 +8,6 @@ const crypto = require("crypto");
 const Database = require("better-sqlite3");
 const argon2 = require("argon2");
 const { applyAppSchema, promptTargetLanguageToDb } = require("../../shared/db/appSchema.js");
-const {
-  pickUserPreferenceEntries,
-  stripUserKeysFromGlobalConfig,
-} = require("../utils/webConfigKeys.js");
 const { buildDefaultUserPreferencesPayload } = require("../utils/defaultUserPreferences.js");
 
 /** Must match src/renderer/constants.js DEFAULT_ADMIN_* */
@@ -92,12 +88,7 @@ function initDb(dataDir, logger) {
         FOREIGN KEY (user_id) REFERENCES users(id)
       )
     `);
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS app_meta (
-        key TEXT PRIMARY KEY,
-        value TEXT NOT NULL
-      )
-    `);
+    db.exec("DROP TABLE IF EXISTS app_meta");
   } catch (err) {
     log.error("[SERVER] Failed to init SQLite DB: " + err.message, { stack: err.stack });
     db = null;
@@ -122,51 +113,6 @@ function assignCustomPromptsToAdmin() {
     }
   } catch (err) {
     log.error("[SERVER] assignCustomPromptsToAdmin: " + err.message, { stack: err.stack });
-  }
-}
-
-/**
- * One-time: copy shared config+state into each user's row, then strip user keys from global files.
- * Per-user data is `{ ...config_default+DEFAULT_STATE, ...legacy }` so fresh installs match shipped defaults.
- */
-function migrateUserPreferencesFromGlobalConfig(configFile, defaultConfigPath) {
-  if (!db || !configFile) return;
-  try {
-    const done = db.prepare("SELECT value FROM app_meta WHERE key = ?").get("user_prefs_migrated_from_global");
-    if (done?.value === "1") return;
-
-    const readConfig = configFile.readConfig;
-    const loadState = configFile.loadState;
-    const factoryDefaults = buildDefaultUserPreferencesPayload(
-      defaultConfigPath,
-      configFile.DEFAULT_STATE,
-    );
-    const combined = { ...readConfig(), ...loadState() };
-    const fromLegacy = pickUserPreferenceEntries(combined);
-    const userKeys = { ...factoryDefaults, ...fromLegacy };
-
-    const users = db.prepare("SELECT id FROM users").all();
-    if (users.length === 0) return;
-
-    const insert = db.prepare("INSERT OR IGNORE INTO user_preferences (user_id, data) VALUES (?, ?)");
-    for (const u of users) {
-      const exists = db.prepare("SELECT 1 FROM user_preferences WHERE user_id = ?").get(u.id);
-      if (exists) continue;
-      insert.run(u.id, JSON.stringify(userKeys));
-    }
-
-    const stripped = stripUserKeysFromGlobalConfig(readConfig());
-    configFile.writeConfig(stripped);
-    const { DEFAULT_STATE } = configFile;
-    configFile.saveState({ ...DEFAULT_STATE });
-
-    db.prepare("INSERT OR REPLACE INTO app_meta (key, value) VALUES (?, ?)").run(
-      "user_prefs_migrated_from_global",
-      "1",
-    );
-    log.info("[SERVER] Per-user preferences: migrated shared config/state into user_preferences.");
-  } catch (err) {
-    log.error("[SERVER] migrateUserPreferencesFromGlobalConfig: " + err.message, { stack: err.stack });
   }
 }
 
@@ -213,7 +159,6 @@ module.exports = {
   cleanupStalledSessions,
   seedDefaultAdmin,
   assignCustomPromptsToAdmin,
-  migrateUserPreferencesFromGlobalConfig,
   getUserPreferencesData,
   mergeUserPreferencesData,
 };

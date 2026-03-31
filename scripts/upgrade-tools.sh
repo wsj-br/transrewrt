@@ -4,6 +4,9 @@
 # This script upgrades the development tools (Node.js via nvm, and global npm packages)
 # to the latest versions.
 #
+# When sourced from upgrade-dependencies.sh, TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE=1
+# avoids printing "Done." before the dependency steps finish.
+#
 # Shells cannot export environment changes to a parent process; nvm must run in your
 # interactive shell (see https://github.com/nvm-sh/nvm/issues/2124). Run:
 #   source ./scripts/upgrade-tools.sh
@@ -88,8 +91,10 @@ _transrewrt_upgrade_tools() {
   echo -e "${BLUE}🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...${RESET}"
   npm install -g pnpm npm-check-updates doctoc
 
-  echo ""
-  echo "Done."
+  if [ -z "${TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE:-}" ]; then
+    echo ""
+    echo "Done."
+  fi
 }
 
 if [ -n "${BASH_VERSION:-}" ] && [ "${BASH_SOURCE[0]}" != "${0}" ]; then
