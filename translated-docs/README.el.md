@@ -1,21 +1,30 @@
 ---
-translation_last_updated: '2026-03-30T00:46:08.526Z'
-source_file_mtime: '2026-03-29T23:51:36.506Z'
-source_file_hash: fa17b974cbf42a93
+translation_last_updated: '2026-03-31T22:57:15.891Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
 translation_language: el
 source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
-</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Πίνακας Περιεχομένων**
 
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Έκδοση"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Άδεια: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Πλατφόρμα">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
+- [Στιγμιότυπα οθόνης](#screenshots)
+- [Πίνακας περιεχομένων](#table-of-contents)
+- [Γρήγορη έναρξη](#quick-start)
+- [Εγκατάσταση](#installation)
+  - [Windows (Electron)](#windows-electron)
+  - [Linux (Electron)](#linux-electron)
+  - [Docker](#docker)
+  - [Διαμόρφωση της ζώνης ώρας](#configuring-the-timezone)
+- [Λήψη κλειδιού API OpenRouter](#getting-an-openrouter-api-key)
+- [Διαμόρφωση και περιβάλλον](#configuration-and-environment)
+- [Ανάπτυξη και αρχιτεκτονική](#development-and-architecture)
+- [Αναφορά προβλημάτων](#reporting-issues)
+- [Αποποίηση ευθυνών](#disclaimer)
+- [Άδεια](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 Εργαλείο κειμένου με δυνατότητες τεχνητής νοημοσύνης: μετάφραση μεταξύ γλωσσών, αναδιατύπωση σε διαφορετικούς τύπους, και μετασχηματισμός με προσαρμοσμένα ερωτήματα — χρησιμοποιώντας πολλαπλούς παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, και τοπικό Ollama). Λειτουργεί ως εφαρμογή επιφάνειας εργασίας (Electron) ή ως αυτο-φιλοξενούμενη ιστοεφαρμογή (Docker).
 
@@ -31,52 +40,39 @@ source_file_path: README.md
 
 Μετά την εγκατάσταση, ανατρέξτε στον **[Οδηγό Χρήστη](USER-GUIDE.el.md)** για πλήρη ξενάγηση σε όλες τις λειτουργίες.
 
-<small>**Διαβάστε σε άλλες γλώσσες:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
+**Διαβάστε σε άλλες γλώσσες:**
+[Αγγλικά (ΗΒ)](../README.md) · [Πορτογαλικά (BR)](README.pt-BR.md) · [Αραβικά](README.ar.md) · [Μπενγκάλι](README.bn.md) · [Καταλανικά](README.ca.md) · [Απλουστευμένα Κινέζικα](README.zh-CN.md) · [Παραδοσιακά Κινέζικα](README.zh-TW.md) · [Κροατικά](README.hr.md) · [Τσέχικα](README.cs.md) · [Ολλανδικά](README.nl.md) · [Αγγλικά (ΗΠΑ)](README.en-US.md) · [Φιλιππινέζικα](README.tl.md) · [Γαλλικά](README.fr.md) · [Γερμανικά](README.de.md) · [Ελληνικά](README.el.md) · [Ινδικά (Χίντι)](README.hi.md) · [Ουγγρικά](README.hu.md) · [Ιταλικά](README.it.md) · [Ιαπωνικά](README.ja.md) · [Τζαβανέζικα](README.jv.md) · [Κορεάτικα](README.ko.md) · [Μαλαισιακά](README.ms.md) · [Περσικά](README.fa.md) · [Πολωνικά](README.pl.md) · [Πορτογαλικά (PT)](README.pt.md) · [Παντζάμπι](README.pa.md) · [Ρουμανικά](README.ro.md) · [Ρωσικά](README.ru.md) · [Σλοβακικά](README.sk.md) · [Ισπανικά](README.es.md) · [Σουαχίλι](README.sw.md) · [Σουηδικά](README.sv.md) · [Τελούγκου](README.te.md) · [Ταϊλανδέζικα](README.th.md) · [Τουρκικά](README.tr.md) · [Ουκρανικά](README.uk.md) · [Βιετναμέζικα](README.vi.md)
 
 > **Σημείωση για τις μεταφράσεις της διεπαφής χρήστη και της τεκμηρίωσης:** Όλες οι γλώσσες διεπαφής, εκτός από τα αρχικά Αγγλικά (ΗΒ),
 > μεταφράστηκαν με χρήση μοντέλων τεχνητής νοημοσύνης· η διατύπωση μπορεί να είναι ανακριβής ή να περιέχει λάθη.
 
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
 ## Στιγμιότυπα οθόνης
 
 **Επιλογέας γλώσσας**
 
-![Language selector](../images/screenshots/el/language-selector.png)
+Επιλογέας γλώσσας
 
 **Μετάφραση**
 
-![Translate](../images/screenshots/el/translate.png)
+Μετάφραση
 
 **Μετασχηματισμός - επεξεργαστής ερωτήματος**
 
-![Transform - prompt editor](../images/screenshots/el/transform-prompt-edit.png)
+Μετασχηματισμός - επεξεργαστής ερωτήματος
 
 **Ταμπλό**
 
-![Dashboard summary — usage](../images/screenshots/el/dashboard-summary.png)
+Περίληψη ταμπλό — χρήση
 
 **Ιστορικό**
 
-![History](../images/screenshots/el/history.png)
+Ιστορικό
 
 **Ρυθμίσεις - επιλογή μοντέλου**
 
-![Settings - model selection](../images/screenshots/el/settings-models.png)
+Ρυθμίσεις - επιλογή μοντέλου
 
-<br/><br/>
-
-<a id="table-of-contents"></a>
-## Πίνακας Περιεχομένων
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Πίνακας περιεχομένων
 
 - [Γρήγορη έναρξη](#quick-start)
 - [Εγκατάσταση](#installation)
@@ -91,11 +87,6 @@ source_file_path: README.md
 - [Αποποίηση](#disclaimer)
 - [Άδεια](#license)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
-<a id="quick-start"></a>
 ## Γρήγορη έναρξη
 
 **Docker (προτείνεται για αυτο-φιλοξενία)**
@@ -113,18 +104,13 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Αντικαταστήστε το `sk-or-your-key` με το [κλειδί API του OpenRouter](https://openrouter.ai/keys) (ή ορίστε κλειδιά άλλων παρόχων· δείτε [Διαμόρφωση](#configuration-and-environment)). Ανοίξτε το [http://localhost:5000](http://localhost:5000) και αλλάξτε τον προεπιλεγμένο κωδικό διαχειριστή πριν εκθέσετε την υπηρεσία.
 
-<br/>
-
-> ℹ️ **ΣΗΜΕΙΩΣΗ**<br/>
-> Στο Docker, τα πιστοποιητικά LLM ορίζονται μέσω μεταβλητών περιβάλλοντος όπως `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (όχι μέσω του γραφικού περιβάλλοντος). Στην έκδοση για επιτραπέζιο (Electron) ορίζετε τα κλειδιά στις **Ρυθμίσεις → API**.
-
-<br/>
+> ℹ️ **ΣΗΜΕΙΩΣΗ**  
+>
+> Στο Docker, τα πιστοποιητικά LLM ορίζονται μέσω μεταβλητών περιβάλλοντος όπως `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (όχι μέσω του γραφικού περιβάλλοντος). Στον υπολογιστή (Electron) διαμορφώνετε τα κλειδιά στο **Ρυθμίσεις → API**.
 
 **Windows**
 
 Κατεβάστε το τελευταίο `Transrewrt Setup x.y.z.exe` από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases), εκτελέστε τον εγκαταστάτη και εκκινήστε την εφαρμογή από το μενού Έναρξη ή τη συντόμευση στην επιφάνεια εργασίας. Εισαγάγετε τα κλειδιά API σας στις **Ρυθμίσεις → API**. Πρέπει να ρυθμίσετε τουλάχιστον έναν πάροχο· ο OpenRouter είναι συνηθισμένος για δωρεάν μοντέλα.
-
-<br/>
 
 **Linux**
 
@@ -136,58 +122,55 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 Εισαγάγετε τα κλειδιά API σας στις **Ρυθμίσεις → API**. Πρέπει να ρυθμίσετε τουλάχιστον έναν πάροχο· ο OpenRouter είναι συνηθισμένος για δωρεάν μοντέλα.
 
-Σε Debian/Ubuntu ίσως χρειαστεί να εγκαταστήσετε πρόσθετες εξαρτήσεις πρώτα:
+**Μηνύματα κονσόλας:** Οι δέσμες Linux (`x64` και `arm64` AppImages) αποκρύπτουν τις προειδοποιήσεις απόσυρσης του Node στο τερματικό (π.χ. το ενσωματωμένο module `punycode`). Αν το Chromium εμφανίζει σφάλματα GPU / EGL όπως «Το GLES3 δεν υποστηρίζεται», αλλά η εφαρμογή λειτουργεί, μπορείτε να τα απενεργοποιήσετε απενεργοποιώντας την επιτάχυνση υλικού:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Δείτε [Εγκατάσταση → Linux](#linux-electron) για λεπτομέρειες.
+Αυτό ισχύει και για amd64· αλλάξτε το όνομα αρχείου για να ταιριάζει με τη λήψη σας. Δείτε [Εγκατάσταση → Linux (Electron)](#linux-electron) για περισσότερες λεπτομέρειες.
 
-<br/>
+Σε Debian/Ubuntu μπορεί να χρειαστείτε επιπλέον **βιβλιοθήκες χρόνου εκτέλεσης** που αναμένει το Chromium (συχνά ήδη παρούσες σε πλήρεις επιφάνειες εργασίας). Χρησιμοποιήστε το **`libnotify4`** για ειδοποιήσεις επιφάνειας εργασίας — **όχι** το `libnotify-dev` (αυτό χρησιμοποιείται για τη δημιουργία λογισμικού, όχι για την εκτέλεση του πακεταρισμένου AppImage):
 
-> ℹ️ **ΣΗΜΕΙΩΣΗ**<br/>
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
+
+Ελαχιστοποιημένες ή προσαρμοσμένες εικόνες μπορεί να αποτύχουν λόγω ελλείποντος `.so`; εγκαταστήστε το πακέτο που αναφέρεται στο σφάλμα (συνηθισμένα επιπλέον: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Κάποια περιβάλλοντα απαιτούν FUSE για να εκτελέσουν AppImages (π.χ. `libfuse2` σε Ubuntu 22.04+), ή χρησιμοποιήστε `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+Δείτε [Εγκατάσταση → Linux](#linux-electron) για την ίδια περίληψη.
+
+> ℹ️ **ΣΗΜΕΙΩΣΗ**  
+>
 > Το macOS δεν υποστηρίζεται προς το παρόν. Το Transrewrt είναι διαθέσιμο για Windows, Linux και Docker.
-
-<br/>
 
 Όταν η εφαρμογή εκτελείται, δείτε το **[Οδηγό Χρήστη](USER-GUIDE.el.md)** για να μάθετε πώς να μεταφράζετε, αναδιατυπώνετε και μετασχηματίζετε κείμενο, να διαχειρίζεστε προτροπές και να ρυθμίζετε μοντέλα.
 
-<br/><br/>
-
-<a id="installation"></a>
 ## Εγκατάσταση
 
-<a id="windows-electron"></a>
 ### Windows (Electron)
 
 - Κατεβάστε τον τελευταίο εγκαταστάτη από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases).
 - Εκτελέστε το `.exe` και ακολουθήστε τις οδηγίες του εγκαταστάτη.
 - Πρώτη εκκίνηση: ξεκινήστε την εφαρμογή από το μενού Έναρξη ή τη συντόμευση στην επιφάνεια εργασίας.
 
-<br/>
-
-> ℹ️ **ΣΗΜΕΙΩΣΗ**<br/>
-> Το Windows μπορεί να εμφανίσει μία από τις παρακάτω προειδοποιήσεις ασφαλείας (φυσιολογικό για μη υπογεγραμμένες/ανεξάρτητες εφαρμογές):
->   - **Έλεγχος Λογαριασμού Χρήστη (UAC)**: «Θέλετε να επιτρέψετε σε αυτή την εφαρμογή από άγνωστο δημοσιευτή να κάνει αλλαγές στη συσκευή σας;» → Κάντε κλικ στο **Ναι**.
->   - **Microsoft Defender SmartScreen**: «Το Windows προστάτεψε τον υπολογιστή σας» → Κάντε κλικ στο **Περισσότερες πληροφορίες** → **Εκτέλεση ούτως ή άλλως**.
+> ℹ️ **ΣΗΜΕΙΩΣΗ**  
 >
-> Αυτό συμβαίνει επειδή η εφαρμογή δεν έχει υπογραφεί από τη Microsoft ή έναν μεγάλο δημοσιευτή· είναι ασφαλής αν έχει ληφθεί από τις επίσημες εκδόσεις μας στο GitHub
+> Τα Windows ενδέχεται να εμφανίσουν ένα από αυτά τα μηνύματα ασφαλείας (φυσιολογικό για μη υπογεγραμμένες/ανεξάρτητες εφαρμογές):
+>
+> - **Έλεγχος λογαριασμού χρήστη (UAC)**: "Θέλετε να επιτρέψετε σε αυτήν την εφαρμογή από άγνωστο δημοσιευτή να κάνει αλλαγές στη συσκευή σας;" → Κάντε κλικ στο **Ναι**.
+> - **Microsoft Defender SmartScreen**: "Το Windows προστάτευσε τον υπολογιστή σας" → Κάντε κλικ στο **Περισσότερες πληροφορίες** → **Εκτέλεση ούτως ή άλλως**.
+>
+> Αυτό συμβαίνει επειδή η εφαρμογή δεν έχει υπογραφεί από τη Microsoft ή κάποιον μεγάλο δημοσιευτή — είναι ασφαλής αν έχει ληφθεί από τις επίσημες εκδόσεις μας στο GitHub
 >  (επαληθεύστε το αθροιστικό ελέγχου SHA256 παρακάτω).
 
-<br/>
-
-<a id="linux-electron"></a>
 ### Linux (Electron)
 
-- Κατεβάστε το αντίστοιχο `.AppImage` (`x64` ή `arm64`) από την ενότητα [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Κατεβάστε το κατάλληλο `.AppImage` (`x64` ή `arm64`) από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases).
 - Εκτελέστε: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` σε x86_64/amd64, ή χρησιμοποιήστε το όνομα αρχείου `...-arm64.AppImage` σε ARM64.
-- Επιπλέον εξαρτήσεις (Debian/Ubuntu): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- Δείτε το [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) για περισσότερες πληροφορίες.
+- **Βιβλιοθήκες χρόνου εκτέλεσης Debian/Ubuntu** (Electron/Chromium·ίδιες με [Γρήγορη έναρξη → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — χρησιμοποιήστε **`libnotify4`**, όχι `libnotify-dev`. Σε ελαφριές διανομές, εγκαταστήστε οποιαδήποτε λείπουσα `.so` αναφέρεται στο τερματικό· συχνά απαιτούνται πρόσθετα όπως `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`. Το AppImage ενδέχεται να χρειάζεται `libfuse2` (Ubuntu 22.04+) ή `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
+- **Μηνύματα GPU:** Το Chromium ενδέχεται να καταγράφει σφάλματα αρχικοποίησης GPU ή EGL σε ορισμένα συστήματα (ειδικά ARM)· η εφαρμογή μπορεί να λειτουργεί κανονικά. Για να αποφύγετε αυτά τα μηνύματα, εκκινήστε με απενεργοποιημένη επιτάχυνση υλικού: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (ή το όνομα αρχείου `arm64`).
 
-<br/>
-
-<a id="docker"></a>
 ### Docker
 
 - Λήψη: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -218,8 +201,7 @@ docker compose -f transrewrt.yml up -d
 
 Δείτε το [Configuration](#configuration-and-environment) για όλες τις μεταβλητές περιβάλλοντος, όπως `PORT`, `CONFIG_PATH`, `TZ` και κλειδιά LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
-<a id="configuring-the-timezone"></a>
-### Διαμόρφωση της ώρας ζώνης
+### Διαμόρφωση της ζώνης ώρας
 
 Η ημερομηνία και ώρα του περιβάλλοντος χρήστη της εφαρμογής ακολουθούν την τοπικές ρυθμίσεις και τη ζώνη ώρας του **προγράμματος περιήγησης**. Για τη **συμπεριφορά στην πλευρά του διακομιστή** (καταγραφή και παρόμοια), ο διαμόρφωση χρησιμοποιεί τη μεταβλητή περιβάλλοντος `TZ`. Η προεπιλογή είναι `TZ=Europe/London`.
 
@@ -244,10 +226,7 @@ echo TZ=\"$(</etc/timezone)\"
 
 Μια λίστα έγκυρων ονομάτων ζωνών ώρας διατηρείται στη [βάση δεδομένων tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
-<br/><br/>
-
-<a id="getting-an-openrouter-api-key"></a>
-## Λήψη κλειδιού OpenRouter API
+## Λήψη κλειδιού API από το OpenRouter
 
 Το Transrewrt υποστηρίζει πολλούς παρόχους τεχνητής νοημοσύνης. Το [OpenRouter](https://openrouter.ai) είναι μια δημοφιλής επιλογή επειδή συγκεντρώνει πολλά μοντέλα υπό ένα κλειδί και προσφέρει δωρεάν μοντέλα.
 
@@ -255,18 +234,16 @@ echo TZ=\"$(</etc/timezone)\"
 2. Ανοίξτε τη σελίδα [Keys](https://openrouter.ai/keys) και δημιουργήστε ένα νέο κλειδί (δώστε του όνομα, και προαιρετικά ορίστε όριο πίστωσης). Μπορείτε να χρησιμοποιήσετε δωρεάν μοντέλα χωρίς να προσθέσετε πίστωση.
 3. **Επιτραπέζια (Electron):** επικολλήστε τα κλειδιά στις **Ρυθμίσεις → API**. **Docker:** ορίστε μεταβλητές περιβάλλοντος όπως `OPENROUTER_API_KEY` (δείτε [Γρήγορη έναρξη](#quick-start)).
 
-Μην χρησιμοποιείτε το μοντέλο **Body Builder** του OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) για μετάφραση, αναδιατύπωση ή μετασχηματισμό: επιστρέφει φορτία JSON αιτήματος, όχι το ολοκληρωμένο κείμενο για αυτές τις εργασίες. Δείτε [Ρυθμίσεις → Μοντέλα](USER-GUIDE.el.md#models) στον Οδηγό Χρήστη.
+Μην χρησιμοποιείτε το μοντέλο **Body Builder** του OpenRouter (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) για μετάφραση, αναδιατύπωση ή μετασχηματισμό: επιστρέφει φορτία αιτημάτων JSON, όχι το ολοκληρωμένο κείμενο για αυτές τις εργασίες. Δείτε [Ρυθμίσεις → Μοντέλα](USER-GUIDE.el.md#models) στον Οδηγό Χρήστη.
 
 Μπορείτε επίσης να χρησιμοποιήσετε άλλους παρόχους (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ή να εκτελέσετε μοντέλα τοπικά με [Ollama](https://ollama.com). Δείτε το [Configuration](#configuration-and-environment) για την πλήρη λίστα υποστηριζόμενων παρόχων και μεταβλητών περιβάλλοντος.
 
-> ⚠️ **ΠΡΟΕΙΔΟΠΟΙΗΣΗ**<br/>
-> Αν χρησιμοποιείτε το Ollama από άλλη συσκευή, container ή υπηρεσία, θυμηθείτε να το ρυθμίσετε ώστε να επιτρέπει εξωτερικές συνδέσεις (όχι μόνο localhost).
+> ⚠️ **ΠΡΟΕΙΔΟΠΟΙΗΣΗ**  
+>
+> Αν χρησιμοποιείτε το Ollama από άλλη συσκευή, container ή υπηρεσία, θυμηθείτε να διαμορφώσετε το Ollama ώστε να επιτρέπει εξωτερικές συνδέσεις (όχι μόνο localhost).
 
 Για όρια, BYOK και άλλα, δείτε [ταυτοποίηση OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
 ## Διαμόρφωση και περιβάλλον
 
 **Τοποθεσίες αρχείων διαμόρφωσης**
@@ -277,37 +254,31 @@ echo TZ=\"$(</etc/timezone)\"
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
 | Web / Docker       | `/app/data/config.json` (χρησιμοποιήστε έναν τόμο για διατήρηση) |
 
-<br/>
-
 **Μεταβλητές περιβάλλοντος** (μόνο για web/Docker· το Electron χρησιμοποιεί το τοπικό αρχείο διαμόρφωσης)
 
-| Μεταβλητή         | Προεπιλογή                 | Περιγραφή |
-| ---------------- | ----------------------- | ----------- |
-| `PORT`           | `5000`                  | Θύρα ακρόασης του διακομιστή |
-| `CONFIG_PATH`    | `/app/data/config.json` | Διαδρομή προς το αρχείο διαμόρφωσης |
-| `TZ`             | `Europe/London`         | Ζώνη ώρας IANA για την ώρα της πλευράς διακομιστή (καταγραφή κ.λπ.)· το περιβάλλον χρήστη ακολουθεί το πρόγραμμα περιήγησης. Δείτε [Docker → timezone](#docker-timezone) |
-| `OPENROUTER_API_KEY` | *(κενό)*               | Κλειδί API OpenRouter |
-| `OPENAI_API_KEY`     | *(κενό)*               | Κλειδί API OpenAI |
-| `CEREBRAS_API_KEY`   | *(κενό)*               | Κλειδί API Cerebras |
-| `ANTHROPIC_API_KEY`  | *(κενό)*               | Κλειδί API Anthropic |
-| `GOOGLE_API_KEY`     | *(κενό)*               | Κλειδί API Google Gemini |
-| `DEEPSEEK_API_KEY`   | *(κενό)*               | Κλειδί API DeepSeek |
-| `GROQ_API_KEY`       | *(κενό)*               | Κλειδί API Groq |
-| `MISTRAL_API_KEY`    | *(κενό)*               | Κλειδί API Mistral |
-| `OLLAMA_URL`     | *(κενό)*               | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`) |
-| `XAI_API_KEY`        | *(κενό)*               | Κλειδί API xAI |
+| Μεταβλητή             | Προεπιλογή                 | Περιγραφή                                                                                                                 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`               | `5000`                  | Θύρα ακρόασης του διακομιστή                                                                                                       |
+| `CONFIG_PATH`        | `/app/data/config.json` | Διαδρομή προς το αρχείο ρυθμίσεων                                                                                                     |
+| `TZ`                 | `Europe/London`         | Ζώνη ώρας IANA για την ώρα της πλευράς διακομιστή (καταγραφή κ.λπ.)· η διεπαφή ακολουθεί ακόμα το πρόγραμμα περιήγησης. Δείτε [Docker → timezone](#docker-timezone) |
+| `OPENROUTER_API_KEY` | *(κενό)*               | Κλειδί API OpenRouter                                                                                                          |
+| `OPENAI_API_KEY`     | *(κενό)*               | Κλειδί API OpenAI                                                                                                              |
+| `CEREBRAS_API_KEY`   | *(κενό)*               | Κλειδί API Cerebras                                                                                                            |
+| `ANTHROPIC_API_KEY`  | *(κενό)*               | Κλειδί API Anthropic                                                                                                           |
+| `GOOGLE_API_KEY`     | *(κενό)*               | Κλειδί API Google Gemini                                                                                                       |
+| `DEEPSEEK_API_KEY`   | *(κενό)*               | Κλειδί API DeepSeek                                                                                                            |
+| `GROQ_API_KEY`       | *(κενό)*               | Κλειδί API Groq                                                                                                                |
+| `MISTRAL_API_KEY`    | *(κενό)*               | Κλειδί API Mistral                                                                                                             |
+| `OLLAMA_URL`         | *(κενό)*               | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`)                                                                  |
+| `XAI_API_KEY`        | *(κενό)*               | Κλειδί API xAI                                                                                                                 |
 
 Διαμορφώστε μόνο τους παρόχους που χρησιμοποιείτε. Οι ταυτότητες μοντέλων είναι ονοματοχώροι (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, κ.λπ.).
 
 **Εμφάνιση κόστους:** Το OpenRouter επιστρέφει το ακριβές χρεωμένο κόστος όταν εφαρμόζεται. Άλλοι πάροχοι χρησιμοποιούν **εκτιμώμενο** κόστος από τη δημόσια τιμολόγηση μοντέλων του OpenRouter όταν είναι διαθέσιμο κλειδί OpenRouter· χωρίς αυτό, το κόστος μη-OpenRouter μπορεί να εμφανίζεται ως `0`. Οι εκτιμήσεις δεν είναι τιμολόγια.
 
-<br/>
-
 **Δεδομένα και διατήρηση:** Για Docker, προσαρτήστε έναν τόμο στο `/app/data` ώστε το `config.json` και η βάση δεδομένων SQLite να διατηρούνται μεταξύ επανεκκινήσεων του container. Χωρίς τόμο, όλα τα δεδομένα χάνονται όταν το container σταματήσει.
 
 **Προγραμματιστές:** Μετά τη λήψη αλλαγών που αντικαθιστούν την παλιά διαμόρφωση με μοναδικό κλειδί, επαναφέρετε ή συγχωνεύστε το `data/config.json` με τη νέα προεπιλεγμένη μορφή από το `src/config-defaults/config_default.json`, αν το τοπικό αρχείο σας χρησιμοποιεί ακόμη πεδία που αφαιρέθηκαν (`api_key`, `api_url`, επιλογές proxy).
-
-<br/>
 
 **Ταυτοποίηση ιστού:**
 
@@ -316,41 +287,26 @@ echo TZ=\"$(</etc/timezone)\"
 - Επαναφορά κωδικού πρόσβασης: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (από την πηγή: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
-
-> ⚠️ **ΠΡΟΕΙΔΟΠΟΙΗΣΗ**<br/>
-> Αλλάξτε αμέσως τον προεπιλεγμένο κωδικό πρόσβασης διαχειριστή σε κάθε υπολογιστή που έχει πρόσβαση στο δίκτυο.
-
-<br/>
+> ⚠️ **ΠΡΟΕΙΔΟΠΟΙΗΣΗ**  
+>
+> Αλλάξτε αμέσως τον προεπιλεγμένο κωδικό του διαχειριστή σε κάθε υπολογιστή που είναι προσβάσιμος μέσω δικτύου.
 
 Οι βασικές ρυθμίσεις (γραμματοσειρά, μοντέλα, γλώσσες κ.λπ.) είναι διαθέσιμες στις Ρυθμίσεις της εφαρμογής.
 
-<br/><br/>
-
-<a id="development-and-architecture"></a>
 ## Ανάπτυξη και αρχιτεκτονική
 
 - **Ανάπτυξη:** Ρύθμιση, κατασκευή, δοκιμή και εγκατάσταση (Electron, Web, Docker) - δείτε **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
 - **Αρχιτεκτονική και επισκόπηση συστήματος:** Δομή φακέλων, τεχνολογικό stack, αποφάσεις σχεδιασμού - δείτε **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
-<br/><br/>
-
-<a id="reporting-issues"></a>
 ## Αναφορά προβλημάτων
 
 Ανοίξτε ένα ζήτημα στο [GitHub](https://github.com/wsj-br/transrewrt/issues). Συμπεριλάβετε την πλατφόρμα σας (Windows / Linux / Docker) και την έκδοση της εφαρμογής (που εμφανίζεται στο παράθυρο Σχετικά ή στη σελίδα Εκδόσεις).
 
-<br/><br/>
-
-<a id="disclaimer"></a>
-## Αποποίηση
+## Αποποίηση ευθυνών
 
 Τα ονόματα και τα εικονίδια προϊόντων ανήκουν στους νόμιμους ιδιοκτήτες τους και χρησιμοποιούνται αποκλειστικά για αναγνώριση. Αυτό το λογισμικό δεν σχετίζεται ούτε εγκρίνεται από οποιαδήποτε από τις αναφερόμενες μάρκες.
 
-<br/><br/>
-
-<a id="license"></a>
-## Άδεια
+## Άδεια χρήσης
 
 Πνευματικά δικαιώματα © 2026 Waldemar Scudeller Jr.
 

@@ -3,8 +3,8 @@
  * Remove session logs from translation tooling and cache DB backups under the doc-translate cache dir.
  * Keeps translated-docs/.cache/cache.db (and never deletes non-matching files).
  *
- *   pnpm clear-logs
- *   pnpm clear-logs --dry-run
+ *   pnpm clean-logs
+ *   pnpm clean-logs --dry-run
  */
 
 const fs = require("fs");

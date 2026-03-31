@@ -25,6 +25,13 @@ ITEMS_TO_REMOVE=(
     ".genkit"
 )
 
+echo "🧹 Cleaning translation session logs..."
+if (cd "$ROOT_DIR" && node scripts/clean-translation-logs.js); then
+    echo "✅ Translation session logs cleaned"
+else
+    echo "⚠️  Skipping or failed: clean-translation-logs.js (is Node available?)"
+fi
+
 echo "🧹 Cleaning build artifacts and dependencies..."
 
 # Remove directories and files

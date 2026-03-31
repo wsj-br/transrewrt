@@ -1,6 +1,6 @@
 <!-- DOCTOC SKIP -->
 
-# Transrewrt 1.1.1
+# Transrewrt 1.1.1 - Release Notes
 
 **Release date:** 2026-03-31
 
@@ -47,6 +47,17 @@ Exact filenames and checksums appear on the release page.
 
 - **[README](README.md)** — Overview, installation, and quick start
 - **[USER-GUIDE](USER-GUIDE.md)** — Full walkthrough of features and settings
+
+## Disclaimer
+
+Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands.
+
+
+## License
+
+Copyright © 2026 Waldemar Scudeller Jr.
+
+Transrewrt is released under the **Apache License 2.0**. See [LICENSE](LICENSE).
 
 ---
 

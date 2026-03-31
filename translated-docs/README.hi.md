@@ -1,21 +1,30 @@
 ---
-translation_last_updated: '2026-03-30T00:46:08.535Z'
-source_file_mtime: '2026-03-29T23:51:36.506Z'
-source_file_hash: fa17b974cbf42a93
+translation_last_updated: '2026-03-31T22:57:15.898Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
 translation_language: hi
 source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_banner.png" alt="Transrewrt बैनर"  />
-</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**विषय सूची**
 
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="संस्करण"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="लाइसेंस: एपाचे 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="प्लेटफॉर्म">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
-</p>
+- [स्क्रीनशॉट](#screenshots)
+- [विषय सूची](#table-of-contents)
+- [त्वरित प्रारंभ](#quick-start)
+- [स्थापना](#installation)
+  - [विंडोज़ (इलेक्ट्रॉन)](#windows-electron)
+  - [लिनक्स (इलेक्ट्रॉन)](#linux-electron)
+  - [डॉकर](#docker)
+  - [समयक्षेत्र कॉन्फ़िगर करना](#configuring-the-timezone)
+- [एक OpenRouter API कुंजी प्राप्त करना](#getting-an-openrouter-api-key)
+- [कॉन्फ़िगरेशन और वातावरण](#configuration-and-environment)
+- [विकास और वास्तुकला](#development-and-architecture)
+- [समस्याएँ रिपोर्ट करना](#reporting-issues)
+- [अस्वीकरण](#disclaimer)
+- [लाइसेंस](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 AI-संचालित पाठ उपकरण: कई AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, और स्थानीय Ollama) का उपयोग करके भाषाओं के बीच अनुवाद करें, विभिन्न शैलियों में पुनर्लेखन करें, और कस्टम प्रॉम्प्ट्स के साथ परिवर्तित करें — डेस्कटॉप ऐप (Electron) या स्व-होस्टेड वेब ऐप (Docker) के रूप में चलाएं।
 
@@ -31,51 +40,38 @@ AI-संचालित पाठ उपकरण: कई AI प्रदात
 
 स्थापित होने के बाद, सभी सुविधाओं की पूर्ण वॉकथ्रू के लिए **[उपयोगकर्ता गाइड](USER-GUIDE.hi.md)** देखें।
 
-<small>**अन्य भाषाओं में पढ़ें:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
+**अन्य भाषाओं में पढ़ें:**
+[अंग्रेज़ी (यूके)](../README.md) · [पोर्टुगीज़ (ब्राज़ील)](README.pt-BR.md) · [अरबी](README.ar.md) · [बांग्ला](README.bn.md) · [कैटलन](README.ca.md) · [सरलीकृत चीनी](README.zh-CN.md) · [पारंपरिक चीनी](README.zh-TW.md) · [क्रोएशियाई](README.hr.md) · [चेक](README.cs.md) · [डच](README.nl.md) · [अंग्रेज़ी (यूएस)](README.en-US.md) · [फ़िलिपीनो](README.tl.md) · [फ्रेंच](README.fr.md) · [जर्मन](README.de.md) · [ग्रीक](README.el.md) · [हिन्दी](README.hi.md) · [हंगेरियाई](README.hu.md) · [इतालवी](README.it.md) · [जापानी](README.ja.md) · [जावा](README.jv.md) · [कोरियाई](README.ko.md) · [मलय](README.ms.md) · [फ़ारसी](README.fa.md) · [पोलिश](README.pl.md) · [पुर्तगाली (पीटी)](README.pt.md) · [पंजाबी](README.pa.md) · [रोमानियाई](README.ro.md) · [रूसी](README.ru.md) · [स्लोवाक](README.sk.md) · [स्पेनिश](README.es.md) · [स्वाहिली](README.sw.md) · [स्वीडिश](README.sv.md) · [तेलुगु](README.te.md) · [थाई](README.th.md) · [तुर्की](README.tr.md) · [यूक्रेनियाई](README.uk.md) · [वियतनामी](README.vi.md)
 
 > **UI और प्रलेखन अनुवाद पर टिप्पणी:** मूल अंग्रेज़ी (यूके) के अलावा सभी इंटरफ़ेस भाषाओं का अनुवाद AI मॉडल का उपयोग करके किया गया था; शब्दावली अशुद्ध हो सकती है या त्रुटियाँ हो सकती हैं।
 
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
 ## स्क्रीनशॉट
 
 **भाषा चयनकर्ता**
 
-![Language selector](../images/screenshots/hi/language-selector.png)
+भाषा चयनकर्ता
 
 **अनुवाद करें**
 
-![Translate](../images/screenshots/hi/translate.png)
+अनुवाद करें
 
 **ट्रांसफ़ॉर्म - प्रॉम्प्ट संपादक**
 
-![Transform - prompt editor](../images/screenshots/hi/transform-prompt-edit.png)
+ट्रांसफ़ॉर्म - प्रॉम्प्ट संपादक
 
 **डैशबोर्ड**
 
-![Dashboard summary — usage](../images/screenshots/hi/dashboard-summary.png)
+डैशबोर्ड सारांश — उपयोग
 
 **हिस्ट्री**
 
-![History](../images/screenshots/hi/history.png)
+हिस्ट्री
 
 **सेटिंग्स - मॉडल चयन**
 
-![Settings - model selection](../images/screenshots/hi/settings-models.png)
+सेटिंग्स - मॉडल चयन
 
-<br/><br/>
-
-<a id="table-of-contents"></a>
 ## विषय सूची
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [त्वरित शुरुआत](#quick-start)
 - [स्थापना](#installation)
@@ -90,12 +86,7 @@ AI-संचालित पाठ उपकरण: कई AI प्रदात
 - [अस्वीकरण](#disclaimer)
 - [लाइसेंस](#license)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
-<a id="quick-start"></a>
-## त्वरित शुरुआत
+## त्वरित प्रारंभ
 
 **डॉकर (स्वयं-होस्टिंग के लिए अनुशंसित)**
 
@@ -112,18 +103,13 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 `sk-or-your-key` को अपनी [OpenRouter API कुंजी](https://openrouter.ai/keys) से बदलें (या अन्य प्रदाता कुंजियाँ सेट करें; [कॉन्फ़िगरेशन](#configuration-and-environment) देखें)। [http://localhost:5000](http://localhost:5000) खोलें और सेवा को बाहर उजागर करने से पहले डिफ़ॉल्ट व्यवस्थापक पासवर्ड बदलें।
 
-<br/>
-
-> ℹ️ **नोट**<br/>
-> डॉकर में, LLM प्रमाणपत्रों को `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … जैसे पर्यावरण चर के साथ सेट किया जाता है (वेब यूआई में नहीं)। डेस्कटॉप (इलेक्ट्रॉन) पर आप **सेटिंग्स → API** में कुंजियाँ कॉन्फ़िगर करते हैं।
-
-<br/>
+> ℹ️ **नोट**  
+>
+> डॉकर में, LLM प्रमाणपत्रों को वातावरण चर जैसे `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … के साथ सेट किया जाता है (वेब UI में नहीं)। डेस्कटॉप (इलेक्ट्रॉन) पर आप **सेटिंग्स → API** में कुंजियाँ कॉन्फ़िगर करते हैं।
 
 **विंडोज़**
 
 [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से नवीनतम `Transrewrt Setup x.y.z.exe` डाउनलोड करें, इंस्टॉलर चलाएँ, फिर स्टार्ट मेनू या डेस्कटॉप शॉर्टकट से लॉन्च करें। अपनी API कुंजियाँ **सेटिंग्स → API** में दर्ज करें। आपको कम से कम एक प्रदाता कॉन्फ़िगर करना होगा, मुफ़्त मॉडल के लिए OpenRouter आम है।
-
-<br/>
 
 **लिनक्स**
 
@@ -135,58 +121,55 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 अपनी API कुंजियाँ **सेटिंग्स → API** में दर्ज करें। आपको कम से कम एक प्रदाता कॉन्फ़िगर करना होगा, मुफ़्त मॉडल के लिए OpenRouter आम है।
 
-डेबियन/उबंटू पर आपको पहले अतिरिक्त निर्भरताएँ स्थापित करने की आवश्यकता हो सकती है:
+**कंसोल संदेश:** पैकेज किए गए लिनक्स बिल्ड (`x64` और `arm64` AppImages) टर्मिनल में नोड अप्रचलन चेतावनियों को दबा देते हैं (उदाहरण के लिए अंतर्निहित `punycode` मॉड्यूल)। यदि क्रोमियम "GLES3 असमर्थित है" जैसी GPU / EGL त्रुटियाँ प्रिंट करता है लेकिन ऐप काम करता है, तो आप हार्डवेयर त्वरण को अक्षम करके उन्हें चुप करा सकते हैं:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-विवरण के लिए [स्थापना → लिनक्स](#linux-electron) देखें।
+यह amd64 पर भी लागू होता है; अपने डाउनलोड के अनुरूप फ़ाइल नाम बदलें। थोड़ा अधिक विवरण के लिए [स्थापना → लिनक्स (इलेक्ट्रॉन)](#linux-electron) देखें।
 
-<br/>
+डेबियन/उबंटू पर आपको क्रोमियम द्वारा अपेक्षित अतिरिक्त **रनटाइम** लाइब्रेरीज़ की आवश्यकता हो सकती है (अक्सर पूर्ण डेस्कटॉप पर पहले से होती हैं)। डेस्कटॉप अधिसूचनाओं के लिए **`libnotify4`** का उपयोग करें—**नहीं** `libnotify-dev` (यह सॉफ़्टवेयर बनाने के लिए है, पैकेज किए गए AppImage को चलाने के लिए नहीं):
 
-> ℹ️ **नोट**<br/>
-> मैकओएस वर्तमान में समर्थित नहीं है। विंडोज़, लिनक्स और डॉकर के लिए Transrewrt उपलब्ध है।
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+न्यूनतम या कस्टम इमेज अभी भी लापता `.so` के साथ विफल हो सकते हैं; त्रुटि द्वारा नामित पैकेज स्थापित करें (सामान्य अतिरिक्त: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। कुछ वातावरणों को AppImages चलाने के लिए FUSE की आवश्यकता होती है (उदाहरण के लिए उबंटू 22.04+ पर `libfuse2`), या `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` का उपयोग करें।
+
+उसी सारांश के लिए [स्थापना → लिनक्स](#linux-electron) देखें।
+
+> ℹ️ **नोट**  
+>
+> मैकओएस वर्तमान में समर्थित नहीं है। Transrewrt विंडोज़, लिनक्स और डॉकर के लिए उपलब्ध है।
 
 एप्लिकेशन चलने के बाद, पाठ का अनुवाद करने, पुनर्लेखन करने और ट्रांसफ़ॉर्म करने, प्रॉम्प्ट्स का प्रबंधन करने और मॉडल कॉन्फ़िगर करने के बारे में जानने के लिए **[उपयोगकर्ता मार्गदर्शिका](USER-GUIDE.hi.md)** देखें।
 
-<br/><br/>
-
-<a id="installation"></a>
 ## स्थापना
 
-<a id="windows-electron"></a>
 ### विंडोज़ (इलेक्ट्रॉन)
 
 - [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से नवीनतम इंस्टॉलर डाउनलोड करें।
 - `.exe` चलाएँ और इंस्टॉलर का पालन करें।
 - पहली बार चलाते समय: स्टार्ट मेनू या डेस्कटॉप शॉर्टकट से एप्लिकेशन शुरू करें।
 
-<br/>
-
-> ℹ️ **नोट**<br/>
-> विंडोज़ इनमें से एक सुरक्षा चेतावनी दिखा सकता है (अनसाइन/स्वतंत्र एप्स के लिए सामान्य):
->   - **यूजर अकाउंट कंट्रोल (UAC)**: "क्या आप अज्ञात प्रकाशक के इस एप्लिकेशन को अपने डिवाइस पर परिवर्तन करने की अनुमति देना चाहते हैं?" → **हाँ** पर क्लिक करें।
->   - **माइक्रोसॉफ्ट डिफेंडर स्मार्टस्क्रीन**: "विंडोज़ ने आपके पीसी की रक्षा की" → **अधिक जानकारी** → **फिर भी चलाएँ** पर क्लिक करें।
+> ℹ️ **नोट**  
 >
-> ऐसा इसलिए होता है क्योंकि एप्लिकेशन माइक्रोसॉफ्ट या किसी प्रमुख प्रकाशक द्वारा साइन नहीं किया गया है—यह सुरक्षित है यदि यह हमारे आधिकारिक GitHub रिलीज़ से डाउनलोड किया गया है
-> (नीचे SHA256 चेकसम की पुष्टि करें)।
+> विंडोज़ इन सुरक्षा चेतावनियों में से एक दिखा सकता है (अनसाइन/स्वतंत्र ऐप्स के लिए सामान्य):
+>
+> - **यूजर अकाउंट कंट्रोल (UAC)**: "क्या आप अपने डिवाइस पर परिवर्तन करने के लिए अज्ञात प्रकाशक के इस ऐप को अनुमति देना चाहते हैं?" → **हाँ** पर क्लिक करें।
+> - **माइक्रोसॉफ्ट डिफेंडर स्मार्टस्क्रीन**: "विंडोज़ ने आपके पीसी की सुरक्षा की" → **अधिक जानकारी** पर क्लिक करें → **फिर भी चलाएं**।
+>
+> ऐसा इसलिए होता है क्योंकि ऐप माइक्रोसॉफ्ट या किसी प्रमुख प्रकाशक द्वारा साइन नहीं किया गया है — यह सुरक्षित है यदि आपने इसे हमारे आधिकारिक GitHub रिलीज़ से डाउनलोड किया है
+>  (नीचे SHA256 चेकसम की पुष्टि करें)।
 
-<br/>
-
-<a id="linux-electron"></a>
 ### लिनक्स (इलेक्ट्रॉन)
 
-- [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से मेल खाती `.AppImage` (`.x64` या `arm64`) डाउनलोड करें।
-- चलाएँ: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64 पर, या ARM64 पर `...-arm64.AppImage` फ़ाइलनाम का उपयोग करें।
-- अतिरिक्त आश्रितताएँ (डेबियन/उबंटू): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- अधिक जानकारी के लिए [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) देखें।
+- [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से मेल खाती `.AppImage` फ़ाइल (`x64` या `arm64`) डाउनलोड करें।
+- चलाएँ: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64 पर, या ARM64 पर `...-arm64.AppImage` फ़ाइलनेम का उपयोग करें।
+- **डेबियन/उबंटू रनटाइम लाइब्रेरीज़** (इलेक्ट्रॉन/क्रोमियम; [क्विक स्टार्ट → लिनक्स](#quick-start) के समान): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** का उपयोग करें, `libnotify-dev` नहीं। न्यूनतम सिस्टम पर, टर्मिनल में रिपोर्ट की गई कोई भी लापता `.so` इंस्टॉल करें; `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` जैसे एड-ऑन अक्सर आवश्यक होते हैं। AppImage को `libfuse2` (उबंटू 22.04+) या `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` की आवश्यकता हो सकती है।
+- **GPU संदेश:** कुछ सिस्टम पर (विशेषकर ARM) Chromium GPU या EGL इनिशियलाइज़ेशन त्रुटियाँ लॉग कर सकता है; ऐप फिर भी सामान्य रूप से चल सकता है। इन संदेशों से बचने के लिए, हार्डवेयर त्वरण बंद करके लॉन्च करें: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (या आपकी `arm64` फ़ाइलनेम)।
 
-<br/>
-
-<a id="docker"></a>
 ### डॉकर
 
 - पुल करें: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -217,7 +200,6 @@ docker compose -f transrewrt.yml up -d
 
 `PORT`, `CONFIG_PATH`, `TZ`, और एलएलएम कुंजियाँ (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) जैसे सभी वातावरण चरों के लिए [कॉन्फ़िगरेशन](#configuration-and-environment) देखें।
 
-<a id="configuring-the-timezone"></a>
 ### समयक्षेत्र कॉन्फ़िगर करना
 
 एप्लिकेशन उपयोगकर्ता इंटरफ़ेस की तारीख और समय **ब्राउज़र के** स्थान और समयक्षेत्र का अनुसरण करते हैं। **सर्वर-साइड** व्यवहार (लॉगिंग और इसी तरह) के लिए, कंटेनर `TZ` वातावरण चर का उपयोग करता है। डिफ़ॉल्ट `TZ=Europe/London` है।
@@ -243,9 +225,6 @@ echo TZ=\"$(</etc/timezone)\"
 
 मान्य समयक्षेत्र नामों की सूची [tz डेटाबेस](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (विकिपीडिया) में बनाए रखी जाती है।
 
-<br/><br/>
-
-<a id="getting-an-openrouter-api-key"></a>
 ## एक OpenRouter API कुंजी प्राप्त करना
 
 Transrewrt कई एआई प्रदाताओं का समर्थन करता है। [OpenRouter](https://openrouter.ai) एक लोकप्रिय विकल्प है क्योंकि यह एक कुंजी के तहत कई मॉडलों को एकत्रित करता है और मुफ़्त मॉडल प्रदान करता है।
@@ -254,18 +233,16 @@ Transrewrt कई एआई प्रदाताओं का समर्थ�
 2. [कुंजियाँ](https://openrouter.ai/keys) पृष्ठ खोलें और एक नई कुंजी बनाएँ (इसका नाम दें, और वैकल्पिक रूप से एक क्रेडिट सीमा सेट करें)। आप क्रेडिट जोड़े बिना मुफ़्त मॉडल का उपयोग कर सकते हैं।
 3. **डेस्कटॉप (इलेक्ट्रॉन):** कुंजियाँ **सेटिंग्स → API** में चिपकाएँ। **डॉकर:** `OPENROUTER_API_KEY` जैसे वातावरण चर सेट करें (देखें [त्वरित शुरुआत](#quick-start))।
 
-अनुवाद, रीराइट या ट्रांसफ़ॉर्म के लिए OpenRouter के **बॉडी बिल्डर** मॉडल ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) का उपयोग न करें: यह पूर्ण पाठ के बजाय JSON अनुरोध पेलोड लौटाता है। उपयोगकर्ता गाइड में [सेटिंग्स → मॉडल](USER-GUIDE.hi.md#models) देखें।
+अनुवाद, रीराइट या ट्रांसफ़ॉर्म के लिए OpenRouter के **बॉडी बिल्डर** मॉडल (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) का उपयोग न करें: यह पूर्ण पाठ के बजाय JSON अनुरोध पेलोड लौटाता है। उपयोगकर्ता गाइड में [सेटिंग्स → मॉडल](USER-GUIDE.hi.md#models) देखें।
 
 आप अन्य प्रदाताओं (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) का भी उपयोग कर सकते हैं या [Ollama](https://ollama.com) के साथ स्थानीय रूप से मॉडल चला सकते हैं। समर्थित प्रदाताओं और वातावरण चरों की पूर्ण सूची के लिए [कॉन्फ़िगरेशन](#configuration-and-environment) देखें।
 
-> ⚠️ **चेतावनी**<br/>
+> ⚠️ **चेतावनी**  
+>
 > यदि आप दूसरे डिवाइस, कंटेनर या सेवा से Ollama का उपयोग कर रहे हैं, तो बाहरी कनेक्शन (केवल लोकलहोस्ट नहीं) की अनुमति देने के लिए Ollama को कॉन्फ़िगर करना याद रखें।
 
 सीमाओं, BYOK और अधिक के लिए, [OpenRouter प्रमाणीकरण](https://openrouter.ai/docs/api/reference/authentication) देखें।
 
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
 ## कॉन्फ़िगरेशन और वातावरण
 
 **कॉन्फ़िग फ़ाइल स्थान**
@@ -276,12 +253,10 @@ Transrewrt कई एआई प्रदाताओं का समर्थ�
 | इलेक्ट्रॉन (लिनक्स) | `~/.config/transrewrt/` |
 | वेब / डॉकर | `/app/data/config.json` (स्थायी रखने के लिए एक वॉल्यूम का उपयोग करें) |
 
-<br/>
-
 **पर्यावरण चर** (केवल वेब/डॉकर; इलेक्ट्रॉन स्थानीय कॉन्फ़िग फ़ाइल का उपयोग करता है)
 
 | चर | डिफ़ॉल्ट | विवरण |
-| ---------------- | ----------------------- | ----------- |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `PORT` | `5000` | सर्वर सुनने वाला पोर्ट |
 | `CONFIG_PATH` | `/app/data/config.json` | कॉन्फ़िग फ़ाइल का पथ |
 | `TZ` | `Europe/London` | सर्वर-साइड समय (लॉगिंग, आदि) के लिए IANA समयक्षेत्र; UI अभी भी ब्राउज़र का अनुसरण करता है। [डॉकर → समयक्षेत्र](#docker-timezone) देखें |
@@ -300,13 +275,9 @@ Transrewrt कई एआई प्रदाताओं का समर्थ�
 
 **लागत प्रदर्शन:** OpenRouter जहां लागू होता है वहां बिल की गई लागत को सटीक रूप से लौटाता है। अन्य प्रदाता OpenRouter की सार्वजनिक मॉडल मूल्य नीति से **अनुमानित** लागत का उपयोग करते हैं जब OpenRouter कुंजी उपलब्ध होती है; उसके बिना, गैर-OpenRouter लागत `0` के रूप में दिख सकती है। अनुमान चालान नहीं हैं।
 
-<br/>
-
 **डेटा और स्थायित्व:** डॉकर के लिए, `/app/data` पर एक वॉल्यूम माउंट करें ताकि `config.json` और SQLite डेटाबेस कंटेनर पुनः आरंभ के दौरान स्थायी रहें। बिना वॉल्यूम के, कंटेनर रुकने पर सभी डेटा खो जाता है।
 
 **डेवलपर्स:** पुराने एकल-कुंजी कॉन्फ़िग को बदलने वाले परिवर्तनों को पुल करने के बाद, यदि आपकी स्थानीय फ़ाइल अभी भी हटाए गए फ़ील्ड (`api_key`, `api_url`, प्रॉक्सी विकल्प) का उपयोग कर रही है, तो `data/config.json` को `src/config-defaults/config_default.json` में नए डिफ़ॉल्ट आकार के साथ रीसेट या मर्ज करें।
-
-<br/>
 
 **वेब प्रमाणीकरण:**
 
@@ -315,40 +286,25 @@ Transrewrt कई एआई प्रदाताओं का समर्थ�
 - पासवर्ड रीसेट करें: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (स्रोत से: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
-
-> ⚠️ **चेतावनी**<br/>
+> ⚠️ **चेतावनी**  
+>
 > किसी भी नेटवर्क-एक्सेसिबल होस्ट पर डिफ़ॉल्ट व्यवस्थापक पासवर्ड तुरंत बदलें।
-
-<br/>
 
 मुख्य सेटिंग्स (फ़ॉन्ट, मॉडल, भाषाएँ, आदि) एप्लिकेशन सेटिंग्स में उपलब्ध हैं।
 
-<br/><br/>
-
-<a id="development-and-architecture"></a>
-## विकास और आर्किटेक्चर
+## विकास और वास्तुकला
 
 - **विकास:** सेटअप, बिल्ड, टेस्ट और डिप्लॉय (इलेक्ट्रॉन, वेब, डॉकर) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** देखें।
 - **आर्किटेक्चर और सिस्टम ओवरव्यू:** फ़ोल्डर संरचना, तकनीकी स्टैक, डिज़ाइन निर्णय - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** देखें।
 
-<br/><br/>
-
-<a id="reporting-issues"></a>
-## मुद्दों की रिपोर्टिंग
+## मुद्दे रिपोर्ट करना
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues) पर एक मुद्दा खोलें। अपना प्लेटफॉर्म (Windows / Linux / Docker) और ऐप संस्करण शामिल करें (परिचय डायलॉग या रिलीज़ पेज पर दिखाया गया है)।
 
-<br/><br/>
-
-<a id="disclaimer"></a>
 ## अस्वीकरण
 
 उत्पाद नाम और आइकन उनके संबंधित स्वामियों के हैं और केवल पहचान उद्देश्यों के लिए उपयोग किए गए हैं। यह सॉफ़्टवेयर उल्लिखित किसी भी ब्रांड से संबद्ध या समर्थित नहीं है।
 
-<br/><br/>
-
-<a id="license"></a>
 ## लाइसेंस
 
 कॉपीराइट © 2026 वाल्डेमार स्कुडेलर जूनियर।

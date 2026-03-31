@@ -1,21 +1,30 @@
 ---
-translation_last_updated: '2026-03-30T00:46:30.264Z'
-source_file_mtime: '2026-03-29T23:51:36.506Z'
-source_file_hash: fa17b974cbf42a93
+translation_last_updated: '2026-03-31T22:58:02.533Z'
+source_file_mtime: '2026-03-31T22:20:13.182Z'
+source_file_hash: bf6416a9ca259a19
 translation_language: te
 source_file_path: README.md
 ---
-<p align="center">
-  <img src="../images/transrewrt_banner.png" alt="Transrewrt బ్యానర్"  />
-</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**విషయసూచిక**
 
-<p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="వెర్షన్"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="లైసెన్స్: అపాచీ 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="వేదిక">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="రియాక్ట్ 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="ఎలక్ట్రాన్ 41">
-</p>
+- [స్క్రీన్‌షాట్లు](#screenshots)
+- [విషయసూచిక](#table-of-contents)
+- [త్వరిత ప్రారంభం](#quick-start)
+- [ఇన్‌స్టాలేషన్](#installation)
+  - [విండోస్ (ఎలెక్ట్రాన్)](#windows-electron)
+  - [లినక్స్ (ఎలెక్ట్రాన్)](#linux-electron)
+  - [డాకర్](#docker)
+  - [సమయప్రాంతాన్ని కాన్ఫిగర్ చేయడం](#configuring-the-timezone)
+- [ఓపెన్రౌటర్ API కీని పొందడం](#getting-an-openrouter-api-key)
+- [కాన్ఫిగరేషన్ మరియు పర్యావరణం](#configuration-and-environment)
+- [అభివృద్ధి మరియు ఆర్కిటెక్చర్](#development-and-architecture)
+- [సమస్యలను నివేదించడం](#reporting-issues)
+- [అస్వీకార ప్రకటన](#disclaimer)
+- [లైసెన్స్](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ఎఐ-శక్తితో కూడిన టెక్స్ట్ సాధనం: భాషల మధ్య అనువదించడం, వివిధ శైలులలో రీరైట్ చేయడం మరియు కస్టమ్ ప్రాంప్ట్‌లతో ట్రాన్స్‌ఫార్మ్ చేయడం — బహుళ ఎఐ ప్రదాతలను ఉపయోగించి (ఓపెన్రౌటర్, ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ మరియు స్థానిక ఓలామా). డెస్క్‌టాప్ అప్లికేషన్ (ఎలక్ట్రాన్) లేదా స్వంతంగా హోస్ట్ చేయబడిన వెబ్ అప్లికేషన్ (డాకర్) గా నడుస్తుంది.
 
@@ -31,52 +40,39 @@ source_file_path: README.md
 
 ఇన్‌స్టాల్ చేసిన తర్వాత, అన్ని లక్షణాల పూర్తి వాకింగ్ కోసం **[వాడుకరి మార్గదర్శి](USER-GUIDE.te.md)** చూడండి.
 
-<small>**ఇతర భాషలలో చదవండి:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
-
-<small>
+**ఇతర భాషలలో చదవండి:**
+[ఇంగ్లీష్ (యుకె)](../README.md) · [పోర్చుగీస్ (బిఆర్)](README.pt-BR.md) · [అరబిక్](README.ar.md) · [బెంగాలీ](README.bn.md) · [కాటలాన్](README.ca.md) · [సింప్లిఫైడ్ చైనీస్](README.zh-CN.md) · [ట్రేడిషనల్ చైనీస్](README.zh-TW.md) · [క్రొయేషియన్](README.hr.md) · [చెక్](README.cs.md) · [డచ్](README.nl.md) · [ఇంగ్లీష్ (యుఎస్)](README.en-US.md) · [ఫిలిపినో](README.tl.md) · [ఫ్రెంచ్](README.fr.md) · [జర్మన్](README.de.md) · [గ్రీక్](README.el.md) · [హిందీ](README.hi.md) · [హంగేరియన్](README.hu.md) · [ఇటాలియన్](README.it.md) · [జపనీస్](README.ja.md) · [జావానీస్](README.jv.md) · [కొరియన్](README.ko.md) · [మలయ్](README.ms.md) · [పర్షియన్](README.fa.md) · [పోలిష్](README.pl.md) · [పోర్చుగీస్ (పిటి)](README.pt.md) · [పంజాబీ](README.pa.md) · [రొమేనియన్](README.ro.md) · [రష్యన్](README.ru.md) · [స్లోవాక్](README.sk.md) · [స్పానిష్](README.es.md) · [స్వాహిలి](README.sw.md) · [స్వీడిష్](README.sv.md) · [తెలుగు](README.te.md) · [థాయిలాండ్ భాష](README.th.md) · [టర్కిష్](README.tr.md) · [ఉక్రేనియన్](README.uk.md) · [వియత్నామీస్](README.vi.md)
 
 > **UI మరియు పత్రాల అనువాదాల గురించి గమనిక:** మూల ఇంగ్లీష్ (యుకె) తప్ప మిగిలిన అన్ని ఇంటర్‌ఫేస్ భాషలు
 > ఎఐ మోడల్స్ ఉపయోగించి అనువదించబడ్డాయి; పదబంధం సరిగ్గా లేకపోవచ్చు లేదా పొరుపులు కలిగి ఉండవచ్చు.
 
-</small>
-
-<br/>
-
-<a id="screenshots"></a>
 ## స్క్రీన్‌షాట్లు
 
 **భాషా ఎంపికదారు**
 
-![Language selector](../images/screenshots/te/language-selector.png)
+భాషా ఎంపిక
 
 **అనువదించు**
 
-![Translate](../images/screenshots/te/translate.png)
+అనువదించు
 
 **ట్రాన్స్‌ఫార్మ్ - ప్రాంప్ట్ ఎడిటర్**
 
-![Transform - prompt editor](../images/screenshots/te/transform-prompt-edit.png)
+ట్రాన్స్‌ఫార్మ్ - ప్రాంప్ట్ ఎడిటర్
 
 **డ్యాష్‌బోర్డ్**
 
-![Dashboard summary — usage](../images/screenshots/te/dashboard-summary.png)
+డ్యాష్‌బోర్డ్ సారాంశం — ఉపయోగం
 
 **చరిత్ర**
 
-![History](../images/screenshots/te/history.png)
+చరిత్ర
 
 **సెట్టింగ్‌లు - మోడల్ ఎంపిక**
 
-![Settings - model selection](../images/screenshots/te/settings-models.png)
+సెట్టింగ్‌లు - మోడల్ ఎంపిక
 
-<br/><br/>
-
-<a id="table-of-contents"></a>
 ## విషయసూచిక
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [త్వరిత ప్రారంభం](#quick-start)
 - [ఇన్‌స్టాలేషన్](#installation)
@@ -91,11 +87,6 @@ source_file_path: README.md
 - [అస్వీకారణ](#disclaimer)
 - [లైసెన్స్](#license)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
-<a id="quick-start"></a>
 ## త్వరిత ప్రారంభం
 
 **Docker (స్వలాంతర హోస్టింగ్ కోసం సిఫార్సు చేయబడింది)**
@@ -113,18 +104,13 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
-<br/>
-
-> ℹ️ **NOTE**<br/>
-> In Docker, LLM credentials are set with environment variables such as `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (not in the web UI). On desktop (Electron) you configure keys in **Settings → API**.
-
-<br/>
+> ℹ️ **గమనిక**  
+>
+> డాకర్‌లో, LLM అనుమతి పత్రాలు `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … వంటి పర్యావరణ వేరియబుల్స్ తో సెట్ చేయబడతాయి (వెబ్ UIలో కాదు). డెస్క్‌టాప్ (ఎలెక్ట్రాన్)లో మీరు **సెట్టింగ్‌లు → API** లో కీలను కాన్ఫిగర్ చేస్తారు.
 
 **Windows**
 
 Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
-
-<br/>
 
 **Linux**
 
@@ -136,58 +122,55 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
 
-On Debian/Ubuntu you may need to install extra dependencies first:
+**కన్సోల్ సందేశాలు:** ప్యాకేజీ చేసిన లినక్స్ బిల్డ్‌లు (`x64` మరియు `arm64` AppImages) టెర్మినల్‌లో నోడ్ డిప్రికేషన్ హెచ్చరికలను నొక్కివేస్తాయి (ఉదాహరణకు అంతర్నిర్మిత `punycode` మాడ్యూల్). క్రోమియం "GLES3 మద్దతు లేదు" వంటి GPU / EGL లోపాలను ప్రింట్ చేసినప్పటికీ అప్లికేషన్ పనిచేస్తే, హార్డ్‌వేర్ యాక్సిలరేషన్‌ను నిష్క్రియం చేయడం ద్వారా వాటిని నిశ్శబ్దంగా చేయవచ్చు:
 
 ```bash
-sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-See [Installation → Linux](#linux-electron) for details.
+ఇది amd64 కూడా వర్తిస్తుంది; మీ డౌన్‌లోడ్‌కు సరిపోయేలా ఫైల్ పేరును మార్చండి. కొంచెం ఎక్కువ వివరాల కోసం [ఇన్‌స్టాలేషన్ → లినక్స్ (ఎలెక్ట్రాన్)](#linux-electron) చూడండి.
 
-<br/>
+డీబియన్/ఉబుంటులో క్రోమియం అంచనా వేసిన అదనపు **రన్‌టైమ్** లైబ్రరీలు అవసరం కావచ్చు (తరచుగా పూర్తి డెస్క్‌టాప్‌లలో ఉంటాయి). డెస్క్‌టాప్ నోటిఫికేషన్‌ల కోసం **`libnotify4`** ఉపయోగించండి—**`libnotify-dev`** కాదు (ఇది సాఫ్ట్‌వేర్ నిర్మాణానికి, ప్యాకేజీ చేసిన AppImageని నడపడానికి కాదు):
 
-> ℹ️ **NOTE**<br/>
-> macOS is not currently supported. Transrewrt is available for Windows, Linux, and Docker.
+```bash
+sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+```
 
-<br/>
+కనీస లేదా కస్టమ్ ఇమేజీలు ఇప్పటికీ తప్పిపోయిన `.so`తో విఫలం కావచ్చు; లోపం పేరు పెట్టిన ప్యాకేజీని ఇన్‌స్టాల్ చేయండి (సాధారణ అదనంగా: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). కొన్ని పర్యావరణాలకు AppImages ని నడపడానికి FUSE అవసరం (ఉదా: ఉబుంటు 22.04+లో `libfuse2`), లేదా `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ఉపయోగించండి.
+
+అదే సారాంశం కోసం [ఇన్‌స్టాలేషన్ → లినక్స్](#linux-electron) చూడండి.
+
+> ℹ️ **గమనిక**  
+>
+> ప్రస్తుతం macOS మద్దతు ఇవ్వబడలేదు. విండోస్, లినక్స్ మరియు డాకర్ కోసం Transrewrt అందుబాటులో ఉంది.
 
 Once the app is running, see the **[User Guide](USER-GUIDE.te.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
-<br/><br/>
-
-<a id="installation"></a>
 ## ఇన్‌స్టాలేషన్
 
-<a id="windows-electron"></a>
-### Windows (Electron)
+### విండోస్ (ఎలెక్ట్రాన్)
 
 - Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Run the `.exe` and follow the installer.
 - First run: start the app from the Start menu or desktop shortcut.
 
-<br/>
-
-> ℹ️ **NOTE**<br/>
-> Windows may show one of these security warnings (normal for unsigned/indie apps):
->   - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
->   - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
+> ℹ️ **గమనిక**  
 >
-> This happens because the app isn't signed by Microsoft or a major publisher—it's safe if downloaded from our official GitHub releases
->  (verify the SHA256 checksum below).
+> సంతకం చేయని/స్వతంత్ర అప్లికేషన్‌ల కోసం విండోస్ ఒక భద్రతా హెచ్చరికను చూపించవచ్చు:
+>
+> - **వాడుకరి ఖాతా నియంత్రణ (UAC)**: "తెలియని ప్రచురణకర్త నుండి వచ్చిన ఈ అప్లికేషన్ మీ పరికరంలో మార్పులు చేయడానికి మీరు అనుమతిస్తున్నారా?" → **అవును** క్లిక్ చేయండి.
+> - **మైక్రోసాఫ్ట్ డిఫెండర్ స్మార్ట్‌స్క్రీన్**: "విండోస్ మీ PCని రక్షించింది" → **మరింత సమాచారం** → **అయినా నడుపు** క్లిక్ చేయండి.
+>
+> అప్లికేషన్ మైక్రోసాఫ్ట్ లేదా పెద్ద ప్రచురణకర్త ద్వారా సంతకం చేయబడలేదు కాబట్టి ఇది సంభవిస్తుంది—అధికారిక GitHub రిలీజ్‌ల నుండి డౌన్‌లోడ్ చేసినట్లయితే ఇది సురక్షితం
+>  (దిగువ ఉన్న SHA256 చెక్‌సుమ్ ను ధృవీకరించండి).
 
-<br/>
-
-<a id="linux-electron"></a>
 ### లినక్స్ (ఎలక్ట్రాన్)
 
-- [రిలీజ్‌ల నుండి](https://github.com/wsj-br/transrewrt/releases) సరిపోయే `.AppImage` (`x64` లేదా `arm64`) డౌన్‌లోడ్ చేసుకోండి.
-- x86_64/amd64 లో నడుపుము: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage`, లేదా ARM64 లో `...-arm64.AppImage` ఫైల్ పేరు ఉపయోగించండి.
-- అదనపు అవసరాలు (డెబియన్/ఉబుంటు): `sudo apt install libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth`
-- మరిన్నింటి కొరకు [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) చూడండి.
+- [రిలీజ్‌లు](https://github.com/wsj-br/transrewrt/releases) నుండి సరిపోయే `.AppImage` (`x64` లేదా `arm64`) డౌన్‌లోడ్ చేయండి.
+- నడుపు: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64 లో, లేదా ARM64 లో `...-arm64.AppImage` ఫైల్ పేరు ఉపయోగించండి.
+- **డీబియన్/ఉబుంటు రన్‌టైమ్ లైబ్రరీలు** (ఎలక్ట్రాన్/క్రోమియం; [త్వరిత ప్రారంభం → లినక్స్](#quick-start) వలెనే): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** ఉపయోగించండి, `libnotify-dev` కాదు. కనీస సిస్టమ్‌లలో, టెర్మినల్‌లో నివేదించబడిన ఏదైనా లేని `.so` ని ఇన్‌స్టాల్ చేయండి; `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` వంటి అదనపు ప్యాకేజీలు తరచుగా అవసరమవుతాయి. AppImageకి `libfuse2` (ఉబుంటు 22.04+) లేదా `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` అవసరమవుతుంది.
+- **GPU సందేశాలు:** కొన్ని సిస్టమ్‌లలో (ప్రత్యేకించి ARM) Chromium GPU లేదా EGL ప్రారంభ తప్పులను లాగ్ చేయవచ్చు; అప్లికేషన్ ఇంకా సాధారణంగా పనిచేయవచ్చు. ఆ సందేశాలను నివారించడానికి, హార్డ్‌వేర్ వేగవంతం చేయడాన్ని ఆపివేసి ప్రారంభించండి: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (లేదా మీ `arm64` ఫైల్ పేరు).
 
-<br/>
-
-<a id="docker"></a>
 ### డాకర్
 
 - పుల్ చేయండి: `docker pull ghcr.io/wsj-br/transrewrt:latest`
@@ -218,8 +201,7 @@ docker compose -f transrewrt.yml up -d
 
 `PORT`, `CONFIG_PATH`, `TZ`, మరియు LLM కీలు (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) వంటి అన్ని పర్యావరణ వేరియబుల్స్ కొరకు [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
 
-<a id="configuring-the-timezone"></a>
-### సమయ మండలాన్ని కాన్ఫిగర్ చేయడం
+### సమయప్రదేశాన్ని కాన్ఫిగర్ చేయడం
 
 అప్లికేషన్ యూజర్ ఇంటర్ఫేస్ తేదీ మరియు సమయం **బ్రౌజర్** యొక్క స్థానిక మరియు సమయ మండలాన్ని అనుసరిస్తాయి. **సర్వర్-సైడ్** వర్తనం (లాగింగ్ మరియు సమానమైనవి) కొరకు, కంటైనర్ `TZ` పర్యావరణ వేరియబుల్ ని ఉపయోగిస్తుంది. డిఫాల్ట్ `TZ=Europe/London`.
 
@@ -244,9 +226,6 @@ echo TZ=\"$(</etc/timezone)\"
 
 చెల్లుబాటయ్యే సమయ మండల పేర్ల జాబితా [tz డేటాబేస్](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (వికీపీడియా) లో నిర్వహించబడుతుంది.
 
-<br/><br/>
-
-<a id="getting-an-openrouter-api-key"></a>
 ## ఓపెన్రౌటర్ API కీని పొందడం
 
 Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస్తుంది. [ఓపెన్రౌటర్](https://openrouter.ai) ఒక కీ కింద చాలా మోడల్‌లను సమీకరిస్తుంది మరియు ఉచిత మోడల్‌లను అందిస్తుంది కాబట్టి ఇది ప్రజాదరణ పొందిన ఎంపిక.
@@ -255,18 +234,16 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 2. [కీలు](https://openrouter.ai/keys) పేజీని తెరిచి, కొత్త కీని సృష్టించండి (పేరు పెట్టండి, మరియు ఐచ్ఛికంగా క్రెడిట్ పరిమితిని సెట్ చేయండి). క్రెడిట్ జోడించకుండా ఉచిత మోడల్‌లను ఉపయోగించవచ్చు.
 3. **డెస్క్‌టాప్ (ఎలక్ట్రాన్):** **సెట్టింగ్‌లు → API** లో కీలు అతికించండి. **డాకర్:** `OPENROUTER_API_KEY` వంటి పర్యావరణ వేరియబుల్స్ సెట్ చేయండి ( [త్వరిత ప్రారంభం](#quick-start) చూడండి).
 
-అనువదించు, రీరైట్ లేదా ట్రాన్స్‌ఫార్మ్ కొరకు ఓపెన్రౌటర్ యొక్క **బాడీ బిల్డర్** మోడల్ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ఉపయోగించవద్దు: ఇది ఆ పనులకు పూర్తి చేసిన టెక్స్ట్ కాకుండా JSON రిక్వెస్ట్ పేలోడ్‌లను తిరిగి ఇస్తుంది. వాడుకరి మార్గదర్శిలో [సెట్టింగ్‌లు → మోడల్‌లు](USER-GUIDE.te.md#models) చూడండి.
+అనువదించు, రీరైట్ లేదా ట్రాన్స్‌ఫార్మ్ కోసం ఓపెన్రౌటర్ యొక్క **బాడీ బిల్డర్** మోడల్ (`[openrouter/bodybuilder](https://openrouter.ai/openrouter/bodybuilder)`) ఉపయోగించవద్దు: ఆ పనుల కోసం పూర్తి చేసిన టెక్స్ట్ కాకుండా జెసన్ అభ్యర్థన పేలోడ్‌లను ఇది తిరిగి ఇస్తుంది. వాడుకరి మార్గదర్శిలో [సెట్టింగ్‌లు → మోడల్‌లు](USER-GUIDE.te.md#models) చూడండి.
 
 మీరు ఇతర ప్రదాతలను (ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ, సెరెబ్రస్) ఉపయోగించవచ్చు లేదా [ఓలామా](https://ollama.com) తో స్థానికంగా మోడల్‌లను నడుపుతారు. మద్దతు ఇచ్చిన ప్రదాతల మరియు పర్యావరణ వేరియబుల్స్ యొక్క పూర్తి జాబితా కొరకు [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
 
-> ⚠️ **హెచ్చరిక**<br/>
-> మీరు మరొక పరికరం, కంటైనర్ లేదా సేవ నుండి ఓలామా ఉపయోగిస్తున్నట్లయితే, బాహ్య కనెక్షన్లను (లోకల్ హోస్ట్ మాత్రమే కాకుండా) అనుమతించడానికి ఓలామాను కాన్ఫిగర్ చేయడం గుర్తుంచుకోండి.
+> ⚠️ **హెచ్చరిక**  
+>
+> మీరు మరొక పరికరం, కంటైనర్ లేదా సేవ నుండి ఓలామాను ఉపయోగిస్తున్నట్లయితే, బాహ్య కనెక్షన్‌లను (localhost-మాత్రమే కాకుండా) అనుమతించడానికి ఓలామాను కాన్ఫిగర్ చేయడం గుర్తుంచుకోండి.
 
 పరిమితులు, BYOK మరియు మరింత సమాచారం కొరకు, [ఓపెన్రౌటర్ ప్రామాణీకరణ](https://openrouter.ai/docs/api/reference/authentication) చూడండి.
 
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
 ## కాన్ఫిగరేషన్ మరియు పర్యావరణం
 
 **కాన్ఫిగ్ ఫైల్ స్థానాలు**
@@ -277,37 +254,31 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 | ఎలెక్ట్రాన్ (లినక్స్)   | `~/.config/transrewrt/`                           |
 | వెబ్ / డాకర్       | `/app/data/config.json` (స్థిరత కొరకు వాల్యూమ్ ఉపయోగించండి) |
 
-<br/>
-
 **పర్యావరణ వేరియబుల్స్** (వెబ్/డాకర్ మాత్రమే; ఎలెక్ట్రాన్ స్థానిక కాన్ఫిగ్ ఫైల్ ఉపయోగిస్తుంది)
 
-| వేరియబుల్         | డిఫాల్ట్                 | వివరణ |
-| ---------------- | ----------------------- | ----------- |
-| `PORT`           | `5000`                  | సర్వర్ వింది పోర్ట్ |
-| `CONFIG_PATH`    | `/app/data/config.json` | కాన్ఫిగ్ ఫైల్ కు పాత్ |
-| `TZ`             | `Europe/London`         | సర్వర్-సైడ్ సమయానికి IANA టైమ్జోన్ (లాగింగ్ మొదలైనవి); UI ఇప్పటికీ బ్రౌజర్ అనుసరిస్తుంది. [డాకర్ → టైమ్జోన్](#docker-timezone) చూడండి |
-| `OPENROUTER_API_KEY` | *(ఖాళీ)*               | ఓపెన్రౌటర్ API కీ |
-| `OPENAI_API_KEY`     | *(ఖాళీ)*               | ఓపెన్ఏఐ API కీ |
-| `CEREBRAS_API_KEY`   | *(ఖాళీ)*               | సెరెబ్రాస్ API కీ |
-| `ANTHROPIC_API_KEY`  | *(ఖాళీ)*               | యాంథ్రోపిక్ API కీ |
-| `GOOGLE_API_KEY`     | *(ఖాళీ)*               | గూగుల్ జెమిని API కీ |
-| `DEEPSEEK_API_KEY`   | *(ఖాళీ)*               | డీప్సీక్ API కీ |
-| `GROQ_API_KEY`       | *(ఖాళీ)*               | గ్రోక్ API కీ |
-| `MISTRAL_API_KEY`    | *(ఖాళీ)*               | మిస్ట్రల్ API కీ |
-| `OLLAMA_URL`     | *(ఖాళీ)*               | ఓలామా బేస్ URL (ఉదా: `http://host.docker.internal:11434`) |
-| `XAI_API_KEY`        | *(ఖాళీ)*               | ఎక్స్ఏఐ API కీ |
+| వేరియబుల్             | డిఫాల్ట్                 | వివరణ                                                                                                                 |
+| -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`               | `5000`                  | సర్వర్ వింటింగ్ పోర్ట్                                                                                                       |
+| `CONFIG_PATH`        | `/app/data/config.json` | కాన్ఫిగ్ ఫైల్ కు పాత్                                                                                                     |
+| `TZ`                 | `Europe/London`         | సర్వర్-సైడ్ సమయానికి IANA సమయప్రదేశం (లాగింగ్, మొదలైనవి); UI ఇంకా బ్రౌజర్ ను అనుసరిస్తుంది. [డాకర్ → సమయప్రదేశం](#docker-timezone) చూడండి |
+| `OPENROUTER_API_KEY` | *(ఖాళీ)*               | ఓపెన్రౌటర్ API కీ                                                                                                          |
+| `OPENAI_API_KEY`     | *(ఖాళీ)*               | ఓపెన్ఏఐ API కీ                                                                                                              |
+| `CEREBRAS_API_KEY`   | *(ఖాళీ)*               | Cerebras API కీ                                                                                                            |
+| `ANTHROPIC_API_KEY`  | *(ఖాళీ)*               | యాంథ్రోపిక్ API కీ                                                                                                           |
+| `GOOGLE_API_KEY`     | *(ఖాళీ)*               | గూగుల్ జెమిని API కీ                                                                                                       |
+| `DEEPSEEK_API_KEY`   | *(ఖాళీ)*               | డీప్సీక్ API కీ                                                                                                            |
+| `GROQ_API_KEY`       | *(ఖాళీ)*               | గ్రోక్ API కీ                                                                                                                |
+| `MISTRAL_API_KEY`    | *(ఖాళీ)*               | మిస్ట్రల్ API కీ                                                                                                             |
+| `OLLAMA_URL`         | *(ఖాళీ)*               | ఓలామా బేస్ URL (ఉదా: `http://host.docker.internal:11434`)                                                                  |
+| `XAI_API_KEY`        | *(ఖాళీ)*               | ఎక్స్ఏఐ API కీ                                                                                                                 |
 
 మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయండి. మోడల్ ఐడీలు నేమ్‌స్పేస్ చేయబడతాయి (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, మొదలైనవి).
 
 **ఖర్చు ప్రదర్శన:** అనుకూలమైనప్పుడు ఓపెన్రౌటర్ ఖచ్చితమైన బిల్లింగ్ ఖర్చును తిరిగి ఇస్తుంది. ఇతర ప్రొవైడర్లు ఓపెన్రౌటర్ కీ లభ్యమైనప్పుడు ఓపెన్రౌటర్ యొక్క పబ్లిక్ మోడల్ ధరల నుండి **అంచనా** ఖర్చును ఉపయోగిస్తాయి; లేకపోతే, నాన్-ఓపెన్రౌటర్ ఖర్చు `0`గా చూపబడవచ్చు. అంచనాలు బిల్లులు కావు.
 
-<br/>
-
 **డేటా మరియు స్థిరత:** డాకర్ కొరకు, `/app/data` వద్ద ఒక వాల్యూమ్ మౌంట్ చేయండి కాబట్టి `config.json` మరియు SQLite డేటాబేస్ కంటైనర్ రీస్టార్ట్‌ల సమయంలో స్థిరంగా ఉంటాయి. వాల్యూమ్ లేకుండా, కంటైనర్ ఆపినప్పుడు అన్ని డేటా కోల్పోబడుతుంది.
 
 **డెవలపర్లు:** పాత సింగిల్-కీ కాన్ఫిగ్ ని భర్తీ చేసే మార్పులను పుల్ చేసిన తర్వాత, మీ స్థానిక ఫైల్ తొలగించబడిన ఫీల్డ్‌లను (`api_key`, `api_url`, ప్రాక్సీ ఎంపికలు) ఇప్పటికీ ఉపయోగిస్తుంటే, `data/config.json` ని `src/config-defaults/config_default.json` నుండి కొత్త డిఫాల్ట్ ఆకృతితో రీసెట్ లేదా మర్జ్ చేయండి.
-
-<br/>
 
 **వెబ్ ప్రామాణీకరణ:**
 
@@ -316,40 +287,25 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 - పాస్‌వర్డ్ రీసెట్ చేయడం: `docker exec <container> reset-web-password '<username>' '<new-password>'`
   (సోర్స్ నుండి: `pnpm run reset-web-password -- <username> <new-password>`)
 
-<br/>
-
-> ⚠️ **హెచ్చరిక**<br/>
-> ఏదైనా నెట్‌వర్క్-యాక్సెసిబుల్ హోస్ట్ లో వెంటనే డిఫాల్ట్ కార్యదర్శి పాస్‌వర్డ్ ని మార్చండి.
-
-<br/>
+> ⚠️ **హెచ్చరిక**  
+>
+> ఏదైనా నెట్‌వర్క్-యాక్సిసబుల్ హోస్ట్‌లో డిఫాల్ట్ కార్యదర్శి పాస్‌వర్డ్‌ను వెంటనే మార్చండి.
 
 అప్లికేషన్ సెట్టింగ్‌లలో కీలక సెట్టింగ్‌లు (ఫాంట్, మోడల్‌లు, భాషలు, మొదలైనవి) అందుబాటులో ఉంటాయి.
 
-<br/><br/>
-
-<a id="development-and-architecture"></a>
 ## అభివృద్ధి మరియు ఆర్కిటెక్చర్
 
 - **అభివృద్ధి:** సెటప్, బిల్డ్, పరీక్ష మరియు డిప్లాయ్ (ఎలెక్ట్రాన్, వెబ్, డాకర్) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** చూడండి.
 - **ఆర్కిటెక్చర్ మరియు సిస్టమ్ అవలోకనం:** ఫోల్డర్ నిర్మాణం, టెక్ స్టాక్, డిజైన్ నిర్ణయాలు - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** చూడండి.
 
-<br/><br/>
-
-<a id="reporting-issues"></a>
 ## సమస్యలను నివేదించడం
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues)లో ఒక సమస్యను తెరవండి. మీ ప్లాట్‌ఫారమ్ (Windows / Linux / Docker) మరియు అప్లికేషన్ వెర్షన్ (గురించి డైలాగ్ లేదా రిలీజ్ పేజీలో చూపబడింది) చేర్చండి.
 
-<br/><br/>
-
-<a id="disclaimer"></a>
 ## డిస్క్లెయిమర్
 
 ఉత్పత్తి పేర్లు మరియు చిహ్నాలు వాటి సంబంధిత యజమానులకు చెందినవి మరియు గుర్తింపు ప్రయోజనాల కోసం మాత్రమే ఉపయోగించబడతాయి. ఈ సాఫ్ట్‌వేర్ పేర్కొన్న బ్రాండ్‌లలో దేనితోనూ అనుబంధించబడలేదు లేదా ఆమోదించబడలేదు.
 
-<br/><br/>
-
-<a id="license"></a>
 ## లైసెన్స్
 
 కాపీరైట్ © 2026 వాల్డెమార్ స్కుడెల్లర్ జూనియర్.

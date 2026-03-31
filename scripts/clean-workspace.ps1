@@ -39,13 +39,28 @@ $ErrorActionPreference = "Stop"
 # Script lives in <project>/scripts/, so project root is parent of script directory
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 
+# ---------- Phase 0: Translation session logs (same as pnpm clean-logs) ----------
+$cleanLogsScript = Join-Path $ProjectRoot "scripts/clean-translation-logs.js"
+if (Test-Path $cleanLogsScript) {
+    Write-Host "Cleaning translation session logs..." -ForegroundColor Cyan
+    Push-Location $ProjectRoot
+    try {
+        node $cleanLogsScript
+        Write-Host "  Translation session logs cleaned." -ForegroundColor Green
+    } catch {
+        Write-Host "  Could not run clean-translation-logs.js: $_" -ForegroundColor DarkYellow
+    } finally {
+        Pop-Location
+    }
+}
+
 # ---------- Phase 1: Workspace build artifacts ----------
 $artifacts = @(
     (Join-Path $ProjectRoot "node_modules"),
     (Join-Path $ProjectRoot "dist"),
     (Join-Path $ProjectRoot "cache"),
     (Join-Path $ProjectRoot "release"),
-    (Join-Path $ProjectRoot "build_timestamp")
+    (Join-Path $ProjectRoot "build_timestamp"),
     (Join-Path $ProjectRoot "pnpm-lock.yaml")
 )
 

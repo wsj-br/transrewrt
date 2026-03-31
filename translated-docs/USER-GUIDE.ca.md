@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-03-30T00:45:56.088Z'
-source_file_mtime: '2026-03-30T00:37:44.601Z'
+translation_last_updated: '2026-03-31T22:56:56.723Z'
+source_file_mtime: '2026-03-30T09:57:25.622Z'
 source_file_hash: e1b91eca0124d467
 translation_language: ca
 source_file_path: USER-GUIDE.md

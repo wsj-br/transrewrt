@@ -1,4 +1,4 @@
-# Transrewrt — Development Guide
+# Transrewrt - Development Guide
 
 Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For **architecture** (Electron vs web, **multi-llm-ts** / **`/api/llm/*`**, config and SQLite **`user_preferences`**, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
 
@@ -16,6 +16,13 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
   - [UI translations (i18n)](#ui-translations-i18n)
+  - [Document translation (`translate:docs`)](#document-translation-translatedocs)
+    - [1. Configuration (`translate.config.json`)](#1-configuration-translateconfigjson)
+    - [2. User glossary (`glossary-user.csv`)](#2-user-glossary-glossary-usercsv)
+    - [3. Automatic glossary (aligned with UI i18n)](#3-automatic-glossary-aligned-with-ui-i18n)
+    - [4. Running the translator (`--locale`, `--force`, `--force-update`)](#4-running-the-translator---locale---force---force-update)
+    - [5. Cleanup (`translate:cleanup` / `translate:clean`)](#5-cleanup-translatecleanup--translateclean)
+    - [6. Translation session logs (`pnpm clean-logs`)](#6-translation-session-logs-pnpm-clear-logs)
   - [Third-party licenses (`3p-licenses`)](#third-party-licenses-3p-licenses)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
@@ -39,7 +46,6 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [UI translations (i18n)](#ui-translations-i18n-1)
   - [Data, assets, and docs scripts](#data-assets-and-docs-scripts)
   - [Docker and deploy](#docker-and-deploy)
-  - [Toolchain](#toolchain)
 - [Troubleshooting](#troubleshooting)
 - [Related documentation](#related-documentation)
 - [Key Configuration Files](#key-configuration-files)
@@ -53,7 +59,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **Node.js 24** (LTS). The project uses Electron 41, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
-- **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook — Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run **`direnv allow`** once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
+- **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run **`direnv allow`** once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
 - **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
 - **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated.
 
@@ -90,7 +96,7 @@ nvm use 24
 3. **Noto fonts** (optional, for language-selector screenshot):
   `sudo apt install fonts-noto-cjk fonts-noto-core`  
    Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
-4. **direnv**: `sudo apt install direnv` — shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
+4. **direnv**: `sudo apt install direnv` - shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
 5. **Docker**: `sudo apt install docker.io docker-compose` and `sudo usermod -aG docker $USER` (log out and back in).
 
 ---
@@ -109,8 +115,8 @@ The **postinstall** script runs `electron-rebuild` so native addons match Electr
 
 ## Development Workflow
 
-- **Electron**: `pnpm dev` — Webpack watch runs on port 3030 and Electron launches automatically. Edit React code for hot reload.
-- **Web (HMR)**: `pnpm dev:web` — Webpack serves the app on port 5000 and the API server runs on 3030; `/api` is proxied to the server. Open **[http://localhost:5000](http://localhost:5000)** in a browser.
+- **Electron**: `pnpm dev` - Webpack watch runs on port 3030 and Electron launches automatically. Edit React code for hot reload.
+- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 3030; `/api` is proxied to the server. Open **[http://localhost:5000](http://localhost:5000)** in a browser.
 
 To run Electron with a production build (no dev server):
 
@@ -123,11 +129,11 @@ On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 
 ### Upgrading Node and dependencies (nvm)
 
-These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) also runs `ncu`, `pnpm install`, and `pnpm audit` / `pnpm audit fix`.
+These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also runs `ncu`, `pnpm install`, and `pnpm audit` / `pnpm audit fix`.
 
 | Environment | Command |
 |-------------|---------|
-| **Windows** | From repo root: `.\scripts\upgrade-tools.ps1` (tools only) — use your usual workflow to stay on Node 24 / LTS as needed. |
+| **Windows (PowerShell)** | **Tools only:** `. .\scripts\upgrade-tools.ps1` (dot-source so `nvm use` applies to this session). **Full dependency upgrade:** `. .\scripts\upgrade-dependencies.ps1` (must be dot-sourced unless `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`). |
 | **Linux / macOS (bash)** | **Use `source`** so `nvm use` runs in your **current** shell. Otherwise the script runs in a subprocess and your terminal keeps the old Node after the script exits. |
 
 **Unix/bash (recommended):**
@@ -156,7 +162,8 @@ Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](..
 | Target                 | Command                               | Output                                                                                                             |
 |------------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **Renderer**           | `pnpm build-renderer` or `pnpm build` | `dist/` (production assets)                                                                                        |
-| **Electron installer** | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows)                                                                           |
+| **Electron installer** | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows; targets depend on platform)                                                |
+| **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`     | `release/` — Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                             |
 | **Docker image**       | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
 
 
@@ -170,10 +177,100 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                       |
 | `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--force`, `--model`) |
 | `pnpm run i18n:sync`      | Run extract then translate                                                                                                                                 |
+| `pnpm run i18n:sync-md-annex` | Refresh the **Annex** in [`dev/i18n.md`](i18n.md) (embedded full source of `scripts/extract-strings.js` and `scripts/generate-translations.js`) from the repo files — run after changing those scripts |
 
-The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), `scripts/translate-docs.js` (`pnpm translate-docs`), and `scripts/generate-test-data.js`. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
+The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), [`scripts/translate/index.ts`](../scripts/translate/index.ts) (`pnpm translate:docs`, configured by [`translate.config.json`](../translate.config.json)), and `scripts/generate-test-data.js`. [`scripts/translate-docs.js`](../scripts/translate-docs.js) remains available as `node scripts/translate-docs.js` but is not what `pnpm translate:docs` runs. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
 
-To **add a new UI language** (e.g. zh-CN or ar): (1) add an entry to `src/renderer/locales/ui-languages.json` (dynamic locale loaders in `src/renderer/i18n.js` are built from this list), (2) run `pnpm run i18n:extract` then `pnpm run i18n:translate` (or `i18n:sync`) so `strings.json` and `locales/<code>.json` are created/updated. RTL script languages listed in `RTL_LANGS` in `i18n.js` get `dir="rtl"` on the document and on Fluent’s root provider (see [i18n.md](i18n.md)). Full detail: [.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md](../.cursor/plans/multi-language_i18n_implementation_2dc8b07f.plan.md).
+To **add a new UI language** (e.g. zh-CN or ar): (1) add an entry to `src/renderer/locales/ui-languages.json` (dynamic locale loaders in `src/renderer/i18n.js` are built from this list), (2) run `pnpm run i18n:extract` then `pnpm run i18n:translate` (or `i18n:sync`) so `strings.json` and `locales/<code>.json` are created/updated. RTL script languages listed in `RTL_LANGS` in `i18n.js` get `dir="rtl"` on the document and on Fluent’s root provider (see [i18n.md](i18n.md)).
+### Document translation (`translate:docs`)
+
+Markdown docs listed in [`translate.config.json`](../translate.config.json) are translated with **OpenRouter** via [`scripts/translate/index.ts`](../scripts/translate/index.ts) (same models as in config, not app `config.json`). **Requires `OPENROUTER_API_KEY`.** Outputs are `basename.<locale>.md` under `paths.i18n` (e.g. `translated-docs/README.pt-BR.md`). Segment-level caching lives in `paths.cache` (SQLite `cache.db`).
+
+#### 1. Configuration (`translate.config.json`)
+
+| Area | Role |
+|------|------|
+| **`locales`** | **`source`**: British English locale id for prompts (e.g. `en-GB`). **`targets`**: either a JSON array of locale codes, or a **path** to [`ui-languages.json`](../src/renderer/locales/ui-languages.json) — the pipeline loads every `code` except the source as a target and uses labels for display names in prompts. |
+| **`paths`** | **`docs`**: repo root for resolving globs. **`source-files`**: array of globs for markdown sources (e.g. `./README.md`, `./USER-GUIDE.md`). **`i18n`**: output folder for translated files. **`cache`**: folder for `cache.db` and cleanup logs. **`log-folder`**: session logs (e.g. `./dev/`). **`ui-glossary`** / **`user-glossary`**: see below. |
+| **`openrouter`** | **`translationModels`**: ordered list of model ids (fallback order). **`baseUrl`**, **`maxTokens`**, **`temperature`**. |
+| **`batchSize`**, **`maxBatchChars`**, **`concurrency`**, **`batchConcurrency`** | Segment batching and parallelism (see `pnpm translate:docs --help`). |
+| **`language-list-block`** | `start` / `end` / `separator` for the HTML language-list snippet rewritten per locale. |
+| **`additional-adjustments`** | Optional regex replacements after translation (e.g. screenshot paths: `images/screenshots/${translatedLocale}/`). |
+| **`cache`** | `enabled`, `segmentLevel` — segment cache behaviour. |
+
+Override config path: `pnpm translate:docs -- --config /path/to/translate.config.json`.
+
+#### 2. User glossary (`glossary-user.csv`)
+
+Optional CSV beside the paths in config (default [`glossary-user.csv`](../glossary-user.csv) via `paths.user-glossary`). **Columns:** `en`, `locale`, `translation`.
+
+- **`locale`** is a target locale code (e.g. `pt-BR`) or **`*`**, meaning “apply this translation to **every** target in `locales.targets`.”
+- Rows are merged **after** the UI glossary: **user entries override** the same English term for that locale.
+
+Use this for product names, legal wording, or terminology that must not follow the automatic UI strings.
+
+#### 3. Automatic glossary (aligned with UI i18n)
+
+**`paths.ui-glossary`** points at [`src/renderer/locales/strings.json`](../src/renderer/locales/strings.json) (extract + translate pipeline). The loader expects entries shaped like `{ "<id>": { "source": "<English>", "translated": { "<locale>": "<text>" } } }`.
+
+- For each **English `source`** string that appears in doc text, the translator can attach **hints** to the model: `English term → translated term` for the current target locale, using the same per-locale text as the **UI**.
+- **Keeping docs aligned with the app:** run **`pnpm i18n:sync`** (or extract + translate) so `strings.json` and per-locale JSON stay current before **`pnpm translate:docs`**, so glossary hints match shipped UI wording.
+
+#### 4. Running the translator (`--locale`, `--force`, `--force-update`)
+
+```bash
+pnpm translate:docs
+pnpm translate:docs -- --locale pt-BR,es,fr
+pnpm translate:docs -- --force
+pnpm translate:docs -- --force-update
+```
+
+| Flag | Meaning |
+|------|---------|
+| **`-l` / `--locale <codes>`** | Translate **only** these targets (comma- or space-separated). Codes must appear in configured `locales.targets`. Omit to run **all** targets. |
+| **`--force`** | **Full re-translation** of processed files: clears per-file tracking and **does not read** segment cache for those files (all segments go through the API). **Not** combinable with `--force-update`. |
+| **`--force-update`** | Re-run files even when **file-level** tracking says the source hash is unchanged; **segment cache still applies** (cached segments skip API). Use to refresh outputs after prompt/config tweaks without wiping the cache. **Not** combinable with `--force`. |
+
+Other useful flags: **`--dry-run`** (no writes), **`--no-cache`** (ignore cache for API calls but still save new results), **`--clear-cache [locale]`** (clear SQLite cache; optional locale), **`--path <file-or-dir>`** (override `source-files`). See **`pnpm translate:docs -- --help`**.
+
+#### 5. Cleanup (`translate:cleanup` / `translate:clean`)
+
+The cache DB can accumulate **orphaned** rows (deleted/renamed sources) and **stale** rows (never hit again). Translated files under `paths.i18n` can become **orphans** if a source doc is removed or locales shrink.
+
+**Recommended:** run the packaged cleanup (runs **`translate:docs --force-update`** first so segment hits refresh `last_hit_at`, then the cleanup script):
+
+```bash
+pnpm translate:cleanup
+# alias:
+pnpm translate:clean
+```
+
+**Manual cleanup only** (inspect without deleting):
+
+```bash
+pnpm exec tsx scripts/translate/cache-cleanup.ts --dry-run
+```
+
+**What it does** (see [`scripts/translate/cache-cleanup.ts`](../scripts/translate/cache-cleanup.ts)):
+
+1. **Orphaned DB rows** — translations tied to removed/renamed source paths or inconsistent hashes; remap or delete.
+2. **Stale DB rows** — rows with missing `last_hit_at` / `filepath` (run `--force-update` before a real cleanup so active segments are not misclassified).
+3. **Orphaned output files** — `stem.<locale>.md(x)` under `paths.i18n` that are no longer expected from current `source-files` × `locales.targets`.
+
+Non-`--dry-run` cleanup **backs up** `cache.db` under `paths.cache`, asks for **confirmation**, and writes a log `cleanup_YYYY-MM-DD_HH-MM-SS.log` in the cache folder.
+
+#### 6. Translation session logs (`pnpm clean-logs`)
+
+UI i18n and doc translation runs create **many timestamped log files** (for example `dev/generate-translations-*.log`, `translate-docs_*.log` under `paths.log-folder`, and cache-folder sidecars such as `cache-*.db` backups and `cleanup_*.log`). Those are separate from **`translate:cleanup`**, which trims the SQLite cache and orphaned translated outputs.
+
+**`pnpm clean-logs`** runs [`scripts/clean-translation-logs.js`](../scripts/clean-translation-logs.js): it deletes matching session logs under **`dev/`** and **`paths.log-folder`**, and cache-adjacent artifacts under **`paths.cache`** (see script for glob patterns). It **does not** delete the live **`cache.db`** or **`dev/translations.log`**.
+
+```bash
+pnpm clean-logs
+pnpm clean-logs --dry-run
+```
+
+[`scripts/clean-workspace.sh`](../scripts/clean-workspace.sh) and [`scripts/clean-workspace.ps1`](../scripts/clean-workspace.ps1) run this step automatically before removing build artifacts (from the repo root, so `translate.config.json` paths resolve).
 
 ### Third-party licenses (`3p-licenses`)
 
@@ -219,47 +316,52 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 ### Web (Docker)
 
-- **Local:** `docker compose up -d` or `pnpm docker:up`. Volume `transrewrt-data` is mounted at **`/app/data`**: server **`config.json`**, SQLite **`transrewrt.db`** (users, sessions, **`user_preferences`**, calls, history text, custom prompts), and related files — see [SYSTEM-OVERVIEW.md § Config and State](SYSTEM-OVERVIEW.md#config-and-state). Open [http://localhost:5000](http://localhost:5000).
-- **Production:** `pnpm docker:deploy` runs [scripts/docker-deploy.sh](../scripts/docker-deploy.sh) (build, transfer to host, create volume, run container).
+- **Local:** `docker compose up -d` or `pnpm docker:up`. Volume `transrewrt-data` is mounted at **`/app/data`**: server **`config.json`**, SQLite **`transrewrt.db`** (users, sessions, **`user_preferences`**, calls, history text, custom prompts), and related files - see [SYSTEM-OVERVIEW.md § Config and State](SYSTEM-OVERVIEW.md#config-and-state). Open [http://localhost:5000](http://localhost:5000).
+- **Production:** Use the image published by CI — **`ghcr.io/wsj-br/transrewrt:<tag>`** (see [`.github/workflows/release.yml`](../.github/workflows/release.yml)) — or build locally (`docker build …`) and run with the same volume/env pattern as [docker-compose.yml](../docker-compose.yml). The old `scripts/docker-deploy.sh` / `pnpm docker:deploy` entry points were removed (superseded by the release workflow).
 
 ### Raspberry Pi (arm64)
 
-For deploying the web app to a Pi (e.g. host `pi-piro`):
+For deploying the web app to a Pi (e.g. host `pi-piro`). If you **pull a release image from GHCR**, only **step 2** applies. Use **steps 1 and 3** when you **build** the image yourself (e.g. cross-compile on another machine).
 
-1. **QEMU + buildx** (one-time, on build machine):
-  ```bash
+1. **QEMU + buildx** (one-time, on the machine where you build the image):
+
+   ```bash
    docker run --privileged --rm tonistiigi/binfmt --install all
    docker buildx create --name multiarch --driver docker-container --use
    docker buildx inspect --bootstrap
-  ```
-2. **Automated deploy (recommended):**
-  ```bash
-   ./scripts/docker-deploy.sh
-  ```
-3. **Manual:** Build with `pnpm docker:devel` (or `docker buildx build --platform linux/arm64 -t wsj-br/transrewrt:devel --load .`). Then on the Pi: stop existing container, `docker volume create transrewrt-data` if needed, transfer image (`docker save ... | ssh pi-piro "docker load"`), and run:
-  ```bash
-   docker run -d --rm -p 5000:5000 -v transrewrt-data:/app/data --name transrewrt-web wsj-br/transrewrt:devel
-  ```
-   Access at [http://pi-piro:5000](http://pi-piro:5000).
+   ```
 
-See [devel_cross_compile_docker_deploy.md](devel_cross_compile_docker_deploy.md) for full steps.
+2. **Pull from GHCR (recommended):** On the Pi, `docker login ghcr.io` if needed, then `docker pull ghcr.io/wsj-br/transrewrt:<version>` (or `:latest` per your policy) and run with `-v transrewrt-data:/app/data` and port **5000** as in compose.
+
+3. **Manual image build:** Build with `pnpm docker:devel` (or `docker buildx build --platform linux/arm64 -t wsj-br/transrewrt:devel --load .`). Then on the Pi: stop existing container, `docker volume create transrewrt-data` if needed, transfer image (`docker save ... | ssh pi-piro "docker load"`), and run:
+
+   ```bash
+   docker run -d --rm -p 5000:5000 -v transrewrt-data:/app/data --name transrewrt-web wsj-br/transrewrt:devel
+   ```
+
+   Access at [http://pi-piro:5000](http://pi-piro:5000).
 
 ### Releasing (CI builds and GitHub Release)
 
-Official desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
+Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
-Use a **long-lived version branch** for patch lines (for example **`v1.1.x`** — any name such as `1.1.x` works if your team uses that convention). Do release prep there, merge into **`main`** through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
+Use a **long-lived version branch** for patch lines (for example **`v1.1.x`** - any name such as `1.1.x` works if your team uses that convention). Do release prep there, merge into **`main`** through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
 
 ---
 
 ### Prepare commits on the version branch
 
-Do this on the branch you will merge (e.g. **`v1.1.x`**), then push it to GitHub so the pull request below can target it.
+Do this on the development branch you intend to merge (e.g., **`v1.1.x`**), then push it to GitHub so the pull request below can target it.
 
-1. **Changelog** — In [CHANGELOG.md](CHANGELOG.md), move the bullets under `## Unreleased` into a new section `## [X.Y.Z] — YYYY-MM-DD` (Keep a Changelog style). Leave an empty `## Unreleased` heading for the next cycle.
-2. **Version** — Set `"version": "X.Y.Z"` in [package.json](../package.json) (SemVer).
-3. **Sync references** — Run **`pnpm run update-version`** so the README badge and other files updated by [scripts/update-version.js](../scripts/update-version.js) match `package.json`.
-4. **Commit and push** — Commit the changelog, `package.json`, and any `update-version` output (e.g. `chore: release vX.Y.Z`), then push your version branch to the remote (your usual Git client or desktop tool is fine).
+1. **Release notes**: Generate a new `RELEASE-NOTES-v.x.y.z.md` in the `./dev` folder with the changes for this release.
+2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z]: YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
+3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
+4. **Sync references**: Run **`pnpm run update-version`** to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
+5. **Update i18n UI string translations**: Run **`pnpm i18n:sync`** to ensure that all strings in the UI are translated.
+6. **Update documentation table of contents**: Run **`doctoc *.md dev/*.md`** to update all tables of contents.
+7. **Update document translations**: Run **`pnpm translate:docs`** to ensure the latest documentation changes are translated.
+8. **Commit and push**: Commit your changes to the changelog, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
+
 
 ---
 
@@ -267,8 +369,8 @@ Do this on the branch you will merge (e.g. **`v1.1.x`**), then push it to GitHub
 
 1. Open the repository on GitHub (e.g. `https://github.com/wsj-br/transrewrt`).
 2. Go to **Pull requests** → **New pull request**.
-3. Set **base:** **`main`** and **compare:** your version branch (e.g. **`v1.1.x`** or another release branch).
-4. Open **Create pull request**, add a title/description if helpful, then merge when ready (**Merge pull request** — use your team’s preferred merge option). Resolve any conflicts in the GitHub UI or locally, then push updates to the compare branch until the PR merges.
+3. Set **base:** **`main`** and **compare:** your version branch (e.g. **`v1.1.x`** or another development branch).
+4. Open **Create pull request**, add a title/description if helpful, then merge when ready (**Merge pull request** - use your team’s preferred merge option). Resolve any conflicts in the GitHub UI or locally, then push updates to the compare branch until the PR merges.
 5. Confirm **`main`** on GitHub shows the new commits (e.g. **Code** tab, branch selector **`main`**, latest commit).
 
 ---
@@ -277,12 +379,12 @@ Do this on the branch you will merge (e.g. **`v1.1.x`**), then push it to GitHub
 
 After **`main`** contains the release commit(s), create the tag and release in one flow in the browser (no local `git tag` / `git push` required unless you prefer it).
 
-1. Go to **Releases** (right-hand **Releases** link on the repo home page, or **Code** → **Releases**).
+1. Go to **Releases** (the right-hand **Releases** link on the repo home page, or **Code** → **Releases**).
 2. Click **Draft a new release**.
-3. Click **Choose a tag**, type a **new** tag name (e.g. **`vX.Y.Z`**) matching [Semantic Versioning](https://semver.org/) and this repo’s release workflow. When GitHub offers to create the tag when the release is published, confirm the tag **target** is **`main`** (the tip of **`main`** after your merge) so the tag points at the release commit.
-4. **Release title** — e.g. `Transrewrt X.Y.Z`.
-5. **Describe this release** — paste or adapt the **`[X.Y.Z]`** section from [CHANGELOG.md](CHANGELOG.md).
-6. Click **Publish release** (not “Save draft”). That publishes the tag and triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml); the **Publish GitHub Release assets** job attaches the Windows installer and Linux AppImages once the build finishes.
+3. Click **Choose a tag**, and enter a **new** tag name (e.g., **`vX.Y.Z`**) that follows [Semantic Versioning](https://semver.org/) and this repo’s release workflow. When GitHub prompts you to create the tag as part of publishing the release, ensure the tag’s **target** is **`main`** (the tip of **`main`** after your merge) so the tag points to the release commit.
+4. **Release title**: e.g., `Transrewrt X.Y.Z`.
+5. **Describe this release**: paste the release notes generated earlier.
+6. Click **Publish release** (not “Save draft”). This will publish the tag and trigger [`.github/workflows/release.yml`](../.github/workflows/release.yml); the **Publish GitHub Release assets** job will attach the Windows installer and Linux AppImages after the build completes.
 
 If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it earlier), use **Choose a tag** → pick that **existing** tag instead of creating a new one, then publish the release the same way.
 
@@ -290,8 +392,8 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 
 ### Release artifacts and manual workflow run
 
-- **Artifacts** — CI also uploads **workflow artifacts** (same naming pattern). The **container image** is **`ghcr.io/wsj-br/transrewrt:X.Y.Z`** (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
-- **Manual workflow run** — From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the **`tag_as_latest`** input if you need the Docker `latest` tag on that manual run.
+- **Artifacts**: CI also uploads **workflow artifacts** (same naming pattern). The **container image** is **`ghcr.io/wsj-br/transrewrt:X.Y.Z`** (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+- **Manual workflow run**: From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the **`tag_as_latest`** input if you need the Docker `latest` tag on that manual run.
 
 ---
 
@@ -300,12 +402,13 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 ### Electron (Desktop)
 
 
-| Phase            | Command                                     | Notes                           |
-|------------------|---------------------------------------------|---------------------------------|
-| **Develop**      | `pnpm dev`                                  | Hot reload, Webpack on :3030    |
-| **Test**         | `pnpm build-renderer` then `pnpm start`     | Run built app                   |
-| **Test (Linux)** | `pnpm build-renderer` then `pnpm start-x11` | Use X11 if Wayland fails        |
-| **Build**        | `pnpm package`                              | Creates installer in `release/` |
+| Phase                   | Command                                     | Notes                                                                                           |
+|-------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **Develop**             | `pnpm dev`                                  | Hot reload, Webpack on :3030                                                                    |
+| **Test**                | `pnpm build-renderer` then `pnpm start`     | Run built app                                                                                   |
+| **Test (Linux)**        | `pnpm build-renderer` then `pnpm start-x11` | Use X11 if Wayland fails                                                                        |
+| **Build**               | `pnpm package`                              | Production build + electron-builder → installers in `release/`                                  |
+| **Build (Linux arm64)** | `pnpm package-arm64`                        | Same pipeline, Linux **arm64** AppImage → `release/` (`build/electron-builder.linux-arm64.cjs`) |
 
 
 ### Web (browser, local server)
@@ -322,13 +425,15 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 ### Docker (web in container)
 
 
-| Phase              | Command                                                                            | Notes                   |
-| ------------------ | ---------------------------------------------------------------------------------- | ----------------------- |
-| **Build image**    | `docker build -t transrewrt-web .`                                                 | Multi-stage build       |
-| **Run**            | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Data dir: `config.json` + `transrewrt.db` (see SYSTEM-OVERVIEW) |
-| **Run (compose)**  | `docker compose up --build -d` or `pnpm docker:up`                                 | Uses docker-compose.yml |
-| **Stop (compose)** | `docker compose down` or `pnpm docker:down`                                        | Stop services           |
-| **Test**           | Open [http://localhost:5000](http://localhost:5000)                                | Config at `/api/config` |
+| Phase               | Command                                                                            | Notes                                                           |
+|---------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| **Build image**     | `docker build -t transrewrt-web .`                                                 | Multi-stage build                                               |
+| **Run**             | `docker run -p 5000:5000 -v transrewrt-data:/app/data -e PORT=5000 transrewrt-web` | Data dir: `config.json` + `transrewrt.db` (see SYSTEM-OVERVIEW) |
+| **Run (compose)**   | `docker compose up --build -d` or `pnpm docker:up`                                 | Uses docker-compose.yml                                         |
+| **Stop (compose)**  | `docker compose down` or `pnpm docker:down`                                        | Stop services                                                   |
+| **Logs (compose)**  | `docker logs transrewrt` or `pnpm docker:logs`                                     | Container `transrewrt`                                          |
+| **Shell (compose)** | `docker exec -it transrewrt /bin/sh` or `pnpm docker:shell`                        | Interactive shell in container                                  |
+| **Test**            | Open [http://localhost:5000](http://localhost:5000)                                | Config at `/api/config`                                         |
 
 
 ---
@@ -337,18 +442,19 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 
 ### Develop, build, and run
 
-| Command                              | Purpose                                                                                                                                         |
-|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm install`                       | Install dependencies (runs `postinstall` / Electron native rebuild)                                                                             |
-| `pnpm dev`                           | Electron dev: webpack on **:3030**, hot reload, native rebuild for Electron                                                                     |
-| `pnpm dev:web`                       | Web dev: webpack on **:5000**, API server on **:3030** (proxied as `/api`)                                                                      |
-| `pnpm build` / `pnpm build-renderer` | Production webpack build → `dist/`                                                                                                              |
-| `pnpm start`                         | Run Electron against current `dist/` (run `build-renderer` first if needed)                                                                     |
-| `pnpm start-x11`                     | Electron on Linux with X11 flags (if Wayland causes issues)                                                                                     |
-| `pnpm serve`                         | `build-renderer` then `start:server` (web smoke test, **:5000**)                                                                                |
-| `pnpm start:server`                  | Web server only (serves `dist/`; use when build already exists)                                                                                 |
-| `pnpm start:server:rebuild`          | `postinstall` (Electron rebuild) then `start:server` — use if native addons were last built for Electron but you need the server on system Node |
-| `pnpm package`                       | Production build + `electron-builder` → installer in `release/`                                                                                 |
+| Command                              | Purpose                                                                                                                                                    |
+|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                      |
+| `pnpm dev`                           | Electron development: runs Webpack on **:3030**, enables hot reload, and performs native rebuild for Electron.                                             |
+| `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:3030** (proxied as `/api`).                                                               |
+| `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
+| `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                            |
+| `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                      |
+| `pnpm serve`                         | Runs `build-renderer` then `start:server` (web smoke test on **:5000**).                                                                                   |
+| `pnpm start:server`                  | Runs the web server only (serves `dist/`; use when the build already exists).                                                                              |
+| `pnpm start:server:rebuild`          | Runs `postinstall` (Electron rebuild) then `start:server`; use if native addons were last built for Electron but you need to run the server on system Node.|
+| `pnpm package`                       | Creates a production build and runs `electron-builder` to generate installers in `release/`.                                                               |
+| `pnpm package-arm64`                 | Same as above, but creates the Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`) in `release/`.                                    |
 
 ### Code quality
 
@@ -364,21 +470,24 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 | `pnpm run i18n:extract`   | Scan renderer → `src/renderer/locales/strings.json`                  |
 | `pnpm run i18n:translate` | Fill missing locales via OpenRouter (`OPENROUTER_API_KEY`); see `--help` |
 | `pnpm run i18n:sync`      | `i18n:extract` then `i18n:translate`                                 |
+| `pnpm run i18n:sync-md-annex` | Update [`dev/i18n.md`](i18n.md) Annex code blocks from `scripts/extract-strings.js` and `scripts/generate-translations.js` |
 
-Shared **translation script** model list (defaults + fallbacks): [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) — not app config; per-run override via `--model` where the script supports it.
+Shared **translation script** model list (defaults + fallbacks): [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) - not app config; per-run override via `--model` where the script supports it.
 
 ### Data, assets, and docs scripts
 
-| Command                   | Purpose                                                                              |
-|---------------------------|--------------------------------------------------------------------------------------|
-| `pnpm generate-test-data` | Seed SQLite with sample API/history rows (cost dashboard / dev)                      |
-| `pnpm take-screenshots`   | Puppeteer capture of UI shots (needs app reachable; see script/env vars)             |
-| `pnpm generate-banner`    | Writes `images/transrewrt_banner.svg` and `.png`                                     |
-| `pnpm translate-docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`) |
-| `pnpm reset-web-password` | Web multi-user: set password in SQLite (`[username] <password>`; default `admin`; `CONFIG_PATH` or `data/config.json`) |
-| `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                      |
-| `pnpm update-version`     | Propagate `package.json` `version` into README badge and other references (run after you bump the version manually)   |
-| `pnpm run 3p-licenses`   | Regenerate [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) from production deps (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
+| Command                   | Purpose                                                                                                                                                         |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pnpm generate-test-data` | Seed SQLite with sample API/history rows (for cost dashboard/dev purposes)                                                                                      |
+| `pnpm take-screenshots`   | Use Puppeteer to capture UI screenshots (app must be reachable; see script/env vars)                                                                            |
+| `pnpm generate-banner`    | Write `images/transrewrt_banner.svg` and `.png`                                                                                                                 |
+| `pnpm translate:docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`)                                                                        |
+| `pnpm translate:cleanup` / `pnpm translate:clean` | Doc cache cleanup: runs `translate:docs --force-update` then [`scripts/translate/cache-cleanup.ts`](../scripts/translate/cache-cleanup.ts) (DB orphans/stale rows, orphaned `translated-docs/` outputs); use `pnpm exec tsx scripts/translate/cache-cleanup.ts --dry-run` to preview |
+| `pnpm clean-logs`         | Remove translation **session** logs under `dev/` and `paths.log-folder`, and cache sidecars under `paths.cache` ([`scripts/clean-translation-logs.js`](../scripts/clean-translation-logs.js)); does not delete `cache.db` or `dev/translations.log`; `--dry-run` to list only |
+| `pnpm reset-web-password` | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`)                        |
+| `pnpm check-api-key`      | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                                                 |
+| `pnpm update-version`     | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                                        |
+| `pnpm run 3p-licenses`    | Regenerate [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) from production dependencies (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
 
 ### Docker and deploy
 
@@ -389,18 +498,18 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm docker:down`                 | Stop compose stack                                                          |
 | `pnpm docker:clean`                | Remove image/volumes (runs `scripts/clean-docker.sh`; Bash)                 |
 | `pnpm docker:devel`                | Build image tagged `wsj-br/transrewrt:devel`                                |
-| `pnpm docker:logs`                 | Tail logs from container `transrewt`                                         |
-| `pnpm docker:shell`                | Shell into `transrewt`                                                       |
-| `pnpm docker:deploy`               | Production deploy ([scripts/docker-deploy.sh](../scripts/docker-deploy.sh)) |
-
+| `pnpm docker:logs`                 | Logs from container `transrewrt` (see [docker-compose.yml](../docker-compose.yml) `container_name`) |
+| `pnpm docker:shell`                | Shell into running container `transrewrt`                                    |
 ### Toolchain
 
 See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm) for **why `source`**, `./` vs CI, and shell notes.
 
-| Command                                                                       | Purpose                                                   |
-|-------------------------------------------------------------------------------|-----------------------------------------------------------|
-| `.\scripts\upgrade-tools.ps1` (Windows) / `source ./scripts/upgrade-tools.sh` (Unix bash) | Upgrade Node (nvm LTS) and global tools (pnpm, ncu, etc.) |
-| `source ./scripts/upgrade-dependencies.sh` (Unix bash)                         | Same nvm behaviour as above, then `ncu`, `pnpm install`, audits |
+| Command                                    | Purpose                                                                                                                                                                                                                                                                                  |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global `pnpm`, `npm-check-updates`, `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                              |
+| `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** nvm-windows `nvm install lts` / `nvm use`, then the same global packages. **Dot-source** (`. …`) so `nvm use` applies to this session (script may remind you if run as `.\…`).                                                                                           |
+| `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), then [eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js), conditional `ncu --upgrade` (may pin ESLint stack), `pnpm install`, `pnpm audit`, `pnpm audit fix`, `pnpm audit` again. |
+| `. .\scripts\upgrade-dependencies.ps1`     | **PowerShell.** Dot-sources [upgrade-tools.ps1](../scripts/upgrade-tools.ps1), then the same ESLint peer check, `ncu`, `pnpm install`, and audit steps. **Must** be dot-sourced (not `.\…`, unless `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                          |
 
 
 ---
@@ -453,7 +562,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                              |
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
-| [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
+| [translate.config.json](../translate.config.json)                                           | Doc translation (`pnpm translate:docs`): source globs, locales, paths, OpenRouter models (see [`scripts/translate/index.ts`](../scripts/translate/index.ts)) |
+| [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate:docs`, `generate-test-data` (not `config.json`) |
 | [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                            |
 | [license-clarifications.json](../license-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-licenses` (`licenseText`, etc.)                                        |
 | [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |

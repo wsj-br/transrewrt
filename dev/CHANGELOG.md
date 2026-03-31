@@ -11,6 +11,12 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `dev/DEVELOPMENT.md` — document **`pnpm clean-logs`** (translation session logs); `scripts/clean-workspace.sh` / `scripts/clean-workspace.ps1` run `scripts/clean-translation-logs.js` before removing build artifacts. Fixed missing comma in `clean-workspace.ps1` artifact list.
+- **Changed**: Renamed `scripts/clear-translation-logs.js` to `scripts/clean-translation-logs.js` (`pnpm clean-logs` unchanged).
+- **Added**: `scripts/sync-i18n-md-script-sources.js` and `pnpm run i18n:sync-md-annex` — refresh the `extract-strings.js` / `generate-translations.js` source annex in `dev/i18n.md` from the repo scripts.
+- **Changed**: `dev/DEVELOPMENT.md` — document `pnpm run i18n:sync-md-annex` in the UI i18n sections.
+- **Changed**: `dev/DEVELOPMENT.md` — added **Document translation (`translate:docs`)** section: `translate.config.json`, `glossary-user.csv`, UI glossary from `strings.json`, CLI flags (`--locale`, `--force`, `--force-update`), and cleanup (`translate:cleanup` / `cache-cleanup.ts`).
+- **Changed**: `dev/DEVELOPMENT.md` — align with current scripts: Windows/PowerShell upgrade commands; `pnpm translate:docs` → `scripts/translate/index.ts` vs legacy `translate-docs.js`; Docker (`transrewrt` container name); remove `docker:deploy` / missing `docker-deploy.sh` and broken `devel_cross_compile_docker_deploy.md` link; GHCR/Raspberry Pi deploy notes; `translate.config.json` in key files.
 - **Changed**: Electron `appDb` — log database path only when `NODE_ENV === "development"` (quiet production startup).
 - **Changed**: `dist-main/` is gitignored and no longer tracked — Electron main/preload webpack output from `pnpm run build:main` only; CI and `pnpm package` / `package-arm64` already run that step before electron-builder.
 - **Changed**: Renderer production build — `THIRD-PARTY-LICENSES.txt` is copied to `dist/` via `CopyWebpackPlugin` in `webpack.config.js` instead of a post-build `copyFileSync` one-liner in `build` / `build-renderer` scripts.
@@ -36,7 +42,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: Renamed `THIRD-PARTY-NOTICES.txt` to `THIRD-PARTY-LICENSES.txt` (`3p-licenses` output, Docker `/app/THIRD-PARTY-LICENSES.txt`, Electron `extraFiles`, docs).
 - **Changed**: Settings > General: turning off **Keep execution history** opens the data-deletion confirmation only when at least one execution-history row exists; otherwise the setting turns off immediately. `GET /api/calls/history` and desktop `getExecutionHistory` accept optional `limit` (capped at 500) for lightweight checks.
 - **Fixed**: Docker image — run `pnpm rebuild better-sqlite3 argon2` after `pnpm prune --prod` so native SQLite/argon2 bindings are present in the copied `node_modules` (avoids "Could not locate the bindings file" on Linux/arm64 Alpine).
-- **Added**: `pnpm clear-logs` — `scripts/clear-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
+- **Added**: `pnpm clean-logs` — `scripts/clean-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
 - **Changed**: `.gitignore` — `translated-docs/.cache/cache.db` is tracked; other files under `translated-docs/.cache/` (logs, backup DBs, etc.) stay ignored.
 - **Changed**: `scripts/translate/config.ts` — default OpenRouter config uses `translationModels` (ordered fallback chain) aligned with `translate.config.json`; default `maxBatchChars` 4096; removed unused `paths.staticImg` default and type field.
 - **Fixed**: `scripts/translate/index.ts` — `rewriteDocLinksForI18nOutput` was producing `]](url)` for every markdown link (double `]`) due to `textPart` already including the closing `]` while the return template also prepended `](`.
