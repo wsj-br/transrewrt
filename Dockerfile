@@ -1,6 +1,7 @@
 # Stage 1: Build the React frontend and prepare production node_modules
 FROM node:24-alpine AS builder
 
+# Set the working directory to /app
 WORKDIR /app
 
 # Build deps for native modules (argon2, better-sqlite3) – removed after install
@@ -35,8 +36,10 @@ RUN pnpm rebuild better-sqlite3 argon2
 # Stage 2: Production server – copy resolved deps from builder, no install
 FROM node:24-alpine AS production
 
+# Add tzdata to the container
 RUN apk add --no-cache tzdata
 
+# Set the working directory to /app
 WORKDIR /app
 
 # Copy package files and resolved node_modules from builder (no pnpm install)
@@ -50,11 +53,8 @@ COPY --from=builder /app/dist ./dist
 COPY src/server/ ./server/
 COPY src/shared/ ./shared/
 
-# Copy config for initialization
-#COPY config/ ./config/
-
-# Third-party license notices (same file as desktop releases)
-COPY --from=builder /app/THIRD-PARTY-LICENSES.txt ./
+# Copy the LICENSE file
+COPY LICENSE ./LICENSE
 
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
@@ -63,10 +63,10 @@ RUN mkdir -p /app/data
 COPY --from=builder /app/scripts/reset-web-password.js  ./scripts/
 COPY --from=builder --chmod=555 /app/scripts/reset-web-password ./scripts/
 
-
 # Build timestamp for About tab (same format as write-build-timestamp.js)
 RUN date +"%Y-%m-%dT%H:%M:%S%z" > build_timestamp
 
+# Default environment variables
 ENV CONFIG_PATH=/app/data/config.json
 ENV NODE_ENV=production
 ENV TZ=Europe/London
@@ -79,7 +79,8 @@ LABEL org.opencontainers.image.source=https://github.com/wsj-br/transrewrt
 LABEL org.opencontainers.image.description="Transrewrt Container Image"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 
-
+# Expose port 5000 for the server to listen on
 EXPOSE 5000
 
+# Start the server
 CMD ["node", "server/index.js"]

@@ -158,7 +158,9 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
             setError(r?.error || "not_found");
           }
         } else {
-          const res = await fetch("/THIRD-PARTY-LICENSES.txt");
+          const res = await fetch(
+            new URL("THIRD-PARTY-LICENSES.txt", document.baseURI).href,
+          );
           if (!res.ok) throw new Error(String(res.status));
           const body = await res.text();
           if (!cancelled) setText(body);

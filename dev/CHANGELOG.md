@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Web/Docker third-party licenses — fetch uses a URL relative to `document.baseURI` (matches production `./` public path and reverse-proxy path prefixes); `build` / `build-renderer` copy `THIRD-PARTY-LICENSES.txt` into `dist/` and the server resolves that path so the file ships with the static bundle (Docker no longer needs a separate root copy).
 - **Changed**: `scripts/translate/index.ts` — no longer prints per-locale `Files: … processed … skipped` and `Segments: … cached … translated` lines (aggregate summary unchanged).
 - **Changed**: Settings → Appearance — default (Windows/macOS) monospace presets use **Courier New** instead of **Menlo** so the third choice is visually distinct in the browser (Menlo often substituted to the same face as Consolas / `ui-monospace` on Windows web). Saved **Menlo** still resolves with a `Courier New` fallback stack.
 - **Fixed**: `license-clarifications.json` — `@epic-web/invariant` ships no `LICENSE` on npm (checker used `README.md`); clarification supplies standard MIT text so `THIRD-PARTY-LICENSES.txt` no longer embeds the full readme.

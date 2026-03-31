@@ -41,11 +41,13 @@ function resolveBuildTimestampPath() {
 }
 const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
 
-/** Docker: /app/THIRD-PARTY-LICENSES.txt. Dev: repo root via src/server → ../.. */
+/** Docker: /app/THIRD-PARTY-LICENSES.txt or /app/dist/THIRD-PARTY-LICENSES.txt (after build). Dev: repo root via src/server → ../.. */
 function resolveThirdPartyLicensesPath() {
   const oneUp = path.join(__dirname, "..", "THIRD-PARTY-LICENSES.txt");
+  const inDist = path.join(__dirname, "..", "dist", "THIRD-PARTY-LICENSES.txt");
   const twoUp = path.join(__dirname, "..", "..", "THIRD-PARTY-LICENSES.txt");
   if (fs.existsSync(oneUp)) return oneUp;
+  if (fs.existsSync(inDist)) return inDist;
   if (fs.existsSync(twoUp)) return twoUp;
   return null;
 }
