@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import { Zap, Copy } from "lucide-react";
 import PropTypes from "prop-types";
+import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
 
 const useStyles = makeStyles({
   root: {
@@ -79,7 +80,7 @@ const TransformTestPanel = ({
   const { t } = useTranslation();
   const inputStyle = useMemo(
     () => ({
-      ...(fontFamily && { fontFamily }),
+      ...(fontFamily && { fontFamily: resolveAppearanceFontFamilyCss(fontFamily) }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
       color: "#e0e0e0",
     }),
@@ -87,7 +88,7 @@ const TransformTestPanel = ({
   );
   const outputStyle = useMemo(
     () => ({
-      ...(fontFamily && { fontFamily }),
+      ...(fontFamily && { fontFamily: resolveAppearanceFontFamilyCss(fontFamily) }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
       color: "#e0e0e0",
     }),

@@ -1565,16 +1565,6 @@ async function main() {
         totalStats.totalTimeMs += localeStats.totalTimeMs;
         totalStats.fileTimes.push(...localeStats.fileTimes);
 
-        console.log(
-          chalk.gray(
-            `   [${locale}] Files: ${localeStats.filesProcessed} processed, ${localeStats.filesSkipped} skipped`
-          )
-        );
-        console.log(
-          chalk.gray(
-            `   [${locale}] Segments: ${localeStats.segmentsCached} cached, ${localeStats.segmentsTranslated} translated`
-          )
-        );
         if (localeStats.totalTimeMs > 0) {
           console.log(
             chalk.gray(

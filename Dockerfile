@@ -53,6 +53,9 @@ COPY src/shared/ ./shared/
 # Copy config for initialization
 #COPY config/ ./config/
 
+# Third-party license notices (same file as desktop releases)
+COPY --from=builder /app/THIRD-PARTY-LICENSES.txt ./
+
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
 

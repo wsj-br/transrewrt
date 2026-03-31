@@ -12,27 +12,18 @@ import {
 import { interpolateTemplate } from '../utils/misc/formatUtils';
 import ConfirmModal from './ConfirmModal';
 import webAPI from '../utils/api/webApiClient';
-
-const DEFAULT_FONT = 'Verdana';
-
-const FONT_OPTIONS = [
-  { type: 'header', value: '__sans__', label: '— Sans-serif —' },
-  { type: 'font', value: 'system-ui', label: 'system-ui' },
-  { type: 'font', value: 'Segoe UI', label: 'Segoe UI' },
-  { type: 'font', value: 'Verdana', label: 'Verdana' },
-  { type: 'header', value: '__serif__', label: '— Serif —' },
-  { type: 'font', value: 'Georgia', label: 'Georgia' },
-  { type: 'font', value: 'Times New Roman', label: 'Times New Roman' },
-  { type: 'font', value: 'Cambria', label: 'Cambria' },
-  { type: 'header', value: '__mono__', label: '— Monospace —' },
-  { type: 'font', value: 'ui-monospace', label: 'ui-monospace' },
-  { type: 'font', value: 'Consolas', label: 'Consolas' },
-  { type: 'font', value: 'Menlo', label: 'Menlo' },
-];
-
-const FONT_VALUES = FONT_OPTIONS.filter((o) => o.type === 'font').map((o) => o.value);
+import { getAppearanceFontOptions, resolveAppearanceFontFamilyCss } from '../utils/misc/appearanceFontOptions';
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+
+function getAppearanceFontContext() {
+  const isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+  const platform =
+    !isWebMode && typeof window.electronAPI?.getRuntimePlatform === "function"
+      ? window.electronAPI.getRuntimePlatform()
+      : undefined;
+  return getAppearanceFontOptions({ isElectron: !isWebMode, platform });
+}
 
 /** Normalize to the two supported behaviors; map legacy values for existing configs. */
 function normalizeEnterBehavior(value) {
@@ -100,6 +91,12 @@ const SettingsGeneralTab = ({
   const formStyles = useFormStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
+
+  const { options: FONT_OPTIONS, defaultFont: DEFAULT_FONT, fontValues: FONT_VALUES } = useMemo(() => {
+    const { options, defaultFont } = getAppearanceFontContext();
+    const fontValues = options.filter((o) => o.type === "font").map((o) => o.value);
+    return { options, defaultFont, fontValues };
+  }, []);
 
   const [showDisableHistoryConfirm, setShowDisableHistoryConfirm] = useState(false);
   const [historyDeleteRange, setHistoryDeleteRange] = useState('gt_3m');
@@ -552,7 +549,13 @@ const SettingsGeneralTab = ({
               style={{ width: 'auto', minWidth: '200px' }}
             >
               {localSettings.font_family && !FONT_VALUES.includes(localSettings.font_family) ? (
-                <Option value={localSettings.font_family} style={{ fontFamily: localSettings.font_family }}>
+                <Option
+                  value={localSettings.font_family}
+                  style={{
+                    fontFamily:
+                      resolveAppearanceFontFamilyCss(localSettings.font_family) || localSettings.font_family,
+                  }}
+                >
                   {localSettings.font_family}
                 </Option>
               ) : null}
@@ -562,7 +565,13 @@ const SettingsGeneralTab = ({
                     {t(item.label)}
                   </Option>
                 ) : (
-                  <Option key={item.value} value={item.value} style={{ fontFamily: item.value }}>
+                  <Option
+                    key={item.value}
+                    value={item.value}
+                    style={{
+                      fontFamily: resolveAppearanceFontFamilyCss(item.value) || item.value,
+                    }}
+                  >
                     {item.label}
                   </Option>
                 )
@@ -590,7 +599,10 @@ const SettingsGeneralTab = ({
               color: tokens.colorNeutralForeground2,
               wordWrap: 'break-word',
               maxWidth: '300px',
-              fontFamily: localSettings.font_family || DEFAULT_FONT,
+              fontFamily:
+              resolveAppearanceFontFamilyCss(localSettings.font_family || DEFAULT_FONT) ||
+              localSettings.font_family ||
+              DEFAULT_FONT,
               fontSize: `${localSettings.font_size || 14}px`,
               lineHeight: '1.5',
             }}

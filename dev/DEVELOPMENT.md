@@ -176,11 +176,11 @@ Regenerate the **production** dependency license bundle for releases and complia
 
 | Command                 | Purpose |
 |-------------------------|---------|
-| `pnpm run 3p-licenses`  | Writes [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt) at the repo root. |
+| `pnpm run 3p-licenses`  | Writes [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) at the repo root. |
 
-Implementation: [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js) runs **`license-checker-rseidelsohn`** (devDependency) with `--production`, `--json`, [license-clarifications.json](../license-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
+Implementation: [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js) runs **`license-checker-rseidelsohn`** (devDependency) with `--production`, `--json`, [license-clarifications.json](../license-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
 
-**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `license-clarifications.json`. Commit the updated `THIRD-PARTY-NOTICES.txt` with the dependency change when appropriate.
+**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `license-clarifications.json`. Commit the updated `THIRD-PARTY-LICENSES.txt` with the dependency change when appropriate.
 
 **Overrides:** Edit [license-clarifications.json](../license-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `@fluentui/react-icons@^2.0.0` or `@fluentui/react-components@^9.0.0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
 
@@ -353,7 +353,7 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm reset-web-password` | Web multi-user: set password in SQLite (`[username] <password>`; default `admin`; `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`      | Masked OpenRouter key + limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                      |
 | `pnpm update-version`     | Propagate `package.json` `version` into README badge and other references (run after you bump the version manually)   |
-| `pnpm run 3p-licenses`   | Regenerate [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt) from production deps (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
+| `pnpm run 3p-licenses`   | Regenerate [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) from production deps (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
 
 ### Docker and deploy
 
@@ -431,8 +431,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate-docs`, `generate-test-data` (not `config.json`) |
 | [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                            |
 | [license-clarifications.json](../license-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-licenses` (`licenseText`, etc.)                                        |
-| [THIRD-PARTY-NOTICES.txt](../THIRD-PARTY-NOTICES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |
-| [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `THIRD-PARTY-NOTICES.txt`                                                            |
+| [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |
+| [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js)             | Invokes license checker + writes `THIRD-PARTY-LICENSES.txt`                                                            |
 | [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                                       |
 
 

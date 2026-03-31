@@ -12,6 +12,11 @@ overrides:
   qs: '>=6.14.2'
   minimatch: '>=10.2.1'
 
+patchedDependencies:
+  license-checker-rseidelsohn@4.4.2:
+    hash: bdb4a033d92459462f205e513bf99c3e629e4a733c6eaf942f97c8659bd08a84
+    path: patches/license-checker-rseidelsohn@4.4.2.patch
+
 importers:
 
   .:
@@ -151,7 +156,7 @@ importers:
         version: 4.6.0
       license-checker-rseidelsohn:
         specifier: ^4.4.2
-        version: 4.4.2
+        version: 4.4.2(patch_hash=bdb4a033d92459462f205e513bf99c3e629e4a733c6eaf942f97c8659bd08a84)
       mini-css-extract-plugin:
         specifier: ^2.10.2
         version: 2.10.2(webpack@5.105.4)
@@ -10302,7 +10307,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  license-checker-rseidelsohn@4.4.2:
+  license-checker-rseidelsohn@4.4.2(patch_hash=bdb4a033d92459462f205e513bf99c3e629e4a733c6eaf942f97c8659bd08a84):
     dependencies:
       chalk: 4.1.2
       debug: 4.4.3

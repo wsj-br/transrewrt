@@ -41,6 +41,15 @@ function resolveBuildTimestampPath() {
 }
 const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
 
+/** Docker: /app/THIRD-PARTY-LICENSES.txt. Dev: repo root via src/server → ../.. */
+function resolveThirdPartyLicensesPath() {
+  const oneUp = path.join(__dirname, "..", "THIRD-PARTY-LICENSES.txt");
+  const twoUp = path.join(__dirname, "..", "..", "THIRD-PARTY-LICENSES.txt");
+  if (fs.existsSync(oneUp)) return oneUp;
+  if (fs.existsSync(twoUp)) return twoUp;
+  return null;
+}
+
 const DEV_WEB = process.env.DEV_WEB === "true";
 
 const dataDir = path.dirname(CONFIG_PATH);
@@ -149,6 +158,14 @@ app.use(
 
 // One level up: dev has src/server → project root; Docker has /app/server → /app
 const distPath = path.resolve(path.join(__dirname, "..", "dist"));
+
+app.get("/THIRD-PARTY-LICENSES.txt", (req, res) => {
+  const licensePath = resolveThirdPartyLicensesPath();
+  if (!licensePath) {
+    return res.status(404).type("text/plain").send("Third-party licenses file not found.");
+  }
+  return res.type("text/plain; charset=utf-8").sendFile(path.resolve(licensePath));
+});
 
 if (!DEV_WEB) {
   app.use(express.static(distPath));

@@ -11,6 +11,18 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `scripts/translate/index.ts` — no longer prints per-locale `Files: … processed … skipped` and `Segments: … cached … translated` lines (aggregate summary unchanged).
+- **Changed**: Settings → Appearance — default (Windows/macOS) monospace presets use **Courier New** instead of **Menlo** so the third choice is visually distinct in the browser (Menlo often substituted to the same face as Consolas / `ui-monospace` on Windows web). Saved **Menlo** still resolves with a `Courier New` fallback stack.
+- **Fixed**: `license-clarifications.json` — `@epic-web/invariant` ships no `LICENSE` on npm (checker used `README.md`); clarification supplies standard MIT text so `THIRD-PARTY-LICENSES.txt` no longer embeds the full readme.
+- **Fixed**: `license-clarifications.json` — more packages that resolved to `README.md` or a missing `LICENSE` (nested `@jsonjoy.com/json-pointer@1.x` → root `LICENSE`; `esrecurse`, `glob-to-regex.js`, `glob-to-regexp`, `html-parse-stringify`; SPDY-related `spdy`, `spdy-transport`, `handle-thing`, `hpack.js`, `http-deceiver`, `select-hose`, `wbuf`; `embla-carousel`, `embla-carousel-autoplay`, `embla-carousel-fade`) now emit plain license text in `THIRD-PARTY-LICENSES.txt`.
+- **Fixed**: Linux clients — Settings → Appearance **Font family** uses a Linux‑oriented preset list in **Electron on Linux** and in the **web app when the browser reports desktop Linux** (userAgent / `navigator.platform`), so presets match typical fontconfig fonts instead of missing Segoe UI, Consolas, Menlo, etc.; default effective font is `system-ui` on Linux. Windows/macOS (Electron or web) keep the original list. Panel text uses CSS stacks with `sans-serif` / `serif` / `monospace` fallbacks (`resolveAppearanceFontFamilyCss`).
+- **Added**: Preload `electronAPI.getRuntimePlatform` for renderer platform detection.
+- **Added**: Settings → About — **Third‑party licenses** opens a modal with file contents (scrollable; monospace `pre-wrap` text with long lines wrapped, vertical scroll only); desktop loads via main-process read, web/Docker via `GET /THIRD-PARTY-LICENSES.txt`; webpack dev serves the repo file on that path.
+- **Added**: Settings → About — when the app license is Apache-2.0, **Apache 2.0** links to `http://www.apache.org/licenses/LICENSE-2.0` and opens in the system browser (Electron `openExternalUrl`) or a new tab (web).
+- **Changed**: Third‑party licenses modal — after each `---` separator, the next four lines (blank, package + version, license type, first body/copyright line) use blue text (`colorPaletteBlueForeground2`).
+- **Changed**: Renamed `scripts/write-third-party-notices.js` to `scripts/write-third-party-licenses.js` (`pnpm run 3p-licenses`).
+- **Changed**: `pnpm run 3p-licenses` output prefixes each dependency block in `THIRD-PARTY-LICENSES.txt` with `---` and a blank line.
+- **Changed**: Renamed `THIRD-PARTY-NOTICES.txt` to `THIRD-PARTY-LICENSES.txt` (`3p-licenses` output, Docker `/app/THIRD-PARTY-LICENSES.txt`, Electron `extraFiles`, docs).
 - **Changed**: Settings > General: turning off **Keep execution history** opens the data-deletion confirmation only when at least one execution-history row exists; otherwise the setting turns off immediately. `GET /api/calls/history` and desktop `getExecutionHistory` accept optional `limit` (capped at 500) for lightweight checks.
 - **Fixed**: Docker image — run `pnpm rebuild better-sqlite3 argon2` after `pnpm prune --prod` so native SQLite/argon2 bindings are present in the copied `node_modules` (avoids "Could not locate the bindings file" on Linux/arm64 Alpine).
 - **Added**: `pnpm clear-logs` — `scripts/clear-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
@@ -92,7 +104,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: `license-clarifications.json` uses semver ranges (`^2.0.0`, `^9.0.0`) for Fluent UI entries so patch/minor bumps do not require key updates.
 - **Changed**: [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) documents `pnpm run 3p-licenses`, clarifications, and related files under **Build** and **Useful Commands**.
 - **Changed**: `license-clarifications.json` — full MIT text for `@fluentui/react-icons`; `@fluentui/react-components` matches published `LICENSE` (including assets note) instead of a truncated placeholder.
-- **Changed**: `pnpm run 3p-licenses` runs `scripts/write-third-party-notices.js` with `license-checker-rseidelsohn` `--json`, `--customPath`, and `license-clarifications.json`, so `licenseText` overrides (e.g. `@fluentui/react-icons` without a `LICENSE` file) appear in `THIRD-PARTY-NOTICES.txt` instead of the package README.
+- **Changed**: `pnpm run 3p-licenses` runs `scripts/write-third-party-licenses.js` with `license-checker-rseidelsohn` `--json`, `--customPath`, and `license-clarifications.json`, so `licenseText` overrides (e.g. `@fluentui/react-icons` without a `LICENSE` file) appear in `THIRD-PARTY-LICENSES.txt` instead of the package README.
 
 ## 1.0.15 - 2026-03-27
 

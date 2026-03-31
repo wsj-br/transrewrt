@@ -522,6 +522,35 @@ ipcMain.handle("shell:openExternal", async (_event, url) => {
   return true;
 });
 
+/** Packaged: extraFiles place file in resources. Dev: repo root next to package.json. */
+function getThirdPartyLicensesPath() {
+  const candidates = [];
+  if (app.isPackaged) {
+    candidates.push(path.join(process.resourcesPath, "THIRD-PARTY-LICENSES.txt"));
+  }
+  candidates.push(path.join(app.getAppPath(), "THIRD-PARTY-LICENSES.txt"));
+  candidates.push(path.join(process.cwd(), "THIRD-PARTY-LICENSES.txt"));
+  for (const p of candidates) {
+    try {
+      if (p && fs.existsSync(p)) return p;
+    } catch {
+      /* ignore */
+    }
+  }
+  return null;
+}
+
+ipcMain.handle("shell:readThirdPartyLicenses", async () => {
+  const filePath = getThirdPartyLicensesPath();
+  if (!filePath) return { ok: false, error: "not_found" };
+  try {
+    const fileText = await fs.promises.readFile(filePath, "utf8");
+    return { ok: true, text: fileText };
+  } catch (e) {
+    return { ok: false, error: e?.message || "read_failed" };
+  }
+});
+
 const { registerAppDbHandlers, getDb } = require("./appDb");
 const { registerConfigBackupIpc } = require("./configBackupIpc");
 

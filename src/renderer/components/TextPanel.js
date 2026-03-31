@@ -16,6 +16,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import { computeRewriteDiff } from "../utils/misc/rewriteDiff";
+import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
 
 const useStyles = makeStyles({
   panelHeaderRow: {
@@ -177,8 +178,9 @@ const TextPanel = ({
   const footerDisplay = footerStats ?? stats;
 
   const textareaStyle = useMemo(() => {
+    const resolved = fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined;
     const style = {
-      ...(fontFamily && { fontFamily }),
+      ...(resolved && { fontFamily: resolved }),
       ...(fontSize && { fontSize: `${fontSize}px` }),
       color: textColor || "#e0e0e0",
     };
@@ -235,7 +237,7 @@ const TextPanel = ({
           <div
             className={styles.diffView}
             style={{
-              fontFamily: fontFamily || undefined,
+              fontFamily: fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined,
               fontSize: fontSize ? `${fontSize}px` : undefined,
             }}
             aria-label={title || t("Text panel")}
