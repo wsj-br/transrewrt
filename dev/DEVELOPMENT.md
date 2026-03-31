@@ -22,16 +22,12 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
     - [3. Automatic glossary (aligned with UI i18n)](#3-automatic-glossary-aligned-with-ui-i18n)
     - [4. Running the translator (`--locale`, `--force`, `--force-update`)](#4-running-the-translator---locale---force---force-update)
     - [5. Cleanup (`translate:cleanup` / `translate:clean`)](#5-cleanup-translatecleanup--translateclean)
-    - [6. Translation session logs (`pnpm clean-logs`)](#6-translation-session-logs-pnpm-clear-logs)
+    - [6. Translation session logs (`pnpm clean-logs`)](#6-translation-session-logs-pnpm-clean-logs)
   - [Third-party licenses (`3p-licenses`)](#third-party-licenses-3p-licenses)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
   - [Production-style (smoke test)](#production-style-smoke-test)
-- [Deploy](#deploy)
-  - [Electron (standalone installers)](#electron-standalone-installers)
-  - [Web (Docker)](#web-docker)
-  - [Raspberry Pi (arm64)](#raspberry-pi-arm64)
-  - [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release)
+- [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release)
   - [Prepare commits on the version branch](#prepare-commits-on-the-version-branch)
   - [Merge into `main` (GitHub)](#merge-into-main-github)
   - [Publish the GitHub Release](#publish-the-github-release)
@@ -237,13 +233,13 @@ Other useful flags: **`--dry-run`** (no writes), **`--no-cache`** (ignore cache 
 
 The cache DB can accumulate **orphaned** rows (deleted/renamed sources) and **stale** rows (never hit again). Translated files under `paths.i18n` can become **orphans** if a source doc is removed or locales shrink.
 
-**Recommended:** run the packaged cleanup (runs **`translate:docs --force-update`** first so segment hits refresh `last_hit_at`, then the cleanup script):
-
 ```bash
 pnpm translate:cleanup
 # alias:
 pnpm translate:clean
 ```
+> **note:** this script first runs **`translate:docs --force-update`** so segments refresh their `last_hit_at`; then it runs the cleanup script
+
 
 **Manual cleanup only** (inspect without deleting):
 
@@ -306,46 +302,11 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 ---
 
-## Deploy
-
-### Electron (standalone installers)
-
-- Run `pnpm package` to produce installers in `release/` (e.g. `Transrewrt Setup <version>.exe` on Windows).
-- App data: Windows `%APPDATA%\transrewrt\`, Linux `~/.config/transrewrt/` or `~/.local/share/transrewrt/`.
-- Distribute the installer; users install and run. Updating is done by installing a new version; user data is preserved.
-
-### Web (Docker)
-
-- **Local:** `docker compose up -d` or `pnpm docker:up`. Volume `transrewrt-data` is mounted at **`/app/data`**: server **`config.json`**, SQLite **`transrewrt.db`** (users, sessions, **`user_preferences`**, calls, history text, custom prompts), and related files - see [SYSTEM-OVERVIEW.md § Config and State](SYSTEM-OVERVIEW.md#config-and-state). Open [http://localhost:5000](http://localhost:5000).
-- **Production:** Use the image published by CI — **`ghcr.io/wsj-br/transrewrt:<tag>`** (see [`.github/workflows/release.yml`](../.github/workflows/release.yml)) — or build locally (`docker build …`) and run with the same volume/env pattern as [docker-compose.yml](../docker-compose.yml). The old `scripts/docker-deploy.sh` / `pnpm docker:deploy` entry points were removed (superseded by the release workflow).
-
-### Raspberry Pi (arm64)
-
-For deploying the web app to a Pi (e.g. host `pi-piro`). If you **pull a release image from GHCR**, only **step 2** applies. Use **steps 1 and 3** when you **build** the image yourself (e.g. cross-compile on another machine).
-
-1. **QEMU + buildx** (one-time, on the machine where you build the image):
-
-   ```bash
-   docker run --privileged --rm tonistiigi/binfmt --install all
-   docker buildx create --name multiarch --driver docker-container --use
-   docker buildx inspect --bootstrap
-   ```
-
-2. **Pull from GHCR (recommended):** On the Pi, `docker login ghcr.io` if needed, then `docker pull ghcr.io/wsj-br/transrewrt:<version>` (or `:latest` per your policy) and run with `-v transrewrt-data:/app/data` and port **5000** as in compose.
-
-3. **Manual image build:** Build with `pnpm docker:devel` (or `docker buildx build --platform linux/arm64 -t wsj-br/transrewrt:devel --load .`). Then on the Pi: stop existing container, `docker volume create transrewrt-data` if needed, transfer image (`docker save ... | ssh pi-piro "docker load"`), and run:
-
-   ```bash
-   docker run -d --rm -p 5000:5000 -v transrewrt-data:/app/data --name transrewrt-web wsj-br/transrewrt:devel
-   ```
-
-   Access at [http://pi-piro:5000](http://pi-piro:5000).
-
-### Releasing (CI builds and GitHub Release)
+## Releasing (CI builds and GitHub Release)
 
 Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
-Use a **long-lived version branch** for patch lines (for example **`v1.1.x`** - any name such as `1.1.x` works if your team uses that convention). Do release prep there, merge into **`main`** through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
+Use a version branch for new features or patch lines (for example **`v1.1.x`**). Do release prep there, merge into **`main`** through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
 
 ---
 
