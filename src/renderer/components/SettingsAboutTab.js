@@ -233,6 +233,10 @@ const SettingsAboutTab = () => {
         rel="noopener noreferrer"
         className={styles.link}
         appearance="subtle"
+        onClick={(e) => {
+          e.preventDefault();
+          openExternalUrl(REPO_URL);
+        }}
       >
         <img src={GitHubInvertocat} alt="" className={styles.githubIcon} />
         <b>{REPO_URL}</b>

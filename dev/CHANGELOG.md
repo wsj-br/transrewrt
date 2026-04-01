@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+
+## 1.1.1 - 2026-03-31
+
+- **Fixed**: Settings → About — repository URL link uses `openExternalUrl` (system browser in Electron, new tab in web) like the Apache 2.0 license link.
 - **Changed**: `dev/DEVELOPMENT.md` — document **`pnpm clean-logs`** (translation session logs); `scripts/clean-workspace.sh` / `scripts/clean-workspace.ps1` run `scripts/clean-translation-logs.js` before removing build artifacts. Fixed missing comma in `clean-workspace.ps1` artifact list.
 - **Changed**: Renamed `scripts/clear-translation-logs.js` to `scripts/clean-translation-logs.js` (`pnpm clean-logs` unchanged).
 - **Added**: `scripts/sync-i18n-md-script-sources.js` and `pnpm run i18n:sync-md-annex` — refresh the `extract-strings.js` / `generate-translations.js` source annex in `dev/i18n.md` from the repo scripts.
