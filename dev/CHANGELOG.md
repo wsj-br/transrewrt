@@ -14,6 +14,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## 1.1.1 - 2026-04-01
 
+- **Fixed**: Electron packaged builds (including Linux AppImage) — **Third‑party licenses** resolves `THIRD-PARTY-LICENSES.txt` from the app content root (`extraFiles` location, sibling of `resources/`) and from `dist/` inside the asar; the previous paths only checked `resources/` and `app.asar/…` at the archive root, so the file was never found when shipped via `extraFiles`.
 - **Fixed**: Settings → About — repository URL link uses `openExternalUrl` (system browser in Electron, new tab in web) like the Apache 2.0 license link.
 - **Changed**: `dev/DEVELOPMENT.md` — document **`pnpm clean-logs`** (translation session logs); `scripts/clean-workspace.sh` / `scripts/clean-workspace.ps1` run `scripts/clean-translation-logs.js` before removing build artifacts. Fixed missing comma in `clean-workspace.ps1` artifact list.
 - **Changed**: Renamed `scripts/clear-translation-logs.js` to `scripts/clean-translation-logs.js` (`pnpm clean-logs` unchanged).

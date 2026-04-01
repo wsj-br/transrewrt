@@ -531,12 +531,16 @@ ipcMain.handle("shell:openExternal", async (_event, url) => {
   return true;
 });
 
-/** Packaged: extraFiles place file in resources. Dev: repo root next to package.json. */
+/** Packaged: electron-builder extraFiles go to app content root (parent of `resources/`), not inside resources. Also check `dist/` inside asar (webpack copy). Dev: repo root or dist. */
 function getThirdPartyLicensesPath() {
   const candidates = [];
   if (app.isPackaged) {
+    candidates.push(
+      path.join(path.dirname(process.resourcesPath), "THIRD-PARTY-LICENSES.txt"),
+    );
     candidates.push(path.join(process.resourcesPath, "THIRD-PARTY-LICENSES.txt"));
   }
+  candidates.push(path.join(app.getAppPath(), "dist", "THIRD-PARTY-LICENSES.txt"));
   candidates.push(path.join(app.getAppPath(), "THIRD-PARTY-LICENSES.txt"));
   candidates.push(path.join(process.cwd(), "THIRD-PARTY-LICENSES.txt"));
   for (const p of candidates) {
