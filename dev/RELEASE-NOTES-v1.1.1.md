@@ -2,7 +2,7 @@
 
 # Transrewrt 1.1.1 - Release Notes
 
-**Release date:** 2026-03-31
+**Release date:** 2026-04-01
 
 Transrewrt 1.1.1 focuses on everyday usability improvements across rewrite, transform, settings, and self-hosted deployments. This release adds a few highly visible features, improves several existing workflows, and fixes a number of rough edges that affected layout, configuration, and sign-in behavior.
 

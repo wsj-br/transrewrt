@@ -12,7 +12,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 ## Unreleased
 
 
-## 1.1.1 - 2026-03-31
+## 1.1.1 - 2026-04-01
 
 - **Fixed**: Settings → About — repository URL link uses `openExternalUrl` (system browser in Electron, new tab in web) like the Apache 2.0 license link.
 - **Changed**: `dev/DEVELOPMENT.md` — document **`pnpm clean-logs`** (translation session logs); `scripts/clean-workspace.sh` / `scripts/clean-workspace.ps1` run `scripts/clean-translation-logs.js` before removing build artifacts. Fixed missing comma in `clean-workspace.ps1` artifact list.
