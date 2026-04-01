@@ -39,7 +39,7 @@ Published builds for this release are attached to the GitHub **Releases** page f
 
 - **Windows**: Installer (x64)
 - **Linux**: AppImage (x64 and arm64)
-- **Docker**: Multi-architecture images for amd64 and arm64
+- **Docker**: Multi-architecture images for amd64 and arm64 (`ghcr.io/wsj-br/transrewrt:latest` or `ghcr.io/wsj-br/transrewrt:1.1.1`)
 
 Exact filenames and checksums appear on the release page.
 
