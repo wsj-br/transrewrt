@@ -76,7 +76,7 @@ function asPlainVerticalPreferClarifications(sorted) {
 
 const outFile = path.join(root, "THIRD-PARTY-LICENSES.txt");
 const customFormat = path.join(__dirname, "license-checker-custom-format.json");
-const clarifications = path.join(root, "license-clarifications.json");
+const clarifications = path.join(root, "3p-lic-clarifications.json");
 
 const bin = path.join(root, "node_modules", ".bin", "license-checker-rseidelsohn");
 if (!fs.existsSync(bin)) {
