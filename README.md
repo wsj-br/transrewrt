@@ -316,7 +316,6 @@ Configure only the providers you use. Model IDs are namespaced (`openrouter/…`
 - Default admin: `admin` / `transrewrt26`.
 - Manage users in **Settings → Users**.
 - Reset a password: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (from source: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 
