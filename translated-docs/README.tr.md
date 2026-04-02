@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:47:29.003Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:43:52.407Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: tr
 source_file_path: README.md
 ---
@@ -42,6 +42,25 @@ Yükleme yapıldıktan sonra tüm özelliklerin kapsamlı bir incelemesi için *
 
 <br/>
 
+<a id="table-of-contents"></a>
+## İçindekiler
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Ekran görüntüleri](#screenshots)
+- [Hızlı başlangıç](#quick-start)
+- [OpenRouter API anahtarı edinme](#getting-an-openrouter-api-key)
+- [Yapılandırma ve ortam](#configuration-and-environment)
+- [Geliştirme ve mimari](#development-and-architecture)
+- [Sorun bildirme](#reporting-issues)
+- [Feragatname](#disclaimer)
+- [Lisans](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Ekran Görüntüleri
 
@@ -71,33 +90,15 @@ Yükleme yapıldıktan sonra tüm özelliklerin kapsamlı bir incelemesi için *
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## İçindekiler
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Hızlı başlangıç](#quick-start)
-- [Yükleme](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Zaman dilimi yapılandırması](#configuring-the-timezone)
-- [OpenRouter API anahtarı alma](#getting-an-openrouter-api-key)
-- [Yapılandırma ve ortam](#configuration-and-environment)
-- [Geliştirme ve mimari](#development-and-architecture)
-- [Sorun bildirme](#reporting-issues)
-- [Sorumluluk reddi](#disclaimer)
-- [Lisans](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Hızlı Başlangıç
 
-**Docker (kendin barındırmak için önerilir)**
+<details>
+<summary><b>Docker (kendine barındırma için önerilir)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -112,6 +113,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 `sk-or-your-key` kısmını [OpenRouter API anahtarınızla](https://openrouter.ai/keys) değiştirin (veya diğer sağlayıcı anahtarlarını ayarlayın; [Yapılandırma](#configuration-and-environment) bölümüne bakın). [http://localhost:5000](http://localhost:5000) adresini açın ve hizmeti dış dünyaya açmadan önce varsayılan yönetici şifresini değiştirin.
 
+En az bir sağlayıcı anahtarını ortam üzerinden ayarlayın (örneğin OpenRouter için `OPENROUTER_API_KEY`). Değişkenleri `-e` ile veya `docker compose` / `.env` dosyası ile iletin, böylece gizli anahtarlar görüntüye gömülmez. Sağlayıcı anahtarları **web arayüzüne girilmez**; sunucu bunları ortamdan okur.
+
 <br/>
 
 > ℹ️ **NOT**<br/>
@@ -119,105 +122,12 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-**Windows**
-
-[Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından en son `Transrewrt Kurulum x.y.z.exe` dosyasını indirin, kurucuyu çalıştırın ve ardından Başlat menüsünden veya masaüstü kısayolundan başlatın. API anahtarlarınızı **Ayarlar → API** bölümünde girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygın olarak kullanılır.
-
-<br/>
-
-**Linux**
-
-[Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından CPU'nuz için uygun `.AppImage` dosyasını indirin (`x64` tipik bilgisayarlar için, `arm64` Raspberry Pi 4+ dahil birçok ARM cihaz için), ardından:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-API anahtarlarınızı **Ayarlar → API** bölümünde girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygın olarak kullanılır.
-
-**Konsol mesajları:** Paketlenmiş Linux sürümleri (`x64` ve `arm64` AppImages), terminalde Node kullanım dışı uyarılarını bastırır (örneğin yerleşik `punycode` modülü). Chromium "GLES3 desteklenmiyor" gibi GPU / EGL hataları yazdırıyorsa ancak uygulama çalışıyor ise, donanım hızlandırmayı devre dışı bırakarak bunları sessize alabilirsiniz:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Bu amd64 mimarisi için de geçerlidir; dosya adını indirdiğiniz dosyaya göre değiştirin. Daha fazla ayrıntı için bkz. [Kurulum → Linux (Electron)](#linux-electron).
-
-Debian/Ubuntu'da Chromium'un beklediği ek **çalışma zamanı** kütüphanelerine ihtiyacınız olabilir (genellikle tam masaüstlerinde zaten mevcuttur). Masaüstü bildirimleri için **`libnotify4`** kullanın — **`libnotify-dev`** değil (bu, yazılım oluşturmak içindir, paketlenmiş AppImage'i çalıştırmak için değil):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Minimal veya özel görüntüler hâlâ eksik bir `.so` nedeniyle başarısız olabilir; hatanın belirttiği paketi yükleyin (sık karşılaşılan ekler: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Bazı ortamlar AppImage'leri çalıştırmak için FUSE'a ihtiyaç duyar (örneğin Ubuntu 22.04+'da `libfuse2`) veya `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` komutunu kullanın.
-
-<br/>
-
-> ℹ️ **NOT**<br/>
-> macOS şu anda desteklenmemektedir. Transrewrt, Windows, Linux ve Docker için mevcuttur.
-
-<br/>
-
-Uygulama çalıştıktan sonra metinleri nasıl çevireceğinizi, yeniden yazacağınızı ve dönüştüreceğinizi, istemleri nasıl yöneteceğinizi ve modelleri nasıl yapılandıracağınızı öğrenmek için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Kurulum
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından en son kurucuyu indirin.
-- `.exe` dosyasını çalıştırın ve kurulumu tamamlayın.
-- İlk çalıştırma: Uygulamayı Başlat menüsünden veya masaüstü kısayolundan başlatın.
-
-<br/>
-
-> ℹ️ **NOT**<br/>
-> Windows, bu güvenlik uyarılarından birini gösterebilir (imzalanmamış/bağımsız uygulamalar için normaldir):
->   - **Kullanıcı Hesabı Denetimi (UAC)**: "Bilinmeyen bir yayıncıdan gelen bu uygulamanın cihazınıza değişiklik yapmasına izin vermek istiyor musunuz?" → **Evet**'e tıklayın.
->   - **Microsoft Defender SmartScreen**: "Windows PC'nizi korudu" → **Daha fazla bilgi** → **Yine de çalıştır**'a tıklayın.
->
-> Uygulama Microsoft veya büyük bir yayıncı tarafından imzalanmadığı için bu durum meydana gelir—resmi GitHub sürümlerimizden indirildiyse güvenlidir
->  (aşağıdaki SHA256 kontrol toplamını doğrulayın).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından eşleşen `.AppImage` dosyasını (`x64` veya `arm64`) indirin.
-- Çalıştırın: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` (x86_64/amd64 için) veya ARM64 sistemlerde `...-arm64.AppImage` dosya adını kullanın.
-- **Debian/Ubuntu çalışma zamanı kütüphaneleri** (Electron/Chromium; [Hızlı başlangıç → Linux](#quick-start) ile aynı): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** kullanın, `libnotify-dev` değil. Minimal sistemlerde, terminalde bildirilen eksik `.so` dosyalarını yükleyin; `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` gibi eklentiler genellikle gereklidir. AppImage, `libfuse2` (Ubuntu 22.04+) veya `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` gerektirebilir.
-- **GPU mesajları:** Chromium, bazı sistemlerde (özellikle ARM) GPU veya EGL başlatma hataları kaydedebilir; uygulama yine de normal çalışabilir. Bu mesajlardan kaçınmak için donanım hızlandırmasını kapatarak başlatın: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (veya `arm64` dosya adınız).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Çekin: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- En az bir sağlayıcı anahtarı ortam değişkeni aracılığıyla ayarlayın (örneğin OpenRouter için `OPENROUTER_API_KEY`). Gizli anahtarların imaj içine gömülmemesi için değişkenleri `-e` ile veya `docker compose` / `.env` dosyası ile iletin.
-- Sağlayıcı anahtarları web arayüzüne **girilmez**; sunucu bunları ortam değişkenlerinden okur.
-
-Örnek - kalıcılık için adlandırılmış birim (ortam değişkeniyle OpenRouter anahtarı):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-ya da Docker Compose kullanmayı tercih ediyorsanız şunu kullanın:
+Veya Docker Compose kullanın:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -225,8 +135,16 @@ docker compose -f transrewrt.yml up -d
 
 Tüm ortam değişkenleri için [Yapılandırma](#configuration-and-environment) bölümüne bakın. Örneğin `PORT`, `CONFIG_PATH`, `TZ` ve LLM anahtarları (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Sunucu saat dilimi (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Zaman dilimini yapılandırma
+
+<br/>
 
 Uygulama kullanıcı arayüzündeki tarih ve saat, **tarayıcının** yerel ayarlarına ve zaman dilimine uyar. **Sunucu tarafı** davranışları (günlük kaydı vb.) için konteyner `TZ` ortam değişkenini kullanır. Varsayılan değer `TZ=Europe/London` şeklindedir.
 
@@ -251,6 +169,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Geçerli zaman dilimi adlarının listesi [tz veritabanı](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia) sayfasında tutulur.
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından en son `Transrewrt Kurulum x.y.z.exe` dosyasını indirin.
+- `.exe` dosyasını çalıştırın ve kurucuyu takip edin.
+- İlk çalıştırma: Uygulamayı Başlat menüsünden veya masaüstü kısayolundan başlatın.
+- API anahtarlarınızı **Ayarlar → API** kısmına girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygındır.
+
+<br/>
+
+> ℹ️ **NOT**<br/>
+> Windows, bu güvenlik uyarılarından birini gösterebilir (imzalanmamış/bağımsız uygulamalar için normaldir):
+>   - **Kullanıcı Hesabı Denetimi (UAC)**: "Bilinmeyen bir yayımcıdan gelen bu uygulamanın cihazınıza değişiklik yapmasına izin vermek istiyor musunuz?" → **Evet**'e tıklayın.
+>   - **Microsoft Defender SmartScreen**: "Windows PC'nizi korudu" → **Daha fazla bilgi** → **Yine de çalıştır**'a tıklayın.
+>
+> Bu, uygulamanın Microsoft veya büyük bir yayıncı tarafından imzalanmamış olması nedeniyle olur — resmi GitHub yayınlarımızdan indirildiyse güvenlidir (her varlığın yanında yer alan [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasında sağlama toplamlarını doğrulayın).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+[Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından CPU'nuz için uygun `.AppImage` dosyasını indirin (`x64` tipik bilgisayarlar için, `arm64` Raspberry Pi 4+ dahil birçok ARM cihaz için), ardından:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+x86_64/amd64 üzerinde `x64` dosya adını; ARM64 üzerinde `...-arm64.AppImage` adını kullanın.
+
+API anahtarlarınızı **Ayarlar → API** kısmına girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygındır.
+
+**Konsol mesajları:** Paketlenmiş Linux sürümleri (`x64` ve `arm64` AppImages), terminalde Node kullanım dışı uyarılarını bastırır (örneğin yerleşik `punycode` modülü). Chromium "GLES3 desteklenmiyor" gibi GPU / EGL hataları yazdırıyorsa ancak uygulama çalışıyor ise, donanım hızlandırmayı devre dışı bırakarak bunları sessize alabilirsiniz:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Bu amd64 için de geçerlidir; indirdiğiniz dosyaya göre dosya adını değiştirin.
+
+Debian/Ubuntu üzerinde, Chromium tarafından gerekli olan ek **çalışma zamanı** kütüphanelerine ihtiyacınız olabilir (genellikle tam masaüstü kurulumlarında zaten mevcuttur). Gerekirse aşağıdaki komutları çalıştırın:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+`arm64` için `libasound2t64` yerine `libasound2` kullanın. Minimal veya özel kurulumlar hâlâ eksik bir `.so` dosyası nedeniyle başarısız olabilir. Hata mesajında belirtilen paketi yükleyin (sık karşılaşılan ekstralar: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Bazı ortamlarda, uygulamayı `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` komutuyla çalıştırmak gerekebilir.
+
+<br/>
+
+> ℹ️ **NOT**<br/>
+> macOS şu anda desteklenmemektedir. Transrewrt, Windows, Linux ve Docker için mevcuttur.
+
+</details>
+
+<br/>
+
+Uygulama çalıştıktan sonra metinleri nasıl çevireceğinizi, yeniden yazacağınızı ve dönüştüreceğinizi, istemleri nasıl yöneteceğinizi ve modelleri nasıl yapılandıracağınızı öğrenmek için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -266,15 +261,17 @@ Transrewrt, birden fazla yapay zekâ sağlayıcısını destekler. [OpenRouter](
 
 Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) kullanabilir veya [Ollama](https://ollama.com) ile yerel modeller çalıştırabilirsiniz. Desteklenen sağlayıcıların ve ortam değişkenlerinin tam listesi için [Yapılandırma](#configuration-and-environment) bölümüne bakın.
 
+</br>
+
 > ⚠️ **UYARI**<br/>
 > Başka bir cihazdan, kapsayıcıdan veya hizmetten Ollama kullanıyorsanız, Ollama'yı yalnızca localhost değil, dış bağlantıları da kabul edecek şekilde yapılandırmayı unutmayın.
-
-Sınırlar, BYOK ve daha fazlası için [OpenRouter kimlik doğrulaması](https://openrouter.ai/docs/api/reference/authentication) bölümüne bakın.
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Yapılandırma ve ortam
+
+</br>
 
 **Yapılandırma dosyası konumları**
 
@@ -312,16 +309,13 @@ Sadece kullandığınız sağlayıcıları yapılandırın. Model kimlikleri isi
 
 **Veri ve kalıcılık:** Docker için, `config.json` ve SQLite veritabanının kapsayıcı yeniden başlatmalarında kalıcı olması amacıyla `/app/data` konumuna bir birim bağlayın. Birim olmadan, kapsayıcı durduğunda tüm veriler kaybolur.
 
-**Geliştiriciler:** Eski tek anahtarlı yapılandırmayı değiştiren değişiklikleri çekdikten sonra, yerel dosyanız hâlâ kaldırılan alanları (`api_key`, `api_url`, vekil seçenekleri) kullanıyorsa `data/config.json` dosyasını `src/config-defaults/config_default.json` dosyasındaki yeni varsayılan yapıyla sıfırlayın veya birleştirin.
-
 <br/>
 
 **Web kimlik doğrulaması:**
 
 - Varsayılan yönetici: `admin` / `transrewrt26`.
-- Kullanıcıları **Ayarlar → Kullanıcılar** bölümünde yönetin.
-- Şifreyi sıfırla: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (kaynaktan: `pnpm run reset-web-password -- <username> <new-password>`)
+- Kullanıcıları **Ayarlar → Kullanıcılar** kısmında yönetin.
+- Şifre sıfırlama: `docker exec <container> reset-web-password '<kullanıcıadı>' '<yeni-şifre>'`
 
 <br/>
 

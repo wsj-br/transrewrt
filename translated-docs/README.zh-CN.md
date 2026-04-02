@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:41:31.295Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:38:50.800Z'
+source_file_mtime: '2026-04-02T12:36:37.805Z'
+source_file_hash: 0826245f792850f3
 translation_language: zh-CN
 source_file_path: README.md
 ---
@@ -42,6 +42,25 @@ AI 驱动的文本工具：支持多种语言互译、不同风格的文本改�
 
 <br/>
 
+<a id="table-of-contents"></a>
+## 目录
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [屏幕截图](#screenshots)
+- [快速开始](#quick-start)
+- [获取 OpenRouter API 密钥](#getting-an-openrouter-api-key)
+- [配置和环境](#configuration-and-environment)
+- [开发与架构](#development-and-architecture)
+- [报告问题](#reporting-issues)
+- [免责声明](#disclaimer)
+- [许可证](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## 截图
 
@@ -71,33 +90,15 @@ AI 驱动的文本工具：支持多种语言互译、不同风格的文本改�
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## 目录
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [快速开始](#quick-start)
-- [安装](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [配置时区](#configuring-the-timezone)
-- [获取 OpenRouter API 密钥](#getting-an-openrouter-api-key)
-- [配置与环境](#configuration-and-environment)
-- [开发与架构](#development-and-architecture)
-- [报告问题](#reporting-issues)
-- [免责声明](#disclaimer)
-- [许可证](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## 快速开始
 
-**Docker（推荐用于自托管）**
+<details>
+<summary><b>Docker（推荐用于自托管）</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -112,6 +113,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 将 `sk-or-your-key` 替换为您的 [OpenRouter API 密钥](https://openrouter.ai/keys)（或设置其他提供商密钥；参见 [配置](#configuration-and-environment)）。打开 [http://localhost:5000](http://localhost:5000)，并在暴露服务前更改默认管理员密码。
 
+通过环境变量设置至少一个提供商密钥（例如 OpenRouter 使用 `OPENROUTER_API_KEY`）。使用 `-e` 或 `docker compose` / `.env` 传递变量，以确保密钥不会被嵌入镜像中。提供商密钥**不**在 Web 界面中输入；服务器会从环境中读取它们。
+
 <br/>
 
 > ℹ️ **注意**<br/>
@@ -119,105 +122,12 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-**Windows**
-
-从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载最新的 `Transrewrt Setup x.y.z.exe`，运行安装程序，然后通过开始菜单或桌面快捷方式启动。在 **设置 → API** 中输入您的 API 密钥。您需要至少配置一个提供商，OpenRouter 是免费模型的常见选择。
-
-<br/>
-
-**Linux**
-
-从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载适用于您 CPU 的 `.AppImage` 文件（`x64` 适用于典型 PC，`arm64` 适用于许多 ARM 设备，包括树莓派 4+），然后：
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-在 **设置 → API** 中输入您的 API 密钥。您需要至少配置一个提供商，OpenRouter 是免费模型的常见选择。
-
-**控制台消息：** 打包的 Linux 版本（`x64` 和 `arm64` AppImages）会抑制终端中的 Node 弃用警告（例如内置的 `punycode` 模块）。如果 Chromium 打印出 GPU / EGL 错误（如“GLES3 不受支持”），但应用程序仍能正常运行，您可以通过禁用硬件加速来消除这些错误：
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-这同样适用于 amd64 架构；请根据您的下载文件更改文件名。更多细节请参见 [安装 → Linux (Electron)](#linux-electron)。
-
-在 Debian/Ubuntu 系统上，您可能需要额外的 **运行时** 库，因为 Chromium 依赖它们（通常完整桌面系统已包含）。请使用 **`libnotify4`** 实现桌面通知——**不要**使用 `libnotify-dev`（那是用于构建软件的，不适用于运行打包的 AppImage）：
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-最小化或自定义镜像可能仍会因缺少 `.so` 文件而失败；请安装错误提示中提到的软件包（常见附加包：`libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2`）。某些环境需要 FUSE 才能运行 AppImages（例如 Ubuntu 22.04+ 上的 `libfuse2`），或使用 `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`。
-
-<br/>
-
-> ℹ️ **注意**<br/>
-> 当前不支持 macOS。Transrewrt 支持 Windows、Linux 和 Docker。
-
-<br/>
-
-应用运行后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 了解如何翻译、改写和转换文本，管理提示词，以及配置模型。
-
-<br/><br/>
-
-<a id="installation"></a>
-## 安装
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- 从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载最新安装程序。
-- 运行 `.exe` 并按照安装向导操作。
-- 首次运行：通过开始菜单或桌面快捷方式启动应用。
-
-<br/>
-
-> ℹ️ **注意**<br/>
-> Windows 可能会显示以下安全警告之一（对于未签名或独立应用属于正常现象）：
->   - **用户账户控制 (UAC)**：“是否允许此来自未知发布者的应用对你的设备进行更改？” → 点击 **是**。
->   - **Microsoft Defender SmartScreen**：“Windows 保护了你的电脑” → 点击 **更多信息** → **仍要运行**。
->
-> 此情况发生是因为该应用未由 Microsoft 或主要发布者签名——只要从我们的官方 GitHub 发布页面下载即为安全
->  （请核对下方的 SHA256 校验和）。
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- 从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载匹配的 `.AppImage` 文件（`x64` 或 `arm64`）。
-- 运行：在 x86_64/amd64 上执行 `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage`，在 ARM64 上使用 `...-arm64.AppImage` 文件名。
-- **Debian/Ubuntu 运行时库**（Electron/Chromium；与 [快速开始 → Linux](#quick-start) 相同）：`sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — 请使用 **`libnotify4`**，而不是 `libnotify-dev`。在最小化系统上，安装终端中报告的任何缺失的 `.so` 文件；通常还需要 `libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2` 等附加组件。AppImage 可能需要 `libfuse2`（Ubuntu 22.04+）或使用 `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`。
-- **GPU 消息**：在某些系统上（尤其是 ARM），Chromium 可能会记录 GPU 或 EGL 初始化错误；应用程序仍可正常运行。为避免这些消息，可在禁用硬件加速的情况下启动：`TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage`（或你对应的 `arm64` 文件名）。
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- 拉取镜像：`docker pull ghcr.io/wsj-br/transrewrt:latest`
-- 至少通过环境变量设置一个提供商密钥（例如 OpenRouter 使用 `OPENROUTER_API_KEY`）。使用 `-e` 参数或 `docker compose` / `.env` 文件传递变量，以避免将密钥硬编码到镜像中。
-- **不要**在 Web 界面中输入提供商密钥；服务器会从环境变量中读取。
-
-示例 — 使用命名卷持久化数据（通过环境变量设置 OpenRouter 密钥）：
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-或者，如果您更喜欢使用 Docker Compose，请使用：
+或者使用 Docker Compose：
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -225,8 +135,16 @@ docker compose -f transrewrt.yml up -d
 
 请参阅 [Configuration](#configuration-and-environment) 了解所有环境变量，例如 `PORT`、`CONFIG_PATH`、`TZ` 和 LLM 密钥（`OPENROUTER_API_KEY`、`OPENAI_API_KEY` 等）。
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>服务器时区（Docker）</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### 配置时区
+
+<br/>
 
 应用程序的用户界面日期和时间遵循 **浏览器** 的区域设置和时区。对于 **服务器端** 的行为（如日志记录等），容器使用 `TZ` 环境变量。默认值为 `TZ=Europe/London`。
 
@@ -251,6 +169,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 有效时区名称列表可在 [tz 数据库](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)（Wikipedia）中找到。
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- 从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载最新的 `Transrewrt Setup x.y.z.exe`。
+- 运行 `.exe` 并按照安装程序提示操作。
+- 首次运行：从开始菜单或桌面快捷方式启动应用程序。
+- 在 **设置 → API** 中输入您的 API 密钥。您需要配置至少一个提供商；OpenRouter 是免费模型的常见选择。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> Windows 可能会显示以下安全警告之一（对于未签名/独立应用属于正常现象）：
+>   - **用户账户控制 (UAC)**：“是否允许此未知发布者的应用对您的设备进行更改？” → 点击 **是**。
+>   - **Microsoft Defender SmartScreen**：“Windows 保护了您的 PC” → 点击 **更多信息** → **仍然运行**。
+>
+> 这是因为该应用未由 Microsoft 或主要出版商签名——只要从我们官方的 GitHub 发布页面下载（请在 [发布页面](https://github.com/wsj-br/transrewrt/releases) 每个资源旁核对校验和），就是安全的。
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+从 [发布页面](https://github.com/wsj-br/transrewrt/releases) 下载适用于您 CPU 的 `.AppImage` 文件（`x64` 适用于典型 PC，`arm64` 适用于许多 ARM 设备，包括树莓派 4+），然后：
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+在 x86_64/amd64 上使用 `x64` 文件名；在 ARM64 上使用 `...-arm64.AppImage` 文件名。
+
+在 **设置 → API** 中输入您的 API 密钥。您需要配置至少一个提供商；OpenRouter 是免费模型的常见选择。
+
+**控制台消息：** 打包的 Linux 版本（`x64` 和 `arm64` AppImages）会抑制终端中的 Node 弃用警告（例如内置的 `punycode` 模块）。如果 Chromium 打印出 GPU / EGL 错误（如“GLES3 不受支持”），但应用程序仍能正常运行，您可以通过禁用硬件加速来消除这些错误：
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+这同样适用于 amd64；请根据您的下载更改文件名。
+
+在 Debian/Ubuntu 上，您可能需要额外的 **运行时** 库（这些库通常在完整的桌面安装中已存在）。如有需要，请运行以下命令：
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+将 `libasound2t64` 替换为 `libasound2`（适用于 `arm64`）。最小化或自定义安装仍可能因缺少 `.so` 文件而失败。请安装错误消息中提到的软件包（常见的额外包包括：`libatk1.0-0`、`libatk-bridge2.0-0`、`libgbm1`、`libdrm2`）。在某些环境中，您可能需要使用 `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` 来运行应用程序。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 当前不支持 macOS。Transrewrt 支持 Windows、Linux 和 Docker。
+
+</details>
+
+<br/>
+
+应用运行后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 了解如何翻译、改写和转换文本，管理提示词，以及配置模型。
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -266,15 +261,17 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 
 您也可以使用其他提供商（OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras）或使用 [Ollama](https://ollama.com) 在本地运行模型。请参阅 [Configuration](#configuration-and-environment) 了解支持的提供商和环境变量的完整列表。
 
+</br>
+
 > ⚠️ **警告**<br/>
 > 如果您从其他设备、容器或服务使用 Ollama，请记得配置 Ollama 以允许外部连接（不能仅限本地主机）。
-
-关于限制、BYOK 等更多信息，请参见 [OpenRouter 认证](https://openrouter.ai/docs/api/reference/authentication)。
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## 配置与环境
+
+</br>
 
 **配置文件位置**
 
@@ -312,8 +309,6 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 
 **数据与持久化：** 对于 Docker，请在 `/app/data` 挂载一个卷，以便 `config.json` 和 SQLite 数据库在容器重启后仍能保留。若无卷，容器停止时所有数据将丢失。
 
-**开发者：** 在拉取替换旧的单密钥配置的更改后，如果您的本地文件仍在使用已移除的字段（`api_key`、`api_url`、代理选项），请重置或合并 `data/config.json` 与 `src/config-defaults/config_default.json` 中的新默认结构。
-
 <br/>
 
 **Web 认证：**
@@ -321,7 +316,6 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 - 默认管理员：`admin` / `transrewrt26`。
 - 在 **设置 → 用户** 中管理用户。
 - 重置密码：`docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (从源码运行：`pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 

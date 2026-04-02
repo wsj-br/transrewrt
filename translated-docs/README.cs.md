@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:42:04.802Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:39:51.913Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: cs
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Obsah
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Snímky obrazovky](#screenshots)
+- [Rychlý start](#quick-start)
+- [Získání klíče OpenRouter API](#getting-an-openrouter-api-key)
+- [Konfigurace a prostředí](#configuration-and-environment)
+- [Vývoj a architektura](#development-and-architecture)
+- [Hlášení problémů](#reporting-issues)
+- [Upozornění](#disclaimer)
+- [Licence](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Snímky obrazovky
 
@@ -72,33 +91,15 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Obsah
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Rychlý start](#quick-start)
-- [Instalace](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Nastavení časového pásma](#configuring-the-timezone)
-- [Získání klíče OpenRouter API](#getting-an-openrouter-api-key)
-- [Konfigurace a prostředí](#configuration-and-environment)
-- [Vývoj a architektura](#development-and-architecture)
-- [Hlášení problémů](#reporting-issues)
-- [Zřeknutí se záruk](#disclaimer)
-- [Licence](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Rychlý start
 
-**Docker (doporučeno pro samoobslužné hostování)**
+<details>
+<summary><b>Docker (doporučeno pro samoobslužné hostování)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Nahraďte `sk-or-your-key` svým [klíčem OpenRouter API](https://openrouter.ai/keys) (nebo nastavte klíče jiných poskytovatelů; viz [Konfigurace](#configuration-and-environment)). Otevřete [http://localhost:5000](http://localhost:5000) a změňte výchozí heslo správce před tím, než službu zpřístupníte.
 
+Nastavte alespoň jeden klíč poskytovatele prostřednictvím prostředí (například `OPENROUTER_API_KEY` pro OpenRouter). Předejte proměnné pomocí `-e` nebo `docker compose` / `.env`, aby se tajemství neuložila do image. Klíče poskytovatelů se **ne** zadávají ve webovém uživatelském rozhraní; server je čte z prostředí.
+
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
@@ -120,105 +123,12 @@ Nahraďte `sk-or-your-key` svým [klíčem OpenRouter API](https://openrouter.ai
 
 <br/>
 
-**Windows**
-
-Stáhněte si nejnovější `Transrewrt Setup x.y.z.exe` z části [Releases](https://github.com/wsj-br/transrewrt/releases), spusťte instalační program a poté spusťte aplikaci z nabídky Start nebo z ikony na ploše. Zadejte své klíče API v **Nastavení → API**. Musíte nakonfigurovat alespoň jednoho poskytovatele, OpenRouter je běžný pro modely zdarma.
-
-<br/>
-
-**Linux**
-
-Stáhněte si `.AppImage` pro váš procesor z části [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` pro běžné počítače, `arm64` pro mnoho zařízení ARM, včetně Raspberry Pi 4+), poté:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Zadejte své klíče API v **Nastavení → API**. Musíte nakonfigurovat alespoň jednoho poskytovatele, OpenRouter je běžný pro modely zdarma.
-
-**Zprávy v konzoli:** Balíčky pro Linux (`x64` a `arm64` AppImages) potlačují varování Node o zastaralosti v terminálu (například vestavěný modul `punycode`). Pokud Chromium zobrazuje chyby GPU/EGL, například „GLES3 není podporován“, ale aplikace funguje, můžete je potlačit vypnutím hardwarové akcelerace:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-To platí i pro amd64; upravte název souboru podle stažené verze. Více podrobností viz [Instalace → Linux (Electron)](#linux-electron).
-
-Ve Debianu/Ubuntu můžete potřebovat dodatečné **běhové** knihovny, které Chromium očekává (často již přítomné na plných desktopových prostředích). Pro oznámení na ploše použijte **`libnotify4`** – **nikoli** `libnotify-dev` (to slouží pro vývoj softwaru, ne pro spouštění balíčků AppImage):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Minimální nebo vlastní image mohou stále selhat kvůli chybějícímu `.so`; nainstalujte balíček uvedený v chybové zprávě (běžné doplňky: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Některá prostředí vyžadují FUSE pro spuštění AppImages (např. `libfuse2` na Ubuntu 22.04+), nebo použijte `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **POZNÁMKA**<br/>
-> macOS není v současnosti podporován. Transrewrt je dostupný pro Windows, Linux a Docker.
-
-<br/>
-
-Jakmile běží aplikace, podívejte se do **[Uživatelské příručky](USER-GUIDE.cs.md)**, kde se dozvíte, jak překládat, přepisovat a transformovat text, spravovat výzvy a konfigurovat modely.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Instalace
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Stáhněte si nejnovější instalační program z části [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Spusťte `.exe` a postupujte podle pokynů instalačního programu.
-- Při prvním spuštění: spusťte aplikaci z nabídky Start nebo z ikony na ploše.
-
-<br/>
-
-> ℹ️ **POZNÁMKA**<br/>
-> Windows mohou zobrazit jedno z těchto upozornění na zabezpečení (běžné u nepodepsaných nebo nezávislých aplikací):
->   - **Kontrola účtu uživatele (UAC)**: „Chcete povolit této aplikaci od neznámého vydavatele provést změny na vašem zařízení?“ → Klikněte na **Ano**.
->   - **Microsoft Defender SmartScreen**: „Windows chrání váš počítač“ → Klikněte na **Více informací** → **Přesto spustit**.
->
-> K tomu dochází, protože aplikace není podepsaná společností Microsoft nebo velkým vydavatelem – je bezpečná, pokud byla stažena z oficiálních GitHub releasů
->  (ověřte kontrolní součet SHA256 uvedený níže).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Stáhněte odpovídající `.AppImage` soubor (`x64` nebo `arm64`) z [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Spusťte: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` na x86_64/amd64, nebo použijte soubor `...-arm64.AppImage` na ARM64.
-- **Knihovny runtime pro Debian/Ubuntu** (Electron/Chromium; stejné jako v [Rychlý start → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — použijte **`libnotify4`**, nikoli `libnotify-dev`. Na minimálních systémech nainstalujte chybějící `.so` soubory hlášené v terminálu; často jsou vyžadovány doplňky jako `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`. AppImage může vyžadovat `libfuse2` (Ubuntu 22.04+) nebo `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **Zprávy GPU:** Chromium může hlásit chyby inicializace GPU nebo EGL na některých systémech (zejména ARM); aplikace může běžet normálně. Chcete-li se těmto zprávám vyhnout, spusťte aplikaci s vypnutým hardwarovým akcelerováním: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (nebo váš soubor pro `arm64`).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Stažení: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Nastavte alespoň jeden klíč poskytovatele prostřednictvím proměnné prostředí (například `OPENROUTER_API_KEY` pro OpenRouter). Proměnné předejte pomocí `-e` nebo `docker compose` / `.env`, aby se tajemství neuložila do image.
-- Klíče poskytovatelů se **ne** zadávají do webového rozhraní; server je čte z prostředí.
-
-Příklad – pojmenovaný svazek pro trvalost (klíč OpenRouter přes proměnnou prostředí):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-nebo pokud dáváte přednost použití Docker Compose, použijte:
+Nebo použijte Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Seznam všech proměnných prostředí, jako jsou `PORT`, `CONFIG_PATH`, `TZ` a klíče LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …), naleznete v části [Konfigurace](#configuration-and-environment).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Časové pásmo serveru (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Nastavení časového pásma
+
+<br/>
 
 Datum a čas v uživatelském rozhraní aplikace následují **prohlížečové** nastavení lokalizace a časového pásma. Pro **serverové** chování (např. protokolování) používá kontejner proměnnou prostředí `TZ`. Výchozí hodnota je `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Seznam platných názvů časových pásem je udržován v [databázi tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Stáhněte si nejnovější `Transrewrt Setup x.y.z.exe` z části [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Spusťte `.exe` a postupujte podle pokynů instalátoru.
+- Při prvním spuštění: spusťte aplikaci z nabídky Start nebo přes zástupce na ploše.
+- Zadejte své klíče API v **Nastavení → API**. Musíte nakonfigurovat alespoň jednoho poskytovatele; OpenRouter je běžný pro modely zdarma.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> Windows mohou zobrazit jedno z těchto upozornění na zabezpečení (běžné u nepodepsaných aplikací nebo aplikací od nezávislých vývojářů):
+>   - **Kontrola účtu uživatele (UAC)**: „Chcete povolit této aplikaci od neznámého vydavatele provést změny na vašem zařízení?“ → Klikněte na **Ano**.
+>   - **Microsoft Defender SmartScreen**: „Windows chrání váš počítač“ → Klikněte na **Další informace** → **Přesto spustit**.
+>
+> K tomu dochází, protože aplikace není podepsaná společností Microsoft nebo jiným velkým vydavatelem – je bezpečná, pokud byla stažena z našich oficiálních GitHub Releases (ověřte kontrolní součty na stránce [Releases](https://github.com/wsj-br/transrewrt/releases) u každého souboru).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Stáhněte si `.AppImage` pro váš procesor z části [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` pro běžné počítače, `arm64` pro mnoho zařízení ARM, včetně Raspberry Pi 4+), poté:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Na x86_64/amd64 použijte název souboru `x64`; na ARM64 použijte název `...-arm64.AppImage`.
+
+Zadejte své klíče API v **Nastavení → API**. Musíte nakonfigurovat alespoň jednoho poskytovatele; OpenRouter je běžný pro modely zdarma.
+
+**Zprávy v konzoli:** Balíčky pro Linux (`x64` a `arm64` AppImages) potlačují varování Node o zastaralosti v terminálu (například vestavěný modul `punycode`). Pokud Chromium zobrazuje chyby GPU/EGL, například „GLES3 není podporován“, ale aplikace funguje, můžete je potlačit vypnutím hardwarové akcelerace:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+To platí také pro amd64; změňte název souboru tak, aby odpovídal vašemu staženému souboru.
+
+Ve Debianu/Ubuntu můžete potřebovat další **běhové** knihovny, které vyžaduje Chromium (ty jsou často již přítomny na kompletních desktopových instalacích). Spusťte níže uvedené příkazy, pokud je to potřeba:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+nahraďte `libasound2t64` za `libasound2` pro `arm64`. Minimální nebo vlastní instalace mohou stále selhat kvůli chybějícímu `.so` souboru. Nainstalujte balíček pojmenovaný v chybové zprávě (běžné doplňky: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). V některých prostředích můžete muset aplikaci spustit pomocí `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> macOS není v současnosti podporován. Transrewrt je dostupný pro Windows, Linux a Docker.
+
+</details>
+
+<br/>
+
+Jakmile běží aplikace, podívejte se do **[Uživatelské příručky](USER-GUIDE.cs.md)**, kde se dozvíte, jak překládat, přepisovat a transformovat text, spravovat výzvy a konfigurovat modely.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Nepoužívejte model **Body Builder** od OpenRouter ([`openrouter/bodybuilder`](
 
 Můžete také použít jiné poskytovatele (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) nebo spouštět modely lokálně pomocí [Ollama](https://ollama.com). Úplný seznam podporovaných poskytovatelů a proměnných prostředí najdete v části [Konfigurace](#configuration-and-environment).
 
+</br>
+
 > ⚠️ **VAROVÁNÍ**<br/>
 > Pokud používáte Ollama z jiného zařízení, kontejneru nebo služby, nezapomeňte nakonfigurovat Ollama tak, aby umožňoval externí připojení (ne pouze localhost).
-
-Informace o limitech, BYOK a dalším najdete v části [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Konfigurace a prostředí
+
+</br>
 
 **Umístění konfiguračních souborů**
 
@@ -313,16 +310,13 @@ Nakonfigurujte pouze poskytovatele, které používáte. Identifikátory modelů
 
 **Data a trvalost:** Pro Docker připojte svazek do `/app/data`, aby `config.json` a databáze SQLite přetrvávaly při restartu kontejneru. Bez svazku jsou všechna data ztracena po zastavení kontejneru.
 
-**Vývojáři:** Po stažení změn, které nahrazují starou konfiguraci s jedním klíčem, obnovte nebo sloučte `data/config.json` s novým výchozím tvarem z `src/config-defaults/config_default.json`, pokud váš lokální soubor stále používá odstraněná pole (`api_key`, `api_url`, proxy možnosti).
-
 <br/>
 
 **Webová autentizace:**
 
 - Výchozí správce: `admin` / `transrewrt26`.
 - Správa uživatelů v **Nastavení → Uživatelé**.
-- Obnovení hesla: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (ze zdroje: `pnpm run reset-web-password -- <username> <new-password>`)
+- Resetování hesla: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 

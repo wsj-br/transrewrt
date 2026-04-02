@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:45:24.455Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:42:17.122Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: ro
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentr
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Cuprins
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Capturi de ecran](#screenshots)
+- [Pornire rapidă](#quick-start)
+- [Obținerea unei chei API OpenRouter](#getting-an-openrouter-api-key)
+- [Configurare și mediu](#configuration-and-environment)
+- [Dezvoltare și arhitectură](#development-and-architecture)
+- [Raportarea problemelor](#reporting-issues)
+- [Declin de responsabilitate](#disclaimer)
+- [Licență](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Capturi de ecran
 
@@ -72,33 +91,15 @@ După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentr
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Cuprins
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Pornire rapidă](#quick-start)
-- [Instalare](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Configurarea fusului orar](#configuring-the-timezone)
-- [Obținerea unei chei API OpenRouter](#getting-an-openrouter-api-key)
-- [Configurare și mediu](#configuration-and-environment)
-- [Dezvoltare și arhitectură](#development-and-architecture)
-- [Raportarea problemelor](#reporting-issues)
-- [Declinare de răspundere](#disclaimer)
-- [Licență](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Pornire rapidă
 
-**Docker (recomandat pentru auto-găzduire)**
+<details>
+<summary><b>Docker (recomandat pentru auto-găzduire)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Înlocuiți `sk-or-your-key` cu cheia dvs. API [OpenRouter](https://openrouter.ai/keys) (sau setați alte chei de furnizor; consultați [Configurare](#configuration-and-environment)). Deschideți [http://localhost:5000](http://localhost:5000) și schimbați parola implicită de administrator înainte de a expune serviciul.
 
+Setați cel puțin o cheie furnizor prin mediu (de exemplu `OPENROUTER_API_KEY` pentru OpenRouter). Pasați variabilele cu `-e` sau `docker compose` / `.env`, astfel încât secretele să nu fie incluse în imagine. Cheile furnizorului **nu** sunt introduse în interfața web; serverul le citește din mediu.
+
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
@@ -120,105 +123,12 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-**Windows**
-
-Descărcați cel mai recent `Transrewrt Setup x.y.z.exe` din [Versiuni](https://github.com/wsj-br/transrewrt/releases), rulați instalatorul, apoi lansați aplicația din meniul Start sau printr-o pictogramă de pe desktop. Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
-
-<br/>
-
-**Linux**
-
-Descărcați fișierul `.AppImage` potrivit pentru procesorul dvs. din [Versiuni](https://github.com/wsj-br/transrewrt/releases) (`x64` pentru PC-uri obișnuite, `arm64` pentru multe dispozitive ARM, inclusiv Raspberry Pi 4+), apoi:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
-
-**Mesaje în consolă:** Versiunile empaachetate pentru Linux (`x64` și `arm64` AppImages) suprimă avertismentele de depreciere Node din terminal (de exemplu modulul integrat `punycode`). Dacă Chromium afișează erori GPU / EGL precum „GLES3 este nesuportat”, dar aplicația funcționează, le puteți elimina prin dezactivarea accelerării hardware:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Aceasta se aplică și pe amd64; modificați numele fișierului să corespundă descărcării dumneavoastră. Consultați [Instalare → Linux (Electron)](#linux-electron) pentru mai multe detalii.
-
-Pe Debian/Ubuntu s-ar putea să aveți nevoie de biblioteci suplimentare la **rulare** pe care Chromium le așteaptă (de obicei deja prezente pe desktop-urile complete). Utilizați **`libnotify4`** pentru notificări desktop—**nu** `libnotify-dev` (aceasta este pentru construirea de software, nu pentru rularea AppImage-ului empaachetat):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Imaginile minime sau personalizate s-ar putea să continue să eșueze din cauza unui fișier `.so` lipsă; instalați pachetul indicat în mesajul de eroare (extras comun: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Unele medii necesită FUSE pentru a rula AppImages (de exemplu `libfuse2` pe Ubuntu 22.04+), sau utilizați `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **NOTĂ**<br/>
-> macOS nu este în prezent suportat. Transrewrt este disponibil pentru Windows, Linux și Docker.
-
-<br/>
-
-Odată ce aplicația rulează, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru a învăța cum să traduceți, rescrieți și transformați text, să gestionați prompturile și să configurați modelele.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Instalare
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Descărcați cel mai recent instalator din [Versiuni](https://github.com/wsj-br/transrewrt/releases).
-- Rulați fișierul `.exe` și urmați pașii instalatorului.
-- La prima rulare: porniți aplicația din meniul Start sau printr-o pictogramă de pe desktop.
-
-<br/>
-
-> ℹ️ **NOTĂ**<br/>
-> Windows poate afișa una dintre aceste avertizări de securitate (normal pentru aplicații nesemnate/independente):
->   - **Controlul contului de utilizator (UAC)**: „Doriți să permiteți acestei aplicații de la un editor necunoscut să facă modificări pe dispozitivul dumneavoastră?” → Faceți clic pe **Da**.
->   - **Microsoft Defender SmartScreen**: „Windows v-a protejat PC-ul” → Faceți clic pe **Mai multe informații** → **Execută oricum**.
->
-> Acest lucru se întâmplă deoarece aplicația nu este semnată de Microsoft sau de un editor major—este sigură dacă a fost descărcată din lansările noastre oficiale de pe GitHub
->  (verificați suma de control SHA256 de mai jos).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Descărcați fișierul `.AppImage` corespunzător (`x64` sau `arm64`) din [Lansări](https://github.com/wsj-br/transrewrt/releases).
-- Rulați: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` pe x86_64/amd64, sau utilizați numele fișierului `...-arm64.AppImage` pe ARM64.
-- **Biblioteci de runtime Debian/Ubuntu** (Electron/Chromium; la fel ca în [Pornire rapidă → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — utilizați **`libnotify4`**, nu `libnotify-dev`. Pe sistemele minime, instalați orice `.so` care lipsește și este raportat în terminal; adesea sunt necesare extensii precum `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`. AppImage poate necesita `libfuse2` (Ubuntu 22.04+) sau `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **Mesaje GPU:** Chromium poate înregistra erori de inițializare GPU sau EGL pe unele sisteme (în special ARM); aplicația poate totuși rula normal. Pentru a evita aceste mesaje, lansați cu accelerarea hardware dezactivată: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (sau numele fișierului dvs. `arm64`).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Descărcați imaginea: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Setați cel puțin o cheie furnizor prin variabile de mediu (de exemplu `OPENROUTER_API_KEY` pentru OpenRouter). Transmiteți variabilele cu `-e` sau prin `docker compose` / `.env`, astfel încât secretele să nu fie încorporate în imagine.
-- Cheile furnizorului **nu** se introduc în interfața web; serverul le citește din mediul de execuție.
-
-Exemplu - volum denumit pentru persistență (cheie OpenRouter prin variabilă de mediu):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-sau, dacă preferați să folosiți Docker Compose, utilizați:
+Sau utilizați Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Consultați [Configuration](#configuration-and-environment) pentru toate variabilele de mediu, cum ar fi `PORT`, `CONFIG_PATH`, `TZ` și cheile LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Fusul orar al serverului (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Configurarea fusului orar
+
+<br/>
 
 Data și ora din interfața aplicației urmează **browserul** din punct de vedere al localizării și fusului orar. Pentru comportamentul la nivel de **server** (jurnalizare și similar), containerul folosește variabila de mediu `TZ`. Implicit este `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 O listă cu numele valide ale fusurilor orare este menținută în [baza de date tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Descărcați cel mai recent `Transrewrt Setup x.y.z.exe` de la [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Rulați fișierul `.exe` și urmați instrucțiunile instalatorului.
+- Prima rulare: porniți aplicația din meniul Start sau din scurtătura de pe desktop.
+- Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
+
+<br/>
+
+> ℹ️ **NOTĂ**<br/>
+> Windows poate afișa una dintre aceste avertizări de securitate (normal pentru aplicații nesemnate/independente):
+>   - **Controlul contului de utilizator (UAC)**: „Doriți să permiteți acestui aplicații de la un editor necunoscut să facă modificări pe dispozitivul dvs.?“ → Faceți clic pe **Da**.
+>   - **Microsoft Defender SmartScreen**: „Windows v-a protejat PC-ul“ → Faceți clic pe **Mai multe informații** → **Totuși execută**.
+>
+> Acest lucru se întâmplă deoarece aplicația nu este semnată de Microsoft sau de un editor major — este sigură dacă a fost descărcată din lansările noastre oficiale de pe GitHub (verificați sumele de control pe pagina [Releases](https://github.com/wsj-br/transrewrt/releases) alături de fiecare fișier).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Descărcați fișierul `.AppImage` potrivit pentru procesorul dvs. din [Versiuni](https://github.com/wsj-br/transrewrt/releases) (`x64` pentru PC-uri obișnuite, `arm64` pentru multe dispozitive ARM, inclusiv Raspberry Pi 4+), apoi:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Pe x86_64/amd64 utilizați numele de fișier `x64`; pe ARM64 utilizați numele `...-arm64.AppImage`.
+
+Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
+
+**Mesaje în consolă:** Versiunile empaachetate pentru Linux (`x64` și `arm64` AppImages) suprimă avertismentele de depreciere Node din terminal (de exemplu modulul integrat `punycode`). Dacă Chromium afișează erori GPU / EGL precum „GLES3 este nesuportat”, dar aplicația funcționează, le puteți elimina prin dezactivarea accelerării hardware:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Aceasta se aplică și pe amd64; schimbați numele fișierului pentru a corespunde descărcării dvs.
+
+Pe Debian/Ubuntu, s-ar putea să aveți nevoie de biblioteci **runtime** suplimentare necesare de Chromium (acestea sunt adesea deja prezente pe instalațiile complete de tip desktop). Rulați comenzile de mai jos dacă este necesar:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+înlocuiți `libasound2t64` cu `libasound2` pentru `arm64`. Instalările minime sau personalizate s-ar putea să eșueze totuși din cauza unui fișier `.so` lipsă. Instalați pachetul cu numele afișat în mesajul de eroare (pachete suplimentare comune: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). În unele medii, s-ar putea să fie necesar să rulați aplicația folosind `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **NOTĂ**<br/>
+> macOS nu este în prezent suportat. Transrewrt este disponibil pentru Windows, Linux și Docker.
+
+</details>
+
+<br/>
+
+Odată ce aplicația rulează, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru a învăța cum să traduceți, rescrieți și transformați text, să gestionați prompturile și să configurați modelele.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Nu folosiți modelul **Body Builder** al OpenRouter ([`openrouter/bodybuilder`](
 
 Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) sau rulați modele local cu [Ollama](https://ollama.com). Consultați [Configuration](#configuration-and-environment) pentru lista completă a furnizorilor suportați și variabilele de mediu.
 
+</br>
+
 > ⚠️ **ATENȚIE**<br/>
 > Dacă utilizați Ollama de pe un alt dispozitiv, container sau serviciu, rețineți să configurați Ollama pentru a permite conexiuni externe (nu doar localhost).
-
-Pentru limite, BYOK și alte informații, consultați [autentificarea OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Configurare și mediu
+
+</br>
 
 **Locații fișier de configurare**
 
@@ -313,16 +310,13 @@ Configurați doar furnizorii pe care îi utilizați. ID-urile modelelor sunt spa
 
 **Date și persistență:** Pentru Docker, montați un volum la `/app/data` astfel încât `config.json` și baza de date SQLite să persiste între repornirile containerului. Fără un volum, toate datele se pierd când containerul se oprește.
 
-**Dezvoltatori:** După ce preluați modificările care înlocuiesc vechea configurație cu o singură cheie, resetați sau combinați `data/config.json` cu noua formă implicită din `src/config-defaults/config_default.json`, dacă fișierul local încă utilizează câmpuri eliminate (`api_key`, `api_url`, opțiuni proxy).
-
 <br/>
 
 **Autentificare web:**
 
 - Administrator implicit: `admin` / `transrewrt26`.
 - Gestionarea utilizatorilor în **Setări → Utilizatori**.
-- Resetarea parolei: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (din sursă: `pnpm run reset-web-password -- <username> <new-password>`)
+- Resetarea unei parole: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 

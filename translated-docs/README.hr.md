@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:41:43.300Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:39:08.000Z'
+source_file_mtime: '2026-04-02T12:36:37.805Z'
+source_file_hash: 0826245f792850f3
 translation_language: hr
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Sadržaj
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Slike zaslona](#screenshots)
+- [Brzi početak](#quick-start)
+- [Dobivanje OpenRouter API ključa](#getting-an-openrouter-api-key)
+- [Konfiguracija i okruženje](#configuration-and-environment)
+- [Razvoj i arhitektura](#development-and-architecture)
+- [Prijavljivanje problema](#reporting-issues)
+- [Odricanje odgovornosti](#disclaimer)
+- [Licenca](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Snimke zaslona
 
@@ -72,33 +91,15 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Sadržaj
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Brzi početak](#quick-start)
-- [Instalacija](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Konfiguracija vremenske zone](#configuring-the-timezone)
-- [Dobivanje OpenRouter API ključa](#getting-an-openrouter-api-key)
-- [Konfiguracija i okruženje](#configuration-and-environment)
-- [Razvoj i arhitektura](#development-and-architecture)
-- [Prijavljivanje problema](#reporting-issues)
-- [Ograničenje odgovornosti](#disclaimer)
-- [Licenca](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Brzi početak
 
-**Docker (preporučeno za samostalno hostovanje)**
+<details>
+<summary><b>Docker (preporučeno za samostalno hostanje)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Zamijenite `sk-or-your-key` s vašim [OpenRouter API ključem](https://openrouter.ai/keys) (ili postavite ključeve drugih davatelja; pogledajte [Konfiguracija](#configuration-and-environment)). Otvorite [http://localhost:5000](http://localhost:5000) i promijenite zadanu administratorsku lozinku prije nego što usluga bude dostupna izvana.
 
+Postavite barem jedan ključ davatelja putem okruženja (npr. `OPENROUTER_API_KEY` za OpenRouter). Proslijedite varijable s `-e` ili `docker compose` / `.env` kako tajne ne bi bile ukopane u sliku. Ključevi davatelja **nisu** uneseni u web sučelje; poslužitelj ih čita iz okruženja.
+
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
@@ -120,105 +123,12 @@ Zamijenite `sk-or-your-key` s vašim [OpenRouter API ključem](https://openroute
 
 <br/>
 
-**Windows**
-
-Preuzmite najnoviju verziju `Transrewrt Setup x.y.z.exe` s [Izdavanja](https://github.com/wsj-br/transrewrt/releases), pokrenite instalaciju, zatim pokrenite aplikaciju preko izbornika Start ili prečaca na radnoj površini. Unesite svoje API ključeve u **Postavke → API**. Potrebno je konfigurirati barem jednog davatelja; OpenRouter je čest izbor za besplatne modele.
-
-<br/>
-
-**Linux**
-
-Preuzmite `.AppImage` datoteku za vaš procesor s [Izdavanja](https://github.com/wsj-br/transrewrt/releases) (`x64` za tipična računala, `arm64` za mnoge ARM uređaje, uključujući Raspberry Pi 4+), zatim:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Unesite svoje API ključeve u **Postavke → API**. Potrebno je konfigurirati barem jednog davatelja; OpenRouter je čest izbor za besplatne modele.
-
-**Poruke u konzoli:** Pakirane Linux verzije (`x64` i `arm64` AppImages) potiskuju Node upozorenja o zastarjelosti u terminalu (npr. ugrađeni modul `punycode`). Ako Chromium ispisuje GPU / EGL pogreške kao što je „GLES3 nije podržan“, ali aplikacija radi, možete ih ugasiti onemogućavanjem hardverske akceleracije:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-To vrijedi i za amd64; promijenite naziv datoteke kako bi odgovarao vašem preuzimanju. Pogledajte [Instalacija → Linux (Electron)](#linux-electron) za dodatne pojedinosti.
-
-Na Debian/Ubuntu sustavima možda ćete trebati dodatne **runtime** biblioteke koje Chromium očekuje (često već prisutne na potpunim desktop okruženjima). Koristite **`libnotify4`** za obavijesti na radnoj površini—**ne** `libnotify-dev` (to je za izradu softvera, ne za pokretanje pakirane AppImage datoteke):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Minimalne ili prilagođene slike i dalje mogu završiti s greškom zbog nedostajućeg `.so`; instalirajte paket kojeg greška navodi (češće dodatne opcije: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Neke okoline zahtijevaju FUSE za pokretanje AppImage datoteka (npr. `libfuse2` na Ubuntu 22.04+), ili koristite `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **NAPOMENA**<br/>
-> Trenutačno nije podržan macOS. Transrewrt je dostupan za Windows, Linux i Docker.
-
-<br/>
-
-Kada aplikacija radi, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** kako biste naučili kako prevesti, prepraviti i transformirati tekst, upravljati upitima i konfigurirati modele.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Instalacija
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Preuzmite najnoviji instalacijski program s [Izdavanja](https://github.com/wsj-br/transrewrt/releases).
-- Pokrenite `.exe` i slijedite upute instalacije.
-- Prvi pokret: pokrenite aplikaciju preko izbornika Start ili prečaca na radnoj površini.
-
-<br/>
-
-> ℹ️ **NAPOMENA**<br/>
-> Windows može prikazati jedno od sljedećih upozorenja o sigurnosti (normalno za nepotpisane/neovisne aplikacije):
->   - **Kontrola korisničkog računa (UAC)**: "Želite li dopustiti ovoj aplikaciji nepoznatog izdavača da izvrši promjene na vašem uređaju?" → Kliknite **Da**.
->   - **Microsoft Defender SmartScreen**: "Windows je zaštitio vaše računalo" → Kliknite **Više informacija** → **Ipak pokreni**.
->
-> Ovo se događa jer aplikacija nije potpisana od strane Microsofta ili većeg izdavača — sigurna je ako je preuzeta s naših službenih GitHub izdanja
->  (provjerite SHA256 kontrolni zbroj u nastavku).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Preuzmite odgovarajući `.AppImage` (`x64` ili `arm64`) s [izdanja](https://github.com/wsj-br/transrewrt/releases).
-- Pokrenite: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` na x86_64/amd64, ili koristite datoteku `...-arm64.AppImage` na ARM64.
-- **Biblioteke za izvođenje na Debian/Ubuntu** (Electron/Chromium; isto kao u [Brzi početak → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — koristite **`libnotify4`**, a ne `libnotify-dev`. Na minimalnim sustavima instalirajte bilo koje nedostajuće `.so` koje prijavi terminal; dodatne biblioteke kao `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` često su potrebne. AppImage možda zahtijeva `libfuse2` (Ubuntu 22.04+) ili `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **GPU poruke:** Chromium može prijavljivati pogreške pri pokretanju GPU-a ili EGL-a na nekim sustavima (posebno ARM); aplikacija i dalje može normalno raditi. Da biste izbjegli te poruke, pokrenite aplikaciju s isključenim hardverskim ubrzanjem: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (ili vašu `arm64` datoteku).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Preuzmite: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Postavite barem jedan ključ davatelja putem okoline (npr. `OPENROUTER_API_KEY` za OpenRouter). Prosljedite varijable s `-e` ili putem `docker compose` / `.env` kako tajne ne bi bile ugrađene u sliku.
-- Ključevi davatelja **nisu** uneseni u web sučelje; poslužitelj ih čita iz okoline.
-
-Primjer – imenovani volumen za trajnost (OpenRouter ključ putem env):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-ili ako preferirate korištenje Docker Compose, koristite:
+Ili koristite Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Pogledajte [Configuration](#configuration-and-environment) za sve varijable okoline, kao što su `PORT`, `CONFIG_PATH`, `TZ` i ključevi LLM-a (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Vremenska zona poslužitelja (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Konfiguracija vremenske zone
+
+<br/>
 
 Datum i vrijeme korisničkog sučelja aplikacije slijede **preglednikovu** lokalizaciju i vremensku zonu. Za **poslužiteljsko** ponašanje (zapisivanje i slično), spremnik koristi varijablu okoline `TZ`. Zadano je `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Popis valjanih naziva vremenskih zona održava se u [tz bazi podataka](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Preuzmite najnoviji `Transrewrt Setup x.y.z.exe` s [Izdavanja](https://github.com/wsj-br/transrewrt/releases).
+- Pokrenite `.exe` i slijedite upute instalacije.
+- Prvi pokret: pokrenite aplikaciju iz izbornika Start ili prečaca na radnoj površini.
+- Unesite svoje API ključeve u **Postavke → API**. Morate konfigurirati barem jednog davatelja; OpenRouter je čest izbor za besplatne modele.
+
+<br/>
+
+> ℹ️ **NAPOMENA**<br/>
+> Windows može prikazati jedno od ovih upozorenja o sigurnosti (normalno za nepotpisane/neovisne aplikacije):
+>   - **Kontrola računa korisnika (UAC)**: „Želite li dopustiti ovoj aplikaciji od nepoznatog izdavača da unese promjene na vašem uređaju?“ → Kliknite **Da**.
+>   - **Microsoft Defender SmartScreen**: „Windows je zaštitio vaše računalo“ → Kliknite **Više informacija** → **Svejedno pokreni**.
+>
+> Ovo se događa jer aplikacija nije potpisana od strane Microsofta ili većeg izdavača – sigurna je ako je preuzeta s naših službenih GitHub izdanja (provjerite kontrolne zbroje na stranici [Izdavanja](https://github.com/wsj-br/transrewrt/releases) uz svaki resurs).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Preuzmite `.AppImage` datoteku za vaš procesor s [Izdavanja](https://github.com/wsj-br/transrewrt/releases) (`x64` za tipična računala, `arm64` za mnoge ARM uređaje, uključujući Raspberry Pi 4+), zatim:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Na x86_64/amd64 koristite naziv datoteke `x64`; na ARM64 koristite naziv `...-arm64.AppImage`.
+
+Unesite svoje API ključeve u **Postavke → API**. Morate konfigurirati barem jednog davatelja; OpenRouter je čest izbor za besplatne modele.
+
+**Poruke u konzoli:** Pakirane Linux verzije (`x64` i `arm64` AppImages) potiskuju Node upozorenja o zastarjelosti u terminalu (npr. ugrađeni modul `punycode`). Ako Chromium ispisuje GPU / EGL pogreške kao što je „GLES3 nije podržan“, ali aplikacija radi, možete ih ugasiti onemogućavanjem hardverske akceleracije:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+To vrijedi i za amd64; promijenite naziv datoteke kako bi odgovarao vašem preuzimanju.
+
+Na Debian/Ubuntu sustavima možda ćete trebati dodatne **runtime** biblioteke koje zahtijeva Chromium (one su često već prisutne na potpunim desktop instalacijama). Pokrenite donje naredbe ako je potrebno:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+zamijenite `libasound2t64` s `libasound2` za `arm64`. Minimalne ili prilagođene instalacije i dalje mogu završiti s greškom zbog nedostajuće `.so` datoteke. Instalirajte paket koji je naznačen u poruci o grešci (češće dodatne opcije: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). U nekim okruženjima možda ćete morati pokrenuti aplikaciju koristeći `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **NAPOMENA**<br/>
+> Trenutačno nije podržan macOS. Transrewrt je dostupan za Windows, Linux i Docker.
+
+</details>
+
+<br/>
+
+Kada aplikacija radi, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** kako biste naučili kako prevesti, prepraviti i transformirati tekst, upravljati upitima i konfigurirati modele.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Ne koristite OpenRouterov model **Body Builder** ([`openrouter/bodybuilder`](htt
 
 Također možete koristiti druge davatelje (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ili pokretati modele lokalno s [Ollama](https://ollama.com). Pogledajte [Configuration](#configuration-and-environment) za potpun popis podržanih davatelja i varijabli okoline.
 
+</br>
+
 > ⚠️ **UPOZORENJE**<br/>
 > Ako koristite Ollamu s drugog uređaja, kontejnera ili usluge, zapamtite konfigurirati Ollamu tako da dopušta vanjske veze (ne samo lokalni host).
-
-Za ograničenja, BYOK i više informacija, pogledajte [OpenRouter autentifikaciju](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Konfiguracija i okolina
+
+</br>
 
 **Lokacije konfiguracijskih datoteka**
 
@@ -313,16 +310,13 @@ Konfigurirajte samo pružatelje usluga koje koristite. ID-ovi modela su imenski 
 
 **Podaci i trajnost:** Za Docker, pričvrstite volume na `/app/data` kako bi `config.json` i SQLite baza podataka ostali sačuvani nakon ponovnog pokretanja kontejnera. Bez volumena, svi podaci se gube kada se kontejner zaustavi.
 
-**Programeri:** Nakon preuzimanja promjena koje mijenjaju staru konfiguraciju s jednim ključem, ponovno postavite ili spojite `data/config.json` s novim zadanim oblikom iz `src/config-defaults/config_default.json`, ako vaša lokalna datoteka još uvijek koristi uklonjena polja (`api_key`, `api_url`, proxy opcije).
-
 <br/>
 
 **Web autentifikacija:**
 
 - Zadani administrator: `admin` / `transrewrt26`.
-- Upravljanje korisnicima u **Postavke → Korisnici**.
-- Ponovno postavljanje lozinke: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (iz izvornog kôda: `pnpm run reset-web-password -- <username> <new-password>`)
+- Upravljajte korisnicima u **Postavke → Korisnici**.
+- Ponovno postavljanje lozinke: `docker exec <container> reset-web-password '<korisničko ime>' '<nova lozinka>'`
 
 <br/>
 

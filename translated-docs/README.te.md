@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:48:01.863Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:43:46.418Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: te
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ source_file_path: README.md
 
 <br/>
 
+<a id="table-of-contents"></a>
+## విషయ సూచిక
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [స్క్రీన్‌షాట్లు](#screenshots)
+- [త్వరిత ప్రారంభం](#quick-start)
+- [ఓపెన్రౌటర్ API కీని పొందడం](#getting-an-openrouter-api-key)
+- [కాన్ఫిగరేషన్ మరియు పరిసరాలు](#configuration-and-environment)
+- [అభివృద్ధి మరియు ఆర్కిటెక్చర్](#development-and-architecture)
+- [సమస్యలను నివేదించడం](#reporting-issues)
+- [అస్వీకార ప్రకటన](#disclaimer)
+- [లైసెన్స్](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## స్క్రీన్షాట్‌లు
 
@@ -72,33 +91,15 @@ source_file_path: README.md
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## విషయ సూచిక
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [త్వరిత ప్రారంభం](#quick-start)
-- [ఇన్‌స్టాలేషన్](#installation)
-  - [విండోస్ (ఎలక్ట్రాన్)](#windows-electron)
-  - [లినక్స్ (ఎలక్ట్రాన్)](#linux-electron)
-  - [డాకర్](#docker)
-  - [సమయప్రాంతాన్ని కాన్ఫిగర్ చేయడం](#configuring-the-timezone)
-- [ఓపెన్రౌటర్ API కీని పొందడం](#getting-an-openrouter-api-key)
-- [కాన్ఫిగరేషన్ మరియు పర్యావరణం](#configuration-and-environment)
-- [అభివృద్ధి మరియు వాస్తుశిల్పం](#development-and-architecture)
-- [సమస్యలను నివేదించడం](#reporting-issues)
-- [అస్వీకారణ](#disclaimer)
-- [లైసెన్స్](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## త్వరిత ప్రారంభం
 
-**Docker (స్వలాంతర హోస్టింగ్ కోసం సిఫార్సు చేయబడింది)**
+<details>
+<summary><b>డాకర్ (స్వంతంగా హోస్ట్ చేయడానికి సిఫారసు చేయబడింది)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/keys) (or set other provider keys; see [Configuration](#configuration-and-environment)). Open [http://localhost:5000](http://localhost:5000) and change the default admin password before exposing the service.
 
+పరిసరాల ద్వారా కనీసం ఒక ప్రదాత కీని సెట్ చేయండి (ఉదాహరణకు ఓపెన్రౌటర్ కోసం `OPENROUTER_API_KEY`). రహస్యాలు ఇమేజ్‌లో బేక్ కాకుండా ఉండేందుకు `-e` లేదా `docker compose` / `.env` తో వేరియబుల్స్‌ని పాస్ చేయండి. ప్రదాత కీలు **వెబ్ UIలో** ప్రవేశపెట్టబడవు; సర్వర్ వాటిని పరిసరాల నుండి చదుస్తుంది.
+
 <br/>
 
 > ℹ️ **గమనిక**<br/>
@@ -120,105 +123,12 @@ Replace `sk-or-your-key` with your [OpenRouter API key](https://openrouter.ai/ke
 
 <br/>
 
-**Windows**
-
-Download the latest `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), run the installer, then launch from the Start menu or desktop shortcut. Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
-
-<br/>
-
-**Linux**
-
-Download the `.AppImage` for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Enter your API keys in **Settings → API**. You need to configure at least one providers, OpenRouter is common for free models.
-
-**కన్సోల్ సందేశాలు:** ప్యాకేజీ చేసిన లినక్స్ బిల్డ్‌లు (`x64` మరియు `arm64` AppImages) టెర్మినల్‌లో నోడ్ డిప్రికేషన్ హెచ్చరికలను నొక్కివేస్తాయి (ఉదాహరణకు అంతర్నిర్మిత `punycode` మాడ్యూల్). క్రోమియం "GLES3 మద్దతు లేదు" వంటి GPU / EGL లోపాలను ప్రింట్ చేసినప్పటికీ అప్లికేషన్ పనిచేస్తే, హార్డ్‌వేర్ యాక్సిలరేషన్‌ను నిష్క్రియం చేయడం ద్వారా వాటిని నిశ్శబ్దంగా చేయవచ్చు:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-ఇది amd64 కూడా వర్తిస్తుంది; మీ డౌన్‌లోడ్‌కు సరిపోయేలా ఫైల్ పేరును మార్చండి. కొంచెం ఎక్కువ వివరాల కోసం [ఇన్‌స్టాలేషన్ → లినక్స్ (ఎలెక్ట్రాన్)](#linux-electron) చూడండి.
-
-డీబియన్/ఉబుంటులో క్రోమియం అంచనా వేసిన అదనపు **రన్‌టైమ్** లైబ్రరీలు అవసరం కావచ్చు (తరచుగా పూర్తి డెస్క్‌టాప్‌లలో ఉంటాయి). డెస్క్‌టాప్ నోటిఫికేషన్‌ల కోసం **`libnotify4`** ఉపయోగించండి—**`libnotify-dev`** కాదు (ఇది సాఫ్ట్‌వేర్ నిర్మాణానికి, ప్యాకేజీ చేసిన AppImageని నడపడానికి కాదు):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-కనీస లేదా కస్టమ్ ఇమేజీలు ఇప్పటికీ తప్పిపోయిన `.so`తో విఫలం కావచ్చు; లోపం పేరు పెట్టిన ప్యాకేజీని ఇన్‌స్టాల్ చేయండి (సాధారణ అదనంగా: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). కొన్ని పర్యావరణాలకు AppImages ని నడపడానికి FUSE అవసరం (ఉదా: ఉబుంటు 22.04+లో `libfuse2`), లేదా `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ఉపయోగించండి.
-
-<br/>
-
-> ℹ️ **గమనిక**<br/>
-> macOS ప్రస్తుతం మద్దతు లేదు. Transrewrt Windows, Linux, మరియు డాక్కర్ కోసం అందుబాటులో ఉంది.
-
-<br/>
-
-Once the app is running, see the **[User Guide](USER-GUIDE.te.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
-
-<br/><br/>
-
-<a id="installation"></a>
-## ఇన్‌స్టాలేషన్
-
-<a id="windows-electron"></a>
-### Windows (ఎలక్ట్రాన్)
-
-- Download the latest installer from [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Run the `.exe` and follow the installer.
-- First run: start the app from the Start menu or desktop shortcut.
-
-<br/>
-
-> ℹ️ **గమనిక**<br/>
-> Windows ఈ రక్షణ హెచ్చరికలలో ఒకదాన్ని చూపవచ్చు (అసంతృప్తి/స్వతంత్ర అప్లికేషన్‌లకు సాధారణం):
->   - **యూజర్ ఖాతా నియంత్రణ (UAC)**: "మీ పరికరానికి మార్పులు చేయడానికి ఈ అప్లికేషన్‌ను అనుమతించాలా?" → **అవును** క్లిక్ చేయండి.
->   - **Microsoft Defender SmartScreen**: "Windows మీ PC ని రక్షించింది" → **మరిన్ని సమాచారం** క్లిక్ చేయండి → **ఎల్లప్పుడూ అమలు చేయి**.
->
-> ఇది మైక్రోసాఫ్ట్ లేదా ప్రధాన ప్రచురణదారుల ద్వారా సంతకం చేయబడని కారణంగా జరుగుతుంది - అధికారిక GitHub రిలీజ్‌ల నుండి డౌన్‌లోడ్ చేసినట్లయితే ఇది సురక్షితం
->  (క్రింద ఇవ్వబడిన SHA256 చెక్‌సమ్‌ను ధృవీకరించండి).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (ఎలక్ట్రాన్)
-
-- [రిలీజ్‌లు](https://github.com/wsj-br/transrewrt/releases) నుండి సరిపోయే `.AppImage` (`x64` లేదా `arm64`) డౌన్‌లోడ్ చేయండి.
-- నడుపు: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64 లో, లేదా ARM64 లో `...-arm64.AppImage` ఫైల్ పేరు ఉపయోగించండి.
-- **డీబియన్/ఉబుంటు రన్‌టైమ్ లైబ్రరీలు** (ఎలక్ట్రాన్/క్రోమియం; [త్వరిత ప్రారంభం → లినక్స్](#quick-start) వలెనే): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** ఉపయోగించండి, `libnotify-dev` కాదు. కనీస సిస్టమ్‌లలో, టెర్మినల్‌లో నివేదించబడిన ఏదైనా లేని `.so` ని ఇన్‌స్టాల్ చేయండి; `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` వంటి అదనపు ప్యాకేజీలు తరచుగా అవసరమవుతాయి. AppImageకి `libfuse2` (ఉబుంటు 22.04+) లేదా `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` అవసరమవుతుంది.
-- **GPU సందేశాలు:** కొన్ని సిస్టమ్‌లలో (ప్రత్యేకించి ARM) Chromium GPU లేదా EGL ప్రారంభ తప్పులను లాగ్ చేయవచ్చు; అప్లికేషన్ ఇంకా సాధారణంగా పనిచేయవచ్చు. ఆ సందేశాలను నివారించడానికి, హార్డ్‌వేర్ వేగవంతం చేయడాన్ని ఆపివేసి ప్రారంభించండి: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (లేదా మీ `arm64` ఫైల్ పేరు).
-
-<br/>
-
-<a id="docker"></a>
-### డాక్కర్
-
-- పుల్ చేయండి: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- కనీసం ఒక ప్రదాత కీని పర్యావరణ వేరియబుల్ ద్వారా సెట్ చేయండి (ఉదా: OpenRouter కొరకు `OPENROUTER_API_KEY`). రహస్యాలు ఇమేజ్ లో బేక్ కాకుండా `-e` లేదా `docker compose` / `.env` ద్వారా వేరియబుల్స్ పాస్ చేయండి.
-- ప్రదాత కీలు **వెబ్ UI లో ప్రవేశపెట్టబడవు**; సర్వర్ వాటిని పర్యావరణం నుండి చదుస్తుంది.
-
-ఉదాహరణ - స్థిరత్వం కొరకు పేరు గల వాల్యూమ్ (పర్యావరణం ద్వారా OpenRouter కీ):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-లేదా మీకు Docker Compose ఉపయోగించడం ఇష్టమైతే, ఉపయోగించండి:
+లేదా డాకర్ కాంపోజ్ ఉపయోగించండి:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 `PORT`, `CONFIG_PATH`, `TZ`, మరియు LLM కీలు (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) వంటి అన్ని పర్యావరణ వేరియబుల్స్ కొరకు [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>సర్వర్ సమయ మండలం (డాకర్)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### టైమ్జోన్‌ను కాన్ఫిగర్ చేయడం
+
+<br/>
 
 అప్లికేషన్ యూజర్ ఇంటర్ఫేస్ తేదీ మరియు సమయం **బ్రౌజర్** యొక్క స్థానిక మరియు సమయ మండలాన్ని అనుసరిస్తాయి. **సర్వర్-సైడ్** వర్తనం (లాగింగ్ మరియు సమానమైనవి) కొరకు, కంటైనర్ `TZ` పర్యావరణ వేరియబుల్ ని ఉపయోగిస్తుంది. డిఫాల్ట్ `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 చెల్లుబాటయ్యే సమయ మండల పేర్ల జాబితా [tz డేటాబేస్](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (వికీపీడియా) లో నిర్వహించబడుతుంది.
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>విండోస్</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- [రిలీజ్‌లు](https://github.com/wsj-br/transrewrt/releases) నుండి తాజా `Transrewrt సెటప్ x.y.z.exe` డౌన్‌లోడ్ చేసుకోండి.
+- `.exe` ని రన్ చేసి ఇన్‌స్టాలర్ సూచనలను అనుసరించండి.
+- మొదటి రన్: స్టార్ట్ మెను లేదా డెస్క్‌టాప్ షార్ట్‌కట్ నుండి అప్లికేషన్‌ని ప్రారంభించండి.
+- **సెట్టింగ్‌లు → API**లో మీ API కీలు నమోదు చేయండి. మీరు కనీసం ఒక ప్రదాతను కాన్ఫిగర్ చేయాలి; ఉచిత మోడల్‌లకు ఓపెన్రౌటర్ సాధారణం.
+
+<br/>
+
+> ℹ️ **గమనిక**<br/>
+> విండోస్ ఒక సురక్షిత హెచ్చరికను చూపించవచ్చు (సంతకం చేయని/స్వతంత్ర అప్లికేషన్‌లకు సాధారణం):
+>   - **వాడుకరి ఖాతా నియంత్రణ (UAC)**: "మీ పరికరానికి మార్పులు చేయడానికి తెలియని ప్రచురణకర్త నుండి ఈ అప్లికేషన్‌ని మీరు అనుమతించాలనుకుంటున్నారా?" → **అవును** క్లిక్ చేయండి.
+>   - **మైక్రోసాఫ్ట్ డిఫెండర్ స్మార్ట్‌స్క్రీన్**: "విండోస్ మీ PCని రక్షించింది" → **మరిన్ని సమాచారం** → **అయినా రన్ చేయి** క్లిక్ చేయండి.
+>
+> అప్లికేషన్ మైక్రోసాఫ్ట్ లేదా పెద్ద ప్రచురణకర్త ద్వారా సంతకం చేయబడలేదు కాబట్టి ఇది జరుగుతుంది - అధికారిక గిట్‌హబ్ రిలీజ్‌ల నుండి డౌన్‌లోడ్ చేసినట్లయితే ఇది సురక్షితం (ప్రతి ఆస్తితో పాటు [రిలీజ్‌లు](https://github.com/wsj-br/transrewrt/releases) పేజీలో చెక్‌సమ్స్ ధృవీకరించండి).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>లినక్స్</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Download the `.AppImage` for your CPU from [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` for typical PCs, `arm64` for many ARM devices, including Raspberry Pi 4+), then:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+x86_64/amd64 లో `x64` ఫైల్ పేరును ఉపయోగించండి; ARM64 లో `...-arm64.AppImage` పేరును ఉపయోగించండి.
+
+**సెట్టింగ్‌లు → API**లో మీ API కీలు నమోదు చేయండి. మీరు కనీసం ఒక ప్రదాతను కాన్ఫిగర్ చేయాలి; ఉచిత మోడల్‌లకు ఓపెన్రౌటర్ సాధారణం.
+
+**కన్సోల్ సందేశాలు:** ప్యాకేజీ చేసిన లినక్స్ బిల్డ్‌లు (`x64` మరియు `arm64` AppImages) టెర్మినల్‌లో నోడ్ డిప్రికేషన్ హెచ్చరికలను నొక్కివేస్తాయి (ఉదాహరణకు అంతర్నిర్మిత `punycode` మాడ్యూల్). క్రోమియం "GLES3 మద్దతు లేదు" వంటి GPU / EGL లోపాలను ప్రింట్ చేసినప్పటికీ అప్లికేషన్ పనిచేస్తే, హార్డ్‌వేర్ యాక్సిలరేషన్‌ను నిష్క్రియం చేయడం ద్వారా వాటిని నిశ్శబ్దంగా చేయవచ్చు:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+ఇది amd64 కు కూడా వర్తిస్తుంది; మీ డౌన్‌లోడ్‌కు సరిపోయేలా ఫైల్ పేరును మార్చండి.
+
+డీబియన్/ఉబుంటులో, క్రోమియం కోసం అవసరమైన అదనపు **రన్‌టైమ్** లైబ్రరీలు అవసరం కావచ్చు (ఇవి సాధారణంగా పూర్తి డెస్క్‌టాప్ ఇన్‌స్టాలేషన్‌లలో ఇప్పటికే ఉంటాయి). అవసరమైతే క్రింది కమాండ్‌లను రన్ చేయండి:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+`arm64` కోసం `libasound2t64`ని `libasound2`తో భర్తీ చేయండి. కనీసం లేదా కస్టమ్ ఇన్‌స్టాల్‌లు ఇప్పటికీ లేని `.so` ఫైల్ తో విఫలమవుతాయి. లోపం సందేశంలో పేర్కొన్న ప్యాకేజీని ఇన్‌స్టాల్ చేయండి (సాధారణ అదనంగా: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). కొన్ని పరిసరాలలో, `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ఉపయోగించి అప్లికేషన్‌ని రన్ చేయాల్సి ఉంటుంది.
+
+<br/>
+
+> ℹ️ **గమనిక**<br/>
+> macOS ప్రస్తుతం మద్దతు లేదు. Transrewrt Windows, Linux, మరియు డాక్కర్ కోసం అందుబాటులో ఉంది.
+
+</details>
+
+<br/>
+
+Once the app is running, see the **[User Guide](USER-GUIDE.te.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 మీరు ఇతర ప్రదాతలను (ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ, సెరెబ్రస్) ఉపయోగించవచ్చు లేదా [ఓలామా](https://ollama.com) తో స్థానికంగా మోడల్‌లను నడుపుతారు. మద్దతు ఇచ్చిన ప్రదాతల మరియు పర్యావరణ వేరియబుల్స్ యొక్క పూర్తి జాబితా కొరకు [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
 
+</br>
+
 > ⚠️ **హెచ్చరిక**<br/>
 > మీరు ఇతర పరికరం, కంటైనర్, లేదా సేవ నుండి Ollama ను ఉపయోగిస్తున్నట్లయితే, బాహ్య కనెక్షన్‌లను (localhost-only కాదు) అనుమతించడానికి Ollama ను కాన్ఫిగర్ చేయాలి.
-
-పరిమితులు, BYOK మరియు మరింత సమాచారం కొరకు, [ఓపెన్రౌటర్ ప్రామాణీకరణ](https://openrouter.ai/docs/api/reference/authentication) చూడండి.
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## కాన్ఫిగరేషన్ మరియు వాతావరణం
+
+</br>
 
 **కాన్ఫిగ్ ఫైల్ స్థానాలు**
 
@@ -313,16 +310,13 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 **డేటా మరియు స్థిరత:** డాకర్ కొరకు, `/app/data` వద్ద ఒక వాల్యూమ్ మౌంట్ చేయండి కాబట్టి `config.json` మరియు SQLite డేటాబేస్ కంటైనర్ రీస్టార్ట్‌ల సమయంలో స్థిరంగా ఉంటాయి. వాల్యూమ్ లేకుండా, కంటైనర్ ఆపినప్పుడు అన్ని డేటా కోల్పోబడుతుంది.
 
-**డెవలపర్లు:** పాత సింగిల్-కీ కాన్ఫిగ్ ని భర్తీ చేసే మార్పులను పుల్ చేసిన తర్వాత, మీ స్థానిక ఫైల్ తొలగించబడిన ఫీల్డ్‌లను (`api_key`, `api_url`, ప్రాక్సీ ఎంపికలు) ఇప్పటికీ ఉపయోగిస్తుంటే, `data/config.json` ని `src/config-defaults/config_default.json` నుండి కొత్త డిఫాల్ట్ ఆకృతితో రీసెట్ లేదా మర్జ్ చేయండి.
-
 <br/>
 
 **వెబ్ ప్రామాణీకరణ:**
 
 - డిఫాల్ట్ కార్యదర్శి: `admin` / `transrewrt26`.
-- **సెట్టింగ్‌లు → వినియోగదారులు** లో వినియోగదారులను నిర్వహించండి.
+- **సెట్టింగ్‌లు → వినియోగదారులు**లో వినియోగదారులను నిర్వహించండి.
 - పాస్‌వర్డ్ రీసెట్ చేయడం: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (సోర్స్ నుండి: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 

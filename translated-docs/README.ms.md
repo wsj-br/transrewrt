@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:44:19.735Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:41:29.733Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: ms
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Jadual Kandungan
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Tangkapan skrin](#screenshots)
+- [Mula pantas](#quick-start)
+- [Mendapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
+- [Konfigurasi dan persekitaran](#configuration-and-environment)
+- [Pembangunan dan arsitektur](#development-and-architecture)
+- [Melapor isu](#reporting-issues)
+- [Penafian](#disclaimer)
+- [Lesen](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Tangkapan Skrin
 
@@ -72,33 +91,15 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Jadual Kandungan
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Permulaan pantas](#quick-start)
-- [Pemasangan](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Mengkonfigurasi zon waktu](#configuring-the-timezone)
-- [Mendapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
-- [Konfigurasi dan persekitaran](#configuration-and-environment)
-- [Pembangunan dan arkitektur](#development-and-architecture)
-- [Melapor isu](#reporting-issues)
-- [Penafian](#disclaimer)
-- [Lesen](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Mula Pantas
 
-**Docker (disyorkan untuk penyediaan sendiri)**
+<details>
+<summary><b>Docker (disyorkan untuk hos kendiri)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Gantikan `sk-or-your-key` dengan [kunci API OpenRouter](https://openrouter.ai/keys) anda (atau tetapkan kunci penyedia lain; lihat [Konfigurasi](#configuration-and-environment)). Buka [http://localhost:5000](http://localhost:5000) dan tukar kata laluan pentadbir lalai sebelum mendedahkan perkhidmatan.
 
+Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_API_KEY` untuk OpenRouter). Luluskan pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak terbina ke dalam imej. Kunci penyedia **tidak** dimasukkan dalam UI sesawang; pelayan membacanya daripada persekitaran.
+
 <br/>
 
 > ℹ️ **NOTA**<br/>
@@ -120,105 +123,12 @@ Gantikan `sk-or-your-key` dengan [kunci API OpenRouter](https://openrouter.ai/ke
 
 <br/>
 
-**Windows**
-
-Muat turun `Transrewrt Setup x.y.z.exe` terkini dari [Releases](https://github.com/wsj-br/transrewrt/releases), jalankan pemasang, kemudian mulakan dari menu Start atau pintasan desktop. Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigurasi sekurang-kurangnya satu penyedia, OpenRouter adalah biasa digunakan untuk model percuma.
-
-<br/>
-
-**Linux**
-
-Muat turun `.AppImage` untuk CPU anda dari [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` untuk PC biasa, `arm64` untuk banyak peranti ARM, termasuk Raspberry Pi 4+), kemudian:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigurasi sekurang-kurangnya satu penyedia, OpenRouter adalah biasa digunakan untuk model percuma.
-
-**Mesej konsol:** Binaan Linux yang dibungkus (`x64` dan `arm64` AppImages) menekan amaran penyingkiran Node dalam terminal (contohnya modul binaan `punycode`). Jika Chromium mencetak ralat GPU / EGL seperti “GLES3 tidak disokong” tetapi aplikasi berfungsi, anda boleh membisukan ralat tersebut dengan melumpuhkan pecutan perkakasan:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Ini juga terpakai pada amd64; ubah nama fail untuk sepadan dengan muat turun anda. Rujuk [Pemasangan → Linux (Electron)](#linux-electron) untuk maklumat lanjut.
-
-Pada Debian/Ubuntu, anda mungkin memerlukan pustaka **runtime** tambahan yang dijangka oleh Chromium (kerapkali sudah sedia ada pada desktop penuh). Gunakan **`libnotify4`** untuk pemberitahuan desktop—**bukan** `libnotify-dev` (ia adalah untuk membina perisian, bukan untuk menjalankan AppImage yang dibungkus):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Imej minima atau tersuai mungkin masih gagal dengan fail `.so` yang hilang; pasang pakej yang dinamakan dalam ralat tersebut (tambahan biasa: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Sesetengah persekitaran memerlukan FUSE untuk menjalankan AppImages (contohnya `libfuse2` pada Ubuntu 22.04+), atau gunakan `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **NOTA**<br/>
-> macOS tidak disokong buat masa ini. Transrewrt tersedia untuk Windows, Linux, dan Docker.
-
-<br/>
-
-Apabila aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mempelajari cara menterjemah, menulis semula, dan mengubah teks, menguruskan arahan, serta mengkonfigurasi model.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Pemasangan
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Muat turun pemasang terkini dari [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Jalankan fail `.exe` dan ikuti pemasangan.
-- Pada permulaan pertama: mulakan aplikasi dari menu Start atau pintasan desktop.
-
-<br/>
-
-> ℹ️ **NOTA**<br/>
-> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tidak ditandatangani/bebas):
->   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak diketahui membuat perubahan pada peranti anda?" → Klik **Ya**.
->   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan sahaja**.
->
-> Ini berlaku kerana aplikasi tersebut tidak ditandatangani oleh Microsoft atau penerbit utama—ia selamat jika dimuat turun daripada pelepasan rasmi GitHub kami
->  (sahkan checksum SHA256 di bawah).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Muat turun `.AppImage` yang sepadan (`x64` atau `arm64`) daripada [Pelepasan](https://github.com/wsj-br/transrewrt/releases).
-- Jalankan: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` pada x86_64/amd64, atau gunakan nama fail `...-arm64.AppImage` pada ARM64.
-- **Pustaka runtime Debian/Ubuntu** (Electron/Chromium; sama seperti [Permulaan pantas → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — gunakan **`libnotify4`**, bukan `libnotify-dev`. Pada sistem minimum, pasang mana-mana `.so` yang hilang yang dilaporkan di terminal; tambahan seperti `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` biasanya diperlukan. AppImage mungkin memerlukan `libfuse2` (Ubuntu 22.04+) atau `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **Mesej GPU:** Chromium mungkin mencatat ralat penginisialan GPU atau EGL pada sesetengah sistem (terutamanya ARM); aplikasi masih boleh berjalan seperti biasa. Untuk mengelakkan mesej tersebut, jalankan dengan pecutan perkakasan dimatikan: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (atau nama fail `arm64` anda).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Tarik: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_API_KEY` untuk OpenRouter). Hantar pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak disemat ke dalam imej.
-- Kunci penyedia **tidak** dimasukkan dalam UI web; pelayan membacanya daripada persekitaran.
-
-Contoh - volum bernama untuk kekal (kunci OpenRouter melalui env):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-atau jika anda lebih suka menggunakan Docker Compose, gunakan:
+Atau gunakan Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Rujuk [Configuration](#configuration-and-environment) untuk semua pemboleh ubah persekitaran, seperti `PORT`, `CONFIG_PATH`, `TZ`, dan kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Zon waktu pelayan (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Mengkonfigurasi zon waktu
+
+<br/>
 
 Tarikh dan masa antara muka pengguna mengikut zon waktu dan setempat **pelayar**. Untuk tingkah laku **sisi pelayan** (log dan sebagainya), bekas menggunakan pemboleh ubah persekitaran `TZ`. Lalai ialah `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Senarai nama zon waktu yang sah diselenggara dalam [pangkalan data tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Muat turun `Transrewrt Setup x.y.z.exe` terkini daripada [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Jalankan `.exe` dan ikuti pemasang.
+- Pertama kali menjalankan: mulakan aplikasi daripada menu Start atau pintasan desktop.
+- Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigur sekurang-kurangnya satu penyedia; OpenRouter adalah biasa digunakan untuk model percuma.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tidak ditandatangani/bebas):
+>   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak dikenali membuat perubahan pada peranti anda?" → Klik **Ya**.
+>   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan juga**.
+>
+> Ini berlaku kerana aplikasi tidak ditandatangani oleh Microsoft atau penerbit utama—ia selamat jika dimuat turun daripada pelepasan GitHub rasmi kami (sahkan checksum di halaman [Releases](https://github.com/wsj-br/transrewrt/releases) bersama setiap aset).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Muat turun `.AppImage` untuk CPU anda dari [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` untuk PC biasa, `arm64` untuk banyak peranti ARM, termasuk Raspberry Pi 4+), kemudian:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Pada x86_64/amd64 gunakan nama fail `x64`; pada ARM64 gunakan nama `...-arm64.AppImage`.
+
+Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigur sekurang-kurangnya satu penyedia; OpenRouter adalah biasa digunakan untuk model percuma.
+
+**Mesej konsol:** Binaan Linux yang dibungkus (`x64` dan `arm64` AppImages) menekan amaran penyingkiran Node dalam terminal (contohnya modul binaan `punycode`). Jika Chromium mencetak ralat GPU / EGL seperti “GLES3 tidak disokong” tetapi aplikasi berfungsi, anda boleh membisukan ralat tersebut dengan melumpuhkan pecutan perkakasan:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Perkara itu juga berlaku pada amd64; ubah nama fail mengikut muat turun anda.
+
+Pada Debian/Ubuntu, anda mungkin memerlukan pustaka **runtime** tambahan yang diperlukan oleh Chromium (ini biasanya sudah hadir pada pemasangan desktop penuh). Jalankan arahan di bawah jika diperlukan:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+gantikan `libasound2t64` dengan `libasound2` untuk `arm64`. Pemasangan minima atau tersuai mungkin masih gagal dengan fail `.so` hilang. Pasang pakej yang dinamakan dalam mesej ralat (tambahan biasa: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Dalam sesetengah persekitaran, anda mungkin perlu menjalankan aplikasi menggunakan `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> macOS tidak disokong buat masa ini. Transrewrt tersedia untuk Windows, Linux, dan Docker.
+
+</details>
+
+<br/>
+
+Apabila aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mempelajari cara menterjemah, menulis semula, dan mengubah teks, menguruskan arahan, serta mengkonfigurasi model.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](htt
 
 Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) atau jalankan model secara tempatan dengan [Ollama](https://ollama.com). Rujuk [Configuration](#configuration-and-environment) untuk senarai penuh penyedia yang disokong dan pemboleh ubah persekitaran.
 
+</br>
+
 > ⚠️ **AMARAN**<br/>
 > Jika anda menggunakan Ollama daripada peranti, bekas, atau perkhidmatan lain, ingat untuk mengkonfigurasi Ollama agar membenarkan sambungan luaran (bukan localhost sahaja).
-
-Untuk had, BYOK, dan lain-lain, lihat [pengesahan OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Konfigurasi dan persekitaran
+
+</br>
 
 **Lokasi fail konfigurasi**
 
@@ -313,16 +310,13 @@ Konfigurasikan hanya penyedia yang anda gunakan. ID model mempunyai ruang nama (
 
 **Data dan kekalan:** Untuk Docker, pasang isi padu di `/app/data` supaya `config.json` dan pangkalan data SQLite kekal merentasi permulaan semula bekas. Tanpa isi padu, semua data hilang apabila bekas berhenti.
 
-**Pembangun:** Selepas menarik perubahan yang menggantikan konfigurasi kunci tunggal lama, tetapkan semula atau gabungkan `data/config.json` dengan bentuk lalai baharu daripada `src/config-defaults/config_default.json` jika fail tempatan anda masih menggunakan medan yang telah dibuang (`api_key`, `api_url`, pilihan proksi).
-
 <br/>
 
 **Pengesahan web:**
 
 - Pentadbir lalai: `admin` / `transrewrt26`.
 - Urus pengguna di **Tetapan → Pengguna**.
-- Tetapkan semula kata laluan: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (daripada sumber: `pnpm run reset-web-password -- <username> <new-password>`)
+- Tetap semula kata laluan: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 

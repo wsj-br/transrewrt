@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:47:39.104Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:43:49.783Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: sw
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ Baada ya kusakinisha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa m
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Yaliyomo
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Picha za skrini](#screenshots)
+- [Anza haraka](#quick-start)
+- [Kupata ufunguo wa API wa OpenRouter](#getting-an-openrouter-api-key)
+- [Mipangilio na mazingira](#configuration-and-environment)
+- [Uboreshaji na usanidi](#development-and-architecture)
+- [Kuripoti masuala](#reporting-issues)
+- [Kanusho](#disclaimer)
+- [Leseni](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Picha za skrini
 
@@ -72,33 +91,15 @@ Baada ya kusakinisha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa m
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Yaliyomo
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Kuanza haraka](#quick-start)
-- [Sakinisha](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Kuweka saa ya eneo](#configuring-the-timezone)
-- [Kupata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
-- [Uwekaji na mazingira](#configuration-and-environment)
-- [Maendeleo na utando](#development-and-architecture)
-- [Ripoti ya matatizo](#reporting-issues)
-- [Kuondoa wajibu](#disclaimer)
-- [Leseni](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Kuanza haraka
 
-**Docker (inashauriwa kwa ajili ya kujitolea)**
+<details>
+<summary><b>Docker (inashauriwa kwa ajili ya kujitolea)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Badilisha `sk-or-your-key` kufungua [kifungu cha API cha OpenRouter](https://openrouter.ai/keys) (au weka vifungu vya watoa huduma wengine; angalia [Mipangilio](#configuration-and-environment)). Fungua [http://localhost:5000](http://localhost:5000) na ubadilishe nenosiri la msimamizi la chaguo-msingi kabla ya kufichua huduma.
 
+Weka angalau ufunguo mmoja wa mtoa huduma kupitia mazingira (kwa mfano `OPENROUTER_API_KEY` kwa OpenRouter). Pitisha vigezo na `-e` au `docker compose` / `.env` ili siri zisizochongwa kwenye picha. Ufunguo wa mtoa huduma **hauingiiwi** kwenye UI ya mtandao; seva inasoma kutoka mazingira.
+
 <br/>
 
 > ℹ️ **KUMBUKA**<br/>
@@ -120,105 +123,12 @@ Badilisha `sk-or-your-key` kufungua [kifungu cha API cha OpenRouter](https://ope
 
 <br/>
 
-**Windows**
-
-Pakua `Transrewrt Setup x.y.z.exe` ya hivi karibuni kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases), endesha kifaa cha kusanidi, kisha anza kutoka kwenye menyu ya Start au kifupisho cha dawati. Weka vifungu vako vya API katika **Mipangilio → API**. Unahitaji kusanidi angalau watoa huduma mmoja, OpenRouter ni kawaida kwa Mifano ya bure.
-
-<br/>
-
-**Linux**
-
-Pakua `.AppImage` kwa CPU yako kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases) (`x64` kwa PC za kawaida, `arm64` kwa vifaa vingi vya ARM, ikiwemo Raspberry Pi 4+), kisha:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Weka vifungu vako vya API katika **Mipangilio → API**. Unahitaji kusanidi angalau watoa huduma mmoja, OpenRouter ni kawaida kwa Mifano ya bure.
-
-**Ujumbe wa konsoli:** Matumizi ya Linux yaliyopakia (`x64` na `arm64` AppImages) huwasha onyo la Node kuhusu vitambulisho vilivyotolewa (kama vile moduli ya ndani `punycode`). Ikiwa Chromium inaonyesha makosa ya GPU / EGL kama vile “GLES3 ni isiyotumika” lakini programu inafanya kazi, unaweza kuzima kwa kutoa ushauri wa harware:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Hii inatumika pia kwenye amd64; badilisha jina la faili ili linganishe na ulichopakua. Angalia [Sakinisho → Linux (Electron)](#linux-electron) kwa maelezo zaidi.
-
-Kwenye Debian/Ubuntu labda utahitaji **maktaba ya runtime** zaidi ambazo Chromium inazitaka (mara nyingi tayari kwenye desktop kamili). Tumia **`libnotify4`** kwa arifa za desktop—**sio** `libnotify-dev` (hii ni kwa kujenga programu, si kwa kuendesha AppImage iliyopakia):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Picha rahisi au zilizobadilishwa bado zinaweza kushindwa kwa `.so` inayopokuwa; weka kifurushi kilicho na jina la makosa (ziada za kawaida: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Baadhi ya mazingira yanahitaji FUSE kuendesha AppImages (kama vile `libfuse2` kwenye Ubuntu 22.04+), au tumia `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **KUMBUKA**<br/>
-> macOS haijathibitishwa. Transrewrt inapatikana kwa Windows, Linux, na Docker.
-
-<br/>
-
-Mara programu inapoanza, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kujifunza jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, kudhibiti maelezo, na kusanidi Mifano.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Usakinishaji
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Pakua kifaa cha kusanidi cha hivi karibuni kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases).
-- Endesha `.exe` na ufuate mchakato wa kusanidi.
-- Uwiano wa kwanza: anza programu kutoka kwenye menyu ya Start au kifupisho cha dawati.
-
-<br/>
-
-> ℹ️ **KUMBUKA**<br/>
-> Windows inaweza kuonyesha moja ya hizi onyo za usalama (kawaida kwa programu zisizothibitishwa/huru):
->   - **Udhibiti wa Akaunti ya Mtumiaji (UAC)**: "Je, unataka kuruhusu programu hii kutoka kwa mtengenezaji asiyejulikana kufanya mabadiliko kwenye kifaa chako?" → Bonyeza **Ndio**.
->   - **Microsoft Defender SmartScreen**: "Windows ilihifadhi PC yako" → Bonyeza **Maelezo zaidi** → **Endelea kufanya**.
->
-> Hii hutokea kwa sababu programu haijaandikwa na Microsoft au mtengenezaji mkubwa - ni salama ikiwa imepakuliwa kutoka kwa machofu rasmi ya GitHub yetu
->  (thibitisha checksum ya SHA256 hapa chini).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Pakua `.AppImage` inayofaa (`x64` au `arm64`) kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases).
-- Endesha: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` kwenye x86_64/amd64, au tumia jina la faili `...-arm64.AppImage` kwenye ARM64.
-- **Vifaa vya Debian/Ubuntu** (Electron/Chromium; sawa na [Kuanza haraka → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — tumia **`libnotify4`**, si `libnotify-dev`. Kwenye mfumo mdogo, weka vifaa vya `.so` vilivyotajwa kwenye terminal; vifaa kama vile `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` vinahitajika mara kwa mara. AppImage inaweza kuhitaji `libfuse2` (Ubuntu 22.04+) au `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **Ujumbe wa GPU:** Chromium unaweza kuweka ujumbe wa GPU au makosa ya awali ya EGL kwenye baadhi ya mifumo (hasa ARM); programu bado inaweza kufanya kazi kama kawaida. Ili kuepuka ujumbe huo, endesha bila kasi ya hardware: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (au jina lako la `arm64`).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Pakua: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Weka angalau moja ya fomu ya mtoa huduma kupitia mazingira (kwa mfano `OPENROUTER_API_KEY` kwa OpenRouter). Hamisha kigezo kwa kutumia `-e` au `docker compose` / `.env` ili siri zisizikumbukumbu zisijumuishwe katika picha.
-- Fomu za mtoa huduma **hazitumiki** kwenye UI ya wavuti; seva inasoma kutoa kwa mazingira.
-
-Mfano - kiasi kilichopewa jina kwa ajili ya uwezo wa kudumu (fomu ya OpenRouter kupitia mazingira):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-au ikiwa unapendelea kutumia Docker Compose, tumia:
+Au tumia Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Angalia [Configuration](#configuration-and-environment) kwa kigezo chote cha mazingira, kama vile `PORT`, `CONFIG_PATH`, `TZ`, na fomu za LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Saa ya seva (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Kusanidi saa
+
+<br/>
 
 Saa na tarehe za kiolesura cha programu zinaziamua **browser** na saa ya eneo lake. Kwa ajili ya **tabia ya upande wa seva** (kutambua na vitu vingine), wanyama hutumia kigezo cha mazingira `TZ`. Chaguo-msingi ni `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Orodha ya majina sahihi ya saa ya eneo inahifadhiwa kwenye [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Pakua `Transrewrt Setup x.y.z.exe` ya hivi karibuni kutoka kwa [Matoleo](https://github.com/wsj-br/transrewrt/releases).
+- Zindua `.exe` na fuata kiwanja cha ufunguaji.
+- Ufungue wa kwanza: anza programu kutoka kwenye menyu ya Kuanza au kifupisho cha dawati.
+- Ingiza ufunguo wako wa API katika **Mipangilio → API**. Unahitaji kusanidi angalau mtoa huduma mmoja; OpenRouter ni kawaida kwa mifano ya bure.
+
+<br/>
+
+> ℹ️ **KUMBUKA**<br/>
+> Windows inaweza kuonyesha moja ya maonyo haya ya usalama (ni kawaida kwa programu zisizo na saini/za kujitegemea):
+>   - **Udhibiti wa Akaunti ya Mtumiaji (UAC)**: "Je, unataka kuruhusu programu hii kutoka kwa mchuzi asiyejulikana kufanya mabadiliko kwenye kifaa chako?" → Bofya **Ndio**.
+>   - **Microsoft Defender SmartScreen**: "Windows imelinda PC yako" → Bofya **Maelezo zaidi** → **Endelea kwa namna yoyote**.
+>
+> Hii hutokea kwa sababu programu haijasainiwa na Microsoft au mchuzi mkuu—ni salama ikiwa imepakuliwa kutoka kwa matoleo yetu ya GitHub rasmi (thibitisha checksums kwenye ukurasa wa [Matoleo](https://github.com/wsj-br/transrewrt/releases) pamoja na kila kipengele).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Pakua `.AppImage` kwa CPU yako kutoka [Matoleo](https://github.com/wsj-br/transrewrt/releases) (`x64` kwa PC za kawaida, `arm64` kwa vifaa vingi vya ARM, ikiwemo Raspberry Pi 4+), kisha:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Kwenye x86_64/amd64 tumia jina la faili la `x64`; kwenye ARM64 tumia jina la `...-arm64.AppImage`.
+
+Ingiza ufunguo wako wa API katika **Mipangilio → API**. Unahitaji kusanidi angalau mtoa huduma mmoja; OpenRouter ni kawaida kwa mifano ya bure.
+
+**Ujumbe wa konsoli:** Matumizi ya Linux yaliyopakia (`x64` na `arm64` AppImages) huwasha onyo la Node kuhusu vitambulisho vilivyotolewa (kama vile moduli ya ndani `punycode`). Ikiwa Chromium inaonyesha makosa ya GPU / EGL kama vile “GLES3 ni isiyotumika” lakini programu inafanya kazi, unaweza kuzima kwa kutoa ushauri wa harware:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Hii inatumika kwenye amd64 pia; badilisha jina la faili ili liendane na kile ulichopakua.
+
+Kwenye Debian/Ubuntu, unaweza kuhitaji maktaba za ziada za **runtime** zinazohitajika na Chromium (hizi mara nyingi zipo tayari kwenye ufungaji wa dawati kamili). Zindisha amri hapo chini ikiwa inahitajika:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+badilisha `libasound2t64` na `libasound2` kwa `arm64`. Ufungaji wa kiwango cha chini au maalum bado inaweza kushindwa na faili ya `.so` iliyokosekana. Sakinisha kifungu kilichoitwa kwenye ujumbe wa kosa (viongozo vya kawaida: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Katika mazingira yanayofaa, unaweza kuhitaji kuzindua programu kwa kutumia `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **KUMBUKA**<br/>
+> macOS haijathibitishwa. Transrewrt inapatikana kwa Windows, Linux, na Docker.
+
+</details>
+
+<br/>
+
+Mara programu inapoanza, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kujifunza jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, kudhibiti maelezo, na kusanidi Mifano.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Usitumie **Body Builder** model ya OpenRouter ([`openrouter/bodybuilder`](https:
 
 Unaweza pia kutumia mtoa huduma mengine (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) au kuendesha mifano kivinjari kwa kutumia [Ollama](https://ollama.com). Angalia [Configuration](#configuration-and-environment) kwa orodha kamili ya mtoa huduma waliopokelewa na kigezo cha mazingira.
 
+</br>
+
 > ⚠️ **ONYO**<br/>
 > Ikiwa unatumia Ollama kutoka kifaa, kontena, au huduma nyingine, kumbuka kusanidi Ollama ili iruhusu muunganisho wa nje (sio localhost-pekee).
-
-Kwa ajili ya vikwazo, BYOK, na zaidi, tazama [uthibitishaji wa OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Usanidi na mazingira
+
+</br>
 
 **Mahali pa faili ya usanidi**
 
@@ -313,16 +310,13 @@ Washa wizara tu ambazo unayotumia. Vitambulisho vya kifaa vina nafasi ya jina (`
 
 **Data na udumu:** Kwa Docker, weka kiasi cha kudumu kwenye `/app/data` ili `config.json` na hifadhidata ya SQLite zilinde baada ya kuanza upya wa chombo. Bila kiasi, data yote hutolewa wakati wa kuzima chombo.
 
-**Wanafunzi:** Baada ya kupata mabadiliko ambayo yanabadilisha usanidi wa kitufe kimoja uliopita, weka upya au uunganishe `data/config.json` na muundo mpya wa chaguo-msingi kutoka `src/config-defaults/config_default.json` ikiwa faili yako ya kijitihima bado inatumia mashamba yaliyofutwa (`api_key`, `api_url`, chaguzi za wavuti).
-
 <br/>
 
 **Uthibitishaji wa wavuti:**
 
 - Msimamizi wa chaguo-msingi: `admin` / `transrewrt26`.
-- Dhibiti watumiaji kwenye **Mipangilio → Watumiaji**.
-- Weka upya nenosiri: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (kutoka kwa chanzo: `pnpm run reset-web-password -- <username> <new-password>`)
+- Simamia watumiaji katika **Mipangilio → Watumiaji**.
+- Rekebisha nenosiri: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 

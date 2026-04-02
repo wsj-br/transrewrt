@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:44:46.242Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:41:59.277Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: pt
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para u
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Índice
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Capturas de ecrã](#screenshots)
+- [Início rápido](#quick-start)
+- [Obter uma chave API OpenRouter](#getting-an-openrouter-api-key)
+- [Configuração e ambiente](#configuration-and-environment)
+- [Desenvolvimento e arquitetura](#development-and-architecture)
+- [Reportar problemas](#reporting-issues)
+- [Aviso legal](#disclaimer)
+- [Licença](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Capturas de tela
 
@@ -72,33 +91,15 @@ Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para u
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Índice
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Primeiros passos](#quick-start)
-- [Instalação](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Configurar o fuso horário](#configuring-the-timezone)
-- [Obter uma chave de API do OpenRouter](#getting-an-openrouter-api-key)
-- [Configuração e ambiente](#configuration-and-environment)
-- [Desenvolvimento e arquitetura](#development-and-architecture)
-- [Relatar problemas](#reporting-issues)
-- [Aviso legal](#disclaimer)
-- [Licença](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Início rápido
 
-**Docker (recomendado para auto-hospedagem)**
+<details>
+<summary><b>Docker (recomendado para auto-hospedagem)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Substitua `sk-or-your-key` pela sua [chave API OpenRouter](https://openrouter.ai/keys) (ou defina chaves de outros provedores; veja [Configuração](#configuration-and-environment)). Abra [http://localhost:5000](http://localhost:5000) e altere a palavra-passe padrão do administrador antes de expor o serviço.
 
+Defina pelo menos uma chave de provedor através do ambiente (por exemplo, `OPENROUTER_API_KEY` para OpenRouter). Passe as variáveis com `-e` ou `docker compose` / `.env` para que os segredos não sejam incorporados na imagem. As chaves de provedor **não** são inseridas na interface web; o servidor lê-as a partir do ambiente.
+
 <br/>
 
 > ℹ️ **NOTA**<br/>
@@ -120,105 +123,12 @@ Substitua `sk-or-your-key` pela sua [chave API OpenRouter](https://openrouter.ai
 
 <br/>
 
-**Windows**
-
-Transfira o mais recente `Transrewrt Setup x.y.z.exe` em [Releases](https://github.com/wsj-br/transrewrt/releases), execute o instalador e depois inicie a partir do menu Iniciar ou atalho no ambiente de trabalho. Insira as suas chaves API em **Definições → API**. Você precisa configurar pelo menos um provedor; o OpenRouter é comum para modelos gratuitos.
-
-<br/>
-
-**Linux**
-
-Transfira o `.AppImage` para o seu CPU em [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` para PCs típicos, `arm64` para muitos dispositivos ARM, incluindo Raspberry Pi 4+), depois:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Insira as suas chaves API em **Definições → API**. Você precisa configurar pelo menos um provedor; o OpenRouter é comum para modelos gratuitos.
-
-**Mensagens do console:** As versões empacotadas para Linux (`AppImages` x64 e arm64) suprimem avisos de depreciação do Node no terminal (por exemplo, o módulo embutido `punycode`). Se o Chromium exibir erros de GPU / EGL como “GLES3 não suportado”, mas o aplicativo funcionar, você pode silenciá-los desativando a aceleração por hardware:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Isso se aplica também ao amd64; altere o nome do arquivo para corresponder à sua versão baixada. Veja [Instalação → Linux (Electron)](#linux-electron) para mais detalhes.
-
-No Debian/Ubuntu, pode ser necessário instalar bibliotecas de **execução** adicionais que o Chromium espera (geralmente já presentes em ambientes desktop completos). Use **`libnotify4`** para notificações na área de trabalho — **não** `libnotify-dev` (isso é para compilar software, não para executar o AppImage empacotado):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Imagens mínimas ou personalizadas ainda podem falhar com uma biblioteca `.so` ausente; instale o pacote indicado no erro (extras comuns: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Alguns ambientes precisam do FUSE para executar AppImages (por exemplo, `libfuse2` no Ubuntu 22.04+), ou use `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **NOTA**<br/>
-> O macOS não é atualmente suportado. O Transrewrt está disponível para Windows, Linux e Docker.
-
-<br/>
-
-Uma vez que a aplicação esteja em execução, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para aprender a traduzir, reescrever e transformar texto, gerir prompts e configurar modelos.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Instalação
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Transfira o instalador mais recente em [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Execute o `.exe` e siga as instruções do instalador.
-- Primeira execução: inicie a aplicação pelo menu Iniciar ou atalho no ambiente de trabalho.
-
-<br/>
-
-> ℹ️ **NOTA**<br/>
-> O Windows pode exibir um destes avisos de segurança (normal para aplicativos não assinados ou independentes):
->   - **Controle de Conta de Usuário (UAC)**: "Você deseja permitir que este aplicativo de um editor desconhecido faça alterações no seu dispositivo?" → Clique em **Sim**.
->   - **Microsoft Defender SmartScreen**: "O Windows protegeu seu PC" → Clique em **Mais informações** → **Executar mesmo assim**.
->
-> Isso ocorre porque o aplicativo não é assinado pela Microsoft ou por um editor importante — é seguro se baixado a partir das nossas versões oficiais no GitHub
->  (verifique a soma de verificação SHA256 abaixo).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Descarregue o ficheiro `.AppImage` correspondente (`x64` ou `arm64`) em [Versões](https://github.com/wsj-br/transrewrt/releases).
-- Execute: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` em x86_64/amd64, ou utilize o nome de ficheiro `...-arm64.AppImage` em ARM64.
-- **Bibliotecas de runtime do Debian/Ubuntu** (Electron/Chromium; iguais às [Início rápido → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — utilize **`libnotify4`**, não `libnotify-dev`. Em sistemas mínimos, instale quaisquer `.so` em falta indicados no terminal; complementos como `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` são frequentemente necessários. O AppImage pode precisar de `libfuse2` (Ubuntu 22.04+) ou `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **Mensagens da GPU:** O Chromium pode registar erros de inicialização da GPU ou EGL em alguns sistemas (especialmente ARM); a aplicação ainda pode funcionar normalmente. Para evitar essas mensagens, inicie com a aceleração por hardware desativada: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (ou o nome do seu ficheiro `arm64`).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Baixar: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Defina pelo menos uma chave de provedor via ambiente (por exemplo, `OPENROUTER_API_KEY` para OpenRouter). Passe as variáveis com `-e` ou `docker compose` / `.env` para que os segredos não sejam incorporados na imagem.
-- As chaves dos provedores **não** são inseridas na interface web; o servidor as lê do ambiente.
-
-Exemplo - volume nomeado para persistência (chave OpenRouter via env):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-ou, se preferir usar Docker Compose, use:
+Ou use Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Veja [Configuração](#configuration-and-environment) para todas as variáveis de ambiente, como `PORT`, `CONFIG_PATH`, `TZ` e chaves de LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Fuso horário do servidor (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Configurando o fuso horário
+
+<br/>
 
 A data e hora da interface do usuário seguem o idioma e o fuso horário do **navegador**. Para o comportamento no **lado do servidor** (registros e similares), o contêiner usa a variável de ambiente `TZ`. O padrão é `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 Uma lista de nomes válidos de fusos horários é mantida na [banco de dados tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Transfira o mais recente `Transrewrt Setup x.y.z.exe` em [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Execute o `.exe` e siga as instruções do instalador.
+- Primeira execução: inicie a aplicação a partir do menu Iniciar ou do atalho no ambiente de trabalho.
+- Insira as suas chaves API em **Definições → API**. Precisa de configurar pelo menos um provedor; o OpenRouter é comum para modelos gratuitos.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> O Windows pode exibir um destes avisos de segurança (normal para aplicações não assinadas ou independentes):
+>   - **Controlo de Conta de Utilizador (UAC)**: "Deseja permitir que esta aplicação de um editor desconhecido faça alterações no seu dispositivo?" → Clique em **Sim**.
+>   - **Microsoft Defender SmartScreen**: "O Windows protegeu o seu PC" → Clique em **Mais informações** → **Executar na mesma**.
+>
+> Isto acontece porque a aplicação não está assinada pela Microsoft ou por um editor maior—é segura se for transferida a partir das nossas versões oficiais no GitHub (verifique as somas de verificação na página [Releases](https://github.com/wsj-br/transrewrt/releases) junto a cada recurso).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Transfira o `.AppImage` para o seu CPU em [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` para PCs típicos, `arm64` para muitos dispositivos ARM, incluindo Raspberry Pi 4+), depois:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+Em x86_64/amd64 use o nome de ficheiro `x64`; em ARM64 use o nome `...-arm64.AppImage`.
+
+Insira as suas chaves API em **Definições → API**. Precisa de configurar pelo menos um provedor; o OpenRouter é comum para modelos gratuitos.
+
+**Mensagens do console:** As versões empacotadas para Linux (`AppImages` x64 e arm64) suprimem avisos de depreciação do Node no terminal (por exemplo, o módulo embutido `punycode`). Se o Chromium exibir erros de GPU / EGL como “GLES3 não suportado”, mas o aplicativo funcionar, você pode silenciá-los desativando a aceleração por hardware:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Isso aplica-se também ao amd64; altere o nome do ficheiro para corresponder à sua transferência.
+
+Em Debian/Ubuntu, poderá precisar de bibliotecas de **runtime** adicionais exigidas pelo Chromium (geralmente já presentes em instalações completas com ambiente gráfico). Execute os comandos abaixo se necessário:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+substitua `libasound2t64` por `libasound2` para `arm64`. Instalações mínimas ou personalizadas podem ainda falhar com um ficheiro `.so` em falta. Instale o pacote indicado na mensagem de erro (extras comuns: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Em alguns ambientes, poderá precisar executar a aplicação usando `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> O macOS não é atualmente suportado. O Transrewrt está disponível para Windows, Linux e Docker.
+
+</details>
+
+<br/>
+
+Uma vez que a aplicação esteja em execução, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para aprender a traduzir, reescrever e transformar texto, gerir prompts e configurar modelos.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Não use o modelo **Body Builder** do OpenRouter ([`openrouter/bodybuilder`](htt
 
 Você também pode usar outros provedores (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ou executar modelos localmente com [Ollama](https://ollama.com). Veja [Configuração](#configuration-and-environment) para a lista completa de provedores suportados e variáveis de ambiente.
 
+</br>
+
 > ⚠️ **AVISO**<br/>
 > Se você estiver usando o Ollama a partir de outro dispositivo, contêiner ou serviço, lembre-se de configurar o Ollama para permitir conexões externas (não apenas localhost).
-
-Para limites, BYOK e mais, consulte [autenticação OpenRouter](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Configuração e ambiente
+
+</br>
 
 **Localizações do ficheiro de configuração**
 
@@ -313,16 +310,13 @@ Configure apenas os fornecedores que utilizar. Os IDs dos modelos são agrupados
 
 **Dados e persistência:** Para Docker, monte um volume em `/app/data` para que o `config.json` e a base de dados SQLite persistam entre reinícios do contentor. Sem um volume, todos os dados são perdidos quando o contentor é encerrado.
 
-**Programadores:** Após atualizar alterações que substituem a configuração antiga de chave única, redefina ou una `data/config.json` com a nova estrutura padrão de `src/config-defaults/config_default.json`, caso o seu ficheiro local ainda utilize campos removidos (`api_key`, `api_url`, opções de proxy).
-
 <br/>
 
 **Autenticação web:**
 
 - Administrador padrão: `admin` / `transrewrt26`.
-- Gerir utilizadores em **Definições → Utilizadores**.
-- Repor palavra-passe: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (a partir da origem: `pnpm run reset-web-password -- <username> <new-password>`)
+- Gerencie utilizadores em **Definições → Utilizadores**.
+- Redefina uma palavra-passe: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 

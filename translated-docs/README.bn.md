@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:41:20.787Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:40:25.365Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: bn
 source_file_path: README.md
 ---
@@ -42,6 +42,25 @@ AI-চালিত টেক্সট টুল: বিভিন্ন ভাষ
 
 <br/>
 
+<a id="table-of-contents"></a>
+## সূচিপত্র
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [স্ক্রিনশট](#screenshots)
+- [দ্রুত শুরু করা](#quick-start)
+- [ওপেনরাউটার এপিআই কী পাওয়া](#getting-an-openrouter-api-key)
+- [কনফিগারেশন এবং পরিবেশ](#configuration-and-environment)
+- [ডেভেলপমেন্ট এবং আর্কিটেকচার](#development-and-architecture)
+- [সমস্যা রিপোর্ট করা](#reporting-issues)
+- [ডিসক্লেইমার](#disclaimer)
+- [লাইসেন্স](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## স্ক্রিনশট
 
@@ -71,33 +90,15 @@ AI-চালিত টেক্সট টুল: বিভিন্ন ভাষ
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## সূচিপত্র
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [দ্রুত শুরু](#quick-start)
-- [ইনস্টলেশন](#installation)
-  - [উইন্ডোজ (ইলেকট্রন)](#windows-electron)
-  - [লিনাক্স (ইলেকট্রন)](#linux-electron)
-  - [ডকার](#docker)
-  - [টাইমজোন কনফিগার করা](#configuring-the-timezone)
-- [ওপেনরাউটার API কী পাওয়া](#getting-an-openrouter-api-key)
-- [কনফিগারেশন এবং পরিবেশ](#configuration-and-environment)
-- [ডেভেলপমেন্ট এবং আর্কিটেকচার](#development-and-architecture)
-- [সমস্যা রিপোর্ট করা](#reporting-issues)
-- [দাবি অস্বীকার](#disclaimer)
-- [লাইসেন্স](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## দ্রুত শুরু করুন
 
-**ডকার (স্ব-হোস্টিংয়ের জন্য সুপারিশকৃত)**
+<details>
+<summary><b>ডকার (সেলফ-হোস্টিংয়ের জন্য সুপারিশকৃত)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -112,6 +113,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 `sk-or-your-key`-এর স্থানে আপনার [ওপেনরাউটার API কী](https://openrouter.ai/keys) ব্যবহার করুন (অথবা অন্যান্য প্রদানকারীদের কী সেট করুন; [কনফিগারেশন](#configuration-and-environment) দেখুন)। [http://localhost:5000](http://localhost:5000) খুলুন এবং সার্ভিস প্রকাশ করার আগে ডিফল্ট অ্যাডমিন পাসওয়ার্ড পরিবর্তন করুন।
 
+পরিবেশের মাধ্যমে কমপক্ষে একটি প্রদানকারীর কী সেট করুন (উদাহরণস্বরূপ ওপেনরাউটারের জন্য `OPENROUTER_API_KEY`)। গোপনীয়তা যেন ইমেজে না থাকে তা নিশ্চিত করতে `-e` বা `ডকার কম্পোজ` / `.env` এর মাধ্যমে ভেরিয়েবল পাস করুন। প্রদানকারীর কীগুলি **ওয়েব ইউআই-এ প্রবেশ করানো হয় না**; সার্ভার পরিবেশ থেকে এগুলি পড়ে।
+
 <br/>
 
 > ℹ️ **নোট**<br/>
@@ -119,105 +122,12 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-**উইন্ডোজ**
-
-[রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে সর্বশেষ `Transrewrt সেটআপ x.y.z.exe` ডাউনলোড করুন, ইনস্টলার চালান, তারপর স্টার্ট মেনু বা ডেস্কটপ শর্টকাট থেকে চালু করুন। **সেটিংস → API**-এ আপনার API কী প্রবেশ করান। আপনাকে কমপক্ষে একটি প্রদানকারী কনফিগার করতে হবে, বিনামূল্যে মডেলের জন্য ওপেনরাউটার সাধারণত ব্যবহৃত হয়।
-
-<br/>
-
-**লিনাক্স**
-
-[রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে আপনার CPU-এর জন্য `.AppImage` ডাউনলোড করুন (`x64` সাধারণ পিসি-এর জন্য, `arm64` অনেক ARM ডিভাইসের জন্য, রাস্পবেরি পাই 4+ সহ), তারপর:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-**সেটিংস → API**-এ আপনার API কী প্রবেশ করান। আপনাকে কমপক্ষে একটি প্রদানকারী কনফিগার করতে হবে, বিনামূল্যে মডেলের জন্য ওপেনরাউটার সাধারণত ব্যবহৃত হয়।
-
-**কনসোল মেসেজ:** প্যাকেজ করা লিনাক্স বিল্ড (`x64` এবং `arm64` AppImages) টার্মিনালে নোড অবচয় সতর্কতা চাপিয়ে দেয় (উদাহরণস্বরূপ অন্তর্নির্মিত `punycode` মডিউল)। যদি ক্রোমিয়াম "GLES3 সমর্থিত নয়" এর মতো GPU / EGL ত্রুটি প্রিন্ট করে কিন্তু অ্যাপ কাজ করে, তবে আপনি হার্ডওয়্যার ত্বরণ অক্ষম করে সেগুলি নীরব করতে পারেন:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-এটি amd64-এও প্রযোজ্য; আপনার ডাউনলোড অনুযায়ী ফাইলের নাম পরিবর্তন করুন। আরও বিস্তারিত জানতে [ইনস্টলেশন → লিনাক্স (ইলেকট্রন)](#linux-electron) দেখুন।
-
-ডেবিয়ান/উবুন্টুতে আপনার ক্রোমিয়াম আশা করা অতিরিক্ত **রানটাইম** লাইব্রেরি প্রয়োজন হতে পারে (প্রায়শই পূর্ণ ডেস্কটপে ইতিমধ্যে থাকে)। ডেস্কটপ বিজ্ঞপ্তির জন্য **`libnotify4`** ব্যবহার করুন—**না** `libnotify-dev` (এটি সফটওয়্যার তৈরির জন্য, প্যাকেজ করা AppImage চালানোর জন্য নয়):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-মিনিমাল বা কাস্টম ইমেজগুলি এখনও অনুপস্থিত `.so` এর সাথে ব্যর্থ হতে পারে; ত্রুটির নামকৃত প্যাকেজটি ইনস্টল করুন (সাধারণ অতিরিক্ত: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। কিছু পরিবেশে AppImages চালানোর জন্য FUSE প্রয়োজন (যেমন উবুন্টু 22.04+ এ `libfuse2`), অথবা `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ব্যবহার করুন।
-
-<br/>
-
-> ℹ️ **নোট**<br/>
-> ম্যাকওএস বর্তমানে সমর্থিত নয়। উইন্ডোজ, লিনাক্স এবং ডকারের জন্য Transrewrt উপলব্ধ।
-
-<br/>
-
-অ্যাপটি চালু হওয়ার পর, টেক্সট অনুবাদ, পুনর্লিখন এবং রূপান্তর করা, প্রম্পট পরিচালনা করা এবং মডেল কনফিগার করা সম্পর্কে জানতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
-
-<br/><br/>
-
-<a id="installation"></a>
-## ইনস্টলেশন
-
-<a id="windows-electron"></a>
-### উইন্ডোজ (Electron)
-
-- [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে সর্বশেষ ইনস্টলার ডাউনলোড করুন।
-- `.exe` ফাইলটি চালান এবং ইনস্টলার অনুসরণ করুন।
-- প্রথম বার চালানোর সময়: স্টার্ট মেনু বা ডেস্কটপ শর্টকাট থেকে অ্যাপটি শুরু করুন।
-
-<br/>
-
-> ℹ️ **নোট**<br/>
-> উইন্ডোজ এই নিরাপত্তা সতর্কতাগুলির মধ্যে একটি দেখাতে পারে (স্বাক্ষরিত/স্বাধীন অ্যাপ্লিকেশনের জন্য স্বাভাবিক):
->   - **ব্যবহারকারী অ্যাকাউন্ট নিয়ন্ত্রণ (UAC)**: "আপনি কি অজানা প্রকাশকের এই অ্যাপটিকে আপনার ডিভাইসে পরিবর্তন করার অনুমতি দিতে চান?" → **হ্যাঁ** ক্লিক করুন।
->   - **মাইক্রোসফট ডিফেন্ডার স্মার্টস্ক্রিন**: "উইন্ডোজ আপনার পিসি সুরক্ষিত করেছে" → **আরও তথ্য** ক্লিক করুন → **যাইহোক চালান**।
->
-> কারণ অ্যাপটি মাইক্রোসফট বা কোনো বড় প্রকাশক দ্বারা স্বাক্ষরিত নয়—এটি নিরাপদ যদি আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে ডাউনলোড করা হয়
->  (নীচের SHA256 চেকসাম যাচাই করুন)।
-
-<br/>
-
-<a id="linux-electron"></a>
-### লিনাক্স (Electron)
-
-- [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে মিলে যাওয়া `.AppImage` (`x64` বা `arm64`) ডাউনলোড করুন।
-- চালান: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` x86_64/amd64-এ, অথবা ARM64-এ `...-arm64.AppImage` ফাইলনাম ব্যবহার করুন।
-- **ডেবিয়ান/উবুন্টু রানটাইম লাইব্রেরি** (ইলেকট্রন/ক্রোমিয়াম; [কুইক স্টার্ট → লিনাক্স](#quick-start) একই রকম): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — **`libnotify4`** ব্যবহার করুন, `libnotify-dev` নয়। ন্যূনতম সিস্টেমে, টার্মিনালে প্রদর্শিত কোনো অনুপস্থিত `.so` ইনস্টল করুন; প্রায়শই `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` এর মতো অতিরিক্ত লাইব্রেরি প্রয়োজন হয়। AppImage-এ `libfuse2` (উবুন্টু 22.04+) বা `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` প্রয়োজন হতে পারে।
-- **GPU বার্তা:** কিছু সিস্টেমে (বিশেষ করে ARM-এ) ক্রোমিয়াম GPU বা EGL ইনিশিয়ালাইজেশন ত্রুটি লগ করতে পারে; তবুও অ্যাপটি স্বাভাবিকভাবে চলতে পারে। এই বার্তাগুলি এড়াতে, হার্ডওয়্যার ত্বরণ বন্ধ করে চালান: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (অথবা আপনার `arm64` ফাইলনাম)।
-
-<br/>
-
-<a id="docker"></a>
-### ডকার
-
-- পুল করুন: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- কমপক্ষে একটি প্রদানকারী কী পরিবেশের মাধ্যমে সেট করুন (উদাহরণস্বরূপ ওপেনরাউটারের জন্য `OPENROUTER_API_KEY`)। গোপন তথ্য ইমেজে না থাকার জন্য `-e` বা `docker compose` / `.env` ব্যবহার করে চলকগুলি পাস করুন।
-- প্রদানকারী কীগুলি **ওয়েব ইউআই-এ প্রবেশ করা হয় না**; সার্ভার পরিবেশ থেকে এগুলি পড়ে।
-
-উদাহরণ - স্থায়িত্বের জন্য নামযুক্ত ভলিউম (পরিবেশের মাধ্যমে ওপেনরাউটার কী):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-অথবা আপনি যদি ডকার কম্পোজ ব্যবহার করতে পছন্দ করেন, তবে ব্যবহার করুন:
+অথবা ডকার কম্পোজ ব্যবহার করুন:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -225,8 +135,16 @@ docker compose -f transrewrt.yml up -d
 
 `PORT`, `CONFIG_PATH`, `TZ`, এবং এলএলএম কী (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) সহ সমস্ত পরিবেশ চলকের জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>সার্ভার সময়ক্ষেপ (ডকার)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### সময় অঞ্চল কনফিগার করা
+
+<br/>
 
 অ্যাপ্লিকেশন ইন্টারফেসের তারিখ এবং সময় **ব্রাউজারের** স্থানীয় সেটিংস এবং সময়ক্ষেত্র অনুসরণ করে। **সার্ভার-সাইড** আচরণের (লগিং এবং অনুরূপ) জন্য, কনটেইনার `TZ` পরিবেশ চলক ব্যবহার করে। ডিফল্ট হল `TZ=Europe/London`।
 
@@ -251,6 +169,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 [tz ডাটাবেস](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (উইকিপিডিয়া) এ বৈধ সময়ক্ষেত্রের নামগুলির একটি তালিকা রয়েছে।
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>উইন্ডোজ</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- [রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে সর্বশেষ `Transrewrt সেটআপ x.y.z.exe` ডাউনলোড করুন।
+- `.exe` ফাইলটি চালান এবং ইনস্টলার অনুসরণ করুন।
+- প্রথম চালানোর সময়: স্টার্ট মেনু বা ডেস্কটপ শর্টকাট থেকে অ্যাপ শুরু করুন।
+- **সেটিংস → এপিআই**-এ আপনার এপিআই কী প্রবেশ করান। আপনাকে কমপক্ষে একটি প্রদানকারী কনফিগার করতে হবে; বিনামূল্যে মডেলের জন্য ওপেনরাউটার সাধারণত ব্যবহৃত হয়।
+
+<br/>
+
+> ℹ️ **নোট**<br/>
+> উইন্ডোজ এই ধরনের নিরাপত্তা সতর্কতা দেখাতে পারে (স্বাক্ষরিত নয় বা স্বাধীন অ্যাপের জন্য স্বাভাবিক):
+>   - **ব্যবহারকারী অ্যাকাউন্ট কন্ট্রোল (UAC)**: "আপনি কি অজ্ঞাত প্রকাশকের এই অ্যাপটিকে আপনার ডিভাইসে পরিবর্তন করার অনুমতি দিতে চান?" → **হ্যাঁ** ক্লিক করুন।
+>   - **মাইক্রোসফট ডিফেন্ডার স্মার্টস্ক্রিন**: "উইন্ডোজ আপনার পিসি সুরক্ষিত করেছে" → **আরও তথ্য** ক্লিক করুন → **তবুও চালান** ক্লিক করুন।
+>
+> এটি ঘটে কারণ অ্যাপটি মাইক্রোসফট বা কোনো প্রধান প্রকাশক দ্বারা স্বাক্ষরিত নয়—এটি নিরাপদ যদি এটি আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে ডাউনলোড করা হয় (প্রতিটি অ্যাসেটের পাশে [রিলিজ](https://github.com/wsj-br/transrewrt/releases) পৃষ্ঠায় চেকসাম যাচাই করুন)।
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>লিনাক্স</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+[রিলিজ](https://github.com/wsj-br/transrewrt/releases) থেকে আপনার CPU-এর জন্য `.AppImage` ডাউনলোড করুন (`x64` সাধারণ পিসি-এর জন্য, `arm64` অনেক ARM ডিভাইসের জন্য, রাস্পবেরি পাই 4+ সহ), তারপর:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+x86_64/amd64-এ `x64` ফাইলনাম ব্যবহার করুন; ARM64-এ `...-arm64.AppImage` নাম ব্যবহার করুন।
+
+আপনার এপিআই কীগুলি **সেটিংস → এপিআই**-এ প্রবেশ করান। আপনাকে কমপক্ষে একটি প্রদানকারী কনফিগার করতে হবে; বিনামূল্যে মডেলের জন্য ওপেনরাউটার সাধারণত ব্যবহৃত হয়।
+
+**কনসোল মেসেজ:** প্যাকেজ করা লিনাক্স বিল্ড (`x64` এবং `arm64` AppImages) টার্মিনালে নোড অবচয় সতর্কতা চাপিয়ে দেয় (উদাহরণস্বরূপ অন্তর্নির্মিত `punycode` মডিউল)। যদি ক্রোমিয়াম "GLES3 সমর্থিত নয়" এর মতো GPU / EGL ত্রুটি প্রিন্ট করে কিন্তু অ্যাপ কাজ করে, তবে আপনি হার্ডওয়্যার ত্বরণ অক্ষম করে সেগুলি নীরব করতে পারেন:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+এটি amd64-এও প্রযোজ্য; আপনার ডাউনলোড অনুযায়ী ফাইলনাম পরিবর্তন করুন।
+
+ডেবিয়ান/উবুন্টুতে, আপনার ক্রোমিয়াম দ্বারা প্রয়োজনীয় অতিরিক্ত **রানটাইম** লাইব্রেরি প্রয়োজন হতে পারে (এগুলি সাধারণত সম্পূর্ণ ডেস্কটপ ইনস্টলেশনে ইতিমধ্যে উপস্থিত থাকে)। প্রয়োজন হলে নীচের কমান্ডগুলি চালান:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+`libasound2t64`-এর পরিবর্তে `arm64`-এর জন্য `libasound2` ব্যবহার করুন। ন্যূনতম বা কাস্টম ইনস্টলেশনে এখনও `.so` ফাইল অনুপস্থিত হওয়ার কারণে ব্যর্থ হতে পারে। ত্রুটি বার্তায় উল্লিখিত প্যাকেজটি ইনস্টল করুন (সাধারণ অতিরিক্ত: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। কিছু পরিবেশে, আপনাকে `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ব্যবহার করে অ্যাপটি চালাতে হতে পারে।
+
+<br/>
+
+> ℹ️ **নোট**<br/>
+> ম্যাকওএস বর্তমানে সমর্থিত নয়। উইন্ডোজ, লিনাক্স এবং ডকারের জন্য Transrewrt উপলব্ধ।
+
+</details>
+
+<br/>
+
+অ্যাপটি চালু হওয়ার পর, টেক্সট অনুবাদ, পুনর্লিখন এবং রূপান্তর করা, প্রম্পট পরিচালনা করা এবং মডেল কনফিগার করা সম্পর্কে জানতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -266,15 +261,17 @@ echo TZ=\"$(</etc/timezone)\"
 
 আপনি অন্যান্য প্রদানকারী (ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই, সেরেব্রাস) ব্যবহার করতে পারেন বা [ওলামা](https://ollama.com) সহ স্থানীয়ভাবে মডেল চালাতে পারেন। সমর্থিত প্রদানকারী এবং পরিবেশ চলকগুলির সম্পূর্ণ তালিকার জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
 
+</br>
+
 > ⚠️ **সতর্কতা**<br/>
 > যদি আপনি অন্য ডিভাইস, কনটেইনার বা সেবা থেকে Ollama ব্যবহার করেন, তবে বাহ্যিক সংযোগের অনুমতি দেওয়ার জন্য Ollama কনফিগার করতে ভুলবেন না (শুধুমাত্র localhost নয়)।
-
-সীমাবদ্ধতা, BYOK এবং আরও অনেক কিছুর জন্য, [ওপেনরাউটার প্রমাণীকরণ](https://openrouter.ai/docs/api/reference/authentication) দেখুন।
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## কনফিগারেশন এবং পরিবেশ
+
+</br>
 
 **কনফিগ ফাইলের অবস্থান**
 
@@ -312,16 +309,13 @@ echo TZ=\"$(</etc/timezone)\"
 
 **ডেটা এবং স্থায়িত্ব:** ডকারের জন্য, `/app/data`-এ একটি ভলিউম মাউন্ট করুন যাতে `config.json` এবং SQLite ডাটাবেস কনটেইনার পুনরায় চালু হওয়ার সময় স্থায়ী থাকে। ভলিউম ছাড়া, কনটেইনার থামানোর সময় সমস্ত ডেটা হারিয়ে যায়।
 
-**ডেভেলপারদের জন্য:** পুরানো একক-কী কনফিগকে প্রতিস্থাপন করে পরিবর্তন টানার পর, আপনার স্থানীয় ফাইল এখনও সরানো ক্ষেত্রগুলি ব্যবহার করে (যেমন `api_key`, `api_url`, প্রক্সি বিকল্প) তবে `data/config.json` রিসেট বা মার্জ করুন `src/config-defaults/config_default.json`-এর নতুন ডিফল্ট আকৃতির সাথে।
-
 <br/>
 
 **ওয়েব প্রমাণীকরণ:**
 
 - ডিফল্ট অ্যাডমিন: `admin` / `transrewrt26`।
 - **সেটিংস → ব্যবহারকারীরা**-এ ব্যবহারকারীদের পরিচালনা করুন।
-- পাসওয়ার্ড রিসেট করুন: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (সোর্স থেকে: `pnpm run reset-web-password -- <username> <new-password>`)
+- পাসওয়ার্ড রিসেট করুন: `ডকার এক্সিক <কনটেইনার> রিসেট-ওয়েব-পাসওয়ার্ড '<ব্যবহারকারীর নাম>' '<নতুন পাসওয়ার্ড>'`
 
 <br/>
 

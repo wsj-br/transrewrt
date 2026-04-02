@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:47:52.461Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:45:00.162Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: sv
 source_file_path: README.md
 ---
@@ -43,6 +43,25 @@ När du har installerat programmet, se **[Användarhandbok](USER-GUIDE.sv.md)** 
 
 <br/>
 
+<a id="table-of-contents"></a>
+## Innehållsförteckning
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Skärmdumpar](#screenshots)
+- [Snabbstart](#quick-start)
+- [Hämta en OpenRouter API-nyckel](#getting-an-openrouter-api-key)
+- [Konfiguration och miljö](#configuration-and-environment)
+- [Utveckling och arkitektur](#development-and-architecture)
+- [Rapportera problem](#reporting-issues)
+- [Ansvarsfriskrivning](#disclaimer)
+- [Licens](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## Skärmdumpar
 
@@ -72,33 +91,15 @@ När du har installerat programmet, se **[Användarhandbok](USER-GUIDE.sv.md)** 
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## Innehållsförteckning
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Snabbstart](#quick-start)
-- [Installation](#installation)
-  - [Windows (Electron)](#windows-electron)
-  - [Linux (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [Konfigurera tidszon](#configuring-the-timezone)
-- [Hämta en OpenRouter API-nyckel](#getting-an-openrouter-api-key)
-- [Konfiguration och miljö](#configuration-and-environment)
-- [Utveckling och arkitektur](#development-and-architecture)
-- [Rapportera problem](#reporting-issues)
-- [Ansvarsfriskrivning](#disclaimer)
-- [Licens](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## Snabbstart
 
-**Docker (rekommenderas för självvärdbaserad drift)**
+<details>
+<summary><b>Docker (rekommenderas för egen hosting)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -113,6 +114,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Ersätt `sk-or-your-key` med din [OpenRouter API-nyckel](https://openrouter.ai/keys) (eller ange nycklar för andra leverantörer; se [Konfiguration](#configuration-and-environment)). Öppna [http://localhost:5000](http://localhost:5000) och ändra standardlösenordet för administratör innan du exponerar tjänsten.
 
+Ställ in minst en leverantörsnyckel via miljövariabler (t.ex. `OPENROUTER_API_KEY` för OpenRouter). Skicka variabler med `-e` eller `docker compose` / `.env` så att hemligheter inte fastnar i avbilden. Leverantörsnycklar **fylls inte** i i webbgränssnittet; servern läser dem från miljön.
+
 <br/>
 
 > ℹ️ **OBS**<br/>
@@ -120,105 +123,12 @@ Ersätt `sk-or-your-key` med din [OpenRouter API-nyckel](https://openrouter.ai/k
 
 <br/>
 
-**Windows**
-
-Ladda ner den senaste `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases), kör installationsprogrammet och starta sedan via Start-menyn eller genvägen på skrivbordet. Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för gratis modeller.
-
-<br/>
-
-**Linux**
-
-Ladda ner `.AppImage`-filen för din processor från [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` för vanliga datorer, `arm64` för många ARM-enheter, inklusive Raspberry Pi 4+), och gör sedan följande:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-Ange dina API-nycklar i **Inställningar → API**. Du måste konfigurera minst en leverantör; OpenRouter är vanligt för gratis modeller.
-
-**Konsolmeddelanden:** Paketerade Linux-versioner (`x64` och `arm64` AppImages) undertrycker Node-avvecklingsvarningar i terminalen (till exempel det inbyggda `punycode`-modulen). Om Chromium skriver ut GPU-/EGL-fel som "GLES3 stöds inte" men appen fungerar kan du tysta dem genom att inaktivera hårdvaruacceleration:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-Det gäller även på amd64; ändra filnamnet så att det matchar din nedladdning. Se [Installation → Linux (Electron)](#linux-electron) för mer detaljer.
-
-På Debian/Ubuntu kan du behöva extra **körtidsbibliotek** som Chromium förväntar sig (ofta redan finns på fullständiga skrivbord). Använd **`libnotify4`** för skrivbordsaviseringar – **inte** `libnotify-dev` (det är för att bygga programvara, inte för att köra det paketerade AppImage):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-Minimala eller anpassade avbildningar kan fortfarande misslyckas med en saknad `.so`; installera det paket som nämns i felet (vanliga tillägg: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Vissa miljöer kräver FUSE för att köra AppImages (t.ex. `libfuse2` på Ubuntu 22.04+), eller använd `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
-
-<br/>
-
-> ℹ️ **OBS**<br/>
-> macOS stöds för närvarande inte. Transrewrt är tillgängligt för Windows, Linux och Docker.
-
-<br/>
-
-När appen körs, se **[Användarhandbok](USER-GUIDE.sv.md)** för att lära dig hur du översätter, omskriver och omvandlar text, hanterar prompts och konfigurerar modeller.
-
-<br/><br/>
-
-<a id="installation"></a>
-## Installation
-
-<a id="windows-electron"></a>
-### Windows (Electron)
-
-- Ladda ner den senaste installationsfilen från [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Kör `.exe`-filen och följ installationsprogrammet.
-- Första körningen: starta appen från Start-menyn eller genvägen på skrivbordet.
-
-<br/>
-
-> ℹ️ **OBS**<br/>
-> Windows kan visa någon av dessa säkerhetsvarningar (normalt för osignerade/oberoende appar):
->   - **Användarkontokontroll (UAC)**: "Vill du tillåta att den här appen från en okänd utgivare gör ändringar på din enhet?" → Klicka på **Ja**.
->   - **Microsoft Defender SmartScreen**: "Windows skyddade din dator" → Klicka på **Mer information** → **Kör ändå**.
->
-> Detta inträffar eftersom appen inte är signerad av Microsoft eller en stor utgivare - den är säker om den laddas ned från våra officiella GitHub-utgåvor
->  (verifiera SHA256-kontrollsumman nedan).
-
-<br/>
-
-<a id="linux-electron"></a>
-### Linux (Electron)
-
-- Ladda ner rätt `.AppImage`-fil (`x64` eller `arm64`) från [Utgåvor](https://github.com/wsj-br/transrewrt/releases).
-- Kör: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` på x86_64/amd64, eller använd filnamnet `...-arm64.AppImage` på ARM64.
-- **Körningsbibliotek för Debian/Ubuntu** (Electron/Chromium; samma som i [Snabbstart → Linux](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — använd **`libnotify4`**, inte `libnotify-dev`. På minimala system, installera eventuella saknade `.so` som rapporteras i terminalen; tillägg som `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` krävs ofta. AppImage kan behöva `libfuse2` (Ubuntu 22.04+) eller `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage`.
-- **GPU-meddelanden:** Chromium kan logga GPU- eller EGL-initieringsfel på vissa system (särskilt ARM); appen kan ändå köras normalt. För att undvika dessa meddelanden, starta med hårdvaruacceleration avstängd: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (eller ditt `arm64`-filnamn).
-
-<br/>
-
-<a id="docker"></a>
-### Docker
-
-- Hämta: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- Ange minst en leverantörsnyckel via miljövariabel (till exempel `OPENROUTER_API_KEY` för OpenRouter). Skicka variabler med `-e` eller via `docker compose` / `.env` så att hemligheter inte läggs in i avbildningen.
-- Leverantörsnycklar **anges inte** i webbgränssnittet; servern läser dem från miljön.
-
-Exempel – namngiven volym för beständighet (OpenRouter-nyckel via env):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-eller om du föredrar att använda Docker Compose, använd:
+Eller använd Docker Compose:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -226,8 +136,16 @@ docker compose -f transrewrt.yml up -d
 
 Se [Configuration](#configuration-and-environment) för alla miljövariabler, såsom `PORT`, `CONFIG_PATH`, `TZ` och LLM-nycklar (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Serverens tidszon (Docker)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### Konfigurera tidszonen
+
+<br/>
 
 Applikationens användargränssnitt följer webbläsarens **lokalinställningar och tidszon**. För **serversidan** (loggning och liknande) använder containern miljövariabeln `TZ`. Standard är `TZ=Europe/London`.
 
@@ -252,6 +170,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 En lista över giltiga tidszonsnamn finns i [tz-databasen](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>Windows</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- Ladda ner den senaste `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases).
+- Kör `.exe`-filen och följ installationsprogrammet.
+- Första körningen: starta appen från Start-menyn eller skrivbordssnabbikonen.
+- Fyll i dina API-nycklar under **Inställningar → API**. Du behöver konfigurera minst en leverantör; OpenRouter är vanligt för gratismodeller.
+
+<br/>
+
+> ℹ️ **OBSERVERA**<br/>
+> Windows kan visa en av dessa säkerhetsvarningar (vanligt för osignerade/oberoende appar):
+>   - **Användarkontroll (UAC)**: "Vill du tillåta att denna app från en okänd utgivare gör ändringar på din enhet?" → Klicka på **Ja**.
+>   - **Microsoft Defender SmartScreen**: "Windows skyddade din PC" → Klicka på **Mer information** → **Kör ändå**.
+>
+> Detta händer eftersom appen inte är signerad av Microsoft eller en stor utgivare – det är säkert om du laddar ner den från våra officiella GitHub-releaser (verifiera kontrollsummor på [Releases](https://github.com/wsj-br/transrewrt/releases)-sidan bredvid varje fil).
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>Linux</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+Ladda ner `.AppImage`-filen för din processor från [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` för vanliga datorer, `arm64` för många ARM-enheter, inklusive Raspberry Pi 4+), och gör sedan följande:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+För x86_64/amd64 använd filnamnet `x64`; för ARM64 använd namnet `...-arm64.AppImage`.
+
+Fyll i dina API-nycklar under **Inställningar → API**. Du behöver konfigurera minst en leverantör; OpenRouter är vanligt för gratismodeller.
+
+**Konsolmeddelanden:** Paketerade Linux-versioner (`x64` och `arm64` AppImages) undertrycker Node-avvecklingsvarningar i terminalen (till exempel det inbyggda `punycode`-modulen). Om Chromium skriver ut GPU-/EGL-fel som "GLES3 stöds inte" men appen fungerar kan du tysta dem genom att inaktivera hårdvaruacceleration:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+Detta gäller också för amd64; ändra filnamnet så att det matchar din nedladdning.
+
+På Debian/Ubuntu kan du behöva ytterligare **runtime**-bibliotek som krävs av Chromium (dessa är ofta redan tillgängliga på fullständiga skrivbordsinstallationer). Kör kommandona nedan om det behövs:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+byt ut `libasound2t64` mot `libasound2` för `arm64`.  Minimala eller anpassade installationer kan fortfarande misslyckas med en saknad `.so`-fil. Installera paketet som nämns i felmeddelandet (vanliga tillägg: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). I vissa miljöer kan du behöva köra appen med `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> macOS stöds för närvarande inte. Transrewrt är tillgängligt för Windows, Linux och Docker.
+
+</details>
+
+<br/>
+
+När appen körs, se **[Användarhandbok](USER-GUIDE.sv.md)** för att lära dig hur du översätter, omskriver och omvandlar text, hanterar prompts och konfigurerar modeller.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -267,15 +262,17 @@ Använd inte OpenRouters **Body Builder**-modell ([`openrouter/bodybuilder`](htt
 
 Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) eller köra modeller lokalt med [Ollama](https://ollama.com). Se [Configuration](#configuration-and-environment) för en fullständig lista över stödda leverantörer och miljövariabler.
 
+</br>
+
 > ⚠️ **VARNING**<br/>
 > Om du använder Ollama från en annan enhet, behållare eller tjänst, kom ihåg att konfigurera Ollama för att tillåta externa anslutningar (inte bara localhost).
-
-För begränsningar, BYOK och mer, se [OpenRouter-autentisering](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## Konfiguration och miljö
+
+</br>
 
 **Placering av konfigurationsfiler**
 
@@ -313,8 +310,6 @@ Konfigurera endast de leverantörer du använder. Modell-ID:n är namngivna med 
 
 **Data och beständighet:** För Docker, montera en volym vid `/app/data` så att `config.json` och SQLite-databasen bevaras över containeromstarter. Utan en volym förloras all data när containern stoppas.
 
-**Utvecklare:** Efter att ha hämtat ändringar som ersätter den gamla enkelnyckelkonfigurationen, återställ eller slå ihop `data/config.json` med den nya standardstrukturen från `src/config-defaults/config_default.json` om din lokala fil fortfarande använder borttagna fält (`api_key`, `api_url`, proxyinställningar).
-
 <br/>
 
 **Webbautentisering:**
@@ -322,7 +317,6 @@ Konfigurera endast de leverantörer du använder. Modell-ID:n är namngivna med 
 - Standardadministratör: `admin` / `transrewrt26`.
 - Hantera användare i **Inställningar → Användare**.
 - Återställ ett lösenord: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (från källkod: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 

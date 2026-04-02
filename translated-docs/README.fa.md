@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-03-31T23:44:42.184Z'
-source_file_mtime: '2026-03-31T23:34:44.122Z'
-source_file_hash: 4c9fbb976bec3529
+translation_last_updated: '2026-04-02T12:41:54.218Z'
+source_file_mtime: '2026-04-02T12:39:14.838Z'
+source_file_hash: 0826245f792850f3
 translation_language: fa
 source_file_path: README.md
 ---
@@ -42,6 +42,25 @@ source_file_path: README.md
 
 <br/>
 
+<a id="table-of-contents"></a>
+## فهرست مطالب
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [تصاویر صفحه](#screenshots)
+- [شروع سریع](#quick-start)
+- [دریافت کلید API OpenRouter](#getting-an-openrouter-api-key)
+- [پیکربندی و محیط](#configuration-and-environment)
+- [توسعه و معماری](#development-and-architecture)
+- [گزارش مشکلات](#reporting-issues)
+- [سلب مسئولیت](#disclaimer)
+- [مجوز](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br/><br/>
+
 <a id="screenshots"></a>
 ## تصاویر
 
@@ -71,33 +90,15 @@ source_file_path: README.md
 
 <br/><br/>
 
-<a id="table-of-contents"></a>
-## فهرست مطالب
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [شروع سریع](#quick-start)
-- [نصب](#installation)
-  - [ویندوز (Electron)](#windows-electron)
-  - [لینوکس (Electron)](#linux-electron)
-  - [Docker](#docker)
-  - [پیکربندی منطقه زمانی](#configuring-the-timezone)
-- [دریافت کلید API OpenRouter](#getting-an-openrouter-api-key)
-- [پیکربندی و محیط](#configuration-and-environment)
-- [توسعه و معماری](#development-and-architecture)
-- [گزارش مشکلات](#reporting-issues)
-- [سلب مسئولیت](#disclaimer)
-- [مجوز](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
 <a id="quick-start"></a>
 ## شروع سریع
 
-**دکر (توصیه‌شده برای میزبانی خودکار)**
+<details>
+<summary><b>داکر (توصیه‌شده برای میزبانی شخصی)</b></summary>
+
+<a id="docker"></a>
+
+<br/>
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -112,6 +113,8 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 عبارت `sk-or-your-key` را با کلید API خود از [OpenRouter](https://openrouter.ai/keys) جایگزین کنید (یا کلیدهای ارائه‌دهنده دیگر را تنظیم کنید؛ به [پیکربندی](#configuration-and-environment) مراجعه کنید). [http://localhost:5000](http://localhost:5000) را باز کنید و قبل از در دسترس قرار دادن سرویس، رمز عبور پیش‌فرض مدیر را تغییر دهید.
 
+حداقل یک کلید ارائه‌دهنده را از طریق محیط تنظیم کنید (برای مثال `OPENROUTER_API_KEY` برای OpenRouter). متغیرها را با `-e` یا `docker compose` / `.env` منتقل کنید تا اطلاعات محرمانه در تصویر ذخیره نشوند. کلیدهای ارائه‌دهنده **نیازی نیست** در رابط وب وارد شوند؛ سرور آن‌ها را از محیط می‌خواند.
+
 <br/>
 
 > ℹ️ **توجه**<br/>
@@ -119,105 +122,12 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 <br/>
 
-**ویندوز**
-
-آخرین فایل `Transrewrt Setup x.y.z.exe` را از بخش [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید، نصب‌کننده را اجرا کنید و سپس از طریق منوی شروع یا میان‌بر دسکتاپ اجرا کنید. کلیدهای API خود را در بخش **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید، OpenRouter معمولاً برای مدل‌های رایگان استفاده می‌شود.
-
-<br/>
-
-**لینوکس**
-
-فایل `.AppImage` مربوط به پردازنده خود را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید (`x64` برای رایانه‌های معمولی، `arm64` برای دستگاه‌های ARM از جمله رزبری پای 4+)، سپس:
-
-```bash
-chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
-```
-
-کلیدهای API خود را در بخش **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید، OpenRouter معمولاً برای مدل‌های رایگان استفاده می‌شود.
-
-**پیام‌های کنسول:** نسخه‌های بسته‌بندی‌شده لینوکس (`x64` و `arm64` AppImages) هشدارهای منسوخ‌شده Node را در ترمینال ساکت می‌کنند (برای مثال ماژول داخلی `punycode`). اگر کرومیوم خطاهای GPU / EGL مانند «GLES3 پشتیبانی نمی‌شود» چاپ کند اما برنامه کار کند، می‌توانید با غیرفعال کردن شتاب سخت‌افزاری آن‌ها را ساکت کنید:
-
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
-
-این مورد در amd64 نیز صدق می‌کند؛ نام فایل را متناسب با دانلود خود تغییر دهید. برای جزئیات بیشتر به [نصب → لینوکس (الکترون)](../<#linux-electron>) مراجعه کنید.
-
-در دبیان/اوبونتو ممکن است به کتابخانه‌های **اجرا**یی اضافی نیاز داشته باشید که کرومیوم انتظار دارد (اغلب در دسکتاپ‌های کامل وجود دارند). از **`libnotify4`** برای اعلانات دسکتاپ استفاده کنید — نه `libnotify-dev` (این برای ساخت نرم‌افزار است، نه برای اجرای AppImage بسته‌بندی‌شده):
-
-```bash
-sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
-```
-
-تصاویر حداقلی یا سفارشی ممکن است همچنان با خطای `.so` گیر کنند؛ بسته‌ای را که خطا نام می‌برد نصب کنید (بسته‌های اضافی رایج: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). برخی محیط‌ها برای اجرای AppImage به FUSE نیاز دارند (مثلاً `libfuse2` در اوبونتو 22.04+) یا از `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` استفاده کنید.
-
-<br/>
-
-> ℹ️ **توجه**<br/>
-> در حال حاضر سیستم عامل macOS پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و داکر در دسترس است.
-
-<br/>
-
-پس از اجرای برنامه، از **[راهنمای کاربر](USER-GUIDE.fa.md)** برای یادگیری نحوه ترجمه، بازنویسی و تبدیل متن، مدیریت پرامپت‌ها و پیکربندی مدل‌ها استفاده کنید.
-
-<br/><br/>
-
-<a id="installation"></a>
-## نصب
-
-<a id="windows-electron"></a>
-### ویندوز (الکترون)
-
-- آخرین نصب‌کننده را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
-- فایل `.exe` را اجرا کرده و دستورالعمل‌های نصب را دنبال کنید.
-- اولین اجرا: برنامه را از منوی شروع یا میان‌بر دسکتاپ اجرا کنید.
-
-<br/>
-
-> ℹ️ **توجه**<br/>
-> ویندوز ممکن است یکی از این هشدارهای امنیتی را نمایش دهد (معمول برای برنامه‌های بدون امضای منتشرکننده یا برنامه‌های مستقل):
->   - **کنترل حساب کاربری (UAC)**: "آیا می‌خواهید به این برنامه از یک منتشرکننده ناشناخته اجازه دهید تا تغییراتی در دستگاه خود ایجاد کنید؟" → روی **بله** کلیک کنید.
->   - **Microsoft Defender SmartScreen**: "ویندوز از کامپیوتر شما محافظت کرد" → روی **اطلاعات بیشتر** کلیک کنید → **با این حال اجرا کنید**.
->
-> این اتفاق به این دلیل رخ می‌دهد که برنامه توسط مایکروسافت یا یک منتشرکننده بزرگ امضا نشده است — اما در صورتی که از بخش انتشارات رسمی GitHub ما دانلود شده باشد ایمن است
->  (کلمه عبور SHA256 زیر را بررسی کنید).
-
-<br/>
-
-<a id="linux-electron"></a>
-### لینوکس (الکترون)
-
-- فایل `.AppImage` متناسب (`x64` یا `arm64`) را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
-- اجرا کنید: `chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage` روی x86_64/amd64، یا از نام فایل `...-arm64.AppImage` روی ARM64 استفاده کنید.
-- **کتابخانه‌های زمان اجرا در دبیان/اوبونتو** (الکترون/کرومیوم؛ مشابه [شروع سریع → لینوکس](#quick-start)): `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth` — از **`libnotify4`** استفاده کنید، نه `libnotify-dev`. در سیستم‌های حداقلی، هر کتابخانه `.so` گزارش شده در ترمینال را نصب کنید؛ افزونه‌هایی مانند `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` اغلب مورد نیاز هستند. AppImage ممکن است به `libfuse2` (اوبونتو 22.04+) یا `APPIMAGE_EXTRACT_AND_RUN=1 ./….AppImage` نیاز داشته باشد.
-- **پیام‌های GPU:** کرومیوم ممکن است خطاهای مربوط به راه‌اندازی GPU یا EGL را در برخی سیستم‌ها (به‌ویژه ARM) گزارش دهد؛ با این حال برنامه می‌تواند به‌طور عادی اجرا شود. برای جلوگیری از این پیام‌ها، برنامه را با غیرفعال کردن شتاب سخت‌افزاری اجرا کنید: `TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-x64.AppImage` (یا نام فایل `arm64` شما).
-
-<br/>
-
-<a id="docker"></a>
-### داکر
-
-- دریافت: `docker pull ghcr.io/wsj-br/transrewrt:latest`
-- حداقل یک کلید ارائه‌دهنده را از طریق محیط تنظیم کنید (مثلاً `OPENROUTER_API_KEY` برای OpenRouter). متغیرها را با `-e` یا `docker compose` / `.env` منتقل کنید تا اطلاعات محرمانه در تصویر ذخیره نشوند.
-- کلیدهای ارائه‌دهنده در رابط کاربری تحت وب وارد **نمی‌شوند**؛ سرور آن‌ها را از محیط می‌خواند.
-
-مثال - استفاده از حجم نام‌گذاری شده برای داده‌های پایدار (کلید OpenRouter از طریق محیط):
-
-```bash
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
-  -p 5000:5000 \
-  -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
-  ghcr.io/wsj-br/transrewrt:latest
-```
-
-یا اگر ترجیح می‌دهید از Docker Compose استفاده کنید، از این روش استفاده کنید:
+یا از Docker Compose استفاده کنید:
 
 ```
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# edit the file to add the API_KEYS and adjust the timezone (TZ)
+# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
 vi transrewrt.yml
 # start the container
 docker compose -f transrewrt.yml up -d
@@ -225,8 +135,16 @@ docker compose -f transrewrt.yml up -d
 
 برای مشاهده تمام متغیرهای محیطی مانند `PORT`، `CONFIG_PATH`، `TZ` و کلیدهای LLM (`OPENROUTER_API_KEY`، `OPENAI_API_KEY` و غیره)، به [پیکربندی](#configuration-and-environment) مراجعه کنید.
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>منطقه زمانی سرور (داکر)</b></summary>
+
 <a id="configuring-the-timezone"></a>
-### تنظیم منطقه زمانی
+
+<br/>
 
 تاریخ و زمان رابط کاربری برنامه، از تنظیمات محلی و منطقه زمانی **مرورگر** پیروی می‌کند. برای رفتار **سروری** (لاگ‌گیری و موارد مشابه)، کانتینر از متغیر محیطی `TZ` استفاده می‌کند. مقدار پیش‌فرض `TZ=Europe/London` است.
 
@@ -251,6 +169,83 @@ echo TZ=\"$(</etc/timezone)\"
 
 فهرستی از نام‌های معتبر منطقه زمانی در [پایگاه داده tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (ویکی‌پدیا) نگهداری می‌شود.
 
+</details>
+
+<br/>
+
+<details>
+<summary><b>ویندوز</b></summary>
+
+<a id="windows-electron"></a>
+
+<br/>
+
+- آخرین فایل `Transrewrt Setup x.y.z.exe` را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
+- فایل `.exe` را اجرا کرده و دستورالعمل‌های نصب را دنبال کنید.
+- اولین اجرا: برنامه را از منوی شروع یا میانبر دسکتاپ شروع کنید.
+- کلیدهای API خود را در **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید؛ OpenRouter معمولاً برای مدل‌های رایگان استفاده می‌شود.
+
+<br/>
+
+> ℹ️ **توجه**<br/>
+> ویندوز ممکن است یکی از این هشدارهای امنیتی را نمایش دهد (معمول برای برنامه‌های بدون امضای انتشار یا مستقل):
+>   - **کنترل حساب کاربری (UAC)**: «آیا می‌خواهید به این برنامه از یک ناشر ناشناخته اجازه دهید تا تغییراتی در دستگاه شما ایجاد کند؟» → روی **بله** کلیک کنید.
+>   - **Microsoft Defender SmartScreen**: «ویندوز از کامپیوتر شما محافظت کرد» → روی **اطلاعات بیشتر** کلیک کنید → **با این حال اجرا کنید**.
+>
+> این اتفاق به این دلیل رخ می‌دهد که برنامه توسط مایکروسافت یا یک ناشر بزرگ امضا نشده است — اما اگر از انتشارات رسمی GitHub ما دانلود شده باشد (چک‌سام‌ها را در صفحه [انتشارات](https://github.com/wsj-br/transrewrt/releases) کنار هر فایل بررسی کنید) ایمن است.
+
+<br/>
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>لینوکس</b></summary>
+
+<a id="linux-electron"></a>
+
+<br/>
+
+فایل `.AppImage` مربوط به پردازنده خود را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید (`x64` برای رایانه‌های معمولی، `arm64` برای دستگاه‌های ARM از جمله رزبری پای 4+)، سپس:
+
+```bash
+chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
+```
+
+در x86_64/amd64 از نام فایل `x64` استفاده کنید؛ در ARM64 از نام `...-arm64.AppImage` استفاده کنید.
+
+کلیدهای API خود را در **تنظیمات → API** وارد کنید. شما باید حداقل یک ارائه‌دهنده را پیکربندی کنید؛ OpenRouter معمولاً برای مدل‌های رایگان استفاده می‌شود.
+
+**پیام‌های کنسول:** نسخه‌های بسته‌بندی‌شده لینوکس (`x64` و `arm64` AppImages) هشدارهای منسوخ‌شده Node را در ترمینال ساکت می‌کنند (برای مثال ماژول داخلی `punycode`). اگر کرومیوم خطاهای GPU / EGL مانند «GLES3 پشتیبانی نمی‌شود» چاپ کند اما برنامه کار کند، می‌توانید با غیرفعال کردن شتاب سخت‌افزاری آن‌ها را ساکت کنید:
+
+```bash
+TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
+```
+
+این مورد در amd64 نیز صدق می‌کند؛ نام فایل را با فایل دانلود شده خود تطبیق دهید.
+
+در دبیان/اوبونتو، ممکن است به کتابخانه‌های **اجرایی** اضافی مورد نیاز توسط کرومیوم نیاز داشته باشید (این کتابخانه‌ها اغلب در نصب‌های دسکتاپ کامل از پیش وجود دارند). در صورت نیاز دستورات زیر را اجرا کنید:
+
+```bash
+sudo apt update
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+```
+
+`libasound2t64` را با `libasound2` برای `arm64` جایگزین کنید. نصب‌های حداقلی یا سفارشی ممکن است همچنان با خطای فایل `.so` گزارش شده از کار بیفتند. بسته‌ای را که در پیام خطا نام برده شده نصب کنید (بسته‌های رایج اضافی: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). در برخی محیط‌ها، ممکن است نیاز داشته باشید برنامه را با `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` اجرا کنید.
+
+<br/>
+
+> ℹ️ **توجه**<br/>
+> در حال حاضر سیستم عامل macOS پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و داکر در دسترس است.
+
+</details>
+
+<br/>
+
+پس از اجرای برنامه، از **[راهنمای کاربر](USER-GUIDE.fa.md)** برای یادگیری نحوه ترجمه، بازنویسی و تبدیل متن، مدیریت پرامپت‌ها و پیکربندی مدل‌ها استفاده کنید.
+
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
@@ -266,15 +261,17 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 همچنین می‌توانید از ارائه‌دهندگان دیگر (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras) استفاده کنید یا مدل‌ها را به صورت محلی با [Ollama](https://ollama.com) اجرا کنید. برای مشاهده فهرست کامل ارائه‌دهندگان پشتیبانی شده و متغیرهای محیطی، به [پیکربندی](#configuration-and-environment) مراجعه کنید.
 
+</br>
+
 > ⚠️ **هشدار**<br/>
 > اگر از Ollama در دستگاه، کانتینر یا سرویس دیگری استفاده می‌کنید، مطمئن شوید که Ollama را برای پذیرش ارتباطات خارجی (نه فقط localhost) پیکربندی کرده‌اید.
-
-برای محدودیت‌ها، BYOK و موارد بیشتر، به [احراز هویت OpenRouter](https://openrouter.ai/docs/api/reference/authentication) مراجعه کنید.
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
 ## پیکربندی و محیط
+
+</br>
 
 **مکان‌های فایل پیکربندی**
 
@@ -312,16 +309,13 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 **داده‌ها و حفظ اطلاعات:** برای داکر، یک volume را در مسیر `/app/data` متصل کنید تا فایل `config.json` و پایگاه داده SQLite در طول راه‌اندازی مجدد کانتینر حفظ شوند. بدون volume، تمام داده‌ها هنگام توقف کانتینر از بین می‌روند.
 
-**توسعه‌دهندگان:** پس از دریافت تغییراتی که پیکربندی قدیمی تک‌کلیدی را جایگزین می‌کنند، در صورتی که فایل محلی شما هنوز از فیلدهای حذف‌شده استفاده می‌کند (`api_key`, `api_url`, گزینه‌های پروکسی)، فایل `data/config.json` را با ساختار پیش‌فرض جدید از `src/config-defaults/config_default.json` بازنشانی یا ادغام کنید.
-
 <br/>
 
 **احراز هویت وب:**
 
 - مدیر پیش‌فرض: `admin` / `transrewrt26`.
-- مدیریت کاربران در بخش **تنظیمات → کاربران**.
+- مدیریت کاربران در **تنظیمات → کاربران**.
 - بازنشانی رمز عبور: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-  (از منبع: `pnpm run reset-web-password -- <username> <new-password>`)
 
 <br/>
 
