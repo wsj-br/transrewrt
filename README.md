@@ -226,7 +226,8 @@ On Debian/Ubuntu, you may need additional **runtime** libraries required by Chro
 
 ```bash
 sudo apt update
-sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
+sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
+     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
 ```
 
 replace `libasound2t64` with `libasound2` for `arm64`.  Minimal or custom installs may still fail with a missing `.so` file. Install the package named in the error message (common extras: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). In some environments, you may need to run the app using `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
