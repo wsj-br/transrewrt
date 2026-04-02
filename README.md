@@ -259,11 +259,12 @@ Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](htt
 
 You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
+</br>
+
 > ⚠️ **WARNING**<br/>
 > If you are using Ollama from another device, container, or service, remember to configure Ollama to allow external connections (not localhost-only).
 
 
-For limits, BYOK, and more, see [OpenRouter authentication](https://openrouter.ai/docs/api/reference/authentication).
 
 <br/><br/>
 
