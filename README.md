@@ -271,6 +271,8 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 <a id="configuration-and-environment"></a>
 ## Configuration and environment
 
+</br>
+
 **Config file locations**
 
 | Deployment         | Config location                                   |
