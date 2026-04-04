@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Windows NSIS — removed `preInit` silent uninstall of any existing “Transrewrt” listing; upgrades replace files in place under the same install directory (electron-builder’s default behaviour).
+- **Fixed**: Windows NSIS — `customCheckAppRunning` uses `Function` vs `Function un.TR_CheckAppRunningImpl` per `makensis` pass (`GetProcessInfo` / `un._GetProcessInfo`), and the running-app logic uses only `StrCmp` / `IntCmp` (no `${if}` / LogicLib) so it compiles in electron-builder’s sharedHeader, fixing `ERR_ELECTRON_BUILDER_CANNOT_EXECUTE` / `Invalid command: "${if}"`.
+- **Fixed**: Windows NSIS — `updated` / upgrade detection uses a `$CMDLINE` substring check instead of `StdUtils::TestParameter` so the uninstaller `makensis` pass succeeds (StdUtils is not loaded there); matching `un.TR_TR_HasUpdatedCmdline` / `TR_TR_HasUpdatedCmdline` for valid `Call` targets; `DetailPrint` avoids `$(PRODUCT_NAME)` (warning 6040 under `-WX`).
+- **Fixed**: Windows NSIS — `installer.nsh` helper `!macro`s use `$$` for runtime vars inside `nsExec` strings, `Pop $R6` / `$R7` (never `$0`–`$9` inside user macros), and global `$PsChk` for the PowerShell probe so makensis does not hit warning 6000 under `-WX`.
 - **Changed**: Settings → Models — **Expand All** / **Collapse All** toolbar buttons use Lucide **UnfoldVertical** and **FoldVertical** icons (provider sort mode).
 - **Fixed**: Windows NSIS installer — `customCheckAppRunning` in `build/installer.nsh` detects only `Transrewrt.exe` whose `ExecutablePath` matches the install directory (not every process under `$INSTDIR`, and not other copies of the same exe elsewhere), avoiding false “app is running” loops from electron-builder’s stock `Path.StartsWith($INSTDIR)` / per-user `tasklist` fallback.
 - **Changed**: Settings → About — **Apache 2.0** link opens the repository `LICENSE` on GitHub (`…/blob/main/LICENSE`) instead of apache.org.
