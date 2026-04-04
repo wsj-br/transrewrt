@@ -15,6 +15,7 @@ const { mergeKeys, CONFIG_KEY_BY_ENGINE } = require("../../shared/llm");
 const {
   pickUserPreferenceEntries,
   pickServerGlobalEntries,
+  isServerGlobalKey,
 } = require("./webConfigKeys.js");
 
 /** Web restore: never persist LLM keys to config.json (env / server-only). */
@@ -83,6 +84,43 @@ function restoreUsageDataFromBackup(db, map) {
   }
 }
 
+/**
+ * @param {import("better-sqlite3").Database} db
+ * @returns {string | null} user id
+ */
+function resolveAdminUserIdForExport(db) {
+  if (!db) return null;
+  const byName = db
+    .prepare("SELECT id FROM users WHERE LOWER(username) = LOWER(?) LIMIT 1")
+    .get("admin");
+  if (byName?.id) return byName.id;
+  const byRole = db
+    .prepare(
+      `SELECT id FROM users WHERE role = ?
+       ORDER BY (last_login IS NULL) ASC, last_login DESC, created_at DESC, id DESC
+       LIMIT 1`,
+    )
+    .get("admin");
+  return byRole?.id ?? null;
+}
+
+/**
+ * @param {import("better-sqlite3").Database} db
+ * @param {string | null | undefined} userId
+ * @returns {Record<string, unknown>}
+ */
+function getUserPreferencesParsedForExport(db, userId) {
+  if (!db || userId == null || userId === "") return {};
+  const row = db.prepare("SELECT data FROM user_preferences WHERE user_id = ?").get(userId);
+  if (!row?.data) return {};
+  try {
+    const parsed = typeof row.data === "string" ? JSON.parse(row.data) : row.data;
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? { ...parsed } : {};
+  } catch {
+    return {};
+  }
+}
+
 function insertPromptRow(db, stmt, row, promptTargetLanguageToDb) {
   stmt.run(
     row.name || "",
@@ -116,11 +154,26 @@ function buildWebBackupMap(opts) {
   const map = new Map();
   const included = [];
 
+  const db = getDb();
+  if (!db) {
+    throw new Error("Database unavailable");
+  }
+
   const fileConfig = readConfigFileOnly();
   const fileOnly =
     fileConfig && typeof fileConfig === "object" && !Array.isArray(fileConfig) ? fileConfig : {};
   const keysEffective = mergeKeys(fileOnly);
-  const configObj = { ...fileOnly, ...keysEffective };
+  const fileLayer = { ...fileOnly, ...keysEffective };
+  const adminId = resolveAdminUserIdForExport(db);
+  const adminPrefs = adminId ? getUserPreferencesParsedForExport(db, adminId) : {};
+  let configObj = { ...fileLayer, ...adminPrefs };
+  for (const k of Object.keys(fileLayer)) {
+    if (isServerGlobalKey(k)) {
+      configObj[k] = fileLayer[k];
+    }
+  }
+  delete configObj.web_session;
+  delete configObj.web_session_expires_at;
   map.set("files/config.json", Buffer.from(JSON.stringify(configObj, null, 2), "utf8"));
   included.push("files/config.json");
 
@@ -132,11 +185,6 @@ function buildWebBackupMap(opts) {
   if (fs.existsSync(keyPath)) {
     map.set("files/transrewrt.key", fs.readFileSync(keyPath));
     included.push("files/transrewrt.key");
-  }
-
-  const db = getDb();
-  if (!db) {
-    throw new Error("Database unavailable");
   }
 
   const users = db.prepare("SELECT * FROM users ORDER BY username ASC").all();

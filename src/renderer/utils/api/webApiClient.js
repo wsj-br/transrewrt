@@ -5,6 +5,7 @@
 
 import { getBasePath } from "../misc/urlUtils";
 import * as sessionExpiredHandler from "../misc/sessionExpiredHandler";
+import { configBackupFileStem } from "../../../shared/configBackup/fileStem.js";
 
 const API_BASE = getBasePath();
 
@@ -707,17 +708,7 @@ const webAPI = {
       throw new Error(data.error || "Backup failed");
     }
     const blob = await res.blob();
-    const cd = res.headers.get("Content-Disposition");
-    let filename = "transrewrt-config-backup.zip";
-    if (cd) {
-      const star = /filename\*=(?:UTF-8'')?([^;\n]+)/i.exec(cd);
-      const plain = /filename="([^"]+)"/i.exec(cd) || /filename=([^;\n]+)/i.exec(cd);
-      if (star) {
-        filename = decodeURIComponent(star[1].trim().replace(/^["']|["']$/g, ""));
-      } else if (plain) {
-        filename = plain[1].trim().replace(/^["']|["']$/g, "");
-      }
-    }
+    const filename = `${configBackupFileStem(new Date())}.zip`;
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
