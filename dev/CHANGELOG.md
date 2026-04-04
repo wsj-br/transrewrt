@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Settings → About — **Apache 2.0** link opens the repository `LICENSE` on GitHub (`…/blob/main/LICENSE`) instead of apache.org.
 - **Changed**: Settings → About — **Third‑party licenses** link shows a Lucide `ScrollText` icon beside the label.
 - **Changed**: Web configuration backup export — `files/config.json` in the ZIP merges preferences from the `admin` user (username match, else `role = admin` with most recent `last_login`) so Electron import receives models, top languages, and other per-user settings; `web_session` / `web_session_expires_at` are omitted from the export.
 - **Fixed**: Web backup `files/config.json` — per-user keys such as `available_models` no longer get replaced by the on-disk server `config.json` defaults; only server-global keys (API keys, `web_session_timeout`) keep values from the file/env layer.
