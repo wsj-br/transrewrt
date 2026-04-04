@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Settings → Models — **Expand All** / **Collapse All** toolbar buttons use Lucide **UnfoldVertical** and **FoldVertical** icons (provider sort mode).
+- **Fixed**: Windows NSIS installer — `customCheckAppRunning` in `build/installer.nsh` detects only `Transrewrt.exe` whose `ExecutablePath` matches the install directory (not every process under `$INSTDIR`, and not other copies of the same exe elsewhere), avoiding false “app is running” loops from electron-builder’s stock `Path.StartsWith($INSTDIR)` / per-user `tasklist` fallback.
 - **Changed**: Settings → About — **Apache 2.0** link opens the repository `LICENSE` on GitHub (`…/blob/main/LICENSE`) instead of apache.org.
 - **Changed**: Settings → About — **Third‑party licenses** link shows a Lucide `ScrollText` icon beside the label.
 - **Changed**: Web configuration backup export — `files/config.json` in the ZIP merges preferences from the `admin` user (username match, else `role = admin` with most recent `last_login`) so Electron import receives models, top languages, and other per-user settings; `web_session` / `web_session_expires_at` are omitted from the export.

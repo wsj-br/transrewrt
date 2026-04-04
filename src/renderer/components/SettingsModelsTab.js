@@ -30,6 +30,8 @@ import {
   WandSparkles,
   CheckSquare,
   Package,
+  UnfoldVertical,
+  FoldVertical,
 } from 'lucide-react';
 import ProviderIcon from './ProviderIcon';
 import {
@@ -196,7 +198,7 @@ const SettingsModelsTab = ({
                   <Button
                     appearance="subtle"
                     size="small"
-                    icon={<ChevronDownRegular />}
+                    icon={<UnfoldVertical size={16} strokeWidth={2} />}
                     onClick={onExpandAll}
                   >
                     {t('Expand All')}
@@ -204,7 +206,7 @@ const SettingsModelsTab = ({
                   <Button
                     appearance="subtle"
                     size="small"
-                    icon={<ChevronUpRegular />}
+                    icon={<FoldVertical size={16} strokeWidth={2} />}
                     onClick={onCollapseAll}
                   >
                     {t('Collapse All')}
