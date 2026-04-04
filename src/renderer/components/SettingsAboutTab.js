@@ -9,8 +9,8 @@ import webAPI from "../utils/api/webApiClient";
 import ThirdPartyLicensesModal from "./ThirdPartyLicensesModal";
 
 const REPO_URL = typeof __REPO_URL__ !== "undefined" ? __REPO_URL__ : "https://github.com/wsj-br/transrewrt";
-/** Official Apache License 2.0 text (same as SPDX Apache-2.0). */
-const APACHE_2_LICENSE_URL = "http://www.apache.org/licenses/LICENSE-2.0";
+/** Project LICENSE file on GitHub (Apache-2.0). */
+const APACHE_2_LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
 
 function openExternalUrl(url) {
   if (!url) return;
