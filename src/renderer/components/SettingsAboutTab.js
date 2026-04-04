@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, tokens, Link } from "@fluentui/react-components";
+import { ScrollText } from "lucide-react";
 
 import LogoImage from "../../../images/transrewrt_logo.svg";
 import GitHubInvertocat from "../../../images/GitHub_Invertocat_White.svg";
@@ -115,10 +116,18 @@ const useStyles = makeStyles({
   },
   thirdPartyLicensesLink: {
     fontSize: "14px",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
     color: tokens.colorBrandForegroundLink,
     "&:hover": {
       color: tokens.colorBrandForegroundLinkHover,
     },
+  },
+  thirdPartyLicensesIcon: {
+    width: "18px",
+    height: "18px",
+    flexShrink: 0,
   },
 });
 
@@ -202,7 +211,8 @@ const SettingsAboutTab = () => {
               setThirdPartyLicensesOpen(true);
             }}
           >
-             {isEnglish ? null : "Third‑party licenses ▪ "}
+            <ScrollText className={styles.thirdPartyLicensesIcon} aria-hidden />
+            {isEnglish ? null : "Third‑party licenses ▪ "}
             {t("Third‑party licenses")}
           </Link>
         </div>
