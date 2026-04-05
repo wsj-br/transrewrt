@@ -57,7 +57,12 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run **`direnv allow`** once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
 - **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
-- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated.
+- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated. Current overrides include:
+  - **lodash**: `>=4.18.0` (fixes code injection and prototype pollution vulnerabilities)
+  - **yauzl**: `>=3.2.1`, **rimraf**: `^5.0.0`, **glob**: `^13.0.0`
+  - **global-agent**: `^4.1.2`, **qs**: `>=6.14.2`, **minimatch**: `>=10.2.1`
+  
+  To add a new override, edit the `pnpm.overrides` section in [package.json](../package.json) and run `pnpm install`.
 
 ### Windows 11
 
@@ -317,11 +322,12 @@ Do this on the development branch you intend to merge (e.g., **`v1.1.x`**), then
 1. **Release notes**: Generate a new `RELEASE-NOTES-v.x.y.z.md` in the `./dev` folder with the changes for this release.
 2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z]: YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
-4. **Sync references**: Run **`pnpm run update-version`** to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
-5. **Update i18n UI string translations**: Run **`pnpm i18n:sync`** to ensure that all strings in the UI are translated.
-6. **Update documentation table of contents**: Run **`doctoc *.md dev/*.md`** to update all tables of contents.
-7. **Update document translations**: Run **`pnpm translate:docs`** to ensure the latest documentation changes are translated.
-8. **Commit and push**: Commit your changes to the changelog, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
+4. **Security audit**: Run **`pnpm audit`** to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in package.json and run `pnpm install` until clean.
+5. **Sync references**: Run **`pnpm run update-version`** to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
+6. **Update i18n UI string translations**: Run **`pnpm i18n:sync`** to ensure that all strings in the UI are translated.
+7. **Update documentation table of contents**: Run **`doctoc *.md dev/*.md`** to update all tables of contents.
+8. **Update document translations**: Run **`pnpm translate:docs`** to ensure the latest documentation changes are translated.
+9. **Commit and push**: Commit your changes to the changelog, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
 
 
 ---
@@ -480,6 +486,15 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 - **Native module build failed (better-sqlite3 / argon2) on Windows:** Install build tools (Python + Visual Studio C++ workload) as in [Prerequisites](#prerequisites). Restart the terminal and run `pnpm install` again.
 - **NODE_MODULE_VERSION mismatch in Electron:** Run `pnpm postinstall` so native addons are rebuilt for Electron's Node. Ensure build tools are installed.
 - **NODE_MODULE_VERSION mismatch when running `pnpm dev:web` or `pnpm start:server`:** The server runs with system Node; native addons were built for Electron's Node. Use **Node 24** in the same terminal (e.g. `nvm use 24` then `pnpm dev:web`). See [troubleshooting-node-version.md](troubleshooting-node-version.md).
+- **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it to `pnpm.overrides` in [package.json](../package.json) with a patched version range, then run `pnpm install`. For example:
+  ```json
+  "pnpm": {
+    "overrides": {
+      "lodash": ">=4.18.0"
+    }
+  }
+  ```
+  After adding the override, verify with `pnpm audit` — it should report no vulnerabilities.
 - **Symlink errors on Windows:** Enable Developer Mode (Settings → For developers) or run the terminal as Administrator.
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
