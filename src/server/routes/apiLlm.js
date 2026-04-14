@@ -98,7 +98,7 @@ module.exports = function createApiLlmRouter(
     res.on("close", onResClose);
 
     res.status(200);
-    // Refresh session cookie before any flush — Set-Cookie cannot be sent after headers are sent.
+    // Refresh session cookie before any flush - Set-Cookie cannot be sent after headers are sent.
     setSessionRefreshCookie(req, res);
     res.setHeader("Content-Type", "text/event-stream; charset=utf-8");
     res.setHeader("Cache-Control", "no-cache, no-transform");

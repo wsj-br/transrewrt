@@ -19,15 +19,15 @@ source_file_path: README.md
 
 KI-gestütztes Texttool: Übersetzen zwischen Sprachen, Umschreibung in verschiedenen Stilen und Transformation mit benutzerdefinierten Prompts – unter Verwendung mehrerer KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI und lokal betriebenes Ollama). Läuft als Desktop-App (Electron) oder als selbstgehostete Web-App (Docker).
 
-- **Übersetzen** — zwischen Dutzenden von Sprachen, mit automatischer Erkennung der Ausgangssprache
-- **Umschreibung** — Grammatik korrigieren, Klarheit verbessern, formell/informell, kürzen, erweitern, technisch
-- **Transformation** — benutzerdefinierte KI-Prompts; Erstellen und Verwalten von Prompts, optionale Zielsprache pro Prompt
-- **Historie** — vollständige Ausführungs-Historie mit Eingabe- und Ausgabetext, Filterung und Export
-- **Modelle & Kosten** — Auswahl von Modellen von jedem konfigurierten Anbieter; Kosten- und Nutzungs-Dashboards mit Protokoll, Zusammenfassungen nach Modell/Operation/Tag
-- **Benutzeroberfläche (UI)** — mehrsprachige Oberfläche (über 30 Sprachen, Unterstützung für rechts-nach-links-Sprachen), Schriftarten, ...
-- **Web-Modus** — Unterstützung für mehrere Benutzer mit Administratorrollen
-- **Desktop** — Electron-App für Windows und Linux
-- **Selbstgehostet** — Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
+- **Übersetzen** - zwischen Dutzenden von Sprachen, mit automatischer Erkennung der Ausgangssprache
+- **Umschreibung** - Grammatik korrigieren, Klarheit verbessern, formell/informell, kürzen, erweitern, technisch
+- **Transformation** - benutzerdefinierte KI-Prompts; Erstellen und Verwalten von Prompts, optionale Zielsprache pro Prompt
+- **Historie** - vollständige Ausführungs-Historie mit Eingabe- und Ausgabetext, Filterung und Export
+- **Modelle & Kosten** - Auswahl von Modellen von jedem konfigurierten Anbieter; Kosten- und Nutzungs-Dashboards mit Protokoll, Zusammenfassungen nach Modell/Operation/Tag
+- **Benutzeroberfläche (UI)** - mehrsprachige Oberfläche (über 30 Sprachen, Unterstützung für rechts-nach-links-Sprachen), Schriftarten, ...
+- **Web-Modus** - Unterstützung für mehrere Benutzer mit Administratorrollen
+- **Desktop** - Electron-App für Windows und Linux
+- **Selbstgehostet** - Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
 
 Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** eine vollständige Anleitung zu allen Funktionen.
 
@@ -79,7 +79,7 @@ Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** ein
 
 **Dashboard**
 
-![Dashboard summary — usage](../images/screenshots/de/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/de/dashboard-summary.png)
 
 **Historie**
 

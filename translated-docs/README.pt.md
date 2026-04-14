@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Ferramenta de texto com IA: traduzir entre idiomas, reescrever em diferentes estilos e transformar com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
+Ferramenta de texto com IA: traduzir entre idiomas, reescrever em diferentes estilos e transformar com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
-- **Traduzir** — entre dezenas de idiomas, com detecção automática da origem
-- **Reescrita** — corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
-- **Transformação** — prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
-- **Histórico** — histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Modelos e custo** — escolher modelos de qualquer provedor configurado; painéis de custo e uso com registros, resumos por modelo/operação/dia
-- **Interface** — interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
-- **Modo Web** — suporte multiusuário com papéis de administrador
-- **Desktop** — aplicativo Electron para Windows e Linux
-- **Autohospedado** — imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
+- **Traduzir** - entre dezenas de idiomas, com detecção automática da origem
+- **Reescrita** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
+- **Transformação** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
+- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
+- **Modelos e custo** - escolher modelos de qualquer provedor configurado; painéis de custo e uso com registros, resumos por modelo/operação/dia
+- **Interface** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
+- **Modo Web** - suporte multiusuário com papéis de administrador
+- **Desktop** - aplicativo Electron para Windows e Linux
+- **Autohospedado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
 
 Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para um guia completo de todas as funcionalidades.
 
@@ -79,7 +79,7 @@ Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para u
 
 **Painel**
 
-![Dashboard summary — usage](../images/screenshots/pt/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/pt/dashboard-summary.png)
 
 **Histórico**
 
@@ -193,7 +193,7 @@ Uma lista de nomes válidos de fusos horários é mantida na [banco de dados tz]
 >   - **Controlo de Conta de Utilizador (UAC)**: "Deseja permitir que esta aplicação de um editor desconhecido faça alterações no seu dispositivo?" → Clique em **Sim**.
 >   - **Microsoft Defender SmartScreen**: "O Windows protegeu o seu PC" → Clique em **Mais informações** → **Executar na mesma**.
 >
-> Isto acontece porque a aplicação não está assinada pela Microsoft ou por um editor maior—é segura se for transferida a partir das nossas versões oficiais no GitHub (verifique as somas de verificação na página [Releases](https://github.com/wsj-br/transrewrt/releases) junto a cada recurso).
+> Isto acontece porque a aplicação não está assinada pela Microsoft ou por um editor maior-é segura se for transferida a partir das nossas versões oficiais no GitHub (verifique as somas de verificação na página [Releases](https://github.com/wsj-br/transrewrt/releases) junto a cada recurso).
 
 <br/>
 

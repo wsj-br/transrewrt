@@ -207,7 +207,7 @@ Bar alat berubah sedikit bergantung pada lokasi anda dalam aplikasi.
 
 ![Model selector](../images/screenshots/ms/model-selector.png)
 
-Sesetengah model percuma mungkin tidak sentiasa tersedia—kadangkala ia luar talian atau mempunyai had penggunaan. Jika ini berlaku, aplikasi akan secara automatik membuang model tersebut daripada senarai anda yang tersedia. Untuk mengawal model yang dipaparkan, pergi ke [**Tetapan** > **Model**](#models) dan edit senarai model anda. 
+Sesetengah model percuma mungkin tidak sentiasa tersedia-kadangkala ia luar talian atau mempunyai had penggunaan. Jika ini berlaku, aplikasi akan secara automatik membuang model tersebut daripada senarai anda yang tersedia. Untuk mengawal model yang dipaparkan, pergi ke [**Tetapan** > **Model**](#models) dan edit senarai model anda. 
 Anda juga boleh membuka tetapan model secara terus dengan mengklik ikon penyedia di sebelah kiri nama model dalam bar alat.
 
 <br/>
@@ -544,10 +544,10 @@ Tab yang tersedia bergantung pada platform dan peranan anda:
   | Tetapan Umum      |   ya    |       ya        |         ya           |
   | Model             |   ya    |       ya        |         ya           |
   | Bahasa            |   ya    |       ya        |         ya           |
-  | Penjejakan Kos    |   ya    |       ya        |         —            |
+  | Penjejakan Kos    |   ya    |       ya        |         -            |
   | Gesaan Transformasi |   ya    |       ya        |         ya           |
-  | Pengguna          |    —    |       ya        |         —            |
-  | Konfigurasi API   |   ya    |       ya        |         —            |
+  | Pengguna          |    -    |       ya        |         -            |
+  | Konfigurasi API   |   ya    |       ya        |         -            |
   | Perihal           |   ya    |       ya        |         ya           |
 
 <br/>
@@ -587,11 +587,11 @@ Gunakan **Tetapan Umum** untuk mengawal tingkah laku menaip, sama ada butiran pe
 
 **Sandaran Konfigurasi**
 
-- **Sertakan data penggunaan dalam sandaran** — apabila didayakan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
-- **Sandarkan konfigurasi** — mencipta satu fail ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` secara lalai dalam UTC) yang mengandungi `config.json`, `state.json`, kunci enkripsi pilihan, pengguna, keutamaan, gesaan tersuai, dan data penggunaan jika anda memilih untuk menyertakannya. Selepas sandaran berjaya, pengesahan akan memaparkan nama fail yang disimpan.
-- **Pulihkan dari sandaran** — membuka **dialog pengesahan dahulu**. Pilih fail ZIP sandaran di dalam dialog tersebut (**Browse** / pemilih fail atau seret-dan-lepas jika disokong), kemudian semak semula pilihan:
-  - **Pulihkan data penggunaan** — import penggunaan/sejarah dari ZIP apabila ia disandarkan dengan data penggunaan disertakan; tinggalkan tidak ditanda jika anda hanya mahu tetapan dan gesaan.
-  - **Kosongkan data penggunaan lama sebelum memulihkan** — alih keluar penggunaan/sejarah sedia ada dalam pemasangan ini sebelum memohon sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
+- **Sertakan data penggunaan dalam sandaran** - apabila didayakan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
+- **Sandarkan konfigurasi** - mencipta satu fail ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` secara lalai dalam UTC) yang mengandungi `config.json`, `state.json`, kunci enkripsi pilihan, pengguna, keutamaan, gesaan tersuai, dan data penggunaan jika anda memilih untuk menyertakannya. Selepas sandaran berjaya, pengesahan akan memaparkan nama fail yang disimpan.
+- **Pulihkan dari sandaran** - membuka **dialog pengesahan dahulu**. Pilih fail ZIP sandaran di dalam dialog tersebut (**Browse** / pemilih fail atau seret-dan-lepas jika disokong), kemudian semak semula pilihan:
+  - **Pulihkan data penggunaan** - import penggunaan/sejarah dari ZIP apabila ia disandarkan dengan data penggunaan disertakan; tinggalkan tidak ditanda jika anda hanya mahu tetapan dan gesaan.
+  - **Kosongkan data penggunaan lama sebelum memulihkan** - alih keluar penggunaan/sejarah sedia ada dalam pemasangan ini sebelum memohon sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
 
 Sandaran yang dicipta sama ada dalam versi web atau desktop boleh dipulihkan dalam versi yang lain. Apabila memulihkan sandaran desktop dalam versi web, data akan dipulihkan ke pengguna pentadbir.
 
@@ -706,7 +706,7 @@ Penyedia yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, Deep
 
 **Aplikasi web: pentadbir sahaja**
 
-Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker — ia tidak dimasukkan dalam UI web. Halaman ini menunjukkan penyedia mana yang mempunyai kunci dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang **`Uji`**.
+Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker - ia tidak dimasukkan dalam UI web. Halaman ini menunjukkan penyedia mana yang mempunyai kunci dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang **`Uji`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker
 > Untuk mengubah kunci API, kemaskini pemboleh ubah persekitaran dalam konfigurasi sistem atau Docker anda dan mulakan semula pelayan atau bekas.
 
 > ℹ️ **NOTA**<br/>
-> **Sandaran konfigurasi** (lihat [**Tetapan Umum** → Sandaran Konfigurasi](#general-settings)) boleh menyematkan kunci penyedia **terselesaikan** di dalam `config.json` ZIP. Memulihkan ZIP tersebut **tidak** menyalin kunci tersebut kembali ke fail konfigurasi kekal pelayan — kunci aktif masih datang daripada persekitaran dan keadaan fail sedia ada seperti yang diterangkan di sana.
+> **Sandaran konfigurasi** (lihat [**Tetapan Umum** → Sandaran Konfigurasi](#general-settings)) boleh menyematkan kunci penyedia **terselesaikan** di dalam `config.json` ZIP. Memulihkan ZIP tersebut **tidak** menyalin kunci tersebut kembali ke fail konfigurasi kekal pelayan - kunci aktif masih datang daripada persekitaran dan keadaan fail sedia ada seperti yang diterangkan di sana.
 
 <br/>
 
@@ -825,7 +825,7 @@ Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan ubah:
 Ini adalah normal jika:
 
 - anda hanya menggunakan **model percuma** dan sedang melihat angka **kos** (ia mungkin sifar); carta bilangan **penggunaan** di **Ringkasan** masih memerlukan data dari tempoh yang dipilih
-- **penapis masa** yang dipilih tidak merangkumi tempoh apabila panggilan dibuat — cuba **Semua** untuk menyemak
+- **penapis masa** yang dipilih tidak merangkumi tempoh apabila panggilan dibuat - cuba **Semua** untuk menyemak
 
 Jika carta masih kosong selepas memilih **Semua**, sahkan bahawa panggilan muncul dalam [**Sejarah**](#history) atau pada tab **Semua Panggilan**.
 

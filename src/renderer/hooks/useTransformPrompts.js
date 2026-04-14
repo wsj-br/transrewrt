@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
-import { formatElapsedMmSs, formatPartialRunCostLabel, formatDecimal, interpolateTemplate } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatPartialRunCostLabel, formatDecimal } from "../utils/misc/formatUtils";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
@@ -311,15 +311,15 @@ export function useTransformPrompts({
         : result.error
           ? isAbortMessage(result.error)
             ? t("Transform stopped by user.")
-            : interpolateTemplate(t("Error: {{message}}"), { message: result.error })
-          : "—";
+            : t("Error: {{message}}", { message: result.error })
+          : "-";
       setTransformTestOutput(outputContent);
     } catch (err) {
       setTransformTestMeta("");
       setTransformTestOutput(
         (err.name === "AbortError" || isAbortMessage(err?.message))
           ? t("Transform stopped by user.")
-          : interpolateTemplate(t("Error: {{message}}"), { message: err?.message })
+          : t("Error: {{message}}", { message: err?.message })
       );
     } finally {
       setTransformTestRunning(false);

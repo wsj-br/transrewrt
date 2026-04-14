@@ -410,7 +410,7 @@
   "e.g. Keep it under 3 sentences.": "напр. Уложись в 3 предложения.",
   "Prompt instructions": "Инструкции промпта",
   "Model Role": "Роль модели",
-  "e.g. You are a helpful assistant.": "напр. Ты — полезный ассистент.",
+  "e.g. You are a helpful assistant.": "напр. Ты - полезный ассистент.",
   "Model Instructions (one per line)": "Инструкции модели (по одной на строку)",
   "- First instruction\n- Second instruction": "- Первая инструкция\n- Вторая инструкция",
   "Output description (e.g. transformed, summarised, etc.)": "Описание вывода (напр., преобразованный, резюмированный и т.д.)",

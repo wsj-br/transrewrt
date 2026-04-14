@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-03-31T22:56:56.723Z'
-source_file_mtime: '2026-03-30T09:57:25.622Z'
+translation_last_updated: '2026-04-09T23:21:58.060Z'
+source_file_mtime: '2026-04-07T18:28:53.559Z'
 source_file_hash: e1b91eca0124d467
 translation_language: ca
 source_file_path: USER-GUIDE.md
@@ -544,10 +544,10 @@ Les pestanyes disponibles depenen de la plataforma i del vostre rol:
   | Configuració General  |   sí   |     sí     |        sí         |
   | Models            |   sí   |     sí     |        sí         |
   | Idiomes         |   sí   |     sí     |        sí         |
-  | Seguiment de costos     |   sí   |     sí     |         —          |
+  | Seguiment de costos     |   sí   |     sí     |         -          |
   | Prompts de transformació |   sí   |     sí     |        sí         |
-  | Usuaris             |    —    |     sí     |         —          |
-  | Configuració de l'API        |   sí   |     sí     |         —          |
+  | Usuaris             |    -    |     sí     |         -          |
+  | Configuració de l'API        |   sí   |     sí     |         -          |
   | Quant a             |   sí   |     sí     |        sí         |
 
 <br/>
@@ -587,11 +587,11 @@ Utilitzeu **Configuració General** per controlar el comportament en escriure, s
 
 **Còpia de seguretat de la configuració**
 
-- **Inclou dades d'ús en la còpia de seguretat** — quan està activat, el ZIP també conté l'historial d'execució i les dades de les crides a l'API.
-- **Crear còpia de seguretat** — crea un únic fitxer ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, indicacions personalitzades i dades d'ús si ho heu activat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
-- **Restaurar des de còpia de seguretat** — obre primer un **diàleg de confirmació**. Trieu el fitxer ZIP de còpia de seguretat dins del diàleg (**Navega** / selector de fitxers o arrossega i deixa anar on sigui compatible), i després reviseu les opcions:
-  - **Restaura les dades d'ús** — importa l'ús/l'historial del ZIP quan es va fer la còpia de seguretat amb les dades d'ús incloses; deixeu-ho desactivat si només voleu configuració i indicacions.
-  - **Esborra les dades d'ús antigues abans de restaurar** — elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitzeu-ho quan vulgueu fer un reemplaçament net).
+- **Inclou dades d'ús en la còpia de seguretat** - quan està activat, el ZIP també conté l'historial d'execució i les dades de les crides a l'API.
+- **Crear còpia de seguretat** - crea un únic fitxer ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, indicacions personalitzades i dades d'ús si ho heu activat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
+- **Restaurar des de còpia de seguretat** - obre primer un **diàleg de confirmació**. Trieu el fitxer ZIP de còpia de seguretat dins del diàleg (**Navega** / selector de fitxers o arrossega i deixa anar on sigui compatible), i després reviseu les opcions:
+  - **Restaura les dades d'ús** - importa l'ús/l'historial del ZIP quan es va fer la còpia de seguretat amb les dades d'ús incloses; deixeu-ho desactivat si només voleu configuració i indicacions.
+  - **Esborra les dades d'ús antigues abans de restaurar** - elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitzeu-ho quan vulgueu fer un reemplaçament net).
 
 Les còpies de seguretat creades tant en la versió web com en la d'escriptori es poden restaurar en l'altra. Quan es restaura una còpia de seguretat d'escriptori en la versió web, les dades es restauraran a l'usuari administrador.
 
@@ -825,7 +825,7 @@ Obriu [**Configuració** > **Configuració General**](#general-settings) i canvi
 Això és normal si:
 
 - només utilitzeu **models gratuïts** i esteu consultant les xifres de **cost** (poden ser zero); els gràfics de recompte de trucades a **Resum** encara necessiten dades del període seleccionat
-- el **filtre de temps** seleccionat no inclou el període en què es van fer les trucades — proveu amb **Tots** per comprovar-ho
+- el **filtre de temps** seleccionat no inclou el període en què es van fer les trucades - proveu amb **Tots** per comprovar-ho
 
 Si els gràfics encara estan buits després de seleccionar **Tots**, comproveu que les trucades apareixen a [**Historial**](#history) o a la pestanya **Totes les crides**.
 

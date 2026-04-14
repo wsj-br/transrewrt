@@ -3,9 +3,9 @@
 # This script upgrades the development tools (Node.js via nvm, and global npm packages)
 # to the latest versions.
 #
-# TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE=1 — skip the trailing "Done." (used when
+# TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE=1 - skip the trailing "Done." (used when
 # upgrade-dependencies.ps1 dot-sources this script).
-# TRANSREWRT_UPGRADE_TOOLS_EMBEDDED=1 — nvm tip references upgrade-dependencies.ps1
+# TRANSREWRT_UPGRADE_TOOLS_EMBEDDED=1 - nvm tip references upgrade-dependencies.ps1
 # and uses $TransrewrtUpgradeDotSourced from the parent script when present.
 #
 

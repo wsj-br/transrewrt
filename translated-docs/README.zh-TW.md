@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-04-02T12:38:54.454Z'
-source_file_mtime: '2026-04-02T12:36:37.805Z'
+translation_last_updated: '2026-04-09T23:22:02.686Z'
+source_file_mtime: '2026-04-07T18:28:53.551Z'
 source_file_hash: 0826245f792850f3
 translation_language: zh-TW
 source_file_path: README.md
@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以及自訂提示詞轉換 — 使用多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和 local Ollama）。可作為桌面應用程式（Electron）或自託管網頁應用程式（Docker）運行。
+AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以及自訂提示詞轉換 - 使用多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和 local Ollama）。可作為桌面應用程式（Electron）或自託管網頁應用程式（Docker）運行。
 
-- **翻譯** — 支援數十種語言之間的翻譯，並具備自動偵測原始語言功能
-- **重寫** — 修正文法、提升清晰度、正式／非正式語氣切換、縮短、擴充、技術性調整
-- **轉換** — 自訂 AI 提示詞；建立與管理提示詞，每項提示詞可選擇性設定目標語言
-- **歷史** — 完整的執行紀錄，包含輸入／輸出文字、過濾功能與匯出選項
-- **模型與費用** — 從任一設定的供應商中選擇模型；提供費用與使用量儀表板，包含日誌、依模型／操作／日期的摘要
-- **使用者介面** — 多語言介面（30+ 種語言，支援由右至左顯示）、字型設定等
-- **網頁模式** — 支援多使用者與管理員角色
-- **桌面版** — 適用於 Windows 和 Linux 的 Electron 應用程式
-- **自託管** — 提供 amd64 與 arm64 的 Docker 映像檔（支援 Raspberry Pi）
+- **翻譯** - 支援數十種語言之間的翻譯，並具備自動偵測原始語言功能
+- **重寫** - 修正文法、提升清晰度、正式／非正式語氣切換、縮短、擴充、技術性調整
+- **轉換** - 自訂 AI 提示詞；建立與管理提示詞，每項提示詞可選擇性設定目標語言
+- **歷史** - 完整的執行紀錄，包含輸入／輸出文字、過濾功能與匯出選項
+- **模型與費用** - 從任一設定的供應商中選擇模型；提供費用與使用量儀表板，包含日誌、依模型／操作／日期的摘要
+- **使用者介面** - 多語言介面（30+ 種語言，支援由右至左顯示）、字型設定等
+- **網頁模式** - 支援多使用者與管理員角色
+- **桌面版** - 適用於 Windows 和 Linux 的 Electron 應用程式
+- **自託管** - 提供 amd64 與 arm64 的 Docker 映像檔（支援 Raspberry Pi）
 
 安裝後，請參閱 **[使用者指南](USER-GUIDE.zh-TW.md)** 以全面了解所有功能。
 
@@ -78,7 +78,7 @@ AI 驅動的文字工具：支援多種語言翻譯、不同風格重寫，以�
 
 **儀表板**
 
-![Dashboard summary — usage](../images/screenshots/zh-TW/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/zh-TW/dashboard-summary.png)
 
 **歷史**
 
@@ -192,7 +192,7 @@ echo TZ=\"$(</etc/timezone)\"
 >   - **使用者帳戶控制 (UAC)**：「您要允許這個來自未知發行者的應用程式對您的裝置進行變更嗎？」→ 按一下 **是**。
 >   - **Microsoft Defender SmartScreen**：「Windows 保護了您的電腦」→ 按一下 **更多資訊** → **仍然執行**。
 >
-> 此情況發生是因為該應用程式未經 Microsoft 或主要發行者簽署——只要從我們官方的 GitHub 發行版本下載即屬安全（請在 [發行版本](https://github.com/wsj-br/transrewrt/releases) 頁面驗證每個資源旁的校驗和）。
+> 此情況發生是因為該應用程式未經 Microsoft 或主要發行者簽署--只要從我們官方的 GitHub 發行版本下載即屬安全（請在 [發行版本](https://github.com/wsj-br/transrewrt/releases) 頁面驗證每個資源旁的校驗和）。
 
 <br/>
 

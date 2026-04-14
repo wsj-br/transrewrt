@@ -23,11 +23,10 @@ import {
 } from "../utils/misc/costUtils";
 import {
   formatDateTime,
-  interpolateTemplate,
   getTextStats,
   flipUiArrowsForRtl,
 } from "../utils/misc/formatUtils";
-import { getTextDirection } from "../i18n";
+import { getTextDirection } from "ai-i18n-tools/runtime";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
@@ -524,28 +523,22 @@ export default function HistoryPage() {
   const inputStatsStr = selected
     ? (() => {
         const s = getTextStats(selected.input_text ?? "");
-        return interpolateTemplate(
-          t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs"),
-          {
-            chars: s.chars,
-            words: s.words,
-            paragraphs: s.paragraphs,
-          },
-        );
+        return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
+          chars: s.chars,
+          words: s.words,
+          paragraphs: s.paragraphs,
+        });
       })()
     : null;
 
   const outputStatsStr = selected
     ? (() => {
         const s = getTextStats(selected.output_text ?? "");
-        return interpolateTemplate(
-          t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs"),
-          {
-            chars: s.chars,
-            words: s.words,
-            paragraphs: s.paragraphs,
-          },
-        );
+        return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
+          chars: s.chars,
+          words: s.words,
+          paragraphs: s.paragraphs,
+        });
       })()
     : null;
 
@@ -649,7 +642,7 @@ export default function HistoryPage() {
                         </span>
                       </div>
                       <div className={styles.cardLine2} title={firstLinePreview(row.input_text)}>
-                        {firstLinePreview(row.input_text) || "—"}
+                        {firstLinePreview(row.input_text) || "-"}
                       </div>
                     </button>
                   ))

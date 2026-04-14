@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate — utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
+Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate - utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
-- **Traduce** — între zeci de limbi, cu detectare automată a limbii sursă
-- **Rescriere** — corectare gramaticală, îmbunătățește claritatea, stil formal/informal, scurtează, extinde, tehnic
-- **Transformare** — prompturi AI personalizate; creează și gestionează prompturi, limbă țintă opțională per prompt
-- **Istoric** — istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Modele și cost** — alege modele din orice furnizor configurat; panouri de cost și utilizare cu jurnal, rezumate pe model/operațiune/zi
-- **Interfață utilizator** — interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
-- **Mod web** — suport pentru mai mulți utilizatori cu roluri de administrator
-- **Desktop** — aplicație Electron pentru Windows și Linux
-- **Auto-găzduit** — imagine Docker pentru amd64 și arm64 (pregătit pentru Raspberry Pi)
+- **Traduce** - între zeci de limbi, cu detectare automată a limbii sursă
+- **Rescriere** - corectare gramaticală, îmbunătățește claritatea, stil formal/informal, scurtează, extinde, tehnic
+- **Transformare** - prompturi AI personalizate; creează și gestionează prompturi, limbă țintă opțională per prompt
+- **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
+- **Modele și cost** - alege modele din orice furnizor configurat; panouri de cost și utilizare cu jurnal, rezumate pe model/operațiune/zi
+- **Interfață utilizator** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
+- **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
+- **Desktop** - aplicație Electron pentru Windows și Linux
+- **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (pregătit pentru Raspberry Pi)
 
 După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru o prezentare completă a tuturor funcțiilor.
 
@@ -79,7 +79,7 @@ După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentr
 
 **Panou de control**
 
-![Dashboard summary — usage](../images/screenshots/ro/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/ro/dashboard-summary.png)
 
 **Istoric**
 
@@ -193,7 +193,7 @@ O listă cu numele valide ale fusurilor orare este menținută în [baza de date
 >   - **Controlul contului de utilizator (UAC)**: „Doriți să permiteți acestui aplicații de la un editor necunoscut să facă modificări pe dispozitivul dvs.?“ → Faceți clic pe **Da**.
 >   - **Microsoft Defender SmartScreen**: „Windows v-a protejat PC-ul“ → Faceți clic pe **Mai multe informații** → **Totuși execută**.
 >
-> Acest lucru se întâmplă deoarece aplicația nu este semnată de Microsoft sau de un editor major — este sigură dacă a fost descărcată din lansările noastre oficiale de pe GitHub (verificați sumele de control pe pagina [Releases](https://github.com/wsj-br/transrewrt/releases) alături de fiecare fișier).
+> Acest lucru se întâmplă deoarece aplicația nu este semnată de Microsoft sau de un editor major - este sigură dacă a fost descărcată din lansările noastre oficiale de pe GitHub (verificați sumele de control pe pagina [Releases](https://github.com/wsj-br/transrewrt/releases) alături de fiecare fișier).
 
 <br/>
 

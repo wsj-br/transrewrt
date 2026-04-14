@@ -207,7 +207,7 @@ Ang **model selector** ay nagbibigay-daan sa iyo na pumili kung aling AI engine 
 
 ![Model selector](../images/screenshots/tl/model-selector.png)
 
-Maaaring hindi laging available ang ilang libreng modelo—minsan ay offline o may limitasyon sa paggamit. Kung mangyari ito, awtomatikong aalisin ng app ang modelong iyon sa iyong listahan ng available. Para kontrolin kung aling mga modelo ang lilitaw, pumunta sa [**Mga Setting** > **Mga Modelo**](#models) at i-edit ang iyong listahan ng modelo.
+Maaaring hindi laging available ang ilang libreng modelo-minsan ay offline o may limitasyon sa paggamit. Kung mangyari ito, awtomatikong aalisin ng app ang modelong iyon sa iyong listahan ng available. Para kontrolin kung aling mga modelo ang lilitaw, pumunta sa [**Mga Setting** > **Mga Modelo**](#models) at i-edit ang iyong listahan ng modelo.
 Maaari mo ring buksan nang direkta ang mga setting ng modelo sa pamamagitan ng pag-click sa icon ng provider sa kaliwa ng pangalan ng modelo sa toolbar.
 
 <br/>
@@ -544,10 +544,10 @@ Ang mga available na tab ay nakadepende sa platform at iyong papel:
   | Mga Pangkalahatang Setting  |   Oo   |     Oo     |        Oo         |
   | Mga Modelo            |   Oo   |     Oo     |        Oo         |
   | Mga Wika         |   Oo   |     Oo     |        Oo         |
-  | Pagsusubaybay ng Gastos     |   Oo   |     Oo     |         —          |
+  | Pagsusubaybay ng Gastos     |   Oo   |     Oo     |         -          |
   | Mga transform prompt |   Oo   |     Oo     |        Oo         |
-  | Mga User             |    —    |     Oo     |         —          |
-  | Config ng API        |   Oo   |     Oo     |         —          |
+  | Mga User             |    -    |     Oo     |         -          |
+  | Config ng API        |   Oo   |     Oo     |         -          |
   | Tungkol sa             |   Oo   |     Oo     |        Oo         |
 
 <br/>
@@ -587,11 +587,11 @@ Gamitin ang **Mga Pangkalahatang Setting** upang kontrolin ang pag-uugali sa pag
 
 **Backup ng Konfigurasyon**
 
-- **Isama ang data ng paggamit sa backup** — kapag naka-enable, ang ZIP ay naglalaman din ng kasaysayan ng pagpapatupad at data ng API call. 
-- **I-backup ang konfigurasyon** — lumilikha ng isang ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` sa UTC bilang default) na may `config.json`, `state.json`, opsyonal na encryption key, mga user, mga kagustuhan, mga custom prompt, at data ng paggamit kung kasama mo ito. Matapos ang matagumpay na backup, ang kumpirmasyon ay nagpapakita ng pangalan ng naka-save na file.
-- **Ibalik mula sa backup** — bubukas muna ang **dialog ng kumpirmasyon**. Piliin ang backup ZIP sa loob ng dialog (**Browse** / file picker o drag-and-drop kung suportado), pagkatapos ay suriin ang mga opsyon:
-  - **Ibalik ang data ng paggamit** — i-import ang paggamit/kasaysayan mula sa ZIP kapag ito ay na-backup na kasama ang paggamit; huwag i-enable kung gusto mo lang ang mga setting at prompt.
-  - **Tanggalin ang lumang data ng paggamit bago ibalik** — alisin ang umiiral na paggamit/kasaysayan sa install na ito bago ilapat ang backup (opsyonal; gamitin kapag gusto mong malinis na palitan).
+- **Isama ang data ng paggamit sa backup** - kapag naka-enable, ang ZIP ay naglalaman din ng kasaysayan ng pagpapatupad at data ng API call. 
+- **I-backup ang konfigurasyon** - lumilikha ng isang ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` sa UTC bilang default) na may `config.json`, `state.json`, opsyonal na encryption key, mga user, mga kagustuhan, mga custom prompt, at data ng paggamit kung kasama mo ito. Matapos ang matagumpay na backup, ang kumpirmasyon ay nagpapakita ng pangalan ng naka-save na file.
+- **Ibalik mula sa backup** - bubukas muna ang **dialog ng kumpirmasyon**. Piliin ang backup ZIP sa loob ng dialog (**Browse** / file picker o drag-and-drop kung suportado), pagkatapos ay suriin ang mga opsyon:
+  - **Ibalik ang data ng paggamit** - i-import ang paggamit/kasaysayan mula sa ZIP kapag ito ay na-backup na kasama ang paggamit; huwag i-enable kung gusto mo lang ang mga setting at prompt.
+  - **Tanggalin ang lumang data ng paggamit bago ibalik** - alisin ang umiiral na paggamit/kasaysayan sa install na ito bago ilapat ang backup (opsyonal; gamitin kapag gusto mong malinis na palitan).
 
 Ang mga backup na nilikha sa web o desktop version ay maaaring maibalik sa kabilang bersyon. Kapag ibinabalik ang desktop backup sa web version, ang data ay maibabalik sa administrator user.
 
@@ -706,7 +706,7 @@ Ang mga suportadong provider ay: OpenRouter, OpenAI, Anthropic, Google Gemini, D
 
 **Web application: administrator lamang**
 
-Ang mga API key ay ini-configure sa pamamagitan ng system o Docker environment variables — hindi ito inilalagay sa web UI. Ang pahinang ito ay nagpapakita kung aling mga provider ang may naka-configure na key at nagbibigay-daan sa iyo na subukan ang bawat isa sa pamamagitan ng pag-click sa pindutan na **`Subukan`**.
+Ang mga API key ay ini-configure sa pamamagitan ng system o Docker environment variables - hindi ito inilalagay sa web UI. Ang pahinang ito ay nagpapakita kung aling mga provider ang may naka-configure na key at nagbibigay-daan sa iyo na subukan ang bawat isa sa pamamagitan ng pag-click sa pindutan na **`Subukan`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Ang mga API key ay ini-configure sa pamamagitan ng system o Docker environment v
 > Upang baguhin ang isang API key, i-update ang environment variable sa iyong system o Docker configuration at i-restart ang server o container.
 
 > ℹ️ **PAUNAWA**<br/>
-> Ang **mga backup ng konfigurasyon** (tingnan ang [**Mga Pangkalahatang Setting** → Backup ng Konfigurasyon](#general-settings)) ay maaaring isama ang **nare-resolve** na mga key ng provider sa loob ng `config.json` ng ZIP. Ang pag-restore ng ZIP na iyon ay **hindi** kinokopya ang mga key na iyon pabalik sa naka-save na config file ng server — ang live na key ay patuloy na nagmumula sa environment at umiiral na file state gaya ng inilarawan doon.
+> Ang **mga backup ng konfigurasyon** (tingnan ang [**Mga Pangkalahatang Setting** → Backup ng Konfigurasyon](#general-settings)) ay maaaring isama ang **nare-resolve** na mga key ng provider sa loob ng `config.json` ng ZIP. Ang pag-restore ng ZIP na iyon ay **hindi** kinokopya ang mga key na iyon pabalik sa naka-save na config file ng server - ang live na key ay patuloy na nagmumula sa environment at umiiral na file state gaya ng inilarawan doon.
 
 <br/>
 
@@ -825,7 +825,7 @@ Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
 Normal ito kung:
 
 - gumagamit ka lamang ng **mga libreng modelo** at tinitingnan mo ang mga **gastos** (maaaring zero ang halaga); kailangan pa rin ng data ang mga graph ng bilang ng **mga tawag** sa **Buod** mula sa napiling panahon
-- hindi sumasakop ang napiling **filter ng oras** sa panahon kung kailan ginawa ang mga tawag — subukang **Lahat** upang suriin
+- hindi sumasakop ang napiling **filter ng oras** sa panahon kung kailan ginawa ang mga tawag - subukang **Lahat** upang suriin
 
 Kung ang mga chart ay nananatiling walang laman pagkatapos piliin ang **Lahat**, kumpirmahin na lumilitaw ang mga tawag sa [**Kasaysayan**](#history) o sa tab na **Lahat ng Call**.
 

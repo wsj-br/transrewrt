@@ -5,7 +5,6 @@ import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import iconsWithFiles from "../assets/icons_with_files.json";
-import { interpolateTemplate } from "../utils/misc/formatUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 const OLLAMA_URL = "https://ollama.com/";
@@ -53,7 +52,7 @@ function formatProviderTestSuccessMessage(successI18n, t) {
     return t("Ollama configuration is working.");
   }
   if (key === "{{provider}} credentials are valid.") {
-    return interpolateTemplate(t("{{provider}} credentials are valid."), params || {});
+    return t("{{provider}} credentials are valid.", params || {});
   }
   return null;
 }

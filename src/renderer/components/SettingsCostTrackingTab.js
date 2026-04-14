@@ -20,11 +20,10 @@ import {
   getDeleteCutoffIso,
 } from "../utils/misc/costUtils";
 import {
-  interpolateTemplate,
   formatDecimal,
   flipUiArrowsForRtl,
 } from "../utils/misc/formatUtils";
-import { getTextDirection } from "../i18n";
+import { getTextDirection } from "ai-i18n-tools/runtime";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -187,7 +186,7 @@ const SettingsCostTrackingTab = ({
   const keyUsageDisplay = useMemo(() => {
     if (keyInfoLoading) return t("Loading…");
     if (keyInfoError) return flipUiArrowsForRtl(keyInfoError, isRtl);
-    if (!keyInfo) return "—";
+    if (!keyInfo) return "-";
     const usage =
       keyInfo.usage ??
       (keyInfo.limit != null && keyInfo.limit_remaining != null
@@ -318,16 +317,13 @@ const SettingsCostTrackingTab = ({
   const deleteConfirmMessage =
     deleteRange === "all"
       ? t("Permanently delete ALL cost tracking data?\n\nThis cannot be undone.")
-      : interpolateTemplate(
-          t("Permanently delete cost tracking data older than {{range}}?\n\nThis cannot be undone."),
-          {
-            range:
-              (deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
-                /^>\s*/,
-                "",
-              ) || "",
-          }
-        );
+      : t("Permanently delete cost tracking data older than {{range}}?\n\nThis cannot be undone.", {
+          range:
+            (deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
+              /^>\s*/,
+              "",
+            ) || "",
+        });
 
   return (
     <div className="tab-content">
@@ -459,14 +455,14 @@ const SettingsCostTrackingTab = ({
                       </span>
                       {keyUsageDisplay.limitReset == null
                         ? t("(no reset interval)")
-                        : ` ${interpolateTemplate(t("(reset interval: {{when}})"), { when: t(keyUsageDisplay.limitReset) })}`}
+                        : ` ${t("(reset interval: {{when}})", { when: t(keyUsageDisplay.limitReset) })}`}
                     </>
                   ) : (
                     " "
                   )}
                 </>
               ) : (
-                "—"
+                "-"
               )}
             </span>
             <Button

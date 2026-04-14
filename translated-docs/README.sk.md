@@ -19,15 +19,15 @@ source_file_path: README.md
 
 Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov umelej inteligencie (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spustiteľný ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
 
-- **Preložiť** — medzi desiatkami jazykov, s automatickým zisťovaním zdrojového jazyka
-- **Prepísať** — opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický štýl
-- **Transformovať** — vlastné výzvy pre AI; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
-- **História** — kompletná história vykonaní s vstupným/výstupným textom, filtrovanie a export
-- **Modely a náklady** — výber modelov od akéhokoľvek nakonfigurovaného poskytovateľa; nástenky nákladov a využitia s denníkom, zhrnutiami podľa modelu/operácie/dňa
-- **UI** — viacjazyčné rozhranie (30+ jazykov, podpora RTL), písma, ...
-- **Webový režim** — podpora viacerých používateľov s rolami správcu
-- **Desktop** — aplikácia Electron pre Windows a Linux
-- **Samostatne hostované** — obraz Docker pre amd64 a arm64 (pripravené pre Raspberry Pi)
+- **Preložiť** - medzi desiatkami jazykov, s automatickým zisťovaním zdrojového jazyka
+- **Prepísať** - opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický štýl
+- **Transformovať** - vlastné výzvy pre AI; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
+- **História** - kompletná história vykonaní s vstupným/výstupným textom, filtrovanie a export
+- **Modely a náklady** - výber modelov od akéhokoľvek nakonfigurovaného poskytovateľa; nástenky nákladov a využitia s denníkom, zhrnutiami podľa modelu/operácie/dňa
+- **UI** - viacjazyčné rozhranie (30+ jazykov, podpora RTL), písma, ...
+- **Webový režim** - podpora viacerých používateľov s rolami správcu
+- **Desktop** - aplikácia Electron pre Windows a Linux
+- **Samostatne hostované** - obraz Docker pre amd64 a arm64 (pripravené pre Raspberry Pi)
 
 Po inštalácii si prečítajte **[Používateľskú príručku](USER-GUIDE.sk.md)**, ktorá obsahuje podrobný prehľad všetkých funkcií.
 
@@ -79,7 +79,7 @@ Po inštalácii si prečítajte **[Používateľskú príručku](USER-GUIDE.sk.m
 
 **Nástenka**
 
-![Dashboard summary — usage](../images/screenshots/sk/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/sk/dashboard-summary.png)
 
 **História**
 

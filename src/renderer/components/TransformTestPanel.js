@@ -122,7 +122,7 @@ const TransformTestPanel = ({
         <label className={styles.inputLabel}>{t("Output")}</label>
         {outputMeta && <div className={styles.outputMeta}>{outputMeta}</div>}
         <div className={styles.outputArea} role="region" aria-label={t("Test output")} style={outputStyle}>
-          {output || "—"}
+          {output || "-"}
         </div>
         {output && (
           <div className={styles.outputActions}>

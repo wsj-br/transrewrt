@@ -543,10 +543,10 @@ A rendelkezésre álló fülek a platformtól és a szerepkörtől függenek:
   | Általános beállítások  |   igen   |     igen     |        igen         |
   | Modellek            |   igen   |     igen     |        igen         |
   | Nyelvek         |   igen   |     igen     |        igen         |
-  | Költségkövetés     |   igen   |     igen     |         —          |
+  | Költségkövetés     |   igen   |     igen     |         -          |
   | Átalakítási sablonok |   igen   |     igen     |        igen         |
-  | Felhasználók             |    —    |     igen     |         —          |
-  | API konfiguráció        |   igen   |     igen     |         —          |
+  | Felhasználók             |    -    |     igen     |         -          |
+  | API konfiguráció        |   igen   |     igen     |         -          |
   | Névjegy             |   igen   |     igen     |        igen         |
 
 <br/>

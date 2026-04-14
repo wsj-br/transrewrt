@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import {
   formatInteger,
   formatDurationMs,
-  interpolateTemplate,
 } from "../utils/misc/formatUtils";
 import { DASH } from "../utils/misc/costUtils";
 
@@ -84,10 +83,11 @@ function formatInputOutputStats(row, prefix, locale, t) {
   const w = formatInteger(words ?? 0, locale);
   const p = formatInteger(paragraphs ?? 0, locale);
   if (t) {
-    return interpolateTemplate(
-      t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs"),
-      { chars: c, words: w, paragraphs: p }
-    );
+    return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
+      chars: c,
+      words: w,
+      paragraphs: p,
+    });
   }
   return `${c} chars · ${w} words · ${p} paragraphs`;
 }

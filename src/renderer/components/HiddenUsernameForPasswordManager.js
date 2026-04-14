@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 /**
  * Visually hidden username field so password managers can tie "change password" / "new password" flows to an account.
- * Not display:none — many UAs ignore fields that are not rendered for autofill.
+ * Not display:none - many UAs ignore fields that are not rendered for autofill.
  */
 const HiddenUsernameForPasswordManager = ({ username, id = "password-manager-username" }) => {
   if (username == null || username === "") return null;

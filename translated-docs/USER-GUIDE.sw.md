@@ -207,7 +207,7 @@ Barua ya zana inabadilika kidogo kulingana na unako katika programu.
 
 ![Model selector](../images/screenshots/sw/model-selector.png)
 
-Baadhi ya mifano ya bure isingeweza kuwa yapatikana kila wakati—wakati mwingine yanaweza kuwa mbali au kuna kikomo cha matumizi. Ikiwa hivyo kitatokea, programu itawasilisha kifaa hicho kutoka kwenye orodha yako ya yanayopatikana. Kudhibiti mifano inayotazamia, nenda kwenye [**Mipangilio** > **Mifano**](#models) na hariri orodha yako ya mifano.
+Baadhi ya mifano ya bure isingeweza kuwa yapatikana kila wakati-wakati mwingine yanaweza kuwa mbali au kuna kikomo cha matumizi. Ikiwa hivyo kitatokea, programu itawasilisha kifaa hicho kutoka kwenye orodha yako ya yanayopatikana. Kudhibiti mifano inayotazamia, nenda kwenye [**Mipangilio** > **Mifano**](#models) na hariri orodha yako ya mifano.
 Unaweza pia kufungua mipangilio ya kifaa moja kwa moja kwa kubonyeza kipawe cha mtoa huduma upande wa kushoto wa jina la kifaa katika barua ya zana.
 
 <br/>
@@ -544,10 +544,10 @@ Vidodi vya upatikanaji vinategemea jukwaa na wajibu wako:
   | Mipangilio ya Ujumla  |   ndio   |     ndio     |        ndio         |
   | Vifaa            |   ndio   |     ndio     |        ndio         |
   | Lugha         |   ndio   |     ndio     |        ndio         |
-  | Ufuatiliaji wa Gharama     |   ndio   |     ndio     |         —          |
+  | Ufuatiliaji wa Gharama     |   ndio   |     ndio     |         -          |
   | Maagizo ya ubadilishaji |   ndio   |     ndio     |        ndio         |
-  | Watumiaji             |    —    |     ndio     |         —          |
-  | Mipangilio ya API        |   ndio   |     ndio     |         —          |
+  | Watumiaji             |    -    |     ndio     |         -          |
+  | Mipangilio ya API        |   ndio   |     ndio     |         -          |
   | Kuhusu             |   ndio   |     ndio     |        ndio         |
 
 <br/>
@@ -587,11 +587,11 @@ Tumia **Mipangilio ya Ujumla** kupima tabia ya kuandika, kama taarifa za utekele
 
 **Usimbaji wa Usanidi**
 
-- **Jumuisha data ya matumizi kwenye usimwaji** — ikiwa imeamilishwa, ZIP pia ina data ya kumbukumbu za utekelezaji na maombi ya API. 
-- **Sanidi Usimbaji** — inatengeneza ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` katika UTC kwa chaguo-msingi) yenye `config.json`, `state.json`, ufunguo wa usimwaji (kama umechagua), watumiaji, mapendeleo, maagizo ya ziada, na data ya matumizi ikiwa umekubali. Baada ya usimwaji wa mafanikio, uthibitisho unaweka jina la faili iliyohifadhiwa.
-- **Rudi kutoka kwenye usimwaji** — inafungua **kichwa cha kuthibitisha kwanza**. Chagua faili ya ZIP ya usimwaji ndani ya kichwa (**Chagua** / kichaguzi cha faili au buruta-na-angusha ambapo inasaidiwa), kisha angalia chaguzi:
-  - **Rejesha data ya matumizi** — ingiza data ya matumizi/kumbukumbu kutoka kwenye ZIP ikiwa ilisimwa pamoja na matumizi; usiwezeshe ikiwa unataka tu mipangilio na maagizo.
-  - **Futa data ya zamani kabla ya kurejesha** — ondoa data ya matumizi/kumbukumbu kwenye mfumo huu kabla ya kutumia usimwaji (haiwezi; tumia ikiwa unataka kubadilisha kikamilifu).
+- **Jumuisha data ya matumizi kwenye usimwaji** - ikiwa imeamilishwa, ZIP pia ina data ya kumbukumbu za utekelezaji na maombi ya API. 
+- **Sanidi Usimbaji** - inatengeneza ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` katika UTC kwa chaguo-msingi) yenye `config.json`, `state.json`, ufunguo wa usimwaji (kama umechagua), watumiaji, mapendeleo, maagizo ya ziada, na data ya matumizi ikiwa umekubali. Baada ya usimwaji wa mafanikio, uthibitisho unaweka jina la faili iliyohifadhiwa.
+- **Rudi kutoka kwenye usimwaji** - inafungua **kichwa cha kuthibitisha kwanza**. Chagua faili ya ZIP ya usimwaji ndani ya kichwa (**Chagua** / kichaguzi cha faili au buruta-na-angusha ambapo inasaidiwa), kisha angalia chaguzi:
+  - **Rejesha data ya matumizi** - ingiza data ya matumizi/kumbukumbu kutoka kwenye ZIP ikiwa ilisimwa pamoja na matumizi; usiwezeshe ikiwa unataka tu mipangilio na maagizo.
+  - **Futa data ya zamani kabla ya kurejesha** - ondoa data ya matumizi/kumbukumbu kwenye mfumo huu kabla ya kutumia usimwaji (haiwezi; tumia ikiwa unataka kubadilisha kikamilifu).
 
 Usimwaji uliotengenezwa kwenye toleo la wavuti au desktop unaweza kurudishwa kwenye toleo lingine. Wakati wa kurudisha usimwaji wa desktop kwenye toleo la wavuti, data itarudishwa kwa mtumiaji wa msimamizi.
 
@@ -706,7 +706,7 @@ Watoa huduma waliomzungukwa ni: OpenRouter, OpenAI, Anthropic, Google Gemini, De
 
 **Programu ya wavuti: kwa msimamizi tu**
 
-Vifungu vya API vinawekwa kupitia vigezo vya mazingira ya mfumo au Docker — havijawekwa kwenye UI ya wavuti. Ukurasa huu unawasilisha watoa ambao kina fungu kilichowekwa na kukupa uwezo wa kujaribu kila moja kwa kubonyeza kitufe cha **`Jaribu`**.
+Vifungu vya API vinawekwa kupitia vigezo vya mazingira ya mfumo au Docker - havijawekwa kwenye UI ya wavuti. Ukurasa huu unawasilisha watoa ambao kina fungu kilichowekwa na kukupa uwezo wa kujaribu kila moja kwa kubonyeza kitufe cha **`Jaribu`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Vifungu vya API vinawekwa kupitia vigezo vya mazingira ya mfumo au Docker — ha
 > Ili kubadilisha fungu la API, wasilisha kivinjari cha mazingira kwenye mfumo wako au mipangilio ya Docker na uzirejeshee kizimamoto au kizingiti.
 
 > ℹ️ **KODI**<br/>
-> **Usimbaji wa usanidi** (tazama [**Mipangilio ya ujumla** → Usimbaji wa usanidi](#general-settings)) unaweza kujumuisha vifungu vilivyosuluhishwa vya mtoa huduma ndani ya `config.json` ya ZIP. Kurudisha ZIP hiyo **hakurudishi** vifungu hivyo nyuma kwenye faili ya usanidi iliyotolewa na kizimamoto — vifungu vilivyonavyotumika bado vinatoka kwenye mazingira na hali ya faili iliyopo kama ilivyoelezwa pale.
+> **Usimbaji wa usanidi** (tazama [**Mipangilio ya ujumla** → Usimbaji wa usanidi](#general-settings)) unaweza kujumuisha vifungu vilivyosuluhishwa vya mtoa huduma ndani ya `config.json` ya ZIP. Kurudisha ZIP hiyo **hakurudishi** vifungu hivyo nyuma kwenye faili ya usanidi iliyotolewa na kizimamoto - vifungu vilivyonavyotumika bado vinatoka kwenye mazingira na hali ya faili iliyopo kama ilivyoelezwa pale.
 
 <br/>
 
@@ -825,7 +825,7 @@ Fungua [**Mipangilio** > **Mipangilio ya Ujumla**](#general-settings) na badilis
 Hii ni kawaida kama:
 
 - unatumia mifano ya bure tu na unatazama takwimu za gharama (zinaweza kuwa sifuri); chati za hesabu ya matumizi za **Muhtasari** bado zinahitaji data kwa kipindi kilichochaguliwa
-- **chujio la wakati** kilichochaguliwa halifuniki kipindi ambacho maombi yalifanywa — jaribu **Yote** kukagua
+- **chujio la wakati** kilichochaguliwa halifuniki kipindi ambacho maombi yalifanywa - jaribu **Yote** kukagua
 
 Ikiwa grafu bado ni tupu baada ya kuchagua **Yote**, thibitisha kuwa maombi yanavyotokea katika [**Historia**](#history) au katika kichupo cha **Maombi Yote**.
 

@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Yapay zeka destekli metin aracı: birden fazla yapay zeka sağlayıcısı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevir, farklı stillerde yeniden yaz ve özel istemlerle dönüştür — masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
+Yapay zeka destekli metin aracı: birden fazla yapay zeka sağlayıcısı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevir, farklı stillerde yeniden yaz ve özel istemlerle dönüştür - masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
 
-- **Çevir** — otomatik kaynak algılama ile onlarca dil arasında
-- **Yeniden yaz** — dilbilgisi düzelt, netliği iyileştir, resmi/resmi olmayan, kısalt, uzat, teknik
-- **Dönüştür** — özel yapay zeka istemleri; istem oluştur ve yönet, her istem için isteğe bağlı hedef dil
-- **Geçmiş** — giriş/çıkış metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Modeller & maliyet** — yapılandırılan herhangi bir sağlayıcıdan model seç; maliyet ve kullanım kontrol panoları, günlük, modele/işleme/güne göre özetler
-- **Kullanıcı Arayüzü** — çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
-- **Web modu** — yönetici rolleriyle çoklu kullanıcı desteği
-- **Masaüstü** — Windows ve Linux için Electron uygulaması
-- **Kendi barındırılan** — amd64 ve arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
+- **Çevir** - otomatik kaynak algılama ile onlarca dil arasında
+- **Yeniden yaz** - dilbilgisi düzelt, netliği iyileştir, resmi/resmi olmayan, kısalt, uzat, teknik
+- **Dönüştür** - özel yapay zeka istemleri; istem oluştur ve yönet, her istem için isteğe bağlı hedef dil
+- **Geçmiş** - giriş/çıkış metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
+- **Modeller & maliyet** - yapılandırılan herhangi bir sağlayıcıdan model seç; maliyet ve kullanım kontrol panoları, günlük, modele/işleme/güne göre özetler
+- **Kullanıcı Arayüzü** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
+- **Web modu** - yönetici rolleriyle çoklu kullanıcı desteği
+- **Masaüstü** - Windows ve Linux için Electron uygulaması
+- **Kendi barındırılan** - amd64 ve arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 
 Yükleme yapıldıktan sonra tüm özelliklerin kapsamlı bir incelemesi için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
 
@@ -78,7 +78,7 @@ Yükleme yapıldıktan sonra tüm özelliklerin kapsamlı bir incelemesi için *
 
 **Kontrol Paneli**
 
-![Dashboard summary — usage](../images/screenshots/tr/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/tr/dashboard-summary.png)
 
 **Geçmiş**
 
@@ -192,7 +192,7 @@ Geçerli zaman dilimi adlarının listesi [tz veritabanı](https://en.wikipedia.
 >   - **Kullanıcı Hesabı Denetimi (UAC)**: "Bilinmeyen bir yayımcıdan gelen bu uygulamanın cihazınıza değişiklik yapmasına izin vermek istiyor musunuz?" → **Evet**'e tıklayın.
 >   - **Microsoft Defender SmartScreen**: "Windows PC'nizi korudu" → **Daha fazla bilgi** → **Yine de çalıştır**'a tıklayın.
 >
-> Bu, uygulamanın Microsoft veya büyük bir yayıncı tarafından imzalanmamış olması nedeniyle olur — resmi GitHub yayınlarımızdan indirildiyse güvenlidir (her varlığın yanında yer alan [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasında sağlama toplamlarını doğrulayın).
+> Bu, uygulamanın Microsoft veya büyük bir yayıncı tarafından imzalanmamış olması nedeniyle olur - resmi GitHub yayınlarımızdan indirildiyse güvenlidir (her varlığın yanında yer alan [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasında sağlama toplamlarını doğrulayın).
 
 <br/>
 

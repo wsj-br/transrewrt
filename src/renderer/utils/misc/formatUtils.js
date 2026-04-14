@@ -1,6 +1,6 @@
 import i18n from "../../i18n";
 
-const DASH = "—";
+const DASH = "-";
 
 const DEFAULT_LOCALE = "en-GB";
 
@@ -37,7 +37,7 @@ export function formatDurationMs(ms, _locale) {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-/** Replace {{key}} placeholders in a string (used when t() returns key-as-default and i18n does not interpolate). */
+/** Replace {{key}} placeholders in a plain string (non-i18n templates). Prefer `t('…', vars)` for translated UI strings. */
 export function interpolateTemplate(str, vars) {
   return str.replace(/\{\{(\w+)\}\}/g, (_, key) => String(vars[key] ?? ""));
 }
@@ -153,13 +153,19 @@ export function getTextStats(text) {
 /** Format stats line for display; pass t from useTranslation() for i18n. */
 export function getInputStats(text, t) {
   const { chars, words, paragraphs } = getTextStats(text);
-  const template = t('Chars: {{chars}} | Words: {{words}} | Paragraphs: {{paragraphs}}');
-  return interpolateTemplate(template, { chars, words, paragraphs });
+  return t('Chars: {{chars}} | Words: {{words}} | Paragraphs: {{paragraphs}}', {
+    chars,
+    words,
+    paragraphs,
+  });
 }
 
 /** Format stats line for display; pass t from useTranslation() for i18n. */
 export function getOutputStats(text, t) {
   const { chars, words, paragraphs } = getTextStats(text);
-  const template = t('Chars: {{chars}} | Words: {{words}} | Paragraphs: {{paragraphs}}');
-  return interpolateTemplate(template, { chars, words, paragraphs });
+  return t('Chars: {{chars}} | Words: {{words}} | Paragraphs: {{paragraphs}}', {
+    chars,
+    words,
+    paragraphs,
+  });
 }

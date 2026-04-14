@@ -13,7 +13,6 @@ import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
   formatDateTime,
-  interpolateTemplate,
 } from "../utils/misc/formatUtils";
 import {
   formatCost,
@@ -189,7 +188,7 @@ export default function DashboardTabAllCalls({
             ))}
           </Dropdown>
           <span style={{ color: tokens.colorNeutralForeground2 }}>
-            {interpolateTemplate(t("{{count}} row(s) total"), {
+            {t("{{count}} row(s) total", {
               count: allCallsTotal,
             })}
           </span>
@@ -208,7 +207,7 @@ export default function DashboardTabAllCalls({
               alignSelf: "center",
             }}
           >
-            {interpolateTemplate(t("Page {{page}} of {{total}}"), {
+            {t("Page {{page}} of {{total}}", {
               page: allCallsPage,
               total: Math.max(
                 1,

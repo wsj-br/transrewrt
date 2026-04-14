@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-04-02T12:38:42.289Z'
-source_file_mtime: '2026-04-02T12:36:37.805Z'
+translation_last_updated: '2026-04-09T23:21:51.811Z'
+source_file_mtime: '2026-04-07T18:28:53.551Z'
 source_file_hash: 0826245f792850f3
 translation_language: ca
 source_file_path: README.md
@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats — utilitzant diversos proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
+Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats - utilitzant diversos proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- **Tradueix** — entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
-- **Reescriptura** — corregeix gramàtica, millora la claredat, formal/informal, escurça, amplia, tècnic
-- **Transformació** — prompts personalitzats d'IA; crea i gestiona prompts, idioma de destinació opcional per a cada prompt
-- **Historial** — historial complet d'execucions amb text d'entrada/sortida, filtres i exportació
-- **Models i cost** — tria models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
-- **Interfície d'usuari** — interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
-- **Mode web** — suport multiusuari amb rols d'administrador
-- **Escriptori** — aplicació Electron per a Windows i Linux
-- **Autoallotjat** — imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
+- **Tradueix** - entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
+- **Reescriptura** - corregeix gramàtica, millora la claredat, formal/informal, escurça, amplia, tècnic
+- **Transformació** - prompts personalitzats d'IA; crea i gestiona prompts, idioma de destinació opcional per a cada prompt
+- **Historial** - historial complet d'execucions amb text d'entrada/sortida, filtres i exportació
+- **Models i cost** - tria models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
+- **Interfície d'usuari** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
+- **Mode web** - suport multiusuari amb rols d'administrador
+- **Escriptori** - aplicació Electron per a Windows i Linux
+- **Autoallotjat** - imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
 
 Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per una descripció completa de totes les funcions.
 
@@ -79,7 +79,7 @@ Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per una de
 
 **Tauler**
 
-![Dashboard summary — usage](../images/screenshots/ca/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/ca/dashboard-summary.png)
 
 **Historial**
 

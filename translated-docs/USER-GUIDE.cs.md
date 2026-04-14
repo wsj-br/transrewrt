@@ -544,10 +544,10 @@ Dostupné karty závisí na platformě a vaší roli:
   | Obecné nastavení  |   ano   |     ano     |        ano         |
   | Modely            |   ano   |     ano     |        ano         |
   | Jazyky            |   ano   |     ano     |        ano         |
-  | Sledování nákladů |   ano   |     ano     |         —          |
+  | Sledování nákladů |   ano   |     ano     |         -          |
   | Transformační výzvy |   ano   |     ano     |        ano         |
-  | Uživatelé         |    —    |     ano     |         —          |
-  | Konfigurace API   |   ano   |     ano     |         —          |
+  | Uživatelé         |    -    |     ano     |         -          |
+  | Konfigurace API   |   ano   |     ano     |         -          |
   | O aplikaci        |   ano   |     ano     |        ano         |
 
 <br/>

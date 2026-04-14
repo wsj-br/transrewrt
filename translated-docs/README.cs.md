@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-04-02T12:39:51.913Z'
-source_file_mtime: '2026-04-02T12:39:14.838Z'
+translation_last_updated: '2026-04-09T23:22:02.747Z'
+source_file_mtime: '2026-04-07T18:28:53.551Z'
 source_file_hash: 0826245f792850f3
 translation_language: cs
 source_file_path: README.md
@@ -19,15 +19,15 @@ source_file_path: README.md
 
 Nástroj pro práci s textem s využitím AI: překlad mezi jazyky, přepis v různých stylech a transformace pomocí vlastních promptů – s využitím více poskytovatelů AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokální Ollama). Spouští se jako desktopová aplikace (Electron) nebo jako samostatně hostovaná webová aplikace (Docker).
 
-- **Přeložit** — mezi desítkami jazyků, s automatickým zjištěním zdrojového jazyka
-- **Přepis** — oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický styl
-- **Transformace** — vlastní prompty AI; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
-- **Historie** — úplná historie provedených akcí s vstupním a výstupním textem, filtrování a export
-- **Modely a cena** — výběr modelů od libovolného nakonfigurovaného poskytovatele; dashboardy nákladů a využití s logy, shrnutí podle modelu/operace/dne
-- **UI** — vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma, ...
-- **Webový režim** — podpora více uživatelů s rolemi správce
-- **Desktop** — aplikace Electron pro Windows a Linux
-- **Samostatně hostované** — Docker image pro amd64 a arm64 (připraveno pro Raspberry Pi)
+- **Přeložit** - mezi desítkami jazyků, s automatickým zjištěním zdrojového jazyka
+- **Přepis** - oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický styl
+- **Transformace** - vlastní prompty AI; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
+- **Historie** - úplná historie provedených akcí s vstupním a výstupním textem, filtrování a export
+- **Modely a cena** - výběr modelů od libovolného nakonfigurovaného poskytovatele; dashboardy nákladů a využití s logy, shrnutí podle modelu/operace/dne
+- **UI** - vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma, ...
+- **Webový režim** - podpora více uživatelů s rolemi správce
+- **Desktop** - aplikace Electron pro Windows a Linux
+- **Samostatně hostované** - Docker image pro amd64 a arm64 (připraveno pro Raspberry Pi)
 
 Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, která obsahuje podrobný průvodce všemi funkcemi.
 
@@ -79,7 +79,7 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 
 **Dashboard**
 
-![Dashboard summary — usage](../images/screenshots/cs/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/cs/dashboard-summary.png)
 
 **Historie**
 

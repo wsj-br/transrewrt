@@ -3,9 +3,9 @@
  * Linux clients (Electron or browser) use distro-common names; Windows/macOS keep the original list.
  */
 
-const HEADER_SANS = { type: "header", value: "__sans__", label: "— Sans-serif —" };
-const HEADER_SERIF = { type: "header", value: "__serif__", label: "— Serif —" };
-const HEADER_MONO = { type: "header", value: "__mono__", label: "— Monospace —" };
+const HEADER_SANS = { type: "header", value: "__sans__", label: "- Sans-serif -" };
+const HEADER_SERIF = { type: "header", value: "__serif__", label: "- Serif -" };
+const HEADER_MONO = { type: "header", value: "__mono__", label: "- Monospace -" };
 
 /** @type {{ type: string, value: string, label: string }[]} */
 const FONT_OPTIONS_DEFAULT = [

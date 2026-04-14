@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import { useAppContext } from "../contexts/AppContext";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
-import { getUILanguageLabelNative } from "../utils/misc/languageDisplay";
+import { getUILanguageLabelNative } from "ai-i18n-tools/runtime";
 
 const useStyles = makeStyles({
   localeBadge: {

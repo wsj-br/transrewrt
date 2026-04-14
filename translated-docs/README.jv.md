@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Piranti teks dibantu AI: terjemahna antar basa, tulis ulang kanthi gaya sing beda, lan transformasi kanthi prompt custom — nggunakake panyedhiya AI akeh (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan lokal Ollama). Mligi dadi aplikasi desktop (Electron) utawa aplikasi web sing di-host dhewe (Docker).
+Piranti teks dibantu AI: terjemahna antar basa, tulis ulang kanthi gaya sing beda, lan transformasi kanthi prompt custom - nggunakake panyedhiya AI akeh (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan lokal Ollama). Mligi dadi aplikasi desktop (Electron) utawa aplikasi web sing di-host dhewe (Docker).
 
-- **Terjemahna** — antar puluhan basa, kanthi deteksi sumber otomatis
-- **Tulis Ulang** — ndandani Tata Basa, ningkatake kejelasan, formal/informal, cekakke, ambakke, teknis
-- **Transformasi** — prompt AI custom; gawe lan atur prompt, basa target opsional saben prompt
-- **Riwayat** — riwayat eksekusi lengkap karo teks input/output, filter, lan ekspor
-- **Model & biaya** — pilih model saka panyedhiya sing dikonfigurasi; dasbor biaya lan panggunaan karo log, ringkasan miturut model/operasi/dina
-- **UI** — antarmuka multilingual (30+ basa, dukungan RTL), font, ...
-- **Mode web** — dukungan multi-pangguna karo peran admin
-- **Desktop** — aplikasi Electron kanggo Windows lan Linux
-- **Di-host dhewe** — image Docker kanggo amd64 & arm64 (siap Raspberry Pi)
+- **Terjemahna** - antar puluhan basa, kanthi deteksi sumber otomatis
+- **Tulis Ulang** - ndandani Tata Basa, ningkatake kejelasan, formal/informal, cekakke, ambakke, teknis
+- **Transformasi** - prompt AI custom; gawe lan atur prompt, basa target opsional saben prompt
+- **Riwayat** - riwayat eksekusi lengkap karo teks input/output, filter, lan ekspor
+- **Model & biaya** - pilih model saka panyedhiya sing dikonfigurasi; dasbor biaya lan panggunaan karo log, ringkasan miturut model/operasi/dina
+- **UI** - antarmuka multilingual (30+ basa, dukungan RTL), font, ...
+- **Mode web** - dukungan multi-pangguna karo peran admin
+- **Desktop** - aplikasi Electron kanggo Windows lan Linux
+- **Di-host dhewe** - image Docker kanggo amd64 & arm64 (siap Raspberry Pi)
 
 Sawise dipasang, delok **[Panduan Panganggo](USER-GUIDE.jv.md)** kanggo panduan lengkap kabeh fitur.
 
@@ -79,7 +79,7 @@ Sawise dipasang, delok **[Panduan Panganggo](USER-GUIDE.jv.md)** kanggo panduan 
 
 **Dasbor**
 
-![Dashboard summary — usage](../images/screenshots/jv/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/jv/dashboard-summary.png)
 
 **Riwayat**
 
@@ -193,7 +193,7 @@ Daptar jeneng zona wektu sing sah dipertahankan ing [basis data tz](https://en.w
 >   - **User Account Control (UAC)**: "Apa sampeyan pengin ngidini app saka penerbit sing ora dikenal nggawe owah-owahan ing perangkat sampeyan?" → Klik **Ya**.
 >   - **Microsoft Defender SmartScreen**: "Windows nglindungi PC sampeyan" → Klik **Info liyane** → **Run anyway**.
 >
-> Iki kedadeyan amarga app ora ditandatangani dening Microsoft utawa penerbit gedhe—aman yen diunduh saka rilis GitHub resmi kita (verifikasi checksum ing kaca [Rilis](https://github.com/wsj-br/transrewrt/releases) kanthi saben aset).
+> Iki kedadeyan amarga app ora ditandatangani dening Microsoft utawa penerbit gedhe-aman yen diunduh saka rilis GitHub resmi kita (verifikasi checksum ing kaca [Rilis](https://github.com/wsj-br/transrewrt/releases) kanthi saben aset).
 
 <br/>
 

@@ -17,7 +17,7 @@ import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
-import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats, interpolateTemplate } from "../utils/misc/formatUtils";
+import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
@@ -551,7 +551,7 @@ const App = () => {
   const loadSampleConfirmModal = showLoadSampleConfirm && (
     <ConfirmModal
       title={t("Load sample prompts")}
-      message={interpolateTemplate(t("Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."), {
+      message={t("Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt.", {
         language: findUILanguageEntry(locale)?.label ?? t("your language"),
       })}
       confirmLabel={t("Load")}
@@ -626,7 +626,7 @@ const App = () => {
         {transformPromptToDelete != null && (
           <ConfirmModal
             title={t("Delete prompt")}
-            message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: transformPromptToDelete.name || t("Untitled") })}
+            message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
             confirmLabel={t("Delete")}
             cancelLabel={t("Cancel")}
             onConfirm={handleConfirmTransformDelete}
@@ -676,7 +676,7 @@ const App = () => {
       {transformPromptToDelete != null && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: transformPromptToDelete.name || t("Untitled") })}
+          message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: transformPromptToDelete.name || t("Untitled") })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmTransformDelete}

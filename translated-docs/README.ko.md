@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 다양한 언어 간 번역, 스타일에 따른 재작성, 사용자 정의 프롬프트로 변환 가능 — 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
+AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 다양한 언어 간 번역, 스타일에 따른 재작성, 사용자 정의 프롬프트로 변환 가능 - 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
 
-- **번역** — 수십 개 언어 간 번역, 자동 원문 감지 지원
-- **재작성** — 문법 수정, 명확성 개선, 격식/비격식, 축약, 확장, 기술적 표현 등
-- **변환** — 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
-- **기록** — 입력/출력 텍스트, 필터링, 내보내기 기능을 포함한 전체 실행 기록
-- **모델 및 비용** — 구성된 제공업체의 모델 선택 가능; 로그, 모델/작업/일별 요약을 포함한 비용 및 사용량 대시보드
-- **UI** — 다국어 인터페이스(30개 이상 언어, RTL 지원), 폰트, ...
-- **웹 모드** — 관리자 역할을 포함한 다중 사용자 지원
-- **데스크톱** — Windows 및 Linux용 Electron 앱
-- **자체 호스팅** — amd64 및 arm64(Raspberry Pi 호환)용 Docker 이미지
+- **번역** - 수십 개 언어 간 번역, 자동 원문 감지 지원
+- **재작성** - 문법 수정, 명확성 개선, 격식/비격식, 축약, 확장, 기술적 표현 등
+- **변환** - 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
+- **기록** - 입력/출력 텍스트, 필터링, 내보내기 기능을 포함한 전체 실행 기록
+- **모델 및 비용** - 구성된 제공업체의 모델 선택 가능; 로그, 모델/작업/일별 요약을 포함한 비용 및 사용량 대시보드
+- **UI** - 다국어 인터페이스(30개 이상 언어, RTL 지원), 폰트, ...
+- **웹 모드** - 관리자 역할을 포함한 다중 사용자 지원
+- **데스크톱** - Windows 및 Linux용 Electron 앱
+- **자체 호스팅** - amd64 및 arm64(Raspberry Pi 호환)용 Docker 이미지
 
 설치 후 모든 기능에 대한 자세한 안내는 **[사용자 가이드](USER-GUIDE.ko.md)** 를 참조하세요.
 
@@ -78,7 +78,7 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 
 **대시보드**
 
-![Dashboard summary — usage](../images/screenshots/ko/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/ko/dashboard-summary.png)
 
 **기록**
 

@@ -451,7 +451,7 @@ class APIService {
   }
 
   /**
-   * Translate a JSON object's string values to target language (one request; same prompt style as generate-translations).
+   * Translate a JSON object's string values to target language (one request; same prompt style as ai-i18n-tools translate-ui).
    * @param {Object} fieldsObject - Object with string values to translate (e.g. { name, prompt_instructions, role, instructions, output_description })
    * @param {string} targetLang - Target language name
    * @param {string} model - Model id

@@ -7,7 +7,7 @@
  * After a successful rebuild, writes
  *   node_modules/better-sqlite3/build/Release/.transrewrt-system-node.json
  * with NODE_MODULE_VERSION + sha256 of better_sqlite3.node. Skip rebuild when that
- * file exists, the version matches process.versions.modules, and the addon hash matches —
+ * file exists, the version matches process.versions.modules, and the addon hash matches -
  * so an Electron rebuild (different binary) invalidates the marker without relying on require().
  */
 

@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans différents styles et transformer avec des prompts personnalisés — en utilisant plusieurs fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI et Ollama local). Fonctionne comme une application de bureau (Electron) ou une application web auto-hébergée (Docker).
+Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans différents styles et transformer avec des prompts personnalisés - en utilisant plusieurs fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI et Ollama local). Fonctionne comme une application de bureau (Electron) ou une application web auto-hébergée (Docker).
 
-- **Traduire** — entre des dizaines de langues, avec détection automatique de la langue source
-- **Réécriture** — corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
-- **Transformation** — prompts IA personnalisés ; créer et gérer des prompts, langue cible facultative par prompt
-- **Historique** — historique complet des exécutions avec texte d'entrée/sortie, filtres et exportation
-- **Modèles et coût** — choisir des modèles parmi tous les fournisseurs configurés ; tableaux de bord de coût et d'utilisation avec journaux, résumés par modèle/opération/jour
-- **Interface utilisateur** — interface multilingue (30+ langues, prise en charge RTL), polices, ...
-- **Mode web** — prise en charge multi-utilisateurs avec rôles administrateur
-- **Bureau** — application Electron pour Windows et Linux
-- **Auto-hébergé** — image Docker pour amd64 et arm64 (prêt pour Raspberry Pi)
+- **Traduire** - entre des dizaines de langues, avec détection automatique de la langue source
+- **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
+- **Transformation** - prompts IA personnalisés ; créer et gérer des prompts, langue cible facultative par prompt
+- **Historique** - historique complet des exécutions avec texte d'entrée/sortie, filtres et exportation
+- **Modèles et coût** - choisir des modèles parmi tous les fournisseurs configurés ; tableaux de bord de coût et d'utilisation avec journaux, résumés par modèle/opération/jour
+- **Interface utilisateur** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
+- **Mode web** - prise en charge multi-utilisateurs avec rôles administrateur
+- **Bureau** - application Electron pour Windows et Linux
+- **Auto-hébergé** - image Docker pour amd64 et arm64 (prêt pour Raspberry Pi)
 
 Une fois installé, consultez le **[Guide utilisateur](USER-GUIDE.fr.md)** pour une présentation complète de toutes les fonctionnalités.
 
@@ -79,7 +79,7 @@ Une fois installé, consultez le **[Guide utilisateur](USER-GUIDE.fr.md)** pour 
 
 **Tableau de bord**
 
-![Dashboard summary — usage](../images/screenshots/fr/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/fr/dashboard-summary.png)
 
 **Historique**
 
@@ -193,7 +193,7 @@ Une liste des noms de fuseaux horaires valides est maintenue dans la [base de do
 >   - **Contrôle de compte d'utilisateur (UAC)** : « Voulez-vous autoriser cette application provenant d'un éditeur inconnu à apporter des modifications à votre appareil ? » → Cliquez sur **Oui**.
 >   - **Microsoft Defender SmartScreen** : « Windows a protégé votre PC » → Cliquez sur **Plus d'informations** → **Exécuter quand même**.
 >
-> Cela se produit car l'application n'est pas signée par Microsoft ou un éditeur majeur — elle est sûre si elle est téléchargée depuis nos versions officielles GitHub (vérifiez les sommes de contrôle sur la page [Releases](https://github.com/wsj-br/transrewrt/releases) à côté de chaque ressource).
+> Cela se produit car l'application n'est pas signée par Microsoft ou un éditeur majeur - elle est sûre si elle est téléchargée depuis nos versions officielles GitHub (vérifiez les sommes de contrôle sur la page [Releases](https://github.com/wsj-br/transrewrt/releases) à côté de chaque ressource).
 
 <br/>
 

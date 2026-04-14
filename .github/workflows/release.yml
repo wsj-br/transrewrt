@@ -195,7 +195,7 @@ jobs:
         uses: docker/setup-buildx-action@v4
 
       # BuildKit attaches provenance attestations (OCI attestation-manifest); GHCR may list extra
-      # unknown/unknown rows — those are metadata, not missing linux/amd64 or linux/arm64 images.
+      # unknown/unknown rows - those are metadata, not missing linux/amd64 or linux/arm64 images.
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v7

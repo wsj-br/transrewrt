@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Button, TabList, Tab, Label, Dropdown, Option } from "@fluentui/react-components";
 import { getCostApi, getFilterRange, getFilters } from "../utils/misc/costUtils";
 import { useAppContext } from "../contexts/AppContext";
-import { interpolateTemplate } from "../utils/misc/formatUtils";
 import { useStyles } from "./DashboardPage-styles";
 import ConfirmModal from "./ConfirmModal";
 import DashboardTabSummary from "./DashboardTabSummary";
@@ -315,11 +314,10 @@ const DashboardPage = () => {
           title={t("Exclude all data for this model")}
           message={
             deleteByModelError
-              ? interpolateTemplate(t("Something went wrong: {{error}}"), { error: deleteByModelError })
-              : interpolateTemplate(
-                  t('Delete all API call records for model "{{model}}"?\n\nThis cannot be undone.'),
-                  { model: modelToDelete }
-                )
+              ? t("Something went wrong: {{error}}", { error: deleteByModelError })
+              : t('Delete all API call records for model "{{model}}"?\n\nThis cannot be undone.', {
+                  model: modelToDelete,
+                })
           }
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}

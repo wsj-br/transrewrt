@@ -19,15 +19,15 @@ source_file_path: README.md
 
 Mesterséges intelligenciával vezérelt szövegfeldolgozó eszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
 
-- **Fordítás** — több tucat nyelv között, automatikus forrásnyelv-felismeréssel
-- **Átírás** — helyesírás-javítás, érthetőség javítása, formális/informális stílus, rövidítés, kibontás, technikai szöveg
-- **Átalakítás** — egyéni MI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelve parancsonként
-- **Előzmények** — teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
-- **Modellek és költség** — modellek kiválasztása bármely beállított szolgáltatótól; költség- és használati műszerfal naplóval, összegzésekkel modell/művelet/nap szerint
-- **Felhasználói felület** — többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
-- **Webmód** — többfelhasználós támogatás adminisztrátori szerepkörökkel
-- **Asztali verzió** — Electron alkalmazás Windows és Linux rendszerekre
-- **Önállóan üzemeltethető** — Docker kép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
+- **Fordítás** - több tucat nyelv között, automatikus forrásnyelv-felismeréssel
+- **Átírás** - helyesírás-javítás, érthetőség javítása, formális/informális stílus, rövidítés, kibontás, technikai szöveg
+- **Átalakítás** - egyéni MI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelve parancsonként
+- **Előzmények** - teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
+- **Modellek és költség** - modellek kiválasztása bármely beállított szolgáltatótól; költség- és használati műszerfal naplóval, összegzésekkel modell/művelet/nap szerint
+- **Felhasználói felület** - többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
+- **Webmód** - többfelhasználós támogatás adminisztrátori szerepkörökkel
+- **Asztali verzió** - Electron alkalmazás Windows és Linux rendszerekre
+- **Önállóan üzemeltethető** - Docker kép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 
 Telepítés után tekintse meg a **[Felhasználói útmutatót](USER-GUIDE.hu.md)** az összes funkció részletes áttekintéséhez.
 
@@ -78,7 +78,7 @@ Telepítés után tekintse meg a **[Felhasználói útmutatót](USER-GUIDE.hu.md
 
 **Műszerfal**
 
-![Dashboard summary — usage](../images/screenshots/hu/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/hu/dashboard-summary.png)
 
 **Előzmények**
 

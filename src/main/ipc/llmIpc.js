@@ -1,5 +1,5 @@
 /**
- * IPC: llm:stream, llm:abort, llm:models — streams LLM completions to renderer via llm:chunk / llm:end / llm:error.
+ * IPC: llm:stream, llm:abort, llm:models - streams LLM completions to renderer via llm:chunk / llm:end / llm:error.
  */
 
 const {

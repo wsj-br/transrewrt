@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import i18n, { getTextDirection } from "../i18n";
+import { getTextDirection } from "ai-i18n-tools/runtime";
+import i18n from "../i18n";
 
 /**
  * Current UI text direction from the active i18n language (FluentProvider + document).

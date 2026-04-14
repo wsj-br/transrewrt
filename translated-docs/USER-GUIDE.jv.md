@@ -207,7 +207,7 @@ Toolbar owah sithik gumantung ing ngendi sampeyan ana ing aplikasi.
 
 ![Model selector](../images/screenshots/jv/model-selector.png)
 
-Sawetara model gratis bisa uga ora tansah kasedhiya—kadhangkala offline utawa duwe wates panggunaan. Yen iki kedadeyan, aplikasi bakal sacara otomatis mbusak model kasebut saka dhaptar sing kasedhiya. Kanggo ngontrol model sing muncul, menyang [**Setelan** > **Model**](#models) lan sunting dhaptar model sampeyan. 
+Sawetara model gratis bisa uga ora tansah kasedhiya-kadhangkala offline utawa duwe wates panggunaan. Yen iki kedadeyan, aplikasi bakal sacara otomatis mbusak model kasebut saka dhaptar sing kasedhiya. Kanggo ngontrol model sing muncul, menyang [**Setelan** > **Model**](#models) lan sunting dhaptar model sampeyan. 
 Sampeyan uga bisa mbukak setelan model langsung kanthi klik ikon panyedhiya ing kiwa jeneng model ing toolbar.
 
 <br/>
@@ -544,10 +544,10 @@ Tab sing kasedhiya gumantung marang platform lan peran panjenengan:
   | Setelan Umum  |   ya   |     ya     |        ya         |
   | Model            |   ya   |     ya     |        ya         |
   | Basa         |   ya   |     ya     |        ya         |
-  | Pelacakan Biaya     |   ya   |     ya     |         —          |
+  | Pelacakan Biaya     |   ya   |     ya     |         -          |
   | Prompt Transformasi |   ya   |     ya     |        ya         |
-  | Pangguna             |    —    |     ya     |         —          |
-  | Konfigurasi API        |   ya   |     ya     |         —          |
+  | Pangguna             |    -    |     ya     |         -          |
+  | Konfigurasi API        |   ya   |     ya     |         -          |
   | Babagan             |   ya   |     ya     |        ya         |
 
 <br/>
@@ -587,11 +587,11 @@ Gunakake **Setelan Umum** kanggo ngatur tumindak ngetik, nentukake apa rincian e
 
 **Cadangan Konfigurasi**
 
-- **Sertakake data panggunaan ing cadangan** — yen diaktifake, ZIP uga ngandhut riwayat eksekusi lan data telpon API.
-- **Cadangan konfigurasi** — nggawe siji file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing UTC kanthi standar) ngandhut `config.json`, `state.json`, opsi tombol enkripsi, pangguna, pilihan, prompt khusus, lan data panggunaan yen panjenengan milih. Sawise cadangan sukses, konfirmasi nuduhake jeneng file sing disimpen.
-- **Pulihake saka cadangan** — mbukak **dialog konfirmasi dhisik**. Pilih file ZIP cadangan ing jero dialog (**Browse** / pemilih file utawa drag-and-drop yen didhukung), banjur priksa pilihan:
-  - **Pulihake data panggunaan** — ngimpor panggunaan/riwayat saka ZIP nalika dicadangake kanthi sertake panggunaan; tinggalake yen panjenengan mung pengin setelan lan prompt.
-  - **Bersihake data panggunaan lawas sadurunge dipulihake** — mbusak panggunaan/riwayat sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika panjenengan pengin ngganti kanthi resik).
+- **Sertakake data panggunaan ing cadangan** - yen diaktifake, ZIP uga ngandhut riwayat eksekusi lan data telpon API.
+- **Cadangan konfigurasi** - nggawe siji file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing UTC kanthi standar) ngandhut `config.json`, `state.json`, opsi tombol enkripsi, pangguna, pilihan, prompt khusus, lan data panggunaan yen panjenengan milih. Sawise cadangan sukses, konfirmasi nuduhake jeneng file sing disimpen.
+- **Pulihake saka cadangan** - mbukak **dialog konfirmasi dhisik**. Pilih file ZIP cadangan ing jero dialog (**Browse** / pemilih file utawa drag-and-drop yen didhukung), banjur priksa pilihan:
+  - **Pulihake data panggunaan** - ngimpor panggunaan/riwayat saka ZIP nalika dicadangake kanthi sertake panggunaan; tinggalake yen panjenengan mung pengin setelan lan prompt.
+  - **Bersihake data panggunaan lawas sadurunge dipulihake** - mbusak panggunaan/riwayat sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika panjenengan pengin ngganti kanthi resik).
 
 Cadangan sing digawe ing versi web utawa desktop bisa dipulihake ing versi liyane. Nalika mulihake cadangan desktop ing versi web, datane bakal dipulihake menyang pangguna admin.
 
@@ -702,7 +702,7 @@ Panyedhiya sing didhukung yaiku: OpenRouter, OpenAI, Anthropic, Google Gemini, D
 
 **Aplikasi web: mung administrator**
 
-Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker — ora dimasukkan ing antarmuka web. Kaca iki nuduhake panyedhiya sing duwe kunci dikonfigurasi lan ngidini sampeyan nguji saben kunci kanthi klik tombol **`Tes`**.
+Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dimasukkan ing antarmuka web. Kaca iki nuduhake panyedhiya sing duwe kunci dikonfigurasi lan ngidini sampeyan nguji saben kunci kanthi klik tombol **`Tes`**.
 
 <br/>
 
@@ -710,7 +710,7 @@ Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker — ora di
 > Kanggo ngganti kunci API, pembarui variabel lingkungan ing konfigurasi sistem utawa Docker lan restart server utawa wadah.
 
 > ℹ️ **CATETAN**<br/>
-> **Cadangan konfigurasi** (deleng [**Setelan Umum** → Cadangan Konfigurasi](#general-settings)) bisa ngemot kunci panyedhiya sing wis **diselesaikan** ing `config.json` saka ZIP. Mbalekake ZIP iku **ora** nyalin kunci-kunci iku maneh menyang file konfigurasi sing disimpen ing server — kunci aktif isih saka lingkungan lan status file sing ana kaya sing dijelasake ing kono.
+> **Cadangan konfigurasi** (deleng [**Setelan Umum** → Cadangan Konfigurasi](#general-settings)) bisa ngemot kunci panyedhiya sing wis **diselesaikan** ing `config.json` saka ZIP. Mbalekake ZIP iku **ora** nyalin kunci-kunci iku maneh menyang file konfigurasi sing disimpen ing server - kunci aktif isih saka lingkungan lan status file sing ana kaya sing dijelasake ing kono.
 
 <br/>
 
@@ -821,7 +821,7 @@ Buka [**Setelan** > **Setelan Umum**](#general-settings) lan owah-owah:
 Iki normal yen:
 
 - sampeyan mung nggunakake **model gratis** lan sampeyan ndelok angka **biaya** (mungkin nol); chart **usage** (jumlah panggilan) ing **Ringkesan** isih butuh data saka periode sing dipilih
-- **time filter** sing dipilih ora nglimputi periode nalika panggilan dilakoni — coba **Kabeh** kanggo mriksa
+- **time filter** sing dipilih ora nglimputi periode nalika panggilan dilakoni - coba **Kabeh** kanggo mriksa
 
 Yen grafik isih kosong sawise milih **Kabeh**, konfirmasi yèn ana panggilan sing katon ing [**Riwayat**](#history) utawa ing tab **Kabeh Panggilan**.
 

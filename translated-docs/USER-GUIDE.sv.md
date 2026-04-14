@@ -544,10 +544,10 @@ De tillgängliga flikarna beror på plattformen och din roll:
   | Allmänna inställningar  |   ja   |     ja     |        ja         |
   | Modeller            |   ja   |     ja     |        ja         |
   | Språk         |   ja   |     ja     |        ja         |
-  | Kostnadsövervakning     |   ja   |     ja     |         —          |
+  | Kostnadsövervakning     |   ja   |     ja     |         -          |
   | Omvandlingspåminnelser |   ja   |     ja     |        ja         |
-  | Användare             |    —    |     ja     |         —          |
-  | API-konfiguration        |   ja   |     ja     |         —          |
+  | Användare             |    -    |     ja     |         -          |
+  | API-konfiguration        |   ja   |     ja     |         -          |
   | Om             |   ja   |     ja     |        ja         |
 
 <br/>
@@ -587,11 +587,11 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 
 **Säkerhetskopiering av konfiguration**
 
-- **Inkludera användningsdata i säkerhetskopian** — när aktiverat innehåller ZIP-filen också körningshistorik och API-anropsdata.
-- **Säkerhetskopiera konfiguration** — skapar en enskild ZIP-fil (`transrewrt-config-backup-ÅÅÅÅ-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade påminnelser och användningsdata om du har valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
-- **Återställ från säkerhetskopia** — öppnar först en **bekräftelsedialog**. Välj säkerhetskopierings-ZIP-filen i dialogen (**Bläddra** / filväljare eller dra och släpp där det stöds), och granska sedan alternativen:
-  - **Återställ användningsdata** — importera användning/historik från ZIP-filen om den säkerhetskopierades med användningsdata inkluderade; lämna avmarkerat om du bara vill ha inställningar och påminnelser.
-  - **Rensa gamla användningsdata innan återställning** — ta bort befintlig användning/historik i denna installation innan säkerhetskopian tillämpas (valfritt; använd när du vill ha en ren ersättning).
+- **Inkludera användningsdata i säkerhetskopian** - när aktiverat innehåller ZIP-filen också körningshistorik och API-anropsdata.
+- **Säkerhetskopiera konfiguration** - skapar en enskild ZIP-fil (`transrewrt-config-backup-ÅÅÅÅ-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade påminnelser och användningsdata om du har valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
+- **Återställ från säkerhetskopia** - öppnar först en **bekräftelsedialog**. Välj säkerhetskopierings-ZIP-filen i dialogen (**Bläddra** / filväljare eller dra och släpp där det stöds), och granska sedan alternativen:
+  - **Återställ användningsdata** - importera användning/historik från ZIP-filen om den säkerhetskopierades med användningsdata inkluderade; lämna avmarkerat om du bara vill ha inställningar och påminnelser.
+  - **Rensa gamla användningsdata innan återställning** - ta bort befintlig användning/historik i denna installation innan säkerhetskopian tillämpas (valfritt; använd när du vill ha en ren ersättning).
 
 Säkerhetskopior som skapats i antingen webb- eller skrivbordsversionen kan återställas i den andra. När du återställer en skrivbordssäkerhetskopia i webbversionen återställs data till administratörsanvändaren.
 

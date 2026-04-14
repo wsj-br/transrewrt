@@ -207,7 +207,7 @@ O **seletor de modelo** permite-lhe escolher qual o motor de IA a utilizar para 
 
 ![Model selector](../images/screenshots/pt/model-selector.png)
 
-Alguns modelos gratuitos podem não estar sempre disponíveis — por vezes estão offline ou têm um limite de utilização. Se isto acontecer, a aplicação removerá automaticamente esse modelo da sua lista disponível. Para controlar quais os modelos que aparecem, aceda a [**Definições** > **Modelos**](#models) e edite a sua lista de modelos.
+Alguns modelos gratuitos podem não estar sempre disponíveis - por vezes estão offline ou têm um limite de utilização. Se isto acontecer, a aplicação removerá automaticamente esse modelo da sua lista disponível. Para controlar quais os modelos que aparecem, aceda a [**Definições** > **Modelos**](#models) e edite a sua lista de modelos.
 Também pode abrir as definições do modelo diretamente clicando no ícone do provedor à esquerda do nome do modelo na barra de ferramentas.
 
 <br/>
@@ -544,10 +544,10 @@ Os separadores disponíveis dependem da plataforma e do seu papel:
   | Definições Gerais  |   Sim   |         Sim          |          Sim           |
   | Modelos            |   Sim   |         Sim          |          Sim           |
   | Idiomas            |   Sim   |         Sim          |          Sim           |
-  | Rastreio de Custos |   Sim   |         Sim          |           —            |
+  | Rastreio de Custos |   Sim   |         Sim          |           -            |
   | Prompts de transformação |   Sim   |         Sim          |          Sim           |
-  | Utilizadores       |    —    |         Sim          |           —            |
-  | Configuração da API|   Sim   |         Sim          |           —            |
+  | Utilizadores       |    -    |         Sim          |           -            |
+  | Configuração da API|   Sim   |         Sim          |           -            |
   | Sobre              |   Sim   |         Sim          |          Sim           |
 
 <br/>
@@ -587,11 +587,11 @@ Utilize **Definições Gerais** para controlar o comportamento ao escrever, se o
 
 **Cópia de Segurança da Configuração**
 
-- **Incluir dados de uso no backup** — quando ativado, o ZIP também contém histórico de execuções e dados de chamadas à API.
-- **Fazer cópia de segurança da configuração** — cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por defeito) com `config.json`, `state.json`, chave de encriptação opcional, utilizadores, preferências, prompts personalizados e dados de uso se tiver ativado. Após um backup bem-sucedido, a confirmação mostra o nome do ficheiro guardado.
-- **Restaurar a partir da cópia de segurança** — abre primeiro uma **janela de confirmação**. Escolha o ZIP do backup dentro da janela (**Procurar** / seletor de ficheiros ou arrastar e largar onde suportado), depois reveja as opções:
-  - **Restaurar os dados de uso** — importa uso/histórico do ZIP quando foi feito backup com uso incluído; deixe desativado se quiser apenas definições e prompts.
-  - **Limpar os dados de uso antigos antes da restauração** — remove o uso/histórico existente nesta instalação antes de aplicar o backup (opcional; use quando quiser uma substituição limpa).
+- **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execuções e dados de chamadas à API.
+- **Fazer cópia de segurança da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por defeito) com `config.json`, `state.json`, chave de encriptação opcional, utilizadores, preferências, prompts personalizados e dados de uso se tiver ativado. Após um backup bem-sucedido, a confirmação mostra o nome do ficheiro guardado.
+- **Restaurar a partir da cópia de segurança** - abre primeiro uma **janela de confirmação**. Escolha o ZIP do backup dentro da janela (**Procurar** / seletor de ficheiros ou arrastar e largar onde suportado), depois reveja as opções:
+  - **Restaurar os dados de uso** - importa uso/histórico do ZIP quando foi feito backup com uso incluído; deixe desativado se quiser apenas definições e prompts.
+  - **Limpar os dados de uso antigos antes da restauração** - remove o uso/histórico existente nesta instalação antes de aplicar o backup (opcional; use quando quiser uma substituição limpa).
 
 Backups criados na versão web ou desktop podem ser restaurados na outra. Ao restaurar um backup do desktop na versão web, os dados serão restaurados para o utilizador administrador.
 
@@ -706,7 +706,7 @@ Os provedores suportados são: OpenRouter, OpenAI, Anthropic, Google Gemini, Dee
 
 **Aplicação web: apenas administrador**
 
-As chaves da API são configuradas através de variáveis de ambiente do sistema ou do Docker — não são inseridas na interface web. Esta página mostra quais os provedores que têm uma chave configurada e permite testar cada um clicando no botão **`Testar`**.
+As chaves da API são configuradas através de variáveis de ambiente do sistema ou do Docker - não são inseridas na interface web. Esta página mostra quais os provedores que têm uma chave configurada e permite testar cada um clicando no botão **`Testar`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ As chaves da API são configuradas através de variáveis de ambiente do sistema
 > Para alterar uma chave da API, atualize a variável de ambiente na sua configuração do sistema ou do Docker e reinicie o servidor ou o contentor.
 
 > ℹ️ **NOTA**<br/>
-> As **cópias de segurança da configuração** (consulte [**Definições Gerais** → Cópia de Segurança da Configuração](#general-settings)) podem incorporar chaves de provedores **resolvidas** dentro do ficheiro `config.json` do ZIP. A restauração desse ZIP **não** copia essas chaves de volta para o ficheiro de configuração persistente do servidor — as chaves ativas continuam a vir do ambiente e do estado do ficheiro existente, conforme descrito ali.
+> As **cópias de segurança da configuração** (consulte [**Definições Gerais** → Cópia de Segurança da Configuração](#general-settings)) podem incorporar chaves de provedores **resolvidas** dentro do ficheiro `config.json` do ZIP. A restauração desse ZIP **não** copia essas chaves de volta para o ficheiro de configuração persistente do servidor - as chaves ativas continuam a vir do ambiente e do estado do ficheiro existente, conforme descrito ali.
 
 <br/>
 
@@ -825,7 +825,7 @@ Abra [**Definições** > **Definições Gerais**](#general-settings) e altere:
 Isto é normal se:
 
 - apenas utilizar **modelos gratuitos** e estiver a visualizar os valores de **custo** (podem ser zero); os gráficos de contagem de chamadas em **Resumo** ainda precisam de dados do período selecionado
-- o **filtro de tempo** selecionado não abrange o período em que foram feitas chamadas — experimente **Tudo** para verificar
+- o **filtro de tempo** selecionado não abrange o período em que foram feitas chamadas - experimente **Tudo** para verificar
 
 Se os gráficos ainda estiverem vazios após selecionar **Tudo**, confirme se as chamadas aparecem em [**Histórico**](#history) ou na aba **Todas as Chamadas**.
 

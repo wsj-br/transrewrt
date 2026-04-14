@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Narzędzie tekstowe wspierane przez sztuczną inteligencję: tłumaczenie między językami, przeformułowanie w różnych stylach oraz transformacja za pomocą niestandardowych promptów — z wykorzystaniem wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI oraz lokalny Ollama). Działa jako aplikacja desktopowa (Electron) lub samodzielnie hostowana aplikacja internetowa (Docker).
+Narzędzie tekstowe wspierane przez sztuczną inteligencję: tłumaczenie między językami, przeformułowanie w różnych stylach oraz transformacja za pomocą niestandardowych promptów - z wykorzystaniem wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI oraz lokalny Ollama). Działa jako aplikacja desktopowa (Electron) lub samodzielnie hostowana aplikacja internetowa (Docker).
 
-- **Przetłumacz** — między dziesiątkami języków, z automatycznym wykrywaniem języka źródłowego  
-- **Przeformułowanie** — poprawa gramatyki, poprawa jasności, styl formalny/nieformalny, skrócenie, rozwinięcie, język techniczny  
-- **Transformacja** — niestandardowe prompty AI; tworzenie i zarządzanie promptami, opcjonalny język docelowy dla każdego promptu  
-- **Historia** — pełna historia operacji z tekstem wejściowym/wyjściowym, filtrowanie i eksport  
-- **Modele i koszt** — wybór modeli z dowolnego skonfigurowanego dostawcy; panele kosztów i zużycia z dziennikami, podsumowaniami wg modelu/operacji/dnia  
-- **Interfejs użytkownika** — wielojęzyczny interfejs (ponad 30 języków, obsługa RTL), czcionki, ...  
-- **Tryb internetowy** — obsługa wielu użytkowników z rolami administratora  
-- **Wersja desktopowa** — aplikacja Electron dla systemów Windows i Linux  
-- **Samodzielnie hostowana** — obraz Docker dla architektur amd64 i arm64 (gotowy do działania na Raspberry Pi)
+- **Przetłumacz** - między dziesiątkami języków, z automatycznym wykrywaniem języka źródłowego  
+- **Przeformułowanie** - poprawa gramatyki, poprawa jasności, styl formalny/nieformalny, skrócenie, rozwinięcie, język techniczny  
+- **Transformacja** - niestandardowe prompty AI; tworzenie i zarządzanie promptami, opcjonalny język docelowy dla każdego promptu  
+- **Historia** - pełna historia operacji z tekstem wejściowym/wyjściowym, filtrowanie i eksport  
+- **Modele i koszt** - wybór modeli z dowolnego skonfigurowanego dostawcy; panele kosztów i zużycia z dziennikami, podsumowaniami wg modelu/operacji/dnia  
+- **Interfejs użytkownika** - wielojęzyczny interfejs (ponad 30 języków, obsługa RTL), czcionki, ...  
+- **Tryb internetowy** - obsługa wielu użytkowników z rolami administratora  
+- **Wersja desktopowa** - aplikacja Electron dla systemów Windows i Linux  
+- **Samodzielnie hostowana** - obraz Docker dla architektur amd64 i arm64 (gotowy do działania na Raspberry Pi)
 
 Po zainstalowaniu zapoznaj się z **[Przewodnikiem użytkownika](USER-GUIDE.pl.md)**, aby poznać wszystkie funkcje.
 
@@ -78,7 +78,7 @@ Po zainstalowaniu zapoznaj się z **[Przewodnikiem użytkownika](USER-GUIDE.pl.m
 
 **Panel**
 
-![Dashboard summary — usage](../images/screenshots/pl/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/pl/dashboard-summary.png)
 
 **Historia**
 
@@ -192,7 +192,7 @@ Lista poprawnych nazw stref czasowych jest prowadzona w [bazie danych tz](https:
 >   - **Kontrola konta użytkownika (UAC)**: „Czy chcesz zezwolić tej aplikacji od nieznanego wydawcy na wprowadzenie zmian na urządzeniu?” → Kliknij **Tak**.
 >   - **Microsoft Defender SmartScreen**: „Windows chroni Twój komputer” → Kliknij **Więcej informacji** → **Wszystko jedno uruchom**.
 >
-> Dzieje się tak, ponieważ aplikacja nie jest podpisana przez Microsoft lub dużego wydawcę — jest bezpieczna, jeśli została pobrana z naszych oficjalnych wydań na GitHubie (sprawdź sumy kontrolne na stronie [Releases](https://github.com/wsj-br/transrewrt/releases) obok każdego pliku).
+> Dzieje się tak, ponieważ aplikacja nie jest podpisana przez Microsoft lub dużego wydawcę - jest bezpieczna, jeśli została pobrana z naszych oficjalnych wydań na GitHubie (sprawdź sumy kontrolne na stronie [Releases](https://github.com/wsj-br/transrewrt/releases) obok każdego pliku).
 
 <br/>
 

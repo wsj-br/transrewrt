@@ -45,8 +45,8 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](README.md)** — Overview, installation, and quick start
-- **[USER-GUIDE](USER-GUIDE.md)** — Full walkthrough of features and settings
+- **[README](README.md)** - Overview, installation, and quick start
+- **[USER-GUIDE](USER-GUIDE.md)** - Full walkthrough of features and settings
 
 ## Disclaimer
 

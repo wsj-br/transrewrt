@@ -16,7 +16,7 @@ import {
 } from "@fluentui/react-components";
 import { Users, Plus, Pencil, KeyRound, Trash2, LogOut, ClockFading, Search, RectangleEllipsis } from "lucide-react";
 import webAPI from "../utils/api/webApiClient";
-import { interpolateTemplate, formatDateTime, formatRelativeTime } from "../utils/misc/formatUtils";
+import { formatDateTime, formatRelativeTime } from "../utils/misc/formatUtils";
 import ConfirmModal from "./ConfirmModal";
 import PasswordInput from "./PasswordInput";
 import { useAppContext } from "../contexts/AppContext";
@@ -487,7 +487,7 @@ const SettingsUsersTab = () => {
                         {t("Must Change Password")}
                       </span>
                     ) : (
-                      "—"
+                      "-"
                     )}
                   </td>
                   <td className={mergeClasses(styles.td, styles.actionsCell)}>
@@ -751,7 +751,7 @@ const SettingsUsersTab = () => {
           customBody={
             <form onSubmit={handleSetPassword} className={styles.modalForm}>
               <Text as="p" size={200}>
-                {interpolateTemplate(t("New password for user \"{{name}}\":"), { name: passwordUser.username })}
+                {t("New password for user \"{{name}}\":", { name: passwordUser.username })}
               </Text>
               <div className={styles.formFieldBlock}>
                 <PasswordInput
@@ -773,7 +773,7 @@ const SettingsUsersTab = () => {
       {revokeUser && (
         <ConfirmModal
           title={t("Revoke all sessions")}
-          message={interpolateTemplate(t('Revoke all sessions for user "{{name}}"?\n\nThey will need to log in again.'), {
+          message={t('Revoke all sessions for user "{{name}}"?\n\nThey will need to log in again.', {
             name: revokeUser.username,
           })}
           confirmLabel={t("Revoke")}
@@ -785,7 +785,7 @@ const SettingsUsersTab = () => {
       {deleteUser && (
         <ConfirmModal
           title={t("Delete user")}
-          message={interpolateTemplate(t('Delete user "{{name}}"?\n\nThis cannot be undone.'), {
+          message={t('Delete user "{{name}}"?\n\nThis cannot be undone.', {
             name: deleteUser.username,
           })}
           confirmLabel={t("Delete")}

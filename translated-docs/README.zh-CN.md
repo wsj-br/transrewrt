@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-04-02T12:38:50.800Z'
-source_file_mtime: '2026-04-02T12:36:37.805Z'
+translation_last_updated: '2026-04-09T23:22:02.677Z'
+source_file_mtime: '2026-04-07T18:28:53.551Z'
 source_file_hash: 0826245f792850f3
 translation_language: zh-CN
 source_file_path: README.md
@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI 驱动的文本工具：支持多种语言互译、不同风格的文本改写，以及通过自定义提示词进行转换——使用多个 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和本地 Ollama）。可作为桌面应用（Electron）或自托管 Web 应用（Docker）运行。
+AI 驱动的文本工具：支持多种语言互译、不同风格的文本改写，以及通过自定义提示词进行转换--使用多个 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和本地 Ollama）。可作为桌面应用（Electron）或自托管 Web 应用（Docker）运行。
 
-- **翻译** — 支持数十种语言之间的互译，并自动检测源语言
-- **改写** — 修正语法、提升清晰度、调整正式/非正式语气、缩短或扩展文本、技术性改写
-- **转换** — 自定义 AI 提示词；创建和管理提示词，每个提示词可选目标语言
-- **历史** — 完整的执行历史记录，包含输入/输出文本、筛选和导出功能
-- **模型与费用** — 从任意配置的提供商中选择模型；费用和使用情况仪表盘，包含日志及按模型/操作/日期的汇总
-- **用户界面** — 多语言界面（支持 30 多种语言，含 RTL 布局）、字体设置等
-- **Web 模式** — 支持多用户及管理员角色
-- **桌面端** — 适用于 Windows 和 Linux 的 Electron 应用
-- **自托管** — 支持 amd64 与 arm64 的 Docker 镜像（适用于树莓派）
+- **翻译** - 支持数十种语言之间的互译，并自动检测源语言
+- **改写** - 修正语法、提升清晰度、调整正式/非正式语气、缩短或扩展文本、技术性改写
+- **转换** - 自定义 AI 提示词；创建和管理提示词，每个提示词可选目标语言
+- **历史** - 完整的执行历史记录，包含输入/输出文本、筛选和导出功能
+- **模型与费用** - 从任意配置的提供商中选择模型；费用和使用情况仪表盘，包含日志及按模型/操作/日期的汇总
+- **用户界面** - 多语言界面（支持 30 多种语言，含 RTL 布局）、字体设置等
+- **Web 模式** - 支持多用户及管理员角色
+- **桌面端** - 适用于 Windows 和 Linux 的 Electron 应用
+- **自托管** - 支持 amd64 与 arm64 的 Docker 镜像（适用于树莓派）
 
 安装后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 以全面了解所有功能。
 
@@ -78,7 +78,7 @@ AI 驱动的文本工具：支持多种语言互译、不同风格的文本改�
 
 **仪表盘**
 
-![Dashboard summary — usage](../images/screenshots/zh-CN/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/zh-CN/dashboard-summary.png)
 
 **历史**
 
@@ -192,7 +192,7 @@ echo TZ=\"$(</etc/timezone)\"
 >   - **用户账户控制 (UAC)**：“是否允许此未知发布者的应用对您的设备进行更改？” → 点击 **是**。
 >   - **Microsoft Defender SmartScreen**：“Windows 保护了您的 PC” → 点击 **更多信息** → **仍然运行**。
 >
-> 这是因为该应用未由 Microsoft 或主要出版商签名——只要从我们官方的 GitHub 发布页面下载（请在 [发布页面](https://github.com/wsj-br/transrewrt/releases) 每个资源旁核对校验和），就是安全的。
+> 这是因为该应用未由 Microsoft 或主要出版商签名--只要从我们官方的 GitHub 发布页面下载（请在 [发布页面](https://github.com/wsj-br/transrewrt/releases) 每个资源旁核对校验和），就是安全的。
 
 <br/>
 

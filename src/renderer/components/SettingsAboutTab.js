@@ -29,7 +29,7 @@ function isApache2License(license) {
   return n === "apache-2.0" || n === "apache2.0";
 }
 const APP_NAME = "Transrewrt";
-const APP_VERSION = typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "—";
+const APP_VERSION = typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "-";
 const APP_DESCRIPTION = typeof __APP_DESCRIPTION__ !== "undefined" ? __APP_DESCRIPTION__ : "Transrewrt Application";
 const APP_AUTHOR = typeof __APP_AUTHOR__ !== "undefined" ? __APP_AUTHOR__ : "";
 const APP_LICENSE = typeof __APP_LICENSE__ !== "undefined" ? __APP_LICENSE__ : "MIT";
@@ -196,7 +196,7 @@ const SettingsAboutTab = () => {
             .
           </span>
         )}
-        <span style={{ marginInlineStart: 10 }}>—</span>
+        <span style={{ marginInlineStart: 10 }}>-</span>
         <span style={{ marginInlineStart: 10 }}>
           {isEnglish ? null : "All rights reserved ▪ "}
           {t("All rights reserved.")}

@@ -544,10 +544,10 @@ Las pestañas disponibles dependen de la plataforma y tu rol:
   | Configuración general  |   sí   |     sí     |        sí         |
   | Modelos            |   sí   |     sí     |        sí         |
   | Idiomas         |   sí   |     sí     |        sí         |
-  | Seguimiento de costos     |   sí   |     sí     |         —          |
+  | Seguimiento de costos     |   sí   |     sí     |         -          |
   | Prompts de transformación |   sí   |     sí     |        sí         |
-  | Usuarios             |    —    |     sí     |         —          |
-  | Configuración de API        |   sí   |     sí     |         —          |
+  | Usuarios             |    -    |     sí     |         -          |
+  | Configuración de API        |   sí   |     sí     |         -          |
   | Acerca de             |   sí   |     sí     |        sí         |
 
 <br/>
@@ -714,7 +714,7 @@ Las claves API se configuran mediante variables de entorno del sistema o de Dock
 > Para cambiar una clave API, actualiza la variable de entorno en tu configuración del sistema o de Docker y reinicia el servidor o contenedor.
 
 > ℹ️ **NOTA**<br/>
-> Las **copias de seguridad de configuración** (véase [**Configuración general** → Copia de seguridad de configuración](#general-settings)) pueden incluir claves de proveedor **resueltas** dentro del archivo `config.json` del ZIP. Restaurar ese ZIP **no** copia esas claves de vuelta al archivo de configuración persistente del servidor — las claves activas siguen proveniendo del entorno y del estado del archivo existente, tal como se describe allí.
+> Las **copias de seguridad de configuración** (véase [**Configuración general** → Copia de seguridad de configuración](#general-settings)) pueden incluir claves de proveedor **resueltas** dentro del archivo `config.json` del ZIP. Restaurar ese ZIP **no** copia esas claves de vuelta al archivo de configuración persistente del servidor - las claves activas siguen proveniendo del entorno y del estado del archivo existente, tal como se describe allí.
 
 <br/>
 

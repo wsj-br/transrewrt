@@ -207,7 +207,7 @@ Le **sélecteur de modèle** vous permet de choisir quel moteur d'IA utiliser po
 
 ![Model selector](../images/screenshots/fr/model-selector.png)
 
-Certains modèles gratuits peuvent ne pas toujours être disponibles — parfois ils sont hors ligne ou ont un plafond d'utilisation. Si cela se produit, l'application supprimera automatiquement ce modèle de votre liste disponible. Pour contrôler les modèles affichés, allez dans [**Paramètres** > **Modèles**](#models) et modifiez votre liste de modèles.  
+Certains modèles gratuits peuvent ne pas toujours être disponibles - parfois ils sont hors ligne ou ont un plafond d'utilisation. Si cela se produit, l'application supprimera automatiquement ce modèle de votre liste disponible. Pour contrôler les modèles affichés, allez dans [**Paramètres** > **Modèles**](#models) et modifiez votre liste de modèles.  
 Vous pouvez également accéder directement aux paramètres du modèle en cliquant sur l'icône du fournisseur située à gauche du nom du modèle dans la barre d'outils.
 
 <br/>
@@ -544,10 +544,10 @@ Les onglets disponibles dépendent de la plateforme et de votre rôle :
   | Paramètres généraux  |   oui   |     oui     |        oui         |
   | Modèles            |   oui   |     oui     |        oui         |
   | Langues         |   oui   |     oui     |        oui         |
-  | Suivi des coûts     |   oui   |     oui     |         —          |
+  | Suivi des coûts     |   oui   |     oui     |         -          |
   | Prompts de transformation |   oui   |     oui     |        oui         |
-  | Utilisateurs             |    —    |     oui     |         —          |
-  | Config API        |   oui   |     oui     |         —          |
+  | Utilisateurs             |    -    |     oui     |         -          |
+  | Config API        |   oui   |     oui     |         -          |
   | À propos             |   oui   |     oui     |        oui         |
 
 <br/>
@@ -587,11 +587,11 @@ Utilisez **Paramètres généraux** pour contrôler le comportement au clavier, 
 
 **Sauvegarde de la configuration**
 
-- **Inclure les données d'utilisation dans la sauvegarde** — lorsqu'elle est activée, le fichier ZIP contient également l'historique des exécutions et les données des appels API.
-- **Sauvegarder la configuration** — crée un seul fichier ZIP (`transrewrt-config-backup-AAAA-MM-JJ_HHMMSS.zip` en UTC par défaut) contenant `config.json`, `state.json`, une clé de chiffrement facultative, les utilisateurs, les préférences, les invites personnalisées et les données d'utilisation si vous avez choisi cette option. Après une sauvegarde réussie, une confirmation affiche le nom du fichier enregistré.
-- **Restaurer à partir d'une sauvegarde** — ouvre d'abord une **boîte de dialogue de confirmation**. Sélectionnez le fichier ZIP de sauvegarde dans la boîte de dialogue (**Parcourir** / sélecteur de fichiers ou glisser-déposer là où c'est pris en charge), puis vérifiez les options :
-  - **Restaurer les données d'utilisation** — importe l'historique/utilisation du ZIP lorsque la sauvegarde a été effectuée avec les données d'utilisation incluses ; laissez désactivé si vous souhaitez uniquement les paramètres et les invites.
-  - **Effacer les anciennes données d'utilisation avant la restauration** — supprime les données d'utilisation/historique existantes sur cette installation avant d'appliquer la sauvegarde (facultatif ; à utiliser lorsque vous souhaitez un remplacement complet).
+- **Inclure les données d'utilisation dans la sauvegarde** - lorsqu'elle est activée, le fichier ZIP contient également l'historique des exécutions et les données des appels API.
+- **Sauvegarder la configuration** - crée un seul fichier ZIP (`transrewrt-config-backup-AAAA-MM-JJ_HHMMSS.zip` en UTC par défaut) contenant `config.json`, `state.json`, une clé de chiffrement facultative, les utilisateurs, les préférences, les invites personnalisées et les données d'utilisation si vous avez choisi cette option. Après une sauvegarde réussie, une confirmation affiche le nom du fichier enregistré.
+- **Restaurer à partir d'une sauvegarde** - ouvre d'abord une **boîte de dialogue de confirmation**. Sélectionnez le fichier ZIP de sauvegarde dans la boîte de dialogue (**Parcourir** / sélecteur de fichiers ou glisser-déposer là où c'est pris en charge), puis vérifiez les options :
+  - **Restaurer les données d'utilisation** - importe l'historique/utilisation du ZIP lorsque la sauvegarde a été effectuée avec les données d'utilisation incluses ; laissez désactivé si vous souhaitez uniquement les paramètres et les invites.
+  - **Effacer les anciennes données d'utilisation avant la restauration** - supprime les données d'utilisation/historique existantes sur cette installation avant d'appliquer la sauvegarde (facultatif ; à utiliser lorsque vous souhaitez un remplacement complet).
 
 Les sauvegardes créées dans la version web ou de bureau peuvent être restaurées dans l'autre version. Lors de la restauration d'une sauvegarde de bureau dans la version web, les données seront restaurées pour l'utilisateur administrateur.
 
@@ -706,7 +706,7 @@ Les fournisseurs pris en charge sont : OpenRouter, OpenAI, Anthropic, Google Gem
 
 **Application web : administrateur uniquement**
 
-Les clés API sont configurées via des variables d'environnement système ou Docker — elles ne sont pas saisies dans l'interface web. Cette page indique quels fournisseurs ont une clé configurée et vous permet de les tester en cliquant sur le bouton **`Tester`**.
+Les clés API sont configurées via des variables d'environnement système ou Docker - elles ne sont pas saisies dans l'interface web. Cette page indique quels fournisseurs ont une clé configurée et vous permet de les tester en cliquant sur le bouton **`Tester`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Les clés API sont configurées via des variables d'environnement système ou Do
 > Pour modifier une clé API, mettez à jour la variable d'environnement dans votre configuration système ou Docker, puis redémarrez le serveur ou le conteneur.
 
 > ℹ️ **REMARQUE**<br/>
-> Les **sauvegardes de configuration** (voir [**Paramètres généraux** → Sauvegarde de la configuration](#general-settings)) peuvent intégrer les clés de fournisseur **résolues** dans le fichier `config.json` du ZIP. La restauration de ce ZIP ne **copie pas** ces clés dans le fichier de configuration persistant du serveur — les clés actives proviennent toujours de l'environnement et de l'état du fichier existant, comme décrit ici.
+> Les **sauvegardes de configuration** (voir [**Paramètres généraux** → Sauvegarde de la configuration](#general-settings)) peuvent intégrer les clés de fournisseur **résolues** dans le fichier `config.json` du ZIP. La restauration de ce ZIP ne **copie pas** ces clés dans le fichier de configuration persistant du serveur - les clés actives proviennent toujours de l'environnement et de l'état du fichier existant, comme décrit ici.
 
 <br/>
 
@@ -825,7 +825,7 @@ Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings) et modi
 Ceci est normal si :
 
 - vous utilisez uniquement des **modèles gratuits** et que vous consultez les données de **coût** (elles peuvent être nulles) ; les graphiques du nombre d'**appels** dans l'onglet **Résumé** nécessitent encore des données de la période sélectionnée
-- le **filtre temporel** sélectionné ne couvre pas la période durant laquelle des appels ont été effectués — essayez **Tout** pour vérifier
+- le **filtre temporel** sélectionné ne couvre pas la période durant laquelle des appels ont été effectués - essayez **Tout** pour vérifier
 
 Si les graphiques restent vides après avoir sélectionné **Tout**, vérifiez que des appels apparaissent dans [**Historique**](#history) ou dans l'onglet **Tous les appels**.
 

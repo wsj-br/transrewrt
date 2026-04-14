@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Công cụ xử lý văn bản tích hợp AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh — sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
+Công cụ xử lý văn bản tích hợp AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
-- **Dịch** — giữa hàng chục ngôn ngữ, với phát hiện nguồn tự động  
-- **Viết lại** — sửa ngữ pháp, cải thiện độ rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật  
-- **Chuyển đổi** — lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn theo từng lời nhắc  
-- **Lịch sử** — lịch sử thực hiện đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất dữ liệu  
-- **Mô hình & chi phí** — chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày  
-- **Giao diện người dùng** — giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...  
-- **Chế độ Web** — hỗ trợ nhiều người dùng với các vai trò quản trị viên  
-- **Máy tính để bàn** — ứng dụng Electron cho Windows và Linux  
-- **Tự lưu trữ** — hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
+- **Dịch** - giữa hàng chục ngôn ngữ, với phát hiện nguồn tự động  
+- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật  
+- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn theo từng lời nhắc  
+- **Lịch sử** - lịch sử thực hiện đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất dữ liệu  
+- **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày  
+- **Giao diện người dùng** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...  
+- **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên  
+- **Máy tính để bàn** - ứng dụng Electron cho Windows và Linux  
+- **Tự lưu trữ** - hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
 
 Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md)** để tìm hiểu chi tiết tất cả các tính năng.
 
@@ -79,7 +79,7 @@ Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md
 
 **Bảng điều khiển**
 
-![Dashboard summary — usage](../images/screenshots/vi/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/vi/dashboard-summary.png)
 
 **Lịch sử**
 
@@ -193,7 +193,7 @@ Danh sách các tên múi giờ hợp lệ được duy trì trong [cơ sở d�
 >   - **User Account Control (UAC)**: "Bạn có muốn cho phép ứng dụng từ nhà xuất bản chưa rõ này thực hiện thay đổi trên thiết bị của bạn?" → Nhấp **Có**.
 >   - **Microsoft Defender SmartScreen**: "Windows đã bảo vệ PC của bạn" → Nhấp **Thông tin thêm** → **Vẫn chạy**.
 >
-> Điều này xảy ra vì ứng dụng chưa được ký bởi Microsoft hoặc nhà xuất bản lớn — nó an toàn nếu được tải từ trang phát hành chính thức trên GitHub của chúng tôi (xác minh checksum trên trang [Releases](https://github.com/wsj-br/transrewrt/releases) bên cạnh từng tài nguyên).
+> Điều này xảy ra vì ứng dụng chưa được ký bởi Microsoft hoặc nhà xuất bản lớn - nó an toàn nếu được tải từ trang phát hành chính thức trên GitHub của chúng tôi (xác minh checksum trên trang [Releases](https://github.com/wsj-br/transrewrt/releases) bên cạnh từng tài nguyên).
 
 <br/>
 

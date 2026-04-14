@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Herramienta de texto con inteligencia artificial: traducir entre idiomas, reescribir en diferentes estilos y transformar con prompts personalizados — utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI y Ollama local). Funciona como aplicación de escritorio (Electron) o como aplicación web autohospedada (Docker).
+Herramienta de texto con inteligencia artificial: traducir entre idiomas, reescribir en diferentes estilos y transformar con prompts personalizados - utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI y Ollama local). Funciona como aplicación de escritorio (Electron) o como aplicación web autohospedada (Docker).
 
-- **Traducir** — entre docenas de idiomas, con detección automática del idioma de origen
-- **Reescritura** — corregir gramática, mejorar claridad, formal/informal, acortar, expandir, técnico
-- **Transformación** — prompts personalizados de IA; crear y gestionar prompts, con idioma de destino opcional por prompt
-- **Historial** — historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
-- **Modelos y costo** — elegir modelos de cualquier proveedor configurado; paneles de costo y uso con registro, resúmenes por modelo/operación/día
-- **Interfaz de usuario** — interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
-- **Modo web** — soporte multiusuario con roles de administrador
-- **Escritorio** — aplicación Electron para Windows y Linux
-- **Autohospedado** — imagen Docker para amd64 y arm64 (listo para Raspberry Pi)
+- **Traducir** - entre docenas de idiomas, con detección automática del idioma de origen
+- **Reescritura** - corregir gramática, mejorar claridad, formal/informal, acortar, expandir, técnico
+- **Transformación** - prompts personalizados de IA; crear y gestionar prompts, con idioma de destino opcional por prompt
+- **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
+- **Modelos y costo** - elegir modelos de cualquier proveedor configurado; paneles de costo y uso con registro, resúmenes por modelo/operación/día
+- **Interfaz de usuario** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
+- **Modo web** - soporte multiusuario con roles de administrador
+- **Escritorio** - aplicación Electron para Windows y Linux
+- **Autohospedado** - imagen Docker para amd64 y arm64 (listo para Raspberry Pi)
 
 Una vez instalado, consulte la **[Guía del usuario](USER-GUIDE.es.md)** para una descripción completa de todas las funciones.
 
@@ -79,7 +79,7 @@ Una vez instalado, consulte la **[Guía del usuario](USER-GUIDE.es.md)** para un
 
 **Panel**
 
-![Dashboard summary — usage](../images/screenshots/es/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/es/dashboard-summary.png)
 
 **Historial**
 

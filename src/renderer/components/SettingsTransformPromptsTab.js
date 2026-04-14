@@ -7,7 +7,6 @@ import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
-import { interpolateTemplate } from "../utils/misc/formatUtils";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
 
 const EXPORT_FORMATS = ["json", "csv", "xlsx"];
@@ -641,7 +640,7 @@ const SettingsTransformPromptsTab = () => {
                       const instructionsPreview =
                         instructionsDisplay.length > 80
                           ? `${instructionsDisplay.slice(0, 80)}…`
-                          : instructionsDisplay || "—";
+                          : instructionsDisplay || "-";
                       return (
                         <tr key={p.id} className={styles.tbodyTr}>
                           <td className={styles.td}>
@@ -659,7 +658,7 @@ const SettingsTransformPromptsTab = () => {
                             </span>
                           </td>
                           <td className={styles.td}>
-                            {p.role ? `${String(p.role).slice(0, 50)}${String(p.role).length > 50 ? "…" : ""}` : "—"}
+                            {p.role ? `${String(p.role).slice(0, 50)}${String(p.role).length > 50 ? "…" : ""}` : "-"}
                           </td>
                           <td
                             className={styles.td}
@@ -669,11 +668,11 @@ const SettingsTransformPromptsTab = () => {
                             {instructionsPreview}
                           </td>
                           <td className={styles.td}>
-                            {p.output_description ? String(p.output_description).slice(0, 40) : "—"}
+                            {p.output_description ? String(p.output_description).slice(0, 40) : "-"}
                             {(p.output_description && String(p.output_description).length > 40) ? "…" : ""}
                           </td>
                           <td className={styles.td}>{p.target_language === true || p.target_language === 1 ? t("Yes") : t("No")}</td>
-                          <td className={styles.td}>{p.temperature ?? "—"}</td>
+                          <td className={styles.td}>{p.temperature ?? "-"}</td>
                         </tr>
                       );
                     })
@@ -688,7 +687,7 @@ const SettingsTransformPromptsTab = () => {
       {promptToDelete != null && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={interpolateTemplate(t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.'), { name: promptToDelete.name || t("Untitled") })}
+          message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: promptToDelete.name || t("Untitled") })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmDeletePrompt}
@@ -699,10 +698,8 @@ const SettingsTransformPromptsTab = () => {
       {showLoadSampleConfirm && (
         <ConfirmModal
           title={t("Load sample prompts")}
-          message={interpolateTemplate(
-            t(
-              "Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt."
-            ),
+          message={t(
+            "Import the sample prompts from the app config?\n\nThe prompts are in English, but after the import you can translate them to {{language}}, click in Edit > Translate prompt.",
             {
               language: findUILanguageEntry(locale)?.label ?? t("your language"),
             }

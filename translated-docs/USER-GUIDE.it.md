@@ -544,10 +544,10 @@ Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
   | Impostazioni generali  |   sì   |     sì     |        sì         |
   | Modelli            |   sì   |     sì     |        sì         |
   | Lingue         |   sì   |     sì     |        sì         |
-  | Tracciamento Costi     |   sì   |     sì     |         —          |
+  | Tracciamento Costi     |   sì   |     sì     |         -          |
   | Prompt di trasformazione |   sì   |     sì     |        sì         |
-  | Utenti             |    —    |     sì     |         —          |
-  | Configurazione API        |   sì   |     sì     |         —          |
+  | Utenti             |    -    |     sì     |         -          |
+  | Configurazione API        |   sì   |     sì     |         -          |
   | Informazioni             |   sì   |     sì     |        sì         |
 
 <br/>
@@ -587,11 +587,11 @@ Utilizza **Impostazioni generali** per controllare il comportamento durante la d
 
 **Backup della configurazione**
 
-- **Includi i dati di utilizzo nel backup** — se abilitato, il file ZIP contiene anche cronologia delle esecuzioni e dati sulle chiamate API.
-- **Esegui backup della configurazione** — crea un singolo file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC per impostazione predefinita) contenente `config.json`, `state.json`, chiave di crittografia opzionale, utenti, preferenze, prompt personalizzati e dati di utilizzo se hai scelto di includerli. Al termine del backup, la conferma mostra il nome del file salvato.
-- **Ripristina dal backup** — apre prima una **finestra di conferma**. Scegli il file ZIP del backup all'interno della finestra (**Sfoglia** / selettore file o trascina e rilascia, se supportato), quindi verifica le opzioni:
-  - **Ripristina i dati di utilizzo** — importa utilizzo/cronologia dal file ZIP se era stato eseguito il backup con i dati di utilizzo inclusi; lascia disattivato se desideri solo impostazioni e prompt.
-  - **Elimina i vecchi dati di utilizzo prima del ripristino** — rimuove i dati di utilizzo/cronologia esistenti su questa installazione prima di applicare il backup (opzionale; utilizzalo quando desideri un rimpiazzo pulito).
+- **Includi i dati di utilizzo nel backup** - se abilitato, il file ZIP contiene anche cronologia delle esecuzioni e dati sulle chiamate API.
+- **Esegui backup della configurazione** - crea un singolo file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC per impostazione predefinita) contenente `config.json`, `state.json`, chiave di crittografia opzionale, utenti, preferenze, prompt personalizzati e dati di utilizzo se hai scelto di includerli. Al termine del backup, la conferma mostra il nome del file salvato.
+- **Ripristina dal backup** - apre prima una **finestra di conferma**. Scegli il file ZIP del backup all'interno della finestra (**Sfoglia** / selettore file o trascina e rilascia, se supportato), quindi verifica le opzioni:
+  - **Ripristina i dati di utilizzo** - importa utilizzo/cronologia dal file ZIP se era stato eseguito il backup con i dati di utilizzo inclusi; lascia disattivato se desideri solo impostazioni e prompt.
+  - **Elimina i vecchi dati di utilizzo prima del ripristino** - rimuove i dati di utilizzo/cronologia esistenti su questa installazione prima di applicare il backup (opzionale; utilizzalo quando desideri un rimpiazzo pulito).
 
 I backup creati nella versione web o desktop possono essere ripristinati nell'altra. Quando si ripristina un backup desktop nella versione web, i dati verranno ripristinati per l'utente amministratore.
 
@@ -706,7 +706,7 @@ I provider supportati sono: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSe
 
 **Applicazione web: solo amministratore**
 
-Le chiavi API vengono configurate tramite variabili d'ambiente di sistema o Docker — non vengono inserite nell'interfaccia web. Questa pagina mostra per quali provider è stata configurata una chiave e ti permette di testarli cliccando sul pulsante **`Test`**.
+Le chiavi API vengono configurate tramite variabili d'ambiente di sistema o Docker - non vengono inserite nell'interfaccia web. Questa pagina mostra per quali provider è stata configurata una chiave e ti permette di testarli cliccando sul pulsante **`Test`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Le chiavi API vengono configurate tramite variabili d'ambiente di sistema o Dock
 > Per modificare una chiave API, aggiorna la variabile d'ambiente nella configurazione del sistema o di Docker e riavvia il server o il contenitore.
 
 > ℹ️ **NOTA**<br/>
-> I **backup della configurazione** (vedi [**Impostazioni generali** → Backup della configurazione](#general-settings)) possono incorporare chiavi provider **risolte** all'interno del file `config.json` contenuto nel file ZIP. Il ripristino di tale file ZIP **non** copia nuovamente tali chiavi nel file di configurazione persistente del server — le chiavi attive provengono comunque dall'ambiente e dallo stato del file esistente come descritto lì.
+> I **backup della configurazione** (vedi [**Impostazioni generali** → Backup della configurazione](#general-settings)) possono incorporare chiavi provider **risolte** all'interno del file `config.json` contenuto nel file ZIP. Il ripristino di tale file ZIP **non** copia nuovamente tali chiavi nel file di configurazione persistente del server - le chiavi attive provengono comunque dall'ambiente e dallo stato del file esistente come descritto lì.
 
 <br/>
 
@@ -825,7 +825,7 @@ Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e modific
 Questo è normale se:
 
 - utilizzi solo **modelli gratuiti** e stai visualizzando le cifre relative al **costo** (potrebbero essere zero); i grafici del numero di chiamate in **Riepilogo** necessitano comunque di dati relativi al periodo selezionato
-- il **filtro temporale** selezionato non include il periodo in cui sono state effettuate le chiamate — prova con **Tutto** per verificare
+- il **filtro temporale** selezionato non include il periodo in cui sono state effettuate le chiamate - prova con **Tutto** per verificare
 
 Se i grafici sono ancora vuoti dopo aver selezionato **Tutto**, verifica che le chiamate appaiano in [**Cronologia**](#history) o nella scheda **Tutte le chiamate**.
 

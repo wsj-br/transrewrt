@@ -206,7 +206,7 @@ Araç çubuğu, uygulamada nerede olduğunuza bağlı olarak hafifçe değişir.
 
 ![Model selector](../images/screenshots/tr/model-selector.png)
 
-Bazı ücretsiz modeller her zaman kullanılamayabilir—bazen çevrimdışı olabilirler ya da kullanım sınırına sahip olabilirler. Bu durum gerçekleşirse, uygulama otomatik olarak o modeli kullanılabilir listenizden kaldırır. Hangi modellerin görüneceğini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin ve model listenizi düzenleyin.
+Bazı ücretsiz modeller her zaman kullanılamayabilir-bazen çevrimdışı olabilirler ya da kullanım sınırına sahip olabilirler. Bu durum gerçekleşirse, uygulama otomatik olarak o modeli kullanılabilir listenizden kaldırır. Hangi modellerin görüneceğini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin ve model listenizi düzenleyin.
 Ayrıca, araç çubuğundaki model adının solundaki sağlayıcı simgesine tıklayarak doğrudan model ayarlarını da açabilirsiniz.
 
 <br/>
@@ -543,10 +543,10 @@ Mevcut sekmeler platforma ve rolünüze bağlıdır:
   | Genel Ayarlar  |   Evet   |     Evet     |        Evet         |
   | Modeller            |   Evet   |     Evet     |        Evet         |
   | Diller         |   Evet   |     Evet     |        Evet         |
-  | Maliyet İzleme     |   Evet   |     Evet     |         —          |
+  | Maliyet İzleme     |   Evet   |     Evet     |         -          |
   | İstekleri Dönüştür |   Evet   |     Evet     |        Evet         |
-  | Kullanıcılar             |    —    |     Evet     |         —          |
-  | API Yapılandırması        |   Evet   |     Evet     |         —          |
+  | Kullanıcılar             |    -    |     Evet     |         -          |
+  | API Yapılandırması        |   Evet   |     Evet     |         -          |
   | Hakkında             |   Evet   |     Evet     |        Evet         |
 
 <br/>
@@ -586,11 +586,11 @@ Mevcut sekmeler platforma ve rolünüze bağlıdır:
 
 **Yapılandırma Yedeği**
 
-- **Yedeklemeye kullanım verilerini dahil et** — etkinleştirildiğinde ZIP dosyası ayrıca yürütme geçmişi ve API çağrısı verilerini içerir.
-- **Yapılandırmayı yedekle** — `config.json`, `state.json`, isteğe bağlı şifreleme anahtarı, kullanıcılar, tercihler, özel istekler ve kullanım verileri (seçildiyse) içeren tek bir ZIP dosyası oluşturur (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`, varsayılan olarak UTC). Başarılı bir yedeklemeden sonra onay, kaydedilen dosya adını gösterir.
-- **Yedekten geri yükle** — önce bir **onay iletişim kutusu** açar. İletişim kutusu içinde yedek ZIP dosyasını seçin (**Gözat** / dosya seçici veya desteklendiğinde sürükleyip bırakma), ardından seçenekleri gözden geçirin:
-  - **Kullanım verilerini geri yükle** — yedekleme sırasında kullanım dahil edildiyse, ZIP dosyasından kullanım/geçmiş verilerini içe aktarır; sadece ayarlar ve istekler istiyorsanız işaretini kaldırın.
-  - **Geri yüklemeden önce eski kullanım verilerini temizle** — yedek uygulanmadan önce bu kurulumdaki mevcut kullanım/geçmişi kaldırır (isteğe bağlı; temiz bir değiştirme yapmak istediğinizde kullanın).
+- **Yedeklemeye kullanım verilerini dahil et** - etkinleştirildiğinde ZIP dosyası ayrıca yürütme geçmişi ve API çağrısı verilerini içerir.
+- **Yapılandırmayı yedekle** - `config.json`, `state.json`, isteğe bağlı şifreleme anahtarı, kullanıcılar, tercihler, özel istekler ve kullanım verileri (seçildiyse) içeren tek bir ZIP dosyası oluşturur (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`, varsayılan olarak UTC). Başarılı bir yedeklemeden sonra onay, kaydedilen dosya adını gösterir.
+- **Yedekten geri yükle** - önce bir **onay iletişim kutusu** açar. İletişim kutusu içinde yedek ZIP dosyasını seçin (**Gözat** / dosya seçici veya desteklendiğinde sürükleyip bırakma), ardından seçenekleri gözden geçirin:
+  - **Kullanım verilerini geri yükle** - yedekleme sırasında kullanım dahil edildiyse, ZIP dosyasından kullanım/geçmiş verilerini içe aktarır; sadece ayarlar ve istekler istiyorsanız işaretini kaldırın.
+  - **Geri yüklemeden önce eski kullanım verilerini temizle** - yedek uygulanmadan önce bu kurulumdaki mevcut kullanım/geçmişi kaldırır (isteğe bağlı; temiz bir değiştirme yapmak istediğinizde kullanın).
 
 Web veya masaüstü sürümünde oluşturulan yedekler, diğerinde geri yüklenebilir. Masaüstü yedeği web sürümüne geri yüklenirken, veriler yönetici kullanıcısına geri yüklenir.
 
@@ -705,7 +705,7 @@ Desteklenen sağlayıcılar şunlardır: OpenRouter, OpenAI, Anthropic, Google G
 
 **Web uygulaması: yalnızca yönetici**
 
-API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapılandırılır — web arayüzünde girilmez. Bu sayfa hangi sağlayıcıların anahtarla yapılandırıldığını gösterir ve her birini **`Test`** düğmesine tıklayarak test etmenizi sağlar.
+API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapılandırılır - web arayüzünde girilmez. Bu sayfa hangi sağlayıcıların anahtarla yapılandırıldığını gösterir ve her birini **`Test`** düğmesine tıklayarak test etmenizi sağlar.
 
 <br/>
 
@@ -713,7 +713,7 @@ API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapıl
 > Bir API anahtarını değiştirmek için sistem veya Docker yapılandırmanızdaki ortam değişkenini güncelleyin ve sunucuyu veya konteyneri yeniden başlatın.
 
 > ℹ️ **NOT**<br/>
-> **Yapılandırma yedekleri** ([**Genel ayarlar** → Yapılandırma Yedeği](#general-settings) bölümüne bakın) ZIP dosyasındaki `config.json` içine **çözümlenmiş** sağlayıcı anahtarlarını gömebilir. Bu ZIP dosyasının geri yüklenmesi, bu anahtarları sunucunun kalıcı yapılandırma dosyasına **kopyalamaz** — canlı anahtarlar hâlâ burada anlatıldığı gibi ortamdan ve mevcut dosya durumundan gelir.
+> **Yapılandırma yedekleri** ([**Genel ayarlar** → Yapılandırma Yedeği](#general-settings) bölümüne bakın) ZIP dosyasındaki `config.json` içine **çözümlenmiş** sağlayıcı anahtarlarını gömebilir. Bu ZIP dosyasının geri yüklenmesi, bu anahtarları sunucunun kalıcı yapılandırma dosyasına **kopyalamaz** - canlı anahtarlar hâlâ burada anlatıldığı gibi ortamdan ve mevcut dosya durumundan gelir.
 
 <br/>
 
@@ -824,7 +824,7 @@ Aşağıdakilerden birini veya birkaçını deneyin:
 Aşağıdaki durumlarda bu normaldir:
 
 - Sadece **ücretsiz modeller** kullanıyorsanız ve **maliyet** rakamlarına bakıyorsanız (bu değerler sıfır olabilir); **Özet** sekmesindeki **kullanım** çağrı sayısı grafikleri için hâlâ seçili dönemden veri gelmesi gerekir
-- Seçili **zaman filtresi**, çağrıların yapıldığı dönemi kapsamıyor olabilir — kontrol etmek için **Tümü** seçeneğini deneyin
+- Seçili **zaman filtresi**, çağrıların yapıldığı dönemi kapsamıyor olabilir - kontrol etmek için **Tümü** seçeneğini deneyin
 
 Grafikler hâlâ **Tümü** seçildikten sonra boşsa, çağrıların [**Geçmiş**](#history) sekmesinde veya **Tüm Aramalar** sekmesinde görünür olduğundan emin olun.
 

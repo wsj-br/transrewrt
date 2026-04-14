@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, i-rewrite sa iba't ibang estilo, at baguhin gamit ang mga pasadyang prompt — gamit ang maramihang AI provider (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at lokal na Ollama). Tumatakbo bilang desktop app (Electron) o self-hosted web app (Docker).
+Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, i-rewrite sa iba't ibang estilo, at baguhin gamit ang mga pasadyang prompt - gamit ang maramihang AI provider (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at lokal na Ollama). Tumatakbo bilang desktop app (Electron) o self-hosted web app (Docker).
 
-- **Isalin** — sa pagitan ng maraming wika, may awtomatikong pagtukoy sa pinagmulan
-- **Rewrite** — ayusin ang gramatika, pahusayin ang klaridad, pormal/o hindi pormal, paikliin, palawakin, teknikal
-- **Transform** — pasadyang AI prompt; likhain at pamahalaan ang mga prompt, opsyonal na target na wika bawat prompt
-- **Kasaysayan** — buong kasaysayan ng pagpapatakbo kasama ang input/output na teksto, pag-filter, at pag-export
-- **Mga Modelo at gastos** — pumili ng mga modelo mula sa anumang naka-configure na provider; dashboard ng gastos at paggamit na may log, buod ayon sa modelo/operasyon/araw
-- **UI** — multilingual na interface (30+ na mga wika, suporta sa RTL), mga font, ...
-- **Web mode** — suporta sa maraming user na may admin na papel
-- **Desktop** — Electron app para sa Windows at Linux
-- **Self-hosted** — imahe ng Docker para sa amd64 at arm64 (handang gamitin sa Raspberry Pi)
+- **Isalin** - sa pagitan ng maraming wika, may awtomatikong pagtukoy sa pinagmulan
+- **Rewrite** - ayusin ang gramatika, pahusayin ang klaridad, pormal/o hindi pormal, paikliin, palawakin, teknikal
+- **Transform** - pasadyang AI prompt; likhain at pamahalaan ang mga prompt, opsyonal na target na wika bawat prompt
+- **Kasaysayan** - buong kasaysayan ng pagpapatakbo kasama ang input/output na teksto, pag-filter, at pag-export
+- **Mga Modelo at gastos** - pumili ng mga modelo mula sa anumang naka-configure na provider; dashboard ng gastos at paggamit na may log, buod ayon sa modelo/operasyon/araw
+- **UI** - multilingual na interface (30+ na mga wika, suporta sa RTL), mga font, ...
+- **Web mode** - suporta sa maraming user na may admin na papel
+- **Desktop** - Electron app para sa Windows at Linux
+- **Self-hosted** - imahe ng Docker para sa amd64 at arm64 (handang gamitin sa Raspberry Pi)
 
 Matapos mai-install, tingnan ang **[Gabay sa User](USER-GUIDE.tl.md)** para sa buong walkthrough ng lahat ng mga tampok.
 
@@ -79,7 +79,7 @@ Matapos mai-install, tingnan ang **[Gabay sa User](USER-GUIDE.tl.md)** para sa b
 
 **Dashboard**
 
-![Dashboard summary — usage](../images/screenshots/tl/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/tl/dashboard-summary.png)
 
 **Kasaysayan**
 
@@ -193,7 +193,7 @@ Ang listahan ng mga wastong pangalan ng time zone ay pinapanatili sa [tz databas
 >   - **User Account Control (UAC)**: "Gusto mo bang payagan ang app na ito mula sa isang hindi kilalang publisher na baguhin ang iyong device?" → I-click ang **Oo**.
 >   - **Microsoft Defender SmartScreen**: "Pinoprotektahan ng Windows ang iyong PC" → I-click ang **Higit pang impormasyon** → **Takbo pa rin**.
 >
-> Nangyayari ito dahil hindi naka-sign ang app ng Microsoft o ng isang pangunahing publisher—ligtas ito kung nakuha mula sa aming opisyal na GitHub releases (i-verify ang checksums sa pahina ng [Releases](https://github.com/wsj-br/transrewrt/releases) kasama ang bawat asset).
+> Nangyayari ito dahil hindi naka-sign ang app ng Microsoft o ng isang pangunahing publisher-ligtas ito kung nakuha mula sa aming opisyal na GitHub releases (i-verify ang checksums sa pahina ng [Releases](https://github.com/wsj-br/transrewrt/releases) kasama ang bawat asset).
 
 <br/>
 

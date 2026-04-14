@@ -544,10 +544,10 @@ Dostupné karty závisia od platformy a vašej roly:
   | Hlavné nastavenia  |   áno   |     áno     |        áno         |
   | Modely            |   áno   |     áno     |        áno         |
   | Jazyky         |   áno   |     áno     |        áno         |
-  | Sledovanie nákladov     |   áno   |     áno     |         —          |
+  | Sledovanie nákladov     |   áno   |     áno     |         -          |
   | Výzvy transformácie |   áno   |     áno     |        áno         |
-  | Používatelia             |    —    |     áno     |         —          |
-  | Konfigurácia API        |   áno   |     áno     |         —          |
+  | Používatelia             |    -    |     áno     |         -          |
+  | Konfigurácia API        |   áno   |     áno     |         -          |
   | O aplikácii             |   áno   |     áno     |        áno         |
 
 <br/>

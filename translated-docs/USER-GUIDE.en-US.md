@@ -207,7 +207,7 @@ The **model selector** lets you choose which AI engine to use for the current ta
 
 ![Model selector](../images/screenshots/en-US/model-selector.png)
 
-Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
+Some free models may not always be available-sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
  You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
 
 <br/>
@@ -544,10 +544,10 @@ The available tabs depend on the platform and your role:
   | General Settings  |   yes   |     yes     |        yes         |
   | Models            |   yes   |     yes     |        yes         |
   | Languages         |   yes   |     yes     |        yes         |
-  | Cost Tracking     |   yes   |     yes     |         —          |
+  | Cost Tracking     |   yes   |     yes     |         -          |
   | Transform Prompts |   yes   |     yes     |        yes         |
-  | Users             |    —    |     yes     |         —          |
-  | API Config        |   yes   |     yes     |         —          |
+  | Users             |    -    |     yes     |         -          |
+  | API Config        |   yes   |     yes     |         -          |
   | About             |   yes   |     yes     |        yes         |
 
 <br/>
@@ -587,11 +587,11 @@ Use **General Settings** to control typing behavior, whether execution details a
 
 **Configuration Backup**
 
-- **Include usage data in the backup** — when enabled, the ZIP also contains execution history and API call data. 
-- **Backup configuration** — creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
-- **Restore from backup** — opens a **confirmation dialog first**. Choose the backup ZIP inside the dialog (**Browse** / file picker or drag-and-drop where supported), then review the options:
-  - **Restore the usage data** — import usage/history from the ZIP when it was backed up with usage included; leave off if you only want settings and prompts.
-  - **Clear the old usage data before restoring** — remove existing usage/history on this install before applying the backup (optional; use when you want a clean replace).
+- **Include usage data in the backup** - when enabled, the ZIP also contains execution history and API call data. 
+- **Backup configuration** - creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
+- **Restore from backup** - opens a **confirmation dialog first**. Choose the backup ZIP inside the dialog (**Browse** / file picker or drag-and-drop where supported), then review the options:
+  - **Restore the usage data** - import usage/history from the ZIP when it was backed up with usage included; leave off if you only want settings and prompts.
+  - **Clear the old usage data before restoring** - remove existing usage/history on this install before applying the backup (optional; use when you want a clean replace).
 
 Backups created in either the web or desktop version can be restored in the other. When restoring a desktop backup in the web version, the data will be restored to the administrator user.
 
@@ -706,7 +706,7 @@ The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepS
 
 **Web application: administrator only**
 
-API keys are configured through system or Docker environment variables — they are not entered in the web UI. This page shows which providers have a key configured and lets you test each one by clicking the **`Test`** button.
+API keys are configured through system or Docker environment variables - they are not entered in the web UI. This page shows which providers have a key configured and lets you test each one by clicking the **`Test`** button.
 
 <br/>
 
@@ -714,7 +714,7 @@ API keys are configured through system or Docker environment variables — they 
 > To change an API key, update the environment variable in your system or Docker configuration and restart the server or container.
 
 > ℹ️ **NOTE**<br/>
-> **Configuration backups** (see [**General Settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file — live keys still come from the environment and existing file state as described there.
+> **Configuration backups** (see [**General Settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file - live keys still come from the environment and existing file state as described there.
 
 <br/>
 
@@ -825,7 +825,7 @@ Open [**Settings** > **General Settings**](#general-settings) and change:
 This is normal if:
 
 - you only use **free models** and you are looking at **cost** figures (they may be zero); **usage** call-count charts on **Summary** still need data from the selected period
-- the selected **time filter** does not cover the period when calls were made — try **All** to check
+- the selected **time filter** does not cover the period when calls were made - try **All** to check
 
 If charts are still empty after selecting **All**, confirm that calls appear in [**History**](#history) or in the **All Calls** tab.
 

@@ -9,7 +9,6 @@ import {
   getCostApi,
   getDeleteCutoffIso,
 } from '../utils/misc/costUtils';
-import { interpolateTemplate } from '../utils/misc/formatUtils';
 import ConfirmModal from './ConfirmModal';
 import webAPI from '../utils/api/webApiClient';
 import { getAppearanceFontOptions, resolveAppearanceFontFamilyCss } from '../utils/misc/appearanceFontOptions';
@@ -184,7 +183,7 @@ const SettingsGeneralTab = ({
   }, [onSettingChange]);
 
   const backupSuccessMessage = (filename) =>
-    interpolateTemplate(t('Backup generated: {{filename}}'), {
+    t('Backup generated: {{filename}}', {
       filename: filename || '',
     });
 
@@ -743,16 +742,13 @@ const SettingsGeneralTab = ({
           message={
             historyDeleteRange === 'all'
               ? t('Permanently delete ALL stored input/output history?\n\nAPI call metadata is not removed.\n\nThis cannot be undone.')
-              : interpolateTemplate(
-                  t('Permanently delete history text older than {{range}}?\n\nAPI call metadata is not removed.\n\nThis cannot be undone.'),
-                  {
-                    range:
-                      (historyDeleteRangeOptions.find((o) => o.value === historyDeleteRange)?.label ?? '').replace(
-                        /^>\s*/,
-                        '',
-                      ) || '',
-                  },
-                )
+              : t('Permanently delete history text older than {{range}}?\n\nAPI call metadata is not removed.\n\nThis cannot be undone.', {
+                  range:
+                    (historyDeleteRangeOptions.find((o) => o.value === historyDeleteRange)?.label ?? '').replace(
+                      /^>\s*/,
+                      '',
+                    ) || '',
+                })
           }
           confirmLabel={t('Delete')}
           cancelLabel={t('Cancel')}

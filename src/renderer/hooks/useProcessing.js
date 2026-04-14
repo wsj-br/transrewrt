@@ -2,7 +2,6 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   formatPartialRunCostLabel,
-  interpolateTemplate,
   resolveRunCostLine,
 } from "../utils/misc/formatUtils";
 
@@ -51,7 +50,7 @@ export function useProcessing({
   const isAbortMessage = useCallback((msg) => {
     if (msg == null || typeof msg !== "string") return false;
     const s = msg.toLowerCase();
-    // Do not treat "failed to fetch" as user cancel — that is usually network/CORS/proxy.
+    // Do not treat "failed to fetch" as user cancel - that is usually network/CORS/proxy.
     return s.includes("aborted") || s.includes("signal is aborted");
   }, []);
 
@@ -146,7 +145,7 @@ export function useProcessing({
         if (result.cancelled) {
           if (cancelledByUserRef.current) {
             const msg = result.content
-              ? `${t("Translation stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+              ? `${t("Translation stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
               : t("Translation stopped by user.");
             setOutputTextTranslate(msg);
           } else {
@@ -160,7 +159,7 @@ export function useProcessing({
           if (isAbortMessage(result.error)) {
             setOutputTextTranslate(t("Translation stopped by user."));
           } else {
-            setOutputTextTranslate(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+            setOutputTextTranslate(t("Error: {{message}}", { message: result.error }));
           }
         }
       } catch (error) {
@@ -179,7 +178,7 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTranslate(t("Translation stopped by user."));
         } else {
-          setOutputTextTranslate(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
+          setOutputTextTranslate(t("Error: {{message}}", { message: error.message }));
         }
       } finally {
         abortControllerRef.current = null;
@@ -292,7 +291,7 @@ export function useProcessing({
         setRewriteOutputIsModelResult(false);
         if (cancelledByUserRef.current) {
           const msg = result.content
-            ? `${t("Rewrite stopped by user.")}\n\n${interpolateTemplate(t("Partial result captured ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+            ? `${t("Rewrite stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
             : t("Rewrite stopped by user.");
           setOutputTextRewrite(msg);
         } else {
@@ -307,7 +306,7 @@ export function useProcessing({
         if (isAbortMessage(result.error)) {
           setOutputTextRewrite(t("Rewrite stopped by user."));
         } else {
-          setOutputTextRewrite(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+          setOutputTextRewrite(t("Error: {{message}}", { message: result.error }));
         }
       }
     } catch (error) {
@@ -326,7 +325,7 @@ export function useProcessing({
       if (userAbort) {
         setOutputTextRewrite(t("Rewrite stopped by user."));
       } else {
-        setOutputTextRewrite(interpolateTemplate(t("Error: {{message}}"), { message: error.message }));
+        setOutputTextRewrite(t("Error: {{message}}", { message: error.message }));
       }
     } finally {
       abortControllerRef.current = null;
@@ -425,7 +424,7 @@ export function useProcessing({
           if (cancelledByUserRef.current) {
             setOutputTextTransform(
               result.content
-                ? `${t("Transform stopped by user.")}\n\n${interpolateTemplate(t("Partial result ({{tokens}} tokens, {{cost}})"), { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
+                ? `${t("Transform stopped by user.")}\n\n${t("Partial result ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
                 : t("Transform stopped by user."),
             );
           } else {
@@ -439,7 +438,7 @@ export function useProcessing({
           if (isAbortMessage(result.error)) {
             setOutputTextTransform(t("Transform stopped by user."));
           } else {
-            setOutputTextTransform(interpolateTemplate(t("Error: {{message}}"), { message: result.error }));
+            setOutputTextTransform(t("Error: {{message}}", { message: result.error }));
           }
         }
       } catch (err) {
@@ -459,7 +458,7 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTransform(t("Transform stopped by user."));
         } else {
-          setOutputTextTransform(interpolateTemplate(t("Error: {{message}}"), { message: err.message }));
+          setOutputTextTransform(t("Error: {{message}}", { message: err.message }));
         }
       } finally {
         abortControllerRef.current = null;

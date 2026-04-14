@@ -76,7 +76,7 @@ function parseArgs() {
       out.screenshotFilters = names.length > 0 ? names : [];
     } else if (arg.startsWith("--locale=")) {
       const val = arg.split("=", 2)[1].trim();
-      // PowerShell parses unquoted "a,b,c" after = as an array, then passes "a b c" as one argv token — split on whitespace too.
+      // PowerShell parses unquoted "a,b,c" after = as an array, then passes "a b c" as one argv token - split on whitespace too.
       out.localeFilter = val ? val.split(/[,\s]+/).map((c) => c.trim()).filter(Boolean) : null;
     } else if (arg === "--locale" || arg === "-l") {
       const next = argv[i + 1];
@@ -177,9 +177,9 @@ const SCREENSHOT_TOP_LANGUAGES = ["English (UK)", "Portuguese (BR)", "Spanish"];
 const SCREENSHOT_DEFAULT_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b-2507";
 /** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
 const HISTORY_SAMPLE_INPUT =
-  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
 const HISTORY_SAMPLE_OUTPUT =
-  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
 function screenshotModelOptionSelector(modelId) {
   const slug = String(modelId).replace(/\//g, "-");
@@ -331,7 +331,7 @@ function ensureDictionaryEntryPrompt() {
 
 /**
  * Ensures the first **translate** row in execution history (same order as History page: timestamp DESC,
- * mixed types) uses the canonical sample input — that is what `prepareHistory` clicks. If it already does,
+ * mixed types) uses the canonical sample input - that is what `prepareHistory` clicks. If it already does,
  * skip insert to avoid duplicate sample rows.
  */
 function ensureHistorySampleForScreenshots() {

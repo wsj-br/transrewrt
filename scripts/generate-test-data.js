@@ -18,7 +18,29 @@
 const path = require("path");
 const fs = require("fs");
 const { sql } = require("../src/shared/db/appSchema.js");
-const { TRANSLATION_MODELS } = require("./openrouter-script-models.js");
+
+function loadTranslationModels() {
+  const configPath = path.join(__dirname, "..", "ai-i18n-tools.config.json");
+  if (!fs.existsSync(configPath)) {
+    console.error(`ai-i18n-tools.config.json not found: ${configPath}`);
+    process.exit(1);
+  }
+  let cfg;
+  try {
+    cfg = JSON.parse(fs.readFileSync(configPath, "utf8"));
+  } catch (e) {
+    console.error("Could not parse ai-i18n-tools.config.json:", e.message);
+    process.exit(1);
+  }
+  const models = cfg.openrouter?.translationModels;
+  if (!Array.isArray(models) || models.length === 0) {
+    console.error("ai-i18n-tools.config.json: openrouter.translationModels must be a non-empty array");
+    process.exit(1);
+  }
+  return models;
+}
+
+const TRANSLATION_MODELS = loadTranslationModels();
 
 const DEFAULT_NUM_TRANSLATIONS = 100;
 const DEFAULT_NUM_REWRITES = 50;
@@ -28,10 +50,10 @@ const RESET = "\x1b[0m";
 
 /** Same body text for every generated action (linked in action_content). */
 const SAMPLE_INPUT_TEXT =
-  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
 
 const SAMPLE_OUTPUT_TEXT =
-  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
 /** Same rules as src/renderer/utils/misc/formatUtils.js getTextStats. */
 function getTextStats(text) {
@@ -129,7 +151,7 @@ Options:
   -h, --help             Show this help and exit
 
 Reads languages from data/config.json (or CONFIG_PATH for --app). Models from
-scripts/openrouter-script-models.js (same list as i18n translate script).
+ai-i18n-tools.config.json (openrouter.translationModels; same as i18n translate).
 Transform prompt names from src/config-defaults/transform-prompts.json.
 When the DB has a users table, entries get a random username from it.
 Drops action_content, clears api_calls, recreates action_content (FK), then inserts rows.`);

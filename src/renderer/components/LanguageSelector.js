@@ -5,7 +5,7 @@ import { Languages } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useContentLanguageLists } from '../hooks/useContentLanguageLists';
 import { findUILanguageEntry } from '../utils/misc/languageConstants';
-import { getUILanguageLabel } from '../utils/misc/languageDisplay';
+import { getUILanguageLabel } from "ai-i18n-tools/runtime";
 
 /** Internal value for "no target" (used when allowNone). Shown in UI as "No target language" */
 const AUTO_TARGET = "auto";

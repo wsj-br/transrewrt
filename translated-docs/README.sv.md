@@ -19,15 +19,15 @@ source_file_path: README.md
 
 AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller som självvärdd webbapp (Docker).
 
-- **Översätt** — mellan dussintals språk, med automatisk källspråksidentifiering
-- **Omskriv** — korrigerar grammatik, förbättrar tydlighet, formellt/informellt, kortast, utöka, tekniskt
-- **Omvandla** — anpassade AI-frågor; skapa och hantera frågor, valfritt målspråk per fråga
-- **Historik** — fullständig körningshistorik med inmatning/utmatning, filtrering och export
-- **Modeller & kostnad** — välj modeller från alla konfigurerade leverantörer; kostnads- och användningsöversikter med loggar, sammanfattningar per modell/operation/dag
-- **Användargränssnitt** — flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
-- **Webbläge** — stöd för flera användare med administratörsroller
-- **Skrivbord** — Electron-app för Windows och Linux
-- **Självvärdd** — Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
+- **Översätt** - mellan dussintals språk, med automatisk källspråksidentifiering
+- **Omskriv** - korrigerar grammatik, förbättrar tydlighet, formellt/informellt, kortast, utöka, tekniskt
+- **Omvandla** - anpassade AI-frågor; skapa och hantera frågor, valfritt målspråk per fråga
+- **Historik** - fullständig körningshistorik med inmatning/utmatning, filtrering och export
+- **Modeller & kostnad** - välj modeller från alla konfigurerade leverantörer; kostnads- och användningsöversikter med loggar, sammanfattningar per modell/operation/dag
+- **Användargränssnitt** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
+- **Webbläge** - stöd för flera användare med administratörsroller
+- **Skrivbord** - Electron-app för Windows och Linux
+- **Självvärdd** - Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
 
 När du har installerat programmet, se **[Användarhandbok](USER-GUIDE.sv.md)** för en fullständig genomgång av alla funktioner.
 
@@ -79,7 +79,7 @@ När du har installerat programmet, se **[Användarhandbok](USER-GUIDE.sv.md)** 
 
 **Översiktspanel**
 
-![Dashboard summary — usage](../images/screenshots/sv/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/sv/dashboard-summary.png)
 
 **Historik**
 

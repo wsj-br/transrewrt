@@ -16,7 +16,7 @@ import TransformTranslateModal from "./TransformTranslateModal";
 import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
 import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
-import { getTextDirection } from "../i18n";
+import { getTextDirection } from "ai-i18n-tools/runtime";
 
 const useStyles = makeStyles({
   root: {

@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-gedreven tekstgereedschap: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts — met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
+AI-gedreven tekstgereedschap: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
 
-- **Vertalen** — tussen tientallen talen, met automatische herkenning van de brontaal
-- **Herschrijven** — grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, inkorten, uitbreiden, technisch
-- **Transformatie** — aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
-- **Geschiedenis** — volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
-- **Modellen & kosten** — modellen kiezen van elke geconfigureerde provider; dashboard voor kosten en gebruik met logboek, samenvattingen per model/operatie/dag
-- **UI** — meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
-- **Webmodus** — ondersteuning voor meerdere gebruikers met beheerdersrollen
-- **Desktop** — Electron-app voor Windows en Linux
-- **Zelfgehost** — Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
+- **Vertalen** - tussen tientallen talen, met automatische herkenning van de brontaal
+- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, inkorten, uitbreiden, technisch
+- **Transformatie** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
+- **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
+- **Modellen & kosten** - modellen kiezen van elke geconfigureerde provider; dashboard voor kosten en gebruik met logboek, samenvattingen per model/operatie/dag
+- **UI** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
+- **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
+- **Desktop** - Electron-app voor Windows en Linux
+- **Zelfgehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
 
 Nadat u het heeft geïnstalleerd, raadpleegt u de **[Gebruikershandleiding](USER-GUIDE.nl.md)** voor een volledige uitleg van alle functies.
 
@@ -79,7 +79,7 @@ Nadat u het heeft geïnstalleerd, raadpleegt u de **[Gebruikershandleiding](USER
 
 **Dashboard**
 
-![Dashboard summary — usage](../images/screenshots/nl/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/nl/dashboard-summary.png)
 
 **Geschiedenis**
 
@@ -193,7 +193,7 @@ Een lijst van geldige tijdzone-namen wordt bijgehouden in de [tz-database](https
 >   - **User Account Control (UAC)**: "Wil je toestaan dat deze app van een onbekende uitgever wijzigingen aanbrengt op je apparaat?" → Klik op **Ja**.
 >   - **Microsoft Defender SmartScreen**: "Windows heeft je pc beschermd" → Klik op **Meer info** → **Toch uitvoeren**.
 >
-> Dit gebeurt omdat de app niet ondertekend is door Microsoft of een grote uitgever—het is veilig als je het downloadt van onze officiële GitHub-releases (controleer de checksums op de [Releases](https://github.com/wsj-br/transrewrt/releases)-pagina naast elk bestand).
+> Dit gebeurt omdat de app niet ondertekend is door Microsoft of een grote uitgever-het is veilig als je het downloadt van onze officiële GitHub-releases (controleer de checksums op de [Releases](https://github.com/wsj-br/transrewrt/releases)-pagina naast elk bestand).
 
 <br/>
 

@@ -45,7 +45,7 @@ export function getFilters(t) {
   ];
 }
 
-export const DASH = "—";
+export const DASH = "-";
 
 const DEFAULT_LOCALE = "en-GB";
 function resolveLocale(locale) {

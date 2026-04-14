@@ -544,10 +544,10 @@ Die verfügbaren Registerkarten hängen von der Plattform und Ihrer Rolle ab:
   | Allgemeine Einstellungen  |   Ja   |     Ja     |        Ja         |
   | Modelle            |   Ja   |     Ja     |        Ja         |
   | Sprachen         |   Ja   |     Ja     |        Ja         |
-  | Kostenverfolgung     |   Ja   |     Ja     |         —          |
+  | Kostenverfolgung     |   Ja   |     Ja     |         -          |
   | Transform-Prompts |   Ja   |     Ja     |        Ja         |
-  | Benutzer             |    —    |     Ja     |         —          |
-  | API-Konfiguration        |   Ja   |     Ja     |         —          |
+  | Benutzer             |    -    |     Ja     |         -          |
+  | API-Konfiguration        |   Ja   |     Ja     |         -          |
   | Über             |   Ja   |     Ja     |        Ja         |
 
 <br/>

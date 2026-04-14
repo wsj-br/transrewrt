@@ -11,17 +11,17 @@
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts — using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
+AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- **Translate** — between dozens of languages, with automatic source detection
-- **Rewrite** — fix grammar, improve clarity, formal/informal, shorten, expand, technical
-- **Transform** — custom AI prompts; create and manage prompts, optional target language per prompt
-- **History** — full execution history with input/output text, filtering, and export
-- **Models & cost** — choose models from any configured provider; cost and usage dashboards with log, summaries by model/operation/day
-- **UI** — multilingual interface (30+ languages, RTL support), fonts, ...
-- **Web mode** — multi-user support with admin roles
-- **Desktop** — Electron app for Windows and Linux
-- **Self-hosted** — Docker image for amd64 & arm64 (Raspberry Pi-ready)
+- **Translate** - between dozens of languages, with automatic source detection
+- **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
+- **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
+- **History** - full execution history with input/output text, filtering, and export
+- **Models & cost** - choose models from any configured provider; cost and usage dashboards with log, summaries by model/operation/day
+- **UI** - multilingual interface (30+ languages, RTL support), fonts, ...
+- **Web mode** - multi-user support with admin roles
+- **Desktop** - Electron app for Windows and Linux
+- **Self-hosted** - Docker image for amd64 & arm64 (Raspberry Pi-ready)
 
 Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough of all features.
 
@@ -73,7 +73,7 @@ Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough o
 
 **Dashboard**
 
-![Dashboard summary — usage](images/screenshots/en-GB/dashboard-summary.png)
+![Dashboard summary - usage](images/screenshots/en-GB/dashboard-summary.png)
 
 **History**
 
@@ -188,7 +188,7 @@ A list of valid timezone names is maintained in the [tz database](https://en.wik
 >   - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
 >   - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
 >
-> This happens because the app isn't signed by Microsoft or a major publisher—it's safe if downloaded from our official GitHub releases (verify checksums on the [Releases](https://github.com/wsj-br/transrewrt/releases) page alongside each asset).
+> This happens because the app isn't signed by Microsoft or a major publisher-it's safe if downloaded from our official GitHub releases (verify checksums on the [Releases](https://github.com/wsj-br/transrewrt/releases) page alongside each asset).
 
 <br/>
 

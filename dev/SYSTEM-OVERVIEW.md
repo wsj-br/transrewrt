@@ -1,4 +1,4 @@
-# Transrewrt — System Overview
+# Transrewrt - System Overview
 
 Technical architecture, folder structure, tech stack, and design decisions for the Transrewrt application.
 
@@ -79,7 +79,7 @@ flowchart TB
 
 | Mode | Config / preferences | LLM calls | Settings UI |
 |------|----------------------|-----------|-------------|
-| **Electron** | Single local **`config.json`** (path from main: user data / project / portable); provider secrets stay in main; renderer gets **sanitized** config over IPC | **IPC** `llm:stream` / `llm:abort` / `llm:models` — main process runs **multi-llm-ts** and reaches providers | Separate window or modal |
+| **Electron** | Single local **`config.json`** (path from main: user data / project / portable); provider secrets stay in main; renderer gets **sanitized** config over IPC | **IPC** `llm:stream` / `llm:abort` / `llm:models` - main process runs **multi-llm-ts** and reaches providers | Separate window or modal |
 | **Web/Docker** | **Global** `config.json`: **server-only** keys (provider secrets, `web_session_timeout`). **Per user** (signed in): workspace + UI prefs in SQLite **`user_preferences`** merged on `GET/POST /api/config` | **SSE** `POST /api/llm/stream` (+ `GET /api/llm/models`, etc.); browser never receives provider keys | Inline modal |
 
 In web mode, provider API keys are stored only in server config or environment; the client talks to **`/api/llm/*`** without embedding secrets.
@@ -101,7 +101,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 
 The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/multi-llm-ts)** library for **chat completions** and **model listing**, with extra logic in [src/shared/llm/index.js](../src/shared/llm/index.js) for **namespaced ids**, **pricing cache**, and **OpenRouter** streaming (including generation-id / cost where applicable). The same module is required from **Electron main** ([llmIpc.js](../src/main/ipc/llmIpc.js)) and the **Express server** ([apiLlm.js](../src/server/routes/apiLlm.js)).
 
-**Supported engines** (each maps to a config key and optional env var — see `CONFIG_KEY_BY_ENGINE` / `ENV_KEY_BY_ENGINE` in `shared/llm/index.js`):
+**Supported engines** (each maps to a config key and optional env var - see `CONFIG_KEY_BY_ENGINE` / `ENV_KEY_BY_ENGINE` in `shared/llm/index.js`):
 
 | Engine | Role |
 |--------|------|
@@ -111,7 +111,7 @@ The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/
 
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.
 
-**Pricing / “free” UI**: OpenRouter’s public model list can populate a **pricing cache** (TTL in code) for cost estimates; direct engines use cached or list pricing when available — see `modelPricingUtils` and CHANGELOG entries on “Cost not available” / free models.
+**Pricing / “free” UI**: OpenRouter’s public model list can populate a **pricing cache** (TTL in code) for cost estimates; direct engines use cached or list pricing when available - see `modelPricingUtils` and CHANGELOG entries on “Cost not available” / free models.
 
 ---
 
@@ -119,8 +119,8 @@ The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/
 
 ### Electron (desktop)
 
-- **At-rest API keys**: Provider secret fields listed in **`ENCRYPTED_CONFIG_KEYS`** ([shared/llm/index.js](../src/shared/llm/index.js) — all configured engines except **Ollama**) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with **`enc:`**. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in **`transrewrt.key`** (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
-- **Renderer never sees raw secrets**: **`config:get`** ([configIpc.js](../src/main/ipc/configIpc.js)) **strips** those fields and exposes only **`*_configured`** flags plus **`llm_configured`**. The renderer must not receive secrets via **`config:setAll`** either — encrypted keys are **ignored** in the payload (`ENCRYPTED_CONFIG_KEYS` are skipped when merging).
+- **At-rest API keys**: Provider secret fields listed in **`ENCRYPTED_CONFIG_KEYS`** ([shared/llm/index.js](../src/shared/llm/index.js) - all configured engines except **Ollama**) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with **`enc:`**. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in **`transrewrt.key`** (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
+- **Renderer never sees raw secrets**: **`config:get`** ([configIpc.js](../src/main/ipc/configIpc.js)) **strips** those fields and exposes only **`*_configured`** flags plus **`llm_configured`**. The renderer must not receive secrets via **`config:setAll`** either - encrypted keys are **ignored** in the payload (`ENCRYPTED_CONFIG_KEYS` are skipped when merging).
 - **Building LLM requests**: Main exposes **`config:getSecretsForRequest`**, which returns **`mergeKeys(cache)`** (plain secrets for the main process only) so streaming and tests run in **main**, not in the renderer.
 - **Legacy helpers** in `encryption.js` for **`key_seed`** remain for decrypting old values if present; the **Transrewrt proxy** feature that used them has been **removed** from the product.
 
@@ -201,7 +201,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 ### Web / Docker
 
-- **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys — provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), **`web_session_timeout`**, etc. **Not** used for per-user workspace after migration.
+- **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), **`web_session_timeout`**, etc. **Not** used for per-user workspace after migration.
 - **SQLite** (`transrewrt.db` next to the config file): **`user_preferences`** JSON per user (merged into **`GET /api/config`** and updated via **`POST /api/config`** for non-global keys), **`users`**, **`sessions`**, **`api_calls`**, **`action_content`**, **`custom_prompts`**, etc.
 - **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in **`user_preferences`**.
 - **UI language**: `ui_locale` is part of merged settings; [i18n.js](../src/renderer/i18n.js) and `locales/`. Login may use **`localStorage`** for locale before session exists.

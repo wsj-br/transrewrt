@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-04-02T12:39:08.000Z'
-source_file_mtime: '2026-04-02T12:36:37.805Z'
+translation_last_updated: '2026-04-09T23:22:02.740Z'
+source_file_mtime: '2026-04-07T18:28:53.551Z'
 source_file_hash: 0826245f792850f3
 translation_language: hr
 source_file_path: README.md
@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat za obradu teksta s AI-om: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija pomoću prilagođenih upita — koristeći više davatelja AI-a (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao aplikacija za računalo (Electron) ili samoposlužena web aplikacija (Docker).
+Alat za obradu teksta s AI-om: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija pomoću prilagođenih upita - koristeći više davatelja AI-a (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao aplikacija za računalo (Electron) ili samoposlužena web aplikacija (Docker).
 
-- **Prevedi** — između desetaka jezika, s automatskom detekcijom izvornog jezika
-- **Prepravak** — ispravljanje gramatike, poboljšanje jasnoće, formalni/neformalni stil, skraćivanje, proširivanje, tehnički sadržaj
-- **Transformacija** — prilagođeni AI upiti; stvaranje i upravljanje upitima, opcionalni ciljni jezik po upitu
-- **Povijest** — potpuna povijest izvršavanja s unosom/izlaznim tekstom, filtriranjem i izvozom
-- **Modeli i trošak** — odabir modela od bilo kojeg konfiguriranog davatelja; nadzorna ploča za troškove i korištenje s dnevnikom, sažecima po modelu/postupku/danu
-- **Sučelje** — višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
-- **Web način** — podrška za više korisnika s administratorskim ulogama
-- **Računalo** — Electron aplikacija za Windows i Linux
-- **Samoposluženje** — Docker slika za amd64 i arm64 (spremno za Raspberry Pi)
+- **Prevedi** - između desetaka jezika, s automatskom detekcijom izvornog jezika
+- **Prepravak** - ispravljanje gramatike, poboljšanje jasnoće, formalni/neformalni stil, skraćivanje, proširivanje, tehnički sadržaj
+- **Transformacija** - prilagođeni AI upiti; stvaranje i upravljanje upitima, opcionalni ciljni jezik po upitu
+- **Povijest** - potpuna povijest izvršavanja s unosom/izlaznim tekstom, filtriranjem i izvozom
+- **Modeli i trošak** - odabir modela od bilo kojeg konfiguriranog davatelja; nadzorna ploča za troškove i korištenje s dnevnikom, sažecima po modelu/postupku/danu
+- **Sučelje** - višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
+- **Web način** - podrška za više korisnika s administratorskim ulogama
+- **Računalo** - Electron aplikacija za Windows i Linux
+- **Samoposluženje** - Docker slika za amd64 i arm64 (spremno za Raspberry Pi)
 
 Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za potpuni pregled svih značajki.
 
@@ -79,7 +79,7 @@ Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za pot
 
 **Nadzorna ploča**
 
-![Dashboard summary — usage](../images/screenshots/hr/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/hr/dashboard-summary.png)
 
 **Povijest**
 

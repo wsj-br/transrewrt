@@ -301,7 +301,7 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Translate prompt fields (JSON object in one request; same prompt style as generate-translations)
+  // Translate prompt fields (JSON object in one request; same prompt style as ai-i18n-tools translate-ui)
   const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
     setLoading(true);
     setError(null);
@@ -532,7 +532,7 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Transform text with custom prompt (cost tracking: same as translate/rewrite — updates total_cost for Settings > Cost tracking)
+  // Transform text with custom prompt (cost tracking: same as translate/rewrite - updates total_cost for Settings > Cost tracking)
   const transform = async (text, promptConfig, model, targetLang = null, signal = null) => {
     setLoading(true);
     setError(null);

@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Strumento testuale basato su IA: traduci tra lingue diverse, riscrivi in stili differenti e trasforma con prompt personalizzati — utilizzando diversi provider di IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama locale). Funziona come app desktop (Electron) o come app web autogestita (Docker).
+Strumento testuale basato su IA: traduci tra lingue diverse, riscrivi in stili differenti e trasforma con prompt personalizzati - utilizzando diversi provider di IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama locale). Funziona come app desktop (Electron) o come app web autogestita (Docker).
 
-- **Traduci** — tra dozzine di lingue, con rilevamento automatico della lingua sorgente
-- **Riscrittura** — correggi grammatica, migliora chiarezza, formale/informale, accorcia, espandi, tecnico
-- **Trasformazione** — prompt personalizzati per IA; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
-- **Cronologia** — cronologia completa delle esecuzioni con testo in ingresso/uscita, filtri ed esportazione
-- **Modelli e costo** — scegli modelli da qualsiasi provider configurato; dashboard di costo e utilizzo con log, riepiloghi per modello/operazione/giorno
-- **Interfaccia utente** — interfaccia multilingue (30+ lingue, supporto RTL), font, ...
-- **Modalità web** — supporto multi-utente con ruoli amministratore
-- **Desktop** — app Electron per Windows e Linux
-- **Autogestito** — immagine Docker per amd64 e arm64 (pronto per Raspberry Pi)
+- **Traduci** - tra dozzine di lingue, con rilevamento automatico della lingua sorgente
+- **Riscrittura** - correggi grammatica, migliora chiarezza, formale/informale, accorcia, espandi, tecnico
+- **Trasformazione** - prompt personalizzati per IA; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
+- **Cronologia** - cronologia completa delle esecuzioni con testo in ingresso/uscita, filtri ed esportazione
+- **Modelli e costo** - scegli modelli da qualsiasi provider configurato; dashboard di costo e utilizzo con log, riepiloghi per modello/operazione/giorno
+- **Interfaccia utente** - interfaccia multilingue (30+ lingue, supporto RTL), font, ...
+- **Modalità web** - supporto multi-utente con ruoli amministratore
+- **Desktop** - app Electron per Windows e Linux
+- **Autogestito** - immagine Docker per amd64 e arm64 (pronto per Raspberry Pi)
 
 Dopo l'installazione, consulta la **[Guida Utente](USER-GUIDE.it.md)** per una panoramica completa di tutte le funzionalità.
 
@@ -79,7 +79,7 @@ Dopo l'installazione, consulta la **[Guida Utente](USER-GUIDE.it.md)** per una p
 
 **Dashboard**
 
-![Dashboard summary — usage](../images/screenshots/it/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/it/dashboard-summary.png)
 
 **Cronologia**
 
@@ -193,7 +193,7 @@ Un elenco dei nomi validi di fuso orario è mantenuto nel [database tz](https://
 >   - **Controllo account utente (UAC)**: "Consentire a questa app di un editore sconosciuto di apportare modifiche al dispositivo?" → Clicca su **Sì**.
 >   - **Microsoft Defender SmartScreen**: "Windows ha protetto il PC" → Clicca su **Altre informazioni** → **Esegui comunque**.
 >
-> Questo accade perché l'app non è firmata da Microsoft o da un editore importante—è sicura se scaricata dalle nostre release ufficiali su GitHub (verifica i checksum nella pagina [Releases](https://github.com/wsj-br/transrewrt/releases) accanto a ogni risorsa).
+> Questo accade perché l'app non è firmata da Microsoft o da un editore importante-è sicura se scaricata dalle nostre release ufficiali su GitHub (verifica i checksum nella pagina [Releases](https://github.com/wsj-br/transrewrt/releases) accanto a ogni risorsa).
 
 <br/>
 

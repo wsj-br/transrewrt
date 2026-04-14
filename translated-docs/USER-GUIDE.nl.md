@@ -207,7 +207,7 @@ Met de **modelselector** kun je kiezen welke AI-engine je wilt gebruiken voor de
 
 ![Model selector](../images/screenshots/nl/model-selector.png)
 
-Sommige gratis modellen zijn mogelijk niet altijd beschikbaar — soms zijn ze offline of hebben ze een gebruikslimiet. Als dit gebeurt, verwijdert de app dat model automatisch uit je beschikbare lijst. Om te bepalen welke modellen worden weergegeven, ga je naar [**Instellingen** > **Modellen**](#models) en bewerk je je modellenlijst. 
+Sommige gratis modellen zijn mogelijk niet altijd beschikbaar - soms zijn ze offline of hebben ze een gebruikslimiet. Als dit gebeurt, verwijdert de app dat model automatisch uit je beschikbare lijst. Om te bepalen welke modellen worden weergegeven, ga je naar [**Instellingen** > **Modellen**](#models) en bewerk je je modellenlijst. 
 Je kunt de modelinstellingen ook rechtstreeks openen door op het providerpictogram links van de modelnaam in de werkbalk te klikken.
 
 <br/>
@@ -544,10 +544,10 @@ De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
   | Algemene instellingen  |   ja   |     ja     |        ja         |
   | Modellen            |   ja   |     ja     |        ja         |
   | Talen         |   ja   |     ja     |        ja         |
-  | Kostenregistratie     |   ja   |     ja     |         —          |
+  | Kostenregistratie     |   ja   |     ja     |         -          |
   | Transformatie-prompts |   ja   |     ja     |        ja         |
-  | Gebruikers             |    —    |     ja     |         —          |
-  | API-configuratie        |   ja   |     ja     |         —          |
+  | Gebruikers             |    -    |     ja     |         -          |
+  | API-configuratie        |   ja   |     ja     |         -          |
   | Over             |   ja   |     ja     |        ja         |
 
 <br/>
@@ -587,11 +587,11 @@ Gebruik **Algemene instellingen** om het typgedrag, het opslaan van uitvoeringsd
 
 **Configuratieback-up**
 
-- **Neem gebruikgegevens op in de back-up** — wanneer ingeschakeld, bevat het ZIP-bestand ook uitvoeringsgeschiedenis en API-aanroepgegevens.
-- **Configuratie back-uppen** — maakt standaard één ZIP-bestand aan (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruikgegevens indien ingeschakeld. Na een succesvolle back-up wordt de bestandsnaam van het opgeslagen bestand weergegeven.
-- **Herstellen vanuit back-up** — opent eerst een **bevestigingsvenster**. Kies het back-up ZIP-bestand in het venster (**Bladeren** / bestandskiezer of slepen en neerzetten waar ondersteund), en controleer vervolgens de opties:
-  - **Herstel de gebruikgegevens** — importeert gebruik/geschiedenis uit het ZIP-bestand wanneer deze is gemaakt met gebruikgegevens; laat uitgeschakeld als u alleen instellingen en prompts wilt.
-  - **Verwijder de oude gebruikgegevens voordat u herstelt** — verwijdert bestaande gebruik/geschiedenis in deze installatie voordat de back-up wordt toegepast (optioneel; gebruik wanneer u een schone vervanging wilt).
+- **Neem gebruikgegevens op in de back-up** - wanneer ingeschakeld, bevat het ZIP-bestand ook uitvoeringsgeschiedenis en API-aanroepgegevens.
+- **Configuratie back-uppen** - maakt standaard één ZIP-bestand aan (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruikgegevens indien ingeschakeld. Na een succesvolle back-up wordt de bestandsnaam van het opgeslagen bestand weergegeven.
+- **Herstellen vanuit back-up** - opent eerst een **bevestigingsvenster**. Kies het back-up ZIP-bestand in het venster (**Bladeren** / bestandskiezer of slepen en neerzetten waar ondersteund), en controleer vervolgens de opties:
+  - **Herstel de gebruikgegevens** - importeert gebruik/geschiedenis uit het ZIP-bestand wanneer deze is gemaakt met gebruikgegevens; laat uitgeschakeld als u alleen instellingen en prompts wilt.
+  - **Verwijder de oude gebruikgegevens voordat u herstelt** - verwijdert bestaande gebruik/geschiedenis in deze installatie voordat de back-up wordt toegepast (optioneel; gebruik wanneer u een schone vervanging wilt).
 
 Back-ups die zijn gemaakt in de web- of desktopversie kunnen in de andere worden hersteld. Bij het herstellen van een desktopback-up in de webversie worden de gegevens hersteld naar de beheerdersgebruiker.
 
@@ -706,7 +706,7 @@ De ondersteunde providers zijn: OpenRouter, OpenAI, Anthropic, Google Gemini, De
 
 **Webapplicatie: alleen beheerder**
 
-API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen — ze worden niet ingevoerd in de web-UI. Op deze pagina ziet u welke providers een sleutel geconfigureerd hebben en kunt u elke provider testen door op de knop **`Test`** te klikken.
+API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen - ze worden niet ingevoerd in de web-UI. Op deze pagina ziet u welke providers een sleutel geconfigureerd hebben en kunt u elke provider testen door op de knop **`Test`** te klikken.
 
 <br/>
 
@@ -714,7 +714,7 @@ API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen �
 > Om een API-sleutel te wijzigen, moet u de omgevingsvariabele in uw systeem- of Docker-configuratie bijwerken en de server of container opnieuw starten.
 
 > ℹ️ **OPMERKING**<br/>
-> **Configuratieback-ups** (zie [**Algemene instellingen** → Configuratieback-up](#general-settings)) kunnen **opgeloste** providersleutels insluiten in het `config.json` van de ZIP. Bij het herstellen van die ZIP worden deze sleutels **niet** teruggekopieerd naar het persistente configuratiebestand van de server — actieve sleutels komen nog steeds uit de omgeving en de bestaande bestandsstatus zoals daar beschreven.
+> **Configuratieback-ups** (zie [**Algemene instellingen** → Configuratieback-up](#general-settings)) kunnen **opgeloste** providersleutels insluiten in het `config.json` van de ZIP. Bij het herstellen van die ZIP worden deze sleutels **niet** teruggekopieerd naar het persistente configuratiebestand van de server - actieve sleutels komen nog steeds uit de omgeving en de bestaande bestandsstatus zoals daar beschreven.
 
 <br/>
 
@@ -825,7 +825,7 @@ Open [**Instellingen** > **Algemene instellingen**](#general-settings) en wijzig
 Dit is normaal als:
 
 - u alleen **gratis modellen** gebruikt en kijkt naar **kosten** (deze kunnen nul zijn); **aantal oproepen**-grafieken op **Samenvatting** hebben nog gegevens nodig uit de geselecteerde periode
-- het geselecteerde **tijdfilter** niet overeenkomt met de periode waarin oproepen zijn gedaan — probeer **Alles** om te controleren
+- het geselecteerde **tijdfilter** niet overeenkomt met de periode waarin oproepen zijn gedaan - probeer **Alles** om te controleren
 
 Als grafieken nog steeds leeg zijn na het selecteren van **Alles**, controleer dan of oproepen verschijnen in [**Geschiedenis**](#history) of in het tabblad **Alle oproepen**.
 

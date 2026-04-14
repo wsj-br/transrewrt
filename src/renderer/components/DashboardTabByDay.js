@@ -14,7 +14,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
-import { interpolateTemplate } from "../utils/misc/formatUtils";
 import {
   formatCost,
   formatCount,
@@ -236,17 +235,14 @@ export default function DashboardTabByDay({
             ))}
           </Dropdown>
           <span style={{ color: tokens.colorNeutralForeground2 }}>
-            {interpolateTemplate(
-              t("{{count}} day(s) total · Page {{page}} of {{total}}"),
-              {
-                count: byDayPaginatedTotal,
-                page: byDayPage,
-                total: Math.max(
-                  1,
-                  Math.ceil(byDayPaginatedTotal / byDayPageSize)
-                ),
-              }
-            )}
+            {t("{{count}} day(s) total · Page {{page}} of {{total}}", {
+              count: byDayPaginatedTotal,
+              page: byDayPage,
+              total: Math.max(
+                1,
+                Math.ceil(byDayPaginatedTotal / byDayPageSize)
+              ),
+            })}
           </span>
           <Button
             size="small"

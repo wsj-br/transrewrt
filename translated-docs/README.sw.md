@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Zana ya maandishi yenye nguvu za AI: tafsiri kati ya lugha, andika upya kwa mitindo tofauti, na ubadilishe kwa mandhari maalum — kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama kijitihima). Inatumia kama programu ya kompyuta (Electron) au kama programu ya wavuti inayohifadhiwa kibinafsi (Docker).
+Zana ya maandishi yenye nguvu za AI: tafsiri kati ya lugha, andika upya kwa mitindo tofauti, na ubadilishe kwa mandhari maalum - kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama kijitihima). Inatumia kama programu ya kompyuta (Electron) au kama programu ya wavuti inayohifadhiwa kibinafsi (Docker).
 
-- **Tafsiri** — kati ya lugha nyingi, na ukaguzi otomatiki wa lugha ya chanzo
-- **Andika upya** — sahihi sarufi, boresha uwazi, muundo rasmi/lofani, fupisha, panua, kwa mitindo ya kiufundi
-- **Badilisha** — mandhari maalum ya AI; tengeneza na usimamize mandhari, lugha ya mpangilio ya kuchagua kwa kila mandhari
-- **Historia** — historia kamili ya utekelezaji ikiwa na maandishi ya pembejeo/ya pato, kupanga kwa kipengele, na toa
-- **Mifano & gharama** — chagua mifano kutoka kwa mtoa huduma yeyote uliyowekwa; ubao wa gharama na matumizi kwa kumbukumbu, muhtasari kwa kifaa/kitendo/siku
-- **UI** — kipindi cha lugha nyingi (zaidi ya 30, msaada wa RTL), fonti, ...
-- **Kipindi cha wavuti** — msaada wa wanatumia wengi wenye majukumu ya msimamizi
-- **Kipengee cha kompyuta** — programu ya Electron kwa Windows na Linux
-- **Inahifadhiwa kibinafsi** — picha ya Docker kwa amd64 & arm64 (inayotayarishwa kwa Raspberry Pi)
+- **Tafsiri** - kati ya lugha nyingi, na ukaguzi otomatiki wa lugha ya chanzo
+- **Andika upya** - sahihi sarufi, boresha uwazi, muundo rasmi/lofani, fupisha, panua, kwa mitindo ya kiufundi
+- **Badilisha** - mandhari maalum ya AI; tengeneza na usimamize mandhari, lugha ya mpangilio ya kuchagua kwa kila mandhari
+- **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya pembejeo/ya pato, kupanga kwa kipengele, na toa
+- **Mifano & gharama** - chagua mifano kutoka kwa mtoa huduma yeyote uliyowekwa; ubao wa gharama na matumizi kwa kumbukumbu, muhtasari kwa kifaa/kitendo/siku
+- **UI** - kipindi cha lugha nyingi (zaidi ya 30, msaada wa RTL), fonti, ...
+- **Kipindi cha wavuti** - msaada wa wanatumia wengi wenye majukumu ya msimamizi
+- **Kipengee cha kompyuta** - programu ya Electron kwa Windows na Linux
+- **Inahifadhiwa kibinafsi** - picha ya Docker kwa amd64 & arm64 (inayotayarishwa kwa Raspberry Pi)
 
 Baada ya kusakinisha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa muhtasari wa kipimo kikubwa cha vipengele vyote.
 
@@ -79,7 +79,7 @@ Baada ya kusakinisha, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa m
 
 **Ubao**
 
-![Dashboard summary — usage](../images/screenshots/sw/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/sw/dashboard-summary.png)
 
 **Historia**
 
@@ -193,7 +193,7 @@ Orodha ya majina sahihi ya saa ya eneo inahifadhiwa kwenye [tz database](https:/
 >   - **Udhibiti wa Akaunti ya Mtumiaji (UAC)**: "Je, unataka kuruhusu programu hii kutoka kwa mchuzi asiyejulikana kufanya mabadiliko kwenye kifaa chako?" → Bofya **Ndio**.
 >   - **Microsoft Defender SmartScreen**: "Windows imelinda PC yako" → Bofya **Maelezo zaidi** → **Endelea kwa namna yoyote**.
 >
-> Hii hutokea kwa sababu programu haijasainiwa na Microsoft au mchuzi mkuu—ni salama ikiwa imepakuliwa kutoka kwa matoleo yetu ya GitHub rasmi (thibitisha checksums kwenye ukurasa wa [Matoleo](https://github.com/wsj-br/transrewrt/releases) pamoja na kila kipengele).
+> Hii hutokea kwa sababu programu haijasainiwa na Microsoft au mchuzi mkuu-ni salama ikiwa imepakuliwa kutoka kwa matoleo yetu ya GitHub rasmi (thibitisha checksums kwenye ukurasa wa [Matoleo](https://github.com/wsj-br/transrewrt/releases) pamoja na kila kipengele).
 
 <br/>
 

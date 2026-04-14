@@ -206,7 +206,7 @@ Pasek narzędzi nieznacznie zmienia się w zależności od tego, gdzie znajdujes
 
 ![Model selector](../images/screenshots/pl/model-selector.png)
 
-Niektóre modele bezpłatne mogą nie być zawsze dostępne — czasem są wyłączone lub mają ograniczenie użycia. W takim przypadku aplikacja automatycznie usunie ten model z listy dostępnych. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models) i edytuj swoją listę modeli.
+Niektóre modele bezpłatne mogą nie być zawsze dostępne - czasem są wyłączone lub mają ograniczenie użycia. W takim przypadku aplikacja automatycznie usunie ten model z listy dostępnych. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models) i edytuj swoją listę modeli.
 Możesz również otworzyć ustawienia modelu bezpośrednio, klikając ikonę dostawcy po lewej stronie nazwy modelu na pasku narzędzi.
 
 <br/>
@@ -543,10 +543,10 @@ Dostępne karty zależą od platformy i Twojej roli:
   | Ustawienia ogólne  |   tak   |     tak     |        tak         |
   | Modele            |   tak   |     tak     |        tak         |
   | Języki         |   tak   |     tak     |        tak         |
-  | Śledzenie kosztów     |   tak   |     tak     |         —          |
+  | Śledzenie kosztów     |   tak   |     tak     |         -          |
   | Prompty transformacji |   tak   |     tak     |        tak         |
-  | Użytkownicy             |    —    |     tak     |         —          |
-  | Konfiguracja API        |   tak   |     tak     |         —          |
+  | Użytkownicy             |    -    |     tak     |         -          |
+  | Konfiguracja API        |   tak   |     tak     |         -          |
   | O programie             |   tak   |     tak     |        tak         |
 
 <br/>
@@ -586,11 +586,11 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 
 **Kopia zapasowa konfiguracji**
 
-- **Uwzględnij dane dotyczące użycia w kopii zapasowej** — po włączeniu plik ZIP zawiera również historię wykonania i dane wywołań API.
-- **Utwórz kopię zapasową konfiguracji** — tworzy pojedynczy plik ZIP (`transrewrt-config-backup-RRRR-MM-DD_GGMMSS.zip` domyślnie w czasie UTC) zawierający `config.json`, `state.json`, opcjonalny klucz szyfrowania, użytkowników, preferencje, niestandardowe prompty oraz dane użycia, jeśli zostały wybrane. Po pomyślnej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
-- **Przywróć z kopii zapasowej** — najpierw otwiera **okno potwierdzenia**. Wybierz plik kopii zapasowej ZIP w oknie dialogowym (**Przeglądaj** / selektor plików lub przeciągnij i upuść, tam gdzie to możliwe), a następnie przejrzyj opcje:
-  - **Przywróć dane dotyczące użycia** — importuje dane użycia/historii z pliku ZIP, jeśli zostały one uwzględnione podczas tworzenia kopii zapasowej; pozostaw wyłączone, jeśli chcesz tylko ustawienia i prompty.
-  - **Wyczyść stare dane dotyczące użycia przed przywróceniem** — usuwa istniejące dane użycia/historię w tej instalacji przed zastosowaniem kopii zapasowej (opcjonalne; użyj, gdy chcesz wykonać czyste zastąpienie).
+- **Uwzględnij dane dotyczące użycia w kopii zapasowej** - po włączeniu plik ZIP zawiera również historię wykonania i dane wywołań API.
+- **Utwórz kopię zapasową konfiguracji** - tworzy pojedynczy plik ZIP (`transrewrt-config-backup-RRRR-MM-DD_GGMMSS.zip` domyślnie w czasie UTC) zawierający `config.json`, `state.json`, opcjonalny klucz szyfrowania, użytkowników, preferencje, niestandardowe prompty oraz dane użycia, jeśli zostały wybrane. Po pomyślnej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
+- **Przywróć z kopii zapasowej** - najpierw otwiera **okno potwierdzenia**. Wybierz plik kopii zapasowej ZIP w oknie dialogowym (**Przeglądaj** / selektor plików lub przeciągnij i upuść, tam gdzie to możliwe), a następnie przejrzyj opcje:
+  - **Przywróć dane dotyczące użycia** - importuje dane użycia/historii z pliku ZIP, jeśli zostały one uwzględnione podczas tworzenia kopii zapasowej; pozostaw wyłączone, jeśli chcesz tylko ustawienia i prompty.
+  - **Wyczyść stare dane dotyczące użycia przed przywróceniem** - usuwa istniejące dane użycia/historię w tej instalacji przed zastosowaniem kopii zapasowej (opcjonalne; użyj, gdy chcesz wykonać czyste zastąpienie).
 
 Kopie zapasowe utworzone w wersji internetowej lub komputerowej można przywrócić w drugiej wersji. Przy przywracaniu kopii zapasowej komputerowej w wersji internetowej dane zostaną przywrócone do użytkownika administratora.
 
@@ -611,7 +611,7 @@ Strona zawiera dwie listy:
 Przydatne kontrolki obejmują:
 
 - **Szukaj modeli...** aby znaleźć model po nazwie
-- **Dostawca** — filtry do zawężenia listy do jednego silnika (OpenRouter, OpenAI, Ollama, …)
+- **Dostawca** - filtry do zawężenia listy do jednego silnika (OpenRouter, OpenAI, Ollama, …)
 - **Tylko darmowe** aby wyświetlić tylko darmowe modele
 - **Odśwież** aby ponownie załadować listę
 - **Rozwiń wszystko** i **Zwiń wszystko** podczas sortowania według dostawcy
@@ -705,7 +705,7 @@ Obsługiwani dostawcy to: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek
 
 **Aplikacja internetowa: tylko administrator**
 
-Klucze API są konfigurowane za pomocą zmiennych środowiskowych systemu lub Dockera — nie są wprowadzane w interfejsie WWW. Na tej stronie możesz zobaczyć, dla których dostawców skonfigurowano klucz, oraz przetestować każdego z nich, klikając przycisk **`Testuj`**.
+Klucze API są konfigurowane za pomocą zmiennych środowiskowych systemu lub Dockera - nie są wprowadzane w interfejsie WWW. Na tej stronie możesz zobaczyć, dla których dostawców skonfigurowano klucz, oraz przetestować każdego z nich, klikając przycisk **`Testuj`**.
 
 <br/>
 
@@ -713,7 +713,7 @@ Klucze API są konfigurowane za pomocą zmiennych środowiskowych systemu lub Do
 > Aby zmienić klucz API, zaktualizuj zmienną środowiskową w konfiguracji systemu lub Dockera i uruchom ponownie serwer lub kontener.
 
 > ℹ️ **UWAGA**<br/>
-> **Kopie zapasowe konfiguracji** (zobacz [**Ustawienia ogólne** → Kopia zapasowa konfiguracji](#general-settings)) mogą zawierać **rozwiązane** klucze dostawcy w pliku `config.json` wewnątrz archiwum ZIP. Przywrócenie tego archiwum ZIP **nie** kopiuje tych kluczy z powrotem do pliku konfiguracyjnego serwera — aktywne klucze nadal pochodzą ze zmiennych środowiskowych i istniejącego stanu pliku, jak opisano powyżej.
+> **Kopie zapasowe konfiguracji** (zobacz [**Ustawienia ogólne** → Kopia zapasowa konfiguracji](#general-settings)) mogą zawierać **rozwiązane** klucze dostawcy w pliku `config.json` wewnątrz archiwum ZIP. Przywrócenie tego archiwum ZIP **nie** kopiuje tych kluczy z powrotem do pliku konfiguracyjnego serwera - aktywne klucze nadal pochodzą ze zmiennych środowiskowych i istniejącego stanu pliku, jak opisano powyżej.
 
 <br/>
 
@@ -824,7 +824,7 @@ Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings) i zmień:
 Jest to normalne, jeśli:
 
 - korzystasz wyłącznie z **darmowych modeli** i analizujesz dane dotyczące **kosztów** (mogą one wynosić zero); wykresy liczby **wywołań** w zakładce **Podsumowanie** nadal wymagają danych z wybranego okresu
-- wybrany **filtr czasu** nie obejmuje okresu, w którym miały miejsce wywołania — spróbuj opcji **Wszystko**, aby sprawdzić
+- wybrany **filtr czasu** nie obejmuje okresu, w którym miały miejsce wywołania - spróbuj opcji **Wszystko**, aby sprawdzić
 
 Jeśli wykresy nadal są puste po wybraniu opcji **Wszystko**, upewnij się, że wywołania pojawiają się w sekcji [**Historia**](#history) lub na karcie **Wszystkie wywołania**.
 
@@ -889,7 +889,7 @@ Skrypt aktualizuje rekord użytkownika w bazie danych SQLite (i może utworzyć 
 <a id="dashboard-shows-no-data-for-other-users"></a>
 ### Na panelu nie ma danych innych użytkowników (wersja internetowa)
 
-Tylko **administratorzy** mogą przeglądać dane wszystkich użytkowników za pomocą filtra **Użytkownik**. Zwykli użytkownicy widzą wyłącznie swoją własną aktywność — to zamierzone zachowanie.
+Tylko **administratorzy** mogą przeglądać dane wszystkich użytkowników za pomocą filtra **Użytkownik**. Zwykli użytkownicy widzą wyłącznie swoją własną aktywność - to zamierzone zachowanie.
 
 <br/>
 

@@ -207,7 +207,7 @@ Traka s alatima malo se razlikuje ovisno o tome gdje se nalazite u aplikaciji.
 
 ![Model selector](../images/screenshots/hr/model-selector.png)
 
-Neke besplatne modele možda neće uvijek biti dostupne — ponekad su van mreže ili imaju ograničenje korištenja. Ako se to dogodi, aplikacija će automatski ukloniti taj model s vašeg popisa dostupnih modela. Da biste kontrolirali koje modele vidite, idite na [**Postavke** > **Modeli**](#models) i uredite svoj popis modela. 
+Neke besplatne modele možda neće uvijek biti dostupne - ponekad su van mreže ili imaju ograničenje korištenja. Ako se to dogodi, aplikacija će automatski ukloniti taj model s vašeg popisa dostupnih modela. Da biste kontrolirali koje modele vidite, idite na [**Postavke** > **Modeli**](#models) i uredite svoj popis modela. 
 Također možete otvoriti postavke modela izravno klikom na ikonu davatelja s lijeve strane naziva modela na traci s alatima.
 
 <br/>
@@ -544,10 +544,10 @@ Dostupni jezičci ovise o platformi i vašoj ulozi:
   | Opće postavke  |   Da   |     Da     |        Da         |
   | Modeli            |   Da   |     Da     |        Da         |
   | Jezici         |   Da   |     Da     |        Da         |
-  | Praćenje troškova     |   Da   |     Da     |         —          |
+  | Praćenje troškova     |   Da   |     Da     |         -          |
   | Upiti za transformaciju |   Da   |     Da     |        Da         |
-  | Korisnici             |    —    |     Da     |         —          |
-  | API konfiguracija        |   Da   |     Da     |         —          |
+  | Korisnici             |    -    |     Da     |         -          |
+  | API konfiguracija        |   Da   |     Da     |         -          |
   | O programu             |   Da   |     Da     |        Da         |
 
 <br/>
@@ -587,11 +587,11 @@ Koristite **Opće postavke** za upravljanje ponašanjem tijekom tipkanja, pohran
 
 **Sigurnosna kopija konfiguracije**
 
-- **Uključi podatke o korištenju u sigurnosnu kopiju** — kada je omogućeno, ZIP datoteka također sadrži povijest izvršenja i podatke o pozivima API-ja.
-- **Napravi sigurnosnu kopiju konfiguracije** — stvara jednu ZIP datoteku (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` prema zadanim postavkama u UTC-u) koja sadrži `config.json`, `state.json`, opcionalni ključ za šifriranje, korisnike, postavke, prilagođene upite i podatke o korištenju ako ste se za to odlučili. Nakon uspješnog stvaranja sigurnosne kopije, potvrda prikazuje naziv spremljene datoteke.
-- **Vrati iz sigurnosne kopije** — prvo otvara **dijalog za potvrdu**. Odaberite ZIP datoteku sigurnosne kopije unutar dijaloga (**Pregledaj** / odabir datoteke ili prevlačenje i otpuštanje gdje je podržano), a zatim pregledajte opcije:
-  - **Vrati podatke o korištenju** — uvozi podatke o korištenju/povijest iz ZIP datoteke ako je sigurnosna kopija napravljena s uključenim podacima o korištenju; ostavite isključeno ako želite samo postavke i upite.
-  - **Obriši stare podatke o korištenju prije vraćanja** — uklanja postojeće podatke o korištenju/povijest na ovoj instalaciji prije primjene sigurnosne kopije (neobavezno; koristite kada želite čisto zamijeniti).
+- **Uključi podatke o korištenju u sigurnosnu kopiju** - kada je omogućeno, ZIP datoteka također sadrži povijest izvršenja i podatke o pozivima API-ja.
+- **Napravi sigurnosnu kopiju konfiguracije** - stvara jednu ZIP datoteku (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` prema zadanim postavkama u UTC-u) koja sadrži `config.json`, `state.json`, opcionalni ključ za šifriranje, korisnike, postavke, prilagođene upite i podatke o korištenju ako ste se za to odlučili. Nakon uspješnog stvaranja sigurnosne kopije, potvrda prikazuje naziv spremljene datoteke.
+- **Vrati iz sigurnosne kopije** - prvo otvara **dijalog za potvrdu**. Odaberite ZIP datoteku sigurnosne kopije unutar dijaloga (**Pregledaj** / odabir datoteke ili prevlačenje i otpuštanje gdje je podržano), a zatim pregledajte opcije:
+  - **Vrati podatke o korištenju** - uvozi podatke o korištenju/povijest iz ZIP datoteke ako je sigurnosna kopija napravljena s uključenim podacima o korištenju; ostavite isključeno ako želite samo postavke i upite.
+  - **Obriši stare podatke o korištenju prije vraćanja** - uklanja postojeće podatke o korištenju/povijest na ovoj instalaciji prije primjene sigurnosne kopije (neobavezno; koristite kada želite čisto zamijeniti).
 
 Sigurnosne kopije napravljene u web ili desktop verziji mogu se vratiti u drugoj verziji. Kada se sigurnosna kopija za desktop vraća u web verziji, podaci se vraćaju korisniku administratoru.
 
@@ -706,7 +706,7 @@ Podržani davatelji su: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, 
 
 **Web aplikacija: samo administrator**
 
-API ključevi se konfiguriraju putem sustavskih ili Docker okolišnih varijabli — ne unose se u web sučelju. Ova stranica prikazuje za koje davatelje je ključ konfiguriran i omogućuje vam testiranje svakog pojedinačno klikom na gumb **`Testiraj`**.
+API ključevi se konfiguriraju putem sustavskih ili Docker okolišnih varijabli - ne unose se u web sučelju. Ova stranica prikazuje za koje davatelje je ključ konfiguriran i omogućuje vam testiranje svakog pojedinačno klikom na gumb **`Testiraj`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ API ključevi se konfiguriraju putem sustavskih ili Docker okolišnih varijabli 
 > Za promjenu API ključa, ažurirajte okolišnu varijablu u svojoj sustavskoj ili Docker konfiguraciji i ponovno pokrenite poslužitelj ili spremnik.
 
 > ℹ️ **NAPOMENA**<br/>
-> **Sigurnosne kopije konfiguracije** (pogledajte [**Opće postavke** → Sigurnosna kopija konfiguracije](#general-settings)) mogu ugraditi **rješene** ključeve davatelja unutar `config.json` datoteke u ZIP arhivi. Vraćanje te arhive **neće** kopirati te ključeve natrag u konfiguracijsku datoteku poslužitelja — aktivni ključevi i dalje dolaze iz okoliša i postojećeg stanja datoteke kao što je opisano.
+> **Sigurnosne kopije konfiguracije** (pogledajte [**Opće postavke** → Sigurnosna kopija konfiguracije](#general-settings)) mogu ugraditi **rješene** ključeve davatelja unutar `config.json` datoteke u ZIP arhivi. Vraćanje te arhive **neće** kopirati te ključeve natrag u konfiguracijsku datoteku poslužitelja - aktivni ključevi i dalje dolaze iz okoliša i postojećeg stanja datoteke kao što je opisano.
 
 <br/>
 
@@ -825,7 +825,7 @@ Otvorite [**Postavke** > **Opće postavke**](#general-settings) i promijenite:
 To je normalno ako:
 
 - koristite samo **besplatne modele** i gledate podatke o **troškovima** (oni mogu biti nula); grafikoni broja poziva u dijelu **Sažetak** još uvijek zahtijevaju podatke iz odabranog razdoblja
-- odabrani **filtar vremena** ne obuhvaća razdoblje kada su izvršeni pozivi — pokušajte s opcijom **Sve** kako biste provjerili
+- odabrani **filtar vremena** ne obuhvaća razdoblje kada su izvršeni pozivi - pokušajte s opcijom **Sve** kako biste provjerili
 
 Ako su grafikoni i dalje prazni nakon odabira **Sve**, potvrdite da se pozivi pojavljuju u [**Povijest**](#history) ili u kartici **Svi pozivi**.
 

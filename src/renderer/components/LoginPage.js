@@ -16,7 +16,7 @@ import { Languages, ChevronDown, Check } from "lucide-react";
 import PropTypes from "prop-types";
 import i18n, { loadLocale } from "../i18n";
 import { UI_LANGUAGES, DEFAULT_ADMIN_USERNAME, DEFAULT_ADMIN_PASSWORD } from "../constants";
-import { getUILanguageLabel } from "../utils/misc/languageDisplay";
+import { getUILanguageLabel } from "ai-i18n-tools/runtime";
 import webAPI from "../utils/api/webApiClient";
 import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
 import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";

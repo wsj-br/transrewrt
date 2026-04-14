@@ -207,7 +207,7 @@ Bara de instrumente se modifică ușor în funcție de locul în care vă aflaț
 
 ![Model selector](../images/screenshots/ro/model-selector.png)
 
-Unele modele gratuite pot să nu fie întotdeauna disponibile — uneori sunt offline sau au un limită de utilizare. Dacă se întâmplă acest lucru, aplicația va elimina automat acel model din lista dvs. disponibilă. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models) și editați lista de modele. 
+Unele modele gratuite pot să nu fie întotdeauna disponibile - uneori sunt offline sau au un limită de utilizare. Dacă se întâmplă acest lucru, aplicația va elimina automat acel model din lista dvs. disponibilă. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models) și editați lista de modele. 
 De asemenea, puteți deschide setările modelului direct, făcând clic pe pictograma furnizorului din stânga numelui modelului din bara de instrumente.
 
 <br/>
@@ -544,10 +544,10 @@ Filele disponibile depind de platformă și de rolul dumneavoastră:
   | Setări generale  |   Da   |        Da           |           Da             |
   | Modele            |   Da   |        Da           |           Da             |
   | Limbi             |   Da   |        Da           |           Da             |
-  | Urmărire Costuri  |   Da   |        Da           |            —             |
+  | Urmărire Costuri  |   Da   |        Da           |            -             |
   | Prompturi de transformare |   Da   |        Da           |           Da             |
-  | Utilizatori       |    —    |        Da           |            —             |
-  | Configurare API   |   Da   |        Da           |            —             |
+  | Utilizatori       |    -    |        Da           |            -             |
+  | Configurare API   |   Da   |        Da           |            -             |
   | Despre            |   Da   |        Da           |           Da             |
 
 <br/>
@@ -587,11 +587,11 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Backup configurație**
 
-- **Includeți datele de utilizare în copia de rezervă** — atunci când este activată, arhiva ZIP conține și datele istoricului de execuție și apelurile API. 
-- **Salvează configurația în backup** — creează un singur fișier ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) care conține `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, prompturi personalizate și datele de utilizare dacă ați optat pentru aceasta. După o copie de rezervă reușită, confirmarea va afișa numele fișierului salvat.
-- **Restaurează din backup** — deschide mai întâi un **dialog de confirmare**. Alegeți fișierul ZIP de backup în dialog (**Răsfoiește** / selector de fișiere sau trage și plasează acolo unde este suportat), apoi revizuiți opțiunile:
-  - **Restaurați datele de utilizare** — importă utilizarea/istoricul din arhiva ZIP dacă a fost salvat cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și prompturile.
-  - **Ștergeți datele vechi de utilizare înainte de restaurare** — elimină datele existente de utilizare/istoric de pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
+- **Includeți datele de utilizare în copia de rezervă** - atunci când este activată, arhiva ZIP conține și datele istoricului de execuție și apelurile API. 
+- **Salvează configurația în backup** - creează un singur fișier ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) care conține `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, prompturi personalizate și datele de utilizare dacă ați optat pentru aceasta. După o copie de rezervă reușită, confirmarea va afișa numele fișierului salvat.
+- **Restaurează din backup** - deschide mai întâi un **dialog de confirmare**. Alegeți fișierul ZIP de backup în dialog (**Răsfoiește** / selector de fișiere sau trage și plasează acolo unde este suportat), apoi revizuiți opțiunile:
+  - **Restaurați datele de utilizare** - importă utilizarea/istoricul din arhiva ZIP dacă a fost salvat cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și prompturile.
+  - **Ștergeți datele vechi de utilizare înainte de restaurare** - elimină datele existente de utilizare/istoric de pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
 
 Copiile de rezervă create în versiunea web sau desktop pot fi restaurate în cealaltă versiune. Când restaurați un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
 
@@ -706,7 +706,7 @@ Furnizorii suportați sunt: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSe
 
 **Aplicație web: doar administrator**
 
-Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker — nu sunt introduse în interfața web. Această pagină arată pentru care furnizori este configurată o cheie și vă permite să testați fiecare apăsând butonul **`Testează`**.
+Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker - nu sunt introduse în interfața web. Această pagină arată pentru care furnizori este configurată o cheie și vă permite să testați fiecare apăsând butonul **`Testează`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker �
 > Pentru a schimba o cheie API, actualizați variabila de mediu în configurația sistemului sau Docker și reporniți serverul sau containerul.
 
 > ℹ️ **NOTĂ**<br/>
-> **Backup-urile de configurație** (vezi [**Setări generale** → Backup configurație](#general-settings)) pot include cheile furnizorilor **rezolvate** în fișierul `config.json` din arhiva ZIP. Restaurarea acestei arhive **nu** copiază aceste chei înapoi în fișierul de configurație persistat al serverului — cheile active provin în continuare din mediul de execuție și starea fișierului existent, așa cum este descris acolo.
+> **Backup-urile de configurație** (vezi [**Setări generale** → Backup configurație](#general-settings)) pot include cheile furnizorilor **rezolvate** în fișierul `config.json` din arhiva ZIP. Restaurarea acestei arhive **nu** copiază aceste chei înapoi în fișierul de configurație persistat al serverului - cheile active provin în continuare din mediul de execuție și starea fișierului existent, așa cum este descris acolo.
 
 <br/>
 
@@ -825,7 +825,7 @@ Deschideți [**Setări** > **Setări generale**](#general-settings) și modifica
 Acest lucru este normal dacă:
 
 - utilizați doar **modele gratuite** și vizualizați cifrele privind **costul** (acestea pot fi zero); graficele cu numărul de apeluri în **Rezumat** au nevoie încă de date din perioada selectată
-- **filtru de timp** selectat nu acoperă perioada în care au fost efectuate apeluri — încercați **Toate** pentru a verifica
+- **filtru de timp** selectat nu acoperă perioada în care au fost efectuate apeluri - încercați **Toate** pentru a verifica
 
 Dacă graficele sunt încă goale după ce ați selectat **Toate**, confirmați că apelurile apar în [**Istoric**](#history) sau în fila **Toate apelurile**.
 

@@ -17,17 +17,17 @@ source_file_path: README.md
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web sendiri (Docker).
+Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai - menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web sendiri (Docker).
 
-- **Terjemah** — antara puluhan bahasa, dengan pengesanan sumber automatik
-- **Tulis Semula** — betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
-- **Transformasi** — prompt AI tersuai; cipta dan urus prompt, bahasa sasaran pilihan mengikut prompt
-- **Sejarah** — sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Model & kos** — pilih model daripada mana-mana penyedia yang dikonfigurasi; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
-- **UI** — antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** — sokongan pelbagai pengguna dengan peranan pentadbir
-- **Desktop** — aplikasi Electron untuk Windows dan Linux
-- **Sendiri (Self-hosted)** — imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
+- **Terjemah** - antara puluhan bahasa, dengan pengesanan sumber automatik
+- **Tulis Semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
+- **Transformasi** - prompt AI tersuai; cipta dan urus prompt, bahasa sasaran pilihan mengikut prompt
+- **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
+- **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasi; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
+- **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
+- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
+- **Desktop** - aplikasi Electron untuk Windows dan Linux
+- **Sendiri (Self-hosted)** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
 Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk penerangan lengkap semua ciri.
 
@@ -79,7 +79,7 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 
 **Papan Pemuka**
 
-![Dashboard summary — usage](../images/screenshots/ms/dashboard-summary.png)
+![Dashboard summary - usage](../images/screenshots/ms/dashboard-summary.png)
 
 **Sejarah**
 
@@ -193,7 +193,7 @@ Senarai nama zon waktu yang sah diselenggara dalam [pangkalan data tz](https://e
 >   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak dikenali membuat perubahan pada peranti anda?" → Klik **Ya**.
 >   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan juga**.
 >
-> Ini berlaku kerana aplikasi tidak ditandatangani oleh Microsoft atau penerbit utama—ia selamat jika dimuat turun daripada pelepasan GitHub rasmi kami (sahkan checksum di halaman [Releases](https://github.com/wsj-br/transrewrt/releases) bersama setiap aset).
+> Ini berlaku kerana aplikasi tidak ditandatangani oleh Microsoft atau penerbit utama-ia selamat jika dimuat turun daripada pelepasan GitHub rasmi kami (sahkan checksum di halaman [Releases](https://github.com/wsj-br/transrewrt/releases) bersama setiap aset).
 
 <br/>
 

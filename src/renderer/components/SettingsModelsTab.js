@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDecimal, flipUiArrowsForRtl } from '../utils/misc/formatUtils';
-import { getTextDirection } from '../i18n';
+import { getTextDirection } from "ai-i18n-tools/runtime";
 import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import {
   Button,
@@ -20,7 +20,6 @@ import {
   SearchRegular,
   ArrowSyncRegular,
   ChevronDownRegular,
-  ChevronUpRegular,
   ChevronRightRegular,
   DismissRegular,
 } from '@fluentui/react-icons';

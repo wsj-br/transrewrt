@@ -1,6 +1,6 @@
 <!-- DOCTOC SKIP -->
 
-# Transrewrt 1.0.15 — initial official release
+# Transrewrt 1.0.15 - initial official release
 
 **Release date:** 2026-03-27
 
@@ -12,26 +12,26 @@ Transrewrt helps you **translate** between languages (with optional source detec
 
 ## Highlights
 
-- **Translate, Rewrite, and Transform** — Three focused workflows with model selection and execution history.
-- **Multiple providers** — Configure the backends that fit your setup; use cloud APIs, free tiers where available, or run models locally.
-- **History and cost awareness** — Review past runs, filter and export history, and track usage where your providers expose pricing.
-- **Multilingual UI** — Many interface languages with RTL support where applicable.
-- **Two ways to run** — **Desktop** (Electron on Windows and Linux) for a native app with local configuration, or **self-hosted web** via Docker for multi-user access on your network or server.
+- **Translate, Rewrite, and Transform** - Three focused workflows with model selection and execution history.
+- **Multiple providers** - Configure the backends that fit your setup; use cloud APIs, free tiers where available, or run models locally.
+- **History and cost awareness** - Review past runs, filter and export history, and track usage where your providers expose pricing.
+- **Multilingual UI** - Many interface languages with RTL support where applicable.
+- **Two ways to run** - **Desktop** (Electron on Windows and Linux) for a native app with local configuration, or **self-hosted web** via Docker for multi-user access on your network or server.
 
 ## Getting Transrewrt
 
 Published builds for this release are attached to the GitHub **Releases** page for this tag. Typical artifacts include:
 
-- **Windows** — Installer (x64)
-- **Linux** — AppImage (x64 and arm64; arm64 suits devices such as Raspberry Pi-class hardware)
-- **Docker** — Multi-architecture images for amd64 and arm64 (see the repository README and Compose examples for deployment)
+- **Windows** - Installer (x64)
+- **Linux** - AppImage (x64 and arm64; arm64 suits devices such as Raspberry Pi-class hardware)
+- **Docker** - Multi-architecture images for amd64 and arm64 (see the repository README and Compose examples for deployment)
 
 Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](USER-GUIDE.md)** — Full walkthrough of features and settings  
+- **[README](README.md)** - Overview, installation, and quick start  
+- **[USER-GUIDE](USER-GUIDE.md)** - Full walkthrough of features and settings  
 
 ## Disclaimer
 

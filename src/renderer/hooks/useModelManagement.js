@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { FREE_MODEL_ID } from "../constants";
-import { interpolateTemplate } from "../utils/misc/formatUtils";
 
 /**
  * Model list management: remove model from list, handle 404/400 unavailable model.
@@ -32,10 +31,8 @@ export function useModelManagement(configManager, setSetting, setError) {
     await setSetting("last_used_model", FREE_MODEL_ID);
     setError(null);
     return {
-      error: interpolateTemplate(
-        t(
-          'Model unavailable (404/400). The model has been removed from your list and "{{freeModelId}}" has been selected.'
-        ),
+      error: t(
+        'Model unavailable (404/400). The model has been removed from your list and "{{freeModelId}}" has been selected.',
         { freeModelId: FREE_MODEL_ID }
       ),
     };

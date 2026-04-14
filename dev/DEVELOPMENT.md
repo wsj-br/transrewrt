@@ -15,14 +15,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Development Workflow](#development-workflow)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
-  - [UI translations (i18n)](#ui-translations-i18n)
-  - [Document translation (`translate:docs`)](#document-translation-translatedocs)
-    - [1. Configuration (`translate.config.json`)](#1-configuration-translateconfigjson)
-    - [2. User glossary (`glossary-user.csv`)](#2-user-glossary-glossary-usercsv)
-    - [3. Automatic glossary (aligned with UI i18n)](#3-automatic-glossary-aligned-with-ui-i18n)
-    - [4. Running the translator (`--locale`, `--force`, `--force-update`)](#4-running-the-translator---locale---force---force-update)
-    - [5. Cleanup (`translate:cleanup` / `translate:clean`)](#5-cleanup-translatecleanup--translateclean)
-    - [6. Translation session logs (`pnpm clean-logs`)](#6-translation-session-logs-pnpm-clean-logs)
+  - [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools)
   - [Third-party licenses (`3p-licenses`)](#third-party-licenses-3p-licenses)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
@@ -39,7 +32,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Useful Commands Summary](#useful-commands-summary)
   - [Develop, build, and run](#develop-build-and-run)
   - [Code quality](#code-quality)
-  - [UI translations (i18n)](#ui-translations-i18n-1)
+  - [UI translations and docs (ai-i18n-tools)](#ui-translations-and-docs-ai-i18n-tools)
   - [Data, assets, and docs scripts](#data-assets-and-docs-scripts)
   - [Docker and deploy](#docker-and-deploy)
 - [Troubleshooting](#troubleshooting)
@@ -164,114 +157,35 @@ Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](..
 |------------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **Renderer**           | `pnpm build-renderer` or `pnpm build` | `dist/` (production assets)                                                                                        |
 | **Electron installer** | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows; targets depend on platform)                                                |
-| **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`     | `release/` — Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                             |
+| **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`     | `release/` - Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                             |
 | **Docker image**       | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
 
 
-### UI translations (i18n)
+### UI translations and documentation (ai-i18n-tools)
 
-The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en.json`). Locale files (pt-BR, de, fr, es) live in `src/renderer/locales/`. To update or add UI strings:
+The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, optional SVG translation, and markdown documentation translation** share one config file: **[`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json)** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
 
+| Command | Purpose |
+|---------|---------|
+| `pnpm run i18n:extract` | Scan source for `t("…")` (and configured roots) → `src/renderer/locales/strings.json` (preserves existing translations) |
+| `pnpm run i18n:translate:ui` | Translate missing UI strings via OpenRouter; set **`OPENROUTER_API_KEY`**. Writes flat `{locale}.json` files. See `pnpm exec ai-i18n-tools translate-ui --help` for `--force`, `--model`, etc. |
+| `pnpm run i18n:translate:docs` | Translate configured markdown docs → `translated-docs/` (see `documentations` in config). **Requires `OPENROUTER_API_KEY`.** |
+| `pnpm run i18n:translate` | Runs `translate-ui`, then `translate-svg`, then `translate-docs` |
+| `pnpm run i18n:sync` | **`ai-i18n-tools sync`**: extract (if enabled), then translate UI, optional SVG, then docs — skip parts with `--no-ui`, `--no-svg`, `--no-docs` (see CLI `--help`) |
+| `pnpm run i18n:status` | UI string and doc translation coverage |
+| `pnpm run i18n:cleanup` | Remove stale artifacts (see `ai-i18n-tools cleanup --help`) |
+| `pnpm run i18n:editor` | Open the string editor when configured |
+| `pnpm exec ai-i18n-tools generate-ui-languages` | Regenerate [`src/renderer/locales/ui-languages.json`](../src/renderer/locales/ui-languages.json) from config (includes `direction` per locale) |
 
-| Command                   | Purpose                                                                                                                                                    |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm run i18n:extract`   | Scan source for `t("...")` and `package.json` description → `locales/strings.json` (preserves existing translations)                                       |
-| `pnpm run i18n:translate` | Translate missing entries via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{lang}.json` files. Use `--help` for options (`--force`, `--model`) |
-| `pnpm run i18n:sync`      | Run extract then translate                                                                                                                                 |
-| `pnpm run i18n:sync-md-annex` | Refresh the **Annex** in [`dev/i18n.md`](i18n.md) (embedded full source of `scripts/extract-strings.js` and `scripts/generate-translations.js`) from the repo files — run after changing those scripts |
+**OpenRouter model ids** (default and fallback order) live under **`openrouter.translationModels`** in `ai-i18n-tools.config.json` — **not** app `config.json`. The same list is consumed by [`scripts/generate-test-data.js`](../scripts/generate-test-data.js). Override for a single run where supported (e.g. `pnpm run i18n:translate:ui -- --model <id>`).
 
-The **OpenRouter model ids** used by the UI translation pipeline and related CLI scripts (default model and fallback order) are defined in [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) (`TRANSLATION_MODELS`). That list is **not** read from app `config.json`. It is consumed by `scripts/generate-translations.js` (`pnpm run i18n:translate`), [`scripts/translate/index.ts`](../scripts/translate/index.ts) (`pnpm translate:docs`, configured by [`translate.config.json`](../translate.config.json)), and `scripts/generate-test-data.js`. [`scripts/translate-docs.js`](../scripts/translate-docs.js) remains available as `node scripts/translate-docs.js` but is not what `pnpm translate:docs` runs. Override the model for a single run where supported (e.g. `pnpm run i18n:translate -- --model <id>`).
+**Add a new UI language:** (1) Add the locale to **`targetLocales`** in `ai-i18n-tools.config.json`, (2) run `pnpm exec ai-i18n-tools generate-ui-languages` and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use **`direction`** in `ui-languages.json` via **`applyDirection`** in [`src/renderer/i18n.js`](../src/renderer/i18n.js) — see [i18n.md](i18n.md).
 
-To **add a new UI language** (e.g. zh-CN or ar): (1) add an entry to `src/renderer/locales/ui-languages.json` (dynamic locale loaders in `src/renderer/i18n.js` are built from this list), (2) run `pnpm run i18n:extract` then `pnpm run i18n:translate` (or `i18n:sync`) so `strings.json` and `locales/<code>.json` are created/updated. RTL script languages listed in `RTL_LANGS` in `i18n.js` get `dir="rtl"` on the document and on Fluent’s root provider (see [i18n.md](i18n.md)).
-### Document translation (`translate:docs`)
+**Documentation translation:** The **`documentations`** array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`, `USER-GUIDE.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses **`cacheDir`** (default **`.translation-cache`**); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
-Markdown docs listed in [`translate.config.json`](../translate.config.json) are translated with **OpenRouter** via [`scripts/translate/index.ts`](../scripts/translate/index.ts) (same models as in config, not app `config.json`). **Requires `OPENROUTER_API_KEY`.** Outputs are `basename.<locale>.md` under `paths.i18n` (e.g. `translated-docs/README.pt-BR.md`). Segment-level caching lives in `paths.cache` (SQLite `cache.db`).
+**Glossaries:** Optional [`glossary-user.csv`](../glossary-user.csv) is referenced from config. UI string catalog [`src/renderer/locales/strings.json`](../src/renderer/locales/strings.json) aligns doc terminology with the app when both use the same pipeline.
 
-#### 1. Configuration (`translate.config.json`)
-
-| Area | Role |
-|------|------|
-| **`locales`** | **`source`**: British English locale id for prompts (e.g. `en-GB`). **`targets`**: either a JSON array of locale codes, or a **path** to [`ui-languages.json`](../src/renderer/locales/ui-languages.json) — the pipeline loads every `code` except the source as a target and uses labels for display names in prompts. |
-| **`paths`** | **`docs`**: repo root for resolving globs. **`source-files`**: array of globs for markdown sources (e.g. `./README.md`, `./USER-GUIDE.md`). **`i18n`**: output folder for translated files. **`cache`**: folder for `cache.db` and cleanup logs. **`log-folder`**: session logs (e.g. `./dev/`). **`ui-glossary`** / **`user-glossary`**: see below. |
-| **`openrouter`** | **`translationModels`**: ordered list of model ids (fallback order). **`baseUrl`**, **`maxTokens`**, **`temperature`**. |
-| **`batchSize`**, **`maxBatchChars`**, **`concurrency`**, **`batchConcurrency`** | Segment batching and parallelism (see `pnpm translate:docs --help`). |
-| **`language-list-block`** | `start` / `end` / `separator` for the HTML language-list snippet rewritten per locale. |
-| **`additional-adjustments`** | Optional regex replacements after translation (e.g. screenshot paths: `images/screenshots/${translatedLocale}/`). |
-| **`cache`** | `enabled`, `segmentLevel` — segment cache behaviour. |
-
-Override config path: `pnpm translate:docs -- --config /path/to/translate.config.json`.
-
-#### 2. User glossary (`glossary-user.csv`)
-
-Optional CSV beside the paths in config (default [`glossary-user.csv`](../glossary-user.csv) via `paths.user-glossary`). **Columns:** `en`, `locale`, `translation`.
-
-- **`locale`** is a target locale code (e.g. `pt-BR`) or **`*`**, meaning “apply this translation to **every** target in `locales.targets`.”
-- Rows are merged **after** the UI glossary: **user entries override** the same English term for that locale.
-
-Use this for product names, legal wording, or terminology that must not follow the automatic UI strings.
-
-#### 3. Automatic glossary (aligned with UI i18n)
-
-**`paths.ui-glossary`** points at [`src/renderer/locales/strings.json`](../src/renderer/locales/strings.json) (extract + translate pipeline). The loader expects entries shaped like `{ "<id>": { "source": "<English>", "translated": { "<locale>": "<text>" } } }`.
-
-- For each **English `source`** string that appears in doc text, the translator can attach **hints** to the model: `English term → translated term` for the current target locale, using the same per-locale text as the **UI**.
-- **Keeping docs aligned with the app:** run **`pnpm i18n:sync`** (or extract + translate) so `strings.json` and per-locale JSON stay current before **`pnpm translate:docs`**, so glossary hints match shipped UI wording.
-
-#### 4. Running the translator (`--locale`, `--force`, `--force-update`)
-
-```bash
-pnpm translate:docs
-pnpm translate:docs -- --locale pt-BR,es,fr
-pnpm translate:docs -- --force
-pnpm translate:docs -- --force-update
-```
-
-| Flag | Meaning |
-|------|---------|
-| **`-l` / `--locale <codes>`** | Translate **only** these targets (comma- or space-separated). Codes must appear in configured `locales.targets`. Omit to run **all** targets. |
-| **`--force`** | **Full re-translation** of processed files: clears per-file tracking and **does not read** segment cache for those files (all segments go through the API). **Not** combinable with `--force-update`. |
-| **`--force-update`** | Re-run files even when **file-level** tracking says the source hash is unchanged; **segment cache still applies** (cached segments skip API). Use to refresh outputs after prompt/config tweaks without wiping the cache. **Not** combinable with `--force`. |
-
-Other useful flags: **`--dry-run`** (no writes), **`--no-cache`** (ignore cache for API calls but still save new results), **`--clear-cache [locale]`** (clear SQLite cache; optional locale), **`--path <file-or-dir>`** (override `source-files`). See **`pnpm translate:docs -- --help`**.
-
-#### 5. Cleanup (`translate:cleanup` / `translate:clean`)
-
-The cache DB can accumulate **orphaned** rows (deleted/renamed sources) and **stale** rows (never hit again). Translated files under `paths.i18n` can become **orphans** if a source doc is removed or locales shrink.
-
-```bash
-pnpm translate:cleanup
-# alias:
-pnpm translate:clean
-```
-> **note:** this script first runs **`translate:docs --force-update`** so segments refresh their `last_hit_at`; then it runs the cleanup script
-
-
-**Manual cleanup only** (inspect without deleting):
-
-```bash
-pnpm exec tsx scripts/translate/cache-cleanup.ts --dry-run
-```
-
-**What it does** (see [`scripts/translate/cache-cleanup.ts`](../scripts/translate/cache-cleanup.ts)):
-
-1. **Orphaned DB rows** — translations tied to removed/renamed source paths or inconsistent hashes; remap or delete.
-2. **Stale DB rows** — rows with missing `last_hit_at` / `filepath` (run `--force-update` before a real cleanup so active segments are not misclassified).
-3. **Orphaned output files** — `stem.<locale>.md(x)` under `paths.i18n` that are no longer expected from current `source-files` × `locales.targets`.
-
-Non-`--dry-run` cleanup **backs up** `cache.db` under `paths.cache`, asks for **confirmation**, and writes a log `cleanup_YYYY-MM-DD_HH-MM-SS.log` in the cache folder.
-
-#### 6. Translation session logs (`pnpm clean-logs`)
-
-UI i18n and doc translation runs create **many timestamped log files** (for example `dev/generate-translations-*.log`, `translate-docs_*.log` under `paths.log-folder`, and cache-folder sidecars such as `cache-*.db` backups and `cleanup_*.log`). Those are separate from **`translate:cleanup`**, which trims the SQLite cache and orphaned translated outputs.
-
-**`pnpm clean-logs`** runs [`scripts/clean-translation-logs.js`](../scripts/clean-translation-logs.js): it deletes matching session logs under **`dev/`** and **`paths.log-folder`**, and cache-adjacent artifacts under **`paths.cache`** (see script for glob patterns). It **does not** delete the live **`cache.db`** or **`dev/translations.log`**.
-
-```bash
-pnpm clean-logs
-pnpm clean-logs --dry-run
-```
-
-[`scripts/clean-workspace.sh`](../scripts/clean-workspace.sh) and [`scripts/clean-workspace.ps1`](../scripts/clean-workspace.ps1) run this step automatically before removing build artifacts (from the repo root, so `translate.config.json` paths resolve).
+For all CLI flags, run `pnpm exec ai-i18n-tools --help` and `pnpm exec ai-i18n-tools translate-docs --help` / `translate-ui --help`. Full patterns (`SOURCE_LOCALE`, `t(key, vars)`): **[i18n.md](i18n.md)**.
 
 ### Third-party licenses (`3p-licenses`)
 
@@ -326,7 +240,7 @@ Do this on the development branch you intend to merge (e.g., **`v1.1.x`**), then
 5. **Sync references**: Run **`pnpm run update-version`** to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
 6. **Update i18n UI string translations**: Run **`pnpm i18n:sync`** to ensure that all strings in the UI are translated.
 7. **Update documentation table of contents**: Run **`doctoc *.md dev/*.md`** to update all tables of contents.
-8. **Update document translations**: Run **`pnpm translate:docs`** to ensure the latest documentation changes are translated.
+8. **Update document translations**: Run **`pnpm run i18n:translate:docs`** to ensure the latest documentation changes are translated.
 9. **Commit and push**: Commit your changes to the changelog, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
 
 
@@ -430,16 +344,17 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 | `pnpm lint`     | Run ESLint on the repo |
 | `pnpm lint:fix` | ESLint with `--fix`    |
 
-### UI translations (i18n)
+### UI translations and docs (ai-i18n-tools)
 
 | Command                   | Purpose                                                              |
 |---------------------------|----------------------------------------------------------------------|
 | `pnpm run i18n:extract`   | Scan renderer → `src/renderer/locales/strings.json`                  |
-| `pnpm run i18n:translate` | Fill missing locales via OpenRouter (`OPENROUTER_API_KEY`); see `--help` |
-| `pnpm run i18n:sync`      | `i18n:extract` then `i18n:translate`                                 |
-| `pnpm run i18n:sync-md-annex` | Update [`dev/i18n.md`](i18n.md) Annex code blocks from `scripts/extract-strings.js` and `scripts/generate-translations.js` |
+| `pnpm run i18n:translate:ui` | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`); see `ai-i18n-tools translate-ui --help` |
+| `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE per `documentations` in config |
+| `pnpm run i18n:sync`      | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help` |
+| `pnpm run i18n:status`    | Coverage report                                                      |
 
-Shared **translation script** model list (defaults + fallbacks): [`scripts/openrouter-script-models.js`](../scripts/openrouter-script-models.js) - not app config; per-run override via `--model` where the script supports it.
+Models and fallbacks: **`openrouter.translationModels`** in [`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json) — not app `config.json`.
 
 ### Data, assets, and docs scripts
 
@@ -448,9 +363,8 @@ Shared **translation script** model list (defaults + fallbacks): [`scripts/openr
 | `pnpm generate-test-data` | Seed SQLite with sample API/history rows (for cost dashboard/dev purposes)                                                                                      |
 | `pnpm take-screenshots`   | Use Puppeteer to capture UI screenshots (app must be reachable; see script/env vars)                                                                            |
 | `pnpm generate-banner`    | Write `images/transrewrt_banner.svg` and `.png`                                                                                                                 |
-| `pnpm translate:docs`     | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`)                                                                        |
-| `pnpm translate:cleanup` / `pnpm translate:clean` | Doc cache cleanup: runs `translate:docs --force-update` then [`scripts/translate/cache-cleanup.ts`](../scripts/translate/cache-cleanup.ts) (DB orphans/stale rows, orphaned `translated-docs/` outputs); use `pnpm exec tsx scripts/translate/cache-cleanup.ts --dry-run` to preview |
-| `pnpm clean-logs`         | Remove translation **session** logs under `dev/` and `paths.log-folder`, and cache sidecars under `paths.cache` ([`scripts/clean-translation-logs.js`](../scripts/clean-translation-logs.js)); does not delete `cache.db` or `dev/translations.log`; `--dry-run` to list only |
+| `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`; config: `ai-i18n-tools.config.json`) |
+| `pnpm run i18n:cleanup`   | ai-i18n-tools cleanup (stale artifacts; see `--help`) |
 | `pnpm reset-web-password` | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`)                        |
 | `pnpm check-api-key`      | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                                                 |
 | `pnpm update-version`     | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                                        |
@@ -494,7 +408,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
     }
   }
   ```
-  After adding the override, verify with `pnpm audit` — it should report no vulnerabilities.
+  After adding the override, verify with `pnpm audit` - it should report no vulnerabilities.
 - **Symlink errors on Windows:** Enable Developer Mode (Settings → For developers) or run the terminal as Administrator.
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
@@ -507,7 +421,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | Document                                                                                                                                  | Contents                                                                                                                                                                                                                                                                                                                                                  |
 |-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**                                                                                              | Product and **runtime architecture** (Electron IPC **`llm:*`** vs web **`/api/llm/stream`** SSE), **multi-llm-ts** and supported providers, **config/state** (desktop `config.json` + encryption; web global config vs **`user_preferences`** / **`transrewrt.db`**), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules. |
-| **[i18n.md](i18n.md)**                                                                                                                    | UI strings: extract/translate workflow, key-as-default, RTL, `interpolateTemplate`.                                                                                                                                                                                                                                                                       |
+| **[i18n.md](i18n.md)**                                                                                                                    | UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.                                                                                                                                                                                                                                                                       |
 
 ---
 
@@ -538,9 +452,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                              |
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
-| [translate.config.json](../translate.config.json)                                           | Doc translation (`pnpm translate:docs`): source globs, locales, paths, OpenRouter models (see [`scripts/translate/index.ts`](../scripts/translate/index.ts)) |
-| [scripts/openrouter-script-models.js](../scripts/openrouter-script-models.js)               | `TRANSLATION_MODELS`: OpenRouter ids for `i18n:translate`, `translate:docs`, `generate-test-data` (not `config.json`) |
-| [scripts/generate-translations.js](../scripts/generate-translations.js)                     | OpenRouter translation script (i18n:translate; needs `OPENROUTER_API_KEY`)                                            |
+| [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | **ai-i18n-tools**: locales, OpenRouter models, UI extract paths, glossaries, doc `documentations`, `cacheDir` |
 | [3p-lic-clarifications.json](../3p-lic-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-licenses` (`licenseText`, etc.)                                        |
 | [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |
 | [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js)             | Invokes license checker + writes `THIRD-PARTY-LICENSES.txt`                                                            |

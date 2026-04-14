@@ -1,0 +1,105 @@
+{
+  "sourceLocale": "en-GB",
+  "targetLocales": [
+    "pt-BR",
+    "ar",
+    "bn",
+    "ca",
+    "zh-CN",
+    "zh-TW",
+    "hr",
+    "cs",
+    "nl",
+    "en-US",
+    "tl",
+    "fr",
+    "de",
+    "el",
+    "hi",
+    "hu",
+    "it",
+    "ja",
+    "jv",
+    "ko",
+    "ms",
+    "fa",
+    "pl",
+    "pt",
+    "pa",
+    "ro",
+    "ru",
+    "sk",
+    "es",
+    "sw",
+    "sv",
+    "te",
+    "th",
+    "tr",
+    "uk",
+    "vi"
+  ],
+  "concurrency": 4,
+  "batchConcurrency": 4,
+  "batchSize": 20,
+  "maxBatchChars": 4096,
+  "openrouter": {
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "translationModels": [
+      "qwen/qwen3-235b-a22b-2507",
+      "stepfun/step-3.5-flash:free",
+      "anthropic/claude-3-haiku",
+      "z-ai/glm-4.7-flash",
+      "minimax/minimax-m2.5",
+      "anthropic/claude-3.5-haiku"
+    ],
+    "maxTokens": 8192,
+    "temperature": 0.2
+  },
+  "features": {
+    "extractUIStrings": true,
+    "translateUIStrings": true,
+    "translateMarkdown": true,
+    "translateJSON": false,
+    "translateSVG": false
+  },
+  "ui": {
+    "sourceRoots": ["src/renderer/"],
+    "stringsJson": "src/renderer/locales/strings.json",
+    "flatOutputDir": "src/renderer/locales/",
+    "reactExtractor": {
+      "funcNames": ["t", "i18n.t"],
+      "extensions": [".js", ".jsx"],
+      "includePackageDescription": true,
+      "includeUiLanguageEnglishNames": true
+    }
+  },
+  "glossary": {
+    "uiGlossary": "src/renderer/locales/strings.json",
+    "userGlossary": "glossary-user.csv"
+  },
+  "cacheDir": ".translation-cache",
+  "documentations": [
+    {
+      "description": "README and User Guide",
+      "contentPaths": ["README.md", "USER-GUIDE.md"],
+      "outputDir": "translated-docs/",
+      "markdownOutput": {
+        "style": "flat",
+        "postProcessing": {
+          "regexAdjustments": [
+            {
+              "description": "Per-locale screenshot folders",
+              "search": "images/screenshots/[^/]+/",
+              "replace": "images/screenshots/${translatedLocale}/"
+            }
+          ],
+          "languageListBlock": {
+            "start": "<small id=\"lang-list\">",
+            "end": "</small>",
+            "separator": " · "
+          }
+        }
+      }
+    }
+  ]
+}

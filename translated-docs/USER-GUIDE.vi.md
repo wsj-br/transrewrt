@@ -207,7 +207,7 @@ Thanh công cụ thay đổi nhẹ tùy thuộc vào vị trí bạn đang ở t
 
 ![Model selector](../images/screenshots/vi/model-selector.png)
 
-Một số mô hình miễn phí có thể không luôn sẵn sàng — đôi khi chúng ngoại tuyến hoặc đã đạt giới hạn sử dụng. Nếu điều này xảy ra, ứng dụng sẽ tự động xóa mô hình đó khỏi danh sách khả dụng của bạn. Để kiểm soát các mô hình hiển thị, hãy vào [**Cài đặt** > **Mô hình**](#models) và chỉnh sửa danh sách mô hình của bạn. 
+Một số mô hình miễn phí có thể không luôn sẵn sàng - đôi khi chúng ngoại tuyến hoặc đã đạt giới hạn sử dụng. Nếu điều này xảy ra, ứng dụng sẽ tự động xóa mô hình đó khỏi danh sách khả dụng của bạn. Để kiểm soát các mô hình hiển thị, hãy vào [**Cài đặt** > **Mô hình**](#models) và chỉnh sửa danh sách mô hình của bạn. 
 Bạn cũng có thể mở cài đặt mô hình trực tiếp bằng cách nhấp vào biểu tượng nhà cung cấp bên trái tên mô hình trên thanh công cụ.
 
 <br/>
@@ -544,10 +544,10 @@ Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
   | Cài đặt chung  |   Có   |     Có     |        Có         |
   | Mô hình            |   Có   |     Có     |        Có         |
   | Ngôn ngữ         |   Có   |     Có     |        Có         |
-  | Theo dõi chi phí     |   Có   |     Có     |         —          |
+  | Theo dõi chi phí     |   Có   |     Có     |         -          |
   | Lời nhắc chuyển đổi |   Có   |     Có     |        Có         |
-  | Người dùng             |    —    |     Có     |         —          |
-  | Cấu hình API        |   Có   |     Có     |         —          |
+  | Người dùng             |    -    |     Có     |         -          |
+  | Cấu hình API        |   Có   |     Có     |         -          |
   | Giới thiệu             |   Có   |     Có     |        Có         |
 
 <br/>
@@ -587,11 +587,11 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi khi nhập li�
 
 **Sao lưu cấu hình**
 
-- **Bao gồm dữ liệu sử dụng trong bản sao lưu** — khi được bật, tệp ZIP cũng chứa dữ liệu lịch sử thực thi và dữ liệu gọi API.
-- **Tạo bản sao lưu cấu hình** — tạo một tệp ZIP duy nhất (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` theo múi giờ UTC theo mặc định) bao gồm `config.json`, `state.json`, khóa mã hóa tùy chọn, người dùng, tùy chọn, lời nhắc tùy chỉnh và dữ liệu sử dụng nếu bạn đã chọn tham gia. Sau khi sao lưu thành công, thông báo xác nhận sẽ hiển thị tên tệp đã lưu.
-- **Phục hồi từ bản sao lưu** — trước tiên sẽ mở **hộp thoại xác nhận**. Chọn tệp ZIP sao lưu bên trong hộp thoại (**Duyệt** / trình chọn tệp hoặc kéo thả nếu được hỗ trợ), sau đó xem lại các tùy chọn:
-  - **Khôi phục dữ liệu sử dụng** — nhập dữ liệu sử dụng/lịch sử từ tệp ZIP khi nó được sao lưu cùng dữ liệu sử dụng; bỏ chọn nếu bạn chỉ muốn cài đặt và lời nhắc.
-  - **Xóa dữ liệu sử dụng cũ trước khi khôi phục** — xóa dữ liệu sử dụng/lịch sử hiện có trên bản cài đặt này trước khi áp dụng bản sao lưu (tùy chọn; sử dụng khi bạn muốn thay thế hoàn toàn).
+- **Bao gồm dữ liệu sử dụng trong bản sao lưu** - khi được bật, tệp ZIP cũng chứa dữ liệu lịch sử thực thi và dữ liệu gọi API.
+- **Tạo bản sao lưu cấu hình** - tạo một tệp ZIP duy nhất (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` theo múi giờ UTC theo mặc định) bao gồm `config.json`, `state.json`, khóa mã hóa tùy chọn, người dùng, tùy chọn, lời nhắc tùy chỉnh và dữ liệu sử dụng nếu bạn đã chọn tham gia. Sau khi sao lưu thành công, thông báo xác nhận sẽ hiển thị tên tệp đã lưu.
+- **Phục hồi từ bản sao lưu** - trước tiên sẽ mở **hộp thoại xác nhận**. Chọn tệp ZIP sao lưu bên trong hộp thoại (**Duyệt** / trình chọn tệp hoặc kéo thả nếu được hỗ trợ), sau đó xem lại các tùy chọn:
+  - **Khôi phục dữ liệu sử dụng** - nhập dữ liệu sử dụng/lịch sử từ tệp ZIP khi nó được sao lưu cùng dữ liệu sử dụng; bỏ chọn nếu bạn chỉ muốn cài đặt và lời nhắc.
+  - **Xóa dữ liệu sử dụng cũ trước khi khôi phục** - xóa dữ liệu sử dụng/lịch sử hiện có trên bản cài đặt này trước khi áp dụng bản sao lưu (tùy chọn; sử dụng khi bạn muốn thay thế hoàn toàn).
 
 Các bản sao lưu được tạo trên phiên bản web hoặc desktop đều có thể được khôi phục trên phiên bản còn lại. Khi khôi phục bản sao lưu desktop trên phiên bản web, dữ liệu sẽ được khôi phục vào tài khoản người dùng quản trị viên.
 
@@ -706,7 +706,7 @@ Các nhà cung cấp được hỗ trợ bao gồm: OpenRouter, OpenAI, Anthropi
 
 **Ứng dụng web: chỉ dành cho quản trị viên**
 
-Các khóa API được cấu hình thông qua biến môi trường hệ thống hoặc Docker — chúng không được nhập trong giao diện web. Trang này hiển thị các nhà cung cấp đã được cấu hình khóa và cho phép bạn thử từng nhà cung cấp bằng cách nhấn nút **`Thử`**.
+Các khóa API được cấu hình thông qua biến môi trường hệ thống hoặc Docker - chúng không được nhập trong giao diện web. Trang này hiển thị các nhà cung cấp đã được cấu hình khóa và cho phép bạn thử từng nhà cung cấp bằng cách nhấn nút **`Thử`**.
 
 <br/>
 
@@ -714,7 +714,7 @@ Các khóa API được cấu hình thông qua biến môi trường hệ thốn
 > Để thay đổi một khóa API, hãy cập nhật biến môi trường trong cấu hình hệ thống hoặc Docker của bạn và khởi động lại máy chủ hoặc bộ chứa.
 
 > ℹ️ **LƯU Ý**<br/>
-> **Sao lưu cấu hình** (xem [**Cài đặt chung** → Sao lưu cấu hình](#general-settings)) có thể nhúng các khóa nhà cung cấp đã **giải quyết** vào tệp `config.json` bên trong ZIP. Việc khôi phục tệp ZIP đó sẽ **không** sao chép các khóa đó trở lại vào tệp cấu hình lưu trữ trên máy chủ — các khóa đang hoạt động vẫn được lấy từ môi trường và trạng thái tệp hiện có như đã mô tả ở đó.
+> **Sao lưu cấu hình** (xem [**Cài đặt chung** → Sao lưu cấu hình](#general-settings)) có thể nhúng các khóa nhà cung cấp đã **giải quyết** vào tệp `config.json` bên trong ZIP. Việc khôi phục tệp ZIP đó sẽ **không** sao chép các khóa đó trở lại vào tệp cấu hình lưu trữ trên máy chủ - các khóa đang hoạt động vẫn được lấy từ môi trường và trạng thái tệp hiện có như đã mô tả ở đó.
 
 <br/>
 
@@ -825,7 +825,7 @@ Mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và thay đổ
 Điều này là bình thường nếu:
 
 - bạn chỉ sử dụng **mô hình miễn phí** và đang xem các con số về **chi phí** (có thể bằng không); biểu đồ số lượng **cuộc gọi sử dụng** trong phần **Tóm tắt** vẫn cần dữ liệu từ khoảng thời gian đã chọn
-- **bộ lọc thời gian** đã chọn không bao gồm khoảng thời gian có thực hiện cuộc gọi — hãy thử chọn **Tất cả** để kiểm tra
+- **bộ lọc thời gian** đã chọn không bao gồm khoảng thời gian có thực hiện cuộc gọi - hãy thử chọn **Tất cả** để kiểm tra
 
 Nếu biểu đồ vẫn trống sau khi chọn **Tất cả**, hãy xác nhận rằng các cuộc gọi xuất hiện trong [**Lịch sử**](#history) hoặc trong tab **Tất cả các cuộc gọi**.
 
