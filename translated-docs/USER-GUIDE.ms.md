@@ -1,9 +1,12 @@
 ---
-translation_last_updated: '2026-03-31T22:57:40.982Z'
-source_file_mtime: '2026-03-30T09:57:25.622Z'
-source_file_hash: e1b91eca0124d467
+translation_last_updated: '2026-04-15T22:30:05.338Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
 translation_language: ms
 source_file_path: USER-GUIDE.md
+translation_models:
+  - openai/gpt-4o-mini
+  - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -18,24 +21,25 @@ source_file_path: USER-GUIDE.md
 Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 
 - **Terjemah** - tukar teks dari satu bahasa ke bahasa lain.
-- **Tulis Semula** - tulis semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
-- **Transformasi** - proses teks menggunakan arahan AI tersuai yang dipanggil prompt.
+- **Tulis Semula** - ungkapkan semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
+- **Transformasi** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai prompt.
 
 <br/>
 
-Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalankan. Untuk langkah-langkah pemasangan, rujuk **[README](README.ms.md)** utama.
+Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalankan. Untuk langkah pemasangan, lihat **[README](README.ms.md)** utama.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Transrewrt boleh didapati sebagai aplikasi desktop untuk Windows dan Linux, dan sebagai aplikasi web yang dihos sendiri. Panduan ini memberi tumpuan kepada penggunaan harian aplikasi. Di mana sesuatu hanya terpakai kepada satu versi, ia ditandakan dengan jelas.
+> Transrewrt tersedia sebagai aplikasi desktop untuk Windows dan Linux, dan sebagai aplikasi web yang dihos sendiri. Panduan ini memberi tumpuan kepada penggunaan harian aplikasi. Di mana sesuatu hanya terpakai kepada satu versi, ia ditandakan dengan jelas.
 
 <small>**Baca dalam bahasa lain:** </small>
-<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
-> **Nota mengenai terjemahan UI dan dokumentasi:** Semua bahasa antara muka kecuali asal Bahasa Inggeris (UK)
+> **Nota mengenai terjemahan UI dan dokumentasi:** Semua bahasa antara muka kecuali Bahasa Inggeris (UK) asal 
 > diterjemahkan menggunakan model AI; perkataan mungkin tidak tepat atau mengandungi ralat.
 
 </small>
@@ -53,7 +57,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Bar sisi](#sidebar)
   - [Bar alat](#toolbar)
   - [Panel input dan output](#input-and-output-panels)
-- [Terjemahan](#translate)
+- [Terjemah](#translate)
   - [Terjemah teks](#translate-text)
   - [Pemilihan bahasa](#language-selection)
   - [Tetapan terjemahan yang berguna](#helpful-translation-settings)
@@ -73,10 +77,10 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Tapis data](#filter-the-data-1)
   - [Eksport data sejarah](#export-history-data)
 - [Tetapan](#settings)
-  - [Tetapan umum](#general-settings)
+  - [Tetapan Umum](#general-settings)
   - [Model](#models)
   - [Bahasa](#languages)
-  - [Penjejakan kos](#cost-tracking)
+  - [Penjejakan Kos](#cost-tracking)
   - [Gesaan transformasi](#transform-prompts)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
@@ -89,7 +93,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Teks terlalu kecil atau sukar dibaca](#the-text-is-too-small-or-hard-to-read)
   - [Carta papan pemuka kosong](#dashboard-charts-are-empty)
   - [Kos menunjukkan "tidak tersedia" atau kelihatan salah](#cost-shows-not-available-or-seems-wrong)
-  - [Jumlah kos tidak sepadan dengan bil penyedia saya](#total-cost-does-not-match-my-provider-bill)
+  - [Jumlah kos tidak sepadan dengan bil penyedia](#total-cost-does-not-match-my-provider-bill)
   - [Halaman Sejarah tiada dalam bar sisi](#the-history-page-is-missing-from-the-sidebar)
   - [Aplikasi web: diarahkan semula ke halaman log masuk secara tidak dijangka](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Pentadbir web: lupa atau hilang kata laluan](#web-admin-forgot-or-lost-a-password)
@@ -106,18 +110,18 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
 <a id="before-you-start"></a>
 ## Sebelum anda mula
 
-Untuk menggunakan Transrewrt, anda perlu akses kepada sekurang-kurangnya satu penyedia AI. Penyedia yang disokong termasuk: [OpenRouter](https://openrouter.ai) (yang menggabungkan banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan [Ollama](https://ollama.com) untuk model tempatan.
+Untuk menggunakan Transrewrt, anda perlu akses kepada sekurang-kurangnya satu penyedia AI. Penyedia yang disokong ialah: [OpenRouter](https://openrouter.ai) (yang menggabungkan banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan [Ollama](https://ollama.com) untuk model tempatan.
 
-Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menambah kunci API OpenRouter anda, aplikasi secara automatik mengaktifkan pilihan OpenRouter **percuma** terbina dalam. Ini membolehkan anda mula menterjemah, menulis semula, dan menjalankan transformasi teks serta-merta. Sebagai alternatif, anda juga boleh mendapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
+Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menambah kunci API OpenRouter anda, aplikasi secara automatik mengaktifkan pilihan OpenRouter **percuma** terbina dalam. Ini membolehkan anda mula menterjemah, menulis semula, dan mengubah teks serta-merta. Sebagai alternatif, anda juga boleh mendapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
 
 Dalam bahasa mudah:
 
-- **Model** ialah enjin AI yang melakukan kerja. Model disenaraikan dengan awalan **penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
-- **Kunci API** (atau, untuk Ollama, **URL asas**) ialah cara aplikasi menghubungi penyedia tersebut.
+- **Model** ialah enjin AI yang melakukan kerja. Model disenaraikan dengan **awalan penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
+- **Kunci API** (atau, untuk Ollama, **URL asas**) adalah cara aplikasi mencapai penyedia tersebut.
 
-Jika anda menggunakan **aplikasi desktop**, tambah kunci dalam [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, rujuk [Cara mendapatkan kunci API](#how-to-get-an-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (daripada [ollama.com](https://ollama.com)) dan menggunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
+Jika anda menggunakan **aplikasi desktop**, tambah kunci di [**Tetapan** > **Konfigurasi API**](#api-config) bagi setiap penyedia yang anda gunakan. Untuk penggunaan OpenRouter sahaja, lihat [Cara mendapatkan kunci API](#how-to-get-an-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (dari [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
 
-Jika anda menggunakan **versi web**, pemilik pelayan mengkonfigurasi penyedia menggunakan pemboleh ubah persekitaran, jadi anda tidak boleh memasukkan kunci API secara langsung dalam aplikasi.
+Jika anda menggunakan **versi web**, pemilik pelayan mengkonfigurasi penyedia dengan pemboleh ubah persekitaran, jadi anda tidak boleh memasukkan kunci API secara langsung dalam aplikasi.
 
 <br/>
 
@@ -127,13 +131,13 @@ Jika anda menggunakan **versi web**, pemilik pelayan mengkonfigurasi penyedia me
 Jika anda menggunakan aplikasi desktop, ikuti langkah-langkah berikut:
 
 1. Pergi ke [OpenRouter](https://openrouter.ai) dalam pelayar web anda.
-2. Daftar akaun atau log masuk.
+2. Cipta akaun atau log masuk.
 3. Buka halaman [Kunci](https://openrouter.ai/keys).
 4. Klik butang untuk mencipta kunci API baharu.
 5. Beri nama kepada kunci tersebut supaya anda boleh mengenal pastinya kemudian.
 6. Salin kunci API baharu tersebut.
 7. Kembali ke Transrewrt dan buka **Tetapan** > **Konfigurasi API**.
-8. Tampal kunci ke dalam **Kunci API OpenRouter** (di bawah **Tetapan** > **Konfigurasi API**).
+8. Tampal kunci ke dalam **kunci API OpenRouter** (di bawah **Tetapan** > **Konfigurasi API**).
 9. Klik **Uji kunci OpenRouter** untuk memastikan ia berfungsi.
 
 <br/><br/>
@@ -141,17 +145,17 @@ Jika anda menggunakan aplikasi desktop, ikuti langkah-langkah berikut:
 <a id="getting-started"></a>
 ## Memulakan
 
-Jika ini kali pertama anda menggunakan Transrewrt, ikuti turutan berikut:
+Jika ini kali pertama anda menggunakan Transrewrt, ikuti susunan ini:
 
 1. Buka aplikasi.
 2. Pilih **Bahasa antara muka** anda daripada ikon globe jika perlu.
 3. Jika anda menggunakan **aplikasi desktop**, buka [**Tetapan** > **Konfigurasi API**](#api-config), tambah kunci API untuk sekurang-kurangnya satu penyedia (contohnya OpenRouter), dan klik **Uji** untuk mengesahkan ia berfungsi.
 4. Buka [**Tetapan** > **Model**](#models) dan tambah satu atau lebih model ke **Model Dipilih**.
-5. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa utama** anda jika anda mahu bahasa yang paling kerap digunakan muncul dahulu.
+5. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Utama** anda jika anda mahu bahasa yang paling kerap digunakan muncul dahulu.
 6. Pergi ke **Terjemah** dan jalankan terjemahan mudah untuk mengesahkan segala-galanya berfungsi.
-7. Selepas berjaya, cuba **Tulis Semula** dan kemudian **Transformasi**.
+7. Setelah berjaya, cuba **Tulis Semula** dan kemudian **Transformasi**.
 
-Turutan ini penting. Ia mengelakkan masalah biasa ketika penggunaan pertama: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau model yang dipilih.
+Susunan ini penting. Ia mengelakkan masalah paling biasa ketika penggunaan pertama: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau model yang dipilih.
 
 <br/><br/>
 
@@ -198,7 +202,7 @@ Gunakan bar sisi untuk bergerak di sekitar aplikasi. Anda boleh meruntuhkan bar 
 <a id="toolbar"></a>
 ### Bar Alat
 
-Bar alat berubah sedikit bergantung pada lokasi anda dalam aplikasi.
+Bar alat berubah sedikit bergantung kepada lokasi anda dalam aplikasi.
 
 - Di sebelah kiri, ia menunjukkan nama halaman semasa.
 - Di sebelah kanan, ia menunjukkan **pemilih model** dan kawalan **Bahasa antara muka**.
@@ -207,19 +211,19 @@ Bar alat berubah sedikit bergantung pada lokasi anda dalam aplikasi.
 
 ![Model selector](../images/screenshots/ms/model-selector.png)
 
-Sesetengah model percuma mungkin tidak sentiasa tersedia-kadangkala ia luar talian atau mempunyai had penggunaan. Jika ini berlaku, aplikasi akan secara automatik membuang model tersebut daripada senarai anda yang tersedia. Untuk mengawal model yang dipaparkan, pergi ke [**Tetapan** > **Model**](#models) dan edit senarai model anda. 
-Anda juga boleh membuka tetapan model secara terus dengan mengklik ikon penyedia di sebelah kiri nama model dalam bar alat.
+Sesetengah model percuma mungkin tidak sentiasa tersedia—kadangkala ia luar talian atau mempunyai had penggunaan. Jika ini berlaku, aplikasi akan secara automatik mengalih keluar model tersebut daripada senarai yang tersedia. Untuk mengawal model yang muncul, pergi ke [**Tetapan** > **Model**](#models) dan edit senarai model anda. 
+ Anda juga boleh membuka tetapan model secara terus dengan mengklik ikon penyedia di sebelah kiri nama model dalam bar alat.
 
 <br/>
 
-**Ikon globe + kod bahasa** menukar bahasa antara muka aplikasi, seperti menu dan butang. Ia **tidak** menukar bahasa terjemahan yang digunakan dalam **Terjemah**.
+Ikon **dunia + kod bahasa** mengubah bahasa antara muka aplikasi, seperti menu dan butang. Ia **tidak** mengubah bahasa terjemahan yang digunakan dalam **Terjemah**.
 
 ![Interface language selector](../images/screenshots/ms/language-selector.png)
 
 <br/>
 
 <a id="input-and-output-panels"></a>
-### Panel Input dan Output
+### Panel input dan output
 
 Kebanyakan ruang kerja menggunakan panel **Input** di sebelah kiri dan panel **Output** di sebelah kanan.
 
@@ -227,16 +231,16 @@ Setiap panel juga menunjukkan:
 
 | **Input**                                                          | **Output**                                                                                                                  |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| - Kiraan aksara <br/>- Kiraan perkataan <br/>- Kiraan perenggan   <br/> | - Tempoh tugas diambil<br/>- **TPS** (token per saat)<br/>- Kiraan aksara, perkataan, dan perenggan<br/>- Model yang digunakan |
+| - Kiraan aksara <br/>- Kiraan perkataan <br/>- Kiraan perenggan   <br/> | - Berapa lama tugas mengambil masa<br/>- **TPS** (token per saat)<br/>- Kiraan aksara, perkataan, dan perenggan<br/>- Model yang digunakan |
 
-Jika anda ingin tahu tentang istilah teknikal:
+Jika anda tertanya-tanya tentang istilah teknikal:
 
-- **Token** bermaksud sebahagian kecil teks. Anda boleh anggapkannya sebagai sebahagian daripada perkataan atau perkataan pendek.
-- **TPS** bermaksud berapa banyak bahagian teks yang diproses oleh model setiap saat.
+- **Token** bermaksud bahagian teks yang kecil. Anda boleh memikirkannya sebagai sebahagian daripada perkataan atau perkataan pendek.
+- **TPS** bermaksud berapa banyak bahagian teks tersebut yang diproses oleh model setiap saat.
 
 <br/>
 
-Anda juga boleh memantau kos bagi setiap operasi (jika tersedia) dan jumlah kos, dengan mengaktifkan pilihan `Tunjukkan maklumat kos pada tindakan` di [**Tetapan** > **Tetapan Umum**](#general-settings).
+Anda juga boleh memantau kos bagi setiap operasi (jika tersedia) dan jumlah kos, dengan mengaktifkan pilihan `Show cost information on the actions` di [**Tetapan** > **Tetapan Umum**](#general-settings).
 
 <br/><br/>
 
@@ -245,7 +249,7 @@ Anda juga boleh memantau kos bagi setiap operasi (jika tersedia) dan jumlah kos,
 <a id="translate"></a>
 ## Terjemah
 
-Gunakan **Terjemah** apabila anda ingin menukar teks daripada satu bahasa ke bahasa lain.
+Gunakan **Terjemah** apabila anda ingin menukar teks dari satu bahasa ke bahasa lain.
 
 ![Translate workspace](../images/screenshots/ms/translate.png)
 
@@ -260,7 +264,7 @@ Gunakan **Terjemah** apabila anda ingin menukar teks daripada satu bahasa ke bah
 4. Pilih model dalam bar alat.
 5. Taip atau tampal teks ke dalam **Input**.
 6. Klik **Terjemah**.
-7. Baca hasilnya dalam **Output**.
+7. Baca hasilnya di **Output**.
 8. Gunakan butang salin jika anda ingin menyalin hasilnya.
 
 <br/>
@@ -269,20 +273,20 @@ Gunakan **Terjemah** apabila anda ingin menukar teks daripada satu bahasa ke bah
 ### Pemilihan bahasa
 
 - **Dari** boleh menjadi bahasa tertentu atau **Kesan Bahasa**.
-- **Ke** adalah bahasa yang anda mahu hasilnya.
+- **Ke** adalah bahasa yang anda mahukan hasilnya.
 
-**Bahasa Atas** yang dipilih akan dipaparkan di bahagian atas senarai. Anda boleh menetapkannya di [**Tetapan** > **Bahasa**](#languages).
+**Bahasa Atas** yang anda pilih akan muncul di bahagian atas senarai. Anda boleh menetapkannya di [**Tetapan** > **Bahasa**](#languages).
 
 <br/>
 
 <a id="helpful-translation-settings"></a>
 ### Tetapan terjemahan yang berguna
 
-Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah cara terjemahan berkelakuan:
+Di [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah cara terjemahan berkelakuan:
 
-- **Auto-terjemah semasa tampal** akan menjalankan terjemahan sebaik sahaja anda tampal teks.
-- **Auto-salin hasil ke papan keratan** akan menyalin hasil secara automatik selepas berjaya dijalankan.
-- **Terjemahan masa nyata (semasa menaip)** akan menjalankan terjemahan semasa anda menaip.
+- **Auto-terjemah semasa tampal** menjalankan terjemahan sebaik sahaja anda menampal teks.
+- **Auto-salin hasil ke papan keratan** menyalin hasil secara automatik selepas berjaya dijalankan.
+- **Terjemahan masa nyata (semasa menaip)** menjalankan terjemahan semasa anda menaip.
 - **Tempoh tamat (ms)** mengawal berapa lama aplikasi menunggu sebelum menjalankan terjemahan masa nyata.
 - **Enter** mengawal apa yang berlaku apabila anda menekan `Enter`:
 
@@ -293,7 +297,7 @@ Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah c
 <a id="rewrite"></a>
 ## Tulis Semula
 
-Gunakan **Tulis Semula** apabila anda ingin memperbaiki perkataan tanpa mengubah maksud utama.
+Gunakan **Tulis Semula** apabila anda ingin meningkatkan perkataan tanpa mengubah maksud utama.
 
 ![Rewrite workspace](../images/screenshots/ms/rewrite.png)
 
@@ -302,15 +306,15 @@ Ini berguna untuk:
 - membetulkan ejaan dan tatabahasa (**Semak Ejaan & Tatabahasa**)
 - menjadikan teks lebih jelas (**Tingkatkan Kejelasan**)
 - beberapa reformulasi berbeza dalam satu larian (**Versi alternatif**)
-- menjadikan teks lebih formal atau tidak formal (**Formal** / **Tidak Formal**)
+- menjadikan teks lebih formal atau kurang formal (**Formal** / **Tidak Formal**)
 - memendekkan atau mengembangkan teks (**Pendekkan** / **Kembangkan**)
-- menjadikan teks kedengaran lebih teknikal (**Jadikan Teknikal**)
+- menjadikan teks lebih teknikal (**Jadikan Teknikal**)
 
 <br/>
 
-> 💡 **PETUA**<br/>
+> 💡 **TIP**<br/>
 > Apabila anda menggunakan mod "**Semak Ejaan & Tatabahasa**", suis **Tunjukkan perubahan** akan muncul di panel output (bersebelahan **Salin**).
-> Hidupkan atau matikan untuk menunjukkan atau menyembunyikan pembetulan khusus yang dikenakan ke atas teks anda.
+> Hidupkan atau matikan untuk memaparkan atau menyembunyikan pembetulan khusus yang dikenakan ke atas teks anda.
 
 <br/><br/>
 
@@ -323,12 +327,12 @@ Gunakan **Transformasi** apabila anda mahu AI mengikuti satu set arahan tersuai.
 
 ![Transform workspace](../images/screenshots/ms/transform.png)
 
-Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya untuk tugas seperti:
+Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya untuk tugas-tugas seperti:
 
-- ringkaskan nota
-- tukar teks kasar kepada emel yang siap
-- ekstrak titik utama
-- tukar teks kepada format tertentu
+- merumuskan nota
+- menukar teks kasar kepada emel yang siap
+- mengekstrak titik-titik utama
+- menukar teks kepada format tertentu
 - sebarang aktiviti tersuai lain dengan teks input
 
 <br/>
@@ -338,7 +342,7 @@ Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya un
 
 1. Buka **Transformasi**.
 2. Pilih prompt daripada senarai prompt.
-3. Jika kotak **Sasaran** bahasa muncul, pilih bahasa jika anda mahu.
+3. Jika kotak **Sasaran** bahasa muncul, pilih bahasa jika anda mahukannya.
 4. Taip atau tampal teks ke dalam **Input**.
 5. Klik **Transformasi**.
 6. Baca hasilnya di **Output**.
@@ -353,7 +357,7 @@ Jika senarai prompt anda kosong, klik **Muat prompt contoh** dalam ruang kerja T
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Prompt contoh disediakan dalam bahasa Inggeris. Selepas memuatnya, anda boleh edit prompt dan gunakan **Terjemah prompt** untuk menterjemahkannya ke dalam bahasa anda.
+> Prompt contoh disediakan dalam bahasa Inggeris. Selepas memuatnya, anda boleh mengedit prompt dan gunakan **Terjemah prompt** untuk menterjemahkannya ke dalam bahasa anda.
 
 <br/>
 
@@ -380,31 +384,31 @@ Apabila anda mencipta atau mengedit prompt, editor akan muncul di sebelah kiri d
 
 ![Transform prompt editor](../images/screenshots/ms/transform-prompt-edit.png)
 
-Medan utama adalah:
+Medan utama ialah:
 
 - **Nama prompt**: nama yang dipaparkan dalam senarai prompt.
 - **Arahan prompt (pilihan)**: petua ringkas yang dipaparkan kepada pengguna apabila menjalankan prompt.
 - **Peranan Model**: peranan keseluruhan yang diberikan kepada AI, seperti 'Anda adalah pembantu yang membantu.'
 - **Arahan Model (satu setiap baris)**: peraturan khusus yang anda mahu AI ikuti.
 - **Penerangan output**: perkataan ringkas yang menerangkan hasil, seperti 'ringkasan' atau 'tulis semula'.
-- **Suhu (0.0 → 1.0)**: bagaimana model akan berkelakuan; lihat di bawah.
+- **Suhu (0.0 → 1.0)**: cara model akan berkelakuan; lihat di bawah.
 - **Minta bahasa sasaran**: menambah pemilih bahasa sasaran apabila prompt dijalankan.
 
-Jika istilah teknikal **Suhu** adalah baru bagi anda, fikirkannya seperti ini:
+Jika istilah teknikal **Suhu** adalah baru bagi anda, fikirkan seperti ini:
 
 - **Suhu** yang lebih rendah memberikan hasil yang lebih stabil dan boleh diramal.
 - **Suhu** yang lebih tinggi memberikan lebih banyak variasi dan kreativiti.
 
 Anda juga boleh menggunakan:
 
-- **`Cipta prompt`** untuk menghasilkan draf baharu daripada huraian ringkas
-- **`Tingkatkan prompt`** untuk membaik sempurna prompt sedia ada
-- **`Terjemah prompt`** untuk menterjemah medan prompt
+- **`Generate prompt`** untuk mencipta draf baharu daripada huraian ringkas
+- **`Improve prompt`** untuk membaik sempurna prompt sedia ada
+- **`Translate prompt`** untuk menterjemah medan prompt
 
 <br/>
 
 > ⚠️ **AMARAN**<br/>
-> Klik **`Simpan`** sebelum klik **`Kembali ke Jalankan`**. Jika anda kembali tanpa menyimpan, perubahan anda akan hilang.
+> Klik **`Save`** sebelum anda klik **`Back to Run`**. Jika anda kembali tanpa menyimpan, perubahan anda akan hilang.
 
 <br/>
 
@@ -422,7 +426,7 @@ Ini berguna apabila:
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Anda boleh mengeksport dan mengimport prompt yang disimpan di [**Tetapan** > **Gesaan Transformasi**](#transform-prompts).
+> Anda boleh mengeksport dan mengimport prompt yang disimpan dalam [**Tetapan** > **Gesaan transformasi**](#transform-prompts).
 
 <br/><br/>
 
@@ -438,7 +442,7 @@ Gunakan **Papan Pemuka** untuk melihat sejauh mana anda menggunakan aplikasi ini
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Jika anda hanya menggunakan model **percuma**, jumlah **kos** mungkin sifar dan ringkasan yang berfokuskan kos mungkin kelihatan kosong. Pada **Ringkasan**, **Penggunaan dari masa ke masa** dan **Penggunaan mengikut model** masih memaparkan **bilangan panggilan** (terjemah, tulis semula, dan transformasi) apabila anda mempunyai aktiviti dalam tempoh yang dipilih.
+> Jika anda hanya menggunakan model **percuma**, jumlah **kos** mungkin sifar dan ringkasan yang berfokuskan kos mungkin kelihatan kosong. Pada **Ringkasan**, **Penggunaan dari masa ke masa** dan **Penggunaan mengikut model** masih menunjukkan **bilangan panggilan** (terjemah, tulis semula, dan transformasi) apabila terdapat aktiviti dalam tempoh yang dipilih.
 
 <br/>
 
@@ -452,16 +456,16 @@ Gunakan butang penapis di bahagian atas untuk menukar julat masa.
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak akan melihat penapis ini, dan ia tidak tersedia dalam aplikasi desktop.
+> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak akan melihat penapis ini, dan ia tidak tersedia dalam apl desktop.
 
 <br/>
 
 <a id="dashboard-tabs"></a>
 ### Tab Papan Pemuka
 
-- **Ringkasan** memberikan gambaran keseluruhan tentang penggunaan dan kos. Ia termasuk **Penggunaan dari masa ke masa** (jumlah terkumpul **bilangan panggilan** mengikut hari untuk terjemah, tulis semula, dan transformasi) dan **Penggunaan mengikut model** (jumlah **panggilan per model**, termasuk transformasi).
-- **Mengikut Penggunaan** membahagikan aktiviti mengikut bahasa terjemahan, mod penulisan semula, dan prompt transformasi.
-- **Mengikut Model** menunjukkan model yang digunakan dan kos yang terlibat.
+- **Ringkasan** memberikan gambaran keseluruhan penggunaan dan kos. Ia termasuk **Penggunaan dari masa ke masa** (**bilangan panggilan** kumulatif bertindih mengikut hari untuk terjemah, tulis semula, dan transformasi) dan **Penggunaan mengikut model** (**jumlah panggilan setiap model**, termasuk transformasi).
+- **Mengikut Penggunaan** membahagikan aktiviti mengikut bahasa terjemahan, mod tulis semula, dan prompt transformasi.
+- **Mengikut Model** menunjukkan model yang anda gunakan dan kosnya.
 - **Mengikut Hari** menunjukkan jumlah harian.
 - **Semua Panggilan** menunjukkan sejarah panggilan penuh dan membolehkan anda mengeksportnya.
 
@@ -470,25 +474,25 @@ Gunakan butang penapis di bahagian atas untuk menukar julat masa.
 <a id="export-data"></a>
 ### Eksport data
 
-Jadual papan pemuka boleh mengeksport data dalam format:
+Jadual papan pemuka boleh mengeksport data dalam:
 
 - **JSON**
 - **CSV**
-- **XLSX
+- **XLSX**
 
-Ini berguna jika anda ingin mengkaji aktiviti di luar aplikasi atau berkongsi laporan.
+Ini berguna jika anda ingin mengkaji aktiviti di luar apl atau berkongsi laporan.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
 ### Padam rekod tersimpan untuk model
 
-Dalam **Mengikut Model** atau **Semua Panggilan**, anda boleh membuang rekod tersimpan untuk model dengan mengklik ikon "tong sampah".
+Di **Mengikut Model** atau **Semua Panggilan**, anda boleh membuang rekod tersimpan untuk model dengan mengklik ikon "tong sampah".
 
 > ⚠️ **AMARAN**<br/>
 > Pemadaman rekod tersimpan tidak boleh diterbalikkan. Gunakan hanya jika anda pasti tidak lagi memerlukan sejarah tersebut.
 
-Untuk memadam semua data atau mengalih keluar rekod berdasarkan umurnya, pergi ke [**Tetapan** > **Penjejakan Kos**](#cost-tracking). Di sana anda akan menjumpai pilihan untuk memadam semua data tersimpan atau hanya data yang lebih lama daripada tarikh tertentu.
+Untuk memadam semua data atau mengalih keluar rekod berdasarkan umur mereka, pergi ke [**Tetapan** > **Penjejakan Kos**](#cost-tracking). Di sana anda akan menjumpai pilihan untuk memadam semua data tersimpan atau hanya data yang lebih lama daripada tarikh tertentu.
 
 <br/><br/>
 
@@ -513,20 +517,20 @@ Klik pada **Sejarah** untuk melihat sejarah tindakan anda di dalam **Transrewrt*
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak akan melihat penapis ini, dan ia tidak tersedia dalam aplikasi desktop.
+> Penapis **Pengguna** hanya kelihatan kepada pentadbir dalam versi web. Pengguna biasa tidak akan melihat penapis ini, dan ia tidak tersedia dalam apl desktop.
 
 <br/>
 
 <a id="export-history-data"></a>
 ### Eksport data sejarah
 
-Halaman sejarah boleh mengeksport data yang ditapis dalam format:
+Halaman sejarah boleh mengeksport data yang ditapis dalam:
 
 - **JSON**
 - **CSV**
-- **XLSX
+- **XLSX**
 
-Ini berguna jika anda ingin mengkaji aktiviti di luar aplikasi atau berkongsi laporan.
+Ini berguna jika anda ingin mengkaji aktiviti di luar apl atau berkongsi laporan.
 
 <br/><br/>
 
@@ -535,20 +539,20 @@ Ini berguna jika anda ingin mengkaji aktiviti di luar aplikasi atau berkongsi la
 <a id="settings"></a>
 ## Tetapan
 
-Buka **Tetapan** dari bar sisi untuk menyesuaikan cara aplikasi berkelakuan.
+Buka **Tetapan** daripada bar sisi untuk menyesuaikan cara apl berkelakuan.
 
 Tab yang tersedia bergantung pada platform dan peranan anda:
 
-| Tab               | Desktop | Web (pentadbir) | Web (pengguna biasa) |
-  |-------------------|:-------:|:---------------:|:--------------------:|
-  | Tetapan Umum      |   ya    |       ya        |         ya           |
-  | Model             |   ya    |       ya        |         ya           |
-  | Bahasa            |   ya    |       ya        |         ya           |
-  | Penjejakan Kos    |   ya    |       ya        |         -            |
-  | Gesaan Transformasi |   ya    |       ya        |         ya           |
-  | Pengguna          |    -    |       ya        |         -            |
-  | Konfigurasi API   |   ya    |       ya        |         -            |
-  | Perihal           |   ya    |       ya        |         ya           |
+| Tab               | Desktop | Web (admin) | Web (pengguna biasa) |
+  |-------------------|:-------:|:-----------:|:------------------:|
+  | Tetapan Umum  |   ya   |     ya     |        ya         |
+  | Model            |   ya   |     ya     |        ya         |
+  | Bahasa         |   ya   |     ya     |        ya         |
+  | Penjejakan Kos     |   ya   |     ya     |         -          |
+  | Gesaan transformasi |   ya   |     ya     |        ya         |
+  | Pengguna             |    -    |     ya     |         -          |
+  | Konfigurasi API        |   ya   |     ya     |         -          |
+  | Perihal             |   ya   |     ya     |        ya         |
 
 <br/>
 
@@ -564,43 +568,43 @@ Tab yang tersedia bergantung pada platform dan peranan anda:
 
 Gunakan **Tetapan Umum** untuk mengawal tingkah laku menaip, sama ada butiran pelaksanaan disimpan untuk **Sejarah**, dan penampilan.
 
-**Tingkah laku**
+**Tingkah Laku**
 
-- **Tingkah laku untuk ENTER** memilih sama ada `Enter` melaksanakan tugas atau memasukkan baris baharu.
-- **Auto-terjemah semasa tampal** memulakan terjemahan sebaik sahaja anda menampal teks.
+- **Tingkah laku untuk ENTER** memilih sama ada `Enter` menjalankan tugas atau menyisipkan baris baru.
+- **Auto-terjemah semasa tampal** memulakan terjemahan sebaik sahaja anda tampal teks.
 - **Auto-salin hasil ke papan keratan** menyalin hasil yang berjaya secara automatik.
 - **Terjemahan masa nyata (semasa menaip)** menterjemah semasa anda menaip.
-- **Tempoh tamat (ms)** menetapkan masa tunggu untuk terjemahan masa nyata.
+- **Timeout (ms)** menetapkan masa tunggu untuk terjemahan masa nyata.
 
 **Sejarah**
 
-- **Kekalkan sejarah pelaksanaan** mengawal sama ada setiap terjemah, tulis semula, dan transformasi menyimpan **teks input dan output** untuk paparan [**Sejarah**](#history) di bar sisi. Mematikannya akan meminta pengesahan; jika anda mengesahkan, teks sejarah yang disimpan akan dikeluarkan dari pangkalan data.
-- **Padam data sejarah** membolehkan anda mengalih keluar teks yang disimpan mengikut umur (contohnya lebih lama daripada beberapa bulan, atau **semua data (kosongkan)**) menggunakan **Padam data**. Ini hanya menjejaskan teks pelaksanaan yang disimpan untuk paparan **Sejarah**; ia **tidak** memadam jumlah kos atau penggunaan. Untuk mengalih keluar atau memotong data **kos**, gunakan [**Tetapan** > **Penjejakan Kos**](#cost-tracking).
+- **Kekalkan sejarah pelaksanaan** mengawal sama ada setiap terjemah, tulis semula, dan transformasi menyimpan **teks input dan output** untuk paparan sisi [**Sejarah**](#history). Mematikannya meminta pengesahan; jika anda mengesahkan, teks sejarah yang disimpan akan dihapuskan dari pangkalan data.
+- **Padam data sejarah** membolehkan anda menghapus teks yang disimpan mengikut usia (contohnya lebih tua daripada beberapa bulan, atau **semua data (kosongkan)**) menggunakan **Padam data**. Itu hanya mempengaruhi teks pelaksanaan yang disimpan untuk paparan **Sejarah**; ia tidak **menghapus** jumlah kos atau penggunaan. Untuk menghapus atau memotong data **kos**, gunakan [**Tetapan** > **Penjejakan Kos**](#cost-tracking).
 
 **Penampilan**
 
-- **Tunjukkan maklumat kos pada tindakan** mengawal paparan kos setiap operasi (jika tersedia) dan jumlah kos pada panel output **Terjemah**, **Tulis Semula**, dan **Transformasi**.
+- **Tunjukkan maklumat kos pada tindakan** mengawal paparan kos setiap operasi (jika tersedia) dan jumlah kos pada panel output Terjemah, Tulis Semula, dan Transformasi.
 - **Digit pecahan kos** mengubah cara perpuluhan kos dipaparkan.
 - **Web sahaja:** **tunjukkan jidar sekeliling aplikasi** menambah ruang tambahan di sekeliling antara muka.
-- **Famili Fon** mengubah fon penulisan dalam panel teks.
+- **Keluarga Fon** mengubah fon penulisan dalam panel teks.
 - **Saiz** mengubah saiz fon.
 
 **Sandaran Konfigurasi**
 
-- **Sertakan data penggunaan dalam sandaran** - apabila didayakan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
-- **Sandarkan konfigurasi** - mencipta satu fail ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` secara lalai dalam UTC) yang mengandungi `config.json`, `state.json`, kunci enkripsi pilihan, pengguna, keutamaan, gesaan tersuai, dan data penggunaan jika anda memilih untuk menyertakannya. Selepas sandaran berjaya, pengesahan akan memaparkan nama fail yang disimpan.
-- **Pulihkan dari sandaran** - membuka **dialog pengesahan dahulu**. Pilih fail ZIP sandaran di dalam dialog tersebut (**Browse** / pemilih fail atau seret-dan-lepas jika disokong), kemudian semak semula pilihan:
-  - **Pulihkan data penggunaan** - import penggunaan/sejarah dari ZIP apabila ia disandarkan dengan data penggunaan disertakan; tinggalkan tidak ditanda jika anda hanya mahu tetapan dan gesaan.
-  - **Kosongkan data penggunaan lama sebelum memulihkan** - alih keluar penggunaan/sejarah sedia ada dalam pemasangan ini sebelum memohon sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
+- **Sertakan data penggunaan dalam sandaran** - apabila diaktifkan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API. 
+- **Sandarkan konfigurasi** - mencipta satu ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` dalam UTC secara lalai) dengan `config.json`, `state.json`, kunci penyulitan pilihan, pengguna, pilihan, arahan khusus, dan data penggunaan jika anda memilih untuk menyertakan. Selepas sandaran yang berjaya, pengesahan menunjukkan nama fail yang disimpan.
+- **Pulihkan dari sandaran** - membuka **dialog pengesahan terlebih dahulu**. Pilih ZIP sandaran di dalam dialog (**Semak** / pemilih fail atau seret dan lepas di mana disokong), kemudian semak pilihan:
+  - **Pulihkan data penggunaan** - mengimport penggunaan/sejarah dari ZIP apabila ia disandarkan dengan penggunaan disertakan; biarkan tidak aktif jika anda hanya mahu tetapan dan arahan.
+  - **Kosongkan data penggunaan lama sebelum memulihkan** - menghapus penggunaan/sejarah sedia ada pada pemasangan ini sebelum menerapkan sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
 
-Sandaran yang dicipta sama ada dalam versi web atau desktop boleh dipulihkan dalam versi yang lain. Apabila memulihkan sandaran desktop dalam versi web, data akan dipulihkan ke pengguna pentadbir.
+Sandaran yang dibuat dalam versi web atau desktop boleh dipulihkan dalam yang lain. Apabila memulihkan sandaran desktop dalam versi web, data akan dipulihkan kepada pengguna pentadbir.
 
 <br/>
 
 <a id="models"></a>
 ### Model
 
-Gunakan **Tetapan** > **Model** untuk memilih model yang muncul dalam bar alat.
+Gunakan **Tetapan** > **Model** untuk memilih model yang muncul di bar alat.
 
 ![Settings Models tab](../images/screenshots/ms/settings-models.png)
 
@@ -612,109 +616,109 @@ Halaman ini mempunyai dua senarai:
 Kawalan berguna termasuk:
 
 - **Cari model...** untuk mencari model mengikut nama
-- **Cip Penyedia** untuk mengecilkan senarai kepada enjin tertentu (OpenRouter, OpenAI, Ollama, …)
-- **Percuma Sahaja** untuk memaparkan hanya model percuma
+- Cip **Penyedia** untuk mengecilkan senarai kepada satu enjin (OpenRouter, OpenAI, Ollama, …)
+- **Percuma Sahaja** untuk menunjukkan hanya model percuma
 - **Muat Semula** untuk memuat semula senarai
 - **Kembangkan Semua** dan **Runtuhkan Semua** apabila anda menyusun mengikut penyedia
 
-ID model termasuk awalan penyedia (contohnya `openrouter/…` berbanding `openai/…`). Lencana seperti **OpenAI (OpenRouter)** berbanding **OpenAI (langsung)** menunjukkan bagaimana lalu lintas dirouting.
+Id model termasuk awalan penyedia (contohnya `openrouter/…` vs `openai/…`). Lencana seperti **OpenAI (OpenRouter)** vs **OpenAI (langsung)** menunjukkan bagaimana trafik dihalakan.
 
 > ℹ️ **NOTA**<br/>
-> **OpenRouter Body Builder** (`openrouter/bodybuilder`) adalah model penghala, bukan model sembang umum: balasannya adalah JSON yang menerangkan badan permintaan API OpenRouter (contohnya tatasusunan `requests` dengan `model` dan `messages`). Jika anda menggunakannya untuk **Terjemah**, **Tulis Semula**, atau **Transformasi**, panel output akan memaparkan JSON itu dan bukannya teks siap. Pilih model teks biasa untuk tugas-tugas tersebut. Lihat [laman model Body Builder](https://openrouter.ai/openrouter/bodybuilder) di OpenRouter.
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) adalah model penghala, bukan model sembang umum: balasannya adalah JSON yang menerangkan badan permintaan API OpenRouter (contohnya satu `requests` array dengan `model` dan `messages`). Jika anda menggunakannya untuk **Terjemah**, **Tulis Semula**, atau **Transformasi**, panel output akan menunjukkan JSON itu dan bukannya teks siap. Pilih model teks biasa untuk tugas-tugas tersebut. Lihat halaman [model Body Builder](https://openrouter.ai/openrouter/bodybuilder) di OpenRouter.
 
 Tindakan:
 
-- Untuk menambah model, klik **Tambah** atau mana-mana di dalam entri.
+- Untuk menambah model, klik **Tambah** atau mana-mana tempat dalam entri.
 
-- Untuk membuang model, klik **X** di sebelahnya dalam **Model Dipilih** atau **Dipilih** pada entri dalam Model Tersedia.
+- Untuk menghapus model, klik **X** di sebelahnya dalam **Model Dipilih** atau **Dipilih** pada entri dalam Model Tersedia.
 
 - Untuk mengosongkan senarai, klik **Nyahpilih Semua**. Model percuma yang diperlukan akan kekal dalam senarai.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Jika anda tidak mahu menambah kredit ke OpenRouter serta-merta, mulakan dengan mengaktifkan **Percuma Sahaja** dan memilih model percuma (tiada kad kredit diperlukan). Anda juga boleh menggunakan Ollama untuk menjalankan model secara tempatan tanpa sebarang kunci API.
+> Jika anda tidak mahu menambah kredit ke OpenRouter dengan segera, mulakan dengan mengaktifkan **Percuma Sahaja** dan memilih model-model percuma (tiada kad kredit diperlukan). Anda juga boleh menggunakan Ollama untuk menjalankan model secara tempatan tanpa sebarang kunci API.
 
 <br/>
 
 <a id="languages"></a>
 ### Bahasa
 
-Gunakan **Tetapan** > **Bahasa** untuk menyusun senarai bahasa yang digunakan dalam aplikasi.
+Gunakan **Tetapan** > **Bahasa** untuk mengatur senarai bahasa yang digunakan dalam aplikasi.
 
-- **Bahasa utama** dipautkan berhampiran bahagian atas senarai bahasa dalam **Terjemah** dan **Transformasi**.
-- **Bahasa pilihan** membolehkan anda menambah bahasa yang tidak terdapat dalam senarai bawaan.
+- **Bahasa utama** ditetapkan berhampiran bahagian atas senarai bahasa dalam **Terjemah** dan **Transformasi**.
+- **Bahasa pilihan** membolehkan anda menambah bahasa yang tidak terdapat dalam senarai terbina dalam.
 
-Jika anda menambah bahasa pilihan, ia akan muncul dalam pemilih bahasa bersama pilihan bawaan.
+Jika anda menambah bahasa pilihan, ia akan muncul dalam pemilih bahasa bersama pilihan terbina dalam.
 
 <br/>
 
 <a id="cost-tracking"></a>
-### Penjejakan kos
+### Penjejakan Kos
 
-Gunakan **Tetapan** > **Penjejakan Kos** untuk mengurus maklumat kos.
+Gunakan **Tetapan** > **Penjejakan Kos** untuk menguruskan maklumat kos.
 
-- **Jumlah Kos** memaparkan jumlah terkini.
-- **Salin Nilai** menyalin jumlah ke papan keratan.
-- **Set Semula Kos** menetapkan semula jumlah yang disimpan kepada sifar.
-- **Segerak dengan penggunaan kunci API** menetapkan jumlah mengikut penggunaan yang dilaporkan oleh akaun OpenRouter anda (OpenRouter sahaja).
-- **Penggunaan Kunci API** memaparkan butiran penggunaan OpenRouter, jika tersedia.
-- **Padam data kos** mengalihkan semua data, atau hanya entri yang lebih lama daripada tarikh yang dipilih.
+- **Jumlah Kos** menunjukkan jumlah terkumpul.
+- **Salin Nilai** menyalin jumlah ke papan klip.
+- **Set Semula Kos** menetapkan jumlah yang disimpan kepada sifar.
+- **Segerak dengan penggunaan kunci API** menetapkan jumlah untuk sepadan dengan penggunaan yang dilaporkan oleh akaun OpenRouter anda (hanya OpenRouter).
+- **Penggunaan Kunci API** menunjukkan butiran penggunaan OpenRouter, jika ada.
+- **Padam data kos** menghapus semua data, atau hanya entri yang lebih lama daripada tarikh yang dipilih.
 
-**Penjejakan kos:** Apabila anda menggunakan model OpenRouter, aplikasi memaparkan penggunaan dan perbelanjaan sebenar anda berdasarkan maklumat kos daripada OpenRouter. Untuk semua penyedia lain, aplikasi menganggarkan kos menggunakan harga yang diterbitkan oleh OpenRouter; jika harga tidak tersedia, anggaran mungkin sifar.
+**Penjejakan Kos:** Apabila anda menggunakan model OpenRouter, aplikasi menunjukkan penggunaan dan perbelanjaan sebenar anda berdasarkan maklumat kos dari OpenRouter. Untuk semua penyedia lain, aplikasi menganggarkan kos menggunakan harga yang diterbitkan oleh OpenRouter, jika harga tidak tersedia, anggaran mungkin sifar.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
->  Semua angka kos adalah anggaran untuk rujukan anda sahaja, bukan penyata bil rasmi.
+>  **Semua angka kos adalah anggaran untuk rujukan anda sahaja, bukan penyata bil rasmi.**
 
 <br/>
 
 > ⚠️ **AMARAN**<br/>
-> Penghapusan data tidak boleh diterbalikkan. Sebelum memadam, pastikan untuk membuat sandaran data anda atau mengeksportnya melalui [**Sejarah**](#history)
-> atau [**Papan Pemuka** > **Semua Panggilan**](#dashboard-tabs), jika tidak data akan hilang secara kekal.
-> Semua sejarah input/output yang berkaitan dengan setiap entri panggilan API juga akan dipadamkan.
+> Penghapusan data tidak boleh dibatalkan. Sebelum memadam, pastikan untuk menyandarkan data anda atau mengeksportnya melalui [**Sejarah**](#history) 
+> atau [**Papan Pemuka** > **Semua Panggilan**](#dashboard-tabs), jika tidak, ia akan hilang secara kekal. 
+> Semua sejarah input/output yang berkaitan dengan setiap entri panggilan API juga akan dipadam.
 
 <br/>
 
 <a id="transform-prompts"></a>
-### Gesejakan transformasi
+### Gesaan transformasi
 
-Gunakan **Tetapan** > **Gesejakan Transformasi** untuk mengurus gesejakan secara pukal.
+Gunakan **Tetapan** > **Gesaan Transformasi** untuk menguruskan gesaan secara pukal.
 
 Anda boleh:
 
-- semak semula prompt yang telah disimpan
-- padam prompt
-- import prompt dari fail
-- eksport prompt untuk sandaran atau perkongsian
-- muat prompt contoh ke senarai prompt
+- menyemak gesaan yang disimpan
+- memadam gesaan
+- mengimport gesaan dari fail
+- mengeksport gesaan untuk sandaran atau perkongsian
+- memuat prompt contoh ke dalam senarai gesaan
 
 <br/>
 
 <a id="users"></a>
 ### Pengguna
 
-Gunakan **Pengguna** untuk mengurus akaun pengguna dalam versi web. Anda boleh menambah pengguna, kemaskini butiran mereka, tetapkan semula kata laluan, dan padam akaun.
+Gunakan **Pengguna** untuk menguruskan akaun pengguna dalam versi web. Anda boleh menambah pengguna, mengemas kini butiran mereka, menetapkan semula kata laluan, dan memadam akaun.
 
 <br/>
 
 <a id="api-config"></a>
 ### Konfigurasi API
 
-Penyedia yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan **Ollama** (model tempatan melalui URL asas). Anda hanya perlu mengkonfigurasi penyedia yang anda gunakan.
+Penyedia yang disokong adalah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan **Ollama** (model tempatan melalui URL asas). Anda hanya perlu mengkonfigurasi penyedia yang anda gunakan.
 
 **Aplikasi web: pentadbir sahaja**
 
-Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker - ia tidak dimasukkan dalam UI web. Halaman ini menunjukkan penyedia mana yang mempunyai kunci dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang **`Uji`**.
+Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker - ia tidak dimasukkan dalam UI web. Halaman ini menunjukkan penyedia yang mempunyai kunci dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang **`Test`**.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Untuk mengubah kunci API, kemaskini pemboleh ubah persekitaran dalam konfigurasi sistem atau Docker anda dan mulakan semula pelayan atau bekas.
+> Untuk menukar kunci API, kemas kini pemboleh ubah persekitaran dalam konfigurasi sistem atau Docker anda dan mulakan semula pelayan atau bekas.
 
 > ℹ️ **NOTA**<br/>
-> **Sandaran konfigurasi** (lihat [**Tetapan Umum** → Sandaran Konfigurasi](#general-settings)) boleh menyematkan kunci penyedia **terselesaikan** di dalam `config.json` ZIP. Memulihkan ZIP tersebut **tidak** menyalin kunci tersebut kembali ke fail konfigurasi kekal pelayan - kunci aktif masih datang daripada persekitaran dan keadaan fail sedia ada seperti yang diterangkan di sana.
+> **Sandaran konfigurasi** (lihat [**Tetapan Umum** → Sandaran Konfigurasi](#general-settings)) boleh menyematkan kunci penyedia **terselesaikan** di dalam `config.json` ZIP. Memulihkan ZIP tersebut **tidak** menyalin kunci-kunci itu kembali ke fail konfigurasi kekal pelayan - kunci aktif masih datang daripada persekitaran dan keadaan fail sedia ada seperti yang diterangkan di sana.
 
 <br/>
 
@@ -724,20 +728,20 @@ Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap penyedia yang 
 
 <br/>
 
-> 💡 **Tip** <br/>
-> Jika anda tidak mahu menggunakan kunci API atau membayar penggunaan, anda boleh [muat turun Ollama](https://ollama.com) dan jalankan model (seperti `translategemma:4b`) secara tempatan pada mesin anda secara percuma. Sebagai alternatif, anda boleh mencipta akaun OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma mereka, atau dapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
+> 💡 **Petua** <br/>
+> Jika anda tidak mahu menggunakan kunci API atau membayar penggunaan, anda boleh [muat turun Ollama](https://ollama.com) dan jalankan model (seperti `translategemma:4b`) secara tempatan pada mesin anda secara percuma. Sebagai alternatif, anda boleh cipta akaun OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma mereka, atau dapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
 
 <br/>
 
 - Tambah hanya penyedia yang anda perlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan penyedia (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Untuk menambah kunci API, masukkan nilai dalam ruang teks dan klik **`Simpan`**. Untuk menggantikan kunci sedia ada, klik **`Edit`**. Untuk mengesahkan kunci berfungsi, klik **`Uji`**. Untuk URL asas Ollama, sentiasa klik **`Uji`** untuk menyemak sambungan.
+Untuk menambah kunci API, masukkan nilai dalam ruang teks dan klik **`Save`**. Untuk menggantikan kunci sedia ada, klik **`Edit`**. Untuk mengesahkan kunci berfungsi, klik **`Test`**. Untuk URL asas Ollama, sentiasa klik **`Test`** untuk menyemak sambungan.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
 > Anda tidak boleh melihat nilai semasa kunci API. Anda hanya boleh menggantikannya menggunakan butang **`Edit`**.
-> Kunci API disimpan dalam bentuk disulitkan dalam konfigurasi.
+> Kunci API disimpan secara enkripsi dalam konfigurasi.
 
 <br/>
 
@@ -756,36 +760,36 @@ Tab **Perihal** menunjukkan:
 <a id="common-issues"></a>
 ## Isu biasa
 
-Jika sesuatu tidak berfungsi seperti dijangka, semak dahulu perkara berikut.
+Jika sesuatu tidak berfungsi seperti dijangka, semak perkara berikut dahulu.
 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Aplikasi tidak akan menterjemah, menulis semula, atau mengubah suai teks
+### Aplikasi tidak menterjemah, menulis semula, atau mengubah teks
 
-Pastikan:
+Semak bahawa:
 
-- anda telah memilih model di bar alat
-- sekurang-kurangnya satu model disenaraikan di [**Tetapan** > **Model**](#models)
-- konfigurasi API anda berfungsi
+- anda telah memilih model dalam bar alat
+- sekurang-kurangnya satu model disenaraikan dalam [**Tetapan** > **Model**](#models)
+- susunan API anda berfungsi
 
 Jika anda menggunakan aplikasi desktop:
 
 1. Buka [**Tetapan** > **Konfigurasi API**](#api-config).
-2. Pastikan sekurang-kurangnya satu kunci API telah disimpan.
+2. Semak sekurang-kurangnya satu kunci API telah disimpan.
 3. Klik **Uji** di sebelah penyedia untuk mengesahkan kunci berfungsi.
 
 <br/>
 
 <a id="the-model-list-is-empty"></a>
-### Senarai model kosong
+### Senarai model adalah kosong
 
 Buka [**Tetapan** > **Model**](#models) dan klik **Muat Semula**.
 
 Jika perlu:
 
 - cari model
-- dayakan **Percuma Sahaja**
+- aktifkan **Percuma Sahaja**
 - tambah satu atau lebih model ke **Model Dipilih**
 
 <br/>
@@ -793,19 +797,19 @@ Jika perlu:
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Keputusan terlalu perlahan atau terlalu mahal
 
-Cuba salah satu atau lebih perkara berikut:
+Cuba satu atau lebih daripada ini:
 
-- pilih model yang berbeza
+- pilih model lain
 - gunakan input yang lebih pendek
-- matikan **Terjemahan masa nyata (semasa menaip)** di [**Tetapan** > **Tetapan Umum**](#general-settings)
-- gunakan model percuma untuk tugas-tugas mudah (rujuk [Model](#models))
+- matikan **Terjemahan masa nyata (semasa menaip)** dalam [**Tetapan** > **Tetapan Umum**](#general-settings)
+- gunakan model percuma untuk tugas mudah (lihat [Model](#models))
 
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Antara muka dalam bahasa yang salah
 
-Klik ikon globe di [bar alat](#toolbar) dan pilih **Bahasa antara muka** yang anda kehendaki.
+Klik ikon globe dalam [toolbar](#toolbar) dan pilih **Bahasa antara muka** yang anda suka.
 
 <br/>
 
@@ -814,29 +818,29 @@ Klik ikon globe di [bar alat](#toolbar) dan pilih **Bahasa antara muka** yang an
 
 Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan ubah:
 
-- **Famili Fon**
+- **Keluarga Fon**
 - **Saiz**
 
 <br/>
 
 <a id="dashboard-charts-are-empty"></a>
-### Carta Papan Pemuka kosong
+### Carta Papan Pemuka adalah kosong
 
 Ini adalah normal jika:
 
-- anda hanya menggunakan **model percuma** dan sedang melihat angka **kos** (ia mungkin sifar); carta bilangan **penggunaan** di **Ringkasan** masih memerlukan data dari tempoh yang dipilih
-- **penapis masa** yang dipilih tidak merangkumi tempoh apabila panggilan dibuat - cuba **Semua** untuk menyemak
+- anda hanya menggunakan **model percuma** dan anda melihat angka **kos** (mungkin sifar); carta jumlah **penggunaan** pada **Ringkasan** masih memerlukan data dari tempoh yang dipilih
+- **penapis masa** yang dipilih tidak merangkumi tempoh ketika panggilan dibuat - cuba **Semua** untuk memeriksa
 
-Jika carta masih kosong selepas memilih **Semua**, sahkan bahawa panggilan muncul dalam [**Sejarah**](#history) atau pada tab **Semua Panggilan**.
+Jika carta masih kosong selepas memilih **Semua**, sahkan bahawa panggilan muncul dalam [**Sejarah**](#history) atau dalam tab **Semua Panggilan**.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
-### Kos menunjukkan "tidak tersedia" atau kelihatan salah
+### Kos menunjukkan "tidak tersedia" atau nampak salah
 
-Apabila anda menggunakan model melalui **OpenRouter**, aplikasi akan memaparkan perbelanjaan sebenar yang dilaporkan oleh OpenRouter.
+Apabila anda menggunakan model melalui **OpenRouter**, aplikasi menunjukkan perbelanjaan sebenar anda yang dilaporkan oleh OpenRouter.
 
-Untuk **penyedia lain** (OpenAI langsung, Anthropic langsung, dll.), kos adalah anggaran berdasarkan data harga yang diterbitkan oleh OpenRouter. Jika tiada harga yang sepadan ditemui untuk model tersebut, kos akan dipaparkan sebagai **tidak tersedia** dan tidak akan ditambah ke jumlah keseluruhan anda.
+Untuk **penyedia lain** (OpenAI langsung, Anthropic langsung, dll.), kos dianggarkan daripada data harga yang diterbitkan oleh OpenRouter. Jika tiada harga yang sepadan ditemui untuk model, kos akan muncul sebagai **tidak tersedia** dan tidak akan ditambah kepada jumlah keseluruhan anda.
 
 <br/>
 
@@ -845,21 +849,21 @@ Untuk **penyedia lain** (OpenAI langsung, Anthropic langsung, dll.), kos adalah 
 
 Semua angka kos dalam aplikasi adalah **anggaran untuk rujukan sahaja**, bukan penyata bil rasmi.
 
-Untuk menjadikan jumlah lebih hampir dengan perbelanjaan OpenRouter sebenar anda, buka [**Tetapan** > **Penjejakan Kos**](#cost-tracking) dan klik **Segerak dengan penggunaan kunci API**.
+Untuk membuat jumlah ini lebih hampir dengan perbelanjaan OpenRouter sebenar anda, buka [**Tetapan** > **Penjejakan Kos**](#cost-tracking) dan klik **Segerak dengan penggunaan kunci API**.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Halaman Sejarah tiada dalam bar sisi
 
-**Kekalkan sejarah pelaksanaan** mungkin dimatikan. Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan dayakannya. Perhatikan bahawa menghidupkannya tidak akan memulihkan data sejarah yang telah dipadam sebelumnya.
+**Kekalkan sejarah pelaksanaan** mungkin dimatikan. Buka [**Tetapan** > **Tetapan Umum**](#general-settings) dan dayakannya. Perhatikan bahawa menghidupkannya tidak memulihkan data sejarah yang telah dipadamkan sebelumnya.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
 ### Aplikasi web: diarahkan semula ke halaman log masuk secara tidak dijangka
 
-Sesi anda mungkin telah tamat tempoh. Log masuk semula. Jika ini berlaku kerap, semak konfigurasi pelayan untuk tetapan tempoh sesi.
+Sesi anda mungkin telah tamat masa. Log masuk semula. Jika ini berlaku kerap, semak konfigurasi pelayan untuk tetapan tempoh sesi.
 
 <br/>
 
@@ -869,15 +873,15 @@ Sesi anda mungkin telah tamat tempoh. Log masuk semula. Jika ini berlaku kerap, 
 Ini merujuk kepada aplikasi web **yang dihos sendiri** (Docker), bukan aplikasi desktop (Electron).
 
 - Jika pentadbir lain masih boleh log masuk, mereka boleh buka [**Tetapan** > **Pengguna**](#users), pilih akaun tersebut, dan tetapkan **kata laluan baharu** di sana.
-- Jika anda **terkunci keluar** tetapi mempunyai **akses shell** kepada mesin atau bekas, tetapkan semula kata laluan menggunakan alat bantu yang disertakan dengan imej (gantikan `transrewrt` jika anda menukar nama lalai, dan letakkan kata laluan dalam tanda petik jika ia mengandungi ruang atau aksara khas):
+- Jika anda **terkunci keluar** tetapi mempunyai **akses shell** kepada mesin atau bekas, tetapkan semula kata laluan dengan alat bantu yang disertakan bersama imej (gantikan `transrewrt` jika anda menukar nama lalai, dan letakkan kata laluan dalam tanda petik jika ia mengandungi ruang atau aksara khas):
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
 ```
 
-Nama pengguna pentadbir lalai ialah `admin` jika anda tidak pernah mencipta akaun lain. Apabila anda memberi hanya satu argumen, ia akan dirawat sebagai kata laluan baharu untuk `admin`.
+Nama pengguna pentadbir lalai ialah `admin` jika anda tidak pernah mencipta akaun lain. Apabila anda memberi hanya satu argumen, ia akan dianggap sebagai kata laluan baharu untuk `admin`.
 
-Jika anda menjalankannya dari **cek keluar sumber** dan bukannya Docker, gunakan:
+Jika anda menjalankannya daripada **cek keluar sumber** dan bukannya Docker, gunakan:
 
 ```bash
 pnpm run reset-web-password -- <username> <new-password>
@@ -888,7 +892,7 @@ Skrip ini mengemaskini rekod pengguna dalam pangkalan data SQLite (dan boleh men
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
-### Papan Pemuka tidak memaparkan data untuk pengguna lain (web)
+### Papan Pemuka tidak menunjukkan data untuk pengguna lain (web)
 
 Hanya **pentadbir** boleh melihat data dari semua pengguna melalui penapis **Pengguna**. Pengguna biasa hanya dapat melihat aktiviti mereka sendiri mengikut rekabentuk.
 
@@ -897,19 +901,19 @@ Hanya **pentadbir** boleh melihat data dari semua pengguna melalui penapis **Pen
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
 ### Saya mengubah prompt dan kehilangan suntingan
 
-Apabila mengedit prompt, sentiasa klik **Simpan** sebelum klik **Kembali ke Jalankan**.
+Apabila menyunting prompt, sentiasa klik **Simpan** sebelum klik **Kembali ke Jalankan**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
-## Petua Pantas
+## Petua pantas
 
 - Mulakan dengan [**Terjemah**](#translate) untuk memastikan susunan anda berfungsi sebelum beralih ke [**Tulis Semula**](#rewrite) atau [**Transformasi**](#transform).
 - Gunakan [**Tulis Semula**](#rewrite) untuk penambahbaikan perkataan harian.
 - Gunakan [**Transformasi**](#transform) apabila anda memerlukan alur kerja yang boleh diulang untuk tugas tertentu.
 - Gunakan [**Papan Pemuka**](#dashboard) jika anda ingin memantau penggunaan dan kos.
-- Gunakan [**Sejarah**](#history) untuk mengkaji operasi lampau dan teks input/output penuh.
-- Eksport prompt secara berkala jika anda membina perpustakaan prompt yang ingin diselamatkan (rujuk [Gesaan transformasi](#transform-prompts)) atau jika anda ingin berkongsi dengannya dengan orang lain.
+- Gunakan [**Sejarah**](#history) untuk mengkaji operasi lampau dan teks input/output penuh mereka.
+- Eksport prompt secara berkala jika anda membina perpustakaan prompt yang ingin diselamatkan (rujuk [Gesaan transformasi](#transform-prompts)) atau jika anda ingin kongsinya dengan orang lain.
 
 <br/><br/>
 

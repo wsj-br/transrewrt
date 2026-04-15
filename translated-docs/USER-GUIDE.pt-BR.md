@@ -1,9 +1,11 @@
 ---
-translation_last_updated: '2026-04-09T23:23:06.617Z'
-source_file_mtime: '2026-04-07T18:28:53.559Z'
-source_file_hash: e1b91eca0124d467
+translation_last_updated: '2026-04-15T22:27:41.150Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
 translation_language: pt-BR
 source_file_path: USER-GUIDE.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -18,12 +20,12 @@ source_file_path: USER-GUIDE.md
 O Transrewrt ajuda você a trabalhar com texto de três maneiras principais:
 
 - **Traduzir** - converter texto de um idioma para outro.
-- **Reescrever** - reformatar o texto em um estilo diferente, como mais claro, mais curto ou mais formal.
+- **Reescrever** - parafrasear texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas prompts.
 
 <br/>
 
-Este guia explica como usar o aplicativo após instalado e em execução. Para as etapas de instalação, consulte o arquivo **[README](README.pt-BR.md)** principal.
+Este guia explica como usar o aplicativo após instalado e em execução. Para as etapas de instalação, consulte o **[README](README.pt-BR.md)** principal.
 
 <br/>
 
@@ -31,11 +33,12 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
 > O Transrewrt está disponível como aplicativo desktop para Windows e Linux, e como aplicativo web autohospedado. Este guia foca no uso diário do aplicativo. Quando algo se aplica apenas a uma versão, isso é claramente indicado.
 
 <small>**Leia em outros idiomas:** </small>
-<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
-> **Observação sobre traduções da interface e documentação:** Todos os idiomas da interface, exceto o inglês (Reino Unido) original, 
+> **Observação sobre traduções da interface e documentação:** Todos os idiomas da interface, exceto o inglês (UK) original, 
 > foram traduzidos usando modelos de IA; a redação pode ser imprecisa ou conter erros.
 
 </small>
@@ -53,7 +56,7 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [Barra lateral](#sidebar)
   - [Barra de ferramentas](#toolbar)
   - [Painéis de entrada e saída](#input-and-output-panels)
-- [Tradução](#translate)
+- [Traduzir](#translate)
   - [Traduzir texto](#translate-text)
   - [Seleção de idioma](#language-selection)
   - [Configurações úteis de tradução](#helpful-translation-settings)
@@ -106,7 +109,7 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
 <a id="before-you-start"></a>
 ## Antes de começar
 
-Para usar o Transrewrt, você precisa de acesso a pelo menos um provedor de IA. Os provedores suportados são: [OpenRouter](https://openrouter.ai) (que agrega muitos modelos), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras e [Ollama](https://ollama.com) para modelos locais.
+Para usar o Transrewrt, você precisa ter acesso a pelo menos um provedor de IA. Os provedores suportados são: [OpenRouter](https://openrouter.ai) (que agrega muitos modelos), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras e [Ollama](https://ollama.com) para modelos locais.
 
 Você não precisa selecionar um modelo pago para começar. Assim que adicionar sua chave de API do OpenRouter, o aplicativo ativa automaticamente uma opção **gratuita** integrada do OpenRouter. Isso permite que você comece a traduzir, reescrever e transformar texto imediatamente. Alternativamente, você também pode obter uma chave de API gratuita da Cerebras, Google, Groq ou Mistral AI.
 
@@ -115,9 +118,9 @@ Em termos simples:
 - Um **modelo** é o mecanismo de IA que realiza o trabalho. Os modelos são listados com um **prefixo do provedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
 - Uma **chave de API** (ou, para o Ollama, uma **URL base**) é como o aplicativo se conecta a esse provedor.
 
-Se você estiver usando o **aplicativo desktop**, adicione as chaves em [**Configurações** > **Configuração da API**](#api-config) para cada provedor que usar. Para uso exclusivo do OpenRouter, veja [Como obter uma chave de API](#how-to-get-an-api-key-desktop-app) abaixo. Se você não quiser usar uma chave de API, pode instalar o Ollama (em [ollama.com](https://ollama.com)) e usar modelos locais, como `translategemma:4b`.
+Se você estiver usando o **aplicativo desktop**, adicione chaves em [**Configurações** > **Configuração da API**](#api-config) para cada provedor que você usar. Para uso exclusivo do OpenRouter, veja [Como obter uma chave de API](#how-to-get-an-api-key-desktop-app) abaixo. Se você não quiser usar uma chave de API, pode instalar o Ollama (de [ollama.com](https://ollama.com)) e usar modelos locais em vez disso, como `translategemma:4b`.
 
-Se você estiver usando a **versão web**, o proprietário do servidor configura os provedores com variáveis de ambiente, portanto você não pode inserir chaves de API diretamente no aplicativo.
+Se você estiver usando a **versão web**, o proprietário do servidor configura os provedores com variáveis de ambiente, portanto, você não pode inserir chaves de API diretamente no aplicativo.
 
 <br/>
 
@@ -126,15 +129,15 @@ Se você estiver usando a **versão web**, o proprietário do servidor configura
 
 Se você estiver usando o aplicativo desktop, siga estes passos:
 
-1. Acesse [OpenRouter](https://openrouter.ai) no seu navegador.
+1. Acesse [OpenRouter](https://openrouter.ai) no seu navegador da web.
 2. Crie uma conta ou faça login.
-3. Abra a página [Keys](https://openrouter.ai/keys).
+3. Abra a página [Chaves](https://openrouter.ai/keys).
 4. Clique no botão para criar uma nova chave de API.
 5. Dê um nome à chave para que você possa reconhecê-la posteriormente.
 6. Copie a nova chave de API.
-7. Volte ao Transrewrt e abra **Configurações** > **Configuração da API**.
+7. Retorne ao Transrewrt e abra **Configurações** > **Configuração da API**.
 8. Cole a chave em **Chave de API do OpenRouter** (em **Configurações** > **Configuração da API**).
-9. Clique em **Testar chave do OpenRouter** para verificar se está funcionando.
+9. Clique em **Testar chave do OpenRouter** para garantir que funcione.
 
 <br/><br/>
 
@@ -161,33 +164,33 @@ Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tenta
 O aplicativo é dividido em três áreas principais:
 
 - A **barra lateral** à esquerda.
-- A **barra de ferramentas** no topo.
+- A **barra de ferramentas** na parte superior.
 - A **área de trabalho** no centro.
 
 <br/>
 
 <a id="sidebar"></a>
-### Barra Lateral
+### Barra lateral
 
-Use a barra lateral para navegar pelo aplicativo. Você pode recolher a barra lateral para ganhar mais espaço, clicando no ícone ao lado do logotipo do aplicativo.
+Use a barra lateral para navegar pelo aplicativo. Você pode recolher a barra lateral para ganhar mais espaço clicando no ícone ao lado do logotipo do aplicativo.
 
 <br/>
 
 <table>
   <tr>
     <td valign="top">
-       <img src="../images/screenshots/pt-BR/sidebar.png" alt="Barra Lateral do Aplicativo" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+       <img src="../images/screenshots/pt-BR/sidebar.png" alt="Application Sidebar" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
     </td>
     <td valign="top">
       <br/><br/>
       <ul>
-        <li><strong>Traduzir</strong> abre o ambiente de trabalho de tradução.</li><br/>
-        <li><strong>Reescrever</strong> abre o ambiente de trabalho de reescrita.</li><br/>
-        <li><strong>Transformar</strong> abre o ambiente de trabalho de prompt personalizado.</li><br/>
-        <li><strong>Painel</strong> exibe informações de uso e custo.</li><br/>
+        <li><strong>Traduzir</strong> abre o espaço de trabalho de tradução.</li><br/>
+        <li><strong>Reescrever</strong> abre o espaço de trabalho de reescrita.</li><br/>
+        <li><strong>Transformar</strong> abre o espaço de trabalho de prompt personalizado.</li><br/>
+        <li><strong>Painel</strong> mostra informações de uso e custo.</li><br/>
         <li><strong>Configurações</strong> abre o painel de configurações.</li><br/>
-        <li><strong>Histórico</strong> exibe o histórico de uso com os textos de entrada e saída.</li><br/>
-        <li><strong>Usuário</strong> exibe o nome de usuário do usuário logado (somente na web).</li>
+        <li><strong>Histórico</strong> mostra o histórico de uso com o texto de entrada e saída</li><br/>
+        <li><strong>Usuário</strong> mostra o nome de usuário do usuário logado (somente web).</li>
       </ul>
     </td>
   </tr>
@@ -196,23 +199,23 @@ Use a barra lateral para navegar pelo aplicativo. Você pode recolher a barra la
 <br/>
 
 <a id="toolbar"></a>
-### Barra de Ferramentas
+### Barra de ferramentas
 
 A barra de ferramentas muda ligeiramente dependendo de onde você está no aplicativo.
 
-- À esquerda, ela exibe o nome da página atual.
-- À direita, exibe o **seletor de modelo** e o controle de **Idioma da interface**.
+- À esquerda, ela mostra o nome da página atual.
+- À direita, ela mostra o **seletor de modelo** e o controle do **Idioma da interface**.
 
 O **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
 ![Model selector](../images/screenshots/pt-BR/model-selector.png)
 
-Alguns modelos gratuitos podem não estar sempre disponíveis - às vezes estão offline ou têm limite de uso. Se isso acontecer, o aplicativo removerá automaticamente esse modelo da sua lista disponível. Para controlar quais modelos aparecem, vá até [**Configurações** > **Modelos**](#models) e edite sua lista de modelos. 
+Alguns modelos gratuitos podem não estar sempre disponíveis — às vezes estão offline ou têm um limite de uso. Se isso acontecer, o aplicativo removerá automaticamente esse modelo da sua lista disponível. Para controlar quais modelos aparecem, vá para [**Configurações** > **Modelos**](#models) e edite sua lista de modelos. 
 Você também pode abrir as configurações do modelo diretamente clicando no ícone do provedor à esquerda do nome do modelo na barra de ferramentas.
 
 <br/>
 
-O **ícone de globo + código de idioma** altera o idioma da interface do aplicativo, como menus e botões. Ele **não** altera os idiomas de tradução usados na função **Traduzir**.
+O **ícone de globo + código de idioma** altera o idioma da interface do aplicativo, como menus e botões. Ele **não** altera os idiomas de tradução usados em **Traduzir**.
 
 ![Interface language selector](../images/screenshots/pt-BR/language-selector.png)
 
@@ -221,13 +224,13 @@ O **ícone de globo + código de idioma** altera o idioma da interface do aplica
 <a id="input-and-output-panels"></a>
 ### Painéis de entrada e saída
 
-A maioria dos ambientes de trabalho usa um painel de **Entrada** no lado esquerdo e um painel de **Saída** no lado direito.
+A maioria dos ambientes de trabalho usa um painel **Entrada** no lado esquerdo e um painel **Saída** no lado direito.
 
-Cada painel também exibe:
+Cada painel também mostra:
 
 | **Entrada**                                                          | **Saída**                                                                                                                  |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| - Contagem de caracteres <br/>- Contagem de palavras <br/>- Contagem de parágrafos   <br/> | - Tempo que a tarefa levou<br/>- **TPS** (tokens por segundo)<br/>- Contagem de caracteres, palavras e parágrafos<br/>- O modelo utilizado |
+| - Contagem de caracteres <br/>- Contagem de palavras <br/>- Contagem de parágrafos   <br/> | - Tempo que a tarefa levou<br/>- **TPS** (tokens por segundo)<br/>- Contagens de caracteres, palavras e parágrafos<br/>- O modelo usado |
 
 Se você estiver se perguntando sobre os termos técnicos:
 
@@ -236,7 +239,7 @@ Se você estiver se perguntando sobre os termos técnicos:
 
 <br/>
 
-Você também pode monitorar o custo de cada operação (se disponível) e o custo total, habilitando a opção `Mostrar informações de custo nas ações` em [**Configurações** > **Configurações Gerais**](#general-settings).
+Você também pode monitorar o custo de cada operação (se disponível) e o custo total, habilitando a opção `Show cost information on the actions` em [**Configurações** > **Configurações Gerais**](#general-settings).
 
 <br/><br/>
 
@@ -245,7 +248,7 @@ Você também pode monitorar o custo de cada operação (se disponível) e o cus
 <a id="translate"></a>
 ## Traduzir
 
-Use **Traduzir** quando quiser converter um texto de um idioma para outro.
+Use **Traduzir** quando quiser converter texto de um idioma para outro.
 
 ![Translate workspace](../images/screenshots/pt-BR/translate.png)
 
@@ -261,7 +264,7 @@ Use **Traduzir** quando quiser converter um texto de um idioma para outro.
 5. Digite ou cole o texto em **Entrada**.
 6. Clique em **Traduzir**.
 7. Leia o resultado em **Saída**.
-8. Use o botão de copiar se desejar copiar o resultado.
+8. Use o botão de copiar se quiser copiar o resultado.
 
 <br/>
 
@@ -269,7 +272,7 @@ Use **Traduzir** quando quiser converter um texto de um idioma para outro.
 ### Seleção de idioma
 
 - **De** pode ser um idioma específico ou **Detectar Idioma**.
-- **Para** é o idioma em que você deseja obter o resultado.
+- **Para** é o idioma no qual você deseja o resultado.
 
 Seus **Idiomas principais** selecionados aparecem no topo da lista. Você pode definir esses idiomas em [**Configurações** > **Idiomas**](#languages).
 
@@ -280,7 +283,7 @@ Seus **Idiomas principais** selecionados aparecem no topo da lista. Você pode d
 
 Em [**Configurações** > **Configurações Gerais**](#general-settings), você pode alterar o comportamento da tradução:
 
-- **Auto-traduzir ao colar** executa uma tradução assim que você cola um texto.
+- **Auto-traduzir ao colar** executa uma tradução assim que você colar um texto.
 - **Copiar resultado automaticamente para a área de transferência** copia o resultado automaticamente após uma execução bem-sucedida.
 - **Tradução em tempo real (enquanto digita)** executa traduções enquanto você digita.
 - **Tempo limite (ms)** controla por quanto tempo o aplicativo aguarda antes de executar uma tradução em tempo real.
@@ -293,7 +296,7 @@ Em [**Configurações** > **Configurações Gerais**](#general-settings), você 
 <a id="rewrite"></a>
 ## Reescrever
 
-Use **Reescrever** quando desejar melhorar a redação sem alterar o significado principal.
+Use **Reescrever** quando quiser melhorar a redação sem alterar o significado principal.
 
 ![Rewrite workspace](../images/screenshots/pt-BR/rewrite.png)
 
@@ -310,7 +313,7 @@ Isso é útil para:
 
 > 💡 **DICA**<br/>
 > Quando você usa o modo "**Verificar ortografia e gramática**", um interruptor **Mostrar alterações** aparece no painel de saída (ao lado de **Copiar**).
-> Ligue ou desligue para mostrar ou ocultar as correções específicas aplicadas ao seu texto.
+> Ative ou desative para mostrar ou ocultar as correções específicas aplicadas ao seu texto.
 
 <br/><br/>
 
@@ -319,7 +322,7 @@ Isso é útil para:
 <a id="transform"></a>
 ## Transformar
 
-Use **Transformar** quando desejar que a IA siga um conjunto personalizado de instruções.
+Use **Transformar** quando quiser que a IA siga um conjunto personalizado de instruções.
 
 ![Transform workspace](../images/screenshots/pt-BR/transform.png)
 
@@ -338,10 +341,10 @@ Esta é a área mais flexível do aplicativo. Você pode usá-la para tarefas co
 
 1. Abra **Transformar**.
 2. Escolha um prompt da lista de prompts.
-3. Se aparecer uma caixa de **Destino** de idioma, escolha um idioma, se desejar.
-4. Digite ou cole o texto na **Entrada**.
+3. Se aparecer uma caixa de idioma **Destino**, escolha um idioma, se desejar.
+4. Digite ou cole o texto em **Entrada**.
 5. Clique em **Transformar**.
-6. Leia o resultado na **Saída**.
+6. Leia o resultado em **Saída**.
 
 <br/>
 
@@ -364,7 +367,7 @@ A maneira mais rápida de criar um prompt é:
 
 1. Clique em **Novo prompt**.
 2. Clique em **Gerar prompt**.
-3. Descreva o que você deseja que o prompt faça.
+3. Descreva o que você quer que o prompt faça.
 4. Escolha um modelo.
 5. Deixe o aplicativo criar um rascunho para você.
 6. Revise o rascunho e clique em **Salvar**.
@@ -384,32 +387,32 @@ Os campos principais são:
 
 - **Nome do prompt**: o nome exibido na lista de prompts.
 - **Instruções do prompt (opcional)**: uma dica curta exibida ao usuário ao executar o prompt.
-- **Papel do Modelo**: o papel geral atribuído à IA, como 'Você é um assistente útil.'
+- **Papel do Modelo**: a função geral atribuída à IA, como 'Você é um assistente útil.'
 - **Instruções do modelo (uma por linha)**: as regras específicas que você deseja que a IA siga.
 - **Descrição da saída**: uma palavra curta que descreve o resultado, como 'resumo' ou 'reescrever'.
 - **Temperatura (0,0 → 1,0)**: como o modelo se comportará; veja abaixo.
-- **Solicitar idioma de destino**: adiciona um seletor de idioma de destino ao executar o prompt.
+- **Solicitar idioma de destino**: adiciona um seletor de idioma de destino quando o prompt é executado.
 
-Se o termo técnico **Temperatura** for novo para você, pense assim:
+Se o termo técnico **Temperatura** for novo para você, pense nele da seguinte forma:
 
-- Uma temperatura **mais baixa** oferece resultados mais estáveis e previsíveis.
-- Uma temperatura **mais alta** oferece mais variedade e criatividade.
+- Uma **temperatura mais baixa** oferece resultados mais estáveis e previsíveis.
+- Uma **temperatura mais alta** oferece mais variedade e criatividade.
 
 Você também pode usar:
 
-- **`Gerar prompt`** para criar um novo rascunho a partir de uma descrição simples
-- **`Melhorar prompt`** para aprimorar um prompt existente
-- **`Traduzir prompt`** para traduzir os campos do prompt
+- **`Generate prompt`** para criar um novo rascunho a partir de uma descrição simples
+- **`Improve prompt`** para aprimorar um prompt existente
+- **`Translate prompt`** para traduzir os campos do prompt
 
 <br/>
 
-> ⚠️ **ATENÇÃO**<br/>
-> Clique em **`Salvar`** antes de clicar em **`Voltar para Executar`**. Se você voltar sem salvar, suas alterações serão perdidas.
+> ⚠️ **AVISO**<br/>
+> Clique em **`Save`** antes de clicar em **`Back to Run`**. Se você voltar sem salvar, suas alterações serão perdidas.
 
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Testar um prompt antes de usá-lo
+### Teste um prompt antes de usá-lo
 
 O painel de teste à direita permite que você experimente seu prompt com texto de exemplo antes de usá-lo no trabalho diário.
 
@@ -421,7 +424,7 @@ Isso é útil quando:
 
 <br/>
 
-> ℹ️ **OBSERVAÇÃO**<br/>
+> ℹ️ **NOTA**<br/>
 > Você pode exportar e importar prompts salvos em [**Configurações** > **Prompts de transformação**](#transform-prompts).
 
 <br/><br/>
@@ -431,14 +434,14 @@ Isso é útil quando:
 <a id="dashboard"></a>
 ## Painel
 
-Use o **Painel** para ver o quanto você está utilizando o aplicativo e qual o custo disso (para modelos pagos).
+Use **Painel** para ver o quanto você está utilizando o aplicativo e quanto isso está custando (para modelos pagos).
 
 ![Dashboard summary](../images/screenshots/pt-BR/dashboard-summary.png)
 
 <br/>
 
-> ℹ️ **OBSERVAÇÃO**<br/>
-> Se você usar apenas **modelos gratuitos**, os valores de **custo** podem ser zero e os resumos focados em custo podem parecer vazios. Em **Resumo**, **Uso ao longo do tempo** e **Uso por modelo** ainda mostram o **número de chamadas** (traduzir, reescrever e transformar) quando houver atividade no período selecionado.
+> ℹ️ **NOTA**<br/>
+> Se você usar apenas modelos **gratuitos**, os valores de **custo** podem ser zero e os resumos focados em custo podem parecer vazios. Em **Resumo**, **Uso ao longo do tempo** e **Uso por modelo** ainda mostram o **número de chamadas** (traduzir, reescrever e transformar) quando houver atividade no período selecionado.
 
 <br/>
 
@@ -451,17 +454,17 @@ Use os botões de filtro na parte superior para alterar o intervalo de tempo.
 
 <br/>
 
-> ℹ️ **OBSERVAÇÃO**<br/>
-> O filtro **Usuário** só é visível para administradores na versão web. Usuários comuns não verão esse filtro, e ele não está disponível no aplicativo desktop.
+> ℹ️ **NOTA**<br/>
+> O filtro **Usuário** só é visível para administradores na versão web. Usuários regulares não verão este filtro, e ele não está disponível no aplicativo desktop.
 
 <br/>
 
 <a id="dashboard-tabs"></a>
 ### Abas do Painel
 
-- **Resumo** fornece uma visão geral do uso e custo. Inclui **Uso ao longo do tempo** (**contagem acumulada** diária de chamadas para traduzir, reescrever e transformar) e **Uso por modelo** (**total de chamadas por modelo**, incluindo transformação).
+- **Resumo** fornece uma visão geral do uso e custo. Inclui **Uso ao longo do tempo** (contagem acumulada empilhada de **chamadas** por dia para tradução, reescrita e transformação) e **Uso por modelo** (total de **chamadas por modelo**, incluindo transformação).
 - **Por uso** detalha a atividade por idioma de tradução, modo de reescrita e prompt de transformação.
-- **Por modelo** mostra quais modelos você usou e quanto custaram.
+- **Por modelo** mostra quais modelos você utilizou e quanto custaram.
 - **Por dia** mostra os totais diários.
 - **Todas as chamadas** mostra o histórico completo de chamadas e permite exportá-lo.
 
@@ -476,19 +479,19 @@ As tabelas do painel podem exportar dados nos formatos:
 - **CSV**
 - **XLSX**
 
-Isso é útil se você deseja analisar a atividade fora do aplicativo ou compartilhar um relatório.
+Isso é útil se você deseja revisar atividades fora do aplicativo ou compartilhar um relatório.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
 ### Excluir registros armazenados de um modelo
 
-Em **Por modelo** ou **Todas as chamadas**, você pode remover registros armazenados de um modelo clicando no ícone da "lixeira".
+Em **Por modelo** ou **Todas as chamadas**, você pode remover os registros armazenados de um modelo clicando no ícone da "lixeira".
 
-> ⚠️ **ATENÇÃO**<br/>
-> A exclusão de registros armazenados não pode ser desfeita. Use isso apenas se tiver certeza de que não precisa mais desse histórico.
+> ⚠️ **AVISO**<br/>
+> A exclusão de registros armazenados não pode ser desfeita. Use esta opção apenas se tiver certeza de que não precisa mais desse histórico.
 
-Para excluir todos os dados ou remover registros com base na idade, acesse [**Configurações** > **Rastreamento de Custo**](#cost-tracking). Lá você encontrará opções para excluir todos os dados armazenados ou apenas dados anteriores a uma determinada data.
+Para excluir todos os dados ou remover registros com base na sua idade, vá até [**Configurações** > **Rastreamento de Custo**](#cost-tracking). Lá você encontrará opções para excluir todos os dados armazenados ou apenas os dados anteriores a uma determinada data.
 
 <br/><br/>
 
@@ -513,14 +516,14 @@ Clique em **Histórico** para ver o histórico de suas ações dentro do **Trans
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> O filtro **Usuário** só é visível para administradores na versão web. Usuários comuns não verão esse filtro, e ele não está disponível no aplicativo desktop.
+> O filtro **Usuário** só é visível para administradores na versão web. Usuários regulares não verão este filtro, e ele não está disponível no aplicativo desktop.
 
 <br/>
 
 <a id="export-history-data"></a>
-###  Exportar dados do histórico
+### Exportar dados do histórico
 
-A página de histórico pode exportar os dados filtrados em:
+A página de histórico pode exportar os dados filtrados nos formatos:
 
 - **JSON**
 - **CSV**
@@ -537,7 +540,7 @@ Isso é útil se você deseja revisar atividades fora do aplicativo ou compartil
 
 Abra **Configurações** na barra lateral para personalizar o comportamento do aplicativo.
 
-As guias disponíveis dependem da plataforma e da sua função:
+As guias disponíveis dependem da plataforma e do seu papel:
 
 | Guia               | Desktop | Web (admin) | Web (usuário comum) |
   |-------------------|:-------:|:-----------:|:------------------:|
@@ -562,7 +565,7 @@ As guias disponíveis dependem da plataforma e da sua função:
 <a id="general-settings"></a>
 ### Configurações gerais
 
-Use **Configurações Gerais** para controlar o comportamento ao digitar, se os detalhes da execução são armazenados no **Histórico** e a aparência.
+Use **Configurações Gerais** para controlar o comportamento ao digitar, se os detalhes de execução são armazenados no **Histórico** e a aparência.
 
 **Comportamento**
 
@@ -574,26 +577,26 @@ Use **Configurações Gerais** para controlar o comportamento ao digitar, se os 
 
 **Histórico**
 
-- **Manter histórico de execução** controla se cada tradução, reescrita e transformação armazena **texto de entrada e saída** para a visualização [**Histórico**](#history) na barra lateral. Desativar isso solicita confirmação; se você confirmar, o texto do histórico armazenado será removido do banco de dados.
-- **Excluir dados do histórico** permite remover textos armazenados por idade (por exemplo, mais antigos que alguns meses, ou **todos os dados (limpar)**) usando **Excluir dados**. Isso afeta apenas o texto de execução salvo para a visualização **Histórico**; **não** exclui totais de custo ou uso. Para remover ou reduzir dados de **custo**, use [**Configurações** > **Rastreamento de Custo**](#cost-tracking).
+- **Manter histórico de execução** controla se cada tradução, reescrita e transformação armazena **texto de entrada e saída** para a visualização do [**Histórico**](#history) na barra lateral. Desativar isso solicita confirmação; se você confirmar, o texto armazenado será removido do banco de dados.
+- **Excluir dados do histórico** permite remover o texto armazenado por idade (por exemplo, mais antigo que alguns meses, ou **todos os dados (limpar)**) usando **Excluir dados**. Isso afeta apenas o texto de execução salvo para a visualização do **Histórico**; **não** exclui totais de custo ou uso. Para remover ou reduzir dados de **custo**, use [**Configurações** > **Rastreamento de Custo**](#cost-tracking).
 
 **Aparência**
 
 - **Mostrar informações de custo nas ações** controla a exibição do custo por operação (se disponível) e do custo total nos painéis de saída de Traduzir, Reescrever e Transformar.
-- **Casas decimais do custo** altera a forma como os decimais de custo são exibidos.
-- **Apenas web:** **mostrar uma margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
+- **Dígitos fracionários do custo** altera a forma como os decimais do custo são exibidos.
+- **Somente web:** **mostrar uma margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
 - **Família da fonte** altera a fonte de escrita nos painéis de texto.
 - **Tamanho** altera o tamanho da fonte.
 
 **Backup de Configuração**
 
 - **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execução e dados de chamadas à API. 
-- **Fazer backup da configuração** - cria um único arquivo ZIP (`transrewrt-config-backup-AAAA-MM-DD_HHMMSS.zip` no horário UTC por padrão) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso, se você optou por incluí-los. Após um backup bem-sucedido, a confirmação exibe o nome do arquivo salvo.
-- **Restaurar a partir do backup** - abre primeiro um **diálogo de confirmação**. Escolha o arquivo ZIP do backup dentro do diálogo (**Procurar** / seletor de arquivos ou arrastar e soltar, onde suportado), depois revise as opções:
-  - **Restaurar os dados de uso** - importa uso/histórico do ZIP quando foi feito backup com uso incluído; desative se você quiser apenas configurações e prompts.
+- **Fazer backup da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por padrão) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso, se você optou por incluí-los. Após um backup bem-sucedido, a confirmação mostra o nome do arquivo salvo.
+- **Restaurar a partir do backup** - abre primeiro um **diálogo de confirmação**. Escolha o ZIP do backup dentro do diálogo (**Procurar** / seletor de arquivos ou arrastar e soltar, onde suportado), depois revise as opções:
+  - **Restaurar os dados de uso** - importa uso/histórico do ZIP quando ele foi feito com uso incluído; deixe desativado se você quiser apenas configurações e prompts.
   - **Limpar os dados de uso antigos antes da restauração** - remove o uso/histórico existente nesta instalação antes de aplicar o backup (opcional; use quando desejar uma substituição limpa).
 
-Backups criados na versão web ou desktop podem ser restaurados na outra versão. Ao restaurar um backup do desktop na versão web, os dados serão restaurados para o usuário administrador.
+Backups criados na versão web ou desktop podem ser restaurados na outra. Ao restaurar um backup do desktop na versão web, os dados serão restaurados para o usuário administrador.
 
 <br/>
 
@@ -612,15 +615,15 @@ A página possui duas listas:
 Controles úteis incluem:
 
 - **Procurar modelos...** para encontrar um modelo pelo nome
-- Chips **Provedor** para restringir a lista a um mecanismo (OpenRouter, OpenAI, Ollama, …)
-- **Apenas Gratuitos** para mostrar somente modelos gratuitos
+- Chips de **Provedor** para restringir a lista a um mecanismo (OpenRouter, OpenAI, Ollama, …)
+- **Apenas Gratuitos** para mostrar apenas modelos gratuitos
 - **Atualizar** para recarregar a lista
 - **Expandir Todos** e **Recolher Todos** ao ordenar por provedor
 
-Os IDs dos modelos incluem o prefixo do provedor (por exemplo, `openrouter/…` vs `openai/…`). Emblemas como **OpenAI (OpenRouter)** vs **OpenAI (direto)** mostram como o tráfego é roteado.
+Os IDs dos modelos incluem o prefixo do provedor (por exemplo `openrouter/…` vs `openai/…`). Emblemas como **OpenAI (OpenRouter)** vs **OpenAI (direto)** mostram como o tráfego é roteado.
 
-> ℹ️ **OBSERVAÇÃO**<br/>
-> **OpenRouter Body Builder** (`openrouter/bodybuilder`) é um modelo roteador, não um modelo de chat geral: sua resposta é JSON que descreve corpos de requisição da API OpenRouter (por exemplo, um array `requests` com `model` e `messages`). Se você usá-lo para **Traduzir**, **Reescrever** ou **Transformar**, o painel de saída mostrará esse JSON em vez do texto finalizado. Escolha um modelo de texto normal para essas tarefas. Veja a [página do modelo Body Builder](https://openrouter.ai/openrouter/bodybuilder) no OpenRouter.
+> ℹ️ **NOTA**<br/>
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) é um modelo de roteamento, não um modelo de chat geral: sua resposta é um JSON que descreve os corpos de solicitação da API OpenRouter (por exemplo, um array `requests` com `model` e `messages`). Se você usá-lo para **Traduzir**, **Reescrever** ou **Transformar**, o painel de saída mostrará esse JSON em vez do texto finalizado. Escolha um modelo de texto normal para essas tarefas. Veja a [página do modelo Body Builder](https://openrouter.ai/openrouter/bodybuilder) no OpenRouter.
 
 Ações:
 
@@ -632,8 +635,8 @@ Ações:
 
 <br/>
 
-> ℹ️ **OBSERVAÇÃO**<br/>
-> Se você não deseja adicionar créditos ao OpenRouter imediatamente, comece ativando **Apenas Gratuitos** e escolhendo os modelos gratuitos (sem cartão de crédito necessário). Você também pode usar o Ollama para executar modelos localmente sem nenhuma chave de API.
+> ℹ️ **NOTA**<br/>
+> Se você não quiser adicionar créditos ao OpenRouter imediatamente, comece habilitando **Apenas Gratuitos** e escolhendo os modelos gratuitos (sem cartão de crédito necessário). Você também pode usar o Ollama para executar modelos localmente sem nenhuma chave de API.
 
 <br/>
 
@@ -642,37 +645,37 @@ Ações:
 
 Use **Configurações** > **Idiomas** para organizar as listas de idiomas usadas no aplicativo.
 
-- Os **principais idiomas** são fixados próximo ao topo das listas de idiomas em **Traduzir** e **Transformar**.
-- O **Idioma Personalizado** permite adicionar um idioma que não está na lista integrada.
+- **Idiomas principais** são fixados próximo ao topo das listas de idiomas em **Traduzir** e **Transformar**.
+- **Idioma Personalizado** permite adicionar um idioma que não está na lista integrada.
 
 Se você adicionar um idioma personalizado, ele aparecerá nos seletores de idioma ao lado das opções integradas.
 
 <br/>
 
 <a id="cost-tracking"></a>
-### Rastreamento de custo
+### Rastreamento de Custo
 
 Use **Configurações** > **Rastreamento de Custo** para gerenciar as informações de custo.
 
 - **Custo Total** mostra o total acumulado.
 - **Copiar valor** copia o total para a área de transferência.
 - **Redefinir custo** redefine o total armazenado para zero.
-- **Sincronizar com o uso da chave de API** define o total de acordo com o uso informado pela sua conta OpenRouter (somente OpenRouter).
-- **Uso da Chave de API** mostra os detalhes de uso do OpenRouter, se disponíveis.
-- **Excluir dados de custo** remove todos os dados ou apenas as entradas anteriores a uma data selecionada.
+- **Sincronizar com o uso da chave de API** define o total para corresponder ao uso relatado pela sua conta OpenRouter (apenas OpenRouter).
+- **Uso da Chave de API** mostra detalhes de uso do OpenRouter, se disponíveis.
+- **Excluir dados de custo** remove todos os dados ou apenas entradas anteriores a uma data selecionada.
 
 **Rastreamento de custo:** Quando você usa modelos OpenRouter, o aplicativo mostra seu uso real e gastos com base nas informações de custo do OpenRouter. Para todos os outros provedores, o aplicativo estima os custos usando os preços publicados pelo OpenRouter; se um preço não estiver disponível, a estimativa pode ser zero.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
->  Todos os valores de custo são estimativas apenas para sua referência, não são extratos oficiais de faturamento.
+>  **Todos os valores de custo são estimativas apenas para sua referência, não são demonstrativos oficiais de cobrança.**
 
 <br/>
 
-> ⚠️ **AVISO**<br/>
-> A exclusão de dados não pode ser desfeita. Antes de excluir, certifique-se de fazer backup dos seus dados ou exportá-los por meio de [**Histórico**](#history) 
-> ou [**Painel** > **Todas as chamadas**](#dashboard-tabs), caso contrário, eles serão perdidos permanentemente. 
+> ⚠️ **ATENÇÃO**<br/>
+> A exclusão de dados não pode ser desfeita. Antes de excluir, certifique-se de fazer backup dos seus dados ou exportá-los por meio de [**Histórico**](#history)
+> ou [**Painel** > **Todas as chamadas**](#dashboard-tabs), caso contrário serão perdidos permanentemente.
 > Todo o histórico de entrada/saída relacionado a cada entrada de chamada de API também será excluído.
 
 <br/>
@@ -688,7 +691,7 @@ Você pode:
 - excluir prompts
 - importar prompts de um arquivo
 - exportar prompts para backup ou compartilhamento
-- carregar prompts de exemplo na lista de prompts
+- carregar prompts de exemplo para a lista de prompts
 
 <br/>
 
@@ -706,37 +709,37 @@ Os provedores suportados são: OpenRouter, OpenAI, Anthropic, Google Gemini, Dee
 
 **Aplicativo web: somente administrador**
 
-As chaves de API são configuradas por meio de variáveis de ambiente do sistema ou do Docker - elas não são inseridas na interface web. Esta página mostra quais provedores têm uma chave configurada e permite testar cada um clicando no botão **`Testar`**.
+As chaves de API são configuradas por meio de variáveis de ambiente do sistema ou do Docker – elas não são inseridas na interface web. Esta página mostra quais provedores têm uma chave configurada e permite testar cada um clicando no botão **`Test`**.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Para alterar uma chave de API, atualize a variável de ambiente na sua configuração de sistema ou Docker e reinicie o servidor ou contêiner.
+> Para alterar uma chave de API, atualize a variável de ambiente na sua configuração do sistema ou do Docker e reinicie o servidor ou contêiner.
 
 > ℹ️ **NOTA**<br/>
-> Os **backups de configuração** (veja [**Configurações Gerais** → Backup de Configuração](#general-settings)) podem incorporar chaves de provedor **resolvidas** dentro do `config.json` do ZIP. Restaurar esse ZIP **não** copia essas chaves de volta para o arquivo de configuração persistido do servidor - as chaves ativas ainda vêm do ambiente e do estado do arquivo existente conforme descrito ali.
+> Os **backups de configuração** (veja [**Configurações Gerais** → Backup de Configuração](#general-settings)) podem incorporar chaves de provedor **resolvidas** dentro do `config.json` do arquivo ZIP. Restaurar esse ZIP **não** copia essas chaves de volta para o arquivo de configuração persistido do servidor – as chaves ativas ainda vêm das variáveis de ambiente e do estado do arquivo existente, conforme descrito ali.
 
 <br/>
 
 **Aplicativo desktop**
 
-Use a **Configuração da API** para armazenar as chaves de API de cada provedor que você utiliza. Para o Ollama, insira a **URL base** em vez de uma chave de API.
+Use **Configuração da API** para armazenar chaves de API para cada provedor que você utilizar. Para o Ollama, insira a **URL base** em vez de uma chave de API.
 
 <br/>
 
 > 💡 **Dica** <br/>
-> Se você não deseja usar uma chave de API ou pagar pelo uso, pode [baixar o Ollama](https://ollama.com) e executar modelos (como `translategemma:4b`) localmente na sua máquina gratuitamente. Alternativamente, você pode criar uma conta gratuita no OpenRouter (sem necessidade de cartão de crédito) para usar seus modelos gratuitos ou obter uma chave de API gratuita da Cerebras, Google, Groq ou Mistral AI.
+> Se você não quiser usar uma chave de API ou pagar pelo uso, pode [baixar o Ollama](https://ollama.com) e executar modelos (como `translategemma:4b`) localmente na sua máquina gratuitamente. Alternativamente, você pode criar uma conta gratuita no OpenRouter (sem cartão de crédito necessário) para usar seus modelos gratuitos, ou obter uma chave de API gratuita da Cerebras, Google, Groq ou Mistral AI.
 
 <br/>
 
-- Adicione apenas os provedores que você precisa. Em **Configurações** > **Modelos**, cada ID de modelo começa com o nome do provedor (por exemplo, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Adicione apenas os provedores que precisar. Em **Configurações** > **Modelos**, cada ID de modelo começa com o provedor (por exemplo `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Para adicionar uma chave de API, insira o valor no campo de texto e clique em **`Salvar`**. Para substituir uma chave existente, clique em **`Editar`**. Para verificar se uma chave está funcionando, clique em **`Testar`**. Para a URL base do Ollama, clique sempre em **`Testar`** para verificar a conexão.
+Para adicionar uma chave de API, insira o valor no campo de texto e clique em **`Save`**. Para substituir uma chave existente, clique em **`Edit`**. Para verificar se uma chave está funcionando, clique em **`Test`**. Para a URL base do Ollama, clique sempre em **`Test`** para verificar a conexão.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Você não pode visualizar o valor atual de uma chave de API. Você só pode substituí-la usando o botão **`Editar`**.
+> Você não pode ver o valor atual de uma chave de API. Só é possível substituí-la usando o botão **`Edit`**.
 > As chaves de API são armazenadas criptografadas na configuração.
 
 <br/>
@@ -744,7 +747,7 @@ Para adicionar uma chave de API, insira o valor no campo de texto e clique em **
 <a id="about"></a>
 ### Sobre
 
-A aba **Sobre** exibe:
+A aba **Sobre** mostra:
 
 - o nome do aplicativo
 - o número da versão
@@ -756,12 +759,12 @@ A aba **Sobre** exibe:
 <a id="common-issues"></a>
 ## Problemas comuns
 
-Se algo não estiver funcionando como esperado, verifique primeiro os pontos a seguir.
+Se algo não estiver funcionando como esperado, verifique primeiro os seguintes pontos.
 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### O aplicativo não traduz, reescreve ou transforma texto
+### O aplicativo não traduz, reescreve ou transforma o texto
 
 Verifique se:
 
@@ -786,18 +789,18 @@ Se necessário:
 
 - pesquise por um modelo
 - ative **Apenas Gratuitos**
-- adicione um ou mais modelos aos **Modelos Selecionados**
+- adicione um ou mais modelos a **Modelos Selecionados**
 
 <br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### O resultado é muito lento ou muito caro
 
-Tente uma ou mais destas opções:
+Tente uma ou mais dessas opções:
 
 - escolha um modelo diferente
 - use uma entrada mais curta
-- desative a **Tradução em tempo real (enquanto digita)** em [**Configurações** > **Configurações Gerais**](#general-settings)
+- desative **Tradução em tempo real (enquanto digita)** em [**Configurações** > **Configurações Gerais**](#general-settings)
 - use modelos gratuitos para tarefas simples (veja [Modelos](#models))
 
 <br/>
@@ -805,7 +808,7 @@ Tente uma ou mais destas opções:
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### A interface está no idioma errado
 
-Clique no ícone de globo na [barra de ferramentas](#toolbar) e escolha seu **Idioma da interface** preferido.
+Clique no ícone do globo na [barra de ferramentas](#toolbar) e escolha seu **Idioma da interface** preferido.
 
 <br/>
 
@@ -814,7 +817,7 @@ Clique no ícone de globo na [barra de ferramentas](#toolbar) e escolha seu **Id
 
 Abra [**Configurações** > **Configurações Gerais**](#general-settings) e altere:
 
-- **Família da Fonte**
+- **Família da fonte**
 - **Tamanho**
 
 <br/>
@@ -824,7 +827,7 @@ Abra [**Configurações** > **Configurações Gerais**](#general-settings) e alt
 
 Isso é normal se:
 
-- você usa apenas **modelos gratuitos** e está visualizando os valores de **custo** (eles podem ser zero); os gráficos de contagem de chamadas em **Resumo** ainda precisam de dados do período selecionado
+- você só usa **modelos gratuitos** e está olhando para os valores de **custo** (eles podem ser zero); os gráficos de chamadas de **uso** na aba **Resumo** ainda precisam de dados do período selecionado  
 - o **filtro de tempo** selecionado não abrange o período em que as chamadas foram feitas - tente **Todos** para verificar
 
 Se os gráficos ainda estiverem vazios após selecionar **Todos**, confirme se as chamadas aparecem em [**Histórico**](#history) ou na aba **Todas as chamadas**.
@@ -834,7 +837,7 @@ Se os gráficos ainda estiverem vazios após selecionar **Todos**, confirme se a
 <a id="cost-shows-not-available-or-seems-wrong"></a>
 ### O custo mostra "não disponível" ou parece incorreto
 
-Quando você usa modelos por meio do **OpenRouter**, o aplicativo exibe seu gasto real informado pelo OpenRouter.
+Quando você usa modelos por meio do **OpenRouter**, o aplicativo mostra seu gasto real informado pelo OpenRouter.
 
 Para **outros provedores** (OpenAI direto, Anthropic direto, etc.), o custo é estimado a partir dos dados de preços publicados pelo OpenRouter. Se nenhum preço correspondente for encontrado para um modelo, o custo aparecerá como **não disponível** e não será adicionado ao seu total acumulado.
 
@@ -843,7 +846,7 @@ Para **outros provedores** (OpenAI direto, Anthropic direto, etc.), o custo é e
 <a id="total-cost-does-not-match-my-provider-bill"></a>
 ### O custo total não corresponde à minha fatura do provedor
 
-Todos os valores de custo no aplicativo são **estimativas apenas para referência**, não são extratos oficiais de cobrança.
+Todos os valores de custo no aplicativo são **estimativas para referência apenas**, não são extratos oficiais de cobrança.
 
 Para aproximar o total do seu gasto real no OpenRouter, abra [**Configurações** > **Rastreamento de Custo**](#cost-tracking) e clique em **Sincronizar com o uso da chave de API**.
 
@@ -852,45 +855,45 @@ Para aproximar o total do seu gasto real no OpenRouter, abra [**Configurações*
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### A página Histórico está ausente na barra lateral
 
-**Manter histórico de execução** pode estar desativado. Abra [**Configurações** > **Configurações Gerais**](#general-settings) e ative-o. Observe que ativá-lo não restaura dados de histórico previamente excluídos.
+A opção **Manter histórico de execução** pode estar desativada. Abra [**Configurações** > **Configurações Gerais**](#general-settings) e ative-a. Observe que ativá-la não restaura dados de histórico previamente excluídos.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
 ### Aplicativo web: redirecionado para a página de login inesperadamente
 
-Sua sessão pode ter expirado. Entre novamente. Se isso acontecer com frequência, verifique a configuração do servidor quanto às definições de duração da sessão.
+Sua sessão pode ter expirado. Faça login novamente. Se isso acontecer com frequência, verifique a configuração do servidor para os parâmetros de duração da sessão.
 
 <br/>
 
 <a id="web-admin-forgot-or-lost-a-password"></a>
-### Admin web: esqueceu ou perdeu a senha
+### Administração web: esqueceu ou perdeu uma senha
 
 Isso se aplica ao **aplicativo web autohospedado** (Docker), não ao aplicativo desktop (Electron).
 
 - Se outro administrador ainda puder fazer login, ele pode abrir [**Configurações** > **Usuários**](#users), escolher a conta e definir uma **nova senha** lá.
-- Se você estiver **bloqueado**, mas tiver **acesso ao shell** da máquina ou contêiner, redefina a senha com o utilitário fornecido na imagem (substitua `transrewrt` se você alterou o nome padrão e coloque a senha entre aspas se contiver espaços ou caracteres especiais):
+- Se você estiver **bloqueado**, mas tiver **acesso ao shell** da máquina ou contêiner, redefina a senha com o utilitário fornecido com a imagem (substitua `transrewrt` se você alterar o nome padrão, e coloque a senha entre aspas se contiver espaços ou caracteres especiais):
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
 ```
 
-O nome de usuário padrão do administrador é `admin`, caso você nunca tenha criado outras contas. Quando você passa apenas um argumento, ele é tratado como a nova senha para `admin`.
+O nome de usuário padrão do admin é `admin` se você nunca criou outras contas. Quando você passa apenas um argumento, ele é tratado como a nova senha para `admin`.
 
-Se você estiver executando a partir de um **checkout de código-fonte** em vez do Docker, use:
+Se você executar a partir de um **checkout da origem** em vez do Docker, use:
 
 ```bash
 pnpm run reset-web-password -- <username> <new-password>
 ```
 
-O script atualiza o registro do usuário no banco de dados SQLite (e pode criar o usuário `admin` se ele estiver ausente). Após a redefinição, faça login com a nova senha.
+O script atualiza o registro do usuário no banco de dados SQLite (e pode criar o usuário `admin` se estiver ausente). Após a redefinição, faça login com a nova senha.
 
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
-### O Painel não mostra dados de outros usuários (web)
+### O Painel não mostra dados para outros usuários (web)
 
-Apenas **administradores** podem visualizar dados de todos os usuários por meio do filtro **Usuário**. Usuários regulares veem apenas sua própria atividade por design.
+Apenas **administradores** podem visualizar dados de todos os usuários por meio do filtro **Usuário**. Usuários regulares veem apenas suas próprias atividades por design.
 
 <br/>
 
@@ -905,16 +908,16 @@ Ao editar um prompt, clique sempre em **Salvar** antes de clicar em **Voltar par
 ## Dicas rápidas
 
 - Comece com [**Traduzir**](#translate) para garantir que sua configuração está funcionando antes de passar para [**Reescrever**](#rewrite) ou [**Transformar**](#transform).
-- Use [**Reescrever**](#rewrite) para melhorias cotidianas de redação.
+- Use [**Reescrever**](#rewrite) para melhorias cotidianas no texto.
 - Use [**Transformar**](#transform) quando precisar de um fluxo de trabalho repetível para uma tarefa específica.
-- Use [**Painel**](#dashboard) se desejar acompanhar o uso e o custo.
-- Use [**Histórico**](#history) para revisar operações anteriores e seus textos completos de entrada/saída.
-- Exporte prompts regularmente se estiver criando uma biblioteca de prompts que deseja manter segura (veja [Prompts de transformação](#transform-prompts)) ou se desejar compartilhá-la com outros.
+- Use [**Painel**](#dashboard) se quiser acompanhar o uso e o custo.
+- Use [**Histórico**](#history) para revisar operações anteriores e seus textos completos de entrada e saída.
+- Exporte prompts regularmente se estiver criando uma biblioteca de prompts que deseja manter segura (veja [Prompts de transformação](#transform-prompts)) ou se desejar compartilhá-la com outras pessoas.
 
 <br/><br/>
 
 <a id="disclaimer"></a>
-## Aviso legal
+## Isenção de responsabilidade
 
 Nomes e ícones de produtos pertencem aos seus respectivos proprietários e são usados apenas para fins de identificação. Este software não é afiliado nem endossado por nenhuma das marcas mencionadas.
 

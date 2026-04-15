@@ -1,23 +1,25 @@
 ---
-translation_last_updated: '2026-04-02T12:41:29.733Z'
-source_file_mtime: '2026-04-02T12:39:14.838Z'
-source_file_hash: 0826245f792850f3
+translation_last_updated: '2026-04-15T22:29:58.247Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
 translation_language: ms
 source_file_path: README.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Versi"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Lesen: Apache 2.0"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai - menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web sendiri (Docker).
+Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihos sendiri (Docker).
 
 - **Terjemah** - antara puluhan bahasa, dengan pengesanan sumber automatik
 - **Tulis Semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
@@ -25,18 +27,19 @@ Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, 
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
 - **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasi; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
 - **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
+- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
 - **Desktop** - aplikasi Electron untuk Windows dan Linux
-- **Sendiri (Self-hosted)** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
+- **Dihos sendiri** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
 Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk penerangan lengkap semua ciri.
 
 <small>**Baca dalam bahasa lain:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
-> **Nota mengenai terjemahan UI dan dokumentasi:** Semua bahasa antara muka kecuali asal Bahasa Inggeris (UK)
+> **Nota mengenai terjemahan UI dan dokumentasi:** Semua bahasa antara muka kecuali Bahasa Inggeris (UK) asal 
 > diterjemahkan menggunakan model AI; perkataan mungkin tidak tepat atau mengandungi ralat.
 
 </small>
@@ -49,12 +52,12 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Tangkapan skrin](#screenshots)
-- [Mula pantas](#quick-start)
-- [Mendapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
+- [Tangkapan Skrin](#screenshots)
+- [Mula Pantas](#quick-start)
+- [Dapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
 - [Konfigurasi dan persekitaran](#configuration-and-environment)
 - [Pembangunan dan arsitektur](#development-and-architecture)
-- [Melapor isu](#reporting-issues)
+- [Laporkan isu](#reporting-issues)
 - [Penafian](#disclaimer)
 - [Lesen](#license)
 
@@ -92,10 +95,10 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 <br/><br/>
 
 <a id="quick-start"></a>
-## Mula Pantas
+## Permulaan pantas
 
 <details>
-<summary><b>Docker (disyorkan untuk hos kendiri)</b></summary>
+<summary><b>Docker (disyorkan untuk penyediaan sendiri)</b></summary>
 
 <a id="docker"></a>
 
@@ -112,9 +115,9 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Gantikan `sk-or-your-key` dengan [kunci API OpenRouter](https://openrouter.ai/keys) anda (atau tetapkan kunci penyedia lain; lihat [Konfigurasi](#configuration-and-environment)). Buka [http://localhost:5000](http://localhost:5000) dan tukar kata laluan pentadbir lalai sebelum mendedahkan perkhidmatan.
+Gantikan `sk-or-your-key` dengan kunci API [OpenRouter](https://openrouter.ai/keys) anda (atau tetapkan kunci penyedia lain; lihat [Konfigurasi](#configuration-and-environment)). Buka [http://localhost:5000](http://localhost:5000) dan tukar kata laluan pentadbir lalai sebelum mendedahkan perkhidmatan.
 
-Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_API_KEY` untuk OpenRouter). Luluskan pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak terbina ke dalam imej. Kunci penyedia **tidak** dimasukkan dalam UI sesawang; pelayan membacanya daripada persekitaran.
+Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya `OPENROUTER_API_KEY` untuk OpenRouter). Hantarkan pemboleh ubah dengan `-e` atau `docker compose` / `.env` supaya rahsia tidak terbina ke dalam imej. Kunci penyedia **tidak** dimasukkan dalam UI web; pelayan membacanya daripada persekitaran.
 
 <br/>
 
@@ -134,7 +137,7 @@ vi transrewrt.yml
 docker compose -f transrewrt.yml up -d
 ```
 
-Rujuk [Configuration](#configuration-and-environment) untuk semua pemboleh ubah persekitaran, seperti `PORT`, `CONFIG_PATH`, `TZ`, dan kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
+Lihat [Konfigurasi](#configuration-and-environment) untuk semua pemboleh ubah persekitaran, seperti `PORT`, `CONFIG_PATH`, `TZ`, dan kunci LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
 </details>
 
@@ -147,7 +150,7 @@ Rujuk [Configuration](#configuration-and-environment) untuk semua pemboleh ubah 
 
 <br/>
 
-Tarikh dan masa antara muka pengguna mengikut zon waktu dan setempat **pelayar**. Untuk tingkah laku **sisi pelayan** (log dan sebagainya), bekas menggunakan pemboleh ubah persekitaran `TZ`. Lalai ialah `TZ=Europe/London`.
+Tarikh dan masa antara muka pengguna aplikasi mengikut lokalisasi dan zon waktu **pelayar**. Untuk tingkah laku **sisi pelayan** (log dan sebagainya), bekas menggunakan pemboleh ubah persekitaran `TZ`. Lalainya ialah `TZ=Europe/London`.
 
 Untuk menggunakan zon waktu lain, tetapkan `TZ` dalam fail Compose anda, contohnya:
 
@@ -156,13 +159,13 @@ environment:
   - TZ=America/Sao_Paulo
 ```
 
-Atau hantarnya semasa menjalankan bekas (Docker):
+Atau hantarkannya semasa menjalankan bekas (Docker):
 
 ```bash
 --env TZ=America/Sao_Paulo
 ```
 
-Pada banyak hos Linux, anda boleh salin nama zon waktu sistem dengan:
+Pada kebanyakan hos Linux, anda boleh salin nama zon waktu sistem dengan:
 
 ```bash
 echo TZ=\"$(</etc/timezone)\"
@@ -183,17 +186,17 @@ Senarai nama zon waktu yang sah diselenggara dalam [pangkalan data tz](https://e
 
 - Muat turun `Transrewrt Setup x.y.z.exe` terkini daripada [Releases](https://github.com/wsj-br/transrewrt/releases).
 - Jalankan `.exe` dan ikuti pemasang.
-- Pertama kali menjalankan: mulakan aplikasi daripada menu Start atau pintasan desktop.
-- Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigur sekurang-kurangnya satu penyedia; OpenRouter adalah biasa digunakan untuk model percuma.
+- Permulaan pertama: mulakan aplikasi daripada menu Start atau pintasan desktop.
+- Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigur sekurang-kurangnya satu penyedia; OpenRouter biasa digunakan untuk model percuma.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tidak ditandatangani/bebas):
->   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi ini daripada penerbit tidak dikenali membuat perubahan pada peranti anda?" → Klik **Ya**.
->   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan juga**.
+> Windows mungkin memaparkan salah satu amaran keselamatan ini (biasa untuk aplikasi tanpa tanda/indie):
+>   - **Kawalan Akaun Pengguna (UAC)**: "Adakah anda mahu membenarkan aplikasi daripada penerbit tidak dikenali membuat perubahan pada peranti anda?" → Klik **Ya**.
+>   - **Microsoft Defender SmartScreen**: "Windows melindungi PC anda" → Klik **Maklumat lanjut** → **Jalankan sahaja**.
 >
-> Ini berlaku kerana aplikasi tidak ditandatangani oleh Microsoft atau penerbit utama-ia selamat jika dimuat turun daripada pelepasan GitHub rasmi kami (sahkan checksum di halaman [Releases](https://github.com/wsj-br/transrewrt/releases) bersama setiap aset).
+> Ini berlaku kerana aplikasi tidak ditandatangani oleh Microsoft atau penerbit besar—ia selamat jika dimuat turun daripada pelepasan GitHub rasmi kami (sahkan checksum pada halaman [Releases](https://github.com/wsj-br/transrewrt/releases) bersama setiap aset).
 
 <br/>
 
@@ -208,7 +211,7 @@ Senarai nama zon waktu yang sah diselenggara dalam [pangkalan data tz](https://e
 
 <br/>
 
-Muat turun `.AppImage` untuk CPU anda dari [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` untuk PC biasa, `arm64` untuk banyak peranti ARM, termasuk Raspberry Pi 4+), kemudian:
+Muat turun `.AppImage` untuk CPU anda daripada [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` untuk PC biasa, `arm64` untuk banyak peranti ARM, termasuk Raspberry Pi 4+), kemudian:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
@@ -216,17 +219,17 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 Pada x86_64/amd64 gunakan nama fail `x64`; pada ARM64 gunakan nama `...-arm64.AppImage`.
 
-Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigur sekurang-kurangnya satu penyedia; OpenRouter adalah biasa digunakan untuk model percuma.
+Masukkan kunci API anda di **Tetapan → API**. Anda perlu mengkonfigurasi sekurang-kurangnya satu penyedia; OpenRouter biasa digunakan untuk model percuma.
 
-**Mesej konsol:** Binaan Linux yang dibungkus (`x64` dan `arm64` AppImages) menekan amaran penyingkiran Node dalam terminal (contohnya modul binaan `punycode`). Jika Chromium mencetak ralat GPU / EGL seperti “GLES3 tidak disokong” tetapi aplikasi berfungsi, anda boleh membisukan ralat tersebut dengan melumpuhkan pecutan perkakasan:
+**Mesej konsol:** Binaan Linux yang dibungkus (`x64` dan `arm64` AppImages) menekan amaran penyahgunaan Node di terminal (contohnya modul terbina dalam `punycode`). Jika Chromium mencetak ralat GPU / EGL seperti “GLES3 tidak disokong” tetapi aplikasi berfungsi, anda boleh membisukan ralat tersebut dengan melumpuhkan pecutan perkakasan:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Perkara itu juga berlaku pada amd64; ubah nama fail mengikut muat turun anda.
+Ini juga digunakan pada amd64; ubah nama fail mengikut muat turun anda.
 
-Pada Debian/Ubuntu, anda mungkin memerlukan pustaka **runtime** tambahan yang diperlukan oleh Chromium (ini biasanya sudah hadir pada pemasangan desktop penuh). Jalankan arahan di bawah jika diperlukan:
+Pada Debian/Ubuntu, anda mungkin memerlukan pustaka **runtime** tambahan yang diperlukan oleh Chromium (ini biasanya sudah hadir pada pemasangan desktop penuh). Jalankan arahan di bawah jika perlu:
 
 ```bash
 sudo apt update
@@ -234,7 +237,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
      xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
 ```
 
-gantikan `libasound2t64` dengan `libasound2` untuk `arm64`. Pemasangan minima atau tersuai mungkin masih gagal dengan fail `.so` hilang. Pasang pakej yang dinamakan dalam mesej ralat (tambahan biasa: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Dalam sesetengah persekitaran, anda mungkin perlu menjalankan aplikasi menggunakan `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+gantikan `libasound2t64` dengan `libasound2` untuk `arm64`. Pemasangan minimum atau tersuai mungkin masih gagal dengan fail `.so` hilang. Pasang pakej yang dinamakan dalam mesej ralat (tambahan biasa: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Dalam sesetengah persekitaran, anda mungkin perlu menjalankan aplikasi menggunakan `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
 <br/>
 
@@ -245,27 +248,27 @@ gantikan `libasound2t64` dengan `libasound2` untuk `arm64`. Pemasangan minima at
 
 <br/>
 
-Apabila aplikasi berjalan, lihat **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mempelajari cara menterjemah, menulis semula, dan mengubah teks, menguruskan arahan, serta mengkonfigurasi model.
+Setelah aplikasi berjalan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mengetahui cara menterjemah, menulis semula, dan mengubah teks, menguruskan prompt, serta mengkonfigurasi model.
 
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
-## Mendapatkan kunci API OpenRouter
+## Dapatkan kunci API OpenRouter
 
-Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) merupakan pilihan popular kerana menggabungkan banyak model di bawah satu kunci dan menawarkan model percuma.
+Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) adalah pilihan popular kerana menggabungkan banyak model di bawah satu kunci dan menawarkan model percuma.
 
 1. Daftar atau log masuk di [openrouter.ai](https://openrouter.ai).
 2. Buka halaman [Keys](https://openrouter.ai/keys) dan cipta kunci baharu (beri nama, dan secara pilihan tetapkan had kredit). Anda boleh gunakan model percuma tanpa menambah kredit.
-3. **Desktop (Electron):** tampal kunci di **Tetapan → API**. **Docker:** tetapkan pemboleh ubah persekitaran seperti `OPENROUTER_API_KEY` (rujuk [Quick start](#quick-start)).
+3. **Desktop (Electron):** tampal kunci di **Tetapan → API**. **Docker:** tetapkan pemboleh ubah env seperti `OPENROUTER_API_KEY` (rujuk [Permulaan Pantas](#quick-start)).
 
-Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) untuk terjemah, tulis semula, atau transformasi: ia mengembalikan muatan permintaan JSON, bukan teks lengkap untuk tugas-tugas tersebut. Rujuk [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
+Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) untuk terjemah, tulis semula, atau transformasi: ia mengembalikan muatan permintaan JSON, bukan teks siap untuk tugas-tugas tersebut. Rujuk [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
 
-Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) atau jalankan model secara tempatan dengan [Ollama](https://ollama.com). Rujuk [Configuration](#configuration-and-environment) untuk senarai penuh penyedia yang disokong dan pemboleh ubah persekitaran.
+Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) atau jalankan model secara tempatan dengan [Ollama](https://ollama.com). Rujuk [Konfigurasi](#configuration-and-environment) untuk senarai penuh penyedia yang disokong dan pemboleh ubah persekitaran.
 
 </br>
 
 > ⚠️ **AMARAN**<br/>
-> Jika anda menggunakan Ollama daripada peranti, bekas, atau perkhidmatan lain, ingat untuk mengkonfigurasi Ollama agar membenarkan sambungan luaran (bukan localhost sahaja).
+> Jika anda menggunakan Ollama daripada peranti, bekas, atau perkhidmatan lain, pastikan Ollama dikonfigurasikan untuk membenarkan sambungan luaran (bukan localhost sahaja).
 
 <br/><br/>
 
@@ -288,23 +291,23 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 
 | Pemboleh ubah             | Penerangan                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port pelayan mendengar  (lalai ke `5000`)                                  |
+| `PORT`               | Port pendengar pelayan (lalai ke `5000`)                                  |
 | `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json)                 |
-| `TZ`                 | zon waktu untuk masa sisi pelayan (log, dsb.) (lalai ke  `Europe/London`) |
-| `OPENROUTER_API_KEY` | Kunci API OpenRouter                                                           |
-| `OPENAI_API_KEY`     | Kunci API OpenAI                                                               |
-| `CEREBRAS_API_KEY`   | Kunci API Cerebras                                                             |
-| `ANTHROPIC_API_KEY`  | Kunci API Anthropic                                                            |
-| `GOOGLE_API_KEY`     | Kunci API Google Gemini                                                        |
-| `DEEPSEEK_API_KEY`   | Kunci API DeepSeek                                                             |
-| `GROQ_API_KEY`       | Kunci API Groq                                                                 |
-| `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
-| `OLLAMA_URL`         | URL asas Ollama (contohnya `http://host.docker.internal:11434`)                   |
+| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
+| `OPENAI_API_KEY`     | OpenAI API key                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
+| `GROQ_API_KEY`       | Groq API key                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API key                                                              |
+| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Kunci API xAI                                                                  |
 
-Konfigurasikan hanya penyedia yang anda gunakan. ID model mempunyai ruang nama (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dsb.).
+Konfigur hanya penyedia yang anda gunakan. ID model mempunyai namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dll.).
 
-**Paparan kos:** OpenRouter mengembalikan kos yang dikenakan secara tepat apabila berkaitan. Penyedia lain menggunakan kos **anggaran** daripada penetapan harga model awam OpenRouter jika kunci OpenRouter tersedia; jika tidak, kos bukan OpenRouter mungkin dipaparkan sebagai `0`. Anggaran bukan invois.
+**Paparan kos:** OpenRouter mengembalikan kos yang dikenakan secara tepat apabila berkaitan. Penyedia lain menggunakan kos **anggaran** daripada penetapan harga model awam OpenRouter apabila kunci OpenRouter tersedia; tanpanya, kos bukan OpenRouter mungkin dipaparkan sebagai `0`. Anggaran bukan invois.
 
 <br/>
 
@@ -316,24 +319,24 @@ Konfigurasikan hanya penyedia yang anda gunakan. ID model mempunyai ruang nama (
 
 - Pentadbir lalai: `admin` / `transrewrt26`.
 - Urus pengguna di **Tetapan → Pengguna**.
-- Tetap semula kata laluan: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+- Tetapkan semula kata laluan: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 
 > ⚠️ **AMARAN**<br/>
-> Tukar kata laluan pentadbir lalai serta-merta pada sebarang hos yang boleh dicapai melalui rangkaian.
+> Tukar kata laluan pentadbir lalai secepat mungkin pada mana-mana hos yang boleh dicapai melalui rangkaian.
 
 <br/>
 
-Tetapan utama (fon, model, bahasa, dsb.) boleh didapati dalam Tetapan aplikasi.
+Tetapan utama (fon, model, bahasa, dll.) boleh didapati dalam Tetapan aplikasi.
 
 <br/><br/>
 
 <a id="development-and-architecture"></a>
-## Pembangunan dan arsitektur
+## Pembangunan dan seni bina
 
-- **Pembangunan:** Persediaan, binaan, ujian, dan pelaksanaan (Electron, Web, Docker) - lihat **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Gambaran seni bina dan sistem:** Struktur folder, gudang teknologi, keputusan rekabentuk - lihat **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Pembangunan:** Persediaan, bina, uji, dan sebarkan (Electron, Web, Docker) - lihat **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
+- **Seni bina dan gambaran sistem:** Struktur folder, susun atur teknologi, keputusan rekabentuk - lihat **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
 
 <br/><br/>
 

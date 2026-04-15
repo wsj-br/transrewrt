@@ -38,6 +38,7 @@
     "i18n:status": "ai-i18n-tools status",
     "i18n:editor": "ai-i18n-tools editor",
     "i18n:cleanup": "ai-i18n-tools cleanup",
+    "clean-temp": "find . \\( -name '*.log' -o -name 'cache.db.backup*.sqlite' \\) -print && read -p '\nDelete these files? (y/n) ' ans && [ \"$ans\" = \"y\" ] && find . \\( -name '*.log' -o -name 'cache.db.backup*.sqlite' \\) -delete",
     "update-version": "node scripts/update-version.js",
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",

@@ -1,9 +1,11 @@
 ---
-translation_last_updated: '2026-03-31T22:57:13.600Z'
-source_file_mtime: '2026-03-30T09:57:25.622Z'
-source_file_hash: e1b91eca0124d467
+translation_last_updated: '2026-04-15T22:29:27.670Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
 translation_language: en-US
 source_file_path: USER-GUIDE.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -31,7 +33,8 @@ This guide explains how to use the app once it is installed and running. For ins
 > Transrewrt is available as a desktop app for Windows and Linux, and as a self-hosted web app. This guide focuses on everyday use of the app. Where something only applies to one version, it is clearly marked.
 
 <small>**Read in other languages:** </small>
-<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (BR)](USER-GUIDE.pt-BR.md) · [العربية](USER-GUIDE.ar.md) · [বাংলা](USER-GUIDE.bn.md) · [Català](USER-GUIDE.ca.md) · [简体中文](USER-GUIDE.zh-CN.md) · [繁體中文](USER-GUIDE.zh-TW.md) · [Hrvatski](USER-GUIDE.hr.md) · [Čeština](USER-GUIDE.cs.md) · [Nederlands](USER-GUIDE.nl.md) · [English (US)](USER-GUIDE.en-US.md) · [Filipino](USER-GUIDE.tl.md) · [Français](USER-GUIDE.fr.md) · [Deutsch](USER-GUIDE.de.md) · [Ελληνικά](USER-GUIDE.el.md) · [हिन्दी](USER-GUIDE.hi.md) · [Magyar](USER-GUIDE.hu.md) · [Italiano](USER-GUIDE.it.md) · [日本語](USER-GUIDE.ja.md) · [Basa Jawa](USER-GUIDE.jv.md) · [한국어](USER-GUIDE.ko.md) · [Bahasa Melayu](USER-GUIDE.ms.md) · [فارسی](USER-GUIDE.fa.md) · [Polski](USER-GUIDE.pl.md) · [Português (PT)](USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](USER-GUIDE.pa.md) · [Română](USER-GUIDE.ro.md) · [Русский](USER-GUIDE.ru.md) · [Slovenčina](USER-GUIDE.sk.md) · [Español](USER-GUIDE.es.md) · [Kiswahili](USER-GUIDE.sw.md) · [Svenska](USER-GUIDE.sv.md) · [తెలుగు](USER-GUIDE.te.md) · [ภาษาไทย](USER-GUIDE.th.md) · [Türkçe](USER-GUIDE.tr.md) · [Українська](USER-GUIDE.uk.md) · [Tiếng Việt](USER-GUIDE.vi.md)</small>
+
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -108,7 +111,7 @@ This guide explains how to use the app once it is installed and running. For ins
 
 To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
 
-You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **Free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a Free API key from Cerebras, Google, Groq, or Mistral AI.
+You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
 
 In plain language:
 
@@ -122,7 +125,7 @@ If you are using the **web version**, the server owner configures providers with
 <br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### How to get a Free OpenRouter API key (desktop app)
+### How to get a free OpenRouter API key (desktop app)
 
 If you are using the desktop app, follow these steps:
 
@@ -130,7 +133,7 @@ If you are using the desktop app, follow these steps:
 2. Create an account or sign in.
 3. Open the [Keys](https://openrouter.ai/keys) page.
 4. Click the button to create a new API key.
-5. Give the key a Name so you can recognize it later.
+5. Give the key a name so you can recognize it later.
 6. Copy the new API key.
 7. Return to Transrewrt and open **Settings** > **API Config**.
 8. Paste the key into **OpenRouter API key** (under **Settings** > **API Config**).
@@ -162,7 +165,7 @@ The app is divided into three main areas:
 
 - The **sidebar** on the left.
 - The **toolbar** at the top.
-- The **work area** in the center.
+- The **work area** in the centre.
 
 <br/>
 
@@ -186,8 +189,8 @@ Use the sidebar to move around the app. You can collapse the sidebar for more sp
         <li><strong>Transform</strong> opens the custom prompt workspace.</li><br/>
         <li><strong>Dashboard</strong> shows usage and cost information.</li><br/>
         <li><strong>Settings</strong> opens the settings panel.</li><br/>
-        <li><strong>History</strong> shows the usage history with the Input and Output text</li><br/>
-        <li><strong>User</strong> shows the Username of the logged-in user (web only).</li>
+        <li><strong>History</strong> shows the usage history with the input and output text</li><br/>
+        <li><strong>User</strong> shows the username of the logged-in user (web only).</li>
       </ul>
     </td>
   </tr>
@@ -207,7 +210,7 @@ The **model selector** lets you choose which AI engine to use for the current ta
 
 ![Model selector](../images/screenshots/en-US/model-selector.png)
 
-Some free models may not always be available-sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
+Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
  You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
 
 <br/>
@@ -236,7 +239,7 @@ If you are wondering about the technical terms:
 
 <br/>
 
-You can also monitor the cost of each operation (if available) and the total cost, enabling the option `Show cost information on the actions` at [**Settings** > **General settings**](#general-settings).
+You can also monitor the cost of each operation (if available) and the total cost, enabling the option `Show cost information on the actions` at [**Settings** > **General Settings**](#general-settings).
 
 <br/><br/>
 
@@ -271,7 +274,7 @@ Use **Translate** when you want to convert text from one language to another.
 - **From** can be a specific language or **Detect Language**.
 - **To** is the language you want the result in.
 
-Your selected **Top languages** appear at the top of the list. You can set these in [**Settings** > **Languages**](#languages).
+Your selected **Top Languages** appear at the top of the list. You can set these in [**Settings** > **Languages**](#languages).
 
 <br/>
 
@@ -628,12 +631,12 @@ Actions:
 
 - To remove a model, click **X** next to it in **Selected Models** or **Selected** on the entry in Available Models.
 
-- To clear the list, click **Deselect all**. The required free model will remain in the list.
+- To clear the list, click **Deselect All**. The required free model will remain in the list.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you do not want to add credits to OpenRouter right away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
+> If you do not want to add credits to OpenRouter straight away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
 
 <br/>
 
@@ -666,13 +669,13 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> **All cost figures are estimates for your reference only, not official billing statements.**
+>  **All cost figures are estimates for your reference only, not official billing statements.**
 
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**History**](#history)
-> or [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently.
+> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**History**](#history) 
+> or [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently. 
 > All input/output history related to each API call entry will also be deleted.
 
 <br/>
@@ -700,7 +703,7 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 <br/>
 
 <a id="api-config"></a>
-### API Config
+### API config
 
 The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
 
@@ -714,7 +717,7 @@ API keys are configured through system or Docker environment variables - they ar
 > To change an API key, update the environment variable in your system or Docker configuration and restart the server or container.
 
 > ℹ️ **NOTE**<br/>
-> **Configuration backups** (see [**General Settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file - live keys still come from the environment and existing file state as described there.
+> **Configuration backups** (see [**General settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file - live keys still come from the environment and existing file state as described there.
 
 <br/>
 
@@ -729,7 +732,7 @@ Use **API Config** to store API keys for each provider you use. For Ollama, ente
 
 <br/>
 
-- Add only the providers you need. In **Settings** > **Models**, each model ID starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
 To add an API key, enter the value in the text field and click **`Save`**. To replace an existing key, click **`Edit`**. To verify that a key is working, click **`Test`**. For the Ollama base URL, always click **`Test`** to check the connection.
 
@@ -754,7 +757,7 @@ The **About** tab shows:
 <br/><br/>
 
 <a id="common-issues"></a>
-## Common Issues
+## Common issues
 
 If something does not work as expected, check the following points first.
 

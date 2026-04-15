@@ -1,27 +1,29 @@
 ---
-translation_last_updated: '2026-04-09T23:21:51.811Z'
-source_file_mtime: '2026-04-07T18:28:53.551Z'
-source_file_hash: 0826245f792850f3
+translation_last_updated: '2026-04-15T22:27:34.881Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
 translation_language: ca
 source_file_path: README.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Versió"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Llicència: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Plataforma">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats - utilitzant diversos proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
+Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats — utilitzant múltiples proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- **Tradueix** - entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
+- **Tradueix** - entre desenes d'idiomes, amb detecció automàtica de la llengua d'origen
 - **Reescriptura** - corregeix gramàtica, millora la claredat, formal/informal, escurça, amplia, tècnic
-- **Transformació** - prompts personalitzats d'IA; crea i gestiona prompts, idioma de destinació opcional per a cada prompt
+- **Transformació** - prompts d'IA personalitzats; crea i gestiona prompts, idioma de destinació opcional per a cada prompt
 - **Historial** - historial complet d'execucions amb text d'entrada/sortida, filtres i exportació
 - **Models i cost** - tria models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
 - **Interfície d'usuari** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
@@ -29,14 +31,15 @@ Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i tran
 - **Escriptori** - aplicació Electron per a Windows i Linux
 - **Autoallotjat** - imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
 
-Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per una descripció completa de totes les funcions.
+Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per obtenir una descripció completa de totes les funcionalitats.
 
-<small>**Llegiu en altres idiomes:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Llegeix en altres idiomes:** </small>
+
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
-> **Nota sobre les traduccions de la interfície i la documentació:** Tots els idiomes de la interfície excepte l'anglès (RU) original
+> **Nota sobre les traduccions de la interfície i la documentació:** Tots els idiomes de la interfície excepte l'anglès original (UK)
 > s'han traduït mitjançant models d'IA; l'expressió pot ser imprecisa o contenir errors.
 
 </small>
@@ -54,7 +57,7 @@ Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per una de
 - [Obtenció d'una clau API d'OpenRouter](#getting-an-openrouter-api-key)
 - [Configuració i entorn](#configuration-and-environment)
 - [Desenvolupament i arquitectura](#development-and-architecture)
-- [Informar de problemes](#reporting-issues)
+- [Informació de problemes](#reporting-issues)
 - [Avís legal](#disclaimer)
 - [Llicència](#license)
 
@@ -92,7 +95,7 @@ Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per una de
 <br/><br/>
 
 <a id="quick-start"></a>
-## Inici ràpid
+## Comença ràpidament
 
 <details>
 <summary><b>Docker (recomanat per autoallotjament)</b></summary>
@@ -112,14 +115,14 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Substituïu `sk-or-your-key` per la vostra [clau API d'OpenRouter](https://openrouter.ai/keys) (o configureu claus d'altres proveïdors; vegeu [Configuració](#configuration-and-environment)). Obriu [http://localhost:5000](http://localhost:5000) i canvieu la contrasenya d'admin predeterminada abans d'exposar el servei.
+Substitueix `sk-or-your-key` per la teva [clau API d'OpenRouter](https://openrouter.ai/keys) (o configura claus d'altres proveïdors; vegeu [Configuració](#configuration-and-environment)). Obre [http://localhost:5000](http://localhost:5000) i canvia la contrasenya d'admin predeterminada abans d'exposar el servei.
 
-Establiu com a mínim una clau de proveïdor mitjançant l'entorn (per exemple, `OPENROUTER_API_KEY` per a OpenRouter). Passeu les variables amb `-e` o `docker compose` / `.env` perquè els secrets no s'incrustin a la imatge. Les claus del proveïdor **no** s'introdueixen a la interfície web; el servidor les llegeix des de l'entorn.
+Configura com a mínim una clau de proveïdor mitjançant variables d'entorn (per exemple `OPENROUTER_API_KEY` per OpenRouter). Passa les variables amb `-e` o `docker compose` / `.env` perquè els secrets no quedin incrustats a la imatge. Les claus dels proveïdors **no** s'introdueixen a la interfície web; el servidor les llegeix des de l'entorn.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> A Docker, les credencials dels LLM es configuren amb variables d'entorn com ara `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (no a la interfície web). A l'escriptori (Electron) configureu les claus a **Configuració → API**.
+> A Docker, les credencials dels LLM es configuren amb variables d'entorn com `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (no a la interfície web). A l'escriptori (Electron) configureu les claus a **Configuració → API**.
 
 <br/>
 
@@ -134,7 +137,7 @@ vi transrewrt.yml
 docker compose -f transrewrt.yml up -d
 ```
 
-Consulta [Configuració](#configuration-and-environment) per a totes les variables d'entorn, com ara `PORT`, `CONFIG_PATH`, `TZ` i claus de LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
+Vegeu [Configuració](#configuration-and-environment) per a totes les variables d'entorn, com `PORT`, `CONFIG_PATH`, `TZ`, i claus dels LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
 </details>
 
@@ -147,28 +150,28 @@ Consulta [Configuració](#configuration-and-environment) per a totes les variabl
 
 <br/>
 
-La data i hora de la interfície d'usuari segueixen la configuració regional i el fus horari del **navegador**. Pel que fa al comportament del **servidor** (registre d'activitats i similar), el contenidor utilitza la variable d'entorn `TZ`. El valor predeterminat és `TZ=Europe/London`.
+La data i hora de la interfície d'usuari segueixen la configuració regional i la zona horària del **navegador**. Pel **comportament** del costat del servidor (registre i similar), el contenidor utilitza la variable d'entorn `TZ`. El valor predeterminat és `TZ=Europe/London`.
 
-Per utilitzar un altre fus horari, estableix `TZ` al fitxer Compose, per exemple:
+Per utilitzar una altra zona horària, configureu `TZ` al vostre fitxer Compose, per exemple:
 
 ```yaml
 environment:
   - TZ=America/Sao_Paulo
 ```
 
-O passa-la quan executa el contenidor (Docker):
+O passeu-la en executar el contenidor (Docker):
 
 ```bash
 --env TZ=America/Sao_Paulo
 ```
 
-En molts sistemes Linux pots copiar el nom del fus horari del sistema amb:
+A molts sistemes Linux podeu copiar el nom de la zona horària del sistema amb:
 
 ```bash
 echo TZ=\"$(</etc/timezone)\"
 ```
 
-Una llista de noms de fusos horaris vàlids es manté a la [base de dades tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
+Una llista de noms de zones horàries vàlids es manté a la [base de dades tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
 
 </details>
 
@@ -190,10 +193,10 @@ Una llista de noms de fusos horaris vàlids es manté a la [base de dades tz](ht
 
 > ℹ️ **NOTA**<br/>
 > Windows pot mostrar una d'aquestes alertes de seguretat (normal per a aplicacions no signades o independents):
->   - **Control de comptes d'usuari (UAC)**: «Voleu permetre que aquesta aplicació d'un editor desconegut realitzi canvis al vostre dispositiu?» → Feu clic a **Sí**.
->   - **Microsoft Defender SmartScreen**: «Windows ha protegit el vostre PC» → Feu clic a **Més informació** → **Executa igualment**.
+>   - **Control de comptes d'usuari (UAC)**: "Voleu permetre que aquesta aplicació d'un editor desconegut faci canvis al vostre dispositiu?" → Feu clic a **Sí**.
+>   - **Microsoft Defender SmartScreen**: "Windows ha protegit el vostre PC" → Feu clic a **Més informació** → **Executa igualment**.
 >
-> Això passa perquè l'aplicació no està signada per Microsoft ni per un editor important; és segura si es descarrega des de les nostres versions oficials de GitHub (verifiqueu els checksums a la pàgina [Releases](https://github.com/wsj-br/transrewrt/releases) al costat de cada recurs).
+> Això passa perquè l'aplicació no està signada per Microsoft ni per un editor important — és segura si s'ha descarregat des de les nostres versions oficials de GitHub (verifiqueu els sumatoris de comprovació a la pàgina [Releases](https://github.com/wsj-br/transrewrt/releases) al costat de cada recurs).
 
 <br/>
 
@@ -208,25 +211,25 @@ Una llista de noms de fusos horaris vàlids es manté a la [base de dades tz](ht
 
 <br/>
 
-Baixeu el fitxer `.AppImage` per al vostre CPU des de [Llançaments](https://github.com/wsj-br/transrewrt/releases) (`x64` per a ordinadors típics, `arm64` per a molts dispositius ARM, incloent Raspberry Pi 4+), i després:
+Baixa't l'`.AppImage` per al teu CPU des de [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` per a ordinadors típics, `arm64` per a molts dispositius ARM, incloent Raspberry Pi 4+), i després:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-En x86_64/amd64 utilitzeu el nom de fitxer `x64`; en ARM64 utilitzeu el nom `...-arm64.AppImage`.
+A x86_64/amd64 utilitza el nom de fitxer `x64`; a ARM64 utilitza el nom `...-arm64.AppImage`.
 
-Introduïu les vostres claus API a **Configuració → API**. Heu de configurar com a mínim un proveïdor; OpenRouter és habitual per a models gratuïts.
+Introdueix les teves claus API a **Configuració → API**. Has de configurar com a mínim un proveïdor; OpenRouter és habitual per a models gratuïts.
 
-**Missatges de la consola:** Les versions empaquetades per a Linux (`x64` i `arm64` AppImages) suprimeixen les advertències de desaprofitament de Node al terminal (per exemple, el mòdul integrat `punycode`). Si Chromium mostra errors de GPU / EGL com ara «GLES3 no és compatible», però l'aplicació funciona, podeu silenciar-los desactivant l'acceleració per maquinari:
+**Missatges de la consola:** Les compilacions Linux empaquetades (`x64` i `arm64` AppImages) suprimeixen les advertències de deprecació de Node al terminal (per exemple, el mòdul integrat `punycode`). Si Chromium mostra errors de GPU / EGL com ara “GLES3 no és compatible” però l'aplicació funciona, pots silenciar-los desactivant l'acceleració per maquinari:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Això també s'aplica a amd64; canvieu el nom del fitxer perquè coincideixi amb la vostra descàrrega.
+Això s'aplica també a amd64; canvia el nom del fitxer perquè coincideixi amb la teva descàrrega.
 
-En Debian/Ubuntu, potser necessiteu biblioteques addicionals de **temps d'execució** requerides per Chromium (sovint ja presents en instal·lacions completes d'escriptori). Executeu les ordres següents si cal:
+A Debian/Ubuntu, potser necessites biblioteques **runtime** addicionals requerides per Chromium (sovint ja estan presents en instal·lacions d'escriptori completes). Executa les ordres següents si cal:
 
 ```bash
 sudo apt update
@@ -234,7 +237,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
      xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
 ```
 
-substituïu `libasound2t64` per `libasound2` en `arm64`. Les instal·lacions mínimes o personalitzades poden continuar fallant amb un fitxer `.so` que falta. Instal·leu el paquet amb el nom que apareix al missatge d'error (extras habituals: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). En alguns entorns, potser cal executar l'aplicació amb `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+substitueix `libasound2t64` per `libasound2` per a `arm64`. Les instal·lacions mínimes o personalitzades poden continuar fallant amb un fitxer `.so` que falta. Instal·la el paquet amb el nom que apareix al missatge d'error (extras habituals: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). En alguns entorns, potser necessitis executar l'aplicació utilitzant `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
 <br/>
 
@@ -245,7 +248,7 @@ substituïu `libasound2t64` per `libasound2` en `arm64`. Les instal·lacions mí
 
 <br/>
 
-Un cop l'aplicació estigui en funcionament, consulteu la **[Guia d'usuari](USER-GUIDE.ca.md)** per aprendre com traduir, reescriure i transformar text, gestionar indicacions i configurar models.
+Un cop l'aplicació estigui en funcionament, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per saber com traduir, reescriure i transformar text, gestionar indicacions i configurar models.
 
 <br/><br/>
 
@@ -255,17 +258,17 @@ Un cop l'aplicació estigui en funcionament, consulteu la **[Guia d'usuari](USER
 Transrewrt admet diversos proveïdors d'IA. [OpenRouter](https://openrouter.ai) és una opció popular perquè agrega molts models sota una sola clau i ofereix models gratuïts.
 
 1. Registra't o inicia sessió a [openrouter.ai](https://openrouter.ai).
-2. Obre la pàgina de [Keys](https://openrouter.ai/keys) i crea una nova clau (anomena-la, i opcionalment estableix un límit de crèdit). Pots utilitzar models gratuïts sense afegir crèdit.
-3. **Escriptori (Electron):** enganxa les claus a **Configuració → API**. **Docker:** estableix variables d'entorn com ara `OPENROUTER_API_KEY` (consulta [Inici ràpid](#quick-start)).
+2. Obre la pàgina [Keys](https://openrouter.ai/keys) i crea una clau nova (posa-li nom i, opcionalment, un límit de crèdit). Pots utilitzar models gratuïts sense afegir crèdit.
+3. **Escriptori (Electron):** enganxa les claus a **Configuració → API**. **Docker:** defineix variables d'entorn com `OPENROUTER_API_KEY` (vegeu [Inici ràpid](#quick-start)).
 
-No utilitzeu el model **Body Builder** d'OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) per traduir, reescriure o transformar: retorna càrregues útils JSON de sol·licitud, no el text completat per a aquestes tasques. Consulteu [Configuració → Models](USER-GUIDE.ca.md#models) al Manual d'usuari.
+No utilitzis el model **Body Builder** d'OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) per traduir, reescriure o transformar: retorna càrregues útils de sol·licitud JSON, no el text completat per a aquestes tasques. Consulta [Configuració → Models](USER-GUIDE.ca.md#models) a la Guia d'usuari.
 
-També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) o executar models localment amb [Ollama](https://ollama.com). Consulta [Configuració](#configuration-and-environment) per a la llista completa de proveïdors suportats i variables d'entorn.
+També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) o executar models localment amb [Ollama](https://ollama.com). Consulta [Configuració](#configuration-and-environment) per a la llista completa de proveïdors compatibles i variables d'entorn.
 
 </br>
 
-> ⚠️ **ADVERTÈNCIA**<br/>
-> Si esteu utilitzant Ollama des d'un altre dispositiu, contenidor o servei, recordeu configurar Ollama per permetre connexions externes (no només localhost).
+> ⚠️ **AVÍS**<br/>
+> Si estàs utilitzant Ollama des d'un altre dispositiu, contenidor o servei, recorda configurar Ollama per permetre connexions externes (no només localhost).
 
 <br/><br/>
 
@@ -288,44 +291,44 @@ També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, Deep
 
 | Variable             | Descripció                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port d'escolta del servidor (per defecte `5000`)                             |
-| `CONFIG_PATH`        | Ruta al fitxer de configuració (per defecte `/app/data/config.json`)         |
-| `TZ`                 | Fus horari per a l'hora del servidor (registres, etc.) (per defecte `Europe/London`) |
-| `OPENROUTER_API_KEY` | Clau API d'OpenRouter                                                        |
-| `OPENAI_API_KEY`     | Clau API d'OpenAI                                                            |
-| `CEREBRAS_API_KEY`   | Clau API de Cerebras                                                         |
-| `ANTHROPIC_API_KEY`  | Clau API d'Anthropic                                                         |
-| `GOOGLE_API_KEY`     | Clau API de Google Gemini                                                    |
-| `DEEPSEEK_API_KEY`   | Clau API de DeepSeek                                                         |
-| `GROQ_API_KEY`       | Clau API de Groq                                                             |
-| `MISTRAL_API_KEY`    | Clau API de Mistral                                                          |
-| `OLLAMA_URL`         | URL base d'Ollama (per exemple, `http://host.docker.internal:11434`)         |
-| `XAI_API_KEY`        | Clau API de xAI                                                              |
+| `PORT`               | Port d'escolta del servidor (per defecte `5000`)                                  |
+| `CONFIG_PATH`        | Camí al fitxer de configuració (per defecte `/app/data/config.json)                 |
+| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
+| `OPENAI_API_KEY`     | OpenAI API key                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
+| `GROQ_API_KEY`       | Groq API key                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API key                                                              |
+| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | Clau d'API de xAI                                                                  |
 
-Configureu només els proveïdors que utilitzeu. Els IDs de model estan amb espai de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configureu només els proveïdors que utilitzeu. Els IDs dels models tenen espai de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
-**Visualització del cost:** OpenRouter retorna el cost facturat exacte quan és aplicable. Altres proveïdors utilitzen el cost **estimat** dels preus públics de models d'OpenRouter quan està disponible una clau d'OpenRouter; sense això, el cost no d'OpenRouter pot mostrar-se com a `0`. Les estimacions no són factures.
+**Visualització del cost:** OpenRouter retorna el cost facturat exacte quan és aplicable. Altres proveïdors utilitzen el cost **estimat** de la tarifació pública de models d'OpenRouter quan hi ha una clau OpenRouter disponible; sense això, el cost no OpenRouter pot mostrar-se com `0`. Les estimacions no són factures.
 
 <br/>
 
-**Dades i persistència:** Per a Docker, munteu un volum a `/app/data` perquè `config.json` i la base de dades SQLite es mantinguin entre reinicis del contenidor. Sense un volum, totes les dades es perden quan el contenidor s'atura.
+**Dades i persistència:** Per a Docker, munteu un volum a `/app/data` perquè `config.json` i la base de dades SQLite es mantinguin després de reiniciar el contenidor. Sense un volum, totes les dades es perden quan el contenidor s'atura.
 
 <br/>
 
 **Autenticació web:**
 
-- Admin predeterminat: `admin` / `transrewrt26`.
+- Admin per defecte: `admin` / `transrewrt26`.
 - Gestioneu els usuaris a **Configuració → Usuaris**.
-- Reinicieu una contrasenya: `docker exec <container> reset-web-password '<username>' '<new-password>'`
+- Reinicieu la contrasenya: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 
-> ⚠️ **ADVERTÈNCIA**<br/>
-> Canvieu immediatament la contrasenya predeterminada d'admin en qualsevol equip accessible per xarxa.
+> ⚠️ **AVÍS**<br/>
+> Canvieu immediatament la contrasenya d'admin per defecte en qualsevol equip accessible per xarxa.
 
 <br/>
 
-Les opcions principals (tipus de lletra, models, idiomes, etc.) estan disponibles a la Configuració de l'aplicació.
+Els paràmetres principals (tipus de lletra, models, idiomes, etc.) estan disponibles a la Configuració de l'aplicació.
 
 <br/><br/>
 

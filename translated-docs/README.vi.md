@@ -1,42 +1,45 @@
 ---
-translation_last_updated: '2026-04-02T12:44:06.329Z'
-source_file_mtime: '2026-04-02T12:39:14.838Z'
-source_file_hash: 0826245f792850f3
+translation_last_updated: '2026-04-15T22:30:38.097Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
 translation_language: vi
 source_file_path: README.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Phiên bản"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Giấy phép: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Nền tảng">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Công cụ xử lý văn bản tích hợp AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
+Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
-- **Dịch** - giữa hàng chục ngôn ngữ, với phát hiện nguồn tự động  
-- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật  
-- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn theo từng lời nhắc  
-- **Lịch sử** - lịch sử thực hiện đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất dữ liệu  
-- **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày  
-- **Giao diện người dùng** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...  
-- **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên  
-- **Máy tính để bàn** - ứng dụng Electron cho Windows và Linux  
+- **Dịch** - giữa hàng chục ngôn ngữ, với phát hiện nguồn tự động
+- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
+- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn theo từng lời nhắc
+- **Lịch sử** - lịch sử thực hiện đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất
+- **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày
+- **Giao diện người dùng** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
+- **Chế độ Web** - hỗ trợ đa người dùng với các vai trò quản trị viên
+- **Máy tính để bàn** - ứng dụng Electron cho Windows và Linux
 - **Tự lưu trữ** - hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
 
-Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md)** để tìm hiểu chi tiết tất cả các tính năng.
+Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md)** để tìm hiểu chi tiết về tất cả các tính năng.
 
-<small>**Đọc bằng ngôn ngữ khác:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+<small>**Đọc bằng các ngôn ngữ khác:** </small>
+
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
-> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện ngoài tiếng Anh (UK) gốc  
+> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện ngoại trừ tiếng Anh (UK) gốc 
 > đều được dịch bằng các mô hình AI; cách diễn đạt có thể không chính xác hoặc chứa lỗi.
 
 </small>
@@ -95,7 +98,7 @@ Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md
 ## Bắt đầu nhanh
 
 <details>
-<summary><b>Docker (khuyên dùng cho tự lưu trữ)</b></summary>
+<summary><b>Docker (được khuyến nghị để tự lưu trữ)</b></summary>
 
 <a id="docker"></a>
 
@@ -112,14 +115,14 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Thay thế `sk-or-your-key` bằng khóa API [OpenRouter](https://openrouter.ai/keys) của bạn (hoặc đặt khóa của nhà cung cấp khác; xem [Cấu hình](#configuration-and-environment)). Mở [http://localhost:5000](http://localhost:5000) và thay đổi mật khẩu quản trị viên mặc định trước khi công khai dịch vụ.
+Thay thế `sk-or-your-key` bằng khóa API [OpenRouter](https://openrouter.ai/keys) của bạn (hoặc thiết lập các khóa nhà cung cấp khác; xem [Cấu hình](#configuration-and-environment)). Mở [http://localhost:5000](http://localhost:5000) và thay đổi mật khẩu quản trị viên mặc định trước khi công khai dịch vụ.
 
-Đặt ít nhất một khóa nhà cung cấp thông qua môi trường (ví dụ: `OPENROUTER_API_KEY` cho OpenRouter). Truyền các biến bằng `-e` hoặc `docker compose` / `.env` để các bí mật không bị nhúng vào trong hình ảnh. Khóa nhà cung cấp **không** được nhập trong giao diện web; máy chủ đọc chúng từ môi trường.
+Thiết lập ít nhất một khóa nhà cung cấp thông qua môi trường (ví dụ: `OPENROUTER_API_KEY` cho OpenRouter). Truyền các biến bằng `-e` hoặc `docker compose` / `.env` để đảm bảo bí mật không bị nhúng vào trong hình ảnh. Các khóa nhà cung cấp **không** được nhập trong giao diện web; máy chủ đọc chúng từ môi trường.
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Trong Docker, thông tin đăng nhập LLM được thiết lập bằng các biến môi trường như `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (không phải trong giao diện web). Trên máy tính để bàn (Electron), bạn cấu hình khóa tại **Cài đặt → API**.
+> Trong Docker, thông tin đăng nhập LLM được thiết lập bằng các biến môi trường như `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (không phải trong giao diện web). Trên máy tính để bàn (Electron), bạn cấu hình khóa trong **Cài đặt → API**.
 
 <br/>
 
@@ -134,7 +137,7 @@ vi transrewrt.yml
 docker compose -f transrewrt.yml up -d
 ```
 
-Xem [Configuration](#configuration-and-environment) để biết tất cả các biến môi trường, như `PORT`, `CONFIG_PATH`, `TZ`, và các khóa LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
+Xem [Cấu hình](#configuration-and-environment) để biết tất cả các biến môi trường, như `PORT`, `CONFIG_PATH`, `TZ`, và các khóa LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
 
 </details>
 
@@ -147,16 +150,16 @@ Xem [Configuration](#configuration-and-environment) để biết tất cả các
 
 <br/>
 
-Ngày và giờ trên giao diện người dùng ứng dụng tuân theo múi giờ và khu vực của **trình duyệt**. Đối với **hành vi** ở phía máy chủ (ghi log và các chức năng tương tự), container sử dụng biến môi trường `TZ`. Giá trị mặc định là `TZ=Europe/London`.
+Ngày và giờ trên giao diện người dùng ứng dụng tuân theo múi giờ và khu vực của **trình duyệt**. Đối với hành vi **phía máy chủ** (ghi nhật ký và các chức năng tương tự), container sử dụng biến môi trường `TZ`. Mặc định là `TZ=Europe/London`.
 
-Để sử dụng múi giờ khác, hãy thiết lập `TZ` trong tệp Compose của bạn, ví dụ:
+Để sử dụng múi giờ khác, thiết lập `TZ` trong tệp Compose của bạn, ví dụ:
 
 ```yaml
 environment:
   - TZ=America/Sao_Paulo
 ```
 
-Hoặc truyền khi chạy container (Docker):
+Hoặc truyền nó khi chạy container (Docker):
 
 ```bash
 --env TZ=America/Sao_Paulo
@@ -181,19 +184,19 @@ Danh sách các tên múi giờ hợp lệ được duy trì trong [cơ sở d�
 
 <br/>
 
-- Tải xuống tệp `Transrewrt Setup x.y.z.exe` mới nhất từ [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Chạy tệp `.exe` và làm theo hướng dẫn cài đặt.
-- Lần đầu chạy: khởi động ứng dụng từ menu Start hoặc lối tắt trên màn hình.
-- Nhập khóa API của bạn vào **Cài đặt → API**. Bạn cần cấu hình ít nhất một nhà cung cấp; OpenRouter thường được dùng cho các mô hình miễn phí.
+- Tải xuống `Transrewrt Setup x.y.z.exe` mới nhất từ [Phát hành](https://github.com/wsj-br/transrewrt/releases).
+- Chạy `.exe` và làm theo hướng dẫn cài đặt.
+- Lần đầu chạy: khởi động ứng dụng từ menu Bắt đầu hoặc lối tắt trên màn hình.
+- Nhập khóa API của bạn trong **Cài đặt → API**. Bạn cần cấu hình ít nhất một nhà cung cấp; OpenRouter thường được dùng cho các mô hình miễn phí.
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Windows có thể hiển thị một trong các cảnh báo bảo mật sau (bình thường đối với ứng dụng độc lập/chưa ký):
->   - **User Account Control (UAC)**: "Bạn có muốn cho phép ứng dụng từ nhà xuất bản chưa rõ này thực hiện thay đổi trên thiết bị của bạn?" → Nhấp **Có**.
+> Windows có thể hiển thị một trong các cảnh báo bảo mật sau (bình thường đối với ứng dụng độc lập/chưa ký): 
+>   - **User Account Control (UAC)**: "Bạn có muốn cho phép ứng dụng từ nhà xuất bản chưa biết thực hiện thay đổi trên thiết bị của bạn?" → Nhấp **Có**.
 >   - **Microsoft Defender SmartScreen**: "Windows đã bảo vệ PC của bạn" → Nhấp **Thông tin thêm** → **Vẫn chạy**.
 >
-> Điều này xảy ra vì ứng dụng chưa được ký bởi Microsoft hoặc nhà xuất bản lớn - nó an toàn nếu được tải từ trang phát hành chính thức trên GitHub của chúng tôi (xác minh checksum trên trang [Releases](https://github.com/wsj-br/transrewrt/releases) bên cạnh từng tài nguyên).
+> Điều này xảy ra vì ứng dụng chưa được ký bởi Microsoft hoặc nhà xuất bản lớn — nó an toàn nếu được tải từ trang phát hành chính thức trên GitHub của chúng tôi (xác minh checksum trên trang [Phát hành](https://github.com/wsj-br/transrewrt/releases) bên cạnh từng tài nguyên).
 
 <br/>
 
@@ -208,25 +211,25 @@ Danh sách các tên múi giờ hợp lệ được duy trì trong [cơ sở d�
 
 <br/>
 
-Tải xuống tệp `.AppImage` phù hợp với CPU của bạn từ [Phát hành](https://github.com/wsj-br/transrewrt/releases) (`x64` cho máy tính thông thường, `arm64` cho nhiều thiết bị ARM, bao gồm Raspberry Pi 4+), sau đó:
+Tải xuống `.AppImage` cho CPU của bạn từ [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` dành cho PC thông thường, `arm64` dành cho nhiều thiết bị ARM, bao gồm Raspberry Pi 4+), sau đó:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Trên x86_64/amd64, hãy dùng tên tệp `x64`; trên ARM64, hãy dùng tên `...-arm64.AppImage`.
+Trên x86_64/amd64 sử dụng tên tệp `x64`; trên ARM64 sử dụng tên `...-arm64.AppImage`.
 
-Nhập khóa API của bạn vào **Cài đặt → API**. Bạn cần cấu hình ít nhất một nhà cung cấp; OpenRouter thường được dùng cho các mô hình miễn phí.
+Nhập khóa API của bạn vào **Cài đặt → API**. Bạn cần cấu hình ít nhất một nhà cung cấp; OpenRouter là lựa chọn phổ biến cho các mô hình miễn phí.
 
-**Thông báo trên bảng điều khiển:** Các bản dựng Linux đã đóng gói (`x64` và `arm64` AppImages) sẽ ẩn các cảnh báo lỗi thời của Node trong terminal (ví dụ như mô-đun nội bộ `punycode`). Nếu Chromium hiển thị lỗi GPU / EGL như “GLES3 không được hỗ trợ” nhưng ứng dụng vẫn hoạt động, bạn có thể tắt chúng bằng cách vô hiệu hóa tăng tốc phần cứng:
+**Thông báo bảng điều khiển:** Bản dựng Linux đóng gói (`x64` và `arm64` AppImages) ẩn các cảnh báo lỗi thời của Node trong terminal (ví dụ như mô-đun `punycode` tích hợp). Nếu Chromium hiển thị lỗi GPU / EGL như “GLES3 không được hỗ trợ” nhưng ứng dụng vẫn hoạt động, bạn có thể tắt chúng bằng cách vô hiệu hóa tăng tốc phần cứng:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-Điều này cũng áp dụng cho amd64; hãy đổi tên tệp cho phù hợp với tệp đã tải về.
+Điều này áp dụng trên cả amd64; hãy đổi tên tệp cho phù hợp với tệp đã tải về.
 
-Trên Debian/Ubuntu, bạn có thể cần cài thêm các thư viện **runtime** cần thiết cho Chromium (các thư viện này thường đã có sẵn trên các bản cài đặt desktop đầy đủ). Chạy các lệnh dưới đây nếu cần:
+Trên Debian/Ubuntu, bạn có thể cần thêm các thư viện **runtime** mà Chromium yêu cầu (những thư viện này thường đã có sẵn trên các bản cài đặt máy tính đầy đủ). Chạy các lệnh dưới đây nếu cần:
 
 ```bash
 sudo apt update
@@ -234,12 +237,12 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
      xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
 ```
 
-thay `libasound2t64` bằng `libasound2` cho `arm64`. Các bản cài đặt tối giản hoặc tùy chỉnh có thể vẫn bị lỗi do thiếu tệp `.so`. Cài đặt gói có tên như trong thông báo lỗi (các gói phụ trợ phổ biến: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Trong một số môi trường, bạn có thể cần chạy ứng dụng bằng lệnh `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+thay thế `libasound2t64` bằng `libasound2` cho `arm64`. Các bản cài đặt tối giản hoặc tùy chỉnh vẫn có thể thất bại với lỗi thiếu tệp `.so`. Cài đặt gói có tên như trong thông báo lỗi (các gói bổ sung phổ biến: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Trong một số môi trường, bạn có thể cần chạy ứng dụng bằng `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Hiện tại không hỗ trợ macOS. Transrewrt có sẵn cho Windows, Linux và Docker.
+> macOS hiện tại chưa được hỗ trợ. Transrewrt có sẵn cho Windows, Linux và Docker.
 
 </details>
 
@@ -252,15 +255,15 @@ Khi ứng dụng đang chạy, hãy xem **[Hướng dẫn Người dùng](USER-G
 <a id="getting-an-openrouter-api-key"></a>
 ## Lấy khóa API OpenRouter
 
-Transrewrt hỗ trợ nhiều nhà cung cấp AI. [OpenRouter](https://openrouter.ai) là lựa chọn phổ biến vì tích hợp nhiều mô hình dưới một khóa duy nhất và cung cấp các mô hình miễn phí.
+Transrewrt hỗ trợ nhiều nhà cung cấp AI. [OpenRouter](https://openrouter.ai) là lựa chọn phổ biến vì nó tập hợp nhiều mô hình dưới một khóa duy nhất và cung cấp các mô hình miễn phí.
 
 1. Đăng ký hoặc đăng nhập tại [openrouter.ai](https://openrouter.ai).
-2. Mở trang [Keys](https://openrouter.ai/keys) và tạo khóa mới (đặt tên, và tùy chọn thiết lập giới hạn tín dụng). Bạn có thể dùng các mô hình miễn phí mà không cần thêm tín dụng.
-3. **Desktop (Electron):** dán khóa vào **Cài đặt → API**. **Docker:** thiết lập các biến môi trường như `OPENROUTER_API_KEY` (xem [Quick start](#quick-start)).
+2. Mở trang [Keys](https://openrouter.ai/keys) và tạo khóa mới (đặt tên, và tùy chọn đặt giới hạn tín dụng). Bạn có thể dùng các mô hình miễn phí mà không cần thêm tín dụng.
+3. **Bản dành cho máy tính (Electron):** dán khóa vào **Cài đặt → API**. **Docker:** thiết lập biến môi trường như `OPENROUTER_API_KEY` (xem [Bắt đầu nhanh](#quick-start)).
 
-Không sử dụng mô hình **Body Builder** của OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) để dịch, viết lại hoặc chuyển đổi: mô hình này trả về các tải JSON yêu cầu, chứ không phải văn bản hoàn chỉnh cho các tác vụ đó. Xem [Cài đặt → Mô hình](USER-GUIDE.vi.md#models) trong Hướng dẫn Người dùng.
+Không sử dụng mô hình **Body Builder** của OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) cho dịch, viết lại hoặc chuyển đổi: nó trả về các gói yêu cầu JSON, chứ không phải văn bản hoàn chỉnh cho các tác vụ đó. Xem [Cài đặt → Mô hình](USER-GUIDE.vi.md#models) trong Hướng dẫn Người dùng.
 
-Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) hoặc chạy mô hình cục bộ bằng [Ollama](https://ollama.com). Xem [Configuration](#configuration-and-environment) để biết danh sách đầy đủ các nhà cung cấp được hỗ trợ và các biến môi trường.
+Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) hoặc chạy mô hình cục bộ với [Ollama](https://ollama.com). Xem [Cấu hình](#configuration-and-environment) để biết danh sách đầy đủ các nhà cung cấp được hỗ trợ và các biến môi trường.
 
 </br>
 
@@ -286,29 +289,29 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 
 **Biến môi trường** (chỉ dành cho web/Docker; Electron sử dụng tệp cấu hình cục bộ)
 
-| Biến                  | Mô tả                                                                           |
-|-----------------------|---------------------------------------------------------------------------------|
-| `PORT`                | Cổng lắng nghe của máy chủ (mặc định là `5000`)                                 |
-| `CONFIG_PATH`         | Đường dẫn đến tệp cấu hình (mặc định là `/app/data/config.json`)                |
-| `TZ`                  | múi giờ cho thời gian phía máy chủ (ghi log, v.v.) (mặc định là `Europe/London`)|
-| `OPENROUTER_API_KEY`  | Khóa API OpenRouter                                                             |
-| `OPENAI_API_KEY`      | Khóa API OpenAI                                                                 |
-| `CEREBRAS_API_KEY`    | Khóa API Cerebras                                                               |
-| `ANTHROPIC_API_KEY`   | Khóa API Anthropic                                                              |
-| `GOOGLE_API_KEY`      | Khóa API Google Gemini                                                          |
-| `DEEPSEEK_API_KEY`    | Khóa API DeepSeek                                                               |
-| `GROQ_API_KEY`        | Khóa API Groq                                                                   |
-| `MISTRAL_API_KEY`     | Khóa API Mistral                                                                |
-| `OLLAMA_URL`          | URL cơ sở Ollama (ví dụ: `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`         | Khóa API xAI                                                                    |
+| Biến                | Mô tả                                                                        |
+|----------------------|------------------------------------------------------------------------------|
+| `PORT`               | Cổng lắng nghe của máy chủ (mặc định là `5000`)                                  |
+| `CONFIG_PATH`        | Đường dẫn đến tệp cấu hình (mặc định là `/app/data/config.json)                 |
+| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
+| `OPENAI_API_KEY`     | OpenAI API key                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
+| `GROQ_API_KEY`       | Groq API key                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API key                                                              |
+| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | Khóa API xAI                                                                  |
 
-Chỉ cấu hình các nhà cung cấp bạn sử dụng. Các ID mô hình được phân biệt theo không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, v.v.).
+Chỉ cấu hình các nhà cung cấp bạn sử dụng. ID mô hình được phân không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, v.v.).
 
-**Hiển thị chi phí:** OpenRouter trả về chi phí tính chính xác khi áp dụng. Các nhà cung cấp khác sử dụng **chi phí ước tính** từ bảng giá mô hình công khai của OpenRouter khi có khóa OpenRouter; nếu không, chi phí không phải OpenRouter có thể hiển thị là `0`. Các ước tính không phải là hóa đơn.
+**Hiển thị chi phí:** OpenRouter trả về chi phí tính chính xác khi có thể. Các nhà cung cấp khác sử dụng chi phí **ước tính** từ bảng giá mô hình công khai của OpenRouter khi có khóa OpenRouter; nếu không, chi phí không phải OpenRouter có thể hiển thị là `0`. Các ước tính không phải là hóa đơn.
 
 <br/>
 
-**Dữ liệu và lưu trữ:** Đối với Docker, gắn một volume vào `/app/data` để `config.json` và cơ sở dữ liệu SQLite được lưu trữ qua các lần khởi động lại container. Nếu không có volume, tất cả dữ liệu sẽ bị mất khi container dừng.
+**Dữ liệu và lưu trữ:** Đối với Docker, gắn một volume tại `/app/data` để `config.json` và cơ sở dữ liệu SQLite được lưu trữ qua các lần khởi động lại container. Nếu không có volume, mọi dữ liệu sẽ bị mất khi container dừng.
 
 <br/>
 
@@ -325,7 +328,7 @@ Chỉ cấu hình các nhà cung cấp bạn sử dụng. Các ID mô hình đư
 
 <br/>
 
-Các cài đặt chính (phông chữ, mô hình, ngôn ngữ, v.v.) có sẵn trong Cài đặt ứng dụng.
+Các thiết lập chính (phông chữ, mô hình, ngôn ngữ, v.v.) có sẵn trong phần Cài đặt của ứng dụng.
 
 <br/><br/>
 
@@ -340,7 +343,7 @@ Các cài đặt chính (phông chữ, mô hình, ngôn ngữ, v.v.) có sẵn t
 <a id="reporting-issues"></a>
 ## Báo cáo sự cố
 
-Mở một vấn đề trên [GitHub](https://github.com/wsj-br/transrewrt/issues). Bao gồm nền tảng của bạn (Windows / Linux / Docker) và phiên bản ứng dụng (hiển thị trong hộp thoại Giới thiệu hoặc trên trang Releases).
+Tạo một vấn đề trên [GitHub](https://github.com/wsj-br/transrewrt/issues). Vui lòng cung cấp nền tảng của bạn (Windows / Linux / Docker) và phiên bản ứng dụng (hiển thị trong hộp thoại Giới thiệu hoặc trên trang Phát hành).
 
 <br/><br/>
 

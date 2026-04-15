@@ -1,42 +1,45 @@
 ---
-translation_last_updated: '2026-04-02T12:43:07.722Z'
-source_file_mtime: '2026-04-02T12:39:14.838Z'
-source_file_hash: 0826245f792850f3
+translation_last_updated: '2026-04-15T22:30:11.068Z'
+source_file_mtime: '2026-04-15T00:50:00.594Z'
+source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
 translation_language: pa
 source_file_path: README.md
+translation_models:
+  - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
-  <img src="../images/transrewrt_banner.png" alt="Transrewrt ਬੈਨਰ"  />
+  <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="ਵਰਜਨ"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="ਲਾਇਸੈਂਸ: ਅਪਾਚੇ 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="ਪਲੇਟਫਾਰਮ">
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.1.1-blue" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-ਸਹਾਇਤਾ ਵਾਲਾ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ, ਵੱਖ-ਵੱਖ ਸ਼ੈਲੀਆਂ ਵਿੱਚ ਮੁੜ-ਲਿਖੋ, ਅਤੇ ਕਸਟਮ ਪ੍ਰੋਂਪਟਾਂ ਨਾਲ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰੋ - ਮਲਟੀਪਲ AI ਪ੍ਰਦਾਤਾਵਾਂ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, ਅਤੇ ਸਥਾਨਕ Ollama) ਦੀ ਵਰਤੋਂ ਕਰਕੇ। ਡੈਸਕਟਾਪ ਐਪ (Electron) ਜਾਂ ਸੈਲਫ-ਹੋਸਟਡ ਵੈੱਬ ਐਪ (Docker) ਵਜੋਂ ਚਲਦਾ ਹੈ।
+AI-ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ, ਵੱਖ-ਵੱਖ ਸ਼ੈਲੀਆਂ ਵਿੱਚ ਮੁੜ-ਲਿਖੋ, ਅਤੇ ਕਸਟਮ ਪ੍ਰੋਂਪਟਾਂ ਨਾਲ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰੋ - ਕਈ AI ਪ੍ਰਦਾਤਾਵਾਂ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, ਅਤੇ ਸਥਾਨਕ Ollama) ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਡੈਸਕਟਾਪ ਐਪ (Electron) ਜਾਂ ਸੈਲਫ-ਹੋਸਟਡ ਵੈੱਬ ਐਪ (Docker) ਵਜੋਂ ਚਲਦਾ ਹੈ।
 
-- **ਅਨੁਵਾਦ ਕਰੋ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ, ਆਟੋਮੈਟਿਕ ਸਰੋਤ ਪਛਾਣ ਨਾਲ
-- **ਮੁੜ-ਲਿਖਤ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪੱਸ਼ਟਤਾ ਸੁਧਾਰੋ, ਔਪਚਾਰਿਕ/ਅਨੌਪਚਾਰਿਕ, ਛੋਟਾ ਕਰੋ, ਵਧਾਓ, ਤਕਨੀਕੀ
-- **ਟ੍ਰਾਂਸਫਾਰਮ** - ਕਸਟਮ AI ਪ੍ਰੋਂਪਟ; ਪ੍ਰੋਂਪਟ ਬਣਾਓ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਹਰੇਕ ਪ੍ਰੋਂਪਟ ਲਈ ਵਿਕਲਪਿਕ ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ
+- **ਅਨੁਵਾਦ ਕਰੋ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ, ਸਰੋਤ ਦੀ ਆਟੋਮੈਟਿਕ ਪਛਾਣ ਨਾਲ
+- **ਮੁੜ-ਲਿਖਤ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪੱਸ਼ਟਤਾ ਸੁਧਾਰੋ, ਔਪਚਾਰਿਕ/ਅਣਔਪਚਾਰਿਕ, ਛੋਟਾ ਕਰੋ, ਵਧਾਓ, ਤਕਨੀਕੀ
+- **ਟ੍ਰਾਂਸਫਾਰਮ** - ਕਸਟਮ AI ਪ੍ਰੋਂਪਟ; ਪ੍ਰੋਂਪਟ ਬਣਾਓ ਅਤੇ ਪਰਬੰਧਿਤ ਕਰੋ, ਪ੍ਰਤੀ ਪ੍ਰੋਂਪਟ ਵਿਕਲਪਕ ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ
 - **ਇਤਿਹਾਸ** - ਇਨਪੁੱਟ/ਆਊਟਪੁਟ ਟੈਕਸਟ ਨਾਲ ਪੂਰਾ ਕਾਰਜ ਇਤਿਹਾਸ, ਫਿਲਟਰਿੰਗ, ਅਤੇ ਐਕਸਪੋਰਟ
 - **ਮਾਡਲ ਅਤੇ ਲਾਗਤ** - ਕਿਸੇ ਵੀ ਕੰਫਿਗਰ ਕੀਤੇ ਪ੍ਰਦਾਤਾ ਤੋਂ ਮਾਡਲ ਚੁਣੋ; ਲਾਗਤ ਅਤੇ ਵਰਤੋਂ ਦੇ ਡੈਸ਼ਬੋਰਡ ਲਾਗ, ਮਾਡਲ/ਆਪਰੇਸ਼ਨ/ਦਿਨ ਅਨੁਸਾਰ ਸਾਰਾਂਸ਼
-- **UI** - ਬਹੁਭਾਸ਼ੀ ਇੰਟਰਫੇਸ (30+ ਭਾਸ਼ਾਵਾਂ, RTL ਸਹਾਇਤਾ), ਫਾਂਟ, ...
-- **ਵੈੱਬ ਮੋਡ** - ਐਡਮਿਨ ਰੋਲਾਂ ਨਾਲ ਮਲਟੀ-ਯੂਜ਼ਰ ਸਹਾਇਤਾ
-- **ਡੈਸਕਟਾਪ** - Windows ਅਤੇ Linux ਲਈ Electron ਐਪ
+- **UI** - ਬਹੁਭਾਸ਼ੀ ਇੰਟਰਫੇਸ (30+ ਭਾਸ਼ਾਵਾਂ, RTL ਸਹਾਇਤਾ), ਫੋਂਟ, ...
+- **ਵੈੱਬ ਮੋਡ** - ਐਡਮਿਨ ਭੂਮਿਕਾਵਾਂ ਨਾਲ ਬਹੁ-ਯੂਜ਼ਰ ਸਹਾਇਤਾ
+- **ਡੈਸਕਟਾਪ** - ਵਿੰਡੋਜ਼ ਅਤੇ ਲੀਨਕਸ ਲਈ Electron ਐਪ
 - **ਸੈਲਫ-ਹੋਸਟਡ** - amd64 ਅਤੇ arm64 (ਰਸਪਬੇਰੀ ਪਾਈ-ਤਿਆਰ) ਲਈ Docker ਇਮੇਜ
 
 ਇੰਸਟਾਲ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦੀ ਪੂਰੀ ਸਮਝ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
 
 <small>**ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਪੜ੍ਹੋ:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (BR)](README.pt-BR.md) · [العربية](README.ar.md) · [বাংলা](README.bn.md) · [Català](README.ca.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Hrvatski](README.hr.md) · [Čeština](README.cs.md) · [Nederlands](README.nl.md) · [English (US)](README.en-US.md) · [Filipino](README.tl.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Ελληνικά](README.el.md) · [हिन्दी](README.hi.md) · [Magyar](README.hu.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [Basa Jawa](README.jv.md) · [한국어](README.ko.md) · [Bahasa Melayu](README.ms.md) · [فارسی](README.fa.md) · [Polski](README.pl.md) · [Português (PT)](README.pt.md) · [ਪੰਜਾਬੀ](README.pa.md) · [Română](README.ro.md) · [Русский](README.ru.md) · [Slovenčina](README.sk.md) · [Español](README.es.md) · [Kiswahili](README.sw.md) · [Svenska](README.sv.md) · [తెలుగు](README.te.md) · [ภาษาไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md)</small>
+
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
-> **UI ਅਤੇ ਦਸਤਾਵੇਜ਼ੀਕਰਨ ਅਨੁਵਾਦਾਂ ਬਾਰੇ ਨੋਟ:** ਮੂਲ ਅੰਗਰੇਜ਼ੀ (ਯੂਕੇ) ਨੂੰ ਛੱਡ ਕੇ ਸਾਰੀਆਂ ਇੰਟਰਫੇਸ ਭਾਸ਼ਾਵਾਂ 
+> **UI ਅਤੇ ਦਸਤਾਵੇਜ਼ੀਕਰਨ ਅਨੁਵਾਦਾਂ ਬਾਰੇ ਨੋਟ:** ਮੂਲ ਅੰਗਰੇਜ਼ੀ (UK) ਨੂੰ ਛੱਡ ਕੇ ਸਾਰੀਆਂ ਇੰਟਰਫੇਸ ਭਾਸ਼ਾਵਾਂ 
 > AI ਮਾਡਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦਿਤ ਕੀਤੀਆਂ ਗਈਆਂ ਸਨ; ਸ਼ਬਦਾਵਲੀ ਅਸ਼ੁੱਧ ਹੋ ਸਕਦੀ ਹੈ ਜਾਂ ਗਲਤੀਆਂ ਸ਼ਾਮਲ ਹੋ ਸਕਦੀਆਂ ਹਨ।
 
 </small>
@@ -44,7 +47,7 @@ AI-ਸਹਾਇਤਾ ਵਾਲਾ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵ
 <br/>
 
 <a id="table-of-contents"></a>
-## ਵਿਸ਼ਾ ਸੂਚੀ
+## ਸਮੱਗਰੀ ਦੀ ਸੂਚੀ
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -52,10 +55,10 @@ AI-ਸਹਾਇਤਾ ਵਾਲਾ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵ
 - [ਸਕਰੀਨਸ਼ਾਟ](#screenshots)
 - [ਤੁਰੰਤ ਸ਼ੁਰੂਆਤ](#quick-start)
 - [OpenRouter API ਕੁੰਜੀ ਪ੍ਰਾਪਤ ਕਰਨਾ](#getting-an-openrouter-api-key)
-- [ਕਨਫਿਗਰੇਸ਼ਨ ਅਤੇ ਵਾਤਾਵਰਣ](#configuration-and-environment)
+- [ਕੰਫਿਗਰੇਸ਼ਨ ਅਤੇ ਵਾਤਾਵਰਣ](#configuration-and-environment)
 - [ਵਿਕਾਸ ਅਤੇ ਆਰਕੀਟੈਕਚਰ](#development-and-architecture)
-- [ਮੁੱਦਿਆਂ ਦੀ ਰਿਪੋਰਟਿੰਗ](#reporting-issues)
-- [ਅਸਵੀਕਰਣ](#disclaimer)
+- [ਮੁੱਦੇ ਰਿਪੋਰਟ ਕਰਨਾ](#reporting-issues)
+- [ਅਸੂਲ](#disclaimer)
 - [ਲਾਇਸੈਂਸ](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -73,7 +76,7 @@ AI-ਸਹਾਇਤਾ ਵਾਲਾ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵ
 
 ![Translate](../images/screenshots/pa/translate.png)
 
-**ਟ੍ਰਾਂਸਫਾਰਮ - ਪ੍ਰੋਂਪਟ ਐਡੀਟਰ**
+**ਟ੍ਰਾਂਸਫਾਰਮ - ਪ੍ਰੋਂਪਟ ਸੰਪਾਦਕ**
 
 ![Transform - prompt editor](../images/screenshots/pa/transform-prompt-edit.png)
 
@@ -95,7 +98,7 @@ AI-ਸਹਾਇਤਾ ਵਾਲਾ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵ
 ## ਤੁਰੰਤ ਸ਼ੁਰੂਆਤ
 
 <details>
-<summary><b>ਡੌਕਰ (ਆਪਣੇ ਆਪ ਹੋਸਟ ਕਰਨ ਲਈ ਸਿਫਾਰਸ਼ ਕੀਤਾ ਗਿਆ)</b></summary>
+<summary><b>Docker (ਸਵੈ-ਹੋਸਟਿੰਗ ਲਈ ਸਿਫਾਰਸ਼ ਕੀਤਾ ਗਿਆ)</b></summary>
 
 <a id="docker"></a>
 
@@ -112,18 +115,18 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`sk-or-your-key` ਨੂੰ ਆਪਣੀ [OpenRouter API ਕੁੰਜੀ](https://openrouter.ai/keys) ਨਾਲ ਬਦਲੋ (ਜਾਂ ਹੋਰ ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ ਸੈੱਟ ਕਰੋ; [ਕਾਨਫ਼ੀਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ)। [http://localhost:5000](http://localhost:5000) ਖੋਲ੍ਹੋ ਅਤੇ ਸੇਵਾ ਨੂੰ ਉਜਾਗਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਡਿਫਾਲਟ ਐਡਮਿਨ ਪਾਸਵਰਡ ਬਦਲੋ।
+[OpenRouter API key](https://openrouter.ai/keys) ਨਾਲ `sk-or-your-key` ਨੂੰ ਬਦਲੋ (ਜਾਂ ਹੋਰ ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ ਸੈੱਟ ਕਰੋ; [ਕਨਫਿਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ)। [http://localhost:5000](http://localhost:5000) ਖੋਲ੍ਹੋ ਅਤੇ ਸੇਵਾ ਨੂੰ ਉਜਾਗਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਡਿਫਾਲਟ ਐਡਮਿਨ ਪਾਸਵਰਡ ਬਦਲੋ।
 
-ਘੱਟੋ-ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਕੁੰਜੀ ਵਾਤਾਵਰਣ ਰਾਹੀਂ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਲਈ OpenRouter ਲਈ `OPENROUTER_API_KEY`)। ਗੁਪਤ ਚੀਜ਼ਾਂ ਨੂੰ ਇਮੇਜ ਵਿੱਚ ਨਾ ਸ਼ਾਮਲ ਕਰਨ ਲਈ `-e` ਜਾਂ `docker compose` / `.env` ਨਾਲ ਚਲਾਓ। ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ ਵੈੱਬ UI ਵਿੱਚ **ਨਹੀਂ** ਦਰਜ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ; ਸਰਵਰ ਉਹਨਾਂ ਨੂੰ ਵਾਤਾਵਰਣ ਤੋਂ ਪੜ੍ਹਦਾ ਹੈ।
+ਵਾਤਾਵਰਣ ਰਾਹੀਂ ਘੱਟੋ ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਕੁੰਜੀ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਲਈ OpenRouter ਲਈ `OPENROUTER_API_KEY`)। `-e` ਜਾਂ `docker compose` / `.env` ਨਾਲ ਚਲਦੀਆਂ ਚੀਜ਼ਾਂ ਪਾਸ ਕਰੋ ਤਾਂ ਜੋ ਗੁਪਤ ਚੀਜ਼ਾਂ ਚਿੱਤਰ ਵਿੱਚ ਨਾ ਜੋੜੀਆਂ ਜਾਣ। ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ **ਵੈੱਬ UI ਵਿੱਚ ਦਾਖਲ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ**; ਸਰਵਰ ਉਹਨਾਂ ਨੂੰ ਵਾਤਾਵਰਣ ਤੋਂ ਪੜ੍ਹਦਾ ਹੈ।
 
 <br/>
 
 > ℹ️ **ਨੋਟ**<br/>
-> ਡੌਕਰ ਵਿੱਚ, LLM ਪ੍ਰਮਾਣ ਪੱਤਰਾਂ ਨੂੰ `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … ਵਰਗੇ ਵਾਤਾਵਰਣ ਚਲਣ ਨਾਲ ਸੈੱਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ (ਵੈੱਬ UI ਵਿੱਚ ਨਹੀਂ)। ਡੈਸਕਟਾਪ (Electron) ਉੱਤੇ ਤੁਸੀਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਨੂੰ ਕਾਨਫਿਗਰ ਕਰਦੇ ਹੋ।
+> Docker ਵਿੱਚ, LLM ਪ੍ਰਮਾਣ ਪੱਤਰਾਂ ਨੂੰ ਵਾਤਾਵਰਣ ਚਲਦੀਆਂ ਚੀਜ਼ਾਂ ਨਾਲ ਸੈੱਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਜਿਵੇਂ `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (ਵੈੱਬ UI ਵਿੱਚ ਨਹੀਂ)। ਡੈਸਕਟਾਪ (Electron) ਉੱਤੇ ਤੁਸੀਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਕੰਫਿਗਰ ਕਰਦੇ ਹੋ।
 
 <br/>
 
-ਜਾਂ ਡੌਕਰ ਕੰਪੋਜ਼ ਵਰਤੋ:
+ਜਾਂ Docker Compose ਵਰਤੋ:
 
 ```
 # download the compose file
@@ -134,41 +137,41 @@ vi transrewrt.yml
 docker compose -f transrewrt.yml up -d
 ```
 
-ਸਾਰੇ ਮਾਹੌਲ ਚਲਨ, ਜਿਵੇਂ `PORT`, `CONFIG_PATH`, `TZ`, ਅਤੇ LLM ਕੁੰਜੀਆਂ (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …) ਲਈ [ਕਾਨਫ਼ੀਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ।
+[ਕਨਫਿਗਰੇਸ਼ਨ](#configuration-and-environment) ਵਿੱਚ ਸਾਰੀਆਂ ਵਾਤਾਵਰਣ ਚਲਦੀਆਂ ਚੀਜ਼ਾਂ ਲਈ ਵੇਖੋ, ਜਿਵੇਂ `PORT`, `CONFIG_PATH`, `TZ`, ਅਤੇ LLM ਕੁੰਜੀਆਂ (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …)।
 
 </details>
 
 <br/>
 
 <details>
-<summary><b>ਸਰਵਰ ਟਾਈਮਜ਼ੋਨ (ਡੌਕਰ)</b></summary>
+<summary><b>ਸਰਵਰ ਟਾਈਮਜ਼ੋਨ (Docker)</b></summary>
 
 <a id="configuring-the-timezone"></a>
 
 <br/>
 
-ਐਪਲੀਕੇਸ਼ਨ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਦੀ ਮਿਤੀ ਅਤੇ ਸਮਾਂ **ਬਰਾਊਜ਼ਰ** ਦੇ ਸਥਾਨਕ ਅਤੇ ਟਾਈਮਜ਼ੋਨ ਦੀ ਪਾਲਣਾ ਕਰਦਾ ਹੈ। **ਸਰਵਰ-ਸਾਈਡ** ਵਰਤਾਓ (ਲੌਗਿੰਗ ਅਤੇ ਇਸ ਤਰ੍ਹਾਂ ਦੇ) ਲਈ, ਕੰਟੇਨਰ `TZ` ਮਾਹੌਲ ਚਲਨ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਡਿਫ਼ਾਲਟ `TZ=Europe/London` ਹੈ।
+ਐਪਲੀਕੇਸ਼ਨ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਦੀ ਮਿਤੀ ਅਤੇ ਸਮਾਂ **ਬਰਾਊਜ਼ਰ** ਦੇ ਸਥਾਨਕ ਸਥਾਪਨ ਅਤੇ ਸਮਾਂ ਖੇਤਰ ਦੀ ਪਾਲਣਾ ਕਰਦੇ ਹਨ। **ਸਰਵਰ-ਸਾਈਡ** ਵਰਤਾਓ (ਲੌਗਿੰਗ ਅਤੇ ਇਸ ਤਰ੍ਹਾਂ ਦੀਆਂ ਚੀਜ਼ਾਂ) ਲਈ, ਕੰਟੇਨਰ `TZ` ਵਾਤਾਵਰਣ ਚਲਨ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਮੂਲ ਰੂਪ `TZ=Europe/London` ਹੈ।
 
-ਕਿਸੇ ਹੋਰ ਟਾਈਮਜ਼ੋਨ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ, ਆਪਣੀ Compose ਫਾਇਲ ਵਿੱਚ `TZ` ਸੈੱਟ ਕਰੋ, ਉਦਾਹਰਣ ਵਜੋਂ:
+ਕਿਸੇ ਹੋਰ ਟਾਈਮਜ਼ੋਨ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ, ਆਪਣੀ Compose ਫਾਈਲ ਵਿੱਚ `TZ` ਸੈੱਟ ਕਰੋ, ਉਦਾਹਰਣ ਲਈ:
 
 ```yaml
 environment:
   - TZ=America/Sao_Paulo
 ```
 
-ਜਾਂ ਕੰਟੇਨਰ ਨੂੰ ਚਲਾਉਂਦੇ ਸਮੇਂ (ਡੌਕਰ) ਪਾਸ ਕਰੋ:
+ਜਾਂ ਕੰਟੇਨਰ ਨੂੰ ਚਲਾਉਂਦੇ ਸਮੇਂ ਪਾਸ ਕਰੋ (Docker):
 
 ```bash
 --env TZ=America/Sao_Paulo
 ```
 
-ਕਈ ਲੀਨਕਸ ਹੋਸਟਾਂ ਤੇ ਤੁਸੀਂ ਸਿਸਟਮ ਟਾਈਮਜ਼ੋਨ ਨਾਮ ਨੂੰ ਇਸ ਤਰ੍ਹਾਂ ਕਾਪੀ ਕਰ ਸਕਦੇ ਹੋ:
+ਬਹੁਤ ਸਾਰੇ ਲੀਨਕਸ ਹੋਸਟਾਂ ਉੱਤੇ ਤੁਸੀਂ ਸਿਸਟਮ ਟਾਈਮਜ਼ੋਨ ਨਾਮ ਨੂੰ ਇਸ ਨਾਲ ਕਾਪੀ ਕਰ ਸਕਦੇ ਹੋ:
 
 ```bash
 echo TZ=\"$(</etc/timezone)\"
 ```
 
-ਵੈਧ ਟਾਈਮਜ਼ੋਨ ਨਾਮਾਂ ਦੀ ਸੂਚੀ [tz ਡਾਟਾਬੇਸ](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (ਵਿਕੀਪੀਡੀਆ) ਵਿੱਚ ਰੱਖੀ ਜਾਂਦੀ ਹੈ।
+ਵੈਧ ਟਾਈਮਜ਼ੋਨ ਨਾਮਾਂ ਦੀ ਸੂਚੀ [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (ਵਿਕੀਪੀਡੀਆ) ਵਿੱਚ ਰੱਖੀ ਜਾਂਦੀ ਹੈ।
 
 </details>
 
@@ -181,19 +184,19 @@ echo TZ=\"$(</etc/timezone)\"
 
 <br/>
 
-- [ਰਿਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਤੋਂ ਨਵੀਂ `Transrewrt Setup x.y.z.exe` ਡਾਊਨਲੋਡ ਕਰੋ।
-- `.exe` ਚਲਾਓ ਅਤੇ ਇੰਸਟਾਲਰ ਦੀ ਪਾਲਣਾ ਕਰੋ।
-- ਪਹਿਲੀ ਵਾਰ ਚਲਾਉਣਾ: ਸਟਾਰਟ ਮੀਨੂ ਜਾਂ ਡੈਸਕਟਾਪ ਸ਼ਾਰਟਕੱਟ ਤੋਂ ਐਪ ਸ਼ੁਰੂ ਕਰੋ।
-- **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ ਦਰਜ ਕਰੋ। ਤੁਹਾਨੂੰ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਨੂੰ ਕਨਫਿਗਰ ਕਰਨ ਦੀ ਲੋੜ ਹੈ; ਮੁਫ਼ਤ ਮਾਡਲਾਂ ਲਈ OpenRouter ਆਮ ਹੈ।
+- [ਰੀਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਤੋਂ ਨਵੀਂਤਮ `Transrewrt Setup x.y.z.exe` ਡਾਊਨਲੋਡ ਕਰੋ।
+- `.exe` ਨੂੰ ਚਲਾਓ ਅਤੇ ਇੰਸਟਾਲਰ ਦੀ ਪਾਲਣਾ ਕਰੋ।
+- ਪਹਿਲੀ ਵਾਰ: ਸਟਾਰਟ ਮੇਨੂ ਜਾਂ ਡੈਸਕਟਾਪ ਸ਼ਾਰਟਕੱਟ ਤੋਂ ਐਪ ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ।
+- **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ ਦਾਖਲ ਕਰੋ। ਤੁਹਾਨੂੰ ਘੱਟੋ ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਨੂੰ ਕੰਫਿਗਰ ਕਰਨ ਦੀ ਲੋੜ ਹੈ; ਮੁਫ਼ਤ ਮਾਡਲ ਲਈ OpenRouter ਆਮ ਹੈ।
 
 <br/>
 
 > ℹ️ **ਨੋਟ**<br/>
-> ਵਿੰਡੋਜ਼ ਇਹਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ ਦਿਖਾ ਸਕਦਾ ਹੈ (ਬਿਨਾਂ ਦਸਤਖਤ/ਸੁਤੰਤਰ ਐਪਸ ਲਈ ਆਮ):
->   - **ਯੂਜ਼ਰ ਅਕਾਊਂਟ ਕੰਟਰੋਲ (UAC)**: "ਕੀ ਤੁਸੀਂ ਅਣਜਾਣ ਪਬਲਿਸ਼ਰ ਤੋਂ ਇਸ ਐਪ ਨੂੰ ਆਪਣੇ ਡਿਵਾਈਸ 'ਤੇ ਤਬਦੀਲੀਆਂ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦੇਣਾ ਚਾਹੁੰਦੇ ਹੋ?" → **ਹਾਂ** ਤੇ ਕਲਿੱਕ ਕਰੋ।
->   - **ਮਾਈਕਰੋਸਾਫਟ ਡਿਫੈਂਡਰ ਸਮਾਰਟਸਕਰੀਨ**: "ਵਿੰਡੋਜ਼ ਨੇ ਤੁਹਾਡੇ ਪੀਸੀ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕੀਤਾ" → **ਹੋਰ ਜਾਣਕਾਰੀ** ਤੇ ਕਲਿੱਕ ਕਰੋ → **ਫਿਰ ਵੀ ਚਲਾਓ**।
+> ਵਿੰਡੋਜ਼ ਇੱਕ ਇਹਨਾਂ ਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀਆਂ ਵਿੱਚੋਂ ਦਿਖਾ ਸਕਦਾ ਹੈ (ਬਿਨਾਂ ਦਸਤਖਤ/ਸੁਤੰਤਰ ਐਪਸ ਲਈ ਸਧਾਰਨ):
+>   - **ਯੂਜ਼ਰ ਅਕਾਊਂਟ ਕੰਟਰੋਲ (UAC)**: "ਕੀ ਤੁਸੀਂ ਇਸ ਅਣਜਾਣ ਪ੍ਰਕਾਸ਼ਕ ਤੋਂ ਐਪ ਨੂੰ ਆਪਣੇ ਡਿਵਾਈਸ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣਾ ਚਾਹੁੰਦੇ ਹੋ?" → **ਹਾਂ** ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ।
+>   - **ਮਾਈਕਰੋਸਾਫਟ ਡਿਫੈਂਡਰ ਸਮਾਰਟਸਕਰੀਨ**: "ਵਿੰਡੋਜ਼ ਨੇ ਤੁਹਾਡੇ ਪੀਸੀ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਿਆ" → **ਹੋਰ ਜਾਣਕਾਰੀ** ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ → **ਫਿਰ ਵੀ ਚਲਾਓ**।
 >
-> ਇਹ ਇਸ ਲਈ ਹੁੰਦਾ ਹੈ ਕਿਉਂਕਿ ਐਪ ਮਾਈਕਰੋਸਾਫਟ ਜਾਂ ਕਿਸੇ ਵੱਡੇ ਪਬਲਿਸ਼ਰ ਦੁਆਰਾ ਦਸਤਖਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ-ਇਹ ਸੁਰੱਖਿਅਤ ਹੈ ਜੇਕਰ ਸਾਡੇ ਅਧਿਕਾਰਤ GitHub ਰਿਲੀਜ਼ (ਹਰੇਕ ਐਸੇਟ ਨਾਲ [ਰਿਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਪੇਜ 'ਤੇ ਚੈੱਕਸਮ ਦੀ ਪੁਸ਼ਟੀ ਕਰਕੇ) ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤਾ ਗਿਆ ਹੈ।
+> ਇਹ ਇਸ ਲਈ ਹੁੰਦਾ ਹੈ ਕਿਉਂਕਿ ਐਪ ਮਾਈਕਰੋਸਾਫਟ ਜਾਂ ਕਿਸੇ ਵੱਡੇ ਪ੍ਰਕਾਸ਼ਕ ਦੁਆਰਾ ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੀ ਗਈ ਹੈ-ਇਹ ਸੁਰੱਖਿਅਤ ਹੈ ਜੇ ਸਾਡੀਆਂ ਅਧਿਕਾਰਤ GitHub ਰੀਲੀਜ਼ਾਂ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੀ ਗਈ ਹੈ (ਹਰੇਕ ਐਸੇਟ ਨਾਲ [ਰੀਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਸਫ਼ੇ ਉੱਤੇ ਚੈੱਕਸਮ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ)।
 
 <br/>
 
@@ -202,31 +205,31 @@ echo TZ=\"$(</etc/timezone)\"
 <br/>
 
 <details>
-<summary><b>ਲੀਨਕਸ</b></summary>
+<summary><b>Linux</b></summary>
 
 <a id="linux-electron"></a>
 
 <br/>
 
-ਆਪਣੇ CPU ਲਈ [ਰਿਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਤੋਂ `.AppImage` ਡਾਊਨਲੋਡ ਕਰੋ (`x64` ਆਮ ਪੀਸੀ ਲਈ, `arm64` ਬਹੁਤ ਸਾਰੇ ARM ਉਪਕਰਣਾਂ ਲਈ, ਰਾਸਪਬੇਰੀ ਪਾਈ 4+ ਸਮੇਤ), ਫਿਰ:
+[ਰਿਲੀਜ਼](https://github.com/wsj-br/transrewrt/releases) ਤੋਂ ਆਪਣੇ CPU ਲਈ `.AppImage` ਡਾਊਨਲੋਡ ਕਰੋ (ਆਮ ਪੀਸੀ ਲਈ `x64`, ਰਾਸਪਬੇਰੀ ਪਾਈ 4+ ਸਮੇਤ ਬਹੁਤ ਸਾਰੇ ARM ਡਿਵਾਈਸਾਂ ਲਈ `arm64`), ਫਿਰ:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-x86_64/amd64 'ਤੇ `x64` ਫਾਈਲ ਨਾਮ ਵਰਤੋ; ARM64 'ਤੇ `...-arm64.AppImage` ਨਾਮ ਵਰਤੋ।
+x86_64/amd64 ਤੇ `x64` ਫਾਇਲ ਨਾਮ ਵਰਤੋਂ; ARM64 ਤੇ `...-arm64.AppImage` ਨਾਮ ਵਰਤੋਂ।
 
-ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਦਰਜ ਕਰੋ। ਤੁਹਾਨੂੰ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਨੂੰ ਕਨਫਿਗਰ ਕਰਨ ਦੀ ਲੋੜ ਹੈ; ਮੁਫ਼ਤ ਮਾਡਲਾਂ ਲਈ OpenRouter ਆਮ ਹੈ।
+**ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ ਦਿਓ। ਤੁਹਾਨੂੰ ਘੱਟੋ ਘੱਟ ਇੱਕ ਪ੍ਰਦਾਤਾ ਨੂੰ ਕਾਨਫਿਗਰ ਕਰਨਾ ਹੋਵੇਗਾ; ਮੁਫ਼ਤ ਮਾਡਲਾਂ ਲਈ OpenRouter ਆਮ ਹੈ।
 
-**ਕੰਸੋਲ ਸੁਨੇਹੇ:** ਪੈਕੇਜ ਕੀਤੇ ਲੀਨਕਸ ਬਿਲਡ (`x64` ਅਤੇ `arm64` AppImages) ਟਰਮੀਨਲ ਵਿੱਚ ਨੋਡ ਡੀਪ੍ਰੀਸੀਏਸ਼ਨ ਚੇਤਾਵਨੀਆਂ ਨੂੰ ਦਬਾਉਂਦੇ ਹਨ (ਉਦਾਹਰਨ ਲਈ ਅੰਦਰੂਨੀ `punycode` ਮੌਡੀਊਲ)। ਜੇਕਰ ਕ੍ਰੋਮੀਅਮ "GLES3 ਅਸਮਰੱਥ" ਵਰਗੀਆਂ GPU / EGL ਗਲਤੀਆਂ ਛਾਪਦਾ ਹੈ ਪਰ ਐਪ ਕੰਮ ਕਰਦਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਹਾਰਡਵੇਅਰ ਐਕਸਲੀਰੇਸ਼ਨ ਨੂੰ ਅਯੋਗ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਚੁੱਪ ਕਰਵਾ ਸਕਦੇ ਹੋ:
+**ਕੰਸੋਲ ਸੁਨੇਹੇ:** ਪੈਕੇਜ ਕੀਤੇ ਲੀਨਕਸ ਬਿਲਡ (`x64` ਅਤੇ `arm64` AppImages) ਟਰਮੀਨਲ ਵਿੱਚ ਨੋਡ ਡੀਪ੍ਰੀਸੀਏਸ਼ਨ ਚੇਤਾਵਨੀਆਂ ਨੂੰ ਦਬਾਉਂਦੇ ਹਨ (ਉਦਾਹਰਣ ਲਈ ਅੰਦਰੂਨੀ `punycode` ਮਾਡਲ)। ਜੇਕਰ ਕ੍ਰੋਮੀਅਮ 'GLES3 is unsupported' ਵਰਗੀਆਂ GPU / EGL ਗਲਤੀਆਂ ਛਾਪਦਾ ਹੈ ਪਰ ਐਪ ਕੰਮ ਕਰਦੀ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਹਾਰਡਵੇਅਰ ਐਕਸੈਲਰੇਸ਼ਨ ਨੂੰ ਅਯੋਗ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਚੁੱਪ ਕਰ ਸਕਦੇ ਹੋ:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-ਇਹ amd64 'ਤੇ ਵੀ ਲਾਗੂ ਹੁੰਦਾ ਹੈ; ਆਪਣੇ ਡਾਊਨਲੋਡ ਨਾਲ ਮੇਲ ਖਾਣ ਲਈ ਫਾਈਲ ਨਾਮ ਬਦਲੋ।
+ਇਹ amd64 ਤੇ ਵੀ ਲਾਗੂ ਹੁੰਦਾ ਹੈ; ਆਪਣੇ ਡਾਊਨਲੋਡ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਨਾਮ ਨਾਲ ਫਾਇਲ ਨਾਮ ਬਦਲੋ।
 
-Debian/Ubuntu 'ਤੇ, ਤੁਹਾਨੂੰ Chromium ਦੁਆਰਾ ਲੋੜੀਂਦੀਆਂ ਅਤਿਰਿਕਤ **ਰਨਟਾਈਮ** ਲਾਇਬਰੇਰੀਆਂ ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ (ਜੋ ਕਿ ਪੂਰੀ ਡੈਸਕਟਾਪ ਇੰਸਟਾਲੇਸ਼ਨਾਂ 'ਤੇ ਅਕਸਰ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੁੰਦੀਆਂ ਹਨ)। ਜੇ ਲੋੜ ਹੋਵੇ ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਕਮਾਂਡ ਚਲਾਓ:
+Debian/Ubuntu ਤੇ, ਤੁਹਾਨੂੰ Chromium ਦੁਆਰਾ ਲੋੜੀਂਦੀਆਂ ਅਤਿਰਿਕਤ **ਰਨਟਾਈਮ** ਲਾਇਬ੍ਰੇਰੀਆਂ ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ (ਇਹ ਪੂਰੀ ਡੈਸਕਟਾਪ ਇੰਸਟਾਲੇਸ਼ਨਾਂ ਤੇ ਅਕਸਰ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੁੰਦੀਆਂ ਹਨ)। ਜੇ ਲੋੜ ਹੋਵੇ ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਕਮਾਂਡ ਚਲਾਓ:
 
 ```bash
 sudo apt update
@@ -234,94 +237,94 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
      xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
 ```
 
-`arm64` ਲਈ `libasound2t64` ਨੂੰ `libasound2` ਨਾਲ ਬਦਲੋ। ਘੱਟੋ-ਘੱਟ ਜਾਂ ਕਸਟਮ ਇੰਸਟਾਲੇਸ਼ਨਾਂ ਅਜੇ ਵੀ `.so` ਫਾਈਲ ਦੇ ਗਾਇਬ ਹੋਣ ਕਾਰਨ ਅਸਫਲ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਗਲਤੀ ਸੁਨੇਹੇ ਵਿੱਚ ਨਾਮ ਦਿੱਤੇ ਪੈਕੇਜ ਨੂੰ ਇੰਸਟਾਲ ਕਰੋ (ਆਮ ਐਕਸਟਰਾ: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। ਕੁਝ ਵਾਤਾਵਰਣਾਂ ਵਿੱਚ, ਤੁਹਾਨੂੰ `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ਵਰਤ ਕੇ ਐਪ ਨੂੰ ਚਲਾਉਣ ਦੀ ਲੋੜ ਪੈ ਸਕਦੀ ਹੈ।
+`libasound2t64` ਨੂੰ `libasound2` ਨਾਲ `arm64` ਲਈ ਬਦਲੋ। ਘੱਟੋ ਘੱਟ ਜਾਂ ਕਸਟਮ ਇੰਸਟਾਲੇਸ਼ਨ ਅਜੇ ਵੀ ਗਾਇਬ `.so` ਫਾਇਲ ਨਾਲ ਫੇਲ੍ਹ ਹੋ ਸਕਦੀ ਹੈ। ਗਲਤੀ ਸੁਨੇਹੇ ਵਿੱਚ ਦਿੱਤੇ ਨਾਮ ਦੇ ਪੈਕੇਜ ਨੂੰ ਇੰਸਟਾਲ ਕਰੋ (ਆਮ ਐਕਸਟਰਾ: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`)। ਕੁਝ ਮਾਹੌਲਾਂ ਵਿੱਚ, ਤੁਹਾਨੂੰ `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` ਵਰਤ ਕੇ ਐਪ ਚਲਾਉਣ ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ।
 
 <br/>
 
 > ℹ️ **ਨੋਟ**<br/>
-> macOS ਨੂੰ ਫਿਲਹਾਲ ਸਹਾਇਤਾ ਪ੍ਰਦਾਨ ਨਹੀਂ ਕੀਤੀ ਗਈ ਹੈ। Transrewrt Windows, Linux, ਅਤੇ ਡੌਕਰ ਲਈ ਉਪਲਬਧ ਹੈ।
+> ਮੈਕਓਐਸ ਨੂੰ ਫਿਲਹਾਲ ਸਮਰਥਨ ਨਹੀਂ ਮਿਲਿਆ ਹੈ। ਵਿੰਡੋਜ਼, ਲੀਨਕਸ, ਅਤੇ ਡੌਕਰ ਲਈ Transrewrt ਉਪਲਬਧ ਹੈ।
 
 </details>
 
 <br/>
 
-ਇਕ ਵਾਰ ਐਪ ਚੱਲਣ ਤੋਂ ਬਾਅਦ, ਪਾਠ ਨੂੰ ਅਨੁਵਾਦ ਕਰਨ, ਮੁੜ-ਲਿਖਣ ਅਤੇ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰਨ, ਪ੍ਰਾਮਿਟਾਂ ਨੂੰ ਪਰਬੰਧਿਤ ਕਰਨ ਅਤੇ ਮਾਡਲਾਂ ਨੂੰ ਕਾਨਫ਼ੀਗਰ ਕਰਨ ਬਾਰੇ ਜਾਣਨ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
+ਇਕ ਵਾਰ ਐਪ ਚੱਲਣ ਲੱਗੇ, ਪਾਠ ਨੂੰ ਅਨੁਵਾਦ ਕਰਨ, ਮੁੜ-ਲਿਖਣ ਅਤੇ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰਨ, ਪ੍ਰਾਮਟ ਨੂੰ ਮੈਨੇਜ ਕਰਨ ਅਤੇ ਮਾਡਲਾਂ ਨੂੰ ਕਾਨਫਿਗਰ ਕਰਨ ਬਾਰੇ ਜਾਣਨ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
 
 <br/><br/>
 
 <a id="getting-an-openrouter-api-key"></a>
-## ਇੱਕ OpenRouter API ਕੁੰਜੀ ਪ੍ਰਾਪਤ ਕਰਨਾ
+## OpenRouter API ਕੁੰਜੀ ਪ੍ਰਾਪਤ ਕਰਨਾ
 
-Transrewrt ਕਈ AI ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰਥਨ ਦਿੰਦਾ ਹੈ। [OpenRouter](https://openrouter.ai) ਇੱਕ ਪ੍ਰਸਿੱਧ ਚੋਣ ਹੈ ਕਿਉਂਕਿ ਇਹ ਇੱਕੋ ਕੁੰਜੀ ਹੇਠ ਬਹੁਤ ਸਾਰੇ ਮਾਡਲਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰਦਾ ਹੈ ਅਤੇ ਮੁਫ਼ਤ ਮਾਡਲ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।
+Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰਥਨ ਦਿੰਦਾ ਹੈ। [OpenRouter](https://openrouter.ai) ਇੱਕ ਪ੍ਰਸਿੱਧ ਚੋਣ ਹੈ ਕਿਉਂਕਿ ਇਹ ਇੱਕੋ ਕੁੰਜੀ ਹੇਠ ਬਹੁਤ ਸਾਰੇ ਮਾਡਲਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰਦਾ ਹੈ ਅਤੇ ਮੁਫ਼ਤ ਮਾਡਲ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।
 
 1. [openrouter.ai](https://openrouter.ai) ਤੇ ਸਾਈਨ ਅੱਪ ਕਰੋ ਜਾਂ ਲੌਗ ਇਨ ਕਰੋ।
-2. [ਕੁੰਜੀਆਂ](https://openrouter.ai/keys) ਸਫ਼ਾ ਖੋਲ੍ਹੋ ਅਤੇ ਇੱਕ ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਓ (ਨਾਮ ਦਿਓ, ਅਤੇ ਵਿਕਲਪਿਕ ਤੌਰ 'ਤੇ ਕਰੈਡਿਟ ਸੀਮਾ ਸੈੱਟ ਕਰੋ)। ਕਰੈਡਿਟ ਸ਼ਾਮਲ ਕੀਤੇ ਬਿਨਾਂ ਮੁਫ਼ਤ ਮਾਡਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।
-3. **ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ):** ਕੁੰਜੀਆਂ **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਪੇਸਟ ਕਰੋ। **ਡੌਕਰ:** `OPENROUTER_API_KEY` ਵਰਗੇ ਮਾਹੌਲ ਚਲਨ ਸੈੱਟ ਕਰੋ (ਤੇਜ਼ ਸ਼ੁਰੂਆਤ ਲਈ [Quick start](#quick-start) ਵੇਖੋ)।
+2. [ਕੁੰਜੀਆਂ](https://openrouter.ai/keys) ਪੰਨੇ ਨੂੰ ਖੋਲ੍ਹੋ ਅਤੇ ਇੱਕ ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਓ (ਇਸਦਾ ਨਾਮ ਦਿਓ, ਅਤੇ ਵਿਕਲਪਕ ਤੌਰ 'ਤੇ ਇੱਕ ਕ੍ਰੈਡਿਟ ਸੀਮਾ ਸੈੱਟ ਕਰੋ)। ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਸ਼ਾਮਲ ਕੀਤੇ ਬਿਨਾਂ ਮੁਫ਼ਤ ਮਾਡਲ ਵਰਤ ਸਕਦੇ ਹੋ।
+3. **ਡੈਸਕਟਾਪ (ਇਲੈਕਟ੍ਰਾਨ):** **ਸੈਟਿੰਗਾਂ → API** ਵਿੱਚ ਕੁੰਜੀਆਂ ਪੇਸਟ ਕਰੋ। **ਡੌਕਰ:** `OPENROUTER_API_KEY` ਵਰਗੇ ਐਨਵੀਰਨਮੈਂਟ ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ (ਤੇਜ਼ੀ ਨਾਲ ਸ਼ੁਰੂਆਤ ਲਈ [Quick start](#quick-start) ਵੇਖੋ)।
 
-ਅਨੁਵਾਦ, ਮੁੜ-ਲਿਖਤ, ਜਾਂ ਟ੍ਰਾਂਸਫਾਰਮ ਲਈ OpenRouter ਦੇ **ਬਾਡੀ ਬਿਲਡਰ** ਮਾਡਲ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ: ਇਹ ਉਹਨਾਂ ਕੰਮਾਂ ਲਈ ਪੂਰਾ ਟੈਕਸਟ ਨਹੀਂ, ਬਲਕਿ JSON ਰਿਕੁਐਸਟ ਪੇਲੋਡ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਯੂਜ਼ਰ ਗਾਈਡ ਵਿੱਚ [ਸੈਟਿੰਗਾਂ → ਮਾਡਲ](USER-GUIDE.pa.md#models) ਵੇਖੋ।
+ਅਨੁਵਾਦ, ਮੁੜ-ਲਿਖਤ ਜਾਂ ਟ੍ਰਾਂਸਫਾਰਮ ਲਈ OpenRouter ਦੇ **ਬਾਡੀ ਬਿਲਡਰ** ਮਾਡਲ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ: ਇਹ ਉਹਨਾਂ ਕੰਮਾਂ ਲਈ ਪੂਰੀ ਟੈਕਸਟ ਦੀ ਬਜਾਏ JSON ਰਿਕੁਐਸਟ ਪੇਲੋਡ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਯੂਜ਼ਰ ਗਾਈਡ ਵਿੱਚ [ਸੈਟਿੰਗਾਂ → ਮਾਡਲ](USER-GUIDE.pa.md#models) ਵੇਖੋ।
 
-ਤੁਸੀਂ ਹੋਰ ਪ੍ਰਦਾਤਾਵਾਂ (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ਦੀ ਵਰਤੋਂ ਵੀ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ [Ollama](https://ollama.com) ਨਾਲ ਮਾਡਲ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਚਲਾ ਸਕਦੇ ਹੋ। ਸਮਰਥਿਤ ਪ੍ਰਦਾਤਾਵਾਂ ਅਤੇ ਮਾਹੌਲ ਚਲਨ ਦੀ ਪੂਰੀ ਸੂਚੀ ਲਈ [ਕਾਨਫ਼ੀਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ।
+ਤੁਸੀਂ ਹੋਰ ਪ੍ਰਦਾਤਾਵਾਂ (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ [Ollama](https://ollama.com) ਨਾਲ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਮਾਡਲ ਚਲਾ ਸਕਦੇ ਹੋ। ਸਮਰਥਿਤ ਪ੍ਰਦਾਤਾਵਾਂ ਅਤੇ ਐਨਵੀਰਨਮੈਂਟ ਵੇਰੀਏਬਲਾਂ ਦੀ ਪੂਰੀ ਸੂਚੀ ਲਈ [ਕਾਨਫਿਗਰੇਸ਼ਨ](#configuration-and-environment) ਵੇਖੋ।
 
 </br>
 
 > ⚠️ **ਚੇਤਾਵਨੀ**<br/>
-> ਜੇਕਰ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ, ਕੰਟੇਨਰ, ਜਾਂ ਸੇਵਾ ਤੋਂ Ollama ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਬਾਹਰੀ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਸਹਾਇਤਾ ਦੇਣ ਲਈ Ollama ਨੂੰ ਕਾਨਫਿਗਰ ਕਰਨਾ ਯਾਦ ਰੱਖੋ (ਸਿਰਫ਼ localhost ਨਹੀਂ)।
+> ਜੇਕਰ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ, ਕੰਟੇਨਰ ਜਾਂ ਸੇਵਾ ਤੋਂ Ollama ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਯਾਦ ਰੱਖੋ ਕਿ Ollama ਨੂੰ ਬਾਹਰੀ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨ ਲਈ ਕਾਨਫਿਗਰ ਕਰੋ (ਸਿਰਫ਼ ਲੋਕਲਹੋਸਟ ਨਹੀਂ)।
 
 <br/><br/>
 
 <a id="configuration-and-environment"></a>
-## ਕਾਨਫਿਗਰੇਸ਼ਨ ਅਤੇ ਵਾਤਾਵਰਣ
+## ਕਾਨਫਿਗਰੇਸ਼ਨ ਅਤੇ ਮਾਹੌਲ
 
 </br>
 
-**ਕਾਨਫ਼ੀਗ ਫਾਇਲ ਸਥਾਨ**
+**ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦੇ ਸਥਾਨ**
 
-| ਡਿਪਲੌਇਮੈਂਟ         | ਕਾਨਫ਼ੀਗ ਸਥਾਨ                                   |
+| ਡਿਪਲੌਇਮੈਂਟ | ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਸਥਾਨ |
 | ------------------ | ------------------------------------------------- |
-| ਇਲੈਕਟ੍ਰਾਨ (Windows) | `%APPDATA%\transrewrt\`                           |
-| ਇਲੈਕਟ੍ਰਾਨ (Linux)   | `~/.config/transrewrt/`                           |
-| ਵੈੱਬ / ਡਾਕਰ       | `/app/data/config.json` (ਬਰਕਰਾਰ ਰੱਖਣ ਲਈ ਇੱਕ ਵਾਲੀਊਮ ਵਰਤੋਂ) |
+| ਇਲੈਕਟ੍ਰਾਨ (ਵਿੰਡੋਜ਼) | `%APPDATA%\transrewrt\` |
+| ਇਲੈਕਟ੍ਰਾਨ (ਲੀਨਕਸ) | `~/.config/transrewrt/` |
+| ਵੈੱਬ / ਡੌਕਰ | `/app/data/config.json` (ਸਥਾਈ ਰੱਖਣ ਲਈ ਇੱਕ ਵਾਲੀਅਮ ਦੀ ਵਰਤੋਂ ਕਰੋ) |
 
 <br/>
 
-**ਵਾਤਾਵਰਣ ਚਲਣਯੋਗ** (ਵੈੱਬ/ਡਾਕਰ ਸਿਰਫ; ਇਲੈਕਟ੍ਰਾਨ ਸਥਾਨਕ ਕਾਨਫ਼ੀਗ ਫਾਇਲ ਵਰਤਦਾ ਹੈ)
+**ਵਾਤਾਵਰਣ ਚਲ (ਐਨਵਾਇਰਨਮੈਂਟ ਵੇਰੀਏਬਲਜ਼)** (ਸਿਰਫ਼ ਵੈੱਬ/ਡੌਕਰ ਲਈ; ਇਲੈਕਟ੍ਰਾਨ ਸਥਾਨਕ ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ)
 
-| ਚਲਣ             | ਵੇਰਵਾ                                                                  |
+| ਚਲ | ਵੇਰਵਾ |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | ਸਰਵਰ ਸੁਣਨ ਵਾਲਾ ਪੋਰਟ  (ਡਿਫਾਲਟ `5000` ਹੈ)                                  |
-| `CONFIG_PATH`        | ਕਾਨਫਿਗ ਫਾਈਲ ਲਈ ਮਾਰਗ (ਡਿਫਾਲਟ `/app/data/config.json)` ਹੈ)                 |
-| `TZ`                 | ਸਰਵਰ-ਸਾਈਡ ਸਮਾਂ ਲਈ ਟਾਈਮਜ਼ੋਨ (ਲਾਗਿੰਗ, ਆਦਿ) (ਡਿਫਾਲਟ `Europe/London` ਹੈ) |
-| `OPENROUTER_API_KEY` | OpenRouter API ਕੁੰਜੀ                                                           |
-| `OPENAI_API_KEY`     | OpenAI API ਕੁੰਜੀ                                                               |
-| `CEREBRAS_API_KEY`   | ਸੇਰੇਬਰਸ API ਕੁੰਜੀ                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API ਕੁੰਜੀ                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API ਕੁੰਜੀ                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API ਕੁੰਜੀ                                                             |
-| `GROQ_API_KEY`       | Groq API ਕੁੰਜੀ                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API ਕੁੰਜੀ                                                              |
-| `OLLAMA_URL`         | Ollama ਬੇਸ URL (ਉਦਾਹਰਣ ਲਈ `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | xAI API ਕੁੰਜੀ                                                                  |
+| `PORT` | ਸਰਵਰ ਸੁਣਨ ਪੋਰਟ (ਡਿਫ਼ਾਲਟ `5000` ਹੈ) |
+| `CONFIG_PATH` | ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦਾ ਮਾਰਗ (ਡਿਫ਼ਾਲਟ `/app/data/config.json)                 |
+| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
+| `OPENAI_API_KEY`     | OpenAI API key                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
+| `GROQ_API_KEY`       | Groq API key                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API key                                                              |
+| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY` ਹੈ) | xAI API ਕੁੰਜੀ |
 
-ਸਿਰਫ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ੀਗਰ ਕਰੋ ਜਿਹਨਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ। ਮਾਡਲ ID ਨਾਮ ਸਪੇਸ ਕੀਤੇ ਗਏ ਹਨ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ)।
+ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ਿਗਰ ਕਰੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ। ਮਾਡਲ ਆਈਡੀਜ਼ ਨਾਮਕ ਖੇਤਰ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ) ਹਨ।
 
-**ਲਾਗਤ ਪ੍ਰਦਰਸ਼ਨ:** OpenRouter ਲਾਗੂ ਹੋਣ ਤੇ ਸਹੀ ਬਿਲਡ ਲਾਗਤ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਹੋਰ ਪ੍ਰਦਾਤਾ OpenRouter ਦੀ ਖੁੱਲ੍ਹੀ ਮਾਡਲ ਕੀਮਤ ਤੋਂ **ਅਨੁਮਾਨਿਤ** ਲਾਗਤ ਵਰਤਦੇ ਹਨ ਜਦੋਂ OpenRouter ਕੁੰਜੀ ਉਪਲਬਧ ਹੁੰਦੀ ਹੈ; ਬਿਨਾਂ ਇਸ ਦੇ, ਗੈਰ-OpenRouter ਲਾਗਤ `0` ਵਜੋਂ ਦਿਖਾਈ ਦੇ ਸਕਦੀ ਹੈ। ਅਨੁਮਾਨ ਬਿੱਲ ਨਹੀਂ ਹੁੰਦੇ।
+**ਲਾਗਤ ਪ੍ਰਦਰਸ਼ਨ:** OpenRouter ਲਾਗੂ ਹੋਣ ਦੀ ਸਥਿਤੀ ਵਿੱਚ ਸਹੀ ਬਿਲਡ ਲਾਗਤ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਹੋਰ ਪ੍ਰਦਾਤਾ OpenRouter ਦੀ ਖੁੱਲ੍ਹੀ ਮਾਡਲ ਕੀਮਤ ਤੋਂ **ਅਨੁਮਾਨਿਤ** ਲਾਗਤ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਨ ਜਦੋਂ OpenRouter ਕੁੰਜੀ ਉਪਲਬਧ ਹੁੰਦੀ ਹੈ; ਇਸ ਦੇ ਬਿਨਾਂ, ਗੈਰ-OpenRouter ਲਾਗਤ `0` ਵਜੋਂ ਦਿਖਾਈ ਦੇ ਸਕਦੀ ਹੈ। ਅਨੁਮਾਨ ਬਿੱਲ ਨਹੀਂ ਹੁੰਦੇ।
 
 <br/>
 
-**ਡਾਟਾ ਅਤੇ ਸਥਾਈਕਰਨ:** ਡਾਕਰ ਲਈ, `/app/data` ਤੇ ਇੱਕ ਵਾਲੀਊਮ ਮਾਊਂਟ ਕਰੋ ਤਾਂ ਜੋ `config.json` ਅਤੇ SQLite ਡੇਟਾਬੇਸ ਕੰਟੇਨਰ ਰੀਸਟਾਰਟਾਂ ਦੌਰਾਨ ਬਰਕਰਾਰ ਰਹਿ ਸਕਣ। ਬਿਨਾਂ ਵਾਲੀਊਮ ਦੇ, ਕੰਟੇਨਰ ਰੁਕਣ ਤੇ ਸਭ ਡਾਟਾ ਗੁਆਚ ਜਾਂਦਾ ਹੈ।
+**ਡੇਟਾ ਅਤੇ ਸਥਾਈਕਰਨ:** ਡੌਕਰ ਲਈ, `/app/data` ਤੇ ਇੱਕ ਵਾਲੀਅਮ ਮਾਊਂਟ ਕਰੋ ਤਾਂ ਜੋ `config.json` ਅਤੇ SQLite ਡੇਟਾਬੇਸ ਕੰਟੇਨਰ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੌਰਾਨ ਸਥਾਈ ਰਹੇ। ਬਿਨਾਂ ਵਾਲੀਅਮ ਦੇ, ਕੰਟੇਨਰ ਰੁਕਣ ਤੇ ਸਾਰਾ ਡੇਟਾ ਖੋ ਜਾਂਦਾ ਹੈ।
 
 <br/>
 
 **ਵੈੱਬ ਪ੍ਰਮਾਣਕਰਨ:**
 
-- ਮੂਲ ਐਡਮਿਨ: `admin` / `transrewrt26`।
-- **ਸੈਟਿੰਗਾਂ → ਉਪਭੋਗਤਾ** ਵਿੱਚ ਉਪਭੋਗਤਾ ਪਰਬੰਧਿਤ ਕਰੋ।
+- ਡਿਫ਼ਾਲਟ ਐਡਮਿਨ: `admin` / `transrewrt26`।
+- **ਸੈਟਿੰਗਾਂ → ਉਪਭੋਗਤਾ** ਵਿੱਚ ਉਪਭੋਗਤਾ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।
 - ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ: `docker exec <container> reset-web-password '<username>' '<new-password>'`
 
 <br/>
 
 > ⚠️ **ਚੇਤਾਵਨੀ**<br/>
-> ਕਿਸੇ ਵੀ ਨੈੱਟਵਰਕ-ਐਕਸੈੱਸਯੋਗ ਹੋਸਟ 'ਤੇ ਤੁਰੰਤ ਡਿਫਾਲਟ ਐਡਮਿਨ ਪਾਸਵਰਡ ਬਦਲੋ।
+> ਕਿਸੇ ਵੀ ਨੈੱਟਵਰਕ-ਪਹੁੰਚਯੋਗ ਹੋਸਟ ਤੇ ਡਿਫ਼ਾਲਟ ਐਡਮਿਨ ਪਾਸਵਰਡ ਤੁਰੰਤ ਬਦਲੋ।
 
 <br/>
 
@@ -332,15 +335,15 @@ Transrewrt ਕਈ AI ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰਥਨ �
 <a id="development-and-architecture"></a>
 ## ਵਿਕਾਸ ਅਤੇ ਆਰਕੀਟੈਕਚਰ
 
-- **ਵਿਕਾਸ:** ਸੈਟਅੱਪ, ਬਿਲਡ, ਟੈਸਟ, ਅਤੇ ਡਿਪਲੌਇ (ਇਲੈਕਟ੍ਰਾਨ, ਵੈੱਬ, ਡਾਕਰ) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** ਵੇਖੋ।
+- **ਵਿਕਾਸ:** ਸੈਟਅੱਪ, ਬਿਲਡ, ਟੈਸਟ, ਅਤੇ ਡਿਪਲੌਇ (ਇਲੈਕਟ੍ਰਾਨ, ਵੈੱਬ, ਡੌਕਰ) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** ਵੇਖੋ।
 - **ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਸਿਸਟਮ ਦਾ ਜਨਰਲ ਵੇਰਵਾ:** ਫੋਲਡਰ ਸਟਰਕਚਰ, ਟੈਕ ਸਟੈਕ, ਡਿਜ਼ਾਈਨ ਫੈਸਲੇ - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** ਵੇਖੋ।
 
 <br/><br/>
 
 <a id="reporting-issues"></a>
-## ਮੁੱਦਿਆਂ ਦੀ ਰਿਪੋਰਟਿੰਗ
+## ਮੁੱਦਿਆਂ ਦੀ ਰਿਪੋਰਟ ਕਰਨਾ
 
-[GitHub](https://github.com/wsj-br/transrewrt/issues) ਤੇ ਇੱਕ ਮੁੱਦਾ ਖੋਲ੍ਹੋ। ਆਪਣਾ ਪਲੇਟਫਾਰਮ (Windows / Linux / Docker) ਅਤੇ ਐਪ ਵਰਜਨ (About ਡਾਇਲਾਗ ਜਾਂ Releases ਪੇਜ 'ਤੇ ਦਿਖਾਇਆ ਗਿਆ) ਸ਼ਾਮਲ ਕਰੋ।
+[GitHub](https://github.com/wsj-br/transrewrt/issues) ਤੇ ਇੱਕ ਮੁੱਦਾ ਖੋਲ੍ਹੋ। ਆਪਣੇ ਪਲੇਟਫਾਰਮ (ਵਿੰਡੋਜ਼ / ਲੀਨਕਸ / ਡੌਕਰ) ਅਤੇ ਐਪ ਵਰਜਨ (ਬਾਰੇ ਡਾਇਲਾਗ ਜਾਂ ਰੀਲੀਜ਼ ਪੇਜ ਤੇ ਦਿਖਾਇਆ ਗਿਆ) ਸ਼ਾਮਲ ਕਰੋ।
 
 <br/><br/>
 
