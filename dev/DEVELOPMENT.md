@@ -16,7 +16,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
   - [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools)
-  - [Third-party licenses (`3p-licenses`)](#third-party-licenses-3p-licenses)
+  - [Third-party notices (`3p-notices`)](#third-party-notices-3p-notices)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
   - [Production-style (smoke test)](#production-style-smoke-test)
@@ -187,17 +187,17 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 
 For all CLI flags, run `pnpm exec ai-i18n-tools --help` and `pnpm exec ai-i18n-tools translate-docs --help` / `translate-ui --help`. Full patterns (`SOURCE_LOCALE`, `t(key, vars)`): **[i18n.md](i18n.md)**.
 
-### Third-party licenses (`3p-licenses`)
+### Third-party notices (`3p-notices`)
 
 Regenerate the **production** dependency license bundle for releases and compliance:
 
 | Command                 | Purpose |
 |-------------------------|---------|
-| `pnpm run 3p-licenses`  | Writes [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) at the repo root. |
+| `pnpm run 3p-notices`  | Writes [NOTICES](../NOTICES) at the repo root. |
 
 Implementation: [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js) runs **`license-checker-rseidelsohn`** (devDependency) with `--production`, `--json`, [3p-lic-clarifications.json](../3p-lic-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
 
-**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `3p-lic-clarifications.json`. Commit the updated `THIRD-PARTY-LICENSES.txt` with the dependency change when appropriate.
+**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `3p-lic-clarifications.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
 
 **Overrides:** Edit [3p-lic-clarifications.json](../3p-lic-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `embla-carousel@^8.0.0` or `multi-llm-ts@>=5.1.0-beta4 <7.0.0-0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
 
@@ -368,7 +368,7 @@ Models and fallbacks: **`openrouter.translationModels`** in [`ai-i18n-tools.conf
 | `pnpm reset-web-password` | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`)                        |
 | `pnpm check-api-key`      | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                                                 |
 | `pnpm update-version`     | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                                        |
-| `pnpm run 3p-licenses`    | Regenerate [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt) from production dependencies (see [Third-party licenses](#third-party-licenses-3p-licenses)) |
+| `pnpm run 3p-notices`    | Regenerate [NOTICES](../NOTICES) from production dependencies (see [Third-party notices](#third-party-notices-3p-notices)) |
 
 ### Docker and deploy
 
@@ -453,9 +453,9 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                                       |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                        |
 | [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | **ai-i18n-tools**: locales, OpenRouter models, UI extract paths, glossaries, doc `documentations`, `cacheDir` |
-| [3p-lic-clarifications.json](../3p-lic-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-licenses` (`licenseText`, etc.)                                        |
-| [THIRD-PARTY-LICENSES.txt](../THIRD-PARTY-LICENSES.txt)                                       | Generated production third-party license text (do not hand-edit; run `pnpm run 3p-licenses`)                           |
-| [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js)             | Invokes license checker + writes `THIRD-PARTY-LICENSES.txt`                                                            |
+| [3p-lic-clarifications.json](../3p-lic-clarifications.json)                               | Per-package license overrides for `pnpm run 3p-notices` (`licenseText`, etc.)                                        |
+| [NOTICES](../NOTICES)                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                           |
+| [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `NOTICES`                                                            |
 | [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                                       |
 
 

@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils";
 import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
-import { getUILanguageLabel } from "ai-i18n-tools/runtime";
 
 const AUTO_TARGET = "auto";
 
@@ -101,7 +100,7 @@ const LanguageSelector = ({
     if (isAutoTarget) return t("No target language");
     if (isDetectLanguage) return t("Detect Language");
     const entry = findUILanguageEntry(value);
-    return entry ? getUILanguageLabel(entry, t) : value;
+    return entry ? t(entry.englishName) : value;
   }, [value, isAutoTarget, isDetectLanguage, t]);
 
   return (
@@ -182,12 +181,16 @@ const LanguageSelector = ({
             }
 
             const entry = findUILanguageEntry(lang);
-            const displayText = entry ? getUILanguageLabel(entry, t) : lang;
+            const displayText = entry ? t(entry.englishName) : lang;
+            const codeOptionTestId = entry?.code
+              ? `${dataTestId}-option-${optionSlug(entry.code)}`
+              : undefined;
             return (
               <SelectItem
                 key={lang}
                 value={lang}
                 data-testid={dataTestId ? `${dataTestId}-option-${optionSlug(lang)}` : undefined}
+                data-testid-code={codeOptionTestId}
               >
                 {displayText}
               </SelectItem>

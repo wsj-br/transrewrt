@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 /** After each `---`, the next 4 lines are: blank, package@version, license id, first copyright/body line. */
 const HEADER_LINES_AFTER_SEPARATOR = 2;
 
-function buildThirdPartyLicenseSpans(text) {
+function buildThirdPartyNoticeSpans(text) {
   const lines = text.split(/\r?\n/);
   const out = [];
   let key = 0;
@@ -52,7 +52,7 @@ function buildThirdPartyLicenseSpans(text) {
   return out;
 }
 
-const ThirdPartyLicensesModal = ({ open, onClose }) => {
+const ThirdPartyNoticesModal = ({ open, onClose }) => {
   const { t } = useTranslation();
   const [text, setText] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -68,8 +68,8 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
 
     (async () => {
       try {
-        if (typeof window !== "undefined" && window.electronAPI?.readThirdPartyLicenses) {
-          const r = await window.electronAPI.readThirdPartyLicenses();
+        if (typeof window !== "undefined" && window.electronAPI?.readThirdPartyNotices) {
+          const r = await window.electronAPI.readThirdPartyNotices();
           if (cancelled) return;
           if (r?.ok && typeof r.text === "string") {
             setText(r.text);
@@ -78,7 +78,7 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
           }
         } else {
           const res = await fetch(
-            new URL("THIRD-PARTY-LICENSES.txt", document.baseURI).href,
+            new URL("NOTICES", document.baseURI).href,
           );
           if (!res.ok) throw new Error(String(res.status));
           const body = await res.text();
@@ -96,9 +96,9 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
     };
   }, [open]);
 
-  const licenseSpans = useMemo(() => {
+  const noticeSpans = useMemo(() => {
     if (text == null) return null;
-    return buildThirdPartyLicenseSpans(text);
+    return buildThirdPartyNoticeSpans(text);
   }, [text]);
 
   if (!open) return null;
@@ -116,11 +116,11 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="third-party-licenses-title"
+        aria-labelledby="third-party-notices-title"
       >
         <div className="px-6 pt-5 pb-0 shrink-0">
-          <h2 id="third-party-licenses-title" className="text-lg font-semibold mb-4">
-            {t("Third‑party licenses")}
+          <h2 id="third-party-notices-title" className="text-lg font-semibold mb-4">
+            {t("Third‑party notices")}
           </h2>
         </div>
         <div className="flex-1 min-h-0 overflow-auto px-6">
@@ -131,11 +131,11 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
             </div>
           ) : error ? (
             <p className="text-sm text-destructive py-4">
-              {t("Could not load third-party licenses.")}
+              {t("Could not load third-party notices.")}
             </p>
           ) : (
             <pre className="rounded border border-border bg-muted p-3 font-mono text-[11px] leading-relaxed whitespace-pre-wrap break-all text-foreground mb-4">
-              {licenseSpans}
+              {noticeSpans}
             </pre>
           )}
         </div>
@@ -147,9 +147,9 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
   );
 };
 
-ThirdPartyLicensesModal.propTypes = {
+ThirdPartyNoticesModal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default ThirdPartyLicensesModal;
+export default ThirdPartyNoticesModal;

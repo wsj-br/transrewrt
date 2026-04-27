@@ -5,7 +5,7 @@ import { ScrollText } from "lucide-react";
 import LogoImage from "../../../images/transrewrt_logo.svg";
 import GitHubInvertocat from "../../../images/GitHub_Invertocat_White.svg";
 import webAPI from "../utils/api/webApiClient";
-import ThirdPartyLicensesModal from "./ThirdPartyLicensesModal";
+import ThirdPartyNoticesModal from "./ThirdPartyNoticesModal";
 
 const REPO_URL = typeof __REPO_URL__ !== "undefined" ? __REPO_URL__ : "https://github.com/wsj-br/transrewrt";
 const APACHE_2_LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
@@ -37,7 +37,7 @@ const SettingsAboutTab = () => {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language && String(i18n.language).toLowerCase().startsWith("en");
   const [buildTimestamp, setBuildTimestamp] = useState(buildTimestampCache);
-  const [thirdPartyLicensesOpen, setThirdPartyLicensesOpen] = useState(false);
+  const [thirdPartyNoticesOpen, setThirdPartyNoticesOpen] = useState(false);
 
   useEffect(() => {
     if (buildTimestampCache !== null) return;
@@ -98,16 +98,16 @@ const SettingsAboutTab = () => {
           <a
             href="#"
             className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
-            onClick={(e) => { e.preventDefault(); setThirdPartyLicensesOpen(true); }}
+            onClick={(e) => { e.preventDefault(); setThirdPartyNoticesOpen(true); }}
           >
             <ScrollText className="w-4 h-4 shrink-0" aria-hidden />
-            {isEnglish ? null : "Third‑party licenses ▪ "}
-            {t("Third‑party licenses")}
+            {isEnglish ? null : "Third‑party notices ▪ "}
+            {t("Third‑party notices")}
           </a>
         </div>
-        <ThirdPartyLicensesModal
-          open={thirdPartyLicensesOpen}
-          onClose={() => setThirdPartyLicensesOpen(false)}
+        <ThirdPartyNoticesModal
+          open={thirdPartyNoticesOpen}
+          onClose={() => setThirdPartyNoticesOpen(false)}
         />
         <br />
         <i>

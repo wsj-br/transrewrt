@@ -2,7 +2,7 @@
   "sourceLocale": "en-GB",
   "targetLocales": [
     "pt-BR","ar","bn","ca","zh-CN","zh-TW","hr","cs","nl","en-US",
-    "tl","fr","de","el","hi","hu","it","ja","ko","ms","fa","pl",
+    "tl","fr","de","el","hi","hu","it","ja","ko","ms","fa","pl", "jv",	
     "pt","pa","ro","ru","sk","es","sw","sv","te","th","tr","uk","vi"
   ],
   "concurrency": 4,

@@ -11,6 +11,26 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: `scripts/take-screenshots.js` sidebar capture now slices top/bottom sections from the original image (240px each target), removes the middle safely, and avoids Sharp composite size mismatches during screenshot generation.
+
+- **Changed**: Workspace language selectors (Translate/Rewrite/Transform From/To) and Settings > Languages list now display language names only in the selected UI language (e.g., "Espanhol" in pt-BR) instead of bilingual "Native / Translated" labels (e.g., "Español / Espanhol").
+
+- **Fixed**: Language selector dropdowns now have a scrollbar when the list exceeds the viewport height (`max-h-80` with `overflow-y-auto`), allowing selection of languages that would otherwise be inaccessible.
+
+- **Fixed**: Unified startup loading screen now uses theme-aligned background/foreground colors (light/dark) instead of a hardcoded dark gray, so refresh loaders match the app surface.
+
+- **Fixed**: Hard-refresh startup now uses a unified loading screen in both `index.html` bootstrap and React `configLoading` state (same dark background, centered logo, message placement, and typography) to remove flashing between two different loader layouts.
+
+- **Changed**: Renamed `THIRD-PARTY-LICENSES.txt` to `NOTICES`, renamed all components and functions from "Third-Party licenses" to "Third-Party Notices", and updated all references in code, scripts, and documentation.
+
+- **Fixed**: `scripts/take-screenshots.js` UI language switching now uses real mouse clicks on visible header/menu element coordinates (instead of DOM `.click()`) and verifies the header locale label changed before capture.
+
+- **Fixed**: `scripts/take-screenshots.js` now explicitly targets the header language trigger (`header [data-testid="language-selector-trigger"]`) and scopes locale option clicks to the language menu, avoiding accidental interactions with workspace language controls.
+
+- **Fixed**: `scripts/take-screenshots.js` UI language switching now uses short bounded polling (fast-fail/skip) instead of long selector waits when the header language trigger is not visible, preventing repeated 10s+ stalls in screenshot runs.
+
+- **Fixed**: `scripts/take-screenshots.js` now handles both legacy (`translate-to-option-pt-br`) and new UI (`translate-to-option-portuguese-br`) Translate target option test ids for stable screenshot capture after UI refactors.
+
 - **Fixed**: ESLint now ignores `dist-main/` generated bundles so `pnpm lint` only checks source files.
 
 - **Fixed**: Added graceful SQLite shutdown in Electron and web server to checkpoint WAL (`PRAGMA wal_checkpoint(TRUNCATE)`) and close DB handles on app/server exit.
@@ -18,7 +38,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Security**: Added pnpm overrides for `@xmldom/xmldom` (>=0.8.13), `uuid` (>=14.0.0), and `postcss` (>=8.5.10) to resolve 6 audit vulnerabilities (4 high, 2 moderate).
 
 - **Fixed**: Settings → General → Appearance — font family and font size use separate non-wrapping rows so each label stays on the same line as its control on narrow screens.
-- **Changed**: `dev/SYSTEM-OVERVIEW.md` tech-stack table and directory tree updated to reflect Tailwind v4 + shadcn/Radix (removed Fluent UI 9 / FluentProvider references); `dev/DEVELOPMENT.md` 3p-licenses examples updated to use current packages.
+- **Changed**: `dev/SYSTEM-OVERVIEW.md` tech-stack table and directory tree updated to reflect Tailwind v4 + shadcn/Radix (removed Fluent UI 9 / FluentProvider references); `dev/DEVELOPMENT.md` 3p-notices examples updated to use current packages.
 
 - **Fixed**: Settings → General — Behaviour and History blocks were missing from the tab; restored. Sections order is Appearance, Behaviour, History, then Configuration Backup; one column on small screens, two columns from `md` up.
 
@@ -98,7 +118,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## 1.1.1 - 2026-04-01
 
-- **Fixed**: Electron packaged builds (including Linux AppImage) - **Third‑party licenses** resolves `THIRD-PARTY-LICENSES.txt` from the app content root (`extraFiles` location, sibling of `resources/`) and from `dist/` inside the asar; the previous paths only checked `resources/` and `app.asar/…` at the archive root, so the file was never found when shipped via `extraFiles`.
+- **Fixed**: Electron packaged builds (including Linux AppImage) - **Third‑party licenses** resolves `NOTICE` from the app content root (`extraFiles` location, sibling of `resources/`) and from `dist/` inside the asar; the previous paths only checked `resources/` and `app.asar/…` at the archive root, so the file was never found when shipped via `extraFiles`.
 - **Fixed**: Settings → About - repository URL link uses `openExternalUrl` (system browser in Electron, new tab in web) like the Apache 2.0 license link.
 - **Changed**: `dev/DEVELOPMENT.md` - document **`pnpm clean-logs`** (translation session logs); `scripts/clean-workspace.sh` / `scripts/clean-workspace.ps1` run `scripts/clean-translation-logs.js` before removing build artifacts. Fixed missing comma in `clean-workspace.ps1` artifact list.
 - **Changed**: Renamed `scripts/clear-translation-logs.js` to `scripts/clean-translation-logs.js` (`pnpm clean-logs` unchanged).
@@ -108,7 +128,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: `dev/DEVELOPMENT.md` - align with current scripts: Windows/PowerShell upgrade commands; `pnpm translate:docs` → `scripts/translate/index.ts` vs legacy `translate-docs.js`; Docker (`transrewrt` container name); remove `docker:deploy` / missing `docker-deploy.sh` and broken `devel_cross_compile_docker_deploy.md` link; GHCR/Raspberry Pi deploy notes; `translate.config.json` in key files.
 - **Changed**: Electron `appDb` - log database path only when `NODE_ENV === "development"` (quiet production startup).
 - **Changed**: `dist-main/` is gitignored and no longer tracked - Electron main/preload webpack output from `pnpm run build:main` only; CI and `pnpm package` / `package-arm64` already run that step before electron-builder.
-- **Changed**: Renderer production build - `THIRD-PARTY-LICENSES.txt` is copied to `dist/` via `CopyWebpackPlugin` in `webpack.config.js` instead of a post-build `copyFileSync` one-liner in `build` / `build-renderer` scripts.
+- **Changed**: Renderer production build - `NOTICE` is copied to `dist/` via `CopyWebpackPlugin` in `webpack.config.js` instead of a post-build `copyFileSync` one-liner in `build` / `build-renderer` scripts.
 - **Added**: `pnpm run package-arm64` - production build and Linux **arm64** AppImage (same steps as CI) via `build/electron-builder.linux-arm64.cjs`.
 - **Fixed**: Linux **arm64** AppImage crashed at startup (`Cannot find module 'brace-expansion'`, `minimatch` via `multi-llm-ts`): `--config build/electron-builder.linux-arm64.json` did not merge `package.json` `build`, so `extraMetadata.main` was missing and the app ran `src/main/main.js` instead of the webpack main bundle. Replaced with `electron-builder.linux-arm64.cjs` that spreads `package.json` `build` and overrides `linux.target` to arm64; release Linux jobs run `pnpm run build:main` like Windows packaging.
 - **Changed**: Electron Linux packaged builds - suppress Node deprecation warnings when `NODE_ENV` is not `development` (quieter AppImage/console startup from transitive `punycode` use).
@@ -116,19 +136,19 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: README - Linux AppImage quick start and installation notes on console deprecation suppression and `TRANSREWRT_DISABLE_GPU=1`.
 - **Fixed**: README / `dev/DEVELOPMENT.md` - Linux Electron/AppImage dependency line uses **`libnotify4`** (runtime) instead of `libnotify-dev`; notes on minimal `.so` deps, FUSE/AppImage extract-and-run.
 - **Fixed**: Transform workspace - empty prompt list: **Load sample prompts** is placed after the prompt row icon buttons (24px gap) so it no longer overlaps the dropdown on narrow layouts.
-- **Fixed**: Web/Docker third-party licenses - fetch uses a URL relative to `document.baseURI` (matches production `./` public path and reverse-proxy path prefixes); production webpack copies `THIRD-PARTY-LICENSES.txt` into `dist/` and the server resolves that path so the file ships with the static bundle (Docker no longer needs a separate root copy).
+- **Fixed**: Web/Docker third-party notices - fetch uses a URL relative to `document.baseURI` (matches production `./` public path and reverse-proxy path prefixes); production webpack copies `NOTICES` into `dist/` and the server resolves that path so the file ships with the static bundle (Docker no longer needs a separate root copy).
 - **Changed**: `scripts/translate/index.ts` - no longer prints per-locale `Files: … processed … skipped` and `Segments: … cached … translated` lines (aggregate summary unchanged).
 - **Changed**: Settings → Appearance - default (Windows/macOS) monospace presets use **Courier New** instead of **Menlo** so the third choice is visually distinct in the browser (Menlo often substituted to the same face as Consolas / `ui-monospace` on Windows web). Saved **Menlo** still resolves with a `Courier New` fallback stack.
-- **Fixed**: `license-clarifications.json` - `@epic-web/invariant` ships no `LICENSE` on npm (checker used `README.md`); clarification supplies standard MIT text so `THIRD-PARTY-LICENSES.txt` no longer embeds the full readme.
-- **Fixed**: `license-clarifications.json` - more packages that resolved to `README.md` or a missing `LICENSE` (nested `@jsonjoy.com/json-pointer@1.x` → root `LICENSE`; `esrecurse`, `glob-to-regex.js`, `glob-to-regexp`, `html-parse-stringify`; SPDY-related `spdy`, `spdy-transport`, `handle-thing`, `hpack.js`, `http-deceiver`, `select-hose`, `wbuf`; `embla-carousel`, `embla-carousel-autoplay`, `embla-carousel-fade`) now emit plain license text in `THIRD-PARTY-LICENSES.txt`.
+- **Fixed**: `license-clarifications.json` - `@epic-web/invariant` ships no `LICENSE` on npm (checker used `README.md`); clarification supplies standard MIT text so `NOTICE` no longer embeds the full readme.
+- **Fixed**: `license-clarifications.json` - more packages that resolved to `README.md` or a missing `LICENSE` (nested `@jsonjoy.com/json-pointer@1.x` → root `LICENSE`; `esrecurse`, `glob-to-regex.js`, `glob-to-regexp`, `html-parse-stringify`; SPDY-related `spdy`, `spdy-transport`, `handle-thing`, `hpack.js`, `http-deceiver`, `select-hose`, `wbuf`; `embla-carousel`, `embla-carousel-autoplay`, `embla-carousel-fade`) now emit plain license text in `NOTICE`.
 - **Fixed**: Linux clients - Settings → Appearance **Font family** uses a Linux‑oriented preset list in **Electron on Linux** and in the **web app when the browser reports desktop Linux** (userAgent / `navigator.platform`), so presets match typical fontconfig fonts instead of missing Segoe UI, Consolas, Menlo, etc.; default effective font is `system-ui` on Linux. Windows/macOS (Electron or web) keep the original list. Panel text uses CSS stacks with `sans-serif` / `serif` / `monospace` fallbacks (`resolveAppearanceFontFamilyCss`).
 - **Added**: Preload `electronAPI.getRuntimePlatform` for renderer platform detection.
-- **Added**: Settings → About - **Third‑party licenses** opens a modal with file contents (scrollable; monospace `pre-wrap` text with long lines wrapped, vertical scroll only); desktop loads via main-process read, web/Docker via `GET /THIRD-PARTY-LICENSES.txt`; webpack dev serves the repo file on that path.
+- **Added**: Settings → About - **Third‑party licenses** opens a modal with file contents (scrollable; monospace `pre-wrap` text with long lines wrapped, vertical scroll only); desktop loads via main-process read, web/Docker via `GET /NOTICE`; webpack dev serves the repo file on that path.
 - **Added**: Settings → About - when the app license is Apache-2.0, **Apache 2.0** links to `http://www.apache.org/licenses/LICENSE-2.0` and opens in the system browser (Electron `openExternalUrl`) or a new tab (web).
-- **Changed**: Third‑party licenses modal - after each `---` separator, the next four lines (blank, package + version, license type, first body/copyright line) use blue text (`colorPaletteBlueForeground2`).
-- **Changed**: Renamed `scripts/write-third-party-notices.js` to `scripts/write-third-party-licenses.js` (`pnpm run 3p-licenses`).
-- **Changed**: `pnpm run 3p-licenses` output prefixes each dependency block in `THIRD-PARTY-LICENSES.txt` with `---` and a blank line.
-- **Changed**: Renamed `THIRD-PARTY-NOTICES.txt` to `THIRD-PARTY-LICENSES.txt` (`3p-licenses` output, Docker `/app/THIRD-PARTY-LICENSES.txt`, Electron `extraFiles`, docs).
+- **Changed**: Third‑party notices modal - after each `---` separator, the next four lines (blank, package + version, license type, first body/copyright line) use blue text (`colorPaletteBlueForeground2`).
+- **Changed**: Renamed `scripts/write-third-party-licenses.js` to `scripts/write-third-party-notices.js` (`pnpm run 3p-notices`).
+- **Changed**: `pnpm run 3p-notices` output prefixes each dependency block in `NOTICES` with `---` and a blank line.
+- **Changed**: Renamed `THIRD-PARTY-NOTICES.txt` to `NOTICES` (`3p-notices` output, Docker `/app/NOTICES`, Electron `extraFiles`, docs).
 - **Changed**: Settings > General: turning off **Keep execution history** opens the data-deletion confirmation only when at least one execution-history row exists; otherwise the setting turns off immediately. `GET /api/calls/history` and desktop `getExecutionHistory` accept optional `limit` (capped at 500) for lightweight checks.
 - **Fixed**: Docker image - run `pnpm rebuild better-sqlite3 argon2` after `pnpm prune --prod` so native SQLite/argon2 bindings are present in the copied `node_modules` (avoids "Could not locate the bindings file" on Linux/arm64 Alpine).
 - **Added**: `pnpm clean-logs` - `scripts/clean-translation-logs.js` removes translation session logs under `dev/` and `paths.log-folder` (`generate-translations-*.log`, `translate-docs_*.log`, `translate-docs-blocks_*.log`) and cache-backed artifacts under `paths.cache` (`cache-*.db` backups, `cleanup_*.log`, `debug-traffic-*.log`); does not delete `cache.db` or `dev/translations.log`.
@@ -208,9 +228,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: Unavailable-model message in `useModelManagement` uses `t()` and `interpolateTemplate` for `{{freeModelId}}` so it can be translated.
 - **Fixed**: `license-clarifications.json` sets `multi-llm-ts` to `Apache-2.0` (package has no `package.json` license; checker had inferred `MIT*` from the README while `LICENSE` is Apache 2.0). Range `>=5.1.0-beta4 <7.0.0-0` is used because `*` does not match prerelease versions in the checker’s semver check.
 - **Changed**: `license-clarifications.json` uses semver ranges (`^2.0.0`, `^9.0.0`) for Fluent UI entries so patch/minor bumps do not require key updates.
-- **Changed**: [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) documents `pnpm run 3p-licenses`, clarifications, and related files under **Build** and **Useful Commands**.
+- **Changed**: [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md) documents `pnpm run 3p-notices`, clarifications, and related files under **Build** and **Useful Commands**.
 - **Changed**: `license-clarifications.json` - full MIT text for `@fluentui/react-icons`; `@fluentui/react-components` matches published `LICENSE` (including assets note) instead of a truncated placeholder.
-- **Changed**: `pnpm run 3p-licenses` runs `scripts/write-third-party-licenses.js` with `license-checker-rseidelsohn` `--json`, `--customPath`, and `license-clarifications.json`, so `licenseText` overrides (e.g. `@fluentui/react-icons` without a `LICENSE` file) appear in `THIRD-PARTY-LICENSES.txt` instead of the package README.
+- **Changed**: `pnpm run 3p-notices` runs `scripts/write-third-party-notices.js` with `license-checker-rseidelsohn` `--json`, `--customPath`, and `license-clarifications.json`, so `licenseText` overrides (e.g. `@fluentui/react-icons` without a `LICENSE` file) appear in `NOTICES` instead of the package README.
 
 ## 1.0.15 - 2026-03-27
 

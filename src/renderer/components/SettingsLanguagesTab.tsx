@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Languages, Trash2, Globe } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { ALL_CONTENT_LANGUAGE_NAMES, findUILanguageEntry, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
-import { getUILanguageLabel } from "ai-i18n-tools/runtime";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -108,7 +107,7 @@ const SettingsLanguagesTab = ({
                 {column.map(lang => {
                   const isCustom = !isPredefinedContentLanguage(lang);
                   const uiEntry = findUILanguageEntry(lang);
-                  const displayLabel = uiEntry ? getUILanguageLabel(uiEntry, t) : lang;
+                  const displayLabel = uiEntry ? t(uiEntry.englishName) : lang;
                   return (
                     <div key={lang} className="flex items-center gap-1 whitespace-nowrap">
                       <Checkbox

@@ -74,7 +74,7 @@ function asPlainVerticalPreferClarifications(sorted) {
     .join("\n\n");
 }
 
-const outFile = path.join(root, "THIRD-PARTY-LICENSES.txt");
+const outFile = path.join(root, "NOTICES");
 const customFormat = path.join(__dirname, "license-checker-custom-format.json");
 const clarifications = path.join(root, "3p-lic-clarifications.json");
 

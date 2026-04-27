@@ -100,8 +100,8 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: path.resolve(__dirname, "THIRD-PARTY-LICENSES.txt"),
-            to: "THIRD-PARTY-LICENSES.txt",
+            from: path.resolve(__dirname, "NOTICES"),
+            to: "NOTICES",
           },
         ],
       }),
@@ -173,13 +173,13 @@ module.exports = (env, argv) => {
     ...(isDevelopment
       ? {
           setupMiddlewares: (middlewares, devServer) => {
-            devServer.app.get("/THIRD-PARTY-LICENSES.txt", (_req, res) => {
-              const licensePath = path.join(__dirname, "THIRD-PARTY-LICENSES.txt");
-              if (!fs.existsSync(licensePath)) {
-                res.status(404).type("text/plain").send("Third-party licenses file not found.");
+            devServer.app.get("/NOTICES", (_req, res) => {
+              const noticesPath = path.join(__dirname, "NOTICES");
+              if (!fs.existsSync(noticesPath)) {
+                res.status(404).type("text/plain").send("Third-party notices file not found.");
                 return;
               }
-              res.type("text/plain; charset=utf-8").sendFile(path.resolve(licensePath));
+              res.type("text/plain; charset=utf-8").sendFile(path.resolve(noticesPath));
             });
             return middlewares;
           },

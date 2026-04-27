@@ -680,21 +680,117 @@ async function setUILanguage(page, targetCode, options = {}) {
   } else {
     log("Setting UI language to %s...", targetCode);
   }
-  const triggerSel = "[data-testid=\"language-selector-trigger\"]";
-  await waitForSelectorWithRetry(page, triggerSel, { timeout: 10000 });
-  await page.click(triggerSel);
-  await wait(300);
-  const optionSel = `[data-testid="language-option-${targetCode}"]`;
-  const option = await page.$(optionSel);
-  if (!option) {
-    log("Language option %s not found; continuing.", targetCode);
-    await page.keyboard.press("Escape");
-    await wait(200);
+  const getFirstVisibleCenter = async (selectors) =>
+    page.evaluate((selectorList) => {
+      const isVisible = (el) => {
+        if (!el || !(el instanceof HTMLElement)) return false;
+        const style = window.getComputedStyle(el);
+        const rect = el.getBoundingClientRect();
+        return (
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          rect.width > 0 &&
+          rect.height > 0
+        );
+      };
+      for (const selector of selectorList) {
+        const nodes = Array.from(document.querySelectorAll(selector));
+        const visible = nodes.find(isVisible);
+        if (!visible) continue;
+        visible.scrollIntoView({ block: "center", inline: "center" });
+        const r = visible.getBoundingClientRect();
+        return {
+          selector,
+          x: Math.round(r.left + r.width / 2),
+          y: Math.round(r.top + r.height / 2),
+        };
+      }
+      return null;
+    }, selectors);
+
+  const clickVisibleBySelectors = async (selectors) => {
+    const target = await getFirstVisibleCenter(selectors);
+    if (!target) return "";
+    await page.mouse.click(target.x, target.y);
+    return target.selector;
+  };
+
+  const triggerSelectors = [
+    // Preferred: header language trigger (avoid any non-header controls).
+    "header [data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]",
+    "header [data-testid=\"language-selector-trigger\"]",
+    "[data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]",
+    "[data-testid=\"language-selector-trigger\"]",
+  ];
+
+  // Short, bounded polling: avoid long waits if the selector is not rendered in current view/layout.
+  let triggerSelectorUsed = "";
+  for (let attempt = 1; attempt <= 6; attempt++) {
+    triggerSelectorUsed = await clickVisibleBySelectors(triggerSelectors);
+    if (triggerSelectorUsed) break;
+    await wait(500);
+  }
+  if (!triggerSelectorUsed) {
+    log("Language selector trigger not visible/clickable; skipping UI language change.");
     return;
   }
-  await option.click();
-  log("Selected %s.", targetCode, { indent: 2 });
-  await wait(500);
+  log("Opened language menu via selector: %s", triggerSelectorUsed);
+  await wait(200);
+  const optionSelectors = [
+    `[data-testid="language-selector"] [data-testid="language-option-${targetCode}"]`,
+    `[role="menu"] [data-testid="language-option-${targetCode}"]`,
+    `[data-testid="language-option-${targetCode}"]`,
+  ];
+  let optionSelectorUsed = await clickVisibleBySelectors(optionSelectors);
+  if (!optionSelectorUsed && targetCode === "en-GB") {
+    // In many runs en-GB is already active; avoid expensive waits/retries for the bootstrap pass.
+    log("Language option %s not visible; assuming already active and continuing.", targetCode);
+    await page.keyboard.press("Escape");
+    await wait(150);
+    return;
+  }
+  if (!optionSelectorUsed) {
+    await wait(200);
+    optionSelectorUsed = await clickVisibleBySelectors(optionSelectors);
+  }
+  if (!optionSelectorUsed) {
+    log("Language option %s not found; continuing.", targetCode);
+    await page.keyboard.press("Escape");
+    await wait(150);
+    return;
+  }
+  await wait(450);
+  const triggerText = await page.evaluate(() => {
+    const btn =
+      document.querySelector("header [data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]")
+      || document.querySelector("[data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]")
+      || document.querySelector("header [data-testid=\"language-selector-trigger\"]")
+      || document.querySelector("[data-testid=\"language-selector-trigger\"]");
+    return btn ? String(btn.textContent || "").trim() : "";
+  });
+  if (triggerText && triggerText !== targetCode) {
+    // One retry when the menu interaction did not apply.
+    await page.keyboard.press("Escape");
+    await wait(100);
+    const secondTrigger = await clickVisibleBySelectors(triggerSelectors);
+    if (secondTrigger) {
+      await wait(150);
+      const secondOption = await clickVisibleBySelectors(optionSelectors);
+      if (secondOption) await wait(450);
+    }
+  }
+  const finalTriggerText = await page.evaluate(() => {
+    const btn =
+      document.querySelector("header [data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]")
+      || document.querySelector("[data-testid=\"language-selector-trigger\"][aria-label=\"Interface language\"]")
+      || document.querySelector("header [data-testid=\"language-selector-trigger\"]")
+      || document.querySelector("[data-testid=\"language-selector-trigger\"]");
+    return btn ? String(btn.textContent || "").trim() : "";
+  });
+  if (finalTriggerText && finalTriggerText !== targetCode) {
+    throw new Error(`UI language did not switch to ${targetCode} (current: ${finalTriggerText})`);
+  }
+  log("Selected %s via %s (header now: %s).", targetCode, optionSelectorUsed, finalTriggerText || "(unknown)", { indent: 2 });
 }
 
 async function setScreenshotDefaultModel(page) {
@@ -745,12 +841,23 @@ async function setTranslateFromToLanguages(page) {
   if (toTrigger) await toTrigger.click();
   else await page.click(toSel);
   await wait(500);
-  const toOptionSel = "[data-testid=\"translate-to-option-pt-br\"]";
-  let optionEl = await page.$(toOptionSel);
+  const toOptionSelectors = [
+    "[data-testid=\"translate-to-option-pt-br\"]",
+    "[data-testid=\"translate-to-option-portuguese-br\"]",
+    "[data-testid-code=\"translate-to-option-pt-br\"]",
+  ];
+  let optionEl = null;
+  for (const sel of toOptionSelectors) {
+    optionEl = await page.$(sel);
+    if (optionEl) break;
+  }
   if (!optionEl) {
     await page.waitForSelector("[role=\"listbox\"]", { timeout: 3000 }).catch(() => null);
     await wait(300);
-    optionEl = await page.$(toOptionSel);
+    for (const sel of toOptionSelectors) {
+      optionEl = await page.$(sel);
+      if (optionEl) break;
+    }
   }
   if (!optionEl) {
     const clicked = await page.evaluate(() => {
@@ -766,7 +873,7 @@ async function setTranslateFromToLanguages(page) {
       return false;
     });
     if (!clicked) {
-      log("Translate To option pt-BR not found; pressing Escape.");
+      log("Translate To option pt-BR/Portuguese (BR) not found; pressing Escape.");
       await page.keyboard.press("Escape");
       await wait(200);
       return;
@@ -1082,9 +1189,45 @@ async function captureSidebar(page, filePath) {
     });
     if (clip) {
       const buffer = await page.screenshot({ clip, encoding: "binary" });
-      const w = Math.max(1, Math.round(clip.width * 0.7));
-      const h = Math.max(1, Math.round(clip.height * 0.7));
-      await sharp(buffer).resize(w, h).toFile(filePath);
+      const metadata = await sharp(buffer).metadata();
+      const imgWidth = metadata.width || clip.width;
+      const imgHeight = metadata.height || clip.height;
+      if (!imgWidth || !imgHeight) {
+        throw new Error("Sidebar screenshot metadata is missing dimensions.");
+      }
+      // Keep top/bottom slices from original image, then scale final output.
+      const KEEP_TOP_ORIGINAL = 240;
+      const KEEP_BOTTOM_ORIGINAL = 240;
+      const SCALE = 0.7;
+      const topHeight = Math.max(1, Math.min(KEEP_TOP_ORIGINAL, imgHeight));
+      const remainingAfterTop = Math.max(1, imgHeight - topHeight);
+      const bottomHeight = Math.max(1, Math.min(KEEP_BOTTOM_ORIGINAL, remainingAfterTop));
+      const bottomStart = Math.max(0, imgHeight - bottomHeight);
+      const finalWidth = Math.max(1, Math.round(imgWidth * SCALE));
+      const finalHeight = Math.max(1, Math.round((topHeight + bottomHeight) * SCALE));
+      // Build both slices as raw RGBA and concatenate rows directly to avoid
+      // any `composite` dimension checks.
+      const topRaw = await sharp(buffer)
+        .extract({ left: 0, top: 0, width: imgWidth, height: topHeight })
+        .ensureAlpha()
+        .raw()
+        .toBuffer();
+      const bottomRaw = await sharp(buffer)
+        .extract({ left: 0, top: bottomStart, width: imgWidth, height: bottomHeight })
+        .ensureAlpha()
+        .raw()
+        .toBuffer();
+      const stitchedRaw = Buffer.concat([topRaw, bottomRaw]);
+      await sharp(stitchedRaw, {
+        raw: {
+          width: imgWidth,
+          height: topHeight + bottomHeight,
+          channels: 4,
+        },
+      })
+        .resize(finalWidth, finalHeight)
+        .png()
+        .toFile(filePath);
     }
   } finally {
     await page.evaluate((styles) => {

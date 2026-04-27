@@ -41,11 +41,11 @@ function resolveBuildTimestampPath() {
 }
 const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
 
-/** Docker: /app/THIRD-PARTY-LICENSES.txt or /app/dist/THIRD-PARTY-LICENSES.txt (after build). Dev: repo root via src/server → ../.. */
-function resolveThirdPartyLicensesPath() {
-  const oneUp = path.join(__dirname, "..", "THIRD-PARTY-LICENSES.txt");
-  const inDist = path.join(__dirname, "..", "dist", "THIRD-PARTY-LICENSES.txt");
-  const twoUp = path.join(__dirname, "..", "..", "THIRD-PARTY-LICENSES.txt");
+/** Docker: /app/NOTICES or /app/dist/NOTICES (after build). Dev: repo root via src/server → ../.. */
+function resolveThirdPartyNoticesPath() {
+  const oneUp = path.join(__dirname, "..", "NOTICES");
+  const inDist = path.join(__dirname, "..", "dist", "NOTICES");
+  const twoUp = path.join(__dirname, "..", "..", "NOTICES");
   if (fs.existsSync(oneUp)) return oneUp;
   if (fs.existsSync(inDist)) return inDist;
   if (fs.existsSync(twoUp)) return twoUp;
@@ -162,12 +162,12 @@ app.use(
 // One level up: dev has src/server → project root; Docker has /app/server → /app
 const distPath = path.resolve(path.join(__dirname, "..", "dist"));
 
-app.get("/THIRD-PARTY-LICENSES.txt", (req, res) => {
-  const licensePath = resolveThirdPartyLicensesPath();
-  if (!licensePath) {
-    return res.status(404).type("text/plain").send("Third-party licenses file not found.");
+app.get("/NOTICES", (req, res) => {
+  const noticesPath = resolveThirdPartyNoticesPath();
+  if (!noticesPath) {
+    return res.status(404).type("text/plain").send("Third-party notices file not found.");
   }
-  return res.type("text/plain; charset=utf-8").sendFile(path.resolve(licensePath));
+  return res.type("text/plain; charset=utf-8").sendFile(path.resolve(noticesPath));
 });
 
 if (!DEV_WEB) {

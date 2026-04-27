@@ -526,26 +526,12 @@ const App = () => {
           };
 
   if (configLoading) {
-    const loadingContent = (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <LoadingLogoSvg className="w-16 h-auto shrink-0" />
-        <span className="text-sm text-muted-foreground">{t("Loading…")}</span>
-      </div>
-    );
-    if (isWeb) {
-      return (
-        <div id="root" className="h-screen flex flex-col" data-web-outer>
-          <div className="flex-1 min-h-0 overflow-hidden flex flex-col border border-border">
-            <div className="flex-1 flex items-center justify-center bg-background">
-              {loadingContent}
-            </div>
-          </div>
-        </div>
-      );
-    }
     return (
-      <div id="root" className="flex items-center justify-center h-screen bg-background">
-        {loadingContent}
+      <div id="root" className="app-loading-shell">
+        <div className="app-loading" role="status" aria-live="polite">
+          <LoadingLogoSvg className="app-loading-logo" />
+          <span className="app-loading-label">{t("Loading…")}</span>
+        </div>
       </div>
     );
   }

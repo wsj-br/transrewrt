@@ -532,17 +532,19 @@ ipcMain.handle("shell:openExternal", async (_event, url) => {
 });
 
 /** Packaged: electron-builder extraFiles go to app content root (parent of `resources/`), not inside resources. Also check `dist/` inside asar (webpack copy). Dev: repo root or dist. */
-function getThirdPartyLicensesPath() {
+function getThirdPartyNoticesPath() {
   const candidates = [];
   if (app.isPackaged) {
     candidates.push(
-      path.join(path.dirname(process.resourcesPath), "THIRD-PARTY-LICENSES.txt"),
+      path.join(path.dirname(process.resourcesPath), "NOTICES"),
     );
-    candidates.push(path.join(process.resourcesPath, "THIRD-PARTY-LICENSES.txt"));
+    candidates.push(path.join(process.resourcesPath, "NOTICES"));
   }
-  candidates.push(path.join(app.getAppPath(), "dist", "THIRD-PARTY-LICENSES.txt"));
-  candidates.push(path.join(app.getAppPath(), "THIRD-PARTY-LICENSES.txt"));
-  candidates.push(path.join(process.cwd(), "THIRD-PARTY-LICENSES.txt"));
+  candidates.push(path.join(app.getAppPath(), "dist", "NOTICES"));
+  candidates.push(path.join(app.getAppPath(), "NOTICES"));
+  // Dev: also check relative to main.js location (src/main/ → ../../NOTICES)
+  candidates.push(path.join(__dirname, "..", "..", "NOTICES"));
+  candidates.push(path.join(process.cwd(), "NOTICES"));
   for (const p of candidates) {
     try {
       if (p && fs.existsSync(p)) return p;
@@ -553,8 +555,8 @@ function getThirdPartyLicensesPath() {
   return null;
 }
 
-ipcMain.handle("shell:readThirdPartyLicenses", async () => {
-  const filePath = getThirdPartyLicensesPath();
+ipcMain.handle("shell:readThirdPartyNotices", async () => {
+  const filePath = getThirdPartyNoticesPath();
   if (!filePath) return { ok: false, error: "not_found" };
   try {
     const fileText = await fs.promises.readFile(filePath, "utf8");

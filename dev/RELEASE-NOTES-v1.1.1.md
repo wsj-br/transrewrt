@@ -12,7 +12,7 @@ Transrewrt 1.1.1 focuses on everyday usability improvements across rewrite, tran
 - **Rewrite: Alternative versions**: Rewrite mode now includes **Alternative versions** for generating several meaning-preserving reformulations in one run.
 - **Transform prompt workflow improvements**: Sample prompts are easier to load, newly saved prompts stay selected, and prompt import handles duplicate names more safely.
 - **Better Linux font defaults**: Appearance presets now better match common Linux environments, making the app look more natural on Linux desktops and browsers.
-- **Third-party licenses in the app**: **Settings > About** now includes a built-in **Third-party licenses** viewer, plus a direct link to the Apache 2.0 license.
+- **Third-party Notices in the app**: **Settings > About** now includes a built-in **Third-party Notices** viewer, plus a direct link to the Apache 2.0 license.
 - **More useful dashboard usage charts**: Dashboard summary charts now show usage counts over time and by model, making activity easier to understand at a glance.
 
 ## Improvements

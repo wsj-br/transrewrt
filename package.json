@@ -45,7 +45,7 @@
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
-    "3p-licenses": "node scripts/write-third-party-licenses.js"
+    "3p-notices": "node scripts/write-third-party-notices.js"
   },
   "keywords": [
     "electron",
@@ -84,8 +84,8 @@
         "to": "config/config_default.json"
       },
       {
-        "from": "THIRD-PARTY-LICENSES.txt",
-        "to": "THIRD-PARTY-LICENSES.txt"
+        "from": "NOTICES",
+        "to": "NOTICES"
       }
     ],
     "directories": {

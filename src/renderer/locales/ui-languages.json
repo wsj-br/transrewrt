@@ -138,6 +138,12 @@
     "direction": "ltr"
   },
   {
+    "code": "jv",
+    "label": "Basa Jawa",
+    "englishName": "Javanese",
+    "direction": "ltr"
+  },
+  {
     "code": "pt",
     "label": "Português",
     "englishName": "Portuguese",
