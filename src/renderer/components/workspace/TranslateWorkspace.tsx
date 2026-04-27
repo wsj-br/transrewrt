@@ -52,7 +52,7 @@ export function getTranslatePanels({ common, input, output, options }) {
       <div className={workspaceCtaRowClassName}>
         <Button
           onClick={handleRunAction}
-          className="min-w-44 h-11 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0 gap-2"
+          className="min-w-44 h-11 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0 gap-2 shadow-[0_0_22px_rgba(0,209,160,0.35)] hover:shadow-[0_0_32px_rgba(0,209,160,0.5)] transition-shadow duration-200"
         >
           {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           {isProcessing

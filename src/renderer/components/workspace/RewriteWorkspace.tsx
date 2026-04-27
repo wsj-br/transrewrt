@@ -79,7 +79,7 @@ export function getRewritePanels({ common, input, output, options }) {
       <div className={workspaceCtaRowClassName}>
         <Button
           onClick={handleRunAction}
-          className="min-w-44 h-11 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 gap-2"
+          className="min-w-44 h-11 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 gap-2 shadow-[0_0_22px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] transition-shadow duration-200"
         >
           {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           {isProcessing

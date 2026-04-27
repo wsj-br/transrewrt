@@ -391,7 +391,7 @@ export default function Sidebar(props: SidebarProps) {
 
       {/* Mobile Sheet */}
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="w-[194px] p-0 bg-card">
+        <SheetContent side="left" className="w-[194px] p-0 bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:border-white/10">
           <SheetTitle className="sr-only">{t("Navigation Menu")}</SheetTitle>
           <SidebarInner
             {...props}
@@ -404,7 +404,7 @@ export default function Sidebar(props: SidebarProps) {
       {/* Desktop sidebar */}
       <aside
         className={cn(
-          "hidden md:flex h-screen flex-col border-e border-border bg-card transition-all duration-300 shrink-0 electron-drag",
+          "hidden md:flex h-screen flex-col border-e border-border bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:border-white/10 transition-all duration-300 shrink-0 electron-drag",
           collapsed ? "w-16" : "w-[194px]",
         )}
         aria-expanded={!collapsed}

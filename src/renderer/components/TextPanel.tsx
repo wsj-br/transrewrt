@@ -79,8 +79,9 @@ const TextPanel = ({
   return (
     <Card
       className={cn(
-        "flex h-full min-h-0 flex-col overflow-hidden transition-colors",
-        isFocused && "ring-1 ring-ring",
+        "flex h-full min-h-0 flex-col overflow-hidden transition-all duration-200",
+        "dark:bg-card/75 dark:backdrop-blur-xl dark:border-white/10",
+        isFocused && "text-panel-focus",
       )}
     >
       {title && (
@@ -107,7 +108,7 @@ const TextPanel = ({
       <CardContent className="flex flex-1 min-h-0 p-0">
         {showDiffView ? (
           <div
-            className="flex-1 w-full overflow-auto p-3 text-sm leading-relaxed whitespace-pre-wrap"
+            className="flex-1 w-full overflow-auto p-3 text-sm leading-relaxed whitespace-pre-wrap diff-blueprint-bg"
             style={{
               fontFamily: fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined,
               fontSize: fontSize ? `${fontSize}px` : undefined,

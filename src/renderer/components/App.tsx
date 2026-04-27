@@ -9,6 +9,7 @@ import LoginPage from "./LoginPage";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ApiKeyModal from "./ApiKeyModal";
 import { getTranslatePanels, getRewritePanels, getTransformPanels } from "./workspace";
+import { type LayoutMode } from "./workspace/LayoutToggle";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
 import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
@@ -51,6 +52,24 @@ const App = () => {
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState(() => (settings.web_view === "settings" ? "settings" : "workspace"));
+  const [layoutMode, setLayoutMode] = useState<LayoutMode>(() => {
+    try {
+      const stored = localStorage.getItem("transrewrt-layout-preference");
+      if (stored === "split" || stored === "stack") return stored;
+    } catch {
+      // localStorage unavailable
+    }
+    return "split";
+  });
+
+  const handleLayoutChange = (mode: LayoutMode) => {
+    setLayoutMode(mode);
+    try {
+      localStorage.setItem("transrewrt-layout-preference", mode);
+    } catch {
+      // localStorage unavailable
+    }
+  };
   const [openSettingsToTab, setOpenSettingsToTab] = useState(null);
   const hasRestoredViewRef = useRef(false);
   // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
@@ -627,6 +646,8 @@ const App = () => {
                   workspaceTopBar={workspaceTopBar}
                   openSettingsToTab={openSettingsToTab}
                   onOpenSettingsToTabConsumed={() => setOpenSettingsToTab(null)}
+                  layoutMode={layoutMode}
+                  onLayoutChange={handleLayoutChange}
                 />
               </div>
             </div>
@@ -681,6 +702,8 @@ const App = () => {
           leftPanel={leftPanel}
           rightPanel={rightPanel}
           workspaceTopBar={workspaceTopBar}
+          layoutMode={layoutMode}
+          onLayoutChange={handleLayoutChange}
         />
       </div>
       {transformPromptToDelete != null && (

@@ -144,6 +144,46 @@ input:-webkit-autofill:active {
     caret-color: var(--foreground) !important;
 }
 
+/* ─── Mode accent colours (cascades via data-mode on main element) ─── */
+[data-mode="translate"] {
+  --mode-accent:      #00D1A0;
+  --mode-accent-rgb:  0, 209, 160;
+  --mode-glow:        rgba(0, 209, 160, 0.08);
+}
+[data-mode="rewrite"] {
+  --mode-accent:      #3B82F6;
+  --mode-accent-rgb:  59, 130, 246;
+  --mode-glow:        rgba(59, 130, 246, 0.08);
+}
+[data-mode="transform"] {
+  --mode-accent:      #A855F7;
+  --mode-accent-rgb:  168, 85, 247;
+  --mode-glow:        rgba(168, 85, 247, 0.08);
+}
+
+/* Ambient radial glow behind workspace – uses background-image so it sits above bg-color */
+main[data-mode] {
+  background-image: radial-gradient(
+    ellipse 70% 45% at 50% -5%,
+    var(--mode-glow, transparent),
+    transparent 70%
+  );
+}
+
+/* Mode-aware focus ring on text panels */
+.text-panel-focus {
+  box-shadow: 0 0 0 1.5px var(--mode-accent, var(--ring));
+}
+
+/* Blueprint / grid background for rewrite diff view */
+.diff-blueprint-bg {
+  background-color: rgba(59, 130, 246, 0.02);
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 10px;

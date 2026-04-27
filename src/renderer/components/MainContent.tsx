@@ -1,9 +1,10 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import PropTypes from "prop-types";
+import { cn } from "@/lib/utils";
 import { Languages, PenTool, WandSparkles, BarChart3, History, Loader2 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
+import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
@@ -48,14 +49,41 @@ function AppHeader({
   );
 }
 
-function WorkspaceGrid({ leftPanel, rightPanel, workspaceTopBar }) {
+function WorkspaceGrid({ leftPanel, rightPanel, workspaceTopBar, layoutMode }: {
+  leftPanel: ReactNode;
+  rightPanel: ReactNode;
+  workspaceTopBar: ReactNode;
+  layoutMode: LayoutMode;
+}) {
+  const isSplit = layoutMode === "split";
   return (
     <div className="flex flex-1 min-h-0 overflow-auto">
       <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 min-w-0 w-full">
         {workspaceTopBar}
-        <div className="grid flex-1 grid-cols-1 gap-4 min-h-0 min-w-0 lg:grid-cols-2 lg:items-stretch lg:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="flex h-full min-h-[300px] min-w-0 flex-col lg:min-h-0">{leftPanel}</div>
-          <div className="flex h-full min-h-[300px] min-w-0 flex-col lg:min-h-0">{rightPanel}</div>
+        <div
+          className={cn(
+            "transition-all duration-300",
+            isSplit
+              ? "grid flex-1 grid-cols-1 gap-4 min-h-0 min-w-0 md:grid-cols-2 md:items-stretch md:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]"
+              : "flex flex-1 flex-col gap-4 min-w-0",
+          )}
+        >
+          <div
+            className={cn(
+              "flex min-w-0 flex-col",
+              isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-[350px]",
+            )}
+          >
+            {leftPanel}
+          </div>
+          <div
+            className={cn(
+              "flex min-w-0 flex-col",
+              isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-[350px]",
+            )}
+          >
+            {rightPanel}
+          </div>
         </div>
       </div>
     </div>
@@ -75,6 +103,23 @@ const MainContent = ({
   workspaceTopBar,
   openSettingsToTab,
   onOpenSettingsToTabConsumed,
+  layoutMode,
+  onLayoutChange,
+}: {
+  view: string;
+  currentMode?: string;
+  models?: string[];
+  activeModel?: string;
+  onModelChange?: (model: string) => void;
+  onOpenSettingsModels?: () => void;
+  onRemoveModel?: (model: string) => void;
+  leftPanel?: ReactNode;
+  rightPanel?: ReactNode;
+  workspaceTopBar?: ReactNode;
+  openSettingsToTab?: string;
+  onOpenSettingsToTabConsumed?: () => void;
+  layoutMode: LayoutMode;
+  onLayoutChange: (mode: LayoutMode) => void;
 }) => {
   const { t } = useTranslation();
 
@@ -142,7 +187,7 @@ const MainContent = ({
   }[currentMode] ?? currentMode;
 
   return (
-    <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+    <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background" data-mode={currentMode}>
       <AppHeader
         icon={modeIcon}
         title={modeTitle}
@@ -159,6 +204,11 @@ const MainContent = ({
             <div className="hidden md:block">
               <HeaderLanguageSelector compact />
             </div>
+            <LayoutToggle
+              layoutMode={layoutMode}
+              onLayoutChange={onLayoutChange}
+              currentMode={currentMode}
+            />
           </>
         }
       />
@@ -166,24 +216,10 @@ const MainContent = ({
         leftPanel={leftPanel}
         rightPanel={rightPanel}
         workspaceTopBar={workspaceTopBar}
+        layoutMode={layoutMode}
       />
     </main>
   );
-};
-
-MainContent.propTypes = {
-  view: PropTypes.string.isRequired,
-  currentMode: PropTypes.string,
-  models: PropTypes.arrayOf(PropTypes.string),
-  activeModel: PropTypes.string,
-  onModelChange: PropTypes.func,
-  onOpenSettingsModels: PropTypes.func,
-  onRemoveModel: PropTypes.func,
-  leftPanel: PropTypes.node,
-  rightPanel: PropTypes.node,
-  workspaceTopBar: PropTypes.node,
-  openSettingsToTab: PropTypes.string,
-  onOpenSettingsToTabConsumed: PropTypes.func,
 };
 
 export default MainContent;

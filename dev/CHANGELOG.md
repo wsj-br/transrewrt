@@ -11,6 +11,15 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: UI theme — border-radius increased to 16 px (`--radius: 1rem`) across all components for an ultra-modern look.
+- **Changed**: Workspace action buttons (Translate / Rewrite / Transform) are now fully rounded (`rounded-full`) with a vibrant outer glow shadow matching the mode colour.
+- **Changed**: Input/Output cards in dark mode now use glassmorphism (`backdrop-blur-xl`, semi-transparent `bg-card/75`, `border-white/10`).
+- **Changed**: Sidebar now uses glassmorphism in dark mode (`backdrop-blur-xl`, `bg-card/80`).
+- **Added**: Ambient radial glow behind the workspace shifts colour (green / blue / purple) based on the active mode via `data-mode` CSS cascade.
+- **Added**: Blueprint grid background on the diff/Show-changes view in Rewrite mode.
+- **Added**: Mode-coloured focus ring on text panels (uses `--mode-accent` CSS variable).
+- **Added**: Layout Toggle (Split / Stack) segmented control in the workspace header; choice persists across sessions via `localStorage`.
+
 - **Fixed**: Rewrite workspace top bar (`Mode` / `From` selectors) now wraps on mobile instead of overflowing horizontally.
 - **Fixed**: Transform prompt selector no longer enforces a `200px` minimum width, preventing horizontal scroll on narrow screens.
 - **Fixed**: Dashboard Summary and By Usage chart grids switch to a single column on mobile (`sm:grid-cols-2` breakpoint) so charts stack and are full-width instead of being squeezed into two tiny columns.
