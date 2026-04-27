@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-27T17:00:01.276Z'
-source_file_mtime: '2026-04-27T12:20:36.569Z'
-source_file_hash: 7d3ac3524f418a2236c70e5ecbf726b31677dd7b4286242d0a0f0882d64732a6
+translation_last_updated: '2026-04-27T21:42:51.410Z'
+source_file_mtime: '2026-04-27T17:00:19.020Z'
+source_file_hash: 253d03c03bd028d8119ce13e1d810e974a386f3e98054a9e750d5ecfbf1c76d0
 translation_language: es
 source_file_path: USER-GUIDE.md
 translation_models:

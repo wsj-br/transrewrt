@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-27T16:59:02.340Z'
-source_file_mtime: '2026-04-27T16:58:42.637Z'
-source_file_hash: 6069980d7b844e362c5854734b341295c1df196a76774fe0549224e4aace9550
+translation_last_updated: '2026-04-27T21:41:54.485Z'
+source_file_mtime: '2026-04-27T21:40:46.258Z'
+source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
 translation_language: el
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.2.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">

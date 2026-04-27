@@ -1618,7 +1618,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 361
+        "line": 380
       }
     ]
   },
@@ -1703,7 +1703,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 368
+        "line": 387
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -1812,7 +1812,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 376
+        "line": 395
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -1909,7 +1909,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 380
+        "line": 399
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -1998,7 +1998,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 388
+        "line": 407
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2095,7 +2095,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 541
+        "line": 560
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2127,7 +2127,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 123
+        "line": 168
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -2232,7 +2232,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 561
+        "line": 580
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2329,7 +2329,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 562
+        "line": 581
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2418,7 +2418,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 563
+        "line": 582
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2507,7 +2507,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 565
+        "line": 584
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2596,15 +2596,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 566
+        "line": 585
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 640
+        "line": 661
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 691
+        "line": 714
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2745,11 +2745,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 637
+        "line": 658
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 688
+        "line": 711
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2838,11 +2838,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 638
+        "line": 659
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 689
+        "line": 712
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2931,11 +2931,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 638
+        "line": 659
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 689
+        "line": 712
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3024,11 +3024,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 639
+        "line": 660
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 690
+        "line": 713
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -4454,7 +4454,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 140
+        "line": 185
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -4567,7 +4567,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 141
+        "line": 186
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -12425,7 +12425,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 84
+        "line": 129
       }
     ]
   },
@@ -12510,7 +12510,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 99
+        "line": 144
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -12599,7 +12599,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 104
+        "line": 149
       }
     ]
   },
@@ -12684,7 +12684,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 118
+        "line": 163
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -12777,7 +12777,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 139
+        "line": 184
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -34233,11 +34233,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 115
+        "line": 116
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 146
+        "line": 147
       }
     ]
   },
@@ -34322,27 +34322,27 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 165
+        "line": 166
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 167
+        "line": 168
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 204
+        "line": 205
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 206
+        "line": 207
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 239
+        "line": 240
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 241
+        "line": 242
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -34431,7 +34431,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 193
+        "line": 194
       }
     ]
   },
@@ -34516,7 +34516,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 193
+        "line": 194
       }
     ]
   },
@@ -34601,7 +34601,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 199
+        "line": 200
       }
     ]
   },
@@ -34686,7 +34686,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 215
+        "line": 216
       }
     ]
   },
@@ -34771,7 +34771,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 217
+        "line": 218
       }
     ]
   },
@@ -34856,11 +34856,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 221
+        "line": 222
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 223
+        "line": 224
       }
     ]
   },
@@ -39748,6 +39748,269 @@
         "line": 28
       }
     ]
+  },
+  "ebd9bec4": {
+    "source": "Layout",
+    "translated": {
+      "ca": "Disseny",
+      "pt-BR": "Layout",
+      "ar": "التصميم",
+      "bn": "লেআউট",
+      "zh-TW": "版面配置",
+      "zh-CN": "布局",
+      "cs": "Rozvržení",
+      "hr": "Izgled",
+      "en-US": "Layout",
+      "fr": "Disposition",
+      "tl": "Layout",
+      "nl": "Indeling",
+      "hu": "Elrendezés",
+      "el": "Διάταξη",
+      "hi": "लेआउट",
+      "de": "Layout",
+      "it": "Layout",
+      "ms": "Susun Atur",
+      "ja": "レイアウト",
+      "ko": "레이아웃",
+      "pt": "Layout",
+      "jv": "Tata Letak",
+      "pl": "Układ",
+      "fa": "چیدمان",
+      "sk": "Rozloženie",
+      "ru": "Макет",
+      "ro": "Așezare",
+      "pa": "ਲੇਆਉਟ",
+      "sv": "Layout",
+      "sw": "Mpangilio",
+      "te": "అమరిక",
+      "es": "Diseño",
+      "vi": "Bố cục",
+      "th": "เค้าโครง",
+      "uk": "Макет",
+      "tr": "Düzen"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/LayoutToggle.tsx",
+        "line": 31
+      }
+    ],
+    "models": {
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507"
+    }
+  },
+  "c362a31d": {
+    "source": "Switch to side-by-side layout",
+    "translated": {
+      "ca": "Canvia al disseny costat a costat",
+      "pt-BR": "Alternar para layout lado a lado",
+      "ar": "التبديل إلى تخطيط جنبًا إلى جنب",
+      "bn": "পাশাপাশি লেআউট-এ স্যুইচ করুন",
+      "zh-TW": "切換至並排版面",
+      "zh-CN": "切换到并排布局",
+      "cs": "Přepnout na rozvržení vedle sebe",
+      "hr": "Prebaci na izgled jedan do drugog",
+      "en-US": "Switch to side-by-side layout",
+      "fr": "Passer à la disposition côte à côte",
+      "tl": "Lumipat sa magkatabing layout",
+      "nl": "Overschakelen naar naast elkaar indeling",
+      "hu": "Váltás egymás melletti elrendezésre",
+      "el": "Εναλλαγή σε διάταξη δίπλα-δίπλα",
+      "hi": "साइड-बाय-साइड लेआउट पर स्विच करें",
+      "de": "Zum Seiten-an-Seiten-Layout wechseln",
+      "it": "Passa al layout affiancato",
+      "ms": "Tukar kepada susun atur sebelah-sebelah",
+      "ja": "横並びレイアウトに切り替え",
+      "ko": "나란히 레이아웃으로 전환",
+      "pt": "Mudar para o layout lado a lado",
+      "jv": "Alih menyang tata letak sisih-ke-sisih",
+      "pl": "Przełącz na układ obok siebie",
+      "fa": "تغییر به چیدمان کنار به کنار",
+      "sk": "Prepnúť na vedľa seba",
+      "ru": "Переключиться на боковой макет",
+      "ro": "Comută la așezare alăturată",
+      "pa": "ਪਾਸੇ-ਨਾਲ-ਪਾਸੇ ਲੇਆਉਟ 'ਤੇ ਸਵਿੱਚ ਕਰੋ",
+      "sv": "Växla till sida vid sida-layout",
+      "sw": "Badilisha kwa mpangilio wa upande kwa upande",
+      "te": "పక్కపక్కన అమరికకు మారు",
+      "es": "Cambiar a diseño lado a lado",
+      "vi": "Chuyển sang bố cục song song",
+      "th": "สลับเป็นเค้าโครงเรียงข้างกัน",
+      "uk": "Перемкнутися на бічний макет",
+      "tr": "Yan yana düzene geç"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/LayoutToggle.tsx",
+        "line": 37
+      },
+      {
+        "file": "src/renderer/components/workspace/LayoutToggle.tsx",
+        "line": 39
+      }
+    ],
+    "models": {
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507"
+    }
+  },
+  "95da3ee7": {
+    "source": "Switch to stacked layout",
+    "translated": {
+      "ca": "Canvia al disseny apilat",
+      "pt-BR": "Alternar para layout empilhado",
+      "ar": "التبديل إلى تخطيط مكدس",
+      "bn": "স্ট্যাক করা লেআউট-এ স্যুইচ করুন",
+      "zh-TW": "切換至堆疊版面",
+      "zh-CN": "切换到堆叠布局",
+      "cs": "Přepnout na svislé rozvržení",
+      "hr": "Prebaci na izgled preklapanja",
+      "en-US": "Switch to stacked layout",
+      "fr": "Passer à la disposition empilée",
+      "tl": "Lumipat sa naka-stack na layout",
+      "nl": "Overschakelen naar gestapelde indeling",
+      "hu": "Váltás egymás alatti elrendezésre",
+      "el": "Εναλλαγή σε κάθετη διάταξη",
+      "hi": "स्टैक्ड लेआउट पर स्विच करें",
+      "de": "Zum gestapelten Layout wechseln",
+      "it": "Passa al layout sovrapposto",
+      "ms": "Tukar kepada susun atur bertindih",
+      "ja": "縦積みレイアウトに切り替え",
+      "ko": "위아래 레이아웃으로 전환",
+      "pt": "Mudar para o layout empilhado",
+      "jv": "Alih menyang tata letak ditumpuk",
+      "pl": "Przełącz na układ ułożony jeden nad drugim",
+      "fa": "تغییر به چیدمان انباشته",
+      "sk": "Prepnúť na nad sebou",
+      "ru": "Переключиться на вертикальный макет",
+      "ro": "Comută la așezare suprapusă",
+      "pa": "ਇੱਕ-ਦੂਜੇ 'ਤੇ ਥੱਲੇ ਲੇਆਉਟ 'ਤੇ ਸਵਿੱਚ ਕਰੋ",
+      "sv": "Växla till staplad layout",
+      "sw": "Badilisha kwa mpangilio uliopangwa",
+      "te": "పైకపై అమరికకు మారు",
+      "es": "Cambiar a diseño apilado",
+      "vi": "Chuyển sang bố cục xếp chồng",
+      "th": "สลับเป็นเค้าโครงซ้อนกัน",
+      "uk": "Перемкнутися на стековий макет",
+      "tr": "Üst üste düzene geç"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/LayoutToggle.tsx",
+        "line": 50
+      },
+      {
+        "file": "src/renderer/components/workspace/LayoutToggle.tsx",
+        "line": 52
+      }
+    ],
+    "models": {
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507"
+    }
   },
   "1ee1c44c": {
     "source": "Mode:",
