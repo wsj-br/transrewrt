@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Text, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import {
   AreaChart,
@@ -38,7 +37,7 @@ export default function DashboardTabSummary({
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
-  const tickStyle = { fill: tokens.colorNeutralForeground3 };
+  const tickStyle = { fill: "#9ca3af" };
 
   const totalCalls = byFunction.find((r) => r.function === "Total")?.calls ?? 0;
   const totalCostFromSummary =
@@ -64,9 +63,9 @@ export default function DashboardTabSummary({
     >
       <div className={styles.summaryDashboard}>
         <div className={styles.summaryKpiCell}>
-          <Text as="h4" size={400} className={styles.summaryKpiTitleSpacer}>
+          <h4 className={styles.summaryKpiTitleSpacer}>
             {t("Cost over time")}
-          </Text>
+          </h4>
           <div className={styles.summaryKpiGrid}>
             <div className={styles.summaryKpiCard}>
               <div className={styles.summaryKpiLabel}>{t("Total Cost")}</div>
@@ -119,9 +118,9 @@ export default function DashboardTabSummary({
         </div>
 
         <div className={styles.summaryChartCellUsageSplit}>
-          <Text as="h4" size={400} className={styles.summaryChartTitle}>
+          <h4 className={styles.summaryChartTitle}>
             {t("Usage split")}
-          </Text>
+          </h4>
           <div
             className={`${styles.summaryChartContainer} ${styles.summaryChartContainerUsagePie}`}
             style={{ overflow: "visible" }}
@@ -175,7 +174,7 @@ export default function DashboardTabSummary({
                               y={y}
                               textAnchor={x > cx ? "start" : "end"}
                               dominantBaseline="central"
-                              fill={tokens.colorNeutralForeground2}
+                              fill="#d1d5db"
                               style={{
                                 fontSize: "clamp(9px, 1.2vh, 11px)",
                               }}
@@ -186,7 +185,7 @@ export default function DashboardTabSummary({
                               <tspan
                                 x={x}
                                 dy="1.3em"
-                                fill={tokens.colorNeutralForeground3}
+                                fill="#9ca3af"
                               >
                                 {formatInteger(calls, locale)} ({pct}%)
                               </tspan>
@@ -213,16 +212,16 @@ export default function DashboardTabSummary({
                       </Pie>
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                           color:
-                            tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            "#e5e7eb",
                         }}
                         itemStyle={{
-                          color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                          color: "#e5e7eb",
                         }}
                         labelStyle={{
-                          color: tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                          color: "#e5e7eb",
                         }}
                         formatter={(value, name) => {
                           const pct =
@@ -250,7 +249,7 @@ export default function DashboardTabSummary({
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: tokens.colorNeutralForeground3,
+                  color: "#9ca3af",
                 }}
               >
                 {t("No data")}
@@ -260,9 +259,9 @@ export default function DashboardTabSummary({
         </div>
 
         <div className={styles.summaryChartCell}>
-          <Text as="h4" size={400} className={styles.summaryChartTitle}>
+          <h4 className={styles.summaryChartTitle}>
             {t("Usage over time")}
-          </Text>
+          </h4>
           <div className={styles.summaryChartContainer}>
             {byDay.length > 0 ? (
               (() => {
@@ -296,11 +295,11 @@ export default function DashboardTabSummary({
                       />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                         labelStyle={{
-                          color: tokens.colorNeutralForeground1,
+                          color: "#e5e7eb",
                         }}
                         formatter={(value, name, item) => {
                           const dataKey = item?.dataKey ?? name;
@@ -352,7 +351,7 @@ export default function DashboardTabSummary({
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: tokens.colorNeutralForeground3,
+                  color: "#9ca3af",
                 }}
               >
                 {t("No data")}
@@ -362,9 +361,9 @@ export default function DashboardTabSummary({
         </div>
 
         <div className={styles.summaryChartCell}>
-          <Text as="h4" size={400} className={styles.summaryChartTitle}>
+          <h4 className={styles.summaryChartTitle}>
             {t("Usage by model")}
-          </Text>
+          </h4>
           <div className={styles.summaryChartContainer}>
             {(() => {
               const usageByModelData = byModel
@@ -387,7 +386,7 @@ export default function DashboardTabSummary({
                       alignItems: "center",
                       justifyContent: "center",
                       height: "100%",
-                      color: tokens.colorNeutralForeground3,
+                      color: "#9ca3af",
                     }}
                   >
                     {t("No data")}
@@ -427,8 +426,8 @@ export default function DashboardTabSummary({
                       <Tooltip
                         cursor={{ fill: "transparent" }}
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                         formatter={(value) => {
                           const pct =

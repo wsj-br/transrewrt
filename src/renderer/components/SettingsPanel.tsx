@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
+import { cn } from "@/lib/utils";
 import {
   Sliders,
   Database,
@@ -33,111 +33,18 @@ import {
   providerSortKeyFromModelId,
 } from "../utils/misc/modelIdUtils";
 import {
+  settingsPanelBody,
+  settingsTabButton,
+  settingsTabStrip,
+} from "./settings/settingsLayoutClasses";
+import {
   isConfirmedFreeModel,
   modelCostSortValue,
 } from "../utils/misc/modelPricingUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
-const useStyles = makeStyles({
-  panel: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    width: "100%",
-    overflow: "hidden",
-  },
-  header: {
-    minHeight: "36px",
-    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexShrink: 0,
-  },
-  headerLeft: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  },
-  headerIcon: {
-    flexShrink: 0,
-    color: tokens.colorBrandForegroundInverted,
-  },
-  headerTitle: {
-    margin: 0,
-    fontSize: "18px",
-    fontWeight: 600,
-    lineHeight: 1.25,
-    color: tokens.colorNeutralForeground1,
-  },
-  settingsBody: {
-    flex: 1,
-  },
-  tabsHeaderWrap: {
-    display: "flex",
-    alignItems: "center",
-    minWidth: 0,
-    width: "100%",
-    gap: 0,
-    overflow: "hidden",
-    paddingInlineStart: "12px",
-    paddingInlineEnd: "12px",
-    boxSizing: "border-box",
-  },
-  tabsHeaderScroll: {
-    flex: 1,
-    minWidth: 0,
-    overflowX: "auto",
-    overflowY: "hidden",
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
-    "&::-webkit-scrollbar": { display: "none" },
-  },
-  tabsHeaderInner: {
-    display: "flex",
-    alignItems: "stretch",
-    width: "max-content",
-    minHeight: "100%",
-  },
-  tabNavBtn: {
-    flexShrink: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "32px",
-    minWidth: "32px",
-    height: "44px",
-    padding: 0,
-    border: "none",
-    background: "transparent",
-    color: tokens.colorBrandForegroundInverted,
-    cursor: "pointer",
-    transition: "color 0.15s, background 0.15s",
-    ":hover": {
-      color: tokens.colorBrandForegroundInverted,
-      opacity: 0.9,
-      backgroundColor: tokens.colorNeutralBackground1Hover,
-    },
-    ":disabled": {
-      opacity: 0.4,
-      cursor: "default",
-      pointerEvents: "none",
-    },
-  },
-  tabBtn: {
-    flexShrink: 0,
-    minWidth: "max-content",
-    whiteSpace: "nowrap",
-    overflow: "visible",
-    textOverflow: "clip",
-  },
-});
-
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const { settings, allModels, currentUser, setSetting, fetchModels } =
     useAppContext();
@@ -459,20 +366,20 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   };
 
   return (
-    <div className={styles.panel}>
-      <div className={styles.header}>
-        <div className={styles.headerLeft}>
-          <SettingsIcon className={styles.headerIcon} size={20} strokeWidth={1.6} />
-          <h2 className={styles.headerTitle}>{t("Settings")}</h2>
+    <div className="flex flex-col h-full w-full overflow-hidden">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-card px-4 ps-16 md:ps-4">
+        <div className="flex items-center gap-3">
+          <SettingsIcon className="text-muted-foreground" size={20} strokeWidth={1.6} />
+          <h2 className="text-lg font-semibold">{t("Settings")}</h2>
         </div>
         <HeaderLanguageSelector compact />
-      </div>
+      </header>
 
-      <div className={mergeClasses("tabs-header", styles.tabsHeaderWrap)}>
+      <div className={cn(settingsTabStrip, "ps-3 pe-3")}>
         {tabScroll.hasOverflow && (
           <button
             type="button"
-            className={styles.tabNavBtn}
+            className="shrink-0 flex items-center justify-center w-8 h-11 p-0 border-none bg-transparent text-muted-foreground hover:text-foreground cursor-pointer transition-colors disabled:opacity-40 disabled:pointer-events-none"
             onClick={() => scrollTabs(-1)}
             disabled={!tabScroll.canScrollLeft}
             aria-label={t("Previous tabs")}
@@ -482,95 +389,44 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
         <div
           ref={tabStripRef}
-          className={styles.tabsHeaderScroll}
+          className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
           role="tablist"
         >
-          <div className={styles.tabsHeaderInner}>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "general"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "general" && "active")}
-              onClick={() => handleTabChange("general")}
-            >
-              <Sliders size={16} /> {t("General Settings")}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "models"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "models" && "active")}
-              onClick={() => handleTabChange("models")}
-              data-testid="settings-tab-models"
-            >
-              <Database size={16} /> {t("Models")}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "languages"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "languages" && "active")}
-              onClick={() => handleTabChange("languages")}
-            >
-              <Globe size={16} /> {t("Languages")}
-            </button>
-            {canAccessCostTab && (
+          <div className="flex items-stretch w-max">
+            {[
+              { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
+              { id: "models", icon: <Database size={15} />, label: t("Models"), testId: "settings-tab-models" },
+              { id: "languages", icon: <Globe size={15} />, label: t("Languages") },
+              ...(canAccessCostTab ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }] : []),
+              { id: "transform", icon: <WandSparkles size={15} />, label: t("Transform") },
+              ...(canAccessUsersTab ? [{ id: "users", icon: <Users size={15} />, label: t("Users") }] : []),
+              ...(canAccessApiTab ? [{ id: "api", icon: <Key size={15} />, label: t("API Config") }] : []),
+              { id: "about", icon: <Info size={15} />, label: t("About") },
+            ].map(({ id, icon, label, testId }) => (
               <button
+                key={id}
                 type="button"
                 role="tab"
-                aria-selected={activeTab === "cost"}
-                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "cost" && "active")}
-                onClick={() => handleTabChange("cost")}
+                aria-selected={activeTab === id}
+                data-testid={testId}
+                className={cn(
+                  settingsTabButton,
+                  "flex items-center gap-1.5 px-4 h-11 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
+                  activeTab === id
+                    ? "border-foreground text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
+                )}
+                onClick={() => handleTabChange(id)}
               >
-                <DollarSign size={16} /> {t("Cost Tracking")}
+                {icon} {label}
               </button>
-            )}
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "transform"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "transform" && "active")}
-              onClick={() => handleTabChange("transform")}
-            >
-              <WandSparkles size={16} /> {t("Transform")}
-            </button>
-            {canAccessUsersTab && (
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeTab === "users"}
-                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "users" && "active")}
-                onClick={() => handleTabChange("users")}
-              >
-                <Users size={16} /> {t("Users")}
-              </button>
-            )}
-            {canAccessApiTab && (
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeTab === "api"}
-                className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "api" && "active")}
-                onClick={() => handleTabChange("api")}
-              >
-                <Key size={16} /> {t("API Config")}
-              </button>
-            )}
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === "about"}
-              className={mergeClasses("tab-btn", styles.tabBtn, activeTab === "about" && "active")}
-              onClick={() => handleTabChange("about")}
-            >
-              <Info size={16} /> {t("About")}
-            </button>
+            ))}
           </div>
         </div>
         {tabScroll.hasOverflow && (
           <button
             type="button"
-            className={styles.tabNavBtn}
+            className="shrink-0 flex items-center justify-center w-8 h-11 p-0 border-none bg-transparent text-muted-foreground hover:text-foreground cursor-pointer transition-colors disabled:opacity-40 disabled:pointer-events-none"
             onClick={() => scrollTabs(1)}
             disabled={!tabScroll.canScrollRight}
             aria-label={t("Next tabs")}
@@ -580,13 +436,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
       </div>
 
-      <div
-        className={mergeClasses(
-          "modal-body",
-          "settings-body",
-          styles.settingsBody,
-        )}
-      >
+      <div className={settingsPanelBody}>
         {activeTab === "general" && (
           <SettingsGeneralTab
             localSettings={localSettings}

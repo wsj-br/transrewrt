@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:24.805Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:57.455Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: sv
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller självvärd webbapp (Docker).
 
-- **Översätt** - mellan dussintals språk, med automatisk källdetektering
-- **Omskriv** - korrigerad grammatik, förbättra tydlighet, formellt/obligatoriskt, kortast, utöka, tekniskt
-- **Omvandla** - anpassade AI-frågor; skapa och hantera frågor, valfritt målspråk per fråga
-- **Historik** - fullständig körningshistorik med inmatnings- och utmatningsmängd, filtrering och export
-- **Modeller & kostnad** - välj modeller från alla konfigurerade leverantörer; kostnads- och användningsöversiktspanel med loggar, sammanfattningar per modell/operation/dag
-- **Användargränssnitt** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
-- **Webbläge** - stöd för flera användare med administratörsroller
-- **Skrivbord** - Electron-app för Windows och Linux
-- **Självvärd** - Docker-avbild för amd64 & arm64 (klar för Raspberry Pi)
+- **Översätt** – mellan dussintals språk, med automatisk källspråksidentifiering
+- **Skriv om** – korrigerar grammatik, förbättrar klarhet, formellt/obligatoriskt språk, förkorta, utöka, tekniskt
+- **Transformera** – anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
+- **Historik** – fullständig körningshistorik med indata/utdata-text, filtrering och export
+- **Modeller och kostnad** – välj modeller från valfri konfigurerad leverantör; kostnads- och användningsinstrumentpaneler med loggar, sammanfattningar per modell/åtgärd/dag
+- **Användargränssnitt** – flerspråkigt gränssnitt (30+ språk, stöd för RTL), teckensnitt, ...
+- **Webbläge** – stöd för flera användare med administratörsroller
+- **Skrivbord** – Electron-app för Windows och Linux
+- **Självvärdbaserad** – Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
 
 När det är installerat, se **[Användarhandbok](USER-GUIDE.sv.md)** för en fullständig genomgång av alla funktioner.
 
 <small>**Läs på andra språk:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -283,7 +283,7 @@ Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, De
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (använd en volym för att spara data) |
+| Webben / Docker       | `/app/data/config.json` (använd en volym för att spara) |
 
 <br/>
 
@@ -291,18 +291,18 @@ Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, De
 
 | Variabel             | Beskrivning                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Serverns lyssningsport (förvalt värde är `5000`)                                  |
-| `CONFIG_PATH`        | Sökväg till konfigurationsfilen (förvalt värde är `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT`               | Serverns lyssningsport (förvalt värde `5000`)                                  |
+| `CONFIG_PATH`        | Sökväg till konfigurationsfilen (förvalt värde: `/app/data/config.json`)                |
+| `TZ`                 | tidszon för serversidig tid (loggning, etc.) (förvalt värde `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API-nyckel                                                           |
+| `OPENAI_API_KEY`     | OpenAI API-nyckel                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API-nyckel                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API-nyckel                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API-nyckel                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API-nyckel                                                             |
+| `GROQ_API_KEY`       | Groq API-nyckel                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API-nyckel                                                              |
+| `OLLAMA_URL`         | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-nyckel                                                                  |
 
 Konfigurera endast de leverantörer du använder. Modell-ID:n är namnrymdsindelade (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).

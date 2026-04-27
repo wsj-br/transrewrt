@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:45.808Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:33.418Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ja
 source_file_path: README.md
 translation_models:
@@ -22,21 +22,21 @@ translation_models:
 
 AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、およびローカルOllama）を使用して、言語間の翻訳、スタイルの書き直し、カスタムプロンプトによる変換が可能。デスクトップアプリ（Electron）またはセルフホスト型Webアプリ（Docker）として動作。
 
-- **翻訳** - 数十の言語間で翻訳可能。ソース言語の自動検出付き
-- **書き直し** - 文法の修正、明確さを向上、フォーマル／カジュアル、短くする、拡張する、技術文書化など
-- **変換** - カスタムAIプロンプト。プロンプトの作成と管理、プロンプトごとにオプションでターゲット言語を指定可能
-- **履歴** - 入力・出力テキストを含む完全な実行履歴、フィルタリング、エクスポート機能付き
-- **モデルとコスト** - 設定済みプロバイダーからモデルを選択可能。コストと使用状況のダッシュボード（ログ、モデル／操作／日別集計）
-- **UI** - 多言語対応インターフェース（30言語以上、RTL対応）、フォント、...
-- **Webモード** - 管理者ロール付きのマルチユーザー対応
-- **デスクトップ** - WindowsおよびLinux用Electronアプリ
-- **セルフホスト** - amd64およびarm64（Raspberry Pi対応）用Dockerイメージ
+- **翻訳** - 数十の言語間で翻訳可能。ソース言語は自動検出
+- **書き換え** - 文法の修正、明確化、フォーマル／カジュアルへの変更、短縮、展開、技術文書化など
+- **変換** - カスタムAIプロンプト。プロンプトの作成と管理が可能。プロンプトごとに任意のターゲット言語を指定可能
+- **履歴** - 入出力テキストを含む完全な実行履歴。フィルタリングおよびエクスポート機能付き
+- **モデルとコスト** - 設定済みプロバイダーから任意のモデルを選択可能。ログおよびモデル／操作／日付ごとの要約付きのコスト・使用量ダッシュボード
+- **UI** - 多言語インターフェイス（30言語以上対応、RTL対応）、フォントなど
+- **Webモード** - 管理者ロール付きの複数ユーザー対応
+- **デスクトップ版** - WindowsおよびLinux向けElectronアプリ
+- **セルフホスティング** - amd64およびarm64（Raspberry Pi対応）用Dockerイメージ
 
 インストール後は、すべての機能の詳細な操作方法について、**[ユーザーガイド](USER-GUIDE.ja.md)** を参照してください。
 
 <small>**他の言語で読む：** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -283,7 +283,7 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (ボリュームを使用して永続化) |
+| Web / Docker       | `/app/data/config.json` (永続化にはボリュームを使用) |
 
 <br/>
 
@@ -291,18 +291,18 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 
 | 変数             | 説明                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | サーバーのリスニングポート (デフォルトは `5000`)                                  |
-| `CONFIG_PATH`        | 設定ファイルのパス (デフォルトは `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT`               | サーバーのリスンポート（デフォルトは `5000`）                                  |
+| `CONFIG_PATH`        | 設定ファイルのパス（デフォルトは `/app/data/config.json`）                |
+| `TZ`                 | サーバー側のタイムゾーン（ログなど用。デフォルトは `Europe/London`） |
+| `OPENROUTER_API_KEY` | OpenRouter APIキー                                                           |
+| `OPENAI_API_KEY`     | OpenAI APIキー                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras APIキー                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic APIキー                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini APIキー                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek APIキー                                                             |
+| `GROQ_API_KEY`       | Groq APIキー                                                                 |
+| `MISTRAL_API_KEY`    | Mistral APIキー                                                              |
+| `OLLAMA_URL`         | OllamaのベースURL（例: `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API キー                                                                  |
 
 使用するプロバイダーのみを設定してください。モデルIDは名前空間付きです（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`など）。

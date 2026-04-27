@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:59.295Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:45.158Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: pt
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Executa como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
-- **Traduzir** - entre dezenas de idiomas, com detecção automática da origem
-- **Reescrita** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
-- **Transformação** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
-- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Modelos e custo** - escolha modelos de qualquer provedor configurado; painéis de custo e uso com log, resumos por modelo/operação/dia
-- **IU** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
-- **Modo Web** - suporte multiusuário com funções de administrador
-- **Desktop** - aplicativo Electron para Windows e Linux
-- **Autohospedado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
+- **Traduzir** - entre dezenas de idiomas, com deteção automática da origem
+- **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
+- **Transformar** - prompts personalizados de IA; criar e gerir prompts, idioma de destino opcional por prompt
+- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtragem e exportação
+- **Modelos e custo** - escolha modelos de qualquer fornecedor configurado; painéis de custo e utilização com registo e resumos por modelo/operação/dia
+- **IU** - interface multilíngue (30+ idiomas, suporte a RTL), tipos de letra, ...
+- **Modo Web** - suporte multiutilizador com funções de administrador
+- **Ambiente de trabalho** - aplicação Electron para Windows e Linux
+- **Autoalojado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
 
 Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para uma explicação completa de todos os recursos.
 
 <small>**Leia em outros idiomas:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -52,9 +52,9 @@ Após a instalação, consulte o **[Guia do Usuário](USER-GUIDE.pt.md)** para u
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Capturas de tela](#screenshots)
+- [Capturas de ecrã](#screenshots)
 - [Início rápido](#quick-start)
-- [Obter uma chave de API OpenRouter](#getting-an-openrouter-api-key)
+- [Obter uma chave API OpenRouter](#getting-an-openrouter-api-key)
 - [Configuração e ambiente](#configuration-and-environment)
 - [Desenvolvimento e arquitetura](#development-and-architecture)
 - [Relatar problemas](#reporting-issues)
@@ -291,19 +291,19 @@ Também pode usar outros provedores (OpenAI, Anthropic, Google Gemini, DeepSeek,
 
 | Variável             | Descrição                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Porta de escuta do servidor (padrão: `5000`)                                  |
-| `CONFIG_PATH`        | Caminho para o ficheiro de configuração (padrão: `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | Chave da API xAI                                                                  |
+| `PORT`               | Porta de escuta do servidor (predefinição: `5000`)                                  |
+| `CONFIG_PATH`        | Caminho para o arquivo de configuração (padrão: `/app/data/config.json`)                |
+| `TZ`                 | fuso horário para a hora no servidor (registos, etc.) (predefinição: `Europe/London`) |
+| `OPENROUTER_API_KEY` | Chave API OpenRouter                                                           |
+| `OPENAI_API_KEY`     | Chave API OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | Chave API Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | Chave API Anthropic                                                            |
+| `GOOGLE_API_KEY`     | Chave API Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | Chave API DeepSeek                                                             |
+| `GROQ_API_KEY`       | Chave API Groq                                                                 |
+| `MISTRAL_API_KEY`    | Chave API Mistral                                                              |
+| `OLLAMA_URL`         | URL base do Ollama (ex: `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | Chave de API xAI                                                                  |
 
 Configure apenas os fornecedores que utilizar. Os IDs dos modelos são agrupados por namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

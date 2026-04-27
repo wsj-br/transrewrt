@@ -1,69 +1,9 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import { Zap, Copy } from "lucide-react";
 import PropTypes from "prop-types";
 import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
-
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    minHeight: 0,
-    gap: tokens.spacingVerticalS,
-  },
-  inputSection: {
-    flex: "1 1 50%",
-    minHeight: 0,
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacingVerticalXS,
-  },
-  inputLabel: {
-    fontSize: "14px",
-    fontWeight: 500,
-    color: tokens.colorNeutralForeground1,
-  },
-  textarea: {
-    flex: 1,
-    minHeight: "80px",
-    resize: "none",
-    padding: tokens.spacingVerticalS,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-  testButton: {
-    alignSelf: "flex-start",
-  },
-  outputSection: {
-    flex: "1 1 50%",
-    minHeight: 0,
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacingVerticalXS,
-  },
-  outputMeta: {
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground3,
-  },
-  outputArea: {
-    flex: 1,
-    minHeight: 0,
-    padding: tokens.spacingVerticalS,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground2,
-    whiteSpace: "pre-wrap",
-    wordBreak: "break-word",
-    overflow: "auto",
-  },
-  outputActions: {
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-});
+import { Button } from "@/components/ui/button";
 
 const TransformTestPanel = ({
   testInput,
@@ -76,62 +16,53 @@ const TransformTestPanel = ({
   fontFamily,
   fontSize,
 }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
-  const inputStyle = useMemo(
+  const textStyle = useMemo(
     () => ({
       ...(fontFamily && { fontFamily: resolveAppearanceFontFamilyCss(fontFamily) }),
       ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
-      color: "#e0e0e0",
-    }),
-    [fontFamily, fontSize]
-  );
-  const outputStyle = useMemo(
-    () => ({
-      ...(fontFamily && { fontFamily: resolveAppearanceFontFamilyCss(fontFamily) }),
-      ...(fontSize != null && fontSize !== "" && { fontSize: `${fontSize}px` }),
-      color: "#e0e0e0",
     }),
     [fontFamily, fontSize]
   );
 
   return (
-    <div className={styles.root}>
-      <div className={styles.inputSection}>
-        <label className={styles.inputLabel}>{t("Test input")}</label>
+    <div className="flex flex-col h-full min-h-0 gap-2">
+      <div className="flex flex-[1_1_50%] min-h-0 flex-col gap-1.5">
+        <label className="text-sm font-medium">{t("Test input")}</label>
         <textarea
-          className={styles.textarea}
           dir="auto"
           value={testInput}
           onChange={(e) => onTestInputChange?.(e.target.value)}
           placeholder={t("Paste text to test...")}
           aria-label={t("Test input")}
-          style={inputStyle}
+          style={textStyle}
+          className="flex-1 min-h-[80px] resize-none p-2 rounded-md border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
         />
         <Button
-          appearance="primary"
-          icon={<Zap size={16} />}
+          size="sm"
           onClick={onTest}
           disabled={isTesting}
-          className={styles.testButton}
+          className="self-start"
         >
+          <Zap size={14} />
           {isTesting ? t("Testing…") : t("Test")}
         </Button>
       </div>
-      <div className={styles.outputSection}>
-        <label className={styles.inputLabel}>{t("Output")}</label>
-        {outputMeta && <div className={styles.outputMeta}>{outputMeta}</div>}
-        <div className={styles.outputArea} role="region" aria-label={t("Test output")} style={outputStyle}>
+      <div className="flex flex-[1_1_50%] min-h-0 flex-col gap-1.5">
+        <label className="text-sm font-medium">{t("Output")}</label>
+        {outputMeta && <div className="text-xs text-muted-foreground">{outputMeta}</div>}
+        <div
+          className="flex-1 min-h-0 p-2 rounded-md border border-border bg-muted whitespace-pre-wrap break-words overflow-auto text-sm text-foreground"
+          role="region"
+          aria-label={t("Test output")}
+          style={textStyle}
+        >
           {output || "-"}
         </div>
         {output && (
-          <div className={styles.outputActions}>
-            <Button
-              appearance="subtle"
-              icon={<Copy size={14} />}
-              onClick={onCopy}
-              aria-label={t("Copy output")}
-            >
+          <div className="flex justify-end">
+            <Button variant="ghost" size="sm" onClick={onCopy} aria-label={t("Copy output")}>
+              <Copy size={13} />
               {t("Copy")}
             </Button>
           </div>

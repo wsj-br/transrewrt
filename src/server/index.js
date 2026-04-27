@@ -94,8 +94,9 @@ const configFile = createConfigFile(
 );
 
 appDb.initDb(dataDir, log);
+let cleanupSessionsInterval = null;
 if (appDb.getDb()) {
-  setInterval(() => appDb.cleanupStalledSessions(), 5 * 60 * 1000);
+  cleanupSessionsInterval = setInterval(() => appDb.cleanupStalledSessions(), 5 * 60 * 1000);
 }
 
 app.use(express.json({ limit: "10mb" }));
@@ -213,7 +214,7 @@ async function startServer() {
       : "[SERVER] LLM environment variables set: (none; keys may load from config file only)",
   );
 
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     log.info("=".repeat(60));
     log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
     log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
@@ -221,6 +222,30 @@ async function startServer() {
     log.info("[SERVER] Server ready to accept requests");
     log.info("=".repeat(60));
   });
+
+  let shuttingDown = false;
+  const shutdown = (signal) => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    log.info(`[SERVER] Received ${signal}; shutting down...`);
+    if (cleanupSessionsInterval) {
+      clearInterval(cleanupSessionsInterval);
+      cleanupSessionsInterval = null;
+    }
+    server.close(() => {
+      appDb.closeDb();
+      log.info("[SERVER] Shutdown complete.");
+      process.exit(0);
+    });
+    setTimeout(() => {
+      log.warn("[SERVER] Forced shutdown timeout reached.");
+      appDb.closeDb();
+      process.exit(1);
+    }, 10000).unref();
+  };
+
+  process.on("SIGINT", () => shutdown("SIGINT"));
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
 }
 
 startServer();

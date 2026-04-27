@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:28:14.302Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:14.053Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: cs
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 Nástroj pro text s využitím umělé inteligence: překládání mezi jazyky, přepis v různých stylech a transformace pomocí vlastních promptů – s využitím více poskytovatelů umělé inteligence (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokální Ollama). Funguje jako desktopová aplikace (Electron) nebo jako samostatně hostovaná webová aplikace (Docker).
 
-- **Přeložit** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
-- **Přepis** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický styl
-- **Transformace** – vlastní prompty AI; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
-- **Historie** – kompletní historie spuštění s vstupním a výstupním textem, filtrování a export
-- **Modely a cena** – výběr modelů od libovolného nakonfigurovaného poskytovatele; dashboardy nákladů a využití s logy, shrnutí podle modelu/operace/dne
-- **UI** – vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma, ...
-- **Webový režim** – podpora více uživatelů s rolemi správce
-- **Desktop** – aplikace Electron pro Windows a Linux
-- **Samostatně hostované** – image Docker pro amd64 a arm64 (připraveno pro Raspberry Pi)
+- **Překlad** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
+- **Přepsání** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
+- **Transformace** – vlastní AI prompty; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
+- **Historie** – úplná historie provedených operací včetně vstupního a výstupního textu, filtrování a export
+- **Modely a náklady** – výběr modelů od libovolného nakonfigurovaného poskytovatele; přehledy nákladů a využití s logy, shrnutí podle modelu/operace/dne
+- **Uživatelské rozhraní** – multilingvní rozhraní (30+ jazyků, podpora RTL), písma, ...
+- **Webový režim** – podpora více uživatelů s administračními rolemi
+- **Desktop** – Electron aplikace pro Windows a Linux
+- **Self-hosted** – Docker image pro amd64 & arm64 (připraveno pro Raspberry Pi)
 
 Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, kde najdete podrobný průvodce všemi funkcemi.
 
 <small>**Přečtěte si v jiných jazycích:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,11 +54,11 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 
 - [Snímky obrazovky](#screenshots)
 - [Rychlý start](#quick-start)
-- [Získání klíče API OpenRouter](#getting-an-openrouter-api-key)
+- [Získání OpenRouter API klíče](#getting-an-openrouter-api-key)
 - [Konfigurace a prostředí](#configuration-and-environment)
 - [Vývoj a architektura](#development-and-architecture)
 - [Hlášení problémů](#reporting-issues)
-- [Zřeknutí se záruky](#disclaimer)
+- [Právní upozornění](#disclaimer)
 - [Licence](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -291,19 +291,19 @@ Můžete také použít jiné poskytovatele (OpenAI, Anthropic, Google Gemini, D
 
 | Proměnná             | Popis                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port, na kterém naslouchá server (výchozí `5000`)                                  |
-| `CONFIG_PATH`        | Cesta ke konfiguračnímu souboru (výchozí `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | xAI API klíč                                                                  |
+| `PORT`               | port, na kterém naslouchá server (výchozí hodnota `5000`)                                  |
+| `CONFIG_PATH`        | Cesta k konfiguračnímu souboru (výchozí hodnota `/app/data/config.json`)                |
+| `TZ`                 | časové pásmo pro čas na straně serveru (protokolování atd.) (výchozí hodnota `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API klíč                                                           |
+| `OPENAI_API_KEY`     | OpenAI API klíč                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API klíč                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API klíč                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API klíč                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API klíč                                                             |
+| `GROQ_API_KEY`       | Groq API klíč                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API klíč                                                              |
+| `OLLAMA_URL`         | základní URL Ollamy (např. `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | klíč k rozhraní xAI API                                                                  |
 
 Nakonfigurujte pouze poskytovatele, které používáte. Identifikátory modelů jsou rozděleny do jmenných prostor (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atd.).
 

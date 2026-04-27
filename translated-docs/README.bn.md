@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:27:34.537Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:05.630Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: bn
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 এআই-চালিত টেক্সট টুল: বিভিন্ন ভাষায় অনুবাদ, বিভিন্ন ধরনে পুনর্লিখন এবং কাস্টম প্রম্পট ব্যবহার করে রূপান্তর করুন - একাধিক এআই প্রদানকারী (ওপেনরাউটার, ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই এবং স্থানীয় ওলামা) ব্যবহার করে। ডেস্কটপ অ্যাপ (ইলেকট্রন) বা স্ব-হোস্টেড ওয়েব অ্যাপ (ডকার) হিসাবে চলে।
 
-- **অনুবাদ** - ডজন খানেক ভাষায়, স্বয়ংক্রিয় উৎস সনাক্তকরণ সহ
-- **পুনর্লিখন** - ব্যাকরণ ঠিক করুন, স্পষ্টতা উন্নত করুন, আনুষ্ঠানিক/অনানুষ্ঠানিক, সংক্ষিপ্ত করুন, বিস্তৃত করুন, প্রযুক্তিগত
-- **রূপান্তর** - কাস্টম এআই প্রম্পট; প্রম্পট তৈরি এবং পরিচালনা করুন, প্রতিটি প্রম্পটের জন্য ঐচ্ছিক লক্ষ্য ভাষা
-- **ইতিহাস** - ইনপুট/আউটপুট টেক্সট সহ সম্পূর্ণ কার্যকরী ইতিহাস, ফিল্টারিং এবং এক্সপোর্ট
-- **মডেল এবং খরচ** - যেকোনো কনফিগার করা প্রদানকারী থেকে মডেল নির্বাচন করুন; মডেল/অপারেশন/দিন অনুযায়ী লগ, সারাংশ সহ খরচ এবং ব্যবহারের ড্যাশবোর্ড
-- **UI** - বহুভাষিক ইন্টারফেস (30+ ভাষা, RTL সমর্থন), ফন্ট, ...
-- **ওয়েব মোড** - অ্যাডমিন ভূমিকা সহ বহু-ব্যবহারকারী সমর্থন
+- **অনুবাদ** - ডজন খানেক ভাষার মধ্যে, স্বয়ংক্রিয় উৎস সনাক্তকরণ সহ
+- **পুনরায় লেখা** - ব্যাকরণ ঠিক করুন, স্পষ্টতা উন্নত করুন, আনুষ্ঠানিক/অনানুষ্ঠানিক, সংক্ষিপ্ত করুন, প্রসারিত করুন, প্রযুক্তিগত
+- **রূপান্তর** - কাস্টম এআই প্রম্পট; প্রতিটি প্রম্পটের জন্য প্রম্পট তৈরি ও পরিচালনা করুন, ঐচ্ছিক লক্ষ্য ভাষা
+- **ইতিহাস** - ইনপুট/আউটপুট টেক্সট সহ সম্পূর্ণ ক্রিয়ান্বয়ন ইতিহাস, ফিল্টারিং এবং রপ্তানি
+- **মডেল এবং খরচ** - যেকোনো কনফিগার করা প্রদানকারী থেকে মডেল নির্বাচন করুন; লগ, মডেল/অপারেশন/দিন অনুযায়ী সারাংশ সহ খরচ এবং ব্যবহারের ড্যাশবোর্ড
+- **UI** - বহুভাষী ইন্টারফেস (30+ ভাষা, RTL সমর্থন), ফন্ট, ...
+- **ওয়েব মোড** - প্রশাসক ভূমিকা সহ বহু-ব্যবহারকারী সমর্থন
 - **ডেস্কটপ** - উইন্ডোজ এবং লিনাক্সের জন্য ইলেকট্রন অ্যাপ
-- **স্ব-হোস্টেড** - amd64 এবং arm64 (রাস্পবেরি পাই-প্রস্তুত) এর জন্য ডকার ইমেজ
+- **স্ব-হোস্টেড** - amd64 এবং arm64 (রাস্পবেরি পাই-রেডি) এর জন্য ডকার ইমেজ
 
 ইনস্টল করার পর, সমস্ত বৈশিষ্ট্যের সম্পূর্ণ গাইড দেখতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
 
 <small>**অন্যান্য ভাষায় পড়ুন:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,7 +54,7 @@ translation_models:
 
 - [স্ক্রিনশট](#screenshots)
 - [দ্রুত শুরু করুন](#quick-start)
-- [ওপেনরাউটার API কী পাওয়া](#getting-an-openrouter-api-key)
+- [একটি ওপেনরাউটার API কী পাওয়া](#getting-an-openrouter-api-key)
 - [কনফিগারেশন এবং পরিবেশ](#configuration-and-environment)
 - [ডেভেলপমেন্ট এবং আর্কিটেকচার](#development-and-architecture)
 - [সমস্যা রিপোর্ট করা](#reporting-issues)
@@ -279,31 +279,31 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 
 **কনফিগ ফাইলের অবস্থানসমূহ**
 
-| ডেপ্লয়মেন্ট         | কনফিগের অবস্থান                                   |
+| ডেপ্লয়মেন্ট | কনফিগ অবস্থান |
 | ------------------ | ------------------------------------------------- |
-| ইলেকট্রন (উইন্ডোজ) | `%APPDATA%\transrewrt\`                           |
-| ইলেকট্রন (লিনাক্স)   | `~/.config/transrewrt/`                           |
-| ওয়েব / ডকার       | `/app/data/config.json` (স্থায়ী করতে একটি ভলিউম ব্যবহার করুন) |
+| ইলেকট্রন (উইন্ডোজ) | `%APPDATA%\transrewrt\` |
+| ইলেকট্রন (লিনাক্স) | `~/.config/transrewrt/` |
+| ওয়েব / ডকার | `/app/data/config.json` (স্থায়ী করার জন্য একটি ভলিউম ব্যবহার করুন) |
 
 <br/>
 
 **পরিবেশ চলকসমূহ** (শুধুমাত্র ওয়েব/ডকারের জন্য; ইলেকট্রন স্থানীয় কনফিগ ফাইল ব্যবহার করে)
 
-| চলক             | বিবরণ                                                                  |
+| ভেরিয়েবল | বিবরণ |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | সার্ভার শোনার পোর্ট  (ডিফল্ট `5000` এ)                                  |
-| `CONFIG_PATH`        | কনফিগ ফাইলের পথ (ডিফল্ট `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | এক্সএআই এপিআই কী                                                                  |
+| `PORT` | সার্ভার শোনার পোর্ট (ডিফল্ট `5000` এ) |
+| `CONFIG_PATH`        | কনফিগ ফাইলের পাথ (ডিফল্ট `/app/data/config.json`)                |
+| `TZ` | সার্ভার-সাইড সময়ের জন্য সময় অঞ্চল (লগিং ইত্যাদি) (ডিফল্ট `Europe/London` এ) |
+| `OPENROUTER_API_KEY` | ওপেনরাউটার API কী |
+| `OPENAI_API_KEY` | ওপেনএআই API কী |
+| `CEREBRAS_API_KEY` | সেরেব্রাস API কী |
+| `ANTHROPIC_API_KEY` | অ্যানথ্রোপিক API কী |
+| `GOOGLE_API_KEY` | গুগল জেমিনি API কী |
+| `DEEPSEEK_API_KEY` | ডিপসিক API কী |
+| `GROQ_API_KEY` | গ্রোক API কী |
+| `MISTRAL_API_KEY` | মিস্ট্রাল API কী |
+| `OLLAMA_URL` | ওলামা বেস URL (যেমন `http://host.docker.internal:11434`) |
+| `XAI_API_KEY`        | xAI API কী                                                                  |
 
 আপনি যেসব প্রদানকারী ব্যবহার করেন তাদের জন্য শুধুমাত্র কনফিগার করুন। মডেল আইডি নেমস্পেস করা হয় (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ইত্যাদি)।
 

@@ -39,3 +39,19 @@ export function modelHeaderDisplayId(modelId) {
   if (id.startsWith("openrouter/")) return id.slice("openrouter/".length);
   return id;
 }
+
+/**
+ * Short label for compact footers: strip routing prefix, then keep only the segment after the last `/`
+ * (e.g. `openrouter/qwen/qwen3-235b-a22b-2507` → `qwen3-235b-a22b-2507`; `openai/gpt-4o` → `gpt-4o`).
+ * @param {string} modelId
+ * @returns {string}
+ */
+export function modelFooterDisplayId(modelId) {
+  const header = modelHeaderDisplayId(modelId);
+  const trimmed = String(header || "").trim();
+  if (!trimmed) return "";
+  const i = trimmed.lastIndexOf("/");
+  if (i < 0) return trimmed;
+  const tail = trimmed.slice(i + 1).trim();
+  return tail || trimmed;
+}

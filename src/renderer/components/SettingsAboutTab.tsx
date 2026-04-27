@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Link } from "@fluentui/react-components";
 import { ScrollText } from "lucide-react";
 
 import LogoImage from "../../../images/transrewrt_logo.svg";
@@ -9,7 +8,6 @@ import webAPI from "../utils/api/webApiClient";
 import ThirdPartyLicensesModal from "./ThirdPartyLicensesModal";
 
 const REPO_URL = typeof __REPO_URL__ !== "undefined" ? __REPO_URL__ : "https://github.com/wsj-br/transrewrt";
-/** Project LICENSE file on GitHub (Apache-2.0). */
 const APACHE_2_LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
 
 function openExternalUrl(url) {
@@ -22,12 +20,10 @@ function openExternalUrl(url) {
 }
 
 function isApache2License(license) {
-  const n = String(license || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "");
+  const n = String(license || "").trim().toLowerCase().replace(/\s+/g, "");
   return n === "apache-2.0" || n === "apache2.0";
 }
+
 const APP_NAME = "Transrewrt";
 const APP_VERSION = typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "-";
 const APP_DESCRIPTION = typeof __APP_DESCRIPTION__ !== "undefined" ? __APP_DESCRIPTION__ : "Transrewrt Application";
@@ -35,104 +31,9 @@ const APP_AUTHOR = typeof __APP_AUTHOR__ !== "undefined" ? __APP_AUTHOR__ : "";
 const APP_LICENSE = typeof __APP_LICENSE__ !== "undefined" ? __APP_LICENSE__ : "MIT";
 const COPYRIGHT_YEAR = new Date().getFullYear();
 
-/** Cached build timestamp so we don't read file / hit API every time the About tab is opened */
 let buildTimestampCache = null;
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "24px 32px",
-    gap: "16px",
-  },
-  logo: {
-    width: "120px",
-    height: "120px",
-    objectFit: "contain",
-    flexShrink: 0,
-  },
-  name: {
-    margin: 0,
-    fontSize: "32px",
-    fontWeight: 700,
-    color: tokens.colorNeutralForeground1,
-  },
-  versionContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: "8px",
-    padding: "0 0",
-    gap: "2px",
-  },
-  version: {
-    fontSize: "18px",
-    color: tokens.colorNeutralForeground2,
-    fontWeight: 500,
-  },  
-  build: {
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground2,
-    fontFamily: "monospace",
-    fontWeight: 300,
-  },
-  description: {
-    fontSize: "24px",
-    color: tokens.colorNeutralForeground2,
-    textAlign: "center",
-    maxWidth: "550px",
-    lineHeight: 1.6,
-    fontWeight: 600,
-    margin: 5,
-  },
-  link: {
-    fontSize: "14px",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "10px",
-    marginTop: "16px",
-    color: tokens.colorBrandForegroundLink,
-    "&:hover": {
-      color: tokens.colorBrandForegroundLinkHover,
-    },
-  },
-  githubIcon: {
-    width: "20px",
-    height: "20px",
-    flexShrink: 1,
-  },
-  meta: {
-    marginTop: "16px",
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground1,
-    textAlign: "center",
-  },
-  thirdPartyLicensesLine: {
-    width: "100%",
-    textAlign: "center",
-    marginTop: "10px",
-    marginBottom: "2px",
-  },
-  thirdPartyLicensesLink: {
-    fontSize: "14px",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    color: tokens.colorBrandForegroundLink,
-    "&:hover": {
-      color: tokens.colorBrandForegroundLinkHover,
-    },
-  },
-  thirdPartyLicensesIcon: {
-    width: "18px",
-    height: "18px",
-    flexShrink: 0,
-  },
-});
-
 const SettingsAboutTab = () => {
-  const styles = useStyles();
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language && String(i18n.language).toLowerCase().startsWith("en");
   const [buildTimestamp, setBuildTimestamp] = useState(buildTimestampCache);
@@ -157,64 +58,52 @@ const SettingsAboutTab = () => {
   }, []);
 
   return (
-    <div className={styles.root}>
-      <img
-        src={LogoImage}
-        alt={`${APP_NAME} logo`}
-        className={styles.logo}
-      />
-      <h3 className={styles.name}>{APP_NAME}</h3>
-      <div className={styles.versionContainer}>
-        <span className={styles.version}>{t("Version")} {APP_VERSION}</span>
-        {buildTimestamp ? <span className={styles.build}>{t("Build")} {buildTimestamp}</span> : null}
+    <div className="flex flex-col items-center p-6 gap-4">
+      <img src={LogoImage} alt={`${APP_NAME} logo`} className="w-28 h-28 object-contain shrink-0" />
+      <h3 className="app-name-gradient m-0 text-3xl font-bold">{APP_NAME}</h3>
+      <div className="flex flex-col items-center mt-2 gap-0.5">
+        <span className="text-lg text-muted-foreground font-medium">{t("Version")} {APP_VERSION}</span>
+        {buildTimestamp ? <span className="text-xs text-muted-foreground font-mono">{t("Build")} {buildTimestamp}</span> : null}
       </div>
-      <p className={styles.description}>{t(APP_DESCRIPTION)}</p>
-      <div className={styles.meta}>
-        {APP_AUTHOR && <span style={{ fontWeight: 600 }}>Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
+      <p className="text-xl text-muted-foreground text-center max-w-lg leading-relaxed font-semibold m-1">{t(APP_DESCRIPTION)}</p>
+      <div className="mt-4 text-sm text-center">
+        {APP_AUTHOR && <span className="font-semibold">Copyright © {COPYRIGHT_YEAR} {APP_AUTHOR}</span>}
         <br />
         {APP_LICENSE && (
           <span>
             {isEnglish ? null : "Licensed under ▪ "}
             {t("Licensed under")}{" "}
             {isApache2License(APP_LICENSE) ? (
-              <Link
+              <a
                 href={APACHE_2_LICENSE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.thirdPartyLicensesLink}
-                appearance="subtle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openExternalUrl(APACHE_2_LICENSE_URL);
-                }}
+                className="inline-flex items-center gap-1 text-primary hover:underline"
+                onClick={(e) => { e.preventDefault(); openExternalUrl(APACHE_2_LICENSE_URL); }}
               >
                 {t("Apache 2.0")}
-              </Link>
+              </a>
             ) : (
               APP_LICENSE
             )}
             .
           </span>
         )}
-        <span style={{ marginInlineStart: 10 }}>-</span>
-        <span style={{ marginInlineStart: 10 }}>
+        <span className="ms-2">-</span>
+        <span className="ms-2">
           {isEnglish ? null : "All rights reserved ▪ "}
           {t("All rights reserved.")}
         </span>
-        <div className={styles.thirdPartyLicensesLine}>
-          <Link
+        <div className="w-full text-center mt-2.5 mb-0.5">
+          <a
             href="#"
-            className={styles.thirdPartyLicensesLink}
-            appearance="subtle"
-            onClick={(e) => {
-              e.preventDefault();
-              setThirdPartyLicensesOpen(true);
-            }}
+            className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+            onClick={(e) => { e.preventDefault(); setThirdPartyLicensesOpen(true); }}
           >
-            <ScrollText className={styles.thirdPartyLicensesIcon} aria-hidden />
+            <ScrollText className="w-4 h-4 shrink-0" aria-hidden />
             {isEnglish ? null : "Third‑party licenses ▪ "}
             {t("Third‑party licenses")}
-          </Link>
+          </a>
         </div>
         <ThirdPartyLicensesModal
           open={thirdPartyLicensesOpen}
@@ -222,14 +111,11 @@ const SettingsAboutTab = () => {
         />
         <br />
         <i>
-              Product names and icons belong to their respective owners and are used for identification purposes only.  <br />
-              This software is not affiliated with or endorsed by any of the mentioned brands.
-          
+          Product names and icons belong to their respective owners and are used for identification purposes only. <br />
+          This software is not affiliated with or endorsed by any of the mentioned brands.
           {!isEnglish ? (
             <>
-              <br />
-              ▪
-              <br />
+              <br />▪<br />
               {t("Product names and icons belong to their respective owners and are used for identification purposes only.")}
               <br />
               {t("This software is not affiliated with or endorsed by any of the mentioned brands.")}
@@ -237,20 +123,16 @@ const SettingsAboutTab = () => {
           ) : null}
         </i>
       </div>
-      <Link
+      <a
         href={REPO_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.link}
-        appearance="subtle"
-        onClick={(e) => {
-          e.preventDefault();
-          openExternalUrl(REPO_URL);
-        }}
+        className="inline-flex items-center gap-2.5 mt-4 text-sm text-primary hover:underline"
+        onClick={(e) => { e.preventDefault(); openExternalUrl(REPO_URL); }}
       >
-        <img src={GitHubInvertocat} alt="" className={styles.githubIcon} />
+        <img src={GitHubInvertocat} alt="" className="w-5 h-5 shrink-0" />
         <b>{REPO_URL}</b>
-      </Link>
+      </a>
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
 import PropTypes from "prop-types";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 /** After each `---`, the next 4 lines are: blank, package@version, license id, first copyright/body line. */
 const HEADER_LINES_AFTER_SEPARATOR = 2;
 
-function buildThirdPartyLicenseSpans(text, headerLineClass) {
+function buildThirdPartyLicenseSpans(text) {
   const lines = text.split(/\r?\n/);
   const out = [];
   let key = 0;
@@ -36,7 +37,7 @@ function buildThirdPartyLicenseSpans(text, headerLineClass) {
       i += 1;
       for (let k = 0; k < HEADER_LINES_AFTER_SEPARATOR && i < lines.length; k += 1, i += 1) {
         out.push(
-          <span key={key++} className={headerLineClass}>
+          <span key={key++} className="text-blue-500 dark:text-blue-400">
             {lines[i]}
             {"\n"}
           </span>,
@@ -51,89 +52,7 @@ function buildThirdPartyLicenseSpans(text, headerLineClass) {
   return out;
 }
 
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-    padding: "16px",
-    boxSizing: "border-box",
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "20px 24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    width: "min(880px, 100%)",
-    maxWidth: "100%",
-    maxHeight: "min(90vh, 900px)",
-    display: "flex",
-    flexDirection: "column",
-    boxSizing: "border-box",
-    minHeight: 0,
-    textAlign: "left",
-  },
-  title: {
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-    flexShrink: 0,
-    textAlign: "left",
-  },
-  scrollBody: {
-    flex: 1,
-    minHeight: 0,
-    overflow: "auto",
-    margin: 0,
-    padding: "12px",
-    borderRadius: "4px",
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
-    backgroundColor: tokens.colorNeutralBackground2,
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-    fontSize: "11px",
-    lineHeight: 1.45,
-    whiteSpace: "pre-wrap",
-    overflowWrap: "anywhere",
-    color: tokens.colorNeutralForeground1,
-    tabSize: 4,
-    textAlign: "left",
-  },
-  headerLine: {
-    color: tokens.colorPaletteBlueForeground2,
-  },
-  loading: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    minHeight: "120px",
-  },
-  error: {
-    margin: 0,
-    fontSize: "14px",
-    color: tokens.colorPaletteRedForeground1,
-    lineHeight: 1.4,
-    flex: 1,
-    minHeight: "80px",
-    display: "flex",
-    alignItems: "flex-start",
-    textAlign: "left",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-    marginTop: "16px",
-    flexShrink: 0,
-  },
-});
-
 const ThirdPartyLicensesModal = ({ open, onClose }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [text, setText] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -179,42 +98,49 @@ const ThirdPartyLicensesModal = ({ open, onClose }) => {
 
   const licenseSpans = useMemo(() => {
     if (text == null) return null;
-    return buildThirdPartyLicenseSpans(text, styles.headerLine);
-  }, [text, styles.headerLine]);
+    return buildThirdPartyLicenseSpans(text);
+  }, [text]);
 
   if (!open) return null;
 
   return (
     <div
-      className={styles.overlay}
+      className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
       role="presentation"
     >
       <div
-        className={styles.modal}
+        className="bg-card border border-border rounded-lg shadow-2xl flex flex-col w-full max-w-3xl max-h-[90vh] min-h-0 text-start"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="third-party-licenses-title"
       >
-        <h2 id="third-party-licenses-title" className={styles.title}>
-          {t("Third‑party licenses")}
-        </h2>
-        {loading ? (
-          <div className={styles.loading}>
-            <Spinner size="large" label={t("Loading…")} />
-          </div>
-        ) : error ? (
-          <p className={styles.error}>{t("Could not load third-party licenses.")}</p>
-        ) : (
-          <pre className={styles.scrollBody}>{licenseSpans}</pre>
-        )}
-        <div className={styles.actions}>
-          <Button appearance="primary" onClick={onClose}>
-            {t("Close")}
-          </Button>
+        <div className="px-6 pt-5 pb-0 shrink-0">
+          <h2 id="third-party-licenses-title" className="text-lg font-semibold mb-4">
+            {t("Third‑party licenses")}
+          </h2>
+        </div>
+        <div className="flex-1 min-h-0 overflow-auto px-6">
+          {loading ? (
+            <div className="flex items-center justify-center min-h-[120px] gap-2 text-muted-foreground">
+              <Loader2 className="h-5 w-5 animate-spin" />
+              <span className="text-sm">{t("Loading…")}</span>
+            </div>
+          ) : error ? (
+            <p className="text-sm text-destructive py-4">
+              {t("Could not load third-party licenses.")}
+            </p>
+          ) : (
+            <pre className="rounded border border-border bg-muted p-3 font-mono text-[11px] leading-relaxed whitespace-pre-wrap break-all text-foreground mb-4">
+              {licenseSpans}
+            </pre>
+          )}
+        </div>
+        <div className="flex justify-end gap-2 px-6 py-4 shrink-0">
+          <Button onClick={onClose}>{t("Close")}</Button>
         </div>
       </div>
     </div>

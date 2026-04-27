@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:33.592Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:32.963Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: hu
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
 
-- **Fordítás** – több tucat nyelv között, automatikus forrásnyelv-felismeréssel
-- **Átírás** – helyesírás-javítás, érthetőség javítása, formális/formátlan stílus, rövidítés, kibontás, technikai szöveg
-- **Átalakítás** – egyéni MI-parancsok; parancsok létrehozása és kezelése, választható cél nyelve minden parancs számára
-- **Előzmények** – teljes végrehajtási előzmények bemeneti és kimeneti szöveggel, szűréssel és exportálással
-- **Modellek és költség** – modellek kiválasztása bármely beállított szolgáltatótól; költség- és használati műszerfal naplóval, összegzésekkel modell/szolgáltatás/nap szerint
-- **UI** – többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
-- **Webmód** – többfelhasználós támogatás adminisztrációs szerepkörökkel
-- **Asztali** – Electron alkalmazás Windows és Linux rendszerekre
-- **Önállóan üzemeltethető** – Docker-rendszerkép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
+- **Fordítás** – tucatnyi nyelv között, automatikus forrásnyelv-felismeréssel
+- **Átírás** – helyesírás-javítás, világosabbá tétel, formális/messzeesett stílus, rövidítés, bővítés, technikai szöveg
+- **Átalakítás** – egyéni MI-parancsok; parancsok létrehozása és kezelése, választható célnyelv parancsonként
+- **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálási lehetőséggel
+- **Modellek és költségek** – válasszon modelleket bármely beállított szolgáltatótól; költség- és használati irányítópult naplóval, összegzésekkel modell/művelet/nap szerint
+- **Felhasználói felület (UI)** – többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
+- **Webes mód** – többfelhasználós támogatás adminisztrátori szerepkörökkel
+- **Asztali alkalmazás** – Electron alkalmazás Windows és Linux rendszerekre
+- **Saját kiszolgálón futtatható** – Docker-rendszerkép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 
 A telepítést követően tekintse meg a **[Felhasználói útmutatót](USER-GUIDE.hu.md)**, amely részletesen bemutatja az összes funkciót.
 
 <small>**Olvassa más nyelveken:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,9 +54,9 @@ A telepítést követően tekintse meg a **[Felhasználói útmutatót](USER-GUI
 - [Képernyőképek](#screenshots)
 - [Gyors indítás](#quick-start)
 - [OpenRouter API-kulcs beszerzése](#getting-an-openrouter-api-key)
-- [Konfiguráció és környezet](#configuration-and-environment)
+- [Beállítások és környezet](#configuration-and-environment)
 - [Fejlesztés és architektúra](#development-and-architecture)
-- [Hibabejelentés](#reporting-issues)
+- [Hibajelentés](#reporting-issues)
 - [Felelősségkizárás](#disclaimer)
 - [Licenc](#license)
 
@@ -278,11 +278,11 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 
 **Konfigurációs fájlok helye**
 
-| Telepítés | Konfigurációs fájl helye |
+| Telepítés | Konfigurációs hely |
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
-| Web / Docker | `/app/data/config.json` (használj kötetet az adatmegőrzéshez) |
+| Web / Docker | `/app/data/config.json` (használjon kötetet az adatmegőrzéshez) |
 
 <br/>
 
@@ -290,19 +290,19 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 
 | Változó | Leírás |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT` | A szerver figyelő portja (alapértelmezett: `5000`) |
-| `CONFIG_PATH` | A konfigurációs fájl elérési útja (alapértelmezett: `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY` | xAI API kulcs |
+| `PORT` | A kiszolgáló figyelő portja (alapértelmezett: `5000`) |
+| `CONFIG_PATH`        | A konfigurációs fájl elérési útja (alapértelmezett: `/app/data/config.json`)                |
+| `TZ` | A kiszolgáló oldali időzóna (naplózás stb.) (alapértelmezett: `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API-kulcs |
+| `OPENAI_API_KEY` | OpenAI API-kulcs |
+| `CEREBRAS_API_KEY` | Cerebras API-kulcs |
+| `ANTHROPIC_API_KEY` | Anthropic API-kulcs |
+| `GOOGLE_API_KEY` | Google Gemini API-kulcs |
+| `DEEPSEEK_API_KEY` | DeepSeek API-kulcs |
+| `GROQ_API_KEY` | Groq API-kulcs |
+| `MISTRAL_API_KEY` | Mistral API-kulcs |
+| `OLLAMA_URL` | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
+| `XAI_API_KEY`        | xAI API-kulcs                                                                  |
 
 Csak azokat a szolgáltatókat konfiguráld, amelyeket használsz. A modellazonosítók névteresek (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, stb.).
 

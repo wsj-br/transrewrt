@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:27:34.881Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:05.856Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ca
 source_file_path: README.md
 translation_models:
@@ -21,12 +21,12 @@ translation_models:
 
 Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats — utilitzant múltiples proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- **Tradueix** - entre desenes d'idiomes, amb detecció automàtica de la llengua d'origen
-- **Reescriptura** - corregeix gramàtica, millora la claredat, formal/informal, escurça, amplia, tècnic
-- **Transformació** - prompts d'IA personalitzats; crea i gestiona prompts, idioma de destinació opcional per a cada prompt
+- **Traduir** - entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
+- **Reescriure** - corregir gramàtica, millorar la claredat, formal/informal, acurçar, ampliar, tècnic
+- **Transformar** - indicacions personalitzades d'IA; crear i gestionar indicacions, idioma de destinació opcional per a cada indicació
 - **Historial** - historial complet d'execucions amb text d'entrada/sortida, filtres i exportació
-- **Models i cost** - tria models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
-- **Interfície d'usuari** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
+- **Models i cost** - trieu models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
+- **Interfície d'usuari (UI)** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
 - **Mode web** - suport multiusuari amb rols d'administrador
 - **Escriptori** - aplicació Electron per a Windows i Linux
 - **Autoallotjat** - imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
@@ -35,7 +35,7 @@ Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per obteni
 
 <small>**Llegeix en altres idiomes:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -57,7 +57,7 @@ Un cop instal·lat, consulta la **[Guia d'usuari](USER-GUIDE.ca.md)** per obteni
 - [Obtenció d'una clau API d'OpenRouter](#getting-an-openrouter-api-key)
 - [Configuració i entorn](#configuration-and-environment)
 - [Desenvolupament i arquitectura](#development-and-architecture)
-- [Informació de problemes](#reporting-issues)
+- [Informar de problemes](#reporting-issues)
 - [Avís legal](#disclaimer)
 - [Llicència](#license)
 
@@ -283,7 +283,7 @@ També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, Deep
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (useu un volum per mantenir-lo) |
+| Web / Docker       | `/app/data/config.json` (utilitzeu un volum per mantenir les dades) |
 
 <br/>
 
@@ -292,18 +292,18 @@ També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, Deep
 | Variable             | Descripció                                                                  |
 |----------------------|------------------------------------------------------------------------------|
 | `PORT`               | Port d'escolta del servidor (per defecte `5000`)                                  |
-| `CONFIG_PATH`        | Camí al fitxer de configuració (per defecte `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | Clau d'API de xAI                                                                  |
+| `CONFIG_PATH`        | Ruta al fitxer de configuració (per defecte `/app/data/config.json`)                |
+| `TZ`                 | zona horària per a l'hora del servidor (registres, etc.) (per defecte `Europe/London`) |
+| `OPENROUTER_API_KEY` | Clau API d'OpenRouter                                                           |
+| `OPENAI_API_KEY`     | Clau API d'OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | Clau API de Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | Clau API d'Anthropic                                                            |
+| `GOOGLE_API_KEY`     | Clau API de Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | Clau API de DeepSeek                                                             |
+| `GROQ_API_KEY`       | Clau API de Groq                                                                 |
+| `MISTRAL_API_KEY`    | Clau API de Mistral                                                              |
+| `OLLAMA_URL`         | URL base d'Ollama (p. ex. `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | clau d'API xAI                                                                  |
 
 Configureu només els proveïdors que utilitzeu. Els IDs dels models tenen espai de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

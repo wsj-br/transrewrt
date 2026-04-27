@@ -1,10 +1,18 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Checkbox, Input, Text, tokens } from '@fluentui/react-components';
 import { Languages, Trash2, Globe } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { ALL_CONTENT_LANGUAGE_NAMES, findUILanguageEntry, isPredefinedContentLanguage } from '../utils/misc/languageConstants';
 import { getUILanguageLabel } from "ai-i18n-tools/runtime";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import {
+  settingsFormGroup,
+  settingsLanguagesSection,
+  settingsSection,
+  settingsTabContentLanguages,
+} from "./settings/settingsLayoutClasses";
 
 /** Minimum width per column so long labels (e.g. "Português (PT) / Portuguese (PT)") don't overlap. */
 const MIN_COLUMN_WIDTH_PX = 220;
@@ -77,18 +85,16 @@ const SettingsLanguagesTab = ({
     return () => ro.disconnect();
   }, []);
 
-  const sectionTitleStyle = { display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '36px' };
-
   return (
-    <div className="tab-content languages-tab">
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
-          <Languages size={20} />
+    <div className={settingsTabContentLanguages}>
+      <div className={settingsSection}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <Languages size={18} />
           {t('Most used languages')}
-        </Text>
-        <div style={{ paddingInlineStart: '24px' }}>
-          <p>{t('Select languages to appear in the top of list:')}</p>
-          <div 
+        </h3>
+        <div className="ps-6">
+          <p className="mb-4 text-sm">{t('Select languages to appear in the top of list:')}</p>
+          <div
             ref={gridRef}
             className="languages-grid"
             style={{
@@ -98,50 +104,40 @@ const SettingsLanguagesTab = ({
             }}
           >
             {columns.map((column, colIndex) => (
-              <div key={colIndex} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div key={colIndex} className="flex flex-col gap-2">
                 {column.map(lang => {
                   const isCustom = !isPredefinedContentLanguage(lang);
                   const uiEntry = findUILanguageEntry(lang);
                   const displayLabel = uiEntry ? getUILanguageLabel(uiEntry, t) : lang;
                   return (
-                    <div key={lang} style={{ display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
+                    <div key={lang} className="flex items-center gap-1 whitespace-nowrap">
                       <Checkbox
+                        id={`lang-${lang}`}
                         checked={selectedLanguages.has(lang)}
-                        onChange={(e) => {
+                        onCheckedChange={(checked) => {
                           const newSet = new Set(selectedLanguages);
-                          if (e.target.checked) newSet.add(lang);
+                          if (checked) newSet.add(lang);
                           else newSet.delete(lang);
                           onSelectedLanguagesChange(newSet);
-                          // Auto-save: persist immediately
                           onSetting('top_languages', Array.from(newSet));
                         }}
-                        label={displayLabel}
                       />
+                      <label htmlFor={`lang-${lang}`} className="text-sm cursor-pointer">{displayLabel}</label>
                       {isCustom && (
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            // Copy the language name to the custom language input before deleting
                             onCustomLanguageChange(lang);
                             const newSet = new Set(selectedLanguages);
                             newSet.delete(lang);
                             onSelectedLanguagesChange(newSet);
-                            // Auto-save: persist immediately
                             onSetting('top_languages', Array.from(newSet));
                           }}
-                          style={{
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '2px 4px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            color: tokens.colorNeutralForeground3,
-                          }}
+                          className="p-[2px_4px] text-muted-foreground hover:text-foreground flex items-center"
                           title={t('Delete custom language')}
                         >
-                          <Trash2 size={14} />
+                          <Trash2 size={13} />
                         </button>
                       )}
                     </div>
@@ -153,43 +149,41 @@ const SettingsLanguagesTab = ({
         </div>
       </div>
 
-      <div className="languages-section section">
-        <Text as="h3" size={500} weight="semibold" style={{ ...sectionTitleStyle, marginTop: '36px' }}>
-          <Globe size={20} />
+      <div className={settingsLanguagesSection}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-9 mb-9">
+          <Globe size={18} />
           {t('Custom Language')}
-        </Text>
-        <div style={{ paddingInlineStart: '24px' }}>
-          <div className="form-group" style={{ marginTop: 0 }}>
+        </h3>
+        <div className="ps-6">
+          <div className={cn(settingsFormGroup, "mt-0")}>
             <Input
-            type="text"
-            value={customLanguage}
-            onChange={(e) => onCustomLanguageChange(e.target.value)}
-            onBlur={(e) => {
-              const lang = e.target.value.trim();
-              if (lang && !selectedLanguages.has(lang) && !isPredefinedContentLanguage(lang)) {
-                const newSet = new Set(selectedLanguages);
-                newSet.add(lang);
-                onSelectedLanguagesChange(newSet);
-                // Auto-save: persist immediately
-                onSetting('top_languages', Array.from(newSet));
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                const lang = customLanguage.trim();
+              type="text"
+              value={customLanguage}
+              onChange={(e) => onCustomLanguageChange(e.target.value)}
+              onBlur={(e) => {
+                const lang = e.target.value.trim();
                 if (lang && !selectedLanguages.has(lang) && !isPredefinedContentLanguage(lang)) {
                   const newSet = new Set(selectedLanguages);
                   newSet.add(lang);
                   onSelectedLanguagesChange(newSet);
-                  onCustomLanguageChange('');
-                  // Auto-save: persist immediately
                   onSetting('top_languages', Array.from(newSet));
                 }
-              }
-            }}
-            placeholder={t('Enter custom language name and press Enter')}
-            style={{ width: '50%'}}
-          />
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  const lang = customLanguage.trim();
+                  if (lang && !selectedLanguages.has(lang) && !isPredefinedContentLanguage(lang)) {
+                    const newSet = new Set(selectedLanguages);
+                    newSet.add(lang);
+                    onSelectedLanguagesChange(newSet);
+                    onCustomLanguageChange('');
+                    onSetting('top_languages', Array.from(newSet));
+                  }
+                }
+              }}
+              placeholder={t('Enter custom language name and press Enter')}
+              className="w-1/2"
+            />
           </div>
         </div>
       </div>

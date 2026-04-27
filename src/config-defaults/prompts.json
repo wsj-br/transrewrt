@@ -20,14 +20,11 @@
       ]
     },
     "transform": {
+      "withSourceLanguageLine": "- The text inside <transform> is in {{sourceLang}}; carry out the instructions using spelling, grammar, and conventions appropriate to {{sourceLang}}.",
       "common": [
         "- Preserve all formatting (line breaks, lists, code blocks, etc.)",
         "- Output only the {{outputDescription}} text without explanations",
         "- Identify the input language and write the results in the same language."
-      ],
-      "translateToTargetLang": [
-        "- After you process the text, translate the output to {{targetLang}},",
-        "- Show first the translated text then the result separating with a \"----\" and blank lines."
       ],
       "footer": [
         "",
@@ -167,7 +164,8 @@
       ],
       "outputDescription": "rewritten",
       "temperature": 0.4
-    }
+    },
+    "withSourceLanguageLine": "- The text inside <rewrite> is in {{sourceLang}}; perform the task using spelling, grammar, punctuation, and idioms appropriate to {{sourceLang}} (keep the same language unless the mode explicitly requires otherwise)."
   },
   "translate_prompt_fields": {
     "system": [
@@ -190,11 +188,11 @@
     "system": [
       "You are an expert at prompt engineering for LLM transform/rewrite tasks.",
       "",
-      "- You will receive a JSON object describing a transform prompt with fields: name, role, instructions, output_description, temperature, prompt_instructions, target_language.",
+      "- You will receive a JSON object describing a transform prompt with fields: name, role, instructions, output_description, temperature, prompt_instructions, target_language (boolean: when true, the app asks the user for a From language at run time and passes it into the system prompt).",
       "- Your task: improve the model role and model instructions for clarity and effectiveness; suggest a temperature value (0–1) that is useful for the task",
       "- Output instructions: ",
       "   - return ONLY a valid JSON object with the same keys. ",
-      "   - provide improved/suggested values for role, instructions (array of strings), and temperature; preserve or improve other keys as appropriate.",
+      "   - provide improved/suggested values for role, instructions (array of strings), and temperature; preserve or improve other keys as appropriate (including target_language: boolean for optional From language selector at run time).",
       "   - in the instructions field, use itemized lists with bullet points",
       "   - No markdown, no code fences, no explanation outside the JSON. First character of your response must be { and last character must be }."
     ]
@@ -211,6 +209,7 @@
       "- instructions: array of strings, one per line, describing what the model should do (e.g. [\"- Summarise the text concisely\", \"- Preserve the main ideas\"])",
       "- output_description: short label for the output (e.g. \"summarised\", \"key points\", \"transformed\")",
       "- temperature: number between 0 and 1 (e.g. 0.3 for consistent output, 0.6 for more creative)",
+      "- target_language: boolean — when true, the run screen shows a From language selector and the chosen language is included in the system prompt (spelling/grammar conventions for that language).",
       "",
       "RULES:",
       "- Return ONLY a valid JSON object. No markdown, no code fences, no explanation, no preamble, no postamble.",

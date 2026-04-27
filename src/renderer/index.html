@@ -9,8 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transrewrt</title>
     <style>
-      html, body { margin: 0; height: 100%; background: #12141d; color: #fff; }
-      .app-loading { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; font-family: system-ui, sans-serif; font-size: 14px; color: rgba(255,255,255,0.9); }
+      /* Do not set color/background on html/body: those rules are unlayered and would
+         override Tailwind @layer base (body text/background), breaking light theme. */
+      html, body { margin: 0; height: 100%; }
+      .app-loading {
+        box-sizing: border-box;
+        min-height: 100vh;
+        margin: 0;
+        background: #12141d;
+        color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+      }
       .app-loading svg { width: 64px; height: auto; flex-shrink: 0; }
     </style>
   </head>

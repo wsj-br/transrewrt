@@ -1,30 +1,12 @@
 /**
  * Reusable password input with show/hide toggle.
- * Uses Fluent v9 Field + Input with appearance="outline" and contentAfter for the eye toggle.
  */
-
 import { useState } from "react";
-import { Field, Input } from "@fluentui/react-components";
-import { EyeRegular, EyeOffRegular } from "@fluentui/react-icons";
+import { Eye, EyeOff } from "lucide-react";
 import PropTypes from "prop-types";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-/**
- * @param {object} props
- * @param {string} [props.id]
- * @param {string} [props.label] - Optional label text (rendered above input via Field)
- * @param {string} [props.value]
- * @param {(value: string) => void} [props.onChange]
- * @param {string} [props.placeholder]
- * @param {boolean} [props.disabled]
- * @param {boolean} [props.autoFocus]
- * @param {string} [props.autoComplete]
- * @param {string} [props.name]
- * @param {React.CSSProperties} [props.style] - Applied to the outer wrapper
- * @param {string} [props.showPasswordAriaLabel]
- * @param {string} [props.hidePasswordAriaLabel]
- * @param {boolean} [props.showPassword] - Controlled visibility (e.g. when parent reveals after "Generate")
- * @param {(show: boolean) => void} [props.onShowPasswordChange]
- */
 const PasswordInput = ({
   id,
   label,
@@ -50,46 +32,44 @@ const PasswordInput = ({
     onShowPasswordChange?.(next);
   };
 
-  const handleChange = (ev, data) => {
+  const handleChange = (ev) => {
     if (typeof onChange === "function") {
-      onChange(typeof data?.value === "string" ? data.value : "");
+      onChange(ev.target.value);
     }
   };
 
-  const eyeToggle = (
-    <span
-      role="button"
-      tabIndex={-1}
-      onClick={() => setShow((s) => !s)}
-      aria-label={show ? hidePasswordAriaLabel : showPasswordAriaLabel}
-      style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", background: "none", border: "none", padding: 0, color: "inherit" }}
-    >
-      {show ? <EyeOffRegular /> : <EyeRegular />}
-    </span>
-  );
-
   const input = (
-    <Input
-      id={id}
-      name={name}
-      type={show ? "text" : "password"}
-      value={value}
-      onChange={handleChange}
-      placeholder={placeholder}
-      disabled={disabled}
-      autoFocus={autoFocus}
-      autoComplete={autoComplete}
-      appearance="outline"
-      style={{ width: "100%" }}
-      contentAfter={eyeToggle}
-    />
+    <div className="relative">
+      <Input
+        id={id}
+        name={name}
+        type={show ? "text" : "password"}
+        value={value}
+        onChange={handleChange}
+        placeholder={placeholder}
+        disabled={disabled}
+        autoFocus={autoFocus}
+        autoComplete={autoComplete}
+        className="pe-9 w-full"
+      />
+      <button
+        type="button"
+        tabIndex={-1}
+        onClick={() => setShow((s) => !s)}
+        aria-label={show ? hidePasswordAriaLabel : showPasswordAriaLabel}
+        className="absolute end-2 top-1/2 -translate-y-1/2 flex items-center text-muted-foreground hover:text-foreground p-0.5 rounded"
+      >
+        {show ? <EyeOff size={16} /> : <Eye size={16} />}
+      </button>
+    </div>
   );
 
   if (label != null && label !== "") {
     return (
-      <Field label={label} style={style}>
+      <div style={style} className="flex flex-col gap-1.5">
+        <Label htmlFor={id}>{label}</Label>
         {input}
-      </Field>
+      </div>
     );
   }
 

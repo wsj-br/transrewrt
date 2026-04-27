@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:28:08.114Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:13.362Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: zh-CN
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 AI 驱动的文本工具：支持多种语言互译、不同风格的改写以及通过自定义提示词进行转换——使用多个 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和本地 Ollama）。可作为桌面应用（Electron）或自托管 Web 应用（Docker）运行。
 
-- **翻译** - 支持数十种语言之间的互译，并具备源语言自动检测功能
-- **改写** - 修正语法、提升清晰度、调整正式/非正式语气、缩短或扩展文本、技术化表达等
-- **转换** - 使用自定义 AI 提示词；创建和管理提示词，每个提示词可选目标语言
-- **历史** - 完整的执行历史记录，包含输入/输出文本、筛选和导出功能
-- **模型与费用** - 从任意已配置的提供商中选择模型；提供费用和使用情况仪表盘，支持按模型/操作/日期查看日志和汇总信息
-- **用户界面** - 多语言界面（支持 30 多种语言，含 RTL 布局）、字体设置等
-- **Web 模式** - 支持多用户及管理员角色
-- **桌面版** - 适用于 Windows 和 Linux 的 Electron 应用
-- **自托管** - 提供适用于 amd64 和 arm64（兼容树莓派）的 Docker 镜像
+- **翻译** - 支持数十种语言之间的互译，具备自动源语言检测功能
+- **重写** - 修正语法、提升表达清晰度、调整正式/非正式语气、缩短或扩展文本、技术性改写
+- **转换** - 自定义AI提示词；可创建和管理提示词，每个提示词可选目标语言
+- **历史记录** - 完整的执行历史，包含输入/输出文本、筛选功能和导出选项
+- **模型与成本** - 可从任意已配置的提供商中选择模型；提供成本与使用情况仪表板，包含日志以及按模型/操作/天汇总的统计信息
+- **用户界面** - 多语言界面（支持30多种语言，包含从右到左书写语言支持）、字体等
+- **网页模式** - 支持多用户，具备管理员角色管理功能
+- **桌面端** - 适用于 Windows 和 Linux 的 Electron 应用
+- **自托管** - 提供适用于 amd64 与 arm64 架构的 Docker 镜像（兼容树莓派）
 
 安装后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 以全面了解所有功能。
 
 <small>**阅读其他语言版本：** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -283,7 +283,7 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (使用卷来持久化) |
+| 网页版 / Docker       | `/app/data/config.json` (使用卷以持久化数据) |
 
 <br/>
 
@@ -291,18 +291,18 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 
 | 变量             | 说明                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | 服务器监听端口 (默认为 `5000`)                                  |
-| `CONFIG_PATH`        | 配置文件路径 (默认为 `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT`               | 服务器监听端口（默认为 `5000`）                                  |
+| `CONFIG_PATH`        | 配置文件的路径（默认为 `/app/data/config.json`）                |
+| `TZ`                 | 服务器端时区（用于日志等，默认为 `Europe/London`） |
+| `OPENROUTER_API_KEY` | OpenRouter API 密钥                                                           |
+| `OPENAI_API_KEY`     | OpenAI API 密钥                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API 密钥                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API 密钥                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API 密钥                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API 密钥                                                             |
+| `GROQ_API_KEY`       | Groq API 密钥                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API 密钥                                                              |
+| `OLLAMA_URL`         | Ollama 基础 URL（例如 `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API 密钥                                                                  |
 
 仅配置您使用的提供商。模型 ID 是带命名空间的（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。

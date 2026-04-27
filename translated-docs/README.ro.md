@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:11.380Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:50.934Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ro
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate – utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
-- **Traduce** - între zeci de limbi, cu detectare automată a sursei
-- **Rescriere** - corectare gramaticală, îmbunătățește claritatea, stil formal/informal, scurtează, extinde, tehnic
-- **Transformare** - prompturi AI personalizate; creează și gestionează prompturi, limbă țintă opțională per prompt
-- **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Modele și cost** - alege modele din orice furnizor configurat; panouri de control pentru cost și utilizare cu jurnal, rezumate pe model/operațiune/zi
-- **Interfață utilizator** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
+- **Traducere** - între zeci de limbi, cu detectare automată a limbii sursă
+- **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
+- **Transformare** - prompturi personalizate AI; creați și gestionați prompturi, limbă țintă opțională pentru fiecare prompt
+- **Istoric** - istoric complet al execuțiilor cu textele de intrare/ieșire, filtrare și export
+- **Modele și costuri** - alegeți modele din orice furnizor configurat; tablouri de bord pentru costuri și utilizare cu jurnale, rezumate pe model/operațiune/zi
+- **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
-- **Desktop** - aplicație Electron pentru Windows și Linux
+- **Aplicație desktop** - aplicație Electron pentru Windows și Linux
 - **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (compatibil cu Raspberry Pi)
 
 După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru o prezentare completă a tuturor funcțiilor.
 
 <small>**Citește în alte limbi:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -58,7 +58,7 @@ După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentr
 - [Configurare și mediu](#configuration-and-environment)
 - [Dezvoltare și arhitectură](#development-and-architecture)
 - [Raportarea problemelor](#reporting-issues)
-- [Declinare de răspundere](#disclaimer)
+- [Declin de răspundere](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -291,19 +291,19 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 
 | Variabilă             | Descriere                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Portul pe care ascultă serverul  (implicit `5000`)                                  |
-| `CONFIG_PATH`        | Calea către fișierul de configurație (implicit `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | Cheia API xAI                                                                  |
+| `PORT`               | Portul pe care ascultă serverul (implicit `5000`)                                  |
+| `CONFIG_PATH`        | Calea către fișierul de configurare (implicit `/app/data/config.json`)                |
+| `TZ`                 | fus orar pentru timpul de pe server (jurnalizare etc.) (implicit `Europe/London`) |
+| `OPENROUTER_API_KEY` | Cheie API OpenRouter                                                           |
+| `OPENAI_API_KEY`     | Cheie API OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | Cheie API Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | Cheie API Anthropic                                                            |
+| `GOOGLE_API_KEY`     | Cheie API Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | Cheie API DeepSeek                                                             |
+| `GROQ_API_KEY`       | Cheie API Groq                                                                 |
+| `MISTRAL_API_KEY`    | Cheie API Mistral                                                              |
+| `OLLAMA_URL`         | URL de bază Ollama (ex: `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | Cheie API xAI                                                                  |
 
 Configurați doar furnizorii pe care îi utilizați. ID-urile modelelor sunt separate prin namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 

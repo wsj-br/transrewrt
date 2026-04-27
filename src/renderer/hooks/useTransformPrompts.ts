@@ -43,7 +43,7 @@ export function useTransformPrompts({
   const [editingPrompt, setEditingPrompt] = useState(null);
   const [inputTextTransform, setInputTextTransform] = useState("");
   const [outputTextTransform, setOutputTextTransform] = useState("");
-  const [transformTargetLang, setTransformTargetLang] = useState("");
+  const [transformFromLang, setTransformFromLang] = useState("Detect Language");
   const [transformTestInput, setTransformTestInput] = useState("");
   const [transformTestOutput, setTransformTestOutput] = useState("");
   const [transformTestMeta, setTransformTestMeta] = useState("");
@@ -90,7 +90,7 @@ export function useTransformPrompts({
   const handleTransformPromptSelect = (id, name) => {
     setTransformPromptId(id);
     updateSettings({ transform_prompt: name ?? id });
-    setTransformTargetLang("");
+    setTransformFromLang("Detect Language");
   };
 
   const handleTransformNewPrompt = () => {
@@ -345,8 +345,8 @@ export function useTransformPrompts({
     setInputTextTransform,
     outputTextTransform,
     setOutputTextTransform,
-    transformTargetLang,
-    setTransformTargetLang,
+    transformFromLang,
+    setTransformFromLang,
     transformTestInput,
     setTransformTestInput,
     transformTestOutput,

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:18.451Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:23:12.211Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: nl
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
 
-- **Vertalen** - tussen tientallen talen, met automatische herkenning van de brontaal
-- **Herschrijving** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, inkorten, uitbreiden, technisch
-- **Transformatie** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
-- **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer- en uitvoertekst, filteren en exporteren
-- **Modellen & kosten** - kies modellen van elke geconfigureerde provider; dashboards voor kosten en gebruik met log, samenvattingen per model/operatie/dag
+- **Vertalen** - tussen tientallen talen, met automatische detectie van de brontaal
+- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, verkorten, uitbreiden, technisch
+- **Transformeren** - aangepaste AI-prompts; prompts maken en beheren, optionele doeltaal per prompt
+- **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
+- **Modellen en kosten** - kies modellen van elke geconfigureerde provider; kosten- en gebruiksdashboards met log, samenvattingen per model/operatie/dag
 - **UI** - meertalige interface (30+ talen, ondersteuning voor RTL), lettertypen, ...
 - **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
 - **Desktop** - Electron-app voor Windows en Linux
-- **Zelfgehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
+- **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
 
 Nadat u het hebt geïnstalleerd, raadpleegt u de **[Gebruikershandleiding](USER-GUIDE.nl.md)** voor een volledige uitleg van alle functies.
 
 <small>**Lees in andere talen:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -52,7 +52,7 @@ Nadat u het hebt geïnstalleerd, raadpleegt u de **[Gebruikershandleiding](USER-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Schermafbeeldingen](#screenshots)
+- [Schermafdrukken](#screenshots)
 - [Snel aan de slag](#quick-start)
 - [Een OpenRouter API-sleutel verkrijgen](#getting-an-openrouter-api-key)
 - [Configuratie en omgeving](#configuration-and-environment)
@@ -292,17 +292,17 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 | Variabele             | Beschrijving                                                                  |
 |----------------------|------------------------------------------------------------------------------|
 | `PORT`               | Poort waarop de server luistert (standaard `5000`)                                  |
-| `CONFIG_PATH`        | Pad naar het configuratiebestand (standaard `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `CONFIG_PATH`        | Pad naar het configuratiebestand (standaard is `/app/data/config.json`)                |
+| `TZ`                 | tijdzone voor serverzijde tijd (loggen, enz.) (standaard `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API-sleutel                                                           |
+| `OPENAI_API_KEY`     | OpenAI API-sleutel                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API-sleutel                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API-sleutel                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API-sleutel                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API-sleutel                                                             |
+| `GROQ_API_KEY`       | Groq API-sleutel                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API-sleutel                                                              |
+| `OLLAMA_URL`         | Ollama basis-URL (bijv. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-sleutel                                                                  |
 
 Configureer alleen de providers die u gebruikt. Model-ID's zijn genamespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, enz.).

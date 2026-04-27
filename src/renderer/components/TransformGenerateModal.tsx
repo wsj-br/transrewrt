@@ -1,84 +1,10 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
 import PropTypes from "prop-types";
+import { Loader2 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    width: "100%",
-    maxWidth: "min(520px, 90vw)",
-    boxSizing: "border-box",
-  },
-  title: {
-    margin: "0 0 32px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-  body: {
-    margin: "0 0 20px 0",
-    minWidth: 0,
-  },
-  descriptionLabel: {
-    display: "block",
-    marginBottom: "8px",
-    fontSize: "14px",
-    fontWeight: 400,
-  },
-  descriptionInput: {
-    width: "100%",
-    minHeight: "160px",
-    padding: tokens.spacingVerticalS,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    color: tokens.colorNeutralForeground1,
-    fontSize: "14px",
-    resize: "vertical",
-    boxSizing: "border-box",
-    marginInlineStart: "0%",
-  },
-  modelLabel: {
-    display: "block",
-    marginTop: "16px",
-    marginBottom: "8px",
-    fontSize: "14px",
-    fontWeight: 400,
-  },
-  modelSelector: {
-    marginInlineStart: "0%",
-  },
-  error: {
-    marginTop: "12px",
-    fontSize: "14px",
-    color: tokens.colorPaletteRedForeground1,
-    lineHeight: 1.4,
-    minWidth: 0,
-    maxWidth: "100%",
-    overflowWrap: "break-word",
-    wordBreak: "break-word",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-    marginTop: "24px",
-  },
-});
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 const TransformGenerateModal = ({
   open,
@@ -89,7 +15,6 @@ const TransformGenerateModal = ({
   loading = false,
   error = null,
 }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState(model || "");
   const [description, setDescription] = useState("");
@@ -105,53 +30,44 @@ const TransformGenerateModal = ({
 
   if (!open) return null;
 
-  const handleConfirm = () => {
-    onConfirm(selectedModel, description.trim());
-  };
+  const handleConfirm = () => onConfirm(selectedModel, description.trim());
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal} data-testid="generate-prompt-modal">
-        <h2 className={styles.title}>{t("Generate prompt configuration")}</h2>
-        <div className={styles.body}>
-          <label className={styles.descriptionLabel} htmlFor="generate-prompt-description">
-            {t("What should this prompt do?")}
-          </label>
-          <textarea
-            id="generate-prompt-description"
-            className={styles.descriptionInput}
-            dir="auto"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder={t("e.g. Summarise long text in 3 bullet points, or rewrite for clarity")}
-            aria-label={t("What should this prompt do?")}
-          />
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
+      <div className="bg-card border border-border rounded-lg shadow-2xl p-6 w-full max-w-lg" data-testid="generate-prompt-modal">
+        <h2 className="text-lg font-semibold mb-5">{t("Generate prompt configuration")}</h2>
+        <div className="mb-5 flex flex-col gap-4">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="generate-prompt-description">{t("What should this prompt do?")}</Label>
+            <textarea
+              id="generate-prompt-description"
+              dir="auto"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t("e.g. Summarise long text in 3 bullet points, or rewrite for clarity")}
+              aria-label={t("What should this prompt do?")}
+              className="w-full min-h-[160px] resize-y rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
+            />
+          </div>
           {models.length > 0 && (
-            <>
-              <label className={styles.modelLabel}>
-                {t("Model to generate prompt")}
-              </label>
-              <div className={styles.modelSelector}>
-                <ModelSelector
-                  models={models}
-                  currentModel={selectedModel}
-                  onModelChange={setSelectedModel}
-                />
-              </div>
-            </>
+            <div className="flex flex-col gap-1.5">
+              <Label>{t("Model to generate prompt")}</Label>
+              <ModelSelector models={models} currentModel={selectedModel} onModelChange={setSelectedModel} />
+            </div>
           )}
-          {error && <div className={styles.error}>{error}</div>}
+          {error && (
+            <p className="text-sm text-destructive break-words">{error}</p>
+          )}
         </div>
-        <div className={styles.actions}>
-          <Button appearance="secondary" onClick={onCancel} data-testid="generate-prompt-cancel">
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={onCancel} data-testid="generate-prompt-cancel">
             {t("Cancel")}
           </Button>
           <Button
-            appearance="primary"
             onClick={handleConfirm}
             disabled={loading || !selectedModel || !description.trim()}
-            icon={loading ? <Spinner size="tiny" /> : undefined}
           >
+            {loading && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             {loading ? t("Generating…") : t("Generate")}
           </Button>
         </div>

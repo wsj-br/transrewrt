@@ -90,7 +90,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 
 | Layer | Technology |
 |-------|------------|
-| **Frontend** | React 19, Fluent UI 9, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel. Build target `web` for both Electron and browser. **AppRoot** sets Fluent `dir` for RTL (see `useDirection`, `i18n.js`). |
+| **Frontend** | React 19, Tailwind v4 + shadcn/Radix primitives, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel, TypeScript. Build target `web` for both Electron and browser. **AppRoot** applies `dir` for RTL via `useDirection` (see `i18n.js`). |
 | **Desktop** | Electron 41 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
 | **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Static `dist/`, session auth (cookie + SQLite `sessions`, Argon2 passwords), **`/api/config`**, **`/api/llm/*`** (streaming), **`/api/calls/*`**, users and custom prompts routes. SQLite (**better-sqlite3**): `users`, `user_preferences`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, etc. (`transrewrt.db` under the data directory). |
 | **LLM integration** | Shared [src/shared/llm/index.js](../src/shared/llm/index.js) wraps **multi-llm-ts** (`igniteModel`, `loadModels`, streaming helpers). See [Multi-llm-ts and provider support](#multi-llm-ts-and-provider-support). |
@@ -157,7 +157,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   │   ├── utils/         # configManager, webApiClient, …
 │   │   ├── locales/       # i18n JSON (strings.json, per-locale bundles)
 │   │   ├── styles/        # main.css
-│   │   └── index.js       # Entry; i18n, AppRoot (FluentProvider), AppProvider, App
+│   │   └── index.tsx      # Entry; i18n, AppRoot (AppProvider), App
 │   ├── server/
 │   │   ├── index.js       # Express app
 │   │   ├── logger.js

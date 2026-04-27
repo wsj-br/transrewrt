@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:37.090Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:23:03.246Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: th
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 เครื่องมือข้อความที่ขับเคลื่อนด้วยปัญญาประดิษฐ์: แปลระหว่างภาษา เขียนใหม่ในรูปแบบต่างๆ และแปลงด้วยคำสั่งที่กำหนดเอง — โดยใช้ผู้ให้บริการปัญญาประดิษฐ์หลายราย (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI และ Ollama ท้องถิ่น) ใช้งานได้ทั้งในรูปแบบแอปเดสก์ท็อป (Electron) หรือแอปเว็บที่ติดตั้งเอง (Docker)
 
-- **แปล** - ระหว่างภาษาต่างๆ หลายสิบภาษา พร้อมการตรวจจับแหล่งข้อมูลอัตโนมัติ
-- **เขียนใหม่** - แก้ไขไวยากรณ์ ปรับให้ชัดเจนขึ้น รูปแบบทางการ/ไม่เป็นทางการ ทำให้สั้นลง ทำให้ยาวขึ้น หรือเชิงเทคนิค
-- **แปลง** - คำสั่งปัญญาประดิษฐ์แบบกำหนดเอง; สร้างและจัดการคำสั่ง พร้อมเลือกภาษาเป้าหมายสำหรับแต่ละคำสั่งได้
-- **ประวัติ** - ประวัติการดำเนินการทั้งหมด พร้อมข้อมูลนำเข้าและข้อความนำออก การกรอง และการส่งออก
-- **โมเดลและค่าใช้จ่าย** - เลือกโมเดลจากผู้ให้บริการที่ตั้งค่าไว้; แดชบอร์ดค่าใช้จ่ายและการใช้งาน พร้อมบันทึก สรุปตามโมเดล/การดำเนินการ/วัน
-- **UI** - อินเตอร์เฟซหลายภาษา (มากกว่า 30 ภาษา รองรับ RTL), แบบอักษร, ...
+- **แปลภาษา** - ระหว่างภาษาต่างๆ ได้หลายสิบภาษา พร้อมการตรวจจับภาษาต้นทางโดยอัตโนมัติ
+- **เขียนใหม่** - แก้ไขไวยากรณ์ ปรับให้ชัดเจนขึ้น ปรับระดับความเป็นทางการ/ไม่เป็นทางการ ย่อหรือขยายข้อความ หรือแปลงเป็นเชิงเทคนิค
+- **แปลงรูปแบบ** - พรอมต์ AI แบบกำหนดเอง; สร้างและจัดการพรอมต์ พร้อมเลือกภาษาเป้าหมายต่อพรอมต์ได้
+- **ประวัติการใช้งาน** - ประวัติการดำเนินการทั้งหมด พร้อมข้อความนำเข้า/ส่งออก การกรอง และการส่งออกข้อมูล
+- **โมเดลและค่าใช้จ่าย** - เลือกโมเดลจากผู้ให้บริการที่ตั้งค่าไว้ได้ทุกราย; แดชบอร์ดแสดงค่าใช้จ่ายและการใช้งาน พร้อมบันทึกย่อ สรุปตามโมเดล/การดำเนินการ/วัน
+- **UI** - อินเทอร์เฟซหลายภาษา (มากกว่า 30 ภาษา รองรับ RTL), ฟอนต์, ...
 - **โหมดเว็บ** - รองรับผู้ใช้หลายคน พร้อมบทบาทผู้ดูแลระบบ
 - **เดสก์ท็อป** - แอปพลิเคชัน Electron สำหรับ Windows และ Linux
-- **ติดตั้งเอง** - รูปภาพ Docker สำหรับ amd64 และ arm64 (พร้อมใช้งานกับ Raspberry Pi)
+- **โฮสต์ด้วยตนเอง** - รูปภาพ Docker สำหรับ amd64 และ arm64 (พร้อมใช้งานกับ Raspberry Pi)
 
 หลังติดตั้งแล้ว ดู **[คู่มือผู้ใช้](USER-GUIDE.th.md)** เพื่อดูคำแนะนำโดยละเอียดเกี่ยวกับคุณสมบัติทั้งหมด
 
 <small>**อ่านเป็นภาษาอื่น:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -59,7 +59,7 @@ translation_models:
 - [การพัฒนาและสถาปัตยกรรม](#development-and-architecture)
 - [การรายงานปัญหา](#reporting-issues)
 - [ข้อจำกัดความรับผิดชอบ](#disclaimer)
-- [ใบอนุญาต](#license)
+- [ลิขสิทธิ์](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -279,31 +279,31 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 
 **ตำแหน่งไฟล์การตั้งค่า**
 
-| การติดตั้ง | ตำแหน่งการตั้งค่า |
+| การติดตั้ง         | ตำแหน่งการตั้งค่า                                   |
 | ------------------ | ------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\` |
-| Electron (Linux) | `~/.config/transrewrt/` |
-| Web / Docker | `/app/data/config.json` (ใช้ volume เพื่อเก็บข้อมูลถาวร) |
+| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
+| Electron (Linux)   | `~/.config/transrewrt/`                           |
+| Web / Docker       | `/app/data/config.json` (ใช้ volume เพื่อเก็บข้อมูลถาวร) |
 
 <br/>
 
 **ตัวแปรสภาพแวดล้อม** (เฉพาะเว็บ/ด็อกเกอร์; Electron ใช้ไฟล์การตั้งค่าท้องถิ่น)
 
-| ตัวแปร | คำอธิบาย |
+| ตัวแปร             | คำอธิบาย                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT` | พอร์ตที่เซิร์ฟเวอร์ฟัง (ค่าเริ่มต้นคือ `5000`) |
-| `CONFIG_PATH` | เส้นทางไปยังไฟล์การตั้งค่า (ค่าเริ่มต้นคือ `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY` | คีย์ API ของ xAI |
+| `PORT`               | พอร์ตที่เซิร์ฟเวอร์รับฟัง (ค่าเริ่มต้นคือ `5000`)                                  |
+| `CONFIG_PATH`        | ตำแหน่งไฟล์การตั้งค่า (ค่าเริ่มต้นคือ `/app/data/config.json`)                |
+| `TZ`                 | เขตเวลาสำหรับเวลาฝั่งเซิร์ฟเวอร์ (การบันทึกข้อมูล ฯลฯ) (ค่าเริ่มต้นคือ `Europe/London`) |
+| `OPENROUTER_API_KEY` | คีย์ API ของ OpenRouter                                                           |
+| `OPENAI_API_KEY`     | คีย์ API ของ OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | คีย์ API ของ Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | คีย์ API ของ Anthropic                                                            |
+| `GOOGLE_API_KEY`     | คีย์ API ของ Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | คีย์ API ของ DeepSeek                                                             |
+| `GROQ_API_KEY`       | คีย์ API ของ Groq                                                                 |
+| `MISTRAL_API_KEY`    | คีย์ API ของ Mistral                                                              |
+| `OLLAMA_URL`         | URL พื้นฐานของ Ollama (เช่น `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | คีย์ API ของ xAI                                                                  |
 
 กรุณาตั้งค่าเฉพาะผู้ให้บริการที่คุณใช้งานเท่านั้น รหัสโมเดลจะถูกจัดกลุ่มตาม namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ฯลฯ)
 

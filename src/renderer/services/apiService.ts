@@ -56,12 +56,19 @@ function buildTranslatePrompt(sourceLang, targetLang) {
     .replace(/\{\{targetLang\}\}/g, targetLang || "");
 }
 
-function buildRewriteSystemPrompt(styleConfig) {
+function buildRewriteSystemPrompt(styleConfig, sourceLang = null) {
   const shared = prompts.shared.rewrite;
+  const rewriteRoot = prompts.rewrite;
   const common = shared.common.map((line) =>
     line.replace(/\{\{outputDescription\}\}/g, styleConfig.outputDescription || "rewritten")
   );
   const taskBullets = [...styleConfig.bullets];
+  const sourceLine = rewriteRoot?.withSourceLanguageLine;
+  if (sourceLang && sourceLang !== "Detect Language" && sourceLine) {
+    taskBullets.push(
+      resolvePrompt(sourceLine).replace(/\{\{sourceLang\}\}/g, sourceLang),
+    );
+  }
   const lines = [
     styleConfig.role,
     "",
@@ -77,10 +84,10 @@ function buildRewriteSystemPrompt(styleConfig) {
 /**
  * Build system prompt for Transform (custom prompts).
  * @param {Object} promptConfig - { role, instructions (array or JSON string), output_description, target_language?: boolean }
- * @param {string|null} targetLang - Target language for this run when prompt has ask-for-target-language (e.g. "Spanish")
+ * @param {string|null} statedFromLang - Explicit From language for this run (transform selector and/or workspace From), not "Detect Language"
  * @returns {string}
  */
-function buildTransformSystemPrompt(promptConfig, targetLang) {
+function buildTransformSystemPrompt(promptConfig, statedFromLang = null) {
   const shared = prompts.shared.transform;
   if (!shared) throw new Error("prompts.shared.transform not found");
   const instructions = Array.isArray(promptConfig.instructions)
@@ -103,17 +110,15 @@ function buildTransformSystemPrompt(promptConfig, targetLang) {
     "Your task:",
     ...instructions,
     "",
-    ...common,
   ];
-  if (targetLang != null && String(targetLang).trim() !== "") {
-    const translateLines = shared.translateToTargetLang;
-    if (Array.isArray(translateLines) && translateLines.length > 0) {
-      const substituted = translateLines.map((line) =>
-        line.replace(/\{\{targetLang\}\}/g, targetLang)
-      );
-      lines.push("", ...substituted);
-    }
+  const xfSourceLine = shared.withSourceLanguageLine;
+  if (statedFromLang && statedFromLang !== "Detect Language" && xfSourceLine) {
+    lines.push(
+      resolvePrompt(xfSourceLine).replace(/\{\{sourceLang\}\}/g, statedFromLang),
+      "",
+    );
   }
+  lines.push(...common);
   lines.push("", ...shared.footer);
   return resolvePrompt(lines);
 }
@@ -606,18 +611,18 @@ Respond with ONLY the JSON object. No other text.`;
    * @param {AbortSignal|null} signal - Optional abort signal
    * @returns {Promise<Object>} Rewrite result with content and usage
    */
-  async rewrite(text, mode, model, signal = null) {
+  async rewrite(text, mode, model, signal = null, sourceLang = null) {
     try {
       const modeConfig = prompts.rewrite.modes[mode] || prompts.rewrite.fallback;
 
       return await this._streamChatCompletion(
-        buildRewriteSystemPrompt(modeConfig),
+        buildRewriteSystemPrompt(modeConfig, sourceLang),
         `<rewrite>${text}</rewrite>`,
         model,
         modeConfig.temperature,
         signal,
         "rewrite",
-        { mode },
+        { mode, source_lang: sourceLang || null },
       );
     } catch (error) {
       if (isAbortError(error)) {
@@ -640,13 +645,13 @@ Respond with ONLY the JSON object. No other text.`;
    * @param {string} text - Input text
    * @param {Object} promptConfig - Custom prompt (name, role, instructions, output_description, temperature, target_language: boolean)
    * @param {string} model - Model id
-   * @param {string|null} targetLang - Target language for this run when prompt has ask-for-target-language enabled
    * @param {AbortSignal|null} signal
+   * @param {string|null} statedFromLang - From language for this run (prompt selector and/or workspace From), not "Detect Language"
    * @returns {Promise<Object>} Same shape as rewrite() (content, usage, model, etc.)
    */
-  async transform(text, promptConfig, model, targetLang = null, signal = null) {
+  async transform(text, promptConfig, model, signal = null, statedFromLang = null) {
     try {
-      const systemPrompt = buildTransformSystemPrompt(promptConfig, targetLang);
+      const systemPrompt = buildTransformSystemPrompt(promptConfig, statedFromLang);
       const temperature = Number(promptConfig.temperature) || 0.4;
       const userMessage = `<transform>${text}</transform>`;
       return await this._streamChatCompletion(
@@ -656,7 +661,7 @@ Respond with ONLY the JSON object. No other text.`;
         temperature,
         signal,
         "transform",
-        { transform_prompt: promptConfig.name ?? null },
+        { transform_prompt: promptConfig.name ?? null, stated_from_lang: statedFromLang || null },
       );
     } catch (error) {
       if (isAbortError(error)) {

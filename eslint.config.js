@@ -6,7 +6,15 @@ const reactHooks = require("eslint-plugin-react-hooks");
 const globals = require("globals");
 
 module.exports = [
-  { ignores: ["node_modules/", "dist/", "release/", "**/strings.json"] },
+  {
+    ignores: [
+      "node_modules/",
+      "dist/",
+      "dist-main/",
+      "release/",
+      "**/strings.json",
+    ],
+  },
   js.configs.recommended,
   {
     files: ["**/*.js"],

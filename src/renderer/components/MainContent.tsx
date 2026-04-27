@@ -1,87 +1,69 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Spinner } from "@fluentui/react-components";
 import PropTypes from "prop-types";
-import { Languages, PenTool, WandSparkles, BarChart3, History } from "lucide-react";
+import { Languages, PenTool, WandSparkles, BarChart3, History, Loader2 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
-import ResizablePanels from "./ResizablePanels";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
 const HistoryPage = lazy(() => import("./HistoryPage"));
 
-const useStyles = makeStyles({
-  mainPanel: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    minWidth: 0,
-    overflow: "hidden",
-    backgroundColor: tokens.colorNeutralBackground2,
-  },
-  workspace: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    minHeight: 0,
-    overflow: "hidden",
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    minHeight: "36px",
-    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    flexShrink: 0,
-  },
-  toolbarRight: {
-    display: "flex",
-    alignItems: "center",
-    gap: "48px",
-  },
-  globeWrap: {
-    marginInlineStart: "4px",
-  },
-  toolbarLeft: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  },
-  toolbarIcon: {
-    flexShrink: 0,
-    color: tokens.colorBrandForegroundInverted,
-  },
-  modeIndicator: {
-    fontSize: "18px",
-    fontWeight: 600,
-    lineHeight: 1.25,
-    color: tokens.colorNeutralForeground1,
-    textTransform: "capitalize",
-  },
-  content: {
-    flex: 1,
-    display: "flex",
-    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL} ${tokens.spacingVerticalL} ${tokens.spacingHorizontalL}`,
-    gap: tokens.spacingHorizontalL,
-    overflow: "hidden",
-    minHeight: 0,
-  },
-  contentFill: {
-    flex: 1,
-    minWidth: 0,
-    minHeight: 0,
-    overflow: "hidden",
-    display: "flex",
-    flexDirection: "column",
-  },
-});
+function LoadingFallback({ label }) {
+  return (
+    <div className="flex flex-1 items-center justify-center">
+      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      {label && <span className="ms-2 text-sm text-muted-foreground">{label}</span>}
+    </div>
+  );
+}
+
+function AppHeader({
+  icon,
+  title,
+  right,
+  titleTrailing,
+}: {
+  icon: ReactNode;
+  title: ReactNode;
+  right?: ReactNode;
+  /** Shown after title on small screens only (e.g. language control in workspace). */
+  titleTrailing?: ReactNode;
+}) {
+  return (
+    <header className="flex min-h-14 w-full min-w-0 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:min-h-[84px] md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6">
+      <div className="flex min-w-0 max-w-full flex-1 items-center gap-3 md:flex-initial">
+        {icon}
+        <h1 className="min-w-0 flex-1 truncate text-lg font-semibold md:flex-initial">{title}</h1>
+        {titleTrailing ? (
+          <div className="ms-auto shrink-0 md:hidden">{titleTrailing}</div>
+        ) : null}
+      </div>
+      {right && (
+        <div className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-end gap-x-8 gap-y-2 md:w-auto md:flex-nowrap md:shrink-0">
+          {right}
+        </div>
+      )}
+    </header>
+  );
+}
+
+function WorkspaceGrid({ leftPanel, rightPanel, workspaceTopBar }) {
+  return (
+    <div className="flex flex-1 min-h-0 overflow-auto">
+      <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 min-w-0 w-full">
+        {workspaceTopBar}
+        <div className="grid flex-1 grid-cols-1 gap-4 min-h-0 min-w-0 lg:grid-cols-2 lg:items-stretch lg:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="flex h-full min-h-[300px] min-w-0 flex-col lg:min-h-0">{leftPanel}</div>
+          <div className="flex h-full min-h-[300px] min-w-0 flex-col lg:min-h-0">{rightPanel}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const MainContent = ({
   view,
-  // Workspace props
   currentMode,
   models,
   activeModel,
@@ -90,16 +72,16 @@ const MainContent = ({
   onRemoveModel,
   leftPanel,
   rightPanel,
+  workspaceTopBar,
   openSettingsToTab,
   onOpenSettingsToTabConsumed,
 }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
 
   if (view === "settings") {
     return (
-      <main className={styles.mainPanel}>
-        <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading settings…")} /></div>}>
+      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+        <Suspense fallback={<LoadingFallback label={t("Loading settings…")} />}>
           <SettingsPanel
             openToTab={openSettingsToTab}
             onOpenToTabConsumed={onOpenSettingsToTabConsumed}
@@ -111,25 +93,17 @@ const MainContent = ({
 
   if (view === "dashboard") {
     return (
-      <main className={styles.mainPanel}>
-        <div className={styles.workspace}>
-          <div className={styles.toolbar}>
-            <div className={styles.toolbarLeft}>
-              <BarChart3 className={styles.toolbarIcon} size={20} strokeWidth={1.6} />
-              <span className={styles.modeIndicator}>{t("Dashboard")}</span>
-            </div>
-            <div className={styles.toolbarRight}>
-              <span className={styles.globeWrap}>
-                <HeaderLanguageSelector compact />
-              </span>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.contentFill}>
-              <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading dashboard…")} /></div>}>
-                <DashboardPage />
-              </Suspense>
-            </div>
+      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+        <AppHeader
+          icon={<BarChart3 className="h-5 w-5 text-emerald-500" strokeWidth={1.6} />}
+          title={t("Dashboard")}
+          right={<HeaderLanguageSelector compact />}
+        />
+        <div className="flex flex-1 min-h-0 overflow-auto p-4 md:p-6">
+          <div className="flex flex-1 flex-col min-h-0">
+            <Suspense fallback={<LoadingFallback label={t("Loading dashboard…")} />}>
+              <DashboardPage />
+            </Suspense>
           </div>
         </div>
       </main>
@@ -138,44 +112,43 @@ const MainContent = ({
 
   if (view === "history") {
     return (
-      <main className={styles.mainPanel}>
-        <div className={styles.workspace}>
-          <div className={styles.toolbar}>
-            <div className={styles.toolbarLeft}>
-              <History className={styles.toolbarIcon} size={20} strokeWidth={1.6} />
-              <span className={styles.modeIndicator}>{t("History")}</span>
-            </div>
-            <div className={styles.toolbarRight}>
-              <span className={styles.globeWrap}>
-                <HeaderLanguageSelector compact />
-              </span>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.contentFill}>
-              <Suspense fallback={<div className={styles.mainPanel} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}><Spinner size="large" label={t("Loading…")} /></div>}>
-                <HistoryPage />
-              </Suspense>
-            </div>
+      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+        <AppHeader
+          icon={<History className="h-5 w-5 text-orange-400" strokeWidth={1.6} />}
+          title={t("History")}
+          right={<HeaderLanguageSelector compact />}
+        />
+        <div className="flex flex-1 min-h-0 overflow-auto p-4 md:p-6">
+          <div className="flex flex-1 flex-col min-h-0">
+            <Suspense fallback={<LoadingFallback label={t("Loading…")} />}>
+              <HistoryPage />
+            </Suspense>
           </div>
         </div>
       </main>
     );
   }
 
+  const modeIcon = {
+    translate: <Languages className="h-5 w-5 text-emerald-500" strokeWidth={1.6} />,
+    rewrite: <PenTool className="h-5 w-5 text-blue-400" strokeWidth={1.6} />,
+    transform: <WandSparkles className="h-5 w-5 text-purple-400" strokeWidth={1.6} />,
+  }[currentMode];
+
+  const modeTitle = {
+    translate: t("Translate"),
+    rewrite: t("Rewrite"),
+    transform: t("Transform"),
+  }[currentMode] ?? currentMode;
+
   return (
-    <main className={styles.mainPanel}>
-      <div className={styles.workspace}>
-        <div className={styles.toolbar}>
-          <div className={styles.toolbarLeft}>
-            {currentMode === "translate" && <Languages className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
-            {currentMode === "rewrite" && <PenTool className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
-            {currentMode === "transform" && <WandSparkles className={styles.toolbarIcon} size={20} strokeWidth={1.6} />}
-            <span className={styles.modeIndicator}>
-              {currentMode === "translate" ? t("Translate") : currentMode === "rewrite" ? t("Rewrite") : t("Transform")}
-            </span>
-          </div>
-          <div className={styles.toolbarRight}>
+    <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+      <AppHeader
+        icon={modeIcon}
+        title={modeTitle}
+        titleTrailing={<HeaderLanguageSelector compact />}
+        right={
+          <>
             <ModelSelector
               models={models}
               currentModel={activeModel}
@@ -183,15 +156,17 @@ const MainContent = ({
               onIconClick={onOpenSettingsModels}
               onRemoveModel={onRemoveModel}
             />
-            <span className={styles.globeWrap}>
+            <div className="hidden md:block">
               <HeaderLanguageSelector compact />
-            </span>
-          </div>
-        </div>
-        <div className={styles.content}>
-          <ResizablePanels leftPanel={leftPanel} rightPanel={rightPanel} />
-        </div>
-      </div>
+            </div>
+          </>
+        }
+      />
+      <WorkspaceGrid
+        leftPanel={leftPanel}
+        rightPanel={rightPanel}
+        workspaceTopBar={workspaceTopBar}
+      />
     </main>
   );
 };
@@ -206,6 +181,7 @@ MainContent.propTypes = {
   onRemoveModel: PropTypes.func,
   leftPanel: PropTypes.node,
   rightPanel: PropTypes.node,
+  workspaceTopBar: PropTypes.node,
   openSettingsToTab: PropTypes.string,
   onOpenSettingsToTabConsumed: PropTypes.func,
 };

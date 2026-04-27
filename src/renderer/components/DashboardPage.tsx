@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, TabList, Tab, Label, Dropdown, Option } from "@fluentui/react-components";
-import { getCostApi, getFilterRange, getFilters } from "../utils/misc/costUtils";
+import { getFilters } from "../utils/misc/costUtils";
+import { getCostApi, getFilterRange } from "../utils/misc/costUtils";
 import { useAppContext } from "../contexts/AppContext";
-import { useStyles } from "./DashboardPage-styles";
+import { styles } from "./dashboard/dashboardPageStyles";
 import ConfirmModal from "./ConfirmModal";
 import DashboardTabSummary from "./DashboardTabSummary";
 import DashboardTabByUsage from "./DashboardTabByUsage";
@@ -11,12 +11,20 @@ import DashboardTabByModel from "./DashboardTabByModel";
 import DashboardTabByDay from "./DashboardTabByDay";
 import DashboardTabAllCalls from "./DashboardTabAllCalls";
 import webAPI from "../utils/api/webApiClient";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
 const DashboardPage = () => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const { settings, setSetting, currentUser } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
@@ -194,14 +202,13 @@ const DashboardPage = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.filterRow} data-testid="dashboard-filter-row">
-        <Label style={{ marginInlineEnd: "8px" }}>{t("Filter")}</Label>
+      <div className="flex flex-wrap items-center gap-2 mb-5" data-testid="dashboard-filter-row">
+        <span className="text-sm font-medium text-muted-foreground me-1">{t("Filter")}</span>
         {getFilters(t).map((f) => (
           <Button
             key={f.id}
-            size="small"
-            appearance={filter === f.id ? "primary" : "subtle"}
-            className={filter !== f.id ? styles.filterButtonUnselected : undefined}
+            size="sm"
+            variant={filter === f.id ? "default" : "outline"}
             onClick={() => setFilter(f.id)}
           >
             {f.label}
@@ -209,34 +216,53 @@ const DashboardPage = () => {
         ))}
         {isWeb && isAdmin && userList.length > 0 && (
           <>
-            <Label style={{ marginInlineStart: "16px", marginInlineEnd: "8px" }}>{t("User")}</Label>
-            <Dropdown
-              value={userFilter === "" ? t("All users") : userFilter}
-              selectedOptions={[userFilter]}
-              onOptionSelect={(_, data) => setUserFilter(data.optionValue ?? "")}
-              style={{ minWidth: "140px" }}
+            <span className="text-sm font-medium text-muted-foreground ms-2 me-1">{t("User")}</span>
+            <Select
+              value={userFilter === "" ? "__all__" : userFilter}
+              onValueChange={(v) => setUserFilter(v === "__all__" ? "" : v)}
             >
-              <Option value="">{t("All users")}</Option>
-              {userList.map((u) => (
-                <Option key={u.id} value={u.username || ""}>
-                  {u.username}
-                </Option>
-              ))}
-            </Dropdown>
+              <SelectTrigger className="min-w-[140px] h-8 text-sm">
+                <SelectValue placeholder={t("All users")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="__all__">{t("All users")}</SelectItem>
+                {userList.filter((u) => u.username).map((u) => (
+                  <SelectItem key={u.id} value={u.username}>
+                    {u.username}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </>
         )}
       </div>
 
-      <TabList
-        selectedValue={selectedTab}
-        onTabSelect={(_, data) => setSelectedTab(data.value)}
-      >
-        <Tab value="summary" data-testid="dashboard-tab-summary">{t("Summary")}</Tab>
-        <Tab value="byusage">{t("By Usage")}</Tab>
-        <Tab value="bymodel">{t("By Model")}</Tab>
-        <Tab value="byday">{t("By Day")}</Tab>
-        <Tab value="allcalls">{t("All Calls")}</Tab>
-      </TabList>
+      <div className="flex items-stretch border-b border-border shrink-0 mb-0" role="tablist">
+        {[
+          { id: "summary", label: t("Summary"), testId: "dashboard-tab-summary" },
+          { id: "byusage", label: t("By Usage") },
+          { id: "bymodel", label: t("By Model") },
+          { id: "byday", label: t("By Day") },
+          { id: "allcalls", label: t("All Calls") },
+        ].map(({ id, label, testId }) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={selectedTab === id}
+            data-testid={testId}
+            className={cn(
+              "px-4 h-10 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
+              selectedTab === id
+                ? "border-foreground text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground"
+            )}
+            onClick={() => setSelectedTab(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       <div
         className={

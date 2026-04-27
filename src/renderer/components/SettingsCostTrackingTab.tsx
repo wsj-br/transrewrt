@@ -1,13 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  Dropdown,
-  Option,
-  tokens,
-  Text,
-  makeStyles,
-} from "@fluentui/react-components";
 import { DollarSign, Copy, Server, RotateCcw, Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
@@ -24,85 +16,28 @@ import {
   flipUiArrowsForRtl,
 } from "../utils/misc/formatUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import {
+  settingsDataTable as tbl,
+  settingsDataTableCard as costCard,
+} from "./settings/settingsTableClasses";
+import { settingsSection, settingsTabContent } from "./settings/settingsLayoutClasses";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-
-const useStyles = makeStyles({
-  tableWrap: {
-    width: "fit-content",
-    maxWidth: "100%",
-    marginTop: "8px",
-    marginBottom: "8px",
-    borderRadius: "8px",
-    overflow: "auto",
-    boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-  },
-  tableWrapFitContent: {
-    width: "fit-content",
-    maxWidth: "100%",
-    minWidth: 0,
-  },
-  tableWrapFullWidth: {
-    width: "100%",
-  },
-  table: {
-    width: "auto",
-    tableLayout: "auto",
-    borderCollapse: "collapse",
-    fontSize: "14px",
-  },
-  tableFullWidth: {
-    width: "100%",
-  },
-  thead: {
-    backgroundColor: tokens.colorNeutralBackground3,
-  },
-  th: {
-    padding: "10px 12px",
-    textAlign: "start",
-    fontWeight: 600,
-    backgroundColor: tokens.colorNeutralBackground3,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    fontSize: "14px",
-  },
-  td: {
-    padding: "12px 16px",
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
-    color: tokens.colorNeutralForeground1,
-  },
-  tdValue: {
-    whiteSpace: "nowrap",
-  },
-  tbodyTr: {
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground1Hover,
-    },
-  },
-  totalRow: {
-    fontWeight: 600,
-    backgroundColor: tokens.colorNeutralBackground3,
-    borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
-    "& td": {
-      borderBottom: "none",
-      color: tokens.colorNeutralForeground1,
-    },
-  },
-  emptyRow: {
-    padding: "20px 16px",
-    textAlign: "center",
-    color: tokens.colorNeutralForeground3,
-    fontStyle: "italic",
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-});
 
 const SettingsCostTrackingTab = ({
   localSettings,
   onSettingChange,
   isTabActive,
 }) => {
-  const styles = useStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const isRtl = getTextDirection(i18n.language) === "rtl";
@@ -140,11 +75,7 @@ const SettingsCostTrackingTab = ({
   const fetchKeyInfo = async () => {
     if (!canUseOpenRouterKeyInfo) {
       setKeyInfo(null);
-      setKeyInfoError(
-        t(
-          "API key usage from OpenRouter is not available. Add an OpenRouter API key in Settings → API.",
-        ),
-      );
+      setKeyInfoError(t("API key usage from OpenRouter is not available. Add an OpenRouter API key in Settings → API."));
       setKeyInfoLoading(false);
       return;
     }
@@ -172,15 +103,13 @@ const SettingsCostTrackingTab = ({
         setKeyInfoError(err?.message || t("Failed to load key info"));
       }
     } finally {
-      if (thisId === keyRefreshIdRef.current) {
-        setKeyInfoLoading(false);
-      }
+      if (thisId === keyRefreshIdRef.current) setKeyInfoLoading(false);
     }
   };
 
   useEffect(() => {
     fetchKeyInfo();
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- fetchKeyInfo closes over deps; listing it causes unnecessary reruns
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canUseOpenRouterKeyInfo, isWeb, localSettings.openrouter_api_key_configured, isTabActive]);
 
   const keyUsageDisplay = useMemo(() => {
@@ -194,77 +123,46 @@ const SettingsCostTrackingTab = ({
         : null);
     const hasUsage = usage != null && !Number.isNaN(Number(usage));
     if (!hasUsage && keyInfo.limit == null) return t("no limit configured");
-    return {
-      usage,
-      hasLimit: keyInfo.limit != null,
-      limit: keyInfo.limit,
-      limitReset: keyInfo.limit_reset,
-    };
+    return { usage, hasLimit: keyInfo.limit != null, limit: keyInfo.limit, limitReset: keyInfo.limit_reset };
   }, [keyInfoLoading, keyInfoError, keyInfo, t, isRtl]);
 
   const costApi = getCostApi();
   useEffect(() => {
     if (!costApi.getSummaryByFunction) return;
     setLoading(true);
-    costApi
-      .getSummaryByFunction(null, null)
+    costApi.getSummaryByFunction(null, null)
       .then((a) => setByFunction(Array.isArray(a) ? a : []))
       .catch(() => setByFunction([]))
       .finally(() => setLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- costApi from getCostApi() not stable; run only when isTabActive changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTabActive]);
 
   const handleCopyCost = async () => {
-    const cost = formatDecimal(
-      parseFloat(localSettings.total_cost || 0),
-      locale,
-      { minimumFractionDigits: 6, maximumFractionDigits: 6 }
-    );
+    const cost = formatDecimal(parseFloat(localSettings.total_cost || 0), locale, { minimumFractionDigits: 6, maximumFractionDigits: 6 });
     if (navigator.clipboard?.writeText) {
-      try {
-        await navigator.clipboard.writeText(cost);
-        return;
-      } catch {
-        // fall through to fallback
-      }
+      try { await navigator.clipboard.writeText(cost); return; } catch { /* fall through */ }
     }
-    const textArea = document.createElement("textarea");
-    textArea.value = cost;
-    textArea.style.position = "fixed";
-    textArea.style.left = "-9999px";
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-      document.execCommand("copy");
-    } finally {
-      document.body.removeChild(textArea);
-    }
+    const ta = document.createElement("textarea");
+    ta.value = cost;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } finally { document.body.removeChild(ta); }
   };
 
   const handleSyncWithKeyUsage = () => {
     setSyncCostError(null);
-    if (!keyInfo) {
-      setSyncCostError(t("No key usage available"));
-      return;
-    }
+    if (!keyInfo) { setSyncCostError(t("No key usage available")); return; }
     const usage =
       keyInfo.usage ??
-      (keyInfo.limit != null && keyInfo.limit_remaining != null
-        ? keyInfo.limit - keyInfo.limit_remaining
-        : null);
-    if (usage == null || Number.isNaN(Number(usage))) {
-      setSyncCostError(t("No key usage available"));
-      return;
-    }
+      (keyInfo.limit != null && keyInfo.limit_remaining != null ? keyInfo.limit - keyInfo.limit_remaining : null);
+    if (usage == null || Number.isNaN(Number(usage))) { setSyncCostError(t("No key usage available")); return; }
     onSettingChange("total_cost", usage);
   };
 
   const emptyRow = (colSpan) => (
-    <tr>
-      <td colSpan={colSpan} className={styles.emptyRow}>
-        (no information available)
-      </td>
-    </tr>
+    <tr><td colSpan={colSpan} className={tbl.emptyRow}>{t("(no information available)")}</td></tr>
   );
 
   const executeDeleteCostData = async () => {
@@ -274,7 +172,6 @@ const SettingsCostTrackingTab = ({
       setShowDeleteConfirm(false);
       return;
     }
-
     setDeleteLoading(true);
     setDeleteError(null);
     setDeleteSuccess(null);
@@ -282,376 +179,229 @@ const SettingsCostTrackingTab = ({
     try {
       const cutoff = getDeleteCutoffIso(deleteRange);
       await costApi.deleteCallsOutsideRange(cutoff, null);
-
       if (typeof costApi.getSummaryByFunction === "function") {
-        try {
-          const rows = await costApi.getSummaryByFunction(null, null);
-          setByFunction(Array.isArray(rows) ? rows : []);
-        } catch {
-          // ignore refresh errors
-        }
+        try { const rows = await costApi.getSummaryByFunction(null, null); setByFunction(Array.isArray(rows) ? rows : []); } catch { /* ignore */ }
       }
       if (typeof costApi.getTotalCostFromDatabase === "function") {
         try {
           const data = await costApi.getTotalCostFromDatabase();
-          if (data && typeof data.total_cost === "number") {
-            onSettingChange("total_cost", data.total_cost);
-          }
-        } catch {
-          // ignore refresh errors
-        }
+          if (data && typeof data.total_cost === "number") onSettingChange("total_cost", data.total_cost);
+        } catch { /* ignore */ }
       }
-
-      setDeleteSuccess("Cost data deleted successfully.");
+      setDeleteSuccess(t("Cost data deleted successfully."));
     } catch (err) {
-      setDeleteError(err?.message || "Failed to delete cost data.");
+      setDeleteError(err?.message || t("Failed to delete cost data."));
     } finally {
       setDeleteLoading(false);
     }
   };
 
-  const deleteConfirmTitle =
-    deleteRange === "all"
-      ? t("Delete all cost data")
-      : t("Delete cost data by age");
+  const deleteConfirmTitle = deleteRange === "all" ? t("Delete all cost data") : t("Delete cost data by age");
   const deleteConfirmMessage =
     deleteRange === "all"
       ? t("Permanently delete ALL cost tracking data?\n\nThis cannot be undone.")
       : t("Permanently delete cost tracking data older than {{range}}?\n\nThis cannot be undone.", {
-          range:
-            (deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(
-              /^>\s*/,
-              "",
-            ) || "",
+          range: (deleteRangeOptions.find((o) => o.value === deleteRange)?.label ?? "").replace(/^>\s*/, "") || "",
         });
 
   return (
-    <div className="tab-content">
-      <div className="section">
-        <Text
-          as="h3"
-          size={500}
-          weight="semibold"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            marginTop: 0,
-            marginBottom: "36px",
-          }}
-        >
-          <DollarSign size={20} />
+    <div className={settingsTabContent}>
+      <div className={settingsSection}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <DollarSign size={18} />
           {t("Cost Tracking")}
-        </Text>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginInlineStart: "64px",
-            marginTop: "12px",
-            gap: "16px",
-            flexWrap: "wrap",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "16px", fontWeight: 600 }}>
-              {t("Total Cost:")}
-            </span>
-            <span
-              style={{
-                fontSize: "16px",
-                color: tokens.colorStatusSuccessForeground1,
-                whiteSpace: "nowrap",
-              }}
-            >
+        </h3>
+        <div className="flex items-center ms-4 sm:ms-16 mt-3 gap-4 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-base font-semibold">{t("Total Cost:")}</span>
+            <span className="text-base text-green-400 whitespace-nowrap">
               {formatCost(localSettings.total_cost, costFractionStyle, locale)}
             </span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              appearance="secondary"
-              size="small"
-              onClick={handleCopyCost}
-              icon={<Copy size={14} />}
-            >
-              {t("Copy Value")}
+          <div className="flex items-center gap-2 flex-wrap">
+            <Button variant="outline" size="sm" onClick={handleCopyCost}>
+              <Copy size={13} />{t("Copy Value")}
             </Button>
-            <Button
-              appearance="secondary"
-              size="small"
-              onClick={() => onSettingChange("total_cost", 0)}
-            >
+            <Button variant="outline" size="sm" onClick={() => onSettingChange("total_cost", 0)}>
               {t("Reset Cost")}
             </Button>
             {canUseOpenRouterKeyInfo && (
               <Button
-                appearance="secondary"
-                size="small"
+                variant="outline"
+                size="sm"
                 onClick={handleSyncWithKeyUsage}
                 disabled={
-                keyInfoLoading ||
-                !keyInfo ||
-                (keyInfo.usage == null &&
-                  (keyInfo.limit == null || keyInfo.limit_remaining == null))
-              }
-                icon={<Server size={14} />}
+                  keyInfoLoading ||
+                  !keyInfo ||
+                  (keyInfo.usage == null && (keyInfo.limit == null || keyInfo.limit_remaining == null))
+                }
               >
-                {t("Sync with API key usage")}
+                <Server size={13} />{t("Sync with API key usage")}
               </Button>
             )}
-            {syncCostError && (
-              <span
-                style={{
-                  color: tokens.colorStatusDangerForeground1,
-                  fontSize: "13px",
-                }}
-              >
-                {syncCostError}
-              </span>
-            )}
+            {syncCostError && <span className="text-red-400 text-xs">{syncCostError}</span>}
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            flexWrap: "wrap",
-            marginTop: "18px",
-            marginInlineStart: "32px",
-          }}
-        >
-          <span style={{ fontSize: "16px", fontWeight: 600 }}>
-            {t("API Key Usage")}:
+        <div className="flex items-center gap-2 flex-wrap mt-4 ms-2 sm:ms-8">
+          <span className="text-base font-semibold">{t("API Key Usage")}:</span>
+          <span className={`text-base whitespace-nowrap ${keyInfoError ? "text-red-400" : "text-foreground"}`}>
+            {typeof keyUsageDisplay === "string" ? (
+              keyUsageDisplay
+            ) : keyUsageDisplay && keyUsageDisplay.usage != null ? (
+              <>
+                <span className="text-green-400">{formatCost(keyUsageDisplay.usage, costFractionStyle, locale)}</span>
+                {keyUsageDisplay.hasLimit ? (
+                  <>
+                    {" / "}
+                    <span className="text-green-400">
+                      ${formatDecimal(keyUsageDisplay.limit, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                    {keyUsageDisplay.limitReset == null
+                      ? t("(no reset interval)")
+                      : ` ${t("(reset interval: {{when}})", { when: t(keyUsageDisplay.limitReset) })}`}
+                  </>
+                ) : " "}
+              </>
+            ) : "-"}
           </span>
-            <span
-              style={{
-                fontSize: "16px",
-                color: keyInfoError
-                  ? tokens.colorStatusDangerForeground1
-                  : tokens.colorNeutralForeground1,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {typeof keyUsageDisplay === "string" ? (
-                keyUsageDisplay
-              ) : keyUsageDisplay && keyUsageDisplay.usage != null ? (
-                <>
-                  <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                    {formatCost(keyUsageDisplay.usage, costFractionStyle, locale)}
-                  </span>
-                  {keyUsageDisplay.hasLimit ? (
-                    <>
-                      {" / "}
-                      <span style={{ color: tokens.colorStatusSuccessForeground1 }}>
-                        ${formatDecimal(keyUsageDisplay.limit, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                      </span>
-                      {keyUsageDisplay.limitReset == null
-                        ? t("(no reset interval)")
-                        : ` ${t("(reset interval: {{when}})", { when: t(keyUsageDisplay.limitReset) })}`}
-                    </>
-                  ) : (
-                    " "
-                  )}
-                </>
-              ) : (
-                "-"
-              )}
-            </span>
-            <Button
-              appearance="subtle"
-              size="small"
-              icon={<RotateCcw size={14} />}
-              onClick={fetchKeyInfo}
-              title={t("Refresh API key usage")}
-            />
-            <span
-              style={{
-                fontSize: "12px",
-                color: tokens.colorNeutralForeground3,
-                fontStyle: "italic",
-              }}
-            >
-              {t("Usage updates may have a short delay (15s to 1min), even after refreshing.")}
-            </span>
+          <Button variant="ghost" size="icon-sm" onClick={fetchKeyInfo} title={t("Refresh API key usage")}>
+            <RotateCcw size={13} />
+          </Button>
+          <span className="text-xs text-muted-foreground italic">
+            {t("Usage updates may have a short delay (15s to 1min), even after refreshing.")}
+          </span>
         </div>
       </div>
 
       {loading ? (
-        <p style={{ marginTop: "16px" }}>{t("Loading summaries…")}</p>
+        <p className="mt-4">{t("Loading summaries…")}</p>
       ) : (
-        <div className="section" style={{ marginTop: "24px" }}>
-          <div style={{ marginInlineStart: "32px" }}>
-            <Text
-              as="h4"
-              size={400}
-              weight="semibold"
-              style={{ marginTop: 0, marginBottom: "4px" }}
-            >
-              {t("By function")}
-            </Text>
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th}>{t("Function")}</th>
-                    <th className={styles.th}>{t("Calls")}</th>
-                    <th className={styles.th}>{t("Cost")}</th>
-                    <th className={styles.th}>{t("Avg cost")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {byFunction.filter((r) => r.function !== "Total").length === 0
-                    ? emptyRow(4)
-                    : byFunction
-                        .filter((r) => r.function !== "Total")
-                        .map((row, i) => (
-                          <tr key={i} className={styles.tbodyTr}>
-                            <td className={styles.td}>{row.function}</td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>
-                              {formatCount(row.calls, locale)}
-                            </td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>
-                              {formatCost(row.cost, costFractionStyle, locale)}
-                            </td>
-                            <td className={`${styles.td} ${styles.tdValue}`}>
-                              {formatAvgCost(
-                                Number(row.cost || 0),
-                                row.calls ?? 0,
-                                costFractionStyle,
-                                locale,
-                              )}
-                            </td>
-                          </tr>
+        <div className={cn(settingsSection, "mt-6")}>
+          <div className="ms-2 sm:ms-8">
+            <h4 className="text-sm font-semibold mt-0 mb-1">{t("By function")}</h4>
+            {(() => {
+              const dataRows = byFunction.filter((r) => r.function !== "Total");
+              const totalRow = byFunction.find((r) => r.function === "Total");
+              const hasNoData = dataRows.length === 0 && !totalRow;
+              return (
+                <>
+                  <div className={costCard.list}>
+                    {hasNoData ? (
+                      <div className={costCard.empty}>{t("(no information available)")}</div>
+                    ) : (
+                      <>
+                        {dataRows.map((row, i) => (
+                          <div key={i} className={costCard.card}>
+                            <div className={costCard.title}>{row.function}</div>
+                            <div className={costCard.metricGrid}>
+                              <div className={costCard.metricCell}>
+                                <span className={costCard.metricLabel}>{t("Calls")}</span>
+                                <div className={costCard.metricValue}>{formatCount(row.calls, locale)}</div>
+                              </div>
+                              <div className={costCard.metricCell}>
+                                <span className={costCard.metricLabel}>{t("Cost")}</span>
+                                <div className={costCard.metricValue}>{formatCost(row.cost, costFractionStyle, locale)}</div>
+                              </div>
+                              <div className={costCard.metricCell}>
+                                <span className={costCard.metricLabel}>{t("Avg cost")}</span>
+                                <div className={costCard.metricValue}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0, costFractionStyle, locale)}</div>
+                              </div>
+                            </div>
+                          </div>
                         ))}
-                  {byFunction.some((r) => r.function === "Total") &&
-                    (() => {
-                      const total = byFunction.find(
-                        (r) => r.function === "Total",
-                      );
-                      const calls = total?.calls ?? 0;
-                      return (
-                        <tr className={styles.totalRow} key="total">
-                          <td className={styles.td}>
-                            <strong>Total</strong>
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatCount(calls, locale)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatCost(total?.cost, costFractionStyle, locale)}
-                          </td>
-                          <td className={`${styles.td} ${styles.tdValue}`}>
-                            {formatAvgCost(
-                              Number(total?.cost || 0),
-                              calls,
-                              costFractionStyle,
-                              locale,
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })()}
-                </tbody>
-              </table>
-            </div>
+                        {totalRow && (() => {
+                          const calls = totalRow.calls ?? 0;
+                          return (
+                            <div className={costCard.cardTotal}>
+                              <div className={costCard.title}>{t("Total")}</div>
+                              <div className={costCard.metricGrid}>
+                                <div className={costCard.metricCell}>
+                                  <span className={costCard.metricLabel}>{t("Calls")}</span>
+                                  <div className={costCard.metricValue}>{formatCount(calls, locale)}</div>
+                                </div>
+                                <div className={costCard.metricCell}>
+                                  <span className={costCard.metricLabel}>{t("Cost")}</span>
+                                  <div className={costCard.metricValue}>{formatCost(totalRow.cost, costFractionStyle, locale)}</div>
+                                </div>
+                                <div className={costCard.metricCell}>
+                                  <span className={costCard.metricLabel}>{t("Avg cost")}</span>
+                                  <div className={costCard.metricValue}>{formatAvgCost(Number(totalRow.cost || 0), calls, costFractionStyle, locale)}</div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </>
+                    )}
+                  </div>
+                  <div className="hidden sm:block">
+                    <div className={tbl.wrap}>
+                      <table className={tbl.table}>
+                        <thead className={tbl.thead}>
+                          <tr>
+                            <th className={tbl.th}>{t("Function")}</th>
+                            <th className={tbl.th}>{t("Calls")}</th>
+                            <th className={tbl.th}>{t("Cost")}</th>
+                            <th className={tbl.th}>{t("Avg cost")}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {dataRows.length === 0
+                            ? emptyRow(4)
+                            : dataRows.map((row, i) => (
+                                <tr key={i} className={tbl.tbodyTr}>
+                                  <td className={tbl.td}>{row.function}</td>
+                                  <td className={`${tbl.td} ${tbl.tdValue}`}>{formatCount(row.calls, locale)}</td>
+                                  <td className={`${tbl.td} ${tbl.tdValue}`}>{formatCost(row.cost, costFractionStyle, locale)}</td>
+                                  <td className={`${tbl.td} ${tbl.tdValue}`}>{formatAvgCost(Number(row.cost || 0), row.calls ?? 0, costFractionStyle, locale)}</td>
+                                </tr>
+                              ))}
+                          {totalRow && (() => {
+                            const calls = totalRow.calls ?? 0;
+                            return (
+                              <tr className={tbl.totalRow} key="total">
+                                <td className={tbl.td}><strong>{t("Total")}</strong></td>
+                                <td className={`${tbl.td} ${tbl.tdValue}`}>{formatCount(calls, locale)}</td>
+                                <td className={`${tbl.td} ${tbl.tdValue}`}>{formatCost(totalRow.cost, costFractionStyle, locale)}</td>
+                                <td className={`${tbl.td} ${tbl.tdValue}`}>{formatAvgCost(Number(totalRow.cost || 0), calls, costFractionStyle, locale)}</td>
+                              </tr>
+                            );
+                          })()}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </>
+              );
+            })()}
           </div>
         </div>
       )}
 
-      <div className="section" style={{ marginTop: "24px" }}>
-        <Text
-          as="h3"
-          size={500}
-          weight="semibold"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            marginTop: 0,
-            marginBottom: "36px",
-          }}
-        >
-          <Trash2 size={20} />
+      <div className={cn(settingsSection, "mt-6")}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <Trash2 size={18} />
           {t("Delete cost data")}
-        </Text>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            marginInlineStart: "64px",
-            marginTop: "12px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              flexWrap: "wrap",
-            }}
-          >
-            <span>{t("Delete entries older than:")}</span>
-            <Dropdown
-              appearance="underline"
-              selectedOptions={[deleteRange]}
-              value={
-                deleteRangeOptions.find((o) => o.value === deleteRange)
-                  ?.label || ""
-              }
-              onOptionSelect={(_, data) => {
-                if (data.optionValue) {
-                  setDeleteRange(data.optionValue);
-                }
-              }}
-              style={{ minWidth: "180px" }}
-            >
-              {deleteRangeOptions.map((opt) => (
-                <Option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </Option>
-              ))}
-            </Dropdown>
-            <Button
-              appearance="primary"
-              disabled={deleteLoading}
-              onClick={() => setShowDeleteConfirm(true)}
-              style={{
-                backgroundColor: tokens.colorStatusDangerBackground1,
-                color: tokens.colorNeutralForegroundOnBrand,
-              }}
-            >
+        </h3>
+        <div className="flex flex-col gap-2 ms-4 sm:ms-16 mt-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="text-sm">{t("Delete entries older than:")}</span>
+            <Select value={deleteRange} onValueChange={setDeleteRange}>
+              <SelectTrigger className="min-w-[180px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {deleteRangeOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button variant="destructive" size="sm" disabled={deleteLoading} onClick={() => setShowDeleteConfirm(true)}>
               {deleteLoading ? t("Deleting…") : t("Delete data")}
             </Button>
           </div>
-          {deleteError && (
-            <span
-              style={{
-                color: tokens.colorStatusDangerForeground1,
-                fontSize: "13px",
-              }}
-            >
-              {deleteError}
-            </span>
-          )}
-          {deleteSuccess && (
-            <span
-              style={{
-                color: tokens.colorStatusSuccessForeground1,
-                fontSize: "13px",
-              }}
-            >
-              {deleteSuccess}
-            </span>
-          )}
+          {deleteError && <span className="text-red-400 text-xs">{deleteError}</span>}
+          {deleteSuccess && <span className="text-green-400 text-xs">{deleteSuccess}</span>}
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:46.472Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:38.905Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ko
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 언어 간 번역, 다양한 스타일로 재작성 및 사용자 정의 프롬프트로 변환 - 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
 
-- **번역** - 수십 개 언어 간 번역 및 자동 원문 감지
-- **재작성** - 문법 수정, 명확성 개선, 정중/비격식, 축약, 확장, 기술적 스타일 등
+- **번역** - 수십 개의 언어 간 번역 및 원본 언어 자동 감지
+- **다시 작성** - 문법 수정, 명확성 향상, 격식/비격식 조정, 축약, 확장, 기술적 표현 변환
 - **변환** - 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
-- **기록** - 입력/출력 텍스트 포함 전체 실행 기록, 필터링 및 내보내기 기능
-- **모델 및 비용** - 구성된 제공업체의 모델 선택 가능; 모델/작업/일별 로그 및 요약 포함 비용 및 사용량 대시보드
-- **UI** - 다국어 인터페이스(30+ 언어, RTL 지원), 폰트, ...
-- **웹 모드** - 관리자 역할을 가진 다중 사용자 지원
-- **데스크톱** - Windows 및 Linux용 Electron 앱
-- **자체 호스팅** - amd64 및 arm64용 Docker 이미지(Raspberry Pi 지원)
+- **기록** - 입력/출력 텍스트를 포함한 전체 실행 기록, 필터링 및 내보내기 기능 제공
+- **모델 및 비용** - 설정된 제공업체 중에서 모델 선택 가능; 로그, 모델/작업/일별 요약을 포함한 비용 및 사용량 대시보드
+- **UI** - 다국어 인터페이스(30개 이상 언어, RTL 지원), 폰트 등
+- **웹 모드** - 관리자 역할이 있는 다중 사용자 지원
+- **데스크탑** - Windows 및 Linux용 Electron 앱
+- **자체 호스팅** - amd64 및 arm64용 Docker 이미지 (라즈베리 파이 지원)
 
 설치 후 모든 기능에 대한 전체 안내는 **[사용자 가이드](USER-GUIDE.ko.md)** 를 참조하세요.
 
 <small>**다른 언어로 읽기:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,7 +54,7 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 - [스크린샷](#screenshots)
 - [빠른 시작](#quick-start)
 - [OpenRouter API 키 발급 방법](#getting-an-openrouter-api-key)
-- [설정 및 환경](#configuration-and-environment)
+- [구성 및 환경 설정](#configuration-and-environment)
 - [개발 및 아키텍처](#development-and-architecture)
 - [문제 보고](#reporting-issues)
 - [면책 조항](#disclaimer)
@@ -278,11 +278,11 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 
 **구성 파일 위치**
 
-| 배포 방식         | 구성 파일 위치                                   |
+| 배포 방식         | 설정 위치                                   |
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (볼륨을 사용하여 영구 저장) |
+| Web / Docker       | `/app/data/config.json` (지속성을 위해 볼륨 사용) |
 
 <br/>
 
@@ -291,17 +291,17 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 | 변수             | 설명                                                                  |
 |----------------------|------------------------------------------------------------------------------|
 | `PORT`               | 서버 리스닝 포트 (기본값: `5000`)                                  |
-| `CONFIG_PATH`        | 구성 파일 경로 (기본값: `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `CONFIG_PATH`        | 구성 파일의 경로 (기본값: `/app/data/config.json`)                |
+| `TZ`                 | 서버 측 시간대 (로그 등, 기본값: `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API 키                                                           |
+| `OPENAI_API_KEY`     | OpenAI API 키                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API 키                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API 키                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API 키                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API 키                                                             |
+| `GROQ_API_KEY`       | Groq API 키                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API 키                                                              |
+| `OLLAMA_URL`         | Ollama 기본 URL (예: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API 키                                                                  |
 
 사용하는 제공자만 구성하세요. 모델 ID는 네임스페이스가 지정되어 있습니다 (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, 등).

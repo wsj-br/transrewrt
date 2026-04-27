@@ -1,15 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  Label,
-  Dropdown,
-  Option,
-  Text,
-  tokens,
-  makeStyles,
-  mergeClasses,
-} from "@fluentui/react-components";
 import { Download } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
@@ -30,11 +20,18 @@ import { getTextDirection } from "ai-i18n-tools/runtime";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
-import ResizablePanels from "./ResizablePanels";
 import TextPanel from "./TextPanel";
 import CallDetailsContent from "./CallDetailsContent";
-import { useStyles as useDashboardStyles } from "./DashboardPage-styles";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const EXPORT_FILENAME = "transrewrt-history";
 
@@ -111,11 +108,19 @@ function buildHistoryPrependFields(costFractionStyle) {
   ];
 }
 
-function summaryAccentClass(type, styles) {
-  if (type === "translate") return styles.summaryValueTranslate;
-  if (type === "rewrite") return styles.summaryValueRewrite;
-  if (type === "transform") return styles.summaryValueTransform;
+function summaryAccentClass(type) {
+  if (type === "translate") return "text-lime-500";
+  if (type === "rewrite") return "text-orange-400";
+  if (type === "transform") return "text-violet-400";
   return "";
+}
+
+function typeBadgeClass(type) {
+  const base = "px-2 py-0.5 rounded text-xs font-medium";
+  if (type === "translate") return `${base} bg-lime-500/20 text-lime-500`;
+  if (type === "rewrite") return `${base} bg-orange-400/20 text-orange-400`;
+  if (type === "transform") return `${base} bg-violet-400/20 text-violet-400`;
+  return base;
 }
 
 /**
@@ -125,15 +130,12 @@ function HistoryEntrySummary({
   row,
   t,
   locale,
-  typeBadgeClass,
   orDash,
-  styles,
-  mergeClasses,
   formatDateTime,
   isRtl,
 }) {
   const type = row?.type;
-  const accent = summaryAccentClass(type, styles);
+  const accent = summaryAccentClass(type);
 
   const langOrDash = (val) => {
     const d = orDash(val);
@@ -150,6 +152,7 @@ function HistoryEntrySummary({
 
   const ts = row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH;
   const user = orDash(row.username);
+  const cardCls = "shrink-0 flex flex-wrap items-center gap-2.5 text-sm font-medium py-2.5 px-3 rounded-md border border-border bg-card";
 
   if (type === "translate") {
     const src = isTranslateSourceAuto(row.source_lang)
@@ -157,53 +160,52 @@ function HistoryEntrySummary({
       : formatHistoryContentLanguage(row.source_lang, t);
     const tgtRaw = row.target_lang != null ? String(row.target_lang).trim() : "";
     const tgt = tgtRaw === "" ? "" : formatHistoryContentLanguage(tgtRaw, t);
-    const pair =
-      tgt === "" ? src : flipUiArrowsForRtl(`${src} → ${tgt}`, isRtl);
+    const pair = tgt === "" ? src : flipUiArrowsForRtl(`${src} → ${tgt}`, isRtl);
     return (
-      <div className={styles.summaryCard}>
+      <div className={cardCls}>
         {badge}
-        <span className={mergeClasses(accent)}>{pair}</span>
-        <span className={styles.summaryMeta}>{ts}</span>
-        <span className={styles.summaryMeta}>{user}</span>
+        <span className={accent}>{pair}</span>
+        <span className="text-muted-foreground font-normal">{ts}</span>
+        <span>{user}</span>
       </div>
     );
   }
 
   if (type === "rewrite") {
     return (
-      <div className={styles.summaryCard}>
+      <div className={cardCls}>
         {badge}
-        <span className={mergeClasses(accent)}>{rewriteOrDash(row.rewrite_mode)}</span>
-        <span className={styles.summaryMeta}>{ts}</span>
-        <span className={styles.summaryMeta}>{user}</span>
+        <span className={accent}>{rewriteOrDash(row.rewrite_mode)}</span>
+        <span className="text-muted-foreground font-normal">{ts}</span>
+        <span>{user}</span>
       </div>
     );
   }
 
   if (type === "transform") {
     const prompt = orDash(row.transform_prompt);
-    const tgtRaw = row.target_lang != null ? String(row.target_lang).trim() : "";
-    const tgtLabel = tgtRaw === "" ? "" : formatHistoryContentLanguage(tgtRaw, t);
-    const withBrackets = tgtLabel === "" ? prompt : `${prompt} (${tgtLabel})`;
+    const fromRaw = row.source_lang != null ? String(row.source_lang).trim() : "";
+    const fromLabel = fromRaw === "" ? "" : formatHistoryContentLanguage(fromRaw, t);
+    const withBrackets = fromLabel === "" ? prompt : `${prompt} (${fromLabel})`;
     return (
-      <div className={styles.summaryCard}>
+      <div className={cardCls}>
         {badge}
-        <span className={mergeClasses(accent)}>{withBrackets}</span>
-        <span className={styles.summaryMeta}>{ts}</span>
-        <span className={styles.summaryMeta}>{user}</span>
+        <span className={accent}>{withBrackets}</span>
+        <span className="text-muted-foreground font-normal">{ts}</span>
+        <span>{user}</span>
       </div>
     );
   }
 
   return (
-    <div className={styles.summaryCard}>
+    <div className={cardCls}>
       {badge}
-      <span className={mergeClasses(accent)}>{langOrDash(row.source_lang)}</span>
-      <span className={mergeClasses(accent)}>{langOrDash(row.target_lang)}</span>
-      <span className={mergeClasses(accent)}>{rewriteOrDash(row.rewrite_mode)}</span>
-      <span className={mergeClasses(accent)}>{orDash(row.transform_prompt)}</span>
-      <span className={styles.summaryMeta}>{ts}</span>
-      <span className={styles.summaryMeta}>{user}</span>
+      <span className={accent}>{langOrDash(row.source_lang)}</span>
+      <span className={accent}>{langOrDash(row.target_lang)}</span>
+      <span className={accent}>{rewriteOrDash(row.rewrite_mode)}</span>
+      <span className={accent}>{orDash(row.transform_prompt)}</span>
+      <span className="text-muted-foreground font-normal">{ts}</span>
+      <span>{user}</span>
     </div>
   );
 }
@@ -212,141 +214,16 @@ HistoryEntrySummary.propTypes = {
   row: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   locale: PropTypes.string.isRequired,
-  typeBadgeClass: PropTypes.func.isRequired,
   orDash: PropTypes.func.isRequired,
-  styles: PropTypes.object.isRequired,
-  mergeClasses: PropTypes.func.isRequired,
   formatDateTime: PropTypes.func.isRequired,
   isRtl: PropTypes.bool.isRequired,
 };
-
-const useLocalStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 1,
-    minHeight: 0,
-    overflow: "hidden",
-    width: "100%",
-  },
-  listColumn: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 1,
-    minHeight: 0,
-    minWidth: 0,
-  },
-  listScroll: {
-    flex: 1,
-    minHeight: 0,
-    overflowY: "auto",
-    overflowX: "hidden",
-    paddingInlineEnd: "4px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-  },
-  historyCard: {
-    width: "100%",
-    boxSizing: "border-box",
-    padding: "10px 12px",
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    cursor: "pointer",
-    textAlign: "start",
-    transition: "background-color 0.15s ease, border-color 0.15s ease",
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground1Hover,
-    },
-  },
-  historyCardSelected: {
-    borderColor: tokens.colorBrandStroke1,
-    backgroundColor: tokens.colorNeutralBackground2,
-  },
-  cardLine1: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    gap: "8px",
-    fontSize: "14px",
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground1,
-  },
-  cardLine2: {
-    marginTop: "6px",
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground3,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
-  detailColumn: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 1,
-    minHeight: 0,
-    minWidth: 0,
-    gap: tokens.spacingVerticalM,
-    overflow: "hidden",
-  },
-  summaryCard: {
-    flexShrink: 0,
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    gap: "10px 14px",
-    fontSize: "13px",
-    fontWeight: 500,
-    lineHeight: 1.4,
-    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-  summaryMuted: {
-    color: tokens.colorNeutralForeground3,
-    fontWeight: 400,
-  },
-  summaryValueTranslate: { color: "#84cc16" },
-  summaryValueRewrite: { color: "#fb923c" },
-  summaryValueTransform: { color: "#a78bfa" },
-  summaryMeta: {
-    color: tokens.colorNeutralForeground1,
-    fontWeight: 500,
-  },
-  metricsCard: {
-    flexShrink: 0,
-    display: "flex",
-    flexDirection: "column",
-    padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalS}`,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground2,
-  },
-  metaPanels: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    minHeight: 0,
-    minWidth: 0,
-    overflow: "hidden",
-  },
-  detailsWrap: {
-    flexShrink: 0,
-    maxHeight: "240px",
-    overflow: "auto",
-    minWidth: 0,
-  },
-});
 
 export default function HistoryPage() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const isRtl = getTextDirection(i18n.language) === "rtl";
   const { settings, currentUser } = useAppContext();
-  const dashStyles = useDashboardStyles();
-  const styles = useLocalStyles();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
   const [filter, setFilter] = useState("all");
@@ -401,13 +278,6 @@ export default function HistoryPage() {
       setSelected(null);
     });
   }, [filter, historyUsername]);
-
-  const typeBadgeClass = (type) => {
-    if (type === "translate") return mergeClasses(dashStyles.typeBadge, dashStyles.typeTranslate);
-    if (type === "rewrite") return mergeClasses(dashStyles.typeBadge, dashStyles.typeRewrite);
-    if (type === "transform") return mergeClasses(dashStyles.typeBadge, dashStyles.typeTransform);
-    return dashStyles.typeBadge;
-  };
 
   const noop = useMemo(() => () => {}, []);
 
@@ -543,14 +413,13 @@ export default function HistoryPage() {
     : null;
 
   return (
-    <div className={styles.root}>
-      <div className={dashStyles.filterRow}>
+    <div className="flex flex-col flex-1 min-h-0 overflow-hidden w-full">
+      <div className="flex flex-wrap items-center gap-2 mb-4">
         {getFilters(t).map((f) => (
           <Button
             key={f.id}
-            size="small"
-            appearance={filter === f.id ? "primary" : "subtle"}
-            className={filter !== f.id ? dashStyles.filterButtonUnselected : undefined}
+            size="sm"
+            variant={filter === f.id ? "default" : "outline"}
             onClick={() => setFilter(f.id)}
           >
             {f.label}
@@ -558,163 +427,138 @@ export default function HistoryPage() {
         ))}
         {isWeb && isAdmin && userList.length > 0 && (
           <>
-            <Label style={{ marginInlineStart: "16px", marginInlineEnd: "8px" }}>{t("User")}</Label>
-            <Dropdown
-              value={userFilter === "" ? t("All users") : userFilter}
-              selectedOptions={[userFilter]}
-              onOptionSelect={(_, data) => setUserFilter(data.optionValue ?? "")}
-              style={{ minWidth: "140px" }}
+            <span className="text-sm font-medium text-muted-foreground ms-2 me-1">{t("User")}</span>
+            <Select
+              value={userFilter === "" ? "__all__" : userFilter}
+              onValueChange={(v) => setUserFilter(v === "__all__" ? "" : v)}
             >
-              <Option value="">{t("All users")}</Option>
-              {userList.map((u) => (
-                <Option key={u.id} value={u.username || ""}>
-                  {u.username}
-                </Option>
-              ))}
-            </Dropdown>
+              <SelectTrigger className="min-w-[140px] h-8 text-sm">
+                <SelectValue placeholder={t("All users")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="__all__">{t("All users")}</SelectItem>
+                {userList.filter((u) => u.username).map((u) => (
+                  <SelectItem key={u.id} value={u.username}>
+                    {u.username}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </>
         )}
-        <div className={dashStyles.downloadBlock} style={{ marginInlineStart: "32px" }}>
-          <Download size={16} aria-hidden />
-          <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
-          <Button
-            size="small"
-            appearance="subtle"
-            className={dashStyles.downloadButton}
-            disabled={exportLoading || loading}
-            onClick={() => handleExport("json")}
-          >
-            {t("JSON")}
-          </Button>
-          <Button
-            size="small"
-            appearance="subtle"
-            className={dashStyles.downloadButton}
-            disabled={exportLoading || loading}
-            onClick={() => handleExport("csv")}
-          >
-            {t("CSV")}
-          </Button>
-          <Button
-            size="small"
-            appearance="subtle"
-            className={dashStyles.downloadButton}
-            disabled={exportLoading || loading}
-            onClick={() => handleExport("xlsx")}
-          >
-            {t("XLSX")}
-          </Button>
+        <div className="inline-flex items-center gap-1.5 ms-8">
+          <Download size={15} aria-hidden />
+          <span className="text-sm font-semibold">{t("Download:")} </span>
+          {["json", "csv", "xlsx"].map((fmt) => (
+            <Button
+              key={fmt}
+              size="sm"
+              variant="outline"
+              disabled={exportLoading || loading}
+              onClick={() => handleExport(fmt)}
+              className="text-xs h-7 px-2"
+            >
+              {fmt.toUpperCase()}
+            </Button>
+          ))}
         </div>
       </div>
 
-      <ResizablePanels
-        leftGrow={2}
-        rightGrow={3}
-        leftPanel={
-          <div className={styles.listColumn}>
-            {loading ? (
-              <Text>{t("Loading…")}</Text>
-            ) : (
-              <div className={styles.listScroll}>
-                {rows.length === 0 ? (
-                  <Text style={{ color: tokens.colorNeutralForeground3 }}>{t("(no information available)")}</Text>
-                ) : (
-                  rows.map((row) => (
-                    <button
-                      key={row.id}
-                      type="button"
-                      data-testid="history-list-item"
-                      data-history-type={row.type || ""}
-                      className={mergeClasses(
-                        styles.historyCard,
-                        selected?.id === row.id && styles.historyCardSelected,
-                      )}
-                      onClick={() => setSelected(row)}
-                    >
-                      <div className={styles.cardLine1}>
-                        <span className={typeBadgeClass(row.type)}>{orDash(row.type)}</span>
-                        <span>
-                          {row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH}
-                        </span>
-                        {row.username ? <span>{row.username}</span> : null}
-                        <span style={{ color: tokens.colorNeutralForeground3, fontWeight: 500 }}>
-                          #{row.id}
-                        </span>
-                      </div>
-                      <div className={styles.cardLine2} title={firstLinePreview(row.input_text)}>
-                        {firstLinePreview(row.input_text) || "-"}
-                      </div>
-                    </button>
-                  ))
-                )}
-              </div>
-            )}
-          </div>
-        }
-        rightPanel={
-          <div className={styles.detailColumn}>
-            {!selected ? (
-              <Text style={{ color: tokens.colorNeutralForeground3 }}>{t("Select a history entry to view details.")}</Text>
-            ) : (
-              <>
-                <HistoryEntrySummary
-                  row={selected}
-                  t={t}
-                  locale={locale}
-                  typeBadgeClass={typeBadgeClass}
-                  orDash={orDash}
-                  styles={styles}
-                  mergeClasses={mergeClasses}
-                  formatDateTime={formatDateTime}
-                  isRtl={isRtl}
-                />
-                <div className={styles.metricsCard}>
-                  <div className={styles.detailsWrap}>
-                    <CallDetailsContent
-                      row={selected}
-                      excludeFieldKeys={HISTORY_DETAILS_EXCLUDE_KEYS}
-                      prependFields={historyPrependFields}
-                      costFractionStyle={costFractionStyle}
-                      columnCount={2}
-                    />
-                  </div>
-                </div>
-                <div className={styles.metaPanels}>
-                  <ResizablePanels
-                    gap="8px"
-                    leftGrow={1}
-                    rightGrow={1}
-                    leftPanel={
-                      <TextPanel
-                        title={t("Input")}
-                        text={selected.input_text ?? ""}
-                        onTextChange={noop}
-                        readOnly
-                        footerStats={inputStatsStr}
-                        footerMinimal
-                        fontFamily={settings?.font_family}
-                        fontSize={settings?.font_size}
-                      />
-                    }
-                    rightPanel={
-                      <TextPanel
-                        title={t("Output")}
-                        text={selected.output_text ?? ""}
-                        onTextChange={noop}
-                        readOnly
-                        footerStats={outputStatsStr}
-                        footerMinimal
-                        fontFamily={settings?.font_family}
-                        fontSize={settings?.font_size}
-                      />
-                    }
+      <div className="grid flex-1 gap-4 lg:grid-cols-2 min-h-0 overflow-hidden">
+        {/* List column */}
+        <div className="flex flex-col min-h-0">
+          {loading ? (
+            <span className="text-sm text-muted-foreground">{t("Loading…")}</span>
+          ) : (
+            <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden pe-1 flex flex-col gap-2">
+              {rows.length === 0 ? (
+                <span className="text-sm text-muted-foreground">{t("(no information available)")}</span>
+              ) : (
+                rows.map((row) => (
+                  <button
+                    key={row.id}
+                    type="button"
+                    data-testid="history-list-item"
+                    data-history-type={row.type || ""}
+                    className={cn(
+                      "w-full p-2.5 px-3 rounded-md border cursor-pointer text-start transition-colors",
+                      selected?.id === row.id
+                        ? "border-primary bg-secondary"
+                        : "border-border bg-card hover:bg-accent"
+                    )}
+                    onClick={() => setSelected(row)}
+                  >
+                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+                      <span className={typeBadgeClass(row.type)}>{orDash(row.type)}</span>
+                      <span>
+                        {row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH}
+                      </span>
+                      {row.username ? <span>{row.username}</span> : null}
+                      <span className="text-muted-foreground font-medium">#{row.id}</span>
+                    </div>
+                    <div className="mt-1.5 text-xs text-muted-foreground overflow-hidden text-ellipsis whitespace-nowrap" title={firstLinePreview(row.input_text)}>
+                      {firstLinePreview(row.input_text) || "-"}
+                    </div>
+                  </button>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Detail column */}
+        <div className="flex flex-col min-h-0 gap-3 overflow-hidden">
+          {!selected ? (
+            <span className="text-sm text-muted-foreground">{t("Select a history entry to view details.")}</span>
+          ) : (
+            <>
+              <HistoryEntrySummary
+                row={selected}
+                t={t}
+                locale={locale}
+                orDash={orDash}
+                formatDateTime={formatDateTime}
+                isRtl={isRtl}
+              />
+              <div className="shrink-0 flex flex-col p-3 rounded-md border border-border bg-muted">
+                <div className="shrink-0 max-h-60 overflow-auto">
+                  <CallDetailsContent
+                    row={selected}
+                    excludeFieldKeys={HISTORY_DETAILS_EXCLUDE_KEYS}
+                    prependFields={historyPrependFields}
+                    costFractionStyle={costFractionStyle}
+                    columnCount={2}
                   />
                 </div>
-              </>
-            )}
-          </div>
-        }
-      />
+              </div>
+              <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+                <div className="grid flex-1 gap-3 lg:grid-cols-2 min-h-0">
+                  <TextPanel
+                    title={t("Input")}
+                    text={selected.input_text ?? ""}
+                    onTextChange={noop}
+                    readOnly
+                    footerStats={inputStatsStr}
+                    footerMinimal
+                    fontFamily={settings?.font_family}
+                    fontSize={settings?.font_size}
+                  />
+                  <TextPanel
+                    title={t("Output")}
+                    text={selected.output_text ?? ""}
+                    onTextChange={noop}
+                    readOnly
+                    footerStats={outputStatsStr}
+                    footerMinimal
+                    fontFamily={settings?.font_family}
+                    fontSize={settings?.font_size}
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

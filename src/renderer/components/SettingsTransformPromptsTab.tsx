@@ -1,19 +1,31 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Spinner, Dropdown, Option, Text } from "@fluentui/react-components";
-import { BookOpenText, Download, Upload, List, Trash2 } from "lucide-react";
+import { BookOpenText, Download, Upload, List, Trash2, Loader2 } from "lucide-react";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  settingsDataTable as tbl,
+  settingsTransformPromptsCard as promptCard,
+} from "./settings/settingsTableClasses";
+import { settingsSection, settingsTabContent } from "./settings/settingsLayoutClasses";
 
 const EXPORT_FORMATS = ["json", "csv", "xlsx"];
 const CSV_COLUMNS = ["name", "role", "instructions", "output_description", "temperature", "target_language", "prompt_instructions"];
 
-/** Normalize import/DB value to boolean: true = ask for target language at run time. */
-function normalizeAskTargetLanguage(value) {
+/** Normalize import/DB value to boolean: true = show From language selector at run time (`target_language` column). */
+function normalizeAskFromLanguageFlag(value) {
   if (value === true || value === 1) return true;
   if (value === false || value === 0 || value === "0") return false;
   if (typeof value === "string") {
@@ -130,7 +142,7 @@ function parseCsvToPrompts(text) {
         instructions: newlineStringToInstructionsArray(obj.instructions),
         output_description: obj.output_description || "transformed",
         temperature: Number(obj.temperature) || 0.4,
-        target_language: normalizeAskTargetLanguage(obj.target_language),
+        target_language: normalizeAskFromLanguageFlag(obj.target_language),
         prompt_instructions: (obj.prompt_instructions != null && String(obj.prompt_instructions).trim()) ? String(obj.prompt_instructions).trim() : null,
       });
     }
@@ -138,106 +150,36 @@ function parseCsvToPrompts(text) {
   return prompts;
 }
 
-const useStyles = makeStyles({
-  sectionInner: {
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacingVerticalS,
-  },
-  formatRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalM,
-    flexWrap: "wrap",
-  },
-  formatRowSpacer: {
-    marginInlineStart: "24px",
-    flexShrink: 0,
-  },
-  formatDropdown: {
-    minWidth: "fit-content",
-    width: "fit-content",
-  },
-  message: {
-    fontSize: "13px",
-    color: tokens.colorNeutralForeground2,
-  },
-  error: {
-    color: tokens.colorStatusDangerForeground1,
-  },
-  tableWrap: {
-    width: "fit-content",
-    maxWidth: "100%",
-    marginTop: "8px",
-    marginBottom: "8px",
-    borderRadius: "8px",
-    overflow: "auto",
-    boxShadow: `0 1px 3px ${tokens.colorNeutralShadowAmbient}, 0 1px 2px ${tokens.colorNeutralShadowKey}`,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-  },
-  table: {
-    width: "auto",
-    tableLayout: "auto",
-    borderCollapse: "collapse",
-    fontSize: "14px",
-  },
-  thead: {
-    backgroundColor: tokens.colorNeutralBackground3,
-  },
-  th: {
-    padding: "10px 12px",
-    textAlign: "start",
-    fontWeight: 600,
-    backgroundColor: tokens.colorNeutralBackground3,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke1}`,
-    fontSize: "14px",
-  },
-  td: {
-    padding: "12px 16px",
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
-    color: tokens.colorNeutralForeground1,
-  },
-  tbodyTr: {
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground1Hover,
-    },
-  },
-  emptyRow: {
-    padding: "20px 16px",
-    textAlign: "center",
-    color: tokens.colorNeutralForeground3,
-    fontStyle: "italic",
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-  nameCell: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    minWidth: 0,
-  },
-  nameCellTrashIcon: {
-    color: tokens.colorNeutralForeground3,
-    cursor: "pointer",
-    flexShrink: 0,
-    marginInlineStart: "auto",
-    ":hover": {
-      color: tokens.colorNeutralForeground2BrandHover,
-    },
-  },
-  loadSampleButton: {
-    backgroundColor: "#223328",
-    color: "#e8f5e9",
-    ":hover": {
-      backgroundColor: "#2d4532",
-      color: "#e8f5e9",
-    },
-  },
-});
-
 const getCustomPromptsApi = () =>
   typeof window !== "undefined" && window.electronAPI?.customPrompts
     ? window.electronAPI.customPrompts
     : webAPI?.customPrompts;
+
+function getTransformPromptRowDisplay(p, t) {
+  const instructionsDisplay = instructionsToNewlineString(p.instructions);
+  const instructionsPreview =
+    instructionsDisplay.length > 80
+      ? `${instructionsDisplay.slice(0, 80)}…`
+      : instructionsDisplay || "-";
+  const roleStr = p.role ? String(p.role) : "";
+  const roleDisplay = roleStr
+    ? `${roleStr.slice(0, 50)}${roleStr.length > 50 ? "…" : ""}`
+    : "-";
+  const outStr = p.output_description ? String(p.output_description) : "";
+  const outputDisplay = outStr
+    ? `${outStr.slice(0, 40)}${outStr.length > 40 ? "…" : ""}`
+    : "-";
+  const fromLangYes = p.target_language === true || p.target_language === 1;
+  return {
+    instructionsDisplay,
+    instructionsPreview,
+    roleDisplay,
+    outputDisplay,
+    fromLangYes,
+    fromLangLabel: fromLangYes ? t("Yes") : t("No"),
+    tempDisplay: p.temperature ?? "-",
+  };
+}
 
 const getAcceptForFormat = (format) => {
   switch (format) {
@@ -253,7 +195,6 @@ const getAcceptForFormat = (format) => {
 };
 
 const SettingsTransformPromptsTab = () => {
-  const styles = useStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const [prompts, setPrompts] = useState([]);
@@ -423,7 +364,7 @@ const SettingsTransformPromptsTab = () => {
     instructions: typeof p.instructions === "string" ? p.instructions : JSON.stringify(p.instructions || []),
     output_description: p.output_description ?? "transformed",
     temperature: Number(p.temperature) || 0.4,
-    target_language: normalizeAskTargetLanguage(p.target_language),
+    target_language: normalizeAskFromLanguageFlag(p.target_language),
   });
 
   const handleImportFile = async (e) => {
@@ -539,147 +480,177 @@ const SettingsTransformPromptsTab = () => {
   const indentStyle = { paddingInlineStart: "24px" };
 
   return (
-    <div className="tab-content">
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
-          <Download size={20} />
+    <div className={settingsTabContent}>
+      <div className={settingsSection}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <Download size={18} />
           {t("Export / Import transform prompts")}
-        </Text>
-        <div style={indentStyle} className={styles.sectionInner}>
-          <div className={styles.formatRow}>
-            <Button
-              appearance="primary"
-              icon={<Download size={16} />}
-              onClick={handleExport}
-              disabled={loading}
-            >
-              {t("Export")}
+        </h3>
+        <div className="ps-6 flex flex-col gap-2">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Button size="sm" onClick={handleExport} disabled={loading}>
+              <Download size={14} />{t("Export")}
             </Button>
-            <Button
-              appearance="secondary"
-              icon={<Upload size={16} />}
-              onClick={handleImportClick}
-              disabled={loading}
-            >
-              {t("Import (merge)")}
+            <Button variant="outline" size="sm" onClick={handleImportClick} disabled={loading}>
+              <Upload size={14} />{t("Import (merge)")}
             </Button>
             <input
               ref={fileInputRef}
               type="file"
               accept={getAcceptForFormat(exportImportFormat)}
-              style={{ display: "none" }}
+              className="hidden"
               onChange={handleImportFile}
             />
-            <span className={styles.formatRowSpacer} aria-hidden="true" />
-            <Dropdown
-              id="export-import-format"
-              appearance="underline"
-              value={exportImportFormat.toUpperCase()}
-              selectedOptions={[exportImportFormat]}
-              onOptionSelect={(_, data) => data.optionValue && setExportImportFormat(String(data.optionValue))}
-              aria-label={t("Export/import format")}
-              className={styles.formatDropdown}
-              style={{ minWidth: "72px", width: "fit-content" }}
-            >
-              {EXPORT_FORMATS.map((f) => (
-                <Option key={f} value={f}>
-                  {f.toUpperCase()}
-                </Option>
-              ))}
-            </Dropdown>
-            <span className={styles.formatRowSpacer} aria-hidden="true" />
+            <span className="ms-6 shrink-0" aria-hidden="true" />
+            <Select value={exportImportFormat} onValueChange={setExportImportFormat}>
+              <SelectTrigger className="min-w-[72px] w-fit h-8" aria-label={t("Export/import format")}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {EXPORT_FORMATS.map((f) => (
+                  <SelectItem key={f} value={f}>{f.toUpperCase()}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <span className="ms-6 shrink-0" aria-hidden="true" />
             <Button
-              appearance="secondary"
-              className={styles.loadSampleButton}
-              icon={loadSampleLoading ? undefined : <BookOpenText size={16} />}
+              variant="outline"
+              size="sm"
+              className="bg-emerald-950/40 border-emerald-800 text-emerald-200 hover:bg-emerald-900/50"
               onClick={() => setShowLoadSampleConfirm(true)}
               disabled={loading || loadSampleLoading}
             >
+              {!loadSampleLoading && <BookOpenText size={14} />}
               {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
             </Button>
           </div>
-          {exportMessage && <div className={styles.message}>{exportMessage}</div>}
+          {exportMessage && <div className="text-xs text-muted-foreground">{exportMessage}</div>}
           {importMessage && (
-            <div className={importError ? `${styles.message} ${styles.error}` : styles.message}>
+            <div className={`text-xs ${importError ? "text-red-400" : "text-muted-foreground"}`}>
               {importMessage}
             </div>
           )}
         </div>
       </div>
-      <div className="section">
-        <Text as="h3" size={500} weight="semibold" style={sectionTitleStyle}>
-          <List size={20} />
+      <div className={settingsSection}>
+        <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <List size={18} />
           {t("Transform prompts")}
-        </Text>
-        <div style={indentStyle}>
+        </h3>
+        <div className="ps-6">
           {loading ? (
-            <Spinner size="small" />
+            <Loader2 size={20} className="animate-spin opacity-50" />
           ) : (
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th}>{t("Name")}</th>
-                    <th className={styles.th}>{t("Role")}</th>
-                    <th className={styles.th}>{t("Instructions")}</th>
-                    <th className={styles.th}>{t("Output description")}</th>
-                    <th className={styles.th}>{t("Target language")}</th>
-                    <th className={styles.th}>{t("Temperature")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {prompts.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} className={styles.emptyRow}>
-                         {t("No transform prompts yet. Import from a file or create in the Transform view.")}
-                      </td>
-                    </tr>
-                  ) : (
-                    prompts.map((p) => {
-                      const instructionsDisplay = instructionsToNewlineString(p.instructions);
-                      const instructionsPreview =
-                        instructionsDisplay.length > 80
-                          ? `${instructionsDisplay.slice(0, 80)}…`
-                          : instructionsDisplay || "-";
-                      return (
-                        <tr key={p.id} className={styles.tbodyTr}>
-                          <td className={styles.td}>
-                            <span className={styles.nameCell}>
-                              <span style={{ minWidth: 0 }}>{p.name}</span>
-                              <span className={styles.nameCellTrashIcon} title={t("Delete this prompt")}>
-                                <Trash2
-                                  size={14}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setPromptToDelete(p);
-                                  }}
-                                />
-                              </span>
-                            </span>
-                          </td>
-                          <td className={styles.td}>
-                            {p.role ? `${String(p.role).slice(0, 50)}${String(p.role).length > 50 ? "…" : ""}` : "-"}
-                          </td>
-                          <td
-                            className={styles.td}
-                            style={{ whiteSpace: "pre-wrap" }}
-                            title={instructionsDisplay || undefined}
+            <>
+              <div className={promptCard.list}>
+                {prompts.length === 0 ? (
+                  <div className={promptCard.empty}>
+                    {t("No transform prompts yet. Import from a file or create in the Transform view.")}
+                  </div>
+                ) : (
+                  prompts.map((p) => {
+                    const d = getTransformPromptRowDisplay(p, t);
+                    return (
+                      <div key={p.id} className={promptCard.card}>
+                        <div className={promptCard.headerRow}>
+                          <span className={promptCard.name}>{p.name}</span>
+                          <button
+                            type="button"
+                            className={promptCard.deleteBtn}
+                            title={t("Delete this prompt")}
+                            aria-label={t("Delete this prompt")}
+                            onClick={() => setPromptToDelete(p)}
                           >
-                            {instructionsPreview}
+                            <Trash2 size={13} />
+                          </button>
+                        </div>
+                        <div className={promptCard.fieldBlock}>
+                          <span className={promptCard.fieldLabel}>{t("Role")}</span>
+                          <div className={promptCard.fieldValue}>{d.roleDisplay}</div>
+                        </div>
+                        <div className={promptCard.fieldBlock}>
+                          <span className={promptCard.fieldLabel}>{t("Instructions")}</span>
+                          <div
+                            className={promptCard.instructionsValue}
+                            title={d.instructionsDisplay || undefined}
+                          >
+                            {d.instructionsPreview}
+                          </div>
+                        </div>
+                        <div className={promptCard.fieldBlock}>
+                          <span className={promptCard.fieldLabel}>{t("Output description")}</span>
+                          <div className={promptCard.fieldValue}>{d.outputDisplay}</div>
+                        </div>
+                        <div className={promptCard.fieldBlock}>
+                          <span className={promptCard.fieldLabel}>{t("From language (prompt)")}</span>
+                          <div className={promptCard.fieldValue}>{d.fromLangLabel}</div>
+                        </div>
+                        <div className={promptCard.fieldBlock}>
+                          <span className={promptCard.fieldLabel}>{t("Temperature")}</span>
+                          <div className={promptCard.fieldValue}>{d.tempDisplay}</div>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+              <div className="hidden sm:block">
+                <div className={tbl.wrap}>
+                  <table className={tbl.table}>
+                    <thead className={tbl.thead}>
+                      <tr>
+                        <th className={tbl.th}>{t("Name")}</th>
+                        <th className={tbl.th}>{t("Role")}</th>
+                        <th className={tbl.th}>{t("Instructions")}</th>
+                        <th className={tbl.th}>{t("Output description")}</th>
+                        <th className={tbl.th}>{t("From language (prompt)")}</th>
+                        <th className={tbl.th}>{t("Temperature")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {prompts.length === 0 ? (
+                        <tr>
+                          <td colSpan={6} className={tbl.emptyRow}>
+                            {t("No transform prompts yet. Import from a file or create in the Transform view.")}
                           </td>
-                          <td className={styles.td}>
-                            {p.output_description ? String(p.output_description).slice(0, 40) : "-"}
-                            {(p.output_description && String(p.output_description).length > 40) ? "…" : ""}
-                          </td>
-                          <td className={styles.td}>{p.target_language === true || p.target_language === 1 ? t("Yes") : t("No")}</td>
-                          <td className={styles.td}>{p.temperature ?? "-"}</td>
                         </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
+                      ) : (
+                        prompts.map((p) => {
+                          const d = getTransformPromptRowDisplay(p, t);
+                          return (
+                            <tr key={p.id} className={tbl.tbodyTr}>
+                              <td className={tbl.td}>
+                                <span className="flex items-center gap-1.5 min-w-0">
+                                  <span style={{ minWidth: 0 }}>{p.name}</span>
+                                  <button
+                                    type="button"
+                                    className="text-muted-foreground hover:text-foreground shrink-0 ms-auto cursor-pointer"
+                                    title={t("Delete this prompt")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setPromptToDelete(p);
+                                    }}
+                                  >
+                                    <Trash2 size={13} />
+                                  </button>
+                                </span>
+                              </td>
+                              <td className={tbl.td}>{d.roleDisplay}</td>
+                              <td className={tbl.td} style={{ whiteSpace: "pre-wrap" }} title={d.instructionsDisplay || undefined}>
+                                {d.instructionsPreview}
+                              </td>
+                              <td className={tbl.td}>{d.outputDisplay}</td>
+                              <td className={tbl.td}>{d.fromLangLabel}</td>
+                              <td className={tbl.td}>{d.tempDisplay}</td>
+                            </tr>
+                          );
+                        })
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>

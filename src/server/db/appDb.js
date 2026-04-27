@@ -53,6 +53,8 @@ function initDb(dataDir, logger) {
   const DB_PATH = path.join(dataDir, "transrewrt.db");
   try {
     db = new Database(DB_PATH);
+    db.pragma("journal_mode = WAL");
+    db.pragma("synchronous = NORMAL");
     applyAppSchema(db);
     db.exec(`
       CREATE TABLE IF NOT EXISTS users (
@@ -98,6 +100,22 @@ function initDb(dataDir, logger) {
 
 function getDb() {
   return db;
+}
+
+function closeDb() {
+  if (!db) return;
+  try {
+    db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
+  } catch (err) {
+    log?.warn?.("[SERVER] WAL checkpoint failed during close: " + err.message);
+  }
+  try {
+    db.close();
+  } catch (err) {
+    log?.error?.("[SERVER] Failed to close SQLite DB: " + err.message, { stack: err.stack });
+  } finally {
+    db = null;
+  }
 }
 
 function assignCustomPromptsToAdmin() {
@@ -155,6 +173,7 @@ function cleanupStalledSessions(now = Date.now()) {
 module.exports = {
   initDb,
   getDb,
+  closeDb,
   promptTargetLanguageToDb,
   cleanupStalledSessions,
   seedDefaultAdmin,

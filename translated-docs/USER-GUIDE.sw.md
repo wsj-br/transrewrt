@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:32.297Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:23:00.955Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: sw
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -36,7 +36,7 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuanza kufa
 
 <small>**Soma kwa lugha nyingine:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -53,55 +53,55 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuanza kufa
 
 - [Kabla ya kuanza](#before-you-start)
   - [Jinsi ya kupata ufunguo wa API wa OpenRouter bila malipo (programu ya kompyuta)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Anza kutumia](#getting-started)
+- [Kuanza kazi](#getting-started)
 - [Sehemu kuu za dirisha](#main-parts-of-the-window)
-  - [Upau wa upande](#sidebar)
-  - [Upau wa zana](#toolbar)
-  - [Sehemu za pembejeo na pato](#input-and-output-panels)
+  - [Upau wa kando](#sidebar)
+  - [Barua za zana](#toolbar)
+  - [Sehemu za kuingiza na kutolewa](#input-and-output-panels)
 - [Tafsiri](#translate)
   - [Tafsiri maandishi](#translate-text)
   - [Uchaguzi wa lugha](#language-selection)
   - [Mipangilio muhimu ya tafsiri](#helpful-translation-settings)
 - [Andika upya](#rewrite)
 - [Badilisha](#transform)
-  - [Imba mandhari iliyopo](#run-an-existing-prompt)
-  - [Ikiwa bado huna mandhari](#if-you-have-no-prompts-yet)
-  - [Tengeneza mandhari haraka](#create-a-prompt-quickly)
-  - [Hariri mandhari](#edit-a-prompt)
-  - [Jaribu mandhari kabla ya kutumia](#test-a-prompt-before-using-it)
-- [Ubao](#dashboard)
+  - [Imbazamo wasifu uliopo](#run-an-existing-prompt)
+  - [Ikiwa bado huna wasifu](#if-you-have-no-prompts-yet)
+  - [Unda wasifu haraka](#create-a-prompt-quickly)
+  - [Hariri wasifu](#edit-a-prompt)
+  - [Jaribu wasifu kabla ya kutumia](#test-a-prompt-before-using-it)
+- [Dashibodi](#dashboard)
   - [Chuja data](#filter-the-data)
-  - [Vidole vya ubao](#dashboard-tabs)
-  - [Toa data](#export-data)
-  - [Futa rekodi zilizohifadhiwa kwa kifaa](#delete-stored-records-for-a-model)
+  - [Vidodi vya dashibodi](#dashboard-tabs)
+  - [Pakua data](#export-data)
+  - [Futa rekodi zilizohifadhiwa kwa ajili ya mfumo](#delete-stored-records-for-a-model)
 - [Historia](#history)
   - [Chuja data](#filter-the-data-1)
-  - [Toa data ya historia](#export-history-data)
+  - [Pakua data ya historia](#export-history-data)
 - [Mipangilio](#settings)
-  - [Mipangilio ya ujumla](#general-settings)
-  - [Mifano](#models)
+  - [Mipangilio ya jumla](#general-settings)
+  - [Mifumo](#models)
   - [Lugha](#languages)
-  - [Ufuatiliaji wa gharama](#cost-tracking)
-  - [Maagizo ya ubadilishaji](#transform-prompts)
+  - [Kufuatilia gharama](#cost-tracking)
+  - [Wasifu wa ubadilishaji](#transform-prompts)
   - [Watumiaji](#users)
   - [Mipangilio ya API](#api-config)
   - [Kuhusu](#about)
 - [Matatizo ya kawaida](#common-issues)
   - [Programu haiwezi kutafsiri, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Orodha ya mifano ni tupu](#the-model-list-is-empty)
+  - [Orodha ya mifumo ni tupu](#the-model-list-is-empty)
   - [Matokeo ni ya polepole au ghali sana](#the-result-is-too-slow-or-too-expensive)
-  - [Kiongozi kinavyotumika hakiko](#the-interface-is-in-the-wrong-language)
+  - [Kiolesura kiko kwa lugha mbaya](#the-interface-is-in-the-wrong-language)
   - [Maandishi ni madogo mno au vigumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Grafu za ubao ni tupu](#dashboard-charts-are-empty)
-  - [Gharama inaonesha "haiupatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
-  - [Gharama jumla haifanani na bili yangu ya mtoa huduma](#total-cost-does-not-match-my-provider-bill)
-  - [Ukurasa wa Historia umepotea kutoka upau wa upande](#the-history-page-is-missing-from-the-sidebar)
-  - [Programu ya wavuti: unarudiwa kwenye ukurasa wa kuingia kwa makosa](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Msimamizi wa wavuti: umesahau au umepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
-  - [Ubao hautaoneshesha data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nimebadilisha mandhari na kusahau mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
+  - [Matangazo ya dashibodi ni tupu](#dashboard-charts-are-empty)
+  - [Gharama inaonyesha "haiyapatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
+  - [Jumla ya gharama haifanani na bili yangu kutoka mtoa huduma](#total-cost-does-not-match-my-provider-bill)
+  - [Ukurasa wa Historia umepotea kwenye upau wa kando](#the-history-page-is-missing-from-the-sidebar)
+  - [Programu ya wavuti: umerejelewa ukurasa wa kuingia kwa usahihi](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Simu ya wavuti: umesahau au umepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
+  - [Dashibodi haionyeshi data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
+  - [Nimebadilisha wasifu na kusahau mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
 - [Vidokezo vya haraka](#quick-tips)
-- [Kanuni](#disclaimer)
+- [Kanusho](#disclaimer)
 - [Leseni](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -133,13 +133,13 @@ Kama unatumia programu ya kompyuta, fuata hatua hizi:
 
 1. Nenda kwenye [OpenRouter](https://openrouter.ai) kwenye kivinjari chako cha wavuti.
 2. Unda akaunti au ingia.
-3. Fungua ukurasa wa [Vifunguo](https://openrouter.ai/keys).
-4. Bonyeza kitufe cha kutengeneza bango jipya la API.
-5. Toa jina kwa bango ili ulikize kama ulivyoleta baadaye.
-6. Nakili bango jipya la API.
-7. Rudi kwenye Transrewrt na fungua **Mipangilio** > **Mipangilio ya API**.
-8. Bindisha bango kwenye **Bango la OpenRouter API** (chini ya **Mipangilio** > **Mipangilio ya API**).
-9. Bonyeza **Jaribu bango la OpenRouter** ili uhakikishe linafanya kazi.
+3. Fungua ukurasa wa [Ufunguo](https://openrouter.ai/keys).
+4. Bonyeza kitufe cha kuunda ufunguo mpya wa API.
+5. Toa jina kwa ufunguo ili uweze kumtambua baadaye.
+6. Nakili ufunguo mpya wa API.
+7. Rudi Transrewrt na fungua **Mipangilio** > **Mipangilio ya API**.
+8. Weka ufunguo katika **Ufunguo wa API wa OpenRouter** (chini ya **Mipangilio** > **Mipangilio ya API**).
+9. Bonyeza **Jaribu ufunguo wa OpenRouter** kuhakikisha unafanya kazi.
 
 <br/><br/>
 
@@ -149,12 +149,12 @@ Kama unatumia programu ya kompyuta, fuata hatua hizi:
 Kama ni mara ya kwanza unayotumia Transrewrt, fuata mpangilio huu:
 
 1. Fungua programu.
-2. Chagua **lugha yako ya kuingiza** kutoka kwenye ikoni ya dunia ikiwa inahitajika.
-3. Ikiwa umepakia **programu ya kompyuta**, fungua [**Mipangilio** > **Mipangilio ya API**](#api-config), ongeza ufunguo wa API kwa ajili ya mtoa angalau mmoja (kama mfano OpenRouter), na bofya **Jaribu** ili uhakikishe inafanya kazi.
-4. Fungua [**Mipangilio** > **Mifano**](#models) na ongeza kifaa au vifaa viwili au zaidi kwenye **Vifaa Vilivyotumika**.
-5. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako kuu** ikiwa unataka kuleta kwanza kile unachotumia mara kwa mara.
-6. Nenda kwenye **Tafsiri** na simamia tafsiri rahisi ili uhakikishe kila kitu kinavyofanya kazi.
-7. Baada ya kufanikisha hatua hii, jaribu **Andika upya** kisha **Badilisha**.
+2. Chagua **lugha yako ya kiolesura** kutoka kwenye ikoni ya dunia ikiwa inahitajika.
+3. Ikiwa hutumia **programu ya kompyuta**, fungua [**Mipangilio** > **Mipangilio ya API**](#api-config), ongeza ufunguo wa API kwa mtoa huduma angalau mmoja (kama vile OpenRouter), na bonyeza **Jaribu** kuhakikisha unafanya kazi.
+4. Fungua [**Mipangilio** > **Mifumo**](#models) na ongeza mfumo au mifumo zaidi kwenye **Mifumo iliyochaguliwa**.
+5. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako zilizopendwa** ikiwa unataka lugha zako zilizotumika mara kwa mara ziwe kwanza.
+6. Nenda kwenye **Tafsiri** na imbazamo tafsiri rahisi kuhakikisha kila kitu kinafanya kazi.
+7. Baada ya kufanya hivyo, jaribu **Andika upya** halafu **Badilisha**.
 
 Mpangilio huu una maana. Unaondoa tatizo la kawaida la kwanza: kujaribu kufanya kazi kabla ya programu kuna muunganisho wa API unaofanya kazi au kifaa kilichochaguliwa.
 
@@ -260,12 +260,12 @@ Tumia **Tafsiri** unapotaka kubadili maandishi kutoka kwa lugha moja hadi nyingi
 ### Tafsiri maandishi
 
 1. Fungua **Tafsiri**.
-2. Chagua lugha kwenye **Kutoka**.
-3. Chagua lugha kwenye **Kwenda**.
-4. Chagua kifaa kwenye barua za kizimizi.
-5. Andika au bindisha maandishi kwenye **Pembejeo**.
+2. Chagua lugha katika **Kutoka**.
+3. Chagua lugha katika **Kwenda**.
+4. Chagua mfumo katika barua ya zana.
+5. Andika au nakili maandishi kwenye **Kuingiza**.
 6. Bonyeza **Tafsiri**.
-7. Soma matokeo kwenye **Pato**.
+7. Soma matokeo katika **Kutolewa**.
 8. Tumia kitufe cha nakili ikiwa unataka kunakili matokeo.
 
 <br/>
@@ -285,11 +285,11 @@ Tumia **Tafsiri** unapotaka kubadili maandishi kutoka kwa lugha moja hadi nyingi
 
 Katika [**Mipangilio** > **Mipangilio ya Ujumla**](#general-settings), unaweza kubadilisha jinsi tafsiri inavyofanya kazi:
 
-- **Tafsiri otomatiki kwa kubatika** inatumia tafsiri mara moja unapotia maandishi.
-- **Nakili otomatiki matokeo kwenye ubao wa kunakili** inanakili matokeo otomatiki baada ya kushindwa kikamilifu.
-- **Tafsiri ya wakati halisi (wakati unapoweka)** inatumia tafsiri wakati unapoweka.
-- **Wakati uliopita (ms)** huchukua muda ambao programu inasubiri kabla ya kutekeleza tafsiri ya wakati halisi.
-- **Enter** huchukua jambo linalotokea unapotapeli `Enter`:
+- **Tafsiri otomatiki kwa kunakili** inatumia tafsiri mara baada ya kunakili maandishi.
+- **Nakili matokeo kwenye ubao wa kunakili** inanakili matokeo moja kwa moja baada ya kufanikisha kikamilifu.
+- **Tafsiri ya wakati halisi (wakati wa kuandika)** inatumia tafsiri wakati wa kuandika.
+- **Muda uliopitwa (ms)** unadhibiti muda ambao programu inasubiri kabla ya kuanzisha tafsiri ya wakati halisi.
+- **Enter** inadhibiti kinachotokea unapobonyeza `Enter`:
 
 <br/><br/>
 
@@ -306,10 +306,10 @@ Hii ni muhimu kwa ajili ya:
 
 - kurekebisha silabi na sarufi (**Angalia Silabi na Sarufi**)
 - kufanya maandishi iwe wazi zaidi (**Boresha Uwazi**)
-- toleo mbadala tofauti kadhaa katika kipindi kimoja (**Toleo mbadala**)
-- kufanya maandishi iwe rasmi zaidi au si rasmi (**Rasmi** / **Si rasmi**)
-- kufupisha au kupanua maandishi (**Fupisha** / **Panua**)
-- kufanya maandishi iwe kiasi cha kiufundi zaidi (**Fanya Kiufundi**)
+- toleo moja la mafupisho tofauti (**Toleo la mbadala**)
+- kufanya maandishi iwe rasmi zaidi au si rasmi (**Rasmi** / **Si Rasmi**)
+- kufupisha au kusinyorsha maandishi (**Fupisha** / **Sinyorsha**)
+- kufanya maandishi iwe teknikali zaidi (**Fanya Teknikali**)
 
 <br/>
 
@@ -331,10 +331,10 @@ Tumia **Badilisha** unapotaka AI kufuata orodha maalum ya maelekezo.
 Hii ni eneo lenye uwezo wa kubadilika zaidi katika programu. Unaweza kutumia kwa kazi kama vile:
 
 - kufupisha maelezo
-- kubadilisha maandishi ya kioo kuwa barua pepe iliyosafishwa
+- kubadili maandishi ya kiolesura kuwa barua pepe iliyosahihisha
 - kutoa pointi muhimu
-- kubadilisha maandishi kwa muundo maalum
-- shughuli yoyote nyingine maalum yenye maandishi ya kuingiza
+- kubadili maandishi kwenye muundo maalumu
+- shughuli yoyote mengine maalum kwa maandishi ya kuingiza
 
 <br/>
 
@@ -342,11 +342,11 @@ Hii ni eneo lenye uwezo wa kubadilika zaidi katika programu. Unaweza kutumia kwa
 ### Endesha mandhari ya kuwepo
 
 1. Fungua **Badilisha**.
-2. Chagua mandhari kutoka kwenye orodha ya mandhari.
-3. Ikiwa kisanduku cha **Lengo** la lugha kinaonekana, chagua lugha ikiwa unataka moja.
-4. Andika au bindisha maandishi kwenye **Pembejeo**.
+2. Chagua kipengele kutoka kwenye orodha ya vigezo.
+3. Ikiwa kuna kisanduku cha **Lugha ya Lengo**, chagua lugha ikiwa unataka.
+4. Andika au nakili maandishi kwenye **Kuingiza**.
 5. Bonyeza **Badilisha**.
-6. Soma matokeo katika **Pato**.
+6. Soma matokeo kwenye **Kutoa**.
 
 <br/>
 
@@ -367,12 +367,12 @@ Ikiwa orodha yako ya mandhari ni tupu, bofya **Pakia mchuzi mfano** kwenye eneo 
 
 Njia ya haraka zaidi ya kutengeneza mandhari ni:
 
-1. Bonyeza **Mandhari mpya**.  
-2. Bonyeza **Zalisha ombi**.  
-3. Eleza unachotaka mandhari ifanye.  
-4. Chagua kifaa.  
-5. Acha programu itengeneze rasimu kwa ajili yako.  
-6. Kagua rasimu na bonyeza **Hifadhi**.
+1. Bonyeza **Kipengele kipya**.
+2. Bonyeza **Zalisha kipengele**.
+3. Eleza unachotaka kipengele kifanye.
+4. Chagua mfumo.
+5. Ruhusu programu iundae rasimu kwako.
+6. Soma rasimu na bonyeza **Hifadhi**.
 
 ![Generate prompt](../images/screenshots/sw/transform-generate.png)
 
@@ -387,13 +387,13 @@ Unapofanya kazi ya kutengeneza au kuhariri mandhari, mhariri anaonekana kushoto 
 
 Sehemu kuu ni:
 
-- **Jina la mandhari**: jina linaloonyeshwa katika orodha ya mandhari.
-- **Maelekezo ya mandhari (si lazima)**: kidokezo fupi kinachoonyeshwa kwa mtumiaji wakati wa kuendesha mandhari.
-- **Wajibu wa mfumo**: wajibu wote uliopeanwa kwa AI, kama vile 'Wewe ni msaidizi mwenye kusaidia.'
-- **Maelekezo ya mfumo (moja kwa mstari)**: kanuni maalum unazotaka AI kuzifuata.
-- **Maelezo ya pato**: neno fupi linaloelezea matokeo, kama vile 'muhtasari' au 'andika upya'.
-- **Joto (0.0 → 1.0)**: jinsi kifaa kitavyojiendelea; angalia hapa chini.
-- **Ulizie lugha ya kianzia**: huongeza kichaguzi cha lugha ya mpangilio wakati mandhari inaendeshwa.
+- **Jina la kipengele**: jina ambalo linaonekana kwenye orodha ya vigezo.
+- **Maelekezo ya kipengele (ya si lazima)**: maelekezo machache yanayooneshwa kwa mtumiaji wakati wa kutumia kipengele.
+- **Jukumu la mfumo**: jukumu kikuu kinachotolewa kwa AI, kama vile 'Wewe ni msaidizi wa manufaa.'
+- **Maelekezo ya mfumo (moja kwa mstari)**: kanuni maalumu unazotaka AI kuzifanya kama kanuni.
+- **Maelezo ya toleo**: neno fupi kinachoelezea matokeo, kama vile 'fupisho' au 'andikisha upya'.
+- **Wastani (0.0 → 1.0)**: jinsi ambavyo mfumo utachokaa; tazama chini.
+- **Omba lugha ya lengo**: inaongeza kichagua cha lugha ya lengo wakati wa kutumia kipengele.
 
 Ikiwa istilahi ya kiufundi **Joto** ni mpya kwako, fikiria kama hivi:
 
@@ -464,11 +464,11 @@ Tumia vitufe vya kuchuja juu ili ubadilishe kipindi cha wakati.
 <a id="dashboard-tabs"></a>
 ### Vichupo vya ubao
 
-- **Muhtasari** unapata maelezo ya jumla ya matumizi na gharama. Inajumuisha **Matumizi kwa muda** (idadi ya **maombi** iliyopigwa kwa siku kwa tafsiri, kuandika upya, na ubadilishaji) na **Matumizi kwa kifaa** (jumla ya **maombi kwa kila kifaa**, ikiwemo ubadilishaji).
-- **Kwa Matumizi** inaweka shughuli kulingana na lugha ya tafsiri, hali ya kuandika upya, na maombi ya ubadilishaji.
-- **Kwa Mitindo** inaonesha vipi kifaa ulichotumia na gharama zake.
-- **Kwa Siku** inaonesha jumla za kila siku.
-- **Maombi Yote** inaonesha historia kamili ya maombi na kukuruhusu kuipitisha.
+- **Muhtasari** unakupa maelezo ya ujumla ya matumizi na gharama. Inajumuisha **Matumizi kwa wakati** (kujumulisha kwa kila siku **idadi ya wito** kwa tafsiri, kuandikisha upya, na kubadilisha) na **Matumizi kwa mfumo** (jumla ya **wito kwa kila mfumo**, ikiwemo kubadilisha).
+- **Kwa matumizi** inagawanya shughuli kwa lugha ya tafsiri, njia ya kuandikisha upya, na kipengele cha kubadilisha.
+- **Kwa mfumo** inaonesha vifumo ulivyonatumia na gharama zao.
+- **Kwa siku** inaonesha jumla kwa kila siku.
+- **Vito vyote** vinaweka historia kamili ya vito na kukuwezesha kuisafirisha.
 
 <br/>
 
@@ -544,15 +544,15 @@ Fungua **Mipangilio** kutoka kwenye upau wa upande ili kufanya mpangilio wa tabi
 
 Vidole vilivyo available vinategemea jukwaa na wajibu wako:
 
-| Kichwa cha ukurasa | Kideskuti | Mtandao (msimamizi) | Mtandao (mtumiaji wa kawaida) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Mipangilio ya Ujumla  |   ndio   |     ndio     |        ndio         |
-  | Mifano            |   ndio   |     ndio     |        ndio         |
-  | Lugha         |   ndio   |     ndio     |        ndio         |
-  | Ufuatiliaji wa Gharama     |   ndio   |     ndio     |         -          |
-  | Maagizo ya ubadilishaji |   ndio   |     ndio     |        ndio         |
-  | Watumiaji             |    -    |     ndio     |         -          |
-  | Mipangilio ya API        |   ndio   |     ndio     |         -          |
+| Kichupo            | Kikapu  | Mtandao (msimamizi) | Mtandao (mtumiaji wa kawaida) |
+  |-------------------|:-------:|:-------------------:|:----------------------------:|
+  | Mipangilio ya Jumla |   ndio  |         ndio        |              ndio              |
+  | Vifumo            |   ndio  |         ndio        |              ndio              |
+  | Lugha             |   ndio  |         ndio        |              ndio              |
+  | Kufuatilia Gharama |   ndio  |         ndio        |               -                |
+  | Vigezo vya Badilisha |   ndio  |         ndio        |              ndio              |
+  | Watumiaji         |    -    |         ndio        |               -                |
+  | Usanidi wa API        |   ndio   |     ndio     |         -          |
   | Kuhusu             |   ndio   |     ndio     |        ndio         |
 
 <br/>
@@ -571,11 +571,11 @@ Tumia **Mipangilio ya Ujumla** kupima tabia ya kuandika, je, maelezo ya utekelez
 
 **Tabia**
 
-- **Tabia kwa ENTER** huchagua ikiwa `Enter` itatekeleza kazi au itaingiza mstari mpya.
-- **Tafsiri otomatiki kwa kubatika** huanza tafsiri mara tu unapobatika maandishi.
-- **Nakili otomatiki matokeo kwenye ubao wa kunakili** huinakili matokeo yaliyofanikiwa kiotomatiki.
-- **Tafsiri ya wakati halisi (wakati unapoweka)** hutafsiri wakati unapoweka.
-- **Muda wa kusubiri (ms)** huweka muda wa kusubiri kwa tafsiri ya wakati halisi.
+- **Kitendo cha ENTER** kinachagua je `Enter` kitachukua kazi au kuingiza mstari mpya.
+- **Tafsiri otomatiki baada ya kunakili** huanza tafsiri mara baada ya kunakili maandishi.
+- **Nakili matokeo kiotomatiki kwenye ubao wa kunakili** hutoa matokeo mazuri kiotomatiki.
+- **Tafsiri ya wakati halisi (wakati wa kuandika)** hufanya tafsiri wakati unapoandika.
+- **Muda uliopitwa (ms)** unaweka muda wa kusubiri kwa tafsiri ya wakati halisi.
 
 **Historia**
 
@@ -584,19 +584,19 @@ Tumia **Mipangilio ya Ujumla** kupima tabia ya kuandika, je, maelezo ya utekelez
 
 **Muonekano**
 
-- **Onyesha taarifa za gharama kwenye vitendo** hudhibiti onyesho la gharama kwa kila operesheni (ikiwa inapatikana) na gharama jumla kwenye paneli za pato za Tafsiri, Andika upya, na Badilisha.
-- **Tarakimu za sehemu ya gharama** hubadilisha jinsi desimali za gharama zinaonyeshwa.
-- **Wavuti pekee:** **onyesha eneo la kipimo karibu na programu** huongeza nafasi ya ziada karibu na kiolesura.
-- **Familia ya Herufi** hubadilisha herufi ya kuandika kwenye paneli za maandishi.
-- **Ukubwa** hubadilisha ukubwa wa herufi.
+- **Onyesha taarifa za gharama kwenye vitendo** huudhi maonyesho ya gharama kwa kila operesheni (kama ipo) na jumla ya gharama kwenye vichupo vya Tafsiri, Andika Upya, na Badilisha.
+- **Tarakimu za sehemu za gharama** zinabadilisha namna tarakimu za desimali zinavyoonekana.
+- **Web tu:** **onyesha ukingo karibu na programu** unaweka nafasi ziada karibu na kiolesura.
+- **Familia ya Fonti** inabadilisha fonti ya maandishi kwenye vichupo vya maandishi.
+- **Ukubwa** unabadilisha ukubwa wa fonti.
 
 **Usimbaji wa Usanidi**
 
-- **Jumuisha data ya matumizi kwenye usalama** - ikiwa imeamilishwa, ZIP pia ina historia ya utekelezaji na data ya maombi ya API. 
-- **Sanidi Usimbaji** - inaunda ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` katika UTC kwa chaguomsingi) yenye `config.json`, `state.json`, ufunguo wa usimbaji wa si lazima, watumiaji, mapendeleo, maagizo ya desturi, na data ya matumizi ikiwa umekubali. Baada ya usimbaji wa mafanikio, uthibitisho unakusanya jina la faili iliyohifadhiwa.
-- **Rudi kutoka kwenye usimbaji** - inafungua **mchanganyiko wa uthibitisho kwanza**. Chagua faili ya usimbaji ya ZIP ndani ya mchanganyiko (**Chunguza** / kibonyeza cha faili au drag-and-drop pale ambapo kimepatikana), kisha hakikisha chaguzi zifuatazo:
-  - **Rejesha data ya matumizi** - ingiza data/historia kutoka kwenye ZIP wakati iliposimbuliwa pamoja na matumizi; usiiondoe ikiwa unataka tu mipangilio na maagizo.
-  - **Futa data ya zamani kabla ya kurejesha** - ondoa matumizi/historia yasiyopatikana kwenye usanidi huu kabla ya kutumia usimbuaji (si lazima; tumia wakati unataka badiliko safi).
+- **Jumuisha data ya matumizi kwenye nakili ya usalama** - ikiwa imewezeshwa, ZIP pia inajumuisha historia ya utekelezaji na data ya wito wa API. 
+- **Kuwezesha usanidi wa nakili ya usalama** - hundua ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` kwa UTC kwa chaguomsingi) yenye `config.json`, `state.json`, ufunguo wa usimbaji wa si lazima, watumiaji, mapendeleo, viwito vya mtumiaji, na data ya matumizi ikiwa umekubali. Baada ya nakili ya usalama kufanikisha, uthibitisho unaweka jina la faili iliyohifadhiwa.
+- **Rejesha kutoka kwenye nakili ya usalama** - inafungua **dialogetu ya uthibitisho kwanza**. Chagua faili ya ZIP ya nakili ya usalama ndani ya dialogetu (**Vinjari** / kichaguzi cha faili au buruta-na-angusha ikiwa imezungukwa), kisha ukagua chaguo:
+  - **Rejesha data ya matumizi** - ingiza data/historia kutoka kwenye ZIP ikiwa ilibakia pamoja na matumizi; usiwezeshe ikiwa unataka tu usanidi na viwito.
+  - **Futa data ya zamani kabla ya kurejesha** - ondoa matumizi/historia yaliyopo kwenye kifaa hiki kabla ya kutumia nakili ya usalama (si lazima; tumia ikiwa unataka badilisho safi).
 
 Usimbuaji uliotengenezwa kwenye tovuti au tovuti ya kompyuta inaweza kurudishwa kwenye jingine. Wakati wa kurudisha usimbuaji wa kompyuta kwenye tovuti, data itarudiwa kwa mtumiaji msimamizi.
 
@@ -616,11 +616,11 @@ Ukurasa una orodha mbili:
 
 Vidhibiti vinavyofaa ni pamoja na:
 
-- **Tafuta vifaa...** ili kupata kifaa kwa jina  
-- **Mtoa huduma** chips ili kupunguza orodha hadi injini moja (OpenRouter, OpenAI, Ollama, …)  
-- **Bure Tu** kuonyesha mifano ya bure pekee  
-- **Sasisha** ili kupakia orodha upya  
-- **Panua Yote** na **Funga Yote** unapokuwa unachuja kwa mtoa huduma
+- **Tafuta modeli...** kupata modeli kwa jina
+- **Chipu za Mtoa** kupunguza orodha kwa injini moja (OpenRouter, OpenAI, Ollama, …)
+- **Bure Tu** kuonyesha modeli bure tu
+- **Sasisha** kupakia upya orodha
+- **Panua Zote** na **Punguza Zote** unapopanga kwa mtoa
 
 Vitambulisho vya mifano vinajumuisha kiambishi cha mtoa huduma (kwa mfano `openrouter/…` dhidi ya `openai/…`). Alama kama **OpenAI (OpenRouter)** dhidi ya **OpenAI (moja kwa moja)** zinaonyesha jinsi trafiki inavyosambazwa.
 
@@ -659,12 +659,12 @@ Ikiwa umeweka lugha ya desturi, itaonekana kwenye kichagua cha lugha pamoja na c
 
 Tumia **Mipangilio** > **Ufuatiliaji wa Gharama** kudumisha habari za gharama.
 
-- **Gharama Jumla** inaonyesha jumla ya kusonga.
+- **Jumla ya Gharama** inaonyesha jumla inayosogea.
 - **Nakili Thamani** inanakili jumla kwenye ubao wa kunakili.
-- **Weka upya Gharama** inaweka upya jumla iliyohifadhiwa kuwa sifuri.
-- **Fumeni na matumizi ya ufunguo wa API** inaweka jumla iwe sawa na matumizi yanayotolewa na akaunti yako ya OpenRouter (OpenRouter tu).
-- **Matumizi ya Ufunguo wa API** inaonyesha maelezo ya matumizi ya OpenRouter, ikiwa yanapatikana.
-- **Futa data ya gharama** inaondoa data yote, au tu maingizo ya zamani kuliko tarehe iliyochaguliwa.
+- **Weka upya Gharama** huweka jumla iliyohifadhiwa kuwa sifuri.
+- **Sawazisha na matumizi ya ufunguo wa API** huweka jumla sawa na matumizi yanayotolewa na akaunti yako ya OpenRouter (OpenRouter tu).
+- **Matumizi ya Ufunguo wa API** inaonyesha maelezo ya matumizi ya OpenRouter, ikiwa ipo.
+- **Futa data ya gharama** inaondoa data zote, au tu vingilio vilivopita tarehe iliyochaguliwa.
 
 **Ufuatiliaji wa gharama:** Unapotumia mifano ya OpenRouter, programu inaonyesha matumizi yako halisi na matumizi yako kulingana na habari za gharama kutoka kwa OpenRouter. Kwa watoa wote wengine, programu inahesabu gharama kwa kutumia bei zilizotolewa na OpenRouter, ikiwa bei haiapatikani, hesabu inaweza kuwa sifuri.
 
@@ -689,11 +689,11 @@ Tumia **Mipangilio** > **Maagizo ya ubadilishaji** kudumisha mandhari kwa wingi.
 
 Unaweza:
 
-- kagua mandhari yako yaliyohifadhiwa
-- kufuta mandhari
-- kuingiza mandhari kutoka kwenye faili
-- toa mandhari kwa ajili ya usimamizi au kushiriki
-- pakia mchuzi mfano kwenye orodha ya mandhari
+- angalia viwito vyako vilivyohifadhiwa
+- futa viwito
+- ingiza viwito kutoka kwenye faili
+- toa viwito kwa ajili ya nakili ya usalama au kushiriki
+- pakia viwito vya sampuli kwenye orodha ya viwito
 
 <br/>
 
@@ -909,12 +909,12 @@ Unapowahi kuhariri mandhari, daima bonyeza **Hifadhi** kabla ya bonyeza **Rudi k
 <a id="quick-tips"></a>
 ## Vidokezo vya haraka
 
-- Anza kwa [**Tafsiri**](#translate) ili uhakikishe kuwa mpangilio wako unafanya kazi kabla hujisugua kwenye [**Andika upya**](#rewrite) au [**Badilisha**](#transform).
-- Tumia [**Andika upya**](#rewrite) kwa maboresho ya maneno ya kila siku.
-- Tumia [**Badilisha**](#transform) unapohitaji mtiririko wa kazi unaopaswa kurudia kwa kazi fulani.
-- Tumia [**Ubao**](#dashboard) ikiwa unataka kuangalia matumizi na gharama.
-- Tumia [**Historia**](#history) kupitia kazi zilizopita na maandishi yake kamili ya pembejeo/maandishi ya pato.
-- Toa mandhari kila wakati ikiwa unajenga maktaba ya mandhari ambayo unataka kuihifadhi salama (tazama [Maagizo ya ubadilishaji](#transform-prompts)) au ikiwa unataka kushiriki na wengine.
+- Anza na [**Tafsiri**](#translate) kuhakikisha kuwa mpangilio wako unafanya kazi kabla ya kuenda mbele kwenye [**Andika Upya**](#rewrite) au [**Badilisha**](#transform).
+- Tumia [**Andika Upya**](#rewrite) kwa maboresho ya kila siku ya maneno.
+- Tumia [**Badilisha**](#transform) unapohitaji mtiririko wa kazi unaweza kurudia kwa kazi maalum.
+- Tumia [**Dashibodi**](#dashboard) ikiwa unataka kuangalia matumizi na gharama.
+- Tumia [**Historia**](#history) kupitia matendo ya zamani na maandishi yao kamili ya pembeji/mpatano.
+- Toa viwito kila wakati ikiwa unajenga maktaba ya viwito ambayo unataka kuhifadhi salama (tazama [Viwito vya Badilisha](#transform-prompts)) au ikiwa unataka kushiriki na wengine.
 
 <br/><br/>
 

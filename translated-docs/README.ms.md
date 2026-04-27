@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:58.247Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:39.130Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ms
 source_file_path: README.md
 translation_models:
@@ -22,20 +22,20 @@ translation_models:
 Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihos sendiri (Docker).
 
 - **Terjemah** - antara puluhan bahasa, dengan pengesanan sumber automatik
-- **Tulis Semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
-- **Transformasi** - prompt AI tersuai; cipta dan urus prompt, bahasa sasaran pilihan mengikut prompt
+- **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
+- **Transformasi** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasi; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
+- **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasikan; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
 - **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
+- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
 - **Desktop** - aplikasi Electron untuk Windows dan Linux
-- **Dihos sendiri** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
+- **Swasta hos** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
 Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk penerangan lengkap semua ciri.
 
 <small>**Baca dalam bahasa lain:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -52,8 +52,8 @@ Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk peneran
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Tangkapan Skrin](#screenshots)
-- [Mula Pantas](#quick-start)
+- [Tangkapan skrin](#screenshots)
+- [Mula cepat](#quick-start)
 - [Dapatkan kunci API OpenRouter](#getting-an-openrouter-api-key)
 - [Konfigurasi dan persekitaran](#configuration-and-environment)
 - [Pembangunan dan arsitektur](#development-and-architecture)
@@ -279,11 +279,11 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 
 **Lokasi fail konfigurasi**
 
-| Pelaksanaan         | Lokasi konfigurasi                                   |
+| Pemasangan         | Lokasi konfigurasi                                   |
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (gunakan isi padu untuk kekal) |
+| Web / Docker       | `/app/data/config.json` (gunakan volum untuk kekal) |
 
 <br/>
 
@@ -291,19 +291,19 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 
 | Pemboleh ubah             | Penerangan                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port pendengar pelayan (lalai ke `5000`)                                  |
-| `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | Kunci API xAI                                                                  |
+| `PORT`               | Port pendengaran pelayan (lalai ke `5000`)                                  |
+| `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json`)                |
+| `TZ`                 | zon masa untuk masa sisi pelayan (log, dll.) (lalai ke `Europe/London`) |
+| `OPENROUTER_API_KEY` | Kunci API OpenRouter                                                           |
+| `OPENAI_API_KEY`     | Kunci API OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | Kunci API Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | Kunci API Anthropic                                                            |
+| `GOOGLE_API_KEY`     | Kunci API Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | Kunci API DeepSeek                                                             |
+| `GROQ_API_KEY`       | Kunci API Groq                                                                 |
+| `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
+| `OLLAMA_URL`         | URL asas Ollama (contoh: `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | kunci API xAI                                                                  |
 
 Konfigur hanya penyedia yang anda gunakan. ID model mempunyai namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dll.).
 

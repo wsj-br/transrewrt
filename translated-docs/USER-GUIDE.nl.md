@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:26.760Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:23:13.219Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: nl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
 
 <small>**Lees in andere talen:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -50,7 +50,7 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
 **Inhoudsopgave**
 
 - [Voordat u begint](#before-you-start)
-  - [Hoe u een gratis OpenRouter API-sleutel verkrijgt (desktopapp)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+  - [Hoe u een gratis OpenRouter API-sleutel krijgt (bureaubladapp)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Aan de slag](#getting-started)
 - [Belangrijkste onderdelen van het venster](#main-parts-of-the-window)
   - [Zijbalk](#sidebar)
@@ -61,10 +61,10 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Taalkeuze](#language-selection)
   - [Handige vertaalinstellingen](#helpful-translation-settings)
 - [Herschrijven](#rewrite)
-- [Transformatie](#transform)
+- [Transformeren](#transform)
   - [Een bestaande prompt uitvoeren](#run-an-existing-prompt)
   - [Als u nog geen prompts hebt](#if-you-have-no-prompts-yet)
-  - [Snel een prompt aanmaken](#create-a-prompt-quickly)
+  - [Snel een prompt maken](#create-a-prompt-quickly)
   - [Een prompt bewerken](#edit-a-prompt)
   - [Een prompt testen voordat u deze gebruikt](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
@@ -79,8 +79,8 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Algemene instellingen](#general-settings)
   - [Modellen](#models)
   - [Talen](#languages)
-  - [Kostenregistratie](#cost-tracking)
-  - [Transformatie-prompts](#transform-prompts)
+  - [Kostenbijhouding](#cost-tracking)
+  - [Transformeren prompts](#transform-prompts)
   - [Gebruikers](#users)
   - [API-configuratie](#api-config)
   - [Over](#about)
@@ -89,13 +89,13 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [De modellenlijst is leeg](#the-model-list-is-empty)
   - [Het resultaat is te traag of te duur](#the-result-is-too-slow-or-too-expensive)
   - [De interface is in de verkeerde taal](#the-interface-is-in-the-wrong-language)
-  - [De tekst is te klein of moeilijk leesbaar](#the-text-is-too-small-or-hard-to-read)
+  - [De tekst is te klein of moeilijk te lezen](#the-text-is-too-small-or-hard-to-read)
   - [Dashboardgrafieken zijn leeg](#dashboard-charts-are-empty)
-  - [Kosten tonen "niet beschikbaar" of lijken fout](#cost-shows-not-available-or-seems-wrong)
+  - [Kosten tonen "niet beschikbaar" of lijken onjuist](#cost-shows-not-available-or-seems-wrong)
   - [Totale kosten komen niet overeen met mijn providerfactuur](#total-cost-does-not-match-my-provider-bill)
   - [De geschiedenispagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
   - [Webapp: onverwacht doorgestuurd naar de aanmeldpagina](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbeheerder: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
+  - [Webbeheer: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
   - [Dashboard toont geen gegevens voor andere gebruikers (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Ik heb een prompt gewijzigd en de bewerkingen verloren](#i-changed-a-prompt-and-lost-the-edits)
 - [Snelle tips](#quick-tips)
@@ -129,15 +129,15 @@ Als u de **webversie** gebruikt, configureert de serverbeheerder providers met o
 
 Als u de desktopapp gebruikt, volg dan deze stappen:
 
-1. Ga naar [OpenRouter](https://openrouter.ai) in uw webbrowser.
+1. Ga in uw webbrowser naar [OpenRouter](https://openrouter.ai).
 2. Maak een account aan of meld u aan.
 3. Open de pagina [Sleutels](https://openrouter.ai/keys).
-4. Klik op de knop om een nieuwe API-sleutel aan te maken.
+4. Klik op de knop om een nieuwe API-sleutel te maken.
 5. Geef de sleutel een naam zodat u deze later kunt herkennen.
 6. Kopieer de nieuwe API-sleutel.
 7. Ga terug naar Transrewrt en open **Instellingen** > **API-configuratie**.
 8. Plak de sleutel in **OpenRouter API-sleutel** (onder **Instellingen** > **API-configuratie**).
-9. Klik op **Test OpenRouter-sleutel** om te controleren of deze werkt.
+9. Klik op **OpenRouter-sleutel testen** om te controleren of deze werkt.
 
 <br/><br/>
 
@@ -147,12 +147,12 @@ Als u de desktopapp gebruikt, volg dan deze stappen:
 Als dit de eerste keer is dat u Transrewrt gebruikt, volg dan deze volgorde:
 
 1. Open de app.
-2. Kies uw **Interfacetaal** vanaf het wereldbol-icoon indien nodig.
-3. Als u de **desktopapp** gebruikt, open [**Instellingen** > **API-configuratie**](#api-config), voeg een API-sleutel toe voor ten minste één provider (bijvoorbeeld OpenRouter) en klik op **Test** om te controleren of deze werkt.
+2. Kies indien nodig uw **interface taal** via het wereldbolpictogram.
+3. Als u de **bureaubladapp** gebruikt, open [**Instellingen** > **API-configuratie**](#api-config), voeg een API-sleutel toe voor ten minste één provider (bijvoorbeeld OpenRouter) en klik op **Test** om te controleren of deze werkt.
 4. Open [**Instellingen** > **Modellen**](#models) en voeg een of meer modellen toe aan **Geselecteerde modellen**.
-5. Open [**Instellingen** > **Talen**](#languages) en kies uw **Top talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
+5. Open [**Instellingen** > **Talen**](#languages) en kies uw **Belangrijkste talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
 6. Ga naar **Vertalen** en voer een eenvoudige vertaling uit om te bevestigen dat alles werkt.
-7. Zodra dat werkt, probeer **Herschrijving** en daarna **Transformatie**.
+7. Zodra dat werkt, probeer **Herschrijven** en daarna **Transformeren**.
 
 Deze volgorde is belangrijk. Het voorkomt het meest voorkomende probleem bij eerste gebruik: een taak proberen uit te voeren voordat de app een werkende API-verbinding of een geselecteerd model heeft.
 
@@ -261,7 +261,7 @@ Gebruik **Vertalen** wanneer u tekst van de ene taal naar de andere wilt omzette
 2. Kies een taal in **Van**.
 3. Kies een taal in **Naar**.
 4. Kies een model in de werkbalk.
-5. Typ tekst of plak tekst in **Invoer**.
+5. Typ tekst in **Invoer** of plak deze daar.
 6. Klik op **Vertalen**.
 7. Lees het resultaat in **Uitvoer**.
 8. Gebruik de kopieerknop als u het resultaat wilt kopiëren.
@@ -283,11 +283,11 @@ Uw geselecteerde **Top talen** verschijnen bovenaan de lijst. U kunt deze instel
 
 In [**Instellingen** > **Algemene instellingen**](#general-settings) kunt u wijzigen hoe vertaling zich gedraagt:
 
-- **Automatisch vertalen bij plakken** voert een vertaling uit zodra je tekst plakt.
-- **Resultaat automatisch naar klembord kopiëren** kopieert het resultaat automatisch naar het klembord na een succesvolle uitvoering.
-- **Realtime vertaling (tijdens het typen)** voert vertalingen uit terwijl je typt.
+- **Automatisch vertalen bij plakken** voert een vertaling uit zodra u tekst plakt.
+- **Resultaat automatisch kopiëren naar klembord** kopieert het resultaat automatisch naar het klembord na een succesvolle uitvoering.
+- **Realtime vertaling (tijdens het typen)** voert vertalingen uit terwijl u typt.
 - **Time-out (ms)** bepaalt hoe lang de app wacht voordat een realtime vertaling wordt uitgevoerd.
-- **Enter** bepaalt wat er gebeurt wanneer je op `Enter` drukt:
+- **Enter** bepaalt wat er gebeurt wanneer u op `Enter` drukt:
 
 <br/><br/>
 
@@ -302,12 +302,12 @@ Gebruik **Herschrijving** wanneer je de formulering wilt verbeteren zonder de ho
 
 Dit is handig voor:
 
-- spelling- en grammaticafouten verbeteren (**Spelling & grammatica controleren**)
+- spelling en grammatica corrigeren (**Spelling en grammatica controleren**)
 - tekst duidelijker maken (**Duidelijkheid verbeteren**)
-- meerdere afzonderlijke herschrijvingen in één keer genereren (**Alternatieve versies**)
+- meerdere afzonderlijke herschrijvingen in één uitvoering (**Alternatieve versies**)
 - tekst formeler of informeler maken (**Formeel** / **Informeel**)
 - tekst inkorten of uitbreiden (**Inkorten** / **Uitbreiden**)
-- tekst technischer laten klinken (**Technisch maken**)
+- tekst technischer maken (**Technischer maken**)
 
 <br/>
 
@@ -332,18 +332,18 @@ Dit is het meest flexibele gedeelte van de app. Je kunt het gebruiken voor taken
 - ruwe tekst omzetten in een verzorgde e-mail
 - belangrijke punten extraheren
 - tekst omzetten naar een specifiek formaat
-- elke andere aangepaste bewerking met de invoertekst
+- elke andere aangepaste activiteit met de invoertekst
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Een bestaande prompt uitvoeren
 
-1. Open **Transformatie**.
-2. Kies een prompt uit de promptlijst.
-3. Als er een vak **Doel** taal verschijnt, kies dan een taal als je dat wilt.
+1. Open **Transformeren**.
+2. Kies een prompt in de promptlijst.
+3. Als er een vak **Doeltaal** verschijnt, kies dan een taal indien gewenst.
 4. Typ of plak tekst in **Invoer**.
-5. Klik op **Transformatie**.
+5. Klik op **Transformeren**.
 6. Lees het resultaat in **Uitvoer**.
 
 <br/>
@@ -367,10 +367,10 @@ De snelste manier om een prompt aan te maken is:
 
 1. Klik op **Nieuwe prompt**.
 2. Klik op **Prompt genereren**.
-3. Beschrijf wat je wilt dat de prompt doet.
+3. Beschrijf wat u wilt dat de prompt doet.
 4. Kies een model.
-5. Laat de app een concept voor je maken.
-6. Bekijk het concept en klik op **Opslaan**.
+5. Laat de app een concept voor u maken.
+6. Controleer het concept en klik op **Opslaan**.
 
 ![Generate prompt](../images/screenshots/nl/transform-generate.png)
 
@@ -387,10 +387,10 @@ De belangrijkste velden zijn:
 
 - **Promptnaam**: de naam die wordt weergegeven in de promptlijst.
 - **Promptinstructies (optioneel)**: een korte hint die aan de gebruiker wordt getoond bij het uitvoeren van de prompt.
-- **Modelrol**: de algemene rol die aan de AI is toegewezen, zoals 'Je bent een behulpzame assistent.'
-- **Modelinstructies (één per regel)**: de specifieke regels die u wilt dat de AI volgt.
-- **Outputbeschrijving**: een kort woord dat het resultaat beschrijft, zoals 'samenvatting' of 'herschrijving'.
-- **Temperatuur (0,0 → 1,0)**: hoe het model zich zal gedragen; zie hieronder.
+- **Modelrol**: de algemene rol die aan de AI wordt toegewezen, bijvoorbeeld 'Je bent een behulpzame assistent.'
+- **Modelinstructies (één per regel)**: de specifieke regels die de AI moet volgen.
+- **Uitvoerbeschrijving**: een kort woord dat het resultaat beschrijft, zoals 'samenvatting' of 'herformulering'.
+- **Temperatuur (0,0 → 1,0)**: het gedrag van het model; zie hieronder.
 - **Vraag om doeltaal**: voegt een keuzemenu voor de doeltaal toe wanneer de prompt wordt uitgevoerd.
 
 Als de technische term **Temperatuur** nieuw voor u is, kunt u er als volgt over denken:
@@ -462,10 +462,10 @@ Gebruik de filterknoppen bovenaan om het tijdsbereik te wijzigen.
 <a id="dashboard-tabs"></a>
 ### Dashboard-tabbladen
 
-- **Samenvatting** geeft een overzicht van gebruik en kosten. Het bevat een **Gebruik in de tijd** (gestapelde cumulatieve **aantallen oproepen** per dag voor vertalen, herschrijven en transformeren) en **Gebruik per model** (totaal **aantal oproepen per model**, inclusief transformeren).
-- **Op gebruik** verdeelt de activiteit per vertaaltaal, herschrijfmodus en transformatieprompt.
-- **Op model** toont welke modellen u hebt gebruikt en hoeveel ze hebben gekost.
-- **Op dag** toont de dagelijkse totalen.
+- **Overzicht** geeft een samenvatting van gebruik en kosten. Het bevat een **Gebruik in de tijd** (gestapelde cumulatieve **aantallen oproepen** per dag voor vertalen, herschrijven en transformeren) en **Gebruik per model** (totaal **aantal oproepen per model**, inclusief transformeren).
+- **Per gebruik** geeft een gedetailleerd overzicht per vertaaltal, herschrijfmodus en transformeerprompt.
+- **Per model** toont welke modellen u hebt gebruikt en hoeveel ze hebben gekost.
+- **Per dag** toont de dagelijkse totalen.
 - **Alle oproepen** toont de volledige oproepgeschiedenis en stelt u in staat deze te exporteren.
 
 <br/>
@@ -542,15 +542,15 @@ Open **Instellingen** in de zijbalk om aan te passen hoe de app zich gedraagt.
 
 De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
 
-| Tabblad               | Desktop | Web (beheerder) | Web (reguliere gebruiker) |
-  |-------------------|:-------:|:-----------:|:------------------:|
+| Tab               | Desktop | Web (beheerder) | Web (reguliere gebruiker) |
+  |-------------------|:-------:|:---------------:|:------------------------:|
   | Algemene instellingen  |   ja   |     ja     |        ja         |
   | Modellen            |   ja   |     ja     |        ja         |
   | Talen         |   ja   |     ja     |        ja         |
-  | Kostenregistratie     |   ja   |     ja     |         -          |
-  | Transformatie-prompts |   ja   |     ja     |        ja         |
+  | Kostenbijhouding     |   ja   |     ja     |         -          |
+  | Transformeerprompts |   ja   |     ja     |        ja         |
   | Gebruikers             |    -    |     ja     |         -          |
-  | API-configuratie        |   ja   |     ja     |         -          |
+  | API-configuratie |   ja   |     ja     |         -          |
   | Over             |   ja   |     ja     |        ja         |
 
 <br/>
@@ -571,7 +571,7 @@ Gebruik **Algemene instellingen** om het typgedrag, het opslaan van uitvoeringsg
 
 - **Gedrag voor ENTER** kiest of `Enter` de taak uitvoert of een nieuwe regel invoegt.
 - **Automatisch vertalen bij plakken** start de vertaling zodra u tekst plakt.
-- **Resultaat automatisch naar klembord kopiëren** kopieert succesvolle resultaten automatisch.
+- **Resultaat automatisch kopiëren naar klembord** kopieert succesvolle resultaten automatisch.
 - **Realtime vertaling (tijdens het typen)** vertaalt terwijl u typt.
 - **Time-out (ms)** stelt de wachttijd in voor realtime vertaling.
 
@@ -582,19 +582,19 @@ Gebruik **Algemene instellingen** om het typgedrag, het opslaan van uitvoeringsg
 
 **Uiterlijk**
 
-- **Toon kosteninformatie bij de acties** bepaalt of de kosten per bewerking (indien beschikbaar) en de totale kosten worden weergegeven op de uitvoerpanelen van Vertalen, Herschrijven en Transformatie.
-- **Kostendecimalen** wijzigt hoe kostendecimalen worden weergegeven.
-- **Alleen web:** **marge rondom de app tonen** voegt extra ruimte toe rond de interface.
-- **Lettertypefamilie** wijzigt het schrifttype in de tekstpanelen.
+- **Kostinformatie weergeven bij acties** bepaalt of de kosten per bewerking (indien beschikbaar) en de totale kosten worden weergegeven in de uitvoerpanelen van Vertalen, Herschrijven en Transformeren.
+- **Aantal decimalen voor kosten** wijzigt hoe kosten met decimalen worden weergegeven.
+- **Alleen web:** **marge rond de app weergeven** voegt extra ruimte toe rond de interface.
+- **Lettertype** wijzigt het schrifttype in de tekstpanelen.
 - **Grootte** wijzigt de lettergrootte.
 
 **Configuratieback-up**
 
-- **Neem gebruikgegevens op in de back-up** – indien ingeschakeld, bevat het ZIP-bestand ook uitvoeringsgeschiedenis en API-aanroepgegevens. 
-- **Configuratie back-uppen** – maakt een enkel ZIP-bestand (standaard `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruikgegevens indien u hiervoor hebt gekozen. Na een succesvolle back-up wordt de bestandsnaam van het opgeslagen bestand weergegeven.
-- **Herstellen vanuit back-up** – opent eerst een **bevestigingsvenster**. Kies het back-up ZIP-bestand in het venster (**Bladeren** / bestandskiezer of drag-and-drop waar ondersteund), en controleer vervolgens de opties:
-  - **Herstel de gebruikgegevens** – importeert gebruik/geschiedenis uit het ZIP-bestand wanneer deze is gemaakt met gebruikgegevens; laat uitgeschakeld als u alleen instellingen en prompts wilt.
-  - **Verwijder de oude gebruikgegevens voordat u herstelt** – verwijdert bestaande gebruik/geschiedenis op deze installatie voordat de back-up wordt toegepast (optioneel; gebruik wanneer u een schone vervanging wilt).
+- **Gebruiksgegevens opnemen in back-up** - indien ingeschakeld bevat de ZIP ook uitvoeringsgeschiedenis en API-aanroepgegevens. 
+- **Back-upconfiguratie** - maakt een enkele ZIP-bestand (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC standaard) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruiksgegevens indien u daarvoor hebt gekozen. Na een succesvolle back-up toont de bevestiging de naam van het opgeslagen bestand.
+- **Herstellen vanuit back-up** - opent eerst een **bevestigingsdialoog**. Kies het back-up ZIP-bestand in de dialoog (**Bladeren** / bestandskiezer of drag-and-drop waar ondersteund), en controleer vervolgens de opties:
+  - **Gebruiksgegevens herstellen** - importeert gebruik/geschiedenis uit de ZIP wanneer deze is gemaakt met inbegrip van gebruik; laat uitgeschakeld als u alleen instellingen en prompts wilt.
+  - **Oude gebruiksgegevens wissen voor herstel** - verwijdert bestaand gebruik/geschiedenis in deze installatie voordat de back-up wordt toegepast (optioneel; gebruik wanneer u een schone vervanging wilt).
 
 Back-ups die zijn gemaakt in de web- of desktopversie kunnen worden hersteld in de andere versie. Wanneer u een desktopback-up herstelt in de webversie, worden de gegevens hersteld voor de beheerdersgebruiker.
 
@@ -614,7 +614,7 @@ De pagina heeft twee lijsten:
 
 Handige bedieningselementen zijn:
 
-- **Modellen zoeken...** om een model op naam te vinden
+- **Zoek modellen...** om een model op naam te vinden
 - **Provider**-chips om de lijst te beperken tot één engine (OpenRouter, OpenAI, Ollama, …)
 - **Alleen gratis** om alleen gratis modellen weer te geven
 - **Vernieuwen** om de lijst opnieuw te laden
@@ -660,9 +660,9 @@ Gebruik **Instellingen** > **Kostenregistratie** om kosteninformatie te beheren.
 - **Totale kosten** toont het lopende totaal.
 - **Waarde kopiëren** kopieert het totaal naar het klembord.
 - **Kosten resetten** zet het opgeslagen totaal terug naar nul.
-- **Synchroniseren met API-sleutelgebruik** stelt het totaal in op de gebruikshoeveelheid zoals gerapporteerd door uw OpenRouter-account (alleen OpenRouter).
+- **Synchroniseer met API-sleutelgebruik** stelt het totaal in op het gebruik zoals gerapporteerd door uw OpenRouter-account (alleen OpenRouter).
 - **API-sleutelgebruik** toont OpenRouter-gebruiksgegevens, indien beschikbaar.
-- **Kostengegevens verwijderen** verwijdert alle gegevens, of alleen vermeldingen ouder dan een geselecteerde datum.
+- **Kostgegevens verwijderen** verwijdert alle gegevens, of alleen vermeldingen ouder dan een geselecteerde datum.
 
 **Kostenregistratie:** Wanneer u OpenRouter-modellen gebruikt, toont de app uw werkelijke gebruik en uitgaven op basis van kosteninformatie van OpenRouter. Voor alle andere providers schat de app kosten aan de hand van prijzen die door OpenRouter zijn gepubliceerd; als een prijs niet beschikbaar is, kan de schatting nul zijn.
 
@@ -687,11 +687,11 @@ Gebruik **Instellingen** > **Transformatie-prompts** om prompts in bulk te beher
 
 U kunt:
 
-- uw opgeslagen prompts bekijken
-- prompts verwijderen
-- prompts importeren uit een bestand
-- prompts exporteren voor back-up of delen
-- voorbeeldprompts laden naar de promptlijst
+- bekijk uw opgeslagen prompts
+- verwijder prompts
+- importeer prompts uit een bestand
+- exporteer prompts voor back-up of delen
+- laad voorbeeldprompts naar de promtlijst
 
 <br/>
 
@@ -907,12 +907,12 @@ Klik bij het bewerken van een prompt altijd op **Opslaan** voordat u op **Terug 
 <a id="quick-tips"></a>
 ## Snelle tips
 
-- Begin met [**Vertalen**](#translate) om er zeker van te zijn dat uw installatie werkt voordat u doorgaat naar [**Herschrijving**](#rewrite) of [**Transformatie**](#transform).
-- Gebruik [**Herschrijving**](#rewrite) voor alledaagse verbeteringen van de tekst.
-- Gebruik [**Transformatie**](#transform) wanneer u een herhaalbaar werkproces nodig hebt voor een specifieke taak.
-- Gebruik [**Dashboard**](#dashboard) als u het gebruik en de kosten in de gaten wilt houden.
-- Gebruik [**Geschiedenis**](#history) om eerdere bewerkingen en hun volledige invoer-/uitvoertekst te bekijken.
-- Exporteer regelmatig prompts als u een promptbibliotheek aan het opbouwen bent die u veilig wilt bewaren (zie [Transformatie-prompts](#transform-prompts)) of als u deze met anderen wilt delen.
+- Begin met [**Vertalen**](#translate) om zeker te zijn dat uw instelling werkt voordat u doorgaat naar [**Herschrijven**](#rewrite) of [**Transformeren**](#transform).
+- Gebruik [**Herschrijven**](#rewrite) voor alledaagse verbeteringen van formulering.
+- Gebruik [**Transformeren**](#transform) wanneer u een herhaalbare werkwijze nodig hebt voor een specifieke taak.
+- Gebruik [**Dashboard**](#dashboard) als u gebruik en kosten in de gaten wilt houden.
+- Gebruik [**Geschiedenis**](#history) om eerdere bewerkingen en hun volledige invoer/uitvoertekst te bekijken.
+- Exporteer prompts regelmatig als u een promtbibliotheek aan het opbouwen bent die u veilig wilt bewaren (zie [Transform Prompts](#transform-prompts)) of als u deze met anderen wilt delen.
 
 <br/><br/>
 

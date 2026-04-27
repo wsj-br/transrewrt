@@ -1,10 +1,14 @@
 import { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, Text, Input } from "@fluentui/react-components";
 import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import iconsWithFiles from "../assets/icons_with_files.json";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { settingsSection, settingsTabContent } from "./settings/settingsLayoutClasses";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 const OLLAMA_URL = "https://ollama.com/";
@@ -32,19 +36,12 @@ function openExternalUrl(url) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-/** Success/error use semantic colours; in-progress uses regular body colour. */
-function testStatusMessageColor(status) {
-  if (status === "success") return "var(--colorPaletteGreenForeground1)";
-  if (status === "testing") return "var(--colorNeutralForeground1)";
-  return "var(--colorPaletteRedForeground1)";
+function testStatusClass(status) {
+  if (status === "success") return "text-green-400";
+  if (status === "testing") return "text-foreground";
+  return "text-red-400";
 }
 
-/**
- * Localized provider test success line (keys must match src/shared/llm/index.js PROVIDER_TEST_SUCCESS_I18N).
- * @param {{ key: string, params?: Record<string, string> } | undefined} successI18n
- * @param {(key: string) => string} t
- * @returns {string | null}
- */
 function formatProviderTestSuccessMessage(successI18n, t) {
   if (!successI18n || typeof successI18n.key !== "string") return null;
   const { key, params } = successI18n;
@@ -80,177 +77,90 @@ const SecretField = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const inputBoxStyle = {
-    width: "400px",
-    minWidth: "300px",
-    minHeight: "32px",
-    padding: "4px 8px",
-    boxSizing: "border-box",
-    borderRadius: "4px",
-    border: "1px solid var(--colorNeutralStroke1)",
-    display: "inline-flex",
-    alignItems: "center",
-  };
-  const configuredMessageStyle = {
-    color: "var(--colorPaletteGreenForeground1)",
-    fontSize: "14px",
-    fontWeight: 600,
-  };
-
   if (configured && !isEditing) {
     return (
-      <div style={{ marginBottom: "16px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
-          <Label style={{ display: "block", marginBottom: 0 }}>{label}</Label>
+      <div className="mb-4">
+        <div className="flex items-center gap-1.5 mb-1.5">
+          <Label className="mb-0">{label}</Label>
           {docUrl ? (
             <button
               type="button"
               onClick={() => onOpenDoc(docUrl)}
               aria-label={docLinkLabel}
               title={docLinkLabel}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "var(--colorNeutralForeground2)",
-                padding: 0,
-              }}
+              className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
             >
-              <ExternalLink size={14} />
+              <ExternalLink size={13} />
             </button>
           ) : null}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-          <span style={inputBoxStyle}>
-            <span style={configuredMessageStyle}>
-              {configuredMessage}
-            </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="flex items-center w-full max-w-[400px] min-h-[32px] px-2 py-1 border border-border rounded text-green-400 font-semibold text-sm">
+            {configuredMessage}
           </span>
-          <Button
-            appearance="secondary"
-            onClick={onEdit}
-            aria-label={editLabel}
-            size="small"
-          >
-            {editLabel}
-          </Button>
-          <Button
-            appearance="secondary"
-            onClick={onTest}
-            disabled={testState?.status === "testing"}
-            size="small"
-          >
+          <Button variant="outline" size="sm" onClick={onEdit} aria-label={editLabel}>{editLabel}</Button>
+          <Button variant="outline" size="sm" onClick={onTest} disabled={testState?.status === "testing"}>
             {testState?.status === "testing" ? "Testing..." : "Test"}
           </Button>
         </div>
         {testState?.message ? (
-          <Text
-            as="p"
-            size={200}
-            style={{
-              marginTop: "6px",
-              color: testStatusMessageColor(testState.status),
-            }}
-          >
+          <p className={cn("mt-1.5 text-sm", testStatusClass(testState.status))}>
             {testState.message}
-          </Text>
+          </p>
         ) : null}
       </div>
     );
   }
 
   return (
-    <div style={{ marginBottom: "16px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
-        <Label htmlFor={id} style={{ display: "block", marginBottom: 0 }}>
-          {label}
-        </Label>
+    <div className="mb-4">
+      <div className="flex items-center gap-1.5 mb-1.5">
+        <Label htmlFor={id} className="mb-0">{label}</Label>
         {docUrl ? (
           <button
             type="button"
             onClick={() => onOpenDoc(docUrl)}
             aria-label={docLinkLabel}
             title={docLinkLabel}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              color: "var(--colorNeutralForeground2)",
-              padding: 0,
-            }}
+            className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
           >
-            <ExternalLink size={14} />
+            <ExternalLink size={13} />
           </button>
         ) : null}
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-        <div style={{ position: "relative", display: "inline-flex" }}>
+      <div className="flex items-center gap-2 flex-wrap">
+        <div className="relative inline-flex w-full max-w-[400px] min-w-0">
           <Input
             id={id}
             type={showPassword ? "text" : "password"}
             value={value ?? ""}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
-            style={{ width: "400px", minWidth: "300px", paddingInlineEnd: "36px" }}
+            className="w-full min-w-0 pe-9"
           />
           <button
             type="button"
             onClick={() => setShowPassword((s) => !s)}
             aria-label={showPassword ? "Hide" : "Show"}
-            style={{
-              position: "absolute",
-              insetInlineEnd: "8px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "4px",
-              color: "var(--colorNeutralForeground2)",
-            }}
+            className="absolute end-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-1"
           >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
           </button>
         </div>
-        <Button appearance="secondary" onClick={onSave} size="small">
-          {saveLabel}
-        </Button>
+        <Button variant="outline" size="sm" onClick={onSave}>{saveLabel}</Button>
         {configured && (
-          <Button appearance="subtle" onClick={onCancel} size="small">
-            {cancelLabel}
-          </Button>
+          <Button variant="ghost" size="sm" onClick={onCancel}>{cancelLabel}</Button>
         )}
         {!configured && (
-          <Button
-            appearance="secondary"
-            onClick={onTest}
-            disabled={testState?.status === "testing"}
-            size="small"
-          >
+          <Button variant="outline" size="sm" onClick={onTest} disabled={testState?.status === "testing"}>
             {testState?.status === "testing" ? "Testing..." : "Test"}
           </Button>
         )}
       </div>
       {testState?.message ? (
-        <Text
-          as="p"
-          size={200}
-          style={{
-            marginTop: "6px",
-            color:
-              testState.status === "success"
-                ? "var(--colorPaletteGreenForeground1)"
-                : "var(--colorPaletteRedForeground1)",
-          }}
-        >
+        <p className={cn("mt-1.5 text-sm", testStatusClass(testState.status))}>
           {testState.message}
-        </Text>
+        </p>
       ) : null}
     </div>
   );
@@ -354,35 +264,18 @@ const SettingsApiTab = ({
   };
 
   return (
-    <div className="tab-content">
+    <div className={settingsTabContent}>
       {!isWeb && (
-        <div className="section">
-          <Text
-            as="h3"
-            size={500}
-            weight="semibold"
-            style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}
-          >
-            <Key size={20} />
+        <div className={settingsSection}>
+          <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+            <Key size={18} />
             {t("API Configuration")}
-          </Text>
+          </h3>
 
-          <div style={{ paddingInlineStart: "24px" }}>
-            <Text
-              as="p"
-              style={{ display: "block", marginBottom: "20px", maxWidth: "560px" }}
-            >
-              {t("Add API keys for each provider you use.")}
-            </Text>
-            
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))",
-                gap: "0 24px",
-                width: "100%",
-              }}
-            >
+          <div className="ps-6">
+            <p className="block mb-5 max-w-[560px] text-sm">{t("Add API keys for each provider you use.")}</p>
+
+            <div className="grid gap-x-6 w-full" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))" }}>
               {PROVIDER_SECRET_FIELDS.map(({ key, labelKey, placeholder }) => {
                 const configured = !!localSettings[`${key}_configured`];
                 const isEditing = editingKey === key;
@@ -435,32 +328,21 @@ const SettingsApiTab = ({
               })}
             </div>
 
-            <div style={{ marginBottom: "16px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
-                <Label htmlFor="ollama-base-url" style={{ display: "block", marginBottom: 0 }}>
-                  {t("Ollama base URL")}
-                </Label>
+            <div className="mb-4">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <Label htmlFor="ollama-base-url" className="mb-0">{t("Ollama base URL")}</Label>
                 <button
                   type="button"
                   onClick={() => openExternalUrl(OLLAMA_URL)}
                   aria-label={t("Open Ollama website")}
                   title={t("Open Ollama website")}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "var(--colorNeutralForeground2)",
-                    padding: 0,
-                  }}
+                  className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
                 >
-                  <ExternalLink size={14} />
+                  <ExternalLink size={13} />
                 </button>
               </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", flexWrap: "wrap" }}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="flex items-start gap-2 flex-wrap">
+                <div className="flex flex-col">
                   <Input
                     id="ollama-base-url"
                     type="text"
@@ -477,127 +359,82 @@ const SettingsApiTab = ({
                       e.currentTarget.blur();
                     }}
                     placeholder="http://localhost:11434"
-                    style={{ width: "400px", minWidth: "300px" }}
+                    className="w-full max-w-[400px] min-w-0"
                   />
-                  <Text
-                    as="p"
-                    size={200}
-                    style={{ marginTop: "6px", marginBottom: 0, color: "var(--colorNeutralForeground3)" }}
-                  >
+                  <p className="mt-1.5 mb-0 text-xs text-muted-foreground">
                     {t("Use http://localhost:11434 if you are running Ollama on this machine.")}
-                  </Text>
+                  </p>
                 </div>
                 <Button
-                  appearance="secondary"
+                  variant="outline"
+                  size="sm"
                   onClick={() => runProviderTest("ollama", (ollamaDraft ?? "").trim())}
                   disabled={testResults.ollama?.status === "testing"}
-                  size="small"
                 >
                   {testResults.ollama?.status === "testing" ? t("Testing...") : t("Test")}
                 </Button>
               </div>
               {testResults.ollama?.message ? (
-                <Text
-                  as="p"
-                  size={200}
-                  style={{
-                    marginTop: "6px",
-                    color: testStatusMessageColor(testResults.ollama?.status),
-                  }}
-                >
+                <p className={cn("mt-1.5 text-sm", testStatusClass(testResults.ollama?.status))}>
                   {testResults.ollama.message}
-                </Text>
+                </p>
               ) : null}
             </div>
 
-            <div style={{ marginTop: "24px", padding: "12px 16px", backgroundColor: "var(--colorNeutralBackground2)", borderRadius: "6px", maxWidth: "800px" }}>
-              <Text as="p" style={{ margin: 0, fontSize: "14px" }}>
+            <div className="mt-6 p-3 bg-muted rounded-md max-w-[800px]">
+              <p className="m-0 text-sm">
                 💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.")}
-              </Text>
+              </p>
             </div>
-
           </div>
         </div>
       )}
       {isWeb && (
-        <div className="section">
-          <Text
-            as="h3"
-            size={500}
-            weight="semibold"
-            style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: 0, marginBottom: "36px" }}
-          >
-            <Key size={20} />
+        <div className={settingsSection}>
+          <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+            <Key size={18} />
             {t("API Configuration")}
-          </Text>
-          <div style={{ paddingInlineStart: "24px" }}>
+          </h3>
+          <div className="ps-6">
             {currentUserRole !== "admin" ? (
-              <Text as="p">{t("Admin access is required.")}</Text>
+              <p className="text-sm">{t("Admin access is required.")}</p>
             ) : (
               <>
-                <Text
-                  as="p"
-                  style={{ display: "block", marginBottom: "20px", maxWidth: "560px" }}
-                >
-                  {t("These API keys are configured from Docker environment variables.")}
-                </Text>
-                <div style={{ display: "grid", gap: "16px", width: "fit-content" }}>
+                <p className="block mb-5 max-w-[560px] text-sm">{t("These API keys are configured from Docker environment variables.")}</p>
+                <div className="grid gap-4 w-fit">
                   {webProviderStatus.map((item) => (
-                    <div
-                      key={item.provider}
-                      style={{
-                        border: "1px solid var(--colorNeutralStroke1)",
-                        borderRadius: "8px",
-                        padding: "10px 12px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          gap: "12px",
-                        }}
-                      >
+                    <div key={item.provider} className="border border-border rounded-lg p-[10px_12px]">
+                      <div className="flex items-center justify-between gap-3">
                         <div>
-                          <Text as="div" weight="semibold" size={400}>
-                            {item.label || item.provider} {" • "}
-                          </Text>
-                          <Text as="div" size={250} style={{ color: "var(--colorPaletteGreenForeground1)" }}>
+                          <div className="font-semibold text-sm">{item.label || item.provider} {" • "}</div>
+                          <div className={cn("text-xs", item.configured ? "text-green-400" : "text-muted-foreground")}>
                             {item.configured
                               ? t("API key is configured")
                               : t("API key is not configured in environment")}
-                          </Text>
+                          </div>
                         </div>
                         <Button
-                          appearance="secondary"
-                          size="small"
+                          variant="outline"
+                          size="sm"
                           onClick={() => runProviderTest(item.provider)}
                           disabled={!item.configured || testResults[item.provider]?.status === "testing"}
-                          style={{ marginInlineStart: "48px" }}
+                          className="ms-12"
                         >
                           {testResults[item.provider]?.status === "testing" ? t("Testing...") : t("Test")}
                         </Button>
                       </div>
                       {testResults[item.provider]?.message ? (
-                        <Text
-                          as="p"
-                          size={200}
-                          style={{
-                            margin: "8px 0 0 0",
-                            color: testStatusMessageColor(testResults[item.provider]?.status),
-                          }}
-                        >
+                        <p className={cn("mt-2 mb-0 text-sm", testStatusClass(testResults[item.provider]?.status))}>
                           {testResults[item.provider]?.status === "success" ||
                           testResults[item.provider]?.status === "testing"
                             ? testResults[item.provider].message
                             : `${testResults[item.provider].message} ${t("Review this API key in your Docker environment configuration.")}`}
-                        </Text>
+                        </p>
                       ) : null}
                     </div>
                   ))}
                   {webProviderStatus.length === 0 ? (
-                    <Text as="p">{t("No provider keys are currently configured in environment.")}</Text>
+                    <p className="text-sm">{t("No provider keys are currently configured in environment.")}</p>
                   ) : null}
                 </div>
               </>

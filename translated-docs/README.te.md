@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:25.144Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:23:03.021Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: te
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 ఎఐ-శక్తితో కూడిన టెక్స్ట్ సాధనం: భాషల మధ్య అనువదించు, విభిన్న శైలులలో రీరైట్ చేయి, కస్టమ్ ప్రాంప్ట్‌లతో ట్రాన్స్‌ఫార్మ్ చేయి - బహుళ ఎఐ ప్రదాతలను ఉపయోగించి (ఓపెన్రౌటర్, ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ మరియు స్థానిక ఓలామా). డెస్క్‌టాప్ అప్లికేషన్ (ఎలక్ట్రాన్) లేదా స్వంతంగా హోస్ట్ చేసుకునే వెబ్ అప్లికేషన్ (డాకర్) గా నడుస్తుంది.
 
-- **అనువదించు** - డజన్ల కొద్దీ భాషల మధ్య, స్వయంచాలక మూల గుర్తింపుతో
-- **రీరైట్** - వ్యాకరణాన్ని సరిచేయి, స్పష్టత మెరుగుపరచు, ఔపచారిక/అనౌపచారిక, కుదించు, విస్తరించు, సాంకేతికం
-- **ట్రాన్స్‌ఫార్మ్** - కస్టమ్ ఎఐ ప్రాంప్ట్‌లు; ప్రాంప్ట్‌లను సృష్టించి, నిర్వహించండి, ప్రతి ప్రాంప్ట్ కు ఐచ్ఛిక లక్ష్య భాష
-- **చరిత్ర** - ఇన్‌పుట్/అవుట్‌పుట్ టెక్స్ట్‌తో పాటు పూర్తి కార్యకలాప చరిత్ర, ఫిల్టరింగ్ మరియు ఎగుమతి
-- **మోడల్‌లు & ఖర్చు** - ఏదైనా కాన్ఫిగర్ చేసిన ప్రదాత నుండి మోడల్‌లను ఎంచుకోండి; లాగ్, మోడల్/ఆపరేషన్/రోజు వారీగా సారాంశాలతో ఖర్చు మరియు ఉపయోగ డ్యాష్‌బోర్డ్‌లు
-- **UI** - బహుభాషా ఇంటర్ఫేస్ (30+ భాషలు, RTL మద్దతు), ఫాంట్‌లు, ...
-- **వెబ్ మోడ్** - కార్యదర్శి పాత్రలతో బహుళ వాడుకరి మద్దతు
+- **అనువాదం** - డజన్ల కొద్దీ భాషల మధ్య, స్వయంచాలక మూల గుర్తింపుతో
+- **తిరిగి వ్రాయండి** - వ్యాకరణాన్ని సరిచేయండి, స్పష్టతను మెరుగుపరచండి, ఔపచారిక/అనౌపచారిక, సంక్షిప్తం చేయండి, విస్తరించండి, సాంకేతికం
+- **మార్చండి** - కస్టమ్ AI ప్రాంప్ట్లు; ప్రతి ప్రాంప్ట్ కు ప్రాంప్ట్లను సృష్టించండి మరియు నిర్వహించండి, ఐచ్ఛిక లక్ష్య భాష
+- **చరిత్ర** - ఇన్‌పుట్/అవుట్‌పుట్ టెక్స్ట్‌తో పాటు పూర్తి కార్యాచరణ చరిత్ర, వడపోత, మరియు ఎగుమతి
+- **మోడల్స్ & ఖర్చు** - ఏదైనా కాన్ఫిగర్ చేసిన ప్రొవైడర్ నుండి మోడల్స్ ఎంచుకోండి; లాగ్, మోడల్/ఆపరేషన్/రోజు వారీ సారాంశాలతో ఖర్చు మరియు ఉపయోగ డాష్‌బోర్డ్‌లు
+- **UI** - బహుళ భాషా ఇంటర్ఫేస్ (30+ భాషలు, RTL మద్దతు), ఫాంట్లు, ...
+- **వెబ్ మోడ్** - నిర్వాహక పాత్రలతో బహుళ వాడుకరి మద్దతు
 - **డెస్క్‌టాప్** - విండోస్ మరియు లినక్స్ కోసం ఎలక్ట్రాన్ అప్లికేషన్
-- **స్వంతంగా హోస్ట్ చేసుకోవడం** - amd64 & arm64 (రాస్ప్బెర్రీ పై-సిద్ధం) కోసం డాకర్ ఇమేజ్
+- **స్వంతంగా హోస్ట్ చేయబడింది** - amd64 & arm64 (రాస్ప్బెర్రీ పై-సిద్ధంగా) కోసం డాకర్ ఇమేజ్
 
 ఇన్‌స్టాల్ చేసిన తర్వాత, అన్ని లక్షణాల పూర్తి వాకింగ్ కోసం **[వాడుకరి మార్గదర్శి](USER-GUIDE.te.md)** చూడండి.
 
 <small>**ఇతర భాషలలో చదవండి:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,11 +54,11 @@ translation_models:
 
 - [స్క్రీన్‌షాట్లు](#screenshots)
 - [త్వరిత ప్రారంభం](#quick-start)
-- [ఓపెన్రౌటర్ API కీని పొందడం](#getting-an-openrouter-api-key)
+- [OpenRouter API కీని పొందడం](#getting-an-openrouter-api-key)
 - [కాన్ఫిగరేషన్ మరియు పర్యావరణం](#configuration-and-environment)
-- [అభివృద్ధి మరియు ఆర్కిటెక్చర్](#development-and-architecture)
+- [అభివృద్ధి మరియు వాస్తుశిల్పం](#development-and-architecture)
 - [సమస్యలను నివేదించడం](#reporting-issues)
-- [అస్వీకరణ](#disclaimer)
+- [అస్వీకార ప్రకటన](#disclaimer)
 - [లైసెన్స్](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -279,11 +279,11 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 **కాన్ఫిగ్ ఫైల్ స్థానాలు**
 
-| డిప్లాయ్మెంట్         | కాన్ఫిగ్ స్థానం                                   |
+| డిప్లాయ్‌మెంట్         | కాన్ఫిగ్ స్థానం                                   |
 | ------------------ | ------------------------------------------------- |
 | ఎలక్ట్రాన్ (విండోస్) | `%APPDATA%\transrewrt\`                           |
 | ఎలక్ట్రాన్ (లినక్స్)   | `~/.config/transrewrt/`                           |
-| వెబ్ / డాకర్       | `/app/data/config.json` (స్థిరంగా ఉంచడానికి వాల్యూమ్ ఉపయోగించండి) |
+| వెబ్ / డాకర్       | `/app/data/config.json` (స్థిరంగా ఉండటానికి వాల్యూమ్ ఉపయోగించండి) |
 
 <br/>
 
@@ -291,18 +291,18 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 | వేరియబుల్             | వివరణ                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | సర్వర్ విందు పోర్ట్  (డిఫాల్ట్ `5000`)                                  |
-| `CONFIG_PATH`        | కాన్ఫిగ్ ఫైల్ కు పాత్ (డిఫాల్ట్ `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT`               | సర్వర్ వినడానికి పోర్ట్  (డిఫాల్ట్ `5000`)                                  |
+| `CONFIG_PATH`        | కాన్ఫిగ్ ఫైల్ యొక్క పాత్ (డిఫాల్ట్‌గా `/app/data/config.json`)                |
+| `TZ`                 | సర్వర్-సైడ్ సమయానికి టైమ్ జోన్ (లాగింగ్, మొదలైనవి) (డిఫాల్ట్ `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API కీ                                                           |
+| `OPENAI_API_KEY`     | OpenAI API కీ                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API కీ                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API కీ                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API కీ                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API కీ                                                             |
+| `GROQ_API_KEY`       | Groq API కీ                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API కీ                                                              |
+| `OLLAMA_URL`         | Ollama బేస్ URL (ఉదా: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API కీ                                                                  |
 
 మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయండి. మోడల్ ఐడీలు నేమ్‌స్పేస్ చేయబడతాయి (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, మొదలైనవి).

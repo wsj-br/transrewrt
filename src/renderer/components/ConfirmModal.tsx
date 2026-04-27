@@ -1,52 +1,6 @@
-import { makeStyles, tokens, Button } from "@fluentui/react-components";
 import PropTypes from "prop-types";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    maxWidth: "90vw",
-  },
-  title: {
-    margin: "0 0 36px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-  message: {
-    margin: "0 0 36px 0",
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground1,
-    lineHeight: 1.4,
-    overflowWrap: "break-word",
-    wordBreak: "break-word",
-    whiteSpace: "pre-line",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-  },
-  confirmButtonDanger: {
-    backgroundColor: "#b91c1c",
-    color: tokens.colorNeutralForegroundOnColor,
-    ":hover": {
-      backgroundColor: "#991b1b",
-      color: tokens.colorNeutralForegroundOnColor,
-    },
-  },
-});
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const ConfirmModal = ({
   title,
@@ -61,30 +15,31 @@ const ConfirmModal = ({
   maxWidth,
   confirmDisabled = false,
 }) => {
-  const styles = useStyles();
-
   return (
-    <div className={styles.overlay}>
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
       <div
-        className={styles.modal}
-        style={maxWidth != null ? { maxWidth } : undefined}
+        className="bg-card border border-border rounded-lg shadow-2xl p-6 min-w-80 w-full"
+        style={maxWidth != null ? { maxWidth } : { maxWidth: "90vw" }}
       >
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className="text-lg font-semibold mb-6">{title}</h2>
         {customBody ? (
-          <div className={styles.message}>{customBody}</div>
+          <div className="text-sm text-muted-foreground mb-6 whitespace-pre-line break-words leading-relaxed">
+            {customBody}
+          </div>
         ) : (
-          <p className={styles.message}>{message}</p>
+          <p className="text-sm text-muted-foreground mb-6 whitespace-pre-line break-words leading-relaxed">
+            {message}
+          </p>
         )}
-        <div className={styles.actions}>
-          <Button appearance="secondary" onClick={onCancel}>
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={onCancel}>
             {cancelLabel}
           </Button>
           {!hideConfirm && (
             <Button
-              appearance="primary"
               onClick={onConfirm}
               disabled={confirmDisabled}
-              className={danger ? styles.confirmButtonDanger : undefined}
+              className={cn(danger && "bg-destructive text-white hover:bg-destructive/90")}
             >
               {confirmLabel}
             </Button>

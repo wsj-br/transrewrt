@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:07.230Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:48.131Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -36,7 +36,7 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
 
 <small>**Przeczytaj w innych językach:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -51,19 +51,19 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Spis treści**
 
-- [Przed rozpoczęciem](#before-you-start)
+- [Zanim zaczniesz](#before-you-start)
   - [Jak uzyskać bezpłatny klucz API OpenRouter (aplikacja desktopowa)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Wprowadzenie](#getting-started)
+- [Rozpoczęcie pracy](#getting-started)
 - [Główne części okna](#main-parts-of-the-window)
   - [Pasek boczny](#sidebar)
   - [Pasek narzędzi](#toolbar)
-  - [Panele wejścia i wyniku](#input-and-output-panels)
-- [Przetłumacz](#translate)
-  - [Przetłumacz tekst](#translate-text)
+  - [Panele wejścia i wyjścia](#input-and-output-panels)
+- [Tłumacz](#translate)
+  - [Tłumacz tekst](#translate-text)
   - [Wybór języka](#language-selection)
   - [Przydatne ustawienia tłumaczenia](#helpful-translation-settings)
-- [Przeformułowanie](#rewrite)
-- [Transformacja](#transform)
+- [Przepisz](#rewrite)
+- [Przekształć](#transform)
   - [Uruchom istniejący prompt](#run-an-existing-prompt)
   - [Jeśli nie masz jeszcze żadnych promptów](#if-you-have-no-prompts-yet)
   - [Szybkie utworzenie promptu](#create-a-prompt-quickly)
@@ -82,22 +82,22 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Modele](#models)
   - [Języki](#languages)
   - [Śledzenie kosztów](#cost-tracking)
-  - [Prompty transformacji](#transform-prompts)
+  - [Prompty przekształceń](#transform-prompts)
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
   - [O programie](#about)
 - [Typowe problemy](#common-issues)
-  - [Aplikacja nie tłumaczy, nie przeformułowuje ani nie przekształca tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikacja nie tłumaczy, nie przepisuje ani nie przekształca tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista modeli jest pusta](#the-model-list-is-empty)
-  - [Wynik jest zbyt powolny lub zbyt drogi](#the-result-is-too-slow-or-too-expensive)
+  - [Wynik jest zbyt powolny lub zbyt kosztowny](#the-result-is-too-slow-or-too-expensive)
   - [Interfejs jest w niewłaściwym języku](#the-interface-is-in-the-wrong-language)
   - [Tekst jest zbyt mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
   - [Wykresy na panelu są puste](#dashboard-charts-are-empty)
-  - [Koszt pokazuje „nie dostępny” lub wydaje się nieprawidłowy](#cost-shows-not-available-or-seems-wrong)
-  - [Koszt całkowity nie zgadza się z rachunkiem dostawcy](#total-cost-does-not-match-my-provider-bill)
+  - [Koszt pokazuje „nie dostępny” lub wydaje się błędny](#cost-shows-not-available-or-seems-wrong)
+  - [Całkowity koszt nie zgadza się z rachunkiem dostawcy](#total-cost-does-not-match-my-provider-bill)
   - [Strona Historia brakuje na pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
   - [Aplikacja internetowa: niespodziewane przekierowanie do strony logowania](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrator aplikacji internetowej: zapomniałem lub zgubiłem hasło](#web-admin-forgot-or-lost-a-password)
+  - [Administrator internetowy: zapomniałem lub zgubiłem hasło](#web-admin-forgot-or-lost-a-password)
   - [Panel nie pokazuje danych innych użytkowników (wersja internetowa)](#dashboard-shows-no-data-for-other-users-web)
   - [Zmieniłem prompt i straciłem edycje](#i-changed-a-prompt-and-lost-the-edits)
 - [Szybkie wskazówki](#quick-tips)
@@ -131,15 +131,15 @@ Jeśli korzystasz z **wersji internetowej**, właściciel serwera konfiguruje do
 
 Jeśli korzystasz z aplikacji desktopowej, wykonaj następujące kroki:
 
-1. Przejdź do [OpenRouter](https://openrouter.ai) w przeglądarce internetowej.
+1. Otwórz [OpenRouter](https://openrouter.ai) w przeglądarce internetowej.
 2. Utwórz konto lub zaloguj się.
-3. Otwórz stronę [Keys](https://openrouter.ai/keys).
+3. Otwórz stronę [Klucze](https://openrouter.ai/keys).
 4. Kliknij przycisk, aby utworzyć nowy klucz API.
 5. Nadaj kluczowi nazwę, dzięki której będziesz mógł go później rozpoznać.
 6. Skopiuj nowy klucz API.
 7. Wróć do Transrewrt i otwórz **Ustawienia** > **Konfiguracja API**.
-8. Wklej klucz do pola **OpenRouter API key** (w sekcji **Ustawienia** > **Konfiguracja API**).
-9. Kliknij **Testuj klucz OpenRouter**, aby upewnić się, że działa poprawnie.
+8. Wklej klucz do pola **Klucz API OpenRouter** (w sekcji **Ustawienia** > **Konfiguracja API**).
+9. Kliknij **Przetestuj klucz OpenRouter**, aby upewnić się, że działa poprawnie.
 
 <br/><br/>
 
@@ -149,12 +149,12 @@ Jeśli korzystasz z aplikacji desktopowej, wykonaj następujące kroki:
 Jeśli po raz pierwszy korzystasz z Transrewrt, postępuj zgodnie z poniższą kolejnością:
 
 1. Otwórz aplikację.
-2. Wybierz **Język interfejsu** z ikony globusa, jeśli jest to konieczne.
-3. Jeśli korzystasz z **aplikacji desktopowej**, otwórz [**Ustawienia** > **Konfiguracja API**](#api-config), dodaj klucz API dla co najmniej jednego dostawcy (na przykład OpenRouter) i kliknij **Testuj**, aby zweryfikować jego działanie.
+2. Wybierz swój **język interfejsu** z ikony kuli ziemskiej, jeśli to konieczne.
+3. Jeśli korzystasz z **aplikacji desktopowej**, otwórz [**Ustawienia** > **Konfiguracja API**](#api-config), dodaj klucz API dla co najmniej jednego dostawcy (na przykład OpenRouter) i kliknij **Test**, aby zweryfikować jego działanie.
 4. Otwórz [**Ustawienia** > **Modele**](#models) i dodaj jeden lub więcej modeli do sekcji **Wybrane modele**.
-5. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, aby najczęściej używane języki pojawiały się na górze listy.
-6. Przejdź do zakładki **Przetłumacz** i wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa poprawnie.
-7. Gdy to zadziała, wypróbuj opcję **Przeformułowanie**, a następnie **Transformacja**.
+5. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, by najczęściej używane języki pojawiały się na górze.
+6. Przejdź do **Tłumacza** i wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa poprawnie.
+7. Gdy to zadziała, wypróbuj **Przepisz**, a następnie **Przekształć**.
 
 Kolejność ma znaczenie. Zapobiega to najczęstszemu problemowi podczas pierwszego użycia: próbie uruchomienia zadania przed ustanowieniem działającego połączenia API lub wybraniem modelu.
 
@@ -259,14 +259,14 @@ Użyj **Tłumaczenia**, gdy chcesz przetłumaczyć tekst z jednego języka na in
 <a id="translate-text"></a>  
 ### Tłumaczenie tekstu
 
-1. Otwórz **Tłumaczenie**.  
-2. Wybierz język w **Z**.  
-3. Wybierz język w **Na**.  
-4. Wybierz model na pasku narzędzi.  
-5. Wpisz lub wklej tekst do **Wejścia**.  
-6. Kliknij **Tłumacz**.  
-7. Przeczytaj wynik w **Wyjściu**.  
-8. Użyj przycisku kopiowania, jeśli chcesz skopiować wynik.
+1. Otwórz **Tłumacz**.
+2. Wybierz język w polu **Z**.
+3. Wybierz język w polu **Na**.
+4. Wybierz model na pasku narzędzi.
+5. Wpisz lub wklej tekst do pola **Wejście**.
+6. Kliknij **Tłumacz**.
+7. Przeczytaj wynik w polu **Wyjście**.
+8. Skorzystaj z przycisku kopiowania, jeśli chcesz skopiować wynik.
 
 <br/>
 
@@ -285,11 +285,11 @@ Twoje zaznaczone **Najważniejsze języki** pojawiają się na górze listy. Mo�
 
 W [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zmienić sposób działania tłumaczenia:
 
-- **Automatyczne tłumaczenie po wklejeniu** uruchamia tłumaczenie, gdy tylko wkleisz tekst.  
-- **Automatyczne kopiowanie wyniku do schowka** automatycznie kopiuje wynik po udanym wykonaniu.  
-- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** uruchamia tłumaczenia podczas pisania.  
-- **Czas oczekiwania (ms)** kontroluje, jak długo aplikacja czeka przed uruchomieniem tłumaczenia w czasie rzeczywistym.  
-- **Enter** kontroluje, co się dzieje, gdy naciśniesz `Enter`:
+- **Automatyczne tłumaczenie podczas wklejania** uruchamia tłumaczenie zaraz po wklejeniu tekstu.
+- **Automatyczne kopiowanie wyniku do schowka** kopiuje wynik automatycznie po pomyślnym wykonaniu.
+- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** uruchamia tłumaczenia, gdy piszesz.
+- **Limit czasu (ms)** określa, jak długo aplikacja czeka przed uruchomieniem tłumaczenia w czasie rzeczywistym.
+- **Enter** kontroluje, co dzieje się po naciśnięciu `Enter`:
 
 <br/><br/>
 
@@ -304,12 +304,12 @@ Użyj **Przeformułowania**, gdy chcesz poprawić sformułowanie bez zmiany gł�
 
 To przydatne do:
 
-- poprawiania pisowni i gramatyki (**Sprawdź pisownię i gramatykę**)
-- poprawiania jasności tekstu (**Popraw jasność**)
-- uzyskiwania kilku różnych wersji w jednym przebiegu (**Wersje alternatywne**)
-- nadawania tekstowi charakteru bardziej formalnego lub mniej formalnego (**Formalny** / **Nieformalny**)
-- skracania lub rozszerzania tekstu (**Skróć** / **Rozwiń**)
-- nadawania tekstowi charakteru bardziej technicznego (**Zmień na techniczny**)
+- poprawianie pisowni i gramatyki (**Sprawdź pisownię i gramatykę**)
+- poprawianie jasności tekstu (**Popraw jasność**)
+- kilka różnych wersji w jednym przebiegu (**Wersje alternatywne**)
+- nadawanie tekstowi charakteru bardziej formalnego lub mniej formalnego (**Formalny** / **Nieformalny**)
+- skracanie lub rozszerzanie tekstu (**Skróć** / **Rozwiń**)
+- nadawanie tekstowi charakteru bardziej technicznego (**Uczyń technicznym**)
 
 <br/>
 
@@ -331,22 +331,22 @@ Użyj opcji **Transformacja**, gdy chcesz, by AI wykonał zestaw niestandardowyc
 To najbardziej elastyczna część aplikacji. Można jej używać do zadań takich jak:
 
 - podsumowywanie notatek
-- zamiana surowego tekstu na dopracowaną wiadomość e-mail
+- przekształcanie szkiców w dopracowaną wiadomość e-mail
 - wyciąganie kluczowych punktów
 - konwertowanie tekstu do określonego formatu
-- dowolnych innych niestandardowych działań na tekście wejściowym
+- każda inna niestandardowa czynność wykonywana na tekście wejściowym
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Uruchom istniejący prompt
 
-1. Otwórz **Transformacja**.
-2. Wybierz prompt z listy promptów.
-3. Jeśli pojawi się pole **Cel**, wybierz język, jeśli chcesz.
-4. Wpisz lub wklej tekst do pola **Wejście**.
-5. Kliknij **Transformacja**.
-6. Przeczytaj wynik w polu **Wynik**.
+1. Otwórz **Przekształć**.
+2. Wybierz monit z listy monitów.
+3. Jeśli pojawi się pole **Język docelowy**, wybierz język, jeśli chcesz.
+4. Wpisz lub wklej tekst w polu **Wejście**.
+5. Kliknij **Przekształć**.
+6. Przeczytaj wynik w polu **Wyjście**.
 
 <br/>
 
@@ -367,9 +367,9 @@ Jeśli lista promptów jest pusta, kliknij **Załaduj przykładowe prompty** w o
 
 Najszybszy sposób na utworzenie promptu to:
 
-1. Kliknij **Nowy prompt**.
-2. Kliknij **Wygeneruj zachętę**.
-3. Opisz, co ma robić prompt.
+1. Kliknij **Nowy monit**.
+2. Kliknij **Wygeneruj monit**.
+3. Opisz, co ma robić monit.
 4. Wybierz model.
 5. Pozwól aplikacji utworzyć wersję roboczą.
 6. Przejrzyj wersję roboczą i kliknij **Zapisz**.
@@ -387,13 +387,13 @@ Gdy tworzysz lub edytujesz prompt, edytor pojawia się po lewej stronie, a obsza
 
 Główne pola to:
 
-- **Nazwa promptu**: nazwa wyświetlana na liście promptów.
-- **Instrukcje promptu (opcjonalne)**: krótki wskazówka wyświetlana użytkownikowi podczas uruchamiania promptu.
+- **Nazwa promtu**: nazwa wyświetlana na liście promptów.
+- **Instrukcje promtu (opcjonalne)**: krótki komunikat wyświetlany użytkownikowi podczas uruchamiania promptu.
 - **Rola modelu**: ogólna rola przypisana AI, np. „Jesteś pomocnym asystentem”.
 - **Instrukcje modelu (jedna na linię)**: konkretne zasady, których ma przestrzegać AI.
-- **Opis wyniku**: krótkie słowo opisujące wynik, np. „podsumowanie” lub „przeformułowanie”.
+- **Opis wyniku**: krótkie słowo opisujące wynik, np. „podsumowanie” lub „przepisanie”.
 - **Temperatura (0,0 → 1,0)**: sposób działania modelu; zobacz poniżej.
-- **Pytaj o język docelowy**: dodaje selektor języka docelowego podczas uruchamiania promptu.
+- **Zapytaj o język docelowy**: dodaje selektor języka docelowego podczas uruchamiania promptu.
 
 Jeśli termin techniczny **Temperatura** jest dla Ciebie nowy, pomyśl o tym w ten sposób:
 
@@ -464,10 +464,10 @@ Użyj przycisków filtrów u góry, aby zmienić zakres czasu.
 <a id="dashboard-tabs"></a>
 ### Karty panelu
 
-- **Podsumowanie** daje przegląd wykorzystania i kosztów. Zawiera **Wykorzystanie w czasie** (skumulowane wykresy słupkowe **liczby wywołań** dziennie dla tłumaczenia, przeformułowania i transformacji) oraz **Wykorzystanie według modelu** (łącznie **wywołania na model**, w tym transformacja).
-- **Wg użycia** dzieli aktywność według języka tłumaczenia, trybu przeformułowania i promptu transformacji.
-- **Wg modelu** pokazuje, których modeli użyto i jakie one kosztowały.
-- **Wg dnia** pokazuje dzienne sumy.
+- **Podsumowanie** zawiera przegląd zużycia i kosztów. Obejmuje **Zużycie w czasie** (skumulowane **liczby wywołań** dziennie dla tłumaczenia, przepisywania i przekształcania) oraz **Zużycie według modelu** (łącznie **wywołania według modelu**, w tym przekształcania).
+- **Według zużycia** dzieli aktywność według języka tłumaczenia, trybu przepisywania i promptu przekształcania.
+- **Według modelu** pokazuje, których modeli użyto i ile kosztowały.
+- **Według dnia** pokazuje dzienne sumy.
 - **Wszystkie wywołania** pokazuje pełną historię wywołań i pozwala ją wyeksportować.
 
 <br/>
@@ -544,16 +544,16 @@ Otwórz **Ustawienia** z paska bocznego, aby dostosować sposób działania apli
 
 Dostępne karty zależą od platformy i Twojej roli:
 
-| Karta               | Desktop | Web (administrator) | Web (zwykły użytkownik) |
-  |-------------------|:-------:|:-------------------:|:----------------------:|
-  | Ustawienia ogólne  |   Tak   |         Tak         |           Tak          |
-  | Modele            |   Tak   |         Tak         |           Tak          |
-  | Języki            |   Tak   |         Tak         |           Tak          |
-  | Śledzenie kosztów |   Tak   |         Tak         |            -           |
-  | Prompty transformacji |   Tak   |         Tak         |           Tak          |
-  | Użytkownicy       |    -    |         Tak         |            -           |
-  | Konfiguracja API  |   Tak   |         Tak         |            -           |
-  | O programie       |   Tak   |         Tak         |           Tak          |
+| Karta               | Komputer | Internet (administrator) | Internet (zwykły użytkownik) |
+  |-------------------|:-------:|:-----------:|:------------------:|
+  | Ustawienia ogólne  |   tak   |     tak     |        tak         |
+  | Modele            |   tak   |     tak     |        tak         |
+  | Języki         |   tak   |     tak     |        tak         |
+  | Śledzenie kosztów     |   tak   |     tak     |         -          |
+  | Prompty przekształcania |   tak   |     tak     |        tak         |
+  | Użytkownicy             |    -    |     tak     |         -          |
+  | Konfiguracja API   |   tak   |     tak     |         -          |
+  | Informacje         |   tak   |     tak     |        tak         |
 
 <br/>
 
@@ -571,11 +571,11 @@ Użyj **Ustawienia ogólne**, aby kontrolować zachowanie podczas pisania, czy s
 
 **Zachowanie**
 
-- **Zachowanie dla ENTER** wybiera, czy `Enter` uruchamia zadanie, czy wstawia nową linię.
-- **Automatyczne tłumaczenie po wklejeniu** rozpoczyna tłumaczenie zaraz po wklejeniu tekstu.
-- **Automatyczne kopiowanie wyniku do schowka** kopiuje udane wyniki automatycznie.
-- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** tłumaczy podczas pisania.
-- **Timeout (ms)** ustawia czas oczekiwania na tłumaczenie w czasie rzeczywistym.
+- **Zachowanie klawisza ENTER** określa, czy `Enter` uruchamia zadanie, czy wstawia nową linię.
+- **Automatyczne tłumaczenie podczas wklejania** uruchamia tłumaczenie natychmiast po wklejeniu tekstu.
+- **Automatyczne kopiowanie wyniku do schowka** automatycznie kopiuje pomyślne wyniki.
+- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** tłumaczy tekst podczas pisania.
+- **Limit czasu (ms)** ustawia czas oczekiwania dla tłumaczenia w czasie rzeczywistym.
 
 **Historia**
 
@@ -584,19 +584,19 @@ Użyj **Ustawienia ogólne**, aby kontrolować zachowanie podczas pisania, czy s
 
 **Wygląd**
 
-- **Pokaż informacje o kosztach na akcjach** kontroluje wyświetlanie kosztu na operację (jeśli dostępny) i kosztu całkowitego na panelach wyników Tłumaczenie, Przeformułowanie i Transformacja.
-- **Liczba miejsc po przecinku dla kosztów** zmienia sposób wyświetlania miejsc dziesiętnych kosztów.
-- **Tylko web:** **pokaż margines wokół aplikacji** dodaje dodatkową przestrzeń wokół interfejsu.
-- **Rodzina czcionek** zmienia czcionkę pisania w panelach tekstowych.
+- **Wyświetlanie informacji o kosztach w akcjach** kontroluje wyświetlanie kosztu operacji (jeśli dostępny) oraz całkowitego kosztu na panelach wyników Tłumacz, Przepisz i Przekształć.
+- **Liczba cyfr po przecinku w kosztach** zmienia sposób wyświetlania miejsc dziesiętnych kosztów.
+- **Tylko w przeglądarce:** **pokaż margines wokół aplikacji** dodaje dodatkową przestrzeń wokół interfejsu.
+- **Rodzina czcionek** zmienia czcionkę w panelach tekstowych.
 - **Rozmiar** zmienia rozmiar czcionki.
 
 **Kopia zapasowa konfiguracji**
 
-- **Uwzględnij dane dotyczące użycia w kopii zapasowej** – gdy włączone, plik ZIP zawiera również historię wykonania i dane wywołań API.
-- **Utwórz kopię zapasową konfiguracji** – tworzy pojedynczy plik ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` w UTC domyślnie) z `config.json`, `state.json`, opcjonalnym kluczem szyfrowania, użytkownikami, preferencjami, niestandardowymi promptami i danymi użycia, jeśli się na to zdecydowano. Po udanej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
-- **Przywróć z kopii zapasowej** – otwiera **najpierw okno dialogowe potwierdzenia**. Wybierz plik ZIP kopii zapasowej w oknie dialogowym (**Przeglądaj** / wybieranie pliku lub przeciąganie i upuszczanie tam, gdzie jest obsługiwane), a następnie przejrzyj opcje:
-  - **Przywróć dane dotyczące użycia** – zaimportuj dane użycia/historii z pliku ZIP, gdy został on utworzony z uwzględnieniem użycia; pozostaw wyłączone, jeśli chcesz tylko ustawienia i prompty.
-  - **Wyczyść stare dane dotyczące użycia przed przywróceniem** – usuń istniejące dane użycia/historii w tej instalacji przed zastosowaniem kopii zapasowej (opcjonalne; używaj, gdy chcesz czystą zamianę).
+- **Uwzględnij dane użycia w kopii zapasowej** — po włączeniu, plik ZIP zawiera również historię wykonań i dane wywołań API. 
+- **Utwórz kopię zapasową** — tworzy pojedynczy plik ZIP (domyślnie `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` w strefie UTC) zawierający `config.json`, `state.json`, opcjonalny klucz szyfrowania, użytkowników, preferencje, niestandardowe prompty oraz dane użycia, jeśli została wydana zgoda. Po pomyślnej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
+- **Przywróć z kopii zapasowej** — otwiera najpierw **okno potwierdzenia**. Wybierz plik kopii zapasowej ZIP w oknie (**Przeglądaj** / selektor plików lub przeciągnij i upuść, tam gdzie obsługiwane), a następnie przejrzyj opcje:
+  - **Przywróć dane użycia** — importuje użycie/historię z pliku ZIP, jeśli została ona uwzględniona podczas tworzenia kopii; pozostaw wyłączone, jeśli chcesz tylko ustawienia i prompty.
+  - **Wyczyść stare dane użycia przed przywróceniem** — usuwa istniejące użycie/historię w tej instalacji przed zastosowaniem kopii zapasowej (opcjonalne; użyj, gdy chcesz pełnego zastąpienia).
 
 Kopie zapasowe utworzone w wersji web lub desktopowej mogą być przywracane w drugiej. Przy przywracaniu kopii zapasowej z desktopa w wersji web dane zostaną przywrócone do użytkownika administratora.
 
@@ -616,11 +616,11 @@ Strona ma dwie listy:
 
 Przydatne kontrolki obejmują:
 
-- **Szukaj modeli...** aby znaleźć model po nazwie
-- **Dostawca** chipy, aby zawęzić listę do jednego silnika (OpenRouter, OpenAI, Ollama, …)
-- **Tylko darmowe** aby pokazać tylko darmowe modele
-- **Odśwież** aby przeładować listę
-- **Rozwiń wszystko** i **Zwiń wszystko** gdy sortujesz według dostawcy
+- **Wyszukaj modele...** aby znaleźć model po nazwie
+- **Kafelki dostawcy** aby zawęzić listę do jednego silnika (OpenRouter, OpenAI, Ollama, …)
+- **Tylko darmowe** aby wyświetlić tylko darmowe modele
+- **Odśwież** aby ponownie załadować listę
+- **Rozwiń wszystkie** i **Zwiń wszystkie**, gdy sortujesz według dostawcy
 
 Identyfikatory modeli zawierają prefiks dostawcy (np. `openrouter/…` vs `openai/…`). Odznaki takie jak **OpenAI (OpenRouter)** vs **OpenAI (bezpośredni)** pokazują, jak ruch jest kierowany.
 
@@ -659,11 +659,11 @@ Jeśli dodasz język niestandardowy, pojawi się on w selektorach języków obok
 
 Użyj **Ustawienia** > **Śledzenie kosztów**, aby zarządzać informacjami o kosztach.
 
-- **Koszt całkowity** pokazuje bieżący łączny koszt.
-- **Kopiuj wartość** kopiuje łączny koszt do schowka.
-- **Resetuj koszt** resetuje zapisany łączny koszt do zera.
-- **Synchronizuj z użyciem klucza API** ustawia łączny koszt, aby odpowiadał użyciu zgłoszonemu przez Twoje konto OpenRouter (tylko OpenRouter).
-- **Użycie klucza API** pokazuje szczegóły użycia OpenRouter, jeśli są dostępne.
+- **Całkowity koszt** pokazuje bieżące podsumowanie.
+- **Kopiuj wartość** kopiuje całkowitą kwotę do schowka.
+- **Zresetuj koszt** ustawia zapisaną sumę na zero.
+- **Synchronizuj z użyciem klucza API** ustawia sumę zgodnie z użyciem zgłoszonym przez Twoje konto OpenRouter (tylko OpenRouter).
+- **Użycie klucza API** pokazuje szczegółowe informacje o użyciu OpenRouter, jeśli dostępne.
 - **Usuń dane kosztów** usuwa wszystkie dane lub tylko wpisy starsze niż wybrana data.
 
 **Śledzenie kosztów:** Kiedy używasz modeli OpenRouter, aplikacja pokazuje Twoje rzeczywiste użycie i wydatki na podstawie informacji o kosztach z OpenRouter. Dla wszystkich innych dostawców aplikacja szacuje koszty na podstawie cen opublikowanych przez OpenRouter; jeśli cena jest niedostępna, szacunek może wynosić zero.
@@ -689,11 +689,11 @@ Użyj **Ustawienia** > **Prompty transformacji**, aby zarządzać promptami zbio
 
 Możesz:
 
-- przeglądać zapisane prompty
-- usuwać prompty
-- importować prompty z pliku
-- eksportować prompty do kopii zapasowej lub udostępniania
-- załadować przykładowe prompty do listy promptów
+- przeglądaj zapisane prompty
+- usuwaj prompty
+- importuj prompty z pliku
+- eksportuj prompty w celu tworzenia kopii zapasowej lub udostępniania
+- załaduj przykładowe prompty do listy promptów
 
 <br/>
 
@@ -909,12 +909,12 @@ Podczas edytowania promptu zawsze kliknij **Zapisz**, zanim klikniesz **Powrót 
 <a id="quick-tips"></a>
 ## Szybkie wskazówki
 
-- Zacznij od [**Przetłumacz**](#translate), aby upewnić się, że Twoja konfiguracja działa, zanim przejdziesz do [**Przeformułowanie**](#rewrite) lub [**Transformacja**](#transform).
-- Używaj [**Przeformułowanie**](#rewrite) do codziennych poprawek sformułowań.
-- Używaj [**Transformacja**](#transform), gdy potrzebujesz powtarzalnego przepływu pracy dla konkretnego zadania.
-- Używaj [**Panel**](#dashboard), jeśli chcesz śledzić zużycie i koszty.
-- Używaj [**Historia**](#history), aby przeglądać poprzednie operacje i ich pełne teksty wejściowe/wyjściowe.
-- Regularnie eksportuj prompty, jeśli tworzysz bibliotekę promptów, którą chcesz bezpiecznie przechowywać (zobacz [Prompty transformacji](#transform-prompts)) lub chcesz ją udostępnić innym.
+- Zacznij od [**Tłumaczenia**](#translate), aby upewnić się, że konfiguracja działa, zanim przejdziesz do [**Przepisywania**](#rewrite) lub [**Przekształcania**](#transform).
+- Użyj [**Przepisywania**](#rewrite) do codziennych poprawek sformułowań.
+- Użyj [**Przekształcania**](#transform), gdy potrzebujesz powtarzalnego przepływu pracy dla konkretnego zadania.
+- Użyj [**Pulpitu nawigacyjnego**](#dashboard), jeśli chcesz śledzić użycie i koszty.
+- Użyj [**Historii**](#history), aby przejrzeć poprzednie operacje i pełne teksty wejściowe/wyjściowe.
+- Regularnie eksportuj prompty, jeśli tworzysz bibliotekę promptów, którą chcesz bezpiecznie zachować (zobacz [Przekształcanie promptów](#transform-prompts)) lub chcesz ją udostępnić innym.
 
 <br/><br/>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:11.068Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:45.383Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: pa
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 AI-ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ, ਵੱਖ-ਵੱਖ ਸ਼ੈਲੀਆਂ ਵਿੱਚ ਮੁੜ-ਲਿਖੋ, ਅਤੇ ਕਸਟਮ ਪ੍ਰੋਂਪਟਾਂ ਨਾਲ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰੋ - ਕਈ AI ਪ੍ਰਦਾਤਾਵਾਂ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, ਅਤੇ ਸਥਾਨਕ Ollama) ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਡੈਸਕਟਾਪ ਐਪ (Electron) ਜਾਂ ਸੈਲਫ-ਹੋਸਟਡ ਵੈੱਬ ਐਪ (Docker) ਵਜੋਂ ਚਲਦਾ ਹੈ।
 
-- **ਅਨੁਵਾਦ ਕਰੋ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ, ਸਰੋਤ ਦੀ ਆਟੋਮੈਟਿਕ ਪਛਾਣ ਨਾਲ
-- **ਮੁੜ-ਲਿਖਤ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪੱਸ਼ਟਤਾ ਸੁਧਾਰੋ, ਔਪਚਾਰਿਕ/ਅਣਔਪਚਾਰਿਕ, ਛੋਟਾ ਕਰੋ, ਵਧਾਓ, ਤਕਨੀਕੀ
-- **ਟ੍ਰਾਂਸਫਾਰਮ** - ਕਸਟਮ AI ਪ੍ਰੋਂਪਟ; ਪ੍ਰੋਂਪਟ ਬਣਾਓ ਅਤੇ ਪਰਬੰਧਿਤ ਕਰੋ, ਪ੍ਰਤੀ ਪ੍ਰੋਂਪਟ ਵਿਕਲਪਕ ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ
-- **ਇਤਿਹਾਸ** - ਇਨਪੁੱਟ/ਆਊਟਪੁਟ ਟੈਕਸਟ ਨਾਲ ਪੂਰਾ ਕਾਰਜ ਇਤਿਹਾਸ, ਫਿਲਟਰਿੰਗ, ਅਤੇ ਐਕਸਪੋਰਟ
-- **ਮਾਡਲ ਅਤੇ ਲਾਗਤ** - ਕਿਸੇ ਵੀ ਕੰਫਿਗਰ ਕੀਤੇ ਪ੍ਰਦਾਤਾ ਤੋਂ ਮਾਡਲ ਚੁਣੋ; ਲਾਗਤ ਅਤੇ ਵਰਤੋਂ ਦੇ ਡੈਸ਼ਬੋਰਡ ਲਾਗ, ਮਾਡਲ/ਆਪਰੇਸ਼ਨ/ਦਿਨ ਅਨੁਸਾਰ ਸਾਰਾਂਸ਼
-- **UI** - ਬਹੁਭਾਸ਼ੀ ਇੰਟਰਫੇਸ (30+ ਭਾਸ਼ਾਵਾਂ, RTL ਸਹਾਇਤਾ), ਫੋਂਟ, ...
+- **ਅਨੁਵਾਦ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ, ਸਵੈਚਾਲਿਤ ਸਰੋਤ ਪਛਾਣ ਨਾਲ
+- **ਮੁੜ-ਲਿਖੋ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪਸ਼ਟਤਾ ਵਧਾਓ, ਔਪਚਾਰਿਕ/ਅਨੌਪਚਾਰਿਕ, ਛੋਟਾ ਕਰੋ, ਵਿਸਤਾਰ ਕਰੋ, ਤਕਨੀਕੀ
+- **ਰੂਪਾਂਤਰ** - ਕਸਟਮ ਏਆਈ ਪ੍ਰੇਰਕ; ਪ੍ਰੇਰਕ ਬਣਾਓ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਹਰੇਕ ਪ੍ਰੇਰਕ ਲਈ ਵਿਕਲਪਿਕ ਟੀਚਾ ਭਾਸ਼ਾ
+- **ਇਤਿਹਾਸ** - ਪੂਰਾ ਕਾਰਜ ਇਤਿਹਾਸ ਇਨਪੁਟ/ਆਉਟਪੁਟ ਟੈਕਸਟ, ਫਿਲਟਰਿੰਗ, ਅਤੇ ਨਿਰਯਾਤ ਨਾਲ
+- **ਮਾਡਲ ਅਤੇ ਲਾਗਤ** - ਕਿਸੇ ਵੀ ਕੰਫਿਗਰ ਕੀਤੇ ਪ੍ਰਦਾਤਾ ਤੋਂ ਮਾਡਲ ਚੁਣੋ; ਲਾਗਤ ਅਤੇ ਵਰਤੋਂ ਡੈਸ਼ਬੋਰਡ ਲੌਗ, ਮਾਡਲ/ਆਪਰੇਸ਼ਨ/ਦਿਨ ਅਨੁਸਾਰ ਸਾਰਾਂਸ਼
+- **ਯੂਆਈ** - ਬਹੁਭਾਸ਼ੀ ਇੰਟਰਫੇਸ (30+ ਭਾਸ਼ਾਵਾਂ, ਆਰਟੀਐਲ ਸਹਾਇਤਾ), ਫੋਂਟ, ...
 - **ਵੈੱਬ ਮੋਡ** - ਐਡਮਿਨ ਭੂਮਿਕਾਵਾਂ ਨਾਲ ਬਹੁ-ਯੂਜ਼ਰ ਸਹਾਇਤਾ
-- **ਡੈਸਕਟਾਪ** - ਵਿੰਡੋਜ਼ ਅਤੇ ਲੀਨਕਸ ਲਈ Electron ਐਪ
-- **ਸੈਲਫ-ਹੋਸਟਡ** - amd64 ਅਤੇ arm64 (ਰਸਪਬੇਰੀ ਪਾਈ-ਤਿਆਰ) ਲਈ Docker ਇਮੇਜ
+- **ਡੈਸਕਟਾਪ** - ਵਿੰਡੋਜ਼ ਅਤੇ ਲੀਨਕਸ ਲਈ ਇਲੈਕਟ੍ਰਾਨ ਐਪ
+- **ਆਪਣੇ ਆਪ ਹੋਸਟ ਕੀਤਾ** - ਐਮਡੀ64 ਅਤੇ ਐਆਰਐਮ64 (ਰਾਸਪਬੇਰੀ ਪਾਈ-ਤਿਆਰ) ਲਈ ਡਾਕਰ ਇਮੇਜ
 
 ਇੰਸਟਾਲ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦੀ ਪੂਰੀ ਸਮਝ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
 
 <small>**ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਪੜ੍ਹੋ:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,11 +54,11 @@ AI-ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵ�
 
 - [ਸਕਰੀਨਸ਼ਾਟ](#screenshots)
 - [ਤੁਰੰਤ ਸ਼ੁਰੂਆਤ](#quick-start)
-- [OpenRouter API ਕੁੰਜੀ ਪ੍ਰਾਪਤ ਕਰਨਾ](#getting-an-openrouter-api-key)
+- [ਓਪਨਰਾਊਟਰ ਏਪੀਆਈ ਕੁੰਜੀ ਪ੍ਰਾਪਤ ਕਰਨਾ](#getting-an-openrouter-api-key)
 - [ਕੰਫਿਗਰੇਸ਼ਨ ਅਤੇ ਵਾਤਾਵਰਣ](#configuration-and-environment)
 - [ਵਿਕਾਸ ਅਤੇ ਆਰਕੀਟੈਕਚਰ](#development-and-architecture)
-- [ਮੁੱਦੇ ਰਿਪੋਰਟ ਕਰਨਾ](#reporting-issues)
-- [ਅਸੂਲ](#disclaimer)
+- [ਮੁੱਦਿਆਂ ਦੀ ਰਿਪੋਰਟਿੰਗ](#reporting-issues)
+- [ਅਸਵੀਕਾਰ](#disclaimer)
 - [ਲਾਇਸੈਂਸ](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -279,31 +279,31 @@ Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰ�
 
 **ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦੇ ਸਥਾਨ**
 
-| ਡਿਪਲੌਇਮੈਂਟ | ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਸਥਾਨ |
+| ਡਿਪਲੌਇਮੈਂਟ         | ਕੰਫਿਗ ਸਥਾਨ                                   |
 | ------------------ | ------------------------------------------------- |
-| ਇਲੈਕਟ੍ਰਾਨ (ਵਿੰਡੋਜ਼) | `%APPDATA%\transrewrt\` |
-| ਇਲੈਕਟ੍ਰਾਨ (ਲੀਨਕਸ) | `~/.config/transrewrt/` |
-| ਵੈੱਬ / ਡੌਕਰ | `/app/data/config.json` (ਸਥਾਈ ਰੱਖਣ ਲਈ ਇੱਕ ਵਾਲੀਅਮ ਦੀ ਵਰਤੋਂ ਕਰੋ) |
+| ਇਲੈਕਟ੍ਰਾਨ (ਵਿੰਡੋਜ਼) | `%APPDATA%\transrewrt\`                           |
+| ਇਲੈਕਟ੍ਰਾਨ (ਲੀਨਕਸ)   | `~/.config/transrewrt/`                           |
+| ਵੈੱਬ / ਡਾਕਰ       | `/app/data/config.json` (ਸਥਾਈ ਰੱਖਣ ਲਈ ਵਾਲੀਅਮ ਦੀ ਵਰਤੋਂ ਕਰੋ) |
 
 <br/>
 
 **ਵਾਤਾਵਰਣ ਚਲ (ਐਨਵਾਇਰਨਮੈਂਟ ਵੇਰੀਏਬਲਜ਼)** (ਸਿਰਫ਼ ਵੈੱਬ/ਡੌਕਰ ਲਈ; ਇਲੈਕਟ੍ਰਾਨ ਸਥਾਨਕ ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ)
 
-| ਚਲ | ਵੇਰਵਾ |
+| ਚਲਣਯੋਗ             | ਵੇਰਵਾ                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT` | ਸਰਵਰ ਸੁਣਨ ਪੋਰਟ (ਡਿਫ਼ਾਲਟ `5000` ਹੈ) |
-| `CONFIG_PATH` | ਕਾਨਫ਼ਿਗਰੇਸ਼ਨ ਫਾਇਲ ਦਾ ਮਾਰਗ (ਡਿਫ਼ਾਲਟ `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY` ਹੈ) | xAI API ਕੁੰਜੀ |
+| `PORT`               | ਸਰਵਰ ਸੁਣਨ ਪੋਰਟ  (ਡਿਫਾਲਟ `5000` ਤੇ)                                  |
+| `CONFIG_PATH`        | ਕੌਨਫਿਗ ਫਾਇਲ ਦਾ ਮਾਰਗ (ਡਿਫਾਲਟ `/app/data/config.json` ਹੈ)                |
+| `TZ`                 | ਸਰਵਰ-ਸਾਈਡ ਸਮਾਂ ਲਈ ਸਮਾਂ ਖੇਤਰ (ਲੌਗਿੰਗ, ਆਦਿ) (ਡਿਫਾਲਟ `Europe/London` ਤੇ) |
+| `OPENROUTER_API_KEY` | ਓਪਨਰਾਊਟਰ ਏਪੀਆਈ ਕੁੰਜੀ                                                           |
+| `OPENAI_API_KEY`     | ਓਪਨਏਆਈ ਏਪੀਆਈ ਕੁੰਜੀ                                                               |
+| `CEREBRAS_API_KEY`   | ਸੇਰੇਬਰਸ ਏਪੀਆਈ ਕੁੰਜੀ                                                             |
+| `ANTHROPIC_API_KEY`  | ਐਂਥਰੋਪਿਕ ਏਪੀਆਈ ਕੁੰਜੀ                                                            |
+| `GOOGLE_API_KEY`     | ਗੂਗਲ ਜੈਮੀਨੀ ਏਪੀਆਈ ਕੁੰਜੀ                                                        |
+| `DEEPSEEK_API_KEY`   | ਡੀਪਸੀਕ ਏਪੀਆਈ ਕੁੰਜੀ                                                             |
+| `GROQ_API_KEY`       | ਗਰੋਕ ਏਪੀਆਈ ਕੁੰਜੀ                                                                 |
+| `MISTRAL_API_KEY`    | ਮਿਸਟਰਲ ਏਪੀਆਈ ਕੁੰਜੀ                                                              |
+| `OLLAMA_URL`         | ਓਲਾਮਾ ਬੇਸ URL (ਜਿਵੇਂ `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | xAI API ਕੁੰਜੀ                                                                  |
 
 ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ਿਗਰ ਕਰੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ। ਮਾਡਲ ਆਈਡੀਜ਼ ਨਾਮਕ ਖੇਤਰ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ) ਹਨ।
 

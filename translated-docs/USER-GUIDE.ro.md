@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:19.231Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:54.159Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -35,7 +35,7 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
 
 <small>**Citește în alte limbi:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -51,14 +51,14 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
 **Cuprins**
 
 - [Înainte de a începe](#before-you-start)
-  - [Cum obțineți o cheie API gratuită OpenRouter (aplicație desktop)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+  - [Cum obțineți o cheie API OpenRouter gratuită (aplicație desktop)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Primii pași](#getting-started)
 - [Părțile principale ale ferestrei](#main-parts-of-the-window)
   - [Bara laterală](#sidebar)
   - [Bara de instrumente](#toolbar)
   - [Panourile de intrare și ieșire](#input-and-output-panels)
 - [Traducere](#translate)
-  - [Traduceți textul](#translate-text)
+  - [Traduceți text](#translate-text)
   - [Selectarea limbii](#language-selection)
   - [Setări utile pentru traducere](#helpful-translation-settings)
 - [Rescriere](#rewrite)
@@ -69,30 +69,30 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
   - [Editați un prompt](#edit-a-prompt)
   - [Testați un prompt înainte de a-l folosi](#test-a-prompt-before-using-it)
 - [Panou de control](#dashboard)
-  - [Filtrați datele](#filter-the-data)
+  - [Filtrarea datelor](#filter-the-data)
   - [Filele panoului de control](#dashboard-tabs)
   - [Exportați datele](#export-data)
   - [Ștergeți înregistrările stocate pentru un model](#delete-stored-records-for-a-model)
 - [Istoric](#history)
-  - [Filtrați datele](#filter-the-data-1)
+  - [Filtrarea datelor](#filter-the-data-1)
   - [Exportați datele din istoric](#export-history-data)
 - [Setări](#settings)
   - [Setări generale](#general-settings)
   - [Modele](#models)
   - [Limbi](#languages)
-  - [Urmărire Costuri](#cost-tracking)
+  - [Urmărirea costurilor](#cost-tracking)
   - [Prompturi de transformare](#transform-prompts)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
 - [Probleme frecvente](#common-issues)
-  - [Aplicația nu traduce, rescrie sau transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplicația nu traduce, nu rescrie și nu transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista de modele este goală](#the-model-list-is-empty)
   - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
   - [Graficele din panoul de control sunt goale](#dashboard-charts-are-empty)
-  - [Costul afișează „nu este disponibil” sau pare greșit](#cost-shows-not-available-or-seems-wrong)
+  - [Costul afișează „neaccesibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
   - [Costul total nu corespunde facturii furnizorului](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
@@ -100,7 +100,7 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
   - [Panoul de control nu afișează date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Am modificat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
 - [Sfaturi rapide](#quick-tips)
-- [Declinare de responsabilitate](#disclaimer)
+- [Declinarea răspunderii](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -130,15 +130,15 @@ Dacă utilizați **versiunea web**, administratorul serverului configurează fur
 
 Dacă utilizați aplicația desktop, urmați acești pași:
 
-1. Accesați [OpenRouter](https://openrouter.ai) în browserul dvs.
+1. Accesați [OpenRouter](https://openrouter.ai) în navigatorul dvs. web.
 2. Creați un cont sau autentificați-vă.
 3. Deschideți pagina [Chei](https://openrouter.ai/keys).
-4. Apăsați butonul pentru a crea o cheie API nouă.
-5. Dați un nume cheii pentru a o putea recunoaște ulterior.
+4. Faceți clic pe butonul pentru a crea o cheie API nouă.
+5. Dați cheii un nume pentru a o putea recunoaște ulterior.
 6. Copiați noua cheie API.
 7. Întoarceți-vă la Transrewrt și deschideți **Setări** > **Configurare API**.
-8. Lipiți cheia în câmpul **Cheie API OpenRouter** (sub **Setări** > **Configurare API**).
-9. Apăsați **Testează cheia OpenRouter** pentru a vă asigura că funcționează.
+8. Lipiți cheia în **Cheie API OpenRouter** (sub **Setări** > **Configurare API**).
+9. Faceți clic pe **Testați cheia OpenRouter** pentru a vă asigura că funcționează.
 
 <br/><br/>
 
@@ -148,12 +148,12 @@ Dacă utilizați aplicația desktop, urmați acești pași:
 Dacă este prima dată când utilizați Transrewrt, urmați această ordine:
 
 1. Deschideți aplicația.
-2. Alegeți **Limba interfeței** din pictograma globului dacă este necesar.
-3. Dacă utilizați **aplicația desktop**, deschideți [**Setări** > **Configurare API**](#api-config), adăugați o cheie API pentru cel puțin un furnizor (de exemplu OpenRouter) și apăsați **Testează** pentru a verifica dacă funcționează.
-4. Deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele la **Modele selectate**.
-5. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. preferate să apară primele.
-6. Accesați **Traduce** și executați o traducere simplă pentru a vă asigura că totul funcționează.
-7. Odată ce aceasta funcționează, încercați **Rescriere**, apoi **Transformare**.
+2. Alegeți **limba interfeței** din pictograma globului, dacă este necesar.
+3. Dacă utilizați **aplicația desktop**, deschideți [**Setări** > **Configurare API**](#api-config), adăugați o cheie API pentru cel puțin un furnizor (de exemplu OpenRouter) și faceți clic pe **Test** pentru a verifica dacă funcționează.
+4. Deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele în **Modele selectate**.
+5. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale**, dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
+6. Accesați **Traducere** și executați o traducere simplă pentru a confirma că totul funcționează.
+7. Odată ce funcționează, încercați **Rescriere**, apoi **Transformare**.
 
 Această ordine este importantă. Previne problema cea mai frecventă la prima utilizare: încercarea de a executa o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau un model selectat.
 
@@ -258,14 +258,14 @@ Folosește **Traduce** atunci când dorești să convertești text dintr-o limb�
 <a id="translate-text"></a>
 ### Traducerea textului
 
-1. Deschide **Traduce**.
-2. Alege o limbă în **De la**.
-3. Alege o limbă în **La**.
-4. Alege un model în bara de instrumente.
-5. Tastează sau lipește text în **Intrare**.
-6. Apasă **Traduce**.
-7. Citește rezultatul în **Rezultat**.
-8. Folosește butonul de copiere dacă dorești să copiezi rezultatul.
+1. Deschideți **Traducere**.
+2. Alegeți o limbă în **Din**.
+3. Alegeți o limbă în **În**.
+4. Alegeți un model în bara de instrumente.
+5. Tastați sau lipiți text în **Intrare**.
+6. Faceți clic pe **Traducere**.
+7. Citiți rezultatul în **Ieșire**.
+8. Utilizați butonul de copiere dacă doriți să copiați rezultatul.
 
 <br/>
 
@@ -284,11 +284,11 @@ Limbile tale **preferate** selectate apar în partea de sus a listei. Le poți s
 
 În [**Setări** > **Setări generale**](#general-settings), poți modifica modul în care funcționează traducerea:
 
-- **Traducere automată la lipire** efectuează o traducere imediat ce lipești text.
+- **Auto-traducere la lipire** efectuează o traducere imediat ce lipiți un text.
 - **Copiere automată a rezultatului în clipboard** copiază automat rezultatul după o execuție reușită.
-- **Traducere în timp real (în timp ce tastezi)** efectuează traduceri în timp ce tastezi.
+- **Traducere în timp real (în timp ce scrii)** efectuează traduceri în timp ce tastezi.
 - **Timeout (ms)** controlează cât timp așteaptă aplicația înainte de a executa o traducere în timp real.
-- **Enter** controlează ce se întâmplă când apeși `Enter`:
+- **Enter** controlează ce se întâmplă când apăsați `Enter`:
 
 <br/><br/>
 
@@ -303,12 +303,12 @@ Folosește **Rescriere** atunci când dorești să îmbunătățești formularea
 
 Acest lucru este util pentru:
 
-- corectarea ortografiei și gramaticii (**Verifică ortografia și gramatica**)
-- îmbunătățirea clarității textului (**Îmbunătățește claritatea**)
+- corectarea ortografiei și gramaticii (**Verificare ortografie și gramatică**)
+- îmbunătățirea clarității textului (**Îmbunătățire claritate**)
 - mai multe reformulări distincte într-o singură execuție (**Versiuni alternative**)
-- formalizarea sau informalizarea textului (**Formal** / **Informal**)
-- scurtarea sau extinderea textului (**Scurtează** / **Extinde**)
-- făcerea textului mai tehnic (**Fă tehnic**)
+- transformarea textului într-un stil mai formal sau mai informal (**Formal** / **Informal**)
+- scurtarea sau extinderea textului (**Scurtare** / **Extindere**)
+- transformarea textului într-un stil mai tehnic (**Fă-te tehnic**)
 
 <br/>
 
@@ -332,7 +332,7 @@ Aceasta este zona cea mai flexibilă a aplicației. Poți folosi această funcț
 - rezumarea notelor
 - transformarea unui text brut într-un e-mail finalizat
 - extragerea punctelor cheie
-- convertirea textului într-un format specific
+- conversia textului într-un anumit format
 - orice altă activitate personalizată cu textul de intrare
 
 <br/>
@@ -340,12 +340,12 @@ Aceasta este zona cea mai flexibilă a aplicației. Poți folosi această funcț
 <a id="run-an-existing-prompt"></a>
 ### Rulează un prompt existent
 
-1. Deschide **Transformare**.
-2. Alege un prompt din lista de prompturi.
-3. Dacă apare o casetă **Destinație**, alege o limbă dacă dorești.
-4. Tastează sau lipește text în **Intrare**.
-5. Apasă **Transformare**.
-6. Citește rezultatul în **Rezultat**.
+1. Deschideți **Transformare**.
+2. Alegeți un prompt din lista de prompturi.
+3. Dacă apare o casetă **Limba țintă**, alegeți o limbă dacă doriți.
+4. Tastați sau lipiți text în **Intrare**.
+5. Faceți clic pe **Transformare**.
+6. Citiți rezultatul în **Ieșire**.
 
 <br/>
 
@@ -366,12 +366,12 @@ Dacă lista ta de prompturi este goală, apasă **Încarcă prompturi exemplu** 
 
 Cea mai rapidă cale de a crea un prompt este:
 
-1. Apasă **Prompt nou**.
-2. Apasă **Generează prompt**.
-3. Descrie ce dorești să facă promptul.
-4. Alege un model.
-5. Lasă aplicația să creeze un proiect pentru tine.
-6. Revizuieste proiectul și apasă **Salvează**.
+1. Faceți clic pe **Prompt nou**.
+2. Faceți clic pe **Generare prompt**.
+3. Descrieți ce doriți să facă promptul.
+4. Alegeți un model.
+5. Lăsați aplicația să creeze un draft pentru dumneavoastră.
+6. Verificați draftul și faceți clic pe **Salvare**.
 
 ![Generate prompt](../images/screenshots/ro/transform-generate.png)
 
@@ -387,12 +387,12 @@ Când creezi sau editezi un prompt, editorul apare în stânga, iar o zonă de t
 Câmpurile principale sunt:
 
 - **Nume prompt**: numele afișat în lista de prompturi.
-- **Instrucțiuni prompt (opțional)**: o scurtă indicație afișată utilizatorului când rulează promptul.
+- **Instrucțiuni prompt (opțional)**: o scurtă indicație afișată utilizatorului la rularea promptului.
 - **Rol model**: rolul general atribuit IA, cum ar fi „Ești un asistent util.”
-- **Instrucțiuni model (câte una pe linie)**: regulile specifice pe care dorești ca IA să le urmeze.
-- **Descrierea ieșirii**: un cuvânt scurt care descrie rezultatul, cum ar fi „rezumat” sau „rescriere”.
-- **Temperatura (0,0 → 1,0)**: modul în care va acționa modelul; vezi mai jos.
-- **Solicită limba țintă**: adaugă un selector de limbă țintă atunci când promptul este rulat.
+- **Instrucțiuni model (câte una pe linie)**: regulile specifice pe care doriți ca IA să le urmeze.
+- **Descriere ieșire**: un cuvânt scurt care descrie rezultatul, cum ar fi „rezumat” sau „rescriere”.
+- **Temperatură (0,0 → 1,0)**: modul în care se va comporta modelul; consultați mai jos.
+- **Cerere limbă țintă**: adaugă un selector de limbă țintă atunci când se rulează promptul.
 
 Dacă termenul tehnic **Temperatură** este nou pentru tine, gândește-te așa:
 
@@ -463,7 +463,7 @@ Utilizați butoanele de filtrare de sus pentru a schimba intervalul de timp.
 <a id="dashboard-tabs"></a>
 ### Filele panoului de control
 
-- **Rezumat** vă oferă o imagine de ansamblu asupra utilizării și costului. Include **Utilizare în timp** (numărul cumulativ stivuit de **apeluri** pe zi pentru traducere, rescriere și transformare) și **Utilizare pe model** (totalul **apelurilor pe model**, inclusiv transformare).
+- **Rezumat** vă oferă o imagine de ansamblu asupra utilizării și costurilor. Include o secțiune **Utilizare în timp** (număr cumulativ stivuit de **apeluri pe zi** pentru traducere, rescriere și transformare) și **Utilizare pe model** (totalul **apelurilor pe model**, inclusiv transformarea).
 - **După utilizare** detaliază activitatea pe limbă de traducere, mod de rescriere și prompt de transformare.
 - **După model** arată ce modele ați utilizat și cât au costat.
 - **După zi** afișează totalurile zilnice.
@@ -545,14 +545,14 @@ Filele disponibile depind de platformă și de rolul dvs.:
 
 | Tab               | Desktop | Web (admin) | Web (utilizator obișnuit) |
   |-------------------|:-------:|:-----------:|:------------------------:|
-  | Setări generale   |   Da   |     Da     |          Da             |
-  | Modele             |   Da   |     Da     |          Da             |
-  | Limbi              |   Da   |     Da     |          Da             |
-  | Urmărire Costuri   |   Da   |     Da     |           -             |
-  | Prompturi de transformare |   Da   |     Da     |          Da             |
-  | Utilizatori        |    -    |     Da     |           -             |
-  | Configurare API    |   Da   |     Da     |           -             |
-  | Despre             |   Da   |     Da     |          Da             |
+  | Setări generale   |   da    |     da      |           da             |
+  | Modele            |   da    |     da      |           da             |
+  | Limbi             |   da    |     da      |           da             |
+  | Urmărire costuri  |   da    |     da      |           -              |
+  | Prompturi transformare |   da    |     da      |           da             |
+  | Utilizatori       |    -    |     da      |           -              |
+  | Configurare API   |   da    |     da      |         -          |
+  | Despre            |   da    |     da      |        da          |
 
 <br/>
 
@@ -570,11 +570,11 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Comportament**
 
-- **Comportament pentru ENTER** alege dacă `Enter` rulează sarcina sau inserează o linie nouă.
-- **Traducere automată la lipire** pornește traducerea imediat ce lipiți text.
-- **Copiere automată a rezultatului în clipboard** copiază automat rezultatele cu succes.
-- **Traducere în timp real (în timp ce tastezi)** traduce în timp ce tastezi.
-- **Timeout (ms)** stabilește timpul de așteptare pentru traducerea în timp real.
+- **Comportamentul pentru ENTER** alege dacă `Enter` execută sarcina sau inserează o linie nouă.
+- **Auto-traducere la lipire** pornește traducerea imediat ce lipiți text.
+- **Copiază automat rezultatul în clipboard** copiază rezultatele cu succes automat.
+- **Traducere în timp real (în timp ce scrii)** traduce în timp ce scrii.
+- **Timeout (ms)** setează timpul de așteptare pentru traducerea în timp real.
 
 **Istoric**
 
@@ -583,19 +583,19 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Aspect**
 
-- **Afișează informații despre costuri pentru acțiuni** controlează afișarea costului pe operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
-- **Cifre fracționare cost** modifică modul în care sunt afișate zecimalele costului.
+- **Afișează informațiile despre cost pe acțiuni** controlează afișarea costului pe operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
+- **Cifre zecimale pentru cost** modifică modul în care sunt afișate zecimalele costului.
 - **Doar web:** **afișează o margine în jurul aplicației** adaugă spațiu suplimentar în jurul interfeței.
-- **Familie de fonturi** modifică fontul de scriere în panourile de text.
-- **Mărime** modifică dimensiunea fontului.
+- **Familia de fonturi** schimbă fontul utilizat în panourile de text.
+- **Dimensiune** schimbă dimensiunea fontului.
 
 **Backup configurație**
 
-- **Includeți datele de utilizare în copia de rezervă** - atunci când este activată, arhiva ZIP conține și istoricul execuției și datele apelurilor API. 
-- **Salvează configurația în backup** - creează o singură arhivă ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) cu `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, prompturi personalizate și date de utilizare dacă ați optat pentru aceasta. După un backup reușit, confirmarea afișează numele fișierului salvat.
-- **Restaurează din backup** - deschide mai întâi un **dialog de confirmare**. Alegeți arhiva ZIP în cadrul dialogului (**Răsfoiește** / selector de fișiere sau trage și plasează acolo unde este suportat), apoi revizuiți opțiunile:
-  - **Restaurați datele de utilizare** - importă utilizarea/istoricul din arhiva ZIP atunci când aceasta a fost salvată cu utilizarea inclusă; lăsați dezactivat dacă doriți doar setările și prompturile.
-  - **Ștergeți vechile date de utilizare înainte de restaurare** - elimină utilizarea/istoricul existent pe această instalație înainte de aplicarea backup-ului (opțional; utilizați atunci când doriți o înlocuire curată).
+- **Include datele de utilizare în backup** – dacă este activată, ZIP-ul conține și istoricul execuțiilor și datele apelurilor API. 
+- **Configurare backup** – creează un singur fișier ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) care include `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, prompturi personalizate și date de utilizare dacă ați optat pentru aceasta. După un backup reușit, confirmarea afișează numele fișierului salvat.
+- **Restaurare din backup** – deschide mai întâi un **dialog de confirmare**. Alegeți fișierul ZIP de backup în dialog (**Răsfoiește** / selector de fișiere sau trage și plasează acolo unde este suportat), apoi revizuiți opțiunile:
+  - **Restaurează datele de utilizare** – importă utilizarea/istoricul din ZIP dacă a fost salvat cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și prompturile.
+  - **Șterge datele vechi de utilizare înainte de restaurare** – elimină utilizarea/istoricul existent pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
 
 Backup-urile create fie în versiunea web, fie în cea desktop pot fi restaurate în cealaltă. Când restaurați un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
 
@@ -616,10 +616,10 @@ Pagina are două liste:
 Controale utile includ:
 
 - **Caută modele...** pentru a găsi un model după nume
-- Căpușele **Furnizor** pentru a restrânge lista la un motor (OpenRouter, OpenAI, Ollama, …)
-- **Doar Gratuite** pentru a afișa doar modele gratuite
-- **Reîmprospătează** pentru a reîncărca lista
-- **Extinde Tot** și **Restrânge tot** atunci când sortați după furnizor
+- **Chip-uri furnizor** pentru a restrânge lista la un singur motor (OpenRouter, OpenAI, Ollama, …)
+- **Doar gratuite** pentru a afișa doar modele gratuite
+- **Reîmprospătare** pentru a reîncărca lista
+- **Extinde toate** și **Restrânge toate** când sortați după furnizor
 
 ID-urile modelelor includ prefixul furnizorului (de exemplu `openrouter/…` vs `openai/…`). Insigile precum **OpenAI (OpenRouter)** vs **OpenAI (direct)** arată cum este rutat traficul.
 
@@ -659,11 +659,11 @@ Dacă adăugați o limbă personalizată, aceasta va apărea în selectorii de l
 Utilizați **Setări** > **Urmărire Costuri** pentru a gestiona informațiile privind costurile.
 
 - **Cost total** afișează totalul curent.
-- **Copiază Valoarea** copiază totalul în clipboard.
-- **Resetare cost** resetează totalul stocat la zero.
+- **Copiază valoarea** copiază totalul în clipboard.
+- **Resetează costul** resetează totalul stocat la zero.
 - **Sincronizează cu utilizarea cheii API** setează totalul să corespundă utilizării raportate de contul dvs. OpenRouter (doar OpenRouter).
-- **Utilizare cheie API** afișează detalii despre utilizarea OpenRouter, dacă sunt disponibile.
-- **Șterge datele de cost** elimină toate datele sau doar intrările mai vechi de o dată selectată.
+- **Utilizarea cheii API** afișează detaliile de utilizare OpenRouter, dacă sunt disponibile.
+- **Șterge datele de cost** elimină toate datele sau doar înregistrările mai vechi de o dată selectată.
 
 **Urmărire costuri:** Când utilizați modele OpenRouter, aplicația vă arată utilizarea și cheltuielile reale pe baza informațiilor de cost de la OpenRouter. Pentru toți ceilalți furnizori, aplicația estimează costurile utilizând prețurile publicate de OpenRouter; dacă un preț nu este disponibil, estimarea poate fi zero.
 
@@ -688,11 +688,11 @@ Utilizați **Setări** > **Prompturi de transformare** pentru a gestiona promptu
 
 Puteți:
 
-- revizui prompturile salvate
-- șterge prompturi
-- importa prompturi dintr-un fișier
-- exporta prompturi pentru salvare sau partajare
-- încărca prompturi exemplu în lista de prompturi
+- revizuiți prompturile salvate
+- ștergeți prompturi
+- importați prompturi dintr-un fișier
+- exportați prompturi pentru backup sau partajare
+- încărcați prompturi eșantion în lista de prompturi
 
 <br/>
 
@@ -908,12 +908,12 @@ Când editați un prompt, faceți întotdeauna clic pe **Salvează** înainte de
 <a id="quick-tips"></a>
 ## Sfaturi rapide
 
-- Începeți cu [**Traduce**](#translate) pentru a vă asigura că setarea funcționează înainte de a trece la [**Rescriere**](#rewrite) sau [**Transformare**](#transform).
+- Începeți cu [**Traducere**](#translate) pentru a vă asigura că setările funcționează înainte să treceți la [**Rescriere**](#rewrite) sau [**Transformare**](#transform).
 - Utilizați [**Rescriere**](#rewrite) pentru îmbunătățiri zilnice ale formulării.
 - Utilizați [**Transformare**](#transform) atunci când aveți nevoie de un flux de lucru reproductibil pentru o sarcină specifică.
 - Utilizați [**Panou de control**](#dashboard) dacă doriți să urmăriți utilizarea și costurile.
 - Utilizați [**Istoric**](#history) pentru a revizui operațiunile anterioare și textul complet de intrare/ieșire.
-- Exportați prompturile în mod regulat dacă construiți o bibliotecă de prompturi pe care doriți să o păstrați în siguranță (vezi [Prompturi de transformare](#transform-prompts)) sau dacă doriți să le împărtășiți cu alții.
+- Exportați prompturile periodic dacă construiți o bibliotecă de prompturi pe care doriți să o păstrați în siguranță (vezi [Transformă prompturi](#transform-prompts)) sau dacă doriți să le partajați cu alții.
 
 <br/><br/>
 

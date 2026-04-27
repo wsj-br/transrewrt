@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import {
   formatInteger,
@@ -8,71 +7,11 @@ import {
 } from "../utils/misc/formatUtils";
 import { DASH } from "../utils/misc/costUtils";
 
-/** Use DASH for null, undefined, or empty/whitespace string. */
 function orDash(val) {
   if (val == null) return DASH;
   if (typeof val === "string" && val.trim() === "") return DASH;
   return val;
 }
-
-/** Min width for label column; can grow to fit translated labels (max-content). */
-const LABEL_COLUMN_MIN = "110px";
-const LABEL_VALUE_GAP = "12px";
-const COLUMN_GAP = "12px";
-const DIVIDER_COLOR = tokens.colorNeutralStroke2;
-
-const useStyles = makeStyles({
-  outerGrid: {
-    display: "grid",
-    gridTemplateColumns: `1fr 1px 1fr 1px 1fr`,
-    columnGap: COLUMN_GAP,
-    rowGap: 0,
-    alignItems: "start",
-    width: "100%",
-  },
-  outerGridTwo: {
-    display: "grid",
-    gridTemplateColumns: `1fr 1px 1fr`,
-    columnGap: COLUMN_GAP,
-    rowGap: 0,
-    alignItems: "start",
-    width: "100%",
-  },
-  column: {
-    display: "grid",
-    gridTemplateColumns: `minmax(${LABEL_COLUMN_MIN}, max-content) 1fr`,
-    columnGap: LABEL_VALUE_GAP,
-    rowGap: "6px",
-    alignItems: "baseline",
-    minWidth: 0,
-  },
-  divider: {
-    width: "1px",
-    backgroundColor: DIVIDER_COLOR,
-    alignSelf: "stretch",
-    justifySelf: "center",
-  },
-  label: {
-    fontSize: "12px",
-    fontWeight: 500,
-    color: tokens.colorNeutralForeground2,
-    whiteSpace: "nowrap",
-  },
-  value: {
-    fontSize: "12px",
-    wordBreak: "break-word",
-    whiteSpace: "normal",
-  },
-  valueTranslate: {
-    color: "#84cc16",
-  },
-  valueRewrite: {
-    color: "#fb923c",
-  },
-  valueTransform: {
-    color: "#a78bfa",
-  },
-});
 
 function formatInputOutputStats(row, prefix, locale, t) {
   const chars = row[`${prefix}_chars`];
@@ -83,16 +22,11 @@ function formatInputOutputStats(row, prefix, locale, t) {
   const w = formatInteger(words ?? 0, locale);
   const p = formatInteger(paragraphs ?? 0, locale);
   if (t) {
-    return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
-      chars: c,
-      words: w,
-      paragraphs: p,
-    });
+    return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", { chars: c, words: w, paragraphs: p });
   }
   return `${c} chars · ${w} words · ${p} paragraphs`;
 }
 
-/** Expanded row only: fields not already shown in the table row (ID, Timestamp, Type, Username, Model, Cost, TPS). */
 const FIELDS = [
   { key: "source_lang", labelKey: "Source", format: (row) => orDash(row.source_lang) },
   { key: "target_lang", labelKey: "Target", format: (row) => orDash(row.target_lang) },
@@ -105,15 +39,11 @@ const FIELDS = [
   { key: "output_stats", labelKey: "Output", format: (row, locale, opts) => formatInputOutputStats(row, "output", locale, opts?.t) },
 ];
 
-function getValueColorClass(type, styles) {
-  if (type === "translate") return styles.valueTranslate;
-  if (type === "rewrite") return styles.valueRewrite;
-  if (type === "transform") return styles.valueTransform;
+function getValueColorClass(type) {
+  if (type === "translate") return "text-lime-500";
+  if (type === "rewrite") return "text-orange-400";
+  if (type === "transform") return "text-violet-400";
   return "";
-}
-
-function renderField(row, field, locale, opts) {
-  return field.format(row, locale, opts);
 }
 
 function splitFieldsIntoColumns(fields, columnCount) {
@@ -135,7 +65,6 @@ export default function CallDetailsContent({
 }) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const styles = useStyles();
 
   if (!row) return null;
 
@@ -145,22 +74,27 @@ export default function CallDetailsContent({
   const fields = [...prepended, ...baseFields];
   if (fields.length === 0) return null;
 
-  const valueColorClass = getValueColorClass(row.type, styles);
+  const valueColorClass = getValueColorClass(row.type);
   const opts = { t, costFractionStyle: costFractionStyle || "muted" };
   const cols = splitFieldsIntoColumns(fields, columnCount);
-  const outerClass = columnCount === 2 ? styles.outerGridTwo : styles.outerGrid;
+  const outerClass = columnCount === 2
+    ? "grid w-full items-start"
+    : "grid w-full items-start";
+  const outerStyle = columnCount === 2
+    ? { gridTemplateColumns: "1fr 1px 1fr", columnGap: "12px" }
+    : { gridTemplateColumns: "1fr 1px 1fr 1px 1fr", columnGap: "12px" };
 
   return (
-    <div className={outerClass}>
+    <div className={outerClass} style={outerStyle}>
       {cols.map((chunk, colIdx) => (
         <Fragment key={colIdx}>
-          {colIdx > 0 ? <div className={styles.divider} aria-hidden /> : null}
-          <div className={styles.column}>
+          {colIdx > 0 ? <div className="w-px bg-border self-stretch justify-self-center" aria-hidden /> : null}
+          <div className="grid items-baseline gap-y-1.5" style={{ gridTemplateColumns: "minmax(110px,max-content) 1fr", columnGap: "12px" }}>
             {chunk.map(({ key, labelKey, format }) => (
               <Fragment key={key}>
-                <div className={styles.label}>{t(labelKey)}</div>
-                <div className={`${styles.value} ${valueColorClass}`}>
-                  {renderField(row, { key, labelKey, format }, locale, opts)}
+                <div className="text-xs font-medium text-muted-foreground whitespace-nowrap">{t(labelKey)}</div>
+                <div className={`text-xs break-words ${valueColorClass}`}>
+                  {format(row, locale, opts)}
                 </div>
               </Fragment>
             ))}

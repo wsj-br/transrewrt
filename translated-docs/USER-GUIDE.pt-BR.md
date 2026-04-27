@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:27:41.150Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:09.640Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: pt-BR
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
 
 <small>**Leia em outros idiomas:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -79,23 +79,23 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [Configurações gerais](#general-settings)
   - [Modelos](#models)
   - [Idiomas](#languages)
-  - [Rastreamento de custo](#cost-tracking)
+  - [Acompanhamento de custos](#cost-tracking)
   - [Prompts de transformação](#transform-prompts)
   - [Usuários](#users)
-  - [Configuração da API](#api-config)
+  - [Configuração de API](#api-config)
   - [Sobre](#about)
 - [Problemas comuns](#common-issues)
-  - [O aplicativo não traduz, reescreve ou transforma o texto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [O aplicativo não traduz, reescreve ou transforma texto](#the-app-will-not-translate-rewrite-or-transform-text)
   - [A lista de modelos está vazia](#the-model-list-is-empty)
   - [O resultado é muito lento ou muito caro](#the-result-is-too-slow-or-too-expensive)
-  - [A interface está no idioma errado](#the-interface-is-in-the-wrong-language)
+  - [A interface está em um idioma incorreto](#the-interface-is-in-the-wrong-language)
   - [O texto é muito pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
   - [Os gráficos do painel estão vazios](#dashboard-charts-are-empty)
   - [O custo mostra "não disponível" ou parece incorreto](#cost-shows-not-available-or-seems-wrong)
   - [O custo total não corresponde à minha fatura do provedor](#total-cost-does-not-match-my-provider-bill)
   - [A página Histórico está ausente na barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicativo web: redirecionado inesperadamente para a página de login](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: esqueci ou perdi a senha](#web-admin-forgot-or-lost-a-password)
+  - [Aplicativo web: redirecionado para a página de login inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administração web: esqueci ou perdi a senha](#web-admin-forgot-or-lost-a-password)
   - [O painel não mostra dados de outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Eu alterei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
 - [Dicas rápidas](#quick-tips)
@@ -129,14 +129,14 @@ Se você estiver usando a **versão web**, o proprietário do servidor configura
 
 Se você estiver usando o aplicativo desktop, siga estes passos:
 
-1. Acesse [OpenRouter](https://openrouter.ai) no seu navegador da web.
+1. Acesse [OpenRouter](https://openrouter.ai) no seu navegador web.
 2. Crie uma conta ou faça login.
 3. Abra a página [Chaves](https://openrouter.ai/keys).
 4. Clique no botão para criar uma nova chave de API.
 5. Dê um nome à chave para que você possa reconhecê-la posteriormente.
 6. Copie a nova chave de API.
-7. Retorne ao Transrewrt e abra **Configurações** > **Configuração da API**.
-8. Cole a chave em **Chave de API do OpenRouter** (em **Configurações** > **Configuração da API**).
+7. Volte ao Transrewrt e abra **Configurações** > **Configuração de API**.
+8. Cole a chave em **Chave de API do OpenRouter** (em **Configurações** > **Configuração de API**).
 9. Clique em **Testar chave do OpenRouter** para garantir que funcione.
 
 <br/><br/>
@@ -148,11 +148,11 @@ Se esta é a sua primeira vez usando o Transrewrt, siga esta ordem:
 
 1. Abra o aplicativo.
 2. Escolha seu **Idioma da interface** no ícone do globo, se necessário.
-3. Se você estiver no **aplicativo desktop**, abra [**Configurações** > **Configuração da API**](#api-config), adicione uma chave de API para pelo menos um provedor (por exemplo, OpenRouter) e clique em **Testar** para verificar se está funcionando.
-4. Abra [**Configurações** > **Modelos**](#models) e adicione um ou mais modelos aos **Modelos Selecionados**.
-5. Abra [**Configurações** > **Idiomas**](#languages) e escolha seus **Idiomas principais**, se desejar que seus idiomas mais usados apareçam primeiro.
+3. Se estiver usando o **aplicativo desktop**, abra [**Configurações** > **Configuração de API**](#api-config), adicione uma chave de API para pelo menos um provedor (por exemplo, OpenRouter) e clique em **Testar** para verificar se está funcionando.
+4. Abra [**Configurações** > **Modelos**](#models) e adicione um ou mais modelos a **Modelos selecionados**.
+5. Abra [**Configurações** > **Idiomas**](#languages) e escolha seus **Idiomas principais**, se desejar que os idiomas mais usados apareçam primeiro.
 6. Vá para **Traduzir** e execute uma tradução simples para confirmar que tudo está funcionando.
-7. Depois que funcionar, experimente **Reescrever** e depois **Transformar**.
+7. Após isso funcionar, experimente **Reescrever** e depois **Transformar**.
 
 Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou um modelo selecionado.
 
@@ -264,7 +264,7 @@ Use **Traduzir** quando quiser converter texto de um idioma para outro.
 5. Digite ou cole o texto em **Entrada**.
 6. Clique em **Traduzir**.
 7. Leia o resultado em **Saída**.
-8. Use o botão de copiar se quiser copiar o resultado.
+8. Use o botão de copiar se desejar copiar o resultado.
 
 <br/>
 
@@ -283,7 +283,7 @@ Seus **Idiomas principais** selecionados aparecem no topo da lista. Você pode d
 
 Em [**Configurações** > **Configurações Gerais**](#general-settings), você pode alterar o comportamento da tradução:
 
-- **Auto-traduzir ao colar** executa uma tradução assim que você colar um texto.
+- **Auto-traduzir ao colar** executa uma tradução assim que você cola um texto.
 - **Copiar resultado automaticamente para a área de transferência** copia o resultado automaticamente após uma execução bem-sucedida.
 - **Tradução em tempo real (enquanto digita)** executa traduções enquanto você digita.
 - **Tempo limite (ms)** controla por quanto tempo o aplicativo aguarda antes de executar uma tradução em tempo real.
@@ -303,11 +303,11 @@ Use **Reescrever** quando quiser melhorar a redação sem alterar o significado 
 Isso é útil para:
 
 - corrigir ortografia e gramática (**Verificar ortografia e gramática**)
-- tornar o texto mais claro (**Melhorar Clareza**)
-- obter várias reformulações distintas em uma única execução (**Versões alternativas**)
+- tornar o texto mais claro (**Melhorar clareza**)
+- várias reformulações distintas em uma única execução (**Versões alternativas**)
 - tornar o texto mais formal ou mais informal (**Formal** / **Informal**)
 - encurtar ou expandir o texto (**Encurtar** / **Expandir**)
-- fazer o texto soar mais técnico (**Tornar Técnico**)
+- tornar o texto mais técnico (**Tornar técnico**)
 
 <br/>
 
@@ -329,7 +329,7 @@ Use **Transformar** quando quiser que a IA siga um conjunto personalizado de ins
 Esta é a área mais flexível do aplicativo. Você pode usá-la para tarefas como:
 
 - resumir anotações
-- transformar um texto informal em um e-mail polido
+- transformar texto informal em um e-mail refinado
 - extrair pontos principais
 - converter texto em um formato específico
 - qualquer outra atividade personalizada com o texto de entrada
@@ -340,7 +340,7 @@ Esta é a área mais flexível do aplicativo. Você pode usá-la para tarefas co
 ### Executar um prompt existente
 
 1. Abra **Transformar**.
-2. Escolha um prompt da lista de prompts.
+2. Escolha um prompt na lista de prompts.
 3. Se aparecer uma caixa de idioma **Destino**, escolha um idioma, se desejar.
 4. Digite ou cole o texto em **Entrada**.
 5. Clique em **Transformar**.
@@ -367,7 +367,7 @@ A maneira mais rápida de criar um prompt é:
 
 1. Clique em **Novo prompt**.
 2. Clique em **Gerar prompt**.
-3. Descreva o que você quer que o prompt faça.
+3. Descreva o que você deseja que o prompt faça.
 4. Escolha um modelo.
 5. Deixe o aplicativo criar um rascunho para você.
 6. Revise o rascunho e clique em **Salvar**.
@@ -387,11 +387,11 @@ Os campos principais são:
 
 - **Nome do prompt**: o nome exibido na lista de prompts.
 - **Instruções do prompt (opcional)**: uma dica curta exibida ao usuário ao executar o prompt.
-- **Papel do Modelo**: a função geral atribuída à IA, como 'Você é um assistente útil.'
+- **Função do modelo**: a função geral atribuída à IA, como 'Você é um assistente útil.'
 - **Instruções do modelo (uma por linha)**: as regras específicas que você deseja que a IA siga.
-- **Descrição da saída**: uma palavra curta que descreve o resultado, como 'resumo' ou 'reescrever'.
+- **Descrição da saída**: uma palavra curta que descreve o resultado, como 'resumo' ou 'reescrita'.
 - **Temperatura (0,0 → 1,0)**: como o modelo se comportará; veja abaixo.
-- **Solicitar idioma de destino**: adiciona um seletor de idioma de destino quando o prompt é executado.
+- **Solicitar idioma de destino**: adiciona um seletor de idioma de destino ao executar o prompt.
 
 Se o termo técnico **Temperatura** for novo para você, pense nele da seguinte forma:
 
@@ -462,9 +462,9 @@ Use os botões de filtro na parte superior para alterar o intervalo de tempo.
 <a id="dashboard-tabs"></a>
 ### Abas do Painel
 
-- **Resumo** fornece uma visão geral do uso e custo. Inclui **Uso ao longo do tempo** (contagem acumulada empilhada de **chamadas** por dia para tradução, reescrita e transformação) e **Uso por modelo** (total de **chamadas por modelo**, incluindo transformação).
+- **Resumo** fornece uma visão geral do uso e custo. Inclui **Uso ao longo do tempo** (**contagem acumulada de chamadas** diárias empilhadas por tradução, reescrita e transformação) e **Uso por modelo** (**total de chamadas por modelo**, incluindo transformação).
 - **Por uso** detalha a atividade por idioma de tradução, modo de reescrita e prompt de transformação.
-- **Por modelo** mostra quais modelos você utilizou e quanto custaram.
+- **Por modelo** mostra quais modelos você usou e quanto custaram.
 - **Por dia** mostra os totais diários.
 - **Todas as chamadas** mostra o histórico completo de chamadas e permite exportá-lo.
 
@@ -542,16 +542,16 @@ Abra **Configurações** na barra lateral para personalizar o comportamento do a
 
 As guias disponíveis dependem da plataforma e do seu papel:
 
-| Guia               | Desktop | Web (admin) | Web (usuário comum) |
+| Aba               | Desktop | Web (admin) | Web (usuário comum) |
   |-------------------|:-------:|:-----------:|:------------------:|
-  | Configurações Gerais  |   sim   |     sim     |        sim         |
+  | Configurações gerais  |   sim   |     sim     |        sim         |
   | Modelos            |   sim   |     sim     |        sim         |
   | Idiomas         |   sim   |     sim     |        sim         |
-  | Rastreamento de Custo     |   sim   |     sim     |         -          |
+  | Acompanhamento de custo     |   sim   |     sim     |         -          |
   | Prompts de transformação |   sim   |     sim     |        sim         |
   | Usuários             |    -    |     sim     |         -          |
-  | Configuração da API        |   sim   |     sim     |         -          |
-  | Sobre             |   sim   |     sim     |        sim         |
+  | Configuração da API |   sim   |     sim     |         -          |
+  | Sobre               |   sim   |     sim     |        sim         |
 
 <br/>
 
@@ -571,7 +571,7 @@ Use **Configurações Gerais** para controlar o comportamento ao digitar, se os 
 
 - **Comportamento para ENTER** escolhe se `Enter` executa a tarefa ou insere uma nova linha.
 - **Auto-traduzir ao colar** inicia a tradução assim que você colar um texto.
-- **Copiar resultado automaticamente para a área de transferência** copia automaticamente os resultados bem-sucedidos.
+- **Copiar resultado automaticamente para a área de transferência** copia os resultados bem-sucedidos automaticamente.
 - **Tradução em tempo real (enquanto digita)** traduz enquanto você digita.
 - **Tempo limite (ms)** define o tempo de espera para a tradução em tempo real.
 
@@ -584,16 +584,16 @@ Use **Configurações Gerais** para controlar o comportamento ao digitar, se os 
 
 - **Mostrar informações de custo nas ações** controla a exibição do custo por operação (se disponível) e do custo total nos painéis de saída de Traduzir, Reescrever e Transformar.
 - **Dígitos fracionários do custo** altera a forma como os decimais do custo são exibidos.
-- **Somente web:** **mostrar uma margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
+- **Apenas web:** **mostrar margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
 - **Família da fonte** altera a fonte de escrita nos painéis de texto.
 - **Tamanho** altera o tamanho da fonte.
 
 **Backup de Configuração**
 
-- **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execução e dados de chamadas à API. 
-- **Fazer backup da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por padrão) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso, se você optou por incluí-los. Após um backup bem-sucedido, a confirmação mostra o nome do arquivo salvo.
-- **Restaurar a partir do backup** - abre primeiro um **diálogo de confirmação**. Escolha o ZIP do backup dentro do diálogo (**Procurar** / seletor de arquivos ou arrastar e soltar, onde suportado), depois revise as opções:
-  - **Restaurar os dados de uso** - importa uso/histórico do ZIP quando ele foi feito com uso incluído; deixe desativado se você quiser apenas configurações e prompts.
+- **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execuções e dados de chamadas à API. 
+- **Fazer backup da configuração** - cria um único arquivo ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por padrão) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso, se você tiver optado por incluí-los. Após um backup bem-sucedido, a confirmação exibe o nome do arquivo salvo.
+- **Restaurar a partir do backup** - abre primeiro um **diálogo de confirmação**. Escolha o arquivo ZIP do backup dentro do diálogo (**Procurar** / seletor de arquivos ou arrastar e soltar, onde suportado), depois revise as opções:
+  - **Restaurar os dados de uso** - importa o uso/histórico do ZIP quando ele foi feito com os dados de uso incluídos; desmarque se você quiser apenas configurações e prompts.
   - **Limpar os dados de uso antigos antes da restauração** - remove o uso/histórico existente nesta instalação antes de aplicar o backup (opcional; use quando desejar uma substituição limpa).
 
 Backups criados na versão web ou desktop podem ser restaurados na outra. Ao restaurar um backup do desktop na versão web, os dados serão restaurados para o usuário administrador.
@@ -614,11 +614,11 @@ A página possui duas listas:
 
 Controles úteis incluem:
 
-- **Procurar modelos...** para encontrar um modelo pelo nome
-- Chips de **Provedor** para restringir a lista a um mecanismo (OpenRouter, OpenAI, Ollama, …)
-- **Apenas Gratuitos** para mostrar apenas modelos gratuitos
+- **Pesquisar modelos...** para encontrar um modelo pelo nome
+- Chips de **Provedor** para restringir a lista a um único mecanismo (OpenRouter, OpenAI, Ollama, …)
+- **Apenas gratuitos** para mostrar somente modelos gratuitos
 - **Atualizar** para recarregar a lista
-- **Expandir Todos** e **Recolher Todos** ao ordenar por provedor
+- **Expandir tudo** e **Recolher tudo** quando você estiver ordenando por provedor
 
 Os IDs dos modelos incluem o prefixo do provedor (por exemplo `openrouter/…` vs `openai/…`). Emblemas como **OpenAI (OpenRouter)** vs **OpenAI (direto)** mostram como o tráfego é roteado.
 
@@ -657,11 +657,11 @@ Se você adicionar um idioma personalizado, ele aparecerá nos seletores de idio
 
 Use **Configurações** > **Rastreamento de Custo** para gerenciar as informações de custo.
 
-- **Custo Total** mostra o total acumulado.
+- **Custo total** mostra o valor acumulado.
 - **Copiar valor** copia o total para a área de transferência.
 - **Redefinir custo** redefine o total armazenado para zero.
-- **Sincronizar com o uso da chave de API** define o total para corresponder ao uso relatado pela sua conta OpenRouter (apenas OpenRouter).
-- **Uso da Chave de API** mostra detalhes de uso do OpenRouter, se disponíveis.
+- **Sincronizar com o uso da chave de API** define o total para corresponder ao uso informado pela sua conta OpenRouter (apenas OpenRouter).
+- **Uso da chave de API** mostra detalhes de uso do OpenRouter, se disponíveis.
 - **Excluir dados de custo** remove todos os dados ou apenas entradas anteriores a uma data selecionada.
 
 **Rastreamento de custo:** Quando você usa modelos OpenRouter, o aplicativo mostra seu uso real e gastos com base nas informações de custo do OpenRouter. Para todos os outros provedores, o aplicativo estima os custos usando os preços publicados pelo OpenRouter; se um preço não estiver disponível, a estimativa pode ser zero.
@@ -687,11 +687,11 @@ Use **Configurações** > **Prompts de transformação** para gerenciar prompts 
 
 Você pode:
 
-- revisar seus prompts salvos
-- excluir prompts
-- importar prompts de um arquivo
-- exportar prompts para backup ou compartilhamento
-- carregar prompts de exemplo para a lista de prompts
+- revise seus prompts salvos
+- exclua prompts
+- importe prompts de um arquivo
+- exporte prompts para backup ou compartilhamento
+- carregue prompts de exemplo na lista de prompts
 
 <br/>
 
@@ -911,8 +911,8 @@ Ao editar um prompt, clique sempre em **Salvar** antes de clicar em **Voltar par
 - Use [**Reescrever**](#rewrite) para melhorias cotidianas no texto.
 - Use [**Transformar**](#transform) quando precisar de um fluxo de trabalho repetível para uma tarefa específica.
 - Use [**Painel**](#dashboard) se quiser acompanhar o uso e o custo.
-- Use [**Histórico**](#history) para revisar operações anteriores e seus textos completos de entrada e saída.
-- Exporte prompts regularmente se estiver criando uma biblioteca de prompts que deseja manter segura (veja [Prompts de transformação](#transform-prompts)) ou se desejar compartilhá-la com outras pessoas.
+- Use [**Histórico**](#history) para revisar operações anteriores e seus textos completos de entrada/saída.
+- Exporte seus prompts regularmente se estiver criando uma biblioteca de prompts que deseja manter segura (veja [Transformar Prompts](#transform-prompts)) ou se desejar compartilhá-los com outros.
 
 <br/><br/>
 

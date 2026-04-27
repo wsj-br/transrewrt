@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:39.726Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:30.239Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Dieses Handbuch erklärt, wie Sie die App verwenden, sobald sie installiert und 
 
 <small>**In anderen Sprachen lesen:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -60,8 +60,8 @@ Dieses Handbuch erklärt, wie Sie die App verwenden, sobald sie installiert und 
   - [Text übersetzen](#translate-text)
   - [Sprachauswahl](#language-selection)
   - [Nützliche Übersetzungseinstellungen](#helpful-translation-settings)
-- [Umschreibung](#rewrite)
-- [Transformation](#transform)
+- [Umschreiben](#rewrite)
+- [Transformieren](#transform)
   - [Einen vorhandenen Prompt ausführen](#run-an-existing-prompt)
   - [Wenn Sie noch keine Prompts haben](#if-you-have-no-prompts-yet)
   - [Einen Prompt schnell erstellen](#create-a-prompt-quickly)
@@ -69,18 +69,18 @@ Dieses Handbuch erklärt, wie Sie die App verwenden, sobald sie installiert und 
   - [Einen Prompt vor der Nutzung testen](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Daten filtern](#filter-the-data)
-  - [Dashboard-Reiter](#dashboard-tabs)
+  - [Dashboard-Registerkarten](#dashboard-tabs)
   - [Daten exportieren](#export-data)
   - [Gespeicherte Datensätze für ein Modell löschen](#delete-stored-records-for-a-model)
-- [Historie](#history)
+- [Verlauf](#history)
   - [Daten filtern](#filter-the-data-1)
-  - [Historiendaten exportieren](#export-history-data)
+  - [Verlaufsdaten exportieren](#export-history-data)
 - [Einstellungen](#settings)
   - [Allgemeine Einstellungen](#general-settings)
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Transform-Prompts](#transform-prompts)
+  - [Transformations-Prompts](#transform-prompts)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
@@ -90,14 +90,14 @@ Dieses Handbuch erklärt, wie Sie die App verwenden, sobald sie installiert und 
   - [Das Ergebnis ist zu langsam oder zu teuer](#the-result-is-too-slow-or-too-expensive)
   - [Die Oberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
   - [Der Text ist zu klein oder schwer lesbar](#the-text-is-too-small-or-hard-to-read)
-  - [Die Diagramme im Dashboard sind leer](#dashboard-charts-are-empty)
+  - [Dashboard-Diagramme sind leer](#dashboard-charts-are-empty)
   - [Kosten zeigen „nicht verfügbar“ oder scheinen falsch](#cost-shows-not-available-or-seems-wrong)
-  - [Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
-  - [Die Seite „Historie“ fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
+  - [Die Gesamtkosten stimmen nicht mit meiner Provider-Rechnung überein](#total-cost-does-not-match-my-provider-bill)
+  - [Die Verlauf-Seite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
   - [Web-App: Unerwartete Weiterleitung zur Anmeldeseite](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web-Administrator: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
+  - [Web-Admin: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
   - [Dashboard zeigt keine Daten für andere Benutzer an (Web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ich habe einen Prompt geändert und die Bearbeitungen verloren](#i-changed-a-prompt-and-lost-the-edits)
+  - [Ich habe einen Prompt geändert und die Bearbeitungen sind verloren](#i-changed-a-prompt-and-lost-the-edits)
 - [Schnelltipps](#quick-tips)
 - [Haftungsausschluss](#disclaimer)
 - [Lizenz](#license)
@@ -136,8 +136,8 @@ Wenn Sie die Desktop-App verwenden, befolgen Sie diese Schritte:
 5. Geben Sie dem Schlüssel einen Namen, damit Sie ihn später wiedererkennen können.
 6. Kopieren Sie den neuen API-Schlüssel.
 7. Kehren Sie zu Transrewrt zurück und öffnen Sie **Einstellungen** > **API-Konfiguration**.
-8. Fügen Sie den Schlüssel in **OpenRouter API key** ein (unter **Einstellungen** > **API-Konfiguration**).
-9. Klicken Sie auf **Test OpenRouter key**, um sicherzustellen, dass er funktioniert.
+8. Fügen Sie den Schlüssel in **OpenRouter-API-Schlüssel** ein (unter **Einstellungen** > **API-Konfiguration**).
+9. Klicken Sie auf **OpenRouter-Schlüssel testen**, um sicherzustellen, dass er funktioniert.
 
 <br/><br/>
 
@@ -147,12 +147,12 @@ Wenn Sie die Desktop-App verwenden, befolgen Sie diese Schritte:
 Wenn Sie Transrewrt zum ersten Mal verwenden, befolgen Sie diese Reihenfolge:
 
 1. Öffnen Sie die App.
-2. Wählen Sie bei Bedarf Ihre **Oberflächensprache** über das Globus-Symbol aus.
-3. Wenn Sie die **Desktop-App** verwenden, öffnen Sie [**Einstellungen** > **API-Konfiguration**](#api-config), fügen Sie einen API-Schlüssel für mindestens einen Anbieter hinzu (z. B. OpenRouter) und klicken Sie auf **Test**, um zu überprüfen, ob er funktioniert.
+2. Wählen Sie ggf. Ihre **Oberflächensprache** über das Globus-Symbol.
+3. Wenn Sie die **Desktop-App** verwenden, öffnen Sie [**Einstellungen** > **API-Konfiguration**](#api-config), fügen Sie einen API-Schlüssel für mindestens einen Anbieter hinzu (z. B. OpenRouter) und klicken Sie auf **Test**, um die Funktionalität zu überprüfen.
 4. Öffnen Sie [**Einstellungen** > **Modelle**](#models) und fügen Sie ein oder mehrere Modelle zu **Ausgewählte Modelle** hinzu.
-5. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen** aus, wenn Sie möchten, dass Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden.
+5. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Bevorzugten Sprachen**, wenn Sie möchten, dass Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden.
 6. Gehen Sie zu **Übersetzen** und führen Sie eine einfache Übersetzung durch, um sicherzustellen, dass alles funktioniert.
-7. Sobald dies funktioniert, probieren Sie **Umschreibung** und dann **Transformation** aus.
+7. Sobald dies funktioniert, probieren Sie **Umschreiben** und anschließend **Transformieren** aus.
 
 Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei der Erstnutzung: einen Auftrag auszuführen, bevor die App eine funktionierende API-Verbindung oder ein ausgewähltes Modell hat.
 
@@ -258,13 +258,13 @@ Verwenden Sie **Übersetzen**, wenn Sie Text von einer Sprache in eine andere ko
 ### Text übersetzen
 
 1. Öffnen Sie **Übersetzen**.
-2. Wählen Sie eine Sprache unter **Von** aus.
-3. Wählen Sie eine Sprache unter **Nach** aus.
-4. Wählen Sie ein Modell in der Symbolleiste aus.
+2. Wählen Sie eine Sprache in **Von**.
+3. Wählen Sie eine Sprache in **Nach**.
+4. Wählen Sie ein Modell in der Symbolleiste.
 5. Geben Sie Text in **Eingabe** ein oder fügen Sie ihn ein.
 6. Klicken Sie auf **Übersetzen**.
 7. Lesen Sie das Ergebnis in **Ausgabe**.
-8. Verwenden Sie die Kopier-Schaltfläche, wenn Sie das Ergebnis kopieren möchten.
+8. Verwenden Sie die Kopierschaltfläche, wenn Sie das Ergebnis kopieren möchten.
 
 <br/>
 
@@ -283,11 +283,11 @@ Ihre ausgewählten **Top-Sprachen** werden oben in der Liste angezeigt. Sie kön
 
 Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) können Sie ändern, wie sich die Übersetzung verhält:
 
-- **Automatisch beim Einfügen übersetzen** führt eine Übersetzung automatisch durch, sobald Sie Text einfügen.
+- **Automatische Übersetzung beim Einfügen** führt eine Übersetzung sofort aus, sobald Sie Text einfügen.
 - **Ergebnis automatisch in Zwischenablage kopieren** kopiert das Ergebnis automatisch nach einem erfolgreichen Durchlauf.
-- **Echtzeitübersetzung (während der Eingabe)** führt Übersetzungen während der Eingabe durch.
-- **Timeout (ms)** legt fest, wie lange die App wartet, bevor eine Echtzeitübersetzung gestartet wird.
-- **Enter** steuert, was passiert, wenn Sie `Enter` drücken:
+- **Echtzeit-Übersetzung (während des Tippens)** führt Übersetzungen während des Tippens durch.
+- **Timeout (ms)** legt fest, wie lange die App wartet, bevor eine Echtzeit-Übersetzung gestartet wird.
+- **Enter** steuert, was geschieht, wenn Sie `Enter` drücken:
 
 <br/><br/>
 
@@ -302,12 +302,12 @@ Verwenden Sie **Umschreibung**, wenn Sie den Wortlaut verbessern möchten, ohne 
 
 Dies ist nützlich für:
 
-- Korrektur von Rechtschreibung und Grammatik (**Rechtschreibung & Grammatik prüfen**)
-- Verbesserung der Textklarheit (**Klarheit verbessern**)
-- mehrere unterschiedliche Formulierungen in einem Durchlauf (**Alternative Versionen**)
-- formellere oder informellere Textgestaltung (**Formal** / **Informell**)
-- Verkürzen oder Erweitern des Textes (**Kürzen** / **Erweitern**)
-- technischere Sprache (**Technischer formulieren**)
+- Rechtschreibung und Grammatik korrigieren (**Rechtschreibung & Grammatik prüfen**)
+- Text klarer machen (**Klarheit verbessern**)
+- mehrere unterschiedliche Formulierungen in einem Durchlauf erstellen (**Alternative Versionen**)
+- Text formeller oder informeller gestalten (**Formell** / **Informell**)
+- Text kürzen oder erweitern (**Kürzen** / **Erweitern**)
+- Text technischer klingen lassen (**Technisch machen**)
 
 <br/>
 
@@ -328,10 +328,10 @@ Verwenden Sie **Transformation**, wenn Sie möchten, dass die KI eine benutzerde
 
 Dies ist der flexibelste Bereich der App. Sie können ihn für Aufgaben wie diese nutzen:
 
-- Zusammenfassen von Notizen
-- Umwandeln eines Textentwurfs in eine professionelle E-Mail
-- Herausfiltern der wichtigsten Punkte
-- Umwandeln des Textes in ein bestimmtes Format
+- Notizen zusammenfassen
+- Ungeordneten Text in eine überarbeitete E-Mail umwandeln
+- Wichtige Punkte extrahieren
+- Text in ein bestimmtes Format umwandeln
 - jede andere benutzerdefinierte Aktion mit dem Eingabetext
 
 <br/>
@@ -339,11 +339,11 @@ Dies ist der flexibelste Bereich der App. Sie können ihn für Aufgaben wie dies
 <a id="run-an-existing-prompt"></a>
 ### Einen vorhandenen Prompt ausführen
 
-1. Öffnen Sie **Transformation**.
-2. Wählen Sie einen Prompt aus der Prompt-Liste aus.
-3. Falls ein Feld **Ziel**-Sprache erscheint, wählen Sie gegebenenfalls eine Sprache aus.
+1. Öffnen Sie **Umwandeln**.
+2. Wählen Sie eine Aufforderung aus der Aufforderungsliste.
+3. Falls ein Feld **Zielsprache** erscheint, wählen Sie gegebenenfalls eine Sprache aus.
 4. Geben Sie Text in **Eingabe** ein oder fügen Sie ihn ein.
-5. Klicken Sie auf **Transformation**.
+5. Klicken Sie auf **Umwandeln**.
 6. Lesen Sie das Ergebnis in **Ausgabe**.
 
 <br/>
@@ -365,10 +365,10 @@ Wenn Ihre Prompt-Liste leer ist, klicken Sie im Transformations-Arbeitsbereich a
 
 Der schnellste Weg, einen Prompt zu erstellen, ist:
 
-1. Klicken Sie auf **Neuer Prompt**.
+1. Klicken Sie auf **Neue Aufforderung**.
 2. Klicken Sie auf **Aufforderung generieren**.
-3. Beschreiben Sie, was der Prompt bewirken soll.
-4. Wählen Sie ein Modell aus.
+3. Beschreiben Sie, was die Aufforderung bewirken soll.
+4. Wählen Sie ein Modell.
 5. Lassen Sie die App einen Entwurf für Sie erstellen.
 6. Überprüfen Sie den Entwurf und klicken Sie auf **Speichern**.
 
@@ -385,13 +385,13 @@ Wenn Sie einen Prompt erstellen oder bearbeiten, wird der Editor auf der linken 
 
 Die wichtigsten Felder sind:
 
-- **Prompt-Name**: der Name, der in der Prompt-Liste angezeigt wird.
-- **Prompt-Anweisungen (optional)**: ein kurzer Hinweis, der dem Benutzer beim Ausführen des Prompts angezeigt wird.
+- **Aufforderungsname**: der Name, der in der Aufforderungsliste angezeigt wird.
+- **Aufforderungsanweisungen (optional)**: ein kurzer Hinweis, der dem Benutzer beim Ausführen der Aufforderung angezeigt wird.
 - **Modellrolle**: die allgemeine Rolle, die der KI zugewiesen wird, z. B. „Du bist ein hilfreicher Assistent.“
 - **Modellanweisungen (eine pro Zeile)**: die spezifischen Regeln, denen die KI folgen soll.
-- **Ausgabebeschreibung**: ein kurzes Wort, das das Ergebnis beschreibt, z. B. „Zusammenfassung“ oder „Umschreibung“.
-- **Temperatur (0,0 → 1,0)**: wie sich das Modell verhalten wird; siehe unten.
-- **Nach Zielsprache fragen**: fügt einen Zielsprachenauswahl hinzu, wenn der Prompt ausgeführt wird.
+- **Ergebnisbeschreibung**: ein kurzes Wort, das das Ergebnis beschreibt, z. B. „Zusammenfassung“ oder „Umschreibung“.
+- **Temperatur (0,0 → 1,0)**: legt das Verhalten des Modells fest; siehe unten.
+- **Zielsprache abfragen**: fügt beim Ausführen der Aufforderung einen Auswahlmenü für die Zielsprache hinzu.
 
 Wenn Ihnen der Fachbegriff **Temperatur** neu ist, stellen Sie sich das folgendermaßen vor:
 
@@ -462,11 +462,11 @@ Verwenden Sie die Filterknöpfe oben, um den Zeitraum zu ändern.
 <a id="dashboard-tabs"></a>
 ### Dashboard-Registerkarten
 
-- **Zusammenfassung** bietet einen Überblick über Nutzung und Kosten. Dazu gehören **Nutzung im Zeitverlauf** (kumulierte, gestapelte **Aufrufanzahlen** pro Tag für Übersetzung, Umschreibung und Transformation) und **Nutzung nach Modell** (Gesamtanzahl der **Aufrufe pro Modell**, einschließlich Transformation).
-- **Nach Nutzung** unterteilt die Aktivitäten nach Übersetzungssprache, Umschreibmodus und Transformations-Prompt.
-- **Nach Modell** zeigt, welche Modelle Sie verwendet haben und wie hoch deren Kosten waren.
+- **Zusammenfassung** bietet einen Überblick über Nutzung und Kosten. Enthält eine **Nutzung im Zeitverlauf** (kumulierte gestapelte **Aufrufanzahlen** pro Tag für Übersetzen, Umschreiben und Umwandeln) und **Nutzung nach Modell** (gesamte **Aufrufe pro Modell**, einschließlich Umwandeln).
+- **Nach Nutzung** unterteilt die Aktivitäten nach Übersetzungssprache, Umschreibungsmodus und Umwandlungs-Aufforderung.
+- **Nach Modell** zeigt an, welche Modelle Sie verwendet haben und wie hoch deren Kosten waren.
 - **Nach Tag** zeigt tägliche Gesamtwerte an.
-- **Alle Aufrufe** zeigt den vollständigen Aufrufverlauf an und ermöglicht dessen Export.
+- **Alle Aufrufe** zeigt den vollständigen Aufrufverlauf an und ermöglicht den Export.
 
 <br/>
 
@@ -542,16 +542,16 @@ Dies ist nützlich, wenn Sie Aktivitäten außerhalb der App überprüfen oder e
 
 Die verfügbaren Tabs hängen von der Plattform und Ihrer Rolle ab:
 
-| Tab               | Desktop | Web (Administrator) | Web (regulärer Benutzer) |
-  |-------------------|:-------:|:-------------------:|:------------------------:|
-  | Allgemeine Einstellungen  |   Ja   |     Ja     |        Ja         |
-  | Modelle            |   Ja   |     Ja     |        Ja         |
-  | Sprachen         |   Ja   |     Ja     |        Ja         |
-  | Kostenverfolgung     |   Ja   |     Ja     |         -          |
-  | Transform-Prompts |   Ja   |     Ja     |        Ja         |
-  | Benutzer             |    -    |     Ja     |         -          |
-  | API-Konfiguration        |   Ja   |     Ja     |         -          |
-  | Über             |   Ja   |     Ja     |        Ja         |
+| Registerkarte         | Desktop | Web (Admin) | Web (regulärer Benutzer) |
+  |-----------------------|:-------:|:-----------:|:------------------------:|
+  | Allgemeine Einstellungen |   ja   |     ja     |           ja            |
+  | Modelle               |   ja   |     ja     |           ja            |
+  | Sprachen              |   ja   |     ja     |           ja            |
+  | Kostenverfolgung      |   ja   |     ja     |           -             |
+  | Umwandlungs-Aufforderungen |   ja   |     ja     |           ja            |
+  | Benutzer              |    -    |     ja     |           -             |
+  | API-Konfiguration   |   ja   |     ja     |         -          |
+  | Über             |   ja   |     ja     |        ja         |
 
 <br/>
 
@@ -569,11 +569,11 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Verhalten bei der Eingabe, di
 
 **Verhalten**
 
-- **Verhalten für EINGABE** legt fest, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt.
-- **Automatisch beim Einfügen übersetzen** startet die Übersetzung, sobald Sie Text einfügen.
+- **Verhalten bei EINGABE** legt fest, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt.
+- **Automatische Übersetzung beim Einfügen** startet die Übersetzung, sobald Sie Text einfügen.
 - **Ergebnis automatisch in Zwischenablage kopieren** kopiert erfolgreiche Ergebnisse automatisch.
-- **Echtzeitübersetzung (während der Eingabe)** übersetzt während der Eingabe.
-- **Timeout (ms)** legt die Wartezeit für die Echtzeitübersetzung fest.
+- **Echtzeit-Übersetzung (während des Tippens)** übersetzt, während Sie tippen.
+- **Timeout (ms)** legt die Wartezeit für die Echtzeit-Übersetzung fest.
 
 **Historie**
 
@@ -582,19 +582,19 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Verhalten bei der Eingabe, di
 
 **Darstellung**
 
-- **Kosteninformationen bei den Aktionen anzeigen** steuert die Anzeige der Kosten pro Operation (falls verfügbar) und der Gesamtkosten auf den Ausgabefeldern für Übersetzen, Umschreiben und Transformation.
-- **Kosten-Nachkommastellen** ändert die Anzeige der Kosten-Dezimalstellen.
-- **Nur Web:** **Rand um die App anzeigen** fügt zusätzlichen Abstand um die Oberfläche hinzu.
+- **Kosteninformationen bei Aktionen anzeigen** steuert die Anzeige der Kosten pro Operation (falls verfügbar) und der Gesamtkosten in den Ausgabefeldern für Übersetzen, Umschreiben und Transformieren.
+- **Kosten-Nachkommastellen** ändert die Anzeige der Dezimalstellen bei Kosten.
+- **Nur Web:** **Abstand um die App anzeigen** fügt zusätzlichen Platz um die Oberfläche hinzu.
 - **Schriftart** ändert die Schriftart in den Textfeldern.
 - **Größe** ändert die Schriftgröße.
 
 **Konfigurationssicherung**
 
-- **Nutzungsdaten in die Sicherung einschließen** – wenn aktiviert, enthält die ZIP-Datei auch Ausführungshistorie und API-Aufrufdaten.
-- **Konfiguration sichern** – erstellt eine einzelne ZIP-Datei (standardmäßig `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) mit `config.json`, `state.json`, optionalem Verschlüsselungsschlüssel, Benutzern, Einstellungen, benutzerdefinierten Prompts und Nutzungsdaten, falls aktiviert. Nach einer erfolgreichen Sicherung zeigt die Bestätigung den gespeicherten Dateinamen an.
-- **Aus Sicherung wiederherstellen** – öffnet zuerst einen **Bestätigungsdialog**. Wählen Sie die Sicherungs-ZIP-Datei im Dialog aus (**Durchsuchen** / Dateiauswahl oder Drag-and-Drop, wo unterstützt), und prüfen Sie dann die Optionen:
-  - **Nutzungsdaten wiederherstellen** – importiert Nutzung/Historie aus der ZIP-Datei, wenn diese bei der Sicherung enthalten war; deaktivieren Sie dies, wenn Sie nur Einstellungen und Prompts übernehmen möchten.
-  - **Alte Nutzungsdaten vor der Wiederherstellung löschen** – entfernt vorhandene Nutzung/Historie in dieser Installation, bevor die Sicherung angewendet wird (optional; verwenden Sie dies, wenn Sie einen sauberen Austausch wünschen).
+- **Nutzungsdaten in die Sicherung einschließen** – wenn aktiviert, enthält die ZIP-Datei auch Ausführungsverlauf und API-Aufrufdaten. 
+- **Konfiguration sichern** – erstellt eine einzelne ZIP-Datei (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` standardmäßig in UTC) mit `config.json`, `state.json`, optionalem Verschlüsselungsschlüssel, Benutzern, Einstellungen, benutzerdefinierten Prompts und Nutzungsdaten, falls aktiviert. Nach einer erfolgreichen Sicherung zeigt die Bestätigung den gespeicherten Dateinamen an.
+- **Aus Sicherung wiederherstellen** – öffnet zuerst einen **Bestätigungsdialog**. Wählen Sie die Sicherungs-ZIP-Datei im Dialog aus (**Durchsuchen** / Dateiauswahl oder Drag-and-Drop, falls unterstützt), dann prüfen Sie die Optionen:
+  - **Nutzungsdaten wiederherstellen** – importiert Nutzung/Verlauf aus der ZIP-Datei, wenn diese bei der Sicherung enthalten war; deaktivieren, wenn nur Einstellungen und Prompts gewünscht sind.
+  - **Alte Nutzungsdaten vor Wiederherstellung löschen** – entfernt vorhandene Nutzung/Verlauf auf dieser Installation, bevor die Sicherung angewendet wird (optional; verwenden Sie dies, wenn Sie einen sauberen Austausch wünschen).
 
 Sicherungen, die entweder in der Web- oder Desktopversion erstellt wurden, können in der jeweils anderen Version wiederhergestellt werden. Beim Wiederherstellen einer Desktop-Sicherung in der Webversion werden die Daten dem Administrator-Benutzer zugewiesen.
 
@@ -614,11 +614,11 @@ Die Seite enthält zwei Listen:
 
 Nützliche Steuerelemente sind:
 
-- **Modelle suchen...**, um ein Modell nach Namen zu finden
-- **Anbieter**-Chips, um die Liste auf einen Anbieter einzuschränken (OpenRouter, OpenAI, Ollama, …)
-- **Nur kostenlose**, um nur kostenlose Modelle anzuzeigen
+- **Modelle durchsuchen...** um ein Modell nach Namen zu finden
+- **Anbieter-Chips**, um die Liste auf einen Anbieter einzuschränken (OpenRouter, OpenAI, Ollama, …)
+- **Nur kostenlos** um nur kostenlose Modelle anzuzeigen
 - **Aktualisieren**, um die Liste neu zu laden
-- **Alle aufklappen** und **Alle zuklappen**, wenn nach Anbieter sortiert wird
+- **Alle ausklappen** und **Alle einklappen**, wenn Sie nach Anbieter sortieren
 
 Modell-IDs enthalten das Anbieter-Präfix (z. B. `openrouter/…` vs. `openai/…`). Abzeichen wie **OpenAI (OpenRouter)** vs. **OpenAI (direkt)** zeigen, wie der Datenverkehr weitergeleitet wird.
 
@@ -907,12 +907,12 @@ Klicken Sie beim Bearbeiten eines Prompts immer auf **Speichern**, bevor Sie auf
 <a id="quick-tips"></a>
 ## Schnelltipps
 
-- Beginnen Sie mit [**Übersetzen**](#translate), um sicherzustellen, dass Ihre Einrichtung funktioniert, bevor Sie zu [**Umschreibung**](#rewrite) oder [**Transformation**](#transform) übergehen.
-- Verwenden Sie [**Umschreibung**](#rewrite) für alltägliche Verbesserungen der Formulierung.
-- Verwenden Sie [**Transformation**](#transform), wenn Sie einen wiederholbaren Workflow für eine bestimmte Aufgabe benötigen.
-- Verwenden Sie [**Dashboard**](#dashboard), wenn Sie die Nutzung und die Kosten im Auge behalten möchten.
-- Verwenden Sie [**Historie**](#history), um vergangene Operationen und deren vollständigen Eingabe- und Ausgabetext einzusehen.
-- Exportieren Sie regelmäßig Prompts, wenn Sie eine Prompt-Bibliothek erstellen, die Sie sicher aufbewahren möchten (siehe [Transform-Prompts](#transform-prompts)), oder wenn Sie sie mit anderen teilen möchten.
+- Beginnen Sie mit [**Übersetzen**](#translate), um sicherzustellen, dass Ihre Einrichtung funktioniert, bevor Sie zu [**Umschreiben**](#rewrite) oder [**Transformieren**](#transform) übergehen.
+- Verwenden Sie [**Umschreiben**](#rewrite) für alltägliche Verbesserungen der Formulierung.
+- Verwenden Sie [**Transformieren**](#transform), wenn Sie einen wiederholbaren Workflow für eine bestimmte Aufgabe benötigen.
+- Verwenden Sie [**Dashboard**](#dashboard), wenn Sie die Nutzung und Kosten im Auge behalten möchten.
+- Verwenden Sie [**Verlauf**](#history), um vergangene Operationen und deren vollständigen Eingabe-/Ausgabetext zu überprüfen.
+- Exportieren Sie regelmäßig Prompts, wenn Sie eine Prompt-Bibliothek erstellen, die Sie sicher aufbewahren möchten (siehe [Transform-Prompts](#transform-prompts)) oder mit anderen teilen möchten.
 
 <br/><br/>
 

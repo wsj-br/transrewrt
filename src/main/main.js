@@ -564,7 +564,7 @@ ipcMain.handle("shell:readThirdPartyLicenses", async () => {
   }
 });
 
-const { registerAppDbHandlers, getDb } = require("./appDb");
+const { registerAppDbHandlers, getDb, closeDb: closeAppDb } = require("./appDb");
 const { registerConfigBackupIpc } = require("./configBackupIpc");
 
 app.on("ready", () => {
@@ -647,6 +647,10 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
   }
+});
+
+app.on("before-quit", () => {
+  closeAppDb();
 });
 
 app.on("activate", () => {

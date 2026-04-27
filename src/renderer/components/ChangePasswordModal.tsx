@@ -1,65 +1,15 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Field } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
 import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    maxWidth: "90vw",
-  },
-  title: {
-    margin: "0 0 32px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-    marginBottom: "20px",
-  },
-  message: {
-    fontSize: "14px",
-    padding: "8px 12px",
-    borderRadius: "4px",
-    marginBottom: "8px",
-  },
-  messageSuccess: {
-    backgroundColor: "#d4edda",
-    color: "#155724",
-  },
-  messageError: {
-    backgroundColor: "#f8d7da",
-    color: "#721c24",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-    marginTop: "24px",
-  },
-});
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 const ChangePasswordModal = ({ onClose, username = "" }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -83,9 +33,7 @@ const ChangePasswordModal = ({ onClose, username = "" }) => {
       setMessage({ type: "success", text: t("Password changed successfully.") });
       setNewPassword("");
       setConfirmPassword("");
-      setTimeout(() => {
-        onClose();
-      }, 1500);
+      setTimeout(() => onClose(), 1500);
     } catch (err) {
       setMessage({ type: "error", text: err.message || t("Failed to change password.") });
     } finally {
@@ -94,31 +42,33 @@ const ChangePasswordModal = ({ onClose, username = "" }) => {
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h2 className={styles.title}>{t("Change password")}</h2>
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
+      <div className="bg-card border border-border rounded-lg shadow-2xl p-6 min-w-80 w-full max-w-sm">
+        <h2 className="text-lg font-semibold mb-6">{t("Change password")}</h2>
         <form
           onSubmit={handleSubmit}
-          className={styles.form}
           method="post"
           action={getWebAuthFormAction()}
           autoComplete="on"
           id="transrewrt-change-password-form"
+          className="flex flex-col gap-4"
           style={{ position: "relative" }}
         >
           <HiddenUsernameForPasswordManager username={username} id="change-password-modal-username" />
           {message.text && (
             <div
-              className={
+              className={cn(
+                "rounded px-3 py-2 text-sm",
                 message.type === "success"
-                  ? `${styles.message} ${styles.messageSuccess}`
-                  : `${styles.message} ${styles.messageError}`
-              }
+                  ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200"
+                  : "bg-red-50 text-red-800 dark:bg-red-950 dark:text-red-200",
+              )}
             >
               {message.text}
             </div>
           )}
-          <Field label={t("New password")}>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="change-pwd-new">{t("New password")}</Label>
             <PasswordInput
               id="change-pwd-new"
               name="new_password"
@@ -130,8 +80,9 @@ const ChangePasswordModal = ({ onClose, username = "" }) => {
               showPasswordAriaLabel={t("Show password")}
               hidePasswordAriaLabel={t("Hide password")}
             />
-          </Field>
-          <Field label={t("Confirm password")}>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="change-pwd-confirm">{t("Confirm password")}</Label>
             <PasswordInput
               id="change-pwd-confirm"
               name="new_password_confirm"
@@ -143,12 +94,12 @@ const ChangePasswordModal = ({ onClose, username = "" }) => {
               showPasswordAriaLabel={t("Show password")}
               hidePasswordAriaLabel={t("Hide password")}
             />
-          </Field>
-          <div className={styles.actions}>
-            <Button type="button" appearance="secondary" onClick={onClose} disabled={loading}>
+          </div>
+          <div className="flex justify-end gap-2 mt-2">
+            <Button type="button" variant="outline" onClick={onClose} disabled={loading}>
               {t("Cancel")}
             </Button>
-            <Button type="submit" appearance="primary" disabled={loading}>
+            <Button type="submit" disabled={loading}>
               {loading ? t("Changing…") : t("Change password")}
             </Button>
           </div>

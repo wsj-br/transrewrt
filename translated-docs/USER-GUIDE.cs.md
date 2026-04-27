@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:04.673Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:19.303Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: cs
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
 
 <small>**Přečtěte si v jiných jazycích:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -53,23 +53,23 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Jak získat bezplatný klíč OpenRouter API (desktopová aplikace)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Začínáme](#getting-started)
 - [Hlavní části okna](#main-parts-of-the-window)
-  - [Boční panel](#sidebar)
+  - [Postranní panel](#sidebar)
   - [Panel nástrojů](#toolbar)
-  - [Panely pro vstup a výstup](#input-and-output-panels)
+  - [Panely vstupu a výstupu](#input-and-output-panels)
 - [Překlad](#translate)
   - [Překlad textu](#translate-text)
   - [Výběr jazyka](#language-selection)
   - [Užitečná nastavení překladu](#helpful-translation-settings)
 - [Přepis](#rewrite)
 - [Transformace](#transform)
-  - [Spustit existující prompt](#run-an-existing-prompt)
+  - [Spusťte existující prompt](#run-an-existing-prompt)
   - [Pokud ještě žádné prompty nemáte](#if-you-have-no-prompts-yet)
-  - [Rychle vytvořit prompt](#create-a-prompt-quickly)
+  - [Rychle vytvořte prompt](#create-a-prompt-quickly)
   - [Upravit prompt](#edit-a-prompt)
-  - [Otestovat prompt před použitím](#test-a-prompt-before-using-it)
-- [Dashboard](#dashboard)
+  - [Otestujte prompt před použitím](#test-a-prompt-before-using-it)
+- [Přehled](#dashboard)
   - [Filtrování dat](#filter-the-data)
-  - [Záložky dashboardu](#dashboard-tabs)
+  - [Záložky přehledu](#dashboard-tabs)
   - [Export dat](#export-data)
   - [Smazání uložených záznamů pro model](#delete-stored-records-for-a-model)
 - [Historie](#history)
@@ -80,7 +80,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Modely](#models)
   - [Jazyky](#languages)
   - [Sledování nákladů](#cost-tracking)
-  - [Transformační výzvy](#transform-prompts)
+  - [Prompty pro transformaci](#transform-prompts)
   - [Uživatelé](#users)
   - [Konfigurace API](#api-config)
   - [O aplikaci](#about)
@@ -90,16 +90,16 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Výsledek je příliš pomalý nebo příliš drahý](#the-result-is-too-slow-or-too-expensive)
   - [Rozhraní je v nesprávném jazyce](#the-interface-is-in-the-wrong-language)
   - [Text je příliš malý nebo špatně čitelný](#the-text-is-too-small-or-hard-to-read)
-  - [Grafy na dashboardu jsou prázdné](#dashboard-charts-are-empty)
-  - [Cena ukazuje „nedostupné“ nebo se zdá být chybná](#cost-shows-not-available-or-seems-wrong)
-  - [Celková cena neodpovídá účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
-  - [Stránka Historie chybí v bočním panelu](#the-history-page-is-missing-from-the-sidebar)
+  - [Grafy v přehledu jsou prázdné](#dashboard-charts-are-empty)
+  - [Náklady zobrazují „nedostupné“ nebo se zdají chybné](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady neodpovídají účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
+  - [Stránka Historie chybí v postranním panelu](#the-history-page-is-missing-from-the-sidebar)
   - [Webová aplikace: neočekávaně přesměrováno na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webový správce: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
-  - [Dashboard nezobrazuje data pro ostatní uživatele (webová verze)](#dashboard-shows-no-data-for-other-users-web)
-  - [Upravil jsem prompt a ztratil jsem úpravy](#i-changed-a-prompt-and-lost-the-edits)
+  - [Webová správa: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
+  - [Přehled nezobrazuje data pro ostatní uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Změnil jsem prompt a ztratil úpravy](#i-changed-a-prompt-and-lost-the-edits)
 - [Rychlé tipy](#quick-tips)
-- [Právní upozornění](#disclaimer)
+- [Zřeknutí se záruk](#disclaimer)
 - [Licence](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -133,11 +133,11 @@ Pokud používáte desktopovou aplikaci, postupujte podle těchto kroků:
 2. Vytvořte si účet nebo se přihlaste.
 3. Otevřete stránku [Klíče](https://openrouter.ai/keys).
 4. Klikněte na tlačítko pro vytvoření nového klíče API.
-5. Zadejte klíči název, abyste jej mohli později rozpoznat.
+5. Dejte klíči název, abyste ho mohli později rozpoznat.
 6. Zkopírujte nový klíč API.
 7. Vraťte se do aplikace Transrewrt a otevřete **Nastavení** > **Konfigurace API**.
-8. Vložte klíč do pole **OpenRouter API key** (v části **Nastavení** > **Konfigurace API**).
-9. Klikněte na **Test OpenRouter key**, abyste ověřili, že funguje.
+8. Vložte klíč do pole **OpenRouter API klíč** (v části **Nastavení** > **Konfigurace API**).
+9. Klikněte na **Otestovat klíč OpenRouter**, abyste ověřili, že funguje.
 
 <br/><br/>
 
@@ -147,12 +147,12 @@ Pokud používáte desktopovou aplikaci, postupujte podle těchto kroků:
 Pokud používáte Transrewrt poprvé, postupujte v tomto pořadí:
 
 1. Otevřete aplikaci.
-2. V případě potřeby vyberte svůj **Jazyk rozhraní** pomocí ikony zeměkoule.
-3. Pokud používáte **desktopovou aplikaci**, otevřete [**Nastavení** > **Konfigurace API**](#api-config), přidejte klíč API alespoň pro jednoho poskytovatele (například OpenRouter) a klikněte na **Test**, abyste ověřili, že funguje.
+2. V případě potřeby vyberte svůj **jazyk rozhraní** z ikony zeměkoule.
+3. Pokud používáte **desktopovou aplikaci**, otevřete [**Nastavení** > **Konfigurace API**](#api-config), přidejte klíč API alespoň pro jednoho poskytovatele (např. OpenRouter) a klikněte na **Test**, abyste ověřili, že funguje.
 4. Otevřete [**Nastavení** > **Modely**](#models) a přidejte jeden nebo více modelů do části **Vybrané modely**.
 5. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte své **Nejčastější jazyky**, pokud chcete, aby se vaše nejčastěji používané jazyky zobrazovaly jako první.
-6. Přejděte na **Přeložit** a spusťte jednoduchý překlad, abyste ověřili, že vše funguje.
-7. Jakmile to bude fungovat, zkuste **Přepis** a poté **Transformace**.
+6. Přejděte do **Překladu** a spusťte jednoduchý překlad, abyste ověřili, že vše funguje.
+7. Jakmile to bude fungovat, zkuste **Přepis** a poté **Transformaci**.
 
 Toto pořadí je důležité. Zabraňuje nejčastějšímu problému při prvním použití: pokusu o spuštění úkolu předtím, než má aplikace funkční připojení API nebo vybraný model.
 
@@ -257,13 +257,13 @@ Použijte **Přeložit**, když chcete převést text z jednoho jazyka do druhé
 <a id="translate-text"></a>
 ### Překlad textu
 
-1. Otevřete **Přeložit**.
-2. Vyberte jazyk ve **From**.
-3. Vyberte jazyk ve **To**.
-4. Vyberte model na panelu nástrojů.
-5. Napište nebo vložte text do **Vstupu**.
+1. Otevřete **Překlad**.
+2. Vyberte jazyk ve **Z**.
+3. Vyberte jazyk v **Do**.
+4. Vyberte model v panelu nástrojů.
+5. Napište nebo vložte text do pole **Vstup**.
 6. Klikněte na **Přeložit**.
-7. Přečtěte si výsledek ve **Výstupu**.
+7. Přečtěte si výsledek v **Výstupu**.
 8. Použijte tlačítko kopírování, pokud chcete výsledek zkopírovat.
 
 <br/>
@@ -283,11 +283,11 @@ Vaše vybrané **Nejvyšší jazyky** se zobrazí v horní části seznamu. Mů�
 
 V [**Nastavení** > **Obecné nastavení**](#general-settings) můžete změnit chování překladu:
 
-- **Automaticky překládat při vložení** spustí překlad ihned po vložení textu.
-- **Automaticky zkopírovat výsledek do schránky** automaticky zkopíruje výsledek po úspěšném spuštění.
-- **Překlad v reálném čase (během psaní)** spouští překlady během psaní.
+- **Automatický překlad po vložení** spustí překlad ihned po vložení textu.
+- **Automatické kopírování výsledku do schránky** automaticky zkopíruje výsledek po úspěšném dokončení.
+- **Překlad v reálném čase (během psaní)** spouští překlady, zatímco píšete.
 - **Časový limit (ms)** určuje, jak dlouho aplikace čeká před spuštěním překladu v reálném čase.
-- **Enter** určuje, co se stane po stisknutí `Enter`:
+- **Enter** řídí, co se stane po stisknutí `Enter`:
 
 <br/><br/>
 
@@ -302,12 +302,12 @@ Použijte **Přepis**, když chcete vylepšit formulaci, aniž byste měnili hla
 
 To je užitečné pro:
 
-- opravu pravopisu a gramatiky (**Zkontrolovat pravopis a gramatiku**)
+- oprava pravopisu a gramatiky (**Kontrola pravopisu a gramatiky**)
 - zlepšení srozumitelnosti textu (**Zlepšit srozumitelnost**)
-- několik různých reformulací v jednom běhu (**Alternativní verze**)
+- několik různých přeformulování v jednom běhu (**Alternativní verze**)
 - udělání textu formálnějšího nebo méně formálního (**Formální** / **Neformální**)
 - zkrácení nebo rozšíření textu (**Zkrátit** / **Rozšířit**)
-- udělání textu techničtějšího (**Udělat technický**)
+- udělání textu techničtějšího (**Zdůraznit technický styl**)
 
 <br/>
 
@@ -329,22 +329,22 @@ Použijte **Transformaci**, když chcete, aby AI postupovala podle vlastní sady
 Toto je nejpružnější část aplikace. Můžete ji použít například pro:
 
 - shrnutí poznámek
-- převod hrubého textu na dokonalý e-mail
-- extrakci klíčových bodů
+- převedení hrubého textu na dokonalý e-mail
+- extrakce klíčových bodů
 - převod textu do konkrétního formátu
-- jakoukoli jinou vlastní činnost s vstupním textem
+- jakákoli jiná vlastní činnost s vstupním textem
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Spuštění existující výzvy
 
-1. Otevřete **Transformaci**.
+1. Otevřete **Transformace**.
 2. Vyberte výzvu ze seznamu výzev.
-3. Pokud se objeví pole **Cíl**, vyberte jazyk, pokud jej chcete.
+3. Pokud se objeví pole **Cílový jazyk**, vyberte jazyk, pokud jej chcete.
 4. Napište nebo vložte text do pole **Vstup**.
-5. Klikněte na **Transformace**.
-6. Přečtěte si výsledek v části **Výstup**.
+5. Klikněte na **Transformovat**.
+6. Přečtěte si výsledek v poli **Výstup**.
 
 <br/>
 
@@ -365,7 +365,7 @@ Pokud je váš seznam výzev prázdný, klikněte v pracovním prostoru Transfor
 
 Nejrychlejší způsob, jak vytvořit výzvu, je:
 
-1. Klikněte na **Nový prompt**.
+1. Klikněte na **Nová výzva**.
 2. Klikněte na **Vygenerovat výzvu**.
 3. Popište, co má výzva dělat.
 4. Vyberte model.
@@ -385,13 +385,13 @@ Když vytváříte nebo upravujete prompt, zobrazí se editor vlevo a testovací
 
 Hlavní pole jsou:
 
-- **Název výzvy**: název zobrazený v seznamu promptů.
-- **Instrukce výzvy (volitelné)**: krátká nápověda zobrazená uživateli při spuštění promptu.
-- **Role modelu**: celková role přiřazená AI, například „Jsi užitečný asistent.“
-- **Instrukce modelu (jedna na řádek)**: konkrétní pravidla, která má AI dodržovat.
-- **Popis výstupu**: krátké slovo popisující výsledek, například „přehled“ nebo „přepis“.
+- **Název výzvy**: název zobrazený v seznamu výzev.
+- **Pokyny k výzvě (volitelné)**: krátká nápověda zobrazená uživateli při spuštění výzvy.
+- **Role modelu**: celková role přidělená umělé inteligenci, např. 'Jsi užitečný asistent.'
+- **Pokyny modelu (jeden na řádek)**: konkrétní pravidla, která má umělá inteligence dodržovat.
+- **Popis výstupu**: krátké slovo popisující výsledek, např. 'shrnutí' nebo 'přepsání'.
 - **Teplota (0,0 → 1,0)**: chování modelu; viz níže.
-- **Zeptat se na cílový jazyk**: přidá při spuštění promptu výběr cílového jazyka.
+- **Požadovat cílový jazyk**: přidá výběr cílového jazyka při spuštění výzvy.
 
 Pokud je pro vás technický termín **Teplota** nový, představte si to takto:
 
@@ -462,10 +462,10 @@ Použijte tlačítka filtru nahoře k změně časového rozsahu.
 <a id="dashboard-tabs"></a>
 ### Karty dashboardu
 
-- **Přehled** poskytuje přehled o využití a nákladech. Zahrnuje **Využití v čase** (naskládané kumulativní **počty volání** podle dnů pro překlad, přepis a transformaci) a **Využití podle modelu** (celkový počet **volání podle modelu**, včetně transformace).
-- **Podle využití** rozděluje aktivitu podle jazyka překladu, režimu přepisu a promptu transformace.
+- **Přehled** poskytuje přehled o využití a nákladech. Obsahuje **Využití v čase** (naskládané kumulativní **počty volání** denně pro překlad, přepsání a transformaci) a **Využití podle modelu** (celkový **počet volání podle modelu**, včetně transformace).
+- **Podle využití** rozděluje aktivitu podle jazyka překladu, režimu přepisování a výzvy transformace.
 - **Podle modelu** ukazuje, které modely jste použili a kolik vás stály.
-- **Podle dne** zobrazuje denní celky.
+- **Podle dne** ukazuje denní součty.
 - **Všechna volání** zobrazuje kompletní historii volání a umožňuje ji exportovat.
 
 <br/>
@@ -542,14 +542,14 @@ Otevřete **Nastavení** na bočním panelu a přizpůsobte si chování aplikac
 
 Dostupné karty závisí na platformě a vaší roli:
 
-| Karta               | Desktop | Web (správce) | Web (běžný uživatel) |
+| Záložka               | Desktop | Web (správce) | Web (běžný uživatel) |
   |-------------------|:-------:|:-----------:|:------------------:|
   | Obecné nastavení  |   ano   |     ano     |        ano         |
   | Modely            |   ano   |     ano     |        ano         |
-  | Jazyky            |   ano   |     ano     |        ano         |
-  | Sledování nákladů |   ano   |     ano     |         -          |
-  | Transformační výzvy |   ano   |     ano     |        ano         |
-  | Uživatelé         |    -    |     ano     |         -          |
+  | Jazyky         |   ano   |     ano     |        ano         |
+  | Sledování nákladů     |   ano   |     ano     |         -          |
+  | Výzvy transformace |   ano   |     ano     |        ano         |
+  | Uživatelé             |    -    |     ano     |         -          |
   | Konfigurace API   |   ano   |     ano     |         -          |
   | O aplikaci        |   ano   |     ano     |        ano         |
 
@@ -569,10 +569,10 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **Chování**
 
-- **Chování pro ENTER** určuje, zda `Enter` spustí úlohu nebo vloží nový řádek.
-- **Automaticky překládat při vložení** spustí překlad ihned po vložení textu.
-- **Automaticky zkopírovat výsledek do schránky** automaticky zkopíruje úspěšné výsledky.
-- **Překlad v reálném čase (během psaní)** překládá během psaní.
+- **Chování klávesy ENTER** určuje, zda `Enter` spustí úlohu nebo vloží nový řádek.
+- **Automatický překlad při vkládání** spustí překlad ihned po vložení textu.
+- **Automatické kopírování výsledku do schránky** automaticky zkopíruje úspěšné výsledky.
+- **Překlad v reálném čase (během psaní)** překládá text během psaní.
 - **Časový limit (ms)** nastavuje dobu čekání pro překlad v reálném čase.
 
 **Historie**
@@ -582,19 +582,19 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **Vzhled**
 
-- **Zobrazit informace o nákladech u akcí** ovládá zobrazení nákladů za operaci (pokud jsou k dispozici) a celkových nákladů na panelech výstupu pro Překlad, Přepis a Transformaci.
-- **Desetinná místa pro cenu** mění způsob zobrazení desetinných míst ceny.
+- **Zobrazit informace o nákladech u akcí** řídí zobrazení nákladů za operaci (pokud jsou k dispozici) a celkových nákladů na panelech výstupu pro Překlad, Přepsání a Transformaci.
+- **Desetinná místa pro náklady** mění způsob zobrazení desetinných míst nákladů.
 - **Pouze web:** **zobrazit okraj kolem aplikace** přidává dodatečný prostor kolem rozhraní.
 - **Rodina písma** mění písmo v textových panelech.
 - **Velikost** mění velikost písma.
 
 **Zálohování konfigurace**
 
-- **Zahrnout data o využití do zálohy** – pokud je povoleno, ZIP také obsahuje historii spuštění a data volání API.
-- **Zálohovat konfiguraci** – vytvoří jeden soubor ZIP (ve výchozím nastavení `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ve formátu UTC) s `config.json`, `state.json`, volitelným šifrovacím klíčem, uživateli, preferencemi, vlastními výzvami a daty o využití, pokud jste to povolili. Po úspěšném zálohování potvrzení zobrazí název uloženého souboru.
-- **Obnovit ze zálohy** – nejprve otevře **potvrzovací dialog**. Vyberte záložní soubor ZIP v dialogu (**Procházet** / výběr souboru nebo přetažení, pokud je podporováno), poté zkontrolujte možnosti:
-  - **Obnovit data o využití** – importuje využití/historii ze souboru ZIP, pokud byla záloha vytvořena s využitím dat; nechte vypnuté, pokud chcete pouze nastavení a výzvy.
-  - **Smazat stará data o využití před obnovením** – odstraní stávající využití/historii v této instalaci před použitím zálohy (volitelné; použijte, pokud chcete čistou náhradu).
+- **Zahrnout data o využití do zálohy** – pokud je povoleno, ZIP soubor obsahuje také historii spuštění a data volání API. 
+- **Zálohování konfigurace** – vytvoří jeden ZIP soubor (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ve formátu UTC ve výchozím nastavení) s `config.json`, `state.json`, volitelným šifrovacím klíčem, uživateli, preferencemi, vlastními výzvami a daty o využití, pokud jste souhlasili. Po úspěšné záloze potvrzení zobrazí název uloženého souboru.
+- **Obnovení ze zálohy** – nejprve otevře **potvrzovací dialog**. Vyberte záložní ZIP soubor uvnitř dialogu (**Procházet** / výběr souboru nebo přetažení, kde je podporováno), poté zkontrolujte možnosti:
+  - **Obnovit data o využití** – importuje využití/historii ze ZIP souboru, pokud byla při zálohování zahrnuta; ponechte vypnuté, pokud chcete pouze nastavení a výzvy.
+  - **Vymazat stará data o využití před obnovením** – odstraní stávající využití/historii v této instalaci před aplikováním zálohy (volitelné; použijte, pokud chcete čistou náhradu).
 
 Zálohy vytvořené ve webové nebo desktopové verzi lze obnovit v druhé verzi. Při obnově desktopové zálohy ve webové verzi budou data obnovena do účtu správce.
 
@@ -615,10 +615,10 @@ Stránka obsahuje dva seznamy:
 Užitečné ovládací prvky zahrnují:
 
 - **Hledat modely...** pro vyhledání modelu podle názvu
-- **Poskytovatel** pro omezení seznamu na jeden engine (OpenRouter, OpenAI, Ollama, …)
+- **Štítky poskytovatele** pro omezení seznamu na jeden engine (OpenRouter, OpenAI, Ollama, …)
 - **Pouze zdarma** pro zobrazení pouze bezplatných modelů
 - **Obnovit** pro opětovné načtení seznamu
-- **Rozbalit vše** a **Sbalit vše** při řazení podle poskytovatele
+- **Rozbalit vše** a **Sbalit vše**, když třídíte podle poskytovatele
 
 Identifikátory modelů obsahují předponu poskytovatele (například `openrouter/…` vs `openai/…`). Označení jako **OpenAI (OpenRouter)** vs **OpenAI (přímé)** ukazují, jak je provoz směrován.
 
@@ -657,11 +657,11 @@ Pokud přidáte vlastní jazyk, zobrazí se ve výběru jazyků spolu s vestavě
 
 Použijte **Nastavení** > **Sledování nákladů** ke správě informací o nákladech.
 
-- **Celková cena** zobrazuje běžící součet.
+- **Celkové náklady** zobrazují běžící součet.
 - **Kopírovat hodnotu** zkopíruje celkovou částku do schránky.
 - **Resetovat náklady** nastaví uložený součet na nulu.
-- **Synchronizovat s využitím API klíče** nastaví celkovou částku tak, aby odpovídala využití hlášenému vaším účtem OpenRouter (pouze OpenRouter).
-- **Využití API klíče** zobrazí podrobnosti o využití OpenRouter, pokud jsou k dispozici.
+- **Synchronizovat s využitím klíče API** nastaví celkovou částku tak, aby odpovídala využití hlášenému vaším účtem OpenRouter (pouze OpenRouter).
+- **Využití klíče API** zobrazuje podrobnosti o využití OpenRouter, pokud jsou k dispozici.
 - **Smazat data o nákladech** odstraní všechna data nebo pouze záznamy starší než vybrané datum.
 
 **Sledování nákladů:** Když používáte modely OpenRouter, aplikace zobrazuje vaše skutečné využití a výdaje na základě informací o nákladech od OpenRouter. Pro všechny ostatní poskytovatele aplikace odhaduje náklady pomocí cen zveřejněných OpenRouter; pokud není cena k dispozici, odhad může být nulový.
@@ -687,11 +687,11 @@ Použijte **Nastavení** > **Transformační výzvy** pro hromadnou správu výz
 
 Můžete:
 
-- prohlížet uložené výzvy
-- odstraňovat výzvy
-- importovat výzvy ze souboru
-- exportovat výzvy pro zálohování nebo sdílení
-- načíst ukázkové prompty do seznamu výzev
+- prohlédněte si uložené výzvy
+- odstraňujte výzvy
+- importujte výzvy ze souboru
+- exportujte výzvy pro zálohování nebo sdílení
+- načíst ukázkové výzvy do seznamu výzev
 
 <br/>
 
@@ -907,12 +907,12 @@ Při úpravě promptu vždy klikněte na **Uložit**, než kliknete na **Zpět n
 <a id="quick-tips"></a>
 ## Rychlé tipy
 
-- Začněte s [**Přeložit**](#translate), abyste ověřili, že je vše správně nastaveno, než přejdete k [**Přepis**](#rewrite) nebo [**Transformace**](#transform).
-- Používejte [**Přepis**](#rewrite) pro každodenní vylepšování textu.
-- Používejte [**Transformace**](#transform), když potřebujete opakovatelný pracovní postup pro konkrétní úkol.
-- Používejte [**Dashboard**](#dashboard), pokud chcete sledovat využití a cenu.
-- Používejte [**Historie**](#history) k prohlížení minulých operací a jejich úplného vstupního a výstupního textu.
-- Pravidelně exportujte prompty, pokud vytváříte knihovnu promptů, kterou chcete uchovat v bezpečí (viz [Transformační výzvy](#transform-prompts)), nebo pokud ji chcete sdílet s ostatními.
+- Začněte s [**Překladem**](#translate), abyste ověřili, že je vaše nastavení funkční, než přejdete k [**Přepsání**](#rewrite) nebo [**Transformaci**](#transform).
+- Použijte [**Přepsání**](#rewrite) pro každodenní vylepšování formulací.
+- Použijte [**Transformaci**](#transform), když potřebujete opakovatelný pracovní postup pro konkrétní úlohu.
+- Použijte [**Nástěnku**](#dashboard), pokud chcete sledovat využití a náklady.
+- Použijte [**Historii**](#history) k prohlížení minulých operací a jejich úplného vstupního/výstupního textu.
+- Pravidelně exportujte výzvy, pokud budujete knihovnu výzev, kterou chcete uchovat (viz [Transformační výzvy](#transform-prompts)) nebo ji chcete sdílet s ostatními.
 
 <br/><br/>
 

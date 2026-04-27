@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:37.428Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:23:10.559Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: tr
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevirin, farklı stillerde yeniden yazın ve özel istemlerle dönüştürün - Masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
 
-- **Çevir** - otomatik kaynak algılama ile onlarca dil arasında
-- **Yeniden yaz** - dilbilgisi düzeltme, netliği iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
-- **Dönüştür** - özel yapay zekâ istemleri; istemleri oluşturun ve yönetin, her istem için isteğe bağlı hedef dil
-- **Geçmiş** - giriş/çıkış metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Modeller ve maliyet** - yapılandırılan herhangi bir sağlayıcıdan modeller seçin; maliyet ve kullanım kontrol panoları, model/işlem/gün bazında özetler ve günlük
-- **Kullanıcı arayüzü** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
-- **Web modu** - yönetici rolleriyle çok kullanıcılı destek
+- **Çevir** - Kaynağı otomatik algılayarak onlarca dil arasında çevir
+- **Yeniden Yaz** - Dilbilgisini düzelt, açıklığı artır, resmi/resmi olmayan, kısalt, genişlet, teknik
+- **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef dille birlikte istem oluştur ve yönet
+- **Geçmiş** - Giriş/çıkış metinleri, filtreleme ve dışa aktarma ile tam yürütme geçmişi
+- **Modeller ve maliyet** - Yapılandırılmış herhangi bir sağlayıcıdan modeller seçin; maliyet ve kullanım panoları, günlük, model/işlem/güne göre özetler
+- **Kullanıcı Arayüzü** - Çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
+- **Web modu** - Yönetici rolleriyle çok kullanıcılı destek
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
-- **Kendi barındırılan** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
+- **Kendi sunucunuza kurun** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 
 Kurulumdan sonra tüm özelliklerin tam bir anlatımı için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
 
 <small>**Diğer dillerde oku:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -283,7 +283,7 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | ------------------ | ------------------------------------------------- |
 | Electron (Windows) | `%APPDATA%\transrewrt\`                           |
 | Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (kalıcı hale getirmek için bir birim kullanın) |
+| Web / Docker       | `/app/data/config.json` (kalıcı hale getirmek için bir volume kullanın) |
 
 <br/>
 
@@ -291,18 +291,18 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 
 | Değişken             | Açıklama                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Sunucu dinleme portu  (varsayılan: `5000`)                                  |
-| `CONFIG_PATH`        | Yapılandırma dosyasının yolu (varsayılan: `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT`               | Sunucunun dinlediği port (varsayılan: `5000`)                                  |
+| `CONFIG_PATH`        | Yapılandırma dosyasının yolu (varsayılan: `/app/data/config.json`)                |
+| `TZ`                 | Sunucu tarafı saat dilimi (günlük kaydı vb.) (varsayılan: `Europe/London`) |
+| `OPENROUTER_API_KEY` | OpenRouter API anahtarı                                                           |
+| `OPENAI_API_KEY`     | OpenAI API anahtarı                                                               |
+| `CEREBRAS_API_KEY`   | Cerebras API anahtarı                                                             |
+| `ANTHROPIC_API_KEY`  | Anthropic API anahtarı                                                            |
+| `GOOGLE_API_KEY`     | Google Gemini API anahtarı                                                        |
+| `DEEPSEEK_API_KEY`   | DeepSeek API anahtarı                                                             |
+| `GROQ_API_KEY`       | Groq API anahtarı                                                                 |
+| `MISTRAL_API_KEY`    | Mistral API anahtarı                                                              |
+| `OLLAMA_URL`         | Ollama temel URL'si (örneğin `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API anahtarı                                                                  |
 
 Sadece kullandığınız sağlayıcıları yapılandırın. Model kimlikleri isim alanı altındadır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, vb.).

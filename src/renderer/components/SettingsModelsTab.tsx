@@ -3,26 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { formatDecimal, flipUiArrowsForRtl } from '../utils/misc/formatUtils';
 import { getTextDirection } from "ai-i18n-tools/runtime";
 import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
-import {
-  Button,
-  Input,
-  Checkbox,
-  Dropdown,
-  Option,
-  Badge,
-  Card,
-  Text,
-  Spinner,
-  tokens,
-} from '@fluentui/react-components';
 import PropTypes from 'prop-types';
-import {
-  SearchRegular,
-  ArrowSyncRegular,
-  ChevronDownRegular,
-  ChevronRightRegular,
-  DismissRegular,
-} from '@fluentui/react-icons';
 import { FREE_MODEL_ID } from "../constants";
 import {
   Cpu,
@@ -31,6 +12,12 @@ import {
   Package,
   UnfoldVertical,
   FoldVertical,
+  Search,
+  RefreshCw,
+  ChevronDown,
+  ChevronRight,
+  X,
+  Loader2,
 } from 'lucide-react';
 import ProviderIcon from './ProviderIcon';
 import {
@@ -39,6 +26,56 @@ import {
   modelCostSortValue,
 } from '../utils/misc/modelPricingUtils';
 import { modelRouteBadgeProps } from '../utils/misc/modelRouteBadge';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { settingsModelsTabRoot } from "./settings/settingsLayoutClasses";
+import {
+  modelAction,
+  modelCardClass,
+  modelCardContent,
+  modelInfo,
+  modelNameRow,
+  modelPrice,
+  modelsAvailableHeaderRow,
+  modelsAvailableTitle,
+  modelsControlsModern,
+  modelsDivider,
+  modelsEmptyState,
+  modelsEmptyStateError,
+  modelsHeaderSearch,
+  modelsHeaderSearchBalance,
+  modelsHeaderSearchInput,
+  modelsListContainer,
+  modelsListFlatOrGrouped,
+  modelsPaneHeader,
+  modelsPaneLeft,
+  modelsPaneRight,
+  modelsSplitView,
+  modelsToolbar,
+  modelsToolbarLeft,
+  modelsToolbarRight,
+  providerHeader,
+  providerIconWrap,
+  providerInfo,
+  providerModelsInner,
+  providerSection,
+  selectedModelCard,
+  selectedModelContent,
+  selectedModelHeader,
+  selectedModelInfo,
+  selectedModelsContainer,
+  selectedModelsList,
+} from "./settings/settingsModelsLayoutClasses";
 
 const SettingsModelsTab = ({
   allModels,
@@ -130,177 +167,144 @@ const SettingsModelsTab = ({
   };
 
   return (
-    <div className="tab-content models-tab">
-      <div className="models-split-view">
+    <div className={settingsModelsTabRoot}>
+      <div className={modelsSplitView}>
         {/* LEFT: AVAILABLE MODELS */}
-        <div className="models-pane left">
+        <div className={modelsPaneLeft}>
           {/* Header: title + centered search */}
-          <div className="models-pane-header models-available-header-row">
-            <div className="models-available-title">
-              <Cpu size={20} strokeWidth={2} />
-              <Text size={500} weight="semibold">{t('Available Models')}</Text>
+          <div className={cn(modelsPaneHeader, modelsAvailableHeaderRow)}>
+            <div className={modelsAvailableTitle}>
+              <Cpu size={18} strokeWidth={2} />
+              <span className="font-semibold">{t('Available Models')}</span>
             </div>
-            <div className="models-header-search">
-              <Input
-                className="models-header-search-input"
-                contentBefore={<SearchRegular />}
-                contentAfter={
-                  searchTerm && (
-                    <Button
-                      appearance="transparent"
-                      size="small"
-                      icon={<DismissRegular />}
-                      onClick={() => onSearchTermChange('')}
-                    />
-                  )
-                }
-                placeholder={t('Search models...')}
-                value={searchTerm}
-                onChange={(e) => onSearchTermChange(e.target.value)}
-              />
+            <div className={modelsHeaderSearch}>
+              <div className="relative">
+                <Search size={14} className="absolute start-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                <Input
+                  className={cn(modelsHeaderSearchInput, "ps-8 pe-8")}
+                  placeholder={t('Search models...')}
+                  value={searchTerm}
+                  onChange={(e) => onSearchTermChange(e.target.value)}
+                />
+                {searchTerm && (
+                  <button
+                    className="absolute end-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-0.5"
+                    onClick={() => onSearchTermChange('')}
+                    type="button"
+                  >
+                    <X size={13} />
+                  </button>
+                )}
+              </div>
             </div>
-            <div className="models-header-search-balance" aria-hidden />
+            <div className={modelsHeaderSearchBalance} aria-hidden />
           </div>
 
           {/* Filter Controls */}
-          <div className="models-controls-modern">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', alignItems: 'center' }}>
-              <Text size={200} weight="semibold" style={{ width: '100%', marginBottom: '2px' }}>{t('Provider')}</Text>
+          <div className={modelsControlsModern}>
+            <div className="flex flex-wrap gap-1.5 items-center">
+              <span className="w-full mb-0.5 text-xs font-semibold">{t('Provider')}</span>
               {(engineFilterOptions || []).map((opt) => (
-                <Button
+                <button
                   key={opt.value === '' ? '__all__' : opt.value}
-                  size="small"
-                  appearance={filterEngine === opt.value ? 'primary' : 'secondary'}
+                  type="button"
                   onClick={() => onFilterEngineChange(opt.value)}
+                  className={cn(
+                    "px-2 py-1 text-xs rounded border transition-colors",
+                    filterEngine === opt.value
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-muted border-border hover:bg-accent"
+                  )}
                 >
                   {opt.label}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
 
           {/* Action Toolbar */}
-          <div className="models-toolbar">
-            <div className="models-toolbar-left">
-              <Button
-                appearance="subtle"
-                size="small"
-                icon={<ArrowSyncRegular />}
-                onClick={onRefreshModels}
-                disabled={modelsLoading}
-              >
-                {t('Refresh')}
+          <div className={modelsToolbar}>
+            <div className={modelsToolbarLeft}>
+              <Button variant="ghost" size="sm" onClick={onRefreshModels} disabled={modelsLoading}>
+                <RefreshCw size={14} />{t('Refresh')}
               </Button>
 
               {sortBy.startsWith('provider') && (
                 <>
-                  <Button
-                    appearance="subtle"
-                    size="small"
-                    icon={<UnfoldVertical size={16} strokeWidth={2} />}
-                    onClick={onExpandAll}
-                  >
-                    {t('Expand All')}
+                  <Button variant="ghost" size="sm" onClick={onExpandAll}>
+                    <UnfoldVertical size={14} strokeWidth={2} />{t('Expand All')}
                   </Button>
-                  <Button
-                    appearance="subtle"
-                    size="small"
-                    icon={<FoldVertical size={16} strokeWidth={2} />}
-                    onClick={onCollapseAll}
-                  >
-                    {t('Collapse All')}
+                  <Button variant="ghost" size="sm" onClick={onCollapseAll}>
+                    <FoldVertical size={14} strokeWidth={2} />{t('Collapse All')}
                   </Button>
                 </>
               )}
 
-              <Dropdown
-                appearance="underline"
-                size="small"
-                value={sortOptions.find((o) => o.value === sortBy)?.label ?? sortBy}
-                selectedOptions={[sortBy]}
-                onOptionSelect={(e, data) => onSortByChange(data.optionValue)}
-                style={{ minWidth: '200px' }}
-              >
-                {sortOptions.map((opt) => (
-                  <Option key={opt.value} value={opt.value}>{opt.label}</Option>
-                ))}
-              </Dropdown>
+              <Select value={sortBy} onValueChange={onSortByChange}>
+                <SelectTrigger className="min-w-[200px] h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {sortOptions.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            <div className="models-toolbar-right">
-              <Checkbox
-                className="models-toolbar-free-only"
-                checked={filterFree}
-                onChange={(e, data) => onFilterFreeChange(data.checked)}
-                label={
-                  <span className="models-toolbar-free-only-label">
-                    <WandSparkles size={14} />
-                    {t('Free Only')}
-                  </span>
-                }
-              />
+            <div className={modelsToolbarRight}>
+              <div className="flex items-center gap-1.5">
+                <Checkbox
+                  id="filter-free-only"
+                  checked={filterFree}
+                  onCheckedChange={(c) => onFilterFreeChange(!!c)}
+                />
+                <label htmlFor="filter-free-only" className="flex items-center gap-1 text-xs cursor-pointer">
+                  <WandSparkles size={12} />{t('Free Only')}
+                </label>
+              </div>
             </div>
           </div>
 
           {/* Models List */}
-          <div className="models-list-container">
+          <div className={modelsListContainer}>
             {modelsLoading && allModels.length === 0 ? (
-              <div className="empty-state-modern">
-                <Spinner size="large" />
-                <Text size={400} weight="medium">{t('Loading models...')}</Text>
-                <Text size={300}>{t('Please wait while we fetch available models')}</Text>
+              <div className={modelsEmptyState}>
+                <Loader2 size={36} className="animate-spin opacity-50" />
+                <span className="font-medium">{t('Loading models...')}</span>
+                <span className="text-sm text-muted-foreground">{t('Please wait while we fetch available models')}</span>
               </div>
             ) : modelsError && allModels.length === 0 ? (
-              <div className="empty-state-modern error">
+              <div className={modelsEmptyStateError}>
                 <Package size={48} strokeWidth={1.5} style={{ opacity: 0.5 }} />
-                <Text size={400} weight="semibold" style={{ color: 'var(--colorPaletteRedForeground1)' }}>
-                  {t('Error loading models')}
-                </Text>
-                <Text size={300}>{modelsError}</Text>
-                <Button
-                  appearance="primary"
-                  size="medium"
-                  icon={<ArrowSyncRegular />}
-                  onClick={onRefreshModels}
-                  style={{ marginTop: '12px' }}
-                >
-                  {t('Retry')}
+                <span className="font-semibold text-red-400">{t('Error loading models')}</span>
+                <span className="text-sm text-muted-foreground">{modelsError}</span>
+                <Button size="sm" onClick={onRefreshModels} className="mt-3">
+                  <RefreshCw size={14} />{t('Retry')}
                 </Button>
               </div>
             ) : sortedModelsData.type === 'grouped' ? (
               // GROUPED VIEW (by Provider)
-              <div className="models-list-grouped">
+              <div className={modelsListFlatOrGrouped}>
                 {Object.keys(sortedModelsData.data).map(provider => {
                   const models = sortedModelsData.data[provider];
                   const isExpanded = expandedProviders.has(provider);
                   const selectedCount = models.filter(m => selectedModelIds.has(m.id)).length;
-                  
                   return (
-                    <div key={provider} className="provider-section-modern">
-                      <div
-                        className="provider-header-modern"
-                        onClick={() => onToggleProvider(provider)}
-                      >
-                        <div className="provider-info">
-                          <span className="provider-icon">
-                            {isExpanded ? (
-                              <ChevronDownRegular />
-                            ) : (
-                              <ChevronRightRegular className="rtl-icon-mirror" />
-                            )}
+                    <div key={provider} className={providerSection}>
+                      <div className={providerHeader} onClick={() => onToggleProvider(provider)}>
+                        <div className={providerInfo}>
+                          <span className={providerIconWrap}>
+                            {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} className="rtl-icon-mirror" />}
                           </span>
-                           <ProviderIcon provider={provider} size={20} />
-                          <Text weight="semibold" size={400}>
+                          <ProviderIcon provider={provider} size={18} />
+                          <span className="font-semibold">
                             {provider.length ? provider.charAt(0).toUpperCase() + provider.slice(1) : provider}
-                          </Text>
-                          <Badge
-                            appearance="tint"
-                            size="small"
-                            color={selectedCount > 0 ? 'brand' : 'subtle'}
-                          >
+                          </span>
+                          <Badge variant="secondary" className="text-xs px-1.5 py-0">
                             {models.length} {models.length === 1 ? t('model') : t('models')}
                           </Badge>
                           {selectedCount > 0 && (
-                            <Badge appearance="filled" size="small" color="success">
+                            <Badge variant="outline" className="text-xs px-1.5 py-0 text-green-400 border-green-500/50">
                               {selectedCount} {t('selected')}
                             </Badge>
                           )}
@@ -308,62 +312,48 @@ const SettingsModelsTab = ({
                       </div>
 
                       {isExpanded && (
-                        <div className="provider-models-modern">
+                        <div className={providerModelsInner}>
                           {models.map(model => {
                             const isSelected = selectedModelIds.has(model.id);
                             const showFreeBadge = isConfirmedFreeModel(model);
                             const routeBadge = modelRouteBadgeProps(model.id, t);
-
                             return (
-                              <Card
+                              <div
                                 key={model.id}
-                                className={`model-card-modern ${isSelected ? 'selected' : ''}`}
+                                className={modelCardClass(isSelected)}
                                 onClick={() => onToggleModelSelection(model.id)}
                               >
-                                <div className="model-card-content">
-                                  <div className="model-info">
-                                    <div className="model-name-row">
-                                      <Text weight="medium" size={300}>
-                                        {model.name || model.id}
-                                      </Text>
-                                      <Badge
-                                        appearance="outline"
-                                        size="small"
-                                        color={routeBadge.color}
-                                      >
+                                <div className={modelCardContent}>
+                                  <div className={modelInfo}>
+                                    <div className={modelNameRow}>
+                                      <span className="font-medium text-sm">{model.name || model.id}</span>
+                                      <span className={cn("text-xs px-1.5 py-0.5 rounded border",
+                                        routeBadge.color === "success" ? "border-green-500/50 text-green-500" :
+                                        routeBadge.color === "warning" ? "border-yellow-500/50 text-yellow-500" :
+                                        routeBadge.color === "error" ? "border-red-500/50 text-red-500" :
+                                        "border-border text-muted-foreground"
+                                      )}>
                                         {routeBadge.text}
-                                      </Badge>
+                                      </span>
                                       {showFreeBadge && (
-                                        <Badge
-                                          appearance="tint"
-                                          size="small"
-                                          color="success"
-                                          icon={<WandSparkles size={12} />}
-                                        >
-                                          {t('Free')}
+                                        <Badge variant="outline" className="text-xs py-0 text-green-400 border-green-500/50">
+                                          <WandSparkles size={10} className="me-1" />{t('Free')}
                                         </Badge>
                                       )}
                                     </div>
-                                    <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                                    <span className={cn(modelPrice, "text-muted-foreground")}>
                                       {renderModelPricingLine(model)}
-                                    </Text>
+                                    </span>
                                   </div>
-                                  <div className="model-action">
+                                  <div className={modelAction}>
                                     {isSelected ? (
-                                      <Badge appearance="filled" size="small" color="brand">
-                                        {t('Selected')}
-                                      </Badge>
+                                      <Badge variant="secondary" className="text-xs px-1.5 py-0 text-primary border-primary/50">{t('Selected')}</Badge>
                                     ) : (
-                                      <Button
-                                        appearance="subtle"
-                                        size="small"
-                                      >
-                                        {t('Add')}
-                                      </Button>
+                                      <button type="button" className="text-xs text-muted-foreground hover:text-foreground px-2 py-0.5">{t('Add')}</button>
                                     )}
                                   </div>
                                 </div>
-                              </Card>
+                              </div>
                             );
                           })}
                         </div>
@@ -374,64 +364,54 @@ const SettingsModelsTab = ({
               </div>
             ) : (
               // FLAT LIST VIEW (by Cost or Model name)
-              <div className="models-list-flat">
+              <div className={modelsListFlatOrGrouped}>
                 {sortedModelsData.data.map(model => {
                   const provider = providerSortKeyFromModelId(model.id);
                   const modelName = getModelName(model);
                   const isSelected = selectedModelIds.has(model.id);
                   const showFreeBadge = isConfirmedFreeModel(model);
                   const routeBadge = modelRouteBadgeProps(model.id, t);
-
                   return (
-                    <Card
+                    <div
                       key={model.id}
-                      className={`model-card-modern flat ${isSelected ? 'selected' : ''}`}
+                      className={modelCardClass(isSelected, true)}
                       onClick={() => onToggleModelSelection(model.id)}
                     >
-                      <div className="model-card-content">
-                        <div className="model-info">
-                          <div className="model-name-row">
-                             <ProviderIcon provider={provider} size={14} />
-                            <Text weight="medium" size={300}>
-                              {modelName}
-                            </Text>
-                            <Badge appearance="outline" size="small" color={routeBadge.color}>
+                      <div className={modelCardContent}>
+                        <div className={modelInfo}>
+                          <div className={modelNameRow}>
+                            <ProviderIcon provider={provider} size={13} />
+                            <span className="font-medium text-sm">{modelName}</span>
+                            <span className={cn("text-xs px-1.5 py-0.5 rounded border",
+                              routeBadge.color === "success" ? "border-green-500/50 text-green-500" :
+                              routeBadge.color === "warning" ? "border-yellow-500/50 text-yellow-500" :
+                              routeBadge.color === "error" ? "border-red-500/50 text-red-500" :
+                              "border-border text-muted-foreground"
+                            )}>
                               {routeBadge.text}
-                            </Badge>
-                            <Text size={200} style={{ opacity: 0.7 }}>
+                            </span>
+                            <span className="text-xs opacity-70">
                               ({provider.length ? provider.charAt(0).toUpperCase() + provider.slice(1) : provider})
-                            </Text>
+                            </span>
                             {showFreeBadge && (
-                              <Badge
-                                appearance="tint"
-                                size="small"
-                                color="success"
-                                icon={<WandSparkles size={12} />}
-                              >
-                                {t('Free')}
+                              <Badge variant="outline" className="text-xs py-0 text-green-400 border-green-500/50">
+                                <WandSparkles size={10} className="me-1" />{t('Free')}
                               </Badge>
                             )}
                           </div>
-                          <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                          <span className={cn(modelPrice, "text-muted-foreground")}>
                             {renderModelPricingLine(model)}
-                          </Text>
+                          </span>
                         </div>
-                        <div className="model-action">
+                        <div className={modelAction}>
                           {isSelected ? (
-                            <Badge appearance="filled" size="small" color="brand">
-                              {t('Selected')}
-                            </Badge>
+                            <Badge variant="secondary" className="text-xs px-1.5 py-0 text-primary border-primary/50">{t('Selected')}</Badge>
                           ) : (
-                            <Button
-                              appearance="subtle"
-                              size="small"
-                            >
-                              {t('Add')}
-                            </Button>
+                            <button type="button" className="text-xs text-muted-foreground hover:text-foreground px-2 py-0.5">{t('Add')}</button>
                           )}
                         </div>
                       </div>
-                    </Card>
+                    </div>
                   );
                 })}
               </div>
@@ -440,80 +420,68 @@ const SettingsModelsTab = ({
         </div>
 
         {/* Vertical Divider */}
-        <div className="models-divider"></div>
+        <div className={modelsDivider} aria-hidden />
 
         {/* RIGHT: SELECTED MODELS */}
-        <div className="models-pane right">
+        <div className={modelsPaneRight}>
           {/* Header */}
-          <div className="models-pane-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <CheckSquare size={20} strokeWidth={2} />
-              <Text size={500} weight="semibold">{t('Selected Models')}</Text>
-              <Badge appearance="filled" size="medium" color="brand">
-                {selectedModelIds.size}
-              </Badge>
+          <div className={modelsPaneHeader}>
+            <div className="flex items-center gap-2.5">
+              <CheckSquare size={18} strokeWidth={2} />
+              <span className="font-semibold">{t('Selected Models')}</span>
+              <Badge variant="secondary" className="text-xs px-1.5 py-0">{selectedModelIds.size}</Badge>
             </div>
-            <Button
-              appearance="subtle"
-              size="small"
-              onClick={onDeselectAllModels}
-              disabled={selectedModelIds.size === 0}
-            >
+            <Button variant="ghost" size="sm" onClick={onDeselectAllModels} disabled={selectedModelIds.size === 0}>
               {t('Deselect All')}
             </Button>
           </div>
 
           {/* Selected Models List */}
-          <div className="selected-models-container">
-            <div className="selected-models-list">
+          <div className={selectedModelsContainer}>
+            <div className={selectedModelsList}>
               {sortedSelectedModelIds.map(modelId => {
                 const model = allModels.find(m => m.id === modelId) || { id: modelId };
                 const provider = providerSortKeyFromModelId(modelId);
                 const showFreeBadge = isConfirmedFreeModel(model);
                 const routeBadge = modelRouteBadgeProps(modelId, t);
                 const isRequiredFree = modelId === FREE_MODEL_ID;
-
                 return (
-                  <Card
-                    key={modelId}
-                    className="selected-model-card-modern"
-                  >
-                    <div className="selected-model-content">
-                      <div className="selected-model-info">
-                        <div className="selected-model-header">
-                           <ProviderIcon provider={provider} size={14} />
-                          <Text weight="semibold" size={400}>
-                            {model.name || model.id}
-                          </Text>
-                          <Badge appearance="outline" size="small" color={routeBadge.color}>
+                  <div key={String(modelId)} className={selectedModelCard}>
+                    <div className={selectedModelContent}>
+                      <div className={selectedModelInfo}>
+                        <div className={selectedModelHeader}>
+                          <ProviderIcon provider={provider} size={13} />
+                          <span className="font-semibold text-sm">{model.name || model.id}</span>
+                          <span className={cn("text-xs px-1.5 py-0.5 rounded border",
+                            routeBadge.color === "success" ? "border-green-500/50 text-green-500" :
+                            routeBadge.color === "warning" ? "border-yellow-500/50 text-yellow-500" :
+                            routeBadge.color === "error" ? "border-red-500/50 text-red-500" :
+                            "border-border text-muted-foreground"
+                          )}>
                             {routeBadge.text}
-                          </Badge>
+                          </span>
                           {showFreeBadge && (
-                            <Badge
-                              appearance="tint"
-                              size="small"
-                              color="success"
-                              icon={<WandSparkles size={12} />}
-                            >
-                              {t('Free')}
+                            <Badge variant="outline" className="text-xs py-0 text-green-400 border-green-500/50">
+                              <WandSparkles size={10} className="me-1" />{t('Free')}
                             </Badge>
                           )}
                         </div>
-                        <Text size={200} className="model-price" style={{ color: tokens.colorNeutralForeground3 }}>
+                        <span className={cn(modelPrice, "text-muted-foreground")}>
                           {renderModelPricingLine(model)}
-                        </Text>
+                        </span>
                       </div>
                       {!isRequiredFree && (
-                        <Button
-                          appearance="subtle"
-                          size="small"
-                          icon={<DismissRegular />}
+                        <button
+                          type="button"
+                          className="p-1 text-muted-foreground hover:text-foreground rounded"
                           onClick={() => onToggleModelSelection(modelId)}
                           aria-label={t('Remove model')}
-                        />
+                        >
+                          <X size={14} />
+                        </button>
                       )}
                     </div>
-                  </Card>
+                  </div>
                 );
               })}
             </div>

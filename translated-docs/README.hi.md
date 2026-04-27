@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:33.251Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:27.476Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: hi
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 एआई-संचालित पाठ उपकरण: कई एआई प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, और स्थानीय Ollama) का उपयोग करके भाषाओं के बीच अनुवाद करें, विभिन्न शैलियों में पुनर्लेखन करें, और कस्टम प्रॉम्प्ट के साथ परिवर्तित करें - डेस्कटॉप ऐप (Electron) या स्व-होस्टेड वेब ऐप (Docker) के रूप में चलाएं।
 
-- **अनुवाद करें** - दर्जनों भाषाओं के बीच, स्वचालित स्रोत का पता लगाने के साथ
-- **पुनर्लेखन** - व्याकरण ठीक करें, स्पष्टता सुधारें, औपचारिक/अनौपचारिक, संक्षिप्त करें, विस्तार करें, तकनीकी
-- **ट्रांसफ़ॉर्म** - कस्टम एआई प्रॉम्प्ट; प्रॉम्प्ट बनाएं और प्रबंधित करें, प्रत्येक प्रॉम्प्ट के लिए वैकल्पिक लक्ष्य भाषा
-- **हिस्ट्री** - इनपुट/आउटपुट पाठ के साथ पूर्ण निष्पादन इतिहास, फ़िल्टरिंग और निर्यात के साथ
-- **मॉडल और लागत** - किसी भी कॉन्फ़िगर किए गए प्रदाता से मॉडल चुनें; लॉग, मॉडल/ऑपरेशन/दिन के अनुसार सारांश के साथ लागत और उपयोग डैशबोर्ड
-- **यूआई** - बहुभाषी इंटरफ़ेस (30+ भाषाएँ, RTL समर्थन), फ़ॉन्ट, ...
-- **वेब मोड** - व्यवस्थापक भूमिकाओं के साथ बहु-उपयोगकर्ता समर्थन
-- **डेस्कटॉप** - Windows और Linux के लिए Electron ऐप
-- **स्व-होस्टेड** - amd64 और arm64 (Raspberry Pi-तैयार) के लिए Docker छवि
+- **अनुवाद** - दर्जनों भाषाओं के बीच, स्वचालित स्रोत का पता लगाकर
+- **पुनर्लेखन** - व्याकरण ठीक करें, स्पष्टता में सुधार करें, औपचारिक/अनौपचारिक, संक्षिप्त करें, विस्तार करें, तकनीकी
+- **परिवर्तन** - कस्टम एआई प्रॉम्प्ट; प्रॉम्प्ट बनाएं और प्रबंधित करें, प्रत्येक प्रॉम्प्ट के लिए वैकल्पिक लक्ष्य भाषा
+- **इतिहास** - पूर्ण निष्पादन इतिहास इनपुट/आउटपुट पाठ के साथ, फ़िल्टरिंग और निर्यात के साथ
+- **मॉडल और लागत** - किसी भी कॉन्फ़िगर किए गए प्रदाता से मॉडल चुनें; लॉग के साथ लागत और उपयोग डैशबोर्ड, मॉडल/ऑपरेशन/दिन के अनुसार सारांश
+- **यूआई** - बहुभाषी इंटरफ़ेस (30+ भाषाएं, RTL समर्थन), फ़ॉन्ट, ...
+- **वेब मोड** - एडमिन भूमिकाओं के साथ बहु-उपयोगकर्ता समर्थन
+- **डेस्कटॉप** - विंडोज और लिनक्स के लिए इलेक्ट्रॉन ऐप
+- **स्व-होस्टेड** - amd64 और arm64 (रास्पबेरी पाई-तैयार) के लिए डॉकर इमेज
 
 एक बार स्थापित होने के बाद, सभी सुविधाओं की पूर्ण वॉकथ्रू के लिए **[उपयोगकर्ता गाइड](USER-GUIDE.hi.md)** देखें।
 
 <small>**अन्य भाषाओं में पढ़ें:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -54,10 +54,10 @@ translation_models:
 
 - [स्क्रीनशॉट](#screenshots)
 - [त्वरित शुरुआत](#quick-start)
-- [OpenRouter API कुंजी प्राप्त करना](#getting-an-openrouter-api-key)
+- [ओपनराउटर एपीआई कुंजी प्राप्त करना](#getting-an-openrouter-api-key)
 - [कॉन्फ़िगरेशन और वातावरण](#configuration-and-environment)
 - [विकास और वास्तुकला](#development-and-architecture)
-- [समस्याएं रिपोर्ट करना](#reporting-issues)
+- [समस्याएँ रिपोर्ट करना](#reporting-issues)
 - [अस्वीकरण](#disclaimer)
 - [लाइसेंस](#license)
 
@@ -279,30 +279,30 @@ Transrewrt कई AI प्रदाताओं का समर्थन क�
 
 **कॉन्फ़िग फ़ाइल के स्थान**
 
-| डिप्लॉयमेंट         | कॉन्फ़िग स्थान                                   |
+| तैनाती | कॉन्फ़िग स्थान |
 | ------------------ | ------------------------------------------------- |
-| इलेक्ट्रॉन (विंडोज़) | `%APPDATA%\transrewrt\`                           |
-| इलेक्ट्रॉन (लिनक्स)   | `~/.config/transrewrt/`                           |
-| वेब / डॉकर       | `/app/data/config.json` (स्थायी रूप रखने के लिए एक वॉल्यूम का उपयोग करें) |
+| इलेक्ट्रॉन (विंडोज) | `%APPDATA%\transrewrt\` |
+| इलेक्ट्रॉन (लिनक्स) | `~/.config/transrewrt/` |
+| वेब / डॉकर | `/app/data/config.json` (स्थायी रखने के लिए एक वॉल्यूम का उपयोग करें) |
 
 <br/>
 
 **पर्यावरण चर** (केवल वेब/डॉकर; इलेक्ट्रॉन स्थानीय कॉन्फ़िग फ़ाइल का उपयोग करता है)
 
-| चर             | विवरण                                                                  |
+| चर | विवरण |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT`               | सर्वर सुनने का पोर्ट (डिफ़ॉल्ट `5000` है)                                  |
-| `CONFIG_PATH`        | कॉन्फ़िग फ़ाइल का मार्ग (डिफ़ॉल्ट `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
+| `PORT` | सर्वर सुनने का पोर्ट (डिफ़ॉल्ट `5000` पर) |
+| `CONFIG_PATH`        | कॉन्फ़िग फ़ाइल का मार्ग (डिफ़ॉल्ट `/app/data/config.json` है)                |
+| `TZ` | सर्वर-साइड समय के लिए समयक्षेत्र (लॉगिंग, आदि) (डिफ़ॉल्ट `Europe/London` पर) |
+| `OPENROUTER_API_KEY` | ओपनराउटर एपीआई कुंजी |
+| `OPENAI_API_KEY` | ओपनएआई एपीआई कुंजी |
+| `CEREBRAS_API_KEY` | सेरेब्रस एपीआई कुंजी |
+| `ANTHROPIC_API_KEY` | एंथ्रोपिक एपीआई कुंजी |
+| `GOOGLE_API_KEY` | गूगल जेमिनी एपीआई कुंजी |
+| `DEEPSEEK_API_KEY` | डीपसीक एपीआई कुंजी |
+| `GROQ_API_KEY` | ग्रॉक एपीआई कुंजी |
+| `MISTRAL_API_KEY` | मिस्ट्रल एपीआई कुंजी |
+| `OLLAMA_URL` | ओलामा बेस यूआरएल (उदाहरण के लिए `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API कुंजी                                                                  |
 
 केवल उन प्रदाताओं को कॉन्फ़िगर करें जिनका आप उपयोग करते हैं। मॉडल आईडी नामस्थानित हैं (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, आदि)।

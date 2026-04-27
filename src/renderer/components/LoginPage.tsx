@@ -1,17 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  makeStyles,
-  tokens,
-  Button,
-  Input,
-  Field,
-  Popover,
-  PopoverTrigger,
-  PopoverSurface,
-  MenuList,
-  MenuItem,
-} from "@fluentui/react-components";
 import { Languages, ChevronDown, Check } from "lucide-react";
 import PropTypes from "prop-types";
 import i18n, { loadLocale } from "../i18n";
@@ -21,148 +9,54 @@ import webAPI from "../utils/api/webApiClient";
 import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
 import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import Logo from "../../../images/transrewrt_logo.png";
 
 const UI_LOCALE_STORAGE_KEY = "transrewrt_ui_locale";
 
-const useStyles = makeStyles({
-  page: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "#12141d",
-    position: "relative",
-  },
-  langWrapper: {
-    position: "absolute",
-    top: "24px",
-    insetInlineEnd: "24px",
-    zIndex: 10,
-  },
-  langTrigger: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "8px 14px",
-    borderRadius: "999px",
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground3,
-    color: tokens.colorNeutralForeground1,
-    cursor: "pointer",
-    fontSize: "14px",
-    minWidth: "120px",
-  },
-  center: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "24px",
-  },
-  logoBlock: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "8px",
-    marginBottom: "24px",
-  },
-  logo: {
-    height: "48px",
-    width: "auto",
-  },
-  appName: {
-    display: "inline-block",
-    fontSize: "32px",
-    fontWeight: 700,
-    fontFamily: "'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-    letterSpacing: "-0.5px",
-    lineHeight: 1.3,
-    paddingBottom: "4px",
-    color: "transparent",
-    background: "linear-gradient(90deg, #84cc16 0%, #a3e635 40%, #fb923c 60%, #f97316 100%)",
-    backgroundClip: "text",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-  },
-  tagline: {
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground3,
-    marginBottom: "24px",
-  },
-  box: {
-    backgroundColor: tokens.colorNeutralBackground3,
-    padding: "28px",
-    borderRadius: "12px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    maxWidth: "400px",
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-  },
-  title: {
-    margin: "0 0 8px 0",
-    fontSize: "20px",
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground1,
-  },
-  instruction: {
-    margin: "0 0 20px 0",
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground2,
-    lineHeight: 1.4,
-  },
-  firstLoginMessage: {
-    marginBottom: "16px",
-    padding: "12px",
-    borderRadius: "8px",
-    backgroundColor: tokens.colorNeutralBackground2,
-    fontSize: "13px",
-    color: tokens.colorNeutralForeground2,
-    lineHeight: 1.4,
-  },
-  firstLoginBold: {
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground1,
-  },
-  firstLoginCredentials: {
-    marginTop: "16px",
-    marginInlineStart: "24px",
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground1,
-    fontFamily: "ui-monospace, monospace",
-  },
-  field: {
-    marginBottom: "16px",
-  },
-  actions: {
-    marginTop: "32px",
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  error: {
-    color: tokens.colorStatusDangerForeground1,
-    fontSize: "12px",
-    marginTop: "8px",
-  },
-  selectedItem: {
-    color: tokens.colorBrandForegroundInverted,
-  },
-  popoverGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    minWidth: "500px",
-    gap: "2px 8px",
-    padding: "4px",
-  },
-  popoverColumn: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "2px",
-  },
-});
+function LangSelector({ currentLang, uiLocale, t, onSelect }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label={t("Interface language")}
+          className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-sm min-w-32 hover:bg-accent transition-colors"
+        >
+          <Languages className="h-4 w-4 shrink-0" />
+          <span className="flex-1 text-start">{getUILanguageLabel(currentLang, t)}</span>
+          <ChevronDown className="h-4 w-4 opacity-50" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="max-h-80 overflow-y-auto w-48">
+        {UI_LANGUAGES.map((lang) => {
+          const isSelected = lang.code === uiLocale;
+          return (
+            <DropdownMenuItem key={lang.code} onClick={() => onSelect(lang.code)}>
+              {isSelected ? (
+                <Check className="me-2 h-4 w-4" />
+              ) : (
+                <span className="me-2 h-4 w-4 inline-block" aria-hidden />
+              )}
+              {getUILanguageLabel(lang, t)}
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 
 const LoginPage = ({ onSuccess }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -173,9 +67,11 @@ const LoginPage = ({ onSuccess }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstLoginInfo, setFirstLoginInfo] = useState({ firstLogin: false });
-  const [langOpen, setLangOpen] = useState(false);
 
-  const uiLocale = typeof window !== "undefined" ? (localStorage.getItem(UI_LOCALE_STORAGE_KEY) || i18n.language || "en-GB") : "en-GB";
+  const uiLocale =
+    typeof window !== "undefined"
+      ? localStorage.getItem(UI_LOCALE_STORAGE_KEY) || i18n.language || "en-GB"
+      : "en-GB";
   const currentLang = UI_LANGUAGES.find((l) => l.code === uiLocale) || UI_LANGUAGES[0];
 
   useEffect(() => {
@@ -191,7 +87,6 @@ const LoginPage = ({ onSuccess }) => {
 
   const handleLangSelect = async (code) => {
     if (!code) return;
-    setLangOpen(false);
     await loadLocale(code);
     i18n.changeLanguage(code);
     if (typeof window !== "undefined") {
@@ -242,56 +137,30 @@ const LoginPage = ({ onSuccess }) => {
     }
   };
 
+  const pageClass = "min-h-screen flex flex-col bg-background";
+
   if (step === "changePassword") {
     return (
-      <div className={styles.page}>
-        <div className={styles.langWrapper}>
-          <Popover open={langOpen} onOpenChange={(_, data) => setLangOpen(data.open)}>
-            <PopoverTrigger disableButtonEnhancement>
-              <button type="button" className={styles.langTrigger} aria-label={t("Interface language")}>
-                <Languages size={18} />
-                <span style={{ flex: 1, textAlign: "start" }}>{getUILanguageLabel(currentLang, t)}</span>
-                <ChevronDown size={16} />
-              </button>
-            </PopoverTrigger>
-            <PopoverSurface>
-              <div className={styles.popoverGrid}>
-                {[0, 1].map((colIndex) => (
-                  <div key={colIndex} className={styles.popoverColumn}>
-                    <MenuList>
-                      {UI_LANGUAGES.filter((_, i) => i % 2 === colIndex).map((lang) => {
-                        const isSelected = lang.code === uiLocale;
-                        return (
-                          <MenuItem
-                            key={lang.code}
-                            onClick={() => handleLangSelect(lang.code)}
-                            icon={isSelected ? <Check size={16} /> : <Check size={16} style={{ opacity: 0 }} aria-hidden />}
-                            className={isSelected ? styles.selectedItem : undefined}
-                          >
-                            {getUILanguageLabel(lang, t)}
-                          </MenuItem>
-                        );
-                      })}
-                    </MenuList>
-                  </div>
-                ))}
-              </div>
-            </PopoverSurface>
-          </Popover>
+      <div className={pageClass}>
+        <div className="absolute end-6 top-6 z-10">
+          <LangSelector currentLang={currentLang} uiLocale={uiLocale} t={t} onSelect={handleLangSelect} />
         </div>
-        <div className={styles.center}>
-          <div className={styles.box}>
-            <h2 className={styles.title}>{t("Change password")}</h2>
-            <p className={styles.instruction}>{t("You must change your password before continuing.")}</p>
+        <div className="flex flex-1 flex-col items-center justify-center p-6">
+          <div className="bg-card border border-border rounded-xl shadow-xl p-7 w-full max-w-sm">
+            <h2 className="text-xl font-semibold mb-2">{t("Change password")}</h2>
+            <p className="text-sm text-muted-foreground mb-5">
+              {t("You must change your password before continuing.")}
+            </p>
             <form
               onSubmit={handleChangePasswordSubmit}
               method="post"
               action={getWebAuthFormAction()}
               autoComplete="on"
+              className="flex flex-col gap-4"
               style={{ position: "relative" }}
             >
               <HiddenUsernameForPasswordManager username={loggedInUser?.username} id="first-login-change-username" />
-              <div className={styles.field}>
+              <div className="flex flex-col gap-1.5">
                 <PasswordInput
                   id="login-new-password"
                   name="new_password"
@@ -306,7 +175,7 @@ const LoginPage = ({ onSuccess }) => {
                   hidePasswordAriaLabel={t("Hide password")}
                 />
               </div>
-              <div className={styles.field}>
+              <div className="flex flex-col gap-1.5">
                 <PasswordInput
                   id="login-confirm-password"
                   name="new_password_confirm"
@@ -320,12 +189,10 @@ const LoginPage = ({ onSuccess }) => {
                   hidePasswordAriaLabel={t("Hide password")}
                 />
               </div>
-              {error && <div className={styles.error}>{error}</div>}
-              <div className={styles.actions}>
-                <Button type="submit" appearance="primary" disabled={loading}>
-                  {loading ? t("Changing…") : t("Change password")}
-                </Button>
-              </div>
+              {error && <p className="text-xs text-destructive">{error}</p>}
+              <Button type="submit" disabled={loading} className="w-full mt-1">
+                {loading ? t("Changing…") : t("Change password")}
+              </Button>
             </form>
           </div>
         </div>
@@ -334,91 +201,61 @@ const LoginPage = ({ onSuccess }) => {
   }
 
   return (
-    <div className={styles.page}>
-      <div className={styles.langWrapper}>
-        <Popover open={langOpen} onOpenChange={(_, data) => setLangOpen(data.open)}>
-          <PopoverTrigger disableButtonEnhancement>
-            <button type="button" className={styles.langTrigger} aria-label={t("Interface language")}>
-              <Languages size={18} />
-              <span style={{ flex: 1, textAlign: "start" }}>{getUILanguageLabel(currentLang, t)}</span>
-              <ChevronDown size={16} />
-            </button>
-          </PopoverTrigger>
-          <PopoverSurface>
-            <div className={styles.popoverGrid}>
-              {[0, 1].map((colIndex) => (
-                <div key={colIndex} className={styles.popoverColumn}>
-                  <MenuList>
-                    {UI_LANGUAGES.filter((_, i) => i % 2 === colIndex).map((lang) => {
-                      const isSelected = lang.code === uiLocale;
-                      return (
-                        <MenuItem
-                          key={lang.code}
-                          onClick={() => handleLangSelect(lang.code)}
-                          icon={isSelected ? <Check size={16} /> : <Check size={16} style={{ opacity: 0 }} aria-hidden />}
-                          className={isSelected ? styles.selectedItem : undefined}
-                        >
-                          {getUILanguageLabel(lang, t)}
-                        </MenuItem>
-                      );
-                    })}
-                  </MenuList>
-                </div>
-              ))}
-            </div>
-          </PopoverSurface>
-        </Popover>
+    <div className={pageClass}>
+      <div className="absolute end-6 top-6 z-10">
+        <LangSelector currentLang={currentLang} uiLocale={uiLocale} t={t} onSelect={handleLangSelect} />
       </div>
-      <div className={styles.center}>
-        <div className={styles.logoBlock}>
-          <img src={Logo} alt={t("Transrewrt logo")} className={styles.logo} />
-          <span className={styles.appName}>Transrewrt</span>
+      <div className="flex flex-1 flex-col items-center justify-center p-6">
+        {/* Logo block */}
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <img src={Logo} alt={t("Transrewrt logo")} className="h-14 w-auto" />
+          <span className="app-name-gradient text-4xl font-bold tracking-tight">Transrewrt</span>
         </div>
-        {/* <p className={styles.tagline}>{t("Sign in to your account")}</p> */}
-        <div className={styles.box}>
-          <h2 className={styles.title}>{t("Log in")}</h2>
-          <p className={styles.instruction}>
-             {t("Enter your credentials to access your account.")}
+
+        <div className="bg-card border border-border rounded-xl shadow-xl p-7 w-full max-w-sm">
+          <h2 className="text-xl font-semibold mb-2">{t("Log in")}</h2>
+          <p className="text-sm text-muted-foreground mb-5">
+            {t("Enter your credentials to access your account.")}
           </p>
+
           {firstLoginInfo.firstLogin && (
-            <div className={styles.firstLoginMessage}>
-              <h3> {t("First-time login:")} </h3>
-              {t("Use the default credentials provided below; you must change the password upon first login.")}
-              <div className={styles.firstLoginCredentials}>
+            <div className="rounded-lg bg-muted p-3 mb-5 text-sm text-muted-foreground leading-relaxed">
+              <p className="font-semibold text-foreground mb-1">{t("First-time login:")}</p>
+              <p>{t("Use the default credentials provided below; you must change the password upon first login.")}</p>
+              <p className="mt-3 font-mono font-semibold text-foreground">
                 {DEFAULT_ADMIN_USERNAME} / {DEFAULT_ADMIN_PASSWORD}
-              </div>
+              </p>
             </div>
           )}
+
           <form
             onSubmit={handleLoginSubmit}
             method="post"
             action={getWebAuthFormAction()}
             autoComplete="on"
             id="transrewrt-web-login-form"
+            className="flex flex-col gap-4"
             style={{ position: "relative" }}
           >
-            <div className={styles.field}>
-              <Field label={t("Username")}>
-                <Input
-                  id="login-username"
-                  name="username"
-                  type="text"
-                  value={username}
-                  onChange={(_, data) => setUsername(typeof data?.value === "string" ? data.value : "")}
-                  placeholder={t("Username")}
-                  autoComplete="username"
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  inputMode="text"
-                  autoFocus
-                  disabled={loading}
-                  appearance="outline"
-                  style={{ width: "100%" }}
-                />
-              </Field>
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="login-username">{t("Username")}</Label>
+              <Input
+                id="login-username"
+                name="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder={t("Username")}
+                autoComplete="username"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                inputMode="text"
+                autoFocus
+                disabled={loading}
+              />
             </div>
-            <div className={styles.field}>
+            <div className="flex flex-col gap-1.5">
               <PasswordInput
                 id="login-password"
                 name="password"
@@ -432,12 +269,10 @@ const LoginPage = ({ onSuccess }) => {
                 hidePasswordAriaLabel={t("Hide password")}
               />
             </div>
-            {error && <div className={styles.error}>{error}</div>}
-            <div className={styles.actions}>
-              <Button type="submit" appearance="primary" disabled={loading} style={{ width: "100%" }}>
-                {loading ? t("Logging in…") : t("Log in")}
-              </Button>
-            </div>
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <Button type="submit" disabled={loading} className="w-full mt-1">
+              {loading ? t("Logging in…") : t("Log in")}
+            </Button>
           </form>
         </div>
       </div>
@@ -447,6 +282,7 @@ const LoginPage = ({ onSuccess }) => {
 
 LoginPage.propTypes = {
   onSuccess: PropTypes.func.isRequired,
+  sessionExpired: PropTypes.bool,
 };
 
 export default LoginPage;

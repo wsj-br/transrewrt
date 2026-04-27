@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:27:52.526Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:11.485Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: ca
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en funcion
 
 <small>**Llegeix en altres idiomes:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -56,33 +56,33 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en funcion
   - [Barra lateral](#sidebar)
   - [Barra d'eines](#toolbar)
   - [Panells d'entrada i sortida](#input-and-output-panels)
-- [Tradueix](#translate)
-  - [Tradueix text](#translate-text)
+- [Traduir](#translate)
+  - [Traduir text](#translate-text)
   - [Selecció d'idioma](#language-selection)
   - [Configuracions útils de traducció](#helpful-translation-settings)
-- [Reescriptura](#rewrite)
-- [Transformació](#transform)
-  - [Executa un prompt existent](#run-an-existing-prompt)
-  - [Si encara no tens prompts](#if-you-have-no-prompts-yet)
-  - [Crea un prompt ràpidament](#create-a-prompt-quickly)
-  - [Edita un prompt](#edit-a-prompt)
-  - [Prova un prompt abans d'utilitzar-lo](#test-a-prompt-before-using-it)
-- [Tauler](#dashboard)
-  - [Filtra les dades](#filter-the-data)
-  - [Pestanyes del tauler](#dashboard-tabs)
-  - [Exporta dades](#export-data)
-  - [Esborra els registres emmagatzemats per un model](#delete-stored-records-for-a-model)
+- [Reescriure](#rewrite)
+- [Transformar](#transform)
+  - [Executar una indicació existent](#run-an-existing-prompt)
+  - [Si encara no teniu indicacions](#if-you-have-no-prompts-yet)
+  - [Crear una indicació ràpidament](#create-a-prompt-quickly)
+  - [Editar una indicació](#edit-a-prompt)
+  - [Provar una indicació abans d'utilitzar-la](#test-a-prompt-before-using-it)
+- [Tauler de control](#dashboard)
+  - [Filtrar les dades](#filter-the-data)
+  - [Pestanyes del tauler de control](#dashboard-tabs)
+  - [Exportar dades](#export-data)
+  - [Eliminar registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
 - [Historial](#history)
-  - [Filtra les dades](#filter-the-data-1)
-  - [Exporta les dades de l'historial](#export-history-data)
+  - [Filtrar les dades](#filter-the-data-1)
+  - [Exportar dades de l'historial](#export-history-data)
 - [Configuració](#settings)
   - [Configuració general](#general-settings)
   - [Models](#models)
   - [Idiomes](#languages)
   - [Seguiment de costos](#cost-tracking)
-  - [Prompts de transformació](#transform-prompts)
+  - [Indicacions de transformació](#transform-prompts)
   - [Usuaris](#users)
-  - [Configuració de l'API](#api-config)
+  - [Configuració d'API](#api-config)
   - [Quant a](#about)
 - [Problemes habituals](#common-issues)
   - [L'aplicació no tradueix, reescriu ni transforma el text](#the-app-will-not-translate-rewrite-or-transform-text)
@@ -90,14 +90,14 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en funcion
   - [El resultat és massa lent o massa car](#the-result-is-too-slow-or-too-expensive)
   - [La interfície està en l'idioma incorrecte](#the-interface-is-in-the-wrong-language)
   - [El text és massa petit o difícil de llegir](#the-text-is-too-small-or-hard-to-read)
-  - [Els gràfics del tauler estan buits](#dashboard-charts-are-empty)
-  - [El cost mostra «no disponible» o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
+  - [Els gràfics del tauler de control estan buits](#dashboard-charts-are-empty)
+  - [El cost mostra "no disponible" o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
   - [El cost total no coincideix amb la meva factura del proveïdor](#total-cost-does-not-match-my-provider-bill)
   - [La pàgina d'historial no apareix a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicació web: redirigit inesperadament a la pàgina d'inici de sessió](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: he oblidat o perdut la contrasenya](#web-admin-forgot-or-lost-a-password)
-  - [El tauler no mostra dades d'altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [He canviat un prompt i he perdut les edicions](#i-changed-a-prompt-and-lost-the-edits)
+  - [Administrador web: he oblidat o perdut la contrasenya](#web-admin-forgot-or-lost-a-password)
+  - [El tauler de control no mostra dades d'altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [He canviat una indicació i he perdut les edicions](#i-changed-a-prompt-and-lost-the-edits)
 - [Consells ràpids](#quick-tips)
 - [Avís legal](#disclaimer)
 - [Llicència](#license)
@@ -129,15 +129,15 @@ Si esteu utilitzant la **versió web**, l'administrador del servidor configura e
 
 Si esteu utilitzant l'aplicació d'escriptori, seguiu aquests passos:
 
-1. Aniu a [OpenRouter](https://openrouter.ai) al vostre navegador web.
+1. Aneu a [OpenRouter](https://openrouter.ai) amb el vostre navegador web.
 2. Creeu un compte o inicieu sessió.
 3. Obriu la pàgina de [Claus](https://openrouter.ai/keys).
 4. Feu clic al botó per crear una nova clau API.
-5. Doneu un nom a la clau per poder-la reconèixer més endavant.
+5. Doneu un nom a la clau per poder-la reconèixer més tard.
 6. Copieu la nova clau API.
-7. Torneu a Transrewrt i obriu **Configuració** > **Configuració de l'API**.
-8. Enganxeu la clau a **Clau API d'OpenRouter** (sota **Configuració** > **Configuració de l'API**).
-9. Feu clic a **Prova la clau d'OpenRouter** per assegurar-vos que funciona.
+7. Torneu a Transrewrt i obriu **Configuració** > **Configuració d'API**.
+8. Enganxeu la clau a **Clau API d'OpenRouter** (sota **Configuració** > **Configuració d'API**).
+9. Feu clic a **Provar la clau d'OpenRouter** per assegurar-vos que funciona.
 
 <br/><br/>
 
@@ -147,12 +147,12 @@ Si esteu utilitzant l'aplicació d'escriptori, seguiu aquests passos:
 Si és la primera vegada que utilitzeu Transrewrt, seguiu aquest ordre:
 
 1. Obriu l'aplicació.
-2. Trieu el vostre **Idioma de la interfície** des de la icona del globus si cal.
-3. Si esteu utilitzant l'**aplicació d'escriptori**, obriu [**Configuració** > **Configuració de l'API**](#api-config), afegiu una clau API per a almenys un proveïdor (per exemple OpenRouter) i feu clic a **Prova** per verificar que funcioni.
+2. Trieu el vostre **idioma d'interfície** a partir de la icona del globus si és necessari.
+3. Si esteu utilitzant l'**aplicació d'escriptori**, obriu [**Configuració** > **Configuració d'API**](#api-config), afegiu una clau API d'almenys un proveïdor (per exemple, OpenRouter) i feu clic a **Provar** per verificar que funciona.
 4. Obriu [**Configuració** > **Models**](#models) i afegiu un o més models a **Models seleccionats**.
 5. Obriu [**Configuració** > **Idiomes**](#languages) i trieu els vostres **Idiomes preferits** si voleu que els idiomes que més utilitzeu apareguin primers.
-6. Aniu a **Tradueix** i executeu una traducció senzilla per confirmar que tot funciona.
-7. Un cop funcioni, proveu **Reescriptura** i després **Transformació**.
+6. Aneu a **Traduir** i executeu una traducció senzilla per confirmar que tot funciona.
+7. Un cop funcioni, proveu **Reescriure** i després **Transformar**.
 
 Aquest ordre és important. Evita el problema més comú en el primer ús: intentar executar una tasca abans que l'aplicació tingui una connexió API funcional o un model seleccionat.
 
@@ -257,12 +257,12 @@ Utilitzeu **Tradueix** quan vulgueu convertir text d'un idioma a un altre.
 <a id="translate-text"></a>
 ### Traduir text
 
-1. Obriu **Tradueix**.
-2. Trieu un idioma a **De**.
+1. Obriu **Traduir**.
+2. Trieu un idioma a **Des de**.
 3. Trieu un idioma a **A**.
 4. Trieu un model a la barra d'eines.
 5. Escriviu o enganxeu text a **Entrada**.
-6. Feu clic a **Tradueix**.
+6. Feu clic a **Traduir**.
 7. Llegiu el resultat a **Sortida**.
 8. Utilitzeu el botó de còpia si voleu copiar el resultat.
 
@@ -283,8 +283,8 @@ Els vostres **Idiomes principals** seleccionats apareixen a la part superior de 
 
 A [**Configuració** > **Configuració General**](#general-settings), podeu canviar el comportament de la traducció:
 
-- **Traduir automàticament en enganxar** executa una traducció tan bon punt enganxeu text.
-- **Copiar el resultat automàticament al porta-retalls** copia el resultat automàticament després d'una execució correcta.
+- **Traducció automàtica en enganxar** executa una traducció tan bon punt enganxeu text.
+- **Còpia automàtica del resultat al porta-retalls** copia el resultat automàticament després d'una execució correcta.
 - **Traducció en temps real (mentre s'escriu)** executa traduccions mentre escriviu.
 - **Temps d'espera (ms)** controla quant de temps espera l'aplicació abans d'executar una traducció en temps real.
 - **Enter** controla què passa quan premeu `Enter`:
@@ -302,12 +302,12 @@ Utilitzeu la **Reescriptura** quan vulgueu millorar l'expressió sense canviar e
 
 Això és útil per a:
 
-- corregir l'ortografia i la gramàtica (**Comprova l'ortografia i la gramàtica**)
-- fer el text més clar (**Millora la claredat**)
+- correcció d'ortografia i gramàtica (**Comprovar ortografia i gramàtica**)
+- millora de la claredat del text (**Millorar la claredat**)
 - diverses reformulacions diferents en una sola execució (**Versions alternatives**)
 - fer el text més formal o menys formal (**Formal** / **Informal**)
-- escurçar o ampliar el text (**Escurça** / **Amplia**)
-- fer que el text soni més tècnic (**Fes tècnic**)
+- escurçar o ampliar el text (**Escurçar** / **Ampliar**)
+- fer que el text sembli més tècnic (**Fer tècnic**)
 
 <br/>
 
@@ -328,8 +328,8 @@ Utilitzeu la **Transformació** quan vulgueu que la IA segueixi un conjunt d'ins
 
 Aquesta és l'àrea més flexible de l'aplicació. Podeu utilitzar-la per a tasques com ara:
 
-- resumir apunts
-- convertir un text esquemàtic en un correu electrònic refinat
+- resumir notes
+- convertir text brut en un correu electrònic polítmic
 - extreure punts clau
 - convertir text en un format específic
 - qualsevol altra activitat personalitzada amb el text d'entrada
@@ -339,11 +339,11 @@ Aquesta és l'àrea més flexible de l'aplicació. Podeu utilitzar-la per a tasq
 <a id="run-an-existing-prompt"></a>
 ### Executar un prompt existent
 
-1. Obriu **Transformació**.
-2. Trieu un prompt de la llista de prompts.
-3. Si apareix un quadre d'idioma de **Destí**, trieu un idioma si en voleu un.
-4. Escriviu o enganxeu el text a **Entrada**.
-5. Feu clic a **Transforma**.
+1. Obriu **Transformar**.
+2. Trieu una indicació de la llista d'indicacions.
+3. Si apareix un quadre d'**Idioma de destinació**, trieu un idioma si en voleu un.
+4. Escriviu o enganxeu text a **Entrada**.
+5. Feu clic a **Transformar**.
 6. Llegiu el resultat a **Sortida**.
 
 <br/>
@@ -365,12 +365,12 @@ Si la vostra llista de prompts està buida, feu clic a **Carrega els exemples de
 
 La manera més ràpida de crear un prompt és:
 
-1. Feu clic a **Nou prompt**.
-2. Feu clic a **Genera l'indicador**.
-3. Descriviu què voleu que faci el prompt.
+1. Feu clic a **Nova indicació**.
+2. Feu clic a **Generar indicació**.
+3. Descriviu què voleu que faci la indicació.
 4. Trieu un model.
-5. Deixeu que l'aplicació creï un esborrany per a vosaltres.
-6. Reviseu l'esborrany i feu clic a **Desa**.
+5. Deixeu que l'aplicació us creï un esborrany.
+6. Reviseu l'esborrany i feu clic a **Desar**.
 
 ![Generate prompt](../images/screenshots/ca/transform-generate.png)
 
@@ -385,13 +385,13 @@ Quan creeu o editeu un prompt, l'editor apareix a l'esquerra i una àrea de prov
 
 Els camps principals són:
 
-- **Nom del Prompt**: el nom que es mostra a la llista de prompts.
-- **Instruccions del Prompt (opcional)**: una breu indicació mostrada a l'usuari quan s'executa el prompt.
-- **Rol del Model**: el rol general assignat a la IA, com ara 'Ets un assistent útil.'
+- **Nom de la indicació**: el nom que es mostra a la llista d'indicacions.
+- **Instruccions de la indicació (opcional)**: una breu ajuda que es mostra a l'usuari quan s'executa la indicació.
+- **Rol del model**: el rol general assignat a la IA, com ara 'Ets un assistent útil.'
 - **Instruccions del model (una per línia)**: les regles específiques que voleu que segueixi la IA.
-- **Descripció de la sortida**: una paraula breu que descriu el resultat, com ara 'resum' o 'reescriptura'.
+- **Descripció de la sortida**: una paraula breu que descriu el resultat, com ara 'resum' o 'reescritura'.
 - **Temperatura (0,0 → 1,0)**: com es comportarà el model; vegeu més avall.
-- **Demanar la llengua de destinació**: afegeix un selector d'idioma de destinació quan s'executa el prompt.
+- **Demana l'idioma de destinació**: afegeix un selector d'idioma de destinació quan s'executa la indicació.
 
 Si el terme tècnic **Temperatura** és nou per a vostè, pensi-hi d'aquesta manera:
 
@@ -462,11 +462,11 @@ Utilitzeu els botons de filtre de la part superior per canviar l'interval de tem
 <a id="dashboard-tabs"></a>
 ### Pestanyes del tauler
 
-- **Resum** us ofereix una visió general de l'ús i del cost. Inclou **Ús amb el temps** (comptes acumulatius superposats de **trucades** per dia per a traduir, reescriure i transformar) i **Ús per model** (total de **trucades per model**, incloent-hi la transformació).
-- **Per ús** desglossa l'activitat per idioma de traducció, mode de reescriptura i prompt de transformació.
+- **Resum** us ofereix una visió general de l'ús i el cost. Inclou un gràfic d'**Ús al llarg del temps** (**comptes acumulatius superposats** de trucades per dia per a traduir, reescriure i transformar) i **Ús per model** (**trucades totals per model**, incloent transformar).
+- **Per ús** desglossa l'activitat per idioma de traducció, mode de reescritura i indicació de transformació.
 - **Per model** mostra quins models heu utilitzat i quant han costat.
 - **Per dia** mostra els totals diaris.
-- **Totes les crides** mostra l'historial complet de crides i us permet exportar-lo.
+- **Totes les trucades** mostra l'historial complet de trucades i us permet exportar-lo.
 
 <br/>
 
@@ -542,14 +542,14 @@ Obre **Configuració** des del lateral per personalitzar el comportament de l'ap
 
 Les pestanyes disponibles depenen de la plataforma i del teu rol:
 
-| Pestanya               | Ordinador | Web (admin) | Web (usuari habitual) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Configuració General  |   sí   |     sí     |        sí         |
-  | Models            |   sí   |     sí     |        sí         |
-  | Idiomes         |   sí   |     sí     |        sí         |
-  | Seguiment de costos     |   sí   |     sí     |         -          |
-  | Prompts de transformació |   sí   |     sí     |        sí         |
-  | Usuaris             |    -    |     sí     |         -          |
+| Pestanya               | Ordinador | Web (administrador) | Web (usuari normal) |
+  |------------------------|:-------:|:-------------------:|:-------------------:|
+  | Configuració general   |   sí    |         sí          |         sí          |
+  | Models                 |   sí    |         sí          |         sí          |
+  | Idiomes                |   sí    |         sí          |         sí          |
+  | Seguiment de costos    |   sí    |         sí          |         -           |
+  | Indicacions de transformació |   sí    |         sí          |         sí          |
+  | Usuaris                |    -    |         sí          |         -           |
   | Configuració de l'API        |   sí   |     sí     |         -          |
   | Quant a             |   sí   |     sí     |        sí         |
 
@@ -569,10 +569,10 @@ Utilitza **Configuració general** per controlar el comportament en escriure, si
 
 **Comportament**
 
-- **Comportament per a ENTER** tria si `Enter` executa la tasca o insereix una nova línia.
-- **Traduir automàticament en enganxar** inicia la traducció tan aviat com enganxis text.
-- **Copiar el resultat automàticament al porta-retalls** copia automàticament els resultats correctes.
-- **Traducció en temps real (mentre s'escriu)** tradueix mentre escrius.
+- **Comportament de la tecla ENTRAR** determina si `Enter` executa la tasca o insereix una nova línia.
+- **Traducció automàtica en enganxar** inicia la traducció tan bon punt enganxeu text.
+- **Còpia automàtica del resultat al porta-retalls** copia els resultats correctes automàticament.
+- **Traducció en temps real (mentre s'escriu)** tradueix mentre escriviu.
 - **Temps d'espera (ms)** estableix el temps d'espera per a la traducció en temps real.
 
 **Historial**
@@ -582,19 +582,19 @@ Utilitza **Configuració general** per controlar el comportament en escriure, si
 
 **Aparença**
 
-- **Mostrar informació del cost en les accions** controla la visualització del cost per operació (si està disponible) i el cost total als panells de sortida de Traducció, Reescriptura i Transformació.
+- **Mostra la informació de cost en les accions** controla la visualització del cost per operació (si està disponible) i el cost total als panells de sortida de Traduir, Reescriure i Transformar.
 - **Xifres decimals del cost** canvia com es mostren els decimals del cost.
-- **Només web:** **mostra un marge al voltant de l'aplicació** afegeix espai extra al voltant de la interfície.
-- **Familia de tipus de lletra** canvia la font del text als panells.
-- **Mida** canvia la mida de la font.
+- **Només web:** **mostra un marge al voltant de l'aplicació** afegeix espai addicional al voltant de la interfície.
+- **Familia de tipus de lletra** canvia el tipus de lletra dels panells de text.
+- **Mida** canvia la mida del tipus de lletra.
 
 **Còpia de seguretat de la configuració**
 
 - **Inclou dades d'ús en la còpia de seguretat** - quan està activat, el ZIP també conté l'historial d'execució i dades de crides a l'API. 
-- **Crear còpia de seguretat** - crea un únic ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, prompts personalitzats i dades d'ús si ho has habilitat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
-- **Restaurar des de còpia de seguretat** - obre primer un **diàleg de confirmació**. Tria el ZIP de còpia de seguretat dins del diàleg (**Navega** / selector de fitxers o arrossega i deixa anar on sigui compatible), després revisa les opcions:
-  - **Restaura les dades d'ús** - importa l'ús/l'historial del ZIP quan es va fer la còpia amb dades d'ús incloses; deixa-ho desactivat si només vols configuracions i prompts.
-  - **Esborra les dades d'ús antigues abans de restaurar-les** - elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitza-ho quan vulguis un reemplaçament net).
+- **Còpia de seguretat de la configuració** - crea un únic ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, indicacions personalitzades i dades d'ús si ho heu habilitat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
+- **Restaura des de còpia de seguretat** - obre primer un **diàleg de confirmació**. Trieu el fitxer ZIP de còpia de seguretat dins del diàleg (**Navega** / selector de fitxers o arrossega i deixa anar on sigui compatible), després reviseu les opcions:
+  - **Restaura les dades d'ús** - importa l'ús/historial del ZIP quan es va fer la còpia amb les dades d'ús incloses; deixeu-ho desactivat si només voleu configuracions i indicacions.
+  - **Esborra les dades d'ús antigues abans de restaurar** - elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitzeu-ho quan vulgueu un reemplaçament net).
 
 Les còpies de seguretat creades tant a la versió web com d'escriptori es poden restaurar a l'altra. En restaurar una còpia de seguretat d'escriptori a la versió web, les dades es restauraran a l'usuari administrador.
 
@@ -615,10 +615,10 @@ La pàgina té dues llistes:
 Els controls útils inclouen:
 
 - **Cerca models...** per trobar un model pel nom
-- Xips de **Proveïdor** per reduir la llista a un motor (OpenRouter, OpenAI, Ollama, …)
-- **Només gratuïts** per mostrar només els models gratuïts
+- **Xips de Proveïdor** per reduir la llista a un motor (OpenRouter, OpenAI, Ollama, …)
+- **Només gratuïts** per mostrar només models gratuïts
 - **Actualitza** per tornar a carregar la llista
-- **Expandeix-ho tot** i **Contreu-ho tot** quan esteu ordenant per proveïdor
+- **Expandeix-ho tot** i **Redueix-ho tot** quan esteu ordenant per proveïdor
 
 Els identificadors de model inclouen el prefix del proveïdor (per exemple `openrouter/…` vs `openai/…`). Les insígnies com **OpenAI (OpenRouter)** vs **OpenAI (direct)** mostren com s'enruta el trànsit.
 
@@ -659,10 +659,10 @@ Utilitzeu **Configuració** > **Seguiment de costos** per gestionar la informaci
 
 - **Cost total** mostra el total acumulat.
 - **Copia el valor** copia el total al porta-retalls.
-- **Restableix el cost** restableix el total emmagatzemat a zero.
-- **Sincronitza amb l'ús de la clau API** ajusta el total perquè coincideixi amb l'ús informat pel vostre compte d'OpenRouter (només OpenRouter).
-- **Ús de la clau API** mostra els detalls d'ús d'OpenRouter, si estan disponibles.
-- **Esborra dades de cost** elimina totes les dades, o només les entrades anteriors a una data seleccionada.
+- **Reinicia el cost** reinicia el total emmagatzemat a zero.
+- **Sincronitza amb l'ús de la clau API** estableix el total perquè coincideixi amb l'ús informat per la vostra compte OpenRouter (només OpenRouter).
+- **Ús de la clau API** mostra detalls d'ús d'OpenRouter, si estan disponibles.
+- **Esborra les dades de cost** elimina totes les dades, o només les entrades anteriors a una data seleccionada.
 
 **Seguiment de costos:** Quan utilitzeu models d'OpenRouter, l'aplicació mostra l'ús real i el desemborsament basat en la informació de costos d'OpenRouter. Per a tots els altres proveïdors, l'aplicació estima els costos utilitzant els preus publicats per OpenRouter; si no està disponible un preu, l'estimació pot ser zero.
 
@@ -687,11 +687,11 @@ Utilitzeu **Configuració** > **Prompts de transformació** per gestionar els pr
 
 Podeu:
 
-- revisar els vostres prompts desats
-- esborrar prompts
-- importar prompts des d'un fitxer
-- exportar prompts per fer-ne còpies de seguretat o compartir-los
-- carregar exemples de prompts a la llista de prompts
+- reviseu les indicacions desades
+- esborreu indicacions
+- importeu indicacions des d'un fitxer
+- exporteu indicacions per fer-ne còpia de seguretat o compartir-les
+- carregueu indicacions de mostra a la llista d'indicacions
 
 <br/>
 
@@ -907,12 +907,12 @@ Quan editeu un prompt, feu sempre clic a **Desa** abans de fer clic a **Tornar a
 <a id="quick-tips"></a>
 ## Consells ràpids
 
-- Comenceu amb [**Tradueix**](#translate) per assegurar-vos que la vostra configuració funciona abans de passar a [**Reescriptura**](#rewrite) o [**Transformació**](#transform).
-- Utilitzeu [**Reescriptura**](#rewrite) per a millores habituals del text.
-- Utilitzeu [**Transformació**](#transform) quan necessiteu un flux de treball reproductible per a una tasca específica.
+- Comenceu amb [**Traduir**](#translate) per assegurar-vos que la configuració funciona abans de passar a [**Reescriure**](#rewrite) o [**Transformar**](#transform).
+- Utilitzeu [**Reescriure**](#rewrite) per millorar el text en l'ús diari.
+- Utilitzeu [**Transformar**](#transform) quan necessiteu un flux de treball reutilitzable per a una tasca específica.
 - Utilitzeu [**Tauler**](#dashboard) si voleu fer un seguiment de l'ús i el cost.
-- Utilitzeu [**Historial**](#history) per revisar operacions anteriors i el text complet d'entrada i sortida.
-- Exporteu els prompts regularment si esteu creant una biblioteca de prompts que voleu mantenir segura (vegeu [Prompts de transformació](#transform-prompts)) o si voleu compartir-los amb altres.
+- Utilitzeu [**Historial**](#history) per revisar operacions anteriors i el text complet d'entrada/sortida.
+- Exporteu regularment les indicacions si esteu creant una biblioteca d'indicacions que voleu conservar (vegeu [Indicacions de Transformació](#transform-prompts)) o si voleu compartir-les amb altres.
 
 <br/><br/>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:27:34.203Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:05.407Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: ar
 source_file_path: README.md
 translation_models:
@@ -22,21 +22,21 @@ translation_models:
 
 أداة نصية مدعومة بالذكاء الاصطناعي: ترجمة بين اللغات، وإعادة صياغة بأساليب مختلفة، وتحويل باستخدام أوامر مخصصة — باستخدام موفري ذكاء اصطناعي متعددين (أوبن روتر، أوبن إي آي، أنثروبيك، جوجل جيميني، ديب سيك، غروك، ميسترال، إكس إيه آي، وأولاما محلي). تعمل كتطبيق سطح مكتب (إلكترون) أو تطبيق ويب قابل الاستضافة ذاتيًا (داكر).
 
-- **ترجمة** - بين عشرات اللغات، مع كشف تلقائي عن اللغة المصدر
-- **إعادة صياغة** - إصلاح القواعد، تحسين الوضوح، صيغة رسمية/غير رسمية، اختصار، توسيع، تقنية
-- **تحويل** - أوامر ذكاء اصطناعي مخصصة؛ إنشاء وإدارة الأوامر، مع إمكانية تحديد اللغة المستهدفة لكل أمر
-- **السجل** - سجل تنفيذ كامل يحتوي على نص الإدخال والإخراج، مع تصفية وتصدير
-- **النماذج والتكلفة** - اختيار النماذج من أي موفر مهيأ؛ لوحات معلومات بالتكلفة والاستخدام مع سجلات، وملخصات حسب النموذج/العملية/اليوم
-- **واجهة المستخدم** - واجهة متعددة اللغات (أكثر من 30 لغة، مع دعم الكتابة من اليمين لليسار)، خطوط، ...
-- **الوضع الويب** - دعم مستخدمين متعددين مع أدوار المسؤول
-- **سطح المكتب** - تطبيق إلكترون لنظامي ويندوز ولينكس
-- **قابل للاستضافة ذاتيًا** - صورة داكر متوفرة لـ amd64 و arm64 (جاهزة لـ Raspberry Pi)
+- **ترجمة** - بين عشرات اللغات، مع اكتشاف تلقائي للمصدر
+- **إعادة كتابة** - تصحيح القواعد، تحسين الوضوح، صيغة رسمية/غير رسمية، تقصير، توسيع، محتوى تقني
+- **تحويل** - أوامر ذكاء اصطناعي مخصصة؛ إنشاء وإدارة الأوامر، مع إمكانية تحديد لغة مستهدفة لكل أمر
+- **السجل** - سجل تنفيذ كامل يحتوي على النصوص المدخلة والمنتجة، مع إمكانية التصفية والتصدير
+- **النماذج والتكلفة** - اختيار النماذج من أي مزود تم تهيئته؛ لوحات مراقبة التكلفة والاستخدام مع السجلات، والتلخيص حسب النموذج/العملية/اليوم
+- **واجهة المستخدم** - واجهة متعددة اللغات (أكثر من 30 لغة، مع دعم الكتابة من اليمين إلى اليسار)، خطوط، ...
+- **وضع الويب** - دعم المستخدمين المتعددين مع أدوار المسؤول
+- **سطح المكتب** - تطبيق إلكترون لنظامي التشغيل ويندوز ولينكس
+- **استضافة ذاتية** - صورة دوكر متوفرة لكل من amd64 و arm64 (جاهزة للاستخدام على Raspberry Pi)
 
 بعد التثبيت، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** للحصول على شرح كامل لجميع الميزات.
 
 <small>**اقرأ باللغات الأخرى:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -58,7 +58,7 @@ translation_models:
 - [الحصول على مفتاح واجهة برمجة تطبيقات OpenRouter](#getting-an-openrouter-api-key)
 - [التكوين والبيئة](#configuration-and-environment)
 - [التطوير والهندسة المعمارية](#development-and-architecture)
-- [إبلاغ عن المشكلات](#reporting-issues)
+- [إبلاغ عن مشكلات](#reporting-issues)
 - [إخلاء المسؤولية](#disclaimer)
 - [الرخصة](#license)
 
@@ -280,31 +280,31 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 **مواقع ملفات التهيئة**
 
-| النشر | موقع التهيئة |
+| النشر         | موقع التهيئة                                   |
 | ------------------ | ------------------------------------------------- |
-| إلكترون (ويندوز) | `%APPDATA%\transrewrt\` |
-| إلكترون (لينكس) | `~/.config/transrewrt/` |
-| ويب / دوكر | `/app/data/config.json` (استخدم وحدة تخزين للحفاظ على البيانات) |
+| إلكترون (ويندوز) | `%APPDATA%\transrewrt\`                           |
+| إلكترون (لينكس)   | `~/.config/transrewrt/`                           |
+| الويب / دوكر       | `/app/data/config.json` (استخدم وحدة تخزين للحفظ) |
 
 <br/>
 
 **المتغيرات البيئية** (للويب/دوكر فقط؛ يستخدم إلكترون ملف التهيئة المحلي)
 
-| المتغير | الوصف |
+| المتغير             | الوصف                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT` | منفذ الاستماع للخادم (الافتراضي هو `5000`) |
-| `CONFIG_PATH` | مسار ملف التهيئة (الافتراضي هو `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY` | مفتاح واجهة برمجة تطبيقات xAI |
+| `PORT`               | منفذ الاستماع للخادم (القيمة الافتراضية هي `5000`)                                  |
+| `CONFIG_PATH`        | مسار ملف التهيئة (القيمة الافتراضية هي `/app/data/config.json`)                |
+| `TZ`                 | التوقيت الزمني للخادم (للسجلات، إلخ) (القيمة الافتراضية هي `Europe/London`) |
+| `OPENROUTER_API_KEY` | مفتاح واجهة برمجة تطبيقات OpenRouter                                                           |
+| `OPENAI_API_KEY`     | مفتاح واجهة برمجة تطبيقات OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | مفتاح واجهة برمجة تطبيقات Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | مفتاح واجهة برمجة تطبيقات Anthropic                                                            |
+| `GOOGLE_API_KEY`     | مفتاح واجهة برمجة تطبيقات Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | مفتاح واجهة برمجة تطبيقات DeepSeek                                                             |
+| `GROQ_API_KEY`       | مفتاح واجهة برمجة تطبيقات Groq                                                                 |
+| `MISTRAL_API_KEY`    | مفتاح واجهة برمجة تطبيقات Mistral                                                              |
+| `OLLAMA_URL`         | عنوان URL الأساسي لـ Ollama (مثلاً `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | مفتاح واجهة برمجة تطبيقات xAI                                                                  |
 
 قم بتهيئة موفري الخدمة الذين تستخدمهم فقط. أسماء النماذج تحتوي على نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ).
 

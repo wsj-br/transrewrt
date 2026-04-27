@@ -1,14 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  makeStyles,
-  tokens,
-  Button,
-  Input,
-  Label,
-  Checkbox,
-  Slider,
-} from "@fluentui/react-components";
 import { ArrowLeft, Save, Trash2, X, Languages, Bot, Sparkles } from "lucide-react";
 import PropTypes from "prop-types";
 import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
@@ -17,124 +8,11 @@ import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
 import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    gap: tokens.spacingVerticalM,
-    overflow: "auto",
-    paddingInlineEnd: "12px",
-    boxSizing: "border-box",
-  },
-  header: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 0,
-    flexShrink: 0,
-  },
-  headerRow1: {
-    display: "flex",
-    alignItems: "center",
-    flexShrink: 0,
-  },
-  headerRow2: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    flexShrink: 0,
-    marginTop: "-12px",
-  },
-  generatePromptButton: {
-    backgroundColor: "#223328",
-    color: "#e8f5e9",
-    ":hover": {
-      backgroundColor: "#2d4532",
-      color: "#e8f5e9",
-    },
-  },
-  backButton: {
-    flexShrink: 0,
-    backgroundColor: tokens.colorNeutralBackground3,
-    border: "none",
-    ":hover": {
-      backgroundColor: tokens.colorNeutralBackground4,
-    },
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacingVerticalM,
-    "& input": { color: "#fff" },
-    "& textarea": { color: "#fff" },
-  },
-  field: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "2px",
-    marginBottom: "12px",
-  },
-  textarea: {
-    minHeight: "100px",
-    resize: "vertical",
-    padding: tokens.spacingVerticalS,
-    borderRadius: tokens.borderRadiusMedium,
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-  },
-  temperatureSliderGrid: {
-    display: "grid",
-    gridTemplateColumns: "auto 1fr auto",
-    gridTemplateRows: "auto auto",
-    alignItems: "center",
-    rowGap: "4px",
-    columnGap: tokens.spacingHorizontalM,
-  },
-  temperatureValue: {
-    gridColumn: "2",
-    gridRow: "1",
-    fontSize: "14px",
-    fontWeight: 600,
-    color: tokens.colorNeutralForeground1,
-    textAlign: "center",
-  },
-  temperatureLabelLeft: {
-    gridColumn: "1",
-    gridRow: "2",
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground3,
-    whiteSpace: "nowrap",
-  },
-  temperatureSlider: {
-    gridColumn: "2",
-    gridRow: "2",
-    width: "100%",
-    minWidth: 0,
-  },
-  temperatureLabelRight: {
-    gridColumn: "3",
-    gridRow: "2",
-    fontSize: "12px",
-    color: tokens.colorNeutralForeground3,
-    whiteSpace: "nowrap",
-  },
-  actionsRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    flexWrap: "wrap",
-    gap: tokens.spacingVerticalS,
-    flexShrink: 0,
-  },
-  actions: {
-    display: "flex",
-    gap: tokens.spacingHorizontalS,
-    flexWrap: "wrap",
-    flexShrink: 0,
-  },
-});
 
 /** Parse instructions from DB (JSON array string or array) to array of strings. */
 function parseInstructions(value) {
@@ -158,8 +36,8 @@ function roundToStep(value, step) {
   return Math.round(value / step) * step;
 }
 
-/** Normalize DB/import value to boolean: true = ask for target language at run time. */
-function normalizeAskTargetLanguage(value) {
+/** Normalize DB/import value to boolean: true = show From language selector at run time (`target_language` column). */
+function normalizeAskFromLanguageFlag(value) {
   if (value === true || value === 1) return true;
   if (value === false || value === 0 || value === "0") return false;
   if (typeof value === "string" && (value === "1" || value.toLowerCase() === "true" || value.trim() !== "")) return true;
@@ -178,7 +56,6 @@ const TransformPromptEditor = ({
   model,
   models = [],
 }) => {
-  const styles = useStyles();
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
   const { topLanguages, allLanguages } = useContentLanguageLists();
@@ -190,7 +67,7 @@ const TransformPromptEditor = ({
   const [instructionsText, setInstructionsText] = useState("");
   const [outputDescription, setOutputDescription] = useState("transformed");
   const [temperature, setTemperature] = useState(0.4);
-  const [askTargetLanguage, setAskTargetLanguage] = useState(false);
+  const [askFromLanguage, setAskFromLanguage] = useState(false);
   const [promptInstructions, setPromptInstructions] = useState("");
   const [showTranslateModal, setShowTranslateModal] = useState(false);
   const [translateTargetLang, setTranslateTargetLang] = useState("");
@@ -210,7 +87,7 @@ const TransformPromptEditor = ({
       setInstructionsText(formatInstructionsForDisplay(parseInstructions(initialPrompt.instructions)));
       setOutputDescription(initialPrompt.output_description ?? "transformed");
       setTemperature(roundToStep(Number(initialPrompt.temperature) || 0.4, 0.05));
-      setAskTargetLanguage(normalizeAskTargetLanguage(initialPrompt.target_language));
+      setAskFromLanguage(normalizeAskFromLanguageFlag(initialPrompt.target_language));
       setPromptInstructions(initialPrompt.prompt_instructions ?? "");
     } else {
       setName("");
@@ -218,7 +95,7 @@ const TransformPromptEditor = ({
       setInstructionsText("");
       setOutputDescription("transformed");
       setTemperature(0.4);
-      setAskTargetLanguage(false);
+      setAskFromLanguage(false);
       setPromptInstructions("");
     }
   }, [initialPrompt]);
@@ -235,10 +112,10 @@ const TransformPromptEditor = ({
       instructions,
       output_description: outputDescription.trim() || "transformed",
       temperature: Number((Math.max(0, Math.min(1, Number(temperature) || 0.4))).toFixed(2)),
-      target_language: askTargetLanguage,
+      target_language: askFromLanguage,
       prompt_instructions: promptInstructionsTrimmed || null,
     };
-  }, [name, role, instructionsText, outputDescription, temperature, askTargetLanguage, promptInstructions]);
+  }, [name, role, instructionsText, outputDescription, temperature, askFromLanguage, promptInstructions]);
 
   useEffect(() => {
     onDraftChange?.(buildDraft());
@@ -359,7 +236,7 @@ const TransformPromptEditor = ({
         if (res.output_description != null) setOutputDescription(String(res.output_description).trim());
         if (typeof res.temperature === "number" && !Number.isNaN(res.temperature)) setTemperature(roundToStep(Math.max(0, Math.min(1, res.temperature)), 0.05));
         if (res.prompt_instructions != null) setPromptInstructions(String(res.prompt_instructions).trim());
-        if (typeof res.target_language === "boolean") setAskTargetLanguage(res.target_language);
+        if (typeof res.target_language === "boolean") setAskFromLanguage(res.target_language);
       }
       setShowImproveModal(false);
     } catch (err) {
@@ -424,151 +301,148 @@ const TransformPromptEditor = ({
   };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.header}>
-        <div className={styles.headerRow1}>
+    <div className="flex flex-col h-full overflow-auto pe-3 gap-4">
+      <div className="flex flex-col shrink-0">
+        <div className="flex items-center">
           <Button
-            appearance="subtle"
-            icon={<ArrowLeft size={18} className="rtl-icon-mirror" />}
+            variant="ghost"
+            size="sm"
             onClick={onBackToRun}
-            className={styles.backButton}
             aria-label={t("Back to Run")}
             data-testid="transform-editor-back-to-run"
           >
+            <ArrowLeft size={16} className="rtl-icon-mirror" />
             {t("Back to Run")}
           </Button>
         </div>
         {canShowGenerateButton && (
-          <div className={styles.headerRow2}>
+          <div className="flex justify-end -mt-3">
             <Button
-              appearance="secondary"
-              className={styles.generatePromptButton}
-              icon={<Sparkles size={16} />}
+              variant="outline"
+              size="sm"
+              className="bg-emerald-950/40 border-emerald-800 text-emerald-200 hover:bg-emerald-900/50 hover:text-emerald-100"
               onClick={openGenerateModal}
               data-testid="generate-prompt-button"
             >
+              <Sparkles size={14} />
               {t("Generate prompt")}
             </Button>
           </div>
         )}
       </div>
-      <div className={styles.form}>
-        <div className={styles.field}>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-name">{t("Prompt name")}</Label>
           <Input
             id="transform-prompt-name"
             value={name}
-            onChange={(_, data) => setName(data.value)}
+            onChange={(e) => setName(e.target.value)}
             placeholder={t("e.g. Summarise")}
             dir="auto"
           />
         </div>
-        <div className={styles.field}>
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-instructions-line">{t("Prompt instructions (optional)")}</Label>
           <Input
             id="transform-prompt-instructions-line"
             value={promptInstructions}
-            onChange={(_, data) => setPromptInstructions(data.value)}
+            onChange={(e) => setPromptInstructions(e.target.value)}
             placeholder={t("e.g. Keep it under 3 sentences.")}
             aria-label={t("Prompt instructions")}
           />
         </div>
-        <div className={styles.field}>
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-role">{t("Model Role")}</Label>
           <Input
             id="transform-prompt-role"
             value={role}
-            onChange={(_, data) => setRole(data.value)}
+            onChange={(e) => setRole(e.target.value)}
             placeholder={t("e.g. You are a helpful assistant.")}
             dir="auto"
           />
         </div>
-        <div className={styles.field}>
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-instructions">{t("Model Instructions (one per line)")}</Label>
           <textarea
             id="transform-prompt-instructions"
-            className={styles.textarea}
             dir="auto"
             value={instructionsText}
             onChange={(e) => setInstructionsText(e.target.value)}
             placeholder={t("- First instruction\n- Second instruction")}
             aria-label={t("Instructions")}
+            className="min-h-[100px] resize-y p-2 rounded-md border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
           />
         </div>
-        <div className={styles.field}>
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-output-desc">{t("Output description (e.g. transformed, summarised, etc.)")}</Label>
           <Input
             id="transform-prompt-output-desc"
             value={outputDescription}
-            onChange={(_, data) => setOutputDescription(data.value)}
+            onChange={(e) => setOutputDescription(e.target.value)}
             placeholder={t("transformed")}
             dir="auto"
           />
         </div>
-        <div className={styles.field}>
+        <div className="flex flex-col gap-1.5 mb-1">
           <Label htmlFor="transform-prompt-temperature">
             {flipUiArrowsForRtl(t("Temperature (0.0 → 1.0)"), isRtl)}
           </Label>
-          <div className={styles.temperatureSliderGrid}>
-            <div className={styles.temperatureValue}>{temperature.toFixed(2)}</div>
-            <span className={styles.temperatureLabelLeft}>
-              {t("Deterministic/Consistent output")}
-            </span>
-            <Slider
+          <div className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_auto] items-center gap-x-3 gap-y-1">
+            <div className="col-start-2 row-start-1 text-sm font-semibold text-center">{temperature.toFixed(2)}</div>
+            <span className="col-start-1 row-start-2 text-xs text-muted-foreground whitespace-nowrap">{t("Deterministic/Consistent output")}</span>
+            <input
               id="transform-prompt-temperature"
-              className={styles.temperatureSlider}
+              type="range"
+              className="col-start-2 row-start-2 w-full min-w-0 accent-primary"
               min={0}
               max={1}
               step={0.05}
               value={temperature}
-              onChange={(_, data) => setTemperature(Number(Number(data.value).toFixed(2)))}
+              onChange={(e) => setTemperature(Number(Number(e.target.value).toFixed(2)))}
               aria-label={t("Temperature")}
             />
-            <span className={styles.temperatureLabelRight}>
-              {t("Creative/Varied output")}
-            </span>
+            <span className="col-start-3 row-start-2 text-xs text-muted-foreground whitespace-nowrap">{t("Creative/Varied output")}</span>
           </div>
         </div>
-        <div className={styles.field}>
+        <div className="flex items-center gap-2 mb-1">
           <Checkbox
-            id="transform-prompt-ask-target-lang"
-            label={t("Ask for target language")}
-            checked={askTargetLanguage}
-            onChange={(_, data) => setAskTargetLanguage(!!data.checked)}
-            aria-label={t("Ask for target language when running this prompt")}
+            id="transform-prompt-ask-from-lang"
+            checked={askFromLanguage}
+            onCheckedChange={(checked) => setAskFromLanguage(!!checked)}
+            aria-label={t("Ask for From language when running this prompt")}
           />
+          <Label htmlFor="transform-prompt-ask-from-lang" className="cursor-pointer">
+            {t("Ask for From language")}
+          </Label>
         </div>
       </div>
-      <div className={styles.actionsRow}>
-        <div className={styles.actions}>
-          <Button appearance="primary" icon={<Save size={16} />} onClick={handleSave}>
+      <div className="flex justify-between items-center w-full flex-wrap gap-2 shrink-0">
+        <div className="flex gap-2 flex-wrap shrink-0">
+          <Button size="sm" onClick={handleSave}>
+            <Save size={14} />
             {t("Save")}
           </Button>
-          <Button appearance="secondary" icon={<X size={16} />} onClick={onBackToRun}>
+          <Button variant="outline" size="sm" onClick={onBackToRun}>
+            <X size={14} />
             {t("Cancel")}
           </Button>
           {initialPrompt?.id != null && (
-            <Button appearance="secondary" icon={<Trash2 size={16} />} onClick={handleDelete}>
+            <Button variant="outline" size="sm" onClick={handleDelete}>
+              <Trash2 size={14} />
               {t("Delete")}
             </Button>
           )}
         </div>
-        <div className={styles.actions}>
+        <div className="flex gap-2 flex-wrap shrink-0">
           {canShowImproveButton && (
-            <Button
-              appearance="secondary"
-              icon={<Bot size={16} />}
-              onClick={openImproveModal}
-            >
+            <Button variant="outline" size="sm" onClick={openImproveModal}>
+              <Bot size={14} />
               {t("Improve prompt")}
             </Button>
           )}
           {canShowTranslateButton && (
-            <Button
-              appearance="secondary"
-              icon={<Languages size={16} />}
-              onClick={openTranslateModal}
-            >
+            <Button variant="outline" size="sm" onClick={openTranslateModal}>
+              <Languages size={14} />
               {t("Translate prompt")}
             </Button>
           )}

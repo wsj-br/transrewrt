@@ -1,22 +1,23 @@
-import { mergeClasses, tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import LanguageSelector from "../LanguageSelector";
 import TransformPromptSelector from "../TransformPromptSelector";
 import TransformPromptEditor from "../TransformPromptEditor";
 import TransformTestPanel from "../TransformTestPanel";
+import { Button } from "@/components/ui/button";
 import { Zap, Square } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { workspaceCtaRowClassName } from "./workspaceLayoutClasses";
+import { workspaceOutputFooterWithModel } from "./workspaceOutputFooter";
 
-/** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str) {
   return String(str).replace(/[⇧↵]/g, "").trim();
 }
 
 /**
- * Returns { leftPanel, rightPanel } for transform mode (run view and edit view).
- * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: transform prompts, edit state, test panel, language selector, etc.
+ * Returns { leftPanel, rightPanel } for transform mode.
  */
 export function getTransformPanels({ common, input, output, options }) {
-  const { t, styles, settings, isProcessing, handleRunAction, outputMeta, lastRunModel } = common;
+  const { t, settings, isProcessing, handleRunAction, outputMeta, lastRunModel } = common;
   const {
     transformEditMode,
     editingPrompt,
@@ -24,8 +25,8 @@ export function getTransformPanels({ common, input, output, options }) {
     transformPromptId,
     selectedTransformPrompt,
     showTransformLangSelector,
-    transformTargetLang,
-    setTransformTargetLang,
+    transformFromLang,
+    setTransformFromLang,
     translate,
     translatePromptFields,
     improvePromptConfig,
@@ -53,67 +54,65 @@ export function getTransformPanels({ common, input, output, options }) {
 
   if (transformEditMode) {
     const leftPanel = (
-      <div className={styles.panelStack}>
-        <div className={styles.panelFill}>
-          <TransformPromptEditor
-            initialPrompt={editingPrompt}
-            onSave={handleTransformSave}
-            onDelete={handleTransformDeleteRequest}
-            onBackToRun={handleTransformBackToRun}
-            onDraftChange={setTransformEditorDraft}
-            translate={translate}
-            translatePromptFields={translatePromptFields}
-            improvePromptConfig={improvePromptConfig}
-            generatePromptConfig={generatePromptConfig}
-            model={model}
-            models={models}
-          />
-        </div>
+      <div className="flex flex-col h-full">
+        <TransformPromptEditor
+          initialPrompt={editingPrompt}
+          onSave={handleTransformSave}
+          onDelete={handleTransformDeleteRequest}
+          onBackToRun={handleTransformBackToRun}
+          onDraftChange={setTransformEditorDraft}
+          translate={translate}
+          translatePromptFields={translatePromptFields}
+          improvePromptConfig={improvePromptConfig}
+          generatePromptConfig={generatePromptConfig}
+          model={model}
+          models={models}
+        />
       </div>
     );
     const rightPanel = (
-      <div className={styles.panelStack}>
-        <div className={styles.panelFill}>
-          <TransformTestPanel
-            testInput={transformTestInput}
-            onTestInputChange={setTransformTestInput}
-            onTest={handleTransformTest}
-            output={transformTestOutput}
-            outputMeta={transformTestMeta}
-            isTesting={transformTestRunning}
-            onCopy={() => navigator.clipboard.writeText(transformTestOutput)}
-            fontFamily={settings?.font_family}
-            fontSize={settings?.font_size}
-          />
-        </div>
+      <div className="flex flex-col h-full">
+        <TransformTestPanel
+          testInput={transformTestInput}
+          onTestInputChange={setTransformTestInput}
+          onTest={handleTransformTest}
+          output={transformTestOutput}
+          outputMeta={transformTestMeta}
+          isTesting={transformTestRunning}
+          onCopy={() => navigator.clipboard.writeText(transformTestOutput)}
+          fontFamily={settings?.font_family}
+          fontSize={settings?.font_size}
+        />
       </div>
     );
     return { leftPanel, rightPanel };
   }
 
+  const shortcutLabel =
+    settings?.enter_behavior === "Shift-Execute"
+      ? `(${stripKeySymbols(t("⇧ SHIFT"))}+${stripKeySymbols(t("ENTER ↵"))})`
+      : `(${stripKeySymbols(t("ENTER ↵"))})`;
+
   const leftPanel = (
-    <div className={styles.panelStack}>
-      <div className={mergeClasses(styles.panelControls, styles.transformPanelControlsRow)}>
-        <div className={styles.transformPanelControlsLeft}>
-          <TransformPromptSelector
-            prompts={transformPrompts}
-            selectedId={transformPromptId}
-            selectedName={selectedTransformPrompt?.name}
-            onSelect={handleTransformPromptSelect}
-            onNew={handleTransformNewPrompt}
-            onEdit={handleTransformEditPrompt}
-            onDuplicate={handleTransformDuplicate}
-            onOpenExportImport={handleOpenExportImportPrompts}
-            disabled={isProcessing}
-            editActive={!!editingPrompt}
-            showLoadSampleButton={transformPrompts.length === 0}
-            onLoadSamplePrompts={() => setShowLoadSampleConfirm(true)}
-            loadSampleLoading={loadSampleLoading}
-            loadSampleButtonClassName={styles.loadSampleButton}
-          />
-        </div>
+    <div className="flex flex-col h-full gap-3">
+      <div className="flex items-center min-h-10">
+        <TransformPromptSelector
+          prompts={transformPrompts}
+          selectedId={transformPromptId}
+          selectedName={selectedTransformPrompt?.name}
+          onSelect={handleTransformPromptSelect}
+          onNew={handleTransformNewPrompt}
+          onEdit={handleTransformEditPrompt}
+          onDuplicate={handleTransformDuplicate}
+          onOpenExportImport={handleOpenExportImportPrompts}
+          disabled={isProcessing}
+          editActive={!!editingPrompt}
+          showLoadSampleButton={transformPrompts.length === 0}
+          onLoadSamplePrompts={() => setShowLoadSampleConfirm(true)}
+          loadSampleLoading={loadSampleLoading}
+        />
       </div>
-      <div className={styles.panelFill}>
+      <div className="flex-1 min-h-0">
         <TextPanel
           title={t("Input")}
           text={input.text}
@@ -128,19 +127,16 @@ export function getTransformPanels({ common, input, output, options }) {
           fontSize={settings?.font_size}
         />
       </div>
-      <div className={styles.runButtonContainer}>
+      <div className={workspaceCtaRowClassName}>
         <Button
-          appearance="primary"
           onClick={handleRunAction}
-          className={styles.runButton}
-          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
           disabled={!selectedTransformPrompt}
+          className="min-w-44 h-11 bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 text-white border-0 gap-2"
         >
+          {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           {isProcessing ? t("Stop Transform") : t("Transform")}
           {!isProcessing && (
-            <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? `(${stripKeySymbols(t('⇧ SHIFT'))}+${stripKeySymbols(t('ENTER ↵'))})` : `(${stripKeySymbols(t('ENTER ↵'))})`}
-            </span>
+            <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
           )}
         </Button>
       </div>
@@ -148,20 +144,21 @@ export function getTransformPanels({ common, input, output, options }) {
   );
 
   const rightPanel = (
-    <div className={styles.panelStack}>
-      <div className={styles.panelControls}>
+    <div className="flex flex-col h-full gap-3">
+      <div className="flex items-center min-h-10">
         {showTransformLangSelector && (
           <LanguageSelector
-            label={t("Target:")}
-            value={transformTargetLang || "auto"}
-            onChange={(v) => setTransformTargetLang(v === "auto" ? "" : v)}
-            targetListSameAsSource={true}
-            allowNone={true}
-            iconColor={tokens.colorStatusWarningForeground3}
+            label={t("From:")}
+            value={transformFromLang || "Detect Language"}
+            onChange={setTransformFromLang}
+            detectLanguage={true}
+            hideLabel
+            iconClassName="text-purple-400"
+            iconStrokeWidth={1.6}
           />
         )}
       </div>
-      <div className={styles.panelFill}>
+      <div className="flex-1 min-h-0">
         <TextPanel
           title={t("Output")}
           text={output.text}
@@ -169,20 +166,14 @@ export function getTransformPanels({ common, input, output, options }) {
           placeholder={t("Output will appear here...")}
           readOnly={true}
           headerMeta={outputMeta}
-          footerStats={
-            <>
-              {output.getStats()}
-              <br />
-              {t("Model:")} {lastRunModel || t("N/A")}
-            </>
-          }
+          footerStats={workspaceOutputFooterWithModel(output.getStats(), lastRunModel, t)}
           footerAlign="left"
           onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
         />
       </div>
-      <div className={styles.runButtonContainer} aria-hidden="true" />
+      <div className={workspaceCtaRowClassName} aria-hidden="true" />
     </div>
   );
 

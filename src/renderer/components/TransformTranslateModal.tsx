@@ -1,67 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Spinner } from "@fluentui/react-components";
 import PropTypes from "prop-types";
+import { Loader2 } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
 import ModelSelector from "./ModelSelector";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    width: "100%",
-    maxWidth: "min(480px, 90vw)",
-    boxSizing: "border-box",
-  },
-  title: {
-    margin: "0 0 32px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-  body: {
-    margin: "0 0 20px 0",
-    minWidth: 0,
-  },
-  error: {
-    marginTop: "12px",
-    fontSize: "14px",
-    color: tokens.colorPaletteRedForeground1,
-    lineHeight: 1.4,
-    minWidth: 0,
-    maxWidth: "100%",
-    overflowWrap: "break-word",
-    wordBreak: "break-word",
-  },
-  actions: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-    marginTop: "24px",
-  },
-  modelRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalM,
-    marginTop: "16px",
-  },
-  modelLabel: {
-    fontSize: "14px",
-    fontWeight: 500,
-    flexShrink: 0,
-  },
-});
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 const TransformTranslateModal = ({
   open,
@@ -74,7 +18,6 @@ const TransformTranslateModal = ({
   loading = false,
   error = null,
 }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState(model || "");
 
@@ -84,45 +27,33 @@ const TransformTranslateModal = ({
 
   if (!open) return null;
 
-  const handleConfirm = () => {
-    onConfirm(selectedModel);
-  };
+  const handleConfirm = () => onConfirm(selectedModel);
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h2 className={styles.title}>{t("Translate prompt fields")}</h2>
-        <div className={styles.body}>
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
+      <div className="bg-card border border-border rounded-lg shadow-2xl p-6 w-full max-w-md">
+        <h2 className="text-lg font-semibold mb-5">{t("Translate prompt fields")}</h2>
+        <div className="mb-5 flex flex-col gap-4">
           <LanguageSelector
             label={t("Target language:")}
             value={targetLang}
             onChange={onTargetLangChange}
             targetListSameAsSource={true}
+            iconClassName="text-emerald-500"
+            iconStrokeWidth={1.6}
           />
           {models.length > 0 && (
-            <div className={styles.modelRow}>
-              <label className={styles.modelLabel}>
-                {t("Model to translate")}
-              </label>
-              <ModelSelector
-                models={models}
-                currentModel={selectedModel}
-                onModelChange={setSelectedModel}
-              />
+            <div className="flex items-center gap-3">
+              <Label className="shrink-0">{t("Model to translate")}</Label>
+              <ModelSelector models={models} currentModel={selectedModel} onModelChange={setSelectedModel} />
             </div>
           )}
-          {error && <div className={styles.error}>{error}</div>}
+          {error && <p className="text-sm text-destructive break-words">{error}</p>}
         </div>
-        <div className={styles.actions}>
-          <Button appearance="secondary" onClick={onCancel}>
-            {t("Cancel")}
-          </Button>
-          <Button
-            appearance="primary"
-            onClick={handleConfirm}
-            disabled={loading || !targetLang || !selectedModel}
-            icon={loading ? <Spinner size="tiny" /> : undefined}
-          >
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={onCancel}>{t("Cancel")}</Button>
+          <Button onClick={handleConfirm} disabled={loading || !targetLang || !selectedModel}>
+            {loading && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             {loading ? t("Translating…") : t("Translate")}
           </Button>
         </div>

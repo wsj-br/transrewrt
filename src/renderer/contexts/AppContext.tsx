@@ -458,12 +458,12 @@ export const AppProvider = ({ children }) => {
   };
 
   // Rewrite text
-  const rewrite = async (text, mode, model, signal = null) => {
+  const rewrite = async (text, mode, model, signal = null, sourceLang = null) => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await apiService.rewrite(text, mode, model, signal);
+      const result = await apiService.rewrite(text, mode, model, signal, sourceLang);
 
       result.model_used = result.model || model;
       await applyCostToResult(setSetting, result);
@@ -477,7 +477,7 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
 
-      logApiCall("rewrite", result, { rewrite_mode: mode || "" });
+      logApiCall("rewrite", result, { rewrite_mode: mode || "", source_lang: sourceLang || "" });
 
       const rewriteInputStats = getTextStats(typeof text === "string" ? text : "");
       const rewriteOutputStats = getTextStats(result.content ?? "");
@@ -485,7 +485,7 @@ export const AppProvider = ({ children }) => {
         timestamp: new Date().toISOString(),
         type: "rewrite",
         model: result.model_used || model,
-        source_lang: null,
+        source_lang: sourceLang || null,
         target_lang: null,
         rewrite_mode: mode || null,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
@@ -533,12 +533,12 @@ export const AppProvider = ({ children }) => {
   };
 
   // Transform text with custom prompt (cost tracking: same as translate/rewrite - updates total_cost for Settings > Cost tracking)
-  const transform = async (text, promptConfig, model, targetLang = null, signal = null) => {
+  const transform = async (text, promptConfig, model, signal = null, statedFromLang = null) => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await apiService.transform(text, promptConfig, model, targetLang, signal);
+      const result = await apiService.transform(text, promptConfig, model, signal, statedFromLang);
 
       result.model_used = result.model || model;
       await applyCostToResult(setSetting, result);
@@ -554,18 +554,18 @@ export const AppProvider = ({ children }) => {
 
       logApiCall("transform", result, {
         transform_prompt: promptConfig?.name ?? "",
-        target_lang: targetLang ?? null,
+        source_lang: statedFromLang || "",
       });
 
-      // Log to cost DB / server: include selected target language for this run
+      // Log to cost DB / server: include From language used in the system prompt when set
       const transformInputStats = getTextStats(typeof text === "string" ? text : "");
       const transformOutputStats = getTextStats(result.content ?? "");
       const transformPayload = {
         timestamp: new Date().toISOString(),
         type: "transform",
         model: result.model_used || model,
-        source_lang: null,
-        target_lang: targetLang ?? null,
+        source_lang: statedFromLang || null,
+        target_lang: null,
         rewrite_mode: null,
         transform_prompt: promptConfig?.name ?? null,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),

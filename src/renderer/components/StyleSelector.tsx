@@ -1,42 +1,13 @@
-import { makeStyles, tokens, Dropdown, Option } from '@fluentui/react-components';
 import { Palette } from 'lucide-react';
 import PropTypes from 'prop-types';
-
-const useStyles = makeStyles({
-  styleSelector: {
-    margin: `0 ${tokens.spacingHorizontalXS} ${tokens.spacingVerticalS} ${tokens.spacingHorizontalXS}`,
-    display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalS,
-  },
-  label: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    minWidth: "45px",
-  },
-  selectContainer: {
-    flex: 1,
-    position: "relative",
-  },
-  select: {
-    width: "100%",
-    "& .fui-Dropdown__trigger": {
-      borderRadius: "0 !important",
-      border: "none !important",
-      borderBottom: `2px solid ${tokens.colorNeutralStroke1} !important`,
-      backgroundColor: "transparent !important",
-      paddingInlineStart: "0 !important",
-      paddingInlineEnd: "0 !important",
-    },
-    "& .fui-Dropdown__trigger:hover": {
-      borderBottom: `2px solid ${tokens.colorNeutralForeground1} !important`,
-    },
-    "& .fui-Dropdown__trigger:focus-visible": {
-      borderBottom: `2px solid ${tokens.colorBrandBackground} !important`,
-    },
-  },
-});
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const StyleSelector = ({
   label,
@@ -44,31 +15,38 @@ const StyleSelector = ({
   onChange,
   options = [],
   iconColor,
+  className,
+  hugSelectWidth = false,
 }) => {
-  const styleStyles = useStyles();
-
   return (
-    <div className={styleStyles.styleSelector}>
-      <label className={styleStyles.label}>
-        <Palette size={20} color={iconColor} />
+    <div className={cn("flex items-center gap-2 mx-1 mb-1", className)}>
+      <label className="flex items-center gap-1.5 min-w-[45px] text-sm">
+        <Palette
+          className={cn("h-5 w-5 shrink-0", !iconColor && "text-blue-400")}
+          style={iconColor ? { color: iconColor } : undefined}
+          strokeWidth={1.6}
+        />
         {label}
       </label>
-      <div className={styleStyles.selectContainer}>
-        <Dropdown
-          appearance="underline"
-          value={options.find((o) => o.value === value)?.label ?? value ?? ""}
-          selectedOptions={value ? [value] : []}
-          onOptionSelect={(e, data) => onChange(data.optionValue)}
-          className={styleStyles.select}
-          aria-label={label}
+      <Select value={value ?? ""} onValueChange={onChange}>
+        <SelectTrigger
+          className={cn(
+            "border-0 border-b-2 rounded-none bg-transparent shadow-none px-0 focus:ring-0",
+            hugSelectWidth
+              ? "h-9 w-fit max-w-[min(92vw,32rem)] shrink-0"
+              : "flex-1",
+          )}
         >
+          <SelectValue placeholder={label} />
+        </SelectTrigger>
+        <SelectContent>
           {options.map((opt) => (
-            <Option key={opt.value} value={opt.value} text={opt.label}>
+            <SelectItem key={opt.value} value={opt.value}>
               {opt.label}
-            </Option>
+            </SelectItem>
           ))}
-        </Dropdown>
-      </div>
+        </SelectContent>
+      </Select>
     </div>
   );
 };
@@ -79,6 +57,8 @@ StyleSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
   iconColor: PropTypes.string,
+  className: PropTypes.string,
+  hugSelectWidth: PropTypes.bool,
 };
 
 export default StyleSelector;

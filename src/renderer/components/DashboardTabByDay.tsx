@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, Dropdown, Option, Text, tokens } from "@fluentui/react-components";
-import { Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
@@ -23,6 +23,7 @@ import {
   rowsToCsvWithLabels,
   triggerDownload,
 } from "../utils/misc/exportUtils";
+import DashboardExportToolbar from "./dashboard/DashboardExportToolbar";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME_BY_DAY = "transrewrt-byday";
@@ -59,7 +60,7 @@ export default function DashboardTabByDay({
   const locale = i18n.language || "en-GB";
   const [exportLoading, setExportLoading] = useState(false);
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
-  const tickStyle = { fill: tokens.colorNeutralForeground3 };
+  const tickStyle = { fill: "#9ca3af" };
 
   const exportColumnsByDay = useMemo(
     () => [
@@ -169,9 +170,9 @@ export default function DashboardTabByDay({
       <div className={styles.tabTableContent}>
         {byDay.length > 0 && (
           <div className={styles.chartContainer}>
-            <Text as="h4" size={400} style={{ marginBottom: "8px" }}>
+            <h4 className="text-base font-semibold mb-2">
               {t("Daily call volume")}
-            </Text>
+            </h4>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
                 data={[...byDay].reverse().map((row) => ({
@@ -191,8 +192,8 @@ export default function DashboardTabByDay({
                 <YAxis style={axisStyle} tick={tickStyle} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: tokens.colorNeutralBackground1,
-                    border: `1px solid ${tokens.colorNeutralStroke1}`,
+                    backgroundColor: "#1e1e2e",
+                    border: "1px solid rgba(255,255,255,0.12)",
                   }}
                   formatter={(value) => [
                     formatCount(value, locale),
@@ -211,30 +212,31 @@ export default function DashboardTabByDay({
             </ResponsiveContainer>
           </div>
         )}
-        <Text as="h4" size={400} style={{ marginTop: "16px", marginBottom: "4px" }}>
+        <h4 className="text-base font-semibold mb-2">
           {t("By day (paginated)")}
-        </Text>
+        </h4>
         <div className={styles.paginationRow}>
-          <Label>{t("Rows per page")}</Label>
-          <Dropdown
+          <label className="text-sm">{t("Rows per page")}</label>
+          <Select
             value={String(byDayPageSize)}
-            selectedOptions={[String(byDayPageSize)]}
-            onOptionSelect={(_, data) => {
-              const v = Number(data.optionValue);
-              if (PAGE_SIZES.includes(v)) {
-                setByDayPageSize(v);
+            onValueChange={(v) => {
+              const n = Number(v);
+              if (PAGE_SIZES.includes(n)) {
+                setByDayPageSize(n);
                 setByDayPage(1);
               }
             }}
-            style={{ minWidth: "80px" }}
           >
-            {PAGE_SIZES.map((n) => (
-              <Option key={n} value={String(n)}>
-                {n}
-              </Option>
-            ))}
-          </Dropdown>
-          <span style={{ color: tokens.colorNeutralForeground2 }}>
+            <SelectTrigger className="w-[80px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {PAGE_SIZES.map((n) => (
+                <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <span className="text-[#d1d5db]">
             {t("{{count}} day(s) total · Page {{page}} of {{total}}", {
               count: byDayPaginatedTotal,
               page: byDayPage,
@@ -245,16 +247,16 @@ export default function DashboardTabByDay({
             })}
           </span>
           <Button
-            size="small"
-            appearance="secondary"
+            variant="outline"
+            size="sm"
             disabled={byDayPage <= 1}
             onClick={() => setByDayPage((p) => Math.max(1, p - 1))}
           >
             {t("Prev")}
           </Button>
           <Button
-            size="small"
-            appearance="secondary"
+            variant="outline"
+            size="sm"
             disabled={
               byDayPage >= Math.ceil(byDayPaginatedTotal / byDayPageSize)
             }
@@ -270,37 +272,7 @@ export default function DashboardTabByDay({
             {t("Next")}
           </Button>
           <div className={styles.paginationSpacer} />
-          <div className={styles.downloadBlock}>
-            <Download size={16} aria-hidden />
-            <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("json")}
-            >
-              {t("JSON")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("csv")}
-            >
-              {t("CSV")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("xlsx")}
-            >
-              {t("XLSX")}
-            </Button>
-          </div>
+          <DashboardExportToolbar exportLoading={exportLoading} onExport={handleExport} />
         </div>
         {byDayPaginatedLoading ? (
           <p>{t("Loading…")}</p>

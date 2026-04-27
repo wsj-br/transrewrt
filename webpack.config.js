@@ -15,7 +15,9 @@ module.exports = (env, argv) => {
   // Use "web" in dev so the bundle served by webpack-dev-server has no runtime require() calls
   // (renderer has nodeIntegration: false). Production already loads from file with target "web".
   target: "web",
-  entry: "./src/renderer/index.js",
+  entry: "./src/renderer/index.tsx",
+  // TypeScript: webpack can resolve .ts/.tsx via babel-loader (preset-typescript)
+
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
@@ -25,7 +27,7 @@ module.exports = (env, argv) => {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -61,10 +63,17 @@ module.exports = (env, argv) => {
         },
       },
       {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[name][hash][ext][query]",
+        },
+      },
+      {
         test: /\.css$/,
         use: isDevelopment
-          ? ["style-loader", "css-loader"]
-          : [MiniCssExtractPlugin.loader, "css-loader"],
+          ? ["style-loader", "css-loader", "postcss-loader"]
+          : [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
     ],
   },
@@ -101,7 +110,10 @@ module.exports = (env, argv) => {
     }),
   ].filter(Boolean),
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: {
+      "@": path.resolve(__dirname, "src/renderer"),
+    },
     // Bundle Node-style modules for Electron renderer / dev server so require() is not used at runtime
     fallback: {
       events: require.resolve("events/"),

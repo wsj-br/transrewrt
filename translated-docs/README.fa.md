@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:58.596Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 2884acaf6ad14700c49fb45218c88034c13c229575fe804916d7e0e9a6c8adaa
+translation_last_updated: '2026-04-27T01:22:39.360Z'
+source_file_mtime: '2026-04-27T01:21:01.149Z'
+source_file_hash: 942a51af0a78a5fcd52c77fbcbee8bd5a9cde73b24064aa3becd805728435682
 translation_language: fa
 source_file_path: README.md
 translation_models:
@@ -21,21 +21,21 @@ translation_models:
 
 ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی به سبک‌های مختلف و تبدیل با پرسش‌های سفارشی — با استفاده از ارائه‌دهندگان متعدد هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI و Ollama محلی). این ابزار به صورت برنامه دسکتاپ (الکترون) یا برنامه تحت وب قابل اجرا به صورت خودمیزبانی (Docker) اجرا می‌شود.
 
-- **ترجمه** - بین ده‌ها زبان، با تشخیص خودکار زبان منبع
+- **ترجمه** - بین ده‌ها زبان، با تشخیص خودکار متن اصلی
 - **بازنویسی** - اصلاح دستور زبان، بهبود وضوح، رسمی/غیررسمی، کوتاه‌کردن، گسترش، تخصصی
-- **تبدیل** - پرسش‌های هوش مصنوعی سفارشی؛ ایجاد و مدیریت پرسش‌ها، با امکان تعیین زبان هدف برای هر پرسش
-- **تاریخچه** - تاریخچه کامل اجرا با متن ورودی/خروجی، فیلتر کردن و صادرات
+- **تبدیل** - دستورات سفارشی هوش مصنوعی؛ ایجاد و مدیریت دستورات، زبان مقصد اختیاری برای هر دستور
+- **تاریخچه** - تاریخچه کامل اجرا با متن ورودی/خروجی، فیلتر کردن و صدور داده
 - **مدل‌ها و هزینه** - انتخاب مدل از هر ارائه‌دهنده پیکربندی‌شده؛ داشبوردهای هزینه و مصرف با سیاهه، خلاصه‌ها بر اساس مدل/عملیات/روز
-- **رابط کاربری** - رابط چندزبانه (بیش از 30 زبان، پشتیبانی از زبان‌های راست‌به‌چپ)، فونت‌ها، ...
-- **حالت وب** - پشتیبانی از چند کاربر با نقش‌های مدیریتی
+- **رابط کاربری** - رابط چندزبانه (بیش از ۳۰ زبان، پشتیبانی از زبان‌های راست‌به‌چپ)، قلم‌ها، ...
+- **حالت وب** - پشتیبانی چندکاربره با نقش‌های مدیریتی
 - **دسکتاپ** - برنامه الکترون برای ویندوز و لینوکس
-- **خودمیزبانی** - تصویر داکر برای amd64 و arm64 (آماده برای Raspberry Pi)
+- **میزبانی خودکار** - تصویر داکر برای amd64 و arm64 (آماده برای Raspberry Pi)
 
 پس از نصب، برای مرور کامل تمام ویژگی‌ها به **[راهنمای کاربر](USER-GUIDE.fa.md)** مراجعه کنید.
 
 <small>**خواندن به زبان‌های دیگر:** </small>
 
-<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [jv](./README.jv.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English](../README.md) · [Português (BR)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -52,7 +52,7 @@ translation_models:
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [تصاویر صفحه](#screenshots)
+- [تصاویر](#screenshots)
 - [شروع سریع](#quick-start)
 - [دریافت کلید API OpenRouter](#getting-an-openrouter-api-key)
 - [پیکربندی و محیط](#configuration-and-environment)
@@ -279,31 +279,31 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 **مکان‌های فایل پیکربندی**
 
-| استقرار | مکان پیکربندی |
+| استقرار         | محل پیکربندی                                   |
 | ------------------ | ------------------------------------------------- |
-| Electron (ویندوز) | `%APPDATA%\transrewrt\` |
-| Electron (لینوکس) | `~/.config/transrewrt/` |
-| وب / داکر | `/app/data/config.json` (برای حفظ داده‌ها از volume استفاده کنید) |
+| الکترون (ویندوز) | `%APPDATA%\transrewrt\`                           |
+| الکترون (لینوکس)   | `~/.config/transrewrt/`                           |
+| وب / داکر       | `/app/data/config.json` (از volume برای حفظ داده استفاده کنید) |
 
 <br/>
 
 **متغیرهای محیطی** (فقط برای وب/داکر؛ الکترون از فایل پیکربندی محلی استفاده می‌کند)
 
-| متغیر | توضیحات |
+| متغیر             | توضیحات                                                                  |
 |----------------------|------------------------------------------------------------------------------|
-| `PORT` | پورت گوش دادن سرور (پیش‌فرض `5000`) |
-| `CONFIG_PATH` | مسیر فایل پیکربندی (پیش‌فرض `/app/data/config.json)                 |
-| `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
-| `OPENAI_API_KEY`     | OpenAI API key                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API key                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API key                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API key                                                             |
-| `GROQ_API_KEY`       | Groq API key                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API key                                                              |
-| `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY` | کلید API xAI |
+| `PORT`               | پورت گوشدهی سرور (پیش‌فرض `5000`)                                  |
+| `CONFIG_PATH`        | مسیر فایل پیکربندی (پیش‌فرض `/app/data/config.json`)                |
+| `TZ`                 | منطقه زمانی برای زمان سمت سرور (ثبت رویدادها و غیره) (پیش‌فرض `Europe/London`) |
+| `OPENROUTER_API_KEY` | کلید API OpenRouter                                                           |
+| `OPENAI_API_KEY`     | کلید API OpenAI                                                               |
+| `CEREBRAS_API_KEY`   | کلید API Cerebras                                                             |
+| `ANTHROPIC_API_KEY`  | کلید API Anthropic                                                            |
+| `GOOGLE_API_KEY`     | کلید API Google Gemini                                                        |
+| `DEEPSEEK_API_KEY`   | کلید API DeepSeek                                                             |
+| `GROQ_API_KEY`       | کلید API Groq                                                                 |
+| `MISTRAL_API_KEY`    | کلید API Mistral                                                              |
+| `OLLAMA_URL`         | آدرس پایه Ollama (مثلاً `http://host.docker.internal:11434`)                   |
+| `XAI_API_KEY`        | کلید API xAI                                                                  |
 
 فقط ارائه‌دهندگانی را پیکربندی کنید که از آنها استفاده می‌کنید. شناسه‌های مدل دارای فضای نام هستند (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, و غیره).
 

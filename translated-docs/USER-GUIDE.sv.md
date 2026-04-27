@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:30:33.243Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:23:01.567Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: sv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -35,7 +35,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 
 <small>**Läs på andra språk:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -52,25 +52,25 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 
 - [Innan du börjar](#before-you-start)
   - [Så här får du en gratis OpenRouter API-nyckel (skrivbordsapp)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Kom igång](#getting-started)
+- [Komma igång](#getting-started)
 - [Huvuddelar i fönstret](#main-parts-of-the-window)
   - [Sidofält](#sidebar)
   - [Verktygsfält](#toolbar)
-  - [Inmatnings- och utmatningsfält](#input-and-output-panels)
+  - [Inmatnings- och utmatningsfönster](#input-and-output-panels)
 - [Översätt](#translate)
   - [Översätt text](#translate-text)
   - [Språkval](#language-selection)
   - [Användbara översättningsinställningar](#helpful-translation-settings)
 - [Omskriv](#rewrite)
-- [Omvandla](#transform)
-  - [Kör en befintlig fråga](#run-an-existing-prompt)
-  - [Om du inte har några frågor än](#if-you-have-no-prompts-yet)
-  - [Skapa en fråga snabbt](#create-a-prompt-quickly)
-  - [Redigera en fråga](#edit-a-prompt)
-  - [Testa en fråga innan du använder den](#test-a-prompt-before-using-it)
-- [Översiktspanel](#dashboard)
+- [Transformera](#transform)
+  - [Kör en befintlig prompt](#run-an-existing-prompt)
+  - [Om du inte har några prompts än](#if-you-have-no-prompts-yet)
+  - [Skapa en prompt snabbt](#create-a-prompt-quickly)
+  - [Redigera en prompt](#edit-a-prompt)
+  - [Testa en prompt innan du använder den](#test-a-prompt-before-using-it)
+- [Instrumentpanel](#dashboard)
   - [Filtrera data](#filter-the-data)
-  - [Flikar i översiktspaneln](#dashboard-tabs)
+  - [Flikar i instrumentpanelen](#dashboard-tabs)
   - [Exportera data](#export-data)
   - [Ta bort lagrade poster för en modell](#delete-stored-records-for-a-model)
 - [Historik](#history)
@@ -80,26 +80,26 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Allmänna inställningar](#general-settings)
   - [Modeller](#models)
   - [Språk](#languages)
-  - [Kostnadsövervakning](#cost-tracking)
-  - [Omvandlingspåminnelser](#transform-prompts)
+  - [Kostnadsöversikt](#cost-tracking)
+  - [Transformera prompts](#transform-prompts)
   - [Användare](#users)
   - [API-konfiguration](#api-config)
   - [Om](#about)
 - [Vanliga problem](#common-issues)
-  - [Appen översätter, omskriver eller omvandlar inte text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Appen översätter, omskriver eller transformerar inte text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Modellistan är tom](#the-model-list-is-empty)
   - [Resultatet är för långsamt eller för dyrt](#the-result-is-too-slow-or-too-expensive)
   - [Gränssnittet är på fel språk](#the-interface-is-in-the-wrong-language)
   - [Texten är för liten eller svår att läsa](#the-text-is-too-small-or-hard-to-read)
-  - [Diagrammen i översiktspaneln är tomma](#dashboard-charts-are-empty)
-  - [Kostnad visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
+  - [Diagrammen i instrumentpanelen är tomma](#dashboard-charts-are-empty)
+  - [Kostnaden visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
   - [Total kostnad stämmer inte med leverantörens faktura](#total-cost-does-not-match-my-provider-bill)
   - [Historiksida saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
   - [Webbapp: omdirigeras till inloggningssidan oväntat](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbadministratör: glömt eller förlorat ett lösenord](#web-admin-forgot-or-lost-a-password)
-  - [Översiktspaneln visar ingen data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
-  - [Jag ändrade en fråga och förlorade ändringarna](#i-changed-a-prompt-and-lost-the-edits)
-- [Snabba tips](#quick-tips)
+  - [Webbadmin: glömt eller förlorat lösenord](#web-admin-forgot-or-lost-a-password)
+  - [Instrumentpanelen visar ingen data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
+  - [Jag ändrade en prompt och förlorade redigeringen](#i-changed-a-prompt-and-lost-the-edits)
+- [Snabbtips](#quick-tips)
 - [Ansvarsfriskrivning](#disclaimer)
 - [Licens](#license)
 
@@ -136,7 +136,7 @@ Om du använder skrivbordsappen, följ dessa steg:
 4. Klicka på knappen för att skapa en ny API-nyckel.
 5. Ge nyckeln ett namn så att du kan identifiera den senare.
 6. Kopiera den nya API-nyckeln.
-7. Gå tillbaka till Transrewrt och öppna **Inställningar** > **API-konfiguration**.
+7. Återgå till Transrewrt och öppna **Inställningar** > **API-konfiguration**.
 8. Klistra in nyckeln i **OpenRouter API-nyckel** (under **Inställningar** > **API-konfiguration**).
 9. Klicka på **Testa OpenRouter-nyckel** för att säkerställa att den fungerar.
 
@@ -148,12 +148,12 @@ Om du använder skrivbordsappen, följ dessa steg:
 Om detta är första gången du använder Transrewrt, följ denna ordning:
 
 1. Öppna appen.
-2. Välj ditt **Gränssnittsspråk** från globikonen om det behövs.
-3. Om du använder **skrivbordsappen**, öppna [**Inställningar** > **API-konfiguration**](#api-config), lägg till en API-nyckel för minst en leverantör (till exempel OpenRouter) och klicka på **Testa** för att verifiera att det fungerar.
+2. Välj ditt **gränssnittsspråk** från globikonen om det behövs.
+3. Om du använder **skrivbordsappen**, öppna [**Inställningar** > **API-konfiguration**](#api-config), lägg till en API-nyckel för minst en leverantör (till exempel OpenRouter) och klicka på **Testa** för att verifiera att den fungerar.
 4. Öppna [**Inställningar** > **Modeller**](#models) och lägg till en eller flera modeller i **Valda modeller**.
 5. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina mest använda språk ska visas först.
 6. Gå till **Översätt** och kör en enkel översättning för att bekräfta att allt fungerar.
-7. När det fungerar, prova **Omskriv** och sedan **Omvandla**.
+7. När det fungerar kan du prova **Omskriv** och sedan **Transformera**.
 
 Den här ordningen är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald modell.
 
@@ -285,10 +285,10 @@ Dina valda **toppspråk** visas överst i listan. Du kan ställa in dessa i [**I
 I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du ändra hur översättning fungerar:
 
 - **Automatisk översättning vid klistra in** kör en översättning så fort du klistrar in text.
-- **Kopiera resultat automatiskt till urklipp** kopierar resultatet automatiskt efter en lyckad körning.
+- **Kopiera resultat till urklipp automatiskt** kopierar resultatet automatiskt efter en lyckad körning.
 - **Översättning i realtid (medan du skriver)** kör översättningar medan du skriver.
-- **Timeout (ms)** styr hur länge appen väntar innan den kör en översättning i realtid.
-- **Enter** styr vad som händer när du trycker på `Enter`:
+- **Tidsgräns (ms)** styr hur länge appen väntar innan den kör en översättning i realtid.
+- **Retur** styr vad som händer när du trycker på `Enter`:
 
 <br/><br/>
 
@@ -303,12 +303,12 @@ Använd **Omskriv** när du vill förbättra formuleringen utan att ändra huvud
 
 Detta är användbart för:
 
-- åtgärda stavfel och grammatik (**Kontrollera stavning och grammatik**)
+- rätta stavning och grammatik (**Kontrollera stavning och grammatik**)
 - göra texten tydligare (**Förbättra tydlighet**)
-- flera distinkta omformuleringar i en körning (**Alternativa versioner**)
+- flera olika omskrivningar i en körning (**Alternativa versioner**)
 - göra texten mer formell eller mindre formell (**Formell** / **Informell**)
-- förkorta eller utöka text (**Kortast** / **Utöka**)
-- få texten att låta mer teknisk (**Gör teknisk**)
+- förkorta eller utöka text (**Förkorta** / **Utöka**)
+- göra texten mer teknisk (**Gör teknisk**)
 
 <br/>
 
@@ -333,7 +333,7 @@ Detta är den mest flexibla delen av appen. Du kan använda den för uppgifter s
 - omvandla rå text till ett polerat e-postmeddelande
 - extrahera nyckelpunkter
 - konvertera text till ett specifikt format
-- alla andra anpassade aktiviteter med indatamängden
+- någon annan anpassad aktivitet med inmatad text
 
 <br/>
 
@@ -341,8 +341,8 @@ Detta är den mest flexibla delen av appen. Du kan använda den för uppgifter s
 ### Kör en befintlig fråga
 
 1. Öppna **Omvandla**.
-2. Välj en fråga från frågelistan.
-3. Om en **Mål**språksruta visas, välj ett språk om du vill.
+2. Välj en prompt från promptlistan.
+3. Om en ruta för **Målspråk** visas, välj ett språk om du vill.
 4. Skriv eller klistra in text i **Inmatning**.
 5. Klicka på **Omvandla**.
 6. Läs resultatet i **Utmatning**.
@@ -366,9 +366,9 @@ Om din frågelista är tom, klicka på **Ladda exempelprompts** i omvandlingsarb
 
 Det snabbaste sättet att skapa en fråga är:
 
-1. Klicka på **Ny fråga**.
-2. Klicka på **Generera fråga**.
-3. Beskriv vad du vill att frågan ska göra.
+1. Klicka på **Ny prompt**.
+2. Klicka på **Generera prompt**.
+3. Beskriv vad du vill att prompten ska göra.
 4. Välj en modell.
 5. Låt appen skapa ett utkast åt dig.
 6. Granska utkastet och klicka på **Spara**.
@@ -386,13 +386,13 @@ När du skapar eller redigerar en fråga visas redigeraren till vänster och ett
 
 De viktigaste fälten är:
 
-- **Fråge-namn**: namnet som visas i frågelistan.
-- **Fråge-instruktioner (valfritt)**: en kort ledtråd som visas för användaren när frågan körs.
+- **Promptnamn**: namnet som visas i promptlistan.
+- **Promptinstruktioner (valfritt)**: en kort ledtext som visas för användaren när prompten körs.
 - **Modellroll**: den övergripande roll som tilldelas AI, till exempel 'Du är en hjälpsam assistent.'
 - **Modellinstruktioner (en per rad)**: de specifika regler du vill att AI ska följa.
-- **Beskrivning av utdata**: ett kort ord som beskriver resultatet, till exempel 'sammanfattning' eller 'omskriv'.
+- **Utmatningsbeskrivning**: ett kort ord som beskriver resultatet, till exempel 'sammanfattning' eller 'omskrivning'.
 - **Temperatur (0,0 → 1,0)**: hur modellen kommer att bete sig; se nedan.
-- **Fråga efter målspråk**: lägger till en väljare för målspråk när frågan körs.
+- **Fråga efter målspråk**: lägger till en väljare för målspråk när prompten körs.
 
 Om det tekniska begreppet **Temperatur** är nytt för dig, tänk så här:
 
@@ -463,11 +463,11 @@ Använd filterknapparna högst upp för att ändra tidsintervallet.
 <a id="dashboard-tabs"></a>
 ### Flikar i översiktspaneln
 
-- **Sammanfattning** ger dig en översikt över användning och kostnad. Den innehåller **Användning över tid** (stackad kumulativ **anropsantal** per dag för översättning, omskrivning och omvandling) och **Användning per modell** (totalt **antal anrop per modell**, inklusive omvandling).
-- **Efter användning** delar upp aktiviteten efter översättningsspråk, omskrivningsläge och omvandlingsprompt.
-- **Efter modell** visar vilka modeller du har använt och hur mycket de kostat.
-- **Efter dag** visar dagliga totaler.
-- **Alla samtal** visar hela anropsloggen och låter dig exportera den.
+- **Sammanfattning** ger dig en översikt över användning och kostnad. Inkluderar **Användning över tid** (stackad kumulativ **antal anrop** per dag för översättning, omskrivning och omvandling) och **Användning per modell** (totalt **antal anrop per modell**, inklusive omvandling).
+- **Per användning** delar upp aktiviteten per översättningsspråk, omskrivningsläge och omvandlingsprompt.
+- **Per modell** visar vilka modeller du använt och hur mycket de kostat.
+- **Per dag** visar dagliga totaler.
+- **Alla anrop** visar hela anropsloggen och låter dig exportera den.
 
 <br/>
 
@@ -543,15 +543,15 @@ Detta är användbart om du vill granska aktivitet utanför appen eller dela en 
 
 De tillgängliga flikarna beror på plattformen och din roll:
 
-| Flik               | Skrivbord | Webb (administratör) | Webb (vanlig användare) |
+| Flik               | Skrivbord | Webb (admin) | Webb (vanlig användare) |
   |-------------------|:-------:|:-----------:|:------------------:|
   | Allmänna inställningar  |   ja   |     ja     |        ja         |
   | Modeller            |   ja   |     ja     |        ja         |
   | Språk         |   ja   |     ja     |        ja         |
   | Kostnadsövervakning     |   ja   |     ja     |         -          |
-  | Omvandlingspåminnelser |   ja   |     ja     |        ja         |
+  | Omvandlingsprompts |   ja   |     ja     |        ja         |
   | Användare             |    -    |     ja     |         -          |
-  | API-konfiguration        |   ja   |     ja     |         -          |
+  | API-konfiguration |   ja   |     ja     |         -          |
   | Om             |   ja   |     ja     |        ja         |
 
 <br/>
@@ -570,11 +570,11 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 
 **Beteende**
 
-- **Beteende för ENTER** väljer om `Enter` kör uppgiften eller infogar en ny rad.  
-- **Automatisk översättning vid klistra in** påbörjar översättning så snart du klistrar in text.  
-- **Kopiera resultat automatiskt till urklipp** kopierar automatiskt framgångsrika resultat.  
-- **Översättning i realtid (medan du skriver)** översätter medan du skriver.  
-- **Timeout (ms)** ställer in väntetiden för översättning i realtid.
+- **Beteende för RETUR** väljer om `Enter` kör uppgiften eller infogar en ny rad.
+- **Automatisk översättning vid klistra in** startar översättning så fort du klistrar in text.
+- **Kopiera resultat automatiskt till urklipp** kopierar lyckade resultat automatiskt.
+- **Översättning i realtid (medan du skriver)** översätter medan du skriver.
+- **Timeout (ms)** anger väntetiden för översättning i realtid.
 
 **Historik**
 
@@ -583,19 +583,19 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 
 **Utseende**
 
-- **Visa kostnadsinformation på åtgärderna** kontrollerar visningen av kostnaden per operation (om tillgänglig) och den totala kostnaden på översättnings-, omskrivnings- och omvandlingsutmatningspanelerna.  
-- **Kostnadsbråkdecimaler** ändrar hur kostnadsdecimaler visas.  
-- **Webb endast:** **visa en marginal runt appen** lägger till extra utrymme runt gränssnittet.  
-- **Typsnitt** ändrar skrivtypsnittet i textpanelerna.  
+- **Visa kostnadsinformation på åtgärder** styr visningen av kostnad per åtgärd (om tillgängligt) och total kostnad på panelerna Översätt, Skriv om och Omvandla.
+- **Antal decimaler för kostnad** ändrar hur många decimaler som visas för kostnader.
+- **Endast webb:** **visa en marginal runt appen** lägger till extra utrymme runt gränssnittet.
+- **Teckensnitt** ändrar skrivteckensnittet i textpanelerna.
 - **Storlek** ändrar teckenstorleken.
 
 **Säkerhetskopiering av konfiguration**
 
-- **Inkludera användningsdata i säkerhetskopian** – när detta är aktiverat innehåller ZIP-filen även körningshistorik och API-anropsdata. 
-- **Säkerhetskopiera konfiguration** – skapar en enda ZIP-fil (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade prompts och användningsdata om du har valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
-- **Återställ från säkerhetskopia** – öppnar först en **bekräftelsedialog**. Välj säkerhetskopierings-ZIP-filen i dialogrutan (**Bläddra**/filväljare eller dra och släpp där det stöds), och granska sedan alternativen:
-  - **Återställ användningsdata** – importera användning/historik från ZIP-filen om den säkerhetskopierades med inkluderad användning; lämna avmarkerat om du endast vill ha inställningar och prompts.
-  - **Rensa gamla användningsdata innan återställning** – ta bort befintlig användning/historik i denna installation innan säkerhetskopian tillämpas (valfritt; använd när du vill ha en ren ersättning).
+- **Inkludera användningsdata i säkerhetskopian** – när aktiverat innehåller ZIP-filen även körningshistorik och API-anropsdata. 
+- **Säkerhetskopiera konfiguration** – skapar en enskild ZIP-fil (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade prompts och användningsdata om du har valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
+- **Återställ från säkerhetskopia** – öppnar först en **bekräftelsedialog**. Välj säkerhetskopierings-ZIP-filen i dialogen (**Bläddra**/filväljare eller dra och släpp där det stöds), granska sedan alternativen:
+  - **Återställ användningsdata** – importera användning/historik från ZIP-filen om den säkerhetskopierades med användningsdata; avmarkera om du endast vill ha inställningar och prompts.
+  - **Rensa befintlig användningsdata före återställning** – tar bort befintlig användning/historik på denna installation innan säkerhetskopian tillämpas (valfritt; använd när du vill göra en ren ersättning).
 
 Säkerhetskopior som skapats i antingen webb- eller skrivbordsversionen kan återställas i den andra. När du återställer en skrivbords-säkerhetskopia i webbversionen kommer data att återställas till administratörsanvändaren.
 
@@ -616,8 +616,8 @@ Sidan har två listor:
 Användbara kontroller inkluderar:
 
 - **Sök modeller...** för att hitta en modell efter namn
-- **Leverantör**-flikar för att begränsa listan till en motor (OpenRouter, OpenAI, Ollama, …)
-- **Endast gratis** för att endast visa kostnadsfria modeller
+- **Leverantörsflikar** för att begränsa listan till en motor (OpenRouter, OpenAI, Ollama, …)
+- **Endast gratis** för att visa endast kostnadsfria modeller
 - **Uppdatera** för att ladda om listan
 - **Expandera alla** och **Komprimera alla** när du sorterar efter leverantör
 
@@ -659,11 +659,11 @@ Om du lägger till ett anpassat språk visas det i språkväljarna tillsammans m
 Använd **Inställningar** > **Kostnadsövervakning** för att hantera kostnadsinformation.
 
 - **Total kostnad** visar den löpande summan.
-- **Kopiera värde** kopierar summan till urklipp.
-- **Återställ kostnad** återställer den lagrade summan till noll.
-- **Synkronisera med API-nyckelns användning** ställer in summan så att den matchar användningen som rapporteras av ditt OpenRouter-konto (endast OpenRouter).
-- **API-nyckelns användning** visar detaljer om OpenRouter-användning, om tillgängligt.
-- **Ta bort kostnadsdata** tar bort alla data eller endast poster äldre än ett valt datum.
+- **Kopiera värde** kopierar totalen till urklipp.
+- **Återställ kostnad** nollställer den sparade totalen.
+- **Synkronisera med API-nyckels användning** ställer in totalen enligt användningen rapporterad av ditt OpenRouter-konto (endast OpenRouter).
+- **API-nyckels användning** visar detaljer om OpenRouter-användning, om tillgängligt.
+- **Ta bort kostnadsdata** tar bort alla data, eller endast poster äldre än ett valt datum.
 
 **Kostnadsövervakning:** När du använder OpenRouter-modeller visar appen din faktiska användning och utgifter baserat på kostnadsinformation från OpenRouter. För alla andra leverantörer uppskattar appen kostnader med priser som publicerats av OpenRouter. Om ett pris inte är tillgängligt kan uppskattningen vara noll.
 
@@ -688,11 +688,11 @@ Använd **Inställningar** > **Omvandla frågor** för att hantera frågor i st�
 
 Du kan:
 
-- granska dina sparade frågor
-- ta bort frågor
-- importera frågor från en fil
-- exportera frågor för säkerhetskopiering eller delning
-- ladda exempelprompts till frågelistan
+- granska dina sparade prompts
+- ta bort prompts
+- importera prompts från en fil
+- exportera prompts för säkerhetskopiering eller delning
+- ladda exempelprompts till promptlistan
 
 <br/>
 
@@ -908,12 +908,12 @@ När du redigerar en fråga måste du alltid klicka på **Spara** innan du klick
 <a id="quick-tips"></a>
 ## Snabbtips
 
-- Börja med [**Översätt**](#translate) för att säkerställa att din konfiguration fungerar innan du går vidare till [**Omskriv**](#rewrite) eller [**Omvandla**](#transform).
-- Använd [**Omskriv**](#rewrite) för dagliga formuleringsoptimeringar.
-- Använd [**Omvandla**](#transform) när du behöver en återupprepad arbetsflödesprocess för en specifik uppgift.
-- Använd [**Översiktspanel**](#dashboard) om du vill hålla koll på användning och kostnad.
-- Använd [**Historik**](#history) för att granska tidigare åtgärder och deras fullständiga inmatnings- och utmatningsmängd.
-- Exportera frågor regelbundet om du bygger ett frågebibliotek som du vill spara (se [Omvandlingspåminnelser](#transform-prompts)) eller om du vill dela det med andra.
+- Börja med [**Översätt**](#translate) för att säkerställa att din konfiguration fungerar innan du går vidare till [**Skriv om**](#rewrite) eller [**Omvandla**](#transform).
+- Använd [**Skriv om**](#rewrite) för vardagliga formuleringar.
+- Använd [**Omvandla**](#transform) när du behöver en återupprepad arbetsflöde för en specifik uppgift.
+- Använd [**Instrumentpanel**](#dashboard) om du vill hålla koll på användning och kostnad.
+- Använd [**Historik**](#history) för att granska tidigare åtgärder och deras fullständiga in- och utdata.
+- Exportera prompts regelbundet om du bygger ett promptbibliotek som du vill spara (se [Transformera prompts](#transform-prompts)) eller om du vill dela det med andra.
 
 <br/><br/>
 

@@ -1,66 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { makeStyles, mergeClasses, tokens, Dropdown, Option, Button } from "@fluentui/react-components";
 import { WandSparkles, PencilLine, MessageSquarePlus, CopyPlus, FolderSync, BookOpenText } from "lucide-react";
 import PropTypes from "prop-types";
-
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalS,
-    marginBottom: tokens.spacingVerticalS,
-  },
-  label: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    minWidth: "60px",
-    fontSize: "14px",
-    fontWeight: 500,
-  },
-  selectContainer: {
-    flex: 1,
-    minWidth: "300px",
-  },
-  select: {
-    width: "100%",
-    "& .fui-Dropdown__trigger": {
-      borderRadius: "4px !important",
-      border: `1px solid ${tokens.colorNeutralStroke1} !important`,
-      backgroundColor: tokens.colorNeutralBackground1,
-    },
-  },
-  iconButton: {
-    minWidth: "24px",
-    padding: "0px",
-    color: "#94a3b8",
-    borderRadius: "4px",
-    transition: "color 150ms ease, background-color 150ms ease",
-    ":hover": {
-      color: "#fff",
-      backgroundColor: "rgba(255, 255, 255, 0.08)",
-    },
-    "& svg": {
-      color: "inherit",
-    },
-  },
-  iconButtonEditActive: {
-    color: "#60a5fa",
-    "& svg": {
-      color: "inherit",
-    },
-  },
-  iconButtonExport: {
-    color: "#64748b",
-    "& svg": {
-      color: "inherit",
-    },
-  },
-  loadSampleAfterActions: {
-    marginLeft: "24px",
-    flexShrink: 0,
-  },
-});
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const TransformPromptSelector = ({
   prompts = [],
@@ -76,101 +25,105 @@ const TransformPromptSelector = ({
   showLoadSampleButton = false,
   onLoadSamplePrompts,
   loadSampleLoading = false,
-  loadSampleButtonClassName,
 }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const selectedKey = selectedId != null ? String(selectedId) : selectedName || "";
   const options = prompts.map((p) => ({ id: String(p.id), name: p.name }));
   const matchedOption = options.find((o) => o.id === selectedKey || o.name === selectedKey);
-  const displayValue = matchedOption?.name ?? selectedName ?? "";
-  const selectedOptionValue = matchedOption ? matchedOption.id : (selectedKey || null);
+  const selectedOptionValue = matchedOption ? matchedOption.id : (selectedKey || "");
   const selectedPrompt = prompts.find((p) => String(p.id) === selectedKey || p.name === selectedKey);
 
+  const iconBtnCls = "h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-accent";
+
   return (
-    <div className={styles.root}>
-      <label className={styles.label} title={t("Select a custom prompt to run")}>
-        <WandSparkles size={18} color={tokens.colorPaletteLavenderBorderActive} />
+    <div className="flex items-center gap-2 mb-2">
+      <label className="flex items-center gap-1.5 min-w-[60px] text-sm font-medium" title={t("Select a custom prompt to run")}>
+        <WandSparkles size={17} className="text-violet-400" />
         {t("Prompt")}
       </label>
-      <div className={styles.selectContainer} title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
-        <Dropdown
-          appearance="underline"
-          value={displayValue}
-          placeholder={prompts.length === 0 ? t("(no prompts, click + to create)") : t("Select a prompt")}
-          selectedOptions={selectedOptionValue ? [selectedOptionValue] : []}
-          onOptionSelect={(e, data) => {
-            const id = data.optionValue;
+      <div className="flex-1 min-w-[200px]" title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
+        <Select
+          value={selectedOptionValue || ""}
+          onValueChange={(id) => {
             const p = prompts.find((x) => String(x.id) === id);
             onSelect?.(p?.id ?? id, p?.name ?? id);
           }}
-          className={styles.select}
-          aria-label={t("Select prompt")}
           disabled={disabled}
         >
-          {options.map((opt) => {
-            const slug = String(opt.name || opt.id)
-              .toLowerCase()
-              .replace(/\s+/g, "-")
-              .replace(/[^a-z0-9-]/g, "");
-            return (
-              <Option key={opt.id} value={opt.id} text={opt.name} data-testid={slug ? `prompt-option-${slug}` : undefined}>
-                {opt.name}
-              </Option>
-            );
-          })}
-        </Dropdown>
+          <SelectTrigger className="w-full" aria-label={t("Select prompt")}>
+            <SelectValue placeholder={prompts.length === 0 ? t("(no prompts, click + to create)") : t("Select a prompt")} />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((opt) => {
+              const slug = String(opt.name || opt.id).toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+              return (
+                <SelectItem key={opt.id} value={opt.id} data-testid={slug ? `prompt-option-${slug}` : undefined}>
+                  {opt.name}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
       </div>
       {selectedPrompt && (
         <Button
-          appearance="subtle"
-          icon={<PencilLine size={16} />}
+          variant="ghost"
+          size="icon-sm"
           onClick={() => onEdit?.(selectedPrompt)}
-          className={mergeClasses(styles.iconButton, editActive && styles.iconButtonEditActive)}
+          className={cn(iconBtnCls, editActive && "text-blue-400")}
           aria-label={t("Edit prompt")}
           title={t("Edit prompt")}
           disabled={disabled}
           data-testid="edit-prompt-button"
-        />
+        >
+          <PencilLine size={15} />
+        </Button>
       )}
       <Button
-        appearance="subtle"
-        icon={<MessageSquarePlus size={16} />}
+        variant="ghost"
+        size="icon-sm"
         onClick={onNew}
-        className={styles.iconButton}
+        className={iconBtnCls}
         aria-label={t("New prompt")}
         title={t("New prompt")}
         disabled={disabled}
         data-testid="new-prompt-button"
-      />
+      >
+        <MessageSquarePlus size={15} />
+      </Button>
       {selectedPrompt && (
         <Button
-          appearance="subtle"
-          icon={<CopyPlus size={16} />}
+          variant="ghost"
+          size="icon-sm"
           onClick={() => onDuplicate?.(selectedPrompt)}
-          className={styles.iconButton}
+          className={iconBtnCls}
           aria-label={t("Duplicate prompt")}
           title={t("Duplicate prompt")}
           disabled={disabled}
-        />
+        >
+          <CopyPlus size={15} />
+        </Button>
       )}
       <Button
-        appearance="subtle"
-        icon={<FolderSync size={16} />}
+        variant="ghost"
+        size="icon-sm"
         onClick={onOpenExportImport}
-        className={mergeClasses(styles.iconButton, styles.iconButtonExport)}
+        className={cn(iconBtnCls, "text-slate-500")}
         aria-label={t("Export/Import prompts")}
         title={t("Export/Import prompts (opens Settings > Transform)")}
         disabled={disabled}
-      />
+      >
+        <FolderSync size={15} />
+      </Button>
       {showLoadSampleButton && onLoadSamplePrompts && (
         <Button
-          appearance="secondary"
-          className={mergeClasses(styles.loadSampleAfterActions, loadSampleButtonClassName)}
-          icon={loadSampleLoading ? undefined : <BookOpenText size={16} />}
+          variant="outline"
+          size="sm"
+          className="ms-6 shrink-0"
           onClick={onLoadSamplePrompts}
           disabled={disabled || loadSampleLoading}
         >
+          {!loadSampleLoading && <BookOpenText size={15} />}
           {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
         </Button>
       )}

@@ -1,14 +1,6 @@
 import { useState, useCallback, Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  Label,
-  Dropdown,
-  Option,
-  Text,
-  tokens,
-} from "@fluentui/react-components";
-import { ChevronLeft, ChevronRight, Trash2, Download } from "lucide-react";
+import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
@@ -24,6 +16,15 @@ import {
   triggerDownload,
 } from "../utils/misc/exportUtils";
 import CallDetailsContent from "./CallDetailsContent";
+import DashboardExportToolbar from "./dashboard/DashboardExportToolbar";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME = "transrewrt-calls";
@@ -164,49 +165,45 @@ export default function DashboardTabAllCalls({
       className={styles.allCallsTabPanel}
     >
       <div className={styles.allCallsTabContent}>
-        <Text as="h4" size={400} style={{ marginBottom: "4px" }}>
+        <h4 className="text-base font-semibold mb-1">
           {t("All API calls (raw data)")}
-        </Text>
+        </h4>
         <div className={styles.paginationRow}>
-          <Label>{t("Rows per page")}</Label>
-          <Dropdown
+          <label className="text-sm">{t("Rows per page")}</label>
+          <Select
             value={String(allCallsPageSize)}
-            selectedOptions={[String(allCallsPageSize)]}
-            onOptionSelect={(_, data) => {
-              const v = Number(data.optionValue);
-              if (PAGE_SIZES.includes(v)) {
-                setSetting("all_calls_page_size", v);
+            onValueChange={(v) => {
+              const n = Number(v);
+              if (PAGE_SIZES.includes(n)) {
+                setSetting("all_calls_page_size", n);
                 setAllCallsPage(1);
               }
             }}
-            style={{ minWidth: "80px" }}
           >
-            {PAGE_SIZES.map((n) => (
-              <Option key={n} value={String(n)}>
-                {n}
-              </Option>
-            ))}
-          </Dropdown>
-          <span style={{ color: tokens.colorNeutralForeground2 }}>
+            <SelectTrigger className="w-[80px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {PAGE_SIZES.map((n) => (
+                <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <span className="text-[#d1d5db]">
             {t("{{count}} row(s) total", {
               count: allCallsTotal,
             })}
           </span>
           <Button
-            size="small"
-            appearance="secondary"
+            variant="outline"
+            size="sm"
             disabled={allCallsPage <= 1}
             onClick={() => setAllCallsPage((p) => Math.max(1, p - 1))}
-            icon={<ChevronLeft size={16} className="rtl-icon-mirror" />}
           >
+            <ChevronLeft size={16} className="rtl-icon-mirror" />
             {t("Prev")}
           </Button>
-          <span
-            style={{
-              color: tokens.colorNeutralForeground2,
-              alignSelf: "center",
-            }}
-          >
+          <span className="text-[#d1d5db] self-center">
             {t("Page {{page}} of {{total}}", {
               page: allCallsPage,
               total: Math.max(
@@ -216,8 +213,8 @@ export default function DashboardTabAllCalls({
             })}
           </span>
           <Button
-            size="small"
-            appearance="secondary"
+            variant="outline"
+            size="sm"
             disabled={
               allCallsPage >= Math.ceil(allCallsTotal / allCallsPageSize)
             }
@@ -234,37 +231,7 @@ export default function DashboardTabAllCalls({
             <ChevronRight size={16} className="rtl-icon-mirror" />
           </Button>
           <div className={styles.paginationSpacer} />
-          <div className={styles.downloadBlock}>
-            <Download size={16} aria-hidden />
-            <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("json")}
-            >
-              {t("JSON")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("csv")}
-            >
-              {t("CSV")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("xlsx")}
-            >
-              {t("XLSX")}
-            </Button>
-          </div>
+          <DashboardExportToolbar exportLoading={exportLoading} onExport={handleExport} />
         </div>
         {allCallsLoading ? (
           <p>{t("Loading…")}</p>

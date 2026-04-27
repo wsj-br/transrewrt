@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:28:52.966Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:18.079Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: zh-TW
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -34,7 +34,7 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 <small>**以其他語言閱讀：** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -60,19 +60,19 @@ Transrewrt 可協助您以三種主要方式處理文字：
   - [翻譯文字](#translate-text)
   - [語言選擇](#language-selection)
   - [實用的翻譯設定](#helpful-translation-settings)
-- [重寫](#rewrite)
+- [改寫](#rewrite)
 - [轉換](#transform)
-  - [執行現有的提示詞](#run-an-existing-prompt)
-  - [若您尚未建立提示詞](#if-you-have-no-prompts-yet)
-  - [快速建立提示詞](#create-a-prompt-quickly)
-  - [編輯提示詞](#edit-a-prompt)
-  - [使用前測試提示詞](#test-a-prompt-before-using-it)
+  - [執行現有的提示](#run-an-existing-prompt)
+  - [如果你還沒有提示](#if-you-have-no-prompts-yet)
+  - [快速建立提示](#create-a-prompt-quickly)
+  - [編輯提示](#edit-a-prompt)
+  - [使用前測試提示](#test-a-prompt-before-using-it)
 - [儀表板](#dashboard)
   - [篩選資料](#filter-the-data)
   - [儀表板分頁](#dashboard-tabs)
   - [匯出資料](#export-data)
   - [刪除某模型的儲存記錄](#delete-stored-records-for-a-model)
-- [歷史](#history)
+- [歷史記錄](#history)
   - [篩選資料](#filter-the-data-1)
   - [匯出歷史資料](#export-history-data)
 - [設定](#settings)
@@ -80,24 +80,24 @@ Transrewrt 可協助您以三種主要方式處理文字：
   - [模型](#models)
   - [語言](#languages)
   - [成本追蹤](#cost-tracking)
-  - [轉換提示詞](#transform-prompts)
+  - [轉換提示](#transform-prompts)
   - [使用者](#users)
   - [API 設定](#api-config)
   - [關於](#about)
 - [常見問題](#common-issues)
-  - [應用程式無法翻譯、重寫或轉換文字](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [應用程式無法翻譯、改寫或轉換文字](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型清單為空](#the-model-list-is-empty)
-  - [結果太慢或太昂貴](#the-result-is-too-slow-or-too-expensive)
+  - [結果太慢或成本過高](#the-result-is-too-slow-or-too-expensive)
   - [介面語言錯誤](#the-interface-is-in-the-wrong-language)
   - [文字太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
   - [儀表板圖表為空](#dashboard-charts-are-empty)
-  - [費用顯示「不可用」或似乎有誤](#cost-shows-not-available-or-seems-wrong)
-  - [總費用與供應商帳單不符](#total-cost-does-not-match-my-provider-bill)
-  - [側邊欄中缺少歷史頁面](#the-history-page-is-missing-from-the-sidebar)
-  - [網路應用程式：意外被重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [網路管理員：忘記或遺失密碼](#web-admin-forgot-or-lost-a-password)
-  - [儀表板未顯示其他使用者的資料（網路版）](#dashboard-shows-no-data-for-other-users-web)
-  - [我修改了一個提示詞卻遺失了編輯內容](#i-changed-a-prompt-and-lost-the-edits)
+  - [成本顯示「無法取得」或看起來有誤](#cost-shows-not-available-or-seems-wrong)
+  - [總成本與供應商帳單不符](#total-cost-does-not-match-my-provider-bill)
+  - [側邊欄中遺失歷史記錄頁面](#the-history-page-is-missing-from-the-sidebar)
+  - [網頁應用程式：意外被重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [網頁管理員：忘記或遺失密碼](#web-admin-forgot-or-lost-a-password)
+  - [儀表板未顯示其他使用者的資料（網頁）](#dashboard-shows-no-data-for-other-users-web)
+  - [我修改提示後遺失了編輯內容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免責聲明](#disclaimer)
 - [授權](#license)
@@ -129,14 +129,14 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 如果您使用的是桌面應用程式，請依照以下步驟操作：
 
-1. 在您的網頁瀏覽器中前往 [OpenRouter](https://openrouter.ai)。
+1. 在瀏覽器中前往 [OpenRouter](https://openrouter.ai)。
 2. 建立帳號或登入。
 3. 開啟 [Keys](https://openrouter.ai/keys) 頁面。
 4. 按一下按鈕以建立新的 API 金鑰。
 5. 為金鑰命名，以便日後辨識。
 6. 複製新的 API 金鑰。
 7. 返回 Transrewrt 並開啟 **設定** > **API 設定**。
-8. 將金鑰貼到 **OpenRouter API 金鑰**（位於 **設定** > **API 設定** 下）。
+8. 將金鑰貼上至 **OpenRouter API 金鑰**（位於 **設定** > **API 設定**）。
 9. 按一下 **測試 OpenRouter 金鑰** 以確認其正常運作。
 
 <br/><br/>
@@ -147,12 +147,12 @@ Transrewrt 可協助您以三種主要方式處理文字：
 如果您是第一次使用 Transrewrt，請依照以下順序操作：
 
 1. 開啟應用程式。
-2. 如有需要，按一下地球圖示選擇您的 **介面語言**。
-3. 如果您使用的是 **桌面應用程式**，請開啟 [**設定** > **API 設定**](#api-config)，為至少一個供應商新增 API 金鑰（例如 OpenRouter），然後按一下 **測試** 以確認其正常運作。
-4. 開啟 [**設定** > **模型**](#models) 並新增一個或多個模型至 **已選模型**。
-5. 開啟 [**設定** > **語言**](#languages) 並選擇您的 **常用語言**，以便最常使用的語言優先顯示。
-6. 前往 **翻譯** 並執行一次簡單的翻譯，以確認一切正常運作。
-7. 成功後，再嘗試 **重寫** 和 **轉換**。
+2. 如有需要，從地球圖示選擇您的 **介面語言**。
+3. 若您使用的是 **桌面應用程式**，請開啟 [**設定** > **API 設定**](#api-config)，為至少一個供應商新增 API 金鑰（例如 OpenRouter），然後按一下 **測試** 以驗證其是否正常運作。
+4. 開啟 [**設定** > **模型**](#models) 並在 **已選模型** 中新增一個或多個模型。
+5. 開啟 [**設定** > **語言**](#languages)，若希望最常用語言優先顯示，請選擇您的 **頂級語言**。
+6. 前往 **翻譯** 並執行簡單翻譯以確認一切正常運作。
+7. 一旦成功，請嘗試 **改寫** 和 **轉換**。
 
 此順序很重要。它能避免最常見的初次使用問題：在應用程式尚未建立有效的 API 連線或尚未選擇模型之前就嘗試執行任務。
 
@@ -257,14 +257,14 @@ Transrewrt 可協助您以三種主要方式處理文字：
 <a id="translate-text"></a>
 ### 翻譯文字
 
-1. 開啟 **Translate**。
-2. 在 **From** 中選擇一種語言。
-3. 在 **To** 中選擇一種語言。
+1. 開啟 **翻譯**。
+2. 在 **從** 中選擇一種語言。
+3. 在 **至** 中選擇一種語言。
 4. 在工具列中選擇一個模型。
-5. 在 **Input** 中輸入或貼上文字。
-6. 按一下 **Translate**。
-7. 在 **Output** 中閱讀結果。
-8. 如果想要複製結果，請使用複製按鈕。
+5. 在 **輸入** 中輸入或貼上文字。
+6. 按一下 **翻譯**。
+7. 在 **輸出** 中閱讀結果。
+8. 如需複製結果，請使用複製按鈕。
 
 <br/>
 
@@ -283,11 +283,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 在[**設定** > **一般設定**](#general-settings)中，您可以變更翻譯的運作方式：
 
-- **貼上時自動翻譯**：當您貼上文字時，立即執行翻譯。
-- **自動複製結果到剪貼簿**：成功執行後，自動將結果複製到剪貼簿。
-- **即時翻譯（輸入時）**：當您在輸入文字時即執行翻譯。
-- **逾時（毫秒）**：控制應用程式在執行即時翻譯前等待的時間。
-- **Enter**：控制當您按下 `Enter` 時發生的情況：
+- **貼上時自動翻譯** 會在您貼上文字後立即執行翻譯。
+- **自動複製結果到剪貼簿** 會在成功執行後自動複製結果。
+- **即時翻譯（輸入時）** 會在您輸入時持續執行翻譯。
+- **逾時時間（毫秒）** 控制應用程式在執行即時翻譯前等待的時間長度。
+- **Enter** 控制按下 `Enter` 時的行為：
 
 <br/><br/>
 
@@ -303,11 +303,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 這對於以下情況很有用：
 
 - 修正拼字與文法（**檢查拼字與文法**）
-- 使文字更清晰（**提升清晰度**）
-- 一次產生多種不同的改寫版本（**替代版本**）
-- 使文字更正式或更口語化（**正式** / **非正式**）
-- 縮短或擴充文字（**縮短** / **擴充**）
-- 使文字更具技術性（**改為技術性**）
+- 讓文字更清晰（**提升清晰度**）
+- 單次執行產生多種不同改寫版本（**替代版本**）
+- 讓文字更正式或更口語（**正式** / **非正式**）
+- 縮短或擴展文字（**縮短** / **擴展**）
+- 讓文字更具技術性（**轉為技術性**）
 
 <br/>
 
@@ -328,11 +328,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 這是應用程式中最靈活的功能區域。您可以將其用於諸如以下的任務：
 
-- 摘要筆記
-- 將草稿文字轉為精緻的電子郵件
+- 摘要筆記內容
+- 將草稿文字轉為專業電子郵件
 - 提取重點
 - 將文字轉換為特定格式
-- 對輸入文字進行任何其他自訂操作
+- 對輸入文字執行任何其他自訂操作
 
 <br/>
 
@@ -340,11 +340,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 ### 執行現有的提示詞
 
 1. 開啟 **轉換**。
-2. 從提示詞列表中選擇一個提示詞。
-3. 如果出現 **目標** 語言欄位，請選擇您想要的語言。
+2. 從提示列表中選擇一個提示。
+3. 若出現 **目標** 語言欄位，請選擇您想要的語言。
 4. 在 **輸入** 區域中輸入或貼上文字。
 5. 按一下 **轉換**。
-6. 在 **輸出** 區域中閱讀結果。
+6. 在 **輸出** 區域中查看結果。
 
 <br/>
 
@@ -365,9 +365,9 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 建立提示詞最快的方式如下：
 
-1. 按一下 **新增提示詞**。
-2. 按一下 **生成提示**。
-3. 描述您希望提示詞執行的任務。
+1. 按一下 **新增提示**。
+2. 按一下 **產生提示**。
+3. 描述您希望此提示執行的動作。
 4. 選擇一個模型。
 5. 讓應用程式為您建立草稿。
 6. 檢視草稿後按一下 **儲存**。
@@ -385,13 +385,13 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 主要欄位包括：
 
-- **提示詞名稱**：在提示詞列表中顯示的名稱。
-- **提示詞指示（選填）**：執行提示詞時會顯示給使用者的簡短提示。
-- **模型角色**：指派給 AI 的整體角色，例如「你是一個樂於助人的助手」。
-- **模型指令（每行一個）**：您希望 AI 遵循的具體規則。
+- **提示名稱**：顯示在提示列表中的名稱。
+- **提示說明（選填）**：執行提示時顯示給使用者的簡短提示。
+- **模型角色**：指派給 AI 的整體角色，例如「你是一位樂於助人的助手。」
+- **模型指令（每行一項）**：您希望 AI 遵循的具體規則。
 - **輸出描述**：簡短描述結果的詞語，例如「摘要」或「重寫」。
-- **溫度 (0.0 → 1.0)**：決定模型行為的方式；詳見下方說明。
-- **詢問目標語言**：執行提示詞時會加入目標語言選擇器。
+- **溫度（0.0 → 1.0）**：控制模型行為方式；詳見下方說明。
+- **詢問目標語言**：執行提示時加入目標語言選擇器。
 
 如果您不熟悉技術術語 **溫度**，可以這樣理解：
 
@@ -462,11 +462,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 <a id="dashboard-tabs"></a>
 ### 儀表板分頁
 
-- **摘要** 提供使用量和費用的概覽。包含 **使用量隨時間變化**（依日期累計堆疊的翻譯、重寫與轉換的**呼叫次數**）以及 **依模型的使用量**（每個**模型的總呼叫次數**，包含轉換）。
-- **依使用量** 將活動細分為翻譯語言、重寫模式和轉換提示詞。
-- **依模型** 顯示您使用的模型及其費用。
+- **摘要** 提供使用量與成本的總覽。包含 **使用量趨勢**（每日累計堆疊的翻譯、重寫與轉換 **呼叫次數**）以及 **依模型分類的使用量**（各模型的總 **呼叫次數**，包含轉換）。
+- **依使用量** 將活動細分為翻譯語言、重寫模式與轉換提示。
+- **依模型** 顯示您使用的模型及其成本。
 - **依日期** 顯示每日總計。
-- **所有呼叫** 顯示完整的呼叫歷史，並允許您匯出資料。
+- **所有呼叫** 顯示完整的呼叫歷史紀錄，並允許您匯出。
 
 <br/>
 
@@ -542,16 +542,16 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 可用的標籤頁取決於平台和您的角色：
 
-| 標籤頁               | 桌面版 | 網頁版 (管理員) | 網頁版 (一般使用者) |
+| 標籤頁               | 桌面版 | 網頁版（管理員） | 網頁版（一般使用者） |
   |-------------------|:-------:|:-----------:|:------------------:|
-  | 一般設定  |   是   |     是     |        是         |
-  | 模型            |   是   |     是     |        是         |
-  | 語言         |   是   |     是     |        是         |
-  | 成本追蹤     |   是   |     是     |         -          |
-  | 轉換提示詞 |   是   |     是     |        是         |
-  | 使用者             |    -    |     是     |         -          |
+  | 一般設定  |   yes   |     yes     |        yes         |
+  | 模型            |   yes   |     yes     |        yes         |
+  | 語言         |   yes   |     yes     |        yes         |
+  | 成本追蹤     |   yes   |     yes     |         -          |
+  | 轉換提示 |   yes   |     yes     |        yes         |
+  | 使用者             |    -    |     yes     |         -          |
   | API 設定        |   是   |     是     |         -          |
-  | 關於         |   是   |     是     |        是         |
+  | 關於             |   是   |     是     |        是         |
 
 <br/>
 
@@ -569,11 +569,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 **行為**
 
-- **ENTER 鍵行為** 可選擇 `Enter` 是執行任務還是插入新行。
-- **貼上時自動翻譯** 在您貼上文字後立即開始翻譯。
-- **自動複製結果到剪貼簿** 會自動複製成功的結果。
-- **即時翻譯（輸入時）** 在您輸入時即時翻譯。
-- **逾時時間 (毫秒)** 設定即時翻譯的等待時間。
+- **按下 Enter 的行為** 可選擇 `Enter` 是要執行任務還是插入新行。
+- **貼上時自動翻譯** 在您貼上文字時立即開始翻譯。
+- **將翻譯結果自動複製到剪貼簿** 會自動複製成功的翻譯結果。
+- **即時翻譯（輸入時）** 在您輸入的同時進行翻譯。
+- **逾時 (毫秒)** 設定即時翻譯的等候時間。
 
 **歷史**
 
@@ -582,19 +582,19 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 **外觀**
 
-- **在操作上顯示成本資訊** 控制是否顯示每項操作的成本（若可用）以及翻譯、重寫和轉換輸出面板上的總費用。
-- **費用小數位數** 更改成本小數的顯示方式。
-- **僅限網頁版：** **顯示應用程式周圍邊距** 在介面周圍增加額外空間。
-- **字型** 變更文字面板中的書寫字型。
-- **大小** 變更字型大小。
+- **在操作中顯示成本資訊**控制是否顯示每次操作的成本（若可用）以及「翻譯」、「重寫」和「轉換」輸出面板中的總成本。
+- **成本小數位數**變更成本小數點的顯示方式。
+- **僅限網頁：** **在應用程式周圍顯示邊距**會在介面周圍增加額外空間。
+- **字型家族**變更文字面板中的書寫字型。
+- **大小**變更字型大小。
 
 **設定備份**
 
-- **在備份中包含使用資料** - 啟用後，ZIP 檔案也會包含執行歷史和 API 呼叫資料。 
-- **備份設定** - 建立單一 ZIP 檔案（預設為 UTC 時間的 `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`），包含 `config.json`、`state.json`、選擇性加密金鑰、使用者、偏好設定、自訂提示詞，以及若您選擇包含的使用資料。備份成功後，確認畫面會顯示已儲存的檔案名稱。
-- **從備份還原** - 首先會開啟 **確認對話框**。在對話框內選擇備份 ZIP 檔案（**瀏覽** / 檔案選擇器或支援時拖放），然後檢閱選項：
-  - **還原使用資料** - 當備份包含使用資料時，從 ZIP 檔案匯入使用量/歷史資料；若您僅想還原設定和提示詞，請勿勾選。
-  - **還原前清除舊的使用資料** - 在套用備份前，清除此安裝上的現有使用量/歷史資料（可選；當您希望完全替換時使用）。
+- **在備份中包含使用資料**— 啟用後，ZIP 檔案還會包含執行歷史和 API 呼叫資料。
+- **備份設定**— 建立單一 ZIP 檔案（預設為 UTC 時間的 `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`），包含 `config.json`、`state.json`、可選的加密金鑰、使用者、偏好設定、自訂提示，以及您選擇包含的使用資料。備份成功後，確認畫面會顯示已儲存的檔案名稱。
+- **從備份還原**— 首先會開啟**確認對話框**。在對話框中選擇備份 ZIP 檔案（**瀏覽**／檔案選擇器，或在支援的環境中拖放），然後檢視選項：
+  - **還原使用資料**— 當備份包含使用資料時，從 ZIP 匯入使用／歷史資料；若您僅想保留設定和提示，請勿勾選。
+  - **還原前清除舊的使用資料**— 在套用備份前，清除本機安裝的現有使用／歷史資料（可選；當您希望完全替換時使用）。
 
 在桌面版或網頁版中建立的備份皆可在另一版本中還原。當您在網頁版中還原桌面版備份時，資料將會還原至管理員使用者。
 
@@ -614,11 +614,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 實用的控制選項包括：
 
-- 使用 **搜尋模型...** 依名稱尋找模型
-- 使用 **供應商** 標籤將清單縮小至單一引擎（OpenRouter、OpenAI、Ollama 等）
-- **僅免費** 以僅顯示免費模型
+- **搜尋模型...** 依名稱尋找模型
+- **提供者** 晶片可將清單縮小至單一引擎（OpenRouter、OpenAI、Ollama 等）
+- **僅限免費** 以僅顯示免費模型
 - **重新整理** 以重新載入清單
-- 當你依供應商排序時，可使用 **展開全部** 和 **折疊全部**
+- 當您依提供者排序時，可使用 **展開全部** 和 **收合全部**
 
 模型 ID 包含供應商前綴（例如 `openrouter/…` 與 `openai/…`）。徽章如 **OpenAI (OpenRouter)** 與 **OpenAI (direct)** 顯示流量的路由方式。
 
@@ -657,12 +657,12 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 使用 **設定** > **成本追蹤** 來管理成本資訊。
 
-- **總費用** 顯示累計總額。
-- **複製數值** 將總額複製到剪貼簿。
-- **重置費用** 將儲存的總額重設為零。
-- **同步 API 金鑰使用量** 將總額設定為與 OpenRouter 帳戶報告的使用量相符（僅限 OpenRouter）。
-- **API 金鑰使用量** 顯示 OpenRouter 使用詳情（若可用）。
-- **刪除成本資料** 可移除所有資料，或僅移除早於指定日期的資料。
+- **總成本**顯示累計總額。
+- **複製數值**將總金額複製到剪貼簿。
+- **重設成本**將儲存的總額重設為零。
+- **與 API 金鑰用量同步**將總額設定為與您的 OpenRouter 帳戶報告的用量相符（僅限 OpenRouter）。
+- **API 金鑰用量**顯示 OpenRouter 的用量詳細資訊（若可用）。
+- **刪除成本資料**可移除所有資料，或僅刪除指定日期之前的資料。
 
 **成本追蹤：** 當你使用 OpenRouter 模型時，應用程式會根據 OpenRouter 提供的成本資訊顯示實際使用量與花費。對於其他所有供應商，應用程式會使用 OpenRouter 公布的價格來估算成本；若無可用價格，估算值可能為零。
 
@@ -687,11 +687,11 @@ Transrewrt 可協助您以三種主要方式處理文字：
 
 您可以：
 
-- 檢視已儲存的提示詞
-- 刪除提示詞
-- 從檔案匯入提示詞
-- 匯出提示詞以備份或分享
-- 載入範例提示詞至提示詞列表
+- 檢視您儲存的提示
+- 刪除提示
+- 從檔案匯入提示
+- 匯出提示以備份或分享
+- 將範例提示載入提示清單
 
 <br/>
 
@@ -907,12 +907,12 @@ pnpm run reset-web-password -- <username> <new-password>
 <a id="quick-tips"></a>
 ## 快速提示
 
-- 開始時請先使用 [**翻譯**](#translate)，確認設定正常運作後，再進行 [**重寫**](#rewrite) 或 [**轉換**](#transform)。
-- 使用 [**重寫**](#rewrite) 來進行日常的文字優化。
-- 當您需要為特定任務建立可重複使用的流程時，請使用 [**轉換**](#transform)。
-- 若您想監控使用情況與費用，請使用 [**儀表板**](#dashboard)。
-- 使用 [**歷史**](#history) 來檢視過去的操作及其完整的輸入/輸出文字。
-- 若您正在建立想要保存的提示詞資料庫，或希望與他人分享，請定期匯出提示詞（參見 [轉換提示詞](#transform-prompts)）。
+- 請先從 [**翻譯**](#translate) 開始，確認您的設定正常運作，再繼續使用 [**重寫**](#rewrite) 或 [**轉換**](#transform)。
+- 使用 [**重寫**](#rewrite) 進行日常的文字優化。
+- 當您需要針對特定任務建立可重複的工作流程時，使用 [**轉換**](#transform)。
+- 若您想監控使用量與成本，請使用 [**儀表板**](#dashboard)。
+- 使用 [**歷史紀錄**](#history) 檢視過去的操作及其完整的輸入／輸出內容。
+- 若您正在建立想要妥善保存的提示庫（請參閱 [Transform Prompts](#transform-prompts)），或希望與他人分享，請定期匯出提示。
 
 <br/><br/>
 

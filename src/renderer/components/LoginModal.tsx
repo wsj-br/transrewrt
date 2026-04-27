@@ -1,59 +1,15 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { makeStyles, tokens, Button, Input, Field } from "@fluentui/react-components";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import { getWebAuthFormAction } from "../utils/misc/webAuthForms";
 import HiddenUsernameForPasswordManager from "./HiddenUsernameForPasswordManager";
 import PasswordInput from "./PasswordInput";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 10000,
-  },
-  modal: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    padding: "24px",
-    borderRadius: "8px",
-    boxShadow: tokens.shadow28,
-    minWidth: "320px",
-    maxWidth: "90vw",
-  },
-  title: {
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    fontWeight: 600,
-  },
-  instruction: {
-    margin: "0 0 16px 0",
-    fontSize: "14px",
-    color: tokens.colorNeutralForeground2,
-    lineHeight: 1.4,
-  },
-  field: {
-    marginBottom: "16px",
-  },
-  actions: {
-    marginTop: "20px",
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-  },
-  error: {
-    color: tokens.colorStatusDangerForeground1,
-    fontSize: "12px",
-    marginTop: "8px",
-  },
-});
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 const LoginModal = ({ onSuccess, sessionExpired = false }) => {
-  const styles = useStyles();
   const { t } = useTranslation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -107,12 +63,15 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
     }
   };
 
+  const overlayClass = "fixed inset-0 z-[10000] flex items-center justify-center bg-black/60";
+  const modalClass = "bg-card border border-border rounded-lg shadow-2xl p-6 min-w-80 w-full max-w-sm";
+
   if (step === "changePassword") {
     return (
-      <div className={styles.overlay}>
-        <div className={styles.modal}>
-          <h2 className={styles.title}>{t("Change password")}</h2>
-          <p className={styles.instruction}>
+      <div className={overlayClass}>
+        <div className={modalClass}>
+          <h2 className="text-lg font-semibold mb-3">{t("Change password")}</h2>
+          <p className="text-sm text-muted-foreground mb-5">
             {t("You must change your password before continuing.")}
           </p>
           <form
@@ -120,10 +79,11 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
             method="post"
             action={getWebAuthFormAction()}
             autoComplete="on"
+            className="flex flex-col gap-4"
             style={{ position: "relative" }}
           >
             <HiddenUsernameForPasswordManager username={loggedInUser?.username} id="login-modal-change-username" />
-            <div className={styles.field}>
+            <div className="flex flex-col gap-1.5">
               <PasswordInput
                 id="login-modal-new-password"
                 name="new_password"
@@ -138,7 +98,7 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
                 hidePasswordAriaLabel={t("Hide password")}
               />
             </div>
-            <div className={styles.field}>
+            <div className="flex flex-col gap-1.5">
               <PasswordInput
                 id="login-modal-confirm-password"
                 name="new_password_confirm"
@@ -152,9 +112,9 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
                 hidePasswordAriaLabel={t("Hide password")}
               />
             </div>
-            {error && <div className={styles.error}>{error}</div>}
-            <div className={styles.actions}>
-              <Button type="submit" appearance="primary" disabled={loading}>
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <div className="flex justify-end mt-1">
+              <Button type="submit" disabled={loading}>
                 {loading ? t("Changing…") : t("Change password")}
               </Button>
             </div>
@@ -165,10 +125,10 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h2 className={styles.title}>{t("Log in")}</h2>
-        <p className={styles.instruction}>
+    <div className={overlayClass}>
+      <div className={modalClass}>
+        <h2 className="text-lg font-semibold mb-3">{t("Log in")}</h2>
+        <p className="text-sm text-muted-foreground mb-5">
           {sessionExpired
             ? t("Your session has expired. Please log in again.")
             : t("Enter your credentials to access your account.")}
@@ -179,30 +139,28 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
           action={getWebAuthFormAction()}
           autoComplete="on"
           id="transrewrt-web-login-modal-form"
+          className="flex flex-col gap-4"
           style={{ position: "relative" }}
         >
-          <div className={styles.field}>
-            <Field label={t("Username")}>
-              <Input
-                id="login-modal-username"
-                name="username"
-                type="text"
-                value={username}
-                onChange={(_, data) => setUsername(typeof data?.value === "string" ? data.value : "")}
-                placeholder={t("Username")}
-                autoComplete="username"
-                autoCapitalize="off"
-                autoCorrect="off"
-                spellCheck={false}
-                inputMode="text"
-                autoFocus
-                disabled={loading}
-                appearance="outline"
-                style={{ width: "100%" }}
-              />
-            </Field>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="login-modal-username">{t("Username")}</Label>
+            <Input
+              id="login-modal-username"
+              name="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder={t("Username")}
+              autoComplete="username"
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck={false}
+              inputMode="text"
+              autoFocus
+              disabled={loading}
+            />
           </div>
-          <div className={styles.field}>
+          <div className="flex flex-col gap-1.5">
             <PasswordInput
               id="login-modal-password"
               name="password"
@@ -216,9 +174,9 @@ const LoginModal = ({ onSuccess, sessionExpired = false }) => {
               hidePasswordAriaLabel={t("Hide password")}
             />
           </div>
-          {error && <div className={styles.error}>{error}</div>}
-          <div className={styles.actions}>
-            <Button type="submit" appearance="primary" disabled={loading}>
+          {error && <p className="text-xs text-destructive">{error}</p>}
+          <div className="flex justify-end mt-1">
+            <Button type="submit" disabled={loading}>
               {loading ? t("Logging in…") : t("Log in")}
             </Button>
           </div>

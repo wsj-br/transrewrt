@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef, Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { mergeClasses, tokens } from "@fluentui/react-components";
 import PropTypes from "prop-types";
+import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import ConfirmModal from "./ConfirmModal";
@@ -19,7 +19,6 @@ import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
 import { formatCost } from "../utils/misc/costUtils";
-import useAppStyles from "../hooks/useAppStyles";
 import { isWeb } from "../constants";
 import "../styles/main.css";
 
@@ -45,7 +44,6 @@ const LoadingLogoSvg = ({ className }) => (
 LoadingLogoSvg.propTypes = { className: PropTypes.string };
 
 const App = () => {
-  const styles = useAppStyles();
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
@@ -106,8 +104,8 @@ const App = () => {
     setInputTextTransform,
     outputTextTransform,
     setOutputTextTransform,
-    transformTargetLang,
-    setTransformTargetLang,
+    transformFromLang,
+    setTransformFromLang,
     transformTestInput,
     setTransformTestInput,
     transformTestOutput,
@@ -253,7 +251,7 @@ const App = () => {
     transformPrompts,
     transformPromptId,
     showTransformLangSelector,
-    transformTargetLang,
+    transformFromLang,
   });
 
   const handleModeChange = (mode) => {
@@ -326,9 +324,18 @@ const App = () => {
 
   useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput, currentView);
 
-  // Apply theme
+  // Apply theme — 'light' | 'dark' | 'system' (follow OS)
   useEffect(() => {
-    document.body.className = settings.theme || "light";
+    const rawTheme = settings.theme || "system";
+    if (rawTheme !== "system") {
+      document.body.className = rawTheme;
+      return;
+    }
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const apply = () => { document.body.className = mq.matches ? "dark" : "light"; };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, [settings.theme]);
 
   const costFractionStyle = settings?.cost_fraction_style || "muted";
@@ -362,7 +369,7 @@ const App = () => {
           {totalCostNum > 0 ? (
             formatCost(totalCostNum, costFractionStyle, locale, { mainPartSuccess: true })
           ) : (
-            <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{t("free")}</span>
+            <span className="text-green-400">{t("free")}</span>
           )}
         </span>,
       );
@@ -401,7 +408,6 @@ const App = () => {
 
   const common = {
     t,
-    styles,
     settings,
     isProcessing,
     processingModeRef,
@@ -410,31 +416,34 @@ const App = () => {
     outputMeta,
   };
 
-  const { leftPanel, rightPanel } =
+  const { leftPanel, rightPanel, workspaceTopBar = null } =
     currentMode === "translate"
-      ? getTranslatePanels({
-          common,
-          input: {
-            text: inputText,
-            setText: setInputText,
-            getStats: inputStats,
-            clear: clearInput,
-            pasteToInput,
-            handlePasteEvent,
-          },
-          output: {
-            text: outputText,
-            setText: setOutputTextTranslate,
-            getStats: outputStats,
-            copy: copyOutput,
-          },
-          options: {
-            sourceLanguage,
-            setSourceLanguage,
-            targetLanguage,
-            setTargetLanguage,
-          },
-        })
+      ? {
+          ...getTranslatePanels({
+            common,
+            input: {
+              text: inputText,
+              setText: setInputText,
+              getStats: inputStats,
+              clear: clearInput,
+              pasteToInput,
+              handlePasteEvent,
+            },
+            output: {
+              text: outputText,
+              setText: setOutputTextTranslate,
+              getStats: outputStats,
+              copy: copyOutput,
+            },
+            options: {
+              sourceLanguage,
+              setSourceLanguage,
+              targetLanguage,
+              setTargetLanguage,
+            },
+          }),
+          workspaceTopBar: null,
+        }
       : currentMode === "rewrite"
         ? getRewritePanels({
             common,
@@ -455,74 +464,79 @@ const App = () => {
             options: {
               rewriteMode,
               setRewriteMode,
+              sourceLanguage,
+              setSourceLanguage,
               showOutputDiff,
               setShowOutputDiff,
               outputIsModelResult: rewriteOutputIsModelResult,
             },
           })
-        : getTransformPanels({
-            common,
-            input: {
-              text: inputTextTransform,
-              setText: setInputTextTransform,
-              getStats: () => getInputStats(inputTextTransform, t),
-              clear: clearInput,
-              pasteToInput,
-              handlePasteEvent,
-            },
-            output: {
-              text: outputTextTransform,
-              setText: setOutputTextTransform,
-              getStats: () => getOutputStats(outputTextTransform, t),
-              copy: () => navigator.clipboard.writeText(outputTextTransform),
-            },
-            options: {
-              transformEditMode,
-              editingPrompt,
-              transformPrompts,
-              transformPromptId,
-              selectedTransformPrompt,
-              showTransformLangSelector,
-              transformTargetLang,
-              setTransformTargetLang,
-              translate,
-              translatePromptFields,
-              improvePromptConfig,
-              generatePromptConfig,
-              model: activeModel,
-              models,
-              handleTransformPromptSelect,
-              handleTransformNewPrompt,
-              handleTransformEditPrompt,
-              handleTransformDuplicate,
-              handleOpenExportImportPrompts,
-              handleTransformSave,
-              handleTransformDeleteRequest,
-              handleTransformBackToRun,
-              setTransformEditorDraft,
-              transformTestInput,
-              setTransformTestInput,
-              handleTransformTest,
-              transformTestOutput,
-              transformTestMeta,
-              transformTestRunning,
-              setShowLoadSampleConfirm,
-              loadSampleLoading,
-            },
-          });
+        : {
+            ...getTransformPanels({
+              common,
+              input: {
+                text: inputTextTransform,
+                setText: setInputTextTransform,
+                getStats: () => getInputStats(inputTextTransform, t),
+                clear: clearInput,
+                pasteToInput,
+                handlePasteEvent,
+              },
+              output: {
+                text: outputTextTransform,
+                setText: setOutputTextTransform,
+                getStats: () => getOutputStats(outputTextTransform, t),
+                copy: () => navigator.clipboard.writeText(outputTextTransform),
+              },
+              options: {
+                transformEditMode,
+                editingPrompt,
+                transformPrompts,
+                transformPromptId,
+                selectedTransformPrompt,
+                showTransformLangSelector,
+                transformFromLang,
+                setTransformFromLang,
+                translate,
+                translatePromptFields,
+                improvePromptConfig,
+                generatePromptConfig,
+                model: activeModel,
+                models,
+                handleTransformPromptSelect,
+                handleTransformNewPrompt,
+                handleTransformEditPrompt,
+                handleTransformDuplicate,
+                handleOpenExportImportPrompts,
+                handleTransformSave,
+                handleTransformDeleteRequest,
+                handleTransformBackToRun,
+                setTransformEditorDraft,
+                transformTestInput,
+                setTransformTestInput,
+                handleTransformTest,
+                transformTestOutput,
+                transformTestMeta,
+                transformTestRunning,
+                setShowLoadSampleConfirm,
+                loadSampleLoading,
+              },
+            }),
+            workspaceTopBar: null,
+          };
 
   if (configLoading) {
     const loadingContent = (
-      <div className={styles.loadingScreen}>
-        <LoadingLogoSvg className={styles.loadingScreenLogo} />
-        <span className={styles.loadingScreenText}>{t("Loading…")}</span>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <LoadingLogoSvg className="w-16 h-auto shrink-0" />
+        <span className="text-sm text-muted-foreground">{t("Loading…")}</span>
       </div>
     );
     if (isWeb) {
       return (
-        <div id="root" className={styles.webOuterNoMargin} data-web-outer>
-          <div className={styles.webFrameSquare}>
-            <div className={styles.loadingWebInner}>
+        <div id="root" className="h-screen flex flex-col" data-web-outer>
+          <div className="flex-1 min-h-0 overflow-hidden flex flex-col border border-border">
+            <div className="flex-1 flex items-center justify-center bg-background">
               {loadingContent}
             </div>
           </div>
@@ -530,7 +544,7 @@ const App = () => {
       );
     }
     return (
-      <div id="root" className={mergeClasses(styles.root, styles.loadingRoot)}>
+      <div id="root" className="flex items-center justify-center h-screen bg-background">
         {loadingContent}
       </div>
     );
@@ -538,9 +552,9 @@ const App = () => {
 
   if (isWeb && needsLogin) {
     return (
-      <div id="root" className={styles.webOuterNoMargin} data-web-outer>
-        <div className={styles.webFrameSquare}>
-          <div className={styles.rootInWeb} style={{ padding: 0 }}>
+      <div id="root" className="h-screen flex flex-col" data-web-outer>
+        <div className="flex-1 min-h-0 overflow-hidden flex flex-col border border-border">
+          <div className="flex-1 min-h-0 flex flex-col">
             <LoginPage onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
           </div>
         </div>
@@ -564,13 +578,13 @@ const App = () => {
 
   if (isWeb) {
     const useMargin = settings?.web_margin === true;
-    const webOuterClass = useMargin ? styles.webOuter : styles.webOuterNoMargin;
-    const webFrameClass = useMargin ? styles.webFrame : styles.webFrameSquare;
+    const webOuterClass = useMargin ? "h-screen box-border p-[1%_1.5%] flex flex-col" : "h-screen flex flex-col";
+    const webFrameClass = useMargin ? "flex-1 min-h-0 overflow-hidden flex flex-col border border-border rounded" : "flex-1 min-h-0 overflow-hidden flex flex-col border border-border";
     return (
       <>
         <div id="root" className={webOuterClass} data-web-outer>
           <div className={webFrameClass}>
-            <div className={styles.rootInWeb}>
+            <div className="flex-1 min-h-0 flex flex-col">
               {isWeb && showChangePasswordModal && (
                 <ChangePasswordModal username={currentUser?.username} onClose={() => setShowChangePasswordModal(false)} />
               )}
@@ -616,6 +630,7 @@ const App = () => {
                   onRemoveModel={removeModelFromList}
                   leftPanel={leftPanel}
                   rightPanel={rightPanel}
+                  workspaceTopBar={workspaceTopBar}
                   openSettingsToTab={openSettingsToTab}
                   onOpenSettingsToTabConsumed={() => setOpenSettingsToTab(null)}
                 />
@@ -640,7 +655,7 @@ const App = () => {
   }
 
   return (
-    <div id="root" className={styles.root}>
+    <div id="root" className="h-screen flex flex-col">
       <ApiKeyModal
         show={showApiKeyModal}
         isWeb={isWeb}
@@ -671,6 +686,7 @@ const App = () => {
           onRemoveModel={removeModelFromList}
           leftPanel={leftPanel}
           rightPanel={rightPanel}
+          workspaceTopBar={workspaceTopBar}
         />
       </div>
       {transformPromptToDelete != null && (

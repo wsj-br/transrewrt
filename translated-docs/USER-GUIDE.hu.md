@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:29:42.578Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:36.186Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: hu
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -35,7 +35,7 @@ Ez az útmutató elmagyarázza, hogyan használhatja az alkalmazást, miután az
 
 <small>**Olvassa más nyelveken:** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -49,55 +49,55 @@ Ez az útmutató elmagyarázza, hogyan használhatja az alkalmazást, miután az
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Tartalomjegyzék**
 
-- [Mielőtt elkezdené](#before-you-start)
-  - [Hogyan szerezzen ingyenes OpenRouter API kulcsot (asztali alkalmazás)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Kezdés](#getting-started)
+- [A kezdés előtt](#before-you-start)
+  - [Hogyan szerezzünk ingyenes OpenRouter API-kulcsot (asztali alkalmazás)](#how-to-get-a-free-openrouter-api-key-desktop-app)
+- [Első lépések](#getting-started)
 - [Az ablak fő részei](#main-parts-of-the-window)
   - [Oldalsáv](#sidebar)
   - [Eszköztár](#toolbar)
-  - [Bemeneti és kimeneti panelek](#input-and-output-panels)
+  - [Bemeneti és kimeneti panel](#input-and-output-panels)
 - [Fordítás](#translate)
   - [Szöveg fordítása](#translate-text)
-  - [Nyelvválasztás](#language-selection)
+  - [Nyelv kiválasztása](#language-selection)
   - [Hasznos fordítási beállítások](#helpful-translation-settings)
 - [Átírás](#rewrite)
 - [Átalakítás](#transform)
-  - [Egy meglévő parancs futtatása](#run-an-existing-prompt)
-  - [Ha még nincs parancsa](#if-you-have-no-prompts-yet)
-  - [Gyors parancs létrehozása](#create-a-prompt-quickly)
-  - [Parancs szerkesztése](#edit-a-prompt)
-  - [Parancs tesztelése használat előtt](#test-a-prompt-before-using-it)
-- [Műszerfal](#dashboard)
+  - [Meglévő prompt futtatása](#run-an-existing-prompt)
+  - [Ha még nincsenek promptjaid](#if-you-have-no-prompts-yet)
+  - [Gyorsan hozz létre egy promptot](#create-a-prompt-quickly)
+  - [Prompt szerkesztése](#edit-a-prompt)
+  - [Prompt tesztelése használat előtt](#test-a-prompt-before-using-it)
+- [Irányítópult](#dashboard)
   - [Adatok szűrése](#filter-the-data)
-  - [Műszerfal lapok](#dashboard-tabs)
+  - [Irányítópult fülek](#dashboard-tabs)
   - [Adatok exportálása](#export-data)
   - [Tárolt rekordok törlése egy modellhez](#delete-stored-records-for-a-model)
 - [Előzmények](#history)
   - [Adatok szűrése](#filter-the-data-1)
-  - [Előzmények adatainak exportálása](#export-history-data)
+  - [Előzmények exportálása](#export-history-data)
 - [Beállítások](#settings)
   - [Általános beállítások](#general-settings)
   - [Modellek](#models)
   - [Nyelvek](#languages)
   - [Költségkövetés](#cost-tracking)
-  - [Átalakítási sablonok](#transform-prompts)
+  - [Átalakítási promptok](#transform-prompts)
   - [Felhasználók](#users)
-  - [API konfiguráció](#api-config)
+  - [API-beállítások](#api-config)
   - [Névjegy](#about)
 - [Gyakori problémák](#common-issues)
-  - [Az alkalmazás nem fordít, nem ír át, vagy nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [A modell lista üres](#the-model-list-is-empty)
+  - [Az alkalmazás nem fordít, nem írja át vagy nem alakítja át a szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [A modelllista üres](#the-model-list-is-empty)
   - [Az eredmény túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
-  - [A felület a rossz nyelven van](#the-interface-is-in-the-wrong-language)
+  - [A felület rossz nyelven jelenik meg](#the-interface-is-in-the-wrong-language)
   - [A szöveg túl kicsi vagy nehezen olvasható](#the-text-is-too-small-or-hard-to-read)
-  - [A műszerfal diagramok üresek](#dashboard-charts-are-empty)
-  - [A költség "nem elérhető" vagy tévesnek tűnik](#cost-shows-not-available-or-seems-wrong)
-  - [A teljes költség nem egyezik a szolgáltató számlájával](#total-cost-does-not-match-my-provider-bill)
-  - [A Történet oldal hiányzik az oldalsávból](#the-history-page-is-missing-from-the-sidebar)
-  - [Webalkalmazás: váratlanul a bejelentkezési oldalra irányítva](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webadmin: elfelejtett vagy elveszett jelszó](#web-admin-forgot-or-lost-a-password)
-  - [A műszerfal nem mutat adatokat más felhasználók számára (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Megváltoztattam egy parancsot és elvesztettem a módosításokat](#i-changed-a-prompt-and-lost-the-edits)
+  - [Az irányítópult diagramjai üresek](#dashboard-charts-are-empty)
+  - [A költség „nem elérhető” vagy helytelennek tűnik](#cost-shows-not-available-or-seems-wrong)
+  - [A teljes költség nem egyezik meg a szolgáltató számlájával](#total-cost-does-not-match-my-provider-bill)
+  - [Az Előzmények oldal hiányzik az oldalsávon](#the-history-page-is-missing-from-the-sidebar)
+  - [Webalkalmazás: váratlanul átirányít a bejelentkező oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webes admin: elfelejtettem vagy elvesztettem a jelszavam](#web-admin-forgot-or-lost-a-password)
+  - [Az irányítópult nem jelenít meg adatokat más felhasználókról (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Módosítottam egy promptot, és elveszítettem a változtatásokat](#i-changed-a-prompt-and-lost-the-edits)
 - [Gyors tippek](#quick-tips)
 - [Felelősségkizárás](#disclaimer)
 - [Licenc](#license)
@@ -129,14 +129,14 @@ Ha a **webes verziót** használja, a szerver üzemeltetője konfigurálja a szo
 
 Ha az asztali alkalmazást használja, kövesse az alábbi lépéseket:
 
-1. Nyissa meg az [OpenRouter](https://openrouter.ai) oldalt webböngészőjében.
+1. Nyissa meg a [OpenRouter](https://openrouter.ai) oldalt a webböngészőjében.
 2. Hozzon létre egy fiókot, vagy jelentkezzen be.
 3. Nyissa meg a [Kulcsok](https://openrouter.ai/keys) oldalt.
-4. Kattintson a gombra, hogy új API kulcsot hozzon létre.
+4. Kattintson a gombra, hogy új API-kulcsot hozzon létre.
 5. Adjon nevet a kulcsnak, hogy később felismerje.
-6. Másolja ki az új API kulcsot.
-7. Térjen vissza a Transrewrt alkalmazáshoz, és nyissa meg a **Beállítások** > **API konfiguráció** menüpontot.
-8. Illessze be a kulcsot az **OpenRouter API kulcs** mezőbe (**Beállítások** > **API konfiguráció** alatt).
+6. Másolja ki az új API-kulcsot.
+7. Térjen vissza a Transrewrt alkalmazáshoz, és nyissa meg a **Beállítások** > **API-beállítások** menüpontot.
+8. Illessze be a kulcsot a **OpenRouter API-kulcs** mezőbe (**Beállítások** > **API-beállítások** alatt).
 9. Kattintson a **OpenRouter kulcs tesztelése** gombra, hogy ellenőrizze, működik-e.
 
 <br/><br/>
@@ -148,11 +148,11 @@ Ha először használja a Transrewrt alkalmazást, kövesse az alábbi sorrendet
 
 1. Indítsa el az alkalmazást.
 2. Ha szükséges, válassza ki a **Felület nyelvét** a földgömb ikonról.
-3. Ha az **asztali alkalmazást** használja, nyissa meg a [**Beállítások** > **API konfiguráció**](#api-config) menüpontot, adjon hozzá legalább egy szolgáltatóhoz API kulcsot (például OpenRouter), majd kattintson a **Teszt** gombra az ellenőrzéshez.
-4. Nyissa meg a [**Beállítások** > **Modellek**](#models) menüpontot, és adjon hozzá egy vagy több modellt a **Kiválasztott modellek** közé.
-5. Nyissa meg a [**Beállítások** > **Nyelvek**](#languages) menüpontot, és válassza ki a **Legfontosabb nyelveket**, ha a leggyakrabban használt nyelvei elől jelenjenek meg.
-6. Menjen a **Fordítás** fülre, és futtasson egy egyszerű fordítást az ellenőrzéshez.
-7. Ha ez működik, próbálja ki a **Átírás**, majd a **Átalakítás** funkciót.
+3. Ha **asztali alkalmazást** használ, nyissa meg a [**Beállítások** > **API-beállítások**](#api-config) menüt, adjon hozzá legalább egy szolgáltatóhoz tartozó API-kulcsot (például OpenRouter), majd kattintson a **Tesztelés** gombra az ellenőrzéshez.
+4. Nyissa meg a [**Beállítások** > **Modellek**](#models) menüt, és adjon hozzá egy vagy több modellt a **Kiválasztott modellek** közé.
+5. Nyissa meg a [**Beállítások** > **Nyelvek**](#languages) menüt, és válassza ki a **Legfontosabb nyelveket**, ha a leggyakrabban használt nyelvei elől jelenjenek meg.
+6. Lépjen a **Fordítás** fülre, és futtasson le egy egyszerű fordítást, hogy ellenőrizze, minden működik-e.
+7. Ha ez működik, próbálja ki a **Átírás**, majd az **Átalakítás** funkciót.
 
 Ez a sorrend fontos. Ez megelőzi a leggyakoribb első használatkor jelentkező problémát: feladat futtatását mielőtt az alkalmazás működő API-kapcsolattal vagy kiválasztott modelllel rendelkezne.
 
@@ -257,10 +257,10 @@ Használja a **Fordítás** funkciót, ha szöveget szeretne egyik nyelvről a m
 <a id="translate-text"></a>
 ### Szöveg fordítása
 
-1. Nyissa meg a **Fordítás** funkciót.
+1. Nyissa meg a **Fordítás** fület.
 2. Válasszon nyelvet a **Honnan** mezőben.
 3. Válasszon nyelvet a **Hova** mezőben.
-4. Válasszon modellt az eszköztáron.
+4. Válasszon ki egy modellt az eszköztárból.
 5. Írja be vagy illessze be a szöveget a **Bemenet** mezőbe.
 6. Kattintson a **Fordítás** gombra.
 7. Olvassa el az eredményt a **Kimenet** mezőben.
@@ -283,10 +283,10 @@ A kiválasztott **Legfontosabb nyelvek** a lista tetején jelennek meg. Ezeket a
 
 A [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban megváltoztathatja a fordítás működését:
 
-- **Automatikus fordítás beillesztéskor**: a fordítás azonnal elindul, amint beillesztesz szöveget.
-- **Eredmény automatikus másolása a vágólapra**: az eredmény automatikusan a vágólapra másolódik sikeres futtatás után.
-- **Valós idejű fordítás (gépelés közben)**: a fordítás már a gépelés közben fut.
-- **Időtúllépés (ms)**: meghatározza, hogy az alkalmazás mennyi ideig várjon, mielőtt elindít egy valós idejű fordítást.
+- **Automatikus fordítás beillesztéskor**: a fordítás azonnal elindul, amint beilleszti a szöveget.
+- **Eredmény automatikus másolása a vágólapra**: az eredmény automatikusan a vágólapra kerül sikeres futtatás után.
+- **Valós idejű fordítás (gépelés közben)**: a fordítás a gépelés során fut.
+- **Időtúllépés (ms)**: meghatározza, hogy az alkalmazás mennyi ideig várjon a valós idejű fordítás elindítása előtt.
 - **Enter**: meghatározza, mi történjen az `Enter` billentyű lenyomásakor:
 
 <br/><br/>
@@ -302,12 +302,12 @@ Használja az **Átírás** funkciót, ha a szöveg megfogalmazását szeretné 
 
 Ez hasznos lehet:
 
-- helyesírás- és nyelvtanjavításra (**Helyesírás- és nyelvtanellenőrzés**)
-- a szöveg érthetőbbé tételére (**Érthetőség javítása**)
+- helyesírás- és nyelvtanellenőrzés (**Helyesírás és nyelvtan ellenőrzése**)
+- szöveg érthetőbbé tétele (**Érthetőség javítása**)
 - több különböző átfogalmazás egyetlen futtatásban (**Alternatív változatok**)
-- a szöveg formálisabbá vagy informálisabbá tétele (**Formális** / **Informális**)
-- a szöveg rövidítésére vagy kibontására (**Rövidítése** / **Kibontás**)
-- a szöveg technikaiabbá alakítására (**Technikai móddá alakítás**)
+- szöveg formálisabbá vagy informálisabbá tétele (**Formális** / **Informális**)
+- szöveg rövidítése vagy kiterjesztése (**Rövidítés** / **Kiterjesztés**)
+- szöveg technikusabbá tétele (**Technikai stílus**)
 
 <br/>
 
@@ -332,15 +332,15 @@ Ez az alkalmazás legrugalmosabb része. Használhatja például a következő f
 - durva szöveg átalakítása finomított e-mailré
 - kulcsfontosságú pontok kinyerése
 - szöveg átalakítása adott formátumba
-- bármilyen egyéni tevékenység a bemeneti szöveggel
+- bármely egyéni tevékenység a bemeneti szöveggel
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Már meglévő parancs futtatása
 
-1. Nyissa meg az **Átalakítás** funkciót.
-2. Válasszon egy parancsot a parancslistából.
+1. Nyissa meg a **Átalakítás** funkciót.
+2. Válasszon egy sablont a sablonlista közül.
 3. Ha megjelenik egy **Cél** nyelv mező, válasszon nyelvet, ha szeretne.
 4. Írja be vagy illessze be a szöveget a **Bemenet** mezőbe.
 5. Kattintson az **Átalakítás** gombra.
@@ -365,12 +365,12 @@ Ha az utasításlistája üres, kattintson az **Mintaparancsok betöltése** leh
 
 A parancs létrehozásának leggyorsabb módja:
 
-1. Kattintson az **Új parancs** gombra.
-2. Kattintson a **Parancs generálása** gombra.
-3. Írja le, mit szeretne, hogy a parancs csináljon.
-4. Válasszon egy modellt.
-5. Hagyja, hogy az alkalmazás vázlatot készítsen Önnek.
-6. Tekintse át a vázlatot, majd kattintson a **Mentés** gombra.
+1. Kattintson az **Új sablon** gombra.
+2. Kattintson a **Sablon generálása** gombra.
+3. Írja le, mit szeretne, hogy a sablon csináljon.
+4. Válasszon modellt.
+5. Hagyja, hogy az alkalmazás vázlatot készítsen.
+6. Ellenőrizze a vázlatot, majd kattintson a **Mentés** gombra.
 
 ![Generate prompt](../images/screenshots/hu/transform-generate.png)
 
@@ -385,13 +385,13 @@ Amikor létrehoz vagy szerkeszt egy parancsot, a szerkesztő a bal oldalon jelen
 
 A fő mezők a következők:
 
-- **Parancs neve**: a parancslistában megjelenő név.
-- **Parancs utasításai (nem kötelező)**: egy rövid tipp, amely a felhasználó számára jelenik meg a parancs futtatásakor.
-- **Modell szerepe**: az AI-nek kiosztott általános szerep, például „Hasznos asszisztens vagy”.
-- **Modell utasításai (soronként egy)**: azok a konkrét szabályok, amelyeket az AI-nek követnie kell.
-- **Kimenet leírása**: a végeredményt röviden leíró szó, például „összegzés” vagy „átírás”.
-- **Hőmérséklet (0,0 → 1,0)**: a modell viselkedésének mértéke; lásd alább.
-- **Célnyelv kérése**: célnyelv-választót ad hozzá, amikor a parancs fut.
+- **Sablon neve**: a név, amely megjelenik a sablonlistában.
+- **Sablon utasításai (opcionális)**: rövid útmutató, amely megjelenik a felhasználónak a sablon futtatásakor.
+- **Modell szerepe**: az MI általános szerepköre, például: „Segítőkész asszisztens vagyok.”
+- **Modell utasításai (soronként egy)**: azok a konkrét szabályok, amelyeket az MI-nek követnie kell.
+- **Kimenet leírása**: egy rövid szó, amely az eredményt írja le, például „összegzés” vagy „átírás”.
+- **Hőmérséklet (0,0 → 1,0)**: a modell viselkedését befolyásolja; lásd alább.
+- **Célnyelv kérése**: célnyelv-választót ad hozzá, amikor a sablont futtatják.
 
 Ha az **Hőmérséklet** technikai kifejezés új az Ön számára, képzelje el a következőképpen:
 
@@ -462,11 +462,11 @@ A szűrési gombokkal a felső részen módosíthatja az időtartományt.
 <a id="dashboard-tabs"></a>
 ### Műszerfal fülek
 
-- A **Összegzés** áttekintést nyújt a használatról és a költségekről. Tartalmazza a **Használat időbeli alakulását** (egymásra halmozott napi **hívásszámokat** fordítás, átírás és átalakítás műveletekhez), valamint a **Használat modell szerint** (összes **hívás modellenként**, beleértve az átalakítást is).
-- A **Használat szerint** a tevékenységet a fordítási nyelvek, az újraírás módok és az átalakítási kérések szerint bontja le.
-- A **Modell szerint** megjeleníti, mely modelleket használta, és azok mennyibe kerültek.
-- A **Nap szerint** napi összesítéseket mutat.
-- Az **Összes hívás** az összes hívás előzményét jeleníti meg, és lehetővé teszi annak exportálását.
+- **Összegzés**: áttekintést nyújt a használatról és a költségekről. Tartalmazza a **Használat időbeli alakulását** (napi összesített, halmozott **hívásszámokat** fordítás, átírás és átalakítás szerint) és a **Használat modellenként** (összes **hívás modellenként**, beleértve az átalakítást is).
+- **Használat szerint**: a tevékenységet nyelv szerinti fordításra, átírás módjára és átalakítási sablonra bontja.
+- **Modell szerint**: megmutatja, mely modelleket használta és mennyibe kerültek.
+- **Nap szerint**: napi összesített adatokat mutat.
+- **Összes hívás**: megjeleníti az összes hívás teljes előzményét, és lehetővé teszi exportálását.
 
 <br/>
 
@@ -550,8 +550,8 @@ A rendelkezésre álló fülek a platformtól és a szerepkörétől függenek:
   | Költségkövetés     |   igen   |     igen     |         -          |
   | Átalakítási sablonok |   igen   |     igen     |        igen         |
   | Felhasználók             |    -    |     igen     |         -          |
-  | API konfiguráció        |   igen   |     igen     |         -          |
-  | Névjegy             |   igen   |     igen     |        igen         |
+  | API konfiguráció  |   igen   |     igen     |         -          |
+  | Információk      |   igen   |     igen     |        igen        |
 
 <br/>
 
@@ -569,11 +569,11 @@ Az **Általános beállítások** használatával szabályozhatja a gépelés vi
 
 **Viselkedés**
 
-- A **ENTER viselkedése** határozza meg, hogy az `Enter` végrehajtja-e a feladatot, vagy új sort szúr be.
-- Az **Automatikus fordítás beillesztéskor** azonnal elindítja a fordítást, amint beilleszt szöveget.
-- Az **Eredmény automatikus másolása a vágólapra** sikeres eredményeket automatikusan másol.
-- A **Valós idejű fordítás (gépelés közben)** gépelés közben fordít.
-- Az **Időtúllépés (ms)** beállítja a várakozási időt a valós idejű fordításhoz.
+- **A ENTER viselkedése** kiválasztja, hogy `Enter` futtatja a feladatot, vagy új sort illeszt be.
+- **Automatikus fordítás beillesztéskor** azonnal elkezdi a fordítást, amint beilleszted a szöveget.
+- **Eredmény automatikus másolása a vágólapra** automatikusan másolja a sikeres eredményeket.
+- **Valós idejű fordítás (gépelés közben)** fordít, miközben írsz.
+- **Időkorlát (ms)** beállítja a várakozási időt a valós idejű fordításhoz.
 
 **Előzmények**
 
@@ -582,19 +582,19 @@ Az **Általános beállítások** használatával szabályozhatja a gépelés vi
 
 **Megjelenés**
 
-- A **Költséginformációk megjelenítése a műveleteken** szabályozza az egyes műveletek költségének (ha elérhető) és a teljes költségnek a megjelenítését a Fordítás, Átírás és Átalakítás kimeneti paneljein.
-- A **Költség tizedesjegyek száma** módosítja a költségtizedesek megjelenítését.
-- **Csak webes verzió:** A **margó megjelenítése az alkalmazás körül** extra teret ad az interfész köré.
-- A **Betűtípus** módosítja az írás betűtípusát a szövegpaneleken.
-- A **Méret** módosítja a betűméretet.
+- **Költséginformációk megjelenítése az akcióknál** vezérli a költség megjelenítését műveletenként (ha elérhető) és a teljes költséget a Fordítás, Átírás és Átalakítás kimeneti panelekben.
+- **Költség tizedesjegyek** megváltoztatja, hogyan jelennek meg a költség tizedesek.
+- **Csak web:** **margó megjelenítése az alkalmazás körül** extra helyet ad a felület köré.
+- **Betűtípus család** megváltoztatja a szövegpanelek írási betűtípusát.
+- **Méret** megváltoztatja a betűméretet.
 
 **Konfiguráció biztonsági mentése**
 
-- **Használati adatok belefoglalása a biztonsági mentésbe** – ha engedélyezve van, a ZIP fájl az előzményeket és az API-hívások adatait is tartalmazza.
-- **Konfiguráció mentése biztonsági másolatként** – egyetlen ZIP fájlt hoz létre (alapértelmezés szerint `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` UTC-ben), amely tartalmazza a `config.json`, `state.json`, opcionális titkosítási kulcsot, felhasználókat, beállításokat, egyéni sablonokat, és a használati adatokat, ha engedélyezte. A sikeres mentés után a megerősítés megjeleníti a mentett fájl nevét.
-- **Visszaállítás biztonsági másolatból** – először egy **megerősítő párbeszédablakot** nyit meg. Válassza ki a biztonsági mentés ZIP fájlját a párbeszédablakban (**Tallózás** / fájlválasztó vagy fogd és vidd, ahol támogatott), majd tekintse át a beállításokat:
-  - **Használati adatok visszaállítása** – importálja a használati/előzményadatokat a ZIP-ből, ha a mentés során a használati adatok be lettek foglalva; hagyja kikapcsolva, ha csak a beállításokat és sablonokat szeretné.
-  - **Régi használati adatok törlése a visszaállítás előtt** – eltávolítja a jelenlegi telepítésen lévő meglévő használati/előzményadatokat a biztonsági másolat alkalmazása előtt (opcionális; használja, ha tiszta csere szükséges).
+- **Használati adatok beillesztése a biztonsági mentésbe** - ha engedélyezve van, a ZIP tartalmazza a végrehajtási előzményeket és az API hívási adatokat. 
+- **Biztonsági mentés konfiguráció** - létrehoz egyetlen ZIP-et (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` UTC szerint alapértelmezés szerint) `config.json`, `state.json`, opcionális titkosítási kulcs, felhasználók, preferenciák, egyedi kérések és használati adatok, ha beleegyezett. Sikeres biztonsági mentés után a megerősítés megjeleníti a mentett fájl nevét.
+- **Visszaállítás biztonsági mentésből** - először megnyit egy **megerősítő párbeszédpanelt**. Válaszd ki a biztonsági mentés ZIP-jét a párbeszédpanelen (**Böngészés** / fájl kiválasztó vagy húzd és ejtsd, ahol támogatott), majd nézd át az opciókat:
+  - **Használati adatok visszaállítása** - importálja a használati/történeti adatokat a ZIP-ből, amikor az használati adatokkal lett biztonsági mentve; hagyd ki, ha csak a beállításokat és kéréseket szeretnéd.
+  - **Töröld a régi használati adatokat a visszaállítás előtt** - távolítsd el a meglévő használati/történeti adatokat ezen az installáción, mielőtt alkalmaznád a biztonsági mentést (opcionális; használd, amikor tiszta cserét szeretnél).
 
 A webes vagy asztali verzióban készült biztonsági másolatokat a másik verzióban is vissza lehet állítani. Ha asztali biztonsági másolatot állít vissza a webes verzióban, az adatok az adminisztrátor felhasználóhoz lesznek visszaállítva.
 
@@ -614,11 +614,11 @@ Az oldal két listát tartalmaz:
 
 Hasznos vezérlők:
 
-- **Modellek keresése...** a modell neve alapján történő kereséséhez
-- **Szolgáltató** címkék a lista szűkítéséhez egyetlen motorra (OpenRouter, OpenAI, Ollama, …)
+- **Modellek keresése...** a modell nevének kereséséhez
+- **Szolgáltató** chipek a lista szűkítéséhez egy motorra (OpenRouter, OpenAI, Ollama, …)
 - **Csak ingyenes** csak az ingyenes modellek megjelenítéséhez
 - **Frissítés** a lista újratöltéséhez
-- **Összes kibontása** és **Összes behajtása**, amikor szolgáltató szerint rendez
+- **Összes kibővítése** és **Összes összehúzása**, amikor szolgáltató szerint rendezel
 
 A modellazonosítók tartalmazzák a szolgáltató előtagját (például `openrouter/…` vs `openai/…`). A jelzések, mint például **OpenAI (OpenRouter)** vs **OpenAI (közvetlen)**, azt mutatják, hogyan irányul a forgalom.
 
@@ -659,10 +659,10 @@ Használja a **Beállítások** > **Költségkövetés** menüpontot a költség
 
 - **Teljes költség** megjeleníti a futó összeget.
 - **Érték másolása** a teljes összeget a vágólapra másolja.
-- **Költség alaphelyzetbe állítása** a tárolt összeget nullára állítja vissza.
-- **Szinkronizálás az API kulcs használatával** az összeget az OpenRouter fiókja által jelentett használattal igazítja (csak OpenRouter esetén).
-- **API kulcs használat** megjeleníti az OpenRouter használat részleteit, ha elérhető.
-- **Költségadatok törlése** az összes adatot eltávolítja, vagy csak a kiválasztott dátumnál régebbi bejegyzéseket.
+- **Költség visszaállítása** a tárolt összeget nullára állítja vissza.
+- **Szinkronizálás az API kulcs használatával** beállítja a teljes összeget, hogy megfeleljen a OpenRouter fiókod által jelentett használatnak (csak OpenRouter).
+- **API kulcs használat** megjeleníti az OpenRouter használati részleteit, ha elérhető.
+- **Költségadatok törlése** eltávolítja az összes adatot, vagy csak a kiválasztott dátumnál régebbi bejegyzéseket.
 
 **Költségkövetés:** Ha OpenRouter modelleket használ, az alkalmazás a tényleges használatot és kiadásokat mutatja az OpenRouter által szolgáltatott költséginformációk alapján. Minden más szolgáltató esetében az alkalmazás az OpenRouter által közzétett árak alapján becsüli a költségeket; ha ár nem érhető el, a becslés nulla lehet.
 
@@ -686,11 +686,11 @@ Használja a **Beállítások** > **Átalakítási sablonok** lehetőséget a pa
 
 Lehetőségei:
 
-- áttekintheti a mentett parancsait
-- törölhet parancsokat
-- importálhat parancsokat fájlból
-- exportálhat parancsokat biztonsági mentéshez vagy megosztáshoz
-- betölthet mintaparancsokat a parancslistába
+- nézd át a mentett kéréseidet
+- töröld a kéréseket
+- importálj kéréseket egy fájlból
+- exportáld a kéréseket biztonsági mentéshez vagy megosztáshoz
+- töltsd be a minta kéréseket a kéréslistába
 
 <br/>
 
@@ -906,12 +906,12 @@ Amikor egy parancsot szerkeszt, mindig kattintson a **Mentés** gombra, mielőtt
 <a id="quick-tips"></a>
 ## Gyors tippek
 
-- Kezdje a [**Fordítás**](#translate) funkcióval annak ellenőrzéséhez, hogy a beállítás megfelelően működik-e, mielőtt áttér a [**Átírás**](#rewrite) vagy az [**Átalakítás**](#transform) lehetőségre.
-- Használja az [**Átírás**](#rewrite) funkciót mindennapi szövegjavításokhoz.
-- Használja az [**Átalakítás**](#transform) funkciót, ha ismételhető munkafolyamatot szeretne egy adott feladathoz.
-- Használja a [**Műszerfal**](#dashboard) funkciót, ha nyomon szeretné követni a használatot és a költségeket.
-- Használja az [**Előzmények**](#history) funkciót a korábbi műveletek és a teljes bemeneti/kimeneti szöveg áttekintéséhez.
-- Rendszeresen exportálja a parancsokat, ha olyan parancsok gyűjteményét építi fel, amelyet meg szeretne őrizni (lásd: [Átalakítási sablonok](#transform-prompts)), vagy ha meg szeretné osztani másokkal.
+- Kezdj a [**Fordítás**](#translate) lehetőséggel, hogy megbizonyosodj arról, hogy a beállításod működik, mielőtt továbblépnél a [**Átírás**](#rewrite) vagy [**Átalakítás**](#transform) lehetőségekre.
+- Használj [**Átírás**](#rewrite) a mindennapi megfogalmazás javításához.
+- Használj [**Átalakítás**](#transform) amikor egy ismételhető munkafolyamatra van szükséged egy adott feladathoz.
+- Használj [**Irányítópult**](#dashboard) ha figyelemmel szeretnéd kísérni a használatot és a költséget.
+- Használj [**Történet**](#history) a korábbi műveletek és azok teljes bemeneti/kimeneti szövegének áttekintéséhez.
+- Exportáld a kéréseket rendszeresen, ha egy biztonságos kéréstárat szeretnél építeni (lásd [Kérések átalakítása](#transform-prompts)) vagy ha meg szeretnéd osztani másokkal.
 
 <br/><br/>
 

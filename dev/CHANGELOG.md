@@ -11,6 +11,79 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: ESLint now ignores `dist-main/` generated bundles so `pnpm lint` only checks source files.
+
+- **Fixed**: Added graceful SQLite shutdown in Electron and web server to checkpoint WAL (`PRAGMA wal_checkpoint(TRUNCATE)`) and close DB handles on app/server exit.
+- **Changed**: Enabled SQLite WAL mode and `synchronous = NORMAL` on app database open in both Electron and server runtimes to improve concurrent read/write performance.
+- **Security**: Added pnpm overrides for `@xmldom/xmldom` (>=0.8.13), `uuid` (>=14.0.0), and `postcss` (>=8.5.10) to resolve 6 audit vulnerabilities (4 high, 2 moderate).
+
+- **Fixed**: Settings → General → Appearance — font family and font size use separate non-wrapping rows so each label stays on the same line as its control on narrow screens.
+- **Changed**: `dev/SYSTEM-OVERVIEW.md` tech-stack table and directory tree updated to reflect Tailwind v4 + shadcn/Radix (removed Fluent UI 9 / FluentProvider references); `dev/DEVELOPMENT.md` 3p-licenses examples updated to use current packages.
+
+- **Fixed**: Settings → General — Behaviour and History blocks were missing from the tab; restored. Sections order is Appearance, Behaviour, History, then Configuration Backup; one column on small screens, two columns from `md` up.
+
+- **Changed**: Translate / Rewrite / Transform workspace header on small screens — UI language control (globe) sits on the same row as the mode title; model selector stays on the row below.
+
+- **Changed**: Mobile navigation sheet (hamburger menu) closes automatically after choosing a sidebar destination or a user-menu action.
+
+- **Fixed**: Settings page responsive layout on small screens — API key inputs and provider grid no longer force horizontal overflow; Models tab panes and header stack better; Cost, Users, and Transform prompts tabs use card layouts below `sm` instead of wide tables; Cost tab indents reduced on mobile.
+
+- **Changed**: Removed the sidebar brand header bottom border and the separator line above the sidebar dashboard/navigation section; main panel `AppHeader` keeps a bottom divider.
+
+- **Fixed**: `AppHeader` desktop height now matches the expanded sidebar brand header (`84px`) so the top divider aligns cleanly when the sidebar is open.
+
+- **Changed**: Login and About pages now use the same shared app-name gradient text effect as the sidebar via `.app-name-gradient` in `styles/main.css`.
+
+- **Changed**: Sidebar brand wordmark styles moved from inline `React.CSSProperties` in `Sidebar.tsx` to global stylesheet class `.sidebar-app-name` in `styles/main.css`.
+
+- **Changed**: Sidebar brand block sizing/position restored to the legacy layout (`18px` gradient app name, centered logo stack, `24px` collapsed logo, original spacing).
+
+- **Changed**: Sidebar app name (`Transrewrt`) restored to the previous multi-stop green→orange text gradient style in expanded mode.
+
+- **Added**: Open **sidebar** logo/app name now toggles collapse on click; same brand area acts as expand/collapse toggle in both sidebar states.
+
+- **Added**: Collapsed **sidebar** logo is now clickable; clicking the Transrewrt icon expands the sidebar (same behavior as the bottom expand button).
+
+- **Fixed**: Collapsed **sidebar** logo — `img` is no longer squashed by flex (`shrink-0`, `object-contain`); logo row uses `px-2` when collapsed to match nav padding and free horizontal space.
+
+- **Changed**: **StyleSelector** (rewrite **Mode:**) — `Palette` icon matches header `PenTool`: `h-5 w-5`, `text-blue-400`, `strokeWidth` 1.6 (replaces `size={18}` / default stroke).
+
+- **Changed**: **LanguageSelector** — optional `iconClassName` / `iconStrokeWidth` so the leading Languages icon matches each workspace header accent (translate emerald, rewrite blue, transform purple; `strokeWidth` 1.6 like `MainContent` mode icons).
+
+- **Changed**: Transform workspace — **From** language selector omits the visible **From:** label (`hideLabel`), matching rewrite; trigger `aria-label` unchanged.
+
+- **Changed**: Workspace **output** panel footer — character stats on the first line, **Model:** on the second; model label uses `modelFooterDisplayId` (e.g. `openrouter/qwen/qwen3-235b-a22b-2507` → `qwen3-235b-a22b-2507`). Full id remains on hover (`title`).
+
+- **Added**: **Rewrite** system prompt includes the workspace **From** language when it is not “Detect Language” (`prompts.json` `rewrite.withSourceLanguageLine`); API logging records `source_lang`.
+
+- **Changed**: **Transform** — run UI uses **From:** (replaces **Target:**); optional per-prompt language is merged with workspace **From** into a single **stated From** value for `shared.transform.withSourceLanguageLine` (removed `translateToTargetLang` / output translation step). The From control matches translate/rewrite (`detectLanguage`, **Detect Language**). Prompt editor / Settings → Transform prompts table labels updated; DB column stays `target_language` (boolean). `apiService.transform` / `AppContext.transform` now take `(…, signal, statedFromLang)`; history transform summary reads `source_lang` for the bracket label.
+
+- **Changed**: **HeaderLanguageSelector** — wider menu (`min-w-80`, up to `28rem`, capped by `calc(100vw - 2rem)`); language trigger uses `size="sm"` instead of `icon-sm` so width follows icon + locale text (no fixed `32px` square).
+
+- **Fixed**: **ModelPickerRow** — when the provider icon is hidden (header trigger), the name sat in the first grid track (`auto`) so long IDs never ellipsized; use `grid-cols-[minmax(0,1fr)_auto]` in that case, plus `min-w-0 truncate` and `overflow-hidden` on the trigger chain.
+
+- **Changed**: **AppHeader** — below `md`, title and controls stack in two rows (`flex-col`) so the model strip and language control do not overlap; from `md` up, single `h-14` row with `justify-between`. Header actions use `gap-x-8` / `gap-y-2` (space between model selector and language control). **ModelSelector** root uses `min-w-0`, `flex-wrap`, and a shrinkable model trigger on small widths (`sm:min-w-[200px]`).
+
+- **Changed**: **TextPanel** footer stats use `11px` (`text-[11px] leading-snug`) and wrap (`break-words`, no `truncate` / `whitespace-nowrap`) in narrow columns; **Show changes** label stays `whitespace-nowrap`.
+
+- **Fixed**: Workspace translate/rewrite/transform — left/right **TextPanel** cards share row height (`MainContent` grid `items-stretch`, `h-full` columns, `minmax(0,1fr)`); run-button band uses `workspaceCtaRowClassName` (`60px`); **TextPanel** footers use fixed `h-[60px]` + `flex-nowrap` (`workspacePanelFooterLayoutClassName`); stats + model string uses a `·` separator and wraps within the footer band instead of truncating with an ellipsis.
+
+- **Added**: Rewrite workspace — **From** language control (Detect Language + list) on the same row as **Mode:**; full-width toolbar above the grid; content-sized selects (`hugSelectWidth`); visible **From:** text hidden in that bar only (`LanguageSelector` `hideLabel`, trigger `aria-label` unchanged). Shared `source_language` with translate.
+
+- **Changed**: Model selector — current model label (`ModelPickerRow`) uses `text-sm` and tighter line-height so long model IDs match header typography.
+
+- **Fixed**: Light theme — `index.html` splash CSS set `color` / `background` on `html, body` outside any `@layer`, which overrode Tailwind `@layer base` and left inherited text white on light `bg-background` (settings and other views). Scoped splash colours to `.app-loading` only; improved light `--muted-foreground`, switch thumb contrast, and General → font preview sample text colour.
+
+- **Changed**: CSS consolidation — shared settings table/layout class modules under `components/settings/`; Settings → Models uses `settingsModelsLayoutClasses.ts` instead of global BEM in `main.css` (global stylesheet reduced to app shell only); dashboard styles live in `components/dashboard/dashboardPageStyles.ts` with `DashboardExportToolbar` for repeated export controls; removed `DashboardPage-styles.ts` and `useStyles` shim.
+
+- **Fixed**: Light theme readability — replaced hardcoded dark greys and invalid `hsl(var(--…))` on oklch tokens in `main.css`, settings tables, web loading frame, prompt selector buttons, and dashboard scrollbar styling.
+
+- **Added**: Settings → General → Appearance — **Theme** selector (Light / Dark / System). "System" follows the OS `prefers-color-scheme` and updates live when the user switches the OS theme.
+
+- **Changed**: Full UI migration — replaced Fluent UI with Tailwind v4 + shadcn/Radix primitives across all renderer components; added TypeScript support (tsconfig, ts-loader, `@/` alias); self-hosted Geist font; responsive shell with collapsible desktop sidebar and mobile Sheet; responsive `lg:grid-cols-2` workspace panels; all settings, dashboard, history, login, and modal views converted.
+- **Removed**: `@fluentui/react-components`, `@fluentui/react-icons` dependencies and `useAppStyles` hook; dead CSS rules from `main.css` (Fluent token references, legacy panel/modal/sidebar classes); `ResizablePanels.js` replaced by CSS grid.
+- **Fixed**: `costUtils.ts` renamed to `costUtils.tsx` — babel-loader was failing with "Unterminated regular expression" because the file contains JSX but had a `.ts` extension.
+
 - **Changed**: Windows NSIS - removed `preInit` silent uninstall of any existing “Transrewrt” listing; upgrades replace files in place under the same install directory (electron-builder’s default behaviour).
 - **Fixed**: Windows NSIS - `customCheckAppRunning` uses `Function` vs `Function un.TR_CheckAppRunningImpl` per `makensis` pass (`GetProcessInfo` / `un._GetProcessInfo`), and the running-app logic uses only `StrCmp` / `IntCmp` (no `${if}` / LogicLib) so it compiles in electron-builder’s sharedHeader, fixing `ERR_ELECTRON_BUILDER_CANNOT_EXECUTE` / `Invalid command: "${if}"`.
 - **Fixed**: Windows NSIS - `updated` / upgrade detection uses a `$CMDLINE` substring check instead of `StdUtils::TestParameter` so the uninstaller `makensis` pass succeeds (StdUtils is not loaded there); matching `un.TR_TR_HasUpdatedCmdline` / `TR_TR_HasUpdatedCmdline` for valid `Call` targets; `DetailPrint` avoids `$(PRODUCT_NAME)` (warning 6040 under `-WX`).

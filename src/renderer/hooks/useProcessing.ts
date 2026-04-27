@@ -34,7 +34,7 @@ export function useProcessing({
   transformPrompts,
   transformPromptId,
   showTransformLangSelector,
-  transformTargetLang,
+  transformFromLang,
 }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -255,7 +255,8 @@ export function useProcessing({
         text,
         rewriteMode,
         activeModel,
-        abortControllerRef.current.signal
+        abortControllerRef.current.signal,
+        sourceLanguage === "Detect Language" ? null : sourceLanguage,
       );
 
       if (timerRef.current) {
@@ -340,6 +341,7 @@ export function useProcessing({
     inputTextRewrite,
     rewriteMode,
     activeModel,
+    sourceLanguage,
     isProcessing,
     settings.auto_copy,
     rewrite,
@@ -368,10 +370,14 @@ export function useProcessing({
         temperature: Number(selected.temperature) || 0.4,
         target_language: selected.target_language ?? null,
       };
-      const lang =
-        showTransformLangSelector && transformTargetLang && transformTargetLang !== "auto"
-          ? transformTargetLang
-          : null;
+      const workspaceFrom =
+        sourceLanguage && sourceLanguage !== "Detect Language" ? sourceLanguage : null;
+      const statedFromLang = (() => {
+        if (!showTransformLangSelector) return workspaceFrom;
+        const uiExplicit =
+          transformFromLang && transformFromLang !== "Detect Language" ? transformFromLang : null;
+        return uiExplicit ?? workspaceFrom;
+      })();
 
       processingModeRef.current = "transform";
       setIsProcessing(true);
@@ -390,7 +396,7 @@ export function useProcessing({
       tpsCalculationRef.current = { startTime: Date.now(), tokens: 0 };
 
       try {
-        const result = await transform(text, promptConfig, activeModel, lang, signal);
+        const result = await transform(text, promptConfig, activeModel, signal, statedFromLang);
 
         if (timerRef.current) {
           clearInterval(timerRef.current);
@@ -474,7 +480,8 @@ export function useProcessing({
       transformPrompts,
       transformPromptId,
       showTransformLangSelector,
-      transformTargetLang,
+      transformFromLang,
+      sourceLanguage,
       activeModel,
       settings.auto_copy,
       transform,

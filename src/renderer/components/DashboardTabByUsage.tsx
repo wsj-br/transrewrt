@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Text, tokens } from "@fluentui/react-components";
+
 import PropTypes from "prop-types";
 import {
   BarChart,
@@ -28,7 +28,7 @@ export default function DashboardTabByUsage({
     fontSize: "clamp(9px, 1.4vh, 12px)",
   };
   const byUsageTickStyle = {
-    fill: tokens.colorNeutralForeground3,
+    fill: "#9ca3af",
     fontSize: "clamp(9px, 1.4vh, 12px)",
   };
   const byUsageLabelFontSize = "clamp(9px, 1.2vh, 11px)";
@@ -45,9 +45,9 @@ export default function DashboardTabByUsage({
     >
       <div className={styles.byUsageDashboard}>
         <div className={styles.byUsageChartBlock}>
-          <Text as="h4" size={400} className={styles.byUsageTitle}>
+          <h4 className={styles.byUsageTitle}>
             {t("Translation target language")}
-          </Text>
+          </h4>
           <div
             className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}
           >
@@ -91,10 +91,10 @@ export default function DashboardTabByUsage({
                       <Tooltip
                         cursor={{ fill: "transparent" }}
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                           color:
-                            tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            "#e5e7eb",
                           fontSize: byUsageLabelFontSize,
                         }}
                         formatter={(value) => {
@@ -150,7 +150,7 @@ export default function DashboardTabByUsage({
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: tokens.colorNeutralForeground3,
+                  color: "#9ca3af",
                 }}
               >
                 {t("No data")}
@@ -160,9 +160,9 @@ export default function DashboardTabByUsage({
         </div>
 
         <div className={styles.byUsageChartBlock}>
-          <Text as="h4" size={400} className={styles.byUsageTitle}>
+          <h4 className={styles.byUsageTitle}>
             {t("Rewrite mode")}
-          </Text>
+          </h4>
           <div
             className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}
           >
@@ -207,10 +207,10 @@ export default function DashboardTabByUsage({
                       <Tooltip
                         cursor={{ fill: "transparent" }}
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                           color:
-                            tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            "#e5e7eb",
                           fontSize: byUsageLabelFontSize,
                         }}
                         labelFormatter={(label) => t(label ?? "")}
@@ -267,7 +267,7 @@ export default function DashboardTabByUsage({
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: tokens.colorNeutralForeground3,
+                  color: "#9ca3af",
                 }}
               >
                 {t("No data")}
@@ -277,9 +277,9 @@ export default function DashboardTabByUsage({
         </div>
 
         <div className={styles.byUsageChartBlock}>
-          <Text as="h4" size={400} className={styles.byUsageTitle}>
+          <h4 className={styles.byUsageTitle}>
             {t("Transform prompt")}
-          </Text>
+          </h4>
           <div
             className={`${styles.summaryChartContainer} ${styles.byUsageChartContainer}`}
           >
@@ -326,10 +326,10 @@ export default function DashboardTabByUsage({
                       <Tooltip
                         cursor={{ fill: "transparent" }}
                         contentStyle={{
-                          backgroundColor: tokens.colorNeutralBackground1,
-                          border: `1px solid ${tokens.colorNeutralStroke1}`,
+                          backgroundColor: "#1e1e2e",
+                          border: "1px solid rgba(255,255,255,0.12)",
                           color:
-                            tokens.colorNeutralForeground1 ?? "#e5e7eb",
+                            "#e5e7eb",
                           fontSize: byUsageLabelFontSize,
                         }}
                         formatter={(value) => {
@@ -385,7 +385,7 @@ export default function DashboardTabByUsage({
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: tokens.colorNeutralForeground3,
+                  color: "#9ca3af",
                 }}
               >
                 {t("No data")}

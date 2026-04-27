@@ -3,7 +3,7 @@
  * Used by SettingsCostTrackingTab, DashboardPage, and SettingsGeneralTab.
  */
 
-import { tokens } from "@fluentui/react-components";
+import React from "react";
 import webAPI from "../api/webApiClient";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
@@ -158,7 +158,7 @@ export function formatDollarAmount(n, costFractionStyle = "muted", locale, optio
   const integer = integerPart ? integerPart.value : "0";
   const main = integer + decimalSep + fraction.slice(0, 2);
   const frac = fraction.slice(2);
-  const mutedColor = tokens.colorNeutralForeground3 || "#888";
+  const mutedColor = "#888";
   const fractionNode =
     costFractionStyle === "superscript" ? (
       <sup>{frac}</sup>
@@ -173,7 +173,7 @@ export function formatDollarAmount(n, costFractionStyle = "muted", locale, optio
   return (
     <>
       {mainPartSuccess ? (
-        <span style={{ color: tokens.colorStatusSuccessForeground1 }}>{mainPart}</span>
+        <span style={{ color: "#4ade80" }}>{mainPart}</span>
       ) : (
         mainPart
       )}

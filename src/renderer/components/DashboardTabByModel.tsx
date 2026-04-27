@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Text, Button, Badge, tokens } from "@fluentui/react-components";
-import { Trash2, Download, WandSparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Trash2, WandSparkles } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
@@ -23,6 +23,7 @@ import {
   rowsToCsvWithLabels,
   triggerDownload,
 } from "../utils/misc/exportUtils";
+import DashboardExportToolbar from "./dashboard/DashboardExportToolbar";
 
 const EXPORT_FILENAME_BY_MODEL = "transrewrt-bymodel";
 
@@ -42,7 +43,7 @@ export default function DashboardTabByModel({
   const locale = i18n.language || "en-GB";
   const [exportLoading, setExportLoading] = useState(false);
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
-  const tickStyle = { fill: tokens.colorNeutralForeground3 };
+  const tickStyle = { fill: "#9ca3af" };
 
   const exportColumnsByModel = useMemo(
     () => [
@@ -178,9 +179,9 @@ export default function DashboardTabByModel({
                 gap: "0px",
               }}
             >
-              <Text as="h4" size={400} style={{ flexShrink: 0 }}>
+              <h4 className="text-base font-semibold mb-2">
                 {t("Cost by model (stacked)")}
-              </Text>
+              </h4>
               <div style={{ flex: 1, minHeight: 100 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData} {...chartProps}>
@@ -200,8 +201,8 @@ export default function DashboardTabByModel({
                 <Tooltip
                   cursor={{ fill: "transparent" }}
                   contentStyle={{
-                    backgroundColor: tokens.colorNeutralBackground1,
-                    border: `1px solid ${tokens.colorNeutralStroke1}`,
+                    backgroundColor: "#1e1e2e",
+                    border: "1px solid rgba(255,255,255,0.12)",
                   }}
                 />
                 <Bar
@@ -235,37 +236,7 @@ export default function DashboardTabByModel({
           className={styles.paginationRow}
           style={{ marginBottom: "8px", marginInlineStart: "70%" }}
         >
-          <div className={styles.downloadBlock}>
-            <Download size={16} aria-hidden />
-            <span style={{ fontWeight: 600 }}>{t("Download:")} </span>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("json")}
-            >
-              {t("JSON")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("csv")}
-            >
-              {t("CSV")}
-            </Button>
-            <Button
-              size="small"
-              appearance="subtle"
-              className={styles.downloadButton}
-              disabled={exportLoading}
-              onClick={() => handleExport("xlsx")}
-            >
-              {t("XLSX")}
-            </Button>
-          </div>
+          <DashboardExportToolbar exportLoading={exportLoading} onExport={handleExport} />
         </div>
         <div className={styles.byModelTableWrapper}>
           <div className={styles.tableWrap}>
@@ -296,12 +267,8 @@ export default function DashboardTabByModel({
                               (Number(row.rewrite_cost) || 0) +
                               (Number(row.transform_cost) || 0) ===
                             0 && (
-                              <Badge
-                                appearance="tint"
-                                size="small"
-                                color="success"
-                                icon={<WandSparkles size={12} />}
-                              >
+                              <Badge variant="outline" className="text-green-400 border-green-500/50 text-xs py-0">
+                                <WandSparkles size={10} className="me-1" />
                                 {t("Free")}
                               </Badge>
                             )}

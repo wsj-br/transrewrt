@@ -31,12 +31,30 @@ function getDb() {
       fs.mkdirSync(userDataPath, { recursive: true });
     }
     db = new Database(DB_PATH);
+    db.pragma("journal_mode = WAL");
+    db.pragma("synchronous = NORMAL");
     applyAppSchema(db);
   } catch (err) {
     console.error("[appDb] Failed to open database at", DB_PATH, err);
     return null;
   }
   return db;
+}
+
+function closeDb() {
+  if (!db) return;
+  try {
+    db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
+  } catch (err) {
+    console.error("[appDb] WAL checkpoint failed during close:", err);
+  }
+  try {
+    db.close();
+  } catch (err) {
+    console.error("[appDb] Failed to close database:", err);
+  } finally {
+    db = null;
+  }
 }
 
 function fullWhereForType(type, from, to) {
@@ -450,4 +468,5 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
 module.exports = {
   registerAppDbHandlers,
   getDb: () => getDb(),
+  closeDb,
 };

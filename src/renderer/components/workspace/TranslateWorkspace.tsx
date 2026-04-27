@@ -1,7 +1,9 @@
-import { tokens, Button } from "@fluentui/react-components";
 import TextPanel from "../TextPanel";
 import LanguageSelector from "../LanguageSelector";
-import { Zap, Square } from "lucide-react";
+import { workspaceCtaRowClassName } from "./workspaceLayoutClasses";
+import { workspaceOutputFooterWithModel } from "./workspaceOutputFooter";
+import { Button } from "@/components/ui/button";
+import { Zap, Square, ArrowRightLeft } from "lucide-react";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str) {
@@ -10,37 +12,30 @@ function stripKeySymbols(str) {
 
 /**
  * Returns { leftPanel, rightPanel } for translate mode.
- * @param {{ common, input, output, options }} - common: shared UI/run state; input/output: text state and actions; options: source/target language and language lists.
  */
 export function getTranslatePanels({ common, input, output, options }) {
-  const { t, styles, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
+  const { t, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
   const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage } = options;
 
-  const leftPanelControls = (
-    <LanguageSelector
-      label={t("From:")}
-      value={sourceLanguage}
-      onChange={setSourceLanguage}
-      detectLanguage={true}
-      iconColor={tokens.colorBrandForeground1}
-      dataTestId="translate-from"
-    />
-  );
-  const rightPanelControls = (
-    <LanguageSelector
-      label={t("To:")}
-      value={targetLanguage}
-      onChange={setTargetLanguage}
-      targetListSameAsSource={true}
-      iconColor={tokens.colorStatusWarningForeground3}
-      dataTestId="translate-to"
-    />
-  );
+  const shortcutLabel =
+    settings?.enter_behavior === "Shift-Execute"
+      ? `(${stripKeySymbols(t("⇧ SHIFT"))}+${stripKeySymbols(t("ENTER ↵"))})`
+      : `(${stripKeySymbols(t("ENTER ↵"))})`;
 
   const leftPanel = (
-    <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{leftPanelControls}</div>
-      <div className={styles.panelFill}>
+    <div className="flex flex-col h-full gap-3">
+      <div className="flex items-center min-h-10">
+        <LanguageSelector
+          label={t("From:")}
+          value={sourceLanguage}
+          onChange={setSourceLanguage}
+          detectLanguage={true}
+          dataTestId="translate-from"
+          iconClassName="text-emerald-500"
+          iconStrokeWidth={1.6}
+        />
+      </div>
+      <div className="flex-1 min-h-0">
         <TextPanel
           title={t("Input")}
           text={input.text}
@@ -54,20 +49,17 @@ export function getTranslatePanels({ common, input, output, options }) {
           fontSize={settings?.font_size}
         />
       </div>
-      <div className={styles.runButtonContainer}>
+      <div className={workspaceCtaRowClassName}>
         <Button
-          appearance="primary"
           onClick={handleRunAction}
-          className={styles.runButton}
-          icon={isProcessing ? <Square size={18} /> : <Zap size={18} />}
+          className="min-w-44 h-11 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0 gap-2"
         >
+          {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           {isProcessing
             ? `${t("Stop")} ${processingModeRef?.current === "translate" ? t("Translate") : t("Rewrite")}`
             : t("Translate")}
           {!isProcessing && (
-            <span className={styles.runButtonShortcut}>
-              {settings?.enter_behavior === "Shift-Execute" ? `(${stripKeySymbols(t('⇧ SHIFT'))}+${stripKeySymbols(t('ENTER ↵'))})` : `(${stripKeySymbols(t('ENTER ↵'))})`}
-            </span>
+            <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
           )}
         </Button>
       </div>
@@ -75,9 +67,19 @@ export function getTranslatePanels({ common, input, output, options }) {
   );
 
   const rightPanel = (
-    <div className={styles.panelStack}>
-      <div className={styles.panelControls}>{rightPanelControls}</div>
-      <div className={styles.panelFill}>
+    <div className="flex flex-col h-full gap-3">
+      <div className="flex items-center min-h-10">
+        <LanguageSelector
+          label={t("To:")}
+          value={targetLanguage}
+          onChange={setTargetLanguage}
+          targetListSameAsSource={true}
+          dataTestId="translate-to"
+          iconClassName="text-emerald-500"
+          iconStrokeWidth={1.6}
+        />
+      </div>
+      <div className="flex-1 min-h-0">
         <TextPanel
           title={t("Output")}
           text={output.text}
@@ -85,20 +87,14 @@ export function getTranslatePanels({ common, input, output, options }) {
           placeholder={t("Output will appear here...")}
           readOnly={true}
           headerMeta={outputMeta}
-          footerStats={
-            <>
-              {output.getStats()}
-              <br />
-              {t("Model:")} {lastRunModel || t("N/A")}
-            </>
-          }
+          footerStats={workspaceOutputFooterWithModel(output.getStats(), lastRunModel, t)}
           footerAlign="left"
           onCopy={output.copy}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
         />
       </div>
-      <div className={styles.runButtonContainer} aria-hidden="true" />
+      <div className={workspaceCtaRowClassName} aria-hidden="true" />
     </div>
   );
 

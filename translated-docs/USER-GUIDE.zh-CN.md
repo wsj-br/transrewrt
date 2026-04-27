@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-04-15T22:28:47.165Z'
-source_file_mtime: '2026-04-15T00:50:00.594Z'
-source_file_hash: 3135daa3d29833b16bfbc0c51fa256454e681576435898527cc7914fbaddf5be
+translation_last_updated: '2026-04-27T01:22:17.462Z'
+source_file_mtime: '2026-04-27T00:25:24.555Z'
+source_file_hash: 1b5cef3285006421efe04401406d5bc4b1636bf1413ff1902a05a0823b6f651d
 translation_language: zh-CN
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -35,7 +35,7 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 <small>**阅读其他语言版本：** </small>
 
-<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [jv](./USER-GUIDE.jv.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English](../USER-GUIDE.md) · [Português (BR)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -52,7 +52,7 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 - [开始之前](#before-you-start)
   - [如何获取免费的 OpenRouter API 密钥（桌面应用）](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [快速开始](#getting-started)
+- [入门](#getting-started)
 - [窗口的主要部分](#main-parts-of-the-window)
   - [侧边栏](#sidebar)
   - [工具栏](#toolbar)
@@ -61,44 +61,44 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
   - [翻译文本](#translate-text)
   - [语言选择](#language-selection)
   - [有用的翻译设置](#helpful-translation-settings)
-- [改写](#rewrite)
+- [重写](#rewrite)
 - [转换](#transform)
-  - [运行现有提示词](#run-an-existing-prompt)
-  - [如果您还没有提示词](#if-you-have-no-prompts-yet)
-  - [快速创建提示词](#create-a-prompt-quickly)
-  - [编辑提示词](#edit-a-prompt)
-  - [使用前测试提示词](#test-a-prompt-before-using-it)
-- [仪表盘](#dashboard)
+  - [运行现有提示](#run-an-existing-prompt)
+  - [如果你还没有提示](#if-you-have-no-prompts-yet)
+  - [快速创建提示](#create-a-prompt-quickly)
+  - [编辑提示](#edit-a-prompt)
+  - [使用前测试提示](#test-a-prompt-before-using-it)
+- [仪表板](#dashboard)
   - [筛选数据](#filter-the-data)
-  - [仪表盘标签页](#dashboard-tabs)
+  - [仪表板标签页](#dashboard-tabs)
   - [导出数据](#export-data)
   - [删除某个模型的存储记录](#delete-stored-records-for-a-model)
-- [历史](#history)
+- [历史记录](#history)
   - [筛选数据](#filter-the-data-1)
   - [导出历史数据](#export-history-data)
 - [设置](#settings)
   - [常规设置](#general-settings)
   - [模型](#models)
   - [语言](#languages)
-  - [费用跟踪](#cost-tracking)
-  - [转换提示词](#transform-prompts)
+  - [成本跟踪](#cost-tracking)
+  - [转换提示](#transform-prompts)
   - [用户](#users)
   - [API 配置](#api-config)
   - [关于](#about)
 - [常见问题](#common-issues)
-  - [应用无法翻译、改写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [应用无法翻译、重写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型列表为空](#the-model-list-is-empty)
-  - [结果太慢或太昂贵](#the-result-is-too-slow-or-too-expensive)
+  - [结果太慢或太贵](#the-result-is-too-slow-or-too-expensive)
   - [界面语言错误](#the-interface-is-in-the-wrong-language)
-  - [文本太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
-  - [仪表盘图表为空](#dashboard-charts-are-empty)
-  - [费用显示“不可用”或似乎有误](#cost-shows-not-available-or-seems-wrong)
-  - [总费用与提供商账单不符](#total-cost-does-not-match-my-provider-bill)
-  - [侧边栏中缺少历史页面](#the-history-page-is-missing-from-the-sidebar)
-  - [网页应用：意外重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [网页管理员：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
-  - [仪表盘未显示其他用户的数据（网页版）](#dashboard-shows-no-data-for-other-users-web)
-  - [我更改了提示词但编辑丢失](#i-changed-a-prompt-and-lost-the-edits)
+  - [文字太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
+  - [仪表板图表为空](#dashboard-charts-are-empty)
+  - [成本显示“不可用”或看起来错误](#cost-shows-not-available-or-seems-wrong)
+  - [总成本与服务商账单不符](#total-cost-does-not-match-my-provider-bill)
+  - [侧边栏中缺少历史记录页面](#the-history-page-is-missing-from-the-sidebar)
+  - [Web 应用：意外重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web 管理端：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
+  - [仪表板未显示其他用户的数据（Web）](#dashboard-shows-no-data-for-other-users-web)
+  - [我修改了提示但丢失了编辑内容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免责声明](#disclaimer)
 - [许可证](#license)
@@ -130,12 +130,12 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 如果使用桌面应用，请按以下步骤操作：
 
-1. 在你的网页浏览器中前往 [OpenRouter](https://openrouter.ai)。
+1. 在浏览器中访问 [OpenRouter](https://openrouter.ai)。
 2. 创建账户或登录。
 3. 打开 [密钥](https://openrouter.ai/keys) 页面。
-4. 点击按钮创建一个新的 API 密钥。
+4. 点击按钮创建新的 API 密钥。
 5. 为密钥命名，以便日后识别。
-6. 复制新的 API 密钥。
+6. 复制新生成的 API 密钥。
 7. 返回 Transrewrt 并打开 **设置** > **API 配置**。
 8. 将密钥粘贴到 **OpenRouter API 密钥**（位于 **设置** > **API 配置** 下）。
 9. 点击 **测试 OpenRouter 密钥** 以确保其正常工作。
@@ -148,12 +148,12 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 如果是首次使用 Transrewrt，请按以下顺序操作：
 
 1. 打开应用。
-2. 如有需要，点击地球图标选择你的 **界面语言**。
-3. 如果使用 **桌面应用**，请打开 [**设置** > **API 配置**](#api-config)，为至少一个提供商（例如 OpenRouter）添加 API 密钥，并点击 **测试** 以验证其是否正常工作。
-4. 打开 [**设置** > **模型**](#models)，将一个或多个模型添加到 **已选模型**。
-5. 打开 [**设置** > **语言**](#languages)，选择你的 **常用语言**，以便最常使用的语言优先显示。
-6. 前往 **翻译** 并运行一个简单的翻译任务，以确认一切正常。
-7. 成功运行后，尝试 **改写** 和 **转换** 功能。
+2. 如有需要，通过地球图标选择您的 **界面语言**。
+3. 如果您使用的是 **桌面应用**，请打开 [**设置** > **API 配置**](#api-config)，为至少一个提供商（例如 OpenRouter）添加 API 密钥，并点击 **测试** 以验证其是否正常工作。
+4. 打开 [**设置** > **模型**](#models)，并将一个或多个模型添加到 **已选模型** 中。
+5. 打开 [**设置** > **语言**](#languages)，如果希望常用语言优先显示，请设置您的 **常用语言**。
+6. 进入 **翻译** 功能并执行一次简单翻译，确认一切正常。
+7. 成功后，尝试 **重写** 和 **转换** 功能。
 
 此顺序很重要。它可避免最常见的首次使用问题：在应用尚未建立有效 API 连接或未选择模型时就尝试执行任务。
 
@@ -258,14 +258,14 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 <a id="translate-text"></a>
 ### 翻译文本
 
-1. 打开 **Translate**。
-2. 在 **From** 中选择一种语言。
-3. 在 **To** 中选择一种语言。
+1. 打开 **翻译**。
+2. 在 **从** 中选择一种语言。
+3. 在 **到** 中选择一种语言。
 4. 在工具栏中选择一个模型。
-5. 在 **Input** 中输入或粘贴文本。
-6. 点击 **Translate**。
-7. 在 **Output** 中阅读结果。
-8. 如果要复制结果，请使用复制按钮。
+5. 在 **输入** 区域键入或粘贴文本。
+6. 点击 **翻译**。
+7. 在 **输出** 区域查看结果。
+8. 如需复制结果，请使用复制按钮。
 
 <br/>
 
@@ -284,11 +284,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 在[**设置** > **常规设置**](#general-settings)中，您可以更改翻译的行为方式：
 
-- **粘贴时自动翻译**：在您粘贴文本后立即执行翻译。
-- **自动复制结果到剪贴板**：成功运行后自动将结果复制到剪贴板。
-- **实时翻译（输入时）**：在您输入时即时运行翻译。
-- **超时时间（毫秒）**：控制应用在执行实时翻译前等待的时间。
-- **Enter**：控制按下 `Enter` 时发生的行为：
+- **粘贴时自动翻译** 在您粘贴文本后立即执行翻译。
+- **自动将结果复制到剪贴板** 在成功运行后自动复制结果。
+- **实时翻译（输入时）** 在您输入时持续执行翻译。
+- **超时时间（毫秒）** 控制应用在执行实时翻译前的等待时间。
+- **回车键**用于控制按下 `Enter` 时发生的行为：
 
 <br/><br/>
 
@@ -304,11 +304,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 这适用于以下情况：
 
 - 修正拼写和语法（**检查拼写和语法**）
-- 提升文本清晰度（**提升清晰度**）
+- 使文本更清晰（**提升清晰度**）
 - 一次运行中生成多个不同的改写版本（**替代版本**）
 - 使文本更正式或更非正式（**正式** / **非正式**）
 - 缩短或扩展文本（**缩短** / **扩展**）
-- 使文本更具专业性（**转为专业术语**）
+- 使文本更具技术性（**转为技术性文本**）
 
 <br/>
 
@@ -329,8 +329,8 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 这是应用中最灵活的部分。您可以将其用于以下任务：
 
-- 摘要笔记
-- 将草稿文本转化为一封精炼的电子邮件
+- 摘要笔记内容
+- 将草稿文本转化为格式规范的电子邮件
 - 提取关键要点
 - 将文本转换为特定格式
 - 对输入文本执行任何其他自定义操作
@@ -341,11 +341,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 ### 运行现有提示词
 
 1. 打开 **转换**。
-2. 从提示词列表中选择一个提示词。
-3. 如果出现 **目标** 语言输入框，请选择所需语言。
-4. 在 **输入** 框中键入或粘贴文本。
+2. 从提示列表中选择一个提示。
+3. 如果出现 **目标**语言框，请选择所需语言。
+4. 在 **输入**框中键入或粘贴文本。
 5. 点击 **转换**。
-6. 在 **输出** 框中查看结果。
+6. 在 **输出**中查看结果。
 
 <br/>
 
@@ -366,11 +366,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 创建提示词的最快方法是：
 
-1. 点击 **新建提示词**。
+1. 点击 **新建提示**。
 2. 点击 **生成提示**。
-3. 描述您希望提示词实现的功能。
+3. 描述您希望该提示实现的功能。
 4. 选择一个模型。
-5. 让应用为您生成草稿。
+5. 让应用为您创建草稿。
 6. 审核草稿后点击 **保存**。
 
 ![Generate prompt](../images/screenshots/zh-CN/transform-generate.png)
@@ -386,13 +386,13 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 主要字段包括：
 
-- **提示词名称**：在提示词列表中显示的名称。
-- **提示词指令（可选）**：运行提示词时向用户显示的简短提示。
-- **模型角色**：分配给 AI 的总体角色，例如“你是一个有用的助手”。
+- **提示名称**：在提示列表中显示的名称。
+- **提示说明（可选）**：运行提示时向用户显示的简短提示。
+- **模型角色**：分配给 AI 的总体角色，例如“你是一个有用的助手。”
 - **模型指令（每行一条）**：您希望 AI 遵循的具体规则。
-- **输出描述**：描述结果的简短词语，例如“摘要”或“改写”。
-- **温度 (0.0 → 1.0)**：模型行为的控制参数；见下文说明。
-- **询问目标语言**：运行提示词时添加目标语言选择器。
+- **输出描述**：描述结果的简短词语，例如“摘要”或“重写”。
+- **温度（0.0 → 1.0）**：控制模型行为方式；详见下文。
+- **请求目标语言**：运行提示时添加目标语言选择器。
 
 如果技术术语 **温度** 对您来说是新的，可以这样理解：
 
@@ -463,11 +463,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 <a id="dashboard-tabs"></a>
 ### 仪表盘标签页
 
-- **摘要** 为您提供使用情况和费用的概述。它包括 **随时间的使用情况**（按日期堆叠的累计 **调用次数**，用于翻译、改写和转换）和 **按模型的使用情况**（每个 **模型的总调用次数**，包括转换）。
-- **按用量** 将活动按翻译语言、重写模式和转换提示词进行细分。
-- **按模型** 显示您使用了哪些模型以及它们的费用。
-- **按日期** 显示每日总计。
-- **所有调用** 显示完整的调用历史并允许您导出。
+- **摘要**提供使用情况和成本的概览。包括 **使用情况随时间变化**（按天统计的累积 **调用次数**，涵盖翻译、重写和转换）和 **按模型统计使用情况**（每个模型的总 **调用次数**，包括转换）。
+- **按使用情况**按翻译语言、重写模式和转换提示分解活动。
+- **按模型**显示您使用的模型及其成本。
+- **按天**显示每日总计。
+- **所有调用**显示完整的调用历史记录，并允许您导出。
 
 <br/>
 
@@ -543,13 +543,13 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 可用的选项卡取决于平台和您的角色：
 
-| 选项卡               | 桌面版 | 网页版（管理员） | 网页版（普通用户） |
+| 标签页               | 桌面端 | 网页端（管理员） | 网页端（普通用户） |
   |-------------------|:-------:|:-----------:|:------------------:|
   | 常规设置  |   是   |     是     |        是         |
   | 模型            |   是   |     是     |        是         |
   | 语言         |   是   |     是     |        是         |
-  | 费用跟踪     |   是   |     是     |         -          |
-  | 转换提示词 |   是   |     是     |        是         |
+  | 成本追踪     |   是   |     是     |         -          |
+  | 转换提示 |   是   |     是     |        是         |
   | 用户             |    -    |     是     |         -          |
   | API 配置        |   是   |     是     |         -          |
   | 关于             |   是   |     是     |        是         |
@@ -570,11 +570,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 **行为**
 
-- **回车键行为** 可选择 `Enter` 是运行任务还是插入新行。
+- **回车键行为** 用于选择 `Enter` 是运行任务还是插入新行。
 - **粘贴时自动翻译** 在您粘贴文本后立即开始翻译。
-- **自动复制结果到剪贴板** 会自动复制成功的结果。
+- **将翻译结果自动复制到剪贴板** 会自动复制成功的翻译结果。
 - **实时翻译（输入时）** 在您输入时进行翻译。
-- **超时时间（毫秒）** 设置实时翻译的等待时间。
+- **超时（毫秒）** 设置实时翻译的等待时间。
 
 **历史**
 
@@ -583,19 +583,19 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 **外观**
 
-- **在操作上显示费用信息** 控制是否显示每次操作的费用（如果可用）以及翻译、改写和转换输出面板上的总费用。
-- **费用小数位数** 更改费用小数的显示方式。
-- **仅限网页版：** **在应用周围显示边距** 在界面周围添加额外空间。
-- **字体** 更改文本面板中的书写字体。
-- **大小** 更改字体大小。
+- **在操作中显示费用信息**控制是否显示每次操作的费用（如可用）以及“翻译”、“重写”和“转换”输出面板中的总费用。
+- **费用小数位数**更改费用小数的显示方式。
+- **仅限网页端：** **在应用周围显示边距**会在界面周围添加额外空间。
+- **字体家族**更改文本面板中的书写字体。
+- **字号**更改字体大小。
 
 **配置备份**
 
 - **在备份中包含使用数据** —— 启用后，ZIP 文件还将包含执行历史和 API 调用数据。
-- **备份配置** —— 创建一个单独的 ZIP 文件（默认为 UTC 时间的 `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`），其中包含 `config.json`、`state.json`、可选的加密密钥、用户、偏好设置、自定义提示词，以及如果您选择包含的使用数据。备份成功后，确认信息将显示保存的文件名。
-- **从备份恢复** —— 首先打开 **确认对话框**。在对话框内选择备份 ZIP 文件（**浏览** / 文件选择器或在支持的情况下拖放），然后查看选项：
-  - **恢复使用数据** —— 当备份包含使用数据时，导入该 ZIP 中的使用/历史数据；如果只想恢复设置和提示词，请取消勾选。
-  - **恢复前清除旧的使用数据** —— 在应用备份前清除此安装中的现有使用/历史数据（可选；当您希望完全替换时使用）。
+- **备份配置** —— 创建一个单独的 ZIP 文件（默认为 UTC 时间的 `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`），其中包含 `config.json`、`state.json`、可选的加密密钥、用户、偏好设置、自定义提示以及（如果已启用）使用数据。备份成功后，确认信息将显示保存的文件名。
+- **从备份恢复** —— 首先打开一个**确认对话框**。在对话框中选择备份 ZIP 文件（**浏览** / 文件选择器，或在支持的环境中拖放），然后查看选项：
+  - **恢复使用数据** —— 当备份 ZIP 包含使用数据时，导入使用历史；如果只想恢复设置和提示，请取消勾选。
+  - **恢复前清除旧的使用数据** —— 在应用备份前删除当前安装中的现有使用/历史记录（可选；当您希望完全替换时使用）。
 
 在网页版或桌面版中创建的备份均可在另一版本中恢复。在网页版中恢复桌面版备份时，数据将恢复到管理员用户。
 
@@ -615,11 +615,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 有用的控件包括：
 
-- 使用 **搜索模型...** 按名称查找模型
-- 使用 **提供商** 标签将列表缩小到某个引擎（OpenRouter、OpenAI、Ollama 等）
-- **仅免费** 以仅显示免费模型
-- **刷新** 重新加载列表
-- 按提供商排序时使用 **全部展开** 和 **全部折叠**
+- **搜索模型...** 按名称查找模型
+- **提供商** 标签用于将列表限制为一个引擎（OpenRouter、OpenAI、Ollama 等）
+- **仅显示免费模型** 仅显示免费模型
+- **刷新** 重新加载模型列表
+- 当按提供商排序时，可使用 **展开全部** 和 **收起全部**
 
 模型 ID 包含提供商前缀（例如 `openrouter/…` 与 `openai/…`）。徽章如 **OpenAI (OpenRouter)** 与 **OpenAI (直接)** 显示了流量的路由方式。
 
@@ -659,11 +659,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 使用 **设置** > **费用跟踪** 来管理费用信息。
 
 - **总费用** 显示累计总额。
-- **复制值** 将总额复制到剪贴板。
+- **复制数值** 将总额复制到剪贴板。
 - **重置费用** 将存储的总额重置为零。
-- **与 API 密钥用量同步** 将总额设置为与 OpenRouter 账户报告的用量一致（仅限 OpenRouter）。
-- **API 密钥用量** 显示 OpenRouter 的用量详情（如可用）。
-- **删除费用数据** 删除所有数据，或仅删除早于所选日期的条目。
+- **与 API 密钥用量同步** 将总额设置为与您的 OpenRouter 账户报告的用量一致（仅 OpenRouter 支持）。
+- **API 密钥用量** 显示 OpenRouter 的使用详情（如可用）。
+- **删除费用数据** 删除所有数据，或仅删除早于指定日期的条目。
 
 **费用跟踪：** 当你使用 OpenRouter 模型时，应用会根据 OpenRouter 提供的成本信息显示你实际的使用量和支出。对于所有其他提供商，应用会使用 OpenRouter 发布的价格来估算成本；如果价格不可用，估算值可能为零。
 
@@ -691,7 +691,7 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 - 查看已保存的提示词
 - 删除提示词
 - 从文件导入提示词
-- 导出提示词用于备份或共享
+- 导出提示词用于备份或分享
 - 将示例提示词加载到提示词列表中
 
 <br/>
@@ -908,12 +908,12 @@ pnpm run reset-web-password -- <username> <new-password>
 <a id="quick-tips"></a>
 ## 快速提示
 
-- 首先使用 [**翻译**](#translate)，确保您的设置正常工作，然后再进行 [**改写**](#rewrite) 或 [**转换**](#transform)。
-- 使用 [**改写**](#rewrite) 进行日常的措辞优化。
-- 当您需要为特定任务建立可重复的工作流程时，请使用 [**转换**](#transform)。
-- 如果您想监控使用情况和费用，请使用 [**仪表盘**](#dashboard)。
-- 使用 [**历史**](#history) 查看过去的操作及其完整的输入/输出文本。
-- 如果您正在构建一个想要安全保存的提示词库，或希望与他人共享，请定期导出提示词（参见 [转换提示词](#transform-prompts)）。
+- 首先使用 [**翻译**](#translate) 确保您的配置正常工作，然后再尝试 [**重写**](#rewrite) 或 [**转换**](#transform)。
+- 使用 [**重写**](#rewrite) 进行日常文本优化。
+- 使用 [**转换**](#transform) 处理需要可重复工作流的特定任务。
+- 使用 [**仪表板**](#dashboard) 来监控使用情况和费用。
+- 使用 [**历史记录**](#history) 查看过去操作的完整输入/输出内容。
+- 如果您正在构建希望长期保存的提示词库（参见 [Transform Prompts](#transform-prompts)），或希望与他人共享，请定期导出提示词。
 
 <br/><br/>
 
