@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Docker/web production image build (`build-renderer`) by declaring `tailwindcss` as a devDependency so `@import 'tailwindcss'` resolves under pnpm’s strict `node_modules` layout.
+
 - **Changed**: UI theme — border-radius increased to 16 px (`--radius: 1rem`) across all components for an ultra-modern look.
 - **Changed**: Workspace action buttons (Translate / Rewrite / Transform) are now fully rounded (`rounded-full`) with a vibrant outer glow shadow matching the mode colour.
 - **Changed**: Input/Output cards in dark mode now use glassmorphism (`backdrop-blur-xl`, semi-transparent `bg-card/75`, `border-white/10`).
