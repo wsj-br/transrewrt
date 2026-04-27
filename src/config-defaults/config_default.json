@@ -15,7 +15,7 @@
     "web_margin": false,
     "font_family": "Verdana",
     "font_size": 15,
-    "theme": "System",
+    "theme": "system",
     "ui_locale": "en-GB",
     "keep_execution_history": true,
     "show_cost_on_actions": false,

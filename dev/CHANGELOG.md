@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: First-run default appearance theme now uses `system` (follow OS) with the correct lowercase value expected by renderer theme logic.
+
+- **Fixed**: Restored missing build-time dependencies (`@babel/preset-typescript`, `postcss-loader`, `@tailwindcss/postcss`, `tw-animate-css`) so `pnpm build` resolves Babel/PostCSS/Tailwind modules correctly.
+
 - **Fixed**: `scripts/take-screenshots.js` sidebar capture now slices top/bottom sections from the original image (240px each target), removes the middle safely, and avoids Sharp composite size mismatches during screenshot generation.
 
 - **Changed**: Workspace language selectors (Translate/Rewrite/Transform From/To) and Settings > Languages list now display language names only in the selected UI language (e.g., "Espanhol" in pt-BR) instead of bilingual "Native / Translated" labels (e.g., "Español / Espanhol").
