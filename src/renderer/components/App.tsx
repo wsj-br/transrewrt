@@ -86,6 +86,14 @@ const App = () => {
   const [rewriteMode, setRewriteMode] = useState(() => (settings.rewrite_mode ?? settings.rewrite_style) || "Check Spelling & Grammar");
   const [showOutputDiff, setShowOutputDiff] = useState(false);
 
+  const normalizeTheme = (theme) => {
+    if (theme === "light" || theme === "dark" || theme === "system") return theme;
+    if (typeof theme === "string" && theme.trim().toLowerCase() === "system (follow os)") {
+      return "system";
+    }
+    return "system";
+  };
+
   // Determine active model safely (needed by useTransformPrompts and useProcessing)
   const activeModel = useMemo(() => {
     if (!models || models.length === 0) return null;
@@ -326,7 +334,7 @@ const App = () => {
 
   // Apply theme — 'light' | 'dark' | 'system' (follow OS)
   useEffect(() => {
-    const rawTheme = settings.theme || "system";
+    const rawTheme = normalizeTheme(settings.theme);
     if (rawTheme !== "system") {
       document.body.className = rawTheme;
       return;

@@ -77,7 +77,7 @@ function NavButton({
       aria-current={item.isActive ? "page" : undefined}
       onClick={handleClick}
       className={cn(
-        "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors electron-no-drag",
+        "flex w-full items-center justify-start gap-3 rounded-lg px-3 py-2.5 text-start text-sm font-medium transition-colors electron-no-drag",
         item.isActive
           ? "bg-accent text-accent-foreground"
           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
@@ -88,7 +88,7 @@ function NavButton({
         className="h-5 w-5 shrink-0"
         strokeWidth={item.isActive ? 2.2 : 1.6}
       />
-      {!collapsed && <span>{item.label}</span>}
+      {!collapsed && <span className="flex-1 text-start">{item.label}</span>}
     </button>
   );
 

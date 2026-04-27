@@ -11,6 +11,17 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Rewrite workspace top bar (`Mode` / `From` selectors) now wraps on mobile instead of overflowing horizontally.
+- **Fixed**: Transform prompt selector no longer enforces a `200px` minimum width, preventing horizontal scroll on narrow screens.
+- **Fixed**: Dashboard Summary and By Usage chart grids switch to a single column on mobile (`sm:grid-cols-2` breakpoint) so charts stack and are full-width instead of being squeezed into two tiny columns.
+- **Fixed**: Dashboard chart cells gain mobile minimum heights (220–260 px) so charts remain legible before the two-column layout kicks in.
+
+- **Changed**: Electron main-window size constraints now use shared constants in `src/main/main.js` so min/default dimensions are configured in a single place.
+
+- **Fixed**: Sidebar navigation labels now force start/left alignment in expanded mode so multi-word translations (e.g., Greek/Ukrainian Dashboard) do not appear centered.
+
+- **Fixed**: Theme parsing now normalizes legacy values like `System (Follow OS)` to `system`, so first-run Electron configs always resolve to OS-following theme behavior.
+
 - **Fixed**: First-run default appearance theme now uses `system` (follow OS) with the correct lowercase value expected by renderer theme logic.
 
 - **Fixed**: Restored missing build-time dependencies (`@babel/preset-typescript`, `postcss-loader`, `@tailwindcss/postcss`, `tw-animate-css`) so `pnpm build` resolves Babel/PostCSS/Tailwind modules correctly.

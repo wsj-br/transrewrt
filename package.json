@@ -187,7 +187,8 @@
       "lodash": ">=4.18.0",
       "@xmldom/xmldom": ">=0.8.13",
       "uuid": ">=14.0.0",
-      "postcss": ">=8.5.10"
+      "postcss": ">=8.5.10",
+      "ai-i18n-tools": "link:../../AppData/Local/pnpm/global/5/node_modules/ai-i18n-tools"
     },
     "onlyBuiltDependencies": [
       "argon2",
@@ -221,7 +222,7 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "adm-zip": "^0.5.17",
-    "ai-i18n-tools": "^1.2.2",
+    "ai-i18n-tools": "^1.2.3",
     "archiver": "^7.0.1",
     "argon2": "^0.44.0",
     "better-sqlite3": "^12.9.0",
@@ -238,7 +239,7 @@
     "proper-lockfile": "^4.1.2",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-i18next": "^17.0.4",
+    "react-i18next": "^17.0.6",
     "recharts": "^3.8.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",

@@ -40,6 +40,14 @@ function normalizeEnterBehavior(value) {
   return "Execute";
 }
 
+function normalizeTheme(value) {
+  if (value === "system" || value === "light" || value === "dark") return value;
+  if (typeof value === "string" && value.trim().toLowerCase() === "system (follow os)") {
+    return "system";
+  }
+  return "system";
+}
+
 const SettingsGeneralTab = ({
   localSettings,
   onSettingChange,
@@ -61,6 +69,7 @@ const SettingsGeneralTab = ({
   ], [t]);
 
   const [showDisableHistoryConfirm, setShowDisableHistoryConfirm] = useState(false);
+  const selectedTheme = normalizeTheme(localSettings.theme);
   const [historyDeleteRange, setHistoryDeleteRange] = useState('gt_3m');
   const [historyDeleteLoading, setHistoryDeleteLoading] = useState(false);
   const [historyDeleteError, setHistoryDeleteError] = useState(null);
@@ -236,9 +245,9 @@ const SettingsGeneralTab = ({
                       onClick={() => onSettingChange('theme', value)}
                       title={label}
                       aria-label={label}
-                      aria-pressed={(localSettings.theme || 'system') === value}
+                      aria-pressed={selectedTheme === value}
                       className={`flex items-center gap-1.5 px-3 py-1 rounded text-sm font-medium transition-colors ${
-                        (localSettings.theme || 'system') === value
+                        selectedTheme === value
                           ? 'bg-background text-foreground shadow-sm'
                           : 'text-muted-foreground hover:text-foreground'
                       }`}

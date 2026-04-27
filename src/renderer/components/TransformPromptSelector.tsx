@@ -41,7 +41,7 @@ const TransformPromptSelector = ({
         <WandSparkles size={17} className="text-violet-400" />
         {t("Prompt")}
       </label>
-      <div className="flex-1 min-w-[200px]" title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
+      <div className="flex-1 min-w-0" title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
         <Select
           value={selectedOptionValue || ""}
           onValueChange={(id) => {

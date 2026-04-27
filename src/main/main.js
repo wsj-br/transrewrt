@@ -90,6 +90,18 @@ function syncMissingEnvKeysIntoConfig(config) {
   return { next, changed };
 }
 
+function normalizeThemeValue(theme) {
+  if (typeof theme !== "string") return theme;
+  const normalized = theme.trim().toLowerCase();
+  if (normalized === "light" || normalized === "dark" || normalized === "system") {
+    return normalized;
+  }
+  if (normalized === "system (follow os)") {
+    return "system";
+  }
+  return theme;
+}
+
 function loadConfigFromFile() {
   try {
     const configPath = getConfigFilePath();
@@ -104,6 +116,10 @@ function loadConfigFromFile() {
       defaultConfig = JSON.parse(fs.readFileSync(defaultPath, "utf8"));
     }
     const merged = { ...defaultConfig, ...userConfig };
+    const normalizedTheme = normalizeThemeValue(merged.theme);
+    if (normalizedTheme !== merged.theme) {
+      merged.theme = normalizedTheme;
+    }
     for (const field of ENCRYPTED_CONFIG_KEYS) {
       if (merged[field] != null && isEncryptedApiKey(merged[field])) {
         merged[field] = decryptApiKey(merged[field]);
@@ -299,6 +315,11 @@ const saveSettingsWindowState = (win) => {
 let mainWindow = null;
 let settingsWindow = null;
 
+const MAIN_WINDOW_MIN_WIDTH = 400;
+const MAIN_WINDOW_MIN_HEIGHT = 450;
+const MAIN_WINDOW_DEFAULT_WIDTH = 1220;
+const MAIN_WINDOW_DEFAULT_HEIGHT = 840;
+
 const validateWindowState = (state, fallback) => {
   try {
     if (!state) return fallback;
@@ -309,10 +330,8 @@ const validateWindowState = (state, fallback) => {
       height: state.height,
     });
     const { workArea } = display;
-    const minWidth = 1220;
-    const minHeight = 840;
-    const width = Math.max(state.width || fallback.width, minWidth);
-    const height = Math.max(state.height || fallback.height, minHeight);
+    const width = Math.max(state.width || fallback.width, MAIN_WINDOW_MIN_WIDTH);
+    const height = Math.max(state.height || fallback.height, MAIN_WINDOW_MIN_HEIGHT);
 
     const withinX =
       state.x >= workArea.x - width + 50 &&
@@ -334,17 +353,17 @@ const validateWindowState = (state, fallback) => {
 
 const createWindow = () => {
   const savedState = validateWindowState(loadWindowState(), {
-    width: 1220,
-    height: 840,
+    width: MAIN_WINDOW_DEFAULT_WIDTH,
+    height: MAIN_WINDOW_DEFAULT_HEIGHT,
   });
 
   mainWindow = new BrowserWindow({
     x: savedState ? savedState.x : undefined,
     y: savedState ? savedState.y : undefined,
-    width: savedState ? savedState.width : 1220,
-    height: savedState ? savedState.height : 840,
-    minWidth: 1220,
-    minHeight: 840,
+    width: savedState ? savedState.width : MAIN_WINDOW_DEFAULT_WIDTH,
+    height: savedState ? savedState.height : MAIN_WINDOW_DEFAULT_HEIGHT,
+    minWidth: MAIN_WINDOW_MIN_WIDTH,
+    minHeight: MAIN_WINDOW_MIN_HEIGHT,
     backgroundColor: "#1a1a1a",
     icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
     webPreferences: {

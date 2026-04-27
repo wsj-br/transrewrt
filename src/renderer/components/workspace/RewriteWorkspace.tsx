@@ -37,7 +37,7 @@ export function getRewritePanels({ common, input, output, options }) {
       : `(${stripKeySymbols(t("ENTER ↵"))})`;
 
   const workspaceTopBar = (
-    <div className="flex w-full min-w-0 flex-nowrap items-center justify-start gap-x-6 gap-y-0">
+    <div className="flex w-full min-w-0 flex-wrap items-center justify-start gap-x-6 gap-y-2">
       <StyleSelector
         label={t("Mode:")}
         value={rewriteMode}
