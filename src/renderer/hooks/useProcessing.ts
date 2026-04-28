@@ -33,7 +33,6 @@ export function useProcessing({
   setOutputTextTransform,
   transformPrompts,
   transformPromptId,
-  showTransformLangSelector,
   transformFromLang,
 }) {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -372,12 +371,9 @@ export function useProcessing({
       };
       const workspaceFrom =
         sourceLanguage && sourceLanguage !== "Detect Language" ? sourceLanguage : null;
-      const statedFromLang = (() => {
-        if (!showTransformLangSelector) return workspaceFrom;
-        const uiExplicit =
-          transformFromLang && transformFromLang !== "Detect Language" ? transformFromLang : null;
-        return uiExplicit ?? workspaceFrom;
-      })();
+      const uiExplicit =
+        transformFromLang && transformFromLang !== "Detect Language" ? transformFromLang : null;
+      const statedFromLang = uiExplicit ?? workspaceFrom;
 
       processingModeRef.current = "transform";
       setIsProcessing(true);
@@ -479,7 +475,6 @@ export function useProcessing({
       inputTextTransform,
       transformPrompts,
       transformPromptId,
-      showTransformLangSelector,
       transformFromLang,
       sourceLanguage,
       activeModel,

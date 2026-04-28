@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Bot, Trash2, Check, ChevronDown } from "lucide-react";
+import { Trash2, Check, ChevronDown } from "lucide-react";
 import PropTypes from "prop-types";
-import ProviderIcon from "./ProviderIcon";
 import ConfirmModal from "./ConfirmModal";
+import ProviderIcon from "./ProviderIcon";
 import { modelHeaderDisplayId, providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
 import { modelRouteBadgeProps } from "../utils/misc/modelRouteBadge";
 import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
@@ -73,38 +74,27 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
   );
 
   const displayModel = currentModel || models[0] || "";
-  const iconProv = providerSortKeyFromModelId(displayModel);
+
+  const modelsSettingsLabel = flipUiArrowsForRtl(t("Open Settings → Models"), isRtl);
 
   return (
-    <div className="flex min-w-0 max-w-full flex-wrap items-center justify-end gap-x-1 gap-y-1">
-      {onIconClick ? (
-        <button
-          type="button"
-          className="flex shrink-0 items-center text-emerald-500 p-1 rounded hover:bg-accent transition-colors"
-          onClick={onIconClick}
-          title={flipUiArrowsForRtl(t("Open Settings → Models"), isRtl)}
-          aria-label={t("Open Settings to manage models")}
-        >
-          {displayModel ? <ProviderIcon provider={iconProv} size={18} /> : <Bot size={18} />}
-        </button>
-      ) : (
-        <div className="flex shrink-0 items-center text-emerald-500 p-1">
-          {displayModel ? <ProviderIcon provider={iconProv} size={18} /> : <Bot size={18} />}
-        </div>
-      )}
+    <div className="flex min-w-0 max-w-full flex-wrap items-center justify-end gap-x-2 gap-y-1">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
             type="button"
-            className="flex min-w-0 max-w-full flex-1 items-center gap-1 overflow-hidden text-start border-b-2 border-border hover:border-foreground focus-visible:border-primary transition-colors px-0 py-1 outline-none bg-transparent sm:min-w-[200px] sm:max-w-[320px] sm:flex-initial"
+            className={cn(
+              "flex min-w-0 max-w-full items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-start outline-none transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-ring sm:max-w-[min(320px,calc(100vw-120px))]",
+            )}
             aria-label={t("Select Model")}
             title={displayModel}
             data-testid="model-selector"
           >
-            <span className="flex-1 min-w-0 overflow-hidden">
-              {displayModel ? <ModelPickerRow modelId={displayModel} t={t} iconSize={16} showIcon={false} /> : null}
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" aria-hidden />
+            <span className="min-w-0 flex-1 truncate font-mono text-xs text-muted-foreground">
+              {displayModel ? modelHeaderDisplayId(displayModel) : ""}
             </span>
-            <ChevronDown size={14} className="shrink-0 text-muted-foreground" />
+            <ChevronDown className="h-3 w-3 shrink-0 text-muted-foreground/50" aria-hidden />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -133,6 +123,18 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
               </DropdownMenuItem>
             );
           })}
+          {onIconClick ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => {
+                  onIconClick();
+                }}
+              >
+                {modelsSettingsLabel}
+              </DropdownMenuItem>
+            </>
+          ) : null}
         </DropdownMenuContent>
       </DropdownMenu>
       {onRemoveModel && (

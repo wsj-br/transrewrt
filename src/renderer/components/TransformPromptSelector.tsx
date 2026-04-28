@@ -33,15 +33,15 @@ const TransformPromptSelector = ({
   const selectedOptionValue = matchedOption ? matchedOption.id : (selectedKey || "");
   const selectedPrompt = prompts.find((p) => String(p.id) === selectedKey || p.name === selectedKey);
 
-  const iconBtnCls = "h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-accent";
+  const iconBtnCls = "h-8 w-8 shrink-0 p-0 text-muted-foreground hover:text-foreground hover:bg-accent";
 
   return (
-    <div className="flex items-center gap-2 mb-2">
-      <label className="flex items-center gap-1.5 min-w-[60px] text-sm font-medium" title={t("Select a custom prompt to run")}>
+    <div className="flex w-full min-w-0 flex-wrap items-center gap-x-2 gap-y-2">
+      <label className="flex shrink-0 items-center gap-1.5 text-sm font-medium" title={t("Select a custom prompt to run")}>
         <WandSparkles size={17} className="text-violet-400" />
         {t("Prompt")}
       </label>
-      <div className="flex-1 min-w-0" title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
+      <div className="min-w-0 flex-1" title={t("Choose which custom prompt to use")} data-testid="prompt-selector">
         <Select
           value={selectedOptionValue || ""}
           onValueChange={(id) => {
@@ -50,7 +50,10 @@ const TransformPromptSelector = ({
           }}
           disabled={disabled}
         >
-          <SelectTrigger className="w-full" aria-label={t("Select prompt")}>
+          <SelectTrigger
+            className="w-full min-w-0 max-w-full overflow-hidden [&>*:first-child]:min-w-0 [&>*:first-child]:flex-1 [&>*:first-child]:truncate [&>*:first-child]:text-start"
+            aria-label={t("Select prompt")}
+          >
             <SelectValue placeholder={prompts.length === 0 ? t("(no prompts, click + to create)") : t("Select a prompt")} />
           </SelectTrigger>
           <SelectContent>
@@ -65,68 +68,70 @@ const TransformPromptSelector = ({
           </SelectContent>
         </Select>
       </div>
-      {selectedPrompt && (
+      <div className="flex min-w-0 basis-full flex-wrap items-center justify-end gap-x-0.5 gap-y-1 md:basis-auto md:ms-auto md:justify-start">
+        {selectedPrompt && (
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => onEdit?.(selectedPrompt)}
+            className={cn(iconBtnCls, editActive && "text-blue-400")}
+            aria-label={t("Edit prompt")}
+            title={t("Edit prompt")}
+            disabled={disabled}
+            data-testid="edit-prompt-button"
+          >
+            <PencilLine size={15} />
+          </Button>
+        )}
         <Button
           variant="ghost"
           size="icon-sm"
-          onClick={() => onEdit?.(selectedPrompt)}
-          className={cn(iconBtnCls, editActive && "text-blue-400")}
-          aria-label={t("Edit prompt")}
-          title={t("Edit prompt")}
-          disabled={disabled}
-          data-testid="edit-prompt-button"
-        >
-          <PencilLine size={15} />
-        </Button>
-      )}
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={onNew}
-        className={iconBtnCls}
-        aria-label={t("New prompt")}
-        title={t("New prompt")}
-        disabled={disabled}
-        data-testid="new-prompt-button"
-      >
-        <MessageSquarePlus size={15} />
-      </Button>
-      {selectedPrompt && (
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          onClick={() => onDuplicate?.(selectedPrompt)}
+          onClick={onNew}
           className={iconBtnCls}
-          aria-label={t("Duplicate prompt")}
-          title={t("Duplicate prompt")}
+          aria-label={t("New prompt")}
+          title={t("New prompt")}
+          disabled={disabled}
+          data-testid="new-prompt-button"
+        >
+          <MessageSquarePlus size={15} />
+        </Button>
+        {selectedPrompt && (
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => onDuplicate?.(selectedPrompt)}
+            className={iconBtnCls}
+            aria-label={t("Duplicate prompt")}
+            title={t("Duplicate prompt")}
+            disabled={disabled}
+          >
+            <CopyPlus size={15} />
+          </Button>
+        )}
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          onClick={onOpenExportImport}
+          className={cn(iconBtnCls, "text-slate-500")}
+          aria-label={t("Export/Import prompts")}
+          title={t("Export/Import prompts (opens Settings > Transform)")}
           disabled={disabled}
         >
-          <CopyPlus size={15} />
+          <FolderSync size={15} />
         </Button>
-      )}
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={onOpenExportImport}
-        className={cn(iconBtnCls, "text-slate-500")}
-        aria-label={t("Export/Import prompts")}
-        title={t("Export/Import prompts (opens Settings > Transform)")}
-        disabled={disabled}
-      >
-        <FolderSync size={15} />
-      </Button>
-      {showLoadSampleButton && onLoadSamplePrompts && (
-        <Button
-          variant="outline"
-          size="sm"
-          className="ms-6 shrink-0"
-          onClick={onLoadSamplePrompts}
-          disabled={disabled || loadSampleLoading}
-        >
-          {!loadSampleLoading && <BookOpenText size={15} />}
-          {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
-        </Button>
-      )}
+        {showLoadSampleButton && onLoadSamplePrompts && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="ms-2 shrink-0 max-sm:ms-0"
+            onClick={onLoadSamplePrompts}
+            disabled={disabled || loadSampleLoading}
+          >
+            {!loadSampleLoading && <BookOpenText size={15} />}
+            {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

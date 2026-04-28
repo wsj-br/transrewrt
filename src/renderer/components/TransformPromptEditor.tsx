@@ -404,17 +404,6 @@ const TransformPromptEditor = ({
             <span className="col-start-3 row-start-2 text-xs text-muted-foreground whitespace-nowrap">{t("Creative/Varied output")}</span>
           </div>
         </div>
-        <div className="flex items-center gap-2 mb-1">
-          <Checkbox
-            id="transform-prompt-ask-from-lang"
-            checked={askFromLanguage}
-            onCheckedChange={(checked) => setAskFromLanguage(!!checked)}
-            aria-label={t("Ask for From language when running this prompt")}
-          />
-          <Label htmlFor="transform-prompt-ask-from-lang" className="cursor-pointer">
-            {t("Ask for From language")}
-          </Label>
-        </div>
       </div>
       <div className="flex justify-between items-center w-full flex-wrap gap-2 shrink-0">
         <div className="flex gap-2 flex-wrap shrink-0">

@@ -223,13 +223,14 @@ const SettingsGeneralTab = ({
   };
 
   const kbdCls = "inline-block px-2 py-0.5 rounded bg-muted font-mono text-xs font-medium border border-border";
+  const sectionTitleCls = "mb-5 mt-0 flex items-center gap-2 text-base font-semibold";
 
   return (
     <div className={settingsTabContent}>
-      <div className="grid min-w-0 w-full grid-cols-1 gap-8 items-start md:grid-cols-2">
+      <div className="mx-auto flex w-full min-w-0 max-w-6xl flex-col gap-5">
           {/* Appearance Section */}
-          <div className={settingsSection}>
-            <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <div className={cn(settingsSection, "!mb-0")}>
+            <h3 className={sectionTitleCls}>
               <Palette size={18} />
               {t('Appearance')}
             </h3>
@@ -370,8 +371,8 @@ const SettingsGeneralTab = ({
           </div>
 
           {/* Behaviour Section */}
-          <div className={settingsSection}>
-            <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+          <div className={cn(settingsSection, "!mb-0")}>
+            <h3 className={sectionTitleCls}>
               <Settings size={18} />
               {t('Behaviour')}
             </h3>
@@ -458,9 +459,9 @@ const SettingsGeneralTab = ({
             </div>
           </div>
 
-          {/* History Section */}
-          <div className={settingsSection}>
-            <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+        {/* History */}
+        <div className={cn(settingsSection, "!mb-0")}>
+            <h3 className={sectionTitleCls}>
               <History size={18} />
               {t('History')}
             </h3>
@@ -476,12 +477,16 @@ const SettingsGeneralTab = ({
                 />
                 <Label htmlFor="keep-execution-history" className="m-0 cursor-pointer">{t('Keep execution history')}</Label>
               </div>
-              <div className={cn(settingsSection, "mt-6 ms-0 ps-0")}>
-                <h4 className="flex items-center gap-2 text-sm font-semibold mb-4">
+              <div
+                className={cn(
+                  "mt-5 rounded-xl border border-border/60 bg-muted/25 p-4 dark:border-white/10 dark:bg-muted/15",
+                )}
+              >
+                <h4 className="mb-3 mt-0 flex items-center gap-2 text-sm font-semibold">
                   <Trash2 size={16} />
                   {t('Delete history data')}
                 </h4>
-                <div className="flex items-center gap-3 flex-wrap ms-2">
+                <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm">{t('Delete entries older than:')}</span>
                   <Select value={historyDeleteRange} onValueChange={setHistoryDeleteRange}>
                     <SelectTrigger className="min-w-[180px]">
@@ -510,11 +515,11 @@ const SettingsGeneralTab = ({
                 )}
               </div>
             </div>
-          </div>
+        </div>
 
-          {canConfigBackup && (
-            <div className={settingsSection}>
-              <h3 className="flex items-center gap-2 text-base font-semibold mt-0 mb-9">
+        {canConfigBackup && (
+            <div className={cn(settingsSection, "!mb-0")}>
+              <h3 className={sectionTitleCls}>
                 <DatabaseBackup size={18} />
                 {t('Configuration Backup')}
               </h3>
@@ -541,7 +546,7 @@ const SettingsGeneralTab = ({
                 {backupSuccess && <span className="text-green-400 text-xs block">{backupSuccess}</span>}
               </div>
             </div>
-          )}
+        )}
       </div>
 
       {showDisableHistoryConfirm && (

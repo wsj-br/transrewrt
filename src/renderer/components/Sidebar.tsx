@@ -32,6 +32,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Logo from "../../../images/transrewrt_logo.png";
+import { workspaceActionBarClassName } from "./workspace/workspaceLayoutClasses";
+
+const SIDEBAR_COLLAPSED_STORAGE_KEY = "transrewrt-sidebar-collapsed";
+
+function readStoredSidebarCollapsed(): boolean {
+  try {
+    return localStorage.getItem(SIDEBAR_COLLAPSED_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function persistSidebarCollapsed(collapsed: boolean) {
+  try {
+    localStorage.setItem(SIDEBAR_COLLAPSED_STORAGE_KEY, collapsed ? "true" : "false");
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
 
 interface NavItemDef {
   id: string;
@@ -54,6 +73,8 @@ interface SidebarProps {
   onSignOut?: () => void;
   onChangePassword?: () => void;
   onOpenSettingsUsers?: () => void;
+  /** When true (e.g. stacked workspace layout), sidebar stays icon-only without changing stored collapse preference. */
+  forceCollapsed?: boolean;
 }
 
 function NavButton({
@@ -352,9 +373,14 @@ function SidebarInner({
           ) : null}
         </nav>
 
-        {/* Collapsed expand toggle at bottom */}
+        {/* Collapsed expand toggle — height matches workspace action bar so dividers align */}
         {collapsed && onToggleCollapse && (
-          <div className="flex justify-center py-2 border-t border-border electron-no-drag">
+          <div
+            className={cn(
+              workspaceActionBarClassName,
+              "justify-center gap-0 px-0 md:px-0 electron-no-drag",
+            )}
+          >
             <Button
               variant="ghost"
               size="icon"
@@ -373,8 +399,9 @@ function SidebarInner({
 
 export default function Sidebar(props: SidebarProps) {
   const { t } = useTranslation();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(readStoredSidebarCollapsed);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const effectiveCollapsed = props.forceCollapsed || collapsed;
 
   return (
     <>
@@ -404,16 +431,22 @@ export default function Sidebar(props: SidebarProps) {
       {/* Desktop sidebar */}
       <aside
         className={cn(
-          "hidden md:flex h-screen flex-col border-e border-border bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:border-white/10 transition-all duration-300 shrink-0 electron-drag",
-          collapsed ? "w-16" : "w-[194px]",
+          "hidden md:flex h-full min-h-0 flex-col self-stretch border-e border-border bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:border-white/10 transition-all duration-300 shrink-0 electron-drag",
+          effectiveCollapsed ? "w-16" : "w-[194px]",
         )}
-        aria-expanded={!collapsed}
+        aria-expanded={!effectiveCollapsed}
         data-testid="app-sidebar"
       >
         <SidebarInner
           {...props}
-          collapsed={collapsed}
-          onToggleCollapse={() => setCollapsed((c) => !c)}
+          collapsed={effectiveCollapsed}
+          onToggleCollapse={() => {
+            setCollapsed((c) => {
+              const next = !c;
+              persistSidebarCollapsed(next);
+              return next;
+            });
+          }}
         />
       </aside>
     </>

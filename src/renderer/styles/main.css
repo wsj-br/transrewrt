@@ -3,7 +3,8 @@
 body {
     margin: 0;
     padding: 0;
-    user-select: none;
+    user-select: text;
+    -webkit-user-select: text;
     overflow: hidden;
 }
 
@@ -21,16 +22,6 @@ body.light {
  */
 [dir="rtl"] .rtl-icon-mirror {
     transform: scaleX(-1);
-}
-
-/* Enable text selection for text content */
-textarea,
-p,
-span {
-    user-select: text;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
 }
 
 /* Keep buttons non-selectable */
@@ -149,16 +140,25 @@ input:-webkit-autofill:active {
   --mode-accent:      #00D1A0;
   --mode-accent-rgb:  0, 209, 160;
   --mode-glow:        rgba(0, 209, 160, 0.08);
+  --mode-output-bg:     rgba(0, 209, 160, 0.03);
+  --mode-output-border: rgba(0, 209, 160, 0.12);
+  --mode-output-text:   rgba(184, 245, 212, 0.85);
 }
 [data-mode="rewrite"] {
   --mode-accent:      #3B82F6;
   --mode-accent-rgb:  59, 130, 246;
   --mode-glow:        rgba(59, 130, 246, 0.08);
+  --mode-output-bg:     rgba(59, 130, 246, 0.03);
+  --mode-output-border: rgba(59, 130, 246, 0.12);
+  --mode-output-text:   rgba(191, 219, 254, 0.85);
 }
 [data-mode="transform"] {
   --mode-accent:      #A855F7;
   --mode-accent-rgb:  168, 85, 247;
   --mode-glow:        rgba(168, 85, 247, 0.08);
+  --mode-output-bg:     rgba(168, 85, 247, 0.03);
+  --mode-output-border: rgba(168, 85, 247, 0.12);
+  --mode-output-text:   rgba(233, 213, 255, 0.85);
 }
 
 /* Ambient radial glow behind workspace – uses background-image so it sits above bg-color */
@@ -170,9 +170,24 @@ main[data-mode] {
   );
 }
 
+/* Settings — same glow language as translate (primary brand), distinct from mode-coloured workspaces */
+main[data-view="settings"] {
+  background-image: radial-gradient(
+    ellipse 70% 45% at 50% -5%,
+    rgba(0, 209, 160, 0.07),
+    transparent 70%
+  );
+}
+
 /* Mode-aware focus ring on text panels */
 .text-panel-focus {
   box-shadow: 0 0 0 1.5px var(--mode-accent, var(--ring));
+}
+
+/* Mode-tinted output panels (dark mode; variables come from [data-mode] on ancestor main) */
+body.dark .output-tint {
+  background-color: var(--mode-output-bg);
+  border-color: var(--mode-output-border);
 }
 
 /* Blueprint / grid background for rewrite diff view */

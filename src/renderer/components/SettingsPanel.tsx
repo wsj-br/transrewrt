@@ -35,6 +35,8 @@ import {
 import {
   settingsPanelBody,
   settingsTabButton,
+  settingsTabPillActive,
+  settingsTabPillIdle,
   settingsTabStrip,
 } from "./settings/settingsLayoutClasses";
 import {
@@ -367,19 +369,21 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
 
   return (
     <div className="flex flex-col h-full w-full overflow-hidden">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-card px-4 ps-16 md:ps-4">
-        <div className="flex items-center gap-3">
-          <SettingsIcon className="text-muted-foreground" size={20} strokeWidth={1.6} />
-          <h2 className="text-lg font-semibold">{t("Settings")}</h2>
+      <header className="flex min-h-14 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6 dark:bg-card/75 dark:backdrop-blur-xl">
+        <div className="flex min-w-0 items-center gap-3">
+          <SettingsIcon className="shrink-0 text-emerald-500" size={20} strokeWidth={1.6} />
+          <h2 className="min-w-0 truncate text-lg font-semibold">{t("Settings")}</h2>
         </div>
-        <HeaderLanguageSelector compact />
+        <div className="flex shrink-0 items-center justify-end md:ms-auto">
+          <HeaderLanguageSelector compact />
+        </div>
       </header>
 
-      <div className={cn(settingsTabStrip, "ps-3 pe-3")}>
+      <div className={cn(settingsTabStrip, "ps-2 pe-2 md:ps-3 md:pe-3")}>
         {tabScroll.hasOverflow && (
           <button
             type="button"
-            className="shrink-0 flex items-center justify-center w-8 h-11 p-0 border-none bg-transparent text-muted-foreground hover:text-foreground cursor-pointer transition-colors disabled:opacity-40 disabled:pointer-events-none"
+            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
             onClick={() => scrollTabs(-1)}
             disabled={!tabScroll.canScrollLeft}
             aria-label={t("Previous tabs")}
@@ -392,7 +396,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
           className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
           role="tablist"
         >
-          <div className="flex items-stretch w-max">
+          <div className="flex w-max items-center gap-2 px-1 py-0.5">
             {[
               { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
               { id: "models", icon: <Database size={15} />, label: t("Models"), testId: "settings-tab-models" },
@@ -411,10 +415,8 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
                 data-testid={testId}
                 className={cn(
                   settingsTabButton,
-                  "flex items-center gap-1.5 px-4 h-11 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
-                  activeTab === id
-                    ? "border-foreground text-foreground"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                  "flex items-center gap-1.5 whitespace-nowrap",
+                  activeTab === id ? settingsTabPillActive : settingsTabPillIdle,
                 )}
                 onClick={() => handleTabChange(id)}
               >
@@ -426,7 +428,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         {tabScroll.hasOverflow && (
           <button
             type="button"
-            className="shrink-0 flex items-center justify-center w-8 h-11 p-0 border-none bg-transparent text-muted-foreground hover:text-foreground cursor-pointer transition-colors disabled:opacity-40 disabled:pointer-events-none"
+            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
             onClick={() => scrollTabs(1)}
             disabled={!tabScroll.canScrollRight}
             aria-label={t("Next tabs")}

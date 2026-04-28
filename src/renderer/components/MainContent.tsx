@@ -32,7 +32,7 @@ function AppHeader({
   titleTrailing?: ReactNode;
 }) {
   return (
-    <header className="flex min-h-14 w-full min-w-0 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:min-h-[84px] md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6">
+    <header className="flex min-h-14 w-full min-w-0 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6">
       <div className="flex min-w-0 max-w-full flex-1 items-center gap-3 md:flex-initial">
         {icon}
         <h1 className="min-w-0 flex-1 truncate text-lg font-semibold md:flex-initial">{title}</h1>
@@ -49,43 +49,47 @@ function AppHeader({
   );
 }
 
-function WorkspaceGrid({ leftPanel, rightPanel, workspaceTopBar, layoutMode }: {
+function WorkspaceGrid({ leftPanel, rightPanel, workspaceTopBar, layoutMode, actionBar }: {
   leftPanel: ReactNode;
   rightPanel: ReactNode;
   workspaceTopBar: ReactNode;
   layoutMode: LayoutMode;
+  actionBar?: ReactNode;
 }) {
   const isSplit = layoutMode === "split";
   return (
-    <div className="flex flex-1 min-h-0 overflow-auto">
-      <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 min-w-0 w-full">
-        {workspaceTopBar}
-        <div
-          className={cn(
-            "transition-all duration-300",
-            isSplit
-              ? "grid flex-1 grid-cols-1 gap-4 min-h-0 min-w-0 md:grid-cols-2 md:items-stretch md:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]"
-              : "flex flex-1 flex-col gap-4 min-w-0",
-          )}
-        >
+    <div className="flex flex-1 min-h-0 flex-col overflow-hidden">
+      <div className="flex flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-1 min-h-0 flex-col gap-4 p-4 md:p-6 min-w-0 w-full">
+          {workspaceTopBar}
           <div
             className={cn(
-              "flex min-w-0 flex-col",
-              isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-[350px]",
+              "transition-all duration-300",
+              isSplit
+                ? "grid flex-1 grid-cols-1 gap-4 min-h-0 min-w-0 md:grid-cols-2 md:items-stretch md:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]"
+                : "flex min-h-0 flex-1 flex-col gap-4 min-w-0",
             )}
           >
-            {leftPanel}
-          </div>
-          <div
-            className={cn(
-              "flex min-w-0 flex-col",
-              isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-[350px]",
-            )}
-          >
-            {rightPanel}
+            <div
+              className={cn(
+                "flex min-w-0 flex-col",
+                isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-0 flex-1",
+              )}
+            >
+              {leftPanel}
+            </div>
+            <div
+              className={cn(
+                "flex min-w-0 flex-col",
+                isSplit ? "h-full min-h-[300px] md:min-h-0" : "min-h-0 flex-1",
+              )}
+            >
+              {rightPanel}
+            </div>
           </div>
         </div>
       </div>
+      {actionBar}
     </div>
   );
 }
@@ -101,6 +105,7 @@ const MainContent = ({
   leftPanel,
   rightPanel,
   workspaceTopBar,
+  actionBar,
   openSettingsToTab,
   onOpenSettingsToTabConsumed,
   layoutMode,
@@ -116,6 +121,7 @@ const MainContent = ({
   leftPanel?: ReactNode;
   rightPanel?: ReactNode;
   workspaceTopBar?: ReactNode;
+  actionBar?: ReactNode;
   openSettingsToTab?: string;
   onOpenSettingsToTabConsumed?: () => void;
   layoutMode: LayoutMode;
@@ -125,7 +131,7 @@ const MainContent = ({
 
   if (view === "settings") {
     return (
-      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background" data-view="settings">
         <Suspense fallback={<LoadingFallback label={t("Loading settings…")} />}>
           <SettingsPanel
             openToTab={openSettingsToTab}
@@ -216,6 +222,7 @@ const MainContent = ({
         leftPanel={leftPanel}
         rightPanel={rightPanel}
         workspaceTopBar={workspaceTopBar}
+        actionBar={actionBar}
         layoutMode={layoutMode}
       />
     </main>

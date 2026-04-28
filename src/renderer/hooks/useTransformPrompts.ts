@@ -329,11 +329,6 @@ export function useTransformPrompts({
   const selectedTransformPrompt = transformPrompts.find(
     (p) => String(p.id) === String(transformPromptId) || p.name === transformPromptId
   );
-  const showTransformLangSelector =
-    selectedTransformPrompt &&
-    (selectedTransformPrompt.target_language === true ||
-      selectedTransformPrompt.target_language === 1);
-
   return {
     transformPrompts,
     setTransformPrompts,
@@ -361,7 +356,6 @@ export function useTransformPrompts({
     setShowLoadSampleConfirm,
     loadSampleLoading,
     selectedTransformPrompt,
-    showTransformLangSelector,
     handleTransformPromptSelect,
     handleTransformNewPrompt,
     handleTransformEditPrompt,

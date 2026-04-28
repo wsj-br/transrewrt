@@ -1,16 +1,22 @@
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 
 /**
- * Stats line + model on two rows (workspace output TextPanel footers).
+ * Stats line + optional model id (muted, mode-accent colour via CSS variables).
  */
-export function workspaceOutputFooterWithModel(statsLine, modelId, t) {
+export function workspaceOutputFooterWithModel(statsLine, modelId, _t) {
   const short = modelId ? modelFooterDisplayId(modelId) : "";
   return (
     <>
       <span className="min-w-0 break-words">{statsLine}</span>
-      <span className="min-w-0 truncate" title={modelId || undefined}>
-        {t("Model:")} {short || t("N/A")}
-      </span>
+      {short ? (
+        <span
+          className="mt-0.5 truncate font-mono text-[10.5px]"
+          style={{ color: "rgba(var(--mode-accent-rgb), 0.35)" }}
+          title={modelId || undefined}
+        >
+          {short}
+        </span>
+      ) : null}
     </>
   );
 }

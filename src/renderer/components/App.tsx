@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, Fragment } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { cn } from "@/lib/utils";
@@ -70,6 +70,7 @@ const App = () => {
       // localStorage unavailable
     }
   };
+
   const [openSettingsToTab, setOpenSettingsToTab] = useState(null);
   const hasRestoredViewRef = useRef(false);
   // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
@@ -97,6 +98,12 @@ const App = () => {
   // Language selection states
   const [sourceLanguage, setSourceLanguage] = useState(() => settings.source_language || "Detect Language");
   const [targetLanguage, setTargetLanguage] = useState(() => settings.target_language || "Spanish");
+
+  const swapLanguages = useCallback(() => {
+    if (sourceLanguage === "Detect Language") return;
+    setSourceLanguage(targetLanguage);
+    setTargetLanguage(sourceLanguage);
+  }, [sourceLanguage, targetLanguage]);
 
   // Track if initial config has been loaded
   const [configLoaded, setConfigLoaded] = useState(false);
@@ -145,7 +152,6 @@ const App = () => {
     setShowLoadSampleConfirm,
     loadSampleLoading,
     selectedTransformPrompt,
-    showTransformLangSelector,
     handleTransformPromptSelect,
     handleTransformNewPrompt,
     handleTransformEditPrompt,
@@ -277,7 +283,6 @@ const App = () => {
     setOutputTextTransform,
     transformPrompts,
     transformPromptId,
-    showTransformLangSelector,
     transformFromLang,
   });
 
@@ -441,9 +446,10 @@ const App = () => {
     handleRunAction,
     lastRunModel,
     outputMeta,
+    layoutMode,
   };
 
-  const { leftPanel, rightPanel, workspaceTopBar = null } =
+  const { leftPanel, rightPanel, workspaceTopBar = null, actionBar = null } =
     currentMode === "translate"
       ? {
           ...getTranslatePanels({
@@ -467,6 +473,7 @@ const App = () => {
               setSourceLanguage,
               targetLanguage,
               setTargetLanguage,
+              onSwapLanguages: swapLanguages,
             },
           }),
           workspaceTopBar: null,
@@ -521,7 +528,6 @@ const App = () => {
                 transformPrompts,
                 transformPromptId,
                 selectedTransformPrompt,
-                showTransformLangSelector,
                 transformFromLang,
                 setTransformFromLang,
                 translate,
@@ -616,6 +622,7 @@ const App = () => {
                   onDashboardClick={handleDashboardClick}
                   onHistoryClick={handleHistoryClick}
                   showExecutionHistory={settings.keep_execution_history !== false}
+                  forceCollapsed={layoutMode === "stack"}
                   onSettingsClick={() => {
                     setCurrentView("settings");
                     if (isWeb) setSetting("web_view", "settings");
@@ -644,6 +651,7 @@ const App = () => {
                   leftPanel={leftPanel}
                   rightPanel={rightPanel}
                   workspaceTopBar={workspaceTopBar}
+                  actionBar={actionBar}
                   openSettingsToTab={openSettingsToTab}
                   onOpenSettingsToTabConsumed={() => setOpenSettingsToTab(null)}
                   layoutMode={layoutMode}
@@ -686,6 +694,7 @@ const App = () => {
           onDashboardClick={handleDashboardClick}
           onHistoryClick={handleHistoryClick}
           showExecutionHistory={settings.keep_execution_history !== false}
+          forceCollapsed={layoutMode === "stack"}
           onSettingsClick={() => setCurrentView("settings")}
         />
         <MainContent
@@ -702,6 +711,7 @@ const App = () => {
           leftPanel={leftPanel}
           rightPanel={rightPanel}
           workspaceTopBar={workspaceTopBar}
+          actionBar={actionBar}
           layoutMode={layoutMode}
           onLayoutChange={handleLayoutChange}
         />

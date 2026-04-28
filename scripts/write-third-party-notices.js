@@ -78,15 +78,24 @@ const outFile = path.join(root, "NOTICES");
 const customFormat = path.join(__dirname, "license-checker-custom-format.json");
 const clarifications = path.join(root, "3p-lic-clarifications.json");
 
-const bin = path.join(root, "node_modules", ".bin", "license-checker-rseidelsohn");
-if (!fs.existsSync(bin)) {
+// Invoke the package CLI via Node on the real .js entrypoint. On Windows,
+// node_modules/.bin/license-checker-rseidelsohn is a sh script (exists but is not executable by execFileSync).
+const checkerJs = path.join(
+  root,
+  "node_modules",
+  "license-checker-rseidelsohn",
+  "bin",
+  "license-checker-rseidelsohn.js",
+);
+if (!fs.existsSync(checkerJs)) {
   console.error("license-checker-rseidelsohn not found; run pnpm install");
   process.exit(1);
 }
 
 const jsonRaw = execFileSync(
-  bin,
+  process.execPath,
   [
+    checkerJs,
     "--production",
     "--json",
     "--excludePackages",

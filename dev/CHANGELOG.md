@@ -11,6 +11,39 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Punjabi UI language label showed `Panjabi&#160;/ Punjabi` literally — `&#160;` was an HTML entity stored in JSON; React renders plain text, so it never became a space. Source string and all locale keys are now `Panjabi / Punjabi` (see `ui-languages.json` `englishName`).
+- **Changed**: Text selection: `body` defaults to selectable text (was `user-select: none` with only `p`/`span`/`textarea` enabled); form `Label` and Models provider headers no longer force `select-none`. Buttons, checkboxes/radios, dropdown/select items, and scrollbars stay non-selectable for clearer clicks.
+- **Changed**: Settings About hero logo scaled down 15% (`h-24`/`sm:h-28` → `5.1rem` / `5.95rem`).
+- **Changed**: Settings About and General: content column widened from `max-w-3xl` to `max-w-6xl` for more horizontal room when UI shows English plus a second locale; About app description drops `max-w-prose` so text uses the full card width.
+- **Changed**: Settings About: unified `text-sm` body scale (`bodyTextCls`) for tagline, Legal, disclaimer, and repo link; section titles share one style; Source code is a flat section (heading + link row, no nested bordered panel); GitHub Invertocat SVG only on the section title (not repeated on the URL row).
+- **Changed**: Settings About Legal card compacted (padding, gaps, merged license + rights line, smaller third‑party button); disclaimer and GitHub row slightly tighter.
+- **Changed**: Settings About tab uses the same glass card stack as other settings (`settingsTabContent`, `settingsSection`), responsive hero (logo + title/version), About/Legal sections, disclaimer inset panel, and an interactive GitHub row; new strings extracted to `strings.json`.
+- **Fixed**: `pnpm 3p-notices` on Windows: run `license-checker-rseidelsohn` via `node` and the package `bin/*.js` instead of `node_modules/.bin` (the Unix sh shim exists but is not executable by `execFileSync`).
+- **Changed**: General settings layout: single centered column (`max-w-6xl`) — Appearance, Behaviour, History, and Configuration Backup are stacked full-width cards with uniform `gap-5`; “Delete history data” remains an inset panel inside History (no nested glass card).
+- **Changed**: Settings UI aligned with workspace: `data-view="settings"` + emerald radial glow on `main`; glass header (`dark:bg-card/75`); pill-style tabs with emerald active state; section cards match workspace glass (`rounded-2xl`, `dark:border-white/10`); horizontal padding aligned with workspace grid (`md:px-6`); tables/stacked cards use matching borders.
+- **Fixed**: Output header metrics (`workspaceOutputMetaClassName`): `min-w-[9rem]` + `flex-1` with `flex-wrap` on the row so metrics wrap to their own line instead of shrinking into a vertical character column; removed `overflow-wrap:anywhere`; row aligns `items-start` (Transform, Translate split/stack, Rewrite split/stack).
+- **Fixed**: Transform prompt row (`TransformPromptSelector`): prompt dropdown uses `min-w-0` + truncated trigger text; action icons are grouped and wrap to their own row below `md` (`basis-full`) so they no longer paint over the select when the window or column is narrow.
+- **Changed**: Stacked Rewrite layout moves **From:** language + elapsed/cost metadata into a row above the output panel (workspace top bar keeps Mode only); stacked Translate moves **To:** + metadata above the output panel so both match Transform’s output-column controls.
+- **Fixed**: Stacked workspace layout (`WorkspaceGrid`) splits vertical space between input and output columns with `flex-1`/`min-h-0` instead of tall `min-h-*` constraints, avoiding a full-page scrollbar when both panes fit the viewport (Translate, Rewrite, Transform).
+- **Changed**: Stacked translate workspace reuses `TextPanel` for input/output (matches split styling and borders); paste icon moved to the input stats row; duplicate clear removed from that row (clear remains in the bottom action bar); elapsed/cost/TPS meta uses the output card header like split mode (no accent “metrics strip”); single copy control in the stats row; circular bordered icon buttons aligned with split pane actions.
+- **Fixed**: Collapsed sidebar expand strip uses the same Tailwind classes as the workspace action bar (`workspaceActionBarClassName`) so height and borders match; sidebar column uses `h-full` (not `100vh`) to track `MainContent`.
+- **Added**: Sidebar collapsed/expanded preference persisted in `localStorage` (`transrewrt-sidebar-collapsed`).
+- **Changed**: Stats row (Chars/Words/Paras + icon buttons) moved outside the card to sit directly below each `TextPanel`; added `hideFooter` prop to `TextPanel` to suppress the `CardFooter`.
+- **Changed**: CTA button (Translate/Rewrite/Transform) and labelled "Clear" button moved to a dedicated action bar pinned at the bottom of the workspace (below both columns), spanning the full width.
+- **Changed**: Output pane stats row shows model ID (muted, mode-accented) and an accent-coloured copy icon; rewrite "Changes" diff toggle moved from card footer into the output stats row.
+- **Changed**: `WorkspaceGrid` accepts an `actionBar` slot rendered below the scrollable grid; `MainContent` and `App` thread the prop through all three workspace modes.
+
+- **Added**: Per-mode CSS variables `--mode-output-bg`, `--mode-output-border`, and `--mode-output-text` for translate / rewrite / transform output panels; dark-mode `.output-tint` class on output `TextPanel`s.
+- **Changed**: Workspace header (`AppHeader`) uses a single-row height on desktop (`md:min-h-14`).
+- **Changed**: Model selector trigger is a compact pill (orange provider dot + monospace model id + caret); “Open Settings → Models” moved into the model dropdown menu.
+- **Changed**: Interface language control uses a neutral pill style in the header (`rounded-full`, `border-white/10`, `bg-white/5`).
+- **Changed**: Translate split layout shows elapsed / cost / TPS metadata beside the “To:” language row; output panel uses mode-tinted styling and no longer duplicates metadata in the card header.
+- **Changed**: Pane footer actions (Clear / Paste / Copy) are icon-only with tooltips.
+- **Changed**: Output footer model id line drops the “Model:” prefix and uses a muted mode-accent colour (`rgba(var(--mode-accent-rgb), 0.35)`).
+- **Added**: Stacked translate workspace (`TranslateStackPanels.tsx`): unified From/To row with swap control; sidebar forces icon-only width while layout is stacked.
+- **Added**: `swapLanguages` handler and `onSwapLanguages` option for translate workspace.
+- **Fixed**: `swapLanguages` is declared after `sourceLanguage` / `targetLanguage` state so the app no longer throws on load (blank page from TDZ `ReferenceError`).
+
 - **Changed**: UI theme — border-radius increased to 16 px (`--radius: 1rem`) across all components for an ultra-modern look.
 - **Changed**: Workspace action buttons (Translate / Rewrite / Transform) are now fully rounded (`rounded-full`) with a vibrant outer glow shadow matching the mode colour.
 - **Changed**: Input/Output cards in dark mode now use glassmorphism (`backdrop-blur-xl`, semi-transparent `bg-card/75`, `border-white/10`).

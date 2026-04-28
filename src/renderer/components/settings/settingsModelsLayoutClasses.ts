@@ -66,7 +66,7 @@ export const providerSection = cn(
 );
 
 export const providerHeader = cn(
-  "px-4 py-3.5 cursor-pointer transition-colors select-none",
+  "px-4 py-3.5 cursor-pointer transition-colors",
   "hover:bg-[color-mix(in_oklch,var(--foreground)_7%,var(--background))]",
 );
 

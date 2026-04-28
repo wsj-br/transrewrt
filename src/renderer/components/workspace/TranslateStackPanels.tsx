@@ -1,42 +1,97 @@
-import TextPanel from "../TextPanel";
+import type { MutableRefObject, ReactNode } from "react";
 import LanguageSelector from "../LanguageSelector";
+import TextPanel from "../TextPanel";
 import {
   workspaceActionBarClassName,
   workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
   workspacePaneStatsRowClassName,
 } from "./workspaceLayoutClasses";
-import { getTranslateStackPanels } from "./TranslateStackPanels";
 import { Button } from "@/components/ui/button";
-import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
+import { Zap, Square, ArrowRightLeft, Clipboard, Copy, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
-function stripKeySymbols(str) {
+function stripKeySymbols(str: string) {
   return String(str).replace(/[⇧↵]/g, "").trim();
 }
 
-/**
- * Returns { leftPanel, rightPanel, actionBar } for translate mode.
- */
-export function getTranslatePanels({ common, input, output, options }) {
-  if (common.layoutMode === "stack") {
-    return getTranslateStackPanels({ common, input, output, options });
-  }
+/** Icon-only control: thin circular border, matches split workspace pane actions. */
+const paneIconButtonClass =
+  "h-7 w-7 shrink-0 rounded-full border border-white/8 text-muted-foreground/50 hover:bg-accent hover:text-muted-foreground";
+const paneCopyButtonClass =
+  "ms-auto h-7 w-7 shrink-0 rounded-full border hover:bg-white/5 hover:text-muted-foreground";
 
-  const { t, settings, isProcessing, processingModeRef, handleRunAction, lastRunModel, outputMeta } = common;
-  const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage } = options;
+/**
+ * Stacked translate workspace: From + swap above input; To + run metadata above output (same pattern as split translate / Transform).
+ */
+export function getTranslateStackPanels({
+  common,
+  input,
+  output,
+  options,
+}: {
+  common: {
+    t: (key: string) => string;
+    settings?: { enter_behavior?: string; font_family?: string; font_size?: number };
+    isProcessing: boolean;
+    processingModeRef?: MutableRefObject<string | undefined>;
+    handleRunAction: () => void;
+    lastRunModel?: string | null;
+    outputMeta?: ReactNode;
+  };
+  input: {
+    text: string;
+    setText: (v: string) => void;
+    getStats: () => string;
+    clear: () => void;
+    pasteToInput: () => void;
+    handlePasteEvent?: (pasted: string) => void;
+  };
+  output: {
+    text: string;
+    setText: (v: string) => void;
+    getStats: () => string;
+    copy: () => void;
+  };
+  options: {
+    sourceLanguage: string;
+    setSourceLanguage: (v: string) => void;
+    targetLanguage: string;
+    setTargetLanguage: (v: string) => void;
+    onSwapLanguages?: () => void;
+  };
+}) {
+  const {
+    t,
+    settings,
+    isProcessing,
+    processingModeRef,
+    handleRunAction,
+    lastRunModel,
+    outputMeta,
+  } = common;
+
+  const {
+    sourceLanguage,
+    setSourceLanguage,
+    targetLanguage,
+    setTargetLanguage,
+    onSwapLanguages,
+  } = options;
 
   const shortcutLabel =
     settings?.enter_behavior === "Shift-Execute"
       ? `(${stripKeySymbols(t("⇧ SHIFT"))}+${stripKeySymbols(t("ENTER ↵"))})`
       : `(${stripKeySymbols(t("ENTER ↵"))})`;
 
+  const canSwap = sourceLanguage !== "Detect Language";
   const modelId = lastRunModel ? modelFooterDisplayId(lastRunModel) : "";
 
   const leftPanel = (
-    <div className="flex flex-col h-full gap-2">
-      <div className="flex items-center min-h-10">
+    <div className="flex min-h-0 flex-1 flex-col gap-2">
+      <div className="flex min-h-10 flex-wrap items-center gap-2">
         <LanguageSelector
           label={t("From:")}
           value={sourceLanguage}
@@ -45,9 +100,22 @@ export function getTranslatePanels({ common, input, output, options }) {
           dataTestId="translate-from"
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
+          hugSelectWidth
         />
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          className="h-9 w-9 shrink-0 rounded-full border-white/10 bg-transparent text-muted-foreground hover:bg-accent hover:text-foreground"
+          onClick={() => onSwapLanguages?.()}
+          disabled={!canSwap}
+          title={t("Swap languages")}
+          aria-label={t("Swap languages")}
+        >
+          <ArrowRightLeft className="h-4 w-4" />
+        </Button>
       </div>
-      <div className="flex-1 min-h-0">
+      <div className="min-h-0 flex-1">
         <TextPanel
           title={t("Input")}
           text={input.text}
@@ -67,17 +135,7 @@ export function getTranslatePanels({ common, input, output, options }) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7 border border-white/8 text-muted-foreground/50 hover:text-muted-foreground"
-            onClick={input.clear}
-            title={t("Clear (Esc)")}
-            aria-label={t("Clear (Esc)")}
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 border border-white/8 text-muted-foreground/50 hover:text-muted-foreground"
+            className={paneIconButtonClass}
             onClick={input.pasteToInput}
             title={t("Paste")}
             aria-label={t("Paste")}
@@ -90,8 +148,8 @@ export function getTranslatePanels({ common, input, output, options }) {
   );
 
   const rightPanel = (
-    <div className="flex flex-col h-full gap-2">
-      <div className={workspaceOutputPanelHeaderRowClassName}>
+    <div className="flex min-h-0 flex-1 flex-col gap-2">
+      <div className={cn(workspaceOutputPanelHeaderRowClassName, "shrink-0")}>
         <LanguageSelector
           label={t("To:")}
           value={targetLanguage}
@@ -100,6 +158,7 @@ export function getTranslatePanels({ common, input, output, options }) {
           dataTestId="translate-to"
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
+          hugSelectWidth
         />
         {outputMeta ? (
           <span className={workspaceOutputMetaClassName} style={{ color: "rgba(var(--mode-accent-rgb), 0.8)" }}>
@@ -107,13 +166,13 @@ export function getTranslatePanels({ common, input, output, options }) {
           </span>
         ) : null}
       </div>
-      <div className="flex-1 min-h-0">
+      <div className="min-h-0 flex-1">
         <TextPanel
           title={t("Output")}
           text={output.text}
           onTextChange={output.setText}
           placeholder={t("Output will appear here...")}
-          readOnly={true}
+          readOnly
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           outputTint={true}
@@ -136,7 +195,7 @@ export function getTranslatePanels({ common, input, output, options }) {
         <Button
           variant="ghost"
           size="icon"
-          className="ms-auto h-7 w-7 shrink-0 border hover:text-muted-foreground"
+          className={paneCopyButtonClass}
           style={{
             borderColor: "rgba(var(--mode-accent-rgb), 0.2)",
             color: "rgba(var(--mode-accent-rgb), 0.9)",
@@ -156,7 +215,7 @@ export function getTranslatePanels({ common, input, output, options }) {
       <Button
         variant="ghost"
         size="sm"
-        className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
+        className="shrink-0 gap-1.5 rounded-full border border-white/10 text-muted-foreground hover:text-foreground"
         onClick={input.clear}
       >
         <Trash2 className="h-3.5 w-3.5" />

@@ -5,7 +5,7 @@
 
 /** Cost tracking & transform prompts — inset data tables with optional totals row. */
 export const settingsDataTable = {
-  wrap: "w-fit max-w-full mt-2 mb-2 rounded-lg overflow-auto shadow border border-border",
+  wrap: "w-fit max-w-full mt-2 mb-2 rounded-xl overflow-auto border border-border shadow-sm dark:border-white/10 dark:bg-card/50",
   table: "w-auto table-auto border-collapse text-[14px]",
   thead: "bg-muted",
   th: "p-[10px_12px] text-start font-semibold bg-muted border-b border-border text-sm text-foreground",
@@ -18,7 +18,7 @@ export const settingsDataTable = {
 
 /** Users tab — full-width table, hover on body rows. */
 export const settingsUsersTable = {
-  wrap: "overflow-x-auto border border-border rounded-lg",
+  wrap: "overflow-x-auto rounded-xl border border-border shadow-sm dark:border-white/10 dark:bg-card/50",
   table: "w-full border-collapse text-[14px]",
   th: "text-start p-[10px_12px] font-semibold bg-muted border-b border-border text-foreground",
   td: "p-[10px_12px] border-b border-border text-foreground",
@@ -28,9 +28,9 @@ export const settingsUsersTable = {
 /** Cost tracking "By function" — stacked cards below `sm` (table hidden on small screens). */
 export const settingsDataTableCard = {
   list: "mt-2 mb-2 flex flex-col gap-2 sm:hidden",
-  card: "rounded-lg border border-border bg-card p-3 shadow-sm",
+  card: "rounded-xl border border-border bg-card p-3 shadow-sm dark:border-white/10 dark:bg-card/75 dark:backdrop-blur-xl",
   cardTotal:
-    "rounded-lg border-2 border-primary/40 bg-muted/30 p-3 shadow-sm",
+    "rounded-xl border-2 border-primary/40 bg-muted/30 p-3 shadow-sm dark:border-emerald-500/35 dark:bg-card/60",
   title: "text-sm font-semibold mb-2 break-words",
   metricGrid: "grid grid-cols-3 gap-x-2 gap-y-1 text-xs min-w-0",
   metricCell: "min-w-0",

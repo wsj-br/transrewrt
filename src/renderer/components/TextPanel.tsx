@@ -38,6 +38,8 @@ const TextPanel = ({
   outputIsModelResult,
   onShowDiffChange,
   footerMinimal = false,
+  outputTint = false,
+  hideFooter = false,
 }) => {
   const { t } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
@@ -46,12 +48,14 @@ const TextPanel = ({
 
   const textareaStyle = useMemo(() => {
     const resolved = fontFamily ? resolveAppearanceFontFamilyCss(fontFamily) : undefined;
+    const outputTintColor =
+      outputTint && readOnly && !textColor ? { color: "var(--mode-output-text)" } : {};
     return {
       ...(resolved && { fontFamily: resolved }),
       ...(fontSize && { fontSize: `${fontSize}px` }),
-      ...(textColor && { color: textColor }),
+      ...(textColor ? { color: textColor } : outputTintColor),
     };
-  }, [fontFamily, fontSize, textColor]);
+  }, [fontFamily, fontSize, textColor, outputTint, readOnly]);
 
   const diffSegments = useMemo(() => {
     if (!showDiff || inputTextForDiff == null || text == null) return null;
@@ -81,6 +85,7 @@ const TextPanel = ({
       className={cn(
         "flex h-full min-h-0 flex-col overflow-hidden transition-all duration-200",
         "dark:bg-card/75 dark:backdrop-blur-xl dark:border-white/10",
+        outputTint && "output-tint",
         isFocused && "text-panel-focus",
       )}
     >
@@ -152,7 +157,7 @@ const TextPanel = ({
       </CardContent>
 
       {/* Footer */}
-      {footerMinimal && footerDisplay ? (
+      {!hideFooter && footerMinimal && footerDisplay ? (
         <CardFooter
           className={cn(
             workspacePanelFooterLayoutClassName,
@@ -165,11 +170,10 @@ const TextPanel = ({
           {copyMinimalFooter && (
             <Button variant="ghost" size="sm" onClick={copyMinimalFooter} title={t("Copy")}>
               <Copy className="h-3.5 w-3.5" />
-              <span className="ms-1 hidden sm:inline">{t("Copy")}</span>
             </Button>
           )}
         </CardFooter>
-      ) : !footerMinimal ? (
+      ) : !hideFooter && !footerMinimal ? (
         <CardFooter
           className={cn(
             "gap-2",
@@ -204,7 +208,6 @@ const TextPanel = ({
                 {onCopy && (
                   <Button variant="ghost" size="sm" onClick={onCopy} title={t("Copy")}>
                     <Copy className="h-3.5 w-3.5" />
-                    <span className="ms-1 hidden sm:inline">{t("Copy")}</span>
                   </Button>
                 )}
               </div>
@@ -215,13 +218,11 @@ const TextPanel = ({
                 {onClear && (
                   <Button variant="ghost" size="sm" onClick={onClear} title={t("Clear (Esc)")}>
                     <Trash2 className="h-3.5 w-3.5" />
-                    <span className="ms-1 hidden sm:inline">{t("Clear")}</span>
                   </Button>
                 )}
                 {onPaste && (
                   <Button variant="ghost" size="sm" onClick={onPaste} title={t("Paste")}>
                     <Clipboard className="h-3.5 w-3.5" />
-                    <span className="ms-1 hidden sm:inline">{t("Paste")}</span>
                   </Button>
                 )}
               </div>
@@ -239,7 +240,6 @@ const TextPanel = ({
                 {onCopy && (
                   <Button variant="ghost" size="sm" onClick={onCopy} title={t("Copy")}>
                     <Copy className="h-3.5 w-3.5" />
-                    <span className="ms-1 hidden sm:inline">{t("Copy")}</span>
                   </Button>
                 )}
               </div>
@@ -274,6 +274,8 @@ TextPanel.propTypes = {
   outputIsModelResult: PropTypes.bool,
   onShowDiffChange: PropTypes.func,
   footerMinimal: PropTypes.bool,
+  outputTint: PropTypes.bool,
+  hideFooter: PropTypes.bool,
 };
 
 export default TextPanel;

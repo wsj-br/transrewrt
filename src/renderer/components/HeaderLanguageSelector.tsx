@@ -42,10 +42,10 @@ const HeaderLanguageSelector = ({ compact = false }) => {
           aria-label={t("Interface language")}
           title={t("Interface language")}
           data-testid="language-selector-trigger"
-          className="shrink-0 gap-1 text-xs font-semibold border !border-[#223328] !bg-[#223328] !text-white hover:!bg-[#3c5a46] hover:!border-[#3c5a46]"
+          className="h-8 shrink-0 gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-muted-foreground hover:bg-white/10 hover:text-foreground"
         >
           <Globe size={iconSize} />
-          <span className="hidden sm:inline text-xs">{uiLocale}</span>
+          <span className="hidden sm:inline">{uiLocale}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
