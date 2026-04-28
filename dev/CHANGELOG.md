@@ -43,6 +43,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Added**: Stacked translate workspace (`TranslateStackPanels.tsx`): unified From/To row with swap control; sidebar forces icon-only width while layout is stacked.
 - **Added**: `swapLanguages` handler and `onSwapLanguages` option for translate workspace.
 - **Fixed**: `swapLanguages` is declared after `sourceLanguage` / `targetLanguage` state so the app no longer throws on load (blank page from TDZ `ReferenceError`).
+- **Fixed**: Docker/web production image build (`build-renderer`) by declaring `tailwindcss` as a devDependency so `@import 'tailwindcss'` resolves under pnpm’s strict `node_modules` layout.
 
 - **Changed**: UI theme — border-radius increased to 16 px (`--radius: 1rem`) across all components for an ultra-modern look.
 - **Changed**: Workspace action buttons (Translate / Rewrite / Transform) are now fully rounded (`rounded-full`) with a vibrant outer glow shadow matching the mode colour.
