@@ -56,6 +56,9 @@ COPY src/shared/ ./shared/
 # Copy the LICENSE file
 COPY LICENSE ./LICENSE
 
+# Third-party notices for GET /NOTICES (server checks /app/NOTICES before dist/NOTICES)
+COPY --from=builder /app/NOTICES ./NOTICES
+
 # Create data directory for config persistence (mounted as volume)
 RUN mkdir -p /app/data
 

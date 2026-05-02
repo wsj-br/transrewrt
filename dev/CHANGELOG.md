@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Docker image: copy root `NOTICES` into the production stage so **Settings → About → Third-party notices** and `GET /NOTICES` work (previously only `dist/` was copied, so the file could be missing if the webpack copy did not run or match).
 - **Fixed**: Translate / Rewrite / Transform header on narrow viewports: model selector and layout toggle sit on a second row below the title (Dashboard / History / Settings headers remain a single row).
 - **Fixed**: Light theme: translate / rewrite / transform output panel text uses darker `--mode-output-text` overrides so body copy is readable; dark theme colors unchanged.
 - **Changed**: Settings → **Models** (narrow inner tabs): hide the **Selected Models** panel title count badge; counts remain on the Available / Selected pill tabs.
