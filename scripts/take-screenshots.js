@@ -537,90 +537,9 @@ async function waitForSelectorWithRetry(page, selector, options = {}) {
   throw lastErr;
 }
 
-const CHARTS_READY_POLL_MS = 300;
-const CHARTS_READY_TIMEOUT_MS = 30000;
-/** Wait for chart SVGs to stop changing (animation complete). Poll interval. */
-const CHARTS_STABLE_POLL_MS = 200;
-/** How long the chart fingerprint must stay unchanged to consider animation done. */
-const CHARTS_STABLE_DURATION_MS = 500;
-/** Max time to wait for stability after charts are ready. */
-const CHARTS_STABLE_TIMEOUT_MS = 4000;
-
-const DASHBOARD_CHARTS_COUNT = 3;
-
-async function waitForDashboardCharts(page) {
-  const deadline = Date.now() + CHARTS_READY_TIMEOUT_MS;
-  while (Date.now() < deadline) {
-    const result = await page.evaluate((expectedCount) => {
-      const tabpanel = document.querySelector("[data-testid=\"dashboard-tabpanel-summary\"]");
-      if (!tabpanel || tabpanel.textContent.includes("Loading…")) {
-        return { readyCount: 0, fingerprint: null };
-      }
-      const surfaces = document.querySelectorAll("svg.recharts-surface");
-      if (surfaces.length < expectedCount) {
-        return { readyCount: 0, fingerprint: null };
-      }
-      let ready = 0;
-      const parts = [];
-      for (const svg of surfaces) {
-        const rect = svg.getBoundingClientRect();
-        const hasContent = svg.querySelector("path, rect, circle");
-        if (rect.width > 0 && rect.height > 0 && hasContent) ready++;
-        let fp = "";
-        svg.querySelectorAll("path").forEach((p) => {
-          fp += (p.getAttribute("d") || "").length + ",";
-        });
-        svg.querySelectorAll("rect").forEach((r) => {
-          fp += "r" + (r.getAttribute("width") || "") + (r.getAttribute("height") || "") + ",";
-        });
-        svg.querySelectorAll("circle").forEach((c) => {
-          fp += "c" + (c.getAttribute("r") || "") + ",";
-        });
-        parts.push(fp);
-      }
-      return { readyCount: ready, fingerprint: parts.join("|") };
-    }, DASHBOARD_CHARTS_COUNT);
-    if (result.readyCount >= DASHBOARD_CHARTS_COUNT && result.fingerprint) {
-      const stableDeadline = Date.now() + CHARTS_STABLE_TIMEOUT_MS;
-      let lastFingerprint = result.fingerprint;
-      let stableSince = Date.now();
-      while (Date.now() < stableDeadline) {
-        await wait(CHARTS_STABLE_POLL_MS);
-        const current = await page.evaluate((expectedCount) => {
-          const surfaces = document.querySelectorAll("svg.recharts-surface");
-          if (surfaces.length < expectedCount) return null;
-          const parts = [];
-          for (const svg of surfaces) {
-            let fp = "";
-            svg.querySelectorAll("path").forEach((p) => {
-              fp += (p.getAttribute("d") || "").length + ",";
-            });
-            svg.querySelectorAll("rect").forEach((r) => {
-              fp += "r" + (r.getAttribute("width") || "") + (r.getAttribute("height") || "") + ",";
-            });
-            svg.querySelectorAll("circle").forEach((c) => {
-              fp += "c" + (c.getAttribute("r") || "") + ",";
-            });
-            parts.push(fp);
-          }
-          return parts.join("|");
-        }, DASHBOARD_CHARTS_COUNT);
-        if (current === lastFingerprint) {
-          if (Date.now() - stableSince >= CHARTS_STABLE_DURATION_MS) {
-            log("Charts stable (animation complete).");
-            return;
-          }
-        } else {
-          lastFingerprint = current;
-          stableSince = Date.now();
-        }
-      }
-      log("Charts stability timeout (%ds), taking screenshot anyway.", CHARTS_STABLE_TIMEOUT_MS / 1000);
-      return;
-    }
-    await wait(CHARTS_READY_POLL_MS);
-  }
-  log("Charts ready timeout (%ds), taking screenshot anyway.", CHARTS_READY_TIMEOUT_MS / 1000);
+/** Summary tab mounts `[data-testid="dashboard-tabpanel-summary"]` only after cost data has loaded. */
+async function waitForDashboardSummaryReady(page) {
+  await waitForSelector(page, "[data-testid=\"dashboard-tabpanel-summary\"]", { timeout: 30000 });
 }
 
 async function clickByTestId(page, testId) {
@@ -1019,8 +938,8 @@ async function finalTeardownTransformGenerate(page) {
 
 async function prepareDashboardSummary(page) {
   await clickByTestId(page, "nav-dashboard");
-  log("Waiting for dashboard charts to finish drawing...");
-  await waitForDashboardCharts(page);
+  log("Waiting for dashboard summary to load...");
+  await waitForDashboardSummaryReady(page);
 }
 
 async function captureDashboardSummary(page, filePath) {

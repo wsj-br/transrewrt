@@ -14,6 +14,7 @@ const {
   buildExecutionHistoryWhere,
   sql,
   replaceWhere,
+  prepareGetAllCallsSql,
 } = require("../shared/db/appSchema.js");
 
 let db = null;
@@ -239,7 +240,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     }
   });
 
-  ipcMain.handle("appDb:getAllCalls", (_, from, to, page, pageSize) => {
+  ipcMain.handle("appDb:getAllCalls", (_, from, to, page, pageSize, _username, sortKey, sortDir) => {
     try {
       const d = getDb();
       if (!d) return { rows: [], total: 0 };
@@ -247,7 +248,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
       const total = d.prepare(replaceWhere(sql.COUNT_API_CALLS, where)).get(...params)?.total ?? 0;
       const offset = ((page || 1) - 1) * (pageSize || 50);
       const limit = pageSize || 50;
-      const rows = d.prepare(replaceWhere(sql.GET_ALL_CALLS, where)).all(...params, limit, offset);
+      const rows = d.prepare(prepareGetAllCallsSql(where, sortKey, sortDir)).all(...params, limit, offset);
       return { rows, total };
     } catch (err) {
       console.error("[appDb] getAllCalls error:", err);

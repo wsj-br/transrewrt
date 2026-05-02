@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { workspacePanelFooterLayoutClassName } from "./workspace/workspaceLayoutClasses";
 import { computeRewriteDiff } from "../utils/misc/rewriteDiff";
 import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
+import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 
 /** Footer stats / model line — below `text-xs` (12px); wraps in narrow columns (controls stay `whitespace-nowrap`). */
 const footerMetaTextClass =
@@ -72,7 +73,7 @@ const TextPanel = ({
   const copyMinimalFooter =
     onCopy ??
     (footerMinimal && readOnly
-      ? () => void navigator.clipboard.writeText(text == null ? "" : String(text))
+      ? () => void copyTextToClipboard(text == null ? "" : String(text)).catch(() => {})
       : null);
 
   const defaultIcon =
@@ -89,26 +90,28 @@ const TextPanel = ({
         isFocused && "text-panel-focus",
       )}
     >
-      {title && (
-        <CardHeader className="shrink-0 px-4 py-3">
-          <div className="flex items-center gap-2 min-w-0">
-            {defaultIcon && (
-              <span className="text-muted-foreground shrink-0">{defaultIcon}</span>
-            )}
-            <CardTitle className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {title}
-            </CardTitle>
-            {headerDisplay && (
-              <span
-                className="ms-auto text-xs text-muted-foreground truncate"
-                title={typeof headerDisplay === "string" ? headerDisplay : undefined}
-              >
-                {headerDisplay}
-              </span>
-            )}
-          </div>
-        </CardHeader>
-      )}
+      {/* TEST: Input/Output CardHeader — flip `false` to `true` to restore */}
+      {false &&
+        title && (
+          <CardHeader className="shrink-0 px-4 py-3">
+            <div className="flex items-center gap-2 min-w-0">
+              {defaultIcon && (
+                <span className="text-muted-foreground shrink-0">{defaultIcon}</span>
+              )}
+              <CardTitle className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {title}
+              </CardTitle>
+              {headerDisplay && (
+                <span
+                  className="ms-auto text-xs text-muted-foreground truncate"
+                  title={typeof headerDisplay === "string" ? headerDisplay : undefined}
+                >
+                  {headerDisplay}
+                </span>
+              )}
+            </div>
+          </CardHeader>
+        )}
 
       <CardContent className="flex flex-1 min-h-0 p-0">
         {showDiffView ? (

@@ -15,6 +15,13 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useAppContext } from "../contexts/AppContext";
 import SettingsApiTab from "./SettingsApiTab";
 import SettingsGeneralTab from "./SettingsGeneralTab";
@@ -45,6 +52,23 @@ import {
 } from "../utils/misc/modelPricingUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+
+/** Below Tailwind `md` (768px): use a compact settings nav instead of horizontal tab strip. */
+function useIsBelowMd() {
+  const [below, setBelow] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 767px)").matches
+      : false,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => setBelow(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return below;
+}
 
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const { t } = useTranslation();
@@ -92,6 +116,37 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const canAccessUsersTab = isWeb && currentUser?.role === "admin";
   const canAccessCostTab = !isWeb || currentUser?.role === "admin";
   const canConfigBackup = !isWeb || currentUser?.role === "admin";
+  const isBelowMd = useIsBelowMd();
+
+  const settingsTabs = useMemo(
+    () => [
+      { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
+      {
+        id: "models",
+        icon: <Database size={15} />,
+        label: t("Models"),
+        testId: "settings-tab-models",
+      },
+      { id: "languages", icon: <Globe size={15} />, label: t("Languages") },
+      ...(canAccessCostTab
+        ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }]
+        : []),
+      { id: "transform", icon: <WandSparkles size={15} />, label: t("Transform") },
+      ...(canAccessUsersTab
+        ? [{ id: "users", icon: <Users size={15} />, label: t("Users") }]
+        : []),
+      ...(canAccessApiTab
+        ? [{ id: "api", icon: <Key size={15} />, label: t("API Config") }]
+        : []),
+      { id: "about", icon: <Info size={15} />, label: t("About") },
+    ],
+    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab],
+  );
+
+  const selectedTabMeta = useMemo(
+    () => settingsTabs.find((tab) => tab.id === (activeTab ?? "general")),
+    [settingsTabs, activeTab],
+  );
 
   useEffect(() => {
     const el = tabStripRef.current;
@@ -369,72 +424,109 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
 
   return (
     <div className="flex flex-col h-full w-full overflow-hidden">
-      <header className="flex min-h-14 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6 dark:bg-card/75 dark:backdrop-blur-xl">
-        <div className="flex min-w-0 items-center gap-3">
+      <header className="flex min-h-14 shrink-0 flex-row flex-nowrap items-center gap-x-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:gap-x-4 md:px-6 md:py-3 md:ps-6 dark:bg-card/75 dark:backdrop-blur-xl">
+        <div className="flex min-h-0 min-w-0 flex-1 items-center gap-3">
           <SettingsIcon className="shrink-0 text-emerald-500" size={20} strokeWidth={1.6} />
-          <h2 className="min-w-0 truncate text-lg font-semibold">{t("Settings")}</h2>
+          <h2 className="min-w-0 flex-1 truncate text-lg font-semibold md:flex-initial">{t("Settings")}</h2>
         </div>
-        <div className="flex shrink-0 items-center justify-end md:ms-auto">
+        <div className="flex shrink-0 items-center justify-end">
           <HeaderLanguageSelector compact />
         </div>
       </header>
 
       <div className={cn(settingsTabStrip, "ps-2 pe-2 md:ps-3 md:pe-3")}>
-        {tabScroll.hasOverflow && (
-          <button
-            type="button"
-            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
-            onClick={() => scrollTabs(-1)}
-            disabled={!tabScroll.canScrollLeft}
-            aria-label={t("Previous tabs")}
-          >
-            <ChevronLeft size={20} className="rtl-icon-mirror" />
-          </button>
-        )}
-        <div
-          ref={tabStripRef}
-          className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
-          role="tablist"
-        >
-          <div className="flex w-max items-center gap-2 px-1 py-0.5">
-            {[
-              { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
-              { id: "models", icon: <Database size={15} />, label: t("Models"), testId: "settings-tab-models" },
-              { id: "languages", icon: <Globe size={15} />, label: t("Languages") },
-              ...(canAccessCostTab ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }] : []),
-              { id: "transform", icon: <WandSparkles size={15} />, label: t("Transform") },
-              ...(canAccessUsersTab ? [{ id: "users", icon: <Users size={15} />, label: t("Users") }] : []),
-              ...(canAccessApiTab ? [{ id: "api", icon: <Key size={15} />, label: t("API Config") }] : []),
-              { id: "about", icon: <Info size={15} />, label: t("About") },
-            ].map(({ id, icon, label, testId }) => (
-              <button
-                key={id}
-                type="button"
-                role="tab"
-                aria-selected={activeTab === id}
-                data-testid={testId}
-                className={cn(
-                  settingsTabButton,
-                  "flex items-center gap-1.5 whitespace-nowrap",
-                  activeTab === id ? settingsTabPillActive : settingsTabPillIdle,
-                )}
-                onClick={() => handleTabChange(id)}
+        {isBelowMd ? (
+          <div className="w-full min-w-0 px-1 py-0.5">
+            {/*
+              Radix Select renders the menu in a portal with theme tokens (popover); icons match wide tab strip.
+            */}
+            <Select
+              value={activeTab ?? "general"}
+              onValueChange={handleTabChange}
+            >
+              <SelectTrigger
+                id="settings-tab-select"
+                data-testid="settings-tab-select"
+                className="h-10 w-full min-w-0 text-base shadow-xs [&_[data-slot=select-value]]:min-w-0 [&_[data-slot=select-value]]:flex-1"
+                aria-label={t("Choose a settings section")}
               >
-                {icon} {label}
-              </button>
-            ))}
+                <SelectValue placeholder={t("Choose a settings section")}>
+                  {selectedTabMeta ? (
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <span className="inline-flex shrink-0 [&_svg]:shrink-0">
+                        {selectedTabMeta.icon}
+                      </span>
+                      <span className="min-w-0 truncate">{selectedTabMeta.label}</span>
+                    </span>
+                  ) : null}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent position="popper" align="start" className="z-[10050]">
+                {settingsTabs.map(({ id, icon, label, testId }) => (
+                  <SelectItem
+                    key={id}
+                    value={id}
+                    {...(testId ? { "data-testid": testId } : {})}
+                  >
+                    <span className="flex w-full items-center gap-1.5">
+                      <span className="inline-flex shrink-0 [&_svg]:shrink-0">{icon}</span>
+                      <span className="min-w-0 flex-1">{label}</span>
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-        </div>
-        {tabScroll.hasOverflow && (
-          <button
-            type="button"
-            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
-            onClick={() => scrollTabs(1)}
-            disabled={!tabScroll.canScrollRight}
-            aria-label={t("Next tabs")}
-          >
-            <ChevronRight size={20} className="rtl-icon-mirror" />
-          </button>
+        ) : (
+          <>
+            {tabScroll.hasOverflow && (
+              <button
+                type="button"
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+                onClick={() => scrollTabs(-1)}
+                disabled={!tabScroll.canScrollLeft}
+                aria-label={t("Previous tabs")}
+              >
+                <ChevronLeft size={20} className="rtl-icon-mirror" />
+              </button>
+            )}
+            <div
+              ref={tabStripRef}
+              className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
+              role="tablist"
+            >
+              <div className="flex w-max items-center gap-2 px-1 py-0.5">
+                {settingsTabs.map(({ id, icon, label, testId }) => (
+                  <button
+                    key={id}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTab === id}
+                    data-testid={testId}
+                    className={cn(
+                      settingsTabButton,
+                      "flex items-center gap-1.5 whitespace-nowrap",
+                      activeTab === id ? settingsTabPillActive : settingsTabPillIdle,
+                    )}
+                    onClick={() => handleTabChange(id)}
+                  >
+                    {icon} {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {tabScroll.hasOverflow && (
+              <button
+                type="button"
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+                onClick={() => scrollTabs(1)}
+                disabled={!tabScroll.canScrollRight}
+                aria-label={t("Next tabs")}
+              >
+                <ChevronRight size={20} className="rtl-icon-mirror" />
+              </button>
+            )}
+          </>
         )}
       </div>
 

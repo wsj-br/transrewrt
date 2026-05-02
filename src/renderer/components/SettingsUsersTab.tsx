@@ -196,8 +196,8 @@ const SettingsUsersTab = () => {
       </div>
       <p className="text-sm text-muted-foreground mt-3 mb-0">{t("Manage application users and permissions.")}</p>
       <div className="mt-9">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-          <div className="relative w-full min-w-0 sm:min-w-[300px] sm:max-w-[400px] flex-1">
+        <div className="flex flex-col gap-3 mb-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+          <div className="relative w-full min-w-0 sm:min-w-[300px] sm:max-w-[400px] sm:flex-1">
             <Search size={16} className="absolute start-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
             <Input
               placeholder={t("Search users…")}
@@ -206,10 +206,10 @@ const SettingsUsersTab = () => {
               className="ps-8"
             />
           </div>
-          <div className="flex items-center gap-3 flex-wrap shrink-0">
-            <div className="flex items-center gap-2">
-              <ClockFading size={16} />
-              <Label htmlFor="users-session-timeout" title={t("Changes apply only to new logins")} className="whitespace-nowrap text-sm">
+          <div className="flex min-w-0 w-full flex-wrap items-center gap-3 sm:w-auto sm:shrink-0 sm:justify-end">
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:flex-initial">
+              <ClockFading size={16} className="shrink-0" />
+              <Label htmlFor="users-session-timeout" title={t("Changes apply only to new logins")} className="shrink-0 whitespace-nowrap text-sm">
                 {t("Session Timeout")}
               </Label>
               <Select
@@ -219,7 +219,7 @@ const SettingsUsersTab = () => {
                   if (!Number.isNaN(seconds)) setSetting("web_session_timeout", seconds);
                 }}
               >
-                <SelectTrigger id="users-session-timeout" className="min-w-[100px] w-fit" title={t("Changes apply only to new logins")}>
+                <SelectTrigger id="users-session-timeout" className="min-w-[100px] w-fit max-w-full" title={t("Changes apply only to new logins")}>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -229,7 +229,11 @@ const SettingsUsersTab = () => {
                 </SelectContent>
               </Select>
             </div>
-            <Button size="sm" onClick={() => { setAddOpen(true); setAddUsername(""); setAddPassword(""); setAddAdmin(false); setAddMustChange(true); setError(""); }}>
+            <Button
+              size="sm"
+              className="shrink-0"
+              onClick={() => { setAddOpen(true); setAddUsername(""); setAddPassword(""); setAddAdmin(false); setAddMustChange(true); setError(""); }}
+            >
               <Plus size={16} />{t("Add User")}
             </Button>
           </div>

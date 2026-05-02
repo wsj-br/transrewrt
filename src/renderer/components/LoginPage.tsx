@@ -137,7 +137,7 @@ const LoginPage = ({ onSuccess }) => {
     }
   };
 
-  const pageClass = "min-h-screen flex flex-col bg-background";
+  const pageClass = "flex min-h-dvh flex-col bg-background";
 
   if (step === "changePassword") {
     return (

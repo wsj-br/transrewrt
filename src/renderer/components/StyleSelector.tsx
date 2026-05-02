@@ -31,7 +31,7 @@ const StyleSelector = ({
       <Select value={value ?? ""} onValueChange={onChange}>
         <SelectTrigger
           className={cn(
-            "border-0 border-b-2 rounded-none bg-transparent shadow-none px-0 focus:ring-0",
+            "border-0 border-b-2 rounded-none bg-transparent shadow-none px-3 focus:ring-0",
             hugSelectWidth
               ? "h-9 w-fit max-w-[min(92vw,32rem)] shrink-0"
               : "flex-1",

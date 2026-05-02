@@ -6,9 +6,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { styles } from "./dashboard/dashboardPageStyles";
 import ConfirmModal from "./ConfirmModal";
 import DashboardTabSummary from "./DashboardTabSummary";
-import DashboardTabByUsage from "./DashboardTabByUsage";
 import DashboardTabByModel from "./DashboardTabByModel";
-import DashboardTabByDay from "./DashboardTabByDay";
 import DashboardTabAllCalls from "./DashboardTabAllCalls";
 import webAPI from "../utils/api/webApiClient";
 import { Button } from "@/components/ui/button";
@@ -24,6 +22,29 @@ import { cn } from "@/lib/utils";
 const PAGE_SIZES = [10, 20, 50, 100];
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
+/** First activation of a text-heavy All Calls column sorts A→Z / oldest first; numeric columns default high→low. */
+function defaultAllCallsSortDir(columnKey) {
+  if (columnKey === "timestamp" || columnKey === "type" || columnKey === "username" || columnKey === "model") {
+    return "asc";
+  }
+  return "desc";
+}
+
+/** Matches Tailwind `sm` (640px): mobile card layouts use page scroll under the dashboard header. */
+function useIsBelowSm() {
+  const [below, setBelow] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 639px)").matches : false,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const onChange = () => setBelow(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return below;
+}
+
 const DashboardPage = () => {
   const { t } = useTranslation();
   const { settings, setSetting, currentUser } = useAppContext();
@@ -37,10 +58,6 @@ const DashboardPage = () => {
   const dashboardUsername = isWeb && !isAdmin ? (currentUser?.username || null) : (userFilter || null);
   const [byFunction, setByFunction] = useState([]);
   const [byModel, setByModel] = useState([]);
-  const [byDay, setByDay] = useState([]);
-  const [byTargetLang, setByTargetLang] = useState([]);
-  const [byRewriteMode, setByRewriteMode] = useState([]);
-  const [byTransformPrompt, setByTransformPrompt] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [allCallsPage, setAllCallsPage] = useState(1);
@@ -51,15 +68,12 @@ const DashboardPage = () => {
   const [allCallsRows, setAllCallsRows] = useState([]);
   const [allCallsTotal, setAllCallsTotal] = useState(0);
   const [allCallsLoading, setAllCallsLoading] = useState(false);
-
-  const [byDayPage, setByDayPage] = useState(1);
-  const [byDayPageSize, setByDayPageSize] = useState(50);
-  const [byDayPaginatedRows, setByDayPaginatedRows] = useState([]);
-  const [byDayPaginatedTotal, setByDayPaginatedTotal] = useState(0);
-  const [byDayPaginatedLoading, setByDayPaginatedLoading] = useState(false);
+  const [allCallsSort, setAllCallsSort] = useState({ key: "id", dir: "desc" });
 
   const [modelToDelete, setModelToDelete] = useState(null);
   const [deleteByModelError, setDeleteByModelError] = useState(null);
+
+  const isCardLayout = useIsBelowSm();
 
   const costApi = getCostApi();
 
@@ -68,46 +82,22 @@ const DashboardPage = () => {
     webAPI.getUsers().then((list) => setUserList(Array.isArray(list) ? list : [])).catch(() => setUserList([]));
   }, [isAdmin]);
 
-  /** Maps API function key (translate/rewrite/transform) to translated label for charts/tooltips. */
-  const getUsageTypeLabel = (fn) => {
-    if (fn === "translate") return t("Translation");
-    if (fn === "rewrite") return t("Rewrite");
-    if (fn === "transform") return t("Transform");
-    if (fn === "translate-prompt") return t("Translate prompt");
-    return fn ?? "";
-  };
-
   const loadSummaries = useCallback(() => {
     if (!costApi.getSummaryByFunction) return;
     const { from, to } = getFilterRange(filter);
     const username = dashboardUsername || undefined;
     setLoading(true);
-    const targetLangPromise = costApi.getSummaryByTargetLang ? costApi.getSummaryByTargetLang(from, to, username) : Promise.resolve([]);
-    const rewriteModePromise = costApi.getSummaryByRewriteMode ? costApi.getSummaryByRewriteMode(from, to, username) : Promise.resolve([]);
-    const transformPromptPromise = costApi.getSummaryByTransformPrompt ? costApi.getSummaryByTransformPrompt(from, to, username) : Promise.resolve([]);
     Promise.all([
       costApi.getSummaryByFunction(from, to, username),
       costApi.getSummaryByModel(from, to, username),
-      costApi.getSummaryByDay(from, to, username),
-      targetLangPromise,
-      rewriteModePromise,
-      transformPromptPromise,
     ])
-      .then(([a, b, c, d, e, f]) => {
+      .then(([a, b]) => {
         setByFunction(Array.isArray(a) ? a : []);
         setByModel(Array.isArray(b) ? b : []);
-        setByDay(Array.isArray(c) ? c : []);
-        setByTargetLang(Array.isArray(d) ? d : []);
-        setByRewriteMode(Array.isArray(e) ? e : []);
-        setByTransformPrompt(Array.isArray(f) ? f : (f?.rows ?? []));
       })
       .catch(() => {
         setByFunction([]);
         setByModel([]);
-        setByDay([]);
-        setByTargetLang([]);
-        setByRewriteMode([]);
-        setByTransformPrompt([]);
       })
       .finally(() => setLoading(false));
   }, [filter, costApi, dashboardUsername]);
@@ -124,7 +114,7 @@ const DashboardPage = () => {
     const api = costApi;
     const promise =
       typeof api.getAllCalls === "function"
-        ? api.getAllCalls(from, to, allCallsPage, allCallsPageSize, username)
+        ? api.getAllCalls(from, to, allCallsPage, allCallsPageSize, username, allCallsSort.key, allCallsSort.dir)
         : Promise.resolve({ rows: [], total: 0 });
     promise
       .then((data) => {
@@ -136,7 +126,17 @@ const DashboardPage = () => {
         setAllCallsTotal(0);
       })
       .finally(() => setAllCallsLoading(false));
-  }, [filter, allCallsPage, allCallsPageSize, costApi, dashboardUsername]);
+  }, [filter, allCallsPage, allCallsPageSize, costApi, dashboardUsername, allCallsSort.key, allCallsSort.dir]);
+
+  const onAllCallsSortColumn = useCallback((columnKey) => {
+    setAllCallsSort((prev) => {
+      if (prev.key !== columnKey) {
+        return { key: columnKey, dir: defaultAllCallsSortDir(columnKey) };
+      }
+      return { key: columnKey, dir: prev.dir === "asc" ? "desc" : "asc" };
+    });
+    setAllCallsPage(1);
+  }, []);
 
   const getExportAllCalls = useCallback(() => {
     if (typeof costApi.getAllCallsExport !== "function") return Promise.resolve([]);
@@ -151,34 +151,6 @@ const DashboardPage = () => {
     }
   }, [selectedTab, loadAllCalls]);
 
-  const loadByDayPaginated = useCallback(() => {
-    if (!costApi.getSummaryByDayPaginated) return;
-    const { from, to } = getFilterRange(filter);
-    const username = dashboardUsername || undefined;
-    setByDayPaginatedLoading(true);
-    const api = costApi;
-    const promise =
-      typeof api.getSummaryByDayPaginated === "function"
-        ? api.getSummaryByDayPaginated(from, to, byDayPage, byDayPageSize, username)
-        : Promise.resolve({ rows: [], total: 0 });
-    promise
-      .then((data) => {
-        setByDayPaginatedRows(data?.rows ?? []);
-        setByDayPaginatedTotal(data?.total ?? 0);
-      })
-      .catch(() => {
-        setByDayPaginatedRows([]);
-        setByDayPaginatedTotal(0);
-      })
-      .finally(() => setByDayPaginatedLoading(false));
-  }, [filter, byDayPage, byDayPageSize, costApi, dashboardUsername]);
-
-  useEffect(() => {
-    if (selectedTab === "byday") {
-      queueMicrotask(() => loadByDayPaginated());
-    }
-  }, [selectedTab, loadByDayPaginated]);
-
   const handleConfirmDeleteByModel = async () => {
     if (!modelToDelete) return;
     setDeleteByModelError(null);
@@ -192,16 +164,17 @@ const DashboardPage = () => {
     }
   };
 
-  const emptyRow = (colSpan) => (
-    <tr>
-      <td colSpan={colSpan} className={styles.emptyRow}>
-        {t("(no information available)")}
-      </td>
-    </tr>
-  );
+  const tabPanelClass =
+    selectedTab === "allcalls"
+      ? isCardLayout
+        ? `${styles.tabPanelCardLayout} ${styles.tabPanelAllCallsCardLayout}`
+        : `${styles.tabPanel} ${styles.tabPanelAllCalls}`
+      : isCardLayout
+        ? styles.tabPanelCardLayout
+        : styles.tabPanel;
 
   return (
-    <div className={styles.root}>
+    <div className={isCardLayout ? "flex flex-col w-full min-w-0" : styles.root}>
       <div className="flex flex-wrap items-center gap-2 mb-5" data-testid="dashboard-filter-row">
         <span className="text-sm font-medium text-muted-foreground me-1">{t("Filter")}</span>
         {getFilters(t).map((f) => (
@@ -240,9 +213,7 @@ const DashboardPage = () => {
       <div className="flex items-stretch border-b border-border shrink-0 mb-0" role="tablist">
         {[
           { id: "summary", label: t("Summary"), testId: "dashboard-tab-summary" },
-          { id: "byusage", label: t("By Usage") },
           { id: "bymodel", label: t("By Model") },
-          { id: "byday", label: t("By Day") },
           { id: "allcalls", label: t("All Calls") },
         ].map(({ id, label, testId }) => (
           <button
@@ -264,31 +235,14 @@ const DashboardPage = () => {
         ))}
       </div>
 
-      <div
-        className={
-          selectedTab === "allcalls"
-            ? `${styles.tabPanel} ${styles.tabPanelAllCalls}`
-            : styles.tabPanel
-        }
-      >
+      <div className={tabPanelClass}>
         {selectedTab === "summary" && (
           <DashboardTabSummary
             loading={loading}
             byFunction={byFunction}
-            byDay={byDay}
             byModel={byModel}
             settings={settings}
             costFractionStyle={costFractionStyle}
-            styles={styles}
-            getUsageTypeLabel={getUsageTypeLabel}
-          />
-        )}
-        {selectedTab === "byusage" && (
-          <DashboardTabByUsage
-            loading={loading}
-            byTargetLang={byTargetLang}
-            byRewriteMode={byRewriteMode}
-            byTransformPrompt={byTransformPrompt}
             styles={styles}
           />
         )}
@@ -298,24 +252,7 @@ const DashboardPage = () => {
             byModel={byModel}
             costFractionStyle={costFractionStyle}
             styles={styles}
-            emptyRow={emptyRow}
             setModelToDelete={setModelToDelete}
-          />
-        )}
-        {selectedTab === "byday" && (
-          <DashboardTabByDay
-            loading={loading}
-            byDay={byDay}
-            byDayPage={byDayPage}
-            setByDayPage={setByDayPage}
-            byDayPageSize={byDayPageSize}
-            setByDayPageSize={setByDayPageSize}
-            byDayPaginatedRows={byDayPaginatedRows}
-            byDayPaginatedTotal={byDayPaginatedTotal}
-            byDayPaginatedLoading={byDayPaginatedLoading}
-            costFractionStyle={costFractionStyle}
-            styles={styles}
-            emptyRow={emptyRow}
           />
         )}
         {selectedTab === "allcalls" && (
@@ -326,11 +263,14 @@ const DashboardPage = () => {
             allCallsRows={allCallsRows}
             allCallsTotal={allCallsTotal}
             allCallsLoading={allCallsLoading}
+            allCallsSort={allCallsSort}
+            onAllCallsSortColumn={onAllCallsSortColumn}
             costFractionStyle={costFractionStyle}
             styles={styles}
             setModelToDelete={setModelToDelete}
             setSetting={setSetting}
             getExportAllCalls={getExportAllCalls}
+            isCardLayout={isCardLayout}
           />
         )}
       </div>

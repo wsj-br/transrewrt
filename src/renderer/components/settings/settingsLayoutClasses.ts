@@ -49,4 +49,4 @@ export const settingsFormGroup = "mb-4 flex-1 min-w-0 max-w-full";
  * Models tab root — full-height split layout, no outer padding (was .tab-content + .models-tab).
  */
 export const settingsModelsTabRoot =
-  "flex flex-col flex-1 h-full min-h-0 w-full max-w-full box-border overflow-hidden p-0 m-0 max-[1200px]:h-auto max-[1200px]:min-h-full max-[1200px]:overflow-visible";
+  "flex flex-col flex-1 h-full min-h-0 w-full max-w-full box-border overflow-hidden p-0 m-0";

@@ -55,3 +55,28 @@ export function modelFooterDisplayId(modelId) {
   const tail = trimmed.slice(i + 1).trim();
   return tail || trimmed;
 }
+
+/**
+ * Lexicographic order of full stored model ids (`api_calls.model` / summary `model`). Case-sensitive UTF-16 order;
+ * use for tie-breaks or when raw path order is intended.
+ */
+export function compareStoredModelIdStrings(a: unknown, b: unknown): number {
+  const sa = String(a ?? "");
+  const sb = String(b ?? "");
+  if (sa < sb) return -1;
+  if (sa > sb) return 1;
+  return 0;
+}
+
+/**
+ * Dashboard **Model** column order: same tail string as {@link modelFooterDisplayId} (strip `openrouter/`, then last `/` segment),
+ * natural/numeric string compare — so e.g. `.../google/gemma-...` sorts before `.../z-ai/glm-...` by tail (`gemma` vs `glm`), not by full path (`google` vs `z-ai`).
+ * Tie-break: {@link compareStoredModelIdStrings}.
+ */
+export function compareModelIdsByFooterDisplay(modelIdA: unknown, modelIdB: unknown): number {
+  const fa = modelFooterDisplayId(modelIdA);
+  const fb = modelFooterDisplayId(modelIdB);
+  const cmp = fa.localeCompare(fb, undefined, { numeric: true, sensitivity: "base" });
+  if (cmp !== 0) return cmp;
+  return compareStoredModelIdStrings(modelIdA, modelIdB);
+}

@@ -437,7 +437,8 @@ const SettingsGeneralTab = ({
                   />
                   <Label htmlFor="real-time-translation" className="cursor-pointer m-0 flex items-center gap-1.5">
                     <RefreshCw size={14} />
-                    {t('Real-time translation (while typing)')}
+                    {t('Real-time translation while typing (⚠️ This may increase usage costs)')}
+               
                   </Label>
                 </div>
                 <div className="ms-12 mt-2 flex items-center gap-2">

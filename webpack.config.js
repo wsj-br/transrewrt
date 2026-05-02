@@ -156,17 +156,17 @@ module.exports = (env, argv) => {
     },
     // SSE via /api proxy: compression can buffer streamed responses and break incremental reads.
     compress: false,
-    port: 3030,
+    port: 4030,
     hot: true,
     liveReload: false, // Disable liveReload when using HMR
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
-    // When using dev:web (watch:web on 5000), proxy /api to Express server (port 3030)
+    // When using dev:web (watch:web on 5000), proxy /api to Express server (port 4030)
     proxy: [
       {
         context: ["/api"],
-        target: "http://localhost:3030",
+        target: "http://localhost:4030",
         changeOrigin: false,
       },
     ],
@@ -186,7 +186,7 @@ module.exports = (env, argv) => {
         }
       : {}),
     client: {
-      // default host/port so HMR works for both watch (3030) and watch:web (5000)
+      // default host/port so HMR works for both watch (4030) and watch:web (5000)
       overlay: {
         errors: true,
         warnings: false,

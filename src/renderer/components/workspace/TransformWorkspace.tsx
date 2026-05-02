@@ -12,6 +12,7 @@ import {
   workspacePaneStatsRowClassName,
 } from "./workspaceLayoutClasses";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
+import { copyTextToClipboard } from "../../utils/misc/clipboardUtils";
 
 function stripKeySymbols(str) {
   return String(str).replace(/[⇧↵]/g, "").trim();
@@ -82,7 +83,7 @@ export function getTransformPanels({ common, input, output, options }) {
           output={transformTestOutput}
           outputMeta={transformTestMeta}
           isTesting={transformTestRunning}
-          onCopy={() => navigator.clipboard.writeText(transformTestOutput)}
+          onCopy={() => void copyTextToClipboard(transformTestOutput).catch(() => {})}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
         />

@@ -19,6 +19,7 @@ import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
+import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import { isWeb } from "../constants";
 import "../styles/main.css";
@@ -332,7 +333,7 @@ const App = () => {
   }, [needsLogin, currentView, currentMode]);
 
   const copyOutput = () => {
-    navigator.clipboard.writeText(outputText);
+    void copyTextToClipboard(outputText).catch(() => {});
   };
 
   const inputStats = () => getInputStats(inputText, t);
@@ -520,7 +521,7 @@ const App = () => {
                 text: outputTextTransform,
                 setText: setOutputTextTransform,
                 getStats: () => getOutputStats(outputTextTransform, t),
-                copy: () => navigator.clipboard.writeText(outputTextTransform),
+                copy: () => void copyTextToClipboard(outputTextTransform).catch(() => {}),
               },
               options: {
                 transformEditMode,
@@ -571,7 +572,7 @@ const App = () => {
 
   if (isWeb && needsLogin) {
     return (
-      <div id="root" className="h-screen flex flex-col" data-web-outer>
+      <div id="root" className="flex min-h-0 flex-col h-dvh" data-web-outer>
         <div className="flex-1 min-h-0 overflow-hidden flex flex-col border border-border">
           <div className="flex-1 min-h-0 flex flex-col">
             <LoginPage onSuccess={handleWebLogin} sessionExpired={sessionExpired} />
@@ -597,7 +598,9 @@ const App = () => {
 
   if (isWeb) {
     const useMargin = settings?.web_margin === true;
-    const webOuterClass = useMargin ? "h-screen box-border p-[1%_1.5%] flex flex-col" : "h-screen flex flex-col";
+    const webOuterClass = useMargin
+      ? "box-border flex min-h-0 flex-col h-dvh p-[1%_1.5%]"
+      : "flex min-h-0 flex-col h-dvh";
     const webFrameClass = useMargin ? "flex-1 min-h-0 overflow-hidden flex flex-col border border-border rounded" : "flex-1 min-h-0 overflow-hidden flex flex-col border border-border";
     return (
       <>
@@ -678,7 +681,7 @@ const App = () => {
   }
 
   return (
-    <div id="root" className="h-screen flex flex-col">
+    <div id="root" className="flex min-h-0 flex-col h-dvh">
       <ApiKeyModal
         show={showApiKeyModal}
         isWeb={isWeb}

@@ -110,7 +110,7 @@ export default function SettingsAboutTab() {
         <div className={cn(settingsSection, "!mb-0 !p-4")}>
           <h3 className={sectionTitleCls}>
             <Scale className="h-[18px] w-[18px] shrink-0 text-emerald-500" strokeWidth={1.6} aria-hidden />
-            {t("Legal")}
+            {t("License")}
           </h3>
           <div className={cn("flex flex-col gap-1.5", bodyTextCls)}>
             {APP_AUTHOR ? (
@@ -191,7 +191,7 @@ export default function SettingsAboutTab() {
               className={cn("h-[18px] w-[18px]", githubCatImgCls)}
               aria-hidden
             />
-            {t("Source code")}
+            {t("Repository")}
           </h3>
           <a
             href={REPO_URL}

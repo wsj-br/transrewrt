@@ -27,3 +27,9 @@ if (-not $alreadyHooked) {
         if ($prevPrompt) { & $prevPrompt } else { "PS $($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1)) " }
     } -Force
 }
+
+Write-Host "Load-DotEnv: hook registered" -ForegroundColor DarkGray
+
+# AI-I18N-TOOLS alias
+Set-Alias ai-i18n-tools ".\node_modules\.bin\ai-i18n-tools" -Scope Global -Force
+Write-Host "ai-i18n-tools: alias registered" -ForegroundColor DarkGray

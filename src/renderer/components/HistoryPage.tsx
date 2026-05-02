@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Download } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
 import * as XLSX from "xlsx-js-style";
 import PropTypes from "prop-types";
 import {
@@ -11,18 +11,12 @@ import {
   formatAvgTps,
   DASH,
 } from "../utils/misc/costUtils";
-import {
-  formatDateTime,
-  getTextStats,
-  flipUiArrowsForRtl,
-} from "../utils/misc/formatUtils";
-import { getTextDirection } from "ai-i18n-tools/runtime";
+import { formatDateTime } from "../utils/misc/formatUtils";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import webAPI from "../utils/api/webApiClient";
-import TextPanel from "./TextPanel";
 import CallDetailsContent from "./CallDetailsContent";
-import { findUILanguageEntry } from "../utils/misc/languageConstants";
+import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -36,17 +30,6 @@ import { cn } from "@/lib/utils";
 const EXPORT_FILENAME = "transrewrt-history";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-
-/** Stored content language (English name or BCP 47 code) → current UI locale only (no English / native pair). */
-function formatHistoryContentLanguage(raw, t) {
-  if (raw == null) return "";
-  const s = String(raw).trim();
-  if (s === "") return "";
-  if (s === "Detect Language") return t("Detect Language");
-  const entry = findUILanguageEntry(s);
-  if (entry) return t(entry.englishName ?? entry.label);
-  return t(s);
-}
 
 function orDash(val) {
   if (val == null) return DASH;
@@ -62,15 +45,6 @@ function firstLinePreview(text) {
     .replace(/ +/g, " ")
     .trim();
   return normalized.length > 180 ? `${normalized.slice(0, 180)}…` : normalized;
-}
-
-/** Treat as auto-detect when no source or explicit detect option (stored like translate UI). */
-function isTranslateSourceAuto(sourceLang) {
-  if (sourceLang == null) return true;
-  const s = String(sourceLang).trim();
-  if (s === "") return true;
-  if (s === "Detect Language") return true;
-  return false;
 }
 
 const HISTORY_DETAILS_EXCLUDE_KEYS = [
@@ -108,13 +82,6 @@ function buildHistoryPrependFields(costFractionStyle) {
   ];
 }
 
-function summaryAccentClass(type) {
-  if (type === "translate") return "text-lime-500";
-  if (type === "rewrite") return "text-orange-400";
-  if (type === "transform") return "text-violet-400";
-  return "";
-}
-
 function typeBadgeClass(type) {
   const base = "px-2 py-0.5 rounded text-xs font-medium";
   if (type === "translate") return `${base} bg-lime-500/20 text-lime-500`;
@@ -123,106 +90,93 @@ function typeBadgeClass(type) {
   return base;
 }
 
+/** Below Tailwind `lg` (1024px): history expanded-card metadata uses one column. */
+function useIsBelowLg() {
+  const [below, setBelow] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 1023px)").matches : true,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const onChange = () => setBelow(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return below;
+}
+
 /**
- * Top summary card: type-specific (translate / rewrite / transform); order per product spec.
+ * Expanded card body: metadata grid (CallDetailsContent) + input/output preview.
  */
-function HistoryEntrySummary({
+function HistoryDetailSections({
   row,
   t,
-  locale,
-  orDash,
-  formatDateTime,
-  isRtl,
+  historyPrependFields,
+  costFractionStyle,
+  settings,
+  metadataColumnCount,
 }) {
-  const type = row?.type;
-  const accent = summaryAccentClass(type);
-
-  const langOrDash = (val) => {
-    const d = orDash(val);
-    return d === DASH ? DASH : formatHistoryContentLanguage(val, t);
-  };
-  const rewriteOrDash = (val) => {
-    const d = orDash(val);
-    return d === DASH ? DASH : t(String(val).trim());
-  };
-
-  const badge = (
-    <span className={typeBadgeClass(type)}>{orDash(type)}</span>
-  );
-
-  const ts = row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH;
-  const user = orDash(row.username);
-  const cardCls = "shrink-0 flex flex-wrap items-center gap-2.5 text-sm font-medium py-2.5 px-3 rounded-md border border-border bg-card";
-
-  if (type === "translate") {
-    const src = isTranslateSourceAuto(row.source_lang)
-      ? t("auto")
-      : formatHistoryContentLanguage(row.source_lang, t);
-    const tgtRaw = row.target_lang != null ? String(row.target_lang).trim() : "";
-    const tgt = tgtRaw === "" ? "" : formatHistoryContentLanguage(tgtRaw, t);
-    const pair = tgt === "" ? src : flipUiArrowsForRtl(`${src} → ${tgt}`, isRtl);
-    return (
-      <div className={cardCls}>
-        {badge}
-        <span className={accent}>{pair}</span>
-        <span className="text-muted-foreground font-normal">{ts}</span>
-        <span>{user}</span>
-      </div>
-    );
-  }
-
-  if (type === "rewrite") {
-    return (
-      <div className={cardCls}>
-        {badge}
-        <span className={accent}>{rewriteOrDash(row.rewrite_mode)}</span>
-        <span className="text-muted-foreground font-normal">{ts}</span>
-        <span>{user}</span>
-      </div>
-    );
-  }
-
-  if (type === "transform") {
-    const prompt = orDash(row.transform_prompt);
-    const fromRaw = row.source_lang != null ? String(row.source_lang).trim() : "";
-    const fromLabel = fromRaw === "" ? "" : formatHistoryContentLanguage(fromRaw, t);
-    const withBrackets = fromLabel === "" ? prompt : `${prompt} (${fromLabel})`;
-    return (
-      <div className={cardCls}>
-        {badge}
-        <span className={accent}>{withBrackets}</span>
-        <span className="text-muted-foreground font-normal">{ts}</span>
-        <span>{user}</span>
-      </div>
-    );
-  }
+  const accordionBodyFontStyle = useMemo(() => {
+    const resolved = settings?.font_family
+      ? resolveAppearanceFontFamilyCss(settings.font_family)
+      : undefined;
+    return resolved ? { fontFamily: resolved } : undefined;
+  }, [settings?.font_family]);
 
   return (
-    <div className={cardCls}>
-      {badge}
-      <span className={accent}>{langOrDash(row.source_lang)}</span>
-      <span className={accent}>{langOrDash(row.target_lang)}</span>
-      <span className={accent}>{rewriteOrDash(row.rewrite_mode)}</span>
-      <span className={accent}>{orDash(row.transform_prompt)}</span>
-      <span className="text-muted-foreground font-normal">{ts}</span>
-      <span>{user}</span>
+    <div className="flex flex-col rounded-md border border-border bg-muted p-3">
+      <div className="min-w-0 shrink-0">
+        <CallDetailsContent
+          row={row}
+          excludeFieldKeys={HISTORY_DETAILS_EXCLUDE_KEYS}
+          prependFields={historyPrependFields}
+          costFractionStyle={costFractionStyle}
+          columnCount={metadataColumnCount}
+        />
+      </div>
+      <div className="my-3 shrink-0 border-t border-border" role="separator" />
+      <div className="grid min-h-0 min-w-0 items-start gap-x-3 divide-x divide-border [grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="min-w-0 space-y-1 pe-2">
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+            {t("Input")}
+          </div>
+          <div
+            dir="auto"
+            className="break-words text-[11px] leading-snug whitespace-pre-wrap text-foreground"
+            style={accordionBodyFontStyle}
+          >
+            {row.input_text ?? ""}
+          </div>
+        </div>
+        <div className="min-w-0 space-y-1 ps-2">
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+            {t("Output")}
+          </div>
+          <div
+            dir="auto"
+            className="break-words text-[11px] leading-snug whitespace-pre-wrap text-foreground"
+            style={accordionBodyFontStyle}
+          >
+            {row.output_text ?? ""}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-HistoryEntrySummary.propTypes = {
+HistoryDetailSections.propTypes = {
   row: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  locale: PropTypes.string.isRequired,
-  orDash: PropTypes.func.isRequired,
-  formatDateTime: PropTypes.func.isRequired,
-  isRtl: PropTypes.bool.isRequired,
+  historyPrependFields: PropTypes.array.isRequired,
+  costFractionStyle: PropTypes.string,
+  settings: PropTypes.object,
+  metadataColumnCount: PropTypes.oneOf([1, 2]).isRequired,
 };
 
 export default function HistoryPage() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const isRtl = getTextDirection(i18n.language) === "rtl";
   const { settings, currentUser } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
@@ -233,6 +187,7 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
   const [selected, setSelected] = useState(null);
+  const isMobileMetadata = useIsBelowLg();
 
   const isAdmin = currentUser?.role === "admin";
   const historyUsername =
@@ -278,8 +233,6 @@ export default function HistoryPage() {
       setSelected(null);
     });
   }, [filter, historyUsername]);
-
-  const noop = useMemo(() => () => {}, []);
 
   const historyPrependFields = useMemo(
     () => buildHistoryPrependFields(costFractionStyle),
@@ -390,30 +343,8 @@ export default function HistoryPage() {
     [rows, exportColumns],
   );
 
-  const inputStatsStr = selected
-    ? (() => {
-        const s = getTextStats(selected.input_text ?? "");
-        return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
-          chars: s.chars,
-          words: s.words,
-          paragraphs: s.paragraphs,
-        });
-      })()
-    : null;
-
-  const outputStatsStr = selected
-    ? (() => {
-        const s = getTextStats(selected.output_text ?? "");
-        return t("{{chars}} chars · {{words}} words · {{paragraphs}} paragraphs", {
-          chars: s.chars,
-          words: s.words,
-          paragraphs: s.paragraphs,
-        });
-      })()
-    : null;
-
   return (
-    <div className="flex flex-col flex-1 min-h-0 overflow-hidden w-full">
+    <div className="flex flex-col w-full min-w-0 flex-1 min-h-0 overflow-hidden">
       <div className="flex flex-wrap items-center gap-2 mb-4">
         {getFilters(t).map((f) => (
           <Button
@@ -464,100 +395,85 @@ export default function HistoryPage() {
         </div>
       </div>
 
-      <div className="grid flex-1 gap-4 lg:grid-cols-2 min-h-0 overflow-hidden">
-        {/* List column */}
-        <div className="flex flex-col min-h-0">
-          {loading ? (
-            <span className="text-sm text-muted-foreground">{t("Loading…")}</span>
-          ) : (
-            <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden pe-1 flex flex-col gap-2">
-              {rows.length === 0 ? (
-                <span className="text-sm text-muted-foreground">{t("(no information available)")}</span>
-              ) : (
-                rows.map((row) => (
-                  <button
-                    key={row.id}
-                    type="button"
-                    data-testid="history-list-item"
-                    data-history-type={row.type || ""}
-                    className={cn(
-                      "w-full p-2.5 px-3 rounded-md border cursor-pointer text-start transition-colors",
-                      selected?.id === row.id
-                        ? "border-primary bg-secondary"
-                        : "border-border bg-card hover:bg-accent"
-                    )}
-                    onClick={() => setSelected(row)}
-                  >
-                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
-                      <span className={typeBadgeClass(row.type)}>{orDash(row.type)}</span>
-                      <span>
-                        {row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH}
-                      </span>
-                      {row.username ? <span>{row.username}</span> : null}
-                      <span className="text-muted-foreground font-medium">#{row.id}</span>
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+        {loading ? (
+          <span className="text-sm text-muted-foreground">{t("Loading…")}</span>
+        ) : (
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden pe-1">
+            {rows.length === 0 ? (
+              <span className="text-sm text-muted-foreground">{t("(no information available)")}</span>
+            ) : (
+              rows.map((row) => {
+                const isOpen = selected?.id === row.id;
+                const header = (
+                  <>
+                    <div className="flex min-w-0 flex-1 items-start justify-between gap-2">
+                      <div className="min-w-0 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                        <span className={typeBadgeClass(row.type)}>{orDash(row.type)}</span>
+                        <span>
+                          {row.timestamp ? formatDateTime(new Date(row.timestamp), locale) : DASH}
+                        </span>
+                        {row.username ? <span>{row.username}</span> : null}
+                        <span className="font-medium text-muted-foreground">#{row.id}</span>
+                      </div>
+                      <ChevronDown
+                        className={cn(
+                          "mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform",
+                          isOpen && "rotate-180",
+                        )}
+                        aria-hidden
+                      />
                     </div>
-                    <div className="mt-1.5 text-xs text-muted-foreground overflow-hidden text-ellipsis whitespace-nowrap" title={firstLinePreview(row.input_text)}>
+                    <div
+                      className="mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap text-xs text-muted-foreground"
+                      title={firstLinePreview(row.input_text)}
+                    >
                       {firstLinePreview(row.input_text) || "-"}
                     </div>
-                  </button>
-                ))
-              )}
-            </div>
-          )}
-        </div>
+                  </>
+                );
 
-        {/* Detail column */}
-        <div className="flex flex-col min-h-0 gap-3 overflow-hidden">
-          {!selected ? (
-            <span className="text-sm text-muted-foreground">{t("Select a history entry to view details.")}</span>
-          ) : (
-            <>
-              <HistoryEntrySummary
-                row={selected}
-                t={t}
-                locale={locale}
-                orDash={orDash}
-                formatDateTime={formatDateTime}
-                isRtl={isRtl}
-              />
-              <div className="shrink-0 flex flex-col p-3 rounded-md border border-border bg-muted">
-                <div className="shrink-0 max-h-60 overflow-auto">
-                  <CallDetailsContent
-                    row={selected}
-                    excludeFieldKeys={HISTORY_DETAILS_EXCLUDE_KEYS}
-                    prependFields={historyPrependFields}
-                    costFractionStyle={costFractionStyle}
-                    columnCount={2}
-                  />
-                </div>
-              </div>
-              <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-                <div className="grid flex-1 gap-3 lg:grid-cols-2 min-h-0">
-                  <TextPanel
-                    title={t("Input")}
-                    text={selected.input_text ?? ""}
-                    onTextChange={noop}
-                    readOnly
-                    footerStats={inputStatsStr}
-                    footerMinimal
-                    fontFamily={settings?.font_family}
-                    fontSize={settings?.font_size}
-                  />
-                  <TextPanel
-                    title={t("Output")}
-                    text={selected.output_text ?? ""}
-                    onTextChange={noop}
-                    readOnly
-                    footerStats={outputStatsStr}
-                    footerMinimal
-                    fontFamily={settings?.font_family}
-                    fontSize={settings?.font_size}
-                  />
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+                return (
+                  <div
+                    key={row.id}
+                    className={cn(
+                      "w-full min-w-0 max-w-full shrink-0 overflow-hidden rounded-md border",
+                      isOpen ? "border-primary bg-secondary" : "border-border bg-card",
+                    )}
+                  >
+                    <button
+                      type="button"
+                      data-testid="history-list-item"
+                      data-history-type={row.type || ""}
+                      aria-expanded={isOpen}
+                      className={cn(
+                        "w-full min-w-0 max-w-full cursor-pointer p-2.5 px-3 text-start transition-colors",
+                        !isOpen && "hover:bg-accent/80",
+                      )}
+                      onClick={() =>
+                        setSelected((prev) => (prev?.id === row.id ? null : row))
+                      }
+                    >
+                      {header}
+                    </button>
+                    {isOpen ? (
+                      <div className="min-w-0 space-y-3 border-t border-border bg-background px-3 pb-3 pt-3">
+                        <HistoryDetailSections
+                          row={row}
+                          t={t}
+                          historyPrependFields={historyPrependFields}
+                          costFractionStyle={costFractionStyle}
+                          settings={settings}
+                          metadataColumnCount={isMobileMetadata ? 1 : 2}
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

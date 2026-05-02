@@ -4,6 +4,7 @@ import {
   formatPartialRunCostLabel,
   resolveRunCostLine,
 } from "../utils/misc/formatUtils";
+import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -139,7 +140,7 @@ export function useProcessing({
         if (result.content) {
           const cleaned = result.content.replace(/^\s*\n+/, "");
           setOutputTextTranslate(cleaned);
-          if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
+          if (settings.auto_copy) void copyTextToClipboard(cleaned).catch(() => {});
         }
         if (result.cancelled) {
           if (cancelledByUserRef.current) {
@@ -285,7 +286,7 @@ export function useProcessing({
         const cleaned = result.content.replace(/^\s*\n+/, "");
         setRewriteOutputIsModelResult(true);
         setOutputTextRewrite(cleaned);
-        if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
+        if (settings.auto_copy) void copyTextToClipboard(cleaned).catch(() => {});
       }
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
@@ -420,7 +421,7 @@ export function useProcessing({
         if (result.content) {
           const cleaned = result.content.replace(/^\s*\n+/, "");
           setOutputTextTransform(cleaned);
-          if (settings.auto_copy) navigator.clipboard.writeText(cleaned);
+          if (settings.auto_copy) void copyTextToClipboard(cleaned).catch(() => {});
         }
         if (result.cancelled) {
           if (cancelledByUserRef.current) {

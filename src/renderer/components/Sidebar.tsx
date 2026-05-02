@@ -4,7 +4,7 @@ import {
   Languages,
   PenTool,
   WandSparkles,
-  BarChart3,
+  Activity,
   History,
   Settings,
   ChevronLeft,
@@ -177,7 +177,7 @@ function SidebarInner({
     {
       id: "dashboard",
       label: t("Dashboard"),
-      icon: BarChart3,
+      icon: Activity,
       isActive: isDashboardActive,
       onClick: () => props.onDashboardClick(),
     },
@@ -408,8 +408,8 @@ export default function Sidebar(props: SidebarProps) {
       {/* Mobile hamburger — fixed, hidden on md+ */}
       <Button
         variant="ghost"
-        size="icon"
-        className="fixed start-4 top-4 z-50 md:hidden electron-no-drag"
+        size="icon-sm"
+        className="fixed start-4 top-2 z-50 md:hidden electron-no-drag"
         onClick={() => setMobileOpen(true)}
         aria-label={t("Open menu")}
       >

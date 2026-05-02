@@ -90,7 +90,12 @@ const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, 
             title={displayModel}
             data-testid="model-selector"
           >
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" aria-hidden />
+            <span className="flex shrink-0 items-center" aria-hidden>
+              <ProviderIcon
+                provider={providerSortKeyFromModelId(displayModel)}
+                size={16}
+              />
+            </span>
             <span className="min-w-0 flex-1 truncate font-mono text-xs text-muted-foreground">
               {displayModel ? modelHeaderDisplayId(displayModel) : ""}
             </span>

@@ -50,48 +50,154 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run **`direnv allow`** once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
 - **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
-- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated. Current overrides include:
-  - **lodash**: `>=4.18.0` (fixes code injection and prototype pollution vulnerabilities)
-  - **yauzl**: `>=3.2.1`, **rimraf**: `^5.0.0`, **glob**: `^13.0.0`
-  - **global-agent**: `^4.1.2`, **qs**: `>=6.14.2`, **minimatch**: `>=10.2.1`
-  
-  To add a new override, edit the `pnpm.overrides` section in [package.json](../package.json) and run `pnpm install`.
+- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated. 
 
 ### Windows 11
 
-1. **Node 24**: Install [nvm-windows](https://github.com/coreybutler/nvm-windows), then `nvm install 24` and `nvm use 24`. Alternatively install Node 24 via [winget](https://winget.run/pkg/OpenJS.NodeJS.LTS).
-2. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Use an **elevated** PowerShell:
+1. **Node 24**: Install [nvm-windows](https://github.com/coreybutler/nvm-windows)
+
+  ```powershell
+  winget install CoreyButler.NVMforWindows --accept-package-agreements --accept-source-agreements
+  nvm install 24
+  nvm use 24
+  ```
+
+2. **pnpm**: Install pnpm globally:
+
+  ```powershell
+  npm install -g pnpm
+  ```
+
+3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Use an **elevated** PowerShell:
+
   - **Option A (winget):**  
-   `winget install Python.Python.3.12 --accept-package-agreements --accept-source-agreements`  
-   `winget install Microsoft.VisualStudio.2022.BuildTools --accept-package-agreements --accept-source-agreements --override "--wait --quiet --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"`
-  - **Option B (Chocolatey):** `choco install python visualstudio2022-workload-vctools -y`
+
+  ```powershell
+    winget install Python.Python.3.12 --accept-package-agreements --accept-source-agreements
+    winget install Microsoft.VisualStudio.2022.BuildTools --accept-package-agreements --accept-source-agreements --override "--wait --quiet --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+  ```
+  - **Option B (Chocolatey):**
+
+  ```powershell
+  choco install python visualstudio2022-workload-vctools -y
+  ```
+
   - **Option C:** Install [Python 3.12+](https://www.python.org/downloads/) and [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) with the "Desktop development with C++" workload.
   - Restart the terminal after install. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
-3. **Developer Mode**: Recommended to avoid symlink errors during `pnpm install` or `pnpm package`. Settings → Privacy & Security → For developers → Developer Mode **On**.
-4. **Optional – .env**: Use [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) or [scripts/Register-DotEnvHook.ps1](../scripts/Register-DotEnvHook.ps1) to load `.env` / `.env.local`.
-5. **Docker (for Web/Docker):** [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) or `winget install Docker.DockerDesktop`.
+4. **Developer Mode**: Recommended to avoid symlink errors when installing dependencies or packaging. Settings → System → Developer Mode **On**.
 
-### Linux (Debian-based: Ubuntu, Debian, Mint)
+   ```powershell
+   pnpm install
+   pnpm package
+   ```
 
-1. **Node 24**: Install [nvm](https://github.com/nvm-sh/nvm), then `nvm install 24` and `nvm use 24`.
+5. **Recommended – .env**: From the repo root, dot-source [Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) to load `.env` / `.env.local`:
+   ```powershell
+   # Enable script execution (ANSWER 'A' when prompted to select "Yes for All" )
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   # Add the hook to the profile
+   Add-Content -Path $PROFILE -Value "`n. `$env:USERPROFILE\src\transrewrt\scripts\Register-DotEnvHook.ps1"
+   # Restart the PowerShell or load the environment variables manually using `. .\scripts\Load-DotEnv.ps1`.
+   ```
+  
+ Check if the enviroment variables is loading using:
+  ```powershell
+  # List all variables
+  Get-ChildItem Env:
+  # List *KEY* Variables
+  Get-ChildItem Env:*KEY*
+  # Interactive grid (GUI)
+  Get-ChildItem Env: | Out-GridView
+  ```
 
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-nvm install 24
-nvm use 24
-```
+6. If you prefer to load the environment variables manually, you can use:
 
-1. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use **`libnotify4`**, not `libnotify-dev`):
-  `sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth`
-  Minimal images may also need packages such as `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` if the linker reports a missing library.
-2. **Chromium** (for `pnpm take-screenshots`):
-  `sudo apt install chromium`  
-   On ARM (e.g. Raspberry Pi) Puppeteer’s bundled Chrome is x64; use system Chromium and set `export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium` (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
-3. **Noto fonts** (optional, for language-selector screenshot):
-  `sudo apt install fonts-noto-cjk fonts-noto-core`  
+  ```powershell
+  . .\scripts\Load-DotEnv.ps1
+  ```
+
+
+7. **Docker (for Web/Docker):** Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/), or:
+
+   ```powershell
+   winget install Docker.DockerDesktop
+   ```
+
+8. (optional)Set an alias for the `ai-i18n-tools` command: (already included in the `Register-DotEnvHook.ps1` script)
+
+  ```powershell
+  Set-Alias ai-i18n-tools ".\node_modules\.bin\ai-i18n-tools"  
+  ```
+
+  This will allow you to run `ai-i18n-tools` from the command line.
+
+  ```powershell
+  ai-i18n-tools --help
+  ```
+
+
+### Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)
+
+1. **Node 24**: Install [nvm](https://github.com/nvm-sh/nvm), then run:
+
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+   nvm install 24
+   nvm use 24
+   ```
+
+2. **pnpm**: Install pnpm globally:
+
+   ```bash
+   npm install -g pnpm
+   ```
+
+3. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use **`libnotify4`**, not `libnotify-dev`):
+
+   ```bash
+   sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
+   ```
+
+   Minimal images may also need packages such as `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` if the linker reports a missing library.
+
+4. **Chromium** (for `pnpm take-screenshots`):
+
+   ```bash
+   sudo apt install chromium
+   ```
+
+   On ARM (e.g. Raspberry Pi) Puppeteer’s bundled Chrome is x64; use system Chromium and set:
+
+   ```bash
+   export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+   ```
+
+   (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
+
+5. **Noto fonts** (optional, for language-selector screenshot):
+
+   ```bash
+   sudo apt install fonts-noto-cjk fonts-noto-core
+   ```
+
    Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
-4. **direnv**: `sudo apt install direnv` - shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
-5. **Docker**: `sudo apt install docker.io docker-compose` and `sudo usermod -aG docker $USER` (log out and back in).
+
+6. **direnv**:
+
+   ```bash
+   sudo apt install direnv
+   ```
+
+   Shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
+
+7. **Docker**:
+
+   ```bash
+   sudo apt install docker.io docker-compose
+   sudo usermod -aG docker $USER
+   ```
+
+   Log out and back in after `usermod`.
 
 ---
 
@@ -109,8 +215,8 @@ The **postinstall** script runs `electron-rebuild` so native addons match Electr
 
 ## Development Workflow
 
-- **Electron**: `pnpm dev` - Webpack watch runs on port 3030 and Electron launches automatically. Edit React code for hot reload.
-- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 3030; `/api` is proxied to the server. Open **[http://localhost:5000](http://localhost:5000)** in a browser.
+- **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload.
+- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5000](http://localhost:5000) in a browser.
 
 To run Electron with a production build (no dev server):
 
@@ -209,8 +315,8 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 
 ### Dev mode (recommended for day-to-day testing)
 
-- **Electron:** Run `pnpm dev`. Webpack watch starts on port 3030 and Electron launches automatically; the app opens in the Electron window. Edit React code and see changes with hot reload.
-- **Web:** Run `pnpm dev:web`. Webpack serves the app on port 5000 and the API server runs on 3030 (proxied via `/api`). Open **[http://localhost:5000](http://localhost:5000)** in a browser to use the app with HMR.
+- **Electron:** Run `pnpm dev`. Webpack watch starts on port 4030 and Electron launches automatically; the app opens in the Electron window. Edit React code and see changes with hot reload.
+- **Web:** Run `pnpm dev:web`. Webpack serves the app on port 5000 and the API server runs on 4030 (proxied via `/api`). Open **[http://localhost:5000](http://localhost:5000)** in a browser to use the app with HMR.
 
 ### Production-style (smoke test)
 
@@ -285,7 +391,7 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 
 | Phase                   | Command                                     | Notes                                                                                           |
 |-------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------|
-| **Develop**             | `pnpm dev`                                  | Hot reload, Webpack on :3030                                                                    |
+| **Develop**             | `pnpm dev`                                  | Hot reload, Webpack on :4030                                                                    |
 | **Test**                | `pnpm build-renderer` then `pnpm start`     | Run built app                                                                                   |
 | **Test (Linux)**        | `pnpm build-renderer` then `pnpm start-x11` | Use X11 if Wayland fails                                                                        |
 | **Build**               | `pnpm package`                              | Production build + electron-builder → installers in `release/`                                  |
@@ -297,7 +403,7 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 
 | Phase       | Command                               | Notes                                                              |
 |-------------|---------------------------------------|--------------------------------------------------------------------|
-| **Develop** | `pnpm dev:web`                        | Webpack on :5000, API on :3030 (proxied via /api)                  |
+| **Develop** | `pnpm dev:web`                        | Webpack on :5000, API on :4030 (proxied via /api)                  |
 | **Build**   | `pnpm build` or `pnpm build-renderer` | Output to `dist/`                                                  |
 | **Test**    | `pnpm serve`                          | Build then serve at [http://localhost:5000](http://localhost:5000) |
 | **Run**     | `pnpm start:server`                   | Serve only (use when `dist/` already built)                        |
@@ -326,8 +432,8 @@ If a tag **`vX.Y.Z`** already exists on the remote (for example you pushed it ea
 | Command                              | Purpose                                                                                                                                                    |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                      |
-| `pnpm dev`                           | Electron development: runs Webpack on **:3030**, enables hot reload, and performs native rebuild for Electron.                                             |
-| `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:3030** (proxied as `/api`).                                                               |
+| `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                             |
+| `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                               |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                            |
 | `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                      |

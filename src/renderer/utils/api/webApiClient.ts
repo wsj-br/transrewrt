@@ -361,13 +361,23 @@ const webAPI = {
     return data.rows || [];
   },
 
-  getAllCalls: async (from, to, page, pageSize, username = null) => {
+  getAllCalls: async (
+    from,
+    to,
+    page,
+    pageSize,
+    username = null,
+    sortKey: string | null = null,
+    sortDir: "asc" | "desc" | null = null,
+  ) => {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (page) q.set("page", String(page));
     if (pageSize) q.set("pageSize", String(pageSize));
     if (username) q.set("username", username);
+    if (sortKey) q.set("sort", sortKey);
+    if (sortDir) q.set("dir", sortDir);
     const res = await fetch(`${API_BASE}/api/calls/all?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();

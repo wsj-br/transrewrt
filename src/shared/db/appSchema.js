@@ -273,7 +273,8 @@ const sql = {
   GROUP BY rewrite_mode
   ORDER BY calls DESC`,
   COUNT_API_CALLS: `SELECT COUNT(*) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
-  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC LIMIT ? OFFSET ?`,
+  /** `__ALL_CALLS_ORDER_BY__` replaced at runtime (whitelist only — see `prepareGetAllCallsSql`). */
+  GET_ALL_CALLS: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} __ALL_CALLS_ORDER_BY__ LIMIT ? OFFSET ?`,
   GET_ALL_CALLS_EXPORT: `SELECT id, timestamp, type, model, source_lang, target_lang, rewrite_mode, transform_prompt, prompt_tokens, completion_tokens, duration_ms, cost, tps, username, input_chars, input_words, input_paragraphs, output_chars, output_words, output_paragraphs FROM api_calls${WHERE_PLACEHOLDER} ORDER BY timestamp DESC`,
   COUNT_DISTINCT_DAYS: `SELECT COUNT(DISTINCT date(timestamp)) AS total FROM api_calls${WHERE_PLACEHOLDER}`,
   GET_SUMMARY_BY_DAY_PAGINATED: `SELECT date(timestamp) AS day,
@@ -312,6 +313,53 @@ function replaceWhere(sqlStr, whereClause) {
   return sqlStr.replace(WHERE_PLACEHOLDER, whereClause);
 }
 
+/**
+ * SQLite expression matching {@link modelFooterDisplayId}: strip `openrouter/`, take segment after last `/`, lowercase.
+ * Requires `reverse()` (SQLite 3.38+). Used for dashboard All Calls ORDER BY model.
+ * @param {string} [column] — column name, default `model`
+ */
+function sqlExprModelFooterSortKey(column = "model") {
+  const c = `COALESCE(${column}, '')`;
+  const h = `(CASE WHEN ${c} LIKE 'openrouter/%' THEN substr(${c}, 13) ELSE ${c} END)`;
+  return `(CASE WHEN instr(${h}, '/') = 0 THEN lower(${h}) ELSE lower(substr(${h}, length(${h}) - instr(reverse(${h}), '/') + 2)) END)`;
+}
+
+/** Maps dashboard All Calls sort keys → SQLite column names (SQL injection safe — keys only). */
+const ALL_CALLS_SORT_COLUMN_SQL = {
+  id: "id",
+  timestamp: "timestamp",
+  type: "type",
+  username: "username",
+  model: "model",
+  cost: "cost",
+  tps: "tps",
+};
+
+/**
+ * Whitelisted ORDER BY for paginated All Calls.
+ * @param {string} [sortKey]
+ * @param {"asc"|"desc"} [sortDir]
+ */
+function buildAllCallsOrderByClause(sortKey, sortDir) {
+  const col = ALL_CALLS_SORT_COLUMN_SQL[sortKey] ?? "id";
+  const dir = sortDir === "asc" ? "ASC" : "DESC";
+  if (col === "id") {
+    return `ORDER BY id ${dir}`;
+  }
+  /** Same sort key as compact model tail (footer id), not full path — matches renderer `compareModelIdsByFooterDisplay`. */
+  if (col === "model") {
+    const footerKey = sqlExprModelFooterSortKey("model");
+    return `ORDER BY ${footerKey} ${dir}, id DESC`;
+  }
+  return `ORDER BY ${col} ${dir}, id DESC`;
+}
+
+function prepareGetAllCallsSql(whereClause, sortKey, sortDir) {
+  const orderClause = buildAllCallsOrderByClause(sortKey, sortDir);
+  const body = sql.GET_ALL_CALLS.replace("__ALL_CALLS_ORDER_BY__", orderClause);
+  return replaceWhere(body, whereClause);
+}
+
 module.exports = {
   applyAppSchema,
   promptTargetLanguageToDb,
@@ -320,4 +368,7 @@ module.exports = {
   sql,
   replaceWhere,
   WHERE_PLACEHOLDER,
+  ALL_CALLS_SORT_COLUMN_SQL,
+  buildAllCallsOrderByClause,
+  prepareGetAllCallsSql,
 };

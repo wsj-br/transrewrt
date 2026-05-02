@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDecimal, flipUiArrowsForRtl } from '../utils/misc/formatUtils';
 import { getTextDirection } from "ai-i18n-tools/runtime";
@@ -38,7 +38,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { settingsModelsTabRoot } from "./settings/settingsLayoutClasses";
+import {
+  settingsModelsTabRoot,
+  settingsTabButton,
+  settingsTabPillActive,
+  settingsTabPillIdle,
+} from "./settings/settingsLayoutClasses";
 import {
   modelAction,
   modelCardClass,
@@ -53,15 +58,20 @@ import {
   modelsEmptyState,
   modelsEmptyStateError,
   modelsHeaderSearch,
-  modelsHeaderSearchBalance,
   modelsHeaderSearchInput,
+  modelsInnerTabsStrip,
+  modelsListAsScrollableTabChild,
   modelsListContainer,
   modelsListFlatOrGrouped,
-  modelsPaneHeader,
+  modelsPaneAsScrollableTabChild,
   modelsPaneLeft,
+  modelsPaneLeftWide,
   modelsPaneRight,
+  modelsPaneRightWide,
   modelsSplitView,
   modelsToolbar,
+  modelsWideAvailableScrollBody,
+  modelsWideSelectedScrollBody,
   modelsToolbarLeft,
   modelsToolbarRight,
   providerHeader,
@@ -74,8 +84,26 @@ import {
   selectedModelHeader,
   selectedModelInfo,
   selectedModelsContainer,
+  selectedModelsContainerAsScrollableTabChild,
   selectedModelsList,
 } from "./settings/settingsModelsLayoutClasses";
+
+/** Below Tailwind `lg` (1024px): inner Available / Selected pill tabs instead of stacked panes. */
+function useIsBelowLg() {
+  const [below, setBelow] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(max-width: 1023px)').matches
+      : false,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    const onChange = () => setBelow(mq.matches);
+    onChange();
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  return below;
+}
 
 const SettingsModelsTab = ({
   allModels,
@@ -104,6 +132,12 @@ const SettingsModelsTab = ({
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
   const isRtl = getTextDirection(i18n.language) === 'rtl';
+  const isBelowLg = useIsBelowLg();
+  const [activeModelsTab, setActiveModelsTab] = useState('available');
+  const baseId = useId();
+  const tabAvailableId = `${baseId}-tab-available`;
+  const tabSelectedId = `${baseId}-tab-selected`;
+  const tabpanelId = `${baseId}-tabpanel-models`;
 
   const sortedSelectedModelIds = useMemo(() => {
     const ids = Array.from(selectedModelIds);
@@ -166,16 +200,28 @@ const SettingsModelsTab = ({
     );
   };
 
-  return (
-    <div className={settingsModelsTabRoot}>
-      <div className={modelsSplitView}>
-        {/* LEFT: AVAILABLE MODELS */}
-        <div className={modelsPaneLeft}>
-          {/* Header: title + centered search */}
-          <div className={cn(modelsPaneHeader, modelsAvailableHeaderRow)}>
+  const availablePane = (
+    <div
+      className={cn(
+        isBelowLg ? modelsPaneLeft : modelsPaneLeftWide,
+        isBelowLg && modelsPaneAsScrollableTabChild,
+      )}
+    >
+          {/* Header: title + search — wide split: stays fixed; narrow: scrolls with tab panel */}
+          <div
+            className={cn(
+              modelsAvailableHeaderRow,
+              isBelowLg ? "mb-2.5 pb-1.5" : "shrink-0 border-b border-border pb-2.5",
+            )}
+          >
             <div className={modelsAvailableTitle}>
               <Cpu size={18} strokeWidth={2} />
               <span className="font-semibold">{t('Available Models')}</span>
+              {!isBelowLg && (
+                <Badge variant="secondary" className="shrink-0 text-xs px-1.5 py-0">
+                  {allModels.length}
+                </Badge>
+              )}
             </div>
             <div className={modelsHeaderSearch}>
               <div className="relative">
@@ -197,9 +243,14 @@ const SettingsModelsTab = ({
                 )}
               </div>
             </div>
-            <div className={modelsHeaderSearchBalance} aria-hidden />
           </div>
 
+          <div
+            className={cn(
+              !isBelowLg && modelsWideAvailableScrollBody,
+              isBelowLg && "contents",
+            )}
+          >
           {/* Filter Controls */}
           <div className={modelsControlsModern}>
             <div className="flex flex-wrap gap-1.5 items-center">
@@ -241,7 +292,7 @@ const SettingsModelsTab = ({
               )}
 
               <Select value={sortBy} onValueChange={onSortByChange}>
-                <SelectTrigger className="min-w-[200px] h-8">
+                <SelectTrigger className="h-8 w-full sm:min-w-[200px] sm:w-auto">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -266,7 +317,12 @@ const SettingsModelsTab = ({
           </div>
 
           {/* Models List */}
-          <div className={modelsListContainer}>
+          <div
+            className={cn(
+              modelsListContainer,
+              isBelowLg && modelsListAsScrollableTabChild,
+            )}
+          >
             {modelsLoading && allModels.length === 0 ? (
               <div className={modelsEmptyState}>
                 <Loader2 size={36} className="animate-spin opacity-50" />
@@ -417,19 +473,32 @@ const SettingsModelsTab = ({
               </div>
             )}
           </div>
-        </div>
+          </div>
+    </div>
+  );
 
-        {/* Vertical Divider */}
-        <div className={modelsDivider} aria-hidden />
-
-        {/* RIGHT: SELECTED MODELS */}
-        <div className={modelsPaneRight}>
-          {/* Header */}
-          <div className={modelsPaneHeader}>
+  const selectedPane = (
+    <div
+      className={cn(
+        isBelowLg ? modelsPaneRight : modelsPaneRightWide,
+        isBelowLg && modelsPaneAsScrollableTabChild,
+      )}
+    >
+          {/* Header — wide split: fixed; narrow: scrolls with tab panel */}
+          <div
+            className={cn(
+              "flex items-center justify-between",
+              isBelowLg ? "mb-2.5 pb-1.5" : "shrink-0 border-b border-border pb-2.5",
+            )}
+          >
             <div className="flex items-center gap-2.5">
               <CheckSquare size={18} strokeWidth={2} />
               <span className="font-semibold">{t('Selected Models')}</span>
-              <Badge variant="secondary" className="text-xs px-1.5 py-0">{selectedModelIds.size}</Badge>
+              {!isBelowLg && (
+                <Badge variant="secondary" className="text-xs px-1.5 py-0">
+                  {selectedModelIds.size}
+                </Badge>
+              )}
             </div>
             <Button variant="ghost" size="sm" onClick={onDeselectAllModels} disabled={selectedModelIds.size === 0}>
               {t('Deselect All')}
@@ -437,7 +506,18 @@ const SettingsModelsTab = ({
           </div>
 
           {/* Selected Models List */}
-          <div className={selectedModelsContainer}>
+          <div
+            className={cn(
+              !isBelowLg && modelsWideSelectedScrollBody,
+              isBelowLg && "contents",
+            )}
+          >
+          <div
+            className={cn(
+              selectedModelsContainer,
+              isBelowLg && selectedModelsContainerAsScrollableTabChild,
+            )}
+          >
             <div className={selectedModelsList}>
               {sortedSelectedModelIds.map(modelId => {
                 const model = allModels.find(m => m.id === modelId) || { id: modelId };
@@ -486,8 +566,74 @@ const SettingsModelsTab = ({
               })}
             </div>
           </div>
+          </div>
+    </div>
+  );
+
+  return (
+    <div className={settingsModelsTabRoot}>
+      {isBelowLg ? (
+        <>
+          <div
+            role="tablist"
+            aria-label={t('Choose models view')}
+            className={modelsInnerTabsStrip}
+          >
+            <button
+              type="button"
+              role="tab"
+              id={tabAvailableId}
+              aria-selected={activeModelsTab === 'available'}
+              aria-controls={tabpanelId}
+              className={cn(
+                settingsTabButton,
+                'inline-flex min-w-0 flex-1 basis-0 shrink items-center justify-center gap-1.5 whitespace-nowrap',
+                activeModelsTab === 'available' ? settingsTabPillActive : settingsTabPillIdle,
+              )}
+              onClick={() => setActiveModelsTab('available')}
+            >
+              <Cpu size={14} strokeWidth={2} className="shrink-0" />
+              <span className="min-w-0 truncate">{t('Available')}</span>
+              <Badge variant="secondary" className="shrink-0 text-xs px-1.5 py-0">
+                {allModels.length}
+              </Badge>
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id={tabSelectedId}
+              aria-selected={activeModelsTab === 'selected'}
+              aria-controls={tabpanelId}
+              className={cn(
+                settingsTabButton,
+                'inline-flex min-w-0 flex-1 basis-0 shrink items-center justify-center gap-1.5 whitespace-nowrap',
+                activeModelsTab === 'selected' ? settingsTabPillActive : settingsTabPillIdle,
+              )}
+              onClick={() => setActiveModelsTab('selected')}
+            >
+              <CheckSquare size={14} strokeWidth={2} className="shrink-0" />
+              <span className="min-w-0 truncate">{t('Selected')}</span>
+              <Badge variant="secondary" className="shrink-0 text-xs px-1.5 py-0">
+                {selectedModelIds.size}
+              </Badge>
+            </button>
+          </div>
+          <div
+            role="tabpanel"
+            id={tabpanelId}
+            aria-labelledby={activeModelsTab === 'available' ? tabAvailableId : tabSelectedId}
+            className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overflow-x-hidden [scrollbar-width:thin] pe-1"
+          >
+            {activeModelsTab === 'available' ? availablePane : selectedPane}
+          </div>
+        </>
+      ) : (
+        <div className={modelsSplitView}>
+          {availablePane}
+          <div className={modelsDivider} aria-hidden />
+          {selectedPane}
         </div>
-      </div>
+      )}
     </div>
   );
 };

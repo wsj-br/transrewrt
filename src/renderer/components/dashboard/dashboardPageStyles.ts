@@ -6,8 +6,12 @@ export const styles = {
   filterRow: "flex flex-wrap items-center gap-3 mb-5",
   filterButtonUnselected: "bg-sky-500/10 text-foreground border border-sky-400/30 hover:bg-sky-400/25 hover:border-sky-400/50",
   tabPanel: "flex-1 min-h-0 overflow-auto",
+  /** Below `sm`: tab content grows with page — outer shell scrolls (filters + tabs + cards). */
+  tabPanelCardLayout: "w-full min-h-0 overflow-visible",
   tabPanelAllCalls: "flex flex-col overflow-hidden",
-  tabTableContent: "max-w-[90%] w-full [&_table]:table-fixed",
+  tabPanelAllCallsCardLayout: "flex flex-col w-full min-h-0 overflow-visible",
+  allCallsTabPanelCardLayout: "flex flex-col w-full min-h-0 overflow-visible",
+  allCallsTabContentCardLayout: "flex flex-col w-full max-w-full min-h-0 overflow-visible",
   summaryDashboard: "grid grid-cols-1 sm:grid-cols-2 gap-[clamp(8px,1.5vh,20px)] flex-[1_0_auto] overflow-hidden",
   byUsageDashboard: "grid grid-cols-1 sm:grid-cols-2 gap-[clamp(8px,1.5vh,20px)] h-auto sm:h-full min-h-0 overflow-hidden sm:[&>*:nth-child(3)]:col-span-full sm:[&>*:nth-child(3)]:justify-self-center sm:[&>*:nth-child(3)]:w-[calc((100%-20px)/2)] [&>*:nth-child(3)]:min-w-0",
   byUsageChartBlock: "flex flex-col min-h-[220px] sm:min-h-0 min-w-0",
@@ -26,9 +30,10 @@ export const styles = {
   summaryChartContainer: "flex-1 min-h-[100px] min-w-0 w-full box-border bg-card dark:bg-[#222235] border border-border dark:border-white/8 rounded-lg p-3 overflow-hidden",
   summaryChartContainerUsagePie: "!p-[clamp(4px,0.5vh,8px)]",
   summaryTabPanel: "h-full min-h-0 overflow-y-auto overflow-x-hidden flex flex-col",
-  tableWrap: "w-full max-w-full mt-2 mb-2 rounded-lg overflow-auto shadow border border-border",
-  byModelTableWrapper: "[&_table]:text-xs [&_table]:table-fixed [&_th]:text-xs [&_th]:whitespace-normal [&_th]:w-[100px] [&_th:first-of-type]:w-[200px] [&_th:first-of-type]:min-w-[200px] [&_th:first-of-type]:whitespace-nowrap [&_td:first-of-type]:w-[200px] [&_td:first-of-type]:min-w-[200px] [&_td:first-of-type]:whitespace-nowrap",
-  byDayTableWrapper: "[&_table]:text-[13px] [&_table]:table-fixed [&_th]:text-[13px] [&_th]:whitespace-normal [&_th]:w-[100px] [&_th:first-of-type]:w-[100px] [&_th:first-of-type]:min-w-[100px] [&_th:first-of-type]:whitespace-nowrap [&_td:first-of-type]:w-[100px] [&_td:first-of-type]:min-w-[100px] [&_td:first-of-type]:whitespace-nowrap",
+  tableWrap: "w-full max-w-full mt-2 mb-2 rounded-lg overflow-x-auto shadow border border-border",
+  byModelTable: "w-full border-collapse text-xs",
+  byModelColModel: "min-w-[160px] max-w-[260px]",
+  byModelColNum: "w-[90px] min-w-[80px]",
   table: "w-full min-w-max table-auto border-collapse text-[13px]",
   thead: "bg-muted dark:bg-[#2d2d42]",
   th: "p-[10px_12px] text-start font-semibold bg-muted dark:bg-[#2d2d42] border-b border-border dark:border-white/12 text-[13px]",
@@ -49,11 +54,31 @@ export const styles = {
   typeTransform: "bg-violet-400/25 text-violet-400",
   allCallsTabPanel: "flex flex-col flex-1 min-h-0 overflow-hidden",
   allCallsTabContent: "flex-1 min-h-0 flex flex-col overflow-hidden max-w-full w-full",
-  allCallsTableWrapper: "flex flex-col w-[80%] max-h-full min-h-0 overflow-x-auto overflow-y-hidden border border-border rounded-lg mt-2 shadow text-[13px] [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklch,var(--muted-foreground)_35%,transparent)_transparent]",
+  allCallsTableWrapper: "flex flex-col w-full max-h-full min-h-0 overflow-x-auto overflow-y-hidden border border-border rounded-lg mt-2 shadow text-[13px] [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklch,var(--muted-foreground)_35%,transparent)_transparent]",
   allCallsHeaderRow: "grid grid-cols-[minmax(60px,0.5fr)_minmax(140px,1.2fr)_minmax(80px,0.6fr)_minmax(90px,0.7fr)_minmax(140px,1.2fr)_minmax(80px,0.6fr)_minmax(70px,0.5fr)] bg-muted dark:bg-[#2d2d42] border-b border-border dark:border-white/12 min-w-fit w-full",
   allCallsBodyContainer: "flex-[1_1_auto] min-h-0 overflow-y-auto overflow-x-hidden flex flex-col min-w-fit w-full [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklch,var(--muted-foreground)_35%,transparent)_transparent]",
   allCallsBodyRow: "grid grid-cols-[minmax(60px,0.5fr)_minmax(140px,1.2fr)_minmax(80px,0.6fr)_minmax(90px,0.7fr)_minmax(140px,1.2fr)_minmax(80px,0.6fr)_minmax(70px,0.5fr)] border-b border-border dark:border-white/8 cursor-pointer hover:bg-accent/50 w-full text-foreground",
-  allCallsExpandedRow: "w-full p-[16px_20px] bg-muted/50 dark:bg-[#27273a] border-b border-border dark:border-white/8 box-border",
+  /** Expanded detail — cooler tint than collapsed cards (`bg-card` / `#222235`) */
+  dashboardMobileExpandedCard:
+    "w-full max-w-full overflow-x-hidden rounded-lg p-3 border border-sky-200/70 bg-sky-50/90 dark:border-sky-500/30 dark:bg-[#1a1f2e]",
+  allCallsExpandedRow:
+    "w-full p-[16px_20px] box-border border-b border-border dark:border-white/8 bg-sky-50/90 dark:bg-[#1a1f2e]",
+  /** By Model: expandable ledger — chevron | model | total calls | total cost | avg TPS */
+  byModelLedgerWrapper:
+    "flex flex-col w-full max-h-full min-h-0 overflow-x-auto overflow-y-hidden border border-border rounded-lg mt-2 shadow text-[13px] [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklch,var(--muted-foreground)_35%,transparent)_transparent]",
+  byModelLedgerHeaderRow:
+    "grid grid-cols-[28px_minmax(120px,1.5fr)_minmax(88px,0.85fr)_minmax(88px,0.85fr)_minmax(72px,0.7fr)] bg-muted dark:bg-[#2d2d42] border-b border-border dark:border-white/12 min-w-fit w-full",
+  byModelLedgerBodyContainer:
+    "flex-[1_1_auto] min-h-0 overflow-y-auto overflow-x-hidden flex flex-col min-w-fit w-full [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklch,var(--muted-foreground)_35%,transparent)_transparent]",
+  byModelLedgerBodyRow:
+    "grid grid-cols-[28px_minmax(120px,1.5fr)_minmax(88px,0.85fr)_minmax(88px,0.85fr)_minmax(72px,0.7fr)] border-b border-border dark:border-white/8 cursor-pointer hover:bg-accent/50 w-full text-foreground",
+  byModelLedgerExpandedRow:
+    "w-full p-[16px_20px] box-border border-b border-border dark:border-white/8 bg-sky-50/90 dark:bg-[#1a1f2e]",
+  byModelLedgerTotalRow:
+    "grid grid-cols-[28px_minmax(120px,1.5fr)_minmax(88px,0.85fr)_minmax(88px,0.85fr)_minmax(72px,0.7fr)] border-t border-border dark:border-white/12 font-semibold bg-muted dark:bg-[#2d2d42] w-full text-foreground",
+  byModelLedgerCell: "p-[12px_16px] overflow-hidden text-ellipsis whitespace-nowrap block",
+  byModelLedgerHeaderCell:
+    "p-[10px_12px] text-start font-semibold text-foreground overflow-hidden overflow-wrap-break-word whitespace-normal flex items-center",
   allCallsCell: "p-[12px_16px] overflow-hidden text-ellipsis whitespace-nowrap block",
   allCallsHeaderCell: "p-[10px_12px] text-start font-semibold text-foreground overflow-hidden overflow-wrap-break-word whitespace-normal flex items-center",
   cellRight: "text-end",

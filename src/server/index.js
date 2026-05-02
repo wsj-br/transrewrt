@@ -187,7 +187,7 @@ if (!DEV_WEB) {
         <h1>Transrewrt (dev)</h1>
         <p>For web development, use the Webpack dev server:</p>
         <p><a href="http://localhost:5000">http://localhost:5000</a></p>
-        <p>This port (3030) only serves the API when running <code>pnpm run dev:web</code>.</p>
+        <p>This port (4030) only serves the API when running <code>pnpm run dev:web</code>.</p>
       </body></html>
     `);
   });

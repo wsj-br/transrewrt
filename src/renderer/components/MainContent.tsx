@@ -1,7 +1,7 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Languages, PenTool, WandSparkles, BarChart3, History, Loader2 } from "lucide-react";
+import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
@@ -24,16 +24,26 @@ function AppHeader({
   title,
   right,
   titleTrailing,
+  /** Below md: put `right` (model + layout controls) on a second row; Dashboard/History stay one row. */
+  stackRightBelowMd = false,
 }: {
   icon: ReactNode;
   title: ReactNode;
   right?: ReactNode;
   /** Shown after title on small screens only (e.g. language control in workspace). */
   titleTrailing?: ReactNode;
+  stackRightBelowMd?: boolean;
 }) {
   return (
-    <header className="flex min-h-14 w-full min-w-0 shrink-0 flex-col gap-y-2 border-b border-border bg-card px-4 py-2.5 ps-16 md:flex-row md:items-center md:justify-between md:gap-x-4 md:gap-y-0 md:px-6 md:py-3 md:ps-6">
-      <div className="flex min-w-0 max-w-full flex-1 items-center gap-3 md:flex-initial">
+    <header
+      className={cn(
+        "w-full min-w-0 shrink-0 border-b border-border bg-card px-4 py-2.5 ps-16 md:px-6 md:py-3 md:ps-6",
+        stackRightBelowMd
+          ? "flex min-h-0 flex-col gap-2 md:min-h-14 md:flex-row md:flex-nowrap md:items-center md:gap-x-4 md:gap-y-0"
+          : "flex min-h-14 flex-row flex-nowrap items-center gap-x-2 md:gap-x-4",
+      )}
+    >
+      <div className="flex min-h-0 min-w-0 max-w-full flex-1 items-center gap-3">
         {icon}
         <h1 className="min-w-0 flex-1 truncate text-lg font-semibold md:flex-initial">{title}</h1>
         {titleTrailing ? (
@@ -41,7 +51,12 @@ function AppHeader({
         ) : null}
       </div>
       {right && (
-        <div className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-end gap-x-8 gap-y-2 md:w-auto md:flex-nowrap md:shrink-0">
+        <div
+          className={cn(
+            "flex min-w-0 shrink-0 flex-nowrap items-center justify-end gap-x-2 md:gap-x-8",
+            stackRightBelowMd && "w-full min-w-0 md:w-auto",
+          )}
+        >
           {right}
         </div>
       )}
@@ -131,7 +146,7 @@ const MainContent = ({
 
   if (view === "settings") {
     return (
-      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background" data-view="settings">
+      <main className="flex min-h-0 flex-1 flex-col min-w-0 overflow-hidden bg-background" data-view="settings">
         <Suspense fallback={<LoadingFallback label={t("Loading settings…")} />}>
           <SettingsPanel
             openToTab={openSettingsToTab}
@@ -144,14 +159,14 @@ const MainContent = ({
 
   if (view === "dashboard") {
     return (
-      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+      <main className="flex min-h-0 flex-1 flex-col min-w-0 overflow-hidden bg-background">
         <AppHeader
-          icon={<BarChart3 className="h-5 w-5 text-emerald-500" strokeWidth={1.6} />}
+          icon={<Activity className="h-5 w-5 text-emerald-500" strokeWidth={1.6} />}
           title={t("Dashboard")}
           right={<HeaderLanguageSelector compact />}
         />
-        <div className="flex flex-1 min-h-0 overflow-auto p-4 md:p-6">
-          <div className="flex flex-1 flex-col min-h-0">
+        <div className="flex flex-1 min-h-0 min-w-0 overflow-auto p-4 md:p-6">
+          <div className="flex w-full min-w-0 flex-1 flex-col min-h-0">
             <Suspense fallback={<LoadingFallback label={t("Loading dashboard…")} />}>
               <DashboardPage />
             </Suspense>
@@ -163,14 +178,14 @@ const MainContent = ({
 
   if (view === "history") {
     return (
-      <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background">
+      <main className="flex min-h-0 flex-1 flex-col min-w-0 overflow-hidden bg-background">
         <AppHeader
           icon={<History className="h-5 w-5 text-orange-400" strokeWidth={1.6} />}
           title={t("History")}
           right={<HeaderLanguageSelector compact />}
         />
-        <div className="flex flex-1 min-h-0 overflow-auto p-4 md:p-6">
-          <div className="flex flex-1 flex-col min-h-0">
+        <div className="flex flex-1 min-h-0 min-w-0 overflow-auto p-4 md:p-6">
+          <div className="flex w-full min-w-0 flex-1 flex-col min-h-0">
             <Suspense fallback={<LoadingFallback label={t("Loading…")} />}>
               <HistoryPage />
             </Suspense>
@@ -193,11 +208,12 @@ const MainContent = ({
   }[currentMode] ?? currentMode;
 
   return (
-    <main className="flex flex-1 flex-col min-w-0 overflow-hidden bg-background" data-mode={currentMode}>
+    <main className="flex min-h-0 flex-1 flex-col min-w-0 overflow-hidden bg-background" data-mode={currentMode}>
       <AppHeader
         icon={modeIcon}
         title={modeTitle}
         titleTrailing={<HeaderLanguageSelector compact />}
+        stackRightBelowMd
         right={
           <>
             <ModelSelector

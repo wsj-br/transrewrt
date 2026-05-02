@@ -9,6 +9,7 @@ const {
   buildExecutionHistoryWhere,
   sql,
   replaceWhere,
+  prepareGetAllCallsSql,
 } = require("../../shared/db/appSchema.js");
 
 /**
@@ -251,9 +252,11 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
       const { where, params } = buildWhereFromTo(req.query.from, req.query.to, getUsernameForCallsQuery(req));
       const page = Math.max(1, parseInt(req.query.page, 10) || 1);
       const pageSize = Math.min(200, Math.max(1, parseInt(req.query.pageSize, 10) || 50));
+      const sortKey = req.query.sort != null ? String(req.query.sort) : "id";
+      const sortDir = req.query.dir === "asc" ? "asc" : "desc";
       const total = db.prepare(replaceWhere(sql.COUNT_API_CALLS, where)).get(...params)?.total ?? 0;
       const offset = (page - 1) * pageSize;
-      const rows = db.prepare(replaceWhere(sql.GET_ALL_CALLS, where)).all(...params, pageSize, offset);
+      const rows = db.prepare(prepareGetAllCallsSql(where, sortKey, sortDir)).all(...params, pageSize, offset);
       res.json({ rows, total, page, pageSize });
     } catch (err) {
       log.error("[API] GET /api/calls/all - Error: " + err.message, { stack: err.stack });

@@ -381,7 +381,7 @@ const createWindow = () => {
   mainWindow.on("move", () => saveWindowState(mainWindow));
 
   if (process.env.NODE_ENV === "development") {
-    const devUrl = "http://localhost:3030";
+    const devUrl = "http://localhost:4030";
     let devLoadRetries = 0;
     const tryLoadDev = () => mainWindow.loadURL(devUrl);
     mainWindow.webContents.on(
@@ -484,7 +484,7 @@ const createSettingsWindow = () => {
 
   const startUrl =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3030?window=settings"
+      ? "http://localhost:4030?window=settings"
       : "app://./dist/index.html?window=settings";
 
   settingsWindow.loadURL(startUrl);

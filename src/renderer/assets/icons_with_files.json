@@ -252,6 +252,12 @@
     "iconFile": "inception.ico"
   },
   {
+    "provider_id": "inclusion-ai",
+    "name": "Inclusion AI",
+    "url": "https://inclusion-ai.org/",
+    "iconFile": "inclusion-ai.ico"
+  },
+  {
     "provider_id": "infermatic",
     "name": "Infermatic",
     "url": "",
@@ -420,6 +426,12 @@
     "iconFile": "phala.ico"
   },
   {
+    "provider_id": "poolside",
+    "name": "Poolside AI",
+    "url": "https://poolside.ai/",
+    "iconFile": "poolside.ico"
+  },
+  {
     "provider_id": "prime-intellect",
     "name": "Prime Intellect",
     "url": "https://www.primeintellect.ai",
@@ -441,8 +453,15 @@
     "provider_id": "reka",
     "name": "Reka AI",
     "url": "https://reka.ai/",
-    "iconFile": "reka.ico"
-  },  {
+    "iconFile": "rekaai.ico"
+  },
+  {
+    "provider_id": "rekaai",
+    "name": "Reka AI",
+    "url": "https://reka.ai/",
+    "iconFile": "rekaai.ico"
+  },
+  {
     "provider_id": "relace",
     "name": "Relace",
     "url": "https://relace.ai",

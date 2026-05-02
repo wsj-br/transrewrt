@@ -502,8 +502,17 @@ const SettingsTransformPromptsTab = () => {
               onChange={handleImportFile}
             />
             <span className="ms-6 shrink-0" aria-hidden="true" />
+            <span
+              id="settings-transform-format-label"
+              className="text-sm text-muted-foreground shrink-0"
+            >
+              {t("Format:")}
+            </span>
             <Select value={exportImportFormat} onValueChange={setExportImportFormat}>
-              <SelectTrigger className="min-w-[72px] w-fit h-8" aria-label={t("Export/import format")}>
+              <SelectTrigger
+                className="min-w-[72px] w-fit h-8"
+                aria-labelledby="settings-transform-format-label"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>

@@ -1,6 +1,7 @@
 /**
  * Tailwind layout for Settings → Models (replaces legacy main.css BEM).
- * Responsive breakpoints match the former 1200px media query.
+ * Wide split is side-by-side from Tailwind `lg` (1024px); below `lg`, inner pill tabs
+ * switch between Available and Selected (see SettingsModelsTab).
  */
 
 import { cn } from "@/lib/utils";
@@ -8,18 +9,16 @@ import { cn } from "@/lib/utils";
 export const modelsSplitView = cn(
   "grid h-full flex-1 gap-0 bg-background w-full min-w-0 max-w-full min-h-0 box-border",
   "grid-cols-[1fr_1px_1fr]",
-  "max-[1200px]:grid-cols-1 max-[1200px]:grid-rows-[auto_1px_auto] max-[1200px]:h-auto max-[1200px]:flex-[0_1_auto]",
 );
 
 export const modelsDivider = cn(
   "shrink-0 bg-border w-px min-h-0 self-stretch",
-  "max-[1200px]:w-full max-[1200px]:h-px max-[1200px]:self-auto",
 );
 
 export const modelsPaneLeft = cn(
   "flex flex-col gap-3 p-6 overflow-y-auto overflow-x-hidden min-w-0 min-h-[250px] sm:min-h-[520px] w-full box-border",
-  "border-e border-border bg-[color-mix(in_oklch,var(--foreground)_4%,var(--background))]",
-  "max-[1200px]:border-e-0 max-[1200px]:border-b",
+  "border-border bg-[color-mix(in_oklch,var(--foreground)_4%,var(--background))]",
+  "max-lg:border-e-0 lg:border-e",
 );
 
 export const modelsPaneRight = cn(
@@ -27,19 +26,63 @@ export const modelsPaneRight = cn(
   "bg-[color-mix(in_oklch,var(--foreground)_2%,var(--background))]",
 );
 
+/**
+ * Wide split (lg+): left pane — column layout, no outer scroll; fixed title/search + scroll body below.
+ */
+export const modelsPaneLeftWide = cn(
+  "flex min-h-0 h-full min-w-0 flex-col overflow-hidden box-border w-full",
+  /* Uniform top/bottom/start; smaller padding-inline-end so the scrollbar sits closer to the panel edge */
+  "pt-6 pb-6 ps-6 pe-2.5",
+  "border-border bg-[color-mix(in_oklch,var(--foreground)_4%,var(--background))]",
+  "max-lg:border-e-0 lg:border-e",
+);
+
+/**
+ * Wide split (lg+): right pane — same; fixed Selected header row + scroll body for the list.
+ */
+export const modelsPaneRightWide = cn(
+  "flex min-h-0 h-full min-w-0 flex-col overflow-hidden box-border w-full",
+  "pt-6 pb-6 ps-6 pe-2.5",
+  "bg-[color-mix(in_oklch,var(--foreground)_2%,var(--background))]",
+);
+
+/** Scroll region below fixed Available title/search (filters, toolbar, model list). */
+export const modelsWideAvailableScrollBody = cn(
+  "flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overflow-x-hidden pt-1 [scrollbar-width:thin]",
+);
+
+/** Scroll region below fixed Selected header (selected model cards only). */
+export const modelsWideSelectedScrollBody = cn(
+  "flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden min-w-0 pt-1 [scrollbar-width:thin]",
+);
+
 export const modelsPaneHeader = "flex items-center justify-between mb-2.5 pb-1.5";
 
-export const modelsAvailableHeaderRow =
-  "grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-3 gap-y-2";
+/** Title row above full-width search (no centered-search grid). */
+export const modelsAvailableHeaderRow = "flex flex-col gap-2 w-full min-w-0";
 
-export const modelsAvailableTitle = "flex items-center gap-2.5 min-w-0 justify-self-start";
+export const modelsAvailableTitle = "flex items-center gap-2.5 min-w-0";
 
-export const modelsHeaderSearch =
-  "justify-self-stretch sm:justify-self-center w-full sm:w-[min(100%,320px)] min-w-0 sm:min-w-[140px]";
+export const modelsHeaderSearch = "w-full min-w-0 max-w-full";
 
 export const modelsHeaderSearchInput = "w-full";
 
-export const modelsHeaderSearchBalance = "hidden sm:block min-w-0";
+/** Inner Available / Selected pills: one row; tabs share width and truncate instead of wrapping. */
+export const modelsInnerTabsStrip =
+  "flex shrink-0 flex-nowrap items-stretch gap-2 min-w-0 overflow-x-auto px-4 pt-3 pb-2 border-b border-border bg-card/60 [scrollbar-width:thin]";
+
+/** When Models uses inner Available/Selected tabs: pane content is not its own scroll region — the tabpanel scrolls. */
+export const modelsPaneAsScrollableTabChild = cn(
+  "overflow-y-visible overflow-x-hidden min-h-0 sm:min-h-0",
+  "shrink-0 grow-0",
+);
+
+/** List / selected column: no nested overflow; height follows content so parent tabpanel scrolls. */
+export const modelsListAsScrollableTabChild =
+  "min-h-0 flex-none grow-0 overflow-visible";
+
+export const selectedModelsContainerAsScrollableTabChild =
+  "min-h-0 flex-none grow-0 overflow-visible";
 
 export const modelsControlsModern = "flex gap-3 items-center flex-wrap";
 
@@ -50,8 +93,9 @@ export const modelsToolbarLeft = "flex flex-wrap items-center gap-2 flex-1 min-w
 
 export const modelsToolbarRight = "flex items-center shrink-0 ms-auto";
 
+/** Wide split: pane scrolls; list is not its own scroll region (avoids nested scrollbars). */
 export const modelsListContainer =
-  "flex-1 min-h-[270px] overflow-y-auto flex flex-col gap-3 pe-3 [scrollbar-width:thin]";
+  "flex flex-col gap-3 min-h-[270px] overflow-visible pe-1.5";
 
 export const modelsListFlatOrGrouped = "flex flex-col gap-2";
 
@@ -103,8 +147,9 @@ export const modelPrice = "text-xs";
 
 export const modelAction = "shrink-0";
 
+/** Wide split: pane scrolls; inner list does not (matches Available column). */
 export const selectedModelsContainer =
-  "flex-1 min-h-[270px] overflow-y-auto flex flex-col [scrollbar-width:thin]";
+  "flex flex-col min-h-[270px] overflow-visible";
 
 export const selectedModelsList = "flex flex-col gap-2.5";
 

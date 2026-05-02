@@ -1,43 +1,80 @@
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import {
-  AreaChart,
-  Area,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  LabelList,
-} from "recharts";
-import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
-import { formatInteger, formatDecimal } from "../utils/misc/formatUtils";
+import { formatDecimal } from "../utils/misc/formatUtils";
 import {
   formatCost,
   formatCount,
   formatAvgTps,
   DASH,
 } from "../utils/misc/costUtils";
+import { modelFooterDisplayId } from "../utils/misc/modelIdUtils";
+
+function formatCallsSharePct(calls, totalCalls, locale) {
+  const n = Number(calls) || 0;
+  const t = Number(totalCalls) || 0;
+  if (t <= 0) return null;
+  const pct = (n / t) * 100;
+  return `${formatDecimal(pct, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
+}
+
+function totalCallsForModelRow(row) {
+  return (
+    (Number(row.translation_calls) || 0) +
+    (Number(row.rewrite_calls) || 0) +
+    (Number(row.transform_calls) || 0)
+  );
+}
+
+function ModeUsageValue({
+  calls,
+  cost,
+  pct,
+  locale,
+  costFractionStyle,
+}) {
+  return (
+    <div className="flex w-full min-w-0 items-center justify-between gap-2">
+      <span className="min-w-0 flex-1 break-words leading-snug [&_sup]:inline [&_sub]:inline">
+        <span className="tabular-nums">{formatCount(calls, locale)}</span>
+        {" / "}
+        <span className="inline-flex items-baseline">{formatCost(cost, costFractionStyle, locale)}</span>
+      </span>
+      {pct != null ? (
+        <span className="shrink-0 tabular-nums text-muted-foreground">{pct}</span>
+      ) : null}
+    </div>
+  );
+}
+
+function TopModelValue({
+  fullModelId,
+  calls,
+  pctStr,
+  locale,
+}) {
+  const shortName = modelFooterDisplayId(fullModelId);
+  return (
+    <div className="flex w-full min-w-0 items-start justify-between gap-2">
+      <span className="min-w-0 flex-1 break-words leading-snug">
+        {shortName || fullModelId}
+      </span>
+      <span className="shrink-0 text-end tabular-nums text-muted-foreground leading-snug">
+        {formatCount(calls, locale)} / {pctStr ?? DASH}
+      </span>
+    </div>
+  );
+}
 
 export default function DashboardTabSummary({
   loading,
   byFunction,
-  byDay,
   byModel,
   settings,
   costFractionStyle,
   styles,
-  getUsageTypeLabel,
 }) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
-  const tickStyle = { fill: "#9ca3af" };
 
   const totalCalls = byFunction.find((r) => r.function === "Total")?.calls ?? 0;
   const totalCostFromSummary =
@@ -54,6 +91,106 @@ export default function DashboardTabSummary({
     return <p>{t("Loading…")}</p>;
   }
 
+  const translatePct = formatCallsSharePct(translateRow?.calls, totalCalls, locale);
+  const rewritePct = formatCallsSharePct(rewriteRow?.calls, totalCalls, locale);
+  const transformPct = formatCallsSharePct(transformRow?.calls, totalCalls, locale);
+
+  const rankModelLabels = [t("#1 Model"), t("#2 Model"), t("#3 Model")];
+  const topModelsByCalls = [...byModel]
+    .filter((r) => r.model && r.model !== "Total")
+    .map((row) => ({ row, calls: totalCallsForModelRow(row) }))
+    .filter(({ calls }) => calls > 0)
+    .sort((a, b) => b.calls - a.calls)
+    .slice(0, 3);
+
+  const topModelSlot = (idx) => {
+    const entry = topModelsByCalls[idx];
+    if (!entry) {
+      return {
+        key: `top-model-empty-${idx}`,
+        label: rankModelLabels[idx],
+        value: <span className="text-muted-foreground">{DASH}</span>,
+      };
+    }
+    const { row, calls } = entry;
+    const pctStr = formatCallsSharePct(calls, totalCalls, locale);
+    return {
+      key: `top-model-${idx}-${String(row.model)}`,
+      label: rankModelLabels[idx],
+      value: (
+        <TopModelValue
+          fullModelId={row.model}
+          calls={calls}
+          pctStr={pctStr}
+          locale={locale}
+        />
+      ),
+    };
+  };
+
+  // Row-major 2-column grid: col1 then col2 per row (see grid grid-cols-2).
+  // Col1: Total Cost, Models used, Translation, Rewrite, Transform
+  // Col2: Avg cost per call, Avg TPS, #1–#3 Model
+  const cards = [
+    {
+      label: t("Total Cost"),
+      value: formatCost(settings?.total_cost ?? 0, costFractionStyle, locale),
+    },
+    {
+      label: t("Avg cost per call"),
+      value: avgCostPerCall != null
+        ? formatCost(avgCostPerCall, costFractionStyle, locale)
+        : DASH,
+    },
+    {
+      label: t("Models used"),
+      value: formatCount(modelCount, locale),
+    },
+    {
+      label: t("Avg TPS"),
+      value: formatAvgTps(totalAvgTps, locale),
+    },
+    {
+      label: t("Translation"),
+      value: (
+        <ModeUsageValue
+          calls={translateRow?.calls}
+          cost={translateRow?.cost}
+          pct={translatePct}
+          locale={locale}
+          costFractionStyle={costFractionStyle}
+        />
+      ),
+    },
+    topModelSlot(0),
+    {
+      label: t("Rewrite"),
+      value: (
+        <ModeUsageValue
+          calls={rewriteRow?.calls}
+          cost={rewriteRow?.cost}
+          pct={rewritePct}
+          locale={locale}
+          costFractionStyle={costFractionStyle}
+        />
+      ),
+    },
+    topModelSlot(1),
+    {
+      label: t("Transform"),
+      value: (
+        <ModeUsageValue
+          calls={transformRow?.calls}
+          cost={transformRow?.cost}
+          pct={transformPct}
+          locale={locale}
+          costFractionStyle={costFractionStyle}
+        />
+      ),
+    },
+    topModelSlot(2),
+  ];
+
   return (
     <div
       role="tabpanel"
@@ -61,426 +198,13 @@ export default function DashboardTabSummary({
       className={styles.summaryTabPanel}
       data-testid="dashboard-tabpanel-summary"
     >
-      <div className={styles.summaryDashboard}>
-        <div className={styles.summaryKpiCell}>
-          <h4 className={styles.summaryKpiTitleSpacer}>
-            {t("Cost over time")}
-          </h4>
-          <div className={styles.summaryKpiGrid}>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Total Cost")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatCost(settings?.total_cost ?? 0, costFractionStyle, locale)}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Avg cost per call")}</div>
-              <div className={styles.summaryKpiValue}>
-                {avgCostPerCall != null
-                  ? formatCost(avgCostPerCall, costFractionStyle, locale)
-                  : DASH}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Translation")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatCount(translateRow?.calls, locale)} /{" "}
-                {formatCost(translateRow?.cost, costFractionStyle, locale)}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Rewrite")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatCount(rewriteRow?.calls, locale)} /{" "}
-                {formatCost(rewriteRow?.cost, costFractionStyle, locale)}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Transform")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatCount(transformRow?.calls, locale)} /{" "}
-                {formatCost(transformRow?.cost, costFractionStyle, locale)}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Models used")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatCount(modelCount, locale)}
-              </div>
-            </div>
-            <div className={styles.summaryKpiCard}>
-              <div className={styles.summaryKpiLabel}>{t("Avg TPS")}</div>
-              <div className={styles.summaryKpiValue}>
-                {formatAvgTps(totalAvgTps, locale)}
-              </div>
-            </div>
+      <div className="grid grid-cols-2 gap-3 p-1 pt-3">
+        {cards.map(({ label, value, key }) => (
+          <div key={key ?? label} className={styles.summaryKpiCard}>
+            <div className={styles.summaryKpiLabel}>{label}</div>
+            <div className={`${styles.summaryKpiValue} w-full min-w-0`}>{value}</div>
           </div>
-        </div>
-
-        <div className={styles.summaryChartCellUsageSplit}>
-          <h4 className={styles.summaryChartTitle}>
-            {t("Usage split")}
-          </h4>
-          <div
-            className={`${styles.summaryChartContainer} ${styles.summaryChartContainerUsagePie}`}
-            style={{ overflow: "visible" }}
-          >
-            {byFunction.filter((r) => r.function !== "Total").length > 0 ? (
-              (() => {
-                const usageData = byFunction.filter(
-                  (r) => r.function !== "Total"
-                );
-                const totalCallsPie = usageData.reduce(
-                  (s, r) => s + (Number(r.calls) || 0),
-                  0
-                );
-                const RADIAN = Math.PI / 180;
-                return (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart margin={{ top: 4, right: 8, bottom: 4, left: 8 }}>
-                      <Pie
-                        data={usageData}
-                        dataKey="calls"
-                        nameKey="function"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius="85%"
-                        isAnimationActive={false}
-                        label={({
-                          cx,
-                          cy,
-                          midAngle,
-                          outerRadius: or,
-                          function: fn,
-                          calls,
-                        }) => {
-                          const radius = or + 14;
-                          const x =
-                            cx + radius * Math.cos(-midAngle * RADIAN);
-                          const y =
-                            cy + radius * Math.sin(-midAngle * RADIAN);
-                          const pct =
-                            totalCallsPie > 0
-                              ? formatDecimal(
-                                  (Number(calls) / totalCallsPie) * 100,
-                                  locale,
-                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
-                                )
-                              : "0";
-                          const displayName = getUsageTypeLabel(fn);
-                          return (
-                            <text
-                              x={x}
-                              y={y}
-                              textAnchor={x > cx ? "start" : "end"}
-                              dominantBaseline="central"
-                              fill="#d1d5db"
-                              style={{
-                                fontSize: "clamp(9px, 1.2vh, 11px)",
-                              }}
-                            >
-                              <tspan x={x} dy="-0.65em">
-                                {displayName}
-                              </tspan>
-                              <tspan
-                                x={x}
-                                dy="1.3em"
-                                fill="#9ca3af"
-                              >
-                                {formatInteger(calls, locale)} ({pct}%)
-                              </tspan>
-                            </text>
-                          );
-                        }}
-                        labelLine={{
-                          stroke: "rgba(255,255,255,0.25)",
-                          strokeWidth: 1,
-                        }}
-                      >
-                        {usageData.map((r, i) => (
-                          <Cell
-                            key={i}
-                            fill={
-                              r.function === "translate"
-                                ? CHART_COLORS.translation
-                                : r.function === "rewrite"
-                                ? CHART_COLORS.rewrite
-                                : "#a78bfa"
-                            }
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "#1e1e2e",
-                          border: "1px solid rgba(255,255,255,0.12)",
-                          color:
-                            "#e5e7eb",
-                        }}
-                        itemStyle={{
-                          color: "#e5e7eb",
-                        }}
-                        labelStyle={{
-                          color: "#e5e7eb",
-                        }}
-                        formatter={(value, name) => {
-                          const pct =
-                            totalCallsPie > 0
-                              ? formatDecimal(
-                                  (Number(value) / totalCallsPie) * 100,
-                                  locale,
-                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
-                                )
-                              : "0";
-                          return [
-                            `${formatInteger(value, locale)} (${pct}%)`,
-                            getUsageTypeLabel(name),
-                          ];
-                        }}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                );
-              })()
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "100%",
-                  color: "#9ca3af",
-                }}
-              >
-                {t("No data")}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.summaryChartCell}>
-          <h4 className={styles.summaryChartTitle}>
-            {t("Usage over time")}
-          </h4>
-          <div className={styles.summaryChartContainer}>
-            {byDay.length > 0 ? (
-              (() => {
-                const chronological = [...byDay].reverse();
-                let cumTranslation = 0;
-                let cumRewrite = 0;
-                let cumTransform = 0;
-                const cumulativeData = chronological.map((row) => {
-                  cumTranslation += Number(row.translation_calls) || 0;
-                  cumRewrite += Number(row.rewrite_calls) || 0;
-                  cumTransform += Number(row.transform_calls) || 0;
-                  return {
-                    day: row.day,
-                    translation_calls: cumTranslation,
-                    rewrite_calls: cumRewrite,
-                    transform_calls: cumTransform,
-                  };
-                });
-                return (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={cumulativeData} {...chartProps}>
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={CHART_COLORS.grid}
-                      />
-                      <XAxis dataKey="day" style={axisStyle} tick={tickStyle} />
-                      <YAxis
-                        style={axisStyle}
-                        tick={tickStyle}
-                        tickFormatter={(v) => formatInteger(v, locale)}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "#1e1e2e",
-                          border: "1px solid rgba(255,255,255,0.12)",
-                        }}
-                        labelStyle={{
-                          color: "#e5e7eb",
-                        }}
-                        formatter={(value, name, item) => {
-                          const dataKey = item?.dataKey ?? name;
-                          return [
-                            formatInteger(value, locale),
-                            dataKey === "translation_calls"
-                              ? t("Translation calls (cumulative)")
-                              : dataKey === "rewrite_calls"
-                              ? t("Rewrite calls (cumulative)")
-                              : t("Transform calls (cumulative)"),
-                          ];
-                        }}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="translation_calls"
-                        stackId="1"
-                        stroke={CHART_COLORS.translation}
-                        fill={CHART_COLORS.translation}
-                        fillOpacity={0.6}
-                        name={t("Translation calls (cumulative)")}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="rewrite_calls"
-                        stackId="1"
-                        stroke={CHART_COLORS.rewrite}
-                        fill={CHART_COLORS.rewrite}
-                        fillOpacity={0.6}
-                        name={t("Rewrite calls (cumulative)")}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="transform_calls"
-                        stackId="1"
-                        stroke="#a78bfa"
-                        fill="#a78bfa"
-                        fillOpacity={0.6}
-                        name={t("Transform calls (cumulative)")}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                );
-              })()
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "100%",
-                  color: "#9ca3af",
-                }}
-              >
-                {t("No data")}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.summaryChartCell}>
-          <h4 className={styles.summaryChartTitle}>
-            {t("Usage by model")}
-          </h4>
-          <div className={styles.summaryChartContainer}>
-            {(() => {
-              const usageByModelData = byModel
-                .filter((r) => r.model !== "Total")
-                .map((r) => ({
-                  ...r,
-                  totalCalls:
-                    (Number(r.translation_calls) || 0) +
-                    (Number(r.rewrite_calls) || 0) +
-                    (Number(r.transform_calls) || 0),
-                }));
-              const usageByModelDataFiltered = usageByModelData.filter(
-                (r) => (r.totalCalls || 0) > 0
-              );
-              if (usageByModelDataFiltered.length === 0) {
-                return (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "100%",
-                      color: "#9ca3af",
-                    }}
-                  >
-                    {t("No data")}
-                  </div>
-                );
-              }
-              const totalCallsSum = usageByModelDataFiltered.reduce(
-                (s, r) => s + (r.totalCalls || 0),
-                0
-              );
-              return (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={usageByModelDataFiltered}
-                      layout="vertical"
-                      margin={{ left: 220, right: 16 }}
-                      {...chartProps}
-                    >
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={CHART_COLORS.grid}
-                      />
-                      <XAxis
-                        type="number"
-                        style={axisStyle}
-                        tick={tickStyle}
-                        tickFormatter={(v) => formatInteger(v, locale)}
-                      />
-                      <YAxis
-                        type="category"
-                        dataKey="model"
-                        width={215}
-                        style={axisStyle}
-                        tick={tickStyle}
-                        tickFormatter={(v) => v ?? ""}
-                      />
-                      <Tooltip
-                        cursor={{ fill: "transparent" }}
-                        contentStyle={{
-                          backgroundColor: "#1e1e2e",
-                          border: "1px solid rgba(255,255,255,0.12)",
-                        }}
-                        formatter={(value) => {
-                          const pct =
-                            totalCallsSum > 0
-                              ? formatDecimal(
-                                  (value / totalCallsSum) * 100,
-                                  locale,
-                                  { minimumFractionDigits: 1, maximumFractionDigits: 1 }
-                                )
-                              : "0";
-                          return [
-                            `${formatInteger(value, locale)} (${pct}%)`,
-                            t("Total calls"),
-                          ];
-                        }}
-                      />
-                      <Bar
-                        dataKey="totalCalls"
-                        fill={CHART_COLORS.barFill}
-                        activeBar={{ fill: CHART_COLORS.barFillHover }}
-                        name={t("Total calls")}
-                      >
-                        <LabelList
-                          dataKey="totalCalls"
-                          position="insideLeft"
-                          formatter={(value) => {
-                            const pct =
-                              totalCallsSum > 0
-                                ? formatDecimal(
-                                    (value / totalCallsSum) * 100,
-                                    locale,
-                                    { minimumFractionDigits: 1, maximumFractionDigits: 1 }
-                                  )
-                                : "0";
-                            const n =
-                              value != null && !Number.isNaN(Number(value))
-                                ? formatInteger(value, locale)
-                                : DASH;
-                            return `${n} (${pct}%)`;
-                          }}
-                          style={{
-                            fill: CHART_COLORS.barLabel,
-                            fontSize: 11,
-                          }}
-                          offset={4}
-                        />
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                );
-            })()}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -489,10 +213,8 @@ export default function DashboardTabSummary({
 DashboardTabSummary.propTypes = {
   loading: PropTypes.bool.isRequired,
   byFunction: PropTypes.arrayOf(PropTypes.object).isRequired,
-  byDay: PropTypes.arrayOf(PropTypes.object).isRequired,
   byModel: PropTypes.arrayOf(PropTypes.object).isRequired,
   settings: PropTypes.object,
   costFractionStyle: PropTypes.string.isRequired,
   styles: PropTypes.object.isRequired,
-  getUsageTypeLabel: PropTypes.func.isRequired,
 };

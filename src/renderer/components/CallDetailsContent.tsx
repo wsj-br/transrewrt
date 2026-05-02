@@ -39,7 +39,14 @@ const FIELDS = [
   { key: "output_stats", labelKey: "Output", format: (row, locale, opts) => formatInputOutputStats(row, "output", locale, opts?.t) },
 ];
 
-function getValueColorClass(type) {
+/** Same label/value column split as each field block — keeps aligned rows (e.g. expanded Model header). */
+export const CALL_DETAILS_LABEL_VALUE_GRID_STYLE = {
+  gridTemplateColumns: "minmax(80px,max-content) 1fr",
+  columnGap: "12px",
+};
+
+/** Matches value column styling in this component (translate / rewrite / transform). */
+export function getCallDetailsValueColorClass(type) {
   if (type === "translate") return "text-lime-500";
   if (type === "rewrite") return "text-orange-400";
   if (type === "transform") return "text-violet-400";
@@ -47,6 +54,9 @@ function getValueColorClass(type) {
 }
 
 function splitFieldsIntoColumns(fields, columnCount) {
+  if (columnCount === 1) {
+    return [fields];
+  }
   const n = columnCount === 2 ? 2 : 3;
   const perCol = Math.ceil(fields.length / n);
   const chunks = [];
@@ -74,26 +84,28 @@ export default function CallDetailsContent({
   const fields = [...prepended, ...baseFields];
   if (fields.length === 0) return null;
 
-  const valueColorClass = getValueColorClass(row.type);
+  const valueColorClass = getCallDetailsValueColorClass(row.type);
   const opts = { t, costFractionStyle: costFractionStyle || "muted" };
   const cols = splitFieldsIntoColumns(fields, columnCount);
-  const outerClass = columnCount === 2
-    ? "grid w-full items-start"
-    : "grid w-full items-start";
-  const outerStyle = columnCount === 2
-    ? { gridTemplateColumns: "1fr 1px 1fr", columnGap: "12px" }
-    : { gridTemplateColumns: "1fr 1px 1fr 1px 1fr", columnGap: "12px" };
+  const outerClass =
+    columnCount === 1 ? "w-full min-w-0" : "grid w-full min-w-0 items-start";
+  const outerStyle =
+    columnCount === 1
+      ? undefined
+      : columnCount === 2
+        ? { gridTemplateColumns: "1fr 1px 1fr", columnGap: "12px" }
+        : { gridTemplateColumns: "1fr 1px 1fr 1px 1fr", columnGap: "12px" };
 
   return (
     <div className={outerClass} style={outerStyle}>
       {cols.map((chunk, colIdx) => (
         <Fragment key={colIdx}>
           {colIdx > 0 ? <div className="w-px bg-border self-stretch justify-self-center" aria-hidden /> : null}
-          <div className="grid items-baseline gap-y-1.5" style={{ gridTemplateColumns: "minmax(110px,max-content) 1fr", columnGap: "12px" }}>
-            {chunk.map(({ key, labelKey, format }) => (
+          <div className="grid items-baseline gap-y-1.5 min-w-0" style={CALL_DETAILS_LABEL_VALUE_GRID_STYLE}>
+            {chunk.map(({ key, labelKey, format, valueClassName }) => (
               <Fragment key={key}>
                 <div className="text-xs font-medium text-muted-foreground whitespace-nowrap">{t(labelKey)}</div>
-                <div className={`text-xs break-words ${valueColorClass}`}>
+                <div className={`text-xs break-words ${valueColorClass} ${valueClassName || ""}`}>
                   {format(row, locale, opts)}
                 </div>
               </Fragment>
@@ -113,8 +125,9 @@ CallDetailsContent.propTypes = {
       key: PropTypes.string.isRequired,
       labelKey: PropTypes.string.isRequired,
       format: PropTypes.func.isRequired,
+      valueClassName: PropTypes.string,
     }),
   ),
   costFractionStyle: PropTypes.string,
-  columnCount: PropTypes.oneOf([2, 3]),
+  columnCount: PropTypes.oneOf([1, 2, 3]),
 };

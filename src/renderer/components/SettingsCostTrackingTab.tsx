@@ -15,6 +15,7 @@ import {
   formatDecimal,
   flipUiArrowsForRtl,
 } from "../utils/misc/formatUtils";
+import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
 import { Button } from "@/components/ui/button";
 import {
@@ -139,16 +140,11 @@ const SettingsCostTrackingTab = ({
 
   const handleCopyCost = async () => {
     const cost = formatDecimal(parseFloat(localSettings.total_cost || 0), locale, { minimumFractionDigits: 6, maximumFractionDigits: 6 });
-    if (navigator.clipboard?.writeText) {
-      try { await navigator.clipboard.writeText(cost); return; } catch { /* fall through */ }
+    try {
+      await copyTextToClipboard(cost);
+    } catch {
+      /* clipboard unavailable or denied */
     }
-    const ta = document.createElement("textarea");
-    ta.value = cost;
-    ta.style.position = "fixed";
-    ta.style.left = "-9999px";
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand("copy"); } finally { document.body.removeChild(ta); }
   };
 
   const handleSyncWithKeyUsage = () => {
