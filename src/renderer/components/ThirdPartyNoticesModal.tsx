@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getBasePath } from "@/utils/misc/urlUtils";
 
 /** After each `---`, the next 4 lines are: blank, package@version, license id, first copyright/body line. */
 const HEADER_LINES_AFTER_SEPARATOR = 2;
@@ -77,9 +78,13 @@ const ThirdPartyNoticesModal = ({ open, onClose }) => {
             setError(r?.error || "not_found");
           }
         } else {
-          const res = await fetch(
-            new URL("NOTICES", document.baseURI).href,
-          );
+          // Same base path as webApiClient (urlUtils.getBasePath): relative "NOTICES"
+          // against document.baseURI breaks when the app is served under a path prefix
+          // without a trailing slash (resolves to origin /NOTICES instead of prefix/NOTICES).
+          let pathPrefix = getBasePath();
+          if (pathPrefix === "/index.html") pathPrefix = "";
+          const noticesUrl = `${window.location.origin}${pathPrefix}/NOTICES`;
+          const res = await fetch(noticesUrl, { cache: "no-store" });
           if (!res.ok) throw new Error(String(res.status));
           const body = await res.text();
           if (!cancelled) setText(body);
