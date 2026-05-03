@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## 1.2.1 - 2026-05-03
+
 - **Fixed**: Stop tracking `.translation-cache/cache.db.backup.*.sqlite` files (already ignored by `.gitignore`; remove from index with `git rm --cached` if they were added earlier).
 - **Changed**: `.gitignore`: ignore everything under `.translation-cache/` except `cache.db` (same pattern as `translated-docs/.cache/`); doc translation backups live there by default, not under `translated-docs/.cache/`.
 - **Changed**: `scripts/take-screenshots.js`: validate CLI then exit if `HISTORY_DISABLED` is true; validate `--screenshot=` / `--screen=` names before DB, config, server probe, or browser.
@@ -237,6 +239,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: Web configuration backup export - `files/config.json` in the ZIP merges preferences from the `admin` user (username match, else `role = admin` with most recent `last_login`) so Electron import receives models, top languages, and other per-user settings; `web_session` / `web_session_expires_at` are omitted from the export.
 - **Fixed**: Web backup `files/config.json` - per-user keys such as `available_models` no longer get replaced by the on-disk server `config.json` defaults; only server-global keys (API keys, `web_session_timeout`) keep values from the file/env layer.
 - **Changed**: Configuration backup download filename timestamp uses **local** wall-clock time (browser when saving from web; server or desktop machine timezone for `Content-Disposition` / Electron save dialog) instead of UTC.
+- **Added**: `dev/RELEASE-NOTES-v1.2.1.md` with user-facing notes for the 1.2.1 GitHub release.
 
 ## 1.1.1 - 2026-04-01
 
