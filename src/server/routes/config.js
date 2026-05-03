@@ -6,6 +6,10 @@
 const fs = require("fs");
 const express = require("express");
 const { isServerGlobalKey, pickServerGlobalEntries } = require("../utils/webConfigKeys.js");
+const {
+  applyHistoryEnvToClientConfig,
+  isHistoryDisabledByEnv,
+} = require("../../shared/historyEnv.js");
 
 module.exports = function createConfigRouter(configFile, defaultConfigPath, appDb) {
   const router = express.Router();
@@ -43,7 +47,7 @@ module.exports = function createConfigRouter(configFile, defaultConfigPath, appD
         ...pickServerGlobalEntries(globalRead, isAdmin),
       };
       merged.web_session = "";
-      res.json(merged);
+      res.json(applyHistoryEnvToClientConfig(merged));
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -65,9 +69,14 @@ module.exports = function createConfigRouter(configFile, defaultConfigPath, appD
       const userPart = {};
       Object.keys(body).forEach((k) => {
         if (k === "web_session" || k === "web_session_expires_at") return;
+        if (k === "history_disabled_by_administrator") return;
         if (isServerGlobalKey(k)) serverPart[k] = body[k];
         else userPart[k] = body[k];
       });
+      if (isHistoryDisabledByEnv()) {
+        delete serverPart.keep_execution_history;
+        delete userPart.keep_execution_history;
+      }
 
       if (Object.keys(serverPart).length > 0 && auth.role !== "admin") {
         return res.status(403).json({ error: "Admin access required" });

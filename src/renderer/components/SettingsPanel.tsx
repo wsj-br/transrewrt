@@ -93,6 +93,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const hasRestoredTabRef = useRef(false); // in web mode, later context updates can overwrite; only restore tab once per mount
   const [costTabActivationCount, setCostTabActivationCount] = useState(0);
   const tabStripRef = useRef(null);
+  const tabButtonRefs = useRef(new Map());
   const [tabScroll, setTabScroll] = useState({
     hasOverflow: false,
     canScrollLeft: false,
@@ -160,6 +161,22 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       el.removeEventListener("scroll", updateTabScrollState);
     };
   }, [updateTabScrollState, activeTab]);
+
+  /** Wide layout: keep the active tab pill fully visible inside the horizontal strip. */
+  useEffect(() => {
+    if (isBelowMd || activeTab == null) return;
+    const btn = tabButtonRefs.current.get(activeTab);
+    const strip = tabStripRef.current;
+    if (!btn || !strip) return;
+    const id = requestAnimationFrame(() => {
+      btn.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [activeTab, isBelowMd, settingsTabs]);
 
   const scrollTabs = useCallback((direction) => {
     const el = tabStripRef.current;
@@ -499,6 +516,10 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
                 {settingsTabs.map(({ id, icon, label, testId }) => (
                   <button
                     key={id}
+                    ref={(el) => {
+                      if (el) tabButtonRefs.current.set(id, el);
+                      else tabButtonRefs.current.delete(id);
+                    }}
                     type="button"
                     role="tab"
                     aria-selected={activeTab === id}

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:30.224Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:39:49.174Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ko
 source_file_path: README.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 언어 간 번역, 다양한 스타일로 재작성 및 사용자 정의 프롬프트로 변환 - 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
 
-- **번역** - 수십 개의 언어 간 번역 및 원본 언어 자동 감지
-- **다시 작성** - 문법 수정, 명확성 향상, 격식/비격식 조정, 축약, 확장, 기술적 표현 변환
-- **변환** - 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
-- **기록** - 입력/출력 텍스트를 포함한 전체 실행 기록, 필터링 및 내보내기 기능 제공
+- 번역** - 수십 개 언어 간 자동 소스 감지
+- **다시 작성** - 문법 수정, 명확성 향상, 형식적/비형식적, 축약, 확장, 기술적
+- **변환** - 맞춤형 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어
+- **기록** - 입력/출력 텍스트, 필터링 및 내보내기가 포함된 전체 실행 기록
 - **모델 및 비용** - 설정된 제공업체 중에서 모델 선택 가능; 로그, 모델/작업/일별 요약을 포함한 비용 및 사용량 대시보드
 - **UI** - 다국어 인터페이스(30개 이상 언어, RTL 지원), 폰트 등
 - **웹 모드** - 관리자 역할이 있는 다중 사용자 지원
 - **데스크탑** - Windows 및 Linux용 Electron 앱
 - **자체 호스팅** - amd64 및 arm64용 Docker 이미지 (라즈베리 파이 지원)
 
-설치 후 모든 기능에 대한 전체 안내는 **[사용자 가이드](USER-GUIDE.ko.md)** 를 참조하세요.
+설치 후 모든 기능에 대한 자세한 설명은 [**사용자 안내서**](USER-GUIDE.ko.md)를 참조하세요.
 
 <small>**다른 언어로 읽기:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -126,7 +127,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 또는 Docker Compose를 사용하세요:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -246,7 +247,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-앱이 실행되면, **[사용자 가이드](USER-GUIDE.ko.md)** 를 참고하여 텍스트 번역, 재작성, 변환, 프롬프트 관리 및 모델 설정 방법을 알아보세요.
+앱이 실행되면 [**사용자 안내서**](USER-GUIDE.ko.md)를 참고하여 텍스트 번역, 다시 작성, 변환 방법 및 프롬프트 관리, 모델 구성 방법을 알아보세요.
 
 <br/><br/>
 
@@ -292,6 +293,7 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 | `PORT`               | 서버 리스닝 포트 (기본값: `5000`)                                  |
 | `CONFIG_PATH`        | 구성 파일의 경로 (기본값: `/app/data/config.json`)                |
 | `TZ`                 | 서버 측 시간대 (로그 등, 기본값: `Europe/London`) |
+| `HISTORY_DISABLED`   | 실행 기록을 강제로 끄기 (옵션, 기본값은 `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API 키                                                           |
 | `OPENAI_API_KEY`     | OpenAI API 키                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API 키                                                             |
@@ -302,6 +304,8 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 | `MISTRAL_API_KEY`    | Mistral API 키                                                              |
 | `OLLAMA_URL`         | Ollama 기본 URL (예: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API 키                                                                  |
+
+**개인정보 보호 모드:** `config.json` 또는 사용자별 설정과 관계없이 기록 추적을 강제로 끄려면, **웹/Docker 서버 프로세스** 및/또는 **Electron 데스크탑 메인 프로세스**에서 `HISTORY_DISABLED`을 `true` 또는 `1`(대소문자 구분 없음)로 설정하십시오(예: 시스템 또는 런처 환경 — 렌더러만이 아님). 이 설정은 입력/출력 기록 저장을 비활성화하고, **설정 → 일반 설정 → 기록**을 잠급니다. 또한 기록 관련 API를 차단합니다.
 
 사용하는 제공자만 구성하세요. 모델 ID는 네임스페이스가 지정되어 있습니다 (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, 등).
 
@@ -333,8 +337,8 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 <a id="development-and-architecture"></a>
 ## 개발 및 아키텍처
 
-- **개발:** 설정, 빌드, 테스트 및 배포(Electron, Web, Docker) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** 참조.
-- **아키텍처 및 시스템 개요:** 폴더 구조, 기술 스택, 설계 결정 - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** 참조.
+- **개발:** 설정, 빌드, 테스트 및 배포(Electron, Web, Docker) - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) 참조
+- **아키텍처 및 시스템 개요:** 폴더 구조, 기술 스택, 설계 결정 사항 - [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) 참조
 
 <br/><br/>
 

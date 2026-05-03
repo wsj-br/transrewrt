@@ -13,7 +13,7 @@
 
 AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- **Translate** - between dozens of languages, with automatic source detection
+- Translate** - between dozens of languages, with automatic source detection
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export
@@ -23,14 +23,14 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Desktop** - Electron app for Windows and Linux
 - **Self-hosted** - Docker image for amd64 & arm64 (Raspberry Pi-ready)
 
-Once installed, see the **[User Guide](USER-GUIDE.md)** for a full walkthrough of all features.
+Once installed, see the [**User Guide**](USER-GUIDE.md) for a full walkthrough of all features.
 
 <small>**Read in other languages:** </small>
 <small id="lang-list">[English (GB)](./README.md) · [Português (Brasil)](./translated-docs/README.pt-BR.md) · [العربية](./translated-docs/README.ar.md) · [বাংলা](./translated-docs/README.bn.md) · [Català](./translated-docs/README.ca.md) · [中文 (中国大陆)](./translated-docs/README.zh-CN.md) · [中文 (台灣)](./translated-docs/README.zh-TW.md) · [Hrvatski](./translated-docs/README.hr.md) · [Čeština](./translated-docs/README.cs.md) · [Nederlands](./translated-docs/README.nl.md) · [English (US)](./translated-docs/README.en-US.md) · [Tagalog](./translated-docs/README.tl.md) · [Français](./translated-docs/README.fr.md) · [Deutsch](./translated-docs/README.de.md) · [Ελληνικά](./translated-docs/README.el.md) · [हिन्दी](./translated-docs/README.hi.md) · [Magyar](./translated-docs/README.hu.md) · [Italiano](./translated-docs/README.it.md) · [日本語](./translated-docs/README.ja.md) · [한국어](./translated-docs/README.ko.md) · [Bahasa Melayu](./translated-docs/README.ms.md) · [فارسی](./translated-docs/README.fa.md) · [Polski](./translated-docs/README.pl.md) · [Basa Jawa](./translated-docs/README.jv.md) · [Português](./translated-docs/README.pt.md) · [ਪੰਜਾਬੀ](./translated-docs/README.pa.md) · [Română](./translated-docs/README.ro.md) · [Русский](./translated-docs/README.ru.md) · [Slovenčina](./translated-docs/README.sk.md) · [Español](./translated-docs/README.es.md) · [Kiswahili](./translated-docs/README.sw.md) · [Svenska](./translated-docs/README.sv.md) · [తెలుగు](./translated-docs/README.te.md) · [ไทย](./translated-docs/README.th.md) · [Türkçe](./translated-docs/README.tr.md) · [Українська](./translated-docs/README.uk.md) · [Tiếng Việt](./translated-docs/README.vi.md)</small>
 
 <small>
 
-> **Note on UI and documentation translations:** All interface languages except the original English (UK) 
+> **Note on UI and documentation translations:** All interface languages except the original English (UK)
 > were translated using AI models; the wording may be imprecise or contain errors.
 
 </small>
@@ -119,7 +119,7 @@ Set at least one provider key via environment (for example `OPENROUTER_API_KEY` 
 
 Or use Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -133,7 +133,6 @@ See [Configuration](#configuration-and-environment) for all environment variable
 </details>
 
 <br/>
-
 
 <details>
 <summary><b>Server timezone (Docker)</b></summary>
@@ -185,8 +184,8 @@ A list of valid timezone names is maintained in the [tz database](https://en.wik
 
 > ℹ️ **NOTE**<br/>
 > Windows may show one of these security warnings (normal for unsigned/indie apps):
->   - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
->   - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
+> - **User Account Control (UAC)**: "Do you want to allow this app from an unknown publisher to make changes to your device?" → Click **Yes**.
+> - **Microsoft Defender SmartScreen**: "Windows protected your PC" → Click **More info** → **Run anyway**.
 >
 > This happens because the app isn't signed by Microsoft or a major publisher-it's safe if downloaded from our official GitHub releases (verify checksums on the [Releases](https://github.com/wsj-br/transrewrt/releases) page alongside each asset).
 
@@ -241,7 +240,7 @@ replace `libasound2t64` with `libasound2` for `arm64`.  Minimal or custom instal
 <br/>
 
 
-Once the app is running, see the **[User Guide](USER-GUIDE.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+Once the app is running, see the [**User Guide**](USER-GUIDE.md) to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
 <br/><br/>
 
@@ -289,6 +288,7 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `PORT`               | Server listening port  (defaults to `5000`)                                  |
 | `CONFIG_PATH`        | Path to the config file (defaults to `/app/data/config.json`)                |
 | `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `HISTORY_DISABLED`   | Force execution history off (optional, defaults to `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
 | `OPENAI_API_KEY`     | OpenAI API key                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
@@ -299,6 +299,8 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+
+**Privacy mode:** To force the track of history off regardless of `config.json` or per-user preferences, set `HISTORY_DISABLED` to `true` or `1` (case-insensitive) for the **web/Docker server process** and/or the **Electron desktop main process** (e.g. system or launcher environment — not the renderer alone). This disables storing input/output history, locks **Settings → General Settings → History**, and blocks History-related APIs.
 
 Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -330,8 +332,8 @@ Key settings (font, models, languages, etc.) are available in the application Se
 <a id="development-and-architecture"></a>
 ## Development and architecture
 
-- **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](dev/DEVELOPMENT.md)**.
-- **Architecture and system overview:** Folder structure, tech stack, design decisions - see **[dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md)**.
+- **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see [dev/DEVELOPMENT.md](dev/DEVELOPMENT.md).
+- **Architecture and system overview:** Folder structure, tech stack, design decisions - see [dev/SYSTEM-OVERVIEW.md](dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

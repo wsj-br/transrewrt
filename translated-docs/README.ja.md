@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-01T21:25:29.799Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:39:09.344Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ja
 source_file_path: README.md
 translation_models:
@@ -22,17 +22,17 @@ translation_models:
 
 AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、およびローカルOllama）を使用して、言語間の翻訳、スタイルの書き直し、カスタムプロンプトによる変換が可能。デスクトップアプリ（Electron）またはセルフホスト型Webアプリ（Docker）として動作。
 
-- **翻訳** - 数十の言語間で翻訳可能。ソース言語は自動検出
-- **書き換え** - 文法の修正、明確化、フォーマル／カジュアルへの変更、短縮、展開、技術文書化など
-- **変換** - カスタムAIプロンプト。プロンプトの作成と管理が可能。プロンプトごとに任意のターゲット言語を指定可能
-- **履歴** - 入出力テキストを含む完全な実行履歴。フィルタリングおよびエクスポート機能付き
+- 翻訳** - 自動ソース検出を伴う多数の言語間で
+- **書き換え** - 文法を修正し、明確さを向上させ、形式的/非形式的に、短縮、拡張、技術的に
+- **変換** - カスタムAIプロンプト; プロンプトを作成および管理し、プロンプトごとにオプションのターゲット言語
+- **履歴** - 入力/出力テキスト、フィルタリング、およびエクスポートを含む完全な実行履歴
 - **モデルとコスト** - 設定済みプロバイダーから任意のモデルを選択可能。ログおよびモデル／操作／日付ごとの要約付きのコスト・使用量ダッシュボード
 - **UI** - 多言語インターフェイス（30言語以上対応、RTL対応）、フォントなど
 - **Webモード** - 管理者ロール付きの複数ユーザー対応
 - **デスクトップ版** - WindowsおよびLinux向けElectronアプリ
 - **セルフホスティング** - amd64およびarm64（Raspberry Pi対応）用Dockerイメージ
 
-インストール後は、すべての機能の詳細な操作方法について、**[ユーザーガイド](USER-GUIDE.ja.md)** を参照してください。
+インストール後は、すべての機能の詳細な説明について、[**ユーザーガイド**](USER-GUIDE.ja.md)を参照してください。
 
 <small>**他の言語で読む：** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +127,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 またはDocker Composeを使用します。
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +247,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-アプリが起動したら、**[ユーザーガイド](USER-GUIDE.ja.md)** を参照して、テキストの翻訳、書き直し、変換、プロンプトの管理、モデルの設定方法を学んでください。
+アプリが起動したら、[**ユーザーガイド**](USER-GUIDE.ja.md)を参照して、テキストの翻訳、書き換え、変換の方法、プロンプトの管理、モデルの設定方法を確認してください。
 
 <br/><br/>
 
@@ -293,6 +293,7 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 | `PORT`               | サーバーのリスンポート（デフォルトは `5000`）                                  |
 | `CONFIG_PATH`        | 設定ファイルのパス（デフォルトは `/app/data/config.json`）                |
 | `TZ`                 | サーバー側のタイムゾーン（ログなど用。デフォルトは `Europe/London`） |
+| `HISTORY_DISABLED`   | 履歴の実行をオフに強制（オプション、デフォルトは `false`）                  |
 | `OPENROUTER_API_KEY` | OpenRouter APIキー                                                           |
 | `OPENAI_API_KEY`     | OpenAI APIキー                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras APIキー                                                             |
@@ -303,6 +304,8 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 | `MISTRAL_API_KEY`    | Mistral APIキー                                                              |
 | `OLLAMA_URL`         | OllamaのベースURL（例: `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API キー                                                                  |
+
+**プライバシーモード：** `config.json` やユーザーごとの設定に関係なく、履歴の記録を強制的にオフにするには、**web/Dockerサーバープロセス** および／または **Electronデスクトップメインプロセス** に対して `HISTORY_DISABLED` を `true` または `1`（大文字小文字を区別しない）に設定します（例：システムまたはランチャの環境 — レンダラープロセス単体ではなく）。これにより、入力／出力履歴の保存が無効になり、**設定 → 一般設定 → 履歴** がロックされ、履歴関連のAPIがブロックされます。
 
 使用するプロバイダーのみを設定してください。モデルIDは名前空間付きです（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`など）。
 
@@ -334,8 +337,8 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 <a id="development-and-architecture"></a>
 ## 開発およびアーキテクチャ
 
-- **開発：** セットアップ、ビルド、テスト、デプロイ（Electron、Web、Docker） - 詳細は **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** を参照してください。
-- **アーキテクチャおよびシステム概要：** フォルダ構造、技術スタック、設計の意思決定 - 詳細は **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** を参照してください。
+- **開発:** セットアップ、ビルド、テスト、デプロイ（Electron、Web、Docker）- 詳細は [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) を参照。
+- **アーキテクチャとシステム概要:** フォルダ構造、技術スタック、設計上の意思決定 - 詳細は [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) を参照。
 
 <br/><br/>
 

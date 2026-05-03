@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:30.570Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:40:00.982Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ms
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,9 +22,9 @@ translation_models:
 
 Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihos sendiri (Docker).
 
-- **Terjemah** - antara puluhan bahasa, dengan pengesanan sumber automatik
-- **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, pendekkan, kembangkan, teknikal
-- **Transformasi** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
+- Terjemahkan** - antara puluhan bahasa, dengan pengesanan sumber automatik
+- **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, ringkaskan, kembangkan, teknikal
+- **Transformasikan** - arahan AI khusus; cipta dan urus arahan, pilihan bahasa sasaran setiap arahan
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
 - **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasikan; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
 - **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
@@ -31,7 +32,7 @@ Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza,
 - **Desktop** - aplikasi Electron untuk Windows dan Linux
 - **Swasta hos** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
-Selepas pemasangan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk penerangan lengkap semua ciri.
+Selepas dipasang, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk penerangan lengkap semua ciri.
 
 <small>**Baca dalam bahasa lain:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Tetapkan sekurang-kurangnya satu kunci penyedia melalui persekitaran (contohnya 
 
 Atau gunakan Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ gantikan `libasound2t64` dengan `libasound2` untuk `arm64`. Pemasangan minimum a
 
 <br/>
 
-Setelah aplikasi berjalan, rujuk **[Panduan Pengguna](USER-GUIDE.ms.md)** untuk mengetahui cara menterjemah, menulis semula, dan mengubah teks, menguruskan prompt, serta mengkonfigurasi model.
+Setelah aplikasi berjalan, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk mempelajari cara menterjemahkan, menulis semula, dan mengubah teks, mengurus arahan, serta mengkonfigurasi model.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 | `PORT`               | Port pendengaran pelayan (lalai ke `5000`)                                  |
 | `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json`)                |
 | `TZ`                 | zon masa untuk masa sisi pelayan (log, dll.) (lalai ke `Europe/London`) |
+| `HISTORY_DISABLED`   | Paksa sejarah pelaksanaan dimatikan (pilihan, lalai kepada `false`)                  |
 | `OPENROUTER_API_KEY` | Kunci API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Kunci API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Kunci API Cerebras                                                             |
@@ -303,6 +305,8 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL asas Ollama (contoh: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kunci API xAI                                                                  |
+
+**Mod privasi:** Untuk memaksa pemecatan pengesanan sejarah tanpa mengira `config.json` atau keutamaan pengguna, tetapkan `HISTORY_DISABLED` kepada `true` atau `1` (tidak sensitif kepada huruf besar/kecil) untuk proses **pelayan web/Docker** dan/atau proses utama **Electron desktop** (contohnya persekitaran sistem atau pelancar — bukan hanya perender). Ini melumpuhkan penyimpanan sejarah input/output, mengunci **Tetapan → Tetapan Umum → Sejarah**, dan menyekat API berkaitan Sejarah.
 
 Konfigur hanya penyedia yang anda gunakan. ID model mempunyai namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dll.).
 
@@ -334,8 +338,8 @@ Tetapan utama (fon, model, bahasa, dll.) boleh didapati dalam Tetapan aplikasi.
 <a id="development-and-architecture"></a>
 ## Pembangunan dan seni bina
 
-- **Pembangunan:** Persediaan, bina, uji, dan sebarkan (Electron, Web, Docker) - lihat **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Seni bina dan gambaran sistem:** Struktur folder, susun atur teknologi, keputusan rekabentuk - lihat **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Pembangunan:** Persediaan, binaan, ujian, dan pemasangan (Electron, Web, Docker) - rujuk [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Gambaran sistem dan arkitektur:** Struktur folder, gudang teknologi, keputusan rekabentuk - rujuk [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

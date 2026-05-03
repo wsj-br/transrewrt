@@ -6,6 +6,10 @@ const path = require("path");
 const fs = require("fs");
 const { app, BrowserWindow } = require("electron");
 const { ENCRYPTED_CONFIG_KEYS } = require("../../shared/llm");
+const {
+  applyHistoryEnvToClientConfig,
+  isHistoryDisabledByEnv,
+} = require("../../shared/historyEnv");
 
 function configUnchanged(existing, value) {
   if (existing === value) return true;
@@ -70,11 +74,16 @@ function registerConfigIpc(ipcMain, ctx) {
         (f) => cache[f] && String(cache[f]).trim(),
       ) ||
       !!(cache.ollama_base_url && String(cache.ollama_base_url).trim());
-    return Promise.resolve({ ...sanitized, ...state });
+    return Promise.resolve(
+      applyHistoryEnvToClientConfig({ ...sanitized, ...state }),
+    );
   });
 
   ipcMain.handle("config:set", (_, key, value) => {
     if (key === undefined) return Promise.resolve(false);
+    if (key === "keep_execution_history" && isHistoryDisabledByEnv()) {
+      return Promise.resolve(true);
+    }
     const configCache = getConfigCache();
     const stateCache = getStateCache();
     if (isStateKey(key)) {
@@ -102,6 +111,7 @@ function registerConfigIpc(ipcMain, ctx) {
       if (isStateKey(k)) statePart[k] = newConfig[k];
       else configPart[k] = newConfig[k];
     });
+    if (isHistoryDisabledByEnv()) delete configPart.keep_execution_history;
     let configSaved = false;
     let stateSaved = false;
     const configCache = getConfigCache();

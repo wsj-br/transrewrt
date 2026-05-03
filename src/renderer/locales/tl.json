@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "I-copy nang awtomatiko ang resulta sa clipboard",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Pagsasalin sa real-time habang nagta-type (⚠️ Maaaring tumaas ang gastos sa paggamit)",
   "Timeout (ms):": "Timeout (ms):",
+  "disabled by the administrator": "hindi pinagana ng tagapangasiwa",
   "Keep execution history": "Panatilihin ang kasaysayan ng pagpapatakbo",
   "Delete history data": "Tanggalin ang data ng kasaysayan",
   "Configuration Backup": "Backup ng Configuration",

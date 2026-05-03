@@ -5,7 +5,7 @@
 
 Create a 164×314 px vertical installer banner image for a Windows application.
 
-**Provided assets (use exactly as-is, do not alter or recreate them):**
+Provided assets (use exactly as-is, do not alter or recreate them):**
 - [ATTACH: transrewrt_logo.png] - two overlapping speech bubbles: one green with a right arrow, one brown/orange with a checkmark
 - [ATTACH: transrewrt_name.png] - the word "Transrewrt" with "Trans" in green and "rewrt" in orange, on a black background
 
@@ -29,4 +29,4 @@ Create a 164×314 px vertical installer banner image for a Windows application.
 
 ⚠️ **NOTE:** Select "Create image" and attach the transrewrt_log.png and transrewrt_name.png to the prompt
 
-💾 **Generated file:** Gemini_Generated_Image_7va2lb7va2lb7va2.png scaled to 164x314 in GIMP using NoHalo interpolation, exporting to 24bits
+💾 **Generated file: Gemini_Generated_Image_7va2lb7va2lb7va2.png scaled to 164x314 in GIMP using NoHalo interpolation, exporting to 24bits

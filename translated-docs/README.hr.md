@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:24:51.046Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:34:43.111Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: hr
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 AI alat za obradu teksta: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija prilagođenim upitima – koristeći više AI davatelja (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao desktop aplikacija (Electron) ili samoposlužena web aplikacija (Docker).
 
-- **Prevođenje** – između desetak jezika, s automatskom detekcijom izvornog jezika
-- **Preuređivanje** – ispravljanje gramatike, poboljšanje jasnoće, formalno/neformalno, skraćivanje, proširivanje, tehnički sadržaj
-- **Transformacija** – prilagođeni AI upiti; stvaranje i upravljanje upitima, opcionalni ciljni jezik po upitu
-- **Povijest** – potpuna povijest izvršavanja s ulaznim/izlaznim tekstom, filtriranjem i izvozom
+- Prevedi** - između desetaka jezika, uz automatsko otkrivanje jezika Izvor
+- **Prepisi** - ispravi gramatiku, Poboljšaj jasnoću, formalno/neformalno, Skraćivanje, Proširivanje, tehnički stil
+- **Transformiraj** - prilagođeni AI upiti; Kreiraj i upravljaj upitima, opcionalni jezik Meta po upitu
+- **Povijest** - potpuna povijest izvršavanja s Ulaz/Izlazni tekst, filtriranjem i Izvozom
 - **Modeli i troškovi** – odabir modela iz bilo kojeg konfiguriranog davatelja; nadzorne ploče za troškove i korištenje s dnevnicima, sažecima po modelu/operaciji/danu
 - **Korisnički sučelje (UI)** – višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
 - **Web način rada** – podrška za više korisnika s administratorskim ulogama
 - **Radna površina** – Electron aplikacija za Windows i Linux
 - **Samostalno hostiranje** – Docker slika za amd64 i arm64 (spremna za Raspberry Pi)
 
-Nakon instalacije, pogledajte **[Vodič za korisnike](USER-GUIDE.hr.md)** za potpuni prikaz svih značajki.
+Nakon instalacije, pogledajte [**vodič za korisnike**](USER-GUIDE.hr.md) za potpuni pregled svih značajki.
 
 <small>**Pročitajte na drugim jezicima:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Postavite barem jedan ključ davatelja putem okoline (npr. `OPENROUTER_API_KEY` 
 
 Ili koristite Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ zamijenite `libasound2t64` s `libasound2` za `arm64`. Minimalne ili prilagođene
 
 <br/>
 
-Kada se aplikacija pokrene, pogledajte **[Korisnički vodič](USER-GUIDE.hr.md)** kako biste naučili kako prevesti, prepraviti i transformirati tekst, upravljati promptovima i konfigurirati modele.
+Kada aplikacija radi, pogledajte [**vodič za korisnike**](USER-GUIDE.hr.md) da biste naučili kako prevesti, prepisati i transformirati tekst, upravljati upitima i konfigurirati modele.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Također možete koristiti druge davatelje (OpenAI, Anthropic, Google Gemini, De
 | `PORT`               | Priključak na kojem sluša poslužitelj (zadano: `5000`)                                  |
 | `CONFIG_PATH`        | Put do konfiguracijske datoteke (zadano: `/app/data/config.json`)                |
 | `TZ`                 | vremenska zona za poslužiteljsko vrijeme (zapisivanje dnevnika itd.) (zadano: `Europe/London`) |
+| `HISTORY_DISABLED`   | Prisilno isključivanje povijesti izvođenja (neobavezno, zadano je `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API ključ                                                           |
 | `OPENAI_API_KEY`     | OpenAI API ključ                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API ključ                                                             |
@@ -303,6 +305,8 @@ Također možete koristiti druge davatelje (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral API ključ                                                              |
 | `OLLAMA_URL`         | Ollama osnovni URL (npr. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API ključ                                                                  |
+
+**Način privatnosti:** Da biste prisilno isključili praćenje povijesti bez obzira na `config.json` ili postavke pojedinačnih korisnika, postavite `HISTORY_DISABLED` na `true` ili `1` (neovisno o velikim/malim slovima) za **web/Docker poslužiteljski proces** i/ili **glavni proces Electron desktop aplikacije** (npr. sustav ili okruženje pokretača — ne samo renderer). To onemogućuje pohranjivanje povijesti ulaza/izlaza, zaključava **Postavke → Opće postavke → Povijest** i blokira API-je vezane uz Povijest.
 
 Konfigurirajte samo davatelje usluga koje koristite. ID-ovi modela su imenski prostori (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, itd.).
 
@@ -334,8 +338,8 @@ Postavke ključnih opcija (font, modeli, jezici, itd.) dostupne su u aplikaciji 
 <a id="development-and-architecture"></a>
 ## Razvoj i arhitektura
 
-- **Razvoj:** Postavljanje, izgradnja, testiranje i implementacija (Electron, Web, Docker) - pogledajte **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arhitektura i pregled sustava:** Struktura mapa, tehnološki stack, odluke o dizajnu - pogledajte **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Razvoj:** Postavljanje, izgradnja, testiranje i implementacija (Electron, Web, Docker) - pogledajte [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arhitektura i pregled sustava:** Struktura mapa, tehnološki stog, dizajnerska rješenja - pogledajte [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Salin otomatis asil menyang clipboard",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Terjemahan langsung nalika ngetik (⚠️ Iki bisa nambah biaya panggunaan)",
   "Timeout (ms):": "Batas wektu (ms):",
+  "disabled by the administrator": "dinonaktifake déning administrator",
   "Keep execution history": "Simpen riwayat eksekusi",
   "Delete history data": "Hapus data riwayat",
   "Configuration Backup": "Cadangan Konfigurasi",

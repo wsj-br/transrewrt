@@ -20,7 +20,7 @@ translation_models:
 
 Transrewrt vám pomáha pracovať s textom tromi hlavnými spôsobmi:
 
-- **Preložiť** - premeniť text z jedného jazyka do druhého.
+- Preložiť** - premeniť text z jedného jazyka do druhého.
 - **Prepísať** - prepísať text v inom štýle, napríklad zrozumiteľnejšie, stručnejšie alebo formálnejšie.
 - **Transformovať** - spracovať text pomocou vlastných pokynov pre umelú inteligenciu, ktoré sa nazývajú výzvy.
 
@@ -46,61 +46,61 @@ Táto príručka vysvetľuje, ako aplikáciu používať po jej inštalácii a s
 <br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- NEMENIŤ TÚTO ČASŤ, NAMIESTO TOHO ZNOVU SPUSTITE doctoc NA AKTUALIZÁCIU -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Obsah**
 
-- [Predtým ako začnete](#before-you-start)
-  - [Ako získať bezplatný kľúč OpenRouter API (desktopová aplikácia)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Začíname](#getting-started)
-- [Hlavné časti okna](#main-parts-of-the-window)
-  - [Bočný panel](#sidebar)
-  - [Panel nástrojov](#toolbar)
-  - [Panely pre vstup a výstup](#input-and-output-panels)
-- [Preložiť](#translate)
-  - [Preložiť text](#translate-text)
-  - [Výber jazyka](#language-selection)
-  - [Užitočné nastavenia prekladu](#helpful-translation-settings)
-- [Preformulovať](#rewrite)
-- [Transformovať](#transform)
-  - [Spustiť existujúci prompt](#run-an-existing-prompt)
-  - [Ak zatiaľ nemáte žiadne prompty](#if-you-have-no-prompts-yet)
-  - [Vytvoriť prompt rýchlo](#create-a-prompt-quickly)
-  - [Upraviť prompt](#edit-a-prompt)
-  - [Otestovať prompt pred použitím](#test-a-prompt-before-using-it)
-- [Nástenka](#dashboard)
-  - [Filtrovať údaje](#filter-the-data)
-  - [Záložky nástenky](#dashboard-tabs)
-  - [Exportovať údaje](#export-data)
-  - [Odstrániť uložené záznamy pre model](#delete-stored-records-for-a-model)
-- [História](#history)
-  - [Filtrovať údaje](#filter-the-data-1)
-  - [Exportovať údaje z histórie](#export-history-data)
-- [Nastavenia](#settings)
-  - [Všeobecné nastavenia](#general-settings)
-  - [Modely](#models)
-  - [Jazyky](#languages)
-  - [Sledovanie nákladov](#cost-tracking)
-  - [Transformačné prompty](#transform-prompts)
-  - [Používatelia](#users)
-  - [Konfigurácia API](#api-config)
-  - [O aplikácii](#about)
-- [Bežné problémy](#common-issues)
-  - [Aplikácia neprekladá, nepreformulováva ani netransformuje text](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Zoznam modelov je prázdny](#the-model-list-is-empty)
-  - [Výsledok je príliš pomalý alebo drahý](#the-result-is-too-slow-or-too-expensive)
-  - [Rozhranie je v nesprávnom jazyku](#the-interface-is-in-the-wrong-language)
-  - [Text je príliš malý alebo ťažko čitateľný](#the-text-is-too-small-or-hard-to-read)
-  - [Grafy na nástenke sú prázdne](#dashboard-charts-are-empty)
-  - [Náklady zobrazujú „nedostupné“ alebo sa zdajú byť nesprávne](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady nezodpovedajú mojmu účtu poskytovateľa](#total-cost-does-not-match-my-provider-bill)
-  - [Stránka História chýba v bočnom paneli](#the-history-page-is-missing-from-the-sidebar)
-  - [Webová aplikácia: neočakávane presmerovaná na prihlasovaciu stránku](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webový admin: zabudnuté alebo stratené heslo](#web-admin-forgot-or-lost-a-password)
-  - [Nástenka nezobrazuje údaje pre ostatných používateľov (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Zmenil som prompt a stratil som úpravy](#i-changed-a-prompt-and-lost-the-edits)
-- [Rýchle tipy](#quick-tips)
-- [Zrieknutie sa zodpovednosti](#disclaimer)
-- [Licencia](#license)
+- [Predtým, ako začnete](#predt%C3%BDm-ako-za%C4%8Dnete)
+  - [Ako získať bezplatný kľúč OpenRouter API (desktopová aplikácia)](#ako-z%C3%ADska%C5%A5-bezplatn%C3%BD-k%C4%BE%C3%BA%C4%8D-openrouter-api-desktopov%C3%A1-aplik%C3%A1cia)
+- [Začíname](#za%C4%8D%C3%ADname)
+- [Hlavné časti okna](#hlavn%C3%A9-%C4%8Dasti-okna)
+  - [Bočný panel](#bo%C4%8Dn%C3%BD-panel)
+  - [Panel nástrojov](#panel-n%C3%A1strojov)
+  - [Vstupné a výstupné panely](#vstupn%C3%A9-a-v%C3%BDstupn%C3%A9-panely)
+- [Preložiť](#prelo%C5%BEi%C5%A5)
+  - [Preklad textu](#preklad-textu)
+  - [Výber jazyka](#v%C3%BDber-jazyka)
+  - [Užitočné nastavenia prekladu](#u%C5%BEito%C4%8Dn%C3%A9-nastavenia-prekladu)
+- [Prepísať](#prep%C3%ADsa%C5%A5)
+- [Transformovať](#transformova%C5%A5)
+  - [Spustiť existujúcu výzvu](#spusti%C5%A5-existuj%C3%BAcu-v%C3%BDzvu)
+  - [Ak nemáte žiadne výzvy](#ak-nem%C3%A1te-%C5%BEiadne-v%C3%BDzvy)
+  - [Vytvoriť výzvu rýchlo](#vytvori%C5%A5-v%C3%BDzvu-r%C3%BDchlo)
+  - [Upraviť výzvu](#upravi%C5%A5-v%C3%BDzvu)
+  - [Testovať výzvu pred jej použitím](#testova%C5%A5-v%C3%BDzvu-pred-jej-pou%C5%BEit%C3%ADm)
+- [Nástenka](#n%C3%A1stenka)
+  - [Filtrovať údaje](#filtrova%C5%A5-%C3%BAdaje)
+  - [Karty nástenky](#karty-n%C3%A1stenky)
+  - [Export dát](#export-d%C3%A1t)
+  - [Odstrániť uložené záznamy pre model](#odstr%C3%A1ni%C5%A5-ulo%C5%BEen%C3%A9-z%C3%A1znamy-pre-model)
+- [História](#hist%C3%B3ria)
+  - [Filterovať údaje](#filterova%C5%A5-%C3%BAdaje)
+  - [Exportovať údaje histórie](#exportova%C5%A5-%C3%BAdaje-hist%C3%B3rie)
+- [Nastavenia](#nastavenia)
+  - [Hlavné nastavenia](#hlavn%C3%A9-nastavenia)
+  - [Modely](#modely)
+  - [Jazyky](#jazyky)
+  - [Sledovanie nákladov](#sledovanie-n%C3%A1kladov)
+  - [Výzvy transformácie](#v%C3%BDzvy-transform%C3%A1cie)
+  - [Používatelia](#pou%C5%BE%C3%ADvatelia)
+  - [Konfigurácia API](#konfigur%C3%A1cia-api)
+  - [O aplikácii](#o-aplik%C3%A1cii)
+- [Bežné problémy](#be%C5%BEn%C3%A9-probl%C3%A9my)
+  - [Aplikácia neprekladá, neprepisuje alebo netransformuje text](#aplik%C3%A1cia-nepreklad%C3%A1-neprepisuje-alebo-netransformuje-text)
+  - [Zoznam modelov je prázdny](#zoznam-modelov-je-pr%C3%A1zdny)
+  - [Výsledok je príliš pomalý alebo príliš drahý](#v%C3%BDsledok-je-pr%C3%ADli%C5%A1-pomal%C3%BD-alebo-pr%C3%ADli%C5%A1-drah%C3%BD)
+  - [Rozhranie je v nesprávnom jazyku](#rozhranie-je-v-nespr%C3%A1vnom-jazyku)
+  - [Text je príliš malý alebo ťažko čitateľný](#text-je-pr%C3%ADli%C5%A1-mal%C3%BD-alebo-%C5%A5a%C5%BEko-%C4%8Ditate%C4%BEn%C3%BD)
+  - [Grafy na nástenke sú prázdne](#grafy-na-n%C3%A1stenke-s%C3%BA-pr%C3%A1zdne)
+  - [Náklady zobrazujú „nedostupné“ alebo sa zdajú byť nesprávne](#n%C3%A1klady-zobrazuj%C3%BA-%E2%80%9Enedostupn%C3%A9-alebo-sa-zdaj%C3%BA-by%C5%A5-nespr%C3%A1vne)
+  - [Celkové náklady sa nezhodujú s účtom od poskytovateľa](#celkov%C3%A9-n%C3%A1klady-sa-nezhoduj%C3%BA-s-%C3%BA%C4%8Dtom-od-poskytovate%C4%BEa)
+  - [Stránka História chýba na bočnom paneli](#str%C3%A1nka-hist%C3%B3ria-ch%C3%BDba-na-bo%C4%8Dnom-paneli)
+  - [Webová aplikácia: neočakávane presmerovaná na prihlasovaciu stránku](#webov%C3%A1-aplik%C3%A1cia-neo%C4%8Dak%C3%A1vane-presmerovan%C3%A1-na-prihlasovaciu-str%C3%A1nku)
+  - [Webový správca: zabudnuté alebo stratené heslo](#webov%C3%BD-spr%C3%A1vca-zabudnut%C3%A9-alebo-straten%C3%A9-heslo)
+  - [Nástenka zobrazuje žiadne dáta pre ostatných používateľov (web)](#n%C3%A1stenka-zobrazuje-%C5%BEiadne-d%C3%A1ta-pre-ostatn%C3%BDch-pou%C5%BE%C3%ADvate%C4%BEov-web)
+  - [Zmenil som výzvu a stratil som úpravy](#zmenil-som-v%C3%BDzvu-a-stratil-som-%C3%BApravy)
+- [Rýchle tipy](#r%C3%BDchle-tipy)
+- [Zrieknutie sa zodpovednosti](#zrieknutie-sa-zodpovednosti)
+- [Licencia](#licencia)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -400,14 +400,14 @@ Ak je pre vás technický termín **Teplota** nový, predstavte si to takto:
 
 Môžete tiež použiť:
 
-- **`Generate prompt`** na vytvorenie nového konceptu z jednoduchého popisu
-- **`Improve prompt`** na vylepšenie existujúcej výzvy
-- **`Translate prompt`** na preloženie polí výzvy
+- `Generate prompt` na vytvorenie nového konceptu z jednoduchého popisu
+- `Improve prompt` na vylepšenie existujúcej výzvy
+- `Translate prompt` na preloženie polí výzvy
 
 <br/>
 
 > ⚠️ **UPOZORNENIE**<br/>
-> Kliknite na **`Save`**, predtým ako kliknete na **`Back to Run`**. Ak sa vrátite späť bez uloženia, vaše zmeny budú stratené.
+> Kliknite na `Save`, predtým ako kliknete na `Back to Run`. Ak sa vrátite späť bez uloženia, vaše zmeny budú stratené.
 
 <br/>
 
@@ -709,7 +709,7 @@ Podporovaní poskytovatelia sú: OpenRouter, OpenAI, Anthropic, Google Gemini, D
 
 **Webová aplikácia: iba pre správcu**
 
-API kľúče sa konfigurujú prostredníctvom systémových alebo Docker premenných prostredia – nezadávajú sa vo webovom rozhraní. Táto stránka zobrazuje, pre ktorých poskytovateľov je kľúč nakonfigurovaný, a umožňuje vám každého otestovať kliknutím na tlačidlo **`Test`**.
+API kľúče sa konfigurujú prostredníctvom systémových alebo Docker premenných prostredia – nezadávajú sa vo webovom rozhraní. Táto stránka zobrazuje, pre ktorých poskytovateľov je kľúč nakonfigurovaný, a umožňuje vám každého otestovať kliknutím na tlačidlo `Test`.
 
 <br/>
 
@@ -734,12 +734,12 @@ Použite **Konfiguráciu API** na uloženie kľúčov API pre každého poskytov
 
 - Pridajte len poskytovateľov, ktorých potrebujete. V časti **Nastavenia** > **Modely** začína každé ID modelu názvom poskytovateľa (napríklad `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Ak chcete pridať API kľúč, zadajte hodnotu do textového poľa a kliknite na **`Save`**. Ak chcete nahradiť existujúci kľúč, kliknite na **`Edit`**. Ak chcete overiť, či kľúč funguje, kliknite na **`Test`**. Pre základné URL Ollamy vždy kliknite na **`Test`**, aby ste skontrolovali pripojenie.
+Ak chcete pridať API kľúč, zadajte hodnotu do textového poľa a kliknite na `Save`. Ak chcete nahradiť existujúci kľúč, kliknite na `Edit`. Ak chcete overiť, či kľúč funguje, kliknite na `Test`. Pre základné URL Ollamy vždy kliknite na `Test`, aby ste skontrolovali pripojenie.
 
 <br/>
 
 > ℹ️ **Poznámka**<br/>
-> Aktuálnu hodnotu API kľúča nemôžete vidieť. Môžete ho len nahradiť pomocou tlačidla **`Edit`**.
+> Aktuálnu hodnotu API kľúča nemôžete vidieť. Môžete ho len nahradiť pomocou tlačidla `Edit`.
 > API kľúče sú uložené zašifrované v konfigurácii.
 
 <br/>
@@ -911,7 +911,7 @@ Pri úprave výzvy vždy kliknite na **Uložiť**, predtým ako kliknete na **Sp
 - Použite [**Preformulovať**](#rewrite) na každodenné vylepšovanie slovného znenia.
 - Použite [**Transformovať**](#transform), keď potrebujete opakujúci sa pracovný postup pre konkrétnu úlohu.
 - Použite [**Nástenku**](#dashboard), ak chcete sledovať využitie a náklady.
-- Použite [**Históriu**](#history) na prehľad minulých operácií a ich úplného vstupného a výstupného textu.
+- Použite [**Históriu](#history) na prehľad minulých operácií a ich úplného vstupného a výstupného textu.
 - Pravidelne exportujte výzvy, ak vytvárate knižnicu výziev, ktorú chcete uchovať (pozri [Transformačné výzvy](#transform-prompts)) alebo ak ich chcete zdieľať s inými.
 
 <br/><br/>

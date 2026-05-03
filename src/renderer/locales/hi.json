@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "परिणाम को क्लिपबोर्ड पर स्वतः कॉपी करें",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "टाइप करते समय वास्तविक समय में अनुवाद (⚠️ इससे उपयोग लागत बढ़ सकती है)",
   "Timeout (ms):": "समय समाप्ति (ms):",
+  "disabled by the administrator": "प्रशासक द्वारा अक्षम किया गया",
   "Keep execution history": "कार्यान्वयन इतिहास रखें",
   "Delete history data": "इतिहास डेटा हटाएं",
   "Configuration Backup": "कॉन्फ़िगरेशन बैकअप",

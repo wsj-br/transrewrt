@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "自动将结果复制到剪贴板",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "输入时实时翻译（⚠️ 这可能会增加使用成本）",
   "Timeout (ms):": "超时时间（毫秒）：",
+  "disabled by the administrator": "已被管理员禁用",
   "Keep execution history": "保留执行历史",
   "Delete history data": "删除历史数据",
   "Configuration Backup": "配置备份",

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:07.978Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:42:43.647Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: es
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes estilos y transforma con prompts personalizados, utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI y Ollama local). Funciona como aplicación de escritorio (Electron) o como aplicación web autohospedada (Docker).
 
-- **Traducir** - entre docenas de idiomas, con detección automática del idioma de origen
-- **Reescribir** - corregir gramática, mejorar claridad, estilo formal/informal, acortar, expandir, contenido técnico
-- **Transformar** - indicaciones personalizadas de IA; crear y gestionar indicaciones, idioma de destino opcional por indicación
-- **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
+- Traducir** - entre docenas de idiomas, con detección automática de origen
+- **Reescribir** - corregir gramática, mejorar claridad, formal/informal, acortar, ampliar, técnico
+- **Transformar** - prompts de IA personalizados; crear y administrar prompts, idioma de destino opcional por prompt
+- **Historial** - historial de ejecución completo con texto de entrada/salida, filtrado y exportación
 - **Modelos y coste** - elegir modelos de cualquier proveedor configurado; paneles de coste y uso con registros, resúmenes por modelo/operación/día
 - **Interfaz de usuario (UI)** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
 - **Modo web** - soporte multiusuario con roles de administrador
 - **Escritorio** - aplicación Electron para Windows y Linux
 - **Autohospedado** - imagen Docker para amd64 y arm64 (listo para Raspberry Pi)
 
-Una vez instalado, consulta la **[Guía del usuario](USER-GUIDE.es.md)** para una descripción completa de todas las funciones.
+Una vez instalado, consulte la [**Guía del usuario**](USER-GUIDE.es.md) para una descripción completa de todas las funciones.
 
 <small>**Leer en otros idiomas:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Establezca al menos una clave de proveedor mediante variables de entorno (por ej
 
 O use Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ reemplace `libasound2t64` con `libasound2` para `arm64`. Las instalaciones míni
 
 <br/>
 
-Una vez que la aplicación esté en ejecución, consulte la **[Guía del Usuario](USER-GUIDE.es.md)** para aprender cómo traducir, reescribir y transformar texto, gestionar indicaciones y configurar modelos.
+Una vez que la aplicación esté en funcionamiento, consulte la [**Guía del usuario**](USER-GUIDE.es.md) para aprender cómo traducir, reescribir y transformar texto, gestionar prompts y configurar modelos.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ También puede usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSee
 | `PORT`               | Puerto en el que escucha el servidor (valor predeterminado: `5000`)                                  |
 | `CONFIG_PATH`        | Ruta al archivo de configuración (valor predeterminado: `/app/data/config.json`)                |
 | `TZ`                 | zona horaria para la hora del servidor (registros, etc.) (valor predeterminado: `Europe/London`) |
+| `HISTORY_DISABLED`   | Forzar la desactivación del historial de ejecución (opcional, por defecto `false`)                  |
 | `OPENROUTER_API_KEY` | Clave API de OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Clave API de OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Clave API de Cerebras                                                             |
@@ -303,6 +305,8 @@ También puede usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSee
 | `MISTRAL_API_KEY`    | Clave API de Mistral                                                              |
 | `OLLAMA_URL`         | URL base de Ollama (por ejemplo, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Clave de API de xAI                                                                  |
+
+**Modo privacidad:** Para forzar la desactivación del historial independientemente de `config.json` o de las preferencias por usuario, establezca `HISTORY_DISABLED` en `true` o `1` (sin distinguir mayúsculas ni minúsculas) para el **proceso del servidor web/Docker** y/o el **proceso principal del escritorio Electron** (por ejemplo, entorno del sistema o del lanzador, no solo del renderizador). Esto desactiva el almacenamiento del historial de entrada/salida, bloquea **Configuración → Configuración general → Historial** e impide el uso de las API relacionadas con el Historial.
 
 Configure solo los proveedores que utilice. Los IDs de {{modelo}} están agrupados por espacio de nombres (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -334,8 +338,8 @@ La configuración de ajustes clave (fuente, modelos, idiomas, etc.) está dispon
 <a id="development-and-architecture"></a>
 ## Desarrollo y arquitectura
 
-- **Desarrollo:** Configuración, compilación, pruebas e implementación (Electron, Web, Docker) - véase **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arquitectura y visión general del sistema:** Estructura de carpetas, pila tecnológica, decisiones de diseño - véase **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Desarrollo:** Configuración, compilación, prueba e implementación (Electron, Web, Docker) - consulte [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arquitectura y visión general del sistema:** Estructura de carpetas, stack tecnológico, decisiones de diseño - consulte [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

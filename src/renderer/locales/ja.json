@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "結果を自動的にクリップボードにコピー",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "入力中にリアルタイムで翻訳（⚠️ 使用料金が高くなる可能性があります）",
   "Timeout (ms):": "タイムアウト (ms):",
+  "disabled by the administrator": "管理者によって無効にされています",
   "Keep execution history": "実行履歴を保持",
   "Delete history data": "履歴データを削除",
   "Configuration Backup": "設定のバックアップ",

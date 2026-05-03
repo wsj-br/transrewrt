@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:16.318Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:37:06.291Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: de
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,9 +22,9 @@ translation_models:
 
 KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschiedenen Stilen und Transformation mit benutzerdefinierten Prompts – unter Verwendung mehrerer KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI und lokales Ollama). Läuft als Desktop-App (Electron) oder als selbstgehostete Web-App (Docker).
 
-- **Übersetzen** – zwischen Dutzenden von Sprachen, mit automatischer Erkennung der Ausgangssprache
-- **Umformulieren** – Grammatik korrigieren, Klarheit verbessern, formell/informell, kürzen, erweitern, technisch anpassen
-- **Transformieren** – benutzerdefinierte KI-Aufforderungen; Erstellen und Verwalten von Aufforderungen, optionale Zielsprache pro Aufforderung
+- Übersetzen** – zwischen Dutzenden von Sprachen mit automatischer Quellerkennung
+- **Umschreiben** – Grammatik korrigieren, Klarheit verbessern, formal/informell, verkürzen, erweitern, technisch
+- **Umwandeln** – benutzerdefinierte KI-Prompts; Prompts erstellen und verwalten, optionale Zielsprache pro Prompt
 - **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
 - **Modelle & Kosten** – Auswahl von Modellen von jedem konfigurierten Anbieter; Kosten- und Nutzungsübersichten mit Protokoll, Zusammenfassungen nach Modell/Operation/Tag
 - **Benutzeroberfläche (UI)** – mehrsprachige Oberfläche (30+ Sprachen, Unterstützung für rechts-nach-links-Schrift), Schriftarten, ...
@@ -31,7 +32,7 @@ KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschi
 - **Desktop** – Electron-App für Windows und Linux
 - **Selbstgehostet** – Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
 
-Nach der Installation finden Sie im **[Benutzerhandbuch](USER-GUIDE.de.md)** eine vollständige Anleitung zu allen Funktionen.
+Nach der Installation finden Sie im [**Benutzerhandbuch**](USER-GUIDE.de.md) eine vollständige Übersicht über alle Funktionen.
 
 <small>**In anderen Sprachen lesen:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Legen Sie mindestens einen Anbieterschlüssel über Umgebungsvariablen fest (z.�
 
 Oder verwenden Sie Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ ersetzen Sie `libasound2t64` durch `libasound2` für `arm64`. Minimal- oder benu
 
 <br/>
 
-Sobald die App läuft, lesen Sie den **[Benutzerhandbuch](USER-GUIDE.de.md)**, um zu erfahren, wie Sie Text übersetzen, umschreiben und transformieren, Eingabeaufforderungen verwalten und Modelle konfigurieren.
+Sobald die App läuft, sehen Sie im [**Benutzerhandbuch**](USER-GUIDE.de.md) nach, um zu erfahren, wie Sie Text übersetzen, umschreiben und umwandeln, Eingabeaufforderungen verwalten und Modelle konfigurieren.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Sie können auch andere Anbieter verwenden (OpenAI, Anthropic, Google Gemini, De
 | `PORT`               | Server-Port (Standard: `5000`)                                  |
 | `CONFIG_PATH`        | Pfad zur Konfigurationsdatei (Standard ist `/app/data/config.json`)                |
 | `TZ`                 | Zeitzoneneinstellung für serverseitige Zeit (Protokollierung usw.) (Standard: `Europe/London`) |
+| `HISTORY_DISABLED`   | Protokollierung der Ausführungsverläufe deaktivieren (optional, Standard ist `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter-API-Schlüssel                                                           |
 | `OPENAI_API_KEY`     | OpenAI-API-Schlüssel                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras-API-Schlüssel                                                             |
@@ -303,6 +305,8 @@ Sie können auch andere Anbieter verwenden (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral-API-Schlüssel                                                              |
 | `OLLAMA_URL`         | Ollama-Basis-URL (z. B. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI-API-Schlüssel                                                                  |
+
+**Datenschutzmodus:** Um die Verlaufsprotokollierung unabhängig von `config.json` oder benutzerspezifischen Einstellungen zu deaktivieren, setzen Sie `HISTORY_DISABLED` auf `true` oder `1` (Groß-/Kleinschreibung wird nicht beachtet) für den **Web-/Docker-Server-Prozess** und/oder den **Electron-Desktop-Hauptprozess** (z. B. System- oder Starter-Umgebung — nicht nur den Renderer). Dadurch wird das Speichern von Ein- und Ausgabe-Verläufen deaktiviert, **Einstellungen → Allgemeine Einstellungen → Verlauf** gesperrt und Verlauf-bezogene APIs blockiert.
 
 Konfigurieren Sie nur die Anbieter, die Sie verwenden. Modell-IDs sind namensbasiert (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -334,8 +338,8 @@ Wichtige Einstellungen (Schriftart, Modelle, Sprachen, etc.) sind in den Anwendu
 <a id="development-and-architecture"></a>
 ## Entwicklung und Architektur
 
-- **Entwicklung:** Einrichtung, Build, Test und Bereitstellung (Electron, Web, Docker) – siehe **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektur und Systemübersicht:** Verzeichnisstruktur, verwendete Technologien, Designentscheidungen – siehe **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Entwicklung:** Einrichtung, Build, Test und Bereitstellung (Electron, Web, Docker) – siehe [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architektur und Systemübersicht:** Ordnerstruktur, Technologiestapel, Designentscheidungen – siehe [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

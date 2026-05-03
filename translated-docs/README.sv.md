@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:08.671Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:45:28.497Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: sv
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller självvärd webbapp (Docker).
 
-- **Översätt** – mellan dussintals språk, med automatisk källspråksidentifiering
-- **Skriv om** – korrigerar grammatik, förbättrar klarhet, formellt/obligatoriskt språk, förkorta, utöka, tekniskt
-- **Transformera** – anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
-- **Historik** – fullständig körningshistorik med indata/utdata-text, filtrering och export
+- Översätt** - mellan dussintals språk, med automatisk källdetektering
+- **Omskriv** - åtgärda grammatik, förbättra tydligheten, formell/informell, förkorta, utöka, teknisk
+- **Transformera** - anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
+- **Historik** - fullständig exekveringshistorik med indata/utdata-text, filtrering och export
 - **Modeller och kostnad** – välj modeller från valfri konfigurerad leverantör; kostnads- och användningsinstrumentpaneler med loggar, sammanfattningar per modell/åtgärd/dag
 - **Användargränssnitt** – flerspråkigt gränssnitt (30+ språk, stöd för RTL), teckensnitt, ...
 - **Webbläge** – stöd för flera användare med administratörsroller
 - **Skrivbord** – Electron-app för Windows och Linux
 - **Självvärdbaserad** – Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
 
-När det är installerat, se **[Användarhandbok](USER-GUIDE.sv.md)** för en fullständig genomgång av alla funktioner.
+När installationen är klar, se [**användarhandboken**](USER-GUIDE.sv.md) för en fullständig genomgång av alla funktioner.
 
 <small>**Läs på andra språk:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Ange minst en leverantörsnyckel via miljövariabler (till exempel `OPENROUTER_A
 
 Eller använd Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ ersätt `libasound2t64` med `libasound2` för `arm64`. Minimala eller anpassade 
 
 <br/>
 
-När appen körs kan du läsa **[Användarhandbok](USER-GUIDE.sv.md)** för att lära dig hur du översätter, omskriver och omvandlar text, hanterar prompts och konfigurerar modeller.
+När appen körs, se [**användarhandboken**](USER-GUIDE.sv.md) för att lära dig hur du översätter, omskriver och transformerar text, hanterar prompts och konfigurerar modeller.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, De
 | `PORT`               | Serverns lyssningsport (förvalt värde `5000`)                                  |
 | `CONFIG_PATH`        | Sökväg till konfigurationsfilen (förvalt värde: `/app/data/config.json`)                |
 | `TZ`                 | tidszon för serversidig tid (loggning, etc.) (förvalt värde `Europe/London`) |
+| `HISTORY_DISABLED`   | Tvinga av historikspårning (valfritt, som standard är `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API-nyckel                                                           |
 | `OPENAI_API_KEY`     | OpenAI API-nyckel                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API-nyckel                                                             |
@@ -303,6 +305,8 @@ Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral API-nyckel                                                              |
 | `OLLAMA_URL`         | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-nyckel                                                                  |
+
+**Integritetsläge:** För att tvinga av historikspårning oavsett `config.json` eller användarinställningar, sätt `HISTORY_DISABLED` till `true` eller `1` (ej skiftlägeskänsligt) för **webb-/Docker-serverprocessen** och/eller **Electron-skrivbordsappens huvudprocess** (t.ex. system- eller startmiljö – inte endast renderingsprocessen). Detta inaktiverar lagring av inmatnings-/utmatningshistorik, låser **Inställningar → Allmänna inställningar → Historik** och blockerar API:er relaterade till Historik.
 
 Konfigurera endast de leverantörer du använder. Modell-ID:n är namnrymdsindelade (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -334,8 +338,8 @@ Nyckelinställningar (typsnitt, modeller, språk, etc.) finns tillgängliga i ap
 <a id="development-and-architecture"></a>
 ## Utveckling och arkitektur
 
-- **Utveckling:** Konfiguration, bygge, test och distribution (Electron, Webb, Docker) – se **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arkitektur och systemöversikt:** Mappstruktur, teknikstack, designbeslut – se **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Utveckling:** Konfiguration, bygg, testa och distribuera (Electron, Web, Docker) – se [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arkitektur och systemöversikt:** Mappstruktur, teknikstack, designbeslut – se [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

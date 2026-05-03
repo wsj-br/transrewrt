@@ -21,7 +21,7 @@ translation_models:
 
 Transrewrt unasaidia kufanya kazi na maandishi kwa njia tatu kuu:
 
-- **Tafsiri** - badilisha maandishi kutoka lugha moja hadi nyingine.
+- Tafsiri** - badilisha maandishi kutoka lugha moja hadi nyingine.
 - **Andika upya** - fomu upya maandishi kwa mtindo tofauti, kama vile wazi zaidi, fupi zaidi, au rasmi zaidi.
 - **Badilisha** - usimamize maandishi kwa maelekezo maalum ya AI inayoitwa manukuu.
 
@@ -50,58 +50,58 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuanza kufa
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Orodha ya Mada**
 
-- [Kabla ya kuanza](#before-you-start)
-  - [Jinsi ya kupata ufunguo wa API wa OpenRouter bila malipo (programu ya kompyuta)](#how-to-get-a-free-openrouter-api-key-desktop-app)
-- [Kuanza kazi](#getting-started)
-- [Sehemu kuu za dirisha](#main-parts-of-the-window)
-  - [Upau wa kando](#sidebar)
-  - [Barua za zana](#toolbar)
-  - [Sehemu za kuingiza na kutolewa](#input-and-output-panels)
-- [Tafsiri](#translate)
-  - [Tafsiri maandishi](#translate-text)
-  - [Uchaguzi wa lugha](#language-selection)
-  - [Mipangilio muhimu ya tafsiri](#helpful-translation-settings)
-- [Andika upya](#rewrite)
-- [Badilisha](#transform)
-  - [Imbazamo wasifu uliopo](#run-an-existing-prompt)
-  - [Ikiwa bado huna wasifu](#if-you-have-no-prompts-yet)
-  - [Unda wasifu haraka](#create-a-prompt-quickly)
-  - [Hariri wasifu](#edit-a-prompt)
-  - [Jaribu wasifu kabla ya kutumia](#test-a-prompt-before-using-it)
-- [Dashibodi](#dashboard)
-  - [Chuja data](#filter-the-data)
-  - [Vidodi vya dashibodi](#dashboard-tabs)
-  - [Pakua data](#export-data)
-  - [Futa rekodi zilizohifadhiwa kwa ajili ya mfumo](#delete-stored-records-for-a-model)
-- [Historia](#history)
-  - [Chuja data](#filter-the-data-1)
-  - [Pakua data ya historia](#export-history-data)
-- [Mipangilio](#settings)
-  - [Mipangilio ya jumla](#general-settings)
-  - [Mifumo](#models)
-  - [Lugha](#languages)
-  - [Kufuatilia gharama](#cost-tracking)
-  - [Wasifu wa ubadilishaji](#transform-prompts)
-  - [Watumiaji](#users)
-  - [Mipangilio ya API](#api-config)
-  - [Kuhusu](#about)
-- [Matatizo ya kawaida](#common-issues)
-  - [Programu haiwezi kutafsiri, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Orodha ya mifumo ni tupu](#the-model-list-is-empty)
-  - [Matokeo ni ya polepole au ghali sana](#the-result-is-too-slow-or-too-expensive)
-  - [Kiolesura kiko kwa lugha mbaya](#the-interface-is-in-the-wrong-language)
-  - [Maandishi ni madogo mno au vigumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Matangazo ya dashibodi ni tupu](#dashboard-charts-are-empty)
-  - [Gharama inaonyesha "haiyapatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
-  - [Jumla ya gharama haifanani na bili yangu kutoka mtoa huduma](#total-cost-does-not-match-my-provider-bill)
-  - [Ukurasa wa Historia umepotea kwenye upau wa kando](#the-history-page-is-missing-from-the-sidebar)
-  - [Programu ya wavuti: umerejelewa ukurasa wa kuingia kwa usahihi](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Simu ya wavuti: umesahau au umepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
-  - [Dashibodi haionyeshi data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nimebadilisha wasifu na kusahau mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
-- [Vidokezo vya haraka](#quick-tips)
-- [Kanusho](#disclaimer)
-- [Leseni](#license)
+- [Kabla ya kuanza](#kabla-ya-kuanza)
+  - [Jinsi ya kupata bango la API ya OpenRouter bila malipo (programu ya kompyuta)](#jinsi-ya-kupata-bango-la-api-ya-openrouter-bila-malipo-programu-ya-kompyuta)
+- [Anza kazi](#anza-kazi)
+- [Sehemu kuu za dirisha](#sehemu-kuu-za-dirisha)
+  - [Upau wa Kando](#upau-wa-kando)
+  - [Barua za Zana](#barua-za-zana)
+  - [Sehemu za pembejeo na pato](#sehemu-za-pembejeo-na-pato)
+- [Tafsiri](#tafsiri)
+  - [Tafsiri maandishi](#tafsiri-maandishi)
+  - [Uchaguzi wa Lugha](#uchaguzi-wa-lugha)
+  - [Mipangilio muhimu ya tafsiri](#mipangilio-muhimu-ya-tafsiri)
+- [Andika upya](#andika-upya)
+- [Badilisha](#badilisha)
+  - [Endesha mandhari ya kuwepo](#endesha-mandhari-ya-kuwepo)
+  - [Ikiwa bado huna mandhari](#ikiwa-bado-huna-mandhari)
+  - [Tengeneza mandhari haraka](#tengeneza-mandhari-haraka)
+  - [Hariri mandhari](#hariri-mandhari)
+  - [Jaribu mandhari kabla ya kuiutilia](#jaribu-mandhari-kabla-ya-kuiutilia)
+- [Ubao](#ubao)
+  - [Chuja data](#chuja-data)
+  - [Vichupo vya ubao](#vichupo-vya-ubao)
+  - [Toa data](#toa-data)
+  - [Futa rekodi zilizohifadhiwa kwa ajili ya kifaa](#futa-rekodi-zilizohifadhiwa-kwa-ajili-ya-kifaa)
+- [Historia](#historia)
+  - [Chuja data](#chuja-data-1)
+  - [Toa data ya historia](#toa-data-ya-historia)
+- [Mipangilio](#mipangilio)
+  - [Mipangilio ya ujumla](#mipangilio-ya-ujumla)
+  - [Mifano](#mifano)
+  - [Lugha](#lugha)
+  - [Ufuatiliaji wa Gharama](#ufuatiliaji-wa-gharama)
+  - [Maagizo ya ubadilishaji](#maagizo-ya-ubadilishaji)
+  - [Watumiaji](#watumiaji)
+  - [Mipangilio ya API](#mipangilio-ya-api)
+  - [Kuhusu](#kuhusu)
+- [Matatizo ya kawaida](#matatizo-ya-kawaida)
+  - [Programu haiwezi kufanya tafsiri, kuandika upya, au kubadilisha maandishi](#programu-haiwezi-kufanya-tafsiri-kuandika-upya-au-kubadilisha-maandishi)
+  - [Orodha ya mifano ni tupu](#orodha-ya-mifano-ni-tupu)
+  - [Matokeo ni polepole sana au ya gharama kubwa](#matokeo-ni-polepole-sana-au-ya-gharama-kubwa)
+  - [Kionyesho kiko kwa lugha ya mbaya](#kionyesho-kiko-kwa-lugha-ya-mbaya)
+  - [Maandishi ni ndogo mno au vigumu kusoma](#maandishi-ni-ndogo-mno-au-vigumu-kusoma)
+  - [Michoro ya Ubao ni tupu](#michoro-ya-ubao-ni-tupu)
+  - [Gharama inaonyesha "haipatikani" au inaonekana kuwa na makosa](#gharama-inaonyesha-haipatikani-au-inaonekana-kuwa-na-makosa)
+  - [Gharama jumla hailingani na bili yangu ya mtoa huduma](#gharama-jumla-hailingani-na-bili-yangu-ya-mtoa-huduma)
+  - [Ukurasa wa Historia umekosekana kutoka kwenye upau wa upande](#ukurasa-wa-historia-umekosekana-kutoka-kwenye-upau-wa-upande)
+  - [Programu ya wavuti: umemwagwa karibu ukurasa wa kuingia kwa usalama](#programu-ya-wavuti-umemwagwa-karibu-ukurasa-wa-kuingia-kwa-usalama)
+  - [Msimamizi wa wavuti: umesahau au umepoteza nenosiri](#msimamizi-wa-wavuti-umesahau-au-umepoteza-nenosiri)
+  - [Ubao unawasilisha hakuna data kwa watumiaji wengine (web)](#ubao-unawasilisha-hakuna-data-kwa-watumiaji-wengine-web)
+  - [Nimabadilisha mandhari na kusahau mabadiliko](#nimabadilisha-mandhari-na-kusahau-mabadiliko)
+- [Vidokezo vya haraka](#vidokezo-vya-haraka)
+- [Kukopa dhima](#kukopa-dhima)
+- [Leseni](#leseni)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -401,14 +401,14 @@ Ikiwa istilahi ya kiufundi **Joto** ni mpya kwako, fikiria kama hivi:
 
 Unaweza pia kutumia:
 
-- **`Generate prompt`** kutengeneza rasimu mpya kutoka kwa maelezo rahisi
-- **`Improve prompt`** kuboresha mandhari yako ya sasa
-- **`Translate prompt`** kufanya tafsiri ya sehemu za mandhari
+- `Generate prompt` kutengeneza rasimu mpya kutoka kwa maelezo rahisi
+- `Improve prompt` kuboresha mandhari yako ya sasa
+- `Translate prompt` kufanya tafsiri ya sehemu za mandhari
 
 <br/>
 
 > ⚠️ **ONDOA**<br/>
-> Bonyeza **`Save`** kabla ya kubonyeza **`Back to Run`**. Ikiwa utarudi bila kuhifadhi, mabadiliko yako yatapotea.
+> Bonyeza `Save` kabla ya kubonyeza `Back to Run`. Ikiwa utarudi bila kuhifadhi, mabadiliko yako yatapotea.
 
 <br/>
 
@@ -710,7 +710,7 @@ Watoa huduma wanaoungwa mkono ni: OpenRouter, OpenAI, Anthropic, Google Gemini, 
 
 **Programu ya wavuti: msimamizi pekee**
 
-Mfunguo wa API unasanidiwa kupitia mfumo au mabadiliko ya mazingira ya Docker - hayataandikwa katika UI ya wavuti. Ukurasa huu unaonyesha ni watoa huduma gani wanafunguo zilizosanidiwa na unaruhusu kujaribu kila mmoja kwa kubofya kitufe cha **`Test`**.
+Mfunguo wa API unasanidiwa kupitia mfumo au mabadiliko ya mazingira ya Docker - hayataandikwa katika UI ya wavuti. Ukurasa huu unaonyesha ni watoa huduma gani wanafunguo zilizosanidiwa na unaruhusu kujaribu kila mmoja kwa kubofya kitufe cha `Test`.
 
 <br/>
 
@@ -735,12 +735,12 @@ Tumia **Mipangilio ya API** kuhifadhi funguo za API kwa kila mtoa huduma unayemt
 
 - Ongeza tu watoa huduma ambao unahitaji. Katika **Mipangilio** > **Mifano**, kitambulisho cha kila kifaa kinaanza na mtoa huduma (kwa mfano `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Ili uongeze ufunguo wa API, weka thamani katika kisanduku cha maandishi na bonyeza **`Save`**. Ili ubadilishe ufunguo uliopo, bonyeza **`Edit`**. Ili uthibitishie kuwa ufunguo unafanya kazi, bonyeza **`Test`**. Kwa URL ya msingi wa Ollama, bonyeza daima **`Test`** ili uangalie muunganisho.
+Ili uongeze ufunguo wa API, weka thamani katika kisanduku cha maandishi na bonyeza `Save`. Ili ubadilishe ufunguo uliopo, bonyeza `Edit`. Ili uthibitishie kuwa ufunguo unafanya kazi, bonyeza `Test`. Kwa URL ya msingi wa Ollama, bonyeza daima `Test` ili uangalie muunganisho.
 
 <br/>
 
 > ℹ️ **KUMBUKA**<br/>
-> Huwezi kuona thamani ya sasa ya ufunguo wa API. Unaweza tu kubadilisha kwa kutumia kitufe cha **`Edit`**.
+> Huwezi kuona thamani ya sasa ya ufunguo wa API. Unaweza tu kubadilisha kwa kutumia kitufe cha `Edit`.
 > Ufunguo wa API unahifadhiwa kama siri katika usanidi.
 
 <br/>
@@ -912,7 +912,7 @@ Unapowahi kuhariri mandhari, daima bonyeza **Hifadhi** kabla ya bonyeza **Rudi k
 - Tumia [**Andika Upya**](#rewrite) kwa maboresho ya kila siku ya maneno.
 - Tumia [**Badilisha**](#transform) unapohitaji mtiririko wa kazi unaweza kurudia kwa kazi maalum.
 - Tumia [**Dashibodi**](#dashboard) ikiwa unataka kuangalia matumizi na gharama.
-- Tumia [**Historia**](#history) kupitia matendo ya zamani na maandishi yao kamili ya pembeji/mpatano.
+- Tumia [**Historia](#history) kupitia matendo ya zamani na maandishi yao kamili ya pembeji/mpatano.
 - Toa viwito kila wakati ikiwa unajenga maktaba ya viwito ambayo unataka kuhifadhi salama (tazama [Viwito vya Badilisha](#transform-prompts)) au ikiwa unataka kushiriki na wengine.
 
 <br/><br/>

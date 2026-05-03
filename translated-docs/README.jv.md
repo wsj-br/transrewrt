@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:43.073Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:41:20.166Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: jv
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan ubah nganggo prompt khusus - nggunakake pirang-pirang panyedhiya AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan Ollama lokal). Jalan minangka aplikasi desktop (Electron) utawa aplikasi web sing bisa digawe dhewe (Docker).
 
-- **Terjemahake** - antar puluhan basa, karo deteksi sumber otomatis
-- **Tulis ulang** - perbaiki tata basa, improve clarity, formal/informal, ngendhakake, nembahake, teknis
-- **Ubah** - prompt AI khusus; gawe lan atur prompt, basa sasaran opsional saben prompt
-- **Riwayat** - riwayat eksekusi lengkap karo input/teks output, filter, lan ekspor
+- Terjemahake** - antarane puluhan basa, kanthi deteksi sumber otomatis
+- **Tulis ulang** - ndandani tata basa, improve clarity, formal/informal, ngendhakake, nembahake, teknis
+- **Ubah** - prompt AI khusus; buat lan ngatur prompt, pilihan basa sasaran saben prompt
+- **Riwayat** - riwayat eksekusi lengkap karo teks input/output, penyaringan, lan ekspor
 - **Model & biaya** - pilih model saka panyedhiya sing dikonfigurasi; dashboard biaya lan panggunaan karo log, ringkesan miturut model/operasi/dina
 - **UI** - antarmuka multibasa (30+ basa, dhukungan RTL), font, ...
 - **Modus Web** - dhukungan multi-pangguna karo peran admin
 - **Desktop** - aplikasi Electron kanggo Windows lan Linux
 - **Dijalankan dhewe** - gambar Docker kanggo amd64 & arm64 (siap Raspberry Pi)
 
-Sawise diinstal, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo pandhuan lengkap kabeh fitur.
+Sawise dipasang, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo pandhuan lengkap babagan kabeh fitur.
 
 <small>**Macaa ing basa liya:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Atur paling ora siji konci panyedhiya liwat lingkungan (contone `OPENROUTER_API_
 
 Utawa gunakna Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -246,7 +247,7 @@ ganti `libasound2t64` dadi `libasound2` kanggo `arm64`. Instalasi minimal utawa 
 
 <br/>
 
-Sawise aplikasi mlaku, deleng **[Pandhuan Pangguna](USER-GUIDE.jv.md)** kanggo sinau carane menerjemahake, nulis maneh, lan ngowahi teks, ngatur prompt, lan ngonfigurasi model.
+Sawise aplikasi dijalanke, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo sinau carane menerjemahake, nulis ulang, lan ngowahi teks, ngatur prompt, lan ngonfigurasi model.
 
 <br/><br/>
 
@@ -292,6 +293,7 @@ Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini
 | `PORT`               | port pendengaran server  (minangka baku yaiku `5000`)                                  |
 | `CONFIG_PATH`        | Path menyang berkas konfigurasi (minangka baku yaiku `/app/data/config.json`)                |
 | `TZ`                 | zona wektu kanggo wektu sisi server (pencatatan log, lsp.) (minangka baku yaiku  `Europe/London`) |
+| `HISTORY_DISABLED`   | Paksa riwayat eksekusi mati (opsional, bawaan ke `false`)                  |
 | `OPENROUTER_API_KEY` | Kunci API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Kunci API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Kunci API Cerebras                                                             |
@@ -302,6 +304,8 @@ Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL dhasar Ollama (contone `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+
+**Modus privasi:** Kanggo memaksa pelacakan riwayat mati tanpa nggatekake `config.json` utawa preferensi saben pangguna, setel `HISTORY_DISABLED` dadi `true` utawa `1` (ora nggatekake kapitalisasi) kanggo **proses server web/Docker** lan/utawa **proses utama desktop Electron** (contone lingkungan sistem utawa peluncur — ora mung renderer). Iki mateni nyimpen riwayat input/output, ngunci **Setelan → Setelan Umum → Riwayat**, lan mblokir API sing ana gandhèngan karo Riwayat.
 
 Konfigurasikake mung provider sing digunakake. ID model duwé namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, lsp.).
 
@@ -333,8 +337,8 @@ Setelan utama (huruf, model, basa, lsp.) kasedhiya ing Setelan aplikasi.
 <a id="development-and-architecture"></a>
 ## Pangembangan lan arsitektur
 
-- **Pangembangan:** Ngatur, gawe, tes, lan ngirim (Electron, Web, Docker) - deleng **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arsitektur lan gambaran sistem:** Struktur folder, tumpukan teknologi, keputusan desain - deleng **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Pangembangan:** Siapake, gawe, tes, lan sebar (Electron, Web, Docker) - deleng [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arsitektur lan gambaran sistem:** Struktur folder, tumpukan teknologi, keputusan desain - deleng [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

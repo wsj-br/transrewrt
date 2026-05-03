@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "نسخ النتيجة تلقائيًا إلى الحافظة",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "الترجمة الفورية أثناء الكتابة (⚠️ قد تؤدي إلى زيادة تكاليف الاستخدام)",
   "Timeout (ms):": "مدة الانتظار (مللي ثانية):",
+  "disabled by the administrator": "معطل بواسطة المشرف",
   "Keep execution history": "الاحتفاظ بتاريخ التنفيذ",
   "Delete history data": "حذف بيانات السجل",
   "Configuration Backup": "النسخ الاحتياطي للإعدادات",

@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "결과를 자동으로 클립보드에 복사",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "입력 중 실시간 번역 (⚠️ 사용 비용이 증가할 수 있음)",
   "Timeout (ms):": "제한 시간(ms):",
+  "disabled by the administrator": "관리자에 의해 비활성화됨",
   "Keep execution history": "실행 기록 유지",
   "Delete history data": "기록 데이터 삭제",
   "Configuration Backup": "구성 백업",

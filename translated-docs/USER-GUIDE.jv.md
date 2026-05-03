@@ -1,11 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:51.195Z'
-source_file_mtime: '2026-05-01T21:20:11.119Z'
-source_file_hash: 253d03c03bd028d8119ce13e1d810e974a386f3e98054a9e750d5ecfbf1c76d0
+translation_last_updated: '2026-05-02T22:42:02.175Z'
+source_file_mtime: '2026-05-02T22:14:02.511Z'
+source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
 translation_language: jv
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-4o-mini
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,18 +20,18 @@ translation_models:
 
 Transrewrt mbantu sampeyan ngolah tèks kanthi telung cara utama:
 
-- **Terjemahake** - ngowahi tèks saka siji basa menyang basa liya.
-- **Tulis ulang** - ngowahi gaya tèks kanthi cara liya, kaya luwih cetha, luwih cendhak, utawa luwih formal.
-- **Ubah** - ngolah tèks nggunakake instruksi AI khusus sing diarani prompt.
+- Terjemahake - ngalihbahasa teks saka siji basa menyang liyane.
+- **Tulis ulang** - ngowahi teks kanthi gaya beda, kayata luwih cetha, luwih cekak, utawa luwih formal.
+- **Ubah** - ngolah teks nganggo instruksi AI khusus sing diarani prompt.
 
 <br/>
 
-Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan diaktifake. Kanggo langkah instalasi, deleng **[README](README.jv.md)** utama.
+Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake. Kanggo langkah instalasi, deleng [**README**](README.jv.md) utama.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Transrewrt kasedhiya minangka aplikasi desktop kanggo Windows lan Linux, lan minangka aplikasi web kanggo dhewe. Pandhuan iki fokus marang panggunaan saben dina aplikasi kasebut. Yen ana sing mung lumrah kanggo siji versi, bakal ditandhani kanthi cetha.
+> Transrewrt kasedhiya minangka aplikasi desktop kanggo Windows lan Linux, lan minangka aplikasi web kanggo dhewe. Pandhuan iki fokus marang panggunaan saben dina aplikasi kasebut. Yen ana sing mung ditrapake kanggo siji versi, bakal ditandhani kanthi jelas.
 
 <small>**Macaa ing basa liya:** </small>
 <small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
@@ -52,11 +52,11 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan diaktifake
 - [Sadurunge miwiti](#before-you-start)
   - [Carane entuk kunci API OpenRouter gratis (aplikasi desktop)](#how-to-get-a-free-openrouter-api-key-desktop-app)
 - [Mulai](#getting-started)
-- [Bagéyan utama jendhela](#main-parts-of-the-window)
+- [Bagéan utama jendhela](#main-parts-of-the-window)
   - [Sidebar](#sidebar)
   - [Toolbar](#toolbar)
   - [Panel input lan output](#input-and-output-panels)
-- [Terjemahan](#translate)
+- [Terjemahake](#translate)
   - [Terjemahake tèks](#translate-text)
   - [Pilihan basa](#language-selection)
   - [Setelan terjemahan sing migunani](#helpful-translation-settings)
@@ -73,7 +73,7 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan diaktifake
   - [Ekspor data](#export-data)
   - [Hapus rekaman sing disimpen kanggo model](#delete-stored-records-for-a-model)
 - [Riwayat](#history)
-  - [Saring data](#filter-the-data-1)
+  - [Saring riwayat](#filter-the-history)
   - [Ekspor data riwayat](#export-history-data)
 - [Setelan](#settings)
   - [Setelan umum](#general-settings)
@@ -87,9 +87,9 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan diaktifake
 - [Masalah umum](#common-issues)
   - [Aplikasi ora bisa menerjemahake, nulis ulang, utawa ngowahi tèks](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Dhaptar model kosong](#the-model-list-is-empty)
-  - [Asilé alon utawa larang banget](#the-result-is-too-slow-or-too-expensive)
-  - [Antarmuka nggunakake basa sing salah](#the-interface-is-in-the-wrong-language)
-  - [Tèks katon cilik utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
+  - [Asilé alon banget utawa larang banget](#the-result-is-too-slow-or-too-expensive)
+  - [Antarmuka nganggo basa sing salah](#the-interface-is-in-the-wrong-language)
+  - [Tèks cilik banget utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
   - [Grafik dasbor kosong](#dashboard-charts-are-empty)
   - [Biaya nuduhake "ora kasedhiya" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
   - [Total biaya ora cocog karo tagihan panyedhiya](#total-cost-does-not-match-my-provider-bill)
@@ -107,54 +107,54 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan diaktifake
 <br/><br/>
 
 <a id="before-you-start"></a>
-## Sadurunge miwiti
+## Sadurungé miwiti
 
-Kanggo nggunakake Transrewrt, sampeyan kudu duwe akses menyang paling sethithik siji panyedhiya AI. Panyedhiya sing didhukung yaiku: [OpenRouter](https://openrouter.ai) (sing nggabungake akeh model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, lan [Ollama](https://ollama.com) kanggo model lokal.
+Kanggo nggunakaké Transrewrt, sampeyan kudu duwé akses menyang paling ora siji panyedhiya AI. Panyedhiya sing didhukung yaiku: [OpenRouter](https://openrouter.ai) (sing nggabungaké akeh model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, lan [Ollama](https://ollama.com) kanggo model lokal.
 
-Sampeyan ora kudu milih model bayar kanggo miwiti. Sawise sampeyan nambahake kunci API OpenRouter, aplikasi sacara otomatis ngaktifake pilihan OpenRouter **gratis** sing wis diintegrasikake. Iki ngidini sampeyan langsung miwiti nindakake terjemahan, nulis ulang, lan ngowahi teks. Alternatif, sampeyan uga bisa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
+Sampeyan ora kudu milih model bayar kanggo miwiti. Sawisé sampeyan nambahaké kunci API OpenRouter, aplikasi sacara otomatis ngaktifaké pilihan OpenRouter **gratis** sing wis diintegrasikaké. Iki ngidinaké sampeyan miwiti terjemahan, nulis ulang, lan ngowahi tèks sacara langsung. Alternatifipun, sampeyan uga bisa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
 
-Ing basa sing gampang dimengerti:
+Ing basa sing luwih gampang:
 
-- Sawijining **model** yaiku mesin AI sing nindakake tugas. Model kasebut dicantumake nganggo **prefiks panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
-- Sawijining **kunci API** (utawa, kanggo Ollama, **URL dhasar**) yaiku cara aplikasi ngakses panyedhiya kasebut.
+- Siji **model** yaiku mesin AI sing nindakaké tugas. Model dicantumaké kanthi **awalan panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
+- Siji **kunci API** (utawa kanggo Ollama, **URL dhasar**) yaiku cara aplikasi ngakses panyedhiya kasebut.
 
-Yen sampeyan nggunakake **aplikasi desktop**, tambahake kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakake. Kanggo panggunaan OpenRouter mung, deleng [Cara entuk kunci API](#how-to-get-an-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakake kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com)) lan nggunakake model lokal minangka gantine, kaya contone `translategemma:4b`.
+Yen sampeyan nggunakaké **aplikasi desktop**, tambahaké kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakaké. Kanggo panggunaan OpenRouter mung, deleng [Cara entuk kunci API](#how-to-get-an-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakaké kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com)) lan nggunakaké model lokal minangka gantènè, kaya `translategemma:4b`.
 
-Yen sampeyan nggunakake **versi web**, pemilik server ngonfigurasi panyedhiya nganggo variabel lingkungan, dadi sampeyan ora bisa ngetik kunci API langsung ing aplikasi.
+Yen sampeyan nggunakaké **versi web**, pemilik server ngonfigurasi panyedhiya nganggo variabel lingkungan, dadi sampeyan ora bisa ngisi kunci API langsung ing aplikasi.
 
 <br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
 ### Cara entuk kunci API OpenRouter gratis (aplikasi desktop)
 
-Yen sampeyan nggunakake aplikasi desktop, tindakake langkah-langkah iki:
+Yen sampeyan nggunakaké aplikasi desktop, tindakaké langkah-langkah iki:
 
 1. Bukak [OpenRouter](https://openrouter.ai) ing panjelajah web sampeyan.
 2. Gawe akun utawa mlebu.
-3. Bukak kaca [Keys](https://openrouter.ai/keys).
+3. Bukak kaca [Kunci](https://openrouter.ai/keys).
 4. Klik tombol kanggo nggawe kunci API anyar.
 5. Beri jeneng kanggo kunci supaya bisa dikenali mengko.
 6. Salin kunci API anyar kasebut.
-7. Balia menyang Transrewrt lan buka **Setelan** > **Konfigurasi API**.
-8. Tempel kunci kasebut menyang **kunci API OpenRouter** (ing ngisor **Setelan** > **Konfigurasi API**).
-9. Klik **Tes kunci OpenRouter** kanggo mastekake yen iku bisa digunakake.
+7. Balia menyang Transrewrt lan mbukak **Setelan** > **Konfigurasi API**.
+8. Tempel kunci kasebut menyang **Kunci API OpenRouter** (ing ngisor **Setelan** > **Konfigurasi API**).
+9. Klik **Tes kunci OpenRouter** kanggo mastekake yèn iku bisa digunakaké.
 
 <br/><br/>
 
 <a id="getting-started"></a>
 ## Miwiti
 
-Yen iki wektu pisanan sampeyan nggunakake Transrewrt, tindakake urutan iki:
+Yen iki wektu pisanan sampeyan nggunakaké Transrewrt, tindakaké urutan iki:
 
 1. Bukak aplikasi.
 2. Pilih **Basa antarmuka** sampeyan saka ikon globe yen perlu.
-3. Yen sampeyan nggunakake **aplikasi desktop**, buka [**Setelan** > **Konfigurasi API**](#api-config), tambahake kunci API kanggo paling sethithik siji panyedhiya (contone OpenRouter), lan klik **Tes** kanggo mastekake bisa digunakake.
-4. Bukak [**Setelan** > **Model**](#models) lan tambahake siji utawa luwih model menyang **Model Dipilih**.
-5. Bukak [**Setelan** > **Basa**](#languages) lan pilih **Basa utama** sampeyan yen pengin basa sing paling asring digunakake katon dhisik.
-6. Pergi menyang **Terjemahake** lan jalanake terjemahan sederhana kanggo mastekake kabeh bisa digunakake.
-7. Sawise iku bisa digunakake, coba **Tulis ulang** lan banjur **Ubah**.
+3. Yen sampeyan nggunakaké **aplikasi desktop**, mbukak [**Setelan** > **Konfigurasi API**](#api-config), tambahaké kunci API kanggo paling ora siji panyedhiya (contone OpenRouter), lan klik **Tes** kanggo mastekake yèn iku bisa digunakaké.
+4. Mbukak [**Setelan** > **Model**](#models) lan tambahaké siji utawa luwih model menyang **Model Dipilih**.
+5. Mbukak [**Setelan** > **Basa**](#languages) lan pilih **Basa utama** sampeyan yen pengin basa sing paling asring digunakaké katon luwih dhisik.
+6. Menyang **Terjemahake** lan jalanaké terjemahan sederhana kanggo mastekake kabeh fungsi bisa digunakaké.
+7. Sawisé iku bisa, cobanen **Tulis ulang** banjur **Ubah**.
 
-Urutan iki penting. Iki nyegah masalah paling umum nalika nggunakake pisanan: nyoba nindakake tugas sadurunge aplikasi duwe koneksi API sing bisa digunakake utawa model sing dipilih.
+Urutan iki penting. Iki nyegah masalah paling umum nalika panggunaan pisanan: nyoba nglakokaké tugas sadurungé aplikasi duwé sambungan API sing bisa digunakaké utawa model sing dipilih.
 
 <br/><br/>
 
@@ -172,7 +172,7 @@ Aplikasi dibagi dadi telung bagéyan utama:
 <a id="sidebar"></a>
 ### Sidebar
 
-Gunakake sidebar kanggo pindhah-pindah ing aplikasi. Sampeyan bisa nutup sidebar kanggo entuk ruang luwih akeh kanthi klik ikon ing samping logo aplikasi.
+Gunakake sidebar kanggo pindah ing app. Sampeyan bisa nutup sidebar kanggo entuk ruang luwih akeh kanthi klik ikon ing samping logo app.
 
 <br/>
 
@@ -186,11 +186,11 @@ Gunakake sidebar kanggo pindhah-pindah ing aplikasi. Sampeyan bisa nutup sidebar
       <ul>
         <li><strong>Terjemahake</strong> mbukak workspace terjemahan.</li><br/>
         <li><strong>Tulis ulang</strong> mbukak workspace panulisan maneh.</li><br/>
-        <li><strong>Ubah</strong> mbukak workspace prompt khusus.</li><br/>
+        <li><strong>Ubah</strong> mbukak workspace prompt kustom.</li><br/>
         <li><strong>Dasbor</strong> nuduhake informasi panggunaan lan biaya.</li><br/>
         <li><strong>Setelan</strong> mbukak panel setelan.</li><br/>
-        <li><strong>Riwayat</strong> nuduhake riwayat panggunaan bebarengan teks input lan output</li><br/>
-        <li><strong>Pangguna</strong> nuduhake jeneng pangguna sing lagi mlebu (khusus web).</li>
+        <li><strong>Riwayat</strong> nuduhake riwayat panggunaan kanthi input lan teks output</li><br/>
+        <li><strong>Pangguna</strong> nuduhake jeneng pangguna sing mlebu (mung web).</li>
       </ul>
     </td>
   </tr>
@@ -201,21 +201,21 @@ Gunakake sidebar kanggo pindhah-pindah ing aplikasi. Sampeyan bisa nutup sidebar
 <a id="toolbar"></a>
 ### Toolbar
 
-Toolbar owah-owahan sithik gumantung saka lokasi sampeyan ing aplikasi.
+Toolbar owah kanthi tipis gumantung saka lokasi sampeyan ing app.
 
-- Ing sisih kiwa, nuduhake jeneng kaca saiki.
-- Ing sisih tengen, nuduhake **pemilih model** lan kontrol **Basa antarmuka**.
+- Ing kiwa, nuduhake jeneng kaca saiki.
+- Ing tengen, nuduhake **pemilih model** lan kontrol **Basa antarmuka**.
 
-Pemilih **model** ngidini sampeyan milih mesin AI sing arep digunakake kanggo tugas saiki.
+Pemilih **model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
 
 ![Model selector](../images/screenshots/jv/model-selector.png)
 
-Sawetara model gratis bisa uga ora tansah kasedhiya—kadhangkala offline utawa duwe watesan panggunaan. Yen iki kedadeyan, aplikasi bakal sacara otomatis mbusak model kasebut saka dhaptar sing kasedhiya. Kanggo ngontrol model sing katon, menyang [**Setelan** > **Model**](#models) lan sunting dhaptar model sampeyan. 
- Sampeyan uga bisa mbukak setelan model langsung kanthi klik ikon panyedhiya ing sisih kiwa jeneng model ing toolbar.
+Model gratis sawetara bisa uga ora tansah tersedia—kadhangkala offline utawa duwe watesan panggunaan. Yen iki kedadeyan, aplikasi bakal sacara otomatis mbusak model kasebut saka dhaptar sing tersedia kanggo sampeyan. Kanggo ngontrol model sing katon, menyang [**Setelan** > **Model**](#models) lan sunting dhaptar model sampeyan.
+Sampeyan uga bisa mbukak setelan model langsung kanthi klik ikon panyedhiya ing sisih kiwa jeneng model ing bilah gaweyan.
 
 <br/>
 
-Ikon **globe + kode basa** ngowahi basa antarmuka aplikasi, kayata menu lan tombol. Iku ora **ngganti** basa terjemahan sing digunakake ing **Terjemahake**.
+Ikon **globe + kode basa** ngganti basa antarmuka app, kayata menu lan tombol. Iku ora **ngganti** basa terjemahan sing digunakake ing **Terjemahake**.
 
 ![Interface language selector](../images/screenshots/jv/language-selector.png)
 
@@ -234,12 +234,12 @@ Saben panel uga nuduhake:
 
 Yen sampeyan mikir babagan istilah teknis:
 
-- **Token** tegese potongan cilik teks. Sampeyan bisa nganggep minangka bagean tembung utawa tembung cendhak.
-- **TPS** tegese jumlah potongan teks sing diolah model saben detik.
+- **Token** tegese potongan cilik teks. Sampeyan bisa nganggep minangka bagian tembung utawa tembung cendhak.
+- **TPS** tegese jumlah potongan teks sing diproses model saben detik.
 
 <br/>
 
-Sampeyan uga bisa ngawasi biaya saben operasi (yen kasedhiya) lan total biaya, kanthi ngaktifake pilihan `Show cost information on the actions` ing [**Setelan** > **Setelan Umum**](#general-settings).
+Sampeyan uga bisa ngawasi biaya saben operasi (manawa tersedia) lan total biaya, kanthi ngaktifake pilihan `Show cost information on the actions` ing [**Setelan** > **Setelan Umum**](#general-settings).
 
 <br/><br/>
 
@@ -264,7 +264,7 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 5. Ketik utawa tempel teks menyang **Input**.
 6. Klik **Terjemahake**.
 7. Maca asil ing **Output**.
-8. Gunakake tombol salin menawa sampeyan pengin nyalin asil.
+8. Gunakake tombol salin menawa sampeyan pengin nyalin asil kasebut.
 
 <br/>
 
@@ -274,7 +274,7 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 - **From** bisa dadi basa tartamtu utawa **Deteksi Basa**.
 - **To** yaiku basa sing pengin digunakake kanggo asil.
 
-**Basa Atas** sing dipilih katon ing bagéan ndhuwur dhaptar. Sampeyan bisa ngatur iki ing [**Setelan** > **Basa**](#languages).
+**Basa Atas** sing dipilih bakal katon ing ndhuwur dhaptar. Sampeyan bisa ngatur iki ing [**Setelan** > **Basa**](#languages).
 
 <br/>
 
@@ -285,7 +285,7 @@ Ing [**Setelan** > **Setelan Umum**](#general-settings), sampeyan bisa ngganti c
 
 - **Otomatis nerjemahake nalika nempel** nglakokake terjemahan sawise sampeyan nempel teks.
 - **Salin otomatis asil menyang clipboard** nyalin asil sacara otomatis sawise proses rampung.
-- **Terjemahan real-time (nalika ngetik)** nglakokake terjemahan nalika sampeyan ngetik.
+- **Terjemahan real-time (saat mengetik)** nglakokake terjemahan nalika sampeyan ngetik.
 - **Timeout (ms)** ngatur suwe aplikasi nunggu sadurunge nglakokake terjemahan real-time.
 - **Enter** ngatur apa sing kedadeyan nalika sampeyan menek `Enter`:
 
@@ -300,20 +300,20 @@ Gunakake **Tulis ulang** nalika sampeyan pengin nambahi gaya basa tanpa ngganti 
 
 ![Rewrite workspace](../images/screenshots/jv/rewrite.png)
 
-Iki migunani kanggo:
+Fitur iki migunani kanggo:
 
-- ngoreksi ejaan lan tata basa (**Periksa Ejaan & Tata Bahasa**)
-- njalari teks luwih cetha (**Improve Clarity**)
-- sawetara versi tulisan sing béda ing siji proses (**Versi Alternatif**)
-- njalari teks luwih resmi utawa luwih santai (**Formal** / **Informal**)
+- mbenerake ejaan lan tata basa (**Periksa Ejaan & Tata Bahasa**)
+- nambahi kabeneran (**Improve Clarity**)
+- sawetara versi tulisan sing beda ing siji proses (**Versi Alternatif**)
+- nggawe teks luwih resmi utawa luwih santai (**Formal** / **Informal**)
 - ngendhakake utawa nembahake teks (**Ngendhakake** / **Nembahake**)
-- njalari teks kaya luwih teknis (**Jadine Teknis**)
+- nggawe teks katon luwih teknis (**Jadine Teknis**)
 
 <br/>
 
 > 💡 **TIP**<br/>
-> Nalika sampeyan nggunakake modus "**Periksa Ejaan & Tata Bahasa**", sawijining saklar **Tampilake owah-owahan** katon ing panel output (sebelah **Salin**).
-> Aktifake utawa mateni kanggo nuduhake utawa ndhelikake koreksi tartamtu sing diaplikasikake marang teks sampeyan.
+> Nalika nggunakake modus "**Periksa Ejaan & Tata Bahasa**", tombol **Tampilake owah-owahan** bakal katon ing panel output (sebelah **Salin**).
+> Aktifake utawa mateni kanggo nuduhake utawa ndhelikake koreksi tartamtu sing diterapake ing teks sampeyan.
 
 <br/><br/>
 
@@ -326,32 +326,32 @@ Gunakake **Ubah** nalika sampeyan pengin AI nututi dhaptar instruksi khusus.
 
 ![Transform workspace](../images/screenshots/jv/transform.png)
 
-Iki yaiku bagéan paling fleksibel saka aplikasi. Sampeyan bisa nggunakake kanggo tugas-tugas kaya:
+Iki minangka bagéyan paling fleksibel saka aplikasi. Sampeyan bisa nggunakake kanggo tugas-tugas kaya:
 
 - ringkesan cathetan
 - ngowahi teks kasar dadi email sing rapi
-- mbukak poin-poin penting
+- mbukak poin utama
 - ngowahi teks dadi format tartamtu
-- utawa kegiatan khusus liyane karo teks input
+- utawa kegiatan khusus liyane kanthi teks input
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
 ### Jalanke prompt sing ana
 
-1. Buka **Ubah**.
-2. Pilih prompt saka dhaftar prompt.
-3. Yen kotak **Sasaran** basa muncul, pilih basa yen perlu.
+1. Buka **Transform**.
+2. Pilih prompt saka dhaptar prompt.
+3. Yen kotak **Target** basa mucul, pilih basa yen perlu.
 4. Ketik utawa tempelna teks menyang **Input**.
 5. Klik **Ubah**.
-6. Deleng asilé ing **Output**.
+6. Maca asilé ing **Output**.
 
 <br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
 ### Yen durung duwé prompt
 
-Yen dhaptar prompt sampeyan kosong, klik **Muat contoh prompt** ing ruang Transform. Kontrol sing padha tansah kasedhiya ing [**Setelan** > **Prompt Transformasi**](#transform-prompts) ing baris ekspor/impor. Keduanya nambah conto bawaan supaya sampeyan bisa miwiti kanthi cepet.
+Yen dhaftar prompt panjenengan kosong, klik **Load sample prompts** ing workspace Transform. Kontrol sing padha tansah kasedhiya ing [**Settings** > **Transform Prompts**](#transform-prompts) ing baris ekspor/impor. Kaloro kalungguhan nambah conto sing dibangun supaya panjenengan bisa miwiti kanthi cepet.
 
 <br/>
 
@@ -367,10 +367,10 @@ Cara paling cepet kanggo nggawe prompt yaiku:
 
 1. Klik **New prompt**.
 2. Klik **Generate prompt**.
-3. Jelasken apa sing pengin dilakokne dening prompt kasebut.
+3. Jelasna apa sing pengin dilakokna déning prompt kasebut.
 4. Pilih model.
-5. Biyarkan aplikasi nggawe rancangan kanggo sampeyan.
-6. Tinjau rancangan kasebut lan klik **Simpen**.
+5. Bebaske aplikasi nggawe rancangan kanggo sampeyan.
+6. Priksa rancangane lan klik **Simpen**.
 
 ![Generate prompt](../images/screenshots/jv/transform-generate.png)
 
@@ -379,53 +379,53 @@ Cara paling cepet kanggo nggawe prompt yaiku:
 <a id="edit-a-prompt"></a>
 ### Sunting prompt
 
-Sawisé sampeyan nggawe utawa nyunting prompt, éditor bakal muncul ing sisih kiwa lan wilayah tes bakal muncul ing sisih tengen.
+Kala sampeyan nggawe utawa nyunting prompt, éditor bakal mucul ing sisih kiwa lan wilayah tes bakal mucul ing sisih tengen.
 
 ![Transform prompt editor](../images/screenshots/jv/transform-prompt-edit.png)
 
 Bidang utama yaiku:
 
-- **Jeneng prompt**: jeneng sing ditampilake ing dhaftar prompt.
+- **Jeneng prompt**: jeneng sing ditampilake ing dhaptar prompt.
 - **Instruksi prompt (opsional)**: cathetan cendhak sing ditampilake marang pangguna nalika njalankan prompt.
 - **Peran Model**: peran kabeh sing diwenehake marang AI, kayata 'Sampeyan minangka asisten sing mbantu.'
-- **Instruksi Model (siji saben baris)**: aturan khusus sing sampeyan pengin AI tundhuk.
-- **Deskripsi output**: tembung cendhak kanggo nggambarake asilé, kayata 'ringkasan' utawa 'tulis ulang'.
+- **Instruksi Model (siji saben baris)**: aturan tartamtu sing pengin AI tundhuk.
+- **Deskripsi output**: tembung cendhak sing njlènètaké asilé, kaya 'ringkasan' utawa 'tulis ulang'.
 - **Suhu (0.0 → 1.0)**: cara model bakal tumindak; deleng ing ngisor iki.
-- **Mlayu basa sasaran**: nambah pamilih basa sasaran nalika prompt dijalanake.
+- **Panyuwunan basa sasaran**: nambahaké pamilah basa sasaran nalika prompt dijalanaké.
 
-Yen istilah teknis **Suhu** iku anyar kanggo sampeyan, pikirake kaya ngene:
+Yen istilah teknis **Suhu** iku anyar kanggo sampeyan, pikirke kaya ngene:
 
-- **Suhu** sing luwih rendah menehi asil sing luwih tetep lan bisa diprediksi.
-- **Suhu** sing luwih dhuwur menehi macem-macem lan kreativitas sing luwih akeh.
+- **Suhu sing luwih rendah** maringi asil sing luwih tetep lan prediktif.
+- **Suhu sing luwih dhuwur** maringi variasi lan kreativitas sing luwih akeh.
 
 Sampeyan uga bisa nggunakake:
 
-- **`Generate prompt`** kanggo nggawe rancangan anyar saka jlentrehan cendhak
-- **`Improve prompt`** kanggo nyempurnakake prompt sing wis ana
-- **`Translate prompt`** kanggo menerjemahaké bidang prompt
+- `Generate prompt` kanggo nggawe rancangan anyar saka jlentrehan cendhak
+- `Improve prompt` kanggo nyempurnakake prompt sing wis ana
+- `Translate prompt` kanggo menerjemahaké bidang prompt
 
 <br/>
 
-> ⚠️ **PÈRINGATAN**<br/>
-> Klik **`Save`** sadurungé klik **`Back to Run`**. Yen sampeyan bali tanpa nyimpen, owah-owahane bakal ilang.
+> ⚠️ **PERINGATAN**<br/>
+> Klik `Save` sadurungé klik `Back to Run`. Yen sampeyan bali tanpa nyimpen, owah-owahane bakal ilang.
 
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
-### Tes prompt sakdurunge digunakake
+### Tes prompt sadurungé digunakaké
 
-Panel tes ing sisih tengen ngidini sampeyan nyoba prompt sampeyan nganggo teks conto sadurunge digunakake ing karya saben dina.
+Panel tes ing tengen ngidini sampeyan nyoba prompt karo tèks conto sadurungé digunakaké ing pagawéan saben dina.
 
 Iki migunani nalika:
 
-- sampeyan lagi nyusun prompt anyar
-- sampeyan lagi mbandhingake rong versi prompt
+- sampeyan lagi nggawe prompt anyar
+- sampeyan lagi mbandhingaké loro vèrsi prompt
 - sampeyan pengin mriksa nada, dawa, utawa format output
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Sampeyan bisa ngekspor lan ngimpor prompt sing wis disimpen ing [**Setelan** > **Prompt Transformasi**](#transform-prompts).
+> Sampeyan bisa ngekspor lan ngimpor prompt sing wis disimpen ing [**Setelan** > **Prompt transformasi**](#transform-prompts).
 
 <br/><br/>
 
@@ -434,21 +434,21 @@ Iki migunani nalika:
 <a id="dashboard"></a>
 ## Dasbor
 
-Gunakake **Dasbor** kanggo ndeleng sepira akeh sampeyan nggunakake aplikasi lan biayane (kanggo model bayar).
+Gunakaké **Dasbor** kanggo ndeleng sepira akeh aplikasi digunakaké lan biayane (kanggo model bayar).
 
 ![Dashboard summary](../images/screenshots/jv/dashboard-summary.png)
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Yen sampeyan mung nggunakake model **gratis**, jumlah **biaya** bisa nol lan ringkesan sing fokus marang biaya bisa katon kosong. Ing **Ringkasan**, **Panggunaan sakawit wektu** lan **Panggunaan miturut model** isih nuduhake **jumlah panggilan** (terjemah, tulis ulang, lan ubah) nalika ana aktivitas ing periode sing dipilih.
+> Yèn sampeyan mung nggunakaké model **gratis**, jumlah **biaya** bisa waé nol lan ringkesan sing fokus marang biaya bisa katon kosong. Ing **Ringkasan**, **Panggunaan dhèk wektu** lan **Panggunaan dhèk model** isih nuduhaké **jumlah pangelingan API** (terjemahan, tulis ulang, lan ubah) nalika ana aktivitas ing periode sing dipilih.
 
 <br/>
 
 <a id="filter-the-data"></a>
 ### Saring data
 
-Gunakake tombol saringan ing ndhuwur kanggo ngganti wektu rentang.
+Gunakaké tombol saringan ing ndhuwur kanggo ngowahi rentang wektu.
 
 ![Dashboard filters](../images/screenshots/jv/dashboard-filter.png)
 
@@ -462,36 +462,36 @@ Gunakake tombol saringan ing ndhuwur kanggo ngganti wektu rentang.
 <a id="dashboard-tabs"></a>
 ### Tab Dasbor
 
-- **Ringkasan** menehi gambaran umum babagan panggunaan lan biaya. Kalebu **Panggunaan sakawit wektu** (jumlah **panggilan** kumulatif ditumpuk saben dina kanggo terjemah, tulis ulang, lan ubah) lan **Panggunaan miturut model** (total **panggilan saben model**, kalebu transformasi).
-- **Dhèk Panggunaan** ngurai aktivitas miturut basa terjemahan, modus tulis ulang, lan prompt transformasi.
-- **Dhèk Model** nuduhake model apa wae sing digunakake lan biayane.
-- **Dhèk Dina** nuduhake total saben dina.
-- **Kabeh Panggilan** nuduhake riwayat panggilan lengkap lan ngidini sampeyan ngekspor.
+- **Ringkasan** menehi gambaran umum babagan panggunaan lan biaya. Kalebu **Panggunaan dhèk wektu** (jumlah kumulatif ditumpuk **panggilan** saben dina kanggo terjemahan, tulis ulang, lan ubah) lan **Panggunaan dhèk model** (total **panggilan saben model**, kalebu transformasi).
+- **Dhèk panggunaan** ngurai aktivitas dhèk basa terjemahan, modus nulis ulang, lan prompt transformasi.
+- **Dhèk model** nuduhaké model apa wae sing digunakaké lan biayane.
+- **Dhèk dina** nuduhaké total saben dina.
+- **Kabeh pangelingan API** nuduhaké riwayat pangelingan API lengkap lan ngidini sampeyan ngekspor.
 
 <br/>
 
 <a id="export-data"></a>
 ### Ekspor data
 
-Tabel dasbor bisa ngekspor data ing:
+Tabel dasbor bisa ngekspor data ing format:
 
 - **JSON**
 - **CSV**
 - **XLSX**
 
-Iki migunani yen sampeyan pengin ngevaluasi aktivitas njaba aplikasi utawa bareng laporan.
+Iki migunani yen sampeyan pengin ngevaluasi aktivitas njaba aplikasi utawa barengake laporan.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Hapus rekaman sing disimpen kanggo model
+### Hapus rékaman sing disimpen kanggo model
 
-Ing **Dhèk Model** utawa **Kabeh Panggilan**, sampeyan bisa mbusak rekaman sing disimpen kanggo model kanthi klik ikon "tempa sampah".
+Ing **Dhèk model** utawa **Kabeh pangelingan API**, sampeyan bisa mbusak rékaman sing disimpen kanggo model kanthi klik ikon "tempo sampah".
 
 > ⚠️ **PERINGATAN**<br/>
-> Mbusekake rekaman sing disimpen ora bisa dibatalake. Gunakake mung yen yakin yen sampeyan ora butuh riwayat kuwi maneh.
+> Mbusek rékaman sing disimpen ora bisa dibatalaké. Mung digunakaké yèn sampeyan yakin ora butuh riwayat iku manèh.
 
-Kanggo ngapus kabeh data utawa mbusak rekaman berdasar umur, menyang [**Setelan** > **Pelacakan Biaya**](#cost-tracking). Kene sampeyan bakal nemokake pilihan kanggo ngapus kabeh data sing disimpen utawa mung data sing umure luwih tuwa tinimbang tanggal tartamtu.
+Kanggo ngapus kabeh data utawa mbusak rekaman berdasar umur, menyang [**Setelan** > **Pelacakan Biaya**](#cost-tracking). Ing kana sampeyan bakal nemokake pilihan kanggo ngapus kabeh data sing disimpen utawa mung data sing umure luwih tuwa saka tanggal tartamtu.
 
 <br/><br/>
 
@@ -500,14 +500,14 @@ Kanggo ngapus kabeh data utawa mbusak rekaman berdasar umur, menyang [**Setelan*
 <a id="history"></a>
 ## Riwayat
 
-Klik **Riwayat** kanggo ndeleng riwayat tindakan sampeyan ing **Transrewrt**, kalebu input lan output saben operasi.
+Klik **Riwayat** kanggo ndeleng riwayat tindakan sampeyan ing jero **Transrewrt**, kalebu input lan output saben operasi.
 
 ![History page](../images/screenshots/jv/history.png)
 
 <br/>
 
 <a id="filter-the-history"></a>
-### Saringan data
+### Saring riwayat
 
 **Riwayat** nggunakake saringan sing padha karo kaca **Dasbor**. Gunakake kanggo milih rentang wektu.
 
@@ -529,7 +529,7 @@ Kaca riwayat bisa mengekspor data sing disaring menyang:
 - **CSV**
 - **XLSX**
 
-Iki migunani yen sampeyan pengin ngevaluasi aktivitas njaba aplikasi utawa bareng laporan.
+Iki migunani yen sampeyan pengin ngevaluasi aktivitas njaba aplikasi utawa barengake laporan.
 
 <br/><br/>
 
@@ -538,9 +538,9 @@ Iki migunani yen sampeyan pengin ngevaluasi aktivitas njaba aplikasi utawa baren
 <a id="settings"></a>
 ## Setelan
 
-Bukak **Setelan** saka sidebar kanggo ngatur cara aplikasi dianggo.
+Bukak **Setelan** saka sidebar kanggo nyetel perilaku aplikasi.
 
-Tab sing kasedhiya gumantung marang platform lan peran sampeyan:
+Tab sing tersedia gumantung marang platform lan peran sampeyan:
 
 | Tab               | Desktop | Web (admin) | Web (pangguna biasa) |
   |-------------------|:-------:|:-----------:|:------------------:|
@@ -548,7 +548,7 @@ Tab sing kasedhiya gumantung marang platform lan peran sampeyan:
   | Model            |   ya   |     ya     |        ya         |
   | Basa         |   ya   |     ya     |        ya         |
   | Pelacakan Biaya     |   ya   |     ya     |         -          |
-  | Prompt transformasi |   ya   |     ya     |        ya         |
+  | Prompt Transformasi |   ya   |     ya     |        ya         |
   | Pangguna             |    -    |     ya     |         -          |
   | Konfigurasi API        |   ya   |     ya     |         -          |
   | Tentang             |   ya   |     ya     |        ya         |
@@ -565,20 +565,20 @@ Tab sing kasedhiya gumantung marang platform lan peran sampeyan:
 <a id="general-settings"></a>
 ### Setelan Umum
 
-Gunakake **Setelan Umum** kanggo ngatur perilaku ngetik, nentukake apa rincian eksekusi disimpen kanggo **Riwayat**, lan penampilan.
+Gunakake **Setelan Umum** kanggo ngatur perilaku ngetik, apakah rincian eksekusi disimpen kanggo **Riwayat**, lan penampilan.
 
 **Perilaku**
 
 - **Perilaku kanggo ENTER** milih apa `Enter` ngeksekusi tugas utawa nambah baris anyar.
 - **Otomatis nerjemahake nalika nempel** miwiti terjemahan sawise sampeyan nempelake teks.
 - **Salin otomatis asil menyang clipboard** nyalin asil sing sukses sacara otomatis.
-- **Terjemahan real-time (nalika ngetik)** menerjemahake nalika sampeyan ngetik.
-- **Timeout (ms)** nentukan wektu tunggu kanggo terjemahan real-time.
+- **Terjemahan real-time (saat ngetik)** menerjemahake nalika sampeyan ngetik.
+- **Batas wektu (ms)** ngatur wektu tunggu kanggo terjemahan real-time.
 
 **Riwayat**
 
 - **Simpen riwayat eksekusi** ngatur apa saben terjemahan, tulis ulang, lan transformasi nyimpen **teks input lan output** kanggo tampilan [**Riwayat**](#history) ing sisih. Mateni fitur iki bakal takon konfirmasi; yen sampeyan konfirmasi, teks riwayat sing disimpen bakal dihapus saka database.
-- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen miturut umur (contone sing wis tuwa saka sawetara wulan, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mangaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki **ora** nghapus total biaya utawa data panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
+- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen miturut umur (contone sing wis luwih saka sawetara wulan, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mangaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki ora **menghapus** total biaya utawa data panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
 
 **Penampilan**
 
@@ -590,11 +590,11 @@ Gunakake **Setelan Umum** kanggo ngatur perilaku ngetik, nentukake apa rincian e
 
 **Cadangan Konfigurasi**
 
-- **Sertakake data panggunaan ing cadangan** - yen diaktifake, ZIP uga ngandhut riwayat eksekusi lan data panjalukan API. 
-- **Cadangan konfigurasi** - nggawe siji file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing UTC kanthi standar) kanthi `config.json`, `state.json`, tombol enkripsi opsional, pangguna, pilihan, prompt khusus, lan data panggunaan yen sampeyan milih. Sawise cadangan rampung, konfirmasi nuduhake jeneng file sing disimpen.
+- **Sertakake data panggunaan ing cadangan** - yen diaktifake, ZIP uga ngandhut riwayat eksekusi lan data telpon API.
+- **Cadangan konfigurasi** - nggawe siji file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing UTC kanthi standar) ngandhut `config.json`, `state.json`, kunci enkripsi opsional, pangguna, preferensi, prompt kustom, lan data panggunaan yen sampeyan milih. Sawise cadangan sukses, konfirmasi nuduhake jeneng file sing disimpen.
 - **Pulihake saka cadangan** - mbukak **dialog konfirmasi dhisik**. Pilih file ZIP cadangan ing jero dialog (**Browse** / pemilih file utawa drag-and-drop yen didhukung), banjur priksa pilihan:
-  - **Pulihake data panggunaan** - ngimpor panggunaan/riwayat saka ZIP nalika dicadangke kanthi sertakake panggunaan; tinggalake mati yen sampeyan mung pengin setelan lan prompt.
-  - **Bersihke data panggunaan lawas sadurunge dipulihke** - mbusak panggunaan/riwayat sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika sampeyan pengin ngganti kanthi resik).
+  - **Pulihake data panggunaan** - ngimpor panggunaan/riwayat saka ZIP nalika dicadangake kanthi data panggunaan kalebu; tinggalake mati yen sampeyan mung pengin setelan lan prompt.
+  - **Bersihke data panggunaan lawas sadurunge dipulihake** - mbusak panggunaan/riwayat sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika sampeyan pengin ngganti kanthi resik).
 
 Cadangan sing digawe ing versi web utawa desktop bisa dipulihake ing versi liyane. Nalika mulihake cadangan desktop ing versi web, datane bakal dipulihake menyang pangguna administrator.
 
@@ -615,23 +615,23 @@ Kaca iki duwe loro dhaptar:
 Kontrol sing migunani kalebu:
 
 - **Goleki model...** kanggo nemokake model miturut jeneng
-- Chip **Panyedhiya** kanggo mungkasi dhaptar dadi siji mesin (OpenRouter, OpenAI, Ollama, …)
+- **Panyedhiya** chip kanggo mungkasi dhaptar dadi siji mesin (OpenRouter, OpenAI, Ollama, …)
 - **Mung Gratis** kanggo nuduhake mung model gratis
-- **Segari** kanggo ngunggah maneh dhaptar
+- **Segari** kanggo mbukak maneh dhaptar
 - **Bukak Kabeh** lan **Tutup Kabeh** nalika sampeyan nyusun miturut panyedhiya
 
 ID model kalebu awalan panyedhiya (contone `openrouter/…` vs `openai/…`). Lencana kaya **OpenAI (OpenRouter)** vs **OpenAI (langsung)** nuduhake carane lalu lintas dikirim.
 
 > ℹ️ **CATETAN**<br/>
-> **OpenRouter Body Builder** (`openrouter/bodybuilder`) iku model router, dudu model chat umum: wangsulane yaiku JSON sing njlentrehake awak permintaan API OpenRouter (contone larik `requests` kanthi `model` lan `messages`). Yen sampeyan nggunakake kanggo **Terjemahake**, **Tulis ulang**, utawa **Ubah**, panel output bakal nuduhake JSON kuwi tinimbang teks rampung. Pilih model teks biasa kanggo tugas kasebut. Deleng [kaca model Body Builder](https://openrouter.ai/openrouter/bodybuilder) ing OpenRouter.
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) iku model router, dudu model chat umum: wangsulane yaiku JSON sing njlentrehake badan panjaluk API OpenRouter (contone larik `requests` kanthi `model` lan `messages`). Yen sampeyan nggunakake kanggo **Terjemahake**, **Tulis ulang**, utawa **Ubah**, panel output bakal nuduhake JSON kasebut tinimbang teks rampung. Pilih model teks biasa kanggo tugas kasebut. Deleng [kaca model Body Builder](https://openrouter.ai/openrouter/bodybuilder) ing OpenRouter.
 
 Tindakan:
 
-- Kanggo nambah model, klik **Tambah** utawa ing endi wae ing entri kasebut.
+- Kanggo nambah model, klik **Tambah** utawa ing endi wae ing entri.
 
-- Kanggo mbusak model, klik **X** ing sisih **Model Dipilih** utawa **Dipilih** ing entri dhaptar Model Kasedhiya.
+- Kanggo mbusak model, klik **X** ing sisihé ing **Model Dipilih** utawa **Dipilih** ing entri ing Model Kasedhiya.
 
-- Kanggo mbusak dhaptar, klik **Batal Pilih Kabeh**. Model gratis sing dibutuhake bakal tetep ana ing dhaptar.
+- Kanggo mbersihake dhaptar, klik **Batal Pilih Kabeh**. Model gratis sing dibutuhake bakal tetep ana ing dhaptar.
 
 <br/>
 
@@ -645,7 +645,7 @@ Tindakan:
 
 Gunakake **Setelan** > **Basa** kanggo ngatur dhaptar basa sing digunakake ing aplikasi.
 
-- **Basa utama** dikunci ing pucuk dhaptar basa ing **Terjemahake** lan **Ubah**.
+- **Basa utama** dijepret ing pucuk dhaptar basa ing **Terjemahake** lan **Ubah**.
 - **Basa kustom** ngidini sampeyan nambah basa sing ora ana ing dhaptar bawaan.
 
 Yen sampeyan nambah basa kustom, bakal katon ing pamilah basa bebarengan karo pilihan bawaan.
@@ -659,7 +659,7 @@ Gunakake **Setelan** > **Pelacakan Biaya** kanggo ngatur informasi biaya.
 
 - **Total Biaya** nuduhake total sing terus tambah.
 - **Salin Nilai** nyalin total menyang clipboard.
-- **Atur Ulang Biaya** mbaleni total sing disimpen dadi nol.
+- **Atur Ulang Biaya** ngreset total sing disimpen dadi nol.
 - **Sinkronake karo panggunaan kunci API** ngatur total supaya cocog karo panggunaan sing dilaporake dening akun OpenRouter sampeyan (mung OpenRouter).
 - **Panggunaan Kunci API** nuduhake rincian panggunaan OpenRouter, yen kasedhiya.
 - **Hapus data biaya** mbusak kabeh data, utawa mung entri sing luwih tuwa tinimbang tanggal sing dipilih.
@@ -669,14 +669,14 @@ Gunakake **Setelan** > **Pelacakan Biaya** kanggo ngatur informasi biaya.
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> **Kabeh angka biaya mung perkiraan kanggo referensi sampeyan waé, dudu pernyataan tagihan resmi.**
+> **Kabeh angka biaya mung perkiraan kanggo referensi sampeyan wae, dudu pernyataan tagihan resmi.**
 
 <br/>
 
 > ⚠️ **PERINGATAN**<br/>
-> Panghapusan data ora bisa dibatalake. Sadurunge mbusak, pastekake kanggo nyadhiyakake cadangan data sampeyan utawa ekspor liwat [**Riwayat**](#history) 
-> utawa [**Dasbor** > **Kabeh pangelingan API**](#dashboard-tabs), yen ora bakal ilang permanen. 
-> Kabeh riwayat input/output sing ana gandhengane karo saben entri pangelingan API uga bakal dihapus.
+> Panghapusan data ora bisa dibatalake. Sadurunge mbusak, pasthike sampeyan nyadhiyakake cadangan data utawa ngekspor liwat [**Riwayat**](#history)
+> utawa [**Dasbor** > **Kabeh pangelingan API**](#dashboard-tabs), yen ora bakal ilang permanen.
+> Kabeh riwayat input/output sing gegandhengan karo saben entri panjaluk API uga bakal dihapus.
 
 <br/>
 
@@ -707,39 +707,41 @@ Gunakake **Pangguna** kanggo ngatur akun pangguna ing versi web. Sampeyan bisa n
 
 Panyedhiya sing didhukung yaiku: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, lan **Ollama** (model lokal liwat URL dhasar). Sampeyan mung kudu ngonfigurasi panyedhiya sing digunakake.
 
-**Aplikasi web: mung administrator**
+**Aplikasi web: administrator wae**
 
-Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dimasukkan ing antarmuka web. Kaca iki nuduhake panyedhiya sing duwe kunci dikonfigurasi lan ngidini sampeyan nguji saben kunci kanthi klik tombol **`Test`**.
+Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dimasukkan ing antarmuka web. Kaca iki nuduhake panyedhiya sing duwe kunci dikonfigurasi lan ngidini sampeyan nyoba saben kunci kanthi klik tombol `Test`.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Kanggo ngganti kunci API, ganti variabel lingkungan ing konfigurasi sistem utawa Docker lan restart server utawa wadah.
+> Kanggo ngowahi kunci API, perbarui variabel lingkungan ing konfigurasi sistem utawa Docker lan restart server utawa wadah.
+
+<br/>
 
 > ℹ️ **CATETAN**<br/>
-> **Cadangan Konfigurasi** (deleng [**Setelan Umum** → Cadangan Konfigurasi](#general-settings)) bisa nemplak kunci panyedhiya sing wis **diselesaikan** ing jero `config.json` ZIP. Nggawe cadangan ZIP iki ora **nyalin** kunci menyang file konfigurasi permanen server - kunci aktif isih saka lingkungan lan status file sing dijelasake kono.
+> **Cadangan Konfigurasi** (deleng [**Setelan Umum** → Cadangan Konfigurasi](#general-settings)) bisa nemplak kunci panyedhiya sing wis **diselesaikan** ing `config.json` saka ZIP. Mbalekake ZIP iku ora **nyalin** kunci-kunci iku maneh menyang file konfigurasi server - kunci sing aktif isih saka lingkungan lan status file sing ana kaya sing dijelasake kono.
 
 <br/>
 
 **Aplikasi desktop**
 
-Gunakake **Konfigurasi API** kanggo nyimpen kunci API kanggo saben panyedhiya sing digunakake. Kanggo Ollama, ketik **URL dhasar** tinimbang kunci API.
+Gunakake **Konfigurasi API** kanggo nyimpen kunci API kanggo saben panyedhiya sing digunakake. Kanggo Ollama, lebokake **URL dhasar** tinimbang kunci API.
 
 <br/>
 
 > 💡 **Tip** <br/>
-> Yen sampeyan ora pengin nggunakake kunci API utawa mbayar panggunaan, sampeyan bisa [ngunduh Ollama](https://ollama.com) lan mlakuake model (kaya `translategemma:4b`) sacara lokal ing mesin sampeyan kanthi gratis. Alternatif liya, sampeyan bisa nggawe akun OpenRouter gratis (ora perlu kartu kredit) kanggo nggunakake model gratis, utawa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
+> Yen sampeyan ora pengin nggunakake kunci API utawa mbayar panggunaan, sampeyan bisa [ngunduh Ollama](https://ollama.com) lan nggunakake model (kayata `translategemma:4b`) sacara lokal ing mesin sampeyan kanthi gratis. Alternatif, sampeyan bisa gawe akun OpenRouter gratis (ora perlu kartu kredit) kanggo nggunakake model gratis dheweke, utawa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
 
 <br/>
 
-- Tambahake mung panyedhiya sing dibutuhake. Ing **Setelan** > **Model**, saben ID model diwiwiti karo panyedhiya (contone `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Tambahake mung panyedhiya sing dibutuhake. Ing **Setelan** > **Model**, saben id model diwiwiti karo panyedhiya (contone `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Kanggo nambah kunci API, ketik nilai ing kolom teks lan klik **`Save`**. Kanggo ngganti kunci sing ana, klik **`Edit`**. Kanggo mriksa manawa kunci bisa digunakake, klik **`Test`**. Kanggo URL dhasar Ollama, tansah klik **`Test`** kanggo mriksa koneksi.
+Kanggo nambah kunci API, lebokake nilai ing kolom teks lan klik `Save`. Kanggo ngganti kunci sing ana, klik `Edit`. Kanggo mriksa manawa kunci bisa digunakake, klik `Test`. Kanggo URL dhasar Ollama, tansah klik `Test` kanggo mriksa koneksi.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Sampeyan ora bisa ndeleng nilai saiki saka kunci API. Sampeyan mung bisa nggantina nggunakake tombol **`Edit`**.
+> Sampeyan ora bisa ndeleng nilai kunci API saiki. Sampeyan mung bisa nggantina nggunakake tombol `Edit`.
 > Kunci API disimpen kanthi dienkripsi ing konfigurasi.
 
 <br/>
@@ -747,12 +749,12 @@ Kanggo nambah kunci API, ketik nilai ing kolom teks lan klik **`Save`**. Kanggo 
 <a id="about"></a>
 ### Tentang
 
-Tab **Tentang** nampilake:
+Tab **Tentang** nuduhake:
 
 - jeneng aplikasi
 - nomor versi
 - tanggal gawe
-- tautan menyang repositori proyek
+- pranala menyang repositori proyek
 
 <br/><br/>
 
@@ -764,15 +766,15 @@ Yen ana sing ora mlaku kaya sing dikarepake, priksa dhisik poin-poin ing ngisor 
 <br/>
 
 <a id="the-app-will-not-translate-rewrite-or-transform-text"></a>
-### Aplikasi ora bisa menerjemahake, nulis ulang, utawa ngowahi teks
+### Aplikasi ora bisa nindakake terjemahan, nulis ulang, utawa ngowahi teks
 
 Priksa manawa:
 
-- panjenengan wis milih model ing bilah gawe
+- sampeyan wis milih model ing bilah gawe
 - paling ora siji model katon ing [**Setelan** > **Model**](#models)
-- setelan API panjenengan wis mlaku kanthi bener
+- setelan API sampeyan wis mlaku kanthi bener
 
-Yen panjenengan nggunakake aplikasi desktop:
+Yen sampeyan nggunakake aplikasi desktop:
 
 1. Buka [**Setelan** > **Konfigurasi API**](#api-config).
 2. Priksa manawa paling ora siji kunci API wis disimpen.
@@ -794,26 +796,26 @@ Yen perlu:
 <br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
-### Asilé terlalu lambat utawa larang
+### Asilé terlalu alon utawa larang
 
 Coba siji utawa luwih saka iki:
 
 - pilih model liya
 - gunakake input sing luwih cendhak
-- mateni **Terjemahan real-time (nalika ngetik)** ing [**Setelan** > **Setelan Umum**](#general-settings)
-- gunakake model gratis kanggo tugas sederhana (deleng [Model](#models))
+- mateni **Terjemahan Real-time (saat mengetik)** ing [**Setelan** > **Setelan Umum**](#general-settings)
+- gunakake model gratis kanggo tugas-tugas sederhana (deleng [Model](#models))
 
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Antarmukane nganggo basa sing salah
 
-Klik ikon globe ing [bilah gawe](#toolbar) lan pilih **Basa antarmuka** sing panjenengan kei.
+Klik ikon globe ing [bilah gawe](#toolbar) lan pilih **Basa antarmuka** sing dikekehan.
 
 <br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
-### Teks terlalu cilik utawa angel diwaca
+### Teksé kecil banget utawa angel diwaca
 
 Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan ganti:
 
@@ -827,19 +829,19 @@ Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan ganti:
 
 Iki normal yen:
 
-- sampeyan mung nggunakake **model gratis** lan sampeyan ndeleng angka **biaya** (iku bisa nol); grafik jumlah panggilan **usage** ing **Ringkasan** isih kudu data saka periode sing dipilih
+- sampeyan mung nggunakake **model gratis** lan sampeyan ndeleng angka **biaya** (bisa uga nol); grafik jumlah panggilan **panggunaan** ing **Ringkasan** isih kudu data saka periode sing dipilih
 - **saringan wektu** sing dipilih ora nutupi periode nalika panggilan dilakokake - coba **Kabeh** kanggo mriksa
 
-Yen grafik isih kosong sawise milih **Kabeh**, pastekan yen panggilan katon ing [**Riwayat**](#history) utawa ing tab **Kabeh Panggilan**.
+Yen grafik isih kosong sawise milih **Kabeh**, pasthike yen panggilan katon ing [**Riwayat**](#history) utawa ing tab **Kabeh panggilan API**.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
-### Biaya nuduhake "ora kasedhiya" utawa katon salah
+### Biaya nuduhake "ora tersedia" utawa katon salah
 
 Ketika sampeyan nggunakake model liwat **OpenRouter**, aplikasi nuduhake pengeluaran nyata sing dilaporake dening OpenRouter.
 
-Kanggo **panyedhiya liya** (OpenAI langsung, Anthropic langsung, lsp.), biaya diperkirakake saka data rega sing diterbitake dening OpenRouter. Yen ora ditemokake rega sing cocog kanggo model, biaya bakal katon minangka **ora kasedhiya** lan ora bakal ditambahake menyang total sampeyan.
+Kanggo **panyedhiya liya** (OpenAI langsung, Anthropic langsung, lsp.), biaya diperkirakake saka data rega sing diterbitake dening OpenRouter. Yen ora ditemokake rega sing cocog kanggo model, biaya bakal katon minangka **ora tersedia** lan ora ditambahake menyang total sampeyan.
 
 <br/>
 
@@ -855,30 +857,30 @@ Kanggo njaluk total luwih cedhak karo pengeluaran OpenRouter nyata sampeyan, buk
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Kaca Riwayat ilang saka sisih
 
-**Simpen riwayat eksekusi** bisa uga mati. Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan aktifake. Cathetan yen ngaktifake ora bakal mbalekake data riwayat sing wis dihapus sadurunge.
+**Simpen riwayat eksekusi** bisa uga dimateni. Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan aktifake. Catheten yen ngaktifake ora mbalekake data riwayat sing wis dihapus sadurunge.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
 ### Aplikasi web: dialihake menyang kaca login kanthi ora dikarepake
 
-Sesi sampeyan bisa uga wis kadaluan. Mlebu maneh. Yen kerep kedadeyan, priksa konfigurasi server kanggo setelan umur sesi.
+Sesi sampeyan bisa uga wis kelangan wektu. Mlebu maneh. Yen kerep kedadeyan, priksa konfigurasi server kanggo setelan umur sesi.
 
 <br/>
 
 <a id="web-admin-forgot-or-lost-a-password"></a>
 ### Admin web: lali utawa ilang sandhi
 
-Iki ditrapake kanggo aplikasi web **sing di-host dhewe** (Docker), dudu aplikasi desktop (Electron).
+Iki berlaku kanggo aplikasi web **sing di-host dhewe** (Docker), dudu aplikasi desktop (Electron).
 
-- Yen administrator liyane isih bisa mlebu, dheweke bisa mbukak [**Setelan** > **Pangguna**](#users), pilih akun, lan atur **sandi anyar** ana.
-- Yen sampeyan **terkunci metu** nanging duwe **akses shell** menyang mesin utawa wadah, atur maneh sandhi nganggo piranti bantuan sing dikirim karo gambar (ganti `transrewrt` yen sampeyan ngowahi jeneng asli, lan gunakna tanda kutip kanggo sandhi yen ngandhut spasi utawa karakter khusus):
+- Yen administrator liyane isih bisa mlebu, dheweke bisa mbukak [**Setelan** > **Pangguna**](#users), pilih akun, lan atur **sandhi anyar** ana.
+- Yen sampeyan **terkunci metu** nanging duwe **akses shell** menyang mesin utawa wadah, atur maneh sandhi nggunakake helper sing dikirim karo gambar (ganti `transrewrt` yen sampeyan ngganti jeneng asli, lan gunakna tanda petik kanggo sandhi yen duwe spasi utawa karakter khusus):
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
 ```
 
-Jeneng pangguna admin asli yaiku `admin` yen sampeyan durung tau nggawe akun liyane. Nalika sampeyan mung mlebokake siji argumen, iku dianggep minangka sandi anyar kanggo `admin`.
+Jeneng pangguna admin asli yaiku `admin` yen sampeyan durung tau nggawe akun liya. Nalika sampeyan mung mlebokake siji argumen, iku dianggep minangka sandhi anyar kanggo `admin`.
 
 Yen sampeyan mlaku saka **cek sumber** tinimbang Docker, gunakna:
 
@@ -891,28 +893,28 @@ Skrip nganyari rekam pangguna ing database SQLite (lan bisa nggawe `admin` pangg
 <br/>
 
 <a id="dashboard-shows-no-data-for-other-users"></a>
-### Dasbor nuduhake ora ana data kanggo pangguna liya (web)
+### Dasbor ora nuduhake data kanggo pangguna liya (web)
 
-Mung **administrator** sing bisa ndeleng data saka kabeh pangguna liwat saringan **Pangguna**. Pangguna biasa mung weruh aktivitas dhewe miturut rancangan.
+Mung **administrator** sing bisa ndeleng data saka kabeh pangguna liwat saringan **Pangguna**. Pangguna biasa mung weruh aktivitas dhewe sacara desain.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
-### Aku ngganti prompt lan kehilangan suntingan
+### Aku ngowahi prompt lan kehilangan suntingan
 
-Kala ngowahi prompt, tansah klik **Simpen** sadurunge klik **Mundur menyang Run**.
+Saat nyunting prompt, tansah klik **Simpen** sadurunge klik **Mundur menyang Run**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
 ## Tip cepet
 
-- Mulai karo [**Terjemahake**](#translate) kanggo mastekake yen setelan sampeyan wis mlaku sadurunge pindha menyang [**Tulis ulang**](#rewrite) utawa [**Ubah**](#transform).
-- Gunakake [**Tulis ulang**](#rewrite) kanggo pangowahan basa saben dina.
+- Wiwiti karo [**Terjemahake**](#translate) kanggo mastekake yen setelanmu wis lancar sadurunge pindha menyang [**Tulis ulang**](#rewrite) utawa [**Ubah**](#transform).
+- Gunakake [**Tulis ulang**](#rewrite) kanggo perbaikan basa saben dina.
 - Gunakake [**Ubah**](#transform) nalika sampeyan butuh alur kerja sing bisa diulang kanggo tugas tartamtu.
 - Gunakake [**Dasbor**](#dashboard) yen sampeyan pengin ngawasi panggunaan lan biaya.
-- Gunakake [**Riwayat**](#history) kanggo nimbang operasi kepungkur lan teks input/output lengkap.
-- Ekspor prompt kanthi rutin yen sampeyan lagi mbangun perpustakaan prompt sing pengin disimpen aman (deleng [Prompt transformasi](#transform-prompts)) utawa yen sampeyan pengin nuduhake karo liyane.
+- Gunakake [**Riwayat](#history) kanggo nimbang operasi lawas lan teks input/output lengkap.
+- Ekspor prompt kanthi rutin yen sampeyan lagi mbangun pusthaka prompt sing pengin disimpen aman (deleng [Prompt transformasi](#transform-prompts)) utawa yen sampeyan pengin nuduhake karo wong liya.
 
 <br/><br/>
 

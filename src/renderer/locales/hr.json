@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Automatsko kopiranje rezultata u međuspremnik",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Trenutni prijevod tijekom tipkanja (⚠️ Ovo može povećati troškove korištenja)",
   "Timeout (ms):": "Vrijeme isteka (ms):",
+  "disabled by the administrator": "onemogućeno od strane administratora",
   "Keep execution history": "Zadrži povijest izvršavanja",
   "Delete history data": "Izbriši povijest podataka",
   "Configuration Backup": "Sigurnosna kopija konfiguracije",

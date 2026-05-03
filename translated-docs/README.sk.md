@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:56.160Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:44:17.234Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: sk
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spúšťa sa ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
 
-- **Preklad** – medzi desiatkami jazykov s automatickým zisťovaním zdrojového jazyka
-- **Prepísanie** – oprava gramatiky, zlepšenie zrozumiteľnosti, formálny/neformálny štýl, skrátenie, rozšírenie, technický obsah
-- **Transformácia** – vlastné výzvy pre umelú inteligenciu; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
-- **História** – úplná histórija vykonaní vrátane vstupného a výstupného textu, filtrovanie a export
+- Preložiť** - medzi desiatkami jazykov s automatickou detekciou zdrojového jazyka
+- **Prepísať** - opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický štýl
+- **Transformovať** - vlastné AI výzvy; vytvoriť a spravovať výzvy, voliteľný cieľový jazyk pre každú výzvu
+- **História** - úplná história spustení so vstupným/výstupným textom, filtrovaním a exportom
 - **Modely a náklady** – výber modelov od akéhokoľvek nakonfigurovaného poskytovateľa; nákladové a využitieové prehľady s denníkom, zhrnutiami podľa modelu/operácie/dňa
 - **UI** – viacjazyčné rozhranie (30+ jazykov, podpora RTL), písma, ...
 - **Webový režim** – podpora viacerých používateľov s administračnými rolami
 - **Desktop** – Electron aplikácia pre Windows a Linux
 - **Samohostované** – Docker obraz pre amd64 & arm64 (pripravené pre Raspberry Pi)
 
-Po inštalácii si pozrite **[Používateľskú príručku](USER-GUIDE.sk.md)**, kde nájdete podrobný prehľad všetkých funkcií.
+Po nainštalovaní si pozrite [**Používateľskú príručku**](USER-GUIDE.sk.md) pre podrobný prehľad všetkých funkcií.
 
 <small>**Prečítajte si v iných jazykoch:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Nastavte aspoň jeden kľúč poskytovateľa prostredníctvom prostredia (naprí
 
 Alebo použite Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ nahraďte `libasound2t64` za `libasound2` pre `arm64`. Minimálne alebo vlastné
 
 <br/>
 
-Keď aplikácia beží, pozrite si **[Používateľskú príručku](USER-GUIDE.sk.md)**, kde sa dozviete, ako prekladať, prepisovať a transformovať text, spravovať výzvy a konfigurovať modely.
+Keď je aplikácia spustená, pozrite si [**Používateľskú príručku**](USER-GUIDE.sk.md), kde sa dozviete, ako prekladať, prepisovať a transformovať text, spravovať výzvy a konfigurovať modely.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini
 | `PORT`               | Port, na ktorom počúva server (predvolené `5000`)                                  |
 | `CONFIG_PATH`        | Cesta k súboru s konfiguráciou (predvolene `/app/data/config.json`)                |
 | `TZ`                 | časové pásmo pre čas na strane servera (zaznamenávanie, atď.) (predvolené `Europe/London`) |
+| `HISTORY_DISABLED`   | Vynúti vypnutie histórie vykonávania (voliteľné, predvolené je `false`)                  |
 | `OPENROUTER_API_KEY` | Kľúč OpenRouter API                                                           |
 | `OPENAI_API_KEY`     | Kľúč OpenAI API                                                               |
 | `CEREBRAS_API_KEY`   | Kľúč Cerebras API                                                             |
@@ -303,6 +305,8 @@ Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kľúč Mistral API                                                              |
 | `OLLAMA_URL`         | Základná URL Ollama (napr. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kľúč xAI API                                                                  |
+
+**Režim súkromia:** Ak chcete vynútiť vypnutie sledovania histórie bez ohľadu na `config.json` alebo preferencie používateľa, nastavte `HISTORY_DISABLED` na `true` alebo `1` (bez rozlišovania veľkosti písmen) pre **webový/Docker serverový proces** a/alebo **hlavný proces desktopovej aplikácie Electron** (napr. systémové alebo spúšťacie prostredie – nie len vykresľovací proces). Toto zakazuje ukladanie histórie vstupov/výstupov, uzamkne **Nastavenia → Všeobecné nastavenia → História** a blokuje API súvisiace s Históriou.
 
 Nakonfigurujte len poskytovateľov, ktorých používate. Identifikátory modelov sú menovane (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atď.).
 
@@ -334,8 +338,8 @@ Nastavenia kľúčových parametrov (písmo, modely, jazyky atď.) sú k dispoz�
 <a id="development-and-architecture"></a>
 ## Vývoj a architektúra
 
-- **Vývoj:** Nastavenie, zostavenie, testovanie a nasadenie (Electron, Web, Docker) – pozri **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektúra a prehľad systému:** Štruktúra priečinkov, technologický zásobník, návrhové rozhodnutia – pozri **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Vývoj:** Nastavenie, zostavenie, testovanie a nasadenie (Electron, Web, Docker) – pozri [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architektúra a prehľad systému:** Štruktúra priečinkov, technologický zásobník, návrhové rozhodnutia – pozri [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

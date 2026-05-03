@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:55.421Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:41:48.906Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ro
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate – utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
-- **Traducere** - între zeci de limbi, cu detectare automată a limbii sursă
-- **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
-- **Transformare** - prompturi personalizate AI; creați și gestionați prompturi, limbă țintă opțională pentru fiecare prompt
-- **Istoric** - istoric complet al execuțiilor cu textele de intrare/ieșire, filtrare și export
+- Traduceți** - între zeci de limbi, cu detectare automată a sursei
+- **Rescriere** - corectați gramatica, îmbunătățiți claritatea, formal/informal, scurtați, extindeți, tehnic
+- **Transformare** - comenzi AI personalizate; creați și gestionați comenzi, limbă țintă opțională per comandă
+- **Istoric** - istoric complet al execuției cu text de intrare/ieșire, filtrare și export
 - **Modele și costuri** - alegeți modele din orice furnizor configurat; tablouri de bord pentru costuri și utilizare cu jurnale, rezumate pe model/operațiune/zi
 - **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
 - **Aplicație desktop** - aplicație Electron pentru Windows și Linux
 - **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (compatibil cu Raspberry Pi)
 
-După instalare, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru o prezentare completă a tuturor funcțiilor.
+Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru o prezentare completă a tuturor funcțiilor.
 
 <small>**Citește în alte limbi:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Setați cel puțin o cheie de furnizor prin variabile de mediu (de exemplu `OPEN
 
 Sau utilizați Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-Odată ce aplicația rulează, consultați **[Ghidul utilizatorului](USER-GUIDE.ro.md)** pentru a învăța cum să traduceți, rescrieți și transformați text, să gestionați prompturile și să configurați modelele.
+Odată ce aplicația rulează, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru a învăța cum să traduceți, rescrieți și transformați textul, să gestionați prompturile și să configurați modelele.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 | `PORT`               | Portul pe care ascultă serverul (implicit `5000`)                                  |
 | `CONFIG_PATH`        | Calea către fișierul de configurare (implicit `/app/data/config.json`)                |
 | `TZ`                 | fus orar pentru timpul de pe server (jurnalizare etc.) (implicit `Europe/London`) |
+| `HISTORY_DISABLED`   | Activează dezactivarea istoricului execuției (opțional, implicit `false`)                  |
 | `OPENROUTER_API_KEY` | Cheie API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Cheie API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Cheie API Cerebras                                                             |
@@ -303,6 +305,8 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 | `MISTRAL_API_KEY`    | Cheie API Mistral                                                              |
 | `OLLAMA_URL`         | URL de bază Ollama (ex: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Cheie API xAI                                                                  |
+
+**Modul de confidențialitate:** Pentru a forța dezactivarea urmăririi istoricului indiferent de `config.json` sau de preferințele pe utilizator, setați `HISTORY_DISABLED` la `true` sau `1` (fără distincție între majuscule și minuscule) pentru **procesul server web/Docker** și/sau **procesul principal desktop Electron** (de exemplu, mediul sistemului sau al lansatorului — nu doar renderer-ul). Aceasta dezactivează stocarea istoricului intrare/ieșire, blochează **Setări → Setări generale → Istoric** și blochează API-urile legate de Istoric.
 
 Configurați doar furnizorii pe care îi utilizați. ID-urile modelelor sunt separate prin namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -334,8 +338,8 @@ Setările principale (font, modele, limbi etc.) sunt disponibile în Setări apl
 <a id="development-and-architecture"></a>
 ## Dezvoltare și arhitectură
 
-- **Dezvoltare:** Configurare, build, testare și deploare (Electron, Web, Docker) - consultați **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arhitectură și prezentare generală a sistemului:** Structura foldere, tehnologii utilizate, decizii de design - consultați **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Dezvoltare:** Configurare, build, testare și deploy (Electron, Web, Docker) - consultați [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arhitectură și prezentare generală a sistemului:** Structura directoarelor, tehnologiile utilizate, decizii de proiectare - consultați [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:03.796Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:35:57.530Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: en-US
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,7 +22,7 @@ translation_models:
 
 AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- **Translate** - between dozens of languages, with automatic source detection
+- Translate** - between dozens of languages, with automatic source detection
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export
@@ -31,7 +32,7 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Desktop** - Electron app for Windows and Linux
 - **Self-hosted** - Docker image for amd64 & arm64 (Raspberry Pi-ready)
 
-Once installed, see the **[User Guide](USER-GUIDE.en-US.md)** for a full walkthrough of all features.
+Once installed, see the [**User Guide**](USER-GUIDE.en-US.md) for a full walkthrough of all features.
 
 <small>**Read in other languages:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Set at least one provider key via environment (for example `OPENROUTER_API_KEY` 
 
 Or use Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ replace `libasound2t64` with `libasound2` for `arm64`.  Minimal or custom instal
 
 <br/>
 
-Once the app is running, see the **[User Guide](USER-GUIDE.en-US.md)** to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
+Once the app is running, see the [**User Guide**](USER-GUIDE.en-US.md) to learn how to translate, rewrite, and transform text, manage prompts, and configure models.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `PORT`               | Server listening port  (defaults to `5000`)                                  |
 | `CONFIG_PATH`        | Path to the config file (defaults to `/app/data/config.json`)                |
 | `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
+| `HISTORY_DISABLED`   | Force execution history off (optional, defaults to `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
 | `OPENAI_API_KEY`     | OpenAI API key                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
@@ -303,6 +305,8 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+
+**Privacy mode:** To force the track of history off regardless of `config.json` or per-user preferences, set `HISTORY_DISABLED` to `true` or `1` (case-insensitive) for the **web/Docker server process** and/or the **Electron desktop main process** (e.g. system or launcher environment — not the renderer alone). This disables storing input/output history, locks **Settings → General Settings → History**, and blocks History-related APIs.
 
 Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
 
@@ -334,8 +338,8 @@ Key settings (font, models, languages, etc.) are available in the application Se
 <a id="development-and-architecture"></a>
 ## Development and architecture
 
-- **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architecture and system overview:** Folder structure, tech stack, design decisions - see **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Development:** Setup, build, test, and deploy (Electron, Web, Docker) - see [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architecture and system overview:** Folder structure, tech stack, design decisions - see [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

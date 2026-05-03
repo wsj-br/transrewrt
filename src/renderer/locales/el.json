@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Αυτόματη αντιγραφή αποτελέσματος στο πρόχειρο",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Μετάφραση σε πραγματικό χρόνο κατά την πληκτρολόγηση (⚠️ Αυτό μπορεί να αυξήσει το κόστος χρήσης)",
   "Timeout (ms):": "Χρονικό όριο (ms):",
+  "disabled by the administrator": "απενεργοποιημένο από το διαχειριστή",
   "Keep execution history": "Διατήρηση ιστορικού εκτέλεσης",
   "Delete history data": "Διαγραφή δεδομένων ιστορικού",
   "Configuration Backup": "Αντίγραφο ασφαλείας διαμόρφωσης",

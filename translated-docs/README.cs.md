@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-01T21:24:51.392Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T21:08:59.552Z'
+source_file_mtime: '2026-05-02T20:57:11.764Z'
+source_file_hash: 2b5437c0980b14cafcd12332fe78141c3045084da3f4d36d0e668d06ac964719
 translation_language: cs
 source_file_path: README.md
 translation_models:
@@ -21,7 +21,7 @@ translation_models:
 
 Nástroj pro text s využitím umělé inteligence: překládání mezi jazyky, přepis v různých stylech a transformace pomocí vlastních promptů – s využitím více poskytovatelů umělé inteligence (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokální Ollama). Funguje jako desktopová aplikace (Electron) nebo jako samostatně hostovaná webová aplikace (Docker).
 
-- **Překlad** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
+- Překlad** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
 - **Přepsání** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
 - **Transformace** – vlastní AI prompty; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
 - **Historie** – úplná historie provedených operací včetně vstupního a výstupního textu, filtrování a export
@@ -51,14 +51,14 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Snímky obrazovky](#screenshots)
-- [Rychlý start](#quick-start)
-- [Získání OpenRouter API klíče](#getting-an-openrouter-api-key)
-- [Konfigurace a prostředí](#configuration-and-environment)
-- [Vývoj a architektura](#development-and-architecture)
-- [Hlášení problémů](#reporting-issues)
-- [Právní upozornění](#disclaimer)
-- [Licence](#license)
+- [Snímky obrazovky](#sn%C3%ADmky-obrazovky)
+- [Rychlý start](#rychl%C3%BD-start)
+- [Získání API klíče OpenRouter](#z%C3%ADsk%C3%A1n%C3%AD-api-kl%C3%AD%C4%8De-openrouter)
+- [Konfigurace a prostředí](#konfigurace-a-prost%C5%99ed%C3%AD)
+- [Vývoj a architektura](#v%C3%BDvoj-a-architektura)
+- [Hlášení problémů](#hl%C3%A1%C5%A1en%C3%AD-probl%C3%A9m%C5%AF)
+- [Zřeknutí se záruk](#z%C5%99eknut%C3%AD-se-z%C3%A1ruk)
+- [Licence](#licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -293,6 +293,7 @@ Můžete také použít jiné poskytovatele (OpenAI, Anthropic, Google Gemini, D
 | `PORT`               | port, na kterém naslouchá server (výchozí hodnota `5000`)                                  |
 | `CONFIG_PATH`        | Cesta k konfiguračnímu souboru (výchozí hodnota `/app/data/config.json`)                |
 | `TZ`                 | časové pásmo pro čas na straně serveru (protokolování atd.) (výchozí hodnota `Europe/London`) |
+| `HISTORY_DISABLED`   | Vynutí vypnutí historie provádění (volitelné, výchozí hodnota je `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API klíč                                                           |
 | `OPENAI_API_KEY`     | OpenAI API klíč                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API klíč                                                             |
@@ -303,6 +304,8 @@ Můžete také použít jiné poskytovatele (OpenAI, Anthropic, Google Gemini, D
 | `MISTRAL_API_KEY`    | Mistral API klíč                                                              |
 | `OLLAMA_URL`         | základní URL Ollamy (např. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | klíč k rozhraní xAI API                                                                  |
+
+**Režim soukromí:** Chcete-li vypnout sledování historie bez ohledu na `config.json` nebo nastavení jednotlivých uživatelů, nastavte `HISTORY_DISABLED` na `true` nebo `1` (nezávisle na velikosti písmen) pro proces **webového/Docker serveru** a/nebo hlavní proces **desktopové aplikace Electron** (např. systémové nebo spouštěcí prostředí – ne pouze vykreslovací proces). Tím se zakáže ukládání historie vstupů/výstupů, uzamkne se **Nastavení → Obecné nastavení → Historie** a blokují se rozhraní API související s historií.
 
 Nakonfigurujte pouze poskytovatele, které používáte. Identifikátory modelů jsou rozděleny do jmenných prostor (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atd.).
 
@@ -335,7 +338,7 @@ Nastavení klíčových parametrů (písmo, modely, jazyky atd.) jsou k dispozic
 ## Vývoj a architektura
 
 - **Vývoj:** Nastavení, sestavení, testování a nasazení (Electron, Web, Docker) – viz **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektura a přehled systému:** Struktura složek, technologický stack, návrhová rozhodnutí – viz **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Architektura a přehled systému:** Struktura složek, technologický stack, návrhová rozhodnutí – viz **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:04.140Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:35:16.426Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: tl
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling isulat sa iba't ibang estilo, at baguhin gamit ang pasadyang mga prompt — gamit ang maramihang AI provider (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at lokal na Ollama). Tumatakbo bilang desktop app (Electron) o self-hosted web app (Docker).
 
-- **Isalin** - sa maraming wika, na may awtomatikong pagtukoy sa pinagmulan
-- **Muling-isulat** - ayusin ang gramatika, mapabuti ang kaliwanagan, pormal/o di-pormal, pagpapaikli, pagpapalawak, teknikal
-- **Baguhin** - pasadyang AI prompt; lumikha at pamahalaan ang mga prompt, opsyonal na wika sa layunin bawat prompt
-- **Kasaysayan** - buong kasaysayan ng pagpapatupad na may input/output na teksto, pag-filter, at pag-export
+- Isalin** - sa pagitan ng dosenang mga wika, na may awtomatikong pagdetekta ng pinagmulan
+- **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/di-pormal, paiikliin, palawakin, teknikal
+- **Baguhin** - mga custom AI prompt; gumawa at pamahalaan ang mga prompt, opsyonal na destinasyon na wika kada prompt
+- **Kasaysayan** - buong kasaysayan ng pagpapatakbo na may input/output na teksto, pag-filter, at pag-export
 - **Mga Modelo at gastos** - pumili ng mga modelo mula sa anumang naka-configure na tagapagbigay; dashboard para sa gastos at paggamit na may log, buod ayon sa modelo/operasyon/araw
 - **UI** - multilingual na interface (higit sa 30 wika, suporta sa RTL), mga font, ...
 - **Web mode** - suporta sa maraming gumagamit na may admin na papel
 - **Desktop** - Electron app para sa Windows at Linux
 - **Self-hosted** - Docker image para sa amd64 & arm64 (handang gamitin sa Raspberry Pi)
 
-Kapag nainstall na, tingnan ang **[Gabay sa User](USER-GUIDE.tl.md)** para sa buong walkthrough ng lahat ng mga tampok.
+Kapag nainstall na, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para sa kompletong gabay sa lahat ng mga tampok.
 
 <small>**Basahin sa ibang mga wika:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Itakda ang kahit isang provider key sa pamamagitan ng environment (halimbawa `OP
 
 O gamitin ang Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ palitan ang `libasound2t64` ng `libasound2` para sa `arm64`. Maaaring mag-fail p
 
 <br/>
 
-Kapag tumatakbo na ang app, tingnan ang **[User Guide](USER-GUIDE.tl.md)** upang matuto kung paano i-translate, i-rewrite, at i-transform ang teksto, pamahalaan ang mga prompt, at i-configure ang mga modelo.
+Kapag tumatakbo na ang app, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para matuto kung paano isalin, muling isulat, at baguhin ang teksto, pamahalaan ang mga prompt, at i-configure ang mga modelo.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Maaari mo ring gamitin ang iba pang provider (OpenAI, Anthropic, Google Gemini, 
 | `PORT`               | Port kung saan nakikinig ang server (naka-default sa `5000`)                                  |
 | `CONFIG_PATH`        | Landas patungo sa config file (naka-default sa `/app/data/config.json`)                |
 | `TZ`                 | time zone para sa oras sa server-side (logging, at iba pa) (naka-default sa `Europe/London`) |
+| `HISTORY_DISABLED`   | Pilitin ang pag-off ng kasaysayan ng pagpapatupad (opsyonal, naka-default sa `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API key                                                           |
 | `OPENAI_API_KEY`     | OpenAI API key                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API key                                                             |
@@ -303,6 +305,8 @@ Maaari mo ring gamitin ang iba pang provider (OpenAI, Anthropic, Google Gemini, 
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (hal. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+
+**Privacy mode:** Upang pilitin ang pag-off ng pagsubaybay sa kasaysayan anuman ang `config.json` o mga kagustuhan batay sa user, itakda ang `HISTORY_DISABLED` sa `true` o `1` (hindi sensitibo sa kaso) para sa **web/Docker server process** at/o sa **Electron desktop main process** (hal. sistema o environment ng launcher — hindi lamang ang renderer). Ito ay nag-de-disable sa pag-iimbak ng kasaysayan ng input/output, i-lock ang **Settings → Mga Pangkalahatang Setting → Kasaysayan**, at pinipigilan ang mga History-related API.
 
 I-configure lamang ang mga provider na ginagamit mo. Ang mga Model ID ay may namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atbp.).
 
@@ -334,8 +338,8 @@ Ang mga setting ng key (font, mga modelo, mga wika, atbp.) ay magagamit sa Mga S
 <a id="development-and-architecture"></a>
 ## Pag-unlad at arkitektura
 
-- **Pag-unlad:** Setup, build, subukan, at i-deploy (Electron, Web, Docker) - tingnan ang **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Arkitektura at pangkalahatang-ideya ng sistema:** Istraktura ng folder, tech stack, mga desisyon sa disenyo - tingnan ang **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Pagsasagawa:** Pag-setup, build, pagsubok, at pag-deploy (Electron, Web, Docker) - tingnan ang [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Arkitektura at pangkalahatang-ideya ng sistema:** Istraktura ng folder, tech stack, mga desisyon sa disenyo - tingnan ang [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

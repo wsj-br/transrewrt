@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:55.087Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:43:50.880Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: pa
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 AI-ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੈਕਸਟ ਟੂਲ: ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ, ਵੱਖ-ਵੱਖ ਸ਼ੈਲੀਆਂ ਵਿੱਚ ਮੁੜ-ਲਿਖੋ, ਅਤੇ ਕਸਟਮ ਪ੍ਰੋਂਪਟਾਂ ਨਾਲ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰੋ - ਕਈ AI ਪ੍ਰਦਾਤਾਵਾਂ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, ਅਤੇ ਸਥਾਨਕ Ollama) ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਡੈਸਕਟਾਪ ਐਪ (Electron) ਜਾਂ ਸੈਲਫ-ਹੋਸਟਡ ਵੈੱਬ ਐਪ (Docker) ਵਜੋਂ ਚਲਦਾ ਹੈ।
 
-- **ਅਨੁਵਾਦ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ, ਸਵੈਚਾਲਿਤ ਸਰੋਤ ਪਛਾਣ ਨਾਲ
-- **ਮੁੜ-ਲਿਖੋ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪਸ਼ਟਤਾ ਵਧਾਓ, ਔਪਚਾਰਿਕ/ਅਨੌਪਚਾਰਿਕ, ਛੋਟਾ ਕਰੋ, ਵਿਸਤਾਰ ਕਰੋ, ਤਕਨੀਕੀ
-- **ਰੂਪਾਂਤਰ** - ਕਸਟਮ ਏਆਈ ਪ੍ਰੇਰਕ; ਪ੍ਰੇਰਕ ਬਣਾਓ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਹਰੇਕ ਪ੍ਰੇਰਕ ਲਈ ਵਿਕਲਪਿਕ ਟੀਚਾ ਭਾਸ਼ਾ
-- **ਇਤਿਹਾਸ** - ਪੂਰਾ ਕਾਰਜ ਇਤਿਹਾਸ ਇਨਪੁਟ/ਆਉਟਪੁਟ ਟੈਕਸਟ, ਫਿਲਟਰਿੰਗ, ਅਤੇ ਨਿਰਯਾਤ ਨਾਲ
+- ਅਨੁਵਾਦ ਕਰੋ** - ਦਰਜਨਾਂ ਭਾਸ਼ਾਵਾਂ ਦੇ ਵਿਚਕਾਰ, ਸਰੋਤ ਦੀ ਆਟੋਮੈਟਿਕ ਪਹਿਚਾਣ ਨਾਲ
+- **ਪੁਨਰਲੇਖਨ** - ਵਿਆਕਰਨ ਠੀਕ ਕਰੋ, ਸਪਸ਼ਟਤਾ ਵਧਾਓ, ਰਸਮੀ/ਗੈਰ-ਰਸਮੀ, ਛੋਟਾ ਕਰੋ, ਵਧਾਓ, ਤਕਨੀਕੀ
+- **ਰੂਪਾਂਤਰਿਤ ਕਰੋ** - ਕਸਟਮ AI ਪ੍ਰੰਪਟ; ਪ੍ਰੰਪਟ ਬਣਾਓ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਹਰ ਪ੍ਰੰਪਟ ਲਈ ਚੋਣਵਾਂ ਟੀਚਾ ਭਾਸ਼ਾ
+- **ਇਤਿਹਾਸ** - ਇਨਪੁਟ/ਆਉਟਪੁਟ ਟੈਕਸਟ, ਫਿਲਟਰਿੰਗ ਅਤੇ ਨਿਰਯਾਤ ਸਮੇਤ ਪੂਰਾ ਐਗਜ਼ਿਕਿਊਸ਼ਨ ਇਤਿਹਾਸ
 - **ਮਾਡਲ ਅਤੇ ਲਾਗਤ** - ਕਿਸੇ ਵੀ ਕੰਫਿਗਰ ਕੀਤੇ ਪ੍ਰਦਾਤਾ ਤੋਂ ਮਾਡਲ ਚੁਣੋ; ਲਾਗਤ ਅਤੇ ਵਰਤੋਂ ਡੈਸ਼ਬੋਰਡ ਲੌਗ, ਮਾਡਲ/ਆਪਰੇਸ਼ਨ/ਦਿਨ ਅਨੁਸਾਰ ਸਾਰਾਂਸ਼
 - **ਯੂਆਈ** - ਬਹੁਭਾਸ਼ੀ ਇੰਟਰਫੇਸ (30+ ਭਾਸ਼ਾਵਾਂ, ਆਰਟੀਐਲ ਸਹਾਇਤਾ), ਫੋਂਟ, ...
 - **ਵੈੱਬ ਮੋਡ** - ਐਡਮਿਨ ਭੂਮਿਕਾਵਾਂ ਨਾਲ ਬਹੁ-ਯੂਜ਼ਰ ਸਹਾਇਤਾ
 - **ਡੈਸਕਟਾਪ** - ਵਿੰਡੋਜ਼ ਅਤੇ ਲੀਨਕਸ ਲਈ ਇਲੈਕਟ੍ਰਾਨ ਐਪ
 - **ਆਪਣੇ ਆਪ ਹੋਸਟ ਕੀਤਾ** - ਐਮਡੀ64 ਅਤੇ ਐਆਰਐਮ64 (ਰਾਸਪਬੇਰੀ ਪਾਈ-ਤਿਆਰ) ਲਈ ਡਾਕਰ ਇਮੇਜ
 
-ਇੰਸਟਾਲ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦੀ ਪੂਰੀ ਸਮਝ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
+ਇੰਸਟਾਲ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦੀ ਪੂਰੀ ਜਾਂਚ ਲਈ [**ਯੂਜ਼ਰ ਗਾਈਡ**](USER-GUIDE.pa.md) ਵੇਖੋ।
 
 <small>**ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਪੜ੍ਹੋ:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 ਜਾਂ Docker Compose ਵਰਤੋ:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-ਇਕ ਵਾਰ ਐਪ ਚੱਲਣ ਲੱਗੇ, ਪਾਠ ਨੂੰ ਅਨੁਵਾਦ ਕਰਨ, ਮੁੜ-ਲਿਖਣ ਅਤੇ ਟ੍ਰਾਂਸਫਾਰਮ ਕਰਨ, ਪ੍ਰਾਮਟ ਨੂੰ ਮੈਨੇਜ ਕਰਨ ਅਤੇ ਮਾਡਲਾਂ ਨੂੰ ਕਾਨਫਿਗਰ ਕਰਨ ਬਾਰੇ ਜਾਣਨ ਲਈ **[ਯੂਜ਼ਰ ਗਾਈਡ](USER-GUIDE.pa.md)** ਵੇਖੋ।
+ਐਪ ਚੱਲਣ ਤੋਂ ਬਾਅਦ, ਪਾਠ ਨੂੰ ਅਨੁਵਾਦ ਕਰਨ, ਪੁਨਰਲੇਖਨ ਕਰਨ ਅਤੇ ਰੂਪਾਂਤਰਿਤ ਕਰਨ, ਪ੍ਰੰਪਟ ਪ੍ਰਬੰਧਿਤ ਕਰਨ ਅਤੇ ਮਾਡਲ ਕਾਨਫਿਗਰ ਕਰਨ ਬਾਰੇ ਜਾਣਨ ਲਈ [**ਯੂਜ਼ਰ ਗਾਈਡ**](USER-GUIDE.pa.md) ਵੇਖੋ।
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰ�
 | `PORT`               | ਸਰਵਰ ਸੁਣਨ ਪੋਰਟ  (ਡਿਫਾਲਟ `5000` ਤੇ)                                  |
 | `CONFIG_PATH`        | ਕੌਨਫਿਗ ਫਾਇਲ ਦਾ ਮਾਰਗ (ਡਿਫਾਲਟ `/app/data/config.json` ਹੈ)                |
 | `TZ`                 | ਸਰਵਰ-ਸਾਈਡ ਸਮਾਂ ਲਈ ਸਮਾਂ ਖੇਤਰ (ਲੌਗਿੰਗ, ਆਦਿ) (ਡਿਫਾਲਟ `Europe/London` ਤੇ) |
+| `HISTORY_DISABLED`   | ਇਤਿਹਾਸ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ ਮਜਬੂਰ ਕਰੋ (ਵਿਕਲਪਿਕ, ਮੂਲ ਰੂਪ ਵਿੱਚ `false` ਹੁੰਦਾ ਹੈ)                  |
 | `OPENROUTER_API_KEY` | ਓਪਨਰਾਊਟਰ ਏਪੀਆਈ ਕੁੰਜੀ                                                           |
 | `OPENAI_API_KEY`     | ਓਪਨਏਆਈ ਏਪੀਆਈ ਕੁੰਜੀ                                                               |
 | `CEREBRAS_API_KEY`   | ਸੇਰੇਬਰਸ ਏਪੀਆਈ ਕੁੰਜੀ                                                             |
@@ -303,6 +305,8 @@ Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰ�
 | `MISTRAL_API_KEY`    | ਮਿਸਟਰਲ ਏਪੀਆਈ ਕੁੰਜੀ                                                              |
 | `OLLAMA_URL`         | ਓਲਾਮਾ ਬੇਸ URL (ਜਿਵੇਂ `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API ਕੁੰਜੀ                                                                  |
+
+**ਪ੍ਰਾਈਵੇਸੀ ਮੋਡ:** `config.json` ਜਾਂ ਯੂਜ਼ਰ ਅਨੁਸਾਰੀ ਪਸੰਦਾਂ ਤੋਂ ਬੇਪਰਵਾਹ ਇਤਿਹਾਸ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ, **ਵੈੱਬ/Docker ਸਰਵਰ ਪ੍ਰਕਿਰਿਆ** ਅਤੇ/ਜਾਂ **ਇਲੈਕਟ੍ਰਾਨ ਡੈਸਕਟਾਪ ਮੁੱਖ ਪ੍ਰਕਿਰਿਆ** ਲਈ `HISTORY_DISABLED` ਨੂੰ `true` ਜਾਂ `1` (ਅੱਖਰ-ਅਸੰਵੇਦਨਸ਼ੀਲ) ਤੇ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਵਜੋਂ ਸਿਸਟਮ ਜਾਂ ਲਾਂਚਰ ਵਾਤਾਵਰਣ — ਸਿਰਫ਼ ਰੈਂਡਰਰ ਨਹੀਂ)। ਇਸ ਨਾਲ ਇਨਪੁਟ/ਆਉਟਪੁਟ ਇਤਿਹਾਸ ਸਟੋਰ ਕਰਨਾ ਅਸਮਰੱਥ ਹੋ ਜਾਂਦਾ ਹੈ, **ਸੈਟਿੰਗਜ਼ → ਆਮ ਸੈਟਿੰਗਾਂ → ਇਤਿਹਾਸ** ਨੂੰ ਲਾਕ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਇਤਿਹਾਸ-ਸਬੰਧਤ API ਨੂੰ ਰੋਕਿਆ ਜਾਂਦਾ ਹੈ।
 
 ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ਿਗਰ ਕਰੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ। ਮਾਡਲ ਆਈਡੀਜ਼ ਨਾਮਕ ਖੇਤਰ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ) ਹਨ।
 
@@ -334,8 +338,8 @@ Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰ�
 <a id="development-and-architecture"></a>
 ## ਵਿਕਾਸ ਅਤੇ ਆਰਕੀਟੈਕਚਰ
 
-- **ਵਿਕਾਸ:** ਸੈਟਅੱਪ, ਬਿਲਡ, ਟੈਸਟ, ਅਤੇ ਡਿਪਲੌਇ (ਇਲੈਕਟ੍ਰਾਨ, ਵੈੱਬ, ਡੌਕਰ) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** ਵੇਖੋ।
-- **ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਸਿਸਟਮ ਦਾ ਜਨਰਲ ਵੇਰਵਾ:** ਫੋਲਡਰ ਸਟਰਕਚਰ, ਟੈਕ ਸਟੈਕ, ਡਿਜ਼ਾਈਨ ਫੈਸਲੇ - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** ਵੇਖੋ।
+- **ਵਿਕਾਸ:** ਸੈਟਅੱਪ, ਬਿਲਡ, ਟੈਸਟ, ਅਤੇ ਡਿਪਲੌਅ (ਇਲੈਕਟ੍ਰਾਨ, ਵੈੱਬ, ਡੌਕਰ) - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) ਵੇਖੋ।
+- **ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਸਿਸਟਮ ਦਾ ਜਨਰਲ ਵਿਚਾਰ:** ਫੋਲਡਰ ਸਟਰਕਚਰ, ਟੈਕ ਸਟੈਕ, ਡਿਜ਼ਾਈਨ ਫੈਸਲੇ - [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) ਵੇਖੋ।
 
 <br/><br/>
 

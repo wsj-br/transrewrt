@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Автоматически копировать результат в буфер обмена",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Перевод в реальном времени во время ввода текста (⚠️ Это может увеличить расходы на использование)",
   "Timeout (ms):": "Таймаут (мс):",
+  "disabled by the administrator": "отключено администратором",
   "Keep execution history": "Сохранять историю выполнения",
   "Delete history data": "Удалить данные истории",
   "Configuration Backup": "Резервное копирование конфигурации",

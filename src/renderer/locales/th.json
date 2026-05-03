@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "คัดลอกผลลัพธ์ไปยังคลิปบอร์ดอัตโนมัติ",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "การแปลแบบเรียลไทม์ขณะพิมพ์ (⚠️ อาจทำให้ค่าใช้จ่ายเพิ่มขึ้น)",
   "Timeout (ms):": "หมดเวลา (มิลลิวินาที):",
+  "disabled by the administrator": "ปิดใช้งานโดยผู้ดูแลระบบ",
   "Keep execution history": "เก็บประวัติการดำเนินการ",
   "Delete history data": "ลบข้อมูลประวัติ",
   "Configuration Backup": "สำรองข้อมูลการตั้งค่า",

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:16.665Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:37:45.909Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: el
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Εργαλείο κειμένου με τεχνητή νοημοσύνη: μετάφραση μεταξύ γλωσσών, αναδιατύπωση σε διαφορετικά στυλ και μετασχηματισμός με προσαρμοσμένα ερωτήματα — χρησιμοποιώντας πολλαπλούς παρόχους ΤΝ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, και τοπικό Ollama). Λειτουργεί ως εφαρμογή επιφάνειας εργασίας (Electron) ή ως εγκατεστημένη ιστοεφαρμογή (Docker).
 
-- **Μετάφραση** - μεταξύ δεκάδων γλωσσών, με αυτόματη ανίχνευση πηγής
-- **Επανεκκίνηση** - διόρθωση γραμματικής, βελτίωση σαφήνειας, επίσημη/ανεπίσημη έκδοση, συντομότερη, εκτεταμένη, τεχνική
-- **Μετασχηματισμός** - προσαρμοσμένες ερωτήσεις AI· δημιουργία και διαχείριση ερωτήσεων, προαιρετική στόχος γλώσσα ανά ερώτηση
-- **Ιστορικό** - πλήρες ιστορικό εκτέλεσης με είσοδο/έξοδο κειμένου, φιλτράρισμα και εξαγωγή
+- Μετάφραση** - μεταξύ δεκάδων γλωσσών, με αυτόματη ανίχνευση πηγής
+- **Αναδιατύπωση** - διόρθωση γραμματικής, βελτίωση σαφήνειας, επίσημη/ανεπίσημη, συντομεύστε, επεκτείνετε, τεχνική
+- **Μετασχηματισμός** - προσαρμοσμένα ερωτήματα AI. δημιουργία και διαχείριση ερωτημάτων, προαιρετικός προορισμός γλώσσας ανά ερώτημα
+- **Ιστορικό** - πλήρης ιστορικό εκτέλεσης με κείμενο εισόδου/εξόδου, φιλτράρισμα και εξαγωγή
 - **Μοντέλα & κόστος** - επιλέξτε μοντέλα από οποιονδήποτε διαμορφωμένο πάροχο· πίνακες ελέγχου κόστους και χρήσης με αρχείο καταγραφής, περιλήψεις ανά μοντέλο/λειτουργία/ημέρα
 - **Διεπαφή χρήστη (UI)** - πολύγλωσση διεπαφή (30+ γλώσσες, υποστήριξη RTL), γραμματοσειρές, ...
 - **Λειτουργία ιστού** - υποστήριξη πολλαπλών χρηστών με ρόλους διαχειριστή
 - **Επιτραπέζια εφαρμογή** - εφαρμογή Electron για Windows και Linux
 - **Αυτο-φιλοξενούμενο** - εικόνα Docker για amd64 & arm64 (έτοιμο για Raspberry Pi)
 
-Μετά την εγκατάσταση, δείτε το **[Οδηγό Χρήστη](USER-GUIDE.el.md)** για πλήρη ξενάγηση σε όλες τις λειτουργίες.
+Μετά την εγκατάσταση, δείτε τον [**Οδηγό Χρήστη**](USER-GUIDE.el.md) για πλήρη καθοδήγηση όλων των λειτουργιών.
 
 <small>**Διαβάστε σε άλλες γλώσσες:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Ή χρησιμοποιήστε Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-Μόλις η εφαρμογή εκτελείται, δείτε το **[Εγχειρίδιο Χρήστη](USER-GUIDE.el.md)** για να μάθετε πώς να μεταφράζετε, αναδιατυπώνετε και μετασχηματίζετε κείμενο, να διαχειρίζεστε προτροπές και να ρυθμίζετε μοντέλα.
+Όταν η εφαρμογή εκτελείται, δείτε τον [**Οδηγό Χρήστη**](USER-GUIDE.el.md) για να μάθετε πώς να μεταφράζετε, αναδιατυπώνετε και μετασχηματίζετε κείμενο, να διαχειρίζεστε ερωτήματα και να ρυθμίζετε μοντέλα.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `PORT` | Θύρα ακρόασης του διακομιστή (προεπιλογή `5000`) |
 | `CONFIG_PATH`        | Διαδρομή προς το αρχείο ρυθμίσεων (προεπιλογή: `/app/data/config.json`)                |
 | `TZ` | ζώνη ώρας για την ώρα του διακομιστή (καταγραφή κ.λπ.) (προεπιλογή `Europe/London`) |
+| `HISTORY_DISABLED`   | Εξαναγκάζει την απενεργοποίηση του ιστορικού εκτέλεσης (προαιρετικό, προεπιλογή `false`)                  |
 | `OPENROUTER_API_KEY` | Κλειδί API OpenRouter |
 | `OPENAI_API_KEY` | Κλειδί API OpenAI |
 | `CEREBRAS_API_KEY` | Κλειδί API Cerebras |
@@ -303,6 +305,8 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY` | Κλειδί API Mistral |
 | `OLLAMA_URL` | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | Κλειδί API xAI                                                                  |
+
+**Λειτουργία ιδιωτικότητας:** Για να εξαναγκάσετε την απενεργοποίηση της παρακολούθησης του ιστορικού, ανεξάρτητα από το `config.json` ή τις προτιμήσεις ανά χρήστη, ορίστε το `HISTORY_DISABLED` σε `true` ή `1` (χωρίς διάκριση πεζών/κεφαλαίων) για τη **διεργασία web/Docker server** και/ή τη **κύρια διεργασία desktop Electron** (π.χ. περιβάλλον συστήματος ή εκκινητή — όχι μόνο το renderer). Αυτό απενεργοποιεί την αποθήκευση του ιστορικού εισόδου/εξόδου, κλειδώνει τις **Ρυθμίσεις → Γενικές ρυθμίσεις → Ιστορικό** και αποκλείει τις σχετικές με το Ιστορικό APIs.
 
 Ρυθμίστε μόνο τους παρόχους που χρησιμοποιείτε. Οι ταυτότητες μοντέλων είναι ονοματοχώροι (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, κ.λπ.).
 
@@ -334,8 +338,8 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 <a id="development-and-architecture"></a>
 ## Ανάπτυξη και αρχιτεκτονική
 
-- **Ανάπτυξη:** Ρύθμιση, κατασκευή, δοκιμή και ανάπτυξη (Electron, Web, Docker) - δείτε **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Αρχιτεκτονική και επισκόπηση συστήματος:** Δομή φακέλων, τεχνολογικό στέκι, αποφάσεις σχεδιασμού - δείτε **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Ανάπτυξη:** Ρύθμιση, κατασκευή, δοκιμή και εγκατάσταση (Electron, Web, Docker) - δείτε [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Αρχιτεκτονική και επισκόπηση συστήματος:** Δομή φακέλων, τεχνολογικό στέκαρ, αποφάσεις σχεδίασης - δείτε [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

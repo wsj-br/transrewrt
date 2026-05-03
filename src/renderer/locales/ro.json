@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Copiază automat rezultatul în clipboard",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Traducere în timp real în timpul redactării (⚠️ Aceasta poate crește costurile de utilizare)",
   "Timeout (ms):": "Timeout (ms):",
+  "disabled by the administrator": "dezactivat de administrator",
   "Keep execution history": "Păstrează istoricul execuției",
   "Delete history data": "Șterge datele istoricului",
   "Configuration Backup": "Backup configurație",

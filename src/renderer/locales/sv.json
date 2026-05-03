@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Kopiera resultat automatiskt till urklipp",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Översättning i realtid medan du skriver (⚠️ Detta kan öka användningskostnaderna)",
   "Timeout (ms):": "Tidsgräns (ms):",
+  "disabled by the administrator": "inaktiverad av administratören",
   "Keep execution history": "Spara körningshistorik",
   "Delete history data": "Radera historikdata",
   "Configuration Backup": "Säkerhetskopiering av konfiguration",

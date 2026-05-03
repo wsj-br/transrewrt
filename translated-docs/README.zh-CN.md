@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:24:50.297Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:34:36.739Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: zh-CN
 source_file_path: README.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 AI 驱动的文本工具：支持多种语言互译、不同风格的改写以及通过自定义提示词进行转换——使用多个 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和本地 Ollama）。可作为桌面应用（Electron）或自托管 Web 应用（Docker）运行。
 
-- **翻译** - 支持数十种语言之间的互译，具备自动源语言检测功能
-- **重写** - 修正语法、提升表达清晰度、调整正式/非正式语气、缩短或扩展文本、技术性改写
-- **转换** - 自定义AI提示词；可创建和管理提示词，每个提示词可选目标语言
-- **历史记录** - 完整的执行历史，包含输入/输出文本、筛选功能和导出选项
+- 翻译** - 在数十种语言之间进行翻译，自动检测源语言
+- **重写** - 修正语法，提升清晰度，正式/非正式，缩短，扩展，技术性
+- **转换** - 自定义 AI 提示；创建和管理提示，每个提示可选目标语言
+- **历史记录** - 完整的执行历史，包括输入/输出文本、过滤和导出
 - **模型与成本** - 可从任意已配置的提供商中选择模型；提供成本与使用情况仪表板，包含日志以及按模型/操作/天汇总的统计信息
 - **用户界面** - 多语言界面（支持30多种语言，包含从右到左书写语言支持）、字体等
 - **网页模式** - 支持多用户，具备管理员角色管理功能
 - **桌面端** - 适用于 Windows 和 Linux 的 Electron 应用
 - **自托管** - 提供适用于 amd64 与 arm64 架构的 Docker 镜像（兼容树莓派）
 
-安装后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 以全面了解所有功能。
+安装后，请参阅 [**用户指南**](USER-GUIDE.zh-CN.md) 以全面了解所有功能。
 
 <small>**阅读其他语言版本：** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 或者使用 Docker Compose：
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-应用运行后，请参阅 **[用户指南](USER-GUIDE.zh-CN.md)** 了解如何翻译、改写和转换文本，管理提示词，以及配置模型。
+应用运行后，请参阅 [**用户指南**](USER-GUIDE.zh-CN.md) 了解如何翻译、重写和转换文本，管理提示词，以及配置模型。
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 | `PORT`               | 服务器监听端口（默认为 `5000`）                                  |
 | `CONFIG_PATH`        | 配置文件的路径（默认为 `/app/data/config.json`）                |
 | `TZ`                 | 服务器端时区（用于日志等，默认为 `Europe/London`） |
+| `HISTORY_DISABLED`   | 强制关闭执行历史记录（可选，默认为 `false`）                  |
 | `OPENROUTER_API_KEY` | OpenRouter API 密钥                                                           |
 | `OPENAI_API_KEY`     | OpenAI API 密钥                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API 密钥                                                             |
@@ -303,6 +305,8 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 | `MISTRAL_API_KEY`    | Mistral API 密钥                                                              |
 | `OLLAMA_URL`         | Ollama 基础 URL（例如 `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API 密钥                                                                  |
+
+**隐私模式：** 若要强制关闭历史记录跟踪，无论 `config.json` 或每个用户的偏好设置如何，请将 `HISTORY_DISABLED` 设置为 `true` 或 `1`（不区分大小写），适用于 **web/Docker 服务器进程** 和/或 **Electron 桌面主进程**（例如系统或启动器环境 —— 而不仅仅是渲染进程）。这将禁用输入/输出历史记录的存储，锁定 **设置 → 常规设置 → 历史记录**，并阻止与历史记录相关的 API。
 
 仅配置您使用的提供商。模型 ID 是带命名空间的（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。
 
@@ -334,8 +338,8 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 <a id="development-and-architecture"></a>
 ## 开发与架构
 
-- **开发：** 设置、构建、测试和部署（Electron、Web、Docker）——参见 **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**。
-- **架构与系统概览：** 文件夹结构、技术栈、设计决策——参见 **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**。
+- **开发：** 设置、构建、测试和部署（Electron、Web、Docker）— 请参阅 [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)。
+- **架构与系统概述：** 文件夹结构、技术栈、设计决策 — 请参阅 [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)。
 
 <br/><br/>
 

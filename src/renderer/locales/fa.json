@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "کپی خودکار نتیجه در کلیپ‌بورد",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "ترجمهٔ لحظه‌ای هنگام تایپ کردن (⚠️ این ممکن است هزینه‌های استفاده را افزایش دهد)",
   "Timeout (ms):": "زمان‌اتمام (ms):",
+  "disabled by the administrator": "توسط مدیر غیرفعال شده است",
   "Keep execution history": "نگه‌داری تاریخچه اجرا",
   "Delete history data": "حذف داده‌های تاریخچه",
   "Configuration Backup": "پشتیبان‌گیری پیکربندی",

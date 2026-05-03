@@ -1,10 +1,12 @@
 ---
-translation_last_updated: '2026-05-01T21:26:03.016Z'
-source_file_mtime: '2026-05-01T21:20:11.119Z'
-source_file_hash: 253d03c03bd028d8119ce13e1d810e974a386f3e98054a9e750d5ecfbf1c76d0
+translation_last_updated: '2026-05-02T22:42:32.387Z'
+source_file_mtime: '2026-05-02T22:14:02.511Z'
+source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
+  - anthropic/claude-3-haiku
+  - deepseek/deepseek-v3.2
   - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
@@ -20,18 +22,18 @@ translation_models:
 
 Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 
-- **Traducere** - convertirea textului dintr-o limbă în alta.
+- Traducere** - convertirea textului dintr-o limbă în alta.
 - **Rescriere** - reformularea textului într-un stil diferit, cum ar fi mai clar, mai scurt sau mai formal.
-- **Transformare** - procesarea textului folosind instrucțiuni personalizate de inteligență artificială numite prompturi.
+- **Transformare** - procesarea textului folosind instrucțiuni AI personalizate numite prompt-uri.
 
 <br/>
 
-Acest ghid explică cum să utilizați aplicația după ce a fost instalată și este în funcțiune. Pentru pașii de instalare, consultați fișierul principal **[README](README.ro.md)**.
+Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instalată și este în funcțiune. Pentru pașii de instalare, consultați fișierul principal [**README**](README.ro.md).
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Transrewrt este disponibil ca aplicație desktop pentru Windows și Linux, precum și ca aplicație web auto-găzduită. Acest ghid se concentrează pe utilizarea zilnică a aplicației. Atunci când ceva se aplică doar unei singure versiuni, acest lucru este marcat clar.
+> Transrewrt este disponibil ca aplicație desktop pentru Windows și Linux și ca aplicație web auto-găzduită. Acest ghid se concentrează pe utilizarea zilnică a aplicației. Atunci când ceva se aplică doar unei singure versiuni, acest lucru este marcat clar.
 
 <small>**Citește în alte limbi:** </small>
 <small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
@@ -57,7 +59,7 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
   - [Bara de instrumente](#toolbar)
   - [Panourile de intrare și ieșire](#input-and-output-panels)
 - [Traducere](#translate)
-  - [Traduceți text](#translate-text)
+  - [Traduceți textul](#translate-text)
   - [Selectarea limbii](#language-selection)
   - [Setări utile pentru traducere](#helpful-translation-settings)
 - [Rescriere](#rewrite)
@@ -68,30 +70,30 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
   - [Editați un prompt](#edit-a-prompt)
   - [Testați un prompt înainte de a-l folosi](#test-a-prompt-before-using-it)
 - [Panou de control](#dashboard)
-  - [Filtrarea datelor](#filter-the-data)
+  - [Filtrați datele](#filter-the-data)
   - [Filele panoului de control](#dashboard-tabs)
   - [Exportați datele](#export-data)
   - [Ștergeți înregistrările stocate pentru un model](#delete-stored-records-for-a-model)
 - [Istoric](#history)
-  - [Filtrarea datelor](#filter-the-data-1)
+  - [Filtrați istoricul](#filter-the-history)
   - [Exportați datele din istoric](#export-history-data)
 - [Setări](#settings)
   - [Setări generale](#general-settings)
   - [Modele](#models)
   - [Limbi](#languages)
-  - [Urmărirea costurilor](#cost-tracking)
-  - [Prompturi de transformare](#transform-prompts)
+  - [Urmărire costuri](#cost-tracking)
+  - [Solicitări transformare](#transform-prompts)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
 - [Probleme frecvente](#common-issues)
-  - [Aplicația nu traduce, nu rescrie și nu transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Lista de modele este goală](#the-model-list-is-empty)
+  - [Aplicația nu traduce, rescrie sau transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Lista modelelor este goală](#the-model-list-is-empty)
   - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
   - [Graficele din panoul de control sunt goale](#dashboard-charts-are-empty)
-  - [Costul afișează „neaccesibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
+  - [Costul afișează „nu este disponibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
   - [Costul total nu corespunde facturii furnizorului](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
@@ -99,7 +101,7 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
   - [Panoul de control nu afișează date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Am modificat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
 - [Sfaturi rapide](#quick-tips)
-- [Declinarea răspunderii](#disclaimer)
+- [Declinare de răspundere](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -111,33 +113,33 @@ Acest ghid explică cum să utilizați aplicația după ce a fost instalată și
 
 Pentru a utiliza Transrewrt, aveți nevoie de acces la cel puțin un furnizor de inteligență artificială. Furnizorii susținuți sunt: [OpenRouter](https://openrouter.ai) (care agregă multe modele), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras și [Ollama](https://ollama.com) pentru modele locale.
 
-Nu este necesar să selectați un model plătit pentru a începe. Immediat ce adăugați cheia dvs. API OpenRouter, aplicația activează automat o opțiune **gratuită** integrată OpenRouter. Acest lucru vă permite să începeți imediat să traduceți, rescrieți și transformați textul. Alternativ, puteți obține o cheie API gratuită și de la Cerebras, Google, Groq sau Mistral AI.
+Nu este necesar să selectați un model plătit pentru a începe. Imediat ce adăugați cheia dvs. API OpenRouter, aplicația activează automat o opțiune **gratuită** integrată OpenRouter. Acest lucru vă permite să începeți traducerea, rescrierea și transformarea textului imediat. Alternativ, puteți obține o cheie API gratuită de la Cerebras, Google, Groq sau Mistral AI.
 
 În termeni simpli:
 
 - Un **model** este motorul de IA care efectuează lucrarea. Modelele sunt listate cu un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
 - O **cheie API** (sau, pentru Ollama, o **URL de bază**) este modul în care aplicația accesează acel furnizor.
 
-Dacă utilizați **aplicația desktop**, adăugați chei în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl folosiți. Pentru utilizarea doar cu OpenRouter, consultați [Cum obțineți o cheie API](#how-to-get-an-api-key-desktop-app) mai jos. Dacă nu doriți să utilizați o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și utiliza modele locale în schimb, cum ar fi `translategemma:4b`.
+Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl utilizați. Pentru utilizarea exclusivă a OpenRouter, consultați mai jos [Cum obțineți o cheie API](#how-to-get-an-api-key-desktop-app). Dacă nu doriți să utilizați o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și să utilizați modele locale în schimb, cum ar fi `translategemma:4b`.
 
 Dacă utilizați **versiunea web**, administratorul serverului configurează furnizorii prin variabile de mediu, astfel că nu puteți introduce chei API direct în aplicație.
 
 <br/>
 
 <a id="how-to-get-an-api-key-desktop-app"></a>
-### Cum obțineți o cheie API gratuită OpenRouter (aplicație desktop)
+### Cum obțineți o cheie API OpenRouter gratuită (aplicație desktop)
 
 Dacă utilizați aplicația desktop, urmați acești pași:
 
-1. Accesați [OpenRouter](https://openrouter.ai) în navigatorul dvs. web.
+1. Accesați [OpenRouter](https://openrouter.ai) în browserul dvs. web.
 2. Creați un cont sau autentificați-vă.
 3. Deschideți pagina [Chei](https://openrouter.ai/keys).
-4. Faceți clic pe butonul pentru a crea o cheie API nouă.
-5. Dați cheii un nume pentru a o putea recunoaște ulterior.
+4. Faceți clic pe butonul pentru a crea o nouă cheie API.
+5. Dați un nume cheii pentru a o putea recunoaște ulterior.
 6. Copiați noua cheie API.
 7. Întoarceți-vă la Transrewrt și deschideți **Setări** > **Configurare API**.
-8. Lipiți cheia în **Cheie API OpenRouter** (sub **Setări** > **Configurare API**).
-9. Faceți clic pe **Testați cheia OpenRouter** pentru a vă asigura că funcționează.
+8. Lipiți cheia în câmpul **Cheie API OpenRouter** (sub **Setări** > **Configurare API**).
+9. Faceți clic pe **Testează cheia OpenRouter** pentru a vă asigura că funcționează.
 
 <br/><br/>
 
@@ -147,14 +149,14 @@ Dacă utilizați aplicația desktop, urmați acești pași:
 Dacă este prima dată când utilizați Transrewrt, urmați această ordine:
 
 1. Deschideți aplicația.
-2. Alegeți **limba interfeței** din pictograma globului, dacă este necesar.
+2. Alegeți **Limba interfeței** din pictograma globului dacă este necesar.
 3. Dacă utilizați **aplicația desktop**, deschideți [**Setări** > **Configurare API**](#api-config), adăugați o cheie API pentru cel puțin un furnizor (de exemplu OpenRouter) și faceți clic pe **Test** pentru a verifica dacă funcționează.
-4. Deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele în **Modele selectate**.
-5. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale**, dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
-6. Accesați **Traducere** și executați o traducere simplă pentru a confirma că totul funcționează.
-7. Odată ce funcționează, încercați **Rescriere**, apoi **Transformare**.
+4. Deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele la **Modele selectate**.
+5. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
+6. Accesați **Traducere** și executați o traducere simplă pentru a vă asigura că totul funcționează.
+7. Odată ce aceasta funcționează, încercați **Rescriere**, apoi **Transformare**.
 
-Această ordine este importantă. Previne problema cea mai frecventă la prima utilizare: încercarea de a executa o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau un model selectat.
+Această ordine este importantă. Previne cea mai frecventă problemă la prima utilizare: încercarea de a executa o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau un model selectat.
 
 <br/><br/>
 
@@ -170,9 +172,9 @@ Aplicația este împărțită în trei zone principale:
 <br/>
 
 <a id="sidebar"></a>
-### Bara laterală
+### Bară laterală
 
-Utilizați bara laterală pentru a naviga în aplicație. Puteți restrânge bara laterală pentru a avea mai mult spațiu, făcând clic pe pictograma din dreptul logoului aplicației.
+Utilizați bara laterală pentru a vă deplasa în aplicație. Puteți restrânge bara laterală pentru a obține mai mult spațiu, făcând clic pe pictograma din dreptul logoului aplicației.
 
 <br/>
 
@@ -187,10 +189,10 @@ Utilizați bara laterală pentru a naviga în aplicație. Puteți restrânge bar
         <li><strong>Traducere</strong> deschide spațiul de lucru pentru traducere.</li><br/>
         <li><strong>Rescriere</strong> deschide spațiul de lucru pentru rescriere.</li><br/>
         <li><strong>Transformare</strong> deschide spațiul de lucru pentru prompt personalizat.</li><br/>
-        <li><strong>Panou de control</strong> afișează informații despre utilizare și costuri.</li><br/>
+        <li><strong>Panou de control</strong> afișează informații despre utilizare și cost.</li><br/>
         <li><strong>Setări</strong> deschide panoul de setări.</li><br/>
-        <li><strong>Istoric</strong> afișează istoricul utilizării cu textul de intrare și cel de ieșire.</li><br/>
-        <li><strong>Utilizator</strong> afișează numele utilizatorului autentificat (doar în versiunea web).</li>
+        <li><strong>Istoric</strong> afișează istoricul utilizării, cu textul de intrare și cel de ieșire.</li><br/>
+        <li><strong>Utilizator</strong> afișează numele utilizatorului autentificat (doar pe web).</li>
       </ul>
     </td>
   </tr>
@@ -199,23 +201,23 @@ Utilizați bara laterală pentru a naviga în aplicație. Puteți restrânge bar
 <br/>
 
 <a id="toolbar"></a>
-### Bara de instrumente
+### Bară de instrumente
 
 Bara de instrumente se modifică ușor în funcție de locul în care vă aflați în aplicație.
 
-- În stânga, afișează numele paginii curente.
-- În dreapta, afișează **selectorul de model** și controlul pentru **Limba interfeței**.
+- În stânga, este afișat numele paginii curente.
+- În dreapta, sunt afișate **selectorul de model** și controlul pentru **Limba interfeței**.
 
-**Selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
+Cu **selectorul de model** puteți alege ce motor de inteligență artificială să utilizați pentru sarcina curentă.
 
 ![Model selector](../images/screenshots/ro/model-selector.png)
 
-Unele modele gratuite pot să nu fie întotdeauna disponibile – uneori sunt offline sau au un limită de utilizare. Dacă se întâmplă acest lucru, aplicația va elimina automat acel model din lista dvs. disponibilă. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models) și editați lista de modele. 
-De asemenea, puteți deschide setările modelului direct apăsând pe pictograma furnizorului din stânga numelui modelului din bara de instrumente.
+Unele modele gratuite nu sunt întotdeauna disponibile – uneori sunt offline sau au un limită de utilizare. În acest caz, aplicația va elimina automat acel model din lista dvs. disponibilă. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models) și editați lista de modele.
+ De asemenea, puteți deschide setările modelului direct, făcând clic pe pictograma furnizorului din stânga numelui modelului în bara de instrumente.
 
 <br/>
 
-Icoana **globe + codul limbii** schimbă limba interfeței aplicației, cum ar fi meniurile și butoanele. Aceasta **nu** schimbă limbile de traducere utilizate în **Traduce**.
+Pictograma cu **glob + codul limbii** schimbă limba interfeței aplicației, cum ar fi meniurile și butoanele. Aceasta **nu** schimbă limbile de traducere utilizate în **Traducere**.
 
 ![Interface language selector](../images/screenshots/ro/language-selector.png)
 
@@ -224,31 +226,31 @@ Icoana **globe + codul limbii** schimbă limba interfeței aplicației, cum ar f
 <a id="input-and-output-panels"></a>
 ### Panouri de intrare și ieșire
 
-Majoritatea spațiilor de lucru folosesc un panou **Intrare** în stânga și un panou **Rezultat** în dreapta.
+Majoritatea spațiilor de lucru utilizează un panou de **Intrare** în stânga și un panou de **Ieșire** în dreapta.
 
 Fiecare panou afișează, de asemenea:
 
-| **Intrare**                                                          | **Rezultat**                                                                                                                  |
+| **Intrare**                                                          | **Ieșire**                                                                                                                  |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| - Numărul de caractere <br/>- Numărul de cuvinte <br/>- Numărul de paragrafe   <br/> | - Durata sarcinii<br/>- **TPS** (žetoane pe secundă)<br/>- Numărul de caractere, cuvinte și paragrafe<br/>- Modelul utilizat |
+| - Număr de caractere <br/>- Număr de cuvinte <br/>- Număr de paragrafe   <br/> | - Durata sarcinii<br/>- **TPS** (tokeni pe secundă)<br/>- Număr de caractere, cuvinte și paragrafe<br/>- Modelul utilizat |
 
-Dacă te întrebi despre termenii tehnici:
+Dacă vă întrebați despre termenii tehnici:
 
-- **Žeton** înseamnă o bucată mică de text. Poți să-l consideri o parte dintr-un cuvânt sau un cuvânt scurt.
+- **Token** înseamnă o bucată mică de text. Îl puteți considera o parte dintr-un cuvânt sau un cuvânt scurt.
 - **TPS** înseamnă câte dintre aceste bucăți de text a procesat modelul în fiecare secundă.
 
 <br/>
 
-Poți monitoriza, de asemenea, costul fiecărei operații (dacă este disponibil) și costul total, activând opțiunea `Show cost information on the actions` la [**Setări** > **Setări generale**](#general-settings).
+De asemenea, puteți monitoriza costul fiecărei operațiuni (dacă este disponibil) și costul total, activând opțiunea `Show cost information on the actions` la [**Setări** > **Setări generale**](#general-settings).
 
 <br/><br/>
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
 <a id="translate"></a>
-## Traduce
+## Traducere
 
-Folosește **Traduce** atunci când dorești să convertești text dintr-o limbă în alta.
+Utilizați **Traducere** atunci când doriți să convertiți text dintr-o limbă în alta.
 
 ![Translate workspace](../images/screenshots/ro/translate.png)
 
@@ -258,8 +260,8 @@ Folosește **Traduce** atunci când dorești să convertești text dintr-o limb�
 ### Traducerea textului
 
 1. Deschideți **Traducere**.
-2. Alegeți o limbă în **Din**.
-3. Alegeți o limbă în **În**.
+2. Alegeți o limbă în **De la**.
+3. Alegeți o limbă în **La**.
 4. Alegeți un model în bara de instrumente.
 5. Tastați sau lipiți text în **Intrare**.
 6. Faceți clic pe **Traducere**.
@@ -269,23 +271,23 @@ Folosește **Traduce** atunci când dorești să convertești text dintr-o limb�
 <br/>
 
 <a id="language-selection"></a>
-### Selectarea limbilor
+### Selectarea limbii
 
-- **De la** poate fi o limbă specifică sau **Detectează limba**.
-- **La** este limba în care dorești să fie rezultatul.
+- **De la** poate fi o limbă specifică sau **Detectare limbă**.
+- **Către** este limba în care doriți rezultatul.
 
-Limbile tale **preferate** selectate apar în partea de sus a listei. Le poți seta în [**Setări** > **Limbi**](#languages).
+Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta în [**Setări** > **Limbi**](#languages).
 
 <br/>
 
 <a id="helpful-translation-settings"></a>
 ### Setări utile pentru traducere
 
-În [**Setări** > **Setări generale**](#general-settings), poți modifica modul în care funcționează traducerea:
+În [**Setări** > **Setări generale**](#general-settings), puteți modifica modul în care funcționează traducerea:
 
-- **Auto-traducere la lipire** efectuează o traducere imediat ce lipiți un text.
-- **Copiere automată a rezultatului în clipboard** copiază automat rezultatul după o execuție reușită.
-- **Traducere în timp real (în timp ce scrii)** efectuează traduceri în timp ce tastezi.
+- **Auto-traducere la lipire** execută o traducere imediat ce lipiți text.
+- **Copiază automat rezultatul în clipboard** copiază automat rezultatul după o execuție reușită.
+- **Traducere în timp real (în timp ce scrieți)** execută traduceri în timp ce tastați.
 - **Timeout (ms)** controlează cât timp așteaptă aplicația înainte de a executa o traducere în timp real.
 - **Enter** controlează ce se întâmplă când apăsați `Enter`:
 
@@ -296,24 +298,24 @@ Limbile tale **preferate** selectate apar în partea de sus a listei. Le poți s
 <a id="rewrite"></a>
 ## Rescriere
 
-Folosește **Rescriere** atunci când dorești să îmbunătățești formularea fără a schimba sensul principal.
+Utilizați **Rescriere** atunci când doriți să îmbunătățiți formularea fără a schimba sensul principal.
 
 ![Rewrite workspace](../images/screenshots/ro/rewrite.png)
 
-Acest lucru este util pentru:
+Aceasta este utilă pentru:
 
 - corectarea ortografiei și gramaticii (**Verificare ortografie și gramatică**)
-- îmbunătățirea clarității textului (**Îmbunătățire claritate**)
+- clarificarea textului (**Îmbunătățește claritatea**)
 - mai multe reformulări distincte într-o singură execuție (**Versiuni alternative**)
-- transformarea textului într-un stil mai formal sau mai informal (**Formal** / **Informal**)
-- scurtarea sau extinderea textului (**Scurtare** / **Extindere**)
-- transformarea textului într-un stil mai tehnic (**Fă-te tehnic**)
+- făcerea textului mai formal sau mai informal (**Formal** / **Informal**)
+- scurtarea sau extinderea textului (**Scurtează** / **Extinde**)
+- făcerea textului să sune mai tehnic (**Fă tehnic**)
 
 <br/>
 
 > 💡 **SFAT**<br/>
-> Când folosești modul „**Verifică ortografia și gramatica**”, apare un comutator **Arată schimbările** în panoul de ieșire (lângă **Copiază**).
-> Activează-l sau dezactivează-l pentru a afișa sau ascunde corecțiile specifice aplicate textului tău.
+> Când utilizați modul „**Verificare ortografie și gramatică**”, un comutator **Afișează modificările** apare în panoul de ieșire (lângă **Copiere**).
+> Activați-l sau dezactivați-l pentru a afișa sau ascunde corecțiile specifice aplicate textului dvs.
 
 <br/><br/>
 
@@ -322,26 +324,26 @@ Acest lucru este util pentru:
 <a id="transform"></a>
 ## Transformare
 
-Folosește **Transformare** atunci când dorești ca IA să urmeze un set personalizat de instrucțiuni.
+Utilizați **Transformare** atunci când doriți ca IA să urmeze un set personalizat de instrucțiuni.
 
 ![Transform workspace](../images/screenshots/ro/transform.png)
 
-Aceasta este zona cea mai flexibilă a aplicației. Poți folosi această funcție pentru sarcini precum:
+Aceasta este zona cea mai flexibilă a aplicației. O puteți utiliza pentru sarcini precum:
 
 - rezumarea notelor
-- transformarea unui text brut într-un e-mail finalizat
+- transformarea unui text brut într-un e-mail finisat
 - extragerea punctelor cheie
-- conversia textului într-un anumit format
+- convertirea textului într-un format specific
 - orice altă activitate personalizată cu textul de intrare
 
 <br/>
 
 <a id="run-an-existing-prompt"></a>
-### Rulează un prompt existent
+### Executarea unui prompt existent
 
 1. Deschideți **Transformare**.
 2. Alegeți un prompt din lista de prompturi.
-3. Dacă apare o casetă **Limba țintă**, alegeți o limbă dacă doriți.
+3. Dacă apare o casetă **Destinație**, alegeți o limbă dacă doriți una.
 4. Tastați sau lipiți text în **Intrare**.
 5. Faceți clic pe **Transformare**.
 6. Citiți rezultatul în **Ieșire**.
@@ -349,83 +351,83 @@ Aceasta este zona cea mai flexibilă a aplicației. Poți folosi această funcț
 <br/>
 
 <a id="if-you-have-no-prompts-yet"></a>
-### Dacă nu ai prompturi încă
+### Dacă nu aveți încă prompturi
 
-Dacă lista ta de prompturi este goală, apasă **Încarcă prompturi exemplu** în spațiul de lucru Transformare. Același control este mereu disponibil în [**Setări** > **Prompturi de transformare**](#transform-prompts) pe rândul de export/import. Ambele adaugă exemple încorporate, astfel încât să poți începe rapid.
+Dacă lista dvs. de prompturi este goală, faceți clic pe **Încărcați exemple de prompturi** în spațiul de lucru Transformare. Același control este întotdeauna disponibil în [**Setări** > **Solicitări transformare**](#transform-prompts) pe rândul de export/import. Ambele adaugă exemple încorporate, astfel încât să puteți începe rapid.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Prompturile exemplu sunt furnizate în limba engleză. După ce le-ai încărcat, poți edita un prompt și folosi **Tradu cererea** pentru a-l traduce în limba ta.
+> Exemplele de prompturi sunt furnizate în limba engleză. După încărcarea acestora, puteți edita un prompt și utilizați **Traduceți promptul** pentru a-l traduce în limba dvs.
 
 <br/>
 
 <a id="create-a-prompt-quickly"></a>
-### Creează un prompt rapid
+### Creați rapid un prompt
 
-Cea mai rapidă cale de a crea un prompt este:
+Cea mai rapidă cale pentru a crea un prompt este:
 
 1. Faceți clic pe **Prompt nou**.
-2. Faceți clic pe **Generare prompt**.
+2. Faceți clic pe **Generează prompt**.
 3. Descrieți ce doriți să facă promptul.
 4. Alegeți un model.
-5. Lăsați aplicația să creeze un draft pentru dumneavoastră.
-6. Verificați draftul și faceți clic pe **Salvare**.
+5. Lăsați aplicația să creeze un draft pentru dvs.
+6. Revizuiți draftul și faceți clic pe **Salvare**.
 
 ![Generate prompt](../images/screenshots/ro/transform-generate.png)
 
 <br/>
 
 <a id="edit-a-prompt"></a>
-### Editează un prompt
+### Editarea unui prompt
 
-Când creezi sau editezi un prompt, editorul apare în stânga, iar o zonă de testare apare în dreapta.
+Când creați sau editați un prompt, editorul apare în stânga, iar o zonă de testare apare în dreapta.
 
 ![Transform prompt editor](../images/screenshots/ro/transform-prompt-edit.png)
 
 Câmpurile principale sunt:
 
-- **Nume prompt**: numele afișat în lista de prompturi.
-- **Instrucțiuni prompt (opțional)**: o scurtă indicație afișată utilizatorului la rularea promptului.
-- **Rol model**: rolul general atribuit IA, cum ar fi „Ești un asistent util.”
-- **Instrucțiuni model (câte una pe linie)**: regulile specifice pe care doriți ca IA să le urmeze.
-- **Descriere ieșire**: un cuvânt scurt care descrie rezultatul, cum ar fi „rezumat” sau „rescriere”.
+- **Numele promptului**: numele afișat în lista de prompturi.
+- **Instrucțiuni prompt (opțional)**: o scurtă indicație afișată utilizatorului atunci când rulează promptul.
+- **Rolul modelului**: rolul general atribuit IA, cum ar fi 'Ești un asistent util.'
+- **Instrucțiuni model (una pe linie)**: regulile specifice pe care doriți ca IA să le urmeze.
+- **Descriere ieșire**: un cuvânt scurt care descrie rezultatul, cum ar fi 'rezumat' sau 'rescriere'.
 - **Temperatură (0,0 → 1,0)**: modul în care se va comporta modelul; consultați mai jos.
-- **Cerere limbă țintă**: adaugă un selector de limbă țintă atunci când se rulează promptul.
+- **Cereți limba destinație**: adaugă un selector de limbă destinație atunci când este rulat promptul.
 
-Dacă termenul tehnic **Temperatură** este nou pentru tine, gândește-te așa:
+Dacă termenul tehnic **Temperatură** este nou pentru dvs., gândiți-vă astfel:
 
-- O **temperatură mai scăzută** oferă rezultate mai stabile și mai previzibile.
-- O **temperatură mai ridicată** oferă mai multă varietate și creativitate.
+- O temperatură **mai scăzută** oferă rezultate mai stabile și mai previzibile.
+- O temperatură **mai ridicată** oferă mai multă varietate și creativitate.
 
-Puteți utiliza și:
+Puteți utiliza, de asemenea:
 
-- **`Generate prompt`** pentru a crea un nou draft pornind de la o descriere simplă
-- **`Improve prompt`** pentru a îmbunătăți un prompt existent
-- **`Translate prompt`** pentru a traduce câmpurile promptului
+- `Generate prompt` pentru a crea un nou draft dintr-o descriere simplă
+- `Improve prompt` pentru a rafina un prompt existent
+- `Translate prompt` pentru a traduce câmpurile promptului
 
 <br/>
 
 > ⚠️ **ATENȚIE**<br/>
-> Faceți clic pe **`Save`** înainte de a face clic pe **`Back to Run`**. Dacă reveniți înapoi fără a salva, modificările vor fi pierdute.
+> Faceți clic pe `Save` înainte de a face clic pe `Back to Run`. Dacă reveniți înapoi fără a salva, modificările dvs. se vor pierde.
 
 <br/>
 
 <a id="test-a-prompt-before-using-it"></a>
 ### Testați un prompt înainte de a-l utiliza
 
-Panoul de testare din dreapta vă permite să încercați promptul cu un text eșantion înainte de a-l folosi în activitatea zilnică.
+Panoul de test din dreapta vă permite să încercați promptul cu un text eșantion înainte de a-l folosi în activitatea zilnică.
 
-Aceasta este utilă atunci când:
+Acest lucru este util atunci când:
 
 - creați un prompt nou
 - comparați două versiuni ale unui prompt
-- doriți să verificați tonul, lungimea sau formatul rezultatului
+- doriți să verificați tonul, lungimea sau formatul ieșirii
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Puteți exporta și importa prompturi salvate în [**Setări** > **Prompturi de transformare**](#transform-prompts).
+> Puteți exporta și importa prompturi salvate în [**Setări** > **Solicitări transformare**](#transform-prompts).
 
 <br/><br/>
 
@@ -434,14 +436,14 @@ Aceasta este utilă atunci când:
 <a id="dashboard"></a>
 ## Panou de control
 
-Utilizați **Panou de control** pentru a vedea cât de mult utilizați aplicația și care este costul acesteia (pentru modelele plătite).
+Utilizați **Panou de control** pentru a vedea cât de mult utilizați aplicația și cât vă costă aceasta (pentru modelele plătite).
 
 ![Dashboard summary](../images/screenshots/ro/dashboard-summary.png)
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Dacă utilizați doar modele **gratuite**, sumele pentru **cost** pot fi zero, iar rezumatele bazate pe cost pot părea goale. În **Rezumat**, **Utilizare în timp** și **Utilizare pe model** afișează totuși **numărul de apeluri** (traducere, rescriere și transformare) atunci când există activitate în perioada selectată.
+> Dacă utilizați doar modele **gratuite**, sumele pentru **cost** pot fi zero, iar rezumatele bazate pe cost pot părea goale. În **Rezumat**, **Utilizare în timp** și **Utilizare după model** afișează totuși **numărul de apeluri** (traducere, rescriere și transformare) atunci când există activitate în perioada selectată.
 
 <br/>
 
@@ -460,9 +462,9 @@ Utilizați butoanele de filtrare de sus pentru a schimba intervalul de timp.
 <br/>
 
 <a id="dashboard-tabs"></a>
-### Filele panoului de control
+### File panou de control
 
-- **Rezumat** vă oferă o imagine de ansamblu asupra utilizării și costurilor. Include o secțiune **Utilizare în timp** (număr cumulativ stivuit de **apeluri pe zi** pentru traducere, rescriere și transformare) și **Utilizare pe model** (totalul **apelurilor pe model**, inclusiv transformarea).
+- **Rezumat** vă oferă o imagine de ansamblu asupra utilizării și costurilor. Include o secțiune **Utilizare în timp** (numărul cumulativ stivuit de **apeluri** pe zi pentru traducere, rescriere și transformare) și **Utilizare după model** (totalul **apelurilor pe model**, inclusiv transformare).
 - **După utilizare** detaliază activitatea pe limbă de traducere, mod de rescriere și prompt de transformare.
 - **După model** arată ce modele ați utilizat și cât au costat.
 - **După zi** afișează totalurile zilnice.
@@ -479,19 +481,19 @@ Tabelele din panoul de control pot exporta datele în:
 - **CSV**
 - **XLSX**
 
-Aceasta este utilă dacă doriți să verificați activitatea în afara aplicației sau să partajați un raport.
+Aceasta este utilă dacă doriți să revizuiți activitatea în afara aplicației sau să partajați un raport.
 
 <br/>
 
 <a id="delete-stored-records-for-a-model"></a>
-### Șterge înregistrările stocate pentru un model
+### Ștergeți înregistrările stocate pentru un model
 
 În **După model** sau **Toate apelurile**, puteți elimina înregistrările stocate pentru un model făcând clic pe pictograma „coș de gunoi”.
 
 > ⚠️ **ATENȚIE**<br/>
 > Ștergerea înregistrărilor stocate nu poate fi anulată. Utilizați această opțiune doar dacă sunteți sigur că nu mai aveți nevoie de acel istoric.
 
-Pentru a șterge toate datele sau pentru a elimina înregistrări în funcție de vechimea lor, accesați [**Setări** > **Urmărire Costuri**](#cost-tracking). Acolo veți găsi opțiuni pentru a șterge toate datele stocate sau doar datele mai vechi de o anumită dată.
+Pentru a șterge toate datele sau pentru a elimina înregistrările în funcție de vechimea lor, accesați [**Setări** > **Urmărire costuri**](#cost-tracking). Acolo veți găsi opțiuni pentru a șterge toate datele stocate sau doar datele mai vechi decât o anumită dată.
 
 <br/><br/>
 
@@ -500,16 +502,16 @@ Pentru a șterge toate datele sau pentru a elimina înregistrări în funcție d
 <a id="history"></a>
 ## Istoric
 
-Faceți clic pe **Istoric** pentru a vedea istoricul acțiunilor dvs. din **Transrewrt**, inclusiv intrarea și rezultatul fiecărei operațiuni.
+Faceți clic pe **Istoric** pentru a vedea istoricul acțiunilor dvs. din **Transrewrt**, inclusiv intrarea și ieșirea fiecărei operațiuni.
 
 ![History page](../images/screenshots/ro/history.png)
 
 <br/>
 
 <a id="filter-the-history"></a>
-### Filtrarea datelor
+### Filtrarea istoricului
 
-**Istoric** utilizează aceleași filtre ca și pagina **Panou de control**. Folosiți-le pentru a selecta intervalul de timp.
+**Istoric** utilizează aceleași filtre ca și pagina **Panou de control**. Utilizați-le pentru a selecta intervalul de timp.
 
 ![Dashboard filters](../images/screenshots/ro/dashboard-filter.png)
 
@@ -529,7 +531,7 @@ Pagina de istoric poate exporta datele filtrate în:
 - **CSV**
 - **XLSX**
 
-Aceasta este utilă dacă doriți să verificați activitatea în afara aplicației sau să partajați un raport.
+Aceasta este utilă dacă doriți să revizuiți activitatea în afara aplicației sau să partajați un raport.
 
 <br/><br/>
 
@@ -542,21 +544,21 @@ Deschideți **Setări** din bara laterală pentru a personaliza modul în care f
 
 Filele disponibile depind de platformă și de rolul dvs.:
 
-| Tab               | Desktop | Web (admin) | Web (utilizator obișnuit) |
-  |-------------------|:-------:|:-----------:|:------------------------:|
-  | Setări generale   |   da    |     da      |           da             |
-  | Modele            |   da    |     da      |           da             |
-  | Limbi             |   da    |     da      |           da             |
-  | Urmărire costuri  |   da    |     da      |           -              |
-  | Prompturi transformare |   da    |     da      |           da             |
-  | Utilizatori       |    -    |     da      |           -              |
-  | Configurare API   |   da    |     da      |         -          |
-  | Despre            |   da    |     da      |        da          |
+| File               | Desktop | Web (administrator) | Web (utilizator obișnuit) |
+  |-------------------|:-------:|:-------------------:|:------------------------:|
+  | Setări generale  |   Da   |         Da         |            Da            |
+  | Modele            |   Da   |         Da         |            Da            |
+  | Limbi         |   Da   |         Da         |            Da            |
+  | Urmărire costuri     |   Da   |         Da         |             -            |
+  | Solicitări transformare |   Da   |         Da         |            Da            |
+  | Utilizatori             |    -    |         Da         |             -            |
+  | Configurare API        |   Da   |         Da         |             -            |
+  | Despre             |   da   |     da     |        da         |
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> În versiunea web, fiecare utilizator are propria sa configurație. Setările precum modelele selectate, limbile, opțiunile generale și prompturile de transformare sunt stocate pe utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
+> În versiunea web, fiecare utilizator are propria configurație. Setările precum modelele selectate, limbile, opțiunile generale și solicitările de transformare sunt stocate pe utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
 
 <br/>
 
@@ -565,38 +567,38 @@ Filele disponibile depind de platformă și de rolul dvs.:
 <a id="general-settings"></a>
 ### Setări generale
 
-Utilizați **Setări generale** pentru a controla comportamentul la tastare, dacă detaliile de execuție sunt stocate pentru **Istoric** și aspectul aplicației.
+Utilizați **Setări generale** pentru a controla comportamentul tastaturii, dacă detaliile execuției sunt stocate în **Istoric** și aspectul aplicației.
 
 **Comportament**
 
-- **Comportamentul pentru ENTER** alege dacă `Enter` execută sarcina sau inserează o linie nouă.
+- **Comportament pentru ENTER** alege dacă `Enter` execută sarcina sau inserează o linie nouă.
 - **Auto-traducere la lipire** pornește traducerea imediat ce lipiți text.
-- **Copiază automat rezultatul în clipboard** copiază rezultatele cu succes automat.
+- **Copiază automat rezultatul în clipboard** copiază automat rezultatele cu succes.
 - **Traducere în timp real (în timp ce scrii)** traduce în timp ce scrii.
 - **Timeout (ms)** setează timpul de așteptare pentru traducerea în timp real.
 
 **Istoric**
 
-- **Păstrează istoricul execuției** controlează dacă fiecare traducere, rescriere și transformare stochează **textul de intrare și de ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni cere confirmare; dacă confirmați, textul istoricului stocat este eliminat din baza de date.
-- **Șterge datele istoricului** vă permite să eliminați textul stocat în funcție de vechime (de exemplu mai vechi de câteva luni sau **toate datele (golește)**) utilizând **Șterge datele**. Aceasta afectează doar textul execuției salvat pentru vizualizarea **Istoric**; **nu** șterge totalurile de cost sau utilizare. Pentru a elimina sau tăia datele de **cost**, utilizați [**Setări** > **Urmărire Costuri**](#cost-tracking).
+- **Păstrează istoricul execuției** controlează dacă fiecare traducere, rescriere și transformare stochează **textul de intrare și ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni cere confirmare; dacă confirmați, textul istoricului stocat este eliminat din baza de date.
+- **Șterge datele istoricului** vă permite să eliminați textul stocat după vechime (de exemplu mai vechi de câteva luni, sau **toate datele (ștergere)**) folosind **Șterge datele**. Aceasta afectează doar textul execuțiilor salvate pentru vizualizarea **Istoric**; **nu** șterge totalurile de cost sau utilizare. Pentru a elimina sau reduce datele de **cost**, utilizați [**Setări** > **Urmărire costuri**](#cost-tracking).
 
 **Aspect**
 
-- **Afișează informațiile despre cost pe acțiuni** controlează afișarea costului pe operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
-- **Cifre zecimale pentru cost** modifică modul în care sunt afișate zecimalele costului.
+- **Afișează informații despre cost pe acțiuni** controlează afișarea costului pe operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
+- **Cifre zecimale cost** modifică modul în care sunt afișate zecimalele costului.
 - **Doar web:** **afișează o margine în jurul aplicației** adaugă spațiu suplimentar în jurul interfeței.
-- **Familia de fonturi** schimbă fontul utilizat în panourile de text.
-- **Dimensiune** schimbă dimensiunea fontului.
+- **Familie de fonturi** modifică fontul de scriere în panourile de text.
+- **Dimensiune** modifică dimensiunea fontului.
 
 **Backup configurație**
 
-- **Include datele de utilizare în backup** – dacă este activată, ZIP-ul conține și istoricul execuțiilor și datele apelurilor API. 
-- **Configurare backup** – creează un singur fișier ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) care include `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, prompturi personalizate și date de utilizare dacă ați optat pentru aceasta. După un backup reușit, confirmarea afișează numele fișierului salvat.
-- **Restaurare din backup** – deschide mai întâi un **dialog de confirmare**. Alegeți fișierul ZIP de backup în dialog (**Răsfoiește** / selector de fișiere sau trage și plasează acolo unde este suportat), apoi revizuiți opțiunile:
-  - **Restaurează datele de utilizare** – importă utilizarea/istoricul din ZIP dacă a fost salvat cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și prompturile.
-  - **Șterge datele vechi de utilizare înainte de restaurare** – elimină utilizarea/istoricul existent pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
+- **Include datele de utilizare în backup** - dacă este activat, arhiva ZIP conține și istoricul execuțiilor și datele apelurilor API.
+- **Backup configurație** - creează o singură arhivă ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) cu `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, solicitări personalizate și datele de utilizare dacă ați activat această opțiune. După un backup reușit, confirmarea afișează numele fișierului salvat.
+- **Restaurează din backup** - deschide mai întâi un **dialog de confirmare**. Alegeți arhiva ZIP în dialog (**Răsfoiește** / selector de fișiere sau glisați și plasați acolo unde este suportat), apoi verificați opțiunile:
+  - **Restaurează datele de utilizare** - importă utilizarea/istoricul din arhiva ZIP dacă a fost făcut backup cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și solicitările.
+  - **Șterge datele vechi de utilizare înainte de restaurare** - elimină utilizarea/istoricul existent pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
 
-Backup-urile create fie în versiunea web, fie în cea desktop pot fi restaurate în cealaltă. Când restaurați un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
+Backup-urile create în versiunea web sau desktop pot fi restaurate în cealaltă. Când restaurați un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
 
 <br/>
 
@@ -609,34 +611,34 @@ Utilizați **Setări** > **Modele** pentru a alege care modele apar în bara de 
 
 Pagina are două liste:
 
-- **Modele Disponibile** în stânga
+- **Modele disponibile** în stânga
 - **Modele selectate** în dreapta
 
 Controale utile includ:
 
 - **Caută modele...** pentru a găsi un model după nume
-- **Chip-uri furnizor** pentru a restrânge lista la un singur motor (OpenRouter, OpenAI, Ollama, …)
-- **Doar gratuite** pentru a afișa doar modele gratuite
+- **Furnizor** pentru a restrânge lista la un singur motor (OpenRouter, OpenAI, Ollama, …)
+- **Doar gratuite** pentru a afișa doar modelele gratuite
 - **Reîmprospătare** pentru a reîncărca lista
-- **Extinde toate** și **Restrânge toate** când sortați după furnizor
+- **Extinde toate** și **Restrânge toate** atunci când sortați după furnizor
 
-ID-urile modelelor includ prefixul furnizorului (de exemplu `openrouter/…` vs `openai/…`). Insigile precum **OpenAI (OpenRouter)** vs **OpenAI (direct)** arată cum este rutat traficul.
+ID-urile modelelor includ prefixul furnizorului (de exemplu `openrouter/…` vs `openai/…`). Insigne precum **OpenAI (OpenRouter)** vs **OpenAI (direct)** arată cum este rutat traficul.
 
 > ℹ️ **NOTĂ**<br/>
-> **OpenRouter Body Builder** (`openrouter/bodybuilder`) este un model router, nu un model general de chat: răspunsul său este JSON care descrie corpuri de cereri API OpenRouter (de exemplu un array `requests` cu `model` și `messages`). Dacă îl utilizați pentru **Traducere**, **Rescriere** sau **Transformare**, panoul de ieșire va afișa acel JSON în loc de text finalizat. Alegeți un model text normal pentru aceste sarcini. Consultați [pagina modelului Body Builder](https://openrouter.ai/openrouter/bodybuilder) pe OpenRouter.
+> **OpenRouter Body Builder** (`openrouter/bodybuilder`) este un model router, nu un model general de chat: răspunsul său este JSON care descrie corpuri de cereri API OpenRouter (de exemplu un array `requests` cu `model` și `messages`). Dacă îl utilizați pentru **Traducere**, **Rescriere** sau **Transformare**, panoul de ieșire va afișa acest JSON în loc de text finalizat. Alegeți un model text normal pentru aceste sarcini. Consultați [pagina modelului Body Builder](https://openrouter.ai/openrouter/bodybuilder) pe OpenRouter.
 
 Acțiuni:
 
 - Pentru a adăuga un model, faceți clic pe **Adaugă** sau oriunde în intrare.
 
-- Pentru a elimina un model, faceți clic pe **X** lângă acesta în **Modele selectate** sau pe **Selectat** în intrarea din Modele Disponibile.
+- Pentru a elimina un model, faceți clic pe **X** lângă acesta în **Modele selectate** sau pe **Selectat** în intrarea din Modele disponibile.
 
-- Pentru a șterge lista, faceți clic pe **Deselectează tot**. Modelul gratuit necesar va rămâne în listă.
+- Pentru a goli lista, faceți clic pe **Deselectează tot**. Modelul gratuit obligatoriu va rămâne în listă.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Dacă nu doriți să adăugați credite la OpenRouter imediat, începeți prin activarea opțiunii **Doar Gratuite** și alegerea modelelor gratuite (nu este necesară o carte de credit). De asemenea, puteți utiliza Ollama pentru a rula modele local, fără nicio cheie API.
+> Dacă nu doriți să adăugați credite la OpenRouter imediat, începeți prin activarea opțiunii **Doar gratuite** și alegerea modelelor gratuite (fără card de credit necesar). De asemenea, puteți utiliza Ollama pentru a rula modele local, fără nicio cheie API.
 
 <br/>
 
@@ -645,7 +647,7 @@ Acțiuni:
 
 Utilizați **Setări** > **Limbi** pentru a organiza listele de limbi utilizate în aplicație.
 
-- **Limbi principale** sunt fixate în partea superioară a listelor de limbi din **Traduce** și **Transformare**.
+- **Limbi principale** sunt fixate în partea superioară a listelor de limbi în **Traducere** și **Transformare**.
 - **Limbă personalizată** vă permite să adăugați o limbă care nu se află în lista integrată.
 
 Dacă adăugați o limbă personalizată, aceasta va apărea în selectorii de limbă alături de opțiunile integrate.
@@ -653,71 +655,73 @@ Dacă adăugați o limbă personalizată, aceasta va apărea în selectorii de l
 <br/>
 
 <a id="cost-tracking"></a>
-### Urmărire Costuri
+### Urmărire costuri
 
-Utilizați **Setări** > **Urmărire Costuri** pentru a gestiona informațiile privind costurile.
+Utilizați **Setări** > **Urmărire costuri** pentru a gestiona informațiile privind costurile.
 
-- **Cost total** afișează totalul curent.
+- **Cost total** afișează totalul cumulat.
 - **Copiază valoarea** copiază totalul în clipboard.
-- **Resetează costul** resetează totalul stocat la zero.
+- **Resetați costul** resetează totalul stocat la zero.
 - **Sincronizează cu utilizarea cheii API** setează totalul să corespundă utilizării raportate de contul dvs. OpenRouter (doar OpenRouter).
-- **Utilizarea cheii API** afișează detaliile de utilizare OpenRouter, dacă sunt disponibile.
-- **Șterge datele de cost** elimină toate datele sau doar înregistrările mai vechi de o dată selectată.
+- **Utilizarea cheii API** afișează detalii despre utilizarea OpenRouter, dacă sunt disponibile.
+- **Șterge datele de cost** elimină toate datele sau doar intrările mai vechi decât o dată selectată.
 
-**Urmărire costuri:** Când utilizați modele OpenRouter, aplicația vă arată utilizarea și cheltuielile reale pe baza informațiilor de cost de la OpenRouter. Pentru toți ceilalți furnizori, aplicația estimează costurile utilizând prețurile publicate de OpenRouter; dacă un preț nu este disponibil, estimarea poate fi zero.
+**Urmărirea costurilor:** Când utilizați modele OpenRouter, aplicația vă afișează utilizarea reală și cheltuielile pe baza informațiilor de cost de la OpenRouter. Pentru toți ceilalți furnizori, aplicația estimează costurile utilizând prețurile publicate de OpenRouter; dacă un preț nu este disponibil, estimarea poate fi zero.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
->  **Toate cifrele de cost sunt estimate doar pentru referința dvs., nu sunt facturi oficiale.**
+> **Toate valorile de cost sunt estimări doar pentru referința dvs., nu reprezintă facturi oficiale.**
 
 <br/>
 
-> ⚠️ **ATENȚIE**<br/>
-> Ștergerea datelor nu poate fi anulată. Înainte de ștergere, asigurați-vă că vă salvați datele sau le exportați prin [**Istoric**](#history) 
-> sau [**Panou de control** > **Toate apelurile**](#dashboard-tabs), altfel vor fi pierdute definitiv. 
-> Tot istoricul de intrare/ieșire legat de fiecare intrare de apel API va fi, de asemenea, șters.
+> ⚠️ **ATENȚIONARE**<br/>
+> Ștergerea datelor nu poate fi anulată. Înainte de ștergere, asigurați-vă că salvați datele sau le exportați prin [**Istoric**](#history)
+> sau [**Panou de control** > **Toate apelurile**](#dashboard-tabs), altfel vor fi pierdute definitiv.
+> Tot istoricul de intrare/ieșire asociat fiecărei intrări de apel API va fi, de asemenea, șters.
 
 <br/>
 
 <a id="transform-prompts"></a>
-### Prompturi de transformare
+### Solicitări transformare
 
-Utilizați **Setări** > **Prompturi de transformare** pentru a gestiona prompturile în masă.
+Utilizați **Setări** > **Solicitări transformare** pentru a gestiona prompturile în bloc.
 
 Puteți:
 
-- revizuiți prompturile salvate
-- ștergeți prompturi
-- importați prompturi dintr-un fișier
-- exportați prompturi pentru backup sau partajare
-- încărcați prompturi eșantion în lista de prompturi
+- examina prompturile salvate
+- șterge prompturi
+- importa prompturi dintr-un fișier
+- exporta prompturi pentru backup sau partajare
+- încărcați exemple de prompturi în lista de prompturi
 
 <br/>
 
 <a id="users"></a>
 ### Utilizatori
 
-Utilizați **Utilizatori** pentru a gestiona conturile de utilizator în versiunea web. Puteți adăuga utilizatori, actualiza detaliile lor, reseta parolele și șterge conturi.
+Utilizați **Utilizatori** pentru a gestiona conturile de utilizator în versiunea web. Puteți adăuga utilizatori, actualiza detaliile acestora, reseta parolele și șterge conturi.
 
 <br/>
 
 <a id="api-config"></a>
 ### Configurare API
 
-Furnizorii susținuți sunt: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras și **Ollama** (modele locale printr-o adresă URL de bază). Trebuie să configurați doar furnizorii pe care îi utilizați.
+Furnizorii suportați sunt: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras și **Ollama** (modele locale printr-un URL de bază). Trebuie să configurați doar furnizorii pe care îi utilizați.
 
 **Aplicație web: doar administrator**
 
-Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker - nu sunt introduse în interfața web. Această pagină arată pentru care furnizori este configurată o cheie și vă permite să testați fiecare apăsând butonul **`Test`**.
+Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker - nu sunt introduse în interfața web. Această pagină arată pentru care furnizori este configurată o cheie și vă permite să testați fiecare apăsând butonul `Test`.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
 > Pentru a schimba o cheie API, actualizați variabila de mediu în configurația sistemului sau Docker și reporniți serverul sau containerul.
 
+<br/>
+
 > ℹ️ **NOTĂ**<br/>
-> **Backup-urile de configurație** (vezi [**Setări generale** → Backup configurație](#general-settings)) pot încorpora cheile furnizorilor **rezolvate** în interiorul fișierului `config.json` din arhiva ZIP. Restaurarea acestei arhive ZIP **nu** copiază acele chei înapoi în fișierul de configurație persistat al serverului - cheile active provin în continuare din mediul de execuție și starea fișierului existent, așa cum este descris acolo.
+> **Backup-urile de configurație** (vezi [**Setări generale** → Backup configurație](#general-settings)) pot încorpora cheile furnizorilor **rezolvate** în interiorul fișierului `config.json` ZIP. Restaurarea acelui fișier ZIP **nu** copiază acele chei înapoi în fișierul de configurație persistent al serverului - cheile active provin în continuare din mediu și starea fișierului existente, așa cum este descris acolo.
 
 <br/>
 
@@ -728,18 +732,18 @@ Utilizați **Configurare API** pentru a stoca cheile API pentru fiecare furnizor
 <br/>
 
 > 💡 **Sfat** <br/>
-> Dacă nu doriți să utilizați o cheie API sau să plătiți pentru utilizare, puteți [descărca Ollama](https://ollama.com) și rula modele (cum ar fi `translategemma:4b`) local pe calculatorul dumneavoastră gratuit. Alternativ, puteți crea un cont gratuit OpenRouter (fără card de credit) pentru a utiliza modelele lor gratuite, sau obțineți o cheie API gratuită de la Cerebras, Google, Groq sau Mistral AI.
+> Dacă nu doriți să utilizați o cheie API sau să plătiți pentru utilizare, puteți [descărca Ollama](https://ollama.com) și rula modele (cum ar fi `translategemma:4b`) local pe mașina dumneavoastră gratuit. Alternativ, puteți crea un cont gratuit OpenRouter (fără card de credit) pentru a utiliza modelele lor gratuite sau obține o cheie API gratuită de la Cerebras, Google, Groq sau Mistral AI.
 
 <br/>
 
 - Adăugați doar furnizorii de care aveți nevoie. În **Setări** > **Modele**, fiecare ID de model începe cu furnizorul (de exemplu `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-Pentru a adăuga o cheie API, introduceți valoarea în câmpul de text și apăsați **`Save`**. Pentru a înlocui o cheie existentă, apăsați **`Edit`**. Pentru a verifica dacă o cheie funcționează, apăsați **`Test`**. Pentru URL-ul de bază Ollama, apăsați întotdeauna **`Test`** pentru a verifica conexiunea.
+Pentru a adăuga o cheie API, introduceți valoarea în câmpul de text și apăsați `Save`. Pentru a înlocui o cheie existentă, apăsați `Edit`. Pentru a verifica dacă o cheie funcționează, apăsați `Test`. Pentru URL-ul de bază Ollama, apăsați întotdeauna `Test` pentru a verifica conexiunea.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Nu puteți vedea valoarea curentă a unei chei API. Puteți doar să o înlocuiți utilizând butonul **`Edit`**.
+> Nu puteți vedea valoarea curentă a unei chei API. Puteți doar să o înlocuiți utilizând butonul `Edit`.
 > Cheile API sunt stocate criptat în configurație.
 
 <br/>
@@ -747,7 +751,7 @@ Pentru a adăuga o cheie API, introduceți valoarea în câmpul de text și apă
 <a id="about"></a>
 ### Despre
 
-Tabul **Despre** afișează:
+Tab-ul **Despre** afișează:
 
 - numele aplicației
 - numărul versiunii
@@ -759,7 +763,7 @@ Tabul **Despre** afișează:
 <a id="common-issues"></a>
 ## Probleme comune
 
-Dacă ceva nu funcționează așa cum vă așteptați, verificați mai întâi următoarele puncte.
+Dacă ceva nu funcționează așa cum este de așteptat, verificați mai întâi următoarele puncte.
 
 <br/>
 
@@ -770,109 +774,109 @@ Verificați dacă:
 
 - ați selectat un model în bara de instrumente
 - cel puțin un model este listat în [**Setări** > **Modele**](#models)
-- configurația API funcționează
+- configurarea API-ului funcționează
 
 Dacă utilizați aplicația desktop:
 
 1. Deschideți [**Setări** > **Configurare API**](#api-config).
 2. Verificați dacă cel puțin o cheie API este salvată.
-3. Apăsați **Testează** lângă furnizor pentru a confirma că cheia funcționează.
+3. Faceți clic pe **Test** lângă furnizor pentru a confirma că cheia funcționează.
 
 <br/>
 
 <a id="the-model-list-is-empty"></a>
-### Lista modelului este goală
+### Lista de modele este goală
 
-Deschide [**Setări** > **Modele**](#models) și apasă **Reîmprospătează**.
+Deschideți [**Setări** > **Modele**](#models) și faceți clic pe **Reîmprospătare**.
 
 Dacă este necesar:
 
-- caută un model
-- activează **Doar Gratuite**
-- adaugă unul sau mai multe modele la **Modele selectate**
+- căutați un model
+- activați **Doar gratuite**
+- adăugați unul sau mai multe modele la **Modele selectate**
 
 <br/>
 
 <a id="the-result-is-too-slow-or-too-expensive"></a>
 ### Rezultatul este prea lent sau prea scump
 
-Încearcă unul sau mai multe dintre acestea:
+Încercați una sau mai multe dintre următoarele opțiuni:
 
-- alege un model diferit
-- folosește o intrare mai scurtă
-- dezactivează **Traducere în timp real (în timp ce tastezi)** în [**Setări** > **Setări generale**](#general-settings)
-- folosește modele gratuite pentru sarcini simple (vezi [Modele](#models))
+- alegeți un alt model
+- utilizați o intrare mai scurtă
+- dezactivați **Traducere în timp real (în timp ce scrieți)** în [**Setări** > **Setări generale**](#general-settings)
+- utilizați modele gratuite pentru sarcini simple (consultați [Modele](#models))
 
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
 ### Interfața este în limba greșită
 
-Apasă pe pictograma glob în [bara de instrumente](#toolbar) și alege limba ta preferată **Limba interfeței**.
+Faceți clic pe pictograma globului în [bara de instrumente](#toolbar) și alegeți **Limba interfeței** preferată.
 
 <br/>
 
 <a id="the-text-is-too-small-or-hard-to-read"></a>
 ### Textul este prea mic sau greu de citit
 
-Deschide [**Setări** > **Setări generale**](#general-settings) și schimbă:
+Deschideți [**Setări** > **Setări generale**](#general-settings) și modificați:
 
-- **Familia de fonturi**
+- **Familie de fonturi**
 - **Dimensiune**
 
 <br/>
 
 <a id="dashboard-charts-are-empty"></a>
-### Graficele din Panoul de control sunt goale
+### Graficele din panoul de control sunt goale
 
 Acest lucru este normal dacă:
 
-- folosești doar **modele gratuite** și te uiți la cifrele de **cost** (acestea pot fi zero); graficele de număr de apeluri de **utilizare** din **Rezumat** au nevoie în continuare de date din perioada selectată
-- filtrul de **timp selectat** nu acoperă perioada în care au fost efectuate apelurile - încearcă **Toate** pentru a verifica
+- folosești doar **modele gratuite** și te uiți la cifrele de **cost** (acestea pot fi zero); graficele de număr de apeluri de **utilizare** de pe **Rezumat** au nevoie în continuare de date din perioada selectată
+- filtrul de **timp** selectat nu acoperă perioada în care au fost efectuate apelurile - încearcă **Toate** pentru a verifica
 
-Dacă graficele sunt încă goale după ce ai selectat **Toate**, confirmă că apelurile apar în [**Istoric**](#history) sau în tab-ul **Toate apelurile**.
+Dacă graficele rămân goale după selectarea opțiunii **Toate**, verificați dacă apelurile apar în [**Istoric**](#history) sau în fila **Toate apelurile**.
 
 <br/>
 
 <a id="cost-shows-not-available-or-seems-wrong"></a>
-### Costul arată "nu este disponibil" sau pare greșit
+### Costul afișează „nu este disponibil” sau pare incorect
 
-Când folosești modele prin **OpenRouter**, aplicația îți arată cheltuielile reale raportate de OpenRouter.
+Când utilizați modele prin **OpenRouter**, aplicația vă arată cheltuielile reale raportate de OpenRouter.
 
-Pentru **alte furnizori** (OpenAI direct, Anthropic direct, etc.), costul este estimat din datele de preț publicate de OpenRouter. Dacă nu se găsește un preț corespunzător pentru un model, costul va apărea ca **nu este disponibil** și nu va fi adăugat la totalul tău curent.
+Pentru **alți furnizori** (OpenAI direct, Anthropic direct etc.), costul este estimat pe baza datelor de preț publicate de OpenRouter. Dacă nu se găsește un preț corespunzător pentru un model, costul va apărea ca **nu este disponibil** și nu va fi adăugat la totalul dvs. curent.
 
 <br/>
 
 <a id="total-cost-does-not-match-my-provider-bill"></a>
 ### Costul total nu se potrivește cu factura furnizorului meu
 
-Toate valorile de cost din aplicație sunt **estimări doar pentru referință**, nu reprezintă facturi oficiale.
+Toate cifrele de cost din aplicație sunt **estimări doar pentru referință**, nu reprezintă facturi oficiale.
 
-Pentru a aduce totalul mai aproape de cheltuielile reale OpenRouter, deschideți [**Setări** > **Urmărire Costuri**](#cost-tracking) și faceți clic pe **Sincronizează cu utilizarea cheii API**.
+Pentru a aduce totalul mai aproape de cheltuielile reale OpenRouter, deschideți [**Setări** > **Urmărire costuri**](#cost-tracking) și faceți clic pe **Sincronizează cu utilizarea cheii API**.
 
 <br/>
 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Pagina Istoric lipsește din bara laterală
 
-Opțiunea **Păstrează istoricul execuției** ar putea fi dezactivată. Deschideți [**Setări** > **Setări generale**](#general-settings) și activați-o. Rețineți că activarea acesteia nu restaurează datele istoricului șterse anterior.
+Opțiunea **Păstrează istoricul execuției** poate fi dezactivată. Deschideți [**Setări** > **Setări generale**](#general-settings) și activați-o. Rețineți că activarea acesteia nu restaurează datele istoricului șterse anterior.
 
 <br/>
 
 <a id="web-app-session-expired"></a>
 ### Aplicația web: redirecționat neașteptat la pagina de autentificare
 
-Sesiunea dumneavoastră s-ar putea să fi expirat. Autentificați-vă din nou. Dacă acest lucru se întâmplă frecvent, verificați configurația serverului pentru setările duratei sesiunii.
+Sesiunea dvs. s-a putut încheia din cauza inactivității. Autentificați-vă din nou. Dacă acest lucru se întâmplă frecvent, verificați configurația serverului pentru setările duratei sesiunii.
 
 <br/>
 
 <a id="web-admin-forgot-or-lost-a-password"></a>
-### Administrator web: a uitat sau a pierdut parola
+### Administrator web: ați uitat sau ați pierdut o parolă
 
 Aceasta se aplică **aplicației web auto-găzduite** (Docker), nu aplicației desktop (Electron).
 
 - Dacă un alt administrator se poate autentifica încă, acesta poate deschide [**Setări** > **Utilizatori**](#users), alege contul și seta o **parolă nouă** acolo.
-- Dacă sunteți **blocat afară**, dar aveți **acces shell** la mașină sau container, resetați parola cu ajutorul utilitarului furnizat cu imaginea (înlocuiți `transrewrt` dacă schimbați numele implicit, și puneți între ghilimele parola dacă conține spații sau caractere speciale):
+- Dacă sunteți **blocat** dar aveți **acces shell** la mașină sau container, resetați parola cu ajutorul utilitarului livrat cu imaginea (înlocuiți `transrewrt` dacă schimbați numele implicit și puneți între ghilimele parola dacă conține spații sau caractere speciale):
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
@@ -893,26 +897,26 @@ Scriptul actualizează înregistrarea utilizatorului în baza de date SQLite (ș
 <a id="dashboard-shows-no-data-for-other-users"></a>
 ### Panoul de control nu afișează date pentru alți utilizatori (web)
 
-Doar **administratorii** pot vizualiza datele tuturor utilizatorilor prin filtrul **Utilizator**. Utilizatorii obișnuiți văd doar activitatea lor proprie, conform designului.
+Numai **administratorii** pot vizualiza datele tuturor utilizatorilor prin filtrul **Utilizator**. Utilizatorii obișnuiți văd doar activitatea proprie, conform proiectării.
 
 <br/>
 
 <a id="i-changed-a-prompt-and-lost-the-edits"></a>
 ### Am modificat un prompt și am pierdut modificările
 
-Când editați un prompt, faceți întotdeauna clic pe **Salvează** înainte de a face clic pe **Înapoi la Execuție**.
+Când editați un prompt, faceți întotdeauna clic pe **Salvare** înainte de a face clic pe **Înapoi la Executare**.
 
 <br/><br/>
 
 <a id="quick-tips"></a>
 ## Sfaturi rapide
 
-- Începeți cu [**Traducere**](#translate) pentru a vă asigura că setările funcționează înainte să treceți la [**Rescriere**](#rewrite) sau [**Transformare**](#transform).
-- Utilizați [**Rescriere**](#rewrite) pentru îmbunătățiri zilnice ale formulării.
+- Începeți cu [**Traducere**](#translate) pentru a vă asigura că setarea funcționează înainte de a trece la [**Rescriere**](#rewrite) sau [**Transformare**](#transform).
+- Utilizați [**Rescriere**](#rewrite) pentru îmbunătățiri obișnuite ale formulării.
 - Utilizați [**Transformare**](#transform) atunci când aveți nevoie de un flux de lucru reproductibil pentru o sarcină specifică.
 - Utilizați [**Panou de control**](#dashboard) dacă doriți să urmăriți utilizarea și costurile.
-- Utilizați [**Istoric**](#history) pentru a revizui operațiunile anterioare și textul complet de intrare/ieșire.
-- Exportați prompturile periodic dacă construiți o bibliotecă de prompturi pe care doriți să o păstrați în siguranță (vezi [Transformă prompturi](#transform-prompts)) sau dacă doriți să le partajați cu alții.
+- Folosește [**Istoric](#history) pentru a reviziona operațiile anterioare și textul lor complet de intrare/ieșire.
+- Exportă solicitările în mod regulat dacă construiești o bibliotecă de solicitări pe care dorești să păstrezi în siguranță (vezi [Solicitări transformare](#transform-prompts)) sau dacă dorești să îl distribuiți altora.
 
 <br/><br/>
 

@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "ফলাফল ক্লিপবোর্ডে স্বয়ংক্রিয়ভাবে কপি করুন",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "টাইপ করার সময় রিয়েল-টাইম অনুবাদ (⚠️ এটি ব্যবহারের খরচ বাড়াতে পারে)",
   "Timeout (ms):": "টাইমআউট (মিলিসেকেন্ড):",
+  "disabled by the administrator": "প্রশাসক দ্বারা অক্ষম করা হয়েছে",
   "Keep execution history": "কার্যকরী ইতিহাস রাখুন",
   "Delete history data": "ইতিহাসের তথ্য মুছুন",
   "Configuration Backup": "কনফিগারেশন ব্যাকআপ",

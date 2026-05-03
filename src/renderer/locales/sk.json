@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Automatické kopírovanie výsledku do schránky",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Preklad v reálnom čase počas písania (⚠️ To môže zvýšiť náklady na používanie)",
   "Timeout (ms):": "Časový limit (ms):",
+  "disabled by the administrator": "zakázané správcom",
   "Keep execution history": "Zachovať históriu vykonaní",
   "Delete history data": "Odstrániť dáta histórie",
   "Configuration Backup": "Zálohovanie konfigurácie",

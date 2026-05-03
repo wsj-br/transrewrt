@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-01T21:24:36.226Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:34:28.250Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ar
 source_file_path: README.md
 translation_models:
@@ -22,17 +22,17 @@ translation_models:
 
 أداة نصية مدعومة بالذكاء الاصطناعي: ترجمة بين اللغات، وإعادة صياغة بأساليب مختلفة، وتحويل باستخدام أوامر مخصصة — باستخدام موفري ذكاء اصطناعي متعددين (أوبن روتر، أوبن إي آي، أنثروبيك، جوجل جيميني، ديب سيك، غروك، ميسترال، إكس إيه آي، وأولاما محلي). تعمل كتطبيق سطح مكتب (إلكترون) أو تطبيق ويب قابل الاستضافة ذاتيًا (داكر).
 
-- **ترجمة** - بين عشرات اللغات، مع اكتشاف تلقائي للمصدر
-- **إعادة كتابة** - تصحيح القواعد، تحسين الوضوح، صيغة رسمية/غير رسمية، تقصير، توسيع، محتوى تقني
-- **تحويل** - أوامر ذكاء اصطناعي مخصصة؛ إنشاء وإدارة الأوامر، مع إمكانية تحديد لغة مستهدفة لكل أمر
-- **السجل** - سجل تنفيذ كامل يحتوي على النصوص المدخلة والمنتجة، مع إمكانية التصفية والتصدير
+- ترجم** - بين العشرات من اللغات، مع الكشف التلقائي عن المصدر
+- **إعادة صياغة** - إصلاح القواعد، تحسين الوضوح، رسمي/غير رسمي، تقصير، توسيع، تقني
+- **تحويل** - موجهات AI مخصصة؛ إنشاء وإدارة الموجهات، لغة الهدف الاختيارية لكل موجه
+- **السجل** - سجل تنفيذ كامل مع نص المدخلات/النص الناتج، التصفية، والتصدير
 - **النماذج والتكلفة** - اختيار النماذج من أي مزود تم تهيئته؛ لوحات مراقبة التكلفة والاستخدام مع السجلات، والتلخيص حسب النموذج/العملية/اليوم
 - **واجهة المستخدم** - واجهة متعددة اللغات (أكثر من 30 لغة، مع دعم الكتابة من اليمين إلى اليسار)، خطوط، ...
 - **وضع الويب** - دعم المستخدمين المتعددين مع أدوار المسؤول
 - **سطح المكتب** - تطبيق إلكترون لنظامي التشغيل ويندوز ولينكس
 - **استضافة ذاتية** - صورة دوكر متوفرة لكل من amd64 و arm64 (جاهزة للاستخدام على Raspberry Pi)
 
-بعد التثبيت، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** للحصول على شرح كامل لجميع الميزات.
+بمجرد التثبيت، راجع [**دليل المستخدم**](USER-GUIDE.ar.md) للحصول على شرح كامل لجميع الميزات.
 
 <small>**اقرأ باللغات الأخرى:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -128,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 أو استخدم Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -248,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-بمجرد تشغيل التطبيق، راجع **[دليل المستخدم](USER-GUIDE.ar.md)** لمعرفة كيفية ترجمة النصوص، وإعادة صياغتها، وتحويلها، وإدارة الموجهات، وتكوين النماذج.
+بمجرد تشغيل التطبيق، راجع [**دليل المستخدم**](USER-GUIDE.ar.md) لمعرفة كيفية ترجمة النصوص، وإعادة صياغتها، وتحويلها، وإدارة المطالبات، وتكوين النماذج.
 
 <br/><br/>
 
@@ -294,6 +294,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `PORT`               | منفذ الاستماع للخادم (القيمة الافتراضية هي `5000`)                                  |
 | `CONFIG_PATH`        | مسار ملف التهيئة (القيمة الافتراضية هي `/app/data/config.json`)                |
 | `TZ`                 | التوقيت الزمني للخادم (للسجلات، إلخ) (القيمة الافتراضية هي `Europe/London`) |
+| `HISTORY_DISABLED`   | يفرض إيقاف سجل التنفيذ (اختياري، يتم تعيينه تلقائيًا إلى `false`)                  |
 | `OPENROUTER_API_KEY` | مفتاح واجهة برمجة تطبيقات OpenRouter                                                           |
 | `OPENAI_API_KEY`     | مفتاح واجهة برمجة تطبيقات OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | مفتاح واجهة برمجة تطبيقات Cerebras                                                             |
@@ -304,6 +305,8 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY`    | مفتاح واجهة برمجة تطبيقات Mistral                                                              |
 | `OLLAMA_URL`         | عنوان URL الأساسي لـ Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | مفتاح واجهة برمجة تطبيقات xAI                                                                  |
+
+**وضع الخصوصية:** لإجبار إيقاف تتبع السجل بغض النظر عن `config.json` أو تفضيلات المستخدم الفردية، قم بتعيين `HISTORY_DISABLED` إلى `true` أو `1` (بدون تمييز بين الأحرف الكبيرة والصغيرة) لعملية **خادم الويب/دوكير** و/أو عملية **إلكترون الرئيسية على سطح المكتب** (مثلاً بيئة النظام أو برنامج التشغيل — وليس العارض فقط). هذا يعطل تخزين سجل المدخلات/المخرجات، ويُقفل **الإعدادات → الإعدادات العامة → السجل**، ويمنع واجهات برمجة التطبيقات المتعلقة بالسجل.
 
 قم بتهيئة موفري الخدمة الذين تستخدمهم فقط. أسماء النماذج تحتوي على نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ).
 
@@ -335,8 +338,8 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 <a id="development-and-architecture"></a>
 ## التطوير والهندسة المعمارية
 
-- **التطوير:** الإعداد، البناء، الاختبار، والنشر (إلكترون، ويب، دوكر) - انظر **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **الهندسة المعمارية ونظرة عامة على النظام:** هيكل المجلدات، المكدس التقني، قرارات التصميم - انظر **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **التطوير:** الإعداد، البناء، الاختبار، والنشر (Electron، Web، Docker) - انظر [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **نظرة عامة على الهيكل والأنظمة:** هيكل المجلدات، مجموعة التقنيات، وقرارات التصميم - انظر [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

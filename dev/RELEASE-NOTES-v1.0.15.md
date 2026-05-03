@@ -2,7 +2,7 @@
 
 # Transrewrt 1.0.15 - initial official release
 
-**Release date:** 2026-03-27
+Release date:** 2026-03-27
 
 We are pleased to announce the **first official release** of **Transrewrt**, an AI-powered desktop and self-hosted application for working with text across languages and styles.
 
@@ -40,7 +40,7 @@ Product names and icons belong to their respective owners and are used for ident
 
 ## License
 
-Transrewrt is released under the **Apache License 2.0**. See [LICENSE](LICENSE).
+Transrewrt is released under the **Apache License 2.0. See [LICENSE](LICENSE).
 
 ---
 

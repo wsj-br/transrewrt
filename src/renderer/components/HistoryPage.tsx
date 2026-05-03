@@ -14,17 +14,9 @@ import {
 import { formatDateTime } from "../utils/misc/formatUtils";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
-import webAPI from "../utils/api/webApiClient";
 import CallDetailsContent from "./CallDetailsContent";
 import { resolveAppearanceFontFamilyCss } from "../utils/misc/appearanceFontOptions";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 const EXPORT_FILENAME = "transrewrt-history";
@@ -181,25 +173,14 @@ export default function HistoryPage() {
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
   const [filter, setFilter] = useState("all");
-  const [userFilter, setUserFilter] = useState("");
-  const [userList, setUserList] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
   const [selected, setSelected] = useState(null);
   const isMobileMetadata = useIsBelowLg();
 
-  const isAdmin = currentUser?.role === "admin";
-  const historyUsername =
-    isWeb && !isAdmin ? currentUser?.username || null : userFilter || null;
-
-  useEffect(() => {
-    if (!isWeb || !isAdmin || !webAPI.getUsers) return;
-    webAPI
-      .getUsers()
-      .then((list) => setUserList(Array.isArray(list) ? list : []))
-      .catch(() => setUserList([]));
-  }, [isAdmin]);
+  /** Web: always scope to the signed-in user (admins do not see other users' history). Desktop: no username column filter. */
+  const historyUsername = isWeb ? currentUser?.username || null : null;
 
   const loadHistory = useCallback(() => {
     const api = getCostApi();
@@ -356,27 +337,6 @@ export default function HistoryPage() {
             {f.label}
           </Button>
         ))}
-        {isWeb && isAdmin && userList.length > 0 && (
-          <>
-            <span className="text-sm font-medium text-muted-foreground ms-2 me-1">{t("User")}</span>
-            <Select
-              value={userFilter === "" ? "__all__" : userFilter}
-              onValueChange={(v) => setUserFilter(v === "__all__" ? "" : v)}
-            >
-              <SelectTrigger className="min-w-[140px] h-8 text-sm">
-                <SelectValue placeholder={t("All users")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="__all__">{t("All users")}</SelectItem>
-                {userList.filter((u) => u.username).map((u) => (
-                  <SelectItem key={u.id} value={u.username}>
-                    {u.username}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </>
-        )}
         <div className="inline-flex items-center gap-1.5 ms-8">
           <Download size={15} aria-hidden />
           <span className="text-sm font-semibold">{t("Download:")} </span>

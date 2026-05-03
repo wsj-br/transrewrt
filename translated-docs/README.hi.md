@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:17.045Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:37:54.789Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: hi
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 एआई-संचालित पाठ उपकरण: कई एआई प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, और स्थानीय Ollama) का उपयोग करके भाषाओं के बीच अनुवाद करें, विभिन्न शैलियों में पुनर्लेखन करें, और कस्टम प्रॉम्प्ट के साथ परिवर्तित करें - डेस्कटॉप ऐप (Electron) या स्व-होस्टेड वेब ऐप (Docker) के रूप में चलाएं।
 
-- **अनुवाद** - दर्जनों भाषाओं के बीच, स्वचालित स्रोत का पता लगाकर
-- **पुनर्लेखन** - व्याकरण ठीक करें, स्पष्टता में सुधार करें, औपचारिक/अनौपचारिक, संक्षिप्त करें, विस्तार करें, तकनीकी
-- **परिवर्तन** - कस्टम एआई प्रॉम्प्ट; प्रॉम्प्ट बनाएं और प्रबंधित करें, प्रत्येक प्रॉम्प्ट के लिए वैकल्पिक लक्ष्य भाषा
-- **इतिहास** - पूर्ण निष्पादन इतिहास इनपुट/आउटपुट पाठ के साथ, फ़िल्टरिंग और निर्यात के साथ
+- अनुवाद करें** - दर्जनों भाषाओं के बीच, स्वचालित स्रोत पता लगाने के साथ
+- **पुनर्लेखन** - व्याकरण ठीक करें, स्पष्टता में सुधार करें, औपचारिक/अनौपचारिक, छोटा करें, विस्तारित करें, तकनीकी
+- **परिवर्तित करें** - कस्टम AI प्रॉम्प्ट; प्रॉम्प्ट बनाएं और प्रबंधित करें, प्रत्येक प्रॉम्प्ट के लिए वैकल्पिक लक्ष्य भाषा
+- **इतिहास** - इनपुट/आउटपुट पाठ के साथ पूर्ण निष्पादन इतिहास, फ़िल्टरिंग, और निर्यात
 - **मॉडल और लागत** - किसी भी कॉन्फ़िगर किए गए प्रदाता से मॉडल चुनें; लॉग के साथ लागत और उपयोग डैशबोर्ड, मॉडल/ऑपरेशन/दिन के अनुसार सारांश
 - **यूआई** - बहुभाषी इंटरफ़ेस (30+ भाषाएं, RTL समर्थन), फ़ॉन्ट, ...
 - **वेब मोड** - एडमिन भूमिकाओं के साथ बहु-उपयोगकर्ता समर्थन
 - **डेस्कटॉप** - विंडोज और लिनक्स के लिए इलेक्ट्रॉन ऐप
 - **स्व-होस्टेड** - amd64 और arm64 (रास्पबेरी पाई-तैयार) के लिए डॉकर इमेज
 
-एक बार स्थापित होने के बाद, सभी सुविधाओं की पूर्ण वॉकथ्रू के लिए **[उपयोगकर्ता गाइड](USER-GUIDE.hi.md)** देखें।
+स्थापित होने के बाद, सभी सुविधाओं की पूर्ण जानकारी के लिए [**उपयोगकर्ता गाइड**](USER-GUIDE.hi.md) देखें।
 
 <small>**अन्य भाषाओं में पढ़ें:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 या डॉकर कंपोज का उपयोग करें:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-एक बार ऐप चलने लगने के बाद, पाठ का अनुवाद करने, पुनर्लेखन करने और ट्रांसफ़ॉर्म करने, प्रॉम्प्ट्स को प्रबंधित करने और मॉडल कॉन्फ़िगर करने के बारे में जानने के लिए **[उपयोगकर्ता गाइड](USER-GUIDE.hi.md)** देखें।
+एप्लिकेशन चलने के बाद, पाठ का अनुवाद कैसे करें, पुनर्लेखन और परिवर्तन कैसे करें, प्रॉम्प्ट प्रबंधित करें और मॉडल कॉन्फ़िगर करें, इसके बारे में जानने के लिए [**उपयोगकर्ता गाइड**](USER-GUIDE.hi.md) देखें।
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt कई AI प्रदाताओं का समर्थन क�
 | `PORT` | सर्वर सुनने का पोर्ट (डिफ़ॉल्ट `5000` पर) |
 | `CONFIG_PATH`        | कॉन्फ़िग फ़ाइल का मार्ग (डिफ़ॉल्ट `/app/data/config.json` है)                |
 | `TZ` | सर्वर-साइड समय के लिए समयक्षेत्र (लॉगिंग, आदि) (डिफ़ॉल्ट `Europe/London` पर) |
+| `HISTORY_DISABLED`   | इतिहास के निष्पादन को अक्षम करें (वैकल्पिक, डिफ़ॉल्ट रूप से `false` होता है) |
 | `OPENROUTER_API_KEY` | ओपनराउटर एपीआई कुंजी |
 | `OPENAI_API_KEY` | ओपनएआई एपीआई कुंजी |
 | `CEREBRAS_API_KEY` | सेरेब्रस एपीआई कुंजी |
@@ -303,6 +305,8 @@ Transrewrt कई AI प्रदाताओं का समर्थन क�
 | `MISTRAL_API_KEY` | मिस्ट्रल एपीआई कुंजी |
 | `OLLAMA_URL` | ओलामा बेस यूआरएल (उदाहरण के लिए `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API कुंजी                                                                  |
+
+**गोपनीयता मोड:** `config.json` या उपयोगकर्ता की पसंद के बावजूद इतिहास के ट्रैक को अक्षम करने के लिए, **वेब/Docker सर्वर प्रक्रिया** और/या **इलेक्ट्रॉन डेस्कटॉप मुख्य प्रक्रिया** के लिए `HISTORY_DISABLED` को `true` या `1` (केस-असंवेदनशील) पर सेट करें (उदाहरण के लिए सिस्टम या लॉन्चर वातावरण — केवल रेंडरर नहीं)। इससे इनपुट/आउटपुट इतिहास को संग्रहीत करना अक्षम हो जाता है, **सेटिंग्स → सामान्य सेटिंग्स → इतिहास** लॉक हो जाता है, और इतिहास से संबंधित API अवरुद्ध हो जाते हैं।
 
 केवल उन प्रदाताओं को कॉन्फ़िगर करें जिनका आप उपयोग करते हैं। मॉडल आईडी नामस्थानित हैं (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, आदि)।
 
@@ -334,8 +338,8 @@ Transrewrt कई AI प्रदाताओं का समर्थन क�
 <a id="development-and-architecture"></a>
 ## विकास और आर्किटेक्चर
 
-- **विकास:** सेटअप, बिल्ड, टेस्ट, और डिप्लॉय (इलेक्ट्रॉन, वेब, डॉकर) - देखें **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**।
-- **आर्किटेक्चर और सिस्टम अवलोकन:** फ़ोल्डर संरचना, तकनीकी स्टैक, डिज़ाइन निर्णय - देखें **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**।
+- **विकास:** सेटअप, बिल्ड, परीक्षण और तैनाती (इलेक्ट्रॉन, वेब, डॉकर) - देखें [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)।
+- **वास्तुकला और प्रणाली का अवलोकन:** फ़ोल्डर संरचना, तकनीकी स्टैक, डिज़ाइन निर्णय - देखें [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)।
 
 <br/><br/>
 

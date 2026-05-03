@@ -26,6 +26,12 @@ alwaysApply: true
 - When unsure about stack or entrypoints, check **package.json** and key entry files (e.g. `src/main/main.js`, `src/server/index.js`) rather than guessing.
 - Keep replies **focused**: avoid repeating project overview unless the user asks.
 
+## Documentation (Markdown)
+
+- Do **not** use bold formatting around inline code—avoid putting asterisks outside a backtick span. Use plain `` `code` `` spans, or apply emphasis and code styling separately; never nest both on the same element.
+- Do **not** use bold formatting around links—avoid putting asterisks outside a link. Use plain `` [link text](url) `` spans, or apply emphasis and link styling separately; never nest both on the same element. If needed a bold use it inside the link text.
+
+
 ## CHANGELOG
 
 - For **any notable change** (features, fixes, refactors, config, dependencies), **add an entry** under the **Unreleased** section of **dev/CHANGELOG.md**.

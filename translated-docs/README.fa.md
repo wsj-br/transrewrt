@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:42.351Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:40:03.606Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: fa
 source_file_path: README.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی به سبک‌های مختلف و تبدیل با پرسش‌های سفارشی — با استفاده از ارائه‌دهندگان متعدد هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI و Ollama محلی). این ابزار به صورت برنامه دسکتاپ (الکترون) یا برنامه تحت وب قابل اجرا به صورت خودمیزبانی (Docker) اجرا می‌شود.
 
-- **ترجمه** - بین ده‌ها زبان، با تشخیص خودکار متن اصلی
-- **بازنویسی** - اصلاح دستور زبان، بهبود وضوح، رسمی/غیررسمی، کوتاه‌کردن، گسترش، تخصصی
+- ترجمه** - بین ده‌ها زبان، با تشخیص خودکار منبع
+- **بازنویسی** - اصلاح گرامر، بهبود وضوح، رسمی/غیررسمی، کوتاه‌تر کردن، گسترش دادن، فنی
 - **تبدیل** - دستورات سفارشی هوش مصنوعی؛ ایجاد و مدیریت دستورات، زبان مقصد اختیاری برای هر دستور
-- **تاریخچه** - تاریخچه کامل اجرا با متن ورودی/خروجی، فیلتر کردن و صدور داده
+- **تاریخچه** - تاریخچه کامل اجرا با متن ورودی/خروجی، فیلتر کردن و صادرات
 - **مدل‌ها و هزینه** - انتخاب مدل از هر ارائه‌دهنده پیکربندی‌شده؛ داشبوردهای هزینه و مصرف با سیاهه، خلاصه‌ها بر اساس مدل/عملیات/روز
 - **رابط کاربری** - رابط چندزبانه (بیش از ۳۰ زبان، پشتیبانی از زبان‌های راست‌به‌چپ)، قلم‌ها، ...
 - **حالت وب** - پشتیبانی چندکاربره با نقش‌های مدیریتی
 - **دسکتاپ** - برنامه الکترون برای ویندوز و لینوکس
 - **میزبانی خودکار** - تصویر داکر برای amd64 و arm64 (آماده برای Raspberry Pi)
 
-پس از نصب، برای مرور کامل تمام ویژگی‌ها به **[راهنمای کاربر](USER-GUIDE.fa.md)** مراجعه کنید.
+پس از نصب، [**راهنمای کاربر**](USER-GUIDE.fa.md) را برای مرور کامل تمام ویژگی‌ها مشاهده کنید.
 
 <small>**خواندن به زبان‌های دیگر:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 یا از Docker Compose استفاده کنید:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-پس از اجرای برنامه، **[راهنمای کاربر](USER-GUIDE.fa.md)** را برای آموختن نحوهٔ ترجمه، بازنویسی و تبدیل متن، مدیریت پرسش‌ها و پیکربندی مدل‌ها مشاهده کنید.
+پس از اجرای برنامه، [**راهنمای کاربر**](USER-GUIDE.fa.md) را برای یادگیری نحوه ترجمه، بازنویسی و تبدیل متن، مدیریت دستورها و پیکربندی مدل‌ها مشاهده کنید.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 | `PORT`               | پورت گوشدهی سرور (پیش‌فرض `5000`)                                  |
 | `CONFIG_PATH`        | مسیر فایل پیکربندی (پیش‌فرض `/app/data/config.json`)                |
 | `TZ`                 | منطقه زمانی برای زمان سمت سرور (ثبت رویدادها و غیره) (پیش‌فرض `Europe/London`) |
+| `HISTORY_DISABLED`   | به‌طور اختیاری، تاریخچه اجرا را غیرفعال می‌کند (پیش‌فرض `false` است) |
 | `OPENROUTER_API_KEY` | کلید API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | کلید API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | کلید API Cerebras                                                             |
@@ -303,6 +305,8 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 | `MISTRAL_API_KEY`    | کلید API Mistral                                                              |
 | `OLLAMA_URL`         | آدرس پایه Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | کلید API xAI                                                                  |
+
+**حالت حریم خصوصی:** برای غیرفعال کردن مطلق پیگیری تاریخچه بسته به `config.json` یا ترجیحات کاربر، مقدار `HISTORY_DISABLED` را روی `true` یا `1` (بدون توجه به بزرگی یا کوچکی حروف) تنظیم کنید، هم برای **فرآیند سرور وب/داکر** و/یا **فرآیند اصلی دسکتاپ الکترون** (مثلاً محیط سیستم یا برنامه‌ی راه‌انداز — نه فقط رندرر). این کار ذخیره‌سازی تاریخچه ورودی/خروجی را غیرفعال می‌کند، **تنظیمات → تنظیمات عمومی → تاریخچه** را قفل می‌کند و از دسترسی به APIهای مرتبط با تاریخچه جلوگیری می‌کند.
 
 فقط ارائه‌دهندگانی را پیکربندی کنید که از آنها استفاده می‌کنید. شناسه‌های مدل دارای فضای نام هستند (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, و غیره).
 
@@ -334,8 +338,8 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 <a id="development-and-architecture"></a>
 ## توسعه و معماری
 
-- **توسعه:** راه‌اندازی، ساخت، تست و استقرار (الکترون، وب، داکر) - به **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** مراجعه کنید.
-- **معماری و مرور سیستم:** ساختار پوشه‌ها، پشته فناوری، تصمیمات طراحی - به **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** مراجعه کنید.
+- **توسعه:** راه‌اندازی، ساخت، تست و استقرار (الکترون، وب، داکر) - به [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) مراجعه کنید.
+- **مرور کلی معماری و سیستم:** ساختار پوشه‌ها، پشته فناوری، تصمیمات طراحی - به [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) مراجعه کنید.
 
 <br/><br/>
 

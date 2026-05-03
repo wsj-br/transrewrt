@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:24:36.702Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:36:58.719Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: bn
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 এআই-চালিত টেক্সট টুল: বিভিন্ন ভাষায় অনুবাদ, বিভিন্ন ধরনে পুনর্লিখন এবং কাস্টম প্রম্পট ব্যবহার করে রূপান্তর করুন - একাধিক এআই প্রদানকারী (ওপেনরাউটার, ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই এবং স্থানীয় ওলামা) ব্যবহার করে। ডেস্কটপ অ্যাপ (ইলেকট্রন) বা স্ব-হোস্টেড ওয়েব অ্যাপ (ডকার) হিসাবে চলে।
 
-- **অনুবাদ** - ডজন খানেক ভাষার মধ্যে, স্বয়ংক্রিয় উৎস সনাক্তকরণ সহ
-- **পুনরায় লেখা** - ব্যাকরণ ঠিক করুন, স্পষ্টতা উন্নত করুন, আনুষ্ঠানিক/অনানুষ্ঠানিক, সংক্ষিপ্ত করুন, প্রসারিত করুন, প্রযুক্তিগত
-- **রূপান্তর** - কাস্টম এআই প্রম্পট; প্রতিটি প্রম্পটের জন্য প্রম্পট তৈরি ও পরিচালনা করুন, ঐচ্ছিক লক্ষ্য ভাষা
-- **ইতিহাস** - ইনপুট/আউটপুট টেক্সট সহ সম্পূর্ণ ক্রিয়ান্বয়ন ইতিহাস, ফিল্টারিং এবং রপ্তানি
+- অনুবাদ করুন** - ডজন ডজন ভাষার মধ্যে, স্বয়ংক্রিয় উৎস শনাক্তকরণসহ
+- **পুনঃলেখন** - ব্যাকরণ ঠিক করুন, স্পষ্টতা উন্নত করুন, আনুষ্ঠানিক/অনানুষ্ঠানিক, সংক্ষেপ করুন, প্রসারিত করুন, প্রযুক্তিগত
+- **রূপান্তর** - কাস্টম AI প্রম্পট; প্রম্পট তৈরি করুন এবং পরিচালনা করুন, প্রতিটি প্রম্পটের জন্য ঐচ্ছিক লক্ষ্য ভাষা
+- **ইতিহাস** - ইনপুট/আউটপুট টেক্সট, ফিল্টারিং, এবং রপ্তানি সহ সম্পূর্ণ এক্সিকিউশন ইতিহাস
 - **মডেল এবং খরচ** - যেকোনো কনফিগার করা প্রদানকারী থেকে মডেল নির্বাচন করুন; লগ, মডেল/অপারেশন/দিন অনুযায়ী সারাংশ সহ খরচ এবং ব্যবহারের ড্যাশবোর্ড
 - **UI** - বহুভাষী ইন্টারফেস (30+ ভাষা, RTL সমর্থন), ফন্ট, ...
 - **ওয়েব মোড** - প্রশাসক ভূমিকা সহ বহু-ব্যবহারকারী সমর্থন
 - **ডেস্কটপ** - উইন্ডোজ এবং লিনাক্সের জন্য ইলেকট্রন অ্যাপ
 - **স্ব-হোস্টেড** - amd64 এবং arm64 (রাস্পবেরি পাই-রেডি) এর জন্য ডকার ইমেজ
 
-ইনস্টল করার পর, সমস্ত বৈশিষ্ট্যের সম্পূর্ণ গাইড দেখতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
+ইনস্টল করার পরে, সমস্ত বৈশিষ্ট্যের সম্পূর্ণ গাইড দেখুন [**ব্যবহারকারী গাইড**](USER-GUIDE.bn.md) এ।
 
 <small>**অন্যান্য ভাষায় পড়ুন:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 অথবা ডকার কম্পোজ ব্যবহার করুন:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-অ্যাপটি চালু হওয়ার পর, পাঠ্য অনুবাদ, পুনর্লিখন এবং রূপান্তর করা, প্রম্পট পরিচালনা করা এবং মডেল কনফিগার করা শিখতে **[ব্যবহারকারী গাইড](USER-GUIDE.bn.md)** দেখুন।
+অ্যাপটি চালু হওয়ার পরে, কীভাবে টেক্সট অনুবাদ, পুনঃলেখন ও রূপান্তর করতে হয়, প্রম্পট পরিচালনা করতে হয় এবং মডেল কনফিগার করতে হয় তা জানতে [**ব্যবহারকারী গাইড**](USER-GUIDE.bn.md) দেখুন।
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 | `PORT` | সার্ভার শোনার পোর্ট (ডিফল্ট `5000` এ) |
 | `CONFIG_PATH`        | কনফিগ ফাইলের পাথ (ডিফল্ট `/app/data/config.json`)                |
 | `TZ` | সার্ভার-সাইড সময়ের জন্য সময় অঞ্চল (লগিং ইত্যাদি) (ডিফল্ট `Europe/London` এ) |
+| `HISTORY_DISABLED`   | ইতিহাস চালানো বাধ্যতামূলকভাবে বন্ধ করুন (ঐচ্ছিক, ডিফল্ট `false` এ)                  |
 | `OPENROUTER_API_KEY` | ওপেনরাউটার API কী |
 | `OPENAI_API_KEY` | ওপেনএআই API কী |
 | `CEREBRAS_API_KEY` | সেরেব্রাস API কী |
@@ -303,6 +305,8 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 | `MISTRAL_API_KEY` | মিস্ট্রাল API কী |
 | `OLLAMA_URL` | ওলামা বেস URL (যেমন `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API কী                                                                  |
+
+**গোপনীয়তা মোড:** `config.json` বা ব্যবহারকারী অনুযায়ী পছন্দের উপর নির্ভর না করে ইতিহাস ট্র্যাক বাধ্যতামূলকভাবে বন্ধ করতে, **ওয়েব/ডকার সার্ভার প্রক্রিয়া** এবং/অথবা **ইলেকট্রন ডেস্কটপ মূল প্রক্রিয়া**-এর জন্য `HISTORY_DISABLED` কে `true` বা `1` (কেস-অসংবেদী) সেট করুন (যেমন সিস্টেম বা লঞ্চার পরিবেশ — শুধুমাত্র রেন্ডারার নয়)। এটি ইনপুট/আউটপুট ইতিহাস সংরক্ষণ বন্ধ করে, **সেটিংস → সাধারণ সেটিংস → ইতিহাস** লক করে এবং ইতিহাস-সংক্রান্ত API গুলি ব্লক করে।
 
 আপনি যেসব প্রদানকারী ব্যবহার করেন তাদের জন্য শুধুমাত্র কনফিগার করুন। মডেল আইডি নেমস্পেস করা হয় (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ইত্যাদি)।
 
@@ -334,8 +338,8 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 <a id="development-and-architecture"></a>
 ## ডেভেলপমেন্ট এবং আর্কিটেকচার
 
-- **ডেভেলপমেন্ট:** সেটআপ, বিল্ড, পরীক্ষা এবং ডেপ্লয় (ইলেকট্রন, ওয়েব, ডকার) - **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)** দেখুন।
-- **আর্কিটেকচার এবং সিস্টেম ওভারভিউ:** ফোল্ডার কাঠামো, টেক স্ট্যাক, ডিজাইন সিদ্ধান্ত - **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)** দেখুন।
+- **ডেভেলপমেন্ট:** সেটআপ, বিল্ড, পরীক্ষা করুন এবং ডেপ্লয় করুন (Electron, Web, Docker) - দেখুন [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)।
+- **আর্কিটেকচার এবং সিস্টেম ওভারভিউ:** ফোল্ডার স্ট্রাকচার, টেক স্ট্যাক, ডিজাইন সিদ্ধান্ত - দেখুন [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)।
 
 <br/><br/>
 

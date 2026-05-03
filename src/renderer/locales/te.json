@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "ఫలితాన్ని క్లిప్‌బోర్డుకు స్వయంచాలకంగా కాపీ చేయి",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "టైప్ చేసేటప్పుడు రియల్-టైమ్ అనువాదం (⚠️ ఇది ఉపయోగం ఖర్చులను పెంచవచ్చు)",
   "Timeout (ms):": "సమయం ముగిసింది (ms):",
+  "disabled by the administrator": "నిర్వాహకుడు నిష్క్రియాత్మకం చేశారు",
   "Keep execution history": "చరిత్ర నిర్వహణను కొనసాగించు",
   "Delete history data": "చరిత్ర డేటాను తొలగించు",
   "Configuration Backup": "కాన్ఫిగరేషన్ బ్యాకప్",

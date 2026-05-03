@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Tự động sao chép kết quả vào bộ nhớ tạm",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Dịch thời gian thực khi đang gõ (⚠️ Điều này có thể làm tăng chi phí sử dụng)",
   "Timeout (ms):": "Thời gian chờ (ms):",
+  "disabled by the administrator": "bị tắt bởi quản trị viên",
   "Keep execution history": "Giữ lịch sử thực thi",
   "Delete history data": "Xóa dữ liệu lịch sử",
   "Configuration Backup": "Sao lưu cấu hình",

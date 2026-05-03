@@ -6,7 +6,7 @@ import TransformTestPanel from "../TransformTestPanel";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
 import {
-  workspaceActionBarClassName,
+  workspaceActionBarCenteredCtaClassName,
   workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
   workspacePaneStatsRowClassName,
@@ -224,17 +224,18 @@ export function getTransformPanels({ common, input, output, options }) {
   );
 
   const actionBar = (
-    <div className={workspaceActionBarClassName}>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
-        onClick={input.clear}
-      >
-        <Trash2 className="h-3.5 w-3.5" />
-        {t("Clear")}
-      </Button>
-      <span className="flex-1" />
+    <div className={workspaceActionBarCenteredCtaClassName}>
+      <div className="flex min-w-0 justify-self-start">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
+          onClick={input.clear}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+          {t("Clear")}
+        </Button>
+      </div>
       <Button
         onClick={handleRunAction}
         disabled={!selectedTransformPrompt}
@@ -246,6 +247,7 @@ export function getTransformPanels({ common, input, output, options }) {
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
         )}
       </Button>
+      <div className="min-w-0" aria-hidden />
     </div>
   );
 

@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Copiar automàticament el resultat al portaobjectes",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Traducció en temps real mentre s'escriu (⚠️ Això pot augmentar els costos d'ús)",
   "Timeout (ms):": "Temps d'espera (ms):",
+  "disabled by the administrator": "desactivat per l'administrador",
   "Keep execution history": "Mantenir l'historial d'execució",
   "Delete history data": "Eliminar dades d'historial",
   "Configuration Backup": "Còpia de seguretat de la configuració",

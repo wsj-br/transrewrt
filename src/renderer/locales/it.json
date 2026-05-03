@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Copia automaticamente il risultato negli appunti",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Traduzione in tempo reale durante la digitazione (⚠️ Questo potrebbe aumentare i costi di utilizzo)",
   "Timeout (ms):": "Timeout (ms):",
+  "disabled by the administrator": "disabilitato dall'amministratore",
   "Keep execution history": "Mantieni la cronologia di esecuzione",
   "Delete history data": "Elimina dati cronologia",
   "Configuration Backup": "Backup configurazione",

@@ -25,6 +25,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+
 ---
 
 ## Product
@@ -79,10 +80,10 @@ flowchart TB
 
 | Mode | Config / preferences | LLM calls | Settings UI |
 |------|----------------------|-----------|-------------|
-| **Electron** | Single local **`config.json`** (path from main: user data / project / portable); provider secrets stay in main; renderer gets **sanitized** config over IPC | **IPC** `llm:stream` / `llm:abort` / `llm:models` - main process runs **multi-llm-ts** and reaches providers | Separate window or modal |
-| **Web/Docker** | **Global** `config.json`: **server-only** keys (provider secrets, `web_session_timeout`). **Per user** (signed in): workspace + UI prefs in SQLite **`user_preferences`** merged on `GET/POST /api/config` | **SSE** `POST /api/llm/stream` (+ `GET /api/llm/models`, etc.); browser never receives provider keys | Inline modal |
+| **Electron** | Single local `config.json` (path from main: user data / project / portable); provider secrets stay in main; renderer gets **sanitized** config over IPC | **IPC** `llm:stream` / `llm:abort` / `llm:models` - main process runs **multi-llm-ts** and reaches providers | Separate window or modal |
+| **Web/Docker** | **Global** `config.json`: **server-only** keys (provider secrets, `web_session_timeout`). **Per user** (signed in): workspace + UI prefs in SQLite `user_preferences` merged on `GET/POST /api/config` | **SSE** `POST /api/llm/stream` (+ `GET /api/llm/models`, etc.); browser never receives provider keys | Inline modal |
 
-In web mode, provider API keys are stored only in server config or environment; the client talks to **`/api/llm/*`** without embedding secrets.
+In web mode, provider API keys are stored only in server config or environment; the client talks to `/api/llm/*` without embedding secrets.
 
 ---
 
@@ -92,7 +93,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 |-------|------------|
 | **Frontend** | React 19, Tailwind v4 + shadcn/Radix primitives, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel, TypeScript. Build target `web` for both Electron and browser. **AppRoot** applies `dir` for RTL via `useDirection` (see `i18n.js`). |
 | **Desktop** | Electron 41 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
-| **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Static `dist/`, session auth (cookie + SQLite `sessions`, Argon2 passwords), **`/api/config`**, **`/api/llm/*`** (streaming), **`/api/calls/*`**, users and custom prompts routes. SQLite (**better-sqlite3**): `users`, `user_preferences`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, etc. (`transrewrt.db` under the data directory). |
+| **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Static `dist/`, session auth (cookie + SQLite `sessions`, Argon2 passwords), `/api/config`, `/api/llm/*` (streaming), `/api/calls/*`, users and custom prompts routes. SQLite (**better-sqlite3**): `users`, `user_preferences`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, etc. (`transrewrt.db` under the data directory). |
 | **LLM integration** | Shared [src/shared/llm/index.js](../src/shared/llm/index.js) wraps **multi-llm-ts** (`igniteModel`, `loadModels`, streaming helpers). See [Multi-llm-ts and provider support](#multi-llm-ts-and-provider-support). |
 
 ---
@@ -119,22 +120,22 @@ The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/
 
 ### Electron (desktop)
 
-- **At-rest API keys**: Provider secret fields listed in **`ENCRYPTED_CONFIG_KEYS`** ([shared/llm/index.js](../src/shared/llm/index.js) - all configured engines except **Ollama**) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with **`enc:`**. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in **`transrewrt.key`** (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
-- **Renderer never sees raw secrets**: **`config:get`** ([configIpc.js](../src/main/ipc/configIpc.js)) **strips** those fields and exposes only **`*_configured`** flags plus **`llm_configured`**. The renderer must not receive secrets via **`config:setAll`** either - encrypted keys are **ignored** in the payload (`ENCRYPTED_CONFIG_KEYS` are skipped when merging).
-- **Building LLM requests**: Main exposes **`config:getSecretsForRequest`**, which returns **`mergeKeys(cache)`** (plain secrets for the main process only) so streaming and tests run in **main**, not in the renderer.
-- **Legacy helpers** in `encryption.js` for **`key_seed`** remain for decrypting old values if present; the **Transrewrt proxy** feature that used them has been **removed** from the product.
+- **At-rest API keys**: Provider secret fields listed in `ENCRYPTED_CONFIG_KEYS` ([shared/llm/index.js](../src/shared/llm/index.js) - all configured engines except **Ollama**) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with `enc:`. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in `transrewrt.key` (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
+- **Renderer never sees raw secrets**: `config:get` ([configIpc.js](../src/main/ipc/configIpc.js)) **strips** those fields and exposes only `*_configured` flags plus `llm_configured`. The renderer must not receive secrets via `config:setAll` either - encrypted keys are **ignored** in the payload (`ENCRYPTED_CONFIG_KEYS` are skipped when merging).
+- **Building LLM requests**: Main exposes `config:getSecretsForRequest`, which returns `mergeKeys(cache)` (plain secrets for the main process only) so streaming and tests run in **main**, not in the renderer.
+- **Legacy helpers** in `encryption.js` for `key_seed` remain for decrypting old values if present; the **Transrewrt proxy** feature that used them has been **removed** from the product.
 
 ### Web / Docker
 
 - **Passwords**: User passwords are hashed with **Argon2id** (see [reset-web-password.js](../scripts/reset-web-password.js) and server auth).
-- **Sessions**: Cookie **`transrewrt_session`** with **`HttpOnly`** and **`SameSite=Strict`** ([auth.js](../src/server/routes/auth.js)); add **`Secure`** when serving over HTTPS. SQLite **`sessions`** table; periodic cleanup of stalled/expired rows.
-- **Secrets**: Provider keys live in **server** `config.json` and/or **environment variables**; **`GET /api/config`** merges **server-global** keys only for **admins** ([webConfigKeys.js](../src/server/utils/webConfigKeys.js), [config route](../src/server/routes/config.js)). Non-admins cannot POST server-global keys.
+- **Sessions**: Cookie `transrewrt_session` with `HttpOnly` and `SameSite=Strict` ([auth.js](../src/server/routes/auth.js)); add `Secure` when serving over HTTPS. SQLite `sessions` table; periodic cleanup of stalled/expired rows.
+- **Secrets**: Provider keys live in **server** `config.json` and/or **environment variables**; `GET /api/config` merges **server-global** keys only for **admins** ([webConfigKeys.js](../src/server/utils/webConfigKeys.js), [config route](../src/server/routes/config.js)). Non-admins cannot POST server-global keys.
 - **Transport**: Use **HTTPS** and a secure cookie configuration in production so tokens and SSE are not exposed on the wire.
 
 ### Shared practices
 
 - **Preload**: Only explicit, narrow IPC surfaces ([preload.js](../src/main/preload.js)); no `nodeIntegration` in renderer for secrets.
-- **SQLite**: **`PRAGMA foreign_keys = ON`** where schema relies on referential integrity (e.g. `action_content` → `api_calls`); see CHANGELOG / `appSchema.js`.
+- **SQLite**: `PRAGMA foreign_keys = ON` where schema relies on referential integrity (e.g. `action_content` → `api_calls`); see CHANGELOG / `appSchema.js`.
 
 ---
 
@@ -142,7 +143,7 @@ The Node-side LLM stack uses the **[multi-llm-ts](https://www.npmjs.com/package/
 
 All application source lives under `src/`: main (Electron), renderer (React), server (Express for web/Docker), and shared (DB schema + LLM helpers).
 
-```
+```text/plain
 ├── src/
 │   ├── main/              # Electron only
 │   │   ├── main.js        # Main process, IPC, config path, appDb
@@ -182,13 +183,13 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 ## Design Decisions
 
-- **Runtime detection**: [configManager](../src/renderer/utils/config/configManager.js) uses preload IPC in Electron and [webApiClient](../src/renderer/utils/api/webApiClient.js) in the browser. [apiService](../src/renderer/services/apiService.js) uses **`llm:stream` IPC** on desktop and **`fetch` + SSE** to **`/api/llm/stream`** on web (not a generic `/api/proxy`).
+- **Runtime detection**: [configManager](../src/renderer/utils/config/configManager.js) uses preload IPC in Electron and [webApiClient](../src/renderer/utils/api/webApiClient.js) in the browser. [apiService](../src/renderer/services/apiService.js) uses `llm:stream` IPC on desktop and `fetch` + SSE to `/api/llm/stream` on web (not a generic `/api/proxy`).
 - **Multi-provider LLM**: **multi-llm-ts** behind [shared/llm/index.js](../src/shared/llm/index.js); details in [Multi-llm-ts and provider support](#multi-llm-ts-and-provider-support). **Security** summary in [Security and encryption](#security-and-encryption).
 - **Single bundle**: One Webpack entry ([src/renderer/index.js](../src/renderer/index.js)), one production bundle for Electron and web.
-- **Electron security**: Sanitized **`config:get`**, **`config:setAll`** does not merge secrets from the renderer, **`getSecretsForRequest`** only for main-side LLM; see [Security and encryption](#security-and-encryption).
-- **Web multi-user**: After migration, **workspace settings** (models, languages, `total_cost`, transform prompts linkage, session fields like `last_used_model`) live in **`user_preferences`** per `user_id`. **Global** `config.json` keeps **server-global** keys only (`webConfigKeys.js`). **Custom prompts** are scoped with **`user_id`** where applicable.
-- **Authorization**: **Settings → Cost tracking** and **provider keys** in **`/api/config`** are **admin-only** on web. **`GET /api/calls/*`** applies **username** filters for non-admins server-side.
-- **Execution history**: Optional `keep_execution_history`. Text in **`action_content`** linked to **`api_calls`**. History UI via Electron IPC or **`GET /api/calls/history`**. **Settings → General** vs cost/history deletion semantics: see USER-GUIDE.
+- **Electron security**: Sanitized `config:get`, `config:setAll` does not merge secrets from the renderer, `getSecretsForRequest` only for main-side LLM; see [Security and encryption](#security-and-encryption).
+- **Web multi-user**: After migration, **workspace settings** (models, languages, `total_cost`, transform prompts linkage, session fields like `last_used_model`) live in `user_preferences` per `user_id`. **Global** `config.json` keeps **server-global** keys only (`webConfigKeys.js`). **Custom prompts** are scoped with `user_id` where applicable.
+- **Authorization**: **Settings → Cost tracking** and **provider keys** in `/api/config` are **admin-only** on web. `GET /api/calls/*` applies **username** filters for non-admins server-side.
+- **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see USER-GUIDE. Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
 
 ---
 
@@ -196,21 +197,21 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 ### Electron (desktop)
 
-- **Storage**: One merged **`config.json`**; provider secrets are **encrypted at rest** when written ([encryption.js](../src/main/encryption.js)). Defaults from [config_default.json](../src/config-defaults/config_default.json).
+- **Storage**: One merged `config.json`; provider secrets are **encrypted at rest** when written ([encryption.js](../src/main/encryption.js)). Defaults from [config_default.json](../src/config-defaults/config_default.json).
 - **State keys** (e.g. `last_used_model`, `source_language`) live in the same file as other settings from the app’s perspective; the main process may split persistence as implemented in IPC.
 
 ### Web / Docker
 
-- **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), **`web_session_timeout`**, etc. **Not** used for per-user workspace after migration.
-- **SQLite** (`transrewrt.db` next to the config file): **`user_preferences`** JSON per user (merged into **`GET /api/config`** and updated via **`POST /api/config`** for non-global keys), **`users`**, **`sessions`**, **`api_calls`**, **`action_content`**, **`custom_prompts`**, etc.
-- **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in **`user_preferences`**.
-- **UI language**: `ui_locale` is part of merged settings; [i18n.js](../src/renderer/i18n.js) and `locales/`. Login may use **`localStorage`** for locale before session exists.
+- **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), `web_session_timeout`, etc. **Not** used for per-user workspace after migration.
+- **SQLite** (`transrewrt.db` next to the config file): `user_preferences` JSON per user (merged into `GET /api/config` and updated via `POST /api/config` for non-global keys), `users`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, etc.
+- **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in `user_preferences`.
+- **UI language**: `ui_locale` is part of merged settings; [i18n.js](../src/renderer/i18n.js) and `locales/`. Login may use `localStorage` for locale before session exists.
 
 ---
 
 ## Settings UI
 
-Implemented in [SettingsPanel.js](../src/renderer/components/SettingsPanel.js) as horizontal tabs: **General** (behaviour, appearance, execution history), **Models**, **Languages**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses **`canAccessApiTab`**, **`canAccessCostTab`**, **`canAccessUsersTab`**. The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.js)) is outside the panel but persists **`ui_locale`**.
+Implemented in [SettingsPanel.js](../src/renderer/components/SettingsPanel.js) as horizontal tabs: **General** (behaviour, appearance, execution history), **Models**, **Languages**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`. The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.js)) is outside the panel but persists `ui_locale`.
 
 ---
 
@@ -223,7 +224,7 @@ Native Node addons:
 
 **ABI alignment**:
 
-- **Electron**: **`pnpm install`** runs **`electron-rebuild`** (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 41 / Node 24).
-- **Standalone server** (`pnpm dev:web`, `pnpm serve`): Use **Node 24**; [scripts/node-rebuild.js](../scripts/node-rebuild.js) rebuilds for system Node when starting web dev.
+- **Electron**: `pnpm install` runs `electron-rebuild` (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 41 / Node 24).
+- **Standalone server** (`pnpm dev:web`, `pnpm serve`): Use **Node 24; [scripts/node-rebuild.js](../scripts/node-rebuild.js) rebuilds for system Node when starting web dev.
 
 [.nvmrc](../.nvmrc) and [package.json](../package.json) `engines` require Node 24 to match Electron tooling.

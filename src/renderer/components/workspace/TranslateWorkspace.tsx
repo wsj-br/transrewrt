@@ -1,7 +1,7 @@
 import TextPanel from "../TextPanel";
 import LanguageSelector from "../LanguageSelector";
 import {
-  workspaceActionBarClassName,
+  workspaceActionBarCenteredCtaClassName,
   workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
   workspacePaneStatsRowClassName,
@@ -152,17 +152,18 @@ export function getTranslatePanels({ common, input, output, options }) {
   );
 
   const actionBar = (
-    <div className={workspaceActionBarClassName}>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
-        onClick={input.clear}
-      >
-        <Trash2 className="h-3.5 w-3.5" />
-        {t("Clear")}
-      </Button>
-      <span className="flex-1" />
+    <div className={workspaceActionBarCenteredCtaClassName}>
+      <div className="flex min-w-0 justify-self-start">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
+          onClick={input.clear}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+          {t("Clear")}
+        </Button>
+      </div>
       <Button
         onClick={handleRunAction}
         className="h-10 rounded-full border-0 bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-[0_0_22px_rgba(0,209,160,0.35)] transition-shadow duration-200 hover:from-emerald-600 hover:to-teal-700 hover:shadow-[0_0_32px_rgba(0,209,160,0.5)] gap-2"
@@ -175,6 +176,7 @@ export function getTranslatePanels({ common, input, output, options }) {
           <span className="text-xs font-normal opacity-80">{shortcutLabel}</span>
         )}
       </Button>
+      <div className="min-w-0" aria-hidden />
     </div>
   );
 

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:20.740Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:45:54.442Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: th
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 เครื่องมือข้อความที่ขับเคลื่อนด้วยปัญญาประดิษฐ์: แปลระหว่างภาษา เขียนใหม่ในรูปแบบต่างๆ และแปลงด้วยคำสั่งที่กำหนดเอง — โดยใช้ผู้ให้บริการปัญญาประดิษฐ์หลายราย (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI และ Ollama ท้องถิ่น) ใช้งานได้ทั้งในรูปแบบแอปเดสก์ท็อป (Electron) หรือแอปเว็บที่ติดตั้งเอง (Docker)
 
-- **แปลภาษา** - ระหว่างภาษาต่างๆ ได้หลายสิบภาษา พร้อมการตรวจจับภาษาต้นทางโดยอัตโนมัติ
-- **เขียนใหม่** - แก้ไขไวยากรณ์ ปรับให้ชัดเจนขึ้น ปรับระดับความเป็นทางการ/ไม่เป็นทางการ ย่อหรือขยายข้อความ หรือแปลงเป็นเชิงเทคนิค
-- **แปลงรูปแบบ** - พรอมต์ AI แบบกำหนดเอง; สร้างและจัดการพรอมต์ พร้อมเลือกภาษาเป้าหมายต่อพรอมต์ได้
-- **ประวัติการใช้งาน** - ประวัติการดำเนินการทั้งหมด พร้อมข้อความนำเข้า/ส่งออก การกรอง และการส่งออกข้อมูล
+- แปลระหว่างสิบกว่าภาษา โดยตรวจจับภาษาต้นทางอัตโนมัติ
+- **เขียนใหม่** - แก้ไขไวยากรณ์, ปรับให้ชัดเจนขึ้น, ทางการ/ไม่เป็นทางการ, ย่อให้สั้นลง, ขยายให้ยาวขึ้น, เทคนิค
+- **แปลง** - พรอมต์ AI แบบกำหนดเอง; สร้างและจัดการพรอมต์, ระบุภาษาเป้าหมายต่อพรอมต์ได้
+- **ประวัติการใช้งาน** - ประวัติการดำเนินการทั้งหมด พร้อมข้อมูลนำเข้า/ข้อความส่งออก, การกรอง, และการส่งออก
 - **โมเดลและค่าใช้จ่าย** - เลือกโมเดลจากผู้ให้บริการที่ตั้งค่าไว้ได้ทุกราย; แดชบอร์ดแสดงค่าใช้จ่ายและการใช้งาน พร้อมบันทึกย่อ สรุปตามโมเดล/การดำเนินการ/วัน
 - **UI** - อินเทอร์เฟซหลายภาษา (มากกว่า 30 ภาษา รองรับ RTL), ฟอนต์, ...
 - **โหมดเว็บ** - รองรับผู้ใช้หลายคน พร้อมบทบาทผู้ดูแลระบบ
 - **เดสก์ท็อป** - แอปพลิเคชัน Electron สำหรับ Windows และ Linux
 - **โฮสต์ด้วยตนเอง** - รูปภาพ Docker สำหรับ amd64 และ arm64 (พร้อมใช้งานกับ Raspberry Pi)
 
-หลังติดตั้งแล้ว ดู **[คู่มือผู้ใช้](USER-GUIDE.th.md)** เพื่อดูคำแนะนำโดยละเอียดเกี่ยวกับคุณสมบัติทั้งหมด
+เมื่อติดตั้งแล้ว ดู [**คู่มือผู้ใช้**](USER-GUIDE.th.md) เพื่อดูคำแนะนำการใช้งานคุณสมบัติทั้งหมดอย่างละเอียด
 
 <small>**อ่านเป็นภาษาอื่น:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 หรือใช้ Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-เมื่อแอปทำงานแล้ว ดู **[คู่มือผู้ใช้](USER-GUIDE.th.md)** เพื่อเรียนรู้วิธีการแปล เขียนใหม่ และแปลงข้อความ จัดการพรอมต์ และตั้งค่าโมเดล
+เมื่อแอปพลิเคชันเริ่มทำงานแล้ว ดู [**คู่มือผู้ใช้**](USER-GUIDE.th.md) เพื่อเรียนรู้วิธีการแปล เขียนใหม่ และแปลงข้อความ จัดการพรอมต์ และกำหนดค่าโมเดล
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 | `PORT`               | พอร์ตที่เซิร์ฟเวอร์รับฟัง (ค่าเริ่มต้นคือ `5000`)                                  |
 | `CONFIG_PATH`        | ตำแหน่งไฟล์การตั้งค่า (ค่าเริ่มต้นคือ `/app/data/config.json`)                |
 | `TZ`                 | เขตเวลาสำหรับเวลาฝั่งเซิร์ฟเวอร์ (การบันทึกข้อมูล ฯลฯ) (ค่าเริ่มต้นคือ `Europe/London`) |
+| `HISTORY_DISABLED`   | บังคับปิดการบันทึกประวัติการใช้งาน (ตัวเลือก ค่าเริ่มต้นคือ `false`)                  |
 | `OPENROUTER_API_KEY` | คีย์ API ของ OpenRouter                                                           |
 | `OPENAI_API_KEY`     | คีย์ API ของ OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | คีย์ API ของ Cerebras                                                             |
@@ -303,6 +305,8 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 | `MISTRAL_API_KEY`    | คีย์ API ของ Mistral                                                              |
 | `OLLAMA_URL`         | URL พื้นฐานของ Ollama (เช่น `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | คีย์ API ของ xAI                                                                  |
+
+**โหมดความเป็นส่วนตัว:** เพื่อบังคับไม่ติดตามประวัติการใช้งาน ไม่ว่าจะตั้งค่า `config.json` หรือการตั้งค่าตามผู้ใช้ ให้ตั้งค่า `HISTORY_DISABLED` เป็น `true` หรือ `1` (ไม่แยกตัวพิมพ์ใหญ่-เล็ก) สำหรับ **กระบวนการเว็บ/เซิร์ฟเวอร์ Docker** และ/หรือ **กระบวนการหลักของแอปเดสก์ท็อป Electron** (เช่น ตั้งในระบบหรือตัวเริ่มโปรแกรม — ไม่ใช่เฉพาะตัวเรนเดอร์) สิ่งนี้จะปิดการจัดเก็บประวัติข้อมูลนำเข้า/ส่งออก ล็อก **ตั้งค่า → การตั้งค่าทั่วไป → ประวัติการใช้งาน** และบล็อก API ที่เกี่ยวข้องกับประวัติการใช้งาน
 
 กรุณาตั้งค่าเฉพาะผู้ให้บริการที่คุณใช้งานเท่านั้น รหัสโมเดลจะถูกจัดกลุ่มตาม namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ฯลฯ)
 
@@ -334,8 +338,8 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 <a id="development-and-architecture"></a>
 ## การพัฒนาและสถาปัตยกรรม
 
-- **การพัฒนา:** การตั้งค่า การสร้าง การทดสอบ และการติดตั้ง (Electron, Web, Docker) - ดู **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**
-- **สถาปัตยกรรมและภาพรวมระบบ:** โครงสร้างโฟลเดอร์ เทคโนโลยีที่ใช้ การตัดสินใจด้านการออกแบบ - ดู **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**
+- **การพัฒนา:** การตั้งค่า การสร้างรุ่น การทดสอบ และการติดตั้ง (Electron, Web, Docker) - ดูที่ [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)
+- **ภาพรวมสถาปัตยกรรมและระบบ:** โครงสร้างโฟลเดอร์ เทคโนโลยีที่ใช้ การตัดสินใจด้านการออกแบบ - ดูที่ [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)
 
 <br/><br/>
 

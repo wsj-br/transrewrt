@@ -16,6 +16,7 @@ const {
   replaceWhere,
   prepareGetAllCallsSql,
 } = require("../shared/db/appSchema.js");
+const { isHistoryDisabledByEnv } = require("../shared/historyEnv.js");
 
 let db = null;
 let userDataPath = null;
@@ -104,7 +105,11 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
           b.output_words ?? null,
           b.output_paragraphs ?? null,
         );
-        if (Object.prototype.hasOwnProperty.call(b, "input_text") && Object.prototype.hasOwnProperty.call(b, "output_text")) {
+        if (
+          !isHistoryDisabledByEnv() &&
+          Object.prototype.hasOwnProperty.call(b, "input_text") &&
+          Object.prototype.hasOwnProperty.call(b, "output_text")
+        ) {
           insertContent.run(
             info.lastInsertRowid,
             b.input_text != null ? String(b.input_text) : "",
@@ -304,6 +309,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
 
   ipcMain.handle("appDb:getExecutionHistory", (_, from, to, username, limit) => {
     try {
+      if (isHistoryDisabledByEnv()) return { rows: [] };
       const d = getDb();
       if (!d) return { rows: [] };
       const { whereClause, params } = buildExecutionHistoryWhere(from, to, username, "a");
@@ -323,6 +329,7 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
 
   ipcMain.handle("appDb:deleteExecutionHistory", (_, from, to) => {
     try {
+      if (isHistoryDisabledByEnv()) return;
       const d = getDb();
       if (!d) return;
       if (!from && !to) {

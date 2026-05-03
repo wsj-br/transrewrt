@@ -68,6 +68,8 @@ const SettingsGeneralTab = ({
     { value: 'dark', label: t('Dark'), icon: Moon },
   ], [t]);
 
+  const historyAdminDisabled = localSettings.history_disabled_by_administrator === true;
+
   const [showDisableHistoryConfirm, setShowDisableHistoryConfirm] = useState(false);
   const selectedTheme = normalizeTheme(localSettings.theme);
   const [historyDeleteRange, setHistoryDeleteRange] = useState('gt_3m');
@@ -227,9 +229,9 @@ const SettingsGeneralTab = ({
 
   return (
     <div className={settingsTabContent}>
-      <div className="mx-auto flex w-full min-w-0 max-w-6xl flex-col gap-5">
+      <div className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-1 gap-5 lg:grid-cols-2 lg:items-stretch">
           {/* Appearance Section */}
-          <div className={cn(settingsSection, "!mb-0")}>
+          <div className={cn(settingsSection, "!mb-0", "h-full")}>
             <h3 className={sectionTitleCls}>
               <Palette size={18} />
               {t('Appearance')}
@@ -371,7 +373,7 @@ const SettingsGeneralTab = ({
           </div>
 
           {/* Behaviour Section */}
-          <div className={cn(settingsSection, "!mb-0")}>
+          <div className={cn(settingsSection, "!mb-0", "h-full")}>
             <h3 className={sectionTitleCls}>
               <Settings size={18} />
               {t('Behaviour')}
@@ -461,22 +463,43 @@ const SettingsGeneralTab = ({
           </div>
 
         {/* History */}
-        <div className={cn(settingsSection, "!mb-0")}>
-            <h3 className={sectionTitleCls}>
-              <History size={18} />
-              {t('History')}
+        <div
+          className={cn(
+            settingsSection,
+            "!mb-0",
+            "h-full",
+            !canConfigBackup && "lg:col-span-2",
+          )}
+        >
+            <h3 className="mb-5 mt-0 flex w-full min-h-0 flex-wrap items-center gap-x-2 gap-y-1 text-base font-semibold">
+              <span className="flex min-w-0 flex-1 items-center gap-2">
+                <History size={18} />
+                {t('History')}
+              </span>
+              {historyAdminDisabled ? (
+                <span className="ms-auto shrink-0 text-end text-xs font-normal text-muted-foreground">
+                  {t('disabled by the administrator')}
+                </span>
+              ) : null}
             </h3>
-            <div className="ps-6">
+            <div
+              className={cn(
+                "ps-6",
+                historyAdminDisabled && "pointer-events-none opacity-50",
+              )}
+            >
               <div className="flex items-center gap-2 mb-4">
                 <Checkbox
                   id="keep-execution-history"
                   checked={localSettings.keep_execution_history !== false}
+                  disabled={historyAdminDisabled}
                   onCheckedChange={(c) => {
+                    if (historyAdminDisabled) return;
                     if (c) onSettingChange('keep_execution_history', true);
                     else void onUncheckKeepExecutionHistory();
                   }}
                 />
-                <Label htmlFor="keep-execution-history" className="m-0 cursor-pointer">{t('Keep execution history')}</Label>
+                <Label htmlFor="keep-execution-history" className={cn("m-0", historyAdminDisabled ? "cursor-not-allowed" : "cursor-pointer")}>{t('Keep execution history')}</Label>
               </div>
               <div
                 className={cn(
@@ -489,8 +512,8 @@ const SettingsGeneralTab = ({
                 </h4>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm">{t('Delete entries older than:')}</span>
-                  <Select value={historyDeleteRange} onValueChange={setHistoryDeleteRange}>
-                    <SelectTrigger className="min-w-[180px]">
+                  <Select value={historyDeleteRange} onValueChange={setHistoryDeleteRange} disabled={historyAdminDisabled}>
+                    <SelectTrigger className="min-w-[180px]" disabled={historyAdminDisabled}>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -502,7 +525,7 @@ const SettingsGeneralTab = ({
                   <Button
                     variant="destructive"
                     size="sm"
-                    disabled={historyDeleteLoading}
+                    disabled={historyDeleteLoading || historyAdminDisabled}
                     onClick={() => setShowHistoryDeleteConfirm(true)}
                   >
                     {historyDeleteLoading ? t('Deleting…') : t('Delete data')}
@@ -519,7 +542,7 @@ const SettingsGeneralTab = ({
         </div>
 
         {canConfigBackup && (
-            <div className={cn(settingsSection, "!mb-0")}>
+            <div className={cn(settingsSection, "!mb-0", "h-full")}>
               <h3 className={sectionTitleCls}>
                 <DatabaseBackup size={18} />
                 {t('Configuration Backup')}
@@ -652,6 +675,7 @@ SettingsGeneralTab.propTypes = {
     real_time_translation: PropTypes.bool,
     real_time_delay: PropTypes.number,
     keep_execution_history: PropTypes.bool,
+    history_disabled_by_administrator: PropTypes.bool,
     show_cost_on_actions: PropTypes.bool,
     cost_fraction_style: PropTypes.string,
     web_margin: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),

@@ -3,7 +3,7 @@ import TextPanel from "../TextPanel";
 import StyleSelector from "../StyleSelector";
 import LanguageSelector from "../LanguageSelector";
 import {
-  workspaceActionBarClassName,
+  workspaceActionBarCenteredCtaClassName,
   workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
   workspacePaneStatsRowClassName,
@@ -219,17 +219,18 @@ export function getRewritePanels({ common, input, output, options }) {
   );
 
   const actionBar = (
-    <div className={workspaceActionBarClassName}>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
-        onClick={input.clear}
-      >
-        <Trash2 className="h-3.5 w-3.5" />
-        {t("Clear")}
-      </Button>
-      <span className="flex-1" />
+    <div className={workspaceActionBarCenteredCtaClassName}>
+      <div className="flex min-w-0 justify-self-start">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="shrink-0 gap-1.5 border border-white/10 text-muted-foreground hover:text-foreground"
+          onClick={input.clear}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+          {t("Clear")}
+        </Button>
+      </div>
       <Button
         onClick={handleRunAction}
         className="h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 gap-2 shadow-[0_0_22px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] transition-shadow duration-200"
@@ -242,6 +243,7 @@ export function getRewritePanels({ common, input, output, options }) {
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
         )}
       </Button>
+      <div className="min-w-0" aria-hidden />
     </div>
   );
 

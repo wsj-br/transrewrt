@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Resultaat automatisch kopiëren naar klembord",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Echtijdvertaling tijdens het typen (⚠️ Dit kan de gebruikskosten verhogen)",
   "Timeout (ms):": "Time-out (ms):",
+  "disabled by the administrator": "uitgeschakeld door de beheerder",
   "Keep execution history": "Voeringsgeschiedenis bijhouden",
   "Delete history data": "Verwijder geschiedenisgegevens",
   "Configuration Backup": "Configuratieback-up",

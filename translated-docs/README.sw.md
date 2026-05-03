@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-01T21:26:08.315Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T21:09:27.082Z'
+source_file_mtime: '2026-05-02T20:57:11.764Z'
+source_file_hash: 2b5437c0980b14cafcd12332fe78141c3045084da3f4d36d0e668d06ac964719
 translation_language: sw
 source_file_path: README.md
 translation_models:
@@ -21,7 +21,7 @@ translation_models:
 
 Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika upya kwa mitindo tofauti, na ubadilishe kwa kutumia mandhari maalum - kwa kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama ya kijitihima). Inafanya kazi kama programu ya kompyuta (Electron) au kama programu binafsi ya wavuti (Docker).
 
-- **Tafsiri** - kati ya lugha kama hizo, na ukumbusho wa kiotomatiki wa chanzo
+- Tafsiri** - kati ya lugha kama hizo, na ukumbusho wa kiotomatiki wa chanzo
 - **Andika upya** - sahihisha sarufi, bonyeza ufasaha, muundo wa rasmi/si rasmi, fupisha, panua, teknolojia
 - **Badilisha** - maagizo ya AI ya kibinafsi; unda na usimamie maagizo, lugha ya kipekee ya kipekee kwa kila maagizo
 - **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya pembe tatu na pembe moja, kuchuja, na kuuza
@@ -51,14 +51,14 @@ Baada ya kusakinisha, tazama **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa mc
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Picha za skrini](#screenshots)
-- [Kuanza haraka](#quick-start)
-- [Kupata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
-- [Uwekaji na mazingira](#configuration-and-environment)
-- [Maendeleo na utando](#development-and-architecture)
-- [Ripoti ya matatizo](#reporting-issues)
-- [Kuondoa wajibu](#disclaimer)
-- [Leseni](#license)
+- [Picha za skrini](#picha-za-skrini)
+- [Mwanzo wa haraka](#mwanzo-wa-haraka)
+- [Kupata ufunguo wa OpenRouter API](#kupata-ufunguo-wa-openrouter-api)
+- [Uwekezaji na mazingira](#uwekezaji-na-mazingira)
+- [Uundaji na muundo](#uundaji-na-muundo)
+- [Kutoa taarifa za matatizo](#kutoa-taarifa-za-matatizo)
+- [Kukopa dhima](#kukopa-dhima)
+- [Leseni](#leseni)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -293,6 +293,7 @@ Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepS
 | `PORT` | Lango la kikasha cha seva (huwekwa kama chaguo-msingi `5000`) |
 | `CONFIG_PATH`        | Njia ya faili ya usanidi (chaguo-msingi ni `/app/data/config.json`)                |
 | `TZ` | saa ya eneo la seva (kumbukumbu, n.k.) (huwekwa kama chaguo-msingi `Europe/London`) |
+| `HISTORY_DISABLED`   | Imarisha historia ya utekelezaji iwe zima (ya kuchagua, chaguo-msingi ni `false`)                  |
 | `OPENROUTER_API_KEY` | Ufunguo wa OpenRouter API |
 | `OPENAI_API_KEY` | Ufunguo wa OpenAI API |
 | `CEREBRAS_API_KEY` | Ufunguo wa Cerebras API |
@@ -303,6 +304,8 @@ Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepS
 | `MISTRAL_API_KEY` | Ufunguo wa Mistral API |
 | `OLLAMA_URL` | URL ya msingi wa Ollama (kama vile `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | ufunguo wa xAI API                                                                  |
+
+**Namweo ya faragha:** Ikiwa unataka kuzima kufuatilia historia bila kujali `config.json` au mapendeleo ya kila mtumiaji, weka `HISTORY_DISABLED` kuwa `true` au `1` (haikadhi herufi kubwa/ndogo) kwa ajili ya **prosesi ya wavuti/Docker server** na/au **prosesi kuu ya Electron ya desktop** (kama vile mazingira ya mfumo au kuanzisha — si kipekee kipengele cha kuonyesha). Hii huwasilisha kuhifadhi historia ya kuingiza/pato, inafunga **Mipangilio → Mipangilio ya kawaida → Historia**, na inazuia API zinazohusiana na Historia.
 
 Wansasishi tu watoa wanaotumia. Vitambulisho vya kifaa vina nafasi (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, n.k.).
 
@@ -335,7 +338,7 @@ Mipangilio muhimu (font, mifano, lugha, n.k.) yanapatikana kwenye Mipangilio ya 
 ## Uundaji na muundo
 
 - **Uundaji:** Weka, jenga, jaribu, na uanzishe (Electron, Web, Docker) - tazama **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Muundo na muhtasari wa mfumo:** Mipangilio ya folda, stack ya teknolojia, maamuzi ya uundaji - tazama **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Muundo na muhtasari wa mfumo:** Mipangilio ya folda, stack ya teknolojia, maamuzi ya uundaji - tazama **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

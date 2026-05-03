@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Sonucu panoya otomatik kopyala",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Yazarken gerçek zamanlı çeviri (⚠️ Bu, kullanım maliyetlerini artırabilir)",
   "Timeout (ms):": "Zaman aşımı (ms):",
+  "disabled by the administrator": "yönetici tarafından devre dışı bırakıldı",
   "Keep execution history": "Çalıştırma geçmişini tut",
   "Delete history data": "Geçmiş verilerini sil",
   "Configuration Backup": "Yapılandırma Yedekleme",

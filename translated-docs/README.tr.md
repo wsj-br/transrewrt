@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:21.072Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:48:44.325Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: tr
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevirin, farklı stillerde yeniden yazın ve özel istemlerle dönüştürün - Masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
 
-- **Çevir** - Kaynağı otomatik algılayarak onlarca dil arasında çevir
-- **Yeniden Yaz** - Dilbilgisini düzelt, açıklığı artır, resmi/resmi olmayan, kısalt, genişlet, teknik
-- **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef dille birlikte istem oluştur ve yönet
-- **Geçmiş** - Giriş/çıkış metinleri, filtreleme ve dışa aktarma ile tam yürütme geçmişi
+- Çevir** - otomatik kaynak algılama ile onlarca dil arasında
+- **Yeniden yaz** - dil bilgisini düzelt, Anlaşılırlığı İyileştir, resmî/gayriresmî, Kısalt, Uzat, teknik
+- **Dönüştür** - özel AI İstemleri; İstemleri Oluştur ve yönet, istem başına isteğe bağlı Hedef dil
+- **Geçmiş** - Girdi/Çıktı metni, filtreleme ve Dışa Aktar ile tam yürütme geçmişi
 - **Modeller ve maliyet** - Yapılandırılmış herhangi bir sağlayıcıdan modeller seçin; maliyet ve kullanım panoları, günlük, model/işlem/güne göre özetler
 - **Kullanıcı Arayüzü** - Çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
 - **Web modu** - Yönetici rolleriyle çok kullanıcılı destek
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
 - **Kendi sunucunuza kurun** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 
-Kurulumdan sonra tüm özelliklerin tam bir anlatımı için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
+Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
 
 <small>**Diğer dillerde oku:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ En az bir sağlayıcı anahtarı ortam üzerinden ayarlayın (örneğin OpenRout
 
 Veya Docker Compose kullanın:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-Uygulama çalıştıktan sonra, metinleri nasıl çevireceğinizi, yeniden yazacağınızı ve dönüştüreceğinizi, istemleri nasıl yöneteceğinizi ve modelleri nasıl yapılandıracağınızı öğrenmek için **[Kullanıcı Kılavuzu](USER-GUIDE.tr.md)** bölümüne bakın.
+Uygulama çalıştırıldıktan sonra metinleri nasıl çevireceğinizi, yeniden yazacağınızı ve dönüştüreceğinizi, istemleri nasıl yöneteceğinizi ve modelleri nasıl yapılandıracağınızı öğrenmek için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `PORT`               | Sunucunun dinlediği port (varsayılan: `5000`)                                  |
 | `CONFIG_PATH`        | Yapılandırma dosyasının yolu (varsayılan: `/app/data/config.json`)                |
 | `TZ`                 | Sunucu tarafı saat dilimi (günlük kaydı vb.) (varsayılan: `Europe/London`) |
+| `HISTORY_DISABLED`   | Geçmiş izlemeyi devre dışı bırakır (isteğe bağlı, varsayılan olarak `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API anahtarı                                                           |
 | `OPENAI_API_KEY`     | OpenAI API anahtarı                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API anahtarı                                                             |
@@ -303,6 +305,8 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API anahtarı                                                              |
 | `OLLAMA_URL`         | Ollama temel URL'si (örneğin `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API anahtarı                                                                  |
+
+**Gizlilik modu:** `config.json` veya kullanıcı tercihlerinden bağımsız olarak geçmiş izlemeyi devre dışı bırakmak için **web/Docker sunucu süreci** ve/veya **Electron masaüstü ana süreci** için `HISTORY_DISABLED` değerini `true` veya `1` olarak ayarlayın (büyük/küçük harf duyarsız) (örneğin sistem veya başlatıcı ortamı — yalnızca renderer değil). Bu, girdi/çıktı geçmişinin kaydedilmesini devre dışı bırakır, **Ayarlar → Genel Ayarlar → Geçmiş** bölümünü kilitler ve Geçmiş ile ilgili API'leri engeller.
 
 Sadece kullandığınız sağlayıcıları yapılandırın. Model kimlikleri isim alanı altındadır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, vb.).
 
@@ -334,8 +338,8 @@ Anahtar ayarlar (yazı tipi, modeller, diller, vb.) uygulama Ayarları'nda mevcu
 <a id="development-and-architecture"></a>
 ## Geliştirme ve mimari
 
-- **Geliştirme:** Kurulum, derleme, test ve dağıtım (Electron, Web, Docker) - bkz. **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Mimari ve sistem genel bakış:** Klasör yapısı, teknoloji yığını, tasarım kararları - bkz. **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Geliştirme:** Kurulum, yapı, test ve dağıtımı (Electron, Web, Docker) - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) bölümüne bakın.
+- **Mimari ve sistem genel bakış:** Klasör yapısı, teknoloji yığını, tasarım kararları - [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) bölümüne bakın.
 
 <br/><br/>
 

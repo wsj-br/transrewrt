@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:21.775Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:48:32.722Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: vi
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
-- **Dịch** - giữa hàng chục ngôn ngữ, với khả năng tự động phát hiện ngôn ngữ nguồn
-- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
-- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn theo từng lời nhắc
-- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất dữ liệu
+- Dịch** - giữa hàng chục ngôn ngữ, với phát hiện tự động nguồn
+- **Viết lại** - sửa lỗi ngữ pháp, cải thiện độ rõ ràng, chính thức/không chính thức, rút gọn, mở rộng, kỹ thuật
+- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho mỗi lời nhắc
+- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, lọc, và xuất
 - **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày
 - **Giao diện người dùng (UI)** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
 - **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên
 - **Máy tính để bàn** - Ứng dụng Electron cho Windows và Linux
 - **Tự lưu trữ** - hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
 
-Sau khi cài đặt, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md)** để tìm hiểu chi tiết về tất cả các tính năng.
+Sau khi cài đặt, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.md) để được hướng dẫn chi tiết về tất cả các tính năng.
 
 <small>**Đọc bằng các ngôn ngữ khác:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Thiết lập ít nhất một khóa nhà cung cấp thông qua môi trường (
 
 Hoặc sử dụng Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ thay thế `libasound2t64` bằng `libasound2` cho `arm64`. Các bản cài đ�
 
 <br/>
 
-Khi ứng dụng đang chạy, hãy xem **[Hướng dẫn Người dùng](USER-GUIDE.vi.md)** để tìm hiểu cách dịch, viết lại và chuyển đổi văn bản, quản lý lời nhắc và cấu hình mô hình.
+Khi ứng dụng đang chạy, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.md) để tìm hiểu cách dịch, viết lại và chuyển đổi văn bản, quản lý lời nhắc và cấu hình mô hình.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 | `PORT`               | Cổng lắng nghe của máy chủ (mặc định là `5000`)                                  |
 | `CONFIG_PATH`        | Đường dẫn đến tệp cấu hình (mặc định là `/app/data/config.json`)                |
 | `TZ`                 | múi giờ cho thời gian phía máy chủ (ghi log, v.v.) (mặc định là `Europe/London`) |
+| `HISTORY_DISABLED`   | Bắt buộc tắt lịch sử thực thi (tùy chọn, mặc định là `false`)                  |
 | `OPENROUTER_API_KEY` | Khóa API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Khóa API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Khóa API Cerebras                                                             |
@@ -303,6 +305,8 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 | `MISTRAL_API_KEY`    | Khóa API Mistral                                                              |
 | `OLLAMA_URL`         | URL gốc Ollama (ví dụ: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Khóa API xAI                                                                  |
+
+**Chế độ riêng tư:** Để buộc tắt việc ghi nhận lịch sử bất kể `config.json` hay tùy chọn theo người dùng, hãy đặt `HISTORY_DISABLED` thành `true` hoặc `1` (không phân biệt chữ hoa/thường) cho **quy trình máy chủ web/Docker** và/hoặc **quy trình chính ứng dụng desktop Electron** (ví dụ: môi trường hệ thống hoặc trình khởi chạy — không chỉ riêng trình hiển thị). Thao tác này sẽ vô hiệu hóa việc lưu trữ lịch sử đầu vào/đầu ra, khóa mục **Cài đặt → Cài đặt chung → Lịch sử** và chặn các API liên quan đến Lịch sử.
 
 Chỉ cấu hình các nhà cung cấp bạn sử dụng. ID mô hình được phân không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, v.v.).
 
@@ -334,8 +338,8 @@ Các thiết lập chính (phông chữ, mô hình, ngôn ngữ, v.v.) có sẵn
 <a id="development-and-architecture"></a>
 ## Phát triển và kiến trúc
 
-- **Phát triển:** Thiết lập, xây dựng, thử nghiệm và triển khai (Electron, Web, Docker) - xem **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Kiến trúc và tổng quan hệ thống:** Cấu trúc thư mục, công nghệ sử dụng, các quyết định thiết kế - xem **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Phát triển:** Thiết lập, xây dựng, kiểm tra và triển khai (Electron, Web, Docker) - xem [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Tổng quan về kiến trúc và hệ thống:** Cấu trúc thư mục, công nghệ sử dụng, các quyết định thiết kế - xem [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

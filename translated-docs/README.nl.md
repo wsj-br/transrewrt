@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:03.459Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:34:49.220Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: nl
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,9 +22,9 @@ translation_models:
 
 AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
 
-- **Vertalen** - tussen tientallen talen, met automatische detectie van de brontaal
-- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, verkorten, uitbreiden, technisch
-- **Transformeren** - aangepaste AI-prompts; prompts maken en beheren, optionele doeltaal per prompt
+- Vertalen** - tussen tientallen talen, met automatische brondetectie
+- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, verminderen, uitbreiden, technisch
+- **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
 - **Modellen en kosten** - kies modellen van elke geconfigureerde provider; kosten- en gebruiksdashboards met log, samenvattingen per model/operatie/dag
 - **UI** - meertalige interface (30+ talen, ondersteuning voor RTL), lettertypen, ...
@@ -31,7 +32,7 @@ AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende sti
 - **Desktop** - Electron-app voor Windows en Linux
 - **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
 
-Nadat u het hebt geïnstalleerd, raadpleegt u de **[Gebruikershandleiding](USER-GUIDE.nl.md)** voor een volledige uitleg van alle functies.
+Nadat u het hebt geïnstalleerd, raadpleeg de [**Gebruikershandleiding**](USER-GUIDE.nl.md) voor een volledige uitleg van alle functies.
 
 <small>**Lees in andere talen:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ Stel minstens één providersleutel in via omgevingsvariabelen (bijvoorbeeld `OP
 
 Of gebruik Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ vervang `libasound2t64` door `libasound2` voor `arm64`. Minimale of aangepaste i
 
 <br/>
 
-Zodra de app draait, bekijk de **[Gebruikershandleiding](USER-GUIDE.nl.md)** om te leren hoe je tekst vertaalt, herschrijft en transformeert, prompts beheert en modellen configureert.
+Zodra de app actief is, raadpleeg de [**Gebruikershandleiding**](USER-GUIDE.nl.md) om te leren hoe u tekst kunt vertalen, herschrijven en transformeren, prompts kunt beheren en modellen kunt configureren.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 | `PORT`               | Poort waarop de server luistert (standaard `5000`)                                  |
 | `CONFIG_PATH`        | Pad naar het configuratiebestand (standaard is `/app/data/config.json`)                |
 | `TZ`                 | tijdzone voor serverzijde tijd (loggen, enz.) (standaard `Europe/London`) |
+| `HISTORY_DISABLED`   | Forceer geschiedenisregistratie uit (optioneel, standaard is `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API-sleutel                                                           |
 | `OPENAI_API_KEY`     | OpenAI API-sleutel                                                               |
 | `CEREBRAS_API_KEY`   | Cerebras API-sleutel                                                             |
@@ -303,6 +305,8 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 | `MISTRAL_API_KEY`    | Mistral API-sleutel                                                              |
 | `OLLAMA_URL`         | Ollama basis-URL (bijv. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-sleutel                                                                  |
+
+**Privacymodus:** Om de geschiedenisregistratie uit te schakelen, ongeacht `config.json` of gebruikersvoorkeuren, stel `HISTORY_DISABLED` in op `true` of `1` (niet hoofdlettergevoelig) voor het **web/Docker-serverproces** en/of het **Electron-desktop hoofdproces** (bijvoorbeeld systeem- of startomgeving — niet alleen de renderer). Dit schakelt het opslaan van invoer/uitvoer-geschiedenis uit, vergrendelt **Instellingen → Algemene instellingen → Geschiedenis** en blokkeert geschiedenisgerelateerde API's.
 
 Configureer alleen de providers die u gebruikt. Model-ID's zijn genamespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, enz.).
 
@@ -334,8 +338,8 @@ Sleutelinstellingen (lettertype, modellen, talen, enz.) zijn beschikbaar in de a
 <a id="development-and-architecture"></a>
 ## Ontwikkeling en architectuur
 
-- **Ontwikkeling:** Installatie, builden, testen en implementeren (Electron, Web, Docker) - zie **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architectuur en systeemoverzicht:** Mappenstructuur, technologie-stack, ontwerpbeslissingen - zie **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Ontwikkeling:** Installatie, builden, testen en implementeren (Electron, Web, Docker) - zie [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architectuur en systeemoverzicht:** Mapstructuur, technologiestack, ontwerpbeslissingen - zie [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

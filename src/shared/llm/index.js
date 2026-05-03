@@ -458,8 +458,24 @@ function pricingDetailsFromChatModel(chatModel, engine) {
 }
 
 /**
+ * Normalize a model id segment so minor formatting differences still match the OpenRouter
+ * catalog (e.g. `Qwen3 14B` vs `Qwen 3 14B`, hyphen vs space). Case-insensitive; strips
+ * whitespace, hyphens, and underscores; keeps "." so `2.5` does not merge with `25`.
+ * @param {string} s
+ * @returns {string}
+ */
+function normalizePricingSlugForMatch(s) {
+  return String(s || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/[-_]/g, "");
+}
+
+/**
  * Find OpenRouter /models pricing row by matching the trailing segment of each OpenRouter id
  * (e.g. `gemini-2.5-flash` matches `google/gemini-2.5-flash`). Case-insensitive on both sides.
+ * If no exact suffix match, falls back to {@link normalizePricingSlugForMatch} on the suffix.
  * @param {string} engine - multi-llm-ts engine id (tie-break only when several vendors share one slug)
  * @param {string} innerModelId - model id from that provider's catalog
  * @returns {{ prompt: number, completion: number } | null}
@@ -477,12 +493,25 @@ function lookupOpenRouterPricingRow(engine, innerModelId) {
   if (canon && byId[canon]) return byId[canon];
 
   const idLow = id.toLowerCase();
-  const matches = [];
+  /** @type {string[]} */
+  let matches = [];
   for (const k of Object.keys(byId)) {
     const slash = k.lastIndexOf("/");
     const suf = slash >= 0 ? k.slice(slash + 1) : k;
     if (suf.toLowerCase() === idLow) {
       matches.push(k);
+    }
+  }
+  if (matches.length === 0) {
+    const idNorm = normalizePricingSlugForMatch(id);
+    if (idNorm) {
+      for (const k of Object.keys(byId)) {
+        const slash = k.lastIndexOf("/");
+        const suf = slash >= 0 ? k.slice(slash + 1) : k;
+        if (normalizePricingSlugForMatch(suf) === idNorm) {
+          matches.push(k);
+        }
+      }
     }
   }
   if (matches.length === 0) return null;

@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:17.412Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:37:57.584Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: hu
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
 
-- **Fordítás** – tucatnyi nyelv között, automatikus forrásnyelv-felismeréssel
-- **Átírás** – helyesírás-javítás, világosabbá tétel, formális/messzeesett stílus, rövidítés, bővítés, technikai szöveg
-- **Átalakítás** – egyéni MI-parancsok; parancsok létrehozása és kezelése, választható célnyelv parancsonként
-- **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálási lehetőséggel
+- Fordítás** - több tucat nyelv között, automatikus forrásérzékeléssel
+- **Átírás** - nyelvtan javítása, tisztaság javítása, formális/informális, rövidítés, bővítés, műszaki
+- **Átalakítás** - egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális célnyelv parancsokhoz
+- **Előzmények** - teljes végrehajtási előzmények bemenet/kimenet szöveggel, szűrés és exportálás
 - **Modellek és költségek** – válasszon modelleket bármely beállított szolgáltatótól; költség- és használati irányítópult naplóval, összegzésekkel modell/művelet/nap szerint
 - **Felhasználói felület (UI)** – többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
 - **Webes mód** – többfelhasználós támogatás adminisztrátori szerepkörökkel
 - **Asztali alkalmazás** – Electron alkalmazás Windows és Linux rendszerekre
 - **Saját kiszolgálón futtatható** – Docker-rendszerkép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 
-A telepítést követően tekintse meg a **[Felhasználói útmutatót](USER-GUIDE.hu.md)**, amely részletesen bemutatja az összes funkciót.
+A telepítést követően tekintse meg a [**Felhasználói útmutatót**](USER-GUIDE.hu.md) az összes funkció részletes ismertetéséhez.
 
 <small>**Olvassa más nyelveken:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -126,7 +127,7 @@ Cserélje le a(z) `sk-or-your-key` kifejezést [OpenRouter API kulcsára](https:
 
 Vagy használjon Docker Compose-t:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -246,7 +247,7 @@ cserélje le a `libasound2t64` kifejezést `libasound2`-re `arm64` esetén. Mini
 
 <br/>
 
-Miután az alkalmazás fut, tekintse meg a **[Felhasználói útmutató](USER-GUIDE.hu.md)** című részt, hogy megtudja, hogyan fordíthat, írhat át és alakíthat át szöveget, hogyan kezelheti a promptokat, és hogyan konfigurálhatja a modelleket.
+Miután az alkalmazás fut, tekintse meg a [**Felhasználói útmutatót**](USER-GUIDE.hu.md), hogy megtudja, hogyan fordíthat, írhat át és alakíthat át szöveget, hogyan kezelheti a parancsokat, és hogyan konfigurálhatja a modelleket.
 
 <br/><br/>
 
@@ -292,6 +293,7 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 | `PORT` | A kiszolgáló figyelő portja (alapértelmezett: `5000`) |
 | `CONFIG_PATH`        | A konfigurációs fájl elérési útja (alapértelmezett: `/app/data/config.json`)                |
 | `TZ` | A kiszolgáló oldali időzóna (naplózás stb.) (alapértelmezett: `Europe/London`) |
+| `HISTORY_DISABLED`   | Kikényszeríti az előzmények kikapcsolását (nem kötelező, alapértelmezett érték: `false`)                  |
 | `OPENROUTER_API_KEY` | OpenRouter API-kulcs |
 | `OPENAI_API_KEY` | OpenAI API-kulcs |
 | `CEREBRAS_API_KEY` | Cerebras API-kulcs |
@@ -302,6 +304,8 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 | `MISTRAL_API_KEY` | Mistral API-kulcs |
 | `OLLAMA_URL` | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API-kulcs                                                                  |
+
+**Adatvédelmi mód:** Az előzmények nyomon követésének kikényszerítéséhez, függetlenül a `config.json` beállítástól vagy a felhasználónkénti preferenciáktól, állítsa a `HISTORY_DISABLED` értékét `true` vagy `1` értékre (kis- és nagybetűk megkülönböztetése nélkül) a **web/Docker szerverfolyamathoz** és/vagy az **Electron asztali főfolyamathoz** (pl. rendszer- vagy indítási környezetben — nem csak a renderelő részhez). Ez letiltja a bemenet/kimenet előzmények tárolását, zárolja a **Beállítások → Általános beállítások → Előzmények** menüpontot, és blokkolja az Előzményekhez kapcsolódó API-kat.
 
 Csak azokat a szolgáltatókat konfiguráld, amelyeket használsz. A modellazonosítók névteresek (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, stb.).
 
@@ -333,8 +337,8 @@ A kulcsbeállítások (betűtípus, modellek, nyelvek, stb.) az alkalmazás Beá
 <a id="development-and-architecture"></a>
 ## Fejlesztés és architektúra
 
-- **Fejlesztés:** Telepítés, fordítás, tesztelés és telepítés (Electron, Web, Docker) – lásd: **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektúra és rendszeráttekintés:** Mappastruktúra, technológiai verem, tervezési döntések – lásd: **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Fejlesztés:** Beállítás, szerkesztés, tesztelés és telepítés (Electron, Web, Docker) – lásd [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architektúra és rendszeráttekintés:** Mappastruktúra, technológiai verem, tervezési döntések – lásd [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

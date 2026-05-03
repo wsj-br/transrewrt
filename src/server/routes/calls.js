@@ -11,6 +11,7 @@ const {
   replaceWhere,
   prepareGetAllCallsSql,
 } = require("../../shared/db/appSchema.js");
+const { isHistoryDisabledByEnv } = require("../../shared/historyEnv.js");
 
 /**
  * @param {function} getDb
@@ -20,12 +21,17 @@ const {
 module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log) {
   const router = express.Router();
 
-  /** Non-admins may only query their own api_calls rows (ignore ?username=). */
+  /** Non-admins may only query their own api_calls rows (ignore ?username=). Admins may pass ?username= on dashboard/export routes. */
   function getUsernameForCallsQuery(req) {
     if (req.authSession?.role === "admin") {
       const q = req.query.username;
       return q != null && String(q).trim() !== "" ? String(q).trim() : null;
     }
+    return req.authSession?.username ?? null;
+  }
+
+  /** Execution history is always scoped to the signed-in user (admins cannot list others' rows via ?username=). */
+  function getUsernameForHistoryQuery(req) {
     return req.authSession?.username ?? null;
   }
 
@@ -74,7 +80,11 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
           b.output_words ?? null,
           b.output_paragraphs ?? null,
         );
-        if (Object.prototype.hasOwnProperty.call(b, "input_text") && Object.prototype.hasOwnProperty.call(b, "output_text")) {
+        if (
+          !isHistoryDisabledByEnv() &&
+          Object.prototype.hasOwnProperty.call(b, "input_text") &&
+          Object.prototype.hasOwnProperty.call(b, "output_text")
+        ) {
           insertContent.run(
             info.lastInsertRowid,
             b.input_text != null ? String(b.input_text) : "",
@@ -228,10 +238,13 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
   });
 
   router.get("/calls/history", (req, res) => {
+    if (isHistoryDisabledByEnv()) {
+      return res.status(403).json({ error: "Execution history is disabled by the server administrator." });
+    }
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     try {
-      const { whereClause, params } = buildExecutionHistoryWhere(req.query.from, req.query.to, getUsernameForCallsQuery(req), "a");
+      const { whereClause, params } = buildExecutionHistoryWhere(req.query.from, req.query.to, getUsernameForHistoryQuery(req), "a");
       const base = replaceWhere(sql.GET_EXECUTION_HISTORY, whereClause);
       const rawLim = req.query.limit != null ? parseInt(req.query.limit, 10) : NaN;
       const lim =
@@ -337,6 +350,9 @@ module.exports = function createCallsRouter(getDb, setSessionRefreshCookie, log)
 
   router.delete("/calls/history", (req, res) => {
     setSessionRefreshCookie(req, res);
+    if (isHistoryDisabledByEnv()) {
+      return res.status(403).json({ error: "Execution history is disabled by the server administrator." });
+    }
     const db = getDb();
     if (!db) return res.status(503).json({ error: "Database unavailable" });
     const from = req.query.from || null;

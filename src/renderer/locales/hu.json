@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Eredmény automatikus másolása a vágólapra",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Valós idejű fordítás gépelés közben (⚠️ Ez növelheti a használati költségeket)",
   "Timeout (ms):": "Időtúllépés (ms):",
+  "disabled by the administrator": "letiltva az adminisztrátor által",
   "Keep execution history": "Előzmények megőrzése",
   "Delete history data": "Előzményadatok törlése",
   "Configuration Backup": "Konfiguráció biztonsági mentése",

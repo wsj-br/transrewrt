@@ -235,6 +235,7 @@
   "Auto-copy result to clipboard": "Nakili moja kwa moja matokeo kwenye ubao wa kunakili",
   "Real-time translation while typing (⚠️ This may increase usage costs)": "Tafsiri ya wakati mmoja wakati unapoweka (⚠️ Hii inaweza kuongeza gharama za matumizi)",
   "Timeout (ms):": "Muda uliopitwa (ms):",
+  "disabled by the administrator": "imezimwa na msimamizi",
   "Keep execution history": "Hifadhi historia ya utekelezaji",
   "Delete history data": "Futa data ya historia",
   "Configuration Backup": "Usimbaji wa Usanidi",

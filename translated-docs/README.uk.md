@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:26:21.421Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:49:11.977Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: uk
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Інструмент для обробки тексту на основі ШІ: переклад між мовами, перефразування в різних стилях та трансформація за допомогою користувацьких промптів — з використанням кількох постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI та локальний Ollama). Працює як настільний додаток (Electron) або як веб-додаток для самостійного розгортання (Docker).
 
-- **Переклад** — між десятками мов із автоматичним визначенням вихідної мови
-- **Переписування** — виправлення граматики, підвищення чіткості, формальний/неформальний стиль, скорочення, розширення, технічний текст
-- **Трансформація** — користувацькі AI-запити; створення та керування запитами, необов’язковою цільовою мовою для кожного запиту
-- **Історія** — повна історія виконання з вхідним/вихідним текстом, фільтрацією та експортом
+- Перекласти** - між десятками мов, з автоматичним визначенням мови Джерело
+- **Переписати** - виправити граматику, Покращити чіткість, формальний/неформальний стиль, Скоротити, Розширити, технічний стиль
+- **Перетворити** - власні AI Запит; Створити й керувати запитами, необов’язкова мова Ціль для кожного запиту
+- **Історія** - повна історія виконання з Вхідні дані/Вихідний текст, фільтрацією та Експорт
 - **Моделі та вартість** — вибір моделей від будь-якого налаштованого постачальника; панелі вартості та використання з журналами, підсумками за моделями/операціями/днями
 - **Інтерфейс користувача** — багатомовний інтерфейс (понад 30 мов, підтримка RTL), шрифти, ...
 - **Веб-режим** — підтримка кількох користувачів із ролями адміністратора
 - **Стільниця** — додаток Electron для Windows та Linux
 - **Самостійне розгортання** — образ Docker для amd64 та arm64 (готовий до роботи на Raspberry Pi)
 
-Після встановлення перегляньте **[Посібник для користувача](USER-GUIDE.uk.md)**, щоб отримати детальний огляд усіх функцій.
+Після встановлення перегляньте [**Керівництво користувача**](USER-GUIDE.uk.md) для повного огляду всіх функцій.
 
 <small>**Читати іншими мовами:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Або використовуйте Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-Після запуску додатка ознайомтеся з **[Посібником для користувача](USER-GUIDE.uk.md)**, щоб дізнатися, як перекладати, перефразовувати та трансформувати текст, керувати підказками та налаштовувати моделі.
+Після запуску додатка перегляньте [**Керівництво користувача**](USER-GUIDE.uk.md), щоб дізнатися, як перекладати, переписувати та перетворювати текст, керувати запитами та налаштовувати моделі.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt підтримує кілька постачальників ШІ. [O
 | `PORT`               | Порт, на якому слухає сервер (за замовчуванням `5000`)                                  |
 | `CONFIG_PATH`        | Шлях до файлу конфігурації (за замовчуванням `/app/data/config.json`)                |
 | `TZ`                 | часовий пояс для серверного часу (логування тощо) (за замовчуванням `Europe/London`) |
+| `HISTORY_DISABLED`   | Примусово вимкнути історію виконання (необов’язково, за замовчуванням `false`)                  |
 | `OPENROUTER_API_KEY` | Ключ API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Ключ API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Ключ API Cerebras                                                             |
@@ -303,6 +305,8 @@ Transrewrt підтримує кілька постачальників ШІ. [O
 | `MISTRAL_API_KEY`    | Ключ API Mistral                                                              |
 | `OLLAMA_URL`         | Базовий URL Ollama (наприклад, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Ключ API xAI                                                                  |
+
+**Режим конфіденційності:** Щоб примусово вимкнути відстеження історії незалежно від `config.json` або налаштувань окремих користувачів, встановіть `HISTORY_DISABLED` рівним `true` або `1` (без урахування регістру) для **веб-/Docker-серверного процесу** та/або **головного процесу настільного додатка Electron** (наприклад, системного середовища або засобу запуску — не лише процесу візуалізації). Це вимикає збереження історії вхідних і вихідних даних, заблоковує **Налаштування → Загальні налаштування → Історія** та блокує API, пов’язані з Історією.
 
 Налаштовуйте лише тих постачальників, яких використовуєте. Ідентифікатори моделей мають простір імен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, тощо).
 
@@ -334,8 +338,8 @@ Transrewrt підтримує кілька постачальників ШІ. [O
 <a id="development-and-architecture"></a>
 ## Розробка та архітектура
 
-- **Розробка:** Налаштування, збірка, тестування та розгортання (Electron, Веб, Docker) — див. **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Архітектура та огляд системи:** Структура папок, технологічний стек, рішення щодо проектування — див. **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Розробка:** Налаштування, збірка, тестування та розгортання (Electron, Web, Docker) — див. [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Архітектура та огляд системи:** Структура папок, технологічний стек, проектні рішення — див. [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

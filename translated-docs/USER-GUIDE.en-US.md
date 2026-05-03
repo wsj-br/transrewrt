@@ -1,11 +1,13 @@
 ---
-translation_last_updated: '2026-05-01T21:25:11.418Z'
-source_file_mtime: '2026-05-01T21:20:11.119Z'
-source_file_hash: 253d03c03bd028d8119ce13e1d810e974a386f3e98054a9e750d5ecfbf1c76d0
+translation_last_updated: '2026-05-02T22:37:27.287Z'
+source_file_mtime: '2026-05-02T22:14:02.511Z'
+source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
 translation_language: en-US
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
+  - qwen/qwen3.6-plus
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -19,13 +21,13 @@ translation_models:
 
 Transrewrt helps you work with text in three main ways:
 
-- **Translate** - convert text from one language to another.
+- Translate** - convert text from one language to another.
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
 <br/>
 
-This guide explains how to use the app once it is installed and running. For installation steps, see the main **[README](README.en-US.md)**.
+This guide explains how to use the app once it is installed and running. For installation steps, see the main [**README**](README.en-US.md).
 
 <br/>
 
@@ -72,7 +74,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Export data](#export-data)
   - [Delete stored records for a model](#delete-stored-records-for-a-model)
 - [History](#history)
-  - [Filter the data](#filter-the-data-1)
+  - [Filter the history](#filter-the-history)
   - [Export history data](#export-history-data)
 - [Settings](#settings)
   - [General settings](#general-settings)
@@ -171,7 +173,7 @@ The app is divided into three main areas:
 <a id="sidebar"></a>
 ### Sidebar
 
-Use the sidebar to move around the app. You can collapse the sidebar for more space by clicking the icon next to the app logo.
+Use the sidebar to navigate the app. You can collapse the sidebar for more space by clicking the icon next to the app logo.
 
 <br/>
 
@@ -200,16 +202,16 @@ Use the sidebar to move around the app. You can collapse the sidebar for more sp
 <a id="toolbar"></a>
 ### Toolbar
 
-The toolbar changes slightly depending on where you are in the app.
+The toolbar changes slightly depending on your location in the app.
 
-- On the left, it shows the current page name.
+- On the left, it displays the current page name.
 - On the right, it shows the **model selector** and the **Interface language** control.
 
-The **model selector** lets you choose which AI engine to use for the current task.
+The **model selector** allows you to choose which AI engine to use for the current task.
 
 ![Model selector](../images/screenshots/en-US/model-selector.png)
 
-Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list. 
+Some free models may not always be available—sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list.
  You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
 
 <br/>
@@ -231,14 +233,14 @@ Each panel also shows:
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | - Character count <br/>- Word count <br/>- Paragraph count   <br/> | - How long the task took<br/>- **TPS** (tokens per second)<br/>- Character, word, and paragraph counts<br/>- The model used |
 
-If you are wondering about the technical terms:
+If you're unsure about the technical terms:
 
 - **Token** means a small chunk of text. You can think of it as part of a word or a short word.
 - **TPS** means how many of those text chunks the model processed each second.
 
 <br/>
 
-You can also monitor the cost of each operation (if available) and the total cost, enabling the option `Show cost information on the actions` at [**Settings** > **General Settings**](#general-settings).
+You can also monitor the cost of each operation (if available) and the total cost by enabling the option `Show cost information on the actions` at [**Settings** > **General settings**](#general-settings).
 
 <br/><br/>
 
@@ -273,7 +275,7 @@ Use **Translate** when you want to convert text from one language to another.
 - **From** can be a specific language or **Detect Language**.
 - **To** is the language you want the result in.
 
-Your selected **Top Languages** appear at the top of the list. You can set these in [**Settings** > **Languages**](#languages).
+Your selected **Top languages** appear at the top of the list. You can set these in [**Settings** > **Languages**](#languages).
 
 <br/>
 
@@ -306,7 +308,7 @@ This is useful for:
 - several distinct reformulations in one run (**Alternative versions**)
 - making text more formal or more informal (**Formal** / **Informal**)
 - shortening or expanding text (**Shorten** / **Expand**)
-- making text sound more technical (**Make Technical**)
+- making text more technical (**Make Technical**)
 
 <br/>
 
@@ -399,14 +401,14 @@ If the technical term **Temperature** is new to you, think of it like this:
 
 You can also use:
 
-- **`Generate prompt`** to create a new draft from a simple description
-- **`Improve prompt`** to refine an existing prompt
-- **`Translate prompt`** to translate the prompt fields
+- `Generate prompt` to create a new draft from a simple description
+- `Improve prompt` to refine an existing prompt
+- `Translate prompt` to translate the prompt fields
 
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Click **`Save`** before you click **`Back to Run`**. If you go back without saving, your changes will be lost.
+> Click `Save` before you click `Back to Run`. If you go back without saving, your changes will be lost.
 
 <br/>
 
@@ -506,7 +508,7 @@ Click on **History** to see the history of your actions inside **Transrewrt**, i
 <br/>
 
 <a id="filter-the-history"></a>
-### Filter the data
+### Filter the history
 
 **History** uses the same filters as the **Dashboard** page. Use them to select the time range.
 
@@ -568,7 +570,7 @@ Use **General Settings** to control typing behavior, whether execution details a
 
 **Behavior**
 
-- **Behaviour for ENTER** chooses whether `Enter` runs the task or inserts a new line.
+- **Behavior for ENTER** chooses whether `Enter` runs the task or inserts a new line.
 - **Auto-translate on paste** starts translation as soon as you paste text.
 - **Auto-copy result to clipboard** copies successful results automatically.
 - **Real-time translation (while typing)** translates while you type.
@@ -589,7 +591,7 @@ Use **General Settings** to control typing behavior, whether execution details a
 
 **Configuration Backup**
 
-- **Include usage data in the backup** - when enabled, the ZIP also contains execution history and API call data. 
+- **Include usage data in the backup** - when enabled, the ZIP also contains execution history and API call data.
 - **Backup configuration** - creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
 - **Restore from backup** - opens a **confirmation dialog first**. Choose the backup ZIP inside the dialog (**Browse** / file picker or drag-and-drop where supported), then review the options:
   - **Restore the usage data** - import usage/history from the ZIP when it was backed up with usage included; leave off if you only want settings and prompts.
@@ -635,7 +637,7 @@ Actions:
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you do not want to add credits to OpenRouter straight away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
+> If you do not want to add credits to OpenRouter right away, start by enabling **Free Only** and choosing the free models (no credit card required). You can also use Ollama to run models locally without any API key.
 
 <br/>
 
@@ -668,13 +670,13 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 <br/>
 
 > ℹ️ **NOTE**<br/>
->  **All cost figures are estimates for your reference only, not official billing statements.**
+> **All cost figures are estimates for your reference only, not official billing statements.**
 
 <br/>
 
 > ⚠️ **WARNING**<br/>
-> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**History**](#history) 
-> or [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently. 
+> Data deletion cannot be undone. Before deleting, make sure to back up your data or export it via [**History**](#history)
+> or [**Dashboard** > **All Calls**](#dashboard-tabs), otherwise it will be lost permanently.
 > All input/output history related to each API call entry will also be deleted.
 
 <br/>
@@ -708,12 +710,14 @@ The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepS
 
 **Web application: administrator only**
 
-API keys are configured through system or Docker environment variables - they are not entered in the web UI. This page shows which providers have a key configured and lets you test each one by clicking the **`Test`** button.
+API keys are configured through system or Docker environment variables - they are not entered in the web UI. This page shows which providers have a key configured and lets you test each one by clicking the `Test` button.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
 > To change an API key, update the environment variable in your system or Docker configuration and restart the server or container.
+
+<br/>
 
 > ℹ️ **NOTE**<br/>
 > **Configuration backups** (see [**General settings** → Configuration Backup](#general-settings)) can embed **resolved** provider keys inside the ZIP’s `config.json`. Restoring that ZIP does **not** copy those keys back into the server’s persisted config file - live keys still come from the environment and existing file state as described there.
@@ -733,12 +737,12 @@ Use **API Config** to store API keys for each provider you use. For Ollama, ente
 
 - Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
 
-To add an API key, enter the value in the text field and click **`Save`**. To replace an existing key, click **`Edit`**. To verify that a key is working, click **`Test`**. For the Ollama base URL, always click **`Test`** to check the connection.
+To add an API key, enter the value in the text field and click `Save`. To replace an existing key, click `Edit`. To verify that a key is working, click `Test`. For the Ollama base URL, always click `Test` to check the connection.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> You cannot see the current value of an API key. You can only replace it using the **`Edit`** button.
+> You cannot see the current value of an API key. You can only replace it using the `Edit` button.
 > API keys are stored encrypted in the configuration.
 
 <br/>
@@ -910,7 +914,7 @@ When editing a prompt, always click **Save** before clicking **Back to Run**.
 - Use [**Rewrite**](#rewrite) for everyday wording improvements.
 - Use [**Transform**](#transform) when you need a repeatable workflow for a specific task.
 - Use [**Dashboard**](#dashboard) if you want to keep an eye on usage and cost.
-- Use [**History**](#history) to review past operations and their full input/output text.
+- Use [**History](#history) to review past operations and their full input/output text.
 - Export prompts regularly if you are building a prompt library you want to keep safe (see [Transform Prompts](#transform-prompts)) or if you wish to share it with others.
 
 <br/><br/>

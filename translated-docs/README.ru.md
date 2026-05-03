@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-01T21:25:55.805Z'
-source_file_mtime: '2026-05-01T21:20:11.115Z'
-source_file_hash: 6d542a5ab0bc367068f11e44d70bf1a6c2f8f051452ede84be5402fc282e1741
+translation_last_updated: '2026-05-02T22:43:46.966Z'
+source_file_mtime: '2026-05-02T22:14:20.838Z'
+source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
 translation_language: ru
 source_file_path: README.md
 translation_models:
+  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Инструмент для работы с текстом на базе ИИ: перевод между языками, переписывание в разных стилях и трансформация с помощью пользовательских промптов — с использованием нескольких поставщиков ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI и локально установленного Ollama). Работает как настольное приложение (Electron) или как веб-приложение для самостоятельного размещения (Docker).
 
-- **Перевод** — между десятками языков с автоматическим определением исходного языка
-- **Перефразирование** — исправление грамматики, улучшение ясности, формальный/неформальный стиль, сокращение, расширение, технический стиль
-- **Преобразование** — пользовательские AI-подсказки; создание и управление подсказками, необязательный целевой язык для каждой подсказки
-- **История** — полная история выполнения с вводом/выводом текста, фильтрацией и возможностью экспорта
+- Перевести** - между десятками языков, с автоматическим определением исходного языка
+- **Переписать** - исправить грамматику, Повысить ясность, формальный/неформальный стиль, Сократить, Расширить, технический стиль
+- **Преобразовать** - пользовательские AI-запросы; Создать запросы и управлять ими, необязательный целевой язык для каждого запроса
+- **История** - полная история выполнения с текстом Ввод/Выходной текст, фильтрацией и Экспорт
 - **Модели и стоимость** — выбор моделей от любого настроенного поставщика; панели мониторинга стоимости и использования с логами, сводками по моделям/операциям/дням
 - **Интерфейс** — интерфейс на нескольких языках (30+ языков, поддержка RTL), шрифты, ...
 - **Веб-режим** — поддержка нескольких пользователей с административными ролями
 - **Настольное приложение** — приложение на Electron для Windows и Linux
 - **Развертывание на своём сервере** — образ Docker для amd64 и arm64 (готово к использованию на Raspberry Pi)
 
-После установки ознакомьтесь с **[Руководством пользователя](USER-GUIDE.ru.md)**, чтобы получить подробное описание всех функций.
+После установки ознакомьтесь с [**Руководством пользователя**](USER-GUIDE.ru.md), где подробно описаны все функции.
 
 <small>**Читать на других языках:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -127,7 +128,7 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
 
 Или используйте Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 <br/>
 
-После запуска приложения ознакомьтесь с **[Руководством пользователя](USER-GUIDE.ru.md)**, чтобы узнать, как переводить, переписывать и трансформировать текст, управлять промптами и настраивать модели.
+Когда приложение запущено, см. [**Руководство пользователя**](USER-GUIDE.ru.md), чтобы узнать, как переводить, переписывать и преобразовывать текст, управлять запросами и настраивать модели.
 
 <br/><br/>
 
@@ -293,6 +294,7 @@ Transrewrt поддерживает несколько провайдеров И
 | `PORT`               | Порт, на котором слушает сервер (по умолчанию `5000`)                                  |
 | `CONFIG_PATH`        | Путь к файлу конфигурации (по умолчанию `/app/data/config.json`)                |
 | `TZ`                 | часовой пояс для серверного времени (логи и т.д.) (по умолчанию `Europe/London`) |
+| `HISTORY_DISABLED`   | Принудительное отключение истории выполнения (необязательно, по умолчанию `false`)                  |
 | `OPENROUTER_API_KEY` | Ключ API OpenRouter                                                           |
 | `OPENAI_API_KEY`     | Ключ API OpenAI                                                               |
 | `CEREBRAS_API_KEY`   | Ключ API Cerebras                                                             |
@@ -303,6 +305,8 @@ Transrewrt поддерживает несколько провайдеров И
 | `MISTRAL_API_KEY`    | Ключ API Mistral                                                              |
 | `OLLAMA_URL`         | Базовый URL Ollama (например, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Ключ API xAI                                                                  |
+
+**Режим конфиденциальности:** Чтобы принудительно отключить отслеживание истории независимо от `config.json` или предпочтений пользователя, установите для `HISTORY_DISABLED` значение `true` или `1` (без учёта регистра) в **веб-/Docker-серверном процессе** и/или **главном процессе настольного приложения Electron** (например, в системе или среде запуска — не только в процессе отрисовки). Это отключает сохранение истории ввода/вывода, блокирует раздел **Настройки → Основные настройки → История** и запрещает использование API, связанных с историей.
 
 Настройте только тех провайдеров, которых вы используете. Идентификаторы моделей пространственно разделены (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, и т.д.).
 
@@ -334,8 +338,8 @@ Transrewrt поддерживает несколько провайдеров И
 <a id="development-and-architecture"></a>
 ## Разработка и архитектура
 
-- **Разработка:** Установка, сборка, тестирование и развертывание (Electron, Web, Docker) — см. **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Архитектура и обзор системы:** Структура папок, технологический стек, проектные решения — см. **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)**.
+- **Разработка:** Настройка, сборка, тестирование и развертывание (Electron, Web, Docker) — см. [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Архитектура и обзор системы:** Структура папок, технологический стек, проектные решения — см. [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 
