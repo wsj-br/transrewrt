@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Release workflow: drop explicit `pnpm/action-setup` `version` so CI uses `package.json` `packageManager` (avoids mismatch with pnpm 10).
+
 ## 1.2.1 - 2026-05-03
 
 - **Fixed**: Stop tracking `.translation-cache/cache.db.backup.*.sqlite` files (already ignored by `.gitignore`; remove from index with `git rm --cached` if they were added earlier).
