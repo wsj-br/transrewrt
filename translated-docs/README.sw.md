@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-02T21:09:27.082Z'
-source_file_mtime: '2026-05-02T20:57:11.764Z'
-source_file_hash: 2b5437c0980b14cafcd12332fe78141c3045084da3f4d36d0e668d06ac964719
+translation_last_updated: '2026-05-03T19:10:14.148Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: sw
 source_file_path: README.md
 translation_models:
@@ -21,17 +21,17 @@ translation_models:
 
 Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika upya kwa mitindo tofauti, na ubadilishe kwa kutumia mandhari maalum - kwa kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama ya kijitihima). Inafanya kazi kama programu ya kompyuta (Electron) au kama programu binafsi ya wavuti (Docker).
 
-- Tafsiri** - kati ya lugha kama hizo, na ukumbusho wa kiotomatiki wa chanzo
-- **Andika upya** - sahihisha sarufi, bonyeza ufasaha, muundo wa rasmi/si rasmi, fupisha, panua, teknolojia
-- **Badilisha** - maagizo ya AI ya kibinafsi; unda na usimamie maagizo, lugha ya kipekee ya kipekee kwa kila maagizo
-- **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya pembe tatu na pembe moja, kuchuja, na kuuza
+- **Tafsiri** - kati ya lugha kumi na kadhaa, na kipimo cha chanzo kiotomatiki
+- **Andika upya** - sahihi sarufi, boresha uwazi, fomali/isiyo ya fomali, fupisha, panua, ya kikina
+- **Badilisha** - maagizo ya AI ya kibinafsi; tengeneza na usimamize maagizo, lugha ya kipato kwa kila maagizo ni ya si lazima
+- **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya kuingiza/ya pato, kupanga kwa kuchuja, na utoaji
 - **Mifumo & gharama** - chagua mifumo kutoka kwa mtoa yoyote uliowekwa; dashibodi za gharama na matumizi kwa kumbukumbu, muhtasari kwa mfumo/kazi/siku
 - **UI** - kiolesura cha kielektroniki (zaidi ya 30, msaada wa RTL), fonti, ...
 - **Hali ya wavuti** - msaada wa wanachama wengi kwa majukumu ya msimamizi
 - **Desktop** - programu ya Electron kwa Windows na Linux
 - **Kujitegemea** - picha ya Docker kwa amd64 & arm64 (tayari kwa Raspberry Pi)
 
-Baada ya kusakinisha, tazama **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa mchoro kamili wa vipengele vyote.
+Baada ya kusakinisha, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kwa mchoro kamili wa vipengele vyote.
 
 <small>**Soma kwa lugha nyingine:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -51,14 +51,14 @@ Baada ya kusakinisha, tazama **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** kwa mc
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Picha za skrini](#picha-za-skrini)
-- [Mwanzo wa haraka](#mwanzo-wa-haraka)
-- [Kupata ufunguo wa OpenRouter API](#kupata-ufunguo-wa-openrouter-api)
-- [Uwekezaji na mazingira](#uwekezaji-na-mazingira)
-- [Uundaji na muundo](#uundaji-na-muundo)
-- [Kutoa taarifa za matatizo](#kutoa-taarifa-za-matatizo)
-- [Kukopa dhima](#kukopa-dhima)
-- [Leseni](#leseni)
+- [Picha za skrini](#screenshots)
+- [Kuanza haraka](#quick-start)
+- [Kupata ufunguo wa OpenRouter API](#getting-an-openrouter-api-key)
+- [Uwekaji na mazingira](#configuration-and-environment)
+- [Maendeleo na utando](#development-and-architecture)
+- [Ripoti ya matatizo](#reporting-issues)
+- [Kuondoa wajibu](#disclaimer)
+- [Leseni](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -127,7 +127,7 @@ Weke ufunguo wa angalau mtoa huduma mmoja kupitia mazingira (kama mfano `OPENROU
 
 Au tumia Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +247,7 @@ badilisha `libasound2t64` kwa `libasound2` kwa ajili ya `arm64`. Mifumo ya chini
 
 <br/>
 
-Baada ya programu kuanza, angalia **[Mwongozo wa Mtumiaji](USER-GUIDE.sw.md)** ili kujifunza jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, kudumisha maombi, na kupanga mifano.
+Baada ya kuwezesha programu, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kujifunza jinsi ya kutafsiri, kuandika upya, na kubadilisha maandishi, kusimamia maagizo, na kusanidi mifano.
 
 <br/><br/>
 
@@ -337,8 +337,8 @@ Mipangilio muhimu (font, mifano, lugha, n.k.) yanapatikana kwenye Mipangilio ya 
 <a id="development-and-architecture"></a>
 ## Uundaji na muundo
 
-- **Uundaji:** Weka, jenga, jaribu, na uanzishe (Electron, Web, Docker) - tazama **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Muundo na muhtasari wa mfumo:** Mipangilio ya folda, stack ya teknolojia, maamuzi ya uundaji - tazama **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
+- **Maendeleo:** Weka, jenga, jaribu, na uweke (Electron, Web, Docker) - angalia [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Muundo na maelezo ya mfumo:** Mwisho wa folda, safu ya teknolojia, maamuzi ya uundaji - angalia [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:41:07.928Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:47.591Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt pomaga w pracy z tekstem na trzy główne sposoby:
 
-- Tłumacz** - konwertuj tekst z jednego języka na inny.
-- **Przepisz** - sformułuj tekst w innym stylu, np. bardziej zrozumiały, krótszy lub bardziej formalny.
-- **Przekształć** - przetwórz tekst przy użyciu niestandardowych instrukcji AI zwanych podpowiedziami.
+- **Tłumacz** – przekonwertuj tekst z jednego języka na inny.
+- **Przepisz** – przeformułuj tekst w innym stylu, na przykład bardziej klarowny, krótszy lub bardziej formalny.
+- **Przekształć** – przetwórz tekst za pomocą niestandardowych instrukcji AI zwanych promptami.
 
 <br/>
 
@@ -913,8 +912,8 @@ Podczas edytowania podpowiedzi zawsze kliknij **Zapisz**, zanim przejdziesz do *
 - Używaj [**Przepisz**](#rewrite) do codziennych poprawek sformułowań.
 - Używaj [**Przekształć**](#transform), gdy potrzebujesz powtarzalnego przepływu pracy dla konkretnego zadania.
 - Skorzystaj z [**Panel główny**](#dashboard), jeśli chcesz śledzić zużycie i koszty.
-- Użyj [**Historia](#history), aby przejrzeć poprzednie operacje oraz ich pełen tekst wejściowy i wyjściowy.
-- Regularnie eksportuj podpowiedzi, jeśli tworzysz bibliotekę podpowiedzi, którą chcesz zachować w bezpiecznym miejscu (zobacz [Przekształcenia podpowiedzi](#transform-prompts)) lub jeśli chcesz ją udostępnić innym.
+- Użyj sekcji [**Historia**](#history), aby przejrzeć poprzednie operacje oraz ich pełny tekst wejściowy i wyjściowy.
+- Regularnie eksportuj zachęty, jeśli tworzysz bibliotekę zachęt, którą chcesz zachować w bezpiecznym miejscu (zobacz [Przekształcenia podpowiedzi](#transform-prompts)) lub jeśli chcesz ją udostępnić innym.
 
 <br/><br/>
 

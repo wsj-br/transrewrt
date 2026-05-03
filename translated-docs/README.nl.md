@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:49.220Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:39.789Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: nl
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,8 +21,8 @@ translation_models:
 
 AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
 
-- Vertalen** - tussen tientallen talen, met automatische brondetectie
-- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeel/informeel, verminderen, uitbreiden, technisch
+- **Vertalen** - tussen tientallen talen, met automatische herkenning van de bron
+- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeler/informeel, verkorten, uitbreiden, technisch
 - **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
 - **Modellen en kosten** - kies modellen van elke geconfigureerde provider; kosten- en gebruiksdashboards met log, samenvattingen per model/operatie/dag

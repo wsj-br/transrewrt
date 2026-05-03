@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:50:00.854Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:10:43.507Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: tr
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt, metinle çalışmanıza üç ana yoldan yardımcı olur:
 
-- Çevir** - metni bir dilden başka bir dile dönüştürün.
-- **Yeniden yaz** - metni daha açık, daha kısa veya daha resmî gibi farklı bir stilde yeniden ifade edin.
-- **Dönüştür** - metni, istemler olarak adlandırılan özel yapay zekâ talimatlarını kullanarak işleyin.
+- **Çevir** - metni bir dilden diğerine dönüştür.
+- **Yeniden yaz** - metni daha açık, daha kısa veya daha resmi gibi farklı bir şekilde yeniden ifade et.
+- **Dönüştür** - istem adı verilen özel AI talimatlarını kullanarak metni işle.
 
 <br/>
 
@@ -912,8 +911,8 @@ Bir istemi düzenlerken her zaman **Çalıştır'a geri dön**'e tıklamadan ön
 - Günlük kelime düzenlemeleri için [**Yeniden yaz**](#rewrite) seçeneğini kullanın.
 - Belirli bir görev için tekrarlanabilir bir iş akışı gerekiyorsa [**Dönüştür**](#transform) seçeneğini kullanın.
 - Kullanım ve maliyeti takip etmek istiyorsanız [**Kontrol Paneli**](#dashboard) kullanın.
-- Geçmiş işlemlerinizi ve tam girdi/çıktı metinlerinizi incelemek için [**Geçmiş](#history) bölümünü kullanın.
-- Bir parola kitaplığı oluşturuyorsanız ve bunu güvende tutmak istiyorsanız düzenli olarak dışa aktarın (bkz. [İstemleri Dönüştür](#transform-prompts)) veya başkalarıyla paylaşmak istiyorsanız.
+- Geçmiş işlemlerinizi ve tam girdi/çıktı metnini incelemek için [**Geçmiş**](#history) kullanın.
+- Birlikte çalışmak istediğiniz istemlerin bir kütüphanesini düzenli olarak dışa aktarın (bkz. [İstemleri Dönüştür](#transform-prompts)) veya başkalarıyla paylaşmak istiyorsanız.
 
 <br/><br/>
 

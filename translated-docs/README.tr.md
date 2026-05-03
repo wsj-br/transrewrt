@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:48:44.325Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:10:32.690Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: tr
 source_file_path: README.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevirin, farklı stillerde yeniden yazın ve özel istemlerle dönüştürün - Masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
 
-- Çevir** - otomatik kaynak algılama ile onlarca dil arasında
-- **Yeniden yaz** - dil bilgisini düzelt, Anlaşılırlığı İyileştir, resmî/gayriresmî, Kısalt, Uzat, teknik
-- **Dönüştür** - özel AI İstemleri; İstemleri Oluştur ve yönet, istem başına isteğe bağlı Hedef dil
-- **Geçmiş** - Girdi/Çıktı metni, filtreleme ve Dışa Aktar ile tam yürütme geçmişi
+- **Çevir** - otomatik kaynak algılama ile onlarca dil arasında
+- **Yeniden yaz** - dilbilgisi düzeltme, anlaşılırlığı iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
+- **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef diliyle birlikte istemleri oluşturun ve yönetin
+- **Geçmiş** - girdi/çıktı metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
 - **Modeller ve maliyet** - Yapılandırılmış herhangi bir sağlayıcıdan modeller seçin; maliyet ve kullanım panoları, günlük, model/işlem/güne göre özetler
 - **Kullanıcı Arayüzü** - Çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
 - **Web modu** - Yönetici rolleriyle çok kullanıcılı destek

@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Stop tracking `.translation-cache/cache.db.backup.*.sqlite` files (already ignored by `.gitignore`; remove from index with `git rm --cached` if they were added earlier).
+- **Changed**: `.gitignore`: ignore everything under `.translation-cache/` except `cache.db` (same pattern as `translated-docs/.cache/`); doc translation backups live there by default, not under `translated-docs/.cache/`.
+- **Changed**: `scripts/take-screenshots.js`: validate CLI then exit if `HISTORY_DISABLED` is true; validate `--screenshot=` / `--screen=` names before DB, config, server probe, or browser.
 - **Changed**: `dev/DEVELOPMENT.md`: Related documentation section is a list instead of a wide table.
 - **Changed**: Documentation: removed bold-wrapped inline code across Markdown docs; Cursor rule discourages that pattern in project documentation.
 - **Fixed**: Settings (wide tab strip): selecting a section scrolls the horizontal strip so the active tab is fully visible.

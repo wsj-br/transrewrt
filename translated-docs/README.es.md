@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:42:43.647Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:10:13.681Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: es
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes estilos y transforma con prompts personalizados, utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI y Ollama local). Funciona como aplicación de escritorio (Electron) o como aplicación web autohospedada (Docker).
 
-- Traducir** - entre docenas de idiomas, con detección automática de origen
-- **Reescribir** - corregir gramática, mejorar claridad, formal/informal, acortar, ampliar, técnico
-- **Transformar** - prompts de IA personalizados; crear y administrar prompts, idioma de destino opcional por prompt
-- **Historial** - historial de ejecución completo con texto de entrada/salida, filtrado y exportación
+- **Traducir** - entre docenas de idiomas, con detección automática del idioma de origen
+- **Reescribir** - corregir gramática, mejorar claridad, estilo formal/informal, acortar, ampliar, contenido técnico
+- **Transformar** - prompts personalizados de IA; crear y gestionar prompts, idioma de destino opcional por prompt
+- **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
 - **Modelos y coste** - elegir modelos de cualquier proveedor configurado; paneles de coste y uso con registros, resúmenes por modelo/operación/día
 - **Interfaz de usuario (UI)** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
 - **Modo web** - soporte multiusuario con roles de administrador

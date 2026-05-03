@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-02T22:41:35.910Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:29.950Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: ko
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,9 +22,9 @@ translation_models:
 
 Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원합니다:
 
-- 번역** - 텍스트를 한 언어에서 다른 언어로 변환합니다.
-- **다시 작성** - 텍스트를 더 명확하거나 짧거나 더 공식적인 스타일로 바꿉니다.
-- **변환** - 프롬프트라고 하는 사용자 정의 AI 지침을 사용하여 텍스트를 처리합니다.
+- **번역** - 텍스트를 한 언어에서 다른 언어로 변환합니다.
+- **다시 작성** - 더 명확하게, 더 간단하게 또는 더 격식 있게 등의 다른 스타일로 텍스트를 다시 표현합니다.
+- **변환** - 프롬프트라고 불리는 사용자 정의 AI 지시사항을 사용하여 텍스트를 처리합니다.
 
 <br/>
 
@@ -914,8 +914,8 @@ pnpm run reset-web-password -- <username> <new-password>
 - 일상적인 문장 개선에는 [**다시 작성**](#rewrite)을 사용하세요.
 - 특정 작업을 위한 반복 가능한 워크플로우가 필요한 경우 [**변환**](#transform)을 사용하세요.
 - 사용량과 비용을 확인하려면 [**대시보드**](#dashboard)를 사용하세요.
-- 과거 작업과 해당 전체 입력/출력 텍스트를 검토하려면 [**기록](#history)을 사용하세요.
-- 안전하게 보관하거나 다른 사람과 공유하려는 프롬프트 라이브러리를 구축 중이라면 정기적으로 프롬프트를 내보내세요(자세한 내용은 [변환 프롬프트](#transform-prompts) 참조).
+- [**기록**](#history)을 사용하여 과거 작업과 해당 전체 입력/출력 텍스트를 검토하세요.
+- 프롬프트 라이브러리를 안전하게 보관하거나 다른 사람과 공유하려는 경우 정기적으로 프롬프트를 내보내세요(자세한 내용은 [변환 프롬프트](#transform-prompts) 참조).
 
 <br/><br/>
 

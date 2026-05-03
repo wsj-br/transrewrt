@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:37:10.075Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:08.988Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt unterstützt Sie bei der Textbearbeitung auf drei Hauptweisen:
 
-- Übersetzen** - Text von einer Sprache in eine andere umwandeln.
-- **Umschreiben** - Text in einem anderen Stil neu formulieren, z. B. klarer, kürzer oder formeller.
-- **Umwandeln** - Text mithilfe benutzerdefinierter KI-Anweisungen verarbeiten, die Prompts genannt werden.
+- **Übersetzen** – Text von einer Sprache in eine andere konvertieren.
+- **Umschreiben** – Text in einem anderen Stil umformulieren, beispielsweise klarer, kürzer oder formeller.
+- **Umwandeln** – Text mithilfe benutzerdefinierter KI-Anweisungen, sogenannter Prompts, verarbeiten.
 
 <br/>
 
@@ -913,8 +912,8 @@ Klicken Sie beim Bearbeiten eines Prompts immer auf **Speichern**, bevor Sie auf
 - Verwenden Sie [**Umschreiben**](#rewrite) für alltägliche Formulierungsverbesserungen.
 - Verwenden Sie [**Umwandeln**](#transform), wenn Sie einen wiederholbaren Workflow für eine bestimmte Aufgabe benötigen.
 - Verwenden Sie [**Übersicht**](#dashboard), wenn Sie die Nutzung und die Kosten im Auge behalten möchten.
-- Verwenden Sie [**Verlauf](#history), um vergangene Operationen und deren vollständigen Eingabe- und Ausgabetext einzusehen.
-- Exportieren Sie regelmäßig Prompts, wenn Sie eine Prompt-Bibliothek erstellen, die Sie sicher aufbewahren möchten (siehe [Aufforderungen transformieren](#transform-prompts)), oder wenn Sie sie mit anderen teilen möchten.
+- Verwenden Sie [**Verlauf**](#history), um vergangene Vorgänge und deren vollständigen Eingabe- und Ausgabetext zu überprüfen.
+- Exportieren Sie regelmäßig Aufforderungen, wenn Sie eine Aufforderungs-Bibliothek erstellen, die Sie sicher aufbewahren möchten (siehe [Aufforderungen transformieren](#transform-prompts)), oder wenn Sie sie mit anderen teilen möchten.
 
 <br/><br/>
 

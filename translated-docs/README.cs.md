@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T21:08:59.552Z'
-source_file_mtime: '2026-05-02T20:57:11.764Z'
-source_file_hash: 2b5437c0980b14cafcd12332fe78141c3045084da3f4d36d0e668d06ac964719
+translation_last_updated: '2026-05-03T19:08:22.772Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: cs
 source_file_path: README.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -21,17 +22,17 @@ translation_models:
 
 Nástroj pro text s využitím umělé inteligence: překládání mezi jazyky, přepis v různých stylech a transformace pomocí vlastních promptů – s využitím více poskytovatelů umělé inteligence (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokální Ollama). Funguje jako desktopová aplikace (Electron) nebo jako samostatně hostovaná webová aplikace (Docker).
 
-- Překlad** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
-- **Přepsání** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
-- **Transformace** – vlastní AI prompty; vytváření a správa promptů, volitelný cílový jazyk pro každý prompt
-- **Historie** – úplná historie provedených operací včetně vstupního a výstupního textu, filtrování a export
+- **Překlad** – mezi desítkami jazyků s automatickým rozpoznáním zdrojového jazyka
+- **Přepsat** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
+- **Transformovat** – vlastní výzvy AI; vytváření a správa výzev, volitelný cílový jazyk pro každou výzvu
+- **Historie** – kompletní historie spuštění s vstupním a výstupním textem, filtrováním a exportem
 - **Modely a náklady** – výběr modelů od libovolného nakonfigurovaného poskytovatele; přehledy nákladů a využití s logy, shrnutí podle modelu/operace/dne
 - **Uživatelské rozhraní** – multilingvní rozhraní (30+ jazyků, podpora RTL), písma, ...
 - **Webový režim** – podpora více uživatelů s administračními rolemi
 - **Desktop** – Electron aplikace pro Windows a Linux
 - **Self-hosted** – Docker image pro amd64 & arm64 (připraveno pro Raspberry Pi)
 
-Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, kde najdete podrobný průvodce všemi funkcemi.
+Jakmile je nainstalováno, podívejte se na [**Uživatelskou příručku**](USER-GUIDE.cs.md) pro podrobný průvodce všemi funkcemi.
 
 <small>**Přečtěte si v jiných jazycích:** </small>
 <small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
@@ -51,14 +52,14 @@ Po instalaci si přečtěte **[Uživatelskou příručku](USER-GUIDE.cs.md)**, k
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Snímky obrazovky](#sn%C3%ADmky-obrazovky)
-- [Rychlý start](#rychl%C3%BD-start)
-- [Získání API klíče OpenRouter](#z%C3%ADsk%C3%A1n%C3%AD-api-kl%C3%AD%C4%8De-openrouter)
-- [Konfigurace a prostředí](#konfigurace-a-prost%C5%99ed%C3%AD)
-- [Vývoj a architektura](#v%C3%BDvoj-a-architektura)
-- [Hlášení problémů](#hl%C3%A1%C5%A1en%C3%AD-probl%C3%A9m%C5%AF)
-- [Zřeknutí se záruk](#z%C5%99eknut%C3%AD-se-z%C3%A1ruk)
-- [Licence](#licence)
+- [Snímky obrazovky](#screenshots)
+- [Rychlý start](#quick-start)
+- [Získání OpenRouter API klíče](#getting-an-openrouter-api-key)
+- [Konfigurace a prostředí](#configuration-and-environment)
+- [Vývoj a architektura](#development-and-architecture)
+- [Hlášení problémů](#reporting-issues)
+- [Právní upozornění](#disclaimer)
+- [Licence](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -127,7 +128,7 @@ Nastavte alespoň jeden klíč poskytovatele prostřednictvím prostředí (nap�
 
 Nebo použijte Docker Compose:
 
-```
+```bash
 # download the compose file
 wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
 # Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
@@ -247,7 +248,7 @@ nahraďte `libasound2t64` za `libasound2` pro `arm64`. Minimální nebo vlastní
 
 <br/>
 
-Jakmile běží aplikace, podívejte se do **[Uživatelské příručky](USER-GUIDE.cs.md)**, kde se dozvíte, jak překládat, přepisovat a transformovat text, spravovat výzvy a konfigurovat modely.
+Jakmile aplikace běží, podívejte se na [**Uživatelskou příručku**](USER-GUIDE.cs.md) a naučte se, jak překládat, přepisovat a transformovat text, spravovat výzvy a konfigurovat modely.
 
 <br/><br/>
 
@@ -337,8 +338,8 @@ Nastavení klíčových parametrů (písmo, modely, jazyky atd.) jsou k dispozic
 <a id="development-and-architecture"></a>
 ## Vývoj a architektura
 
-- **Vývoj:** Nastavení, sestavení, testování a nasazení (Electron, Web, Docker) – viz **[dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)**.
-- **Architektura a přehled systému:** Struktura složek, technologický stack, návrhová rozhodnutí – viz **[dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
+- **Vývoj:** Nastavení, sestavení, testování a nasazení (Electron, Web, Docker) - viz [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
+- **Architektura a přehled systému:** Struktura složek, technologický stack, rozhodnutí o designu - viz [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
 
 <br/><br/>
 

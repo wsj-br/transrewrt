@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:35.217Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:16.602Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: ca
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt us ajuda a treballar amb text de tres maneres principals:
 
-- Traduir** - convertir text d'un idioma a un altre.
-- **Reescriure** - reformular el text en un estil diferent, com ara més clar, més curt o més formal.
-- **Transformar** - processar el text utilitzant instruccions d'IA personalitzades anomenades indicacions.
+- **Traduir** - convertir text d'un idioma a un altre.
+- **Reescriure** - reformular el text en un estil diferent, com ara més clar, més breu o més formal.
+- **Transformar** - processar text mitjançant instruccions personalitzades d'intel·ligència artificial anomenades indicacions.
 
 <br/>
 
@@ -913,8 +912,8 @@ Quan editeu un indicador, feu sempre clic a **Desa** abans de fer clic a **Torna
 - Utilitzeu [**Reescriure**](#rewrite) per a millores habituals del text.
 - Utilitzeu [**Transformar**](#transform) quan necessiteu un flux de treball reutilitzable per a una tasca específica.
 - Utilitzeu [**Tauler**](#dashboard) si voleu controlar l'ús i el cost.
-- Utilitzeu [**Historial](#history) per revisar operacions anteriors i el text complet d'entrada i sortida.
-- Exporteu indicacions regularment si esteu creant una biblioteca d'indicacions que voleu mantenir segura (vegeu [Indicacions de transformació](#transform-prompts)) o si voleu compartir-les amb altres.
+- Utilitzeu [**Historial**](#history) per revisar les operacions anteriors i el text complet d'entrada i sortida.
+- Exporteu regularment les indicacions si esteu creant una biblioteca d'indicacions que voleu mantenir segura (vegeu [Indicacions de transformació](#transform-prompts)) o si desitgeu compartirla amb altres.
 
 <br/><br/>
 

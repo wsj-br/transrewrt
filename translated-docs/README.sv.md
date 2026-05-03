@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:45:28.497Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:10:14.657Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: sv
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller självvärd webbapp (Docker).
 
-- Översätt** - mellan dussintals språk, med automatisk källdetektering
-- **Omskriv** - åtgärda grammatik, förbättra tydligheten, formell/informell, förkorta, utöka, teknisk
-- **Transformera** - anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
-- **Historik** - fullständig exekveringshistorik med indata/utdata-text, filtrering och export
+- **Översätt** – mellan dussintals språk, med automatisk källspråksidentifiering
+- **Omskriv** – åtgärda grammatik, förbättra tydligheten, formellt/obligatoriskt, förkorta, utöka, tekniskt
+- **Transformera** – anpassade AI-prompts; skapa och hantera prompts, valfritt målspråk per prompt
+- **Historik** – fullständig körningshistorik med inmatning/utdata, filtrering och export
 - **Modeller och kostnad** – välj modeller från valfri konfigurerad leverantör; kostnads- och användningsinstrumentpaneler med loggar, sammanfattningar per modell/åtgärd/dag
 - **Användargränssnitt** – flerspråkigt gränssnitt (30+ språk, stöd för RTL), teckensnitt, ...
 - **Webbläge** – stöd för flera användare med administratörsroller

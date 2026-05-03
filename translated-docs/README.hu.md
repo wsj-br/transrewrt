@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:37:57.584Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:00.165Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: hu
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
 
-- Fordítás** - több tucat nyelv között, automatikus forrásérzékeléssel
-- **Átírás** - nyelvtan javítása, tisztaság javítása, formális/informális, rövidítés, bővítés, műszaki
-- **Átalakítás** - egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális célnyelv parancsokhoz
-- **Előzmények** - teljes végrehajtási előzmények bemenet/kimenet szöveggel, szűrés és exportálás
+- **Fordítás** – tucatnyi nyelv között, automatikus forrásnyelv-felismeréssel
+- **Átírás** – helyesírás-javítás, tisztaság javítása, formális/formálisabb stílus, rövidítés, bővítés, technikai szöveg
+- **Átalakítás** – egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelv parancsonként
+- **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
 - **Modellek és költségek** – válasszon modelleket bármely beállított szolgáltatótól; költség- és használati irányítópult naplóval, összegzésekkel modell/művelet/nap szerint
 - **Felhasználói felület (UI)** – többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
 - **Webes mód** – többfelhasználós támogatás adminisztrátori szerepkörökkel

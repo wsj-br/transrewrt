@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:41:05.954Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:31.411Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: ms
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 
-- Terjemahkan** - tukar teks daripada satu bahasa kepada bahasa yang lain.
-- **Tulis semula** - ungkap semula teks dalam gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
-- **Transformasikan** - proses teks menggunakan arahan AI tersuai yang dipanggil arahan.
+- **Terjemahkan** - tukar teks dari satu bahasa ke bahasa lain.
+- **Tulis semula** - ungkapkan semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
+- **Transformasikan** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai prompt.
 
 <br/>
 
@@ -913,8 +912,8 @@ Apabila menyunting arahan, sentiasa klik **Simpan** sebelum klik **Kembali ke Ja
 - Gunakan [**Tulis semula**](#rewrite) untuk penambahbaikan perkataan harian.
 - Gunakan [**Transformasikan**](#transform) apabila anda memerlukan alur kerja yang boleh diulang untuk tugas tertentu.
 - Gunakan [**Papan pemuka**](#dashboard) jika anda ingin memantau penggunaan dan kos.
-- Gunakan [**Sejarah](#history) untuk mengkaji operasi lampau dan teks input/output penuh mereka.
-- Eksport arahan secara berkala jika anda membina perpustakaan arahan yang ingin disimpan dengan selamat (rujuk [Arahan transformasi](#transform-prompts)) atau jika anda ingin kongsi dengan orang lain.
+- Gunakan [**Sejarah**](#history) untuk mengkaji semula operasi terdahulu dan teks input/output penuh.
+- Eksport arahan secara berkala jika anda membina perpustakaan arahan yang ingin diselamatkan (lihat [Arahan transformasi](#transform-prompts)) atau jika anda ingin berkongsi dengannya dengan orang lain.
 
 <br/><br/>
 

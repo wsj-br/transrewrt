@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:37:11.603Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:41.351Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: fr
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans différents styles et transformer avec des prompts personnalisés - en utilisant plusieurs fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI et Ollama local). Fonctionne comme une application de bureau (Electron) ou une application web auto-hébergée (Docker).
 
-- Traduire** - entre des dizaines de langues, avec détection automatique de la source
+- **Traduire** - entre des dizaines de langues, avec détection automatique de la source
 - **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
-- **Transformer** - invites IA personnalisées ; créer et gérer des invites, langue cible optionnelle par invite
-- **Historique** - historique d'exécution complet avec texte d'entrée/sortie, filtrage et exportation
+- **Transformer** - invites personnalisées par IA ; créer et gérer des invites, langue cible facultative par invite
+- **Historique** - historique complet des exécutions avec texte d'entrée/de sortie, filtres et exportation
 - **Modèles et coûts** - choisir des modèles parmi n'importe quel fournisseur configuré ; tableaux de bord des coûts et de l'utilisation avec journaux, résumés par modèle/opération/jour
 - **Interface utilisateur** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
 - **Mode web** - prise en charge multi-utilisateurs avec rôles administrateurs

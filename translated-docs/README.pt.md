@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:41:19.040Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:37.578Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: pt
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Executa como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
-- Traduzir** - entre dezenas de idiomas, com detecção automática da origem
+- **Traduzir** - entre dezenas de idiomas, com detecção automática da origem
 - **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
-- **Transformar** - prompts de IA personalizados; criar e gerenciar prompts, idioma de destino opcional por prompt
-- **Histórico** - histórico completo de execução com texto de entrada/saída, filtragem e exportação
+- **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
+- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
 - **Modelos e custo** - escolha modelos de qualquer fornecedor configurado; painéis de custo e utilização com registo e resumos por modelo/operação/dia
 - **IU** - interface multilíngue (30+ idiomas, suporte a RTL), tipos de letra, ...
 - **Modo Web** - suporte multiutilizador com funções de administrador

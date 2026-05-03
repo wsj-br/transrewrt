@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:35:16.426Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:40.856Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: tl
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling isulat sa iba't ibang estilo, at baguhin gamit ang pasadyang mga prompt — gamit ang maramihang AI provider (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at lokal na Ollama). Tumatakbo bilang desktop app (Electron) o self-hosted web app (Docker).
 
-- Isalin** - sa pagitan ng dosenang mga wika, na may awtomatikong pagdetekta ng pinagmulan
-- **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/di-pormal, paiikliin, palawakin, teknikal
-- **Baguhin** - mga custom AI prompt; gumawa at pamahalaan ang mga prompt, opsyonal na destinasyon na wika kada prompt
-- **Kasaysayan** - buong kasaysayan ng pagpapatakbo na may input/output na teksto, pag-filter, at pag-export
+- **Isalin** - sa pagitan ng mga dosenang mga wika, na may awtomatikong pagtuklas ng pinagmulan
+- **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/impormal, paiikliin, palawakin, teknikal
+- **Baguhin** - mga pasadyang prompt sa AI; lumikha at pamahalaan ang mga prompt, opsyonal na wika ng destinasyon bawat prompt
+- **Kasaysayan** - buong kasaysayan ng pagpapatupad na may tekstong input/output, pag-filter, at pag-export
 - **Mga Modelo at gastos** - pumili ng mga modelo mula sa anumang naka-configure na tagapagbigay; dashboard para sa gastos at paggamit na may log, buod ayon sa modelo/operasyon/araw
 - **UI** - multilingual na interface (higit sa 30 wika, suporta sa RTL), mga font, ...
 - **Web mode** - suporta sa maraming gumagamit na may admin na papel

@@ -1,12 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T22:34:47.129Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:34.150Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: hr
 source_file_path: USER-GUIDE.md
 translation_models:
   - openai/gpt-4o-mini
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +20,9 @@ translation_models:
 
 Transrewrt vam pomaže u radu s tekstom na tri glavna načina:
 
-- Prevedi** - pretvori tekst s jednog jezika na drugi.
-- **Prepisi** - preformuliraj tekst u drugačijem stilu, npr. jasnije, kraće ili formalnije.
-- **Transformiraj** - obradi tekst pomoću prilagođenih AI uputa koje se zovu upiti.
+- **Prevedi** - pretvori tekst s jednog jezika na drugi.
+- **Prepisi** - preformuliraj tekst u drugačijem stilu, na primjer jasnijem, kraćem ili formalnijem.
+- **Transformiraj** - obradi tekst pomoću prilagođenih uputa za umjetnu inteligenciju koje se nazivaju upute.
 
 <br/>
 
@@ -914,7 +913,7 @@ Prilikom uređivanja upita, uvijek kliknite **Spremi** prije nego što kliknete 
 - Koristite [**Prepisi**](#rewrite) za svakodnevna poboljšanja formulacije.
 - Koristite [**Transformiraj**](#transform) kada vam treba ponovljiv tijek rada za određeni zadatak.
 - Koristite [**Nadzorna ploča**](#dashboard) ako želite pratiti korištenje i troškove.
-- Koristite [**Povijest](#history) za pregled prošlih operacija i njihovog potpunog ulaznog/izlaznog teksta.
+- Upotrijebite [**Povijest**](#history) za pregled prošlih operacija i njihovog potpunog ulaznog/izlaznog teksta.
 - Redovito izvozite upite ako izrađujete biblioteku upita koju želite sačuvati (pogledajte [Transformacijske upute](#transform-prompts)) ili ako ju želite dijeliti s drugima.
 
 <br/><br/>

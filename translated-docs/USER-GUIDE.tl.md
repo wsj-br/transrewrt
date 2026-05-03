@@ -1,12 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T22:36:49.294Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:52.988Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: tl
 source_file_path: USER-GUIDE.md
 translation_models:
   - anthropic/claude-3.5-haiku
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +20,9 @@ translation_models:
 
 Tinutulungan ka ng Transrewrt na gumana sa teksto sa tatlong pangunahing paraan:
 
-- Isalin** - i-convert ang teksto mula sa isang wika patungo sa iba.
-- **Muling isulat** - muling ipahayag ang teksto sa ibang istilo, gaya ng mas malinaw, mas maikli, o mas pormal.
-- **Baguhin** - iproseso ang teksto gamit ang mga custom na tagubilin ng AI na tinatawag na mga prompt.
+- **Isalin** - i-convert ang teksto mula sa isang wika patungo sa isa pa.
+- **Muling isulat** - i-parafrase ang teksto sa ibang estilo, tulad ng mas malinaw, mas maikli, o mas pormal.
+- **Baguhin** - i-proseso ang teksto gamit ang mga pasadyang AI na tagubilin na tinatawag na mga prompt.
 
 <br/>
 
@@ -914,8 +913,8 @@ Kapag nag-e-edit ng prompt, i-click palagi ang **I-save** bago i-click ang **Bum
 - Gamitin ang [**Muling isulat**](#rewrite) para sa pang-araw-araw na pagpapabuti ng mga salita.
 - Gamitin ang [**Baguhin**](#transform) kapag kailangan mo ng paulit-ulit na workflow para sa isang tiyak na gawain.
 - Gamitin ang [**Dashboard**](#dashboard) kung gusto mong bantayan ang paggamit at gastos.
-- Gamitin ang [**Kasaysayan](#history) upang suriin ang mga nakaraang operasyon at ang buong input/output text nito.
-- I-export ang mga prompt nang regular kung gumagawa ka ng prompt library na gusto mong mapanatiling ligtas (tingnan ang [Mga prompt sa pagbabago](#transform-prompts)) o kung ibabahagi mo ito sa iba.
+- Gamitin ang [**Kasaysayan**](#history) upang suriin ang mga nakaraang operasyon at ang buong input/output text nito.
+- I-export ang mga prompt nang regular kung gumagawa ka ng isang library ng mga prompt na nais mong mapanatiling ligtas (tingnan ang [Mga prompt sa pagbabago](#transform-prompts)) o kung nais mong ibahagi ito sa iba.
 
 <br/><br/>
 

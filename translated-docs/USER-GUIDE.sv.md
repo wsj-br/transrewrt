@@ -1,12 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:46:43.829Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:10:26.622Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: sv
 source_file_path: USER-GUIDE.md
 translation_models:
-  - deepseek/deepseek-v3.2
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +19,9 @@ translation_models:
 
 Transrewrt hjälper dig att arbeta med text på tre sätt:
 
-- Översätt** - konvertera text från ett språk till ett annat.
+- **Översätt** - konvertera text från ett språk till ett annat.
 - **Omskriv** - formulera om text i en annan stil, till exempel tydligare, kortare eller mer formell.
-- **Transformera** - bearbeta text med anpassade AI-instruktioner som kallas prompter.
+- **Transformera** - bearbeta text med anpassade AI-instruktioner som kallas prompts.
 
 <br/>
 
@@ -914,8 +912,8 @@ När du redigerar en prompt måste du alltid klicka på **Spara** innan du klick
 - Använd [**Omskriv**](#rewrite) för dagliga formuleringsoptimeringar.
 - Använd [**Transformera**](#transform) när du behöver en återupprepad arbetsflödeslösning för en specifik uppgift.
 - Använd [**Översiktspanel**](#dashboard) om du vill hålla koll på användning och kostnad.
-- Använd [**Historik](#history) för att granska tidigare operationer och deras fullständiga inmatning/utdata.
-- Exportera prompts regelbundet om du bygger ett promptbibliotek som du vill hålla säkert (se [Omvandlingsprompts](#transform-prompts)) eller om du vill dela det med andra.
+- Använd [**Historik**](#history) för att granska tidigare åtgärder och deras fullständiga inmatning/utdata.
+- Exportera prompts regelbundet om du bygger en promptbibliotek som du vill spara (se [Omvandlingsprompts](#transform-prompts)) eller om du vill dela det med andra.
 
 <br/><br/>
 

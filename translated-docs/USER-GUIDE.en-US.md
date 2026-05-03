@@ -1,13 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T22:37:27.287Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:51.504Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: en-US
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
-  - qwen/qwen3.6-plus
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
@@ -21,7 +19,7 @@ translation_models:
 
 Transrewrt helps you work with text in three main ways:
 
-- Translate** - convert text from one language to another.
+- **Translate** - convert text from one language to another.
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
@@ -914,7 +912,7 @@ When editing a prompt, always click **Save** before clicking **Back to Run**.
 - Use [**Rewrite**](#rewrite) for everyday wording improvements.
 - Use [**Transform**](#transform) when you need a repeatable workflow for a specific task.
 - Use [**Dashboard**](#dashboard) if you want to keep an eye on usage and cost.
-- Use [**History](#history) to review past operations and their full input/output text.
+- Use [**History**](#history) to review past operations and their full input/output text.
 - Export prompts regularly if you are building a prompt library you want to keep safe (see [Transform Prompts](#transform-prompts)) or if you wish to share it with others.
 
 <br/><br/>

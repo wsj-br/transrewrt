@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:52.663Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:49.956Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: nl
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,8 +19,8 @@ translation_models:
 
 Transrewrt helpt u op drie manieren met tekstverwerking:
 
-- Vertalen** - tekst van de ene taal naar de andere omzetten.
-- **Herschrijven** - tekst in een andere stijl herformuleren, zoals duidelijker, korter of formeler.
+- **Vertalen** - tekst omzetten van de ene taal naar de andere.
+- **Herschrijven** - tekst herschrijven in een andere stijl, zoals duidelijker, korter of formeler.
 - **Transformeren** - tekst verwerken met aangepaste AI-instructies die prompts worden genoemd.
 
 <br/>
@@ -913,8 +912,8 @@ Klik bij het bewerken van een prompt altijd op **Opslaan** voordat u op **Terug 
 - Gebruik [**Herschrijven**](#rewrite) voor alledaagse verbeteringen van formuleringen.
 - Gebruik [**Transformeren**](#transform) wanneer u een herhaalbare werkstroom nodig hebt voor een specifieke taak.
 - Gebruik [**Dashboard**](#dashboard) als u gebruik en kosten in de gaten wilt houden.
-- Gebruik [**Geschiedenis](#history) om eerdere bewerkingen en hun volledige invoer-/uitvoertekst te bekijken.
-- Exporteer prompts regelmatig als u een promptbibliotheek aan het bouwen bent die u veilig wilt bewaren (zie [Transform Prompts](#transform-prompts)) of als u deze met anderen wilt delen.
+- Gebruik [**Geschiedenis**](#history) om eerdere bewerkingen en hun volledige invoer- en uitvoertekst te bekijken.
+- Exporteer prompts regelmatig als je een promptbibliotheek aan het bouwen bent die je veilig wilt bewaren (zie [Transform Prompts](#transform-prompts)) of als je deze met anderen wilt delen.
 
 <br/><br/>
 

@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:38:58.907Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:17.250Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: it
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Strumento testuale basato su AI: traduci tra lingue, riscrivi in stili diversi e trasforma con prompt personalizzati - utilizzando più provider di intelligenza artificiale (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama locale). Funziona come app desktop (Electron) o come app web autosufficiente (Docker).
 
-- Traduci** - tra decine di lingue, con rilevamento automatico della lingua di origine
-- **Riscrivi** - correggi la grammatica, migliora la chiarezza, formale/informale, accorcia, espandi, tecnico
-- **Trasforma** - prompt AI personalizzati; crea e gestisci prompt, lingua di destinazione opzionale per prompt
-- **Cronologia** - cronologia completa dell'esecuzione con testo di input/output, filtri ed esportazione
+- **Traduci** - tra dozzine di lingue, con rilevamento automatico dell'origine
+- **Riscrivi** - correggi grammatica, migliora chiarezza, registro formale/informale, accorcia, espandi, tecnico
+- **Trasforma** - prompt personalizzati con intelligenza artificiale; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
+- **Cronologia** - cronologia completa delle esecuzioni con testo in input/output, filtri ed esportazione
 - **Modelli e costi** - scegli modelli da qualsiasi provider configurato; dashboard di costi e utilizzo con log, riepiloghi per modello/operazione/giorno
 - **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), caratteri tipografici, ...
 - **Modalità Web** - supporto multi-utente con ruoli amministrativi

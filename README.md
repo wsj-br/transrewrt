@@ -13,7 +13,7 @@
 
 AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- Translate** - between dozens of languages, with automatic source detection
+- **Translate** - between dozens of languages, with automatic source detection
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export

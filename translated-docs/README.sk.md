@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:44:17.234Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:56.624Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: sk
 source_file_path: README.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spúšťa sa ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
 
-- Preložiť** - medzi desiatkami jazykov s automatickou detekciou zdrojového jazyka
-- **Prepísať** - opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický štýl
-- **Transformovať** - vlastné AI výzvy; vytvoriť a spravovať výzvy, voliteľný cieľový jazyk pre každú výzvu
-- **História** - úplná história spustení so vstupným/výstupným textom, filtrovaním a exportom
+- **Preložiť** – medzi desiatkami jazykov s automatickým zistením zdrojového jazyka
+- **Prepísať** – opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický obsah
+- **Transformovať** – vlastné výzvy pre umelú inteligenciu; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
+- **História** – kompletná histórija vykonaní vrátane vstupného a výstupného textu, filtrovania a exportu
 - **Modely a náklady** – výber modelov od akéhokoľvek nakonfigurovaného poskytovateľa; nákladové a využitieové prehľady s denníkom, zhrnutiami podľa modelu/operácie/dňa
 - **UI** – viacjazyčné rozhranie (30+ jazykov, podpora RTL), písma, ...
 - **Webový režim** – podpora viacerých používateľov s administračnými rolami

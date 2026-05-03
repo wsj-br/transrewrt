@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:36.739Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:21.151Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: zh-CN
 source_file_path: README.md
 translation_models:
-  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 AI 驱动的文本工具：支持多种语言互译、不同风格的改写以及通过自定义提示词进行转换——使用多个 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和本地 Ollama）。可作为桌面应用（Electron）或自托管 Web 应用（Docker）运行。
 
-- 翻译** - 在数十种语言之间进行翻译，自动检测源语言
-- **重写** - 修正语法，提升清晰度，正式/非正式，缩短，扩展，技术性
+- **翻译** - 在数十种语言之间互译，支持源语言自动检测
+- **重写** - 修正语法、提升清晰度、调整正式/非正式语气、缩短、扩展、技术化
 - **转换** - 自定义 AI 提示；创建和管理提示，每个提示可选目标语言
-- **历史记录** - 完整的执行历史，包括输入/输出文本、过滤和导出
+- **历史记录** - 完整的执行历史，包含输入/输出文本、过滤功能和导出功能
 - **模型与成本** - 可从任意已配置的提供商中选择模型；提供成本与使用情况仪表板，包含日志以及按模型/操作/天汇总的统计信息
 - **用户界面** - 多语言界面（支持30多种语言，包含从右到左书写语言支持）、字体等
 - **网页模式** - 支持多用户，具备管理员角色管理功能

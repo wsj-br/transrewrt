@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:43:08.650Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:10:23.716Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: es
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt te ayuda a trabajar con texto de tres formas principales:
 
-- Traducir** - convertir texto de un idioma a otro.
-- **Reescribir** - reformular el texto en un estilo diferente, como más claro, más conciso o más formal.
-- **Transformar** - procesar texto utilizando instrucciones de IA personalizadas llamadas indicaciones.
+- **Traducir** - convertir texto de un idioma a otro.
+- **Reescribir** - reformular texto en un estilo diferente, como más claro, más breve o más formal.
+- **Transformar** - procesar texto utilizando instrucciones personalizadas de inteligencia artificial llamadas indicaciones.
 
 <br/>
 
@@ -913,8 +912,8 @@ Al editar un prompt, haga clic siempre en **Guardar** antes de hacer clic en **V
 - Use [**Reescribir**](#rewrite) para mejorar el texto habitual.
 - Use [**Transformar**](#transform) cuando necesite un flujo de trabajo repetible para una tarea específica.
 - Use [**Panel**](#dashboard) si desea supervisar el uso y el costo.
-- Use [**Historial](#history) para revisar operaciones anteriores y su texto completo de entrada/salida.
-- Exporte indicaciones regularmente si está creando una biblioteca de indicaciones que desea mantener segura (consulte [Indicaciones de transformación](#transform-prompts)) o si desea compartirla con otros.
+- Usa [**Historial**](#history) para revisar operaciones anteriores y su texto completo de entrada y salida.
+- Exporta los prompts regularmente si estás creando una biblioteca de prompts que deseas mantener segura (consulta [Indicaciones de transformación](#transform-prompts)) o si deseas compartirla con otros.
 
 <br/><br/>
 

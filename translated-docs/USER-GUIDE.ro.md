@@ -1,12 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:42:32.387Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:10:06.641Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
-  - deepseek/deepseek-v3.2
   - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
@@ -22,9 +20,9 @@ translation_models:
 
 Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 
-- Traducere** - convertirea textului dintr-o limbă în alta.
-- **Rescriere** - reformularea textului într-un stil diferit, cum ar fi mai clar, mai scurt sau mai formal.
-- **Transformare** - procesarea textului folosind instrucțiuni AI personalizate numite prompt-uri.
+- **Traducere** - convertiți textul dintr-o limbă în alta.
+- **Rescriere** - reformulați textul într-un alt stil, cum ar fi mai clar, mai scurt sau mai formal.
+- **Transformare** - procesați textul utilizând instrucțiuni personalizate de inteligență artificială numite prompturi.
 
 <br/>
 
@@ -915,8 +913,8 @@ Când editați un prompt, faceți întotdeauna clic pe **Salvare** înainte de a
 - Utilizați [**Rescriere**](#rewrite) pentru îmbunătățiri obișnuite ale formulării.
 - Utilizați [**Transformare**](#transform) atunci când aveți nevoie de un flux de lucru reproductibil pentru o sarcină specifică.
 - Utilizați [**Panou de control**](#dashboard) dacă doriți să urmăriți utilizarea și costurile.
-- Folosește [**Istoric](#history) pentru a reviziona operațiile anterioare și textul lor complet de intrare/ieșire.
-- Exportă solicitările în mod regulat dacă construiești o bibliotecă de solicitări pe care dorești să păstrezi în siguranță (vezi [Solicitări transformare](#transform-prompts)) sau dacă dorești să îl distribuiți altora.
+- Utilizați [**Istoric**](#history) pentru a examina operațiunile anterioare și textul complet de intrare/ieșire.
+- Exportați periodic solicitările dacă creați o bibliotecă de solicitări pe care doriți să o păstrați în siguranță (consultați [Solicitări transformare](#transform-prompts)) sau dacă doriți să o partajați cu alții.
 
 <br/><br/>
 

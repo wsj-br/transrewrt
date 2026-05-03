@@ -21,10 +21,9 @@ build_timestamp
 .cache
 
 
-# Doc translation SQLite cache: commit only DB, not logs/backups under translated-docs/.cache/
-!translated-docs/.cache/
-translated-docs/.cache/**
-!translated-docs/.cache/cache.db
+# i18n docs translate cache (cacheDir default `.translation-cache/`)
+.translation-cache/**
+!.translation-cache/cache.db
 
 # local data (keep out of repo)
 data/

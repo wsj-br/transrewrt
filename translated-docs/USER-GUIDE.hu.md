@@ -1,12 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T22:39:45.291Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:13.004Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: hu
 source_file_path: USER-GUIDE.md
 translation_models:
   - openai/gpt-4o-mini
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +20,9 @@ translation_models:
 
 A Transrewrt három fő módon segít a szöveggel való munkában:
 
-- Fordítás** - szöveg fordítása egyik nyelvről a másikra.
-- **Átírás** - szöveg újrafogalmazása más stílusban, például érthetőbben, rövidebben vagy formálisabban.
-- **Átalakítás** - szöveg feldolgozása egyéni, promptoknak nevezett AI-utasításokkal.
+- **Fordítás** – szöveg átalakítása egyik nyelvről a másikra.
+- **Átírás** – szöveg újrafogalmazása más stílusban, például érthetőbben, rövidebben vagy formálisabban.
+- **Átalakítás** – szöveg feldolgozása egyéni MI-utasításokkal, amelyeket utasításoknak (promptoknak) nevezünk.
 
 <br/>
 
@@ -913,8 +912,8 @@ Prompt szerkesztésekor mindig kattintson a **Mentés** gombra, mielőtt a **Vis
 - Használja a [**Átírás**](#rewrite) funkciót mindennapi szövegjavításokhoz.
 - Használja a [**Átalakítás**](#transform) funkciót, ha ismételhető munkafolyamatot szeretne egy adott feladathoz.
 - Használja az [**Irányítópultot**](#dashboard), ha nyomon szeretné követni a használatot és a költségeket.
-- Használja az [**Előzményeket](#history) a korábbi műveletek és teljes bemeneti/kimeneti szövegeik áttekintéséhez.
-- Rendszeresen exportálja a promptokat, ha olyan promptkönyvtárat épít, amelyet meg szeretne őrizni (lásd: [Átalakítási promptok](#transform-prompts)), vagy ha meg szeretné osztani másokkal.
+- Használja az [**Előzmények**](#history) lehetőséget a korábbi műveletek és teljes bemeneti/kimeneti szövegeik áttekintéséhez.
+- Rendszeresen exportálja a promptokat, ha olyan promptkönyvtárat készít, amelyet biztonságban szeretne tartani (lásd: [Átalakítási promptok](#transform-prompts)), vagy ha meg szeretné osztani másokkal.
 
 <br/><br/>
 

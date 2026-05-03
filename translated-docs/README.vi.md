@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:48:32.722Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:10:33.713Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: vi
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
-- Dịch** - giữa hàng chục ngôn ngữ, với phát hiện tự động nguồn
-- **Viết lại** - sửa lỗi ngữ pháp, cải thiện độ rõ ràng, chính thức/không chính thức, rút gọn, mở rộng, kỹ thuật
-- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho mỗi lời nhắc
-- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, lọc, và xuất
+- **Dịch** - giữa hàng chục ngôn ngữ, với khả năng tự động phát hiện ngôn ngữ nguồn
+- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, chuyển đổi trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
+- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho từng lời nhắc
+- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, bộ lọc và chức năng xuất
 - **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày
 - **Giao diện người dùng (UI)** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
 - **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên

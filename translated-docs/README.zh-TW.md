@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-02T22:34:41.299Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:21.686Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: zh-TW
 source_file_path: README.md
 translation_models:
@@ -22,10 +22,10 @@ translation_models:
 
 AI 驅動的文字工具：支援多語言翻譯、不同風格重寫，並可透過自訂提示詞進行轉換 — 使用多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI 和 local Ollama）。可作為桌面應用程式（Electron）或自架式網頁應用程式（Docker）運行。
 
-- 翻譯** - 在數十種語言之間，自動檢測來源
-- **重寫** - 修正語法，提升清晰度，正式/非正式，縮短，擴展，技術性
-- **轉換** - 自訂 AI 提示；建立和管理提示，每個提示可選目標語言
-- **歷史記錄** - 完整執行歷史，包括輸入/輸出文字、過濾和匯出
+- **翻譯** - 支援數十種語言之間的翻譯，並具備自動來源語言偵測功能
+- **重寫** - 修正語法、提升清晰度、調整正式或非正式語氣、縮短或擴展內容、技術性轉換
+- **轉換** - 自訂 AI 提示；建立與管理提示，每個提示可選擇性設定目標語言
+- **歷史記錄** - 完整的執行歷史，包含輸入與輸出文字、篩選功能，以及匯出功能
 - **模型與成本** - 從任何已設定的供應商中選擇模型；提供成本與使用量儀表板，包含日誌以及依模型/操作/日期的摘要
 - **使用者介面** - 多語言介面（支援 30+ 種語言，包含 RTL 右至左顯示支援）、字型設定等
 - **網頁模式** - 支援多使用者與管理員角色設定

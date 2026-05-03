@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:37:40.074Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:54.315Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: fr
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt vous aide à travailler avec le texte de trois manières principales :
 
-- Traduire** - convertir un texte d'une langue à une autre.
-- **Réécrire** - reformuler un texte dans un style différent, comme plus clair, plus concis ou plus formel.
-- **Transformer** - traiter un texte à l'aide d'instructions IA personnalisées appelées invites.
+- **Traduire** - convertir un texte d'une langue à une autre.
+- **Réécriture** - reformuler un texte dans un style différent, par exemple plus clair, plus court ou plus formel.
+- **Transformer** - traiter un texte à l'aide d'instructions personnalisées d'intelligence artificielle appelées prompts.
 
 <br/>
 
@@ -913,8 +912,8 @@ Lors de la modification d'une invite, cliquez toujours sur **Enregistrer** avant
 - Utilisez [**Réécriture**](#rewrite) pour améliorer quotidiennement le libellé.
 - Utilisez [**Transformer**](#transform) lorsque vous avez besoin d'un flux de travail reproductible pour une tâche spécifique.
 - Utilisez [**Tableau de bord**](#dashboard) si vous souhaitez surveiller l'utilisation et le coût.
-- Utilisez [**Historique](#history) pour consulter les opérations passées et leur texte complet d'entrée et de sortie.
-- Exportez régulièrement les invites si vous créez une bibliothèque d'invites que vous souhaitez conserver en sécurité (voir [Invites de transformation](#transform-prompts)) ou que vous souhaitez partager avec d'autres.
+- Utilisez [**Historique**](#history) pour consulter les opérations passées ainsi que leur texte d'entrée et de sortie complet.
+- Exportez régulièrement les invites si vous créez une bibliothèque d'invites que vous souhaitez préserver (voir [Invites de transformation](#transform-prompts)) ou si vous souhaitez la partager avec d'autres personnes.
 
 <br/><br/>
 

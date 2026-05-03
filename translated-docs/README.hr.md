@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:43.111Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:22.271Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: hr
 source_file_path: README.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 AI alat za obradu teksta: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija prilagođenim upitima – koristeći više AI davatelja (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao desktop aplikacija (Electron) ili samoposlužena web aplikacija (Docker).
 
-- Prevedi** - između desetaka jezika, uz automatsko otkrivanje jezika Izvor
-- **Prepisi** - ispravi gramatiku, Poboljšaj jasnoću, formalno/neformalno, Skraćivanje, Proširivanje, tehnički stil
-- **Transformiraj** - prilagođeni AI upiti; Kreiraj i upravljaj upitima, opcionalni jezik Meta po upitu
-- **Povijest** - potpuna povijest izvršavanja s Ulaz/Izlazni tekst, filtriranjem i Izvozom
+- **Prevedi** - između desetak jezika, s automatskim prepoznavanjem izvora
+- **Prepisi** - ispravi gramatiku, poboljšaj jasnoću, formalno/neformalno, skraćivanje, proširivanje, tehnički sadržaj
+- **Transformiraj** - prilagođeni AI upiti; kreiraj i upravljaj upitima, opcionalni ciljni jezik po upitu
+- **Povijest** - potpuna povijest izvršavanja s ulaznim/izlaznim tekstom, filtriranjem i izvozom
 - **Modeli i troškovi** – odabir modela iz bilo kojeg konfiguriranog davatelja; nadzorne ploče za troškove i korištenje s dnevnicima, sažecima po modelu/operaciji/danu
 - **Korisnički sučelje (UI)** – višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
 - **Web način rada** – podrška za više korisnika s administratorskim ulogama

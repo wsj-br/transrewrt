@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:42:02.175Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:49.076Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: jv
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -20,9 +19,9 @@ translation_models:
 
 Transrewrt mbantu sampeyan ngolah tèks kanthi telung cara utama:
 
-- Terjemahake - ngalihbahasa teks saka siji basa menyang liyane.
-- **Tulis ulang** - ngowahi teks kanthi gaya beda, kayata luwih cetha, luwih cekak, utawa luwih formal.
-- **Ubah** - ngolah teks nganggo instruksi AI khusus sing diarani prompt.
+- **Terjemahake** - ngowahi tèks saka siji basa menyang basa liyane.
+- **Tulis ulang** - nulis maneh tèks nganggo gaya sing beda, kaya luwih cetha, luwih cendhak, utawa luwih resmi.
+- **Ubah** - ngolah tèks nganggo instruksi AI khusus sing diarani prompt.
 
 <br/>
 
@@ -913,8 +912,8 @@ Saat nyunting prompt, tansah klik **Simpen** sadurunge klik **Mundur menyang Run
 - Gunakake [**Tulis ulang**](#rewrite) kanggo perbaikan basa saben dina.
 - Gunakake [**Ubah**](#transform) nalika sampeyan butuh alur kerja sing bisa diulang kanggo tugas tartamtu.
 - Gunakake [**Dasbor**](#dashboard) yen sampeyan pengin ngawasi panggunaan lan biaya.
-- Gunakake [**Riwayat](#history) kanggo nimbang operasi lawas lan teks input/output lengkap.
-- Ekspor prompt kanthi rutin yen sampeyan lagi mbangun pusthaka prompt sing pengin disimpen aman (deleng [Prompt transformasi](#transform-prompts)) utawa yen sampeyan pengin nuduhake karo wong liya.
+- Gunakake [**Riwayat**](#history) kanggo nelaah operasi sadurunge lan teks input/output lengkap.
+- Ekspor prompt kanthi rutin yen sampeyan nyusun pusthaka prompt sing pengin disimpen kanthi aman (deleng [Prompt Transformasi](#transform-prompts)) utawa yen sampeyan pengin barengake karo wong liya.
 
 <br/><br/>
 

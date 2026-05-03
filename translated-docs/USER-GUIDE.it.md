@@ -1,12 +1,11 @@
 ---
-translation_last_updated: '2026-05-02T22:40:06.509Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:27.352Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: it
 source_file_path: USER-GUIDE.md
 translation_models:
   - openai/gpt-4o-mini
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +20,9 @@ translation_models:
 
 Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 
-- Traduci** - converti il testo da una lingua a un'altra.
-- **Riscrivi** - riformula il testo con uno stile diverso, ad esempio più chiaro, più breve o più formale.
-- **Trasforma** - elabora il testo usando istruzioni AI personalizzate chiamate prompt.
+- **Traduci** - converti il testo da una lingua all'altra.
+- **Riscrivi** - riformula il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
+- **Trasforma** - elabora il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale chiamate prompt.
 
 <br/>
 
@@ -914,8 +913,8 @@ Quando modifichi un prompt, fai sempre clic su **Salva** prima di fare clic su *
 - Usa [**Riscrivi**](#rewrite) per migliorare quotidianamente il testo.
 - Usa [**Trasforma**](#transform) quando hai bisogno di un flusso di lavoro ripetibile per un compito specifico.
 - Usa [**Dashboard**](#dashboard) se desideri monitorare l'utilizzo e il costo.
-- Usa [**Cronologia](#history) per rivedere le operazioni precedenti e il testo completo di input/output.
-- Esporta regolarmente i prompt se stai creando una libreria di prompt che vuoi conservare al sicuro (vedi [Prompt di trasformazione](#transform-prompts)) o se desideri condividerla con altri.
+- Usa [**Cronologia**](#history) per rivedere le operazioni precedenti e il testo completo di input/output.
+- Esporta i prompt regolarmente se stai creando una libreria di prompt che desideri mantenere al sicuro (vedi [Prompt di trasformazione](#transform-prompts)) o se desideri condividerla con altri.
 
 <br/><br/>
 

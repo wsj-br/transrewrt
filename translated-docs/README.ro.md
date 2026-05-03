@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:41:48.906Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:55.515Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: ro
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate – utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
-- Traduceți** - între zeci de limbi, cu detectare automată a sursei
-- **Rescriere** - corectați gramatica, îmbunătățiți claritatea, formal/informal, scurtați, extindeți, tehnic
-- **Transformare** - comenzi AI personalizate; creați și gestionați comenzi, limbă țintă opțională per comandă
-- **Istoric** - istoric complet al execuției cu text de intrare/ieșire, filtrare și export
+- **Traducere** - între zeci de limbi, cu detectare automată a sursei
+- **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
+- **Transformare** - prompturi personalizate AI; creare și gestionare prompturi, limbă destinație opțională pentru fiecare prompt
+- **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
 - **Modele și costuri** - alegeți modele din orice furnizor configurat; tablouri de bord pentru costuri și utilizare cu jurnale, rezumate pe model/operațiune/zi
 - **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator

@@ -1,12 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:49:03.016Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:10:46.208Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: vi
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
-  - deepseek/deepseek-v3.2
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +19,9 @@ translation_models:
 
 Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
 
-- Dịch - chuyển đổi văn bản từ một ngôn ngữ sang một ngôn ngữ khác.
-- **Viết lại** - sử dụng lại văn bản theo một phong cách khác, chẳng hạn như rõ ràng hơn, ngắn gọn hơn hoặc chính thức hơn.
-- **Chuyển đổi** - xử lý văn bản bằng cách sử dụng các hướng dẫn AI tùy chỉnh được gọi là lời nhắc.
+- **Dịch** - chuyển đổi văn bản từ ngôn ngữ này sang ngôn ngữ khác.
+- **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
+- **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn trí tuệ nhân tạo tùy chỉnh gọi là lời nhắc.
 
 <br/>
 
@@ -914,8 +912,8 @@ Khi chỉnh sửa lời nhắc, hãy luôn nhấn **Lưu** trước khi nhấn *
 - Sử dụng [**Viết lại**](#rewrite) để cải thiện văn bản hàng ngày.
 - Sử dụng [**Chuyển đổi**](#transform) khi bạn cần một quy trình làm việc có thể lặp lại cho một nhiệm vụ cụ thể.
 - Sử dụng [**Bảng điều khiển**](#dashboard) nếu bạn muốn theo dõi mức sử dụng và chi phí.
-- Sử dụng [**Lịch sử](#history) để xem lại các hoạt động trước đó và văn bản đầu vào/đầu ra đầy đủ của chúng.
-- Xuất lời nhắc thường xuyên nếu bạn đang xây dựng một thư viện lời nhắc mà bạn muốn giữ an toàn (xem [Lời nhắc chuyển đổi](#transform-prompts)) hoặc nếu bạn muốn chia sẻ nó với người khác.
+- Sử dụng [**Lịch sử**](#history) để xem lại các thao tác trước đó cùng toàn bộ văn bản đầu vào/văn bản đầu ra của chúng.
+- Xuất các lời nhắc thường xuyên nếu bạn đang xây dựng một thư viện lời nhắc mà bạn muốn lưu giữ an toàn (xem [Lời nhắc chuyển đổi](#transform-prompts)) hoặc nếu bạn muốn chia sẻ nó với người khác.
 
 <br/><br/>
 

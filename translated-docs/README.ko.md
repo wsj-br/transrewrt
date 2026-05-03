@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:39:49.174Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:18.351Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: ko
 source_file_path: README.md
 translation_models:
-  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 언어 간 번역, 다양한 스타일로 재작성 및 사용자 정의 프롬프트로 변환 - 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
 
-- 번역** - 수십 개 언어 간 자동 소스 감지
-- **다시 작성** - 문법 수정, 명확성 향상, 형식적/비형식적, 축약, 확장, 기술적
-- **변환** - 맞춤형 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어
-- **기록** - 입력/출력 텍스트, 필터링 및 내보내기가 포함된 전체 실행 기록
+- **번역** - 수십 가지 언어 간 번역 및 소스 언어 자동 감지
+- **다시 작성** - 문법 수정, 명확성 향상, 격식/비격식 조정, 축약, 확장, 기술적 표현 변환
+- **변환** - 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
+- **기록** - 입력/출력 텍스트, 필터링 및 내보내기 기능을 포함한 전체 실행 기록
 - **모델 및 비용** - 설정된 제공업체 중에서 모델 선택 가능; 로그, 모델/작업/일별 요약을 포함한 비용 및 사용량 대시보드
 - **UI** - 다국어 인터페이스(30개 이상 언어, RTL 지원), 폰트 등
 - **웹 모드** - 관리자 역할이 있는 다중 사용자 지원

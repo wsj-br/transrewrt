@@ -1,12 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:44.988Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:08:32.849Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: zh-TW
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-4o-mini
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -21,9 +19,9 @@ translation_models:
 
 Transrewrt 可協助您以三種主要方式處理文字：
 
-- 翻譯** - 將文本從一種語言轉換為另一種語言。
-- **重寫** - 以不同的風格重新表述文本，例如更清晰、更簡短或更正式。
-- **轉換** - 使用稱為提示的自定義 AI 指令處理文本。
+- **翻譯** - 將文字從一種語言轉換為另一種語言。
+- **重寫** - 以不同的風格重新表述文字，例如更清晰、更簡潔或更正式。
+- **轉換** - 使用稱為提示的自訂 AI 指示來處理文字。
 
 <br/>
 
@@ -914,8 +912,8 @@ pnpm run reset-web-password -- <username> <new-password>
 - 使用 [**重寫**](#rewrite) 來進行日常的文字優化。
 - 當你需要為特定任務建立可重複使用的流程時，請使用 [**轉換**](#transform)。
 - 如果你想監控使用狀況和成本，請使用 [**儀表板**](#dashboard)。
-- 使用 [**歷史記錄](#history) 來檢視過去的操作及其完整的輸入/輸出文字。
-- 如果您正在建立想要安全保存的提示庫（請參閱[轉換提示](#transform-prompts)），或希望與他人分享，請定期匯出提示。
+- 使用 [**歷史記錄**](#history) 來檢視過去的操作及其完整的輸入/輸出文字。
+- 如果您正在建立一個想要妥善保存的提示庫（請參閱 [轉換提示](#transform-prompts)），或希望與他人分享，請定期匯出提示。
 
 <br/><br/>
 

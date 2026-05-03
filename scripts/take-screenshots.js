@@ -9,9 +9,11 @@
  * - Set ADMIN_USERNAME and ADMIN_PASSWORD in the environment (required; script exits if missing).
  *
  * Usage: pnpm run take-screenshots [--screenshot=NAME[,NAME...]] [--locale=CODE[,CODE...]]
+ *   Unknown flags, invalid `--screenshot=` names, and `--locale` filters that match nothing are rejected at startup (before config/DB/server/browser).
  *   --screenshot=…  (or --screen=…)  One or more sets, comma- or space-separated (e.g. --screenshot=translate,rewrite).
  *   --locale=CODE      (comma- or space-separated) Only run for these locale(s). On PowerShell, quote commas: '--locale=pt-BR,es' or use spaces: --locale=pt-BR es.
  * Env: BASE_URL (default http://localhost:5000), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
+ *       HISTORY_DISABLED must not be true/1 (checked after CLI validation): exit so the History screenshot can work (match the web server env, e.g. `.env`).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
  * Before capture, the script sets `available_models` and `top_languages` in data/config.json and (web) in SQLite
@@ -39,6 +41,7 @@ const {
   buildExecutionHistoryWhere,
   replaceWhere,
 } = require("../src/shared/db/appSchema.js");
+const { isHistoryDisabledByEnv } = require("../src/shared/historyEnv.js");
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
@@ -508,6 +511,24 @@ const SCREENSHOTS = [
   { name: "sidebar", prepare: prepareSidebar, capture: captureSidebar },
   { name: "history", prepare: prepareHistory, capture: captureHistory },
 ];
+
+/** Exit 1 if `--screenshot=` names are not all in `SCREENSHOTS` (run before DB/server/browser). */
+function assertValidScreenshotCliFilters(screenshotFilters) {
+  if (screenshotFilters == null || screenshotFilters.length === 0) return;
+  const available = new Set(SCREENSHOTS.map((s) => s.name));
+  const unknown = screenshotFilters.filter((n) => !available.has(n));
+  if (unknown.length === 0) return;
+  console.error(
+    RED +
+      "Unknown screenshot set(s): " +
+      unknown.join(", ") +
+      "; available: " +
+      [...available].join(", ") +
+      RESET,
+  );
+  console.error(RED + "Use --help to list valid names." + RESET + "\n");
+  process.exit(1);
+}
 
 async function wait(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -1233,6 +1254,14 @@ async function main() {
     process.exit(1);
   }
 
+  assertValidScreenshotCliFilters(args.screenshotFilters);
+
+  let screenshotSets = SCREENSHOTS;
+  if (args.screenshotFilters != null && args.screenshotFilters.length > 0) {
+    const pick = new Set(args.screenshotFilters);
+    screenshotSets = SCREENSHOTS.filter((s) => pick.has(s.name));
+  }
+
   let uiLanguages = loadAndFilterUILanguages(args.localeFilter);
   if (args.localeFilter && args.localeFilter.length > 0) {
     log("Filtering to %d locale(s): %s", uiLanguages.length, args.localeFilter.join(", "));
@@ -1243,6 +1272,19 @@ async function main() {
     );
     process.exit(1);
   }
+
+  if (isHistoryDisabledByEnv()) {
+    console.error(
+      RED +
+        "HISTORY_DISABLED is set to true in the environment. The History screenshot needs execution history enabled on the server." +
+        RESET,
+    );
+    console.error(
+      "Set HISTORY_DISABLED to false (or unset it) in `.env` and for the web server process, restart the server, then run this script again.",
+    );
+    process.exit(1);
+  }
+
   log("Loaded %d UI languages; will capture each screenshot per language.", uiLanguages.length);
 
   const adminUser = process.env.ADMIN_USERNAME;
@@ -1323,24 +1365,8 @@ async function main() {
   await maybeLogin(page);
   await ensureAppShell(page);
 
-  let screenshotSets = SCREENSHOTS;
   if (args.screenshotFilters != null && args.screenshotFilters.length > 0) {
-    const requested = args.screenshotFilters;
-    const available = new Set(SCREENSHOTS.map((s) => s.name));
-    const unknown = requested.filter((n) => !available.has(n));
-    if (unknown.length > 0) {
-      log(
-        "Unknown screenshot set(s): %s; available: %s",
-        unknown.join(", "),
-        [...available].join(", "),
-      );
-      await browser.close();
-      if (logStream) logStream.end();
-      process.exit(1);
-    }
-    const pick = new Set(requested);
-    screenshotSets = SCREENSHOTS.filter((s) => pick.has(s.name));
-    log("Filtering to screenshot set(s): %s", requested.join(", "));
+    log("Filtering to screenshot set(s): %s", args.screenshotFilters.join(", "));
   }
 
   await setUILanguage(page, "en-GB");

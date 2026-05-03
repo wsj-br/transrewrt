@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:40:22.253Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:09:36.460Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: pl
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Narzędzie tekstowe z wykorzystaniem AI: tłumaczenie między językami, przeformułowanie w różnych stylach oraz transformacja za pomocą niestandardowych promptów — z wykorzystaniem wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI oraz lokalny Ollama). Działa jako aplikacja desktopowa (Electron) lub samodzielnie hostowana aplikacja internetowa (Docker).
 
-- Tłumacz** - między dziesiątkami języków, z automatycznym wykrywaniem źródła
-- **Przepisz** - popraw gramatykę, popraw czytelność, formalny/nieformalny, skróć, rozwiń, techniczny
-- **Przekształć** - niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy na zachętę
-- **Historia** - pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowanie i eksport
+- **Tłumacz** – między dziesiątkami języków, z automatycznym wykrywaniem języka źródłowego
+- **Przepisz** – popraw błędy gramatyczne, popraw czytelność, wersja formalna/nieformalna, skróć, rozwiń, wersja techniczna
+- **Przekształć** – niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy dla każdej zachęty
+- **Historia** – pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
 - **Modele i koszty** – wybierz modele z dowolnego skonfigurowanego dostawcy; tabele kosztów i zużycia z dziennikami, podsumowaniami według modelu/operacji/dnia
 - **Interfejs użytkownika** – wielojęzyczny interfejs (ponad 30 języków, obsługa RTL), czcionki, ...
 - **Tryb sieciowy** – obsługa wielu użytkowników z rolami administratora

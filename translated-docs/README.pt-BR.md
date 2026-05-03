@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:26.487Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:02.365Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: pt-BR
 source_file_path: README.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
-- Traduzir** - entre dezenas de idiomas, com detecção automática do idioma de origem
-- **Reescrever** - corrigir gramática, Melhorar Clareza, formal/informal, Encurtar, Expandir, técnico
-- **Transformar** - prompts de IA personalizados; Criar e gerenciar prompts, com idioma de destino opcional por prompt
-- **Histórico** - histórico completo de execução com texto de Entrada/Texto de saída, filtragem e Exportar
+- **Traduzir** - entre dezenas de idiomas, com detecção automática da origem
+- **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
+- **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
+- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
 - **Modelos e custo** - escolha modelos de qualquer provedor configurado; painéis de custo e uso com log, resumos por modelo/operação/dia
 - **Interface do usuário (UI)** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
 - **Modo Web** - suporte a múltiplos usuários com papéis administrativos

@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:35:57.530Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:40.373Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: en-US
 source_file_path: README.md
 translation_models:
-  - openai/gpt-5.3-codex
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,7 +21,7 @@ translation_models:
 
 AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
-- Translate** - between dozens of languages, with automatic source detection
+- **Translate** - between dozens of languages, with automatic source detection
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export

@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:34:29.994Z'
-source_file_mtime: '2026-05-02T22:14:20.838Z'
-source_file_hash: e725d87565d11046702308fafff3afb771b047b594aff6b62824f39bc83b3b49
+translation_last_updated: '2026-05-03T19:08:03.822Z'
+source_file_mtime: '2026-05-03T18:57:35.870Z'
+source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
 translation_language: ca
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -22,10 +21,10 @@ translation_models:
 
 Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats — utilitzant múltiples proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- Traduir** - entre desenes d'idiomes, amb detecció automàtica de l'origen
-- **Reescriure** - corregir la gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
-- **Transformar** - indicadors d'IA personalitzats; crear i gestionar indicadors, idioma de destinació opcional per indicador
-- **Historial** - historial complet d'execució amb text d'entrada/sortida, filtrat i exportació
+- **Traduir** - entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
+- **Reescriure** - corregir gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
+- **Transformar** - indicadors personalitzats d'IA; crear i gestionar indicadors, idioma de destinació opcional per a cada indicador
+- **Historial** - historial complet d'execucions amb text d'entrada i de sortida, filtres i exportació
 - **Models i cost** - trieu models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
 - **Interfície d'usuari (UI)** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
 - **Mode web** - suport multiusuari amb rols d'administrador

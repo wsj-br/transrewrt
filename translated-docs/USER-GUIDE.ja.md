@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-02T22:39:50.559Z'
-source_file_mtime: '2026-05-02T22:14:02.511Z'
-source_file_hash: 524b4199c6c41f6d98b1e30eee56343fe40727471d8cdceb0e7fcc9dfb275e9a
+translation_last_updated: '2026-05-03T19:09:28.598Z'
+source_file_mtime: '2026-05-03T18:57:44.574Z'
+source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
 translation_language: ja
 source_file_path: USER-GUIDE.md
 translation_models:
-  - anthropic/claude-3-haiku
   - deepseek/deepseek-v3.2
   - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
@@ -22,8 +21,8 @@ translation_models:
 
 Transrewrtは、テキストを以下の3つの方法で処理するのに役立ちます。
 
-- 翻訳** - テキストをある言語から別の言語に変換します。
-- **書き換え** - テキストを異なるスタイルで言い換えます。たとえば、より明確に、短く、またはより正式に。
+- **翻訳** - テキストをある言語から別の言語に変換します。
+- **書き換え** - より明確、簡潔、またはよりフォーマルなど、異なるスタイルでテキストを言い換えます。
 - **変換** - プロンプトと呼ばれるカスタムAI指示を使用してテキストを処理します。
 
 <br/>
@@ -913,8 +912,9 @@ pnpm run reset-web-password -- <username> <new-password>
 - 日常的な文章の改善には[**書き換え**](#rewrite)を使用してください。
 - 特定のタスクに対して繰り返し使えるワークフローが必要な場合は[**変換**](#transform)を使用してください。
 - 使用状況とコストを確認したい場合は[**ダッシュボード**](#dashboard)を使用してください。
-- [**履歴](#history)を使用して、過去の操作とその完全な入力/出力テキストを確認できます。
-- プロンプトライブラリを構築し、安全に保管したい場合(「[変換プロンプト](#transform-prompts)」を参照)、または他の人と共有したい場合は、定期的にプロンプトをエクスポートしてください。
+- [**履歴**](#history) を使用して、過去の操作とその完全な入力/出力テキストを確認してください。
+- プロンプトライブラリを作成していてそれを安全に保管したい場合、または他の人と共有したい場合は、定期的にプロンプトをエクスポートしてください（[変換プロンプト](#transform-prompts)を参照）。
+
 
 <br/><br/>
 
