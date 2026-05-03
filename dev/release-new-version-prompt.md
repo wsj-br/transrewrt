@@ -1,0 +1,76 @@
+Create a new release notes file `dev/RELEASE-NOTES-v<x.y.z>.md` for **Transrewrt** using the instructions below. This supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR).
+
+**Before you start:** run checks that mirror what CI runs before packaging:
+
+1. **`pnpm lint`**
+2. **`pnpm build`** then **`pnpm build:main`**
+
+Fix any failures. Optionally run **`pnpm package`** on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows/Linux).
+
+There is no automated unit/integration test script in `package.json` (`pnpm test` is a stub); do not assume a test suite unless one was added.
+
+**Instructions:**
+
+1. **Read `package.json`** for the target version (`x.y.z`). If you are cutting the release, the version should already be bumped on your branch.
+2. After bumping `version` in `package.json`, run **`pnpm update-version`** so the README version badge and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
+3. **Open `dev/CHANGELOG.md`.**
+4. **Copy all entries under `## Unreleased`** up to (but not including) the next `## [` heading (the previous shipped version).
+5. **Format the new file** to match the newest existing notes under `dev/`, e.g. [`dev/RELEASE-NOTES-v1.1.1.md`](RELEASE-NOTES-v1.1.1.md):
+   - Optional first line: `<!-- DOCTOC SKIP -->`
+   - Title: `# Transrewrt <version> - Release Notes`
+   - **Release date:** `YYYY-MM-DD` (use the authoritative “today” from context when running this task)
+   - Short opening paragraph summarizing the themes of the release (user-focused).
+   - **`## Highlights`** — Most important user-visible changes (features, fixes, polish); not every changelog bullet verbatim.
+   - When it helps readability, add **`## Improvements`** and/or **`## Fixes`** with grouped bullets (see prior release notes); smaller releases may fold these into Highlights only.
+   - **`## Getting This Release`** — Point to GitHub Releases; list typical artifacts: Windows installer (x64), Linux AppImage (x64 and arm64), Docker image `ghcr.io/wsj-br/transrewrt:<version>` (and `latest` when applicable). Mention that exact filenames/checksums are on the release page.
+   - **`## Documentation`** — Link to the main docs, consistent with prior files (repository-relative paths are fine for notes committed in-repo), for example:
+     - [README](../README.md) — overview, installation, quick start  
+     - [USER-GUIDE](../USER-GUIDE.md) — full feature walkthrough  
+     - Optional: [dev/SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md), [dev/DEVELOPMENT.md](DEVELOPMENT.md), [dev/i18n.md](i18n.md) when this release materially touches architecture, dev setup, or translations  
+   - **`## Disclaimer`** — Same product-names disclaimer as in [`RELEASE-NOTES-v1.1.1.md`](RELEASE-NOTES-v1.1.1.md).
+   - **`## License`** — Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](../LICENSE) as in prior release notes.
+   - Closing thank-you line optional, matching prior tone.
+   - Do **not** paste the raw `[Unreleased]` changelog verbatim as the only content; synthesize highlights first. You may add a **detailed changelog subsection** (or collapsible summary) if useful for power users.
+6. **Update `dev/CHANGELOG.md`**:
+   - Move everything from `[Unreleased]` into **`## [x.y.z] - YYYY-MM-DD`** (today’s date).
+   - Leave an empty **`## Unreleased`** section at the top for future work.
+
+**Example shape** (adapt section headings to match the latest `dev/RELEASE-NOTES-v*.md`):
+
+```markdown
+<!-- DOCTOC SKIP -->
+
+# Transrewrt 1.3.2 - Release Notes
+
+**Release date:** 2026-05-03
+
+Short intro paragraph describing what this release emphasizes for users.
+
+## Highlights
+
+- ...
+- ...
+
+## Getting This Release
+
+Published builds are on the GitHub **Releases** page for this tag (Windows installer, Linux AppImages, Docker `ghcr.io/wsj-br/transrewrt:…`).
+
+## Documentation
+
+- **[README](../README.md)** — …
+- **[USER-GUIDE](../USER-GUIDE.md)** — …
+
+## Disclaimer
+
+…
+
+## License
+
+… Apache License 2.0 … [LICENSE](../LICENSE)
+
+---
+
+*Thank you for using Transrewrt.*
+```
+
+**Summary:** Produce `dev/RELEASE-NOTES-v<x.y.z>.md` in the same style as existing Transrewrt release notes, fold `CHANGELOG` `[Unreleased]` into the new version section, and leave the changelog ready for the next iteration.
