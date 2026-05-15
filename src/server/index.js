@@ -18,6 +18,7 @@ const createCallsRouter = require("./routes/calls");
 const createCustomPromptsRouter = require("./routes/customPrompts");
 const createUsersRouter = require("./routes/users");
 const createConfigBackupRouter = require("./routes/configBackup");
+const { createSkillsRouter, startSkillsRemoteSync } = require("./routes/skills");
 const { listLlmEnvVarsPresent } = require("../shared/llm");
 
 const app = express();
@@ -31,6 +32,16 @@ const DEFAULT_CONFIG_PATH = path.join(
   "config-defaults",
   "config_default.json",
 );
+const SKILLS_PATH = path.join(path.dirname(CONFIG_PATH), "skills.json");
+/** Dev: src/server → repo root. Docker: /app/server → /app/regular-mode-config */
+function resolveDefaultSkillsPath() {
+  const oneUp = path.join(__dirname, "..", "regular-mode-config", "skills.json");
+  const twoUp = path.join(__dirname, "..", "..", "regular-mode-config", "skills.json");
+  if (fs.existsSync(twoUp)) return twoUp;
+  if (fs.existsSync(oneUp)) return oneUp;
+  return twoUp;
+}
+const DEFAULT_SKILLS_PATH = resolveDefaultSkillsPath();
 /** Docker layout: /app/server/index.js + /app/build_timestamp (one level up). Dev: src/server + repo-root file (two levels up). */
 function resolveBuildTimestampPath() {
   const dockerLayout = path.join(__dirname, "..", "build_timestamp");
@@ -95,6 +106,7 @@ const configFile = createConfigFile(
 
 appDb.initDb(dataDir, log);
 let cleanupSessionsInterval = null;
+let skillsRemoteSyncInterval = null;
 if (appDb.getDb()) {
   cleanupSessionsInterval = setInterval(() => appDb.cleanupStalledSessions(), 5 * 60 * 1000);
 }
@@ -158,6 +170,7 @@ app.use(
     log,
   ),
 );
+app.use("/api/skills", createSkillsRouter(SKILLS_PATH, DEFAULT_SKILLS_PATH, log));
 
 // One level up: dev has src/server → project root; Docker has /app/server → /app
 const distPath = path.resolve(path.join(__dirname, "..", "dist"));
@@ -214,6 +227,9 @@ async function startServer() {
       : "[SERVER] LLM environment variables set: (none; keys may load from config file only)",
   );
 
+  skillsRemoteSyncInterval = startSkillsRemoteSync(SKILLS_PATH, DEFAULT_SKILLS_PATH, log);
+  log.info(`[SERVER] Skills path: ${SKILLS_PATH}`);
+
   const server = app.listen(PORT, () => {
     log.info("=".repeat(60));
     log.info(`[SERVER] Transrewrt server running at http://localhost:${PORT}`);
@@ -231,6 +247,10 @@ async function startServer() {
     if (cleanupSessionsInterval) {
       clearInterval(cleanupSessionsInterval);
       cleanupSessionsInterval = null;
+    }
+    if (skillsRemoteSyncInterval) {
+      clearInterval(skillsRemoteSyncInterval);
+      skillsRemoteSyncInterval = null;
     }
     server.close(() => {
       appDb.closeDb();

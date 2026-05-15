@@ -49,6 +49,9 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy built static files from builder
 COPY --from=builder /app/dist ./dist
 
+# Default skills catalog (Regular mode) when data/skills.json is missing
+COPY regular-mode-config ./regular-mode-config
+
 # Copy server and shared (server requires shared/db for schema and SQL)
 COPY src/server/ ./server/
 COPY src/shared/ ./shared/

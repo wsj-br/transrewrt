@@ -1,4 +1,6 @@
 {
+    "mode": "regular",
+    "selected_skill_id": null,
     "available_models": [
         "openrouter/openrouter/free"
     ],
@@ -17,6 +19,7 @@
     "font_size": 15,
     "theme": "system",
     "ui_locale": "en-GB",
+    "source_locale": "en-GB",
     "keep_execution_history": true,
     "show_cost_on_actions": false,
     "cost_fraction_style": "muted",

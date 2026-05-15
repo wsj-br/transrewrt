@@ -35,7 +35,7 @@ function sseDeltaContentToString(delta) {
   return "";
 }
 
-function buildTranslatePrompt(sourceLang, targetLang) {
+function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
   const config = prompts.translate;
   const shared = prompts.shared.translate;
   const taskLines = [config.firstBullet];
@@ -50,13 +50,16 @@ function buildTranslatePrompt(sourceLang, targetLang) {
     ...shared.task,
     ...shared.footer,
   ];
-  const prompt = resolvePrompt(lines);
-  return prompt
+  const prompt = resolvePrompt(lines)
     .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
     .replace(/\{\{targetLang\}\}/g, targetLang || "");
+  if (promptHint && String(promptHint).trim()) {
+    return `${prompt}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+  }
+  return prompt;
 }
 
-function buildRewriteSystemPrompt(styleConfig, sourceLang = null) {
+function buildRewriteSystemPrompt(styleConfig, sourceLang = null, promptHint = null) {
   const shared = prompts.shared.rewrite;
   const rewriteRoot = prompts.rewrite;
   const common = shared.common.map((line) =>
@@ -78,7 +81,11 @@ function buildRewriteSystemPrompt(styleConfig, sourceLang = null) {
     ...common,
     ...shared.footer,
   ];
-  return resolvePrompt(lines);
+  let out = resolvePrompt(lines);
+  if (promptHint && String(promptHint).trim()) {
+    out = `${out}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+  }
+  return out;
 }
 
 /**
@@ -87,7 +94,7 @@ function buildRewriteSystemPrompt(styleConfig, sourceLang = null) {
  * @param {string|null} statedFromLang - Explicit From language for this run (transform selector and/or workspace From), not "Detect Language"
  * @returns {string}
  */
-function buildTransformSystemPrompt(promptConfig, statedFromLang = null) {
+function buildTransformSystemPrompt(promptConfig, statedFromLang = null, promptHint = null) {
   const shared = prompts.shared.transform;
   if (!shared) throw new Error("prompts.shared.transform not found");
   const instructions = Array.isArray(promptConfig.instructions)
@@ -120,7 +127,11 @@ function buildTransformSystemPrompt(promptConfig, statedFromLang = null) {
   }
   lines.push(...common);
   lines.push("", ...shared.footer);
-  return resolvePrompt(lines);
+  let out = resolvePrompt(lines);
+  if (promptHint && String(promptHint).trim()) {
+    out = `${out}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+  }
+  return out;
 }
 
 const BASE_PATH = getBasePath();
@@ -435,9 +446,9 @@ class APIService {
    * @param {string} sourceLang - Source language (optional)
    * @returns {Promise<Object>} Translation result with content and usage
    */
-  async translate(text, targetLang, model, sourceLang = null, signal = null) {
+  async translate(text, targetLang, model, sourceLang = null, signal = null, promptHint = null) {
     try {
-      const systemPrompt = buildTranslatePrompt(sourceLang, targetLang);
+      const systemPrompt = buildTranslatePrompt(sourceLang, targetLang, promptHint);
       return await this._streamChatCompletion(systemPrompt, `<translate>${text}</translate>`, model, 0.3, signal, "translate", {});
     } catch (error) {
       if (isAbortError(error)) {
@@ -611,12 +622,12 @@ Respond with ONLY the JSON object. No other text.`;
    * @param {AbortSignal|null} signal - Optional abort signal
    * @returns {Promise<Object>} Rewrite result with content and usage
    */
-  async rewrite(text, mode, model, signal = null, sourceLang = null) {
+  async rewrite(text, mode, model, signal = null, sourceLang = null, promptHint = null) {
     try {
       const modeConfig = prompts.rewrite.modes[mode] || prompts.rewrite.fallback;
 
       return await this._streamChatCompletion(
-        buildRewriteSystemPrompt(modeConfig, sourceLang),
+        buildRewriteSystemPrompt(modeConfig, sourceLang, promptHint),
         `<rewrite>${text}</rewrite>`,
         model,
         modeConfig.temperature,
@@ -649,9 +660,9 @@ Respond with ONLY the JSON object. No other text.`;
    * @param {string|null} statedFromLang - From language for this run (prompt selector and/or workspace From), not "Detect Language"
    * @returns {Promise<Object>} Same shape as rewrite() (content, usage, model, etc.)
    */
-  async transform(text, promptConfig, model, signal = null, statedFromLang = null) {
+  async transform(text, promptConfig, model, signal = null, statedFromLang = null, promptHint = null) {
     try {
-      const systemPrompt = buildTransformSystemPrompt(promptConfig, statedFromLang);
+      const systemPrompt = buildTransformSystemPrompt(promptConfig, statedFromLang, promptHint);
       const temperature = Number(promptConfig.temperature) || 0.4;
       const userMessage = `<transform>${text}</transform>`;
       return await this._streamChatCompletion(

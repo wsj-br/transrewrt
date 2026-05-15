@@ -118,16 +118,21 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const canAccessCostTab = !isWeb || currentUser?.role === "admin";
   const canConfigBackup = !isWeb || currentUser?.role === "admin";
   const isBelowMd = useIsBelowMd();
+  const experienceMode = settings.mode === "advanced" ? "advanced" : "regular";
 
   const settingsTabs = useMemo(
     () => [
       { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
-      {
-        id: "models",
-        icon: <Database size={15} />,
-        label: t("Models"),
-        testId: "settings-tab-models",
-      },
+      ...(experienceMode === "advanced"
+        ? [
+            {
+              id: "models",
+              icon: <Database size={15} />,
+              label: t("Models"),
+              testId: "settings-tab-models",
+            },
+          ]
+        : []),
       { id: "languages", icon: <Globe size={15} />, label: t("Languages") },
       ...(canAccessCostTab
         ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }]
@@ -141,7 +146,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         : []),
       { id: "about", icon: <Info size={15} />, label: t("About") },
     ],
-    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab],
+    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
   );
 
   const selectedTabMeta = useMemo(
@@ -194,10 +199,12 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       setSelectedModelIds(modelsWithFree);
       setSelectedLanguages(new Set(settings.top_languages || []));
       const normalizeTab = (tab) => {
+        const exp = settings.mode === "advanced" ? "advanced" : "regular";
         if (tab === "auth") return canAccessUsersTab ? "users" : "general";
         if (tab === "api" && !canAccessApiTab) return "general";
         if (tab === "users" && !canAccessUsersTab) return "general";
         if (tab === "cost" && !canAccessCostTab) return "general";
+        if (tab === "models" && exp !== "advanced") return "general";
         return tab || "general";
       };
       // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
@@ -233,6 +240,15 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       });
     }
   }, [activeTab, canAccessUsersTab, canAccessApiTab, setSetting]);
+
+  useEffect(() => {
+    if (experienceMode === "regular" && activeTab === "models") {
+      queueMicrotask(() => {
+        setActiveTab("general");
+        setSetting("settings_active_tab", "general");
+      });
+    }
+  }, [experienceMode, activeTab, setSetting]);
 
   useEffect(() => {
     if (allModels.length === 0) {

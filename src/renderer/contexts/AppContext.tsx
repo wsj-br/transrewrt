@@ -10,6 +10,8 @@ import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
+import { loadSkillsFile, updateSkillsFromRemoteElectron } from "../utils/skills/skillsManager";
+import { canonicalModelIdFromSkillModelId } from "../utils/misc/modelIdUtils";
 
 // Create the context
 const AppContext = createContext();
@@ -32,6 +34,7 @@ export const AppProvider = ({ children }) => {
   const [sessionExpired, setSessionExpired] = useState(false);
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [skillsCatalog, setSkillsCatalog] = useState([]);
 
   // Web mode: any 401 from API triggers login modal via this callback
   useEffect(() => {
@@ -114,6 +117,18 @@ export const AppProvider = ({ children }) => {
           isWeb && webAPI.getApiStatus ? webAPI.getApiStatus().then((status) => setApiKeyStatus(status)) : Promise.resolve();
 
         await Promise.all([localePromise, authPromise, statusPromise]);
+        try {
+          await updateSkillsFromRemoteElectron();
+        } catch (e) {
+          console.warn("[skills] remote update:", e);
+        }
+        try {
+          const doc = await loadSkillsFile();
+          setSkillsCatalog(doc.skills || []);
+        } catch (e) {
+          console.warn("[skills] load:", e);
+          setSkillsCatalog([]);
+        }
         i18n.changeLanguage(uiLocale);
       } catch (err) {
         if (err && err.status === 401) {
@@ -142,6 +157,13 @@ export const AppProvider = ({ children }) => {
           const uiLocale = configManager.get("ui_locale") || "en-GB";
           await loadLocale(uiLocale);
           i18n.changeLanguage(uiLocale);
+          try {
+            await updateSkillsFromRemoteElectron();
+            const doc = await loadSkillsFile();
+            setSkillsCatalog(doc.skills || []);
+          } catch (e) {
+            console.warn("[skills] reload after settings:", e);
+          }
         });
       };
       window.electronAPI.onSettingsUpdated(settingsCallback);
@@ -173,14 +195,16 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const setSetting = useCallback(async (key, value, options = {}) => {
-    const optimistic = options.optimistic === true && key === "last_used_model";
+    const optimistic =
+      options.optimistic === true &&
+      (key === "last_used_model" || key === "selected_skill_id");
 
     if (optimistic) {
       const previousSettings = configManager.getAll();
       configManager.config[key] = value;
       setSettings((prev) => ({ ...prev, [key]: value }));
       configManager.set(key, value).catch((err) => {
-        console.error("[AppContext] Failed to persist last_used_model:", err);
+        console.error("[AppContext] Failed to persist setting:", err);
         configManager.config[key] = previousSettings[key];
         setSettings(configManager.getAll());
         setError("Failed to save model preference");
@@ -209,6 +233,17 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
+  const refreshSkillsCatalog = useCallback(async () => {
+    try {
+      await updateSkillsFromRemoteElectron();
+      const doc = await loadSkillsFile();
+      setSkillsCatalog(doc.skills || []);
+    } catch (e) {
+      console.warn("[skills] refresh failed:", e);
+      setSkillsCatalog([]);
+    }
+  }, []);
+
   const { writeLastApiResult, logApiCall, applyCostToResult } = useCostTracking();
   const { removeModelFromList, isUnavailableModelError, handleUnavailableModel } = useModelManagement(
     configManager,
@@ -216,21 +251,49 @@ export const AppProvider = ({ children }) => {
     setError
   );
 
+  const resolveSkillRuntime = useCallback(() => {
+    const uiMode = settings.mode === "advanced" ? "advanced" : "regular";
+    if (uiMode === "advanced" || !skillsCatalog.length) {
+      return { effectiveModel: null, promptHint: null, fromSkillCatalog: false };
+    }
+    const skill =
+      skillsCatalog.find((s) => s.id === settings.selected_skill_id) ?? skillsCatalog[0];
+    if (!skill) return { effectiveModel: null, promptHint: null, fromSkillCatalog: false };
+    return {
+      effectiveModel: canonicalModelIdFromSkillModelId(skill.model_id),
+      promptHint: skill.prompt_hint || null,
+      fromSkillCatalog: true,
+    };
+  }, [settings.mode, settings.selected_skill_id, skillsCatalog]);
+
+  useEffect(() => {
+    if (settings.mode === "advanced") return;
+    if (!skillsCatalog.length) return;
+    const id = settings.selected_skill_id;
+    const valid = id && skillsCatalog.some((s) => s.id === id);
+    if (valid) return;
+    setSetting("selected_skill_id", skillsCatalog[0].id);
+  }, [settings.mode, settings.selected_skill_id, skillsCatalog, setSetting]);
+
   // Translate text
   const translate = async (text, targetLang, model, sourceLang = null, signal = null) => {
     setLoading(true);
     setError(null);
 
+    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
+
     try {
       const result = await apiService.translate(
         text,
         targetLang,
-        model,
+        effectiveModel,
         sourceLang,
         signal,
+        promptHint,
       );
 
-      result.model_used = result.model || model;
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -253,10 +316,7 @@ export const AppProvider = ({ children }) => {
       const translatePayload = {
         timestamp: new Date().toISOString(),
         type: "translate",
-        model: result.model_used || model,
-        source_lang: sourceLang || null,
-        target_lang: targetLang || null,
-        rewrite_mode: null,
+        model: result.model_used || effectiveModel,
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
         completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
@@ -291,7 +351,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Translation failed");
       console.error(err);
@@ -305,10 +373,12 @@ export const AppProvider = ({ children }) => {
   const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
     setLoading(true);
     setError(null);
+    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
     try {
-      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, model, signal);
+      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, effectiveModel, signal);
       if (result.error) return result;
-      result.model_used = result.model || model;
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
       await writeLastApiResult({
         type: "translate-prompt",
@@ -322,7 +392,7 @@ export const AppProvider = ({ children }) => {
       const payload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || model,
+        model: result.model_used || effectiveModel,
         target_lang: targetLang || null,
         transform_prompt: "Translate prompt (button)",
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
@@ -343,7 +413,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Translation failed");
       console.error(err);
@@ -357,10 +435,12 @@ export const AppProvider = ({ children }) => {
   const improvePromptConfig = async (configObject, model, signal = null) => {
     setLoading(true);
     setError(null);
+    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
     try {
-      const result = await apiService.improvePromptConfigJson(configObject, model, signal);
+      const result = await apiService.improvePromptConfigJson(configObject, effectiveModel, signal);
       if (result.error) return result;
-      result.model_used = result.model || model;
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
       await writeLastApiResult({
         type: "improve-prompt-config",
@@ -374,7 +454,7 @@ export const AppProvider = ({ children }) => {
       const payload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || model,
+        model: result.model_used || effectiveModel,
         target_lang: null,
         transform_prompt: "Improve prompt (button)",
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
@@ -395,7 +475,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Improve prompt config failed");
       console.error(err);
@@ -409,10 +497,12 @@ export const AppProvider = ({ children }) => {
   const generatePromptConfig = async (userDescription, model, signal = null) => {
     setLoading(true);
     setError(null);
+    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
     try {
-      const result = await apiService.generatePromptConfigJson(userDescription, model, signal);
+      const result = await apiService.generatePromptConfigJson(userDescription, effectiveModel, signal);
       if (result.error) return result;
-      result.model_used = result.model || model;
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
       await writeLastApiResult({
         type: "generate-prompt-config",
@@ -426,7 +516,7 @@ export const AppProvider = ({ children }) => {
       const payload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || model,
+        model: result.model_used || effectiveModel,
         target_lang: null,
         transform_prompt: "Generate prompt (button)",
         prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
@@ -447,7 +537,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Generate prompt config failed");
       console.error(err);
@@ -462,10 +560,13 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    try {
-      const result = await apiService.rewrite(text, mode, model, signal, sourceLang);
+    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
 
-      result.model_used = result.model || model;
+    try {
+      const result = await apiService.rewrite(text, mode, effectiveModel, signal, sourceLang, promptHint);
+
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -484,7 +585,7 @@ export const AppProvider = ({ children }) => {
       const rewritePayload = {
         timestamp: new Date().toISOString(),
         type: "rewrite",
-        model: result.model_used || model,
+        model: result.model_used || effectiveModel,
         source_lang: sourceLang || null,
         target_lang: null,
         rewrite_mode: mode || null,
@@ -522,7 +623,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Rewrite failed");
       console.error(err);
@@ -537,10 +646,20 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    try {
-      const result = await apiService.transform(text, promptConfig, model, signal, statedFromLang);
+    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
+    const effectiveModel = skillModel ?? model;
 
-      result.model_used = result.model || model;
+    try {
+      const result = await apiService.transform(
+        text,
+        promptConfig,
+        effectiveModel,
+        signal,
+        statedFromLang,
+        promptHint,
+      );
+
+      result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -563,7 +682,7 @@ export const AppProvider = ({ children }) => {
       const transformPayload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || model,
+        model: result.model_used || effectiveModel,
         source_lang: statedFromLang || null,
         target_lang: null,
         rewrite_mode: null,
@@ -602,7 +721,15 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        return await handleUnavailableModel(model);
+        if (fromSkillCatalog) {
+          setError(
+            i18n.t(
+              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+            ),
+          );
+          return { error: err.message };
+        }
+        return await handleUnavailableModel(effectiveModel);
       }
       setError("Transform failed");
       console.error(err);
@@ -622,7 +749,10 @@ export const AppProvider = ({ children }) => {
     if (typeof window !== "undefined" && window.history?.replaceState) {
       window.history.replaceState(window.history.state, "", window.location.href);
     }
-    configManager.loadConfig().then(() => setSettings(configManager.getAll()));
+    configManager.loadConfig().then(async () => {
+      setSettings(configManager.getAll());
+      await refreshSkillsCatalog();
+    });
     if (webAPI.getApiStatus) {
       webAPI.getApiStatus().then((status) => setApiKeyStatus(status));
     }
@@ -740,6 +870,9 @@ export const AppProvider = ({ children }) => {
     apiKeyStatus,
     updateSettings,
     setSetting,
+    skills: skillsCatalog,
+    setExperienceMode: (value) => setSetting("mode", value),
+    setSelectedSkillId: (id) => setSetting("selected_skill_id", id, { optimistic: true }),
     translate,
     translatePromptFields,
     improvePromptConfig,

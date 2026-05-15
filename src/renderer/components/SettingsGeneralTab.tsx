@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2, DatabaseBackup, Sun, Moon, Monitor } from 'lucide-react';
+import { Settings, Palette, ClipboardCheck, RefreshCw, History, Trash2, DatabaseBackup, Sun, Moon, Monitor, Sparkles } from 'lucide-react';
 import PropTypes from 'prop-types';
 import {
   getCostFractionStyleOptions,
@@ -226,9 +226,57 @@ const SettingsGeneralTab = ({
 
   const kbdCls = "inline-block px-2 py-0.5 rounded bg-muted font-mono text-xs font-medium border border-border";
   const sectionTitleCls = "mb-5 mt-0 flex items-center gap-2 text-base font-semibold";
+  const experienceMode = localSettings.mode === "advanced" ? "advanced" : "regular";
 
   return (
     <div className={settingsTabContent}>
+      <div className="mx-auto mb-5 w-full min-w-0 max-w-6xl">
+        <div className={cn(settingsSection, "!mb-0")}>
+          <h3 className={sectionTitleCls}>
+            <Sparkles size={18} />
+            {t("AI experience")}
+          </h3>
+          <div className="ps-6 flex flex-col gap-3">
+            <p className="m-0 text-sm text-muted-foreground">
+              {t("Choose how you select the model for Translate, Rewrite, and Transform.")}
+            </p>
+            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <button
+                type="button"
+                onClick={() => onSettingChange("mode", "regular")}
+                aria-pressed={experienceMode === "regular"}
+                className={cn(
+                  "flex flex-1 flex-col items-start gap-1 rounded-lg border px-4 py-3 text-start text-sm transition-colors sm:min-w-[200px] sm:flex-initial",
+                  experienceMode === "regular"
+                    ? "border-primary bg-primary/10 text-foreground"
+                    : "border-border bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                )}
+              >
+                <span className="font-semibold">{t("Regular")}</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("Curated skills — no need to know model names.")}
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={() => onSettingChange("mode", "advanced")}
+                aria-pressed={experienceMode === "advanced"}
+                className={cn(
+                  "flex flex-1 flex-col items-start gap-1 rounded-lg border px-4 py-3 text-start text-sm transition-colors sm:min-w-[200px] sm:flex-initial",
+                  experienceMode === "advanced"
+                    ? "border-primary bg-primary/10 text-foreground"
+                    : "border-border bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                )}
+              >
+                <span className="font-semibold">{t("Advanced")}</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("Pick models directly from your OpenRouter list.")}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-1 gap-5 lg:grid-cols-2 lg:items-stretch">
           {/* Appearance Section */}
           <div className={cn(settingsSection, "!mb-0", "h-full")}>

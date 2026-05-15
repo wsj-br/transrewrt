@@ -31,6 +31,25 @@ const webAPI = {
     }
   },
 
+  readSkills: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/skills`, { credentials: "include", cache: "no-store" });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        return { version: "0.0.0", updated_at: "", skills: [] };
+      }
+      const data = await res.json();
+      return data && typeof data === "object" ? data : { version: "0.0.0", updated_at: "", skills: [] };
+    } catch (err) {
+      if (err && err.status === 401) throw err;
+      console.error("[WebAPI] readSkills failed:", err);
+      return { version: "0.0.0", updated_at: "", skills: [] };
+    }
+  },
+
   writeConfig: async (configData) => {
     try {
       const res = await fetch(`${API_BASE}/api/config`, {

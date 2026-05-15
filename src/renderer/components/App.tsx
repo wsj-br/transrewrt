@@ -48,7 +48,9 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, updateSettings, setSetting, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const skillUiLocale = settings?.ui_locale || locale;
+  const skillSourceLocale = settings?.source_locale || "en-GB";
+  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, skills, updateSettings, setSetting, setSelectedSkillId, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
@@ -129,6 +131,11 @@ const App = () => {
     }
     return models[0];
   }, [models, settings.last_used_model]);
+
+  const experienceMode = useMemo(
+    () => (settings.mode === "advanced" ? "advanced" : "regular"),
+    [settings.mode],
+  );
 
   const {
     transformPrompts,
@@ -651,6 +658,17 @@ const App = () => {
                     if (isWeb) setSetting("web_view", "settings");
                   }}
                   onRemoveModel={removeModelFromList}
+                  experienceMode={experienceMode}
+                  skills={skills}
+                  selectedSkillId={settings.selected_skill_id}
+                  onSkillChange={(id) => setSelectedSkillId(id)}
+                  onOpenSettingsGeneral={() => {
+                    updateSettings({ settings_active_tab: "general" });
+                    setCurrentView("settings");
+                    if (isWeb) setSetting("web_view", "settings");
+                  }}
+                  skillUiLocale={skillUiLocale}
+                  skillSourceLocale={skillSourceLocale}
                   leftPanel={leftPanel}
                   rightPanel={rightPanel}
                   workspaceTopBar={workspaceTopBar}
@@ -711,6 +729,16 @@ const App = () => {
             setCurrentView("settings");
           }}
           onRemoveModel={removeModelFromList}
+          experienceMode={experienceMode}
+          skills={skills}
+          selectedSkillId={settings.selected_skill_id}
+          onSkillChange={(id) => setSelectedSkillId(id)}
+          onOpenSettingsGeneral={() => {
+            updateSettings({ settings_active_tab: "general" });
+            setCurrentView("settings");
+          }}
+          skillUiLocale={skillUiLocale}
+          skillSourceLocale={skillSourceLocale}
           leftPanel={leftPanel}
           rightPanel={rightPanel}
           workspaceTopBar={workspaceTopBar}

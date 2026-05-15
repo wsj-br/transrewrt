@@ -93,6 +93,8 @@ const api = {
   importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
   getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
   getRuntimePlatform: () => process.platform,
+  readSkills: () => ipcRenderer.invoke('skills:read'),
+  updateSkillsFromRemote: () => ipcRenderer.invoke('skills:updateFromRemote'),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

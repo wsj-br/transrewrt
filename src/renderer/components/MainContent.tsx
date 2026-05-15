@@ -3,8 +3,10 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
 import ModelSelector from "./ModelSelector";
+import SkillSelector from "./SkillSelector";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
+import type { Skill } from "@/utils/skills/skillsTypes";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
@@ -117,6 +119,13 @@ const MainContent = ({
   onModelChange,
   onOpenSettingsModels,
   onRemoveModel,
+  experienceMode = "regular",
+  skills = [],
+  selectedSkillId,
+  onSkillChange,
+  onOpenSettingsGeneral,
+  skillUiLocale,
+  skillSourceLocale = "en-GB",
   leftPanel,
   rightPanel,
   workspaceTopBar,
@@ -133,6 +142,15 @@ const MainContent = ({
   onModelChange?: (model: string) => void;
   onOpenSettingsModels?: () => void;
   onRemoveModel?: (model: string) => void;
+  experienceMode?: "regular" | "advanced";
+  skills?: Skill[];
+  selectedSkillId?: string | null;
+  onSkillChange?: (skillId: string) => void;
+  onOpenSettingsGeneral?: () => void;
+  /** UI locale for skill catalog labels (falls back to i18n.language in SkillSelector). */
+  skillUiLocale?: string;
+  /** Locale of canonical skill `name` / `description` in the JSON catalog. */
+  skillSourceLocale?: string;
   leftPanel?: ReactNode;
   rightPanel?: ReactNode;
   workspaceTopBar?: ReactNode;
@@ -216,13 +234,24 @@ const MainContent = ({
         stackRightBelowMd
         right={
           <>
-            <ModelSelector
-              models={models}
-              currentModel={activeModel}
-              onModelChange={onModelChange}
-              onIconClick={onOpenSettingsModels}
-              onRemoveModel={onRemoveModel}
-            />
+            {experienceMode === "regular" && skills?.length && onSkillChange ? (
+              <SkillSelector
+                skills={skills}
+                selectedSkillId={selectedSkillId || undefined}
+                onSkillChange={onSkillChange}
+                onOpenSettingsGeneral={onOpenSettingsGeneral}
+                uiLocale={skillUiLocale}
+                sourceLocale={skillSourceLocale}
+              />
+            ) : (
+              <ModelSelector
+                models={models}
+                currentModel={activeModel}
+                onModelChange={onModelChange}
+                onIconClick={onOpenSettingsModels}
+                onRemoveModel={onRemoveModel}
+              />
+            )}
             <div className="hidden md:block">
               <HeaderLanguageSelector compact />
             </div>

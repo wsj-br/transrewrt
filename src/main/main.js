@@ -18,6 +18,7 @@ const {
 } = require("./configPath");
 const { isEncryptedApiKey, encryptApiKey, decryptApiKey } = require("./encryption");
 const { registerConfigIpc } = require("./ipc/configIpc");
+const { registerSkillsIpc, ensureUserSkillsOnDisk } = require("./ipc/skillsIpc");
 const { registerApiIpc } = require("./ipc/apiIpc");
 const { registerLlmIpc } = require("./ipc/llmIpc");
 const { registerWindowIpc } = require("./ipc/windowIpc");
@@ -531,6 +532,7 @@ registerConfigIpc(ipcMain, {
   canonicalConfigString,
   getBuildTimestamp,
 });
+registerSkillsIpc(ipcMain);
 registerApiIpc(ipcMain, () => configCache);
 registerLlmIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
@@ -660,8 +662,13 @@ app.on("ready", () => {
   );
   loadConfigFromFile();
   loadStateFromFile();
-  saveConfigToFile(configCache);
-  createWindow();
+  Promise.resolve()
+    .then(() => ensureUserSkillsOnDisk())
+    .catch((e) => console.warn("[skills] bootstrap:", e))
+    .finally(() => {
+      saveConfigToFile(configCache);
+      createWindow();
+    });
 });
 
 app.on("window-all-closed", () => {
