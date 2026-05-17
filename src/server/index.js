@@ -33,10 +33,10 @@ const DEFAULT_CONFIG_PATH = path.join(
   "config_default.json",
 );
 const SKILLS_PATH = path.join(path.dirname(CONFIG_PATH), "skills.json");
-/** Dev: src/server → repo root. Docker: /app/server → /app/regular-mode-config */
+/** Dev: src/server → repo root. Docker: /app/server → /app/easy-mode-config */
 function resolveDefaultSkillsPath() {
-  const oneUp = path.join(__dirname, "..", "regular-mode-config", "skills.json");
-  const twoUp = path.join(__dirname, "..", "..", "regular-mode-config", "skills.json");
+  const oneUp = path.join(__dirname, "..", "easy-mode-config", "skills.json");
+  const twoUp = path.join(__dirname, "..", "..", "easy-mode-config", "skills.json");
   if (fs.existsSync(twoUp)) return twoUp;
   if (fs.existsSync(oneUp)) return oneUp;
   return twoUp;

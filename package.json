@@ -86,7 +86,7 @@
         "to": "config/config_default.json"
       },
       {
-        "from": "regular-mode-config/skills.json",
+        "from": "easy-mode-config/skills.json",
         "to": "config/skills.json"
       },
       {

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
@@ -11,7 +11,15 @@ import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
 import { loadSkillsFile, updateSkillsFromRemoteElectron } from "../utils/skills/skillsManager";
-import { canonicalModelIdFromSkillModelId } from "../utils/misc/modelIdUtils";
+import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/skills/configuredEasyEngines";
+import {
+  resolveExperienceMode,
+  type EasyEngineId,
+} from "../utils/skills/easyProviderConstants";
+import {
+  filterSkillsForEasyProvider,
+  resolveEasyRuntime,
+} from "../utils/skills/resolveEasySkillModel";
 
 // Create the context
 const AppContext = createContext();
@@ -197,7 +205,9 @@ export const AppProvider = ({ children }) => {
   const setSetting = useCallback(async (key, value, options = {}) => {
     const optimistic =
       options.optimistic === true &&
-      (key === "last_used_model" || key === "selected_skill_id");
+      (key === "last_used_model" ||
+        key === "selected_skill_id" ||
+        key === "easy_ollama_model");
 
     if (optimistic) {
       const previousSettings = configManager.getAll();
@@ -251,29 +261,86 @@ export const AppProvider = ({ children }) => {
     setError
   );
 
-  const resolveSkillRuntime = useCallback(() => {
-    const uiMode = settings.mode === "advanced" ? "advanced" : "regular";
-    if (uiMode === "advanced" || !skillsCatalog.length) {
-      return { effectiveModel: null, promptHint: null, fromSkillCatalog: false };
+  const isWebRuntime =
+    typeof window !== "undefined" && !window.electronAPI?.getConfig;
+  const serverConfiguredEngines = useMemo(() => {
+    if (!isWebRuntime) return null;
+    const arr = apiKeyStatus?.configuredEngines;
+    return Array.isArray(arr) ? arr : [];
+  }, [isWebRuntime, apiKeyStatus]);
+
+  const experienceMode = resolveExperienceMode(settings.mode as string | undefined);
+  const easyProvider = (settings.easy_provider as EasyEngineId | undefined) || null;
+
+  const easySkills = useMemo(() => {
+    if (experienceMode !== "easy" || !easyProvider || easyProvider === "ollama") {
+      return [];
     }
-    const skill =
-      skillsCatalog.find((s) => s.id === settings.selected_skill_id) ?? skillsCatalog[0];
-    if (!skill) return { effectiveModel: null, promptHint: null, fromSkillCatalog: false };
-    return {
-      effectiveModel: canonicalModelIdFromSkillModelId(skill.model_id),
-      promptHint: skill.prompt_hint || null,
-      fromSkillCatalog: true,
-    };
-  }, [settings.mode, settings.selected_skill_id, skillsCatalog]);
+    return filterSkillsForEasyProvider(skillsCatalog, easyProvider);
+  }, [experienceMode, easyProvider, skillsCatalog]);
+
+  const ollamaEasyModels = useMemo(
+    () => allModels.filter((m) => String(m.id || "").startsWith("ollama/")).map((m) => m.id),
+    [allModels],
+  );
+
+  const resolveSkillRuntime = useCallback(() => {
+    return resolveEasyRuntime({
+      mode: settings.mode,
+      easyProvider: settings.easy_provider as string | undefined,
+      easyOllamaModel: settings.easy_ollama_model as string | undefined,
+      selectedSkillId: settings.selected_skill_id,
+      skills: skillsCatalog,
+    });
+  }, [
+    settings.mode,
+    settings.easy_provider,
+    settings.easy_ollama_model,
+    settings.selected_skill_id,
+    skillsCatalog,
+  ]);
 
   useEffect(() => {
+    if (configLoading) return;
     if (settings.mode === "advanced") return;
-    if (!skillsCatalog.length) return;
+    if (settings.mode !== "easy") {
+      setSetting("mode", "easy");
+    }
+  }, [configLoading, settings.mode, setSetting]);
+
+  useEffect(() => {
+    if (experienceMode === "advanced") return;
+    const next = pickDefaultEasyProvider(settings, serverConfiguredEngines);
+    if (!next) return;
+    if (settings.easy_provider !== next) {
+      setSetting("easy_provider", next);
+    }
+  }, [experienceMode, settings, setSetting, serverConfiguredEngines]);
+
+  useEffect(() => {
+    if (experienceMode === "advanced") return;
+    if (easyProvider !== "ollama") return;
+    if (ollamaEasyModels.length === 0) return;
+    const current = (settings.easy_ollama_model || "").trim();
+    if (current && ollamaEasyModels.includes(current)) return;
+    setSetting("easy_ollama_model", ollamaEasyModels[0]);
+  }, [
+    experienceMode,
+    easyProvider,
+    ollamaEasyModels,
+    settings.easy_ollama_model,
+    setSetting,
+  ]);
+
+  useEffect(() => {
+    if (experienceMode === "advanced") return;
+    if (easyProvider === "ollama") return;
+    if (!easySkills.length) return;
     const id = settings.selected_skill_id;
-    const valid = id && skillsCatalog.some((s) => s.id === id);
+    const valid = id && easySkills.some((s) => s.id === id);
     if (valid) return;
-    setSetting("selected_skill_id", skillsCatalog[0].id);
-  }, [settings.mode, settings.selected_skill_id, skillsCatalog, setSetting]);
+    setSetting("selected_skill_id", easySkills[0].id);
+  }, [experienceMode, easyProvider, settings.selected_skill_id, easySkills, setSetting]);
 
   // Translate text
   const translate = async (text, targetLang, model, sourceLang = null, signal = null) => {
@@ -837,6 +904,12 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    if (experienceMode !== "easy" || easyProvider !== "ollama") return;
+    if (allModels.length > 0) return;
+    fetchModels().catch(() => {});
+  }, [experienceMode, easyProvider, allModels.length]);
+
   // Electron: set currentUser from OS username (no login in Electron)
   useEffect(() => {
     if (typeof window === "undefined" || !window.electronAPI?.getOsUsername) return;
@@ -870,8 +943,13 @@ export const AppProvider = ({ children }) => {
     apiKeyStatus,
     updateSettings,
     setSetting,
-    skills: skillsCatalog,
+    skills: easySkills,
+    skillsCatalog,
+    easyProvider,
+    ollamaEasyModels,
     setExperienceMode: (value) => setSetting("mode", value),
+    setEasyProvider: (value) => setSetting("easy_provider", value),
+    setEasyOllamaModel: (id) => setSetting("easy_ollama_model", id, { optimistic: true }),
     setSelectedSkillId: (id) => setSetting("selected_skill_id", id, { optimistic: true }),
     translate,
     translatePromptFields,

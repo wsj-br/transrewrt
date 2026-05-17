@@ -119,10 +119,14 @@ const MainContent = ({
   onModelChange,
   onOpenSettingsModels,
   onRemoveModel,
-  experienceMode = "regular",
+  experienceMode = "easy",
+  easyProvider = "openrouter",
   skills = [],
   selectedSkillId,
   onSkillChange,
+  ollamaModels = [],
+  easyOllamaModel,
+  onEasyOllamaModelChange,
   onOpenSettingsGeneral,
   skillUiLocale,
   skillSourceLocale = "en-GB",
@@ -142,10 +146,14 @@ const MainContent = ({
   onModelChange?: (model: string) => void;
   onOpenSettingsModels?: () => void;
   onRemoveModel?: (model: string) => void;
-  experienceMode?: "regular" | "advanced";
+  experienceMode?: "easy" | "advanced";
+  easyProvider?: string;
   skills?: Skill[];
   selectedSkillId?: string | null;
   onSkillChange?: (skillId: string) => void;
+  ollamaModels?: string[];
+  easyOllamaModel?: string | null;
+  onEasyOllamaModelChange?: (modelId: string) => void;
   onOpenSettingsGeneral?: () => void;
   /** UI locale for skill catalog labels (falls back to i18n.language in SkillSelector). */
   skillUiLocale?: string;
@@ -234,7 +242,24 @@ const MainContent = ({
         stackRightBelowMd
         right={
           <>
-            {experienceMode === "regular" && skills?.length && onSkillChange ? (
+            {experienceMode === "easy" && easyProvider === "ollama" ? (
+              ollamaModels.length > 0 && onEasyOllamaModelChange ? (
+                <ModelSelector
+                  models={ollamaModels}
+                  currentModel={easyOllamaModel || ollamaModels[0]}
+                  onModelChange={onEasyOllamaModelChange}
+                  onIconClick={onOpenSettingsGeneral}
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+                  onClick={onOpenSettingsGeneral}
+                >
+                  {t("Configure Ollama or choose another provider in Settings.")}
+                </button>
+              )
+            ) : experienceMode === "easy" && skills?.length && onSkillChange ? (
               <SkillSelector
                 skills={skills}
                 selectedSkillId={selectedSkillId || undefined}
@@ -243,6 +268,14 @@ const MainContent = ({
                 uiLocale={skillUiLocale}
                 sourceLocale={skillSourceLocale}
               />
+            ) : experienceMode === "easy" ? (
+              <button
+                type="button"
+                className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+                onClick={onOpenSettingsGeneral}
+              >
+                {t("No skills for this provider. Change provider in Settings.")}
+              </button>
             ) : (
               <ModelSelector
                 models={models}

@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="editor-boot-overlay" class="editor-boot-overlay" aria-live="polite" aria-busy="true">
+      <div class="editor-boot-card">
+        <span class="editor-boot-spinner" aria-hidden="true"></span>
+        <p id="editor-boot-message">Loading…</p>
+      </div>
+    </div>
+
     <div id="editor-server-down-overlay" class="hidden overlay" aria-hidden="true">
       <div class="overlay-card">
         <p><strong>Skills editor server unreachable.</strong></p>
@@ -21,10 +28,11 @@
         <div class="topbar-actions">
           <span id="status-line" class="status-line"></span>
           <button type="button" id="btn-reload" class="btn secondary">Reload</button>
+          <button type="button" id="btn-ai-suggest" class="btn">AI Suggestion</button>
           <button type="button" id="btn-save-catalog" class="btn primary">Save catalog</button>
         </div>
       </div>
-      <div class="topbar-row topbar-translate-row">
+      <div class="topbar-row topbar-translate-row" id="topbar-translate-row">
         <div class="header-model-group">
           <span class="header-model-label">Translation model (translate missing)</span>
           <div class="header-model-row">
@@ -50,8 +58,8 @@
       </div>
     </header>
 
-    <main class="layout">
-      <aside class="panel list-panel">
+    <main class="layout" id="editor-main-layout">
+      <aside class="panel list-panel" id="list-panel">
         <div class="toolbar">
           <input type="search" id="skill-search" placeholder="Search skills…" />
           <button type="button" id="btn-add-skill" class="btn secondary">Add skill</button>
@@ -86,17 +94,16 @@
                   >prompt_hint
                   <textarea id="field-prompt-hint" rows="4"></textarea>
                 </label>
-                <label class="span-2 model-id-field"
-                  >model_id
-                  <span class="model-id-row">
-                    <input type="text" id="field-model-id" readonly placeholder="Pick a model…" />
-                    <button type="button" id="btn-change-model" class="btn secondary">
-                      Change
-                    </button>
-                    <button type="button" id="btn-test-model" class="btn">Test model</button>
-                  </span>
-                </label>
-                <p id="test-model-result" class="test-result span-2 model-test-result" aria-live="polite"></p>
+                <div class="span-2 provider-models-block">
+                  <div class="provider-models-heading">
+                    <strong>model_ids</strong>
+                    <span class="muted provider-models-note"
+                      >Per cloud provider (Easy mode). Ollama is not listed — users pick installed
+                      models in the app. Keys from the server environment.</span
+                    >
+                  </div>
+                  <div id="provider-models-host" class="provider-models-host"></div>
+                </div>
               </div>
             </div>
 
@@ -106,6 +113,124 @@
                 <div id="translations-tables"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="panel ai-suggest-flow-panel hidden"
+        id="ai-suggest-setup-panel"
+        aria-labelledby="ai-suggest-setup-title"
+      >
+        <div class="ai-suggest-flow-inner">
+          <div class="ai-suggest-flow-header">
+            <h2 id="ai-suggest-setup-title">AI Suggestion — choose models</h2>
+            <p class="muted ai-suggest-flow-note">
+              Select the OpenRouter models used to suggest <code>model_ids</code> (stored as
+              <code>suggestion_model</code> and <code>suggestion_model_fallback</code> in
+              skills.json). Provider catalogs are loaded at startup before the editor is shown.
+            </p>
+          </div>
+          <div class="ai-suggest-setup-models">
+            <div class="header-model-group">
+              <span class="header-model-label">Suggestion model (primary)</span>
+              <div class="header-model-row">
+                <code id="display-suggestion-model" class="header-model-display"></code>
+                <button type="button" id="btn-pick-suggestion-model" class="btn secondary sm">
+                  Choose…
+                </button>
+              </div>
+            </div>
+            <div class="header-model-group">
+              <span class="header-model-label">Suggestion model — Fallback</span>
+              <div class="header-model-row">
+                <code id="display-suggestion-model-fallback" class="header-model-display"></code>
+                <button
+                  type="button"
+                  id="btn-pick-suggestion-model-fallback"
+                  class="btn secondary sm"
+                >
+                  Choose…
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="ai-suggest-setup-skills">
+            <div class="ai-suggest-setup-skills-header">
+              <span class="header-model-label">Skills to suggest</span>
+              <div class="ai-suggest-skill-select-toolbar">
+                <button type="button" id="btn-ai-suggest-skills-all" class="btn secondary sm">
+                  Select all
+                </button>
+                <button type="button" id="btn-ai-suggest-skills-none" class="btn secondary sm">
+                  Select none
+                </button>
+              </div>
+            </div>
+            <p class="muted ai-suggest-setup-skills-note">
+              Choose which skills receive new <code>model_ids</code> suggestions (<code>free-router</code> is
+              never included).
+            </p>
+            <div
+              id="ai-suggest-skill-checkboxes"
+              class="ai-suggest-skill-checkboxes"
+              role="group"
+              aria-label="Skills to include in AI suggestion"
+            ></div>
+          </div>
+          <div class="ai-suggest-flow-footer">
+            <p
+              id="ai-suggest-setup-continue-hint"
+              class="ai-suggest-setup-continue-hint muted hidden"
+              aria-live="polite"
+            ></p>
+            <button type="button" id="btn-ai-suggest-continue" class="btn primary" disabled>
+              Continue
+            </button>
+            <button type="button" id="btn-ai-suggest-setup-cancel" class="btn secondary">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="panel ai-suggest-flow-panel hidden"
+        id="ai-suggest-run-panel"
+        aria-labelledby="ai-suggest-run-title"
+      >
+        <div class="ai-suggest-flow-inner">
+          <div class="ai-suggest-flow-header">
+            <h2 id="ai-suggest-run-title">AI Suggestion — running</h2>
+            <p id="ai-suggest-run-summary" class="muted ai-suggest-run-summary"></p>
+          </div>
+          <div id="ai-suggest-run-log" class="ai-suggest-run-log" aria-live="polite"></div>
+          <div class="ai-suggest-flow-footer">
+            <button type="button" id="btn-ai-suggest-run-cancel" class="btn secondary" disabled>
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="panel ai-suggest-review-panel hidden"
+        id="ai-suggest-review-panel"
+        aria-labelledby="ai-suggest-review-title"
+      >
+        <div class="ai-suggest-review-inner">
+          <div class="ai-suggest-review-header">
+            <h2 id="ai-suggest-review-title">AI model suggestions</h2>
+            <p class="muted ai-suggest-review-note">
+              Review suggested <code>model_ids</code> per provider. Web search was used via OpenRouter
+              (extra cost may apply). Saving here updates the in-memory catalog only — use
+              <strong>Save catalog</strong> to write files.
+            </p>
+          </div>
+          <div id="ai-suggest-review-host" class="ai-suggest-review-host"></div>
+          <div class="ai-suggest-review-footer">
+            <button type="button" id="btn-ai-suggest-save" class="btn primary">Save to catalog</button>
+            <button type="button" id="btn-ai-suggest-cancel" class="btn secondary">Cancel</button>
           </div>
         </div>
       </section>

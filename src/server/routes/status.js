@@ -44,6 +44,7 @@ module.exports = function createStatusRouter(
           apiKeySet: false,
           apiKeyValid: false,
           message: "No LLM provider keys or Ollama URL are configured.",
+          configuredEngines: [],
         });
       }
 
@@ -73,10 +74,13 @@ module.exports = function createStatusRouter(
           "Non-OpenRouter providers configured; connectivity not verified by this check.";
       }
 
+      const configuredEngines = ENGINE_IDS.filter((e) => engineConfigured(e, keysMap));
+
       res.json({
         apiKeySet: true,
         apiKeyValid,
         message,
+        configuredEngines,
       });
     } catch (err) {
       log.error("[API] GET /api/status - Error: " + err.message, {
@@ -86,6 +90,7 @@ module.exports = function createStatusRouter(
         apiKeySet: false,
         apiKeyValid: false,
         message: err.message || "Failed to verify configuration.",
+        configuredEngines: [],
       });
     }
   });

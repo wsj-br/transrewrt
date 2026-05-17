@@ -14,12 +14,26 @@ function normalizeSkill(s: unknown): Skill | null {
   if (!s || typeof s !== "object") return null;
   const o = s as Record<string, unknown>;
   if (typeof o.id !== "string" || typeof o.name !== "string") return null;
+  const modelIdsRaw = o.model_ids;
+  let model_ids =
+    modelIdsRaw && typeof modelIdsRaw === "object" && !Array.isArray(modelIdsRaw)
+      ? Object.fromEntries(
+          Object.entries(modelIdsRaw as Record<string, unknown>).filter(
+            ([, v]) => typeof v === "string" && String(v).trim(),
+          ),
+        )
+      : undefined;
+  const legacyModelId = typeof o.model_id === "string" ? o.model_id.trim() : "";
+  if (legacyModelId) {
+    if (!model_ids) model_ids = {};
+    if (!model_ids.openrouter) model_ids.openrouter = legacyModelId;
+  }
   const out: Skill = {
     id: o.id,
     name: o.name,
     description: typeof o.description === "string" ? o.description : "",
-    model_id: typeof o.model_id === "string" ? o.model_id : "",
     prompt_hint: typeof o.prompt_hint === "string" ? o.prompt_hint : "",
+    ...(model_ids && Object.keys(model_ids).length ? { model_ids } : {}),
   };
   if (isLocaleStringRecord(o.translated_name)) {
     out.translated_name = o.translated_name;

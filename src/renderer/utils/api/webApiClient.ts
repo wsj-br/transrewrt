@@ -616,10 +616,16 @@ const webAPI = {
         apiKeySet: !!data.apiKeySet,
         apiKeyValid: !!data.apiKeyValid,
         message: data.message || "",
+        configuredEngines: Array.isArray(data.configuredEngines) ? data.configuredEngines : [],
       };
     } catch (err) {
       console.error("[WebAPI] getApiStatus failed:", err);
-      return { apiKeySet: false, apiKeyValid: false, message: err.message || "Failed to check API status." };
+      return {
+        apiKeySet: false,
+        apiKeyValid: false,
+        message: err.message || "Failed to check API status.",
+        configuredEngines: [],
+      };
     }
   },
 

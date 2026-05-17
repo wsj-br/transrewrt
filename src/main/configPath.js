@@ -89,7 +89,7 @@ const getDefaultSkillsPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
     return path.join(path.dirname(process.execPath), "config", "skills.json");
   }
-  return path.join(__dirname, "../../regular-mode-config/skills.json");
+  return path.join(__dirname, "../../easy-mode-config/skills.json");
 };
 
 module.exports = {

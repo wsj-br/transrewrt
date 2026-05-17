@@ -1,10 +1,10 @@
 /**
- * Regular-mode skills catalog: remote URL, JSON parse, version / updated_at merge rules.
+ * Easy-mode skills catalog: remote URL, JSON parse, version / updated_at merge rules.
  * Used by Electron IPC and web server routes.
  */
 
 const SKILLS_REMOTE_URL =
-  "https://raw.githubusercontent.com/wsj-br/transrewrt/refs/heads/main/regular-mode-config/skills.json";
+  "https://raw.githubusercontent.com/wsj-br/transrewrt/refs/heads/main/easy-mode-config/skills.json";
 
 function parseSkillsJson(text) {
   try {

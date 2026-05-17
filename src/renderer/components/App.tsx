@@ -48,10 +48,10 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
+  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, skills, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedSkillId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+    useAppContext();
   const skillUiLocale = settings?.ui_locale || locale;
   const skillSourceLocale = settings?.source_locale || "en-GB";
-  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, skills, updateSettings, setSetting, setSelectedSkillId, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
-    useAppContext();
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState(() => (settings.web_view === "settings" ? "settings" : "workspace"));
@@ -133,7 +133,7 @@ const App = () => {
   }, [models, settings.last_used_model]);
 
   const experienceMode = useMemo(
-    () => (settings.mode === "advanced" ? "advanced" : "regular"),
+    () => (settings.mode === "advanced" ? "advanced" : "easy"),
     [settings.mode],
   );
 
@@ -659,9 +659,13 @@ const App = () => {
                   }}
                   onRemoveModel={removeModelFromList}
                   experienceMode={experienceMode}
+                  easyProvider={easyProvider || settings.easy_provider || "openrouter"}
                   skills={skills}
                   selectedSkillId={settings.selected_skill_id}
                   onSkillChange={(id) => setSelectedSkillId(id)}
+                  ollamaModels={ollamaEasyModels}
+                  easyOllamaModel={settings.easy_ollama_model}
+                  onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
                   onOpenSettingsGeneral={() => {
                     updateSettings({ settings_active_tab: "general" });
                     setCurrentView("settings");
@@ -730,9 +734,13 @@ const App = () => {
           }}
           onRemoveModel={removeModelFromList}
           experienceMode={experienceMode}
+          easyProvider={easyProvider || settings.easy_provider || "openrouter"}
           skills={skills}
           selectedSkillId={settings.selected_skill_id}
           onSkillChange={(id) => setSelectedSkillId(id)}
+          ollamaModels={ollamaEasyModels}
+          easyOllamaModel={settings.easy_ollama_model}
+          onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
           onOpenSettingsGeneral={() => {
             updateSettings({ settings_active_tab: "general" });
             setCurrentView("settings");

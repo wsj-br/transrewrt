@@ -118,7 +118,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const canAccessCostTab = !isWeb || currentUser?.role === "admin";
   const canConfigBackup = !isWeb || currentUser?.role === "admin";
   const isBelowMd = useIsBelowMd();
-  const experienceMode = settings.mode === "advanced" ? "advanced" : "regular";
+  const experienceMode = settings.mode === "advanced" ? "advanced" : "easy";
 
   const settingsTabs = useMemo(
     () => [
@@ -199,7 +199,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       setSelectedModelIds(modelsWithFree);
       setSelectedLanguages(new Set(settings.top_languages || []));
       const normalizeTab = (tab) => {
-        const exp = settings.mode === "advanced" ? "advanced" : "regular";
+        const exp = settings.mode === "advanced" ? "advanced" : "easy";
         if (tab === "auth") return canAccessUsersTab ? "users" : "general";
         if (tab === "api" && !canAccessApiTab) return "general";
         if (tab === "users" && !canAccessUsersTab) return "general";
@@ -242,7 +242,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   }, [activeTab, canAccessUsersTab, canAccessApiTab, setSetting]);
 
   useEffect(() => {
-    if (experienceMode === "regular" && activeTab === "models") {
+    if (experienceMode === "easy" && activeTab === "models") {
       queueMicrotask(() => {
         setActiveTab("general");
         setSetting("settings_active_tab", "general");

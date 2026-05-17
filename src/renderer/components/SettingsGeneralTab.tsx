@@ -23,6 +23,12 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { settingsSection, settingsTabContent } from "./settings/settingsLayoutClasses";
+import {
+  EASY_PROVIDER_LABEL_KEYS,
+  type EasyEngineId,
+} from "@/utils/skills/easyProviderConstants";
+import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "@/utils/skills/configuredEasyEngines";
+import { useAppContext } from "@/contexts/AppContext";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -54,7 +60,12 @@ const SettingsGeneralTab = ({
   canConfigBackup = false,
 }) => {
   const { t, i18n } = useTranslation();
+  const { apiKeyStatus } = useAppContext();
   const locale = i18n.language || 'en-GB';
+  const serverConfiguredEngines =
+    isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
+      ? apiKeyStatus.configuredEngines
+      : null;
 
   const { options: FONT_OPTIONS, defaultFont: DEFAULT_FONT, fontValues: FONT_VALUES } = useMemo(() => {
     const { options, defaultFont } = getAppearanceFontContext();
@@ -226,7 +237,7 @@ const SettingsGeneralTab = ({
 
   const kbdCls = "inline-block px-2 py-0.5 rounded bg-muted font-mono text-xs font-medium border border-border";
   const sectionTitleCls = "mb-5 mt-0 flex items-center gap-2 text-base font-semibold";
-  const experienceMode = localSettings.mode === "advanced" ? "advanced" : "regular";
+  const experienceMode = localSettings.mode === "advanced" ? "advanced" : "easy";
 
   return (
     <div className={settingsTabContent}>
@@ -243,16 +254,16 @@ const SettingsGeneralTab = ({
             <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
               <button
                 type="button"
-                onClick={() => onSettingChange("mode", "regular")}
-                aria-pressed={experienceMode === "regular"}
+                onClick={() => onSettingChange("mode", "easy")}
+                aria-pressed={experienceMode === "easy"}
                 className={cn(
                   "flex flex-1 flex-col items-start gap-1 rounded-lg border px-4 py-3 text-start text-sm transition-colors sm:min-w-[200px] sm:flex-initial",
-                  experienceMode === "regular"
+                  experienceMode === "easy"
                     ? "border-primary bg-primary/10 text-foreground"
                     : "border-border bg-muted/30 text-muted-foreground hover:bg-muted/50",
                 )}
               >
-                <span className="font-semibold">{t("Regular")}</span>
+                <span className="font-semibold">{t("Easy")}</span>
                 <span className="text-xs text-muted-foreground">
                   {t("Curated skills — no need to know model names.")}
                 </span>
@@ -270,10 +281,58 @@ const SettingsGeneralTab = ({
               >
                 <span className="font-semibold">{t("Advanced")}</span>
                 <span className="text-xs text-muted-foreground">
-                  {t("Pick models directly from your OpenRouter list.")}
+                  {t("Pick models directly from your configured providers.")}
                 </span>
               </button>
             </div>
+            {experienceMode === "easy" && (
+              <div className="flex flex-col gap-2 border-t border-border pt-3">
+                <Label className="text-sm font-medium">{t("Provider")}</Label>
+                <p className="m-0 text-xs text-muted-foreground">
+                  {isWeb
+                    ? t("Used for all Easy mode skills. Provider keys come from the server environment.")
+                    : t("Used for all Easy mode skills. Add keys in API Config.")}
+                </p>
+                {(() => {
+                  const configured = listConfiguredEasyEngines(
+                    localSettings,
+                    serverConfiguredEngines,
+                  );
+                  if (!configured.length) {
+                    return (
+                      <p className="m-0 text-sm text-muted-foreground">
+                        {isWeb
+                          ? t("No provider configured on the server. Ask an administrator to set API keys in the environment.")
+                          : t("No provider configured. Open API Config to add a key or Ollama URL.")}
+                      </p>
+                    );
+                  }
+                  const current =
+                    (typeof localSettings.easy_provider === "string" &&
+                      configured.includes(localSettings.easy_provider as EasyEngineId) &&
+                      localSettings.easy_provider) ||
+                    pickDefaultEasyProvider(localSettings, serverConfiguredEngines) ||
+                    configured[0];
+                  return (
+                    <Select
+                      value={current}
+                      onValueChange={(v) => onSettingChange("easy_provider", v)}
+                    >
+                      <SelectTrigger className="max-w-md">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {configured.map((engine) => (
+                          <SelectItem key={engine} value={engine}>
+                            {t(EASY_PROVIDER_LABEL_KEYS[engine])}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
+              </div>
+            )}
           </div>
         </div>
       </div>

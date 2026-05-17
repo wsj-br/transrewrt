@@ -11,6 +11,24 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Easy mode is the default **AI experience** when `mode` is unset: `config_default.json` already uses `mode: "easy"`; on load the app now persists `mode: "easy"` for configs that omit it (legacy installs).
+- **Added**: Dev skills editor AI Suggestion setup: checkbox list to choose which skills receive model suggestions (all selected by default; `skill_ids` in `POST /api/skills/suggest-models`).
+- **Fixed**: Dev skills editor AI Suggestion: prompts and catalog filtering require chat-compatible models for Transrewrt translate/rewrite/transform (excludes completion-only endpoints such as `gpt-5.5-pro`).
+- **Added**: Dev skills editor persists provider model catalogs to `skills-editor-provider-catalogs.json` at the repo root (gitignored, `lastUpdated` + 2h TTL); stale or missing cache refreshes from provider APIs on editor start.
+- **Fixed**: Dev skills editor AI Suggestion **Continue** no longer refetches all provider model catalogs when boot prefetch already warmed the server session cache.
+- **Fixed**: Dev skills editor AI Suggestion: `parseJsonFromModelText` now extracts JSON embedded in mixed reasoning text; `SUGGEST_SYSTEM` prompt enforces JSON-only final output; fallback attempt skips web search to avoid the same mixed-content failure and be faster.
+- **Changed**: Dev skills editor AI Suggestion: prompts require catalog-only `model_id` values; server drops suggestions not present in the prefetched provider catalog.
+- **Changed**: Dev skills editor: prefetch all provider model catalogs at startup (boot overlay) before showing the editor; skill form and AI Suggestion use the session cache.
+- **Added**: Dev skills editor **AI Suggestion**: setup page for `suggestion_model` / `suggestion_model_fallback`, session-cached provider catalogs, run log with server `log` events, review UI (`POST /api/skills/suggest-models` uses suggestion models + OpenRouter web search).
+- **Changed**: Easy mode skills: drop legacy per-skill `model_id`; app hides skills without `model_ids[provider]` (editor still lists all skills).
+- **Added**: Dev skills editor: per-provider `model_ids` matrix (nine cloud engines); **Choose** opens the catalog when an API key is set; **No key** rows still accept typed model ids; per-row **Test**; `free-router` skill shows OpenRouter only.
+- **Fixed**: Web Easy mode **Provider** list: use `configuredEngines` from `GET /api/status` (server env keys) instead of client `*_configured` flags that only exist on Electron.
+- **Added**: Easy mode multi-provider: **Provider** control in Settings → General (hidden in Advanced); cloud skills use per-provider `model_ids` in `easy-mode-config/skills.json` (five skills: Free, Fast, Advanced, Technical, Legal); skills without a mapping for the selected provider are omitted; Easy + **Ollama** shows installed local models in the header instead of skills (`easy_ollama_model`).
+- **Changed**: **AI experience** mode renamed **Regular** → **Easy** (`mode: "easy"`); skills catalog directory `regular-mode-config/` → `easy-mode-config/`.
+- **Fixed**: Dev skills editor: **Test model** result is a fixed-height grid row below `model_id` so showing a message no longer shifts the detail layout (was nested inside the label, so `.form-grid` gap had no effect).
+- **Changed**: Dev skills editor: clearing the selected skill or picking another in the list resets **Test model** output.
+- **Fixed**: Dev skills editor: model picker modal list fills the modal height (removed inherited `max-height: 420px` from `.model-list` on the modal scroll area).
+- **Fixed**: Web app: `App` no longer reads `settings` before `useAppContext()` (fixes “Cannot access 'settings' before initialization” on load).
 - **Changed**: Dev skills editor: malformed `regular-mode-config/skills.json` is reported with plain-language **400** messages from `GET /api/skills` and in the status line (not **500** or `skills HTTP …` wording).
 - **Changed**: Dev skills editor: name and description labels show the configured source locale in parentheses (e.g. `(en-GB)`) instead of the literal “(source)”.
 - **Changed**: Dev skills editor: translations table shows `englishName` (column “English name”), narrow locale/name columns and a wide value column; translations stack scrolls in the remaining viewport height; removed the source-locale hint line; **Test model** output sits below `model_id`; `body` / `main.layout` / detail column use flex so the right panel can use full height.

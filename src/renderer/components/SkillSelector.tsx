@@ -14,7 +14,7 @@ import { skillDisplayDescription, skillDisplayName } from "@/utils/skills/skillD
 import type { Skill } from "@/utils/skills/skillsTypes";
 
 /**
- * Regular mode: pick a skill (name + description). No provider / route UI.
+ * Easy mode: pick a skill (name + description). No provider / route UI.
  */
 function SkillSelector({
   skills = [],
@@ -120,7 +120,7 @@ SkillSelector.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string,
-      model_id: PropTypes.string,
+      model_ids: PropTypes.objectOf(PropTypes.string),
       prompt_hint: PropTypes.string,
       translated_name: PropTypes.objectOf(PropTypes.string),
       translated_description: PropTypes.objectOf(PropTypes.string),

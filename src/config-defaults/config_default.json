@@ -1,5 +1,7 @@
 {
-    "mode": "regular",
+    "mode": "easy",
+    "easy_provider": null,
+    "easy_ollama_model": null,
     "selected_skill_id": null,
     "available_models": [
         "openrouter/openrouter/free"
