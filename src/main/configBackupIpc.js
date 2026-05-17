@@ -14,6 +14,7 @@ const {
 } = require("../shared/configBackup/zipUtils.js");
 const { sql, promptTargetLanguageToDb } = require("../shared/db/appSchema.js");
 const { getConfigFilePath, getStateFilePath, getKeyFilePath } = require("./configPath");
+const { getDbUnavailableMessage } = require("./appDb");
 
 function readJsonFileRaw(filePath) {
   try {
@@ -97,7 +98,7 @@ function buildElectronBackupMap(getDb, userDataPath, options = {}) {
   }
 
   const d = getDb();
-  if (!d) throw new Error("Database unavailable");
+  if (!d) throw new Error(getDbUnavailableMessage());
   const prompts = d.prepare(sql.CUSTOM_PROMPTS_GET_ALL).all();
   map.set("data/custom_prompts.json", Buffer.from(JSON.stringify(prompts, null, 2), "utf8"));
   included.push("data/custom_prompts.json");
@@ -177,7 +178,7 @@ function applyElectronRestore(getDb, userDataPath, zipBuffer, clearHistory, rest
   if (origin !== "web" && origin !== "electron") throw new Error("Invalid originRuntime");
 
   const d = getDb();
-  if (!d) throw new Error("Database unavailable");
+  if (!d) throw new Error(getDbUnavailableMessage());
 
   const configPath = getConfigFilePath();
   const statePath = getStateFilePath();

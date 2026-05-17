@@ -20,6 +20,21 @@ const { isHistoryDisabledByEnv } = require("../shared/historyEnv.js");
 
 let db = null;
 let userDataPath = null;
+let lastDbOpenError = null;
+
+function getDbUnavailableMessage() {
+  if (!userDataPath) {
+    return "Database unavailable (application data path not initialized)";
+  }
+  if (lastDbOpenError) {
+    const msg = lastDbOpenError.message || String(lastDbOpenError);
+    if (msg.includes("NODE_MODULE_VERSION")) {
+      return "Database unavailable: SQLite native module was built for the wrong Node runtime. Reinstall the app from a current release build.";
+    }
+    return `Database unavailable: ${msg}`;
+  }
+  return "Database unavailable";
+}
 
 function getDb() {
   if (db) return db;
@@ -36,7 +51,9 @@ function getDb() {
     db.pragma("journal_mode = WAL");
     db.pragma("synchronous = NORMAL");
     applyAppSchema(db);
+    lastDbOpenError = null;
   } catch (err) {
+    lastDbOpenError = err;
     console.error("[appDb] Failed to open database at", DB_PATH, err);
     return null;
   }
@@ -476,5 +493,6 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
 module.exports = {
   registerAppDbHandlers,
   getDb: () => getDb(),
+  getDbUnavailableMessage,
   closeDb,
 };

@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Packaged Electron (AppImage/NSIS) configuration backup restore and SQLite — run `electron-rebuild` before `electron-builder` so `better-sqlite3` matches Electron’s Node ABI (avoids `NODE_MODULE_VERSION` mismatch after `dev:web` / `node-rebuild`); clearer error when the native module cannot load.
 - **Changed**: Web Settings > API Config — provider status cards use a two-column grid.
 - **Fixed**: Configuration backup export on web and Electron — use `archiver` v8 `ZipArchive` API (`require('archiver')` no longer provides a callable factory).
 - **Fixed**: Linux taskbar icon (Electron dev and AppImage) — set `wayland-app-id` / `class` to `transrewrt`, align `StartupWMClass` in the built `.desktop`, resize PNG for `BrowserWindow`, and write `transrewrt-dev.desktop` on `pnpm dev` for Wayland shell icon lookup.

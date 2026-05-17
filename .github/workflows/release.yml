@@ -133,6 +133,7 @@ jobs:
           pnpm run build
           pnpm run build:main
           node scripts/write-build-timestamp.js
+          node scripts/electron-rebuild.js
           pnpm exec electron-builder --linux AppImage --x64 --publish never
 
       - name: Build and package (Linux, arm64)
@@ -141,6 +142,7 @@ jobs:
           pnpm run build
           pnpm run build:main
           node scripts/write-build-timestamp.js
+          node scripts/electron-rebuild.js
           pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.cjs
 
       - name: Upload AppImage
