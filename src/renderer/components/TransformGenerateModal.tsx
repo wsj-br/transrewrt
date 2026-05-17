@@ -2,9 +2,23 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Loader2 } from "lucide-react";
-import ModelSelector from "./ModelSelector";
+import ModelOrSkillPicker, { hasModelOrSkillSelection } from "./ModelOrSkillPicker";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+
+const transformModalPickerPropTypes = {
+  experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  easyProvider: PropTypes.string,
+  skills: PropTypes.array,
+  selectedSkillId: PropTypes.string,
+  onSkillChange: PropTypes.func,
+  ollamaModels: PropTypes.arrayOf(PropTypes.string),
+  easyOllamaModel: PropTypes.string,
+  onEasyOllamaModelChange: PropTypes.func,
+  onOpenSettingsGeneral: PropTypes.func,
+  skillUiLocale: PropTypes.string,
+  skillSourceLocale: PropTypes.string,
+};
 
 const TransformGenerateModal = ({
   open,
@@ -14,6 +28,17 @@ const TransformGenerateModal = ({
   onCancel,
   loading = false,
   error = null,
+  experienceMode = "advanced",
+  easyProvider = "openrouter",
+  skills = [],
+  selectedSkillId,
+  onSkillChange,
+  ollamaModels = [],
+  easyOllamaModel,
+  onEasyOllamaModelChange,
+  onOpenSettingsGeneral,
+  skillUiLocale,
+  skillSourceLocale = "en-GB",
 }) => {
   const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState(model || "");
@@ -30,7 +55,25 @@ const TransformGenerateModal = ({
 
   if (!open) return null;
 
-  const handleConfirm = () => onConfirm(selectedModel, description.trim());
+  const canRun = hasModelOrSkillSelection({
+    experienceMode,
+    easyProvider,
+    model: selectedModel,
+    models,
+    skills,
+    ollamaModels,
+    easyOllamaModel,
+  });
+
+  const pickerLabel =
+    experienceMode === "easy" && easyProvider !== "ollama"
+      ? t("Skill")
+      : t("Model to generate prompt");
+
+  const handleConfirm = () =>
+    onConfirm(experienceMode === "advanced" ? selectedModel : model, description.trim());
+
+  const showPicker = experienceMode === "advanced" ? models.length > 0 : true;
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
@@ -49,10 +92,25 @@ const TransformGenerateModal = ({
               className="w-full min-h-[160px] resize-y rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
             />
           </div>
-          {models.length > 0 && (
+          {showPicker && (
             <div className="flex flex-col gap-1.5">
-              <Label>{t("Model to generate prompt")}</Label>
-              <ModelSelector models={models} currentModel={selectedModel} onModelChange={setSelectedModel} />
+              <Label>{pickerLabel}</Label>
+              <ModelOrSkillPicker
+                experienceMode={experienceMode}
+                easyProvider={easyProvider}
+                models={models}
+                currentModel={selectedModel}
+                onModelChange={setSelectedModel}
+                skills={skills}
+                selectedSkillId={selectedSkillId}
+                onSkillChange={onSkillChange}
+                ollamaModels={ollamaModels}
+                easyOllamaModel={easyOllamaModel}
+                onEasyOllamaModelChange={onEasyOllamaModelChange}
+                onOpenSettingsGeneral={onOpenSettingsGeneral}
+                skillUiLocale={skillUiLocale}
+                skillSourceLocale={skillSourceLocale}
+              />
             </div>
           )}
           {error && (
@@ -65,7 +123,7 @@ const TransformGenerateModal = ({
           </Button>
           <Button
             onClick={handleConfirm}
-            disabled={loading || !selectedModel || !description.trim()}
+            disabled={loading || !description.trim() || !canRun}
           >
             {loading && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             {loading ? t("Generating…") : t("Generate")}
@@ -84,6 +142,7 @@ TransformGenerateModal.propTypes = {
   onCancel: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.string,
+  ...transformModalPickerPropTypes,
 };
 
 export default TransformGenerateModal;

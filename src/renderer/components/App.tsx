@@ -544,6 +544,21 @@ const App = () => {
                 generatePromptConfig,
                 model: activeModel,
                 models,
+                experienceMode,
+                easyProvider: easyProvider || settings.easy_provider || "openrouter",
+                skills,
+                selectedSkillId: settings.selected_skill_id,
+                onSkillChange: (id) => setSelectedSkillId(id),
+                ollamaModels: ollamaEasyModels,
+                easyOllamaModel: settings.easy_ollama_model,
+                onEasyOllamaModelChange: (id) => setEasyOllamaModel(id),
+                onOpenSettingsGeneral: () => {
+                  updateSettings({ settings_active_tab: "general" });
+                  setCurrentView("settings");
+                  if (isWeb) setSetting("web_view", "settings");
+                },
+                skillUiLocale,
+                skillSourceLocale,
                 handleTransformPromptSelect,
                 handleTransformNewPrompt,
                 handleTransformEditPrompt,

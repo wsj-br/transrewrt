@@ -3,10 +3,26 @@ if (process.platform === "linux" && process.env.NODE_ENV !== "development") {
   process.noDeprecation = true;
 }
 
-const { app, BrowserWindow, screen, ipcMain, protocol, shell } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  screen,
+  ipcMain,
+  protocol,
+  shell,
+  nativeImage,
+} = require("electron");
 
 if (process.env.TRANSREWRT_DISABLE_GPU === "1") {
   app.disableHardwareAcceleration();
+}
+
+/** Must match transrewrt.desktop / StartupWMClass (see package.json build.linux.desktop). */
+const LINUX_APP_ID = "transrewrt";
+
+if (process.platform === "linux") {
+  app.commandLine.appendSwitch("class", LINUX_APP_ID);
+  app.commandLine.appendSwitch("wayland-app-id", LINUX_APP_ID);
 }
 const path = require("path");
 const fs = require("fs");
@@ -352,6 +368,47 @@ const validateWindowState = (state, fallback) => {
   }
 };
 
+const LINUX_WINDOW_ICON_SIZE = 256;
+
+/** Linux window/taskbar icons require PNG; .ico is for Windows. */
+function resolveAppIconPath() {
+  const imagesDir = path.join(app.getAppPath(), "images");
+  if (process.platform === "linux") {
+    return path.join(imagesDir, "transrewrt_logo_512x512.png");
+  }
+  if (process.platform === "win32") {
+    return path.join(imagesDir, "transrewrt_logo.ico");
+  }
+  return path.join(imagesDir, "transrewrt_logo.png");
+}
+
+function getAppWindowIcon() {
+  const iconPath = resolveAppIconPath();
+  try {
+    if (!fs.existsSync(iconPath)) return undefined;
+  } catch {
+    return undefined;
+  }
+  let image = nativeImage.createFromPath(iconPath);
+  if (image.isEmpty()) return undefined;
+  if (process.platform === "linux") {
+    const { width, height } = image.getSize();
+    if (width !== LINUX_WINDOW_ICON_SIZE || height !== LINUX_WINDOW_ICON_SIZE) {
+      image = image.resize({
+        width: LINUX_WINDOW_ICON_SIZE,
+        height: LINUX_WINDOW_ICON_SIZE,
+      });
+    }
+  }
+  return image;
+}
+
+function applyLinuxWindowIcon(win) {
+  if (process.platform !== "linux" || !win) return;
+  const icon = getAppWindowIcon();
+  if (icon) win.setIcon(icon);
+}
+
 const createWindow = () => {
   const savedState = validateWindowState(loadWindowState(), {
     width: MAIN_WINDOW_DEFAULT_WIDTH,
@@ -366,7 +423,7 @@ const createWindow = () => {
     minWidth: MAIN_WINDOW_MIN_WIDTH,
     minHeight: MAIN_WINDOW_MIN_HEIGHT,
     backgroundColor: "#1a1a1a",
-    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
+    icon: getAppWindowIcon(),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -377,6 +434,7 @@ const createWindow = () => {
   if (savedState && savedState.isMaximized) {
     mainWindow.maximize();
   }
+  applyLinuxWindowIcon(mainWindow);
 
   mainWindow.on("resize", () => saveWindowState(mainWindow));
   mainWindow.on("move", () => saveWindowState(mainWindow));
@@ -459,7 +517,7 @@ const createSettingsWindow = () => {
     width: savedState ? savedState.width : 950,
     height: savedState ? savedState.height : 640,
     backgroundColor: "#1a1a1a",
-    icon: path.join(app.getAppPath(), "images/transrewrt_logo.ico"),
+    icon: getAppWindowIcon(),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -467,6 +525,7 @@ const createSettingsWindow = () => {
     },
     autoHideMenuBar: true,
   });
+  applyLinuxWindowIcon(settingsWindow);
 
   settingsWindow.setMenuBarVisibility(false);
   settingsWindow.setMinimumSize(780, 300);

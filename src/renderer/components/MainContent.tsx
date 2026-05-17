@@ -2,8 +2,7 @@ import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
-import ModelSelector from "./ModelSelector";
-import SkillSelector from "./SkillSelector";
+import ModelOrSkillPicker from "./ModelOrSkillPicker";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
 import type { Skill } from "@/utils/skills/skillsTypes";
@@ -242,49 +241,24 @@ const MainContent = ({
         stackRightBelowMd
         right={
           <>
-            {experienceMode === "easy" && easyProvider === "ollama" ? (
-              ollamaModels.length > 0 && onEasyOllamaModelChange ? (
-                <ModelSelector
-                  models={ollamaModels}
-                  currentModel={easyOllamaModel || ollamaModels[0]}
-                  onModelChange={onEasyOllamaModelChange}
-                  onIconClick={onOpenSettingsGeneral}
-                />
-              ) : (
-                <button
-                  type="button"
-                  className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-                  onClick={onOpenSettingsGeneral}
-                >
-                  {t("Configure Ollama or choose another provider in Settings.")}
-                </button>
-              )
-            ) : experienceMode === "easy" && skills?.length && onSkillChange ? (
-              <SkillSelector
-                skills={skills}
-                selectedSkillId={selectedSkillId || undefined}
-                onSkillChange={onSkillChange}
-                onOpenSettingsGeneral={onOpenSettingsGeneral}
-                uiLocale={skillUiLocale}
-                sourceLocale={skillSourceLocale}
-              />
-            ) : experienceMode === "easy" ? (
-              <button
-                type="button"
-                className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-                onClick={onOpenSettingsGeneral}
-              >
-                {t("No skills for this provider. Change provider in Settings.")}
-              </button>
-            ) : (
-              <ModelSelector
-                models={models}
-                currentModel={activeModel}
-                onModelChange={onModelChange}
-                onIconClick={onOpenSettingsModels}
-                onRemoveModel={onRemoveModel}
-              />
-            )}
+            <ModelOrSkillPicker
+              experienceMode={experienceMode}
+              easyProvider={easyProvider}
+              models={models}
+              currentModel={activeModel}
+              onModelChange={onModelChange}
+              onOpenSettingsModels={onOpenSettingsModels}
+              onRemoveModel={onRemoveModel}
+              skills={skills}
+              selectedSkillId={selectedSkillId}
+              onSkillChange={onSkillChange}
+              ollamaModels={ollamaModels}
+              easyOllamaModel={easyOllamaModel}
+              onEasyOllamaModelChange={onEasyOllamaModelChange}
+              onOpenSettingsGeneral={onOpenSettingsGeneral}
+              skillUiLocale={skillUiLocale}
+              skillSourceLocale={skillSourceLocale}
+            />
             <div className="hidden md:block">
               <HeaderLanguageSelector compact />
             </div>

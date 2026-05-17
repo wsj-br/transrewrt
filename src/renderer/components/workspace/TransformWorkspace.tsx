@@ -37,6 +37,17 @@ export function getTransformPanels({ common, input, output, options }) {
     generatePromptConfig,
     model,
     models,
+    experienceMode,
+    easyProvider,
+    skills,
+    selectedSkillId,
+    onSkillChange,
+    ollamaModels,
+    easyOllamaModel,
+    onEasyOllamaModelChange,
+    onOpenSettingsGeneral,
+    skillUiLocale,
+    skillSourceLocale,
     handleTransformPromptSelect,
     handleTransformNewPrompt,
     handleTransformEditPrompt,
@@ -71,6 +82,17 @@ export function getTransformPanels({ common, input, output, options }) {
           generatePromptConfig={generatePromptConfig}
           model={model}
           models={models}
+          experienceMode={experienceMode}
+          easyProvider={easyProvider}
+          skills={skills}
+          selectedSkillId={selectedSkillId}
+          onSkillChange={onSkillChange}
+          ollamaModels={ollamaModels}
+          easyOllamaModel={easyOllamaModel}
+          onEasyOllamaModelChange={onEasyOllamaModelChange}
+          onOpenSettingsGeneral={onOpenSettingsGeneral}
+          skillUiLocale={skillUiLocale}
+          skillSourceLocale={skillSourceLocale}
         />
       </div>
     );

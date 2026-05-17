@@ -6,6 +6,7 @@ import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import TransformTranslateModal from "./TransformTranslateModal";
 import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
+import { hasModelOrSkillSelection } from "./ModelOrSkillPicker";
 import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,17 @@ const TransformPromptEditor = ({
   generatePromptConfig,
   model,
   models = [],
+  experienceMode = "advanced",
+  easyProvider = "openrouter",
+  skills = [],
+  selectedSkillId,
+  onSkillChange,
+  ollamaModels = [],
+  easyOllamaModel,
+  onEasyOllamaModelChange,
+  onOpenSettingsGeneral,
+  skillUiLocale,
+  skillSourceLocale = "en-GB",
 }) => {
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
@@ -131,9 +143,32 @@ const TransformPromptEditor = ({
     if (initialPrompt?.id != null) onDelete?.(initialPrompt);
   };
 
-  const canShowTranslateButton = translatePromptFields && (model || (models && models.length > 0)) && typeof translatePromptFields === "function";
-  const canShowImproveButton = improvePromptConfig && (model || (models && models.length > 0)) && typeof improvePromptConfig === "function";
-  const canShowGenerateButton = generatePromptConfig && (model || (models && models.length > 0)) && typeof generatePromptConfig === "function";
+  const pickerReady = hasModelOrSkillSelection({
+    experienceMode,
+    easyProvider,
+    model,
+    models,
+    skills,
+    ollamaModels,
+    easyOllamaModel,
+  });
+  const canShowTranslateButton = translatePromptFields && pickerReady && typeof translatePromptFields === "function";
+  const canShowImproveButton = improvePromptConfig && pickerReady && typeof improvePromptConfig === "function";
+  const canShowGenerateButton = generatePromptConfig && pickerReady && typeof generatePromptConfig === "function";
+
+  const transformModalPickerProps = {
+    experienceMode,
+    easyProvider,
+    skills,
+    selectedSkillId,
+    onSkillChange,
+    ollamaModels,
+    easyOllamaModel,
+    onEasyOllamaModelChange,
+    onOpenSettingsGeneral,
+    skillUiLocale,
+    skillSourceLocale,
+  };
 
   const openTranslateModal = () => {
     const firstLang = (topLanguages && topLanguages[0]) || (allLanguages && allLanguages[0]) || "";
@@ -153,7 +188,8 @@ const TransformPromptEditor = ({
   };
 
   const handleTranslateConfirm = async (selectedModel) => {
-    if (!translatePromptFields || !selectedModel || !translateTargetLang) return;
+    if (!translatePromptFields || !translateTargetLang) return;
+    if (experienceMode === "advanced" && !selectedModel) return;
     const nameVal = name.trim();
     const promptInstructionsVal = promptInstructions.trim();
     const roleVal = role.trim();
@@ -216,7 +252,8 @@ const TransformPromptEditor = ({
   };
 
   const handleImproveConfirm = async (selectedModel) => {
-    if (!improvePromptConfig || !selectedModel) return;
+    if (!improvePromptConfig) return;
+    if (experienceMode === "advanced" && !selectedModel) return;
     const payload = buildDraft();
     const controller = new AbortController();
     improveAbortRef.current = controller;
@@ -267,7 +304,8 @@ const TransformPromptEditor = ({
   };
 
   const handleGenerateConfirm = async (selectedModel, userDescription) => {
-    if (!generatePromptConfig || !selectedModel || !userDescription) return;
+    if (!generatePromptConfig || !userDescription) return;
+    if (experienceMode === "advanced" && !selectedModel) return;
     const controller = new AbortController();
     generateAbortRef.current = controller;
     setGenerateLoading(true);
@@ -448,6 +486,7 @@ const TransformPromptEditor = ({
           model={model}
           loading={translateLoading}
           error={translateError}
+          {...transformModalPickerProps}
         />
       )}
       {showImproveModal && (
@@ -459,6 +498,7 @@ const TransformPromptEditor = ({
           onCancel={handleImproveCancel}
           loading={improveLoading}
           error={improveError}
+          {...transformModalPickerProps}
         />
       )}
       {showGenerateModal && (
@@ -470,6 +510,7 @@ const TransformPromptEditor = ({
           onCancel={handleGenerateCancel}
           loading={generateLoading}
           error={generateError}
+          {...transformModalPickerProps}
         />
       )}
     </div>
@@ -496,6 +537,17 @@ TransformPromptEditor.propTypes = {
   generatePromptConfig: PropTypes.func,
   model: PropTypes.string,
   models: PropTypes.arrayOf(PropTypes.string),
+  experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  easyProvider: PropTypes.string,
+  skills: PropTypes.array,
+  selectedSkillId: PropTypes.string,
+  onSkillChange: PropTypes.func,
+  ollamaModels: PropTypes.arrayOf(PropTypes.string),
+  easyOllamaModel: PropTypes.string,
+  onEasyOllamaModelChange: PropTypes.func,
+  onOpenSettingsGeneral: PropTypes.func,
+  skillUiLocale: PropTypes.string,
+  skillSourceLocale: PropTypes.string,
 };
 
 export default TransformPromptEditor;

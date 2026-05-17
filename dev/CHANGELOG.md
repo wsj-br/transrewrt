@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Linux taskbar icon (Electron dev and AppImage) — set `wayland-app-id` / `class` to `transrewrt`, align `StartupWMClass` in the built `.desktop`, resize PNG for `BrowserWindow`, and write `transrewrt-dev.desktop` on `pnpm dev` for Wayland shell icon lookup.
+- **Changed**: Transform prompt editor modals (translate / improve / generate fields): Easy mode uses the same skill selector as Translate and Rewrite; Advanced mode keeps the model list.
+- **Fixed**: `pnpm install` postinstall — pin `electron` to ^41.6.1 until `better-sqlite3` supports Electron 42 (V8 API break; upstream [issue #1474](https://github.com/WiseLibs/better-sqlite3/issues/1474)); add `pnpm-workspace.yaml` `allowBuilds` for pnpm 11 (replaces `onlyBuiltDependencies`); add `.nvmrc` (`24`) matching `engines.node`.
+- **Security**: Removed unused `geist` dependency (pulled in vulnerable `next` transitively); Geist fonts remain self-hosted under `src/renderer/assets/fonts`.
 - **Changed**: Easy mode is the default **AI experience** when `mode` is unset: `config_default.json` already uses `mode: "easy"`; on load the app now persists `mode: "easy"` for configs that omit it (legacy installs).
 - **Added**: Dev skills editor AI Suggestion setup: checkbox list to choose which skills receive model suggestions (all selected by default; `skill_ids` in `POST /api/skills/suggest-models`).
 - **Fixed**: Dev skills editor AI Suggestion: prompts and catalog filtering require chat-compatible models for Transrewrt translate/rewrite/transform (excludes completion-only endpoints such as `gpt-5.5-pro`).
