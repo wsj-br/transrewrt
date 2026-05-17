@@ -5,7 +5,7 @@
 const { dialog } = require("electron");
 const fs = require("fs");
 const path = require("path");
-const archiver = require("archiver");
+const { ZipArchive } = require("archiver");
 const {
   BACKUP_FORMAT,
   BACKUP_VERSION,
@@ -245,7 +245,7 @@ function registerConfigBackupIpc(ipcMainRef, getDb, userDataPath, reloadConfigCa
     const map = buildElectronBackupMap(getDb, userDataPath, { includeUsageData });
     await new Promise((resolve, reject) => {
       const out = fs.createWriteStream(filePath);
-      const archive = archiver("zip", { zlib: { level: 9 } });
+      const archive = new ZipArchive({ zlib: { level: 9 } });
       out.on("close", resolve);
       archive.on("error", reject);
       archive.pipe(out);

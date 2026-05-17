@@ -401,7 +401,7 @@ const SettingsApiTab = ({
             ) : (
               <>
                 <p className="block mb-5 max-w-[560px] text-sm">{t("These API keys are configured from Docker environment variables.")}</p>
-                <div className="grid gap-4 w-fit">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-5xl">
                   {webProviderStatus.map((item) => (
                     <div key={item.provider} className="border border-border rounded-lg p-[10px_12px]">
                       <div className="flex items-center justify-between gap-3">

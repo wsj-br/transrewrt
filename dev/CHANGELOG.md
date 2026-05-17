@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Web Settings > API Config — provider status cards use a two-column grid.
+- **Fixed**: Configuration backup export on web and Electron — use `archiver` v8 `ZipArchive` API (`require('archiver')` no longer provides a callable factory).
 - **Fixed**: Linux taskbar icon (Electron dev and AppImage) — set `wayland-app-id` / `class` to `transrewrt`, align `StartupWMClass` in the built `.desktop`, resize PNG for `BrowserWindow`, and write `transrewrt-dev.desktop` on `pnpm dev` for Wayland shell icon lookup.
 - **Changed**: Transform prompt editor modals (translate / improve / generate fields): Easy mode uses the same skill selector as Translate and Rewrite; Advanced mode keeps the model list.
 - **Fixed**: `pnpm install` postinstall — pin `electron` to ^41.6.1 until `better-sqlite3` supports Electron 42 (V8 API break; upstream [issue #1474](https://github.com/WiseLibs/better-sqlite3/issues/1474)); add `pnpm-workspace.yaml` `allowBuilds` for pnpm 11 (replaces `onlyBuiltDependencies`); add `.nvmrc` (`24`) matching `engines.node`.

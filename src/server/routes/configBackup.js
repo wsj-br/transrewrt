@@ -3,7 +3,7 @@
  */
 
 const express = require("express");
-const archiver = require("archiver");
+const { ZipArchive } = require("archiver");
 const multer = require("multer");
 const { buildWebBackupMap, applyWebRestore } = require("../utils/configBackupOps.js");
 const { configBackupFileStem } = require("../../shared/configBackup/zipUtils.js");
@@ -49,7 +49,7 @@ module.exports = function createConfigBackupRouter(configFile, getDb, appDb, dat
         `attachment; filename="${stem}.zip"`,
       );
 
-      const archive = archiver("zip", { zlib: { level: 9 } });
+      const archive = new ZipArchive({ zlib: { level: 9 } });
       archive.on("error", (err) => {
         log.error("[BACKUP] archiver error: " + err.message, { stack: err.stack });
         if (!res.headersSent) {
