@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:15.587Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:32:15.293Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: hu
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nye
 - **Átírás** – helyesírás-javítás, tisztaság javítása, formális/formálisabb stílus, rövidítés, bővítés, technikai szöveg
 - **Átalakítás** – egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelv parancsonként
 - **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
-- **Modellek és költségek** – válasszon modelleket bármely beállított szolgáltatótól; költség- és használati irányítópult naplóval, összegzésekkel modell/művelet/nap szerint
-- **Felhasználói felület (UI)** – többnyelvű felület (több mint 30 nyelv, RTL-támogatással), betűtípusok, ...
-- **Webes mód** – többfelhasználós támogatás adminisztrátori szerepkörökkel
-- **Asztali alkalmazás** – Electron alkalmazás Windows és Linux rendszerekre
-- **Saját kiszolgálón futtatható** – Docker-rendszerkép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
+- **Egyszerű és Haladó** - Egyszerű mód (alapértelmezett): szolgáltatónként kiválogatott képességek (Ingyenes, Gyors, Haladó, Technikai, Jogi) modellazonosítók kiválasztása nélkül; Haladó mód: az Ön beállított szolgáltatóitól származó teljes modelllista
+- **Modellek és költség** - költség- és használati irányítópultok (Összegzés, Modell szerint, Összes hívás) exportálással; az OpenRouter a tényleges kiadásokat mutatja, más szolgáltatók becsléseket használnak
+- **Felhasználói felület (UI)** - többnyelvű felület (több mint 30 nyelv, RTL támogatással), betűtípusok, ...
+- **Webmód** - többfelhasználós támogatás adminisztrátori szerepkörökkel
+- **Asztali alkalmazás** - Electron alkalmazás Windows és Linux rendszerekhez
+- **Saját kiszolgálón futtatható** - Docker kép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 
 A telepítést követően tekintse meg a [**Felhasználói útmutatót**](USER-GUIDE.hu.md) az összes funkció részletes ismertetéséhez.
 

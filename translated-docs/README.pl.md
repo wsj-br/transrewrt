@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:21.945Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:04.996Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: pl
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Narzędzie tekstowe z wykorzystaniem AI: tłumaczenie między językami, przefor
 - **Przepisz** – popraw błędy gramatyczne, popraw czytelność, wersja formalna/nieformalna, skróć, rozwiń, wersja techniczna
 - **Przekształć** – niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy dla każdej zachęty
 - **Historia** – pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
-- **Modele i koszty** – wybierz modele z dowolnego skonfigurowanego dostawcy; tabele kosztów i zużycia z dziennikami, podsumowaniami według modelu/operacji/dnia
-- **Interfejs użytkownika** – wielojęzyczny interfejs (ponad 30 języków, obsługa RTL), czcionki, ...
-- **Tryb sieciowy** – obsługa wielu użytkowników z rolami administratora
-- **Wersja komputerowa** – aplikacja Electron dla systemów Windows i Linux
-- **Hostowany lokalnie** – obraz Docker dla architektur amd64 i arm64 (gotowy do użycia na Raspberry Pi)
+- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): dobrane umiejętności według dostawcy (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne) bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
+- **Modele i koszt** – tabele kosztów i zużycia (Podsumowanie, Według modelu, Wszystkie wywołania) z opcją eksportu; OpenRouter pokazuje rzeczywiste wydatki, inne dostawcy używają szacunków
+- **Interfejs użytkownika** – wielojęzyczny interfejs (ponad 30 języków, obsługa pisania od prawej do lewej), czcionki, ...
+- **Tryb internetowy** – obsługa wielu użytkowników z rolami administratora
+- **Aplikacja komputerowa** – aplikacja Electron dla systemów Windows i Linux
+- **Hostowana lokalnie** – obraz Docker dla architektur amd64 i arm64 (gotowy do użycia na Raspberry Pi)
 
 Po zainstalowaniu zapoznaj się z [**Podręcznikiem użytkownika**](USER-GUIDE.pl.md), aby poznać szczegółowy opis wszystkich funkcji.
 

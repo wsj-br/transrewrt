@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:24:23.335Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:31:51.563Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: cs
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt vám pomáhá pracovat s textem třemi hlavními způsoby:
 - **Překlad** – převod textu z jednoho jazyka do druhého.
 - **Přepsat** – přeformulování textu v odlišném stylu, například jasnějším, stručnějším nebo formálnějším.
 - **Transformovat** – zpracování textu pomocí vlastních pokynů pro umělou inteligenci, které se nazývají prompty.
+
+Ve výchozím nastavení aplikace běží v režimu **Snadný**: vyberete **dovednost** (například Zdarma, Rychlý nebo Technický) a **poskytovatele** v nastavení, aniž byste museli vybírat ID modelů. Přepněte do režimu **Pokročilý** v části [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z části [**Nastavení** > **Modely**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Modely](#models)
   - [Jazyky](#languages)
   - [Sledování nákladů](#cost-tracking)
-  - [Převodové výzvy](#transform-prompts)
+  - [Transformovat (karta nastavení)](#transform-settings)
   - [Uživatelé](#users)
   - [Nastavení API](#api-config)
   - [O aplikaci](#about)
@@ -89,9 +91,9 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Výsledek je příliš pomalý nebo příliš drahý](#the-result-is-too-slow-or-too-expensive)
   - [Rozhraní je v nesprávném jazyce](#the-interface-is-in-the-wrong-language)
   - [Text je příliš malý nebo špatně čitelný](#the-text-is-too-small-or-hard-to-read)
-  - [Grafy v přehledu jsou prázdné](#dashboard-charts-are-empty)
-  - [Náklady zobrazují „nedostupné“ nebo se zdají chybné](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady neodpovídají účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
+  - [Souhrn na přehledu vypadá prázdně](#dashboard-summary-looks-empty)
+  - [Náklady zobrazují „není k dispozici“ nebo se zdají chybné](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady neodpovídají mému účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
   - [Stránka Historie chybí v bočním panelu](#the-history-page-is-missing-from-the-sidebar)
   - [Webová aplikace: neočekávaně přesměrováno na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Webový správce: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Nemusíte vybírat placený model, abyste mohli začít. Jakmile přidáte svůj
 
 Jednoduše řečeno:
 
-- **Model** je AI modul, který provádí práci. Modely jsou uvedeny s **předponou poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
-- **Klíč API** (nebo u Ollama **základní adresa URL**) je způsob, jakým aplikace komunikuje s daným poskytovatelem.
+- V režimu **Snadný** je **dovednost** přednastavená hodnota (Zdarma, Rychlý, Pokročilý, Technický, Právní), která se mapuje na model pro vybraného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). Dovednost vybíráte na panelu nástrojů v režimech Překlad, Přepsat a Transformovat.
+- V režimu **Pokročilý** je **model** AI modul, který vybíráte přímo. ID modelů používají **předponu poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
+- **API klíč** (nebo u Ollama **základní URL**) je způsob, jak aplikace komunikuje s daným poskytovatelem.
 
-Pokud používáte **desktopovou aplikaci**, přidejte klíče v části [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pokud používáte pouze OpenRouter, viz níže [Jak získat klíč API](#how-to-get-an-api-key-desktop-app). Pokud nechcete používat klíč API, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a používat místní modely, například `translategemma:4b`.
+Pokud používáte **desktopovou aplikaci**, přidejte klíče v části [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pokud používáte pouze OpenRouter, viz níže [Jak získat bezplatný API klíč OpenRouter](#how-to-get-an-api-key-desktop-app). Pokud nechcete používat API klíč, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a používat místní modely, například `translategemma:4b`.
 
 Pokud používáte **webovou verzi**, poskytovatele nakonfiguruje správce serveru pomocí proměnných prostředí, takže nemůžete klíče API zadat přímo v aplikaci.
 
@@ -146,14 +149,14 @@ Pokud používáte desktopovou aplikaci, postupujte podle následujících krok�
 Pokud používáte Transrewrt poprvé, postupujte v tomto pořadí:
 
 1. Otevřete aplikaci.
-2. V případě potřeby vyberte svůj **jazyk rozhraní** pomocí ikony zeměkoule.
-3. Pokud používáte **desktopovou aplikaci**, otevřete [**Nastavení** > **Nastavení API**](#api-config), přidejte klíč API alespoň pro jednoho poskytovatele (například OpenRouter) a klikněte na **Test**, abyste ověřili, že funguje.
-4. Otevřete [**Nastavení** > **Modely**](#models) a přidejte jeden nebo více modelů do části **Vybrané modely**.
-5. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte své **nejčastěji používané jazyky**, pokud chcete, aby se vaše oblíbené jazyky zobrazovaly jako první.
-6. Přejděte do **Překlad** a spusťte jednoduchý překlad, abyste ověřili, že vše funguje.
-7. Jakmile to bude fungovat, zkuste **Přepsat** a poté **Transformovat**.
+2. V případě potřeby vyberte svůj **jazyk rozhraní** z ikony zeměkoule.
+3. Pokud používáte **desktopovou aplikaci**, otevřete [**Nastavení** > **Nastavení API**](#api-config), přidejte API klíč alespoň pro jednoho poskytovatele (například OpenRouter) a klikněte na **Test**, abyste ověřili, že funguje.
+4. Otevřete [**Nastavení** > **Obecné nastavení**](#general-settings). V režimu **Snadný** (výchozí) vyberte **poskytovatele**, který má nakonfigurovaný klíč. V režimu **Pokročilý** otevřete [**Nastavení** > **Modely**](#models) a přidejte jeden nebo více modelů do části **Vybrané modely**.
+5. V režimu **Překlad** vyberte **dovednost** (Snadný) nebo **model** (Pokročilý) na panelu nástrojů.
+6. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte své **nejčastěji používané jazyky**, pokud chcete, aby se vaše oblíbené jazyky zobrazovaly jako první.
+7. Spusťte jednoduchý překlad, abyste ověřili, že vše funguje, a poté vyzkoušejte funkce **Přepsat** a **Transformovat**.
 
-Toto pořadí je důležité. Zabraňuje tak nejčastějšímu problému při prvním použití: spuštění úkolu před tím, než má aplikace funkční připojení přes API nebo vybraný model.
+Toto pořadí je důležité. Zabraňuje nejčastějšímu problému při prvním použití: spuštění úkolu před tím, než má aplikace funkční připojení přes API nebo vybranou dovednost/model.
 
 <br/><br/>
 
@@ -202,15 +205,16 @@ Pomocí postranního panelu se pohybujete v aplikaci. Panel můžete sbalit, aby
 
 Panel nástrojů se mírně liší v závislosti na tom, kde se v aplikaci nacházíte.
 
-- Vlevo zobrazuje název aktuální stránky.
-- Vpravo zobrazuje **výběr modelu** a ovládání **Jazyka rozhraní**.
+- Vlevo se zobrazuje název aktuální stránky.
+- Vpravo se zobrazuje **výběr dovednosti nebo modelu** a ovládání **jazyka rozhraní**.
 
-Pomocí **výběru modelu** můžete zvolit, který AI model bude použit pro aktuální úkol.
+V režimu **Snadný** zobrazuje panel nástrojů **výběr dovednosti** (Zdarma, Rychlý, Pokročilý, Technický, Právní a podobné předvolby). Dovednosti závisí na **poskytovateli**, kterého jste vybrali v části [**Nastavení** > **Obecné nastavení**](#general-settings). Pokud je **poskytovatel** nastaven na **Ollama**, zobrazí panel nástrojů namísto dovedností vaše nainstalované místní modely.
+
+V režimu **Pokročilý** vám **výběr modelu** umožňuje zvolit, který AI modul použít pro aktuální úkol.
 
 ![Model selector](../images/screenshots/cs/model-selector.png)
 
-Některé modely zdarma nemusí být vždy k dispozici – někdy jsou offline nebo mají omezené využití. Pokud k tomu dojde, aplikace model automaticky odstraní ze seznamu dostupných. Chcete-li ovlivnit, které modely se zobrazují, přejděte do [**Nastavení** > **Modely**](#models) a upravte si seznam modelů.
- Nastavení modelu můžete otevřít také přímo kliknutím na ikonu poskytovatele vlevo od názvu modelu na panelu nástrojů.
+V pokročilém režimu některé bezplatné modely nemusí být vždy k dispozici – mohou být offline nebo dosáhly limitu využití. Aplikace může tento model automaticky odebrat ze seznamu. Chcete-li ovlivnit, které modely se zobrazují, přejděte do [**Nastavení** > **Modely**](#models). Nastavení modelu můžete otevřít kliknutím na ikonu poskytovatele vlevo od názvu modelu na panelu nástrojů.
 
 <br/>
 
@@ -258,8 +262,8 @@ Použijte **Překlad**, chcete-li převést text z jednoho jazyka do druhého.
 
 1. Otevřete **Překlad**.
 2. Vyberte jazyk ve **Z**.
-3. Vyberte jazyk v **Do**.
-4. Vyberte model na panelu nástrojů.
+3. Vyberte jazyk do **Na**.
+4. Vyberte dovednost (Snadný) nebo model (Pokročilý) na panelu nástrojů.
 5. Zadejte nebo vložte text do **Vstupu**.
 6. Klikněte na **Překlad**.
 7. Přečtěte si výsledek ve **Výstupu**.
@@ -350,7 +354,7 @@ Toto je nejpružnější část aplikace. Můžete ji použít například pro:
 <a id="if-you-have-no-prompts-yet"></a>
 ### Pokud ještě žádné výzvy nemáte
 
-Pokud je váš seznam výzev prázdný, klikněte na **Načíst ukázkové výzvy** v pracovní ploše Transformovat. Stejné ovládání je vždy k dispozici v části [**Nastavení** > **Převodové výzvy**](#transform-prompts) na řádku pro export/import. Oba postupy přidají vestavěné ukázky, abyste mohli rychle začít.
+Pokud je váš seznam výzev prázdný, klikněte na **Načíst ukázkové výzvy** v pracovním prostoru Transformovat. Stejné tlačítko je vždy k dispozici v části [**Nastavení** > **Transformovat**](#transform-settings) na řádku pro export/import. Oba způsoby přidají vestavěné příklady, abyste mohli rychle začít.
 
 <br/>
 
@@ -424,7 +428,9 @@ To je užitečné v těchto případech:
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Uložené výzvy můžete exportovat a importovat v části [**Nastavení** > **Převodové výzvy**](#transform-prompts).
+> Uložené výzvy můžete exportovat a importovat v části [**Nastavení** > **Transformovat**](#transform-settings).
+
+Když použijete **Vygenerovat výzvu**, **Vylepšit výzvu** nebo **Přeložit výzvu** v editoru výzev, nabízí režim **Snadný** stejný výběr dovedností jako Překlad a Přepsání; režim **Pokročilý** používá seznam modelů.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Použijte **Přehled**, abyste viděli, jak hodně aplikaci používáte a kolik
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Pokud používáte pouze **zdarma** dostupné modely, částky **nákladů** mohou být nulové a souhrny zaměřené na náklady mohou vypadat prázdně. Na kartě **Souhrn** stále zobrazují **počty volání** (překlad, přepis a transformace) v částech **Využití v čase** a **Využití podle modelu**, pokud máte aktivitu ve vybraném období.
+> Pokud používáte pouze **zdarma** modely, mohou být **náklady** nulové a ukazatele zaměřené na náklady mohou být prázdné. Karta **Souhrn** stále zobrazuje počty volání pro překlad, přepsání a transformaci, pokud došlo k aktivitě ve vybraném období.
 
 <br/>
 
@@ -461,11 +467,9 @@ Pomocí tlačítek filtru nahoře změňte časové období.
 <a id="dashboard-tabs"></a>
 ### Karty přehledu
 
-- **Souhrn** poskytuje přehled o využití a nákladech. Obsahuje **Využití v čase** (následně sčítané **počty volání** denně pro překlad, přepis a transformaci) a **Využití podle modelu** (celkový počet **volání podle modelu**, včetně transformace).
-- **Podle využití** rozděluje aktivitu podle jazyka překladu, režimu přepisu a transformační výzvy.
-- **Podle modelu** ukazuje, které modely jste použili a kolik vás stály.
-- **Podle dne** zobrazuje denní celky.
-- **Všechny volání** zobrazuje kompletní historii volání a umožňuje ji exportovat.
+- **Souhrn** zobrazuje karty s klíčovými ukazateli výkonu: celkové náklady, použité modely, počty volání a náklady podle režimu (včetně podílu na celkovém počtu volání), průměrné náklady na volání, průměrné TPS a tři nejčastěji používané modely podle počtu volání.
+- **Podle modelu** uvádí každý model s celkovým počtem volání, celkovými náklady a průměrným TPS; rozbalením řádku získáte rozdělení podle překladu, přepsání a transformace.
+- **Všechny volání** zobrazuje kompletní protokol volání (stránkování na širokých rozloženích, karty na úzkých obrazovkách) a umožňuje jeho export.
 
 <br/>
 
@@ -508,14 +512,14 @@ Kliknutím na **Historie** zobrazíte přehled vašich akcí v aplikaci **Transr
 <a id="filter-the-history"></a>
 ### Filtrování historie
 
-**Historie** používá stejné filtry jako stránka **Přehled**. Pomocí nich vyberte časové období.
+**Historie** používá stejné filtry časového rozsahu jako stránka **Přehled**.
 
 ![Dashboard filters](../images/screenshots/cs/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Filtrování podle **Uživatele** je ve webové verzi viditelné pouze pro správce. Běžní uživatelé tento filtr nevidí a v desktopové aplikaci není k dispozici.
+> Ve **webové aplikaci** vidí každý (včetně správců) pouze svou vlastní historii spuštění. Filtr **Uživatel** na stránce **Přehled** slouží správcům k přehledu využití a nákladů napříč účty; nevztahuje se na **Historii**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Otevřete **Nastavení** na bočním panelu a přizpůsobte chování aplikace.
 
 Dostupné karty závisí na platformě a vaší roli:
 
-| Karta               | Desktop | Web (správce) | Web (běžný uživatel) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Obecné nastavení  |   ano   |     ano     |        ano         |
-  | Modely            |   ano   |     ano     |        ano         |
-  | Jazyky            |   ano   |     ano     |        ano         |
-  | Sledování nákladů |   ano   |     ano     |         -          |
-  | Převodové výzvy   |   ano   |     ano     |        ano         |
-  | Uživatelé         |    -    |     ano     |         -          |
-  | Nastavení API     |   ano   |     ano     |         -          |
-  | O aplikaci             |   ano   |     ano     |        ano         |
+| Karta            | Desktop | Web (správce) | Web (běžný uživatel) | Poznámky                                      |
+  |------------------|:-------:|:-------------:|:---------------------:|------------------------------------------------|
+  | Obecné nastavení |   ano   |      ano      |         ano           | Zahrnuje **AI zkušenost** (Snadný / Pokročilý) |
+  | Modely           |   ano   |      ano      |         ano           | Pouze pokud je **AI zkušenost** nastavena na **Pokročilý** |
+  | Jazyky         |   ano   |     ano     |        ano         | |
+  | Sledování nákladů     |   ano   |     ano     |         -          | |
+  | Transformovat         |   ano   |     ano     |        ano         | Hromadný import/export transformačních výzev |
+  | Uživatelé             |    -    |     ano     |         -          | |
+  | Nastavení API        |   ano   |     ano     |         -          | |
+  | O aplikaci             |   ano   |     ano     |        ano         | |
+
+V režimu **Snadný** se výběr modelu provádí prostřednictvím dovedností na panelu nástrojů a **Poskytovatele** v Obecném nastavení; karta **Modely** je skrytá.
 
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Ve webové verzi má každý uživatel svou vlastní konfiguraci. Nastavení, jako jsou vybrané modely, jazyky, obecné možnosti a převodové výzvy, jsou uložena pro každého uživatele zvlášť. Změny, které provedete, nemají vliv na ostatní uživatele.
+> Ve webové verzi má každý uživatel svou vlastní konfiguraci. Nastavení jako AI zkušenost, poskytovatel, vybrané modely nebo dovednosti, jazyky, obecné možnosti a transformační výzvy jsou uloženy pro každého uživatele zvlášť. Změny, které provedete, neovlivní ostatní uživatele.
 
 <br/>
 
@@ -564,7 +570,14 @@ Dostupné karty závisí na platformě a vaší roli:
 <a id="general-settings"></a>
 ### Obecné nastavení
 
-Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou ukládány podrobnosti spuštění pro **Historii** a vzhled aplikace.
+Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou ukládány podrobnosti spuštění pro **Historii**, vzhledu a způsobu výběru AI pro Překlad, Přepsání a Transformaci.
+
+**AI zkušenost**
+
+- **Snadný** (výchozí): vyberte **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají přednastavené sady dovedností na panelu nástrojů. **Ollama** uvádí modely nainstalované na vašem počítači namísto dovedností.
+- **Pokročilý**: vybírejte jednotlivé modely na panelu nástrojů; seznam spravujte v části [**Nastavení** > **Modely**](#models).
+
+Ve **webové aplikaci** závisí, které poskytovatele vidíte, na nastavených klíčích API v prostředí serveru. V **desktopové aplikaci** nakonfigurujte klíče v části [**Nastavení API**](#api-config).
 
 **Chování**
 
@@ -576,8 +589,8 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **Historie**
 
-- **Uchovávat historii spuštění** určuje, zda se u každého překladu, přepsání a transformace ukládají **vstupní a výstupní text** pro zobrazení v postranním panelu [**Historie**](#history). Vypnutí této funkce vyžaduje potvrzení; pokud potvrdíte, uložený text historie bude odstraněn z databáze.
-- **Smazat historická data** umožňuje odstranit uložený text podle stáří (např. starší než několik měsíců nebo **všechna data (vymazat)**) pomocí tlačítka **Smazat data**. Toto ovlivňuje pouze uložený text spuštění pro zobrazení **Historie**; **neodstraňuje** celkové náklady nebo údaje o využití. Chcete-li odstranit nebo zkrátit data o **nákladech**, použijte [**Nastavení** > **Sledování nákladů**](#cost-tracking).
+- **Uchovávat historii spuštění** určuje, zda se pro každý překlad, přepsání a transformaci ukládají **vstupní a výstupní text** pro zobrazení [**Historie**](#history) na postranním panelu. Vypnutí vyžaduje potvrzení; pokud potvrdíte, uložený text historie bude odstraněn z databáze. Pokud je popisek označen jako *zakázáno správcem*, je ve vaší instalaci nastaveno `HISTORY_DISABLED` v prostředí (viz [README](README.cs.md#configuration-and-environment)); nemůžete historii znovu zapnout přes uživatelské rozhraní.
+- **Smazat historická data** vám umožňuje odstranit uložený text podle stáří (např. starší než několik měsíců nebo **všechna data (vymazat)**) pomocí **Smazat data**. To ovlivňuje pouze uložený text spuštění pro zobrazení **Historie**; **neodstraňuje** náklady ani celkové údaje o využití. Chcete-li odstranit nebo zkrátit **nákladová** data, použijte [**Nastavení** > **Sledování nákladů**](#cost-tracking).
 
 **Vzhled**
 
@@ -602,7 +615,7 @@ Zálohy vytvořené ve webové nebo desktopové verzi lze obnovit i v druhé ver
 <a id="models"></a>
 ### Modely
 
-Použijte **Nastavení** > **Modely** k výběru modelů, které se zobrazí na panelu nástrojů.
+Tato karta je k dispozici pouze v případě, že je v části [**Obecné nastavení**](#general-settings) nastavena možnost **AI zkušenost** na **Pokročilý**. Pomocí **Nastavení** > **Modely** vyberte, které modely se zobrazí na panelu nástrojů.
 
 ![Settings Models tab](../images/screenshots/cs/settings-models.png)
 
@@ -679,10 +692,10 @@ Použijte **Nastavení** > **Sledování nákladů** ke správě informací o n�
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Převodové výzvy
+<a id="transform-settings"></a>
+### Transformovat (karta nastavení)
 
-Použijte **Nastavení** > **Převodové výzvy** ke správě výzev hromadně.
+Pomocí **Nastavení** > **Transformovat** můžete hromadně spravovat výzvy.
 
 Můžete:
 
@@ -769,9 +782,10 @@ Pokud něco nefunguje podle očekávání, nejprve zkontrolujte následující b
 
 Zkontrolujte, zda:
 
-- jste vybrali model na panelu nástrojů
-- je alespoň jeden model uveden v části [**Nastavení** > **Modely**](#models)
-- je správně nastavené vaše API
+- vybrali jste **dovednost** (Snadný) nebo **model** (Pokročilý) na panelu nástrojů
+- v režimu **Snadný** má [**Nastavení** > **Obecné nastavení**](#general-settings) nastaveného **poskytovatele** s platným klíčem (nebo adresou URL Ollamy) a alespoň jednu dovednost pro tohoto poskytovatele
+- v režimu **Pokročilý** je alespoň jeden model uveden v části [**Nastavení** > **Modely**](#models)
+- vaše nastavení API funguje
 
 Pokud používáte desktopovou aplikaci:
 
@@ -784,13 +798,9 @@ Pokud používáte desktopovou aplikaci:
 <a id="the-model-list-is-empty"></a>
 ### Seznam modelů je prázdný
 
-Otevřete [**Nastavení** > **Modely**](#models) a klikněte na **Obnovit**.
+V režimu **Snadný** otevřete [**Nastavení** > **Obecné nastavení**](#general-settings), ověřte nastavení **Poskytovatele** a přidejte nebo otestujte klíče v části [**Nastavení API**](#api-config) (desktop) nebo požádejte svého správce (web). U **Ollamy** spusťte **Test** na základní adrese URL a ujistěte se, že jsou modely nainstalovány místně.
 
-V případě potřeby:
-
-- vyhledejte model
-- zapněte možnost **Pouze zdarma**
-- přidejte jeden nebo více modelů do části **Vybrané modely**
+V režimu **Pokročilý** otevřete [**Nastavení** > **Modely**](#models) a klikněte na **Obnovit**. V případě potřeby vyhledejte model, zapněte možnost **Pouze zdarma** a přidejte modely do části **Vybrané modely**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Otevřete [**Nastavení** > **Obecné nastavení**](#general-settings) a změňt
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Grafy v přehledu jsou prázdné
+<a id="dashboard-summary-looks-empty"></a>
+### Přehled na panelu vypadá prázdně
 
 To je normální, pokud:
 
-- používáte pouze **modely zdarma** a prohlížíte si údaje o **nákladech** (ty mohou být nulové); grafy počtu **volání** v části **Souhrn** stále potřebují data z vybraného období
-- vybraný **časový filtr** nezahrnuje období, kdy byla volání provedena – zkuste **Vše**, abyste to ověřili
+- používáte pouze **zdarma dostupné modely** a sledujete údaje o **nákladech** (mohou být nulové); ukazatele počtu volání na kartě **Souhrn** stále potřebují data z vybraného období
+- vybraný **časový filtr** nezahrnuje období, kdy byla volání provedena – zkuste **Vše** pro kontrolu
 
-Pokud jsou grafy stále prázdné po výběru **Vše**, ověřte, zda se volání objevují v části [**Historie**](#history) nebo na kartě **Všechny volání**.
+Pokud jsou ukazatele stále nulové i po výběru **Vše**, ověřte, zda se volání zobrazují v části [**Historie**](#history) nebo na kartě **Všechny volání**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Chcete-li, aby celková částka lépe odpovídala vašim skutečným výdajům 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Stránka Historie chybí na bočním panelu
 
-Možnost **Uchovávat historii spuštění** může být vypnutá. Otevřete [**Nastavení** > **Obecné nastavení**](#general-settings) a tuto možnost povolte. Upozorňujeme, že její zapnutí neobnoví dříve smazaná data historie.
+Možnost **Uchovávat historii spuštění** může být vypnutá. Otevřete [**Nastavení** > **Obecné nastavení**](#general-settings) a povolte ji, pokud historie není *zakázána správcem* (`HISTORY_DISABLED` v prostředí – viz [README](README.cs.md#configuration-and-environment)). Zapnutí historie neobnoví dříve smazaný text.
 
 <br/>
 
@@ -912,8 +922,9 @@ Při úpravě výzvy vždy klikněte na **Uložit**, než kliknete na **Zpět na
 - Použijte [**Přepsat**](#rewrite) pro každodenní vylepšování formulací.
 - Použijte [**Transformovat**](#transform), když potřebujete opakovatelný pracovní postup pro konkrétní úkol.
 - Použijte [**Přehled**](#dashboard), pokud chcete sledovat využití a náklady.
-- Použijte [**Historie**](#history) k přezkoumání dřívějších operací a jejich úplného vstupního/výstupního textu.
-- Pravidelně exportujte výzvy, pokud vytváříte knihovnu výzev, kterou chcete uchovat v bezpečí (viz [Převodové výzvy](#transform-prompts)), nebo ji chcete sdílet s ostatními.
+- K zobrazení předchozích operací a jejich úplného vstupního/výstupního textu použijte [**Historie**](#history).
+- Pravidelně exportujte výzvy, pokud vytváříte knihovnu výzev, kterou chcete uchovat v bezpečí (viz [Transformovat](#transform)), nebo ji chcete sdílet s ostatními.
+- Zůstaňte v režimu **Snadný**, dokud nepotřebujete podrobnou kontrolu nad ID modelů; přejděte do režimu **Pokročilý**, až budete vědět, které modely chcete používat.
 
 <br/><br/>
 

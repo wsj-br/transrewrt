@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:26:37.528Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:34:40.048Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: vi
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
 - **Dịch** - chuyển đổi văn bản từ ngôn ngữ này sang ngôn ngữ khác.
 - **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
 - **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn trí tuệ nhân tạo tùy chỉnh gọi là lời nhắc.
+
+Mặc định, ứng dụng chạy ở chế độ **Dễ**: bạn chọn một **kỹ năng** (ví dụ: Miễn phí, Nhanh hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Mô hình](#models)
   - [Ngôn ngữ](#languages)
   - [Theo dõi chi phí](#cost-tracking)
-  - [Lời nhắc chuyển đổi](#transform-prompts)
+  - [Chuyển đổi (tab cài đặt)](#transform-settings)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
@@ -89,9 +91,9 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Kết quả quá chậm hoặc quá tốn kém](#the-result-is-too-slow-or-too-expensive)
   - [Giao diện hiển thị sai ngôn ngữ](#the-interface-is-in-the-wrong-language)
   - [Văn bản quá nhỏ hoặc khó đọc](#the-text-is-too-small-or-hard-to-read)
-  - [Biểu đồ bảng điều khiển trống](#dashboard-charts-are-empty)
+  - [Tóm tắt Bảng điều khiển trông trống rỗng](#dashboard-summary-looks-empty)
   - [Chi phí hiển thị "không khả dụng" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
-  - [Tổng chi phí không khớp với hóa đơn từ nhà cung cấp](#total-cost-does-not-match-my-provider-bill)
+  - [Tổng chi phí không khớp với hóa đơn từ nhà cung cấp của tôi](#total-cost-does-not-match-my-provider-bill)
   - [Trang Lịch sử bị thiếu trong thanh bên](#the-history-page-is-missing-from-the-sidebar)
   - [Ứng dụng web: bị chuyển hướng về trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Quản trị viên web: quên hoặc mất mật khẩu](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạ
 
 Nói một cách đơn giản:
 
-- Một **mô hình** là động cơ AI thực hiện công việc. Các mô hình được liệt kê kèm theo **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
-- Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối với nhà cung cấp đó.
+- Ở chế độ **Dễ**, một **kỹ năng** là cài đặt trước (Miễn phí, Nhanh, Nâng cao, Kỹ thuật, Pháp lý) tương ứng với một mô hình cho **nhà cung cấp** bạn đã chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Bạn chọn kỹ năng này trên thanh công cụ ở các chức năng Dịch, Viết lại và Chuyển đổi.
+- Ở chế độ **Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
+- Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối đến nhà cung cấp đó.
 
-Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa trong mục [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API](#how-to-get-an-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
+Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa tại [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API OpenRouter miễn phí](#how-to-get-an-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
 
 Nếu bạn đang sử dụng **phiên bản web**, chủ máy chủ sẽ cấu hình các nhà cung cấp thông qua các biến môi trường, do đó bạn không thể nhập khóa API trực tiếp trong ứng dụng.
 
@@ -146,14 +149,14 @@ Nếu bạn đang dùng ứng dụng máy tính để bàn, hãy làm theo các 
 Nếu đây là lần đầu tiên bạn sử dụng Transrewrt, hãy làm theo thứ tự sau:
 
 1. Mở ứng dụng.
-2. Nếu cần, chọn **Ngôn ngữ giao diện** của bạn từ biểu tượng quả địa cầu.
-3. Nếu bạn đang dùng **ứng dụng máy tính để bàn**, mở [**Cài đặt** > **Cấu hình API**](#api-config), thêm khóa API cho ít nhất một nhà cung cấp (ví dụ: OpenRouter), rồi nhấp **Kiểm tra** để xác minh khóa hoạt động.
-4. Mở [**Cài đặt** > **Mô hình**](#models) và thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**.
-5. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** nếu bạn muốn các ngôn ngữ thường dùng xuất hiện trước.
-6. Đi đến **Dịch** và thực hiện một bản dịch đơn giản để xác nhận mọi thứ đang hoạt động.
-7. Khi đã thành công, hãy thử **Viết lại** rồi đến **Chuyển đổi**.
+2. Nếu cần, chọn **Ngôn ngữ giao diện** từ biểu tượng quả địa cầu.
+3. Nếu bạn dùng **ứng dụng máy tính để bàn**, mở [**Cài đặt** > **Cấu hình API**](#api-config), thêm khóa API cho ít nhất một nhà cung cấp (ví dụ: OpenRouter), sau đó nhấn **Kiểm tra** để xác minh khóa hoạt động.
+4. Mở [**Cài đặt** > **Cài đặt chung**](#general-settings). Ở chế độ **Dễ** (mặc định), chọn một **Nhà cung cấp** đã được cấu hình khóa. Ở chế độ **Nâng cao**, mở [**Cài đặt** > **Mô hình**](#models) và thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**.
+5. Trên **Dịch**, chọn **kỹ năng** (Dễ) hoặc **mô hình** (Nâng cao) trên thanh công cụ.
+6. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** nếu bạn muốn các ngôn ngữ thường dùng xuất hiện đầu tiên.
+7. Thực hiện một bản dịch đơn giản để xác nhận mọi thứ hoạt động, sau đó thử **Viết lại** và **Chuyển đổi**.
 
-Thứ tự này rất quan trọng. Nó giúp tránh vấn đề phổ biến nhất khi mới sử dụng: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc chưa chọn mô hình nào.
+Thứ tự này rất quan trọng. Nó giúp tránh vấn đề phổ biến nhất khi sử dụng lần đầu: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc chưa chọn kỹ năng/mô hình.
 
 <br/><br/>
 
@@ -202,15 +205,16 @@ Sử dụng thanh bên để di chuyển trong ứng dụng. Bạn có thể thu
 
 Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứng dụng.
 
-- Bên trái, thanh hiển thị tên trang hiện tại.
-- Bên phải, thanh hiển thị **bộ chọn mô hình** và điều khiển **Ngôn ngữ giao diện**.
+- Bên trái hiển thị tên trang hiện tại.
+- Bên phải hiển thị **bộ chọn kỹ năng hoặc mô hình** và điều khiển **Ngôn ngữ giao diện**.
 
-Bộ chọn **mô hình** cho phép bạn chọn công cụ AI để sử dụng cho tác vụ hiện tại.
+Ở chế độ **Dễ**, thanh công cụ hiển thị **bộ chọn kỹ năng** (Miễn phí, Nhanh, Nâng cao, Kỹ thuật, Pháp lý và các cài đặt trước tương tự). Các kỹ năng phụ thuộc vào **Nhà cung cấp** bạn đã chọn tại [**Cài đặt** > **Cài đặt chung**](#general-settings). Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các kỹ năng.
+
+Ở chế độ **Nâng cao**, **bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ dùng cho tác vụ hiện tại.
 
 ![Model selector](../images/screenshots/vi/model-selector.png)
 
-Một số mô hình miễn phí có thể không luôn luôn khả dụng — đôi khi chúng ngoại tuyến hoặc có giới hạn sử dụng. Nếu điều này xảy ra, ứng dụng sẽ tự động xóa mô hình đó khỏi danh sách khả dụng của bạn. Để kiểm soát các mô hình hiển thị, hãy đi tới [**Cài đặt** > **Mô hình**](#models) và chỉnh sửa danh sách mô hình của bạn.  
-Bạn cũng có thể mở cài đặt mô hình trực tiếp bằng cách nhấp vào biểu tượng nhà cung cấp bên trái tên mô hình trong thanh công cụ.
+Ở chế độ Nâng cao, một số mô hình miễn phí có thể không luôn khả dụng — chúng có thể ngoại tuyến hoặc đã đạt giới hạn sử dụng. Ứng dụng có thể tự động xóa mô hình đó khỏi danh sách của bạn. Để kiểm soát các mô hình hiển thị, hãy vào [**Cài đặt** > **Mô hình**](#models). Bạn có thể mở cài đặt mô hình từ biểu tượng nhà cung cấp nằm bên trái tên mô hình trên thanh công cụ.
 
 <br/>
 
@@ -257,9 +261,9 @@ Sử dụng **Dịch** khi bạn muốn chuyển đổi văn bản từ một ng
 ### Dịch văn bản
 
 1. Mở **Dịch**.
-2. Chọn ngôn ngữ tại **Từ**.
-3. Chọn ngôn ngữ tại **Sang**.
-4. Chọn một mô hình trên thanh công cụ.
+2. Chọn ngôn ngữ ở mục **Từ**.
+3. Chọn ngôn ngữ ở mục **Sang**.
+4. Chọn kỹ năng (Dễ) hoặc mô hình (Nâng cao) trên thanh công cụ.
 5. Nhập hoặc dán văn bản vào **Đầu vào**.
 6. Nhấp **Dịch**.
 7. Đọc kết quả ở phần **Đầu ra**.
@@ -350,7 +354,7 @@ Sử dụng **Chuyển đổi** khi bạn muốn AI tuân theo một tập hư�
 <a id="if-you-have-no-prompts-yet"></a>
 ### Nếu bạn chưa có lời nhắc nào
 
-Nếu danh sách lời nhắc của bạn trống, hãy nhấp **Tải lời nhắc mẫu** trong không gian làm việc Chuyển đổi. Điều khiển này cũng luôn có sẵn trong [**Cài đặt** > **Lời nhắc chuyển đổi**](#transform-prompts) ở hàng xuất/nhập. Cả hai tùy chọn đều thêm các ví dụ tích hợp để bạn có thể bắt đầu nhanh chóng.
+Nếu danh sách lời nhắc của bạn trống, hãy nhấn **Tải lời nhắc mẫu** trong không gian làm việc Chuyển đổi. Cùng điều khiển này luôn có sẵn tại [**Cài đặt** > **Chuyển đổi**](#transform-settings) ở hàng xuất/nhập. Cả hai đều thêm các ví dụ tích hợp để bạn bắt đầu nhanh chóng.
 
 <br/>
 
@@ -424,7 +428,9 @@ Bảng kiểm tra ở bên phải cho phép bạn thử lời nhắc của mình
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Bạn có thể xuất và nhập các lời nhắc đã lưu trong [**Cài đặt** > **Lời nhắc chuyển đổi**](#transform-prompts).
+> Bạn có thể xuất và nhập các lời nhắc đã lưu tại [**Cài đặt** > **Chuyển đổi**](#transform-settings).
+
+Khi bạn sử dụng **Tạo lời nhắc**, **Cải thiện lời nhắc** hoặc **Dịch lời nhắc** trong trình soạn thảo lời nhắc, chế độ **Dễ** cung cấp bộ chọn kỹ năng giống như ở chức năng Dịch và Viết lại; chế độ **Nâng cao** sử dụng danh sách mô hình.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Sử dụng **Bảng điều khiển** để xem bạn đang sử dụng ứng d
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Nếu bạn chỉ sử dụng các mô hình **miễn phí**, các khoản **chi phí** có thể bằng không và các bản tóm tắt tập trung vào chi phí có thể trông trống rỗng. Trên **Tóm tắt**, **Mức sử dụng theo thời gian** và **Mức sử dụng theo mô hình** vẫn hiển thị **số lượng cuộc gọi** (dịch, viết lại và chuyển đổi) khi bạn có hoạt động trong khoảng thời gian đã chọn.
+> Nếu bạn chỉ sử dụng các mô hình **miễn phí**, các khoản **chi phí** có thể bằng không và các KPI tập trung vào chi phí có thể trông trống rỗng. Tab **Tóm tắt** vẫn hiển thị số lượng cuộc gọi cho dịch, viết lại và chuyển đổi khi bạn có hoạt động trong khoảng thời gian đã chọn.
 
 <br/>
 
@@ -461,11 +467,9 @@ Sử dụng các nút bộ lọc ở đầu để thay đổi khoảng thời gi
 <a id="dashboard-tabs"></a>
 ### Các tab Bảng điều khiển
 
-- **Tóm tắt** cung cấp cái nhìn tổng quan về mức sử dụng và chi phí. Bao gồm **Mức sử dụng theo thời gian** (số lượng **cuộc gọi** tích lũy xếp chồng theo ngày cho dịch, viết lại và chuyển đổi) và **Mức sử dụng theo mô hình** (tổng **cuộc gọi theo từng mô hình**, bao gồm chuyển đổi).
-- **Theo mức sử dụng** phân tích hoạt động theo ngôn ngữ dịch, chế độ viết lại và lời nhắc chuyển đổi.
-- **Theo mô hình** hiển thị các mô hình bạn đã sử dụng và chi phí của chúng.
-- **Theo ngày** hiển thị tổng theo ngày.
-- **Tất cả các cuộc gọi** hiển thị toàn bộ lịch sử cuộc gọi và cho phép bạn xuất dữ liệu.
+- **Tóm tắt** hiển thị các thẻ KPI: tổng chi phí, các mô hình đã sử dụng, số lượng cuộc gọi và chi phí theo chế độ (với tỷ lệ phần trăm so với tổng số cuộc gọi), chi phí trung bình mỗi cuộc gọi, TPS trung bình và ba mô hình hàng đầu theo số lượng cuộc gọi.
+- **Theo mô hình** liệt kê từng mô hình với tổng số cuộc gọi, tổng chi phí và TPS trung bình; mở rộng một hàng để xem chi tiết theo dịch, viết lại và chuyển đổi.
+- **Tất cả các cuộc gọi** hiển thị nhật ký cuộc gọi đầy đủ (phân trang trên bố cục rộng, dạng thẻ trên màn hình hẹp) và cho phép bạn xuất dữ liệu.
 
 <br/>
 
@@ -508,14 +512,14 @@ Nhấp vào **Lịch sử** để xem lịch sử các hành động của bạn
 <a id="filter-the-history"></a>
 ### Bộ lọc lịch sử
 
-**Lịch sử** sử dụng các bộ lọc giống như trang **Bảng điều khiển**. Sử dụng chúng để chọn khoảng thời gian.
+**Lịch sử** sử dụng các bộ lọc khoảng thời gian giống như trang **Bảng điều khiển**.
 
 ![Dashboard filters](../images/screenshots/vi/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Bộ lọc **Người dùng** chỉ hiển thị với quản trị viên trong phiên bản web. Người dùng thông thường sẽ không thấy bộ lọc này, và nó không khả dụng trong ứng dụng desktop.
+> Trong **ứng dụng web**, mọi người (kể cả quản trị viên) chỉ xem được lịch sử thực thi của chính họ. Bộ lọc **Người dùng** trên **Bảng điều khiển** dành cho quản trị viên xem lại việc sử dụng và chi phí trên các tài khoản; nó không áp dụng cho **Lịch sử**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Mở **Cài đặt** từ thanh bên để tùy chỉnh cách ứng dụng hoạ
 
 Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
 
-| Tab               | Desktop | Web (admin) | Web (người dùng thông thường) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Cài đặt chung  |   Có   |     Có     |        Có         |
-  | Mô hình            |   Có   |     Có     |        Có         |
-  | Ngôn ngữ         |   Có   |     Có     |        Có         |
-  | Theo dõi chi phí     |   Có   |     Có     |         -          |
-  | Lời nhắc chuyển đổi |   Có   |     Có     |        Có         |
-  | Người dùng             |    -    |     Có     |         -          |
-  | Cấu hình API        |   Có   |     Có     |         -          |
-  | Giới thiệu             |   có   |     có     |        có         |
+| Tab              | Desktop | Web (admin) | Web (người dùng thường) | Ghi chú                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Cài đặt chung |   có   |     có     |        có         | Bao gồm **Trải nghiệm AI** (Dễ / Nâng cao) |
+  | Mô hình           |   có   |     có     |        có         | Chỉ hiển thị khi **Trải nghiệm AI** ở chế độ **Nâng cao** |
+  | Ngôn ngữ        |   có   |     có     |        có         |                                              |
+  | Theo dõi chi phí    |   có   |     có     |         -          |                                              |
+  | Chuyển đổi        |   có   |     có     |        có         | Nhập/xuất hàng loạt các lời nhắc chuyển đổi      |
+  | Người dùng            |    -    |     có     |         -          |                                              |
+  | Cấu hình API       |   có   |     có     |         -          |                                              |
+  | Giới thiệu            |   có   |     có     |        có         |                                              |
+
+Trong chế độ **Dễ**, việc chọn mô hình được thực hiện thông qua kỹ năng trên thanh công cụ và **Nhà cung cấp** trong Cài đặt chung; tab **Mô hình** bị ẩn.
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Trong phiên bản web, mỗi người dùng có cấu hình riêng. Các cài đặt như mô hình đã chọn, ngôn ngữ, tùy chọn chung và lời nhắc chuyển đổi được lưu riêng theo từng người dùng. Những thay đổi bạn thực hiện sẽ không ảnh hưởng đến người dùng khác.
+> Trong phiên bản web, mỗi người dùng có cấu hình riêng. Các cài đặt như trải nghiệm AI, nhà cung cấp, mô hình hoặc kỹ năng đã chọn, ngôn ngữ, tùy chọn chung và lời nhắc chuyển đổi được lưu theo từng người dùng. Những thay đổi bạn thực hiện sẽ không ảnh hưởng đến người dùng khác.
 
 <br/>
 
@@ -564,7 +570,14 @@ Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
 <a id="general-settings"></a>
 ### Cài đặt chung
 
-Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lưu chi tiết thực thi cho **Lịch sử**, và giao diện.
+Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lưu chi tiết thực thi cho **Lịch sử**, giao diện và cách bạn chọn AI cho Dịch, Viết lại và Chuyển đổi.
+
+**Trải nghiệm AI**
+
+- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn kỹ năng tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì kỹ năng.
+- **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách này tại [**Cài đặt** > **Mô hình**](#models).
+
+Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào khóa API được thiết lập trong môi trường máy chủ. Trong **ứng dụng desktop**, hãy cấu hình khóa tại [**Cấu hình API**](#api-config).
 
 **Hành vi**
 
@@ -576,8 +589,8 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lư
 
 **Lịch sử**
 
-- **Giữ lịch sử thực thi** kiểm soát việc mỗi lần dịch, viết lại và chuyển đổi có lưu **văn bản đầu vào và đầu ra** cho chế độ xem [**Lịch sử**](#history) ở thanh bên hay không. Tắt tùy chọn này sẽ yêu cầu xác nhận; nếu bạn xác nhận, văn bản lịch sử đã lưu sẽ bị xóa khỏi cơ sở dữ liệu.
-- **Xóa dữ liệu lịch sử** cho phép bạn xóa văn bản đã lưu theo độ tuổi (ví dụ như những dữ liệu cũ hơn vài tháng, hoặc **tất cả dữ liệu (xóa)**) bằng cách sử dụng **Xóa dữ liệu**. Thao tác này chỉ ảnh hưởng đến văn bản thực thi đã lưu cho chế độ xem **Lịch sử**; nó **không** xóa tổng chi phí hoặc dữ liệu sử dụng. Để xóa hoặc thu gọn dữ liệu **chi phí**, hãy sử dụng [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking).
+- **Giữ lịch sử thực thi** kiểm soát việc mỗi thao tác dịch, viết lại và chuyển đổi có lưu **văn bản đầu vào và đầu ra** để hiển thị trong khung bên [**Lịch sử**](#history) hay không. Khi tắt tính năng này, hệ thống sẽ yêu cầu xác nhận; nếu bạn xác nhận, dữ liệu lịch sử đã lưu sẽ bị xóa khỏi cơ sở dữ liệu. Nếu nhãn hiển thị *bị tắt bởi quản trị viên*, cài đặt của bạn đã có `HISTORY_DISABLED` được thiết lập trong môi trường (xem [README](README.vi.md#configuration-and-environment)); bạn không thể bật lại lịch sử từ giao diện người dùng.
+- **Xóa dữ liệu lịch sử** cho phép bạn xóa văn bản đã lưu theo độ tuổi (ví dụ: cũ hơn vài tháng, hoặc **tất cả dữ liệu (xóa)**) bằng cách sử dụng **Xóa dữ liệu**. Thao tác này chỉ ảnh hưởng đến văn bản thực thi đã lưu cho chế độ xem **Lịch sử**; nó **không** xóa tổng chi phí hoặc dữ liệu sử dụng. Để xóa hoặc thu gọn dữ liệu **chi phí**, hãy sử dụng [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking).
 
 **Giao diện**
 
@@ -602,7 +615,7 @@ Bản sao lưu được tạo trên phiên bản web hay desktop đều có th�
 <a id="models"></a>
 ### Mô hình
 
-Sử dụng **Cài đặt** > **Mô hình** để chọn các mô hình hiển thị trên thanh công cụ.
+Tab này chỉ khả dụng khi **Trải nghiệm AI** được đặt thành **Nâng cao** trong [**Cài đặt chung**](#general-settings). Sử dụng **Cài đặt** > **Mô hình** để chọn các mô hình xuất hiện trên thanh công cụ.
 
 ![Settings Models tab](../images/screenshots/vi/settings-models.png)
 
@@ -679,10 +692,10 @@ Sử dụng **Cài đặt** > **Theo dõi chi phí** để quản lý thông tin
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Lời nhắc chuyển đổi
+<a id="transform-settings"></a>
+### Chuyển đổi (tab cài đặt)
 
-Sử dụng **Cài đặt** > **Lời nhắc chuyển đổi** để quản lý các lời nhắc theo nhóm.
+Sử dụng **Cài đặt** > **Chuyển đổi** để quản lý hàng loạt các lời nhắc.
 
 Bạn có thể:
 
@@ -769,8 +782,9 @@ Nếu có điều gì không hoạt động như mong đợi, hãy kiểm tra c�
 
 Hãy kiểm tra rằng:
 
-- bạn đã chọn một mô hình trong thanh công cụ
-- ít nhất một mô hình được liệt kê trong [**Cài đặt** > **Mô hình**](#models)
+- bạn đã chọn một **kỹ năng** (Dễ) hoặc một **mô hình** (Nâng cao) trên thanh công cụ
+- ở chế độ **Dễ**, [**Cài đặt** > **Cài đặt chung**](#general-settings) phải có **Nhà cung cấp** với khóa hoạt động (hoặc URL Ollama) và ít nhất một kỹ năng cho nhà cung cấp đó
+- ở chế độ **Nâng cao**, ít nhất một mô hình phải được liệt kê trong [**Cài đặt** > **Mô hình**](#models)
 - thiết lập API của bạn đang hoạt động
 
 Nếu bạn đang sử dụng ứng dụng trên máy tính:
@@ -784,13 +798,9 @@ Nếu bạn đang sử dụng ứng dụng trên máy tính:
 <a id="the-model-list-is-empty"></a>
 ### Danh sách mô hình trống
 
-Mở [**Cài đặt** > **Mô hình**](#models) và nhấp **Làm mới**.
+Ở chế độ **Dễ**, mở [**Cài đặt** > **Cài đặt chung**](#general-settings), xác nhận rằng **Nhà cung cấp** đã được thiết lập, và thêm hoặc kiểm tra khóa trong [**Cấu hình API**](#api-config) (trên máy tính để bàn) hoặc yêu cầu quản trị viên của bạn (trên web). Đối với **Ollama**, chạy **Kiểm tra** trên URL gốc và đảm bảo rằng các mô hình đã được cài đặt cục bộ.
 
-Nếu cần:
-
-- tìm kiếm một mô hình
-- bật **Chỉ miễn phí**
-- thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**
+Ở chế độ **Nâng cao**, mở [**Cài đặt** > **Mô hình**](#models) và nhấn **Làm mới**. Nếu cần, tìm kiếm một mô hình, bật **Chỉ miễn phí**, và thêm các mô hình vào **Mô hình đã chọn**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và thay đổ
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Biểu đồ Bảng điều khiển trống
+<a id="dashboard-summary-looks-empty"></a>
+### Bảng điều khiển Tóm tắt trông trống rỗng
 
 Điều này là bình thường nếu:
 
-- bạn chỉ sử dụng các **mô hình miễn phí** và đang xem các con số về **chi phí** (chúng có thể bằng không); biểu đồ số lượng **cuộc gọi** về **Tóm tắt** vẫn cần dữ liệu từ khoảng thời gian đã chọn
-- **bộ lọc thời gian** đã chọn không bao gồm khoảng thời gian thực hiện cuộc gọi — hãy thử chọn **Tất cả** để kiểm tra
+- bạn chỉ sử dụng các **mô hình miễn phí** và đang xem các số liệu **chi phí** (có thể bằng không); các chỉ số KPI theo lượt gọi trong **Tóm tắt** vẫn cần dữ liệu từ khoảng thời gian đã chọn
+- **bộ lọc thời gian** đã chọn không bao gồm khoảng thời gian thực hiện các cuộc gọi — hãy thử chọn **Tất cả** để kiểm tra
 
-Nếu biểu đồ vẫn trống sau khi chọn **Tất cả**, hãy xác nhận rằng các cuộc gọi xuất hiện trong [**Lịch sử**](#history) hoặc trong tab **Tất cả các cuộc gọi**.
+Nếu các chỉ số KPI vẫn bằng không sau khi chọn **Tất cả**, hãy xác nhận rằng các cuộc gọi xuất hiện trong [**Lịch sử**](#history) hoặc trong tab **Tất cả các cuộc gọi**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Tất cả các con số chi phí trong ứng dụng đều là **ước tính �
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Trang Lịch sử bị thiếu trong thanh bên
 
-Tùy chọn **Giữ lịch sử thực thi** có thể đã bị tắt. Mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và bật nó lên. Lưu ý rằng việc bật lại tùy chọn này sẽ không khôi phục dữ liệu lịch sử đã bị xóa trước đó.
+**Giữ lịch sử thực thi** có thể đã bị tắt. Mở [**Cài đặt** > **Cài đặt chung**](#general-settings) và bật nó lên, trừ khi lịch sử đang bị *tắt bởi quản trị viên* (`HISTORY_DISABLED` trong môi trường — xem [README](README.vi.md#configuration-and-environment)). Việc bật lại lịch sử sẽ không khôi phục văn bản đã bị xóa trước đó.
 
 <br/>
 
@@ -912,8 +922,9 @@ Khi chỉnh sửa lời nhắc, hãy luôn nhấn **Lưu** trước khi nhấn *
 - Sử dụng [**Viết lại**](#rewrite) để cải thiện văn bản hàng ngày.
 - Sử dụng [**Chuyển đổi**](#transform) khi bạn cần một quy trình làm việc có thể lặp lại cho một nhiệm vụ cụ thể.
 - Sử dụng [**Bảng điều khiển**](#dashboard) nếu bạn muốn theo dõi mức sử dụng và chi phí.
-- Sử dụng [**Lịch sử**](#history) để xem lại các thao tác trước đó cùng toàn bộ văn bản đầu vào/văn bản đầu ra của chúng.
-- Xuất các lời nhắc thường xuyên nếu bạn đang xây dựng một thư viện lời nhắc mà bạn muốn lưu giữ an toàn (xem [Lời nhắc chuyển đổi](#transform-prompts)) hoặc nếu bạn muốn chia sẻ nó với người khác.
+- Sử dụng [**Lịch sử**](#history) để xem lại các thao tác trước đó cùng với toàn bộ văn bản đầu vào/đầu ra.
+- Xuất các lời nhắc thường xuyên nếu bạn đang xây dựng thư viện lời nhắc mà bạn muốn lưu giữ an toàn (xem [Chuyển đổi](#transform)) hoặc nếu bạn muốn chia sẻ với người khác.
+- Hãy tiếp tục ở chế độ **Dễ** cho đến khi bạn cần kiểm soát chi tiết theo ID mô hình; chuyển sang **Nâng cao** khi bạn đã biết rõ các mô hình mình muốn sử dụng.
 
 <br/><br/>
 

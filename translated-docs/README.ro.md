@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:25.150Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:24.812Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: ro
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Instrument text AI: traduce între limbi, rescrie în stiluri diferite și trans
 - **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
 - **Transformare** - prompturi personalizate AI; creare și gestionare prompturi, limbă destinație opțională pentru fiecare prompt
 - **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Modele și costuri** - alegeți modele din orice furnizor configurat; tablouri de bord pentru costuri și utilizare cu jurnale, rezumate pe model/operațiune/zi
+- **Ușor și Avansat** - Mod ușor (implicit): abilități selectate pe furnizor (Gratuit, Rapid, Avansat, Tehnic, Juridic) fără a alege ID-uri de model; Mod avansat: listă completă de modele de la furnizorii configurați
+- **Modele și cost** - tablouri de bord pentru cost și utilizare (Rezumat, După model, Toate apelurile) cu opțiune de export; OpenRouter afișează cheltuielile reale, ceilalți furnizori utilizează estimări
 - **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
-- **Aplicație desktop** - aplicație Electron pentru Windows și Linux
-- **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (compatibil cu Raspberry Pi)
+- **Desktop** - Aplicație Electron pentru Windows și Linux
+- **Auto-găzduit** - Imagine Docker pentru amd64 și arm64 (pregătită pentru Raspberry Pi)
 
 Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru o prezentare completă a tuturor funcțiilor.
 

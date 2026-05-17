@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:12.401Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:40.243Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: de
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschi
 - **Umschreiben** – Grammatik korrigieren, Klarheit verbessern, formell/informell, verkürzen, erweitern, technisch
 - **Umwandeln** – benutzerdefinierte KI-Prompts; Prompts erstellen und verwalten, optionale Zielsprache pro Prompt
 - **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
-- **Modelle & Kosten** – Auswahl von Modellen von jedem konfigurierten Anbieter; Kosten- und Nutzungsübersichten mit Protokoll, Zusammenfassungen nach Modell/Operation/Tag
-- **Benutzeroberfläche (UI)** – mehrsprachige Oberfläche (30+ Sprachen, Unterstützung für rechts-nach-links-Schrift), Schriftarten, ...
-- **Webmodus** – Unterstützung für mehrere Benutzer mit Administratorrollen
-- **Desktop** – Electron-App für Windows und Linux
-- **Selbstgehostet** – Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
+- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Funktionen pro Anbieter (Kostenlos, Schnell, Erweitert, Technisch, Rechtlich), ohne Modell-IDs auszuwählen; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
+- **Modelle & Kosten** - Kosten- und Nutzungs-Dashboards (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
+- **Benutzeroberfläche** - mehrsprachige Oberfläche (über 30 Sprachen, inklusive RTL-Unterstützung), Schriftarten, ...
+- **Webmodus** - Unterstützung für mehrere Benutzer mit Administratorrollen
+- **Desktop** - Electron-App für Windows und Linux
+- **Selbstgehostet** - Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
 
 Nach der Installation finden Sie im [**Benutzerhandbuch**](USER-GUIDE.de.md) eine vollständige Übersicht über alle Funktionen.
 

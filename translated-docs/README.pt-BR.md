@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:01.259Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:29:54.357Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: pt-BR
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estil
 - **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
 - **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
 - **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Modelos e custo** - escolha modelos de qualquer provedor configurado; painéis de custo e uso com log, resumos por modelo/operação/dia
-- **Interface do usuário (UI)** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
-- **Modo Web** - suporte a múltiplos usuários com papéis administrativos
-- **Desktop** - aplicativo Electron para Windows e Linux
-- **Autohospedado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
+- **Fácil e Avançado** - Modo Fácil (padrão): habilidades selecionadas por provedor (Grátis, Rápido, Avançado, Técnico, Jurídico) sem precisar escolher IDs de modelos; Modo Avançado: lista completa de modelos dos provedores configurados
+- **Modelos e custo** - painéis de custo e uso (Resumo, Por Modelo, Todas as chamadas) com opção de exportação; OpenRouter mostra o gasto real, outros provedores usam estimativas
+- **Interface do usuário** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
+- **Modo Web** - suporte a múltiplos usuários com papéis de administrador
+- **Desktop** - Aplicativo Electron para Windows e Linux
+- **Autohospedado** - Imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
 
 Uma vez instalado, consulte o [**Guia do Usuário**](USER-GUIDE.pt-BR.md) para obter um guia completo de todos os recursos.
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:23:56.757Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:31:48.740Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: ca
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt us ajuda a treballar amb text de tres maneres principals:
 - **Traduir** - convertir text d'un idioma a un altre.
 - **Reescriure** - reformular el text en un estil diferent, com ara més clar, més breu o més formal.
 - **Transformar** - processar text mitjançant instruccions personalitzades d'intel·ligència artificial anomenades indicacions.
+
+Per defecte, l'aplicació s'executa en mode **Fàcil**: seleccioneu una **habilitat** (per exemple, Gratuit, Ràpid o Tècnic) i un **proveïdor** a la Configuració, sense triar IDs de model. Canvieu a **Avançat** a [**Configuració** > **Configuració general**](#general-settings) si voleu la llista clàssica de models a [**Configuració** > **Models**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [Models](#models)
   - [Idiomes](#languages)
   - [Seguiment de costos](#cost-tracking)
-  - [Indicacions de transformació](#transform-prompts)
+  - [Transformar (pestanya de configuració)](#transform-settings)
   - [Usuaris](#users)
   - [Configuració de l'API](#api-config)
   - [Quant a](#about)
@@ -89,7 +91,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [El resultat és massa lent o massa car](#the-result-is-too-slow-or-too-expensive)
   - [La interfície està en l'idioma incorrecte](#the-interface-is-in-the-wrong-language)
   - [El text és massa petit o difícil de llegir](#the-text-is-too-small-or-hard-to-read)
-  - [Els gràfics del tauler estan buits](#dashboard-charts-are-empty)
+  - [El resum del tauler sembla buit](#dashboard-summary-looks-empty)
   - [El cost mostra "no disponible" o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
   - [El cost total no coincideix amb la meva factura del proveïdor](#total-cost-does-not-match-my-provider-bill)
   - [La pàgina d'historial no apareix a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
@@ -114,10 +116,11 @@ No cal que seleccioneu un model de pagament per començar. Tan aviat com afegiu 
 
 En paraules senzilles:
 
-- Un **model** és el motor d'IA que fa la feina. Els models es llisten amb un **prefix del proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **clau API** (o, per a Ollama, una **URL base**) és la manera com l'aplicació accedeix a aquest proveïdor.
+- En mode **Fàcil**, una **habilitat** és un perfil predefinit (Gratuït, Ràpid, Avançat, Tècnic, Legal) que es correspon a un model per al vostre **proveïdor** seleccionat (OpenRouter, OpenAI, Ollama i altres). Seleccioneu l'habilitat a la barra d'eines de Traduir, Reescriure i Transformar.
+- En mode **Avançat**, un **model** és el motor d'IA que seleccioneu directament. Els IDs de model utilitzen un **prefix del proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **clau API** (o, per a Ollama, una **URL base**) és com l'aplicació accedeix a aquest proveïdor.
 
-Si esteu utilitzant l'**aplicació d'escriptori**, afegiu les claus a [**Configuració** > **Configuració de l'API**](#api-config) per a cada proveïdor que utilitzeu. Per a ús exclusiu d'OpenRouter, vegeu [Com obtenir una clau API](#how-to-get-an-api-key-desktop-app) més avall. Si no voleu utilitzar una clau API, podeu instal·lar Ollama (des de [ollama.com](https://ollama.com)) i utilitzar models locals en lloc seu, com ara `translategemma:4b`.
+Si esteu utilitzant l'**aplicació d'escriptori**, afegiu claus a [**Configuració** > **Configuració de l'API**](#api-config) per a cada proveïdor que utilitzeu. Si només utilitzeu OpenRouter, consulteu [Com obtenir una clau API OpenRouter gratuïta](#how-to-get-an-api-key-desktop-app) més avall. Si no voleu utilitzar una clau API, podeu instal·lar Ollama (des de [ollama.com](https://ollama.com)) i utilitzar models locals, com ara `translategemma:4b`.
 
 Si esteu utilitzant la **versió web**, el propietari del servidor configura els proveïdors amb variables d'entorn, per tant no podeu introduir claus API directament a l'aplicació.
 
@@ -146,14 +149,14 @@ Si esteu utilitzant l'aplicació d'escriptori, seguiu aquests passos:
 Si és la primera vegada que utilitzeu Transrewrt, seguiu aquest ordre:
 
 1. Obriu l'aplicació.
-2. Trieu el vostre **Idioma de la interfície** de la icona del globus si cal.
-3. Si esteu a l'**aplicació d'escriptori**, obriu [**Configuració** > **Configuració de l'API**](#api-config), afegiu una clau API d'almenys un proveïdor (per exemple OpenRouter) i feu clic a **Prova** per verificar que funciona.
-4. Obriu [**Configuració** > **Models**](#models) i afegiu un o més models als **Models seleccionats**.
-5. Obriu [**Configuració** > **Idiomes**](#languages) i trieu els vostres **Idiomes principals** si voleu que els idiomes més utilitzats apareguin primers.
-6. Aniu a **Traduir** i executeu una traducció senzilla per confirmar que tot funciona.
-7. Un cop funcioni, proveu **Reescriure** i després **Transformar**.
+2. Trieu el vostre **Idioma de la interfície** des de la icona del globus si cal.
+3. Si esteu a l'**aplicació d'escriptori**, obriu [**Configuració** > **Configuració de l'API**](#api-config), afegiu una clau API per a almenys un proveïdor (per exemple OpenRouter) i feu clic a **Prova** per verificar que funcioni.
+4. Obriu [**Configuració** > **Configuració general**](#general-settings). En mode **Fàcil** (per defecte), trieu un **Proveïdor** que tingui una clau configurada. En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i afegiu un o més models a **Models seleccionats**.
+5. A **Traduir**, seleccioneu una **habilitat** (Fàcil) o un **model** (Avançat) a la barra d'eines.
+6. Obriu [**Configuració** > **Idiomes**](#languages) i trieu els vostres **Idiomes principals** si voleu que els idiomes més utilitzats apareguin primer.
+7. Executeu una traducció senzilla per confirmar que tot funciona, i després proveu **Reescriure** i **Transformar**.
 
-Aquest ordre és important. Evita el problema més comú en el primer ús: intentar executar una tasca abans que l'aplicació tingui una connexió API operativa o un model seleccionat.
+Aquest ordre és important. Evita el problema més comú en primer ús: intentar executar una tasca abans que l'aplicació tingui una connexió API operativa o una habilitat/model seleccionat.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Utilitzeu la barra lateral per desplaçar-vos per l'aplicació. Podeu col·lapsa
 La barra d'eines canvia lleugerament segons on esteu a l'aplicació.
 
 - A l'esquerra, mostra el nom de la pàgina actual.
-- A la dreta, mostra el **selector de model** i el control de **Idioma de la interfície**.
+- A la dreta, mostra el selector d'**habilitat o model** i el control d'**idioma de la interfície**.
 
-El **selector de model** us permet triar quin motor d'IA utilitzar per a la tasca actual.
+En mode **Fàcil**, la barra d'eines mostra un selector d'**habilitats** (Gratuït, Ràpid, Avançat, Tècnic, Legal i altres predefinits). Les habilitats depenen del **Proveïdor** que hagueu triat a [**Configuració** > **Configuració general**](#general-settings). Si el **Proveïdor** és **Ollama**, la barra d'eines llista els vostres models locals instal·lats en lloc d'habilitats.
+
+En mode **Avançat**, el selector de **model** us permet triar quin motor d'IA utilitzar per a la tasca actual.
 
 ![Model selector](../images/screenshots/ca/model-selector.png)
 
-Alguns models gratuïts poden no estar sempre disponibles; de tant en tant estan desconnectats o tenen un límit d'ús. Si això passa, l'aplicació eliminarà automàticament aquest model de la vostra llista disponible. Per controlar quins models apareixen, aneu a [**Configuració** > **Models**](#models) i editeu la vostra llista de models.
-També podeu obrir la configuració del model directament fent clic a la icona del proveïdor a l'esquerra del nom del model a la barra d'eines.
+En mode Avançat, alguns models gratuïts poden no estar sempre disponibles: poden estar desconnectats o haver assolit un límit d'ús. L'aplicació pot eliminar automàticament aquest model de la vostra llista. Per controlar quins models apareixen, aneu a [**Configuració** > **Models**](#models). Podeu obrir la configuració del model des de la icona del proveïdor a l'esquerra del nom del model a la barra d'eines.
 
 <br/>
 
@@ -259,7 +263,7 @@ Utilitzeu **Traduir** quan vulgueu convertir text d'un idioma a un altre.
 1. Obriu **Traduir**.
 2. Trieu un idioma a **Des de**.
 3. Trieu un idioma a **A**.
-4. Trieu un model a la barra d'eines.
+4. Trieu una habilitat (Fàcil) o un model (Avançat) a la barra d'eines.
 5. Escriviu o enganxeu text a **Entrada**.
 6. Feu clic a **Traduir**.
 7. Llegiu el resultat a **Sortida**.
@@ -350,7 +354,7 @@ Aquesta és l'àrea més flexible de l'aplicació. Podeu utilitzar-la per a tasq
 <a id="if-you-have-no-prompts-yet"></a>
 ### Si encara no tens indicadors
 
-Si la llista d'indicadors està buida, feu clic a **Carrega exemples de prompts** a l'àrea de treball de Transformació. El mateix control sempre està disponible a [**Configuració** > **Indicacions de transformació**](#transform-prompts) a la fila d'exportació/importació. Tots dos afegiran exemples integrats perquè pugueu començar ràpidament.
+Si la vostra llista d'indicadors està buida, feu clic a **Carrega exemples de prompts** a l'àrea de treball de Transformar. El mateix control sempre està disponible a [**Configuració** > **Transformar**](#transform-settings) a la fila d'exportació/importació. Tots dos afegiran exemples integrats perquè pugueu començar ràpidament.
 
 <br/>
 
@@ -424,7 +428,9 @@ Això és útil quan:
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Podeu exportar i importar indicadors desats a [**Configuració** > **Indicacions de transformació**](#transform-prompts).
+> Podeu exportar i importar indicadors desats a [**Configuració** > **Transformar**](#transform-settings).
+
+Quan utilitzeu **Genera un indicador**, **Millora l'indicador** o **Traduir prompt** a l'editor d'indicadors, el mode **Fàcil** ofereix el mateix selector d'habilitats que Traduir i Reescriure; el mode **Avançat** utilitza la llista de models.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Utilitzeu el **Tauler** per veure quant esteu utilitzant l'aplicació i quin és
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Si només utilitzeu models **gratuïts**, les quantitats de **cost** poden ser zero i els resums centrats en el cost poden semblar buits. A **Resum**, **Ús amb el temps** i **Ús per model** encara mostren el **nombre de trucades** (traduir, reescriure i transformar) quan hi ha activitat en el període seleccionat.
+> Si només utilitzeu models **gratuïts**, els importants de **cost** poden ser zero i els KPI centrats en el cost poden semblar buits. La pestanya **Resum** encara mostra el nombre de trucades per a traduir, reescriure i transformar quan hi ha activitat en el període seleccionat.
 
 <br/>
 
@@ -461,11 +467,9 @@ Utilitzeu els botons de filtre de la part superior per canviar l'interval de tem
 <a id="dashboard-tabs"></a>
 ### Pestanyes del tauler
 
-- **Resum** us ofereix una visió general de l'ús i el cost. Inclou un gràfic d'**Ús amb el temps** (**comptes acumulatius** apilats per dia per a traduir, reescriure i transformar) i **Ús per model** (**trucades totals per model**, incloent-hi transformació).
-- **Per ús** desglossa l'activitat per idioma de traducció, mode de reescriptura i indicador de transformació.
-- **Per model** mostra quins models heu utilitzat i quant han costat.
-- **Per dia** mostra els totals diaris.
-- **Totes les trucades** mostra l'historial complet de trucades i us permet exportar-lo.
+- **Resum** mostra targetes KPI: cost total, models utilitzats, nombre de trucades per mode i cost (amb percentatge del total de trucades), cost mitjà per trucada, TPS mitjà i els tres models principals segons el nombre de trucades.
+- **Per model** llista cada model amb trucades totals, cost total i TPS mitjà; amplieu una fila per obtenir un desglossament per traduir, reescriure i transformar.
+- **Tots els trucades** mostra el registre complet de trucades (paginat en dissenys amplis, targetes en pantalles estretes) i permet exportar-lo.
 
 <br/>
 
@@ -508,14 +512,14 @@ Feu clic a **Historial** per veure l'historial de les vostres accions dins de **
 <a id="filter-the-history"></a>
 ### Filtre l'historial
 
-**Historial** utilitza els mateixos filtres que la pàgina del **Tauler**. Utilitzeu-los per seleccionar el rang de temps.
+**Historial** utilitza els mateixos filtres de rang horari que la pàgina del **Tauler**.
 
 ![Dashboard filters](../images/screenshots/ca/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> El filtre **Usuari** només és visible per als administradors a la versió web. Els usuaris habituals no veuran aquest filtre, i no està disponible a l'aplicació d'escriptori.
+> A l'**aplicació web**, tothom (inclosos els administradors) només veu el seu propi historial d'execució. El filtre **Usuari** al **Tauler** serveix als administradors per revisar l'ús i el cost entre comptes; no s'aplica a **Historial**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Obriu **Configuració** des del lateral per personalitzar el comportament de l'a
 
 Les pestanyes disponibles depenen de la plataforma i del vostre rol:
 
-| Pestanya               | Escriptori | Web (administrador) | Web (usuari habitual) |
-  |------------------------|:----------:|:-------------------:|:---------------------:|
-  | Configuració general   |    sí      |         sí          |          sí           |
-  | Models                 |    sí      |         sí          |          sí           |
-  | Idiomes                |    sí      |         sí          |          sí           |
-  | Seguiment de costos    |    sí      |         sí          |           -           |
-  | Indicacions de transformació |    sí      |         sí          |          sí           |
-  | Usuaris                |     -      |         sí          |           -           |
-  | Configuració de l'API  |    sí      |         sí          |           -           |
-  | Quant a             |   sí   |     sí     |        sí         |
+| Pestanya | Escriptori | Web (administrador) | Web (usuari habitual) | Notes |
+|------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+| Configuració general | sí | sí | sí | Inclou **experiència amb IA** (Fàcil / Avançat) |
+  | Models           |   sí   |     sí     |        sí         | Només quan **l'experiència amb IA** és **Avançat** |
+  | Idiomes         |   sí   |     sí     |        sí         | |
+  | Seguiment de costos     |   sí   |     sí     |         -          | |
+  | Transformar         |   sí   |     sí     |        sí         | Importació/exportació massiva d'indicacions de transformació |
+  | Usuaris             |    -    |     sí     |         -          | |
+  | Configuració de l'API        |   sí   |     sí     |         -          | |
+  | Quant a             |   sí   |     sí     |        sí         | |
+
+En el mode **Fàcil**, la selecció de models es fa mitjançant habilitats a la barra d'eines i **Proveïdor** a Configuració general; la pestanya **Models** està oculta.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> A la versió web, cada usuari té la seva pròpia configuració. La configuració com ara els models seleccionats, idiomes, opcions generals i indicacions de transformació es desen per usuari. Els canvis que feu no afecten altres usuaris.
+> A la versió web, cada usuari té la seva pròpia configuració. Paràmetres com l'experiència amb IA, proveïdor, models o habilitats seleccionats, idiomes, opcions generals i indicacions de transformació es desen per usuari. Els canvis que feu no afecten altres usuaris.
 
 <br/>
 
@@ -564,7 +570,14 @@ Les pestanyes disponibles depenen de la plataforma i del vostre rol:
 <a id="general-settings"></a>
 ### Configuració general
 
-Utilitzeu la **Configuració general** per controlar el comportament de l'escriptura, si es desen els detalls d'execució per a l'**Historial** i l'aparença.
+Utilitzeu **Configuració general** per controlar el comportament de l'escriptura, si es desen els detalls d'execució per a **Historial**, l'aparença i com seleccioneu la IA per a Traduir, Reescriure i Transformar.
+
+**Experiència amb IA**
+
+- **Fàcil** (per defecte): trieu un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors de núvol utilitzen els preconjunts d'habilitats integrats a la barra d'eines. **Ollama** llista els models instal·lats al vostre equip en lloc d'habilitats.
+- **Avançat**: seleccioneu models individuals a la barra d'eines; gestioneu la llista a [**Configuració** > **Models**](#models).
+
+A l'**aplicació web**, els proveïdors disponibles depenen de les claus API establertes a l'entorn del servidor. A l'**aplicació d'escriptori**, configureu les claus a [**Configuració de l'API**](#api-config).
 
 **Comportament**
 
@@ -576,8 +589,8 @@ Utilitzeu la **Configuració general** per controlar el comportament de l'escrip
 
 **Historial**
 
-- **Mantenir l'historial d'execució** controla si cada traducció, reescriptura i transformació desa **el text d'entrada i de sortida** per a la visualització del [**Historial**](#history) al costat. Desactivar-ho demana confirmació; si confirmeu, el text emmagatzemat de l'historial s'elimina de la base de dades.
-- **Eliminar dades d'historial** us permet suprimir el text emmagatzemat segons l'antiguitat (per exemple, més antic que uns quants mesos, o **totes les dades (esborrar)**) mitjançant **Eliminar dades**. Això només afecta el text d'execució desat per a la vista d'**Historial**; **no** elimina els costos ni els totals d'ús. Per suprimir o reduir les dades de **cost**, utilitzeu [**Configuració** > **Seguiment de costos**](#cost-tracking).
+- **Mantenir l'historial d'execució** controla si cada traducció, reescriptura i transformació desa **text d'entrada i de sortida** per a la vista [**Historial**](#history) a la barra lateral. Desactivar-ho demana confirmació; si confirmeu, el text de l'historial desat s'elimina de la base de dades. Si l'etiqueta mostra *desactivat per l'administrador*, la vostra instal·lació té `HISTORY_DISABLED` establert a l'entorn (vegeu el [README](README.ca.md#configuration-and-environment)); no podeu tornar a activar l'historial des de la interfície d'usuari.
+- **Eliminar dades d'historial** us permet eliminar el text desat segons l'antiguitat (per exemple, més antic de pocs mesos, o **totes les dades (esborrar)**) mitjançant **Eliminar dades**. Això només afecta el text d'execució desat per a la vista **Historial**; **no** elimina els totals de cost o ús. Per eliminar o retallar dades de **cost**, utilitzeu [**Configuració** > **Seguiment de costos**](#cost-tracking).
 
 **Aparença**
 
@@ -602,7 +615,7 @@ Les còpies de seguretat creades tant a la versió web com a la d'escriptori es 
 <a id="models"></a>
 ### Models
 
-Utilitzeu **Configuració** > **Models** per triar quins models apareixen a la barra d'eines.
+Aquesta pestanya només està disponible quan l'**experiència amb IA** està establerta a **Avançat** a [**Configuració general**](#general-settings). Utilitzeu **Configuració** > **Models** per triar quins models apareixen a la barra d'eines.
 
 ![Settings Models tab](../images/screenshots/ca/settings-models.png)
 
@@ -679,10 +692,10 @@ Utilitzeu **Configuració** > **Seguiment de costos** per gestionar la informaci
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Indicacions de transformació
+<a id="transform-settings"></a>
+### Transformar (pestanya de configuració)
 
-Utilitza **Configuració** > **Indicacions de transformació** per gestionar indicacions en bloc.
+Utilitzeu **Configuració** > **Transformar** per gestionar indicadors en bloc.
 
 Pots:
 
@@ -769,9 +782,10 @@ Si alguna cosa no funciona com s'espera, comproveu primer els punts següents.
 
 Comproveu que:
 
-- heu seleccionat un model a la barra d'eines
-- almenys un model apareix a [**Configuració** > **Models**](#models)
-- la configuració de l'API funciona correctament
+- heu seleccionat una **habilitat** (Fàcil) o un **model** (Avançat) a la barra d'eines
+- en mode **Fàcil**, [**Configuració** > **Configuració general**](#general-settings) té un **proveïdor** amb una clau vàlida (o URL d'Ollama) i com a mínim una habilitat per a aquest proveïdor
+- en mode **Avançat**, com a mínim un model està llistat a [**Configuració** > **Models**](#models)
+- la vostra configuració d'API funciona correctament
 
 Si esteu utilitzant l'aplicació d'escriptori:
 
@@ -784,13 +798,9 @@ Si esteu utilitzant l'aplicació d'escriptori:
 <a id="the-model-list-is-empty"></a>
 ### La llista de models està buida
 
-Obriu [**Configuració** > **Models**](#models) i feu clic a **Actualitza**.
+En mode **Fàcil**, obriu [**Configuració** > **Configuració general**](#general-settings), assegureu-vos que el **proveïdor** estigui configurat i afegiu o proveu claus a [**Configuració de l'API**](#api-config) (escriptori) o consulteu al vostre administrador (web). Per a **Ollama**, executeu la **Prova** a l'URL base i assegureu-vos que els models estan instal·lats localment.
 
-Si cal:
-
-- cerqueu un model
-- activeu **Només gratuïts**
-- afegiu un o més models a **Models seleccionats**
+En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i feu clic a **Actualitza**. Si cal, cerqueu un model, activeu **Només gratuïts** i afegiu models a **Models seleccionats**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Obriu [**Configuració** > **Configuració general**](#general-settings) i canvi
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Els gràfics del tauler estan buits
+<a id="dashboard-summary-looks-empty"></a>
+### El resum del tauler sembla buit
 
 Això és normal si:
 
-- només utilitzeu **models gratuïts** i esteu consultant les xifres de **cost** (poden ser zero); els gràfics de recompte de trucades d'**ús** a la pestanya **Resum** encara necessiten dades del període seleccionat
+- només utilitzeu **models gratuïts** i esteu consultant les dades de **cost** (poden ser zero); els KPI de nombre de trucades al **Resum** encara necessiten dades del període seleccionat
 - el **filtre de temps** seleccionat no cobreix el període en què es van fer les trucades: proveu amb **Tot** per comprovar-ho
 
-Si els gràfics continuen buits després de seleccionar **Tot**, comproveu que les trucades apareixen a [**Historial**](#history) o a la pestanya **Tots els trucades**.
+Si els KPI segueixen sent zero després de seleccionar **Tot**, comproveu que les trucades apareguin a [**Historial**](#history) o a la pestanya **Totes les trucades**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Perquè el total s'acosti més a la despesa real d'OpenRouter, obriu [**Configur
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### La pàgina d'historial no apareix a la barra lateral
 
-Potser l'opció **Mantenir l'historial d'execució** està desactivada. Obriu [**Configuració** > **Configuració general**](#general-settings) i activeu-la. Tingueu en compte que activar-la no restaura les dades d'historial eliminades prèviament.
+**Mantenir l'historial d'execució** pot estar desactivat. Obriu [**Configuració** > **Configuració general**](#general-settings) i activeu-ho llevat que l'historial estigui *desactivat per l'administrador* (`HISTORY_DISABLED` a l'entorn — consulteu el [README](README.ca.md#configuration-and-environment)). Activar l'historial no restaura el text suprimit prèviament.
 
 <br/>
 
@@ -912,8 +922,9 @@ Quan editeu un indicador, feu sempre clic a **Desa** abans de fer clic a **Torna
 - Utilitzeu [**Reescriure**](#rewrite) per a millores habituals del text.
 - Utilitzeu [**Transformar**](#transform) quan necessiteu un flux de treball reutilitzable per a una tasca específica.
 - Utilitzeu [**Tauler**](#dashboard) si voleu controlar l'ús i el cost.
-- Utilitzeu [**Historial**](#history) per revisar les operacions anteriors i el text complet d'entrada i sortida.
-- Exporteu regularment les indicacions si esteu creant una biblioteca d'indicacions que voleu mantenir segura (vegeu [Indicacions de transformació](#transform-prompts)) o si desitgeu compartirla amb altres.
+- Utilitzeu [**Historial**](#history) per revisar operacions anteriors i el text complet d'entrada i sortida.
+- Exporteu els indicadors regularment si esteu creant una biblioteca d'indicadors que voleu mantenir segura (vegeu [Transformar](#transform)) o si desitgeu compartirla amb altres.
+- Mantingueu el mode **Fàcil** fins que necessiteu un control detallat sobre els IDs del model; canvieu a **Avançat** quan ja sapigueu quins models voleu.
 
 <br/><br/>
 

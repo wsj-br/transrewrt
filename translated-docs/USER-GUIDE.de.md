@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:24:50.866Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:32:11.306Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt unterstützt Sie bei der Textbearbeitung auf drei Hauptweisen:
 - **Übersetzen** – Text von einer Sprache in eine andere konvertieren.
 - **Umschreiben** – Text in einem anderen Stil umformulieren, beispielsweise klarer, kürzer oder formeller.
 - **Umwandeln** – Text mithilfe benutzerdefinierter KI-Anweisungen, sogenannter Prompts, verarbeiten.
+
+Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Fertigkeit** (z. B. Kostenlos, Schnell oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste aus [**Einstellungen** > **Modelle**](#models) verwenden möchten.
 
 <br/>
 
@@ -79,7 +81,7 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Aufforderungen transformieren](#transform-prompts)
+  - [Umwandeln (Einstellungsreiter)](#transform-settings)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
@@ -89,7 +91,7 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Das Ergebnis ist zu langsam oder zu teuer](#the-result-is-too-slow-or-too-expensive)
   - [Die Oberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
   - [Der Text ist zu klein oder schwer lesbar](#the-text-is-too-small-or-hard-to-read)
-  - [Diagramme in der Übersicht sind leer](#dashboard-charts-are-empty)
+  - [Die Übersichts-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
   - [Kosten zeigen „nicht verfügbar“ oder scheinen falsch](#cost-shows-not-available-or-seems-wrong)
   - [Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
   - [Die Verlauf-Seite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
@@ -114,10 +116,11 @@ Sie müssen kein kostenpflichtiges Modell auswählen, um loszulegen. Sobald Sie 
 
 Einfach ausgedrückt:
 
-- Ein **Modell** ist die KI-Engine, die die Arbeit verrichtet. Modelle werden mit einem **Anbieter-Präfix** angezeigt (z. B. `openrouter/…`, `openai/…`, `ollama/…`).
+- Im **Einfach**-Modus ist eine **Fertigkeit** eine Voreinstellung (Kostenlos, Schnell, Erweitert, Technisch, Juristisch), die einem Modell für Ihren gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Sie wählen die Fertigkeit in der Symbolleiste bei Übersetzen, Umschreiben und Umwandeln aus.
+- Im **Erweitert**-Modus ist ein **Modell** die KI-Engine, die Sie direkt auswählen. Modell-IDs verwenden ein **Anbieter-Präfix** (z. B. `openrouter/…`, `openai/…`, `ollama/…`).
 - Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht der App den Zugriff auf diesen Anbieter.
 
-Wenn Sie die **Desktop-App** verwenden, fügen Sie die Schlüssel in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden verwendeten Anbieter hinzu. Wenn Sie nur OpenRouter nutzen, siehe unten [So erhalten Sie einen API-Schlüssel](#how-to-get-an-api-key-desktop-app). Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle wie `translategemma:4b` nutzen.
+Wenn Sie die **Desktop-App** verwenden, fügen Sie in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden Anbieter, den Sie nutzen, Schlüssel hinzu. Wenn Sie nur OpenRouter verwenden, sehen Sie unten unter [So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel](#how-to-get-an-api-key-desktop-app) nach. Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle verwenden, wie z. B. `translategemma:4b`.
 
 Wenn Sie die **Webversion** verwenden, konfiguriert der Serverbetreiber die Anbieter über Umgebungsvariablen. Daher können Sie keine API-Schlüssel direkt in der Anwendung eingeben.
 
@@ -147,13 +150,13 @@ Wenn Sie Transrewrt zum ersten Mal verwenden, befolgen Sie diese Reihenfolge:
 
 1. Öffnen Sie die App.
 2. Wählen Sie bei Bedarf Ihre **Oberflächensprache** über das Globus-Symbol aus.
-3. Wenn Sie die **Desktop-App** verwenden, öffnen Sie [**Einstellungen** > **API-Konfiguration**](#api-config), fügen Sie einen API-Schlüssel für mindestens einen Anbieter hinzu (z. B. OpenRouter) und klicken Sie auf **Test**, um die Funktionalität zu überprüfen.
-4. Öffnen Sie [**Einstellungen** > **Modelle**](#models) und fügen Sie ein oder mehrere Modelle zu **Ausgewählte Modelle** hinzu.
-5. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen** aus, wenn Sie möchten, dass Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden.
-6. Gehen Sie zu **Übersetzen** und führen Sie eine einfache Übersetzung durch, um sicherzustellen, dass alles funktioniert.
-7. Sobald dies funktioniert, probieren Sie **Umschreiben** und dann **Umwandeln** aus.
+3. Wenn Sie die **Desktop-App** verwenden, öffnen Sie [**Einstellungen** > **API-Konfiguration**](#api-config), fügen Sie einen API-Schlüssel für mindestens einen Anbieter hinzu (z. B. OpenRouter) und klicken Sie auf **Test**, um die Funktionalität zu überprüfen.
+4. Öffnen Sie [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings). Im **Einfach**-Modus (Standard) wählen Sie einen **Anbieter**, für den ein konfigurierter Schlüssel vorhanden ist. Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) und fügen ein oder mehrere Modelle zu **Ausgewählte Modelle** hinzu.
+5. Gehen Sie zu **Übersetzen**, und wählen Sie eine **Fertigkeit** (Einfach) oder ein **Modell** (Erweitert) in der Symbolleiste aus.
+6. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen** aus, wenn Sie möchten, dass Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden.
+7. Führen Sie eine einfache Übersetzung durch, um sicherzustellen, dass alles funktioniert, und probieren Sie anschließend **Umschreiben** und **Umwandeln** aus.
 
-Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei der ersten Nutzung: einen Auftrag auszuführen, bevor die App eine funktionierende API-Verbindung oder ein ausgewähltes Modell hat.
+Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei der ersten Nutzung: einen Auftrag auszuführen, bevor die App eine funktionierende API-Verbindung oder eine ausgewählte Fertigkeit/Modell hat.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Verwenden Sie die Seitenleiste, um sich in der App zu bewegen. Sie können die S
 Die Symbolleiste ändert sich leicht, je nachdem, wo Sie sich in der App befinden.
 
 - Links wird der Name der aktuellen Seite angezeigt.
-- Rechts sehen Sie den **Modellauswahl**- und den **Oberflächensprache**-Steuerung.
+- Rechts sehen Sie den **Fertigkeits- oder Modell-Selektor** und die Steuerung für die **Oberflächensprache**.
 
-Mit dem **Modellauswahl** können Sie festlegen, welches KI-Modell für die aktuelle Aufgabe verwendet werden soll.
+Im **Einfach**-Modus zeigt die Symbolleiste einen **Fertigkeits-Selektor** (Kostenlos, Schnell, Erweitert, Technisch, Juristisch und ähnliche Voreinstellungen). Die verfügbaren Fertigkeiten hängen vom **Anbieter** ab, den Sie in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählt haben. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Fertigkeiten auf.
+
+Im **Erweitert**-Modus ermöglicht der **Modell-Selektor**, auszuwählen, welche KI-Engine für die aktuelle Aufgabe verwendet werden soll.
 
 ![Model selector](../images/screenshots/de/model-selector.png)
 
-Einige kostenlose Modelle sind möglicherweise nicht immer verfügbar – manchmal sind sie offline oder haben eine Nutzungsobergrenze. In diesem Fall entfernt die App das Modell automatisch aus Ihrer verfügbaren Liste. Um zu steuern, welche Modelle angezeigt werden, gehen Sie zu [**Einstellungen** > **Modelle**](#models) und bearbeiten Sie Ihre Modellliste. 
- Sie können die Modelleinstellungen auch direkt öffnen, indem Sie auf das Anbietersymbol links neben dem Modellnamen in der Symbolleiste klicken.
+Im Erweitert-Modus sind einige kostenlose Modelle möglicherweise nicht immer verfügbar – sie können offline sein oder ein Nutzungslimit erreicht haben. Die App kann das Modell dann automatisch aus Ihrer Liste entfernen. Um zu steuern, welche Modelle angezeigt werden, gehen Sie zu [**Einstellungen** > **Modelle**](#models). Sie können die Modelleinstellungen über das Anbietersymbol links neben dem Modellnamen in der Symbolleiste öffnen.
 
 <br/>
 
@@ -257,9 +261,9 @@ Verwenden Sie **Übersetzen**, wenn Sie Text von einer Sprache in eine andere ko
 ### Text übersetzen
 
 1. Öffnen Sie **Übersetzen**.
-2. Wählen Sie eine Sprache unter **Von**.
-3. Wählen Sie eine Sprache unter **Nach**.
-4. Wählen Sie ein Modell in der Symbolleiste.
+2. Wählen Sie eine Sprache unter **Von** aus.
+3. Wählen Sie eine Sprache unter **Nach** aus.
+4. Wählen Sie eine Fertigkeit (Einfach) oder ein Modell (Erweitert) in der Symbolleiste aus.
 5. Geben Sie Text in **Eingabe** ein oder fügen Sie ihn ein.
 6. Klicken Sie auf **Übersetzen**.
 7. Lesen Sie das Ergebnis in **Ausgabe**.
@@ -350,7 +354,7 @@ Dieser Bereich der App bietet die größte Flexibilität. Sie können ihn für A
 <a id="if-you-have-no-prompts-yet"></a>
 ### Wenn Sie noch keine Prompts haben
 
-Wenn Ihre Prompt-Liste leer ist, klicken Sie im Transform-Arbeitsbereich auf **Beispielprompts laden**. Die gleiche Option ist immer verfügbar unter [**Einstellungen** > **Aufforderungen transformieren**](#transform-prompts) in der Export/Import-Zeile. Beides fügt integrierte Beispiele hinzu, sodass Sie schnell loslegen können.
+Wenn Ihre Prompt-Liste leer ist, klicken Sie im Transform-Arbeitsbereich auf **Beispielprompts laden**. Die gleiche Option ist immer in [**Einstellungen** > **Umwandeln**](#transform-settings) in der Zeile zum Exportieren/Importieren verfügbar. Beides fügt integrierte Beispiele hinzu, damit Sie schnell loslegen können.
 
 <br/>
 
@@ -424,7 +428,9 @@ Dies ist nützlich, wenn:
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> Sie können gespeicherte Prompts in [**Einstellungen** > **Aufforderungen transformieren**](#transform-prompts) exportieren und importieren.
+> Sie können gespeicherte Prompts in [**Einstellungen** > **Umwandeln**](#transform-settings) exportieren und importieren.
+
+Wenn Sie **Generate prompt**, **Improve prompt** oder **Translate prompt** im Prompt-Editor verwenden, bietet der **Einfach**-Modus denselben Fertigkeitsauswahlbereich wie Übersetzen und Umschreiben; der **Erweitert**-Modus verwendet die Modellliste.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Verwenden Sie **Übersicht**, um zu sehen, wie intensiv Sie die App nutzen und w
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> Wenn Sie nur **kostenlose** Modelle verwenden, können die **Kosten** Null betragen und kostenbezogene Zusammenfassungen leer erscheinen. Auf der Registerkarte **Zusammenfassung** zeigen **Nutzung im Zeitverlauf** und **Nutzung nach Modell** weiterhin die **Anzahl der Aufrufe** (Übersetzen, Umschreiben und Umwandeln), sofern Aktivitäten im gewählten Zeitraum vorliegen.
+> Wenn Sie nur **kostenlose** Modelle verwenden, können die **Kosten**-Beträge null sein und kostenbezogene KPIs können leer erscheinen. Die Registerkarte **Zusammenfassung** zeigt weiterhin Aufrufanzahlen für Übersetzen, Umschreiben und Transformieren an, wenn Aktivitäten im ausgewählten Zeitraum vorliegen.
 
 <br/>
 
@@ -461,11 +467,9 @@ Verwenden Sie die Filterknöpfe oben, um den Zeitraum zu ändern.
 <a id="dashboard-tabs"></a>
 ### Registerkarten der Übersicht
 
-- **Zusammenfassung** bietet einen Überblick über Nutzung und Kosten. Dazu gehören **Nutzung im Zeitverlauf** (kumulierte, gestapelte **Aufrufanzahlen** pro Tag für Übersetzen, Umschreiben und Umwandeln) und **Nutzung nach Modell** (gesamte **Aufrufe pro Modell**, einschließlich Umwandeln).
-- **Nach Nutzung** unterteilt die Aktivitäten nach Übersetzungssprache, Umschreibungs-Modus und Transformationsaufforderung.
-- **Nach Modell** zeigt an, welche Modelle Sie verwendet haben und wie hoch deren Kosten waren.
-- **Nach Tag** zeigt die täglichen Gesamtwerte an.
-- **Alle Aufrufe** zeigt den vollständigen Aufrufverlauf an und ermöglicht dessen Export.
+- **Zusammenfassung** zeigt KPI-Karten: Gesamtkosten, verwendete Modelle, Aufrufanzahlen und Kosten pro Modus (mit Anteil an Gesamtaufrufen), durchschnittliche Kosten pro Aufruf, durchschnittliche TPS und die drei am häufigsten verwendeten Modelle.
+- **Nach Modell** listet jedes Modell mit Gesamtaufrufen, Gesamtkosten und durchschnittlicher TPS auf; erweitern Sie eine Zeile, um eine Aufschlüsselung nach Übersetzen, Umschreiben und Transformieren anzuzeigen.
+- **Alle Aufrufe** zeigt das vollständige Aufruf-Protokoll an (paginiert bei breiten Layouts, als Karten bei schmalen Bildschirmen) und ermöglicht den Export.
 
 <br/>
 
@@ -508,14 +512,14 @@ Klicken Sie auf **Verlauf**, um den Verlauf Ihrer Aktionen in **Transrewrt** ein
 <a id="filter-the-history"></a>
 ### Verlauf filtern
 
-**Verlauf** verwendet dieselben Filter wie die Seite **Übersicht**. Nutzen Sie diese, um den gewünschten Zeitraum auszuwählen.
+**Verlauf** verwendet dieselben Zeitbereichsfilter wie die Seite **Übersicht**.
 
 ![Dashboard filters](../images/screenshots/de/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> Der **Benutzer**-Filter ist in der Webversion nur für Administratoren sichtbar. Reguläre Benutzer sehen diesen Filter nicht, und er ist in der Desktop-App nicht verfügbar.
+> In der **Web-App** sieht jeder Benutzer (einschließlich Administratoren) nur seinen eigenen Ausführungsverlauf. Der **Benutzer**-Filter auf der **Übersicht**-Seite dient Administratoren dazu, die Nutzung und Kosten über Konten hinweg einzusehen; er gilt nicht für **Verlauf**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Dies ist nützlich, wenn Sie Aktivitäten außerhalb der App überprüfen oder e
 
 Die verfügbaren Tabs hängen von der Plattform und Ihrer Rolle ab:
 
-| Tab               | Desktop | Web (admin) | Web (regulärer Benutzer) |
-  |-------------------|:-------:|:-----------:|:------------------------:|
-  | Allgemeine Einstellungen  |   Ja   |     Ja     |        Ja         |
-  | Modelle            |   Ja   |     Ja     |        Ja         |
-  | Sprachen         |   Ja   |     Ja     |        Ja         |
-  | Kostenverfolgung     |   Ja   |     Ja     |         -          |
-  | Aufforderungen transformieren |   Ja   |     Ja     |        Ja         |
-  | Benutzer             |    -    |     Ja     |         -          |
-  | API-Konfiguration        |   Ja   |     Ja     |         -          |
-  | Über             |   ja   |     ja     |        ja         |
+| Registerkarte      | Desktop | Web (Admin) | Web (regulärer Benutzer) | Hinweise                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Allgemeine Einstellungen |   ja   |     ja     |        ja         | Beinhaltet **KI-Erlebnis** (Einfach / Erweitert) |
+  | Modelle           |   ja   |     ja     |        ja         | Nur wenn **KI-Erlebnis** auf **Erweitert** steht |
+  | Sprachen        |   ja   |     ja     |        ja         |                                              |
+  | Kostenverfolgung    |   ja   |     ja     |         -          |                                              |
+  | Umwandeln        |   ja   |     ja     |        ja         | Massenimport/-export von Transformations-Prompts      |
+  | Benutzer            |    -    |     ja     |         -          |                                              |
+  | API-Konfiguration       |   ja   |     ja     |         -          |                                              |
+  | Über            |   ja   |     ja     |        ja         |                                              |
+
+Im **Einfach**-Modus erfolgt die Modellauswahl über Fertigkeiten in der Symbolleiste und über **Anbieter** in den Allgemeinen Einstellungen; die Registerkarte **Modelle** ist ausgeblendet.
 
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> In der Webversion verfügt jeder Benutzer über eine eigene Konfiguration. Einstellungen wie ausgewählte Modelle, Sprachen, allgemeine Optionen und Transformationsaufforderungen werden pro Benutzer gespeichert. Änderungen, die Sie vornehmen, wirken sich nicht auf andere Benutzer aus.
+> In der Webversion verfügt jeder Benutzer über eine eigene Konfiguration. Einstellungen wie KI-Erlebnis, Anbieter, ausgewählte Modelle oder Fertigkeiten, Sprachen, allgemeine Optionen und Transformations-Prompts werden pro Benutzer gespeichert. Änderungen, die Sie vornehmen, wirken sich nicht auf andere Benutzer aus.
 
 <br/>
 
@@ -564,7 +570,14 @@ Die verfügbaren Tabs hängen von der Plattform und Ihrer Rolle ab:
 <a id="general-settings"></a>
 ### Allgemeine Einstellungen
 
-Verwenden Sie **Allgemeine Einstellungen**, um das Tastaturverhalten, die Speicherung von Ausführungsdetails im **Verlauf** und das Erscheinungsbild zu steuern.
+Verwenden Sie **Allgemeine Einstellungen**, um das Tippverhalten, die Speicherung von Ausführungsdetails für den **Verlauf**, das Erscheinungsbild und die Auswahl der KI für Übersetzen, Umschreiben und Umwandeln zu steuern.
+
+**KI-Erlebnis**
+
+- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Fertigkeitsvoreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf, nicht Fertigkeiten.
+- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
+
+In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment gesetzten API-Schlüsseln ab. In der **Desktop-App** konfigurieren Sie die Schlüssel unter [**API-Konfiguration**](#api-config).
 
 **Verhalten**
 
@@ -576,8 +589,8 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Tastaturverhalten, die Speich
 
 **Historie**
 
-- **Ausführungsverlauf behalten** steuert, ob jede Übersetzung, Umschreibung und Transformation **Eingabe- und Ausgabetext** für die Seitenleistenansicht [**Verlauf**](#history) speichert. Bei Deaktivierung wird eine Bestätigung angefordert; bei Bestätigung werden gespeicherte Verlaufsdaten aus der Datenbank entfernt.
-- **Verlaufsdaten löschen** ermöglicht das Entfernen gespeicherter Texte nach Alter (z. B. älter als einige Monate oder **alle Daten (leeren)**) über **Daten löschen**. Dies betrifft nur gespeicherte Ausführungstexte für die **Verlauf**-Ansicht; es werden **keine** Kosten- oder Nutzungsdaten gelöscht. Zum Entfernen oder Reduzieren von **Kosten**-Daten verwenden Sie [**Einstellungen** > **Kostenverfolgung**](#cost-tracking).
+- **Ausführungsverlauf behalten** steuert, ob jeder Übersetzungs-, Umschreibungs- und Umwandlungsvorgang **Eingabe- und Ausgabetext** für die Seitenleistenansicht [**Verlauf**](#history) speichert. Bei Deaktivierung wird eine Bestätigung angefordert; bei Bestätigung wird der gespeicherte Verlaufstext aus der Datenbank entfernt. Wenn die Bezeichnung *vom Administrator deaktiviert* angezeigt wird, ist `HISTORY_DISABLED` in der Umgebung Ihrer Installation festgelegt (siehe [README](README.de.md#configuration-and-environment)); Sie können den Verlauf dann nicht über die Benutzeroberfläche wieder aktivieren.
+- **Verlaufsdaten löschen** ermöglicht das Entfernen gespeicherter Texte nach Alter (z. B. älter als einige Monate oder **alle Daten (leeren)**) mithilfe von **Daten löschen**. Dies betrifft nur gespeicherte Ausführungstexte für die **Verlauf**-Ansicht; es werden **keine** Kosten- oder Nutzungsdaten gelöscht. Um **Kosten**-Daten zu entfernen oder zu bereinigen, verwenden Sie [**Einstellungen** > **Kostenverfolgung**](#cost-tracking).
 
 **Erscheinungsbild**
 
@@ -602,7 +615,7 @@ Sicherungen, die entweder in der Web- oder Desktopversion erstellt wurden, könn
 <a id="models"></a>
 ### Modelle
 
-Verwenden Sie **Einstellungen** > **Modelle**, um festzulegen, welche Modelle in der Symbolleiste angezeigt werden.
+Diese Registerkarte ist nur verfügbar, wenn **KI-Erlebnis** in [**Allgemeine Einstellungen**](#general-settings) auf **Erweitert** gesetzt ist. Verwenden Sie **Einstellungen** > **Modelle**, um festzulegen, welche Modelle in der Symbolleiste angezeigt werden.
 
 ![Settings Models tab](../images/screenshots/de/settings-models.png)
 
@@ -679,10 +692,10 @@ Verwenden Sie **Einstellungen** > **Kostenverfolgung**, um Kosteninformationen z
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Aufforderungen transformieren
+<a id="transform-settings"></a>
+### Umwandeln (Registerkarte Einstellungen)
 
-Verwenden Sie **Einstellungen** > **Aufforderungen transformieren**, um Prompts in großer Zahl zu verwalten.
+Verwenden Sie **Einstellungen** > **Umwandeln**, um Prompts massenweise zu verwalten.
 
 Sie können:
 
@@ -769,8 +782,9 @@ Wenn etwas nicht wie erwartet funktioniert, überprüfen Sie zuerst die folgende
 
 Stellen Sie sicher, dass:
 
-- Sie ein Modell in der Symbolleiste ausgewählt haben
-- mindestens ein Modell unter [**Einstellungen** > **Modelle**](#models) aufgelistet ist
+- Sie haben eine **Fertigkeit** (Einfach) oder ein **Modell** (Erweitert) in der Symbolleiste ausgewählt
+- Im **Einfach**-Modus ist unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) ein **Anbieter** mit einem funktionsfähigen Schlüssel (oder einer Ollama-URL) konfiguriert und mindestens eine Fertigkeit für diesen Anbieter vorhanden
+- Im **Erweitert**-Modus ist mindestens ein Modell unter [**Einstellungen** > **Modelle**](#models) aufgelistet
 - Ihre API-Konfiguration funktioniert
 
 Wenn Sie die Desktop-App verwenden:
@@ -784,13 +798,9 @@ Wenn Sie die Desktop-App verwenden:
 <a id="the-model-list-is-empty"></a>
 ### Die Modellliste ist leer
 
-Öffnen Sie [**Einstellungen** > **Modelle**](#models) und klicken Sie auf **Aktualisieren**.
+Im **Einfach**-Modus öffnen Sie [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), stellen sicher, dass ein **Anbieter** festgelegt ist, und fügen oder testen Sie Schlüssel unter [**API-Konfiguration**](#api-config) (Desktop) oder fragen Sie Ihren Administrator (Web). Bei **Ollama** führen Sie den **Test** für die Basis-URL aus und stellen sicher, dass die Modelle lokal installiert sind.
 
-Falls erforderlich:
-
-- suchen Sie nach einem Modell
-- aktivieren Sie **Nur kostenlos**
-- fügen Sie ein oder mehrere Modelle zu **Ausgewählte Modelle** hinzu
+Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) und klicken Sie auf **Aktualisieren**. Falls erforderlich, suchen Sie nach einem Modell, aktivieren Sie **Nur kostenlos** und fügen Modelle zu **Ausgewählte Modelle** hinzu.
 
 <br/>
 
@@ -823,15 +833,15 @@ Klicken Sie auf das Globus-Symbol in der [Symbolleiste](#toolbar) und wählen Si
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Diagramme in der Übersicht sind leer
+<a id="dashboard-summary-looks-empty"></a>
+### Die Dashboard-Zusammenfassung sieht leer aus
 
 Dies ist normal, wenn:
 
-- Sie nur **kostenlose Modelle** verwenden und **Kosten**-Angaben betrachten (diese können null sein); **Nutzungs**-Aufrufzähldiagramme auf der **Zusammenfassung** benötigen weiterhin Daten aus dem gewählten Zeitraum
-- der gewählte **Zeitfilter** nicht den Zeitraum abdeckt, in dem Aufrufe erfolgt sind – versuchen Sie **Alle**, um dies zu prüfen
+- Sie verwenden ausschließlich **kostenlose Modelle** und betrachten **Kosten**-Angaben (diese können Null sein); die KPIs zur Aufrufanzahl auf der **Zusammenfassung** benötigen weiterhin Daten aus dem gewählten Zeitraum
+- Der ausgewählte **Zeitfilter** umfasst nicht den Zeitraum, in dem Aufrufe erfolgt sind – versuchen Sie **Alle**, um dies zu prüfen
 
-Wenn die Diagramme auch nach Auswahl von **Alle** leer bleiben, überprüfen Sie, ob Aufrufe in [**Verlauf**](#history) oder im Tab **Alle Aufrufe** angezeigt werden.
+Wenn die KPIs nach Auswahl von **Alle** weiterhin Null sind, überprüfen Sie, ob Aufrufe in [**Verlauf**](#history) oder auf der Registerkarte **Alle Aufrufe** angezeigt werden.
 
 <br/>
 
@@ -856,7 +866,7 @@ Um die Gesamtkosten Ihrer tatsächlichen OpenRouter-Ausgaben anzunähern, öffne
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Die Seite Verlauf fehlt in der Seitenleiste
 
-Die Option **Ausführungsverlauf behalten** ist möglicherweise deaktiviert. Öffnen Sie [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) und aktivieren Sie sie. Beachten Sie, dass durch die Aktivierung keine zuvor gelöschten Verlaufsdaten wiederhergestellt werden.
+**Ausführungsverlauf behalten** ist möglicherweise deaktiviert. Öffnen Sie [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) und aktivieren Sie die Option, sofern der Verlauf nicht *vom Administrator deaktiviert* ist (`HISTORY_DISABLED` in der Umgebung – siehe [README](README.de.md#configuration-and-environment)). Das Aktivieren des Verlaufs stellt zuvor gelöschten Text nicht wieder her.
 
 <br/>
 
@@ -912,8 +922,9 @@ Klicken Sie beim Bearbeiten eines Prompts immer auf **Speichern**, bevor Sie auf
 - Verwenden Sie [**Umschreiben**](#rewrite) für alltägliche Formulierungsverbesserungen.
 - Verwenden Sie [**Umwandeln**](#transform), wenn Sie einen wiederholbaren Workflow für eine bestimmte Aufgabe benötigen.
 - Verwenden Sie [**Übersicht**](#dashboard), wenn Sie die Nutzung und die Kosten im Auge behalten möchten.
-- Verwenden Sie [**Verlauf**](#history), um vergangene Vorgänge und deren vollständigen Eingabe- und Ausgabetext zu überprüfen.
-- Exportieren Sie regelmäßig Aufforderungen, wenn Sie eine Aufforderungs-Bibliothek erstellen, die Sie sicher aufbewahren möchten (siehe [Aufforderungen transformieren](#transform-prompts)), oder wenn Sie sie mit anderen teilen möchten.
+- Verwenden Sie [**Verlauf**](#history), um vergangene Operationen und deren vollständigen Eingabe-/Ausgabetext einzusehen.
+- Exportieren Sie regelmäßig Prompts, wenn Sie eine Prompt-Bibliothek erstellen, die Sie sicher aufbewahren oder mit anderen teilen möchten (siehe [Umwandeln](#transform)).
+- Bleiben Sie im **Einfach**-Modus, bis Sie eine feinere Kontrolle über Modell-IDs benötigen; wechseln Sie zu **Erweitert**, sobald Sie bereits wissen, welche Modelle Sie verwenden möchten.
 
 <br/><br/>
 

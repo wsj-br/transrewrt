@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:10.181Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:36.837Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: tl
 source_file_path: README.md
 translation_models:
@@ -25,9 +25,10 @@ Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling
 - **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/impormal, paiikliin, palawakin, teknikal
 - **Baguhin** - mga pasadyang prompt sa AI; lumikha at pamahalaan ang mga prompt, opsyonal na wika ng destinasyon bawat prompt
 - **Kasaysayan** - buong kasaysayan ng pagpapatupad na may tekstong input/output, pag-filter, at pag-export
-- **Mga Modelo at gastos** - pumili ng mga modelo mula sa anumang naka-configure na tagapagbigay; dashboard para sa gastos at paggamit na may log, buod ayon sa modelo/operasyon/araw
-- **UI** - multilingual na interface (higit sa 30 wika, suporta sa RTL), mga font, ...
-- **Web mode** - suporta sa maraming gumagamit na may admin na papel
+- **Madali & Advanced** - Madaling mode (default): piniling mga kasanayan bawat provider (Libre, Mabilis, Advanced, Teknikal, Legal) nang hindi pumipili ng model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
+- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyong i-export; ipinapakita ng OpenRouter ang aktuwal na gastos, ginagamit naman ng iba pang mga provider ang mga pagtataya
+- **UI** - multiwika na interface (30+ wika, suporta sa RTL), mga font, ...
+- **Web mode** - suporta sa multi-user na may admin roles
 - **Desktop** - Electron app para sa Windows at Linux
 - **Self-hosted** - Docker image para sa amd64 & arm64 (handang gamitin sa Raspberry Pi)
 

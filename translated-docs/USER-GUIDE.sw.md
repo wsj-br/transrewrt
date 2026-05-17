@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:26:09.810Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:34:04.574Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: sw
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt unakusaidia kufanya kazi na maandishi kwa njia tatu kuu:
 - **Tafsiri** - badilisha maandishi kutoka lugha moja hadi nyingine.
 - **Andika upya** - andika upya maandishi kwa mtindo tofauti, kama vile wazi zaidi, fupi zaidi, au rasmi zaidi.
 - **Badilisha** - usimamizi wa maandishi kwa kutumia maelekezo maalum ya AI yanayoitwa manukuu.
+
+Kwa chaguomsingi, programu inatumia **Rahisi** namweo: unachagua **ujuzi** (kama vile Bure, Haraka, au Teknolojia) na **mtoa huduma** katika Mipangilio, bila kuchagua vitambulisho vya mfumo. Badilisha kwenda **Ubinafsi** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ikiwa unataka orodha ya kihistoria ya mifumo kutoka [**Mipangilio** > **Mifano**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Mifano](#models)
   - [Lugha](#languages)
   - [Ufuatiliaji wa gharama](#cost-tracking)
-  - [Maagizo ya ubadilishaji](#transform-prompts)
+  - [Badilisha (lango la mipangilio)](#transform-settings)
   - [Watumiaji](#users)
   - [Mipangilio ya API](#api-config)
   - [Kuhusu](#about)
@@ -88,10 +90,10 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Orodha ya mifano ni tupu](#the-model-list-is-empty)
   - [Matokeo ni ya polepole au ghali sana](#the-result-is-too-slow-or-too-expensive)
   - [Ukurasa umewekwa kwa lugha mbaya](#the-interface-is-in-the-wrong-language)
-  - [Maandishi ni madogo sana au vigumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Grafu za dashibodi ni tupu](#dashboard-charts-are-empty)
+  - [Maandishi ni ndogo sana au vigumu kusoma](#the-text-is-too-small-or-hard-to-read)
+  - [Muhtasari wa dashibodi unaonekana tupu](#dashboard-summary-looks-empty)
   - [Gharama inaonyesha "haiapatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
-  - [Jumla ya gharama haifanani na bili yangu kutoka mtoa huduma](#total-cost-does-not-match-my-provider-bill)
+  - [Jumla ya gharama haifanani na bili yangu ya mtoa huduma](#total-cost-does-not-match-my-provider-bill)
   - [Ukurasa wa Historia umepotea kutoka upau wa upande](#the-history-page-is-missing-from-the-sidebar)
   - [Programu ya wavuti: umebwakiwa kurudi ukurasa wa kuingia kwa usahihi](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Msimamizi wa wavuti: umesahau au umepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Hauhitaji kuchagua mfumo wa malipo ili kuanza. Mara tu unapoweka ujuzi wako wa O
 
 Kwa maneno rahisi:
 
-- **Mfumo** ni injini ya AI inayofanya kazi. Mifumo inoripotiwa pamoja na **kiambishi cha mtoa huduma** (kwa mfano `openrouter/…`, `openai/…`, `ollama/…`).
-- **Ujuzi wa API** (au, kwa Ollama, **URL ya msingi**) ni njia ambayo programu hutumia kupata mtoa huduma huyo.
+- Katika namweo la **Rahisi**, **ujuzi** ni mapendeleo (Bure, Haraka, Ubinafsi, Teknolojia, Kisheria) yanayohusishwa na mfumo kwa **mtoa huduma** uliouchagua (OpenRouter, OpenAI, Ollama, na wengine). Unachagua ujuzi kwenye barua za zana katika Tafsiri, Andika upya, na Badilisha.
+- Katika namweo la **Ubinafsi**, **mfumo** ni injini ya AI unayochagua moja kwa moja. Vitambulisho vya mfumo hutumia **kiambishi cha mtoa huduma** (kama vile `openrouter/…`, `openai/…`, `ollama/…`).
+- **Ufunguo wa API** (au, kwa Ollama, **URL ya msingi**) ni njia programu hutumia kupata mtoa huduma huyo.
 
-Ikiwa unatumia **programu ya kompyuta**, weka ujuzi katika [**Mipangilio** > **Mipangilio ya API**](#api-config) kwa kila mtoa huduma unayotumia. Kwa matumizi ya OpenRouter pekee, tazama [Jinsi ya kupata ujuzi wa API](#how-to-get-an-api-key-desktop-app) chini. Ikiwa hutaki kutumia ujuzi wa API, unaweza kusakinisha Ollama (kutoka [ollama.com](https://ollama.com})) na kutumia mifumo ya wahali badala yake, kama vile `translategemma:4b`.
+Ikiwa unatumia **programu ya kompyuta**, ongeza funguo katika [**Mipangilio** > **Mipangilio ya API**](#api-config) kwa kila mtoa huduma unayotumia. Kwa matumizi ya OpenRouter pekee, tazama [Jinsi ya kupata funguo bila malipo la OpenRouter API](#how-to-get-an-api-key-desktop-app) chini. Ikiwa hutaki kutumia funguo la API, unaweza kusakinisha Ollama (kutoka [ollama.com](https://ollama.com)) na kutumia mifumo ya wahali badala, kama vile `translategemma:4b`.
 
 Ikiwa unatumia **toleo la wavuti**, mwenye server anawezesha matoa huduma kwa kutumia vigezo vya mazingira, kwa hivyo huwezi kuingiza ujuzi wa API moja kwa moja katika programu.
 
@@ -146,14 +149,14 @@ Ikiwa unatumia programu ya kompyuta, fuata hatua hizi:
 Ikiwa ni mara ya kwanza unayotumia Transrewrt, fuata mpangilio huu:
 
 1. Fungua programu.
-2. Chagua **Lugha ya kuingiza** yako kutoka kwenye alama ya dunia ikiwa inahitajika.
-3. Ikiwa umepakia **programu ya kompyuta**, fungua [**Mipangilio** > **Mipangilio ya API**](#api-config), ongeza ujuzi wa API kwa mtoa huduma yoyote moja (kwa mfano OpenRouter), na bonyeza **Jaribu** kuhakikisha unafanya kazi.
-4. Fungua [**Mipangilio** > **Mifano**](#models) na ongeza mfumo moja au zaidi kwenye **Mifumo Iliyochaguliwa**.
-5. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako za juu** ikiwa unataka lugha zako zilizotumika mara kwa mara zionekane kwanza.
-6. Nenda kwenye **Tafsiri** na fanya tafsiri rahisi ili uhakikishe kila kitu kinafanya kazi.
-7. Mara tu inapofanya kazi, jaribu **Andika upya** kisha **Badilisha**.
+2. Chagua **Lugha ya kuingiza** kwenye ikoni ya dunia ikiwa inahitajika.
+3. Ikiwa umepokea **programu ya kompyuta**, fungua [**Mipangilio** > **Mipangilio ya API**](#api-config), ongeza funguo la API kwa angalau mtoa huduma mmoja (kama vile OpenRouter), na bofya **Jaribu** kuthibitisha linafanya kazi.
+4. Fungua [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings). Katika namweo ya **Rahisi** (chaguomsingi), chagua **Mtoa huduma** ambao amepewa funguo. Katika namweo ya **Ubinafsi**, fungua [**Mipangilio** > **Mifano**](#models) na ongeza mfumo au zaidi kwenye **Mifumo Iliyochaguliwa**.
+5. Katika **Tafsiri**, chagua **ujuzi** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua za zana.
+6. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako zilizopendwa** ikiwa unataka lugha zako zilizotumika mara kwa mara ziwe kwanza.
+7. Fanya tafsiri rahisi ili kuthibitisha kila kitu kinafanya kazi, kisha jaribu **Andika upya** na **Badilisha**.
 
-Mpangilio huu una maana. Unaokoa tatizo la kawaida la kwanza: kujaribu kufanya kazi kabla ya programu kupata muunganisho wa API unaofanya kazi au mfumo uliowachaguliwa.
+Mpangilio huu una maana. Unaondoa tatizo la kawaida zaidi la watumiaji wapya: kujaribu kutekeleza kazi kabla ya programu kupata muunganisho wa API unaofanya kazi au kabla ya kuchagua ujuzi/mfumo.
 
 <br/><br/>
 
@@ -202,15 +205,16 @@ Tumia upau wa kando ili kuhamia kati ya programu. Unaweza kuficha upau wa kando 
 
 Barua za zana zinabadilika kidogo kulingana na unapokuwa ndani ya programu.
 
-- Upande wa kushoto, inaonesha jina la ukurasa wa sasa.
-- Upande wa kulia, inaonesha **chaguzi cha mfumo** na kitendakazi cha **Lugha ya kuingiza**.
+- Upande wa kushoto, unaonesha jina la ukurasa wa sasa.
+- Upande wa kulia, unaonesha kudhibiti **kuchagua ujuzi au mfumo** na kudhibiti **Lugha ya kuingiza**.
 
-Chaguzi cha **mfumo** kinaonesha unachaguo kuchagua injini ya AI itakayotumika kwa kazi ya sasa.
+Katika namweo la **Rahisi**, barua ya zana inaonesha **kudhibiti cha ujuzi** (Bure, Haraka, Ubinafsi, Teknolojia, Kisheria, na mapendeleo mengine). Ujuzi unategemea **Mtoa huduma** uliouchagua katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings). Ikiwa **Mtoa huduma** ni **Ollama**, barua ya zana inaonesha mifumo yako iliyosakinishwa ya wahali badala ya ujuzi.
+
+Katika namweo la **Ubinafsi**, **kudhibiti cha mfumo** kukuwezesha kuchagua injini gani ya AI utakayotumia kwa kazi ya sasa.
 
 ![Model selector](../images/screenshots/sw/model-selector.png)
 
-Baadhi ya mifumo isiyo ya gharama inaweza kuwa isipatikana mara kwa mara—wakati mwingine yanaweza kuwa mbali au kuwa na kikomo cha matumizi. Ikiwa hivi kitatokea, programu itawasilisha kiotomatiki mfumo huo kutoka kwenye orodha yako inayopatikana. Ili udhibiti mifumo itakayotazamwa, nenda kwenye [**Mipangilio** > **Mifano**](#models) na hariri orodha yako ya mifumo.
- Pia unaweza kufungua mipangilio ya mfumo moja kwa moja kwa kubonyeza ikoni ya mtoa huduma upande wa kushoto wa jina la mfumo katika barua ya zana.
+Katika namweo ya Ubinafsi, mifumo fulani isiyo ya malipo inaweza isipatikana mara kwa mara—inaweza kuwa imesimama au imefikia kikomo cha matumizi. Programu inaweza kuondoa mfumo huo kutoka kwenye orodha yako kiotomatiki. Ili udhibiti mifumo yanayotazamika, nenda kwenye [**Mipangilio** > **Mifano**](#models). Unaweza kufungua mipangilio ya mfumo kutoka kwenye ikoni ya mtoa huduma upande wa kushoto wa jina la mfumo kwenye barua ya zana.
 
 <br/>
 
@@ -259,7 +263,7 @@ Tumia **Tafsiri** unapotaka kubadilisha maandishi kutoka kwa lugha moja hadi nyi
 1. Fungua **Tafsiri**.
 2. Chagua lugha kwenye **Kutoka**.
 3. Chagua lugha kwenye **Kwenda**.
-4. Chagua mfumo katika barua ya zana.
+4. Chagua ujuzi (Rahisi) au mfumo (Ubinafsi) kwenye barua ya zana.
 5. Weka maandishi kwenye **Kuingiza** au bandika.
 6. Bonyeza **Tafsiri**.
 7. Soma matokeo kwenye **Pato**.
@@ -350,7 +354,7 @@ Hii ni sehemu yenye uwezo mkubwa zaidi ya programu. Unaweza kutumia kwa kazi kam
 <a id="if-you-have-no-prompts-yet"></a>
 ### Kama bado huna maagizo
 
-Ikiwa orodha yako ya maagizo ni tupu, bonyeza **Pakia maagizo ya mfano** katika eneo la kazi la Badilisha. Kitendakazi hicho kiko mara kwa mara kwenye [**Mipangilio** > **Badilisha maagizo**](#transform-prompts) kwenye safu ya uwekezaji/uhamisho. Vile vile, vinaweka mfano ili uanze haraka.
+Ikiwa orodha yako ya maagizo ni tupu, bofya **Pakia maagizo ya mfano** kwenye eneo la kazi la Badilisha. Kudhibiti huko kiko mara kwa mara katika [**Mipangilio** > **Badilisha**](#transform-settings) kwenye safu ya upelelezi/upelelezi. Vyote viwili vinaweka mifano iliyotengenezwa ili uanze haraka.
 
 <br/>
 
@@ -423,8 +427,10 @@ Hii ni muhimu wakati:
 
 <br/>
 
-> ℹ️ **MAYA**<br/>
-> Unaweza kutoa na kuingiza maagizo uliyoyasave katika [**Mipangilio** > **Badilisha Maagizo**](#transform-prompts).
+> ℹ️ **MUHIMU**<br/>
+> Unaweza kutoa na kuleta maagizo uliyohifadhiwa katika [**Mipangilio** > **Badilisha**](#transform-settings).
+
+Unapotumia **Zalisha maagizo**, **Sahihisha maagizo**, au **Tafsiri maagizo** katika kuhariri maagizo, njia ya **Rahisi** inatoa kichagua cha ujuzi kama vile Tafsiri na Andika upya; njia ya **Ubinafsi** hutumia orodha ya mfumo.
 
 <br/><br/>
 
@@ -439,8 +445,8 @@ Tumia **Dashibodi** kuona kiasi cha kutumia programu na gharama zake (kwa mifano
 
 <br/>
 
-> ℹ️ **MAYA**<br/>
-> Ikiwa hutumii tu mifano **bure**, kiasi cha **gharama** kinaenda kuwa sifuri na muhtasari unaotokana na gharama unaweza kuonekana tupu. Katika **Muhtasari**, **Matumizi kwa wakati** na **Matumizi kwa mfano** bado yanawasilishwa **idadi ya vituo** (tafsiri, andika upya, na badilisha) wakati una shughuli katika kipindi kilichochaguliwa.
+> ℹ️ **KODI**<br/>
+> Ikiwa hutumia tu mifumo **bure**, kiasi cha **gharama** kinaenda kuwa sifuri na vipengele vya utendaji vinavyoelekezwa kwenye gharama vinaweza kuonekana tupu. Lengo la **Muhtasari** bado linawasilishwa kwa idadi ya vito kwa tafsiri, kuandika upya, na kubadilisha ikiwa kuna shughuli kwenye kipindi kilichochaguliwa.
 
 <br/>
 
@@ -461,11 +467,9 @@ Tumia vitufe vya kuchuja juu ili ubadilishe kipindi cha wakati.
 <a id="dashboard-tabs"></a>
 ### Vichupo vya dashibodi
 
-- **Muhtasari** unapata maelezo ya jumla ya matumizi na gharama. Una kifungu cha **Matumizi kwa wakati** (idadi ya **vito vilivyopigwa** vilivyowekwa kwa siku kwa tafsiri, kuandika upya, na kubadilisha) na **Matumizi kwa mfano** (jumla ya **vito kwa kila mfano**, ikiwemo ubadilishaji).
-- **Kwa matumizi** unaweka wazi shughuli kwa lugha ya tafsiri, hali ya kuandika upya, na maagizo ya ubadilishaji.
-- **Kwa mfano** unaonesha mifano uliyotumia na gharama zake.
-- **Kwa siku** unaonesha jumla za kila siku.
-- **Wito Wote** inaoneshesha historia kamili ya vituo na kukuwezesha kuitoa.
+- **Muhtasari** unawasilisha kadi za vipengele vya utendaji: jumla ya gharama, mifumo iliyotumika, idadi ya vito kwa kila njia na gharama (pamoja na asilimia ya jumla ya vito), wastani wa gharama kwa kila kito, wastani wa TPS, na mifumo mitatu ya kwanza kwa idadi ya vito.
+- **Kwa mfano** unoripoti kila mfumo kwa jumla ya vito, jumla ya gharama, na wastani wa TPS; panua safu ili kupata kigawo kwa tafsiri, kuandika upya, na kubadilisha.
+- **Wito wote** unawasilishwa kikumbukumbu cha vito vyote (kwa kurasa kwenye mazingira ya upana, kwa kadi kwenye skrini za upana mdogo) na kukuruhusu kutoa.
 
 <br/>
 
@@ -508,14 +512,14 @@ Bonyeza kwenye **Historia** ili uone rekodi ya vitendo vyako ndani ya **Transrew
 <a id="filter-the-history"></a>
 ### Chuja historia
 
-**Historia** hutumia vichujio vilevile vilivyonachopatikana kwenye ukurasa wa **Dashibodi**. Tumia kuchagua kipindi cha wakati.
+**Historia** hutumia vichujio vya muda sawa kama ukurasa wa **Dashibodi**.
 
 ![Dashboard filters](../images/screenshots/sw/dashboard-filter.png)
 
 <br/>
 
-> ℹ️ **KUMBUKA**<br/>
-> Chujua cha **Mtumiaji** kinawezekana tu kuonekana na wale wanaowasilishi kwa tovuti. Watumiaji wa kawaida hawataiona chujuzi hiki, wala hakikupatikana katika programu ya kompyuta.
+> ℹ️ **KODI**<br/>
+> Katika **programu ya wavuti**, kila mtu (pamoja na wale wenye mamlaka) anaweza kuona tu historia yake ya utekelezaji. Kichuja cha **Mtumiaji** kwenye **Dashibodi** kimeundwa kwa wale wenye mamlaka ili kuchambua matumizi na gharama kwa akaunti zote; hakitumike kwenye **Historia**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Fungua **Mipangilio** kutoka kwenye upau wa upande ili kubadilisha namna program
 
 Vidole vilivyonapatikana vinategemea jukwaa na jukumu lako:
 
-| Vidole               | Kompyuta | Wavuti (msimamizi) | Wavuti (mtumiaji wa kawaida) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Mipangilio ya kawaida  |   ndio   |     ndio     |        ndio         |
-  | Mifano            |   ndio   |     ndio     |        ndio         |
-  | Lugha         |   ndio   |     ndio     |        ndio         |
-  | Ufuatiliaji wa Gharama     |   ndio   |     ndio     |         -          |
-  | Badilisha maagizo |   ndio   |     ndio     |        ndio         |
-  | Watumiaji             |    -    |     ndio     |         -          |
-  | Mipangilio ya API        |   ndio   |     ndio     |         -          |
-  | Kuhusu             |   ndio   |     ndio     |        ndio         |
+| Kichupo            | Kompyuta | Wavuti (msimamizi) | Wavuti (mtumiaji wa kawaida) | Maelezo                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Mipangilio ya Kawaida |   ndio   |     ndio     |        ndio         | Inajumuisha **Uzoefu wa AI** (Rahisi / Ubinafsi) |
+  | Mifano           |   ndio   |     ndio     |        ndio         | Tu wakati **Uzoefu wa AI** ni **Ubinafsi** |
+  | Lugha            |   ndio   |     ndio     |        ndio         |                                              |
+  | Ufuatiliaji wa Gharama    |   ndio   |     ndio     |         -          |                                              |
+  | Badilisha        |   ndio   |     ndio     |        ndio         | Kuingiza/kutoa kwa wingi kwa maagizo ya ubadilishaji      |
+  | Watumiaji        |    -    |     ndio     |         -          |                                              |
+  | Mipangilio ya API       |   ndio   |     ndio     |         -          |                                              |
+  | Kuhusu            |   ndio   |     ndio     |        ndio         |                                              |
+
+Katika njia ya **Rahisi**, kuchagua mfumo hutokea kupitia ujuzi katika barua pepe na **Mtoa huduma** katika Mipangilio ya Kawaida; kichupo cha **Mifano** kimefichwa.
 
 <br/>
 
 > ℹ️ **KODI**<br/>
-> Katika toleo la wavuti, kila mtumiaji ana usanidi wake mwenyewe. Mipangilio kama vile mifumo iliyochaguliwa, lugha, chaguzi za kawaida, na maagizo ya ubadilishaji hutengenezwa kwa kila mtumiaji. Mabadiliko unayoyafanya hayathiri watumiaji wengine.
+> Katika toleo la wavuti, kila mtumiaji ana mipangilio yake mwenyewe. Mipangilio kama vile uzoefu wa AI, mtoa huduma, mifumo au ujuzi iliyochaguliwa, lugha, chaguo la kawaida, na maagizo ya ubadilishaji yanahifadhiwa kwa kila mtumiaji. Mabadiliko unayofanya hayathiri watumiaji wengine.
 
 <br/>
 
@@ -564,7 +570,14 @@ Vidole vilivyonapatikana vinategemea jukwaa na jukumu lako:
 <a id="general-settings"></a>
 ### Mipangilio ya kawaida
 
-Tumia **Mipangilio ya Kawaida** kupima tabia ya kuandika, je, maelezo ya utekelezaji hutengenezwa kwa ajili ya **Historia**, na muonekano.
+Tumia **Mipangilio ya Kawaida** kupitia tabia ya kuandika, kama taarifa za utekelezaji zinahifadhiwa kwa ajili ya **Historia**, muonekano, na jinsi unavyochagua AI kwa Tafsiri, Andika upya, na Badilisha.
+
+**Uzoefu wa AI**
+
+- **Rahisi** (chaguo-msingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Matoa wa mawingu hutumia vipengele vya ujuzi vilivyopangwa awali katika barua pepe. **Ollama** linoripoti mifumo iliyosakinishwa kwenye kifaa chako badala ya ujuzi.
+- **Ubinafsi**: chagua mifumo moja kwa moja katika barua pepe; usimamie orodha kwenye [**Mipangilio** > **Mifano**](#models).
+
+Katika **programu ya wavuti**, matoa yanayotazamika yanategemea bango la API zilizowekwa katika mazingira ya seva. Katika **programu ya kompyuta**, weka bango kwenye [**Mipangilio ya API**](#api-config).
 
 **Tabia**
 
@@ -576,8 +589,8 @@ Tumia **Mipangilio ya Kawaida** kupima tabia ya kuandika, je, maelezo ya utekele
 
 **Historia**
 
-- **Hifadhi historia ya utekelezaji** hufanya kama kama kila tafsiri, andika upya, na ubadilishaji hutengeneza **maandishi ya kuingiza na pato** kwa ajili ya onyesho la [**Historia**](#history) la upande. Kuzima hii hikutaka uthibitishaji; ikiwa unathibitisha, maandishi yaliyotengenezwa ya historia hutolewa kutoka kwenye hifadhidata. 
-- **Futa data ya historia** inaruhusu kufuta maandishi yaliyotengenezwa kulingana na umri (kwa mfano ya zamani zaidi ya miezi kadhaa, au **data yote (wazi)**) kwa kutumia **Futa data**. Hii inaathiri tu maandishi yaliyohifadhiwa ya utekelezaji kwa ajili ya onyesho la **Historia**; **haifutii** jumla za gharama au matumizi. Ili kufuta au kupunguza data ya **gharama**, tumia [**Mipangilio** > **Ufuatiliaji wa Gharama**](#cost-tracking).
+- **Hifadhi historia ya utekelezaji** inaendeleza kama kila tafsiri, andika upya, na ubadilishaji unahifadhi **maandishi ya kuingiza na pato** kwa ajili ya onyesho la upande wa upande wa [**Historia**](#history). Kuzima kinauliza kuthibitisha; kama utathibitisha, data ya historia iliyohifadhiwa itafutwa kutoka kwenye hifadhidata. Kama lebo inaonyesha *imezimwa na msimamizi*, kiolesura chako kina `HISTORY_DISABLED` kilichowekwa mazingira (tazama [README](README.sw.md#configuration-and-environment)); huwezi kurudisha historia tena kutoka kwenye UI.
+- **Futa data ya historia** inaruhusu kufuta maandishi yaliyohifadhiwa kulingana na umri (kwa mfano, zilizopita muda wa miezi kadhaa, au **data yote (wazi)**) kwa kutumia **Futa data**. Hii inaathiri tu maandishi ya utekelezaji yaliyohifadhiwa kwa ajili ya onyesho la **Historia**; haina **fanya** kufuta data ya gharama au jumla la matumizi. Ili kufuta au kupunguza data ya **gharama**, tumia [**Mipangilio** > **Ufuatiliaji wa Gharama**](#cost-tracking).
 
 **Muonekano**
 
@@ -602,7 +615,7 @@ Usimbaji ulioundwa kwenye toleo la wavuti au desktopi unaweza kuwekwa upya kweny
 <a id="models"></a>
 ### Mifano
 
-Tumia **Mipangilio** > **Mifano** kuchagua mifano ambayo itaonekana kwenye kiolesura cha zana.
+Lipu hii inapatikana tu wakati **Uzoefu wa AI** umewekwa kuwa **Ubinafsi** kwenye [**Mipangilio ya Kawaida**](#general-settings). Tumia **Mipangilio** > **Mifano** kuchagua mifumo itakayotazamwa kwenye barua pepe.
 
 ![Settings Models tab](../images/screenshots/sw/settings-models.png)
 
@@ -679,10 +692,10 @@ Tumia **Mipangilio** > **Ufuatiliaji wa Gharama** kudhibiti taarifa za gharama.
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Badilisha maagizo
+<a id="transform-settings"></a>
+### Badilisha (lango la mipangilio)
 
-Tumia **Mipangilio** > **Badilisha Maagizo** kudumisha maagizo kwa wingi.
+Tumia **Mipangilio** > **Badilisha** kudhibiti maagizo kwa wingi.
 
 Unaweza:
 
@@ -769,9 +782,10 @@ Ikiwa kitu chochote hakifanya kazi kama inavyotarajiwa, angalia kwanza mambo yaf
 
 Angalia kwamba:
 
-- umechagua mfumo katika barua pepe
-- kuna angalau mfumo mmoja uliopandikwa katika [**Mipangilio** > **Mifano**](#models)
-- mpangilio wako wa API unaendelea
+- umechagulia **ujuzi** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua pepe
+- katika njia ya **Rahisi**, [**Mipangilio** > **Mipangilio ya Kawaida**](#general-settings) ina **Mtoa Huduma** yenye ufunguo unaofanya kazi (au anwani ya Ollama) na ujuzi angalau mmoja kwa mtoa huyo
+- katika njia ya **Ubinafsi**, mfumo angalau mmoja umekuwa kwenye [**Mipangilio** > **Mifano**](#models)
+- mpangilio wako wa API unaendelea kama inavyostahili
 
 Ikiwa hutumia programu ya desktop:
 
@@ -784,13 +798,9 @@ Ikiwa hutumia programu ya desktop:
 <a id="the-model-list-is-empty"></a>
 ### Orodha ya mifumo ni tupu
 
-Fungua [**Mipangilio** > **Mifano**](#models) na bofya **Sasisha**.
+Katika njia ya **Rahisi**, fungua [**Mipangilio** > **Mipangilio ya Kawaida**](#general-settings), thibitisha kwamba **Mtoa Huduma** umewekwa, na ongeza au jaribu ufunguo kwenye [**Mipangilio ya API**](#api-config) (kwa kompyuta) au ulizie msimamizi wako (kwa wavuti). Kwa ajili ya **Ollama**, fanya **Jaribu** kwenye anwani ya msingi na uhakikishe mifumo imepakia kwenye kompyuta yako.
 
-Ikiwa inahitajika:
-
-- tafuta mfumo
-- weka **Bure Pekee** imewezeshwa
-- ongeza mfumo mmoja au zaidi kwenye **Mifumo Iliyochaguliwa**
+Katika njia ya **Ubinafsi**, fungua [**Mipangilio** > **Mifano**](#models) na bofya **Sasisha**. Ikiwa inahitajika, tafuta mfumo, weka **Bure Pekee** iweze kufanya kazi, na ongeza mifumo kwenye **Mifumo Iliyochaguliwa**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Fungua [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) na badili
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Grafu za Dashibodi ziko wazi
+<a id="dashboard-summary-looks-empty"></a>
+### Muhtasari wa Dashibodi unaonekana tupu
 
 Hii ni kawaida ikiwa:
 
-- hutumia tu **mifumo ya bure** na unatazama takwimu za **gharama** (zinafika kuwa sifuri); grafu za idadi ya **matumizi** kwenye **Muhtasari** bado zinahitaji data kutoka kwa kipindi kilichochaguliwa
-- **kichujio cha wakati** kilichochaguliwa hakikidhi kipindi ambacho vituo vilifanyika - jaribu **Wote** ili uhakikie
+- hutumii tu **mifumo bila malipo** na unatazama takwimu za **gharama** (zinafanya kuwa sifuri); viashiria vya idadi ya wito kwenye **Muhtasari** bado vinahitaji data kutoka kipindi kilichochaguliwa
+- **chujio cha wakati** kilichochaguliwa hakikidhi kipindi ambapo vituo vilifanyika — jaribu **Wote** ili uangalie
 
-Ikiwa grafu bado ziko wazi baada ya kuchagua **Wote**, hakikisha kuwa vituo vimeonekana kwenye [**Historia**](#history) au kwenye kichwa cha **Vituo vya Wote**.
+Ikiwa viashiria bado ni sifuri baada ya kuchagua **Wote**, thibitisha kwamba vituo vinavyotazamwa vinapatikana kwenye [**Historia**](#history) au kwenye kichupo cha **Vituo Vote**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Ili kufanya jumla iwe karibu zaidi na matumizi yako halisi ya OpenRouter, fungua
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Ukurasa wa Historia umekosekana kutoka kwenye upande
 
-**Hifadhi historia ya utekelezaji** inaweza kuwa imezimwa. Fungua [**Mipangilio** > **Mipangilio ya Kawaida**](#general-settings) na iwezeshe. Angalia kwamba kuwawezesha hautrudisha data iliyofutwa mapema.
+**Hifadhi historia ya utekelezaji** inaweza kuwa imezimwa. Fungua [**Mipangilio** > **Mipangilio ya Kawaida**](#general-settings) na wezesha isipokuwa historia iwe *imezimwa na msimamizi* (`HISTORY_DISABLED` katika mazingira — tazama [README](README.sw.md#configuration-and-environment)). Kuwezesha historia haifanyi kurudisha maandishi yaliyofutwa awali.
 
 <br/>
 
@@ -912,8 +922,9 @@ Unapotahiri maagizo, daima bonyeza **Hifadhi** kabla ya kubonyeza **Rudi kwenye 
 - Tumia [**Andika upya**](#rewrite) kwa maboresho ya maneno ya kila siku.
 - Tumia [**Badilisha**](#transform) unapotaka mtiririko wa kazi unaweza kurudia kwa kazi maalum.
 - Tumia [**Dashibodi**](#dashboard) ikiwa unataka kuangalia matumizi na gharama.
-- Tumia [**Historia**](#history) kuchunguza kazi zilizopita na maandishi yake kamili ya kuingiza/maandishi ya pato.
-- Fanya utoaji wa maagizo kila mara ikiwa unajenga maktaba ya maagizo ambayo unataka kuihifadhi (angalia [Badilisha Maagizo](#transform-prompts)) au ikiwa unataka kushiriki na wengine.
+- Tumia [**Historia**](#history) kupitia vitendo vya awali na maandishi yao kamili ya kuingiza/ya pato.
+- Tolea maagizo kila wakati ikiwa unajenga maktaba ya maagizo ambayo unataka kuihifadhi salama (tazama [Badilisha](#transform)) au ikiwa unataka kushiriki na wengine.
+- Baki kwenye njia ya **Rahisi** mpaka utakapohitaji udhibiti wa karibu zaidi juu ya ID za mifumo; badilisha kwenye **Ubinafsi** wakati umekwisha kujua mifumo unayotaka.
 
 <br/><br/>
 

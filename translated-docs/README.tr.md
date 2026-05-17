@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:36.497Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:34:12.679Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: tr
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (Open
 - **Yeniden yaz** - dilbilgisi düzeltme, anlaşılırlığı iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
 - **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef diliyle birlikte istemleri oluşturun ve yönetin
 - **Geçmiş** - girdi/çıktı metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Modeller ve maliyet** - Yapılandırılmış herhangi bir sağlayıcıdan modeller seçin; maliyet ve kullanım panoları, günlük, model/işlem/güne göre özetler
-- **Kullanıcı Arayüzü** - Çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
-- **Web modu** - Yönetici rolleriyle çok kullanıcılı destek
+- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya göre özelleştirilmiş beceriler (Ücretsiz, Hızlı, Gelişmiş, Teknik, Yasal); model kimliklerini seçmeye gerek yoktur. Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tüm model listesi
+- **Modeller & maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) dışa aktarılabilir; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
+- **Kullanıcı Arayüzü (UI)** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
+- **Web modu** - yönetici rolleriyle çok kullanıcılı destek
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
-- **Kendi sunucunuza kurun** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
+- **Kendi barındırma** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 
 Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
 

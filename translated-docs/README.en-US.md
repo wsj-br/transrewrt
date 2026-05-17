@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:09.058Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:24.075Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: en-US
 source_file_path: README.md
 translation_models:
@@ -25,7 +25,8 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export
-- **Models & cost** - choose models from any configured provider; cost and usage dashboards with log, summaries by model/operation/day
+- **Easy & Advanced** - Easy mode (default): curated skills per provider (Free, Fast, Advanced, Technical, Legal) without picking model IDs; Advanced mode: full model list from your configured providers
+- **Models & cost** - cost and usage dashboards (Summary, By Model, All Calls) with export; OpenRouter shows actual spend, other providers use estimates
 - **UI** - multilingual interface (30+ languages, RTL support), fonts, ...
 - **Web mode** - multi-user support with admin roles
 - **Desktop** - Electron app for Windows and Linux

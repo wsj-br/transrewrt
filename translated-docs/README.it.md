@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:16.655Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:32:35.852Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: it
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Strumento testuale basato su AI: traduci tra lingue, riscrivi in stili diversi e
 - **Riscrivi** - correggi grammatica, migliora chiarezza, registro formale/informale, accorcia, espandi, tecnico
 - **Trasforma** - prompt personalizzati con intelligenza artificiale; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
 - **Cronologia** - cronologia completa delle esecuzioni con testo in input/output, filtri ed esportazione
-- **Modelli e costi** - scegli modelli da qualsiasi provider configurato; dashboard di costi e utilizzo con log, riepiloghi per modello/operazione/giorno
-- **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), caratteri tipografici, ...
-- **Modalità Web** - supporto multi-utente con ruoli amministrativi
-- **Desktop** - app Electron per Windows e Linux
-- **Self-hosted** - immagine Docker per amd64 e arm64 (pronta per Raspberry Pi)
+- **Facile e Avanzato** - Modalità Facile (predefinita): competenze selezionate per provider (Gratuito, Veloce, Avanzato, Tecnico, Legale) senza dover scegliere gli ID del modello; Modalità Avanzata: elenco completo dei modelli dai provider configurati
+- **Modelli e costo** - dashboard su costi e utilizzo (Riepilogo, Per modello, Tutte le chiamate) con funzione di esportazione; OpenRouter mostra la spesa effettiva, gli altri provider usano stime
+- **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), tipi di carattere, ...
+- **Modalità Web** - supporto multi-utente con ruoli di amministratore
+- **Desktop** - App Electron per Windows e Linux
+- **Self-hosted** - Immagine Docker per amd64 e arm64 (pronta per Raspberry Pi)
 
 Una volta installato, consultare la [**Guida per l'utente**](USER-GUIDE.it.md) per una panoramica completa di tutte le funzionalità.
 

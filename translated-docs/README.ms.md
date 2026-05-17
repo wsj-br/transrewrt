@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:19.926Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:32:48.347Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: ms
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza,
 - **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, ringkaskan, kembangkan, teknikal
 - **Transformasikan** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Model & kos** - pilih model daripada mana-mana penyedia yang dikonfigurasikan; papan pemuka kos dan penggunaan dengan log, ringkasan mengikut model/operasi/hari
-- **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
-- **Desktop** - aplikasi Electron untuk Windows dan Linux
-- **Swasta hos** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
+- **Mudah & Lanjutan** - Mod Mudah (lalai): kemahiran terpilih mengikut penyedia (Percuma, Pantas, Lanjutan, Teknikal, Undang-undang) tanpa memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
+- **Model & kos** - papan pemuka kos dan penggunaan (Ringkasan, Mengikut Model, Semua Panggilan) dengan fungsi eksport; OpenRouter menunjukkan perbelanjaan sebenar, penyedia lain menggunakan anggaran
+- **UI** - antara muka pelbagai bahasa (lebih 30 bahasa, sokongan RTL), fon, ...
+- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
+- **Desktop** - Aplikasi Electron untuk Windows dan Linux
+- **Swasta** - Imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
 Selepas dipasang, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk penerangan lengkap semua ciri.
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:06.715Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:18.178Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: cs
 source_file_path: README.md
 translation_models:
@@ -26,11 +26,12 @@ Nástroj pro text s využitím umělé inteligence: překládání mezi jazyky, 
 - **Přepsat** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
 - **Transformovat** – vlastní výzvy AI; vytváření a správa výzev, volitelný cílový jazyk pro každou výzvu
 - **Historie** – kompletní historie spuštění s vstupním a výstupním textem, filtrováním a exportem
-- **Modely a náklady** – výběr modelů od libovolného nakonfigurovaného poskytovatele; přehledy nákladů a využití s logy, shrnutí podle modelu/operace/dne
-- **Uživatelské rozhraní** – multilingvní rozhraní (30+ jazyků, podpora RTL), písma, ...
-- **Webový režim** – podpora více uživatelů s administračními rolemi
-- **Desktop** – Electron aplikace pro Windows a Linux
-- **Self-hosted** – Docker image pro amd64 & arm64 (připraveno pro Raspberry Pi)
+- **Snadný a pokročilý režim** - Snadný režim (výchozí): vybrané dovednosti podle poskytovatele (Zdarma, Rychlý, Pokročilý, Technický, Právní) bez nutnosti výběru ID modelu; Pokročilý režim: kompletní seznam modelů od vašich nakonfigurovaných poskytovatelů
+- **Modely a náklady** - přehledy nákladů a využití (Souhrn, Podle modelu, Všechny volání) s možností exportu; OpenRouter zobrazuje skutečné výdaje, jiní poskytovatelé používají odhady
+- **Uživatelské rozhraní** - vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma, ...
+- **Webový režim** - podpora více uživatelů s rolemi správce
+- **Desktop** - Electron aplikace pro Windows a Linux
+- **Samostatné hostování** - Docker image pro amd64 & arm64 (připraveno pro Raspberry Pi)
 
 Jakmile je nainstalováno, podívejte se na [**Uživatelskou příručku**](USER-GUIDE.cs.md) pro podrobný průvodce všemi funkcemi.
 

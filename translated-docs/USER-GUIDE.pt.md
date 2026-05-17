@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:25:40.014Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:33:13.839Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: pt
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ O Transrewrt ajuda-o a trabalhar com texto de três formas principais:
 - **Traduzir** - converter texto de um idioma para outro.
 - **Reescrever** - reformular texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas de prompts.
+
+Por padrão, o aplicativo executa no modo **Fácil**: você escolhe uma **habilidade** (por exemplo, Grátis, Rápido ou Técnico) e um **fornecedor** em Definições, sem precisar escolher IDs de modelos. Mude para **Avançado** em [**Definições** > **Configurações Gerais**](#general-settings) se desejar a lista clássica de modelos em [**Definições** > **Modelos**](#models).
 
 <br/>
 
@@ -78,8 +80,8 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
   - [Configurações gerais](#general-settings)
   - [Modelos](#models)
   - [Idiomas](#languages)
-  - [Rastreamento de custo](#cost-tracking)
-  - [Prompts de transformação](#transform-prompts)
+  - [Rastreamento de Custo](#cost-tracking)
+  - [Transformar (aba de definições)](#transform-settings)
   - [Utilizadores](#users)
   - [Configuração da API](#api-config)
   - [Sobre](#about)
@@ -88,10 +90,10 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
   - [A lista de modelos está vazia](#the-model-list-is-empty)
   - [O resultado é demasiado lento ou caro](#the-result-is-too-slow-or-too-expensive)
   - [A interface está num idioma errado](#the-interface-is-in-the-wrong-language)
-  - [O texto é demasiado pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
-  - [Os gráficos do painel estão vazios](#dashboard-charts-are-empty)
+  - [O texto é muito pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
+  - [O Resumo do Painel parece vazio](#dashboard-summary-looks-empty)
   - [O custo mostra "não disponível" ou parece incorreto](#cost-shows-not-available-or-seems-wrong)
-  - [O custo total não corresponde à fatura do fornecedor](#total-cost-does-not-match-my-provider-bill)
+  - [O custo total não corresponde à minha fatura do fornecedor](#total-cost-does-not-match-my-provider-bill)
   - [A página Histórico está em falta na barra lateral](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicação web: redirecionado inesperadamente para a página de início de sessão](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Administrador web: esqueceu-se ou perdeu a palavra-passe](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Você não precisa selecionar um modelo pago para começar. Assim que adicionar 
 
 Em termos simples:
 
-- Um **modelo** é o motor de IA que realiza o trabalho. Os modelos são listados com um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
-- Uma **chave de API** (ou, para o Ollama, uma **URL base**) é como o aplicativo se conecta a esse fornecedor.
+- No modo **Fácil**, uma **habilidade** é um conjunto pré-definido (Grátis, Rápido, Avançado, Técnico, Jurídico) que corresponde a um modelo do **fornecedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Você seleciona a habilidade na barra de ferramentas em Traduzir, Reescrever e Transformar.
+- No modo **Avançado**, um **modelo** é o mecanismo de IA que você escolhe diretamente. Os IDs dos modelos usam um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
+- Uma **chave de API** (ou, para Ollama, uma **URL base**) é como o aplicativo se conecta ao fornecedor.
 
-Se estiver usando o **aplicativo desktop**, adicione as chaves em [**Definições** > **Configuração da API**](#api-config) para cada fornecedor que usar. Para uso exclusivo do OpenRouter, consulte [Como obter uma chave de API](#how-to-get-an-api-key-desktop-app) abaixo. Se não quiser usar uma chave de API, você pode instalar o Ollama (em [ollama.com](https://ollama.com)) e usar modelos locais, como `translategemma:4b`.
+Se estiver usando o **aplicativo desktop**, adicione chaves em [**Definições** > **Configuração da API**](#api-config) para cada fornecedor que usar. Para uso exclusivo do OpenRouter, veja [Como obter uma chave de API OpenRouter gratuita](#how-to-get-an-api-key-desktop-app) abaixo. Se não quiser usar uma chave de API, pode instalar o Ollama (em [ollama.com](https://ollama.com)) e usar modelos locais, como `translategemma:4b`.
 
 Se estiver usando a **versão web**, o proprietário do servidor configura os fornecedores com variáveis de ambiente, portanto você não pode inserir chaves de API diretamente no aplicativo.
 
@@ -147,13 +150,13 @@ Se esta é a sua primeira vez usando o Transrewrt, siga esta ordem:
 
 1. Abra o aplicativo.
 2. Escolha seu **Idioma da interface** no ícone do globo, se necessário.
-3. Se estiver usando o **aplicativo desktop**, abra [**Definições** > **Configuração da API**](#api-config), adicione uma chave de API para pelo menos um fornecedor (por exemplo, OpenRouter) e clique em **Testar** para verificar se está funcionando.
-4. Abra [**Definições** > **Modelos**](#models) e adicione um ou mais modelos aos **Modelos Selecionados**.
-5. Abra [**Definições** > **Idiomas**](#languages) e escolha seus **Idiomas principais**, se quiser que os idiomas mais usados apareçam primeiro.
-6. Vá para **Traduzir** e execute uma tradução simples para confirmar que tudo está funcionando.
-7. Depois que funcionar, experimente **Reescrever** e depois **Transformar**.
+3. Se estiver no **aplicativo desktop**, abra [**Definições** > **Configuração da API**](#api-config), adicione uma chave de API para pelo menos um fornecedor (por exemplo, OpenRouter) e clique em **Testar** para verificar se está funcionando.
+4. Abra [**Definições** > **Configurações Gerais**](#general-settings). No modo **Fácil** (padrão), escolha um **Fornecedor** que tenha uma chave configurada. No modo **Avançado**, abra [**Definições** > **Modelos**](#models) e adicione um ou mais modelos a **Modelos Selecionados**.
+5. Em **Traduzir**, escolha uma **habilidade** (Fácil) ou **modelo** (Avançado) na barra de ferramentas.
+6. Abra [**Definições** > **Idiomas**](#languages) e escolha seus **Idiomas principais**, se quiser que os idiomas mais usados apareçam primeiro.
+7. Execute uma tradução simples para confirmar que tudo está funcionando, depois experimente **Reescrever** e **Transformar**.
 
-Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes de o aplicativo ter uma conexão de API funcional ou um modelo selecionado.
+Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou uma habilidade/modelo selecionado.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Utilize a barra lateral para navegar na aplicação. Pode recolher a barra later
 A barra de ferramentas altera ligeiramente consoante a localização na aplicação.
 
 - À esquerda, mostra o nome da página atual.
-- À direita, mostra o **seletor de modelo** e o controlo do **Idioma da interface**.
+- À direita, mostra o **seletor de habilidade ou modelo** e o controle do **Idioma da interface**.
 
-O **seletor de modelo** permite escolher qual motor de IA utilizar para a tarefa atual.
+No modo **Fácil**, a barra de ferramentas mostra um **seletor de habilidade** (Grátis, Rápido, Avançado, Técnico, Jurídico e outros conjuntos semelhantes). As habilidades dependem do **Fornecedor** escolhido em [**Definições** > **Configurações Gerais**](#general-settings). Se o **Fornecedor** for **Ollama**, a barra de ferramentas listará seus modelos locais instalados em vez de habilidades.
+
+No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
 ![Model selector](../images/screenshots/pt/model-selector.png)
 
-Alguns modelos gratuitos podem não estar sempre disponíveis — por vezes estão offline ou têm um limite de utilização. Se isto acontecer, a aplicação removerá automaticamente esse modelo da sua lista disponível. Para controlar quais os modelos que aparecem, vá a [**Definições** > **Modelos**](#models) e edite a sua lista de modelos.
- Também pode abrir as definições do modelo diretamente clicando no ícone do fornecedor à esquerda do nome do modelo na barra de ferramentas.
+No modo Avançado, alguns modelos gratuitos podem não estar sempre disponíveis — podem estar offline ou atingir um limite de uso. O aplicativo pode remover automaticamente esse modelo da sua lista. Para controlar quais modelos aparecem, vá para [**Definições** > **Modelos**](#models). Você pode abrir as configurações do modelo a partir do ícone do fornecedor à esquerda do nome do modelo na barra de ferramentas.
 
 <br/>
 
@@ -259,7 +263,7 @@ Utilize **Traduzir** quando quiser converter texto de um idioma para outro.
 1. Abra **Traduzir**.
 2. Escolha um idioma em **De**.
 3. Escolha um idioma em **Para**.
-4. Escolha um modelo na barra de ferramentas.
+4. Escolha uma habilidade (Fácil) ou modelo (Avançado) na barra de ferramentas.
 5. Escreva ou cole o texto na **Entrada**.
 6. Clique em **Traduzir**.
 7. Leia o resultado na **Saída**.
@@ -350,7 +354,7 @@ Esta é a área mais flexível da aplicação. Pode utilizá-la para tarefas com
 <a id="if-you-have-no-prompts-yet"></a>
 ### Se ainda não tiver prompts
 
-Se a sua lista de prompts estiver vazia, clique em **Carregar prompts de exemplo** na área de trabalho Transformar. O mesmo controlo está sempre disponível em [**Definições** > **Prompts de transformação**](#transform-prompts) na linha de exportação/importação. Ambos adicionam exemplos integrados para que possa começar rapidamente.
+Se sua lista de prompts estiver vazia, clique em **Carregar prompts de exemplo** no espaço de trabalho Transformar. O mesmo controle está sempre disponível em [**Definições** > **Transformar**](#transform-settings) na linha de exportação/importação. Ambos adicionam exemplos integrados para que você possa começar rapidamente.
 
 <br/>
 
@@ -424,7 +428,9 @@ Isto é útil quando:
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Pode exportar e importar prompts guardados em [**Definições** > **Prompts de transformação**](#transform-prompts).
+> Você pode exportar e importar prompts salvos em [**Definições** > **Transformar**](#transform-settings).
+
+Quando utiliza **Gerar prompt**, **Melhorar prompt** ou **Traduzir prompt** no editor de prompts, o modo **Fácil** oferece o mesmo seletor de habilidades que Traduzir e Reescrever; o modo **Avançado** utiliza a lista de modelos.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Utilize **Painel** para ver o quanto está a utilizar a aplicação e qual o cus
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Se utilizar apenas modelos **grátis**, os valores de **custo** podem ser zero e os resumos focados no custo podem parecer vazios. Em **Resumo**, **Utilização ao longo do tempo** e **Utilização por modelo** continuam a mostrar **números de chamadas** (traduzir, reescrever e transformar) quando houver atividade no período selecionado.
+> Se utilizar apenas modelos **grátis**, os valores de **custo** podem ser zero e os KPIs centrados no custo podem parecer vazios. O separador **Resumo** ainda mostra a contagem de chamadas para traduzir, reescrever e transformar quando houver atividade no período selecionado.
 
 <br/>
 
@@ -461,11 +467,9 @@ Utilize os botões de filtro no topo para alterar o intervalo de tempo.
 <a id="dashboard-tabs"></a>
 ### Separadores do Painel
 
-- **Resumo** dá-lhe uma visão geral da utilização e do custo. Inclui **Utilização ao longo do tempo** (**contagem acumulada** diária de chamadas por dia para traduzir, reescrever e transformar) e **Utilização por modelo** (**total de chamadas por modelo**, incluindo transformação).
-- **Por Utilização** divide a atividade por idioma de tradução, modo de reescrita e prompt de transformação.
-- **Por Modelo** mostra quais os modelos que utilizou e quanto custaram.
-- **Por Dia** mostra os totais diários.
-- **Todas as chamadas** mostra o histórico completo de chamadas e permite exportá-lo.
+- **Resumo** mostra cartões de KPI: custo total, modelos utilizados, contagem e custo de chamadas por modo (com percentagem do total de chamadas), custo médio por chamada, TPS médio e os três principais modelos por número de chamadas.
+- **Por Modelo** lista cada modelo com chamadas totais, custo total e TPS médio; expanda uma linha para obter uma análise detalhada por traduzir, reescrever e transformar.
+- **Todas as chamadas** mostra o registo completo de chamadas (paginado em ecrãs largos, em cartões em ecrãs estreitos) e permite exportá-lo.
 
 <br/>
 
@@ -508,14 +512,14 @@ Clique em **Histórico** para ver o histórico das suas ações dentro do **Tran
 <a id="filter-the-history"></a>
 ### Filtrar o histórico
 
-**Histórico** utiliza os mesmos filtros da página **Painel**. Use-os para selecionar o intervalo de tempo.
+**Histórico** utiliza os mesmos filtros de intervalo de tempo da página **Painel**.
 
 ![Dashboard filters](../images/screenshots/pt/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> O filtro **Utilizador** só é visível para administradores na versão web. Utilizadores regulares não verão este filtro, e este não está disponível na aplicação de desktop.
+> Na **aplicação web**, todos (incluindo administradores) veem apenas o seu próprio histórico de execução. O filtro **Utilizador** no **Painel** serve para administradores analisarem o uso e custos entre contas; não se aplica ao **Histórico**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Abra **Definições** na barra lateral para personalizar o comportamento da apli
 
 Os separadores disponíveis dependem da plataforma e da sua função:
 
-| Separador               | Desktop | Web (administrador) | Web (utilizador regular) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Configurações Gerais  |   sim   |     sim     |        sim         |
-  | Modelos            |   sim   |     sim     |        sim         |
-  | Idiomas         |   sim   |     sim     |        sim         |
-  | Rastreamento de Custo     |   sim   |     sim     |         -          |
-  | Prompts de transformação |   sim   |     sim     |        sim         |
-  | Utilizadores             |    -    |     sim     |         -          |
-  | Configuração da API        |   sim   |     sim     |         -          |
-  | Sobre             |   sim   |     sim     |        sim         |
+| Separador        | Ambiente de trabalho | Web (administrador) | Web (utilizador normal) | Notas                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Configurações Gerais |   sim   |     sim     |        sim         | Inclui **Experiência com IA** (Fácil / Avançado) |
+  | Modelos           |   sim   |     sim     |        sim         | Apenas quando a **Experiência com IA** for **Avançado** |
+  | Idiomas        |   sim   |     sim     |        sim         |                                              |
+  | Rastreamento de Custo    |   sim   |     sim     |         -          |                                              |
+  | Transformar        |   sim   |     sim     |        sim         | Importação/exportação em massa de prompts de transformação      |
+  | Utilizadores            |    -    |     sim     |         -          |                                              |
+  | Configuração da API       |   sim   |     sim     |         -          |                                              |
+  | Sobre            |   sim   |     sim     |        sim         |                                              |
+
+No modo **Fácil**, a seleção de modelos ocorre através das habilidades na barra de ferramentas e do **Fornecedor** em Configurações Gerais; o separador **Modelos** fica oculto.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Na versão web, cada utilizador tem a sua própria configuração. Definições como modelos selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por utilizador. As alterações que efetuar não afetam outros utilizadores.
+> Na versão web, cada utilizador tem a sua própria configuração. Definições como experiência com IA, fornecedor, modelos ou habilidades selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por utilizador. As alterações que efetuar não afetam outros utilizadores.
 
 <br/>
 
@@ -564,7 +570,14 @@ Os separadores disponíveis dependem da plataforma e da sua função:
 <a id="general-settings"></a>
 ### Configurações Gerais
 
-Utilize **Configurações Gerais** para controlar o comportamento de escrita, se os detalhes de execução são armazenados no **Histórico** e a aparência.
+Utilize **Configurações Gerais** para controlar o comportamento de digitação, se os detalhes de execução são armazenados no **Histórico**, aparência e como escolhe a IA para Traduzir, Reescrever e Transformar.
+
+**Experiência com IA**
+
+- **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Os fornecedores em nuvem utilizam os predefinidos de habilidades integrados na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de habilidades.
+- **Avançado**: escolha modelos individuais na barra de ferramentas; gere a lista em [**Definições** > **Modelos**](#models).
+
+Na **aplicação web**, os fornecedores disponíveis dependem das chaves API definidas no ambiente do servidor. Na **aplicação para ambiente de trabalho**, configure as chaves em [**Configuração da API**](#api-config).
 
 **Comportamento**
 
@@ -576,8 +589,8 @@ Utilize **Configurações Gerais** para controlar o comportamento de escrita, se
 
 **Histórico**
 
-- **Manter histórico de execução** controla se cada tradução, reescrita e transformação armazena o **texto de entrada e saída** para a vista do painel lateral [**Histórico**](#history). Desativar esta opção pede confirmação; se confirmar, o texto histórico armazenado é removido da base de dados.
-- **Eliminar dados do histórico** permite remover o texto armazenado por idade (por exemplo, mais antigo do que alguns meses, ou **todos os dados (limpar)**) usando **Eliminar dados**. Isto afeta apenas o texto de execução guardado para a vista **Histórico**; **não** elimina os totais de custo ou uso. Para remover ou reduzir os dados de **custo**, utilize [**Definições** > **Rastreamento de Custo**](#cost-tracking).
+- **Manter histórico de execução** controla se cada operação de tradução, reescrita e transformação armazena o **texto de entrada e saída** para a visualização do painel lateral [**Histórico**](#history). Desativar esta opção solicita confirmação; se confirmar, o texto armazenado será removido da base de dados. Se a etiqueta mostrar *desativado pelo administrador*, a sua instalação tem `HISTORY_DISABLED` definido no ambiente (veja o [README](README.pt.md#configuration-and-environment)); não poderá reativar o histórico a partir da interface.
+- **Eliminar dados do histórico** permite remover texto armazenado por idade (por exemplo, mais antigo que alguns meses, ou **todos os dados (limpar)**) usando **Eliminar dados**. Isto afeta apenas o texto de execução guardado para a visualização **Histórico**; **não** elimina os totais de custo ou utilização. Para remover ou reduzir dados de **custo**, utilize [**Definições** > **Rastreamento de Custo**](#cost-tracking).
 
 **Aparência**
 
@@ -602,7 +615,7 @@ As cópias de segurança criadas na versão web ou desktop podem ser restauradas
 <a id="models"></a>
 ### Modelos
 
-Utilize **Definições** > **Modelos** para escolher quais os modelos que aparecem na barra de ferramentas.
+Este separador está disponível apenas quando a **experiência com IA** está definida como **Avançado** em [**Configurações Gerais**](#general-settings). Use **Definições** > **Modelos** para escolher quais os modelos que aparecem na barra de ferramentas.
 
 ![Settings Models tab](../images/screenshots/pt/settings-models.png)
 
@@ -679,10 +692,10 @@ Utilize **Definições** > **Rastreamento de Custo** para gerir as informações
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Prompts de transformação
+<a id="transform-settings"></a>
+### Transformar (separador de definições)
 
-Utilize **Definições** > **Prompts de transformação** para gerir prompts em massa.
+Use **Definições** > **Transformar** para gerir prompts em massa.
 
 Pode:
 
@@ -769,9 +782,10 @@ Se algo não funcionar como esperado, verifique primeiro os seguintes pontos.
 
 Verifique que:
 
-- selecionou um modelo na barra de ferramentas
-- pelo menos um modelo está listado em [**Definições** > **Modelos**](#models)
-- a configuração da API está a funcionar
+- selecionou uma **habilidade** (Fácil) ou um **modelo** (Avançado) na barra de ferramentas
+- no modo **Fácil**, [**Definições** > **Configurações Gerais**](#general-settings) tem um **Fornecedor** com uma chave válida (ou URL do Ollama) e pelo menos uma habilidade para esse fornecedor
+- no modo **Avançado**, pelo menos um modelo está listado em [**Definições** > **Modelos**](#models)
+- a sua configuração da API está funcionando
 
 Se estiver a usar a aplicação de ambiente de trabalho:
 
@@ -784,13 +798,9 @@ Se estiver a usar a aplicação de ambiente de trabalho:
 <a id="the-model-list-is-empty"></a>
 ### A lista de modelos está vazia
 
-Abra [**Definições** > **Modelos**](#models) e clique em **Atualizar**.
+No modo **Fácil**, abra [**Definições** > **Configurações Gerais**](#general-settings), confirme que o **Fornecedor** está definido e adicione ou teste chaves em [**Configuração da API**](#api-config) (no ambiente de área de trabalho) ou peça ao seu administrador (na versão web). Para **Ollama**, execute **Testar** na URL base e certifique-se de que os modelos estão instalados localmente.
 
-Se necessário:
-
-- procure um modelo
-- ative **Apenas Gratuitos**
-- adicione um ou mais modelos a **Modelos Selecionados**
+No modo **Avançado**, abra [**Definições** > **Modelos**](#models) e clique em **Atualizar**. Se necessário, procure um modelo, ative **Apenas Gratuitos** e adicione modelos aos **Modelos Selecionados**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Abra [**Definições** > **Configurações Gerais**](#general-settings) e altere
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Os gráficos do Painel estão vazios
+<a id="dashboard-summary-looks-empty"></a>
+### O Resumo do Painel parece vazio
 
 Isto é normal se:
 
-- você só utiliza **modelos grátis** e está a verificar os valores de **custo** (podem ser zero); os gráficos de chamadas de **uso** no **Resumo** ainda precisam de dados do período selecionado  
-- o **filtro de tempo** selecionado não abrange o período em que as chamadas foram feitas – experimente **Tudo** para verificar
+- está a usar apenas **modelos gratuitos** e está a visualizar dados de **custo** (podem ser zero); os KPIs de contagem de chamadas no **Resumo** ainda precisam de dados do período selecionado
+- o **filtro de tempo** selecionado não abrange o período em que foram feitas chamadas — experimente **Tudo** para verificar
 
-Se os gráficos continuarem vazios após selecionar **Tudo**, confirme se as chamadas aparecem em [**Histórico**](#history) ou no separador **Todas as chamadas**.
+Se os KPIs continuarem a zero após selecionar **Tudo**, confirme se as chamadas aparecem em [**Histórico**](#history) ou no separador **Todas as chamadas**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Para aproximar o total do seu gasto real no OpenRouter, abra [**Definições** >
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### A página Histórico está em falta na barra lateral
 
-A opção **Manter histórico de execução** pode estar desativada. Abra [**Definições** > **Configurações Gerais**](#general-settings) e ative-a. Note que ativar esta opção não restaura dados de histórico previamente eliminados.
+**Manter histórico de execução** pode estar desativado. Abra [**Definições** > **Configurações Gerais**](#general-settings) e ative-o, a menos que o histórico esteja *desativado pelo administrador* (`HISTORY_DISABLED` definido no ambiente — veja o [README](README.pt.md#configuration-and-environment)). Ativar o histórico não restaura texto previamente eliminado.
 
 <br/>
 
@@ -912,8 +922,9 @@ Ao editar um prompt, clique sempre em **Salvar** antes de clicar em **Voltar a E
 - Use [**Reescrever**](#rewrite) para melhorias diárias no texto.
 - Use [**Transformar**](#transform) quando precisar de um fluxo de trabalho repetível para uma tarefa específica.
 - Use [**Painel**](#dashboard) se quiser acompanhar o uso e o custo.
-- Use [**Histórico**](#history) para rever operações anteriores e seus textos completos de entrada/saída.
-- Exporte prompts regularmente se estiver criando uma biblioteca de prompts que deseja manter segura (veja [Prompts de transformação](#transform-prompts)) ou se desejar compartilhá-la com outras pessoas.
+- Use [**Histórico**](#history) para rever operações anteriores e os respetivos textos completos de entrada/saída.
+- Exporte os prompts regularmente se estiver a criar uma biblioteca de prompts que deseja manter segura (veja [Transformar](#transform)) ou se desejar partilhá-la com outros.
+- Mantenha-se no modo **Fácil** até precisar de controle detalhado sobre IDs de modelos; mude para **Avançado** quando já souber exatamente quais os modelos que pretende.
 
 <br/><br/>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:24:28.701Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:31:52.091Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: nl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt helpt u op drie manieren met tekstverwerking:
 - **Vertalen** - tekst omzetten van de ene taal naar de andere.
 - **Herschrijven** - tekst herschrijven in een andere stijl, zoals duidelijker, korter of formeler.
 - **Transformeren** - tekst verwerken met aangepaste AI-instructies die prompts worden genoemd.
+
+Standaard wordt de app uitgevoerd in **Eenvoudige** modus: u kiest een **vaardigheid** (bijvoorbeeld Gratis, Snel of Technisch) en een **leverancier** in Instellingen, zonder model-ID's te kiezen. Schakel over naar **Geavanceerd** in [**Instellingen** > **Algemene instellingen**](#general-settings) als u de klassieke modellenlijst wilt gebruiken van [**Instellingen** > **Modellen**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Modellen](#models)
   - [Talen](#languages)
   - [Kostenregistratie](#cost-tracking)
-  - [Transform prompts](#transform-prompts)
+  - [Transformeren (tabblad instellingen)](#transform-settings)
   - [Gebruikers](#users)
   - [API-configuratie](#api-config)
   - [Over](#about)
@@ -88,9 +90,9 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [De modellenlijst is leeg](#the-model-list-is-empty)
   - [Het resultaat is te traag of te duur](#the-result-is-too-slow-or-too-expensive)
   - [De interface is in de verkeerde taal](#the-interface-is-in-the-wrong-language)
-  - [De tekst is te klein of moeilijk leesbaar](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboardgrafieken zijn leeg](#dashboard-charts-are-empty)
-  - [Kosten tonen "niet beschikbaar" of lijken fout](#cost-shows-not-available-or-seems-wrong)
+  - [De tekst is te klein of moeilijk te lezen](#the-text-is-too-small-or-hard-to-read)
+  - [Dashboard Samenvatting lijkt leeg](#dashboard-summary-looks-empty)
+  - [Kosten tonen "niet beschikbaar" of lijken verkeerd](#cost-shows-not-available-or-seems-wrong)
   - [Totale kosten komen niet overeen met mijn leveranciersfactuur](#total-cost-does-not-match-my-provider-bill)
   - [De geschiedenispagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
   - [Webapp: onverwacht doorgestuurd naar de aanmeldpagina](#web-app-redirected-to-the-login-page-unexpectedly)
@@ -114,10 +116,11 @@ U hoeft geen betaald model te selecteren om te beginnen. Zodra u uw OpenRouter A
 
 In eenvoudige bewoordingen:
 
-- Een **model** is de AI-engine die het werk doet. Modellen worden weergegeven met een **leveranciersvoorvoegsel** (bijvoorbeeld `openrouter/…`, `openai/…`, `ollama/…`).
-- Een **API-sleutel** (of voor Ollama een **basis-URL**) is hoe de app de leverancier bereikt.
+- In **Eenvoudige** modus is een **vaardigheid** een voorinstelling (Gratis, Snel, Geavanceerd, Technisch, Juridisch) die wordt gekoppeld aan een model voor uw gekozen **leverancier** (OpenRouter, OpenAI, Ollama en anderen). U selecteert de vaardigheid in de werkbalk bij Vertalen, Herschrijven en Transformeren.
+- In **Geavanceerde** modus is een **model** de AI-engine die u rechtstreeks kiest. Model-ID's gebruiken een **leveranciersvoorvoegsel** (bijvoorbeeld `openrouter/…`, `openai/…`, `ollama/…`).
+- Een **API-sleutel** (of, voor Ollama, een **basis-URL**) is hoe de app die leverancier bereikt.
 
-Als u de **desktopapp** gebruikt, voegt u sleutels toe in [**Instellingen** > **API-configuratie**](#api-config) voor elke leverancier die u gebruikt. Voor alleen OpenRouter raadpleegt u hieronder [Hoe u een API-sleutel verkrijgt](#how-to-get-an-api-key-desktop-app). Als u geen API-sleutel wilt gebruiken, kunt u Ollama installeren (van [ollama.com](https://ollama.com)) en lokale modellen gebruiken, zoals `translategemma:4b`.
+Als u de **desktopapp** gebruikt, voegt u sleutels toe in [**Instellingen** > **API-configuratie**](#api-config) voor elke leverancier die u gebruikt. Voor alleen gebruik van OpenRouter, zie hieronder [Hoe u een gratis OpenRouter API-sleutel verkrijgt](#how-to-get-an-api-key-desktop-app). Als u geen API-sleutel wilt gebruiken, kunt u Ollama installeren (van [ollama.com](https://ollama.com)) en lokale modellen gebruiken, zoals `translategemma:4b`.
 
 Als u de **webversie** gebruikt, configureert de serverbeheerder de leveranciers via omgevingsvariabelen. U kunt dan geen API-sleutels rechtstreeks in de applicatie invoeren.
 
@@ -146,14 +149,14 @@ Als u de desktopapp gebruikt, volgt u deze stappen:
 Als dit de eerste keer is dat u Transrewrt gebruikt, volgt u deze volgorde:
 
 1. Open de app.
-2. Kies uw **Interface taal** indien nodig via het wereldbol-icoon.
-3. Als u de **desktopapp** gebruikt, opent u [**Instellingen** > **API-configuratie**](#api-config), voegt u een API-sleutel toe voor minstens één leverancier (bijvoorbeeld OpenRouter) en klikt u op **Testen** om te controleren of deze werkt.
-4. Open [**Instellingen** > **Modellen**](#models) en voeg een of meer modellen toe aan **Geselecteerde modellen**.
-5. Open [**Instellingen** > **Talen**](#languages) en kies uw **Top talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
-6. Ga naar **Vertalen** en voer een eenvoudige vertaling uit om te controleren of alles werkt.
-7. Als dat lukt, probeert u **Herschrijven** en daarna **Transformeren**.
+2. Kies uw **Interface taal** vanuit het globe-icoon indien nodig.
+3. Als u de **desktopapp** gebruikt, open [**Instellingen** > **API-configuratie**](#api-config), voeg een API-sleutel toe voor ten minste één leverancier (bijvoorbeeld OpenRouter) en klik op **Testen** om te controleren of het werkt.
+4. Open [**Instellingen** > **Algemene instellingen**](#general-settings). In **Eenvoudige** modus (standaard), kies een **Leverancier** die een geconfigureerde sleutel heeft. In **Geavanceerde** modus, open [**Instellingen** > **Modellen**](#models) en voeg een of meer modellen toe aan **Geselecteerde modellen**.
+5. Bij **Vertalen**, kies een **vaardigheid** (Eenvoudig) of **model** (Geavanceerd) in de werkbalk.
+6. Open [**Instellingen** > **Talen**](#languages) en kies uw **Top talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
+7. Voer een eenvoudige vertaling uit om te bevestigen dat alles werkt, daarna kunt u **Herschrijven** en **Transformeren** proberen.
 
-Deze volgorde is belangrijk. Zo voorkomt u het meest voorkomende probleem bij eerste gebruik: een taak uitvoeren voordat de app een werkende API-verbinding of een geselecteerd model heeft.
+Deze volgorde is belangrijk. Dit voorkomt het meest voorkomende probleem bij eerste gebruik: een taak proberen uit te voeren voordat de app een werkende API-verbinding heeft of een geselecteerde vaardigheid/model.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Gebruik de zijbalk om door de app te navigeren. U kunt de zijbalk inklappen om m
 De werkbalk verandert licht, afhankelijk van waar u zich in de app bevindt.
 
 - Links wordt de naam van de huidige pagina weergegeven.
-- Rechts ziet u de **modelselector** en de bediening voor de **Interface taal**.
+- Rechts ziet u de **vaardigheid- of modelselector** en de bediening voor **Interface taal**.
 
-Met de **modelselector** kunt u kiezen welke AI-engine u wilt gebruiken voor de huidige taak.
+In **Eenvoudige** modus toont de werkbalk een **vaardigheidsselector** (Gratis, Snel, Geavanceerd, Technisch, Juridisch en vergelijkbare voorinstellingen). Vaardigheden zijn afhankelijk van de **Leverancier** die u hebt gekozen in [**Instellingen** > **Algemene instellingen**](#general-settings). Als de **Leverancier** **Ollama** is, worden in de werkbalk uw geïnstalleerde lokale modellen weergegeven in plaats van vaardigheden.
+
+In **Geavanceerde** modus kunt u met de **modelselector** kiezen welke AI-engine u voor de huidige taak wilt gebruiken.
 
 ![Model selector](../images/screenshots/nl/model-selector.png)
 
-Sommige gratis modellen zijn mogelijk niet altijd beschikbaar — soms zijn ze offline of hebben ze een gebruikslimiet. Als dit gebeurt, verwijdert de app dat model automatisch uit uw beschikbare lijst. Om te bepalen welke modellen worden weergegeven, gaat u naar [**Instellingen** > **Modellen**](#models) en bewerkt u uw modellenlijst. 
- U kunt de modelinstellingen ook rechtstreeks openen door op het leveranciersicoon links van de modelnaam in de werkbalk te klikken.
+In Geavanceerde modus zijn sommige gratis modellen mogelijk niet altijd beschikbaar — ze kunnen offline zijn of een gebruikslimiet hebben bereikt. De app kan dat model automatisch uit uw lijst verwijderen. Om te bepalen welke modellen worden weergegeven, gaat u naar [**Instellingen** > **Modellen**](#models). U kunt de modelinstellingen openen via het leverancierspictogram links van de modelnaam in de werkbalk.
 
 <br/>
 
@@ -257,9 +261,9 @@ Gebruik **Vertalen** wanneer u tekst van de ene taal naar de andere wilt omzette
 ### Tekst vertalen
 
 1. Open **Vertalen**.
-2. Kies een taal bij **Van**.
-3. Kies een taal bij **Naar**.
-4. Kies een model in de werkbalk.
+2. Kies een taal in **Van**.
+3. Kies een taal in **Naar**.
+4. Kies een vaardigheid (Eenvoudig) of model (Geavanceerd) in de werkbalk.
 5. Typ of plak tekst in **Invoer**.
 6. Klik op **Vertalen**.
 7. Lees het resultaat in **Uitvoer**.
@@ -350,7 +354,7 @@ Dit is het meest flexibele gedeelte van de app. U kunt het gebruiken voor taken 
 <a id="if-you-have-no-prompts-yet"></a>
 ### Als u nog geen prompts hebt
 
-Als uw promptlijst leeg is, klikt u op **Voorbeeldvragen laden** in de Transform-werkruimte. Dezelfde optie is altijd beschikbaar in [**Instellingen** > **Transform Prompts**](#transform-prompts) op de export/import-rij. Beide voegen ingebouwde voorbeelden toe, zodat u snel kunt beginnen.
+Als uw promptlijst leeg is, klikt u op **Voorbeeldvragen laden** in de Transformeer-werkruimte. Dezelfde optie is altijd beschikbaar in [**Instellingen** > **Transformeren**](#transform-settings) op de regel exporteren/importeren. Beide voegen ingebouwde voorbeelden toe, zodat u snel kunt beginnen.
 
 <br/>
 
@@ -424,7 +428,9 @@ Dit is handig wanneer:
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> U kunt opgeslagen prompts exporteren en importeren in [**Instellingen** > **Transform prompts**](#transform-prompts).
+> U kunt opgeslagen prompts exporteren en importeren in [**Instellingen** > **Transformeren**](#transform-settings).
+
+Wanneer u **Prompt genereren**, **Prompt verbeteren** of **Vraag vertalen** gebruikt in de prompt-editor, biedt de modus **Eenvoudig** dezelfde vaardigheidsselector als Vertalen en Herschrijven; de modus **Geavanceerd** gebruikt de modellenlijst.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Gebruik **Dashboard** om te zien hoeveel u de app gebruikt en wat dit kost (voor
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> Als u alleen **gratis** modellen gebruikt, kunnen de **kosten** nul zijn en kunnen kostengerichte samenvattingen leeg lijken. Op **Samenvatting** tonen **Gebruik over tijd** en **Gebruik per model** nog steeds het **aantal aanroepen** (vertalen, herschrijven en transformeren) wanneer u activiteit heeft in de geselecteerde periode.
+> Als u alleen **gratis** modellen gebruikt, kunnen de **kosten** nul zijn en kunnen KPI's die gericht zijn op kosten leeg lijken. Het tabblad **Samenvatting** toont nog steeds het aantal oproepen voor vertalen, herschrijven en transformeren wanneer er activiteit is in de geselecteerde periode.
 
 <br/>
 
@@ -461,11 +467,9 @@ Gebruik de filterknoppen bovenaan om het tijdsbereik te wijzigen.
 <a id="dashboard-tabs"></a>
 ### Dashboard-tabbladen
 
-- **Samenvatting** geeft een overzicht van gebruik en kosten. Het bevat een **Gebruik over tijd** (gestapelde cumulatieve **aantallen aanroepen** per dag voor vertalen, herschrijven en transformeren) en **Gebruik per model** (totaal **aantal aanroepen per model**, inclusief transformeren).
-- **Op gebruik** verdeelt activiteit per vertaaltaal, herschrijfmodus en transform-prompt.
-- **Op model** toont welke modellen u hebt gebruikt en hoeveel deze hebben gekost.
-- **Op dag** toont dagelijkse totalen.
-- **Alle oproepen** toont de volledige aanroepgeschiedenis en stelt u in staat deze te exporteren.
+- **Samenvatting** toont KPI-kaarten: totale kosten, gebruikte modellen, oproepaantallen en kosten per modus (met aandeel van totale oproepen), gemiddelde kosten per oproep, gemiddelde TPS en de drie meest gebruikte modellen op basis van oproepaantal.
+- **Op model** geeft een lijst van elk model met totaal aantal oproepen, totale kosten en gemiddelde TPS; vouw een rij uit voor een detailweergave per vertalen, herschrijven en transformeren.
+- **Alle oproepen** toont het volledige oproeplogboek (gepagineerd op brede lay-outs, kaarten op smalle schermen) en stelt u in staat dit te exporteren.
 
 <br/>
 
@@ -508,14 +512,14 @@ Klik op **Geschiedenis** om de geschiedenis van uw acties binnen **Transrewrt** 
 <a id="filter-the-history"></a>
 ### Geschiedenis filteren
 
-**Geschiedenis** gebruikt dezelfde filters als de pagina **Dashboard**. Gebruik deze om het tijdsbereik te selecteren.
+**Geschiedenis** gebruikt dezelfde tijdsbereikfilters als de pagina **Dashboard**.
 
 ![Dashboard filters](../images/screenshots/nl/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> De filter **Gebruiker** is alleen zichtbaar voor beheerders in de webversie. Gewone gebruikers zien dit filter niet en het is niet beschikbaar in de desktopapp.
+> In de **webapp** ziet iedereen (inclusief beheerders) alleen hun eigen uitvoeringsgeschiedenis. Het **Gebruiker**-filter op **Dashboard** is bedoeld voor beheerders om gebruik en kosten per account te bekijken; dit heeft geen invloed op **Geschiedenis**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Open **Instellingen** in de zijbalk om aan te passen hoe de app zich gedraagt.
 
 De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
 
-| Tabblad               | Desktop | Web (beheerder) | Web (gewone gebruiker) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Algemene instellingen  |   ja   |     ja     |        ja         |
-  | Modellen            |   ja   |     ja     |        ja         |
-  | Talen         |   ja   |     ja     |        ja         |
-  | Kostenregistratie     |   ja   |     ja     |         -          |
-  | Transform prompts |   ja   |     ja     |        ja         |
-  | Gebruikers             |    -    |     ja     |         -          |
-  | API-configuratie        |   ja   |     ja     |         -          |
-  | Over             |   ja   |     ja     |        ja         |
+| Tab | Desktop | Web (beheerder) | Web (reguliere gebruiker) | Notities |
+|------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+| Algemene instellingen | ja | ja | ja | Inclusief **AI-ervaring** (Eenvoudig / Geavanceerd) |
+  | Modellen | ja | ja | ja | Alleen wanneer **AI-ervaring** **Geavanceerd** is |
+  | Talen         |   ja   |     ja     |        ja         | |
+  | Kostenregistratie     |   ja   |     ja     |         -          | |
+  | Transformeren         |   ja   |     ja     |        ja         | Bulkimport/export van transformeerprompts |
+  | Gebruikers             |    -    |     ja     |         -          | |
+  | API-configuratie        |   ja   |     ja     |         -          | |
+  | Over             |   ja   |     ja     |        ja         | |
+
+In de modus **Eenvoudig** gebeurt modelselectie via vaardigheden in de werkbalk en **Leverancier** in Algemene instellingen; het tabblad **Modellen** is verborgen.
 
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> In de webversie heeft elke gebruiker zijn eigen configuratie. Instellingen zoals geselecteerde modellen, talen, algemene opties en transform prompts worden per gebruiker opgeslagen. Wijzigingen die u aanbrengt, hebben geen invloed op andere gebruikers.
+> In de webversie heeft elke gebruiker zijn eigen configuratie. Instellingen zoals AI-ervaring, leverancier, geselecteerde modellen of vaardigheden, talen, algemene opties en transformeerprompts worden per gebruiker opgeslagen. Wijzigingen die u aanbrengt, hebben geen invloed op andere gebruikers.
 
 <br/>
 
@@ -564,7 +570,14 @@ De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
 <a id="general-settings"></a>
 ### Algemene instellingen
 
-Gebruik **Algemene instellingen** om het typgedrag, het opslaan van uitvoeringsdetails voor **Geschiedenis** en de weergave te beheren.
+Gebruik **Algemene instellingen** om het typgedrag te beheren, of uitvoeringsdetails worden opgeslagen voor **Geschiedenis**, de weergave en hoe u de AI kiest voor Vertalen, Herschrijven en Transformeren.
+
+**AI-ervaring**
+
+- **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde vaardigheidsvoorkeuzen in de werkbalk. **Ollama** geeft modellen weer die op uw machine zijn geïnstalleerd in plaats van vaardigheden.
+- **Geavanceerd**: kies individuele modellen in de werkbalk; beheer de lijst onder [**Instellingen** > **Modellen**](#models).
+
+In de **webapp** hangt welke leveranciers worden weergegeven af van de API-sleutels die zijn ingesteld in de serveromgeving. In de **desktopapp** configureert u sleutels onder [**API-configuratie**](#api-config).
 
 **Gedrag**
 
@@ -576,8 +589,8 @@ Gebruik **Algemene instellingen** om het typgedrag, het opslaan van uitvoeringsd
 
 **Geschiedenis**
 
-- **Voeringsgeschiedenis bijhouden** bepaalt of elke vertaling, herschrijving en transformatie **invoer- en uitvoertekst** opslaat voor de zijbalk [**Geschiedenis**](#history). Uitschakelen vraagt om bevestiging; indien bevestigd, wordt de opgeslagen geschiedenistekst uit de database verwijderd.
-- **Verwijder geschiedenisgegevens** stelt u in staat opgeslagen tekst te verwijderen op basis van leeftijd (bijvoorbeeld ouder dan een paar maanden, of **alle gegevens (wissen)**) via **Verwijder gegevens**. Dit heeft alleen invloed op de opgeslagen uitvoertekst voor de **Geschiedenis**-weergave; het verwijdert **geen** kosten- of gebruikstotalen. Gebruik [**Instellingen** > **Kostenregistratie**](#cost-tracking) om **kosten**gegevens te verwijderen of inkorten.
+- **Voeringsgeschiedenis bijhouden** bepaalt of elke vertaling, herschrijving en transformatie de **invoer- en uitvoertekst** opslaat voor de zijbalkweergave [**Geschiedenis**](#history). Uitschakelen vraagt om bevestiging; als u bevestigt, wordt de opgeslagen geschiedenistekst uit de database verwijderd. Als het label *uitgeschakeld door de beheerder* toont, is `HISTORY_DISABLED` ingesteld in de omgeving (zie de [README](README.nl.md#configuration-and-environment)); u kunt de geschiedenis dan niet opnieuw inschakelen via de gebruikersinterface.
+- **Verwijder geschiedenisgegevens** stelt u in staat opgeslagen tekst te verwijderen op basis van leeftijd (bijvoorbeeld ouder dan een paar maanden, of **alle gegevens (wissen)**) met behulp van **Verwijder gegevens**. Dit heeft alleen invloed op de opgeslagen uitvoertekst voor de **Geschiedenis**-weergave; het verwijdert **niet** de kosten- of gebruikstotalen. Gebruik [**Instellingen** > **Kostenregistratie**](#cost-tracking) om **kosten**-gegevens te verwijderen of inkorten.
 
 **Weergave**
 
@@ -602,7 +615,7 @@ Back-ups die zijn gemaakt in de web- of desktopversie kunnen worden hersteld in 
 <a id="models"></a>
 ### Modellen
 
-Gebruik **Instellingen** > **Modellen** om te kiezen welke modellen in de werkbalk verschijnen.
+Dit tabblad is alleen beschikbaar wanneer **AI-ervaring** is ingesteld op **Geavanceerd** in [**Algemene instellingen**](#general-settings). Gebruik **Instellingen** > **Modellen** om te kiezen welke modellen in de werkbalk verschijnen.
 
 ![Settings Models tab](../images/screenshots/nl/settings-models.png)
 
@@ -679,10 +692,10 @@ Gebruik **Instellingen** > **Kostenregistratie** om kosteninformatie te beheren.
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Transformeren van prompts
+<a id="transform-settings"></a>
+### Transformeren (instellingen tabblad)
 
-Gebruik **Instellingen** > **Transformeren van prompts** om prompts in bulk te beheren.
+Gebruik **Instellingen** > **Transformeren** om prompts in bulk te beheren.
 
 U kunt:
 
@@ -769,9 +782,10 @@ Als iets niet werkt zoals verwacht, controleer dan eerst de volgende punten.
 
 Controleer het volgende:
 
-- u een model hebt geselecteerd in de werkbalk
-- er minstens één model is opgenomen in [**Instellingen** > **Modellen**](#models)
-- uw API-configuratie werkt
+- u hebt een **vaardigheid** (Eenvoudig) of **model** (Geavanceerd) geselecteerd in de werkbalk
+- in **Eenvoudige** modus heeft [**Instellingen** > **Algemene instellingen**](#general-settings) een **Leverancier** met een werkende sleutel (of Ollama-URL) en ten minste één vaardigheid voor die leverancier
+- in **Geavanceerde** modus is ten minste één model opgenomen in [**Instellingen** > **Modellen**](#models)
+- uw API-instelling werkt
 
 Als u de desktopapp gebruikt:
 
@@ -784,13 +798,9 @@ Als u de desktopapp gebruikt:
 <a id="the-model-list-is-empty"></a>
 ### De modellenlijst is leeg
 
-Open [**Instellingen** > **Modellen**](#models) en klik op **Vernieuwen**.
+In **Eenvoudige** modus opent u [**Instellingen** > **Algemene instellingen**](#general-settings), bevestigt u dat **Leverancier** is ingesteld en voegt u sleutels toe of test u deze in [**API-configuratie**](#api-config) (desktop) of vraag u uw beheerder (web). Voor **Ollama** voert u **Testen** uit op de basis-URL en zorgt u ervoor dat modellen lokaal zijn geïnstalleerd.
 
-Indien nodig:
-
-- zoek een model
-- schakel **Alleen gratis** in
-- voeg een of meer modellen toe aan **Geselecteerde modellen**
+In **Geavanceerde** modus opent u [**Instellingen** > **Modellen**](#models) en klikt u op **Vernieuwen**. Zoek indien nodig een model, schakel **Alleen gratis** in en voeg modellen toe aan **Geselecteerde modellen**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Open [**Instellingen** > **Algemene instellingen**](#general-settings) en wijzig
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Dashboardgrafieken zijn leeg
+<a id="dashboard-summary-looks-empty"></a>
+### Dashboard Samenvatting lijkt leeg
 
 Dit is normaal als:
 
-- u alleen **gratis modellen** gebruikt en op **kosten** cijfers kijkt (deze kunnen nul zijn); **gebruik** oproepaantallen in **Samenvatting** hebben nog steeds gegevens nodig uit de geselecteerde periode
-- het geselecteerde **tijdfilter** niet overeenkomt met de periode waarin oproepen zijn gedaan – probeer **Alle** om te controleren
+- u gebruikt alleen **gratis modellen** en u bekijkt **kosten**cijfers (deze kunnen nul zijn); KPI's voor aantal oproepen op **Samenvatting** hebben nog steeds gegevens nodig uit de geselecteerde periode
+- het geselecteerde **tijdfilter** dekt niet de periode waarin oproepen zijn gemaakt — probeer **Alle** om te controleren
 
-Als de grafieken nog steeds leeg zijn na het selecteren van **Alle**, controleer of oproepen verschijnen in [**Geschiedenis**](#history) of in het tabblad **Alle oproepen**.
+Als KPI's nog steeds nul zijn na het selecteren van **Alle**, controleer dan of oproepen verschijnen in [**Geschiedenis**](#history) of in het tabblad **Alle oproepen**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Om het totaal dichter bij uw werkelijke OpenRouter-uitgaven te brengen, opent u 
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### De geschiedenispagina ontbreekt in de zijbalk
 
-**Voeringsgeschiedenis bijhouden** is mogelijk uitgeschakeld. Open [**Instellingen** > **Algemene instellingen**](#general-settings) en schakel dit in. Let op: inschakelen herstelt niet eerder verwijderde geschiedenisgegevens.
+**Voeringsgeschiedenis bijhouden** is mogelijk uitgeschakeld. Open [**Instellingen** > **Algemene instellingen**](#general-settings) en schakel dit in, tenzij geschiedenis *uitgeschakeld is door de beheerder* (`HISTORY_DISABLED` in de omgeving — zie de [README](README.nl.md#configuration-and-environment)). Het inschakelen van geschiedenis herstelt eerder verwijderde tekst niet.
 
 <br/>
 
@@ -912,8 +922,9 @@ Klik bij het bewerken van een prompt altijd op **Opslaan** voordat u op **Terug 
 - Gebruik [**Herschrijven**](#rewrite) voor alledaagse verbeteringen van formuleringen.
 - Gebruik [**Transformeren**](#transform) wanneer u een herhaalbare werkstroom nodig hebt voor een specifieke taak.
 - Gebruik [**Dashboard**](#dashboard) als u gebruik en kosten in de gaten wilt houden.
-- Gebruik [**Geschiedenis**](#history) om eerdere bewerkingen en hun volledige invoer- en uitvoertekst te bekijken.
-- Exporteer prompts regelmatig als je een promptbibliotheek aan het bouwen bent die je veilig wilt bewaren (zie [Transform Prompts](#transform-prompts)) of als je deze met anderen wilt delen.
+- Gebruik [**Geschiedenis**](#history) om eerdere bewerkingen en hun volledige invoer-/uitvoertekst te bekijken.
+- Exporteer prompts regelmatig als u een promptbibliotheek aan het opbouwen bent die u veilig wilt bewaren (zie [Transformeren](#transform)) of als u deze met anderen wilt delen.
+- Blijf in **Eenvoudige** modus totdat u fijnmazige controle nodig hebt over model-ID's; schakel over naar **Geavanceerd** wanneer u al weet welke modellen u wilt.
 
 <br/><br/>
 

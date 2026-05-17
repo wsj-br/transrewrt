@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:25:08.779Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:32:46.035Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: it
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,6 +23,8 @@ Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 - **Traduci** - converti il testo da una lingua all'altra.
 - **Riscrivi** - riformula il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
 - **Trasforma** - elabora il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale chiamate prompt.
+
+Per impostazione predefinita, l'app viene eseguita in modalità **Facile**: selezioni una **competenza** (ad esempio Gratuita, Veloce o Tecnica) e un **provider** in Impostazioni, senza dover scegliere gli ID del modello. Passa ad **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri la lista classica dei modelli da [**Impostazioni** > **Modelli**](#models).
 
 <br/>
 
@@ -80,7 +82,7 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Modelli](#models)
   - [Lingue](#languages)
   - [Monitoraggio costi](#cost-tracking)
-  - [Prompt di trasformazione](#transform-prompts)
+  - [Trasforma (scheda impostazioni)](#transform-settings)
   - [Utenti](#users)
   - [Configurazione API](#api-config)
   - [Informazioni](#about)
@@ -90,7 +92,7 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Il risultato è troppo lento o troppo costoso](#the-result-is-too-slow-or-too-expensive)
   - [L'interfaccia è nella lingua sbagliata](#the-interface-is-in-the-wrong-language)
   - [Il testo è troppo piccolo o difficile da leggere](#the-text-is-too-small-or-hard-to-read)
-  - [I grafici della dashboard sono vuoti](#dashboard-charts-are-empty)
+  - [Il riepilogo della dashboard appare vuoto](#dashboard-summary-looks-empty)
   - [Il costo mostra "non disponibile" o sembra errato](#cost-shows-not-available-or-seems-wrong)
   - [Il costo totale non corrisponde al mio conto del provider](#total-cost-does-not-match-my-provider-bill)
   - [La pagina Cronologia manca nella barra laterale](#the-history-page-is-missing-from-the-sidebar)
@@ -115,10 +117,11 @@ Non è necessario selezionare un modello a pagamento per iniziare. Non appena ag
 
 In termini semplici:
 
-- Un **modello** è il motore AI che svolge il lavoro. I modelli sono elencati con un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
+- In modalità **Facile**, una **competenza** è un profilo predefinito (Gratuito, Veloce, Avanzato, Tecnico, Legale) associato a un modello per il **provider** scelto (OpenRouter, OpenAI, Ollama e altri). Selezioni la competenza nella barra degli strumenti in Traduci, Riscrivi e Trasforma.
+- In modalità **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID del modello utilizzano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
 - Una **chiave API** (o, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
 
-Se stai utilizzando l'**app desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che utilizzi. Per l'uso esclusivo di OpenRouter, consulta [Come ottenere una chiave API](#how-to-get-an-api-key-desktop-app) di seguito. Se non desideri utilizzare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali, come `translategemma:4b`.
+Se stai utilizzando l'app **desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che utilizzi. Per l'uso esclusivo di OpenRouter, consulta [Come ottenere una chiave API OpenRouter gratuita](#how-to-get-an-api-key-desktop-app) di seguito. Se non desideri utilizzare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali, come `translategemma:4b`.
 
 Se stai utilizzando la **versione web**, il proprietario del server configura i provider tramite variabili d'ambiente, quindi non puoi inserire direttamente le chiavi API nell'applicazione.
 
@@ -148,13 +151,13 @@ Se è la prima volta che utilizzi Transrewrt, segui questo ordine:
 
 1. Apri l'app.
 2. Se necessario, scegli la tua **Lingua dell'interfaccia** dall'icona del globo.
-3. Se utilizzi l'**app desktop**, apri [**Impostazioni** > **Configurazione API**](#api-config), aggiungi una chiave API per almeno un provider (ad esempio OpenRouter) e clicca su **Test** per verificarne il funzionamento.
-4. Apri [**Impostazioni** > **Modelli**](#models) e aggiungi uno o più modelli ai **Modelli selezionati**.
-5. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se desideri che le lingue più utilizzate appaiano per prime.
-6. Vai su **Traduci** ed esegui una traduzione semplice per verificare che tutto funzioni correttamente.
-7. Una volta verificato, prova **Riscrivi** e poi **Trasforma**.
+3. Se utilizzi l'app **desktop**, apri [**Impostazioni** > **Configurazione API**](#api-config), aggiungi una chiave API per almeno un provider (ad esempio OpenRouter) e fai clic su **Test** per verificarne il funzionamento.
+4. Apri [**Impostazioni** > **Impostazioni generali**](#general-settings). In modalità **Facile** (predefinita), scegli un **Provider** per cui hai configurato una chiave. In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e aggiungi uno o più modelli a **Modelli selezionati**.
+5. In **Traduci**, seleziona una **competenza** (Facile) o un **modello** (Avanzato) nella barra degli strumenti.
+6. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se desideri che le lingue più utilizzate appaiano per prime.
+7. Esegui una traduzione semplice per verificare che tutto funzioni, quindi prova **Riscrivi** e **Trasforma**.
 
-Questo ordine è importante. Evita il problema più comune per i nuovi utenti: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o un modello selezionato.
+L'ordine è importante. Evita il problema più comune all'uso iniziale: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o una competenza/modello selezionato.
 
 <br/><br/>
 
@@ -204,14 +207,15 @@ Usa la barra laterale per spostarti all'interno dell'app. Puoi comprimere la bar
 La barra degli strumenti cambia leggermente a seconda della posizione all'interno dell'app.
 
 - A sinistra, mostra il nome della pagina corrente.
-- A destra, mostra il **selettore del modello** e il controllo della **Lingua dell'interfaccia**.
+- A destra, mostra il selettore di **competenza o modello** e il controllo della **Lingua dell'interfaccia**.
 
-Il **selettore del modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
+In modalità **Facile**, la barra degli strumenti mostra un selettore di **competenza** (Gratuito, Veloce, Avanzato, Tecnico, Legale e altri profili simili). Le competenze dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings). Se il **Provider** è **Ollama**, la barra degli strumenti elenca i tuoi modelli locali installati invece delle competenze.
+
+In modalità **Avanzato**, il selettore di **modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
 
 ![Model selector](../images/screenshots/it/model-selector.png)
 
-Alcuni modelli gratuiti potrebbero non essere sempre disponibili: a volte sono offline o hanno un limite di utilizzo. In questo caso, l'app rimuoverà automaticamente quel modello dall'elenco disponibile. Per controllare quali modelli vengono visualizzati, vai a [**Impostazioni** > **Modelli**](#models) e modifica la tua lista di modelli.
- Puoi anche aprire direttamente le impostazioni del modello cliccando sull'icona del provider a sinistra del nome del modello nella barra degli strumenti.
+In modalità Avanzato, alcuni modelli gratuiti potrebbero non essere sempre disponibili: potrebbero essere offline o aver raggiunto il limite d'uso. L'app potrebbe rimuovere automaticamente quel modello dalla tua lista. Per controllare quali modelli vengono visualizzati, vai a [**Impostazioni** > **Modelli**](#models). Puoi aprire le impostazioni del modello dall'icona del provider a sinistra del nome del modello nella barra degli strumenti.
 
 <br/>
 
@@ -260,7 +264,7 @@ Usa **Traduci** quando desideri convertire un testo da una lingua all'altra.
 1. Apri **Traduci**.
 2. Scegli una lingua in **Da**.
 3. Scegli una lingua in **A**.
-4. Scegli un modello nella barra degli strumenti.
+4. Scegli una competenza (Facile) o un modello (Avanzato) nella barra degli strumenti.
 5. Digita o incolla del testo in **Input**.
 6. Fai clic su **Traduci**.
 7. Leggi il risultato in **Output**.
@@ -351,7 +355,7 @@ Questa è l'area più flessibile dell'app. Puoi utilizzarla per attività come:
 <a id="if-you-have-no-prompts-yet"></a>
 ### Se non hai ancora prompt
 
-Se l'elenco dei tuoi prompt è vuoto, fai clic su **Carica prompt di esempio** nell'area di lavoro Trasforma. Lo stesso controllo è sempre disponibile in [**Impostazioni** > **Prompt di Trasformazione**](#transform-prompts) nella riga di esportazione/importazione. Entrambi aggiungono esempi predefiniti in modo da poter iniziare rapidamente.
+Se l'elenco dei prompt è vuoto, fai clic su **Carica prompt di esempio** nell'area di lavoro Trasforma. Lo stesso controllo è sempre disponibile in [**Impostazioni** > **Trasforma**](#transform-settings) nella riga di esportazione/importazione. Entrambi aggiungono esempi predefiniti per iniziare rapidamente.
 
 <br/>
 
@@ -425,7 +429,9 @@ Questo è utile quando:
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Puoi esportare e importare i prompt salvati in [**Impostazioni** > **Prompt di trasformazione**](#transform-prompts).
+> Puoi esportare e importare i prompt salvati in [**Impostazioni** > **Trasforma**](#transform-settings).
+
+Quando utilizzi **Genera prompt**, **Migliora prompt** o **Traduci prompt** nell'editor dei prompt, la modalità **Facile** offre lo stesso selettore di competenze presente in Traduci e Riscrivi; la modalità **Avanzato** utilizza invece l'elenco dei modelli.
 
 <br/><br/>
 
@@ -441,7 +447,7 @@ Utilizza **Dashboard** per vedere quanto stai utilizzando l'app e quanto ti cost
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Se utilizzi solo modelli **gratuiti**, gli importi del **costo** potrebbero essere zero e i riepiloghi basati sui costi potrebbero apparire vuoti. In **Riepilogo**, **Utilizzo nel tempo** e **Utilizzo per modello** mostrano comunque il **numero di chiamate** (traduci, riscrivi e trasforma) quando hai attività nel periodo selezionato.
+> Se utilizzi solo modelli **gratuiti**, gli importi di **costo** potrebbero essere pari a zero e i KPI basati sui costi potrebbero apparire vuoti. La scheda **Riepilogo** mostra comunque il numero di chiamate per traduzione, riscrittura e trasformazione quando ci sono attività nel periodo selezionato.
 
 <br/>
 
@@ -462,11 +468,9 @@ Utilizza i pulsanti di filtro nella parte superiore per modificare l'intervallo 
 <a id="dashboard-tabs"></a>
 ### Schede della Dashboard
 
-- **Riepilogo** fornisce una panoramica dell'utilizzo e del costo. Include **Utilizzo nel tempo** (numero cumulativo di **chiamate** giornaliere suddivise per traduzione, riscrittura e trasformazione) e **Utilizzo per modello** (totale **chiamate per modello**, inclusa la trasformazione).
-- **Per utilizzo** suddivide l'attività per lingua di traduzione, modalità di riscrittura e prompt di trasformazione.
-- **Per modello** mostra quali modelli hai utilizzato e quanto ti sono costati.
-- **Per giorno** mostra i totali giornalieri.
-- **Tutte le chiamate** mostra la cronologia completa delle chiamate e ti consente di esportarla.
+- **Riepilogo** mostra schede KPI: costo totale, modelli utilizzati, numero di chiamate e costo per modalità (con la percentuale sul totale delle chiamate), costo medio per chiamata, TPS medio e i tre modelli più utilizzati in base al numero di chiamate.
+- **Per modello** elenca ciascun modello con chiamate totali, costo totale e TPS medio; espandi una riga per visualizzare il dettaglio per traduzione, riscrittura e trasformazione.
+- **Tutte le chiamate** mostra il registro completo delle chiamate (in formato paginato su schermi larghi, a schede su schermi stretti) e consente di esportarlo.
 
 <br/>
 
@@ -509,14 +513,14 @@ Fai clic su **Cronologia** per visualizzare la cronologia delle tue azioni all'i
 <a id="filter-the-history"></a>
 ### Filtra la cronologia
 
-**Cronologia** utilizza gli stessi filtri della pagina **Dashboard**. Usali per selezionare l'intervallo di tempo.
+**Cronologia** utilizza gli stessi filtri di intervallo temporale della pagina **Dashboard**.
 
 ![Dashboard filters](../images/screenshots/it/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Il filtro **Utente** è visibile solo agli amministratori nella versione web. Gli utenti normali non vedranno questo filtro, che non è disponibile nell'app desktop.
+> Nell'**app web**, tutti (inclusi gli amministratori) vedono soltanto la propria cronologia di esecuzione. Il filtro **Utente** nella **Dashboard** consente agli amministratori di esaminare l'utilizzo e i costi tra gli account; non si applica alla **Cronologia**.
 
 <br/>
 
@@ -542,21 +546,23 @@ Apri **Impostazioni** dalla barra laterale per personalizzare il comportamento d
 
 Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
 
-| Scheda               | Desktop | Web (amministratore) | Web (utente normale) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Impostazioni generali  |   sì   |     sì     |        sì         |
-  | Modelli            |   sì   |     sì     |        sì         |
-  | Lingue         |   sì   |     sì     |        sì         |
-  | Monitoraggio costi     |   sì   |     sì     |         -          |
-  | Prompt di trasformazione |   sì   |     sì     |        sì         |
-  | Utenti             |    -    |     sì     |         -          |
-  | Configurazione API        |   sì   |     sì     |         -          |
-  | Informazioni             |   sì   |     sì     |        sì         |
+| Scheda              | Desktop | Web (amministratore) | Web (utente normale) | Note                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Impostazioni generali |   sì   |     sì     |        sì         | Include **Esperienza AI** (Facile / Avanzato) |
+  | Modelli           |   sì   |     sì     |        sì         | Solo quando **Esperienza AI** è **Avanzato** |
+  | Lingue        |   sì   |     sì     |        sì         |                                              |
+  | Monitoraggio costi    |   sì   |     sì     |         -          |                                              |
+  | Trasforma        |   sì   |     sì     |        sì         | Importazione/esportazione massiva di prompt di trasformazione      |
+  | Utenti            |    -    |     sì     |         -          |                                              |
+  | Configurazione API       |   sì   |     sì     |         -          |                                              |
+  | Informazioni            |   sì   |     sì     |        sì         |                                              |
+
+In modalità **Facile**, la selezione del modello avviene tramite le competenze nella barra degli strumenti e il **Provider** in Impostazioni generali; la scheda **Modelli** è nascosta.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Nella versione web, ogni utente ha la propria configurazione. Impostazioni come modelli selezionati, lingue, opzioni generali e prompt di trasformazione sono memorizzate per singolo utente. Le modifiche che apporti non influiscono sugli altri utenti.
+> Nella versione web, ogni utente ha la propria configurazione. Impostazioni come esperienza AI, provider, modelli o competenze selezionati, lingue, opzioni generali e prompt di trasformazione vengono memorizzate per singolo utente. Le modifiche che apporti non influiscono sugli altri utenti.
 
 <br/>
 
@@ -565,7 +571,14 @@ Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
 <a id="general-settings"></a>
 ### Impostazioni generali
 
-Usa **Impostazioni generali** per controllare il comportamento della tastiera, se i dettagli di esecuzione vengono salvati nella **Cronologia** e l'aspetto.
+Utilizza **Impostazioni generali** per controllare il comportamento della digitazione, se i dettagli di esecuzione vengono salvati per la **Cronologia**, l'aspetto e il modo in cui scegli l'IA per Traduci, Riscrivi e Trasforma.
+
+**Esperienza AI**
+
+- **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud utilizzano i preset di competenze integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer invece delle competenze.
+- **Avanzato**: seleziona singoli modelli nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
+
+Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate nell'ambiente del server. Nell'**app desktop**, configura le chiavi in [**Configurazione API**](#api-config).
 
 **Comportamento**
 
@@ -577,8 +590,8 @@ Usa **Impostazioni generali** per controllare il comportamento della tastiera, s
 
 **Cronologia**
 
-- **Mantieni la cronologia di esecuzione** controlla se ogni operazione di traduzione, riscrittura e trasformazione memorizzi il **testo in input e output** per la visualizzazione della [**Cronologia**](#history) nel pannello laterale. Disattivandola verrà richiesta una conferma; se confermi, il testo della cronologia salvato verrà rimosso dal database.
-- **Elimina dati cronologia** ti permette di rimuovere il testo memorizzato in base all'età (ad esempio più vecchio di alcuni mesi, o **tutti i dati (cancella)**) usando **Elimina dati**. Questo influisce solo sul testo di esecuzione salvato per la vista **Cronologia**; **non** elimina i totali relativi a costi o utilizzo. Per rimuovere o ridurre i dati relativi ai **costi**, usa [**Impostazioni** > **Monitoraggio costi**](#cost-tracking).
+- **Mantieni la cronologia di esecuzione** controlla se ogni operazione di traduzione, riscrittura e trasformazione memorizza il **testo in input e output** per la visualizzazione della [**Cronologia**](#history) nella barra laterale. Disattivandolo verrà richiesta una conferma; se confermi, il testo della cronologia memorizzato verrà rimosso dal database. Se l'etichetta mostra *disabilitato dall'amministratore*, la tua installazione ha `HISTORY_DISABLED` impostato nell'ambiente (vedi il [README](README.it.md#configuration-and-environment)); non potrai riattivare la cronologia dall'interfaccia utente.
+- **Elimina dati cronologia** ti consente di rimuovere il testo memorizzato in base all'età (ad esempio più vecchio di alcuni mesi, oppure **tutti i dati (cancella)**) utilizzando **Elimina dati**. Questa operazione influisce solo sul testo di esecuzione salvato per la vista **Cronologia**; **non** elimina i totali di costi o utilizzo. Per rimuovere o ridurre i dati relativi ai **costi**, utilizza [**Impostazioni** > **Monitoraggio costi**](#cost-tracking).
 
 **Aspetto**
 
@@ -603,7 +616,7 @@ I backup creati nella versione web o desktop possono essere ripristinati nell'al
 <a id="models"></a>
 ### Modelli
 
-Usa **Impostazioni** > **Modelli** per scegliere quali modelli vengono visualizzati nella barra degli strumenti.
+Questa scheda è disponibile solo quando l'**esperienza AI** è impostata su **Avanzato** in [**Impostazioni generali**](#general-settings). Usa **Impostazioni** > **Modelli** per scegliere quali modelli vengono visualizzati nella barra degli strumenti.
 
 ![Settings Models tab](../images/screenshots/it/settings-models.png)
 
@@ -680,10 +693,10 @@ Usa **Impostazioni** > **Monitoraggio costi** per gestire le informazioni sui co
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Prompt di trasformazione
+<a id="transform-settings"></a>
+### Trasforma (scheda impostazioni)
 
-Usa **Impostazioni** > **Prompt di trasformazione** per gestire i prompt in blocco.
+Usa **Impostazioni** > **Trasforma** per gestire i prompt in blocco.
 
 Puoi:
 
@@ -770,9 +783,10 @@ Se qualcosa non funziona come previsto, controlla innanzitutto i seguenti punti.
 
 Verifica che:
 
-- tu abbia selezionato un modello nella barra degli strumenti
-- almeno un modello sia elencato in [**Impostazioni** > **Modelli**](#models)
-- la configurazione API sia funzionante
+- hai selezionato una **competenza** (Facile) o un **modello** (Avanzato) nella barra degli strumenti
+- in modalità **Facile**, in [**Impostazioni** > **Impostazioni generali**](#general-settings) è impostato un **Provider** con una chiave funzionante (o un URL Ollama) e almeno una competenza per quel provider
+- in modalità **Avanzato**, almeno un modello è elencato in [**Impostazioni** > **Modelli**](#models)
+- la configurazione API funziona correttamente
 
 Se stai utilizzando l'app desktop:
 
@@ -785,13 +799,9 @@ Se stai utilizzando l'app desktop:
 <a id="the-model-list-is-empty"></a>
 ### L'elenco dei modelli è vuoto
 
-Apri [**Impostazioni** > **Modelli**](#models) e fai clic su **Aggiorna**.
+In modalità **Facile**, apri [**Impostazioni** > **Impostazioni generali**](#general-settings), verifica che il **Provider** sia impostato e aggiungi o testa le chiavi in [**Configurazione API**](#api-config) (desktop) oppure chiedi all'amministratore (web). Per **Ollama**, esegui il **Test** sull'URL di base e assicurati che i modelli siano installati localmente.
 
-Se necessario:
-
-- cerca un modello
-- attiva **Solo gratuiti**
-- aggiungi uno o più modelli a **Modelli selezionati**
+In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e fai clic su **Aggiorna**. Se necessario, cerca un modello, attiva **Solo gratuiti** e aggiungi modelli ai **Modelli selezionati**.
 
 <br/>
 
@@ -824,15 +834,15 @@ Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e modific
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### I grafici della Dashboard sono vuoti
+<a id="dashboard-summary-looks-empty"></a>
+### Il riepilogo della Dashboard appare vuoto
 
 Questo è normale se:
 
-- utilizzi solo **modelli gratuiti** e stai visualizzando i dati relativi al **costo** (potrebbero essere zero); i grafici del numero di **utilizzo** delle chiamate nella scheda **Riepilogo** necessitano comunque di dati del periodo selezionato
-- il **filtro temporale** selezionato non include il periodo in cui sono state effettuate le chiamate: prova con **Tutto** per verificare
+- utilizzi solo **modelli gratuiti** e stai visualizzando i dati relativi ai **costi** (potrebbero essere zero); i KPI basati sul numero di chiamate nel **Riepilogo** richiedono comunque dati dal periodo selezionato
+- il **filtro temporale** selezionato non include il periodo in cui sono state effettuate le chiamate — prova con **Tutto** per verificare
 
-Se i grafici risultano ancora vuoti dopo aver selezionato **Tutto**, verifica che le chiamate siano presenti nella sezione [**Cronologia**](#history) o nella scheda **Tutte le chiamate**.
+Se i KPI sono ancora zero dopo aver selezionato **Tutto**, verifica che le chiamate siano presenti in [**Cronologia**](#history) o nella scheda **Tutte le chiamate**.
 
 <br/>
 
@@ -857,7 +867,7 @@ Per avvicinare il totale alla spesa effettiva su OpenRouter, apri [**Impostazion
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### La pagina Cronologia manca nella barra laterale
 
-Potrebbe essere disattivata l'opzione **Mantieni la cronologia di esecuzione**. Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e abilitala. Nota che l'attivazione non ripristina i dati della cronologia precedentemente eliminati.
+**Mantieni la cronologia di esecuzione** potrebbe essere disattivato. Apri [**Impostazioni** > **Impostazioni generali**](#general-settings) e abilitalo, a meno che la cronologia non sia *disabilitata dall'amministratore* (`HISTORY_DISABLED` nell'ambiente — vedi il [README](README.it.md#configuration-and-environment)). L'attivazione della cronologia non ripristina il testo precedentemente eliminato.
 
 <br/>
 
@@ -913,8 +923,9 @@ Quando modifichi un prompt, fai sempre clic su **Salva** prima di fare clic su *
 - Usa [**Riscrivi**](#rewrite) per migliorare quotidianamente il testo.
 - Usa [**Trasforma**](#transform) quando hai bisogno di un flusso di lavoro ripetibile per un compito specifico.
 - Usa [**Dashboard**](#dashboard) se desideri monitorare l'utilizzo e il costo.
-- Usa [**Cronologia**](#history) per rivedere le operazioni precedenti e il testo completo di input/output.
-- Esporta i prompt regolarmente se stai creando una libreria di prompt che desideri mantenere al sicuro (vedi [Prompt di trasformazione](#transform-prompts)) o se desideri condividerla con altri.
+- Usa [**Cronologia**](#history) per rivedere le operazioni passate e il testo completo di input/output.
+- Esporta regolarmente i prompt se stai creando una libreria di prompt che desideri conservare al sicuro (vedi [Trasforma](#transform)) o se desideri condividerla con altri.
+- Mantieniti in modalità **Facile** finché non hai bisogno di un controllo dettagliato sugli ID dei modelli; passa ad **Avanzato** quando sai già quali modelli desideri utilizzare.
 
 <br/><br/>
 

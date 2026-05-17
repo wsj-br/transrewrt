@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-03T19:25:44.903Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:33:38.938Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -23,6 +22,8 @@ Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 - **Traducere** - convertiți textul dintr-o limbă în alta.
 - **Rescriere** - reformulați textul într-un alt stil, cum ar fi mai clar, mai scurt sau mai formal.
 - **Transformare** - procesați textul utilizând instrucțiuni personalizate de inteligență artificială numite prompturi.
+
+În mod implicit, aplicația rulează în modul **Ușor**: alegeți o **abilitate** (de exemplu Gratuit, Rapid sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
 
 <br/>
 
@@ -80,7 +81,7 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Modele](#models)
   - [Limbi](#languages)
   - [Urmărire costuri](#cost-tracking)
-  - [Solicitări transformare](#transform-prompts)
+  - [Transformare (tabul de setări)](#transform-settings)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
@@ -90,9 +91,9 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
-  - [Graficele din panoul de control sunt goale](#dashboard-charts-are-empty)
-  - [Costul afișează „nu este disponibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
-  - [Costul total nu corespunde facturii furnizorului](#total-cost-does-not-match-my-provider-bill)
+  - [Rezumatul panoului de control pare gol](#dashboard-summary-looks-empty)
+  - [Costul afișează "nu este disponibil" sau pare incorect](#cost-shows-not-available-or-seems-wrong)
+  - [Costul total nu se potrivește cu factura furnizorului meu](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Administrator web: ați uitat sau ați pierdut parola](#web-admin-forgot-or-lost-a-password)
@@ -115,10 +116,11 @@ Nu este necesar să selectați un model plătit pentru a începe. Imediat ce ad�
 
 În termeni simpli:
 
-- Un **model** este motorul de IA care efectuează lucrarea. Modelele sunt listate cu un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
+- În modul **Ușor**, o **abilitate** este un preset (Gratuit, Rapid, Avansat, Tehnic, Juridic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Alegeți abilitatea din bara de instrumente la Traducere, Rescriere și Transformare.
+- În modul **Avansat**, un **model** este motorul AI pe care îl selectați direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
 - O **cheie API** (sau, pentru Ollama, o **URL de bază**) este modul în care aplicația accesează acel furnizor.
 
-Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl utilizați. Pentru utilizarea exclusivă a OpenRouter, consultați mai jos [Cum obțineți o cheie API](#how-to-get-an-api-key-desktop-app). Dacă nu doriți să utilizați o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și să utilizați modele locale în schimb, cum ar fi `translategemma:4b`.
+Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl folosiți. Pentru utilizarea doar cu OpenRouter, consultați mai jos [Cum obțineți o cheie API OpenRouter gratuită](#how-to-get-an-api-key-desktop-app). Dacă nu doriți să folosiți o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și utiliza modele locale în schimb, cum ar fi `translategemma:4b`.
 
 Dacă utilizați **versiunea web**, administratorul serverului configurează furnizorii prin variabile de mediu, astfel că nu puteți introduce chei API direct în aplicație.
 
@@ -147,14 +149,14 @@ Dacă utilizați aplicația desktop, urmați acești pași:
 Dacă este prima dată când utilizați Transrewrt, urmați această ordine:
 
 1. Deschideți aplicația.
-2. Alegeți **Limba interfeței** din pictograma globului dacă este necesar.
+2. Alegeți **limba interfeței** din pictograma globului dacă este necesar.
 3. Dacă utilizați **aplicația desktop**, deschideți [**Setări** > **Configurare API**](#api-config), adăugați o cheie API pentru cel puțin un furnizor (de exemplu OpenRouter) și faceți clic pe **Test** pentru a verifica dacă funcționează.
-4. Deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele la **Modele selectate**.
-5. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
-6. Accesați **Traducere** și executați o traducere simplă pentru a vă asigura că totul funcționează.
-7. Odată ce aceasta funcționează, încercați **Rescriere**, apoi **Transformare**.
+4. Deschideți [**Setări** > **Setări generale**](#general-settings). În modul **Ușor** (implicit), alegeți un **Furnizor** care are o cheie configurată. În modul **Avansat**, deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele la **Modele selectate**.
+5. La **Traducere**, alegeți o **abilitate** (Ușor) sau un **model** (Avansat) din bara de instrumente.
+6. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
+7. Rulați o traducere simplă pentru a confirma că totul funcționează, apoi încercați **Rescriere** și **Transformare**.
 
-Această ordine este importantă. Previne cea mai frecventă problemă la prima utilizare: încercarea de a executa o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau un model selectat.
+Această ordine este importantă. Previne cea mai comună problemă la prima utilizare: încercarea de a rula o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau o abilitate/model selectat.
 
 <br/><br/>
 
@@ -203,15 +205,16 @@ Utilizați bara laterală pentru a vă deplasa în aplicație. Puteți restrâng
 
 Bara de instrumente se modifică ușor în funcție de locul în care vă aflați în aplicație.
 
-- În stânga, este afișat numele paginii curente.
-- În dreapta, sunt afișate **selectorul de model** și controlul pentru **Limba interfeței**.
+- În stânga, afișează numele paginii curente.
+- În dreapta, afișează **selectorul de abilitate sau model** și controlul pentru **limba interfeței**.
 
-Cu **selectorul de model** puteți alege ce motor de inteligență artificială să utilizați pentru sarcina curentă.
+În modul **Ușor**, bara de instrumente afișează un **selector de abilități** (Gratuit, Rapid, Avansat, Tehnic, Juridic și alte presetări similare). Abilitățile depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings). Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de abilități.
+
+În modul **Avansat**, **selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
 
 ![Model selector](../images/screenshots/ro/model-selector.png)
 
-Unele modele gratuite nu sunt întotdeauna disponibile – uneori sunt offline sau au un limită de utilizare. În acest caz, aplicația va elimina automat acel model din lista dvs. disponibilă. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models) și editați lista de modele.
- De asemenea, puteți deschide setările modelului direct, făcând clic pe pictograma furnizorului din stânga numelui modelului în bara de instrumente.
+În modul Avansat, unele modele gratuite pot să nu fie întotdeauna disponibile — pot fi offline sau pot atinge un limită de utilizare. Aplicația poate elimina automat acel model din lista dvs. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models). Puteți deschide setările modelului din pictograma furnizorului din stânga numelui modelului în bara de instrumente.
 
 <br/>
 
@@ -258,9 +261,9 @@ Utilizați **Traducere** atunci când doriți să convertiți text dintr-o limb�
 ### Traducerea textului
 
 1. Deschideți **Traducere**.
-2. Alegeți o limbă în **De la**.
-3. Alegeți o limbă în **La**.
-4. Alegeți un model în bara de instrumente.
+2. Alegeți o limbă în **Din**.
+3. Alegeți o limbă în **În**.
+4. Alegeți o abilitate (Ușor) sau un model (Avansat) în bara de instrumente.
 5. Tastați sau lipiți text în **Intrare**.
 6. Faceți clic pe **Traducere**.
 7. Citiți rezultatul în **Ieșire**.
@@ -351,7 +354,7 @@ Aceasta este zona cea mai flexibilă a aplicației. O puteți utiliza pentru sar
 <a id="if-you-have-no-prompts-yet"></a>
 ### Dacă nu aveți încă prompturi
 
-Dacă lista dvs. de prompturi este goală, faceți clic pe **Încărcați exemple de prompturi** în spațiul de lucru Transformare. Același control este întotdeauna disponibil în [**Setări** > **Solicitări transformare**](#transform-prompts) pe rândul de export/import. Ambele adaugă exemple încorporate, astfel încât să puteți începe rapid.
+Dacă lista dvs. de prompturi este goală, faceți clic pe **Încărcați exemple de prompturi** în spațiul de lucru Transformare. Același control este întotdeauna disponibil în [**Setări** > **Transformare**](#transform-settings) pe rândul de export/import. Ambele adaugă exemple încorporate pentru a putea începe rapid.
 
 <br/>
 
@@ -425,7 +428,9 @@ Acest lucru este util atunci când:
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Puteți exporta și importa prompturi salvate în [**Setări** > **Solicitări transformare**](#transform-prompts).
+> Puteți exporta și importa prompturile salvate în [**Setări** > **Transformare**](#transform-settings).
+
+Când utilizați **Generează prompt**, **Îmbunătățește promptul** sau **Traduceți promptul** în editorul de prompturi, modul **Ușor** oferă același selector de abilități ca și în cazul Traducerii și Rescrierii; modul **Avansat** utilizează lista de modele.
 
 <br/><br/>
 
@@ -441,7 +446,7 @@ Utilizați **Panou de control** pentru a vedea cât de mult utilizați aplicați
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Dacă utilizați doar modele **gratuite**, sumele pentru **cost** pot fi zero, iar rezumatele bazate pe cost pot părea goale. În **Rezumat**, **Utilizare în timp** și **Utilizare după model** afișează totuși **numărul de apeluri** (traducere, rescriere și transformare) atunci când există activitate în perioada selectată.
+> Dacă utilizați doar modele **gratuite**, valorile **costului** pot fi zero, iar indicatorii cheie (KPI) bazate pe cost pot apărea goale. Tabul **Rezumat** afișează totuși numărul de apeluri pentru traducere, rescriere și transformare atunci când există activitate în perioada selectată.
 
 <br/>
 
@@ -462,11 +467,9 @@ Utilizați butoanele de filtrare de sus pentru a schimba intervalul de timp.
 <a id="dashboard-tabs"></a>
 ### File panou de control
 
-- **Rezumat** vă oferă o imagine de ansamblu asupra utilizării și costurilor. Include o secțiune **Utilizare în timp** (numărul cumulativ stivuit de **apeluri** pe zi pentru traducere, rescriere și transformare) și **Utilizare după model** (totalul **apelurilor pe model**, inclusiv transformare).
-- **După utilizare** detaliază activitatea pe limbă de traducere, mod de rescriere și prompt de transformare.
-- **După model** arată ce modele ați utilizat și cât au costat.
-- **După zi** afișează totalurile zilnice.
-- **Toate apelurile** afișează istoricul complet al apelurilor și vă permite să-l exportați.
+- **Rezumat** afișează carduri KPI: cost total, modele utilizate, numărul de apeluri și costul pe mod (cu ponderea în totalul apelurilor), cost mediu pe apel, TPS mediu și primele trei modele după numărul de apeluri.
+- **După model** listează fiecare model cu apeluri totale, cost total și TPS mediu; extindeți un rând pentru a vedea detaliile pe traducere, rescriere și transformare.
+- **Toate apelurile** afișează jurnalul complet de apeluri (paginat pe ecranele largi, în format carduri pe ecranele înguste) și vă permite exportul acestuia.
 
 <br/>
 
@@ -509,14 +512,14 @@ Faceți clic pe **Istoric** pentru a vedea istoricul acțiunilor dvs. din **Tran
 <a id="filter-the-history"></a>
 ### Filtrarea istoricului
 
-**Istoric** utilizează aceleași filtre ca și pagina **Panou de control**. Utilizați-le pentru a selecta intervalul de timp.
+**Istoric** utilizează aceleași filtre de interval de timp ca și pagina **Panou de control**.
 
 ![Dashboard filters](../images/screenshots/ro/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> Filtrul **Utilizator** este vizibil doar administratorilor în versiunea web. Utilizatorii obișnuiți nu vor vedea acest filtru, iar acesta nu este disponibil în aplicația desktop.
+> În **aplicația web**, toți utilizatorii (inclusiv administratorii) văd doar istoricul propriilor execuții. Filtrul **Utilizator** de pe **Panou de control** este destinat administratorilor pentru a analiza utilizarea și costurile pe conturi; acesta nu se aplică la **Istoric**.
 
 <br/>
 
@@ -542,21 +545,23 @@ Deschideți **Setări** din bara laterală pentru a personaliza modul în care f
 
 Filele disponibile depind de platformă și de rolul dvs.:
 
-| File               | Desktop | Web (administrator) | Web (utilizator obișnuit) |
-  |-------------------|:-------:|:-------------------:|:------------------------:|
-  | Setări generale  |   Da   |         Da         |            Da            |
-  | Modele            |   Da   |         Da         |            Da            |
-  | Limbi         |   Da   |         Da         |            Da            |
-  | Urmărire costuri     |   Da   |         Da         |             -            |
-  | Solicitări transformare |   Da   |         Da         |            Da            |
-  | Utilizatori             |    -    |         Da         |             -            |
-  | Configurare API        |   Da   |         Da         |             -            |
-  | Despre             |   da   |     da     |        da         |
+| Tab              | Desktop | Web (admin) | Web (utilizator obișnuit) | Note                                        |
+  |------------------|:-------:|:-----------:|:------------------------:|----------------------------------------------|
+  | Setări generale  |   da    |     da      |           da             | Include **Experiență AI** (Ușor / Avansat) |
+  | Modele           |   da    |     da      |           da             | Doar când **Experiență AI** este **Avansat** |
+  | Limbi            |   da    |     da      |           da             |                                              |
+  | Urmărire costuri |   da    |     da      |           -              |                                              |
+  | Transformare     |   da    |     da      |           da             | Import/export în bloc al solicitărilor de transformare      |
+  | Utilizatori      |   -     |     da      |           -              |                                              |
+  | Configurare API  |   da    |     da      |           -              |                                              |
+  | Despre           |   da    |     da      |           da             |                                              |
+
+În modul **Ușor**, selecția modelului se face prin abilități din bara de instrumente și **Furnizor** din Setări generale; tabul **Modele** este ascuns.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> În versiunea web, fiecare utilizator are propria configurație. Setările precum modelele selectate, limbile, opțiunile generale și solicitările de transformare sunt stocate pe utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
+> În versiunea web, fiecare utilizator are propria configurație. Setările precum experiența AI, furnizorul, modelele sau abilitățile selectate, limbile, opțiunile generale și solicitările de transformare sunt stocate per utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
 
 <br/>
 
@@ -565,7 +570,14 @@ Filele disponibile depind de platformă și de rolul dvs.:
 <a id="general-settings"></a>
 ### Setări generale
 
-Utilizați **Setări generale** pentru a controla comportamentul tastaturii, dacă detaliile execuției sunt stocate în **Istoric** și aspectul aplicației.
+Utilizați **Setări generale** pentru a controla comportamentul la tastare, dacă detaliile de execuție sunt stocate în **Istoric**, aspectul aplicației și modul în care alegeți IA pentru Traducere, Rescriere și Transformare.
+
+**Experiență AI**
+
+- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii din cloud utilizează presetările de abilități integrate în bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de abilități.
+- **Avansat**: selectați modele individuale din bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
+
+În **aplicația web**, furnizorii afișați depind de cheile API setate în mediul serverului. În **aplicația desktop**, configurați cheile în [**Configurare API**](#api-config).
 
 **Comportament**
 
@@ -577,8 +589,8 @@ Utilizați **Setări generale** pentru a controla comportamentul tastaturii, dac
 
 **Istoric**
 
-- **Păstrează istoricul execuției** controlează dacă fiecare traducere, rescriere și transformare stochează **textul de intrare și ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni cere confirmare; dacă confirmați, textul istoricului stocat este eliminat din baza de date.
-- **Șterge datele istoricului** vă permite să eliminați textul stocat după vechime (de exemplu mai vechi de câteva luni, sau **toate datele (ștergere)**) folosind **Șterge datele**. Aceasta afectează doar textul execuțiilor salvate pentru vizualizarea **Istoric**; **nu** șterge totalurile de cost sau utilizare. Pentru a elimina sau reduce datele de **cost**, utilizați [**Setări** > **Urmărire costuri**](#cost-tracking).
+- **Păstrează istoricul execuției** controlează dacă fiecare operațiune de traducere, rescriere și transformare stochează **textul de intrare și cel de ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni va solicita confirmare; dacă confirmați, textul stocat în istoric va fi eliminat din baza de date. Dacă eticheta afișează *dezactivat de administrator*, instalarea dumneavoastră are setat `HISTORY_DISABLED` în mediul de execuție (consultați [README](README.ro.md#configuration-and-environment)); nu puteți activa din nou istoricul din interfața utilizatorului.
+- **Șterge datele istoricului** vă permite să eliminați textul stocat în funcție de vechime (de exemplu, mai vechi de câteva luni sau **toate datele (ștergere)**) utilizând opțiunea **Șterge datele**. Aceasta afectează doar textul salvat pentru vizualizarea **Istoric**; **nu** șterge datele privind costurile sau utilizarea totală. Pentru a elimina sau reduce datele privind **costul**, utilizați [**Setări** > **Urmărire costuri**](#cost-tracking).
 
 **Aspect**
 
@@ -603,7 +615,7 @@ Backup-urile create în versiunea web sau desktop pot fi restaurate în cealalt�
 <a id="models"></a>
 ### Modele
 
-Utilizați **Setări** > **Modele** pentru a alege care modele apar în bara de instrumente.
+Această filă este disponibilă doar atunci când **Experiența AI** este setată la **Avansat** în [**Setări generale**](#general-settings). Utilizați **Setări** > **Modele** pentru a alege care modele apar în bara de instrumente.
 
 ![Settings Models tab](../images/screenshots/ro/settings-models.png)
 
@@ -680,10 +692,10 @@ Utilizați **Setări** > **Urmărire costuri** pentru a gestiona informațiile p
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Solicitări transformare
+<a id="transform-settings"></a>
+### Transformare (filă setări)
 
-Utilizați **Setări** > **Solicitări transformare** pentru a gestiona prompturile în bloc.
+Utilizați **Setări** > **Transformare** pentru a gestiona prompturile în masă.
 
 Puteți:
 
@@ -770,9 +782,10 @@ Dacă ceva nu funcționează așa cum este de așteptat, verificați mai întâi
 
 Verificați dacă:
 
-- ați selectat un model în bara de instrumente
-- cel puțin un model este listat în [**Setări** > **Modele**](#models)
-- configurarea API-ului funcționează
+- ați selectat o **abilitate** (Ușor) sau un **model** (Avansat) în bara de instrumente
+- în modul **Ușor**, [**Setări** > **Setări generale**](#general-settings) are un **Furnizor** cu o cheie funcțională (sau URL Ollama) și cel puțin o abilitate pentru acel furnizor
+- în modul **Avansat**, cel puțin un model este listat în [**Setări** > **Modele**](#models)
+- configurația API-ului dumneavoastră funcționează
 
 Dacă utilizați aplicația desktop:
 
@@ -785,13 +798,9 @@ Dacă utilizați aplicația desktop:
 <a id="the-model-list-is-empty"></a>
 ### Lista de modele este goală
 
-Deschideți [**Setări** > **Modele**](#models) și faceți clic pe **Reîmprospătare**.
+În modul **Ușor**, deschideți [**Setări** > **Setări generale**](#general-settings), confirmați că **Furnizorul** este setat și adăugați sau testați cheile în [**Configurare API**](#api-config) (pe desktop) sau solicitați administratorului (pe web). Pentru **Ollama**, rulați **Test** pe URL-ul de bază și asigurați-vă că modelele sunt instalate local.
 
-Dacă este necesar:
-
-- căutați un model
-- activați **Doar gratuite**
-- adăugați unul sau mai multe modele la **Modele selectate**
+În modul **Avansat**, deschideți [**Setări** > **Modele**](#models) și faceți clic pe **Reîmprospătare**. Dacă este necesar, căutați un model, activați **Doar gratuite**, și adăugați modele la **Modele selectate**.
 
 <br/>
 
@@ -824,15 +833,15 @@ Deschideți [**Setări** > **Setări generale**](#general-settings) și modifica
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Graficele din panoul de control sunt goale
+<a id="dashboard-summary-looks-empty"></a>
+### Panoul de control Rezumat pare gol
 
 Acest lucru este normal dacă:
 
-- folosești doar **modele gratuite** și te uiți la cifrele de **cost** (acestea pot fi zero); graficele de număr de apeluri de **utilizare** de pe **Rezumat** au nevoie în continuare de date din perioada selectată
-- filtrul de **timp** selectat nu acoperă perioada în care au fost efectuate apelurile - încearcă **Toate** pentru a verifica
+- utilizați doar **modele gratuite** și vă uitați la datele privind **costul** (acestea pot fi zero); indicatorii KPI pentru numărul de apeluri din **Rezumat** necesită totuși date din perioada selectată
+- filtrul de **timp** selectat nu acoperă perioada în care au fost efectuate apeluri — încercați **Toate** pentru a verifica
 
-Dacă graficele rămân goale după selectarea opțiunii **Toate**, verificați dacă apelurile apar în [**Istoric**](#history) sau în fila **Toate apelurile**.
+Dacă indicatorii KPI sunt încă zero după selectarea opțiunii **Toate**, verificați dacă apelurile apar în [**Istoric**](#history) sau în fila **Toate apelurile**.
 
 <br/>
 
@@ -857,7 +866,7 @@ Pentru a aduce totalul mai aproape de cheltuielile reale OpenRouter, deschideți
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Pagina Istoric lipsește din bara laterală
 
-Opțiunea **Păstrează istoricul execuției** poate fi dezactivată. Deschideți [**Setări** > **Setări generale**](#general-settings) și activați-o. Rețineți că activarea acesteia nu restaurează datele istoricului șterse anterior.
+**Păstrează istoricul execuției** poate fi dezactivat. Deschideți [**Setări** > **Setări generale**](#general-settings) și activați-o, dacă nu este marcată ca *dezactivată de administrator* (`HISTORY_DISABLED` în mediul de execuție — consultați [README](README.ro.md#configuration-and-environment)). Activarea istoricului nu restaurează textul șters anterior.
 
 <br/>
 
@@ -913,8 +922,9 @@ Când editați un prompt, faceți întotdeauna clic pe **Salvare** înainte de a
 - Utilizați [**Rescriere**](#rewrite) pentru îmbunătățiri obișnuite ale formulării.
 - Utilizați [**Transformare**](#transform) atunci când aveți nevoie de un flux de lucru reproductibil pentru o sarcină specifică.
 - Utilizați [**Panou de control**](#dashboard) dacă doriți să urmăriți utilizarea și costurile.
-- Utilizați [**Istoric**](#history) pentru a examina operațiunile anterioare și textul complet de intrare/ieșire.
-- Exportați periodic solicitările dacă creați o bibliotecă de solicitări pe care doriți să o păstrați în siguranță (consultați [Solicitări transformare](#transform-prompts)) sau dacă doriți să o partajați cu alții.
+- Utilizați [**Istoric**](#history) pentru a revizui operațiunile anterioare și textul complet de intrare/ieșire.
+- Exportați prompturile periodic dacă construiți o bibliotecă de prompturi pe care doriți să o păstrați în siguranță (consultați [Transformare](#transform)) sau dacă doriți să o partajați cu alții.
+- Rămâneți în modul **Ușor** până când aveți nevoie de un control detaliat asupra ID-urilor modelelor; treceți la **Avansat** atunci când știți deja ce modele doriți.
 
 <br/><br/>
 

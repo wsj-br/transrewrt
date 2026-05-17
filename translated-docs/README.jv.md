@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:23.086Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:04.882Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: jv
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan 
 - **Tulis ulang** - perbaiki tata basa, improve clarity, formal/informal, ngendhakake, nembahake, teknis
 - **Ubah** - prompt AI khusus; gawe lan atur prompt, basa sasaran opsional saben prompt
 - **Riwayat** - riwayat eksekusi lengkap kanthi teks input/output, penyaringan, lan ekspor
-- **Model & biaya** - pilih model saka panyedhiya sing dikonfigurasi; dashboard biaya lan panggunaan karo log, ringkesan miturut model/operasi/dina
+- **Gampang & Lanjutan** - Modus gampang (standar): keterampilan sing dipilih miturut panyedhiya (Gratis, Cepet, Lanjutan, Teknis, Hukum) tanpa milih ID model; Modus lanjutan: dhaftar model lengkap saka panyedhiya sing wis dikonfigurasi
+- **Model lan biaya** - dasbor biaya lan panggunaan (Ringkasan, Dhèk model, Kabeh pangelingan API) kanthi fitur ekspor; OpenRouter nuduhake biaya nyata, panyedhiya liya nggunakake perkiraan
 - **UI** - antarmuka multibasa (30+ basa, dhukungan RTL), font, ...
-- **Modus Web** - dhukungan multi-pangguna karo peran admin
-- **Desktop** - aplikasi Electron kanggo Windows lan Linux
-- **Dijalankan dhewe** - gambar Docker kanggo amd64 & arm64 (siap Raspberry Pi)
+- **Modus web** - dhukungan multi-pangguna kanthi peran admin
+- **Desktop** - Aplikasi Electron kanggo Windows lan Linux
+- **Swadaya** - Gambar Docker kanggo amd64 & arm64 (siap digunakake ing Raspberry Pi)
 
 Sawise dipasang, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo pandhuan lengkap babagan kabeh fitur.
 

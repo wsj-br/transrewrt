@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:26:14.312Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:34:09.204Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: sv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt hjälper dig att arbeta med text på tre sätt:
 - **Översätt** - konvertera text från ett språk till ett annat.
 - **Omskriv** - formulera om text i en annan stil, till exempel tydligare, kortare eller mer formell.
 - **Transformera** - bearbeta text med anpassade AI-instruktioner som kallas prompts.
+
+Som standard körs appen i **Enkel** läge: du väljer en **kompetens** (till exempel Gratis, Snabb eller Teknisk) och en **leverantör** i Inställningar, utan att välja modell-ID. Växla till **Avancerad** i [**Inställningar** > **Allmänna inställningar**](#general-settings) om du vill ha den klassiska modelllistan från [**Inställningar** > **Modeller**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Modeller](#models)
   - [Språk](#languages)
   - [Kostnadsöversikt](#cost-tracking)
-  - [Omvandlingsprompts](#transform-prompts)
+  - [Transformera (inställningsflik)](#transform-settings)
   - [Användare](#users)
   - [API-konfiguration](#api-config)
   - [Om](#about)
@@ -89,9 +91,9 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Resultatet är för långsamt eller för dyrt](#the-result-is-too-slow-or-too-expensive)
   - [Gränssnittet är på fel språk](#the-interface-is-in-the-wrong-language)
   - [Texten är för liten eller svår att läsa](#the-text-is-too-small-or-hard-to-read)
-  - [Diagram i översiktspaneln är tomma](#dashboard-charts-are-empty)
+  - [Översiktspanelens sammanfattning ser tom ut](#dashboard-summary-looks-empty)
   - [Kostnad visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
-  - [Total kostnad stämmer inte med leverantörens faktura](#total-cost-does-not-match-my-provider-bill)
+  - [Total kostnad stämmer inte med min leverantörsräkning](#total-cost-does-not-match-my-provider-bill)
   - [Historiksida saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
   - [Webbapp: omdirigerad till inloggningssidan oväntat](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Webbadmin: glömt eller förlorat ett lösenord](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Du behöver inte välja en betald modell för att komma igång. Så fort du läg
 
 Med enkla ord:
 
-- En **modell** är den AI-motor som utför arbetet. Modeller visas med ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
-- En **API-nyckel** (eller, för Ollama, en **bas-URL**) är hur appen kommunicerar med leverantören.
+- I **Enkel** läge är en **kompetens** en förinställning (Gratis, Snabb, Avancerad, Teknisk, Juridisk) som motsvarar en modell för din valda **leverantör** (OpenRouter, OpenAI, Ollama och andra). Du väljer kompetensen i verktygsfältet vid Översätt, Omskriv och Transformera.
+- I **Avancerad** läge är en **modell** den AI-motor du väljer direkt. Modell-ID:n använder ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
+- En **API-nyckel** (eller, för Ollama, en **bas-URL**) är hur appen når den aktuella leverantören.
 
-Om du använder **skrivbordsappen** lägger du till nycklar i [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter, se [Så här får du en API-nyckel](#how-to-get-an-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller istället, till exempel `translategemma:4b`.
+Om du använder **skrivbordsappen**, lägg till nycklar i [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter-användning, se [Så här får du en gratis OpenRouter API-nyckel](#how-to-get-an-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller istället, till exempel `translategemma:4b`.
 
 Om du använder **webbversionen** konfigurerar serverägaren leverantörerna med miljövariabler, så du kan inte ange API-nycklar direkt i appen.
 
@@ -146,14 +149,14 @@ Om du använder skrivbordsappen, följ dessa steg:
 Om det här är första gången du använder Transrewrt, följ den här ordningen:
 
 1. Öppna appen.
-2. Välj ditt **Gränssnittsspråk** från jordklotikonet om det behövs.
+2. Välj ditt **Gränssnittsspråk** från globikonen om det behövs.
 3. Om du använder **skrivbordsappen**, öppna [**Inställningar** > **API-konfiguration**](#api-config), lägg till en API-nyckel för minst en leverantör (till exempel OpenRouter) och klicka på **Testa** för att verifiera att den fungerar.
-4. Öppna [**Inställningar** > **Modeller**](#models) och lägg till en eller flera modeller i **Valda modeller**.
-5. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina mest använda språk ska visas först.
-6. Gå till **Översätt** och kör en enkel översättning för att bekräfta att allt fungerar.
-7. När det fungerar kan du prova **Omskriv** och sedan **Transformera**.
+4. Öppna [**Inställningar** > **Allmänna inställningar**](#general-settings). I **Enkel** läge (standard), välj en **Leverantör** som har en konfigurerad nyckel. I **Avancerad** läge, öppna [**Inställningar** > **Modeller**](#models) och lägg till en eller flera modeller till **Valda modeller**.
+5. På **Översätt**, välj en **kompetens** (Enkel) eller **modell** (Avancerad) i verktygsfältet.
+6. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina mest använda språk ska visas först.
+7. Kör en enkel översättning för att bekräfta att allt fungerar, och prova sedan **Omskriv** och **Transformera**.
 
-Den här ordningen är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald modell.
+Denna ordning är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald kompetens/modell.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Använd sidofältet för att navigera i appen. Du kan dölja sidofältet för at
 Verktygsfältet ändras något beroende på var du befinner dig i appen.
 
 - Till vänster visas namnet på den aktuella sidan.
-- Till höger visas **modellväljaren** och kontrollen för **Gränssnittsspråk**.
+- Till höger visas **väljaren för kompetens eller modell** och kontrollen för **Gränssnittsspråk**.
 
-Med **modellväljaren** kan du välja vilken AI-motor som ska användas för den aktuella uppgiften.
+I **Enkel** läge visar verktygsfältet en **kompetensväljare** (Gratis, Snabb, Avancerad, Teknisk, Juridisk och liknande förinställningar). Kompetenserna beror på den **Leverantör** du valt i [**Inställningar** > **Allmänna inställningar**](#general-settings). Om **Leverantör** är **Ollama**, visar verktygsfältet dina installerade lokala modeller istället för kompetenser.
+
+I **Avancerad** läge låter **modellväljaren** dig välja vilken AI-motor som ska användas för den aktuella uppgiften.
 
 ![Model selector](../images/screenshots/sv/model-selector.png)
 
-Vissa gratismodeller kanske inte alltid är tillgängliga – ibland är de offline eller har en användningsgräns. Om detta inträffar tar appen automatiskt bort modellen från din tillgängliga lista. För att kontrollera vilka modeller som visas går du till [**Inställningar** > **Modeller**](#models) och redigerar din modelllista.
- Du kan också öppna modellinställningarna direkt genom att klicka på leverantörens ikon till vänster om modellnamnet i verktygsfältet.
+I Avancerat läge kanske vissa kostnadsfria modeller inte alltid är tillgängliga – de kan vara offline eller ha nått en användningsgräns. Appen kan automatiskt ta bort modellen från din lista. För att styra vilka modeller som visas, gå till [**Inställningar** > **Modeller**](#models). Du kan öppna modellinställningar från leverantörsikonen till vänster om modellnamnet i verktygsfältet.
 
 <br/>
 
@@ -259,7 +263,7 @@ Använd **Översätt** när du vill konvertera text från ett språk till ett an
 1. Öppna **Översätt**.
 2. Välj ett språk i **Från**.
 3. Välj ett språk i **Till**.
-4. Välj en modell i verktygsfältet.
+4. Välj en kompetens (Enkel) eller modell (Avancerad) i verktygsfältet.
 5. Skriv eller klistra in text i **Inmatning**.
 6. Klicka på **Översätt**.
 7. Läs resultatet i **Utmatning**.
@@ -350,7 +354,7 @@ Detta är den mest flexibla delen av appen. Du kan använda den för uppgifter s
 <a id="if-you-have-no-prompts-yet"></a>
 ### Om du inte har några prompts ännu
 
-Om din promptlista är tom klickar du på **Läs in exempelfrågor** i Transform-arbetsytan. Samma kontroll finns alltid tillgänglig under [**Inställningar** > **Omvandlingsprompts**](#transform-prompts) på export/import-rad. Båda lägger till inbyggda exempel så att du kan komma igång snabbt.
+Om din promptlista är tom, klicka på **Läs in exempelfrågor** i Transform-arbetsytan. Samma kontroll finns alltid tillgänglig i [**Inställningar** > **Transformera**](#transform-settings) på export/import-rad. Båda lägger till inbyggda exempel så att du kan komma igång snabbt.
 
 <br/>
 
@@ -424,7 +428,9 @@ Detta är användbart när:
 <br/>
 
 > ℹ️ **OBS**<br/>
-> Du kan exportera och importera sparade prompts i [**Inställningar** > **Omvandlingsprompts**](#transform-prompts).
+> Du kan exportera och importera sparade prompts i [**Inställningar** > **Transformera**](#transform-settings).
+
+När du använder **Generera prompt**, **Förbättra prompt** eller **Översätt fråga** i promptredigeraren erbjuder **Enkel**-läge samma kompetensväljare som Översätt och Omskriv; **Avancerad**-läge använder modelllistan.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Använd **Översiktspanel** för att se hur mycket du använder appen och vad de
 <br/>
 
 > ℹ️ **OBS**<br/>
-> Om du endast använder **gratis** modeller kan **kostnads**belopp vara noll och sammanfattningar fokuserade på kostnad kan se tomma ut. På **Sammanfattning** visar fortfarande **Användning över tid** och **Användning per modell** **antal anrop** (översätt, omskriv och transformera) när det finns aktivitet under den valda perioden.
+> Om du endast använder **gratis** modeller kan **kostnads**belopp vara noll och kostnadsfokuserade KPI:er kan se tomma ut. Fliken **Sammanfattning** visar fortfarande antal anrop för översätt, omskriv och transformera när det finns aktivitet under den valda perioden.
 
 <br/>
 
@@ -461,11 +467,9 @@ Använd filterknapparna längst upp för att ändra tidsintervallet.
 <a id="dashboard-tabs"></a>
 ### Flikar i översiktspaneln
 
-- **Sammanfattning** ger en översikt över användning och kostnad. Den innehåller **Användning över tid** (stackade kumulativa **antal anrop** per dag för översätt, omskriv och transformera) och **Användning per modell** (totalt **antal anrop per modell**, inklusive transformera).
-- **Efter användning** bryter ner aktiviteten per översättningsspråk, omskrivningsläge och omvandlingsprompt.
-- **Efter modell** visar vilka modeller du har använt och vad de har kostat.
-- **Efter dag** visar dagliga totaler.
-- **Alla anrop** visar hela anropshistoriken och låter dig exportera den.
+- **Sammanfattning** visar KPI-kort: total kostnad, modeller använda, antal anrop per läge och kostnad (med andel av totalt antal anrop), genomsnittlig kostnad per anrop, genomsnittlig TPS samt de tre främsta modellerna efter antal anrop.
+- **Efter modell** listar varje modell med totalt antal anrop, total kostnad och genomsnittlig TPS; expandera en rad för en uppdelning per översätt, omskriv och transformera.
+- **Alla anrop** visar hela anropsloggen (sidindelad vid breda layouter, kort vid smala skärmar) och låter dig exportera den.
 
 <br/>
 
@@ -508,14 +512,14 @@ Klicka på **Historik** för att se historiken över dina åtgärder i **Transre
 <a id="filter-the-history"></a>
 ### Filtrera historiken
 
-**Historik** använder samma filter som sidan **Översiktspanel**. Använd dem för att välja tidsintervall.
+**Historik** använder samma tidsintervallfilter som sidan **Översiktspanel**.
 
 ![Dashboard filters](../images/screenshots/sv/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **OBS**<br/>
-> **Användar**-filtret är endast synligt för administratörer i webbversionen. Regelbundna användare kommer inte att se detta filter, och det är inte tillgängligt i skrivbordsappen.
+> I **webbappen** ser alla (inklusive administratörer) endast sin egen körningshistorik. **Användar**-filtret på **Översiktspanel** är för administratörer att granska användning och kostnader över konton; det gäller inte **Historik**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Detta är användbart om du vill granska aktiviteter utanför appen eller dela e
 
 De tillgängliga flikarna beror på plattformen och din roll:
 
-| Flik               | Skrivbord | Webb (admin) | Webb (vanlig användare) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Allmänna inställningar  |   yes   |     yes     |        yes         |
-  | Modeller            |   yes   |     yes     |        yes         |
-  | Språk         |   yes   |     yes     |        yes         |
-  | Kostnadsöversikt     |   yes   |     yes     |         -          |
-  | Omvandlingsprompts |   yes   |     yes     |        yes         |
-  | Användare             |    -    |     yes     |         -          |
-  | API-konfiguration        |   yes   |     yes     |         -          |
-  | Om             |   ja   |     ja     |        ja         |
+| Flik              | Skrivbord | Webb (admin) | Webb (vanlig användare) | Anteckningar                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Allmänna inställningar |   ja   |     ja     |        ja         | Inkluderar **AI-upplevelse** (Enkel / Avancerad) |
+  | Modeller           |   ja   |     ja     |        ja         | Endast när **AI-upplevelse** är **Avancerad** |
+  | Språk        |   ja   |     ja     |        ja         |                                              |
+  | Kostnadsöversikt    |   ja   |     ja     |         -          |                                              |
+  | Transformera        |   ja   |     ja     |        ja         | Massimport/export av omvandlingsprompts      |
+  | Användare            |    -    |     ja     |         -          |                                              |
+  | API-konfiguration       |   ja   |     ja     |         -          |                                              |
+  | Om            |   ja   |     ja     |        ja         |                                              |
+
+I **Enkel**-läge sker modellval via kompetenser i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** är dold.
 
 <br/>
 
 > ℹ️ **OBS**<br/>
-> I webbversionen har varje användare sin egen konfiguration. Inställningar som valda modeller, språk, allmänna alternativ och omvandlingsprompts lagras per användare. Ändringar du gör påverkar inte andra användare.
+> I webbversionen har varje användare sin egen konfiguration. Inställningar som AI-upplevelse, leverantör, valda modeller eller kompetenser, språk, allmänna alternativ och omvandlingsprompts lagras per användare. Ändringar du gör påverkar inte andra användare.
 
 <br/>
 
@@ -564,7 +570,14 @@ De tillgängliga flikarna beror på plattformen och din roll:
 <a id="general-settings"></a>
 ### Allmänna inställningar
 
-Använd **Allmänna inställningar** för att styra beteendet vid inmatning, om körningsdetaljer lagras för **Historik**, samt utseende.
+Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om körningsdetaljer sparas för **Historik**, utseende och hur du väljer AI för Översätt, Omskriv och Transformera.
+
+**AI-upplevelse**
+
+- **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda kompetensförinställningarna i verktygsfältet. **Ollama** listar modeller installerade på din dator istället för kompetenser.
+- **Avancerad**: välj enskilda modeller i verktygsfältet; hantera listan under [**Inställningar** > **Modeller**](#models).
+
+I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inställda i servermiljön. I **skrivbordsappen** konfigurerar du nycklar under [**API-konfiguration**](#api-config).
 
 **Beteende**
 
@@ -576,8 +589,8 @@ Använd **Allmänna inställningar** för att styra beteendet vid inmatning, om 
 
 **Historik**
 
-- **Spara körningshistorik** styr om varje översättning, omskrivning och transformering lagrar **inmatning och utdata** för sidofältets [**Historik**](#history). Om du stänger av detta visas en bekräftelsedialog; om du bekräftar tas lagrad historiktext bort från databasen.
-- **Radera historikdata** låter dig ta bort lagrad text efter ålder (till exempel äldre än några månader, eller **alla data (rensa)**) med hjälp av **Radera data**. Det påverkar endast sparad körningstext för **Historik**-vyn; det tar **inte** bort kostnads- eller användningssummor. För att ta bort eller trimma **kostnads**data, använd [**Inställningar** > **Kostnadsöversikt**](#cost-tracking).
+- **Spara körningshistorik** styr om varje översättning, omskrivning och transformering lagrar **inmatning och utdata** för sidofältets vy [**Historik**](#history). Om du stänger av det efterfrågas bekräftelse; om du bekräftar tas lagrad historiktext bort från databasen. Om etiketten visar *inaktiverad av administratören* har din installation `HISTORY_DISABLED` aktiverat i miljön (se [README](README.sv.md#configuration-and-environment)); du kan då inte aktivera historiken igen via användargränssnittet.
+- **Radera historikdata** låter dig ta bort lagrad text baserat på ålder (till exempel äldre än några månader, eller **alla data (rensa)**) med hjälp av **Radera data**. Det påverkar endast sparad körningstext för vyn **Historik**; det tar **inte bort** kostnads- eller användningssammanfattningar. För att ta bort eller trimma **kostnads**data, använd [**Inställningar** > **Kostnadsöversikt**](#cost-tracking).
 
 **Utseende**
 
@@ -602,7 +615,7 @@ Säkerhetskopior skapade i antingen webb- eller skrivbordsversionen kan återst�
 <a id="models"></a>
 ### Modeller
 
-Använd **Inställningar** > **Modeller** för att välja vilka modeller som visas i verktygsfältet.
+Den här fliken är endast tillgänglig när **AI-upplevelse** är inställd på **Avancerad** i [**Allmänna inställningar**](#general-settings). Använd **Inställningar** > **Modeller** för att välja vilka modeller som ska visas i verktygsfältet.
 
 ![Settings Models tab](../images/screenshots/sv/settings-models.png)
 
@@ -679,10 +692,10 @@ Använd **Inställningar** > **Kostnadsöversikt** för att hantera kostnadsinfo
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Omvandlingsprompts
+<a id="transform-settings"></a>
+### Transformera (inställningsflik)
 
-Använd **Inställningar** > **Omvandlingsprompts** för att hantera prompts i stora mängder.
+Använd **Inställningar** > **Transformera** för att hantera prompts i större skala.
 
 Du kan:
 
@@ -769,8 +782,9 @@ Om något inte fungerar som förväntat, kontrollera följande punkter först.
 
 Kontrollera att:
 
-- du har valt en modell i verktygsfältet
-- minst en modell finns listad under [**Inställningar** > **Modeller**](#models)
+- du har valt en **kompetens** (Enkel) eller en **modell** (Avancerad) i verktygsfältet
+- i **Enkel**-läge har [**Inställningar** > **Allmänna inställningar**](#general-settings) en **Leverantör** med en fungerande nyckel (eller Ollama-URL) och minst en kompetens för den leverantören
+- i **Avancerad**-läge finns minst en modell listad i [**Inställningar** > **Modeller**](#models)
 - din API-konfiguration fungerar
 
 Om du använder skrivbordsappen:
@@ -784,13 +798,9 @@ Om du använder skrivbordsappen:
 <a id="the-model-list-is-empty"></a>
 ### Modellistan är tom
 
-Öppna [**Inställningar** > **Modeller**](#models) och klicka på **Uppdatera**.
+I **Enkel**-läge, öppna [**Inställningar** > **Allmänna inställningar**](#general-settings), bekräfta att **Leverantör** är inställd och lägg till eller testa nycklar i [**API-konfiguration**](#api-config) (skrivbord) eller be din administratör (webb). För **Ollama**, kör **Testa** på bas-URL:en och se till att modeller är installerade lokalt.
 
-Om det behövs:
-
-- sök efter en modell
-- aktivera **Endast gratis**
-- lägg till en eller flera modeller i **Valda modeller**
+I **Avancerad**-läge, öppna [**Inställningar** > **Modeller**](#models) och klicka på **Uppdatera**. Om det behövs, sök efter en modell, aktivera **Endast gratis**, och lägg till modeller i **Valda modeller**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Klicka på globikonen i [verktygsfältet](#toolbar) och välj önskat **Gränssn
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Översiktspanelns diagram är tomma
+<a id="dashboard-summary-looks-empty"></a>
+### Översiktspanelens sammanfattning ser tom ut
 
 Detta är normalt om:
 
-- du endast använder **gratis modeller** och tittar på **kostnads**siffror (de kan vara noll); diagram över **användnings** antal anrop på fliken **Sammanfattning** kräver fortfarande data från den valda perioden
-- det valda **tidsfiltret** inte täcker den period då anrop gjordes – prova **Alla** för att kontrollera
+- du använder endast **gratis modeller** och tittar på **kostnads**siffror (de kan vara noll); KPI:er för antal anrop i **Sammanfattning** kräver fortfarande data från den valda perioden
+- det valda **tidsfiltret** täcker inte den period då anrop gjordes – prova **Alla** för att kontrollera
 
-Om diagrammen fortfarande är tomma efter att du valt **Alla**, bekräfta att anrop visas i [**Historik**](#history) eller på fliken **Alla anrop**.
+Om KPI:er fortfarande är noll efter att ha valt **Alla**, bekräfta att anrop visas i [**Historik**](#history) eller i fliken **Alla anrop**.
 
 <br/>
 
@@ -856,7 +866,7 @@ För att göra totalsumman mer i linje med din faktiska OpenRouter-utgift, öppn
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Historiksida saknas i sidofältet
 
-**Spara körningshistorik** kan vara inaktiverat. Öppna [**Inställningar** > **Allmänna inställningar**](#general-settings) och aktivera det. Observera att att aktivera det inte återställer tidigare borttagna historikdata.
+**Spara körningshistorik** kan vara inaktiverat. Öppna [**Inställningar** > **Allmänna inställningar**](#general-settings) och aktivera det om inte historiken är *inaktiverad av administratören* (`HISTORY_DISABLED` i miljön – se [README](README.sv.md#configuration-and-environment)). Att aktivera historik återställer inte tidigare borttagna texter.
 
 <br/>
 
@@ -912,8 +922,9 @@ När du redigerar en prompt måste du alltid klicka på **Spara** innan du klick
 - Använd [**Omskriv**](#rewrite) för dagliga formuleringsoptimeringar.
 - Använd [**Transformera**](#transform) när du behöver en återupprepad arbetsflödeslösning för en specifik uppgift.
 - Använd [**Översiktspanel**](#dashboard) om du vill hålla koll på användning och kostnad.
-- Använd [**Historik**](#history) för att granska tidigare åtgärder och deras fullständiga inmatning/utdata.
-- Exportera prompts regelbundet om du bygger en promptbibliotek som du vill spara (se [Omvandlingsprompts](#transform-prompts)) eller om du vill dela det med andra.
+- Använd [**Historik**](#history) för att granska tidigare operationer och deras fullständiga in- och utdata.
+- Exportera prompts regelbundet om du bygger ett promptbibliotek som du vill spara säkert (se [Transformera](#transform)) eller om du vill dela det med andra.
+- Stanna i **Enkel**-läge tills du behöver detaljerad kontroll över modell-ID:n; byt till **Avancerad** när du redan vet vilka modeller du vill använda.
 
 <br/><br/>
 

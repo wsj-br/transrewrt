@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:25:35.398Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:33:22.292Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: jv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt mbantu sampeyan ngolah tèks kanthi telung cara utama:
 - **Terjemahake** - ngowahi tèks saka siji basa menyang basa liyane.
 - **Tulis ulang** - nulis maneh tèks nganggo gaya sing beda, kaya luwih cetha, luwih cendhak, utawa luwih resmi.
 - **Ubah** - ngolah tèks nganggo instruksi AI khusus sing diarani prompt.
+
+Secara baku, aplikasi dijalanake ing modus **Gampang**: sampeyan milih **ketrampilan** (kaya Gratis, Cepet, utawa Teknis) lan **panyedhiya** ing Setelan, tanpa milih ID model. Pindah menyang **Lanjutan** ing [**Setelan** > **Setelan Umum**](#general-settings) yen sampeyan pengin daftar model klasik saka [**Setelan** > **Model**](#models).
 
 <br/>
 
@@ -78,8 +80,8 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
   - [Setelan umum](#general-settings)
   - [Model](#models)
   - [Basa](#languages)
-  - [Pelacakan biaya](#cost-tracking)
-  - [Prompt transformasi](#transform-prompts)
+  - [Pelacakan Biaya](#cost-tracking)
+  - [Ubah (tab setelan)](#transform-settings)
   - [Pangguna](#users)
   - [Konfigurasi API](#api-config)
   - [Tentang](#about)
@@ -88,10 +90,10 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
   - [Dhaptar model kosong](#the-model-list-is-empty)
   - [Asilé alon banget utawa larang banget](#the-result-is-too-slow-or-too-expensive)
   - [Antarmuka nganggo basa sing salah](#the-interface-is-in-the-wrong-language)
-  - [Tèks cilik banget utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
-  - [Grafik dasbor kosong](#dashboard-charts-are-empty)
-  - [Biaya nuduhake "ora kasedhiya" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
-  - [Total biaya ora cocog karo tagihan panyedhiya](#total-cost-does-not-match-my-provider-bill)
+  - [Teks kecil banget utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
+  - [Ringkasan Dasbor katon kosong](#dashboard-summary-looks-empty)
+  - [Biaya nuduhake "ora tersedia" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
+  - [Total biaya ora cocog karo tagihan panyedhiya sampeyan](#total-cost-does-not-match-my-provider-bill)
   - [Kaca Riwayat ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
   - [Aplikasi web: dialihake menyang kaca login kanthi ora dikarepake](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Admin web: lali utawa ilang sandhi](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +116,11 @@ Sampeyan ora kudu milih model bayar kanggo miwiti. Sawisé sampeyan nambahaké k
 
 Ing basa sing luwih gampang:
 
-- Siji **model** yaiku mesin AI sing nindakaké tugas. Model dicantumaké kanthi **awalan panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
-- Siji **kunci API** (utawa kanggo Ollama, **URL dhasar**) yaiku cara aplikasi ngakses panyedhiya kasebut.
+- Ing modus **Gampang**, **ketrampilan** iku preset (Gratis, Cepet, Lanjutan, Teknis, Hukum) sing mapan menyang model kanggo **panyedhiya** sing dipilih (OpenRouter, OpenAI, Ollama, lan liyane). Sampeyan milih ketrampilan ing bilah alat ing Terjemahake, Tulis Ulang, lan Ubah.
+- Ing modus **Lanjutan**, **model** iku mesin AI sing sampeyan pilih langsung. ID model nggunakake **awalan panyedhiya** (kaya conto `openrouter/…`, `openai/…`, `ollama/…`).
+- **Kunci API** (utawa, kanggo Ollama, **URL dhasar**) iku cara aplikasi ngakses panyedhiya kasebut.
 
-Yen sampeyan nggunakaké **aplikasi desktop**, tambahaké kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakaké. Kanggo panggunaan OpenRouter mung, deleng [Cara entuk kunci API](#how-to-get-an-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakaké kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com)) lan nggunakaké model lokal minangka gantènè, kaya `translategemma:4b`.
+Yen sampeyan nggunakake **aplikasi desktop**, tambahake kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakake. Kanggo panggunaan OpenRouter mung, deleng [Carane entuk kunci API OpenRouter gratis](#how-to-get-an-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakake kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com))) lan nggunakake model lokal tinimbang, kaya `translategemma:4b`.
 
 Yen sampeyan nggunakaké **versi web**, pemilik server ngonfigurasi panyedhiya nganggo variabel lingkungan, dadi sampeyan ora bisa ngisi kunci API langsung ing aplikasi.
 
@@ -145,15 +148,15 @@ Yen sampeyan nggunakaké aplikasi desktop, tindakaké langkah-langkah iki:
 
 Yen iki wektu pisanan sampeyan nggunakaké Transrewrt, tindakaké urutan iki:
 
-1. Bukak aplikasi.
+1. Buka aplikasi.
 2. Pilih **Basa antarmuka** sampeyan saka ikon globe yen perlu.
-3. Yen sampeyan nggunakaké **aplikasi desktop**, mbukak [**Setelan** > **Konfigurasi API**](#api-config), tambahaké kunci API kanggo paling ora siji panyedhiya (contone OpenRouter), lan klik **Tes** kanggo mastekake yèn iku bisa digunakaké.
-4. Mbukak [**Setelan** > **Model**](#models) lan tambahaké siji utawa luwih model menyang **Model Dipilih**.
-5. Mbukak [**Setelan** > **Basa**](#languages) lan pilih **Basa utama** sampeyan yen pengin basa sing paling asring digunakaké katon luwih dhisik.
-6. Menyang **Terjemahake** lan jalanaké terjemahan sederhana kanggo mastekake kabeh fungsi bisa digunakaké.
-7. Sawisé iku bisa, cobanen **Tulis ulang** banjur **Ubah**.
+3. Yen sampeyan nggunakake **aplikasi desktop**, buka [**Setelan** > **Konfigurasi API**](#api-config), tambah kunci API kanggo paling ora siji panyedhiya (kaya OpenRouter), lan klik **Tes** kanggo ngonfirmasi bisa digunakake.
+4. Buka [**Setelan** > **Setelan Umum**](#general-settings). Ing modus **Gampang** (baku), pilih **Panyedhiya** sing duwe kunci dikonfigurasi. Ing modus **Lanjutan**, buka [**Setelan** > **Model**](#models) lan tambah siji utawa luwih model menyang **Model Dipilih**.
+5. Ing **Terjemahake**, pilih **ketrampilan** (Gampang) utawa **model** (Lanjutan) ing bilah alat.
+6. Buka [**Setelan** > **Basa**](#languages) lan pilih **Basa Utama** sampeyan yen pengin basa sing paling asring digunakake metune dhisik.
+7. Jalanake terjemahan sederhana kanggo ngonfirmasi kabeh bisa digunakake, banjur coba **Tulis Ulang** lan **Ubah**.
 
-Urutan iki penting. Iki nyegah masalah paling umum nalika panggunaan pisanan: nyoba nglakokaké tugas sadurungé aplikasi duwé sambungan API sing bisa digunakaké utawa model sing dipilih.
+Urutan iki penting. Iki nyegah masalah paling umum nalika nggunakake pertama kali: nyoba nglakokake tugas sadurunge aplikasi duwe koneksi API sing bisa digunakake utawa ketrampilan/model sing dipilih.
 
 <br/><br/>
 
@@ -203,14 +206,15 @@ Gunakake sidebar kanggo pindah ing app. Sampeyan bisa nutup sidebar kanggo entuk
 Toolbar owah kanthi tipis gumantung saka lokasi sampeyan ing app.
 
 - Ing kiwa, nuduhake jeneng kaca saiki.
-- Ing tengen, nuduhake **pemilih model** lan kontrol **Basa antarmuka**.
+- Ing tengen, nuduhake **pemilih ketrampilan utawa model** lan kontrol **Basa antarmuka**.
 
-Pemilih **model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
+Ing modus **Gampang**, bilah alat nuduhake **pemilih ketrampilan** (Gratis, Cepet, Lanjutan, Teknis, Hukum, lan preset liyane). Ketrampilan gumantung marang **Panyedhiya** sing dipilih ing [**Setelan** > **Setelan Umum**](#general-settings). Yen **Panyedhiya** iku **Ollama**, bilah alat nuduhake model lokal sing wis diinstal tinimbang ketrampilan.
+
+Ing modus **Lanjutan**, **pemilih model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
 
 ![Model selector](../images/screenshots/jv/model-selector.png)
 
-Model gratis sawetara bisa uga ora tansah tersedia—kadhangkala offline utawa duwe watesan panggunaan. Yen iki kedadeyan, aplikasi bakal sacara otomatis mbusak model kasebut saka dhaptar sing tersedia kanggo sampeyan. Kanggo ngontrol model sing katon, menyang [**Setelan** > **Model**](#models) lan sunting dhaptar model sampeyan.
-Sampeyan uga bisa mbukak setelan model langsung kanthi klik ikon panyedhiya ing sisih kiwa jeneng model ing bilah gaweyan.
+Ing modus Lanjutan, sawetara model gratis bisa uga ora tansah tersedia—bisa mati (offline) utawa wis tekan wates panggunaan. Aplikasi bisa mbusak model kasebut saka dhaptar sampeyan sacara otomatis. Kanggo ngontrol model apa wae sing katon, menyang [**Setelan** > **Model**](#models). Sampeyan bisa mbukak setelan model saka ikon panyedhiya ing sisih kiwa jeneng model ing bilah gawe.
 
 <br/>
 
@@ -259,7 +263,7 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 1. Buka **Terjemahake**.
 2. Pilih basa ing **Saka**.
 3. Pilih basa ing **Menyang**.
-4. Pilih model ing toolbar.
+4. Pilih ketrampilan (Gampang) utawa model (Lanjutan) ing bilah alat.
 5. Ketik utawa tempel teks menyang **Input**.
 6. Klik **Terjemahake**.
 7. Maca asil ing **Output**.
@@ -350,7 +354,7 @@ Iki minangka bagéyan paling fleksibel saka aplikasi. Sampeyan bisa nggunakake k
 <a id="if-you-have-no-prompts-yet"></a>
 ### Yen durung duwé prompt
 
-Yen dhaftar prompt panjenengan kosong, klik **Load sample prompts** ing workspace Transform. Kontrol sing padha tansah kasedhiya ing [**Settings** > **Transform Prompts**](#transform-prompts) ing baris ekspor/impor. Kaloro kalungguhan nambah conto sing dibangun supaya panjenengan bisa miwiti kanthi cepet.
+Yen dhaptar prompt sampeyan kosong, klik **Muat contoh prompt** ing workspace Ubah. Kontrol sing padha tansah kasedhiya ing [**Setelan** > **Ubah**](#transform-settings) ing baris ekspor/impor. Kedhepan nambah contoh sing disertakake supaya sampeyan bisa miwiti kanthi cepet.
 
 <br/>
 
@@ -424,7 +428,9 @@ Iki migunani nalika:
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Sampeyan bisa ngekspor lan ngimpor prompt sing wis disimpen ing [**Setelan** > **Prompt transformasi**](#transform-prompts).
+> Sampeyan bisa ngekspor lan ngimpor prompt sing wis disimpen ing [**Setelan** > **Ubah**](#transform-settings).
+
+Nalika nggunakake **Generate prompt**, **Improve prompt**, utawa **Translate prompt** ing editor prompt, modus **Easy** maringi pilihan ketrampilan sing padha karo Translate lan Rewrite; modus **Advanced** nggunakake dhaftar model.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Gunakaké **Dasbor** kanggo ndeleng sepira akeh aplikasi digunakaké lan biayane
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Yèn sampeyan mung nggunakaké model **gratis**, jumlah **biaya** bisa waé nol lan ringkesan sing fokus marang biaya bisa katon kosong. Ing **Ringkasan**, **Panggunaan dhèk wektu** lan **Panggunaan dhèk model** isih nuduhaké **jumlah pangelingan API** (terjemahan, tulis ulang, lan ubah) nalika ana aktivitas ing periode sing dipilih.
+> Yen mung nggunakake model **gratis**, jumlah **biaya** bisa nol lan KPI sing fokus marang biaya bisa katon kosong. Tab **Ringkasan** isih nuduhake jumlah pangelingan kanggo terjemahan, nulis ulang, lan transformasi nalika ana aktivitas ing periode sing dipilih.
 
 <br/>
 
@@ -461,11 +467,9 @@ Gunakaké tombol saringan ing ndhuwur kanggo ngowahi rentang wektu.
 <a id="dashboard-tabs"></a>
 ### Tab Dasbor
 
-- **Ringkasan** menehi gambaran umum babagan panggunaan lan biaya. Kalebu **Panggunaan dhèk wektu** (jumlah kumulatif ditumpuk **panggilan** saben dina kanggo terjemahan, tulis ulang, lan ubah) lan **Panggunaan dhèk model** (total **panggilan saben model**, kalebu transformasi).
-- **Dhèk panggunaan** ngurai aktivitas dhèk basa terjemahan, modus nulis ulang, lan prompt transformasi.
-- **Dhèk model** nuduhaké model apa wae sing digunakaké lan biayane.
-- **Dhèk dina** nuduhaké total saben dina.
-- **Kabeh pangelingan API** nuduhaké riwayat pangelingan API lengkap lan ngidini sampeyan ngekspor.
+- **Ringkasan** nuduhake kartu KPI: total biaya, model sing digunakake, jumlah pangelingan lan biaya saben modus (karo bagéan saka total pangelingan), biaya rata-rata saben pangelingan, TPS rata-rata, lan telu model paling dhuwur miturut jumlah pangelingan.
+- **Dhèk model** menda saben model kanthi total pangelingan, total biaya, lan TPS rata-rata; bukak baris kanggo rincian miturut terjemahan, nulis ulang, lan transformasi.
+- **Kabeh pangelingan API** nuduhake log pangelingan lengkap (dipaginasi ing tata letak ambegan, kertu ing layar sempit) lan ngidini ekspor.
 
 <br/>
 
@@ -508,14 +512,14 @@ Klik **Riwayat** kanggo ndeleng riwayat tindakan sampeyan ing jero **Transrewrt*
 <a id="filter-the-history"></a>
 ### Saring riwayat
 
-**Riwayat** nggunakake saringan sing padha karo kaca **Dasbor**. Gunakake kanggo milih rentang wektu.
+**Riwayat** nggunakake filter rentang wektu sing padha karo kaca **Dasbor**.
 
 ![Dashboard filters](../images/screenshots/jv/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Saringan **Pangguna** mung katon kanggo administrator ing versi web. Pangguna biasa ora bakal ndeleng saringan iki, lan ora kasedhiya ing aplikasi desktop.
+> Ing **aplikasi web**, kabeh wong (kalebu administrator) mung weruh riwayat eksekusi dhéwé. Filter **Pangguna** ing **Dasbor** kanggo admin kanggo ngevaluasi panggunaan lan biaya ing akun; ora berlaku kanggo **Riwayat**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Bukak **Setelan** saka sidebar kanggo nyetel perilaku aplikasi.
 
 Tab sing tersedia gumantung marang platform lan peran sampeyan:
 
-| Tab               | Desktop | Web (admin) | Web (pangguna biasa) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Setelan Umum  |   ya   |     ya     |        ya         |
-  | Model            |   ya   |     ya     |        ya         |
-  | Basa         |   ya   |     ya     |        ya         |
-  | Pelacakan Biaya     |   ya   |     ya     |         -          |
-  | Prompt Transformasi |   ya   |     ya     |        ya         |
-  | Pangguna             |    -    |     ya     |         -          |
-  | Konfigurasi API        |   ya   |     ya     |         -          |
-  | Tentang             |   ya   |     ya     |        ya         |
+| Tab              | Desktop | Web (admin) | Web (pangguna biasa) | Cathetan                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Setelan Umum |   ya   |     ya     |        ya         | Kalebu **Pengalaman AI** (Easy / Advanced) |
+  | Model           |   ya   |     ya     |        ya         | Mung nalika **Pengalaman AI** ing modus **Advanced** |
+  | Basa        |   ya   |     ya     |        ya         |                                              |
+  | Pelacakan Biaya    |   ya   |     ya     |         -          |                                              |
+  | Ubah        |   ya   |     ya     |        ya         | Impor/ekspor massal prompt transformasi      |
+  | Pangguna            |    -    |     ya     |         -          |                                              |
+  | Konfigurasi API       |   ya   |     ya     |         -          |                                              |
+  | Tentang            |   ya   |     ya     |        ya         |                                              |
+
+Ing modus **Easy**, pilihan model dilakoni liwat ketrampilan ing toolbar lan **Panyedhiya** ing Setelan Umum; tab **Model** disembunyikake.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Ing versi web, saben pangguna duwe konfigurasine dhewe. Setelan kaya model sing dipilih, basa, opsi umum, lan prompt transformasi disimpen saben pangguna. Owah-owahan sing sampeyan gawe ora mangaruhi pangguna liya.
+> Ing versi web, saben pangguna duwe konfigurasi dhéwé. Setelan kaya pengalaman AI, panyedhiya, model utawa ketrampilan sing dipilih, basa, opsi umum, lan prompt transformasi disimpen saben pangguna. Owah-owahan sing ditindakake ora mangaruhi pangguna liya.
 
 <br/>
 
@@ -564,7 +570,14 @@ Tab sing tersedia gumantung marang platform lan peran sampeyan:
 <a id="general-settings"></a>
 ### Setelan Umum
 
-Gunakake **Setelan Umum** kanggo ngatur perilaku ngetik, apakah rincian eksekusi disimpen kanggo **Riwayat**, lan penampilan.
+Gunakake **Setelan Umum** kanggo ngontrol perilaku ngetik, apa rincian eksekusi disimpen kanggo **Riwayat**, penampilan, lan cara milih AI kanggo Terjemahake, Nulis Ulang, lan Ubah.
+
+**Pengalaman AI**
+
+- **Easy** (baku): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya cloud nggunakake preset ketrampilan bawaan ing toolbar. **Ollama** menda model sing diinstal ing mesin dhéwé tinimbang ketrampilan.
+- **Advanced**: pilih model dhéwé ing toolbar; atur dhaftar ing [**Setelan** > **Model**](#models).
+
+Ing **aplikasi web**, panyedhiya sing katon gumantung marang kunci API sing disetel ing lingkungan server. Ing **aplikasi desktop**, atur kunci ing [**Konfigurasi API**](#api-config).
 
 **Perilaku**
 
@@ -576,8 +589,8 @@ Gunakake **Setelan Umum** kanggo ngatur perilaku ngetik, apakah rincian eksekusi
 
 **Riwayat**
 
-- **Simpen riwayat eksekusi** ngatur apa saben terjemahan, tulis ulang, lan transformasi nyimpen **teks input lan output** kanggo tampilan [**Riwayat**](#history) ing sisih. Mateni fitur iki bakal takon konfirmasi; yen sampeyan konfirmasi, teks riwayat sing disimpen bakal dihapus saka database.
-- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen miturut umur (contone sing wis luwih saka sawetara wulan, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mangaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki ora **menghapus** total biaya utawa data panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
+- **Simpen riwayat eksekusi** ngontrol apa saben terjemahan, nulis ulang, lan ngowahi nyimpen **input lan teks output** kanggo tampilan [**Riwayat**](#history) ing samping. Mateni fitur iki bakal takon konfirmasi; yen sampeyan konfirmasi, teks riwayat sing disimpen bakal dihapus saka database. Yen label nuduhake *dinonaktifake déning administrator*, instalasi sampeyan duwé `HISTORY_DISABLED` disetel ing lingkungan (deleng [README](README.jv.md#configuration-and-environment)); sampeyan ora bisa ngaktifake maneh riwayat liwat UI.
+- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen berdasar umur (contone sing wis tuwa saka sawetara sasi, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mengaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki ora **menghapus** total biaya utawa panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
 
 **Penampilan**
 
@@ -602,7 +615,7 @@ Cadangan sing digawe ing versi web utawa desktop bisa dipulihake ing versi liyan
 <a id="models"></a>
 ### Model
 
-Gunakake **Setelan** > **Model** kanggo milih model sing katon ing toolbar.
+Tab iki mung tersedia nalika **Pengalaman AI** disetel dadi **Lanjutan** ing [**Setelan Umum**](#general-settings). Gunakna **Setelan** > **Model** kanggo milih model apa wae sing katon ing toolbar.
 
 ![Settings Models tab](../images/screenshots/jv/settings-models.png)
 
@@ -679,10 +692,10 @@ Gunakake **Setelan** > **Pelacakan Biaya** kanggo ngatur informasi biaya.
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Prompt transformasi
+<a id="transform-settings"></a>
+### Ubah (tab setelan)
 
-Gunakake **Setelan** > **Prompt Transformasi** kanggo ngatur prompt sacara massal.
+Gunakna **Setelan** > **Ubah** kanggo ngatur prompt sacara massal.
 
 Sampeyan bisa:
 
@@ -769,9 +782,10 @@ Yen ana sing ora mlaku kaya sing dikarepake, priksa dhisik poin-poin ing ngisor 
 
 Priksa manawa:
 
-- sampeyan wis milih model ing bilah gawe
-- paling ora siji model katon ing [**Setelan** > **Model**](#models)
-- setelan API sampeyan wis mlaku kanthi bener
+- sampeyan wis milih **ketrampilan** (Gampang) utawa **model** (Lanjutan) ing toolbar
+- ing modus **Gampang**, [**Setelan** > **Setelan Umum**](#general-settings) duwe **Panyedhiya** kanthi kunci sing bisa digunakake (utawa URL Ollama) lan paling ora siji ketrampilan kanggo panyedhiya kasebut
+- ing modus **Lanjutan**, paling ora siji model kasebut ana ing [**Setelan** > **Model**](#models)
+- setelan API sampeyan lagi mlaku kanthi bener
 
 Yen sampeyan nggunakake aplikasi desktop:
 
@@ -784,13 +798,9 @@ Yen sampeyan nggunakake aplikasi desktop:
 <a id="the-model-list-is-empty"></a>
 ### Dhaftar model kosong
 
-Bukak [**Setelan** > **Model**](#models) lan klik **Segari**.
+Ing modus **Gampang**, bukak [**Setelan** > **Setelan Umum**](#general-settings), pastekna **Panyedhiya** wis disetel, lan tambah utawa tes kunci ing [**Konfigurasi API**](#api-config) (desktop) utawa takon marang administrator sampeyan (web). Kanggo **Ollama**, jalanke **Tes** ing URL dasar lan pastekna model-model wis diinstal sacara lokal.
 
-Yen perlu:
-
-- goleki model
-- aktifake **Mung Gratis**
-- tambah siji utawa luwih model menyang **Model Dipilih**
+Ing modus **Lanjutan**, bukak [**Setelan** > **Model**](#models) lan klik **Segari**. Yen perlu, goleki model, aktifake **Mung Gratis**, lan tambahake model menyang **Model Dipilih**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan ganti:
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Grafik Dasbor kosong
+<a id="dashboard-summary-looks-empty"></a>
+### Ringkesan Dasbor katon kosong
 
 Iki normal yen:
 
-- sampeyan mung nggunakake **model gratis** lan sampeyan ndeleng angka **biaya** (bisa uga nol); grafik jumlah panggilan **panggunaan** ing **Ringkasan** isih kudu data saka periode sing dipilih
-- **saringan wektu** sing dipilih ora nutupi periode nalika panggilan dilakokake - coba **Kabeh** kanggo mriksa
+- sampeyan mung nggunakake **model gratis** lan sampeyan lagi ndeleng angka **biaya** (bisa uga nol); KPI jumlah panggilan ing **Ringkasan** isih perlu data saka periode sing dipilih
+- **saringan wektu** sing dipilih ora nutupi periode nalika panggilan dilakoni — coba **Kabeh** kanggo mriksa
 
-Yen grafik isih kosong sawise milih **Kabeh**, pasthike yen panggilan katon ing [**Riwayat**](#history) utawa ing tab **Kabeh panggilan API**.
+Yen KPI isih nol sawise milih **Kabeh**, pastekna yen panggilan katon ing [**Riwayat**](#history) utawa ing tab **Kabeh panggilan**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Kanggo njaluk total luwih cedhak karo pengeluaran OpenRouter nyata sampeyan, buk
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Kaca Riwayat ilang saka sisih
 
-**Simpen riwayat eksekusi** bisa uga dimateni. Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan aktifake. Catheten yen ngaktifake ora mbalekake data riwayat sing wis dihapus sadurunge.
+**Simpen riwayat eksekusi** bisa uga dimateni. Bukak [**Setelan** > **Setelan Umum**](#general-settings) lan aktifake, kajaba riwayat *dinonaktifake déning administrator* (`HISTORY_DISABLED` ing lingkungan — deleng [README](README.jv.md#configuration-and-environment)). Ngaktifake riwayat ora bakal mulihake teks sing sadurunge wis dihapus.
 
 <br/>
 
@@ -912,8 +922,9 @@ Saat nyunting prompt, tansah klik **Simpen** sadurunge klik **Mundur menyang Run
 - Gunakake [**Tulis ulang**](#rewrite) kanggo perbaikan basa saben dina.
 - Gunakake [**Ubah**](#transform) nalika sampeyan butuh alur kerja sing bisa diulang kanggo tugas tartamtu.
 - Gunakake [**Dasbor**](#dashboard) yen sampeyan pengin ngawasi panggunaan lan biaya.
-- Gunakake [**Riwayat**](#history) kanggo nelaah operasi sadurunge lan teks input/output lengkap.
-- Ekspor prompt kanthi rutin yen sampeyan nyusun pusthaka prompt sing pengin disimpen kanthi aman (deleng [Prompt Transformasi](#transform-prompts)) utawa yen sampeyan pengin barengake karo wong liya.
+- Gunakna [**Riwayat**](#history) kanggo nimbang operasi lawas lan teks input/output lengkap.
+- Ekspor prompt kanthi rutin yen sampeyan lagi mbangun perpustakaan prompt sing pengin disimpen kanthi aman (deleng [Ubah](#transform)) utawa yen sampeyan pengin nuduhake marang wong liya.
+- Tetep ing modus **Gampang** nganti sampeyan butuh kontrol rinci marang ID model; pindha menyang **Lanjutan** nalika sampeyan wis ngerti model apa wae sing pengin digunakake.
 
 <br/><br/>
 

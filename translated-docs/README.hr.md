@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:05.554Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:05.072Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: hr
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ AI alat za obradu teksta: prevođenje između jezika, prepisivanje u različitim
 - **Prepisi** - ispravi gramatiku, poboljšaj jasnoću, formalno/neformalno, skraćivanje, proširivanje, tehnički sadržaj
 - **Transformiraj** - prilagođeni AI upiti; kreiraj i upravljaj upitima, opcionalni ciljni jezik po upitu
 - **Povijest** - potpuna povijest izvršavanja s ulaznim/izlaznim tekstom, filtriranjem i izvozom
-- **Modeli i troškovi** – odabir modela iz bilo kojeg konfiguriranog davatelja; nadzorne ploče za troškove i korištenje s dnevnicima, sažecima po modelu/operaciji/danu
-- **Korisnički sučelje (UI)** – višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
-- **Web način rada** – podrška za više korisnika s administratorskim ulogama
-- **Radna površina** – Electron aplikacija za Windows i Linux
-- **Samostalno hostiranje** – Docker slika za amd64 i arm64 (spremna za Raspberry Pi)
+- **Lako i Napredno** - Laki način (zadano): odabrane vještine po davatelju usluga (Besplatno, Brzo, Napredno, Tehničko, Pravno) bez odabira ID-ova modela; Napredni način: potpuni popis modela od vaših konfiguriranih davatelja usluga
+- **Modeli i trošak** - nadzorne ploče za trošak i korištenje (Sažetak, Po modelu, Svi pozivi) s mogućnošću izvoza; OpenRouter prikazuje stvarne troškove, ostali davatelji usluga koriste procjene
+- **Korisnički sučelje (UI)** - višejezično sučelje (preko 30 jezika, podrška za RTL), fontovi, ...
+- **Web način** - podrška za više korisnika s administratorskim ulogama
+- **Radna površina** - Electron aplikacija za Windows i Linux
+- **Samostalno hostiranje** - Docker slika za amd64 i arm64 (spremno za Raspberry Pi)
 
 Nakon instalacije, pogledajte [**vodič za korisnike**](USER-GUIDE.hr.md) za potpuni pregled svih značajki.
 

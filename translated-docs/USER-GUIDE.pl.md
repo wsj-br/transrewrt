@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-03T19:25:26.474Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:33:21.308Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -22,6 +22,8 @@ Transrewrt pomaga w pracy z tekstem na trzy główne sposoby:
 - **Tłumacz** – przekonwertuj tekst z jednego języka na inny.
 - **Przepisz** – przeformułuj tekst w innym stylu, na przykład bardziej klarowny, krótszy lub bardziej formalny.
 - **Przekształć** – przetwórz tekst za pomocą niestandardowych instrukcji AI zwanych promptami.
+
+Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **umiejętność** (na przykład Darmowe, Szybkie lub Techniczne) i **dostawcę** w Ustawieniach, bez wybierania identyfikatorów modeli. Przełącz się na **Zaawansowany** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz uzyskać klasyczną listę modeli z [**Ustawienia** > **Modele**](#models).
 
 <br/>
 
@@ -79,7 +81,7 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Modele](#models)
   - [Języki](#languages)
   - [Śledzenie kosztów](#cost-tracking)
-  - [Przekształcenia podpowiedzi](#transform-prompts)
+  - [Przekształć (karta ustawień)](#transform-settings)
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
   - [O programie](#about)
@@ -89,8 +91,8 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Wynik jest zbyt powolny lub zbyt kosztowny](#the-result-is-too-slow-or-too-expensive)
   - [Interfejs jest w niewłaściwym języku](#the-interface-is-in-the-wrong-language)
   - [Tekst jest zbyt mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
-  - [Wykresy na panelu głównym są puste](#dashboard-charts-are-empty)
-  - [Koszt pokazuje „nie dostępny” lub wydaje się błędny](#cost-shows-not-available-or-seems-wrong)
+  - [Podsumowanie na panelu głównym wygląda na puste](#dashboard-summary-looks-empty)
+  - [Koszt pokazuje „nie dostępny” lub wydaje się nieprawidłowy](#cost-shows-not-available-or-seems-wrong)
   - [Całkowity koszt nie zgadza się z rachunkiem dostawcy](#total-cost-does-not-match-my-provider-bill)
   - [Strona Historia brakuje w pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
   - [Aplikacja internetowa: niespodziewane przekierowanie do strony logowania](#web-app-redirected-to-the-login-page-unexpectedly)
@@ -114,10 +116,11 @@ Nie musisz wybierać płatnego modelu, aby rozpocząć. Gdy tylko dodasz swój k
 
 Prościej mówiąc:
 
-- **Model** to silnik AI, który wykonuje pracę. Modele są wyświetlane z **prefiksem dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
-- **Klucz API** (lub w przypadku Ollama – **podstawowy adres URL**) umożliwia aplikacji połączenie się z danym dostawcą.
+- W trybie **Łatwy**, **umiejętność** to ustawienie wstępne (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne), które odpowiada modelowi wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). Wybierasz umiejętność na pasku narzędzi w trybach Tłumacz, Przepisz i Przekształć.
+- W trybie **Zaawansowany**, **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **prefiksu dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
+- **Klucz API** (lub w przypadku Ollama – **podstawowy adres URL**) umożliwia aplikacji połączenie się z dostawcą.
 
-Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w sekcji [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego dostawcy, którego używasz. W przypadku korzystania wyłącznie z OpenRouter zobacz poniższą sekcję [Jak uzyskać klucz API](#how-to-get-an-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
+Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego używanego dostawcy. W przypadku korzystania wyłącznie z OpenRouter, zobacz poniżej [Jak uzyskać darmowy klucz API OpenRouter](#how-to-get-an-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
 
 Jeśli korzystasz z **wersji internetowej**, administrator serwera konfiguruje dostawców za pomocą zmiennych środowiskowych, więc nie możesz bezpośrednio wprowadzać kluczy API w aplikacji.
 
@@ -146,14 +149,14 @@ Jeśli korzystasz z aplikacji komputerowej, wykonaj następujące kroki:
 Jeśli po raz pierwszy korzystasz z Transrewrt, postępuj zgodnie z poniższą kolejnością:
 
 1. Otwórz aplikację.
-2. Jeśli potrzebujesz, wybierz **Język interfejsu** za pomocą ikony globusa.
-3. Jeśli korzystasz z **aplikacji komputerowej**, otwórz [**Ustawienia** > **Konfiguracja API**](#api-config), dodaj klucz API dla co najmniej jednego dostawcy (na przykład OpenRouter) i kliknij **Test**, aby zweryfikować jego działanie.
-4. Otwórz [**Ustawienia** > **Modele**](#models) i dodaj jeden lub więcej modeli do sekcji **Wybrane modele**.
-5. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, aby najczęściej używane języki pojawiały się na liście jako pierwsze.
-6. Przejdź do **Tłumacz** i wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa poprawnie.
-7. Gdy to zadziała, wypróbuj opcję **Przepisz**, a następnie **Przekształć**.
+2. W razie potrzeby wybierz swój **Język interfejsu** z ikony globusa.
+3. Jeśli korzystasz z **aplikacji komputerowej**, otwórz [**Ustawienia** > **Konfiguracja API**](#api-config), dodaj klucz API dla co najmniej jednego dostawcy (na przykład OpenRouter) i kliknij **Test**, aby sprawdzić, czy działa.
+4. Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings). W trybie **Łatwy** (domyślnym) wybierz **Dostawcę**, który ma skonfigurowany klucz. W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i dodaj jeden lub więcej modeli do **Wybranych modeli**.
+5. W trybie **Tłumacz** wybierz **umiejętność** (Łatwy) lub **model** (Zaawansowany) na pasku narzędzi.
+6. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, by najczęściej używane języki pojawiały się na górze listy.
+7. Wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa, a następnie wypróbuj opcje **Przepisz** i **Przekształć**.
 
-Kolejność ma znaczenie. Zapobiega to najczęstszym problemom podczas pierwszego użycia: próbie uruchomienia zadania przed nawiązaniem działającego połączenia API lub wybraniem modelu.
+Kolejność ma znaczenie. Zapobiega to najczęstszemu problemowi podczas pierwszego użycia: próbie uruchomienia zadania przed ustanowieniem działającego połączenia API lub wybraniem umiejętności/modelu.
 
 <br/><br/>
 
@@ -202,15 +205,16 @@ Użyj paska bocznego, aby poruszać się po aplikacji. Możesz zwinąć pasek bo
 
 Pasek narzędzi nieznacznie się zmienia w zależności od tego, gdzie znajdujesz się w aplikacji.
 
-- Po lewej stronie pokazuje nazwę bieżącej strony.
-- Po prawej stronie znajduje się **selektor modelu** i kontrolka **Język interfejsu**.
+- Po lewej stronie znajduje się nazwa bieżącej strony.
+- Po prawej stronie znajduje się selektor **umiejętności lub modelu** oraz kontrolka **Język interfejsu**.
 
-Za pomocą **selektora modelu** możesz wybrać silnik AI do użycia w bieżącym zadaniu.
+W trybie **Łatwy** pasek narzędzi wyświetla selektor **umiejętności** (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne i podobne ustawienia wstępne). Umiejętności zależą od **Dostawcy** wybranego w [**Ustawienia** > **Ustawienia ogólne**](#general-settings). Jeśli **Dostawcą** jest **Ollama**, pasek narzędzi wyświetla zamiast umiejętności zainstalowane lokalne modele.
+
+W trybie **Zaawansowany** selektor **modelu** pozwala wybrać, którego silnika AI użyć do bieżącego zadania.
 
 ![Model selector](../images/screenshots/pl/model-selector.png)
 
-Niektóre darmowe modele mogą nie być zawsze dostępne — czasem są wyłączone lub mają ograniczenie użycia. Jeśli się to zdarzy, aplikacja automatycznie usunie ten model z listy dostępnych. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models) i edytuj swoją listę modeli.
- Możesz również otworzyć ustawienia modelu bezpośrednio, klikając ikonę dostawcy po lewej stronie nazwy modelu na pasku narzędzi.
+W trybie zaawansowanym niektóre darmowe modele mogą nie być zawsze dostępne — mogą być wyłączone lub osiągnąć limit użycia. Aplikacja może automatycznie usunąć taki model z listy. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models). Możesz otworzyć ustawienia modelu, klikając ikonę dostawcy po lewej stronie nazwy modelu na pasku narzędzi.
 
 <br/>
 
@@ -259,7 +263,7 @@ Użyj opcji **Tłumacz**, gdy chcesz przetłumaczyć tekst z jednego języka na 
 1. Otwórz **Tłumacz**.
 2. Wybierz język w polu **Z**.
 3. Wybierz język w polu **Na**.
-4. Wybierz model na pasku narzędzi.
+4. Wybierz umiejętność (Łatwy) lub model (Zaawansowany) na pasku narzędzi.
 5. Wpisz lub wklej tekst w polu **Wejście**.
 6. Kliknij przycisk **Tłumacz**.
 7. Przeczytaj wynik w polu **Wyjście**.
@@ -350,7 +354,7 @@ To najbardziej elastyczna część aplikacji. Można jej używać do zadań taki
 <a id="if-you-have-no-prompts-yet"></a>
 ### Jeśli nie masz jeszcze żadnych zachęt
 
-Jeśli lista zachęt jest pusta, kliknij **Załaduj przykładowe zachęty** w obszarze roboczym Przekształcania. Ta sama opcja jest zawsze dostępna w [**Ustawienia** > **Przekształcenia podpowiedzi**](#transform-prompts) w wierszu eksportu/importu. Oba sposoby dodają wbudowane przykłady, dzięki czemu możesz szybko rozpocząć.
+Jeśli lista zachęt jest pusta, kliknij **Załaduj przykładowe zachęty** w obszarze roboczym Przekształć. Ta sama opcja jest zawsze dostępna w [**Ustawienia** > **Przekształć**](#transform-settings) w wierszu eksportu/importu. Oba sposoby dodają wbudowane przykłady, dzięki czemu możesz szybko rozpocząć.
 
 <br/>
 
@@ -424,7 +428,9 @@ To przydatne, gdy:
 <br/>
 
 > ℹ️ **UWAGA**<br/>
-> Możesz eksportować i importować zapisane zachęty w sekcji [**Ustawienia** > **Przekształcenia podpowiedzi**](#transform-prompts).
+> Możesz eksportować i importować zapisane zachęty w [**Ustawienia** > **Przekształć**](#transform-settings).
+
+Gdy używasz opcji **Wygeneruj zachętę**, **Ulepsz zachętę** lub **Tłumacz zachętę** w edytorze zachęt, tryb **Łatwy** oferuje ten sam selektor umiejętności co opcje Tłumacz i Przepisz; tryb **Zaawansowany** wykorzystuje listę modeli.
 
 <br/><br/>
 
@@ -440,7 +446,7 @@ Użyj **Panelu głównego**, aby zobaczyć, w jakim stopniu korzystasz z aplikac
 <br/>
 
 > ℹ️ **UWAGA**<br/>
-> Jeśli używasz wyłącznie **darmowych** modeli, kwoty **kosztu** mogą wynosić zero, a podsumowania skupione na kosztach mogą wyglądać pusto. Na karcie **Podsumowanie** sekcje **Użycie w czasie** i **Użycie według modelu** nadal pokazują **liczbę wywołań** (tłumaczenia, przepisywanie i przekształcanie), jeśli miało miejsce działanie w wybranym okresie.
+> Jeśli używasz wyłącznie **darmowych** modeli, wartości **kosztu** mogą wynosić zero, a KPI skupione na kosztach mogą wyglądać pusto. Karta **Podsumowanie** nadal pokazuje liczbę wywołań dla tłumaczenia, przepisywania i przekształcania, jeśli miało miejsce działanie w wybranym okresie.
 
 <br/>
 
@@ -461,11 +467,9 @@ Użyj przycisków filtrów u góry, aby zmienić zakres czasu.
 <a id="dashboard-tabs"></a>
 ### Karty panelu głównego
 
-- **Podsumowanie** zawiera przegląd użycia i kosztów. Obejmuje **Użycie w czasie** (skumulowane **liczby wywołań** pogrupowane według dnia dla tłumaczenia, przepisywania i przekształcania) oraz **Użycie według modelu** (łącznie **wywołania na model**, w tym transformacja).
-- **Według użycia** dzieli aktywność według języka tłumaczenia, trybu przepisywania i zachęty przekształcania.
-- **Według modelu** pokazuje, których modeli użyto i ile one kosztowały.
-- **Według dnia** przedstawia dzienne sumy.
-- **Wszystkie wywołania** pokazuje pełną historię wywołań i pozwala ją wyeksportować.
+- **Podsumowanie** wyświetla karty KPI: całkowity koszt, używane modele, liczba wywołań i koszt według trybu (wraz z udziałem w całkowitej liczbie wywołań), średni koszt na wywołanie, średni TPS oraz trzy modele z największą liczbą wywołań.
+- **Według modelu** zawiera listę poszczególnych modeli z całkowitą liczbą wywołań, całkowitym kosztem i średnią wartością TPS; rozwiń wiersz, aby uzyskać szczegółowy podział według tłumaczenia, przepisywania i przekształcania.
+- **Wszystkie wywołania** pokazuje pełny dziennik wywołań (stronicowany w szerokich układach, karty na wąskich ekranach) i pozwala go wyeksportować.
 
 <br/>
 
@@ -508,14 +512,14 @@ Kliknij **Historia**, aby zobaczyć historię Twoich działań w aplikacji **Tra
 <a id="filter-the-history"></a>
 ### Filtruj historię
 
-**Historia** używa tych samych filtrów co strona **Panel główny**. Użyj ich, aby wybrać zakres czasu.
+**Historia** używa tych samych filtrów zakresu czasu co strona **Panel główny**.
 
 ![Dashboard filters](../images/screenshots/pl/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **UWAGA**<br/>
-> Filtr **Użytkownik** jest widoczny tylko administratorom w wersji internetowej. Zwykli użytkownicy nie widzą tego filtra, a nie jest on dostępny w aplikacji komputerowej.
+> W **aplikacji internetowej** każdy (w tym administratorzy) widzi wyłącznie swoją własną historię wykonań. Filtr **Użytkownik** na **Panelu głównym** służy administratorom do przeglądania użycia i kosztów w ramach kont; nie ma on zastosowania do **Historii**.
 
 <br/>
 
@@ -541,21 +545,23 @@ Otwórz **Ustawienia** z paska bocznego, aby dostosować zachowanie aplikacji.
 
 Dostępne karty zależą od platformy i Twojej roli:
 
-| Karta               | Komputer | Internet (administrator) | Internet (zwykły użytkownik) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Ustawienia ogólne  |   Tak   |     Tak     |        Tak         |
-  | Modele            |   Tak   |     Tak     |        Tak         |
-  | Języki         |   Tak   |     Tak     |        Tak         |
-  | Śledzenie kosztów     |   Tak   |     Tak     |         -          |
-  | Przekształcenia podpowiedzi |   Tak   |     Tak     |        Tak         |
-  | Użytkownicy             |    -    |     Tak     |         -          |
-  | Konfiguracja API        |   Tak   |     Tak     |         -          |
-  | O programie       |   tak   |     tak     |        tak         |
+| Karta              | Komputer | Internetowa (administrator) | Internetowa (zwykły użytkownik) | Uwagi                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Ustawienia ogólne |   tak   |     tak     |        tak         | Obejmuje **Doświadczenie AI** (Łatwy / Zaawansowany) |
+  | Modele           |   tak   |     tak     |        tak         | Tylko gdy **Doświadczenie AI** jest ustawione na **Zaawansowany** |
+  | Języki           |   tak   |     tak     |        tak         |                                              |
+  | Śledzenie kosztów    |   tak   |     tak     |         -          |                                              |
+  | Przekształć        |   tak   |     tak     |        tak         | Masowy import/eksport zachęt przekształceń      |
+  | Użytkownicy            |    -    |     tak     |         -          |                                              |
+  | Konfiguracja API       |   tak   |     tak     |         -          |                                              |
+  | O programie            |   tak   |     tak     |        tak         |                                              |
+
+W trybie **Łatwy** wybór modelu odbywa się poprzez umiejętności na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; karta **Modele** jest ukryta.
 
 <br/>
 
 > ℹ️ **UWAGA**<br/>
-> W wersji internetowej każdy użytkownik ma własną konfigurację. Ustawienia takie jak wybrane modele, języki, opcje ogólne i podpowiedzi przekształceń są przechowywane osobno dla każdego użytkownika. Wprowadzone przez ciebie zmiany nie wpływają na innych użytkowników.
+> W wersji internetowej każdy użytkownik ma własną konfigurację. Ustawienia takie jak doświadczenie AI, dostawca, wybrane modele lub umiejętności, języki, opcje ogólne i zachęty przekształceń są przechowywane osobno dla każdego użytkownika. Wprowadzone przez Ciebie zmiany nie wpływają na innych użytkowników.
 
 <br/>
 
@@ -564,7 +570,14 @@ Dostępne karty zależą od platformy i Twojej roli:
 <a id="general-settings"></a>
 ### Ustawienia ogólne
 
-Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy zapisywane są szczegóły wykonywania dla **Historii** oraz wygląd aplikacji.
+Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy szczegóły wykonań są zapisywane w **Historii**, wygląd oraz sposób wyboru AI do Tłumaczenia, Przepisywania i Przekształcania.
+
+**Doświadczenie AI**
+
+- **Łatwy** (domyślny): wybierz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy chmurowi korzystają z wbudowanych ustawień wstępnych umiejętności na pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast umiejętności.
+- **Zaawansowany**: wybierz poszczególne modele na pasku narzędzi; zarządzaj listą w sekcji [**Ustawienia** > **Modele**](#models).
+
+W **aplikacji internetowej** dostępność dostawców zależy od kluczy API ustawionych w środowisku serwera. W **aplikacji komputerowej** skonfiguruj klucze w sekcji [**Konfiguracja API**](#api-config).
 
 **Zachowanie**
 
@@ -576,8 +589,8 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 
 **Historia**
 
-- **Zachowaj historię wykonania** kontroluje, czy każde tłumaczenie, przepisanie i przekształcenie zapisuje **tekst wejściowy i wyjściowy** do widoku [**Historia**](#history) w panelu bocznym. Wyłączenie tej opcji powoduje wyświetlenie potwierdzenia; po potwierdzeniu zapisany tekst historii zostanie usunięty z bazy danych.
-- **Usuń dane historii** pozwala usunąć zapisane teksty według wieku (na przykład starsze niż kilka miesięcy lub **wszystkie dane (wyczyść)**) za pomocą przycisku **Usuń dane**. Dotyczy to wyłącznie zapisanego tekstu wykonywania dla widoku **Historia**; **nie** powoduje usunięcia danych o kosztach lub całkowitych wartościach użycia. Aby usunąć lub ograniczyć dane dotyczące **kosztów**, skorzystaj z [**Ustawienia** > **Śledzenie kosztów**](#cost-tracking).
+- **Zachowaj historię wykonania** kontroluje, czy każde tłumaczenie, przepisywanie i przekształcanie przechowuje **tekst wejściowy i wyjściowy** do widoku bocznego panelu [**Historia**](#history). Wyłączenie tej opcji spowoduje wyświetlenie potwierdzenia; po potwierdzeniu przechowywany tekst historii zostanie usunięty z bazy danych. Jeśli etykieta pokazuje *wyłączone przez administratora*, Twoja instalacja ma ustawione `HISTORY_DISABLED` w środowisku (zobacz [README](README.pl.md#configuration-and-environment)); nie możesz włączyć historii ponownie z poziomu interfejsu użytkownika.
+- **Usuń dane historii** pozwala usunąć przechowywany tekst według wieku (na przykład starszy niż kilka miesięcy lub **wszystkie dane (wyczyść)**) za pomocą opcji **Usuń dane**. Dotyczy to wyłącznie zapisanego tekstu wykonania dla widoku **Historia**; **nie** powoduje usunięcia danych dotyczących kosztów ani łącznego zużycia. Aby usunąć lub skrócić dane dotyczące **kosztów**, skorzystaj z [**Ustawienia** > **Śledzenie kosztów**](#cost-tracking).
 
 **Wygląd**
 
@@ -602,7 +615,7 @@ Kopie zapasowe utworzone w wersji internetowej lub desktopowej można przywróci
 <a id="models"></a>
 ### Modele
 
-Użyj **Ustawienia** > **Modele**, aby wybrać, które modele będą wyświetlane na pasku narzędzi.
+Ta karta jest dostępna tylko wtedy, gdy w [**Ustawienia ogólne**](#general-settings) ustawiono opcję **Doświadczenie AI** na **Zaawansowany**. Skorzystaj z opcji **Ustawienia** > **Modele**, aby wybrać, które modele będą wyświetlane na pasku narzędzi.
 
 ![Settings Models tab](../images/screenshots/pl/settings-models.png)
 
@@ -679,10 +692,10 @@ Użyj **Ustawienia** > **Śledzenie kosztów**, aby zarządzać informacjami o k
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Przekształcenia podpowiedzi
+<a id="transform-settings"></a>
+### Przekształć (karta ustawień)
 
-Użyj opcji **Ustawienia** > **Przekształcenia podpowiedzi**, aby zarządzać podpowiedziami zbiorowo.
+Skorzystaj z opcji **Ustawienia** > **Przekształć**, aby zarządzać zachętami (promptami) zbiorowo.
 
 Możesz:
 
@@ -769,8 +782,9 @@ Jeśli coś nie działa zgodnie z oczekiwaniami, najpierw sprawdź następujące
 
 Sprawdź, czy:
 
-- wybrano model na pasku narzędziowym
-- przynajmniej jeden model znajduje się na liście w sekcji [**Ustawienia** > **Modele**](#models)
+- wybrano **umiejętność** (Łatwy) lub **model** (Zaawansowany) na pasku narzędzi
+- w trybie **Łatwy** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) ustawiono **Dostawcę** z działającym kluczem (lub adresem URL Ollama) oraz co najmniej jedną umiejętność dla tego dostawcy
+- w trybie **Zaawansowany** co najmniej jeden model znajduje się na liście w [**Ustawienia** > **Modele**](#models)
 - konfiguracja API działa poprawnie
 
 Jeśli korzystasz z aplikacji komputerowej:
@@ -784,13 +798,9 @@ Jeśli korzystasz z aplikacji komputerowej:
 <a id="the-model-list-is-empty"></a>
 ### Lista modeli jest pusta
 
-Otwórz [**Ustawienia** > **Modele**](#models) i kliknij przycisk **Odśwież**.
+W trybie **Łatwy** otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings), potwierdź, że ustawiono **Dostawcę**, a następnie dodaj lub przetestuj klucze w sekcji [**Konfiguracja API**](#api-config) (wersja komputerowa) albo skontaktuj się z administratorem (wersja internetowa). W przypadku **Ollama** uruchom **Test** dla podstawowego adresu URL i upewnij się, że modele są zainstalowane lokalnie.
 
-W razie potrzeby:
-
-- wyszukaj model
-- włącz opcję **Tylko darmowe**
-- dodaj jeden lub więcej modeli do sekcji **Wybrane modele**
+W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i kliknij **Odśwież**. W razie potrzeby wyszukaj model, włącz opcję **Tylko darmowe** i dodaj modele do **Wybranych modeli**.
 
 <br/>
 
@@ -823,15 +833,15 @@ Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings) i zmień:
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Wykresy na panelu głównym są puste
+<a id="dashboard-summary-looks-empty"></a>
+### Podsumowanie panelu głównego wygląda na puste
 
 To jest normalne, jeśli:
 
-- używasz wyłącznie **modeli darmowych** i przeglądasz dane dotyczące **kosztów** (mogą one wynosić zero); wykresy liczby **wywołań** w sekcji **Podsumowanie** nadal wymagają danych z wybranego okresu
-- wybrany **filtr czasu** nie obejmuje okresu, w którym miały miejsce wywołania — spróbuj opcji **Wszystkie**, aby sprawdzić
+- korzystasz wyłącznie z **darmowych modeli** i przeglądasz dane dotyczące **kosztów** (mogą one wynosić zero); wskaźniki liczby wywołań na karcie **Podsumowanie** nadal wymagają danych z wybranego okresu
+- wybrany **filtr czasowy** nie obejmuje okresu, w którym miały miejsce wywołania — spróbuj opcji **Wszystkie**, aby sprawdzić
 
-Jeśli po wybraniu opcji **Wszystkie** wykresy nadal są puste, upewnij się, że wywołania pojawiają się na stronie [**Historia**](#history) lub na karcie **Wszystkie wywołania**.
+Jeśli wskaźniki nadal wynoszą zero po wybraniu opcji **Wszystkie**, sprawdź, czy wywołania pojawiają się w [**Historii**](#history) lub na karcie **Wszystkie wywołania**.
 
 <br/>
 
@@ -856,7 +866,7 @@ Aby całkowity koszt był bliższy rzeczywistym wydatkom w OpenRouter, otwórz [
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Strona Historia brakuje w pasku bocznym
 
-Opcja **Zachowaj historię wykonania** może być wyłączona. Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings) i ją włącz. Pamiętaj, że jej włączenie nie przywraca wcześniej usuniętych danych historii.
+Opcja **Zachowaj historię wykonania** może być wyłączona. Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings) i włącz ją, chyba że historia jest *wyłączona przez administratora* (`HISTORY_DISABLED` w środowisku — zobacz [README](README.pl.md#configuration-and-environment)). Włączenie historii nie przywraca wcześniej usuniętego tekstu.
 
 <br/>
 
@@ -912,8 +922,9 @@ Podczas edytowania podpowiedzi zawsze kliknij **Zapisz**, zanim przejdziesz do *
 - Używaj [**Przepisz**](#rewrite) do codziennych poprawek sformułowań.
 - Używaj [**Przekształć**](#transform), gdy potrzebujesz powtarzalnego przepływu pracy dla konkretnego zadania.
 - Skorzystaj z [**Panel główny**](#dashboard), jeśli chcesz śledzić zużycie i koszty.
-- Użyj sekcji [**Historia**](#history), aby przejrzeć poprzednie operacje oraz ich pełny tekst wejściowy i wyjściowy.
-- Regularnie eksportuj zachęty, jeśli tworzysz bibliotekę zachęt, którą chcesz zachować w bezpiecznym miejscu (zobacz [Przekształcenia podpowiedzi](#transform-prompts)) lub jeśli chcesz ją udostępnić innym.
+- Skorzystaj z [**Historia**](#history), aby przeglądać poprzednie operacje wraz z pełnym tekstem wejściowym i wyjściowym.
+- Regularnie eksportuj zachęty (prompty), jeśli tworzysz bibliotekę zachęt, którą chcesz bezpiecznie przechowywać (zobacz [Przekształć](#transform)) lub chcesz ją udostępnić innym.
+- Pozostawaj w trybie **Łatwy**, dopóki nie potrzebujesz szczegółowej kontroli nad identyfikatorami modeli; przełącz się na tryb **Zaawansowany**, gdy już wiesz, które modele chcesz używać.
 
 <br/><br/>
 

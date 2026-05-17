@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-03T19:24:46.290Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:32:04.751Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: fr
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -22,6 +23,8 @@ Transrewrt vous aide à travailler avec le texte de trois manières principales 
 - **Traduire** - convertir un texte d'une langue à une autre.
 - **Réécriture** - reformuler un texte dans un style différent, par exemple plus clair, plus court ou plus formel.
 - **Transformer** - traiter un texte à l'aide d'instructions personnalisées d'intelligence artificielle appelées prompts.
+
+Par défaut, l'application fonctionne en mode **Facile** : vous choisissez une **compétence** (par exemple Gratuit, Rapide ou Technique) et un **fournisseur** dans les Paramètres, sans choisir d'ID de modèle. Passez en mode **Avancé** dans [**Paramètres** > **Paramètres généraux**](#general-settings) si vous souhaitez la liste classique des modèles depuis [**Paramètres** > **Modèles**](#models).
 
 <br/>
 
@@ -79,7 +82,7 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Modèles](#models)
   - [Langues](#languages)
   - [Suivi des coûts](#cost-tracking)
-  - [Invites de transformation](#transform-prompts)
+  - [Transformer (onglet des paramètres)](#transform-settings)
   - [Utilisateurs](#users)
   - [Configuration API](#api-config)
   - [À propos](#about)
@@ -89,7 +92,7 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Le résultat est trop lent ou trop coûteux](#the-result-is-too-slow-or-too-expensive)
   - [L'interface est dans la mauvaise langue](#the-interface-is-in-the-wrong-language)
   - [Le texte est trop petit ou difficile à lire](#the-text-is-too-small-or-hard-to-read)
-  - [Les graphiques du tableau de bord sont vides](#dashboard-charts-are-empty)
+  - [Le résumé du tableau de bord semble vide](#dashboard-summary-looks-empty)
   - [Le coût affiche « non disponible » ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
   - [Le coût total ne correspond pas à ma facture fournisseur](#total-cost-does-not-match-my-provider-bill)
   - [La page Historique est manquante dans la barre latérale](#the-history-page-is-missing-from-the-sidebar)
@@ -114,10 +117,11 @@ Vous n'avez pas besoin de sélectionner un modèle payant pour commencer. Dès q
 
 En termes simples :
 
-- Un **modèle** est le moteur d'IA qui effectue le travail. Les modèles sont listés avec un **préfixe de fournisseur** (par exemple `openrouter/…`, `openai/…`, `ollama/…`).
-- Une **clé API** (ou, pour Ollama, une **URL de base**) est le moyen par lequel l'application accède à ce fournisseur.
+- En mode **Facile**, une **compétence** est un préréglage (Gratuit, Rapide, Avancé, Technique, Juridique) qui correspond à un modèle pour le **fournisseur** sélectionné (OpenRouter, OpenAI, Ollama, et autres). Vous sélectionnez la compétence dans la barre d'outils sur Traduire, Réécrire et Transformer.
+- En mode **Avancé**, un **modèle** est le moteur d'IA que vous choisissez directement. Les identifiants de modèle utilisent un **préfixe fournisseur** (par exemple `openrouter/…`, `openai/…`, `ollama/…`).
+- Une **clé API** (ou, pour Ollama, une **URL de base**) permet à l'application de se connecter à ce fournisseur.
 
-Si vous utilisez l'**application de bureau**, ajoutez les clés dans [**Paramètres** > **Configuration API**](#api-config) pour chaque fournisseur que vous utilisez. Pour une utilisation uniquement avec OpenRouter, consultez ci-dessous [Comment obtenir une clé API](#how-to-get-an-api-key-desktop-app). Si vous ne souhaitez pas utiliser de clé API, vous pouvez installer Ollama (depuis [ollama.com](https://ollama.com)) et utiliser des modèles locaux à la place, comme `translategemma:4b`.
+Si vous utilisez l'**application de bureau**, ajoutez des clés dans [**Paramètres** > **Configuration API**](#api-config) pour chaque fournisseur utilisé. Pour une utilisation uniquement avec OpenRouter, consultez ci-dessous [Comment obtenir une clé API OpenRouter gratuite](#how-to-get-an-api-key-desktop-app). Si vous ne souhaitez pas utiliser de clé API, vous pouvez installer Ollama (depuis [ollama.com](https://ollama.com)) et utiliser des modèles locaux, comme `translategemma:4b`.
 
 Si vous utilisez la **version web**, le propriétaire du serveur configure les fournisseurs via des variables d'environnement, vous ne pouvez donc pas saisir directement les clés API dans l'application.
 
@@ -148,12 +152,12 @@ Si c'est votre première utilisation de Transrewrt, suivez cet ordre :
 1. Ouvrez l'application.
 2. Choisissez votre **Langue de l'interface** à partir de l'icône du globe si nécessaire.
 3. Si vous utilisez l'**application de bureau**, ouvrez [**Paramètres** > **Configuration API**](#api-config), ajoutez une clé API pour au moins un fournisseur (par exemple OpenRouter), puis cliquez sur **Tester** pour vérifier qu'elle fonctionne.
-4. Ouvrez [**Paramètres** > **Modèles**](#models) et ajoutez un ou plusieurs modèles aux **Modèles sélectionnés**.
-5. Ouvrez [**Paramètres** > **Langues**](#languages) et choisissez vos **Langues principales** si vous souhaitez que vos langues les plus utilisées apparaissent en premier.
-6. Allez dans **Traduire** et effectuez une traduction simple pour confirmer que tout fonctionne.
-7. Une fois cela fonctionnel, essayez **Réécriture**, puis **Transformer**.
+4. Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings). En mode **Facile** (par défaut), sélectionnez un **Fournisseur** pour lequel une clé est configurée. En mode **Avancé**, ouvrez [**Paramètres** > **Modèles**](#models) et ajoutez un ou plusieurs modèles aux **Modèles sélectionnés**.
+5. Dans **Traduire**, choisissez une **compétence** (Facile) ou un **modèle** (Avancé) dans la barre d'outils.
+6. Ouvrez [**Paramètres** > **Langues**](#languages) et sélectionnez vos **Langues principales** si vous souhaitez que vos langues les plus utilisées apparaissent en premier.
+7. Effectuez une traduction simple pour confirmer que tout fonctionne, puis essayez **Réécrire** et **Transformer**.
 
-Cet ordre est important. Il évite le problème le plus courant lors de la première utilisation : tenter d'exécuter une tâche avant que l'application n'ait une connexion API opérationnelle ou un modèle sélectionné.
+Cet ordre est important. Il évite le problème le plus courant lors de la première utilisation : tenter d'exécuter une tâche avant que l'application n'ait une connexion API fonctionnelle ou qu'une compétence/modèle ne soit sélectionné.
 
 <br/><br/>
 
@@ -202,15 +206,16 @@ Utilisez la barre latérale pour naviguer dans l'application. Vous pouvez rédui
 
 La barre d'outils change légèrement selon l'endroit où vous vous trouvez dans l'application.
 
-- À gauche, elle affiche le nom de la page actuelle.
-- À droite, elle affiche le **sélecteur de modèle** et le contrôle de la **Langue de l'interface**.
+- À gauche, il affiche le nom de la page actuelle.
+- À droite, il affiche le sélecteur de **compétence ou de modèle** et le contrôle de la **Langue de l'interface**.
 
-Le **sélecteur de modèle** vous permet de choisir quel moteur d'IA utiliser pour la tâche en cours.
+En mode **Facile**, la barre d'outils affiche un sélecteur de **compétence** (Gratuit, Rapide, Avancé, Technique, Juridique, et autres préréglages). Les compétences dépendent du **Fournisseur** que vous avez choisi dans [**Paramètres** > **Paramètres généraux**](#general-settings). Si le **Fournisseur** est **Ollama**, la barre d'outils affiche vos modèles locaux installés au lieu des compétences.
+
+En mode **Avancé**, le sélecteur de **modèle** vous permet de choisir quel moteur d'IA utiliser pour la tâche en cours.
 
 ![Model selector](../images/screenshots/fr/model-selector.png)
 
-Certains modèles gratuits peuvent ne pas toujours être disponibles — parfois ils sont hors ligne ou ont un plafond d'utilisation. Si cela se produit, l'application supprimera automatiquement ce modèle de votre liste disponible. Pour contrôler les modèles affichés, rendez-vous dans [**Paramètres** > **Modèles**](#models) et modifiez votre liste de modèles.
- Vous pouvez également accéder directement aux paramètres du modèle en cliquant sur l'icône du fournisseur située à gauche du nom du modèle dans la barre d'outils.
+En mode Avancé, certains modèles gratuits peuvent ne pas être toujours disponibles — ils peuvent être hors ligne ou avoir atteint une limite d'utilisation. L'application peut supprimer automatiquement ce modèle de votre liste. Pour contrôler quels modèles apparaissent, rendez-vous dans [**Paramètres** > **Modèles**](#models). Vous pouvez accéder aux paramètres du modèle depuis l'icône du fournisseur située à gauche du nom du modèle dans la barre d'outils.
 
 <br/>
 
@@ -259,7 +264,7 @@ Utilisez **Traduire** lorsque vous souhaitez convertir un texte d'une langue à 
 1. Ouvrez **Traduire**.
 2. Choisissez une langue dans **De**.
 3. Choisissez une langue dans **Vers**.
-4. Choisissez un modèle dans la barre d'outils.
+4. Choisissez une compétence (Facile) ou un modèle (Avancé) dans la barre d'outils.
 5. Tapez ou collez du texte dans **Entrée**.
 6. Cliquez sur **Traduire**.
 7. Lisez le résultat dans **Sortie**.
@@ -350,7 +355,7 @@ C'est la zone la plus souple de l'application. Vous pouvez l'utiliser pour des t
 <a id="if-you-have-no-prompts-yet"></a>
 ### Si vous n'avez pas encore d'invites
 
-Si votre liste d'invites est vide, cliquez sur **Charger les invites d'exemple** dans l'espace de travail Transformer. Ce même contrôle est toujours disponible dans [**Paramètres** > **Invites de transformation**](#transform-prompts) sur la ligne d'exportation/importation. Les deux ajoutent des exemples intégrés afin que vous puissiez commencer rapidement.
+Si votre liste d'invites est vide, cliquez sur **Charger les invites d'exemple** dans l'espace de travail Transformer. Ce même contrôle est toujours disponible dans [**Paramètres** > **Transformer**](#transform-settings) sur la ligne d'exportation/importation. Les deux ajoutent des exemples intégrés pour que vous puissiez commencer rapidement.
 
 <br/>
 
@@ -424,7 +429,9 @@ Ceci est utile lorsque :
 <br/>
 
 > ℹ️ **REMARQUE**<br/>
-> Vous pouvez exporter et importer des invites enregistrées dans [**Paramètres** > **Invites de transformation**](#transform-prompts).
+> Vous pouvez exporter et importer les invites enregistrées dans [**Paramètres** > **Transformer**](#transform-settings).
+
+Lorsque vous utilisez **Générer l'invite**, **Améliorer l'invite** ou **Traduire l'invite** dans l'éditeur d'invites, le mode **Facile** propose le même sélecteur de compétences que Traduire et Réécriture ; le mode **Avancé** utilise la liste des modèles.
 
 <br/><br/>
 
@@ -440,7 +447,7 @@ Utilisez le **Tableau de bord** pour voir dans quelle mesure vous utilisez l'app
 <br/>
 
 > ℹ️ **REMARQUE**<br/>
-> Si vous utilisez uniquement des modèles **gratuits**, les montants de **coût** peuvent être nuls et les résumés axés sur le coût peuvent sembler vides. Dans l'onglet **Résumé**, **Utilisation dans le temps** et **Utilisation par modèle** affichent tout de même le **nombre d'appels** (traduction, réécriture et transformation) lorsque vous avez une activité durant la période sélectionnée.
+> Si vous utilisez uniquement des modèles **gratuits**, les montants de **coût** peuvent être nuls et les indicateurs clés axés sur les coûts peuvent apparaître vides. L'onglet **Résumé** affiche tout de même le nombre d'appels pour la traduction, la réécriture et la transformation lorsque vous avez des activités durant la période sélectionnée.
 
 <br/>
 
@@ -461,11 +468,9 @@ Utilisez les boutons de filtre en haut pour modifier la plage de temps.
 <a id="dashboard-tabs"></a>
 ### Onglets du tableau de bord
 
-- **Résumé** vous donne un aperçu de l'utilisation et des coûts. Il inclut **Utilisation dans le temps** (nombre cumulé d'**appels** par jour, empilés, pour traduire, réécrire et transformer) et **Utilisation par modèle** (nombre total d'**appels par modèle**, y compris la transformation).
-- **Par utilisation** décompose l'activité par langue de traduction, mode de réécriture et invite de transformation.
-- **Par modèle** indique quels modèles vous avez utilisés et leur coût.
-- **Par jour** affiche les totaux quotidiens.
-- **Tous les appels** affiche l'historique complet des appels et vous permet de l'exporter.
+- **Résumé** affiche des cartes d'indicateurs : coût total, modèles utilisés, nombre d'appels par mode et coût (avec part des appels totaux), coût moyen par appel, TPS moyen, et les trois modèles les plus utilisés en nombre d'appels.
+- **Par modèle** liste chaque modèle avec le nombre total d'appels, le coût total et le TPS moyen ; développez une ligne pour obtenir un détail par traduction, réécriture et transformation.
+- **Tous les appels** affiche le journal complet des appels (paginé sur les écrans larges, en cartes sur les écrans étroits) et permet de l'exporter.
 
 <br/>
 
@@ -508,14 +513,14 @@ Cliquez sur **Historique** pour afficher l'historique de vos actions dans **Tran
 <a id="filter-the-history"></a>
 ### Filtrer l'historique
 
-**Historique** utilise les mêmes filtres que la page **Tableau de bord**. Utilisez-les pour sélectionner la plage horaire.
+**Historique** utilise les mêmes filtres de plage horaire que la page **Tableau de bord**.
 
 ![Dashboard filters](../images/screenshots/fr/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **REMARQUE**<br/>
-> Le filtre **Utilisateur** est uniquement visible pour les administrateurs dans la version web. Les utilisateurs standard ne verront pas ce filtre, et il n'est pas disponible dans l'application de bureau.
+> Dans l'**application web**, tout le monde (y compris les administrateurs) ne voit que son propre historique d'exécution. Le filtre **Utilisateur** sur le **Tableau de bord** permet aux administrateurs d'examiner l'utilisation et les coûts par compte ; il ne s'applique pas à **Historique**.
 
 <br/>
 
@@ -541,21 +546,23 @@ Ouvrez **Paramètres** depuis la barre latérale pour personnaliser le comportem
 
 Les onglets disponibles dépendent de la plateforme et de votre rôle :
 
-| Onglet               | Bureau | Web (admin) | Web (utilisateur standard) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Paramètres généraux  |   oui   |     oui     |        oui         |
-  | Modèles            |   oui   |     oui     |        oui         |
-  | Langues         |   oui   |     oui     |        oui         |
-  | Suivi des coûts     |   oui   |     oui     |         -          |
-  | Invites de transformation |   oui   |     oui     |        oui         |
-  | Utilisateurs             |    -    |     oui     |         -          |
-  | Configuration API        |   oui   |     oui     |         -          |
-  | À propos             |   oui   |     oui     |        oui         |
+| Onglet              | Bureau | Web (admin) | Web (utilisateur standard) | Notes                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Paramètres généraux |   oui   |     oui     |        oui         | Inclut **l'expérience IA** (Facile / Avancé) |
+  | Modèles           |   oui   |     oui     |        oui         | Uniquement lorsque **l'expérience IA** est en mode **Avancé** |
+  | Langues           |   oui   |     oui     |        oui         |                                              |
+  | Suivi des coûts   |   oui   |     oui     |         -          |                                              |
+  | Transformation    |   oui   |     oui     |        oui         | Importation/exportation massive des invites de transformation |
+  | Utilisateurs      |    -    |     oui     |         -          |                                              |
+  | Configuration API |   oui   |     oui     |         -          |                                              |
+  | À propos          |   oui   |     oui     |        oui         |                                              |
+
+En mode **Facile**, le choix du modèle se fait via les compétences dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** est masqué.
 
 <br/>
 
 > ℹ️ **REMARQUE**<br/>
-> Dans la version web, chaque utilisateur dispose de sa propre configuration. Les paramètres tels que les modèles sélectionnés, les langues, les options générales et les invites de transformation sont stockés par utilisateur. Les modifications que vous apportez n'affectent pas les autres utilisateurs.
+> Dans la version web, chaque utilisateur dispose de sa propre configuration. Les paramètres tels que l'expérience IA, le fournisseur, les modèles ou compétences sélectionnés, les langues, les options générales et les invites de transformation sont stockés individuellement. Les modifications que vous effectuez n'affectent pas les autres utilisateurs.
 
 <br/>
 
@@ -564,7 +571,14 @@ Les onglets disponibles dépendent de la plateforme et de votre rôle :
 <a id="general-settings"></a>
 ### Paramètres généraux
 
-Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, si les détails d'exécution sont conservés dans l'**Historique**, et l'apparence.
+Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, si les détails d'exécution sont conservés pour **Historique**, l'apparence, et la manière dont vous choisissez l'IA pour Traduire, Réécrire et Transformer.
+
+**Expérience IA**
+
+- **Facile** (par défaut) : choisissez un **Fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages de compétences intégrés dans la barre d'outils. **Ollama** liste les modèles installés sur votre machine au lieu des compétences.
+- **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste sous [**Paramètres** > **Modèles**](#models).
+
+Dans l'**application web**, les fournisseurs disponibles dépendent des clés API définies dans l'environnement du serveur. Dans l'**application de bureau**, configurez les clés sous [**Configuration API**](#api-config).
 
 **Comportement**
 
@@ -576,8 +590,8 @@ Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, s
 
 **Historique**
 
-- **Conserver l'historique des exécutions** détermine si chaque traduction, réécriture et transformation enregistre le **texte d'entrée et de sortie** pour la vue latérale [**Historique**](#history). La désactivation demande une confirmation ; si vous confirmez, le texte historique stocké est supprimé de la base de données.
-- **Supprimer les données d'historique** vous permet de supprimer les textes stockés selon leur ancienneté (par exemple, plus vieux que quelques mois, ou **toutes les données (effacer)**) à l'aide de **Supprimer les données**. Cela affecte uniquement le texte d'exécution sauvegardé pour la vue **Historique** ; cela ne supprime **pas** les totaux de coût ou d'utilisation. Pour supprimer ou réduire les données de **coût**, utilisez [**Paramètres** > **Suivi des coûts**](#cost-tracking).
+- **Conserver l'historique des exécutions** détermine si chaque traduction, réécriture et transformation enregistre le **texte d'entrée et de sortie** pour la vue latérale [**Historique**](#history). Désactiver cette option demande une confirmation ; si vous confirmez, les textes d'historique stockés sont supprimés de la base de données. Si l'étiquette indique *désactivé par l'administrateur*, votre installation a `HISTORY_DISABLED` défini dans l'environnement (voir le [README](README.fr.md#configuration-and-environment)) ; vous ne pouvez pas réactiver l'historique depuis l'interface.
+- **Supprimer les données d'historique** vous permet de supprimer les textes stockés selon leur ancienneté (par exemple, plus anciens que quelques mois, ou **toutes les données (effacer)**) à l'aide de **Supprimer les données**. Cela affecte uniquement les textes d'exécution sauvegardés pour la vue **Historique** ; cela ne supprime **pas** les totaux de coût ou d'utilisation. Pour supprimer ou réduire les données de **coût**, utilisez [**Paramètres** > **Suivi des coûts**](#cost-tracking).
 
 **Apparence**
 
@@ -602,7 +616,7 @@ Les sauvegardes créées dans la version web ou de bureau peuvent être restaur�
 <a id="models"></a>
 ### Modèles
 
-Utilisez **Paramètres** > **Modèles** pour choisir quels modèles apparaissent dans la barre d'outils.
+Cet onglet est disponible uniquement lorsque l'**expérience IA** est définie sur **Avancé** dans [**Paramètres généraux**](#general-settings). Utilisez **Paramètres** > **Modèles** pour choisir quels modèles apparaissent dans la barre d'outils.
 
 ![Settings Models tab](../images/screenshots/fr/settings-models.png)
 
@@ -679,10 +693,10 @@ Utilisez **Paramètres** > **Suivi des coûts** pour gérer les informations de 
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Invites de transformation
+<a id="transform-settings"></a>
+### Transformer (onglet des paramètres)
 
-Utilisez **Paramètres** > **Invites de transformation** pour gérer les invites en masse.
+Utilisez **Paramètres** > **Transformer** pour gérer plusieurs invites en masse.
 
 Vous pouvez :
 
@@ -769,9 +783,10 @@ Si quelque chose ne fonctionne pas comme prévu, vérifiez d'abord les points su
 
 Vérifiez que :
 
-- vous avez sélectionné un modèle dans la barre d'outils
-- au moins un modèle est répertorié dans [**Paramètres** > **Modèles**](#models)
-- votre configuration API fonctionne
+- vous avez sélectionné une **compétence** (Facile) ou un **modèle** (Avancé) dans la barre d'outils
+- en mode **Facile**, [**Paramètres** > **Paramètres généraux**](#general-settings) dispose d'un **Fournisseur** avec une clé valide (ou une URL Ollama) et au moins une compétence pour ce fournisseur
+- en mode **Avancé**, au moins un modèle est répertorié dans [**Paramètres** > **Modèles**](#models)
+- votre configuration API fonctionne correctement
 
 Si vous utilisez l'application de bureau :
 
@@ -784,13 +799,9 @@ Si vous utilisez l'application de bureau :
 <a id="the-model-list-is-empty"></a>
 ### La liste des modèles est vide
 
-Ouvrez [**Paramètres** > **Modèles**](#models) et cliquez sur **Actualiser**.
+En mode **Facile**, ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings), vérifiez que le **Fournisseur** est configuré, puis ajoutez ou testez les clés dans [**Configuration API**](#api-config) (sur ordinateur) ou demandez à votre administrateur (sur le web). Pour **Ollama**, exécutez **Tester** sur l'URL de base et assurez-vous que les modèles sont installés localement.
 
-Si nécessaire :
-
-- recherchez un modèle
-- activez **Uniquement gratuits**
-- ajoutez un ou plusieurs modèles aux **Modèles sélectionnés**
+En mode **Avancé**, ouvrez [**Paramètres** > **Modèles**](#models) et cliquez sur **Actualiser**. Si nécessaire, recherchez un modèle, activez **Uniquement gratuits**, puis ajoutez des modèles aux **Modèles sélectionnés**.
 
 <br/>
 
@@ -823,15 +834,15 @@ Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings) et modi
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Les graphiques du tableau de bord sont vides
+<a id="dashboard-summary-looks-empty"></a>
+### Le résumé du tableau de bord semble vide
 
 Ceci est normal si :
 
-- vous utilisez uniquement des **modèles gratuits** et que vous consultez les données de **coût** (elles peuvent être nulles) ; les graphiques du nombre d’**appels** dans l’onglet **Résumé** nécessitent toujours des données de la période sélectionnée
-- le **filtre temporel** sélectionné ne couvre pas la période pendant laquelle des appels ont été effectués : essayez **Tout** pour vérifier
+- vous utilisez uniquement des **modèles gratuits** et vous consultez les données de **coût** (elles peuvent être nulles) ; les indicateurs clés de performance (KPI) basés sur le nombre d'appels dans **Résumé** nécessitent toujours des données sur la période sélectionnée
+- le **filtre temporel** sélectionné ne couvre pas la période où les appels ont été effectués — essayez **Tout** pour vérifier
 
-Si les graphiques restent vides après avoir sélectionné **Tout**, vérifiez que des appels apparaissent dans l’onglet [**Historique**](#history) ou dans l’onglet **Tous les appels**.
+Si les KPI restent à zéro après avoir sélectionné **Tout**, vérifiez que des appels apparaissent dans [**Historique**](#history) ou dans l'onglet **Tous les appels**.
 
 <br/>
 
@@ -856,7 +867,7 @@ Pour rapprocher le total de vos dépenses réelles sur OpenRouter, ouvrez [**Par
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### La page Historique est absente de la barre latérale
 
-L’option **Conserver l'historique des exécutions** est peut-être désactivée. Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings) et activez-la. Notez que son activation ne restaure pas les données d'historique précédemment supprimées.
+**Conserver l'historique des exécutions** peut être désactivé. Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings) et activez-le, sauf si l'historique est *désactivé par l'administrateur* (`HISTORY_DISABLED` défini dans l'environnement — voir le [README](README.fr.md#configuration-and-environment)). Activer l'historique ne restaure pas les textes précédemment supprimés.
 
 <br/>
 
@@ -912,8 +923,9 @@ Lors de la modification d'une invite, cliquez toujours sur **Enregistrer** avant
 - Utilisez [**Réécriture**](#rewrite) pour améliorer quotidiennement le libellé.
 - Utilisez [**Transformer**](#transform) lorsque vous avez besoin d'un flux de travail reproductible pour une tâche spécifique.
 - Utilisez [**Tableau de bord**](#dashboard) si vous souhaitez surveiller l'utilisation et le coût.
-- Utilisez [**Historique**](#history) pour consulter les opérations passées ainsi que leur texte d'entrée et de sortie complet.
-- Exportez régulièrement les invites si vous créez une bibliothèque d'invites que vous souhaitez préserver (voir [Invites de transformation](#transform-prompts)) ou si vous souhaitez la partager avec d'autres personnes.
+- Utilisez [**Historique**](#history) pour consulter les opérations passées et leurs textes complets d'entrée/sortie.
+- Exportez régulièrement vos invites si vous constituez une bibliothèque d'invites que vous souhaitez préserver (voir [Transformer](#transform)) ou si vous souhaitez la partager avec d'autres.
+- Restez en mode **Facile** jusqu'à ce que vous ayez besoin d'un contrôle précis sur les identifiants de modèle ; passez en mode **Avancé** lorsque vous savez déjà quels modèles vous souhaitez utiliser.
 
 <br/><br/>
 

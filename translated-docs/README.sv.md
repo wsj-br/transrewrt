@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:31.396Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:53.917Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: sv
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omva
 - **Omskriv** – åtgärda grammatik, förbättra tydligheten, formellt/obligatoriskt, förkorta, utöka, tekniskt
 - **Transformera** – anpassade AI-prompts; skapa och hantera prompts, valfritt målspråk per prompt
 - **Historik** – fullständig körningshistorik med inmatning/utdata, filtrering och export
-- **Modeller och kostnad** – välj modeller från valfri konfigurerad leverantör; kostnads- och användningsinstrumentpaneler med loggar, sammanfattningar per modell/åtgärd/dag
-- **Användargränssnitt** – flerspråkigt gränssnitt (30+ språk, stöd för RTL), teckensnitt, ...
-- **Webbläge** – stöd för flera användare med administratörsroller
-- **Skrivbord** – Electron-app för Windows och Linux
-- **Självvärdbaserad** – Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
+- **Enkel & Avancerad** - Enkelt läge (förvalt): curerade funktioner per leverantör (Gratis, Snabb, Avancerad, Teknisk, Juridisk) utan att välja modell-ID; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
+- **Modeller & kostnad** - kostnads- och användningsinstrumentpaneler (Sammanfattning, Efter modell, Alla anrop) med export; OpenRouter visar faktisk utgift, andra leverantörer använder uppskattningar
+- **Användargränssnitt** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
+- **Webbläge** - stöd för flera användare med administratörsroller
+- **Skrivbord** - Electron-app för Windows och Linux
+- **Självvärdbaserad** - Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
 
 När installationen är klar, se [**användarhandboken**](USER-GUIDE.sv.md) för en fullständig genomgång av alla funktioner.
 

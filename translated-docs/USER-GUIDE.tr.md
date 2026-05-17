@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-03T19:26:30.997Z'
-source_file_mtime: '2026-05-03T18:57:44.574Z'
-source_file_hash: 344c54a3a014452fb149b427480e26d09bb25eb0b408f4c2006d55ba1255579b
+translation_last_updated: '2026-05-17T23:34:44.180Z'
+source_file_mtime: '2026-05-17T23:31:33.219Z'
+source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: tr
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -22,6 +23,8 @@ Transrewrt, metinle çalışmanıza üç ana yoldan yardımcı olur:
 - **Çevir** - metni bir dilden diğerine dönüştür.
 - **Yeniden yaz** - metni daha açık, daha kısa veya daha resmi gibi farklı bir şekilde yeniden ifade et.
 - **Dönüştür** - istem adı verilen özel AI talimatlarını kullanarak metni işle.
+
+Varsayılan olarak uygulama **Kolay** modda çalışır: Ayarlar'da bir **beceri** (örneğin Ücretsiz, Hızlı veya Teknik) ve bir **sağlayıcı** seçersiniz, model kimliklerini seçmeden. [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde **Gelişmiş** moda geçin, [**Ayarlar** > **Modeller**](#models) adresinden klasik model listesini kullanmak istiyorsanız.
 
 <br/>
 
@@ -79,7 +82,7 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Modeller](#models)
   - [Diller](#languages)
   - [Maliyet takibi](#cost-tracking)
-  - [İstemleri Dönüştür](#transform-prompts)
+  - [Dönüştür (ayarlar sekmesi)](#transform-settings)
   - [Kullanıcılar](#users)
   - [API yapılandırması](#api-config)
   - [Hakkında](#about)
@@ -89,9 +92,9 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Sonuç çok yavaş veya çok maliyetli](#the-result-is-too-slow-or-too-expensive)
   - [Arayüz yanlış dilde](#the-interface-is-in-the-wrong-language)
   - [Metin çok küçük veya okunması zor](#the-text-is-too-small-or-hard-to-read)
-  - [Kontrol Paneli grafikleri boş](#dashboard-charts-are-empty)
-  - [Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
-  - [Toplam maliyet sağlayıcımın faturasıyla eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
+  - [Kontrol Paneli Özeti boş görünüyor](#dashboard-summary-looks-empty)
+  - [Maliyet "mevcut değil" veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
+  - [Toplam maliyet sağlayıcınızın faturanızla eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
   - [Geçmiş sayfası kenar çubuğunda eksik](#the-history-page-is-missing-from-the-sidebar)
   - [Web uygulaması: beklenmedik şekilde oturum açma sayfasına yönlendiriliyorsunuz](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web yönetici: şifreyi unuttum veya kaybettim](#web-admin-forgot-or-lost-a-password)
@@ -114,10 +117,11 @@ Başlarken ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı
 
 Basitçe:
 
-- Bir **model**, işi yapan yapay zeka altyapısıdır. Modeller bir **sağlayıcı öneki** ile birlikte listelenir (örneğin `openrouter/…`, `openai/…`, `ollama/…`).
+- **Kolay** modda, bir **beceri** (Ücretsiz, Hızlı, Gelişmiş, Teknik, Hukuki gibi) seçtiğiniz **sağlayıcı** (OpenRouter, OpenAI, Ollama ve diğerleri) için bir modele eşlenen bir önceden ayarlı değerdir. Beceriyi Çevir, Yeniden Yaz ve Dönüştür işlemlerinde araç çubuğundan seçersiniz.
+- **Gelişmiş** modda, bir **model** doğrudan seçtiğiniz yapay zekâ motorudur. Model kimlikleri bir **sağlayıcı öneki** kullanır (örneğin `openrouter/…`, `openai/…`, `ollama/…`).
 - Bir **API anahtarı** (veya Ollama için bir **temel URL**), uygulamanın bu sağlayıcıya ulaşmasını sağlar.
 
-**Masaüstü uygulamasını** kullanıyorsanız, kullandığınız her sağlayıcı için [**Ayarlar** > **API Yapılandırması**](#api-config) kısmına anahtar ekleyin. Sadece OpenRouter kullanacaksanız aşağıda [Bir API anahtarı nasıl alınır?](#how-to-get-an-api-key-desktop-app) bölümüne bakın. API anahtarı kullanmak istemiyorsanız, [ollama.com](https://ollama.com) adresinden Ollama'yı yükleyebilir ve `translategemma:4b` gibi yerel modeller kullanabilirsiniz.
+**Masaüstü uygulamasını** kullanıyorsanız, kullandığınız her sağlayıcı için [**Ayarlar** > **API Yapılandırması**](#api-config) bölümünde anahtar ekleyin. Sadece OpenRouter kullanıyorsanız aşağıda [Ücretsiz OpenRouter API anahtarı nasıl alınır?](#how-to-get-an-api-key-desktop-app) bölümüne bakın. API anahtarı kullanmak istemiyorsanız, Ollama'yı [ollama.com](https://ollama.com) adresinden yükleyebilir ve `translategemma:4b` gibi yerel modeller kullanabilirsiniz.
 
 **Web sürümünü** kullanıyorsanız, sunucu sahibi sağlayıcıları ortam değişkenleri ile yapılandırır. Bu yüzden uygulamada doğrudan API anahtarları giremezsiniz.
 
@@ -146,14 +150,14 @@ Masaüstü uygulamasını kullanıyorsanız şu adımları izleyin:
 Transrewrt'ı ilk defa kullanıyorsanız şu sırayı izleyin:
 
 1. Uygulamayı açın.
-2. Gerekirse dünya simgesinden **Arayüz dilini** seçin.
-3. **Masaüstü uygulamasını** kullanıyorsanız [**Ayarlar** > **API Yapılandırması**](#api-config) kısmını açın, en az bir sağlayıcı için bir API anahtarı ekleyin (örneğin OpenRouter) ve çalıştığını doğrulamak için **Test** butonuna tıklayın.
-4. [**Ayarlar** > **Modeller**](#models) kısmını açın ve **Seçilen Modeller** bölümüne bir veya daha fazla model ekleyin.
-5. [**Ayarlar** > **Diller**](#languages) kısmını açın ve en çok kullandığınız dillerin en üstte görünmesini istiyorsanız **En üstteki diller** seçeneğini ayarlayın.
-6. **Çevir** sekmesine gidin ve her şeyin düzgün çalıştığını doğrulamak için basit bir çeviri işlemi çalıştırın.
-7. Bu işlem başarılı olursa, ardından **Yeniden yaz** ve sonra **Dönüştür** işlevlerini deneyin.
+2. Gerekirse dünya simgesinden **Arayüz dilinizi** seçin.
+3. **Masaüstü uygulamasını** kullanıyorsanız [**Ayarlar** > **API Yapılandırması**](#api-config) bölümüne gidin, en az bir sağlayıcı için bir API anahtarı ekleyin (örneğin OpenRouter) ve çalıştığını doğrulamak için **Test** seçeneğine tıklayın.
+4. [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümüne gidin. Varsayılan olan **Kolay** modda, yapılandırılmış bir anahtarı olan bir **Sağlayıcı** seçin. **Gelişmiş** modda [**Ayarlar** > **Modeller**](#models) bölümüne gidin ve bir veya daha fazla modeli **Seçilen Modeller** listesine ekleyin.
+5. **Çevir** sekmesinde araç çubuğundan bir **beceri** (Kolay) veya **model** (Gelişmiş) seçin.
+6. En çok kullandığınız dillerin en üstte görünmesini istiyorsanız [**Ayarlar** > **Diller**](#languages) bölümüne gidin ve **En üstteki dillerinizi** seçin.
+7. Her şeyin düzgün çalıştığını doğrulamak için basit bir çeviri yapın, ardından **Yeniden Yaz** ve **Dönüştür** işlevlerini deneyin.
 
-Bu sıralama önemlidir. En yaygın ilk kullanım sorununu önler: Uygulamanın çalışır bir API bağlantısı veya seçili bir modeli olmadan önce bir görev çalıştırmayı denemek.
+Bu sıralama önemlidir. En yaygın ilk kullanım sorununu önler: uygulamanın çalışan bir API bağlantısı veya seçili bir beceri/modeli olmadan görev çalıştırmayı denemek.
 
 <br/><br/>
 
@@ -203,14 +207,15 @@ Uygulama içinde dolaşmak için yan çubuğu kullanın. Uygulama logosunun yan�
 Araç çubuğu, uygulama içinde nerede olduğunuza göre hafifçe değişir.
 
 - Solda, geçerli sayfanın adı gösterilir.
-- Sağda, **model seçici** ve **Arayüz dili** denetimi yer alır.
+- Sağda, **beceri veya model seçici** ve **Arayüz dili** denetimi yer alır.
 
-**Model seçici**, geçerli görev için hangi yapay zekâ motorunu kullanacağınızı seçmenizi sağlar.
+**Kolay** modda araç çubuğu bir **beceri seçici** gösterir (Ücretsiz, Hızlı, Gelişmiş, Teknik, Hukuki ve benzeri önceden ayarlanmış değerler). Beceriler, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde seçtiğiniz **Sağlayıcı**'ya bağlıdır. **Sağlayıcı** **Ollama** ise araç çubuğu beceriler yerine yüklediğiniz yerel modelleri listeler.
+
+**Gelişmiş** modda, **model seçici** geçerli görev için hangi yapay zekâ motorunun kullanılacağını seçmenizi sağlar.
 
 ![Model selector](../images/screenshots/tr/model-selector.png)
 
-Bazı ücretsiz modeller her zaman mevcut olmayabilir; bazen çevrimdışı olabilirler veya kullanım sınırına sahip olabilirler. Böyle bir durumda uygulama bu modeli otomatik olarak kullanılabilir listenizden kaldırır. Hangi modellerin görüneceğini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin ve model listenizi düzenleyin.
- Ayrıca model ayarlarını, araç çubuğundaki model adının solundaki sağlayıcı simgesine tıklayarak doğrudan da açabilirsiniz.
+Gelişmiş modda, bazı ücretsiz modeller her zaman mevcut olmayabilir—çevrimdışı olabilir veya kullanım sınırına ulaşmış olabilir. Uygulama bu modeli listeden otomatik olarak kaldırabilir. Hangi modellerin görünmesini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin. Araç çubuğundaki model adının solundaki sağlayıcı simgesinden model ayarlarını açabilirsiniz.
 
 <br/>
 
@@ -256,10 +261,10 @@ Metni bir dilden başka bir dile çevirmek istediğinizde **Çevir** seçeneğin
 <a id="translate-text"></a>
 ### Metin çevir
 
-1. **Çevir** seçeneğini açın.
+1. **Çevir** sekmesini açın.
 2. **Kimden** alanında bir dil seçin.
 3. **Kime** alanında bir dil seçin.
-4. Araç çubuğundan bir model seçin.
+4. Araç çubuğundan bir beceri (Kolay) veya model (Gelişmiş) seçin.
 5. **Girdi** alanına metin yazın veya yapıştırın.
 6. **Çevir**'e tıklayın.
 7. Sonucu **Çıktı** alanında okuyun.
@@ -350,7 +355,7 @@ Bu, uygulamanın en esnek bölümüdür. Bunu şu tür görevler için kullanabi
 <a id="if-you-have-no-prompts-yet"></a>
 ### Henüz isteminiz yoksa
 
-İstem listeniz boşsa, Dönüştür çalışma alanında **Örnek istemleri yükle**'ye tıklayın. Aynı kontrol, dışa aktarma/ithalat satırında her zaman [**Ayarlar** > **İstemleri Dönüştür**](#transform-prompts) bölümünde mevcuttur. İkisi de yerleşik örnekler ekler, böylece hızlıca başlayabilirsiniz.
+İstem listeniz boşsa, Dönüştür çalışma alanında **Örnek istemleri yükle** seçeneğine tıklayın. Aynı kontrol [**Ayarlar** > **Dönüştür**](#transform-settings) bölümünde dışa aktarma/içe aktarma satırında her zaman mevcuttur. Her ikisi de yerleşik örnekler ekler, böylece hızlıca başlayabilirsiniz.
 
 <br/>
 
@@ -424,7 +429,9 @@ Bu durumlarda kullanışlıdır:
 <br/>
 
 > ℹ️ **NOT**<br/>
-> Kayıtlı istemleri [**Ayarlar** > **İstemleri Dönüştür**](#transform-prompts) bölümünde dışa aktarabilir ve içe aktarabilirsiniz.
+> Kayıtlı istemleri [**Ayarlar** > **Dönüştür**](#transform-settings) bölümünde dışa aktarabilir ve içe aktarabilirsiniz.
+
+İstem düzenleyicide **İstem oluştur**, **İstemi geliştir** veya **İstemi çevir** kullandığınızda, **Kolay** mod, Çevir ve Yeniden Yaz ile aynı beceri seçeneğini sunar; **Gelişmiş** mod ise model listesini kullanır.
 
 <br/><br/>
 
@@ -440,7 +447,7 @@ Bu durumlarda kullanışlıdır:
 <br/>
 
 > ℹ️ **NOT**<br/>
-> Yalnızca **ücretsiz** modelleri kullanıyorsanız, **maliyet** tutarları sıfır olabilir ve maliyete odaklanan özetler boş görünebilir. **Özet** sekmesinde, seçili dönemde etkinliğiniz olduğunda **Zaman içinde kullanım** ve **Modele göre kullanım** bölümleri yine de yapılan **çağrı sayılarını** (çevir, yeniden yaz ve dönüştür) gösterir.
+> Yalnızca **ücretsiz** modeller kullanıyorsanız, **maliyet** tutarları sıfır olabilir ve maliyet odaklı KPI'lar boş görünebilir. Yine de seçilen dönemde etkinlik olduğunda **Özet** sekmesi, çevirme, yeniden yazma ve dönüştürme işlemleri için çağrı sayılarını gösterir.
 
 <br/>
 
@@ -461,11 +468,9 @@ Zaman aralığını değiştirmek için üstteki filtre düğmelerini kullanın.
 <a id="dashboard-tabs"></a>
 ### Kontrol Paneli sekmeleri
 
-- **Özet**, kullanım ve maliyet genel görünümünü sunar. **Zamana göre kullanım** (günlük olarak çeviri, yeniden yazma ve dönüştürme için yığılmış kümülatif **çağrı sayısı**) ve **Modele göre kullanım** (dönüştürme dahil olmak üzere **model başına toplam çağrılar**) içerir.
-- **Kullanıma göre**, etkinliği çeviri dili, yeniden yazma modu ve dönüştürme istemine göre ayırır.
-- **Modele göre**, hangi modelleri kullandığınızı ve maliyetlerini gösterir.
-- **Güne göre**, günlük toplamları gösterir.
-- **Tüm Çağrılar**, tam çağrı geçmişini gösterir ve dışa aktarmanıza olanak tanır.
+- **Özet**, toplam maliyet, kullanılan modeller, modlara göre çağrı sayısı ve maliyet (toplam çağrıların yüzdesi), çağrı başına ortalama maliyet, ortalama TPS ve çağrı sayısı en yüksek ilk üç modeli içeren KPI kartlarını gösterir.
+- **Modele göre**, her modeli toplam çağrı, toplam maliyet ve ortalama TPS ile listeler; çevir, yeniden yaz ve dönüştür işlemlerine göre ayrımları görmek için bir satırı genişletin.
+- **Tüm Çağrılar**, tam çağrı kaydını gösterir (geniş ekranlarda sayfalanmış, dar ekranlarda kartlar halinde) ve dışa aktarmanıza olanak tanır.
 
 <br/>
 
@@ -508,14 +513,14 @@ Tüm verileri silmek veya kayıtları yaşlarına göre kaldırmak için [**Ayar
 <a id="filter-the-history"></a>
 ### Geçmişi filtrele
 
-**Geçmiş**, **Kontrol Paneli** sayfasıyla aynı filtreleri kullanır. Zaman aralığını seçmek için bunları kullanın.
+**Geçmiş**, **Kontrol Paneli** sayfasıyla aynı zaman aralığı filtrelerini kullanır.
 
 ![Dashboard filters](../images/screenshots/tr/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOT**<br/>
-> **Kullanıcı** filtresi yalnızca web sürümünde yönetici kullanıcılar tarafından görünür. Normal kullanıcılar bu filtreyi göremez ve masaüstü uygulamasında bu filtre kullanılamaz.
+> **Web uygulamasında**, herkes (yöneticiler dahil) yalnızca kendi yürütme geçmişini görür. **Kontrol Paneli**'ndeki **Kullanıcı** filtresi, yöneticilerin hesaplar genelinde kullanım ve maliyeti incelemesi içindir; **Geçmiş** için geçerli değildir.
 
 <br/>
 
@@ -541,21 +546,23 @@ Uygulamanın davranışını özelleştirmek için kenar çubuğundan **Ayarlar*
 
 Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 
-| Sekme               | Masaüstü | Web (yönetici) | Web (normal kullanıcı) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | Genel Ayarlar  |   Evet   |     Evet     |        Evet         |
-  | Modeller            |   Evet   |     Evet     |        Evet         |
-  | Diller         |   Evet   |     Evet     |        Evet         |
-  | Maliyet Takibi     |   Evet   |     Evet     |         -          |
-  | İstemleri Dönüştür |   Evet   |     Evet     |        Evet         |
-  | Kullanıcılar             |    -    |     Evet     |         -          |
-  | API Yapılandırması        |   Evet   |     Evet     |         -          |
-  | Hakkında             |   evet   |     evet     |        evet         |
+| Sekme              | Masaüstü | Web (yönetici) | Web (normal kullanıcı) | Notlar                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | Genel Ayarlar |   evet   |     evet     |        evet         | **Yapay zeka deneyimi** (Kolay / Gelişmiş) içerir |
+  | Modeller           |   evet   |     evet     |        evet         | Yalnızca **yapay zeka deneyimi** **Gelişmiş** olduğunda |
+  | Diller        |   evet   |     evet     |        evet         |                                              |
+  | Maliyet Takibi    |   evet   |     evet     |         -          |                                              |
+  | Dönüştür        |   evet   |     evet     |        evet         | Dönüştürme istemlerinin toplu içe/dışa aktarımı      |
+  | Kullanıcılar            |    -    |     evet     |         -          |                                              |
+  | API Yapılandırması       |   evet   |     evet     |         -          |                                              |
+  | Hakkında            |   evet   |     evet     |        evet         |                                              |
+
+**Kolay** modda, model seçimi araç çubuğundaki beceriler ve Genel Ayarlardaki **Sağlayıcı** aracılığıyla yapılır; **Modeller** sekmesi gizlidir.
 
 <br/>
 
 > ℹ️ **NOT**<br/>
-> Web sürümünde her kullanıcı kendi yapılandırmasına sahiptir. Seçilen modeller, diller, genel seçenekler ve dönüşüm istemleri gibi ayarlar kullanıcı bazında saklanır. Yaptığınız değişiklikler diğer kullanıcıları etkilemez.
+> Web sürümünde her kullanıcı kendi yapılandırmasına sahiptir. Yapay zeka deneyimi, sağlayıcı, seçilen modeller veya beceriler, diller, genel seçenekler ve dönüştürme istemleri gibi ayarlar kullanıcı bazında saklanır. Yaptığınız değişiklikler diğer kullanıcıları etkilemez.
 
 <br/>
 
@@ -564,7 +571,14 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 <a id="general-settings"></a>
 ### Genel Ayarlar
 
-**Genel Ayarlar**'ı kullanarak yazma davranışını, yürütme ayrıntılarının **Geçmiş** için saklanıp saklanmayacağını ve görünümü kontrol edebilirsiniz.
+**Genel Ayarlar**'ı kullanarak yazma davranışını, yürütme ayrıntılarının **Geçmiş** için saklanıp saklanmayacağını, görünümü ve Çevir, Yeniden Yaz ve Dönüştür işlemleri için yapay zekayı nasıl seçtiğinizi kontrol edin.
+
+**Yapay zeka deneyimi**
+
+- **Kolay** (varsayılan): Bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcıları araç çubuğundaki yerleşik beceri ön ayarlarını kullanır. **Ollama**, beceriler yerine makinenizde kurulu modelleri listeler.
+- **Gelişmiş**: Araç çubuğunda bireysel modeller seçin; listeyi [**Ayarlar** > **Modeller**](#models) altında yönetin.
+
+**Web uygulamasında**, hangi sağlayıcıların görüneceği sunucu ortamında ayarlanan API anahtarlarına bağlıdır. **Masaüstü uygulamasında**, anahtarları [**API Yapılandırması**](#api-config) altında yapılandırın.
 
 **Davranış**
 
@@ -576,8 +590,8 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 
 **Geçmiş**
 
-- **Çalıştırma geçmişini tut**, her çeviri, yeniden yazma ve dönüştürmenin, kenar çubuğundaki [**Geçmiş**](#history) görünümü için **girdi ve çıktı metnini** saklayıp saklamayacağını denetler. Kapalı konuma getirildiğinde onay istenir; onaylarsanız, saklanan geçmiş metni veritabanından kaldırılır.
-- **Geçmiş verilerini sil**, saklanan metni yaşına göre (örneğin birkaç aydan eski olanlar veya **tüm veriler (temizle)**) **Verileri sil** seçeneğiyle kaldırmanıza olanak tanır. Bu yalnızca **Geçmiş** görünümü için kaydedilmiş yürütme metnini etkiler; **maliyet** veya kullanım toplamlarını **silmek** için [**Ayarlar** > **Maliyet Takibi**](#cost-tracking) kullanın.
+- **Çalıştırma geçmişini tut** her çeviri, yeniden yazma ve dönüştürme işleminin **girdi ve çıktı metni**'ni yan paneldeki [**Geçmiş**](#history) görünümü için saklayıp saklamayacağını kontrol eder. Bunu kapatmak onay ister; onaylarsanız, saklanan geçmiş metni veritabanından kaldırılır. Etiket *yönetici tarafından devre dışı bırakıldı* olarak görünüyorsa, kurulumunuzda `HISTORY_DISABLED` ortamda ayarlanmıştır (bkz. [README](README.tr.md#configuration-and-environment)); geçmişi UI'dan tekrar açamazsınız.
+- **Geçmiş verilerini sil** saklanan metni yaşıyla (örneğin birkaç aydan daha eski veya **tüm veriler (temizle)**) **Verileri sil** kullanarak kaldırmanıza olanak tanır. Bu yalnızca **Geçmiş** görünümü için kaydedilen çalıştırma metnini etkiler; maliyet veya kullanım toplamlarını **silmez**. **Maliyet** verilerini kaldırmak veya kısaltmak için [**Ayarlar** > **Maliyet Takibi**](#cost-tracking) kullanın.
 
 **Görünüm**
 
@@ -602,7 +616,7 @@ Web veya masaüstü sürümünde oluşturulan yedeklemeler, diğerinde geri yük
 <a id="models"></a>
 ### Modeller
 
-Araç çubuğunda hangi modellerin görüneceğini seçmek için **Ayarlar** > **Modeller**'i kullanın.
+Bu sekme yalnızca [**Genel Ayarlar**](#general-settings) bölümünde **Yapay zeka deneyimi** **Gelişmiş** olarak ayarlandığında kullanılabilir. Araç çubuğunda hangi modellerin görüneceğini seçmek için **Ayarlar** > **Modeller** seçeneğini kullanın.
 
 ![Settings Models tab](../images/screenshots/tr/settings-models.png)
 
@@ -678,10 +692,10 @@ Maliyet bilgilerini yönetmek için **Ayarlar** > **Maliyet Takibi**'ni kullanı
 
 <br/>
 
-<a id="transform-prompts"></a>
-### İstemleri Dönüştür
+<a id="transform-settings"></a>
+### Dönüştür (ayarlar sekmesi)
 
-**Ayarlar** > **İstemleri Dönüştür** seçeneğini kullanarak istemleri toplu olarak yönetin.
+İstekleri toplu olarak yönetmek için **Ayarlar** > **Dönüştür** seçeneğini kullanın.
 
 Şunları yapabilirsiniz:
 
@@ -768,9 +782,10 @@ Bir şey beklenildiği gibi çalışmıyorsa, önce aşağıdaki noktaları kont
 
 Aşağıdakileri kontrol edin:
 
-- araç çubuğunda bir model seçtiğinizden emin olun
-- [**Ayarlar** > **Modeller**](#models) bölümünde en az bir model listeleniyor olmalı
-- API kurulumunuz çalışıyor olmalı
+- araç çubuğunda bir **beceri** (Kolay) veya **model** (Gelişmiş) seçtiniz
+- **Kolay** modda, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde çalışan bir anahtarı (veya Ollama URL'si) olan bir **Sağlayıcı** ve bu sağlayıcı için en az bir beceri olmalıdır
+- **Gelişmiş** modda, en az bir model [**Ayarlar** > **Modeller**](#models) bölümünde listelenmelidir
+- API kurulumunuz çalışıyor olmalıdır
 
 Masaüstü uygulamasını kullanıyorsanız:
 
@@ -783,13 +798,9 @@ Masaüstü uygulamasını kullanıyorsanız:
 <a id="the-model-list-is-empty"></a>
 ### Model listesi boş
 
-[**Ayarlar** > **Modeller**](#models) bölümüne gidin ve **Yenile**'ye tıklayın.
+**Kolay** modda, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünü açın, **Sağlayıcı** ayarlandığını doğrulayın ve [**API Yapılandırması**](#api-config) bölümünde anahtar ekleyin veya test edin (masaüstü) ya da yöneticinize başvurun (web). **Ollama** için temel URL'yi **Test** edin ve modellerin yerel olarak yüklü olduğundan emin olun.
 
-Gerekirse:
-
-- bir model arayın
-- **Sadece Ücretsiz** seçeneğini etkinleştirin
-- bir veya daha fazla modeli **Seçilen Modeller** listesine ekleyin
+**Gelişmiş** modda, [**Ayarlar** > **Modeller**](#models) bölümünü açın ve **Yenile**'ye tıklayın. Gerekirse bir model arayın, **Sadece Ücretsiz** seçeneğini etkinleştirin ve modelleri **Seçilen Modeller** listesine ekleyin.
 
 <br/>
 
@@ -822,15 +833,15 @@ Aşağıdakilerden birini veya birkaçını deneyin:
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Kontrol Paneli grafikleri boş
+<a id="dashboard-summary-looks-empty"></a>
+### Kontrol Paneli Özeti boş görünüyor
 
 Bu durum şu durumlarda normaldir:
 
-- yalnızca **ücretsiz modeller** kullanıyorsanız ve **maliyet** rakamlarına bakıyorsanız (bu değerler sıfır olabilir); **Özet** sekmesindeki **kullanım** çağrı sayısı grafikleri hâlâ seçilen dönemden veri almalıdır
-- seçilen **zaman filtresi**, çağrıların yapıldığı dönemi kapsamıyorsa - kontrol etmek için **Tümü** seçeneğini deneyin
+- yalnızca **ücretsiz modelleri** kullanıyorsanız ve **maliyet** rakamlarına bakıyorsanız (sıfır olabilir); **Özet** sekmesindeki çağrı sayısı KPI'ları hâlâ seçili dönemden veri gerektirir
+- seçili **zaman filtresi**, çağrıların yapıldığı dönemi kapsamıyor olabilir — kontrol etmek için **Tümü** seçeneğini deneyin
 
-Eğer **Tümü** seçildikten sonra grafikler hâlâ boşsa, çağrıların [**Geçmiş**](#history) sayfasında veya **Tüm Çağrılar** sekmesinde görünür olduğundan emin olun.
+KPI'lar hâlâ **Tümü** seçildikten sonra sıfır ise, çağrıların [**Geçmiş**](#history) bölümünde veya **Tüm Çağrılar** sekmesinde görünür olduğundan emin olun.
 
 <br/>
 
@@ -855,7 +866,7 @@ Toplam maliyetinizi gerçek OpenRouter harcamanıza daha yakın hâle getirmek i
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### Yan çubukta Geçmiş sayfası eksik
 
-**Çalıştırma geçmişini tut** seçeneği devre dışı olabilir. [**Ayarlar** > **Genel Ayarlar**](#general-settings) sayfasını açın ve etkinleştirin. Bu seçeneğin açılmasının daha önce silinmiş geçmiş verilerini geri getirmeyeceğini unutmayın.
+**Çalıştırma geçmişini tut** kapatılmış olabilir. [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünü açın ve geçmiş *yönetici tarafından devre dışı bırakılmadıysa* etkinleştirin (ortamda `HISTORY_DISABLED` ayarlıysa — bkz. [README](README.tr.md#configuration-and-environment)). Geçmişi etkinleştirmek daha önce silinmiş metinleri geri getirmez.
 
 <br/>
 
@@ -911,8 +922,9 @@ Bir istemi düzenlerken her zaman **Çalıştır'a geri dön**'e tıklamadan ön
 - Günlük kelime düzenlemeleri için [**Yeniden yaz**](#rewrite) seçeneğini kullanın.
 - Belirli bir görev için tekrarlanabilir bir iş akışı gerekiyorsa [**Dönüştür**](#transform) seçeneğini kullanın.
 - Kullanım ve maliyeti takip etmek istiyorsanız [**Kontrol Paneli**](#dashboard) kullanın.
-- Geçmiş işlemlerinizi ve tam girdi/çıktı metnini incelemek için [**Geçmiş**](#history) kullanın.
-- Birlikte çalışmak istediğiniz istemlerin bir kütüphanesini düzenli olarak dışa aktarın (bkz. [İstemleri Dönüştür](#transform-prompts)) veya başkalarıyla paylaşmak istiyorsanız.
+- Geçmiş işlemleri ve tam girdi/çıktı metinlerini gözden geçirmek için [**Geçmiş**](#history) bölümünü kullanın.
+- Düzenli olarak istekleri dışa aktarın, korumak istediğiniz bir istek kitaplığı oluşturuyorsanız (bkz. [Dönüştür](#transform)) veya başkalarıyla paylaşmak istiyorsanız.
+- Model kimlikleri üzerinde ayrıntılı kontrol ihtiyacınız olana kadar **Kolay** modda kalmaya devam edin; hangi modelleri istediğinizi zaten biliyorsanız **Gelişmiş** moda geçin.
 
 <br/><br/>
 

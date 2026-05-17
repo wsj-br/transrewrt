@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:30.318Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:47.550Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: sw
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika up
 - **Andika upya** - sahihi sarufi, boresha uwazi, fomali/isiyo ya fomali, fupisha, panua, ya kikina
 - **Badilisha** - maagizo ya AI ya kibinafsi; tengeneza na usimamize maagizo, lugha ya kipato kwa kila maagizo ni ya si lazima
 - **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya kuingiza/ya pato, kupanga kwa kuchuja, na utoaji
-- **Mifumo & gharama** - chagua mifumo kutoka kwa mtoa yoyote uliowekwa; dashibodi za gharama na matumizi kwa kumbukumbu, muhtasari kwa mfumo/kazi/siku
-- **UI** - kiolesura cha kielektroniki (zaidi ya 30, msaada wa RTL), fonti, ...
-- **Hali ya wavuti** - msaada wa wanachama wengi kwa majukumu ya msimamizi
-- **Desktop** - programu ya Electron kwa Windows na Linux
-- **Kujitegemea** - picha ya Docker kwa amd64 & arm64 (tayari kwa Raspberry Pi)
+- **Rahisi & Ubinafsi** - Njia rahisi (chaguo-msingi): vipaji vilivyochaguliwa kwa kila mtoa huduma (Bure, Haraka, Ubinafsi, Teknolojia, Kisheria) bila kuchagua vitambaa vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa wako wameorodheshwa
+- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa uchukuzi; OpenRouter inaonyesha matumizi halisi, watoa wengine hutumia mapigo
+- **UI** - kiolesura kinachotumia lugha nyingi (zaidi ya 30, msaada wa kuelimisha kulia-kushoto), fonti, ...
+- **Njia ya wavuti** - msaada wa watumiaji wengi wenye majukumu ya msimamizi
+- **Desktop** - Programu ya Electron kwa Windows na Linux
+- **Imeyakishwa binafsi** - Picha ya Docker kwa amd64 & arm64 (inayotumika kwenye Raspberry Pi)
 
 Baada ya kusakinisha, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kwa mchoro kamili wa vipengele vyote.
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:00.125Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:29:54.838Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: ca
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i tran
 - **Reescriure** - corregir gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
 - **Transformar** - indicadors personalitzats d'IA; crear i gestionar indicadors, idioma de destinació opcional per a cada indicador
 - **Historial** - historial complet d'execucions amb text d'entrada i de sortida, filtres i exportació
-- **Models i cost** - trieu models de qualsevol proveïdor configurat; taulells de cost i ús amb registre, resums per model/operació/dia
-- **Interfície d'usuari (UI)** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
+- **Fàcil i Avançat** - Mode fàcil (per defecte): habilitats seleccionades per proveïdor (Gratuït, Ràpid, Avançat, Tècnic, Legal) sense haver de triar IDs de model; Mode avançat: llista completa de models dels proveïdors configurats
+- **Models i cost** - quadres de control de cost i ús (Resum, Per model, Tots els trucades) amb exportació; OpenRouter mostra el desemborsament real, altres proveïdors utilitzen estimacions
+- **Interfície d'usuari** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
 - **Mode web** - suport multiusuari amb rols d'administrador
-- **Escriptori** - aplicació Electron per a Windows i Linux
-- **Autoallotjat** - imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
+- **Escriptori** - Aplicació Electron per a Windows i Linux
+- **Autoallotjat** - Imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
 
 Un cop instal·lat, consulteu la [**Guia de l'usuari**](USER-GUIDE.ca.md) per obtenir una descripció completa de totes les funcions.
 

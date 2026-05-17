@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:24.127Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:03.628Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: pt
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estil
 - **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
 - **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
 - **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Modelos e custo** - escolha modelos de qualquer fornecedor configurado; painéis de custo e utilização com registo e resumos por modelo/operação/dia
-- **IU** - interface multilíngue (30+ idiomas, suporte a RTL), tipos de letra, ...
+- **Fácil & Avançado** - Modo Fácil (padrão): habilidades selecionadas por fornecedor (Grátis, Rápido, Avançado, Técnico, Jurídico) sem necessidade de escolher IDs de modelos; Modo Avançado: lista completa de modelos dos fornecedores configurados
+- **Modelos & custo** - painéis de custo e utilização (Resumo, Por Modelo, Todas as chamadas) com exportação; OpenRouter mostra o valor real gasto, outros fornecedores usam estimativas
+- **Interface do Utilizador** - interface multilingue (30+ idiomas, suporte a RTL), tipos de letra, ...
 - **Modo Web** - suporte multiutilizador com funções de administrador
-- **Ambiente de trabalho** - aplicação Electron para Windows e Linux
-- **Autoalojado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
+- **Ambiente de Trabalho** - Aplicação Electron para Windows e Linux
+- **Autoalojado** - Imagem Docker para amd64 & arm64 (pronto para Raspberry Pi)
 
 Depois de instalado, consulte o [**Guia do Utilizador**](USER-GUIDE.pt.md) para uma explicação completa de todas as funcionalidades.
 

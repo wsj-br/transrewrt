@@ -2014,7 +2014,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 574
+        "line": 589
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2046,7 +2046,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 215
+        "line": 214
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -2151,7 +2151,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 594
+        "line": 609
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2248,7 +2248,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 595
+        "line": 610
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2337,7 +2337,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 596
+        "line": 611
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2426,7 +2426,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 598
+        "line": 613
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2515,15 +2515,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 599
+        "line": 614
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 694
+        "line": 709
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 763
+        "line": 778
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2567,19 +2567,19 @@
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 64
+        "line": 122
       },
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 43
+        "line": 101
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 416
+        "line": 454
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 54
+        "line": 112
       }
     ]
   },
@@ -2664,11 +2664,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 691
+        "line": 706
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 760
+        "line": 775
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2757,11 +2757,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 692
+        "line": 707
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 761
+        "line": 776
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2850,11 +2850,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 692
+        "line": 707
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 761
+        "line": 776
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2943,11 +2943,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 693
+        "line": 708
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 762
+        "line": 777
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -2967,7 +2967,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 421
+        "line": 459
       }
     ]
   },
@@ -10258,7 +10258,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 232
+        "line": 231
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -10367,7 +10367,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 233
+        "line": 232
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -10379,7 +10379,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 245
+        "line": 267
       }
     ]
   },
@@ -10573,7 +10573,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 123
+        "line": 145
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -10686,7 +10686,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 184
+        "line": 206
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -12126,7 +12126,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 176
+        "line": 175
       }
     ]
   },
@@ -12211,7 +12211,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 191
+        "line": 190
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -12300,7 +12300,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 196
+        "line": 195
       }
     ]
   },
@@ -12385,7 +12385,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 210
+        "line": 209
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -12478,7 +12478,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 231
+        "line": 230
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -12486,7 +12486,7 @@
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 57
+        "line": 115
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -12590,8 +12590,8 @@
     },
     "locations": [
       {
-        "file": "src/renderer/components/MainContent.tsx",
-        "line": 259
+        "file": "src/renderer/components/ModelOrSkillPicker.tsx",
+        "line": 75
       }
     ]
   },
@@ -12675,8 +12675,8 @@
     },
     "locations": [
       {
-        "file": "src/renderer/components/MainContent.tsx",
-        "line": 277
+        "file": "src/renderer/components/ModelOrSkillPicker.tsx",
+        "line": 103
       }
     ]
   },
@@ -14833,7 +14833,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 412
+        "line": 450
       }
     ]
   },
@@ -21816,11 +21816,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 97
+        "line": 119
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 98
+        "line": 120
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -22018,7 +22018,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 97
+        "line": 119
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -30331,7 +30331,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 372
+        "line": 410
       }
     ]
   },
@@ -30602,7 +30602,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 402
+        "line": 440
       }
     ]
   },
@@ -33815,7 +33815,7 @@
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 71
+        "line": 129
       }
     ]
   },
@@ -35660,11 +35660,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 217
+        "line": 239
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 218
+        "line": 240
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -36032,11 +36032,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 144
+        "line": 166
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 145
+        "line": 167
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
@@ -36141,11 +36141,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 154
+        "line": 176
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 155
+        "line": 177
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -36335,262 +36335,96 @@
       }
     ]
   },
-  "5c044e3b": {
-    "source": "Generate prompt configuration",
+  "88bb766f": {
+    "source": "Skill",
     "translated": {
-      "pt-BR": "Gerar configuração de prompt",
-      "ca": "Generar configuració de l'indicador",
-      "ar": "توليد تكوين المطالبة",
-      "bn": "প্রম্পট কনফিগারেশন তৈরি করুন",
-      "zh-TW": "產生提示設定",
-      "zh-CN": "生成提示配置",
-      "hr": "Generiraj konfiguraciju upita",
-      "cs": "Vygenerovat konfiguraci výzvy",
-      "en-US": "Generate prompt configuration",
-      "fr": "Générer la configuration de l'invite",
-      "tl": "Heneren ang konpigurasyon ng prompt",
-      "nl": "Promptconfiguratie genereren",
-      "de": "Eingabeaufforderungskonfiguration generieren",
-      "hu": "Prompt konfiguráció generálása",
-      "hi": "प्रॉम्प्ट कॉन्फ़िगरेशन उत्पन्न करें",
-      "el": "Δημιουργία διαμόρφωσης ερωτήματος",
-      "ms": "Jana konfigurasi arahan",
-      "ko": "프롬프트 설정 생성",
-      "ja": "プロンプト設定を生成",
-      "it": "Genera configurazione prompt",
-      "pt": "Gerar configuração de prompt",
-      "pl": "Wygeneruj konfigurację zachęty",
-      "pa": "ਪ੍ਰਾਮਟ ਕਾਨਫਿਗਰੇਸ਼ਨ ਪੈਦਾ ਕਰੋ",
-      "fa": "تولید پیکربندی پرسش",
-      "es": "Generar configuración de indicación",
-      "ru": "Создать конфигурацию запроса",
-      "ro": "Generare configurație prompt",
-      "sk": "Vygenerovať konfiguráciu výzvy",
-      "sv": "Generera promptkonfiguration",
-      "th": "สร้างการตั้งค่าพรอมต์",
-      "sw": "Tengeneza usanidi wa maagizo",
-      "te": "ప్రాంప్ట్ కాన్ఫిగరేషన్‌ను ఉత్పత్తి చేయండి",
-      "vi": "Tạo cấu hình lời nhắc",
-      "tr": "İstem yapılandırmasını oluştur",
-      "uk": "Згенерувати конфігурацію запиту",
-      "jv": "Hasilake konfigurasi prompt"
+      "pt-BR": "Habilidade",
+      "ca": "Habilitat",
+      "bn": "দক্ষতা",
+      "ar": "مهارة",
+      "cs": "Dovednost",
+      "zh-TW": "技能",
+      "hr": "Vještina",
+      "zh-CN": "技能",
+      "tl": "Kasangkapan",
+      "en-US": "Skill",
+      "nl": "Vaardigheid",
+      "fr": "Compétence",
+      "hi": "कौशल",
+      "hu": "Készség",
+      "el": "Δεξιότητα",
+      "de": "Fertigkeit",
+      "ja": "スキル",
+      "ms": "Kemahiran",
+      "ko": "기술",
+      "it": "Competenza",
+      "pt": "Habilidade",
+      "jv": "Ketrampilan",
+      "fa": "مهارت",
+      "pl": "Umiejętność",
+      "ru": "Навык",
+      "pa": "ਕੁਸ਼ਲਤਾ",
+      "sk": "Zručnosť",
+      "ro": "Abilitate",
+      "sw": "Ujuzi",
+      "es": "Habilidad",
+      "sv": "Kompetens",
+      "te": "నైపుణ్యం",
+      "vi": "Kỹ năng",
+      "th": "ทักษะ",
+      "tr": "Beceri",
+      "uk": "Навичка"
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "tl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
       "ms": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
       "sw": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
       "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507"
+      "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 38
-      }
-    ]
-  },
-  "b12e1e41": {
-    "source": "What should this prompt do?",
-    "translated": {
-      "pt-BR": "O que este prompt deve fazer?",
-      "ca": "Què ha de fer aquest indicador?",
-      "ar": "ماذا يجب أن تفعل هذه المطالبة؟",
-      "bn": "এই প্রম্পটটি কী করবে?",
-      "zh-TW": "此提示應該做什麼？",
-      "zh-CN": "此提示应实现什么功能？",
-      "hr": "Što bi ovaj upit trebao učiniti?",
-      "cs": "Co má tato výzva dělat?",
-      "en-US": "What should this prompt do?",
-      "fr": "Que doit faire cette invite ?",
-      "tl": "Ano ang dapat gawin ng prompt na ito?",
-      "nl": "Wat moet deze prompt doen?",
-      "de": "Was soll diese Aufforderung bewirken?",
-      "hu": "Mit csináljon ez a prompt?",
-      "hi": "इस प्रॉम्प्ट को क्या करना चाहिए?",
-      "el": "Τι πρέπει να κάνει αυτό το ερώτημα;",
-      "ms": "Apakah yang harus dilakukan oleh arahan ini?",
-      "ko": "이 프롬프트는 어떤 작업을 수행해야 합니까?",
-      "ja": "このプロンプトに何をさせますか？",
-      "it": "Cosa deve fare questo prompt?",
-      "pt": "O que deve fazer este prompt?",
-      "pl": "Co powinna robić ta zachęta?",
-      "pa": "ਇਹ ਪ੍ਰਾਮਟ ਕੀ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ?",
-      "fa": "این پرسش باید چه کاری انجام دهد؟",
-      "es": "¿Qué debe hacer esta indicación?",
-      "ru": "Что должен делать этот запрос?",
-      "ro": "Ce ar trebui să facă acest prompt?",
-      "sk": "Čo má táto výzva robiť?",
-      "sv": "Vad ska denna prompt göra?",
-      "th": "พรอมต์นี้ควรทำอะไร?",
-      "sw": "Maagizo haya yanapaswa kufanya nini?",
-      "te": "ఈ ప్రాంప్ట్ ఏమి చేయాలి?",
-      "vi": "Lời nhắc này nên làm gì?",
-      "tr": "Bu istem ne yapmalıdır?",
-      "uk": "Що має робити цей запит?",
-      "jv": "Apa sing kudu ditindakake dening prompt iki?"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 41
+        "line": 70
       },
       {
-        "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 48
-      }
-    ]
-  },
-  "2e6b2e24": {
-    "source": "e.g. Summarise long text in 3 bullet points, or rewrite for clarity",
-    "translated": {
-      "pt-BR": "por exemplo: Resumir texto longo em 3 tópicos, ou reescrever para maior clareza",
-      "ca": "per exemple. Resumeix el text llarg en 3 punts, o reescriu-lo per fer-lo més clar",
-      "ar": "مثل: تلخيص النص الطويل في 3 نقاط، أو إعادة الصياغة لتوضيح المعنى",
-      "bn": "যেমন: 3টি বুলেট পয়েন্টে দীর্ঘ টেক্সট সংক্ষেপ করুন, অথবা স্পষ্টতার জন্য পুনরায় লিখুন",
-      "zh-TW": "例如：將長篇文字總結為 3 個項目符號，或重寫以提高清晰度",
-      "zh-CN": "例如：将长文本总结为3个要点，或重写以提高清晰度",
-      "hr": "npr. Sažmi dugi tekst u 3 točke, ili prepiši radi jasnoće",
-      "cs": "např. Shrňte dlouhý text do 3 odstavců nebo přepište pro větší srozumitelnost",
-      "en-US": "e.g. Summarize long text in 3 bullet points, or rewrite for clarity",
-      "fr": "par ex. Résumer un texte long en 3 puces, ou réécrire pour plus de clarté",
-      "tl": "hal. Buodin ang mahabang teksto sa 3 bullet point, o isulat muli para sa linaw",
-      "nl": "bijv. Lange tekst samenvatten in 3 stippuntjes, of herschrijven voor duidelijkheid",
-      "de": "z. B. Längeren Text in 3 Stichpunkten zusammenfassen oder zur besseren Verständlichkeit umschreiben",
-      "hu": "pl. Hosszú szöveg összegzése 3 pontban, vagy átírás érthetőbben",
-      "hi": "उदाहरण के लिए: लंबे टेक्स्ट को 3 बुलेट पॉइंट्स में सारांशित करें, या स्पष्टता के लिए पुनर्लेखन करें",
-      "el": "π.χ. Σύνοψη μεγάλου κειμένου σε 3 σημεία, ή αναδιατύπωση για σαφήνεια",
-      "ms": "contoh: Ringkaskan teks panjang dalam 3 mata, atau tulis semula untuk kejelasan",
-      "ko": "예: 긴 텍스트를 3개의 불릿 포인트로 요약하거나, 명확하게 다시 작성",
-      "ja": "例：長いテキストを3つの箇条書きで要約、または明確さのために書き直す",
-      "it": "ad es. Riassumi un testo lungo in 3 punti elenco, oppure riscrivi per chiarezza",
-      "pt": "ex: Resumir texto longo em 3 pontos, ou reescrever para maior clareza",
-      "pl": "np. Podsumuj długi tekst w 3 punktach, lub przepisz, aby był jaśniejszy",
-      "pa": "ਜਿਵੇਂ ਕਿ 3 ਬੁਲੇਟ ਪੁਆਇੰਟਾਂ ਵਿੱਚ ਲੰਬੇ ਪਾਠ ਨੂੰ ਸੰਖੇਪ ਕਰੋ, ਜਾਂ ਸਪਸ਼ਟਤਾ ਲਈ ਮੁੜ ਲਿਖੋ",
-      "fa": "مثلاً خلاصه‌سازی متن طولانی در ۳ مورد، یا بازنویسی برای وضوح بیشتر",
-      "es": "por ejemplo: Resumir texto largo en 3 viñetas, o reescribir para mayor claridad",
-      "ru": "например: Сократить длинный текст до 3 пунктов списка или переписать для ясности",
-      "ro": "ex: Sintetizați textul lung în 3 puncte, sau rescrieți pentru claritate",
-      "sk": "napr. Zhrňte dlhý text do troch bodov alebo prepíšte pre zvýšenie zrozumiteľnosti",
-      "sv": "t.ex. Sammanfatta lång text i 3 punkter, eller skriv om för klarhet",
-      "th": "เช่น สรุปข้อความยาวเป็น 3 หัวข้อย่อย หรือเขียนใหม่เพื่อความชัดเจน",
-      "sw": "mfano. Muhtasari wa maandishi marefu katika pointi tatu, au andika upya kwa wazi",
-      "te": "ఉదా: 3 బులెట్ పాయింట్లలో పొడవైన పాఠ్యాన్ని సంగ్రహించండి లేదా స్పష్టత కోసం పునర్‌రచన చేయండి",
-      "vi": "ví dụ: Tóm tắt văn bản dài thành 3 điểm, hoặc viết lại để rõ ràng hơn",
-      "tr": "ör. Uzun metni 3 madde halinde özetle veya daha anlaşılır hale getir",
-      "uk": "наприклад: Узагальнити довгий текст у 3 пунктах або переписати для ясності",
-      "jv": "contone. Ringkesna teks dawa dadi 3 poin, utawa tulis maneh kanggo kejelasan"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507"
-    },
-    "locations": [
+        "file": "src/renderer/components/TransformImproveModal.tsx",
+        "line": 64
+      },
       {
-        "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 47
+        "file": "src/renderer/components/TransformTranslateModal.tsx",
+        "line": 67
       }
     ]
   },
@@ -36675,7 +36509,266 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 54
+        "line": 71
+      }
+    ]
+  },
+  "5c044e3b": {
+    "source": "Generate prompt configuration",
+    "translated": {
+      "pt-BR": "Gerar configuração de prompt",
+      "ca": "Generar configuració de l'indicador",
+      "ar": "توليد تكوين المطالبة",
+      "bn": "প্রম্পট কনফিগারেশন তৈরি করুন",
+      "zh-TW": "產生提示設定",
+      "zh-CN": "生成提示配置",
+      "hr": "Generiraj konfiguraciju upita",
+      "cs": "Vygenerovat konfiguraci výzvy",
+      "en-US": "Generate prompt configuration",
+      "fr": "Générer la configuration de l'invite",
+      "tl": "Heneren ang konpigurasyon ng prompt",
+      "nl": "Promptconfiguratie genereren",
+      "de": "Eingabeaufforderungskonfiguration generieren",
+      "hu": "Prompt konfiguráció generálása",
+      "hi": "प्रॉम्प्ट कॉन्फ़िगरेशन उत्पन्न करें",
+      "el": "Δημιουργία διαμόρφωσης ερωτήματος",
+      "ms": "Jana konfigurasi arahan",
+      "ko": "프롬프트 설정 생성",
+      "ja": "プロンプト設定を生成",
+      "it": "Genera configurazione prompt",
+      "pt": "Gerar configuração de prompt",
+      "pl": "Wygeneruj konfigurację zachęty",
+      "pa": "ਪ੍ਰਾਮਟ ਕਾਨਫਿਗਰੇਸ਼ਨ ਪੈਦਾ ਕਰੋ",
+      "fa": "تولید پیکربندی پرسش",
+      "es": "Generar configuración de indicación",
+      "ru": "Создать конфигурацию запроса",
+      "ro": "Generare configurație prompt",
+      "sk": "Vygenerovať konfiguráciu výzvy",
+      "sv": "Generera promptkonfiguration",
+      "th": "สร้างการตั้งค่าพรอมต์",
+      "sw": "Tengeneza usanidi wa maagizo",
+      "te": "ప్రాంప్ట్ కాన్ఫిగరేషన్‌ను ఉత్పత్తి చేయండి",
+      "vi": "Tạo cấu hình lời nhắc",
+      "tr": "İstem yapılandırmasını oluştur",
+      "uk": "Згенерувати конфігурацію запиту",
+      "jv": "Hasilake konfigurasi prompt"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TransformGenerateModal.tsx",
+        "line": 81
+      }
+    ]
+  },
+  "b12e1e41": {
+    "source": "What should this prompt do?",
+    "translated": {
+      "pt-BR": "O que este prompt deve fazer?",
+      "ca": "Què ha de fer aquest indicador?",
+      "ar": "ماذا يجب أن تفعل هذه المطالبة؟",
+      "bn": "এই প্রম্পটটি কী করবে?",
+      "zh-TW": "此提示應該做什麼？",
+      "zh-CN": "此提示应实现什么功能？",
+      "hr": "Što bi ovaj upit trebao učiniti?",
+      "cs": "Co má tato výzva dělat?",
+      "en-US": "What should this prompt do?",
+      "fr": "Que doit faire cette invite ?",
+      "tl": "Ano ang dapat gawin ng prompt na ito?",
+      "nl": "Wat moet deze prompt doen?",
+      "de": "Was soll diese Aufforderung bewirken?",
+      "hu": "Mit csináljon ez a prompt?",
+      "hi": "इस प्रॉम्प्ट को क्या करना चाहिए?",
+      "el": "Τι πρέπει να κάνει αυτό το ερώτημα;",
+      "ms": "Apakah yang harus dilakukan oleh arahan ini?",
+      "ko": "이 프롬프트는 어떤 작업을 수행해야 합니까?",
+      "ja": "このプロンプトに何をさせますか？",
+      "it": "Cosa deve fare questo prompt?",
+      "pt": "O que deve fazer este prompt?",
+      "pl": "Co powinna robić ta zachęta?",
+      "pa": "ਇਹ ਪ੍ਰਾਮਟ ਕੀ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ?",
+      "fa": "این پرسش باید چه کاری انجام دهد؟",
+      "es": "¿Qué debe hacer esta indicación?",
+      "ru": "Что должен делать этот запрос?",
+      "ro": "Ce ar trebui să facă acest prompt?",
+      "sk": "Čo má táto výzva robiť?",
+      "sv": "Vad ska denna prompt göra?",
+      "th": "พรอมต์นี้ควรทำอะไร?",
+      "sw": "Maagizo haya yanapaswa kufanya nini?",
+      "te": "ఈ ప్రాంప్ట్ ఏమి చేయాలి?",
+      "vi": "Lời nhắc này nên làm gì?",
+      "tr": "Bu istem ne yapmalıdır?",
+      "uk": "Що має робити цей запит?",
+      "jv": "Apa sing kudu ditindakake dening prompt iki?"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TransformGenerateModal.tsx",
+        "line": 84
+      },
+      {
+        "file": "src/renderer/components/TransformGenerateModal.tsx",
+        "line": 91
+      }
+    ]
+  },
+  "2e6b2e24": {
+    "source": "e.g. Summarise long text in 3 bullet points, or rewrite for clarity",
+    "translated": {
+      "pt-BR": "por exemplo: Resumir texto longo em 3 tópicos, ou reescrever para maior clareza",
+      "ca": "per exemple. Resumeix el text llarg en 3 punts, o reescriu-lo per fer-lo més clar",
+      "ar": "مثل: تلخيص النص الطويل في 3 نقاط، أو إعادة الصياغة لتوضيح المعنى",
+      "bn": "যেমন: 3টি বুলেট পয়েন্টে দীর্ঘ টেক্সট সংক্ষেপ করুন, অথবা স্পষ্টতার জন্য পুনরায় লিখুন",
+      "zh-TW": "例如：將長篇文字總結為 3 個項目符號，或重寫以提高清晰度",
+      "zh-CN": "例如：将长文本总结为3个要点，或重写以提高清晰度",
+      "hr": "npr. Sažmi dugi tekst u 3 točke, ili prepiši radi jasnoće",
+      "cs": "např. Shrňte dlouhý text do 3 odstavců nebo přepište pro větší srozumitelnost",
+      "en-US": "e.g. Summarize long text in 3 bullet points, or rewrite for clarity",
+      "fr": "par ex. Résumer un texte long en 3 puces, ou réécrire pour plus de clarté",
+      "tl": "hal. Buodin ang mahabang teksto sa 3 bullet point, o isulat muli para sa linaw",
+      "nl": "bijv. Lange tekst samenvatten in 3 stippuntjes, of herschrijven voor duidelijkheid",
+      "de": "z. B. Längeren Text in 3 Stichpunkten zusammenfassen oder zur besseren Verständlichkeit umschreiben",
+      "hu": "pl. Hosszú szöveg összegzése 3 pontban, vagy átírás érthetőbben",
+      "hi": "उदाहरण के लिए: लंबे टेक्स्ट को 3 बुलेट पॉइंट्स में सारांशित करें, या स्पष्टता के लिए पुनर्लेखन करें",
+      "el": "π.χ. Σύνοψη μεγάλου κειμένου σε 3 σημεία, ή αναδιατύπωση για σαφήνεια",
+      "ms": "contoh: Ringkaskan teks panjang dalam 3 mata, atau tulis semula untuk kejelasan",
+      "ko": "예: 긴 텍스트를 3개의 불릿 포인트로 요약하거나, 명확하게 다시 작성",
+      "ja": "例：長いテキストを3つの箇条書きで要約、または明確さのために書き直す",
+      "it": "ad es. Riassumi un testo lungo in 3 punti elenco, oppure riscrivi per chiarezza",
+      "pt": "ex: Resumir texto longo em 3 pontos, ou reescrever para maior clareza",
+      "pl": "np. Podsumuj długi tekst w 3 punktach, lub przepisz, aby był jaśniejszy",
+      "pa": "ਜਿਵੇਂ ਕਿ 3 ਬੁਲੇਟ ਪੁਆਇੰਟਾਂ ਵਿੱਚ ਲੰਬੇ ਪਾਠ ਨੂੰ ਸੰਖੇਪ ਕਰੋ, ਜਾਂ ਸਪਸ਼ਟਤਾ ਲਈ ਮੁੜ ਲਿਖੋ",
+      "fa": "مثلاً خلاصه‌سازی متن طولانی در ۳ مورد، یا بازنویسی برای وضوح بیشتر",
+      "es": "por ejemplo: Resumir texto largo en 3 viñetas, o reescribir para mayor claridad",
+      "ru": "например: Сократить длинный текст до 3 пунктов списка или переписать для ясности",
+      "ro": "ex: Sintetizați textul lung în 3 puncte, sau rescrieți pentru claritate",
+      "sk": "napr. Zhrňte dlhý text do troch bodov alebo prepíšte pre zvýšenie zrozumiteľnosti",
+      "sv": "t.ex. Sammanfatta lång text i 3 punkter, eller skriv om för klarhet",
+      "th": "เช่น สรุปข้อความยาวเป็น 3 หัวข้อย่อย หรือเขียนใหม่เพื่อความชัดเจน",
+      "sw": "mfano. Muhtasari wa maandishi marefu katika pointi tatu, au andika upya kwa wazi",
+      "te": "ఉదా: 3 బులెట్ పాయింట్లలో పొడవైన పాఠ్యాన్ని సంగ్రహించండి లేదా స్పష్టత కోసం పునర్‌రచన చేయండి",
+      "vi": "ví dụ: Tóm tắt văn bản dài thành 3 điểm, hoặc viết lại để rõ ràng hơn",
+      "tr": "ör. Uzun metni 3 madde halinde özetle veya daha anlaşılır hale getir",
+      "uk": "наприклад: Узагальнити довгий текст у 3 пунктах або переписати для ясності",
+      "jv": "contone. Ringkesna teks dawa dadi 3 poin, utawa tulis maneh kanggo kejelasan"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TransformGenerateModal.tsx",
+        "line": 90
       }
     ]
   },
@@ -36760,92 +36853,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 71
-      }
-    ]
-  },
-  "391f72ed": {
-    "source": "Improve prompt configuration",
-    "translated": {
-      "pt-BR": "Melhorar configuração do prompt",
-      "ca": "Millora la configuració de l'indicador",
-      "ar": "تحسين تكوين الموجه",
-      "bn": "প্রম্পট কনফিগারেশন উন্নত করুন",
-      "zh-TW": "改善提示設定",
-      "zh-CN": "优化提示配置",
-      "cs": "Vylepšit konfiguraci výzvy",
-      "hr": "Unaprijedi konfiguraciju upita",
-      "en-US": "Improve prompt configuration",
-      "fr": "Améliorer la configuration de l'invite",
-      "tl": "Pabutihin ang pag-configure ng prompt",
-      "nl": "Promptconfiguratie verbeteren",
-      "hu": "Parancsbeállítások javítása",
-      "de": "Prompt-Konfiguration verbessern",
-      "hi": "प्रॉम्प्ट कॉन्फ़िगरेशन में सुधार करें",
-      "el": "Βελτίωση διαμόρφωσης ερωτήματος",
-      "ms": "Tingkatkan konfigurasi arahan",
-      "ja": "プロンプト設定の改善",
-      "ko": "프롬프트 구성 개선",
-      "it": "Migliora configurazione prompt",
-      "pt": "Melhorar configuração do prompt",
-      "pl": "Ulepsz konfigurację zachęty",
-      "pa": "ਪ੍ਰੰਪਟ ਸੰਰਚਨਾ ਵਿੱਚ ਸੁਧਾਰ ਕਰੋ",
-      "fa": "بهبود پیکربندی دستور",
-      "es": "Mejorar configuración del prompt",
-      "ru": "Улучшить настройку запроса",
-      "ro": "Îmbunătățește configurarea promptului",
-      "sk": "Vylepšiť konfiguráciu výzvy",
-      "sv": "Förbättra promptkonfiguration",
-      "th": "ปรับปรุงการตั้งค่าพรอมต์",
-      "sw": "Sahihisha usanidi wa maagizo",
-      "te": "ప్రాంప్ట్ కాన్ఫిగరేషన్‌ను మెరుగుపరచండి",
-      "vi": "Cải thiện cấu hình nhắc",
-      "tr": "İstemi yapılandır",
-      "uk": "Покращити налаштування запиту",
-      "jv": "Tingkatake konfigurasi prompt"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "de": "openai/gpt-4o-mini",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "ko": "openai/gpt-4o-mini",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "openai/gpt-4o-mini",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "openai/gpt-4o-mini"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 32
+        "line": 129
       }
     ]
   },
@@ -36930,7 +36938,92 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 36
+        "line": 65
+      }
+    ]
+  },
+  "391f72ed": {
+    "source": "Improve prompt configuration",
+    "translated": {
+      "pt-BR": "Melhorar configuração do prompt",
+      "ca": "Millora la configuració de l'indicador",
+      "ar": "تحسين تكوين الموجه",
+      "bn": "প্রম্পট কনফিগারেশন উন্নত করুন",
+      "zh-TW": "改善提示設定",
+      "zh-CN": "优化提示配置",
+      "cs": "Vylepšit konfiguraci výzvy",
+      "hr": "Unaprijedi konfiguraciju upita",
+      "en-US": "Improve prompt configuration",
+      "fr": "Améliorer la configuration de l'invite",
+      "tl": "Pabutihin ang pag-configure ng prompt",
+      "nl": "Promptconfiguratie verbeteren",
+      "hu": "Parancsbeállítások javítása",
+      "de": "Prompt-Konfiguration verbessern",
+      "hi": "प्रॉम्प्ट कॉन्फ़िगरेशन में सुधार करें",
+      "el": "Βελτίωση διαμόρφωσης ερωτήματος",
+      "ms": "Tingkatkan konfigurasi arahan",
+      "ja": "プロンプト設定の改善",
+      "ko": "프롬프트 구성 개선",
+      "it": "Migliora configurazione prompt",
+      "pt": "Melhorar configuração do prompt",
+      "pl": "Ulepsz konfigurację zachęty",
+      "pa": "ਪ੍ਰੰਪਟ ਸੰਰਚਨਾ ਵਿੱਚ ਸੁਧਾਰ ਕਰੋ",
+      "fa": "بهبود پیکربندی دستور",
+      "es": "Mejorar configuración del prompt",
+      "ru": "Улучшить настройку запроса",
+      "ro": "Îmbunătățește configurarea promptului",
+      "sk": "Vylepšiť konfiguráciu výzvy",
+      "sv": "Förbättra promptkonfiguration",
+      "th": "ปรับปรุงการตั้งค่าพรอมต์",
+      "sw": "Sahihisha usanidi wa maagizo",
+      "te": "ప్రాంప్ట్ కాన్ఫిగరేషన్‌ను మెరుగుపరచండి",
+      "vi": "Cải thiện cấu hình nhắc",
+      "tr": "İstemi yapılandır",
+      "uk": "Покращити налаштування запиту",
+      "jv": "Tingkatake konfigurasi prompt"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "de": "openai/gpt-4o-mini",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "openai/gpt-4o-mini",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "openai/gpt-4o-mini",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "openai/gpt-4o-mini"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TransformImproveModal.tsx",
+        "line": 75
       }
     ]
   },
@@ -37015,7 +37108,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 46
+        "line": 104
       }
     ]
   },
@@ -37100,7 +37193,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 46
+        "line": 104
       }
     ]
   },
@@ -37185,7 +37278,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 169
+        "line": 205
       }
     ]
   },
@@ -37270,11 +37363,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 179
+        "line": 215
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 193
+        "line": 229
       }
     ]
   },
@@ -37359,11 +37452,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 228
+        "line": 265
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 244
+        "line": 281
       }
     ]
   },
@@ -37448,11 +37541,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 278
+        "line": 316
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 293
+        "line": 331
       }
     ]
   },
@@ -37537,11 +37630,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 311
+        "line": 349
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 315
+        "line": 353
       }
     ]
   },
@@ -37626,7 +37719,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 328
+        "line": 366
       }
     ]
   },
@@ -37711,7 +37804,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 335
+        "line": 373
       }
     ]
   },
@@ -37796,7 +37889,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 340
+        "line": 378
       }
     ]
   },
@@ -37881,7 +37974,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 345
+        "line": 383
       }
     ]
   },
@@ -37966,7 +38059,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 350
+        "line": 388
       }
     ]
   },
@@ -38051,7 +38144,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 351
+        "line": 389
       }
     ]
   },
@@ -38136,7 +38229,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 355
+        "line": 393
       }
     ]
   },
@@ -38221,7 +38314,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 360
+        "line": 398
       }
     ]
   },
@@ -38306,7 +38399,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 365
+        "line": 403
       }
     ]
   },
@@ -38391,7 +38484,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 371
+        "line": 409
       }
     ]
   },
@@ -38476,7 +38569,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 377
+        "line": 415
       }
     ]
   },
@@ -38561,7 +38654,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 382
+        "line": 420
       }
     ]
   },
@@ -38646,7 +38739,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 388
+        "line": 426
       }
     ]
   },
@@ -38731,7 +38824,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 392
+        "line": 430
       }
     ]
   },
@@ -38816,7 +38909,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 404
+        "line": 442
       }
     ]
   },
@@ -38901,7 +38994,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 429
+        "line": 467
       }
     ]
   },
@@ -38986,7 +39079,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 435
+        "line": 473
       }
     ]
   },
@@ -40370,6 +40463,91 @@
       }
     ]
   },
+  "22b01ac6": {
+    "source": "Model to translate",
+    "translated": {
+      "pt-BR": "Modelo para tradução",
+      "ca": "Model per traduir",
+      "ar": "النموذج للترجمة",
+      "bn": "অনুবাদের জন্য মডেল",
+      "zh-TW": "用於翻譯的模型",
+      "zh-CN": "用于翻译的模型",
+      "cs": "Model pro překlad",
+      "hr": "Model za prijevod",
+      "en-US": "Model to translate",
+      "fr": "Modèle de traduction",
+      "tl": "Modelo para isalin",
+      "nl": "Model om te vertalen",
+      "hu": "Fordításhoz használandó modell",
+      "de": "Modell zur Übersetzung",
+      "hi": "अनुवाद करने के लिए मॉडल",
+      "el": "Μοντέλο για μετάφραση",
+      "ms": "Model untuk menterjemah",
+      "ja": "翻訳に使用するモデル",
+      "ko": "번역할 모델",
+      "it": "Modello per la traduzione",
+      "pt": "Modelo para traduzir",
+      "pl": "Model do tłumaczenia",
+      "pa": "ਅਨੁਵਾਦ ਕਰਨ ਲਈ ਮਾਡਲ",
+      "fa": "مدل ترجمه",
+      "es": "Modelo para traducir",
+      "ru": "Модель для перевода",
+      "ro": "Model pentru traducere",
+      "sk": "Model na preklad",
+      "sv": "Modell för översättning",
+      "th": "โมเดลที่ใช้แปล",
+      "sw": "Mfumo wa kutafsiri",
+      "te": "అనువదించడానికి మోడల్",
+      "vi": "Mô hình để dịch",
+      "tr": "Çeviri modeli",
+      "uk": "Модель для перекладу",
+      "jv": "Model kanggo nerjemahake"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "de": "openai/gpt-4o-mini",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "openai/gpt-4o-mini",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "openai/gpt-4o-mini",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "openai/gpt-4o-mini"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TransformTranslateModal.tsx",
+        "line": 68
+      }
+    ]
+  },
   "b0280945": {
     "source": "Translate prompt fields",
     "translated": {
@@ -40451,7 +40629,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 35
+        "line": 78
       }
     ]
   },
@@ -40536,92 +40714,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 38
-      }
-    ]
-  },
-  "22b01ac6": {
-    "source": "Model to translate",
-    "translated": {
-      "pt-BR": "Modelo para tradução",
-      "ca": "Model per traduir",
-      "ar": "النموذج للترجمة",
-      "bn": "অনুবাদের জন্য মডেল",
-      "zh-TW": "用於翻譯的模型",
-      "zh-CN": "用于翻译的模型",
-      "cs": "Model pro překlad",
-      "hr": "Model za prijevod",
-      "en-US": "Model to translate",
-      "fr": "Modèle de traduction",
-      "tl": "Modelo para isalin",
-      "nl": "Model om te vertalen",
-      "hu": "Fordításhoz használandó modell",
-      "de": "Modell zur Übersetzung",
-      "hi": "अनुवाद करने के लिए मॉडल",
-      "el": "Μοντέλο για μετάφραση",
-      "ms": "Model untuk menterjemah",
-      "ja": "翻訳に使用するモデル",
-      "ko": "번역할 모델",
-      "it": "Modello per la traduzione",
-      "pt": "Modelo para traduzir",
-      "pl": "Model do tłumaczenia",
-      "pa": "ਅਨੁਵਾਦ ਕਰਨ ਲਈ ਮਾਡਲ",
-      "fa": "مدل ترجمه",
-      "es": "Modelo para traducir",
-      "ru": "Модель для перевода",
-      "ro": "Model pentru traducere",
-      "sk": "Model na preklad",
-      "sv": "Modell för översättning",
-      "th": "โมเดลที่ใช้แปล",
-      "sw": "Mfumo wa kutafsiri",
-      "te": "అనువదించడానికి మోడల్",
-      "vi": "Mô hình để dịch",
-      "tr": "Çeviri modeli",
-      "uk": "Модель для перекладу",
-      "jv": "Model kanggo nerjemahake"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "de": "openai/gpt-4o-mini",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "ko": "openai/gpt-4o-mini",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "openai/gpt-4o-mini",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "openai/gpt-4o-mini"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 47
+        "line": 81
       }
     ]
   },
@@ -40706,7 +40799,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 57
+        "line": 115
       }
     ]
   },
@@ -41402,7 +41495,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 168
+        "line": 190
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -41592,7 +41685,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 187
+        "line": 209
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -41774,7 +41867,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 236
+        "line": 258
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -41960,7 +42053,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 126
+        "line": 148
       }
     ]
   },
@@ -42045,7 +42138,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 245
+        "line": 267
       }
     ]
   },
@@ -42903,27 +42996,27 @@
     "locations": [
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 412
+        "line": 423
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 474
+        "line": 485
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 536
+        "line": 547
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 598
+        "line": 609
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 684
+        "line": 695
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 782
+        "line": 793
       }
     ]
   },

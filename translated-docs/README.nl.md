@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:07.855Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:21.029Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: nl
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,11 @@ AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende sti
 - **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeler/informeel, verkorten, uitbreiden, technisch
 - **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
-- **Modellen en kosten** - kies modellen van elke geconfigureerde provider; kosten- en gebruiksdashboards met log, samenvattingen per model/operatie/dag
-- **UI** - meertalige interface (30+ talen, ondersteuning voor RTL), lettertypen, ...
+- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde vaardigheden per leverancier (Gratis, Snel, Geavanceerd, Technisch, Juridisch) zonder model-ID's te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
+- **Modellen en kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de werkelijke uitgaven, andere leveranciers gebruiken schattingen
+- **Gebruikersinterface** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
 - **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
-- **Desktop** - Electron-app voor Windows en Linux
+- **Bureaublad** - Electron-app voor Windows en Linux
 - **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
 
 Nadat u het hebt geïnstalleerd, raadpleeg de [**Gebruikershandleiding**](USER-GUIDE.nl.md) voor een volledige uitleg van alle functies.

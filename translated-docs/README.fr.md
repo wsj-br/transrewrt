@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:11.281Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:31:38.329Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: fr
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans diff
 - **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
 - **Transformer** - invites personnalisées par IA ; créer et gérer des invites, langue cible facultative par invite
 - **Historique** - historique complet des exécutions avec texte d'entrée/de sortie, filtres et exportation
-- **Modèles et coûts** - choisir des modèles parmi n'importe quel fournisseur configuré ; tableaux de bord des coûts et de l'utilisation avec journaux, résumés par modèle/opération/jour
+- **Facile et Avancé** - Mode Facile (par défaut) : compétences sélectionnées par fournisseur (Gratuit, Rapide, Avancé, Technique, Juridique) sans avoir à choisir d'ID de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
+- **Modèles et coût** - tableaux de bord de coût et d'utilisation (Résumé, Par modèle, Tous les appels) avec fonction d'exportation ; OpenRouter affiche les dépenses réelles, les autres fournisseurs utilisent des estimations
 - **Interface utilisateur** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
-- **Mode web** - prise en charge multi-utilisateurs avec rôles administrateurs
-- **Bureau** - application Electron pour Windows et Linux
-- **Auto-hébergé** - image Docker pour amd64 et arm64 (prêt à l'emploi sur Raspberry Pi)
+- **Mode Web** - prise en charge multi-utilisateur avec rôles d'administrateur
+- **Bureau** - Application Electron pour Windows et Linux
+- **Auto-hébergé** - Image Docker pour amd64 et arm64 (prêt à l'emploi sur Raspberry Pi)
 
 Une fois installé, consultez le [**Guide de l'utilisateur**](USER-GUIDE.fr.md) pour une présentation complète de toutes les fonctionnalités.
 

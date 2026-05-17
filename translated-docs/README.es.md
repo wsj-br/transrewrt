@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:29.288Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:33:40.798Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: es
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes esti
 - **Reescribir** - corregir gramática, mejorar claridad, estilo formal/informal, acortar, ampliar, contenido técnico
 - **Transformar** - prompts personalizados de IA; crear y gestionar prompts, idioma de destino opcional por prompt
 - **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
-- **Modelos y coste** - elegir modelos de cualquier proveedor configurado; paneles de coste y uso con registros, resúmenes por modelo/operación/día
+- **Fácil y Avanzado** - Modo Fácil (predeterminado): habilidades seleccionadas por proveedor (Gratis, Rápido, Avanzado, Técnico, Legal) sin necesidad de elegir IDs de modelo; Modo Avanzado: lista completa de modelos de tus proveedores configurados
+- **Modelos y costo** - paneles de costo y uso (Resumen, Por modelo, Todas las llamadas) con opción de exportación; OpenRouter muestra el gasto real, otros proveedores usan estimaciones
 - **Interfaz de usuario (UI)** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
 - **Modo web** - soporte multiusuario con roles de administrador
-- **Escritorio** - aplicación Electron para Windows y Linux
-- **Autohospedado** - imagen Docker para amd64 y arm64 (listo para Raspberry Pi)
+- **Escritorio** - Aplicación Electron para Windows y Linux
+- **Autohospedado** - Imagen Docker para amd64 y arm64 (listo para Raspberry Pi)
 
 Una vez instalado, consulte la [**Guía del usuario**](USER-GUIDE.es.md) para una descripción completa de todas las funciones.
 

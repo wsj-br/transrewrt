@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-16T18:56:34.537Z'
-source_file_mtime: '2026-05-15T01:26:10.257Z'
-source_file_hash: 1637519979c0c977fcccc96e1f5f98e8cf43b6009da5793552ebe3498b840966
+translation_last_updated: '2026-05-17T23:34:24.257Z'
+source_file_mtime: '2026-05-17T23:26:26.508Z'
+source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
 translation_language: vi
 source_file_path: README.md
 translation_models:
@@ -25,11 +25,12 @@ Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ng�
 - **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, chuyển đổi trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
 - **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho từng lời nhắc
 - **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, bộ lọc và chức năng xuất
-- **Mô hình & chi phí** - chọn mô hình từ bất kỳ nhà cung cấp nào đã cấu hình; bảng điều khiển chi phí và sử dụng với nhật ký, tóm tắt theo mô hình/thao tác/ngày
-- **Giao diện người dùng (UI)** - giao diện đa ngôn ngữ (trên 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
-- **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên
+- **Dễ & Nâng cao** - Chế độ Dễ (mặc định): các kỹ năng được chọn lọc theo nhà cung cấp (Miễn phí, Nhanh, Nâng cao, Kỹ thuật, Pháp lý) mà không cần chọn ID mô hình; Chế độ Nâng cao: danh sách đầy đủ các mô hình từ các nhà cung cấp bạn đã cấu hình
+- **Mô hình và chi phí** - bảng điều khiển chi phí và sử dụng (Tóm tắt, Theo mô hình, Tất cả các cuộc gọi) có chức năng xuất; OpenRouter hiển thị chi tiêu thực tế, các nhà cung cấp khác sử dụng ước tính
+- **Giao diện người dùng** - giao diện đa ngôn ngữ (hơn 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
+- **Chế độ Web** - hỗ trợ đa người dùng với các vai trò quản trị viên
 - **Máy tính để bàn** - Ứng dụng Electron cho Windows và Linux
-- **Tự lưu trữ** - hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
+- **Tự lưu trữ** - Hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
 
 Sau khi cài đặt, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.md) để được hướng dẫn chi tiết về tất cả các tính năng.
 

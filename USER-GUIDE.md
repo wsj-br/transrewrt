@@ -16,6 +16,8 @@ Transrewrt helps you work with text in three main ways:
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
+By default the app runs in **Easy** mode: you pick a **skill** (for example Free, Fast, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
+
 <br/>
 
 This guide explains how to use the app once it is installed and running. For installation steps, see the main [**README**](README.md).
@@ -73,7 +75,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Models](#models)
   - [Languages](#languages)
   - [Cost tracking](#cost-tracking)
-  - [Transform prompts](#transform-prompts)
+  - [Transform (settings tab)](#transform-settings)
   - [Users](#users)
   - [API config](#api-config)
   - [About](#about)
@@ -83,7 +85,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [The result is too slow or too expensive](#the-result-is-too-slow-or-too-expensive)
   - [The interface is in the wrong language](#the-interface-is-in-the-wrong-language)
   - [The text is too small or hard to read](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboard charts are empty](#dashboard-charts-are-empty)
+  - [Dashboard Summary looks empty](#dashboard-summary-looks-empty)
   - [Cost shows "not available" or seems wrong](#cost-shows-not-available-or-seems-wrong)
   - [Total cost does not match my provider bill](#total-cost-does-not-match-my-provider-bill)
   - [The History page is missing from the sidebar](#the-history-page-is-missing-from-the-sidebar)
@@ -108,10 +110,11 @@ You do not need to select a paid model to begin. As soon as you add your OpenRou
 
 In plain language:
 
-- A **model** is the AI engine that does the work. Models are listed with a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
+- In **Easy** mode, a **skill** is a preset (Free, Fast, Advanced, Technical, Legal) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). You select the skill in the toolbar on Translate, Rewrite, and Transform.
+- In **Advanced** mode, a **model** is the AI engine you pick directly. Model ids use a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
 - An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
-If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get an API key](#how-to-get-an-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
+If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get a free OpenRouter API key](#how-to-get-an-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
 
 If you are using the **web version**, the server owner configures providers with environment variables, so you cannot enter API keys directly in the application.
 
@@ -142,12 +145,12 @@ If this is your first time using Transrewrt, follow this order:
 1. Open the app.
 2. Choose your **Interface language** from the globe icon if needed.
 3. If you are on the **desktop app**, open [**Settings** > **API Config**](#api-config), add an API key for at least one provider (for example OpenRouter), and click **Test** to verify it works.
-4. Open [**Settings** > **Models**](#models) and add one or more models to **Selected Models**.
-5. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
-6. Go to **Translate** and run a simple translation to confirm everything is working.
-7. Once that works, try **Rewrite** and then **Transform**.
+4. Open [**Settings** > **General Settings**](#general-settings). In **Easy** mode (default), choose a **Provider** that has a configured key. In **Advanced** mode, open [**Settings** > **Models**](#models) and add one or more models to **Selected Models**.
+5. On **Translate**, pick a **skill** (Easy) or **model** (Advanced) in the toolbar.
+6. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
+7. Run a simple translation to confirm everything is working, then try **Rewrite** and **Transform**.
 
-This order matters. It prevents the most common first-use problem: trying to run a task before the app has a working API connection or a selected model.
+This order matters. It prevents the most common first-use problem: trying to run a task before the app has a working API connection or a selected skill/model.
 
 <br/><br/>
 
@@ -197,14 +200,15 @@ Use the sidebar to move around the app. You can collapse the sidebar for more sp
 The toolbar changes slightly depending on where you are in the app.
 
 - On the left, it shows the current page name.
-- On the right, it shows the **model selector** and the **Interface language** control.
+- On the right, it shows the **skill or model selector** and the **Interface language** control.
 
-The **model selector** lets you choose which AI engine to use for the current task.
+In **Easy** mode, the toolbar shows a **skill selector** (Free, Fast, Advanced, Technical, Legal, and similar presets). Skills depend on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings). If **Provider** is **Ollama**, the toolbar lists your installed local models instead of skills.
+
+In **Advanced** mode, the **model selector** lets you choose which AI engine to use for the current task.
 
   ![Model selector](images/screenshots/en-GB/model-selector.png)
 
- Some free models may not always be available-sometimes they are offline or have a usage cap. If this happens, the app will automatically remove that model from your available list. To control which models appear, go to [**Settings** > **Models**](#models) and edit your model list.
- You can also open the model settings directly by clicking the provider icon to the left of the model name in the toolbar.
+In Advanced mode, some free models may not always be available—they can be offline or hit a usage cap. The app may remove that model from your list automatically. To control which models appear, go to [**Settings** > **Models**](#models). You can open model settings from the provider icon to the left of the model name in the toolbar.
 
 <br/>
 
@@ -254,7 +258,7 @@ Use **Translate** when you want to convert text from one language to another.
 1. Open **Translate**.
 2. Choose a language in **From**.
 3. Choose a language in **To**.
-4. Choose a model in the toolbar.
+4. Choose a skill (Easy) or model (Advanced) in the toolbar.
 5. Type or paste text into **Input**.
 6. Click **Translate**.
 7. Read the result in **Output**.
@@ -346,7 +350,7 @@ This is the most flexible area of the app. You can use it for tasks such as:
 <a id="if-you-have-no-prompts-yet"></a>
 ### If you have no prompts yet
 
-If your prompt list is empty, click **Load sample prompts** in the Transform workspace. The same control is always available in [**Settings** > **Transform Prompts**](#transform-prompts) on the export/import row. Both add built-in examples so you can start quickly.
+If your prompt list is empty, click **Load sample prompts** in the Transform workspace. The same control is always available in [**Settings** > **Transform**](#transform-settings) on the export/import row. Both add built-in examples so you can start quickly.
 
 <br/>
 
@@ -420,7 +424,9 @@ This is useful when:
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> You can export and import saved prompts in [**Settings** > **Transform Prompts**](#transform-prompts).
+> You can export and import saved prompts in [**Settings** > **Transform**](#transform-settings).
+
+When you use **Generate prompt**, **Improve prompt**, or **Translate prompt** in the prompt editor, **Easy** mode offers the same skill selector as Translate and Rewrite; **Advanced** mode uses the model list.
 
 <br/><br/>
 
@@ -437,7 +443,7 @@ Use **Dashboard** to see how much you are using the app and what it is costing (
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> If you only use **free** models, **cost** amounts may be zero and cost-focused summaries can look empty. On **Summary**, **Usage over time** and **Usage by model** still show **numbers of calls** (translate, rewrite, and transform) when you have activity in the selected period.
+> If you only use **free** models, **cost** amounts may be zero and cost-focused KPIs can look empty. The **Summary** tab still shows call counts for translate, rewrite, and transform when you have activity in the selected period.
 
 <br/>
 
@@ -458,11 +464,9 @@ Use the filter buttons at the top to change the time range.
 <a id="dashboard-tabs"></a>
 ### Dashboard tabs
 
-- **Summary** gives you an overview of usage and cost. It includes a **Usage over time** (stacked cumulative **call counts** by day for translate, rewrite, and transform) and **Usage by model** (total **calls per model**, including transform).
-- **By Usage** breaks activity down by translation language, rewrite mode, and transform prompt.
-- **By Model** shows which models you used and how much they cost.
-- **By Day** shows daily totals.
-- **All Calls** shows the full call history and lets you export it.
+- **Summary** shows KPI cards: total cost, models used, per-mode call counts and cost (with share of total calls), average cost per call, average TPS, and the top three models by call count.
+- **By Model** lists each model with total calls, total cost, and average TPS; expand a row for a breakdown by translate, rewrite, and transform.
+- **All Calls** shows the full call log (paginated on wide layouts, cards on narrow screens) and lets you export it.
 
 <br/>
 
@@ -505,14 +509,14 @@ Click on **History** to see the history of your actions inside **Transrewrt**, i
 <a id="filter-the-history"></a>
 ### Filter the history
 
-**History** uses the same filters as the **Dashboard** page. Use them to select the time range.
+**History** uses the same time-range filters as the **Dashboard** page.
 
 ![Dashboard filters](images/screenshots/en-GB/dashboard-filter.png)
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> The **User** filter is only visible to administrators in the web version. Regular users will not see this filter, and it is not available in the desktop app.
+> In the **web app**, everyone (including administrators) sees only their own execution history. The **User** filter on **Dashboard** is for admins to review usage and cost across accounts; it does not apply to **History**.
 
 <br/>
 
@@ -538,21 +542,23 @@ Open **Settings** from the sidebar to customise how the app behaves.
 
 The available tabs depend on the platform and your role:
 
-  | Tab               | Desktop | Web (admin) | Web (regular user) |
-  |-------------------|:-------:|:-----------:|:------------------:|
-  | General Settings  |   yes   |     yes     |        yes         |
-  | Models            |   yes   |     yes     |        yes         |
-  | Languages         |   yes   |     yes     |        yes         |
-  | Cost Tracking     |   yes   |     yes     |         -          |
-  | Transform Prompts |   yes   |     yes     |        yes         |
-  | Users             |    -    |     yes     |         -          |
-  | API Config        |   yes   |     yes     |         -          |
-  | About             |   yes   |     yes     |        yes         |
+  | Tab              | Desktop | Web (admin) | Web (regular user) | Notes                                        |
+  |------------------|:-------:|:-----------:|:------------------:|----------------------------------------------|
+  | General Settings |   yes   |     yes     |        yes         | Includes **AI experience** (Easy / Advanced) |
+  | Models           |   yes   |     yes     |        yes         | Only when **AI experience** is **Advanced** |
+  | Languages        |   yes   |     yes     |        yes         |                                              |
+  | Cost Tracking    |   yes   |     yes     |         -          |                                              |
+  | Transform        |   yes   |     yes     |        yes         | Bulk import/export of transform prompts      |
+  | Users            |    -    |     yes     |         -          |                                              |
+  | API Config       |   yes   |     yes     |         -          |                                              |
+  | About            |   yes   |     yes     |        yes         |                                              |
+
+  In **Easy** mode, model selection happens via skills in the toolbar and **Provider** in General Settings; the **Models** tab is hidden.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In the web version, each user has their own configuration. Settings such as selected models, languages, general options, and transform prompts are stored per user. Changes you make do not affect other users.
+> In the web version, each user has their own configuration. Settings such as AI experience, provider, selected models or skills, languages, general options, and transform prompts are stored per user. Changes you make do not affect other users.
 
 <br/>
 
@@ -562,7 +568,14 @@ The available tabs depend on the platform and your role:
 <a id="general-settings"></a>
 ### General settings
 
-Use **General Settings** to control typing behaviour, whether execution details are stored for **History**, and appearance.
+Use **General Settings** to control typing behaviour, whether execution details are stored for **History**, appearance, and how you pick the AI for Translate, Rewrite, and Transform.
+
+**AI experience**
+
+- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in skill presets in the toolbar. **Ollama** lists models installed on your machine instead of skills.
+- **Advanced**: pick individual models in the toolbar; manage the list under [**Settings** > **Models**](#models).
+
+On the **web app**, which providers appear depends on API keys set in the server environment. On the **desktop app**, configure keys under [**API Config**](#api-config).
 
 **Behaviour**
 
@@ -574,7 +587,7 @@ Use **General Settings** to control typing behaviour, whether execution details 
 
 **History**
 
-- **Keep execution history** controls whether each translate, rewrite, and transform stores **input and output text** for the sidebar [**History**](#history) view. Turning it off asks for confirmation; if you confirm, stored history text is removed from the database.
+- **Keep execution history** controls whether each translate, rewrite, and transform stores **input and output text** for the sidebar [**History**](#history) view. Turning it off asks for confirmation; if you confirm, stored history text is removed from the database. If the label shows *disabled by the administrator*, your install has `HISTORY_DISABLED` set in the environment (see the [README](README.md#configuration-and-environment)); you cannot turn history back on from the UI.
 - **Delete history data** lets you remove stored text by age (for example older than a few months, or **all data (clear)**) using **Delete data**. That only affects saved execution text for the **History** view; it does **not** delete cost or usage totals. To remove or trim **cost** data, use [**Settings** > **Cost Tracking**](#cost-tracking).
 
 **Appearance**
@@ -601,7 +614,7 @@ Backups created in either the web or desktop version can be restored in the othe
 <a id="models"></a>
 ### Models
 
-Use **Settings** > **Models** to choose which models appear in the toolbar.
+This tab is available only when **AI experience** is set to **Advanced** in [**General Settings**](#general-settings). Use **Settings** > **Models** to choose which models appear in the toolbar.
 
 ![Settings Models tab](images/screenshots/en-GB/settings-models.png)
 
@@ -681,10 +694,10 @@ Use **Settings** > **Cost Tracking** to manage cost information.
 
 <br/>
 
-<a id="transform-prompts"></a>
-### Transform prompts
+<a id="transform-settings"></a>
+### Transform (settings tab)
 
-Use **Settings** > **Transform Prompts** to manage prompts in bulk.
+Use **Settings** > **Transform** to manage prompts in bulk.
 
 You can:
 
@@ -772,8 +785,9 @@ If something does not work as expected, check the following points first.
 
 Check that:
 
-- you have selected a model in the toolbar
-- at least one model is listed in [**Settings** > **Models**](#models)
+- you have selected a **skill** (Easy) or **model** (Advanced) in the toolbar
+- in **Easy** mode, [**Settings** > **General Settings**](#general-settings) has a **Provider** with a working key (or Ollama URL) and at least one skill for that provider
+- in **Advanced** mode, at least one model is listed in [**Settings** > **Models**](#models)
 - your API setup is working
 
 If you are using the desktop app:
@@ -787,13 +801,9 @@ If you are using the desktop app:
 <a id="the-model-list-is-empty"></a>
 ### The model list is empty
 
-Open [**Settings** > **Models**](#models) and click **Refresh**.
+In **Easy** mode, open [**Settings** > **General Settings**](#general-settings), confirm **Provider** is set, and add or test keys in [**API Config**](#api-config) (desktop) or ask your administrator (web). For **Ollama**, run **Test** on the base URL and ensure models are installed locally.
 
-If needed:
-
-- search for a model
-- turn on **Free Only**
-- add one or more models to **Selected Models**
+In **Advanced** mode, open [**Settings** > **Models**](#models) and click **Refresh**. If needed, search for a model, turn on **Free Only**, and add models to **Selected Models**.
 
 <br/>
 
@@ -826,15 +836,15 @@ Open [**Settings** > **General Settings**](#general-settings) and change:
 
 <br/>
 
-<a id="dashboard-charts-are-empty"></a>
-### Dashboard charts are empty
+<a id="dashboard-summary-looks-empty"></a>
+### Dashboard Summary looks empty
 
 This is normal if:
 
-- you only use **free models** and you are looking at **cost** figures (they may be zero); **usage** call-count charts on **Summary** still need data from the selected period
-- the selected **time filter** does not cover the period when calls were made - try **All** to check
+- you only use **free models** and you are looking at **cost** figures (they may be zero); call-count KPIs on **Summary** still need data from the selected period
+- the selected **time filter** does not cover the period when calls were made — try **All** to check
 
-If charts are still empty after selecting **All**, confirm that calls appear in [**History**](#history) or in the **All Calls** tab.
+If KPIs are still zero after selecting **All**, confirm that calls appear in [**History**](#history) or in the **All Calls** tab.
 
 <br/>
 
@@ -859,7 +869,7 @@ To bring the total closer to your real OpenRouter spend, open [**Settings** > **
 <a id="the-history-page-is-missing-from-the-sidebar"></a>
 ### The History page is missing from the sidebar
 
-**Keep execution history** may be turned off. Open [**Settings** > **General Settings**](#general-settings) and enable it. Note that turning it on does not restore previously deleted history data.
+**Keep execution history** may be turned off. Open [**Settings** > **General Settings**](#general-settings) and enable it unless history is *disabled by the administrator* (`HISTORY_DISABLED` in the environment — see the [README](README.md#configuration-and-environment)). Turning history on does not restore previously deleted text.
 
 <br/>
 
@@ -917,7 +927,8 @@ When editing a prompt, always click **Save** before clicking **Back to Run**.
 - Use [**Transform**](#transform) when you need a repeatable workflow for a specific task.
 - Use [**Dashboard**](#dashboard) if you want to keep an eye on usage and cost.
 - Use [**History**](#history) to review past operations and their full input/output text.
-- Export prompts regularly if you are building a prompt library you want to keep safe (see [Transform Prompts](#transform-prompts)) or if you wish to share it with others.
+- Export prompts regularly if you are building a prompt library you want to keep safe (see [Transform](#transform)) or if you wish to share it with others.
+- Stay on **Easy** mode until you need fine-grained control over model IDs; switch to **Advanced** when you already know which models you want.
 
 <br/><br/>
 
