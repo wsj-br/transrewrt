@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-05-17T19:43:57.539Z",
+  "updated_at": "2026-05-17T23:50:18.783Z",
   "translation_model": "openrouter/qwen/qwen3-next-80b-a3b-instruct",
   "translation_model_fallback": "openrouter/anthropic/claude-3.5-haiku",
   "suggestion_model": "openrouter/~anthropic/claude-haiku-latest",
