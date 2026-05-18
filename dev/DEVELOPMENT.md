@@ -1,6 +1,6 @@
 # Transrewrt - Development Guide
 
-Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture** (Electron vs web, **multi-llm-ts** / `/api/llm/*`, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
+Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture (Electron vs web, **multi-llm-ts** / `/api/llm/*`, Easy mode / skills catalog, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
 
 ---
 
@@ -14,6 +14,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
+- [Skills catalog editor (development)](#skills-catalog-editor-development)
 - [Build](#build)
   - [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools)
   - [Third-party notices (`3p-notices`)](#third-party-notices-3p-notices)
@@ -232,6 +233,28 @@ pnpm start
 
 On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 
+For **Easy** mode during web dev, the server reads `data/skills.json` beside `config.json`. The skills editor mirrors the repo catalog there on save; or copy [easy-mode-config/skills.json](../easy-mode-config/skills.json) manually after editing.
+
+### Skills catalog editor (development)
+
+Maintainers edit the Easy-mode catalog with a small local tool (not packaged in Electron or Docker).
+
+```bash
+pnpm run dev:skills-editor
+```
+
+Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `SKILLS_EDITOR_PORT`, `SKILLS_EDITOR_NO_OPEN`, …), and API notes: **[dev/skills-editor/README.md](skills-editor/README.md)**.
+
+| Topic | Detail |
+|-------|--------|
+| **Canonical file** | [easy-mode-config/skills.json](../easy-mode-config/skills.json) — always loaded/saved first; each save bumps patch `version` and `updated_at` |
+| **Local web mirror** | `data/skills.json` (override with `SKILLS_EDITOR_DATA_SKILLS_PATH`) |
+| **Electron dev** | May read `skills.json` next to your `config.json` instead of `data/` — see README in skills-editor |
+| **Keys** | LLM keys from `process.env` only (editor does **not** read `.env`); export vars or use direnv before starting |
+| **Catalog cache** | `skills-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
+
+Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/skills/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-skills-catalog)**.
+
 ### Upgrading Node and dependencies (nvm)
 
 These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also runs `ncu`, `pnpm install`, and `pnpm audit` / `pnpm audit fix`.
@@ -332,6 +355,8 @@ There is no automated test suite (`pnpm test` is a placeholder). Testing is done
 - **Web:** `pnpm serve` then open [http://localhost:5000](http://localhost:5000)
 
 Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
+
+**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run dev:skills-editor` (see [Skills catalog editor](#skills-catalog-editor-development)).
 
 ---
 
@@ -442,6 +467,7 @@ If a tag `vX.Y.Z` already exists on the remote (for example you pushed it earlie
 | `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                       |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                                |
+| `pnpm run dev:skills-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [skills-editor/README.md](skills-editor/README.md)).                                                  |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                             |
 | `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                       |
@@ -535,8 +561,10 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 ## Related documentation
 
-- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **Easy mode / skills catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[skills-editor/README.md](skills-editor/README.md)** — Development catalog editor (`pnpm run dev:skills-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
+- **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
 
 ---
 
@@ -561,8 +589,14 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/shared/db/appSchema.js](../src/shared/db/appSchema.js)                                 | Shared DB schema and SQL (used by main + server)                                                              |
 | [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                |
 | [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                           |
-| [src/renderer/components/SettingsPanel.js](../src/renderer/components/SettingsPanel.js)     | Settings tabs (General, Models, Languages, Cost, Transform, Users, API, About)                                |
-| [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build                                                                                      |
+| [src/renderer/components/SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx)   | Settings tabs; **Models** only in Advanced mode; General includes AI experience / Provider                    |
+| [easy-mode-config/skills.json](../easy-mode-config/skills.json)                             | Canonical Easy-mode skills catalog (shipped as `config/skills.json` in Electron builds)                        |
+| [src/shared/skillsCatalog.js](../src/shared/skillsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
+| [src/main/ipc/skillsIpc.js](../src/main/ipc/skillsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
+| [src/server/routes/skills.js](../src/server/routes/skills.js)                               | Web `GET /api/skills`, `POST /api/skills/sync`, periodic server sync                                          |
+| [src/renderer/utils/skills/skillsManager.ts](../src/renderer/utils/skills/skillsManager.ts) | Renderer load/resolve skills for Easy mode                                                                    |
+| [dev/skills-editor/README.md](skills-editor/README.md)                                      | Dev catalog editor (`pnpm run dev:skills-editor`)                                                             |
+| [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build; copies `easy-mode-config/`                                                          |
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |
 | [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                               |

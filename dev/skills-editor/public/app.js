@@ -1057,7 +1057,7 @@
       var j = {};
       try {
         j = JSON.parse(t);
-      } catch (e) {
+      } catch {
         throw new Error(t.slice(0, 200) || String(res.status));
       }
       throw new Error(j.error || j.message || "Request failed HTTP " + res.status);
@@ -1076,7 +1076,7 @@
         var rec;
         try {
           rec = JSON.parse(line);
-        } catch (pe) {
+        } catch {
           onRecord({ type: "parse_error", line: line.slice(0, 200) });
           continue;
         }
@@ -1087,7 +1087,7 @@
     if (tail) {
       try {
         onRecord(JSON.parse(tail));
-      } catch (e2) {
+      } catch {
         onRecord({ type: "parse_error", line: tail.slice(0, 200) });
       }
     }
@@ -1239,7 +1239,7 @@
       modelsByEngine[engine] = json.data || [];
       if (engine === "openrouter") models = modelsByEngine[engine];
       return modelsByEngine[engine];
-    } catch (_) {
+    } catch {
       modelsByEngine[engine] = [];
       return [];
     }
@@ -1620,7 +1620,7 @@
           if (errBody && typeof errBody.error === "string" && errBody.error.trim()) {
             msg = errBody.error.trim();
           }
-        } catch (_) {
+        } catch {
           /* ignore */
         }
         throw new Error(

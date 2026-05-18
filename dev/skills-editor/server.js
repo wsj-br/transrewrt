@@ -300,8 +300,6 @@ async function fetchOpenRouterPublicModelsList(keysMap) {
 
 /** @type {Map<string, Array<{ id: string, name?: string }>>} */
 const engineCatalogCache = new Map();
-/** @type {Array<{ id: string, name?: string }> | null} */
-let openRouterCatalogCache = null;
 /** @type {Array<{ id: string }> | null} */
 let allModelsCache = null;
 /** @type {Promise<Array<{ id: string }>> | null} */
@@ -340,12 +338,10 @@ function isCatalogDiskCacheFresh(lastUpdated) {
 
 function hydrateEngineCatalogCacheFromDisk(catalogsByEngine) {
   engineCatalogCache.clear();
-  openRouterCatalogCache = null;
   for (const { id: engine } of EASY_CLOUD_ENGINES) {
     const raw = catalogsByEngine[engine];
     const list = Array.isArray(raw) ? raw : [];
     engineCatalogCache.set(engine, list);
-    if (engine === "openrouter" && list.length) openRouterCatalogCache = list;
   }
 }
 
@@ -409,7 +405,6 @@ async function fetchEngineCatalogFromProviders(engine, keysMap) {
       list = filterOpenRouterModels(all);
     }
     list = filterOpenRouterModels(list);
-    openRouterCatalogCache = list;
   } else if (engineConfigured(engine, keysMap)) {
     const all = await getAllModelsCached(keysMap, { force: false });
     list = modelsForEngineFromCatalog(all, engine);
@@ -424,7 +419,6 @@ async function fetchEngineCatalogFromProviders(engine, keysMap) {
 async function refreshAllEngineCatalogsFromProviders(keysMap) {
   console.log("[skills-editor] Refreshing provider catalogs from APIs…");
   engineCatalogCache.clear();
-  openRouterCatalogCache = null;
   allModelsCache = null;
   allModelsInFlight = null;
 
@@ -699,7 +693,9 @@ function parseJsonFromModelText(text) {
   // Fast path: whole string is valid JSON
   try {
     return JSON.parse(s);
-  } catch (_) {}
+  } catch {
+    /* not bare JSON */
+  }
 
   // Slow path: model mixed reasoning text with the JSON object.
   // Walk forward trying each '{' as a start, paired with the last '}' working
@@ -711,7 +707,7 @@ function parseJsonFromModelText(text) {
   while (start >= 0 && start < lastClose) {
     try {
       return JSON.parse(s.slice(start, lastClose + 1));
-    } catch (_) {
+    } catch {
       start = s.indexOf("{", start + 1);
     }
   }
