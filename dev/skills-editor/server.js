@@ -22,7 +22,7 @@ const {
   streamCompletion,
 } = require("../../src/shared/llm/index.js");
 const { OPENROUTER_PROVIDER } = require("../../src/shared/openRouterProviderRouting.js");
-const { parseSkillsJson } = require("../../src/shared/skillsCatalog.js");
+const { parseSkillsJson, bumpPatchVersion } = require("../../src/shared/skillsCatalog.js");
 
 const REPO_SKILLS_PATH = path.join(ROOT, "easy-mode-config", "skills.json");
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
@@ -142,6 +142,7 @@ function saveSkillsCatalog(catalog) {
     err.status = 400;
     throw err;
   }
+  validated.version = bumpPatchVersion(validated.version);
   validated.updated_at = new Date().toISOString();
   const serialized = `${JSON.stringify(validated, null, 2)}\n`;
   atomicWriteUtf8(REPO_SKILLS_PATH, serialized);

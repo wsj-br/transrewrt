@@ -9,6 +9,7 @@ const {
   SKILLS_REMOTE_URL,
   parseSkillsJson,
   shouldWriteRemoteSkillsOverLocal,
+  formatSkillsRemoteUpdateLog,
 } = require("../../shared/skillsCatalog");
 
 function readFileIfExists(p) {
@@ -104,9 +105,7 @@ function registerSkillsIpc(ipcMain) {
       const dir = path.dirname(userPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(userPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
-      console.log(
-        `[skills] Updated skills.json to version ${remote.version} (was ${current.version || "bundled"})`,
-      );
+      console.log(formatSkillsRemoteUpdateLog(remote, current));
       return { updated: true, version: remote.version };
     } catch (e) {
       console.warn("[skills] Remote update failed:", e?.message || e);

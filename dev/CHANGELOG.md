@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Easy-mode remote skills sync log (Electron + web) includes `updated_at` for the new and previous catalog.
+- **Changed**: Dev skills editor — each catalog save bumps `easy-mode-config/skills.json` patch version and refreshes `updated_at`.
 - **Changed**: `README.md` and `USER-GUIDE.md` — document Easy vs Advanced AI experience, skills/provider toolbar, simplified Dashboard tabs, web History scoping, and `HISTORY_DISABLED`.
 - **Fixed**: Packaged Electron (AppImage/NSIS) configuration backup restore and SQLite — run `electron-rebuild` before `electron-builder` so `better-sqlite3` matches Electron’s Node ABI (avoids `NODE_MODULE_VERSION` mismatch after `dev:web` / `node-rebuild`); clearer error when the native module cannot load.
 - **Changed**: Web Settings > API Config — provider status cards use a two-column grid.

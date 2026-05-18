@@ -10,6 +10,7 @@ const {
   SKILLS_REMOTE_URL,
   parseSkillsJson,
   shouldWriteRemoteSkillsOverLocal,
+  formatSkillsRemoteUpdateLog,
 } = require("../../shared/skillsCatalog");
 
 function readFileIfExists(p) {
@@ -93,7 +94,7 @@ async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log) {
     const dir = path.dirname(skillsPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(skillsPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
-    const msg = `[skills] Updated skills.json to version ${remote.version} (was ${current.version || "bundled"})`;
+    const msg = formatSkillsRemoteUpdateLog(remote, current);
     log.info(msg);
     console.log(msg);
     return { updated: true, version: remote.version };

@@ -22,6 +22,22 @@ function parseUpdatedAtMs(iso) {
   return Number.isFinite(t) ? t : 0;
 }
 
+/** Increment the last numeric segment (e.g. 1.1.0 → 1.1.1). */
+function bumpPatchVersion(version) {
+  const parts = String(version || "0.0.0")
+    .trim()
+    .split(".")
+    .map((x) => {
+      const n = parseInt(x, 10);
+      return Number.isFinite(n) ? n : 0;
+    });
+  if (parts.length === 0) parts.push(0, 0, 0);
+  else if (parts.length === 1) parts.push(0, 0);
+  else if (parts.length === 2) parts.push(0);
+  parts[parts.length - 1] += 1;
+  return parts.join(".");
+}
+
 /** Semver-like a.b.c; positive if a > b. */
 function compareVersion(a, b) {
   const pa = String(a || "0")
@@ -65,11 +81,29 @@ function shouldWriteRemoteSkillsOverLocal(p) {
   return compareVersion(remoteParsed?.version, localParsed?.version) > 0;
 }
 
+/**
+ * Log line when remote easy-mode skills.json replaces the local copy.
+ * @param {object} remote
+ * @param {object} current
+ */
+function formatSkillsRemoteUpdateLog(remote, current) {
+  const newVersion = String(remote?.version ?? "?").trim() || "?";
+  const newUpdated = String(remote?.updated_at ?? "").trim() || "unknown";
+  const wasVersion = String(current?.version ?? "").trim() || "bundled";
+  const wasUpdated = String(current?.updated_at ?? "").trim() || "unknown";
+  return (
+    `[skills] Updated skills.json to version ${newVersion} (updated_at ${newUpdated}) ` +
+    `(was ${wasVersion}, updated_at ${wasUpdated})`
+  );
+}
+
 module.exports = {
   SKILLS_REMOTE_URL,
   parseSkillsJson,
   parseUpdatedAtMs,
+  bumpPatchVersion,
   compareVersion,
   isLocalSkillsNewerThanRemote,
   shouldWriteRemoteSkillsOverLocal,
+  formatSkillsRemoteUpdateLog,
 };
