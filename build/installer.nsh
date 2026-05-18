@@ -59,6 +59,23 @@ FunctionEnd
   System::Call 'Shell32::SHChangeNotify(i 0x8000000, i 0, i 0, i 0)'
 tr_desktop_no_sc:
 !macroend
+
+; Inserted from assistedInstaller.nsh (after Var launchLink / appExe) — not in sharedHeader.
+!macro customFinishPage
+  Function TR_StartApp
+    HideWindow
+    ${if} ${isUpdated}
+      ${StdUtils.ExecShellAsUser} $0 "$appExe" "open" "--updated"
+    ${else}
+      ${StdUtils.ExecShellAsUser} $0 "$launchLink" "open" ""
+    ${endif}
+  FunctionEnd
+  !ifndef HIDE_RUN_AFTER_FINISH
+    !define MUI_FINISHPAGE_RUN
+    !define MUI_FINISHPAGE_RUN_FUNCTION TR_StartApp
+  !endif
+  !insertmacro MUI_PAGE_FINISH
+!macroend
 !endif
 
 ; --- Stricter running-app check (installer + uninstaller; must be outside BUILD_UNINSTALLER guard) ---

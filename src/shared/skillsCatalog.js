@@ -3,8 +3,14 @@
  * Used by Electron IPC and web server routes.
  */
 
+const fs = require("fs");
+const path = require("path");
+
 const SKILLS_REMOTE_URL =
   "https://raw.githubusercontent.com/wsj-br/transrewrt/refs/heads/main/easy-mode-config/skills.json";
+
+/** Minimum time between remote skills.json fetch attempts (Electron + web server). */
+const SKILLS_REMOTE_SYNC_INTERVAL_MS = 6 * 60 * 60 * 1000;
 
 function parseSkillsJson(text) {
   try {
@@ -97,8 +103,47 @@ function formatSkillsRemoteUpdateLog(remote, current) {
   );
 }
 
+/** Sidecar next to skills.json recording the last remote check time. */
+function getSkillsRemoteSyncStatePath(skillsPath) {
+  return path.join(path.dirname(skillsPath), ".skills-remote-sync.json");
+}
+
+/** @returns {number} epoch ms, or 0 */
+function readSkillsRemoteSyncCheckedAt(statePath) {
+  try {
+    if (!statePath || !fs.existsSync(statePath)) return 0;
+    const data = JSON.parse(fs.readFileSync(statePath, "utf8"));
+    const t = Number(data?.last_checked_at);
+    return Number.isFinite(t) && t > 0 ? t : 0;
+  } catch {
+    return 0;
+  }
+}
+
+/** @param {number} [ms] */
+function writeSkillsRemoteSyncCheckedAt(statePath, ms = Date.now()) {
+  try {
+    const dir = path.dirname(statePath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(statePath, `${JSON.stringify({ last_checked_at: ms }, null, 2)}\n`, "utf8");
+  } catch {
+    // ignore
+  }
+}
+
+function isSkillsRemoteSyncDue(lastCheckedAtMs, nowMs = Date.now()) {
+  if (!lastCheckedAtMs || lastCheckedAtMs <= 0) return true;
+  return nowMs - lastCheckedAtMs >= SKILLS_REMOTE_SYNC_INTERVAL_MS;
+}
+
+/** Easy mode unless config explicitly sets `mode` to `"advanced"`. */
+function isEasyExperienceMode(mode) {
+  return mode !== "advanced";
+}
+
 module.exports = {
   SKILLS_REMOTE_URL,
+  SKILLS_REMOTE_SYNC_INTERVAL_MS,
   parseSkillsJson,
   parseUpdatedAtMs,
   bumpPatchVersion,
@@ -106,4 +151,9 @@ module.exports = {
   isLocalSkillsNewerThanRemote,
   shouldWriteRemoteSkillsOverLocal,
   formatSkillsRemoteUpdateLog,
+  getSkillsRemoteSyncStatePath,
+  readSkillsRemoteSyncCheckedAt,
+  writeSkillsRemoteSyncCheckedAt,
+  isSkillsRemoteSyncDue,
+  isEasyExperienceMode,
 };

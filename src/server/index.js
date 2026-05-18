@@ -170,7 +170,7 @@ app.use(
     log,
   ),
 );
-app.use("/api/skills", createSkillsRouter(SKILLS_PATH, DEFAULT_SKILLS_PATH, log));
+app.use("/api/skills", createSkillsRouter(SKILLS_PATH, DEFAULT_SKILLS_PATH, log, appDb));
 
 // One level up: dev has src/server → project root; Docker has /app/server → /app
 const distPath = path.resolve(path.join(__dirname, "..", "dist"));

@@ -54,13 +54,21 @@ function normalizeTheme(value) {
   return "system";
 }
 
+function formatSkillsCatalogDate(iso: string, locale: string) {
+  const trimmed = String(iso || "").trim();
+  if (!trimmed) return "";
+  const d = new Date(trimmed);
+  if (Number.isNaN(d.getTime())) return trimmed;
+  return d.toLocaleString(locale);
+}
+
 const SettingsGeneralTab = ({
   localSettings,
   onSettingChange,
   canConfigBackup = false,
 }) => {
   const { t, i18n } = useTranslation();
-  const { apiKeyStatus } = useAppContext();
+  const { apiKeyStatus, skillsFileMeta, skillsRefreshBusy, refreshSkillsCatalog } = useAppContext();
   const locale = i18n.language || 'en-GB';
   const serverConfiguredEngines =
     isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
@@ -286,7 +294,8 @@ const SettingsGeneralTab = ({
               </button>
             </div>
             {experienceMode === "easy" && (
-              <div className="flex flex-col gap-2 border-t border-border pt-3">
+              <div className="grid grid-cols-1 gap-4 border-t border-border pt-3 sm:grid-cols-2 sm:items-start">
+                <div className="flex min-w-0 flex-col gap-2">
                 <Label className="text-sm font-medium">{t("Provider")}</Label>
                 <p className="m-0 text-xs text-muted-foreground">
                   {isWeb
@@ -331,6 +340,34 @@ const SettingsGeneralTab = ({
                     </Select>
                   );
                 })()}
+                </div>
+                <div className="flex min-w-0 flex-col gap-2 sm:border-s sm:border-border sm:ps-4">
+                  <Label className="text-sm font-medium">{t("Skills catalog")}</Label>
+                  <p className="m-0 text-xs text-muted-foreground">
+                    {t("Curated skill list used in Easy mode. Updates from the project repository when you refresh.")}
+                  </p>
+                  <dl className="m-0 grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm">
+                    <dt className="m-0 text-muted-foreground">{t("Version")}</dt>
+                    <dd className="m-0 font-mono text-xs leading-normal">
+                      {skillsFileMeta?.version?.trim() || t("Unknown")}
+                    </dd>
+                    <dt className="m-0 text-muted-foreground">{t("Updated")}</dt>
+                    <dd className="m-0 text-xs leading-normal">
+                      {formatSkillsCatalogDate(skillsFileMeta?.updated_at || "", locale) || t("Unknown")}
+                    </dd>
+                  </dl>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="inline-flex w-fit items-center gap-1.5"
+                    disabled={skillsRefreshBusy}
+                    onClick={() => refreshSkillsCatalog({ force: true })}
+                  >
+                    <RefreshCw size={14} className={skillsRefreshBusy ? "animate-spin" : undefined} />
+                    {skillsRefreshBusy ? t("Checking…") : t("Refresh skills catalog")}
+                  </Button>
+                </div>
               </div>
             )}
           </div>

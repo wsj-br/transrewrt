@@ -591,7 +591,7 @@ registerConfigIpc(ipcMain, {
   canonicalConfigString,
   getBuildTimestamp,
 });
-registerSkillsIpc(ipcMain);
+registerSkillsIpc(ipcMain, () => configCache);
 registerApiIpc(ipcMain, () => configCache);
 registerLlmIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
@@ -722,7 +722,7 @@ app.on("ready", () => {
   loadConfigFromFile();
   loadStateFromFile();
   Promise.resolve()
-    .then(() => ensureUserSkillsOnDisk())
+    .then(() => ensureUserSkillsOnDisk(() => configCache))
     .catch((e) => console.warn("[skills] bootstrap:", e))
     .finally(() => {
       saveConfigToFile(configCache);

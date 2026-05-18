@@ -1,6 +1,6 @@
 ---
-translation_last_updated: '2026-05-17T23:35:08.894Z'
-source_file_mtime: '2026-05-17T23:31:33.219Z'
+translation_last_updated: '2026-05-18T15:42:54.344Z'
+source_file_mtime: '2026-05-18T14:39:33.449Z'
 source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
 translation_language: uk
 source_file_path: USER-GUIDE.md

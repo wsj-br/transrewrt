@@ -10,7 +10,7 @@ import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
-import { loadSkillsFile, updateSkillsFromRemoteElectron } from "../utils/skills/skillsManager";
+import { loadSkillsFile, syncSkillsFromRemote } from "../utils/skills/skillsManager";
 import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/skills/configuredEasyEngines";
 import {
   resolveExperienceMode,
@@ -43,6 +43,8 @@ export const AppProvider = ({ children }) => {
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [skillsCatalog, setSkillsCatalog] = useState([]);
+  const [skillsFileMeta, setSkillsFileMeta] = useState({ version: "0.0.0", updated_at: "" });
+  const [skillsRefreshBusy, setSkillsRefreshBusy] = useState(false);
 
   // Web mode: any 401 from API triggers login modal via this callback
   useEffect(() => {
@@ -125,17 +127,22 @@ export const AppProvider = ({ children }) => {
           isWeb && webAPI.getApiStatus ? webAPI.getApiStatus().then((status) => setApiKeyStatus(status)) : Promise.resolve();
 
         await Promise.all([localePromise, authPromise, statusPromise]);
-        try {
-          await updateSkillsFromRemoteElectron();
-        } catch (e) {
-          console.warn("[skills] remote update:", e);
+        const initMode = configManager.get("mode");
+        if (resolveExperienceMode(initMode as string | undefined) === "easy") {
+          try {
+            await syncSkillsFromRemote();
+          } catch (e) {
+            console.warn("[skills] remote update:", e);
+          }
         }
         try {
           const doc = await loadSkillsFile();
           setSkillsCatalog(doc.skills || []);
+          setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
         } catch (e) {
           console.warn("[skills] load:", e);
           setSkillsCatalog([]);
+          setSkillsFileMeta({ version: "0.0.0", updated_at: "" });
         }
         i18n.changeLanguage(uiLocale);
       } catch (err) {
@@ -165,12 +172,16 @@ export const AppProvider = ({ children }) => {
           const uiLocale = configManager.get("ui_locale") || "en-GB";
           await loadLocale(uiLocale);
           i18n.changeLanguage(uiLocale);
-          try {
-            await updateSkillsFromRemoteElectron();
-            const doc = await loadSkillsFile();
-            setSkillsCatalog(doc.skills || []);
-          } catch (e) {
-            console.warn("[skills] reload after settings:", e);
+          const mode = configManager.get("mode");
+          if (resolveExperienceMode(mode as string | undefined) === "easy") {
+            try {
+              await syncSkillsFromRemote();
+              const doc = await loadSkillsFile();
+              setSkillsCatalog(doc.skills || []);
+              setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+            } catch (e) {
+              console.warn("[skills] reload after settings:", e);
+            }
           }
         });
       };
@@ -201,6 +212,38 @@ export const AppProvider = ({ children }) => {
       setAvailableModels(newSettings.available_models || []);
     }
   }, []);
+
+  const applySkillsFile = useCallback((doc: Awaited<ReturnType<typeof loadSkillsFile>>) => {
+    setSkillsCatalog(doc.skills || []);
+    setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+  }, []);
+
+  const refreshSkillsCatalog = useCallback(
+    async (options: { force?: boolean } = {}) => {
+      const mode = configManager.get("mode");
+      if (resolveExperienceMode(mode as string | undefined) !== "easy" && !options.force) {
+        return;
+      }
+      setSkillsRefreshBusy(true);
+      try {
+        await syncSkillsFromRemote(options);
+        const doc = await loadSkillsFile();
+        applySkillsFile(doc);
+      } catch (e) {
+        console.warn("[skills] refresh failed:", e);
+        try {
+          const doc = await loadSkillsFile();
+          applySkillsFile(doc);
+        } catch {
+          setSkillsCatalog([]);
+          setSkillsFileMeta({ version: "0.0.0", updated_at: "" });
+        }
+      } finally {
+        setSkillsRefreshBusy(false);
+      }
+    },
+    [applySkillsFile],
+  );
 
   const setSetting = useCallback(async (key, value, options = {}) => {
     const optimistic =
@@ -238,21 +281,13 @@ export const AppProvider = ({ children }) => {
       const newModels = Array.isArray(value) ? [...value] : (value || []);
       setAvailableModels(newModels);
     }
+    if (key === "mode" && value !== "advanced") {
+      await refreshSkillsCatalog();
+    }
     if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
       window.electronAPI.notifySettingsUpdated();
     }
-  }, []);
-
-  const refreshSkillsCatalog = useCallback(async () => {
-    try {
-      await updateSkillsFromRemoteElectron();
-      const doc = await loadSkillsFile();
-      setSkillsCatalog(doc.skills || []);
-    } catch (e) {
-      console.warn("[skills] refresh failed:", e);
-      setSkillsCatalog([]);
-    }
-  }, []);
+  }, [refreshSkillsCatalog]);
 
   const { writeLastApiResult, logApiCall, applyCostToResult } = useCostTracking();
   const { removeModelFromList, isUnavailableModelError, handleUnavailableModel } = useModelManagement(
@@ -945,6 +980,9 @@ export const AppProvider = ({ children }) => {
     setSetting,
     skills: easySkills,
     skillsCatalog,
+    skillsFileMeta,
+    skillsRefreshBusy,
+    refreshSkillsCatalog,
     easyProvider,
     ollamaEasyModels,
     setExperienceMode: (value) => setSetting("mode", value),

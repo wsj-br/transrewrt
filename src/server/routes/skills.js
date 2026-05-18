@@ -1,6 +1,7 @@
 /**
- * Routes: GET /api/skills (mounted at /api/skills → GET /)
- * Server keeps data/skills.json in sync with GitHub on startup and every 5 minutes.
+ * Routes: GET /api/skills, POST /api/skills/sync
+ * Server keeps shared data/skills.json in sync with GitHub on startup and every 6 hours (all users).
+ * POST /sync is for Easy-mode clients (manual refresh or switch to Easy); respects per-user mode.
  */
 
 const fs = require("fs");
@@ -8,9 +9,15 @@ const path = require("path");
 const express = require("express");
 const {
   SKILLS_REMOTE_URL,
+  SKILLS_REMOTE_SYNC_INTERVAL_MS,
   parseSkillsJson,
   shouldWriteRemoteSkillsOverLocal,
   formatSkillsRemoteUpdateLog,
+  getSkillsRemoteSyncStatePath,
+  readSkillsRemoteSyncCheckedAt,
+  writeSkillsRemoteSyncCheckedAt,
+  isSkillsRemoteSyncDue,
+  isEasyExperienceMode,
 } = require("../../shared/skillsCatalog");
 
 function readFileIfExists(p) {
@@ -57,6 +64,7 @@ async function bootstrapSkillsFileIfMissing(skillsPath, defaultSkillsPath, log) 
   try {
     const remote = await fetchRemoteSkills();
     fs.writeFileSync(skillsPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
+    writeSkillsRemoteSyncCheckedAt(getSkillsRemoteSyncStatePath(skillsPath));
     const msg = "[skills] First run: downloaded skills.json to data directory";
     log.info(msg);
     console.log(msg);
@@ -69,9 +77,22 @@ async function bootstrapSkillsFileIfMissing(skillsPath, defaultSkillsPath, log) 
 
 /**
  * Fetch remote if appropriate; write skillsPath when updated.
- * @returns {Promise<{ updated: boolean, version?: string }>}
+ * @param {{ force?: boolean }} [opts]
+ * @returns {Promise<{ updated: boolean, skipped?: boolean, version?: string, updated_at?: string, error?: string }>}
  */
-async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log) {
+async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log, opts = {}) {
+  const force = opts.force === true;
+  const statePath = getSkillsRemoteSyncStatePath(skillsPath);
+  const lastChecked = readSkillsRemoteSyncCheckedAt(statePath);
+  if (!force && !isSkillsRemoteSyncDue(lastChecked)) {
+    const current = readMergedSkills(skillsPath, defaultSkillsPath);
+    return {
+      updated: false,
+      skipped: true,
+      version: current.version,
+      updated_at: current.updated_at,
+    };
+  }
   try {
     const remote = await fetchRemoteSkills();
     const diskExists = fs.existsSync(skillsPath);
@@ -89,7 +110,11 @@ async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log) {
       remoteParsed: remote,
     });
     if (!write) {
-      return { updated: false, version: current.version };
+      return {
+        updated: false,
+        version: current.version,
+        updated_at: current.updated_at,
+      };
     }
     const dir = path.dirname(skillsPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -97,10 +122,22 @@ async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log) {
     const msg = formatSkillsRemoteUpdateLog(remote, current);
     log.info(msg);
     console.log(msg);
-    return { updated: true, version: remote.version };
+    return {
+      updated: true,
+      version: remote.version,
+      updated_at: remote.updated_at,
+    };
   } catch (e) {
     log.warn("[skills] Remote sync failed: " + (e?.message || e));
-    return { updated: false, error: String(e?.message || e) };
+    const current = readMergedSkills(skillsPath, defaultSkillsPath);
+    return {
+      updated: false,
+      error: String(e?.message || e),
+      version: current.version,
+      updated_at: current.updated_at,
+    };
+  } finally {
+    writeSkillsRemoteSyncCheckedAt(statePath);
   }
 }
 
@@ -108,8 +145,9 @@ async function syncSkillsFromRemote(skillsPath, defaultSkillsPath, log) {
  * @param {string} skillsPath
  * @param {string} defaultSkillsPath
  * @param {import("../logger").Logger} log
+ * @param {import("../db/appDb")} appDb
  */
-function createSkillsRouter(skillsPath, defaultSkillsPath, log) {
+function createSkillsRouter(skillsPath, defaultSkillsPath, log, appDb) {
   const router = express.Router();
 
   router.get("/", (req, res) => {
@@ -127,14 +165,42 @@ function createSkillsRouter(skillsPath, defaultSkillsPath, log) {
     }
   });
 
+  router.post("/sync", async (req, res) => {
+    try {
+      const auth = req.authSession;
+      if (!auth?.userId) {
+        return res.status(401).json({ error: "Authentication required" });
+      }
+      const userPrefs = appDb.getUserPreferencesData(auth.userId) || {};
+      if (!isEasyExperienceMode(userPrefs.mode)) {
+        const data = readMergedSkills(skillsPath, defaultSkillsPath);
+        return res.json({
+          updated: false,
+          skipped: true,
+          reason: "advanced",
+          version: data.version,
+          updated_at: data.updated_at,
+        });
+      }
+      const force = req.body && req.body.force === true;
+      const result = await syncSkillsFromRemote(skillsPath, defaultSkillsPath, log, { force });
+      const data = readMergedSkills(skillsPath, defaultSkillsPath);
+      res.json({
+        ...result,
+        version: data.version ?? result.version,
+        updated_at: data.updated_at ?? result.updated_at,
+      });
+    } catch (err) {
+      log.error("[API] POST /api/skills/sync - " + err.message, { stack: err.stack });
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   return router;
 }
 
 /**
- * Bootstrap missing file, then run sync immediately and every 5 minutes.
- * @param {string} skillsPath
- * @param {string} defaultSkillsPath
- * @param {import("../logger").Logger} log
+ * Bootstrap missing file, then sync immediately and every 6 hours (shared catalog for all users).
  * @returns {ReturnType<typeof setInterval>}
  */
 function startSkillsRemoteSync(skillsPath, defaultSkillsPath, log) {
@@ -153,11 +219,12 @@ function startSkillsRemoteSync(skillsPath, defaultSkillsPath, log) {
   void run();
   return setInterval(() => {
     void run();
-  }, 5 * 60 * 1000);
+  }, SKILLS_REMOTE_SYNC_INTERVAL_MS);
 }
 
 module.exports = {
   createSkillsRouter,
   startSkillsRemoteSync,
+  syncSkillsFromRemote,
   SKILLS_REMOTE_URL,
 };

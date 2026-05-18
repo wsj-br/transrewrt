@@ -10,6 +10,11 @@ const {
   parseSkillsJson,
   shouldWriteRemoteSkillsOverLocal,
   formatSkillsRemoteUpdateLog,
+  getSkillsRemoteSyncStatePath,
+  readSkillsRemoteSyncCheckedAt,
+  writeSkillsRemoteSyncCheckedAt,
+  isSkillsRemoteSyncDue,
+  isEasyExperienceMode,
 } = require("../../shared/skillsCatalog");
 
 function readFileIfExists(p) {
@@ -49,19 +54,29 @@ async function fetchRemoteSkills() {
   return parsed;
 }
 
-/** First launch: ensure user data dir contains skills.json (download or copy bundled). */
-async function ensureUserSkillsOnDisk() {
+/**
+ * First launch: ensure user data dir contains skills.json.
+ * Advanced mode: bundled copy only. Easy mode: try remote, else bundled.
+ * @param {() => object} [getConfig]
+ */
+async function ensureUserSkillsOnDisk(getConfig = () => ({})) {
   const userPath = getSkillsFilePath();
   if (fs.existsSync(userPath)) return { created: false };
   const dir = path.dirname(userPath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  const bundled = loadBundledSkills();
+  if (!isEasyExperienceMode(getConfig()?.mode)) {
+    fs.writeFileSync(userPath, `${JSON.stringify(bundled, null, 2)}\n`, "utf8");
+    console.log("[skills] First run (advanced): copied bundled skills.json to data directory");
+    return { created: true, fromBundled: true };
+  }
   try {
     const remote = await fetchRemoteSkills();
     fs.writeFileSync(userPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
+    writeSkillsRemoteSyncCheckedAt(getSkillsRemoteSyncStatePath(userPath));
     console.log("[skills] First run: downloaded skills.json to data directory");
     return { created: true };
   } catch (e) {
-    const bundled = loadBundledSkills();
     fs.writeFileSync(userPath, `${JSON.stringify(bundled, null, 2)}\n`, "utf8");
     console.warn("[skills] First run: remote failed, copied bundled skills:", e?.message || e);
     return { created: true, fromBundled: true };
@@ -70,8 +85,9 @@ async function ensureUserSkillsOnDisk() {
 
 /**
  * @param {import("electron").IpcMain} ipcMain
+ * @param {() => object} [getConfig]
  */
-function registerSkillsIpc(ipcMain) {
+function registerSkillsIpc(ipcMain, getConfig = () => ({})) {
   ipcMain.handle("skills:read", () => {
     try {
       return readSkillsMerged();
@@ -81,35 +97,71 @@ function registerSkillsIpc(ipcMain) {
     }
   });
 
-  ipcMain.handle("skills:updateFromRemote", async () => {
+  ipcMain.handle("skills:updateFromRemote", async (_evt, opts = {}) => {
+    const force = opts && opts.force === true;
+    const current = readSkillsMerged();
+    if (!force && !isEasyExperienceMode(getConfig()?.mode)) {
+      return {
+        updated: false,
+        skipped: true,
+        reason: "advanced",
+        version: current.version,
+        updated_at: current.updated_at,
+      };
+    }
+    const userPath = getSkillsFilePath();
+    const statePath = getSkillsRemoteSyncStatePath(userPath);
+    const lastChecked = readSkillsRemoteSyncCheckedAt(statePath);
+    if (!force && !isSkillsRemoteSyncDue(lastChecked)) {
+      return {
+        updated: false,
+        skipped: true,
+        version: current.version,
+        updated_at: current.updated_at,
+      };
+    }
     try {
       const remote = await fetchRemoteSkills();
-      const userPath = getSkillsFilePath();
       const userExists = fs.existsSync(userPath);
       let localParsed;
       if (userExists) {
         const raw = readFileIfExists(userPath);
         localParsed = raw ? parseSkillsJson(raw) : null;
       } else {
-        localParsed = readSkillsMerged();
+        localParsed = current;
       }
-      const current = localParsed || { version: "0.0.0", updated_at: "", skills: [] };
+      const local = localParsed || { version: "0.0.0", updated_at: "", skills: [] };
       const write = shouldWriteRemoteSkillsOverLocal({
         userPathExists: userExists,
-        localParsed: current,
+        localParsed: local,
         remoteParsed: remote,
       });
       if (!write) {
-        return { updated: false, version: current.version };
+        return {
+          updated: false,
+          version: local.version,
+          updated_at: local.updated_at,
+        };
       }
       const dir = path.dirname(userPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(userPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
-      console.log(formatSkillsRemoteUpdateLog(remote, current));
-      return { updated: true, version: remote.version };
+      console.log(formatSkillsRemoteUpdateLog(remote, local));
+      return {
+        updated: true,
+        version: remote.version,
+        updated_at: remote.updated_at,
+      };
     } catch (e) {
       console.warn("[skills] Remote update failed:", e?.message || e);
-      return { updated: false, error: String(e?.message || e) };
+      return {
+        updated: false,
+        error: String(e?.message || e),
+        version: current.version,
+        updated_at: current.updated_at,
+      };
+    } finally {
+      writeSkillsRemoteSyncCheckedAt(statePath);
     }
   });
 }

@@ -50,6 +50,30 @@ const webAPI = {
     }
   },
 
+  syncSkillsFromRemote: async (opts: { force?: boolean } = {}) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/skills/sync`, {
+        method: "POST",
+        credentials: "include",
+        cache: "no-store",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ force: opts.force === true }),
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        return { updated: false, error: `HTTP ${res.status}` };
+      }
+      return await res.json();
+    } catch (err) {
+      if (err && (err as { status?: number }).status === 401) throw err;
+      console.error("[WebAPI] syncSkillsFromRemote failed:", err);
+      return { updated: false, error: String((err as Error)?.message || err) };
+    }
+  },
+
   writeConfig: async (configData) => {
     try {
       const res = await fetch(`${API_BASE}/api/config`, {

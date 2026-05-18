@@ -5,6 +5,15 @@
 import type { Skill, SkillsFile } from "./skillsTypes";
 import webAPI from "../api/webApiClient";
 
+export type SkillsRemoteSyncResult = {
+  updated?: boolean;
+  skipped?: boolean;
+  reason?: string;
+  version?: string;
+  updated_at?: string;
+  error?: string;
+};
+
 function isLocaleStringRecord(v: unknown): v is Record<string, string> {
   if (v === null || typeof v !== "object" || Array.isArray(v)) return false;
   return Object.values(v as Record<string, unknown>).every((x) => typeof x === "string");
@@ -72,9 +81,20 @@ export async function loadSkillsFile(): Promise<SkillsFile> {
   }
 }
 
-/** Electron only: fetch remote skills and write user skills.json if newer. */
-export async function updateSkillsFromRemoteElectron(): Promise<void> {
+/** Fetch remote catalog when due (or `force`); Electron IPC or web POST /api/skills/sync. */
+export async function syncSkillsFromRemote(
+  options: { force?: boolean } = {},
+): Promise<SkillsRemoteSyncResult> {
   if (typeof window !== "undefined" && window.electronAPI?.updateSkillsFromRemote) {
-    await window.electronAPI.updateSkillsFromRemote();
+    return window.electronAPI.updateSkillsFromRemote(options);
   }
+  if (webAPI.syncSkillsFromRemote) {
+    return webAPI.syncSkillsFromRemote(options);
+  }
+  return { skipped: true };
+}
+
+/** @deprecated Use syncSkillsFromRemote */
+export async function updateSkillsFromRemoteElectron(): Promise<void> {
+  await syncSkillsFromRemote();
 }

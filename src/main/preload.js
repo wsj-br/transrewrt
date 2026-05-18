@@ -94,7 +94,7 @@ const api = {
   getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
   getRuntimePlatform: () => process.platform,
   readSkills: () => ipcRenderer.invoke('skills:read'),
-  updateSkillsFromRemote: () => ipcRenderer.invoke('skills:updateFromRemote'),
+  updateSkillsFromRemote: (opts) => ipcRenderer.invoke('skills:updateFromRemote', opts || {}),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

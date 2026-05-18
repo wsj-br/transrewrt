@@ -80,7 +80,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 713
+        "line": 750
       }
     ]
   },
@@ -594,7 +594,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 228
+        "line": 236
       }
     ]
   },
@@ -679,7 +679,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 685
+        "line": 722
       }
     ]
   },
@@ -2547,15 +2547,15 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 688
+        "line": 725
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 740
+        "line": 777
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 766
+        "line": 803
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2955,7 +2955,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 765
+        "line": 802
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -12389,7 +12389,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 584
+        "line": 621
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -13446,6 +13446,10 @@
       {
         "file": "src/renderer/components/SettingsAboutTab.tsx",
         "line": 89
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 350
       }
     ]
   },
@@ -16128,7 +16132,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 104
+        "line": 112
       }
     ]
   },
@@ -16217,7 +16221,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 105
+        "line": 113
       }
     ]
   },
@@ -16306,7 +16310,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 106
+        "line": 114
       }
     ]
   },
@@ -16395,7 +16399,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 107
+        "line": 115
       }
     ]
   },
@@ -16484,7 +16488,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 108
+        "line": 116
       }
     ]
   },
@@ -16573,7 +16577,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 109
+        "line": 117
       }
     ]
   },
@@ -16662,7 +16666,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 110
+        "line": 118
       }
     ]
   },
@@ -16751,7 +16755,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 111
+        "line": 119
       }
     ]
   },
@@ -17188,7 +17192,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 120
+        "line": 128
       }
     ]
   },
@@ -18904,7 +18908,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 621
+        "line": 658
       }
     ]
   },
@@ -18993,7 +18997,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 638
+        "line": 675
       }
     ]
   },
@@ -19086,7 +19090,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 638
+        "line": 675
       }
     ]
   },
@@ -19171,7 +19175,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 77
+        "line": 85
       }
     ]
   },
@@ -19256,7 +19260,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 78
+        "line": 86
       }
     ]
   },
@@ -19341,7 +19345,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 79
+        "line": 87
       }
     ]
   },
@@ -19426,7 +19430,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 131
+        "line": 139
       }
     ]
   },
@@ -19511,7 +19515,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 133
+        "line": 141
       }
     ]
   },
@@ -19596,7 +19600,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 171
+        "line": 179
       }
     ]
   },
@@ -19681,11 +19685,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 185
+        "line": 193
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 188
+        "line": 196
       }
     ]
   },
@@ -19770,15 +19774,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 216
-      },
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 219
-      },
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 224
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 227
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 232
       }
     ]
   },
@@ -19863,15 +19867,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 221
+        "line": 229
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 226
+        "line": 234
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 232
+        "line": 240
       }
     ]
   },
@@ -19956,7 +19960,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 228
+        "line": 236
       }
     ]
   },
@@ -20041,7 +20045,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 248
+        "line": 256
       }
     ]
   },
@@ -20126,7 +20130,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 252
+        "line": 260
       }
     ]
   },
@@ -20173,7 +20177,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 266
+        "line": 274
       }
     ]
   },
@@ -20258,7 +20262,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 268
+        "line": 276
       }
     ]
   },
@@ -20343,7 +20347,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 282
+        "line": 290
       }
     ]
   },
@@ -20428,7 +20432,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 284
+        "line": 292
       }
     ]
   },
@@ -20513,7 +20517,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 290
+        "line": 299
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -20602,7 +20606,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 293
+        "line": 302
       }
     ]
   },
@@ -20687,7 +20691,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 294
+        "line": 303
       }
     ]
   },
@@ -20772,7 +20776,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 305
+        "line": 314
       }
     ]
   },
@@ -20857,7 +20861,521 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 306
+        "line": 315
+      }
+    ]
+  },
+  "4f0eebca": {
+    "source": "Skills catalog",
+    "translated": {
+      "pt-BR": "Catálogo de habilidades",
+      "ar": "مُخطط المهارات",
+      "ca": "Catàleg d'habilitats",
+      "bn": "দক্ষতা তালিকা",
+      "zh-CN": "技能目录",
+      "zh-TW": "技能目錄",
+      "hr": "Katalog vještina",
+      "cs": "Katalog dovedností",
+      "tl": "Katalogo ng mga kasanayan",
+      "fr": "Catalogue des compétences",
+      "nl": "Vaardighedencatalogus",
+      "en-US": "Skills catalog",
+      "hu": "Készségkatalógus",
+      "hi": "कौशल कैटलॉग",
+      "el": "Κατάλογος δεξιοτήτων",
+      "de": "Fähigkeitenkatalog",
+      "ms": "Katalog kemahiran",
+      "ko": "기술 카탈로그",
+      "it": "Catalogo delle competenze",
+      "ja": "スキルカタログ",
+      "pt": "Catálogo de competências",
+      "pl": "Katalog umiejętności",
+      "jv": "Katalog ketrampilan",
+      "fa": "فهرست مهارت‌ها",
+      "sk": "Katalóg zručností",
+      "ro": "Catalog de competențe",
+      "ru": "Каталог навыков",
+      "pa": "ਸਕਿੱਲ ਕੈਟਲਾਗ",
+      "es": "Catálogo de habilidades",
+      "sv": "Färdighetskatalog",
+      "sw": "Orodha ya ujuzi",
+      "te": "నైపుణ్యాల క్యాటలాగ్",
+      "vi": "Danh mục kỹ năng",
+      "tr": "Beceriler kataloğu",
+      "th": "แคตตาล็อกทักษะ",
+      "uk": "Каталог навичок"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 345
+      }
+    ]
+  },
+  "0ce8bea5": {
+    "source": "Curated skill list used in Easy mode. Updates from the project repository when you refresh.",
+    "translated": {
+      "pt-BR": "Lista de habilidades selecionadas usada no modo Fácil. Atualizações do repositório do projeto ao atualizar.",
+      "ar": "قائمة مهارات مُختارة تُستخدم في الوضع السهل. يتم التحديث من مستودع المشروع عند التحديث.",
+      "ca": "Llista d'habilitats seleccionades utilitzada al mode Fàcil. S'actualitza des del repositori del projecte quan actualitzeu.",
+      "bn": "সহজ মোডে ব্যবহৃত পরিচালিত দক্ষতার তালিকা। আপনি রিফ্রেশ করলে প্রকল্প সংগ্রহস্থল থেকে আপডেট হয়।",
+      "zh-CN": "在简易模式中使用的精选技能列表。刷新时将从项目仓库获取更新。",
+      "zh-TW": "在簡易模式中使用的精選技能清單。當您重新整理時，會從專案儲存庫更新。",
+      "hr": "Odabrani popis vještina korišten u jednostavnom načinu rada. Ažurira se iz repozitorija projekta kada osvježite.",
+      "cs": "Vybraný seznam dovedností používaný v režimu Jednoduché. Při obnovení se aktualizuje z repozitáře projektu.",
+      "tl": "Piniling listahan ng mga kasanayan na ginagamit sa Madaling mode. Awtomatikong naa-update mula sa imbakan ng proyekto kapag ina-refresh mo.",
+      "fr": "Liste de compétences sélectionnées utilisée en mode Facile. Mise à jour depuis le dépôt du projet lorsque vous actualisez.",
+      "nl": "Geselecteerde lijst met vaardigheden die wordt gebruikt in de eenvoudige modus. Wordt bijgewerkt vanuit de projectopslagplaats wanneer u vernieuwt.",
+      "en-US": "Curated skill list used in Easy mode. Updates from the project repository when you refresh.",
+      "hu": "A könnyű módhoz használt kiválogatott készséglista. Frissül a projekttárházból, amikor frissítesz.",
+      "hi": "सरल मोड में उपयोग होने वाली चयनित कौशल सूची। जब आप ताज़ा करते हैं, तो प्रोजेक्ट रिपॉजिटरी से अपडेट होती है।",
+      "el": "Επιλεγμένη λίστα δεξιοτήτων που χρησιμοποιείται στη λειτουργία Εύκολο. Ενημερώνεται από το αποθετήριο έργου όταν κάνετε ανανέωση.",
+      "de": "Zusammengestellte Liste von Fähigkeiten, die im einfachen Modus verwendet wird. Wird beim Aktualisieren aus dem Projekt-Repository aktualisiert.",
+      "ms": "Senarai kemahiran terpilih yang digunakan dalam mod Mudah. Kemas kini dari repositori projek apabila anda menyegar semula.",
+      "ko": "쉬운 모드에서 사용하는 큐레이션된 기술 목록입니다. 새로 고침할 때 프로젝트 저장소에서 업데이트됩니다.",
+      "it": "Elenco di competenze selezionate utilizzato nella modalità Facile. Si aggiorna dal repository del progetto quando si ricarica.",
+      "ja": "イージーモードで使用されるキュレートされたスキルリスト。更新はプロジェクトリポジトリからリフレッシュ時に取得します。",
+      "pt": "Lista de competências selecionada utilizada no modo Fácil. Atualizações a partir do repositório do projeto quando atualiza.",
+      "pl": "Wybrana lista umiejętności używana w trybie łatwym. Aktualizacje z repozytorium projektu po odświeżeniu.",
+      "jv": "Daptar ketrampilan sing dipilih digunakake ing Modus Gampang. Nganyari saka repositori proyek nalika sampeyan nganyari.",
+      "fa": "لیست مهارت‌های انتخاب‌شده که در حالت آسان استفاده می‌شود. با تازه‌سازی، از مخزن پروژه به‌روز می‌شود.",
+      "sk": "Vybraný zoznam zručností používaný v jednoduchom režime. Pri obnove sa aktualizuje z repozitára projektu.",
+      "ro": "Listă de competențe selectate utilizată în modul Easy. Se actualizează din depozitul proiectului când reîmprospătați.",
+      "ru": "Подобраный список навыков, используемый в лёгком режиме. Обновляется из репозитория проекта при обновлении.",
+      "pa": "ਆਸਾਨ ਮੋਡ ਵਿੱਚ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਚੁਣੀ ਹੋਈ ਸਕਿੱਲ ਸੂਚੀ। ਜਦੋਂ ਤੁਸੀਂ ਤਾਜ਼ਾ ਕਰਦੇ ਹੋ ਤਾਂ ਪ੍ਰੋਜੈਕਟ ਰਿਪੋਜ਼ੀਟਰੀ ਤੋਂ ਅਪਡੇਟ ਹੁੰਦੀ ਹੈ।",
+      "es": "Lista de habilidades seleccionadas utilizada en el modo Fácil. Se actualiza desde el repositorio del proyecto cuando actualizas.",
+      "sv": "Sammanställd förteckning över färdigheter som används i enkel läge. Uppdateras från projektdatabasen när du uppdaterar.",
+      "sw": "Orodha ya ujuzi iliyochaguliwa inayotumika katika kipindi rahisi. Inasasishwa kutoka hifadhi ya mradi unaposasisha.",
+      "te": "సులభ మోడ్‌లో ఉపయోగించే ఎంపిక చేసిన నైపుణ్యాల జాబితా. మీరు రిఫ్రెష్ చేసినప్పుడు ప్రాజెక్ట్ రిపోజిటరీ నుండి నవీకరణలు.",
+      "vi": "Danh sách kỹ năng được chọn lọc sử dụng trong chế độ Dễ. Cập nhật từ kho dự án khi bạn làm mới.",
+      "tr": "Kolay modda kullanılan düzenlenmiş beceri listesi. Yenilediğinizde proje deposundan güncellenir.",
+      "th": "รายการทักษะที่จัดเตรียมไว้ใช้ในโหมดง่าย อัปเดตจากที่เก็บโปรเจกต์เมื่อคุณรีเฟรช",
+      "uk": "Підібраний список навичок, який використовується в простому режимі. Оновлюється з репозиторію проекту під час оновлення."
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 347
+      }
+    ]
+  },
+  "88183b94": {
+    "source": "Unknown",
+    "translated": {
+      "pt-BR": "Desconhecido",
+      "ar": "مجهول",
+      "ca": "Desconegut",
+      "bn": "অজানা",
+      "zh-CN": "未知",
+      "zh-TW": "未知",
+      "hr": "Nepoznato",
+      "cs": "Neznámý",
+      "tl": "Hindi kilala",
+      "fr": "Inconnu",
+      "nl": "Onbekend",
+      "en-US": "Unknown",
+      "hu": "Ismeretlen",
+      "hi": "अज्ञात",
+      "el": "Άγνωστο",
+      "de": "Unbekannt",
+      "ms": "Tidak diketahui",
+      "ko": "알 수 없음",
+      "it": "Sconosciuto",
+      "ja": "不明",
+      "pt": "Desconhecido",
+      "pl": "Nieznany",
+      "jv": "Ora dingerteni",
+      "fa": "ناشناخته",
+      "sk": "Neznáme",
+      "ro": "Necunoscut",
+      "ru": "Неизвестно",
+      "pa": "ਅਣਜਾਣ",
+      "es": "Desconocido",
+      "sv": "Okänd",
+      "sw": "Haijulikani",
+      "te": "తెలియనది",
+      "vi": "Không xác định",
+      "tr": "Bilinmeyen",
+      "th": "ไม่ทราบ",
+      "uk": "Невідомо"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 352
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 356
+      }
+    ]
+  },
+  "ff0a3b7f": {
+    "source": "Updated",
+    "translated": {
+      "pt-BR": "Atualizado",
+      "ar": "تم التحديث",
+      "ca": "Actualitzat",
+      "bn": "আপডেট হয়েছে",
+      "zh-CN": "已更新",
+      "zh-TW": "已更新",
+      "hr": "Ažurirano",
+      "cs": "Aktualizováno",
+      "tl": "Na-update",
+      "fr": "Mis à jour",
+      "nl": "Bijgewerkt",
+      "en-US": "Updated",
+      "hu": "Frissítve",
+      "hi": "अपडेट किया गया",
+      "el": "Ενημερώθηκε",
+      "de": "Aktualisiert",
+      "ms": "Dikemas kini",
+      "ko": "업데이트됨",
+      "it": "Aggiornato",
+      "ja": "更新済み",
+      "pt": "Atualizado",
+      "pl": "Zaktualizowano",
+      "jv": "Diperbarui",
+      "fa": "به‌روز شد",
+      "sk": "Aktualizované",
+      "ro": "Actualizat",
+      "ru": "Обновлено",
+      "pa": "ਅਪਡੇਟ ਕੀਤਾ",
+      "es": "Actualizado",
+      "sv": "Uppdaterad",
+      "sw": "Imesasishwa",
+      "te": "నవీకరించబడింది",
+      "vi": "Đã cập nhật",
+      "tr": "Güncellendi",
+      "th": "อัปเดตแล้ว",
+      "uk": "Оновлено"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 354
+      }
+    ]
+  },
+  "cbe701b8": {
+    "source": "Checking…",
+    "translated": {
+      "pt-BR": "Verificando…",
+      "ar": "جاري الفحص…",
+      "ca": "S'està comprovant…",
+      "bn": "পরীক্ষা করা হচ্ছে…",
+      "zh-CN": "正在检查…",
+      "zh-TW": "正在檢查…",
+      "hr": "Provjera…",
+      "cs": "Kontrola…",
+      "tl": "Sinusuri…",
+      "fr": "Vérification en cours…",
+      "nl": "Controleren…",
+      "en-US": "Checking…",
+      "hu": "Ellenőrzés…",
+      "hi": "जाँच रहा है…",
+      "el": "Έλεγχος…",
+      "de": "Wird überprüft…",
+      "ms": "Sedang menyemak…",
+      "ko": "확인 중...",
+      "it": "Controllo in corso…",
+      "ja": "確認中…",
+      "pt": "A verificar…",
+      "pl": "Sprawdzanie…",
+      "jv": "Mriksa…",
+      "fa": "در حال بررسی…",
+      "sk": "Kontroluje sa…",
+      "ro": "Se verifică…",
+      "ru": "Проверка…",
+      "pa": "ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…",
+      "es": "Comprobando…",
+      "sv": "Kontrollerar…",
+      "sw": "Inaangalia…",
+      "te": "సరిచూస్తోంది…",
+      "vi": "Đang kiểm tra…",
+      "tr": "Kontrol ediliyor…",
+      "th": "กำลังตรวจสอบ…",
+      "uk": "Перевірка…"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 368
+      }
+    ]
+  },
+  "1b6e74e6": {
+    "source": "Refresh skills catalog",
+    "translated": {
+      "pt-BR": "Atualizar catálogo de habilidades",
+      "ar": "تحديث مُخطط المهارات",
+      "ca": "Actualitza el catàleg d'habilitats",
+      "bn": "দক্ষতা তালিকা রিফ্রেশ করুন",
+      "zh-CN": "刷新技能目录",
+      "zh-TW": "重新整理技能目錄",
+      "hr": "Osvježi katalog vještina",
+      "cs": "Obnovit katalog dovedností",
+      "tl": "I-refresh ang katalogo ng mga kasanayan",
+      "fr": "Actualiser le catalogue des compétences",
+      "nl": "Vernieuw vaardighedencatalogus",
+      "en-US": "Refresh skills catalog",
+      "hu": "Készségkatalógus frissítése",
+      "hi": "कौशल कैटलॉग ताज़ा करें",
+      "el": "Ανανέωση καταλόγου δεξιοτήτων",
+      "de": "Fähigkeitenkatalog aktualisieren",
+      "ms": "Segar semula katalog kemahiran",
+      "ko": "기술 카탈로그 새로 고침",
+      "it": "Aggiorna catalogo delle competenze",
+      "ja": "スキルカタログを更新",
+      "pt": "Atualizar catálogo de competências",
+      "pl": "Odśwież katalog umiejętności",
+      "jv": "Segerake katalog ketrampilan",
+      "fa": "تازه‌سازی فهرست مهارت‌ها",
+      "sk": "Obnoviť katalóg zručností",
+      "ro": "Reîmprospătare catalog de competențe",
+      "ru": "Обновить каталог навыков",
+      "pa": "ਸਕਿੱਲ ਕੈਟਲਾਗ ਤਾਜ਼ਾ ਕਰੋ",
+      "es": "Actualizar catálogo de habilidades",
+      "sv": "Uppdatera färdighetskatalog",
+      "sw": "Sasisha orodha ya ujuzi",
+      "te": "నైపుణ్యాల క్యాటలాగ్‌ను రిఫ్రెష్ చేయండి",
+      "vi": "Làm mới danh mục kỹ năng",
+      "tr": "Beceriler kataloğunu yenile",
+      "th": "รีเฟรชแคตตาล็อกทักษะ",
+      "uk": "Оновити каталог навичок"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 368
       }
     ]
   },
@@ -20942,7 +21460,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 344
+        "line": 381
       }
     ]
   },
@@ -21027,7 +21545,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 349
+        "line": 386
       }
     ]
   },
@@ -21112,7 +21630,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 377
+        "line": 414
       }
     ]
   },
@@ -21197,7 +21715,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 380
+        "line": 417
       }
     ]
   },
@@ -21282,11 +21800,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 398
+        "line": 435
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 468
+        "line": 505
       }
     ]
   },
@@ -21371,7 +21889,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 411
+        "line": 448
       }
     ]
   },
@@ -21456,7 +21974,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 416
+        "line": 453
       }
     ]
   },
@@ -21541,7 +22059,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 452
+        "line": 489
       }
     ]
   },
@@ -21626,7 +22144,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 486
+        "line": 523
       }
     ]
   },
@@ -21711,7 +22229,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 492
+        "line": 529
       }
     ]
   },
@@ -21796,15 +22314,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 493
+        "line": 530
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 506
+        "line": 543
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 517
+        "line": 554
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -21921,11 +22439,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 506
+        "line": 543
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 517
+        "line": 554
       }
     ]
   },
@@ -22010,7 +22528,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 517
+        "line": 554
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -22111,7 +22629,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 528
+        "line": 565
       }
     ]
   },
@@ -22196,7 +22714,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 538
+        "line": 575
       }
     ]
   },
@@ -22281,7 +22799,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 549
+        "line": 586
       }
     ]
   },
@@ -22366,7 +22884,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 554
+        "line": 591
       }
     ]
   },
@@ -22451,7 +22969,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 588
+        "line": 625
       }
     ]
   },
@@ -22536,7 +23054,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 609
+        "line": 646
       }
     ]
   },
@@ -22621,7 +23139,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 618
+        "line": 655
       }
     ]
   },
@@ -22706,7 +23224,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 655
+        "line": 692
       }
     ]
   },
@@ -22791,7 +23309,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 665
+        "line": 702
       }
     ]
   },
@@ -22876,11 +23394,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 670
+        "line": 707
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 739
+        "line": 776
       }
     ]
   },
@@ -22965,7 +23483,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 670
+        "line": 707
       }
     ]
   },
@@ -23050,7 +23568,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 673
+        "line": 710
       }
     ]
   },
@@ -23135,7 +23653,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 686
+        "line": 723
       }
     ]
   },
@@ -23220,7 +23738,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 687
+        "line": 724
       }
     ]
   },
@@ -23305,7 +23823,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 696
+        "line": 733
       }
     ]
   },
@@ -23390,7 +23908,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 701
+        "line": 738
       }
     ]
   },
@@ -23475,7 +23993,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 702
+        "line": 739
       }
     ]
   },
@@ -23560,7 +24078,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 716
+        "line": 753
       }
     ]
   },
@@ -23645,7 +24163,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 726
+        "line": 763
       }
     ]
   },
@@ -23730,7 +24248,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 734
+        "line": 771
       }
     ]
   },
@@ -23815,7 +24333,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 739
+        "line": 776
       }
     ]
   },
@@ -23900,7 +24418,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 755
+        "line": 792
       }
     ]
   },
@@ -23985,7 +24503,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 756
+        "line": 793
       }
     ]
   },
@@ -24070,7 +24588,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 760
+        "line": 797
       }
     ]
   },
@@ -24155,7 +24673,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 761
+        "line": 798
       }
     ]
   },
@@ -42996,27 +43514,27 @@
     "locations": [
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 423
+        "line": 458
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 485
+        "line": 520
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 547
+        "line": 582
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 609
+        "line": 644
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 695
+        "line": 730
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 793
+        "line": 828
       }
     ]
   },

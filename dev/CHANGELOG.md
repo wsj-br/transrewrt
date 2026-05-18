@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Windows NSIS assisted installer — "Run Transrewrt" on Finish launches the app via detached `cmd /c start` and hides the wizard first, avoiding a long "Not responding" state while Electron cold-starts.
+- **Changed**: Easy-mode `skills.json` remote sync: Electron only in Easy mode (6 h throttle; manual refresh in Settings → General); web server still syncs shared `data/skills.json` every 6 h for all users, with `POST /api/skills/sync` for Easy-mode on-demand refresh.
+- **Added**: Settings → General → AI experience — skills catalog version, `updated_at`, and Refresh button (second column beside provider).
 - **Changed**: Easy-mode remote skills sync log (Electron + web) includes `updated_at` for the new and previous catalog.
 - **Changed**: Dev skills editor — each catalog save bumps `easy-mode-config/skills.json` patch version and refreshes `updated_at`.
 - **Changed**: `README.md` and `USER-GUIDE.md` — document Easy vs Advanced AI experience, skills/provider toolbar, simplified Dashboard tabs, web History scoping, and `HISTORY_DISABLED`.
