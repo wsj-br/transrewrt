@@ -27,6 +27,9 @@
         <h1>Transrewrt — skills.json (dev)</h1>
         <div class="topbar-actions">
           <span id="status-line" class="status-line"></span>
+          <button type="button" id="btn-view-logs" class="btn secondary btn-view-logs">
+            Server log
+          </button>
           <button type="button" id="btn-reload" class="btn secondary">Reload</button>
           <button type="button" id="btn-ai-suggest" class="btn">AI Suggestion</button>
           <button type="button" id="btn-save-catalog" class="btn primary">Save catalog</button>
@@ -235,6 +238,51 @@
         </div>
       </section>
     </main>
+
+    <div
+      id="server-log-overlay"
+      class="overlay server-log-overlay hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="server-log-title"
+      aria-hidden="true"
+    >
+      <div class="server-log-modal">
+        <div class="server-log-header">
+          <h2 id="server-log-title">Server log</h2>
+          <div class="server-log-header-actions">
+            <button type="button" id="btn-server-log-refresh" class="btn secondary sm">
+              Refresh
+            </button>
+            <button type="button" id="server-log-close" class="btn secondary">Close</button>
+          </div>
+        </div>
+        <p id="server-log-summary" class="server-log-summary muted"></p>
+        <pre id="server-log-content" class="server-log-content" tabindex="0"></pre>
+      </div>
+    </div>
+
+    <div
+      id="server-log-alert-overlay"
+      class="overlay server-log-alert-overlay hidden"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="server-log-alert-title"
+      aria-hidden="true"
+    >
+      <div class="server-log-alert-modal">
+        <h2 id="server-log-alert-title">Server reported errors</h2>
+        <p id="server-log-alert-message" class="server-log-alert-message"></p>
+        <p class="muted server-log-alert-note">
+          Check the server log for details (invalid API keys, provider failures, etc.). The editor may
+          still work for some providers.
+        </p>
+        <div class="server-log-alert-actions">
+          <button type="button" id="btn-server-log-alert-view" class="btn primary">View log</button>
+          <button type="button" id="btn-server-log-alert-dismiss" class="btn secondary">Dismiss</button>
+        </div>
+      </div>
+    </div>
 
     <div
       id="model-picker-overlay"

@@ -106,6 +106,127 @@
     if (!msg) el.classList.remove("ok", "err");
   }
 
+  function updateServerLogButtonState() {
+    const btn = document.getElementById("btn-view-logs");
+    if (!btn) return;
+    btn.classList.toggle("has-errors", serverSessionErrorCount > 0);
+    btn.title =
+      serverSessionErrorCount > 0
+        ? serverSessionErrorCount + " server error(s) this session — open log"
+        : "View skills-editor server log";
+  }
+
+  function formatLogContentHtml(content) {
+    const lines = String(content || "").split("\n");
+    return lines
+      .map(function (line) {
+        const safe = escapeHtml(line);
+        if (/\[ERROR\]/.test(line)) return '<span class="log-line-err">' + safe + "</span>";
+        if (/\[WARN\]/.test(line)) return '<span class="log-line-warn">' + safe + "</span>";
+        return safe;
+      })
+      .join("\n");
+  }
+
+  async function fetchServerLogs() {
+    const res = await nativeFetch("/api/logs", { cache: "no-store" });
+    if (!res.ok) {
+      const t = await res.text().catch(function () {
+        return "";
+      });
+      throw new Error(t || "Could not load server log (HTTP " + res.status + ")");
+    }
+    return res.json();
+  }
+
+  function applyServerLogMeta(data) {
+    if (!data || typeof data !== "object") return;
+    if (typeof data.sessionErrorCount === "number") {
+      serverSessionErrorCount = data.sessionErrorCount;
+      updateServerLogButtonState();
+    }
+  }
+
+  async function refreshServerLogViewer() {
+    const summaryEl = document.getElementById("server-log-summary");
+    const contentEl = document.getElementById("server-log-content");
+    if (summaryEl) summaryEl.textContent = "Loading log…";
+    try {
+      const data = await fetchServerLogs();
+      applyServerLogMeta(data);
+      if (summaryEl) {
+        const errPart =
+          data.sessionErrorCount > 0
+            ? data.sessionErrorCount + " error(s) this session. "
+            : "No errors this session. ";
+        summaryEl.textContent =
+          errPart +
+          "File: " +
+          (data.path || "skills-editor.log") +
+          (data.sessionStart ? " · session " + data.sessionStart : "");
+      }
+      if (contentEl) {
+        contentEl.innerHTML = formatLogContentHtml(data.content || "(empty log)");
+        contentEl.scrollTop = contentEl.scrollHeight;
+      }
+    } catch (e) {
+      if (summaryEl) summaryEl.textContent = e.message || String(e);
+      if (contentEl) contentEl.textContent = "";
+    }
+  }
+
+  function openServerLogModal() {
+    const overlay = document.getElementById("server-log-overlay");
+    if (!overlay) return;
+    overlay.classList.remove("hidden");
+    overlay.setAttribute("aria-hidden", "false");
+    refreshServerLogViewer();
+  }
+
+  function closeServerLogModal() {
+    const overlay = document.getElementById("server-log-overlay");
+    if (!overlay) return;
+    overlay.classList.add("hidden");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  function showServerLogStartupAlert(errorCount) {
+    if (serverLogAlertShown || errorCount <= 0) return;
+    serverLogAlertShown = true;
+    const overlay = document.getElementById("server-log-alert-overlay");
+    const msgEl = document.getElementById("server-log-alert-message");
+    if (msgEl) {
+      msgEl.textContent =
+        "The skills-editor server logged " +
+        errorCount +
+        " error(s) while starting (for example invalid API keys or provider catalog failures).";
+    }
+    if (overlay) {
+      overlay.classList.remove("hidden");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  function dismissServerLogStartupAlert() {
+    const overlay = document.getElementById("server-log-alert-overlay");
+    if (overlay) {
+      overlay.classList.add("hidden");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  async function checkServerLogAfterStartup() {
+    try {
+      const data = await fetchServerLogs();
+      applyServerLogMeta(data);
+      if (data.hasSessionErrors && data.sessionErrorCount > 0) {
+        showServerLogStartupAlert(data.sessionErrorCount);
+      }
+    } catch {
+      /* non-fatal */
+    }
+  }
+
   function setEditorBootMessage(msg) {
     const el = document.getElementById("editor-boot-message");
     if (el) el.textContent = msg || "";
@@ -175,6 +296,8 @@
   var aiSuggestStaging = {};
   /** @type {Record<string, Record<string, string>>} */
   var aiSuggestSnapshot = {};
+  var serverSessionErrorCount = 0;
+  var serverLogAlertShown = false;
 
   function pickerEngineFromTarget(target) {
     const ai = parseAiSuggestPickerTarget(target);
@@ -1631,6 +1754,10 @@
         );
       }
       meta = await mRes.json();
+      if (typeof meta.sessionErrorCount === "number") {
+        serverSessionErrorCount = meta.sessionErrorCount;
+        updateServerLogButtonState();
+      }
       uiLanguages = await uRes.json();
       catalog = await sRes.json();
       refreshSourceLocaleFieldLabels();
@@ -1665,6 +1792,7 @@
       updateAiSuggestBar();
       setStatus("Ready", true);
       setEditorBootVisible(false);
+      checkServerLogAfterStartup();
     } catch (e) {
       const msg = e.message || String(e);
       setStatus(msg, false);
@@ -1962,6 +2090,18 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
+    const alertOv = document.getElementById("server-log-alert-overlay");
+    if (alertOv && !alertOv.classList.contains("hidden")) {
+      e.preventDefault();
+      dismissServerLogStartupAlert();
+      return;
+    }
+    const logOv = document.getElementById("server-log-overlay");
+    if (logOv && !logOv.classList.contains("hidden")) {
+      e.preventDefault();
+      closeServerLogModal();
+      return;
+    }
     const tp = document.getElementById("translate-progress-overlay");
     if (tp && !tp.classList.contains("hidden")) {
       if (tp.getAttribute("data-run-done") === "1") {
@@ -1978,6 +2118,44 @@
   document.getElementById("btn-reload").addEventListener("click", function () {
     loadAll();
   });
+
+  const btnViewLogs = document.getElementById("btn-view-logs");
+  if (btnViewLogs) {
+    btnViewLogs.addEventListener("click", function () {
+      openServerLogModal();
+    });
+  }
+  const serverLogClose = document.getElementById("server-log-close");
+  if (serverLogClose) {
+    serverLogClose.addEventListener("click", function () {
+      closeServerLogModal();
+    });
+  }
+  const btnServerLogRefresh = document.getElementById("btn-server-log-refresh");
+  if (btnServerLogRefresh) {
+    btnServerLogRefresh.addEventListener("click", function () {
+      refreshServerLogViewer();
+    });
+  }
+  const serverLogOverlay = document.getElementById("server-log-overlay");
+  if (serverLogOverlay) {
+    serverLogOverlay.addEventListener("click", function (e) {
+      if (e.target === serverLogOverlay) closeServerLogModal();
+    });
+  }
+  const btnServerLogAlertView = document.getElementById("btn-server-log-alert-view");
+  if (btnServerLogAlertView) {
+    btnServerLogAlertView.addEventListener("click", function () {
+      dismissServerLogStartupAlert();
+      openServerLogModal();
+    });
+  }
+  const btnServerLogAlertDismiss = document.getElementById("btn-server-log-alert-dismiss");
+  if (btnServerLogAlertDismiss) {
+    btnServerLogAlertDismiss.addEventListener("click", function () {
+      dismissServerLogStartupAlert();
+    });
+  }
 
   document.getElementById("btn-save-catalog").addEventListener("click", function () {
     saveCatalog();

@@ -930,6 +930,123 @@ table.trans-table {
   color: #f85149;
 }
 
+.btn-view-logs.has-errors {
+  border-color: #f85149;
+  color: #f85149;
+}
+
+.server-log-overlay {
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.server-log-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(920px, 96vw);
+  max-height: min(88vh, 900px);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.server-log-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.server-log-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.server-log-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.server-log-summary {
+  margin: 0 0 10px;
+  min-height: 1.35em;
+  font-size: 0.88rem;
+}
+
+.server-log-content {
+  flex: 1;
+  min-height: 240px;
+  max-height: min(62vh, 640px);
+  margin: 0;
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text);
+}
+
+.server-log-content .log-line-err {
+  color: #f85149;
+}
+
+.server-log-content .log-line-warn {
+  color: #d29922;
+}
+
+.server-log-alert-overlay {
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+  z-index: 9500;
+}
+
+.server-log-alert-modal {
+  width: min(480px, 96vw);
+  background: var(--panel);
+  border: 1px solid #f85149;
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.server-log-alert-modal h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f85149;
+}
+
+.server-log-alert-message {
+  margin: 0 0 10px;
+  line-height: 1.45;
+}
+
+.server-log-alert-note {
+  margin: 0 0 16px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.server-log-alert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .layout-ai-suggest-review {
   grid-template-columns: 1fr;
 }

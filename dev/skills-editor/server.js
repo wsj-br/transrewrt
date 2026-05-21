@@ -11,6 +11,115 @@ const express = require("express");
 
 const ROOT = path.join(__dirname, "..", "..");
 
+/** Server console output for the dev skills editor (repo root; gitignored). */
+const LOG_FILE_PATH = path.join(ROOT, "skills-editor.log");
+const LOG_FILE_MAX_BYTES = 2 * 1024 * 1024;
+
+const sessionStartIso = new Date().toISOString();
+let sessionErrorCount = 0;
+
+function logFileTimestampSuffix(iso) {
+  return String(iso || new Date().toISOString()).replace(/[:.]/g, "-");
+}
+
+function rotatedLogPathForSession(iso, attempt) {
+  const suffix = logFileTimestampSuffix(iso);
+  const name = attempt > 0 ? `skills-editor-${suffix}-${attempt}.log` : `skills-editor-${suffix}.log`;
+  return path.join(ROOT, name);
+}
+
+/** Move the active log aside so each server run starts a fresh `skills-editor.log`. */
+function rotateCurrentLogFile() {
+  if (!fs.existsSync(LOG_FILE_PATH)) return null;
+  let attempt = 0;
+  let rotatedPath = rotatedLogPathForSession(sessionStartIso, attempt);
+  while (fs.existsSync(rotatedPath)) {
+    attempt += 1;
+    rotatedPath = rotatedLogPathForSession(sessionStartIso, attempt);
+  }
+  fs.renameSync(LOG_FILE_PATH, rotatedPath);
+  return rotatedPath;
+}
+
+function formatLogArg(arg) {
+  if (arg instanceof Error) {
+    return arg.stack || arg.message || String(arg);
+  }
+  if (typeof arg === "object" && arg !== null) {
+    try {
+      return JSON.stringify(arg);
+    } catch {
+      return String(arg);
+    }
+  }
+  return String(arg);
+}
+
+function trimLogFileIfNeeded() {
+  try {
+    if (!fs.existsSync(LOG_FILE_PATH)) return;
+    const stat = fs.statSync(LOG_FILE_PATH);
+    if (stat.size <= LOG_FILE_MAX_BYTES) return;
+    const raw = fs.readFileSync(LOG_FILE_PATH, "utf8");
+    const keep = raw.slice(-Math.floor(LOG_FILE_MAX_BYTES * 0.75));
+    fs.writeFileSync(
+      LOG_FILE_PATH,
+      `[skills-editor] Log truncated (${new Date().toISOString()})\n${keep}`,
+      "utf8",
+    );
+  } catch (e) {
+    process.stderr.write(`[skills-editor] Could not trim log file: ${e.message}\n`);
+  }
+}
+
+function appendLogLine(level, args) {
+  const msg = args.map(formatLogArg).join(" ");
+  const line = `${new Date().toISOString()} [${level}] ${msg}\n`;
+  if (level === "ERROR") sessionErrorCount += 1;
+  try {
+    trimLogFileIfNeeded();
+    fs.appendFileSync(LOG_FILE_PATH, line, "utf8");
+  } catch {
+    /* ignore disk errors — console still prints */
+  }
+}
+
+function initSkillsEditorLogFile() {
+  try {
+    const rotatedFrom = rotateCurrentLogFile();
+    const bannerParts = [`--- skills-editor session ${sessionStartIso} (pid ${process.pid}) ---`];
+    if (rotatedFrom) {
+      bannerParts.push(`Rotated previous log: ${path.basename(rotatedFrom)}`);
+    }
+    fs.writeFileSync(LOG_FILE_PATH, `\n${bannerParts.join("\n")}\n`, "utf8");
+  } catch {
+    /* ignore */
+  }
+}
+
+function installConsoleLogCapture() {
+  const orig = {
+    log: console.log.bind(console),
+    warn: console.warn.bind(console),
+    error: console.error.bind(console),
+  };
+  console.log = (...args) => {
+    appendLogLine("LOG", args);
+    orig.log(...args);
+  };
+  console.warn = (...args) => {
+    appendLogLine("WARN", args);
+    orig.warn(...args);
+  };
+  console.error = (...args) => {
+    appendLogLine("ERROR", args);
+    orig.error(...args);
+  };
+}
+
+initSkillsEditorLogFile();
+installConsoleLogCapture();
+
 const {
   mergeKeys,
   getAllModels,
@@ -1416,7 +1525,31 @@ app.get("/api/meta", (_req, res) => {
     dataSkillsPath: path.relative(ROOT, DATA_SKILLS_PATH),
     repoSkillsAbsolute: REPO_SKILLS_PATH,
     dataSkillsAbsolute: DATA_SKILLS_PATH,
+    logFilePath: path.relative(ROOT, LOG_FILE_PATH),
+    logFileAbsolute: LOG_FILE_PATH,
+    sessionStart: sessionStartIso,
+    sessionErrorCount,
+    hasSessionErrors: sessionErrorCount > 0,
   });
+});
+
+app.get("/api/logs", (_req, res) => {
+  try {
+    let content = "";
+    if (fs.existsSync(LOG_FILE_PATH)) {
+      content = fs.readFileSync(LOG_FILE_PATH, "utf8");
+    }
+    res.json({
+      path: path.relative(ROOT, LOG_FILE_PATH),
+      absolutePath: LOG_FILE_PATH,
+      content,
+      sessionStart: sessionStartIso,
+      sessionErrorCount,
+      hasSessionErrors: sessionErrorCount > 0,
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message || String(e) });
+  }
 });
 
 app.get("/api/ui-languages", (_req, res) => {
@@ -1859,6 +1992,7 @@ server.on("listening", () => {
   console.log(`[skills-editor] Repo catalog: ${REPO_SKILLS_PATH}`);
   console.log(`[skills-editor] Data mirror:  ${DATA_SKILLS_PATH}`);
   console.log(`[skills-editor] Provider catalog cache: ${PROVIDER_CATALOGS_DISK_CACHE_PATH} (TTL 2h)`);
+  console.log(`[skills-editor] Server log file: ${LOG_FILE_PATH}`);
   const keysMap = mergeKeys({}, process.env);
   ensureProviderCatalogDiskCache(keysMap).catch((e) => {
     console.warn("[skills-editor] Provider catalog cache init failed:", e.message || String(e));

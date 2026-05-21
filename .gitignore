@@ -38,6 +38,8 @@ last_api_result.json
 
 # dev skills editor — provider model catalogs (refreshed from APIs, max 2h TTL)
 skills-editor-provider-catalogs.json
+skills-editor.log
+skills-editor-*.log
 
 
 

@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Dev skills editor — server console output written to `skills-editor.log` (repo root; previous run rotated to `skills-editor-<timestamp>.log` on startup); **Server log** button in the header; startup alert when the session log contains errors.
+- **Changed**: Move `pnpm.overrides` and `pnpm.allowedDeprecatedVersions` from `package.json` to `pnpm-workspace.yaml` (pnpm 11 config location).
+
 ## [1.3.1] - 2026-05-18
 
 - **Fixed**: Windows NSIS assisted installer — "Run Transrewrt" on Finish launches the app via detached `cmd /c start` and hides the wizard first, avoiding a long "Not responding" state while Electron cold-starts.
