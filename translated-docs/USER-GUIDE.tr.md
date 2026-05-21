@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:54.294Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:14:57.739Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: tr
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt, metinle çalışmanıza üç ana yoldan yardımcı olur:
 - **Yeniden yaz** - metni daha açık, daha kısa veya daha resmi gibi farklı bir şekilde yeniden ifade et.
 - **Dönüştür** - istem adı verilen özel AI talimatlarını kullanarak metni işle.
 
-Varsayılan olarak uygulama **Kolay** modda çalışır: Ayarlar'da bir **beceri** (örneğin Ücretsiz, Hızlı veya Teknik) ve bir **sağlayıcı** seçersiniz, model kimliklerini seçmeden. [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde **Gelişmiş** moda geçin, [**Ayarlar** > **Modeller**](#models) adresinden klasik model listesini kullanmak istiyorsanız.
+Varsayılan olarak uygulama **Kolay** modda çalışır: Ayarlar'da bir **beceri** (örneğin Ücretsiz (OpenRouter), Lite veya Teknik) ve bir **sağlayıcı** seçersiniz, model kimliklerini seçmenize gerek kalmaz. Klasik model listesini kullanmak istiyorsanız [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde **Gelişmiş** moda geçin [**Ayarlar** > **Modeller**](#models).
 
 <br/>
 
@@ -82,7 +82,7 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Modeller](#models)
   - [Diller](#languages)
   - [Maliyet takibi](#cost-tracking)
-  - [Dönüştür (ayarlar sekmesi)](#transform-settings)
+  - [Dönüştür (ayarlar sekmesi)](#transform-settings-tab)
   - [Kullanıcılar](#users)
   - [API yapılandırması](#api-config)
   - [Hakkında](#about)
@@ -117,18 +117,18 @@ Başlarken ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı
 
 Basitçe:
 
-- **Kolay** modda, bir **beceri** (Ücretsiz, Hızlı, Gelişmiş, Teknik, Hukuki gibi) seçtiğiniz **sağlayıcı** (OpenRouter, OpenAI, Ollama ve diğerleri) için bir modele eşlenen bir önceden ayarlı değerdir. Beceriyi Çevir, Yeniden Yaz ve Dönüştür işlemlerinde araç çubuğundan seçersiniz.
-- **Gelişmiş** modda, bir **model** doğrudan seçtiğiniz yapay zekâ motorudur. Model kimlikleri bir **sağlayıcı öneki** kullanır (örneğin `openrouter/…`, `openai/…`, `ollama/…`).
-- Bir **API anahtarı** (veya Ollama için bir **temel URL**), uygulamanın bu sağlayıcıya ulaşmasını sağlar.
+- **Kolay** modda, bir **beceri**, seçtiğiniz **sağlayıcı** için (OpenRouter, OpenAI, Ollama ve diğerleri) bir modele eşlenen önceden ayarlanmış bir değerdir (Ücretsiz (OpenRouter), Lite, Gelişmiş veya Teknik). Geçerli sağlayıcı için eşleme olan beceriler araç çubuğunda görünür. Beceriyi Çevir, Yeniden Yaz ve Dönüştür işlemlerinde seçersiniz.
+- **Gelişmiş** modda, bir **model** doğrudan seçtiğiniz yapay zekâ altyapısıdır. Model kimlikleri bir **sağlayıcı öneki** kullanır (örneğin `openrouter/…`, `openai/…`, `ollama/…`).
+- Bir **API anahtarı** (veya Ollama için bir **temel URL**) uygulamanın sağlayıcıya nasıl ulaşacağını belirler.
 
-**Masaüstü uygulamasını** kullanıyorsanız, kullandığınız her sağlayıcı için [**Ayarlar** > **API Yapılandırması**](#api-config) bölümünde anahtar ekleyin. Sadece OpenRouter kullanıyorsanız aşağıda [Ücretsiz OpenRouter API anahtarı nasıl alınır?](#how-to-get-an-api-key-desktop-app) bölümüne bakın. API anahtarı kullanmak istemiyorsanız, Ollama'yı [ollama.com](https://ollama.com) adresinden yükleyebilir ve `translategemma:4b` gibi yerel modeller kullanabilirsiniz.
+**Masaüstü uygulamasını** kullanıyorsanız, kullandığınız her sağlayıcı için [**Ayarlar** > **API Yapılandırması**](#api-config) bölümünde anahtar ekleyin. Sadece OpenRouter kullanıyorsanız aşağıda [Ücretsiz bir OpenRouter API anahtarı nasıl alınır?](#how-to-get-a-free-openrouter-api-key-desktop-app) bölümüne bakın. API anahtarı kullanmak istemiyorsanız, [ollama.com](https://ollama.com) adresinden Ollama'yı yükleyebilir ve `translategemma:4b` gibi yerel modeller kullanabilirsiniz.
 
 **Web sürümünü** kullanıyorsanız, sunucu sahibi sağlayıcıları ortam değişkenleri ile yapılandırır. Bu yüzden uygulamada doğrudan API anahtarları giremezsiniz.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Ücretsiz OpenRouter API anahtarı nasıl alınır (masaüstü uygulaması)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Ücretsiz bir OpenRouter API anahtarı nasıl alınır? (masaüstü uygulaması)
 
 Masaüstü uygulamasını kullanıyorsanız şu adımları izleyin:
 
@@ -209,7 +209,7 @@ Araç çubuğu, uygulama içinde nerede olduğunuza göre hafifçe değişir.
 - Solda, geçerli sayfanın adı gösterilir.
 - Sağda, **beceri veya model seçici** ve **Arayüz dili** denetimi yer alır.
 
-**Kolay** modda araç çubuğu bir **beceri seçici** gösterir (Ücretsiz, Hızlı, Gelişmiş, Teknik, Hukuki ve benzeri önceden ayarlanmış değerler). Beceriler, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde seçtiğiniz **Sağlayıcı**'ya bağlıdır. **Sağlayıcı** **Ollama** ise araç çubuğu beceriler yerine yüklediğiniz yerel modelleri listeler.
+**Kolay** modunda, araç çubuğu yerleşik önceden ayarlanmış **Ücretsiz (OpenRouter)**, **Hafif**, **Gelişmiş** ve **Teknik** becerileriyle birlikte bir **beceri seçici** gösterir. Hangi becerilerin görüneceği, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde seçtiğiniz **Sağlayıcıya** bağlıdır. Örneğin, **Ücretsiz (OpenRouter)** yalnızca sağlayıcı OpenRouter olarak ayarlandığında listelenir. Eğer **Sağlayıcı** **Ollama** ise, araç çubuğu beceriler yerine yüklenmiş yerel modellerinizi listeler.
 
 **Gelişmiş** modda, **model seçici** geçerli görev için hangi yapay zekâ motorunun kullanılacağını seçmenizi sağlar.
 
@@ -291,9 +291,9 @@ Seçtiğiniz **Üst diller** listede en üstte görünür. Bunları [**Ayarlar**
 - **Sonucu panoya otomatik kopyala**, başarılı bir çeviri sonrasında sonucu otomatik olarak kopyalar.
 - **Gerçek zamanlı çeviri (yazarken)**, yazarken çevirileri çalıştırır.
 - **Zaman aşımı (ms)**, uygulamanın gerçek zamanlı çeviri yapmadan önce ne kadar bekleyeceğini belirler.
-- **Enter**, `Enter` tuşuna bastığınızda ne olacağını belirler:
-
-<br/><br/>
+- **ENTER için Davranış**, `Enter` tuşuna bastığınızda ne olacağını kontrol eder:
+  - **Enter**, çevir veya yeniden yaz işlemini çalıştırır (varsayılan).
+  - **Shift + Enter**, çevir veya yeniden yaz işlemini çalıştırır; sade **Enter**, yeni bir satır ekler.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -306,10 +306,10 @@ Ana anlamı değiştirmeden metnin ifade biçimini iyileştirmek istediğinizde 
 
 Bu işlem şu durumlarda yararlıdır:
 
-- yazım ve dil bilgisi hatalarını düzeltmek (**İmla ve Dil Bilgisini Denetle**)
-- metni daha anlaşılır hâle getirmek (**Anlaşılırlığı İyileştir**)
-- tek bir çalıştırma ile birkaç farklı yeniden düzenleme sunmak (**Alternatif sürümler**)
-- metni daha resmî veya daha gayriresmî hâle getirmek (**Resmî** / **Gayriresmî**)
+- yazım ve dil bilgisi düzeltme (**İmla ve Dil Bilgisini Denetle**)
+- metni daha anlaşılır hâle getirme (**Anlaşılırlığı İyileştir**)
+- tek bir çalıştırmada birkaç farklı yeniden ifade (**Alternatif sürümler**)
+- metni daha resmi veya daha gayriresmi hâle getirme (**Resmi Hale Getir** / **Gayriresmi Hale Getir**)
 - metni kısaltmak veya uzatmak (**Kısalt** / **Uzat**)
 - metni daha teknik hâle getirmek (**Teknik Hale Getir**)
 
@@ -369,10 +369,10 @@ Bu, uygulamanın en esnek bölümüdür. Bunu şu tür görevler için kullanabi
 
 Bir istem oluşturmanın en hızlı yolu:
 
-1. **Yeni istem**'e tıklayın.
-2. **İstem oluştur**'a tıklayın.
-3. İstemin ne yapmasını istediğinizi açıklayın.
-4. Bir model seçin.
+1. **Yeni istem** seçeneğine tıklayın.
+2. **İstem oluştur** seçeneğine tıklayın.
+3. İstemden ne yapmasını istediğinizi açıklayın.
+4. Bir beceri (Kolay) veya model (Gelişmiş) seçin.
 5. Uygulamanın sizin için bir taslak oluşturmasına izin verin.
 6. Taslağı gözden geçirin ve **Kaydet**'e tıklayın.
 
@@ -575,8 +575,8 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 
 **Yapay zeka deneyimi**
 
-- **Kolay** (varsayılan): Bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcıları araç çubuğundaki yerleşik beceri ön ayarlarını kullanır. **Ollama**, beceriler yerine makinenizde kurulu modelleri listeler.
-- **Gelişmiş**: Araç çubuğunda bireysel modeller seçin; listeyi [**Ayarlar** > **Modeller**](#models) altında yönetin.
+- **Kolay** (varsayılan): bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcıları araç çubuğundaki yerleşik beceri önceden ayarlarını kullanır. **Ollama**, beceriler yerine makinenizde yüklü modelleri listeler. Kolay modda **Beceriler kataloğu**, katalog sürümünü ve son güncelleme zamanını gösterir; en son beceri listesini proje deposundan almak için **Beceriler kataloğunu yenile** seçeneğine tıklayın (uygulama ayrıca arka planda düzenli olarak kontrol eder).
+- **Gelişmiş**: araç çubuğunda tek tek modeller seçin; listeyi [**Ayarlar** > **Modeller**](#models) bölümünde yönetin.
 
 **Web uygulamasında**, hangi sağlayıcıların görüneceği sunucu ortamında ayarlanan API anahtarlarına bağlıdır. **Masaüstü uygulamasında**, anahtarları [**API Yapılandırması**](#api-config) altında yapılandırın.
 
@@ -595,13 +595,14 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 
 **Görünüm**
 
-- **Eylemlerde maliyet bilgisini göster**, işlem başına maliyetin (varsa) ve toplam maliyetin Çevir, Yeniden Yaz ve Dönüştür çıktı panellerinde görüntülenip görüntülenmeyeceğini kontrol eder.
+- **Tema**, açık, koyu ve sistem görünümü arasında geçiş yapar.
+- **Eylemlerde maliyet bilgisini göster**, işlem başına maliyetin (mevcutsa) ve Toplam Maliyet'in Çevir, Yeniden Yaz ve Dönüştür çıktı panellerinde görüntülenmesini kontrol eder.
 - **Maliyet ondalık basamakları**, maliyet ondalıklarının nasıl gösterileceğini değiştirir.
-- **Sadece web:** **uygulama etrafında bir kenar boşluğu göster**, arayüz etrafına ekstra boşluk ekler.
-- **Yazı Tipi Ailesi**, metin panellerindeki yazım fontunu değiştirir.
+- **Sadece web için:** **uygulama etrafında bir kenar boşluğu göster**, arayüz etrafına ekstra boşluk ekler.
+- **Yazı Tipi Ailesi**, metin panellerindeki yazım yazı tipini değiştirir.
 - **Boyut**, yazı tipi boyutunu değiştirir.
 
-**Yapılandırma Yedekleme**
+**Yapılandırma Yedekleme** (sadece masaüstü uygulaması ve web yöneticileri için)
 
 - **Yedekte kullanım verilerini dahil et** - etkinleştirildiğinde ZIP dosyası ayrıca yürütme geçmişi ve API çağrısı verilerini de içerir.
 - **Yapılandırmayı yedekle** - `config.json`, `state.json`, isteğe bağlı şifreleme anahtarı, kullanıcılar, tercihler, özel istemler ve kullanım verileri (eğer kabul ettiyseniz) ile tek bir ZIP dosyası oluşturur (varsayılan olarak UTC'ye göre `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`). Başarılı bir yedeklemeden sonra onay, kaydedilen dosya adını gösterir.
@@ -763,9 +764,9 @@ Bir API anahtarı eklemek için metin alanına değeri girin ve `Save` düğmesi
 
 **Hakkında** sekmesi şunları gösterir:
 
-- uygulama adı
-- sürüm numarası
-- yapı tarihi
+- uygulama adı ve sloganı
+- sürüm numarası ve yapı tarihi
+- lisans ve telif hakkı bilgileri, **Üçüncü taraf duyuruları** açmak için bir bağlantı
 - proje deposuna bir bağlantı
 
 <br/><br/>
@@ -809,9 +810,9 @@ Masaüstü uygulamasını kullanıyorsanız:
 
 Aşağıdakilerden birini veya birkaçını deneyin:
 
-- farklı bir model seçin
+- farklı bir beceri (Kolay) veya model (Gelişmiş) seçin
 - daha kısa bir girdi kullanın
-- [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde **Gerçek zamanlı çeviri (yazarken)** seçeneğini devre dışı bırakın
+- [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde **Gerçek zamanlı çeviri (yazarken)** seçeneğini kapatın
 - basit görevler için ücretsiz modeller kullanın (bkz. [Modeller](#models))
 
 <br/>

@@ -13,8 +13,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
+  - [Skills catalog editor (development)](#skills-catalog-editor-development)
+  - [Skill-check cron (development)](#skill-check-cron-development)
+  - [Cleaning the workspace](#cleaning-the-workspace)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
-- [Skills catalog editor (development)](#skills-catalog-editor-development)
 - [Build](#build)
   - [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools)
   - [Third-party notices (`3p-notices`)](#third-party-notices-3p-notices)
@@ -221,8 +223,8 @@ The **postinstall** script runs `electron-rebuild` so native addons match Electr
 
 ## Development Workflow
 
-- **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload.
-- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5000](http://localhost:5000) in a browser.
+- **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload. (`pnpm dev` chains `watch`, `electron`, `electron-rebuild`, and `write-build-timestamp`; you normally do not run those scripts directly.)
+- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5000](http://localhost:5000) in a browser. (`watch:web` is used internally; run `dev:web`, not `watch:web`, for day-to-day work.)
 
 To run Electron with a production build (no dev server):
 
@@ -252,8 +254,86 @@ Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port i
 | **Electron dev** | May read `skills.json` next to your `config.json` instead of `data/` — see README in skills-editor |
 | **Keys** | LLM keys from `process.env` only (editor does **not** read `.env`); export vars or use direnv before starting |
 | **Catalog cache** | `skills-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
+| **Server log** | `skills-editor.log` at repo root (previous run rotated to `skills-editor-<timestamp>.log` on startup); both removed by [clean-workspace](#cleaning-the-workspace) scripts |
 
 Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/skills/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-skills-catalog)**.
+
+### Skill-check cron (development)
+
+Cron-friendly CLI that validates model ids in [easy-mode-config/skills.json](../easy-mode-config/skills.json), replaces unavailable models via fuzzy matching, commits only that file to GitHub, and notifies via [NTFY](https://docs.ntfy.sh/). Use an isolated runtime directory on a server so cron never touches your dev checkout. Full behaviour, CLI flags, and exit codes: **[dev/skill-check/README.md](skill-check/README.md)**.
+
+**Local development** (from the repository root):
+
+```bash
+# Preview against local skills.json (no git, no writes)
+pnpm run skill-check -- --local --dry-run
+
+# Apply locally (updates easy-mode-config/skills.json only; no git push)
+pnpm run skill-check -- --local
+```
+
+Copy [dev/skill-check/config.example.json](skill-check/config.example.json) to `dev/skill-check/config.json` and set `ntfy.topic` for notifications.
+
+**Production install** (isolated runtime for cron):
+
+```bash
+pnpm run skill-check:install -- --target /opt/transrewrt-skill-check
+```
+
+Configure `config.json` (set `ntfy.topic`) and create `/opt/transrewrt-skill-check/.env` with secrets (`run.sh` sources it):
+
+```bash
+# /opt/transrewrt-skill-check/.env
+GITHUB_TOKEN=ghp_…
+SKILL_CHECK_NTFY_TOPIC=your-topic
+OPENROUTER_API_KEY=sk-or-…
+# … other provider keys as needed
+```
+
+If `"useSsh": true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [skill-check/README.md](skill-check/README.md)).
+
+Test before scheduling:
+
+```bash
+cd /opt/transrewrt-skill-check
+SKILL_CHECK_DRY_RUN=1 ./run.sh
+```
+
+Add a crontab entry (daily at 06:00 in this example):
+
+```bash
+crontab -e
+```
+
+```cron
+0 6 * * * /opt/transrewrt-skill-check/run.sh >> /opt/transrewrt-skill-check/skill-check-cron.log 2>&1
+```
+
+Adjust the schedule as needed. Logs go to `skill-check-cron.log` (stdout/stderr) and `skill-check.log` (JSON-lines from the checker).
+
+**Local repo checkout:** `dev/skill-check/skill-check.log` and `dev/skill-check/provider-catalogs-cache.json` (provider catalog snapshot for checks) are gitignored. Remove them with the [clean-workspace](#cleaning-the-workspace) scripts when you want a fresh checker run or to drop stale catalog data.
+
+Upgrade an installed runtime after pulling a newer checker: `pnpm run skill-check:install -- --target /opt/transrewrt-skill-check --force`.
+
+### Cleaning the workspace
+
+Use these scripts for a full local reset: dev logs and caches first, then build artifacts (`node_modules`, `dist`, `release`, …). Run `pnpm install` before building or starting Docker again.
+
+| Platform | Command |
+|----------|---------|
+| **Linux / macOS** | `./scripts/clean-workspace.sh` |
+| **Windows (PowerShell)** | `.\scripts\clean-workspace.ps1` |
+
+**Logs and dev caches (both scripts):**
+
+- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules` (PowerShell also skips top-level `cache/`). Examples: `skills-editor.log`, `skills-editor-*.log`, `data/server.log`, `dev/skill-check/skill-check.log`, screenshot logs under `dev/`.
+- `skills-editor-provider-catalogs.json` (repo root)
+- `dev/skill-check/provider-catalogs-cache.json`
+- `dev/skill-check/skill-check.log` (also matched by the `*.log` sweep)
+
+**Windows only:** optional `-RemoveLockfile` (drop `pnpm-lock.yaml` for a full dependency resolve) and `-RemovePrerequisites` (global `pnpm`/Node via nvm, plus winget uninstall hints). If present, [scripts/clean-translation-logs.js](../scripts/clean-translation-logs.js) runs first (translation session logs; same intent as a dedicated `clean-logs` step when that script exists).
+
+The Bash script also prunes the pnpm store and Docker build cache; use only when you intend to clear those globally.
 
 ### Upgrading Node and dependencies (nvm)
 
@@ -290,6 +370,7 @@ Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](..
 | Target                              | Command                               | Output                                                                                                             |
 |-------------------------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **Renderer**                        | `pnpm build-renderer` or `pnpm build` | `dist/` (production assets)                                                                                        |
+| **Electron main/preload**           | `pnpm run build:main`                 | `dist-main/` (webpack bundle; `package` / `package-arm64` run this before electron-builder)                        |
 | **Electron installer**              | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows; targets depend on platform)                                               |
 | **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`                  | `release/` - Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                              |
 | **Docker image**                    | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
@@ -304,10 +385,12 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | `pnpm run i18n:extract`                         | Scan source for `t("…")` (and configured roots) → `src/renderer/locales/strings.json` (preserves existing translations)                                                                    |
 | `pnpm run i18n:translate:ui`                    | Translate missing UI strings via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{locale}.json` files. See `pnpm exec ai-i18n-tools translate-ui --help` for `--force`, `--model`, etc. |
 | `pnpm run i18n:translate:docs`                  | Translate configured markdown docs → `translated-docs/` (see `documentations` in config). **Requires `OPENROUTER_API_KEY`.**                                                               |
+| `pnpm run i18n:translate:svg`                   | Translate configured SVG assets via OpenRouter (see `ai-i18n-tools translate-svg --help`)                                                                                                  |
 | `pnpm run i18n:translate`                       | Runs `translate-ui`, then `translate-svg`, then `translate-docs`                                                                                                                           |
 | `pnpm run i18n:sync`                            | `ai-i18n-tools sync`: extract (if enabled), then translate UI, optional SVG, then docs — skip parts with `--no-ui`, `--no-svg`, `--no-docs` (see CLI `--help`)                             |
 | `pnpm run i18n:status`                          | UI string and doc translation coverage                                                                                                                                                     |
-| `pnpm run i18n:cleanup`                         | Remove stale artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                                |
+| `pnpm run i18n:cleanup`                         | Remove stale i18n pipeline artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                    |
+| `pnpm run clean-temp`                           | Find and remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; use `--force` to skip prompt)                                                              |
 | `pnpm run i18n:editor`                          | Open the string editor when configured                                                                                                                                                     |
 | `pnpm exec ai-i18n-tools generate-ui-languages` | Regenerate [`src/renderer/locales/ui-languages.json`](../src/renderer/locales/ui-languages.json) from config (includes `direction` per locale)                                             |
 
@@ -342,7 +425,7 @@ Implementation: [scripts/write-third-party-licenses.js](../scripts/write-third-p
 
 ## Test
 
-There is no automated test suite (`pnpm test` is a placeholder). Testing is done by running the app.
+There is no automated test suite (`pnpm test` exits with an error placeholder). Testing is done by running the app.
 
 ### Dev mode (recommended for day-to-day testing)
 
@@ -460,15 +543,21 @@ If a tag `vX.Y.Z` already exists on the remote (for example you pushed it earlie
 
 ## Useful Commands Summary
 
+All npm scripts defined in [package.json](../package.json) are listed below (grouped). Scripts used only as dependencies of `dev` / `dev:web` (`watch`, `watch:web`, `electron`) are noted in [Development Workflow](#development-workflow) rather than repeated here.
+
 ### Develop, build, and run
 
 | Command                              | Purpose                                                                                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                       |
+| `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                                |
-| `pnpm run dev:skills-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [skills-editor/README.md](skills-editor/README.md)).                                                  |
+| `pnpm run dev:skills-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [skills-editor/README.md](skills-editor/README.md)).                                                    |
+| `pnpm run skill-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#skill-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
+| `pnpm run skill-check:install`       | Install isolated skill-check runtime for cron (e.g. `-- --target /opt/transrewrt-skill-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
+| `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64`).                                                            |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                             |
 | `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                       |
 | `pnpm serve`                         | Runs `build-renderer` then `start:server` (web smoke test on **:5000**).                                                                                    |
@@ -479,20 +568,28 @@ If a tag `vX.Y.Z` already exists on the remote (for example you pushed it earlie
 
 ### Code quality
 
-| Command         | Purpose                |
-|-----------------|------------------------|
-| `pnpm lint`     | Run ESLint on the repo |
-| `pnpm lint:fix` | ESLint with `--fix`    |
+| Command         | Purpose                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| `pnpm lint`     | Run ESLint on the repo                                                  |
+| `pnpm lint:fix` | ESLint with `--fix`                                                     |
+| `pnpm test`     | Placeholder only (no automated test suite yet; exits with an error)     |
 
 ### UI translations and docs (ai-i18n-tools)
+
+See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools) under **Build**.
 
 | Command                        | Purpose                                                                                                |
 |--------------------------------|--------------------------------------------------------------------------------------------------------|
 | `pnpm run i18n:extract`        | Scan renderer → `src/renderer/locales/strings.json`                                                    |
 | `pnpm run i18n:translate:ui`   | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`); see `ai-i18n-tools translate-ui --help` |
+| `pnpm run i18n:translate:svg`  | Translate configured SVG assets via OpenRouter                                                         |
 | `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE per `documentations` in config                                           |
+| `pnpm run i18n:translate`      | `translate-ui`, then `translate-svg`, then `translate-docs`                                          |
 | `pnpm run i18n:sync`           | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help`         |
 | `pnpm run i18n:status`         | Coverage report                                                                                        |
+| `pnpm run i18n:cleanup`        | Remove stale i18n pipeline artifacts (`ai-i18n-tools cleanup --help`)                                  |
+| `pnpm run clean-temp`          | Remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; `--force` to skip prompt) |
+| `pnpm run i18n:editor`         | Open the string editor when configured in `ai-i18n-tools.config.json`                                  |
 
 Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json) — not app `config.json`.
 
@@ -503,8 +600,6 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `pnpm generate-test-data`      | Seed SQLite with sample API/history rows (for cost dashboard/dev purposes)                                                               |
 | `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots (app must be reachable; see script/env vars)                                                     |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
-| `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE via OpenRouter → `translated-docs/` (`OPENROUTER_API_KEY`; config: `ai-i18n-tools.config.json`)            |
-| `pnpm run i18n:cleanup`        | ai-i18n-tools cleanup (stale artifacts; see `--help`)                                                                                    |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`           | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                          |
 | `pnpm update-version`          | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                 |
@@ -526,8 +621,10 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 
 See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm) for **why `source`**, `./` vs CI, and shell notes.
 
-| Command                                    | Purpose                                                                                                                                                                                                                                                                                  |
+| Command / script                           | Purpose                                                                                                                                                                                                                                                                                  |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, skills-editor/skill-check dev caches, then build artifacts; Bash also prunes pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                 |
+| `.\scripts\clean-workspace.ps1`          | Same log/cache/artifact cleanup on Windows; optional `-RemoveLockfile`, `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                       |
 | `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global `pnpm`, `npm-check-updates`, `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                              |
 | `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** nvm-windows `nvm install lts` / `nvm use`, then the same global packages. **Dot-source** (`. …`) so `nvm use` applies to this session (script may remind you if run as `.\…`).                                                                                           |
 | `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), then [eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js), conditional `ncu --upgrade` (may pin ESLint stack), `pnpm install`, `pnpm audit`, `pnpm audit fix`, `pnpm audit` again. |
@@ -590,7 +687,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                |
 | [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                           |
 | [src/renderer/components/SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx)   | Settings tabs; **Models** only in Advanced mode; General includes AI experience / Provider                    |
-| [easy-mode-config/skills.json](../easy-mode-config/skills.json)                             | Canonical Easy-mode skills catalog (shipped as `config/skills.json` in Electron builds)                        |
+| [easy-mode-config/skills.json](../easy-mode-config/skills.json)                             | Canonical Easy-mode skills catalog (shipped as `config/skills.json` in Electron builds)                       |
 | [src/shared/skillsCatalog.js](../src/shared/skillsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
 | [src/main/ipc/skillsIpc.js](../src/main/ipc/skillsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
 | [src/server/routes/skills.js](../src/server/routes/skills.js)                               | Web `GET /api/skills`, `POST /api/skills/sync`, periodic server sync                                          |

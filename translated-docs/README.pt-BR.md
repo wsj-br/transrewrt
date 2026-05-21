@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:32.315Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:09:39.649Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: pt-BR
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estil
 - **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
 - **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
 - **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Fácil e Avançado** - Modo Fácil (padrão): habilidades selecionadas por provedor (Grátis, Rápido, Avançado, Técnico, Jurídico) sem precisar escolher IDs de modelos; Modo Avançado: lista completa de modelos dos provedores configurados
+- **Fácil e Avançado** - Modo Fácil (padrão): habilidades selecionadas por provedor (**Grátis (OpenRouter)**, **Lite**, **Avançado**, **Técnico**; apenas habilidades com mapeamento para o provedor selecionado são exibidas), sem necessidade de escolher IDs de modelo; Modo Avançado: lista completa de modelos dos provedores configurados
 - **Modelos e custo** - painéis de custo e uso (Resumo, Por Modelo, Todas as chamadas) com opção de exportação; OpenRouter mostra o gasto real, outros provedores usam estimativas
-- **Interface do usuário** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
-- **Modo Web** - suporte a múltiplos usuários com papéis de administrador
+- **Interface do usuário (UI)** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
+- **Modo Web** - suporte a múltiplos usuários com funções de administrador
 - **Desktop** - Aplicativo Electron para Windows e Linux
 - **Autohospedado** - Imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
 

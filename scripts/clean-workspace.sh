@@ -25,6 +25,34 @@ ITEMS_TO_REMOVE=(
     ".genkit"
 )
 
+echo "🧹 Cleaning .log files and dev caches..."
+
+while IFS= read -r -d '' logfile; do
+    rel="${logfile#"$ROOT_DIR"/}"
+    if rm -f "$logfile"; then
+        echo "✅ Removed $rel"
+    else
+        echo "❌ Error removing $rel"
+    fi
+done < <(find "$ROOT_DIR" \
+    \( -path "$ROOT_DIR/node_modules" -o -path "$ROOT_DIR/.git" -o -path "$ROOT_DIR/dist" \
+       -o -path "$ROOT_DIR/release" -o -path "$ROOT_DIR/documentation/node_modules" \) -prune \
+    -o -type f -name '*.log' -print0)
+
+for cache in \
+    "dev/skill-check/provider-catalogs-cache.json" \
+    "dev/skill-check/skill-check.log" \
+    "skills-editor-provider-catalogs.json"
+do
+    if [ -f "$ROOT_DIR/$cache" ]; then
+        if rm -f "$ROOT_DIR/$cache"; then
+            echo "✅ Removed $cache"
+        else
+            echo "❌ Error removing $cache"
+        fi
+    fi
+done
+
 echo "🧹 Cleaning build artifacts and dependencies..."
 
 # Remove directories and files

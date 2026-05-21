@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.2] - 2026-05-22
+
+- **Changed**: `scripts/clean-workspace.sh` and `scripts/clean-workspace.ps1` remove all repository `.log` files (excluding `node_modules`, `.git`, `dist`, `release`, `documentation/node_modules`) plus `dev/skill-check/provider-catalogs-cache.json`, `dev/skill-check/skill-check.log`, and `skills-editor-provider-catalogs.json`.
 - **Added**: Dev skill-check (`dev/skill-check/`) — cron-friendly CLI that validates Easy-mode `skills.json` model ids against live provider catalogs, fuzzy-replaces unavailable models, commits/pushes only `easy-mode-config/skills.json` to GitHub from an isolated runtime (`pnpm run skill-check:install`), logs changes, and sends NTFY notifications; shared provider catalog logic extracted to `src/shared/skillsProviderCatalog.js`.
 - **Fixed**: Skill-check git push — rebase on `origin/main` before push so stale shallow clones do not fail with “fetch first” when SSH auth is fine.
 - **Changed**: Skill-check install — never overwrites existing `config.json` or `run.sh`; skips copying `config.example.json` when `config.json` already exists.
@@ -18,6 +21,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Added**: Dev skills editor — server console output written to `skills-editor.log` (repo root; previous run rotated to `skills-editor-<timestamp>.log` on startup); **Server log** button in the header; startup alert when the session log contains errors.
 - **Changed**: Move `pnpm.overrides` and `pnpm.allowedDeprecatedVersions` from `package.json` to `pnpm-workspace.yaml` (pnpm 11 config location).
 - **Changed**: Rename "Regular" skill to "Lite" with updated description ("Fast, lightweight, and cost-efficient…") to better reflect the lightweight model tier.
+- **Fixed**: Duplicate export key `isEngineCatalogCached` in `src/shared/skillsProviderCatalog.js` (eslint `no-dupe-keys`).
 
 ## [1.3.1] - 2026-05-18
 

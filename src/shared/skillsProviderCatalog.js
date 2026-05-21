@@ -440,5 +440,4 @@ module.exports = {
   isTransrewrtWorkflowModel,
   buildIdSets,
   canonicalForEngine,
-  isEngineCatalogCached,
 };

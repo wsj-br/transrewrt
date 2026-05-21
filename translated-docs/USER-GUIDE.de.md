@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:41.607Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:11:52.852Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt unterstützt Sie bei der Textbearbeitung auf drei Hauptweisen:
 - **Umschreiben** – Text in einem anderen Stil umformulieren, beispielsweise klarer, kürzer oder formeller.
 - **Umwandeln** – Text mithilfe benutzerdefinierter KI-Anweisungen, sogenannter Prompts, verarbeiten.
 
-Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Fertigkeit** (z. B. Kostenlos, Schnell oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste aus [**Einstellungen** > **Modelle**](#models) verwenden möchten.
+Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Fertigkeit** (z. B. Kostenlos (OpenRouter), Lite oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste aus [**Einstellungen** > **Modelle**](#models) verwenden möchten.
 
 <br/>
 
@@ -81,7 +81,7 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Umwandeln (Einstellungsreiter)](#transform-settings)
+  - [Umwandeln (Einstellungen-Registerkarte)](#transform-settings-tab)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
@@ -116,17 +116,17 @@ Sie müssen kein kostenpflichtiges Modell auswählen, um loszulegen. Sobald Sie 
 
 Einfach ausgedrückt:
 
-- Im **Einfach**-Modus ist eine **Fertigkeit** eine Voreinstellung (Kostenlos, Schnell, Erweitert, Technisch, Juristisch), die einem Modell für Ihren gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Sie wählen die Fertigkeit in der Symbolleiste bei Übersetzen, Umschreiben und Umwandeln aus.
+- Im **Einfach**-Modus ist eine **Fertigkeit** eine Voreinstellung (Kostenlos (OpenRouter), Lite, Erweitert oder Technisch), die einem Modell für den gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Nur Fertigkeiten, die für den aktuellen Anbieter eine Zuordnung haben, werden in der Symbolleiste angezeigt. Sie wählen die Fertigkeit bei Übersetzen, Umschreiben und Umwandeln aus.
 - Im **Erweitert**-Modus ist ein **Modell** die KI-Engine, die Sie direkt auswählen. Modell-IDs verwenden ein **Anbieter-Präfix** (z. B. `openrouter/…`, `openai/…`, `ollama/…`).
 - Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht der App den Zugriff auf diesen Anbieter.
 
-Wenn Sie die **Desktop-App** verwenden, fügen Sie in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden Anbieter, den Sie nutzen, Schlüssel hinzu. Wenn Sie nur OpenRouter verwenden, sehen Sie unten unter [So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel](#how-to-get-an-api-key-desktop-app) nach. Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle verwenden, wie z. B. `translategemma:4b`.
+Wenn Sie die **Desktop-App** verwenden, fügen Sie Schlüssel in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden Anbieter hinzu, den Sie nutzen. Für die ausschließliche Nutzung von OpenRouter siehe unten [So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel](#how-to-get-a-free-openrouter-api-key-desktop-app). Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle verwenden, z. B. `translategemma:4b`.
 
 Wenn Sie die **Webversion** verwenden, konfiguriert der Serverbetreiber die Anbieter über Umgebungsvariablen. Daher können Sie keine API-Schlüssel direkt in der Anwendung eingeben.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel (Desktop-App)
 
 Wenn Sie die Desktop-App verwenden, befolgen Sie diese Schritte:
@@ -208,7 +208,7 @@ Die Symbolleiste ändert sich leicht, je nachdem, wo Sie sich in der App befinde
 - Links wird der Name der aktuellen Seite angezeigt.
 - Rechts sehen Sie den **Fertigkeits- oder Modell-Selektor** und die Steuerung für die **Oberflächensprache**.
 
-Im **Einfach**-Modus zeigt die Symbolleiste einen **Fertigkeits-Selektor** (Kostenlos, Schnell, Erweitert, Technisch, Juristisch und ähnliche Voreinstellungen). Die verfügbaren Fertigkeiten hängen vom **Anbieter** ab, den Sie in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählt haben. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Fertigkeiten auf.
+Im **Einfach**-Modus zeigt die Symbolleiste einen **Fertigkeitsauswahl** mit den integrierten Voreinstellungen **Kostenlos (OpenRouter)**, **Lite**, **Erweitert** und **Technisch** an. Welche Fertigkeiten angezeigt werden, hängt vom **Anbieter** ab, den Sie in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählt haben – beispielsweise wird **Kostenlos (OpenRouter)** nur angezeigt, wenn der Anbieter OpenRouter ist. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Fertigkeiten.
 
 Im **Erweitert**-Modus ermöglicht der **Modell-Selektor**, auszuwählen, welche KI-Engine für die aktuelle Aufgabe verwendet werden soll.
 
@@ -290,9 +290,9 @@ Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) kön
 - **Ergebnis automatisch in die Zwischenablage kopieren** kopiert das Ergebnis nach einer erfolgreichen Übersetzung automatisch.
 - **Echtzeit-Übersetzung (beim Tippen)** führt Übersetzungen durch, während Sie tippen.
 - **Timeout (ms)** legt fest, wie lange die App wartet, bevor eine Echtzeit-Übersetzung gestartet wird.
-- **Enter** legt fest, was passiert, wenn Sie `Enter` drücken:
-
-<br/><br/>
+- **Verhalten für ENTER** steuert, was passiert, wenn Sie `Enter` drücken:
+  - **Enter** führt Übersetzen oder Umschreiben aus (Standard).
+  - **Shift + Enter** führt Übersetzen oder Umschreiben aus; einfaches **Enter** fügt eine neue Zeile ein.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -305,10 +305,10 @@ Verwenden Sie **Umschreiben**, wenn Sie den Wortlaut verbessern möchten, ohne d
 
 Dies ist nützlich für:
 
-- Rechtschreib- und Grammatikprüfung (**Rechtschreibung und Grammatik prüfen**)
-- Verbesserung der Textklarheit (**Klarheit verbessern**)
-- mehrere unterschiedliche Formulierungen in einem Durchlauf (**Alternative Versionen**)
-- formelleren oder informelleren Text (**Formal** / **Informell**)
+- Rechtschreibung und Grammatik korrigieren (**Rechtschreibung und Grammatik prüfen**)
+- Text klarer machen (**Klarheit verbessern**)
+- mehrere unterschiedliche Umschreibungen in einem Durchlauf (**Alternative Versionen**)
+- Text formeller oder informeller gestalten (**Formeller machen** / **Informeller machen**)
 - Verkürzen oder Erweitern von Text (**Verkürzen** / **Erweitern**)
 - technischere Formulierung (**Technischer machen**)
 
@@ -371,7 +371,7 @@ Der schnellste Weg, um einen Prompt zu erstellen, ist:
 1. Klicken Sie auf **Neuer Prompt**.
 2. Klicken Sie auf **Prompt generieren**.
 3. Beschreiben Sie, was der Prompt tun soll.
-4. Wählen Sie ein Modell aus.
+4. Wählen Sie eine Fertigkeit (Einfach) oder ein Modell (Erweitert).
 5. Lassen Sie die App einen Entwurf für Sie erstellen.
 6. Überprüfen Sie den Entwurf und klicken Sie auf **Speichern**.
 
@@ -574,8 +574,8 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Tippverhalten, die Speicherun
 
 **KI-Erlebnis**
 
-- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Fertigkeitsvoreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf, nicht Fertigkeiten.
-- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
+- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Fertigkeitsvorgaben in der Symbolleiste. **Ollama** listet stattdessen auf Ihrem Gerät installierte Modelle auf. Im Einfach-Modus zeigt der **Fähigkeitenkatalog** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Fähigkeitenkatalog aktualisieren**, um die neueste Fertigkeitsliste aus dem Projekt-Repository abzurufen (die App prüft auch regelmäßig im Hintergrund).
+- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
 
 In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment gesetzten API-Schlüsseln ab. In der **Desktop-App** konfigurieren Sie die Schlüssel unter [**API-Konfiguration**](#api-config).
 
@@ -594,13 +594,14 @@ In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment
 
 **Erscheinungsbild**
 
-- **Kosteninformationen bei Aktionen anzeigen** steuert die Anzeige der Kosten pro Operation (falls verfügbar) und der Gesamtkosten in den Ausgabefeldern für Übersetzen, Umschreiben und Umwandeln.
+- **Thema** wechselt zwischen hellem, dunklem und systembasiertem Erscheinungsbild.
+- **Kosteninformationen bei Aktionen anzeigen** steuert die Anzeige der Kosten pro Vorgang (falls verfügbar) und der Gesamtkosten in den Ausgabefeldern von Übersetzen, Umschreiben und Umwandeln.
 - **Kosten-Nachkommastellen** ändert die Anzeige der Kosten-Dezimalstellen.
-- **Nur Web:** **Abstand um die App anzeigen** fügt zusätzlichen Platz um die Oberfläche hinzu.
-- **Schriftfamilie** ändert die Schriftart in den Textfeldern.
+- **Nur im Web:** **Abstand um die App anzeigen** fügt zusätzlichen Platz um die Benutzeroberfläche hinzu.
+- **Schriftart** ändert die Schriftart in den Textfeldern.
 - **Größe** ändert die Schriftgröße.
 
-**Konfigurationssicherung**
+**Konfigurationssicherung** (nur für Desktop-App und Web-Administratoren)
 
 - **Nutzungsdaten in die Sicherung einschließen** – wenn aktiviert, enthält die ZIP-Datei auch Ausführungsverlauf und API-Aufrufdaten.
 - **Konfiguration sichern** – erstellt eine einzelne ZIP-Datei (standardmäßig `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) mit `config.json`, `state.json`, optionaler Verschlüsselungsschlüssel, Benutzern, Einstellungen, benutzerdefinierten Aufforderungen und Nutzungsdaten, falls aktiviert. Nach einer erfolgreichen Sicherung wird der Dateiname der gesicherten Datei angezeigt.
@@ -763,10 +764,10 @@ Um einen API-Schlüssel hinzuzufügen, geben Sie den Wert in das Textfeld ein un
 
 Die Registerkarte **Über** zeigt:
 
-- den App-Namen
-- die Versionsnummer
-- das Build-Datum
-- einen Link zum Projekt-Repository
+- App-Name und Slogan
+- Versionsnummer und Build-Datum
+- Lizenz- und Urheberrechtsinformationen mit Link zum Öffnen von **Hinweise von Dritten**
+- Link zum Projekt-Repository
 
 <br/><br/>
 
@@ -809,10 +810,10 @@ Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) un
 
 Probieren Sie eines oder mehrere davon aus:
 
-- wählen Sie ein anderes Modell
-- verwenden Sie eine kürzere Eingabe
-- deaktivieren Sie **Echtzeit-Übersetzung (beim Tippen)** unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings)
-- verwenden Sie kostenlose Modelle für einfache Aufgaben (siehe [Modelle](#models))
+- Wählen Sie eine andere Fertigkeit (Einfach) oder ein anderes Modell (Erweitert)
+- Verwenden Sie eine kürzere Eingabe
+- Deaktivieren Sie **Echtzeit-Übersetzung (beim Tippen)** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings)
+- Verwenden Sie kostenlose Modelle für einfache Aufgaben (siehe [Modelle](#models))
 
 <br/>
 

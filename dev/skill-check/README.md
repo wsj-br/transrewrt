@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
+
 # Skills model availability checker
 
 Cron-friendly CLI that validates model ids in `[easy-mode-config/skills.json](../easy-mode-config/skills.json)`, replaces unavailable models via fuzzy matching, commits only that file to GitHub, and notifies via [NTFY](https://docs.ntfy.sh/).

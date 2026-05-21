@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-18T15:42:36.605Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:11:26.489Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: cs
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -23,7 +24,7 @@ Transrewrt vám pomáhá pracovat s textem třemi hlavními způsoby:
 - **Přepsat** – přeformulování textu v odlišném stylu, například jasnějším, stručnějším nebo formálnějším.
 - **Transformovat** – zpracování textu pomocí vlastních pokynů pro umělou inteligenci, které se nazývají prompty.
 
-Ve výchozím nastavení aplikace běží v režimu **Snadný**: vyberete **dovednost** (například Zdarma, Rychlý nebo Technický) a **poskytovatele** v nastavení, aniž byste museli vybírat ID modelů. Přepněte do režimu **Pokročilý** v části [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z části [**Nastavení** > **Modely**](#models).
+Aplikace ve výchozím nastavení běží v režimu **Snadný**: vyberete si **dovednost** (například Zdarma (OpenRouter), Lite nebo Technický) a **poskytovatele** v Nastavení, aniž byste vybírali ID modelů. Přepněte na **Pokročilý** v [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z [**Nastavení** > **Modely**](#models).
 
 <br/>
 
@@ -81,7 +82,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Modely](#models)
   - [Jazyky](#languages)
   - [Sledování nákladů](#cost-tracking)
-  - [Transformovat (karta nastavení)](#transform-settings)
+  - [Transformovat (karta nastavení)](#transform-settings-tab)
   - [Uživatelé](#users)
   - [Nastavení API](#api-config)
   - [O aplikaci](#about)
@@ -116,18 +117,18 @@ Nemusíte vybírat placený model, abyste mohli začít. Jakmile přidáte svůj
 
 Jednoduše řečeno:
 
-- V režimu **Snadný** je **dovednost** přednastavená hodnota (Zdarma, Rychlý, Pokročilý, Technický, Právní), která se mapuje na model pro vybraného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). Dovednost vybíráte na panelu nástrojů v režimech Překlad, Přepsat a Transformovat.
-- V režimu **Pokročilý** je **model** AI modul, který vybíráte přímo. ID modelů používají **předponu poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
-- **API klíč** (nebo u Ollama **základní URL**) je způsob, jak aplikace komunikuje s daným poskytovatelem.
+- V režimu **Snadný** je **dovednost** přednastavení (Zdarma (OpenRouter), Lite, Pokročilý nebo Technický), které odpovídá modelu pro vámi zvoleného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). V panelu nástrojů se zobrazují pouze dovednosti, které mají mapování pro aktuálního poskytovatele. Dovednost vybíráte při Překladu, Přepsání a Transformaci.
+- V režimu **Pokročilý** je **model** AI engine, který vybíráte přímo. ID modelů používají **prefix poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
+- **API klíč** (nebo, pro Ollama, **základní URL**) je způsob, jakým aplikace dosáhne tohoto poskytovatele.
 
-Pokud používáte **desktopovou aplikaci**, přidejte klíče v části [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pokud používáte pouze OpenRouter, viz níže [Jak získat bezplatný API klíč OpenRouter](#how-to-get-an-api-key-desktop-app). Pokud nechcete používat API klíč, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a používat místní modely, například `translategemma:4b`.
+Pokud používáte **desktopovou aplikaci**, přidejte klíče v [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pro použití pouze s OpenRouterem se podívejte na [Jak získat zdarma OpenRouter API klíč](#how-to-get-a-free-openrouter-api-key-desktop-app) níže. Pokud nechcete používat API klíč, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a místo toho používat místní modely, jako je `translategemma:4b`.
 
 Pokud používáte **webovou verzi**, poskytovatele nakonfiguruje správce serveru pomocí proměnných prostředí, takže nemůžete klíče API zadat přímo v aplikaci.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Jak získat bezplatný klíč OpenRouter API (desktopová aplikace)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Jak získat zdarma OpenRouter API klíč (desktopová aplikace)
 
 Pokud používáte desktopovou aplikaci, postupujte podle následujících kroků:
 
@@ -208,7 +209,7 @@ Panel nástrojů se mírně liší v závislosti na tom, kde se v aplikaci nach�
 - Vlevo se zobrazuje název aktuální stránky.
 - Vpravo se zobrazuje **výběr dovednosti nebo modelu** a ovládání **jazyka rozhraní**.
 
-V režimu **Snadný** zobrazuje panel nástrojů **výběr dovednosti** (Zdarma, Rychlý, Pokročilý, Technický, Právní a podobné předvolby). Dovednosti závisí na **poskytovateli**, kterého jste vybrali v části [**Nastavení** > **Obecné nastavení**](#general-settings). Pokud je **poskytovatel** nastaven na **Ollama**, zobrazí panel nástrojů namísto dovedností vaše nainstalované místní modely.
+V režimu **Snadný** panel nástrojů zobrazuje **výběr dovednosti** s vestavěnými přednastaveními **Zdarma (OpenRouter)**, **Lite**, **Pokročilý** a **Technický**. Které dovednosti se zobrazují, závisí na **Poskytovateli**, kterého jste zvolili v [**Nastavení** > **Obecné nastavení**](#general-settings)—například **Zdarma (OpenRouter)** je uvedeno pouze tehdy, když je poskytovatel OpenRouter. Pokud je **Poskytovatel** **Ollama**, panel nástrojů místo dovedností zobrazuje vaše nainstalované místní modely.
 
 V režimu **Pokročilý** vám **výběr modelu** umožňuje zvolit, který AI modul použít pro aktuální úkol.
 
@@ -290,9 +291,9 @@ V části [**Nastavení** > **Obecné nastavení**](#general-settings) můžete 
 - **Automatické kopírování výsledku do schránky** automaticky zkopíruje výsledek po úspěšném překladu.
 - **Překlad v reálném čase (během psaní)** spouští překlady, zatímco píšete.
 - **Časový limit (ms)** určuje, jak dlouho aplikace čeká před spuštěním překladu v reálném čase.
-- **Enter** určuje, co se stane po stisknutí `Enter`:
-
-<br/><br/>
+- **Chování pro ENTER** řídí, co se stane, když stisknete `Enter`:
+  - **Enter** spustí překlad nebo přepsání (výchozí).
+  - **Shift + Enter** spustí překlad nebo přepsání; obyčejný **Enter** vloží nový řádek.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -305,10 +306,10 @@ Použijte **Přepsat**, pokud chcete vylepšit formulaci, aniž byste změnili h
 
 To je užitečné pro:
 
-- opravu pravopisu a gramatiky (**Kontrolovat pravopis a gramatiku**)
+- oprava pravopisu a gramatiky (**Kontrolovat pravopis a gramatiku**)
 - zlepšení srozumitelnosti textu (**Zlepšit srozumitelnost**)
-- vytvoření několika různých přeformulování najednou (**Alternativní verze**)
-- udělání textu formálnějšího nebo méně formálního (**Formální** / **Neformální**)
+- několik odlišných přeformulací v jednom běhu (**Alternativní verze**)
+- učinit text formálnějším nebo neformálnějším (**Udělat formální** / **Udělat neformální**)
 - zkrácení nebo rozšíření textu (**Zkrátit** / **Rozšířit**)
 - udělání textu techničtějšího (**Udělat technický**)
 
@@ -370,8 +371,8 @@ Nejrychlejší způsob, jak vytvořit výzvu:
 
 1. Klikněte na **Nová výzva**.
 2. Klikněte na **Vygenerovat výzvu**.
-3. Popište, co má výzva dělat.
-4. Vyberte model.
+3. Popište, co chcete, aby výzva dělala.
+4. Vyberte dovednost (Snadný) nebo model (Pokročilý).
 5. Nechte aplikaci vytvořit koncept pro vás.
 6. Zkontrolujte koncept a klikněte na **Uložit**.
 
@@ -574,8 +575,8 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **AI zkušenost**
 
-- **Snadný** (výchozí): vyberte **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají přednastavené sady dovedností na panelu nástrojů. **Ollama** uvádí modely nainstalované na vašem počítači namísto dovedností.
-- **Pokročilý**: vybírejte jednotlivé modely na panelu nástrojů; seznam spravujte v části [**Nastavení** > **Modely**](#models).
+- **Snadný** (výchozí): vyberte **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají vestavěná přednastavení dovedností v panelu nástrojů. **Ollama** uvádí modely nainstalované na vašem počítači místo dovedností. V režimu Snadný **Katalog dovedností** zobrazuje verzi katalogu a čas poslední aktualizace; klikněte na **Obnovit katalog dovedností**, abyste načetli nejnovější seznam dovedností z repozitáře projektu (aplikace také pravidelně kontroluje na pozadí).
+- **Pokročilý**: vyberte jednotlivé modely v panelu nástrojů; spravujte seznam v [**Nastavení** > **Modely**](#models).
 
 Ve **webové aplikaci** závisí, které poskytovatele vidíte, na nastavených klíčích API v prostředí serveru. V **desktopové aplikaci** nakonfigurujte klíče v části [**Nastavení API**](#api-config).
 
@@ -594,13 +595,14 @@ Ve **webové aplikaci** závisí, které poskytovatele vidíte, na nastavených 
 
 **Vzhled**
 
-- **Zobrazovat informace o nákladech u akcí** ovládá zobrazení nákladů za operaci (pokud jsou k dispozici) a celkových nákladů na panelech výstupu pro Překlad, Přepsání a Transformaci.
-- **Desetinná místa pro náklady** mění způsob zobrazení desetinných míst nákladů.
-- **Pouze web:** **zobrazit okraj kolem aplikace** přidává dodatečný prostor kolem rozhraní.
+- **Téma** přepíná mezi světlým, tmavým a systémovým vzhledem.
+- **Zobrazovat informace o nákladech u akcí** řídí zobrazení nákladů na operaci (pokud jsou k dispozici) a celkových nákladů na výstupních panelech Překlad, Přepsání a Transformace.
+- **Desetinná místa nákladů** mění, jak jsou zobrazeny desetinné hodnoty nákladů.
+- **Pouze web:** **zobrazit okraj kolem aplikace** přidává extra prostor kolem rozhraní.
 - **Rodina písem** mění písmo v textových panelech.
 - **Velikost** mění velikost písma.
 
-**Zálohování konfigurace**
+**Zálohování konfigurace** (pouze pro administrátory desktopové aplikace a webu)
 
 - **Zahrnout data o využití do zálohy** – pokud je povoleno, obsahuje ZIP také historii spuštění a data volání API.
 - **Zálohovat konfiguraci** – vytvoří jeden soubor ZIP (ve výchozím nastavení `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ve formátu UTC) s `config.json`, `state.json`, volitelným šifrovacím klíčem, uživateli, preferencemi, vlastními výzvami a daty o využití, pokud jste to povolili. Po úspěšné záloze se zobrazí potvrzení s názvem uloženého souboru.
@@ -763,10 +765,10 @@ Chcete-li přidat API klíč, zadejte hodnotu do textového pole a klikněte na 
 
 Karta **O aplikaci** zobrazuje:
 
-- název aplikace
-- číslo verze
-- datum sestavení
-- odkaz na úložiště projektu
+- název aplikace a slogan
+- číslo verze a datum sestavení
+- informace o licenci a autorských právech, s odkazem na otevření **Upozornění třetích stran**
+- odkaz na repozitář projektu
 
 <br/><br/>
 
@@ -809,10 +811,10 @@ V režimu **Pokročilý** otevřete [**Nastavení** > **Modely**](#models) a kli
 
 Vyzkoušejte jednu nebo více z následujících možností:
 
-- vyberte jiný model
+- vyberte jinou dovednost (Snadný) nebo model (Pokročilý)
 - použijte kratší vstup
-- vypněte možnost **Překlad v reálném čase (během psaní)** v části [**Nastavení** > **Obecné nastavení**](#general-settings)
-- pro jednoduché úkoly použijte modely zdarma (viz [Modely](#models))
+- vypněte **Překlad v reálném čase (během psaní)** v [**Nastavení** > **Obecné nastavení**](#general-settings)
+- použijte zdarma modely pro jednoduché úkoly (viz [Modely](#models))
 
 <br/>
 

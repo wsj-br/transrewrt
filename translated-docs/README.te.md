@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:49.943Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:14:23.191Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: te
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,7 +25,7 @@ translation_models:
 - **పునర్రచన** - వ్యాకరణాన్ని సరిచేయండి, స్పష్టతను మెరుగుపరచండి, ఔపచారిక/అనౌపచారిక, సంక్షిప్తం చేయండి, విస్తరించండి, సాంకేతికం
 - **మార్చు** - కస్టమ్ AI ప్రాంప్ట్లు; ప్రాంప్ట్లను సృష్టించండి మరియు నిర్వహించండి, ప్రతి ప్రాంప్ట్‌కు ఐచ్ఛిక లక్ష్య భాష
 - **చరిత్ర** - ఇన్‌పుట్/అవుట్‌పుట్ టెక్స్ట్, ఫిల్టరింగ్ మరియు ఎగుమతితో కూడిన పూర్తి క్రియాశీల చరిత్ర
-- **సులభం & అడ్వాన్స్డ్** - సులభ మోడ్ (డిఫాల్ట్): మోడల్ ఐడీలను ఎంచుకోకుండా ప్రతి ప్రొవైడర్ కు సంబంధించిన నైపుణ్యాలు (ఉచితం, ఫాస్ట్, అడ్వాన్స్డ్, టెక్నికల్, లీగల్); అడ్వాన్స్డ్ మోడ్: మీరు కాన్ఫిగర్ చేసిన ప్రొవైడర్ల నుండి పూర్తి మోడల్ జాబితా
+- **సులభం & అడ్వాన్స్డ్** - సులభ మోడ్ (డిఫాల్ట్): ప్రొవైడర్ ద్వారా ఎంపిక చేసిన నైపుణ్యాలు (**ఉచితం (ఓపెన్‌రౌటర్)**, **లైట్**, **అడ్వాన్స్డ్**, **టెక్నికల్**; ఎంచుకున్న ప్రొవైడర్ కు మ్యాపింగ్ ఉన్న నైపుణ్యాలు మాత్రమే కనిపిస్తాయి) మోడల్ IDలను ఎంచుకోకుండా; అడ్వాన్స్డ్ మోడ్: మీరు కాన్ఫిగర్ చేసిన ప్రొవైడర్ల నుండి పూర్తి మోడల్ జాబితా
 - **మోడల్‌లు & ఖర్చు** - ఖర్చు మరియు ఉపయోగ డాష్‌బోర్డ్‌లు (సారాంశం, మోడల్ ద్వారా, అన్ని కాల్స్) ఎగుమతితో; ఓపెన్‌రౌటర్ వాస్తవ ఖర్చును చూపిస్తుంది, ఇతర ప్రొవైడర్లు అంచనాలను ఉపయోగిస్తాయి
 - **UI** - బహుభాషా ఇంటర్ఫేస్ (30+ భాషలు, RTL మద్దతు), ఫాంట్లు, ...
 - **వెబ్ మోడ్** - నిర్వాహక పాత్రలతో బహుళ వాడుకరి మద్దతు

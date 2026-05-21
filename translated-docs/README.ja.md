@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:42.324Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:12:22.031Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: ja
 source_file_path: README.md
 translation_models:
@@ -13,7 +13,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -26,10 +26,10 @@ AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、
 - **書き換え** - 文法の修正、明確さの向上、フォーマル/インフォーマルへの調整、短縮、拡張、技術的な表現への変換など
 - **変換** - カスタムAIプロンプト。プロンプトの作成と管理が可能。プロンプトごとに任意のターゲット言語を指定可能
 - **履歴** - 入力テキストと出力テキストを含む完全な実行履歴。フィルタリングおよびエクスポート機能付き
-- **かんたん & 高度** - かんたんモード（デフォルト）: プロバイダーごとに選定されたスキル（無料、高速、高度、技術、法務など）をモデルIDを選ばずに利用可能。高度モード: 設定済みプロバイダーからの全モデル一覧を利用
-- **モデルとコスト** - コストおよび使用状況のダッシュボード（概要、モデル別、すべての呼び出し）とエクスポート機能。OpenRouterは実際の支出額を表示し、その他のプロバイダーは推定値を使用
-- **UI** - 多言語インターフェイス（30以上の言語、RTL対応）、フォント、…
-- **Webモード** - 管理者ロール付きの複数ユーザー対応
+- **かんたん & 高度** - かんたんモード（デフォルト）：プロバイダーごとに選定されたスキル（**無料 (OpenRouter)**、**Lite**、**高度**、**Technical**；選択されたプロバイダーにマッピングされたスキルのみ表示）で、モデルIDを選択する必要なし。高度モード：設定済みプロバイダーからの完全なモデル一覧
+- **モデルとコスト** - コストおよび使用状況のダッシュボード（概要、モデル別、すべての呼び出し）とエクスポート機能。OpenRouterは実際の支出を表示し、その他のプロバイダーは推定値を使用
+- **UI** - 多言語インターフェース（30以上の言語、RTL対応）、フォント、…
+- **Webモード** - 管理者ロール付きのマルチユーザー対応
 - **Desktop** - WindowsおよびLinux向けElectronアプリ
 - **セルフホスト** - amd64およびarm64向けDockerイメージ（Raspberry Pi対応）
 

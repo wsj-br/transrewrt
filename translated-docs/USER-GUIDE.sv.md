@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:51.802Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:14:32.057Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: sv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt hjälper dig att arbeta med text på tre sätt:
 - **Omskriv** - formulera om text i en annan stil, till exempel tydligare, kortare eller mer formell.
 - **Transformera** - bearbeta text med anpassade AI-instruktioner som kallas prompts.
 
-Som standard körs appen i **Enkel** läge: du väljer en **kompetens** (till exempel Gratis, Snabb eller Teknisk) och en **leverantör** i Inställningar, utan att välja modell-ID. Växla till **Avancerad** i [**Inställningar** > **Allmänna inställningar**](#general-settings) om du vill ha den klassiska modelllistan från [**Inställningar** > **Modeller**](#models).
+Som standard körs appen i **Enkel**-läge: du väljer en **kompetens** (till exempel Gratis (OpenRouter), Lätt eller Teknisk) och en **leverantör** i Inställningar, utan att välja modell-ID. Växla till **Avancerad** i [**Inställningar** > **Allmänna inställningar**](#general-settings) om du vill ha den klassiska modelllistan från [**Inställningar** > **Modeller**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Modeller](#models)
   - [Språk](#languages)
   - [Kostnadsöversikt](#cost-tracking)
-  - [Transformera (inställningsflik)](#transform-settings)
+  - [Transformera (inställningsflik)](#transform-settings-tab)
   - [Användare](#users)
   - [API-konfiguration](#api-config)
   - [Om](#about)
@@ -116,18 +116,18 @@ Du behöver inte välja en betald modell för att komma igång. Så fort du läg
 
 Med enkla ord:
 
-- I **Enkel** läge är en **kompetens** en förinställning (Gratis, Snabb, Avancerad, Teknisk, Juridisk) som motsvarar en modell för din valda **leverantör** (OpenRouter, OpenAI, Ollama och andra). Du väljer kompetensen i verktygsfältet vid Översätt, Omskriv och Transformera.
-- I **Avancerad** läge är en **modell** den AI-motor du väljer direkt. Modell-ID:n använder ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
+- I **Enkel**-läge är en **kompetens** en förinställning (Gratis (OpenRouter), Lätt, Avancerad eller Teknisk) som mappas till en modell för din valda **leverantör** (OpenRouter, OpenAI, Ollama och andra). Endast kompetenser som har en mappning för den aktuella leverantören visas i verktygsfältet. Du väljer kompetensen vid Översätt, Omskriv och Transformera.
+- I **Avancerad**-läge är en **modell** den AI-motor du väljer direkt. Modell-ID:n använder ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
 - En **API-nyckel** (eller, för Ollama, en **bas-URL**) är hur appen når den aktuella leverantören.
 
-Om du använder **skrivbordsappen**, lägg till nycklar i [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter-användning, se [Så här får du en gratis OpenRouter API-nyckel](#how-to-get-an-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller istället, till exempel `translategemma:4b`.
+Om du använder **skrivbordsappen**, lägg till nycklar i [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter-användning, se [Så här får du en gratis OpenRouter API-nyckel](#how-to-get-a-free-openrouter-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller istället, till exempel `translategemma:4b`.
 
 Om du använder **webbversionen** konfigurerar serverägaren leverantörerna med miljövariabler, så du kan inte ange API-nycklar direkt i appen.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Så här får du en gratis OpenRouter-API-nyckel (skrivbordsapp)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Så här får du en gratis OpenRouter API-nyckel (skrivbordsapp)
 
 Om du använder skrivbordsappen, följ dessa steg:
 
@@ -208,7 +208,7 @@ Verktygsfältet ändras något beroende på var du befinner dig i appen.
 - Till vänster visas namnet på den aktuella sidan.
 - Till höger visas **väljaren för kompetens eller modell** och kontrollen för **Gränssnittsspråk**.
 
-I **Enkel** läge visar verktygsfältet en **kompetensväljare** (Gratis, Snabb, Avancerad, Teknisk, Juridisk och liknande förinställningar). Kompetenserna beror på den **Leverantör** du valt i [**Inställningar** > **Allmänna inställningar**](#general-settings). Om **Leverantör** är **Ollama**, visar verktygsfältet dina installerade lokala modeller istället för kompetenser.
+I **Enkel**-läge visar verktygsfältet en **kompetensväljare** med de inbyggda förinställningarna **Gratis (OpenRouter)**, **Lätt**, **Avancerad** och **Teknisk**. Vilka kompetenser som visas beror på den **Leverantör** du valt i [**Inställningar** > **Allmänna inställningar**](#general-settings) – till exempel visas **Gratis (OpenRouter)** endast när leverantören är OpenRouter. Om **Leverantör** är **Ollama** listar verktygsfältet dina installerade lokala modeller istället för kompetenser.
 
 I **Avancerad** läge låter **modellväljaren** dig välja vilken AI-motor som ska användas för den aktuella uppgiften.
 
@@ -290,9 +290,9 @@ I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du 
 - **Kopiera resultat automatiskt till urklipp** kopierar resultatet automatiskt efter en lyckad körning.
 - **Översättning i realtid (medan du skriver)** utför översättningar medan du skriver.
 - **Tidsgräns (ms)** styr hur länge appen väntar innan en översättning i realtid startar.
-- **Retur** styr vad som händer när du trycker på `Enter`:
-
-<br/><br/>
+- **Beteende för ENTER** styr vad som händer när du trycker på `Enter`:
+  - **Enter** kör översättning eller omskrivning (standard).
+  - **Shift + Enter** kör översättning eller omskrivning; enkel **Enter** infogar en ny rad.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -305,10 +305,10 @@ Använd **Omskriv** när du vill förbättra formuleringen utan att ändra huvud
 
 Detta är användbart för:
 
-- att rätta stavning och grammatik (**Kontrollera stavning och grammatik**)
-- att göra text tydligare (**Förbättra tydligheten**)
-- flera olika omskrivningar i en körning (**Alternativa versioner**)
-- att göra texten mer formell eller mindre formell (**Formell** / **Informell**)
+- rätta stavning och grammatik (**Kontrollera stavning och grammatik**)
+- göra texten tydligare (**Förbättra tydligheten**)
+- flera distinkta omskrivningar i en körning (**Alternativa versioner**)
+- göra texten mer formell eller mindre formell (**Gör formell** / **Gör informell**)
 - att förkorta eller utöka text (**Förkorta** / **Utöka**)
 - att göra texten mer teknisk (**Gör teknisk**)
 
@@ -371,7 +371,7 @@ Det snabbaste sättet att skapa en prompt är:
 1. Klicka på **Ny prompt**.
 2. Klicka på **Generera prompt**.
 3. Beskriv vad du vill att prompten ska göra.
-4. Välj en modell.
+4. Välj en kompetens (Enkel) eller modell (Avancerad).
 5. Låt appen skapa ett utkast åt dig.
 6. Granska utkastet och klicka på **Spara**.
 
@@ -574,7 +574,7 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 
 **AI-upplevelse**
 
-- **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda kompetensförinställningarna i verktygsfältet. **Ollama** listar modeller installerade på din dator istället för kompetenser.
+- **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda förinställningarna för kompetenser i verktygsfältet. **Ollama** listar modeller installerade på din dator istället för kompetenser. I Enkel-läge visar **Färdighetskatalog** katalogversionen och senaste uppdateringstid; klicka på **Uppdatera färdighetskatalog** för att hämta den senaste kompetenslistan från projektets förråd (appen kontrollerar också regelbundet i bakgrunden).
 - **Avancerad**: välj enskilda modeller i verktygsfältet; hantera listan under [**Inställningar** > **Modeller**](#models).
 
 I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inställda i servermiljön. I **skrivbordsappen** konfigurerar du nycklar under [**API-konfiguration**](#api-config).
@@ -594,13 +594,14 @@ I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inst
 
 **Utseende**
 
-- **Visa kostnadsinformation på åtgärderna** styr visningen av kostnaden per åtgärd (om tillgängligt) och den totala kostnaden på panelerna för Översätt, Omskriv och Transformera.
-- **Antal decimaler för kostnad** ändrar hur många decimaler som visas för kostnader.
+- **Tema** växlar mellan ljust, mörkt och systemutseende.
+- **Visa kostnadsinformation på åtgärderna** styr visningen av kostnad per åtgärd (om tillgängligt) och total kostnad på utmatningspanelerna för Översätt, Omskriv och Transformera.
+- **Antal decimaler för kostnad** ändrar hur kostnadsdecimaler visas.
 - **Endast webb:** **visa en marginal runt appen** lägger till extra utrymme runt gränssnittet.
 - **Teckensnitt** ändrar skrivteckensnittet i textpanelerna.
 - **Storlek** ändrar teckenstorleken.
 
-**Säkerhetskopiering av konfiguration**
+**Säkerhetskopiering av konfiguration** (endast skrivbordsapp och webbadministratörer)
 
 - **Inkludera användningsdata i säkerhetskopian** – när aktiverat innehåller ZIP-filen även körningshistorik och API-anropsdata.
 - **Säkerhetskopiera konfiguration** – skapar en enskild ZIP-fil (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade prompts och användningsdata om du valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
@@ -763,9 +764,9 @@ För att lägga till en API-nyckel anger du värdet i textfältet och klickar p�
 
 **Om**-fliken visar:
 
-- appens namn
-- versionsnumret
-- byggdatum
+- appens namn och slogan
+- versionsnumret och byggdatum
+- licens- och upphovsrättsinformation, med länk till att öppna **Meddelanden från tredje part**
 - en länk till projektets förråd
 
 <br/><br/>
@@ -809,8 +810,8 @@ I **Avancerad**-läge, öppna [**Inställningar** > **Modeller**](#models) och k
 
 Prova en eller flera av följande åtgärder:
 
-- välj en annan modell
-- använd kortare inmatning
+- välj en annan kompetens (Enkel) eller modell (Avancerad)
+- använd en kortare inmatning
 - stäng av **Översättning i realtid (medan du skriver)** i [**Inställningar** > **Allmänna inställningar**](#general-settings)
 - använd gratismodeller för enkla uppgifter (se [Modeller](#models))
 

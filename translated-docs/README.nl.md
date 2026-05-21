@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:37.223Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:10:42.238Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: nl
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,9 +25,9 @@ AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende sti
 - **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeler/informeel, verkorten, uitbreiden, technisch
 - **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
-- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde vaardigheden per leverancier (Gratis, Snel, Geavanceerd, Technisch, Juridisch) zonder model-ID's te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
-- **Modellen en kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de werkelijke uitgaven, andere leveranciers gebruiken schattingen
-- **Gebruikersinterface** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
+- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde vaardigheden per leverancier (**Gratis (OpenRouter)**, **Lite**, **Geavanceerd**, **Technisch**; alleen vaardigheden met een koppeling voor de geselecteerde leverancier worden weergegeven), zonder model-ID’s te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
+- **Modellen & kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de daadwerkelijke uitgaven, andere leveranciers gebruiken schattingen
+- **UI** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
 - **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
 - **Bureaublad** - Electron-app voor Windows en Linux
 - **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)

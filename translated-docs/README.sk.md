@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:47.466Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:13:44.396Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: sk
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi ja
 - **Prepísať** – opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický obsah
 - **Transformovať** – vlastné výzvy pre umelú inteligenciu; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
 - **História** – kompletná histórija vykonaní vrátane vstupného a výstupného textu, filtrovania a exportu
-- **Jednoduchý a pokročilý** - Jednoduchý režim (predvolené): vybrané zručnosti podľa poskytovateľa (Zdarma, Rýchly, Pokročilý, Technický, Právny) bez výberu ID modelov; Pokročilý režim: kompletný zoznam modelov z vašich nakonfigurovaných poskytovateľov
-- **Modely a náklady** - informačné panely o nákladoch a využití (Zhrnutie, Podľa modelu, Všetky volania) s možnosťou exportu; OpenRouter zobrazuje skutočné výdavky, ostatní poskytovatelia používajú odhady
-- **UI** - viacjazyčné rozhranie (viac ako 30 jazykov, podpora RTL), písma, ...
-- **Webový režim** - podpora pre viacerých používateľov s rolami správcu
+- **Jednoduchý & Pokročilý** – Jednoduchý režim (predvolené): vybrané zručnosti podľa poskytovateľa (**Zdarma (OpenRouter)**, **Lite**, **Pokročilý**, **Technický**; zobrazia sa len zručnosti s mapovaním pre vybraného poskytovateľa) bez výberu ID modelov; Pokročilý režim: kompletný zoznam modelov od vašich nakonfigurovaných poskytovateľov
+- **Modely a náklady** – prístrojové panely pre náklady a využitie (Zhrnutie, Podľa modelu, Všetky volania) s možnosťou exportu; OpenRouter zobrazuje skutočné výdavky, iní poskytovatelia používajú odhady
+- **UI** – viacjazyčné rozhranie (viac ako 30 jazykov, podpora RTL), písma, ...
+- **Webový režim** – podpora viacerých používateľov s rolami správcu
 - **Desktop** - Electron aplikácia pre Windows a Linux
 - **Samostatne hostované** - Docker obraz pre amd64 a arm64 (pripravené pre Raspberry Pi)
 

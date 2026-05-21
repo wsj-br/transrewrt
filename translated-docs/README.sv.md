@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:49.926Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:14:14.718Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: sv
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,9 +25,9 @@ AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omva
 - **Omskriv** – åtgärda grammatik, förbättra tydligheten, formellt/obligatoriskt, förkorta, utöka, tekniskt
 - **Transformera** – anpassade AI-prompts; skapa och hantera prompts, valfritt målspråk per prompt
 - **Historik** – fullständig körningshistorik med inmatning/utdata, filtrering och export
-- **Enkel & Avancerad** - Enkelt läge (förvalt): curerade funktioner per leverantör (Gratis, Snabb, Avancerad, Teknisk, Juridisk) utan att välja modell-ID; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
+- **Enkel & Avancerad** - Enkelt läge (standard): utvalda funktioner per leverantör (**Gratis (OpenRouter)**, **Lätt**, **Avancerad**, **Teknisk**; endast funktioner med en mappning för den valda leverantören visas) utan att behöva välja modell-ID:n; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
 - **Modeller & kostnad** - kostnads- och användningsinstrumentpaneler (Sammanfattning, Efter modell, Alla anrop) med export; OpenRouter visar faktisk utgift, andra leverantörer använder uppskattningar
-- **Användargränssnitt** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
+- **Användargränssnitt (UI)** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
 - **Webbläge** - stöd för flera användare med administratörsroller
 - **Skrivbord** - Electron-app för Windows och Linux
 - **Självvärdbaserad** - Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:46.743Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:13:22.338Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt pomaga w pracy z tekstem na trzy główne sposoby:
 - **Przepisz** – przeformułuj tekst w innym stylu, na przykład bardziej klarowny, krótszy lub bardziej formalny.
 - **Przekształć** – przetwórz tekst za pomocą niestandardowych instrukcji AI zwanych promptami.
 
-Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **umiejętność** (na przykład Darmowe, Szybkie lub Techniczne) i **dostawcę** w Ustawieniach, bez wybierania identyfikatorów modeli. Przełącz się na **Zaawansowany** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz uzyskać klasyczną listę modeli z [**Ustawienia** > **Modele**](#models).
+Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **umiejętność** (na przykład Darmowe (OpenRouter), Lekki lub Techniczny) oraz **dostawcę** w Ustawieniach, bez konieczności wybierania identyfikatorów modeli. Przełącz się na tryb **Zaawansowany** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz korzystać z klasycznej listy modeli dostępnej w [**Ustawienia** > **Modele**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Modele](#models)
   - [Języki](#languages)
   - [Śledzenie kosztów](#cost-tracking)
-  - [Przekształć (karta ustawień)](#transform-settings)
+  - [Przekształć (karta ustawień)](#transform-settings-tab)
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
   - [O programie](#about)
@@ -116,17 +116,17 @@ Nie musisz wybierać płatnego modelu, aby rozpocząć. Gdy tylko dodasz swój k
 
 Prościej mówiąc:
 
-- W trybie **Łatwy**, **umiejętność** to ustawienie wstępne (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne), które odpowiada modelowi wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). Wybierasz umiejętność na pasku narzędzi w trybach Tłumacz, Przepisz i Przekształć.
-- W trybie **Zaawansowany**, **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **prefiksu dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
-- **Klucz API** (lub w przypadku Ollama – **podstawowy adres URL**) umożliwia aplikacji połączenie się z dostawcą.
+- W trybie **Łatwy** **umiejętność** to ustawienie wstępne (Darmowe (OpenRouter), Lekki, Zaawansowany lub Techniczny), które mapuje się na model wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). W pasku narzędzi pojawiają się tylko umiejętności, które mają przypisanie dla aktualnego dostawcy. Wybierasz umiejętność w funkcjach Tłumacz, Przepisz i Przekształć.
+- W trybie **Zaawansowany** **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **przedrostka dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
+- **Klucz API** (lub w przypadku Ollama — **podstawowy adres URL**) umożliwia aplikacji komunikację z dostawcą.
 
-Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego używanego dostawcy. W przypadku korzystania wyłącznie z OpenRouter, zobacz poniżej [Jak uzyskać darmowy klucz API OpenRouter](#how-to-get-an-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
+Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w sekcji [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego używanego dostawcy. W przypadku korzystania wyłącznie z OpenRouter zobacz poniżej sekcję [Jak uzyskać darmowy klucz API OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
 
 Jeśli korzystasz z **wersji internetowej**, administrator serwera konfiguruje dostawców za pomocą zmiennych środowiskowych, więc nie możesz bezpośrednio wprowadzać kluczy API w aplikacji.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### Jak uzyskać darmowy klucz API OpenRouter (aplikacja komputerowa)
 
 Jeśli korzystasz z aplikacji komputerowej, wykonaj następujące kroki:
@@ -208,7 +208,7 @@ Pasek narzędzi nieznacznie się zmienia w zależności od tego, gdzie znajdujes
 - Po lewej stronie znajduje się nazwa bieżącej strony.
 - Po prawej stronie znajduje się selektor **umiejętności lub modelu** oraz kontrolka **Język interfejsu**.
 
-W trybie **Łatwy** pasek narzędzi wyświetla selektor **umiejętności** (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne i podobne ustawienia wstępne). Umiejętności zależą od **Dostawcy** wybranego w [**Ustawienia** > **Ustawienia ogólne**](#general-settings). Jeśli **Dostawcą** jest **Ollama**, pasek narzędzi wyświetla zamiast umiejętności zainstalowane lokalne modele.
+W trybie **Łatwy** pasek narzędziowy wyświetla **selektor umiejętności** z wbudowanymi ustawieniami wstępnymi: **Darmowe (OpenRouter)**, **Lekki**, **Zaawansowany** i **Techniczny**. Dostępne umiejętności zależą od wybranego **dostawcy** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) — na przykład **Darmowe (OpenRouter)** pojawia się tylko wtedy, gdy dostawcą jest OpenRouter. Jeśli **dostawcą** jest **Ollama**, w pasku narzędzi wyświetlane są zamiast umiejętności zainstalowane lokalne modele.
 
 W trybie **Zaawansowany** selektor **modelu** pozwala wybrać, którego silnika AI użyć do bieżącego zadania.
 
@@ -290,9 +290,9 @@ W sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zm
 - **Automatyczne kopiowanie wyniku do schowka** — wynik jest automatycznie kopiowany do schowka po pomyślnym tłumaczeniu.
 - **Tłumaczenie w czasie rzeczywistym (podczas pisania)** — tłumaczenie uruchamiane jest w trakcie wpisywania tekstu.
 - **Limit czasu (ms)** — określa, jak długo aplikacja czeka przed uruchomieniem tłumaczenia w czasie rzeczywistym.
-- **Enter** określa, co dzieje się po naciśnięciu klawisza `Enter`:
-
-<br/><br/>
+- **Zachowanie dla ENTER** kontroluje działanie po naciśnięciu `Enter`:
+  - **Enter** uruchamia tłumaczenie lub przepisanie (domyślne).
+  - **Shift + Enter** uruchamia tłumaczenie lub przepisanie; zwykły **Enter** wstawia nową linię.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -305,10 +305,10 @@ Skorzystaj z opcji **Przepisz**, gdy chcesz poprawić sformułowanie bez zmiany 
 
 To przydatne w przypadku:
 
-- poprawiania pisowni i gramatyki (**Sprawdzanie pisowni i gramatyki**)
-- poprawiania czytelności tekstu (**Popraw czytelność**)
-- uzyskiwania kilku różnych wersji sformułowania w jednym przebiegu (**Wersje alternatywne**)
-- nadawania tekstowi charakteru bardziej formalnego lub mniej formalnego (**Formalny** / **Nieformalny**)
+- poprawianie pisowni i gramatyki (**Sprawdzanie pisowni i gramatyki**)
+- poprawianie czytelności tekstu (**Popraw czytelność**)
+- generowanie kilku różnych wersji w jednym przebiegu (**Wersje alternatywne**)
+- nadawanie tonu bardziej formalnego lub nieformalnego (**Uczyń formalnym** / **Uczyń nieformalnym**)
 - skracania lub rozszerzania tekstu (**Skróć** / **Rozwiń**)
 - nadawania tekstowi charakteru bardziej technicznego (**Uczyń technicznym**)
 
@@ -371,7 +371,7 @@ Najszybszy sposób na utworzenie zachęty to:
 1. Kliknij **Nowa zachęta**.
 2. Kliknij **Wygeneruj zachętę**.
 3. Opisz, co ma robić zachęta.
-4. Wybierz model.
+4. Wybierz umiejętność (Łatwy) lub model (Zaawansowany).
 5. Pozwól aplikacji utworzyć wersję roboczą.
 6. Przejrzyj wersję roboczą i kliknij **Zapisz**.
 
@@ -574,8 +574,8 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 
 **Doświadczenie AI**
 
-- **Łatwy** (domyślny): wybierz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy chmurowi korzystają z wbudowanych ustawień wstępnych umiejętności na pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast umiejętności.
-- **Zaawansowany**: wybierz poszczególne modele na pasku narzędzi; zarządzaj listą w sekcji [**Ustawienia** > **Modele**](#models).
+- **Łatwy** (domyślny): wybierz **dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze korzystają z wbudowanych ustawień wstępnych umiejętności w pasku narzędzi. **Ollama** wyświetla zamiast umiejętności modele zainstalowane na Twoim komputerze. W trybie Łatwy, **Katalog umiejętności** pokazuje wersję katalogu oraz czas ostatniej aktualizacji; kliknij **Odśwież katalog umiejętności**, aby pobrać najnowszą listę umiejętności z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
+- **Zaawansowany**: wybieraj indywidualne modele w pasku narzędzi; zarządzaj listą w sekcji [**Ustawienia** > **Modele**](#models).
 
 W **aplikacji internetowej** dostępność dostawców zależy od kluczy API ustawionych w środowisku serwera. W **aplikacji komputerowej** skonfiguruj klucze w sekcji [**Konfiguracja API**](#api-config).
 
@@ -594,13 +594,14 @@ W **aplikacji internetowej** dostępność dostawców zależy od kluczy API usta
 
 **Wygląd**
 
-- **Pokaż informacje o kosztach w akcjach** kontroluje wyświetlanie kosztu na operację (jeśli dostępne) oraz całkowitego kosztu na panelach wyników Tłumacz, Przepisz i Przekształć.
-- **Liczba cyfr po przecinku dla kosztu** zmienia sposób wyświetlania miejsc dziesiętnych kosztu.
+- **Motyw** przełącza między jasnym, ciemnym i systemowym wyglądem.
+- **Pokaż informacje o kosztach w akcjach** kontroluje wyświetlanie kosztu operacji (jeśli dostępne) oraz całkowitego kosztu na panelach wyjściowych Tłumacz, Przepisz i Przekształć.
+- **Liczba cyfr po przecinku w koszcie** zmienia sposób wyświetlania miejsc dziesiętnych kosztu.
 - **Tylko w wersji internetowej:** **pokaż margines wokół aplikacji** dodaje dodatkową przestrzeń wokół interfejsu.
 - **Rodzina czcionek** zmienia czcionkę w panelach tekstowych.
 - **Rozmiar** zmienia rozmiar czcionki.
 
-**Kopia zapasowa konfiguracji**
+**Kopia zapasowa konfiguracji** (tylko dla administratorów aplikacji komputerowej i internetowej)
 
 - **Uwzględnij dane użycia w kopii zapasowej** — gdy włączone, plik ZIP zawiera również historię wykonywania i dane wywołań API.
 - **Wykonaj kopię zapasową konfiguracji** — tworzy pojedynczy plik ZIP (domyślnie z nazwą `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` w czasie UTC), zawierający `config.json`, `state.json`, opcjonalny klucz szyfrowania, użytkowników, preferencje, niestandardowe podpowiedzi oraz dane użycia, jeśli zostały wybrane. Po pomyślnej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
@@ -763,9 +764,9 @@ Aby dodać klucz API, wprowadź wartość w polu tekstowym i kliknij `Save`. Aby
 
 Karta **O programie** pokazuje:
 
-- nazwę aplikacji
-- numer wersji
-- datę kompilacji
+- nazwa aplikacji i slogan
+- numer wersji i data kompilacji
+- informacje o licencji i prawach autorskich wraz z linkiem do otwarcia **Powiadomień stron trzecich**
 - link do repozytorium projektu
 
 <br/><br/>
@@ -809,7 +810,7 @@ W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i klikn
 
 Wypróbuj jedną lub więcej z poniższych opcji:
 
-- wybierz inny model
+- wybierz inną umiejętność (Łatwy) lub model (Zaawansowany)
 - użyj krótszego tekstu wejściowego
 - wyłącz opcję **Tłumaczenie w czasie rzeczywistym (podczas pisania)** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings)
 - korzystaj z darmowych modeli do prostych zadań (zobacz [Modele](#models))

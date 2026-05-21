@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:49.909Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:13:58.538Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: sw
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,9 +25,9 @@ Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika up
 - **Andika upya** - sahihi sarufi, boresha uwazi, fomali/isiyo ya fomali, fupisha, panua, ya kikina
 - **Badilisha** - maagizo ya AI ya kibinafsi; tengeneza na usimamize maagizo, lugha ya kipato kwa kila maagizo ni ya si lazima
 - **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya kuingiza/ya pato, kupanga kwa kuchuja, na utoaji
-- **Rahisi & Ubinafsi** - Njia rahisi (chaguo-msingi): vipaji vilivyochaguliwa kwa kila mtoa huduma (Bure, Haraka, Ubinafsi, Teknolojia, Kisheria) bila kuchagua vitambaa vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa wako wameorodheshwa
-- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa uchukuzi; OpenRouter inaonyesha matumizi halisi, watoa wengine hutumia mapigo
-- **UI** - kiolesura kinachotumia lugha nyingi (zaidi ya 30, msaada wa kuelimisha kulia-kushoto), fonti, ...
+- **Rahisi & Ubinafsi** - Njia ya rahisi (chaguo-msingi): vipaji vilivyochaguliwa kwa kila mtoa huduma (**Bure (OpenRouter)**, **Rahisi**, **Ubinafsi**, **Kikihini**; vipaji tu vinavyomilikiwa mpangilio kwa mtoa huduma aliyechaguliwa vinavyonekana) bila kuchagua vitambulisho vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa huduma wako wameunganishwa
+- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa upelelezi; OpenRouter inaonyesha matumizi halisi, watoa huduma wengine hutumia mapigo
+- **UI** - kiolesura cha lugha nyingi (zaidi ya 30, msaada wa kuelimisha kulia-kushoto), fonti, ...
 - **Njia ya wavuti** - msaada wa watumiaji wengi wenye majukumu ya msimamizi
 - **Desktop** - Programu ya Electron kwa Windows na Linux
 - **Imeyakishwa binafsi** - Picha ya Docker kwa amd64 & arm64 (inayotumika kwenye Raspberry Pi)

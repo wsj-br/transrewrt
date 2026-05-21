@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-18T15:42:34.209Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:10:26.876Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: ca
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -23,7 +24,7 @@ Transrewrt us ajuda a treballar amb text de tres maneres principals:
 - **Reescriure** - reformular el text en un estil diferent, com ara més clar, més breu o més formal.
 - **Transformar** - processar text mitjançant instruccions personalitzades d'intel·ligència artificial anomenades indicacions.
 
-Per defecte, l'aplicació s'executa en mode **Fàcil**: seleccioneu una **habilitat** (per exemple, Gratuit, Ràpid o Tècnic) i un **proveïdor** a la Configuració, sense triar IDs de model. Canvieu a **Avançat** a [**Configuració** > **Configuració general**](#general-settings) si voleu la llista clàssica de models a [**Configuració** > **Models**](#models).
+Per defecte, l'aplicació s'executa en mode **Fàcil**: esculls una **habilitat** (per exemple, Gratuït (OpenRouter), Lite o Tècnic) i un **proveïdor** a Configuració, sense escollir IDs de model. Canvia a **Avançat** a [**Configuració** > **Configuració general**](#general-settings) si vols la llista clàssica de models de [**Configuració** > **Models**](#models).
 
 <br/>
 
@@ -81,7 +82,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [Models](#models)
   - [Idiomes](#languages)
   - [Seguiment de costos](#cost-tracking)
-  - [Transformar (pestanya de configuració)](#transform-settings)
+  - [Transformar (pestanya de configuració)](#transform-settings-tab)
   - [Usuaris](#users)
   - [Configuració de l'API](#api-config)
   - [Quant a](#about)
@@ -116,18 +117,18 @@ No cal que seleccioneu un model de pagament per començar. Tan aviat com afegiu 
 
 En paraules senzilles:
 
-- En mode **Fàcil**, una **habilitat** és un perfil predefinit (Gratuït, Ràpid, Avançat, Tècnic, Legal) que es correspon a un model per al vostre **proveïdor** seleccionat (OpenRouter, OpenAI, Ollama i altres). Seleccioneu l'habilitat a la barra d'eines de Traduir, Reescriure i Transformar.
-- En mode **Avançat**, un **model** és el motor d'IA que seleccioneu directament. Els IDs de model utilitzen un **prefix del proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **clau API** (o, per a Ollama, una **URL base**) és com l'aplicació accedeix a aquest proveïdor.
+- En mode **Fàcil**, una **habilitat** és un preset (Gratuït (OpenRouter), Lite, Avançat o Tècnic) que es mapeja a un model per al teu **proveïdor** escollit (OpenRouter, OpenAI, Ollama i altres). Només les habilitats que tenen un mapeig per al proveïdor actual apareixen a la barra d'eines. Selecciones l'habilitat a Traduir, Reescriure i Transformar.
+- En mode **Avançat**, un **model** és el motor d'IA que esculls directament. Els IDs de model utilitzen un **prefix de proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **clau d'API** (o, per a Ollama, una **URL base**) és com l'aplicació arriba a aquell proveïdor.
 
-Si esteu utilitzant l'**aplicació d'escriptori**, afegiu claus a [**Configuració** > **Configuració de l'API**](#api-config) per a cada proveïdor que utilitzeu. Si només utilitzeu OpenRouter, consulteu [Com obtenir una clau API OpenRouter gratuïta](#how-to-get-an-api-key-desktop-app) més avall. Si no voleu utilitzar una clau API, podeu instal·lar Ollama (des de [ollama.com](https://ollama.com)) i utilitzar models locals, com ara `translategemma:4b`.
+Si estàs utilitzant l'**aplicació d'escriptori**, afegeix claus a [**Configuració** > **Configuració de l'API**](#api-config) per a cada proveïdor que utilitzis. Per a ús exclusiu d'OpenRouter, consulta [Com obtenir una clau d'API gratuïta d'OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app) a continuació. Si no vols utilitzar una clau d'API, pots instal·lar Ollama (des de [ollama.com](https://ollama.com)) i utilitzar models locals en el seu lloc, com `translategemma:4b`.
 
 Si esteu utilitzant la **versió web**, el propietari del servidor configura els proveïdors amb variables d'entorn, per tant no podeu introduir claus API directament a l'aplicació.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Com obtenir una clau API gratuïta d'OpenRouter (aplicació d'escriptori)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Com obtenir una clau d'API gratuïta d'OpenRouter (aplicació d'escriptori)
 
 Si esteu utilitzant l'aplicació d'escriptori, seguiu aquests passos:
 
@@ -208,7 +209,7 @@ La barra d'eines canvia lleugerament segons on esteu a l'aplicació.
 - A l'esquerra, mostra el nom de la pàgina actual.
 - A la dreta, mostra el selector d'**habilitat o model** i el control d'**idioma de la interfície**.
 
-En mode **Fàcil**, la barra d'eines mostra un selector d'**habilitats** (Gratuït, Ràpid, Avançat, Tècnic, Legal i altres predefinits). Les habilitats depenen del **Proveïdor** que hagueu triat a [**Configuració** > **Configuració general**](#general-settings). Si el **Proveïdor** és **Ollama**, la barra d'eines llista els vostres models locals instal·lats en lloc d'habilitats.
+En mode **Fàcil**, la barra d'eines mostra un **selector d'habilitats** amb els presets integrats **Gratuït (OpenRouter)**, **Lite**, **Avançat** i **Tècnic**. Quines habilitats apareixen depèn del **Proveïdor** que vas escollir a [**Configuració** > **Configuració general**](#general-settings)—per exemple, **Gratuït (OpenRouter)** només es llista quan el proveïdor és OpenRouter. Si el **Proveïdor** és **Ollama**, la barra d'eines llista els teus models locals instal·lats en comptes d'habilitats.
 
 En mode **Avançat**, el selector de **model** us permet triar quin motor d'IA utilitzar per a la tasca actual.
 
@@ -290,9 +291,9 @@ A [**Configuració** > **Configuració general**](#general-settings), podeu canv
 - **Copiar automàticament el resultat al portaobjectes** copia el resultat automàticament després d'una execució correcta.
 - **Traducció en temps real (mentre escriviu)** executa traduccions mentre escriviu.
 - **Temps d'espera (ms)** controla quant de temps espera l'aplicació abans d'executar una traducció en temps real.
-- **Enter** controla què passa quan premeu `Enter`:
-
-<br/><br/>
+- **Comportament per a ENTER** controla què passa quan prem `Enter`:
+  - **Enter** executa traduir o reescriure (per defecte).
+  - **Shift + Enter** executa traduir o reescriure; **Enter** normal insereix una nova línia.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -307,8 +308,8 @@ Això és útil per:
 
 - corregir ortografia i gramàtica (**Comprovar ortografia i gramàtica**)
 - fer el text més clar (**Millorar la claredat**)
-- obtenir diverses reformulacions diferents en una sola execució (**Versions alternatives**)
-- fer el text més formal o menys formal (**Formal** / **Informal**)
+- diverses reformulacions distintes en una sola execució (**Versions alternatives**)
+- fer el text més formal o més informal (**Fer formal** / **Fer informal**)
 - escurçar o ampliar el text (**Escurçar** / **Ampliar**)
 - fer que el text sembli més tècnic (**Fer tècnic**)
 
@@ -368,10 +369,10 @@ Si la vostra llista d'indicadors està buida, feu clic a **Carrega exemples de p
 
 La manera més ràpida de crear un indicador és:
 
-1. Feu clic a **Indicador nou**.
-2. Feu clic a **Genera un indicador**.
-3. Descriviu què voleu que faci l'indicador.
-4. Trieu un model.
+1. Fes clic a **Indicador nou**.
+2. Fes clic a **Genera un indicador**.
+3. Descriu què vols que faci l'indicador.
+4. Escull una habilitat (Fàcil) o model (Avançat).
 5. Deixa que l'aplicació creï un esborrany per a tu.
 6. Revisa l'esborrany i fes clic a **Desa**.
 
@@ -574,8 +575,8 @@ Utilitzeu **Configuració general** per controlar el comportament de l'escriptur
 
 **Experiència amb IA**
 
-- **Fàcil** (per defecte): trieu un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors de núvol utilitzen els preconjunts d'habilitats integrats a la barra d'eines. **Ollama** llista els models instal·lats al vostre equip en lloc d'habilitats.
-- **Avançat**: seleccioneu models individuals a la barra d'eines; gestioneu la llista a [**Configuració** > **Models**](#models).
+- **Fàcil** (per defecte): escull un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors al núvol utilitzen els presets d'habilitats integrats a la barra d'eines. **Ollama** llista models instal·lats al teu ordinador en comptes d'habilitats. En mode Fàcil, **Catàleg d'habilitats** mostra la versió del catàleg i l'hora de la darrera actualització; fes clic a **Actualitza el catàleg d'habilitats** per obtenir la darrera llista d'habilitats del repositori del projecte (l'aplicació també comprova periòdicament en segon pla).
+- **Avançat**: escull models individuals a la barra d'eines; gestiona la llista a [**Configuració** > **Models**](#models).
 
 A l'**aplicació web**, els proveïdors disponibles depenen de les claus API establertes a l'entorn del servidor. A l'**aplicació d'escriptori**, configureu les claus a [**Configuració de l'API**](#api-config).
 
@@ -594,13 +595,14 @@ A l'**aplicació web**, els proveïdors disponibles depenen de les claus API est
 
 **Aparença**
 
+- **Tema** canvia entre aparença clara, fosca i del sistema.
 - **Mostrar informació de cost en les accions** controla la visualització del cost per operació (si està disponible) i el cost total als panells de sortida de Traduir, Reescriure i Transformar.
-- **Xifres decimals del cost** canvia com es mostren els decimals del cost.
-- **Només web:** **mostrar un marge al voltant de l'aplicació** afegeix espai extra al voltant de la interfície.
-- **Familia de tipus de lletra** canvia la font del text als panells de text.
+- **Dígits decimals del cost** canvia com es mostren els decimals del cost.
+- **Només web:** **mostrar un marge al voltant de l'aplicació** afegeix espai addicional al voltant de la interfície.
+- **Tipus de lletra** canvia la font d'escriptura als panells de text.
 - **Mida** canvia la mida de la font.
 
-**Còpia de seguretat de la configuració**
+**Còpia de seguretat de la configuració** (només per a administradors d'aplicacions d'escriptori i web)
 
 - **Incloure dades d'ús en la còpia de seguretat** - quan està activat, el ZIP també conté l'historial d'execució i dades de crides a l'API.
 - **Fer còpia de seguretat de la configuració** - crea un únic ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, indicacions personalitzades i dades d'ús si ho heu activat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
@@ -763,9 +765,9 @@ Per afegir una clau API, introdueix el valor al camp de text i fes clic a `Save`
 
 La pestanya **Quant a** mostra:
 
-- el nom de l'aplicació
-- el número de versió
-- la data de compilació
+- el nom de l'aplicació i el lema
+- el número de versió i la data de compilació
+- informació de llicència i drets d'autor, amb un enllaç per obrir **Avisos de tercers**
 - un enllaç al repositori del projecte
 
 <br/><br/>
@@ -809,10 +811,10 @@ En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i feu clic
 
 Proveu una o més d'aquestes opcions:
 
-- trieu un model diferent
-- utilitzeu una entrada més curta
-- desactiveu la **Traducció en temps real (mentre s'escriu)** a [**Configuració** > **Configuració general**](#general-settings)
-- utilitzeu models gratuïts per a tasques senzilles (vegeu [Models](#models))
+- escollir una habilitat diferent (Fàcil) o model (Avançat)
+- utilitzar una entrada més curta
+- desactivar **Traducció en temps real (mentre escrius)** a [**Configuració** > **Configuració general**](#general-settings)
+- utilitzar models gratuïts per a tasques senzilles (vegeu [Models](#models))
 
 <br/>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:42.343Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:12:31.409Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: ko
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 - **다시 작성** - 문법 수정, 명확성 향상, 격식/비격식 조정, 축약, 확장, 기술적 표현 변환
 - **변환** - 사용자 정의 AI 프롬프트; 프롬프트 생성 및 관리, 프롬프트별 선택적 대상 언어 지정 가능
 - **기록** - 입력/출력 텍스트, 필터링 및 내보내기 기능을 포함한 전체 실행 기록
-- **쉬움 및 고급** - 쉬운 모드(기본값): 제공업체별로 선별된 기술(무료, 빠름, 고급, 기술, 법적)을 사용하여 모델 ID를 선택하지 않고 사용 가능; 고급 모드: 구성된 제공업체의 전체 모델 목록 제공
-- **모델 및 비용** - 비용 및 사용 현황 대시보드(요약, 모델 기준, 모든 호출) 내보내기 기능 포함; OpenRouter는 실제 지출을 표시하고, 다른 제공업체는 예상치를 사용함
-- **UI** - 다국어 인터페이스(30개 이상의 언어, RTL 지원), 폰트, ...
-- **웹 모드** - 관리자 역할을 포함한 다중 사용자 지원
+- **쉬움 & 고급** - 쉬운 모드(기본값): 제공업체별로 선정된 기술(**무료(OpenRouter)**, **Lite**, **고급**, **기술적**; 선택된 제공업체에 매핑된 기술만 표시됨)이며, 모델 ID를 선택할 필요 없음; 고급 모드: 구성된 제공업체의 전체 모델 목록 표시
+- **모델 및 비용** - 비용 및 사용 현황 대시보드(요약, 모델 기준, 모든 호출) 내보내기 기능 포함; OpenRouter는 실제 지출을 표시하고, 다른 제공업체는 추정치 사용
+- **UI** - 다국어 인터페이스(30개 이상의 언어, RTL 지원), 폰트 등
+- **웹 모드** - 관리자 역할이 있는 다중 사용자 지원
 - **데스크톱** - Windows 및 Linux용 Electron 앱
 - **자체 호스팅** - amd64 및 arm64용 Docker 이미지(Raspberry Pi 지원)
 

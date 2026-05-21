@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:54.380Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:15:18.642Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: vi
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
 - **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
 - **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn trí tuệ nhân tạo tùy chỉnh gọi là lời nhắc.
 
-Mặc định, ứng dụng chạy ở chế độ **Dễ**: bạn chọn một **kỹ năng** (ví dụ: Miễn phí, Nhanh hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
+Mặc định, ứng dụng chạy ở **chế độ Dễ**: bạn chọn một **kỹ năng** (ví dụ: Miễn phí (OpenRouter), Lite hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Mô hình](#models)
   - [Ngôn ngữ](#languages)
   - [Theo dõi chi phí](#cost-tracking)
-  - [Chuyển đổi (tab cài đặt)](#transform-settings)
+  - [Chuyển đổi (tab cài đặt)](#transform-settings-tab)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
@@ -116,17 +116,17 @@ Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạ
 
 Nói một cách đơn giản:
 
-- Ở chế độ **Dễ**, một **kỹ năng** là cài đặt trước (Miễn phí, Nhanh, Nâng cao, Kỹ thuật, Pháp lý) tương ứng với một mô hình cho **nhà cung cấp** bạn đã chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Bạn chọn kỹ năng này trên thanh công cụ ở các chức năng Dịch, Viết lại và Chuyển đổi.
-- Ở chế độ **Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
+- Ở **chế độ Dễ**, một **kỹ năng** là cài đặt sẵn (Miễn phí (OpenRouter), Lite, Nâng cao hoặc Kỹ thuật) tương ứng với một mô hình cho **nhà cung cấp** bạn chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Chỉ những kỹ năng có ánh xạ với nhà cung cấp hiện tại mới xuất hiện trên thanh công cụ. Bạn chọn kỹ năng khi sử dụng Dịch, Viết lại và Chuyển đổi.
+- Ở **chế độ Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
 - Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối đến nhà cung cấp đó.
 
-Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa tại [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API OpenRouter miễn phí](#how-to-get-an-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
+Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa tại [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API OpenRouter miễn phí](#how-to-get-a-free-openrouter-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
 
 Nếu bạn đang sử dụng **phiên bản web**, chủ máy chủ sẽ cấu hình các nhà cung cấp thông qua các biến môi trường, do đó bạn không thể nhập khóa API trực tiếp trong ứng dụng.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### Cách lấy khóa API OpenRouter miễn phí (ứng dụng máy tính để bàn)
 
 Nếu bạn đang dùng ứng dụng máy tính để bàn, hãy làm theo các bước sau:
@@ -208,7 +208,7 @@ Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứ
 - Bên trái hiển thị tên trang hiện tại.
 - Bên phải hiển thị **bộ chọn kỹ năng hoặc mô hình** và điều khiển **Ngôn ngữ giao diện**.
 
-Ở chế độ **Dễ**, thanh công cụ hiển thị **bộ chọn kỹ năng** (Miễn phí, Nhanh, Nâng cao, Kỹ thuật, Pháp lý và các cài đặt trước tương tự). Các kỹ năng phụ thuộc vào **Nhà cung cấp** bạn đã chọn tại [**Cài đặt** > **Cài đặt chung**](#general-settings). Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các kỹ năng.
+Ở **chế độ Dễ**, thanh công cụ hiển thị **trình chọn kỹ năng** với các cài đặt sẵn tích hợp: **Miễn phí (OpenRouter)**, **Lite**, **Nâng cao** và **Kỹ thuật**. Các kỹ năng hiển thị phụ thuộc vào **Nhà cung cấp** bạn đã chọn tại [**Cài đặt** > **Cài đặt chung**](#general-settings)—ví dụ: **Miễn phí (OpenRouter)** chỉ xuất hiện khi nhà cung cấp là OpenRouter. Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các kỹ năng.
 
 Ở chế độ **Nâng cao**, **bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ dùng cho tác vụ hiện tại.
 
@@ -290,9 +290,9 @@ Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có th
 - **Tự động sao chép kết quả vào bộ nhớ tạm** sẽ tự động sao chép kết quả sau khi dịch thành công.
 - **Dịch thời gian thực (trong khi gõ)** sẽ dịch khi bạn đang gõ văn bản.
 - **Thời gian chờ (ms)** điều chỉnh khoảng thời gian ứng dụng chờ trước khi thực hiện dịch thời gian thực.
-- **Enter** điều khiển hành động khi bạn nhấn `Enter`:
-
-<br/><br/>
+- **Hành vi cho ENTER** điều khiển hành động khi bạn nhấn `Enter`:
+  - **Enter** thực hiện dịch hoặc viết lại (mặc định).
+  - **Shift + Enter** thực hiện dịch hoặc viết lại; **Enter** thuần túy chèn dòng mới.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -307,8 +307,8 @@ Tính năng này hữu ích để:
 
 - sửa lỗi chính tả và ngữ pháp (**Kiểm tra chính tả & ngữ pháp**)
 - làm cho văn bản rõ ràng hơn (**Cải thiện độ rõ ràng**)
-- tạo nhiều cách diễn đạt khác nhau trong một lần chạy (**Các phiên bản thay thế**)
-- làm cho văn bản trang trọng hơn hoặc thân mật hơn (**Trang trọng** / **Thân mật**)
+- tạo nhiều phiên bản diễn đạt khác nhau trong một lần chạy (**Các phiên bản thay thế**)
+- làm văn bản trang trọng hơn hoặc thân mật hơn (**Chuyển thành trang trọng** / **Chuyển thành thân mật**)
 - rút gọn hoặc mở rộng văn bản (**Rút gọn** / **Mở rộng**)
 - làm cho văn bản mang tính chuyên môn hơn (**Chuyển thành chuyên môn**)
 
@@ -371,7 +371,7 @@ Cách nhanh nhất để tạo một lời nhắc là:
 1. Nhấp **Lời nhắc mới**.
 2. Nhấp **Tạo lời nhắc**.
 3. Mô tả những gì bạn muốn lời nhắc thực hiện.
-4. Chọn một mô hình.
+4. Chọn một kỹ năng (Dễ) hoặc mô hình (Nâng cao).
 5. Để ứng dụng tạo bản nháp cho bạn.
 6. Xem lại bản nháp và nhấp **Lưu**.
 
@@ -574,8 +574,8 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lư
 
 **Trải nghiệm AI**
 
-- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn kỹ năng tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì kỹ năng.
-- **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách này tại [**Cài đặt** > **Mô hình**](#models).
+- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các cài đặt sẵn kỹ năng tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì kỹ năng. Ở chế độ Dễ, **Danh mục kỹ năng** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp **Làm mới danh mục kỹ năng** để tải danh sách kỹ năng mới nhất từ kho lưu trữ dự án (ứng dụng cũng kiểm tra định kỳ nền). 
+- **Nâng cao**: chọn từng mô hình cụ thể trên thanh công cụ; quản lý danh sách tại [**Cài đặt** > **Mô hình**](#models).
 
 Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào khóa API được thiết lập trong môi trường máy chủ. Trong **ứng dụng desktop**, hãy cấu hình khóa tại [**Cấu hình API**](#api-config).
 
@@ -594,13 +594,14 @@ Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào
 
 **Giao diện**
 
-- **Hiển thị thông tin chi phí trên các hành động** kiểm soát việc hiển thị chi phí cho mỗi thao tác (nếu có sẵn) và tổng chi phí trên các bảng kết quả Dịch, Viết lại và Chuyển đổi.
-- **Số chữ số phần thập phân của chi phí** thay đổi cách hiển thị các chữ số thập phân của chi phí.
-- **Chỉ trên web:** **hiển thị khoảng trống xung quanh ứng dụng** thêm khoảng trống xung quanh giao diện.
-- **Họ phông chữ** thay đổi phông chữ viết trong các bảng văn bản.
-- **Kích thước** thay đổi kích thước phông chữ.
+- **Chủ đề** chuyển đổi giữa chế độ sáng, tối và hệ thống.
+- **Hiển thị thông tin chi phí trên các hành động** điều khiển việc hiển thị chi phí cho mỗi thao tác (nếu có) và tổng chi phí trên các bảng kết quả Dịch, Viết lại và Chuyển đổi.
+- **Số chữ số phần thập phân chi phí** thay đổi cách hiển thị số thập phân chi phí.
+- **Chỉ dành cho web:** **hiển thị khoảng trống xung quanh ứng dụng** thêm khoảng trống xung quanh giao diện.
+- **Họ phông chữ** thay đổi phông chữ trong các bảng văn bản.
+- **Kích cỡ** thay đổi kích thước phông chữ.
 
-**Sao lưu cấu hình**
+**Sao lưu cấu hình** (chỉ dành cho quản trị viên ứng dụng máy tính để bàn và web)
 
 - **Bao gồm dữ liệu sử dụng trong bản sao lưu** - khi được bật, tệp ZIP cũng chứa dữ liệu lịch sử thực thi và dữ liệu gọi API.
 - **Sao lưu cấu hình** - tạo một tệp ZIP duy nhất (mặc định là `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` theo múi giờ UTC) bao gồm `config.json`, `state.json`, khóa mã hóa tùy chọn, người dùng, tùy chọn, lời nhắc tùy chỉnh và dữ liệu sử dụng nếu bạn đã chọn tham gia. Sau khi sao lưu thành công, thông báo xác nhận sẽ hiển thị tên tệp đã lưu.
@@ -763,9 +764,9 @@ Sử dụng **Cấu hình API** để lưu trữ các khóa API cho từng nhà 
 
 Tab **Giới thiệu** hiển thị:
 
-- tên ứng dụng
-- số phiên bản
-- ngày phiên bản build
+- tên ứng dụng và khẩu hiệu
+- số phiên bản và ngày build
+- thông tin giấy phép và bản quyền, kèm liên kết mở **Thông báo của bên thứ ba**
 - liên kết đến kho lưu trữ dự án
 
 <br/><br/>
@@ -809,10 +810,10 @@ Nếu bạn đang sử dụng ứng dụng trên máy tính:
 
 Hãy thử một hoặc nhiều cách sau:
 
-- chọn một mô hình khác
+- chọn một kỹ năng khác (Dễ) hoặc mô hình khác (Nâng cao)
 - sử dụng đầu vào ngắn hơn
-- tắt **Dịch thời gian thực (khi đang nhập)** trong [**Cài đặt** > **Cài đặt chung**](#general-settings)
-- sử dụng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
+- tắt **Dịch thời gian thực (khi đang gõ)** tại [**Cài đặt** > **Cài đặt chung**](#general-settings)
+- dùng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
 
 <br/>
 

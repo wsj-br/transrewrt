@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:49.870Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:13:52.567Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: es
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,7 +25,7 @@ Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes esti
 - **Reescribir** - corregir gramática, mejorar claridad, estilo formal/informal, acortar, ampliar, contenido técnico
 - **Transformar** - prompts personalizados de IA; crear y gestionar prompts, idioma de destino opcional por prompt
 - **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
-- **Fácil y Avanzado** - Modo Fácil (predeterminado): habilidades seleccionadas por proveedor (Gratis, Rápido, Avanzado, Técnico, Legal) sin necesidad de elegir IDs de modelo; Modo Avanzado: lista completa de modelos de tus proveedores configurados
+- **Fácil y Avanzado** - Modo Fácil (predeterminado): habilidades seleccionadas por proveedor (**Gratis (OpenRouter)**, **Lite**, **Avanzado**, **Técnico**; solo aparecen habilidades con mapeo para el proveedor seleccionado) sin necesidad de elegir IDs de modelo; Modo Avanzado: lista completa de modelos de tus proveedores configurados
 - **Modelos y costo** - paneles de costo y uso (Resumen, Por modelo, Todas las llamadas) con opción de exportación; OpenRouter muestra el gasto real, otros proveedores usan estimaciones
 - **Interfaz de usuario (UI)** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
 - **Modo web** - soporte multiusuario con roles de administrador

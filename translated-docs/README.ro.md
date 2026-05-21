@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:47.422Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:13:29.493Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: ro
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,7 +25,7 @@ Instrument text AI: traduce între limbi, rescrie în stiluri diferite și trans
 - **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
 - **Transformare** - prompturi personalizate AI; creare și gestionare prompturi, limbă destinație opțională pentru fiecare prompt
 - **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Ușor și Avansat** - Mod ușor (implicit): abilități selectate pe furnizor (Gratuit, Rapid, Avansat, Tehnic, Juridic) fără a alege ID-uri de model; Mod avansat: listă completă de modele de la furnizorii configurați
+- **Ușor și Avansat** - Modul ușor (implicit): abilități selectate pe furnizor (**Gratuit (OpenRouter)**, **Lite**, **Avansat**, **Tehnic**; apar doar abilitățile care au o corespondență pentru furnizorul selectat) fără a alege ID-uri de model; Modul avansat: listă completă de modele de la furnizorii configurați
 - **Modele și cost** - tablouri de bord pentru cost și utilizare (Rezumat, După model, Toate apelurile) cu opțiune de export; OpenRouter afișează cheltuielile reale, ceilalți furnizori utilizează estimări
 - **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator

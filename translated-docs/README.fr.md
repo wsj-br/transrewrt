@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:37.291Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:11:24.491Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: fr
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans diff
 - **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
 - **Transformer** - invites personnalisées par IA ; créer et gérer des invites, langue cible facultative par invite
 - **Historique** - historique complet des exécutions avec texte d'entrée/de sortie, filtres et exportation
-- **Facile et Avancé** - Mode Facile (par défaut) : compétences sélectionnées par fournisseur (Gratuit, Rapide, Avancé, Technique, Juridique) sans avoir à choisir d'ID de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
+- **Facile et Avancé** - Mode Facile (par défaut) : compétences sélectionnées par fournisseur (**Gratuit (OpenRouter)**, **Lite**, **Avancé**, **Technique** ; seules les compétences avec une correspondance pour le fournisseur sélectionné sont affichées), sans avoir à choisir les identifiants de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
 - **Modèles et coût** - tableaux de bord de coût et d'utilisation (Résumé, Par modèle, Tous les appels) avec fonction d'exportation ; OpenRouter affiche les dépenses réelles, les autres fournisseurs utilisent des estimations
-- **Interface utilisateur** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
-- **Mode Web** - prise en charge multi-utilisateur avec rôles d'administrateur
+- **Interface utilisateur (UI)** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
+- **Mode web** - prise en charge multi-utilisateurs avec rôles d'administrateur
 - **Bureau** - Application Electron pour Windows et Linux
 - **Auto-hébergé** - Image Docker pour amd64 et arm64 (prêt à l'emploi sur Raspberry Pi)
 

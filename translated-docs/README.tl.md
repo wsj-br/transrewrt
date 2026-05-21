@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:37.273Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:11:19.345Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: tl
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling
 - **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/impormal, paiikliin, palawakin, teknikal
 - **Baguhin** - mga pasadyang prompt sa AI; lumikha at pamahalaan ang mga prompt, opsyonal na wika ng destinasyon bawat prompt
 - **Kasaysayan** - buong kasaysayan ng pagpapatupad na may tekstong input/output, pag-filter, at pag-export
-- **Madali & Advanced** - Madaling mode (default): piniling mga kasanayan bawat provider (Libre, Mabilis, Advanced, Teknikal, Legal) nang hindi pumipili ng model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
-- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyong i-export; ipinapakita ng OpenRouter ang aktuwal na gastos, ginagamit naman ng iba pang mga provider ang mga pagtataya
-- **UI** - multiwika na interface (30+ wika, suporta sa RTL), mga font, ...
-- **Web mode** - suporta sa multi-user na may admin roles
+- **Madali & Advanced** - Madaling mode (default): mga kuradong kasanayan bawat provider (**Libre (OpenRouter)**, **Lite**, **Advanced**, **Technical**; mga kasanayan lamang na may mapping para sa napiling provider ang lumilitaw) nang hindi pinipili ang mga model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
+- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyon na i-export; ipinapakita ng OpenRouter ang aktuwal na gastusin, ang iba pang mga provider ay gumagamit ng mga pagtataya
+- **UI** - multilingual na interface (30+ mga wika, suporta sa RTL), mga font, ...
+- **Web mode** - suporta sa maramihang user na may mga admin role
 - **Desktop** - Electron app para sa Windows at Linux
 - **Self-hosted** - Docker image para sa amd64 & arm64 (handang gamitin sa Raspberry Pi)
 

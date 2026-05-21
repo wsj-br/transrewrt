@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:39.091Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:11:15.740Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: en-US
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt helps you work with text in three main ways:
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
-By default the app runs in **Easy** mode: you pick a **skill** (for example Free, Fast, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
+By default the app runs in **Easy** mode: you pick a **skill** (for example Free (OpenRouter), Lite, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Models](#models)
   - [Languages](#languages)
   - [Cost tracking](#cost-tracking)
-  - [Transform (settings tab)](#transform-settings)
+  - [Transform (settings tab)](#transform-settings-tab)
   - [Users](#users)
   - [API config](#api-config)
   - [About](#about)
@@ -116,17 +116,17 @@ You do not need to select a paid model to begin. As soon as you add your OpenRou
 
 In plain language:
 
-- In **Easy** mode, a **skill** is a preset (Free, Fast, Advanced, Technical, Legal) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). You select the skill in the toolbar on Translate, Rewrite, and Transform.
+- In **Easy** mode, a **skill** is a preset (Free (OpenRouter), Lite, Advanced, or Technical) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). Only skills that have a mapping for the current provider appear in the toolbar. You select the skill on Translate, Rewrite, and Transform.
 - In **Advanced** mode, a **model** is the AI engine you pick directly. Model ids use a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
 - An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
-If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get a free OpenRouter API key](#how-to-get-an-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
+If you are using the **desktop app**, add keys in [**Settings** > **API Config**](#api-config) for each provider you use. For OpenRouter-only use, see [How to get a free OpenRouter API key](#how-to-get-a-free-openrouter-api-key-desktop-app) below. If you do not want to use an API key, you can install Ollama (from [ollama.com](https://ollama.com)) and use local models instead, such as `translategemma:4b`.
 
 If you are using the **web version**, the server owner configures providers with environment variables, so you cannot enter API keys directly in the application.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### How to get a free OpenRouter API key (desktop app)
 
 If you are using the desktop app, follow these steps:
@@ -208,7 +208,7 @@ The toolbar changes slightly depending on your location in the app.
 - On the left, it shows the current page name.
 - On the right, it shows the **skill or model selector** and the **Interface language** control.
 
-In **Easy** mode, the toolbar shows a **skill selector** (Free, Fast, Advanced, Technical, Legal, and similar presets). Skills depend on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings). If **Provider** is **Ollama**, the toolbar lists your installed local models instead of skills.
+In **Easy** mode, the toolbar shows a **skill selector** with the built-in presets **Free (OpenRouter)**, **Lite**, **Advanced**, and **Technical**. Which skills appear depends on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings)—for example, **Free (OpenRouter)** is only listed when the provider is OpenRouter. If **Provider** is **Ollama**, the toolbar lists your installed local models instead of skills.
 
 In **Advanced** mode, the **model selector** lets you choose which AI engine to use for the current task.
 
@@ -290,9 +290,9 @@ In [**Settings** > **General Settings**](#general-settings), you can change how 
 - **Auto-copy result to clipboard** copies the result automatically after a successful run.
 - **Real-time translation (while typing)** runs translations while you type.
 - **Timeout (ms)** controls how long the app waits before running a real-time translation.
-- **Enter** controls what happens when you press `Enter`:
-
-<br/><br/>
+- **Behavior for ENTER** controls what happens when you press `Enter`:
+  - **Enter** runs translate or rewrite (default).
+  - **Shift + Enter** runs translate or rewrite; plain **Enter** inserts a new line.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -308,7 +308,7 @@ This is useful for:
 - fixing spelling and grammar (**Check Spelling & Grammar**)
 - making text clearer (**Improve Clarity**)
 - several distinct reformulations in one run (**Alternative versions**)
-- making text more formal or more informal (**Formal** / **Informal**)
+- making text more formal or more informal (**Make Formal** / **Make Informal**)
 - shortening or expanding text (**Shorten** / **Expand**)
 - making text more technical (**Make Technical**)
 
@@ -371,7 +371,7 @@ The fastest way to create a prompt is:
 1. Click **New prompt**.
 2. Click **Generate prompt**.
 3. Describe what you want the prompt to do.
-4. Choose a model.
+4. Choose a skill (Easy) or model (Advanced).
 5. Let the app create a draft for you.
 6. Review the draft and click **Save**.
 
@@ -574,7 +574,7 @@ Use **General Settings** to control typing behavior, whether execution details a
 
 **AI experience**
 
-- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in skill presets in the toolbar. **Ollama** lists models installed on your machine instead of skills.
+- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in skill presets in the toolbar. **Ollama** lists models installed on your machine instead of skills. In Easy mode, **Skills catalog** shows the catalog version and last update time; click **Refresh skills catalog** to fetch the latest skill list from the project repository (the app also checks periodically in the background).
 - **Advanced**: pick individual models in the toolbar; manage the list under [**Settings** > **Models**](#models).
 
 On the **web app**, which providers appear depends on API keys set in the server environment. On the **desktop app**, configure keys under [**API Config**](#api-config).
@@ -594,13 +594,14 @@ On the **web app**, which providers appear depends on API keys set in the server
 
 **Appearance**
 
+- **Theme** switches between light, dark, and system appearance.
 - **Show cost information on the actions** controls the display of the cost per operation (if available) and the total cost on the Translate, Rewrite, and Transform output panels.
 - **Cost fraction digits** changes how cost decimals are displayed.
 - **Web only:** **show a margin around the app** adds extra space around the interface.
 - **Font Family** changes the writing font in the text panels.
 - **Size** changes the font size.
 
-**Configuration Backup**
+**Configuration Backup** (desktop app and web administrators only)
 
 - **Include usage data in the backup** - when enabled, the ZIP also contains execution history and API call data.
 - **Backup configuration** - creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
@@ -763,9 +764,9 @@ To add an API key, enter the value in the text field and click `Save`. To replac
 
 The **About** tab shows:
 
-- the app name
-- the version number
-- the build date
+- the app name and tagline
+- the version number and build date
+- license and copyright information, with a link to open **Third-party notices**
 - a link to the project repository
 
 <br/><br/>
@@ -809,7 +810,7 @@ In **Advanced** mode, open [**Settings** > **Models**](#models) and click **Refr
 
 Try one or more of these:
 
-- choose a different model
+- choose a different skill (Easy) or model (Advanced)
 - use a shorter input
 - turn off **Real-time translation (while typing)** in [**Settings** > **General Settings**](#general-settings)
 - use free models for simple tasks (see [Models](#models))

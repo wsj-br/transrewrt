@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:49.238Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:13:49.594Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 - **Rescriere** - reformulați textul într-un alt stil, cum ar fi mai clar, mai scurt sau mai formal.
 - **Transformare** - procesați textul utilizând instrucțiuni personalizate de inteligență artificială numite prompturi.
 
-În mod implicit, aplicația rulează în modul **Ușor**: alegeți o **abilitate** (de exemplu Gratuit, Rapid sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
+În mod implicit, aplicația rulează în modul **Ușor**: alegeți o **abilitate** (de exemplu Gratuit (OpenRouter), Lite sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Modele](#models)
   - [Limbi](#languages)
   - [Urmărire costuri](#cost-tracking)
-  - [Transformare (tabul de setări)](#transform-settings)
+  - [Transformare (fila setări)](#transform-settings-tab)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
@@ -116,18 +116,18 @@ Nu este necesar să selectați un model plătit pentru a începe. Imediat ce ad�
 
 În termeni simpli:
 
-- În modul **Ușor**, o **abilitate** este un preset (Gratuit, Rapid, Avansat, Tehnic, Juridic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Alegeți abilitatea din bara de instrumente la Traducere, Rescriere și Transformare.
-- În modul **Avansat**, un **model** este motorul AI pe care îl selectați direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
+- În modul **Ușor**, o **abilitate** este un preset (Gratuit (OpenRouter), Lite, Avansat sau Tehnic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Doar abilitățile care au o corespondență pentru furnizorul curent apar în bara de instrumente. Selectați abilitatea la Traducere, Rescriere și Transformare.
+- În modul **Avansat**, un **model** este motorul AI pe care îl alegeți direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
 - O **cheie API** (sau, pentru Ollama, o **URL de bază**) este modul în care aplicația accesează acel furnizor.
 
-Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl folosiți. Pentru utilizarea doar cu OpenRouter, consultați mai jos [Cum obțineți o cheie API OpenRouter gratuită](#how-to-get-an-api-key-desktop-app). Dacă nu doriți să folosiți o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și utiliza modele locale în schimb, cum ar fi `translategemma:4b`.
+Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl folosiți. Pentru utilizare exclusivă OpenRouter, consultați mai jos [Cum obțineți o cheie API gratuită OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Dacă nu doriți să folosiți o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și utiliza modele locale în schimb, cum ar fi `translategemma:4b`.
 
 Dacă utilizați **versiunea web**, administratorul serverului configurează furnizorii prin variabile de mediu, astfel că nu puteți introduce chei API direct în aplicație.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Cum obțineți o cheie API OpenRouter gratuită (aplicație desktop)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Cum obțineți o cheie API gratuită OpenRouter (aplicație desktop)
 
 Dacă utilizați aplicația desktop, urmați acești pași:
 
@@ -208,7 +208,7 @@ Bara de instrumente se modifică ușor în funcție de locul în care vă aflaț
 - În stânga, afișează numele paginii curente.
 - În dreapta, afișează **selectorul de abilitate sau model** și controlul pentru **limba interfeței**.
 
-În modul **Ușor**, bara de instrumente afișează un **selector de abilități** (Gratuit, Rapid, Avansat, Tehnic, Juridic și alte presetări similare). Abilitățile depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings). Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de abilități.
+În modul **Ușor**, bara de instrumente afișează un **selector de abilități** cu preseturile încorporate **Gratuit (OpenRouter)**, **Lite**, **Avansat** și **Tehnic**. Abilitățile afișate depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings)—de exemplu, **Gratuit (OpenRouter)** apare doar când furnizorul este OpenRouter. Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de abilități.
 
 În modul **Avansat**, **selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
 
@@ -290,9 +290,9 @@ Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta �
 - **Copiază automat rezultatul în clipboard** copiază automat rezultatul după o execuție reușită.
 - **Traducere în timp real (în timp ce scrieți)** execută traduceri în timp ce tastați.
 - **Timeout (ms)** controlează cât timp așteaptă aplicația înainte de a executa o traducere în timp real.
-- **Enter** controlează ce se întâmplă când apăsați `Enter`:
-
-<br/><br/>
+- **Comportament pentru ENTER** controlează ce se întâmplă când apăsați `Enter`:
+  - **Enter** rulează traducerea sau rescrierea (implicit).
+  - **Shift + Enter** rulează traducerea sau rescrierea; **Enter** simplu inserează o linie nouă.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -308,7 +308,7 @@ Aceasta este utilă pentru:
 - corectarea ortografiei și gramaticii (**Verificare ortografie și gramatică**)
 - clarificarea textului (**Îmbunătățește claritatea**)
 - mai multe reformulări distincte într-o singură execuție (**Versiuni alternative**)
-- făcerea textului mai formal sau mai informal (**Formal** / **Informal**)
+- formalizarea sau informalizarea textului (**Fă formal** / **Fă informal**)
 - scurtarea sau extinderea textului (**Scurtează** / **Extinde**)
 - făcerea textului să sune mai tehnic (**Fă tehnic**)
 
@@ -371,7 +371,7 @@ Cea mai rapidă cale pentru a crea un prompt este:
 1. Faceți clic pe **Prompt nou**.
 2. Faceți clic pe **Generează prompt**.
 3. Descrieți ce doriți să facă promptul.
-4. Alegeți un model.
+4. Alegeți o abilitate (Ușor) sau un model (Avansat).
 5. Lăsați aplicația să creeze un draft pentru dvs.
 6. Revizuiți draftul și faceți clic pe **Salvare**.
 
@@ -574,8 +574,8 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Experiență AI**
 
-- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii din cloud utilizează presetările de abilități integrate în bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de abilități.
-- **Avansat**: selectați modele individuale din bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
+- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc preseturile încorporate de abilități din bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de abilități. În modul Ușor, **Catalog de competențe** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătare catalog de competențe** pentru a prelua cea mai recentă listă de abilități din depozitul proiectului (aplicația verifică și periodic în fundal).
+- **Avansat**: alegeți modele individuale în bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
 
 În **aplicația web**, furnizorii afișați depind de cheile API setate în mediul serverului. În **aplicația desktop**, configurați cheile în [**Configurare API**](#api-config).
 
@@ -594,13 +594,14 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Aspect**
 
-- **Afișează informații despre cost pe acțiuni** controlează afișarea costului pe operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
-- **Cifre zecimale cost** modifică modul în care sunt afișate zecimalele costului.
+- **Temă** comută între aspect deschis, întunecat și sistem.
+- **Afișează informații despre cost pe acțiuni** controlează afișarea costului per operațiune (dacă este disponibil) și a costului total pe panourile de ieșire pentru Traducere, Rescriere și Transformare.
+- **Cifre fracționare cost** modifică modul în care se afișează zecimalele costului.
 - **Doar web:** **afișează o margine în jurul aplicației** adaugă spațiu suplimentar în jurul interfeței.
-- **Familie de fonturi** modifică fontul de scriere în panourile de text.
+- **Familie font** modifică fontul de scriere în panourile de text.
 - **Dimensiune** modifică dimensiunea fontului.
 
-**Backup configurație**
+**Backup configurație** (doar pentru administratori aplicație desktop și web)
 
 - **Include datele de utilizare în backup** - dacă este activat, arhiva ZIP conține și istoricul execuțiilor și datele apelurilor API.
 - **Backup configurație** - creează o singură arhivă ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) cu `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, solicitări personalizate și datele de utilizare dacă ați activat această opțiune. După un backup reușit, confirmarea afișează numele fișierului salvat.
@@ -763,9 +764,9 @@ Pentru a adăuga o cheie API, introduceți valoarea în câmpul de text și apă
 
 Tab-ul **Despre** afișează:
 
-- numele aplicației
-- numărul versiunii
-- data build-ului
+- numele aplicației și sloganul
+- numărul de versiune și data build-ului
+- informații despre licență și drepturi de autor, cu un link pentru deschiderea **Notificărilor terțe părți**
 - un link către depozitul proiectului
 
 <br/><br/>
@@ -809,7 +810,7 @@ Dacă utilizați aplicația desktop:
 
 Încercați una sau mai multe dintre următoarele opțiuni:
 
-- alegeți un alt model
+- alegeți o abilitate diferită (Ușor) sau un model (Avansat)
 - utilizați o intrare mai scurtă
 - dezactivați **Traducere în timp real (în timp ce scrieți)** în [**Setări** > **Setări generale**](#general-settings)
 - utilizați modele gratuite pentru sarcini simple (consultați [Modele](#models))

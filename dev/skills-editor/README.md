@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+</p>
+
 # Skills catalog editor (development only)
 
 Small Express app + static HTML UI to edit [`easy-mode-config/skills.json`](../../easy-mode-config/skills.json) in the repo, mirror it to `data/skills.json` for local web dev, list OpenRouter models, test a route, fill missing translations, and inspect per-locale strings.

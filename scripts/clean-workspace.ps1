@@ -54,6 +54,34 @@ if (Test-Path $cleanLogsScript) {
     }
 }
 
+# ---------- Phase 0b: Repository .log files and dev skill caches ----------
+Write-Host "Cleaning .log files and dev caches..." -ForegroundColor Cyan
+
+$logExcludePattern = '\\(node_modules|\.git|dist|release|cache|documentation\\node_modules)\\'
+$logFiles = Get-ChildItem -Path $ProjectRoot -Filter "*.log" -Recurse -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.FullName -notmatch $logExcludePattern }
+foreach ($logFile in $logFiles) {
+    Write-Host "  Removing: $($logFile.FullName)"
+    Remove-Item -Path $logFile.FullName -Force
+}
+if (-not $logFiles) {
+    Write-Host "  (no .log files found)" -ForegroundColor DarkGray
+}
+
+$devCaches = @(
+    (Join-Path $ProjectRoot "dev\skill-check\provider-catalogs-cache.json"),
+    (Join-Path $ProjectRoot "dev\skill-check\skill-check.log"),
+    (Join-Path $ProjectRoot "skills-editor-provider-catalogs.json")
+)
+foreach ($path in $devCaches) {
+    if (Test-Path $path) {
+        Write-Host "  Removing: $path"
+        Remove-Item -Path $path -Force
+    } else {
+        Write-Host "  (skip, not present): $path" -ForegroundColor DarkGray
+    }
+}
+
 # ---------- Phase 1: Workspace build artifacts ----------
 $artifacts = @(
     (Join-Path $ProjectRoot "node_modules"),

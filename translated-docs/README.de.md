@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:39.741Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:11:30.239Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: de
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,8 +25,8 @@ KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschi
 - **Umschreiben** – Grammatik korrigieren, Klarheit verbessern, formell/informell, verkürzen, erweitern, technisch
 - **Umwandeln** – benutzerdefinierte KI-Prompts; Prompts erstellen und verwalten, optionale Zielsprache pro Prompt
 - **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
-- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Funktionen pro Anbieter (Kostenlos, Schnell, Erweitert, Technisch, Rechtlich), ohne Modell-IDs auszuwählen; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
-- **Modelle & Kosten** - Kosten- und Nutzungs-Dashboards (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
+- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Fähigkeiten pro Anbieter (**Kostenlos (OpenRouter)**, **Lite**, **Erweitert**, **Technisch**; es werden nur Fähigkeiten angezeigt, die einer Auswahl des Anbieters zugeordnet sind), ohne Modell-IDs auswählen zu müssen; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
+- **Modelle & Kosten** - Kosten- und Nutzungsübersichten (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
 - **Benutzeroberfläche** - mehrsprachige Oberfläche (über 30 Sprachen, inklusive RTL-Unterstützung), Schriftarten, ...
 - **Webmodus** - Unterstützung für mehrere Benutzer mit Administratorrollen
 - **Desktop** - Electron-App für Windows und Linux

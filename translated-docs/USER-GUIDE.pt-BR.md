@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:34.074Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:10:05.331Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: pt-BR
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ O Transrewrt ajuda você a trabalhar com texto de três maneiras principais:
 - **Reescrever** - reformular texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas prompts.
 
-Por padrão, o aplicativo é executado no modo **Fácil**: você escolhe uma **habilidade** (por exemplo, Grátis, Rápido ou Técnico) e um **provedor** em Configurações, sem precisar selecionar IDs de modelos. Alterne para **Avançado** em [**Configurações** > **Configurações gerais**](#general-settings) se desejar a lista clássica de modelos em [**Configurações** > **Modelos**](#models).
+Por padrão, o aplicativo executa no modo **Fácil**: você escolhe uma **habilidade** (por exemplo, Grátis (OpenRouter), Lite ou Técnico) e um **provedor** em Configurações, sem precisar selecionar IDs de modelos. Alterne para **Avançado** em [**Configurações** > **Configurações gerais**](#general-settings) se desejar a lista clássica de modelos em [**Configurações** > **Modelos**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [Modelos](#models)
   - [Idiomas](#languages)
   - [Rastreamento de Custo](#cost-tracking)
-  - [Transformar (aba de configurações)](#transform-settings)
+  - [Transformar (guia de configurações)](#transform-settings-tab)
   - [Usuários](#users)
   - [Configuração de API](#api-config)
   - [Sobre](#about)
@@ -116,17 +116,17 @@ Você não precisa selecionar um modelo pago para começar. Assim que adicionar 
 
 Em termos simples:
 
-- No modo **Fácil**, uma **habilidade** é um conjunto predefinido (Grátis, Rápido, Avançado, Técnico, Jurídico) que corresponde a um modelo do **provedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Você seleciona a habilidade na barra de ferramentas nas funções Traduzir, Reescrever e Transformar.
+- No modo **Fácil**, uma **habilidade** é um predefinido (Grátis (OpenRouter), Lite, Avançado ou Técnico) que corresponde a um modelo do **provedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas habilidades com mapeamento para o provedor atual aparecem na barra de ferramentas. Você seleciona a habilidade em Traduzir, Reescrever e Transformar.
 - No modo **Avançado**, um **modelo** é o mecanismo de IA que você escolhe diretamente. Os IDs dos modelos usam um **prefixo do provedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
 - Uma **chave de API** (ou, para Ollama, uma **URL base**) é como o aplicativo se conecta ao provedor.
 
-Se você estiver usando o **aplicativo desktop**, adicione chaves em [**Configurações** > **Configuração de API**](#api-config) para cada provedor que usar. Para uso exclusivo do OpenRouter, veja [Como obter uma chave de API gratuita do OpenRouter](#how-to-get-an-api-key-desktop-app) abaixo. Se não quiser usar uma chave de API, você pode instalar o Ollama (em [ollama.com](https://ollama.com)) e usar modelos locais, como `translategemma:4b`.
+Se você estiver usando o **aplicativo desktop**, adicione chaves em [**Configurações** > **Configuração de API**](#api-config) para cada provedor que usar. Para uso exclusivo do OpenRouter, veja [Como obter uma chave de API gratuita do OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app) abaixo. Se não quiser usar uma chave de API, você pode instalar o Ollama (em [ollama.com](https://ollama.com)) e usar modelos locais, como `translategemma:4b`.
 
 Se você estiver usando a **versão web**, o proprietário do servidor configura os provedores com variáveis de ambiente, portanto você não pode inserir chaves de API diretamente no aplicativo.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### Como obter uma chave de API gratuita do OpenRouter (aplicativo desktop)
 
 Se você estiver usando o aplicativo desktop, siga estes passos:
@@ -208,7 +208,7 @@ A barra de ferramentas muda ligeiramente dependendo de onde você está no aplic
 - À esquerda, mostra o nome da página atual.
 - À direita, mostra o **seletor de habilidade ou modelo** e o controle de **Idioma da interface**.
 
-No modo **Fácil**, a barra de ferramentas mostra um **seletor de habilidade** (Grátis, Rápido, Avançado, Técnico, Jurídico e predefinições semelhantes). As habilidades dependem do **Provedor** escolhido em [**Configurações** > **Configurações gerais**](#general-settings). Se o **Provedor** for **Ollama**, a barra de ferramentas listará seus modelos locais instalados em vez de habilidades.
+No modo **Fácil**, a barra de ferramentas exibe um **seletor de habilidades** com os predefinidos integrados **Grátis (OpenRouter)**, **Lite**, **Avançado** e **Técnico**. Quais habilidades aparecem depende do **Provedor** escolhido em [**Configurações** > **Configurações gerais**](#general-settings)—por exemplo, **Grátis (OpenRouter)** só é listado quando o provedor é OpenRouter. Se o **Provedor** for **Ollama**, a barra de ferramentas lista os modelos locais instalados em vez de habilidades.
 
 No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
@@ -290,9 +290,9 @@ Em [**Configurações** > **Configurações gerais**](#general-settings), você 
 - **Copiar resultado automaticamente para a área de transferência** copia o resultado automaticamente após uma execução bem-sucedida.
 - **Tradução em tempo real (enquanto digita)** executa traduções enquanto você digita.
 - **Tempo limite (ms)** controla por quanto tempo o aplicativo aguarda antes de executar uma tradução em tempo real.
-- **Enter** controla o que acontece quando você pressiona `Enter`:
-
-<br/><br/>
+- **Comportamento para ENTER** controla o que acontece ao pressionar `Enter`:
+  - **Enter** executa tradução ou reescrita (padrão).
+  - **Shift + Enter** executa tradução ou reescrita; **Enter** simples insere uma nova linha.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -307,8 +307,8 @@ Isso é útil para:
 
 - corrigir ortografia e gramática (**Verificar ortografia e gramática**)
 - tornar o texto mais claro (**Melhorar Clareza**)
-- obter várias reformulações distintas em uma única execução (**Versões alternativas**)
-- tornar o texto mais formal ou mais informal (**Formal** / **Informal**)
+- várias reformulações distintas em uma única execução (**Versões alternativas**)
+- tornar o texto mais formal ou mais informal (**Tornar Formal** / **Tornar Informal**)
 - encurtar ou expandir o texto (**Encurtar** / **Expandir**)
 - tornar o texto mais técnico (**Tornar Técnico**)
 
@@ -370,8 +370,8 @@ A maneira mais rápida de criar um prompt é:
 
 1. Clique em **Novo prompt**.
 2. Clique em **Gerar prompt**.
-3. Descreva o que você deseja que o prompt faça.
-4. Escolha um modelo.
+3. Descreva o que deseja que o prompt faça.
+4. Escolha uma habilidade (Fácil) ou modelo (Avançado).
 5. Deixe o aplicativo criar um rascunho para você.
 6. Revise o rascunho e clique em **Salvar**.
 
@@ -574,8 +574,8 @@ Use **Configurações gerais** para controlar o comportamento de digitação, se
 
 **Experiência com IA**
 
-- **Fácil** (padrão): escolha um **Provedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Provedores em nuvem usam os predefinidos de habilidades integrados na barra de ferramentas. O **Ollama** lista os modelos instalados em sua máquina em vez de habilidades.
-- **Avançado**: selecione modelos individuais na barra de ferramentas; gerencie a lista em [**Configurações** > **Modelos**](#models).
+- **Fácil** (padrão): escolha um **Provedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Provedores em nuvem usam os predefinidos de habilidades integrados na barra de ferramentas. **Ollama** lista os modelos instalados no seu computador em vez de habilidades. No modo Fácil, **Catálogo de habilidades** mostra a versão do catálogo e a hora da última atualização; clique em **Atualizar catálogo de habilidades** para buscar a lista mais recente do repositório do projeto (o aplicativo também verifica periodicamente em segundo plano).
+- **Avançado**: escolha modelos individuais na barra de ferramentas; gerencie a lista em [**Configurações** > **Modelos**](#models).
 
 No **aplicativo web**, os provedores disponíveis dependem das chaves de API definidas no ambiente do servidor. No **aplicativo desktop**, configure as chaves em [**Configuração de API**](#api-config).
 
@@ -594,13 +594,14 @@ No **aplicativo web**, os provedores disponíveis dependem das chaves de API def
 
 **Aparência**
 
+- **Tema** alterna entre aparência clara, escura e do sistema.
 - **Mostrar informações de custo nas ações** controla a exibição do custo por operação (se disponível) e do custo total nos painéis de saída de Traduzir, Reescrever e Transformar.
-- **Dígitos fracionários de custo** altera a forma como os decimais de custo são exibidos.
-- **Somente web:** **mostrar uma margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
+- **Casas decimais do custo** altera como as casas decimais do custo são exibidas.
+- **Apenas web:** **mostrar uma margem ao redor do aplicativo** adiciona espaço extra ao redor da interface.
 - **Família da fonte** altera a fonte de escrita nos painéis de texto.
 - **Tamanho** altera o tamanho da fonte.
 
-**Backup de configuração**
+**Backup de configuração** (apenas para administradores do aplicativo desktop e web)
 
 - **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execuções e dados de chamadas à API. 
 - **Fazer backup da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por padrão) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso, se você optou por incluí-los. Após um backup bem-sucedido, a confirmação mostra o nome do arquivo salvo.
@@ -763,9 +764,9 @@ Para adicionar uma chave de API, insira o valor no campo de texto e clique em `S
 
 A aba **Sobre** mostra:
 
-- o nome do aplicativo
-- o número da versão
-- a data da compilação
+- o nome do aplicativo e a frase de efeito
+- o número da versão e a data da compilação
+- informações de licença e direitos autorais, com um link para abrir **Avisos de terceiros**
 - um link para o repositório do projeto
 
 <br/><br/>
@@ -809,10 +810,10 @@ No modo **Avançado**, abra [**Configurações** > **Modelos**](#models) e cliqu
 
 Tente uma ou mais destas opções:
 
-- escolha um modelo diferente
-- use uma entrada mais curta
-- desative **Tradução em tempo real (enquanto digita)** em [**Configurações** > **Configurações gerais**](#general-settings)
-- use modelos gratuitos para tarefas simples (veja [Modelos](#models))
+- escolher uma habilidade diferente (Fácil) ou modelo (Avançado)
+- usar uma entrada mais curta
+- desativar **Tradução em tempo real (enquanto digita)** em [**Configurações** > **Configurações gerais**](#general-settings)
+- usar modelos gratuitos para tarefas simples (veja [Modelos](#models))
 
 <br/>
 

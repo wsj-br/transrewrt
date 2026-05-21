@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:44.277Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:12:57.672Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: ms
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 - **Tulis semula** - ungkapkan semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
 - **Transformasikan** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai prompt.
 
-Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda memilih **kemahiran** (contohnya Percuma, Pantas, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik dari [**Tetapan** > **Model**](#models).
+Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda pilih **kemahiran** (contohnya Percuma (OpenRouter), Ringan, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik daripada [**Tetapan** > **Model**](#models).
 
 <br/>
 
@@ -81,7 +81,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Model](#models)
   - [Bahasa](#languages)
   - [Penjejakan kos](#cost-tracking)
-  - [Transformasikan (tab tetapan)](#transform-settings)
+  - [Transformasikan (tab tetapan)](#transform-settings-tab)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
   - [Perihal](#about)
@@ -116,17 +116,17 @@ Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menam
 
 Dalam bahasa yang mudah difahami:
 
-- Dalam mod **Mudah**, **kemahiran** adalah praset (Percuma, Pantas, Lanjutan, Teknikal, Undang-undang) yang dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Anda memilih kemahiran di bar alat pada Terjemah, Tulis Semula, dan Transformasikan.
+- Dalam mod **Mudah**, **kemahiran** adalah praset (Percuma (OpenRouter), Ringan, Lanjutan, atau Teknikal) yang dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Hanya kemahiran yang mempunyai pemetaan untuk penyedia semasa akan muncul dalam bar alat. Anda pilih kemahiran pada Terjemah, Tulis Semula, dan Transformasikan.
 - Dalam mod **Lanjutan**, **model** adalah enjin AI yang anda pilih secara langsung. ID model menggunakan **awalan penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
 - **Kunci API** (atau, untuk Ollama, **URL asas**) adalah cara aplikasi mengakses penyedia tersebut.
 
-Jika anda menggunakan **aplikasi desktop**, tambah kunci di [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, lihat [Cara mendapatkan kunci API OpenRouter percuma](#how-to-get-an-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (dari [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
+Jika anda menggunakan **aplikasi desktop**, tambah kunci di [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, lihat [Cara mendapatkan kunci API OpenRouter percuma](#how-to-get-a-free-openrouter-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (daripada [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
 
 Jika anda menggunakan **versi web**, pemilik pelayan mengkonfigurasi penyedia menggunakan pemboleh ubah persekitaran, jadi anda tidak boleh memasukkan kunci API secara langsung dalam aplikasi.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### Cara mendapatkan kunci API OpenRouter percuma (aplikasi desktop)
 
 Jika anda menggunakan aplikasi desktop, ikuti langkah-langkah berikut:
@@ -208,7 +208,7 @@ Bar alat berubah sedikit bergantung kepada lokasi anda dalam aplikasi.
 - Di sebelah kiri, ia menunjukkan nama halaman semasa.
 - Di sebelah kanan, ia menunjukkan pengawal **pemilih kemahiran atau model** dan **Bahasa antara muka**.
 
-Dalam mod **Mudah**, bar alat menunjukkan **pemilih kemahiran** (Percuma, Pantas, Lanjutan, Teknikal, Undang-undang, dan praset serupa). Kemahiran bergantung kepada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings). Jika **Penyedia** adalah **Ollama**, bar alat akan menyenaraikan model tempatan yang telah dipasang anda sebagai ganti kemahiran.
+Dalam mod **Mudah**, bar alat menunjukkan **pemilih kemahiran** dengan praset binaan **Percuma (OpenRouter)**, **Ringan**, **Lanjutan**, dan **Teknikal**. Kemahiran yang muncul bergantung pada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings)—contohnya, **Percuma (OpenRouter)** hanya disenaraikan apabila penyedia ialah OpenRouter. Jika **Penyedia** ialah **Ollama**, bar alat akan senaraikan model tempatan yang telah dipasang sebagai ganti kemahiran.
 
 Dalam mod **Lanjutan**, **pemilih model** membolehkan anda memilih enjin AI mana yang digunakan untuk tugas semasa.
 
@@ -290,9 +290,9 @@ Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah c
 - **Auto-copy result to clipboard** akan menyalin hasil secara automatik selepas terjemahan berjaya dilaksanakan.
 - **Real-time translation (while typing)** akan menjalankan terjemahan semasa anda menaip.
 - **Timeout (ms)** mengawal berapa lama aplikasi menunggu sebelum menjalankan terjemahan masa sebenar.
-- **Enter** mengawal apa yang berlaku apabila anda menekan `Enter`:
-
-<br/><br/>
+- **Kelakuan untuk ENTER** mengawal apa yang berlaku apabila anda menekan `Enter`:
+  - **Enter** melaksanakan terjemahan atau penulisan semula (lalai).
+  - **Shift + Enter** melaksanakan terjemahan atau penulisan semula; **Enter** biasa memasukkan baris baharu.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -307,8 +307,8 @@ Ini berguna untuk:
 
 - membetulkan ejaan dan tatabahasa (**Periksa Ejaan & Tatabahasa**)
 - menjadikan teks lebih jelas (**Tingkatkan Kejelasan**)
-- beberapa bentuk penyusunan semula yang berbeza dalam satu larian (**Versi alternatif**)
-- menjadikan teks lebih formal atau tidak formal (**Formal** / **Tidak formal**)
+- beberapa reformulasi berbeza dalam satu larian (**Versi alternatif**)
+- menjadikan teks lebih formal atau tidak formal (**Jadikan Formal** / **Jadikan Tidak Formal**)
 - meringkaskan atau mengembangkan teks (**Ringkaskan** / **Kembangkan**)
 - menjadikan teks lebih teknikal (**Jadikan Teknikal**)
 
@@ -371,7 +371,7 @@ Cara terpantas untuk mencipta arahan adalah:
 1. Klik **Arahan baharu**.
 2. Klik **Jana arahan**.
 3. Huraikan apa yang anda mahu arahan itu lakukan.
-4. Pilih model.
+4. Pilih kemahiran (Mudah) atau model (Lanjutan).
 5. Biarkan aplikasi mencipta draf untuk anda.
 6. Semak draf tersebut dan klik **Simpan**.
 
@@ -574,7 +574,7 @@ Gunakan **Tetapan Umum** untuk mengawal kelakuan menaip, sama ada butiran pelaks
 
 **Pengalaman AI**
 
-- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan tetapan prapemilihan kemahiran terbina dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti kemahiran.
+- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan praset kemahiran binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti kemahiran. Dalam mod Mudah, **Katalog kemahiran** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segar semula katalog kemahiran** untuk mengambil senarai kemahiran terkini daripada repositori projek (aplikasi juga menyemak secara berkala di latar belakang).
 - **Lanjutan**: pilih model individu dalam bar alat; urus senarai di bawah [**Tetapan** > **Model**](#models).
 
 Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang ditetapkan dalam persekitaran pelayan. Dalam **aplikasi desktop**, konfigurasikan kunci di bawah [**Konfigurasi API**](#api-config).
@@ -594,13 +594,14 @@ Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang di
 
 **Rupa**
 
-- **Tunjukkan maklumat kos pada tindakan** mengawal paparan kos setiap operasi (jika tersedia) dan jumlah kos pada panel output Terjemahkan, Tulis Semula, dan Transformasikan.
-- **Digit pecahan kos** mengubah cara perpuluhan kos dipaparkan.
-- **Hanya untuk web:** **tunjukkan jarak di sekeliling aplikasi** menambah ruang tambahan di sekeliling antara muka.
-- **Familia Fon** mengubah fon penulisan dalam panel teks.
-- **Saiz** mengubah saiz fon.
+- **Tema** menukar antara rupa cerah, gelap, dan sistem.
+- **Tunjukkan maklumat kos pada tindakan** mengawal paparan kos setiap operasi (jika tersedia) dan jumlah kos pada panel output Terjemah, Tulis Semula, dan Transformasikan.
+- **Digit pecahan kos** menukar cara perpuluhan kos dipaparkan.
+- **Web sahaja:** **tunjukkan jarak di sekeliling aplikasi** menambah ruang tambahan di sekeliling antara muka.
+- **Famili Fon** menukar fon penulisan dalam panel teks.
+- **Saiz** menukar saiz fon.
 
-**Sandaran Konfigurasi**
+**Sandaran Konfigurasi** (hanya untuk pentadbir aplikasi desktop dan web)
 
 - **Sertakan data penggunaan dalam sandaran** - apabila didayakan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
 - **Sandar konfigurasi** - mencipta satu fail ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` dalam UTC secara lalai) dengan `config.json`, `state.json`, kunci penyulitan pilihan, pengguna, keutamaan, arahan tersuai, dan data penggunaan jika anda memilih untuk menyertakannya. Selepas sandaran berjaya, pengesahan akan memaparkan nama fail yang disimpan.
@@ -763,9 +764,9 @@ Untuk menambah kunci API, masukkan nilai dalam ruang teks dan klik `Save`. Untuk
 
 Tab **Perihal** menunjukkan:
 
-- nama aplikasi
-- nombor versi
-- tarikh binaan
+- nama aplikasi dan frasa tag
+- nombor versi dan tarikh binaan
+- maklumat lesen dan hak cipta, dengan pautan untuk membuka **Pemberitahuan pihak ketiga**
 - pautan ke repositori projek
 
 <br/><br/>
@@ -809,10 +810,10 @@ Dalam mod **Lanjutan**, buka [**Tetapan** > **Model**](#models) dan klik **Segar
 
 Cuba satu atau lebih perkara berikut:
 
-- pilih model yang berbeza
+- pilih kemahiran (Mudah) atau model (Lanjutan) yang berbeza
 - gunakan input yang lebih pendek
-- matikan **Terjemahan masa sebenar (semasa menaip)** di [**Tetapan** > **Tetapan Umum**](#general-settings)
-- gunakan model percuma untuk tugas mudah (rujuk [Model](#models))
+- matikan **Terjemahan masa nyata (semasa menaip)** di [**Tetapan** > **Tetapan Umum**](#general-settings)
+- gunakan model percuma untuk tugas ringkas (rujuk [Model](#models))
 
 <br/>
 

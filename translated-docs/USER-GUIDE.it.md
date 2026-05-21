@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:44.158Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:12:18.430Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: it
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 - **Riscrivi** - riformula il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
 - **Trasforma** - elabora il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale chiamate prompt.
 
-Per impostazione predefinita, l'app viene eseguita in modalità **Facile**: selezioni una **competenza** (ad esempio Gratuita, Veloce o Tecnica) e un **provider** in Impostazioni, senza dover scegliere gli ID del modello. Passa ad **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri la lista classica dei modelli da [**Impostazioni** > **Modelli**](#models).
+Per impostazione predefinita, l'app funziona in **Facile**: selezioni una **competenza** (ad esempio Gratuita (OpenRouter), Lite o Tecnica) e un **provider** in Impostazioni, senza scegliere ID di modelli. Passa ad **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri l'elenco classico dei modelli da [**Impostazioni** > **Modelli**](#models).
 
 <br/>
 
@@ -82,7 +82,7 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Modelli](#models)
   - [Lingue](#languages)
   - [Monitoraggio costi](#cost-tracking)
-  - [Trasforma (scheda impostazioni)](#transform-settings)
+  - [Trasforma (scheda impostazioni)](#transform-settings-tab)
   - [Utenti](#users)
   - [Configurazione API](#api-config)
   - [Informazioni](#about)
@@ -117,18 +117,18 @@ Non è necessario selezionare un modello a pagamento per iniziare. Non appena ag
 
 In termini semplici:
 
-- In modalità **Facile**, una **competenza** è un profilo predefinito (Gratuito, Veloce, Avanzato, Tecnico, Legale) associato a un modello per il **provider** scelto (OpenRouter, OpenAI, Ollama e altri). Selezioni la competenza nella barra degli strumenti in Traduci, Riscrivi e Trasforma.
-- In modalità **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID del modello utilizzano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **chiave API** (o, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
+- In **Facile**, una **competenza** è un preset (Gratuito (OpenRouter), Lite, Avanzato o Tecnico) associato a un modello per il **provider** scelto (OpenRouter, OpenAI, Ollama e altri). Solo le competenze con un mapping per il provider corrente appaiono nella barra degli strumenti. Selezioni la competenza in Traduci, Riscrivi e Trasforma.
+- In **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID modello usano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **chiave API** (oppure, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
 
-Se stai utilizzando l'app **desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che utilizzi. Per l'uso esclusivo di OpenRouter, consulta [Come ottenere una chiave API OpenRouter gratuita](#how-to-get-an-api-key-desktop-app) di seguito. Se non desideri utilizzare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali, come `translategemma:4b`.
+Se utilizzi l'**app desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che usi. Per l'uso esclusivo di OpenRouter, vedi [Come ottenere una chiave API OpenRouter gratuita](#how-to-get-a-free-openrouter-api-key-desktop-app) di seguito. Se non vuoi usare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali invece, come `translategemma:4b`.
 
 Se stai utilizzando la **versione web**, il proprietario del server configura i provider tramite variabili d'ambiente, quindi non puoi inserire direttamente le chiavi API nell'applicazione.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Come ottenere una chiave API gratuita di OpenRouter (app desktop)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Come ottenere una chiave API OpenRouter gratuita (app desktop)
 
 Se stai utilizzando l'app desktop, segui questi passaggi:
 
@@ -209,7 +209,7 @@ La barra degli strumenti cambia leggermente a seconda della posizione all'intern
 - A sinistra, mostra il nome della pagina corrente.
 - A destra, mostra il selettore di **competenza o modello** e il controllo della **Lingua dell'interfaccia**.
 
-In modalità **Facile**, la barra degli strumenti mostra un selettore di **competenza** (Gratuito, Veloce, Avanzato, Tecnico, Legale e altri profili simili). Le competenze dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings). Se il **Provider** è **Ollama**, la barra degli strumenti elenca i tuoi modelli locali installati invece delle competenze.
+In **Facile**, la barra degli strumenti mostra un **selettore di competenze** con i preset integrati **Gratuito (OpenRouter)**, **Lite**, **Avanzato** e **Tecnico**. Le competenze disponibili dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings): ad esempio, **Gratuito (OpenRouter)** è elencato solo quando il provider è OpenRouter. Se il **Provider** è **Ollama**, la barra degli strumenti elenca i modelli locali installati invece delle competenze.
 
 In modalità **Avanzato**, il selettore di **modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
 
@@ -291,9 +291,9 @@ In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modif
 - **Copia automaticamente il risultato negli appunti** copia automaticamente il risultato al termine dell'elaborazione.
 - **Traduzione in tempo reale (durante la digitazione)** esegue traduzioni mentre digiti.
 - **Timeout (ms)** regola per quanto tempo l'app attende prima di eseguire una traduzione in tempo reale.
-- **Invio** controlla cosa accade quando premi `Enter`:
-
-<br/><br/>
+- **Comportamento per INVIO** controlla cosa accade quando premi `Enter`:
+  - **Invio** esegue traduzione o riscrittura (predefinito).
+  - **Maiusc + Invio** esegue traduzione o riscrittura; **Invio** semplice inserisce una nuova riga.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -306,10 +306,10 @@ Usa **Riscrivi** quando desideri migliorare l'espressione senza cambiarne il sig
 
 Questa funzione è utile per:
 
-- correggere ortografia e grammatica (**Controllo ortografico e grammaticale**)
-- rendere il testo più chiaro (**Migliora chiarezza**)
-- ottenere diverse riformulazioni distinte in un'unica esecuzione (**Versioni alternative**)
-- rendere il testo più formale o meno formale (**Formale** / **Informale**)
+- correzione di ortografia e grammatica (**Controllo ortografico e grammaticale**)
+- miglioramento della chiarezza del testo (**Migliora chiarezza**)
+- diverse riformulazioni distinte in un'unica esecuzione (**Versioni alternative**)
+- rendere il testo più formale o più informale (**Rendi formale** / **Rendi informale**)
 - accorciare o espandere il testo (**Accorcia** / **Espandi**)
 - rendere il testo più tecnico (**Rendi tecnico**)
 
@@ -371,8 +371,8 @@ Il modo più veloce per creare un prompt è:
 
 1. Fai clic su **Nuovo prompt**.
 2. Fai clic su **Genera prompt**.
-3. Descrivi cosa vuoi che il prompt faccia.
-4. Scegli un modello.
+3. Descrivi cosa deve fare il prompt.
+4. Scegli una competenza (Facile) o un modello (Avanzato).
 5. Lascia che l'app crei una bozza per te.
 6. Rivedi la bozza e fai clic su **Salva**.
 
@@ -575,8 +575,8 @@ Utilizza **Impostazioni generali** per controllare il comportamento della digita
 
 **Esperienza AI**
 
-- **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud utilizzano i preset di competenze integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer invece delle competenze.
-- **Avanzato**: seleziona singoli modelli nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
+- **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud usano i preset di competenze integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer invece delle competenze. In modalità Facile, **Catalogo delle competenze** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo delle competenze** per recuperare l'elenco più recente dal repository del progetto (l'app verifica periodicamente anche in background).
+- **Avanzato**: seleziona modelli individuali nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
 
 Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate nell'ambiente del server. Nell'**app desktop**, configura le chiavi in [**Configurazione API**](#api-config).
 
@@ -595,13 +595,14 @@ Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate ne
 
 **Aspetto**
 
+- **Tema** passa tra aspetto chiaro, scuro e del sistema.
 - **Mostra informazioni sui costi nelle azioni** controlla la visualizzazione del costo per operazione (se disponibile) e del costo totale nei pannelli di output di Traduci, Riscrivi e Trasforma.
 - **Cifre decimali del costo** modifica la visualizzazione delle cifre decimali del costo.
 - **Solo web:** **mostra un margine intorno all'app** aggiunge spazio extra intorno all'interfaccia.
-- **Famiglia caratteri** modifica il carattere utilizzato nei pannelli di testo.
+- **Famiglia caratteri** modifica il carattere di scrittura nei pannelli di testo.
 - **Dimensione** modifica la dimensione del carattere.
 
-**Backup configurazione**
+**Backup configurazione** (solo app desktop e amministratori web)
 
 - **Includi i dati di utilizzo nel backup** - se abilitato, il file ZIP contiene anche la cronologia di esecuzione e i dati delle chiamate API.
 - **Esegui backup configurazione** - crea un singolo file ZIP (di default `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) contenente `config.json`, `state.json`, chiave di crittografia opzionale, utenti, preferenze, prompt personalizzati e dati di utilizzo se hai scelto di includerli. Al termine del backup, la conferma mostra il nome del file salvato.
@@ -764,10 +765,10 @@ Per aggiungere una chiave API, inserisci il valore nel campo di testo e clicca s
 
 La scheda **Informazioni** mostra:
 
-- il nome dell'app
-- il numero di versione
-- la data di build
-- un collegamento al repository del progetto
+- nome dell'app e slogan
+- numero di versione e data di build
+- informazioni su licenza e copyright, con un link per aprire **Avvisi di parti terze**
+- un link al repository del progetto
 
 <br/><br/>
 
@@ -810,10 +811,10 @@ In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e fai 
 
 Prova una o più delle seguenti azioni:
 
-- scegli un modello diverso
-- utilizza un input più breve
-- disattiva **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
-- utilizza modelli gratuiti per compiti semplici (vedi [Modelli](#models))
+- scegliere una competenza diversa (Facile) o un modello diverso (Avanzato)
+- usare un input più breve
+- disattivare **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
+- usare modelli gratuiti per compiti semplici (vedi [Modelli](#models))
 
 <br/>
 

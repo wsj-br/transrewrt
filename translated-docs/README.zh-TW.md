@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:34.833Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:10:17.909Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: zh-TW
 source_file_path: README.md
 translation_models:
@@ -13,7 +13,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -26,10 +26,10 @@ AI 驅動的文字工具：支援多語言翻譯、不同風格重寫，並可�
 - **重寫** - 修正語法、提升清晰度、調整正式或非正式語氣、縮短或擴展內容、技術性轉換
 - **轉換** - 自訂 AI 提示；建立與管理提示，每個提示可選擇性設定目標語言
 - **歷史記錄** - 完整的執行歷史，包含輸入與輸出文字、篩選功能，以及匯出功能
-- **簡易與進階** - 簡易模式（預設）：依供應商精選技能（免費、快速、進階、技術、法律），無需選擇模型 ID；進階模式：顯示您設定之供應商的完整模型清單
-- **模型與成本** - 成本與使用量儀表板（摘要、依模型、所有呼叫），可匯出；OpenRouter 顯示實際花費，其他供應商則使用估算值
-- **使用者介面** - 多語言介面（30+ 種語言，支援由右至左顯示）、字型等
-- **網頁模式** - 支援多使用者並具備管理員角色
+- **簡易與進階** - 簡易模式（預設）：依供應商精選技能（**免費 (OpenRouter)**、**精簡版**、**進階**、**技術版**；僅顯示已選取供應商支援對應功能的技能），無需選擇模型 ID；進階模式：顯示您已設定之供應商的完整模型清單
+- **模型與成本** - 成本與使用量儀表板（摘要、依模型、所有呼叫），可匯出資料；OpenRouter 顯示實際花費，其他供應商則使用估算值
+- **使用者介面** - 多國語言介面（30+ 種語言，支援由右至左顯示）、字型等
+- **網頁模式** - 支援多使用者與管理員角色
 - **桌面版** - 適用於 Windows 和 Linux 的 Electron 應用程式
 - **自行架設** - 適用於 amd64 與 arm64 的 Docker 映像檔（支援 Raspberry Pi）
 

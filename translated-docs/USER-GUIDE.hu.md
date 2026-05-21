@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:41.743Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:12:35.173Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: hu
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ A Transrewrt három fő módon segít a szöveggel való munkában:
 - **Átírás** – szöveg újrafogalmazása más stílusban, például érthetőbben, rövidebben vagy formálisabban.
 - **Átalakítás** – szöveg feldolgozása egyéni MI-utasításokkal, amelyeket utasításoknak (promptoknak) nevezünk.
 
-Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: kiválaszt egy **készséget** (például Ingyenes, Gyors vagy Műszaki) és egy **szolgáltatót** a Beállításokban, anélkül, hogy modellazonosítókat választana. Váltson **Haladó** módra a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban, ha szeretné használni a klasszikus modelllistát a [**Beállítások** > **Modellek**](#models) menüpontban.
+Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: kiválaszt egy **készséget** (például Ingyenes (OpenRouter), Kézi vagy Műszaki) és egy **szolgáltatót** a Beállításokban, anélkül, hogy modellazonosítókat választana. Váltson **Haladó** módra a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban, ha a klasszikus modelllistát szeretné használni a [**Beállítások** > **Modellek**](#models) menüpontban.
 
 <br/>
 
@@ -81,7 +81,7 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [Modellek](#models)
   - [Nyelvek](#languages)
   - [Költségkövetés](#cost-tracking)
-  - [Átalakítás (beállítások fül)](#transform-settings)
+  - [Átalakítás (beállítások fül)](#transform-settings-tab)
   - [Felhasználók](#users)
   - [API beállítások](#api-config)
   - [Névjegy](#about)
@@ -116,18 +116,18 @@ Nem szükséges fizetős modellt választanod az induláshoz. Amint hozzáadod a
 
 Egyszerű szavakkal:
 
-- **Egyszerű** módban a **készség** egy előre beállított érték (Ingyenes, Gyors, Haladó, Műszaki, Jogi), amely a kiválasztott **szolgáltató** (OpenRouter, OpenAI, Ollama és mások) egyik modelljéhez rendelődik. A készséget a Fordítás, Átírás és Átalakítás eszköztáron választhatja ki.
+- **Egyszerű** módban a **készség** egy előre beállított érték (Ingyenes (OpenRouter), Kézi, Haladó vagy Műszaki), amely a kiválasztott **szolgáltatóhoz** (OpenRouter, OpenAI, Ollama és mások) rendelt modellt jelenti. Csak azok a készségek jelennek meg az eszköztáron, amelyekhez van hozzárendelés az aktuális szolgáltatónál. A készséget a Fordítás, Átírás és Átalakítás műveleteknél választhatja ki.
 - **Haladó** módban a **modell** az az AI-motor, amelyet közvetlenül választ ki. A modellazonosítók **szolgáltatói előtagot** használnak (például `openrouter/…`, `openai/…`, `ollama/…`).
-- Az **API kulcs** (vagy Ollama esetén a **bázis URL**) az, amellyel az alkalmazás eléri a szolgáltatót.
+- Az **API kulcs** (vagy Ollama esetén az **alap URL**) az, amellyel az alkalmazás eléri a szolgáltatót.
 
-Ha az **asztali alkalmazást** használja, adjon hozzá kulcsokat a használt szolgáltatókhoz a [**Beállítások** > **API beállítások**](#api-config) menüpontban. Ha csak OpenRouter-t használ, tekintse meg az alábbi [Hogyan szerezhetek ingyenes OpenRouter API kulcsot](#how-to-get-an-api-key-desktop-app) részt. Ha nem szeretne API kulcsot használni, telepítheti az Ollama-t ([ollama.com](https://ollama.com) címről), és helyi modelleket használhat, például a `translategemma:4b` modellt.
+Ha az **asztali alkalmazást** használja, adja hozzá az API-kulcsokat a használt szolgáltatókhoz a [**Beállítások** > **API beállítások**](#api-config) menüpontban. Csak OpenRouter használata esetén lásd alább: [Hogyan szerezhetek ingyenes OpenRouter API kulcsot](#how-to-get-a-free-openrouter-api-key-desktop-app). Ha nem szeretne API kulcsot használni, telepítheti az Ollamát (az [ollama.com](https://ollama.com) oldalról) és helyi modelleket használhat helyette, például a `translategemma:4b` modellt.
 
 Ha a **webes verziót** használod, a szerver üzemeltetője konfigurálja a szolgáltatókat környezeti változók segítségével, így nem tudsz közvetlenül API-kulcsokat megadni az alkalmazásban.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
-### Ingyenes OpenRouter API-kulcs beszerzése (desktop alkalmazás)
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
+### Hogyan szerezhetek ingyenes OpenRouter API kulcsot (asztali alkalmazás)
 
 Ha a desktop alkalmazást használod, kövesd az alábbi lépéseket:
 
@@ -208,7 +208,7 @@ Az eszköztár kicsit megváltozik attól függően, hogy hol tartózkodik az al
 - Bal oldalon megjelenik az aktuális oldal neve.
 - Jobb oldalon megjelenik a **készség vagy modell kiválasztó** és a **Felület nyelve** vezérlő.
 
-**Egyszerű** módban az eszköztár egy **készségkiválasztót** jelenít meg (Ingyenes, Gyors, Haladó, Műszaki, Jogi és hasonló előre beállított értékek). A készségek a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban kiválasztott **Szolgáltatótól** függenek. Ha a **Szolgáltató** **Ollama**, akkor az eszköztár a telepített helyi modelleket jeleníti meg a készségek helyett.
+Az **Egyszerű** módban az eszköztár egy **készségválasztót** jelenít meg az alapértelmezett beállításokkal: **Ingyenes (OpenRouter)**, **Kézi**, **Haladó** és **Műszaki**. A megjelenő készségek attól függenek, hogy milyen **Szolgáltatót** választott a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban – például a **Ingyenes (OpenRouter)** csak akkor jelenik meg, ha a szolgáltató az OpenRouter. Ha a **Szolgáltató** az **Ollama**, akkor az eszköztár a gépre telepített helyi modelleket jeleníti meg a készségek helyett.
 
 **Haladó** módban a **modellkiválasztó** lehetővé teszi, hogy kiválassza, melyik AI-motort használja az aktuális feladathoz.
 
@@ -290,9 +290,9 @@ A [**Beállítások** > **Általános beállítások**](#general-settings) menü
 - Az **Eredmény automatikus másolása a vágólapra** az eredményt automatikusan másolja a vágólapra a sikeres fordítás után.
 - Az **Igény szerinti fordítás (gépelés közben)** a gépelés közben folyamatosan fordít.
 - Az **Időtúllépés (ms)** határozza meg, mennyi ideig vár az alkalmazás az igény szerinti fordítás elindítása előtt.
-- Az **Enter** határozza meg, mi történjen az `Enter` billentyű lenyomásakor:
-
-<br/><br/>
+- Az **ENTER működése** azt szabályozza, mi történik az `Enter` billentyű lenyomásakor:
+  - **Enter**: fordítást vagy átírást indít (alapértelmezett).
+  - **Shift + Enter**: fordítást vagy átírást indít; egyszerű **Enter** új sort szúr be.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -305,10 +305,10 @@ Használja az **Átírás** funkciót, ha a szöveg jelentésének megőrzése m
 
 Ez akkor hasznos, ha:
 
-- helyesírási és nyelvtani hibákat szeretne javítani (**Helyesírás- és nyelvtanellenőrzés**)
-- világosabbá szeretné tenni a szöveget (**Tisztaság javítása**)
-- több különböző átfogalmazást szeretne egyszerre (**Alternatív verziók**)
-- formálisabbá vagy informálisabbá szeretné tenni a szöveget (**Formális** / **Informális**)
+- helyesírás- és nyelvtanjavítás (**Helyesírás- és nyelvtanellenőrzés**)
+- szöveg tisztábbá tétele (**Tisztaság javítása**)
+- több különböző átfogalmazás egy futtatásban (**Alternatív verziók**)
+- szöveg formálisabbá vagy informálisabbá tétele (**Formálisra alakítás** / **Informálisra alakítás**)
 - rövidebbé vagy hosszabbá szeretné tenni a szöveget (**Rövidítés** / **Bővítés**)
 - műszakibbá szeretné tenni a szöveget (**Műszaki megfogalmazás**)
 
@@ -371,7 +371,7 @@ A legrövidebb út egy prompt létrehozásához:
 1. Kattintson a **Új parancs** gombra.
 2. Kattintson a **Parancs létrehozása** gombra.
 3. Írja le, mit szeretne, hogy a parancs csináljon.
-4. Válasszon egy modellt.
+4. Válasszon készséget (Egyszerű) vagy modellt (Haladó).
 5. Hagyja, hogy az alkalmazás létrehozzon egy vázlatot.
 6. Ellenőrizze a vázlatot, majd kattintson a **Mentés** gombra.
 
@@ -574,8 +574,8 @@ Az **Általános beállítások** használatával szabályozhatja a gépelés m�
 
 **AI-élmény**
 
-- **Egyszerű** (alapértelmezett): válasszon **Szolgáltatót** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras vagy Ollama). A felhőszolgáltatók az eszköztár beépített készségelőbeállításait használják. Az **Ollama** a gépén telepített modelleket sorolja fel a készségek helyett.
-- **Haladó**: válasszon egyedi modelleket az eszköztáron; kezelje a listát a [**Beállítások** > **Modellek**](#models) alatt.
+- **Egyszerű** (alapértelmezett): válasszon **Szolgáltatót** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras vagy Ollama). A felhőszolgáltatók az eszköztár beépített készségelőbeállításait használják. Az **Ollama** a gépre telepített modelleket jeleníti meg a készségek helyett. Az Egyszerű módban a **Készségkatalógus** megjeleníti a katalógus verzióját és az utolsó frissítés idejét; kattintson a **Készségkatalógus frissítése** gombra, hogy letöltse a legfrissebb készséglistát a projekt adattárából (az alkalmazás szintén időnként automatikusan ellenőrzi a háttérben).
+- **Haladó**: válassza ki az egyes modelleket az eszköztáron; kezelje a listát a [**Beállítások** > **Modellek**](#models) menüpontban.
 
 A **webalkalmazásban** a megjelenő szolgáltatók azon API-kulcsoktól függenek, amelyeket a szerverkörnyezetben állítottak be. Az **asztali alkalmazásban** az API-kulcsokat a [**API beállítások**](#api-config) alatt konfigurálhatja.
 
@@ -594,13 +594,14 @@ A **webalkalmazásban** a megjelenő szolgáltatók azon API-kulcsoktól függen
 
 **Megjelenés**
 
-- **Költséginformációk megjelenítése a műveleteken** szabályozza az egyes műveletek költségének (ha elérhető) és a teljes költségnek a megjelenítését a Fordítás, Átírás és Átalakítás kimeneti paneljein.
-- **Költség tizedesjegyek száma** módosítja a költségek tizedesjegyeinek megjelenítését.
-- **Csak web:** **margó megjelenítése az alkalmazás körül** extra teret ad az interfész körül.
-- **Betűtípus** módosítja a szövegpanelek betűtípusát.
-- **Méret** módosítja a betűméretet.
+- A **Téma** vált a világos, sötét és rendszer szerinti megjelenés között.
+- A **Költséginformációk megjelenítése a műveleteken** szabályozza az egyes műveletek költségének (ha elérhető) és a teljes költségnek a megjelenítését a Fordítás, Átírás és Átalakítás kimeneti paneljein.
+- A **Költség tizedesjegyek száma** módosítja a költségek tizedesjegyeinek megjelenítését.
+- **Csak webes verzió:** a **margó megjelenítése az alkalmazás körül** további teret ad az interfész körül.
+- A **Betűtípus** módosítja a szövegpanelek betűtípusát.
+- A **Méret** módosítja a betűméretet.
 
-**Konfiguráció biztonsági mentése**
+**Konfiguráció biztonsági mentése** (csak asztali alkalmazás és webes rendszergazdák számára)
 
 - **Használati adatok belefoglalása a biztonsági másolatba** – ha engedélyezve van, a ZIP fájl tartalmazza az előzményeket és az API-hívások adatait is.
 - **Konfiguráció biztonsági mentése** – egyetlen ZIP fájlt hoz létre (alapértelmezés szerint `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` UTC-ben), amely tartalmazza a `config.json`, `state.json`, opcionális titkosítási kulcsot, felhasználókat, beállításokat, egyéni promptokat, valamint a használati adatokat, ha ezt választottad. A sikeres biztonsági mentés után a megerősítés megjeleníti a mentett fájl nevét.
@@ -763,10 +764,10 @@ API-kulcs hozzáadásához írja be az értéket a szövegmezőbe, majd kattints
 
 A(z) **Névjegy** fül megjeleníti:
 
-- az alkalmazás nevét
-- a verziószámot
-- a build dátumát
-- egy hivatkozást a projekt adattárához
+- az alkalmazás neve és mottója
+- a verziószám és a build dátuma
+- licenc- és szerzői jogi információk, valamint hivatkozás a **Harmadik fél jogi nyilatkozatai** megnyitásához
+- hivatkozás a projekt adattárához
 
 <br/><br/>
 
@@ -809,9 +810,9 @@ Ha az asztali alkalmazást használja:
 
 Próbálja ki az alábbiak egyikét vagy többjét:
 
-- válasszon másik modellt
+- válasszon másik készséget (Egyszerű) vagy modellt (Haladó)
 - használjon rövidebb bemenetet
-- kapcsolja ki az **Igény szerinti fordítás (gépelés közben)** funkciót a [**Beállítások** > **Általános beállítások**](#general-settings) menüben
+- kapcsolja ki a **Valós idejű fordítás (gépelés közben)** funkciót a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban
 - egyszerű feladatokhoz használjon ingyenes modelleket (lásd: [Modellek](#models))
 
 <br/>

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:44.874Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:12:57.197Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: pl
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Narzędzie tekstowe z wykorzystaniem AI: tłumaczenie między językami, przefor
 - **Przepisz** – popraw błędy gramatyczne, popraw czytelność, wersja formalna/nieformalna, skróć, rozwiń, wersja techniczna
 - **Przekształć** – niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy dla każdej zachęty
 - **Historia** – pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
-- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): dobrane umiejętności według dostawcy (Darmowe, Szybkie, Zaawansowane, Techniczne, Prawne) bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
+- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): wybrane umiejętności według dostawcy (**Darmowe (OpenRouter)**, **Lite**, **Zaawansowany**, **Techniczny**; widoczne są tylko umiejętności z mapowaniem dla wybranego dostawcy) bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
 - **Modele i koszt** – tabele kosztów i zużycia (Podsumowanie, Według modelu, Wszystkie wywołania) z opcją eksportu; OpenRouter pokazuje rzeczywiste wydatki, inne dostawcy używają szacunków
 - **Interfejs użytkownika** – wielojęzyczny interfejs (ponad 30 języków, obsługa pisania od prawej do lewej), czcionki, ...
-- **Tryb internetowy** – obsługa wielu użytkowników z rolami administratora
+- **Tryb sieciowy** – obsługa wielu użytkowników z rolami administratora
 - **Aplikacja komputerowa** – aplikacja Electron dla systemów Windows i Linux
 - **Hostowana lokalnie** – obraz Docker dla architektur amd64 i arm64 (gotowy do użycia na Raspberry Pi)
 

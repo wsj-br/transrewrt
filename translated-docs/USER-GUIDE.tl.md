@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:39.125Z'
-source_file_mtime: '2026-05-18T14:39:33.449Z'
-source_file_hash: a95628603ab70243854f610fae2a7ec4ab65da77e12ecf804a519d5bc0698e92
+translation_last_updated: '2026-05-21T23:11:44.325Z'
+source_file_mtime: '2026-05-21T23:07:44.019Z'
+source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
 translation_language: tl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Tinutulungan ka ng Transrewrt na gumana sa teksto sa tatlong pangunahing paraan:
 - **Muling isulat** - i-parafrase ang teksto sa ibang estilo, tulad ng mas malinaw, mas maikli, o mas pormal.
 - **Baguhin** - i-proseso ang teksto gamit ang mga pasadyang AI na tagubilin na tinatawag na mga prompt.
 
-Ang app ay tumatakbo sa **Madali** na mode bilang default: pipili ka ng **kasangkapan** (halimbawa Libre, Mabilis, o Teknikal) at isang **provider** sa Mga Setting, nang hindi pinipili ang mga model ID. Lumipat sa **Advanced** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) kung gusto mo ang klasikong listahan ng modelo mula sa [**Mga Setting** > **Mga Modelo**](#models).
+Ang app ay tumatakbo sa **Madali** na mode bilang default: pumipili ka ng **kasangkapan** (halimbawa Libre (OpenRouter), Lite, o Teknikal) at isang **provider** sa Mga Setting, nang walang pagpili ng mga model ID. Lumipat sa **Advanced** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) kung gusto mo ang klasikong listahan ng mga modelo mula sa [**Mga Setting** > **Mga Modelo**](#models).
 
 <br/>
 
@@ -82,7 +82,7 @@ Ipinaliliwanag ng gabay na ito kung paano gamitin ang app kapag naka-install at 
   - [Mga Modelo](#models)
   - [Mga Wika](#languages)
   - [Pagsusubaybay ng Gastos](#cost-tracking)
-  - [Baguhin (tab ng mga setting)](#transform-settings)
+  - [Baguhin (mga setting tab)](#transform-settings-tab)
   - [Mga Gumagamit](#users)
   - [Config ng API](#api-config)
   - [Tungkol dito](#about)
@@ -117,17 +117,17 @@ Hindi mo kailangang pumili ng bayad na modelo upang magsimula. Sa sandaling idag
 
 Sa madaling salita:
 
-- Sa **Madali** na mode, ang isang **kasangkapan** ay isang preset (Libre, Mabilis, Advanced, Teknikal, Legal) na nauugnay sa isang modelo para sa napiling **provider** mo (OpenRouter, OpenAI, Ollama, at iba pa). Pumili ng kasangkapan sa toolbar sa Isalin, Muling Isulat, at Baguhin.
+- Sa **Madali** na mode, ang isang **kasangkapan** ay isang preset (Libre (OpenRouter), Lite, Advanced, o Teknikal) na nauugnay sa isang modelo para sa napiling **provider** mo (OpenRouter, OpenAI, Ollama, at iba pa). Ang mga kasangkapan na mayroong ugnayan sa kasalukuyang provider lamang ang lumilitaw sa toolbar. Pumipili ka ng kasangkapan sa Isalin, Muling Isulat, at Baguhin.
 - Sa **Advanced** na mode, ang isang **modelo** ay ang AI engine na pinipili mo nang direkta. Ang mga model ID ay gumagamit ng **prefix ng provider** (halimbawa `openrouter/…`, `openai/…`, `ollama/…`).
-- Ang isang **API key** (o, para sa Ollama, ang **base URL**) ang paraan kung paano maabot ng app ang provider.
+- Ang isang **API key** (o, para sa Ollama, isang **base URL**) ang ginagamit ng app para maabot ang provider.
 
-Kung gumagamit ka ng **desktop app**, magdagdag ng mga key sa [**Mga Setting** > **Config ng API**](#api-config) para sa bawat provider na gagamitin mo. Para sa OpenRouter lamang, tingnan ang [Paano makakuha ng libreng OpenRouter API key](#how-to-get-an-api-key-desktop-app) sa ibaba. Kung ayaw mong gamitin ang API key, maaari mong i-install ang Ollama (mula sa [ollama.com](https://ollama.com)) at gamitin ang mga lokal na modelo, tulad ng `translategemma:4b`.
+Kung gumagamit ka ng **desktop app**, magdagdag ng mga key sa [**Mga Setting** > **Config ng API**](#api-config) para sa bawat provider na ginagamit mo. Para sa OpenRouter lamang, tingnan ang [Paano makakuha ng libreng OpenRouter API key](#how-to-get-a-free-openrouter-api-key-desktop-app) sa ibaba. Kung ayaw mong gamitin ang API key, maaari mong i-install ang Ollama (mula sa [ollama.com](https://ollama.com)) at gamitin ang lokal na mga modelo, tulad ng `translategemma:4b`.
 
 Kung gumagamit ka ng **web version**, ang server owner ang nagko-configure ng mga provider gamit ang environment variables, kaya hindi mo direktang ma-enter ang mga API key sa loob ng application.
 
 <br/>
 
-<a id="how-to-get-an-api-key-desktop-app"></a>
+<a id="how-to-get-a-free-openrouter-api-key-desktop-app"></a>
 ### Paano makakuha ng libreng OpenRouter API key (desktop app)
 
 Kung gumagamit ka ng desktop app, sundin ang mga hakbang na ito:
@@ -209,7 +209,7 @@ Kaunti lamang nagbabago ang toolbar depende sa kung saan ka sa loob ng app.
 - Sa kaliwa, ipinapakita nito ang pangalan ng kasalukuyang pahina.
 - Sa kanan, ipinapakita nito ang **selector ng kasangkapan o modelo** at ang kontrol ng **Wika ng interface**.
 
-Sa **Madali** na mode, ipinapakita ng toolbar ang isang **selector ng kasangkapan** (Libre, Mabilis, Advanced, Teknikal, Legal, at iba pang mga preset). Ang mga kasangkapan ay nakadepende sa **Provider** na pinili mo sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings). Kung ang **Provider** ay **Ollama**, ang toolbar ay naglilista ng iyong naka-install na lokal na mga modelo imbes na mga kasangkapan.
+Sa **Madali** na mode, ang toolbar ay nagpapakita ng isang **pumili ng kasangkapan** na may mga built-in preset na **Libre (OpenRouter)**, **Lite**, **Advanced**, at **Teknikal**. Ang mga lumilitaw na kasangkapan ay nakadepende sa napiling **Provider** mo sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)—halimbawa, ang **Libre (OpenRouter)** ay nakalista lamang kapag ang provider ay OpenRouter. Kung ang **Provider** ay **Ollama**, ang toolbar ay naglilista ng mga lokal na modelo na naka-install sa iyong makina imbes na mga kasangkapan.
 
 Sa **Advanced** na mode, pinapayagan ka ng **selector ng modelo** na pumili kung aling AI engine ang gagamitin para sa kasalukuyang gawain.
 
@@ -291,9 +291,9 @@ Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin
 - **Auto-copy result to clipboard** ay awtomatikong kumokopya ng resulta pagkatapos ng matagumpay na pagsasalin.
 - **Real-time translation (habang nagta-type)** ay nagsasalin habang nagta-type ka.
 - **Timeout (ms)** ay nagtatakda kung gaano katagal hihintayin ng app bago magsagawa ng real-time na pagsasalin.
-- Ang **Enter** ay nagkokontrol kung ano ang mangyayari kapag pinindot mo ang `Enter`:
-
-<br/><br/>
+- Ang **Pag-uugali para sa ENTER** ay kontrolado kung ano ang mangyayari kapag pinindot mo ang `Enter`:
+  - Ang **Enter** ay nagpapatakbo ng pagsasalin o muling pagsulat (default).
+  - Ang **Shift + Enter** ay nagpapatakbo ng pagsasalin o muling pagsulat; ang simpleng **Enter** ay nagdadagdag ng bagong linya.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -306,10 +306,10 @@ Gamitin ang **Rewrite** kapag gusto mong mapabuti ang pagkakasulat nang hindi bi
 
 Makakatulong ito sa:
 
-- pagtama sa eja at balarila (**Check Spelling & Grammar**)
-- pagpapalinaw ng teksto (**Improve Clarity**)
-- maramihang iba't ibang pagbabago sa isang pagkakataon (**Alternative versions**)
-- pagpapormal o pagpapadiwa ng teksto (**Formal** / **Informal**)
+- pagwawasto ng eja at balarila (**Suriin ang Eja at Balarila**)
+- pagpapalinaw ng teksto (**Pabutihin ang Linaw**)
+- ilang iba't ibang pagbabago sa isang pagkakataon (**Mga alternatibong bersyon**)
+- pagpapormal o pagpapaimplormal ng teksto (**Gawing Pormal** / **Gawing Impormal**)
 - pagpapaiikli o pagpapalawak ng teksto (**Shorten** / **Expand**)
 - pagpaparami ng tono ng teksto na teknikal (**Make Technical**)
 
@@ -372,7 +372,7 @@ Ang pinakamabilis na paraan para gumawa ng prompt ay:
 1. I-click ang **Bagong prompt**.
 2. I-click ang **Bumuo ng prompt**.
 3. Ilarawan kung ano ang gusto mong gawin ng prompt.
-4. Pumili ng isang modelo.
+4. Pumili ng isang kasangkapan (Madali) o modelo (Advanced).
 5. Hayaan ang app na lumikha ng draft para sa iyo.
 6. Suriin ang draft at i-click ang **I-save**.
 
@@ -575,8 +575,8 @@ Gumamit ng **General Settings** upang kontrolin ang pag-uugali sa pag-type, kung
 
 **AI experience**
 
-- **Easy** (default): pumili ng **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, o Ollama). Ginagamit ng mga cloud provider ang built-in na skill presets sa toolbar. Ang **Ollama** ay naglilista ng mga modelo na naka-install sa iyong makina imbes na mga kasanayan.
-- **Advanced**: pumili ng mga indibidwal na modelo sa toolbar; pamahalaan ang listahan sa ilalim ng [**Settings** > **Models**](#models).
+- **Madali** (default): pumili ng **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, o Ollama). Ang mga cloud provider ay gumagamit ng mga built-in na preset ng kasangkapan sa toolbar. Ang **Ollama** ay naglilista ng mga modelo na naka-install sa iyong makina imbes na mga kasangkapan. Sa Madali na mode, ang **Katalogo ng mga kasanayan** ay nagpapakita ng bersyon ng katalogo at oras ng huling pag-update; i-click ang **I-refresh ang katalogo ng mga kasanayan** para i-fetch ang pinakabagong listahan ng mga kasangkapan mula sa repository ng proyekto (ang app ay nagsusuri rin nang pana-panahon sa background).
+- **Advanced**: pumili ng mga indibidwal na modelo sa toolbar; pamahalaan ang listahan sa ilalim ng [**Mga Setting** > **Mga Modelo**](#models).
 
 Sa **web app**, ang mga provider na lumilitaw ay nakadepende sa mga API key na naka-set sa server environment. Sa **desktop app**, i-configure ang mga key sa ilalim ng [**API Config**](#api-config).
 
@@ -595,13 +595,14 @@ Sa **web app**, ang mga provider na lumilitaw ay nakadepende sa mga API key na n
 
 **Hitsura**
 
-- Ang **Ipakita ang impormasyon ng gastos sa mga aksyon** ay kontrola ang display ng gastos bawat operasyon (kung available) at ang kabuuang gastos sa mga panel ng output ng Pagsasalin, Muling Pagsulat, at Pagbabago.
+- Ang **Tema** ay nagbabago sa pagitan ng maliwanag, madilim, at hitsura ng sistema.
+- Ang **Ipakita ang impormasyon ng gastos sa mga aksyon** ay kontrolado ang display ng gastos bawat operasyon (kung magagamit) at ang kabuuang gastos sa mga panel ng output ng Isalin, Muling Isulat, at Baguhin.
 - Ang **Cost fraction digits** ay nagbabago kung paano ipinapakita ang mga desimal sa gastos.
-- **Web lang:** Ang **magpakita ng margin sa paligid ng app** ay nagdaragdag ng ekstrang espasyo sa paligid ng interface.
-- Ang **Font Family** ay nagbabago sa font ng teksto sa mga panel ng teksto.
-- Ang **Size** ay nagbabago sa laki ng font.
+- **Web lamang:** Ang **magpakita ng margin sa paligid ng app** ay nagdadagdag ng ekstrang espasyo sa paligid ng interface.
+- Ang **Pamilya ng Font** ay nagbabago sa font ng pagsulat sa mga panel ng teksto.
+- Ang **Laki** ay nagbabago sa laki ng font.
 
-**Backup ng Configuration**
+**Backup ng Configuration** (para lamang sa mga tagapangasiwa ng desktop app at web)
 
 - **Isama ang data ng paggamit sa backup** - kapag naka-enable, ang ZIP ay naglalaman din ng kasaysayan ng pagpapatakbo at data ng API call.
 - **I-backup ang configuration** - gumagawa ng isang ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` sa UTC bilang default) na naglalaman ng `config.json`, `state.json`, opsyonal na encryption key, mga gumagamit, mga kagustuhan, mga custom na prompt, at data ng paggamit kung pinili mo ito. Matapos ang matagumpay na backup, ang kumpirmasyon ay nagpapakita ng pangalan ng naka-save na file.
@@ -764,9 +765,9 @@ Para magdagdag ng API key, ilagay ang halaga sa text field at i-click ang `Save`
 
 Ipapakita ng tab na **Tungkol dito**:
 
-- ang pangalan ng app
-- ang numero ng bersyon
-- ang petsa ng build
+- ang pangalan ng app at tagline
+- ang numero ng bersyon at petsa ng build
+- impormasyon ng lisensya at copyright, na may link para buksan ang **Mga abiso ng third-party**
 - isang link sa repository ng proyekto
 
 <br/><br/>
@@ -810,10 +811,10 @@ Sa **Advanced** na mode, buksan ang [**Mga Setting** > **Mga Modelo**](#models) 
 
 Subukan ang isa o higit pa sa mga sumusunod:
 
-- pumili ng ibang modelo
+- pumili ng ibang kasangkapan (Madali) o modelo (Advanced)
 - gumamit ng mas maikling input
-- patayin ang **Real-time na pagsasalin (habang nagta-type)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
-- gamitin ang libreng mga modelo para sa mga simpleng gawain (tingnan ang [Mga Modelo](#models))
+- i-off ang **Real-time na pagsasalin (habang nagtatatype)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
+- gumamit ng libreng mga modelo para sa mga simpleng gawain (tingnan ang [Mga Modelo](#models))
 
 <br/>
 

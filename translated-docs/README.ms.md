@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:42.359Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:12:38.454Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: ms
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza,
 - **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, ringkaskan, kembangkan, teknikal
 - **Transformasikan** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Mudah & Lanjutan** - Mod Mudah (lalai): kemahiran terpilih mengikut penyedia (Percuma, Pantas, Lanjutan, Teknikal, Undang-undang) tanpa memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
+- **Mudah & Lanjutan** - Mod Mudah (lalai): kemahiran terpilih mengikut penyedia (**Percuma (OpenRouter)**, **Lite**, **Lanjutan**, **Teknikal**; hanya kemahiran dengan pemetaan untuk penyedia terpilih yang akan muncul) tanpa perlu memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
 - **Model & kos** - papan pemuka kos dan penggunaan (Ringkasan, Mengikut Model, Semua Panggilan) dengan fungsi eksport; OpenRouter menunjukkan perbelanjaan sebenar, penyedia lain menggunakan anggaran
-- **UI** - antara muka pelbagai bahasa (lebih 30 bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
+- **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
+- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
 - **Desktop** - Aplikasi Electron untuk Windows dan Linux
 - **Swasta** - Imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 

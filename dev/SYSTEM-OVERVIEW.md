@@ -34,7 +34,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Ollama, etc.). By default the app uses **Easy** mode: curated **skills** (Free, Fast, Advanced, Technical, Legal) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Ollama, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -210,10 +210,19 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 | Mode | Config `mode` | Toolbar | Settings |
 |------|---------------|---------|----------|
-| **Easy** (default) | `"easy"` or unset | **Skill** selector (Free, Fast, Advanced, Technical, Legal, …) | **General** → **Provider** (cloud engines or Ollama); **Models** tab hidden |
+| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + skills catalog refresh; **Models** tab hidden |
 | **Advanced** | `"advanced"` | **Model** selector from `available_models` | **Models** tab for selected models list |
 
-In **Easy** mode, each skill row in `skills.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras). The app **omits** skills that have no non-empty `model_ids` entry for the current provider. **Ollama** does not use skills: the toolbar lists installed local models (`easy_ollama_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
+Built-in skills in [easy-mode-config/skills.json](../easy-mode-config/skills.json) (as of catalog v1.1.x):
+
+| Skill id | Display name | Providers |
+|----------|--------------|-----------|
+| `free-router` | Free (OpenRouter) | OpenRouter only |
+| `regular` | Lite | All cloud engines with `model_ids` |
+| `advanced` | Advanced | All cloud engines with `model_ids` |
+| `technical` | Technical | All cloud engines with `model_ids` |
+
+In **Easy** mode, each skill row in `skills.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Ollama** does not use skills: the toolbar lists installed local models (`easy_ollama_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
 
 Transform prompt editor actions (translate / improve / generate fields) use the same skill selector in Easy mode and the model list in Advanced mode.
 

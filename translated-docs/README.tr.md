@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-18T15:42:52.440Z'
-source_file_mtime: '2026-05-18T14:39:33.445Z'
-source_file_hash: 242c8f0ba88e0f94f025f05312d43fceeef056a664c92dea995b47e06775bd07
+translation_last_updated: '2026-05-21T23:14:34.811Z'
+source_file_mtime: '2026-05-21T23:09:11.948Z'
+source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
 translation_language: tr
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -25,10 +25,10 @@ Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (Open
 - **Yeniden yaz** - dilbilgisi düzeltme, anlaşılırlığı iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
 - **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef diliyle birlikte istemleri oluşturun ve yönetin
 - **Geçmiş** - girdi/çıktı metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya göre özelleştirilmiş beceriler (Ücretsiz, Hızlı, Gelişmiş, Teknik, Yasal); model kimliklerini seçmeye gerek yoktur. Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tüm model listesi
-- **Modeller & maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) dışa aktarılabilir; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
+- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya özel seçilmiş beceriler (**Ücretsiz (OpenRouter)**, **Lite**, **Gelişmiş**, **Teknik**; yalnızca seçili sağlayıcı için eşlemesi olan beceriler görünür) ve model kimliklerini seçmeden kullanım; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tam model listesi
+- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) ve dışa aktarma; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
 - **Kullanıcı Arayüzü (UI)** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
-- **Web modu** - yönetici rolleriyle çok kullanıcılı destek
+- **Web modu** - yönetici rolleriyle çoklu kullanıcı desteği
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
 - **Kendi barındırma** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 
