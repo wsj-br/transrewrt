@@ -16,7 +16,7 @@ Then open the URL printed in the terminal (default [http://127.0.0.1:8765/](http
 
 | Variable | Purpose |
 |----------|---------|
-| `OPENROUTER_API_KEY` | Required for OpenRouter **Test**, **Translate missing**, and **AI Suggestion** (read from `process.env` only — this server does **not** load `.env`). Optional for the OpenRouter model list (sent as `Authorization`); the list is also loaded from the public **GET /v1/models** catalog. |
+| `OPENROUTER_API_KEY` | Required for OpenRouter **Test**, **Translate missing**, and **AI Suggestion** (must be in `process.env` — export in the shell or `source .env` before starting; this server does **not** read `.env`). Optional Bearer for the OpenRouter model list; the list is also loaded from the public **GET /v1/models** catalog. |
 | Other provider keys | Same env vars as the main app (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, etc.). When set, **Choose** loads that provider’s catalog via `GET /api/models?engine=…`. Without a key you can still type a canonical id (e.g. `openai/gpt-4o`) in the skill form. |
 | `SKILLS_EDITOR_PORT` | HTTP port (default `8765`). |
 | `SKILLS_EDITOR_HOST` | Bind address (default `127.0.0.1`). |
@@ -29,7 +29,7 @@ On startup the server opens the editor URL in your default browser (same idea as
 
 ## Behaviour
 
-- **Environment**: LLM keys come only from the real process environment (`process.env`); this server does not read `.env` files.
+- **Environment**: LLM keys come only from `process.env` (export before launch, e.g. `set -a && source .env && set +a && pnpm run dev:skills-editor`); this server does not read `.env` files.
 - **Canonical file**: `easy-mode-config/skills.json` — always loaded and saved here first.
 - **Mirror**: After each successful save, the same JSON is written to `data/skills.json` (parent directory created if needed). If the mirror fails, the API returns an error even though the repo file was updated; fix permissions or path and save again.
 - **Source locale**: Read from `src/config-defaults/config_default.json` (`source_locale`, default `en-GB`) for translation targets and the translations table.

@@ -1,11 +1,10 @@
 /**
  * Dev-only skills catalog editor: serves static UI + JSON APIs.
- * Run: pnpm run dev:skills-editor (from repo root). Uses `process.env` only (e.g. export `OPENROUTER_API_KEY` in the same shell, or configure your tool to pass env vars into the Node process). Does not read `.env`. `OPENROUTER_API_KEY` is required for Test model and Translate missing; the model list uses the public OpenRouter /models catalog (same breadth as Settings when online).
+ * Run: pnpm run dev:skills-editor (from repo root). Uses `process.env` only — export keys in the shell (or source `.env` before starting Node). Does not read `.env` itself. `OPENROUTER_API_KEY` is required for Test model and Translate missing; the model list uses the public OpenRouter /models catalog (same breadth as Settings when online).
  */
 
 const path = require("path");
 const fs = require("fs");
-const https = require("https");
 const { spawn } = require("child_process");
 const express = require("express");
 
@@ -122,7 +121,6 @@ installConsoleLogCapture();
 
 const {
   mergeKeys,
-  getAllModels,
   resolveEngine,
   engineConfigured,
   OPENROUTER_BASE,
@@ -132,6 +130,15 @@ const {
 } = require("../../src/shared/llm/index.js");
 const { OPENROUTER_PROVIDER } = require("../../src/shared/openRouterProviderRouting.js");
 const { parseSkillsJson, bumpPatchVersion } = require("../../src/shared/skillsCatalog.js");
+const { canonicalForEngine } = require("../../src/shared/skillModelIdUtils.js");
+const {
+  EASY_CLOUD_ENGINES,
+  configureProviderCatalog,
+  ensureProviderCatalogDiskCache,
+  loadEngineModelsCatalog,
+  isTransrewrtWorkflowModel,
+  isEngineCatalogCached,
+} = require("../../src/shared/skillsProviderCatalog.js");
 
 const REPO_SKILLS_PATH = path.join(ROOT, "easy-mode-config", "skills.json");
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
@@ -141,38 +148,16 @@ const DATA_SKILLS_PATH =
 
 /** On-disk provider catalogs for the dev skills editor (repo root; gitignored). */
 const PROVIDER_CATALOGS_DISK_CACHE_PATH = path.join(ROOT, "skills-editor-provider-catalogs.json");
-const CATALOG_DISK_TTL_MS = 2 * 60 * 60 * 1000;
 
-const FREE_MODEL_ID = "openrouter/openrouter/free";
-
-/** Cloud engines for Easy-mode `model_ids` (no Ollama — end users pick local models in the app). */
-const EASY_CLOUD_ENGINES = [
-  { id: "openrouter", label: "OpenRouter" },
-  { id: "openai", label: "OpenAI" },
-  { id: "anthropic", label: "Anthropic" },
-  { id: "google", label: "Google Gemini" },
-  { id: "deepseek", label: "DeepSeek" },
-  { id: "groq", label: "Groq" },
-  { id: "mistralai", label: "Mistral" },
-  { id: "xai", label: "xAI" },
-  { id: "cerebras", label: "Cerebras" },
-];
+configureProviderCatalog({
+  cachePath: PROVIDER_CATALOGS_DISK_CACHE_PATH,
+  logLabel: "skills-editor",
+});
 
 function envKeyForEngine(engine) {
   return ENV_KEY_BY_ENGINE[engine] || "";
 }
 
-function modelsForEngineFromCatalog(allModels, engine) {
-  const prefix = `${engine}/`;
-  return (Array.isArray(allModels) ? allModels : [])
-    .filter((m) => m && typeof m.id === "string" && m.id.startsWith(prefix))
-    .map((m) => ({
-      id: m.id,
-      displayId: m.id.slice(prefix.length),
-      name: m.name || m.id,
-      pricing: m.pricing || { prompt: 0, completion: 0 },
-    }));
-}
 const HOST = process.env.SKILLS_EDITOR_HOST || "127.0.0.1";
 const PORT = Number(process.env.SKILLS_EDITOR_PORT) || 8765;
 
@@ -266,364 +251,6 @@ function saveSkillsCatalog(catalog) {
     throw err;
   }
   return validated;
-}
-
-function filterOpenRouterModels(models) {
-  const list = Array.isArray(models) ? models : [];
-  const out = list.filter((m) => m && typeof m.id === "string" && m.id.startsWith("openrouter/"));
-  const ids = new Set(out.map((m) => m.id));
-  if (!ids.has(FREE_MODEL_ID)) {
-    out.unshift({
-      id: FREE_MODEL_ID,
-      displayId: openRouterPickerDisplayId(FREE_MODEL_ID),
-      name: "OpenRouter Free",
-      top_provider: "openrouter",
-      pricing: { prompt: 0, completion: 0 },
-    });
-  }
-  return out.map((m) => ({
-    ...m,
-    displayId: m.displayId || openRouterPickerDisplayId(m.id),
-  }));
-}
-
-/** Strip the routing prefix for picker labels (matches `modelHeaderDisplayId` in the app). */
-function openRouterPickerDisplayId(canonicalId) {
-  const id = String(canonicalId || "").trim();
-  if (id.startsWith("openrouter/")) return id.slice("openrouter/".length);
-  return id;
-}
-
-function openRouterCanonicalFromApiModelId(apiId) {
-  const inner = String(apiId || "").trim();
-  if (!inner) return "";
-  return inner.startsWith("openrouter/") ? inner : `openrouter/${inner}`;
-}
-
-function topProviderStringFromRow(row) {
-  const tp = row.top_provider;
-  if (typeof tp === "string" && tp.trim()) return tp.trim();
-  return "openrouter";
-}
-
-/**
- * @param {string} urlStr
- * @param {Record<string, string>} headers
- * @returns {Promise<unknown>}
- */
-function fetchOpenRouterModelsJsonHttps(urlStr, headers) {
-  return new Promise((resolve, reject) => {
-    const u = new URL(urlStr);
-    const opts = {
-      hostname: u.hostname,
-      port: u.port || 443,
-      path: `${u.pathname}${u.search}`,
-      method: "GET",
-      headers,
-    };
-    const req = https.request(opts, (res) => {
-      const chunks = [];
-      res.on("data", (c) => chunks.push(c));
-      res.on("end", () => {
-        const body = Buffer.concat(chunks).toString("utf8");
-        if (res.statusCode < 200 || res.statusCode >= 300) {
-          reject(new Error(`OpenRouter HTTPS ${res.statusCode}: ${body.slice(0, 300)}`));
-          return;
-        }
-        try {
-          resolve(JSON.parse(body));
-        } catch (err) {
-          reject(err);
-        }
-      });
-    });
-    req.on("error", reject);
-    req.setTimeout(120000, () => {
-      req.destroy();
-      reject(new Error("OpenRouter /models request timeout"));
-    });
-    req.end();
-  });
-}
-
-async function fetchOpenRouterModelsJson(keysMap) {
-  const orKey = (keysMap.openrouter_api_key || "").trim();
-  const headers = {
-    Accept: "application/json",
-    "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-    "X-Title": "Transrewrt skills-editor (dev)",
-    "User-Agent":
-      "Mozilla/5.0 (compatible; Transrewrt-skills-editor/1.0; +https://github.com/wsj-br/transrewrt)",
-  };
-  if (orKey) headers.Authorization = `Bearer ${orKey}`;
-  const url = `${OPENROUTER_BASE}/models`;
-  try {
-    const res = await fetch(url, { headers });
-    if (!res.ok) {
-      const t = await res.text().catch(() => "");
-      const err = new Error(`OpenRouter GET /models failed: HTTP ${res.status} ${t.slice(0, 200)}`);
-      err.status = res.status;
-      throw err;
-    }
-    return await res.json();
-  } catch (e) {
-    console.warn("[skills-editor] fetch() for OpenRouter /models failed, retrying via https:", e.message);
-    return fetchOpenRouterModelsJsonHttps(url, headers);
-  }
-}
-
-/**
- * Full OpenRouter catalog for the dev UI (matches Settings → Models OpenRouter rows).
- * Uses GET /v1/models which works without an API key; optional Bearer for key-specific behaviour.
- * @param {Record<string, string>} keysMap
- * @returns {Promise<Array<{ id: string, displayId: string, name: string, top_provider?: string, pricing: { prompt: number, completion: number } }>>}
- */
-async function fetchOpenRouterPublicModelsList(keysMap) {
-  const json = await fetchOpenRouterModelsJson(keysMap);
-  const rows = Array.isArray(json.data) ? json.data : [];
-  const byId = new Map();
-  for (const row of rows) {
-    if (!row || typeof row.id !== "string") continue;
-    const canonical = openRouterCanonicalFromApiModelId(row.id);
-    if (!canonical) continue;
-    const p = parseFloat(row.pricing?.prompt);
-    const c = parseFloat(row.pricing?.completion);
-    byId.set(canonical, {
-      id: canonical,
-      displayId: openRouterPickerDisplayId(canonical),
-      name: (typeof row.name === "string" && row.name.trim()) || openRouterPickerDisplayId(canonical),
-      top_provider: topProviderStringFromRow(row),
-      pricing: {
-        prompt: Number.isFinite(p) ? p : 0,
-        completion: Number.isFinite(c) ? c : 0,
-      },
-    });
-  }
-  const out = Array.from(byId.values());
-  if (out.length === 0) {
-    throw new Error("OpenRouter /models returned no models (empty or invalid `data` array)");
-  }
-  console.log(`[skills-editor] OpenRouter catalog: ${out.length} models`);
-  return out;
-}
-
-/** @type {Map<string, Array<{ id: string, name?: string }>>} */
-const engineCatalogCache = new Map();
-/** @type {Array<{ id: string }> | null} */
-let allModelsCache = null;
-/** @type {Promise<Array<{ id: string }>> | null} */
-let allModelsInFlight = null;
-/** @type {Promise<void> | null} */
-let providerCatalogDiskInitPromise = null;
-
-function isEngineCatalogCached(engine) {
-  return engineCatalogCache.has(engine);
-}
-
-function readCatalogDiskCacheFile() {
-  try {
-    if (!fs.existsSync(PROVIDER_CATALOGS_DISK_CACHE_PATH)) return null;
-    const raw = fs.readFileSync(PROVIDER_CATALOGS_DISK_CACHE_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-    const lastUpdatedStr =
-      typeof parsed.lastUpdated === "string" ? parsed.lastUpdated.trim() : "";
-    const lastUpdated = lastUpdatedStr ? new Date(lastUpdatedStr) : null;
-    if (!lastUpdated || Number.isNaN(lastUpdated.getTime())) return null;
-    const catalogsByEngine =
-      parsed.catalogsByEngine && typeof parsed.catalogsByEngine === "object"
-        ? parsed.catalogsByEngine
-        : null;
-    if (!catalogsByEngine) return null;
-    return { lastUpdated, lastUpdatedISO: lastUpdatedStr, catalogsByEngine };
-  } catch (e) {
-    console.warn("[skills-editor] Could not read provider catalog cache file:", e.message);
-    return null;
-  }
-}
-
-function isCatalogDiskCacheFresh(lastUpdated) {
-  return Date.now() - lastUpdated.getTime() < CATALOG_DISK_TTL_MS;
-}
-
-function hydrateEngineCatalogCacheFromDisk(catalogsByEngine) {
-  engineCatalogCache.clear();
-  for (const { id: engine } of EASY_CLOUD_ENGINES) {
-    const raw = catalogsByEngine[engine];
-    const list = Array.isArray(raw) ? raw : [];
-    engineCatalogCache.set(engine, list);
-  }
-}
-
-function collectEngineCatalogsFromMemory() {
-  /** @type {Record<string, Array<{ id: string, name?: string }>>} */
-  const catalogsByEngine = {};
-  for (const { id: engine } of EASY_CLOUD_ENGINES) {
-    catalogsByEngine[engine] = engineCatalogCache.get(engine) || [];
-  }
-  return catalogsByEngine;
-}
-
-function writeCatalogDiskCache(catalogsByEngine) {
-  const lastUpdated = new Date().toISOString();
-  const payload = { lastUpdated, catalogsByEngine };
-  try {
-    fs.writeFileSync(PROVIDER_CATALOGS_DISK_CACHE_PATH, JSON.stringify(payload, null, 2), "utf8");
-    console.log(
-      `[skills-editor] Wrote provider catalog cache (${PROVIDER_CATALOGS_DISK_CACHE_PATH}, ${lastUpdated})`,
-    );
-  } catch (e) {
-    console.warn("[skills-editor] Could not write provider catalog cache file:", e.message);
-  }
-  return lastUpdated;
-}
-
-/**
- * @param {Record<string, string>} keysMap
- * @param {{ force?: boolean }} [opts]
- */
-async function getAllModelsCached(keysMap, opts = {}) {
-  const force = Boolean(opts.force);
-  if (force) allModelsCache = null;
-  if (!force && allModelsCache) return allModelsCache;
-  if (!allModelsInFlight) {
-    allModelsInFlight = getAllModels(keysMap)
-      .then((list) => {
-        allModelsCache = list;
-        return list;
-      })
-      .finally(() => {
-        allModelsInFlight = null;
-      });
-  }
-  return allModelsInFlight;
-}
-
-/**
- * Fetch one engine's catalog from provider APIs (no disk / session cache).
- * @param {string} engine
- * @param {Record<string, string>} keysMap
- */
-async function fetchEngineCatalogFromProviders(engine, keysMap) {
-  let list = [];
-  if (engine === "openrouter") {
-    try {
-      list = await fetchOpenRouterPublicModelsList(keysMap);
-    } catch (e) {
-      console.warn("[skills-editor] OpenRouter public list failed:", e.message);
-      const all = await getAllModelsCached(keysMap, { force: true });
-      list = filterOpenRouterModels(all);
-    }
-    list = filterOpenRouterModels(list);
-  } else if (engineConfigured(engine, keysMap)) {
-    const all = await getAllModelsCached(keysMap, { force: false });
-    list = modelsForEngineFromCatalog(all, engine);
-  }
-  return list;
-}
-
-/**
- * Refresh every Easy cloud engine from APIs and persist to disk.
- * @param {Record<string, string>} keysMap
- */
-async function refreshAllEngineCatalogsFromProviders(keysMap) {
-  console.log("[skills-editor] Refreshing provider catalogs from APIs…");
-  engineCatalogCache.clear();
-  allModelsCache = null;
-  allModelsInFlight = null;
-
-  /** @type {Record<string, Array<{ id: string, name?: string }>>} */
-  const catalogsByEngine = {};
-  for (const { id: engine, label } of EASY_CLOUD_ENGINES) {
-    let list = [];
-    try {
-      if (engine === "openrouter" || engineConfigured(engine, keysMap)) {
-        list = await fetchEngineCatalogFromProviders(engine, keysMap);
-      }
-    } catch (e) {
-      console.warn(`[skills-editor] catalog refresh for ${engine}:`, e.message);
-      list = [];
-    }
-    catalogsByEngine[engine] = list;
-    engineCatalogCache.set(engine, list);
-    console.log(`[skills-editor]   ${label || engine}: ${list.length} model(s)`);
-  }
-  writeCatalogDiskCache(catalogsByEngine);
-  return catalogsByEngine;
-}
-
-/**
- * Load disk cache when fresh (< 2h); otherwise refresh from providers and write disk file.
- * @param {Record<string, string>} keysMap
- * @param {{ force?: boolean }} [opts]
- */
-async function initProviderCatalogDiskCache(keysMap, opts = {}) {
-  const force = Boolean(opts.force);
-  if (!force) {
-    const disk = readCatalogDiskCacheFile();
-    if (disk && isCatalogDiskCacheFresh(disk.lastUpdated)) {
-      hydrateEngineCatalogCacheFromDisk(disk.catalogsByEngine);
-      const ageMin = Math.round((Date.now() - disk.lastUpdated.getTime()) / 60000);
-      console.log(
-        `[skills-editor] Provider catalogs loaded from disk cache (${disk.lastUpdatedISO}, ${ageMin} min old)`,
-      );
-      return;
-    }
-    if (disk) {
-      console.log(
-        `[skills-editor] Provider catalog disk cache expired (${disk.lastUpdatedISO}); refreshing…`,
-      );
-    }
-  }
-  await refreshAllEngineCatalogsFromProviders(keysMap);
-}
-
-/**
- * @param {Record<string, string>} keysMap
- * @param {{ force?: boolean }} [opts]
- */
-function ensureProviderCatalogDiskCache(keysMap, opts = {}) {
-  const force = Boolean(opts.force);
-  if (force) {
-    providerCatalogDiskInitPromise = initProviderCatalogDiskCache(keysMap, { force: true }).catch(
-      (e) => {
-        providerCatalogDiskInitPromise = null;
-        throw e;
-      },
-    );
-    return providerCatalogDiskInitPromise;
-  }
-  if (!providerCatalogDiskInitPromise) {
-    providerCatalogDiskInitPromise = initProviderCatalogDiskCache(keysMap).catch((e) => {
-      providerCatalogDiskInitPromise = null;
-      throw e;
-    });
-  }
-  return providerCatalogDiskInitPromise;
-}
-
-/**
- * Load (and cache) the model list for one Easy cloud engine. Uses in-memory + on-disk cache
- * (2h TTL at repo root); `force` refetches all providers and rewrites the disk file.
- * @param {string} engine
- * @param {Record<string, string>} keysMap
- * @param {{ force?: boolean }} [opts]
- */
-async function loadEngineModelsCatalog(engine, keysMap, opts = {}) {
-  const force = Boolean(opts.force);
-  if (force) {
-    await ensureProviderCatalogDiskCache(keysMap, { force: true });
-    return engineCatalogCache.get(engine) || [];
-  }
-
-  await ensureProviderCatalogDiskCache(keysMap);
-  if (engineCatalogCache.has(engine)) {
-    return engineCatalogCache.get(engine);
-  }
-
-  const list = await fetchEngineCatalogFromProviders(engine, keysMap);
-  engineCatalogCache.set(engine, list);
-  writeCatalogDiskCache(collectEngineCatalogsFromMemory());
-  return list;
 }
 
 async function openRouterChatNonStream({
@@ -762,37 +389,6 @@ async function openRouterChatWithWebSearch({
   return { text: text.trim(), latencyMs, raw: data };
 }
 
-const DIRECT_LLM_ENGINES = new Set([
-  "openrouter",
-  "openai",
-  "anthropic",
-  "google",
-  "deepseek",
-  "groq",
-  "mistralai",
-  "ollama",
-  "xai",
-  "cerebras",
-]);
-
-function canonicalForEngine(engine, raw) {
-  const id = String(raw || "").trim();
-  if (!id) return "";
-  if (id.startsWith(`${engine}/`)) return id;
-  const slash = id.indexOf("/");
-  if (slash > 0) {
-    const first = id.slice(0, slash).toLowerCase();
-    if (DIRECT_LLM_ENGINES.has(first)) return id;
-  }
-  if (engine === "openrouter") {
-    if (id.startsWith("openrouter/")) return id;
-    if (slash <= 0) return id;
-    return `openrouter/${id}`;
-  }
-  if (slash <= 0) return `${engine}/${id}`;
-  return `${engine}/${id}`;
-}
-
 function parseJsonFromModelText(text) {
   const s = String(text || "")
     .replace(/```json\n?/gi, "")
@@ -922,43 +518,6 @@ const SUGGEST_USER_MODELS_HEADER =
 
 const SUGGEST_USER_OUTPUT_RULE =
   "IMPORTANT: Output ONLY the JSON object. Do not write anything before or after it.";
-
-/** Tail segment after the last "/" in a canonical or display model id. */
-function modelIdTail(id) {
-  const s = String(id || "").trim();
-  const i = s.lastIndexOf("/");
-  return (i >= 0 ? s.slice(i + 1) : s).toLowerCase();
-}
-
-/**
- * Models Transrewrt can drive via multi-llm-ts chat completions (translate / rewrite / transform).
- * @param {{ id?: string, displayId?: string, name?: string }} m
- */
-function isTransrewrtWorkflowModel(m) {
-  const tail = modelIdTail(m?.id || m?.displayId);
-  const name = String(m?.name || "").toLowerCase();
-  const hay = `${tail} ${name}`;
-  const block = [
-    "embedding",
-    "embed-",
-    "text-embedding",
-    "whisper",
-    "dall-e",
-    "dalle",
-    "tts-",
-    "moderation",
-    "rerank",
-    "davinci",
-    "babbage",
-    "curie",
-    "ada-002",
-  ];
-  if (block.some((s) => hay.includes(s))) return false;
-  if (tail.startsWith("text-")) return false;
-  // OpenAI completion-only GPT-5.x Pro endpoints (not v1/chat/completions).
-  if (/^gpt-5\.\d+(-\d+)?-pro(-\d{4}-\d{2}-\d{2})?$/.test(tail)) return false;
-  return true;
-}
 
 function compactCatalogForPrompt(models, engine) {
   const list = (Array.isArray(models) ? models : [])

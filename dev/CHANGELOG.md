@@ -11,8 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Dev skill-check (`dev/skill-check/`) — cron-friendly CLI that validates Easy-mode `skills.json` model ids against live provider catalogs, fuzzy-replaces unavailable models, commits/pushes only `easy-mode-config/skills.json` to GitHub from an isolated runtime (`pnpm run skill-check:install`), logs changes, and sends NTFY notifications; shared provider catalog logic extracted to `src/shared/skillsProviderCatalog.js`.
 - **Added**: Dev skills editor — server console output written to `skills-editor.log` (repo root; previous run rotated to `skills-editor-<timestamp>.log` on startup); **Server log** button in the header; startup alert when the session log contains errors.
 - **Changed**: Move `pnpm.overrides` and `pnpm.allowedDeprecatedVersions` from `package.json` to `pnpm-workspace.yaml` (pnpm 11 config location).
+- **Changed**: Rename "Regular" skill to "Lite" with updated description ("Fast, lightweight, and cost-efficient…") to better reflect the lightweight model tier.
 
 ## [1.3.1] - 2026-05-18
 

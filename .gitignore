@@ -41,5 +41,10 @@ skills-editor-provider-catalogs.json
 skills-editor.log
 skills-editor-*.log
 
+# dev skill-check (local config + log)
+dev/skill-check/config.json
+dev/skill-check/skill-check.log
+dev/skill-check/provider-catalogs-cache.json
+
 
 

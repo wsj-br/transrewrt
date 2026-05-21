@@ -41,6 +41,8 @@
     "clean-temp": "ai-i18n-tools clean-temp",
     "update-version": "node scripts/update-version.js",
     "dev:skills-editor": "node dev/skills-editor/server.js",
+    "skill-check": "node dev/skill-check/check.js",
+    "skill-check:install": "node dev/skill-check/install.js",
     "postinstall": "node scripts/electron-rebuild.js",
     "reset-web-password": "node scripts/reset-web-password.js",
     "take-screenshots": "node scripts/take-screenshots.js",

@@ -1,0 +1,22 @@
+{
+  "runtimeRoot": ".",
+  "repoPath": "repo",
+  "skillsFile": "easy-mode-config/skills.json",
+  "catalogCachePath": "provider-catalogs-cache.json",
+  "logPath": "skill-check.log",
+  "minMatchScore": 0.55,
+  "github": {
+    "owner": "wsj-br",
+    "repo": "transrewrt",
+    "branch": "main",
+    "token": null,
+    "useSsh": false,
+    "commitMessagePrefix": "chore(skills): auto-replace unavailable models"
+  },
+  "ntfy": {
+    "server": "https://ntfy.sh",
+    "topic": "your-topic-here",
+    "authToken": null,
+    "priority": "default"
+  }
+}
