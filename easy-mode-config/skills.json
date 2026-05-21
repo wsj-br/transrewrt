@@ -1,6 +1,6 @@
 {
-  "version": "1.1.9",
-  "updated_at": "2026-05-21T17:24:54.477Z",
+  "version": "1.1.10",
+  "updated_at": "2026-05-21T22:26:36.502Z",
   "translation_model": "openrouter/qwen/qwen3-next-80b-a3b-instruct",
   "translation_model_fallback": "openrouter/anthropic/claude-3.5-haiku",
   "suggestion_model": "openrouter/~anthropic/claude-haiku-latest",
@@ -12,7 +12,7 @@
       "description": "Zero-cost option that routes to available free models. No charges; output quality and model availability may vary.",
       "prompt_hint": "Be concise and direct. Do not add explanations, commentary, or alternatives unless explicitly requested.",
       "model_ids": {
-        "openrouter": "openrouter/poolside/laguna-m..1:free"
+        "openrouter": "openrouter/poolside/laguna-xs.2:free"
       },
       "translated_name": {
         "ar": "مجاني (OpenRouter)",
