@@ -12,7 +12,7 @@
       "description": "Zero-cost option that routes to available free models. No charges; output quality and model availability may vary.",
       "prompt_hint": "Be concise and direct. Do not add explanations, commentary, or alternatives unless explicitly requested.",
       "model_ids": {
-        "openrouter": "openrouter/poolside/laguna-m.1:free"
+        "openrouter": "openrouter/poolside/laguna-m..1:free"
       },
       "translated_name": {
         "ar": "مجاني (OpenRouter)",
