@@ -78,6 +78,13 @@ function commitAndPushSkillsFile(repoDir, opts = {}) {
   git(repoDir, ["add", "--", skillsFile]);
   git(repoDir, ["commit", "-m", message]);
 
+  git(repoDir, ["fetch", "origin", branch]);
+  const rebase = git(repoDir, ["pull", "--rebase", "origin", branch], { allowFail: true });
+  if (rebase.status !== 0) {
+    const msg = (rebase.stderr || rebase.stdout || "").trim();
+    throw new Error(`git pull --rebase before push failed: ${msg.slice(0, 500)}`);
+  }
+
   const head = git(repoDir, ["rev-parse", "--short", "HEAD"]);
   const commit = (head.stdout || "").trim();
 

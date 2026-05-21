@@ -49,12 +49,27 @@ function normalizeForCompare(id, engine) {
   s = s.replace(/:free$/i, "");
   s = s.replace(/-\d{4}-\d{2}-\d{2}$/, "");
   s = s.replace(/-\d{4,8}$/, "");
+  s = s.replace(/\.{2,}/g, ".");
   return s;
 }
 
 function vendorSegment(normalizedPath) {
   const slash = normalizedPath.indexOf("/");
   return slash >= 0 ? normalizedPath.slice(0, slash) : normalizedPath;
+}
+
+/**
+ * Model family before version suffix: poolside/laguna-m.1 → poolside/laguna-m
+ * @param {string} normalizedPath
+ */
+function modelFamilyKey(normalizedPath) {
+  const s = String(normalizedPath || "");
+  const slash = s.lastIndexOf("/");
+  const vendor = slash >= 0 ? s.slice(0, slash + 1) : "";
+  const tail = slash >= 0 ? s.slice(slash + 1) : s;
+  const dot = tail.lastIndexOf(".");
+  const family = dot > 0 ? tail.slice(0, dot) : tail;
+  return `${vendor}${family}`;
 }
 
 function commonPrefixTokenScore(a, b) {
@@ -66,24 +81,40 @@ function commonPrefixTokenScore(a, b) {
     if (ta[i] !== tb[i]) break;
     n++;
   }
-  return n > 0 ? Math.min(0.05 * n, 0.15) : 0;
+  return n > 0 ? Math.min(0.03 * n, 0.09) : 0;
 }
 
+/**
+ * @returns {{ score: number, baseRatio: number }}
+ */
 function scoreCandidate(unavailableId, engine, candidateId) {
   const oldNorm = normalizeForCompare(unavailableId, engine);
   const newNorm = normalizeForCompare(candidateId, engine);
-  let score = levenshteinRatio(oldNorm, newNorm);
+  const baseRatio = levenshteinRatio(oldNorm, newNorm);
+
+  let bonus = 0;
   if (vendorSegment(oldNorm) && vendorSegment(oldNorm) === vendorSegment(newNorm)) {
-    score += 0.15;
+    bonus += 0.03;
+  }
+  if (modelFamilyKey(oldNorm) === modelFamilyKey(newNorm)) {
+    bonus += 0.35;
   }
   const oldLatest = oldNorm.includes("latest");
   const newLatest = newNorm.includes("latest");
-  if (oldLatest && newLatest) score += 0.1;
+  if (oldLatest && newLatest) bonus += 0.05;
   const oldFree = String(unavailableId).toLowerCase().includes(":free");
   const newFree = String(candidateId).toLowerCase().includes(":free");
-  if (oldFree && newFree) score += 0.1;
-  score += commonPrefixTokenScore(oldNorm, newNorm);
-  return Math.min(score, 1);
+  if (oldFree && newFree) bonus += 0.03;
+  bonus += commonPrefixTokenScore(oldNorm, newNorm);
+
+  return { score: baseRatio + bonus, baseRatio };
+}
+
+function isBetterCandidate(a, b) {
+  if (!b) return true;
+  if (a.score !== b.score) return a.score > b.score;
+  if (a.baseRatio !== b.baseRatio) return a.baseRatio > b.baseRatio;
+  return false;
 }
 
 /**
@@ -99,6 +130,8 @@ function findFuzzyReplacement(engine, unavailableId, catalogModels, opts = {}) {
   const canonicalUnavailable = String(unavailableId || "").trim();
 
   let best = null;
+  /** @type {{ score: number, baseRatio: number, id: string } | null} */
+  let bestRank = null;
   let bestScore = 0;
 
   for (const m of list) {
@@ -106,8 +139,10 @@ function findFuzzyReplacement(engine, unavailableId, catalogModels, opts = {}) {
     if (m.id === canonicalUnavailable) continue;
     if (!isTransrewrtWorkflowModel(m)) continue;
 
-    const score = scoreCandidate(canonicalUnavailable, engine, m.id);
-    if (score > bestScore) {
+    const { score, baseRatio } = scoreCandidate(canonicalUnavailable, engine, m.id);
+    const rank = { score, baseRatio, id: m.id };
+    if (isBetterCandidate(rank, bestRank)) {
+      bestRank = rank;
       bestScore = score;
       best = m.id;
     }
@@ -122,5 +157,7 @@ function findFuzzyReplacement(engine, unavailableId, catalogModels, opts = {}) {
 module.exports = {
   findFuzzyReplacement,
   normalizeForCompare,
+  modelFamilyKey,
   levenshteinRatio,
+  scoreCandidate,
 };

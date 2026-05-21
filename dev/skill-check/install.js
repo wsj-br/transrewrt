@@ -53,7 +53,7 @@ Usage:
 
 Options:
   --target <dir>  Runtime root (e.g. /opt/transrewrt-skill-check)
-  --force         Overwrite lib/ and refresh repo clone
+  --force         Refresh lib/ only; keeps existing config.json and run.sh
   --help, -h      Show this help
 `);
 }
@@ -100,28 +100,35 @@ function npmInstall(targetDir) {
   }
 }
 
-function writeConfig(targetDir, force) {
+function writeConfig(targetDir) {
   const configPath = path.join(targetDir, "config.json");
-  if (fs.existsSync(configPath) && !force) return;
+  if (fs.existsSync(configPath)) return false;
   const cfg = {
     ...DEFAULT_CONFIG,
     runtimeRoot: ".",
     ntfy: { ...DEFAULT_CONFIG.ntfy, topic: "your-topic-here" },
   };
   fs.writeFileSync(configPath, `${JSON.stringify(cfg, null, 2)}\n`, "utf8");
+  return true;
 }
 
 function writeRunScript(targetDir) {
-  const script = `#!/bin/sh
-# Source secrets: export GITHUB_TOKEN, SKILL_CHECK_NTFY_TOPIC, OPENROUTER_API_KEY, …
+  const p = path.join(targetDir, "run.sh");
+  if (fs.existsSync(p)) return false;
+  const script = `#!/bin/bash
+# Run the skill-check cron job
 set -e
 cd "$(dirname "$0")"
+# Source secrets: export GITHUB_TOKEN, SKILL_CHECK_NTFY_TOPIC, OPENROUTER_API_KEY, …
+source .env
+# Set the runtime root
 export SKILL_CHECK_RUNTIME="$(pwd)"
+# Run the skill-check checker
 exec node lib/check.js "$@"
 `;
-  const p = path.join(targetDir, "run.sh");
   fs.writeFileSync(p, script, "utf8");
   fs.chmodSync(p, 0o755);
+  return true;
 }
 
 function main() {
@@ -161,13 +168,24 @@ function main() {
   copyDirFiles(__dirname, libDir, SKILL_CHECK_SCRIPTS);
   copyDirFiles(path.join(MONOREPO_ROOT, "src", "shared"), sharedDir, SHARED_FILES);
 
-  copyFile(path.join(__dirname, "config.example.json"), path.join(target, "config.example.json"));
+  const configPath = path.join(target, "config.json");
+  if (!fs.existsSync(configPath)) {
+    copyFile(path.join(__dirname, "config.example.json"), path.join(target, "config.example.json"));
+  }
 
   console.log("[skill-check:install] Writing package.json and installing dependencies…");
   writeRuntimePackageJson(target);
   npmInstall(target);
-  writeConfig(target, args.force);
-  writeRunScript(target);
+  if (writeConfig(target)) {
+    console.log("[skill-check:install] Created config.json");
+  } else {
+    console.log("[skill-check:install] Keeping existing config.json");
+  }
+  if (writeRunScript(target)) {
+    console.log("[skill-check:install] Created run.sh");
+  } else {
+    console.log("[skill-check:install] Keeping existing run.sh");
+  }
 
   console.log(`
 [skill-check:install] Done.
