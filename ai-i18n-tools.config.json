@@ -1,9 +1,10 @@
 {
   "sourceLocale": "en-GB",
   "targetLocales": [
-    "pt-BR","ar","bn","ca","zh-CN","zh-TW","hr","cs","nl","en-US",
-    "tl","fr","de","el","hi","hu","it","ja","ko","ms","fa","pl", "jv",	
-    "pt","pa","ro","ru","sk","es","sw","sv","te","th","tr","uk","vi"
+    "pt-BR",    "ar",    "bn",    "ca",    "zh-CN",    "zh-TW",    "hr",    "cs",    "nl",    "en-US",    
+    "tl",       "fr",    "de",    "el",    "hi",    "hu",    "it",    "ja",    "ko",    "ms",    "fa",
+    "pl",       "jv",    "pt",    "pa",    "ro",    "ru",    "sk",    "es",    "sw",    "sv",    "te",
+    "th",       "tr",    "uk",    "vi"
   ],
   "concurrency": 4,
   "batchSize": 20,
@@ -24,12 +25,13 @@
     ]
   },
   "features": {
-    "extractUIStrings": true,
     "translateUIStrings": true,
-    "translateMarkdown": true
+    "translateDocs": true
   },
   "ui": {
-    "sourceRoots": ["src/renderer/"],
+    "sourceRoots": [
+      "src/renderer/"
+    ],
     "stringsJson": "src/renderer/locales/strings.json",
     "flatOutputDir": "src/renderer/locales/",
     "reactExtractor": {
@@ -40,12 +42,15 @@
     "uiGlossary": "src/renderer/locales/strings.json",
     "userGlossary": "glossary-user.csv"
   },
-  "documentations": [
+  "docs": [
     {
       "description": "README and User Guide",
-      "contentPaths": ["README.md", "USER-GUIDE.md"],
+      "contentPaths": [
+        "README.md",
+        "USER-GUIDE.md"
+      ],
       "outputDir": "translated-docs/",
-      "markdownOutput": {
+      "docsOutput": {
         "style": "flat",
         "postProcessing": {
           "regexAdjustments": [

@@ -7,11 +7,11 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const WIDTH = 512;
-const HEIGHT = 128;
-const MARGIN_Y = 20;
-const H_PAD = 16;
-const GAP = 12;
+const WIDTH = 2048;
+const HEIGHT = 512;
+const MARGIN_Y = 80;
+const H_PAD = 64;
+const GAP = 48;
 /** Sidebar logo row: logo height 28px, app name 18px */
 const SIDEBAR_LOGO_H = 28;
 const SIDEBAR_TEXT_PX = 18;
@@ -29,14 +29,14 @@ function resolveLogoPath() {
   const images = path.join(__dirname, "..", "images");
   const png = path.join(images, "transrewrt_logo.png");
   const svg = path.join(images, "transrewrt_logo.svg");
-  if (fs.existsSync(png)) {
-    return png;
-  }
   if (fs.existsSync(svg)) {
     return svg;
   }
+  if (fs.existsSync(png)) {
+    return png;
+  }
   throw new Error(
-    "Expected images/transrewrt_logo.png or images/transrewrt_logo.svg",
+    "Expected images/transrewrt_logo.svg or images/transrewrt_logo.png",
   );
 }
 
@@ -55,7 +55,7 @@ async function main() {
   const maxInnerH = HEIGHT - 2 * MARGIN_Y;
   const maxW = WIDTH - 2 * H_PAD;
 
-  let logoH = Math.min(80, maxInnerH);
+  let logoH = Math.min(320, maxInnerH);
   let logoBuf;
   let logoW;
   let logoHActual;

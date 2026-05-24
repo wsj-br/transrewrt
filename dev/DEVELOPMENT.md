@@ -378,15 +378,15 @@ Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](..
 
 ### UI translations and documentation (ai-i18n-tools)
 
-The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, optional SVG translation, and markdown documentation translation** share one config file: **[`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json)** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
+The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, and markdown documentation translation** share one config file: **[`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json)** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
 
 | Command                                         | Purpose                                                                                                                                                                                    |
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm run i18n:extract`                         | Scan source for `t("…")` (and configured roots) → `src/renderer/locales/strings.json` (preserves existing translations)                                                                    |
 | `pnpm run i18n:translate:ui`                    | Translate missing UI strings via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{locale}.json` files. See `pnpm exec ai-i18n-tools translate-ui --help` for `--force`, `--model`, etc. |
 | `pnpm run i18n:translate:docs`                  | Translate configured markdown docs → `translated-docs/` (see `documentations` in config). **Requires `OPENROUTER_API_KEY`.**                                                               |
-| `pnpm run i18n:translate:svg`                   | Translate configured SVG assets via OpenRouter (see `ai-i18n-tools translate-svg --help`)                                                                                                  |
-| `pnpm run i18n:translate`                       | Runs `translate-ui`, then `translate-svg`, then `translate-docs`                                                                                                                           |
+| `pnpm run i18n:translate:svg`                   | Not currently configured — prints an informational message. To enable SVG translation: set `features.translateSVG` and add an `svg` block in `ai-i18n-tools.config.json`.                 |
+| `pnpm run i18n:translate`                       | Runs `translate-ui`, then `translate-docs`                                                                                                                                                 |
 | `pnpm run i18n:sync`                            | `ai-i18n-tools sync`: extract (if enabled), then translate UI, optional SVG, then docs — skip parts with `--no-ui`, `--no-svg`, `--no-docs` (see CLI `--help`)                             |
 | `pnpm run i18n:status`                          | UI string and doc translation coverage                                                                                                                                                     |
 | `pnpm run i18n:cleanup`                         | Remove stale i18n pipeline artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                    |
@@ -399,6 +399,8 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 **Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm exec ai-i18n-tools generate-ui-languages` and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [`src/renderer/i18n.js`](../src/renderer/i18n.js) — see [i18n.md](i18n.md).
 
 **Documentation translation:** The `documentations` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`, `USER-GUIDE.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
+
+Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md) for full documentation of this pattern.
 
 **Glossaries:** Optional [`glossary-user.csv`](../glossary-user.csv) is referenced from config. UI string catalog [`src/renderer/locales/strings.json`](../src/renderer/locales/strings.json) aligns doc terminology with the app when both use the same pipeline.
 
@@ -582,9 +584,9 @@ See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-an
 |--------------------------------|--------------------------------------------------------------------------------------------------------|
 | `pnpm run i18n:extract`        | Scan renderer → `src/renderer/locales/strings.json`                                                    |
 | `pnpm run i18n:translate:ui`   | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`); see `ai-i18n-tools translate-ui --help` |
-| `pnpm run i18n:translate:svg`  | Translate configured SVG assets via OpenRouter                                                         |
+| `pnpm run i18n:translate:svg`  | Not currently configured — prints informational message (SVG translation requires `features.translateSVG` + `svg` block in config) |
 | `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE per `documentations` in config                                           |
-| `pnpm run i18n:translate`      | `translate-ui`, then `translate-svg`, then `translate-docs`                                          |
+| `pnpm run i18n:translate`      | `translate-ui`, then `translate-docs`                                                                |
 | `pnpm run i18n:sync`           | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help`         |
 | `pnpm run i18n:status`         | Coverage report                                                                                        |
 | `pnpm run i18n:cleanup`        | Remove stale i18n pipeline artifacts (`ai-i18n-tools cleanup --help`)                                  |

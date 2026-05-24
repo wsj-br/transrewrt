@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Removed unconfigured `translate-svg` step from `i18n:translate`; `i18n:translate:svg` now prints an informational message. Updated `dev/DEVELOPMENT.md` with screenshot Pattern B workflow note.
+
 ## [1.3.2] - 2026-05-22
 
 - **Changed**: `scripts/clean-workspace.sh` and `scripts/clean-workspace.ps1` remove all repository `.log` files (excluding `node_modules`, `.git`, `dist`, `release`, `documentation/node_modules`) plus `dev/skill-check/provider-catalogs-cache.json`, `dev/skill-check/skill-check.log`, and `skills-editor-provider-catalogs.json`.
