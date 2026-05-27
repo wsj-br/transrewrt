@@ -2,10 +2,10 @@ import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
-import ModelOrSkillPicker from "./ModelOrSkillPicker";
+import ModelOrPresetPicker from "./ModelOrPresetPicker";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
-import type { Skill } from "@/utils/skills/skillsTypes";
+import type { Preset } from "@/utils/presets/presetsTypes";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
@@ -120,15 +120,15 @@ const MainContent = ({
   onRemoveModel,
   experienceMode = "easy",
   easyProvider = "openrouter",
-  skills = [],
-  selectedSkillId,
-  onSkillChange,
+  presets = [],
+  selectedPresetId,
+  onPresetChange,
   ollamaModels = [],
   easyOllamaModel,
   onEasyOllamaModelChange,
   onOpenSettingsGeneral,
-  skillUiLocale,
-  skillSourceLocale = "en-GB",
+  presetUiLocale,
+  presetSourceLocale = "en-GB",
   leftPanel,
   rightPanel,
   workspaceTopBar,
@@ -147,17 +147,17 @@ const MainContent = ({
   onRemoveModel?: (model: string) => void;
   experienceMode?: "easy" | "advanced";
   easyProvider?: string;
-  skills?: Skill[];
-  selectedSkillId?: string | null;
-  onSkillChange?: (skillId: string) => void;
+  presets?: Preset[];
+  selectedPresetId?: string | null;
+  onPresetChange?: (presetId: string) => void;
   ollamaModels?: string[];
   easyOllamaModel?: string | null;
   onEasyOllamaModelChange?: (modelId: string) => void;
   onOpenSettingsGeneral?: () => void;
-  /** UI locale for skill catalog labels (falls back to i18n.language in SkillSelector). */
-  skillUiLocale?: string;
-  /** Locale of canonical skill `name` / `description` in the JSON catalog. */
-  skillSourceLocale?: string;
+  /** UI locale for presets catalog labels (falls back to i18n.language in PresetSelector). */
+  presetUiLocale?: string;
+  /** Locale of canonical preset `name` / `description` in the JSON catalog. */
+  presetSourceLocale?: string;
   leftPanel?: ReactNode;
   rightPanel?: ReactNode;
   workspaceTopBar?: ReactNode;
@@ -241,7 +241,7 @@ const MainContent = ({
         stackRightBelowMd
         right={
           <>
-            <ModelOrSkillPicker
+            <ModelOrPresetPicker
               experienceMode={experienceMode}
               easyProvider={easyProvider}
               models={models}
@@ -249,15 +249,15 @@ const MainContent = ({
               onModelChange={onModelChange}
               onOpenSettingsModels={onOpenSettingsModels}
               onRemoveModel={onRemoveModel}
-              skills={skills}
-              selectedSkillId={selectedSkillId}
-              onSkillChange={onSkillChange}
+              presets={presets}
+              selectedPresetId={selectedPresetId}
+              onPresetChange={onPresetChange}
               ollamaModels={ollamaModels}
               easyOllamaModel={easyOllamaModel}
               onEasyOllamaModelChange={onEasyOllamaModelChange}
               onOpenSettingsGeneral={onOpenSettingsGeneral}
-              skillUiLocale={skillUiLocale}
-              skillSourceLocale={skillSourceLocale}
+              presetUiLocale={presetUiLocale}
+              presetSourceLocale={presetSourceLocale}
             />
             <div className="hidden md:block">
               <HeaderLanguageSelector compact />

@@ -122,7 +122,12 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
 
   const settingsTabs = useMemo(
     () => [
-      { id: "general", icon: <Sliders size={15} />, label: t("General Settings") },
+      {
+        id: "general",
+        icon: <Sliders size={15} />,
+        label: t("General Settings"),
+        testId: "settings-tab-general",
+      },
       ...(experienceMode === "advanced"
         ? [
             {

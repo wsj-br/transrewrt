@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:52:59.246Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:32.249Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: cs
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt vám pomáhá pracovat s textem třemi hlavními způsoby:
 - **Přepsat** – přeformulování textu v odlišném stylu, například jasnějším, stručnějším nebo formálnějším.
 - **Transformovat** – zpracování textu pomocí vlastních pokynů pro umělou inteligenci, které se nazývají prompty.
 
-Aplikace ve výchozím nastavení běží v režimu **Snadný**: vyberete si **dovednost** (například Zdarma (OpenRouter), Lite nebo Technický) a **poskytovatele** v Nastavení, aniž byste vybírali ID modelů. Přepněte na **Pokročilý** v [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z [**Nastavení** > **Modely**](#models).
+Aplikace běží ve výchozím nastavení v **Snadném** režimu: vyberete **předvolbu** (například Zdarma (OpenRouter), Lite nebo Technická) a **poskytovatele** v Nastavení, aniž byste vybírali ID modelu. Přepněte na **Pokročilý** v [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z [**Nastavení** > **Modely**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Nemusíte vybírat placený model, abyste mohli začít. Jakmile přidáte svůj
 
 Jednoduše řečeno:
 
-- V režimu **Snadný** je **dovednost** přednastavení (Zdarma (OpenRouter), Lite, Pokročilý nebo Technický), které odpovídá modelu pro vámi zvoleného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). V panelu nástrojů se zobrazují pouze dovednosti, které mají mapování pro aktuálního poskytovatele. Dovednost vybíráte při Překladu, Přepsání a Transformaci.
-- V režimu **Pokročilý** je **model** AI engine, který vybíráte přímo. ID modelů používají **prefix poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
-- **API klíč** (nebo, pro Ollama, **základní URL**) je způsob, jakým aplikace dosáhne tohoto poskytovatele.
+- V režimu **Snadný** je **předvolba** přednastavená volba (Zdarma (OpenRouter), Lite, Pokročilý nebo Technický), která se mapuje na model pro vybraného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). Do panelu nástrojů se zobrazí pouze dovednosti, které mají pro aktuálního poskytovatele mapování. Dovednost vybíráte u překladu, přepsání a transformace.
+- V režimu **Pokročilý** je **model** umělá inteligence, kterou vybíráte přímo. ID modelů používají **předponu poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
+- **API klíč** (nebo u Ollama **základní URL**) je způsob, jak aplikace komunikuje s poskytovatelem.
 
 Pokud používáte **desktopovou aplikaci**, přidejte klíče v [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pro použití pouze s OpenRouterem se podívejte na [Jak získat zdarma OpenRouter API klíč](#how-to-get-a-free-openrouter-api-key-desktop-app) níže. Pokud nechcete používat API klíč, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a místo toho používat místní modely, jako je `translategemma:4b`.
 
@@ -153,9 +153,9 @@ Pokud používáte Transrewrt poprvé, postupujte v tomto pořadí:
 2. V případě potřeby vyberte svůj **jazyk rozhraní** z ikony zeměkoule.
 3. Pokud používáte **desktopovou aplikaci**, otevřete [**Nastavení** > **Nastavení API**](#api-config), přidejte API klíč alespoň pro jednoho poskytovatele (například OpenRouter) a klikněte na **Test**, abyste ověřili, že funguje.
 4. Otevřete [**Nastavení** > **Obecné nastavení**](#general-settings). V režimu **Snadný** (výchozí) vyberte **poskytovatele**, který má nakonfigurovaný klíč. V režimu **Pokročilý** otevřete [**Nastavení** > **Modely**](#models) a přidejte jeden nebo více modelů do části **Vybrané modely**.
-5. V režimu **Překlad** vyberte **dovednost** (Snadný) nebo **model** (Pokročilý) na panelu nástrojů.
-6. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte své **nejčastěji používané jazyky**, pokud chcete, aby se vaše oblíbené jazyky zobrazovaly jako první.
-7. Spusťte jednoduchý překlad, abyste ověřili, že vše funguje, a poté vyzkoušejte funkce **Přepsat** a **Transformovat**.
+5. V **Překladu** vyberte **předvolbu** (Snadný) nebo **model** (Pokročilý) v panelu nástrojů.
+6. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte si **Nejčastější jazyky**, pokud chcete, aby se vaše nejpoužívanější jazyky zobrazovaly jako první.
+7. Spusťte jednoduchý překlad, abyste ověřili, že vše funguje, poté zkuste **Přepsat** a **Transformovat**.
 
 Toto pořadí je důležité. Zabraňuje nejčastějšímu problému při prvním použití: spuštění úkolu před tím, než má aplikace funkční připojení přes API nebo vybranou dovednost/model.
 
@@ -209,11 +209,11 @@ Panel nástrojů se mírně liší v závislosti na tom, kde se v aplikaci nach�
 - Vlevo se zobrazuje název aktuální stránky.
 - Vpravo se zobrazuje **výběr dovednosti nebo modelu** a ovládání **jazyka rozhraní**.
 
-V režimu **Snadný** panel nástrojů zobrazuje **výběr dovednosti** s vestavěnými přednastaveními **Zdarma (OpenRouter)**, **Lite**, **Pokročilý** a **Technický**. Které dovednosti se zobrazují, závisí na **Poskytovateli**, kterého jste zvolili v [**Nastavení** > **Obecné nastavení**](#general-settings)—například **Zdarma (OpenRouter)** je uvedeno pouze tehdy, když je poskytovatel OpenRouter. Pokud je **Poskytovatel** **Ollama**, panel nástrojů místo dovedností zobrazuje vaše nainstalované místní modely.
+V režimu **Snadný** zobrazuje panel nástrojů **výběr předvoleb** s vestavěnými předvolbami **Zdarma (OpenRouter)**, **Lite**, **Pokročilý** a **Technický**. Které předvolby se zobrazí, závisí na **Poskytovateli**, kterého jste vybrali v [**Nastavení** > **Obecné nastavení**](#general-settings) – například **Zdarma (OpenRouter)** se zobrazí pouze, když je poskytovatel nastaven na OpenRouter. Pokud je **Poskytovatel** nastaven na **Ollama**, zobrazí se v panelu nástrojů místo předvoleb vaše nainstalované místní modely.
 
 V režimu **Pokročilý** vám **výběr modelu** umožňuje zvolit, který AI modul použít pro aktuální úkol.
 
-![Model selector](../images/screenshots/cs/model-selector.png)
+![Model selector](../images/screenshots/cs/preset-selector.png)
 
 V pokročilém režimu některé bezplatné modely nemusí být vždy k dispozici – mohou být offline nebo dosáhly limitu využití. Aplikace může tento model automaticky odebrat ze seznamu. Chcete-li ovlivnit, které modely se zobrazují, přejděte do [**Nastavení** > **Modely**](#models). Nastavení modelu můžete otevřít kliknutím na ikonu poskytovatele vlevo od názvu modelu na panelu nástrojů.
 
@@ -263,8 +263,8 @@ Použijte **Překlad**, chcete-li převést text z jednoho jazyka do druhého.
 
 1. Otevřete **Překlad**.
 2. Vyberte jazyk ve **Z**.
-3. Vyberte jazyk do **Na**.
-4. Vyberte dovednost (Snadný) nebo model (Pokročilý) na panelu nástrojů.
+3. Vyberte jazyk v **Na**.
+4. Vyberte předvolbu (Snadný) nebo model (Pokročilý) v panelu nástrojů.
 5. Zadejte nebo vložte text do **Vstupu**.
 6. Klikněte na **Překlad**.
 7. Přečtěte si výsledek ve **Výstupu**.
@@ -371,8 +371,8 @@ Nejrychlejší způsob, jak vytvořit výzvu:
 
 1. Klikněte na **Nová výzva**.
 2. Klikněte na **Vygenerovat výzvu**.
-3. Popište, co chcete, aby výzva dělala.
-4. Vyberte dovednost (Snadný) nebo model (Pokročilý).
+3. Popište, co má výzva dělat.
+4. Vyberte předvolbu (Snadný) nebo model (Pokročilý).
 5. Nechte aplikaci vytvořit koncept pro vás.
 6. Zkontrolujte koncept a klikněte na **Uložit**.
 
@@ -431,7 +431,7 @@ To je užitečné v těchto případech:
 > ℹ️ **POZNÁMKA**<br/>
 > Uložené výzvy můžete exportovat a importovat v části [**Nastavení** > **Transformovat**](#transform-settings).
 
-Když použijete **Vygenerovat výzvu**, **Vylepšit výzvu** nebo **Přeložit výzvu** v editoru výzev, nabízí režim **Snadný** stejný výběr dovedností jako Překlad a Přepsání; režim **Pokročilý** používá seznam modelů.
+Když použijete **Vygenerovat výzvu**, **Vylepšit výzvu** nebo **Přeložit výzvu** v editoru výzev, režim **Snadný** nabízí stejný výběr předvoleb jako Překlad a Přepsat; režim **Pokročilý** používá seznam modelů.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **AI zkušenost**
 
-- **Snadný** (výchozí): vyberte **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají vestavěná přednastavení dovedností v panelu nástrojů. **Ollama** uvádí modely nainstalované na vašem počítači místo dovedností. V režimu Snadný **Katalog dovedností** zobrazuje verzi katalogu a čas poslední aktualizace; klikněte na **Obnovit katalog dovedností**, abyste načetli nejnovější seznam dovedností z repozitáře projektu (aplikace také pravidelně kontroluje na pozadí).
-- **Pokročilý**: vyberte jednotlivé modely v panelu nástrojů; spravujte seznam v [**Nastavení** > **Modely**](#models).
+- **Snadný** (výchozí): vyberte si **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají vestavěné předvolby v panelu nástrojů. **Ollama** zobrazuje místo předvoleb modely nainstalované na vašem počítači. V režimu Snadný zobrazuje **Katalog předvoleb** verzi katalogu a čas poslední aktualizace; kliknutím na **Obnovit katalog předvoleb** načtete nejnovější seznam dovedností z úložiště projektu (aplikace jej pravidelně kontroluje i na pozadí).
+- **Pokročilý**: vybírejte jednotlivé modely v panelu nástrojů; spravujte seznam v části [**Nastavení** > **Modely**](#models).
 
 Ve **webové aplikaci** závisí, které poskytovatele vidíte, na nastavených klíčích API v prostředí serveru. V **desktopové aplikaci** nakonfigurujte klíče v části [**Nastavení API**](#api-config).
 
@@ -619,7 +619,7 @@ Zálohy vytvořené ve webové nebo desktopové verzi lze obnovit i v druhé ver
 
 Tato karta je k dispozici pouze v případě, že je v části [**Obecné nastavení**](#general-settings) nastavena možnost **AI zkušenost** na **Pokročilý**. Pomocí **Nastavení** > **Modely** vyberte, které modely se zobrazí na panelu nástrojů.
 
-![Settings Models tab](../images/screenshots/cs/settings-models.png)
+![Settings Models tab](../images/screenshots/cs/settings-general.png)
 
 Stránka obsahuje dva seznamy:
 
@@ -784,9 +784,9 @@ Pokud něco nefunguje podle očekávání, nejprve zkontrolujte následující b
 
 Zkontrolujte, zda:
 
-- vybrali jste **dovednost** (Snadný) nebo **model** (Pokročilý) na panelu nástrojů
-- v režimu **Snadný** má [**Nastavení** > **Obecné nastavení**](#general-settings) nastaveného **poskytovatele** s platným klíčem (nebo adresou URL Ollamy) a alespoň jednu dovednost pro tohoto poskytovatele
-- v režimu **Pokročilý** je alespoň jeden model uveden v části [**Nastavení** > **Modely**](#models)
+- vybrali jste **předvolbu** (Snadný) nebo **model** (Pokročilý) v panelu nástrojů
+- v režimu **Snadný** máte v [**Nastavení** > **Obecné nastavení**](#general-settings) nastaveného **Poskytovatele** s funkčním klíčem (nebo URL Ollama) a alespoň jednu předvolbu pro tohoto poskytovatele
+- v režimu **Pokročilý** je alespoň jeden model uveden v [**Nastavení** > **Modely**](#models)
 - vaše nastavení API funguje
 
 Pokud používáte desktopovou aplikaci:
@@ -811,10 +811,10 @@ V režimu **Pokročilý** otevřete [**Nastavení** > **Modely**](#models) a kli
 
 Vyzkoušejte jednu nebo více z následujících možností:
 
-- vyberte jinou dovednost (Snadný) nebo model (Pokročilý)
+- vyberte jinou předvolbu (Snadný) nebo model (Pokročilý)
 - použijte kratší vstup
 - vypněte **Překlad v reálném čase (během psaní)** v [**Nastavení** > **Obecné nastavení**](#general-settings)
-- použijte zdarma modely pro jednoduché úkoly (viz [Modely](#models))
+- pro jednoduché úkoly používejte modely zdarma (viz [Modely](#models))
 
 <br/>
 

@@ -16,10 +16,10 @@ Technical architecture, folder structure, tech stack, and design decisions for t
   - [Shared practices](#shared-practices)
 - [Folder Structure](#folder-structure)
 - [Design Decisions](#design-decisions)
-- [Easy mode and skills catalog](#easy-mode-and-skills-catalog)
+- [Easy mode and presets catalog](#easy-mode-and-skills-catalog)
   - [AI experience (Easy vs Advanced)](#ai-experience-easy-vs-advanced)
-  - [Skills catalog file and sync](#skills-catalog-file-and-sync)
-  - [Development skills editor](#development-skills-editor)
+  - [Presets catalog file and sync](#skills-catalog-file-and-sync)
+  - [Development skills editor](#development-presets-editor)
 - [Config and State](#config-and-state)
   - [Electron (desktop)](#electron-desktop-1)
   - [Web / Docker](#web--docker-1)
@@ -149,22 +149,22 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 ```text/plain
 ├── easy-mode-config/
-│   └── skills.json        # Canonical Easy-mode skills catalog (version, model_ids, translations)
+│   └── presets.json        # Canonical Easy-mode presets catalog (version, model_ids, translations)
 ├── dev/
-│   └── skills-editor/     # Dev-only catalog editor (not shipped in Electron/Docker)
+│   └── presets-editor/     # Dev-only catalog editor (not shipped in Electron/Docker)
 ├── src/
 │   ├── main/              # Electron only
 │   │   ├── main.js        # Main process, IPC, config path, appDb
 │   │   ├── preload.js     # Exposes safe APIs to renderer
-│   │   ├── ipc/           # llmIpc.js, skillsIpc.js (read / remote sync)
-│   │   ├── configPath.js  # config.json, skills.json paths (user data dir)
+│   │   ├── ipc/           # llmIpc.js, presetsIpc.js (read / remote sync)
+│   │   ├── configPath.js  # config.json, presets.json paths (user data dir)
 │   │   └── appDb.js       # SQLite: api_calls, action_content, custom_prompts
 │   ├── renderer/          # Shared React app
-│   │   ├── components/    # App, SkillSelector, HistoryPage, SettingsPanel, …
+│   │   ├── components/    # App, PresetSelector, HistoryPage, SettingsPanel, …
 │   │   ├── contexts/      # AppContext (mode, skills, easy provider)
 │   │   ├── hooks/         # useProcessing, useCostTracking, useDirection, …
 │   │   ├── services/      # apiService (translate / rewrite / transform / models)
-│   │   ├── utils/         # configManager, webApiClient, skills/skillsManager, …
+│   │   ├── utils/         # configManager, webApiClient, skills/presetsManager, …
 │   │   ├── locales/       # i18n JSON (strings.json, per-locale bundles)
 │   │   ├── styles/        # main.css
 │   │   └── index.tsx      # Entry; i18n, AppRoot (AppProvider), App
@@ -177,7 +177,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   ├── shared/
 │   │   ├── db/appSchema.js
 │   │   ├── llm/index.js   # multi-llm-ts bridge, keys, streaming (main + server)
-│   │   └── skillsCatalog.js  # Remote URL, merge rules, 6 h sync throttle (main + server)
+│   │   └── presetsCatalog.js  # Remote URL, merge rules, 6 h sync throttle (main + server)
 │   └── config-defaults/
 │       ├── config_default.json   # default mode: "easy"
 │       ├── transform-prompts.json
@@ -200,20 +200,20 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 - **Web multi-user**: After migration, **workspace settings** (models, languages, `total_cost`, transform prompts linkage, session fields like `last_used_model`) live in `user_preferences` per `user_id`. **Global** `config.json` keeps **server-global** keys only (`webConfigKeys.js`). **Custom prompts** are scoped with `user_id` where applicable.
 - **Authorization**: **Settings → Cost tracking** and **provider keys** in `/api/config` are **admin-only** on web. `GET /api/calls/*` applies **username** filters for non-admins server-side.
 - **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see USER-GUIDE. Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
-- **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the skills catalog and does not auto-remove models on 404.
+- **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404.
 
 ---
 
-## Easy mode and skills catalog
+## Easy mode and presets catalog
 
 ### AI experience (Easy vs Advanced)
 
 | Mode | Config `mode` | Toolbar | Settings |
 |------|---------------|---------|----------|
-| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + skills catalog refresh; **Models** tab hidden |
+| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
 | **Advanced** | `"advanced"` | **Model** selector from `available_models` | **Models** tab for selected models list |
 
-Built-in skills in [easy-mode-config/skills.json](../easy-mode-config/skills.json) (as of catalog v1.1.x):
+Built-in skills in [easy-mode-config/presets.json](../easy-mode-config/presets.json) (as of catalog v1.1.x):
 
 | Skill id | Display name | Providers |
 |----------|--------------|-----------|
@@ -222,34 +222,34 @@ Built-in skills in [easy-mode-config/skills.json](../easy-mode-config/skills.jso
 | `advanced` | Advanced | All cloud engines with `model_ids` |
 | `technical` | Technical | All cloud engines with `model_ids` |
 
-In **Easy** mode, each skill row in `skills.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Ollama** does not use skills: the toolbar lists installed local models (`easy_ollama_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
+In **Easy** mode, each skill row in `presets.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Ollama** does not use skills: the toolbar lists installed local models (`easy_ollama_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
 
-Transform prompt editor actions (translate / improve / generate fields) use the same skill selector in Easy mode and the model list in Advanced mode.
+Transform prompt editor actions (translate / improve / generate fields) use the same preset selector in Easy mode and the model list in Advanced mode.
 
 Web **Provider** options use `configuredEngines` from `GET /api/status` (server env keys), not Electron-only `*_configured` flags.
 
-### Skills catalog file and sync
+### Presets catalog file and sync
 
 | Artifact | Role |
 |----------|------|
-| [easy-mode-config/skills.json](../easy-mode-config/skills.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `skills[]`, editor-only `translation_model` / `suggestion_model`, …) |
-| User / data `skills.json` | **Runtime** copy beside `config.json` (Electron) or `data/skills.json` (web/Docker) |
-| Packaged Electron | `config/skills.json` copied from `easy-mode-config/skills.json` at build ([package.json](../package.json) `extraFiles`) |
-| Remote | [shared/skillsCatalog.js](../src/shared/skillsCatalog.js) `SKILLS_REMOTE_URL` → `main` branch `easy-mode-config/skills.json` on GitHub |
+| [easy-mode-config/presets.json](../easy-mode-config/presets.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `skills[]`, editor-only `translation_model` / `suggestion_model`, …) |
+| User / data `presets.json` | **Runtime** copy beside `config.json` (Electron) or `data/presets.json` (web/Docker) |
+| Packaged Electron | `config/presets.json` copied from `easy-mode-config/presets.json` at build ([package.json](../package.json) `extraFiles`) |
+| Remote | [shared/presetsCatalog.js](../src/shared/presetsCatalog.js) `SKILLS_REMOTE_URL` → `main` branch `easy-mode-config/presets.json` on GitHub |
 
 **Merge rules** (shared module): do not overwrite local file when local `updated_at` is newer than remote; otherwise prefer newer `updated_at`, then higher semver `version`. A sidecar `.skills-remote-sync.json` stores `last_checked_at` for the **6 hour** throttle.
 
 **Sync behaviour**:
 
 - **Electron**: Remote fetch only while `mode` is Easy (unless forced). Throttled to once per 6 h; **Settings → General** shows catalog `version` / `updated_at` and a **Refresh** button (`skills:sync` IPC).
-- **Web server**: Bootstraps missing `data/skills.json`, then syncs on startup and every 6 h for **all** users (shared file). Authenticated Easy users can call `POST /api/skills/sync` (skipped when `user_preferences.mode` is Advanced).
-- **Docker**: Image includes `easy-mode-config/`; server default path resolves under `/app/easy-mode-config` when `data/skills.json` is absent.
+- **Web server**: Bootstraps missing `data/presets.json`, then syncs on startup and every 6 h for **all** users (shared file). Authenticated Easy users can call `POST /api/presets/sync` (skipped when `user_preferences.mode` is Advanced).
+- **Docker**: Image includes `easy-mode-config/`; server default path resolves under `/app/easy-mode-config` when `data/presets.json` is absent.
 
-Renderer loads the catalog via `window.electronAPI.readSkills()` or `GET /api/skills` ([skillsManager.ts](../src/renderer/utils/skills/skillsManager.ts), [skills.js](../src/server/routes/skills.js), [skillsIpc.js](../src/main/ipc/skillsIpc.js)).
+Renderer loads the catalog via `window.electronAPI.readPresets()` or `GET /api/presets` ([presetsManager.ts](../src/renderer/utils/skills/presetsManager.ts), [skills.js](../src/server/routes/presets.js), [presetsIpc.js](../src/main/ipc/presetsIpc.js)).
 
 ### Development skills editor
 
-Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run dev:skills-editor`** ([dev/skills-editor/README.md](skills-editor/README.md)): saves `easy-mode-config/skills.json`, mirrors to `data/skills.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. See [DEVELOPMENT.md](DEVELOPMENT.md#skills-catalog-editor-development).
+Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run dev:presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. See [DEVELOPMENT.md](DEVELOPMENT.md#skills-catalog-editor-development).
 
 ---
 
@@ -258,13 +258,13 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 ### Electron (desktop)
 
 - **Storage**: One merged `config.json`; provider secrets are **encrypted at rest** when written ([encryption.js](../src/main/encryption.js)). Defaults from [config_default.json](../src/config-defaults/config_default.json) (`mode: "easy"`, `source_locale`, …).
-- **Skills**: `skills.json` in the config directory ([getSkillsFilePath](../src/main/configPath.js)); first launch copies or downloads catalog; remote updates when in Easy mode (see [Easy mode and skills catalog](#easy-mode-and-skills-catalog)).
+- **Skills**: `presets.json` in the config directory ([getSkillsFilePath](../src/main/configPath.js)); first launch copies or downloads catalog; remote updates when in Easy mode (see [Easy mode and presets catalog](#easy-mode-and-skills-catalog)).
 - **State keys** (e.g. `last_used_model`, `easy_provider`, `easy_ollama_model`, `source_language`) live in the same file as other settings from the app’s perspective; the main process may split persistence as implemented in IPC.
 
 ### Web / Docker
 
 - **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), `web_session_timeout`, etc. **Not** used for per-user workspace after migration.
-- **Shared skills file** (`data/skills.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Skills catalog file and sync](#skills-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_ollama_model` live in `user_preferences`.
+- **Shared skills file** (`data/presets.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Presets catalog file and sync](#skills-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_ollama_model` live in `user_preferences`.
 - **SQLite** (`transrewrt.db` next to the config file): `user_preferences` JSON per user (merged into `GET /api/config` and updated via `POST /api/config` for non-global keys), `users`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, etc.
 - **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in `user_preferences`.
 - **UI language**: `ui_locale` is part of merged settings; [i18n.js](../src/renderer/i18n.js) and `locales/`. Login may use `localStorage` for locale before session exists.
@@ -273,7 +273,7 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 
 ## Settings UI
 
-Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and skills catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**), **Languages**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.js)) is outside the panel but persists `ui_locale`. End-user behaviour is described in [USER-GUIDE.md](../USER-GUIDE.md).
+Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**), **Languages**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.js)) is outside the panel but persists `ui_locale`. End-user behaviour is described in [USER-GUIDE.md](../USER-GUIDE.md).
 
 ---
 

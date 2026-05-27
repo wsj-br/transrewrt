@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:12.728Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:08:33.623Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: tr
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt, metinle çalışmanıza üç ana yoldan yardımcı olur:
 - **Yeniden yaz** - metni daha açık, daha kısa veya daha resmi gibi farklı bir şekilde yeniden ifade et.
 - **Dönüştür** - istem adı verilen özel AI talimatlarını kullanarak metni işle.
 
-Varsayılan olarak uygulama **Kolay** modda çalışır: Ayarlar'da bir **beceri** (örneğin Ücretsiz (OpenRouter), Lite veya Teknik) ve bir **sağlayıcı** seçersiniz, model kimliklerini seçmenize gerek kalmaz. Klasik model listesini kullanmak istiyorsanız [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde **Gelişmiş** moda geçin [**Ayarlar** > **Modeller**](#models).
+Varsayılan olarak uygulama **Kolay** modda çalışır: Ayarlar'da bir **ön ayar** (örneğin Ücretsiz (OpenRouter), Hafif veya Teknik) ve bir **sağlayıcı** seçersiniz, model kimliklerini seçmeden. [**Ayarlar** > **Modeller**](#models) bölümünden klasik model listesini kullanmak istiyorsanız [**Ayarlar** > **Genel Ayarlar**](#general-settings) kısmında **Gelişmiş** moda geçin.
 
 <br/>
 
@@ -117,9 +117,9 @@ Başlarken ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı
 
 Basitçe:
 
-- **Kolay** modda, bir **beceri**, seçtiğiniz **sağlayıcı** için (OpenRouter, OpenAI, Ollama ve diğerleri) bir modele eşlenen önceden ayarlanmış bir değerdir (Ücretsiz (OpenRouter), Lite, Gelişmiş veya Teknik). Geçerli sağlayıcı için eşleme olan beceriler araç çubuğunda görünür. Beceriyi Çevir, Yeniden Yaz ve Dönüştür işlemlerinde seçersiniz.
+- **Kolay** modda, bir **ön ayar**, seçilen **sağlayıcınız** için (OpenRouter, OpenAI, Ollama ve diğerleri) bir modele eşlenen bir önceden tanımlanmış yapıdır (Ücretsiz (OpenRouter), Hafif, Gelişmiş veya Teknik). Geçerli sağlayıcı için eşleme olan beceriler araç çubuğunda görünür. Çevir, Yeniden Yaz ve Dönüştür'de beceriyi seçersiniz.
 - **Gelişmiş** modda, bir **model** doğrudan seçtiğiniz yapay zekâ altyapısıdır. Model kimlikleri bir **sağlayıcı öneki** kullanır (örneğin `openrouter/…`, `openai/…`, `ollama/…`).
-- Bir **API anahtarı** (veya Ollama için bir **temel URL**) uygulamanın sağlayıcıya nasıl ulaşacağını belirler.
+- Bir **API anahtarı** (veya Ollama için bir **temel URL**) uygulamanın bu sağlayıcıya ulaşmasını sağlar.
 
 **Masaüstü uygulamasını** kullanıyorsanız, kullandığınız her sağlayıcı için [**Ayarlar** > **API Yapılandırması**](#api-config) bölümünde anahtar ekleyin. Sadece OpenRouter kullanıyorsanız aşağıda [Ücretsiz bir OpenRouter API anahtarı nasıl alınır?](#how-to-get-a-free-openrouter-api-key-desktop-app) bölümüne bakın. API anahtarı kullanmak istemiyorsanız, [ollama.com](https://ollama.com) adresinden Ollama'yı yükleyebilir ve `translategemma:4b` gibi yerel modeller kullanabilirsiniz.
 
@@ -153,8 +153,8 @@ Transrewrt'ı ilk defa kullanıyorsanız şu sırayı izleyin:
 2. Gerekirse dünya simgesinden **Arayüz dilinizi** seçin.
 3. **Masaüstü uygulamasını** kullanıyorsanız [**Ayarlar** > **API Yapılandırması**](#api-config) bölümüne gidin, en az bir sağlayıcı için bir API anahtarı ekleyin (örneğin OpenRouter) ve çalıştığını doğrulamak için **Test** seçeneğine tıklayın.
 4. [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümüne gidin. Varsayılan olan **Kolay** modda, yapılandırılmış bir anahtarı olan bir **Sağlayıcı** seçin. **Gelişmiş** modda [**Ayarlar** > **Modeller**](#models) bölümüne gidin ve bir veya daha fazla modeli **Seçilen Modeller** listesine ekleyin.
-5. **Çevir** sekmesinde araç çubuğundan bir **beceri** (Kolay) veya **model** (Gelişmiş) seçin.
-6. En çok kullandığınız dillerin en üstte görünmesini istiyorsanız [**Ayarlar** > **Diller**](#languages) bölümüne gidin ve **En üstteki dillerinizi** seçin.
+5. **Çevir** sekmesinde araç çubuğundan bir **ön ayar** (Kolay) veya **model** (Gelişmiş) seçin.
+6. En çok kullandığınız dillerin en üstte görünmesini istiyorsanız [**Ayarlar** > **Diller**](#languages) sayfasını açın ve **En üstteki diller** seçeneğini belirleyin.
 7. Her şeyin düzgün çalıştığını doğrulamak için basit bir çeviri yapın, ardından **Yeniden Yaz** ve **Dönüştür** işlevlerini deneyin.
 
 Bu sıralama önemlidir. En yaygın ilk kullanım sorununu önler: uygulamanın çalışan bir API bağlantısı veya seçili bir beceri/modeli olmadan görev çalıştırmayı denemek.
@@ -209,11 +209,11 @@ Araç çubuğu, uygulama içinde nerede olduğunuza göre hafifçe değişir.
 - Solda, geçerli sayfanın adı gösterilir.
 - Sağda, **beceri veya model seçici** ve **Arayüz dili** denetimi yer alır.
 
-**Kolay** modunda, araç çubuğu yerleşik önceden ayarlanmış **Ücretsiz (OpenRouter)**, **Hafif**, **Gelişmiş** ve **Teknik** becerileriyle birlikte bir **beceri seçici** gösterir. Hangi becerilerin görüneceği, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde seçtiğiniz **Sağlayıcıya** bağlıdır. Örneğin, **Ücretsiz (OpenRouter)** yalnızca sağlayıcı OpenRouter olarak ayarlandığında listelenir. Eğer **Sağlayıcı** **Ollama** ise, araç çubuğu beceriler yerine yüklenmiş yerel modellerinizi listeler.
+**Kolay** modunda, araç çubuğu yerleşik **Ücretsiz (OpenRouter)**, **Lite**, **Gelişmiş** ve **Teknik** **ön ayar seçici**sini gösterir. Hangi ön ayarların görüneceği, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde seçtiğiniz **Sağlayıcı**ya bağlıdır. Örneğin, **Ücretsiz (OpenRouter)** yalnızca sağlayıcı OpenRouter olarak ayarlandığında listelenir. Eğer **Sağlayıcı** **Ollama** ise, araç çubuğu ön ayarlar yerine yüklenmiş yerel modellerinizi listeler.
 
 **Gelişmiş** modda, **model seçici** geçerli görev için hangi yapay zekâ motorunun kullanılacağını seçmenizi sağlar.
 
-![Model selector](../images/screenshots/tr/model-selector.png)
+![Model selector](../images/screenshots/tr/preset-selector.png)
 
 Gelişmiş modda, bazı ücretsiz modeller her zaman mevcut olmayabilir—çevrimdışı olabilir veya kullanım sınırına ulaşmış olabilir. Uygulama bu modeli listeden otomatik olarak kaldırabilir. Hangi modellerin görünmesini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin. Araç çubuğundaki model adının solundaki sağlayıcı simgesinden model ayarlarını açabilirsiniz.
 
@@ -264,7 +264,7 @@ Metni bir dilden başka bir dile çevirmek istediğinizde **Çevir** seçeneğin
 1. **Çevir** sekmesini açın.
 2. **Kimden** alanında bir dil seçin.
 3. **Kime** alanında bir dil seçin.
-4. Araç çubuğundan bir beceri (Kolay) veya model (Gelişmiş) seçin.
+4. Araç çubuğundan bir ön ayar (Kolay) veya model (Gelişmiş) seçin.
 5. **Girdi** alanına metin yazın veya yapıştırın.
 6. **Çevir**'e tıklayın.
 7. Sonucu **Çıktı** alanında okuyun.
@@ -371,8 +371,8 @@ Bir istem oluşturmanın en hızlı yolu:
 
 1. **Yeni istem** seçeneğine tıklayın.
 2. **İstem oluştur** seçeneğine tıklayın.
-3. İstemden ne yapmasını istediğinizi açıklayın.
-4. Bir beceri (Kolay) veya model (Gelişmiş) seçin.
+3. İstemin ne yapmasını istediğinizi açıklayın.
+4. Bir ön ayar (Kolay) veya model (Gelişmiş) seçin.
 5. Uygulamanın sizin için bir taslak oluşturmasına izin verin.
 6. Taslağı gözden geçirin ve **Kaydet**'e tıklayın.
 
@@ -431,7 +431,7 @@ Bu durumlarda kullanışlıdır:
 > ℹ️ **NOT**<br/>
 > Kayıtlı istemleri [**Ayarlar** > **Dönüştür**](#transform-settings) bölümünde dışa aktarabilir ve içe aktarabilirsiniz.
 
-İstem düzenleyicide **İstem oluştur**, **İstemi geliştir** veya **İstemi çevir** kullandığınızda, **Kolay** mod, Çevir ve Yeniden Yaz ile aynı beceri seçeneğini sunar; **Gelişmiş** mod ise model listesini kullanır.
+İstem düzenleyicide **İstem oluştur**, **İstemi geliştir** veya **İstemi çevir** kullanıldığında, **Kolay** mod Çevir ve Yeniden Yaz ile aynı ön ayar seçeneğini sunar; **Gelişmiş** mod ise model listesini kullanır.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 
 **Yapay zeka deneyimi**
 
-- **Kolay** (varsayılan): bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcıları araç çubuğundaki yerleşik beceri önceden ayarlarını kullanır. **Ollama**, beceriler yerine makinenizde yüklü modelleri listeler. Kolay modda **Beceriler kataloğu**, katalog sürümünü ve son güncelleme zamanını gösterir; en son beceri listesini proje deposundan almak için **Beceriler kataloğunu yenile** seçeneğine tıklayın (uygulama ayrıca arka planda düzenli olarak kontrol eder).
-- **Gelişmiş**: araç çubuğunda tek tek modeller seçin; listeyi [**Ayarlar** > **Modeller**](#models) bölümünde yönetin.
+- **Kolay** (varsayılan): bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcıları araç çubuğundaki yerleşik ön ayarları kullanır. **Ollama**, ön ayarlar yerine makinenizde yüklenmiş modelleri listeler. Kolay modda, **Ön ayar kataloğu** katalog sürümünü ve son güncelleme zamanını gösterir; projenin depo kaynaklarından en son beceri listesini almak için **Ön ayar kataloğunu yenile** seçeneğine tıklayın (uygulama ayrıca arka planda düzenli olarak kontrol eder).
+- **Gelişmiş**: araç çubuğundan bireysel modelleri seçin; [**Ayarlar** > **Modeller**](#models) altında listede yönetin.
 
 **Web uygulamasında**, hangi sağlayıcıların görüneceği sunucu ortamında ayarlanan API anahtarlarına bağlıdır. **Masaüstü uygulamasında**, anahtarları [**API Yapılandırması**](#api-config) altında yapılandırın.
 
@@ -619,7 +619,7 @@ Web veya masaüstü sürümünde oluşturulan yedeklemeler, diğerinde geri yük
 
 Bu sekme yalnızca [**Genel Ayarlar**](#general-settings) bölümünde **Yapay zeka deneyimi** **Gelişmiş** olarak ayarlandığında kullanılabilir. Araç çubuğunda hangi modellerin görüneceğini seçmek için **Ayarlar** > **Modeller** seçeneğini kullanın.
 
-![Settings Models tab](../images/screenshots/tr/settings-models.png)
+![Settings Models tab](../images/screenshots/tr/settings-general.png)
 
 Sayfada iki liste bulunur:
 
@@ -783,10 +783,10 @@ Bir şey beklenildiği gibi çalışmıyorsa, önce aşağıdaki noktaları kont
 
 Aşağıdakileri kontrol edin:
 
-- araç çubuğunda bir **beceri** (Kolay) veya **model** (Gelişmiş) seçtiniz
-- **Kolay** modda, [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde çalışan bir anahtarı (veya Ollama URL'si) olan bir **Sağlayıcı** ve bu sağlayıcı için en az bir beceri olmalıdır
-- **Gelişmiş** modda, en az bir model [**Ayarlar** > **Modeller**](#models) bölümünde listelenmelidir
-- API kurulumunuz çalışıyor olmalıdır
+- araç çubuğunda bir **ön ayar** (Kolay) veya **model** (Gelişmiş) seçmiş olmanız
+- **Kolay** modda [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde çalışan bir anahtara (veya Ollama URL'sine) sahip bir **Sağlayıcı** ve bu sağlayıcı için en az bir ön ayar tanımlı olması
+- **Gelişmiş** modda [**Ayarlar** > **Modeller**](#models) içinde en az bir modelin listelenmiş olması
+- API kurulumunuzun düzgün çalışması
 
 Masaüstü uygulamasını kullanıyorsanız:
 
@@ -810,9 +810,9 @@ Masaüstü uygulamasını kullanıyorsanız:
 
 Aşağıdakilerden birini veya birkaçını deneyin:
 
-- farklı bir beceri (Kolay) veya model (Gelişmiş) seçin
+- farklı bir ön ayar (Kolay) veya model (Gelişmiş) seçin
 - daha kısa bir girdi kullanın
-- [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde **Gerçek zamanlı çeviri (yazarken)** seçeneğini kapatın
+- [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde **Gerçek zamanlı çeviri (yazarken)** seçeneğini devre dışı bırakın
 - basit görevler için ücretsiz modeller kullanın (bkz. [Modeller](#models))
 
 <br/>

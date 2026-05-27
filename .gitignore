@@ -36,15 +36,15 @@ models_api_raw.json
 models_valid.json
 last_api_result.json
 
-# dev skills editor — provider model catalogs (refreshed from APIs, max 2h TTL)
-skills-editor-provider-catalogs.json
-skills-editor.log
-skills-editor-*.log
+# dev presets editor — provider model catalogs (refreshed from APIs, max 2h TTL)
+presets-editor-provider-catalogs.json
+presets-editor.log
+presets-editor-*.log
 
-# dev skill-check (local config + log)
-dev/skill-check/config.json
-dev/skill-check/skill-check.log
-dev/skill-check/provider-catalogs-cache.json
+# dev presets-check (local config + log)
+dev/presets-check/config.json
+dev/presets-check/presets-check.log
+dev/presets-check/provider-catalogs-cache.json
 
 
 

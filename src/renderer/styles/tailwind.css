@@ -57,6 +57,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Simple toggle: neutral off track, coloured on, white thumb (same pattern in both themes) */
+  --switch-track-off: oklch(0.87 0.006 264);
+  --switch-track-on: oklch(0.52 0.14 165);
+  --switch-thumb: oklch(0.99 0 0);
+  --tooltip-outline: #000000;
 }
 
 body.dark {
@@ -92,6 +97,10 @@ body.dark {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --switch-track-off: oklch(0.34 0.015 264);
+  --switch-track-on: oklch(0.58 0.14 165);
+  --switch-thumb: oklch(0.99 0 0);
+  --tooltip-outline: #ffffff;
 }
 
 @theme inline {
@@ -141,6 +150,16 @@ body.dark {
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Checked track: default token, or mode accent (inherits --mode-accent-rgb from main[data-mode]) */
+@layer components {
+  [data-slot="switch"][data-state="checked"]:not(.switch-accent) {
+    background-color: var(--switch-track-on);
+  }
+  [data-slot="switch"].switch-accent[data-state="checked"] {
+    background-color: rgb(var(--mode-accent-rgb));
   }
 }
 

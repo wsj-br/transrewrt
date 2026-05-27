@@ -1,6 +1,6 @@
 # Transrewrt - Development Guide
 
-Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture (Electron vs web, **multi-llm-ts** / `/api/llm/*`, Easy mode / skills catalog, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
+Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture (Electron vs web, **multi-llm-ts** / `/api/llm/*`, Easy mode / presets catalog, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
 
 ---
 
@@ -13,8 +13,8 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
-  - [Skills catalog editor (development)](#skills-catalog-editor-development)
-  - [Skill-check cron (development)](#skill-check-cron-development)
+  - [Presets catalog editor (development)](#skills-catalog-editor-development)
+  - [Skill-check cron (development)](#presets-check-cron-development)
   - [Cleaning the workspace](#cleaning-the-workspace)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
@@ -235,67 +235,67 @@ pnpm start
 
 On Linux with X11 (if Wayland causes issues): `pnpm start-x11`.
 
-For **Easy** mode during web dev, the server reads `data/skills.json` beside `config.json`. The skills editor mirrors the repo catalog there on save; or copy [easy-mode-config/skills.json](../easy-mode-config/skills.json) manually after editing.
+For **Easy** mode during web dev, the server reads `data/presets.json` beside `config.json`. The skills editor mirrors the repo catalog there on save; or copy [easy-mode-config/presets.json](../easy-mode-config/presets.json) manually after editing.
 
-### Skills catalog editor (development)
+### Presets catalog editor (development)
 
 Maintainers edit the Easy-mode catalog with a small local tool (not packaged in Electron or Docker).
 
 ```bash
-pnpm run dev:skills-editor
+pnpm run dev:presets-editor
 ```
 
-Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `SKILLS_EDITOR_PORT`, `SKILLS_EDITOR_NO_OPEN`, …), and API notes: **[dev/skills-editor/README.md](skills-editor/README.md)**.
+Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `SKILLS_EDITOR_PORT`, `SKILLS_EDITOR_NO_OPEN`, …), and API notes: **[dev/presets-editor/README.md](presets-editor/README.md)**.
 
 | Topic | Detail |
 |-------|--------|
-| **Canonical file** | [easy-mode-config/skills.json](../easy-mode-config/skills.json) — always loaded/saved first; each save bumps patch `version` and `updated_at` |
-| **Local web mirror** | `data/skills.json` (override with `SKILLS_EDITOR_DATA_SKILLS_PATH`) |
-| **Electron dev** | May read `skills.json` next to your `config.json` instead of `data/` — see README in skills-editor |
+| **Canonical file** | [easy-mode-config/presets.json](../easy-mode-config/presets.json) — always loaded/saved first; each save bumps patch `version` and `updated_at` |
+| **Local web mirror** | `data/presets.json` (override with `SKILLS_EDITOR_DATA_SKILLS_PATH`) |
+| **Electron dev** | May read `presets.json` next to your `config.json` instead of `data/` — see README in presets-editor |
 | **Keys** | LLM keys from `process.env` only (editor does **not** read `.env`); export vars or use direnv before starting |
-| **Catalog cache** | `skills-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
-| **Server log** | `skills-editor.log` at repo root (previous run rotated to `skills-editor-<timestamp>.log` on startup); both removed by [clean-workspace](#cleaning-the-workspace) scripts |
+| **Catalog cache** | `presets-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
+| **Server log** | `presets-editor.log` at repo root (previous run rotated to `presets-editor-<timestamp>.log` on startup); both removed by [clean-workspace](#cleaning-the-workspace) scripts |
 
-Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/skills/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-skills-catalog)**.
+Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-skills-catalog)**.
 
 ### Skill-check cron (development)
 
-Cron-friendly CLI that validates model ids in [easy-mode-config/skills.json](../easy-mode-config/skills.json), replaces unavailable models via fuzzy matching, commits only that file to GitHub, and notifies via [NTFY](https://docs.ntfy.sh/). Use an isolated runtime directory on a server so cron never touches your dev checkout. Full behaviour, CLI flags, and exit codes: **[dev/skill-check/README.md](skill-check/README.md)**.
+Cron-friendly CLI that validates model ids in [easy-mode-config/presets.json](../easy-mode-config/presets.json), replaces unavailable models via fuzzy matching, commits only that file to GitHub, and notifies via [NTFY](https://docs.ntfy.sh/). Use an isolated runtime directory on a server so cron never touches your dev checkout. Full behaviour, CLI flags, and exit codes: **[dev/presets-check/README.md](presets-check/README.md)**.
 
 **Local development** (from the repository root):
 
 ```bash
-# Preview against local skills.json (no git, no writes)
-pnpm run skill-check -- --local --dry-run
+# Preview against local presets.json (no git, no writes)
+pnpm run presets-check -- --local --dry-run
 
-# Apply locally (updates easy-mode-config/skills.json only; no git push)
-pnpm run skill-check -- --local
+# Apply locally (updates easy-mode-config/presets.json only; no git push)
+pnpm run presets-check -- --local
 ```
 
-Copy [dev/skill-check/config.example.json](skill-check/config.example.json) to `dev/skill-check/config.json` and set `ntfy.topic` for notifications.
+Copy [dev/presets-check/config.example.json](presets-check/config.example.json) to `dev/presets-check/config.json` and set `ntfy.topic` for notifications.
 
 **Production install** (isolated runtime for cron):
 
 ```bash
-pnpm run skill-check:install -- --target /opt/transrewrt-skill-check
+pnpm run presets-check:install -- --target /opt/transrewrt-presets-check
 ```
 
-Configure `config.json` (set `ntfy.topic`) and create `/opt/transrewrt-skill-check/.env` with secrets (`run.sh` sources it):
+Configure `config.json` (set `ntfy.topic`) and create `/opt/transrewrt-presets-check/.env` with secrets (`run.sh` sources it):
 
 ```bash
-# /opt/transrewrt-skill-check/.env
+# /opt/transrewrt-presets-check/.env
 GITHUB_TOKEN=ghp_…
 SKILL_CHECK_NTFY_TOPIC=your-topic
 OPENROUTER_API_KEY=sk-or-…
 # … other provider keys as needed
 ```
 
-If `"useSsh": true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [skill-check/README.md](skill-check/README.md)).
+If `"useSsh": true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [presets-check/README.md](presets-check/README.md)).
 
 Test before scheduling:
 
 ```bash
-cd /opt/transrewrt-skill-check
+cd /opt/transrewrt-presets-check
 SKILL_CHECK_DRY_RUN=1 ./run.sh
 ```
 
@@ -306,14 +306,14 @@ crontab -e
 ```
 
 ```cron
-0 6 * * * /opt/transrewrt-skill-check/run.sh >> /opt/transrewrt-skill-check/skill-check-cron.log 2>&1
+0 6 * * * /opt/transrewrt-presets-check/run.sh >> /opt/transrewrt-presets-check/presets-check-cron.log 2>&1
 ```
 
-Adjust the schedule as needed. Logs go to `skill-check-cron.log` (stdout/stderr) and `skill-check.log` (JSON-lines from the checker).
+Adjust the schedule as needed. Logs go to `presets-check-cron.log` (stdout/stderr) and `presets-check.log` (JSON-lines from the checker).
 
-**Local repo checkout:** `dev/skill-check/skill-check.log` and `dev/skill-check/provider-catalogs-cache.json` (provider catalog snapshot for checks) are gitignored. Remove them with the [clean-workspace](#cleaning-the-workspace) scripts when you want a fresh checker run or to drop stale catalog data.
+**Local repo checkout:** `dev/presets-check/presets-check.log` and `dev/presets-check/provider-catalogs-cache.json` (provider catalog snapshot for checks) are gitignored. Remove them with the [clean-workspace](#cleaning-the-workspace) scripts when you want a fresh checker run or to drop stale catalog data.
 
-Upgrade an installed runtime after pulling a newer checker: `pnpm run skill-check:install -- --target /opt/transrewrt-skill-check --force`.
+Upgrade an installed runtime after pulling a newer checker: `pnpm run presets-check:install -- --target /opt/transrewrt-presets-check --force`.
 
 ### Cleaning the workspace
 
@@ -326,10 +326,10 @@ Use these scripts for a full local reset: dev logs and caches first, then build 
 
 **Logs and dev caches (both scripts):**
 
-- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules` (PowerShell also skips top-level `cache/`). Examples: `skills-editor.log`, `skills-editor-*.log`, `data/server.log`, `dev/skill-check/skill-check.log`, screenshot logs under `dev/`.
-- `skills-editor-provider-catalogs.json` (repo root)
-- `dev/skill-check/provider-catalogs-cache.json`
-- `dev/skill-check/skill-check.log` (also matched by the `*.log` sweep)
+- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules` (PowerShell also skips top-level `cache/`). Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `dev/presets-check/presets-check.log`, screenshot logs under `dev/`.
+- `presets-editor-provider-catalogs.json` (repo root)
+- `dev/presets-check/provider-catalogs-cache.json`
+- `dev/presets-check/presets-check.log` (also matched by the `*.log` sweep)
 
 **Windows only:** optional `-RemoveLockfile` (drop `pnpm-lock.yaml` for a full dependency resolve) and `-RemovePrerequisites` (global `pnpm`/Node via nvm, plus winget uninstall hints). If present, [scripts/clean-translation-logs.js](../scripts/clean-translation-logs.js) runs first (translation session logs; same intent as a dedicated `clean-logs` step when that script exists).
 
@@ -441,7 +441,7 @@ There is no automated test suite (`pnpm test` exits with an error placeholder). 
 
 Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
-**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run dev:skills-editor` (see [Skills catalog editor](#skills-catalog-editor-development)).
+**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run dev:presets-editor` (see [Presets catalog editor](#skills-catalog-editor-development)).
 
 ---
 
@@ -555,9 +555,9 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                                |
-| `pnpm run dev:skills-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [skills-editor/README.md](skills-editor/README.md)).                                                    |
-| `pnpm run skill-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#skill-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
-| `pnpm run skill-check:install`       | Install isolated skill-check runtime for cron (e.g. `-- --target /opt/transrewrt-skill-check`)                                                              |
+| `pnpm run dev:presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
+| `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#presets-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
+| `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64`).                                                            |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                             |
@@ -625,7 +625,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
 | Command / script                           | Purpose                                                                                                                                                                                                                                                                                  |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, skills-editor/skill-check dev caches, then build artifacts; Bash also prunes pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                 |
+| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, presets-editor/presets-check dev caches, then build artifacts; Bash also prunes pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                 |
 | `.\scripts\clean-workspace.ps1`          | Same log/cache/artifact cleanup on Windows; optional `-RemoveLockfile`, `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                       |
 | `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global `pnpm`, `npm-check-updates`, `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                              |
 | `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** nvm-windows `nvm install lts` / `nvm use`, then the same global packages. **Dot-source** (`. …`) so `nvm use` applies to this session (script may remind you if run as `.\…`).                                                                                           |
@@ -660,8 +660,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 ## Related documentation
 
-- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **Easy mode / skills catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
-- **[skills-editor/README.md](skills-editor/README.md)** — Development catalog editor (`pnpm run dev:skills-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
+- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run dev:presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
 
@@ -689,12 +689,12 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                |
 | [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                           |
 | [src/renderer/components/SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx)   | Settings tabs; **Models** only in Advanced mode; General includes AI experience / Provider                    |
-| [easy-mode-config/skills.json](../easy-mode-config/skills.json)                             | Canonical Easy-mode skills catalog (shipped as `config/skills.json` in Electron builds)                       |
-| [src/shared/skillsCatalog.js](../src/shared/skillsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
-| [src/main/ipc/skillsIpc.js](../src/main/ipc/skillsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
-| [src/server/routes/skills.js](../src/server/routes/skills.js)                               | Web `GET /api/skills`, `POST /api/skills/sync`, periodic server sync                                          |
-| [src/renderer/utils/skills/skillsManager.ts](../src/renderer/utils/skills/skillsManager.ts) | Renderer load/resolve skills for Easy mode                                                                    |
-| [dev/skills-editor/README.md](skills-editor/README.md)                                      | Dev catalog editor (`pnpm run dev:skills-editor`)                                                             |
+| [easy-mode-config/presets.json](../easy-mode-config/presets.json)                             | Canonical Easy-mode presets catalog (shipped as `config/presets.json` in Electron builds)                       |
+| [src/shared/presetsCatalog.js](../src/shared/presetsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
+| [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
+| [src/server/routes/presets.js](../src/server/routes/presets.js)                               | Web `GET /api/presets`, `POST /api/presets/sync`, periodic server sync                                          |
+| [src/renderer/utils/skills/presetsManager.ts](../src/renderer/utils/skills/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                    |
+| [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run dev:presets-editor`)                                                             |
 | [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build; copies `easy-mode-config/`                                                          |
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |

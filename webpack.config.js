@@ -150,6 +150,13 @@ module.exports = (env, argv) => {
       module: /@fluentui\/react-icons/,
     },
   ],
+  // Renderer imports assets from images/; ignore screenshot output so pnpm take-screenshots
+  // does not trigger a full dev rebuild on every PNG write.
+  ...(isDevelopment && {
+    watchOptions: {
+      ignored: ["**/node_modules/**", "**/images/screenshots/**"],
+    },
+  }),
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),

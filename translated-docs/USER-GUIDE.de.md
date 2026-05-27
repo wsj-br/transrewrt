@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:03.088Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:20.157Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt unterstützt Sie bei der Textbearbeitung auf drei Hauptweisen:
 - **Umschreiben** – Text in einem anderen Stil umformulieren, beispielsweise klarer, kürzer oder formeller.
 - **Umwandeln** – Text mithilfe benutzerdefinierter KI-Anweisungen, sogenannter Prompts, verarbeiten.
 
-Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Fertigkeit** (z. B. Kostenlos (OpenRouter), Lite oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste aus [**Einstellungen** > **Modelle**](#models) verwenden möchten.
+Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Voreinstellung** (z. B. Kostenlos (OpenRouter), Lite oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste in [**Einstellungen** > **Modelle**](#models) verwenden möchten.
 
 <br/>
 
@@ -116,9 +116,9 @@ Sie müssen kein kostenpflichtiges Modell auswählen, um loszulegen. Sobald Sie 
 
 Einfach ausgedrückt:
 
-- Im **Einfach**-Modus ist eine **Fertigkeit** eine Voreinstellung (Kostenlos (OpenRouter), Lite, Erweitert oder Technisch), die einem Modell für den gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Nur Fertigkeiten, die für den aktuellen Anbieter eine Zuordnung haben, werden in der Symbolleiste angezeigt. Sie wählen die Fertigkeit bei Übersetzen, Umschreiben und Umwandeln aus.
+- Im **Einfach**-Modus ist eine **Voreinstellung** eine Voreinstellung (Kostenlos (OpenRouter), Lite, Erweitert oder Technisch), die einem Modell für Ihren gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Nur Fähigkeiten, die eine Zuordnung zum aktuellen Anbieter haben, werden in der Symbolleiste angezeigt. Sie wählen die Fähigkeit bei Übersetzen, Umschreiben und Umwandeln aus.
 - Im **Erweitert**-Modus ist ein **Modell** die KI-Engine, die Sie direkt auswählen. Modell-IDs verwenden ein **Anbieter-Präfix** (z. B. `openrouter/…`, `openai/…`, `ollama/…`).
-- Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht der App den Zugriff auf diesen Anbieter.
+- Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht der App die Verbindung zu diesem Anbieter.
 
 Wenn Sie die **Desktop-App** verwenden, fügen Sie Schlüssel in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden Anbieter hinzu, den Sie nutzen. Für die ausschließliche Nutzung von OpenRouter siehe unten [So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel](#how-to-get-a-free-openrouter-api-key-desktop-app). Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle verwenden, z. B. `translategemma:4b`.
 
@@ -152,8 +152,8 @@ Wenn Sie Transrewrt zum ersten Mal verwenden, befolgen Sie diese Reihenfolge:
 2. Wählen Sie bei Bedarf Ihre **Oberflächensprache** über das Globus-Symbol aus.
 3. Wenn Sie die **Desktop-App** verwenden, öffnen Sie [**Einstellungen** > **API-Konfiguration**](#api-config), fügen Sie einen API-Schlüssel für mindestens einen Anbieter hinzu (z. B. OpenRouter) und klicken Sie auf **Test**, um die Funktionalität zu überprüfen.
 4. Öffnen Sie [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings). Im **Einfach**-Modus (Standard) wählen Sie einen **Anbieter**, für den ein konfigurierter Schlüssel vorhanden ist. Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) und fügen ein oder mehrere Modelle zu **Ausgewählte Modelle** hinzu.
-5. Gehen Sie zu **Übersetzen**, und wählen Sie eine **Fertigkeit** (Einfach) oder ein **Modell** (Erweitert) in der Symbolleiste aus.
-6. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen** aus, wenn Sie möchten, dass Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden.
+5. Klicken Sie bei **Übersetzen** in der Symbolleiste auf eine **Voreinstellung** (Einfach) oder ein **Modell** (Erweitert).
+6. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen**, wenn Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden sollen.
 7. Führen Sie eine einfache Übersetzung durch, um sicherzustellen, dass alles funktioniert, und probieren Sie anschließend **Umschreiben** und **Umwandeln** aus.
 
 Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei der ersten Nutzung: einen Auftrag auszuführen, bevor die App eine funktionierende API-Verbindung oder eine ausgewählte Fertigkeit/Modell hat.
@@ -208,11 +208,11 @@ Die Symbolleiste ändert sich leicht, je nachdem, wo Sie sich in der App befinde
 - Links wird der Name der aktuellen Seite angezeigt.
 - Rechts sehen Sie den **Fertigkeits- oder Modell-Selektor** und die Steuerung für die **Oberflächensprache**.
 
-Im **Einfach**-Modus zeigt die Symbolleiste einen **Fertigkeitsauswahl** mit den integrierten Voreinstellungen **Kostenlos (OpenRouter)**, **Lite**, **Erweitert** und **Technisch** an. Welche Fertigkeiten angezeigt werden, hängt vom **Anbieter** ab, den Sie in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählt haben – beispielsweise wird **Kostenlos (OpenRouter)** nur angezeigt, wenn der Anbieter OpenRouter ist. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Fertigkeiten.
+Im **Einfach**-Modus zeigt die Symbolleiste einen **Voreinstellungs-Selector** mit den integrierten Voreinstellungen **Kostenlos (OpenRouter)**, **Lite**, **Erweitert** und **Technisch** an. Welche Voreinstellungen angezeigt werden, hängt vom in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählten **Anbieter** ab – beispielsweise wird **Kostenlos (OpenRouter)** nur angezeigt, wenn der Anbieter OpenRouter ist. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Voreinstellungen auf.
 
 Im **Erweitert**-Modus ermöglicht der **Modell-Selektor**, auszuwählen, welche KI-Engine für die aktuelle Aufgabe verwendet werden soll.
 
-![Model selector](../images/screenshots/de/model-selector.png)
+![Model selector](../images/screenshots/de/preset-selector.png)
 
 Im Erweitert-Modus sind einige kostenlose Modelle möglicherweise nicht immer verfügbar – sie können offline sein oder ein Nutzungslimit erreicht haben. Die App kann das Modell dann automatisch aus Ihrer Liste entfernen. Um zu steuern, welche Modelle angezeigt werden, gehen Sie zu [**Einstellungen** > **Modelle**](#models). Sie können die Modelleinstellungen über das Anbietersymbol links neben dem Modellnamen in der Symbolleiste öffnen.
 
@@ -263,7 +263,7 @@ Verwenden Sie **Übersetzen**, wenn Sie Text von einer Sprache in eine andere ko
 1. Öffnen Sie **Übersetzen**.
 2. Wählen Sie eine Sprache unter **Von** aus.
 3. Wählen Sie eine Sprache unter **Nach** aus.
-4. Wählen Sie eine Fertigkeit (Einfach) oder ein Modell (Erweitert) in der Symbolleiste aus.
+4. Wählen Sie eine Voreinstellung (Einfach) oder ein Modell (Erweitert) in der Symbolleiste.
 5. Geben Sie Text in **Eingabe** ein oder fügen Sie ihn ein.
 6. Klicken Sie auf **Übersetzen**.
 7. Lesen Sie das Ergebnis in **Ausgabe**.
@@ -370,8 +370,8 @@ Der schnellste Weg, um einen Prompt zu erstellen, ist:
 
 1. Klicken Sie auf **Neuer Prompt**.
 2. Klicken Sie auf **Prompt generieren**.
-3. Beschreiben Sie, was der Prompt tun soll.
-4. Wählen Sie eine Fertigkeit (Einfach) oder ein Modell (Erweitert).
+3. Beschreiben Sie, was der Prompt bewirken soll.
+4. Wählen Sie eine Voreinstellung (Einfach) oder ein Modell (Erweitert).
 5. Lassen Sie die App einen Entwurf für Sie erstellen.
 6. Überprüfen Sie den Entwurf und klicken Sie auf **Speichern**.
 
@@ -430,7 +430,7 @@ Dies ist nützlich, wenn:
 > ℹ️ **HINWEIS**<br/>
 > Sie können gespeicherte Prompts in [**Einstellungen** > **Umwandeln**](#transform-settings) exportieren und importieren.
 
-Wenn Sie **Generate prompt**, **Improve prompt** oder **Translate prompt** im Prompt-Editor verwenden, bietet der **Einfach**-Modus denselben Fertigkeitsauswahlbereich wie Übersetzen und Umschreiben; der **Erweitert**-Modus verwendet die Modellliste.
+Wenn Sie im Prompt-Editor **Prompt generieren**, **Prompt verbessern** oder **Prompt übersetzen** verwenden, bietet der **Einfach**-Modus denselben Voreinstellungs-Selector wie bei Übersetzen und Umschreiben; der **Erweitert**-Modus verwendet die Modellliste.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Tippverhalten, die Speicherun
 
 **KI-Erlebnis**
 
-- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Fertigkeitsvorgaben in der Symbolleiste. **Ollama** listet stattdessen auf Ihrem Gerät installierte Modelle auf. Im Einfach-Modus zeigt der **Fähigkeitenkatalog** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Fähigkeitenkatalog aktualisieren**, um die neueste Fertigkeitsliste aus dem Projekt-Repository abzurufen (die App prüft auch regelmäßig im Hintergrund).
-- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
+- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter nutzen die integrierten Voreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf. Im Einfach-Modus zeigt **Katalog der Voreinstellungen** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Katalog der Voreinstellungen aktualisieren**, um die aktuellste Liste der Fähigkeiten aus dem Projekt-Repository abzurufen (die App prüft dies auch regelmäßig im Hintergrund).
+- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
 
 In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment gesetzten API-Schlüsseln ab. In der **Desktop-App** konfigurieren Sie die Schlüssel unter [**API-Konfiguration**](#api-config).
 
@@ -618,7 +618,7 @@ Sicherungen, die entweder in der Web- oder Desktopversion erstellt wurden, könn
 
 Diese Registerkarte ist nur verfügbar, wenn **KI-Erlebnis** in [**Allgemeine Einstellungen**](#general-settings) auf **Erweitert** gesetzt ist. Verwenden Sie **Einstellungen** > **Modelle**, um festzulegen, welche Modelle in der Symbolleiste angezeigt werden.
 
-![Settings Models tab](../images/screenshots/de/settings-models.png)
+![Settings Models tab](../images/screenshots/de/settings-general.png)
 
 Die Seite enthält zwei Listen:
 
@@ -783,9 +783,9 @@ Wenn etwas nicht wie erwartet funktioniert, überprüfen Sie zuerst die folgende
 
 Stellen Sie sicher, dass:
 
-- Sie haben eine **Fertigkeit** (Einfach) oder ein **Modell** (Erweitert) in der Symbolleiste ausgewählt
-- Im **Einfach**-Modus ist unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) ein **Anbieter** mit einem funktionsfähigen Schlüssel (oder einer Ollama-URL) konfiguriert und mindestens eine Fertigkeit für diesen Anbieter vorhanden
-- Im **Erweitert**-Modus ist mindestens ein Modell unter [**Einstellungen** > **Modelle**](#models) aufgelistet
+- Sie haben eine **Voreinstellung** (Einfach) oder ein **Modell** (Erweitert) in der Symbolleiste ausgewählt
+- Im **Einfach**-Modus ist in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) ein **Anbieter** mit einem funktionierenden Schlüssel (oder Ollama-URL) ausgewählt und mindestens eine Voreinstellung für diesen Anbieter vorhanden
+- Im **Erweitert**-Modus ist mindestens ein Modell in [**Einstellungen** > **Modelle**](#models) aufgelistet
 - Ihre API-Konfiguration funktioniert
 
 Wenn Sie die Desktop-App verwenden:
@@ -810,7 +810,7 @@ Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) un
 
 Probieren Sie eines oder mehrere davon aus:
 
-- Wählen Sie eine andere Fertigkeit (Einfach) oder ein anderes Modell (Erweitert)
+- Wählen Sie eine andere Voreinstellung (Einfach) oder ein anderes Modell (Erweitert)
 - Verwenden Sie eine kürzere Eingabe
 - Deaktivieren Sie **Echtzeit-Übersetzung (beim Tippen)** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings)
 - Verwenden Sie kostenlose Modelle für einfache Aufgaben (siehe [Modelle](#models))

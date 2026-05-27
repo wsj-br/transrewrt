@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:52:59.243Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:13.738Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: hr
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt vam pomaže u radu s tekstom na tri glavna načina:
 - **Prepisi** - preformuliraj tekst u drugačijem stilu, na primjer jasnijem, kraćem ili formalnijem.
 - **Transformiraj** - obradi tekst pomoću prilagođenih uputa za umjetnu inteligenciju koje se nazivaju upute.
 
-Zadano, aplikacija radi u **Lako** načinu rada: odaberete **vještinu** (na primjer Besplatno (OpenRouter), Lite ili Tehnički) i **davatelja usluga** u Postavkama, bez odabira ID-ova modela. Prebacite se na **Napredno** u [**Postavke** > **Opće postavke**](#general-settings) ako želite klasični popis modela iz [**Postavke** > **Modeli**](#models).
+Zadano, aplikacija radi u **Lako** načinu rada: odabirete **unaprijed postavljenu vrijednost** (na primjer Besplatno (OpenRouter), Lite ili Tehnička) i **davatelja usluga** u Postavkama, bez odabira ID-ova modela. Prebacite se na **Napredno** u [**Postavke** > **Opće postavke**](#general-settings) ako želite klasični popis modela iz [**Postavke** > **Modeli**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Ne morate odabrati plaćeni model kako biste započeli. Čim dodate svoj OpenRou
 
 Jednostavnim riječima:
 
-- U **Lako** načinu rada, **vještina** je unaprijed postavljena opcija (Besplatno (OpenRouter), Lite, Napredno ili Tehnički) koja se mapira na model za vaš odabrani **davatelj usluga** (OpenRouter, OpenAI, Ollama i drugi). Samo vještine koje imaju mapiranje za trenutnog davatelja usluga pojavljuju se na alatnoj traci. Odabirete vještinu na Prevedi, Prepisi i Transformiraj.
-- U **Napredno** načinu rada, **model** je AI motor koji izravno odabirete. ID-ovi modela koriste **prefiks davatelja usluga** (na primjer `openrouter/…`, `openai/…`, `ollama/…`).
-- **API ključ** (ili, za Ollama, **osnovni URL**) je način na koji aplikacija pristupa tom davatelju usluga.
+- U **Lako** načinu, **unaprijed postavljeno** je predodređena postavka (Besplatno (OpenRouter), Lite, Napredno ili Tehnički) koja se mapira na model za odabranog **davatelja usluga** (OpenRouter, OpenAI, Ollama i drugi). Samo vještine koje imaju mapiranje za trenutnog davatelja usluga prikazuju se na alatnoj traci. Vještinu odaberete na Prevedi, Prepisi i Transformiraj.
+- U **Napredno** načinu, **model** je AI motor koji izravno odaberete. ID-ovi modela koriste **prefiks davatelja usluga** (npr. `openrouter/…`, `openai/…`, `ollama/…`).
+- **API ključ** (ili za Ollama, **osnovni URL**) je način na koji aplikacija pristupa davatelju usluga.
 
 Ako koristite **desktop aplikaciju**, dodajte ključeve u [**Postavke** > **API konfiguracija**](#api-config) za svakog davatelja usluga kojeg koristite. Za korištenje samo OpenRouter-a, pogledajte [Kako dobiti besplatan OpenRouter API ključ](#how-to-get-a-free-openrouter-api-key-desktop-app) u nastavku. Ako ne želite koristiti API ključ, možete instalirati Ollama (s [ollama.com](https://ollama.com)) i koristiti lokalne modele umjesto toga, kao što je `translategemma:4b`.
 
@@ -153,9 +153,9 @@ Ako je ovo vaše prvo korištenje Transrewrt-a, slijedite ovaj redoslijed:
 2. Ako je potrebno, odaberite svoj **jezik sučelja** s ikone zemaljskog globusa.
 3. Ako koristite **desktop aplikaciju**, otvorite [**Postavke** > **API konfiguracija**](#api-config), dodajte API ključ barem za jednog davatelja usluga (npr. OpenRouter) i kliknite **Test** kako biste provjerili radi li sve ispravno.
 4. Otvorite [**Postavke** > **Opće postavke**](#general-settings). U **lakom** načinu rada (zadano), odaberite **davatelja usluga** koji ima konfigurirani ključ. U **naprednom** načinu rada, otvorite [**Postavke** > **Modeli**](#models) i dodajte jedan ili više modela u **Odabrane modele**.
-5. Na **Prevedi**, odaberite **vještinu** (lako) ili **model** (napredno) na alatnoj traci.
-6. Otvorite [**Postavke** > **Jezici**](#languages) i odaberite svoje **najčešće korištene jezike** ako želite da se vaši najčešće korišteni jezici prikazuju prvi.
-7. Pokrenite jednostavni prijevod kako biste potvrdili da sve radi, a zatim isprobajte **Prepisi** i **Transformiraj**.
+5. Na **Prevedi**, odaberite **unaprijed postavljeno** (Lako) ili **model** (Napredno) na alatnoj traci.
+6. Otvorite [**Postavke** > **Jezici**](#languages) i odaberite svoje **Najčešće korišteni jezici** ako želite da se najčešće korišteni jezici prikazuju prvi.
+7. Pokrenite jednostavan prijevod kako biste potvrdili da sve radi, a zatim isprobajte **Prepisi** i **Transformiraj**.
 
 Redoslijed je važan. On sprječava najčešći problem kod prvog korištenja: pokušaj pokretanja zadatka prije nego što aplikacija ima radnu API vezu ili odabranu vještinu/model.
 
@@ -209,11 +209,11 @@ Alatna traka se malo razlikuje ovisno o tome gdje se nalazite u aplikaciji.
 - S lijeve strane prikazuje se naziv trenutne stranice.
 - S desne strane prikazuje se **odabir vještine ili modela** i upravljanje **jezikom sučelja**.
 
-U **Lako** načinu rada, alatna traka prikazuje **odabirač vještina** s unaprijed postavljenim opcijama **Besplatno (OpenRouter)**, **Lite**, **Napredno** i **Tehnički**. Koje vještine se pojavljuju ovisi o **Davatelju usluga** kojeg ste odabrali u [**Postavke** > **Opće postavke**](#general-settings)—na primjer, **Besplatno (OpenRouter)** se navodi samo kada je davatelj OpenRouter. Ako je **Davatelj usluga** **Ollama**, alatna traka navodi vaše instalirane lokalne modele umjesto vještina.
+U **Lako** načinu, alatna traka prikazuje **odabir unaprijed postavljenih vrijednosti** s ugrađenim predodređenim postavkama **Besplatno (OpenRouter)**, **Lite**, **Napredno** i **Tehnički**. Koji se unaprijed postavljeni prikazuju ovisi o **Davatelju usluga** kojeg ste odabrali u [**Postavkama** > **Opće postavke**](#general-settings) — npr. **Besplatno (OpenRouter)** prikazuje se samo kada je davatelj usluga OpenRouter. Ako je **Davatelj usluga** **Ollama**, alatna traka prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti.
 
 U **naprednom** načinu rada, **odabir modela** omogućuje vam da odaberete koji AI motor koristiti za trenutni zadatak.
 
-![Model selector](../images/screenshots/hr/model-selector.png)
+![Model selector](../images/screenshots/hr/preset-selector.png)
 
 U naprednom načinu rada, neki besplatni modeli možda nisu uvijek dostupni — mogu biti isključeni ili dosegnuti ograničenje korištenja. Aplikacija može automatski ukloniti taj model s vašeg popisa. Da biste kontrolirali koji se modeli prikazuju, idite na [**Postavke** > **Modeli**](#models). Postavke modela možete otvoriti s ikone davatelja usluga s lijeve strane naziva modela na alatnoj traci.
 
@@ -264,7 +264,7 @@ Koristite **Prevedi** kada želite pretvoriti tekst s jednog jezika na drugi.
 1. Otvorite **Prevedi**.
 2. Odaberite jezik u **Iz**.
 3. Odaberite jezik u **U**.
-4. Odaberite vještinu (lako) ili model (napredno) na alatnoj traci.
+4. Odaberite unaprijed postavljeno (Lako) ili model (Napredno) na alatnoj traci.
 5. Upišite ili zalijepite tekst u **Ulaz**.
 6. Kliknite **Prevedi**.
 7. Pročitajte rezultat u **Izlaz**.
@@ -371,8 +371,8 @@ Najbrži način za stvaranje upita je:
 
 1. Kliknite **Novi upit**.
 2. Kliknite **Generiraj upit**.
-3. Opišite što želite da upit radi.
-4. Odaberite vještinu (Lako) ili model (Napredno).
+3. Opisite što želite da upit učini.
+4. Odaberite unaprijed postavljeno (Lako) ili model (Napredno).
 5. Dopustite aplikaciji da stvori skicu za vas.
 6. Pregledajte skicu i kliknite **Spremi**.
 
@@ -431,7 +431,7 @@ Ovo je korisno kada:
 > ℹ️ **NAPOMENA**<br/>
 > Možete izvesti i uvesti spremljene upite u [**Postavke** > **Transformiraj**](#transform-settings).
 
-Kada koristite **Generiraj upit**, **Unaprijedi upit** ili **Prevedi upit** u uredniku upita, **Laki** način nudi isti odabir vještina kao Prevođenje i Prepisivanje; **Napredni** način koristi popis modela.
+Kada koristite **Generiraj upit**, **Unaprijedi upit** ili **Prevedi upit** u uređivaču upita, **Lako** način nudi isti odabir unaprijed postavljenih vrijednosti kao Prevedi i Prepisi; **Napredno** način koristi listu modela.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Koristite **Opće postavke** za kontrolu ponašanja tipkanja, pohranjivanje deta
 
 **AI iskustvo**
 
-- **Lako** (zadano): odaberite **Davatelja usluga** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ili Ollama). Cloud davatelji koriste unaprijed postavljene vještine u alatnoj traci. **Ollama** navodi modele instalirane na vašem računalu umjesto vještina. U Lako načinu rada, **Katalog vještina** prikazuje verziju kataloga i vrijeme zadnjeg ažuriranja; kliknite **Osvježi katalog vještina** da preuzmete najnoviji popis vještina iz repozitorija projekta (aplikacija također periodično provjerava u pozadini).
-- **Napredno**: odaberite pojedinačne modele u alatnoj traci; upravljajte popisom pod [**Postavke** > **Modeli**](#models).
+- **Lako** (zadano): odaberite **Davatelja usluga** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ili Ollama). Oblačni davatelji usluga koriste ugrađene unaprijed postavljene vrijednosti na alatnoj traci. **Ollama** prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti. U Lako načinu, **Katalog unaprijed postavljenih vrijednosti** prikazuje verziju kataloga i vrijeme zadnjeg ažuriranja; kliknite **Osvježi katalog unaprijed postavljenih vrijednosti** kako biste preuzeli najnoviju listu vještina iz spisa projekta (aplikacija također povremeno provjerava u pozadini).
+- **Napredno**: odaberite pojedinačne modele na alatnoj traci; upravljajte listom putem [**Postavke** > **Modeli**](#models).
 
 U **web aplikaciji**, koji davatelji usluga se prikazuju ovisi o API ključevima postavljenima u server okolini. U **desktop aplikaciji**, konfigurirajte ključeve putem [**API konfiguracije**](#api-config).
 
@@ -619,7 +619,7 @@ Sigurnosne kopije napravljene u web ili desktop verziji mogu se vratiti u drugoj
 
 Ova kartica je dostupna samo kada je **AI iskustvo** postavljeno na **Napredno** u [**Opće postavke**](#general-settings). Koristite **Postavke** > **Modeli** da odaberete koje modele želite prikazati na alatnoj traci.
 
-![Settings Models tab](../images/screenshots/hr/settings-models.png)
+![Settings Models tab](../images/screenshots/hr/settings-general.png)
 
 Stranica ima dvije liste:
 
@@ -784,10 +784,10 @@ Ako nešto ne radi kako je očekivano, prvo provjerite sljedeće točke.
 
 Provjerite sljedeće:
 
-- odabrali ste **vještinu** (Lako) ili **model** (Napredno) na alatnoj traci
-- u **Lakom** načinu, u [**Postavke** > **Opće postavke**](#general-settings) postavljen je **Davatelj usluga** s aktivnim ključem (ili Ollama URL-om) i barem jedna vještina za tog davatelja usluga
-- u **Naprednom** načinu, barem jedan model je naveden u [**Postavke** > **Modeli**](#models)
-- vaša API konfiguracija radi ispravno
+- odabrali ste **unaprijed postavljeno** (Lako) ili **model** (Napredno) na alatnoj traci
+- u **Lako** načinu, [**Postavke** > **Opće postavke**](#general-settings) imaju **Davatelja usluga** s radnim ključem (ili Ollama URL-om) i barem jedno unaprijed postavljeno za tog davatelja usluga
+- u **Napredno** načinu, barem jedan model je naveden u [**Postavke** > **Modeli**](#models)
+- vaša API postavka radi
 
 Ako koristite desktop aplikaciju:
 
@@ -811,10 +811,10 @@ U **Naprednom** načinu, otvorite [**Postavke** > **Modeli**](#models) i kliknit
 
 Isprobajte jedno ili više od sljedećeg:
 
-- odaberite drugačiju vještinu (Lako) ili model (Napredno)
+- odaberite drugo unaprijed postavljeno (Lako) ili model (Napredno)
 - koristite kraći ulaz
-- isključite **Prevođenje u stvarnom vremenu (dok tipkate)** u [**Postavke** > **Opće postavke**](#general-settings)
-- koristite besplatne modele za jednostavne zadatke (vidi [Modeli](#models))
+- isključite **Prijevod u stvarnom vremenu (tijekom tipkanja)** u [**Postavkama** > **Opće postavke**](#general-settings)
+- koristite besplatne modele za jednostavne zadatke (pogledajte [Modeli](#models))
 
 <br/>
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:12.782Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:08:34.276Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: vi
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
 - **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
 - **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn trí tuệ nhân tạo tùy chỉnh gọi là lời nhắc.
 
-Mặc định, ứng dụng chạy ở **chế độ Dễ**: bạn chọn một **kỹ năng** (ví dụ: Miễn phí (OpenRouter), Lite hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
+Mặc định, ứng dụng chạy ở chế độ **Dễ**: bạn chọn một **thiết lập sẵn** (ví dụ: Miễn phí (OpenRouter), Lite hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạ
 
 Nói một cách đơn giản:
 
-- Ở **chế độ Dễ**, một **kỹ năng** là cài đặt sẵn (Miễn phí (OpenRouter), Lite, Nâng cao hoặc Kỹ thuật) tương ứng với một mô hình cho **nhà cung cấp** bạn chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Chỉ những kỹ năng có ánh xạ với nhà cung cấp hiện tại mới xuất hiện trên thanh công cụ. Bạn chọn kỹ năng khi sử dụng Dịch, Viết lại và Chuyển đổi.
-- Ở **chế độ Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
-- Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối đến nhà cung cấp đó.
+- Ở chế độ **Dễ**, một **thiết lập sẵn** là một thiết lập (Miễn phí (OpenRouter), Lite, Nâng cao hoặc Kỹ thuật) tương ứng với một mô hình cho **nhà cung cấp** bạn đã chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Chỉ những kỹ năng có ánh xạ với nhà cung cấp hiện tại mới xuất hiện trên thanh công cụ. Bạn chọn kỹ năng khi Dịch, Viết lại và Chuyển đổi.
+- Ở chế độ **Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
+- Một **khóa API** (hoặc với Ollama, một **URL gốc**) là cách ứng dụng kết nối tới nhà cung cấp đó.
 
 Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa tại [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API OpenRouter miễn phí](#how-to-get-a-free-openrouter-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
 
@@ -152,9 +152,9 @@ Nếu đây là lần đầu tiên bạn sử dụng Transrewrt, hãy làm theo 
 2. Nếu cần, chọn **Ngôn ngữ giao diện** từ biểu tượng quả địa cầu.
 3. Nếu bạn dùng **ứng dụng máy tính để bàn**, mở [**Cài đặt** > **Cấu hình API**](#api-config), thêm khóa API cho ít nhất một nhà cung cấp (ví dụ: OpenRouter), sau đó nhấn **Kiểm tra** để xác minh khóa hoạt động.
 4. Mở [**Cài đặt** > **Cài đặt chung**](#general-settings). Ở chế độ **Dễ** (mặc định), chọn một **Nhà cung cấp** đã được cấu hình khóa. Ở chế độ **Nâng cao**, mở [**Cài đặt** > **Mô hình**](#models) và thêm một hoặc nhiều mô hình vào **Mô hình đã chọn**.
-5. Trên **Dịch**, chọn **kỹ năng** (Dễ) hoặc **mô hình** (Nâng cao) trên thanh công cụ.
-6. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** nếu bạn muốn các ngôn ngữ thường dùng xuất hiện đầu tiên.
-7. Thực hiện một bản dịch đơn giản để xác nhận mọi thứ hoạt động, sau đó thử **Viết lại** và **Chuyển đổi**.
+5. Khi chọn **Dịch**, hãy chọn một **thiết lập sẵn** (Dễ) hoặc **mô hình** (Nâng cao) trên thanh công cụ.
+6. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** nếu bạn muốn các ngôn ngữ thường dùng nhất xuất hiện đầu tiên.
+7. Thực hiện một bản dịch đơn giản để xác nhận mọi thứ đang hoạt động, sau đó thử **Viết lại** và **Chuyển đổi**.
 
 Thứ tự này rất quan trọng. Nó giúp tránh vấn đề phổ biến nhất khi sử dụng lần đầu: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc chưa chọn kỹ năng/mô hình.
 
@@ -208,11 +208,11 @@ Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứ
 - Bên trái hiển thị tên trang hiện tại.
 - Bên phải hiển thị **bộ chọn kỹ năng hoặc mô hình** và điều khiển **Ngôn ngữ giao diện**.
 
-Ở **chế độ Dễ**, thanh công cụ hiển thị **trình chọn kỹ năng** với các cài đặt sẵn tích hợp: **Miễn phí (OpenRouter)**, **Lite**, **Nâng cao** và **Kỹ thuật**. Các kỹ năng hiển thị phụ thuộc vào **Nhà cung cấp** bạn đã chọn tại [**Cài đặt** > **Cài đặt chung**](#general-settings)—ví dụ: **Miễn phí (OpenRouter)** chỉ xuất hiện khi nhà cung cấp là OpenRouter. Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các kỹ năng.
+Ở chế độ **Dễ**, thanh công cụ hiển thị một **bộ chọn thiết lập sẵn** với các thiết lập tích hợp sẵn là **Miễn phí (OpenRouter)**, **Lite**, **Nâng cao** và **Kỹ thuật**. Các thiết lập hiện ra phụ thuộc vào **Nhà cung cấp** bạn đã chọn trong [**Cài đặt** > **Cài đặt chung**](#general-settings)—ví dụ: **Miễn phí (OpenRouter)** chỉ được liệt kê khi nhà cung cấp là OpenRouter. Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các thiết lập sẵn.
 
 Ở chế độ **Nâng cao**, **bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ dùng cho tác vụ hiện tại.
 
-![Model selector](../images/screenshots/vi/model-selector.png)
+![Model selector](../images/screenshots/vi/preset-selector.png)
 
 Ở chế độ Nâng cao, một số mô hình miễn phí có thể không luôn khả dụng — chúng có thể ngoại tuyến hoặc đã đạt giới hạn sử dụng. Ứng dụng có thể tự động xóa mô hình đó khỏi danh sách của bạn. Để kiểm soát các mô hình hiển thị, hãy vào [**Cài đặt** > **Mô hình**](#models). Bạn có thể mở cài đặt mô hình từ biểu tượng nhà cung cấp nằm bên trái tên mô hình trên thanh công cụ.
 
@@ -261,9 +261,9 @@ Sử dụng **Dịch** khi bạn muốn chuyển đổi văn bản từ một ng
 ### Dịch văn bản
 
 1. Mở **Dịch**.
-2. Chọn ngôn ngữ ở mục **Từ**.
-3. Chọn ngôn ngữ ở mục **Sang**.
-4. Chọn kỹ năng (Dễ) hoặc mô hình (Nâng cao) trên thanh công cụ.
+2. Chọn một ngôn ngữ ở mục **Từ**.
+3. Chọn một ngôn ngữ ở mục **Sang**.
+4. Chọn một thiết lập sẵn (Dễ) hoặc mô hình (Nâng cao) trên thanh công cụ.
 5. Nhập hoặc dán văn bản vào **Đầu vào**.
 6. Nhấp **Dịch**.
 7. Đọc kết quả ở phần **Đầu ra**.
@@ -368,10 +368,10 @@ Nếu danh sách lời nhắc của bạn trống, hãy nhấn **Tải lời nh�
 
 Cách nhanh nhất để tạo một lời nhắc là:
 
-1. Nhấp **Lời nhắc mới**.
-2. Nhấp **Tạo lời nhắc**.
-3. Mô tả những gì bạn muốn lời nhắc thực hiện.
-4. Chọn một kỹ năng (Dễ) hoặc mô hình (Nâng cao).
+1. Nhấp vào **Lời nhắc mới**.
+2. Nhấp vào **Tạo lời nhắc**.
+3. Mô tả điều bạn muốn lời nhắc thực hiện.
+4. Chọn một thiết lập sẵn (Dễ) hoặc mô hình (Nâng cao).
 5. Để ứng dụng tạo bản nháp cho bạn.
 6. Xem lại bản nháp và nhấp **Lưu**.
 
@@ -430,7 +430,7 @@ Bảng kiểm tra ở bên phải cho phép bạn thử lời nhắc của mình
 > ℹ️ **LƯU Ý**<br/>
 > Bạn có thể xuất và nhập các lời nhắc đã lưu tại [**Cài đặt** > **Chuyển đổi**](#transform-settings).
 
-Khi bạn sử dụng **Tạo lời nhắc**, **Cải thiện lời nhắc** hoặc **Dịch lời nhắc** trong trình soạn thảo lời nhắc, chế độ **Dễ** cung cấp bộ chọn kỹ năng giống như ở chức năng Dịch và Viết lại; chế độ **Nâng cao** sử dụng danh sách mô hình.
+Khi bạn sử dụng **Tạo lời nhắc**, **Cải thiện lời nhắc** hoặc **Dịch lời nhắc** trong trình soạn thảo lời nhắc, chế độ **Dễ** cung cấp bộ chọn thiết lập sẵn giống như khi Dịch và Viết lại; chế độ **Nâng cao** sử dụng danh sách mô hình.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lư
 
 **Trải nghiệm AI**
 
-- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các cài đặt sẵn kỹ năng tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì kỹ năng. Ở chế độ Dễ, **Danh mục kỹ năng** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp **Làm mới danh mục kỹ năng** để tải danh sách kỹ năng mới nhất từ kho lưu trữ dự án (ứng dụng cũng kiểm tra định kỳ nền). 
-- **Nâng cao**: chọn từng mô hình cụ thể trên thanh công cụ; quản lý danh sách tại [**Cài đặt** > **Mô hình**](#models).
+- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì các thiết lập sẵn. Ở chế độ Dễ, **Danh mục thiết lập sẵn** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp vào **Làm mới danh mục thiết lập sẵn** để tải danh sách kỹ năng mới nhất từ kho lưu trữ dự án (ứng dụng cũng kiểm tra định kỳ nền). 
+- **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách tại [**Cài đặt** > **Mô hình**](#models).
 
 Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào khóa API được thiết lập trong môi trường máy chủ. Trong **ứng dụng desktop**, hãy cấu hình khóa tại [**Cấu hình API**](#api-config).
 
@@ -618,7 +618,7 @@ Bản sao lưu được tạo trên phiên bản web hay desktop đều có th�
 
 Tab này chỉ khả dụng khi **Trải nghiệm AI** được đặt thành **Nâng cao** trong [**Cài đặt chung**](#general-settings). Sử dụng **Cài đặt** > **Mô hình** để chọn các mô hình xuất hiện trên thanh công cụ.
 
-![Settings Models tab](../images/screenshots/vi/settings-models.png)
+![Settings Models tab](../images/screenshots/vi/settings-general.png)
 
 Trang này có hai danh sách:
 
@@ -783,10 +783,10 @@ Nếu có điều gì không hoạt động như mong đợi, hãy kiểm tra c�
 
 Hãy kiểm tra rằng:
 
-- bạn đã chọn một **kỹ năng** (Dễ) hoặc một **mô hình** (Nâng cao) trên thanh công cụ
-- ở chế độ **Dễ**, [**Cài đặt** > **Cài đặt chung**](#general-settings) phải có **Nhà cung cấp** với khóa hoạt động (hoặc URL Ollama) và ít nhất một kỹ năng cho nhà cung cấp đó
-- ở chế độ **Nâng cao**, ít nhất một mô hình phải được liệt kê trong [**Cài đặt** > **Mô hình**](#models)
-- thiết lập API của bạn đang hoạt động
+- bạn đã chọn một **thiết lập sẵn** (Dễ) hoặc **mô hình** (Nâng cao) trên thanh công cụ
+- ở chế độ **Dễ**, [**Cài đặt** > **Cài đặt chung**](#general-settings) có một **Nhà cung cấp** với khóa hoạt động (hoặc URL Ollama) và ít nhất một thiết lập sẵn cho nhà cung cấp đó
+- ở chế độ **Nâng cao**, ít nhất một mô hình được liệt kê trong [**Cài đặt** > **Mô hình**](#models)
+- cấu hình API của bạn đang hoạt động
 
 Nếu bạn đang sử dụng ứng dụng trên máy tính:
 
@@ -810,10 +810,10 @@ Nếu bạn đang sử dụng ứng dụng trên máy tính:
 
 Hãy thử một hoặc nhiều cách sau:
 
-- chọn một kỹ năng khác (Dễ) hoặc mô hình khác (Nâng cao)
+- chọn một thiết lập sẵn (Dễ) hoặc mô hình (Nâng cao) khác
 - sử dụng đầu vào ngắn hơn
-- tắt **Dịch thời gian thực (khi đang gõ)** tại [**Cài đặt** > **Cài đặt chung**](#general-settings)
-- dùng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
+- tắt **Dịch thời gian thực (khi gõ)** trong [**Cài đặt** > **Cài đặt chung**](#general-settings)
+- sử dụng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
 
 <br/>
 

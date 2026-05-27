@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:01.155Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:24.045Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: en-US
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt helps you work with text in three main ways:
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
-By default the app runs in **Easy** mode: you pick a **skill** (for example Free (OpenRouter), Lite, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
+By default the app runs in **Easy** mode: you pick a **preset** (for example Free (OpenRouter), Lite, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
 
 <br/>
 
@@ -116,7 +116,7 @@ You do not need to select a paid model to begin. As soon as you add your OpenRou
 
 In plain language:
 
-- In **Easy** mode, a **skill** is a preset (Free (OpenRouter), Lite, Advanced, or Technical) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). Only skills that have a mapping for the current provider appear in the toolbar. You select the skill on Translate, Rewrite, and Transform.
+- In **Easy** mode, a **preset** is a preset (Free (OpenRouter), Lite, Advanced, or Technical) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). Only skills that have a mapping for the current provider appear in the toolbar. You select the skill on Translate, Rewrite, and Transform.
 - In **Advanced** mode, a **model** is the AI engine you pick directly. Model ids use a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
 - An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
@@ -152,7 +152,7 @@ If this is your first time using Transrewrt, follow this order:
 2. Choose your **Interface language** from the globe icon if needed.
 3. If you are on the **desktop app**, open [**Settings** > **API Config**](#api-config), add an API key for at least one provider (for example OpenRouter), and click **Test** to verify it works.
 4. Open [**Settings** > **General Settings**](#general-settings). In **Easy** mode (default), choose a **Provider** that has a configured key. In **Advanced** mode, open [**Settings** > **Models**](#models) and add one or more models to **Selected Models**.
-5. On **Translate**, pick a **skill** (Easy) or **model** (Advanced) in the toolbar.
+5. On **Translate**, pick a **preset** (Easy) or **model** (Advanced) in the toolbar.
 6. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
 7. Run a simple translation to confirm everything is working, then try **Rewrite** and **Transform**.
 
@@ -208,11 +208,11 @@ The toolbar changes slightly depending on your location in the app.
 - On the left, it shows the current page name.
 - On the right, it shows the **skill or model selector** and the **Interface language** control.
 
-In **Easy** mode, the toolbar shows a **skill selector** with the built-in presets **Free (OpenRouter)**, **Lite**, **Advanced**, and **Technical**. Which skills appear depends on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings)—for example, **Free (OpenRouter)** is only listed when the provider is OpenRouter. If **Provider** is **Ollama**, the toolbar lists your installed local models instead of skills.
+In **Easy** mode, the toolbar shows a **preset selector** with the built-in presets **Free (OpenRouter)**, **Lite**, **Advanced**, and **Technical**. Which presets appear depends on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings)—for example, **Free (OpenRouter)** is only listed when the provider is OpenRouter. If **Provider** is **Ollama**, the toolbar lists your installed local models instead of presets.
 
 In **Advanced** mode, the **model selector** lets you choose which AI engine to use for the current task.
 
-![Model selector](../images/screenshots/en-US/model-selector.png)
+![Model selector](../images/screenshots/en-US/preset-selector.png)
 
 In Advanced mode, some free models may not always be available—they can be offline or hit a usage cap. The app may remove that model from your list automatically. To control which models appear, go to [**Settings** > **Models**](#models). You can open model settings from the provider icon to the left of the model name in the toolbar.
 
@@ -263,7 +263,7 @@ Use **Translate** when you want to convert text from one language to another.
 1. Open **Translate**.
 2. Choose a language in **From**.
 3. Choose a language in **To**.
-4. Choose a skill (Easy) or model (Advanced) in the toolbar.
+4. Choose a preset (Easy) or model (Advanced) in the toolbar.
 5. Type or paste text into **Input**.
 6. Click **Translate**.
 7. Read the result in **Output**.
@@ -371,7 +371,7 @@ The fastest way to create a prompt is:
 1. Click **New prompt**.
 2. Click **Generate prompt**.
 3. Describe what you want the prompt to do.
-4. Choose a skill (Easy) or model (Advanced).
+4. Choose a preset (Easy) or model (Advanced).
 5. Let the app create a draft for you.
 6. Review the draft and click **Save**.
 
@@ -430,7 +430,7 @@ This is useful when:
 > ℹ️ **NOTE**<br/>
 > You can export and import saved prompts in [**Settings** > **Transform**](#transform-settings).
 
-When you use **Generate prompt**, **Improve prompt**, or **Translate prompt** in the prompt editor, **Easy** mode offers the same skill selector as Translate and Rewrite; **Advanced** mode uses the model list.
+When you use **Generate prompt**, **Improve prompt**, or **Translate prompt** in the prompt editor, **Easy** mode offers the same preset selector as Translate and Rewrite; **Advanced** mode uses the model list.
 
 <br/><br/>
 
@@ -574,7 +574,7 @@ Use **General Settings** to control typing behavior, whether execution details a
 
 **AI experience**
 
-- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in skill presets in the toolbar. **Ollama** lists models installed on your machine instead of skills. In Easy mode, **Skills catalog** shows the catalog version and last update time; click **Refresh skills catalog** to fetch the latest skill list from the project repository (the app also checks periodically in the background).
+- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in presets in the toolbar. **Ollama** lists models installed on your machine instead of presets. In Easy mode, **Presets catalog** shows the catalog version and last update time; click **Refresh presets catalog** to fetch the latest skill list from the project repository (the app also checks periodically in the background).
 - **Advanced**: pick individual models in the toolbar; manage the list under [**Settings** > **Models**](#models).
 
 On the **web app**, which providers appear depends on API keys set in the server environment. On the **desktop app**, configure keys under [**API Config**](#api-config).
@@ -618,7 +618,7 @@ Backups created in either the web or desktop version can be restored in the othe
 
 This tab is available only when **AI experience** is set to **Advanced** in [**General Settings**](#general-settings). Use **Settings** > **Models** to choose which models appear in the toolbar.
 
-![Settings Models tab](../images/screenshots/en-US/settings-models.png)
+![Settings Models tab](../images/screenshots/en-US/settings-general.png)
 
 The page has two lists:
 
@@ -783,8 +783,8 @@ If something does not work as expected, check the following points first.
 
 Check that:
 
-- you have selected a **skill** (Easy) or **model** (Advanced) in the toolbar
-- in **Easy** mode, [**Settings** > **General Settings**](#general-settings) has a **Provider** with a working key (or Ollama URL) and at least one skill for that provider
+- you have selected a **preset** (Easy) or **model** (Advanced) in the toolbar
+- in **Easy** mode, [**Settings** > **General Settings**](#general-settings) has a **Provider** with a working key (or Ollama URL) and at least one preset for that provider
 - in **Advanced** mode, at least one model is listed in [**Settings** > **Models**](#models)
 - your API setup is working
 
@@ -810,7 +810,7 @@ In **Advanced** mode, open [**Settings** > **Models**](#models) and click **Refr
 
 Try one or more of these:
 
-- choose a different skill (Easy) or model (Advanced)
+- choose a different preset (Easy) or model (Advanced)
 - use a shorter input
 - turn off **Real-time translation (while typing)** in [**Settings** > **General Settings**](#general-settings)
 - use free models for simple tasks (see [Models](#models))

@@ -54,7 +54,7 @@ if (Test-Path $cleanLogsScript) {
     }
 }
 
-# ---------- Phase 0b: Repository .log files and dev skill caches ----------
+# ---------- Phase 0b: Repository .log files and dev preset caches ----------
 Write-Host "Cleaning .log files and dev caches..." -ForegroundColor Cyan
 
 $logExcludePattern = '\\(node_modules|\.git|dist|release|cache|documentation\\node_modules)\\'
@@ -69,9 +69,9 @@ if (-not $logFiles) {
 }
 
 $devCaches = @(
-    (Join-Path $ProjectRoot "dev\skill-check\provider-catalogs-cache.json"),
-    (Join-Path $ProjectRoot "dev\skill-check\skill-check.log"),
-    (Join-Path $ProjectRoot "skills-editor-provider-catalogs.json")
+    (Join-Path $ProjectRoot "dev\presets-check\provider-catalogs-cache.json"),
+    (Join-Path $ProjectRoot "dev\presets-check\presets-check.log"),
+    (Join-Path $ProjectRoot "presets-editor-provider-catalogs.json")
 )
 foreach ($path in $devCaches) {
     if (Test-Path $path) {

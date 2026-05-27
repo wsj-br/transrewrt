@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:06.934Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:52.631Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: jv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt mbantu sampeyan ngolah tèks kanthi telung cara utama:
 - **Tulis ulang** - nulis maneh tèks nganggo gaya sing beda, kaya luwih cetha, luwih cendhak, utawa luwih resmi.
 - **Ubah** - ngolah tèks nganggo instruksi AI khusus sing diarani prompt.
 
-Secara baku, aplikasi dijalanke ing modus **Gampang**: sampeyan milih **ketrampilan** (contone Gratis (OpenRouter), Lite, utawa Teknis) lan **panyedhiya** ing Setelan, tanpa milih ID model. Pindha menyang **Lanjutan** ing [**Setelan** > **Setelan Umum**](#general-settings) yen sampeyan pengin daftar model klasik saka [**Setelan** > **Model**](#models).
+Secara standar aplikasi dijalanake ing modus **Gampang**: sampeyan milih **preset** (contone Gratis (OpenRouter), Ringan, utawa Teknis) lan **panyedhiya** ing Setelan, tanpa milih ID model. Pindah menyang **Lanjutan** ing [**Setelan** > **Setelan Umum**](#general-settings) yen sampeyan pengin daftar model klasik saka [**Setelan** > **Model**](#models).
 
 <br/>
 
@@ -116,8 +116,8 @@ Sampeyan ora kudu milih model bayar kanggo miwiti. Sawisé sampeyan nambahaké k
 
 Ing basa sing luwih gampang:
 
-- Ing modus **Gampang**, **ketrampilan** iku preset (Gratis (OpenRouter), Lite, Lanjutan, utawa Teknis) sing map menyang model kanggo **panyedhiya** sing dipilih (OpenRouter, OpenAI, Ollama, lan liya-liyane). Mung ketrampilan sing duwe mapping kanggo panyedhiya saiki sing katon ing toolbar. Sampeyan milih ketrampilan ing Terjemahake, Tulis Ulang, lan Ubah.
-- Ing modus **Lanjutan**, **model** iku mesin AI sing dipilih langsung. ID model nggunakake **prefiks panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
+- Ing modus **Gampang**, **preset** iku preset (Gratis (OpenRouter), Ringan, Lanjutan, utawa Teknis) sing dikaitake karo model kanggo **panyedhiya** sing dipilih (OpenRouter, OpenAI, Ollama, lan liya-liyane). Mung keterampilan sing duwe peta kanggo panyedhiya saiki sing katon ing toolbar. Sampeyan milih keterampilan ing Terjemahake, Tulis Ulang, lan Ubah.
+- Ing modus **Lanjutan**, **model** iku mesin AI sing langsung dipilih. ID model nggunakake **prefiks panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
 - **Kunci API** (utawa, kanggo Ollama, **URL dhasar**) iku cara aplikasi ngakses panyedhiya kasebut.
 
 Yen sampeyan nggunakake **aplikasi desktop**, tambahake kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakake. Kanggo panggunaan mung OpenRouter, deleng [Carane entuk kunci API OpenRouter gratis](#how-to-get-a-free-openrouter-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakake kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com)) lan nggunakake model lokal tinimbang, kaya `translategemma:4b`.
@@ -152,9 +152,9 @@ Yen iki wektu pisanan sampeyan nggunakaké Transrewrt, tindakaké urutan iki:
 2. Pilih **Basa antarmuka** sampeyan saka ikon globe yen perlu.
 3. Yen sampeyan nggunakake **aplikasi desktop**, buka [**Setelan** > **Konfigurasi API**](#api-config), tambah kunci API kanggo paling ora siji panyedhiya (kaya OpenRouter), lan klik **Tes** kanggo ngonfirmasi bisa digunakake.
 4. Buka [**Setelan** > **Setelan Umum**](#general-settings). Ing modus **Gampang** (baku), pilih **Panyedhiya** sing duwe kunci dikonfigurasi. Ing modus **Lanjutan**, buka [**Setelan** > **Model**](#models) lan tambah siji utawa luwih model menyang **Model Dipilih**.
-5. Ing **Terjemahake**, pilih **ketrampilan** (Gampang) utawa **model** (Lanjutan) ing bilah alat.
-6. Buka [**Setelan** > **Basa**](#languages) lan pilih **Basa Utama** sampeyan yen pengin basa sing paling asring digunakake metune dhisik.
-7. Jalanake terjemahan sederhana kanggo ngonfirmasi kabeh bisa digunakake, banjur coba **Tulis Ulang** lan **Ubah**.
+5. Ing **Terjemahake**, pilih **preset** (Gampang) utawa **model** (Lanjutan) ing toolbar.
+6. Buka [**Setelan** > **Basa**](#languages) lan pilih **Basa utama** sampeyan yen pengin basa sing paling asring digunakake katon dhisik.
+7. Jalanake terjemahan sederhana kanggo mastekake kabeh fungsi mlaku kanthi bener, banjur coba **Tulis Ulang** lan **Ubah**.
 
 Urutan iki penting. Iki nyegah masalah paling umum nalika nggunakake pertama kali: nyoba nglakokake tugas sadurunge aplikasi duwe koneksi API sing bisa digunakake utawa ketrampilan/model sing dipilih.
 
@@ -208,11 +208,11 @@ Toolbar owah kanthi tipis gumantung saka lokasi sampeyan ing app.
 - Ing kiwa, nuduhake jeneng kaca saiki.
 - Ing tengen, nuduhake **pemilih ketrampilan utawa model** lan kontrol **Basa antarmuka**.
 
-Ing modus **Gampang**, toolbar nuduhake **pemilih ketrampilan** kanthi preset sing dibangun: **Gratis (OpenRouter)**, **Lite**, **Lanjutan**, lan **Teknis**. Ketrampilan sing katon gumantung marang **Panyedhiya** sing dipilih ing [**Setelan** > **Setelan Umum**](#general-settings)—contone, **Gratis (OpenRouter)** mung katon nalika panyedhiyane yaiku OpenRouter. Yen **Panyedhiya** yaiku **Ollama**, toolbar nuduhake model lokal sing wis diinstal tinimbang ketrampilan.
+Ing modus **Gampang**, toolbar nuduhake **pemilih preset** kanthi preset sing wis diintegrasikake yaiku **Gratis (OpenRouter)**, **Ringan**, **Lanjutan**, lan **Teknis**. Prakiraan sing katon gumantung marang **Panyedhiya** sing dipilih ing [**Setelan** > **Setelan Umum**](#general-settings)—contone, **Gratis (OpenRouter)** mung katon nalika panyedhiyane yaiku OpenRouter. Yen **Panyedhiya** yaiku **Ollama**, toolbar nuduhake model lokal sing wis diinstal tinimbang preset.
 
 Ing modus **Lanjutan**, **pemilih model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
 
-![Model selector](../images/screenshots/jv/model-selector.png)
+![Model selector](../images/screenshots/jv/preset-selector.png)
 
 Ing modus Lanjutan, sawetara model gratis bisa uga ora tansah tersedia—bisa mati (offline) utawa wis tekan wates panggunaan. Aplikasi bisa mbusak model kasebut saka dhaptar sampeyan sacara otomatis. Kanggo ngontrol model apa wae sing katon, menyang [**Setelan** > **Model**](#models). Sampeyan bisa mbukak setelan model saka ikon panyedhiya ing sisih kiwa jeneng model ing bilah gawe.
 
@@ -263,7 +263,7 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 1. Buka **Terjemahake**.
 2. Pilih basa ing **Saka**.
 3. Pilih basa ing **Menyang**.
-4. Pilih ketrampilan (Gampang) utawa model (Lanjutan) ing bilah alat.
+4. Pilih preset (Gampang) utawa model (Lanjutan) ing toolbar.
 5. Ketik utawa tempel teks menyang **Input**.
 6. Klik **Terjemahake**.
 7. Maca asil ing **Output**.
@@ -370,8 +370,8 @@ Cara paling cepet kanggo nggawe prompt yaiku:
 
 1. Klik **Prompt anyar**.
 2. Klik **Nggawe prompt**.
-3. Jlentrehake apa sing sampeyan pengin dilakoni dening prompt kasebut.
-4. Pilih ketrampilan (Gampang) utawa model (Lanjutan).
+3. Jlentrehake apa sing pengin digawe dening prompt kasebut.
+4. Pilih preset (Gampang) utawa model (Lanjutan).
 5. Bebaske aplikasi nggawe rancangan kanggo sampeyan.
 6. Priksa rancangane lan klik **Simpen**.
 
@@ -430,7 +430,7 @@ Iki migunani nalika:
 > ℹ️ **CATETAN**<br/>
 > Sampeyan bisa ngekspor lan ngimpor prompt sing wis disimpen ing [**Setelan** > **Ubah**](#transform-settings).
 
-Nalika nggunakake **Generate prompt**, **Improve prompt**, utawa **Translate prompt** ing editor prompt, modus **Easy** maringi pilihan ketrampilan sing padha karo Translate lan Rewrite; modus **Advanced** nggunakake dhaftar model.
+Nalika nggunakake **Nggawe prompt**, **Tingkatake prompt**, utawa **Terjemahkan prompt** ing editor prompt, modus **Gampang** maringi pemilih preset sing padha karo Terjemahake lan Tulis Ulang; modus **Lanjutan** nggunakake daftar model.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Gunakake **Setelan Umum** kanggo ngontrol perilaku ngetik, apa rincian eksekusi 
 
 **Pengalaman AI**
 
-- **Gampang** (baku): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya awan nggunakake preset ketrampilan sing dibangun ing toolbar. **Ollama** nuduhake model sing diinstal ing mesin sampeyan tinimbang ketrampilan. Ing modus Gampang, **Katalog ketrampilan** nuduhake versi katalog lan wektu pembaruan pungkasan; klik **Segerake katalog ketrampilan** kanggo njupuk daftar ketrampilan paling anyar saka repositori proyek (aplikasi uga mriksa kanthi periodik ing mburine). 
-- **Lanjutan**: pilih model dhewe-dhewe ing toolbar; atur daftar ing ngisor [**Setelan** > **Model**](#models).
+- **Gampang** (standar): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya awan nggunakake preset sing diintegrasikake ing toolbar. **Ollama** nuduhake model sing diinstal ing mesin sampeyan tinimbang preset. Ing modus Gampang, **Katalog preset** nuduhake versi katalog lan wektu pembaruan pungkasan; klik **Nganyari katalog preset** kanggo njupuk dhaptar keterampilan paling anyar saka repositori proyek (aplikasi uga mriksa kanthi periodik ing mburine). 
+- **Lanjutan**: pilih model dhewe-dhewe ing toolbar; atur dhaptar ing ngisor [**Setelan** > **Model**](#models).
 
 Ing **aplikasi web**, panyedhiya sing katon gumantung marang kunci API sing disetel ing lingkungan server. Ing **aplikasi desktop**, atur kunci ing [**Konfigurasi API**](#api-config).
 
@@ -618,7 +618,7 @@ Cadangan sing digawe ing versi web utawa desktop bisa dipulihake ing versi liyan
 
 Tab iki mung tersedia nalika **Pengalaman AI** disetel dadi **Lanjutan** ing [**Setelan Umum**](#general-settings). Gunakna **Setelan** > **Model** kanggo milih model apa wae sing katon ing toolbar.
 
-![Settings Models tab](../images/screenshots/jv/settings-models.png)
+![Settings Models tab](../images/screenshots/jv/settings-general.png)
 
 Kaca iki duwe loro dhaptar:
 
@@ -783,10 +783,10 @@ Yen ana sing ora mlaku kaya sing dikarepake, priksa dhisik poin-poin ing ngisor 
 
 Priksa manawa:
 
-- sampeyan wis milih **ketrampilan** (Gampang) utawa **model** (Lanjutan) ing toolbar
-- ing modus **Gampang**, [**Setelan** > **Setelan Umum**](#general-settings) duwe **Panyedhiya** kanthi kunci sing bisa digunakake (utawa URL Ollama) lan paling ora siji ketrampilan kanggo panyedhiya kasebut
+- sampeyan wis milih **preset** (Gampang) utawa **model** (Lanjutan) ing toolbar
+- ing modus **Gampang**, [**Setelan** > **Setelan Umum**](#general-settings) duwe **Panyedhiya** kanthi kunci sing bisa digunakake (utawa URL Ollama) lan paling ora siji preset kanggo panyedhiya kasebut
 - ing modus **Lanjutan**, paling ora siji model kasebut ana ing [**Setelan** > **Model**](#models)
-- setelan API sampeyan lagi mlaku kanthi bener
+- setelan API sampeyan bisa digunakake
 
 Yen sampeyan nggunakake aplikasi desktop:
 
@@ -810,10 +810,10 @@ Ing modus **Lanjutan**, bukak [**Setelan** > **Model**](#models) lan klik **Sega
 
 Coba siji utawa luwih saka iki:
 
-- milih ketrampilan liya (Gampang) utawa model (Lanjutan)
-- nggunakake input sing luwih cendhak
-- mateni **Terjemahan real-time (saat ngetik)** ing [**Setelan** > **Setelan Umum**](#general-settings)
-- nggunakake model gratis kanggo tugas sederhana (deleng [Model](#models))
+- pilih preset liya (Gampang) utawa model (Lanjutan)
+- gunakake input sing luwih cendhak
+- mateni **Terjemahan langsung (saat mengetik)** ing [**Setelan** > **Setelan Umum**](#general-settings)
+- gunakake model gratis kanggo tugas sederhana (deleng [Model](#models))
 
 <br/>
 

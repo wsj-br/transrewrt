@@ -93,8 +93,9 @@ const api = {
   importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
   getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
   getRuntimePlatform: () => process.platform,
-  readSkills: () => ipcRenderer.invoke('skills:read'),
-  updateSkillsFromRemote: (opts) => ipcRenderer.invoke('skills:updateFromRemote', opts || {}),
+  writeClipboardText: (text) => ipcRenderer.invoke('clipboard:writeText', text),
+  readPresets: () => ipcRenderer.invoke('presets:read'),
+  updatePresetsFromRemote: (opts) => ipcRenderer.invoke('presets:updateFromRemote', opts || {}),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', api);

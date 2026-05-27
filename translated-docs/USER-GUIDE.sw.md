@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:10.757Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:07:51.733Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: sw
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt unakusaidia kufanya kazi na maandishi kwa njia tatu kuu:
 - **Andika upya** - andika upya maandishi kwa mtindo tofauti, kama vile wazi zaidi, fupi zaidi, au rasmi zaidi.
 - **Badilisha** - usimamizi wa maandishi kwa kutumia maelekezo maalum ya AI yanayoitwa manukuu.
 
-Kwa chaguo-msingi, programu inatumia **Rahisi** namweo: unachagua **ujuzi** (kama vile Bure (OpenRouter), Kibaya, au Teknolojia) na **mtoa huduma** katika Mipangilio, bila kuchagua vitambulisho vya mfumo. Badilisha kwenda **Ubinafsi** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ikiwa unataka orodha ya kihistoria ya mifano kutoka [**Mipangilio** > **Mifano**](#models).
+Kwa chaguomsingi, programu inatumia **Rahisi** namweo: unachagua **vitanzandiko** (kama vile Bure (OpenRouter), Kibaya, au Teknolojia) na **mtoa huduma** katika Mipangilio, bila kuchagua vitambulisho vya mfumo. Badilisha kwenda **Ubinafsi** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ikiwa unataka orodha ya kawaida ya mifano kutoka [**Mipangilio** > **Mifano**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Hauhitaji kuchagua mfumo wa malipo ili kuanza. Mara tu unapoweka ujuzi wako wa O
 
 Kwa maneno rahisi:
 
-- Katika namweo la **Rahisi**, **ujuzi** ni mapangilio ya awali (Bure (OpenRouter), Kibaya, Ubinafsi, au Teknolojia) ambayo inahusishwa na mfumo kwa **mtoa huduma** uliouchagua (OpenRouter, OpenAI, Ollama, na wengine). Ujuzi tu unaounganishwa kwa mtoa huduma unaonekana kwenye barua ya kizimizi. Unachagua ujuzi kwenye Tafsiri, Andika upya, na Badilisha.
-- Katika namweo la **Ubinafsi**, **mfumo** ni injini ya AI unayochagua moja kwa moja. Vitambulisho vya mfumo vinatumia **kibichi cha mtoa huduma** (kama vile `openrouter/…`, `openai/…`, `ollama/…`).
-- **Ufunguo wa API** (au, kwa Ollama, **URL ya msingi**) ni njia programu inayotumia kupatikana kwa mtoa huduma.
+- Katika njia ya **Rahisi**, **vitanzandiko** ni vitanzandiko (Bure (OpenRouter), Birika, Ubinafsi, au Teknolojia) ambavyo vinahusishwa na mfumo kwa ajili ya **mtoa huduma** ulichochagua (OpenRouter, OpenAI, Ollama, na wengine). Kipengele tu ambacho kina uhusiano na mtoa huduma unao tumia kinaonekana kwenye barua pepe. Unachagua kipengele cha Tafsiri, Andika upya, na Badilisha.
+- Katika njia ya **Ubinafsi**, **mfumo** ni injini ya AI unayochagua moja kwa moja. Kitambulisho cha mfumo kina **kibichi cha mtoa huduma** (kama mfano `openrouter/…`, `openai/…`, `ollama/…`).
+- **Ufunguo wa API** (au, kwa ajili ya Ollama, **URL ya msingi**) ni njia ambavyo programu inapata mtoa huduma huyo.
 
 Ikiwa unatumia **programu ya mezani**, ongeza funguo katika [**Mipangilio** > **Mipangilio ya API**](#api-config) kwa kila mtoa huduma unayotumia. Kwa matumizi ya OpenRouter pekee, tazama [Jinsi ya kupata funguo la API la OpenRouter bila malipo](#how-to-get-a-free-openrouter-api-key-desktop-app) chini. Ikiwa hutaki kutumia funguo la API, unaweza kusakinisha Ollama (kutoka [ollama.com](https://ollama.com)) na kutumia mifano ya wahali badala, kama vile `translategemma:4b`.
 
@@ -152,9 +152,9 @@ Ikiwa ni mara ya kwanza unayotumia Transrewrt, fuata mpangilio huu:
 2. Chagua **Lugha ya kuingiza** kwenye ikoni ya dunia ikiwa inahitajika.
 3. Ikiwa umepokea **programu ya kompyuta**, fungua [**Mipangilio** > **Mipangilio ya API**](#api-config), ongeza funguo la API kwa angalau mtoa huduma mmoja (kama vile OpenRouter), na bofya **Jaribu** kuthibitisha linafanya kazi.
 4. Fungua [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings). Katika namweo ya **Rahisi** (chaguomsingi), chagua **Mtoa huduma** ambao amepewa funguo. Katika namweo ya **Ubinafsi**, fungua [**Mipangilio** > **Mifano**](#models) na ongeza mfumo au zaidi kwenye **Mifumo Iliyochaguliwa**.
-5. Katika **Tafsiri**, chagua **ujuzi** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua za zana.
-6. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako zilizopendwa** ikiwa unataka lugha zako zilizotumika mara kwa mara ziwe kwanza.
-7. Fanya tafsiri rahisi ili kuthibitisha kila kitu kinafanya kazi, kisha jaribu **Andika upya** na **Badilisha**.
+5. Katika **Tafsiri**, chagua **vitanzandiko** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua za kushirikiana.
+6. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako zilizopendwa** ikiwa unataka kuwa zile zinazotumika mara kwa mara zionekane kwanza.
+7. Fanya tafsiri rahisi ili kuthibitisha kila kitu kinavyofanya kazi, kisha jaribu **Andika upya** na **Badilisha**.
 
 Mpangilio huu una maana. Unaondoa tatizo la kawaida zaidi la watumiaji wapya: kujaribu kutekeleza kazi kabla ya programu kupata muunganisho wa API unaofanya kazi au kabla ya kuchagua ujuzi/mfumo.
 
@@ -208,11 +208,11 @@ Barua za zana zinabadilika kidogo kulingana na unapokuwa ndani ya programu.
 - Upande wa kushoto, unaonesha jina la ukurasa wa sasa.
 - Upande wa kulia, unaonesha kudhibiti **kuchagua ujuzi au mfumo** na kudhibiti **Lugha ya kuingiza**.
 
-Katika namweo la **Rahisi**, barua ya kizimizi inaonyesha **kichagua cha ujuzi** kwa mapangilio ya awali ya ndani **Bure (OpenRouter)**, **Kibaya**, **Ubinafsi**, na **Teknolojia**. Ujuzi unaouonekana unategemea **Mtoa huduma** uliouchagua katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)—kwa mfano, **Bure (OpenRouter)** inaonyeshwa tu ikiwa mtoa huduma ni OpenRouter. Ikiwa **Mtoa huduma** ni **Ollama**, barua ya kizimizi inaorodhesha mifano uliyowasakinisha kwenye kifaa chako badala ya ujuzi.
+Katika namweo la **Rahisi**, barua za kushirikiana inaonyesha **kichagua vitanzandiko** kinachojumuisha vitanzandiko vilivyojengwa ndani **Bure (OpenRouter)**, **Kibaya**, **Ubinafsi**, na **Teknolojia**. Vitanzandiko vinavyoonekana vinategemea **Mtoa huduma** uliochaguliwa katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)—kwa mfano, **Bure (OpenRouter)** inaonyeshwa tu ikiwa mtoa huduma ni OpenRouter. Ikiwa **Mtoa huduma** ni **Ollama**, barua inaonyesha mifano uliyoweka kwenye kifaa chako badala ya vitanzandiko.
 
 Katika namweo la **Ubinafsi**, **kudhibiti cha mfumo** kukuwezesha kuchagua injini gani ya AI utakayotumia kwa kazi ya sasa.
 
-![Model selector](../images/screenshots/sw/model-selector.png)
+![Model selector](../images/screenshots/sw/preset-selector.png)
 
 Katika namweo ya Ubinafsi, mifumo fulani isiyo ya malipo inaweza isipatikana mara kwa mara—inaweza kuwa imesimama au imefikia kikomo cha matumizi. Programu inaweza kuondoa mfumo huo kutoka kwenye orodha yako kiotomatiki. Ili udhibiti mifumo yanayotazamika, nenda kwenye [**Mipangilio** > **Mifano**](#models). Unaweza kufungua mipangilio ya mfumo kutoka kwenye ikoni ya mtoa huduma upande wa kushoto wa jina la mfumo kwenye barua ya zana.
 
@@ -261,9 +261,9 @@ Tumia **Tafsiri** unapotaka kubadilisha maandishi kutoka kwa lugha moja hadi nyi
 ### Tafsiri maandishi
 
 1. Fungua **Tafsiri**.
-2. Chagua lugha kwenye **Kutoka**.
-3. Chagua lugha kwenye **Kwenda**.
-4. Chagua ujuzi (Rahisi) au mfumo (Ubinafsi) kwenye barua ya zana.
+2. Chagua lugha katika **Kutoka**.
+3. Chagua lugha katika **Kwenda**.
+4. Chagua vitanzandiko (Rahisi) au mfumo (Ubinafsi) kwenye barua za kushirikiana.
 5. Weka maandishi kwenye **Kuingiza** au bandika.
 6. Bonyeza **Tafsiri**.
 7. Soma matokeo kwenye **Pato**.
@@ -371,7 +371,7 @@ Njia ya haraka ya kutengeneza maagizo ni:
 1. Bonyeza **Maagizo mapya**.
 2. Bonyeza **Zalisha maagizo**.
 3. Eleza unachotaka maagizo yaweke kufanya.
-4. Chagua ujuzi (Rahisi) au mfumo (Ubinafsi).
+4. Chagua vitanzandiko (Rahisi) au mfumo (Ubinafsi).
 5. Weka programu iundae rasimu kwako.
 6. Soma rasimu na bonyeza **Hifadhi**.
 
@@ -430,7 +430,7 @@ Hii ni muhimu wakati:
 > ℹ️ **MUHIMU**<br/>
 > Unaweza kutoa na kuleta maagizo uliyohifadhiwa katika [**Mipangilio** > **Badilisha**](#transform-settings).
 
-Unapotumia **Zalisha maagizo**, **Sahihisha maagizo**, au **Tafsiri maagizo** katika kuhariri maagizo, njia ya **Rahisi** inatoa kichagua cha ujuzi kama vile Tafsiri na Andika upya; njia ya **Ubinafsi** hutumia orodha ya mfumo.
+Unapoitumia **Zalisha maagizo**, **Sahihisha maagizo**, au **Tafsiri maagizo** katika kihariri cha maagizo, namweo la **Rahisi** linatoa kichagua vitanzandiko kama kinachotolewa katika Tafsiri na Andika upya; namweo la **Ubinafsi** linatumia orodha ya mifano.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Tumia **Mipangilio ya Kawaida** kupitia tabia ya kuandika, kama taarifa za uteke
 
 **Uzoefu wa AI**
 
-- **Rahisi** (chaguo-msingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Watoa huduma wa mawingu wanatumia mapangilio ya awali ya ndani katika barua ya kizimizi. **Ollama** inaorodhesha mifano iliyosakinishwa kwenye kifaa chako badala ya ujuzi. Katika namweo la Rahisi, **Orodha ya ujuzi** inaonyesha toleo la orodha na wakati wa sasisho la mwisho; bofya **Sasisha orodha ya ujuzi** kupokea orodha ya hivi karibuni kutoka kwa hazina ya mradi (programu pia inachunguza kwa muda mmoja wa nyuma).
-- **Ubinafsi**: chagua mifano moja kwa moja kwenye barua ya kizimizi; usimamie orodha chini ya [**Mipangilio** > **Mifano**](#models).
+- **Rahisi** (chaguomsingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Watoa huduma wa mawingu hutumia vitanzandiko vilivyojengwa ndani kwenye barua za kushirikiana. **Ollama** inaonyesha mifano uliyoweka kwenye kifaa chako badala ya vitanzandiko. Katika namweo la Rahisi, **Orodha ya vitanzandiko** inaonyesha toleo la orodha na wakati wa sasisho la mwisho; bonyeza **Sasisha orodha ya vitanzandiko** kupokea orodha ya kipengele kisichopitwa kutoka hazina ya mradi (programu pia inachunguza kwa muda mfupi kwa usimamizi).
+- **Ubinafsi**: chagua mifano moja kwa moja kwenye barua za kushirikiana; usimamie orodha chini ya [**Mipangilio** > **Mifano**](#models).
 
 Katika **programu ya wavuti**, matoa yanayotazamika yanategemea bango la API zilizowekwa katika mazingira ya seva. Katika **programu ya kompyuta**, weka bango kwenye [**Mipangilio ya API**](#api-config).
 
@@ -618,7 +618,7 @@ Usimbaji ulioundwa kwenye toleo la wavuti au desktopi unaweza kuwekwa upya kweny
 
 Lipu hii inapatikana tu wakati **Uzoefu wa AI** umewekwa kuwa **Ubinafsi** kwenye [**Mipangilio ya Kawaida**](#general-settings). Tumia **Mipangilio** > **Mifano** kuchagua mifumo itakayotazamwa kwenye barua pepe.
 
-![Settings Models tab](../images/screenshots/sw/settings-models.png)
+![Settings Models tab](../images/screenshots/sw/settings-general.png)
 
 Ukurasa una orodha mbili:
 
@@ -783,10 +783,10 @@ Ikiwa kitu chochote hakifanya kazi kama inavyotarajiwa, angalia kwanza mambo yaf
 
 Angalia kwamba:
 
-- umechagulia **ujuzi** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua pepe
-- katika njia ya **Rahisi**, [**Mipangilio** > **Mipangilio ya Kawaida**](#general-settings) ina **Mtoa Huduma** yenye ufunguo unaofanya kazi (au anwani ya Ollama) na ujuzi angalau mmoja kwa mtoa huyo
-- katika njia ya **Ubinafsi**, mfumo angalau mmoja umekuwa kwenye [**Mipangilio** > **Mifano**](#models)
-- mpangilio wako wa API unaendelea kama inavyostahili
+- umechagua **vitanzandiko** (Rahisi) au **mfumo** (Ubinafsi) kwenye barua za kushirikiana
+- katika namweo la **Rahisi**, [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ina **Mtoa huduma** wenye funguo inayofanya kazi (au anwani ya Ollama) na vitanzandiko vimoja kwa ajili ya mtoa huduma huyo
+- katika namweo la **Ubinafsi**, mfumo moja au zaidi umewekwa orodhani kwenye [**Mipangilio** > **Mifano**](#models)
+- mpangilio wako wa API unafanya kazi
 
 Ikiwa hutumia programu ya desktop:
 
@@ -810,10 +810,10 @@ Katika njia ya **Ubinafsi**, fungua [**Mipangilio** > **Mifano**](#models) na bo
 
 Jaribu moja au zaidi ya haya:
 
-- chagua ujuzi tofauti (Rahisi) au mfumo (Ubinafsi)
-- tumia kuingiza fupi zaidi
-- zima **Tafsiri ya wakati halisi (wakati wa kuandika)** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)
-- tumia mifano bila malipo kwa kazi rahisi (tazama [Mifano](#models))
+- chagua vitanzandiko tofauti (Rahisi) au mfumo (Ubinafsi)
+- tumia kuingiza fupi
+- zima **Tafsiri ya wakati mmoja (wakati wa kuandika)** kwenye [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)
+- tumia mifano ya bure kwa kazi rahisi (tazama [Mifano](#models))
 
 <br/>
 

@@ -16,8 +16,8 @@
  *       HISTORY_DISABLED must not be true/1 (checked after CLI validation): exit so the History screenshot can work (match the web server env, e.g. `.env`).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
- * Before capture, the script sets `available_models` and `top_languages` in data/config.json and (web) in SQLite
- * user_preferences for ADMIN_USERNAME so model/language UI matches across runs.
+ * Before capture, the script sets Easy mode (`mode`, `easy_provider`, `selected_preset_id`) and `top_languages`
+ * in data/config.json and (web) in SQLite user_preferences for ADMIN_USERNAME so the UI matches across runs.
  *
  * The language-selector screenshot applies font-family for Noto Sans KR/Telugu/Thai so system-installed
  * Noto fonts are used (e.g. on Debian/Raspbian: apt install fonts-noto-cjk fonts-noto-core).
@@ -165,33 +165,26 @@ function getDataDir() {
   return path.join(__dirname, "..", "data");
 }
 
-/** Fixed lists for marketing screenshots (written to config.json + web `user_preferences` for the login user). Must match `ModelSelector` slug: model id with `/` → `-`. */
-const SCREENSHOT_AVAILABLE_MODELS = [
-  "openrouter/openrouter/free", 
-  "cerebras/qwen-3-235b-a22b-instruct-2507", 
-  "openrouter/qwen/qwen3-235b-a22b-2507", 
-  "openrouter/stepfun/step-3.5-flash:free", 
-  "openrouter/anthropic/claude-3-haiku", 
-  "deepseek/deepseek-chat", 
-  "google/gemma-3n-e4b-it"
-];
 const SCREENSHOT_TOP_LANGUAGES = ["English (UK)", "Portuguese (BR)", "Spanish"];
-/** Selected model in the UI and history sample; must appear in `SCREENSHOT_AVAILABLE_MODELS`. */
-const SCREENSHOT_DEFAULT_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b-2507";
+/** Easy mode preset id shown in the toolbar (Standard preset in easy-mode-config/presets.json). */
+const SCREENSHOT_DEFAULT_PRESET_ID = "standard";
+const SCREENSHOT_EASY_PROVIDER = "openrouter";
+/** Resolved OpenRouter model for Standard preset — used in execution history sample rows. */
+const SCREENSHOT_HISTORY_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b";
 /** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
 const HISTORY_SAMPLE_INPUT =
   "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
 const HISTORY_SAMPLE_OUTPUT =
   "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
-function screenshotModelOptionSelector(modelId) {
-  const slug = String(modelId).replace(/\//g, "-");
-  return `[data-testid="model-option-${slug}"]`;
+function screenshotPresetOptionSelector(presetId) {
+  const slug = String(presetId).replace(/\//g, "-");
+  return `[data-testid="preset-option-${slug}"]`;
 }
 
 /**
  * Web: merged config uses per-user SQLite prefs for these keys. Electron: `data/config.json`.
- * Ensures screenshot runs share the same model list and top content languages.
+ * Ensures screenshot runs use Easy mode with the Standard preset and consistent top languages.
  */
 function applyScreenshotConfigConsistency() {
   const dataDir = getDataDir();
@@ -205,12 +198,18 @@ function applyScreenshotConfigConsistency() {
       cfg = {};
     }
   }
-  cfg.available_models = [...SCREENSHOT_AVAILABLE_MODELS];
+  cfg.mode = "easy";
+  cfg.easy_provider = SCREENSHOT_EASY_PROVIDER;
+  cfg.selected_preset_id = SCREENSHOT_DEFAULT_PRESET_ID;
   cfg.top_languages = [...SCREENSHOT_TOP_LANGUAGES];
-  cfg.last_used_model = SCREENSHOT_DEFAULT_MODEL_ID;
   fs.mkdirSync(path.dirname(configPath), { recursive: true });
   fs.writeFileSync(configPath, JSON.stringify(cfg, null, 2) + "\n", "utf8");
-  log("Screenshot config: wrote available_models (%d) and top_languages to %s.", SCREENSHOT_AVAILABLE_MODELS.length, configPath);
+  log(
+    "Screenshot config: wrote Easy mode (preset %s, provider %s) and top_languages to %s.",
+    SCREENSHOT_DEFAULT_PRESET_ID,
+    SCREENSHOT_EASY_PROVIDER,
+    configPath,
+  );
 
   const username =
     process.env.ADMIN_USERNAME != null && String(process.env.ADMIN_USERNAME).trim()
@@ -245,9 +244,10 @@ function applyScreenshotConfigConsistency() {
     }
     const next = {
       ...current,
-      available_models: [...SCREENSHOT_AVAILABLE_MODELS],
+      mode: "easy",
+      easy_provider: SCREENSHOT_EASY_PROVIDER,
+      selected_preset_id: SCREENSHOT_DEFAULT_PRESET_ID,
       top_languages: [...SCREENSHOT_TOP_LANGUAGES],
-      last_used_model: SCREENSHOT_DEFAULT_MODEL_ID,
     };
     db.prepare(
       "INSERT INTO user_preferences (user_id, data) VALUES (?, ?) ON CONFLICT(user_id) DO UPDATE SET data = excluded.data",
@@ -382,7 +382,7 @@ function ensureHistorySampleForScreenshots() {
       const info = insertCall.run(
         now,
         "translate",
-        SCREENSHOT_DEFAULT_MODEL_ID,
+        SCREENSHOT_HISTORY_MODEL_ID,
         "Detect Language",
         "pt-BR",
         "",
@@ -505,9 +505,9 @@ const SCREENSHOTS = [
   { name: "transform-generate", initialPrepare: initialPrepareTransformGenerate, prepare: prepareTransformGenerate, capture: captureTransformGenerate, teardown: teardownTransformGenerate, finalTeardown: finalTeardownTransformGenerate, prepareTeardownPerLocale: true },
   { name: "dashboard-summary", prepare: prepareDashboardSummary, capture: captureDashboardSummary },
   { name: "dashboard-filter", prepare: prepareDashboardFilter, capture: captureDashboardFilter },
-  { name: "settings-models", prepare: prepareSettingsModels, capture: captureSettingsModels },
+  { name: "settings-general", prepare: prepareSettingsGeneral, capture: captureSettingsGeneral },
   { name: "language-selector", prepare: prepareLanguageSelector, capture: captureLanguageSelector },
-  { name: "model-selector", prepare: prepareModelSelector, capture: captureModelSelector },
+  { name: "preset-selector", prepare: preparePresetSelector, capture: capturePresetSelector },
   { name: "sidebar", prepare: prepareSidebar, capture: captureSidebar },
   { name: "history", prepare: prepareHistory, capture: captureHistory },
 ];
@@ -733,13 +733,13 @@ async function setUILanguage(page, targetCode, options = {}) {
   log("Selected %s via %s (header now: %s).", targetCode, optionSelectorUsed, finalTriggerText || "(unknown)", { indent: 2 });
 }
 
-async function setScreenshotDefaultModel(page) {
-  const modelId = SCREENSHOT_DEFAULT_MODEL_ID;
-  log("Selecting default screenshot model %s...", modelId);
-  const triggerSel = "[data-testid=\"model-selector\"]";
+async function setScreenshotDefaultPreset(page) {
+  const presetId = SCREENSHOT_DEFAULT_PRESET_ID;
+  log("Selecting default screenshot preset %s...", presetId);
+  const triggerSel = "[data-testid=\"preset-selector\"]";
   const trigger = await page.$(triggerSel);
   if (!trigger) {
-    log("Model selector not found; continuing.");
+    log("Preset selector not found; continuing.");
     return;
   }
   const combobox = await page.$(`${triggerSel} [role="combobox"], ${triggerSel} button`);
@@ -749,23 +749,23 @@ async function setScreenshotDefaultModel(page) {
     await trigger.click();
   }
   await wait(300);
-  const optionSel = screenshotModelOptionSelector(modelId);
+  const optionSel = screenshotPresetOptionSelector(presetId);
   const optionReady = await page.waitForSelector(optionSel, { timeout: 8000 }).then(() => true).catch(() => false);
   if (!optionReady) {
-    log("Model option for %s not found (%s); continuing.", modelId, optionSel);
+    log("Preset option for %s not found (%s); continuing.", presetId, optionSel);
     await page.keyboard.press("Escape");
     await wait(200);
     return;
   }
   await wait(200);
   await page.click(optionSel);
-  log("Selected model %s.", modelId);
+  log("Selected preset %s.", presetId);
   await wait(400);
   await page.keyboard.press("Escape");
   await wait(200);
 }
 
-/** Set Translate page From: Detect Language, To: Portuguese (BR). Run after setScreenshotDefaultModel. */
+/** Set Translate page From: Detect Language, To: Portuguese (BR). Run after setScreenshotDefaultPreset. */
 async function setTranslateFromToLanguages(page) {
   await clickByTestId(page, "nav-translate");
   await wait(500);
@@ -967,14 +967,14 @@ async function captureDashboardSummary(page, filePath) {
   await page.screenshot({ path: filePath });
 }
 
-async function prepareSettingsModels(page) {
+async function prepareSettingsGeneral(page) {
   await clickByTestId(page, "nav-settings");
   await wait(500);
-  await clickByTestId(page, "settings-tab-models");
+  await clickByTestId(page, "settings-tab-general");
   await wait(500);
 }
 
-async function captureSettingsModels(page, filePath) {
+async function captureSettingsGeneral(page, filePath) {
   await page.screenshot({ path: filePath });
 }
 
@@ -1029,22 +1029,22 @@ async function captureLanguageSelector(page, filePath) {
   await wait(200);
 }
 
-async function prepareModelSelector(page) {
+async function preparePresetSelector(page) {
   await clickByTestId(page, "nav-translate");
   await wait(600);
 }
 
-async function captureModelSelector(page, filePath) {
-  const triggerSel = "[data-testid=\"model-selector\"]";
+async function capturePresetSelector(page, filePath) {
+  const triggerSel = "[data-testid=\"preset-selector\"]";
   const combobox = await page.$(`${triggerSel} [role="combobox"], ${triggerSel} button`);
   if (combobox) await combobox.click();
   else await page.click(triggerSel);
   await wait(500);
   const clip = await page.evaluate(() => {
-    const trigger = document.querySelector("[data-testid=\"model-selector\"]");
+    const trigger = document.querySelector("[data-testid=\"preset-selector\"]");
     if (!trigger) return null;
     const listbox =
-      document.querySelector("[data-testid=\"model-selector-menu\"]") ||
+      document.querySelector("[data-testid=\"preset-selector-menu\"]") ||
       document.querySelector("[role=\"listbox\"]");
     const padding = 8;
     let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
@@ -1370,7 +1370,7 @@ async function main() {
   }
 
   await setUILanguage(page, "en-GB");
-  await setScreenshotDefaultModel(page);
+  await setScreenshotDefaultPreset(page);
   await setTranslateFromToLanguages(page);
 
   const captureResults = {};

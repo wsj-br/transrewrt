@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
 import {
   workspaceActionBarCenteredCtaClassName,
-  workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
+  workspacePaneModelIdClassName,
   workspacePaneStatsRowClassName,
+  workspacePaneStatsTextClassName,
 } from "./workspaceLayoutClasses";
+import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
+import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 import { copyTextToClipboard } from "../../utils/misc/clipboardUtils";
 
@@ -22,7 +25,19 @@ function stripKeySymbols(str) {
  * Returns { leftPanel, rightPanel, actionBar? } for transform mode.
  */
 export function getTransformPanels({ common, input, output, options }) {
-  const { t, settings, isProcessing, handleRunAction, outputMeta, lastRunModel } = common;
+  const {
+    t,
+    settings,
+    isProcessing,
+    handleRunAction,
+    outputMeta,
+    outputMetaCostTooltip,
+    lastRunModel,
+    autoExecuteOnPaste,
+    autoCopy,
+    onAutoExecuteChange,
+    onAutoCopyChange,
+  } = common;
   const {
     transformEditMode,
     editingPrompt,
@@ -39,15 +54,15 @@ export function getTransformPanels({ common, input, output, options }) {
     models,
     experienceMode,
     easyProvider,
-    skills,
-    selectedSkillId,
-    onSkillChange,
+    presets,
+    selectedPresetId,
+    onPresetChange,
     ollamaModels,
     easyOllamaModel,
     onEasyOllamaModelChange,
     onOpenSettingsGeneral,
-    skillUiLocale,
-    skillSourceLocale,
+    presetUiLocale,
+    presetSourceLocale,
     handleTransformPromptSelect,
     handleTransformNewPrompt,
     handleTransformEditPrompt,
@@ -84,15 +99,15 @@ export function getTransformPanels({ common, input, output, options }) {
           models={models}
           experienceMode={experienceMode}
           easyProvider={easyProvider}
-          skills={skills}
-          selectedSkillId={selectedSkillId}
-          onSkillChange={onSkillChange}
+          presets={presets}
+          selectedPresetId={selectedPresetId}
+          onPresetChange={onPresetChange}
           ollamaModels={ollamaModels}
           easyOllamaModel={easyOllamaModel}
           onEasyOllamaModelChange={onEasyOllamaModelChange}
           onOpenSettingsGeneral={onOpenSettingsGeneral}
-          skillUiLocale={skillUiLocale}
-          skillSourceLocale={skillSourceLocale}
+          presetUiLocale={presetUiLocale}
+          presetSourceLocale={presetSourceLocale}
         />
       </div>
     );
@@ -154,20 +169,17 @@ export function getTransformPanels({ common, input, output, options }) {
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 flex-1 truncate">
+        <span className={`${workspacePaneStatsTextClassName} flex-1`}>
           {input.getStats()}
         </span>
-        <div className="flex shrink-0 items-center gap-1 ms-auto">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 border border-white/8 text-muted-foreground/50 hover:text-muted-foreground"
-            onClick={input.clear}
-            title={t("Clear (Esc)")}
-            aria-label={t("Clear (Esc)")}
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </Button>
+        <div className="flex shrink-0 items-center gap-2 ms-auto">
+          <WorkspaceBehaviourSwitch
+            id="workspace-auto-execute-transform"
+            label={t("Auto-execute")}
+            checked={autoExecuteOnPaste}
+            onCheckedChange={onAutoExecuteChange}
+            title={t("Auto-execute on paste")}
+          />
           <Button
             variant="ghost"
             size="icon"
@@ -196,9 +208,9 @@ export function getTransformPanels({ common, input, output, options }) {
           iconStrokeWidth={1.6}
         />
         {outputMeta ? (
-          <span className={workspaceOutputMetaClassName} style={{ color: "rgba(var(--mode-accent-rgb), 0.8)" }}>
+          <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
             {outputMeta}
-          </span>
+          </WorkspaceOutputMeta>
         ) : null}
       </div>
       <div className="flex-1 min-h-0">
@@ -215,32 +227,41 @@ export function getTransformPanels({ common, input, output, options }) {
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 truncate">
+        <span className={workspacePaneStatsTextClassName}>
           {output.getStats()}
         </span>
         {modelId ? (
           <span
-            className="shrink-0 font-mono text-[10.5px] truncate"
+            className={workspacePaneModelIdClassName}
             style={{ color: "rgba(var(--mode-accent-rgb), 0.35)" }}
             title={lastRunModel || undefined}
           >
             {modelId}
           </span>
         ) : null}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="ms-auto h-7 w-7 shrink-0 border hover:text-muted-foreground"
-          style={{
-            borderColor: "rgba(var(--mode-accent-rgb), 0.2)",
-            color: "rgba(var(--mode-accent-rgb), 0.9)",
-          }}
-          onClick={output.copy}
-          title={t("Copy")}
-          aria-label={t("Copy")}
-        >
-          <Copy className="h-3.5 w-3.5" />
-        </Button>
+        <div className="flex shrink-0 items-center gap-2 ms-auto">
+          <WorkspaceBehaviourSwitch
+            id="workspace-auto-copy-transform"
+            label={t("Auto-copy")}
+            checked={autoCopy}
+            onCheckedChange={onAutoCopyChange}
+            title={t("Auto-copy result to clipboard")}
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 shrink-0 border hover:text-muted-foreground"
+            style={{
+              borderColor: "rgba(var(--mode-accent-rgb), 0.2)",
+              color: "rgba(var(--mode-accent-rgb), 0.9)",
+            }}
+            onClick={output.copy}
+            title={t("Copy")}
+            aria-label={t("Copy")}
+          >
+            <Copy className="h-3.5 w-3.5" />
+          </Button>
+        </div>
       </div>
     </div>
   );

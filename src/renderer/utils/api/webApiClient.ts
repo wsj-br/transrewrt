@@ -31,28 +31,28 @@ const webAPI = {
     }
   },
 
-  readSkills: async () => {
+  readPresets: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/skills`, { credentials: "include", cache: "no-store" });
+      const res = await fetch(`${API_BASE}/api/presets`, { credentials: "include", cache: "no-store" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
       }
       if (!res.ok) {
-        return { version: "0.0.0", updated_at: "", skills: [] };
+        return { version: "0.0.0", updated_at: "", presets: [] };
       }
       const data = await res.json();
-      return data && typeof data === "object" ? data : { version: "0.0.0", updated_at: "", skills: [] };
+      return data && typeof data === "object" ? data : { version: "0.0.0", updated_at: "", presets: [] };
     } catch (err) {
       if (err && err.status === 401) throw err;
-      console.error("[WebAPI] readSkills failed:", err);
-      return { version: "0.0.0", updated_at: "", skills: [] };
+      console.error("[WebAPI] readPresets failed:", err);
+      return { version: "0.0.0", updated_at: "", presets: [] };
     }
   },
 
-  syncSkillsFromRemote: async (opts: { force?: boolean } = {}) => {
+  syncPresetsFromRemote: async (opts: { force?: boolean } = {}) => {
     try {
-      const res = await fetch(`${API_BASE}/api/skills/sync`, {
+      const res = await fetch(`${API_BASE}/api/presets/sync`, {
         method: "POST",
         credentials: "include",
         cache: "no-store",
@@ -69,7 +69,7 @@ const webAPI = {
       return await res.json();
     } catch (err) {
       if (err && (err as { status?: number }).status === 401) throw err;
-      console.error("[WebAPI] syncSkillsFromRemote failed:", err);
+      console.error("[WebAPI] syncPresetsFromRemote failed:", err);
       return { updated: false, error: String((err as Error)?.message || err) };
     }
   },

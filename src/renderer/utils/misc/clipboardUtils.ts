@@ -1,19 +1,30 @@
 /**
- * Copy plain text to the clipboard. Uses {@link navigator.clipboard.writeText} when available.
- * Falls back to a temporary textarea and {@link Document.execCommand}("copy") when
- * `navigator.clipboard` is missing (e.g. non-secure HTTP) or `writeText` throws
- * (permissions / some mobile browsers).
+ * Copy plain text to the clipboard.
+ * - Electron: main-process `clipboard.writeText` (works after async work; no user gesture).
+ * - Web: `navigator.clipboard.writeText` when allowed, else `execCommand('copy')` fallback.
  */
 export async function copyTextToClipboard(text: string): Promise<void> {
   const s = text == null ? "" : String(text);
+
+  const electronAPI =
+    typeof window !== "undefined"
+      ? (window as Window & { electronAPI?: { writeClipboardText?: (t: string) => Promise<unknown> } })
+          .electronAPI
+      : undefined;
+  if (typeof electronAPI?.writeClipboardText === "function") {
+    await electronAPI.writeClipboardText(s);
+    return;
+  }
+
   if (typeof navigator !== "undefined" && typeof navigator.clipboard?.writeText === "function") {
     try {
       await navigator.clipboard.writeText(s);
       return;
     } catch {
-      /* fall through to execCommand */
+      /* fall through — common after async without user activation (web) */
     }
   }
+
   await copyTextWithExecCommand(s);
 }
 

@@ -6,7 +6,7 @@ import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import TransformTranslateModal from "./TransformTranslateModal";
 import TransformImproveModal from "./TransformImproveModal";
 import TransformGenerateModal from "./TransformGenerateModal";
-import { hasModelOrSkillSelection } from "./ModelOrSkillPicker";
+import { hasModelOrPresetSelection } from "./ModelOrPresetPicker";
 import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
 import { Button } from "@/components/ui/button";
@@ -58,15 +58,15 @@ const TransformPromptEditor = ({
   models = [],
   experienceMode = "advanced",
   easyProvider = "openrouter",
-  skills = [],
-  selectedSkillId,
-  onSkillChange,
+  presets = [],
+  selectedPresetId,
+  onPresetChange,
   ollamaModels = [],
   easyOllamaModel,
   onEasyOllamaModelChange,
   onOpenSettingsGeneral,
-  skillUiLocale,
-  skillSourceLocale = "en-GB",
+  presetUiLocale,
+  presetSourceLocale = "en-GB",
 }) => {
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
@@ -143,12 +143,12 @@ const TransformPromptEditor = ({
     if (initialPrompt?.id != null) onDelete?.(initialPrompt);
   };
 
-  const pickerReady = hasModelOrSkillSelection({
+  const pickerReady = hasModelOrPresetSelection({
     experienceMode,
     easyProvider,
     model,
     models,
-    skills,
+    presets,
     ollamaModels,
     easyOllamaModel,
   });
@@ -159,15 +159,15 @@ const TransformPromptEditor = ({
   const transformModalPickerProps = {
     experienceMode,
     easyProvider,
-    skills,
-    selectedSkillId,
-    onSkillChange,
+    presets,
+    selectedPresetId,
+    onPresetChange,
     ollamaModels,
     easyOllamaModel,
     onEasyOllamaModelChange,
     onOpenSettingsGeneral,
-    skillUiLocale,
-    skillSourceLocale,
+    presetUiLocale,
+    presetSourceLocale,
   };
 
   const openTranslateModal = () => {
@@ -539,15 +539,15 @@ TransformPromptEditor.propTypes = {
   models: PropTypes.arrayOf(PropTypes.string),
   experienceMode: PropTypes.oneOf(["easy", "advanced"]),
   easyProvider: PropTypes.string,
-  skills: PropTypes.array,
-  selectedSkillId: PropTypes.string,
-  onSkillChange: PropTypes.func,
+  presets: PropTypes.array,
+  selectedPresetId: PropTypes.string,
+  onPresetChange: PropTypes.func,
   ollamaModels: PropTypes.arrayOf(PropTypes.string),
   easyOllamaModel: PropTypes.string,
   onEasyOllamaModelChange: PropTypes.func,
   onOpenSettingsGeneral: PropTypes.func,
-  skillUiLocale: PropTypes.string,
-  skillSourceLocale: PropTypes.string,
+  presetUiLocale: PropTypes.string,
+  presetSourceLocale: PropTypes.string,
 };
 
 export default TransformPromptEditor;

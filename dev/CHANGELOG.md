@@ -11,7 +11,33 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Presets-check logs preset ids and each model reference as it runs (including OK results).
+- **Changed**: Renamed Easy-mode skills to presets across catalog (`easy-mode-config/presets.json`), APIs (`/api/presets`), UI, dev tools (`presets-editor`, `preset-check`), and docs; screenshot script uses Easy mode with the Standard preset.
+- **Changed**: Dev presets editor — internal helpers, UI strings, and `/api/meta` fields use preset nomenclature throughout.
+- **Fixed**: Dev presets editor AI Suggestion setup — preset checkboxes use `ai-suggest-presets-checkboxes` id/classes matching the HTML (list was empty after the rename).
+- **Fixed**: Webpack dev watch ignores `images/screenshots/` so `pnpm take-screenshots` no longer triggers a rebuild on every PNG write while `dev` / `dev:web` is running.
+- **Changed:** Skill-check `run.sh` from install matches production: ssh-agent + deploy key, `source .env`, then checker; README documents `.env` and SSH setup.
+- **Fixed:** Skill-check production install (`skill-check:install`) bundles `llm/estimateMaxTokens.js` so the runtime no longer fails with `Cannot find module './estimateMaxTokens'`.
+- **Changed:** Behaviour setting label "Auto-translate on paste" renamed to "Auto-execute on paste".
+- **Added:** Workspace footer toggles for auto-execute (input) and auto-copy (output) on translate, rewrite, and transform pages, synced with General Settings.
+- **Added:** Hover tooltip on output run metrics (elapsed/TPS) showing last-run cost when inline cost is hidden.
+- **Fixed:** Vertical center alignment of output metrics in the header row and pane footer controls (stats, switches, model id, buttons).
+- **Changed:** Workspace auto-execute/auto-copy switches use footer action colours when on (muted on input row, mode accent on output row); rewrite grammar **Changes** switch always shown in grammar mode and uses mode accent when on.
+- **Changed:** Toggle (`Switch`) styling follows a consistent simple on/off pattern in light and dark (neutral off track, white thumb); workspace footers use mode accent for the on track via `switch-accent` (translate / rewrite / transform colours).
+- **Fixed:** Workspace `switch-accent` toggles no longer stay green in rewrite/transform — checked track uses `rgb(var(--mode-accent-rgb))` from `main[data-mode]`.
+- **Fixed:** Auto-execute footer label and switch use the same mode accent styling as Auto-copy on each page.
+- **Fixed:** Auto-copy after translate/rewrite/transform on Electron — clipboard write uses main process so it works without a click (renderer `writeText` after async often fails silently).
+- **Fixed:** Output metrics cost tooltip only on hover over the Elapsed/TPS text (not the full header cell); tooltip shows above the text.
+- **Fixed:** Output metrics cost tooltip uses the same cost fraction digit style as Settings (Appearance).
+- **Changed:** Tooltips use theme background with a thin border (black in light mode, white in dark mode) instead of inverted foreground/background colours.
+- **Changed:** Tooltips no longer show a pointer arrow (bordered panel only).
+- **Removed**: Duplicate Clear (Esc) icon on the input pane stats row in translate, rewrite, and transform workspaces (Clear remains in the action bar; Esc still clears).
+- **Added**: Skills editor AI Suggest review — per-provider select to keep the current primary/fallback model or apply the AI suggestion.
+- **Fixed**: Skills editor AI Suggest — increased `max_tokens` from 4096 to 65536 so thinking-mode models don't exhaust the limit on reasoning tokens and return an empty response.
+- **Fixed**: Translate, rewrite, and transform estimate `max_tokens` from input size and task type (translate 1.0×+300, rewrite 2.0×+500, transform 3.0×+500; untagged calls use transform; floor 500, cap 48k) so OpenRouter does not reserve the model default (e.g. 65536).
 - **Changed**: Removed unconfigured `translate-svg` step from `i18n:translate`; `i18n:translate:svg` now prints an informational message. Updated `dev/DEVELOPMENT.md` with screenshot Pattern B workflow note.
+- **Added**: Easy-mode skills now support per-provider fallback models via `skill.fallback_ids` with an automatic one-time retry on primary model failures; skills editor AI Suggest and `dev/skill-check` validate the fallback ids.
+- **Fixed**: Dev skills editor — per-provider `fallback_ids` fields (type, Choose, Test) in the skill form; AI Suggestion review lets you change primary and fallback models separately.
 
 ## [1.3.2] - 2026-05-22
 

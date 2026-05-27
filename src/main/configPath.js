@@ -83,13 +83,13 @@ const getStateFilePath = () =>
 
 const getConfigDir = () => path.dirname(getConfigFilePath());
 const getKeyFilePath = () => path.join(getConfigDir(), "transrewrt.key");
-const getSkillsFilePath = () => path.join(getConfigDir(), "skills.json");
+const getPresetsFilePath = () => path.join(getConfigDir(), "presets.json");
 
-const getDefaultSkillsPathForLoad = () => {
+const getDefaultPresetsPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
-    return path.join(path.dirname(process.execPath), "config", "skills.json");
+    return path.join(path.dirname(process.execPath), "config", "presets.json");
   }
-  return path.join(__dirname, "../../easy-mode-config/skills.json");
+  return path.join(__dirname, "../../easy-mode-config/presets.json");
 };
 
 module.exports = {
@@ -99,6 +99,6 @@ module.exports = {
   getStateFilePath,
   getConfigDir,
   getKeyFilePath,
-  getSkillsFilePath,
-  getDefaultSkillsPathForLoad,
+  getPresetsFilePath,
+  getDefaultPresetsPathForLoad,
 };

@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Loader2 } from "lucide-react";
-import ModelOrSkillPicker, { hasModelOrSkillSelection } from "./ModelOrSkillPicker";
+import ModelOrPresetPicker, { hasModelOrPresetSelection } from "./ModelOrPresetPicker";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
 const transformModalPickerPropTypes = {
   experienceMode: PropTypes.oneOf(["easy", "advanced"]),
   easyProvider: PropTypes.string,
-  skills: PropTypes.array,
-  selectedSkillId: PropTypes.string,
-  onSkillChange: PropTypes.func,
+  presets: PropTypes.array,
+  selectedPresetId: PropTypes.string,
+  onPresetChange: PropTypes.func,
   ollamaModels: PropTypes.arrayOf(PropTypes.string),
   easyOllamaModel: PropTypes.string,
   onEasyOllamaModelChange: PropTypes.func,
   onOpenSettingsGeneral: PropTypes.func,
-  skillUiLocale: PropTypes.string,
-  skillSourceLocale: PropTypes.string,
+  presetUiLocale: PropTypes.string,
+  presetSourceLocale: PropTypes.string,
 };
 
 const TransformGenerateModal = ({
@@ -30,15 +30,15 @@ const TransformGenerateModal = ({
   error = null,
   experienceMode = "advanced",
   easyProvider = "openrouter",
-  skills = [],
-  selectedSkillId,
-  onSkillChange,
+  presets = [],
+  selectedPresetId,
+  onPresetChange,
   ollamaModels = [],
   easyOllamaModel,
   onEasyOllamaModelChange,
   onOpenSettingsGeneral,
-  skillUiLocale,
-  skillSourceLocale = "en-GB",
+  presetUiLocale,
+  presetSourceLocale = "en-GB",
 }) => {
   const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState(model || "");
@@ -55,19 +55,19 @@ const TransformGenerateModal = ({
 
   if (!open) return null;
 
-  const canRun = hasModelOrSkillSelection({
+  const canRun = hasModelOrPresetSelection({
     experienceMode,
     easyProvider,
     model: selectedModel,
     models,
-    skills,
+    presets,
     ollamaModels,
     easyOllamaModel,
   });
 
   const pickerLabel =
     experienceMode === "easy" && easyProvider !== "ollama"
-      ? t("Skill")
+      ? t("Preset")
       : t("Model to generate prompt");
 
   const handleConfirm = () =>
@@ -95,21 +95,21 @@ const TransformGenerateModal = ({
           {showPicker && (
             <div className="flex flex-col gap-1.5">
               <Label>{pickerLabel}</Label>
-              <ModelOrSkillPicker
+              <ModelOrPresetPicker
                 experienceMode={experienceMode}
                 easyProvider={easyProvider}
                 models={models}
                 currentModel={selectedModel}
                 onModelChange={setSelectedModel}
-                skills={skills}
-                selectedSkillId={selectedSkillId}
-                onSkillChange={onSkillChange}
+                presets={presets}
+                selectedPresetId={selectedPresetId}
+                onPresetChange={onPresetChange}
                 ollamaModels={ollamaModels}
                 easyOllamaModel={easyOllamaModel}
                 onEasyOllamaModelChange={onEasyOllamaModelChange}
                 onOpenSettingsGeneral={onOpenSettingsGeneral}
-                skillUiLocale={skillUiLocale}
-                skillSourceLocale={skillSourceLocale}
+                presetUiLocale={presetUiLocale}
+                presetSourceLocale={presetSourceLocale}
               />
             </div>
           )}

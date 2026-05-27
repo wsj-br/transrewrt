@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:06.999Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:48.529Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: pt
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ O Transrewrt ajuda-o a trabalhar com texto de três formas principais:
 - **Reescrever** - reformular texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas de prompts.
 
-Por predefinição, a aplicação executa no modo **Fácil**: escolhe uma **habilidade** (por exemplo, Grátis (OpenRouter), Lite ou Técnico) e um **fornecedor** em Definições, sem escolher IDs de modelo. Mude para **Avançado** em [**Definições** > **Configurações Gerais**](#general-settings) se quiser a lista clássica de modelos em [**Definições** > **Modelos**](#models).
+Por predefinição, a aplicação executa no modo **Fácil**: você escolhe uma **predefinição** (por exemplo, Grátis (OpenRouter), Lite ou Técnico) e um **fornecedor** em Definições, sem escolher IDs de modelo. Mude para **Avançado** em [**Definições** > **Configurações Gerais**](#general-settings) se quiser a lista clássica de modelos em [**Definições** > **Modelos**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Você não precisa selecionar um modelo pago para começar. Assim que adicionar 
 
 Em termos simples:
 
-- No modo **Fácil**, uma **habilidade** é um predefinido (Grátis (OpenRouter), Lite, Avançado ou Técnico) que corresponde a um modelo para o seu **fornecedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas as habilidades que têm uma correspondência para o fornecedor atual aparecem na barra de ferramentas. Seleciona a habilidade em Traduzir, Reescrever e Transformar.
-- No modo **Avançado**, um **modelo** é o motor de IA que escolhe diretamente. Os IDs de modelo usam um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
-- Uma **chave API** (ou, para Ollama, um **URL base**) é como a aplicação acede a esse fornecedor.
+- No modo **Fácil**, uma **predefinição** é uma configuração pré-definida (Grátis (OpenRouter), Lite, Avançado ou Técnico) que corresponde a um modelo do **fornecedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas as funcionalidades que têm mapeamento para o fornecedor atual aparecem na barra de ferramentas. Você seleciona a funcionalidade em Traduzir, Reescrever e Transformar.
+- No modo **Avançado**, um **modelo** é o motor de IA que você escolhe diretamente. Os IDs de modelo usam um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
+- Uma **chave de API** (ou, para Ollama, um **URL base**) é como a aplicação se conecta ao fornecedor.
 
 Se estiver a usar a **aplicação de ambiente de trabalho**, adicione chaves em [**Definições** > **Configuração da API**](#api-config) para cada fornecedor que utilizar. Para uso exclusivo do OpenRouter, veja abaixo [Como obter uma chave API gratuita do OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Se não quiser usar uma chave API, pode instalar o Ollama (a partir de [ollama.com](https://ollama.com)) e usar modelos locais em vez disso, como `translategemma:4b`.
 
@@ -152,8 +152,8 @@ Se esta é a sua primeira vez usando o Transrewrt, siga esta ordem:
 2. Escolha seu **Idioma da interface** no ícone do globo, se necessário.
 3. Se estiver no **aplicativo desktop**, abra [**Definições** > **Configuração da API**](#api-config), adicione uma chave de API para pelo menos um fornecedor (por exemplo, OpenRouter) e clique em **Testar** para verificar se está funcionando.
 4. Abra [**Definições** > **Configurações Gerais**](#general-settings). No modo **Fácil** (padrão), escolha um **Fornecedor** que tenha uma chave configurada. No modo **Avançado**, abra [**Definições** > **Modelos**](#models) e adicione um ou mais modelos a **Modelos Selecionados**.
-5. Em **Traduzir**, escolha uma **habilidade** (Fácil) ou **modelo** (Avançado) na barra de ferramentas.
-6. Abra [**Definições** > **Idiomas**](#languages) e escolha seus **Idiomas principais**, se quiser que os idiomas mais usados apareçam primeiro.
+5. Em **Traduzir**, escolha uma **predefinição** (Fácil) ou **modelo** (Avançado) na barra de ferramentas.
+6. Abra [**Definições** > **Idiomas**](#languages) e escolha os seus **Idiomas principais** se quiser que os idiomas mais usados apareçam primeiro.
 7. Execute uma tradução simples para confirmar que tudo está funcionando, depois experimente **Reescrever** e **Transformar**.
 
 Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou uma habilidade/modelo selecionado.
@@ -208,11 +208,11 @@ A barra de ferramentas altera ligeiramente consoante a localização na aplicaç
 - À esquerda, mostra o nome da página atual.
 - À direita, mostra o **seletor de habilidade ou modelo** e o controle do **Idioma da interface**.
 
-No modo **Fácil**, a barra de ferramentas mostra um **seletor de habilidades** com os predefinidos incorporados **Grátis (OpenRouter)**, **Lite**, **Avançado** e **Técnico**. Quais habilidades aparecem depende do **Fornecedor** que escolheu em [**Definições** > **Configurações Gerais**](#general-settings)—por exemplo, **Grátis (OpenRouter)** só é listado quando o fornecedor é OpenRouter. Se o **Fornecedor** for **Ollama**, a barra de ferramentas lista os seus modelos locais instalados em vez de habilidades.
+No modo **Fácil**, a barra de ferramentas mostra um **seletor de predefinições** com as predefinições integradas **Grátis (OpenRouter)**, **Lite**, **Avançado** e **Técnico**. Quais predefinições aparecem depende do **Fornecedor** escolhido em [**Definições** > **Configurações Gerais**](#general-settings)—por exemplo, **Grátis (OpenRouter)** só é listado quando o fornecedor é OpenRouter. Se o **Fornecedor** for **Ollama**, a barra de ferramentas lista os modelos locais instalados em vez de predefinições.
 
 No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
-![Model selector](../images/screenshots/pt/model-selector.png)
+![Model selector](../images/screenshots/pt/preset-selector.png)
 
 No modo Avançado, alguns modelos gratuitos podem não estar sempre disponíveis — podem estar offline ou atingir um limite de uso. O aplicativo pode remover automaticamente esse modelo da sua lista. Para controlar quais modelos aparecem, vá para [**Definições** > **Modelos**](#models). Você pode abrir as configurações do modelo a partir do ícone do fornecedor à esquerda do nome do modelo na barra de ferramentas.
 
@@ -263,7 +263,7 @@ Utilize **Traduzir** quando quiser converter texto de um idioma para outro.
 1. Abra **Traduzir**.
 2. Escolha um idioma em **De**.
 3. Escolha um idioma em **Para**.
-4. Escolha uma habilidade (Fácil) ou modelo (Avançado) na barra de ferramentas.
+4. Escolha uma predefinição (Fácil) ou modelo (Avançado) na barra de ferramentas.
 5. Escreva ou cole o texto na **Entrada**.
 6. Clique em **Traduzir**.
 7. Leia o resultado na **Saída**.
@@ -371,7 +371,7 @@ A forma mais rápida de criar um prompt é:
 1. Clique em **Novo prompt**.
 2. Clique em **Gerar prompt**.
 3. Descreva o que deseja que o prompt faça.
-4. Escolha uma habilidade (Fácil) ou modelo (Avançado).
+4. Escolha uma predefinição (Fácil) ou modelo (Avançado).
 5. Deixe a aplicação criar um rascunho para si.
 6. Revise o rascunho e clique em **Salvar**.
 
@@ -430,7 +430,7 @@ Isto é útil quando:
 > ℹ️ **NOTA**<br/>
 > Você pode exportar e importar prompts salvos em [**Definições** > **Transformar**](#transform-settings).
 
-Quando utiliza **Gerar prompt**, **Melhorar prompt** ou **Traduzir prompt** no editor de prompts, o modo **Fácil** oferece o mesmo seletor de habilidades que Traduzir e Reescrever; o modo **Avançado** utiliza a lista de modelos.
+Quando você usa **Gerar prompt**, **Melhorar prompt** ou **Traduzir prompt** no editor de prompts, o modo **Fácil** oferece o mesmo seletor de predefinições usado em Traduzir e Reescrever; o modo **Avançado** utiliza a lista de modelos.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Utilize **Configurações Gerais** para controlar o comportamento de digitação
 
 **Experiência com IA**
 
-- **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Os fornecedores na nuvem usam os predefinidos de habilidades incorporados na barra de ferramentas. **Ollama** lista os modelos instalados na sua máquina em vez de habilidades. No modo Fácil, o **Catálogo de competências** mostra a versão do catálogo e a hora da última atualização; clique em **Atualizar catálogo de competências** para obter a lista mais recente de habilidades a partir do repositório do projeto (a aplicação também verifica periodicamente em segundo plano).
-- **Avançado**: escolha modelos individuais na barra de ferramentas; gere a lista em [**Definições** > **Modelos**](#models).
+- **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Fornecedores na nuvem usam as predefinições integradas na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinições. No modo Fácil, **Catálogo de predefinições** mostra a versão do catálogo e a data da última atualização; clique em **Atualizar catálogo de predefinições** para obter a lista mais recente de funcionalidades do repositório do projeto (a aplicação também verifica periodicamente em segundo plano).
+- **Avançado**: escolha modelos individuais na barra de ferramentas; gerencie a lista em [**Definições** > **Modelos**](#models).
 
 Na **aplicação web**, os fornecedores disponíveis dependem das chaves API definidas no ambiente do servidor. Na **aplicação para ambiente de trabalho**, configure as chaves em [**Configuração da API**](#api-config).
 
@@ -618,7 +618,7 @@ As cópias de segurança criadas na versão web ou desktop podem ser restauradas
 
 Este separador está disponível apenas quando a **experiência com IA** está definida como **Avançado** em [**Configurações Gerais**](#general-settings). Use **Definições** > **Modelos** para escolher quais os modelos que aparecem na barra de ferramentas.
 
-![Settings Models tab](../images/screenshots/pt/settings-models.png)
+![Settings Models tab](../images/screenshots/pt/settings-general.png)
 
 A página tem duas listas:
 
@@ -783,10 +783,10 @@ Se algo não funcionar como esperado, verifique primeiro os seguintes pontos.
 
 Verifique que:
 
-- selecionou uma **habilidade** (Fácil) ou um **modelo** (Avançado) na barra de ferramentas
-- no modo **Fácil**, [**Definições** > **Configurações Gerais**](#general-settings) tem um **Fornecedor** com uma chave válida (ou URL do Ollama) e pelo menos uma habilidade para esse fornecedor
+- você selecionou uma **predefinição** (Fácil) ou **modelo** (Avançado) na barra de ferramentas
+- no modo **Fácil**, [**Definições** > **Configurações Gerais**](#general-settings) tem um **Fornecedor** com uma chave válida (ou URL do Ollama) e pelo menos uma predefinição para esse fornecedor
 - no modo **Avançado**, pelo menos um modelo está listado em [**Definições** > **Modelos**](#models)
-- a sua configuração da API está funcionando
+- a sua configuração de API está funcionando
 
 Se estiver a usar a aplicação de ambiente de trabalho:
 
@@ -810,10 +810,10 @@ No modo **Avançado**, abra [**Definições** > **Modelos**](#models) e clique e
 
 Experimente uma ou mais das seguintes opções:
 
-- escolher uma habilidade diferente (Fácil) ou modelo (Avançado)
-- usar uma entrada mais curta
-- desativar **Tradução em tempo real (enquanto escreve)** em [**Definições** > **Configurações Gerais**](#general-settings)
-- usar modelos gratuitos para tarefas simples (veja [Modelos](#models))
+- escolha uma predefinição (Fácil) ou modelo (Avançado) diferente
+- use uma entrada mais curta
+- desative **Tradução em tempo real (enquanto digita)** em [**Definições** > **Configurações Gerais**](#general-settings)
+- use modelos gratuitos para tarefas simples (veja [Modelos](#models))
 
 <br/>
 

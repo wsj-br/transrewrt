@@ -26,8 +26,8 @@ import { settingsSection, settingsTabContent } from "./settings/settingsLayoutCl
 import {
   EASY_PROVIDER_LABEL_KEYS,
   type EasyEngineId,
-} from "@/utils/skills/easyProviderConstants";
-import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "@/utils/skills/configuredEasyEngines";
+} from "@/utils/presets/easyProviderConstants";
+import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "@/utils/presets/configuredEasyEngines";
 import { useAppContext } from "@/contexts/AppContext";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
@@ -54,7 +54,7 @@ function normalizeTheme(value) {
   return "system";
 }
 
-function formatSkillsCatalogDate(iso: string, locale: string) {
+function formatPresetsCatalogDate(iso: string, locale: string) {
   const trimmed = String(iso || "").trim();
   if (!trimmed) return "";
   const d = new Date(trimmed);
@@ -68,7 +68,7 @@ const SettingsGeneralTab = ({
   canConfigBackup = false,
 }) => {
   const { t, i18n } = useTranslation();
-  const { apiKeyStatus, skillsFileMeta, skillsRefreshBusy, refreshSkillsCatalog } = useAppContext();
+  const { apiKeyStatus, presetsFileMeta, presetsRefreshBusy, refreshPresetsCatalog } = useAppContext();
   const locale = i18n.language || 'en-GB';
   const serverConfiguredEngines =
     isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
@@ -273,7 +273,7 @@ const SettingsGeneralTab = ({
               >
                 <span className="font-semibold">{t("Easy")}</span>
                 <span className="text-xs text-muted-foreground">
-                  {t("Curated skills — no need to know model names.")}
+                  {t("Curated presets — no need to know model names.")}
                 </span>
               </button>
               <button
@@ -299,8 +299,8 @@ const SettingsGeneralTab = ({
                 <Label className="text-sm font-medium">{t("Provider")}</Label>
                 <p className="m-0 text-xs text-muted-foreground">
                   {isWeb
-                    ? t("Used for all Easy mode skills. Provider keys come from the server environment.")
-                    : t("Used for all Easy mode skills. Add keys in API Config.")}
+                    ? t("Used for all Easy mode presets. Provider keys come from the server environment.")
+                    : t("Used for all Easy mode presets. Add keys in API Config.")}
                 </p>
                 {(() => {
                   const configured = listConfiguredEasyEngines(
@@ -342,18 +342,18 @@ const SettingsGeneralTab = ({
                 })()}
                 </div>
                 <div className="flex min-w-0 flex-col gap-2 sm:border-s sm:border-border sm:ps-4">
-                  <Label className="text-sm font-medium">{t("Skills catalog")}</Label>
+                  <Label className="text-sm font-medium">{t("Presets catalog")}</Label>
                   <p className="m-0 text-xs text-muted-foreground">
-                    {t("Curated skill list used in Easy mode. Updates from the project repository when you refresh.")}
+                    {t("Curated preset list used in Easy mode. Updates from the project repository when you refresh.")}
                   </p>
                   <dl className="m-0 grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm">
                     <dt className="m-0 text-muted-foreground">{t("Version")}</dt>
                     <dd className="m-0 font-mono text-xs leading-normal">
-                      {skillsFileMeta?.version?.trim() || t("Unknown")}
+                      {presetsFileMeta?.version?.trim() || t("Unknown")}
                     </dd>
                     <dt className="m-0 text-muted-foreground">{t("Updated")}</dt>
                     <dd className="m-0 text-xs leading-normal">
-                      {formatSkillsCatalogDate(skillsFileMeta?.updated_at || "", locale) || t("Unknown")}
+                      {formatPresetsCatalogDate(presetsFileMeta?.updated_at || "", locale) || t("Unknown")}
                     </dd>
                   </dl>
                   <Button
@@ -361,11 +361,11 @@ const SettingsGeneralTab = ({
                     variant="outline"
                     size="sm"
                     className="inline-flex w-fit items-center gap-1.5"
-                    disabled={skillsRefreshBusy}
-                    onClick={() => refreshSkillsCatalog({ force: true })}
+                    disabled={presetsRefreshBusy}
+                    onClick={() => refreshPresetsCatalog({ force: true })}
                   >
-                    <RefreshCw size={14} className={skillsRefreshBusy ? "animate-spin" : undefined} />
-                    {skillsRefreshBusy ? t("Checking…") : t("Refresh skills catalog")}
+                    <RefreshCw size={14} className={presetsRefreshBusy ? "animate-spin" : undefined} />
+                    {presetsRefreshBusy ? t("Checking…") : t("Refresh presets catalog")}
                   </Button>
                 </div>
               </div>
@@ -558,11 +558,11 @@ const SettingsGeneralTab = ({
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    id="auto-translate-on-paste"
+                    id="auto-execute-on-paste"
                     checked={localSettings.auto_translate_on_paste !== false}
                     onCheckedChange={(c) => onSettingChange('auto_translate_on_paste', !!c)}
                   />
-                  <Label htmlFor="auto-translate-on-paste" className="cursor-pointer m-0">{t('Auto-translate on paste')}</Label>
+                  <Label htmlFor="auto-execute-on-paste" className="cursor-pointer m-0">{t('Auto-execute on paste')}</Label>
                 </div>
                 <div className="flex items-center gap-2">
                   <Checkbox

@@ -3,10 +3,13 @@ import LanguageSelector from "../LanguageSelector";
 import TextPanel from "../TextPanel";
 import {
   workspaceActionBarCenteredCtaClassName,
-  workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
+  workspacePaneModelIdClassName,
   workspacePaneStatsRowClassName,
+  workspacePaneStatsTextClassName,
 } from "./workspaceLayoutClasses";
+import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
+import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, ArrowRightLeft, Clipboard, Copy, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,7 +24,7 @@ function stripKeySymbols(str: string) {
 const paneIconButtonClass =
   "h-7 w-7 shrink-0 rounded-full border border-white/8 text-muted-foreground/50 hover:bg-accent hover:text-muted-foreground";
 const paneCopyButtonClass =
-  "ms-auto h-7 w-7 shrink-0 rounded-full border hover:bg-white/5 hover:text-muted-foreground";
+  "h-7 w-7 shrink-0 rounded-full border hover:bg-white/5 hover:text-muted-foreground";
 
 /**
  * Stacked translate workspace: From + swap above input; To + run metadata above output (same pattern as split translate / Transform).
@@ -40,6 +43,11 @@ export function getTranslateStackPanels({
     handleRunAction: () => void;
     lastRunModel?: string | null;
     outputMeta?: ReactNode;
+    outputMetaCostTooltip?: string | null;
+    autoExecuteOnPaste?: boolean;
+    autoCopy?: boolean;
+    onAutoExecuteChange?: (checked: boolean) => void;
+    onAutoCopyChange?: (checked: boolean) => void;
   };
   input: {
     text: string;
@@ -71,6 +79,11 @@ export function getTranslateStackPanels({
     handleRunAction,
     lastRunModel,
     outputMeta,
+    outputMetaCostTooltip,
+    autoExecuteOnPaste = true,
+    autoCopy = false,
+    onAutoExecuteChange,
+    onAutoCopyChange,
   } = common;
 
   const {
@@ -128,10 +141,19 @@ export function getTranslateStackPanels({
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 flex-1 truncate">
+        <span className={`${workspacePaneStatsTextClassName} flex-1`}>
           {input.getStats()}
         </span>
-        <div className="flex shrink-0 items-center gap-1 ms-auto">
+        <div className="flex shrink-0 items-center gap-2 ms-auto">
+          {onAutoExecuteChange ? (
+            <WorkspaceBehaviourSwitch
+              id="workspace-auto-execute-translate-stack"
+              label={t("Auto-execute")}
+              checked={autoExecuteOnPaste}
+              onCheckedChange={onAutoExecuteChange}
+              title={t("Auto-execute on paste")}
+            />
+          ) : null}
           <Button
             variant="ghost"
             size="icon"
@@ -161,9 +183,9 @@ export function getTranslateStackPanels({
           hugSelectWidth
         />
         {outputMeta ? (
-          <span className={workspaceOutputMetaClassName} style={{ color: "rgba(var(--mode-accent-rgb), 0.8)" }}>
+          <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
             {outputMeta}
-          </span>
+          </WorkspaceOutputMeta>
         ) : null}
       </div>
       <div className="min-h-0 flex-1">
@@ -180,32 +202,43 @@ export function getTranslateStackPanels({
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 truncate">
+        <span className={workspacePaneStatsTextClassName}>
           {output.getStats()}
         </span>
         {modelId ? (
           <span
-            className="shrink-0 font-mono text-[10.5px] truncate"
+            className={workspacePaneModelIdClassName}
             style={{ color: "rgba(var(--mode-accent-rgb), 0.35)" }}
             title={lastRunModel || undefined}
           >
             {modelId}
           </span>
         ) : null}
-        <Button
-          variant="ghost"
-          size="icon"
-          className={paneCopyButtonClass}
-          style={{
-            borderColor: "rgba(var(--mode-accent-rgb), 0.2)",
-            color: "rgba(var(--mode-accent-rgb), 0.9)",
-          }}
-          onClick={output.copy}
-          title={t("Copy")}
-          aria-label={t("Copy")}
-        >
-          <Copy className="h-3.5 w-3.5" />
-        </Button>
+        <div className="flex shrink-0 items-center gap-2 ms-auto">
+          {onAutoCopyChange ? (
+            <WorkspaceBehaviourSwitch
+              id="workspace-auto-copy-translate-stack"
+              label={t("Auto-copy")}
+              checked={autoCopy}
+              onCheckedChange={onAutoCopyChange}
+              title={t("Auto-copy result to clipboard")}
+            />
+          ) : null}
+          <Button
+            variant="ghost"
+            size="icon"
+            className={paneCopyButtonClass}
+            style={{
+              borderColor: "rgba(var(--mode-accent-rgb), 0.2)",
+              color: "rgba(var(--mode-accent-rgb), 0.9)",
+            }}
+            onClick={output.copy}
+            title={t("Copy")}
+            aria-label={t("Copy")}
+          >
+            <Copy className="h-3.5 w-3.5" />
+          </Button>
+        </div>
       </div>
     </div>
   );

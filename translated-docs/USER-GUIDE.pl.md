@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:06.901Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:35.416Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt pomaga w pracy z tekstem na trzy główne sposoby:
 - **Przepisz** – przeformułuj tekst w innym stylu, na przykład bardziej klarowny, krótszy lub bardziej formalny.
 - **Przekształć** – przetwórz tekst za pomocą niestandardowych instrukcji AI zwanych promptami.
 
-Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **umiejętność** (na przykład Darmowe (OpenRouter), Lekki lub Techniczny) oraz **dostawcę** w Ustawieniach, bez konieczności wybierania identyfikatorów modeli. Przełącz się na tryb **Zaawansowany** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz korzystać z klasycznej listy modeli dostępnej w [**Ustawienia** > **Modele**](#models).
+Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **ustawienie wstępne** (na przykład Darmowe (OpenRouter), Lite lub Techniczny) i **dostawcę** w Ustawieniach, bez wybierania identyfikatorów modeli. Przełącz się na **Zaawansowany** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz uzyskać klasyczną listę modeli z [**Ustawienia** > **Modele**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Nie musisz wybierać płatnego modelu, aby rozpocząć. Gdy tylko dodasz swój k
 
 Prościej mówiąc:
 
-- W trybie **Łatwy** **umiejętność** to ustawienie wstępne (Darmowe (OpenRouter), Lekki, Zaawansowany lub Techniczny), które mapuje się na model wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). W pasku narzędzi pojawiają się tylko umiejętności, które mają przypisanie dla aktualnego dostawcy. Wybierasz umiejętność w funkcjach Tłumacz, Przepisz i Przekształć.
-- W trybie **Zaawansowany** **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **przedrostka dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
-- **Klucz API** (lub w przypadku Ollama — **podstawowy adres URL**) umożliwia aplikacji komunikację z dostawcą.
+- W trybie **Łatwy**, **ustawienie wstępne** to predefiniowane ustawienie (Darmowe (OpenRouter), Lite, Zaawansowany lub Techniczny), które mapuje się na model wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). W pasku narzędzi pojawiają się tylko umiejętności, które mają mapowanie dla bieżącego dostawcy. Wybierasz umiejętność na Tłumacz, Przepisz i Przekształć.
+- W trybie **Zaawansowany**, **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **przedrostka dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
+- **Klucz API** (lub dla Ollama, **podstawowy adres URL**) to sposób, w jaki aplikacja łączy się z dostawcą.
 
 Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w sekcji [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego używanego dostawcy. W przypadku korzystania wyłącznie z OpenRouter zobacz poniżej sekcję [Jak uzyskać darmowy klucz API OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
 
@@ -152,8 +152,8 @@ Jeśli po raz pierwszy korzystasz z Transrewrt, postępuj zgodnie z poniższą k
 2. W razie potrzeby wybierz swój **Język interfejsu** z ikony globusa.
 3. Jeśli korzystasz z **aplikacji komputerowej**, otwórz [**Ustawienia** > **Konfiguracja API**](#api-config), dodaj klucz API dla co najmniej jednego dostawcy (na przykład OpenRouter) i kliknij **Test**, aby sprawdzić, czy działa.
 4. Otwórz [**Ustawienia** > **Ustawienia ogólne**](#general-settings). W trybie **Łatwy** (domyślnym) wybierz **Dostawcę**, który ma skonfigurowany klucz. W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i dodaj jeden lub więcej modeli do **Wybranych modeli**.
-5. W trybie **Tłumacz** wybierz **umiejętność** (Łatwy) lub **model** (Zaawansowany) na pasku narzędzi.
-6. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, by najczęściej używane języki pojawiały się na górze listy.
+5. W opcji **Tłumacz**, wybierz **ustawienie wstępne** (Łatwy) lub **model** (Zaawansowany) w pasku narzędzi.
+6. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, aby najczęściej używane języki pojawiały się na początku.
 7. Wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa, a następnie wypróbuj opcje **Przepisz** i **Przekształć**.
 
 Kolejność ma znaczenie. Zapobiega to najczęstszemu problemowi podczas pierwszego użycia: próbie uruchomienia zadania przed ustanowieniem działającego połączenia API lub wybraniem umiejętności/modelu.
@@ -208,11 +208,11 @@ Pasek narzędzi nieznacznie się zmienia w zależności od tego, gdzie znajdujes
 - Po lewej stronie znajduje się nazwa bieżącej strony.
 - Po prawej stronie znajduje się selektor **umiejętności lub modelu** oraz kontrolka **Język interfejsu**.
 
-W trybie **Łatwy** pasek narzędziowy wyświetla **selektor umiejętności** z wbudowanymi ustawieniami wstępnymi: **Darmowe (OpenRouter)**, **Lekki**, **Zaawansowany** i **Techniczny**. Dostępne umiejętności zależą od wybranego **dostawcy** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) — na przykład **Darmowe (OpenRouter)** pojawia się tylko wtedy, gdy dostawcą jest OpenRouter. Jeśli **dostawcą** jest **Ollama**, w pasku narzędzi wyświetlane są zamiast umiejętności zainstalowane lokalne modele.
+W trybie **Łatwy**, pasek narzędzi wyświetla **selektor ustawień wstępnych** z wbudowanymi ustawieniami: **Darmowe (OpenRouter)**, **Lite**, **Zaawansowany** i **Techniczny**. Które ustawienia wstępne się pojawiają, zależy od wybranego **Dostawcy** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) — na przykład **Darmowe (OpenRouter)** pojawia się tylko wtedy, gdy dostawcą jest OpenRouter. Jeśli **Dostawcą** jest **Ollama**, pasek narzędzi wyświetla zainstalowane lokalne modele zamiast ustawień wstępnych.
 
 W trybie **Zaawansowany** selektor **modelu** pozwala wybrać, którego silnika AI użyć do bieżącego zadania.
 
-![Model selector](../images/screenshots/pl/model-selector.png)
+![Model selector](../images/screenshots/pl/preset-selector.png)
 
 W trybie zaawansowanym niektóre darmowe modele mogą nie być zawsze dostępne — mogą być wyłączone lub osiągnąć limit użycia. Aplikacja może automatycznie usunąć taki model z listy. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models). Możesz otworzyć ustawienia modelu, klikając ikonę dostawcy po lewej stronie nazwy modelu na pasku narzędzi.
 
@@ -263,7 +263,7 @@ Użyj opcji **Tłumacz**, gdy chcesz przetłumaczyć tekst z jednego języka na 
 1. Otwórz **Tłumacz**.
 2. Wybierz język w polu **Z**.
 3. Wybierz język w polu **Na**.
-4. Wybierz umiejętność (Łatwy) lub model (Zaawansowany) na pasku narzędzi.
+4. Wybierz ustawienie wstępne (Łatwy) lub model (Zaawansowany) w pasku narzędzi.
 5. Wpisz lub wklej tekst w polu **Wejście**.
 6. Kliknij przycisk **Tłumacz**.
 7. Przeczytaj wynik w polu **Wyjście**.
@@ -371,7 +371,7 @@ Najszybszy sposób na utworzenie zachęty to:
 1. Kliknij **Nowa zachęta**.
 2. Kliknij **Wygeneruj zachętę**.
 3. Opisz, co ma robić zachęta.
-4. Wybierz umiejętność (Łatwy) lub model (Zaawansowany).
+4. Wybierz ustawienie wstępne (Łatwy) lub model (Zaawansowany).
 5. Pozwól aplikacji utworzyć wersję roboczą.
 6. Przejrzyj wersję roboczą i kliknij **Zapisz**.
 
@@ -430,7 +430,7 @@ To przydatne, gdy:
 > ℹ️ **UWAGA**<br/>
 > Możesz eksportować i importować zapisane zachęty w [**Ustawienia** > **Przekształć**](#transform-settings).
 
-Gdy używasz opcji **Wygeneruj zachętę**, **Ulepsz zachętę** lub **Tłumacz zachętę** w edytorze zachęt, tryb **Łatwy** oferuje ten sam selektor umiejętności co opcje Tłumacz i Przepisz; tryb **Zaawansowany** wykorzystuje listę modeli.
+Gdy korzystasz z opcji **Wygeneruj zachętę**, **Ulepsz zachętę** lub **Tłumacz zachętę** w edytorze zachęt, tryb **Łatwy** oferuje ten sam selektor ustawień wstępnych, co Tłumacz i Przepisz; tryb **Zaawansowany** używa listy modeli.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 
 **Doświadczenie AI**
 
-- **Łatwy** (domyślny): wybierz **dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze korzystają z wbudowanych ustawień wstępnych umiejętności w pasku narzędzi. **Ollama** wyświetla zamiast umiejętności modele zainstalowane na Twoim komputerze. W trybie Łatwy, **Katalog umiejętności** pokazuje wersję katalogu oraz czas ostatniej aktualizacji; kliknij **Odśwież katalog umiejętności**, aby pobrać najnowszą listę umiejętności z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
-- **Zaawansowany**: wybieraj indywidualne modele w pasku narzędzi; zarządzaj listą w sekcji [**Ustawienia** > **Modele**](#models).
+- **Łatwy** (domyślny): wybierz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze używają wbudowanych ustawień wstępnych w pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast ustawień wstępnych. W trybie Łatwy, **Katalog ustawień wstępnych** pokazuje wersję katalogu i czas ostatniej aktualizacji; kliknij **Odśwież katalog ustawień wstępnych**, aby pobrać najnowszą listę umiejętności z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
+- **Zaawansowany**: wybierz indywidualne modele w pasku narzędzi; zarządzaj listą w [**Ustawienia** > **Modele**](#models).
 
 W **aplikacji internetowej** dostępność dostawców zależy od kluczy API ustawionych w środowisku serwera. W **aplikacji komputerowej** skonfiguruj klucze w sekcji [**Konfiguracja API**](#api-config).
 
@@ -618,7 +618,7 @@ Kopie zapasowe utworzone w wersji internetowej lub desktopowej można przywróci
 
 Ta karta jest dostępna tylko wtedy, gdy w [**Ustawienia ogólne**](#general-settings) ustawiono opcję **Doświadczenie AI** na **Zaawansowany**. Skorzystaj z opcji **Ustawienia** > **Modele**, aby wybrać, które modele będą wyświetlane na pasku narzędzi.
 
-![Settings Models tab](../images/screenshots/pl/settings-models.png)
+![Settings Models tab](../images/screenshots/pl/settings-general.png)
 
 Strona zawiera dwie listy:
 
@@ -783,10 +783,10 @@ Jeśli coś nie działa zgodnie z oczekiwaniami, najpierw sprawdź następujące
 
 Sprawdź, czy:
 
-- wybrano **umiejętność** (Łatwy) lub **model** (Zaawansowany) na pasku narzędzi
-- w trybie **Łatwy** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) ustawiono **Dostawcę** z działającym kluczem (lub adresem URL Ollama) oraz co najmniej jedną umiejętność dla tego dostawcy
-- w trybie **Zaawansowany** co najmniej jeden model znajduje się na liście w [**Ustawienia** > **Modele**](#models)
-- konfiguracja API działa poprawnie
+- wybrałeś **ustawienie wstępne** (Łatwy) lub **model** (Zaawansowany) w pasku narzędzi
+- w trybie **Łatwy**, w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) wybrany jest **Dostawca** z działającym kluczem (lub adresem URL Ollama) oraz co najmniej jedno ustawienie wstępne dla tego dostawcy
+- w trybie **Zaawansowany**, co najmniej jeden model znajduje się na liście w [**Ustawienia** > **Modele**](#models)
+- Twoja konfiguracja API działa poprawnie
 
 Jeśli korzystasz z aplikacji komputerowej:
 
@@ -810,10 +810,10 @@ W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i klikn
 
 Wypróbuj jedną lub więcej z poniższych opcji:
 
-- wybierz inną umiejętność (Łatwy) lub model (Zaawansowany)
-- użyj krótszego tekstu wejściowego
-- wyłącz opcję **Tłumaczenie w czasie rzeczywistym (podczas pisania)** w sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings)
-- korzystaj z darmowych modeli do prostych zadań (zobacz [Modele](#models))
+- wybierz inne ustawienie wstępne (Łatwy) lub model (Zaawansowany)
+- użyj krótszego wejścia
+- wyłącz opcję **Tłumaczenie w czasie rzeczywistym (podczas pisania)** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings)
+- używaj darmowych modeli do prostych zadań (zobacz [Modele](#models))
 
 <br/>
 

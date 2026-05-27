@@ -18,7 +18,12 @@ import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
-import { formatElapsedMmSs, formatDecimal, getInputStats, getOutputStats } from "../utils/misc/formatUtils";
+import {
+  formatElapsedMmSs,
+  formatDecimal,
+  getInputStats,
+  getOutputStats,
+} from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import { isWeb } from "../constants";
@@ -48,10 +53,10 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
-  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, skills, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedSkillId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
-  const skillUiLocale = settings?.ui_locale || locale;
-  const skillSourceLocale = settings?.source_locale || "en-GB";
+  const presetUiLocale = settings?.ui_locale || locale;
+  const presetSourceLocale = settings?.source_locale || "en-GB";
 
   const [currentMode, setCurrentMode] = useState(() => settings.app_mode || "translate");
   const [currentView, setCurrentView] = useState(() => (settings.web_view === "settings" ? "settings" : "workspace"));
@@ -385,6 +390,8 @@ const App = () => {
     lastRunCostKind === "amount" &&
     typeof lastRunModel === "string" &&
     !lastRunModel.startsWith("openrouter/");
+  const costShownInline =
+    showCostOnActions && !isProcessing && lastRunCostKind === "amount";
   const outputMeta = useMemo(() => {
     const segments = [];
     if (isProcessing || elapsedTime > 0) {
@@ -446,6 +453,30 @@ const App = () => {
     totalCostNum,
   ]);
 
+  const outputMetaCostTooltip = useMemo(() => {
+    if (costShownInline || lastRunCostKind === "none") return null;
+    if (lastRunCostKind === "amount") {
+      return (
+        <>
+          {t("Cost")}: {isLastRunCostEstimated ? "~" : null}
+          {formatCost(lastRunCost, costFractionStyle, locale, { mainPartSuccess: true })}
+        </>
+      );
+    }
+    if (lastRunCostKind === "free") {
+      return `${t("Cost")}: ${t("free")}`;
+    }
+    return t("Cost not available");
+  }, [
+    costFractionStyle,
+    costShownInline,
+    isLastRunCostEstimated,
+    lastRunCost,
+    lastRunCostKind,
+    locale,
+    t,
+  ]);
+
   const common = {
     t,
     settings,
@@ -454,7 +485,12 @@ const App = () => {
     handleRunAction,
     lastRunModel,
     outputMeta,
+    outputMetaCostTooltip,
     layoutMode,
+    autoExecuteOnPaste: settings.auto_translate_on_paste !== false,
+    autoCopy: !!settings.auto_copy,
+    onAutoExecuteChange: (checked) => updateSettings({ auto_translate_on_paste: checked }),
+    onAutoCopyChange: (checked) => updateSettings({ auto_copy: checked }),
   };
 
   const { leftPanel, rightPanel, workspaceTopBar = null, actionBar = null } =
@@ -546,9 +582,9 @@ const App = () => {
                 models,
                 experienceMode,
                 easyProvider: easyProvider || settings.easy_provider || "openrouter",
-                skills,
-                selectedSkillId: settings.selected_skill_id,
-                onSkillChange: (id) => setSelectedSkillId(id),
+                presets,
+                selectedPresetId: settings.selected_preset_id,
+                onPresetChange: (id) => setSelectedPresetId(id),
                 ollamaModels: ollamaEasyModels,
                 easyOllamaModel: settings.easy_ollama_model,
                 onEasyOllamaModelChange: (id) => setEasyOllamaModel(id),
@@ -557,8 +593,8 @@ const App = () => {
                   setCurrentView("settings");
                   if (isWeb) setSetting("web_view", "settings");
                 },
-                skillUiLocale,
-                skillSourceLocale,
+                presetUiLocale,
+                presetSourceLocale,
                 handleTransformPromptSelect,
                 handleTransformNewPrompt,
                 handleTransformEditPrompt,
@@ -675,9 +711,9 @@ const App = () => {
                   onRemoveModel={removeModelFromList}
                   experienceMode={experienceMode}
                   easyProvider={easyProvider || settings.easy_provider || "openrouter"}
-                  skills={skills}
-                  selectedSkillId={settings.selected_skill_id}
-                  onSkillChange={(id) => setSelectedSkillId(id)}
+                  presets={presets}
+                  selectedPresetId={settings.selected_preset_id}
+                  onPresetChange={(id) => setSelectedPresetId(id)}
                   ollamaModels={ollamaEasyModels}
                   easyOllamaModel={settings.easy_ollama_model}
                   onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
@@ -686,8 +722,8 @@ const App = () => {
                     setCurrentView("settings");
                     if (isWeb) setSetting("web_view", "settings");
                   }}
-                  skillUiLocale={skillUiLocale}
-                  skillSourceLocale={skillSourceLocale}
+                  presetUiLocale={presetUiLocale}
+                  presetSourceLocale={presetSourceLocale}
                   leftPanel={leftPanel}
                   rightPanel={rightPanel}
                   workspaceTopBar={workspaceTopBar}
@@ -750,9 +786,9 @@ const App = () => {
           onRemoveModel={removeModelFromList}
           experienceMode={experienceMode}
           easyProvider={easyProvider || settings.easy_provider || "openrouter"}
-          skills={skills}
-          selectedSkillId={settings.selected_skill_id}
-          onSkillChange={(id) => setSelectedSkillId(id)}
+          presets={presets}
+          selectedPresetId={settings.selected_preset_id}
+          onPresetChange={(id) => setSelectedPresetId(id)}
           ollamaModels={ollamaEasyModels}
           easyOllamaModel={settings.easy_ollama_model}
           onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
@@ -760,8 +796,8 @@ const App = () => {
             updateSettings({ settings_active_tab: "general" });
             setCurrentView("settings");
           }}
-          skillUiLocale={skillUiLocale}
-          skillSourceLocale={skillSourceLocale}
+          presetUiLocale={presetUiLocale}
+          presetSourceLocale={presetSourceLocale}
           leftPanel={leftPanel}
           rightPanel={rightPanel}
           workspaceTopBar={workspaceTopBar}

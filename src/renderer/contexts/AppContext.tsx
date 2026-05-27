@@ -10,16 +10,16 @@ import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
-import { loadSkillsFile, syncSkillsFromRemote } from "../utils/skills/skillsManager";
-import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/skills/configuredEasyEngines";
+import { loadPresetsFile, syncPresetsFromRemote } from "../utils/presets/presetsManager";
+import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/presets/configuredEasyEngines";
 import {
   resolveExperienceMode,
   type EasyEngineId,
-} from "../utils/skills/easyProviderConstants";
+} from "../utils/presets/easyProviderConstants";
 import {
-  filterSkillsForEasyProvider,
+  filterPresetsForEasyProvider,
   resolveEasyRuntime,
-} from "../utils/skills/resolveEasySkillModel";
+} from "../utils/presets/resolveEasyPresetModel";
 
 // Create the context
 const AppContext = createContext();
@@ -42,9 +42,9 @@ export const AppProvider = ({ children }) => {
   const [sessionExpired, setSessionExpired] = useState(false);
   const [apiKeyStatus, setApiKeyStatus] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [skillsCatalog, setSkillsCatalog] = useState([]);
-  const [skillsFileMeta, setSkillsFileMeta] = useState({ version: "0.0.0", updated_at: "" });
-  const [skillsRefreshBusy, setSkillsRefreshBusy] = useState(false);
+  const [presetsCatalog, setPresetsCatalog] = useState([]);
+  const [presetsFileMeta, setPresetsFileMeta] = useState({ version: "0.0.0", updated_at: "" });
+  const [presetsRefreshBusy, setPresetsRefreshBusy] = useState(false);
 
   // Web mode: any 401 from API triggers login modal via this callback
   useEffect(() => {
@@ -130,19 +130,19 @@ export const AppProvider = ({ children }) => {
         const initMode = configManager.get("mode");
         if (resolveExperienceMode(initMode as string | undefined) === "easy") {
           try {
-            await syncSkillsFromRemote();
+            await syncPresetsFromRemote();
           } catch (e) {
-            console.warn("[skills] remote update:", e);
+            console.warn("[presets] remote update:", e);
           }
         }
         try {
-          const doc = await loadSkillsFile();
-          setSkillsCatalog(doc.skills || []);
-          setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+          const doc = await loadPresetsFile();
+          setPresetsCatalog(doc.presets || []);
+          setPresetsFileMeta({ version: doc.version, updated_at: doc.updated_at });
         } catch (e) {
-          console.warn("[skills] load:", e);
-          setSkillsCatalog([]);
-          setSkillsFileMeta({ version: "0.0.0", updated_at: "" });
+          console.warn("[presets] load:", e);
+          setPresetsCatalog([]);
+          setPresetsFileMeta({ version: "0.0.0", updated_at: "" });
         }
         i18n.changeLanguage(uiLocale);
       } catch (err) {
@@ -175,12 +175,12 @@ export const AppProvider = ({ children }) => {
           const mode = configManager.get("mode");
           if (resolveExperienceMode(mode as string | undefined) === "easy") {
             try {
-              await syncSkillsFromRemote();
-              const doc = await loadSkillsFile();
-              setSkillsCatalog(doc.skills || []);
-              setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+              await syncPresetsFromRemote();
+              const doc = await loadPresetsFile();
+              setPresetsCatalog(doc.presets || []);
+              setPresetsFileMeta({ version: doc.version, updated_at: doc.updated_at });
             } catch (e) {
-              console.warn("[skills] reload after settings:", e);
+              console.warn("[presets] reload after settings:", e);
             }
           }
         });
@@ -213,43 +213,43 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  const applySkillsFile = useCallback((doc: Awaited<ReturnType<typeof loadSkillsFile>>) => {
-    setSkillsCatalog(doc.skills || []);
-    setSkillsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+  const applyPresetsFile = useCallback((doc: Awaited<ReturnType<typeof loadPresetsFile>>) => {
+    setPresetsCatalog(doc.presets || []);
+    setPresetsFileMeta({ version: doc.version, updated_at: doc.updated_at });
   }, []);
 
-  const refreshSkillsCatalog = useCallback(
+  const refreshPresetsCatalog = useCallback(
     async (options: { force?: boolean } = {}) => {
       const mode = configManager.get("mode");
       if (resolveExperienceMode(mode as string | undefined) !== "easy" && !options.force) {
         return;
       }
-      setSkillsRefreshBusy(true);
+      setPresetsRefreshBusy(true);
       try {
-        await syncSkillsFromRemote(options);
-        const doc = await loadSkillsFile();
-        applySkillsFile(doc);
+        await syncPresetsFromRemote(options);
+        const doc = await loadPresetsFile();
+        applyPresetsFile(doc);
       } catch (e) {
-        console.warn("[skills] refresh failed:", e);
+        console.warn("[presets] refresh failed:", e);
         try {
-          const doc = await loadSkillsFile();
-          applySkillsFile(doc);
+          const doc = await loadPresetsFile();
+          applyPresetsFile(doc);
         } catch {
-          setSkillsCatalog([]);
-          setSkillsFileMeta({ version: "0.0.0", updated_at: "" });
+          setPresetsCatalog([]);
+          setPresetsFileMeta({ version: "0.0.0", updated_at: "" });
         }
       } finally {
-        setSkillsRefreshBusy(false);
+        setPresetsRefreshBusy(false);
       }
     },
-    [applySkillsFile],
+    [applyPresetsFile],
   );
 
   const setSetting = useCallback(async (key, value, options = {}) => {
     const optimistic =
       options.optimistic === true &&
       (key === "last_used_model" ||
-        key === "selected_skill_id" ||
+        key === "selected_preset_id" ||
         key === "easy_ollama_model");
 
     if (optimistic) {
@@ -282,12 +282,12 @@ export const AppProvider = ({ children }) => {
       setAvailableModels(newModels);
     }
     if (key === "mode" && value !== "advanced") {
-      await refreshSkillsCatalog();
+      await refreshPresetsCatalog();
     }
     if (window.electronAPI && window.electronAPI.notifySettingsUpdated) {
       window.electronAPI.notifySettingsUpdated();
     }
-  }, [refreshSkillsCatalog]);
+  }, [refreshPresetsCatalog]);
 
   const { writeLastApiResult, logApiCall, applyCostToResult } = useCostTracking();
   const { removeModelFromList, isUnavailableModelError, handleUnavailableModel } = useModelManagement(
@@ -307,32 +307,32 @@ export const AppProvider = ({ children }) => {
   const experienceMode = resolveExperienceMode(settings.mode as string | undefined);
   const easyProvider = (settings.easy_provider as EasyEngineId | undefined) || null;
 
-  const easySkills = useMemo(() => {
+  const easyPresets = useMemo(() => {
     if (experienceMode !== "easy" || !easyProvider || easyProvider === "ollama") {
       return [];
     }
-    return filterSkillsForEasyProvider(skillsCatalog, easyProvider);
-  }, [experienceMode, easyProvider, skillsCatalog]);
+    return filterPresetsForEasyProvider(presetsCatalog, easyProvider);
+  }, [experienceMode, easyProvider, presetsCatalog]);
 
   const ollamaEasyModels = useMemo(
     () => allModels.filter((m) => String(m.id || "").startsWith("ollama/")).map((m) => m.id),
     [allModels],
   );
 
-  const resolveSkillRuntime = useCallback(() => {
+  const resolvePresetRuntime = useCallback(() => {
     return resolveEasyRuntime({
       mode: settings.mode,
       easyProvider: settings.easy_provider as string | undefined,
       easyOllamaModel: settings.easy_ollama_model as string | undefined,
-      selectedSkillId: settings.selected_skill_id,
-      skills: skillsCatalog,
+      selectedPresetId: settings.selected_preset_id,
+      presets: presetsCatalog,
     });
   }, [
     settings.mode,
     settings.easy_provider,
     settings.easy_ollama_model,
-    settings.selected_skill_id,
-    skillsCatalog,
+    settings.selected_preset_id,
+    presetsCatalog,
   ]);
 
   useEffect(() => {
@@ -370,32 +370,24 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     if (experienceMode === "advanced") return;
     if (easyProvider === "ollama") return;
-    if (!easySkills.length) return;
-    const id = settings.selected_skill_id;
-    const valid = id && easySkills.some((s) => s.id === id);
+    if (!easyPresets.length) return;
+    const id = settings.selected_preset_id;
+    const valid = id && easyPresets.some((s) => s.id === id);
     if (valid) return;
-    setSetting("selected_skill_id", easySkills[0].id);
-  }, [experienceMode, easyProvider, settings.selected_skill_id, easySkills, setSetting]);
+    setSetting("selected_preset_id", easyPresets[0].id);
+  }, [experienceMode, easyProvider, settings.selected_preset_id, easyPresets, setSetting]);
 
   // Translate text
   const translate = async (text, targetLang, model, sourceLang = null, signal = null) => {
     setLoading(true);
     setError(null);
 
-    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
+    const { effectiveModel: presetModel, fallbackModel, promptHint, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
 
-    try {
-      const result = await apiService.translate(
-        text,
-        targetLang,
-        effectiveModel,
-        sourceLang,
-        signal,
-        promptHint,
-      );
-
-      result.model_used = result.model || effectiveModel;
+    const finalizeTranslate = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -418,14 +410,19 @@ export const AppProvider = ({ children }) => {
       const translatePayload = {
         timestamp: new Date().toISOString(),
         type: "translate",
-        model: result.model_used || effectiveModel,
-        prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
-        completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        model: result.model_used || modelToUse,
+        prompt_tokens:
+          result.usage?.prompt_tokens ??
+          (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ??
+          (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
         cost: result.calculated_cost ?? result.usage?.cost ?? null,
         total_cost: result.total_cost ?? null,
         tps: (() => {
-          const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const totalTokens =
+            (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
           const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
           return durationSec > 0 ? totalTokens / durationSec : null;
         })(),
@@ -449,20 +446,48 @@ export const AppProvider = ({ children }) => {
       }
 
       return result;
+    };
+
+    try {
+      const result = await apiService.translate(text, targetLang, effectiveModel, sourceLang, signal, promptHint);
+      return await finalizeTranslate(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
-          setError(
-            i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
-            ),
-          );
-          return { error: err.message };
+        let finalErr = err;
+
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.translate(
+              text,
+              targetLang,
+              fallbackModel,
+              sourceLang,
+              signal,
+              promptHint,
+            );
+            return await finalizeTranslate(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
         }
-        return await handleUnavailableModel(effectiveModel);
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
       }
+
       setError("Translation failed");
       console.error(err);
       return { error: err.message };
@@ -475,12 +500,13 @@ export const AppProvider = ({ children }) => {
   const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
     setLoading(true);
     setError(null);
-    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
-    try {
-      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, effectiveModel, signal);
+    const { effectiveModel: presetModel, fallbackModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
+
+    const finalizeTranslatePromptFields = async (apiResult, modelToUse) => {
+      const result = apiResult;
       if (result.error) return result;
-      result.model_used = result.model || effectiveModel;
+      result.model_used = result.model || modelToUse;
       await applyCostToResult(setSetting, result);
       await writeLastApiResult({
         type: "translate-prompt",
@@ -491,14 +517,17 @@ export const AppProvider = ({ children }) => {
         raw: result,
       });
       logApiCall("translate-prompt", result, { target_lang: targetLang || "" });
+
       const payload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || effectiveModel,
+        model: result.model_used || modelToUse,
         target_lang: targetLang || null,
         transform_prompt: "Translate prompt (button)",
-        prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
-        completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        prompt_tokens:
+          result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
         cost: result.calculated_cost ?? result.usage?.cost ?? null,
         total_cost: result.total_cost ?? null,
@@ -511,23 +540,43 @@ export const AppProvider = ({ children }) => {
         webAPI.logApiCall(payload);
       }
       return result;
+    };
+
+    try {
+      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, effectiveModel, signal);
+      return await finalizeTranslatePromptFields(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
+      let finalErr = err;
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
-          setError(
-            i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
-            ),
-          );
-          return { error: err.message };
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, fallbackModel, signal);
+            return await finalizeTranslatePromptFields(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
         }
-        return await handleUnavailableModel(effectiveModel);
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
       }
+
       setError("Translation failed");
-      console.error(err);
-      return { error: err.message };
+      console.error(finalErr);
+      return { error: finalErr.message };
     } finally {
       setLoading(false);
     }
@@ -537,8 +586,8 @@ export const AppProvider = ({ children }) => {
   const improvePromptConfig = async (configObject, model, signal = null) => {
     setLoading(true);
     setError(null);
-    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
+    const { effectiveModel: presetModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
     try {
       const result = await apiService.improvePromptConfigJson(configObject, effectiveModel, signal);
       if (result.error) return result;
@@ -577,10 +626,10 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
+        if (fromPresetCatalog) {
           setError(
             i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+              "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
             ),
           );
           return { error: err.message };
@@ -599,8 +648,8 @@ export const AppProvider = ({ children }) => {
   const generatePromptConfig = async (userDescription, model, signal = null) => {
     setLoading(true);
     setError(null);
-    const { effectiveModel: skillModel, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
+    const { effectiveModel: presetModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
     try {
       const result = await apiService.generatePromptConfigJson(userDescription, effectiveModel, signal);
       if (result.error) return result;
@@ -639,10 +688,10 @@ export const AppProvider = ({ children }) => {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
+        if (fromPresetCatalog) {
           setError(
             i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+              "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
             ),
           );
           return { error: err.message };
@@ -662,13 +711,12 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
+    const { effectiveModel: presetModel, fallbackModel, promptHint, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
 
-    try {
-      const result = await apiService.rewrite(text, mode, effectiveModel, signal, sourceLang, promptHint);
-
-      result.model_used = result.model || effectiveModel;
+    const finalizeRewrite = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -687,12 +735,14 @@ export const AppProvider = ({ children }) => {
       const rewritePayload = {
         timestamp: new Date().toISOString(),
         type: "rewrite",
-        model: result.model_used || effectiveModel,
+        model: result.model_used || modelToUse,
         source_lang: sourceLang || null,
         target_lang: null,
         rewrite_mode: mode || null,
-        prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
-        completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        prompt_tokens:
+          result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
         cost: result.calculated_cost ?? result.usage?.cost ?? null,
         total_cost: result.total_cost ?? null,
@@ -721,23 +771,42 @@ export const AppProvider = ({ children }) => {
       }
 
       return result;
+    };
+
+    try {
+      const result = await apiService.rewrite(text, mode, effectiveModel, signal, sourceLang, promptHint);
+      return await finalizeRewrite(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
+      let finalErr = err;
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
-          setError(
-            i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
-            ),
-          );
-          return { error: err.message };
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.rewrite(text, mode, fallbackModel, signal, sourceLang, promptHint);
+            return await finalizeRewrite(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
         }
-        return await handleUnavailableModel(effectiveModel);
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
       }
       setError("Rewrite failed");
       console.error(err);
-      return { error: err.message };
+      return { error: finalErr.message };
     } finally {
       setLoading(false);
     }
@@ -748,20 +817,12 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    const { effectiveModel: skillModel, promptHint, fromSkillCatalog } = resolveSkillRuntime();
-    const effectiveModel = skillModel ?? model;
+    const { effectiveModel: presetModel, fallbackModel, promptHint, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
 
-    try {
-      const result = await apiService.transform(
-        text,
-        promptConfig,
-        effectiveModel,
-        signal,
-        statedFromLang,
-        promptHint,
-      );
-
-      result.model_used = result.model || effectiveModel;
+    const finalizeTransform = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
       await applyCostToResult(setSetting, result);
 
       await writeLastApiResult({
@@ -784,13 +845,15 @@ export const AppProvider = ({ children }) => {
       const transformPayload = {
         timestamp: new Date().toISOString(),
         type: "transform",
-        model: result.model_used || effectiveModel,
+        model: result.model_used || modelToUse,
         source_lang: statedFromLang || null,
         target_lang: null,
         rewrite_mode: null,
         transform_prompt: promptConfig?.name ?? null,
-        prompt_tokens: result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
-        completion_tokens: result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        prompt_tokens:
+          result.usage?.prompt_tokens ?? (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ?? (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
         duration_ms: result.duration_ms ?? null,
         cost: result.calculated_cost ?? result.usage?.cost ?? null,
         total_cost: result.total_cost ?? null,
@@ -819,23 +882,42 @@ export const AppProvider = ({ children }) => {
       }
 
       return result;
+    };
+
+    try {
+      const result = await apiService.transform(text, promptConfig, effectiveModel, signal, statedFromLang, promptHint);
+      return await finalizeTransform(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
       if (err && err.status === 401) setNeedsLogin(true);
       if (isUnavailableModelError(err)) {
-        if (fromSkillCatalog) {
-          setError(
-            i18n.t(
-              "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
-            ),
-          );
-          return { error: err.message };
+        let finalErr = err;
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.transform(text, promptConfig, fallbackModel, signal, statedFromLang, promptHint);
+            return await finalizeTransform(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
         }
-        return await handleUnavailableModel(effectiveModel);
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
       }
       setError("Transform failed");
       console.error(err);
-      return { error: err.message };
+      return { error: (err && err.message) || "Transform failed" };
     } finally {
       setLoading(false);
     }
@@ -853,7 +935,7 @@ export const AppProvider = ({ children }) => {
     }
     configManager.loadConfig().then(async () => {
       setSettings(configManager.getAll());
-      await refreshSkillsCatalog();
+      await refreshPresetsCatalog();
     });
     if (webAPI.getApiStatus) {
       webAPI.getApiStatus().then((status) => setApiKeyStatus(status));
@@ -978,17 +1060,17 @@ export const AppProvider = ({ children }) => {
     apiKeyStatus,
     updateSettings,
     setSetting,
-    skills: easySkills,
-    skillsCatalog,
-    skillsFileMeta,
-    skillsRefreshBusy,
-    refreshSkillsCatalog,
+    presets: easyPresets,
+    presetsCatalog,
+    presetsFileMeta,
+    presetsRefreshBusy,
+    refreshPresetsCatalog,
     easyProvider,
     ollamaEasyModels,
     setExperienceMode: (value) => setSetting("mode", value),
     setEasyProvider: (value) => setSetting("easy_provider", value),
     setEasyOllamaModel: (id) => setSetting("easy_ollama_model", id, { optimistic: true }),
-    setSelectedSkillId: (id) => setSetting("selected_skill_id", id, { optimistic: true }),
+    setSelectedPresetId: (id) => setSetting("selected_preset_id", id, { optimistic: true }),
     translate,
     translatePromptFields,
     improvePromptConfig,

@@ -84,7 +84,7 @@ export function compareModelIdsByFooterDisplay(modelIdA: unknown, modelIdB: unkn
 /**
  * First path segment must match a configured multi-llm-ts engine (same set as `src/shared/llm`
  * `ENGINE_IDS`). OpenRouter catalog slugs look like `qwen/qwen3.5-flash` and must be stored as
- * `openrouter/qwen/qwen3.5-flash` for `resolveEngine`. Skill JSON often omits the `openrouter/`
+ * `openrouter/qwen/qwen3.5-flash` for `resolveEngine`. Preset JSON often omits the `openrouter/`
  * prefix; this normalizes those ids for API calls.
  */
 const DIRECT_LLM_ENGINE_PREFIXES = new Set([
@@ -100,22 +100,22 @@ const DIRECT_LLM_ENGINE_PREFIXES = new Set([
   "cerebras",
 ]);
 
-/** Retired or invalid OpenRouter paths still found in older skills.json → current catalog id. */
-const OPENROUTER_SKILL_CANONICAL_ALIASES: Record<string, string> = {
+/** Retired or invalid OpenRouter paths still found in older presets.json → current catalog id. */
+const OPENROUTER_PRESET_CANONICAL_ALIASES: Record<string, string> = {
   "openrouter/qwen/qwen3.5-flash": "openrouter/qwen/qwen3.5-flash-02-23",
 };
 
-function applyOpenRouterSkillAliases(canonical: string): string {
+function applyOpenRouterPresetAliases(canonical: string): string {
   const c = String(canonical || "").trim();
   if (!c) return c;
-  return OPENROUTER_SKILL_CANONICAL_ALIASES[c] || OPENROUTER_SKILL_CANONICAL_ALIASES[c.toLowerCase()] || c;
+  return OPENROUTER_PRESET_CANONICAL_ALIASES[c] || OPENROUTER_PRESET_CANONICAL_ALIASES[c.toLowerCase()] || c;
 }
 
 /**
- * @param modelId - Skill `model_id` or shorthand vendor/model slug
+ * @param modelId - Preset `model_id` or shorthand vendor/model slug
  * @returns Canonical id for LLM streaming (`resolveEngine`)
  */
-export function canonicalModelIdFromSkillModelId(modelId: string): string {
+export function canonicalModelIdFromPresetModelId(modelId: string): string {
   const id = String(modelId || "").trim();
   if (!id) return id;
   let out: string;
@@ -123,9 +123,9 @@ export function canonicalModelIdFromSkillModelId(modelId: string): string {
     out = id;
   } else {
     const slash = id.indexOf("/");
-    if (slash <= 0) return applyOpenRouterSkillAliases(id);
+    if (slash <= 0) return applyOpenRouterPresetAliases(id);
     const engine = id.slice(0, slash).toLowerCase();
     out = DIRECT_LLM_ENGINE_PREFIXES.has(engine) ? id : `openrouter/${id}`;
   }
-  return applyOpenRouterSkillAliases(out);
+  return applyOpenRouterPresetAliases(out);
 }

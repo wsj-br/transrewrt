@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:52:57.337Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:05:49.542Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: ca
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt us ajuda a treballar amb text de tres maneres principals:
 - **Reescriure** - reformular el text en un estil diferent, com ara més clar, més breu o més formal.
 - **Transformar** - processar text mitjançant instruccions personalitzades d'intel·ligència artificial anomenades indicacions.
 
-Per defecte, l'aplicació s'executa en mode **Fàcil**: esculls una **habilitat** (per exemple, Gratuït (OpenRouter), Lite o Tècnic) i un **proveïdor** a Configuració, sense escollir IDs de model. Canvia a **Avançat** a [**Configuració** > **Configuració general**](#general-settings) si vols la llista clàssica de models de [**Configuració** > **Models**](#models).
+Per defecte, l'aplicació s'executa en mode **Fàcil**: selecciones un **predeterminat** (per exemple, Gratuït (OpenRouter), Lite o Tècnic) i un **proveïdor** a la Configuració, sense triar IDs de model. Canvia a **Avançat** a [**Configuració** > **Configuració general**](#general-settings) si vols la llista de models clàssica de [**Configuració** > **Models**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ No cal que seleccioneu un model de pagament per començar. Tan aviat com afegiu 
 
 En paraules senzilles:
 
-- En mode **Fàcil**, una **habilitat** és un preset (Gratuït (OpenRouter), Lite, Avançat o Tècnic) que es mapeja a un model per al teu **proveïdor** escollit (OpenRouter, OpenAI, Ollama i altres). Només les habilitats que tenen un mapeig per al proveïdor actual apareixen a la barra d'eines. Selecciones l'habilitat a Traduir, Reescriure i Transformar.
-- En mode **Avançat**, un **model** és el motor d'IA que esculls directament. Els IDs de model utilitzen un **prefix de proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **clau d'API** (o, per a Ollama, una **URL base**) és com l'aplicació arriba a aquell proveïdor.
+- En mode **Fàcil**, un **predeterminat** és una preconfiguració (Gratuït (OpenRouter), Lleuger, Avançat o Tècnic) que es correspon a un model per al **proveïdor** seleccionat (OpenRouter, OpenAI, Ollama i altres). Només apareixen a la barra d'eines les habilitats que tenen una correspondència amb el proveïdor actual. Seleccioneu l'habilitat a Traduir, Reescriure i Transformar.
+- En mode **Avançat**, un **model** és el motor d'IA que seleccioneu directament. Els IDs de model utilitzen un **prefix del proveïdor** (per exemple `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **clau API** (o, per a Ollama, una **URL base**) és com l'aplicació accedeix al proveïdor.
 
 Si estàs utilitzant l'**aplicació d'escriptori**, afegeix claus a [**Configuració** > **Configuració de l'API**](#api-config) per a cada proveïdor que utilitzis. Per a ús exclusiu d'OpenRouter, consulta [Com obtenir una clau d'API gratuïta d'OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app) a continuació. Si no vols utilitzar una clau d'API, pots instal·lar Ollama (des de [ollama.com](https://ollama.com)) i utilitzar models locals en el seu lloc, com `translategemma:4b`.
 
@@ -153,9 +153,9 @@ Si és la primera vegada que utilitzeu Transrewrt, seguiu aquest ordre:
 2. Trieu el vostre **Idioma de la interfície** des de la icona del globus si cal.
 3. Si esteu a l'**aplicació d'escriptori**, obriu [**Configuració** > **Configuració de l'API**](#api-config), afegiu una clau API per a almenys un proveïdor (per exemple OpenRouter) i feu clic a **Prova** per verificar que funcioni.
 4. Obriu [**Configuració** > **Configuració general**](#general-settings). En mode **Fàcil** (per defecte), trieu un **Proveïdor** que tingui una clau configurada. En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i afegiu un o més models a **Models seleccionats**.
-5. A **Traduir**, seleccioneu una **habilitat** (Fàcil) o un **model** (Avançat) a la barra d'eines.
-6. Obriu [**Configuració** > **Idiomes**](#languages) i trieu els vostres **Idiomes principals** si voleu que els idiomes més utilitzats apareguin primer.
-7. Executeu una traducció senzilla per confirmar que tot funciona, i després proveu **Reescriure** i **Transformar**.
+5. A **Traduir**, seleccioneu un **predeterminat** (Fàcil) o **model** (Avançat) a la barra d'eines.
+6. Obriu [**Configuració** > **Idiomes**](#languages) i trieu els vostres **Idiomes principals** si voleu que els idiomes més utilitzats apareguin primers.
+7. Feu una traducció senzilla per confirmar que tot funciona, després proveu **Reescriure** i **Transformar**.
 
 Aquest ordre és important. Evita el problema més comú en primer ús: intentar executar una tasca abans que l'aplicació tingui una connexió API operativa o una habilitat/model seleccionat.
 
@@ -209,11 +209,11 @@ La barra d'eines canvia lleugerament segons on esteu a l'aplicació.
 - A l'esquerra, mostra el nom de la pàgina actual.
 - A la dreta, mostra el selector d'**habilitat o model** i el control d'**idioma de la interfície**.
 
-En mode **Fàcil**, la barra d'eines mostra un **selector d'habilitats** amb els presets integrats **Gratuït (OpenRouter)**, **Lite**, **Avançat** i **Tècnic**. Quines habilitats apareixen depèn del **Proveïdor** que vas escollir a [**Configuració** > **Configuració general**](#general-settings)—per exemple, **Gratuït (OpenRouter)** només es llista quan el proveïdor és OpenRouter. Si el **Proveïdor** és **Ollama**, la barra d'eines llista els teus models locals instal·lats en comptes d'habilitats.
+En mode **Fàcil**, la barra d'eines mostra un **selector de preconfiguracions** amb les preconfiguracions integrades **Gratuït (OpenRouter)**, **Lleuger**, **Avançat** i **Tècnic**. Quines preconfiguracions apareixen depèn del **Proveïdor** que hagueu triat a [**Configuració** > **Configuració general**](#general-settings); per exemple, **Gratuït (OpenRouter)** només apareix quan el proveïdor és OpenRouter. Si el **Proveïdor** és **Ollama**, la barra d'eines mostra els models locals instal·lats en comptes de preconfiguracions.
 
 En mode **Avançat**, el selector de **model** us permet triar quin motor d'IA utilitzar per a la tasca actual.
 
-![Model selector](../images/screenshots/ca/model-selector.png)
+![Model selector](../images/screenshots/ca/preset-selector.png)
 
 En mode Avançat, alguns models gratuïts poden no estar sempre disponibles: poden estar desconnectats o haver assolit un límit d'ús. L'aplicació pot eliminar automàticament aquest model de la vostra llista. Per controlar quins models apareixen, aneu a [**Configuració** > **Models**](#models). Podeu obrir la configuració del model des de la icona del proveïdor a l'esquerra del nom del model a la barra d'eines.
 
@@ -264,7 +264,7 @@ Utilitzeu **Traduir** quan vulgueu convertir text d'un idioma a un altre.
 1. Obriu **Traduir**.
 2. Trieu un idioma a **Des de**.
 3. Trieu un idioma a **A**.
-4. Trieu una habilitat (Fàcil) o un model (Avançat) a la barra d'eines.
+4. Seleccioneu un predeterminat (Fàcil) o model (Avançat) a la barra d'eines.
 5. Escriviu o enganxeu text a **Entrada**.
 6. Feu clic a **Traduir**.
 7. Llegiu el resultat a **Sortida**.
@@ -369,10 +369,10 @@ Si la vostra llista d'indicadors està buida, feu clic a **Carrega exemples de p
 
 La manera més ràpida de crear un indicador és:
 
-1. Fes clic a **Indicador nou**.
-2. Fes clic a **Genera un indicador**.
-3. Descriu què vols que faci l'indicador.
-4. Escull una habilitat (Fàcil) o model (Avançat).
+1. Feu clic a **Indicador nou**.
+2. Feu clic a **Genera un indicador**.
+3. Descriviu què voleu que faci l'indicador.
+4. Trieu un predeterminat (Fàcil) o model (Avançat).
 5. Deixa que l'aplicació creï un esborrany per a tu.
 6. Revisa l'esborrany i fes clic a **Desa**.
 
@@ -431,7 +431,7 @@ Això és útil quan:
 > ℹ️ **NOTA**<br/>
 > Podeu exportar i importar indicadors desats a [**Configuració** > **Transformar**](#transform-settings).
 
-Quan utilitzeu **Genera un indicador**, **Millora l'indicador** o **Traduir prompt** a l'editor d'indicadors, el mode **Fàcil** ofereix el mateix selector d'habilitats que Traduir i Reescriure; el mode **Avançat** utilitza la llista de models.
+Quan utilitzeu **Genera un indicador**, **Millora l'indicador** o **Traduir prompt** a l'editor d'indicadors, el mode **Fàcil** ofereix el mateix selector de preconfiguracions que a Traduir i Reescriure; el mode **Avançat** utilitza la llista de models.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Utilitzeu **Configuració general** per controlar el comportament de l'escriptur
 
 **Experiència amb IA**
 
-- **Fàcil** (per defecte): escull un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors al núvol utilitzen els presets d'habilitats integrats a la barra d'eines. **Ollama** llista models instal·lats al teu ordinador en comptes d'habilitats. En mode Fàcil, **Catàleg d'habilitats** mostra la versió del catàleg i l'hora de la darrera actualització; fes clic a **Actualitza el catàleg d'habilitats** per obtenir la darrera llista d'habilitats del repositori del projecte (l'aplicació també comprova periòdicament en segon pla).
-- **Avançat**: escull models individuals a la barra d'eines; gestiona la llista a [**Configuració** > **Models**](#models).
+- **Fàcil** (per defecte): trieu un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors en el núvol utilitzen les preconfiguracions integrades a la barra d'eines. **Ollama** mostra els models instal·lats al vostre ordinador en comptes de preconfiguracions. En mode Fàcil, **Catàleg de preconfiguracions** mostra la versió del catàleg i l'hora de la darrera actualització; feu clic a **Actualitzar el catàleg de preconfiguracions** per obtenir la llista més recent d'habilitats des del repositori del projecte (l'aplicació també comprova periòdicament en segon pla).
+- **Avançat**: seleccioneu models individuals a la barra d'eines; gestioneu la llista a [**Configuració** > **Models**](#models).
 
 A l'**aplicació web**, els proveïdors disponibles depenen de les claus API establertes a l'entorn del servidor. A l'**aplicació d'escriptori**, configureu les claus a [**Configuració de l'API**](#api-config).
 
@@ -619,7 +619,7 @@ Les còpies de seguretat creades tant a la versió web com a la d'escriptori es 
 
 Aquesta pestanya només està disponible quan l'**experiència amb IA** està establerta a **Avançat** a [**Configuració general**](#general-settings). Utilitzeu **Configuració** > **Models** per triar quins models apareixen a la barra d'eines.
 
-![Settings Models tab](../images/screenshots/ca/settings-models.png)
+![Settings Models tab](../images/screenshots/ca/settings-general.png)
 
 La pàgina té dues llistes:
 
@@ -784,10 +784,10 @@ Si alguna cosa no funciona com s'espera, comproveu primer els punts següents.
 
 Comproveu que:
 
-- heu seleccionat una **habilitat** (Fàcil) o un **model** (Avançat) a la barra d'eines
-- en mode **Fàcil**, [**Configuració** > **Configuració general**](#general-settings) té un **proveïdor** amb una clau vàlida (o URL d'Ollama) i com a mínim una habilitat per a aquest proveïdor
-- en mode **Avançat**, com a mínim un model està llistat a [**Configuració** > **Models**](#models)
-- la vostra configuració d'API funciona correctament
+- heu seleccionat un **predeterminat** (Fàcil) o **model** (Avançat) a la barra d'eines
+- en mode **Fàcil**, [**Configuració** > **Configuració general**](#general-settings) té un **Proveïdor** amb una clau vàlida (o URL d'Ollama) i com a mínim un predeterminat per a aquest proveïdor
+- en mode **Avançat**, hi ha com a mínim un model a la llista a [**Configuració** > **Models**](#models)
+- la vostra configuració d'API funciona
 
 Si esteu utilitzant l'aplicació d'escriptori:
 
@@ -811,10 +811,10 @@ En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i feu clic
 
 Proveu una o més d'aquestes opcions:
 
-- escollir una habilitat diferent (Fàcil) o model (Avançat)
-- utilitzar una entrada més curta
-- desactivar **Traducció en temps real (mentre escrius)** a [**Configuració** > **Configuració general**](#general-settings)
-- utilitzar models gratuïts per a tasques senzilles (vegeu [Models](#models))
+- trieu un predeterminat diferent (Fàcil) o model (Avançat)
+- utilitzeu una entrada més curta
+- desactiveu **Traducció en temps real (mentre escriviu)** a [**Configuració** > **Configuració general**](#general-settings)
+- utilitzeu models gratuïts per a tasques senzilles (vegeu [Models](#models))
 
 <br/>
 

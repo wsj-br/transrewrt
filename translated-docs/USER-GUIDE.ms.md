@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:05.067Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:32.905Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: ms
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 - **Tulis semula** - ungkapkan semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
 - **Transformasikan** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai prompt.
 
-Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda pilih **kemahiran** (contohnya Percuma (OpenRouter), Ringan, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik daripada [**Tetapan** > **Model**](#models).
+Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda memilih **pratetap** (contohnya Percuma (OpenRouter), Ringan, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik daripada [**Tetapan** > **Model**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menam
 
 Dalam bahasa yang mudah difahami:
 
-- Dalam mod **Mudah**, **kemahiran** adalah praset (Percuma (OpenRouter), Ringan, Lanjutan, atau Teknikal) yang dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Hanya kemahiran yang mempunyai pemetaan untuk penyedia semasa akan muncul dalam bar alat. Anda pilih kemahiran pada Terjemah, Tulis Semula, dan Transformasikan.
-- Dalam mod **Lanjutan**, **model** adalah enjin AI yang anda pilih secara langsung. ID model menggunakan **awalan penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
-- **Kunci API** (atau, untuk Ollama, **URL asas**) adalah cara aplikasi mengakses penyedia tersebut.
+- Dalam mod **Mudah**, **pratetap** ialah pratetap (Percuma (OpenRouter), Ringan, Lanjutan, atau Teknikal) yang dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Hanya kemahiran yang mempunyai pemetaan untuk penyedia semasa akan muncul dalam bar alat. Anda memilih kemahiran pada Terjemah, Tulis Semula, dan Transformasikan.
+- Dalam mod **Lanjutan**, **model** ialah enjin AI yang anda pilih secara langsung. ID model menggunakan **awalan penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
+- **Kunci API** (atau, untuk Ollama, **URL asas**) ialah cara aplikasi mengakses penyedia tersebut.
 
 Jika anda menggunakan **aplikasi desktop**, tambah kunci di [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, lihat [Cara mendapatkan kunci API OpenRouter percuma](#how-to-get-a-free-openrouter-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (daripada [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
 
@@ -152,9 +152,9 @@ Jika ini kali pertama anda menggunakan Transrewrt, ikuti susunan berikut:
 2. Pilih **Bahasa antara muka** anda dari ikon globe jika perlu.
 3. Jika anda menggunakan **aplikasi desktop**, buka [**Tetapan** > **Konfigurasi API**](#api-config), tambah kunci API untuk sekurang-kurangnya satu penyedia (contohnya OpenRouter), dan klik **Uji** untuk mengesahkan ia berfungsi.
 4. Buka [**Tetapan** > **Tetapan Umum**](#general-settings). Dalam mod **Mudah** (lalai), pilih **Penyedia** yang mempunyai kunci yang dikonfigurasikan. Dalam mod **Lanjutan**, buka [**Tetapan** > **Model**](#models) dan tambah satu atau lebih model ke **Model Terpilih**.
-5. Di **Terjemah**, pilih **kemahiran** (Mudah) atau **model** (Lanjutan) di bar alat.
-6. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Utama** anda jika anda mahu bahasa yang paling kerap digunakan muncul dahulu.
-7. Jalankan terjemahan mudah untuk mengesahkan segala-galanya berfungsi, kemudian cuba **Tulis Semula** dan **Transformasikan**.
+5. Pada **Terjemah**, pilih **pratetap** (Mudah) atau **model** (Lanjutan) dalam bar alat.
+6. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Utama** anda jika anda mahu bahasa yang paling kerap digunakan muncul terlebih dahulu.
+7. Jalankan terjemahan ringkas untuk mengesahkan segala-galanya berfungsi, kemudian cuba **Tulis Semula** dan **Transformasikan**.
 
 Susunan ini penting. Ia mengelakkan masalah paling biasa semasa penggunaan pertama: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau kemahiran/model terpilih.
 
@@ -208,11 +208,11 @@ Bar alat berubah sedikit bergantung kepada lokasi anda dalam aplikasi.
 - Di sebelah kiri, ia menunjukkan nama halaman semasa.
 - Di sebelah kanan, ia menunjukkan pengawal **pemilih kemahiran atau model** dan **Bahasa antara muka**.
 
-Dalam mod **Mudah**, bar alat menunjukkan **pemilih kemahiran** dengan praset binaan **Percuma (OpenRouter)**, **Ringan**, **Lanjutan**, dan **Teknikal**. Kemahiran yang muncul bergantung pada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings)—contohnya, **Percuma (OpenRouter)** hanya disenaraikan apabila penyedia ialah OpenRouter. Jika **Penyedia** ialah **Ollama**, bar alat akan senaraikan model tempatan yang telah dipasang sebagai ganti kemahiran.
+Dalam mod **Mudah**, bar alat menunjukkan pemilih **pratetap** dengan pratetap binaan **Percuma (OpenRouter)**, **Ringan**, **Lanjutan**, dan **Teknikal**. Pratetap yang muncul bergantung pada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings)—contohnya, **Percuma (OpenRouter)** hanya disenaraikan apabila penyedia ialah OpenRouter. Jika **Penyedia** ialah **Ollama**, bar alat akan menyenaraikan model tempatan yang telah dipasang, bukannya pratetap.
 
 Dalam mod **Lanjutan**, **pemilih model** membolehkan anda memilih enjin AI mana yang digunakan untuk tugas semasa.
 
-![Model selector](../images/screenshots/ms/model-selector.png)
+![Model selector](../images/screenshots/ms/preset-selector.png)
 
 Dalam mod Lanjutan, sesetengah model percuma mungkin tidak sentiasa tersedia—ia boleh tidak dalam talian atau telah mencapai had penggunaan. Aplikasi mungkin mengalih keluar model tersebut daripada senarai anda secara automatik. Untuk mengawal model yang dipaparkan, pergi ke [**Tetapan** > **Model**](#models). Anda boleh membuka tetapan model daripada ikon penyedia di sebelah kiri nama model dalam bar alat.
 
@@ -261,9 +261,9 @@ Gunakan **Terjemahkan** apabila anda ingin menukar teks daripada satu bahasa ke 
 ### Terjemahkan teks
 
 1. Buka **Terjemah**.
-2. Pilih bahasa di **Dari**.
-3. Pilih bahasa di **Ke**.
-4. Pilih kemahiran (Mudah) atau model (Lanjutan) di bar alat.
+2. Pilih bahasa dalam **Dari**.
+3. Pilih bahasa dalam **Ke**.
+4. Pilih pratetap (Mudah) atau model (Lanjutan) dalam bar alat.
 5. Taip atau tampal teks ke dalam **Input**.
 6. Klik **Terjemahkan**.
 7. Baca hasilnya dalam **Output**.
@@ -371,7 +371,7 @@ Cara terpantas untuk mencipta arahan adalah:
 1. Klik **Arahan baharu**.
 2. Klik **Jana arahan**.
 3. Huraikan apa yang anda mahu arahan itu lakukan.
-4. Pilih kemahiran (Mudah) atau model (Lanjutan).
+4. Pilih pratetap (Mudah) atau model (Lanjutan).
 5. Biarkan aplikasi mencipta draf untuk anda.
 6. Semak draf tersebut dan klik **Simpan**.
 
@@ -430,7 +430,7 @@ Ini berguna apabila:
 > ℹ️ **NOTA**<br/>
 > Anda boleh mengeksport dan mengimport arahan yang disimpan di [**Tetapan** > **Transformasikan**](#transform-settings).
 
-Apabila anda menggunakan **Jana arahan**, **Tingkatkan arahan**, atau **Terjemah arahan** dalam editor arahan, mod **Mudah** menawarkan pemilih kemahiran yang sama seperti Terjemah dan Tulis semula; mod **Lanjutan** menggunakan senarai model.
+Apabila anda menggunakan **Jana arahan**, **Tingkatkan arahan**, atau **Terjemah petua** dalam editor arahan, mod **Mudah** menawarkan pemilih pratetap yang sama seperti Terjemah dan Tulis Semula; mod **Lanjutan** menggunakan senarai model.
 
 <br/><br/>
 
@@ -574,7 +574,7 @@ Gunakan **Tetapan Umum** untuk mengawal kelakuan menaip, sama ada butiran pelaks
 
 **Pengalaman AI**
 
-- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan praset kemahiran binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti kemahiran. Dalam mod Mudah, **Katalog kemahiran** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segar semula katalog kemahiran** untuk mengambil senarai kemahiran terkini daripada repositori projek (aplikasi juga menyemak secara berkala di latar belakang).
+- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan pratetap binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti pratetap. Dalam mod Mudah, **Katalog pratetap** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segarkan katalog pratetap** untuk memuat senarai kemahiran terkini daripada repositori projek (aplikasi juga memeriksa secara berkala di latar belakang).
 - **Lanjutan**: pilih model individu dalam bar alat; urus senarai di bawah [**Tetapan** > **Model**](#models).
 
 Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang ditetapkan dalam persekitaran pelayan. Dalam **aplikasi desktop**, konfigurasikan kunci di bawah [**Konfigurasi API**](#api-config).
@@ -618,7 +618,7 @@ Sandaran yang dicipta dalam versi web atau desktop boleh dipulihkan dalam versi 
 
 Tab ini hanya tersedia apabila **Pengalaman AI** ditetapkan kepada **Lanjutan** di [**Tetapan Umum**](#general-settings). Gunakan **Tetapan** > **Model** untuk memilih model yang muncul di bar alat.
 
-![Settings Models tab](../images/screenshots/ms/settings-models.png)
+![Settings Models tab](../images/screenshots/ms/settings-general.png)
 
 Halaman ini mempunyai dua senarai:
 
@@ -783,8 +783,8 @@ Jika sesuatu tidak berfungsi seperti yang dijangkakan, semak dahulu perkara beri
 
 Pastikan:
 
-- anda telah memilih **kemahiran** (Mudah) atau **model** (Lanjutan) di bar alat
-- dalam mod **Mudah**, [**Tetapan** > **Tetapan Umum**](#general-settings) mempunyai **Penyedia** dengan kunci yang berfungsi (atau URL Ollama) dan sekurang-kurangnya satu kemahiran untuk penyedia tersebut
+- anda telah memilih **pratetap** (Mudah) atau **model** (Lanjutan) dalam bar alat
+- dalam mod **Mudah**, [**Tetapan** > **Tetapan Umum**](#general-settings) mempunyai **Penyedia** dengan kunci yang berfungsi (atau URL Ollama) dan sekurang-kurangnya satu pratetap untuk penyedia tersebut
 - dalam mod **Lanjutan**, sekurang-kurangnya satu model disenaraikan di [**Tetapan** > **Model**](#models)
 - susunan API anda berfungsi
 
@@ -810,10 +810,10 @@ Dalam mod **Lanjutan**, buka [**Tetapan** > **Model**](#models) dan klik **Segar
 
 Cuba satu atau lebih perkara berikut:
 
-- pilih kemahiran (Mudah) atau model (Lanjutan) yang berbeza
+- pilih pratetap (Mudah) atau model (Lanjutan) yang berbeza
 - gunakan input yang lebih pendek
 - matikan **Terjemahan masa nyata (semasa menaip)** di [**Tetapan** > **Tetapan Umum**](#general-settings)
-- gunakan model percuma untuk tugas ringkas (rujuk [Model](#models))
+- gunakan model percuma untuk tugas-tugas ringkas (rujuk [Model](#models))
 
 <br/>
 

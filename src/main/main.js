@@ -11,6 +11,7 @@ const {
   protocol,
   shell,
   nativeImage,
+  clipboard,
 } = require("electron");
 
 if (process.env.TRANSREWRT_DISABLE_GPU === "1") {
@@ -34,7 +35,7 @@ const {
 } = require("./configPath");
 const { isEncryptedApiKey, encryptApiKey, decryptApiKey } = require("./encryption");
 const { registerConfigIpc } = require("./ipc/configIpc");
-const { registerSkillsIpc, ensureUserSkillsOnDisk } = require("./ipc/skillsIpc");
+const { registerPresetsIpc, ensureUserPresetsOnDisk } = require("./ipc/presetsIpc");
 const { registerApiIpc } = require("./ipc/apiIpc");
 const { registerLlmIpc } = require("./ipc/llmIpc");
 const { registerWindowIpc } = require("./ipc/windowIpc");
@@ -591,7 +592,7 @@ registerConfigIpc(ipcMain, {
   canonicalConfigString,
   getBuildTimestamp,
 });
-registerSkillsIpc(ipcMain, () => configCache);
+registerPresetsIpc(ipcMain, () => configCache);
 registerApiIpc(ipcMain, () => configCache);
 registerLlmIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
@@ -602,6 +603,12 @@ ipcMain.handle("get-os-username", () => {
   } catch {
     return "";
   }
+});
+
+/** System clipboard (no user-gesture requirement; used for auto-copy after async LLM runs). */
+ipcMain.handle("clipboard:writeText", (_event, text) => {
+  clipboard.writeText(text == null ? "" : String(text));
+  return true;
 });
 
 ipcMain.handle("shell:openExternal", async (_event, url) => {
@@ -722,8 +729,8 @@ app.on("ready", () => {
   loadConfigFromFile();
   loadStateFromFile();
   Promise.resolve()
-    .then(() => ensureUserSkillsOnDisk(() => configCache))
-    .catch((e) => console.warn("[skills] bootstrap:", e))
+    .then(() => ensureUserPresetsOnDisk(() => configCache))
+    .catch((e) => console.warn("[presets] bootstrap:", e))
     .finally(() => {
       saveConfigToFile(configCache);
       createWindow();

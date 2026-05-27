@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:04.992Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:29.089Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: it
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 - **Riscrivi** - riformula il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
 - **Trasforma** - elabora il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale chiamate prompt.
 
-Per impostazione predefinita, l'app funziona in **Facile**: selezioni una **competenza** (ad esempio Gratuita (OpenRouter), Lite o Tecnica) e un **provider** in Impostazioni, senza scegliere ID di modelli. Passa ad **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri l'elenco classico dei modelli da [**Impostazioni** > **Modelli**](#models).
+Per impostazione predefinita, l'app funziona in modalità **Facile**: selezioni un **preset** (ad esempio Gratuito (OpenRouter), Lite o Tecnico) e un **provider** in Impostazioni, senza dover scegliere ID di modelli. Passa alla modalità **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri la classica lista di modelli disponibile in [**Impostazioni** > **Modelli**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Non è necessario selezionare un modello a pagamento per iniziare. Non appena ag
 
 In termini semplici:
 
-- In **Facile**, una **competenza** è un preset (Gratuito (OpenRouter), Lite, Avanzato o Tecnico) associato a un modello per il **provider** scelto (OpenRouter, OpenAI, Ollama e altri). Solo le competenze con un mapping per il provider corrente appaiono nella barra degli strumenti. Selezioni la competenza in Traduci, Riscrivi e Trasforma.
-- In **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID modello usano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **chiave API** (oppure, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
+- In modalità **Facile**, un **preset** è un profilo predefinito (Gratuito (OpenRouter), Lite, Avanzato o Tecnico) associato a un modello del **provider** selezionato (OpenRouter, OpenAI, Ollama e altri). Nella barra degli strumenti appaiono solo le funzionalità compatibili con il provider corrente. Selezioni la funzionalità su Traduci, Riscrivi e Trasforma.
+- In modalità **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID dei modelli usano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **chiave API** (o, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
 
 Se utilizzi l'**app desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che usi. Per l'uso esclusivo di OpenRouter, vedi [Come ottenere una chiave API OpenRouter gratuita](#how-to-get-a-free-openrouter-api-key-desktop-app) di seguito. Se non vuoi usare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali invece, come `translategemma:4b`.
 
@@ -153,8 +153,8 @@ Se è la prima volta che utilizzi Transrewrt, segui questo ordine:
 2. Se necessario, scegli la tua **Lingua dell'interfaccia** dall'icona del globo.
 3. Se utilizzi l'app **desktop**, apri [**Impostazioni** > **Configurazione API**](#api-config), aggiungi una chiave API per almeno un provider (ad esempio OpenRouter) e fai clic su **Test** per verificarne il funzionamento.
 4. Apri [**Impostazioni** > **Impostazioni generali**](#general-settings). In modalità **Facile** (predefinita), scegli un **Provider** per cui hai configurato una chiave. In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e aggiungi uno o più modelli a **Modelli selezionati**.
-5. In **Traduci**, seleziona una **competenza** (Facile) o un **modello** (Avanzato) nella barra degli strumenti.
-6. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se desideri che le lingue più utilizzate appaiano per prime.
+5. Su **Traduci**, seleziona un **preset** (Facile) o un **modello** (Avanzato) nella barra degli strumenti.
+6. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se desideri che le lingue più usate appaiano per prime.
 7. Esegui una traduzione semplice per verificare che tutto funzioni, quindi prova **Riscrivi** e **Trasforma**.
 
 L'ordine è importante. Evita il problema più comune all'uso iniziale: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o una competenza/modello selezionato.
@@ -209,11 +209,11 @@ La barra degli strumenti cambia leggermente a seconda della posizione all'intern
 - A sinistra, mostra il nome della pagina corrente.
 - A destra, mostra il selettore di **competenza o modello** e il controllo della **Lingua dell'interfaccia**.
 
-In **Facile**, la barra degli strumenti mostra un **selettore di competenze** con i preset integrati **Gratuito (OpenRouter)**, **Lite**, **Avanzato** e **Tecnico**. Le competenze disponibili dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings): ad esempio, **Gratuito (OpenRouter)** è elencato solo quando il provider è OpenRouter. Se il **Provider** è **Ollama**, la barra degli strumenti elenca i modelli locali installati invece delle competenze.
+In modalità **Facile**, la barra degli strumenti mostra un **selettore di preset** con i preset integrati **Gratuito (OpenRouter)**, **Lite**, **Avanzato** e **Tecnico**. I preset visualizzati dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings): ad esempio, **Gratuito (OpenRouter)** viene mostrato solo quando il provider è OpenRouter. Se il **Provider** è **Ollama**, la barra degli strumenti elenca i modelli locali installati invece dei preset.
 
 In modalità **Avanzato**, il selettore di **modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
 
-![Model selector](../images/screenshots/it/model-selector.png)
+![Model selector](../images/screenshots/it/preset-selector.png)
 
 In modalità Avanzato, alcuni modelli gratuiti potrebbero non essere sempre disponibili: potrebbero essere offline o aver raggiunto il limite d'uso. L'app potrebbe rimuovere automaticamente quel modello dalla tua lista. Per controllare quali modelli vengono visualizzati, vai a [**Impostazioni** > **Modelli**](#models). Puoi aprire le impostazioni del modello dall'icona del provider a sinistra del nome del modello nella barra degli strumenti.
 
@@ -264,7 +264,7 @@ Usa **Traduci** quando desideri convertire un testo da una lingua all'altra.
 1. Apri **Traduci**.
 2. Scegli una lingua in **Da**.
 3. Scegli una lingua in **A**.
-4. Scegli una competenza (Facile) o un modello (Avanzato) nella barra degli strumenti.
+4. Scegli un preset (Facile) o un modello (Avanzato) nella barra degli strumenti.
 5. Digita o incolla del testo in **Input**.
 6. Fai clic su **Traduci**.
 7. Leggi il risultato in **Output**.
@@ -372,7 +372,7 @@ Il modo più veloce per creare un prompt è:
 1. Fai clic su **Nuovo prompt**.
 2. Fai clic su **Genera prompt**.
 3. Descrivi cosa deve fare il prompt.
-4. Scegli una competenza (Facile) o un modello (Avanzato).
+4. Scegli un preset (Facile) o un modello (Avanzato).
 5. Lascia che l'app crei una bozza per te.
 6. Rivedi la bozza e fai clic su **Salva**.
 
@@ -431,7 +431,7 @@ Questo è utile quando:
 > ℹ️ **NOTA**<br/>
 > Puoi esportare e importare i prompt salvati in [**Impostazioni** > **Trasforma**](#transform-settings).
 
-Quando utilizzi **Genera prompt**, **Migliora prompt** o **Traduci prompt** nell'editor dei prompt, la modalità **Facile** offre lo stesso selettore di competenze presente in Traduci e Riscrivi; la modalità **Avanzato** utilizza invece l'elenco dei modelli.
+Quando utilizzi **Genera prompt**, **Migliora prompt** o **Traduci prompt** nell'editor dei prompt, la modalità **Facile** offre lo stesso selettore di preset disponibile in Traduci e Riscrivi; la modalità **Avanzato** utilizza invece l'elenco dei modelli.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Utilizza **Impostazioni generali** per controllare il comportamento della digita
 
 **Esperienza AI**
 
-- **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud usano i preset di competenze integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer invece delle competenze. In modalità Facile, **Catalogo delle competenze** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo delle competenze** per recuperare l'elenco più recente dal repository del progetto (l'app verifica periodicamente anche in background).
-- **Avanzato**: seleziona modelli individuali nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
+- **Facile** (predefinita): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud usano i preset integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer al posto dei preset. In modalità Facile, **Catalogo dei preset** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo dei preset** per scaricare l'elenco più recente delle funzionalità dal repository del progetto (l'app verifica periodicamente anche in background).
+- **Avanzato**: seleziona singoli modelli nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
 
 Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate nell'ambiente del server. Nell'**app desktop**, configura le chiavi in [**Configurazione API**](#api-config).
 
@@ -619,7 +619,7 @@ I backup creati nella versione web o desktop possono essere ripristinati nell'al
 
 Questa scheda è disponibile solo quando l'**esperienza AI** è impostata su **Avanzato** in [**Impostazioni generali**](#general-settings). Usa **Impostazioni** > **Modelli** per scegliere quali modelli vengono visualizzati nella barra degli strumenti.
 
-![Settings Models tab](../images/screenshots/it/settings-models.png)
+![Settings Models tab](../images/screenshots/it/settings-general.png)
 
 La pagina contiene due elenchi:
 
@@ -784,9 +784,9 @@ Se qualcosa non funziona come previsto, controlla innanzitutto i seguenti punti.
 
 Verifica che:
 
-- hai selezionato una **competenza** (Facile) o un **modello** (Avanzato) nella barra degli strumenti
-- in modalità **Facile**, in [**Impostazioni** > **Impostazioni generali**](#general-settings) è impostato un **Provider** con una chiave funzionante (o un URL Ollama) e almeno una competenza per quel provider
-- in modalità **Avanzato**, almeno un modello è elencato in [**Impostazioni** > **Modelli**](#models)
+- hai selezionato un **preset** (Facile) o un **modello** (Avanzato) nella barra degli strumenti
+- in modalità **Facile**, [**Impostazioni** > **Impostazioni generali**](#general-settings) ha un **Provider** con una chiave funzionante (o un URL Ollama) e almeno un preset per quel provider
+- in modalità **Avanzato**, almeno un modello è presente in [**Impostazioni** > **Modelli**](#models)
 - la configurazione API funziona correttamente
 
 Se stai utilizzando l'app desktop:
@@ -811,10 +811,10 @@ In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e fai 
 
 Prova una o più delle seguenti azioni:
 
-- scegliere una competenza diversa (Facile) o un modello diverso (Avanzato)
-- usare un input più breve
-- disattivare **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
-- usare modelli gratuiti per compiti semplici (vedi [Modelli](#models))
+- scegli un preset diverso (Facile) o un modello diverso (Avanzato)
+- utilizza un input più breve
+- disattiva **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
+- usa modelli gratuiti per compiti semplici (vedi [Modelli](#models))
 
 <br/>
 

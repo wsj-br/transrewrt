@@ -36,14 +36,21 @@ export const workspaceActionBarCenteredCtaClassName = cn(
 export const workspacePaneStatsRowClassName =
   "flex min-h-8 shrink-0 items-center gap-2 px-0.5 pt-1.5";
 
+/** Stats line in pane footer rows — center with switches/buttons despite smaller type. */
+export const workspacePaneStatsTextClassName =
+  "self-center leading-none text-[11px] text-muted-foreground/60 min-w-0 truncate";
+
+/** Model id in pane footer rows — center with adjacent controls. */
+export const workspacePaneModelIdClassName =
+  "self-center leading-none shrink-0 font-mono text-[10.5px] truncate";
+
 /** Lang selector + elapsed/cost/TPS row above output `TextPanel`; wraps when narrow instead of clipping metrics. */
 export const workspaceOutputPanelHeaderRowClassName =
-  "flex min-h-10 min-w-0 flex-wrap items-start gap-x-2 gap-y-1";
+  "flex min-h-10 min-w-0 flex-wrap items-center gap-x-2 gap-y-1";
 
 /**
- * Metrics beside language selector: avoid `min-w-0` here — flex could shrink this item to a few pixels and
- * long lines stacked one character wide. `min-w-[9rem]` lets flex-wrap move this block to the next row when
- * the row cannot fit selector + 9rem; alone on that row, `flex-1` expands it to the column width.
+ * Metrics beside language selector (layout shell only — text styling in WorkspaceOutputMeta).
+ * `min-w-[9rem]` lets flex-wrap move this block to the next row when the row cannot fit selector + 9rem.
  */
 export const workspaceOutputMetaClassName =
-  "box-border min-w-[9rem] flex-1 text-end text-[11px] font-mono leading-snug whitespace-normal break-words";
+  "box-border min-w-[9rem] flex-1 self-center text-end";

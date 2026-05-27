@@ -4,15 +4,18 @@ import StyleSelector from "../StyleSelector";
 import LanguageSelector from "../LanguageSelector";
 import {
   workspaceActionBarCenteredCtaClassName,
-  workspaceOutputMetaClassName,
   workspaceOutputPanelHeaderRowClassName,
+  workspacePaneModelIdClassName,
   workspacePaneStatsRowClassName,
+  workspacePaneStatsTextClassName,
 } from "./workspaceLayoutClasses";
+import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
+import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
 import { getRewriteModeOptions, REWRITE_MODE_KEYS } from "../../constants";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
-import { Switch } from "@/components/ui/switch";
+import { Switch, switchAccentClassName } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 const REWRITE_MODE_GRAMMAR = REWRITE_MODE_KEYS[0]; // "Check Spelling & Grammar"
@@ -33,7 +36,12 @@ export function getRewritePanels({ common, input, output, options }) {
     handleRunAction,
     lastRunModel,
     outputMeta,
+    outputMetaCostTooltip,
     layoutMode,
+    autoExecuteOnPaste,
+    autoCopy,
+    onAutoExecuteChange,
+    onAutoCopyChange,
   } = common;
   const isStack = layoutMode === "stack";
   const {
@@ -78,9 +86,9 @@ export function getRewritePanels({ common, input, output, options }) {
             iconStrokeWidth={1.6}
           />
           {outputMeta ? (
-            <span className={workspaceOutputMetaClassName} style={{ color: "rgba(var(--mode-accent-rgb), 0.8)" }}>
+            <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
               {outputMeta}
-            </span>
+            </WorkspaceOutputMeta>
           ) : null}
         </>
       ) : null}
@@ -102,20 +110,17 @@ export function getRewritePanels({ common, input, output, options }) {
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 flex-1 truncate">
+        <span className={`${workspacePaneStatsTextClassName} flex-1`}>
           {input.getStats()}
         </span>
-        <div className="flex shrink-0 items-center gap-1 ms-auto">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 border border-white/8 text-muted-foreground/50 hover:text-muted-foreground"
-            onClick={input.clear}
-            title={t("Clear (Esc)")}
-            aria-label={t("Clear (Esc)")}
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </Button>
+        <div className="flex shrink-0 items-center gap-2 ms-auto">
+          <WorkspaceBehaviourSwitch
+            id="workspace-auto-execute-rewrite"
+            label={t("Auto-execute")}
+            checked={autoExecuteOnPaste}
+            onCheckedChange={onAutoExecuteChange}
+            title={t("Auto-execute on paste")}
+          />
           <Button
             variant="ghost"
             size="icon"
@@ -147,9 +152,9 @@ export function getRewritePanels({ common, input, output, options }) {
             iconStrokeWidth={1.6}
           />
           {outputMeta ? (
-            <span className={workspaceOutputMetaClassName} style={{ color: "rgba(var(--mode-accent-rgb), 0.8)" }}>
+            <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
               {outputMeta}
-            </span>
+            </WorkspaceOutputMeta>
           ) : null}
         </div>
       ) : null}
@@ -173,12 +178,12 @@ export function getRewritePanels({ common, input, output, options }) {
         />
       </div>
       <div className={workspacePaneStatsRowClassName}>
-        <span className="text-[11px] text-muted-foreground/60 min-w-0 truncate">
+        <span className={workspacePaneStatsTextClassName}>
           {output.getStats()}
         </span>
         {modelId ? (
           <span
-            className="shrink-0 font-mono text-[10.5px] truncate"
+            className={workspacePaneModelIdClassName}
             style={{ color: "rgba(var(--mode-accent-rgb), 0.35)" }}
             title={lastRunModel || undefined}
           >
@@ -186,15 +191,30 @@ export function getRewritePanels({ common, input, output, options }) {
           </span>
         ) : null}
         <div className="flex shrink-0 items-center gap-2 ms-auto">
-          {isGrammarMode && setShowOutputDiff && output.text ? (
-            <div className="flex items-center gap-1.5">
+          <WorkspaceBehaviourSwitch
+            id="workspace-auto-copy-rewrite"
+            label={t("Auto-copy")}
+            checked={autoCopy}
+            onCheckedChange={onAutoCopyChange}
+            title={t("Auto-copy result to clipboard")}
+          />
+          {isGrammarMode && setShowOutputDiff ? (
+            <div className="flex shrink-0 items-center gap-1.5">
               <Switch
                 id="show-diff-rewrite"
                 checked={showOutputDiff}
                 onCheckedChange={setShowOutputDiff}
-                className="h-4 w-7 data-[state=checked]:bg-blue-500"
+                className={switchAccentClassName}
               />
-              <Label htmlFor="show-diff-rewrite" className="text-[11px] text-muted-foreground/70 cursor-pointer whitespace-nowrap">
+              <Label
+                htmlFor="show-diff-rewrite"
+                className={cn(
+                  "m-0 cursor-pointer whitespace-nowrap text-[11px] leading-none",
+                  showOutputDiff
+                    ? "text-[rgba(var(--mode-accent-rgb),0.9)]"
+                    : "text-muted-foreground/70",
+                )}
+              >
                 {t("Changes")}
               </Label>
             </div>

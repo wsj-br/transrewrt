@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:01.174Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:16.803Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: tl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Tinutulungan ka ng Transrewrt na gumana sa teksto sa tatlong pangunahing paraan:
 - **Muling isulat** - i-parafrase ang teksto sa ibang estilo, tulad ng mas malinaw, mas maikli, o mas pormal.
 - **Baguhin** - i-proseso ang teksto gamit ang mga pasadyang AI na tagubilin na tinatawag na mga prompt.
 
-Ang app ay tumatakbo sa **Madali** na mode bilang default: pumipili ka ng **kasangkapan** (halimbawa Libre (OpenRouter), Lite, o Teknikal) at isang **provider** sa Mga Setting, nang walang pagpili ng mga model ID. Lumipat sa **Advanced** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) kung gusto mo ang klasikong listahan ng mga modelo mula sa [**Mga Setting** > **Mga Modelo**](#models).
+Ang app ay tumatakbo sa **Madali** na mode bilang default: pumipili ka ng **preset** (halimbawa Libre (OpenRouter), Lite, o Teknikal) at isang **provider** sa Mga Setting, nang walang pagpili ng model ID. Lumipat sa **Advanced** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) kung gusto mo ang klasikong listahan ng modelo mula sa [**Mga Setting** > **Mga Modelo**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Hindi mo kailangang pumili ng bayad na modelo upang magsimula. Sa sandaling idag
 
 Sa madaling salita:
 
-- Sa **Madali** na mode, ang isang **kasangkapan** ay isang preset (Libre (OpenRouter), Lite, Advanced, o Teknikal) na nauugnay sa isang modelo para sa napiling **provider** mo (OpenRouter, OpenAI, Ollama, at iba pa). Ang mga kasangkapan na mayroong ugnayan sa kasalukuyang provider lamang ang lumilitaw sa toolbar. Pumipili ka ng kasangkapan sa Isalin, Muling Isulat, at Baguhin.
+- Sa **Madali** na mode, ang isang **preset** ay isang preset (Libre (OpenRouter), Lite, Advanced, o Teknikal) na nauugnay sa isang modelo para sa napiling **provider** (OpenRouter, OpenAI, Ollama, at iba pa). Ang mga kasanayan na mayroong ugnayan sa kasalukuyang provider lamang ang lilitaw sa toolbar. Pumipili ka ng kasanayan sa Isalin, Muling Isulat, at Baguhin.
 - Sa **Advanced** na mode, ang isang **modelo** ay ang AI engine na pinipili mo nang direkta. Ang mga model ID ay gumagamit ng **prefix ng provider** (halimbawa `openrouter/…`, `openai/…`, `ollama/…`).
-- Ang isang **API key** (o, para sa Ollama, isang **base URL**) ang ginagamit ng app para maabot ang provider.
+- Ang isang **API key** (o, para sa Ollama, isang **base URL**) ang paraan kung paano nakakonekta ang app sa provider.
 
 Kung gumagamit ka ng **desktop app**, magdagdag ng mga key sa [**Mga Setting** > **Config ng API**](#api-config) para sa bawat provider na ginagamit mo. Para sa OpenRouter lamang, tingnan ang [Paano makakuha ng libreng OpenRouter API key](#how-to-get-a-free-openrouter-api-key-desktop-app) sa ibaba. Kung ayaw mong gamitin ang API key, maaari mong i-install ang Ollama (mula sa [ollama.com](https://ollama.com)) at gamitin ang lokal na mga modelo, tulad ng `translategemma:4b`.
 
@@ -153,9 +153,9 @@ Kung ito ang iyong unang pagkakataon na gumamit ng Transrewrt, sundin ang pagkak
 2. Pumili ng iyong **Wika ng interface** mula sa icon ng mundo kung kinakailangan.
 3. Kung nasa **desktop app** ka, buksan ang [**Mga Setting** > **Config ng API**](#api-config), magdagdag ng API key para sa kahit isang provider (halimbawa OpenRouter), at i-click ang **Subukan** upang i-verify kung gumagana.
 4. Buksan ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings). Sa **Madali** na mode (default), pumili ng **Provider** na may naka-configure na key. Sa **Advanced** na mode, buksan ang [**Mga Setting** > **Mga Modelo**](#models) at magdagdag ng isa o higit pang modelo sa **Mga Napiling Modelo**.
-5. Sa **Isalin**, pumili ng **kasangkapan** (Madali) o **modelo** (Advanced) sa toolbar.
+5. Sa **Isalin**, pumili ng **preset** (Madali) o **modelo** (Advanced) sa toolbar.
 6. Buksan ang [**Mga Setting** > **Mga Wika**](#languages) at pumili ng iyong **Nangungunang mga wika** kung gusto mong lumabas muna ang iyong mga madalas gamitin na wika.
-7. Gawin ang isang simpleng pagsasalin upang kumpirmahin na gumagana ang lahat, pagkatapos subukan ang **Muling Isulat** at **Baguhin**.
+7. Gawin ang simpleng pagsasalin upang kumpirmahin na gumagana ang lahat, pagkatapos subukan ang **Muling Isulat** at **Baguhin**.
 
 Mahalaga ang pagkakasunud-sunod na ito. Ito ay nagpipigil sa pinakakaraniwang problema sa unang paggamit: sinusubukan gawin ang isang gawain bago pa man magkaroon ng gumaganang API connection ang app o napiling kasangkapan/modelo.
 
@@ -209,11 +209,11 @@ Kaunti lamang nagbabago ang toolbar depende sa kung saan ka sa loob ng app.
 - Sa kaliwa, ipinapakita nito ang pangalan ng kasalukuyang pahina.
 - Sa kanan, ipinapakita nito ang **selector ng kasangkapan o modelo** at ang kontrol ng **Wika ng interface**.
 
-Sa **Madali** na mode, ang toolbar ay nagpapakita ng isang **pumili ng kasangkapan** na may mga built-in preset na **Libre (OpenRouter)**, **Lite**, **Advanced**, at **Teknikal**. Ang mga lumilitaw na kasangkapan ay nakadepende sa napiling **Provider** mo sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)—halimbawa, ang **Libre (OpenRouter)** ay nakalista lamang kapag ang provider ay OpenRouter. Kung ang **Provider** ay **Ollama**, ang toolbar ay naglilista ng mga lokal na modelo na naka-install sa iyong makina imbes na mga kasangkapan.
+Sa **Madali** na mode, ipinapakita ng toolbar ang **selector ng preset** na may mga built-in na preset na **Libre (OpenRouter)**, **Lite**, **Advanced**, at **Teknikal**. Ang mga lumilitaw na preset ay nakadepende sa napiling **Provider** mo sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)—halimbawa, ang **Libre (OpenRouter)** ay nakalista lamang kapag ang provider ay OpenRouter. Kung ang **Provider** ay **Ollama**, ang toolbar ay naglilista ng mga lokal na modelo na naka-install sa iyong makina imbes na mga preset.
 
 Sa **Advanced** na mode, pinapayagan ka ng **selector ng modelo** na pumili kung aling AI engine ang gagamitin para sa kasalukuyang gawain.
 
-![Model selector](../images/screenshots/tl/model-selector.png)
+![Model selector](../images/screenshots/tl/preset-selector.png)
 
 Sa Advanced mode, ang ilang libreng modelo ay maaaring hindi laging magagamit—maaaring offline o umabot na sa limitasyon ng paggamit. Maaaring awtomatikong alisin ng app ang modelo mula sa iyong listahan. Para kontrolin kung aling mga modelo ang lilitaw, pumunta sa [**Mga Setting** > **Mga Modelo**](#models). Maaari mong buksan ang mga setting ng modelo mula sa icon ng provider sa kaliwa ng pangalan ng modelo sa toolbar.
 
@@ -262,9 +262,9 @@ Gamitin ang **Isalin** kapag nais mong i-convert ang teksto mula sa isang wika p
 ### I-salin ang teksto
 
 1. Buksan ang **Isalin**.
-2. Pumili ng wika sa **Mula**.
-3. Pumili ng wika sa **Patungo**.
-4. Pumili ng kasangkapan (Madali) o modelo (Advanced) sa toolbar.
+2. Pumili ng wika sa **Mula sa**.
+3. Pumili ng wika sa **Patungo sa**.
+4. Pumili ng preset (Madali) o modelo (Advanced) sa toolbar.
 5. I-type o i-paste ang teksto sa **Input**.
 6. I-click ang **Translate**.
 7. Basahin ang resulta sa **Output**.
@@ -372,7 +372,7 @@ Ang pinakamabilis na paraan para gumawa ng prompt ay:
 1. I-click ang **Bagong prompt**.
 2. I-click ang **Bumuo ng prompt**.
 3. Ilarawan kung ano ang gusto mong gawin ng prompt.
-4. Pumili ng isang kasangkapan (Madali) o modelo (Advanced).
+4. Pumili ng preset (Madali) o modelo (Advanced).
 5. Hayaan ang app na lumikha ng draft para sa iyo.
 6. Suriin ang draft at i-click ang **I-save**.
 
@@ -431,7 +431,7 @@ Makakatulong ito kapag:
 > ℹ️ **PAUNAWA**<br/>
 > Maaari mong i-export at i-import ang mga nai-save na prompt sa [**Mga Setting** > **Baguhin**](#transform-settings).
 
-Kapag gumagamit ka ng **Generate prompt**, **Improve prompt**, o **Translate prompt** sa prompt editor, nag-aalok ang **Easy** mode ng parehong skill selector tulad ng sa Translate at Rewrite; ginagamit naman ng **Advanced** mode ang listahan ng mga modelo.
+Kapag gumagamit ka ng **Bumuo ng prompt**, **Pabutihin ang prompt**, o **Isalin ang prompt** sa editor ng prompt, ang **Madali** na mode ay nag-aalok ng parehong selector ng preset tulad ng sa Isalin at Muling Isulat; ang **Advanced** na mode ay gumagamit ng listahan ng modelo.
 
 <br/><br/>
 
@@ -575,8 +575,8 @@ Gumamit ng **General Settings** upang kontrolin ang pag-uugali sa pag-type, kung
 
 **AI experience**
 
-- **Madali** (default): pumili ng **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, o Ollama). Ang mga cloud provider ay gumagamit ng mga built-in na preset ng kasangkapan sa toolbar. Ang **Ollama** ay naglilista ng mga modelo na naka-install sa iyong makina imbes na mga kasangkapan. Sa Madali na mode, ang **Katalogo ng mga kasanayan** ay nagpapakita ng bersyon ng katalogo at oras ng huling pag-update; i-click ang **I-refresh ang katalogo ng mga kasanayan** para i-fetch ang pinakabagong listahan ng mga kasangkapan mula sa repository ng proyekto (ang app ay nagsusuri rin nang pana-panahon sa background).
-- **Advanced**: pumili ng mga indibidwal na modelo sa toolbar; pamahalaan ang listahan sa ilalim ng [**Mga Setting** > **Mga Modelo**](#models).
+- **Madali** (default): pumili ng isang **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, o Ollama). Ang mga cloud provider ay gumagamit ng mga built-in na preset sa toolbar. Ang **Ollama** ay naglilista ng mga modelo na naka-install sa iyong makina imbes na mga preset. Sa Madali na mode, ang **Katalogo ng mga preset** ay nagpapakita ng bersyon ng katalogo at oras ng huling pag-update; i-click ang **I-refresh ang katalogo ng mga preset** upang kunin ang pinakabagong listahan ng kasanayan mula sa repository ng proyekto (ang app ay sumusuri rin nang paunlad sa background).
+- **Advanced**: pumili ng indibidwal na mga modelo sa toolbar; pamahalaan ang listahan sa ilalim ng [**Mga Setting** > **Mga Modelo**](#models).
 
 Sa **web app**, ang mga provider na lumilitaw ay nakadepende sa mga API key na naka-set sa server environment. Sa **desktop app**, i-configure ang mga key sa ilalim ng [**API Config**](#api-config).
 
@@ -619,7 +619,7 @@ Ang mga backup na nilikha sa web o desktop version ay maaaring i-restore sa kabi
 
 Ang tab na ito ay magagamit lamang kapag ang **Karanasan sa AI** ay nakatakda sa **Advanced** sa [**Mga Pangkalahatang Setting**](#general-settings). Gamitin ang **Mga Setting** > **Mga Modelo** para pumili kung aling mga modelo ang lilitaw sa toolbar.
 
-![Settings Models tab](../images/screenshots/tl/settings-models.png)
+![Settings Models tab](../images/screenshots/tl/settings-general.png)
 
 Ang pahina ay may dalawang listahan:
 
@@ -784,8 +784,8 @@ Kung may bagay na hindi gumagana ayon sa inaasahan, suriin muna ang mga sumusuno
 
 Suriin na:
 
-- napili mo ang isang **kasangkapan** (Madali) o **modelo** (Advanced) sa toolbar
-- sa **Madali** na mode, ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) ay may **Provider** na may gumaganang key (o Ollama URL) at hindi bababa sa isang kasangkapan para sa provider na iyon
+- napili mo ang isang **preset** (Madali) o **modelo** (Advanced) sa toolbar
+- sa **Madali** na mode, ang [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings) ay may **Provider** na may gumaganang key (o Ollama URL) at hindi bababa sa isang preset para sa provider na iyon
 - sa **Advanced** na mode, nakalista ang hindi bababa sa isang modelo sa [**Mga Setting** > **Mga Modelo**](#models)
 - gumagana ang iyong API setup
 
@@ -811,10 +811,10 @@ Sa **Advanced** na mode, buksan ang [**Mga Setting** > **Mga Modelo**](#models) 
 
 Subukan ang isa o higit pa sa mga sumusunod:
 
-- pumili ng ibang kasangkapan (Madali) o modelo (Advanced)
+- pumili ng ibang preset (Madali) o modelo (Advanced)
 - gumamit ng mas maikling input
-- i-off ang **Real-time na pagsasalin (habang nagtatatype)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
-- gumamit ng libreng mga modelo para sa mga simpleng gawain (tingnan ang [Mga Modelo](#models))
+- i-off ang **Real-time na pagsasalin (habang nagta-type)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
+- gumamit ng libreng mga modelo para sa simpleng mga gawain (tingnan ang [Mga Modelo](#models))
 
 <br/>
 

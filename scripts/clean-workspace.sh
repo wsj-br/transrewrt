@@ -40,9 +40,9 @@ done < <(find "$ROOT_DIR" \
     -o -type f -name '*.log' -print0)
 
 for cache in \
-    "dev/skill-check/provider-catalogs-cache.json" \
-    "dev/skill-check/skill-check.log" \
-    "skills-editor-provider-catalogs.json"
+    "dev/presets-check/provider-catalogs-cache.json" \
+    "dev/presets-check/presets-check.log" \
+    "presets-editor-provider-catalogs.json"
 do
     if [ -f "$ROOT_DIR/$cache" ]; then
         if rm -f "$ROOT_DIR/$cache"; then

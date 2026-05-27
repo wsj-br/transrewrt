@@ -1,6 +1,7 @@
 import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import prompts from "../../config-defaults/prompts.json";
+import { estimateMaxTokensFromUserContent } from "../../shared/llm/estimateMaxTokens.js";
 
 function randomRequestId() {
   return globalThis.crypto?.randomUUID?.() || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -54,7 +55,7 @@ function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
     .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
     .replace(/\{\{targetLang\}\}/g, targetLang || "");
   if (promptHint && String(promptHint).trim()) {
-    return `${prompt}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+    return `${prompt}\n\n[Preset instruction: ${String(promptHint).trim()}]`;
   }
   return prompt;
 }
@@ -83,7 +84,7 @@ function buildRewriteSystemPrompt(styleConfig, sourceLang = null, promptHint = n
   ];
   let out = resolvePrompt(lines);
   if (promptHint && String(promptHint).trim()) {
-    out = `${out}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+    out = `${out}\n\n[Preset instruction: ${String(promptHint).trim()}]`;
   }
   return out;
 }
@@ -129,7 +130,7 @@ function buildTransformSystemPrompt(promptConfig, statedFromLang = null, promptH
   lines.push("", ...shared.footer);
   let out = resolvePrompt(lines);
   if (promptHint && String(promptHint).trim()) {
-    out = `${out}\n\n[Skill instruction: ${String(promptHint).trim()}]`;
+    out = `${out}\n\n[Preset instruction: ${String(promptHint).trim()}]`;
   }
   return out;
 }
@@ -252,10 +253,13 @@ class APIService {
       { role: "system", content: systemPrompt },
       { role: "user", content: userText },
     ];
+    const max_tokens = estimateMaxTokensFromUserContent(userText, type);
     const payloadObj = {
       canonicalModelId: model,
       messages,
       temperature,
+      max_tokens,
+      task_type: type,
     };
     const request_bytes = new TextEncoder().encode(JSON.stringify(payloadObj)).length;
     const startTime = Date.now();
@@ -277,6 +281,8 @@ class APIService {
           canonicalModelId: model,
           messages,
           temperature,
+          max_tokens,
+          task_type: type,
         });
         const duration_ms = Date.now() - startTime;
         const result = {

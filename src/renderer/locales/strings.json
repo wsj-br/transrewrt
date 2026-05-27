@@ -1533,7 +1533,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 393
+        "line": 400
       }
     ]
   },
@@ -1618,7 +1618,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 400
+        "line": 407
+      },
+      {
+        "file": "src/renderer/components/App.tsx",
+        "line": 461
+      },
+      {
+        "file": "src/renderer/components/App.tsx",
+        "line": 467
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -1727,7 +1735,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 408
+        "line": 415
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -1828,7 +1836,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 412
+        "line": 419
+      },
+      {
+        "file": "src/renderer/components/App.tsx",
+        "line": 467
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -1917,7 +1929,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 420
+        "line": 427
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -1930,6 +1942,99 @@
       {
         "file": "src/renderer/components/HistoryPage.tsx",
         "line": 238
+      }
+    ]
+  },
+  "44c3bb5d": {
+    "source": "Cost not available",
+    "translated": {
+      "pt-BR": "Custo não disponível",
+      "ca": "Cost no disponible",
+      "ar": "التكلفة غير متوفرة",
+      "bn": "খরচ উপলব্ধ নেই",
+      "zh-TW": "成本不可用",
+      "hr": "Cijena nije dostupna",
+      "cs": "Náklady nejsou k dispozici",
+      "zh-CN": "成本不可用",
+      "en-US": "Cost not available",
+      "fr": "Coût non disponible",
+      "tl": "Hindi available ang gastos",
+      "nl": "Kosten niet beschikbaar",
+      "de": "Kosten nicht verfügbar",
+      "hu": "Költség nem elérhető",
+      "hi": "लागत उपलब्ध नहीं है",
+      "el": "Κόστος μη διαθέσιμο",
+      "ms": "Kos tidak tersedia",
+      "ko": "비용 정보 없음",
+      "ja": "コスト情報は利用できません",
+      "it": "Costo non disponibile",
+      "pt": "Custo não disponível",
+      "pl": "Koszt niedostępny",
+      "pa": "ਲਾਗਤ ਉਪਲਬਧ ਨਹੀਂ",
+      "fa": "هزینه در دسترس نیست",
+      "es": "Costo no disponible",
+      "ru": "Стоимость недоступна",
+      "ro": "Cost indisponibil",
+      "sk": "Cena nie je k dispozícii",
+      "sv": "Kostnad inte tillgänglig",
+      "th": "ไม่มีข้อมูลต้นทุน",
+      "sw": "Gharama haiari",
+      "te": "ఖర్చు అందుబాటులో లేదు",
+      "vi": "Không có sẵn chi phí",
+      "tr": "Maliyet bilgisi mevcut değil",
+      "uk": "Вартість недоступна",
+      "jv": "Biaya ora kasedhiya"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/App.tsx",
+        "line": 469
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 191
+      },
+      {
+        "file": "src/renderer/utils/misc/formatUtils.ts",
+        "line": 109
       }
     ]
   },
@@ -2014,7 +2119,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 589
+        "line": 625
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2151,7 +2256,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 609
+        "line": 645
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2248,7 +2353,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 610
+        "line": 646
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2337,7 +2442,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 611
+        "line": 647
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2426,7 +2531,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 613
+        "line": 649
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2515,15 +2620,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 614
+        "line": 650
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 709
+        "line": 745
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 778
+        "line": 814
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2664,11 +2769,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 706
+        "line": 742
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 775
+        "line": 811
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2757,11 +2862,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 707
+        "line": 743
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 776
+        "line": 812
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2850,11 +2955,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 707
+        "line": 743
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 776
+        "line": 812
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2943,11 +3048,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 708
+        "line": 744
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 777
+        "line": 813
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -10266,19 +10371,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 240
+        "line": 260
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 241
+        "line": 261
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 232
+        "line": 265
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 173
+        "line": 195
       }
     ]
   },
@@ -10371,7 +10476,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 140
+        "line": 145
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -10379,7 +10484,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 267
+        "line": 288
       }
     ]
   },
@@ -10569,19 +10674,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 94
+        "line": 102
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 145
+        "line": 160
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 120
+        "line": 133
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 52
+        "line": 68
       }
     ]
   },
@@ -10682,19 +10787,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 158
+        "line": 163
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 206
+        "line": 218
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 171
+        "line": 193
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 112
+        "line": 125
       }
     ]
   },
@@ -12490,23 +12595,23 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 240
+        "line": 260
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 232
+        "line": 265
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 233
+        "line": 266
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 173
+        "line": 195
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 174
+        "line": 196
       }
     ]
   },
@@ -12590,50 +12695,50 @@
     },
     "locations": [
       {
-        "file": "src/renderer/components/ModelOrSkillPicker.tsx",
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
         "line": 75
       }
     ]
   },
-  "56488a61": {
-    "source": "No skills for this provider. Change provider in Settings.",
+  "e381cabc": {
+    "source": "No presets for this provider. Change provider in Settings.",
     "translated": {
-      "pt-BR": "Nenhum skill disponível para este provedor. Altere o provedor em Configurações.",
-      "ar": "لا توجد مهارات لهذا المزود. قم بتغيير المزود في الإعدادات.",
-      "ca": "Cap habilitat per a aquest proveïdor. Canvieu el proveïdor a Configuració.",
-      "bn": "এই প্রদানকারীর জন্য কোনও দক্ষতা নেই। সেটিংসে প্রদানকারী পরিবর্তন করুন।",
-      "zh-TW": "此提供者無可用技能。請在設定中變更提供者。",
-      "hr": "Nema vještina za ovog davatelja. Promijenite davatelja u Postavkama.",
-      "zh-CN": "此提供商无可用技能。在设置中更换提供商。",
-      "cs": "Žádné dovednosti pro tohoto poskytovatele. Změňte poskytovatele v Nastavení.",
-      "en-US": "No skills for this provider. Change provider in Settings.",
-      "tl": "Walang mga kasanayan para sa provider na ito. Baguhin ang provider sa Mga Setting.",
-      "fr": "Aucune compétence disponible pour ce fournisseur. Changez de fournisseur dans les paramètres.",
-      "nl": "Geen vaardigheden voor deze provider. Wijzig de provider in Instellingen.",
-      "de": "Keine Fähigkeiten für diesen Anbieter verfügbar. Ändern Sie den Anbieter in den Einstellungen.",
-      "hi": "इस प्रदाता के लिए कोई कौशल नहीं हैं। सेटिंग्स में प्रदाता बदलें।",
-      "hu": "Nincsenek elérhető készségek ehhez a szolgáltatóhoz. Változtasson szolgáltatót a Beállításokban.",
-      "el": "Δεν υπάρχουν δεξιότητες για αυτόν τον πάροχο. Αλλάξτε πάροχο στις Ρυθμίσεις.",
-      "ja": "このプロバイダーにはスキルがありません。設定でプロバイダーを変更してください。",
-      "ko": "이 제공업체에 대한 스킬이 없습니다. 설정에서 제공업체를 변경하세요.",
-      "ms": "Tiada kemahiran untuk penyedia ini. Tukar penyedia dalam Tetapan.",
-      "it": "Nessuna skill disponibile per questo provider. Cambia provider in Impostazioni.",
-      "pt": "Nenhuma habilidade para este fornecedor. Altere o fornecedor em Configurações.",
-      "jv": "Ora ana keterampilan kanggo panyedhiya iki. Ganti panyedhiya ing Setelan.",
-      "pl": "Brak umiejętności dla tego dostawcy. Zmień dostawcę w Ustawieniach.",
-      "fa": "هیچ مهارتی برای این ارائه‌دهنده وجود ندارد. در تنظیمات، ارائه‌دهنده را تغییر دهید.",
-      "ro": "Nici o abilitate pentru acest furnizor. Schimbați furnizorul în Setări.",
-      "ru": "Нет навыков для этого поставщика. Измените поставщика в разделе «Настройки».",
-      "sk": "Pre tohto poskytovateľa nie sú k dispozícii žiadne zručnosti. Zmeňte poskytovateľa v nastaveniach.",
-      "pa": "ਇਸ ਪ੍ਰਦਾਤਾ ਲਈ ਕੋਈ ਸਕਿੱਲ ਨਹੀਂ ਹਨ। ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਪ੍ਰਦਾਤਾ ਬਦਲੋ।",
-      "sv": "Inga färdigheter för denna leverantör. Ändra leverantör i Inställningar.",
-      "es": "No hay habilidades para este proveedor. Cambie el proveedor en Ajustes.",
-      "sw": "Hakuna vipaji vya mtoa huyu. Badilisha mtoa katika Mipangilio.",
-      "te": "ఈ ప్రొవైడర్ కోసం నైపుణ్యాలు ఏవీ లేవు. సెట్టింగ్స్‌లో ప్రొవైడర్‌ని మార్చండి.",
-      "uk": "Немає навичок для цього постачальника. Змініть постачальника в Налаштуваннях.",
-      "vi": "Không có kỹ năng nào cho nhà cung cấp này. Thay đổi nhà cung cấp trong Cài đặt.",
-      "tr": "Bu sağlayıcı için yetenek yok. Sağlayıcıyı Ayarlar'dan değiştirin.",
-      "th": "ไม่มีทักษะสำหรับผู้ให้บริการนี้ เปลี่ยนผู้ให้บริการในการตั้งค่า"
+      "pt-BR": "Nenhum predefinido para este provedor. Altere o provedor em Configurações.",
+      "ar": "لا توجد إعدادات مسبقة لهذا المزود. قم بتغيير المزود في الإعدادات.",
+      "ca": "Cap de predeterminat per a aquest proveïdor. Canvieu el proveïdor a Configuració.",
+      "bn": "এই প্রদানকারীর জন্য কোনো পূর্বনির্ধারিত সেটিংস নেই। সেটিংসে গিয়ে প্রদানকারী পরিবর্তন করুন।",
+      "zh-TW": "此供應商沒有預設設定。請在設定中變更供應商。",
+      "zh-CN": "此提供商没有预设。请在设置中更改提供商。",
+      "hr": "Nema unaprijed postavljenih vrijednosti za ovog davatelja usluga. Promijenite davatelja usluga u Postavkama.",
+      "cs": "Žádné předvolby pro tohoto poskytovatele. Změňte poskytovatele v Nastavení.",
+      "en-US": "No presets for this provider. Change provider in Settings.",
+      "tl": "Walang mga preset para sa provider na ito. Baguhin ang provider sa Mga Setting.",
+      "nl": "Geen voorkeuzes voor deze provider. Wijzig de provider in Instellingen.",
+      "fr": "Aucun préréglage pour ce fournisseur. Changez de fournisseur dans les paramètres.",
+      "el": "Δεν υπάρχουν προκαθορισμένες ρυθμίσεις για αυτόν τον πάροχο. Αλλάξτε πάροχο στις Ρυθμίσεις.",
+      "de": "Keine Voreinstellungen für diesen Anbieter. Ändern Sie den Anbieter in den Einstellungen.",
+      "hi": "इस प्रदाता के लिए कोई प्रीसेट नहीं है। सेटिंग्स में प्रदाता बदलें।",
+      "hu": "Nincsenek előbeállítások ehhez a szolgáltatóhoz. Változtassa meg a szolgáltatót a Beállításokban.",
+      "it": "Nessun preset disponibile per questo provider. Cambia provider nelle Impostazioni.",
+      "ja": "このプロバイダーにはプリセットがありません。設定でプロバイダーを変更してください。",
+      "ko": "이 공급자에 대한 사전 설정이 없습니다. 설정에서 공급자를 변경하세요.",
+      "ms": "Tiada pratetap untuk penyedia ini. Tukar penyedia dalam Tetapan.",
+      "jv": "Ora ana preset kanggo penyedia iki. Ganti penyedia ing Setelan.",
+      "pt": "Nenhum predefinição para este fornecedor. Altere o fornecedor nas Configurações.",
+      "pl": "Brak ustawień wstępnych dla tego dostawcy. Zmień dostawcę w Ustawieniach.",
+      "fa": "هیچ پیش‌تنطیمی برای این ارائه‌دهنده وجود ندارد. در تنظیمات، ارائه‌دهنده را تغییر دهید.",
+      "ru": "Нет пресетов для этого провайдера. Измените провайдера в настройках.",
+      "ro": "Niciun preset pentru acest furnizor. Schimbați furnizorul în Setări.",
+      "sk": "Žiadne predvoľby pre tohto poskytovateľa. Zmeňte poskytovateľa v Nastaveniach.",
+      "pa": "ਇਸ ਪ੍ਰਦਾਤਾ ਲਈ ਕੋਈ ਪ੍ਰੀਸੈਟ ਨਹੀਂ ਹਨ। ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਪ੍ਰਦਾਤਾ ਬਦਲੋ।",
+      "es": "No hay preajustes para este proveedor. Cambia el proveedor en Ajustes.",
+      "sv": "Inga förinställningar för denna leverantör. Ändra leverantör i Inställningar.",
+      "sw": "Hakuna vitanzandiko vya msaidizi huyu. Badilisha msaidizi katika Mipangilio.",
+      "te": "ఈ ప్రొవైడర్ కోసం ప్రిసెట్లు ఏవీ లేవు. సెట్టింగ్స్‌లో ప్రొవైడర్‌ను మార్చండి.",
+      "vi": "Không có thiết lập sẵn cho nhà cung cấp này. Thay đổi nhà cung cấp trong Cài đặt.",
+      "tr": "Bu sağlayıcı için önceden ayarlanmış değer yok. Ayarlardan sağlayıcıyı değiştirin.",
+      "th": "ไม่มีพรีเซ็ตสำหรับผู้ให้บริการนี้ เปลี่ยนผู้ให้บริการในการตั้งค่า",
+      "uk": "Немає попередніх налаштувань для цього провайдера. Змініть провайдера в Налаштуваннях."
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
@@ -12641,41 +12746,41 @@
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
       "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
       "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
       "hu": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
       "ms": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
       "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
       "tr": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507"
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
-        "file": "src/renderer/components/ModelOrSkillPicker.tsx",
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
         "line": 103
       }
     ]
@@ -13364,6 +13469,176 @@
       }
     ]
   },
+  "fe72b0be": {
+    "source": "Select preset",
+    "translated": {
+      "pt-BR": "Selecionar predefinido",
+      "ar": "تحديد إعداد مسبق",
+      "ca": "Seleccionar predeterminat",
+      "bn": "পূর্বনির্ধারিত সেটিংস নির্বাচন করুন",
+      "zh-TW": "選擇預設",
+      "zh-CN": "选择预设",
+      "hr": "Odaberite unaprijed postavljeno",
+      "cs": "Vybrat předvolbu",
+      "en-US": "Select preset",
+      "tl": "Pumili ng preset",
+      "nl": "Selecteer voorkeuze",
+      "fr": "Sélectionner un préréglage",
+      "el": "Επιλέξτε προκαθορισμένη ρύθμιση",
+      "de": "Voreinstellung auswählen",
+      "hi": "प्रीसेट चुनें",
+      "hu": "Előbeállítás kiválasztása",
+      "it": "Seleziona preset",
+      "ja": "プリセットを選択",
+      "ko": "사전 설정 선택",
+      "ms": "Pilih pratetap",
+      "jv": "Pilih preset",
+      "pt": "Selecionar predefinição",
+      "pl": "Wybierz ustawienie wstępne",
+      "fa": "انتخاب پیش‌تنطیم",
+      "ru": "Выберите пресет",
+      "ro": "Selectați un preset",
+      "sk": "Vybrať predvoľbu",
+      "pa": "ਪ੍ਰੀਸੈਟ ਚੁਣੋ",
+      "es": "Seleccionar preajuste",
+      "sv": "Välj förinställning",
+      "sw": "Chagua vitanzandiko",
+      "te": "ప్రిసెట్‌ను ఎంచుకోండి",
+      "vi": "Chọn thiết lập sẵn",
+      "tr": "Ön ayar seç",
+      "th": "เลือกพรีเซ็ต",
+      "uk": "Вибрати попереднє налаштування"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 55
+      }
+    ]
+  },
+  "94436e76": {
+    "source": "Open Settings → General",
+    "translated": {
+      "pt-BR": "Abra Configurações → Geral",
+      "ar": "افتح الإعدادات → عام",
+      "ca": "Obre Ajustos → General",
+      "bn": "সেটিংস খুলুন → সাধারণ",
+      "zh-CN": "打开设置 → 通用",
+      "zh-TW": "開啟設定 → 一般",
+      "cs": "Otevřít Nastavení → Obecné",
+      "hr": "Otvorite Postavke → Opće",
+      "en-US": "Open Settings → General",
+      "tl": "Buksan ang Settings → General",
+      "fr": "Ouvrir Paramètres → Général",
+      "nl": "Open Instellingen → Algemeen",
+      "de": "Öffnen Sie Einstellungen → Allgemein",
+      "hi": "सेटिंग्स खोलें → सामान्य",
+      "hu": "Nyissa meg a Beállítások → Általános lehetőséget",
+      "el": "Ανοίξτε Ρυθμίσεις → Γενικά",
+      "ja": "設定を開く → 一般",
+      "it": "Apri Impostazioni → Generale",
+      "ko": "설정 → 일반 열기",
+      "ms": "Buka Tetapan → Umum",
+      "pt": "Abra Configurações → Geral",
+      "jv": "Bukak Setelan → Umum",
+      "fa": "باز کردن تنظیمات → عمومی",
+      "pl": "Otwórz Ustawienia → Ogólne",
+      "ro": "Deschideți Setări → General",
+      "sk": "Otvorte Nastavenia → Hlavné",
+      "ru": "Откройте Настройки → Общие",
+      "pa": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ → ਜਨਰਲ",
+      "es": "Abrir Ajustes → General",
+      "sv": "Öppna Inställningar → Allmänt",
+      "sw": "Fungua Mipangilio → Jumla",
+      "te": "సెట్టింగ్స్ → సాధారణం తెరవండి",
+      "vi": "Mở Cài đặt → Chung",
+      "tr": "Ayarlar → Genel'e git",
+      "th": "เปิด การตั้งค่า → ทั่วไป",
+      "uk": "Відкрийте Налаштування → Загальні"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 107
+      }
+    ]
+  },
   "34b6cd75": {
     "source": "Version",
     "translated": {
@@ -13623,7 +13898,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 147
+        "line": 152
       }
     ]
   },
@@ -17791,7 +18066,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 138
+        "line": 143
       }
     ]
   },
@@ -20181,74 +20456,74 @@
       }
     ]
   },
-  "4452a8a2": {
-    "source": "Curated skills — no need to know model names.",
+  "c4dfaf58": {
+    "source": "Curated presets — no need to know model names.",
     "translated": {
-      "pt-BR": "Habilidades selecionadas — sem necess  idade de conhecer os nomes dos modelos.",
-      "ar": "مهارات مختارة — لا حاجة لمعرفة أسماء النماذج.",
-      "ca": "Habilitats seleccionades: no cal conèixer els noms dels models.",
-      "bn": "পছন্দের দক্ষতা — মডেলের নাম জানার প্রয়োজন নেই।",
-      "zh-CN": "精选技能——无需了解模型名称。",
-      "zh-TW": "精選技能——無需知道模型名稱。",
-      "cs": "Vybrané dovednosti – nemusíte znát názvy modelů.",
-      "hr": "Odabrane vještine — ne morate znati nazive modela.",
-      "en-US": "Curated skills — no need to know model names.",
-      "tl": "Piniling mga kasanayan — hindi kailangang alamin ang mga pangalan ng modelo.",
-      "fr": "Compétences sélectionnées — pas besoin de connaître les noms des modèles.",
-      "nl": "Geselecteerde vaardigheden — u hoeft modelnamen niet te kennen.",
-      "de": "Zusammengestellte Fähigkeiten – keine Kenntnis von Modellnamen erforderlich.",
-      "hi": "चुनिंदा कौशल — मॉडल नामों को जानने की कोई आवश्यकता नहीं।",
-      "hu": "Kiválogatott képességek – nincs szükség modellnevek ismeretére.",
-      "el": "Επιλεγμένες δεξιότητες — δεν χρειάζεται να γνωρίζετε τα ονόματα των μοντέλων.",
-      "ja": "選ばれたスキル — モデル名を知る必要はありません。",
-      "it": "Abilità selezionate — non è necessario conoscere i nomi dei modelli.",
-      "ko": "선별된 기술 — 모델 이름을 알 필요 없음.",
-      "ms": "Kemahiran terpilih — tiada keperluan untuk mengetahui nama model.",
-      "pt": "Habilidades selecionadas — sem necess  idade de conhecer os nomes dos modelos.",
-      "jv": "Ketrampilan dipilih — ora perlu ngerti jeneng model.",
-      "fa": "مهارت‌های انتخاب‌شده — نیازی به دانستن نام مدل‌ها نیست.",
-      "pl": "Wyselekcjonowane umiejętności — nie trzeba znać nazw modeli.",
-      "ro": "Abilități selectate — nu trebuie să cunoașteți numele modelelor.",
-      "sk": "Vybrané zručnosti – nemusíte poznať názvy modelov.",
-      "ru": "Подобранные навыки — не нужно знать названия моделей.",
-      "pa": "ਚੁਣੇ ਹੋਏ ਕੌਸ਼ਲ - ਮਾਡਲ ਨਾਂ ਜਾਣਨ ਦੀ ਲੋੜ ਨਹੀਂ।",
-      "es": "Habilidades seleccionadas — no necesitas conocer los nombres de los modelos.",
-      "sv": "Utvalda färdigheter – behöver inte känna till modellnamn.",
-      "sw": "Ujuzi uliochaguliwa — hakuna hitaji kujua majina ya mfumo.",
-      "te": "ఎంపిక చేసిన నైపుణ్యాలు — మోడల్ పేర్లు తెలుసుకోవడానికి అవసరం లేదు.",
-      "vi": "Kỹ năng được chọn lọc — không cần biết tên mô hình.",
-      "tr": "Seçilmiş beceriler — model adlarını bilmek gerekmez.",
-      "th": "ทักษะที่คัดสรรมา — ไม่ต้องรู้ชื่อโมเดล",
-      "uk": "Підібрані навички — не потрібно знати назви моделей."
+      "pt-BR": "Predefinidos selecionados — não é necessário saber os nomes dos modelos.",
+      "ar": "إعدادات مسبقة مختارة — لا حاجة لمعرفة أسماء النماذج.",
+      "ca": "Preconfiguracions seleccionades: no cal conèixer els noms dels models.",
+      "bn": "নির্বাচিত পূর্বনির্ধারিত সেটিংস — মডেলের নাম জানার দরকার নেই।",
+      "zh-TW": "精選預設設定 — 無需知道模型名稱。",
+      "zh-CN": "精选预设——无需了解模型名称。",
+      "hr": "Odabrane unaprijed postavljene vrijednosti — ne morate znati nazive modela.",
+      "cs": "Sestavené předvolby – nemusíte znát názvy modelů.",
+      "en-US": "Curated presets — no need to know model names.",
+      "tl": "Mga piniling preset — hindi kailangang alamin ang mga pangalan ng modelo.",
+      "nl": "Samengestelde voorkeuzes — u hoeft geen modelnamen te kennen.",
+      "fr": "Préréglages sélectionnés — pas besoin de connaître les noms des modèles.",
+      "el": "Επιλεγμένες προκαθορισμένες ρυθμίσεις — δεν χρειάζεται να γνωρίζετε τα ονόματα των μοντέλων.",
+      "de": "Zusammengestellte Voreinstellungen – keine Kenntnis von Modellnamen erforderlich.",
+      "hi": "चयनित प्रीसेट — मॉडल के नाम जानने की आवश्यकता नहीं।",
+      "hu": "Kurátorált előbeállítások – nincs szükség modellnevek ismeretére.",
+      "it": "Presets selezionati — non è necessario conoscere i nomi dei modelli.",
+      "ja": "厳選されたプリセット — モデル名を知る必要はありません。",
+      "ko": "모델 이름을 몰라도 괜찮은 엄선된 사전 설정.",
+      "ms": "Pratetap terpilih — tiada keperluan untuk mengetahui nama model.",
+      "jv": "Preset pilihan — ora perlu ngerti jeneng model.",
+      "pt": "Predefinições selecionadas — não é necessário conhecer os nomes dos modelos.",
+      "pl": "Wyselekcjonowane ustawienia wstępne — nie musisz znać nazw modeli.",
+      "fa": "پیش‌تنطیمات انتخاب‌شده — نیازی به دانستن نام مدل‌ها نیست.",
+      "ru": "Подобранные пресеты — не нужно знать названия моделей.",
+      "ro": "Presets selectate — nu trebuie să cunoașteți numele modelelor.",
+      "sk": "Vybrané predvoľby – nemusíte poznať názvy modelov.",
+      "pa": "ਚੁਣੇ ਹੋਏ ਪ੍ਰੀਸੈਟ — ਮਾਡਲ ਨਾਮਾਂ ਨੂੰ ਜਾਣਨ ਦੀ ਕੋਈ ਲੋੜ ਨਹੀਂ।",
+      "es": "Preajustes seleccionados — no necesitas conocer los nombres de los modelos.",
+      "sv": "Sammanställda förinställningar – behöver inte känna till modellnamn.",
+      "sw": "Vitanzandiko vilivyochaguliwa — hakuna hitaji kujua majina ya mfumo.",
+      "te": "ఎంపిక చేసిన ప్రిసెట్లు — మోడల్ పేర్లు తెలుసుకోవడానికి అవసరం లేదు.",
+      "vi": "Các thiết lập sẵn được chọn lọc — không cần biết tên mô hình.",
+      "tr": "Özenle hazırlanmış ön ayarlar — model adlarını bilmek gerekmez.",
+      "th": "พรีเซ็ตที่คัดสรรมาแล้ว — ไม่ต้องรู้ชื่อรุ่นของโมเดล",
+      "uk": "Підібрані попередні налаштування — не потрібно знати назви моделей."
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
       "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
       "hu": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
       "ms": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
       "ro": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
@@ -20525,83 +20800,83 @@
       }
     ]
   },
-  "13efe95d": {
-    "source": "Used for all Easy mode skills. Provider keys come from the server environment.",
+  "9ba565c3": {
+    "source": "Used for all Easy mode presets. Provider keys come from the server environment.",
     "translated": {
-      "ar": "تُستخدم لجميع مهارات الوضع السهل. تأتي مفاتيح المزود من بيئة الخادم.",
-      "ca": "S'utilitza per a totes les habilitats del mode Fàcil. Les claus del proveïdor provenen de l'entorn del servidor.",
-      "pt-BR": "Usado para todas as habilidades do modo Fácil. As chaves do provedor vêm do ambiente do servidor.",
-      "bn": "সব Easy মোড স্কিলের জন্য ব্যবহৃত হয়। প্রদানকারী কীগুলি সার্ভার পরিবেশ থেকে আসে।",
-      "zh-CN": "用于所有简单模式技能。提供方密钥来自服务器环境。",
-      "hr": "Koristi se za sve vještine u jednostavnom načinu. Ključevi davatelja dolaze iz poslužiteljskog okruženja.",
-      "zh-TW": "用於所有簡單模式技能。提供者金鑰來自伺服器環境。",
-      "cs": "Používá se pro všechny dovednosti v jednoduchém režimu. Klíče poskytovatele pocházejí z prostředí serveru.",
-      "nl": "Gebruikt voor alle vaardigheden in eenvoudige modus. Provider-sleutels komen uit de serveromgeving.",
-      "en-US": "Used for all Easy mode skills. Provider keys come from the server environment.",
-      "fr": "Utilisé pour toutes les compétences en mode facile. Les clés de fournisseur proviennent de l'environnement du serveur.",
-      "tl": "Ginagamit para sa lahat ng kasanayan sa Easy mode. Ang mga susi ng provider ay galing sa kapaligiran ng server.",
-      "de": "Wird für alle Fähigkeiten im einfachen Modus verwendet. Anbieterschlüssel stammen aus der Serverumgebung.",
-      "hu": "Az összes egyszerű módú készséghez használatos. A szolgáltatói kulcsok a kiszolgáló környezetéből származnak.",
-      "hi": "सभी ईज़ी मोड कौशल के लिए उपयोग किया जाता है। प्रदाता कुंजियाँ सर्वर वातावरण से आती हैं।",
-      "el": "Χρησιμοποιείται για όλες τις δεξιότητες λειτουργίας Easy. Οι κλειδιά παρόχου προέρχονται από το περιβάλλον του διακομιστή.",
-      "it": "Utilizzato per tutte le funzioni della modalità Facile. Le chiavi del fornitore provengono dall'ambiente del server.",
-      "ja": "すべての簡単モードのスキルに使用されます。プロバイダーキーはサーバー環境から取得されます。",
-      "ms": "Digunakan untuk semua kemahiran mod Mudah. Kunci penyedia berasal daripada persekitaran pelayan.",
-      "ko": "모든 쉬운 모드 기술에 사용됩니다. 제공자 키는 서버 환경에서 가져옵니다.",
-      "pl": "Używane do wszystkich umiejętności trybu łatwego. Klucze dostawcy pochodzą ze środowiska serwera.",
-      "jv": "Digunakake kanggo kabeh keterampilan mode Gampang. Kunci provider saka lingkungan server.",
-      "fa": "برای تمام مهارت‌های حالت آسان استفاده می‌شود. کلیدهای ارائه‌دهنده از محیط سرور تأمین می‌شوند.",
-      "pt": "Utilizado para todas as habilidades do modo Fácil. As chaves do fornecedor vêm do ambiente do servidor.",
-      "ro": "Utilizat pentru toate abilitățile din modul Easy. Cheile furnizorului provin din mediul serverului.",
-      "ru": "Используется для всех навыков режима Easy. Ключи провайдера поступают из серверной среды.",
-      "sk": "Používa sa pre všetky zručnosti v jednoduchom režime. Kľúče poskytovateľa pochádzajú zo serverového prostredia.",
-      "pa": "ਸਾਰੀਆਂ ਈਜ਼ੀ ਮੋਡ ਸਕਿੱਲਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ ਸਰਵਰ ਵਾਤਾਵਰਣ ਤੋਂ ਆਉਂਦੀਆਂ ਹਨ।",
-      "es": "Se utiliza para todas las habilidades del modo fácil. Las claves del proveedor provienen del entorno del servidor.",
-      "sv": "Används för alla färdigheter i enkel läge. Leverantörsnycklar kommer från serverns miljö.",
-      "sw": "Inatumia kwa vipaji vyote vya kipaji cha urahisi. Vitalu vya mtoa vinatoka kwenye mazingira ya seva.",
-      "te": "అన్ని ఈజీ మోడ్ నైపుణ్యాల కోసం ఉపయోగించబడుతుంది. ప్రొవైడర్ కీలు సర్వర్ పర్యావరణం నుండి వస్తాయి.",
-      "th": "ใช้สำหรับทักษะโหมดง่ายทั้งหมด กุญแจผู้ให้บริการมาจากสภาพแวดล้อมของเซิร์ฟเวอร์",
-      "vi": "Được sử dụng cho tất cả các kỹ năng ở chế độ Dễ. Các khóa nhà cung cấp lấy từ môi trường máy chủ.",
-      "uk": "Використовується для усіх навичок режиму Easy. Ключі провайдера надходять із серверного середовища.",
-      "tr": "Tüm Kolay mod becerileri için kullanılır. Sağlayıcı anahtarları sunucu ortamından gelir."
+      "pt-BR": "Usado para todos os predefinidos do modo Fácil. As chaves do provedor vêm do ambiente do servidor.",
+      "ar": "تُستخدم لجميع الإعدادات المسبقة في الوضع السهل. تأتي مفاتيح المزود من بيئة الخادم.",
+      "ca": "S'utilitza per a totes les preconfiguracions del mode Fàcil. Les claus del proveïdor provenen de l'entorn del servidor.",
+      "bn": "সব Easy মোড প্রিসেটের জন্য ব্যবহৃত হয়। প্রদানকারীর চাবিগুলি সার্ভার পরিবেশ থেকে আসে।",
+      "zh-TW": "用於所有簡易模式的預設設定。供應商金鑰來自伺服器環境。",
+      "zh-CN": "用于所有简易模式预设。提供商密钥来自服务器环境。",
+      "hr": "Koristi se za sve unaprijed postavljene vrijednosti u Jednostavnom načinu. Ključevi davatelja dolaze iz poslužiteljskog okruženja.",
+      "cs": "Použito pro všechny předvolby v jednoduchém režimu. Klíče poskytovatele pocházejí z prostředí serveru.",
+      "en-US": "Used for all Easy mode presets. Provider keys come from the server environment.",
+      "tl": "Ginagamit para sa lahat ng mga preset sa Madaling mode. Ang mga susi ng provider ay galing sa kapaligiran ng server.",
+      "nl": "Gebruikt voor alle voorkeuzes in eenvoudige modus. Provider-sleutels komen uit de serveromgeving.",
+      "fr": "Utilisé pour tous les préréglages du mode Facile. Les clés des fournisseurs proviennent de l'environnement du serveur.",
+      "el": "Χρησιμοποιείται για όλες τις προκαθορισμένες ρυθμίσεις της Λειτουργίας Εύκολης Πρόσβασης. Τα κλειδιά παρόχου προέρχονται από το περιβάλλον του διακομιστή.",
+      "de": "Wird für alle Voreinstellungen im einfachen Modus verwendet. Anbieterschlüssel stammen aus der Serverumgebung.",
+      "hi": "सभी ईज़ी मोड प्रीसेट के लिए उपयोग किया जाता है। प्रदाता कुंजियाँ सर्वर वातावरण से आती हैं।",
+      "hu": "Az összes egyszerű módú előbeállításhoz használatos. A szolgáltatói kulcsok a kiszolgáló környezetéből származnak.",
+      "it": "Utilizzato per tutti i preset in modalità Facile. Le chiavi del provider provengono dall'ambiente del server.",
+      "ja": "すべての簡単モードのプリセットで使用されます。プロバイダーキーはサーバー環境から取得されます。",
+      "ko": "모든 쉬운 모드 사전 설정에 사용됨. 공급자 키는 서버 환경에서 가져옵니다.",
+      "ms": "Digunakan untuk semua pratetap Moda Mudah. Kunci penyedia diperoleh daripada persekitaran pelayan.",
+      "jv": "Digunakake kanggo kabeh preset Modus Gampang. Kunci penyedia saka lingkungan server.",
+      "pt": "Usado para todas as predefinições do modo Fácil. As chaves do fornecedor vêm do ambiente do servidor.",
+      "pl": "Używane we wszystkich ustawieniach wstępnych trybu Łatwy. Klucze dostawcy pochodzą ze środowiska serwera.",
+      "fa": "برای تمام پیش‌تنطیمات حالت ساده استفاده می‌شود. کلیده游戏副本 از محیط سرور تأمین می‌شوند.",
+      "ru": "Используется для всех пресетов в простом режиме. Ключи провайдера берутся из серверной среды.",
+      "ro": "Utilizat pentru toate presetele din modul Easy. Cheile furnizorului provin din mediul serverului.",
+      "sk": "Používa sa pre všetky predvoľby v jednoduchom režime. Kľúče poskytovateľa pochádzajú zo serverového prostredia.",
+      "pa": "ਸਾਰੇ ਈਜ਼ੀ ਮੋਡ ਪ੍ਰੀਸੈਟਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਪ੍ਰਦਾਤਾ ਕੁੰਜੀਆਂ ਸਰਵਰ ਵਾਤਾਵਰਣ ਤੋਂ ਆਉਂਦੀਆਂ ਹਨ।",
+      "es": "Se utiliza para todos los preajustes del modo Fácil. Las claves del proveedor provienen del entorno del servidor.",
+      "sv": "Används för alla förinställningar i Enkel-läge. Leverantörsnycklar kommer från serverns miljö.",
+      "sw": "Inatumika kwa vitanzandiko vyote vya Hali ya Rahisi. Vitalu vya msaidizi vinatoka kwenye mazingira ya seva.",
+      "te": "అన్ని ఈజీ మోడ్ ప్రిసెట్లకు ఉపయోగించబడుతుంది. ప్రొవైడర్ కీలు సర్వర్ పర్యావరణం నుండి వస్తాయి.",
+      "vi": "Được sử dụng cho tất cả các thiết lập sẵn ở chế độ Dễ. Khóa nhà cung cấp lấy từ môi trường máy chủ.",
+      "tr": "Tüm Kolay mod ön ayarları için kullanılır. Sağlayıcı anahtarları sunucu ortamından gelir.",
+      "th": "ใช้กับพรีเซ็ตโหมดง่ายทั้งหมด คีย์ผู้ให้บริการมาจากสภาพแวดล้อมของเซิร์ฟเวอร์",
+      "uk": "Використовується для усіх попередніх налаштувань у простому режимі. Ключі провайдера надходять із серверного середовища."
     },
     "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
       "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
       "tl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
       "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507"
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
@@ -20610,45 +20885,45 @@
       }
     ]
   },
-  "870643ba": {
-    "source": "Used for all Easy mode skills. Add keys in API Config.",
+  "ddf199ff": {
+    "source": "Used for all Easy mode presets. Add keys in API Config.",
     "translated": {
-      "pt-BR": "Usado para todos os skills no modo Fácil. Adicione chaves na Configuração de API.",
-      "ar": "يُستخدم لجميع مهارات الوضع السهل. أضف المفاتيح في تهيئة الواجهة البرمجية (API Config).",
-      "ca": "S'utilitza per a totes les habilitats del mode Fàcil. Afegiu claus a la Configuració d'API.",
-      "bn": "সমস্ত ইজি মোড দক্ষতার জন্য ব্যবহৃত হয়। API কনফিগে কী যোগ করুন।",
-      "zh-TW": "用於所有簡易模式技能。在 API 設定中新增金鑰。",
-      "hr": "Koristi se za sve vještine u Jednostavnom načinu. Dodajte ključeve u konfiguraciji API-ja.",
-      "zh-CN": "用于所有简易模式技能。在 API 配置中添加密钥。",
-      "cs": "Používá se pro všechny dovednosti v jednoduchém režimu. Přidejte klíče v Konfiguraci API.",
-      "en-US": "Used for all Easy mode skills. Add keys in API Config.",
-      "tl": "Ginagamit para sa lahat ng mga kasanayan sa Easy mode. Magdagdag ng mga key sa Pagsasaayos ng API.",
-      "fr": "Utilisé pour toutes les compétences en mode facile. Ajoutez des clés dans la configuration de l'API.",
-      "nl": "Gebruikt voor alle vaardigheden in eenvoudige modus. Voeg sleutels toe in API-configuratie.",
-      "de": "Wird für alle Fähigkeiten im einfachen Modus verwendet. Fügen Sie Schlüssel in der API-Konfiguration hinzu.",
-      "hi": "सभी ईज़ी मोड कौशल के लिए उपयोग किया जाता है। API कॉन्फ़िग में कुंजियाँ जोड़ें।",
-      "hu": "Minden Egyszerű mód készséghez használatos. Adja hozzá az API-kulcsokat az API-beállításokban.",
-      "el": "Χρησιμοποιείται για όλες τις δεξιότητες σε Εύκολη Λειτουργία. Προσθέστε κλειδιά στη Διαμόρφωση API.",
-      "ja": "すべての簡単モードのスキルで使用されます。API設定にキーを追加してください。",
-      "ko": "모든 쉬운 모드 스킬에 사용됩니다. API 구성에서 키를 추가하세요.",
-      "ms": "Digunakan untuk semua kemahiran Mod Mudah. Tambah kunci dalam Konfigurasi API.",
-      "it": "Utilizzato per tutte le skill in modalità Facile. Aggiungi chiavi nella Configurazione API.",
-      "pt": "Usado para todas as habilidades no modo Fácil. Adicione chaves na Configuração de API.",
-      "jv": "Digunakake kanggo kabeh keterampilan Modus Gampang. Tambahake kunci ing Konfigurasi API.",
-      "pl": "Używane dla wszystkich umiejętności w trybie Easy. Dodaj klucze w Konfiguracji API.",
-      "fa": "برای تمام مهارت‌های حالت ساده استفاده می‌شود. کلیدها را در پیکربندی API اضافه کنید.",
-      "ro": "Utilizat pentru toate abilitățile din modul Easy. Adăugați chei în Configurare API.",
-      "ru": "Используется для всех навыков в простом режиме. Добавьте ключи в конфигурации API.",
-      "sk": "Používa sa pre všetky zručnosti v jednoduchom režime. Pridajte kľúče v konfigurácii rozhrania API.",
-      "pa": "ਸਾਰੇ ਈਜ਼ੀ ਮੋਡ ਸਕਿੱਲਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। API ਕਾਨਫ਼ੀਗ ਵਿੱਚ ਕੁੰਜੀਆਂ ਸ਼ਾਮਲ ਕਰੋ।",
-      "sv": "Används för alla färdigheter i Enkel-läge. Lägg till nycklar i API-konfigurationen.",
-      "es": "Se usa para todas las habilidades en modo fácil. Agregue claves en Configuración de API.",
-      "sw": "Inatumika kwa vipaji vyote vya kipaji cha Wezua. Ongeza vitufe katika Mipangilio wa API.",
-      "te": "అన్ని ఈజీ మోడ్ నైపుణ్యాల కోసం ఉపయోగించబడుతుంది. API కాన్ఫిగ్‌లో కీలను జోడించండి.",
-      "uk": "Використовується для усіх навичок у простому режимі. Додайте ключі в Налаштуваннях API.",
-      "vi": "Được sử dụng cho tất cả các kỹ năng ở chế độ Dễ. Thêm khóa trong Cấu hình API.",
-      "tr": "Tüm Kolay modu becerileri için kullanılır. API Yapılandırmasına anahtar ekleyin.",
-      "th": "ใช้สำหรับทักษะโหมดง่ายทั้งหมด เพิ่มคีย์ได้ในการตั้งค่า API"
+      "pt-BR": "Usado para todos os predefinidos do modo Fácil. Adicione chaves na Configuração de API.",
+      "ar": "تُستخدم لجميع الإعدادات المسبقة في الوضع السهل. أضف المفاتيح في تهيئة الواجهة البرمجية (API Config).",
+      "ca": "S'utilitza per a totes les preconfiguracions del mode Fàcil. Afegeix claus a la Configuració de l'API.",
+      "bn": "সব Easy মোড প্রিসেটের জন্য ব্যবহৃত হয়। API কনফিগে চাবি যোগ করুন।",
+      "zh-TW": "用於所有簡易模式的預設設定。請在 API 設定中新增金鑰。",
+      "zh-CN": "用于所有简易模式预设。请在API配置中添加密钥。",
+      "hr": "Koristi se za sve unaprijed postavljene vrijednosti u Jednostavnom načinu. Dodajte ključeve u konfiguraciji API-ja.",
+      "cs": "Použito pro všechny předvolby v jednoduchém režimu. Přidejte klíče v konfiguraci API.",
+      "en-US": "Used for all Easy mode presets. Add keys in API Config.",
+      "tl": "Ginagamit para sa lahat ng mga preset sa Madaling mode. Magdagdag ng mga susi sa API Config.",
+      "nl": "Gebruikt voor alle voorkeuzes in eenvoudige modus. Voeg sleutels toe in API-configuratie.",
+      "fr": "Utilisé pour tous les préréglages du mode Facile. Ajoutez des clés dans la configuration API.",
+      "el": "Χρησιμοποιείται για όλες τις προκαθορισμένες ρυθμίσεις της Λειτουργίας Εύκολης Πρόσβασης. Προσθέστε κλειδιά στη Διαμόρφωση API.",
+      "de": "Wird für alle Voreinstellungen im einfachen Modus verwendet. Fügen Sie Schlüssel in der API-Konfiguration hinzu.",
+      "hi": "सभी ईज़ी मोड प्रीसेट के लिए उपयोग किया जाता है। API कॉन्फ़िग में कुंजियाँ जोड़ें।",
+      "hu": "Az összes egyszerű módú előbeállításhoz használatos. Adja hozzá a kulcsokat az API-beállításokban.",
+      "it": "Utilizzato per tutti i preset in modalità Facile. Aggiungi chiavi nella Configurazione API.",
+      "ja": "すべての簡単モードのプリセットで使用されます。API設定でキーを追加してください。",
+      "ko": "모든 쉬운 모드 사전 설정에 사용됨. API 설정에서 키를 추가하세요.",
+      "ms": "Digunakan untuk semua pratetap Moda Mudah. Tambah kunci dalam Konfigurasi API.",
+      "jv": "Digunakake kanggo kabeh preset Modus Gampang. Tambah kunci ing Konfigurasi API.",
+      "pt": "Usado para todas as predefinições do modo Fácil. Adicione chaves na Configuração de API.",
+      "pl": "Używane we wszystkich ustawieniach wstępnych trybu Łatwy. Dodaj klucze w Konfiguracji API.",
+      "fa": "برای تمام پیش‌تنطیمات حالت ساده استفاده می‌شود. کلیدها را در پیکربندی API اضافه کنید.",
+      "ru": "Используется для всех пресетов в простом режиме. Добавьте ключи в конфигурации API.",
+      "ro": "Utilizat pentru toate presetele din modul Easy. Adăugați chei în Configurare API.",
+      "sk": "Používa sa pre všetky predvoľby v jednoduchom režime. Pridajte kľúče v konfigurácii API.",
+      "pa": "ਸਾਰੇ ਈਜ਼ੀ ਮੋਡ ਪ੍ਰੀਸੈਟਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। API ਕਾਨਫਿਗ ਵਿੱਚ ਕੁੰਜੀਆਂ ਸ਼ਾਮਲ ਕਰੋ।",
+      "es": "Se utiliza para todos los preajustes del modo Fácil. Añade claves en la Configuración de API.",
+      "sv": "Används för alla förinställningar i Enkel-läge. Lägg till nycklar i API-konfigurationen.",
+      "sw": "Inatumika kwa vitanzandiko vyote vya Hali ya Rahisi. Ongeza vitalu katika Mfumo wa API.",
+      "te": "అన్ని ఈజీ మోడ్ ప్రిసెట్లకు ఉపయోగించబడుతుంది. API కాన్ఫిగ్‌లో కీలు జోడించండి.",
+      "vi": "Được sử dụng cho tất cả các thiết lập sẵn ở chế độ Dễ. Thêm khóa trong Cấu hình API.",
+      "tr": "Tüm Kolay mod ön ayarları için kullanılır. API Yapılandırmasına anahtar ekleyin.",
+      "th": "ใช้กับพรีเซ็ตโหมดง่ายทั้งหมด เพิ่มคีย์ในการตั้งค่า API",
+      "uk": "Використовується для усіх попередніх налаштувань у простому режимі. Додайте ключі в конфігурації API."
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
@@ -20656,37 +20931,37 @@
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
       "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
       "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
       "hu": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
       "ms": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
       "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
       "tr": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507"
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
@@ -20865,74 +21140,74 @@
       }
     ]
   },
-  "4f0eebca": {
-    "source": "Skills catalog",
+  "bdb7d8e8": {
+    "source": "Presets catalog",
     "translated": {
-      "pt-BR": "Catálogo de habilidades",
-      "ar": "مُخطط المهارات",
-      "ca": "Catàleg d'habilitats",
-      "bn": "দক্ষতা তালিকা",
-      "zh-CN": "技能目录",
-      "zh-TW": "技能目錄",
-      "hr": "Katalog vještina",
-      "cs": "Katalog dovedností",
-      "tl": "Katalogo ng mga kasanayan",
-      "fr": "Catalogue des compétences",
-      "nl": "Vaardighedencatalogus",
-      "en-US": "Skills catalog",
-      "hu": "Készségkatalógus",
-      "hi": "कौशल कैटलॉग",
-      "el": "Κατάλογος δεξιοτήτων",
-      "de": "Fähigkeitenkatalog",
-      "ms": "Katalog kemahiran",
-      "ko": "기술 카탈로그",
-      "it": "Catalogo delle competenze",
-      "ja": "スキルカタログ",
-      "pt": "Catálogo de competências",
-      "pl": "Katalog umiejętności",
-      "jv": "Katalog ketrampilan",
-      "fa": "فهرست مهارت‌ها",
-      "sk": "Katalóg zručností",
-      "ro": "Catalog de competențe",
-      "ru": "Каталог навыков",
-      "pa": "ਸਕਿੱਲ ਕੈਟਲਾਗ",
-      "es": "Catálogo de habilidades",
-      "sv": "Färdighetskatalog",
-      "sw": "Orodha ya ujuzi",
-      "te": "నైపుణ్యాల క్యాటలాగ్",
-      "vi": "Danh mục kỹ năng",
-      "tr": "Beceriler kataloğu",
-      "th": "แคตตาล็อกทักษะ",
-      "uk": "Каталог навичок"
+      "pt-BR": "Catálogo de predefinidos",
+      "ar": "كتالوج الإعدادات المسبقة",
+      "ca": "Catàleg de preconfiguracions",
+      "bn": "প্রিসেটের তালিকা",
+      "zh-TW": "預設設定目錄",
+      "zh-CN": "预设目录",
+      "hr": "Katalog unaprijed postavljenih vrijednosti",
+      "cs": "Katalog předvoleb",
+      "en-US": "Presets catalog",
+      "tl": "Katalogo ng mga preset",
+      "nl": "Catalogus met voorkeuzes",
+      "fr": "Catalogue des préréglages",
+      "el": "Κατάλογος προκαθορισμένων ρυθμίσεων",
+      "de": "Katalog der Voreinstellungen",
+      "hi": "प्रीसेट कैटलॉग",
+      "hu": "Előbeállítások katalógusa",
+      "it": "Catalogo dei preset",
+      "ja": "プリセットカタログ",
+      "ko": "사전 설정 카탈로그",
+      "ms": "Katalog pratetap",
+      "jv": "Katalog preset",
+      "pt": "Catálogo de predefinições",
+      "pl": "Katalog ustawień wstępnych",
+      "fa": "کاتالوگ پیش‌تنطیمات",
+      "ru": "Каталог пресетов",
+      "ro": "Catalog de presete",
+      "sk": "Katalóg predvoľieb",
+      "pa": "ਪ੍ਰੀਸੈਟਾਂ ਦਾ ਕੈਟਲਾਗ",
+      "es": "Catálogo de preajustes",
+      "sv": "Förinställningskatalog",
+      "sw": "Orodha ya vitanzandiko",
+      "te": "ప్రిసెట్ల క్యాటలాగ్",
+      "vi": "Danh mục thiết lập sẵn",
+      "tr": "Ön ayar kataloğu",
+      "th": "แคตตาล็อกพรีเซ็ต",
+      "uk": "Каталог попередніх налаштувань"
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
@@ -20950,74 +21225,74 @@
       }
     ]
   },
-  "0ce8bea5": {
-    "source": "Curated skill list used in Easy mode. Updates from the project repository when you refresh.",
+  "80a0eee2": {
+    "source": "Curated preset list used in Easy mode. Updates from the project repository when you refresh.",
     "translated": {
-      "pt-BR": "Lista de habilidades selecionadas usada no modo Fácil. Atualizações do repositório do projeto ao atualizar.",
-      "ar": "قائمة مهارات مُختارة تُستخدم في الوضع السهل. يتم التحديث من مستودع المشروع عند التحديث.",
-      "ca": "Llista d'habilitats seleccionades utilitzada al mode Fàcil. S'actualitza des del repositori del projecte quan actualitzeu.",
-      "bn": "সহজ মোডে ব্যবহৃত পরিচালিত দক্ষতার তালিকা। আপনি রিফ্রেশ করলে প্রকল্প সংগ্রহস্থল থেকে আপডেট হয়।",
-      "zh-CN": "在简易模式中使用的精选技能列表。刷新时将从项目仓库获取更新。",
-      "zh-TW": "在簡易模式中使用的精選技能清單。當您重新整理時，會從專案儲存庫更新。",
-      "hr": "Odabrani popis vještina korišten u jednostavnom načinu rada. Ažurira se iz repozitorija projekta kada osvježite.",
-      "cs": "Vybraný seznam dovedností používaný v režimu Jednoduché. Při obnovení se aktualizuje z repozitáře projektu.",
-      "tl": "Piniling listahan ng mga kasanayan na ginagamit sa Madaling mode. Awtomatikong naa-update mula sa imbakan ng proyekto kapag ina-refresh mo.",
-      "fr": "Liste de compétences sélectionnées utilisée en mode Facile. Mise à jour depuis le dépôt du projet lorsque vous actualisez.",
-      "nl": "Geselecteerde lijst met vaardigheden die wordt gebruikt in de eenvoudige modus. Wordt bijgewerkt vanuit de projectopslagplaats wanneer u vernieuwt.",
-      "en-US": "Curated skill list used in Easy mode. Updates from the project repository when you refresh.",
-      "hu": "A könnyű módhoz használt kiválogatott készséglista. Frissül a projekttárházból, amikor frissítesz.",
-      "hi": "सरल मोड में उपयोग होने वाली चयनित कौशल सूची। जब आप ताज़ा करते हैं, तो प्रोजेक्ट रिपॉजिटरी से अपडेट होती है।",
-      "el": "Επιλεγμένη λίστα δεξιοτήτων που χρησιμοποιείται στη λειτουργία Εύκολο. Ενημερώνεται από το αποθετήριο έργου όταν κάνετε ανανέωση.",
-      "de": "Zusammengestellte Liste von Fähigkeiten, die im einfachen Modus verwendet wird. Wird beim Aktualisieren aus dem Projekt-Repository aktualisiert.",
-      "ms": "Senarai kemahiran terpilih yang digunakan dalam mod Mudah. Kemas kini dari repositori projek apabila anda menyegar semula.",
-      "ko": "쉬운 모드에서 사용하는 큐레이션된 기술 목록입니다. 새로 고침할 때 프로젝트 저장소에서 업데이트됩니다.",
-      "it": "Elenco di competenze selezionate utilizzato nella modalità Facile. Si aggiorna dal repository del progetto quando si ricarica.",
-      "ja": "イージーモードで使用されるキュレートされたスキルリスト。更新はプロジェクトリポジトリからリフレッシュ時に取得します。",
-      "pt": "Lista de competências selecionada utilizada no modo Fácil. Atualizações a partir do repositório do projeto quando atualiza.",
-      "pl": "Wybrana lista umiejętności używana w trybie łatwym. Aktualizacje z repozytorium projektu po odświeżeniu.",
-      "jv": "Daptar ketrampilan sing dipilih digunakake ing Modus Gampang. Nganyari saka repositori proyek nalika sampeyan nganyari.",
-      "fa": "لیست مهارت‌های انتخاب‌شده که در حالت آسان استفاده می‌شود. با تازه‌سازی، از مخزن پروژه به‌روز می‌شود.",
-      "sk": "Vybraný zoznam zručností používaný v jednoduchom režime. Pri obnove sa aktualizuje z repozitára projektu.",
-      "ro": "Listă de competențe selectate utilizată în modul Easy. Se actualizează din depozitul proiectului când reîmprospătați.",
-      "ru": "Подобраный список навыков, используемый в лёгком режиме. Обновляется из репозитория проекта при обновлении.",
-      "pa": "ਆਸਾਨ ਮੋਡ ਵਿੱਚ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਚੁਣੀ ਹੋਈ ਸਕਿੱਲ ਸੂਚੀ। ਜਦੋਂ ਤੁਸੀਂ ਤਾਜ਼ਾ ਕਰਦੇ ਹੋ ਤਾਂ ਪ੍ਰੋਜੈਕਟ ਰਿਪੋਜ਼ੀਟਰੀ ਤੋਂ ਅਪਡੇਟ ਹੁੰਦੀ ਹੈ।",
-      "es": "Lista de habilidades seleccionadas utilizada en el modo Fácil. Se actualiza desde el repositorio del proyecto cuando actualizas.",
-      "sv": "Sammanställd förteckning över färdigheter som används i enkel läge. Uppdateras från projektdatabasen när du uppdaterar.",
-      "sw": "Orodha ya ujuzi iliyochaguliwa inayotumika katika kipindi rahisi. Inasasishwa kutoka hifadhi ya mradi unaposasisha.",
-      "te": "సులభ మోడ్‌లో ఉపయోగించే ఎంపిక చేసిన నైపుణ్యాల జాబితా. మీరు రిఫ్రెష్ చేసినప్పుడు ప్రాజెక్ట్ రిపోజిటరీ నుండి నవీకరణలు.",
-      "vi": "Danh sách kỹ năng được chọn lọc sử dụng trong chế độ Dễ. Cập nhật từ kho dự án khi bạn làm mới.",
-      "tr": "Kolay modda kullanılan düzenlenmiş beceri listesi. Yenilediğinizde proje deposundan güncellenir.",
-      "th": "รายการทักษะที่จัดเตรียมไว้ใช้ในโหมดง่าย อัปเดตจากที่เก็บโปรเจกต์เมื่อคุณรีเฟรช",
-      "uk": "Підібраний список навичок, який використовується в простому режимі. Оновлюється з репозиторію проекту під час оновлення."
+      "pt-BR": "Lista de predefinidos selecionados usada no modo Fácil. Atualizações vêm do repositório do projeto ao atualizar.",
+      "ar": "قائمة إعدادات مسبقة مختارة تُستخدم في الوضع السهل. يتم التحديث من مستودع المشروع عند التحديث.",
+      "ca": "Llista de preconfiguracions seleccionades utilitzada al mode Fàcil. S'actualitza des del repositori del projecte quan actualitzeu.",
+      "bn": "Easy মোডে ব্যবহৃত নির্বাচিত প্রিসেট তালিকা। আপনি রিফ্রেশ করলে প্রকল্প সংগ্রহস্থল থেকে আপডেট হয়।",
+      "zh-TW": "簡易模式中使用的精選預設清單。當您重新整理時，將從專案儲存庫更新。",
+      "zh-CN": "简易模式中使用的精选预设列表。刷新时将从项目仓库更新。",
+      "hr": "Odabrani popis unaprijed postavljenih vrijednosti koji se koristi u Jednostavnom načinu. Ažurira se iz repozitorija projekta kada osvježite.",
+      "cs": "Sestavený seznam předvoleb používaný v jednoduchém režimu. Aktualizace z repozitáře projektu při obnovení.",
+      "en-US": "Curated preset list used in Easy mode. Updates from the project repository when you refresh.",
+      "tl": "Listahan ng piniling preset na ginagamit sa Madaling mode. Awtomatikong naa-update mula sa repository ng proyekto kapag in-refresh mo.",
+      "nl": "Geselecteerde lijst met voorkeuzes die wordt gebruikt in eenvoudige modus. Wordt bijgewerkt vanuit de projectopslagplaats bij vernieuwen.",
+      "fr": "Liste de préréglages sélectionnés utilisée en mode Facile. Mise à jour depuis le dépôt du projet lorsque vous actualisez.",
+      "el": "Επιλεγμένη λίστα προκαθορισμένων ρυθμίσεων που χρησιμοποιείται στη Λειτουργία Εύκολης Πρόσβασης. Ενημερώνεται από το αποθετήριο του έργου όταν ανανεώνετε.",
+      "de": "Zusammengestellte Liste von Voreinstellungen, die im einfachen Modus verwendet wird. Aktualisierungen erfolgen aus dem Projekt-Repository beim Aktualisieren.",
+      "hi": "ईज़ी मोड में उपयोग की जाने वाली चयनित प्रीसेट सूची। जब आप ताज़ा करते हैं, तो प्रोजेक्ट रिपॉजिटरी से अपडेट होती है।",
+      "hu": "Kurátorált előbeállításlista, amely az Egyszerű módban használatos. Frissítések érkeznek a projektadattárból, amikor frissíti.",
+      "it": "Elenco di preset selezionati utilizzato nella modalità Facile. Si aggiorna dal repository del progetto quando si ricarica.",
+      "ja": "簡単モードで使用される厳選されたプリセットリストです。更新はプロジェクトリポジトリから反映されます。",
+      "ko": "쉬운 모드에서 사용하는 엄선된 사전 설정 목록. 새로 고침할 때 프로젝트 저장소에서 업데이트됩니다.",
+      "ms": "Senarai pratetap terpilih yang digunakan dalam Moda Mudah. Dikemaskini daripada repositori projek apabila anda menyegarkan.",
+      "jv": "Daptar preset pilihan sing digunakake ing Modus Gampang. Dianyari saka repositori proyek nalika sampeyan nganyari.",
+      "pt": "Lista de predefinições selecionadas usada no modo Fácil. Atualizações vindas do repositório do projeto ao atualizar.",
+      "pl": "Wyselekcjonowana lista ustawień wstępnych używana w trybie Łatwy. Aktualizacje pochodzą z repozytorium projektu podczas odświeżania.",
+      "fa": "فهرست پیش‌تنطیمات انتخاب‌شده که در حالت ساده استفاده می‌شود. با تازه‌سازی، از مخزن پروژه به‌روز می‌شود.",
+      "ru": "Подобранный список пресетов, используемый в простом режиме. Обновляется из репозитория проекта при обновлении.",
+      "ro": "Listă de presete selectate utilizată în modul Easy. Se actualizează din depozitul proiectului când reîmprospătați.",
+      "sk": "Vybraný zoznam predvoľieb používaný v jednoduchom režime. Aktualizácie z repozitára projektu pri obnove.",
+      "pa": "ਈਜ਼ੀ ਮੋਡ ਵਿੱਚ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਚੁਣੀ ਹੋਈ ਪ੍ਰੀਸੈਟ ਸੂਚੀ। ਜਦੋਂ ਤੁਸੀਂ ਤਾਜ਼ਾ ਕਰਦੇ ਹੋ, ਤਾਂ ਪ੍ਰੋਜੈਕਟ ਰਿਪੋਜ਼ੀਟਰੀ ਤੋਂ ਅਪਡੇਟ ਕੀਤੇ ਜਾਂਦੇ ਹਨ।",
+      "es": "Lista de preajustes seleccionados utilizada en el modo Fácil. Se actualiza desde el repositorio del proyecto cuando actualizas.",
+      "sv": "Sammanställd förinställningslista som används i Enkel-läge. Uppdateras från projektdatabasen när du uppdaterar.",
+      "sw": "Orodha ya vitanzandiko vilivyochaguliwa vinavyotumika katika Hali ya Rahisi. Vitabadilika kutoka hifadhi ya mradi unapobadilisha.",
+      "te": "ఈజీ మోడ్‌లో ఉపయోగించే ఎంపిక చేసిన ప్రిసెట్ జాబితా. మీరు రిఫ్రెష్ చేసినప్పుడు ప్రాజెక్ట్ రిపోజిటరీ నుండి నవీకరించబడుతుంది.",
+      "vi": "Danh sách thiết lập sẵn được chọn lọc dùng trong chế độ Dễ. Cập nhật từ kho lưu trữ dự án khi bạn làm mới.",
+      "tr": "Kolay modda kullanılan özenle hazırlanmış ön ayar listesi. Yenilediğinizde proje deposundan güncellenir.",
+      "th": "รายการพรีเซ็ตที่คัดสรรมาใช้ในโหมดง่าย อัปเดตจากที่เก็บโปรเจกต์เมื่อคุณรีเฟรช",
+      "uk": "Підібраний список попередніх налаштувань, що використовується в простому режимі. Оновлюється з репозиторію проекту під час оновлення."
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
@@ -21294,74 +21569,74 @@
       }
     ]
   },
-  "1b6e74e6": {
-    "source": "Refresh skills catalog",
+  "2505f3f9": {
+    "source": "Refresh presets catalog",
     "translated": {
-      "pt-BR": "Atualizar catálogo de habilidades",
-      "ar": "تحديث مُخطط المهارات",
-      "ca": "Actualitza el catàleg d'habilitats",
-      "bn": "দক্ষতা তালিকা রিফ্রেশ করুন",
-      "zh-CN": "刷新技能目录",
-      "zh-TW": "重新整理技能目錄",
-      "hr": "Osvježi katalog vještina",
-      "cs": "Obnovit katalog dovedností",
-      "tl": "I-refresh ang katalogo ng mga kasanayan",
-      "fr": "Actualiser le catalogue des compétences",
-      "nl": "Vernieuw vaardighedencatalogus",
-      "en-US": "Refresh skills catalog",
-      "hu": "Készségkatalógus frissítése",
-      "hi": "कौशल कैटलॉग ताज़ा करें",
-      "el": "Ανανέωση καταλόγου δεξιοτήτων",
-      "de": "Fähigkeitenkatalog aktualisieren",
-      "ms": "Segar semula katalog kemahiran",
-      "ko": "기술 카탈로그 새로 고침",
-      "it": "Aggiorna catalogo delle competenze",
-      "ja": "スキルカタログを更新",
-      "pt": "Atualizar catálogo de competências",
-      "pl": "Odśwież katalog umiejętności",
-      "jv": "Segerake katalog ketrampilan",
-      "fa": "تازه‌سازی فهرست مهارت‌ها",
-      "sk": "Obnoviť katalóg zručností",
-      "ro": "Reîmprospătare catalog de competențe",
-      "ru": "Обновить каталог навыков",
-      "pa": "ਸਕਿੱਲ ਕੈਟਲਾਗ ਤਾਜ਼ਾ ਕਰੋ",
-      "es": "Actualizar catálogo de habilidades",
-      "sv": "Uppdatera färdighetskatalog",
-      "sw": "Sasisha orodha ya ujuzi",
-      "te": "నైపుణ్యాల క్యాటలాగ్‌ను రిఫ్రెష్ చేయండి",
-      "vi": "Làm mới danh mục kỹ năng",
-      "tr": "Beceriler kataloğunu yenile",
-      "th": "รีเฟรชแคตตาล็อกทักษะ",
-      "uk": "Оновити каталог навичок"
+      "pt-BR": "Atualizar catálogo de predefinidos",
+      "ar": "تحديث كتالوج الإعدادات المسبقة",
+      "ca": "Actualitzar el catàleg de preconfiguracions",
+      "bn": "প্রিসেট তালিকা রিফ্রেশ করুন",
+      "zh-TW": "重新整理預設設定目錄",
+      "zh-CN": "刷新预设目录",
+      "hr": "Osvježi katalog unaprijed postavljenih vrijednosti",
+      "cs": "Obnovit katalog předvoleb",
+      "en-US": "Refresh presets catalog",
+      "tl": "I-refresh ang katalogo ng mga preset",
+      "nl": "Vernieuw catalogus met voorkeuzes",
+      "fr": "Actualiser le catalogue des préréglages",
+      "el": "Ανανέωση καταλόγου προκαθορισμένων ρυθμίσεων",
+      "de": "Katalog der Voreinstellungen aktualisieren",
+      "hi": "प्रीसेट कैटलॉग ताज़ा करें",
+      "hu": "Előbeállítások katalógusának frissítése",
+      "it": "Aggiorna catalogo dei preset",
+      "ja": "プリセットカタログを更新",
+      "ko": "사전 설정 카탈로그 새로 고침",
+      "ms": "Segarkan katalog pratetap",
+      "jv": "Nganyari katalog preset",
+      "pt": "Atualizar catálogo de predefinições",
+      "pl": "Odśwież katalog ustawień wstępnych",
+      "fa": "تازه‌سازی کاتالوگ پیش‌تنطیمات",
+      "ru": "Обновить каталог пресетов",
+      "ro": "Reîmprospătați catalogul de presete",
+      "sk": "Obnoviť katalóg predvoľieb",
+      "pa": "ਪ੍ਰੀਸੈਟਾਂ ਦਾ ਕੈਟਲਾਗ ਤਾਜ਼ਾ ਕਰੋ",
+      "es": "Actualizar catálogo de preajustes",
+      "sv": "Uppdatera förinställningskatalog",
+      "sw": "Sasisha orodha ya vitanzandiko",
+      "te": "ప్రిసెట్ల క్యాటలాగ్‌ను రిఫ్రెష్ చేయండి",
+      "vi": "Làm mới danh mục thiết lập sẵn",
+      "tr": "Ön ayar kataloğunu yenile",
+      "th": "รีเฟรชแคตตาล็อกพรีเซ็ต",
+      "uk": "Оновити каталог попередніх налаштувань"
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
@@ -22326,35 +22601,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 52
+        "line": 60
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 53
+        "line": 61
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 119
+        "line": 134
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 120
+        "line": 135
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 86
+        "line": 99
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 87
+        "line": 100
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 32
+        "line": 48
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 33
+        "line": 49
       }
     ]
   },
@@ -22532,104 +22807,120 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 52
+        "line": 60
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 119
+        "line": 134
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 86
+        "line": 99
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 32
+        "line": 48
       }
     ]
   },
-  "caa396e8": {
-    "source": "Auto-translate on paste",
+  "dc5c1a35": {
+    "source": "Auto-execute on paste",
     "translated": {
-      "pt-BR": "Tradução automática ao colar",
-      "ca": "Traducció automàtica en enganxar",
-      "ar": "الترجمة التلقائية عند اللصق",
-      "bn": "পেস্ট করার সাথে সাথে স্বয়ংক্রিয় অনুবাদ",
-      "zh-CN": "粘贴时自动翻译",
-      "zh-TW": "貼上時自動翻譯",
-      "hr": "Automatski prijevod pri lijepljenju",
-      "cs": "Automatický překlad při vkládání",
-      "en-US": "Auto-translate on paste",
-      "fr": "Traduction automatique au collage",
-      "nl": "Automatisch vertalen bij plakken",
-      "tl": "Auto-translate kapag pinaste",
-      "de": "Automatische Übersetzung beim Einfügen",
-      "hu": "Automatikus fordítás beillesztéskor",
-      "hi": "पेस्ट पर स्वतः अनुवाद",
-      "el": "Αυτόματη μετάφραση κατά την επικόλληση",
-      "ms": "Terjemah automatik semasa tampal",
-      "ko": "붙여넣기 시 자동 번역",
-      "ja": "貼り付け時に自動翻訳",
-      "it": "Traduzione automatica al momento dell'incolla",
-      "pt": "Tradução automática ao colar",
-      "pl": "Automatyczne tłumaczenie przy wklejaniu",
-      "pa": "ਪੇਸਟ ਕਰਨ 'ਤੇ ਆਟੋ-ਅਨੁਵਾਦ",
-      "fa": "ترجمه خودکار هنگام چسباندن",
-      "es": "Traducción automática al pegar",
-      "ro": "Auto-traducere la lipire",
-      "ru": "Автоматический перевод при вставке",
-      "sk": "Automatický preklad pri vkladaní",
-      "sw": "Tafsiri moja kwa moja baada ya kunakili",
-      "sv": "Automatisk översättning vid klistra in",
-      "th": "แปลอัตโนมัติเมื่อวาง",
-      "te": "పేస్ట్ చేసినప్పుడు స్వయంచాలకంగా అనువాదం",
-      "vi": "Tự động dịch khi dán",
-      "tr": "Yapıştırmada otomatik çeviri",
-      "uk": "Автопереклад при вставці",
-      "jv": "Otomatis nerjemahake nalika nempel"
+      "pt-BR": "Executar automaticamente ao colar",
+      "ar": "التنفيذ التلقائي عند اللصق",
+      "ca": "Execució automàtica en enganxar",
+      "bn": "পেস্ট করার সময় স্বয়ংক্রিয়ভাবে চালান",
+      "zh-CN": "粘贴时自动执行",
+      "zh-TW": "貼上時自動執行",
+      "cs": "Automatické spuštění po vložení",
+      "hr": "Automatsko izvršavanje pri lijepljenju",
+      "tl": "Awtomatikong i-execute kapag i-paste",
+      "en-US": "Auto-execute on paste",
+      "fr": "Exécution automatique lors du collage",
+      "nl": "Automatisch uitvoeren bij plakken",
+      "hu": "Automatikus végrehajtás beillesztéskor",
+      "hi": "पेस्ट करने पर स्वतः निष्पादित करें",
+      "el": "Αυτόματη εκτέλεση κατά την επικόλληση",
+      "de": "Automatisch ausführen beim Einfügen",
+      "ko": "붙여넣기 시 자동 실행",
+      "ja": "貼り付け時に自動実行",
+      "ms": "Auto-laksana pada tampal",
+      "it": "Esecuzione automatica al momento dell'incollaggio",
+      "pl": "Automatyczne wykonanie po wklejeniu",
+      "fa": "اجرا خودکار هنگام چسباندن",
+      "jv": "Jalankan otomatis nalika nempel",
+      "pt": "Executar automaticamente ao colar",
+      "ro": "Executare automată la lipire",
+      "sk": "Automatické spustenie po vložení",
+      "ru": "Автоматическое выполнение при вставке",
+      "pa": "ਪੇਸਟ ਕਰਨ 'ਤੇ ਆਟੋ-ਐਕਜ਼ੀਕਿਊਟ",
+      "sv": "Kör automatiskt vid klistra in",
+      "es": "Ejecución automática al pegar",
+      "sw": "Kutekeleza kiotomatiki kwa kuipaka",
+      "te": "పేస్ట్ చేసినప్పుడు స్వయంచాలకంగా అమలు చేయి",
+      "vi": "Tự động thực thi khi dán",
+      "tr": "Yapıştırmada otomatik çalıştır",
+      "th": "รันอัตโนมัติเมื่อวาง",
+      "uk": "Автовиконання під час вставки"
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
       "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
       "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
       "fr": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
       "hu": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
       "ko": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
       "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
       "ro": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
       "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507"
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 565
+      },
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 122
+      },
+      {
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 181
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 154
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 88
       }
     ]
   },
@@ -22715,6 +23006,22 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 575
+      },
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 199
+      },
+      {
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 248
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 224
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 155
       }
     ]
   },
@@ -25612,95 +25919,6 @@
       }
     ]
   },
-  "44c3bb5d": {
-    "source": "Cost not available",
-    "translated": {
-      "pt-BR": "Custo não disponível",
-      "ca": "Cost no disponible",
-      "ar": "التكلفة غير متوفرة",
-      "bn": "খরচ উপলব্ধ নেই",
-      "zh-TW": "成本不可用",
-      "hr": "Cijena nije dostupna",
-      "cs": "Náklady nejsou k dispozici",
-      "zh-CN": "成本不可用",
-      "en-US": "Cost not available",
-      "fr": "Coût non disponible",
-      "tl": "Hindi available ang gastos",
-      "nl": "Kosten niet beschikbaar",
-      "de": "Kosten nicht verfügbar",
-      "hu": "Költség nem elérhető",
-      "hi": "लागत उपलब्ध नहीं है",
-      "el": "Κόστος μη διαθέσιμο",
-      "ms": "Kos tidak tersedia",
-      "ko": "비용 정보 없음",
-      "ja": "コスト情報は利用できません",
-      "it": "Costo non disponibile",
-      "pt": "Custo não disponível",
-      "pl": "Koszt niedostępny",
-      "pa": "ਲਾਗਤ ਉਪਲਬਧ ਨਹੀਂ",
-      "fa": "هزینه در دسترس نیست",
-      "es": "Costo no disponible",
-      "ru": "Стоимость недоступна",
-      "ro": "Cost indisponibil",
-      "sk": "Cena nie je k dispozícii",
-      "sv": "Kostnad inte tillgänglig",
-      "th": "ไม่มีข้อมูลต้นทุน",
-      "sw": "Gharama haiari",
-      "te": "ఖర్చు అందుబాటులో లేదు",
-      "vi": "Không có sẵn chi phí",
-      "tr": "Maliyet bilgisi mevcut değil",
-      "uk": "Вартість недоступна",
-      "jv": "Biaya ora kasedhiya"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 191
-      },
-      {
-        "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 109
-      }
-    ]
-  },
   "2c36802b": {
     "source": "estimated",
     "translated": {
@@ -27494,7 +27712,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 125
+        "line": 128
       }
     ]
   },
@@ -27579,7 +27797,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 131
+        "line": 136
       }
     ]
   },
@@ -27664,7 +27882,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 136
+        "line": 141
       }
     ]
   },
@@ -27749,7 +27967,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 142
+        "line": 147
       }
     ]
   },
@@ -27834,7 +28052,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 145
+        "line": 150
       }
     ]
   },
@@ -27919,7 +28137,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 310
+        "line": 315
       }
     ]
   },
@@ -28004,7 +28222,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 311
+        "line": 316
       }
     ]
   },
@@ -28089,7 +28307,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 312
+        "line": 317
       }
     ]
   },
@@ -28174,7 +28392,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 313
+        "line": 318
       }
     ]
   },
@@ -28259,7 +28477,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 314
+        "line": 319
       }
     ]
   },
@@ -28344,7 +28562,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 315
+        "line": 320
       }
     ]
   },
@@ -28429,7 +28647,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 316
+        "line": 321
       }
     ]
   },
@@ -28514,7 +28732,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 317
+        "line": 322
       }
     ]
   },
@@ -28599,7 +28817,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 318
+        "line": 323
       }
     ]
   },
@@ -28684,7 +28902,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 319
+        "line": 324
       }
     ]
   },
@@ -28769,7 +28987,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 321
+        "line": 326
       }
     ]
   },
@@ -28854,7 +29072,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 463
+        "line": 468
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -28943,11 +29161,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 484
+        "line": 489
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 486
+        "line": 491
       }
     ]
   },
@@ -29032,7 +29250,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 521
+        "line": 526
       }
     ]
   },
@@ -29117,7 +29335,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 561
+        "line": 566
       }
     ]
   },
@@ -35814,176 +36032,6 @@
       }
     ]
   },
-  "35d30660": {
-    "source": "Select skill",
-    "translated": {
-      "pt-BR": "Selecionar habilidade",
-      "ar": "حدد المهارة",
-      "ca": "Selecciona habilitat",
-      "bn": "দক্ষতা নির্বাচন করুন",
-      "zh-CN": "选择技能",
-      "zh-TW": "選擇技能",
-      "cs": "Vybrat dovednost",
-      "hr": "Odaberite vještinu",
-      "en-US": "Select skill",
-      "tl": "Pumili ng kasanayan",
-      "fr": "Sélectionner une compétence",
-      "nl": "Selecteer vaardigheid",
-      "de": "Fähigkeit auswählen",
-      "hi": "कौशल चुनें",
-      "hu": "Képesség kiválasztása",
-      "el": "Επιλογή δεξιότητας",
-      "ja": "スキルを選択",
-      "it": "Seleziona abilità",
-      "ko": "기술 선택",
-      "ms": "Pilih kemahiran",
-      "pt": "Selecionar habilidade",
-      "jv": "Pilih ketrampilan",
-      "fa": "انتخاب مهارت",
-      "pl": "Wybierz umiejętność",
-      "ro": "Selectați abilitatea",
-      "sk": "Vybrať zručnosť",
-      "ru": "Выберите навык",
-      "pa": "ਕੌਸ਼ਲ ਚੁਣੋ",
-      "es": "Seleccionar habilidad",
-      "sv": "Välj färdighet",
-      "sw": "Chagua ujuzi",
-      "te": "నైపుణ్యాన్ని ఎంచుకోండి",
-      "vi": "Chọn kỹ năng",
-      "tr": "Beceri seçin",
-      "th": "เลือกทักษะ",
-      "uk": "Вибрати навичку"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SkillSelector.tsx",
-        "line": 55
-      }
-    ]
-  },
-  "94436e76": {
-    "source": "Open Settings → General",
-    "translated": {
-      "pt-BR": "Abra Configurações → Geral",
-      "ar": "افتح الإعدادات → عام",
-      "ca": "Obre Ajustos → General",
-      "bn": "সেটিংস খুলুন → সাধারণ",
-      "zh-CN": "打开设置 → 通用",
-      "zh-TW": "開啟設定 → 一般",
-      "cs": "Otevřít Nastavení → Obecné",
-      "hr": "Otvorite Postavke → Opće",
-      "en-US": "Open Settings → General",
-      "tl": "Buksan ang Settings → General",
-      "fr": "Ouvrir Paramètres → Général",
-      "nl": "Open Instellingen → Algemeen",
-      "de": "Öffnen Sie Einstellungen → Allgemein",
-      "hi": "सेटिंग्स खोलें → सामान्य",
-      "hu": "Nyissa meg a Beállítások → Általános lehetőséget",
-      "el": "Ανοίξτε Ρυθμίσεις → Γενικά",
-      "ja": "設定を開く → 一般",
-      "it": "Apri Impostazioni → Generale",
-      "ko": "설정 → 일반 열기",
-      "ms": "Buka Tetapan → Umum",
-      "pt": "Abra Configurações → Geral",
-      "jv": "Bukak Setelan → Umum",
-      "fa": "باز کردن تنظیمات → عمومی",
-      "pl": "Otwórz Ustawienia → Ogólne",
-      "ro": "Deschideți Setări → General",
-      "sk": "Otvorte Nastavenia → Hlavné",
-      "ru": "Откройте Настройки → Общие",
-      "pa": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ → ਜਨਰਲ",
-      "es": "Abrir Ajustes → General",
-      "sv": "Öppna Inställningar → Allmänt",
-      "sw": "Fungua Mipangilio → Jumla",
-      "te": "సెట్టింగ్స్ → సాధారణం తెరవండి",
-      "vi": "Mở Cài đặt → Chung",
-      "tr": "Ayarlar → Genel'e git",
-      "th": "เปิด การตั้งค่า → ทั่วไป",
-      "uk": "Відкрийте Налаштування → Загальні"
-    },
-    "models": {
-      "pt-BR": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "ca": "qwen/qwen3-235b-a22b-2507",
-      "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
-      "en-US": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
-      "fr": "qwen/qwen3-235b-a22b-2507",
-      "nl": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "it": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
-      "jv": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
-      "pl": "qwen/qwen3-235b-a22b-2507",
-      "ro": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
-      "ru": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "es": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
-      "te": "qwen/qwen3-235b-a22b-2507",
-      "vi": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "uk": "qwen/qwen3-235b-a22b-2507"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SkillSelector.tsx",
-        "line": 107
-      }
-    ]
-  },
   "d42d082a": {
     "source": "Text panel",
     "translated": {
@@ -36170,35 +36218,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 211
+        "line": 231
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 212
+        "line": 232
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 239
+        "line": 259
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 240
+        "line": 260
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 204
+        "line": 236
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 205
+        "line": 237
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 145
+        "line": 166
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 146
+        "line": 167
       }
     ]
   },
@@ -36539,30 +36587,6 @@
       {
         "file": "src/renderer/components/TextPanel.tsx",
         "line": 222
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 114
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 115
-      },
-      {
-        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 166
-      },
-      {
-        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 167
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 72
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 73
       }
     ]
   },
@@ -36651,35 +36675,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 124
+        "line": 129
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 125
+        "line": 130
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 176
+        "line": 188
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 177
+        "line": 189
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 140
+        "line": 162
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 141
+        "line": 163
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 82
+        "line": 95
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 83
+        "line": 96
       }
     ]
   },
@@ -36853,82 +36877,82 @@
       }
     ]
   },
-  "88bb766f": {
-    "source": "Skill",
+  "cdfd4357": {
+    "source": "Preset",
     "translated": {
-      "pt-BR": "Habilidade",
-      "ca": "Habilitat",
-      "bn": "দক্ষতা",
-      "ar": "مهارة",
-      "cs": "Dovednost",
-      "zh-TW": "技能",
-      "hr": "Vještina",
-      "zh-CN": "技能",
-      "tl": "Kasangkapan",
-      "en-US": "Skill",
-      "nl": "Vaardigheid",
-      "fr": "Compétence",
-      "hi": "कौशल",
-      "hu": "Készség",
-      "el": "Δεξιότητα",
-      "de": "Fertigkeit",
-      "ja": "スキル",
-      "ms": "Kemahiran",
-      "ko": "기술",
-      "it": "Competenza",
-      "pt": "Habilidade",
-      "jv": "Ketrampilan",
-      "fa": "مهارت",
-      "pl": "Umiejętność",
-      "ru": "Навык",
-      "pa": "ਕੁਸ਼ਲਤਾ",
-      "sk": "Zručnosť",
-      "ro": "Abilitate",
-      "sw": "Ujuzi",
-      "es": "Habilidad",
-      "sv": "Kompetens",
-      "te": "నైపుణ్యం",
-      "vi": "Kỹ năng",
-      "th": "ทักษะ",
-      "tr": "Beceri",
-      "uk": "Навичка"
+      "pt-BR": "Predefinido",
+      "ar": "إعداد مسبق",
+      "ca": "Predeterminat",
+      "bn": "প্রিসেট",
+      "zh-TW": "預設設定",
+      "zh-CN": "预设",
+      "hr": "Unaprijed postavljeno",
+      "cs": "Předvolba",
+      "en-US": "Preset",
+      "tl": "Preset",
+      "nl": "Voorkeuze",
+      "fr": "Préréglage",
+      "el": "Προκαθορισμένη ρύθμιση",
+      "de": "Voreinstellung",
+      "hi": "प्रीसेट",
+      "hu": "Előbeállítás",
+      "it": "Preset",
+      "ja": "プリセット",
+      "ko": "사전 설정",
+      "ms": "Pratetap",
+      "jv": "Preset",
+      "pt": "Predefinição",
+      "pl": "Ustawienie wstępne",
+      "fa": "پیش‌تنطیم",
+      "ru": "Пресет",
+      "ro": "Preset",
+      "sk": "Predvoľba",
+      "pa": "ਪ੍ਰੀਸੈਟ",
+      "es": "Preajuste",
+      "sv": "Förinställning",
+      "sw": "Vitanzandiko",
+      "te": "ప్రిసెట్",
+      "vi": "Thiết lập sẵn",
+      "tr": "Ön ayar",
+      "th": "พรีเซ็ต",
+      "uk": "Попереднє налаштування"
     },
     "models": {
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "ar": "qwen/qwen3-235b-a22b-2507",
-      "cs": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
-      "hr": "qwen/qwen3-235b-a22b-2507",
       "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
       "fr": "qwen/qwen3-235b-a22b-2507",
-      "hi": "qwen/qwen3-235b-a22b-2507",
-      "hu": "qwen/qwen3-235b-a22b-2507",
       "el": "qwen/qwen3-235b-a22b-2507",
       "de": "qwen/qwen3-235b-a22b-2507",
-      "ja": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
-      "pt": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
-      "pa": "qwen/qwen3-235b-a22b-2507",
-      "sk": "qwen/qwen3-235b-a22b-2507",
       "ro": "qwen/qwen3-235b-a22b-2507",
-      "sw": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
       "sv": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
       "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
       "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
@@ -41920,7 +41944,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 60
+        "line": 68
       }
     ]
   },
@@ -42005,23 +42029,23 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 70
+        "line": 78
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 139
+        "line": 144
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 190
+        "line": 202
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 96
+        "line": 109
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 41
+        "line": 57
       }
     ]
   },
@@ -42106,15 +42130,112 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 97
+        "line": 105
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 123
+        "line": 136
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 55
+        "line": 71
+      }
+    ]
+  },
+  "7bb788a7": {
+    "source": "Auto-execute",
+    "translated": {
+      "pt-BR": "Executar automaticamente",
+      "ar": "التنفيذ التلقائي",
+      "ca": "Execució automàtica",
+      "bn": "স্বয়ংক্রিয়ভাবে চালান",
+      "zh-CN": "自动执行",
+      "zh-TW": "自動執行",
+      "cs": "Automatické spuštění",
+      "hr": "Automatsko izvršavanje",
+      "tl": "Awtomatikong i-execute",
+      "en-US": "Auto-execute",
+      "fr": "Exécution automatique",
+      "nl": "Automatisch uitvoeren",
+      "hu": "Automatikus végrehajtás",
+      "hi": "स्वतः निष्पादित करें",
+      "el": "Αυτόματη εκτέλεση",
+      "de": "Automatisch ausführen",
+      "ko": "자동 실행",
+      "ja": "自動実行",
+      "ms": "Auto-laksana",
+      "it": "Esecuzione automatica",
+      "pl": "Automatyczne wykonanie",
+      "fa": "اجرا خودکار",
+      "jv": "Jalankan otomatis",
+      "pt": "Execução automática",
+      "ro": "Executare automată",
+      "sk": "Automatické spustenie",
+      "ru": "Автоматическое выполнение",
+      "pa": "ਆਟੋ-ਐਕਜ਼ੀਕਿਊਟ",
+      "sv": "Kör automatiskt",
+      "es": "Ejecución automática",
+      "sw": "Kutekeleza kiotomatiki",
+      "te": "స్వయంచాలకంగా అమలు చేయి",
+      "vi": "Tự động thực thi",
+      "tr": "Otomatik çalıştır",
+      "th": "รันอัตโนมัติ",
+      "uk": "Автовиконання"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 119
+      },
+      {
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 178
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 151
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 85
       }
     ]
   },
@@ -42199,19 +42320,116 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 161
+        "line": 166
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 209
+        "line": 221
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 174
+        "line": 196
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 115
+        "line": 128
+      }
+    ]
+  },
+  "436ab578": {
+    "source": "Auto-copy",
+    "translated": {
+      "pt-BR": "Copiar automaticamente",
+      "ar": "النسخ التلقائي",
+      "ca": "Còpia automàtica",
+      "bn": "স্বয়ংক্রিয়ভাবে কপি করুন",
+      "zh-CN": "自动复制",
+      "zh-TW": "自動複製",
+      "cs": "Automatické kopírování",
+      "hr": "Automatsko kopiranje",
+      "tl": "Awtomatikong kopyahin",
+      "en-US": "Auto-copy",
+      "fr": "Copie automatique",
+      "nl": "Automatisch kopiëren",
+      "hu": "Automatikus másolás",
+      "hi": "स्वतः कॉपी करें",
+      "el": "Αυτόματη αντιγραφή",
+      "de": "Automatisch kopieren",
+      "ko": "자동 복사",
+      "ja": "自動コピー",
+      "ms": "Auto-salin",
+      "it": "Copia automatica",
+      "pl": "Automatyczne kopiowanie",
+      "fa": "کپی خودکار",
+      "jv": "Salin otomatis",
+      "pt": "Cópia automática",
+      "ro": "Copiere automată",
+      "sk": "Automatické kopírovanie",
+      "ru": "Автоматическое копирование",
+      "pa": "ਆਟੋ-ਕਾਪੀ",
+      "sv": "Kopiera automatiskt",
+      "es": "Copia automática",
+      "sw": "Kukopa kiotomatiki",
+      "te": "స్వయంచాలకంగా కాపీ చేయి",
+      "vi": "Tự động sao chép",
+      "tr": "Otomatik kopyala",
+      "th": "คัดลอกอัตโนมัติ",
+      "uk": "Автокопіювання"
+    },
+    "models": {
+      "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
+      "ca": "qwen/qwen3-235b-a22b-2507",
+      "bn": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "cs": "qwen/qwen3-235b-a22b-2507",
+      "hr": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
+      "en-US": "qwen/qwen3-235b-a22b-2507",
+      "fr": "qwen/qwen3-235b-a22b-2507",
+      "nl": "qwen/qwen3-235b-a22b-2507",
+      "hu": "qwen/qwen3-235b-a22b-2507",
+      "hi": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ja": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
+      "it": "qwen/qwen3-235b-a22b-2507",
+      "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
+      "jv": "qwen/qwen3-235b-a22b-2507",
+      "pt": "qwen/qwen3-235b-a22b-2507",
+      "ro": "qwen/qwen3-235b-a22b-2507",
+      "sk": "qwen/qwen3-235b-a22b-2507",
+      "ru": "qwen/qwen3-235b-a22b-2507",
+      "pa": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
+      "es": "qwen/qwen3-235b-a22b-2507",
+      "sw": "qwen/qwen3-235b-a22b-2507",
+      "te": "qwen/qwen3-235b-a22b-2507",
+      "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
+      "uk": "qwen/qwen3-235b-a22b-2507"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 196
+      },
+      {
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 245
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 221
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 152
       }
     ]
   },
@@ -42296,7 +42514,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 198
+        "line": 218
       }
     ]
   },
@@ -42381,19 +42599,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 231
+        "line": 251
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 258
+        "line": 279
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 223
+        "line": 256
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 164
+        "line": 186
       }
     ]
   },
@@ -42478,15 +42696,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 240
+        "line": 260
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 232
+        "line": 265
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 173
+        "line": 195
       }
     ]
   },
@@ -42571,7 +42789,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 148
+        "line": 163
       }
     ]
   },
@@ -42656,7 +42874,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 267
+        "line": 288
       }
     ]
   },
@@ -42741,11 +42959,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 112
+        "line": 125
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 113
+        "line": 126
       }
     ]
   },
@@ -42830,11 +43048,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 154
+        "line": 176
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 96
+        "line": 109
       }
     ]
   },
@@ -43433,108 +43651,108 @@
       }
     ]
   },
-  "85dff53a": {
-    "source": "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to pick a different model.",
+  "2f3a03e9": {
+    "source": "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
     "translated": {
-      "ar": "رفض مزوّد الخدمة نموذج هذه المهارة (ناقص أو غير صالح أو غير مسموح به). جرّب مهارة أخرى، أو انتقل إلى الوضع المتقدم لاختيار نموذج مختلف.",
-      "pt-BR": "O provedor rejeitou o modelo desta habilidade (ausente, inválido ou não permitido). Tente outra habilidade ou mude para o modo Avançado para escolher um modelo diferente.",
-      "ca": "El proveïdor ha rebutjat el model d'aquesta habilitat (falta, no vàlid o no permès). Proveu una altra habilitat o canvieu al mode Avançat per triar un model diferent.",
-      "bn": "প্রদানকারী এই দক্ষতার মডেলটি প্রত্যাখ্যান করেছে (অনুপস্থিত, অকার্যকর বা অনুমোদিত নয়)। অন্য কোনো দক্ষতা চেষ্টা করুন, অথবা অ্যাডভান্সড মোডে চলে যান এবং ভিন্ন মডেল নির্বাচন করুন।",
-      "zh-CN": "提供商拒绝了此技能的模型（缺失、无效或不被允许）。请尝试其他技能，或切换到高级模式以选择其他模型。",
-      "zh-TW": "提供者拒絕了此技能的模型（遺漏、無效或不被允許）。請嘗試其他技能，或切換到進階模式以選擇不同的模型。",
-      "hr": "Davatelj je odbio model ovog vještine (nedostaje, nevažeći ili nije dopušten). Pokušajte s drugom vještinom ili prebacite se na Napredni način rada da biste odabrali drugi model.",
-      "cs": "Poskytovatel odmítl model této dovednosti (chybí, je neplatný nebo není povolen). Zkuste jinou dovednost nebo přejděte do režimu Pokročilý pro výběr jiného modelu.",
-      "en-US": "The provider rejected this skill's model (missing, invalid, or not allowed). Try another skill, or switch to Advanced mode to choose a different model.",
-      "nl": "De provider heeft het model van deze vaardigheid afgewezen (ontbrekend, ongeldig of niet toegestaan). Probeer een andere vaardigheid of schakel over naar de uitgebreide modus om een ander model te kiezen.",
-      "fr": "Le fournisseur a rejeté le modèle de cette compétence (manquant, invalide ou non autorisé). Essayez une autre compétence ou passez au mode Avancé pour choisir un modèle différent.",
-      "tl": "Tinanggihan ng provider ang modelo ng skill na ito (nawawala, hindi wasto, o hindi pinapayagan). Subukan ang ibang skill, o lumipat sa Advanced mode para pumili ng ibang modelo.",
-      "hi": "प्रदाता ने इस कौशल के मॉडल को अस्वीकार कर दिया (लापता, अमान्य या अनुमति नहीं है)। किसी अन्य कौशल का प्रयास करें, या अलग मॉडल चुनने के लिए एडवांस्ड मोड पर स्विच करें।",
-      "hu": "A szolgáltató elutasította ennek a készségnek a modelljét (hiányzó, érvénytelen vagy nem engedélyezett). Próbáljon ki egy másik készséget, vagy váltson speciális módra egy másik modell kiválasztásához.",
-      "de": "Der Anbieter hat das Modell dieser Funktion abgelehnt (fehlt, ungültig oder nicht erlaubt). Versuchen Sie eine andere Funktion oder wechseln Sie in den erweiterten Modus, um ein anderes Modell auszuwählen.",
-      "el": "Ο πάροχος απέρριψε το μοντέλο αυτής της δεξιότητας (λείπει, μη έγκυρο ή μη επιτρεπτό). Δοκιμάστε μια άλλη δεξιότητα ή εναλλακτικά αλλάξτε στη λειτουργία Προχωρημένων ρυθμίσεων για να επιλέξετε διαφορετικό μοντέλο.",
-      "ko": "제공업체에서 이 스킬의 모델을 거부했습니다(누락, 잘못됨 또는 허용되지 않음). 다른 스킬을 시도하거나 고급 모드로 전환하여 다른 모델을 선택하세요.",
-      "ms": "Penyedia menolak model kemahiran ini (tiada, tidak sah, atau tidak dibenarkan). Cuba kemahiran lain, atau beralih ke mod Lanjutan untuk memilih model yang berbeza.",
-      "it": "Il provider ha rifiutato il modello di questa skill (mancante, non valido o non consentito). Prova un'altra skill oppure passa alla modalità Avanzata per scegliere un modello diverso.",
-      "ja": "プロバイダーがこのスキルのモデルを拒否しました（不足、無効、または許可されていません）。別のスキルを試すか、[詳細設定] モードに切り替えて別のモデルを選択してください。",
-      "jv": "Panyedhiya nolak model keterampilan iki (ilang, ora valid, utawa ora diidinake). Coba keterampilan liyane, utawa pindha menyang mode Advanced kanggo milih model liyane.",
-      "pt": "O fornecedor rejeitou o modelo desta habilidade (ausente, inválido ou não permitido). Tente outra habilidade ou mude para o modo Avançado para escolher um modelo diferente.",
-      "fa": "ارائه‌دهنده مدل این مهارت را رد کرده است (مفقود، نامعتبر یا مجاز نیست). مهارت دیگری را امتحان کنید یا به حالت پیشرفته تغییر وضعیت دهید تا مدل دیگری را انتخاب کنید.",
-      "pl": "Dostawca odrzucił model tej umiejętności (brakujący, nieprawidłowy lub niedozwolony). Wypróbuj inną umiejętność lub przełącz się do trybu zaawansowanego, aby wybrać inny model.",
-      "ru": "Поставщик отклонил модель этого навыка (отсутствует, недействительна или не разрешена). Попробуйте другой навык или переключитесь в расширенный режим, чтобы выбрать другую модель.",
-      "ro": "Furnizorul a respins modelul acestei competențe (lipsă, nevalid sau nepermis). Încercați o altă competență sau comutați la modul Avansat pentru a alege un alt model.",
-      "sk": "Poskytovateľ odmietol model tohoto zručnosti (chýba, neplatný alebo nepovolený). Skúste inú zručnosť alebo prepnite do pokročilého režimu, aby ste si vybrali iný model.",
-      "pa": "ਪ੍ਰਦਾਤਾ ਨੇ ਇਸ ਸਕਿੱਲ ਦੇ ਮਾਡਲ ਨੂੰ ਨਾਪਸੰਦ ਕੀਤਾ (ਗਾਇਬ, ਅਵੈਧ, ਜਾਂ ਇਜਾਜ਼ਤ ਨਹੀਂ)। ਕੋਈ ਹੋਰ ਸਕਿੱਲ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਕਿਸੇ ਵੱਖਰੇ ਮਾਡਲ ਨੂੰ ਚੁਣਨ ਲਈ ਐਡਵਾਂਸਡ ਮੋਡ ਵਿੱਚ ਸਵਿੱਚ ਕਰੋ।",
-      "sv": "Leverantören avvisade den här färdighetens modell (saknas, ogiltig eller inte tillåten). Prova en annan färdighet eller växla till avancerat läge för att välja en annan modell.",
-      "es": "El proveedor rechazó el modelo de esta habilidad (falta, inválido o no permitido). Pruebe con otra habilidad o cambie al modo Avanzado para elegir un modelo diferente.",
-      "sw": "Mtoa huduma amekataa mfano wa ujuzi huu (umeanguka, batili, au haujaruhusiwa). Jaribu ujuzi mwingine, au badilisha kwenye mode ya Advanced ili uchague mfano tofauti.",
-      "te": "ప్రొవైడర్ ఈ స్కిల్ యొక్క మాడల్‌ను తిరస్కరించారు (లేదా, చెల్లనిది లేదా అనుమతించబడనిది). మరొక స్కిల్‌ను ప్రయత్నించండి లేదా మరొక మాడల్‌ను ఎంచుకోవడానికి అడ్వాన్స్డ్ మోడ్‌కు మారండి.",
-      "th": "ผู้ให้บริการปฏิเสธโมเดลของทักษะนี้ (ข้อมูลหายไป ไม่ถูกต้อง หรือไม่ได้รับอนุญาต) ลองใช้ทักษะอื่น หรือเปลี่ยนไปใช้โหมดขั้นสูงเพื่อเลือกโมเดลที่ต่างออกไป",
-      "tr": "Sağlayıcı, bu becerinin modelini reddetti (eksik, geçersiz veya izin verilmiyor). Başka bir beceri deneyin veya farklı bir model seçmek için Gelişmiş moda geçin.",
-      "vi": "Nhà cung cấp đã từ chối mô hình kỹ năng này (thiếu, không hợp lệ hoặc không được phép). Hãy thử một kỹ năng khác hoặc chuyển sang chế độ Nâng cao để chọn mô hình khác.",
-      "uk": "Постачальник відхилив модель цього навички (відсутня, недійсна або не дозволена). Спробуйте іншу навичку або перейдіть до розширеного режиму, щоб вибрат  іншу модель."
+      "pt-BR": "O provedor rejeitou o modelo deste predefinido (ausente, inválido ou não permitido). Tente outro predefinido ou mude para o modo Avançado para escolher um modelo diferente.",
+      "ar": "رفض المزود نموذج هذا الإعداد المسبق (مفقود أو غير صالح أو غير مسموح به). جرّب إعدادًا مسبقًا آخر، أو انتقل إلى الوضع المتقدم لاختيار نموذج مختلف.",
+      "ca": "El proveïdor ha rebutjat el model d'aquesta preconfiguració (faltant, no vàlid o no permès). Proveu una altra preconfiguració o canvieu al mode Avançat per triar un model diferent.",
+      "bn": "প্রদানকারী এই প্রিসেটের মডেলটি প্রত্যাখ্যান করেছে (অনুপস্থিত, অবৈধ বা অনুমোদিত নয়)। অন্য কোনো প্রিসেট চেষ্টা করুন, অথবা অন্য মডেল নির্বাচন করতে Advanced মোডে স্যুইচ করুন।",
+      "zh-TW": "此供應商拒絕了這個預設的模型（遺失、無效或不被允許）。請嘗試另一個預設，或切換至進階模式以選擇其他模型。",
+      "zh-CN": "该提供商拒绝了此预设的模型（缺失、无效或不被允许）。请尝试其他预设，或切换到高级模式以选择其他模型。",
+      "hr": "Davatelj usluga odbio je model ovog unaprijed postavljenog (nedostaje, nevažeći ili nije dopušten). Pokušajte s drugim unaprijed postavljenim, ili prebacite se na Napredni način da biste odabrali drugi model.",
+      "cs": "Poskytovatel odmítl model této předvolby (chybí, je neplatný nebo není povolen). Zkuste jinou předvolbu nebo přepněte do pokročilého režimu a vyberte jiný model.",
+      "en-US": "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+      "tl": "Tinanggihan ng provider ang modelo ng preset na ito (nawawala, hindi wasto, o hindi pinapayagan). Subukan ang ibang preset, o lumipat sa Advanced mode para pumili ng ibang modelo.",
+      "nl": "De provider heeft het model van deze voorkeuze afgewezen (ontbreekt, ongeldig of niet toegestaan). Probeer een andere voorkeuze of schakel over naar de geavanceerde modus om een ander model te kiezen.",
+      "fr": "Le fournisseur a rejeté le modèle de ce préréglage (manquant, invalide ou non autorisé). Essayez un autre préréglage ou passez en mode Avancé pour choisir un modèle différent.",
+      "el": "Ο πάροχος απέρριψε το μοντέλο αυτής της προκαθορισμένης ρύθμισης (λείπει, μη έγκυρο ή μη επιτρεπτό). Δοκιμάστε μια άλλη προκαθορισμένη ρύθμιση ή μεταβείτε στην Προχωρημένη λειτουργία για να επιλέξετε διαφορετικό μοντέλο.",
+      "de": "Der Anbieter hat das Modell dieser Voreinstellung abgelehnt (fehlt, ungültig oder nicht erlaubt). Versuchen Sie eine andere Voreinstellung oder wechseln Sie in den erweiterten Modus, um ein anderes Modell auszuwählen.",
+      "hi": "प्रदाता ने इस प्रीसेट के मॉडल को अस्वीकार कर दिया (लापता, अमान्य, या अनुमति नहीं)। कोई अन्य प्रीसेट चुनें, या अलग मॉडल चुनने के लिए एडवांस्ड मोड में स्विच करें।",
+      "hu": "A szolgáltató elutasította az előbeállítás modelljét (hiányzik, érvénytelen vagy nem engedélyezett). Próbáljon ki másik előbeállítást, vagy váltson Haladó módra, hogy másik modellt válasszon.",
+      "it": "Il provider ha rifiutato il modello di questo preset (mancante, non valido o non consentito). Prova un altro preset oppure passa alla modalità Avanzata per scegliere un modello diverso.",
+      "ja": "このプリセットのモデルがプロバイダーによって拒否されました（存在しない、無効、または許可されていません）。別のプリセットを試すか、詳細モードに切り替えて別のモデルを選択してください。",
+      "ko": "이 사전 설정의 모델이 공급자에 의해 거부되었습니다(누락됨, 유효하지 않음 또는 허용되지 않음). 다른 사전 설정을 시도하거나 고급 모드로 전환하여 다른 모델을 선택하세요.",
+      "ms": "Penyedia menolak model pratetap ini (tiada, tidak sah, atau tidak dibenarkan). Cuba pratetap lain, atau tukar ke Moda Lanjutan untuk memilih model lain.",
+      "jv": "Penyedia nolak model preset iki (ilang, ora valid, utawa ora diidinake). Coba preset liyane, utawa pindha menyang Modus Canggih kanggo milih model liyane.",
+      "pt": "O fornecedor rejeitou o modelo desta predefinição (ausente, inválido ou não permitido). Tente outra predefinição ou mude para o modo Avançado para escolher um modelo diferente.",
+      "pl": "Dostawca odrzucił model tego ustawienia wstępnego (brakujący, nieprawidłowy lub niedozwolony). Wypróbuj inne ustawienie wstępne lub przejdź do trybu Zaawansowanego, aby wybrać inny model.",
+      "fa": "ارائه‌دهنده، مدل این پیش‌تنطیم را رد کرده است (مدل یا نامعتبر است یا مجاز نیست). پیش‌تنطیم دیگری را امتحان کنید، یا به حالت پیشرفته بروید و مدل دیگری را انتخاب کنید.",
+      "ru": "Провайдер отклонил модель этого пресета (отсутствует, недействительна или не разрешена). Попробуйте другой пресет или переключитесь в расширенный режим, чтобы выбрать другую модель.",
+      "ro": "Furnizorul a respins modelul acestui preset (lipsă, nevalid sau nepermis). Încercați un alt preset sau comutați în modul Avansat pentru a alege un alt model.",
+      "sk": "Poskytovateľ odmietol model tejto predvoľby (chýba, neplatný alebo nepovolený). Skúste inú predvoľbu alebo prepnite do pokročilého režimu a vyberte iný model.",
+      "pa": "ਪ੍ਰਦਾਤਾ ਨੇ ਇਸ ਪ੍ਰੀਸੈਟ ਦੇ ਮਾਡਲ ਨੂੰ ਨਾਪਸੰਦ ਕੀਤਾ (ਗਾਇਬ, ਅਵੈਧ, ਜਾਂ ਇਜਾਜ਼ਤ ਨਹੀਂ)। ਕੋਈ ਹੋਰ ਪ੍ਰੀਸੈਟ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਇੱਕ ਵੱਖਰੇ ਮਾਡਲ ਨੂੰ ਚੁਣਨ ਲਈ ਐਡਵਾਂਸਡ ਮੋਡ ਵਿੱਚ ਤਬਦੀਲ ਕਰੋ।",
+      "es": "El proveedor rechazó el modelo de este preajuste (falta, inválido o no permitido). Prueba con otro preajuste o cambia al modo Avanzado para elegir un modelo diferente.",
+      "sv": "Leverantören avvisade denna förinställnings modell (saknas, ogiltig eller inte tillåten). Prova en annan förinställning, eller växla till Avancerat läge för att välja en annan modell.",
+      "sw": "Msaidizi amekataa mfumo wa vitanzandiko hivi (umeanguka, batili, au haujaruhusiwa). Jaribu vitanzandiko kingine, au badilisha kwenye Hali ya Ubunifu kupitia kuchagua mfumo mwingine.",
+      "te": "ఈ ప్రిసెట్ యొక్క మోడల్‌ను ప్రొవైడర్ తిరస్కరించింది (లేకపోవడం, చెల్లనిది లేదా అనుమతించబడనిది). మరొక ప్రిసెట్‌ను ప్రయత్నించండి లేదా వేరొక మోడల్‌ను ఎంచుకోవడానికి అడ్వాన్స్డ్ మోడ్‌కు మారండి.",
+      "vi": "Nhà cung cấp đã từ chối mô hình của thiết lập sẵn này (thiếu, không hợp lệ hoặc không được phép). Hãy thử một thiết lập sẵn khác, hoặc chuyển sang chế độ Nâng cao để chọn mô hình khác.",
+      "tr": "Sağlayıcı bu ön ayarın modelini reddetti (eksik, geçersiz veya izin verilmemiş). Başka bir ön ayar deneyin veya farklı bir model seçmek için Gelişmiş moda geçin.",
+      "th": "ผู้ให้บริการปฏิเสธโมเดลของพรีเซ็ตนี้ (ไม่มี ไม่ถูกต้อง หรือไม่อนุญาต) ลองใช้พรีเซ็ตอื่น หรือเปลี่ยนไปใช้โหมดขั้นสูงเพื่อเลือกโมเดลอื่น",
+      "uk": "Провайдер відхилив модель цього попереднього налаштування (відсутня, недійсна або заборонена). Спробуйте інше попереднє налаштування або перейдіть в розширений режим, щоб вибрати іншу модель."
     },
     "models": {
-      "ar": "qwen/qwen3-235b-a22b-2507",
       "pt-BR": "qwen/qwen3-235b-a22b-2507",
+      "ar": "qwen/qwen3-235b-a22b-2507",
       "ca": "qwen/qwen3-235b-a22b-2507",
       "bn": "qwen/qwen3-235b-a22b-2507",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "zh-TW": "qwen/qwen3-235b-a22b-2507",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
       "hr": "qwen/qwen3-235b-a22b-2507",
       "cs": "qwen/qwen3-235b-a22b-2507",
       "en-US": "qwen/qwen3-235b-a22b-2507",
+      "tl": "qwen/qwen3-235b-a22b-2507",
       "nl": "qwen/qwen3-235b-a22b-2507",
       "fr": "qwen/qwen3-235b-a22b-2507",
-      "tl": "qwen/qwen3-235b-a22b-2507",
+      "el": "qwen/qwen3-235b-a22b-2507",
+      "de": "qwen/qwen3-235b-a22b-2507",
       "hi": "qwen/qwen3-235b-a22b-2507",
       "hu": "qwen/qwen3-235b-a22b-2507",
-      "de": "qwen/qwen3-235b-a22b-2507",
-      "el": "qwen/qwen3-235b-a22b-2507",
-      "ko": "qwen/qwen3-235b-a22b-2507",
-      "ms": "qwen/qwen3-235b-a22b-2507",
       "it": "qwen/qwen3-235b-a22b-2507",
       "ja": "qwen/qwen3-235b-a22b-2507",
+      "ko": "qwen/qwen3-235b-a22b-2507",
+      "ms": "qwen/qwen3-235b-a22b-2507",
       "jv": "qwen/qwen3-235b-a22b-2507",
       "pt": "qwen/qwen3-235b-a22b-2507",
-      "fa": "qwen/qwen3-235b-a22b-2507",
       "pl": "qwen/qwen3-235b-a22b-2507",
+      "fa": "qwen/qwen3-235b-a22b-2507",
       "ru": "qwen/qwen3-235b-a22b-2507",
       "ro": "qwen/qwen3-235b-a22b-2507",
       "sk": "qwen/qwen3-235b-a22b-2507",
       "pa": "qwen/qwen3-235b-a22b-2507",
-      "sv": "qwen/qwen3-235b-a22b-2507",
       "es": "qwen/qwen3-235b-a22b-2507",
+      "sv": "qwen/qwen3-235b-a22b-2507",
       "sw": "qwen/qwen3-235b-a22b-2507",
       "te": "qwen/qwen3-235b-a22b-2507",
-      "th": "qwen/qwen3-235b-a22b-2507",
-      "tr": "qwen/qwen3-235b-a22b-2507",
       "vi": "qwen/qwen3-235b-a22b-2507",
+      "tr": "qwen/qwen3-235b-a22b-2507",
+      "th": "qwen/qwen3-235b-a22b-2507",
       "uk": "qwen/qwen3-235b-a22b-2507"
     },
     "locations": [
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 458
+        "line": 481
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 520
+        "line": 567
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 582
+        "line": 631
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 644
+        "line": 693
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 730
+        "line": 798
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 828
+        "line": 909
       }
     ]
   },
@@ -43789,23 +44007,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 148
+        "line": 150
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 149
+        "line": 151
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 160
+        "line": 162
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 179
+        "line": 181
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 211
+        "line": 213
       }
     ]
   },
@@ -43890,11 +44108,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 148
+        "line": 150
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 295
+        "line": 299
       }
     ]
   },
@@ -43979,15 +44197,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 154
+        "line": 156
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 301
+        "line": 305
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 436
+        "line": 442
       }
     ]
   },
@@ -44072,15 +44290,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 155
+        "line": 157
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 302
+        "line": 306
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 437
+        "line": 443
       }
     ]
   },
@@ -44165,27 +44383,27 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 162
+        "line": 164
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 181
+        "line": 183
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 310
+        "line": 314
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 329
+        "line": 333
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 444
+        "line": 450
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 464
+        "line": 470
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -44278,23 +44496,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 228
+        "line": 230
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 295
+        "line": 299
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 296
+        "line": 300
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 308
+        "line": 312
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 327
+        "line": 331
       }
     ]
   },
@@ -44379,7 +44597,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 239
+        "line": 241
       }
     ]
   },
@@ -44464,7 +44682,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 381
+        "line": 385
       }
     ]
   },
@@ -44549,23 +44767,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 430
+        "line": 436
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 431
+        "line": 437
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 442
+        "line": 448
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 462
+        "line": 468
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 496
+        "line": 502
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -44658,7 +44876,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 430
+        "line": 436
       }
     ]
   },

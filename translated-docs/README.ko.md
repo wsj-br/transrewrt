@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:03.656Z'
-source_file_mtime: '2026-05-21T23:09:11.948Z'
-source_file_hash: 8a7988e2486931ff07a063a9f29a8a2b09122dc70ddc4f0e8d6d1b22d011f008
+translation_last_updated: '2026-05-27T10:06:29.251Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
 translation_language: ko
 source_file_path: README.md
 translation_models:
@@ -12,7 +12,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.2-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.3-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -89,7 +89,7 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 
 **설정 - 모델 선택**
 
-![Settings - model selection](../images/screenshots/ko/settings-models.png)
+![Settings - model selection](../images/screenshots/ko/settings-general.png)
 
 <br/><br/>
 

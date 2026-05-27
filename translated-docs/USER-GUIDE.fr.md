@@ -1,11 +1,10 @@
 ---
-translation_last_updated: '2026-05-24T17:53:01.178Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:18.387Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: fr
 source_file_path: USER-GUIDE.md
 translation_models:
-  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -24,7 +23,7 @@ Transrewrt vous aide à travailler avec le texte de trois manières principales 
 - **Réécriture** - reformuler un texte dans un style différent, par exemple plus clair, plus court ou plus formel.
 - **Transformer** - traiter un texte à l'aide d'instructions personnalisées d'intelligence artificielle appelées prompts.
 
-Par défaut, l'application fonctionne en mode **Facile** : vous choisissez une **compétence** (par exemple Gratuit (OpenRouter), Lite ou Technique) et un **fournisseur** dans les Paramètres, sans choisir d'ID de modèle. Passez en mode **Avancé** dans [**Paramètres** > **Paramètres généraux**](#general-settings) si vous souhaitez la liste classique des modèles dans [**Paramètres** > **Modèles**](#models).
+Par défaut, l'application fonctionne en mode **Facile** : vous choisissez un **préréglage** (par exemple Gratuit (OpenRouter), Lite ou Technique) et un **fournisseur** dans les Paramètres, sans sélectionner d'identifiants de modèle. Passez au mode **Avancé** dans [**Paramètres** > **Paramètres généraux**](#general-settings) si vous souhaitez accéder à la liste classique des modèles depuis [**Paramètres** > **Modèles**](#models).
 
 <br/>
 
@@ -117,7 +116,7 @@ Vous n'avez pas besoin de sélectionner un modèle payant pour commencer. Dès q
 
 En termes simples :
 
-- En mode **Facile**, une **compétence** est un préréglage (Gratuit (OpenRouter), Lite, Avancé ou Technique) qui correspond à un modèle pour le **fournisseur** sélectionné (OpenRouter, OpenAI, Ollama, etc.). Seules les compétences compatibles avec le fournisseur actuel apparaissent dans la barre d'outils. Vous sélectionnez la compétence via Traduire, Réécrire et Transformer.
+- En mode **Facile**, un **préréglage** correspond à un préréglage (Gratuit (OpenRouter), Lite, Avancé ou Technique) associé à un modèle pour le **fournisseur** sélectionné (OpenRouter, OpenAI, Ollama, etc.). Seules les fonctionnalités compatibles avec le fournisseur actuel apparaissent dans la barre d'outils. Vous sélectionnez la fonctionnalité via Traduire, Réécrire et Transformer.
 - En mode **Avancé**, un **modèle** est le moteur d'IA que vous choisissez directement. Les identifiants de modèle utilisent un **préfixe de fournisseur** (par exemple `openrouter/…`, `openai/…`, `ollama/…`).
 - Une **clé API** (ou, pour Ollama, une **URL de base**) permet à l'application de se connecter au fournisseur.
 
@@ -153,9 +152,9 @@ Si c'est votre première utilisation de Transrewrt, suivez cet ordre :
 2. Choisissez votre **Langue de l'interface** à partir de l'icône du globe si nécessaire.
 3. Si vous utilisez l'**application de bureau**, ouvrez [**Paramètres** > **Configuration API**](#api-config), ajoutez une clé API pour au moins un fournisseur (par exemple OpenRouter), puis cliquez sur **Tester** pour vérifier qu'elle fonctionne.
 4. Ouvrez [**Paramètres** > **Paramètres généraux**](#general-settings). En mode **Facile** (par défaut), sélectionnez un **Fournisseur** pour lequel une clé est configurée. En mode **Avancé**, ouvrez [**Paramètres** > **Modèles**](#models) et ajoutez un ou plusieurs modèles aux **Modèles sélectionnés**.
-5. Dans **Traduire**, choisissez une **compétence** (Facile) ou un **modèle** (Avancé) dans la barre d'outils.
-6. Ouvrez [**Paramètres** > **Langues**](#languages) et sélectionnez vos **Langues principales** si vous souhaitez que vos langues les plus utilisées apparaissent en premier.
-7. Effectuez une traduction simple pour confirmer que tout fonctionne, puis essayez **Réécrire** et **Transformer**.
+5. Dans **Traduire**, sélectionnez un **préréglage** (Facile) ou un **modèle** (Avancé) dans la barre d'outils.
+6. Ouvrez [**Paramètres** > **Langues**](#languages) et choisissez vos **Langues principales** si vous souhaitez que vos langues les plus utilisées apparaissent en premier.
+7. Effectuez une traduction simple pour vérifier que tout fonctionne, puis essayez **Réécrire** et **Transformer**.
 
 Cet ordre est important. Il évite le problème le plus courant lors de la première utilisation : tenter d'exécuter une tâche avant que l'application n'ait une connexion API fonctionnelle ou qu'une compétence/modèle ne soit sélectionné.
 
@@ -209,11 +208,11 @@ La barre d'outils change légèrement selon l'endroit où vous vous trouvez dans
 - À gauche, il affiche le nom de la page actuelle.
 - À droite, il affiche le sélecteur de **compétence ou de modèle** et le contrôle de la **Langue de l'interface**.
 
-En mode **Facile**, la barre d'outils affiche un **sélecteur de compétence** avec les préréglages intégrés **Gratuit (OpenRouter)**, **Lite**, **Avancé** et **Technique**. Les compétences affichées dépendent du **fournisseur** sélectionné dans [**Paramètres** > **Paramètres généraux**](#general-settings) — par exemple, **Gratuit (OpenRouter)** n'apparaît que lorsque le fournisseur est OpenRouter. Si le **fournisseur** est **Ollama**, la barre d'outils affiche vos modèles locaux installés au lieu des compétences.
+En mode **Facile**, la barre d'outils affiche un **sélecteur de préréglage** avec les préréglages intégrés **Gratuit (OpenRouter)**, **Lite**, **Avancé** et **Technique**. Les préréglages affichés dépendent du **Fournisseur** sélectionné dans [**Paramètres** > **Paramètres généraux**](#general-settings) — par exemple, **Gratuit (OpenRouter)** n'apparaît que lorsque le fournisseur est OpenRouter. Si le **Fournisseur** est **Ollama**, la barre d'outils affiche vos modèles locaux installés au lieu des préréglages.
 
 En mode **Avancé**, le sélecteur de **modèle** vous permet de choisir quel moteur d'IA utiliser pour la tâche en cours.
 
-![Model selector](../images/screenshots/fr/model-selector.png)
+![Model selector](../images/screenshots/fr/preset-selector.png)
 
 En mode Avancé, certains modèles gratuits peuvent ne pas être toujours disponibles — ils peuvent être hors ligne ou avoir atteint une limite d'utilisation. L'application peut supprimer automatiquement ce modèle de votre liste. Pour contrôler quels modèles apparaissent, rendez-vous dans [**Paramètres** > **Modèles**](#models). Vous pouvez accéder aux paramètres du modèle depuis l'icône du fournisseur située à gauche du nom du modèle dans la barre d'outils.
 
@@ -264,7 +263,7 @@ Utilisez **Traduire** lorsque vous souhaitez convertir un texte d'une langue à 
 1. Ouvrez **Traduire**.
 2. Choisissez une langue dans **De**.
 3. Choisissez une langue dans **Vers**.
-4. Choisissez une compétence (Facile) ou un modèle (Avancé) dans la barre d'outils.
+4. Sélectionnez un préréglage (Facile) ou un modèle (Avancé) dans la barre d'outils.
 5. Tapez ou collez du texte dans **Entrée**.
 6. Cliquez sur **Traduire**.
 7. Lisez le résultat dans **Sortie**.
@@ -371,8 +370,8 @@ La façon la plus rapide de créer une invite est la suivante :
 
 1. Cliquez sur **Nouvelle invite**.
 2. Cliquez sur **Générer l'invite**.
-3. Décrivez ce que vous souhaitez que l'invite fasse.
-4. Choisissez une compétence (Facile) ou un modèle (Avancé).
+3. Décrivez ce que vous souhaitez que l'invite accomplisse.
+4. Choisissez un préréglage (Facile) ou un modèle (Avancé).
 5. Laissez l'application créer un brouillon pour vous.
 6. Examinez le brouillon puis cliquez sur **Enregistrer**.
 
@@ -431,7 +430,7 @@ Ceci est utile lorsque :
 > ℹ️ **REMARQUE**<br/>
 > Vous pouvez exporter et importer les invites enregistrées dans [**Paramètres** > **Transformer**](#transform-settings).
 
-Lorsque vous utilisez **Générer l'invite**, **Améliorer l'invite** ou **Traduire l'invite** dans l'éditeur d'invites, le mode **Facile** propose le même sélecteur de compétences que Traduire et Réécriture ; le mode **Avancé** utilise la liste des modèles.
+Lorsque vous utilisez **Générer l'invite**, **Améliorer l'invite** ou **Traduire l'invite** dans l'éditeur d'invites, le mode **Facile** propose le même sélecteur de préréglage que Traduire et Réécrire ; le mode **Avancé** utilise la liste des modèles.
 
 <br/><br/>
 
@@ -575,8 +574,8 @@ Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, s
 
 **Expérience IA**
 
-- **Facile** (par défaut) : choisissez un **fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages de compétences intégrés dans la barre d'outils. **Ollama** affiche les modèles installés sur votre machine au lieu des compétences. En mode Facile, **Catalogue des compétences** affiche la version du catalogue et la date de la dernière mise à jour ; cliquez sur **Actualiser le catalogue des compétences** pour récupérer la liste la plus récente depuis le dépôt du projet (l'application vérifie également périodiquement en arrière-plan).
-- **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste sous [**Paramètres** > **Modèles**](#models).
+- **Facile** (par défaut) : choisissez un **Fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages intégrés dans la barre d'outils. **Ollama** affiche les modèles installés sur votre machine au lieu des préréglages. En mode Facile, **Catalogue des préréglages** affiche la version du catalogue et la date de la dernière mise à jour ; cliquez sur **Actualiser le catalogue des préréglages** pour récupérer la liste la plus récente des fonctionnalités depuis le dépôt du projet (l'application vérifie également périodiquement en arrière-plan).
+- **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste via [**Paramètres** > **Modèles**](#models).
 
 Dans l'**application web**, les fournisseurs disponibles dépendent des clés API définies dans l'environnement du serveur. Dans l'**application de bureau**, configurez les clés sous [**Configuration API**](#api-config).
 
@@ -619,7 +618,7 @@ Les sauvegardes créées dans la version web ou de bureau peuvent être restaur�
 
 Cet onglet est disponible uniquement lorsque l'**expérience IA** est définie sur **Avancé** dans [**Paramètres généraux**](#general-settings). Utilisez **Paramètres** > **Modèles** pour choisir quels modèles apparaissent dans la barre d'outils.
 
-![Settings Models tab](../images/screenshots/fr/settings-models.png)
+![Settings Models tab](../images/screenshots/fr/settings-general.png)
 
 La page comporte deux listes :
 
@@ -784,10 +783,10 @@ Si quelque chose ne fonctionne pas comme prévu, vérifiez d'abord les points su
 
 Vérifiez que :
 
-- vous avez sélectionné une **compétence** (Facile) ou un **modèle** (Avancé) dans la barre d'outils
-- en mode **Facile**, [**Paramètres** > **Paramètres généraux**](#general-settings) dispose d'un **Fournisseur** avec une clé valide (ou une URL Ollama) et au moins une compétence pour ce fournisseur
+- vous avez sélectionné un **préréglage** (Facile) ou un **modèle** (Avancé) dans la barre d'outils
+- en mode **Facile**, [**Paramètres** > **Paramètres généraux**](#general-settings) dispose d'un **Fournisseur** avec une clé valide (ou une URL Ollama) et au moins un préréglage pour ce fournisseur
 - en mode **Avancé**, au moins un modèle est répertorié dans [**Paramètres** > **Modèles**](#models)
-- votre configuration API fonctionne correctement
+- votre configuration API fonctionne
 
 Si vous utilisez l'application de bureau :
 
@@ -811,10 +810,10 @@ En mode **Avancé**, ouvrez [**Paramètres** > **Modèles**](#models) et cliquez
 
 Essayez une ou plusieurs des solutions suivantes :
 
-- choisir une autre compétence (Facile) ou un autre modèle (Avancé)
-- utiliser une entrée plus courte
-- désactiver la **Traduction en temps réel (pendant la saisie)** dans [**Paramètres** > **Paramètres généraux**](#general-settings)
-- utiliser des modèles gratuits pour les tâches simples (voir [Modèles](#models))
+- choisissez un autre préréglage (Facile) ou modèle (Avancé)
+- utilisez une entrée plus courte
+- désactivez la **Traduction en temps réel (pendant la saisie)** dans [**Paramètres** > **Paramètres généraux**](#general-settings)
+- utilisez des modèles gratuits pour les tâches simples (voir [Modèles](#models))
 
 <br/>
 

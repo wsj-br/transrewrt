@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:08.856Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:07:08.477Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 - **Rescriere** - reformulați textul într-un alt stil, cum ar fi mai clar, mai scurt sau mai formal.
 - **Transformare** - procesați textul utilizând instrucțiuni personalizate de inteligență artificială numite prompturi.
 
-În mod implicit, aplicația rulează în modul **Ușor**: alegeți o **abilitate** (de exemplu Gratuit (OpenRouter), Lite sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
+În mod implicit, aplicația rulează în modul **Ușor**: alegeți un **preset** (de exemplu Gratuit (OpenRouter), Lite sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
 
 <br/>
 
@@ -116,7 +116,7 @@ Nu este necesar să selectați un model plătit pentru a începe. Imediat ce ad�
 
 În termeni simpli:
 
-- În modul **Ușor**, o **abilitate** este un preset (Gratuit (OpenRouter), Lite, Avansat sau Tehnic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Doar abilitățile care au o corespondență pentru furnizorul curent apar în bara de instrumente. Selectați abilitatea la Traducere, Rescriere și Transformare.
+- În modul **Ușor**, un **preset** este un preset (Gratuit (OpenRouter), Lite, Avansat sau Tehnic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Doar abilitățile care au o corespondență pentru furnizorul curent apar în bara de instrumente. Alegeți abilitatea la Traducere, Rescriere și Transformare.
 - În modul **Avansat**, un **model** este motorul AI pe care îl alegeți direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
 - O **cheie API** (sau, pentru Ollama, o **URL de bază**) este modul în care aplicația accesează acel furnizor.
 
@@ -152,8 +152,8 @@ Dacă este prima dată când utilizați Transrewrt, urmați această ordine:
 2. Alegeți **limba interfeței** din pictograma globului dacă este necesar.
 3. Dacă utilizați **aplicația desktop**, deschideți [**Setări** > **Configurare API**](#api-config), adăugați o cheie API pentru cel puțin un furnizor (de exemplu OpenRouter) și faceți clic pe **Test** pentru a verifica dacă funcționează.
 4. Deschideți [**Setări** > **Setări generale**](#general-settings). În modul **Ușor** (implicit), alegeți un **Furnizor** care are o cheie configurată. În modul **Avansat**, deschideți [**Setări** > **Modele**](#models) și adăugați unul sau mai multe modele la **Modele selectate**.
-5. La **Traducere**, alegeți o **abilitate** (Ușor) sau un **model** (Avansat) din bara de instrumente.
-6. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. cele mai utilizate să apară primele.
+5. La **Traducere**, alegeți un **preset** (Ușor) sau un **model** (Avansat) în bara de instrumente.
+6. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. preferate să apară primele.
 7. Rulați o traducere simplă pentru a confirma că totul funcționează, apoi încercați **Rescriere** și **Transformare**.
 
 Această ordine este importantă. Previne cea mai comună problemă la prima utilizare: încercarea de a rula o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau o abilitate/model selectat.
@@ -208,11 +208,11 @@ Bara de instrumente se modifică ușor în funcție de locul în care vă aflaț
 - În stânga, afișează numele paginii curente.
 - În dreapta, afișează **selectorul de abilitate sau model** și controlul pentru **limba interfeței**.
 
-În modul **Ușor**, bara de instrumente afișează un **selector de abilități** cu preseturile încorporate **Gratuit (OpenRouter)**, **Lite**, **Avansat** și **Tehnic**. Abilitățile afișate depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings)—de exemplu, **Gratuit (OpenRouter)** apare doar când furnizorul este OpenRouter. Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de abilități.
+În modul **Ușor**, bara de instrumente afișează un **selector de preset** cu presetele încorporate **Gratuit (OpenRouter)**, **Lite**, **Avansat** și **Tehnic**. Presetele afișate depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings)—de exemplu, **Gratuit (OpenRouter)** este afișat doar când furnizorul este OpenRouter. Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de presete.
 
 În modul **Avansat**, **selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
 
-![Model selector](../images/screenshots/ro/model-selector.png)
+![Model selector](../images/screenshots/ro/preset-selector.png)
 
 În modul Avansat, unele modele gratuite pot să nu fie întotdeauna disponibile — pot fi offline sau pot atinge un limită de utilizare. Aplicația poate elimina automat acel model din lista dvs. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models). Puteți deschide setările modelului din pictograma furnizorului din stânga numelui modelului în bara de instrumente.
 
@@ -261,9 +261,9 @@ Utilizați **Traducere** atunci când doriți să convertiți text dintr-o limb�
 ### Traducerea textului
 
 1. Deschideți **Traducere**.
-2. Alegeți o limbă în **Din**.
-3. Alegeți o limbă în **În**.
-4. Alegeți o abilitate (Ușor) sau un model (Avansat) în bara de instrumente.
+2. Alegeți o limbă în **De la**.
+3. Alegeți o limbă în **La**.
+4. Alegeți un preset (Ușor) sau un model (Avansat) în bara de instrumente.
 5. Tastați sau lipiți text în **Intrare**.
 6. Faceți clic pe **Traducere**.
 7. Citiți rezultatul în **Ieșire**.
@@ -371,7 +371,7 @@ Cea mai rapidă cale pentru a crea un prompt este:
 1. Faceți clic pe **Prompt nou**.
 2. Faceți clic pe **Generează prompt**.
 3. Descrieți ce doriți să facă promptul.
-4. Alegeți o abilitate (Ușor) sau un model (Avansat).
+4. Alegeți un preset (Ușor) sau un model (Avansat).
 5. Lăsați aplicația să creeze un draft pentru dvs.
 6. Revizuiți draftul și faceți clic pe **Salvare**.
 
@@ -430,7 +430,7 @@ Acest lucru este util atunci când:
 > ℹ️ **NOTĂ**<br/>
 > Puteți exporta și importa prompturile salvate în [**Setări** > **Transformare**](#transform-settings).
 
-Când utilizați **Generează prompt**, **Îmbunătățește promptul** sau **Traduceți promptul** în editorul de prompturi, modul **Ușor** oferă același selector de abilități ca și în cazul Traducerii și Rescrierii; modul **Avansat** utilizează lista de modele.
+Când utilizați **Generează prompt**, **Îmbunătățește promptul** sau **Traduceți promptul** în editorul de prompt, modul **Ușor** oferă același selector de preset ca la Traducere și Rescriere; modul **Avansat** utilizează lista de modele.
 
 <br/><br/>
 
@@ -574,7 +574,7 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Experiență AI**
 
-- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc preseturile încorporate de abilități din bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de abilități. În modul Ușor, **Catalog de competențe** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătare catalog de competențe** pentru a prelua cea mai recentă listă de abilități din depozitul proiectului (aplicația verifică și periodic în fundal).
+- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc presetele încorporate din bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de presete. În modul Ușor, **Catalogul de presete** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătați catalogul de presete** pentru a prelua cea mai recentă listă de abilități din depozitul proiectului (aplicația verifică periodic și în fundal).
 - **Avansat**: alegeți modele individuale în bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
 
 În **aplicația web**, furnizorii afișați depind de cheile API setate în mediul serverului. În **aplicația desktop**, configurați cheile în [**Configurare API**](#api-config).
@@ -618,7 +618,7 @@ Backup-urile create în versiunea web sau desktop pot fi restaurate în cealalt�
 
 Această filă este disponibilă doar atunci când **Experiența AI** este setată la **Avansat** în [**Setări generale**](#general-settings). Utilizați **Setări** > **Modele** pentru a alege care modele apar în bara de instrumente.
 
-![Settings Models tab](../images/screenshots/ro/settings-models.png)
+![Settings Models tab](../images/screenshots/ro/settings-general.png)
 
 Pagina are două liste:
 
@@ -783,10 +783,10 @@ Dacă ceva nu funcționează așa cum este de așteptat, verificați mai întâi
 
 Verificați dacă:
 
-- ați selectat o **abilitate** (Ușor) sau un **model** (Avansat) în bara de instrumente
-- în modul **Ușor**, [**Setări** > **Setări generale**](#general-settings) are un **Furnizor** cu o cheie funcțională (sau URL Ollama) și cel puțin o abilitate pentru acel furnizor
+- ați selectat un **preset** (Ușor) sau un **model** (Avansat) în bara de instrumente
+- în modul **Ușor**, [**Setări** > **Setări generale**](#general-settings) are un **Furnizor** cu o cheie funcțională (sau URL Ollama) și cel puțin un preset pentru acel furnizor
 - în modul **Avansat**, cel puțin un model este listat în [**Setări** > **Modele**](#models)
-- configurația API-ului dumneavoastră funcționează
+- configurarea API-ului dvs. funcționează
 
 Dacă utilizați aplicația desktop:
 
@@ -810,7 +810,7 @@ Dacă utilizați aplicația desktop:
 
 Încercați una sau mai multe dintre următoarele opțiuni:
 
-- alegeți o abilitate diferită (Ușor) sau un model (Avansat)
+- alegeți un preset diferit (Ușor) sau un model (Avansat)
 - utilizați o intrare mai scurtă
 - dezactivați **Traducere în timp real (în timp ce scrieți)** în [**Setări** > **Setări generale**](#general-settings)
 - utilizați modele gratuite pentru sarcini simple (consultați [Modele](#models))

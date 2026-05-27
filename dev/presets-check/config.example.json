@@ -1,0 +1,22 @@
+{
+  "runtimeRoot": ".",
+  "repoPath": "repo",
+  "presetsFile": "easy-mode-config/presets.json",
+  "catalogCachePath": "provider-catalogs-cache.json",
+  "logPath": "presets-check.log",
+  "minMatchScore": 0.55,
+  "github": {
+    "owner": "wsj-br",
+    "repo": "transrewrt",
+    "branch": "main",
+    "token": null,
+    "useSsh": false,
+    "commitMessagePrefix": "chore(presets): auto-replace unavailable models"
+  },
+  "ntfy": {
+    "server": "https://ntfy.sh",
+    "topic": "your-topic-here",
+    "authToken": null,
+    "priority": "default"
+  }
+}

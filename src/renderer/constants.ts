@@ -5,9 +5,9 @@ export const DEFAULT_ADMIN_PASSWORD = "transrewrt26";
 /** Model ID for the free tier model; always included in the list and cannot be removed. */
 export const FREE_MODEL_ID = "openrouter/openrouter/free";
 
-/** Remote Easy-mode skills catalog (this repo). Used by Electron IPC and web server auto-update. */
-export const SKILLS_REMOTE_URL =
-  "https://raw.githubusercontent.com/wsj-br/transrewrt/refs/heads/main/easy-mode-config/skills.json";
+/** Remote Easy-mode presets catalog (this repo). Used by Electron IPC and web server auto-update. */
+export const PRESETS_REMOTE_URL =
+  "https://raw.githubusercontent.com/wsj-br/transrewrt/refs/heads/main/easy-mode-config/presets.json";
 
 /** True when running in web/Docker mode (no Electron). */
 export const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;

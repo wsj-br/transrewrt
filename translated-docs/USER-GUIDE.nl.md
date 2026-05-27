@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:01.120Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:14.630Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: nl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt helpt u op drie manieren met tekstverwerking:
 - **Herschrijven** - tekst herschrijven in een andere stijl, zoals duidelijker, korter of formeler.
 - **Transformeren** - tekst verwerken met aangepaste AI-instructies die prompts worden genoemd.
 
-Standaard draait de app in **Eenvoudig** modus: je kiest een **vaardigheid** (bijvoorbeeld Gratis (OpenRouter), Lite of Technisch) en een **leverancier** in Instellingen, zonder model-ID's te kiezen. Schakel over naar **Geavanceerd** in [**Instellingen** > **Algemene instellingen**](#general-settings) als je de klassieke modellenlijst wilt van [**Instellingen** > **Modellen**](#models).
+Standaard wordt de app uitgevoerd in **Eenvoudige** modus: u kiest een **voorkeuze** (bijvoorbeeld Gratis (OpenRouter), Lite of Technisch) en een **leverancier** in Instellingen, zonder model-ID's te kiezen. Schakel over naar **Geavanceerd** in [**Instellingen** > **Algemene instellingen**](#general-settings) als u de klassieke modellenlijst wilt gebruiken van [**Instellingen** > **Modellen**](#models).
 
 <br/>
 
@@ -117,8 +117,8 @@ U hoeft geen betaald model te selecteren om te beginnen. Zodra u uw OpenRouter A
 
 In eenvoudige bewoordingen:
 
-- In **Eenvoudig** modus is een **vaardigheid** een preset (Gratis (OpenRouter), Lite, Geavanceerd of Technisch) die overeenkomt met een model voor je gekozen **leverancier** (OpenRouter, OpenAI, Ollama en anderen). Alleen vaardigheden die een mapping hebben voor de huidige leverancier verschijnen in de werkbalk. Je selecteert de vaardigheid op Vertalen, Herschrijven en Transformeren.
-- In **Geavanceerd** modus is een **model** de AI-engine die je direct kiest. Model-ID's gebruiken een **leverancier prefix** (bijvoorbeeld `openrouter/…`, `openai/…`, `ollama/…`).
+- In **Eenvoudige** modus is een **voorkeuze** een vooraf ingestelde keuze (Gratis (OpenRouter), Lite, Geavanceerd of Technisch) die gekoppeld is aan een model voor uw gekozen **leverancier** (OpenRouter, OpenAI, Ollama en anderen). Alleen vaardigheden die een koppeling hebben met de huidige leverancier, worden weergegeven in de werkbalk. U selecteert de vaardigheid bij Vertalen, Herschrijven en Transformeren.
+- In **Geavanceerde** modus is een **model** de AI-engine die u rechtstreeks kiest. Model-ID's gebruiken een **leveranciersvoorvoegsel** (bijvoorbeeld `openrouter/…`, `openai/…`, `ollama/…`).
 - Een **API-sleutel** (of, voor Ollama, een **basis-URL**) is hoe de app die leverancier bereikt.
 
 Als je de **desktop app** gebruikt, voeg dan sleutels toe in [**Instellingen** > **API-configuratie**](#api-config) voor elke leverancier die je gebruikt. Voor alleen OpenRouter-gebruik, zie [Hoe een gratis OpenRouter API-sleutel te krijgen](#how-to-get-a-free-openrouter-api-key-desktop-app) hieronder. Als je geen API-sleutel wilt gebruiken, kun je Ollama installeren (van [ollama.com](https://ollama.com)) en lokale modellen gebruiken, zoals `translategemma:4b`.
@@ -153,9 +153,9 @@ Als dit de eerste keer is dat u Transrewrt gebruikt, volgt u deze volgorde:
 2. Kies uw **Interface taal** vanuit het globe-icoon indien nodig.
 3. Als u de **desktopapp** gebruikt, open [**Instellingen** > **API-configuratie**](#api-config), voeg een API-sleutel toe voor ten minste één leverancier (bijvoorbeeld OpenRouter) en klik op **Testen** om te controleren of het werkt.
 4. Open [**Instellingen** > **Algemene instellingen**](#general-settings). In **Eenvoudige** modus (standaard), kies een **Leverancier** die een geconfigureerde sleutel heeft. In **Geavanceerde** modus, open [**Instellingen** > **Modellen**](#models) en voeg een of meer modellen toe aan **Geselecteerde modellen**.
-5. Bij **Vertalen**, kies een **vaardigheid** (Eenvoudig) of **model** (Geavanceerd) in de werkbalk.
+5. Klik op **Vertalen** en kies een **voorkeuze** (Eenvoudig) of **model** (Geavanceerd) in de werkbalk.
 6. Open [**Instellingen** > **Talen**](#languages) en kies uw **Top talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
-7. Voer een eenvoudige vertaling uit om te bevestigen dat alles werkt, daarna kunt u **Herschrijven** en **Transformeren** proberen.
+7. Voer een eenvoudige vertaling uit om te controleren of alles werkt, en probeer daarna **Herschrijven** en **Transformeren**.
 
 Deze volgorde is belangrijk. Dit voorkomt het meest voorkomende probleem bij eerste gebruik: een taak proberen uit te voeren voordat de app een werkende API-verbinding heeft of een geselecteerde vaardigheid/model.
 
@@ -209,11 +209,11 @@ De werkbalk verandert licht, afhankelijk van waar u zich in de app bevindt.
 - Links wordt de naam van de huidige pagina weergegeven.
 - Rechts ziet u de **vaardigheid- of modelselector** en de bediening voor **Interface taal**.
 
-In **Eenvoudig** modus toont de werkbalk een **vaardigheidselector** met de ingebouwde presets **Gratis (OpenRouter)**, **Lite**, **Geavanceerd** en **Technisch**. Welke vaardigheden verschijnen hangt af van de **Leverancier** die je hebt gekozen in [**Instellingen** > **Algemene instellingen**](#general-settings)—bijvoorbeeld, **Gratis (OpenRouter)** wordt alleen vermeld wanneer de leverancier OpenRouter is. Als **Leverancier** **Ollama** is, toont de werkbalk je geïnstalleerde lokale modellen in plaats van vaardigheden.
+In **Eenvoudige** modus toont de werkbalk een **voorkeuzekeuze** met de ingebouwde voorkeuzen **Gratis (OpenRouter)**, **Lite**, **Geavanceerd** en **Technisch**. Welke voorkeuzen worden weergegeven, is afhankelijk van de **Leverancier** die u hebt gekozen in [**Instellingen** > **Algemene instellingen**](#general-settings)—bijvoorbeeld wordt **Gratis (OpenRouter)** alleen weergegeven wanneer de leverancier OpenRouter is. Als de **Leverancier** **Ollama** is, toont de werkbalk uw geïnstalleerde lokale modellen in plaats van voorkeuzen.
 
 In **Geavanceerde** modus kunt u met de **modelselector** kiezen welke AI-engine u voor de huidige taak wilt gebruiken.
 
-![Model selector](../images/screenshots/nl/model-selector.png)
+![Model selector](../images/screenshots/nl/preset-selector.png)
 
 In Geavanceerde modus zijn sommige gratis modellen mogelijk niet altijd beschikbaar — ze kunnen offline zijn of een gebruikslimiet hebben bereikt. De app kan dat model automatisch uit uw lijst verwijderen. Om te bepalen welke modellen worden weergegeven, gaat u naar [**Instellingen** > **Modellen**](#models). U kunt de modelinstellingen openen via het leverancierspictogram links van de modelnaam in de werkbalk.
 
@@ -264,7 +264,7 @@ Gebruik **Vertalen** wanneer u tekst van de ene taal naar de andere wilt omzette
 1. Open **Vertalen**.
 2. Kies een taal in **Van**.
 3. Kies een taal in **Naar**.
-4. Kies een vaardigheid (Eenvoudig) of model (Geavanceerd) in de werkbalk.
+4. Kies een voorkeuze (Eenvoudig) of model (Geavanceerd) in de werkbalk.
 5. Typ of plak tekst in **Invoer**.
 6. Klik op **Vertalen**.
 7. Lees het resultaat in **Uitvoer**.
@@ -371,8 +371,8 @@ De snelste manier om een prompt aan te maken is:
 
 1. Klik op **Nieuwe prompt**.
 2. Klik op **Prompt genereren**.
-3. Beschrijf wat je wilt dat de prompt doet.
-4. Kies een vaardigheid (Eenvoudig) of model (Geavanceerd).
+3. Beschrijf wat u wilt dat de prompt doet.
+4. Kies een voorkeuze (Eenvoudig) of model (Geavanceerd).
 5. Laat de app een concept voor u maken.
 6. Controleer het concept en klik op **Opslaan**.
 
@@ -431,7 +431,7 @@ Dit is handig wanneer:
 > ℹ️ **OPMERKING**<br/>
 > U kunt opgeslagen prompts exporteren en importeren in [**Instellingen** > **Transformeren**](#transform-settings).
 
-Wanneer u **Prompt genereren**, **Prompt verbeteren** of **Vraag vertalen** gebruikt in de prompt-editor, biedt de modus **Eenvoudig** dezelfde vaardigheidsselector als Vertalen en Herschrijven; de modus **Geavanceerd** gebruikt de modellenlijst.
+Wanneer u **Prompt genereren**, **Prompt verbeteren** of **Prompt vertalen** gebruikt in de prompt-editor, biedt **Eenvoudige** modus dezelfde voorkeuzekeuze als bij Vertalen en Herschrijven; **Geavanceerde** modus gebruikt de modellenlijst.
 
 <br/><br/>
 
@@ -575,7 +575,7 @@ Gebruik **Algemene instellingen** om het typgedrag te beheren, of uitvoeringsdet
 
 **AI-ervaring**
 
-- **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde vaardigheidspresets in de werkbalk. **Ollama** toont modellen die op je machine zijn geïnstalleerd in plaats van vaardigheden. In Eenvoudig modus toont **Vaardighedencatalogus** de catalogusversie en de laatste update tijd; klik op **Vernieuw vaardighedencatalogus** om de nieuwste vaardighedlijst van de projectopslagplaats op te halen (de app controleert ook periodiek op de achtergrond).
+- **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde voorkeuzen in de werkbalk. **Ollama** geeft modellen weer die op uw machine zijn geïnstalleerd, in plaats van voorkeuzen. In Eenvoudige modus toont **Catalogus met voorkeuzes** de catalogusversie en de laatste updatetijd; klik op **Vernieuw catalogus met voorkeuzes** om de nieuwste vaardigheidslijst op te halen uit de projectopslagplaats (de app controleert ook periodiek op de achtergrond).
 - **Geavanceerd**: kies individuele modellen in de werkbalk; beheer de lijst onder [**Instellingen** > **Modellen**](#models).
 
 In de **webapp** hangt welke leveranciers worden weergegeven af van de API-sleutels die zijn ingesteld in de serveromgeving. In de **desktopapp** configureert u sleutels onder [**API-configuratie**](#api-config).
@@ -619,7 +619,7 @@ Back-ups die zijn gemaakt in de web- of desktopversie kunnen worden hersteld in 
 
 Dit tabblad is alleen beschikbaar wanneer **AI-ervaring** is ingesteld op **Geavanceerd** in [**Algemene instellingen**](#general-settings). Gebruik **Instellingen** > **Modellen** om te kiezen welke modellen in de werkbalk verschijnen.
 
-![Settings Models tab](../images/screenshots/nl/settings-models.png)
+![Settings Models tab](../images/screenshots/nl/settings-general.png)
 
 De pagina bevat twee lijsten:
 
@@ -784,9 +784,9 @@ Als iets niet werkt zoals verwacht, controleer dan eerst de volgende punten.
 
 Controleer het volgende:
 
-- u hebt een **vaardigheid** (Eenvoudig) of **model** (Geavanceerd) geselecteerd in de werkbalk
-- in **Eenvoudige** modus heeft [**Instellingen** > **Algemene instellingen**](#general-settings) een **Leverancier** met een werkende sleutel (of Ollama-URL) en ten minste één vaardigheid voor die leverancier
-- in **Geavanceerde** modus is ten minste één model opgenomen in [**Instellingen** > **Modellen**](#models)
+- u hebt een **voorkeuze** (Eenvoudig) of **model** (Geavanceerd) geselecteerd in de werkbalk
+- in **Eenvoudige** modus heeft [**Instellingen** > **Algemene instellingen**](#general-settings) een **Leverancier** met een werkende sleutel (of Ollama-URL) en minstens één voorkeuze voor die leverancier
+- in **Geavanceerde** modus is minstens één model opgenomen in [**Instellingen** > **Modellen**](#models)
 - uw API-instelling werkt
 
 Als u de desktopapp gebruikt:
@@ -811,9 +811,9 @@ In **Geavanceerde** modus opent u [**Instellingen** > **Modellen**](#models) en 
 
 Probeer een of meer van de volgende opties:
 
-- kies een andere vaardigheid (Eenvoudig) of model (Geavanceerd)
+- kies een andere voorkeuze (Eenvoudig) of model (Geavanceerd)
 - gebruik een kortere invoer
-- schakel **Realtime vertaling (tijdens typen)** uit in [**Instellingen** > **Algemene instellingen**](#general-settings)
+- schakel **Real-time vertaling (tijdens het typen)** uit in [**Instellingen** > **Algemene instellingen**](#general-settings)
 - gebruik gratis modellen voor eenvoudige taken (zie [Modellen](#models))
 
 <br/>

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-24T17:53:03.189Z'
-source_file_mtime: '2026-05-21T23:07:44.019Z'
-source_file_hash: bdcf50f3b9a1f9a07885561062e6c5b1b365e236cff6f7195261529e6bf2ab00
+translation_last_updated: '2026-05-27T10:06:27.439Z'
+source_file_mtime: '2026-05-27T09:48:07.613Z'
+source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
 translation_language: hu
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ A Transrewrt három fő módon segít a szöveggel való munkában:
 - **Átírás** – szöveg újrafogalmazása más stílusban, például érthetőbben, rövidebben vagy formálisabban.
 - **Átalakítás** – szöveg feldolgozása egyéni MI-utasításokkal, amelyeket utasításoknak (promptoknak) nevezünk.
 
-Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: kiválaszt egy **készséget** (például Ingyenes (OpenRouter), Kézi vagy Műszaki) és egy **szolgáltatót** a Beállításokban, anélkül, hogy modellazonosítókat választana. Váltson **Haladó** módra a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban, ha a klasszikus modelllistát szeretné használni a [**Beállítások** > **Modellek**](#models) menüpontban.
+Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: kiválaszt egy **előbeállítást** (például Ingyenes (OpenRouter), Klasszikus vagy Technikai) és egy **szolgáltatót** a Beállításokban, anélkül, hogy modellazonosítókat választana. Váltson **Haladó** módra a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban, ha a klasszikus modelllistát szeretné használni a [**Beállítások** > **Modellek**](#models) menüpontban.
 
 <br/>
 
@@ -116,9 +116,9 @@ Nem szükséges fizetős modellt választanod az induláshoz. Amint hozzáadod a
 
 Egyszerű szavakkal:
 
-- **Egyszerű** módban a **készség** egy előre beállított érték (Ingyenes (OpenRouter), Kézi, Haladó vagy Műszaki), amely a kiválasztott **szolgáltatóhoz** (OpenRouter, OpenAI, Ollama és mások) rendelt modellt jelenti. Csak azok a készségek jelennek meg az eszköztáron, amelyekhez van hozzárendelés az aktuális szolgáltatónál. A készséget a Fordítás, Átírás és Átalakítás műveleteknél választhatja ki.
-- **Haladó** módban a **modell** az az AI-motor, amelyet közvetlenül választ ki. A modellazonosítók **szolgáltatói előtagot** használnak (például `openrouter/…`, `openai/…`, `ollama/…`).
-- Az **API kulcs** (vagy Ollama esetén az **alap URL**) az, amellyel az alkalmazás eléri a szolgáltatót.
+- Az **Egyszerű** módban egy **előbeállítás** egy előre meghatározott beállítás (Ingyenes (OpenRouter), Klasszikus, Haladó vagy Technikai), amely hozzárendelődik egy modellhez a kiválasztott **szolgáltatóhoz** (OpenRouter, OpenAI, Ollama és mások). Csak azok a funkciók jelennek meg az eszköztáron, amelyekhez van hozzárendelés az aktuális szolgáltatóhoz. A funkciót a Fordítás, Átírás és Átalakítás lehetőségeknél választhatja ki.
+- A **Haladó** módban egy **modell** az az AI-motor, amelyet közvetlenül választ ki. A modellazonosítók **szolgáltató előtagot** használnak (például `openrouter/…`, `openai/…`, `ollama/…`).
+- Egy **API-kulcs** (vagy Ollama esetén egy **alap URL**) az, amellyel az alkalmazás eléri a szolgáltatót.
 
 Ha az **asztali alkalmazást** használja, adja hozzá az API-kulcsokat a használt szolgáltatókhoz a [**Beállítások** > **API beállítások**](#api-config) menüpontban. Csak OpenRouter használata esetén lásd alább: [Hogyan szerezhetek ingyenes OpenRouter API kulcsot](#how-to-get-a-free-openrouter-api-key-desktop-app). Ha nem szeretne API kulcsot használni, telepítheti az Ollamát (az [ollama.com](https://ollama.com) oldalról) és helyi modelleket használhat helyette, például a `translategemma:4b` modellt.
 
@@ -152,8 +152,8 @@ Ha először használod a Transrewrt-et, kövesd az alábbi sorrendet:
 2. Ha szükséges, válassza ki a **Felület nyelvét** a földgömb ikonról.
 3. Ha **asztali alkalmazást** használ, nyissa meg a [**Beállítások** > **API beállítások**](#api-config) menüpontot, adjon hozzá API kulcsot legalább egy szolgáltatóhoz (például OpenRouter), majd kattintson a **Teszt** gombra az ellenőrzéshez.
 4. Nyissa meg a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontot. **Egyszerű** módban (alapértelmezett) válasszon egy **Szolgáltatót**, amelyhez konfigurált kulcs tartozik. **Haladó** módban nyissa meg a [**Beállítások** > **Modellek**](#models) menüpontot, és adjon hozzá egy vagy több modellt a **Kiválasztott modellekhez**.
-5. A **Fordítás** oldalon válasszon **készséget** (Egyszerű) vagy **modellt** (Haladó) az eszköztáron.
-6. Nyissa meg a [**Beállítások** > **Nyelvek**](#languages) menüpontot, és válassza ki a **Leggyakrabban használt nyelveket**, ha a leggyakrabban használt nyelvei elől jelenjenek meg.
+5. A **Fordítás** funkcióban válasszon egy **előbeállítást** (Egyszerű) vagy egy **modellt** (Haladó) az eszköztáron.
+6. Nyissa meg a [**Beállítások** > **Nyelvek**](#languages) menüt, és válassza ki a **Legfontosabb nyelveket**, ha a leggyakrabban használt nyelvei elől jelenjenek meg.
 7. Futtasson egy egyszerű fordítást az ellenőrzéshez, majd próbálja ki az **Átírás** és **Átalakítás** funkciókat.
 
 Ez a sorrend fontos. Ez megelőzi a leggyakoribb kezdőproblémát: feladat futtatásának kísérletét, mielőtt az alkalmazás működő API-kapcsolattal vagy kiválasztott készséggel/modelllel rendelkezne.
@@ -208,11 +208,11 @@ Az eszköztár kicsit megváltozik attól függően, hogy hol tartózkodik az al
 - Bal oldalon megjelenik az aktuális oldal neve.
 - Jobb oldalon megjelenik a **készség vagy modell kiválasztó** és a **Felület nyelve** vezérlő.
 
-Az **Egyszerű** módban az eszköztár egy **készségválasztót** jelenít meg az alapértelmezett beállításokkal: **Ingyenes (OpenRouter)**, **Kézi**, **Haladó** és **Műszaki**. A megjelenő készségek attól függenek, hogy milyen **Szolgáltatót** választott a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban – például a **Ingyenes (OpenRouter)** csak akkor jelenik meg, ha a szolgáltató az OpenRouter. Ha a **Szolgáltató** az **Ollama**, akkor az eszköztár a gépre telepített helyi modelleket jeleníti meg a készségek helyett.
+Az **Egyszerű** módban az eszköztár egy **előbeállítás-választót** jelenít meg a beépített előbeállításokkal: **Ingyenes (OpenRouter)**, **Klasszikus**, **Haladó** és **Technikai**. Az előbeállítások megjelenése attól függ, hogy melyik **Szolgáltatót** választotta a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban – például az **Ingyenes (OpenRouter)** csak akkor jelenik meg, ha a szolgáltató az OpenRouter. Ha a **Szolgáltató** az **Ollama**, akkor az eszköztár a gépén telepített helyi modelleket jeleníti meg az előbeállítások helyett.
 
 **Haladó** módban a **modellkiválasztó** lehetővé teszi, hogy kiválassza, melyik AI-motort használja az aktuális feladathoz.
 
-![Model selector](../images/screenshots/hu/model-selector.png)
+![Model selector](../images/screenshots/hu/preset-selector.png)
 
 Haladó módban egyes ingyenes modellek nem mindig érhetők el – leállhatnak vagy elérhetik a használati korlátot. Az alkalmazás automatikusan eltávolíthatja a modellt a listáról. A megjelenő modellek szabályozásához látogasson el a [**Beállítások** > **Modellek**](#models) menüpontba. A modellbeállításokat megnyithatja a szolgáltató ikonra kattintva a modell neve mellett az eszköztáron.
 
@@ -263,7 +263,7 @@ A **Fordítás** funkciót akkor használja, ha szöveget szeretne átalakítani
 1. Nyissa meg a **Fordítás** funkciót.
 2. Válasszon nyelvet a **Honnan** mezőben.
 3. Válasszon nyelvet a **Hova** mezőben.
-4. Válasszon készséget (Egyszerű) vagy modellt (Haladó) az eszköztáron.
+4. Válasszon előbeállítást (Egyszerű) vagy modellt (Haladó) az eszköztáron.
 5. Írja be vagy illessze be a szöveget a(z) **Bemenet** mezőbe.
 6. Kattintson a(z) **Fordítás** gombra.
 7. Olvassa el az eredményt a(z) **Kimenet** mezőben.
@@ -368,10 +368,10 @@ Ha a promptlistája üres, kattintson a **Mintapromptok betöltése** gombra az 
 
 A legrövidebb út egy prompt létrehozásához:
 
-1. Kattintson a **Új parancs** gombra.
+1. Kattintson az **Új parancs** gombra.
 2. Kattintson a **Parancs létrehozása** gombra.
 3. Írja le, mit szeretne, hogy a parancs csináljon.
-4. Válasszon készséget (Egyszerű) vagy modellt (Haladó).
+4. Válasszon előbeállítást (Egyszerű) vagy modellt (Haladó).
 5. Hagyja, hogy az alkalmazás létrehozzon egy vázlatot.
 6. Ellenőrizze a vázlatot, majd kattintson a **Mentés** gombra.
 
@@ -430,7 +430,7 @@ Ez akkor hasznos, ha:
 > ℹ️ **MEGJEGYZÉS**<br/>
 > A mentett promptokat exportálhatja és importálhatja a [**Beállítások** > **Átalakítás**](#transform-settings) menüpontban.
 
-Ha a **Parancs létrehozása**, a **Parancs javítása** vagy a **Prompt lefordítása** funkciót használja a parancsszerkesztőben, az **Egyszerű** mód ugyanazt a készségválasztót kínálja, mint a Fordítás és Átírás; az **Haladó** mód a modelllista használatára épül.
+Amikor a **Parancs létrehozása**, **Parancs javítása** vagy **Prompt lefordítása** funkciókat használja a prompt szerkesztőben, az **Egyszerű** mód ugyanazt az előbeállítás-választót kínálja, mint a Fordítás és Átírás; a **Haladó** mód pedig a modelllistát használja.
 
 <br/><br/>
 
@@ -574,8 +574,8 @@ Az **Általános beállítások** használatával szabályozhatja a gépelés m�
 
 **AI-élmény**
 
-- **Egyszerű** (alapértelmezett): válasszon **Szolgáltatót** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras vagy Ollama). A felhőszolgáltatók az eszköztár beépített készségelőbeállításait használják. Az **Ollama** a gépre telepített modelleket jeleníti meg a készségek helyett. Az Egyszerű módban a **Készségkatalógus** megjeleníti a katalógus verzióját és az utolsó frissítés idejét; kattintson a **Készségkatalógus frissítése** gombra, hogy letöltse a legfrissebb készséglistát a projekt adattárából (az alkalmazás szintén időnként automatikusan ellenőrzi a háttérben).
-- **Haladó**: válassza ki az egyes modelleket az eszköztáron; kezelje a listát a [**Beállítások** > **Modellek**](#models) menüpontban.
+- **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltatót** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras vagy Ollama). A felhőszolgáltatók a beépített előbeállításokat használják az eszköztáron. Az **Ollama** a gépén telepített modelleket jeleníti meg az előbeállítások helyett. Az Egyszerű módban az **Előbeállítások katalógusa** megjeleníti a katalógus verzióját és az utolsó frissítés idejét; kattintson az **Előbeállítások katalógusának frissítése** gombra, hogy letöltse a legfrissebb funkciólistát a projekt adattárából (az alkalmazás szintén időnként automatikusan ellenőrzi a háttérben).
+- **Haladó**: válasszon egyedi modelleket az eszköztáron; kezelje a listát a [**Beállítások** > **Modellek**](#models) menüpontban.
 
 A **webalkalmazásban** a megjelenő szolgáltatók azon API-kulcsoktól függenek, amelyeket a szerverkörnyezetben állítottak be. Az **asztali alkalmazásban** az API-kulcsokat a [**API beállítások**](#api-config) alatt konfigurálhatja.
 
@@ -618,7 +618,7 @@ A webes vagy asztali verzióban készült biztonsági másolatokat a másik verz
 
 Ez a fül csak akkor érhető el, ha az **AI-élmény** beállítása **Haladó** az [**Általános beállítások**](#general-settings) menüben. A **Beállítások** > **Modellek** menüpont használatával választhatja ki, mely modellek jelenjenek meg az eszköztáron.
 
-![Settings Models tab](../images/screenshots/hu/settings-models.png)
+![Settings Models tab](../images/screenshots/hu/settings-general.png)
 
 Az oldal két listát tartalmaz:
 
@@ -783,10 +783,10 @@ Ha valami nem úgy működik, ahogy várná, először ellenőrizze az alábbi p
 
 Ellenőrizze, hogy:
 
-- kiválasztott egy **készséget** (Egyszerű) vagy egy **modellt** (Haladó) az eszköztáron
-- **Egyszerű** módban az [**Beállítások** > **Általános beállítások**](#general-settings) menüben egy **Szolgáltató** rendelkezik működő kulccsal (vagy Ollama URL-lel) és legalább egy készséggel az adott szolgáltatóhoz
-- **Haladó** módban legalább egy modell szerepel az [**Beállítások** > **Modellek**](#models) menüben
-- az API-beállításai működnek
+- kiválasztott egy **előbeállítást** (Egyszerű) vagy egy **modellt** (Haladó) az eszköztáron
+- az **Egyszerű** módban a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban egy **Szolgáltató** van kiválasztva, amelyhez működő kulcs (vagy Ollama URL) tartozik, és legalább egy előbeállítás elérhető az adott szolgáltatóhoz
+- a **Haladó** módban legalább egy modell szerepel a [**Beállítások** > **Modellek**](#models) menüpontban
+- az API-beállítások működnek
 
 Ha az asztali alkalmazást használja:
 
@@ -810,7 +810,7 @@ Ha az asztali alkalmazást használja:
 
 Próbálja ki az alábbiak egyikét vagy többjét:
 
-- válasszon másik készséget (Egyszerű) vagy modellt (Haladó)
+- válasszon másik előbeállítást (Egyszerű) vagy modellt (Haladó)
 - használjon rövidebb bemenetet
 - kapcsolja ki a **Valós idejű fordítás (gépelés közben)** funkciót a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban
 - egyszerű feladatokhoz használjon ingyenes modelleket (lásd: [Modellek](#models))
