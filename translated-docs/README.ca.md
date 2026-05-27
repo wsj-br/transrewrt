@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:05:26.412Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:46.881Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: ca
 source_file_path: README.md
 translation_models:
@@ -25,9 +25,9 @@ Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i tran
 - **Reescriure** - corregir gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
 - **Transformar** - indicadors personalitzats d'IA; crear i gestionar indicadors, idioma de destinació opcional per a cada indicador
 - **Historial** - historial complet d'execucions amb text d'entrada i de sortida, filtres i exportació
-- **Fàcil i Avançat** - Mode fàcil (per defecte): habilitats seleccionades per proveïdor (**Gratuït (OpenRouter)**, **Lite**, **Avançat**, **Tècnic**; només apareixen habilitats amb una assignació per al proveïdor seleccionat) sense haver de triar IDs de model; Mode avançat: llista completa de models dels proveïdors configurats
-- **Models i cost** - quadres de control de cost i ús (Resum, Per model, Tots els trucades) amb opció d'exportació; OpenRouter mostra el desemborsament real, altres proveïdors utilitzen estimacions
-- **IU** - interfície multilingüe (més de 30 idiomes, suport RTL), tipus de lletra, ...
+- **Fàcil i Avançat** - Mode fàcil (per defecte): predefinicions seleccionades per proveïdor (**Gratuït (OpenRouter)**, **Estàndard**, **Avançat**, **Tècnic**; només apareixen les predefinicions amb una assignació per al proveïdor seleccionat) sense haver de triar IDs de models; Mode avançat: llista completa de models dels proveïdors configurats
+- **Models i cost** - taulells de cost i ús (Resum, Per model, Tots els trucades) amb exportació; OpenRouter mostra el desemborsament real, altres proveïdors utilitzen estimacions
+- **IU** - interfície multilingüe (30+ idiomes, suport RTL), tipus de lletra, ...
 - **Mode web** - suport multiusuari amb rols d'administrador
 - **Escriptori** - Aplicació Electron per a Windows i Linux
 - **Autoallotjat** - Imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)

@@ -16,7 +16,7 @@ Transrewrt helps you work with text in three main ways:
 - **Rewrite** - rephrase text in a different style, such as clearer, shorter, or more formal.
 - **Transform** - process text using custom AI instructions called prompts.
 
-By default the app runs in **Easy** mode: you pick a **preset** (for example Free (OpenRouter), Lite, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
+By default the app runs in **Easy** mode: you pick a **preset** (for example Free (OpenRouter), Standard, Advanced, or Technical) and a **provider** in Settings, without choosing model IDs. Switch to **Advanced** in [**Settings** > **General Settings**](#general-settings) if you want the classic model list from [**Settings** > **Models**](#models).
 
 <br/>
 
@@ -110,7 +110,7 @@ You do not need to select a paid model to begin. As soon as you add your OpenRou
 
 In plain language:
 
-- In **Easy** mode, a **preset** is a preset (Free (OpenRouter), Lite, Advanced, or Technical) that maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). Only skills that have a mapping for the current provider appear in the toolbar. You select the skill on Translate, Rewrite, and Transform.
+- In **Easy** mode, a **preset** (Free (OpenRouter), Standard, Advanced, or Technical) maps to a model for your chosen **provider** (OpenRouter, OpenAI, Ollama, and others). Only presets that have a mapping for the current provider appear in the toolbar. You select the preset on Translate, Rewrite, and Transform.
 - In **Advanced** mode, a **model** is the AI engine you pick directly. Model ids use a **provider prefix** (for example `openrouter/…`, `openai/…`, `ollama/…`).
 - An **API key** (or, for Ollama, a **base URL**) is how the app reaches that provider.
 
@@ -150,7 +150,7 @@ If this is your first time using Transrewrt, follow this order:
 6. Open [**Settings** > **Languages**](#languages) and choose your **Top languages** if you want your most-used languages to appear first.
 7. Run a simple translation to confirm everything is working, then try **Rewrite** and **Transform**.
 
-This order matters. It prevents the most common first-use problem: trying to run a task before the app has a working API connection or a selected skill/model.
+This order matters. It prevents the most common first-use problem: trying to run a task before the app has a working API connection or a selected preset/model.
 
 <br/><br/>
 
@@ -200,9 +200,9 @@ Use the sidebar to move around the app. You can collapse the sidebar for more sp
 The toolbar changes slightly depending on where you are in the app.
 
 - On the left, it shows the current page name.
-- On the right, it shows the **skill or model selector** and the **Interface language** control.
+- On the right, it shows the **preset or model selector** and the **Interface language** control.
 
-In **Easy** mode, the toolbar shows a **preset selector** with the built-in presets **Free (OpenRouter)**, **Lite**, **Advanced**, and **Technical**. Which presets appear depends on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings)—for example, **Free (OpenRouter)** is only listed when the provider is OpenRouter. If **Provider** is **Ollama**, the toolbar lists your installed local models instead of presets.
+In **Easy** mode, the toolbar shows a **preset selector** with the built-in presets **Free (OpenRouter)**, **Standard**, **Advanced**, and **Technical**. Which presets appear depends on the **Provider** you chose in [**Settings** > **General Settings**](#general-settings)—for example, **Free (OpenRouter)** is only listed when the provider is OpenRouter. If **Provider** is **Ollama**, the toolbar lists your installed local models instead of presets.
 
 In **Advanced** mode, the **model selector** lets you choose which AI engine to use for the current task.
 
@@ -553,12 +553,12 @@ The available tabs depend on the platform and your role:
   | API Config       |   yes   |     yes     |         -          |                                              |
   | About            |   yes   |     yes     |        yes         |                                              |
 
-  In **Easy** mode, model selection happens via skills in the toolbar and **Provider** in General Settings; the **Models** tab is hidden.
+  In **Easy** mode, model selection happens via presets in the toolbar and **Provider** in General Settings; the **Models** tab is hidden.
 
 <br/>
 
 > ℹ️ **NOTE**<br/>
-> In the web version, each user has their own configuration. Settings such as AI experience, provider, selected models or skills, languages, general options, and transform prompts are stored per user. Changes you make do not affect other users.
+> In the web version, each user has their own configuration. Settings such as AI experience, provider, selected models or presets, languages, general options, and transform prompts are stored per user. Changes you make do not affect other users.
 
 <br/>
 
@@ -572,7 +572,7 @@ Use **General Settings** to control typing behaviour, whether execution details 
 
 **AI experience**
 
-- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in presets in the toolbar. **Ollama** lists models installed on your machine instead of presets. In Easy mode, **Presets catalog** shows the catalog version and last update time; click **Refresh presets catalog** to fetch the latest skill list from the project repository (the app also checks periodically in the background).
+- **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in presets in the toolbar. **Ollama** lists models installed on your machine instead of presets. In Easy mode, **Presets catalog** shows the catalog version and last update time; click **Refresh presets catalog** to fetch the latest preset list from the project repository (the app also checks periodically in the background).
 - **Advanced**: pick individual models in the toolbar; manage the list under [**Settings** > **Models**](#models).
 
 On the **web app**, which providers appear depends on API keys set in the server environment. On the **desktop app**, configure keys under [**API Config**](#api-config).

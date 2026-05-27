@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:52.808Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:59.598Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: ro
 source_file_path: README.md
 translation_models:
@@ -25,8 +25,8 @@ Instrument text AI: traduce între limbi, rescrie în stiluri diferite și trans
 - **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
 - **Transformare** - prompturi personalizate AI; creare și gestionare prompturi, limbă destinație opțională pentru fiecare prompt
 - **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Ușor și Avansat** - Modul ușor (implicit): abilități selectate pe furnizor (**Gratuit (OpenRouter)**, **Lite**, **Avansat**, **Tehnic**; apar doar abilitățile care au o corespondență pentru furnizorul selectat) fără a alege ID-uri de model; Modul avansat: listă completă de modele de la furnizorii configurați
-- **Modele și cost** - tablouri de bord pentru cost și utilizare (Rezumat, După model, Toate apelurile) cu opțiune de export; OpenRouter afișează cheltuielile reale, ceilalți furnizori utilizează estimări
+- **Ușor & Avansat** - Mod ușor (implicit): setări predefinite selectate pentru fiecare furnizor (**Gratuit (OpenRouter)**, **Standard**, **Avansat**, **Tehnic**; apar doar setările predefinite care au o corespondență pentru furnizorul selectat), fără alegerea ID-urilor de model; Mod avansat: listă completă de modele din furnizorii configurați
+- **Modele & cost** - tablouri de bord pentru cost și utilizare (Rezumat, După model, Toate apelurile) cu opțiune de export; OpenRouter afișează cheltuielile reale, ceilalți furnizori utilizează estimări
 - **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
 - **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
 - **Desktop** - Aplicație Electron pentru Windows și Linux

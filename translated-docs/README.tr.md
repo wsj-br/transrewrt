@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:08:09.175Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:12:03.794Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: tr
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (Open
 - **Yeniden yaz** - dilbilgisi düzeltme, anlaşılırlığı iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
 - **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef diliyle birlikte istemleri oluşturun ve yönetin
 - **Geçmiş** - girdi/çıktı metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya özel seçilmiş beceriler (**Ücretsiz (OpenRouter)**, **Lite**, **Gelişmiş**, **Teknik**; yalnızca seçili sağlayıcı için eşlemesi olan beceriler görünür) ve model kimliklerini seçmeden kullanım; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tam model listesi
-- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) ve dışa aktarma; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
+- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya özel önceden ayarlanmış seçenekler (**Ücretsiz (OpenRouter)**, **Standart**, **Gelişmiş**, **Teknik**; yalnızca seçili sağlayıcı için eşleme olan önceden ayarlanmış seçenekler görünür) ve model kimliklerini seçmeden kullanım; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tüm model listesi
+- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) ve dışa aktarma özelliği; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
 - **Kullanıcı Arayüzü (UI)** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
-- **Web modu** - yönetici rolleriyle çoklu kullanıcı desteği
+- **Web modu** - yönetici rolleriyle çok kullanıcılı destek
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
 - **Kendi barındırma** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
 

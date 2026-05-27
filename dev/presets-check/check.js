@@ -75,18 +75,6 @@ function atomicWriteUtf8(filePath, contents) {
   fs.renameSync(tmp, filePath);
 }
 
-function inferEngineFromModelId(modelId) {
-  const id = String(modelId || "").trim();
-  const slash = id.indexOf("/");
-  if (slash <= 0) return "openrouter";
-  const first = id.slice(0, slash).toLowerCase();
-  if (first === "openrouter") return "openrouter";
-  for (const { id: engine } of EASY_CLOUD_ENGINES) {
-    if (engine === first) return engine;
-  }
-  return "openrouter";
-}
-
 function collectModelRefs(catalog) {
   /** @type {Array<{ path: string, engine: string, presetId: string }>} */
   const refs = [];

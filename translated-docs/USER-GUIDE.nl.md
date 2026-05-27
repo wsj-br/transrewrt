@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:14.630Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:52.690Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: nl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt helpt u op drie manieren met tekstverwerking:
 - **Herschrijven** - tekst herschrijven in een andere stijl, zoals duidelijker, korter of formeler.
 - **Transformeren** - tekst verwerken met aangepaste AI-instructies die prompts worden genoemd.
 
-Standaard wordt de app uitgevoerd in **Eenvoudige** modus: u kiest een **voorkeuze** (bijvoorbeeld Gratis (OpenRouter), Lite of Technisch) en een **leverancier** in Instellingen, zonder model-ID's te kiezen. Schakel over naar **Geavanceerd** in [**Instellingen** > **Algemene instellingen**](#general-settings) als u de klassieke modellenlijst wilt gebruiken van [**Instellingen** > **Modellen**](#models).
+Standaard wordt de app uitgevoerd in **Eenvoudige** modus: u kiest een **voorkeuze** (bijvoorbeeld Gratis (OpenRouter), Standaard, Geavanceerd of Technisch) en een **leverancier** in Instellingen, zonder model-ID's te kiezen. Schakel over naar **Geavanceerd** in [**Instellingen** > **Algemene instellingen**](#general-settings) als u de klassieke modellenlijst wilt gebruiken van [**Instellingen** > **Modellen**](#models).
 
 <br/>
 
@@ -117,7 +117,7 @@ U hoeft geen betaald model te selecteren om te beginnen. Zodra u uw OpenRouter A
 
 In eenvoudige bewoordingen:
 
-- In **Eenvoudige** modus is een **voorkeuze** een vooraf ingestelde keuze (Gratis (OpenRouter), Lite, Geavanceerd of Technisch) die gekoppeld is aan een model voor uw gekozen **leverancier** (OpenRouter, OpenAI, Ollama en anderen). Alleen vaardigheden die een koppeling hebben met de huidige leverancier, worden weergegeven in de werkbalk. U selecteert de vaardigheid bij Vertalen, Herschrijven en Transformeren.
+- In **Eenvoudige** modus wordt een **voorkeuze** (Gratis (OpenRouter), Standaard, Geavanceerd of Technisch) gekoppeld aan een model voor uw gekozen **leverancier** (OpenRouter, OpenAI, Ollama en anderen). Alleen voorkeuzes die een koppeling hebben met de huidige leverancier, worden weergegeven in de werkbalk. U selecteert de voorkeuze bij Vertalen, Herschrijven en Transformeren.
 - In **Geavanceerde** modus is een **model** de AI-engine die u rechtstreeks kiest. Model-ID's gebruiken een **leveranciersvoorvoegsel** (bijvoorbeeld `openrouter/…`, `openai/…`, `ollama/…`).
 - Een **API-sleutel** (of, voor Ollama, een **basis-URL**) is hoe de app die leverancier bereikt.
 
@@ -157,7 +157,7 @@ Als dit de eerste keer is dat u Transrewrt gebruikt, volgt u deze volgorde:
 6. Open [**Instellingen** > **Talen**](#languages) en kies uw **Top talen** als u wilt dat uw meest gebruikte talen bovenaan verschijnen.
 7. Voer een eenvoudige vertaling uit om te controleren of alles werkt, en probeer daarna **Herschrijven** en **Transformeren**.
 
-Deze volgorde is belangrijk. Dit voorkomt het meest voorkomende probleem bij eerste gebruik: een taak proberen uit te voeren voordat de app een werkende API-verbinding heeft of een geselecteerde vaardigheid/model.
+Deze volgorde is belangrijk. Het voorkomt het meest voorkomende probleem bij eerste gebruik: een taak proberen uit te voeren voordat de app een werkende API-verbinding heeft of een geselecteerde voorkeuze/model.
 
 <br/><br/>
 
@@ -207,9 +207,9 @@ Gebruik de zijbalk om door de app te navigeren. U kunt de zijbalk inklappen om m
 De werkbalk verandert licht, afhankelijk van waar u zich in de app bevindt.
 
 - Links wordt de naam van de huidige pagina weergegeven.
-- Rechts ziet u de **vaardigheid- of modelselector** en de bediening voor **Interface taal**.
+- Rechts ziet u de **voorkeuze- of modelselector** en de bediening voor **Interface taal**.
 
-In **Eenvoudige** modus toont de werkbalk een **voorkeuzekeuze** met de ingebouwde voorkeuzen **Gratis (OpenRouter)**, **Lite**, **Geavanceerd** en **Technisch**. Welke voorkeuzen worden weergegeven, is afhankelijk van de **Leverancier** die u hebt gekozen in [**Instellingen** > **Algemene instellingen**](#general-settings)—bijvoorbeeld wordt **Gratis (OpenRouter)** alleen weergegeven wanneer de leverancier OpenRouter is. Als de **Leverancier** **Ollama** is, toont de werkbalk uw geïnstalleerde lokale modellen in plaats van voorkeuzen.
+In **Eenvoudige** modus toont de werkbalk een **voorkeuzeselector** met de ingebouwde voorkeuzes **Gratis (OpenRouter)**, **Standaard**, **Geavanceerd** en **Technisch**. Welke voorkeuzes worden weergegeven, is afhankelijk van de **Leverancier** die u hebt gekozen in [**Instellingen** > **Algemene instellingen**](#general-settings)—bijvoorbeeld wordt **Gratis (OpenRouter)** alleen weergegeven wanneer de leverancier OpenRouter is. Als de **Leverancier** **Ollama** is, toont de werkbalk uw geïnstalleerde lokale modellen in plaats van voorkeuzes.
 
 In **Geavanceerde** modus kunt u met de **modelselector** kiezen welke AI-engine u voor de huidige taak wilt gebruiken.
 
@@ -557,12 +557,12 @@ De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
   | API-configuratie        |   ja   |     ja     |         -          | |
   | Over             |   ja   |     ja     |        ja         | |
 
-In de modus **Eenvoudig** gebeurt modelselectie via vaardigheden in de werkbalk en **Leverancier** in Algemene instellingen; het tabblad **Modellen** is verborgen.
+In **Eenvoudige** modus gebeurt modelselectie via voorkeuzes in de werkbalk en **Leverancier** in Algemene instellingen; het tabblad **Modellen** is verborgen.
 
 <br/>
 
 > ℹ️ **OPMERKING**<br/>
-> In de webversie heeft elke gebruiker zijn eigen configuratie. Instellingen zoals AI-ervaring, leverancier, geselecteerde modellen of vaardigheden, talen, algemene opties en transformeerprompts worden per gebruiker opgeslagen. Wijzigingen die u aanbrengt, hebben geen invloed op andere gebruikers.
+> In de webversie heeft elke gebruiker zijn eigen configuratie. Instellingen zoals AI-ervaring, leverancier, geselecteerde modellen of voorkeuzes, talen, algemene opties en transform prompts worden per gebruiker opgeslagen. Wijzigingen die u aanbrengt, hebben geen invloed op andere gebruikers.
 
 <br/>
 
@@ -575,8 +575,8 @@ Gebruik **Algemene instellingen** om het typgedrag te beheren, of uitvoeringsdet
 
 **AI-ervaring**
 
-- **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde voorkeuzen in de werkbalk. **Ollama** geeft modellen weer die op uw machine zijn geïnstalleerd, in plaats van voorkeuzen. In Eenvoudige modus toont **Catalogus met voorkeuzes** de catalogusversie en de laatste updatetijd; klik op **Vernieuw catalogus met voorkeuzes** om de nieuwste vaardigheidslijst op te halen uit de projectopslagplaats (de app controleert ook periodiek op de achtergrond).
-- **Geavanceerd**: kies individuele modellen in de werkbalk; beheer de lijst onder [**Instellingen** > **Modellen**](#models).
+- **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde voorkeuzes in de werkbalk. **Ollama** geeft modellen weer die op uw machine zijn geïnstalleerd, in plaats van voorkeuzes. In Eenvoudige modus toont **Catalogus met voorkeuzes** de catalogusversie en de tijd van de laatste update; klik op **Vernieuw catalogus met voorkeuzes** om de nieuwste lijst met voorkeuzes op te halen uit de opslagplaats van het project (de app controleert ook periodiek op de achtergrond). 
+- **Geavanceerd**: kies afzonderlijke modellen in de werkbalk; beheer de lijst onder [**Instellingen** > **Modellen**](#models).
 
 In de **webapp** hangt welke leveranciers worden weergegeven af van de API-sleutels die zijn ingesteld in de serveromgeving. In de **desktopapp** configureert u sleutels onder [**API-configuratie**](#api-config).
 

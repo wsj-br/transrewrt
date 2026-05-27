@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:05:50.523Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:49.234Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: hr
 source_file_path: README.md
 translation_models:
@@ -25,7 +25,7 @@ AI alat za obradu teksta: prevođenje između jezika, prepisivanje u različitim
 - **Prepisi** - ispravi gramatiku, poboljšaj jasnoću, formalno/neformalno, skraćivanje, proširivanje, tehnički sadržaj
 - **Transformiraj** - prilagođeni AI upiti; kreiraj i upravljaj upitima, opcionalni ciljni jezik po upitu
 - **Povijest** - potpuna povijest izvršavanja s ulaznim/izlaznim tekstom, filtriranjem i izvozom
-- **Lako i Napredno** - Laki način (zadano): odabrane vještine po davatelju usluga (**Besplatno (OpenRouter)**, **Lite**, **Napredno**, **Tehničko**; pojavljuju se samo vještine koje imaju mapiranje za odabranog davatelja usluga) bez odabira ID-ova modela; Napredni način: potpun popis modela od vaših konfiguriranih davatelja usluga
+- **Lako i Napredno** - Laki način (zadano): odabrani predlošci po davatelju usluga (**Besplatno (OpenRouter)**, **Standardno**, **Napredno**, **Tehničko**; prikazuju se samo predlošci koji imaju mapiranje za odabranog davatelja usluga) bez odabira ID-ova modela; Napredni način: potpuni popis modela iz vaših konfiguriranih davatelja usluga
 - **Modeli i trošak** - nadzorne ploče za trošak i korištenje (Sažetak, Po modelu, Svi pozivi) s mogućnošću izvoza; OpenRouter prikazuje stvarne troškove, dok ostali davatelji usluga koriste procjene
 - **Korisnički sučelje (UI)** - višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
 - **Web način** - podrška za više korisnika s administratorskim ulogama

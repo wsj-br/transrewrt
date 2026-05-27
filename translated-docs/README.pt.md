@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:47.025Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:57.562Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: pt
 source_file_path: README.md
 translation_models:
@@ -25,7 +25,7 @@ Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estil
 - **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
 - **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
 - **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Fácil e Avançado** - Modo Fácil (padrão): competências selecionadas por fornecedor (**Grátis (OpenRouter)**, **Lite**, **Avançado**, **Técnico**; apenas competências com mapeamento para o fornecedor selecionado são exibidas), sem necessidade de escolher IDs de modelo; Modo Avançado: lista completa de modelos dos fornecedores configurados
+- **Fácil e Avançado** - Modo Fácil (padrão): predefinições selecionadas por fornecedor (**Grátis (OpenRouter)**, **Padrão**, **Avançado**, **Técnico**; apenas predefinições com mapeamento para o fornecedor selecionado são exibidas), sem necessidade de escolher IDs de modelo; Modo Avançado: lista completa de modelos dos fornecedores configurados
 - **Modelos e custo** - painéis de custo e utilização (Resumo, Por Modelo, Todas as chamadas) com exportação; OpenRouter mostra o valor efetivamente gasto, outros fornecedores usam estimativas
 - **IU** - interface multilingue (30+ idiomas, suporte a RTL), tipos de letra, ...
 - **Modo Web** - suporte a múltiplos utilizadores com funções de administrador

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:35.394Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:12:01.654Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: sv
 source_file_path: README.md
 translation_models:
@@ -25,7 +25,7 @@ AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omva
 - **Omskriv** – åtgärda grammatik, förbättra tydligheten, formellt/obligatoriskt, förkorta, utöka, tekniskt
 - **Transformera** – anpassade AI-prompts; skapa och hantera prompts, valfritt målspråk per prompt
 - **Historik** – fullständig körningshistorik med inmatning/utdata, filtrering och export
-- **Enkel & Avancerad** - Enkelt läge (standard): utvalda funktioner per leverantör (**Gratis (OpenRouter)**, **Lätt**, **Avancerad**, **Teknisk**; endast funktioner med en mappning för den valda leverantören visas) utan att behöva välja modell-ID:n; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
+- **Enkel & Avancerad** - Enkelt läge (standard): förvalda förinställningar per leverantör (**Gratis (OpenRouter)**, **Standard**, **Avancerad**, **Teknisk**; endast förinställningar med en mappning för den valda leverantören visas) utan att välja modell-ID; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
 - **Modeller & kostnad** - kostnads- och användningsinstrumentpaneler (Sammanfattning, Efter modell, Alla anrop) med export; OpenRouter visar faktisk utgift, andra leverantörer använder uppskattningar
 - **Användargränssnitt (UI)** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
 - **Webbläge** - stöd för flera användare med administratörsroller

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:29.620Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:12:01.645Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: sw
 source_file_path: README.md
 translation_models:
@@ -25,8 +25,8 @@ Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika up
 - **Andika upya** - sahihi sarufi, boresha uwazi, fomali/isiyo ya fomali, fupisha, panua, ya kikina
 - **Badilisha** - maagizo ya AI ya kibinafsi; tengeneza na usimamize maagizo, lugha ya kipato kwa kila maagizo ni ya si lazima
 - **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya kuingiza/ya pato, kupanga kwa kuchuja, na utoaji
-- **Rahisi & Ubinafsi** - Njia ya rahisi (chaguo-msingi): vipaji vilivyochaguliwa kwa kila mtoa huduma (**Bure (OpenRouter)**, **Rahisi**, **Ubinafsi**, **Kikihini**; vipaji tu vinavyomilikiwa mpangilio kwa mtoa huduma aliyechaguliwa vinavyonekana) bila kuchagua vitambulisho vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa huduma wako wameunganishwa
-- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa upelelezi; OpenRouter inaonyesha matumizi halisi, watoa huduma wengine hutumia mapigo
+- **Rahisi & Ubinafsi** - Njia rahisi (chaguo-msingi): viweko vilivyochaguliwa kwa kila mtoa huduma (**Bure (OpenRouter)**, **Kawaida**, **Ubinafsi**, **Kiteknolojia**; viweko tu vinavyomhusu mtoa huduma uliochaguliwa vinavyonekana) bila kuchagua vitambulisho vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa huduma wako wamewekwa
+- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa upelelezi; OpenRouter inaonyesha matumizi halisi, watoa wengine hutumia mapigo
 - **UI** - kiolesura cha lugha nyingi (zaidi ya 30, msaada wa kuelimisha kulia-kushoto), fonti, ...
 - **Njia ya wavuti** - msaada wa watumiaji wengi wenye majukumu ya msimamizi
 - **Desktop** - Programu ya Electron kwa Windows na Linux

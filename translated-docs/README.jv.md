@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:35.565Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:57.533Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: jv
 source_file_path: README.md
 translation_models:
@@ -25,8 +25,8 @@ Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan 
 - **Tulis ulang** - perbaiki tata basa, improve clarity, formal/informal, ngendhakake, nembahake, teknis
 - **Ubah** - prompt AI khusus; gawe lan atur prompt, basa sasaran opsional saben prompt
 - **Riwayat** - riwayat eksekusi lengkap kanthi teks input/output, penyaringan, lan ekspor
-- **Gampang & Lanjutan** - Modus gampang (standar): keterampilan sing disaring saben panyedhiya (**Gratis (OpenRouter)**, **Lite**, **Lanjutan**, **Teknis**; mung keterampilan sing duwe peta kanggo panyedhiya sing dipilih sing katon) tanpa milih ID model; modus lanjutan: dhaftar model lengkap saka panyedhiyamu sing dikonfigurasi
-- **Model & biaya** - dasbor biaya lan panggunaan (Ringkasan, Dhèk model, Kabeh pangelingan API) kanthi ekspor; OpenRouter nuduhake pengeluaran nyata, panyedhiya liya nggunakake perkiraan
+- **Gampang & Lanjutan** - Modus gampang (standar): preset sing dipilih saben panyedhiya (**Gratis (OpenRouter)**, **Standar**, **Lanjutan**, **Teknis**; mung preset kanthi peta kanggo panyedhiya sing dipilih sing katon) tanpa milih ID model; Modus lanjutan: dhaftar model lengkap saka panyedhiya sing wis dikonfigurasi
+- **Model lan biaya** - dasbor biaya lan panggunaan (Ringkasan, Dhèk model, Kabeh pangelingan API) kanthi ekspor; OpenRouter nuduhake panggunan nyata, panyedhiya liya nggunakake perkiraan
 - **UI** - antarmuka multibasa (30+ basa, dhukungan RTL), font, ...
 - **Modus web** - dhukungan multi-pangguna kanthi peran admin
 - **Desktop** - Aplikasi Electron kanggo Windows lan Linux

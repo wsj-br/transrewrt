@@ -11,6 +11,13 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+
+
+## [1.3.3] - 2026-05-27
+
+- **Changed**: `README.md` and `USER-GUIDE.md` — Easy-mode preset names and nomenclature aligned with `easy-mode-config/presets.json` (**Standard** not Lite; preset vs skill wording).
+- **Added**: `scripts/release.sh` and `pnpm run release:github` / `release:github:dry` — create GitHub releases from `release-notes/RELEASE_NOTES_<version>.md` (same flow as ai-i18n-tools).
+- **Changed**: [dev/DEVELOPMENT.md](DEVELOPMENT.md) — document `release:github`, `release-notes/RELEASE_NOTES_<version>.md`, and pre-release checks.
 - **Fixed**: Dev presets editor Reload re-reads only `easy-mode-config/presets.json` from disk (provider catalog cache still follows TTL, not refreshed on every Reload).
 - **Fixed**: Dev presets editor header no longer leaves translation/suggestion model labels blank after load (sync display after catalog fetch).
 - **Changed**: `presets.json` serialization keeps catalog metadata (`version`, `updated_at`, translation/suggestion models) at the top and `presets` last (presets editor save and presets-check).

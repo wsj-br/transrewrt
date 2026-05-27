@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-27T10:06:18.387Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:52.752Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: fr
 source_file_path: USER-GUIDE.md
 translation_models:
+  - openai/gpt-4o-mini
   - qwen/qwen3-235b-a22b-2507
 ---
 ![Transrewrt banner](../images/transrewrt_banner.png)
@@ -23,7 +24,7 @@ Transrewrt vous aide à travailler avec le texte de trois manières principales 
 - **Réécriture** - reformuler un texte dans un style différent, par exemple plus clair, plus court ou plus formel.
 - **Transformer** - traiter un texte à l'aide d'instructions personnalisées d'intelligence artificielle appelées prompts.
 
-Par défaut, l'application fonctionne en mode **Facile** : vous choisissez un **préréglage** (par exemple Gratuit (OpenRouter), Lite ou Technique) et un **fournisseur** dans les Paramètres, sans sélectionner d'identifiants de modèle. Passez au mode **Avancé** dans [**Paramètres** > **Paramètres généraux**](#general-settings) si vous souhaitez accéder à la liste classique des modèles depuis [**Paramètres** > **Modèles**](#models).
+Par défaut, l'application fonctionne en mode **Facile** : vous choisissez un **préréglage** (par exemple Gratuit (OpenRouter), Standard, Avancé ou Technique) et un **fournisseur** dans les Paramètres, sans choisir d'ID de modèle. Passez en mode **Avancé** dans [**Paramètres** > **Paramètres généraux**](#general-settings) si vous souhaitez la liste classique des modèles depuis [**Paramètres** > **Modèles**](#models).
 
 <br/>
 
@@ -116,8 +117,8 @@ Vous n'avez pas besoin de sélectionner un modèle payant pour commencer. Dès q
 
 En termes simples :
 
-- En mode **Facile**, un **préréglage** correspond à un préréglage (Gratuit (OpenRouter), Lite, Avancé ou Technique) associé à un modèle pour le **fournisseur** sélectionné (OpenRouter, OpenAI, Ollama, etc.). Seules les fonctionnalités compatibles avec le fournisseur actuel apparaissent dans la barre d'outils. Vous sélectionnez la fonctionnalité via Traduire, Réécrire et Transformer.
-- En mode **Avancé**, un **modèle** est le moteur d'IA que vous choisissez directement. Les identifiants de modèle utilisent un **préfixe de fournisseur** (par exemple `openrouter/…`, `openai/…`, `ollama/…`).
+- En mode **Facile**, un **préréglage** (Gratuit (OpenRouter), Standard, Avancé ou Technique) correspond à un modèle selon le **fournisseur** sélectionné (OpenRouter, OpenAI, Ollama, etc.). Seuls les préréglages compatibles avec le fournisseur actuel s'affichent dans la barre d'outils. Vous sélectionnez le préréglage dans Traduire, Réécrire et Transformer.
+- En mode **Avancé**, un **modèle** est le moteur IA que vous choisissez directement. Les identifiants de modèle utilisent un **préfixe fournisseur** (par exemple `openrouter/…`, `openai/…`, `ollama/…`).
 - Une **clé API** (ou, pour Ollama, une **URL de base**) permet à l'application de se connecter au fournisseur.
 
 Si vous utilisez l'**application de bureau**, ajoutez les clés dans [**Paramètres** > **Configuration API**](#api-config) pour chaque fournisseur utilisé. Pour une utilisation uniquement avec OpenRouter, consultez ci-dessous [Comment obtenir une clé API OpenRouter gratuite](#how-to-get-a-free-openrouter-api-key-desktop-app). Si vous ne souhaitez pas utiliser de clé API, vous pouvez installer Ollama (depuis [ollama.com](https://ollama.com)) et utiliser des modèles locaux, comme `translategemma:4b`.
@@ -156,7 +157,7 @@ Si c'est votre première utilisation de Transrewrt, suivez cet ordre :
 6. Ouvrez [**Paramètres** > **Langues**](#languages) et choisissez vos **Langues principales** si vous souhaitez que vos langues les plus utilisées apparaissent en premier.
 7. Effectuez une traduction simple pour vérifier que tout fonctionne, puis essayez **Réécrire** et **Transformer**.
 
-Cet ordre est important. Il évite le problème le plus courant lors de la première utilisation : tenter d'exécuter une tâche avant que l'application n'ait une connexion API fonctionnelle ou qu'une compétence/modèle ne soit sélectionné.
+Cet ordre est important. Il évite le problème le plus courant lors de la première utilisation : tenter d'exécuter une tâche avant que l'application ne dispose d'une connexion API fonctionnelle ou d'un préréglage/modèle sélectionné.
 
 <br/><br/>
 
@@ -205,10 +206,10 @@ Utilisez la barre latérale pour naviguer dans l'application. Vous pouvez rédui
 
 La barre d'outils change légèrement selon l'endroit où vous vous trouvez dans l'application.
 
-- À gauche, il affiche le nom de la page actuelle.
-- À droite, il affiche le sélecteur de **compétence ou de modèle** et le contrôle de la **Langue de l'interface**.
+- À gauche, le nom de la page actuelle est affiché.
+- À droite, se trouvent le sélecteur de **préréglage ou modèle** et le contrôle de la **Langue de l'interface**.
 
-En mode **Facile**, la barre d'outils affiche un **sélecteur de préréglage** avec les préréglages intégrés **Gratuit (OpenRouter)**, **Lite**, **Avancé** et **Technique**. Les préréglages affichés dépendent du **Fournisseur** sélectionné dans [**Paramètres** > **Paramètres généraux**](#general-settings) — par exemple, **Gratuit (OpenRouter)** n'apparaît que lorsque le fournisseur est OpenRouter. Si le **Fournisseur** est **Ollama**, la barre d'outils affiche vos modèles locaux installés au lieu des préréglages.
+En mode **Facile**, la barre d'outils affiche un sélecteur de **préréglage** avec les préréglages intégrés **Gratuit (OpenRouter)**, **Standard**, **Avancé** et **Technique**. Les préréglages affichés dépendent du **Fournisseur** choisi dans [**Paramètres** > **Paramètres généraux**](#general-settings) — par exemple, **Gratuit (OpenRouter)** n'apparaît que lorsque le fournisseur est OpenRouter. Si le **Fournisseur** est **Ollama**, la barre d'outils affiche vos modèles locaux installés au lieu des préréglages.
 
 En mode **Avancé**, le sélecteur de **modèle** vous permet de choisir quel moteur d'IA utiliser pour la tâche en cours.
 
@@ -556,12 +557,12 @@ Les onglets disponibles dépendent de la plateforme et de votre rôle :
   | Configuration API |   oui   |     oui     |         -          |                                              |
   | À propos          |   oui   |     oui     |        oui         |                                              |
 
-En mode **Facile**, le choix du modèle se fait via les compétences dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** est masqué.
+En mode **Facile**, le choix du modèle s'effectue via les préréglages dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** est masqué.
 
 <br/>
 
 > ℹ️ **REMARQUE**<br/>
-> Dans la version web, chaque utilisateur dispose de sa propre configuration. Les paramètres tels que l'expérience IA, le fournisseur, les modèles ou compétences sélectionnés, les langues, les options générales et les invites de transformation sont stockés individuellement. Les modifications que vous effectuez n'affectent pas les autres utilisateurs.
+> Dans la version web, chaque utilisateur dispose de sa propre configuration. Les paramètres tels que l'expérience IA, le fournisseur, les modèles ou préréglages sélectionnés, les langues, les options générales et les invites de transformation sont stockés individuellement. Les modifications que vous effectuez n'affectent pas les autres utilisateurs.
 
 <br/>
 
@@ -574,8 +575,8 @@ Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, s
 
 **Expérience IA**
 
-- **Facile** (par défaut) : choisissez un **Fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages intégrés dans la barre d'outils. **Ollama** affiche les modèles installés sur votre machine au lieu des préréglages. En mode Facile, **Catalogue des préréglages** affiche la version du catalogue et la date de la dernière mise à jour ; cliquez sur **Actualiser le catalogue des préréglages** pour récupérer la liste la plus récente des fonctionnalités depuis le dépôt du projet (l'application vérifie également périodiquement en arrière-plan).
-- **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste via [**Paramètres** > **Modèles**](#models).
+- **Facile** (par défaut) : choisissez un **Fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages intégrés dans la barre d'outils. **Ollama** affiche les modèles installés sur votre machine au lieu des préréglages. En mode Facile, le **Catalogue des préréglages** indique la version du catalogue et l'heure de la dernière mise à jour ; cliquez sur **Actualiser le catalogue des préréglages** pour récupérer la liste la plus récente depuis le dépôt du projet (l'application vérifie également périodiquement en arrière-plan).
+- **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste sous [**Paramètres** > **Modèles**](#models).
 
 Dans l'**application web**, les fournisseurs disponibles dépendent des clés API définies dans l'environnement du serveur. Dans l'**application de bureau**, configurez les clés sous [**Configuration API**](#api-config).
 

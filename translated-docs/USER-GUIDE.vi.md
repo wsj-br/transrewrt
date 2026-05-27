@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:08:34.276Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:12:05.367Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: vi
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt giúp bạn làm việc với văn bản theo ba cách chính:
 - **Viết lại** - diễn đạt lại văn bản theo phong cách khác, ví dụ như rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn.
 - **Chuyển đổi** - xử lý văn bản bằng các hướng dẫn trí tuệ nhân tạo tùy chỉnh gọi là lời nhắc.
 
-Mặc định, ứng dụng chạy ở chế độ **Dễ**: bạn chọn một **thiết lập sẵn** (ví dụ: Miễn phí (OpenRouter), Lite hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
+Mặc định, ứng dụng chạy ở chế độ **Dễ**: bạn chọn một **thiết lập sẵn** (ví dụ: Miễn phí (OpenRouter), Tiêu chuẩn, Nâng cao hoặc Kỹ thuật) và một **nhà cung cấp** trong Cài đặt, mà không cần chọn ID mô hình. Chuyển sang **Nâng cao** tại [**Cài đặt** > **Cài đặt chung**](#general-settings) nếu bạn muốn danh sách mô hình cổ điển từ [**Cài đặt** > **Mô hình**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạ
 
 Nói một cách đơn giản:
 
-- Ở chế độ **Dễ**, một **thiết lập sẵn** là một thiết lập (Miễn phí (OpenRouter), Lite, Nâng cao hoặc Kỹ thuật) tương ứng với một mô hình cho **nhà cung cấp** bạn đã chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Chỉ những kỹ năng có ánh xạ với nhà cung cấp hiện tại mới xuất hiện trên thanh công cụ. Bạn chọn kỹ năng khi Dịch, Viết lại và Chuyển đổi.
+- Ở chế độ **Dễ**, một **thiết lập sẵn** (Miễn phí (OpenRouter), Tiêu chuẩn, Nâng cao hoặc Kỹ thuật) sẽ ánh xạ tới một mô hình tương ứng với **nhà cung cấp** bạn đã chọn (OpenRouter, OpenAI, Ollama và các nhà cung cấp khác). Chỉ những thiết lập sẵn có ánh xạ với nhà cung cấp hiện tại mới xuất hiện trên thanh công cụ. Bạn chọn thiết lập sẵn khi thực hiện Dịch, Viết lại và Chuyển đổi.
 - Ở chế độ **Nâng cao**, một **mô hình** là công cụ AI mà bạn chọn trực tiếp. Các ID mô hình sử dụng **tiền tố nhà cung cấp** (ví dụ: `openrouter/…`, `openai/…`, `ollama/…`).
-- Một **khóa API** (hoặc với Ollama, một **URL gốc**) là cách ứng dụng kết nối tới nhà cung cấp đó.
+- Một **khóa API** (hoặc với Ollama là **URL gốc**) là cách ứng dụng kết nối tới nhà cung cấp đó.
 
 Nếu bạn đang sử dụng **ứng dụng máy tính để bàn**, hãy thêm khóa tại [**Cài đặt** > **Cấu hình API**](#api-config) cho từng nhà cung cấp bạn sử dụng. Nếu chỉ dùng OpenRouter, hãy xem phần [Cách lấy khóa API OpenRouter miễn phí](#how-to-get-a-free-openrouter-api-key-desktop-app) bên dưới. Nếu bạn không muốn dùng khóa API, bạn có thể cài đặt Ollama (từ [ollama.com](https://ollama.com)) và dùng các mô hình nội bộ thay thế, ví dụ như `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Nếu đây là lần đầu tiên bạn sử dụng Transrewrt, hãy làm theo 
 6. Mở [**Cài đặt** > **Ngôn ngữ**](#languages) và chọn **Ngôn ngữ hàng đầu** nếu bạn muốn các ngôn ngữ thường dùng nhất xuất hiện đầu tiên.
 7. Thực hiện một bản dịch đơn giản để xác nhận mọi thứ đang hoạt động, sau đó thử **Viết lại** và **Chuyển đổi**.
 
-Thứ tự này rất quan trọng. Nó giúp tránh vấn đề phổ biến nhất khi sử dụng lần đầu: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc chưa chọn kỹ năng/mô hình.
+Thứ tự này rất quan trọng. Nó ngăn chặn vấn đề phổ biến nhất khi sử dụng lần đầu: cố gắng thực hiện tác vụ trước khi ứng dụng có kết nối API hoạt động hoặc chưa chọn thiết lập sẵn/mô hình.
 
 <br/><br/>
 
@@ -205,10 +205,10 @@ Sử dụng thanh bên để di chuyển trong ứng dụng. Bạn có thể thu
 
 Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứng dụng.
 
-- Bên trái hiển thị tên trang hiện tại.
-- Bên phải hiển thị **bộ chọn kỹ năng hoặc mô hình** và điều khiển **Ngôn ngữ giao diện**.
+- Bên trái, hiển thị tên trang hiện tại.
+- Bên phải, hiển thị **bộ chọn thiết lập sẵn hoặc mô hình** và điều khiển **Ngôn ngữ giao diện**.
 
-Ở chế độ **Dễ**, thanh công cụ hiển thị một **bộ chọn thiết lập sẵn** với các thiết lập tích hợp sẵn là **Miễn phí (OpenRouter)**, **Lite**, **Nâng cao** và **Kỹ thuật**. Các thiết lập hiện ra phụ thuộc vào **Nhà cung cấp** bạn đã chọn trong [**Cài đặt** > **Cài đặt chung**](#general-settings)—ví dụ: **Miễn phí (OpenRouter)** chỉ được liệt kê khi nhà cung cấp là OpenRouter. Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt thay vì các thiết lập sẵn.
+Ở chế độ **Dễ**, thanh công cụ hiển thị **bộ chọn thiết lập sẵn** với các thiết lập sẵn tích hợp sẵn là **Miễn phí (OpenRouter)**, **Tiêu chuẩn**, **Nâng cao** và **Kỹ thuật**. Các thiết lập sẵn nào xuất hiện phụ thuộc vào **Nhà cung cấp** bạn đã chọn trong [**Cài đặt** > **Cài đặt chung**](#general-settings) — ví dụ: **Miễn phí (OpenRouter)** chỉ được liệt kê khi nhà cung cấp là OpenRouter. Nếu **Nhà cung cấp** là **Ollama**, thanh công cụ sẽ liệt kê các mô hình nội bộ đã cài đặt trên máy bạn thay vì các thiết lập sẵn.
 
 Ở chế độ **Nâng cao**, **bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ dùng cho tác vụ hiện tại.
 
@@ -556,12 +556,12 @@ Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
   | Cấu hình API       |   có   |     có     |         -          |                                              |
   | Giới thiệu            |   có   |     có     |        có         |                                              |
 
-Trong chế độ **Dễ**, việc chọn mô hình được thực hiện thông qua kỹ năng trên thanh công cụ và **Nhà cung cấp** trong Cài đặt chung; tab **Mô hình** bị ẩn.
+Ở chế độ **Dễ**, việc chọn mô hình được thực hiện thông qua các thiết lập sẵn trên thanh công cụ và **Nhà cung cấp** trong Cài đặt chung; tab **Mô hình** bị ẩn.
 
 <br/>
 
 > ℹ️ **LƯU Ý**<br/>
-> Trong phiên bản web, mỗi người dùng có cấu hình riêng. Các cài đặt như trải nghiệm AI, nhà cung cấp, mô hình hoặc kỹ năng đã chọn, ngôn ngữ, tùy chọn chung và lời nhắc chuyển đổi được lưu theo từng người dùng. Những thay đổi bạn thực hiện sẽ không ảnh hưởng đến người dùng khác.
+> Trong phiên bản web, mỗi người dùng có cấu hình riêng. Các cài đặt như trải nghiệm AI, nhà cung cấp, mô hình hoặc thiết lập sẵn đã chọn, ngôn ngữ, tùy chọn chung và lời nhắc chuyển đổi được lưu riêng cho từng người dùng. Những thay đổi bạn thực hiện sẽ không ảnh hưởng đến người dùng khác.
 
 <br/>
 
@@ -574,8 +574,8 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lư
 
 **Trải nghiệm AI**
 
-- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì các thiết lập sẵn. Ở chế độ Dễ, **Danh mục thiết lập sẵn** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp vào **Làm mới danh mục thiết lập sẵn** để tải danh sách kỹ năng mới nhất từ kho lưu trữ dự án (ứng dụng cũng kiểm tra định kỳ nền). 
-- **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách tại [**Cài đặt** > **Mô hình**](#models).
+- **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì các thiết lập sẵn. Ở chế độ Dễ, **Danh mục thiết lập sẵn** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp vào **Làm mới danh mục thiết lập sẵn** để tải về danh sách thiết lập sẵn mới nhất từ kho lưu trữ dự án (ứng dụng cũng tự động kiểm tra định kỳ trong nền).
+- **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách này tại [**Cài đặt** > **Mô hình**](#models).
 
 Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào khóa API được thiết lập trong môi trường máy chủ. Trong **ứng dụng desktop**, hãy cấu hình khóa tại [**Cấu hình API**](#api-config).
 

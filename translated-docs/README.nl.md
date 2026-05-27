@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:12.555Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:51.241Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: nl
 source_file_path: README.md
 translation_models:
@@ -25,9 +25,9 @@ AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende sti
 - **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeler/informeel, verkorten, uitbreiden, technisch
 - **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
-- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde vaardigheden per leverancier (**Gratis (OpenRouter)**, **Lite**, **Geavanceerd**, **Technisch**; alleen vaardigheden met een koppeling voor de geselecteerde leverancier worden weergegeven), zonder model-ID’s te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
-- **Modellen & kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de daadwerkelijke uitgaven, andere leveranciers gebruiken schattingen
-- **UI** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
+- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde voorinstellingen per leverancier (**Gratis (OpenRouter)**, **Standaard**, **Geavanceerd**, **Technisch**; alleen voorinstellingen met een koppeling voor de geselecteerde leverancier worden weergegeven), zonder model-ID’s te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
+- **Modellen en kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de daadwerkelijke uitgaven, andere leveranciers gebruiken schattingen
+- **Gebruikersinterface** - meertalige interface (30+ talen, ondersteuning voor RTL), lettertypen, ...
 - **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
 - **Bureaublad** - Electron-app voor Windows en Linux
 - **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)

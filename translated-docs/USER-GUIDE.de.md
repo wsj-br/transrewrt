@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:20.157Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:54.779Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: de
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt unterstützt Sie bei der Textbearbeitung auf drei Hauptweisen:
 - **Umschreiben** – Text in einem anderen Stil umformulieren, beispielsweise klarer, kürzer oder formeller.
 - **Umwandeln** – Text mithilfe benutzerdefinierter KI-Anweisungen, sogenannter Prompts, verarbeiten.
 
-Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Voreinstellung** (z. B. Kostenlos (OpenRouter), Lite oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste in [**Einstellungen** > **Modelle**](#models) verwenden möchten.
+Standardmäßig läuft die App im **Einfach**-Modus: Sie wählen eine **Voreinstellung** (z. B. Kostenlos (OpenRouter), Standard, Erweitert oder Technisch) und einen **Anbieter** in den Einstellungen, ohne Modell-IDs auszuwählen. Wechseln Sie zu **Erweitert** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings), wenn Sie die klassische Modellliste aus [**Einstellungen** > **Modelle**](#models) verwenden möchten.
 
 <br/>
 
@@ -116,9 +116,9 @@ Sie müssen kein kostenpflichtiges Modell auswählen, um loszulegen. Sobald Sie 
 
 Einfach ausgedrückt:
 
-- Im **Einfach**-Modus ist eine **Voreinstellung** eine Voreinstellung (Kostenlos (OpenRouter), Lite, Erweitert oder Technisch), die einem Modell für Ihren gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet ist. Nur Fähigkeiten, die eine Zuordnung zum aktuellen Anbieter haben, werden in der Symbolleiste angezeigt. Sie wählen die Fähigkeit bei Übersetzen, Umschreiben und Umwandeln aus.
+- Im **Einfach**-Modus wird eine **Voreinstellung** (Kostenlos (OpenRouter), Standard, Erweitert oder Technisch) einem Modell für Ihren gewählten **Anbieter** (OpenRouter, OpenAI, Ollama und andere) zugeordnet. Nur Voreinstellungen, die für den aktuellen Anbieter eine Zuordnung haben, werden in der Symbolleiste angezeigt. Sie wählen die Voreinstellung bei Übersetzen, Umschreiben und Umwandeln aus.
 - Im **Erweitert**-Modus ist ein **Modell** die KI-Engine, die Sie direkt auswählen. Modell-IDs verwenden ein **Anbieter-Präfix** (z. B. `openrouter/…`, `openai/…`, `ollama/…`).
-- Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht der App die Verbindung zu diesem Anbieter.
+- Ein **API-Schlüssel** (oder bei Ollama eine **Basis-URL**) ermöglicht es der App, den Anbieter zu erreichen.
 
 Wenn Sie die **Desktop-App** verwenden, fügen Sie Schlüssel in [**Einstellungen** > **API-Konfiguration**](#api-config) für jeden Anbieter hinzu, den Sie nutzen. Für die ausschließliche Nutzung von OpenRouter siehe unten [So erhalten Sie einen kostenlosen OpenRouter-API-Schlüssel](#how-to-get-a-free-openrouter-api-key-desktop-app). Wenn Sie keinen API-Schlüssel verwenden möchten, können Sie Ollama (von [ollama.com](https://ollama.com)) installieren und stattdessen lokale Modelle verwenden, z. B. `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Wenn Sie Transrewrt zum ersten Mal verwenden, befolgen Sie diese Reihenfolge:
 6. Öffnen Sie [**Einstellungen** > **Sprachen**](#languages) und wählen Sie Ihre **Top-Sprachen**, wenn Ihre am häufigsten verwendeten Sprachen zuerst angezeigt werden sollen.
 7. Führen Sie eine einfache Übersetzung durch, um sicherzustellen, dass alles funktioniert, und probieren Sie anschließend **Umschreiben** und **Umwandeln** aus.
 
-Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei der ersten Nutzung: einen Auftrag auszuführen, bevor die App eine funktionierende API-Verbindung oder eine ausgewählte Fertigkeit/Modell hat.
+Diese Reihenfolge ist wichtig. Sie verhindert das häufigste Problem bei Erstnutzung: einen Task auszuführen, bevor die App eine funktionierende API-Verbindung oder eine ausgewählte Voreinstellung/Modell hat.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Verwenden Sie die Seitenleiste, um sich in der App zu bewegen. Sie können die S
 Die Symbolleiste ändert sich leicht, je nachdem, wo Sie sich in der App befinden.
 
 - Links wird der Name der aktuellen Seite angezeigt.
-- Rechts sehen Sie den **Fertigkeits- oder Modell-Selektor** und die Steuerung für die **Oberflächensprache**.
+- Rechts befinden sich der **Voreinstellungs- oder Modell-Selektor** und die Steuerung für die **Oberflächensprache**.
 
-Im **Einfach**-Modus zeigt die Symbolleiste einen **Voreinstellungs-Selector** mit den integrierten Voreinstellungen **Kostenlos (OpenRouter)**, **Lite**, **Erweitert** und **Technisch** an. Welche Voreinstellungen angezeigt werden, hängt vom in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählten **Anbieter** ab – beispielsweise wird **Kostenlos (OpenRouter)** nur angezeigt, wenn der Anbieter OpenRouter ist. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Voreinstellungen auf.
+Im **Einfach**-Modus zeigt die Symbolleiste einen **Voreinstellungs-Selektor** mit den integrierten Voreinstellungen **Kostenlos (OpenRouter)**, **Standard**, **Erweitert** und **Technisch**. Welche Voreinstellungen angezeigt werden, hängt vom in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) gewählten **Anbieter** ab – beispielsweise wird **Kostenlos (OpenRouter)** nur angezeigt, wenn der Anbieter OpenRouter ist. Ist der **Anbieter** **Ollama**, listet die Symbolleiste stattdessen Ihre installierten lokalen Modelle anstelle von Voreinstellungen.
 
 Im **Erweitert**-Modus ermöglicht der **Modell-Selektor**, auszuwählen, welche KI-Engine für die aktuelle Aufgabe verwendet werden soll.
 
@@ -556,12 +556,12 @@ Die verfügbaren Tabs hängen von der Plattform und Ihrer Rolle ab:
   | API-Konfiguration       |   ja   |     ja     |         -          |                                              |
   | Über            |   ja   |     ja     |        ja         |                                              |
 
-Im **Einfach**-Modus erfolgt die Modellauswahl über Fertigkeiten in der Symbolleiste und über **Anbieter** in den Allgemeinen Einstellungen; die Registerkarte **Modelle** ist ausgeblendet.
+Im **Einfach**-Modus erfolgt die Modellauswahl über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen; der Reiter **Modelle** ist ausgeblendet.
 
 <br/>
 
 > ℹ️ **HINWEIS**<br/>
-> In der Webversion verfügt jeder Benutzer über eine eigene Konfiguration. Einstellungen wie KI-Erlebnis, Anbieter, ausgewählte Modelle oder Fertigkeiten, Sprachen, allgemeine Optionen und Transformations-Prompts werden pro Benutzer gespeichert. Änderungen, die Sie vornehmen, wirken sich nicht auf andere Benutzer aus.
+> In der Webversion verfügt jeder Benutzer über eine eigene Konfiguration. Einstellungen wie KI-Erlebnis, Anbieter, ausgewählte Modelle oder Voreinstellungen, Sprachen, allgemeine Optionen und Transformationsaufforderungen werden pro Benutzer gespeichert. Änderungen, die Sie vornehmen, wirken sich nicht auf andere Benutzer aus.
 
 <br/>
 
@@ -574,8 +574,8 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Tippverhalten, die Speicherun
 
 **KI-Erlebnis**
 
-- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter nutzen die integrierten Voreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf. Im Einfach-Modus zeigt **Katalog der Voreinstellungen** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Katalog der Voreinstellungen aktualisieren**, um die aktuellste Liste der Fähigkeiten aus dem Projekt-Repository abzurufen (die App prüft dies auch regelmäßig im Hintergrund).
-- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
+- **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Voreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf. Im Einfach-Modus zeigt der **Katalog der Voreinstellungen** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Katalog der Voreinstellungen aktualisieren**, um die aktuellste Liste der Voreinstellungen aus dem Projekt-Repository abzurufen (die App prüft dies auch regelmäßig im Hintergrund).
+- **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
 
 In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment gesetzten API-Schlüsseln ab. In der **Desktop-App** konfigurieren Sie die Schlüssel unter [**API-Konfiguration**](#api-config).
 

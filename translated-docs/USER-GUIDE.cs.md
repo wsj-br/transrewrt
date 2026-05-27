@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:32.249Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:50.656Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: cs
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt vám pomáhá pracovat s textem třemi hlavními způsoby:
 - **Přepsat** – přeformulování textu v odlišném stylu, například jasnějším, stručnějším nebo formálnějším.
 - **Transformovat** – zpracování textu pomocí vlastních pokynů pro umělou inteligenci, které se nazývají prompty.
 
-Aplikace běží ve výchozím nastavení v **Snadném** režimu: vyberete **předvolbu** (například Zdarma (OpenRouter), Lite nebo Technická) a **poskytovatele** v Nastavení, aniž byste vybírali ID modelu. Přepněte na **Pokročilý** v [**Nastavení** > **Obecné nastavení**](#general-settings), pokud chcete klasický seznam modelů z [**Nastavení** > **Modely**](#models).
+Ve výchozím nastavení aplikace běží v režimu **Snadný**: v nabídce [**Nastavení** > **Obecné nastavení**](#general-settings) vyberete **předvolbu** (například Zdarma (OpenRouter), Standardní, Pokročilý nebo Technický) a **poskytovatele**, aniž byste museli vybírat ID modelů. Přepněte na **Pokročilý** režim, pokud chcete klasický seznam modelů dostupný v části [**Nastavení** > **Modely**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Nemusíte vybírat placený model, abyste mohli začít. Jakmile přidáte svůj
 
 Jednoduše řečeno:
 
-- V režimu **Snadný** je **předvolba** přednastavená volba (Zdarma (OpenRouter), Lite, Pokročilý nebo Technický), která se mapuje na model pro vybraného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). Do panelu nástrojů se zobrazí pouze dovednosti, které mají pro aktuálního poskytovatele mapování. Dovednost vybíráte u překladu, přepsání a transformace.
-- V režimu **Pokročilý** je **model** umělá inteligence, kterou vybíráte přímo. ID modelů používají **předponu poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
-- **API klíč** (nebo u Ollama **základní URL**) je způsob, jak aplikace komunikuje s poskytovatelem.
+- V režimu **Snadný** se **předvolba** (Zdarma (OpenRouter), Standardní, Pokročilý nebo Technický) mapuje na model podle zvoleného **poskytovatele** (OpenRouter, OpenAI, Ollama a další). V panelu nástrojů se zobrazí pouze předvolby, které mají pro aktuálního poskytovatele definované mapování. Předvolbu vybíráte při překladu, přepisování a transformaci.
+- V režimu **Pokročilý** je **model** umělou inteligencí, kterou vybíráte přímo. ID modelů používají **předponu poskytovatele** (například `openrouter/…`, `openai/…`, `ollama/…`).
+- **API klíč** (nebo u Ollama **základní URL**) umožňuje aplikaci komunikovat s daným poskytovatelem.
 
 Pokud používáte **desktopovou aplikaci**, přidejte klíče v [**Nastavení** > **Nastavení API**](#api-config) pro každého poskytovatele, kterého používáte. Pro použití pouze s OpenRouterem se podívejte na [Jak získat zdarma OpenRouter API klíč](#how-to-get-a-free-openrouter-api-key-desktop-app) níže. Pokud nechcete používat API klíč, můžete nainstalovat Ollama (z [ollama.com](https://ollama.com)) a místo toho používat místní modely, jako je `translategemma:4b`.
 
@@ -157,7 +157,7 @@ Pokud používáte Transrewrt poprvé, postupujte v tomto pořadí:
 6. Otevřete [**Nastavení** > **Jazyky**](#languages) a vyberte si **Nejčastější jazyky**, pokud chcete, aby se vaše nejpoužívanější jazyky zobrazovaly jako první.
 7. Spusťte jednoduchý překlad, abyste ověřili, že vše funguje, poté zkuste **Přepsat** a **Transformovat**.
 
-Toto pořadí je důležité. Zabraňuje nejčastějšímu problému při prvním použití: spuštění úkolu před tím, než má aplikace funkční připojení přes API nebo vybranou dovednost/model.
+Toto pořadí je důležité. Zabraňuje tak nejčastějšímu problému při prvním použití: spuštění úlohy před tím, než má aplikace funkční API připojení nebo vybranou předvolbu/model.
 
 <br/><br/>
 
@@ -206,10 +206,10 @@ Pomocí postranního panelu se pohybujete v aplikaci. Panel můžete sbalit, aby
 
 Panel nástrojů se mírně liší v závislosti na tom, kde se v aplikaci nacházíte.
 
-- Vlevo se zobrazuje název aktuální stránky.
-- Vpravo se zobrazuje **výběr dovednosti nebo modelu** a ovládání **jazyka rozhraní**.
+- Vlevo zobrazuje název aktuální stránky.
+- Vpravo zobrazuje **výběr předvolby nebo modelu** a ovládání **Jazyka rozhraní**.
 
-V režimu **Snadný** zobrazuje panel nástrojů **výběr předvoleb** s vestavěnými předvolbami **Zdarma (OpenRouter)**, **Lite**, **Pokročilý** a **Technický**. Které předvolby se zobrazí, závisí na **Poskytovateli**, kterého jste vybrali v [**Nastavení** > **Obecné nastavení**](#general-settings) – například **Zdarma (OpenRouter)** se zobrazí pouze, když je poskytovatel nastaven na OpenRouter. Pokud je **Poskytovatel** nastaven na **Ollama**, zobrazí se v panelu nástrojů místo předvoleb vaše nainstalované místní modely.
+V režimu **Snadný** panel nástrojů obsahuje **výběr předvolby** s vestavěnými předvolbami **Zdarma (OpenRouter)**, **Standardní**, **Pokročilý** a **Technický**. Které předvolby se zobrazí, závisí na **poskytovateli**, kterého jste vybrali v části [**Nastavení** > **Obecné nastavení**](#general-settings) – například **Zdarma (OpenRouter)** se zobrazí pouze v případě, že je poskytovatelem OpenRouter. Pokud je **poskytovatelem** **Ollama**, zobrazí panel nástrojů namísto předvoleb modely nainstalované lokálně na vašem počítači.
 
 V režimu **Pokročilý** vám **výběr modelu** umožňuje zvolit, který AI modul použít pro aktuální úkol.
 
@@ -557,12 +557,12 @@ Dostupné karty závisí na platformě a vaší roli:
   | Nastavení API        |   ano   |     ano     |         -          | |
   | O aplikaci             |   ano   |     ano     |        ano         | |
 
-V režimu **Snadný** se výběr modelu provádí prostřednictvím dovedností na panelu nástrojů a **Poskytovatele** v Obecném nastavení; karta **Modely** je skrytá.
+V režimu **Snadný** se výběr modelu provádí prostřednictvím předvoleb v panelu nástrojů a **poskytovatele** v obecném nastavení; karta **Modely** je skrytá.
 
 <br/>
 
 > ℹ️ **POZNÁMKA**<br/>
-> Ve webové verzi má každý uživatel svou vlastní konfiguraci. Nastavení jako AI zkušenost, poskytovatel, vybrané modely nebo dovednosti, jazyky, obecné možnosti a transformační výzvy jsou uloženy pro každého uživatele zvlášť. Změny, které provedete, neovlivní ostatní uživatele.
+> Ve webové verzi má každý uživatel svou vlastní konfiguraci. Nastavení jako AI zkušenost, poskytovatel, vybrané modely nebo předvolby, jazyky, obecné možnosti a transformační výzvy jsou uloženy pro každého uživatele zvlášť. Změny, které provedete, nemají vliv na ostatní uživatele.
 
 <br/>
 
@@ -575,7 +575,7 @@ Použijte **Obecné nastavení** k ovládání chování při psaní, zda jsou u
 
 **AI zkušenost**
 
-- **Snadný** (výchozí): vyberte si **Poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají vestavěné předvolby v panelu nástrojů. **Ollama** zobrazuje místo předvoleb modely nainstalované na vašem počítači. V režimu Snadný zobrazuje **Katalog předvoleb** verzi katalogu a čas poslední aktualizace; kliknutím na **Obnovit katalog předvoleb** načtete nejnovější seznam dovedností z úložiště projektu (aplikace jej pravidelně kontroluje i na pozadí).
+- **Snadný** (výchozí): vyberte **poskytovatele** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras nebo Ollama). Cloudoví poskytovatelé používají vestavěné předvolby v panelu nástrojů. **Ollama** místo předvoleb zobrazuje modely nainstalované na vašem počítači. V režimu Snadný ukazuje **Katalog předvoleb** verzi katalogu a čas poslední aktualizace; kliknutím na **Obnovit katalog předvoleb** načtete nejnovější seznam předvoleb z úložiště projektu (aplikace pravidelně kontroluje aktualizace i na pozadí).
 - **Pokročilý**: vybírejte jednotlivé modely v panelu nástrojů; spravujte seznam v části [**Nastavení** > **Modely**](#models).
 
 Ve **webové aplikaci** závisí, které poskytovatele vidíte, na nastavených klíčích API v prostředí serveru. V **desktopové aplikaci** nakonfigurujte klíče v části [**Nastavení API**](#api-config).

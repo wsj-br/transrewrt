@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:25.108Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:53.402Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: hu
 source_file_path: README.md
 translation_models:
@@ -26,10 +26,10 @@ Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nye
 - **Átírás** – helyesírás-javítás, tisztaság javítása, formális/formálisabb stílus, rövidítés, bővítés, technikai szöveg
 - **Átalakítás** – egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelv parancsonként
 - **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
-- **Egyszerű és Haladó** - Egyszerű mód (alapértelmezett): válogatott készségek szolgáltatónként (**Ingyenes (OpenRouter)**, **Lite**, **Haladó**, **Műszaki**; csak a kiválasztott szolgáltatóhoz tartozó készségek jelennek meg) modellazonosítók kiválasztása nélkül; Haladó mód: teljes modell lista a konfigurált szolgáltatóktól
+- **Egyszerű és Haladó** - Egyszerű mód (alapértelmezett): gondosan válogatott előbeállítások szolgáltatónként (**Ingyenes (OpenRouter)**, **Standard**, **Haladó**, **Műszaki**; csak a kiválasztott szolgáltatóhoz tartozó előbeállítások jelennek meg) modellazonosítók kiválasztása nélkül; Haladó mód: teljes modell lista a konfigurált szolgáltatóidtól
 - **Modellek és költség** - költség- és használati irányítópultok (Összegzés, Modell szerint, Összes hívás) exportálással; az OpenRouter a tényleges kiadásokat mutatja, más szolgáltatók becsléseket használnak
 - **Felhasználói felület** - többnyelvű felület (30+ nyelv, RTL támogatás), betűtípusok, ...
-- **Web mód** - többfelhasználós támogatás adminisztrátori szerepkörökkel
+- **Web mód** - többfelhasználós támogatás adminisztrátori szerepekkel
 - **Asztali alkalmazás** - Electron alkalmazás Windows és Linux rendszerekhez
 - **Saját kiszolgálón futtatható** - Docker kép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
 

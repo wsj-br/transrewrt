@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:27.584Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:55.448Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: it
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ Strumento testuale basato su AI: traduci tra lingue, riscrivi in stili diversi e
 - **Riscrivi** - correggi grammatica, migliora chiarezza, registro formale/informale, accorcia, espandi, tecnico
 - **Trasforma** - prompt personalizzati con intelligenza artificiale; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
 - **Cronologia** - cronologia completa delle esecuzioni con testo in input/output, filtri ed esportazione
-- **Facile e Avanzato** - Modalità Facile (predefinita): competenze selezionate per provider (**Gratuito (OpenRouter)**, **Lite**, **Avanzato**, **Tecnico**; vengono mostrate solo le competenze con un mapping per il provider selezionato) senza dover scegliere gli ID del modello; Modalità Avanzata: elenco completo dei modelli dai provider configurati
+- **Facile e Avanzato** - Modalità Facile (predefinita): preset selezionati per provider (**Gratuito (OpenRouter)**, **Standard**, **Avanzato**, **Tecnico**; vengono mostrati solo i preset con un mapping per il provider selezionato), senza dover scegliere gli ID dei modelli; Modalità Avanzata: elenco completo dei modelli dai provider configurati
 - **Modelli e costo** - dashboard su costi e utilizzo (Riepilogo, Per modello, Tutte le chiamate) con funzione di esportazione; OpenRouter mostra la spesa effettiva, per gli altri provider vengono usate stime
-- **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), caratteri tipografici, ...
-- **Modalità Web** - supporto multi-utente con ruoli di amministratore
+- **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), tipi di carattere, ...
+- **Modalità web** - supporto multi-utente con ruoli di amministratore
 - **Desktop** - App Electron per Windows e Linux
 - **Self-hosted** - Immagine Docker per amd64 e arm64 (pronta per Raspberry Pi)
 

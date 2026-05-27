@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:13.881Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:51.251Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: en-US
 source_file_path: README.md
 translation_models:
@@ -25,7 +25,7 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export
-- **Easy & Advanced** - Easy mode (default): curated skills per provider (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; only skills with a mapping for the selected provider appear) without picking model IDs; Advanced mode: full model list from your configured providers
+- **Easy & Advanced** - Easy mode (default): curated presets per provider (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; only presets with a mapping for the selected provider appear) without picking model IDs; Advanced mode: full model list from your configured providers
 - **Models & cost** - cost and usage dashboards (Summary, By Model, All Calls) with export; OpenRouter shows actual spend, other providers use estimates
 - **UI** - multilingual interface (30+ languages, RTL support), fonts, ...
 - **Web mode** - multi-user support with admin roles

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:52.631Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:59.012Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: jv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt mbantu sampeyan ngolah tèks kanthi telung cara utama:
 - **Tulis ulang** - nulis maneh tèks nganggo gaya sing beda, kaya luwih cetha, luwih cendhak, utawa luwih resmi.
 - **Ubah** - ngolah tèks nganggo instruksi AI khusus sing diarani prompt.
 
-Secara standar aplikasi dijalanake ing modus **Gampang**: sampeyan milih **preset** (contone Gratis (OpenRouter), Ringan, utawa Teknis) lan **panyedhiya** ing Setelan, tanpa milih ID model. Pindah menyang **Lanjutan** ing [**Setelan** > **Setelan Umum**](#general-settings) yen sampeyan pengin daftar model klasik saka [**Setelan** > **Model**](#models).
+Secara baku, aplikasi dijalanake ing modus **Gampang**: sampeyan milih **preset** (contone Gratis (OpenRouter), Standar, Lanjutan, utawa Teknis) lan **panyedhiya** ing Setelan, tanpa milih ID model. Pindha menyang **Lanjutan** ing [**Setelan** > **Setelan Umum**](#general-settings) yen sampeyan pengin daftar model klasik saka [**Setelan** > **Model**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Sampeyan ora kudu milih model bayar kanggo miwiti. Sawisé sampeyan nambahaké k
 
 Ing basa sing luwih gampang:
 
-- Ing modus **Gampang**, **preset** iku preset (Gratis (OpenRouter), Ringan, Lanjutan, utawa Teknis) sing dikaitake karo model kanggo **panyedhiya** sing dipilih (OpenRouter, OpenAI, Ollama, lan liya-liyane). Mung keterampilan sing duwe peta kanggo panyedhiya saiki sing katon ing toolbar. Sampeyan milih keterampilan ing Terjemahake, Tulis Ulang, lan Ubah.
-- Ing modus **Lanjutan**, **model** iku mesin AI sing langsung dipilih. ID model nggunakake **prefiks panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
-- **Kunci API** (utawa, kanggo Ollama, **URL dhasar**) iku cara aplikasi ngakses panyedhiya kasebut.
+- Ing modus **Gampang**, sawijining **preset** (Gratis (OpenRouter), Standar, Lanjutan, utawa Teknis) dikaitake karo model kanggo **panyedhiya** sing dipilih (OpenRouter, OpenAI, Ollama, lan liya-liyane). Mung preset sing duwe peta kanggo panyedhiya saiki sing katon ing toolbar. Sampeyan milih preset nalika Terjemahake, Tulis Ulang, lan Ubah.
+- Ing modus **Lanjutan**, sawijining **model** yaiku mesin AI sing langsung dipilih. ID model nggunakake **prefiks panyedhiya** (contone `openrouter/…`, `openai/…`, `ollama/…`).
+- Sawijining **kunci API** (utawa, kanggo Ollama, **URL dhasar**) yaiku cara aplikasi ngakses panyedhiya kasebut.
 
 Yen sampeyan nggunakake **aplikasi desktop**, tambahake kunci ing [**Setelan** > **Konfigurasi API**](#api-config) kanggo saben panyedhiya sing digunakake. Kanggo panggunaan mung OpenRouter, deleng [Carane entuk kunci API OpenRouter gratis](#how-to-get-a-free-openrouter-api-key-desktop-app) ing ngisor iki. Yen sampeyan ora pengin nggunakake kunci API, sampeyan bisa nginstal Ollama (saka [ollama.com](https://ollama.com)) lan nggunakake model lokal tinimbang, kaya `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Yen iki wektu pisanan sampeyan nggunakaké Transrewrt, tindakaké urutan iki:
 6. Buka [**Setelan** > **Basa**](#languages) lan pilih **Basa utama** sampeyan yen pengin basa sing paling asring digunakake katon dhisik.
 7. Jalanake terjemahan sederhana kanggo mastekake kabeh fungsi mlaku kanthi bener, banjur coba **Tulis Ulang** lan **Ubah**.
 
-Urutan iki penting. Iki nyegah masalah paling umum nalika nggunakake pertama kali: nyoba nglakokake tugas sadurunge aplikasi duwe koneksi API sing bisa digunakake utawa ketrampilan/model sing dipilih.
+Urutan iki penting. Iki nyegah masalah paling umum nalika nggunakake pertama kali: nyoba nglakokake tugas sadurunge aplikasi duwe sambungan API sing bisa digunakake utawa preset/model sing dipilih.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Gunakake sidebar kanggo pindah ing app. Sampeyan bisa nutup sidebar kanggo entuk
 Toolbar owah kanthi tipis gumantung saka lokasi sampeyan ing app.
 
 - Ing kiwa, nuduhake jeneng kaca saiki.
-- Ing tengen, nuduhake **pemilih ketrampilan utawa model** lan kontrol **Basa antarmuka**.
+- Ing tengen, nuduhake **pemilih preset utawa model** lan kontrol **Basa antarmuka**.
 
-Ing modus **Gampang**, toolbar nuduhake **pemilih preset** kanthi preset sing wis diintegrasikake yaiku **Gratis (OpenRouter)**, **Ringan**, **Lanjutan**, lan **Teknis**. Prakiraan sing katon gumantung marang **Panyedhiya** sing dipilih ing [**Setelan** > **Setelan Umum**](#general-settings)—contone, **Gratis (OpenRouter)** mung katon nalika panyedhiyane yaiku OpenRouter. Yen **Panyedhiya** yaiku **Ollama**, toolbar nuduhake model lokal sing wis diinstal tinimbang preset.
+Ing modus **Gampang**, toolbar nuduhake **pemilih preset** kanthi preset sing wis diintegrasikake yaiku **Gratis (OpenRouter)**, **Standar**, **Lanjutan**, lan **Teknis**. Preset apa wae sing katon gumantung marang **Panyedhiya** sing dipilih ing [**Setelan** > **Setelan Umum**](#general-settings)—contone, **Gratis (OpenRouter)** mung katon nalika panyedhiyane yaiku OpenRouter. Yen **Panyedhiya** yaiku **Ollama**, toolbar nuduhake model lokal sing wis diinstal tinimbang preset.
 
 Ing modus **Lanjutan**, **pemilih model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
 
@@ -556,12 +556,12 @@ Tab sing tersedia gumantung marang platform lan peran sampeyan:
   | Konfigurasi API       |   ya   |     ya     |         -          |                                              |
   | Tentang            |   ya   |     ya     |        ya         |                                              |
 
-Ing modus **Easy**, pilihan model dilakoni liwat ketrampilan ing toolbar lan **Panyedhiya** ing Setelan Umum; tab **Model** disembunyikake.
+Ing modus **Gampang**, pilihan model dilakokake liwat preset ing toolbar lan **Panyedhiya** ing Setelan Umum; tab **Model** disembunyikan.
 
 <br/>
 
 > ℹ️ **CATETAN**<br/>
-> Ing versi web, saben pangguna duwe konfigurasi dhéwé. Setelan kaya pengalaman AI, panyedhiya, model utawa ketrampilan sing dipilih, basa, opsi umum, lan prompt transformasi disimpen saben pangguna. Owah-owahan sing ditindakake ora mangaruhi pangguna liya.
+> Ing versi web, saben pangguna duwe konfigurasi dhewe. Setelan kaya Pengalaman AI, panyedhiya, model utawa preset sing dipilih, basa, pilihan umum, lan prompt transformasi disimpen saben pangguna. Pangalihan sing ditindakake ora mangaruhi pangguna liya.
 
 <br/>
 
@@ -574,8 +574,8 @@ Gunakake **Setelan Umum** kanggo ngontrol perilaku ngetik, apa rincian eksekusi 
 
 **Pengalaman AI**
 
-- **Gampang** (standar): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya awan nggunakake preset sing diintegrasikake ing toolbar. **Ollama** nuduhake model sing diinstal ing mesin sampeyan tinimbang preset. Ing modus Gampang, **Katalog preset** nuduhake versi katalog lan wektu pembaruan pungkasan; klik **Nganyari katalog preset** kanggo njupuk dhaptar keterampilan paling anyar saka repositori proyek (aplikasi uga mriksa kanthi periodik ing mburine). 
-- **Lanjutan**: pilih model dhewe-dhewe ing toolbar; atur dhaptar ing ngisor [**Setelan** > **Model**](#models).
+- **Gampang** (baku): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya awan nggunakake preset sing diintegrasikake ing toolbar. **Ollama** nuduhake model sing diinstal ing mesin sampeyan tinimbang preset. Ing modus Gampang, **Katalog preset** nuduhake versi katalog lan wektu pembaruan pungkasan; klik **Nganyari katalog preset** kanggo njupuk daftar preset paling anyar saka repositori proyek (aplikasi uga mriksa kanthi periodik ing mburine). 
+- **Lanjutan**: pilih model dhewe-dhewe ing toolbar; atur daftar ing [**Setelan** > **Model**](#models).
 
 Ing **aplikasi web**, panyedhiya sing katon gumantung marang kunci API sing disetel ing lingkungan server. Ing **aplikasi desktop**, atur kunci ing [**Konfigurasi API**](#api-config).
 

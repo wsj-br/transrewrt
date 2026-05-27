@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:51.733Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:12:03.121Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: sw
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt unakusaidia kufanya kazi na maandishi kwa njia tatu kuu:
 - **Andika upya** - andika upya maandishi kwa mtindo tofauti, kama vile wazi zaidi, fupi zaidi, au rasmi zaidi.
 - **Badilisha** - usimamizi wa maandishi kwa kutumia maelekezo maalum ya AI yanayoitwa manukuu.
 
-Kwa chaguomsingi, programu inatumia **Rahisi** namweo: unachagua **vitanzandiko** (kama vile Bure (OpenRouter), Kibaya, au Teknolojia) na **mtoa huduma** katika Mipangilio, bila kuchagua vitambulisho vya mfumo. Badilisha kwenda **Ubinafsi** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ikiwa unataka orodha ya kawaida ya mifano kutoka [**Mipangilio** > **Mifano**](#models).
+Kwa chaguo-msingi, programu inatumia **Rahisi** namweo: unachagua **vitanzandiko** (kwa mfano Bure (OpenRouter), Kawaida, Ubinafsi, au Teknikali) na **mtoa huduma** katika Mipangilio, bila kuchagua ID za mfumo. Badilisha kwenda **Ubinafsi** katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings) ikiwa unataka orodha ya kihistoria ya mifumo kutoka [**Mipangilio** > **Mifano**](#models).
 
 <br/>
 
@@ -116,8 +116,8 @@ Hauhitaji kuchagua mfumo wa malipo ili kuanza. Mara tu unapoweka ujuzi wako wa O
 
 Kwa maneno rahisi:
 
-- Katika njia ya **Rahisi**, **vitanzandiko** ni vitanzandiko (Bure (OpenRouter), Birika, Ubinafsi, au Teknolojia) ambavyo vinahusishwa na mfumo kwa ajili ya **mtoa huduma** ulichochagua (OpenRouter, OpenAI, Ollama, na wengine). Kipengele tu ambacho kina uhusiano na mtoa huduma unao tumia kinaonekana kwenye barua pepe. Unachagua kipengele cha Tafsiri, Andika upya, na Badilisha.
-- Katika njia ya **Ubinafsi**, **mfumo** ni injini ya AI unayochagua moja kwa moja. Kitambulisho cha mfumo kina **kibichi cha mtoa huduma** (kama mfano `openrouter/…`, `openai/…`, `ollama/…`).
+- Katika njia ya **Rahisi**, **vitanzandiko** (Bure (OpenRouter), Kikweli, Ubinafsi, au Teknolojia) inahusishwa na mfumo kwa **mtoa huduma** ulichochagua (OpenRouter, OpenAI, Ollama, na wengine). Tu vitanzandiko ambavyo vina uhusiano na mtoa huduma wa sasa vinavyotazamia kwenye barua za kizazi. Unachagua vitanzandiko kwenye Tafsiri, Andika upya, na Badilisha.
+- Katika njia ya **Ubinafsi**, **mfumo** ni injini ya AI unayochagua moja kwa moja. Kitambulisho cha mfumo kina **ufupisho wa mtoa huduma** (kama mfano `openrouter/…`, `openai/…`, `ollama/…`).
 - **Ufunguo wa API** (au, kwa ajili ya Ollama, **URL ya msingi**) ni njia ambavyo programu inapata mtoa huduma huyo.
 
 Ikiwa unatumia **programu ya mezani**, ongeza funguo katika [**Mipangilio** > **Mipangilio ya API**](#api-config) kwa kila mtoa huduma unayotumia. Kwa matumizi ya OpenRouter pekee, tazama [Jinsi ya kupata funguo la API la OpenRouter bila malipo](#how-to-get-a-free-openrouter-api-key-desktop-app) chini. Ikiwa hutaki kutumia funguo la API, unaweza kusakinisha Ollama (kutoka [ollama.com](https://ollama.com)) na kutumia mifano ya wahali badala, kama vile `translategemma:4b`.
@@ -156,7 +156,7 @@ Ikiwa ni mara ya kwanza unayotumia Transrewrt, fuata mpangilio huu:
 6. Fungua [**Mipangilio** > **Lugha**](#languages) na chagua **Lugha zako zilizopendwa** ikiwa unataka kuwa zile zinazotumika mara kwa mara zionekane kwanza.
 7. Fanya tafsiri rahisi ili kuthibitisha kila kitu kinavyofanya kazi, kisha jaribu **Andika upya** na **Badilisha**.
 
-Mpangilio huu una maana. Unaondoa tatizo la kawaida zaidi la watumiaji wapya: kujaribu kutekeleza kazi kabla ya programu kupata muunganisho wa API unaofanya kazi au kabla ya kuchagua ujuzi/mfumo.
+Mpangilio huu una maana. Unauzuia tatizo la kawaida la matumizi ya kwanza: kujaribu kutekeleza kazi kabla programu iko na muunganisho wa API unaofanya kazi au vitanzandiko/mfumo umechaguliwa.
 
 <br/><br/>
 
@@ -205,10 +205,10 @@ Tumia upau wa kando ili kuhamia kati ya programu. Unaweza kuficha upau wa kando 
 
 Barua za zana zinabadilika kidogo kulingana na unapokuwa ndani ya programu.
 
-- Upande wa kushoto, unaonesha jina la ukurasa wa sasa.
-- Upande wa kulia, unaonesha kudhibiti **kuchagua ujuzi au mfumo** na kudhibiti **Lugha ya kuingiza**.
+- Upande wa kushoto, inaonyesha jina la ukurasa wa sasa.
+- Upande wa kulia, inaonyesha kichagua **vitanzandiko au mfumo** na kitendaji cha **Lugha ya kuingiza**.
 
-Katika namweo la **Rahisi**, barua za kushirikiana inaonyesha **kichagua vitanzandiko** kinachojumuisha vitanzandiko vilivyojengwa ndani **Bure (OpenRouter)**, **Kibaya**, **Ubinafsi**, na **Teknolojia**. Vitanzandiko vinavyoonekana vinategemea **Mtoa huduma** uliochaguliwa katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)—kwa mfano, **Bure (OpenRouter)** inaonyeshwa tu ikiwa mtoa huduma ni OpenRouter. Ikiwa **Mtoa huduma** ni **Ollama**, barua inaonyesha mifano uliyoweka kwenye kifaa chako badala ya vitanzandiko.
+Katika namweo la **Rahisi**, barua pepe inaonyesha kichagua cha **vitanzandiko** kinachojumuisha vitanzandiko vilivyowekwa **Bure (OpenRouter)**, **Kawaida**, **Ubinafsi**, na **Teknikali**. Vitanzandiko vinavyotazamika vinategemea **Mtoa huduma** uliochaguliwa katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)—kwa mfano, **Bure (OpenRouter)** inatazamika tu ikiwa mtoa huduma ni OpenRouter. Ikiwa **Mtoa huduma** ni **Ollama**, barua pepe inaonyesha mifumo uliyowekwa wahali badala ya vitanzandiko.
 
 Katika namweo la **Ubinafsi**, **kudhibiti cha mfumo** kukuwezesha kuchagua injini gani ya AI utakayotumia kwa kazi ya sasa.
 
@@ -556,12 +556,12 @@ Vidole vilivyonapatikana vinategemea jukwaa na jukumu lako:
   | Mipangilio ya API       |   ndio   |     ndio     |         -          |                                              |
   | Kuhusu            |   ndio   |     ndio     |        ndio         |                                              |
 
-Katika njia ya **Rahisi**, kuchagua mfumo hutokea kupitia ujuzi katika barua pepe na **Mtoa huduma** katika Mipangilio ya Kawaida; kichupo cha **Mifano** kimefichwa.
+Katika namweo la **Rahisi**, uteuzi wa mfumo unafanyika kupitia vitanzandiko kwenye barua pepe na **Mtoa huduma** katika Mipangilio ya Kawaida; lebo ya **Mifano** imefichwa.
 
 <br/>
 
-> ℹ️ **KODI**<br/>
-> Katika toleo la wavuti, kila mtumiaji ana mipangilio yake mwenyewe. Mipangilio kama vile uzoefu wa AI, mtoa huduma, mifumo au ujuzi iliyochaguliwa, lugha, chaguo la kawaida, na maagizo ya ubadilishaji yanahifadhiwa kwa kila mtumiaji. Mabadiliko unayofanya hayathiri watumiaji wengine.
+> ℹ️ **TANGAZO**<br/>
+> Katika toleo la wavuti, kila mtumiaji ana mpangilio wake. Mipangilio kama vile uzoefu wa AI, mtoa huduma, mifumo au vitanzandiko vilivyochaguliwa, lugha, chaguo za kawaida, na maagizo ya ubadilishaji yanahifadhiwa kwa kila mtumiaji. Mabadiliko unayofanya hayathiri watumiaji wengine.
 
 <br/>
 
@@ -574,8 +574,8 @@ Tumia **Mipangilio ya Kawaida** kupitia tabia ya kuandika, kama taarifa za uteke
 
 **Uzoefu wa AI**
 
-- **Rahisi** (chaguomsingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Watoa huduma wa mawingu hutumia vitanzandiko vilivyojengwa ndani kwenye barua za kushirikiana. **Ollama** inaonyesha mifano uliyoweka kwenye kifaa chako badala ya vitanzandiko. Katika namweo la Rahisi, **Orodha ya vitanzandiko** inaonyesha toleo la orodha na wakati wa sasisho la mwisho; bonyeza **Sasisha orodha ya vitanzandiko** kupokea orodha ya kipengele kisichopitwa kutoka hazina ya mradi (programu pia inachunguza kwa muda mfupi kwa usimamizi).
-- **Ubinafsi**: chagua mifano moja kwa moja kwenye barua za kushirikiana; usimamie orodha chini ya [**Mipangilio** > **Mifano**](#models).
+- **Rahisi** (chaguo-msingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Watoa huduma wa mawingu wanatumia vitanzandiko vilivyowekwa kwenye barua pepe. **Ollama** inaonyesha mifumo iliyosakinishwa kwenye kifaa chako badala ya vitanzandiko. Katika namweo la Rahisi, **Orodha ya vitanzandiko** inaonyesha toleo la orodha na wakati wa sasisho la mwisho; bofya **Sasisha orodha ya vitanzandiko** kupokea orodha ya hivi karibuni ya vitanzandiko kutoka kwenye hazina ya mradi (programu pia inachunguza kwa muda wa muda wa nyuma). 
+- **Ubinafsi**: chagua mifumo moja kwa moja kwenye barua pepe; usimamie orodha chini ya [**Mipangilio** > **Mifano**](#models).
 
 Katika **programu ya wavuti**, matoa yanayotazamika yanategemea bango la API zilizowekwa katika mazingira ya seva. Katika **programu ya kompyuta**, weka bango kwenye [**Mipangilio ya API**](#api-config).
 

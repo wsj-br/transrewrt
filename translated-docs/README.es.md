@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:13.654Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:12:01.623Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: es
 source_file_path: README.md
 translation_models:
@@ -25,8 +25,8 @@ Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes esti
 - **Reescribir** - corregir gramática, mejorar claridad, estilo formal/informal, acortar, ampliar, contenido técnico
 - **Transformar** - prompts personalizados de IA; crear y gestionar prompts, idioma de destino opcional por prompt
 - **Historial** - historial completo de ejecuciones con texto de entrada/salida, filtros y exportación
-- **Fácil y Avanzado** - Modo Fácil (predeterminado): habilidades seleccionadas por proveedor (**Gratis (OpenRouter)**, **Lite**, **Avanzado**, **Técnico**; solo aparecen habilidades con mapeo para el proveedor seleccionado) sin necesidad de elegir IDs de modelo; Modo Avanzado: lista completa de modelos de tus proveedores configurados
-- **Modelos y costo** - paneles de costo y uso (Resumen, Por modelo, Todas las llamadas) con opción de exportación; OpenRouter muestra el gasto real, otros proveedores usan estimaciones
+- **Fácil y Avanzado** - Modo Fácil (predeterminado): ajustes preestablecidos seleccionados por proveedor (**Gratis (OpenRouter)**, **Estándar**, **Avanzado**, **Técnico**; solo aparecen los preajustes con una asignación para el proveedor seleccionado) sin necesidad de elegir IDs de modelos; Modo Avanzado: lista completa de modelos de tus proveedores configurados
+- **Modelos y costo** - paneles de costos y uso (Resumen, Por modelo, Todas las llamadas) con opción de exportación; OpenRouter muestra el gasto real, otros proveedores usan estimaciones
 - **Interfaz de usuario (UI)** - interfaz multilingüe (más de 30 idiomas, soporte RTL), fuentes, ...
 - **Modo web** - soporte multiusuario con roles de administrador
 - **Escritorio** - Aplicación Electron para Windows y Linux

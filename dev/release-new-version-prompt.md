@@ -1,4 +1,4 @@
-Create a new release notes file `dev/RELEASE-NOTES-v<x.y.z>.md` for **Transrewrt** using the instructions below. This supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR).
+Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **Transrewrt** using the instructions below. This file is used by [`scripts/release.sh`](../scripts/release.sh) (`pnpm run release:github`) and supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR).
 
 **Before you start:** run checks that mirror what CI runs before packaging:
 
@@ -15,7 +15,7 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
 2. After bumping `version` in `package.json`, run **`pnpm update-version`** so the README version badge and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
 3. **Open `dev/CHANGELOG.md`.**
 4. **Copy all entries under `## Unreleased`** up to (but not including) the next `## [` heading (the previous shipped version).
-5. **Format the new file** to match the newest existing notes under `dev/`, e.g. [`dev/RELEASE-NOTES-v1.1.1.md`](RELEASE-NOTES-v1.1.1.md):
+5. **Format the new file** to match the newest existing notes under [`release-notes/`](../release-notes/), e.g. [`release-notes/RELEASE-NOTES-v1.1.1.md`](../release-notes/RELEASE-NOTES-v1.1.1.md) (legacy naming) or prior `RELEASE_NOTES_*.md` files:
    - Optional first line: `<!-- DOCTOC SKIP -->`
    - Title: `# Transrewrt <version> - Release Notes`
    - **Release date:** `YYYY-MM-DD` (use the authoritative “today” from context when running this task)
@@ -27,7 +27,7 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
      - [README](../README.md) — overview, installation, quick start  
      - [USER-GUIDE](../USER-GUIDE.md) — full feature walkthrough  
      - Optional: [dev/SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md), [dev/DEVELOPMENT.md](DEVELOPMENT.md), [dev/i18n.md](i18n.md) when this release materially touches architecture, dev setup, or translations  
-   - **`## Disclaimer`** — Same product-names disclaimer as in [`RELEASE-NOTES-v1.1.1.md`](RELEASE-NOTES-v1.1.1.md).
+   - **`## Disclaimer`** — Same product-names disclaimer as in [`release-notes/RELEASE-NOTES-v1.1.1.md`](../release-notes/RELEASE-NOTES-v1.1.1.md).
    - **`## License`** — Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](../LICENSE) as in prior release notes.
    - Closing thank-you line optional, matching prior tone.
    - Do **not** paste the raw `[Unreleased]` changelog verbatim as the only content; synthesize highlights first. You may add a **detailed changelog subsection** (or collapsible summary) if useful for power users.
@@ -35,7 +35,7 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
    - Move everything from `[Unreleased]` into **`## [x.y.z] - YYYY-MM-DD`** (today’s date).
    - Leave an empty **`## Unreleased`** section at the top for future work.
 
-**Example shape** (adapt section headings to match the latest `dev/RELEASE-NOTES-v*.md`):
+**Example shape** (adapt section headings to match the latest release notes under `release-notes/`):
 
 ```markdown
 <!-- DOCTOC SKIP -->
@@ -73,4 +73,4 @@ Published builds are on the GitHub **Releases** page for this tag (Windows insta
 *Thank you for using Transrewrt.*
 ```
 
-**Summary:** Produce `dev/RELEASE-NOTES-v<x.y.z>.md` in the same style as existing Transrewrt release notes, fold `CHANGELOG` `[Unreleased]` into the new version section, and leave the changelog ready for the next iteration.
+**Summary:** Produce `release-notes/RELEASE_NOTES_<x.y.z>.md` in the same style as existing Transrewrt release notes, fold `CHANGELOG` `[Unreleased]` into the new version section, and leave the changelog ready for the next iteration. After merge to `main`, publish with `pnpm run release:github:dry` then `pnpm run release:github` (see [DEVELOPMENT.md](DEVELOPMENT.md#publish-the-github-release-releasegithub)).

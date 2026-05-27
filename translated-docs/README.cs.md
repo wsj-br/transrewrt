@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:00.411Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:49.237Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: cs
 source_file_path: README.md
 translation_models:
@@ -26,8 +26,8 @@ Nástroj pro text s využitím umělé inteligence: překládání mezi jazyky, 
 - **Přepsat** – oprava gramatiky, zlepšení srozumitelnosti, formální/neformální styl, zkrácení, rozšíření, technický obsah
 - **Transformovat** – vlastní výzvy AI; vytváření a správa výzev, volitelný cílový jazyk pro každou výzvu
 - **Historie** – kompletní historie spuštění s vstupním a výstupním textem, filtrováním a exportem
-- **Snadný & Pokročilý** - Snadný režim (výchozí): vybrané dovednosti podle poskytovatele (**Zdarma (OpenRouter)**, **Lite**, **Pokročilý**, **Technický**; zobrazí se pouze dovednosti, které mají mapování pro vybraného poskytovatele) bez nutnosti výběru ID modelu; Pokročilý režim: kompletní seznam modelů od nakonfigurovaných poskytovatelů
-- **Modely a náklady** - přehledy nákladů a využití (Souhrn, Podle modelu, Všechny volání) s možností exportu; OpenRouter zobrazuje skutečné výdaje, u ostatních poskytovatelů jsou použity odhady
+- **Snadný & Pokročilý** - Snadný režim (výchozí): vybrané předvolby podle poskytovatele (**Zdarma (OpenRouter)**, **Standardní**, **Pokročilý**, **Technický**; zobrazí se pouze předvolby s mapováním pro vybraného poskytovatele) bez výběru ID modelů; Pokročilý režim: kompletní seznam modelů z vašich nakonfigurovaných poskytovatelů
+- **Modely & náklady** - přehledy nákladů a využití (Souhrn, Podle modelu, Všechny volání) s možností exportu; OpenRouter zobrazuje skutečné výdaje, u ostatních poskytovatelů jsou použity odhady
 - **Uživatelské rozhraní (UI)** - vícejazyčné rozhraní (30+ jazyků, podpora RTL), písma, ...
 - **Webový režim** - podpora více uživatelů s rolemi správce
 - **Desktop** - Electron aplikace pro Windows a Linux

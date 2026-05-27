@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:16.977Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:51.288Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: fr
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans diff
 - **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
 - **Transformer** - invites personnalisées par IA ; créer et gérer des invites, langue cible facultative par invite
 - **Historique** - historique complet des exécutions avec texte d'entrée/de sortie, filtres et exportation
-- **Facile et Avancé** - Mode Facile (par défaut) : compétences sélectionnées par fournisseur (**Gratuit (OpenRouter)**, **Lite**, **Avancé**, **Technique** ; seules les compétences avec une correspondance pour le fournisseur sélectionné sont affichées), sans avoir à choisir les identifiants de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
+- **Facile et Avancé** - Mode Facile (par défaut) : préréglages sélectionnés par fournisseur (**Gratuit (OpenRouter)**, **Standard**, **Avancé**, **Technique** ; seuls les préréglages avec une correspondance pour le fournisseur sélectionné s'affichent), sans sélection d'ID de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
 - **Modèles et coût** - tableaux de bord de coût et d'utilisation (Résumé, Par modèle, Tous les appels) avec fonction d'exportation ; OpenRouter affiche les dépenses réelles, les autres fournisseurs utilisent des estimations
 - **Interface utilisateur (UI)** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
-- **Mode web** - prise en charge multi-utilisateurs avec rôles d'administrateur
+- **Mode Web** - prise en charge multi-utilisateur avec rôles d'administrateur
 - **Bureau** - Application Electron pour Windows et Linux
 - **Auto-hébergé** - Image Docker pour amd64 et arm64 (prêt à l'emploi sur Raspberry Pi)
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:08.477Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:12:01.012Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: ro
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt vă ajută să lucrați cu textul în trei moduri principale:
 - **Rescriere** - reformulați textul într-un alt stil, cum ar fi mai clar, mai scurt sau mai formal.
 - **Transformare** - procesați textul utilizând instrucțiuni personalizate de inteligență artificială numite prompturi.
 
-În mod implicit, aplicația rulează în modul **Ușor**: alegeți un **preset** (de exemplu Gratuit (OpenRouter), Lite sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
+În mod implicit, aplicația rulează în modul **Ușor**: alegeți un **preset** (de exemplu Gratuit (OpenRouter), Standard, Avansat sau Tehnic) și un **furnizor** în Setări, fără a alege ID-uri de model. Comutați la **Avansat** în [**Setări** > **Setări generale**](#general-settings) dacă doriți lista clasică de modele din [**Setări** > **Modele**](#models).
 
 <br/>
 
@@ -116,8 +116,8 @@ Nu este necesar să selectați un model plătit pentru a începe. Imediat ce ad�
 
 În termeni simpli:
 
-- În modul **Ușor**, un **preset** este un preset (Gratuit (OpenRouter), Lite, Avansat sau Tehnic) care corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Doar abilitățile care au o corespondență pentru furnizorul curent apar în bara de instrumente. Alegeți abilitatea la Traducere, Rescriere și Transformare.
-- În modul **Avansat**, un **model** este motorul AI pe care îl alegeți direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
+- În modul **Ușor**, un **preset** (Gratuit (OpenRouter), Standard, Avansat sau Tehnic) corespunde unui model pentru **furnizorul** ales (OpenRouter, OpenAI, Ollama și alții). Doar presetele care au o asociere pentru furnizorul curent apar în bara de instrumente. Alegeți presetul pentru Traducere, Rescriere și Transformare.
+- În modul **Avansat**, un **model** este motorul AI pe care îl selectați direct. ID-urile modelelor folosesc un **prefix furnizor** (de exemplu `openrouter/…`, `openai/…`, `ollama/…`).
 - O **cheie API** (sau, pentru Ollama, o **URL de bază**) este modul în care aplicația accesează acel furnizor.
 
 Dacă utilizați **aplicația desktop**, adăugați cheile în [**Setări** > **Configurare API**](#api-config) pentru fiecare furnizor pe care îl folosiți. Pentru utilizare exclusivă OpenRouter, consultați mai jos [Cum obțineți o cheie API gratuită OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Dacă nu doriți să folosiți o cheie API, puteți instala Ollama (de la [ollama.com](https://ollama.com)) și utiliza modele locale în schimb, cum ar fi `translategemma:4b`.
@@ -156,7 +156,7 @@ Dacă este prima dată când utilizați Transrewrt, urmați această ordine:
 6. Deschideți [**Setări** > **Limbi**](#languages) și alegeți **Limbi principale** dacă doriți ca limbile dvs. preferate să apară primele.
 7. Rulați o traducere simplă pentru a confirma că totul funcționează, apoi încercați **Rescriere** și **Transformare**.
 
-Această ordine este importantă. Previne cea mai comună problemă la prima utilizare: încercarea de a rula o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau o abilitate/model selectat.
+Această ordine este importantă. Previne cea mai frecventă problemă la prima utilizare: încercarea de a executa o sarcină înainte ca aplicația să aibă o conexiune API funcțională sau un preset/model selectat.
 
 <br/><br/>
 
@@ -205,10 +205,10 @@ Utilizați bara laterală pentru a vă deplasa în aplicație. Puteți restrâng
 
 Bara de instrumente se modifică ușor în funcție de locul în care vă aflați în aplicație.
 
-- În stânga, afișează numele paginii curente.
-- În dreapta, afișează **selectorul de abilitate sau model** și controlul pentru **limba interfeței**.
+- În stânga, este afișat numele paginii curente.
+- În dreapta, este afișat selectorul de **preset sau model** și controlul pentru **Limba interfeței**.
 
-În modul **Ușor**, bara de instrumente afișează un **selector de preset** cu presetele încorporate **Gratuit (OpenRouter)**, **Lite**, **Avansat** și **Tehnic**. Presetele afișate depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings)—de exemplu, **Gratuit (OpenRouter)** este afișat doar când furnizorul este OpenRouter. Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de presete.
+În modul **Ușor**, bara de instrumente afișează un **selector de preset** cu presetele încorporate **Gratuit (OpenRouter)**, **Standard**, **Avansat** și **Tehnic**. Presetele afișate depind de **Furnizorul** ales în [**Setări** > **Setări generale**](#general-settings)—de exemplu, **Gratuit (OpenRouter)** este afișat doar când furnizorul este OpenRouter. Dacă **Furnizorul** este **Ollama**, bara de instrumente listează modelele locale instalate în loc de presete.
 
 În modul **Avansat**, **selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
 
@@ -556,12 +556,12 @@ Filele disponibile depind de platformă și de rolul dvs.:
   | Configurare API  |   da    |     da      |           -              |                                              |
   | Despre           |   da    |     da      |           da             |                                              |
 
-În modul **Ușor**, selecția modelului se face prin abilități din bara de instrumente și **Furnizor** din Setări generale; tabul **Modele** este ascuns.
+În modul **Ușor**, selecția modelului se face prin presete în bara de instrumente și **Furnizor** în Setări generale; fila **Modele** este ascunsă.
 
 <br/>
 
 > ℹ️ **NOTĂ**<br/>
-> În versiunea web, fiecare utilizator are propria configurație. Setările precum experiența AI, furnizorul, modelele sau abilitățile selectate, limbile, opțiunile generale și solicitările de transformare sunt stocate per utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
+> În versiunea web, fiecare utilizator are propria configurație. Setările precum experiența AI, furnizorul, modelele sau presetele selectate, limbile, opțiunile generale și solicitările de transformare sunt stocate pe utilizator. Modificările pe care le faceți nu afectează alți utilizatori.
 
 <br/>
 
@@ -574,7 +574,7 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 
 **Experiență AI**
 
-- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc presetele încorporate din bara de instrumente. **Ollama** listează modelele instalate pe mașina dvs. în loc de presete. În modul Ușor, **Catalogul de presete** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătați catalogul de presete** pentru a prelua cea mai recentă listă de abilități din depozitul proiectului (aplicația verifică periodic și în fundal).
+- **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc presetele încorporate din bara de instrumente. **Ollama** listează modelele instalate pe mașina dumneavoastră în loc de presete. În modul Ușor, **Catalog de presete** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătați catalogul de presete** pentru a prelua cea mai recentă listă de presete din depozitul proiectului (aplicația verifică și periodic în fundal).
 - **Avansat**: alegeți modele individuale în bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
 
 În **aplicația web**, furnizorii afișați depind de cheile API setate în mediul serverului. În **aplicația desktop**, configurați cheile în [**Configurare API**](#api-config).

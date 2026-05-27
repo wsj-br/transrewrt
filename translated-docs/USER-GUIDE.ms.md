@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:32.905Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:56.960Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: ms
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt membantu anda bekerja dengan teks dalam tiga cara utama:
 - **Tulis semula** - ungkapkan semula teks dengan gaya yang berbeza, seperti lebih jelas, lebih ringkas, atau lebih formal.
 - **Transformasikan** - proses teks menggunakan arahan AI tersuai yang dikenali sebagai prompt.
 
-Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda memilih **pratetap** (contohnya Percuma (OpenRouter), Ringan, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik daripada [**Tetapan** > **Model**](#models).
+Secara lalai, aplikasi berjalan dalam mod **Mudah**: anda memilih **pratetap** (contohnya Percuma (OpenRouter), Standard, Lanjutan, atau Teknikal) dan **penyedia** dalam Tetapan, tanpa memilih ID model. Tukar ke mod **Lanjutan** di [**Tetapan** > **Tetapan Umum**](#general-settings) jika anda mahu senarai model klasik daripada [**Tetapan** > **Model**](#models).
 
 <br/>
 
@@ -116,8 +116,8 @@ Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menam
 
 Dalam bahasa yang mudah difahami:
 
-- Dalam mod **Mudah**, **pratetap** ialah pratetap (Percuma (OpenRouter), Ringan, Lanjutan, atau Teknikal) yang dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Hanya kemahiran yang mempunyai pemetaan untuk penyedia semasa akan muncul dalam bar alat. Anda memilih kemahiran pada Terjemah, Tulis Semula, dan Transformasikan.
-- Dalam mod **Lanjutan**, **model** ialah enjin AI yang anda pilih secara langsung. ID model menggunakan **awalan penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
+- Dalam mod **Mudah**, **pratetap** (Percuma (OpenRouter), Standard, Lanjutan, atau Teknikal) dipetakan kepada model untuk **penyedia** yang anda pilih (OpenRouter, OpenAI, Ollama, dan lain-lain). Hanya pratetap yang mempunyai pemetaan untuk penyedia semasa akan muncul dalam bar alat. Anda memilih pratetap pada Terjemahkan, Tulis semula, dan Transformasikan.
+- Dalam mod **Lanjutan**, **model** ialah enjin AI yang anda pilih secara langsung. ID model menggunakan awalan **penyedia** (contohnya `openrouter/…`, `openai/…`, `ollama/…`).
 - **Kunci API** (atau, untuk Ollama, **URL asas**) ialah cara aplikasi mengakses penyedia tersebut.
 
 Jika anda menggunakan **aplikasi desktop**, tambah kunci di [**Tetapan** > **Konfigurasi API**](#api-config) untuk setiap penyedia yang digunakan. Untuk penggunaan OpenRouter sahaja, lihat [Cara mendapatkan kunci API OpenRouter percuma](#how-to-get-a-free-openrouter-api-key-desktop-app) di bawah. Jika anda tidak mahu menggunakan kunci API, anda boleh memasang Ollama (daripada [ollama.com](https://ollama.com)) dan gunakan model tempatan sebagai ganti, seperti `translategemma:4b`.
@@ -156,7 +156,7 @@ Jika ini kali pertama anda menggunakan Transrewrt, ikuti susunan berikut:
 6. Buka [**Tetapan** > **Bahasa**](#languages) dan pilih **Bahasa Utama** anda jika anda mahu bahasa yang paling kerap digunakan muncul terlebih dahulu.
 7. Jalankan terjemahan ringkas untuk mengesahkan segala-galanya berfungsi, kemudian cuba **Tulis Semula** dan **Transformasikan**.
 
-Susunan ini penting. Ia mengelakkan masalah paling biasa semasa penggunaan pertama: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau kemahiran/model terpilih.
+Susunan ini penting. Ia mengelakkan masalah biasa pertama kali guna: cuba menjalankan tugas sebelum aplikasi mempunyai sambungan API yang berfungsi atau pratetap/model terpilih.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Gunakan bar sisi untuk bergerak di sekitar aplikasi. Anda boleh meruntuhkan bar 
 Bar alat berubah sedikit bergantung kepada lokasi anda dalam aplikasi.
 
 - Di sebelah kiri, ia menunjukkan nama halaman semasa.
-- Di sebelah kanan, ia menunjukkan pengawal **pemilih kemahiran atau model** dan **Bahasa antara muka**.
+- Di sebelah kanan, ia menunjukkan pemilih **pratetap atau model** dan kawalan **Bahasa antara muka**.
 
-Dalam mod **Mudah**, bar alat menunjukkan pemilih **pratetap** dengan pratetap binaan **Percuma (OpenRouter)**, **Ringan**, **Lanjutan**, dan **Teknikal**. Pratetap yang muncul bergantung pada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings)—contohnya, **Percuma (OpenRouter)** hanya disenaraikan apabila penyedia ialah OpenRouter. Jika **Penyedia** ialah **Ollama**, bar alat akan menyenaraikan model tempatan yang telah dipasang, bukannya pratetap.
+Dalam mod **Mudah**, bar alat menunjukkan pemilih **pratetap** dengan pratetap binaan **Percuma (OpenRouter)**, **Standard**, **Lanjutan**, dan **Teknikal**. Pratetap yang muncul bergantung pada **Penyedia** yang anda pilih di [**Tetapan** > **Tetapan Umum**](#general-settings)—contohnya, **Percuma (OpenRouter)** hanya disenaraikan apabila penyedia ialah OpenRouter. Jika **Penyedia** ialah **Ollama**, bar alat akan menyenaraikan model tempatan yang telah dipasang, bukannya pratetap.
 
 Dalam mod **Lanjutan**, **pemilih model** membolehkan anda memilih enjin AI mana yang digunakan untuk tugas semasa.
 
@@ -556,12 +556,12 @@ Tab yang tersedia bergantung pada platform dan peranan anda:
   | Konfigurasi API       |   ya   |     ya     |         -          |                                              |
   | Perihal            |   ya   |     ya     |        ya         |                                              |
 
-Dalam mod **Mudah**, pemilihan model berlaku melalui kemahiran dalam bar alat dan **Penyedia** dalam Tetapan Umum; tab **Model** disembunyikan.
+Dalam mod **Mudah**, pemilihan model dilakukan melalui pratetap dalam bar alat dan **Penyedia** dalam Tetapan Umum; tab **Model** disembunyikan.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Dalam versi web, setiap pengguna mempunyai konfigurasi sendiri. Tetapan seperti pengalaman AI, penyedia, model atau kemahiran terpilih, bahasa, pilihan umum, dan arahan transformasi disimpan mengikut pengguna. Perubahan yang anda buat tidak menjejaskan pengguna lain.
+> Dalam versi web, setiap pengguna mempunyai konfigurasi sendiri. Tetapan seperti pengalaman AI, penyedia, model atau pratetap terpilih, bahasa, pilihan umum, dan arahan transformasi disimpan mengikut pengguna. Perubahan yang anda buat tidak akan menjejaskan pengguna lain.
 
 <br/>
 
@@ -574,8 +574,8 @@ Gunakan **Tetapan Umum** untuk mengawal kelakuan menaip, sama ada butiran pelaks
 
 **Pengalaman AI**
 
-- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan pratetap binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti pratetap. Dalam mod Mudah, **Katalog pratetap** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segarkan katalog pratetap** untuk memuat senarai kemahiran terkini daripada repositori projek (aplikasi juga memeriksa secara berkala di latar belakang).
-- **Lanjutan**: pilih model individu dalam bar alat; urus senarai di bawah [**Tetapan** > **Model**](#models).
+- **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan pratetap binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti pratetap. Dalam mod Mudah, **Katalog pratetap** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segarkan katalog pratetap** untuk memuat senarai pratetap terkini daripada repositori projek (aplikasi juga memeriksa secara berkala di latar belakang).
+- **Lanjutan**: pilih model individu dalam bar alat; urus senarai tersebut di bawah [**Tetapan** > **Model**](#models).
 
 Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang ditetapkan dalam persekitaran pelayan. Dalam **aplikasi desktop**, konfigurasikan kunci di bawah [**Konfigurasi API**](#api-config).
 

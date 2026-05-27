@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:05:37.116Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:48.373Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: pt-BR
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ O Transrewrt ajuda você a trabalhar com texto de três maneiras principais:
 - **Reescrever** - reformular texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas prompts.
 
-Por padrão, o aplicativo é executado no modo **Fácil**: você escolhe um **predefinido** (por exemplo, Grátis (OpenRouter), Lite ou Técnico) e um **provedor** em Configurações, sem precisar selecionar IDs de modelos. Alterne para **Avançado** em [**Configurações** > **Configurações gerais**](#general-settings) se desejar a lista clássica de modelos em [**Configurações** > **Modelos**](#models).
+Por padrão, o aplicativo executa no modo **Fácil**: você escolhe um **predefinido** (por exemplo, Grátis (OpenRouter), Padrão, Avançado ou Técnico) e um **provedor** em Configurações, sem precisar selecionar IDs de modelo. Alterne para o modo **Avançado** em [**Configurações** > **Configurações gerais**](#general-settings) se desejar a lista clássica de modelos em [**Configurações** > **Modelos**](#models).
 
 <br/>
 
@@ -116,7 +116,7 @@ Você não precisa selecionar um modelo pago para começar. Assim que adicionar 
 
 Em termos simples:
 
-- No modo **Fácil**, um **predefinido** é uma configuração pré-definida (Grátis (OpenRouter), Lite, Avançado ou Técnico) que corresponde a um modelo do **provedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas habilidades com mapeamento para o provedor atual aparecem na barra de ferramentas. Você seleciona a habilidade em Traduzir, Reescrever e Transformar.
+- No modo **Fácil**, um **predefinido** (Grátis (OpenRouter), Padrão, Avançado ou Técnico) corresponde a um modelo do **provedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas os predefinidos com mapeamento para o provedor atual aparecem na barra de ferramentas. Você seleciona o predefinido ao Traduzir, Reescrever ou Transformar.
 - No modo **Avançado**, um **modelo** é o mecanismo de IA que você escolhe diretamente. Os IDs dos modelos usam um **prefixo do provedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
 - Uma **chave de API** (ou, no caso do Ollama, uma **URL base**) é como o aplicativo se conecta ao provedor.
 
@@ -156,7 +156,7 @@ Se esta é a sua primeira vez usando o Transrewrt, siga esta ordem:
 6. Abra [**Configurações** > **Idiomas**](#languages) e escolha seus **Idiomas principais** se quiser que os idiomas mais usados apareçam primeiro.
 7. Execute uma tradução simples para confirmar que tudo está funcionando, depois experimente **Reescrever** e **Transformar**.
 
-Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou uma habilidade/modelo selecionado.
+Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou um predefinido/modelo selecionado.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Use a barra lateral para navegar pelo aplicativo. Você pode recolher a barra la
 A barra de ferramentas muda ligeiramente dependendo de onde você está no aplicativo.
 
 - À esquerda, mostra o nome da página atual.
-- À direita, mostra o **seletor de habilidade ou modelo** e o controle de **Idioma da interface**.
+- À direita, mostra o seletor de **predefinido ou modelo** e o controle de **Idioma da interface**.
 
-No modo **Fácil**, a barra de ferramentas exibe um **seletor de predefinidos** com as opções integradas **Grátis (OpenRouter)**, **Lite**, **Avançado** e **Técnico**. Quais predefinidos aparecem depende do **Provedor** escolhido em [**Configurações** > **Configurações gerais**](#general-settings) — por exemplo, **Grátis (OpenRouter)** só é exibido quando o provedor é OpenRouter. Se o **Provedor** for **Ollama**, a barra de ferramentas lista os modelos locais instalados em vez dos predefinidos.
+No modo **Fácil**, a barra de ferramentas exibe um **seletor de predefinidos** com os predefinidos internos **Grátis (OpenRouter)**, **Padrão**, **Avançado** e **Técnico**. Quais predefinidos aparecem depende do **Provedor** escolhido em [**Configurações** > **Configurações gerais**](#general-settings) — por exemplo, **Grátis (OpenRouter)** só é listado quando o provedor é OpenRouter. Se o **Provedor** for **Ollama**, a barra de ferramentas lista seus modelos locais instalados em vez de predefinidos.
 
 No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
@@ -556,12 +556,12 @@ As guias disponíveis dependem da plataforma e da sua função:
   | Configuração de API        |   sim   |     sim     |         -          | |
   | Sobre             |   sim   |     sim     |        sim         | |
 
-No modo **Fácil**, a seleção de modelos ocorre por meio das habilidades na barra de ferramentas e do **Provedor** em Configurações gerais; a aba **Modelos** é ocultada.
+No modo **Fácil**, a seleção de modelo é feita por meio de predefinidos na barra de ferramentas e do **Provedor** em Configurações gerais; a aba **Modelos** fica oculta.
 
 <br/>
 
-> ℹ️ **NOTA**<br/>
-> Na versão web, cada usuário possui sua própria configuração. Configurações como experiência com IA, provedor, modelos ou habilidades selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por usuário. Alterações feitas por você não afetam outros usuários.
+> ℹ️ **OBSERVAÇÃO**<br/>
+> Na versão web, cada usuário possui sua própria configuração. Configurações como experiência com IA, provedor, modelos ou predefinidos selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por usuário. As alterações que você fizer não afetam outros usuários.
 
 <br/>
 
@@ -574,7 +574,7 @@ Use **Configurações gerais** para controlar o comportamento de digitação, se
 
 **Experiência com IA**
 
-- **Fácil** (padrão): escolha um **Provedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Provedores em nuvem usam os predefinidos integrados na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinidos. No modo Fácil, **Catálogo de predefinidos** mostra a versão do catálogo e a data da última atualização; clique em **Atualizar catálogo de predefinidos** para buscar a lista mais recente de habilidades no repositório do projeto (o aplicativo também verifica periodicamente em segundo plano).
+- **Fácil** (padrão): escolha um **Provedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Provedores em nuvem usam os predefinidos internos na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinidos. No modo Fácil, o **Catálogo de predefinidos** mostra a versão do catálogo e a hora da última atualização; clique em **Atualizar catálogo de predefinidos** para buscar a lista mais recente no repositório do projeto (o aplicativo também verifica periodicamente em segundo plano).
 - **Avançado**: escolha modelos individuais na barra de ferramentas; gerencie a lista em [**Configurações** > **Modelos**](#models).
 
 No **aplicativo web**, os provedores disponíveis dependem das chaves de API definidas no ambiente do servidor. No **aplicativo desktop**, configure as chaves em [**Configuração de API**](#api-config).

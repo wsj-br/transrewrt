@@ -17,7 +17,7 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
 - **Transform** - custom AI prompts; create and manage prompts, optional target language per prompt
 - **History** - full execution history with input/output text, filtering, and export
-- **Easy & Advanced** - Easy mode (default): curated skills per provider (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; only skills with a mapping for the selected provider appear) without picking model IDs; Advanced mode: full model list from your configured providers
+- **Easy & Advanced** - Easy mode (default): curated presets per provider (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; only presets with a mapping for the selected provider appear) without picking model IDs; Advanced mode: full model list from your configured providers
 - **Models & cost** - cost and usage dashboards (Summary, By Model, All Calls) with export; OpenRouter shows actual spend, other providers use estimates
 - **UI** - multilingual interface (30+ languages, RTL support), fonts, ...
 - **Web mode** - multi-user support with admin roles

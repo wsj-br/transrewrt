@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:14.797Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:51.280Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: tl
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling
 - **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/impormal, paiikliin, palawakin, teknikal
 - **Baguhin** - mga pasadyang prompt sa AI; lumikha at pamahalaan ang mga prompt, opsyonal na wika ng destinasyon bawat prompt
 - **Kasaysayan** - buong kasaysayan ng pagpapatupad na may tekstong input/output, pag-filter, at pag-export
-- **Madali & Advanced** - Madaling mode (default): mga kuradong kasanayan bawat provider (**Libre (OpenRouter)**, **Lite**, **Advanced**, **Technical**; mga kasanayan lamang na may mapping para sa napiling provider ang lumilitaw) nang hindi pinipili ang mga model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
-- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyon na i-export; ipinapakita ng OpenRouter ang aktuwal na gastusin, ang iba pang mga provider ay gumagamit ng mga pagtataya
-- **UI** - multilingual na interface (30+ mga wika, suporta sa RTL), mga font, ...
-- **Web mode** - suporta sa maramihang user na may mga admin role
+- **Madali & Advanced** - Madaling mode (default): mga naayos na preset bawat provider (**Libre (OpenRouter)**, **Standard**, **Advanced**, **Technical**; ang mga preset na may mapping lamang para sa napiling provider ang lumilitaw) nang hindi pinipili ang model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
+- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyon na i-export; ipinapakita ng OpenRouter ang aktuwal na gastos, ang iba pang mga provider ay gumagamit ng mga pagtataya
+- **UI** - multilingual na interface (30+ wika, suporta sa RTL), mga font, ...
+- **Web mode** - suporta sa multi-user na may admin roles
 - **Desktop** - Electron app para sa Windows at Linux
 - **Self-hosted** - Docker image para sa amd64 & arm64 (handang gamitin sa Raspberry Pi)
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:29.481Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:12:03.093Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: es
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt te ayuda a trabajar con texto de tres formas principales:
 - **Reescribir** - reformular texto en un estilo diferente, como más claro, más breve o más formal.
 - **Transformar** - procesar texto utilizando instrucciones personalizadas de inteligencia artificial llamadas indicaciones.
 
-De forma predeterminada, la aplicación se ejecuta en modo **Fácil**: eliges un **preajuste** (por ejemplo, Gratis (OpenRouter), Lite o Técnico) y un **proveedor** en Configuración, sin tener que seleccionar IDs de modelos. Cambia a **Avanzado** en [**Configuración** > **Configuración general**](#general-settings) si deseas la lista clásica de modelos en [**Configuración** > **Modelos**](#models).
+De forma predeterminada, la aplicación se ejecuta en modo **Fácil**: seleccionas un **preajuste** (por ejemplo, Gratis (OpenRouter), Estándar, Avanzado o Técnico) y un **proveedor** en Configuración, sin elegir identificadores de modelo. Cambia a **Avanzado** en [**Configuración** > **Configuración general**](#general-settings) si deseas la lista clásica de modelos desde [**Configuración** > **Modelos**](#models).
 
 <br/>
 
@@ -116,8 +116,8 @@ No necesitas seleccionar un modelo de pago para comenzar. Tan pronto como agregu
 
 En términos sencillos:
 
-- En modo **Fácil**, un **preajuste** es una configuración predefinida (Gratis (OpenRouter), Lite, Avanzado o Técnico) que se asocia a un modelo del **proveedor** seleccionado (OpenRouter, OpenAI, Ollama y otros). Solo las funciones con compatibilidad para el proveedor actual aparecen en la barra de herramientas. Debes seleccionar la función en Traducir, Reescribir y Transformar.
-- En modo **Avanzado**, un **modelo** es el motor de IA que eliges directamente. Los IDs de modelos usan un **prefijo del proveedor** (por ejemplo `openrouter/…`, `openai/…`, `ollama/…`).
+- En el modo **Fácil**, un **preajuste** (Gratis (OpenRouter), Estándar, Avanzado o Técnico) se asocia a un modelo del **proveedor** elegido (OpenRouter, OpenAI, Ollama y otros). Solo aparecen en la barra de herramientas los preajustes que tienen una asignación para el proveedor actual. Seleccionas el preajuste en Traducir, Reescribir y Transformar.
+- En el modo **Avanzado**, un **modelo** es el motor de IA que eliges directamente. Los identificadores de modelo usan un **prefijo del proveedor** (por ejemplo `openrouter/…`, `openai/…`, `ollama/…`).
 - Una **clave API** (o, para Ollama, una **URL base**) es cómo la aplicación se conecta con ese proveedor.
 
 Si estás usando la **aplicación de escritorio**, añade claves en [**Configuración** > **Configuración de API**](#api-config) para cada proveedor que uses. Para uso exclusivo de OpenRouter, consulta [Cómo obtener una clave API gratuita de OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app) más abajo. Si no deseas usar una clave API, puedes instalar Ollama (desde [ollama.com](https://ollama.com)) y usar modelos locales en su lugar, como `translategemma:4b`.
@@ -156,7 +156,7 @@ Si es la primera vez que usas Transrewrt, sigue este orden:
 6. Abre [**Configuración** > **Idiomas**](#languages) y elige tus **Idiomas principales** si deseas que tus idiomas más usados aparezcan primero.
 7. Realiza una traducción sencilla para confirmar que todo funciona, luego prueba **Reescribir** y **Transformar**.
 
-Este orden es importante. Evita el problema más común al usar la aplicación por primera vez: intentar ejecutar una tarea antes de que la aplicación tenga una conexión API funcional o una habilidad/modelo seleccionado.
+Este orden es importante. Evita el problema más común al usar la aplicación por primera vez: intentar ejecutar una tarea antes de que la aplicación tenga una conexión API funcional o un preajuste/modelo seleccionado.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Utilice la barra lateral para moverse por la aplicación. Puede colapsar la barr
 La barra de herramientas cambia ligeramente dependiendo de dónde se encuentre en la aplicación.
 
 - A la izquierda, muestra el nombre de la página actual.
-- A la derecha, muestra el **selector de habilidad o modelo** y el control del **Idioma de la interfaz**.
+- A la derecha, muestra el selector de **preajuste o modelo** y el control del **Idioma de la interfaz**.
 
-En modo **Fácil**, la barra de herramientas muestra un **selector de preajustes** con los preajustes integrados **Gratis (OpenRouter)**, **Lite**, **Avanzado** y **Técnico**. Los preajustes disponibles dependen del **Proveedor** elegido en [**Configuración** > **Configuración general**](#general-settings); por ejemplo, **Gratis (OpenRouter)** solo aparece cuando el proveedor es OpenRouter. Si el **Proveedor** es **Ollama**, la barra de herramientas muestra tus modelos locales instalados en lugar de preajustes.
+En el modo **Fácil**, la barra de herramientas muestra un **selector de preajustes** con los preajustes integrados **Gratis (OpenRouter)**, **Estándar**, **Avanzado** y **Técnico**. Los preajustes que aparecen dependen del **Proveedor** elegido en [**Configuración** > **Configuración general**](#general-settings); por ejemplo, **Gratis (OpenRouter)** solo se muestra cuando el proveedor es OpenRouter. Si el **Proveedor** es **Ollama**, la barra de herramientas muestra tus modelos locales instalados en lugar de preajustes.
 
 En modo **Avanzado**, el **selector de modelo** te permite elegir qué motor de IA usar para la tarea actual.
 
@@ -556,12 +556,12 @@ Las pestañas disponibles dependen de la plataforma y de su rol:
   | Configuración de API       |   sí   |     sí     |         -          |                                              |
   | Acerca de            |   sí   |     sí     |        sí         |                                              |
 
-En el modo **Fácil**, la selección de modelos se realiza mediante habilidades en la barra de herramientas y **Proveedor** en Configuración general; la pestaña **Modelos** está oculta.
+En el modo **Fácil**, la selección del modelo se realiza mediante preajustes en la barra de herramientas y el **Proveedor** en Configuración general; la pestaña **Modelos** está oculta.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> En la versión web, cada usuario tiene su propia configuración. Ajustes como experiencia de IA, proveedor, modelos o habilidades seleccionadas, idiomas, opciones generales e indicaciones de transformación se almacenan por usuario. Los cambios que realices no afectan a otros usuarios.
+> En la versión web, cada usuario tiene su propia configuración. La configuración, como la experiencia de IA, el proveedor, los modelos o preajustes seleccionados, idiomas, opciones generales e indicaciones de transformación, se almacena por usuario. Los cambios que realices no afectan a otros usuarios.
 
 <br/>
 
@@ -574,7 +574,7 @@ Usa **Configuración general** para controlar el comportamiento al escribir, si 
 
 **Experiencia de IA**
 
-- **Fácil** (predeterminado): elige un **Proveedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras u Ollama). Los proveedores en la nube usan los preajustes integrados en la barra de herramientas. **Ollama** muestra los modelos instalados en tu máquina en lugar de preajustes. En modo Fácil, **Catálogo de preajustes** muestra la versión del catálogo y la hora de la última actualización; haz clic en **Actualizar catálogo de preajustes** para obtener la lista más reciente de funciones desde el repositorio del proyecto (la aplicación también verifica periódicamente en segundo plano).
+- **Fácil** (predeterminado): elige un **Proveedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras u Ollama). Los proveedores en la nube usan los preajustes integrados en la barra de herramientas. **Ollama** muestra los modelos instalados en tu máquina en lugar de preajustes. En el modo Fácil, el **Catálogo de preajustes** muestra la versión del catálogo y la hora de la última actualización; haz clic en **Actualizar catálogo de preajustes** para obtener la lista más reciente desde el repositorio del proyecto (la aplicación también verifica periódicamente en segundo plano).
 - **Avanzado**: selecciona modelos individuales en la barra de herramientas; gestiona la lista en [**Configuración** > **Modelos**](#models).
 
 En la **aplicación web**, los proveedores disponibles dependen de las claves API configuradas en el entorno del servidor. En la **aplicación de escritorio**, configura las claves en [**Configuración de API**](#api-config).

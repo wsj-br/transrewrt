@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:35.416Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:58.991Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: pl
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt pomaga w pracy z tekstem na trzy główne sposoby:
 - **Przepisz** – przeformułuj tekst w innym stylu, na przykład bardziej klarowny, krótszy lub bardziej formalny.
 - **Przekształć** – przetwórz tekst za pomocą niestandardowych instrukcji AI zwanych promptami.
 
-Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **ustawienie wstępne** (na przykład Darmowe (OpenRouter), Lite lub Techniczny) i **dostawcę** w Ustawieniach, bez wybierania identyfikatorów modeli. Przełącz się na **Zaawansowany** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz uzyskać klasyczną listę modeli z [**Ustawienia** > **Modele**](#models).
+Domyślnie aplikacja działa w trybie **Łatwy**: wybierasz **ustawienie wstępne** (na przykład Darmowe (OpenRouter), Standardowe, Zaawansowane lub Techniczne) i **dostawcę** w Ustawieniach, bez wybierania identyfikatorów modeli. Przełącz się na **Zaawansowany** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings), jeśli chcesz uzyskać klasyczną listę modeli z [**Ustawienia** > **Modele**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Nie musisz wybierać płatnego modelu, aby rozpocząć. Gdy tylko dodasz swój k
 
 Prościej mówiąc:
 
-- W trybie **Łatwy**, **ustawienie wstępne** to predefiniowane ustawienie (Darmowe (OpenRouter), Lite, Zaawansowany lub Techniczny), które mapuje się na model wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). W pasku narzędzi pojawiają się tylko umiejętności, które mają mapowanie dla bieżącego dostawcy. Wybierasz umiejętność na Tłumacz, Przepisz i Przekształć.
-- W trybie **Zaawansowany**, **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **przedrostka dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
-- **Klucz API** (lub dla Ollama, **podstawowy adres URL**) to sposób, w jaki aplikacja łączy się z dostawcą.
+- W trybie **Łatwy** każde **ustawienie wstępne** (Darmowe (OpenRouter), Standardowe, Zaawansowane lub Techniczne) mapuje się na model wybranego **dostawcy** (OpenRouter, OpenAI, Ollama i inne). W pasku narzędzi wyświetlane są tylko ustawienia wstępne, które mają przypisanie dla bieżącego dostawcy. Ustawienie wstępne wybiera się w opcjach Tłumacz, Przepisz i Przekształć.
+- W trybie **Zaawansowany** **model** to silnik AI, który wybierasz bezpośrednio. Identyfikatory modeli używają **przedrostka dostawcy** (na przykład `openrouter/…`, `openai/…`, `ollama/…`).
+- **Klucz API** (lub dla Ollama — **podstawowy adres URL**) umożliwia aplikacji połączenie z dostawcą.
 
 Jeśli korzystasz z **aplikacji komputerowej**, dodaj klucze w sekcji [**Ustawienia** > **Konfiguracja API**](#api-config) dla każdego używanego dostawcy. W przypadku korzystania wyłącznie z OpenRouter zobacz poniżej sekcję [Jak uzyskać darmowy klucz API OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Jeśli nie chcesz używać klucza API, możesz zainstalować Ollama (ze strony [ollama.com](https://ollama.com)) i korzystać z lokalnych modeli, takich jak `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Jeśli po raz pierwszy korzystasz z Transrewrt, postępuj zgodnie z poniższą k
 6. Otwórz [**Ustawienia** > **Języki**](#languages) i wybierz swoje **Najważniejsze języki**, jeśli chcesz, aby najczęściej używane języki pojawiały się na początku.
 7. Wykonaj proste tłumaczenie, aby potwierdzić, że wszystko działa, a następnie wypróbuj opcje **Przepisz** i **Przekształć**.
 
-Kolejność ma znaczenie. Zapobiega to najczęstszemu problemowi podczas pierwszego użycia: próbie uruchomienia zadania przed ustanowieniem działającego połączenia API lub wybraniem umiejętności/modelu.
+Kolejność ta ma znaczenie. Zapobiega najczęstszemu problemowi podczas pierwszego użycia: próbie uruchomienia zadania przed nawiązaniem działającego połączenia API lub wybraniem ustawienia wstępnego/modelu.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Użyj paska bocznego, aby poruszać się po aplikacji. Możesz zwinąć pasek bo
 Pasek narzędzi nieznacznie się zmienia w zależności od tego, gdzie znajdujesz się w aplikacji.
 
 - Po lewej stronie znajduje się nazwa bieżącej strony.
-- Po prawej stronie znajduje się selektor **umiejętności lub modelu** oraz kontrolka **Język interfejsu**.
+- Po prawej stronie znajduje się selektor **ustawienia wstępnego lub modelu** oraz kontrolka **Język interfejsu**.
 
-W trybie **Łatwy**, pasek narzędzi wyświetla **selektor ustawień wstępnych** z wbudowanymi ustawieniami: **Darmowe (OpenRouter)**, **Lite**, **Zaawansowany** i **Techniczny**. Które ustawienia wstępne się pojawiają, zależy od wybranego **Dostawcy** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) — na przykład **Darmowe (OpenRouter)** pojawia się tylko wtedy, gdy dostawcą jest OpenRouter. Jeśli **Dostawcą** jest **Ollama**, pasek narzędzi wyświetla zainstalowane lokalne modele zamiast ustawień wstępnych.
+W trybie **Łatwy** pasek narzędzi zawiera selektor **ustawień wstępnych** z wbudowanymi opcjami **Darmowe (OpenRouter)**, **Standardowe**, **Zaawansowane** i **Techniczne**. Dostępne ustawienia wstępne zależą od wybranego **Dostawcy** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings) — na przykład opcja **Darmowe (OpenRouter)** pojawia się tylko wtedy, gdy dostawcą jest OpenRouter. Jeśli **Dostawcą** jest **Ollama**, w pasku narzędzi wyświetlane są zamiast ustawień wstępnych zainstalowane lokalne modele.
 
 W trybie **Zaawansowany** selektor **modelu** pozwala wybrać, którego silnika AI użyć do bieżącego zadania.
 
@@ -556,12 +556,12 @@ Dostępne karty zależą od platformy i Twojej roli:
   | Konfiguracja API       |   tak   |     tak     |         -          |                                              |
   | O programie            |   tak   |     tak     |        tak         |                                              |
 
-W trybie **Łatwy** wybór modelu odbywa się poprzez umiejętności na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; karta **Modele** jest ukryta.
+W trybie **Łatwy** wybór modelu odbywa się za pomocą ustawień wstępnych w pasku narzędzi i **Dostawcy** w Ustawieniach ogólnych; karta **Modele** jest ukryta.
 
 <br/>
 
 > ℹ️ **UWAGA**<br/>
-> W wersji internetowej każdy użytkownik ma własną konfigurację. Ustawienia takie jak doświadczenie AI, dostawca, wybrane modele lub umiejętności, języki, opcje ogólne i zachęty przekształceń są przechowywane osobno dla każdego użytkownika. Wprowadzone przez Ciebie zmiany nie wpływają na innych użytkowników.
+> W wersji internetowej każdy użytkownik ma własną konfigurację. Ustawienia takie jak doświadczenie AI, dostawca, wybrane modele lub ustawienia wstępne, języki, opcje ogólne i przekształcenia podpowiedzi są przechowywane osobno dla każdego użytkownika. Wprowadzone przez Ciebie zmiany nie wpływają na innych użytkowników.
 
 <br/>
 
@@ -574,8 +574,8 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 
 **Doświadczenie AI**
 
-- **Łatwy** (domyślny): wybierz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze używają wbudowanych ustawień wstępnych w pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast ustawień wstępnych. W trybie Łatwy, **Katalog ustawień wstępnych** pokazuje wersję katalogu i czas ostatniej aktualizacji; kliknij **Odśwież katalog ustawień wstępnych**, aby pobrać najnowszą listę umiejętności z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
-- **Zaawansowany**: wybierz indywidualne modele w pasku narzędzi; zarządzaj listą w [**Ustawienia** > **Modele**](#models).
+- **Łatwy** (domyślny): wybierasz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze używają wbudowanych ustawień wstępnych w pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast ustawień wstępnych. W trybie Łatwy, **Katalog ustawień wstępnych** pokazuje wersję katalogu i czas ostatniej aktualizacji; kliknij **Odśwież katalog ustawień wstępnych**, aby pobrać najnowszą listę ustawień wstępnych z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
+- **Zaawansowany**: wybierasz poszczególne modele w pasku narzędzi; zarządzasz listą w [**Ustawienia** > **Modele**](#models).
 
 W **aplikacji internetowej** dostępność dostawców zależy od kluczy API ustawionych w środowisku serwera. W **aplikacji komputerowej** skonfiguruj klucze w sekcji [**Konfiguracja API**](#api-config).
 

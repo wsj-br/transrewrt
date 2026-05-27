@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:07:52.588Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:12:03.161Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: sv
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ Transrewrt hjälper dig att arbeta med text på tre sätt:
 - **Omskriv** - formulera om text i en annan stil, till exempel tydligare, kortare eller mer formell.
 - **Transformera** - bearbeta text med anpassade AI-instruktioner som kallas prompts.
 
-Som standard körs appen i **Enkel**-läge: du väljer en **förinställning** (till exempel Gratis (OpenRouter), Lätt eller Teknisk) och en **leverantör** i Inställningar, utan att välja modell-ID. Växla till **Avancerad** i [**Inställningar** > **Allmänna inställningar**](#general-settings) om du vill ha den klassiska modelllistan från [**Inställningar** > **Modeller**](#models).
+Som standard körs appen i **Enkel**-läge: du väljer en **förinställning** (till exempel Gratis (OpenRouter), Standard, Avancerad eller Teknisk) och en **leverantör** i Inställningar, utan att välja modell-ID. Växla till **Avancerad** i [**Inställningar** > **Allmänna inställningar**](#general-settings) om du vill ha den klassiska modelllistan från [**Inställningar** > **Modeller**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Du behöver inte välja en betald modell för att komma igång. Så fort du läg
 
 Med enkla ord:
 
-- I **Enkel**-läge är en **förinställning** en förinställning (Gratis (OpenRouter), Lätt, Avancerad eller Teknisk) som mappas till en modell för din valda **leverantör** (OpenRouter, OpenAI, Ollama och andra). Endast färdigheter som har en mappning för den aktuella leverantören visas i verktygsfältet. Du väljer färdigheten vid Översätt, Omskriv och Transformera.
-- I **Avancerad**-läge är en **modell** den AI-motor du väljer direkt. Modell-ID:n använder ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
-- En **API-nyckel** (eller, för Ollama, en **bas-URL**) är hur appen når leverantören.
+- I **Enkel**-läge motsvarar en **förinställning** (Gratis (OpenRouter), Standard, Avancerad eller Teknisk) en modell för din valda **leverantör** (OpenRouter, OpenAI, Ollama och andra). Endast förinställningar som har en mappning för den aktuella leverantören visas i verktygsfältet. Du väljer förinställningen vid Översätt, Omskriv och Transformera.
+- I **Avancerat** läge är en **modell** den AI-motor du väljer direkt. Modell-ID:n använder ett **leverantörs-prefix** (till exempel `openrouter/…`, `openai/…`, `ollama/…`).
+- En **API-nyckel** (eller, för Ollama, en **bas-URL**) är hur appen ansluter till leverantören.
 
 Om du använder **skrivbordsappen**, lägg till nycklar i [**Inställningar** > **API-konfiguration**](#api-config) för varje leverantör du använder. För endast OpenRouter-användning, se [Så här får du en gratis OpenRouter API-nyckel](#how-to-get-a-free-openrouter-api-key-desktop-app) nedan. Om du inte vill använda en API-nyckel kan du installera Ollama (från [ollama.com](https://ollama.com)) och använda lokala modeller istället, till exempel `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Om det här är första gången du använder Transrewrt, följ den här ordninge
 6. Öppna [**Inställningar** > **Språk**](#languages) och välj dina **Topp-språk** om du vill att dina mest använda språk ska visas först.
 7. Kör en enkel översättning för att bekräfta att allt fungerar, prova sedan **Omskriv** och **Transformera**.
 
-Denna ordning är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald kompetens/modell.
+Denna ordning är viktig. Den förhindrar det vanligaste problemet vid första användningen: att försöka köra en uppgift innan appen har en fungerande API-anslutning eller en vald förinställning/modell.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Använd sidofältet för att navigera i appen. Du kan dölja sidofältet för at
 Verktygsfältet ändras något beroende på var du befinner dig i appen.
 
 - Till vänster visas namnet på den aktuella sidan.
-- Till höger visas **väljaren för kompetens eller modell** och kontrollen för **Gränssnittsspråk**.
+- Till höger visas **val av förinställning eller modell** och kontrollen för **Gränssnittsspråk**.
 
-I **Enkel**-läge visar verktygsfältet en **förinställningsväljare** med de inbyggda förinställningarna **Gratis (OpenRouter)**, **Lätt**, **Avancerad** och **Teknisk**. Vilka förinställningar som visas beror på den **Leverantör** du valt i [**Inställningar** > **Allmänna inställningar**](#general-settings) – till exempel visas **Gratis (OpenRouter)** endast när leverantören är OpenRouter. Om **Leverantör** är **Ollama** listar verktygsfältet dina installerade lokala modeller istället för förinställningar.
+I **Enkel**-läge visar verktygsfältet en **val av förinställning** med de inbyggda förinställningarna **Gratis (OpenRouter)**, **Standard**, **Avancerad** och **Teknisk**. Vilka förinställningar som visas beror på den **Leverantör** du valt i [**Inställningar** > **Allmänna inställningar**](#general-settings) – till exempel visas endast **Gratis (OpenRouter)** när leverantören är OpenRouter. Om **Leverantör** är **Ollama** visar verktygsfältet dina installerade lokala modeller istället för förinställningar.
 
 I **Avancerad** läge låter **modellväljaren** dig välja vilken AI-motor som ska användas för den aktuella uppgiften.
 
@@ -556,12 +556,12 @@ De tillgängliga flikarna beror på plattformen och din roll:
   | API-konfiguration       |   ja   |     ja     |         -          |                                              |
   | Om            |   ja   |     ja     |        ja         |                                              |
 
-I **Enkel**-läge sker modellval via kompetenser i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** är dold.
+I **Enkel**-läge sker modellval via förinställningar i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** är dold.
 
 <br/>
 
 > ℹ️ **OBS**<br/>
-> I webbversionen har varje användare sin egen konfiguration. Inställningar som AI-upplevelse, leverantör, valda modeller eller kompetenser, språk, allmänna alternativ och omvandlingsprompts lagras per användare. Ändringar du gör påverkar inte andra användare.
+> I webbversionen har varje användare sin egen konfiguration. Inställningar som AI-upplevelse, leverantör, valda modeller eller förinställningar, språk, allmänna alternativ och omvandlingsprompts lagras per användare. Ändringar du gör påverkar inte andra användare.
 
 <br/>
 
@@ -574,7 +574,7 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 
 **AI-upplevelse**
 
-- **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda förinställningarna i verktygsfältet. **Ollama** listar modeller installerade på din dator istället för förinställningar. I Enkel-läge visar **Förinställningskatalog** katalogversionen och senaste uppdateringstid; klicka på **Uppdatera förinställningskatalog** för att hämta den senaste färdighetslistan från projektets förråd (appen kontrollerar också regelbundet i bakgrunden).
+- **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda förinställningarna i verktygsfältet. **Ollama** visar modeller installerade på din dator istället för förinställningar. I Enkel-läge visar **Förinställningskatalog** katalogversionen och tidpunkten för senaste uppdatering; klicka på **Uppdatera förinställningskatalog** för att hämta den senaste förinställningslistan från projektets förråd (appen kontrollerar också regelbundet i bakgrunden).
 - **Avancerad**: välj enskilda modeller i verktygsfältet; hantera listan under [**Inställningar** > **Modeller**](#models).
 
 I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inställda i servermiljön. I **skrivbordsappen** konfigurerar du nycklar under [**API-konfiguration**](#api-config).

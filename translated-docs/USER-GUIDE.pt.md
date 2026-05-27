@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:48.529Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:59.050Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: pt
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -23,7 +23,7 @@ O Transrewrt ajuda-o a trabalhar com texto de três formas principais:
 - **Reescrever** - reformular texto em um estilo diferente, como mais claro, mais curto ou mais formal.
 - **Transformar** - processar texto usando instruções personalizadas de IA chamadas de prompts.
 
-Por predefinição, a aplicação executa no modo **Fácil**: você escolhe uma **predefinição** (por exemplo, Grátis (OpenRouter), Lite ou Técnico) e um **fornecedor** em Definições, sem escolher IDs de modelo. Mude para **Avançado** em [**Definições** > **Configurações Gerais**](#general-settings) se quiser a lista clássica de modelos em [**Definições** > **Modelos**](#models).
+Por predefinição, a aplicação executa-se no modo **Fácil**: escolhe uma **predefinição** (por exemplo, Grátis (OpenRouter), Standard, Avançado ou Técnico) e um **fornecedor** em Definições, sem escolher IDs de modelos. Mude para **Avançado** em [**Definições** > **Configurações Gerais**](#general-settings) se quiser a lista clássica de modelos em [**Definições** > **Modelos**](#models).
 
 <br/>
 
@@ -116,9 +116,9 @@ Você não precisa selecionar um modelo pago para começar. Assim que adicionar 
 
 Em termos simples:
 
-- No modo **Fácil**, uma **predefinição** é uma configuração pré-definida (Grátis (OpenRouter), Lite, Avançado ou Técnico) que corresponde a um modelo do **fornecedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas as funcionalidades que têm mapeamento para o fornecedor atual aparecem na barra de ferramentas. Você seleciona a funcionalidade em Traduzir, Reescrever e Transformar.
-- No modo **Avançado**, um **modelo** é o motor de IA que você escolhe diretamente. Os IDs de modelo usam um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
-- Uma **chave de API** (ou, para Ollama, um **URL base**) é como a aplicação se conecta ao fornecedor.
+- No modo **Fácil**, uma **predefinição** (Grátis (OpenRouter), Standard, Avançado ou Técnico) corresponde a um modelo do **fornecedor** escolhido (OpenRouter, OpenAI, Ollama e outros). Apenas as predefinições que têm uma correspondência com o fornecedor atual aparecem na barra de ferramentas. Seleciona a predefinição em Traduzir, Reescrever e Transformar.
+- No modo **Avançado**, um **modelo** é o motor de IA que escolhe diretamente. Os IDs dos modelos usam um **prefixo do fornecedor** (por exemplo `openrouter/…`, `openai/…`, `ollama/…`).
+- Uma **chave API** (ou, para o Ollama, um **URL base**) é como a aplicação acede a esse fornecedor.
 
 Se estiver a usar a **aplicação de ambiente de trabalho**, adicione chaves em [**Definições** > **Configuração da API**](#api-config) para cada fornecedor que utilizar. Para uso exclusivo do OpenRouter, veja abaixo [Como obter uma chave API gratuita do OpenRouter](#how-to-get-a-free-openrouter-api-key-desktop-app). Se não quiser usar uma chave API, pode instalar o Ollama (a partir de [ollama.com](https://ollama.com)) e usar modelos locais em vez disso, como `translategemma:4b`.
 
@@ -156,7 +156,7 @@ Se esta é a sua primeira vez usando o Transrewrt, siga esta ordem:
 6. Abra [**Definições** > **Idiomas**](#languages) e escolha os seus **Idiomas principais** se quiser que os idiomas mais usados apareçam primeiro.
 7. Execute uma tradução simples para confirmar que tudo está funcionando, depois experimente **Reescrever** e **Transformar**.
 
-Essa ordem é importante. Ela evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes que o aplicativo tenha uma conexão de API funcionando ou uma habilidade/modelo selecionado.
+Esta ordem é importante. Evita o problema mais comum no primeiro uso: tentar executar uma tarefa antes da aplicação ter uma ligação API funcional ou uma predefinição/modelo selecionado.
 
 <br/><br/>
 
@@ -206,9 +206,9 @@ Utilize a barra lateral para navegar na aplicação. Pode recolher a barra later
 A barra de ferramentas altera ligeiramente consoante a localização na aplicação.
 
 - À esquerda, mostra o nome da página atual.
-- À direita, mostra o **seletor de habilidade ou modelo** e o controle do **Idioma da interface**.
+- À direita, mostra o seletor de **predefinição ou modelo** e o controlo do **Idioma da interface**.
 
-No modo **Fácil**, a barra de ferramentas mostra um **seletor de predefinições** com as predefinições integradas **Grátis (OpenRouter)**, **Lite**, **Avançado** e **Técnico**. Quais predefinições aparecem depende do **Fornecedor** escolhido em [**Definições** > **Configurações Gerais**](#general-settings)—por exemplo, **Grátis (OpenRouter)** só é listado quando o fornecedor é OpenRouter. Se o **Fornecedor** for **Ollama**, a barra de ferramentas lista os modelos locais instalados em vez de predefinições.
+No modo **Fácil**, a barra de ferramentas mostra um seletor de **predefinições** com as predefinições incorporadas **Grátis (OpenRouter)**, **Standard**, **Avançado** e **Técnico**. Quais predefinições aparecem depende do **Fornecedor** escolhido em [**Definições** > **Configurações Gerais**](#general-settings)—por exemplo, **Grátis (OpenRouter)** só é listado quando o fornecedor é OpenRouter. Se o **Fornecedor** for **Ollama**, a barra de ferramentas lista os seus modelos locais instalados em vez de predefinições.
 
 No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
@@ -556,12 +556,12 @@ Os separadores disponíveis dependem da plataforma e da sua função:
   | Configuração da API       |   sim   |     sim     |         -          |                                              |
   | Sobre            |   sim   |     sim     |        sim         |                                              |
 
-No modo **Fácil**, a seleção de modelos ocorre através das habilidades na barra de ferramentas e do **Fornecedor** em Configurações Gerais; o separador **Modelos** fica oculto.
+No modo **Fácil**, a seleção de modelos é feita através de predefinições na barra de ferramentas e do **Fornecedor** em Configurações Gerais; o separador **Modelos** é ocultado.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Na versão web, cada utilizador tem a sua própria configuração. Definições como experiência com IA, fornecedor, modelos ou habilidades selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por utilizador. As alterações que efetuar não afetam outros utilizadores.
+> Na versão web, cada utilizador tem a sua própria configuração. Definições como experiência com IA, fornecedor, modelos ou predefinições selecionados, idiomas, opções gerais e prompts de transformação são armazenadas por utilizador. As alterações que efetuar não afetam outros utilizadores.
 
 <br/>
 
@@ -574,8 +574,8 @@ Utilize **Configurações Gerais** para controlar o comportamento de digitação
 
 **Experiência com IA**
 
-- **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Fornecedores na nuvem usam as predefinições integradas na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinições. No modo Fácil, **Catálogo de predefinições** mostra a versão do catálogo e a data da última atualização; clique em **Atualizar catálogo de predefinições** para obter a lista mais recente de funcionalidades do repositório do projeto (a aplicação também verifica periodicamente em segundo plano).
-- **Avançado**: escolha modelos individuais na barra de ferramentas; gerencie a lista em [**Definições** > **Modelos**](#models).
+- **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Fornecedores na nuvem usam as predefinições incorporadas na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinições. No modo Fácil, o **Catálogo de predefinições** mostra a versão do catálogo e a hora da última atualização; clique em **Atualizar catálogo de predefinições** para obter a lista mais recente de predefinições do repositório do projeto (a aplicação também verifica periodicamente em segundo plano).
+- **Avançado**: escolha modelos individuais na barra de ferramentas; gere a lista em [**Definições** > **Modelos**](#models).
 
 Na **aplicação web**, os fornecedores disponíveis dependem das chaves API definidas no ambiente do servidor. Na **aplicação para ambiente de trabalho**, configure as chaves em [**Configuração da API**](#api-config).
 

@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:13.738Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:50.653Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: hr
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt vam pomaže u radu s tekstom na tri glavna načina:
 - **Prepisi** - preformuliraj tekst u drugačijem stilu, na primjer jasnijem, kraćem ili formalnijem.
 - **Transformiraj** - obradi tekst pomoću prilagođenih uputa za umjetnu inteligenciju koje se nazivaju upute.
 
-Zadano, aplikacija radi u **Lako** načinu rada: odabirete **unaprijed postavljenu vrijednost** (na primjer Besplatno (OpenRouter), Lite ili Tehnička) i **davatelja usluga** u Postavkama, bez odabira ID-ova modela. Prebacite se na **Napredno** u [**Postavke** > **Opće postavke**](#general-settings) ako želite klasični popis modela iz [**Postavke** > **Modeli**](#models).
+Prema zadanim postavkama aplikacija se pokreće u **Lako** načinu rada: u Postavkama odaberete **unaprijed postavljeno** (npr. Besplatno (OpenRouter), Standardno, Napredno ili Tehničko) i **davatelja usluga**, bez odabira ID-ova modela. Prebacite se na **Napredno** u [**Postavke** > **Opće postavke**](#general-settings) ako želite klasičnu listu modela iz [**Postavke** > **Modeli**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Ne morate odabrati plaćeni model kako biste započeli. Čim dodate svoj OpenRou
 
 Jednostavnim riječima:
 
-- U **Lako** načinu, **unaprijed postavljeno** je predodređena postavka (Besplatno (OpenRouter), Lite, Napredno ili Tehnički) koja se mapira na model za odabranog **davatelja usluga** (OpenRouter, OpenAI, Ollama i drugi). Samo vještine koje imaju mapiranje za trenutnog davatelja usluga prikazuju se na alatnoj traci. Vještinu odaberete na Prevedi, Prepisi i Transformiraj.
-- U **Napredno** načinu, **model** je AI motor koji izravno odaberete. ID-ovi modela koriste **prefiks davatelja usluga** (npr. `openrouter/…`, `openai/…`, `ollama/…`).
-- **API ključ** (ili za Ollama, **osnovni URL**) je način na koji aplikacija pristupa davatelju usluga.
+- U **Lako** načinu rada, **unaprijed postavljeno** (Besplatno (OpenRouter), Standardno, Napredno ili Tehničko) mapira se na model za odabranog **davatelja usluga** (OpenRouter, OpenAI, Ollama i drugi). Samo unaprijed postavljene vrijednosti koje imaju mapiranje za trenutnog davatelja usluga prikazuju se na alatnoj traci. Odabir unaprijed postavljene vrijednosti vršite na Prevedi, Prepisi i Transformiraj.
+- U **Napredno** načinu rada, **model** je AI motor koji izravno odabirete. ID-ovi modela koriste **prefiks davatelja usluga** (npr. `openrouter/…`, `openai/…`, `ollama/…`).
+- **API ključ** (ili za Ollama, **osnovni URL**) je kako aplikacija pristupa davatelju usluga.
 
 Ako koristite **desktop aplikaciju**, dodajte ključeve u [**Postavke** > **API konfiguracija**](#api-config) za svakog davatelja usluga kojeg koristite. Za korištenje samo OpenRouter-a, pogledajte [Kako dobiti besplatan OpenRouter API ključ](#how-to-get-a-free-openrouter-api-key-desktop-app) u nastavku. Ako ne želite koristiti API ključ, možete instalirati Ollama (s [ollama.com](https://ollama.com)) i koristiti lokalne modele umjesto toga, kao što je `translategemma:4b`.
 
@@ -157,7 +157,7 @@ Ako je ovo vaše prvo korištenje Transrewrt-a, slijedite ovaj redoslijed:
 6. Otvorite [**Postavke** > **Jezici**](#languages) i odaberite svoje **Najčešće korišteni jezici** ako želite da se najčešće korišteni jezici prikazuju prvi.
 7. Pokrenite jednostavan prijevod kako biste potvrdili da sve radi, a zatim isprobajte **Prepisi** i **Transformiraj**.
 
-Redoslijed je važan. On sprječava najčešći problem kod prvog korištenja: pokušaj pokretanja zadatka prije nego što aplikacija ima radnu API vezu ili odabranu vještinu/model.
+Ovaj redoslijed je važan. On sprječava najčešći problem prilikom prvog korištenja: pokušaj pokretanja zadatka prije nego što aplikacija ima radnu API vezu ili odabranu unaprijed postavljenu vrijednost/model.
 
 <br/><br/>
 
@@ -207,9 +207,9 @@ Koristite bočnu traku za kretanje kroz aplikaciju. Bočnu traku možete sažeti
 Alatna traka se malo razlikuje ovisno o tome gdje se nalazite u aplikaciji.
 
 - S lijeve strane prikazuje se naziv trenutne stranice.
-- S desne strane prikazuje se **odabir vještine ili modela** i upravljanje **jezikom sučelja**.
+- S desne strane prikazuje se **odabir unaprijed postavljene vrijednosti ili modela** i upravljanje **jezikom sučelja**.
 
-U **Lako** načinu, alatna traka prikazuje **odabir unaprijed postavljenih vrijednosti** s ugrađenim predodređenim postavkama **Besplatno (OpenRouter)**, **Lite**, **Napredno** i **Tehnički**. Koji se unaprijed postavljeni prikazuju ovisi o **Davatelju usluga** kojeg ste odabrali u [**Postavkama** > **Opće postavke**](#general-settings) — npr. **Besplatno (OpenRouter)** prikazuje se samo kada je davatelj usluga OpenRouter. Ako je **Davatelj usluga** **Ollama**, alatna traka prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti.
+U **Lako** načinu rada, alatna traka prikazuje **odabir unaprijed postavljene vrijednosti** s ugrađenim unaprijed postavljenim vrijednostima **Besplatno (OpenRouter)**, **Standardno**, **Napredno** i **Tehničko**. Koje se unaprijed postavljene vrijednosti prikazuju ovisi o **davatelju usluga** kojeg ste odabrali u [**Postavke** > **Opće postavke**](#general-settings) — npr. **Besplatno (OpenRouter)** prikazuje se samo kada je davatelj usluga OpenRouter. Ako je **davatelj usluga** **Ollama**, alatna traka prikazuje vaše instalirane lokalne modele umjesto unaprijed postavljenih vrijednosti.
 
 U **naprednom** načinu rada, **odabir modela** omogućuje vam da odaberete koji AI motor koristiti za trenutni zadatak.
 
@@ -557,12 +557,12 @@ Dostupne kartice ovise o platformi i vašoj ulozi:
   | API konfiguracija        |   da   |     da     |         -          | |
   | O programu             |   da   |     da     |        da         | |
 
-U **Lakom** načinu, odabir modela vrši se putem vještina na alatnoj traci i **Davatelja usluga** u Općim postavkama; kartica **Modeli** je skrivena.
+U **Lako** načinu rada, odabir modela vrši se putem unaprijed postavljenih vrijednosti na alatnoj traci i **davatelja usluga** u Općim postavkama; kartica **Modeli** je skrivena.
 
 <br/>
 
 > ℹ️ **NAPOMENA**<br/>
-> U web verziji, svaki korisnik ima vlastitu konfiguraciju. Postavke poput AI iskustva, davatelja usluga, odabranih modela ili vještina, jezika, općih opcija i transformacijskih upita pohranjuju se po korisniku. Promjene koje napravite ne utječu na druge korisnike.
+> U web verziji svaki korisnik ima svoju vlastitu konfiguraciju. Postavke poput AI iskustva, davatelja usluga, odabranih modela ili unaprijed postavljenih vrijednosti, jezika, općih opcija i transformacijskih uputa pohranjuju se po korisniku. Promjene koje napravite ne utječu na druge korisnike.
 
 <br/>
 
@@ -575,7 +575,7 @@ Koristite **Opće postavke** za kontrolu ponašanja tipkanja, pohranjivanje deta
 
 **AI iskustvo**
 
-- **Lako** (zadano): odaberite **Davatelja usluga** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ili Ollama). Oblačni davatelji usluga koriste ugrađene unaprijed postavljene vrijednosti na alatnoj traci. **Ollama** prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti. U Lako načinu, **Katalog unaprijed postavljenih vrijednosti** prikazuje verziju kataloga i vrijeme zadnjeg ažuriranja; kliknite **Osvježi katalog unaprijed postavljenih vrijednosti** kako biste preuzeli najnoviju listu vještina iz spisa projekta (aplikacija također povremeno provjerava u pozadini).
+- **Lako** (zadano): odaberite **davatelja usluga** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ili Ollama). Oblačni davatelji usluga koriste ugrađene unaprijed postavljene vrijednosti na alatnoj traci. **Ollama** prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti. U Lako načinu rada, **Katalog unaprijed postavljenih vrijednosti** prikazuje verziju kataloga i vrijeme zadnjeg ažuriranja; kliknite **Osvježi katalog unaprijed postavljenih vrijednosti** kako biste preuzeli najnoviju listu unaprijed postavljenih vrijednosti iz spisa projekta (aplikacija također periodično provjerava u pozadini).
 - **Napredno**: odaberite pojedinačne modele na alatnoj traci; upravljajte listom putem [**Postavke** > **Modeli**](#models).
 
 U **web aplikaciji**, koji davatelji usluga se prikazuju ovisi o API ključevima postavljenima u server okolini. U **desktop aplikaciji**, konfigurirajte ključeve putem [**API konfiguracije**](#api-config).

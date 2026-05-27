@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:08:32.580Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:12:03.829Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: vi
 source_file_path: README.md
 translation_models:
@@ -25,9 +25,9 @@ Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ng�
 - **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, chuyển đổi trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
 - **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho từng lời nhắc
 - **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, bộ lọc và chức năng xuất
-- **Dễ & Nâng cao** - Chế độ Dễ (mặc định): các kỹ năng được chọn lọc theo nhà cung cấp (**Miễn phí (OpenRouter)**, **Lite**, **Nâng cao**, **Kỹ thuật**; chỉ hiển thị các kỹ năng có ánh xạ với nhà cung cấp đã chọn) mà không cần chọn ID mô hình; Chế độ Nâng cao: danh sách đầy đủ các mô hình từ các nhà cung cấp đã cấu hình của bạn
-- **Mô hình và chi phí** - bảng điều khiển chi phí và sử dụng (Tóm tắt, Theo mô hình, Tất cả các cuộc gọi) có chức năng xuất; OpenRouter hiển thị số tiền chi tiêu thực tế, các nhà cung cấp khác sử dụng ước tính
-- **Giao diện người dùng** - giao diện đa ngôn ngữ (hơn 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
+- **Dễ & Nâng cao** - Chế độ Dễ (mặc định): các thiết lập sẵn được chọn lọc theo từng nhà cung cấp (**Miễn phí (OpenRouter)**, **Tiêu chuẩn**, **Nâng cao**, **Kỹ thuật**; chỉ hiển thị các thiết lập sẵn có ánh xạ với nhà cung cấp đã chọn), không cần chọn ID mô hình; Chế độ Nâng cao: danh sách đầy đủ các mô hình từ các nhà cung cấp bạn đã cấu hình
+- **Mô hình và chi phí** - bảng điều khiển chi phí và sử dụng (Tóm tắt, Theo mô hình, Tất cả các cuộc gọi) có chức năng xuất; OpenRouter hiển thị số tiền đã chi thực tế, các nhà cung cấp khác sử dụng ước tính
+- **Giao diện người dùng (UI)** - giao diện đa ngôn ngữ (hơn 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
 - **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên
 - **Máy tính để bàn** - Ứng dụng Electron cho Windows và Linux
 - **Tự lưu trữ** - Hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)

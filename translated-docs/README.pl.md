@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:33.061Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:57.523Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: pl
 source_file_path: README.md
 translation_models:
@@ -25,9 +25,9 @@ Narzędzie tekstowe z wykorzystaniem AI: tłumaczenie między językami, przefor
 - **Przepisz** – popraw błędy gramatyczne, popraw czytelność, wersja formalna/nieformalna, skróć, rozwiń, wersja techniczna
 - **Przekształć** – niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy dla każdej zachęty
 - **Historia** – pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
-- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): wybrane umiejętności według dostawcy (**Darmowe (OpenRouter)**, **Lite**, **Zaawansowany**, **Techniczny**; widoczne są tylko umiejętności z mapowaniem dla wybranego dostawcy) bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
-- **Modele i koszt** – tabele kosztów i zużycia (Podsumowanie, Według modelu, Wszystkie wywołania) z opcją eksportu; OpenRouter pokazuje rzeczywiste wydatki, inne dostawcy używają szacunków
-- **Interfejs użytkownika** – wielojęzyczny interfejs (ponad 30 języków, obsługa pisania od prawej do lewej), czcionki, ...
+- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): wyselekcjonowane ustawienia domyślne dla każdego dostawcy (**Darmowe (OpenRouter)**, **Standardowe**, **Zaawansowane**, **Techniczne**; widoczne są wyłącznie ustawienia domyślne, które mają mapowanie dla wybranego dostawcy), bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
+- **Modele i koszt** – tabele kosztów i zużycia (Podsumowanie, Według modelu, Wszystkie wywołania) z możliwością eksportu; OpenRouter pokazuje rzeczywiste wydatki, inne dostawcy używają szacunków
+- **Interfejs użytkownika (UI)** – wielojęzyczny interfejs (ponad 30 języków, obsługa języków pisanych od prawej do lewej), czcionki, ...
 - **Tryb sieciowy** – obsługa wielu użytkowników z rolami administratora
 - **Aplikacja komputerowa** – aplikacja Electron dla systemów Windows i Linux
 - **Hostowana lokalnie** – obraz Docker dla architektur amd64 i arm64 (gotowy do użycia na Raspberry Pi)

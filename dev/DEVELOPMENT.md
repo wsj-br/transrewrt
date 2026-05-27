@@ -13,8 +13,8 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
-  - [Presets catalog editor (development)](#skills-catalog-editor-development)
-  - [Skill-check cron (development)](#presets-check-cron-development)
+  - [Presets catalog editor (development)](#presets-catalog-editor-development)
+  - [Skill-check cron (development)](#skill-check-cron-development)
   - [Cleaning the workspace](#cleaning-the-workspace)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
@@ -24,9 +24,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
   - [Production-style (smoke test)](#production-style-smoke-test)
 - [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release)
+  - [Pre-release checks](#pre-release-checks)
   - [Prepare commits on the version branch](#prepare-commits-on-the-version-branch)
   - [Merge into `main` (GitHub)](#merge-into-main-github)
-  - [Publish the GitHub Release](#publish-the-github-release)
+  - [Publish the GitHub Release (`release:github`)](#publish-the-github-release-releasegithub)
   - [Release artifacts and manual workflow run](#release-artifacts-and-manual-workflow-run)
 - [Commands by Target](#commands-by-target)
   - [Electron (Desktop)](#electron-desktop)
@@ -38,6 +39,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [UI translations and docs (ai-i18n-tools)](#ui-translations-and-docs-ai-i18n-tools)
   - [Data, assets, and docs scripts](#data-assets-and-docs-scripts)
   - [Docker and deploy](#docker-and-deploy)
+  - [Release](#release)
   - [Toolchain](#toolchain)
 - [Troubleshooting](#troubleshooting)
 - [Related documentation](#related-documentation)
@@ -449,7 +451,22 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
-Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then **Publish** a GitHub Release so CI attaches installers to the release.
+Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`**) so CI attaches installers to the release.
+
+Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`origin`**, and opens a GitHub Release whose body comes from **`release-notes/RELEASE_NOTES_<version>.md`** (see [Publish the GitHub Release](#publish-the-github-release-releasegithub)). That publication triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml).
+
+---
+
+### Pre-release checks
+
+Before cutting a release, run checks that mirror what CI exercises before packaging:
+
+1. **`pnpm lint`**
+2. **`pnpm build`** then **`pnpm run build:main`**
+
+Fix any failures. Optionally run **`pnpm package`** locally for a full Electron packaging smoke test (slow; CI runs this on Windows and Linux).
+
+There is no automated unit/integration test script in `package.json` (`pnpm test` is a stub).
 
 ---
 
@@ -457,15 +474,20 @@ Use a version branch for new features or patch lines (for example `v1.1.x`). Do 
 
 Do this on the development branch you intend to merge (e.g., `v1.1.x`), then push it to GitHub so the pull request below can target it.
 
-1. **Release notes**: Generate a new `RELEASE-NOTES-v.x.y.z.md` in the `./dev` folder with the changes for this release.
-2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z]: YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
+Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a Cursor chat to draft release notes and fold [CHANGELOG.md](CHANGELOG.md) in one step, or follow the steps below manually.
+
+1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.sh](../scripts/release.sh)).
+2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z] - YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
-4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in package.json and run `pnpm install` until clean.
+4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11) and run `pnpm install` until clean.
 5. **Sync references**: Run `pnpm run update-version` to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
-6. **Update i18n UI string translations**: Run `pnpm i18n:sync` to ensure that all strings in the UI are translated.
+6. **Update i18n UI string translations**: Run `pnpm run i18n:sync` to ensure that all strings in the UI are translated.
 7. **Update documentation table of contents**: Run `doctoc *.md dev/*.md` to update all tables of contents.
 8. **Update document translations**: Run `pnpm run i18n:translate:docs` to ensure the latest documentation changes are translated.
-9. **Commit and push**: Commit your changes to the changelog, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
+9. **Third-party notices**: Run `pnpm run 3p-notices` if production dependencies changed; commit [NOTICES](../NOTICES) when appropriate.
+10. **Commit and push**: Commit your changes to the changelog, release notes, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
+
+Commit the release-notes file and changelog together with other release prep so **`git status` is clean** before you run `release:github` (unless you pass `--verify-clean=false` to the script).
 
 
 ---
@@ -480,18 +502,45 @@ Do this on the development branch you intend to merge (e.g., `v1.1.x`), then pus
 
 ---
 
-### Publish the GitHub Release
+### Publish the GitHub Release (`release:github`)
 
-After `main` contains the release commit(s), create the tag and release in one flow in the browser (no local `git tag` / `git push` required unless you prefer it).
+After `main` contains the release commit(s), check out `main` locally at the commit you want to tag (pull from `origin` if needed). Publishing is done with [scripts/release.sh](../scripts/release.sh) (wrappers: **`pnpm run release:github`** / **`pnpm run release:github:dry`**).
 
-1. Go to **Releases** (the right-hand **Releases** link on the repo home page, or **Code** → **Releases**).
-2. Click **Draft a new release**.
-3. Click **Choose a tag**, and enter a **new** tag name (e.g., `vX.Y.Z`) that follows [Semantic Versioning](https://semver.org/) and this repo’s release workflow. When GitHub prompts you to create the tag as part of publishing the release, ensure the tag’s **target** is `main` (the tip of `main` after your merge) so the tag points to the release commit.
-4. **Release title**: e.g., `Transrewrt X.Y.Z`.
-5. **Describe this release**: paste the release notes generated earlier.
-6. Click **Publish release** (not “Save draft”). This will publish the tag and trigger [`.github/workflows/release.yml`](../.github/workflows/release.yml); the **Publish GitHub Release assets** job will attach the Windows installer and Linux AppImages after the build completes.
+**Prerequisites**
 
-If a tag `vX.Y.Z` already exists on the remote (for example you pushed it earlier), use **Choose a tag** → pick that **existing** tag instead of creating a new one, then publish the release the same way.
+- [GitHub CLI](https://cli.github.com/) (`gh`) installed and authenticated (`gh auth login`).
+- Remote **`origin`** configured (e.g. `git@github.com:wsj-br/transrewrt.git`).
+- **`release-notes/RELEASE_NOTES_<version>.md`** present for the current `package.json` version.
+- Working tree clean (default), or pass `--verify-clean=false` to the script.
+
+**Steps**
+
+1. Ensure your local branch is at the release commit on `main` (after merge):
+
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+
+2. Dry-run (prints planned steps; no tag deletion, push, or release):
+
+   ```bash
+   pnpm run release:github:dry
+   ```
+
+3. Create the release:
+
+   ```bash
+   pnpm run release:github
+   ```
+
+   Equivalent: `bash scripts/release.sh` from the repo root. See `bash scripts/release.sh --help` for `--dry-run` and `--verify-clean=false`.
+
+The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
+
+That GitHub release triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml), which builds Windows and Linux installers and pushes the Docker image to GHCR. Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress.
+
+**Manual alternative:** you can still create a release from the GitHub **Releases** UI (**Draft a new release** → tag `vX.Y.Z` targeting `main` → paste notes → **Publish release**). Prefer the script so the tag, title, and notes stay aligned with `package.json` and `release-notes/RELEASE_NOTES_<version>.md`.
 
 ---
 
@@ -619,6 +668,15 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `pnpm docker:logs`                 | Logs from container `transrewrt` (see [docker-compose.yml](../docker-compose.yml) `container_name`) |
 | `pnpm docker:shell`                | Shell into running container `transrewrt`                                                           |
 
+### Release
+
+See [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release).
+
+| Command                      | Purpose                                                                                                      |
+|------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `pnpm run release:github`    | Tag `v<version>` at HEAD, push to `origin`, create GitHub release from `release-notes/RELEASE_NOTES_<version>.md` |
+| `pnpm run release:github:dry`| Validate inputs and print planned steps (no tag push or GitHub release)                                      |
+
 ### Toolchain
 
 See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm) for **why `source`**, `./` vs CI, and shell notes.
@@ -664,6 +722,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run dev:presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
+- **[release-new-version-prompt.md](release-new-version-prompt.md)** — Cursor prompt to draft `release-notes/RELEASE_NOTES_<version>.md` and update the changelog before a release.
 
 ---
 
@@ -705,6 +764,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [NOTICES](../NOTICES)                                                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                        |
 | [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `NOTICES`                                                                    |
 | [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                             |
+| [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release: tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md) and [Related documentation](#related-documentation).

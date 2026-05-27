@@ -8,7 +8,7 @@ function toLatin1HeaderValue(value) {
     .replace(/\u2014/g, "-")
     .replace(/\u2013/g, "-")
     .replace(/\u2192/g, "->")
-    .replace(/[^\u0000-\u00FF]/g, "?");
+    .replace(/[^\u0020-\u00FF]/g, "?");
 }
 
 async function sendNtfy(config, { title, body, tags, priority }) {

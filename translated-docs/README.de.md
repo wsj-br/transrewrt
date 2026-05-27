@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:18.557Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:53.341Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: de
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschi
 - **Umschreiben** – Grammatik korrigieren, Klarheit verbessern, formell/informell, verkürzen, erweitern, technisch
 - **Umwandeln** – benutzerdefinierte KI-Prompts; Prompts erstellen und verwalten, optionale Zielsprache pro Prompt
 - **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
-- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Fähigkeiten pro Anbieter (**Kostenlos (OpenRouter)**, **Lite**, **Erweitert**, **Technisch**; es werden nur Fähigkeiten angezeigt, die einer Auswahl des Anbieters zugeordnet sind), ohne Modell-IDs auswählen zu müssen; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
-- **Modelle & Kosten** - Kosten- und Nutzungsübersichten (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
-- **Benutzeroberfläche** - mehrsprachige Oberfläche (über 30 Sprachen, inklusive RTL-Unterstützung), Schriftarten, ...
-- **Webmodus** - Unterstützung für mehrere Benutzer mit Administratorrollen
+- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Voreinstellungen pro Anbieter (**Kostenlos (OpenRouter)**, **Standard**, **Erweitert**, **Technisch**; es werden nur Voreinstellungen angezeigt, die eine Zuordnung zum ausgewählten Anbieter haben) ohne Auswahl von Modell-IDs; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
+- **Modelle & Kosten** - Kosten- und Nutzungs-Dashboards (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
+- **Benutzeroberfläche (UI)** - mehrsprachige Oberfläche (30+ Sprachen, RTL-Unterstützung), Schriftarten, ...
+- **Web-Modus** - Unterstützung für mehrere Benutzer mit Administratorrollen
 - **Desktop** - Electron-App für Windows und Linux
 - **Selbstgehostet** - Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
 

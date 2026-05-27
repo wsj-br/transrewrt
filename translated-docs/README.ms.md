@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:30.572Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: b17f1ca887b7d657050e53465cbe0c1ea4368ae57f2f1f4eea7aed556f6427e1
+translation_last_updated: '2026-05-27T22:11:55.482Z'
+source_file_mtime: '2026-05-27T22:00:38.164Z'
+source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
 translation_language: ms
 source_file_path: README.md
 translation_models:
@@ -25,10 +25,10 @@ Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza,
 - **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, ringkaskan, kembangkan, teknikal
 - **Transformasikan** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
 - **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Mudah & Lanjutan** - Mod Mudah (lalai): kemahiran terpilih mengikut penyedia (**Percuma (OpenRouter)**, **Lite**, **Lanjutan**, **Teknikal**; hanya kemahiran dengan pemetaan untuk penyedia terpilih yang akan muncul) tanpa perlu memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
+- **Mudah & Lanjutan** - Mod Mudah (lalai): tetapan prapasang terpilih mengikut penyedia (**Percuma (OpenRouter)**, **Piawai**, **Lanjutan**, **Teknikal**; hanya tetapan prapasang dengan pemetaan untuk penyedia terpilih yang dipaparkan) tanpa memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
 - **Model & kos** - papan pemuka kos dan penggunaan (Ringkasan, Mengikut Model, Semua Panggilan) dengan fungsi eksport; OpenRouter menunjukkan perbelanjaan sebenar, penyedia lain menggunakan anggaran
 - **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pelbagai pengguna dengan peranan pentadbir
+- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
 - **Desktop** - Aplikasi Electron untuk Windows dan Linux
 - **Swasta** - Imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 

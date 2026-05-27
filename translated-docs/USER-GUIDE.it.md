@@ -1,7 +1,7 @@
 ---
-translation_last_updated: '2026-05-27T10:06:29.089Z'
-source_file_mtime: '2026-05-27T09:48:07.613Z'
-source_file_hash: f2bf1cd15be5ae13c336dfe0a0b0a931dd4a8f902f096c81f4251c08b179e562
+translation_last_updated: '2026-05-27T22:11:56.869Z'
+source_file_mtime: '2026-05-27T22:00:37.048Z'
+source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
 translation_language: it
 source_file_path: USER-GUIDE.md
 translation_models:
@@ -24,7 +24,7 @@ Transrewrt ti aiuta a lavorare con il testo in tre modi principali:
 - **Riscrivi** - riformula il testo in uno stile diverso, ad esempio più chiaro, più breve o più formale.
 - **Trasforma** - elabora il testo utilizzando istruzioni personalizzate basate sull'intelligenza artificiale chiamate prompt.
 
-Per impostazione predefinita, l'app funziona in modalità **Facile**: selezioni un **preset** (ad esempio Gratuito (OpenRouter), Lite o Tecnico) e un **provider** in Impostazioni, senza dover scegliere ID di modelli. Passa alla modalità **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri la classica lista di modelli disponibile in [**Impostazioni** > **Modelli**](#models).
+Per impostazione predefinita, l'app funziona in modalità **Facile**: si sceglie un **preset** (ad esempio Gratuito (OpenRouter), Standard, Avanzato o Tecnico) e un **provider** in Impostazioni, senza dover selezionare ID di modelli. Passa ad **Avanzato** in [**Impostazioni** > **Impostazioni generali**](#general-settings) se desideri la lista classica dei modelli disponibile in [**Impostazioni** > **Modelli**](#models).
 
 <br/>
 
@@ -117,9 +117,9 @@ Non è necessario selezionare un modello a pagamento per iniziare. Non appena ag
 
 In termini semplici:
 
-- In modalità **Facile**, un **preset** è un profilo predefinito (Gratuito (OpenRouter), Lite, Avanzato o Tecnico) associato a un modello del **provider** selezionato (OpenRouter, OpenAI, Ollama e altri). Nella barra degli strumenti appaiono solo le funzionalità compatibili con il provider corrente. Selezioni la funzionalità su Traduci, Riscrivi e Trasforma.
-- In modalità **Avanzato**, un **modello** è il motore AI che scegli direttamente. Gli ID dei modelli usano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
-- Una **chiave API** (o, per Ollama, un **URL di base**) è il modo in cui l'app raggiunge il provider.
+- In modalità **Facile**, un **preset** (Gratuito (OpenRouter), Standard, Avanzato o Tecnico) corrisponde a un modello del **provider** scelto (OpenRouter, OpenAI, Ollama e altri). Nel toolbar vengono mostrati solo i preset compatibili con il provider attuale. Si seleziona il preset in Traduci, Riscrivi e Trasforma.
+- In modalità **Avanzato**, un **modello** è il motore AI che si sceglie direttamente. Gli ID dei modelli utilizzano un **prefisso del provider** (ad esempio `openrouter/…`, `openai/…`, `ollama/…`).
+- Una **chiave API** (oppure, per Ollama, un **URL di base**) è il modo in cui l'app si connette al provider.
 
 Se utilizzi l'**app desktop**, aggiungi le chiavi in [**Impostazioni** > **Configurazione API**](#api-config) per ogni provider che usi. Per l'uso esclusivo di OpenRouter, vedi [Come ottenere una chiave API OpenRouter gratuita](#how-to-get-a-free-openrouter-api-key-desktop-app) di seguito. Se non vuoi usare una chiave API, puoi installare Ollama (da [ollama.com](https://ollama.com)) e usare modelli locali invece, come `translategemma:4b`.
 
@@ -157,7 +157,7 @@ Se è la prima volta che utilizzi Transrewrt, segui questo ordine:
 6. Apri [**Impostazioni** > **Lingue**](#languages) e scegli le tue **Lingue principali** se desideri che le lingue più usate appaiano per prime.
 7. Esegui una traduzione semplice per verificare che tutto funzioni, quindi prova **Riscrivi** e **Trasforma**.
 
-L'ordine è importante. Evita il problema più comune all'uso iniziale: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o una competenza/modello selezionato.
+L'ordine è importante. Evita il problema più comune all'uso iniziale: tentare di eseguire un'attività prima che l'app abbia una connessione API funzionante o un preset/modello selezionato.
 
 <br/><br/>
 
@@ -207,9 +207,9 @@ Usa la barra laterale per spostarti all'interno dell'app. Puoi comprimere la bar
 La barra degli strumenti cambia leggermente a seconda della posizione all'interno dell'app.
 
 - A sinistra, mostra il nome della pagina corrente.
-- A destra, mostra il selettore di **competenza o modello** e il controllo della **Lingua dell'interfaccia**.
+- A destra, mostra il selettore di **preset o modello** e il controllo della **Lingua dell'interfaccia**.
 
-In modalità **Facile**, la barra degli strumenti mostra un **selettore di preset** con i preset integrati **Gratuito (OpenRouter)**, **Lite**, **Avanzato** e **Tecnico**. I preset visualizzati dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings): ad esempio, **Gratuito (OpenRouter)** viene mostrato solo quando il provider è OpenRouter. Se il **Provider** è **Ollama**, la barra degli strumenti elenca i modelli locali installati invece dei preset.
+In modalità **Facile**, la barra degli strumenti mostra un selettore di **preset** con i preset integrati **Gratuito (OpenRouter)**, **Standard**, **Avanzato** e **Tecnico**. I preset visualizzati dipendono dal **Provider** scelto in [**Impostazioni** > **Impostazioni generali**](#general-settings): ad esempio, **Gratuito (OpenRouter)** viene mostrato solo quando il provider è OpenRouter. Se il **Provider** è **Ollama**, la barra degli strumenti elenca i modelli locali installati invece dei preset.
 
 In modalità **Avanzato**, il selettore di **modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
 
@@ -557,12 +557,12 @@ Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
   | Configurazione API       |   sì   |     sì     |         -          |                                              |
   | Informazioni            |   sì   |     sì     |        sì         |                                              |
 
-In modalità **Facile**, la selezione del modello avviene tramite le competenze nella barra degli strumenti e il **Provider** in Impostazioni generali; la scheda **Modelli** è nascosta.
+In modalità **Facile**, la selezione del modello avviene tramite i preset nella barra degli strumenti e il **Provider** in Impostazioni generali; la scheda **Modelli** è nascosta.
 
 <br/>
 
 > ℹ️ **NOTA**<br/>
-> Nella versione web, ogni utente ha la propria configurazione. Impostazioni come esperienza AI, provider, modelli o competenze selezionati, lingue, opzioni generali e prompt di trasformazione vengono memorizzate per singolo utente. Le modifiche che apporti non influiscono sugli altri utenti.
+> Nella versione web, ogni utente ha la propria configurazione. Impostazioni come esperienza AI, provider, modelli o preset selezionati, lingue, opzioni generali e prompt di trasformazione sono memorizzate per singolo utente. Le modifiche che apporti non influiscono sugli altri utenti.
 
 <br/>
 
@@ -575,7 +575,7 @@ Utilizza **Impostazioni generali** per controllare il comportamento della digita
 
 **Esperienza AI**
 
-- **Facile** (predefinita): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud usano i preset integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer al posto dei preset. In modalità Facile, **Catalogo dei preset** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo dei preset** per scaricare l'elenco più recente delle funzionalità dal repository del progetto (l'app verifica periodicamente anche in background).
+- **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud utilizzano i preset integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer al posto dei preset. In modalità Facile, **Catalogo dei preset** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo dei preset** per scaricare l'elenco più recente dal repository del progetto (l'app verifica periodicamente in background).
 - **Avanzato**: seleziona singoli modelli nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
 
 Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate nell'ambiente del server. Nell'**app desktop**, configura le chiavi in [**Configurazione API**](#api-config).
