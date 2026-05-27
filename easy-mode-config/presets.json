@@ -1,6 +1,6 @@
 {
-  "version": "1.3.0",
-  "updated_at": "2026-05-27T09:42:22.645Z",
+  "version": "1.3.1",
+  "updated_at": "2026-05-27T18:58:27.282Z",
   "translation_model": "openrouter/qwen/qwen3.6-35b-a3b",
   "translation_model_fallback": "openrouter/anthropic/claude-3.5-haiku",
   "suggestion_model": "openrouter/moonshotai/kimi-k2.5",
@@ -110,7 +110,7 @@
         "groq": "groq/llama-3.1-8b-instant",
         "mistralai": "mistralai/ministral-3b-latest",
         "xai": "xai/grok-4.3",
-        "cerebras": "cerebras/llama3.1-8b"
+        "cerebras": "cerebras/gpt-oss-120b"
       },
       "fallback_ids": {
         "openrouter": "openrouter/z-ai/glm-4.7-flash",
@@ -121,7 +121,7 @@
         "groq": "groq/llama-3.3-70b-versatile",
         "mistralai": "mistralai/ministral-8b-latest",
         "xai": "xai/grok-4.20-0309-non-reasoning",
-        "cerebras": "cerebras/qwen-3-235b-a22b-instruct-2507"
+        "cerebras": "cerebras/zai-glm-4.7"
       },
       "translated_name": {
         "ar": "قياسي",
@@ -216,7 +216,7 @@
         "groq": "groq/llama-3.3-70b-versatile",
         "mistralai": "mistralai/mistral-large-latest",
         "xai": "xai/grok-4.20-0309-reasoning",
-        "cerebras": "cerebras/qwen-3-235b-a22b-instruct-2507"
+        "cerebras": "cerebras/zai-glm-4.7"
       },
       "fallback_ids": {
         "openrouter": "openrouter/anthropic/claude-sonnet-4.5",
@@ -227,7 +227,7 @@
         "groq": "groq/llama-3.1-8b-instant",
         "mistralai": "mistralai/mistral-medium-latest",
         "xai": "xai/grok-4.3",
-        "cerebras": "cerebras/llama3.1-8b"
+        "cerebras": "cerebras/gpt-oss-120b"
       },
       "translated_name": {
         "ar": "متقدم",
@@ -322,7 +322,7 @@
         "groq": "groq/llama-3.3-70b-versatile",
         "mistralai": "mistralai/devstral-2512",
         "xai": "xai/grok-4.3",
-        "cerebras": "cerebras/qwen-3-235b-a22b-instruct-2507"
+        "cerebras": "cerebras/zai-glm-4.7"
       },
       "fallback_ids": {
         "openrouter": "openrouter/anthropic/claude-haiku-4.5",

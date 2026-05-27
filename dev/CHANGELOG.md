@@ -11,7 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Changed**: Presets-check logs preset ids and each model reference as it runs (including OK results).
+- **Fixed**: Presets-check NTFY notifications no longer fail when titles contain Unicode punctuation (em dash in HTTP headers).
+- **Changed**: Presets-check logs start/finish per preset; model replacements still logged between those lines.
 - **Changed**: Renamed Easy-mode skills to presets across catalog (`easy-mode-config/presets.json`), APIs (`/api/presets`), UI, dev tools (`presets-editor`, `preset-check`), and docs; screenshot script uses Easy mode with the Standard preset.
 - **Changed**: Dev presets editor — internal helpers, UI strings, and `/api/meta` fields use preset nomenclature throughout.
 - **Fixed**: Dev presets editor AI Suggestion setup — preset checkboxes use `ai-suggest-presets-checkboxes` id/classes matching the HTML (list was empty after the rename).

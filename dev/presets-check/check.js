@@ -159,9 +159,83 @@ function setModelValue(catalog, ref, value) {
   preset[field][engineKey] = value;
 }
 
-function refLabel(ref) {
-  if (ref.presetId) return `preset "${ref.presetId}" / ${ref.engine}`;
-  return ref.field || ref.path;
+function groupRefsForCheck(refs, catalog) {
+  const presets = Array.isArray(catalog.presets) ? catalog.presets : [];
+  const presetOrder = presets.map((p) => p.id).filter(Boolean);
+  /** @type {Map<string, typeof refs>} */
+  const byPreset = new Map();
+  for (const id of presetOrder) byPreset.set(id, []);
+  const topLevel = [];
+  for (const ref of refs) {
+    if (ref.presetId) {
+      if (!byPreset.has(ref.presetId)) byPreset.set(ref.presetId, []);
+      byPreset.get(ref.presetId).push(ref);
+    } else {
+      topLevel.push(ref);
+    }
+  }
+  const order = presetOrder.filter((id) => (byPreset.get(id)?.length ?? 0) > 0);
+  return { order, byPreset, topLevel };
+}
+
+function checkModelRef(ref, catalog, idSets, catalogsByEngine, config, results, minMatchScore) {
+  const raw = getModelValue(catalog, ref);
+  const canonical = canonicalForEngine(ref.engine, String(raw).trim());
+  const idSet = idSets[ref.engine];
+  const catalogList = catalogsByEngine[ref.engine] || [];
+  const out = { hasUnresolved: false, hasReplacements: false };
+
+  if (!idSet || idSet.size === 0) {
+    const msg = `Skipped ${ref.path}: no catalog for ${ref.engine} (missing API key?)`;
+    console.warn(`[presets-check] ${msg}`);
+    appendLog(config.logPath, {
+      event: "skipped",
+      path: ref.path,
+      presetId: ref.presetId,
+      engine: ref.engine,
+      oldId: canonical,
+      reason: "no_catalog",
+    });
+    return out;
+  }
+
+  if (idSet.has(canonical)) {
+    results.push({ ...ref, status: "ok", oldId: canonical });
+    return out;
+  }
+
+  const { replacement, score, bestScore } = findFuzzyReplacement(
+    ref.engine,
+    canonical,
+    catalogList,
+    { minScore: minMatchScore },
+  );
+
+  if (replacement) {
+    out.hasReplacements = true;
+    results.push({
+      ...ref,
+      status: "replacement",
+      oldId: canonical,
+      newId: replacement,
+      score,
+    });
+    console.log(
+      `[presets-check] REPLACE ${ref.engine}: ${canonical} -> ${replacement} (score ${score.toFixed(2)})`,
+    );
+  } else {
+    out.hasUnresolved = true;
+    results.push({
+      ...ref,
+      status: "unresolved",
+      oldId: canonical,
+      bestScore,
+    });
+    console.warn(
+      `[presets-check] UNRESOLVED ${ref.engine}: ${canonical} (best score ${bestScore.toFixed(2)})`,
+    );
+  }
+  return out;
 }
 
 async function main() {
@@ -232,80 +306,37 @@ async function main() {
 
   const idSets = buildIdSets(catalogsByEngine);
   const refs = collectModelRefs(catalog);
-  const presetIds = [...new Set(refs.map((r) => r.presetId).filter(Boolean))];
-  const topLevelFields = refs.filter((r) => r.field).map((r) => r.field);
-  if (presetIds.length) {
-    console.log(`[presets-check] Testing presets (${presetIds.length}): ${presetIds.join(", ")}`);
-  }
-  if (topLevelFields.length) {
-    console.log(`[presets-check] Testing top-level fields: ${topLevelFields.join(", ")}`);
-  }
-  console.log(`[presets-check] Checking ${refs.length} model reference(s)`);
+  const { order: presetOrder, byPreset, topLevel } = groupRefsForCheck(refs, catalog);
 
   /** @type {Array<object>} */
   const results = [];
   let hasUnresolved = false;
   let hasReplacements = false;
 
-  for (const ref of refs) {
-    const raw = getModelValue(catalog, ref);
-    const canonical = canonicalForEngine(ref.engine, String(raw).trim());
-    const label = refLabel(ref);
-    console.log(`[presets-check] Checking ${label}: ${canonical}`);
-    const idSet = idSets[ref.engine];
-    const catalogList = catalogsByEngine[ref.engine] || [];
-
-    if (!idSet || idSet.size === 0) {
-      const msg = `Skipped ${ref.path}: no catalog for ${ref.engine} (missing API key?)`;
-      console.warn(`[presets-check] ${msg}`);
-      appendLog(config.logPath, {
-        event: "skipped",
-        path: ref.path,
-        presetId: ref.presetId,
-        engine: ref.engine,
-        oldId: canonical,
-        reason: "no_catalog",
-      });
-      continue;
-    }
-
-    if (idSet.has(canonical)) {
-      console.log(`[presets-check] OK ${label}: ${canonical}`);
-      results.push({ ...ref, status: "ok", oldId: canonical });
-      continue;
-    }
-
-    const { replacement, score, bestScore } = findFuzzyReplacement(
-      ref.engine,
-      canonical,
-      catalogList,
-      { minScore: config.minMatchScore },
+  const runRef = (ref) => {
+    const r = checkModelRef(
+      ref,
+      catalog,
+      idSets,
+      catalogsByEngine,
+      config,
+      results,
+      config.minMatchScore,
     );
+    if (r.hasUnresolved) hasUnresolved = true;
+    if (r.hasReplacements) hasReplacements = true;
+  };
 
-    if (replacement) {
-      hasReplacements = true;
-      results.push({
-        ...ref,
-        status: "replacement",
-        oldId: canonical,
-        newId: replacement,
-        score,
-      });
-      console.log(
-        `[presets-check] REPLACE ${label}: ${canonical} → ${replacement} (score ${score.toFixed(2)})`,
-      );
-    } else {
-      hasUnresolved = true;
-      results.push({
-        ...ref,
-        status: "unresolved",
-        oldId: canonical,
-        bestScore,
-      });
-      console.warn(
-        `[presets-check] UNRESOLVED ${label}: ${canonical} (best score ${bestScore.toFixed(2)})`,
-      );
-    }
+  for (const presetId of presetOrder) {
+    console.log(`[presets-check]  Checking preset: "${presetId}"`);
+    for (const ref of byPreset.get(presetId) || []) runRef(ref);
+    console.log(`[presets-check]  Finished preset: "${presetId}"`);
+  }
+
+  for (const ref of topLevel) {
+    console.log(`[presets-check]  Checking top-level field: "${ref.field}"`);
+    runRef(ref);
+    console.log(`[presets-check]  Finished top-level field: "${ref.field}"`);
   }
 
   let pushResult = null;
@@ -328,7 +359,7 @@ async function main() {
           .filter((r) => r.status === "replacement")
           .map((r) => {
             const label = r.presetId ? `${r.presetId}/${r.engine}` : r.field || r.path;
-            return `${label}: ${r.oldId} → ${r.newId} (score ${r.score?.toFixed(2)})`;
+            return `${label}: ${r.oldId} -> ${r.newId} (score ${r.score?.toFixed(2)})`;
           });
         pushResult = commitAndPushPresetsFile(config.repoDir, {
           branch: config.github?.branch,
@@ -390,13 +421,13 @@ async function main() {
             : dryRun
               ? "Presets model would be replaced (dry-run)"
               : "Presets model replaced";
-          let body = `${label}: ${r.oldId} → ${r.newId} (score ${r.score?.toFixed(2)})`;
+          let body = `${label}: ${r.oldId} -> ${r.newId} (score ${r.score?.toFixed(2)})`;
           if (pushResult?.commit) body += `\nCommit: ${pushResult.commit} on ${config.github?.branch || "main"}`;
           await sendNtfy(config, { title, body, tags: "warning" });
         } else {
           await sendNtfy(config, {
-            title: "Presets model unavailable — no replacement",
-            body: `${label}: ${r.oldId} — no replacement found (best score ${r.bestScore?.toFixed(2)})`,
+            title: "Presets model unavailable - no replacement",
+            body: `${label}: ${r.oldId} - no replacement found (best score ${r.bestScore?.toFixed(2)})`,
             tags: "rotating_light",
           });
         }
