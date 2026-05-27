@@ -22,7 +22,11 @@ const {
 } = require("./gitSync.js");
 
 const { mergeKeys } = sharedRequire("llm/index.js");
-const { parsePresetsJson, bumpPatchVersion } = sharedRequire("presetsCatalog.js");
+const {
+  parsePresetsJson,
+  bumpPatchVersion,
+  serializePresetsCatalog,
+} = sharedRequire("presetsCatalog.js");
 const { canonicalForEngine } = sharedRequire("presetModelIdUtils.js");
 const {
   EASY_CLOUD_ENGINES,
@@ -30,13 +34,6 @@ const {
   refreshAllEngineCatalogsFromProviders,
   buildIdSets,
 } = sharedRequire("presetsProviderCatalog.js");
-
-const TOP_LEVEL_MODEL_FIELDS = [
-  "translation_model",
-  "translation_model_fallback",
-  "suggestion_model",
-  "suggestion_model_fallback",
-];
 
 function printHelp() {
   console.log(`Presets model availability checker
@@ -91,19 +88,8 @@ function inferEngineFromModelId(modelId) {
 }
 
 function collectModelRefs(catalog) {
-  /** @type {Array<{ path: string, engine: string, presetId?: string, field?: string }>} */
+  /** @type {Array<{ path: string, engine: string, presetId: string }>} */
   const refs = [];
-
-  for (const field of TOP_LEVEL_MODEL_FIELDS) {
-    const raw = catalog[field];
-    if (!raw || !String(raw).trim()) continue;
-    const engine = inferEngineFromModelId(raw);
-    refs.push({
-      path: field,
-      engine,
-      field,
-    });
-  }
 
   const presets = Array.isArray(catalog.presets) ? catalog.presets : [];
   presets.forEach((preset, si) => {
@@ -135,7 +121,6 @@ function collectModelRefs(catalog) {
 }
 
 function getModelValue(catalog, ref) {
-  if (ref.field) return catalog[ref.field];
   const m = ref.path.match(/^presets\[(\d+)\]\.(model_ids|fallback_ids)\.(\w+)$/);
   if (!m) return null;
   const preset = catalog.presets[Number(m[1])];
@@ -145,10 +130,6 @@ function getModelValue(catalog, ref) {
 }
 
 function setModelValue(catalog, ref, value) {
-  if (ref.field) {
-    catalog[ref.field] = value;
-    return;
-  }
   const m = ref.path.match(/^presets\[(\d+)\]\.(model_ids|fallback_ids)\.(\w+)$/);
   if (!m) return;
   const preset = catalog.presets[Number(m[1])];
@@ -165,17 +146,12 @@ function groupRefsForCheck(refs, catalog) {
   /** @type {Map<string, typeof refs>} */
   const byPreset = new Map();
   for (const id of presetOrder) byPreset.set(id, []);
-  const topLevel = [];
   for (const ref of refs) {
-    if (ref.presetId) {
-      if (!byPreset.has(ref.presetId)) byPreset.set(ref.presetId, []);
-      byPreset.get(ref.presetId).push(ref);
-    } else {
-      topLevel.push(ref);
-    }
+    if (!byPreset.has(ref.presetId)) byPreset.set(ref.presetId, []);
+    byPreset.get(ref.presetId).push(ref);
   }
   const order = presetOrder.filter((id) => (byPreset.get(id)?.length ?? 0) > 0);
-  return { order, byPreset, topLevel };
+  return { order, byPreset };
 }
 
 function checkModelRef(ref, catalog, idSets, catalogsByEngine, config, results, minMatchScore) {
@@ -306,7 +282,7 @@ async function main() {
 
   const idSets = buildIdSets(catalogsByEngine);
   const refs = collectModelRefs(catalog);
-  const { order: presetOrder, byPreset, topLevel } = groupRefsForCheck(refs, catalog);
+  const { order: presetOrder, byPreset } = groupRefsForCheck(refs, catalog);
 
   /** @type {Array<object>} */
   const results = [];
@@ -333,12 +309,6 @@ async function main() {
     console.log(`[presets-check]  Finished preset: "${presetId}"`);
   }
 
-  for (const ref of topLevel) {
-    console.log(`[presets-check]  Checking top-level field: "${ref.field}"`);
-    runRef(ref);
-    console.log(`[presets-check]  Finished top-level field: "${ref.field}"`);
-  }
-
   let pushResult = null;
 
   if (hasReplacements && !dryRun) {
@@ -349,7 +319,7 @@ async function main() {
     }
     catalog.version = bumpPatchVersion(catalog.version);
     catalog.updated_at = new Date().toISOString();
-    const serialized = `${JSON.stringify(catalog, null, 2)}\n`;
+    const serialized = serializePresetsCatalog(catalog);
     atomicWriteUtf8(config.presetsPath, serialized);
     console.log(`[presets-check] Wrote ${config.presetsPath}`);
 
@@ -358,7 +328,7 @@ async function main() {
         const changeLines = results
           .filter((r) => r.status === "replacement")
           .map((r) => {
-            const label = r.presetId ? `${r.presetId}/${r.engine}` : r.field || r.path;
+            const label = `${r.presetId}/${r.engine}`;
             return `${label}: ${r.oldId} -> ${r.newId} (score ${r.score?.toFixed(2)})`;
           });
         pushResult = commitAndPushPresetsFile(config.repoDir, {
@@ -398,7 +368,6 @@ async function main() {
       path: r.path,
       presetId: r.presetId,
       engine: r.engine,
-      field: r.field,
       oldId: r.oldId,
       newId: r.newId,
       score: r.score,
@@ -414,7 +383,7 @@ async function main() {
     for (const r of results) {
       if (r.status !== "replacement" && r.status !== "unresolved") continue;
       try {
-        const label = r.presetId ? `Preset "${r.presetId}" (${r.engine})` : r.field || r.path;
+        const label = `Preset "${r.presetId}" (${r.engine})`;
         if (r.status === "replacement") {
           const title = pushResult?.pushed
             ? "Presets model replaced (pushed)"

@@ -129,7 +129,11 @@ const {
   streamCompletion,
 } = require("../../src/shared/llm/index.js");
 const { OPENROUTER_PROVIDER } = require("../../src/shared/openRouterProviderRouting.js");
-const { parsePresetsJson, bumpPatchVersion } = require("../../src/shared/presetsCatalog.js");
+const {
+  parsePresetsJson,
+  bumpPatchVersion,
+  serializePresetsCatalog,
+} = require("../../src/shared/presetsCatalog.js");
 const { canonicalForEngine } = require("../../src/shared/presetModelIdUtils.js");
 const {
   EASY_CLOUD_ENGINES,
@@ -138,6 +142,7 @@ const {
   loadEngineModelsCatalog,
   isTransrewrtWorkflowModel,
   isEngineCatalogCached,
+  getProviderCatalogIdSets,
 } = require("../../src/shared/presetsProviderCatalog.js");
 
 const REPO_PRESETS_PATH = path.join(ROOT, "easy-mode-config", "presets.json");
@@ -238,7 +243,7 @@ function savePresetsCatalog(catalog) {
   }
   validated.version = bumpPatchVersion(validated.version);
   validated.updated_at = new Date().toISOString();
-  const serialized = `${JSON.stringify(validated, null, 2)}\n`;
+  const serialized = serializePresetsCatalog(validated);
   atomicWriteUtf8(REPO_PRESETS_PATH, serialized);
   try {
     atomicWriteUtf8(DATA_PRESETS_PATH, serialized);
@@ -469,6 +474,114 @@ async function prefetchEngineCatalogs(keysMap, emit) {
     }
   }
   return { catalogsByEngine, idSets };
+}
+
+const CATALOG_MODEL_FIELDS = [
+  { key: "translation_model", label: "translation_model" },
+  { key: "translation_model_fallback", label: "translation_model_fallback" },
+  { key: "suggestion_model", label: "suggestion_model" },
+  { key: "suggestion_model_fallback", label: "suggestion_model_fallback" },
+];
+
+function pruneInvalidCatalogModelFields(catalog, idSets) {
+  if (!catalog || typeof catalog !== "object") return 0;
+  let pruned = 0;
+  for (const { key, label } of CATALOG_MODEL_FIELDS) {
+    const raw = catalog[key];
+    if (typeof raw !== "string" || !raw.trim()) continue;
+    const id = raw.trim();
+    const slash = id.indexOf("/");
+    const engine = slash > 0 ? id.slice(0, slash).toLowerCase() : "";
+    if (!engine) {
+      console.warn(`[presets-editor] ${label}: invalid id (no engine prefix); clearing: ${id}`);
+      delete catalog[key];
+      pruned += 1;
+      continue;
+    }
+    const set = idSets[engine];
+    if (!set || set.size === 0) continue;
+    if (set.has(id)) continue;
+    console.warn(`[presets-editor] ${label} is not in the provider model catalog; clearing: ${id}`);
+    delete catalog[key];
+    pruned += 1;
+  }
+  if (pruned > 0) {
+    console.log(
+      `[presets-editor] Cleared ${pruned} top-level catalog model field(s) not in provider catalogs (save from editor to persist).`,
+    );
+  }
+  return pruned;
+}
+
+function loadRepoPresetsCatalogFromDisk() {
+  const raw = fs.readFileSync(REPO_PRESETS_PATH, "utf8");
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (e) {
+    const hint = e.message || String(e);
+    const err = new Error(
+      "The presets catalog could not be loaded because the file is not valid JSON. " +
+        "Open easy-mode-config/presets.json in your editor and fix the syntax—often a comma after the last item in a list, or a missing } or ]. " +
+        `(Details: ${hint})`,
+    );
+    err.status = 400;
+    throw err;
+  }
+  if (!data || typeof data !== "object" || !Array.isArray(data.presets)) {
+    const err = new Error(
+      "The presets catalog file is valid JSON but is not in the shape this editor expects. " +
+        'The root of the file should be one object with a property named "presets" whose value is an array of preset objects. ' +
+        "Compare with the stock easy-mode-config/presets.json in the repository if you are unsure.",
+    );
+    err.status = 400;
+    throw err;
+  }
+  return data;
+}
+
+/** In-memory catalog after validation (served to the UI). */
+let editorPresetsCatalog = null;
+/** @type {Promise<{ pruned: number }> | null} */
+let editorPresetsPreparePromise = null;
+/** Serializes disk read + model validation (startup vs Reload must not overlap). */
+let catalogRefreshTail = Promise.resolve();
+
+function enqueueCatalogRefresh(task) {
+  const run = catalogRefreshTail.then(task);
+  catalogRefreshTail = run.catch(() => {});
+  return run;
+}
+
+async function refreshEditorPresetsCatalog({ reload = false } = {}) {
+  return enqueueCatalogRefresh(async () => {
+    const keysMap = mergeKeys({}, process.env);
+    if (reload) {
+      console.log(
+        "[presets-editor] Reloading easy-mode-config/presets.json from disk (provider catalog cache unchanged unless expired)…",
+      );
+    } else {
+      console.log("[presets-editor] Validating top-level catalog models against provider catalogs…");
+    }
+    const { idSets } = await getProviderCatalogIdSets(keysMap, {
+      cachePath: PROVIDER_CATALOGS_DISK_CACHE_PATH,
+    });
+    const catalog = JSON.parse(JSON.stringify(loadRepoPresetsCatalogFromDisk()));
+    const pruned = pruneInvalidCatalogModelFields(catalog, idSets);
+    editorPresetsCatalog = catalog;
+    return { pruned };
+  });
+}
+
+function ensureEditorPresetsPrepared() {
+  if (!editorPresetsPreparePromise) {
+    editorPresetsPreparePromise = refreshEditorPresetsCatalog({ reload: false }).catch((e) => {
+      editorPresetsPreparePromise = null;
+      console.warn("[presets-editor] Could not validate catalog models:", e.message || String(e));
+      throw e;
+    });
+  }
+  return editorPresetsPreparePromise;
 }
 
 // --- AI Suggest: prompts and user-message assembly (edit together) ---
@@ -1141,31 +1254,27 @@ app.get("/api/ui-languages", (_req, res) => {
   res.json(loadUiLanguages());
 });
 
-app.get("/api/presets", (_req, res) => {
+app.get("/api/presets", async (req, res) => {
   try {
-    const raw = fs.readFileSync(REPO_PRESETS_PATH, "utf8");
-    let data;
-    try {
-      data = JSON.parse(raw);
-    } catch (e) {
-      const hint = e.message || String(e);
-      return res.status(400).json({
-        error:
-          "The presets catalog could not be loaded because the file is not valid JSON. " +
-          "Open easy-mode-config/presets.json in your editor and fix the syntax—often a comma after the last item in a list, or a missing } or ]. " +
-          `(Details: ${hint})`,
-      });
+    const wantReload = String(req.query.reload || "") === "1";
+    let pruned = 0;
+    if (wantReload) {
+      const result = await refreshEditorPresetsCatalog({ reload: true });
+      pruned = result?.pruned ?? 0;
+    } else {
+      await ensureEditorPresetsPrepared();
     }
-    if (!data || typeof data !== "object" || !Array.isArray(data.presets)) {
-      return res.status(400).json({
-        error:
-          "The presets catalog file is valid JSON but is not in the shape this editor expects. " +
-          "The root of the file should be one object with a property named \"presets\" whose value is an array of preset objects. " +
-          "Compare with the stock easy-mode-config/presets.json in the repository if you are unsure.",
-      });
+    if (wantReload) {
+      res.setHeader("X-Editor-Presets-Models-Pruned", String(pruned));
     }
-    res.json(data);
+    if (editorPresetsCatalog) {
+      return res.json(editorPresetsCatalog);
+    }
+    res.json(loadRepoPresetsCatalogFromDisk());
   } catch (e) {
+    if (e.status === 400) {
+      return res.status(400).json({ error: e.message || String(e) });
+    }
     if (e.code === "ENOENT") {
       const rel = path.relative(ROOT, REPO_PRESETS_PATH).replace(/\\/g, "/");
       return res.status(404).json({
@@ -1186,6 +1295,7 @@ app.get("/api/presets", (_req, res) => {
 app.put("/api/presets", (req, res) => {
   try {
     const saved = savePresetsCatalog(req.body);
+    editorPresetsCatalog = saved;
     res.json({ ok: true, catalog: saved });
   } catch (e) {
     const status = e.status || 500;
@@ -1578,9 +1688,8 @@ server.on("listening", () => {
   console.log(`[presets-editor] Data mirror:  ${DATA_PRESETS_PATH}`);
   console.log(`[presets-editor] Provider catalog cache: ${PROVIDER_CATALOGS_DISK_CACHE_PATH} (TTL 2h)`);
   console.log(`[presets-editor] Server log file: ${LOG_FILE_PATH}`);
-  const keysMap = mergeKeys({}, process.env);
-  ensureProviderCatalogDiskCache(keysMap).catch((e) => {
-    console.warn("[presets-editor] Provider catalog cache init failed:", e.message || String(e));
+  ensureEditorPresetsPrepared().catch((e) => {
+    console.warn("[presets-editor] Catalog model validation failed:", e.message || String(e));
   });
   const present = listLlmEnvVarsPresent();
   console.log(

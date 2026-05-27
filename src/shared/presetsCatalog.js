@@ -141,6 +141,48 @@ function isEasyExperienceMode(mode) {
   return mode !== "advanced";
 }
 
+/** Top-level keys written before `presets` when serializing the catalog. */
+const PRESETS_CATALOG_HEADER_KEYS = [
+  "version",
+  "updated_at",
+  "translation_model",
+  "translation_model_fallback",
+  "suggestion_model",
+  "suggestion_model_fallback",
+];
+
+/**
+ * Reorder catalog object keys: header fields first, any other keys (except presets), then `presets`.
+ * @param {object} catalog
+ * @returns {object}
+ */
+function orderPresetsCatalogForJson(catalog) {
+  if (!catalog || typeof catalog !== "object") return catalog;
+  const ordered = {};
+  for (const key of PRESETS_CATALOG_HEADER_KEYS) {
+    if (Object.prototype.hasOwnProperty.call(catalog, key)) {
+      ordered[key] = catalog[key];
+    }
+  }
+  const reserved = new Set([...PRESETS_CATALOG_HEADER_KEYS, "presets"]);
+  for (const key of Object.keys(catalog)) {
+    if (!reserved.has(key)) ordered[key] = catalog[key];
+  }
+  if (Object.prototype.hasOwnProperty.call(catalog, "presets")) {
+    ordered.presets = catalog.presets;
+  }
+  return ordered;
+}
+
+/**
+ * Pretty-print presets catalog JSON with stable key order (`presets` last).
+ * @param {object} catalog
+ * @returns {string}
+ */
+function serializePresetsCatalog(catalog) {
+  return `${JSON.stringify(orderPresetsCatalogForJson(catalog), null, 2)}\n`;
+}
+
 module.exports = {
   PRESETS_REMOTE_URL,
   PRESETS_REMOTE_SYNC_INTERVAL_MS,
@@ -156,4 +198,7 @@ module.exports = {
   writePresetsRemoteSyncCheckedAt,
   isPresetsRemoteSyncDue,
   isEasyExperienceMode,
+  PRESETS_CATALOG_HEADER_KEYS,
+  orderPresetsCatalogForJson,
+  serializePresetsCatalog,
 };

@@ -423,6 +423,17 @@ function buildIdSets(catalogsByEngine) {
   return idSets;
 }
 
+/**
+ * Load provider catalogs from memory/disk cache (TTL); refetch APIs only when cache expired.
+ * @param {Record<string, string>} keysMap
+ * @param {{ cachePath?: string, force?: boolean }} [opts]
+ */
+async function getProviderCatalogIdSets(keysMap, opts = {}) {
+  await ensureProviderCatalogDiskCache(keysMap, opts);
+  const catalogsByEngine = collectEngineCatalogsFromMemory();
+  return { catalogsByEngine, idSets: buildIdSets(catalogsByEngine) };
+}
+
 module.exports = {
   CATALOG_DISK_TTL_MS,
   EASY_CLOUD_ENGINES,
@@ -439,5 +450,6 @@ module.exports = {
   loadEngineModelsCatalog,
   isTransrewrtWorkflowModel,
   buildIdSets,
+  getProviderCatalogIdSets,
   canonicalForEngine,
 };

@@ -516,25 +516,6 @@
     }
   }
 
-  function ensureDefaultTranslationModels() {
-    migrateCatalogTranslationKeys();
-    if (!models.length) {
-      syncHeaderTranslationModelsDisplay();
-      return;
-    }
-    const has = function (id) {
-      return id && models.some(function (m) { return m.id === id; });
-    };
-    if (!has(catalog[KEY_TRANSLATION_MODEL])) {
-      catalog[KEY_TRANSLATION_MODEL] = models[0].id;
-    }
-    const fb = catalog[KEY_TRANSLATION_FALLBACK];
-    if (typeof fb === "string" && fb.trim() && !has(fb.trim())) {
-      delete catalog[KEY_TRANSLATION_FALLBACK];
-    }
-    syncHeaderTranslationModelsDisplay();
-  }
-
   function computeTranslateQueueInfo() {
     const sourceLocale = meta.sourceLocale || "en-GB";
     const targets = uiLanguages.filter(function (row) {
@@ -650,28 +631,6 @@
     const el2 = document.getElementById("display-suggestion-model-fallback");
     if (el1) el1.textContent = displayIdForCatalogModel(catalog[KEY_SUGGESTION_MODEL]);
     if (el2) el2.textContent = displayIdForCatalogModel(catalog[KEY_SUGGESTION_FALLBACK]);
-  }
-
-  function ensureDefaultSuggestionModels() {
-    if (!models.length) {
-      syncSuggestionModelsDisplay();
-      return;
-    }
-    const has = function (id) {
-      return id && models.some(function (m) {
-        return m.id === id;
-      });
-    };
-    if (!has(catalog[KEY_SUGGESTION_MODEL])) {
-      const fromTranslation = String(catalog[KEY_TRANSLATION_MODEL] || "").trim();
-      catalog[KEY_SUGGESTION_MODEL] = has(fromTranslation) ? fromTranslation : models[0].id;
-    }
-    const fb = catalog[KEY_SUGGESTION_FALLBACK];
-    if (typeof fb === "string" && fb.trim() && !has(fb.trim())) {
-      delete catalog[KEY_SUGGESTION_FALLBACK];
-    }
-    syncSuggestionModelsDisplay();
-    updateAiSuggestContinueButton();
   }
 
   function providerLabelForEngine(engine) {
@@ -832,7 +791,6 @@
             totalEngines,
             onProgress,
           );
-          if (engine === "openrouter") ensureDefaultSuggestionModels();
           return { engine: engine, count: list.length };
         });
       }),
@@ -918,7 +876,6 @@
     const setup = document.getElementById("ai-suggest-setup-panel");
     if (setup) setup.classList.remove("hidden");
     syncSuggestionModelsDisplay();
-    ensureDefaultSuggestionModels();
     renderAiSuggestPresetCheckboxes();
   }
 
@@ -2024,42 +1981,64 @@
     updateTranslateBar();
   }
 
-  async function loadAll() {
-    setEditorBootVisible(true, "Loading presets catalog…");
-    setStatus("Loading…", null);
+  async function parsePresetsFetchError(sRes) {
+    let msg = "";
     try {
-      const [mRes, uRes, sRes, provRes] = await Promise.all([
-        nativeFetch("/api/meta", { cache: "no-store" }),
-        nativeFetch("/api/ui-languages", { cache: "no-store" }),
-        nativeFetch("/api/presets", { cache: "no-store" }),
-        nativeFetch("/api/providers", { cache: "no-store" }),
-      ]);
+      const errBody = await sRes.json();
+      if (errBody && typeof errBody.error === "string" && errBody.error.trim()) {
+        msg = errBody.error.trim();
+      }
+    } catch {
+      /* ignore */
+    }
+    return (
+      msg ||
+      "Could not load the presets catalog. The server returned an unexpected response (HTTP " +
+        sRes.status +
+        "). Try reloading the page or restarting pnpm run dev:presets-editor."
+    );
+  }
+
+  async function loadAll(opts) {
+    const options = opts || {};
+    setEditorBootVisible(true, options.reload ? "Reloading from disk…" : "Loading presets catalog…");
+    setStatus("Loading…", null);
+    const presetsUrl = options.reload ? "/api/presets?reload=1" : "/api/presets";
+    let reloadedModelsPruned = 0;
+    try {
+      let mRes;
+      let uRes;
+      let sRes;
+      let provRes;
+      if (options.reload) {
+        sRes = await nativeFetch(presetsUrl, { cache: "no-store" });
+        if (!sRes.ok) throw new Error(await parsePresetsFetchError(sRes));
+        const prunedHdr = sRes.headers.get("X-Editor-Presets-Models-Pruned");
+        reloadedModelsPruned = prunedHdr != null ? parseInt(prunedHdr, 10) || 0 : 0;
+        catalog = await sRes.json();
+        [mRes, uRes, provRes] = await Promise.all([
+          nativeFetch("/api/meta", { cache: "no-store" }),
+          nativeFetch("/api/ui-languages", { cache: "no-store" }),
+          nativeFetch("/api/providers", { cache: "no-store" }),
+        ]);
+      } else {
+        [mRes, uRes, sRes, provRes] = await Promise.all([
+          nativeFetch("/api/meta", { cache: "no-store" }),
+          nativeFetch("/api/ui-languages", { cache: "no-store" }),
+          nativeFetch(presetsUrl, { cache: "no-store" }),
+          nativeFetch("/api/providers", { cache: "no-store" }),
+        ]);
+        if (!sRes.ok) throw new Error(await parsePresetsFetchError(sRes));
+        catalog = await sRes.json();
+      }
       if (!mRes.ok) throw new Error("meta HTTP " + mRes.status);
       if (!uRes.ok) throw new Error("ui-languages HTTP " + uRes.status);
-      if (!sRes.ok) {
-        let msg = "";
-        try {
-          const errBody = await sRes.json();
-          if (errBody && typeof errBody.error === "string" && errBody.error.trim()) {
-            msg = errBody.error.trim();
-          }
-        } catch {
-          /* ignore */
-        }
-        throw new Error(
-          msg ||
-            "Could not load the presets catalog. The server returned an unexpected response (HTTP " +
-              sRes.status +
-              "). Try reloading the page or restarting pnpm run dev:presets-editor.",
-        );
-      }
       meta = await mRes.json();
       if (typeof meta.sessionErrorCount === "number") {
         serverSessionErrorCount = meta.sessionErrorCount;
         updateServerLogButtonState();
       }
       uiLanguages = await uRes.json();
-      catalog = await sRes.json();
       if (!Array.isArray(catalog.presets) && Array.isArray(catalog.skills)) {
         catalog.presets = catalog.skills;
         delete catalog.skills;
@@ -2074,27 +2053,42 @@
       if (!catalog.presets) catalog.presets = [];
       normalizeCatalogModelIds();
 
-      setEditorBootMessage("Loading provider model catalogs…");
-      await prefetchAllEngineCatalogs({
-        onProgress: function (msg) {
-          setEditorBootMessage(msg);
-          setStatus(msg, null);
-        },
-      });
+      if (!options.reload || modelsCatalogPrefetchState !== "ready") {
+        setEditorBootMessage("Loading provider model catalogs…");
+        await prefetchAllEngineCatalogs({
+          onProgress: function (msg) {
+            setEditorBootMessage(msg);
+            setStatus(msg, null);
+          },
+        });
+        models.forEach(function (m) {
+          expandedProviders.add(providerSortKeyFromModelId(m.id));
+        });
+      }
 
-      models.forEach(function (m) {
-        expandedProviders.add(providerSortKeyFromModelId(m.id));
-      });
-
-      ensureDefaultTranslationModels();
-      ensureDefaultSuggestionModels();
+      migrateCatalogTranslationKeys();
+      syncHeaderTranslationModelsDisplay();
+      syncSuggestionModelsDisplay();
       if (selectedId && !catalog.presets.some(function (s) { return s.id === selectedId; })) {
         selectedId = null;
       }
       renderPresetList();
       renderDetail();
       updateAiSuggestBar();
-      setStatus("Ready", true);
+      if (options.reload) {
+        if (reloadedModelsPruned > 0) {
+          setStatus(
+            "Reloaded — cleared " +
+              reloadedModelsPruned +
+              " catalog model(s) not in provider list (see server log); save to persist",
+            true,
+          );
+        } else {
+          setStatus("Reloaded from disk", true);
+        }
+      } else {
+        setStatus("Ready", true);
+      }
       setEditorBootVisible(false);
       checkServerLogAfterStartup();
     } catch (e) {
@@ -2123,6 +2117,7 @@
       renderPresetList();
       renderDetail();
       syncHeaderTranslationModelsDisplay();
+      syncSuggestionModelsDisplay();
       updateTranslateBar();
     } catch (e) {
       setStatus(e.message || String(e), false);
@@ -2425,7 +2420,7 @@
   });
 
   document.getElementById("btn-reload").addEventListener("click", function () {
-    loadAll();
+    loadAll({ reload: true });
   });
 
   const btnViewLogs = document.getElementById("btn-view-logs");

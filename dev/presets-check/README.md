@@ -85,7 +85,7 @@ A `fetch first` / `non-fast-forward` rejection means **SSH worked** but the clon
 
 1. **Fetch** latest `main` into the isolated clone (`git fetch` + `reset --hard origin/main`)
 2. **Refresh** provider catalogs (OpenRouter is public; other engines need API keys)
-3. **Check** all `model_ids` per preset plus top-level `translation_model`, `suggestion_model`, etc.
+3. **Check** all `model_ids` and `fallback_ids` per preset
 4. **Replace** unavailable ids with the best fuzzy match (same engine, min score 0.55 by default)
 5. **Write** updated `presets.json`, bump patch `version` and `updated_at`
 6. **Commit + push** only `easy-mode-config/presets.json` (never `git add -A`)
