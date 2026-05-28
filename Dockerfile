@@ -10,8 +10,10 @@ RUN apk add --no-cache python3 make g++
 # Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy package files and scripts needed by postinstall (electron-rebuild.js)
-COPY package.json pnpm-lock.yaml ./
+# Copy package files and scripts needed by postinstall (electron-rebuild.js).
+# pnpm-workspace.yaml: allowBuilds, minimumReleaseAgeExclude (lockfile supply-chain check).
+# .npmrc: node-linker=hoisted (must match local install graph).
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY scripts/ ./scripts/
 
 
@@ -43,7 +45,7 @@ RUN apk add --no-cache tzdata
 WORKDIR /app
 
 # Copy package files and resolved node_modules from builder (no pnpm install)
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy built static files from builder

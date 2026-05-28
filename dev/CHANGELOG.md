@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: `scripts/upgrade-dependencies.sh` keeps latest Electron when upstream ships a matching `better-sqlite3` prebuild; otherwise skips Electron in ncu (registry probe via `scripts/better-sqlite3-electron-compat.js`, no compile loop).
+- **Fixed**: Pin `electron` to ^41.7.1 until `better-sqlite3` publishes Electron 42 (ABI 146) prebuilds ([issue #1474](https://github.com/WiseLibs/better-sqlite3/issues/1474)).
+- **Fixed**: Docker build copies `pnpm-workspace.yaml` and `.npmrc` so `pnpm install` applies the same `minimumReleaseAgeExclude` / hoisted linker settings as local installs.
 
 
 ## [1.3.3] - 2026-05-27
