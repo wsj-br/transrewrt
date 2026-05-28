@@ -114,8 +114,33 @@ try {
         Write-Host 'nvm not found. Install nvm-windows (https://github.com/coreybutler/nvm-windows) to upgrade Node.js, or skip this step.' -ForegroundColor Yellow
     }
 
-    Write-Host '🔄  Ensure pnpm, npm-check-updates and doctoc are installed and in the latest version...' -ForegroundColor Blue
+    Write-Host '📦  Upgrading npm to the latest version...' -ForegroundColor Blue
+    npm install -g npm@latest
+
+    Write-Host '📦  Upgrading pnpm, npm-check-updates and doctoc...' -ForegroundColor Blue
     npm install -g pnpm npm-check-updates doctoc
+
+    # Get the installed pnpm version and update the packageManager field so corepack
+    # picks up the new version instead of the old pinned one.
+    $pnpmNewVer = (npm ls -g pnpm --depth=0 --json 2>$null | ConvertFrom-Json).dependencies.pnpm.version
+    if ($pnpmNewVer) {
+        Write-Host "✏️  Updating packageManager field to pnpm@${pnpmNewVer}..." -ForegroundColor Blue
+        $pkgPath = Resolve-Path (Join-Path $PSScriptRoot '..' 'package.json')
+        node -e @"
+            const fs = require('fs');
+            const p = JSON.parse(fs.readFileSync('$($pkgPath.Path)', 'utf8'));
+            p.packageManager = 'pnpm@${pnpmNewVer}';
+            fs.writeFileSync('$($pkgPath.Path)', JSON.stringify(p, null, 2) + '\n');
+"@
+        Write-Host "✔  packageManager updated to pnpm@${pnpmNewVer}" -ForegroundColor Green
+        if (Get-Command corepack -ErrorAction SilentlyContinue) {
+            Write-Host "📦  Activating pnpm@${pnpmNewVer} via corepack..." -ForegroundColor Blue
+            corepack prepare "pnpm@${pnpmNewVer}" --activate
+        }
+    }
+    else {
+        Write-Host '⚠  Could not determine installed pnpm version; skipping packageManager update' -ForegroundColor Yellow
+    }
 
     if (-not $env:TRANSREWRT_UPGRADE_TOOLS_SUPPRESS_DONE) {
         Write-Host ''
