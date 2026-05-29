@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `.github/workflows/release.yml` — bump artifact actions to Node 24 runtimes (`upload-artifact@v7`, `download-artifact@v8`, `action-gh-release@v3`); remove `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` (was triggering Node 20 deprecation warnings).
+
 ## [1.3.4] - 2026-05-30
 
 - **Changed**: `package.json` — duplicate `pnpm.overrides` from `pnpm-workspace.yaml` so Dependabot resolves override metadata from the manifest.
