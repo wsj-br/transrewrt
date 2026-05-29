@@ -1,10 +1,11 @@
 ---
-translation_last_updated: '2026-05-29T23:01:46.498Z'
-source_file_mtime: '2026-05-29T16:29:05.776Z'
-source_file_hash: 0d709d5bf12a5169fd01d0adaf36791be842032d19813c7a63900e58dc0db095
+translation_last_updated: '2026-05-29T23:39:48.546Z'
+source_file_mtime: '2026-05-29T23:37:52.814Z'
+source_file_hash: 525f80677c6c8c6da16cd0a4ede5c7662f958eeba60ab3c613c6cc8edd8bd407
 translation_language: ms
 source_file_path: README.md
 translation_models:
+  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
 ---
 <p align="center">
@@ -12,7 +13,7 @@ translation_models:
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">

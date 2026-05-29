@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.4] - 2026-05-30
+
 - **Changed**: `package.json` — duplicate `pnpm.overrides` from `pnpm-workspace.yaml` so Dependabot resolves override metadata from the manifest.
 - **Changed**: Settings → General → Presets catalog — version shows catalog `updated_at` after the version (dash-separated); **Last check** shows when the app last looked for a remote update.
 - **Fixed**: `pnpm 3p-notices` — `@jsonjoy.com/json-pointer@>=1.0.0 <2.0.0` clarification uses `licenseText` (v1.0.2 ships no `LICENSE` file; broken `licenseFile` path crashed license-checker).
@@ -23,7 +25,6 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Fixed**: `scripts/upgrade-dependencies.sh` keeps latest Electron when upstream ships a matching `better-sqlite3` prebuild; otherwise skips Electron in ncu (registry probe via `scripts/better-sqlite3-electron-compat.js`, no compile loop).
 - **Fixed**: Pin `electron` to ^41.7.1 until `better-sqlite3` publishes Electron 42 (ABI 146) prebuilds ([issue #1474](https://github.com/WiseLibs/better-sqlite3/issues/1474)).
 - **Fixed**: Docker build copies `pnpm-workspace.yaml` and `.npmrc` so `pnpm install` applies the same `minimumReleaseAgeExclude` / hoisted linker settings as local installs.
-
 
 ## [1.3.3] - 2026-05-27
 
