@@ -1,20 +1,20 @@
 {
   "sourceLocale": "en-GB",
   "targetLocales": [
-    "pt-BR",    "ar",    "bn",    "ca",    "zh-CN",    "zh-TW",    "hr",    "cs",    "nl",    "en-US",    
-    "tl",       "fr",    "de",    "el",    "hi",    "hu",    "it",    "ja",    "ko",    "ms",    "fa",
-    "pl",       "jv",    "pt",    "pa",    "ro",    "ru",    "sk",    "es",    "sw",    "sv",    "te",
-    "th",       "tr",    "uk",    "vi"
+    "pt-BR",   "ar",    "bn",    "ca",    "zh-CN",    "zh-TW",    "hr",    "cs",    "nl",    "en-US",    
+    "tl",      "fr",    "de",    "el",    "hi",       "hu",       "it",    "ja",    "ko",    "ms",    "fa",
+    "pl",      "jv",    "pt",    "pa",    "ro",       "ru",       "sk",    "es",    "sw",    "sv",    "te",
+    "th",      "tr",    "uk",    "vi"
   ],
   "concurrency": 4,
   "batchSize": 20,
   "maxBatchChars": 4096,
   "openrouter": {
     "translationModels": [
+      "anthropic/claude-3-haiku",
       "qwen/qwen3-235b-a22b-2507",
       "openai/gpt-4o-mini",
       "deepseek/deepseek-v4-flash",
-      "anthropic/claude-3-haiku",
       "qwen/qwen3.6-plus",
       "anthropic/claude-3.5-haiku",
       "google/gemini-3-flash-preview",

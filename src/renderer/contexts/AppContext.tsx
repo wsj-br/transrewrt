@@ -10,7 +10,7 @@ import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
-import { loadPresetsFile, syncPresetsFromRemote } from "../utils/presets/presetsManager";
+import { loadPresetsFile, loadPresetsRemoteSyncState, syncPresetsFromRemote } from "../utils/presets/presetsManager";
 import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/presets/configuredEasyEngines";
 import {
   resolveExperienceMode,
@@ -20,6 +20,7 @@ import {
   filterPresetsForEasyProvider,
   resolveEasyRuntime,
 } from "../utils/presets/resolveEasyPresetModel";
+import { STARTUP_FETCH_MS, STARTUP_SAFETY_MS, withTimeout } from "../utils/misc/startupUtils";
 
 // Create the context
 const AppContext = createContext();
@@ -44,6 +45,7 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [presetsCatalog, setPresetsCatalog] = useState([]);
   const [presetsFileMeta, setPresetsFileMeta] = useState({ version: "0.0.0", updated_at: "" });
+  const [presetsLastCheckedAt, setPresetsLastCheckedAt] = useState(0);
   const [presetsRefreshBusy, setPresetsRefreshBusy] = useState(false);
 
   // Web mode: any 401 from API triggers login modal via this callback
@@ -72,19 +74,42 @@ export const AppProvider = ({ children }) => {
 
   // Load config and languages on startup (models are loaded when Settings opens)
   useEffect(() => {
-    const loadLanguages = () => {
+    let cancelled = false;
+    const safetyTimer = setTimeout(() => {
+      if (!cancelled) {
+        console.warn("[AppContext] startup safety timeout — clearing loading screen");
+        setConfigLoading(false);
+      }
+    }, STARTUP_SAFETY_MS);
+
+    const finishLoading = () => {
+      if (!cancelled) {
+        setConfigLoading(false);
+        clearTimeout(safetyTimer);
+      }
+    };
+
+    const loadLanguages = (persist = true) => {
       try {
         let rawLangs = configManager.get("top_languages");
         if (!rawLangs?.length && configManager.get("available_languages")?.length) {
           rawLangs = configManager.get("available_languages");
-          configManager.set("top_languages", rawLangs);
+          if (persist) {
+            configManager.set("top_languages", rawLangs);
+          } else {
+            configManager.config.top_languages = rawLangs;
+          }
         }
         if (rawLangs && rawLangs.length > 0) {
           setTopLanguages(rawLangs);
         } else {
           const loadedLanguages = UI_LANGUAGES.map((l) => l.englishName);
           setTopLanguages(loadedLanguages);
-          configManager.set("top_languages", loadedLanguages);
+          if (persist) {
+            configManager.set("top_languages", loadedLanguages);
+          } else {
+            configManager.config.top_languages = loadedLanguages;
+          }
         }
 
         setSettings(configManager.getAll());
@@ -94,58 +119,93 @@ export const AppProvider = ({ children }) => {
       }
     };
 
-    const init = async () => {
-      setConfigLoading(true);
-      try {
-        await configManager.loadConfig();
-        loadLanguages();
-        preloadProviderIcons();
-        const uiLocale = configManager.get("ui_locale") || "en-GB";
-        const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+    const runBackgroundStartup = async (isWeb: boolean, uiLocale: string) => {
+      await Promise.allSettled([
+        loadLocale(uiLocale).then(() => {
+          if (!cancelled) i18n.changeLanguage(uiLocale);
+        }),
+        isWeb && webAPI.getApiStatus
+          ? webAPI.getApiStatus().then((status) => {
+              if (!cancelled) setApiKeyStatus(status);
+            })
+          : Promise.resolve(),
+      ]);
 
-        const localePromise = loadLocale(uiLocale);
-        const authPromise = isWeb && webAPI.checkAuth
-          ? webAPI.checkAuth().then(
-              (auth) => {
-                if (auth && auth.ok) {
-                  setCurrentUser({
-                    username: auth.username,
-                    role: auth.role || "user",
-                    mustChangePassword: auth.mustChangePassword,
-                  });
-                }
-              },
-              (e) => {
-                if (e && e.status === 401) {
-                  setNeedsLogin(true);
-                  setSessionExpired(true);
-                }
-              }
-            )
-          : Promise.resolve();
-        const statusPromise =
-          isWeb && webAPI.getApiStatus ? webAPI.getApiStatus().then((status) => setApiKeyStatus(status)) : Promise.resolve();
+      if (cancelled) return;
 
-        await Promise.all([localePromise, authPromise, statusPromise]);
-        const initMode = configManager.get("mode");
-        if (resolveExperienceMode(initMode as string | undefined) === "easy") {
-          try {
-            await syncPresetsFromRemote();
-          } catch (e) {
-            console.warn("[presets] remote update:", e);
-          }
-        }
+      const initMode = configManager.get("mode");
+      if (resolveExperienceMode(initMode as string | undefined) === "easy") {
         try {
-          const doc = await loadPresetsFile();
+          await withTimeout(syncPresetsFromRemote(), STARTUP_FETCH_MS, "presets sync");
+        } catch (e) {
+          console.warn("[presets] remote update:", e);
+        }
+      }
+      try {
+        const doc = await loadPresetsFile();
+        const syncState = await loadPresetsRemoteSyncState();
+        if (!cancelled) {
           setPresetsCatalog(doc.presets || []);
           setPresetsFileMeta({ version: doc.version, updated_at: doc.updated_at });
-        } catch (e) {
-          console.warn("[presets] load:", e);
+          setPresetsLastCheckedAt(syncState.last_checked_at);
+        }
+      } catch (e) {
+        console.warn("[presets] load:", e);
+        if (!cancelled) {
           setPresetsCatalog([]);
           setPresetsFileMeta({ version: "0.0.0", updated_at: "" });
+          setPresetsLastCheckedAt(0);
         }
-        i18n.changeLanguage(uiLocale);
+      }
+    };
+
+    const init = async () => {
+      setConfigLoading(true);
+      const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
+      let webAuthed = false;
+
+      try {
+        if (isWeb && webAPI.checkAuth) {
+          try {
+            const auth = await withTimeout(webAPI.checkAuth(), STARTUP_FETCH_MS, "auth check");
+            if (cancelled) return;
+            if (auth?.ok) {
+              webAuthed = true;
+              setCurrentUser({
+                username: auth.username,
+                role: auth.role || "user",
+                mustChangePassword: auth.mustChangePassword,
+              });
+            }
+          } catch (e) {
+            if (cancelled) return;
+            if (e && e.status === 401) {
+              setNeedsLogin(true);
+              setSessionExpired(true);
+              finishLoading();
+              return;
+            }
+            console.warn("[AppContext] auth check failed:", e);
+          }
+        }
+
+        if (isWeb && !webAuthed) {
+          setNeedsLogin(true);
+          finishLoading();
+          return;
+        }
+
+        await withTimeout(configManager.loadConfig(), STARTUP_FETCH_MS, "config load");
+        if (cancelled) return;
+
+        loadLanguages(!isWeb || webAuthed);
+        preloadProviderIcons();
+        const uiLocale = configManager.get("ui_locale") || "en-GB";
+
+        finishLoading();
+        void runBackgroundStartup(isWeb, uiLocale);
       } catch (err) {
+        if (cancelled) return;
         if (err && err.status === 401) {
           setNeedsLogin(true);
           setSessionExpired(true);
@@ -153,8 +213,7 @@ export const AppProvider = ({ children }) => {
           setError("Failed to load config");
           console.error(err);
         }
-      } finally {
-        setConfigLoading(false);
+        finishLoading();
       }
     };
 
@@ -177,8 +236,10 @@ export const AppProvider = ({ children }) => {
             try {
               await syncPresetsFromRemote();
               const doc = await loadPresetsFile();
+              const syncState = await loadPresetsRemoteSyncState();
               setPresetsCatalog(doc.presets || []);
               setPresetsFileMeta({ version: doc.version, updated_at: doc.updated_at });
+              setPresetsLastCheckedAt(syncState.last_checked_at);
             } catch (e) {
               console.warn("[presets] reload after settings:", e);
             }
@@ -189,6 +250,8 @@ export const AppProvider = ({ children }) => {
     }
 
     return () => {
+      cancelled = true;
+      clearTimeout(safetyTimer);
       if (window.electronAPI?.removeSettingsUpdated && settingsCallback) {
         window.electronAPI.removeSettingsUpdated(settingsCallback);
       }
@@ -226,17 +289,26 @@ export const AppProvider = ({ children }) => {
       }
       setPresetsRefreshBusy(true);
       try {
-        await syncPresetsFromRemote(options);
+        const syncResult = await syncPresetsFromRemote(options);
         const doc = await loadPresetsFile();
         applyPresetsFile(doc);
+        if (syncResult?.last_checked_at) {
+          setPresetsLastCheckedAt(syncResult.last_checked_at);
+        } else {
+          const syncState = await loadPresetsRemoteSyncState();
+          setPresetsLastCheckedAt(syncState.last_checked_at);
+        }
       } catch (e) {
         console.warn("[presets] refresh failed:", e);
         try {
           const doc = await loadPresetsFile();
           applyPresetsFile(doc);
+          const syncState = await loadPresetsRemoteSyncState();
+          setPresetsLastCheckedAt(syncState.last_checked_at);
         } catch {
           setPresetsCatalog([]);
           setPresetsFileMeta({ version: "0.0.0", updated_at: "" });
+          setPresetsLastCheckedAt(0);
         }
       } finally {
         setPresetsRefreshBusy(false);
@@ -1063,6 +1135,7 @@ export const AppProvider = ({ children }) => {
     presets: easyPresets,
     presetsCatalog,
     presetsFileMeta,
+    presetsLastCheckedAt,
     presetsRefreshBusy,
     refreshPresetsCatalog,
     easyProvider,

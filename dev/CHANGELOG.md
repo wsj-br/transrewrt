@@ -11,6 +11,15 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `package.json` — duplicate `pnpm.overrides` from `pnpm-workspace.yaml` so Dependabot resolves override metadata from the manifest.
+- **Changed**: Settings → General → Presets catalog — version shows catalog `updated_at` after the version (dash-separated); **Last check** shows when the app last looked for a remote update.
+- **Fixed**: `pnpm 3p-notices` — `@jsonjoy.com/json-pointer@>=1.0.0 <2.0.0` clarification uses `licenseText` (v1.0.2 ships no `LICENSE` file; broken `licenseFile` path crashed license-checker).
+- **Changed**: Settings → Transform prompts: row checkboxes (all selected by default), bulk delete toolbar, per-row save to `transrewrt_transform_[NAME].json`, and Export only includes selected prompts.
+- **Fixed**: Unchecked checkboxes remain visible on muted table headers (dark and light theme).
+- **Fixed**: Stacked workspace layout no longer forces the sidebar collapsed; collapse/expand follows the normal persisted preference.
+- **Fixed**: Electron startup loading screen follows the OS dark/light theme before app config is loaded (main-process nativeTheme via IPC, early body class, CSS fallback).
+- **Fixed**: Web app startup hang on "Loading…" — auth-first bootstrap, 12s safety timeout, non-blocking presets/locale load, and no renderer import of Node-only `multi-llm-ts`.
+- **Fixed**: Cost Tracking maps OpenRouter auth failures (e.g. “Missing Authentication header”) to “API Key is invalid”.
 - **Fixed**: `scripts/upgrade-dependencies.sh` keeps latest Electron when upstream ships a matching `better-sqlite3` prebuild; otherwise skips Electron in ncu (registry probe via `scripts/better-sqlite3-electron-compat.js`, no compile loop).
 - **Fixed**: Pin `electron` to ^41.7.1 until `better-sqlite3` publishes Electron 42 (ABI 146) prebuilds ([issue #1474](https://github.com/WiseLibs/better-sqlite3/issues/1474)).
 - **Fixed**: Docker build copies `pnpm-workspace.yaml` and `.npmrc` so `pnpm install` applies the same `minimumReleaseAgeExclude` / hoisted linker settings as local installs.

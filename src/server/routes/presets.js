@@ -91,8 +91,10 @@ async function syncPresetsFromRemote(presetsPath, defaultPresetsPath, log, opts 
       skipped: true,
       version: current.version,
       updated_at: current.updated_at,
+      last_checked_at: lastChecked,
     };
   }
+  let result;
   try {
     const remote = await fetchRemotePresets();
     const diskExists = fs.existsSync(presetsPath);
@@ -110,27 +112,28 @@ async function syncPresetsFromRemote(presetsPath, defaultPresetsPath, log, opts 
       remoteParsed: remote,
     });
     if (!write) {
-      return {
+      result = {
         updated: false,
         version: current.version,
         updated_at: current.updated_at,
       };
+    } else {
+      const dir = path.dirname(presetsPath);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(presetsPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
+      const msg = formatPresetsRemoteUpdateLog(remote, current);
+      log.info(msg);
+      console.log(msg);
+      result = {
+        updated: true,
+        version: remote.version,
+        updated_at: remote.updated_at,
+      };
     }
-    const dir = path.dirname(presetsPath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(presetsPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
-    const msg = formatPresetsRemoteUpdateLog(remote, current);
-    log.info(msg);
-    console.log(msg);
-    return {
-      updated: true,
-      version: remote.version,
-      updated_at: remote.updated_at,
-    };
   } catch (e) {
     log.warn("[presets] Remote sync failed: " + (e?.message || e));
     const current = readMergedPresets(presetsPath, defaultPresetsPath);
-    return {
+    result = {
       updated: false,
       error: String(e?.message || e),
       version: current.version,
@@ -139,6 +142,10 @@ async function syncPresetsFromRemote(presetsPath, defaultPresetsPath, log, opts 
   } finally {
     writePresetsRemoteSyncCheckedAt(statePath);
   }
+  return {
+    ...result,
+    last_checked_at: readPresetsRemoteSyncCheckedAt(statePath),
+  };
 }
 
 /**
@@ -165,6 +172,21 @@ function createPresetsRouter(presetsPath, defaultPresetsPath, log, appDb) {
     }
   });
 
+  router.get("/sync-state", (req, res) => {
+    try {
+      const auth = req.authSession;
+      if (!auth?.userId) {
+        return res.status(401).json({ error: "Authentication required" });
+      }
+      const statePath = getPresetsRemoteSyncStatePath(presetsPath);
+      res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+      res.json({ last_checked_at: readPresetsRemoteSyncCheckedAt(statePath) });
+    } catch (err) {
+      log.error("[API] GET /api/presets/sync-state - " + err.message, { stack: err.stack });
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   router.post("/sync", async (req, res) => {
     try {
       const auth = req.authSession;
@@ -174,12 +196,14 @@ function createPresetsRouter(presetsPath, defaultPresetsPath, log, appDb) {
       const userPrefs = appDb.getUserPreferencesData(auth.userId) || {};
       if (!isEasyExperienceMode(userPrefs.mode)) {
         const data = readMergedPresets(presetsPath, defaultPresetsPath);
+        const statePath = getPresetsRemoteSyncStatePath(presetsPath);
         return res.json({
           updated: false,
           skipped: true,
           reason: "advanced",
           version: data.version,
           updated_at: data.updated_at,
+          last_checked_at: readPresetsRemoteSyncCheckedAt(statePath),
         });
       }
       const force = req.body && req.body.force === true;

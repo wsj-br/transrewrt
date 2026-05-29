@@ -12,6 +12,10 @@ const {
 
 const { OPENROUTER_PROVIDER } = require("../openRouterProviderRouting");
 const { estimateMaxTokensFromMessages, MAX_MAX_TOKENS } = require("./estimateMaxTokens");
+const {
+  extractApiErrorMessage,
+  isOpenRouterKeyAuthFailureMessage,
+} = require("../apiErrorMessage.js");
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 
@@ -301,11 +305,7 @@ async function testProviderAuth(provider, value) {
     let detail = `HTTP ${response.status}`;
     try {
       const parsed = body ? JSON.parse(body) : {};
-      detail =
-        parsed?.error?.message ||
-        parsed?.error ||
-        parsed?.message ||
-        detail;
+      detail = extractApiErrorMessage(parsed, detail);
     } catch {
       if (body) detail = body.slice(0, 220);
     }
@@ -938,6 +938,8 @@ module.exports = {
   mergeKeys,
   readEnvNonBlank,
   providerDisplayName,
+  extractApiErrorMessage,
+  isOpenRouterKeyAuthFailureMessage,
   testProviderAuth,
   listLlmEnvVarsPresent,
   buildConfig,

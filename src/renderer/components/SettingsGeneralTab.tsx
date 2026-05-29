@@ -54,12 +54,28 @@ function normalizeTheme(value) {
   return "system";
 }
 
-function formatPresetsCatalogDate(iso: string, locale: string) {
-  const trimmed = String(iso || "").trim();
-  if (!trimmed) return "";
-  const d = new Date(trimmed);
-  if (Number.isNaN(d.getTime())) return trimmed;
+function formatPresetsCatalogTimestamp(value: string | number, locale: string) {
+  let d: Date;
+  if (typeof value === "number") {
+    if (!value || value <= 0) return "";
+    d = new Date(value);
+  } else {
+    const trimmed = String(value || "").trim();
+    if (!trimmed) return "";
+    d = new Date(trimmed);
+  }
+  if (Number.isNaN(d.getTime())) return typeof value === "string" ? String(value) : "";
   return d.toLocaleString(locale);
+}
+
+function formatPresetsVersionWithUpdated(
+  meta: { version?: string; updated_at?: string } | null | undefined,
+  locale: string,
+  unknownLabel: string,
+) {
+  const version = meta?.version?.trim() || unknownLabel;
+  const updated = formatPresetsCatalogTimestamp(meta?.updated_at || "", locale);
+  return updated ? `${version} (${updated})` : version;
 }
 
 const SettingsGeneralTab = ({
@@ -68,7 +84,7 @@ const SettingsGeneralTab = ({
   canConfigBackup = false,
 }) => {
   const { t, i18n } = useTranslation();
-  const { apiKeyStatus, presetsFileMeta, presetsRefreshBusy, refreshPresetsCatalog } = useAppContext();
+  const { apiKeyStatus, presetsFileMeta, presetsLastCheckedAt, presetsRefreshBusy, refreshPresetsCatalog } = useAppContext();
   const locale = i18n.language || 'en-GB';
   const serverConfiguredEngines =
     isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
@@ -349,11 +365,11 @@ const SettingsGeneralTab = ({
                   <dl className="m-0 grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm">
                     <dt className="m-0 text-muted-foreground">{t("Version")}</dt>
                     <dd className="m-0 font-mono text-xs leading-normal">
-                      {presetsFileMeta?.version?.trim() || t("Unknown")}
+                      {formatPresetsVersionWithUpdated(presetsFileMeta, locale, t("Unknown"))}
                     </dd>
-                    <dt className="m-0 text-muted-foreground">{t("Updated")}</dt>
+                    <dt className="m-0 text-muted-foreground">{t("Last check")}</dt>
                     <dd className="m-0 text-xs leading-normal">
-                      {formatPresetsCatalogDate(presetsFileMeta?.updated_at || "", locale) || t("Unknown")}
+                      {formatPresetsCatalogTimestamp(presetsLastCheckedAt, locale) || t("Unknown")}
                     </dd>
                   </dl>
                   <Button

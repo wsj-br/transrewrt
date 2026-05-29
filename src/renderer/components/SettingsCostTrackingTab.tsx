@@ -17,6 +17,7 @@ import {
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { getTextDirection } from "ai-i18n-tools/runtime";
+import { isOpenRouterKeyAuthFailureMessage } from "../../shared/apiErrorMessage.js";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -101,7 +102,15 @@ const SettingsCostTrackingTab = ({
     } catch (err) {
       if (thisId === keyRefreshIdRef.current) {
         setKeyInfo(null);
-        setKeyInfoError(err?.message || t("Failed to load key info"));
+        const raw = err?.message || t("Failed to load key info");
+        const ipcPrefix = /^Error invoking remote method '[^']+': (?:Error: )?/;
+        const cleaned =
+          typeof raw === "string" ? raw.replace(ipcPrefix, "").trim() : "";
+        setKeyInfoError(
+          isOpenRouterKeyAuthFailureMessage(cleaned)
+            ? t("API Key is invalid")
+            : cleaned || t("Failed to load key info"),
+        );
       }
     } finally {
       if (thisId === keyRefreshIdRef.current) setKeyInfoLoading(false);

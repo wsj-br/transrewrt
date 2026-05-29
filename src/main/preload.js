@@ -93,8 +93,16 @@ const api = {
   importConfigBackup: (opts) => ipcRenderer.invoke('configBackup:import', opts || {}),
   getPathForFile: (file) => (file && webUtils?.getPathForFile ? webUtils.getPathForFile(file) : ''),
   getRuntimePlatform: () => process.platform,
+  getSystemPrefersDark: () => {
+    try {
+      return ipcRenderer.sendSync("theme:systemPrefersDark");
+    } catch {
+      return false;
+    }
+  },
   writeClipboardText: (text) => ipcRenderer.invoke('clipboard:writeText', text),
   readPresets: () => ipcRenderer.invoke('presets:read'),
+  getPresetsRemoteSyncState: () => ipcRenderer.invoke('presets:syncState'),
   updatePresetsFromRemote: (opts) => ipcRenderer.invoke('presets:updateFromRemote', opts || {}),
 };
 

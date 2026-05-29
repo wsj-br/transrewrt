@@ -26,6 +26,7 @@ import {
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatCost } from "../utils/misc/costUtils";
+import { applyConfiguredTheme } from "../utils/misc/themeUtils";
 import { isWeb } from "../constants";
 import "../styles/main.css";
 
@@ -370,18 +371,7 @@ const App = () => {
   useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput, currentView);
 
   // Apply theme — 'light' | 'dark' | 'system' (follow OS)
-  useEffect(() => {
-    const rawTheme = normalizeTheme(settings.theme);
-    if (rawTheme !== "system") {
-      document.body.className = rawTheme;
-      return;
-    }
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const apply = () => { document.body.className = mq.matches ? "dark" : "light"; };
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, [settings.theme]);
+  useEffect(() => applyConfiguredTheme(normalizeTheme(settings.theme)), [settings.theme]);
 
   const costFractionStyle = settings?.cost_fraction_style || "muted";
   const totalCostNum = Number(settings.total_cost) || 0;
@@ -683,7 +673,6 @@ const App = () => {
                   onDashboardClick={handleDashboardClick}
                   onHistoryClick={handleHistoryClick}
                   showExecutionHistory={settings.keep_execution_history !== false}
-                  forceCollapsed={layoutMode === "stack"}
                   onSettingsClick={() => {
                     setCurrentView("settings");
                     if (isWeb) setSetting("web_view", "settings");
@@ -770,7 +759,6 @@ const App = () => {
           onDashboardClick={handleDashboardClick}
           onHistoryClick={handleHistoryClick}
           showExecutionHistory={settings.keep_execution_history !== false}
-          forceCollapsed={layoutMode === "stack"}
           onSettingsClick={() => setCurrentView("settings")}
         />
         <MainContent

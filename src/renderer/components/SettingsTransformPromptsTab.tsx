@@ -1,13 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { BookOpenText, Download, Upload, List, Trash2, Loader2 } from "lucide-react";
+import { BookOpenText, Download, Upload, List, Trash2, Loader2, Save } from "lucide-react";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
+import { triggerDownload } from "../utils/misc/exportUtils";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -194,19 +196,121 @@ const getAcceptForFormat = (format) => {
   }
 };
 
+function transformPromptExportFilename(name) {
+  const slug = (name || "prompt").trim().replace(/\s+/g, "_");
+  return `transrewrt_transform_${slug}.json`;
+}
+
+/** @returns {{ blob: Blob, filename: string }} */
+function buildExportBlobAndFilename(rawList, format) {
+  if (format === "json") {
+    const data = rawList.map((p) => ({
+      ...p,
+      instructions: instructionsToExportArray(p.instructions),
+    }));
+    return {
+      blob: new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }),
+      filename: "transrewrt-transform-prompts.json",
+    };
+  }
+  if (format === "csv") {
+    const csv = buildCsvFromPrompts(rawList);
+    return {
+      blob: new Blob([csv], { type: "text/csv" }),
+      filename: "transrewrt-transform-prompts.csv",
+    };
+  }
+  if (format === "xlsx") {
+    const instrStr = (p) => instructionsToNewlineString(p.instructions);
+    const rows = rawList.map((p) => ({
+      name: p.name ?? "",
+      role: p.role ?? "",
+      instructions: "'" + instrStr(p),
+      output_description: p.output_description ?? "transformed",
+      temperature: p.temperature ?? 0.4,
+      target_language: p.target_language === true || p.target_language === 1 ? "Yes" : "No",
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
+    const headerStyle = {
+      fill: { patternType: "solid", fgColor: { rgb: "BDD7EE" } },
+      font: { bold: true },
+      alignment: { vertical: "top" },
+    };
+    const cellStyleTop = { alignment: { vertical: "top" } };
+    const cellStyleTopWrap = { alignment: { vertical: "top", wrapText: true } };
+    const colIndexInstructions = 2;
+    for (let C = range.s.c; C <= range.e.c; C++) {
+      const addr = XLSX.utils.encode_cell({ r: 0, c: C });
+      if (ws[addr]) ws[addr].s = headerStyle;
+    }
+    for (let R = range.s.r + 1; R <= range.e.r; R++) {
+      for (let C = range.s.c; C <= range.e.c; C++) {
+        const addr = XLSX.utils.encode_cell({ r: R, c: C });
+        if (ws[addr]) {
+          ws[addr].s = C === colIndexInstructions ? cellStyleTopWrap : cellStyleTop;
+        }
+      }
+    }
+    const colWidths = CSV_COLUMNS.map((_, c) => {
+      let maxCh = 10;
+      for (let r = 0; r <= range.e.r; r++) {
+        const addr = XLSX.utils.encode_cell({ r, c: c });
+        const cell = ws[addr];
+        if (!cell || cell.v == null) continue;
+        const str = String(cell.v);
+        const lines = str.split(/\r?\n/);
+        const len = lines.length ? Math.max(...lines.map((l) => l.length)) : str.length;
+        maxCh = Math.min(Math.max(maxCh, len + 2), 80);
+      }
+      return { wch: maxCh };
+    });
+    ws["!cols"] = colWidths;
+    const rowHeights = [];
+    const defaultHpt = 15;
+    rowHeights[0] = { hpt: 20 };
+    for (let R = 1; R <= range.e.r; R++) {
+      const addr = XLSX.utils.encode_cell({ r: R, c: colIndexInstructions });
+      const cell = ws[addr];
+      const lines = cell && cell.v != null ? String(cell.v).split(/\r?\n/).length : 1;
+      rowHeights[R] = { hpt: Math.min(Math.max(defaultHpt, lines * defaultHpt), 200) };
+    }
+    ws["!rows"] = rowHeights;
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Prompts");
+    const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    return {
+      blob: new Blob([arr], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      }),
+      filename: "transrewrt-transform-prompts.xlsx",
+    };
+  }
+  return null;
+}
+
 const SettingsTransformPromptsTab = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || "en-GB";
   const [prompts, setPrompts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [exportMessage, setExportMessage] = useState("");
+  const [exportError, setExportError] = useState(false);
   const [importMessage, setImportMessage] = useState("");
   const [importError, setImportError] = useState(false);
   const [exportImportFormat, setExportImportFormat] = useState("json");
-  const [promptToDelete, setPromptToDelete] = useState(null);
+  const [selectedIds, setSelectedIds] = useState(() => new Set());
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false);
   const [showLoadSampleConfirm, setShowLoadSampleConfirm] = useState(false);
   const [loadSampleLoading, setLoadSampleLoading] = useState(false);
   const fileInputRef = useRef(null);
+
+  const selectedPrompts = useMemo(
+    () => prompts.filter((p) => p.id != null && selectedIds.has(p.id)),
+    [prompts, selectedIds]
+  );
+  const someSelected = selectedIds.size > 0;
+  const allSelected = prompts.length > 0 && selectedIds.size === prompts.length;
 
   const loadPrompts = async () => {
     const api = getCustomPromptsApi();
@@ -226,129 +330,80 @@ const SettingsTransformPromptsTab = () => {
     }
   };
 
-  const handleConfirmDeletePrompt = async () => {
-    if (!promptToDelete?.id) {
-      setPromptToDelete(null);
-      return;
+  useEffect(() => {
+    if (loading) return;
+    setSelectedIds(new Set(prompts.map((p) => p.id).filter((id) => id != null)));
+  }, [prompts, loading]);
+
+  const togglePromptSelection = (id, checked) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (checked) next.add(id);
+      else next.delete(id);
+      return next;
+    });
+  };
+
+  const handleHeaderCheckboxChange = () => {
+    if (someSelected) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(prompts.map((p) => p.id).filter((id) => id != null)));
     }
+  };
+
+  const handleConfirmBulkDelete = async () => {
     const api = getCustomPromptsApi();
     if (!api?.delete) {
-      setPromptToDelete(null);
+      setShowBulkDeleteConfirm(false);
       return;
     }
+    const toDelete = [...selectedPrompts];
+    setShowBulkDeleteConfirm(false);
     try {
-      await api.delete(promptToDelete.id);
-      setPromptToDelete(null);
+      await Promise.all(toDelete.map((p) => api.delete(p.id)));
       await loadPrompts();
     } catch {
-      setPromptToDelete(null);
+      await loadPrompts();
     }
+  };
+
+  const handleSavePrompt = (prompt) => {
+    const data = [
+      {
+        ...prompt,
+        instructions: instructionsToExportArray(prompt.instructions),
+      },
+    ];
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    triggerDownload(blob, transformPromptExportFilename(prompt.name));
   };
 
   useEffect(() => {
     loadPrompts();
   }, []);
 
-  const handleExport = async () => {
+  const handleExport = () => {
     setExportMessage("");
-    const api = getCustomPromptsApi();
-    const getExportData = api?.export ? () => api.export() : api?.getAll ? () => api.getAll() : null;
-    if (!getExportData) {
-      setExportMessage(t("Export not available."));
+    setExportError(false);
+    if (selectedIds.size === 0) {
+      setExportMessage(t("Select at least one prompt to export."));
+      setExportError(true);
       return;
     }
     try {
-      const list = await getExportData();
-      const rawList = Array.isArray(list) ? list : [];
-      let blob;
-      let filename;
-      if (exportImportFormat === "json") {
-        const data = rawList.map((p) => ({
-          ...p,
-          instructions: instructionsToExportArray(p.instructions),
-        }));
-        blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-        filename = "transrewrt-transform-prompts.json";
-      } else if (exportImportFormat === "csv") {
-        const csv = buildCsvFromPrompts(rawList);
-        blob = new Blob([csv], { type: "text/csv" });
-        filename = "transrewrt-transform-prompts.csv";
-      } else if (exportImportFormat === "xlsx") {
-        const instrStr = (p) => instructionsToNewlineString(p.instructions);
-        const rows = rawList.map((p) => ({
-          name: p.name ?? "",
-          role: p.role ?? "",
-          instructions: "'" + instrStr(p),
-          output_description: p.output_description ?? "transformed",
-          temperature: p.temperature ?? 0.4,
-          target_language: p.target_language === true || p.target_language === 1 ? "Yes" : "No",
-        }));
-        const ws = XLSX.utils.json_to_sheet(rows);
-        const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
-        const headerStyle = {
-          fill: { patternType: "solid", fgColor: { rgb: "BDD7EE" } },
-          font: { bold: true },
-          alignment: { vertical: "top" },
-        };
-        const cellStyleTop = { alignment: { vertical: "top" } };
-        const cellStyleTopWrap = { alignment: { vertical: "top", wrapText: true } };
-        const colIndexInstructions = 2;
-        for (let C = range.s.c; C <= range.e.c; C++) {
-          const addr = XLSX.utils.encode_cell({ r: 0, c: C });
-          if (ws[addr]) ws[addr].s = headerStyle;
-        }
-        for (let R = range.s.r + 1; R <= range.e.r; R++) {
-          for (let C = range.s.c; C <= range.e.c; C++) {
-            const addr = XLSX.utils.encode_cell({ r: R, c: C });
-            if (ws[addr]) {
-              ws[addr].s = C === colIndexInstructions ? cellStyleTopWrap : cellStyleTop;
-            }
-          }
-        }
-        const colWidths = CSV_COLUMNS.map((_, c) => {
-          let maxCh = 10;
-          for (let r = 0; r <= range.e.r; r++) {
-            const addr = XLSX.utils.encode_cell({ r, c: c });
-            const cell = ws[addr];
-            if (!cell || cell.v == null) continue;
-            const str = String(cell.v);
-            const lines = str.split(/\r?\n/);
-            const len = lines.length ? Math.max(...lines.map((l) => l.length)) : str.length;
-            maxCh = Math.min(Math.max(maxCh, len + 2), 80);
-          }
-          return { wch: maxCh };
-        });
-        ws["!cols"] = colWidths;
-        const rowHeights = [];
-        const defaultHpt = 15;
-        rowHeights[0] = { hpt: 20 };
-        for (let R = 1; R <= range.e.r; R++) {
-          const addr = XLSX.utils.encode_cell({ r: R, c: colIndexInstructions });
-          const cell = ws[addr];
-          const lines = cell && cell.v != null ? String(cell.v).split(/\r?\n/).length : 1;
-          rowHeights[R] = { hpt: Math.min(Math.max(defaultHpt, lines * defaultHpt), 200) };
-        }
-        ws["!rows"] = rowHeights;
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Prompts");
-        const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-        blob = new Blob([arr], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        });
-        filename = "transrewrt-transform-prompts.xlsx";
-      } else {
+      const rawList = selectedPrompts;
+      const result = buildExportBlobAndFilename(rawList, exportImportFormat);
+      if (!result) {
         setExportMessage(t("Unknown format."));
+        setExportError(true);
         return;
       }
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      a.click();
-      URL.revokeObjectURL(url);
+      triggerDownload(result.blob, result.filename);
       setExportMessage(t("Exported successfully."));
     } catch (err) {
       setExportMessage(err?.message || t("Export failed."));
+      setExportError(true);
     }
   };
 
@@ -414,6 +469,7 @@ const SettingsTransformPromptsTab = () => {
       const result = await api.import(list, "merge");
       if (result?.error) throw new Error(result.error);
       setExportMessage("");
+      setExportError(false);
       setImportMessage(t("Imported {{count}} prompt(s).", { count: list.length }));
       loadPrompts();
     } catch (err) {
@@ -460,6 +516,7 @@ const SettingsTransformPromptsTab = () => {
       const result = await api.import(toImport, "merge");
       if (result?.error) throw new Error(result.error);
       setExportMessage("");
+      setExportError(false);
       setImportMessage(t("Imported {{count}} prompt(s).", { count: toImport.length }));
       await loadPrompts();
     } catch (err) {
@@ -469,15 +526,6 @@ const SettingsTransformPromptsTab = () => {
       setLoadSampleLoading(false);
     }
   };
-
-  const sectionTitleStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    marginTop: 0,
-    marginBottom: "36px",
-  };
-  const indentStyle = { paddingInlineStart: "24px" };
 
   return (
     <div className={settingsTabContent}>
@@ -533,7 +581,11 @@ const SettingsTransformPromptsTab = () => {
               {loadSampleLoading ? t("Loading…") : t("Load sample prompts")}
             </Button>
           </div>
-          {exportMessage && <div className="text-xs text-muted-foreground">{exportMessage}</div>}
+          {exportMessage && (
+            <div className={`text-xs ${exportError ? "text-red-400" : "text-muted-foreground"}`}>
+              {exportMessage}
+            </div>
+          )}
           {importMessage && (
             <div className={`text-xs ${importError ? "text-red-400" : "text-muted-foreground"}`}>
               {importMessage}
@@ -551,6 +603,26 @@ const SettingsTransformPromptsTab = () => {
             <Loader2 size={20} className="animate-spin opacity-50" />
           ) : (
             <>
+              {prompts.length > 0 && (
+                <div className="mb-3 flex items-center gap-3 flex-wrap">
+                  <Checkbox
+                    className="sm:hidden"
+                    checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                    onCheckedChange={handleHeaderCheckboxChange}
+                    aria-label={t("Select or clear all prompts")}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-red-400 border-red-800/60 hover:bg-red-950/40 hover:text-red-300"
+                    disabled={selectedIds.size === 0}
+                    onClick={() => setShowBulkDeleteConfirm(true)}
+                  >
+                    <Trash2 size={14} />
+                    {t("Delete selected")}
+                  </Button>
+                </div>
+              )}
               <div className={promptCard.list}>
                 {prompts.length === 0 ? (
                   <div className={promptCard.empty}>
@@ -559,18 +631,24 @@ const SettingsTransformPromptsTab = () => {
                 ) : (
                   prompts.map((p) => {
                     const d = getTransformPromptRowDisplay(p, t);
+                    const isSelected = selectedIds.has(p.id);
                     return (
                       <div key={p.id} className={promptCard.card}>
                         <div className={promptCard.headerRow}>
+                          <Checkbox
+                            checked={isSelected}
+                            onCheckedChange={(c) => togglePromptSelection(p.id, !!c)}
+                            aria-label={p.name}
+                          />
                           <span className={promptCard.name}>{p.name}</span>
                           <button
                             type="button"
-                            className={promptCard.deleteBtn}
-                            title={t("Delete this prompt")}
-                            aria-label={t("Delete this prompt")}
-                            onClick={() => setPromptToDelete(p)}
+                            className={promptCard.saveBtn}
+                            title={t("Save this prompt to a file")}
+                            aria-label={t("Save this prompt to a file")}
+                            onClick={() => handleSavePrompt(p)}
                           >
-                            <Trash2 size={13} />
+                            <Save size={13} />
                           </button>
                         </div>
                         <div className={promptCard.fieldBlock}>
@@ -608,6 +686,15 @@ const SettingsTransformPromptsTab = () => {
                   <table className={tbl.table}>
                     <thead className={tbl.thead}>
                       <tr>
+                        <th className={tbl.thCheckbox}>
+                          <div className={tbl.thCheckboxInner}>
+                            <Checkbox
+                              checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                              onCheckedChange={handleHeaderCheckboxChange}
+                              aria-label={t("Select or clear all prompts")}
+                            />
+                          </div>
+                        </th>
                         <th className={tbl.th}>{t("Name")}</th>
                         <th className={tbl.th}>{t("Role")}</th>
                         <th className={tbl.th}>{t("Instructions")}</th>
@@ -619,28 +706,39 @@ const SettingsTransformPromptsTab = () => {
                     <tbody>
                       {prompts.length === 0 ? (
                         <tr>
-                          <td colSpan={6} className={tbl.emptyRow}>
+                          <td colSpan={7} className={tbl.emptyRow}>
                             {t("No transform prompts yet. Import from a file or create in the Transform view.")}
                           </td>
                         </tr>
                       ) : (
                         prompts.map((p) => {
                           const d = getTransformPromptRowDisplay(p, t);
+                          const isSelected = selectedIds.has(p.id);
                           return (
                             <tr key={p.id} className={tbl.tbodyTr}>
+                              <td className={`${tbl.td} ${promptCard.checkboxCol}`}>
+                                <div className="flex justify-center">
+                                  <Checkbox
+                                    checked={isSelected}
+                                    onCheckedChange={(c) => togglePromptSelection(p.id, !!c)}
+                                    aria-label={p.name}
+                                  />
+                                </div>
+                              </td>
                               <td className={tbl.td}>
                                 <span className="flex items-center gap-1.5 min-w-0">
                                   <span style={{ minWidth: 0 }}>{p.name}</span>
                                   <button
                                     type="button"
                                     className="text-muted-foreground hover:text-foreground shrink-0 ms-auto cursor-pointer"
-                                    title={t("Delete this prompt")}
+                                    title={t("Save this prompt to a file")}
+                                    aria-label={t("Save this prompt to a file")}
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      setPromptToDelete(p);
+                                      handleSavePrompt(p);
                                     }}
                                   >
-                                    <Trash2 size={13} />
+                                    <Save size={13} />
                                   </button>
                                 </span>
                               </td>
@@ -664,14 +762,16 @@ const SettingsTransformPromptsTab = () => {
         </div>
       </div>
 
-      {promptToDelete != null && (
+      {showBulkDeleteConfirm && (
         <ConfirmModal
           title={t("Delete prompt")}
-          message={t('Delete the prompt "{{name}}"?\n\nThis cannot be undone.', { name: promptToDelete.name || t("Untitled") })}
+          message={t("Delete {{count}} selected prompt(s)?\n\nThis cannot be undone.", {
+            count: selectedPrompts.length,
+          })}
           confirmLabel={t("Delete")}
           cancelLabel={t("Cancel")}
-          onConfirm={handleConfirmDeletePrompt}
-          onCancel={() => setPromptToDelete(null)}
+          onConfirm={handleConfirmBulkDelete}
+          onCancel={() => setShowBulkDeleteConfirm(false)}
           danger
         />
       )}

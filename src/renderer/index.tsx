@@ -3,12 +3,18 @@ import "./i18n";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import AppRoot from "./components/AppRoot";
+import { applySystemBodyTheme } from "./utils/misc/themeUtils";
 
 // Store root reference for HMR
 let root = null;
 
 // Function to initialize the app
 const initializeApp = () => {
+  try {
+    applySystemBodyTheme();
+  } catch {
+    /* matchMedia / IPC unavailable — loading shell CSS still applies */
+  }
   const rootElement = document.getElementById("root");
   if (!rootElement) {
     return;

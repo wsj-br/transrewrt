@@ -73,8 +73,6 @@ interface SidebarProps {
   onSignOut?: () => void;
   onChangePassword?: () => void;
   onOpenSettingsUsers?: () => void;
-  /** When true (e.g. stacked workspace layout), sidebar stays icon-only without changing stored collapse preference. */
-  forceCollapsed?: boolean;
 }
 
 function NavButton({
@@ -401,7 +399,6 @@ export default function Sidebar(props: SidebarProps) {
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(readStoredSidebarCollapsed);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const effectiveCollapsed = props.forceCollapsed || collapsed;
 
   return (
     <>
@@ -432,14 +429,14 @@ export default function Sidebar(props: SidebarProps) {
       <aside
         className={cn(
           "hidden md:flex h-full min-h-0 flex-col self-stretch border-e border-border bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:border-white/10 transition-all duration-300 shrink-0 electron-drag",
-          effectiveCollapsed ? "w-16" : "w-[194px]",
+          collapsed ? "w-16" : "w-[194px]",
         )}
-        aria-expanded={!effectiveCollapsed}
+        aria-expanded={!collapsed}
         data-testid="app-sidebar"
       >
         <SidebarInner
           {...props}
-          collapsed={effectiveCollapsed}
+          collapsed={collapsed}
           onToggleCollapse={() => {
             setCollapsed((c) => {
               const next = !c;

@@ -6,6 +6,7 @@ const {
   OPENROUTER_BASE,
   mergeKeys,
   CONFIG_KEY_BY_ENGINE,
+  extractApiErrorMessage,
   testProviderAuth,
 } = require("../../shared/llm");
 
@@ -35,7 +36,7 @@ function registerApiIpc(ipcMain, getConfigCache) {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        throw new Error(data.error || `HTTP ${res.status}`);
+        throw new Error(extractApiErrorMessage(data, `HTTP ${res.status}`));
       }
       return data;
     } catch (err) {

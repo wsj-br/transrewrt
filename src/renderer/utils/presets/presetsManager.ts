@@ -11,7 +11,12 @@ export type PresetsRemoteSyncResult = {
   reason?: string;
   version?: string;
   updated_at?: string;
+  last_checked_at?: number;
   error?: string;
+};
+
+export type PresetsRemoteSyncState = {
+  last_checked_at: number;
 };
 
 function isLocaleStringRecord(v: unknown): v is Record<string, string> {
@@ -93,6 +98,25 @@ export async function loadPresetsFile(): Promise<PresetsFile> {
   } catch {
     return { version: "0.0.0", updated_at: "", presets: [] };
   }
+}
+
+/** Read last remote catalog check time (epoch ms). */
+export async function loadPresetsRemoteSyncState(): Promise<PresetsRemoteSyncState> {
+  try {
+    if (typeof window !== "undefined" && window.electronAPI?.getPresetsRemoteSyncState) {
+      const data = await window.electronAPI.getPresetsRemoteSyncState();
+      const ms = Number((data as PresetsRemoteSyncState)?.last_checked_at);
+      return { last_checked_at: Number.isFinite(ms) && ms > 0 ? ms : 0 };
+    }
+    if (webAPI.getPresetsRemoteSyncState) {
+      const data = await webAPI.getPresetsRemoteSyncState();
+      const ms = Number(data?.last_checked_at);
+      return { last_checked_at: Number.isFinite(ms) && ms > 0 ? ms : 0 };
+    }
+  } catch {
+    // ignore
+  }
+  return { last_checked_at: 0 };
 }
 
 /** Fetch remote catalog when due (or `force`); Electron IPC or web POST /api/presets/sync. */

@@ -120,10 +120,10 @@ module.exports = (env, argv) => {
     },
   },
   performance: {
-    // Entry: initial load JS + vendors + CSS. Current main entrypoint ~2 MiB (React, Fluent UI, app).
-    maxEntrypointSize: 3 * 1024 * 1024, // 3 MiB
-    // Single asset limit. vendors.js (React, Fluent UI, etc.) is ~1.9 MiB in production.
-    maxAssetSize: 2.5 * 1024 * 1024, // 2.5 MiB
+    // Entry: initial load JS + vendors + CSS. Current main entrypoint ~4 MiB (React, Fluent UI, app).
+    maxEntrypointSize: 5 * 1024 * 1024, // 5 MiB
+    // Single asset limit. vendors.js (React, Fluent UI, etc.) is ~3 MiB in production.
+    maxAssetSize: 4 * 1024 * 1024, // 4 MiB
     // Only apply size hints to JS/CSS; exclude images/icons so one large .ico doesn't trigger warnings.
     assetFilter(assetFilename) {
       return !/\.(ico|png|jpe?g|gif|svg|webp|woff2?)$/i.test(assetFilename);

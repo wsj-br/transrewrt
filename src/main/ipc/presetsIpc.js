@@ -97,9 +97,20 @@ function registerPresetsIpc(ipcMain, getConfig = () => ({})) {
     }
   });
 
+  ipcMain.handle("presets:syncState", () => {
+    try {
+      const statePath = getPresetsRemoteSyncStatePath(getPresetsFilePath());
+      return { last_checked_at: readPresetsRemoteSyncCheckedAt(statePath) };
+    } catch {
+      return { last_checked_at: 0 };
+    }
+  });
+
   ipcMain.handle("presets:updateFromRemote", async (_evt, opts = {}) => {
     const force = opts && opts.force === true;
     const current = readPresetsMerged();
+    const userPath = getPresetsFilePath();
+    const statePath = getPresetsRemoteSyncStatePath(userPath);
     if (!force && !isEasyExperienceMode(getConfig()?.mode)) {
       return {
         updated: false,
@@ -107,10 +118,9 @@ function registerPresetsIpc(ipcMain, getConfig = () => ({})) {
         reason: "advanced",
         version: current.version,
         updated_at: current.updated_at,
+        last_checked_at: readPresetsRemoteSyncCheckedAt(statePath),
       };
     }
-    const userPath = getPresetsFilePath();
-    const statePath = getPresetsRemoteSyncStatePath(userPath);
     const lastChecked = readPresetsRemoteSyncCheckedAt(statePath);
     if (!force && !isPresetsRemoteSyncDue(lastChecked)) {
       return {
@@ -118,8 +128,10 @@ function registerPresetsIpc(ipcMain, getConfig = () => ({})) {
         skipped: true,
         version: current.version,
         updated_at: current.updated_at,
+        last_checked_at: lastChecked,
       };
     }
+    let result;
     try {
       const remote = await fetchRemotePresets();
       const userExists = fs.existsSync(userPath);
@@ -137,24 +149,25 @@ function registerPresetsIpc(ipcMain, getConfig = () => ({})) {
         remoteParsed: remote,
       });
       if (!write) {
-        return {
+        result = {
           updated: false,
           version: local.version,
           updated_at: local.updated_at,
         };
+      } else {
+        const dir = path.dirname(userPath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(userPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
+        console.log(formatPresetsRemoteUpdateLog(remote, local));
+        result = {
+          updated: true,
+          version: remote.version,
+          updated_at: remote.updated_at,
+        };
       }
-      const dir = path.dirname(userPath);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(userPath, `${JSON.stringify(remote, null, 2)}\n`, "utf8");
-      console.log(formatPresetsRemoteUpdateLog(remote, local));
-      return {
-        updated: true,
-        version: remote.version,
-        updated_at: remote.updated_at,
-      };
     } catch (e) {
       console.warn("[presets] Remote update failed:", e?.message || e);
-      return {
+      result = {
         updated: false,
         error: String(e?.message || e),
         version: current.version,
@@ -163,6 +176,10 @@ function registerPresetsIpc(ipcMain, getConfig = () => ({})) {
     } finally {
       writePresetsRemoteSyncCheckedAt(statePath);
     }
+    return {
+      ...result,
+      last_checked_at: readPresetsRemoteSyncCheckedAt(statePath),
+    };
   });
 }
 

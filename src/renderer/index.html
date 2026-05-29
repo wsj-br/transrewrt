@@ -23,8 +23,12 @@
         align-items: center;
         justify-content: center;
       }
+      body.dark .app-loading-shell {
+        background: oklch(0.145 0 0);
+        color: oklch(0.985 0 0);
+      }
       @media (prefers-color-scheme: dark) {
-        .app-loading-shell {
+        body:not(.light) .app-loading-shell {
           background: oklch(0.145 0 0);
           color: oklch(0.985 0 0);
         }
@@ -43,7 +47,20 @@
     </style>
   </head>
   <body>
-    <script>if (typeof global === "undefined") { window.global = window; }</script>
+    <script>
+      if (typeof global === "undefined") { window.global = window; }
+      (function () {
+        var dark = false;
+        try {
+          if (window.electronAPI && typeof window.electronAPI.getSystemPrefersDark === "function") {
+            dark = window.electronAPI.getSystemPrefersDark();
+          } else if (window.matchMedia) {
+            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          }
+        } catch (e) {}
+        document.body.className = dark ? "dark" : "light";
+      })();
+    </script>
     <div id="root">
       <div class="app-loading-shell">
         <div class="app-loading" role="status" aria-live="polite">

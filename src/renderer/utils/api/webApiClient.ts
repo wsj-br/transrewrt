@@ -6,8 +6,28 @@
 import { getBasePath } from "../misc/urlUtils";
 import * as sessionExpiredHandler from "../misc/sessionExpiredHandler";
 import { configBackupFileStem } from "../../../shared/configBackup/fileStem.js";
+import { extractApiErrorMessage } from "../../../shared/apiErrorMessage.js";
 
 const API_BASE = getBasePath();
+const DEFAULT_FETCH_TIMEOUT_MS = 15_000;
+
+type ApiFetchInit = RequestInit & { timeoutMs?: number };
+
+async function apiFetch(input: RequestInfo | URL, init: ApiFetchInit = {}): Promise<Response> {
+  const { timeoutMs = DEFAULT_FETCH_TIMEOUT_MS, ...rest } = init;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(input, { ...rest, signal: controller.signal });
+  } catch (err) {
+    if (err instanceof Error && err.name === "AbortError") {
+      throw new Error(`Request timed out after ${Math.round(timeoutMs / 1000)}s`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
 
 function handle401() {
   sessionExpiredHandler.onSessionExpired();
@@ -16,7 +36,7 @@ function handle401() {
 const webAPI = {
   readConfig: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/config`, { credentials: "include", cache: "no-store" });
+      const res = await apiFetch(`${API_BASE}/api/config`, { credentials: "include", cache: "no-store" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
@@ -33,7 +53,7 @@ const webAPI = {
 
   readPresets: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/presets`, { credentials: "include", cache: "no-store" });
+      const res = await apiFetch(`${API_BASE}/api/presets`, { credentials: "include", cache: "no-store" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
@@ -50,9 +70,32 @@ const webAPI = {
     }
   },
 
+  getPresetsRemoteSyncState: async () => {
+    try {
+      const res = await apiFetch(`${API_BASE}/api/presets/sync-state`, {
+        credentials: "include",
+        cache: "no-store",
+      });
+      if (res.status === 401) {
+        handle401();
+        return Promise.reject({ status: 401 });
+      }
+      if (!res.ok) {
+        return { last_checked_at: 0 };
+      }
+      const data = await res.json();
+      const ms = Number(data?.last_checked_at);
+      return { last_checked_at: Number.isFinite(ms) && ms > 0 ? ms : 0 };
+    } catch (err) {
+      if (err && (err as { status?: number }).status === 401) throw err;
+      console.error("[WebAPI] getPresetsRemoteSyncState failed:", err);
+      return { last_checked_at: 0 };
+    }
+  },
+
   syncPresetsFromRemote: async (opts: { force?: boolean } = {}) => {
     try {
-      const res = await fetch(`${API_BASE}/api/presets/sync`, {
+      const res = await apiFetch(`${API_BASE}/api/presets/sync`, {
         method: "POST",
         credentials: "include",
         cache: "no-store",
@@ -76,7 +119,7 @@ const webAPI = {
 
   writeConfig: async (configData) => {
     try {
-      const res = await fetch(`${API_BASE}/api/config`, {
+      const res = await apiFetch(`${API_BASE}/api/config`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(configData),
@@ -97,7 +140,7 @@ const webAPI = {
 
   getFirstLoginInfo: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/auth/first-login-info`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE}/api/auth/first-login-info`, { credentials: "include" });
       if (!res.ok) return { firstLogin: false };
       const data = await res.json().catch(() => ({}));
       return { firstLogin: !!data.firstLogin };
@@ -108,7 +151,7 @@ const webAPI = {
   },
 
   login: async (username, password) => {
-    const res = await fetch(`${API_BASE}/api/auth/login`, {
+    const res = await apiFetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -123,7 +166,7 @@ const webAPI = {
   },
 
   changePassword: async (newPassword) => {
-    const res = await fetch(`${API_BASE}/api/auth/change-password`, {
+    const res = await apiFetch(`${API_BASE}/api/auth/change-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ newPassword }),
@@ -137,7 +180,7 @@ const webAPI = {
   },
 
   logout: async () => {
-    const res = await fetch(`${API_BASE}/api/auth/logout`, {
+    const res = await apiFetch(`${API_BASE}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -149,7 +192,7 @@ const webAPI = {
   },
 
   checkSession: async () => {
-    const res = await fetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -159,7 +202,7 @@ const webAPI = {
   },
 
   checkAuth: async () => {
-    const res = await fetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/auth/check`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -175,7 +218,7 @@ const webAPI = {
   },
 
   getUsers: async () => {
-    const res = await fetch(`${API_BASE}/api/users`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/users`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -190,7 +233,7 @@ const webAPI = {
   },
 
   createUser: async ({ username, password, role, must_change_password }) => {
-    const res = await fetch(`${API_BASE}/api/users`, {
+    const res = await apiFetch(`${API_BASE}/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -214,7 +257,7 @@ const webAPI = {
   },
 
   updateUser: async (id, { username, role, must_change_password }) => {
-    const res = await fetch(`${API_BASE}/api/users/${id}`, {
+    const res = await apiFetch(`${API_BASE}/api/users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, role, must_change_password }),
@@ -233,7 +276,7 @@ const webAPI = {
   },
 
   setUserPassword: async (id, newPassword) => {
-    const res = await fetch(`${API_BASE}/api/users/${id}/change-password`, {
+    const res = await apiFetch(`${API_BASE}/api/users/${id}/change-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ newPassword }),
@@ -251,7 +294,7 @@ const webAPI = {
   },
 
   revokeUserSessions: async (id) => {
-    const res = await fetch(`${API_BASE}/api/users/${id}/revoke-sessions`, {
+    const res = await apiFetch(`${API_BASE}/api/users/${id}/revoke-sessions`, {
       method: "POST",
       credentials: "include",
     });
@@ -267,7 +310,7 @@ const webAPI = {
   },
 
   deleteUser: async (id) => {
-    const res = await fetch(`${API_BASE}/api/users/${id}`, {
+    const res = await apiFetch(`${API_BASE}/api/users/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -284,7 +327,7 @@ const webAPI = {
 
   logApiCall: async (payload) => {
     try {
-      const res = await fetch(`${API_BASE}/api/calls`, {
+      const res = await apiFetch(`${API_BASE}/api/calls`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -301,7 +344,7 @@ const webAPI = {
   getTotalCostFromDatabase: async (username = null) => {
     const q = new URLSearchParams();
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/total-cost?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/total-cost?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -319,7 +362,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-function?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-function?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -334,7 +377,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-model?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-model?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -349,7 +392,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-day?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-day?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -364,7 +407,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-target-lang?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-target-lang?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -379,7 +422,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-rewrite-mode?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-rewrite-mode?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -394,7 +437,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-transform-prompt?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-transform-prompt?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -421,7 +464,7 @@ const webAPI = {
     if (username) q.set("username", username);
     if (sortKey) q.set("sort", sortKey);
     if (sortDir) q.set("dir", sortDir);
-    const res = await fetch(`${API_BASE}/api/calls/all?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/all?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -435,7 +478,7 @@ const webAPI = {
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/export?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/export?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -452,7 +495,7 @@ const webAPI = {
     if (page) q.set("page", String(page));
     if (pageSize) q.set("pageSize", String(pageSize));
     if (username) q.set("username", username);
-    const res = await fetch(`${API_BASE}/api/calls/summary-by-day-paginated?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/summary-by-day-paginated?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -465,7 +508,7 @@ const webAPI = {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
-    const res = await fetch(`${API_BASE}/api/calls?${q}`, {
+    const res = await apiFetch(`${API_BASE}/api/calls?${q}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -484,7 +527,7 @@ const webAPI = {
     if (!name) {
       return Promise.reject(new Error("Model name is required"));
     }
-    const res = await fetch(`${API_BASE}/api/calls/delete-by-model`, {
+    const res = await apiFetch(`${API_BASE}/api/calls/delete-by-model`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ model: name }),
@@ -516,7 +559,7 @@ const webAPI = {
     if (limit != null && Number.isFinite(Number(limit)) && Number(limit) > 0) {
       q.set("limit", String(Math.min(500, Math.floor(Number(limit)))));
     }
-    const res = await fetch(`${API_BASE}/api/calls/history?${q}`, { credentials: "include" });
+    const res = await apiFetch(`${API_BASE}/api/calls/history?${q}`, { credentials: "include" });
     if (res.status === 401) {
       handle401();
       return Promise.reject({ status: 401 });
@@ -530,7 +573,7 @@ const webAPI = {
     const q = new URLSearchParams();
     if (from) q.set("from", from);
     if (to) q.set("to", to);
-    const res = await fetch(`${API_BASE}/api/calls/history?${q}`, {
+    const res = await apiFetch(`${API_BASE}/api/calls/history?${q}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -546,7 +589,7 @@ const webAPI = {
 
   customPrompts: {
     getAll: async () => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts`, { credentials: "include" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
@@ -555,7 +598,7 @@ const webAPI = {
       return res.json();
     },
     create: async (prompt) => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts`, {
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(prompt),
@@ -573,7 +616,7 @@ const webAPI = {
       return { id: data.id, error: null };
     },
     update: async (id, prompt) => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts/${id}`, {
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(prompt),
@@ -590,7 +633,7 @@ const webAPI = {
       return { success: true, error: null };
     },
     delete: async (id) => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts/${id}`, {
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -605,7 +648,7 @@ const webAPI = {
       return { success: true, error: null };
     },
     export: async () => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts/export`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts/export`, { credentials: "include" });
       if (res.status === 401) {
         handle401();
         return Promise.reject({ status: 401 });
@@ -614,7 +657,7 @@ const webAPI = {
       return res.json();
     },
     import: async (prompts, mode = "merge") => {
-      const res = await fetch(`${API_BASE}/api/custom-prompts/import`, {
+      const res = await apiFetch(`${API_BASE}/api/custom-prompts/import`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompts: Array.isArray(prompts) ? prompts : [prompts], mode }),
@@ -634,7 +677,7 @@ const webAPI = {
 
   getApiStatus: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/status`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE}/api/status`, { credentials: "include" });
       const data = await res.json();
       return {
         apiKeySet: !!data.apiKeySet,
@@ -655,7 +698,7 @@ const webAPI = {
 
   getProviderKeysStatus: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/provider-keys`, {
+      const res = await apiFetch(`${API_BASE}/api/provider-keys`, {
         credentials: "include",
       });
       if (res.status === 401) {
@@ -678,7 +721,7 @@ const webAPI = {
 
   testProviderApiKey: async (provider) => {
     const normalizedProvider = String(provider || "").trim();
-    const res = await fetch(`${API_BASE}/api/provider-test`, {
+    const res = await apiFetch(`${API_BASE}/api/provider-test`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ provider: normalizedProvider }),
@@ -707,16 +750,20 @@ const webAPI = {
 
   getOpenRouterKeyInfo: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/key?_=${Date.now()}`, {
+      const res = await apiFetch(`${API_BASE}/api/key?_=${Date.now()}`, {
         credentials: "include",
         cache: "no-store",
       });
       const data = await res.json().catch(() => ({}));
       if (res.status === 401) {
         handle401();
-        return Promise.reject(new Error(data.error || "Authentication required"));
+        return Promise.reject(
+          new Error(extractApiErrorMessage(data, "Authentication required")),
+        );
       }
-      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      if (!res.ok) {
+        throw new Error(extractApiErrorMessage(data, `HTTP ${res.status}`));
+      }
       return data;
     } catch (err) {
       console.error("[WebAPI] getOpenRouterKeyInfo failed:", err);
@@ -726,7 +773,7 @@ const webAPI = {
 
   getBuildInfo: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/build-info`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE}/api/build-info`, { credentials: "include" });
       if (!res.ok) return { buildTimestamp: null };
       const data = await res.json();
       return { buildTimestamp: data?.buildTimestamp ?? null };
@@ -751,7 +798,7 @@ const webAPI = {
 
   downloadConfigBackup: async ({ includeUsageData = false } = {}) => {
     const q = includeUsageData ? "?includeUsageData=true" : "";
-    const res = await fetch(`${API_BASE}/api/config/backup${q}`, {
+    const res = await apiFetch(`${API_BASE}/api/config/backup${q}`, {
       credentials: "include",
       cache: "no-store",
     });
@@ -782,7 +829,7 @@ const webAPI = {
     fd.append("file", file);
     fd.append("clearHistory", clearHistory ? "true" : "false");
     fd.append("restoreUsageData", restoreUsageData ? "true" : "false");
-    const res = await fetch(`${API_BASE}/api/config/backup/restore`, {
+    const res = await apiFetch(`${API_BASE}/api/config/backup/restore`, {
       method: "POST",
       body: fd,
       credentials: "include",

@@ -12,6 +12,7 @@ const {
   shell,
   nativeImage,
   clipboard,
+  nativeTheme,
 } = require("electron");
 
 if (process.env.TRANSREWRT_DISABLE_GPU === "1") {
@@ -596,6 +597,10 @@ registerPresetsIpc(ipcMain, () => configCache);
 registerApiIpc(ipcMain, () => configCache);
 registerLlmIpc(ipcMain, () => configCache);
 registerWindowIpc(ipcMain, createSettingsWindow);
+
+ipcMain.on("theme:systemPrefersDark", (event) => {
+  event.returnValue = nativeTheme.shouldUseDarkColors;
+});
 
 ipcMain.handle("get-os-username", () => {
   try {

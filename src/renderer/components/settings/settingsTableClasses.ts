@@ -9,6 +9,9 @@ export const settingsDataTable = {
   table: "w-auto table-auto border-collapse text-[14px]",
   thead: "bg-muted",
   th: "p-[10px_12px] text-start font-semibold bg-muted border-b border-border text-sm text-foreground",
+  thCheckbox:
+    "p-[10px_12px] w-10 align-middle bg-muted border-b border-border [&_[data-slot=checkbox]]:block",
+  thCheckboxInner: "flex min-h-5 items-center justify-center",
   td: "p-[12px_16px] border-b border-border text-foreground",
   tdValue: "whitespace-nowrap",
   tbodyTr: "hover:bg-accent/50",
@@ -45,8 +48,9 @@ export const settingsTransformPromptsCard = {
   card: "rounded-lg border border-border bg-card p-3 shadow-sm",
   headerRow: "flex items-start justify-between gap-2",
   name: "font-semibold text-sm break-all min-w-0 flex-1 pe-2",
-  deleteBtn:
+  saveBtn:
     "text-muted-foreground hover:text-foreground shrink-0 p-1 rounded cursor-pointer",
+  checkboxCol: "w-10 p-[10px_8px] text-center",
   fieldBlock: "mt-3 first:mt-0",
   fieldLabel: "text-xs text-muted-foreground font-medium block mb-1",
   fieldValue: "text-sm text-foreground break-words",

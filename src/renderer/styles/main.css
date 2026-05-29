@@ -63,6 +63,18 @@ button {
     justify-content: center;
 }
 
+body.dark .app-loading-shell {
+    background: var(--background, oklch(0.145 0 0));
+    color: var(--foreground, oklch(0.985 0 0));
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light) .app-loading-shell {
+        background: var(--background, oklch(0.145 0 0));
+        color: var(--foreground, oklch(0.985 0 0));
+    }
+}
+
 .app-loading {
     display: flex;
     flex-direction: column;
