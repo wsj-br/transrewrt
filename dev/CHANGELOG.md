@@ -11,6 +11,11 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Presets editor — show a connection-lost overlay when the server stops or becomes unreachable; health check every 10s (and on failed API calls) with auto-dismiss when the server returns.
+- **Fixed**: Presets editor model picker — show “Pricing not available” instead of $0 when OpenRouter pricing is missing.
+- **Changed**: OpenRouter provider routing — prefer lowest latency (`sort: "latency"`) instead of highest throughput.
+- **Added**: Presets editor — OpenRouter models, pricing, and endpoint performance cached on disk (`presets-editor-openrouter-cache.json`, 6h TTL); model picker and Performance page read from cache (`?force=1` / Refresh to rebuild).
+- **Added**: Presets editor — model picker (OpenRouter) shows best-provider latency P90 (seconds) and throughput P90 (tok/s) on the pricing row; loaded from the OpenRouter disk cache.
 - **Changed**: `.github/workflows/release.yml` — bump artifact actions to Node 24 runtimes (`upload-artifact@v7`, `download-artifact@v8`, `action-gh-release@v3`); remove `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` (was triggering Node 20 deprecation warnings).
 
 ## [1.3.4] - 2026-05-30

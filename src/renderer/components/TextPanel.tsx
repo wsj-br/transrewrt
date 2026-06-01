@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import { Trash2, Copy, Clipboard, FileText, FileCheck } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Trash2, Copy, Clipboard } from "lucide-react";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -18,13 +18,13 @@ const footerMetaTextClass =
 
 const TextPanel = ({
   title,
-  icon,
+  icon: _icon,
   text,
   onTextChange,
   placeholder,
   readOnly,
   stats,
-  headerMeta,
+  headerMeta: _headerMeta,
   footerStats,
   onClear,
   onCopy,
@@ -44,7 +44,6 @@ const TextPanel = ({
 }) => {
   const { t } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
-  const headerDisplay = headerMeta ?? stats;
   const footerDisplay = footerStats ?? stats;
 
   const textareaStyle = useMemo(() => {
@@ -76,11 +75,6 @@ const TextPanel = ({
       ? () => void copyTextToClipboard(text == null ? "" : String(text)).catch(() => {})
       : null);
 
-  const defaultIcon =
-    icon ??
-    (title === "Input" || title === t("Input") ? <FileText className="h-4 w-4" /> :
-     title === "Output" || title === t("Output") ? <FileCheck className="h-4 w-4" /> : null);
-
   return (
     <Card
       className={cn(
@@ -90,28 +84,14 @@ const TextPanel = ({
         isFocused && "text-panel-focus",
       )}
     >
-      {/* TEST: Input/Output CardHeader — flip `false` to `true` to restore */}
-      {false &&
-        title && (
-          <CardHeader className="shrink-0 px-4 py-3">
-            <div className="flex items-center gap-2 min-w-0">
-              {defaultIcon && (
-                <span className="text-muted-foreground shrink-0">{defaultIcon}</span>
-              )}
-              <CardTitle className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {title}
-              </CardTitle>
-              {headerDisplay && (
-                <span
-                  className="ms-auto text-xs text-muted-foreground truncate"
-                  title={typeof headerDisplay === "string" ? headerDisplay : undefined}
-                >
-                  {headerDisplay}
-                </span>
-              )}
-            </div>
-          </CardHeader>
-        )}
+      {/*
+      TEST: Input/Output CardHeader — uncomment to restore
+      {title && (
+        <CardHeader className="shrink-0 px-4 py-3">
+          ...
+        </CardHeader>
+      )}
+      */}
 
       <CardContent className="flex flex-1 min-h-0 p-0">
         {showDiffView ? (

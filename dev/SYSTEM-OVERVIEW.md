@@ -249,7 +249,7 @@ Renderer loads the catalog via `window.electronAPI.readPresets()` or `GET /api/p
 
 ### Development skills editor
 
-Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run dev:presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. See [DEVELOPMENT.md](DEVELOPMENT.md#skills-catalog-editor-development).
+Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. See [DEVELOPMENT.md](DEVELOPMENT.md#skills-catalog-editor-development).
 
 ---
 

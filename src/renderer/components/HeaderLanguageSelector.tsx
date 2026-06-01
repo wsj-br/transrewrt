@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe, Check } from "lucide-react";
 import PropTypes from "prop-types";

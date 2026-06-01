@@ -509,16 +509,11 @@ export function useProcessing({
     runTransform(abortControllerRef.current.signal);
   }, [isProcessing, stopProcessing, runTransform, setOutputTextTransform, t]);
 
-  const runActionStartOnlyRef = useRef(null);
-  runActionStartOnlyRef.current = () => {
+  const handleRunActionStartOnly = useCallback(() => {
     if (isProcessing) return;
     if (currentMode === "translate") handleTranslate();
     else if (currentMode === "rewrite") handleRewrite();
-  };
-
-  const handleRunActionStartOnly = useCallback(() => {
-    runActionStartOnlyRef.current?.();
-  }, []);
+  }, [isProcessing, currentMode, handleTranslate, handleRewrite]);
 
   const handleRunAction = useCallback(() => {
     if (isProcessing) {

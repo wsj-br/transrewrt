@@ -12,9 +12,6 @@ import { getTextDirection } from "ai-i18n-tools/runtime";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-
-
 /** Parse instructions from DB (JSON array string or array) to array of strings. */
 function parseInstructions(value) {
   if (Array.isArray(value)) return value.filter((s) => typeof s === "string");

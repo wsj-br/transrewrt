@@ -11,7 +11,7 @@ Small Express app + static HTML UI to edit [`easy-mode-config/presets.json`](../
 From the repository root:
 
 ```bash
-pnpm run dev:presets-editor
+pnpm run presets-editor
 ```
 
 Then open the URL printed in the terminal (default [http://127.0.0.1:8765/](http://127.0.0.1:8765/)) — or wait for your default browser to open automatically. The terminal should stay attached until you press Ctrl+C; if it exits right away with “port already in use”, another process (often a previous editor instance) is bound to that port — set `PRESETS_EDITOR_PORT` or stop the other process.
@@ -29,11 +29,13 @@ Then open the URL printed in the terminal (default [http://127.0.0.1:8765/](http
 
 Provider model catalogs are cached on disk as `presets-editor-provider-catalogs.json` in the repo root (gitignored). If `lastUpdated` is within the last **2 hours**, the editor loads from that file; otherwise it refetches all configured providers and rewrites the cache. Use `GET /api/models?force=1` to refresh immediately.
 
+OpenRouter **models, pricing, and endpoint performance** (latency/throughput P90 per model) are cached separately in `presets-editor-openrouter-cache.json` (gitignored, **6 hour** TTL). The model picker, Performance page, and `GET /api/models?engine=openrouter` use this file. The first load after expiry rebuilds it from OpenRouter (may take a few minutes). Use `GET /api/models?engine=openrouter&force=1` or **Refresh** on the Performance page to rebuild immediately.
+
 On startup the server opens the editor URL in your default browser (same idea as `ai-i18n-tools editor`), after a short delay so the listener is ready.
 
 ## Behaviour
 
-- **Environment**: LLM keys come only from `process.env` (export before launch, e.g. `set -a && source .env && set +a && pnpm run dev:presets-editor`); this server does not read `.env` files.
+- **Environment**: LLM keys come only from `process.env` (export before launch, e.g. `set -a && source .env && set +a && pnpm run presets-editor`); this server does not read `.env` files.
 - **Canonical file**: `easy-mode-config/presets.json` — always loaded and saved here first.
 - **Mirror**: After each successful save, the same JSON is written to `data/presets.json` (parent directory created if needed). If the mirror fails, the API returns an error even though the repo file was updated; fix permissions or path and save again.
 - **Source locale**: Read from `src/config-defaults/config_default.json` (`source_locale`, default `en-GB`) for translation targets and the translations table.

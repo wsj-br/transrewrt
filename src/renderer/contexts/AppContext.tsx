@@ -11,7 +11,7 @@ import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
 import { loadPresetsFile, loadPresetsRemoteSyncState, syncPresetsFromRemote } from "../utils/presets/presetsManager";
-import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "../utils/presets/configuredEasyEngines";
+import { pickDefaultEasyProvider } from "../utils/presets/configuredEasyEngines";
 import {
   resolveExperienceMode,
   type EasyEngineId,
@@ -1097,6 +1097,8 @@ export const AppProvider = ({ children }) => {
     if (experienceMode !== "easy" || easyProvider !== "ollama") return;
     if (allModels.length > 0) return;
     fetchModels().catch(() => {});
+  // fetchModels is recreated each render; deps are the conditions that should trigger a fetch.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceMode, easyProvider, allModels.length]);
 
   // Electron: set currentUser from OS username (no login in Electron)

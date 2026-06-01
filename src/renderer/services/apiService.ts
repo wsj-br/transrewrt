@@ -338,7 +338,7 @@ class APIService {
     let content = "";
     let usage = null;
     let generationId = null;
-    let rawChunks = [];
+    const rawChunks = [];
     let aborted = false;
     let response_bytes = 0;
     let lineBuffer = "";

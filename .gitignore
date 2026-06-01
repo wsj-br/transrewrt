@@ -38,6 +38,7 @@ last_api_result.json
 
 # dev presets editor — provider model catalogs (refreshed from APIs, max 2h TTL)
 presets-editor-provider-catalogs.json
+presets-editor-openrouter-cache.json
 presets-editor.log
 presets-editor-*.log
 

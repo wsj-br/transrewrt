@@ -3,7 +3,7 @@
  * @see https://openrouter.ai/docs/guides/routing/provider-selection
  */
 const OPENROUTER_PROVIDER = {
-  sort: "throughput",
+  sort: "latency",
   allow_fallbacks: true,
 };
 

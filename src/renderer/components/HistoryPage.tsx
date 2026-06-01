@@ -113,7 +113,7 @@ function HistoryDetailSections({
       ? resolveAppearanceFontFamilyCss(settings.font_family)
       : undefined;
     return resolved ? { fontFamily: resolved } : undefined;
-  }, [settings?.font_family]);
+  }, [settings]);
 
   return (
     <div className="flex flex-col rounded-md border border-border bg-muted p-3">

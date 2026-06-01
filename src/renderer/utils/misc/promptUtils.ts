@@ -16,7 +16,7 @@ export function resolveDuplicateNames(existingNames, list) {
     if (k) usedKeys.add(k);
   }
   return list.map((p) => {
-    let name = (p?.name ?? "").trim();
+    const name = (p?.name ?? "").trim();
     if (!name) return p;
     const baseName = name.replace(/\s*\(\d+\)\s*$/, "").trim() || name;
     const key = nameConflictKey(name);

@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo, useRef, useCallback, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import ConfirmModal from "./ConfirmModal";

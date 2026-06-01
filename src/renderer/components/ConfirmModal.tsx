@@ -1,6 +1,21 @@
+import type { ReactNode } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+export type ConfirmModalProps = {
+  title: string;
+  message?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  onConfirm: () => void | Promise<void>;
+  onCancel: () => void;
+  danger?: boolean;
+  customBody?: ReactNode;
+  hideConfirm?: boolean;
+  maxWidth?: string;
+  confirmDisabled?: boolean;
+};
 
 const ConfirmModal = ({
   title,
@@ -14,7 +29,7 @@ const ConfirmModal = ({
   hideConfirm = false,
   maxWidth,
   confirmDisabled = false,
-}) => {
+}: ConfirmModalProps) => {
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
       <div

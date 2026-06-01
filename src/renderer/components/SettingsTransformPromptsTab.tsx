@@ -493,8 +493,8 @@ const SettingsTransformPromptsTab = () => {
       const list = Array.isArray(samplePromptsData) ? samplePromptsData : [];
       const normalized = list
         .filter((p) => p?.name)
-        // eslint-disable-next-line no-unused-vars -- id omitted from bundled defaults
-        .map(({ id, ...rest }) => ({
+         
+        .map(({ id: _id, ...rest }) => ({
           ...rest,
           target_language:
             rest.target_language === true ||

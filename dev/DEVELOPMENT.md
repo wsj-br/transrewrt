@@ -244,7 +244,7 @@ For **Easy** mode during web dev, the server reads `data/presets.json` beside `c
 Maintainers edit the Easy-mode catalog with a small local tool (not packaged in Electron or Docker).
 
 ```bash
-pnpm run dev:presets-editor
+pnpm run presets-editor
 ```
 
 Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `SKILLS_EDITOR_PORT`, `SKILLS_EDITOR_NO_OPEN`, …), and API notes: **[dev/presets-editor/README.md](presets-editor/README.md)**.
@@ -443,7 +443,7 @@ There is no automated test suite (`pnpm test` exits with an error placeholder). 
 
 Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
-**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run dev:presets-editor` (see [Presets catalog editor](#skills-catalog-editor-development)).
+**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run presets-editor` (see [Presets catalog editor](#skills-catalog-editor-development)).
 
 ---
 
@@ -604,7 +604,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                                |
-| `pnpm run dev:presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
+| `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
 | `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#presets-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
 | `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
@@ -719,7 +719,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 ## Related documentation
 
 - **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
-- **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run dev:presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
+- **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
 - **[release-new-version-prompt.md](release-new-version-prompt.md)** — Cursor prompt to draft `release-notes/RELEASE_NOTES_<version>.md` and update the changelog before a release.
@@ -753,7 +753,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
 | [src/server/routes/presets.js](../src/server/routes/presets.js)                               | Web `GET /api/presets`, `POST /api/presets/sync`, periodic server sync                                          |
 | [src/renderer/utils/skills/presetsManager.ts](../src/renderer/utils/skills/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                    |
-| [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run dev:presets-editor`)                                                             |
+| [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run presets-editor`)                                                             |
 | [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build; copies `easy-mode-config/`                                                          |
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |

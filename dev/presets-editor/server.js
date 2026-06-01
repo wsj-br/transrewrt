@@ -1,6 +1,6 @@
 /**
  * Dev-only presets catalog editor: serves static UI + JSON APIs.
- * Run: pnpm run dev:presets-editor (from repo root). Uses `process.env` only — export keys in the shell (or source `.env` before starting Node). Does not read `.env` itself. `OPENROUTER_API_KEY` is required for Test model and Translate missing; the model list uses the public OpenRouter /models catalog (same breadth as Settings when online).
+ * Run: pnpm run presets-editor (from repo root). Uses `process.env` only — export keys in the shell (or source `.env` before starting Node). Does not read `.env` itself. `OPENROUTER_API_KEY` is required for Test model and Translate missing; the model list uses the public OpenRouter /models catalog (same breadth as Settings when online).
  */
 
 const path = require("path");
@@ -130,6 +130,16 @@ const {
 } = require("../../src/shared/llm/index.js");
 const { OPENROUTER_PROVIDER } = require("../../src/shared/openRouterProviderRouting.js");
 const {
+  isOpenRouterLatestAlias,
+} = require("../../src/shared/openRouterLatestAlias.js");
+const {
+  ensureOpenRouterDiskCache,
+  defaultCachePath,
+  OPENROUTER_DISK_TTL_MS,
+  stripOpenRouterPathPart,
+  resolveEndpointsQueryPath,
+} = require("./openRouterDiskCache.js");
+const {
   parsePresetsJson,
   bumpPatchVersion,
   serializePresetsCatalog,
@@ -153,6 +163,7 @@ const DATA_PRESETS_PATH =
 
 /** On-disk provider catalogs for the dev presets editor (repo root; gitignored). */
 const PROVIDER_CATALOGS_DISK_CACHE_PATH = path.join(ROOT, "presets-editor-provider-catalogs.json");
+const OPENROUTER_DISK_CACHE_PATH = defaultCachePath(ROOT);
 
 configureProviderCatalog({
   cachePath: PROVIDER_CATALOGS_DISK_CACHE_PATH,
@@ -1329,7 +1340,29 @@ app.get("/api/models", async (req, res) => {
       return res.status(400).json({ error: `Unknown engine "${engine}"` });
     }
 
-    if (engine !== "openrouter" && !engineConfigured(engine, keysMap)) {
+    const force = String(req.query.force || "") === "1";
+
+    if (engine === "openrouter") {
+      const cache = await ensureOpenRouterDiskCache({
+        root: ROOT,
+        baseUrl: OPENROUTER_BASE,
+        apiKey: keysMap.openrouter_api_key,
+        force,
+        cachePath: OPENROUTER_DISK_CACHE_PATH,
+        log: (msg) => console.log(`[presets-editor] ${msg}`),
+      });
+      const ageMin = Math.round((Date.now() - new Date(cache.lastUpdated).getTime()) / 60000);
+      return res.json({
+        data: cache.models,
+        source: force ? "openrouter_disk_cache_refresh" : "openrouter_disk_cache",
+        engine,
+        cached: !force,
+        lastUpdated: cache.lastUpdated,
+        cacheAgeMinutes: ageMin,
+      });
+    }
+
+    if (!engineConfigured(engine, keysMap)) {
       const ek = envKeyForEngine(engine);
       return res.status(400).json({
         error: ek
@@ -1338,19 +1371,121 @@ app.get("/api/models", async (req, res) => {
       });
     }
 
-    const force = String(req.query.force || "") === "1";
     const cached = !force && isEngineCatalogCached(engine);
     const data = await loadEngineModelsCatalog(engine, keysMap, { force });
-    const source =
-      engine === "openrouter"
-        ? cached
-          ? "openrouter_public_models_cached"
-          : "openrouter_public_models"
-        : cached
-          ? "getAllModels_cached"
-          : "getAllModels";
+    const source = cached ? "getAllModels_cached" : "getAllModels";
     res.json({ data, source, engine, cached });
   } catch (e) {
+    res.status(500).json({ error: e.message || String(e) });
+  }
+});
+
+const PERF_TOP_LEVEL_KEYS = [
+  "translation_model",
+  "translation_model_fallback",
+  "suggestion_model",
+  "suggestion_model_fallback",
+];
+
+function collectOpenRouterRefsForPerf(catalog) {
+  const refs = [];
+  for (const key of PERF_TOP_LEVEL_KEYS) {
+    const raw = catalog[key];
+    if (typeof raw === "string" && raw.startsWith("openrouter/")) {
+      refs.push({ setting: key, modelId: raw });
+    }
+  }
+  const presets = Array.isArray(catalog.presets) ? catalog.presets : [];
+  for (const preset of presets) {
+    if (!preset?.id) continue;
+    const primary = preset?.model_ids?.openrouter;
+    if (typeof primary === "string" && primary.startsWith("openrouter/")) {
+      refs.push({ setting: preset.id, modelId: primary });
+    }
+    const fallback = preset?.fallback_ids?.openrouter;
+    if (typeof fallback === "string" && fallback.startsWith("openrouter/")) {
+      refs.push({ setting: `${preset.id}.fallback`, modelId: fallback });
+    }
+  }
+  return refs;
+}
+
+async function loadOpenRouterEditorCache(force) {
+  const keysMap = mergeKeys({}, process.env);
+  return ensureOpenRouterDiskCache({
+    root: ROOT,
+    baseUrl: OPENROUTER_BASE,
+    apiKey: keysMap.openrouter_api_key,
+    force: Boolean(force),
+    cachePath: OPENROUTER_DISK_CACHE_PATH,
+    log: (msg) => console.log(`[presets-editor] ${msg}`),
+  });
+}
+
+app.post("/api/models/openrouter-performance-summary", async (req, res) => {
+  try {
+    const rawPaths = Array.isArray(req.body?.paths) ? req.body.paths : [];
+    const paths = [
+      ...new Set(
+        rawPaths
+          .map((p) => stripOpenRouterPathPart(p))
+          .filter((p) => typeof p === "string" && p.includes("/")),
+      ),
+    ];
+    if (!paths.length) {
+      return res.json({ stats: {} });
+    }
+
+    const force = Boolean(req.body?.force);
+    const cache = await loadOpenRouterEditorCache(force);
+    /** @type {Record<string, object | null>} */
+    const stats = {};
+    for (const pathPart of paths) {
+      stats[pathPart] = Object.prototype.hasOwnProperty.call(cache.performanceByPath, pathPart)
+        ? cache.performanceByPath[pathPart]
+        : null;
+    }
+
+    res.json({ stats, lastUpdated: cache.lastUpdated });
+  } catch (e) {
+    console.error("[presets-editor] POST /api/models/openrouter-performance-summary:", e);
+    res.status(500).json({ error: e.message || String(e) });
+  }
+});
+
+app.get("/api/performance", async (req, res) => {
+  try {
+    await ensureEditorPresetsPrepared();
+    const catalog = editorPresetsCatalog || loadRepoPresetsCatalogFromDisk();
+    const refs = collectOpenRouterRefsForPerf(catalog);
+
+    const force = String(req.query.force || "") === "1";
+    const cache = await loadOpenRouterEditorCache(force);
+    const openRouterCatalogRows = cache.catalogRows;
+
+    function endpointsPathForModelId(modelId) {
+      const pathPart = stripOpenRouterPathPart(modelId);
+      const { queryPath } = resolveEndpointsQueryPath(pathPart, openRouterCatalogRows);
+      const resolvedModel =
+        isOpenRouterLatestAlias(pathPart) && queryPath !== pathPart ? queryPath : null;
+      return { queryPath, resolvedModel };
+    }
+
+    const rows = refs.map((ref) => {
+      const model = stripOpenRouterPathPart(ref.modelId);
+      const { queryPath, resolvedModel } = endpointsPathForModelId(ref.modelId);
+      const endpoints = cache.endpointsByQueryPath[queryPath] || [];
+      return {
+        setting: ref.setting,
+        model,
+        resolved_model: resolvedModel,
+        endpoints,
+      };
+    });
+
+    res.json({ generated_at: cache.lastUpdated, rows });
+  } catch (e) {
+    console.error("[presets-editor] GET /api/performance:", e);
     res.status(500).json({ error: e.message || String(e) });
   }
 });
@@ -1687,6 +1822,12 @@ server.on("listening", () => {
   console.log(`[presets-editor] Repo catalog: ${REPO_PRESETS_PATH}`);
   console.log(`[presets-editor] Data mirror:  ${DATA_PRESETS_PATH}`);
   console.log(`[presets-editor] Provider catalog cache: ${PROVIDER_CATALOGS_DISK_CACHE_PATH} (TTL 2h)`);
+  console.log(
+    `[presets-editor] OpenRouter models/pricing/performance cache: ${OPENROUTER_DISK_CACHE_PATH} (TTL ${OPENROUTER_DISK_TTL_MS / 3600000}h)`,
+  );
+  loadOpenRouterEditorCache(false).catch((e) => {
+    console.warn("[presets-editor] OpenRouter disk cache warm-up failed:", e.message || String(e));
+  });
   console.log(`[presets-editor] Server log file: ${LOG_FILE_PATH}`);
   ensureEditorPresetsPrepared().catch((e) => {
     console.warn("[presets-editor] Catalog model validation failed:", e.message || String(e));

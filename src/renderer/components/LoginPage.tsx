@@ -18,7 +18,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
 import Logo from "../../../images/transrewrt_logo.png";
 
 const UI_LOCALE_STORAGE_KEY = "transrewrt_ui_locale";

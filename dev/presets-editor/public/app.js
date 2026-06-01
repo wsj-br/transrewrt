@@ -2,8 +2,8 @@
   "use strict";
 
   const HEALTH_PATH = "/api/health";
-  const HEALTH_POLL_MS = 10000;
-  const nativeFetch = window.fetch.bind(window);
+  const HEALTH_POLL_MS = 10_000;
+  const rawFetch = window.fetch.bind(window);
 
   function editorFetchFailureMeansServerGone(err) {
     if (!err || err.name === "AbortError") return false;
@@ -26,20 +26,25 @@
     }
   }
 
-  window.fetch = function (input, init) {
-    return nativeFetch(input, init).catch(function (err) {
+  function editorFetch(input, init) {
+    return rawFetch(input, init).catch(function (err) {
       if (editorFetchFailureMeansServerGone(err)) showEditorServerDown();
       return Promise.reject(err);
     });
-  };
+  }
+
+  window.fetch = editorFetch;
 
   function editorHealthPollTick() {
     if (document.visibilityState !== "visible") return;
-    nativeFetch(HEALTH_PATH, { cache: "no-store", method: "GET" })
+    rawFetch(HEALTH_PATH, { cache: "no-store", method: "GET" })
       .then(function (res) {
         if (res.ok) hideEditorServerDown();
+        else showEditorServerDown();
       })
-      .catch(function () {});
+      .catch(function () {
+        showEditorServerDown();
+      });
   }
 
   setInterval(editorHealthPollTick, HEALTH_POLL_MS);
@@ -129,7 +134,7 @@
   }
 
   async function fetchServerLogs() {
-    const res = await nativeFetch("/api/logs", { cache: "no-store" });
+    const res = await fetch("/api/logs", { cache: "no-store" });
     if (!res.ok) {
       const t = await res.text().catch(function () {
         return "";
@@ -264,6 +269,10 @@
   let modelSearch = "";
   let presetSearch = "";
   var modelPickerTarget = "preset";
+  /** @type {Record<string, { latency_p90_s?: number | null, throughput_p90?: number | null } | null | undefined>} */
+  var openRouterPerformanceByPath = {};
+  /** @type {Set<string>} */
+  var openRouterPerformancePending = new Set();
   var translateRunInFlight = false;
   var KEY_TRANSLATION_MODEL = "translation_model";
   var KEY_TRANSLATION_FALLBACK = "translation_model_fallback";
@@ -601,6 +610,7 @@
     const setup = document.getElementById("ai-suggest-setup-panel");
     const run = document.getElementById("ai-suggest-run-panel");
     const review = document.getElementById("ai-suggest-review-panel");
+    const perf = document.getElementById("performance-panel");
     const layout = document.getElementById("editor-main-layout");
     if (layout) layout.classList.add("layout-ai-suggest-review");
     if (listPanel) listPanel.classList.add("hidden");
@@ -608,6 +618,7 @@
     if (setup) setup.classList.add("hidden");
     if (run) run.classList.add("hidden");
     if (review) review.classList.add("hidden");
+    if (perf) perf.classList.add("hidden");
   }
 
   function showEditorMainPanels() {
@@ -1278,7 +1289,7 @@
     );
 
     try {
-      const res = await nativeFetch("/api/presets/suggest-models?stream=1", {
+      const res = await fetch("/api/presets/suggest-models?stream=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ catalog: catalog, preset_ids: selectedPresetIds }),
@@ -1481,6 +1492,109 @@
     return (Number(n) * 1e6).toFixed(2);
   }
 
+  function pickerUsesOpenRouterPerformance() {
+    const eng = pickerEngineFromTarget(modelPickerTarget);
+    if (eng) return eng === "openrouter";
+    return (
+      modelPickerTarget === "preset" ||
+      modelPickerTarget === "translation_model" ||
+      modelPickerTarget === KEY_TRANSLATION_FALLBACK ||
+      modelPickerTarget === KEY_SUGGESTION_MODEL ||
+      modelPickerTarget === KEY_SUGGESTION_FALLBACK
+    );
+  }
+
+  function modelPathForPerformance(m) {
+    return openrouterInnerFromCanonical(m?.id || "");
+  }
+
+  function modelPickerPerfSuffix(m) {
+    const path = modelPathForPerformance(m);
+    if (!path) return "";
+    const stats = openRouterPerformanceByPath[path];
+    if (stats === undefined) return "";
+    if (!stats) return "";
+    const parts = [];
+    if (stats.latency_p90_s != null && !Number.isNaN(Number(stats.latency_p90_s))) {
+      parts.push("Lat P90 " + Number(stats.latency_p90_s).toFixed(3) + "s");
+    }
+    if (stats.throughput_p90 != null && !Number.isNaN(Number(stats.throughput_p90))) {
+      parts.push("TPS P90 " + Number(stats.throughput_p90).toFixed(1));
+    }
+    return parts.length ? " · " + parts.join(" · ") : "";
+  }
+
+  function modelPickerPriceLine(m) {
+    const pp = m.pricing;
+    let priceLine;
+    if (!pp || typeof pp !== "object") {
+      priceLine = "Pricing not available";
+    } else {
+      const prompt = pp.prompt;
+      const completion = pp.completion;
+      if (prompt == null && completion == null) {
+        priceLine = "Pricing not available";
+      } else {
+        const inFmt = formatPrice(prompt);
+        const outFmt = formatPrice(completion);
+        if (inFmt === "—" && outFmt === "—") {
+          priceLine = "Pricing not available";
+        } else {
+          priceLine = "In $" + inFmt + " / 1M · Out $" + outFmt + " / 1M";
+        }
+      }
+    }
+    if (!pickerUsesOpenRouterPerformance()) return priceLine;
+    return priceLine + modelPickerPerfSuffix(m);
+  }
+
+  function queueOpenRouterPerformanceForModels(modelList) {
+    if (!pickerUsesOpenRouterPerformance() || !Array.isArray(modelList) || !modelList.length) return;
+    const paths = modelList
+      .map(function (m) {
+        return modelPathForPerformance(m);
+      })
+      .filter(function (p) {
+        return p && openRouterPerformanceByPath[p] === undefined && !openRouterPerformancePending.has(p);
+      });
+    if (!paths.length) return;
+    const unique = [...new Set(paths)];
+    unique.forEach(function (p) {
+      openRouterPerformancePending.add(p);
+    });
+    fetch("/api/models/openrouter-performance-summary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ paths: unique }),
+      cache: "no-store",
+    })
+      .then(function (res) {
+        return res.json().then(function (json) {
+          if (!res.ok) throw new Error(json.error || "HTTP " + res.status);
+          return json;
+        });
+      })
+      .then(function (json) {
+        const stats = json.stats && typeof json.stats === "object" ? json.stats : {};
+        unique.forEach(function (p) {
+          openRouterPerformanceByPath[p] = Object.prototype.hasOwnProperty.call(stats, p)
+            ? stats[p]
+            : null;
+        });
+        renderModelList();
+      })
+      .catch(function () {
+        unique.forEach(function (p) {
+          openRouterPerformanceByPath[p] = null;
+        });
+      })
+      .finally(function () {
+        unique.forEach(function (p) {
+          openRouterPerformancePending.delete(p);
+        });
+      });
+  }
+
   function isModelPickerOpen() {
     const overlay = document.getElementById("model-picker-overlay");
     return overlay && !overlay.classList.contains("hidden");
@@ -1543,7 +1657,7 @@
             "/model-name).";
       } else if (modelPickerTarget === "preset") {
         hint.textContent =
-          "Choose the OpenRouter model for the selected preset. Pricing is per 1M tokens (USD).";
+          "Choose the OpenRouter model for the selected preset. Pricing is per 1M tokens (USD). Latency and throughput are best-provider P90 (seconds / tok/s) when available.";
       } else if (modelPickerTarget === "translation_model") {
         hint.textContent =
           "Used for “Translate missing”, stored as translation_model. On failure, the server retries with translation_model_fallback when that field is set.";
@@ -1568,7 +1682,7 @@
     if (!options.force && Array.isArray(modelsByEngine[engine])) return modelsByEngine[engine];
     try {
       const forceQ = options.force ? "&force=1" : "";
-      const res = await nativeFetch(
+      const res = await fetch(
         "/api/models?engine=" + encodeURIComponent(engine) + forceQ,
         { cache: "no-store" },
       );
@@ -1701,6 +1815,7 @@
       block.appendChild(head);
       if (expanded) {
         const list = byProv.get(prov) || [];
+        queueOpenRouterPerformanceForModels(list);
         list
           .slice()
           .sort(function (a, b) {
@@ -1711,18 +1826,13 @@
             row.type = "button";
             row.className = "model-row";
             if (m.id === selectedModelId) row.classList.add("selected");
-            const pp = m.pricing || {};
-            const priceLine =
-              pp.prompt != null
-                ? "In $" + formatPrice(pp.prompt) + " / 1M · Out $" + formatPrice(pp.completion) + " / 1M"
-                : "Cost n/a";
             row.innerHTML =
               '<span class="model-id">' +
               escapeHtml(modelPickerDisplay(m)) +
               '</span><span class="model-name">' +
               escapeHtml(m.name || "") +
               '</span><span class="model-price">' +
-              escapeHtml(priceLine) +
+              escapeHtml(modelPickerPriceLine(m)) +
               "</span>";
             row.addEventListener("click", function () {
               const aiPick = parseAiSuggestPickerTarget(modelPickerTarget);
@@ -1995,7 +2105,7 @@
       msg ||
       "Could not load the presets catalog. The server returned an unexpected response (HTTP " +
         sRes.status +
-        "). Try reloading the page or restarting pnpm run dev:presets-editor."
+        "). Try reloading the page or restarting pnpm run presets-editor."
     );
   }
 
@@ -2011,22 +2121,22 @@
       let sRes;
       let provRes;
       if (options.reload) {
-        sRes = await nativeFetch(presetsUrl, { cache: "no-store" });
+        sRes = await fetch(presetsUrl, { cache: "no-store" });
         if (!sRes.ok) throw new Error(await parsePresetsFetchError(sRes));
         const prunedHdr = sRes.headers.get("X-Editor-Presets-Models-Pruned");
         reloadedModelsPruned = prunedHdr != null ? parseInt(prunedHdr, 10) || 0 : 0;
         catalog = await sRes.json();
         [mRes, uRes, provRes] = await Promise.all([
-          nativeFetch("/api/meta", { cache: "no-store" }),
-          nativeFetch("/api/ui-languages", { cache: "no-store" }),
-          nativeFetch("/api/providers", { cache: "no-store" }),
+          fetch("/api/meta", { cache: "no-store" }),
+          fetch("/api/ui-languages", { cache: "no-store" }),
+          fetch("/api/providers", { cache: "no-store" }),
         ]);
       } else {
         [mRes, uRes, sRes, provRes] = await Promise.all([
-          nativeFetch("/api/meta", { cache: "no-store" }),
-          nativeFetch("/api/ui-languages", { cache: "no-store" }),
-          nativeFetch(presetsUrl, { cache: "no-store" }),
-          nativeFetch("/api/providers", { cache: "no-store" }),
+          fetch("/api/meta", { cache: "no-store" }),
+          fetch("/api/ui-languages", { cache: "no-store" }),
+          fetch(presetsUrl, { cache: "no-store" }),
+          fetch("/api/providers", { cache: "no-store" }),
         ]);
         if (!sRes.ok) throw new Error(await parsePresetsFetchError(sRes));
         catalog = await sRes.json();
@@ -2102,7 +2212,7 @@
     setStatus("Saving…", null);
     normalizeCatalogModelIds();
     try {
-      const res = await nativeFetch("/api/presets", {
+      const res = await fetch("/api/presets", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(catalog),
@@ -2138,7 +2248,7 @@
     let plannedSlots = 0;
 
     try {
-      const res = await nativeFetch("/api/presets/translate-missing?stream=1", {
+      const res = await fetch("/api/presets/translate-missing?stream=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ catalog: catalog }),
@@ -2277,7 +2387,7 @@
       setTestModelResultClass(out, "");
     }
     try {
-      const res = await nativeFetch("/api/presets/test-model", {
+      const res = await fetch("/api/presets/test-model", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ modelId: modelId }),
@@ -2586,6 +2696,299 @@
     renderPresetList();
     renderDetail();
   });
+
+  // ── Performance panel ────────────────────────────────────────────────────
+
+  function showPerformancePanel() {
+    hideEditorMainPanels();
+    const panel = document.getElementById("performance-panel");
+    const translateRow = document.getElementById("topbar-translate-row");
+    if (translateRow) translateRow.classList.add("hidden");
+    if (panel) panel.classList.remove("hidden");
+  }
+
+  function exitPerformancePanel() {
+    const panel = document.getElementById("performance-panel");
+    if (panel) panel.classList.add("hidden");
+    showEditorMainPanels();
+    setTopbarTranslateRowVisible(true);
+  }
+
+  function perfFmtLatency(val) {
+    if (val == null || Number.isNaN(Number(val))) return null;
+    return (Number(val) / 1000).toFixed(3);
+  }
+
+  function perfFmtTps(val) {
+    if (val == null || Number.isNaN(Number(val))) return null;
+    return Number(val).toFixed(1);
+  }
+
+  function perfFmtUptime(val) {
+    if (val == null || Number.isNaN(Number(val))) return null;
+    return Number(val).toFixed(1) + "%";
+  }
+
+  function perfStatusLabel(status) {
+    if (status == null) return null;
+    return status === 0 ? "OK" : "Error " + status;
+  }
+
+  function perfLatencyP90Ms(ep) {
+    const p90 = ep?.latency_last_30m?.p90;
+    if (p90 == null || Number.isNaN(Number(p90))) return null;
+    return Number(p90);
+  }
+
+  function perfDisplayModel(row) {
+    if (row?.resolved_model && row.resolved_model !== row.model) {
+      return row.model + " → " + row.resolved_model;
+    }
+    return row?.model || "";
+  }
+
+  function perfTopEndpointsByLatencyP90(endpoints, limit) {
+    const max = limit == null ? 2 : limit;
+    return endpoints
+      .filter(function (ep) {
+        return perfLatencyP90Ms(ep) != null;
+      })
+      .sort(function (a, b) {
+        return perfLatencyP90Ms(a) - perfLatencyP90Ms(b);
+      })
+      .slice(0, max);
+  }
+
+  function perfFmtPricePer1M(ep) {
+    const pp = ep?.pricing;
+    if (!pp || typeof pp !== "object") return null;
+    const prompt = pp.prompt;
+    const completion = pp.completion;
+    if (prompt == null && completion == null) return null;
+    const inFmt = formatPrice(prompt);
+    const outFmt = formatPrice(completion);
+    if (inFmt === "—" && outFmt === "—") return null;
+    return "In $" + inFmt + " / 1M · Out $" + outFmt + " / 1M";
+  }
+
+  function numCell(text, extraClass) {
+    const td = document.createElement("td");
+    td.className = "num" + (extraClass ? " " + extraClass : "");
+    if (text == null) {
+      td.textContent = "—";
+      td.classList.add("null-val");
+    } else {
+      td.textContent = text;
+    }
+    return td;
+  }
+
+  function renderPerformanceTable(data) {
+    const wrap = document.getElementById("performance-table-wrap");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+
+    const rows = data.rows || [];
+    if (!rows.length) {
+      const p = document.createElement("p");
+      p.className = "muted performance-empty";
+      p.textContent = "No OpenRouter models found in presets.";
+      wrap.appendChild(p);
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.className = "perf-table";
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    const headers = [
+      { label: "Setting", cls: "" },
+      { label: "Model", cls: "" },
+      { label: "Provider", cls: "" },
+      { label: "Price ($/1M tok)", cls: "" },
+      { label: "Latency P75 (s)", cls: "num" },
+      { label: "Latency P90 (s)", cls: "num" },
+      { label: "TPS P75", cls: "num" },
+      { label: "TPS P90", cls: "num" },
+      { label: "Uptime 1D", cls: "num" },
+      { label: "Status", cls: "num" },
+    ];
+    headers.forEach(function (h) {
+      const th = document.createElement("th");
+      th.textContent = h.label;
+      if (h.cls) th.className = h.cls;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+
+    rows.forEach(function (row, rowIdx) {
+      const allEndpoints = Array.isArray(row.endpoints) ? row.endpoints : [];
+      const endpoints = perfTopEndpointsByLatencyP90(allEndpoints, 2);
+
+      if (!endpoints.length) {
+        const tr = document.createElement("tr");
+        if (rowIdx === 0 || rows[rowIdx - 1]?.setting !== row.setting) {
+          tr.classList.add("perf-row-group-start");
+        }
+
+        const tdSetting = document.createElement("td");
+        tdSetting.className = "cell-setting";
+        tdSetting.textContent = row.setting;
+        tr.appendChild(tdSetting);
+
+        const tdModel = document.createElement("td");
+        tdModel.className = "cell-model";
+        tdModel.textContent = perfDisplayModel(row);
+        tr.appendChild(tdModel);
+
+        const tdProvider = document.createElement("td");
+        tdProvider.className = "null-val";
+        if (row.error) {
+          tdProvider.textContent = "Error: " + row.error;
+        } else if (allEndpoints.length) {
+          tdProvider.textContent = "No latency P90 data";
+        } else {
+          tdProvider.textContent = "No endpoints";
+        }
+        tdProvider.colSpan = 8;
+        tr.appendChild(tdProvider);
+
+        tbody.appendChild(tr);
+        return;
+      }
+
+      endpoints.forEach(function (ep, epIdx) {
+        const tr = document.createElement("tr");
+        if (epIdx === 0) tr.classList.add("perf-row-group-start");
+
+        const tdSetting = document.createElement("td");
+        tdSetting.className = "cell-setting";
+        tdSetting.textContent = epIdx === 0 ? row.setting : "";
+        tr.appendChild(tdSetting);
+
+        const tdModel = document.createElement("td");
+        tdModel.className = "cell-model";
+        tdModel.textContent = epIdx === 0 ? perfDisplayModel(row) : "";
+        tr.appendChild(tdModel);
+
+        const tdProvider = document.createElement("td");
+        tdProvider.className = "cell-provider";
+        tdProvider.textContent = ep.provider_name || ep.name || "—";
+        tr.appendChild(tdProvider);
+
+        const tdPrice = document.createElement("td");
+        tdPrice.className = "cell-price";
+        const priceFmt = perfFmtPricePer1M(ep);
+        if (priceFmt == null) {
+          tdPrice.textContent = "—";
+          tdPrice.classList.add("null-val");
+        } else {
+          tdPrice.textContent = priceFmt;
+        }
+        tr.appendChild(tdPrice);
+
+        tr.appendChild(numCell(perfFmtLatency(ep.latency_last_30m?.p75)));
+        tr.appendChild(numCell(perfFmtLatency(ep.latency_last_30m?.p90)));
+        tr.appendChild(numCell(perfFmtTps(ep.throughput_last_30m?.p75)));
+        tr.appendChild(numCell(perfFmtTps(ep.throughput_last_30m?.p90)));
+
+        const uptimeFmt = perfFmtUptime(ep.uptime_last_1d);
+        const tdUptime = numCell(uptimeFmt);
+        if (ep.uptime_last_1d != null && Number(ep.uptime_last_1d) < 99) {
+          tdUptime.classList.add("cell-uptime-warn");
+        }
+        tr.appendChild(tdUptime);
+
+        const statusLabel = perfStatusLabel(ep.status);
+        const tdStatus = numCell(statusLabel);
+        if (ep.status === 0) {
+          tdStatus.classList.add("cell-status-ok");
+        } else if (ep.status != null) {
+          tdStatus.classList.add("cell-status-err");
+        }
+        tr.appendChild(tdStatus);
+
+        tbody.appendChild(tr);
+      });
+    });
+
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+  }
+
+  function setPerformanceStatus(msg, isErr) {
+    const el = document.getElementById("performance-status");
+    if (!el) return;
+    el.innerHTML = "";
+    if (!msg) return;
+    if (!isErr) {
+      const spinner = document.createElement("span");
+      spinner.className = "perf-spinner";
+      spinner.setAttribute("aria-hidden", "true");
+      el.appendChild(spinner);
+    }
+    el.appendChild(document.createTextNode(msg));
+    el.classList.toggle("err", Boolean(isErr));
+  }
+
+  function clearPerformanceStatus() {
+    const el = document.getElementById("performance-status");
+    if (!el) return;
+    el.innerHTML = "";
+    el.classList.remove("err");
+  }
+
+  async function loadPerformanceData(forceRefresh) {
+    const btnRefresh = document.getElementById("btn-performance-refresh");
+    if (btnRefresh) btnRefresh.disabled = true;
+    const wrap = document.getElementById("performance-table-wrap");
+    if (wrap) {
+      wrap.innerHTML = "<p class=\"muted performance-empty\">Loading…</p>";
+    }
+    setPerformanceStatus(
+      forceRefresh ? "Refreshing OpenRouter cache (models + performance)…" : "Loading performance data…",
+      false,
+    );
+    try {
+      const res = await fetch("/api/performance" + (forceRefresh ? "?force=1" : ""), { cache: "no-store" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "HTTP " + res.status);
+      clearPerformanceStatus();
+      renderPerformanceTable(data);
+    } catch (err) {
+      setPerformanceStatus("Failed to load: " + (err.message || String(err)), true);
+      const w = document.getElementById("performance-table-wrap");
+      if (w) w.innerHTML = "";
+    } finally {
+      if (btnRefresh) btnRefresh.disabled = false;
+    }
+  }
+
+  const btnPerformance = document.getElementById("btn-performance");
+  if (btnPerformance) {
+    btnPerformance.addEventListener("click", function () {
+      showPerformancePanel();
+      loadPerformanceData();
+    });
+  }
+
+  const btnPerformanceClose = document.getElementById("btn-performance-close");
+  if (btnPerformanceClose) {
+    btnPerformanceClose.addEventListener("click", function () {
+      exitPerformancePanel();
+    });
+  }
+
+  const btnPerformanceRefresh = document.getElementById("btn-performance-refresh");
+  if (btnPerformanceRefresh) {
+    btnPerformanceRefresh.addEventListener("click", function () {
+      loadPerformanceData(true);
+    });
+  }
 
   loadAll();
 })();
