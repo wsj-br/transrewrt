@@ -44,6 +44,7 @@ import {
   settingsTabPillActive,
   settingsTabPillIdle,
 } from "./settings/settingsLayoutClasses";
+import SelectFromPresetsModal from "./SelectFromPresetsModal";
 import {
   modelAction,
   modelCardClass,
@@ -128,12 +129,16 @@ const SettingsModelsTab = ({
   onToggleModelSelection,
   onDeselectAllModels,
   getModelName,
+  presets = [],
+  configuredCloudEngines = [],
+  onLoadPresetModels,
 }) => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || 'en-GB';
   const isRtl = getTextDirection(i18n.language) === 'rtl';
   const isBelowLg = useIsBelowLg();
   const [activeModelsTab, setActiveModelsTab] = useState('available');
+  const [presetsModalOpen, setPresetsModalOpen] = useState(false);
   const baseId = useId();
   const tabAvailableId = `${baseId}-tab-available`;
   const tabSelectedId = `${baseId}-tab-selected`;
@@ -178,7 +183,7 @@ const SettingsModelsTab = ({
       { value: 'provider-asc', label: flipUiArrowsForRtl(t('Provider A→Z'), isRtl) },
       { value: 'provider-desc', label: flipUiArrowsForRtl(t('Provider Z→A'), isRtl) },
     ],
-    [t, isRtl]
+    [t, i18n.language, isRtl]
   );
 
   const formatPricePer1M = (pricePerToken) =>
@@ -500,9 +505,19 @@ const SettingsModelsTab = ({
                 </Badge>
               )}
             </div>
-            <Button variant="ghost" size="sm" onClick={onDeselectAllModels} disabled={selectedModelIds.size === 0}>
-              {t('Deselect All')}
-            </Button>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setPresetsModalOpen(true)}
+                disabled={!presets.length}
+              >
+                {t('Select from presets')}
+              </Button>
+              <Button variant="outline" size="sm" onClick={onDeselectAllModels} disabled={selectedModelIds.size === 0}>
+                {t('Deselect All')}
+              </Button>
+            </div>
           </div>
 
           {/* Selected Models List */}
@@ -572,6 +587,15 @@ const SettingsModelsTab = ({
 
   return (
     <div className={settingsModelsTabRoot}>
+      <SelectFromPresetsModal
+        open={presetsModalOpen}
+        onClose={() => setPresetsModalOpen(false)}
+        presets={presets}
+        configuredCloudEngines={configuredCloudEngines}
+        allModels={allModels}
+        onLoadModels={onLoadPresetModels}
+        getModelName={getModelName}
+      />
       {isBelowLg ? (
         <>
           <div
@@ -661,6 +685,9 @@ SettingsModelsTab.propTypes = {
   onToggleModelSelection: PropTypes.func.isRequired,
   onDeselectAllModels: PropTypes.func.isRequired,
   getModelName: PropTypes.func.isRequired,
+  presets: PropTypes.array,
+  configuredCloudEngines: PropTypes.arrayOf(PropTypes.string),
+  onLoadPresetModels: PropTypes.func.isRequired,
 };
 
 export default SettingsModelsTab;

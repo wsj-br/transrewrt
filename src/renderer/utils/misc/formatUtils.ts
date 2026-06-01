@@ -1,4 +1,5 @@
 import i18n from "../../i18n";
+import { resolveDisplayTimeZone } from "../../../shared/displayTimeZone.js";
 
 const DASH = "-";
 
@@ -110,7 +111,7 @@ export function formatPartialRunCostLabel(result, locale, t) {
 }
 
 /** Format date and time for display; format follows locale (e.g. 09.03.2026 in de, 2026/03/09 in ja). Time is HH:mm:ss. */
-export function formatDateTime(date, locale) {
+export function formatDateTime(date, locale, timeZone) {
   if (date == null) return DASH;
   const d = date instanceof Date ? date : new Date(date);
   if (Number.isNaN(d.getTime())) return DASH;
@@ -119,7 +120,31 @@ export function formatDateTime(date, locale) {
     dateStyle: "short",
     timeStyle: "medium",
     hour12: false,
+    ...(timeZone ? { timeZone } : {}),
   }).format(d);
+}
+
+/**
+ * Format a timestamp for UI using browser/system timezone when available,
+ * otherwise `serverTimeZone` from the web API (Docker `TZ`).
+ */
+export function formatDisplayDateTime(date, locale, serverTimeZone) {
+  if (date == null) return "";
+  let d;
+  if (typeof date === "number") {
+    if (!date || date <= 0) return "";
+    d = new Date(date);
+  } else {
+    const trimmed = String(date || "").trim();
+    if (!trimmed) return "";
+    d = new Date(trimmed);
+  }
+  if (Number.isNaN(d.getTime())) {
+    return typeof date === "string" ? String(date) : "";
+  }
+  const timeZone = resolveDisplayTimeZone(serverTimeZone);
+  const formatted = formatDateTime(d, locale, timeZone);
+  return formatted === DASH ? (typeof date === "string" ? String(date) : "") : formatted;
 }
 
 /**

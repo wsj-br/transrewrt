@@ -31,10 +31,13 @@ const ConfirmModal = ({
   confirmDisabled = false,
 }: ConfirmModalProps) => {
   return (
-    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 p-4">
       <div
-        className="bg-card border border-border rounded-lg shadow-2xl p-6 min-w-80 w-full"
-        style={maxWidth != null ? { maxWidth } : { maxWidth: "90vw" }}
+        className={cn(
+          "bg-card border border-border rounded-lg shadow-2xl p-6 min-w-80 w-full",
+          maxWidth == null && "max-w-md",
+        )}
+        style={maxWidth != null ? { maxWidth } : undefined}
       >
         <h2 className="text-lg font-semibold mb-6">{title}</h2>
         {customBody ? (

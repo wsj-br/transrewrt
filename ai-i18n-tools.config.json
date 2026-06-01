@@ -11,9 +11,9 @@
   "maxBatchChars": 4096,
   "openrouter": {
     "translationModels": [
-      "anthropic/claude-3-haiku",
-      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3.6-35b-a3b",
       "openai/gpt-4o-mini",
+      "qwen/qwen3-235b-a22b-2507",
       "deepseek/deepseek-v4-flash",
       "qwen/qwen3.6-plus",
       "anthropic/claude-3.5-haiku",

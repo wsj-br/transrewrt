@@ -684,6 +684,10 @@ const webAPI = {
         apiKeyValid: !!data.apiKeyValid,
         message: data.message || "",
         configuredEngines: Array.isArray(data.configuredEngines) ? data.configuredEngines : [],
+        serverTimeZone:
+          typeof data.serverTimeZone === "string" && data.serverTimeZone.trim()
+            ? data.serverTimeZone.trim()
+            : undefined,
       };
     } catch (err) {
       console.error("[WebAPI] getApiStatus failed:", err);
@@ -692,6 +696,7 @@ const webAPI = {
         apiKeyValid: false,
         message: err.message || "Failed to check API status.",
         configuredEngines: [],
+        serverTimeZone: undefined,
       };
     }
   },

@@ -55,6 +55,41 @@ export function resolveCloudPresetFallbackModel(
   };
 }
 
+export type PresetProviderRow = {
+  provider: EasyCloudEngineId;
+  mainId: string;
+  fallbackId: string | null;
+};
+
+/** Providers with API keys and a non-empty preset main model (Advanced → Select from presets). */
+export function buildPresetProviderRows(
+  preset: Preset,
+  configuredEngines: EasyCloudEngineId[],
+): PresetProviderRow[] {
+  const configured = new Set(configuredEngines);
+  const rows: PresetProviderRow[] = [];
+  for (const provider of configured) {
+    if (!presetHasModelForProvider(preset, provider)) continue;
+    const main = resolveCloudPresetModel(preset, provider);
+    if (!main) continue;
+    const fallback = resolveCloudPresetFallbackModel(preset, provider);
+    rows.push({
+      provider,
+      mainId: main.canonicalModelId,
+      fallbackId: fallback?.canonicalModelId ?? null,
+    });
+  }
+  rows.sort((a, b) => a.provider.localeCompare(b.provider));
+  return rows;
+}
+
+/** Raw preset model ids for a provider row (main + fallback, deduped). */
+export function presetProviderRowModelIds(row: PresetProviderRow): string[] {
+  const ids = [row.mainId];
+  if (row.fallbackId && row.fallbackId !== row.mainId) ids.push(row.fallbackId);
+  return ids;
+}
+
 export type EasyRuntimeResolution = {
   effectiveModel: string | null;
   fallbackModel: string | null;

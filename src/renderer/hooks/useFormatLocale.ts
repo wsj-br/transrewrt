@@ -1,7 +1,6 @@
-import { useTranslation } from "react-i18next";
+import { useUiLanguage } from "./useUiLanguage";
 
-/** Returns the current UI locale (i18n.language) for use with Intl formatters. */
-export function useFormatLocale() {
-  const { i18n } = useTranslation();
-  return i18n.language || "en-GB";
+/** Returns the current UI locale for use with Intl formatters and `t()` memo deps. */
+export function useFormatLocale(): string {
+  return useUiLanguage();
 }

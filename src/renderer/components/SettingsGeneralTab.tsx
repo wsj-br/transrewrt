@@ -29,6 +29,7 @@ import {
 } from "@/utils/presets/easyProviderConstants";
 import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "@/utils/presets/configuredEasyEngines";
 import { useAppContext } from "@/contexts/AppContext";
+import { formatDisplayDateTime } from "../utils/misc/formatUtils";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -54,27 +55,14 @@ function normalizeTheme(value) {
   return "system";
 }
 
-function formatPresetsCatalogTimestamp(value: string | number, locale: string) {
-  let d: Date;
-  if (typeof value === "number") {
-    if (!value || value <= 0) return "";
-    d = new Date(value);
-  } else {
-    const trimmed = String(value || "").trim();
-    if (!trimmed) return "";
-    d = new Date(trimmed);
-  }
-  if (Number.isNaN(d.getTime())) return typeof value === "string" ? String(value) : "";
-  return d.toLocaleString(locale);
-}
-
 function formatPresetsVersionWithUpdated(
   meta: { version?: string; updated_at?: string } | null | undefined,
   locale: string,
   unknownLabel: string,
+  serverTimeZone?: string,
 ) {
   const version = meta?.version?.trim() || unknownLabel;
-  const updated = formatPresetsCatalogTimestamp(meta?.updated_at || "", locale);
+  const updated = formatDisplayDateTime(meta?.updated_at || "", locale, serverTimeZone);
   return updated ? `${version} (${updated})` : version;
 }
 
@@ -90,6 +78,10 @@ const SettingsGeneralTab = ({
     isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
       ? apiKeyStatus.configuredEngines
       : null;
+  const serverTimeZone =
+    isWeb && typeof apiKeyStatus?.serverTimeZone === "string"
+      ? apiKeyStatus.serverTimeZone
+      : undefined;
 
   const { options: FONT_OPTIONS, defaultFont: DEFAULT_FONT, fontValues: FONT_VALUES } = useMemo(() => {
     const { options, defaultFont } = getAppearanceFontContext();
@@ -101,7 +93,7 @@ const SettingsGeneralTab = ({
     { value: 'system', label: t('System (follow OS)'), icon: Monitor },
     { value: 'light', label: t('Light'), icon: Sun },
     { value: 'dark', label: t('Dark'), icon: Moon },
-  ], [t]);
+  ], [t, i18n.language]);
 
   const historyAdminDisabled = localSettings.history_disabled_by_administrator === true;
 
@@ -134,7 +126,7 @@ const SettingsGeneralTab = ({
       { value: 'gt_1y', label: t('> 1 year') },
       { value: 'gt_2y', label: t('> 2 years') },
     ],
-    [t],
+    [t, i18n.language],
   );
 
   const executeHistoryDelete = async () => {
@@ -365,11 +357,11 @@ const SettingsGeneralTab = ({
                   <dl className="m-0 grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm">
                     <dt className="m-0 text-muted-foreground">{t("Version")}</dt>
                     <dd className="m-0 font-mono text-xs leading-normal">
-                      {formatPresetsVersionWithUpdated(presetsFileMeta, locale, t("Unknown"))}
+                      {formatPresetsVersionWithUpdated(presetsFileMeta, locale, t("Unknown"), serverTimeZone)}
                     </dd>
                     <dt className="m-0 text-muted-foreground">{t("Last check")}</dt>
                     <dd className="m-0 text-xs leading-normal">
-                      {formatPresetsCatalogTimestamp(presetsLastCheckedAt, locale) || t("Unknown")}
+                      {formatDisplayDateTime(presetsLastCheckedAt, locale, serverTimeZone) || t("Unknown")}
                     </dd>
                   </dl>
                   <Button

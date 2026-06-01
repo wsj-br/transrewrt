@@ -173,7 +173,7 @@ export default function DashboardTabByModel({
       { key: "transform_cost", labelKey: t("Transform cost") },
       { key: "avg_tps", labelKey: t("Avg TPS") },
     ],
-    [t]
+    [t, i18n.language]
   );
 
   const dataRows = useMemo(() => {

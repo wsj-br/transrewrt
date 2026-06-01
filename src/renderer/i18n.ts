@@ -11,7 +11,12 @@ import {
 /** Must match `sourceLocale` in ai-i18n-tools.config.json */
 export const SOURCE_LOCALE = 'en-GB';
 
-void i18n.use(initReactI18next).init(defaultI18nInitOptions(SOURCE_LOCALE));
+void i18n.use(initReactI18next).init({
+  ...defaultI18nInitOptions(SOURCE_LOCALE),
+  react: {
+    bindI18n: "languageChanged loaded",
+  },
+});
 wrapI18nWithKeyTrim(i18n);
 i18n.on('languageChanged', applyDirection);
 applyDirection(i18n.language);

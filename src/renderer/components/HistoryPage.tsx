@@ -245,7 +245,7 @@ export default function HistoryPage() {
       { key: "input_text", labelKey: t("Input text") },
       { key: "output_text", labelKey: t("Output text") },
     ],
-    [t],
+    [t, i18n.language],
   );
 
   const handleExport = useCallback(

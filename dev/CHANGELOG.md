@@ -11,6 +11,11 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Settings → General → Presets catalog version and **Last check** timestamps use the browser/system timezone when available, with Docker `TZ` as fallback on web.
+- **Fixed**: UI labels (sidebar, headers, Settings tabs/options, History/Dashboard export columns) refresh when the UI language changes (`UiLanguageProvider`, await `changeLanguage`, `bindI18n: languageChanged loaded`, memo deps on locale).
+- **Fixed**: Settings → Models — **Deselect All** confirmation uses the in-app modal instead of the browser `confirm` dialog.
+- **Changed**: Settings → Models — **Deselect All** uses outline button styling so its border stays visible.
+- **Added**: Settings → Models — **Select from presets** on Selected Models adds preset main/fallback models per configured provider (with Load all).
 - **Fixed**: Presets editor — show a connection-lost overlay when the server stops or becomes unreachable; health check every 10s (and on failed API calls) with auto-dismiss when the server returns.
 - **Fixed**: Presets editor model picker — show “Pricing not available” instead of $0 when OpenRouter pricing is missing.
 - **Changed**: OpenRouter provider routing — prefer lowest latency (`sort: "latency"`) instead of highest throughput.

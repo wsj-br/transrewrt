@@ -101,7 +101,7 @@ export default function DashboardTabAllCalls({
       { key: "output_words", labelKey: t("Output words") },
       { key: "output_paragraphs", labelKey: t("Output paragraphs") },
     ],
-    [t]
+    [t, i18n.language]
   );
 
   const handleExport = useCallback(

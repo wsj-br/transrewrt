@@ -74,7 +74,7 @@ export default function DashboardTabByDay({
       { key: "avg_translation", labelKey: t("Avg translation") },
       { key: "avg_rewrite", labelKey: t("Avg rewrite") },
     ],
-    [t]
+    [t, i18n.language]
   );
 
   const handleExport = useCallback(

@@ -32,13 +32,16 @@ import SettingsTransformPromptsTab from "./SettingsTransformPromptsTab";
 import SettingsAboutTab from "./SettingsAboutTab";
 import SettingsUsersTab from "./SettingsUsersTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
+import ConfirmModal from "./ConfirmModal";
 import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
 import webAPI from "../utils/api/webApiClient";
 import {
+  canonicalModelIdFromPresetModelId,
   filterEngineFromModelId,
   providerSortKeyFromModelId,
 } from "../utils/misc/modelIdUtils";
+import { listConfiguredEasyEngines } from "../utils/presets/configuredEasyEngines";
 import {
   settingsPanelBody,
   settingsTabButton,
@@ -71,8 +74,8 @@ function useIsBelowMd() {
 }
 
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
-  const { t } = useTranslation();
-  const { settings, allModels, currentUser, setSetting, fetchModels } =
+  const { t, i18n } = useTranslation();
+  const { settings, allModels, currentUser, setSetting, fetchModels, presetsCatalog, apiKeyStatus } =
     useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
@@ -92,6 +95,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const [modelsError, setModelsError] = useState(null);
   const hasRestoredTabRef = useRef(false); // in web mode, later context updates can overwrite; only restore tab once per mount
   const [costTabActivationCount, setCostTabActivationCount] = useState(0);
+  const [showDeselectAllConfirm, setShowDeselectAllConfirm] = useState(false);
   const tabStripRef = useRef(null);
   const tabButtonRefs = useRef(new Map());
   const [tabScroll, setTabScroll] = useState({
@@ -151,7 +155,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         : []),
       { id: "about", icon: <Info size={15} />, label: t("About") },
     ],
-    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
+    [t, i18n.language, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
   );
 
   const selectedTabMeta = useMemo(
@@ -333,7 +337,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         a.label.localeCompare(b.label, undefined, { sensitivity: "base" }),
       );
     return [allLabel, ...rows];
-  }, [t, enginesWithModels]);
+  }, [t, i18n.language, enginesWithModels]);
 
   const allowedEngineFilterValues = useMemo(
     () =>
@@ -356,6 +360,28 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     setSelectedModelIds(newSet);
     setSetting("available_models", Array.from(newSet));
   };
+
+  const configuredCloudEngines = useMemo(
+    () =>
+      listConfiguredEasyEngines(settings, apiKeyStatus?.configuredEngines).filter(
+        (e) => e !== "ollama",
+      ),
+    [settings, apiKeyStatus],
+  );
+
+  const loadPresetModels = useCallback(
+    (modelIds) => {
+      const newSet = new Set(selectedModelIds);
+      newSet.add(FREE_MODEL_ID);
+      for (const raw of modelIds) {
+        const id = canonicalModelIdFromPresetModelId(String(raw).trim());
+        if (id) newSet.add(id);
+      }
+      setSelectedModelIds(newSet);
+      setSetting("available_models", Array.from(newSet));
+    },
+    [selectedModelIds, setSetting],
+  );
 
   const filteredModels = useMemo(() => {
     return allModels.filter((model) => {
@@ -441,15 +467,14 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
 
   const deselectAllModels = () => {
     if (selectedModelIds.size === 0) return;
-    if (
-      window.confirm(
-        "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
-      )
-    ) {
-      const newSet = new Set([FREE_MODEL_ID]);
-      setSelectedModelIds(newSet);
-      setSetting("available_models", [FREE_MODEL_ID]);
-    }
+    setShowDeselectAllConfirm(true);
+  };
+
+  const confirmDeselectAllModels = () => {
+    const newSet = new Set([FREE_MODEL_ID]);
+    setSelectedModelIds(newSet);
+    setSetting("available_models", [FREE_MODEL_ID]);
+    setShowDeselectAllConfirm(false);
   };
 
   const handleTabChange = (tab) => {
@@ -614,6 +639,9 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             onToggleModelSelection={toggleModelSelection}
             onDeselectAllModels={deselectAllModels}
             getModelName={getModelName}
+            presets={presetsCatalog}
+            configuredCloudEngines={configuredCloudEngines}
+            onLoadPresetModels={loadPresetModels}
           />
         )}
 
@@ -652,6 +680,20 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
 
         {activeTab === "about" && <SettingsAboutTab />}
       </div>
+
+      {showDeselectAllConfirm && (
+        <ConfirmModal
+          title={t("Deselect all models?")}
+          message={t(
+            "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
+          )}
+          confirmLabel={t("Deselect All")}
+          cancelLabel={t("Cancel")}
+          onConfirm={confirmDeselectAllModels}
+          onCancel={() => setShowDeselectAllConfirm(false)}
+          danger
+        />
+      )}
     </div>
   );
 };

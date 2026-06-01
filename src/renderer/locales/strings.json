@@ -335,7 +335,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 329
+        "line": 334
       }
     ]
   },
@@ -2030,7 +2030,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 191
+        "line": 196
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2534,6 +2534,10 @@
         "line": 638
       },
       {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 225
+      },
+      {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
         "line": 787
       }
@@ -2661,6 +2665,10 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 819
+      },
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 691
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -9186,15 +9194,15 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 396
+        "line": 401
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 454
+        "line": 459
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 545
+        "line": 560
       }
     ]
   },
@@ -10468,7 +10476,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 145
+        "line": 149
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -10658,7 +10666,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 198
+        "line": 203
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -10763,7 +10771,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 198
+        "line": 203
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -13279,7 +13287,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 558
+        "line": 573
       }
     ]
   },
@@ -13623,6 +13631,799 @@
       }
     ]
   },
+  "de3a6eb0": {
+    "source": "Select from presets",
+    "translated": {
+      "ar": "اختر من الإعدادات المسبقة",
+      "bn": "প্রিসেট থেকে নির্বাচন করুন",
+      "ca": "Selecciona de les preconfiguracions",
+      "pt-BR": "Selecionar a partir de predefinições",
+      "zh-CN": "选择预设",
+      "cs": "Vybrat z předvoleb",
+      "hr": "Odaberi iz predlošaka",
+      "zh-TW": "從預設值中選取",
+      "en-US": "Select from presets",
+      "tl": "Piliin mula sa mga preset",
+      "nl": "Selecteer uit voorinstellingen",
+      "fr": "Sélectionner parmi les préréglages",
+      "hu": "Válasszon előbeállítások közül",
+      "el": "Επιλογή από προεπιλογές",
+      "hi": "पूर्वनिर्धारित से चुनें",
+      "de": "Aus Voreinstellungen auswählen",
+      "ko": "사전 설정에서 선택",
+      "ja": "プリセットから選択",
+      "it": "Seleziona da preset",
+      "ms": "Pilih daripada pratetap",
+      "jv": "Pilih saka preset",
+      "fa": "انتخاب از پیش‌تنظیم‌ها",
+      "pl": "Wybierz z presetów",
+      "pt": "Selecionar a partir de predefinições",
+      "ru": "Выбрать из пресетов",
+      "ro": "Selectați din preseturi",
+      "sk": "Vybrať z predvolieb",
+      "pa": "ਪਰੀਸੈਟ ਵਿੱਚੋਂ ਚੁਣੋ",
+      "sv": "Välj bland förinställningar",
+      "te": "పీసెట్ల నుండి ఎంచుకోండి",
+      "es": "Seleccionar de los preajustes",
+      "sw": "Chagua kutoka kwa mipangilio ya awali",
+      "uk": "Вибрати з пресетів",
+      "th": "เลือกจากพรีเซ็ต",
+      "vi": "Chọn từ cài đặt sẵn",
+      "tr": "Ön ayarlardan seçin"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 126
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 515
+      }
+    ],
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b"
+    }
+  },
+  "93c85eb8": {
+    "source": "No presets available.",
+    "translated": {
+      "pt-BR": "Nenhuma predefinição disponível.",
+      "ar": "لا توجد إعدادات مسبقة متاحة.",
+      "ca": "No hi ha presets disponibles.",
+      "bn": "কোনো পূর্বনির্ধারিত উপলব্ধ নেই।",
+      "zh-TW": "沒有可用的預設值。",
+      "hr": "Nema dostupnih predložaka.",
+      "cs": "Nejsou k dispozici žádné předvolby.",
+      "zh-CN": "没有可用的预设。",
+      "en-US": "No presets available",
+      "nl": "Geen voorinstellingen beschikbaar.",
+      "fr": "Aucun préréglage disponible.",
+      "tl": "Walang mga naka-preset na available.",
+      "hu": "Nincsenek elérhető előbeállítások.",
+      "de": "Keine Voreinstellungen verfügbar.",
+      "hi": "कोई पूर्व-सेट उपलब्ध नहीं है।",
+      "el": "Δεν υπάρχουν διαθέσιμες προκαθορισμένες ρυθμίσεις.",
+      "it": "Nessun preset disponibile.",
+      "ja": "プリセットがありません。",
+      "ko": "사전 설정을 사용할 수 없습니다.",
+      "ms": "Tiada pratetapan yang tersedia.",
+      "pt": "Não há predefinições disponíveis.",
+      "pl": "Brak dostępnych predefiniowanych ustawień.",
+      "jv": "Ora ana pratata sing cumawis.",
+      "fa": "هیچ پیش‌تنظیمی در دسترس نیست.",
+      "ro": "Nu sunt disponibile presetări.",
+      "ru": "Нет доступных предустановок.",
+      "sk": "Nie sú k dispozícii žiadne predvoľby.",
+      "pa": "ਕੋਈ ਪੂਰਵ-ਸੈੱਟ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।",
+      "sv": "Inga förval tillgängliga.",
+      "es": "No hay ajustes predefinidos disponibles.",
+      "sw": "Hakuna vipangilio-awali vilivyopatikana.",
+      "te": "ప్రీసెట్లు అందుబాటులో లేవు.",
+      "vi": "Không có mẫu sẵn có.",
+      "tr": "Kullanılabilir önayar yok.",
+      "th": "ไม่มีค่าตั้งล่วงหน้าที่พร้อมใช้งาน",
+      "uk": "Немає доступних наперед заданих."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 130
+      }
+    ]
+  },
+  "cdfd4357": {
+    "source": "Preset",
+    "translated": {
+      "pt-BR": "Predefinição",
+      "ar": "إعداد مسبق",
+      "ca": "Preestablert",
+      "bn": "পূর্বনির্ধারিত",
+      "zh-TW": "預設值",
+      "zh-CN": "预设",
+      "hr": "Predložak",
+      "cs": "Předvolba",
+      "en-US": "Preset",
+      "tl": "Naka-preset",
+      "nl": "Voorinstelling",
+      "fr": "Préréglage",
+      "el": "Προεπιλογή",
+      "de": "Vorgabe",
+      "hi": "पूर्व-सेट",
+      "hu": "Előbeállítás",
+      "it": "Preset",
+      "ja": "プリセット",
+      "ko": "사전 설정",
+      "ms": "Preset",
+      "jv": "Preset",
+      "pt": "Predefinição",
+      "pl": "Preset",
+      "fa": "پیش‌تنظیم",
+      "ru": "Пресет",
+      "ro": "Presetare",
+      "sk": "Predvoľba",
+      "pa": "ਪੂਰਵ-ਨਿਰਧਾਰਤ",
+      "es": "Preestablecido",
+      "sv": "Förinställning",
+      "sw": "Awali",
+      "te": "పూర్వ నిర్ధారణ",
+      "vi": "Cài đặt trước",
+      "tr": "Ön ayar",
+      "th": "ค่าตั้งล่วงหน้า",
+      "uk": "Попередня настройка"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "hu": "openai/gpt-4o-mini",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 134
+      },
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 140
+      },
+      {
+        "file": "src/renderer/components/TransformGenerateModal.tsx",
+        "line": 70
+      },
+      {
+        "file": "src/renderer/components/TransformImproveModal.tsx",
+        "line": 64
+      },
+      {
+        "file": "src/renderer/components/TransformTranslateModal.tsx",
+        "line": 67
+      }
+    ]
+  },
+  "7381d487": {
+    "source": "Loaded",
+    "translated": {
+      "pt-BR": "Carregado",
+      "ar": "تم التحميل",
+      "ca": "Carregat",
+      "bn": "লোড হয়েছে",
+      "zh-TW": "已載入",
+      "hr": "Učitano",
+      "cs": "Načteno",
+      "zh-CN": "已加载",
+      "en-US": "Loaded",
+      "nl": "Geladen",
+      "fr": "Chargé",
+      "tl": "Nai-load na",
+      "hu": "Betöltve",
+      "de": "Geladen",
+      "hi": "लोड किया गया",
+      "el": "Φορτώθηκε",
+      "it": "Caricato",
+      "ja": "読み込みました",
+      "ko": "불러오기 완료",
+      "ms": "Dimuat",
+      "pt": "Carregado",
+      "pl": "Załadowano",
+      "jv": "Dimuat",
+      "fa": "بارگذاری شد",
+      "ro": "Încărcat",
+      "ru": "Загружено",
+      "sk": "Načítané",
+      "pa": "ਲੋਡ ਕੀਤਾ",
+      "sv": "Laddad",
+      "es": "Cargado",
+      "sw": "Imewekwa",
+      "te": "లోడ్ చేయబడింది",
+      "vi": "Đã tải",
+      "tr": "Yüklendi",
+      "th": "โหลดเรียบร้อย",
+      "uk": "Завантажено"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 174
+      },
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 225
+      }
+    ]
+  },
+  "3c7c33c0": {
+    "source": "Load all",
+    "translated": {
+      "pt-BR": "Carregar tudo",
+      "ar": "تحميل الكل",
+      "ca": "Carrega-ho tot",
+      "bn": "সবগুলি লোড করুন",
+      "zh-TW": "全部載入",
+      "hr": "Učitaj sve",
+      "cs": "Načíst vše",
+      "zh-CN": "全部加载",
+      "en-US": "Load all",
+      "nl": "Alles laden",
+      "fr": "Tout charger",
+      "tl": "I-load lahat",
+      "hu": "Összes betöltése",
+      "de": "Alle laden",
+      "hi": "सभी लोड करें",
+      "el": "Φόρτωση όλων",
+      "it": "Carica tutto",
+      "ja": "すべて読み込む",
+      "ko": "모두 불러오기",
+      "ms": "Muat semua",
+      "pt": "Carregar tudo",
+      "pl": "Załaduj wszystko",
+      "jv": "Muat kabeh",
+      "fa": "بارگذاری همه",
+      "ro": "Încarcă tot",
+      "ru": "Загрузить все",
+      "sk": "Načítať všetko",
+      "pa": "ਸਭ ਲੋਡ ਕਰੋ",
+      "sv": "Ladda alla",
+      "es": "Cargar todo",
+      "sw": "Weka yote",
+      "te": "అన్నింటినీ లోడ్ చేయండి",
+      "vi": "Tải tất cả",
+      "tr": "Tümünü yükle",
+      "th": "โหลดทั้งหมด",
+      "uk": "Завантажити все"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 174
+      }
+    ]
+  },
+  "e3aac17c": {
+    "source": "No providers with API keys are configured for this preset.",
+    "translated": {
+      "pt-BR": "Nenhum provedor com chaves de API configuradas para esta predefinição.",
+      "ar": "لا توجد مزودات مع مفاتيح API مهيأة لهذا الإعداد المسبق.",
+      "ca": "No hi ha proveïdors amb claus d'API configurats per a aquest preset.",
+      "bn": "এই পূর্বনির্ধারিতের জন্য কোনো API কী কনফিগার করা নেই।",
+      "zh-TW": "此預設值沒有設定任何 API 金鑰的提供者。",
+      "hr": "Nema konfiguriranih pružatelja s API ključevima za ovaj predložak.",
+      "cs": "Pro tuto předvolbu nejsou nakonfigurovány žádné poskytovatele s API klíči.",
+      "zh-CN": "此预设没有配置任何 API 密钥提供程序。",
+      "en-US": "No providers with API keys are configured for this preset",
+      "nl": "Er zijn geen providers met API-sleutels geconfigureerd voor deze voorinstelling.",
+      "fr": "Aucun fournisseur avec des clés API n'est configuré pour ce préréglage.",
+      "tl": "Walang mga provider na may mga API key na naka-configure para sa pang-preset na ito.",
+      "hu": "Ehhez az előbeállításhoz nincsenek konfigurálva API-kulcsokkal rendelkező szolgáltatók.",
+      "de": "Für diese Voreinstellung sind keine Provider mit API-Schlüsseln konfiguriert.",
+      "hi": "इस पूर्व-सेट के लिए कोई API कुंजी कॉन्फ़िगर नहीं की गई है।",
+      "el": "Δεν έχουν διαμορφωθεί κλειδιά API για αυτήν την προκαθορισμένη ρύθμιση.",
+      "it": "Nessun provider con chiavi API configurato per questo preset.",
+      "ja": "このプリセットにはAPIキーが設定されたプロバイダーがありません。",
+      "ko": "이 사전 설정에 대해 API 키가 구성된 공급자가 없습니다.",
+      "ms": "Tiada pembekal dengan kunci API yang dikonfigurasikan untuk pratetapan ini.",
+      "pt": "Nenhum provedor com chaves de API está configurado para esta predefinição.",
+      "pl": "Brak skonfigurowanych dostawców z kluczami API dla tego ustawienia.",
+      "jv": "Ora ana panyedia karo kunci API sing diatur kanggo pratata iki.",
+      "fa": "هیچ ارائه‌دهنده‌ای با کلیدهای API برای این پیش‌تنظیم پیکربندی نشده است.",
+      "ro": "Nu sunt configurate furnizori cu chei API pentru această presetare.",
+      "ru": "Для этой предустановки не настроены поставщики с API-ключами.",
+      "sk": "Pre túto predvoľbu nie sú nakonfigurované žiadne poskytovateľské API kľúče.",
+      "pa": "ਇਸ ਪੂਰਵ-ਸੈੱਟ ਲਈ ਕੋਈ API ਕੁੰਜੀਆਂ ਵਾਲੇ ਪ੍ਰਦਾਤਾ ਕੌਂਫ਼ਿਗਰ ਨਹੀਂ ਕੀਤੇ ਗਏ ਹਨ।",
+      "sv": "Inga leverantörer med API-nycklar har konfigurerats för detta förval.",
+      "es": "No hay proveedores con claves API configurados para este ajuste predefinido.",
+      "sw": "Hakuna watoa huduma wenye funguo za API zilizokonfiguriwa kwa kipangilio-awali hiki.",
+      "te": "ఈ ప్రీసెట్ కోసం API కీలతో ఏ ప్రొవైడర్లు కూడా కాన్ఫిగర్ చేయబడలేదు.",
+      "vi": "Không có nhà cung cấp nào được cấu hình với khóa API cho mẫu này.",
+      "tr": "Bu önayar için API anahtarları yapılandırılmış sağlayıcı yok.",
+      "th": "ไม่มีผู้ให้บริการที่มีคีย์ API ที่กำหนดไว้สำหรับค่าตั้งล่วงหน้านี้",
+      "uk": "Для цього наперед заданого не налаштовано жодного постачальника з API-ключами."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 182
+      }
+    ]
+  },
+  "c0a3234a": {
+    "source": "Main model",
+    "translated": {
+      "pt-BR": "Modelo principal",
+      "ar": "النموذج الرئيسي",
+      "ca": "Model principal",
+      "bn": "মূল মডেল",
+      "zh-TW": "主要模型",
+      "hr": "Glavni model",
+      "cs": "Hlavní model",
+      "zh-CN": "主模型",
+      "en-US": "Main model",
+      "nl": "Hoofdmodel",
+      "fr": "Modèle principal",
+      "tl": "Pangunahing modelo",
+      "hu": "Fő modell",
+      "de": "Hauptmodell",
+      "hi": "मुख्य मॉडल",
+      "el": "Κύριο μοντέλο",
+      "it": "Modello principale",
+      "ja": "メインモデル",
+      "ko": "기본 모델",
+      "ms": "Model utama",
+      "pt": "Modelo principal",
+      "pl": "Model główny",
+      "jv": "Model utama",
+      "fa": "مدل اصلی",
+      "ro": "Model principal",
+      "ru": "Основная модель",
+      "sk": "Hlavný model",
+      "pa": "ਮੁੱਖ ਮਾਡਲ",
+      "sv": "Huvudmodell",
+      "es": "Modelo principal",
+      "sw": "Modeli kuu",
+      "te": "ప్రధాన మోడల్",
+      "vi": "Mô hình chính",
+      "tr": "Ana model",
+      "th": "โมเดลหลัก",
+      "uk": "Основна модель"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 207
+      }
+    ]
+  },
+  "97cd628f": {
+    "source": "Fallback model",
+    "translated": {
+      "pt-BR": "Modelo de fallback",
+      "ar": "النموذج الاحتياطي",
+      "ca": "Model de reserva",
+      "bn": "বিকল্প মডেল",
+      "zh-TW": "備用模型",
+      "hr": "Pričuvni model",
+      "cs": "Záložní model",
+      "zh-CN": "备用模型",
+      "en-US": "Fallback model",
+      "nl": "Reservemodel",
+      "fr": "Modèle de secours",
+      "tl": "Backup modelo",
+      "hu": "Tartalék modell",
+      "de": "Fallback-Modell",
+      "hi": "बैकअप मॉडल",
+      "el": "Εναλλακτικό μοντέλο",
+      "it": "Modello di fallback",
+      "ja": "フォールバックモデル",
+      "ko": "대체 모델",
+      "ms": "Model sandaran",
+      "pt": "Modelo de reserva",
+      "pl": "Model zapasowy",
+      "jv": "Model cadangan",
+      "fa": "مدل پشتیبان",
+      "ro": "Model de rezervă",
+      "ru": "Резервная модель",
+      "sk": "Záložný model",
+      "pa": "ਬੈਕਅੱਪ ਮਾਡਲ",
+      "sv": "Reservmodell",
+      "es": "Modelo de respaldo",
+      "sw": "Modeli ya kujitegemea",
+      "te": "బ్యాక్అప్ మోడల్",
+      "vi": "Mô hình dự phòng",
+      "tr": "Yedek model",
+      "th": "โมเดลสำรอง",
+      "uk": "Запасна модель"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 212
+      }
+    ]
+  },
+  "d3d2e617": {
+    "source": "Close",
+    "translated": {
+      "pt-BR": "Fechar",
+      "ca": "Tancar",
+      "ar": "إغلاق",
+      "bn": "বন্ধ করুন",
+      "zh-TW": "關閉",
+      "zh-CN": "关闭",
+      "hr": "Zatvori",
+      "cs": "Zavřít",
+      "en-US": "Close",
+      "fr": "Fermer",
+      "tl": "Isara",
+      "nl": "Sluiten",
+      "de": "Schließen",
+      "hu": "Bezárás",
+      "hi": "बंद करें",
+      "el": "Κλείσιμο",
+      "ms": "Tutup",
+      "ko": "닫기",
+      "ja": "閉じる",
+      "it": "Chiudi",
+      "pt": "Fechar",
+      "pl": "Zamknij",
+      "pa": "ਬੰਦ ਕਰੋ",
+      "fa": "بستن",
+      "es": "Cerrar",
+      "ru": "Закрыть",
+      "ro": "Închide",
+      "sk": "Zavrieť",
+      "sv": "Stäng",
+      "th": "ปิด",
+      "sw": "Funga",
+      "te": "మూసివేయి",
+      "vi": "Đóng",
+      "tr": "Kapat",
+      "uk": "Закрити",
+      "jv": "Tutup"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "openai/gpt-4o-mini",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 239
+      },
+      {
+        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
+        "line": 148
+      }
+    ]
+  },
   "34b6cd75": {
     "source": "Version",
     "translated": {
@@ -13882,7 +14683,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 152
+        "line": 156
       }
     ]
   },
@@ -18139,7 +18940,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 143
+        "line": 147
       }
     ]
   },
@@ -20907,7 +21708,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 257
+        "line": 262
       }
     ]
   },
@@ -25601,7 +26402,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 174
+        "line": 179
       }
     ]
   },
@@ -25686,7 +26487,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 175
+        "line": 180
       }
     ]
   },
@@ -25771,7 +26572,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 176
+        "line": 181
       }
     ]
   },
@@ -25856,7 +26657,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 177
+        "line": 182
       }
     ]
   },
@@ -25941,7 +26742,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 178
+        "line": 183
       }
     ]
   },
@@ -26026,7 +26827,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 179
+        "line": 184
       }
     ]
   },
@@ -26111,7 +26912,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 195
+        "line": 200
       }
     ]
   },
@@ -26196,7 +26997,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 198
+        "line": 203
       }
     ]
   },
@@ -26281,7 +27082,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 219
+        "line": 224
       }
     ]
   },
@@ -26366,7 +27167,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 231
+        "line": 236
       }
     ]
   },
@@ -26451,7 +27252,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 280
+        "line": 285
       }
     ]
   },
@@ -26536,7 +27337,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 286
+        "line": 291
       }
     ]
   },
@@ -26621,7 +27422,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 289
+        "line": 294
       }
     ]
   },
@@ -26706,7 +27507,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 313
+        "line": 318
       }
     ]
   },
@@ -26791,7 +27592,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 330
+        "line": 335
       }
     ]
   },
@@ -26876,7 +27677,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 335
+        "line": 340
       }
     ]
   },
@@ -26961,7 +27762,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 338
+        "line": 343
       }
     ]
   },
@@ -27046,7 +27847,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 360
+        "line": 365
       }
     ]
   },
@@ -27131,7 +27932,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 360
+        "line": 365
       }
     ]
   },
@@ -27216,7 +28017,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 364
+        "line": 369
       }
     ]
   },
@@ -27301,15 +28102,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 406
+        "line": 411
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 464
+        "line": 469
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 615
+        "line": 639
       }
     ]
   },
@@ -27394,11 +28195,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 408
+        "line": 413
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 466
+        "line": 471
       }
     ]
   },
@@ -27483,7 +28284,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 496
+        "line": 501
       }
     ]
   },
@@ -27568,7 +28369,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 504
+        "line": 518
+      },
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 690
       }
     ]
   },
@@ -27653,7 +28458,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 579
+        "line": 603
       }
     ]
   },
@@ -27738,7 +28543,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 596
+        "line": 620
       }
     ]
   },
@@ -27823,7 +28628,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 128
+        "line": 132
       }
     ]
   },
@@ -27908,7 +28713,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 136
+        "line": 140
       }
     ]
   },
@@ -27993,7 +28798,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 141
+        "line": 145
       }
     ]
   },
@@ -28078,7 +28883,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 147
+        "line": 151
       }
     ]
   },
@@ -28163,7 +28968,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 150
+        "line": 154
       }
     ]
   },
@@ -28248,7 +29053,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 315
+        "line": 319
       }
     ]
   },
@@ -28333,7 +29138,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 316
+        "line": 320
       }
     ]
   },
@@ -28418,7 +29223,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 317
+        "line": 321
       }
     ]
   },
@@ -28503,7 +29308,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 318
+        "line": 322
       }
     ]
   },
@@ -28588,7 +29393,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 319
+        "line": 323
       }
     ]
   },
@@ -28673,7 +29478,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 320
+        "line": 324
       }
     ]
   },
@@ -28758,7 +29563,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 321
+        "line": 325
       }
     ]
   },
@@ -28843,7 +29648,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 322
+        "line": 326
       }
     ]
   },
@@ -28928,7 +29733,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 323
+        "line": 327
       }
     ]
   },
@@ -29013,7 +29818,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 324
+        "line": 328
       }
     ]
   },
@@ -29098,7 +29903,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 326
+        "line": 330
       }
     ]
   },
@@ -29183,7 +29988,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 468
+        "line": 493
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -29272,11 +30077,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 489
+        "line": 514
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 491
+        "line": 516
       }
     ]
   },
@@ -29361,7 +30166,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 526
+        "line": 551
       }
     ]
   },
@@ -29446,7 +30251,177 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 566
+        "line": 591
+      }
+    ]
+  },
+  "ccbba11c": {
+    "source": "Deselect all models?",
+    "translated": {
+      "pt-BR": "Desmarcar todos os modelos?",
+      "ar": "إلغاء تحديد جميع النماذج؟",
+      "ca": "Desselecciona tots els models?",
+      "bn": "সমস্ত মডেল অনির্বাচিত করবেন?",
+      "zh-TW": "取消選擇所有模型？",
+      "hr": "Poništi odabir svih modela?",
+      "cs": "Odznačit všechny modely?",
+      "zh-CN": "取消选择所有模型？",
+      "en-US": "Deselect all models?",
+      "nl": "Alle modellen deselecteren?",
+      "fr": "Désélectionner tous les modèles ?",
+      "tl": "Bawiin ang lahat ng mga modelo?",
+      "hu": "Minden modell kiválasztásának törlése?",
+      "de": "Alle Modelle abwählen?",
+      "hi": "सभी मॉडल को अचयनित करें?",
+      "el": "Αποεπιλογή όλων των μοντέλων;",
+      "it": "Deseleziona tutti i modelli?",
+      "ja": "すべてのモデルの選択を解除しますか?",
+      "ko": "모든 모델 선택 해제?",
+      "ms": "Nyahpilih semua model?",
+      "pt": "Desmarcar todos os modelos?",
+      "pl": "Odznacz wszystkie modele?",
+      "jv": "Batal pilih kabeh model?",
+      "fa": "همه مدل‌ها را لغو کنید؟",
+      "ro": "Deselectați toate modelele?",
+      "ru": "Отменить выбор всех моделей?",
+      "sk": "Odznačiť všetky modely?",
+      "pa": "ਸਾਰੇ ਮਾਡਲ ਅਣ-ਚੁਣੇ ਕਰੋ?",
+      "sv": "Avmarkera alla modeller?",
+      "es": "¿Deseleccionar todos los modelos?",
+      "sw": "Ondoa uteuzi wa modeli zote?",
+      "te": "అన్ని మోడళ్ళను డీసెలెక్ట్ చేయాలా?",
+      "vi": "Bỏ chọn tất cả mô hình?",
+      "tr": "Tüm modellerin seçimini kaldırın mı?",
+      "th": "ยกเลิกการเลือกโมเดลทั้งหมด?",
+      "uk": "Скасувати вибір усіх моделей?"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 686
+      }
+    ]
+  },
+  "9e81ecb4": {
+    "source": "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
+    "translated": {
+      "pt-BR": "Tem certeza de que deseja desmarcar todos os modelos? Isso removerá todos os modelos selecionados da lista (exceto o modelo gratuito obrigatório).",
+      "ar": "هل أنت متأكد أنك تريد إلغاء تحديد جميع النماذج؟ سيؤدي هذا إلى إزالة جميع النماذج المحددة من القائمة (باستثناء النموذج المجاني المطلوب).",
+      "ca": "Estàs segur que vols desseleccionar tots els models? Això eliminarà tots els models seleccionats de la llista (excepte el model gratuït obligatori).",
+      "bn": "আপনি কি নিশ্চিত যে আপনি সমস্ত মডেল অনির্বাচিত করতে চান? এতে তালিকা থেকে সমস্ত নির্বাচিত মডেল (বিনামূল্যের প্রয়োজনীয় মডেল ছাড়া) সরিয়ে দেওয়া হবে।",
+      "zh-TW": "您確定要取消選擇所有模型嗎？這將從清單中移除所有已選擇的模型（除了必要的免費模型）。",
+      "hr": "Jeste li sigurni da želite poništiti odabir svih modela? Time ćete ukloniti sve odabrane modele s popisa (osim obaveznog besplatnog modela).",
+      "cs": "Opravdu chcete odznačit všechny modely? Tím odstraníte všechny vybrané modely ze seznamu (kromě požadovaného bezplatného modelu).",
+      "zh-CN": "您确定要取消选择所有模型吗？这将从列表中删除所有选定的模型(除了必需的免费模型)。",
+      "en-US": "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model)",
+      "nl": "Weet u zeker dat u alle modellen wilt deselecteren? Hierdoor worden alle geselecteerde modellen uit de lijst verwijderd (behalve het vereiste gratis model).",
+      "fr": "Voulez-vous vraiment désélectionner tous les modèles ? Cela supprimera tous les modèles sélectionnés de la liste (sauf le modèle gratuit obligatoire).",
+      "tl": "Sigurado ka bang gusto mong bawiin ang lahat ng mga modelo? Ito ay aalisin ang lahat ng mga napiling modelo mula sa listahan (maliban sa kinakailangang libreng modelo).",
+      "hu": "Biztosan törölni szeretné minden modell kiválasztását? Ez eltávolítja a listáról az összes kiválasztott modellt (kivéve a kötelező ingyenes modellt).",
+      "de": "Möchten Sie wirklich alle Modelle abwählen? Dadurch werden alle ausgewählten Modelle aus der Liste entfernt (außer dem erforderlichen Kostenlos-Modell).",
+      "hi": "क्या आप वाकई सभी मॉडल को अचयनित करना चाहते हैं? इससे सूची से सभी चयनित मॉडल हटा दिए जाएंगे (मुफ्त मॉडल को छोड़कर)।",
+      "el": "Είστε βέβαιοι ότι θέλετε να αποεπιλέξετε όλα τα μοντέλα; Αυτό θα καταργήσει όλα τα επιλεγμένα μοντέλα από τη λίστα (εκτός από το απαιτούμενο δωρεάν μοντέλο).",
+      "it": "Sei sicuro di voler deselezionare tutti i modelli? Questo rimuoverà tutti i modelli selezionati dall'elenco (tranne il modello gratuito obbligatorio).",
+      "ja": "すべてのモデルの選択を解除しますか? (必須の無料モデルを除いて)選択されたすべてのモデルが削除されます。",
+      "ko": "모든 모델의 선택을 해제하시겠습니까? 이렇게 하면 필수 무료 모델을 제외한 모든 선택된 모델이 목록에서 제거됩니다.",
+      "ms": "Anda pasti mahu nyahpilih semua model? Ini akan membuang semua model yang dipilih daripada senarai (kecuali model percuma yang diperlukan).",
+      "pt": "Tem certeza de que deseja desmarcar todos os modelos? Isso removerá todos os modelos selecionados da lista (exceto o modelo gratuito obrigatório).",
+      "pl": "Czy na pewno chcesz odznaczyć wszystkie modele? Spowoduje to usunięcie wszystkich wybranych modeli z listy (z wyjątkiem wymaganego darmowego modelu).",
+      "jv": "Apa sampeyan yakin arep batal pilih kabeh model? Iki bakal ngilangi kabeh model sing dipilih saka daftar (kajaba model gratis sing dibutuhake).",
+      "fa": "آیا مطمئن هستید که می‌خواهید همه مدل‌ها را لغو کنید؟ این کار همه مدل‌های انتخاب شده را از لیست حذف می‌کند (به جز مدل رایگان مورد نیاز).",
+      "ro": "Sunteți sigur că doriți să deselectați toate modelele? Acest lucru va elimina toate modelele selectate din listă (cu excepția modelului gratuit necesar).",
+      "ru": "Вы уверены, что хотите отменить выбор всех моделей? Это удалит все выбранные модели из списка (кроме обязательной бесплатной модели).",
+      "sk": "Naozaj chcete odznačiť všetky modely? Tým odstránite všetky vybrané modely zo zoznamu (okrem požadovaného bezplatného modelu).",
+      "pa": "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਹੋ ਕਿ ਤੁਸੀਂ ਸਾਰੇ ਮਾਡਲ ਅਣ-ਚੁਣੇ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਸ ਨਾਲ ਸੂਚੀ ਵਿੱਚੋਂ ਸਾਰੇ ਚੁਣੇ ਗਏ ਮਾਡਲ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ (ਮੁਫ਼ਤ ਮਾਡਲ ਨੂੰ ਛੱਡ ਕੇ)।",
+      "sv": "Är du säker på att du vill avmarkera alla modeller? Detta kommer att ta bort alla valda modeller från listan (förutom den obligatoriska gratismodellen).",
+      "es": "¿Está seguro de que desea deseleccionar todos los modelos? Esto eliminará todos los modelos seleccionados de la lista (excepto el modelo gratuito requerido).",
+      "sw": "Je, una uhakika unataka kuondoa uteuzi wa modeli zote? Hii itaondoa modeli zote zilizochaguliwa kutoka kwenye orodha (isipokuwa modeli bure inayohitajika).",
+      "te": "మీరు నిజంగా అన్ని మోడళ్ళను డీసెలెక్ట్ చేయాలనుకుంటున్నారా? ఇది జాబితా నుండి ఎంచుకున్న అన్ని మోడళ్ళను తీసివేస్తుంది (ఉచిత మోడల్ తప్ప).",
+      "vi": "Bạn có chắc muốn bỏ chọn tất cả mô hình? Điều này sẽ xóa tất cả các mô hình đã chọn khỏi danh sách (trừ mô hình miễn phí bắt buộc).",
+      "tr": "Tüm modellerin seçimini kaldırmak istediğinizden emin misiniz? Bu, gerekli ücretsiz model dışındaki tüm seçili modelleri listeden kaldıracaktır.",
+      "th": "คุณแน่ใจหรือไม่ที่จะยกเลิกการเลือกโมเดลทั้งหมด? การดำเนินการนี้จะลบโมเดลที่เลือกทั้งหมดออกจากรายการ (ยกเว้นโมเดลฟรีที่จำเป็น)",
+      "uk": "Ви впевнені, що хочете скасувати вибір усіх моделей? Це видалить усі вибрані моделі зі списку (крім обов'язкової безкоштовної моделі)."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 687
       }
     ]
   },
@@ -37163,184 +38138,6 @@
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
         "line": 139
-      }
-    ]
-  },
-  "d3d2e617": {
-    "source": "Close",
-    "translated": {
-      "pt-BR": "Fechar",
-      "ca": "Tancar",
-      "ar": "إغلاق",
-      "bn": "বন্ধ করুন",
-      "zh-TW": "關閉",
-      "zh-CN": "关闭",
-      "hr": "Zatvori",
-      "cs": "Zavřít",
-      "en-US": "Close",
-      "fr": "Fermer",
-      "tl": "Isara",
-      "nl": "Sluiten",
-      "de": "Schließen",
-      "hu": "Bezárás",
-      "hi": "बंद करें",
-      "el": "Κλείσιμο",
-      "ms": "Tutup",
-      "ko": "닫기",
-      "ja": "閉じる",
-      "it": "Chiudi",
-      "pt": "Fechar",
-      "pl": "Zamknij",
-      "pa": "ਬੰਦ ਕਰੋ",
-      "fa": "بستن",
-      "es": "Cerrar",
-      "ru": "Закрыть",
-      "ro": "Închide",
-      "sk": "Zavrieť",
-      "sv": "Stäng",
-      "th": "ปิด",
-      "sw": "Funga",
-      "te": "మూసివేయి",
-      "vi": "Đóng",
-      "tr": "Kapat",
-      "uk": "Закрити",
-      "jv": "Tutup"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "openai/gpt-4o-mini",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 148
-      }
-    ]
-  },
-  "cdfd4357": {
-    "source": "Preset",
-    "translated": {
-      "pt-BR": "Predefinição",
-      "ar": "إعداد مسبق",
-      "ca": "Preestablert",
-      "bn": "পূর্বনির্ধারিত",
-      "zh-TW": "預設值",
-      "zh-CN": "预设",
-      "hr": "Predložak",
-      "cs": "Předvolba",
-      "en-US": "Preset",
-      "tl": "Naka-preset",
-      "nl": "Voorinstelling",
-      "fr": "Préréglage",
-      "el": "Προεπιλογή",
-      "de": "Vorgabe",
-      "hi": "पूर्व-सेट",
-      "hu": "Előbeállítás",
-      "it": "Preset",
-      "ja": "プリセット",
-      "ko": "사전 설정",
-      "ms": "Preset",
-      "jv": "Preset",
-      "pt": "Predefinição",
-      "pl": "Preset",
-      "fa": "پیش‌تنظیم",
-      "ru": "Пресет",
-      "ro": "Presetare",
-      "sk": "Predvoľba",
-      "pa": "ਪੂਰਵ-ਨਿਰਧਾਰਤ",
-      "es": "Preestablecido",
-      "sv": "Förinställning",
-      "sw": "Awali",
-      "te": "పూర్వ నిర్ధారణ",
-      "vi": "Cài đặt trước",
-      "tr": "Ön ayar",
-      "th": "ค่าตั้งล่วงหน้า",
-      "uk": "Попередня настройка"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "hu": "openai/gpt-4o-mini",
-      "it": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 70
-      },
-      {
-        "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 64
-      },
-      {
-        "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 67
       }
     ]
   },

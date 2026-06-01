@@ -15,6 +15,7 @@ const {
   providerDisplayName,
   testProviderAuth,
 } = require("../../shared/llm");
+const { readServerTimeZoneFromEnv } = require("../../shared/displayTimeZone.js");
 
 /**
  * @param {() => object} readConfig
@@ -45,6 +46,7 @@ module.exports = function createStatusRouter(
           apiKeyValid: false,
           message: "No LLM provider keys or Ollama URL are configured.",
           configuredEngines: [],
+          serverTimeZone: readServerTimeZoneFromEnv(),
         });
       }
 
@@ -81,6 +83,7 @@ module.exports = function createStatusRouter(
         apiKeyValid,
         message,
         configuredEngines,
+        serverTimeZone: readServerTimeZoneFromEnv(),
       });
     } catch (err) {
       log.error("[API] GET /api/status - Error: " + err.message, {
@@ -91,6 +94,7 @@ module.exports = function createStatusRouter(
         apiKeyValid: false,
         message: err.message || "Failed to verify configuration.",
         configuredEngines: [],
+        serverTimeZone: readServerTimeZoneFromEnv(),
       });
     }
   });

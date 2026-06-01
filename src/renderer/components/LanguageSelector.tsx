@@ -52,7 +52,7 @@ const LanguageSelector = ({
   iconClassName,
   iconStrokeWidth,
 }: LanguageSelectorProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { topLanguages, allLanguages } = useContentLanguageLists();
 
   const languageOptions = useMemo(() => {
@@ -101,7 +101,7 @@ const LanguageSelector = ({
     if (isDetectLanguage) return t("Detect Language");
     const entry = findUILanguageEntry(value);
     return entry ? t(entry.englishName) : value;
-  }, [value, isAutoTarget, isDetectLanguage, t]);
+  }, [value, isAutoTarget, isDetectLanguage, t, i18n.language]);
 
   return (
     <div className="flex items-center gap-2" data-testid={dataTestId}>

@@ -68,7 +68,7 @@ const SettingsCostTrackingTab = ({
       { value: "gt_1y", label: t("> 1 year") },
       { value: "gt_2y", label: t("> 2 years") },
     ],
-    [t]
+    [t, i18n.language]
   );
 
   const canUseOpenRouterKeyInfo =
@@ -134,7 +134,7 @@ const SettingsCostTrackingTab = ({
     const hasUsage = usage != null && !Number.isNaN(Number(usage));
     if (!hasUsage && keyInfo.limit == null) return t("no limit configured");
     return { usage, hasLimit: keyInfo.limit != null, limit: keyInfo.limit, limitReset: keyInfo.limit_reset };
-  }, [keyInfoLoading, keyInfoError, keyInfo, t, isRtl]);
+  }, [keyInfoLoading, keyInfoError, keyInfo, t, i18n.language, isRtl]);
 
   const costApi = getCostApi();
   useEffect(() => {

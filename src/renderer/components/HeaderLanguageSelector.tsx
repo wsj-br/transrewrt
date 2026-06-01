@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Globe, Check } from "lucide-react";
 import PropTypes from "prop-types";
 import { useAppContext } from "../contexts/AppContext";
-import i18n, { loadLocale } from "../i18n";
+import { setUiLanguage } from "../hooks/useUiLanguage";
 import { UI_LANGUAGES } from "../constants";
 import { getUILanguageLabelNative } from "ai-i18n-tools/runtime";
 import {
@@ -27,8 +27,7 @@ const HeaderLanguageSelector = ({ compact = false }) => {
 
   const handleSelect = async (code) => {
     if (!code) return;
-    await loadLocale(code);
-    i18n.changeLanguage(code);
+    await setUiLanguage(code);
     updateSettings({ ui_locale: code });
   };
 

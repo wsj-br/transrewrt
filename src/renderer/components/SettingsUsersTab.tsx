@@ -85,7 +85,7 @@ const SettingsUsersTab = () => {
     } finally {
       setLoading(false);
     }
-  }, [t]);
+  }, [t, i18n.language]);
 
   useEffect(() => {
     if (currentUser) { setError(""); loadUsers(); }
@@ -106,7 +106,7 @@ const SettingsUsersTab = () => {
       { label: t("4 days"), seconds: 345600 },
       { label: t("7 days"), seconds: 604800 },
     ],
-    [t]
+    [t, i18n.language]
   );
   const sessionTimeoutSeconds = Number(settings.web_session_timeout) || DEFAULT_SESSION_TIMEOUT;
   const sessionTimeoutValue = useMemo(() => secondsToClosestOption(sessionTimeoutSeconds), [sessionTimeoutSeconds]);
