@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.6] - 2026-06-02
+
 - **Fixed**: Invalid or disabled OpenRouter API keys no longer show the cryptic "User not found." message; users see a clear OpenRouter API key error instead.
 - **Fixed**: Electron translate/rewrite/transform — preload resolves LLM stream from the `llm:stream` invoke result (not `llm:end`), avoiding an IPC ordering race that dropped all streamed text; OpenRouter deltas use shared `streamChoiceToString` (multipart `content`, `delta.text`, `message.content`); empty successful runs show a clear message instead of staying on “Translating…”.
 - **Fixed**: `scripts/upgrade-tools.ps1` — use forward-slash paths in inline `node -e` so Windows backslashes are not mangled as JS escapes when updating `packageManager`.
