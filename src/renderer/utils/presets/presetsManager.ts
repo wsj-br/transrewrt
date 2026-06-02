@@ -30,13 +30,13 @@ function normalizePreset(s: unknown): Preset | null {
   if (typeof o.id !== "string" || typeof o.name !== "string") return null;
 
   const modelIdsRaw = o.model_ids;
-  let model_ids =
+  let model_ids: Record<string, string> | undefined =
     modelIdsRaw && typeof modelIdsRaw === "object" && !Array.isArray(modelIdsRaw)
-      ? Object.fromEntries(
+      ? (Object.fromEntries(
           Object.entries(modelIdsRaw as Record<string, unknown>).filter(
             ([, v]) => typeof v === "string" && String(v).trim(),
           ),
-        )
+        ) as Record<string, string>)
       : undefined;
 
   const legacyModelId = typeof o.model_id === "string" ? o.model_id.trim() : "";
@@ -46,13 +46,13 @@ function normalizePreset(s: unknown): Preset | null {
   }
 
   const fallbackIdsRaw = o.fallback_ids;
-  const fallback_ids =
+  const fallback_ids: Record<string, string> | undefined =
     fallbackIdsRaw && typeof fallbackIdsRaw === "object" && !Array.isArray(fallbackIdsRaw)
-      ? Object.fromEntries(
+      ? (Object.fromEntries(
           Object.entries(fallbackIdsRaw as Record<string, unknown>).filter(
             ([, v]) => typeof v === "string" && String(v).trim(),
           ),
-        )
+        ) as Record<string, string>)
       : undefined;
 
   const out: Preset = {

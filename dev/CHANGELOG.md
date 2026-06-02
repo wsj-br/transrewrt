@@ -11,6 +11,11 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.7] - 2026-06-02
+
+- **Fixed**: `pnpm lint` — TypeScript typecheck passes (ambient module/globals, class field types, component prop defaults, and related fixes).
+- **Changed**: Translate/rewrite/transform no longer send `max_tokens` or `reasoning.effort` on OpenRouter requests; each model uses its provider defaults (restores pre-1.3.3 behaviour).
+
 ## [1.3.6] - 2026-06-02
 
 - **Fixed**: Invalid or disabled OpenRouter API keys no longer show the cryptic "User not found." message; users see a clear OpenRouter API key error instead.

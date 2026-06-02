@@ -46,7 +46,6 @@ export function getTransformPanels({ common, input, output, options }) {
     selectedTransformPrompt,
     transformFromLang,
     setTransformFromLang,
-    translate,
     translatePromptFields,
     improvePromptConfig,
     generatePromptConfig,
@@ -91,7 +90,6 @@ export function getTransformPanels({ common, input, output, options }) {
           onDelete={handleTransformDeleteRequest}
           onBackToRun={handleTransformBackToRun}
           onDraftChange={setTransformEditorDraft}
-          translate={translate}
           translatePromptFields={translatePromptFields}
           improvePromptConfig={improvePromptConfig}
           generatePromptConfig={generatePromptConfig}

@@ -276,7 +276,10 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     setSetting(key, value);
   };
 
-  const handleTestApi = async ({ provider, overrideValue } = {}) => {
+  const handleTestApi = async ({
+    provider,
+    overrideValue,
+  }: { provider?: string; overrideValue?: string } = {}) => {
     const normalizedProvider = String(provider || "").trim();
     if (!normalizedProvider) {
       return { status: "error", message: "Provider is required." };

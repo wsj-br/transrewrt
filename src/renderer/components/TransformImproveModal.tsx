@@ -28,7 +28,7 @@ const TransformImproveModal = ({
   onCancel,
   loading = false,
   error = null,
-  experienceMode = "advanced",
+  experienceMode = "advanced" as "easy" | "advanced",
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState, type ElementType } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Languages,
@@ -55,7 +55,7 @@ function persistSidebarCollapsed(collapsed: boolean) {
 interface NavItemDef {
   id: string;
   label: string;
-  icon: React.ElementType;
+  icon: ElementType;
   isActive: boolean;
   onClick: () => void;
   testId?: string;
@@ -273,12 +273,13 @@ function SidebarInner({
           data-testid="main-nav"
         >
           {mainNavItems.map((item) => (
-            <NavButton
-              key={item.id}
-              item={item}
-              collapsed={collapsed}
-              onAfterNavClick={onAfterNavClick}
-            />
+            <Fragment key={item.id}>
+              <NavButton
+                item={item}
+                collapsed={collapsed}
+                onAfterNavClick={onAfterNavClick}
+              />
+            </Fragment>
           ))}
         </nav>
 
@@ -288,12 +289,13 @@ function SidebarInner({
           aria-label="Secondary"
         >
           {bottomNavItems.map((item) => (
-            <NavButton
-              key={item.id}
-              item={item}
-              collapsed={collapsed}
-              onAfterNavClick={onAfterNavClick}
-            />
+            <Fragment key={item.id}>
+              <NavButton
+                item={item}
+                collapsed={collapsed}
+                onAfterNavClick={onAfterNavClick}
+              />
+            </Fragment>
           ))}
 
           {/* User block */}

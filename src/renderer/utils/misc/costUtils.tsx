@@ -143,7 +143,12 @@ export function getDeleteCutoffIso(option) {
 /** Returns React node for dollar amount with fraction styling. Locale controls decimal separator.
  * @param {object} [options] - Optional. mainPartSuccess: true to render the main part (through cents) in success green.
  */
-export function formatDollarAmount(n, costFractionStyle = "muted", locale, options = {}) {
+export function formatDollarAmount(
+  n,
+  costFractionStyle = "muted",
+  locale,
+  options: { mainPartSuccess?: boolean } = {},
+) {
   const { mainPartSuccess = false } = options;
   const loc = resolveLocale(locale);
   const formatter = new Intl.NumberFormat(loc, {

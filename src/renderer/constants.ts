@@ -14,7 +14,16 @@ export const isWeb = typeof window !== "undefined" && !window.electronAPI?.getCo
 
 /** UI language options for interface language selector (Settings and header globe). Each has code, native label, and English name. Source: locales/ui-languages.json */
 import uiLanguages from "./locales/ui-languages.json";
-export const UI_LANGUAGES = uiLanguages;
+
+export type UiLanguageEntry = {
+  code: string;
+  label: string;
+  englishName: string;
+  direction: "ltr" | "rtl";
+  isSourceLocale?: boolean;
+};
+
+export const UI_LANGUAGES = uiLanguages as UiLanguageEntry[];
 
 /** Value keys for rewrite modes (used for persistence/API). */
 export const REWRITE_MODE_KEYS = [

@@ -19,6 +19,12 @@
       "@/*": ["./src/renderer/*"]
     }
   },
-  "include": ["src/renderer/**/*.ts", "src/renderer/**/*.tsx", "src/renderer/**/*.js", "src/renderer/**/*.jsx"],
+  "include": [
+    "src/renderer/**/*.ts",
+    "src/renderer/**/*.tsx",
+    "src/renderer/**/*.js",
+    "src/renderer/**/*.jsx",
+    "src/renderer/types/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "dist", "dist-main", "reference-new-layout"]
 }

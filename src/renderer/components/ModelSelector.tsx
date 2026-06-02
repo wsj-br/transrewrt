@@ -55,7 +55,19 @@ ModelPickerRow.propTypes = {
   showIcon: PropTypes.bool,
 };
 
-const ModelSelector = ({ models = [], currentModel, onModelChange, onIconClick, onRemoveModel }) => {
+const ModelSelector = ({
+  models = [],
+  currentModel,
+  onModelChange,
+  onIconClick,
+  onRemoveModel = undefined,
+}: {
+  models?: string[];
+  currentModel?: string;
+  onModelChange: (model: string) => void;
+  onIconClick?: () => void;
+  onRemoveModel?: (model: string) => void;
+}) => {
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);

@@ -52,7 +52,7 @@ const TransformPromptEditor = ({
   generatePromptConfig,
   model,
   models = [],
-  experienceMode = "advanced",
+  experienceMode = "advanced" as "easy" | "advanced",
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,
@@ -191,7 +191,7 @@ const TransformPromptEditor = ({
     const roleVal = role.trim();
     const instructionsVal = instructionsText.trim();
     const outputDescVal = outputDescription.trim();
-    const fieldsObject = {};
+    const fieldsObject: Record<string, string> = {};
     if (nameVal) fieldsObject.name = nameVal;
     if (promptInstructionsVal) fieldsObject.prompt_instructions = promptInstructionsVal;
     if (roleVal) fieldsObject.role = roleVal;

@@ -3,8 +3,11 @@ import webAPI from "../api/webApiClient";
 // Configuration manager to handle application settings
 // Supports both Electron (file API) and Web/Docker (server API)
 class ConfigManager {
+  config: Record<string, unknown> = {};
+  _isElectron = false;
+  _isWeb = false;
+
   constructor() {
-    this.config = {};
     this._isElectron = !!(typeof window !== "undefined" && window.electronAPI && window.electronAPI.getConfig);
     this._isWeb = !this._isElectron && typeof fetch !== "undefined";
     if (this._isElectron) {

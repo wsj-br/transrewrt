@@ -11,7 +11,6 @@ const {
 } = require("multi-llm-ts");
 
 const { OPENROUTER_PROVIDER } = require("../openRouterProviderRouting");
-const { estimateMaxTokensFromMessages, MAX_MAX_TOKENS } = require("./estimateMaxTokens");
 const { streamChoiceToString } = require("./streamDeltaContent");
 const {
   extractApiErrorMessage,
@@ -732,7 +731,6 @@ async function streamOpenRouterCompletion({
   innerModelId,
   messages,
   temperature,
-  max_tokens,
   signal,
   handlers = {},
 }) {
@@ -744,7 +742,6 @@ async function streamOpenRouterCompletion({
     model: innerModelId,
     messages,
     temperature,
-    max_tokens,
     provider: OPENROUTER_PROVIDER,
     stream: true,
     stream_options: { include_usage: true },
@@ -848,17 +845,13 @@ async function streamOpenRouterCompletion({
 /**
  * @param {string} canonicalModelId
  * @param {Array<{role: string, content: string}>} messages
- * @param {{ temperature?: number, max_tokens?: number, task_type?: string, signal?: AbortSignal, keysMap: Record<string,string> }} opts
+ * @param {{ temperature?: number, signal?: AbortSignal, keysMap: Record<string,string> }} opts
  * @param {{ onSseLine?: (line: string) => void, onText?: (text: string) => void }} [handlers]
  * @returns {Promise<{ usage: object }>}
  */
 async function streamCompletion(canonicalModelId, messages, opts, handlers = {}) {
   const { engine, innerModelId } = resolveEngine(canonicalModelId);
   const temperature = opts.temperature ?? 0.3;
-  const max_tokens =
-    typeof opts.max_tokens === "number" && opts.max_tokens > 0
-      ? opts.max_tokens
-      : estimateMaxTokensFromMessages(messages, opts.task_type);
   const signal = opts.signal;
 
   const keysMap = opts.keysMap;
@@ -874,7 +867,6 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
       innerModelId,
       messages,
       temperature,
-      max_tokens,
       signal,
       handlers,
     });
@@ -899,7 +891,6 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
 
   for await (const chunk of llm.generate(thread, {
     temperature,
-    maxTokens: max_tokens,
     usage: true,
     abortSignal: signal,
     // Avoid multi-llm-ts auto-injecting tools for capable models (e.g. gpt-3.5-* ids
@@ -941,8 +932,6 @@ module.exports = {
   ENV_KEY_BY_ENGINE,
   ENCRYPTED_CONFIG_KEYS,
   FREE_INNER_ID,
-  MAX_MAX_TOKENS,
-  estimateMaxTokensFromMessages,
   PROVIDER_TEST_SUCCESS_I18N,
   resolveEngine,
   mergeKeys,

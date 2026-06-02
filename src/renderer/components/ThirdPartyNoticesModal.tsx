@@ -70,7 +70,11 @@ const ThirdPartyNoticesModal = ({ open, onClose }) => {
     (async () => {
       try {
         if (typeof window !== "undefined" && window.electronAPI?.readThirdPartyNotices) {
-          const r = await window.electronAPI.readThirdPartyNotices();
+          const r = (await window.electronAPI.readThirdPartyNotices()) as {
+            ok?: boolean;
+            text?: string;
+            error?: string;
+          };
           if (cancelled) return;
           if (r?.ok && typeof r.text === "string") {
             setText(r.text);

@@ -13,7 +13,8 @@ export function useContentLanguageLists() {
   const { topLanguages = [] } = useAppContext();
 
   const allLanguages = useMemo(() => {
-    const selectedSet = new Set(topLanguages);
+    const langs = topLanguages as string[];
+    const selectedSet = new Set(langs);
     const customLangs = Array.from(selectedSet).filter(
       (lang) => !isPredefinedContentLanguage(lang),
     );

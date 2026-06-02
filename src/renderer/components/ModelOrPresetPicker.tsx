@@ -35,13 +35,13 @@ export function hasModelOrPresetSelection({
  * Shared by workspace header and transform prompt modals.
  */
 function ModelOrPresetPicker({
-  experienceMode = "advanced",
+  experienceMode = "advanced" as "easy" | "advanced",
   easyProvider = "openrouter",
   models = [],
   currentModel,
   onModelChange,
-  onOpenSettingsModels,
-  onRemoveModel,
+  onOpenSettingsModels = undefined,
+  onRemoveModel = undefined,
   presets = [],
   selectedPresetId,
   onPresetChange,

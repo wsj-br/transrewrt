@@ -112,8 +112,8 @@ const SettingsUsersTab = () => {
   const sessionTimeoutSeconds = Number(settings.web_session_timeout) || DEFAULT_SESSION_TIMEOUT;
   const sessionTimeoutValue = useMemo(() => secondsToClosestOption(sessionTimeoutSeconds), [sessionTimeoutSeconds]);
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
+  const handleAdd = async (e?: { preventDefault?: () => void }) => {
+    e?.preventDefault?.();
     if (!addUsername.trim()) { setError(t("Username is required")); return; }
     if (!addPassword) { setError(t("Password is required")); return; }
     setSubmitting(true);
@@ -128,8 +128,8 @@ const SettingsUsersTab = () => {
     } finally { setSubmitting(false); }
   };
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
+  const handleUpdate = async (e?: { preventDefault?: () => void }) => {
+    e?.preventDefault?.();
     if (!editUser || !editUsername.trim()) { setError(t("Username is required")); return; }
     setSubmitting(true);
     setError("");
@@ -143,8 +143,8 @@ const SettingsUsersTab = () => {
     } finally { setSubmitting(false); }
   };
 
-  const handleSetPassword = async (e) => {
-    e.preventDefault();
+  const handleSetPassword = async (e?: { preventDefault?: () => void }) => {
+    e?.preventDefault?.();
     if (!passwordUser) return;
     if (!newPassword) { setError(t("New password is required")); return; }
     setSubmitting(true);
@@ -360,7 +360,7 @@ const SettingsUsersTab = () => {
           title={t("Add User")}
           confirmLabel={t("Create")}
           onCancel={() => { setAddOpen(false); setAddUsername(""); setAddPassword(""); setAddAdmin(false); setAddMustChange(true); setError(""); }}
-          onConfirm={handleAdd}
+          onConfirm={() => void handleAdd()}
           hideConfirm={false}
           customBody={
             <form onSubmit={handleAdd} className="flex flex-col gap-3 min-w-[320px]">
@@ -397,7 +397,7 @@ const SettingsUsersTab = () => {
           title={t("Edit User")}
           confirmLabel={t("Save")}
           onCancel={() => { setEditUser(null); setEditPassword(""); setError(""); }}
-          onConfirm={handleUpdate}
+          onConfirm={() => void handleUpdate()}
           hideConfirm={false}
           customBody={
             <form onSubmit={handleUpdate} className="flex flex-col gap-3 min-w-[320px]">
@@ -436,7 +436,7 @@ const SettingsUsersTab = () => {
           title={t("Set password")}
           confirmLabel={t("Set password")}
           onCancel={() => { setPasswordUser(null); setNewPassword(""); setError(""); }}
-          onConfirm={handleSetPassword}
+          onConfirm={() => void handleSetPassword()}
           hideConfirm={false}
           customBody={
             <form onSubmit={handleSetPassword} className="flex flex-col gap-3 min-w-[320px]">

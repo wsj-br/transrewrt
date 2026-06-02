@@ -31,7 +31,7 @@ const TransformTranslateModal = ({
   model,
   loading = false,
   error = null,
-  experienceMode = "advanced",
+  experienceMode = "advanced" as "easy" | "advanced",
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,

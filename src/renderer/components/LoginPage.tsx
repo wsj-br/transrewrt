@@ -55,7 +55,7 @@ function LangSelector({ currentLang, uiLocale, t, onSelect }) {
   );
 }
 
-const LoginPage = ({ onSuccess }) => {
+const LoginPage = ({ onSuccess, sessionExpired = false }) => {
   const { t } = useTranslation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -214,7 +214,9 @@ const LoginPage = ({ onSuccess }) => {
         <div className="bg-card border border-border rounded-xl shadow-xl p-7 w-full max-w-sm">
           <h2 className="text-xl font-semibold mb-2">{t("Log in")}</h2>
           <p className="text-sm text-muted-foreground mb-5">
-            {t("Enter your credentials to access your account.")}
+            {sessionExpired
+              ? t("Your session has expired. Please log in again.")
+              : t("Enter your credentials to access your account.")}
           </p>
 
           {firstLoginInfo.firstLogin && (

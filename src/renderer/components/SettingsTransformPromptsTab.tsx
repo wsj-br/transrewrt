@@ -134,7 +134,7 @@ function parseCsvToPrompts(text) {
   const prompts = [];
   for (let i = 1; i < lines.length; i++) {
     const values = parseCsvLine(lines[i]);
-    const obj = {};
+    const obj: Record<string, string> = {};
     CSV_COLUMNS.forEach((col, idx) => {
       obj[col] = values[idx] != null ? String(values[idx]).trim() : "";
     });
@@ -454,8 +454,11 @@ const SettingsTransformPromptsTab = () => {
           return;
         }
         const rows = XLSX.utils.sheet_to_json(firstSheet);
-        list = (Array.isArray(rows) ? rows : []).map((row) =>
-          normalizePrompt({ ...row, instructions: newlineStringToInstructionsArray(row.instructions) })
+        list = (Array.isArray(rows) ? rows : []).map((row: Record<string, unknown>) =>
+          normalizePrompt({
+            ...row,
+            instructions: newlineStringToInstructionsArray(row.instructions as string | undefined),
+          })
         );
       }
       list = list.filter((p) => p?.name).map(normalizePrompt);
@@ -497,12 +500,7 @@ const SettingsTransformPromptsTab = () => {
          
         .map(({ id: _id, ...rest }) => ({
           ...rest,
-          target_language:
-            rest.target_language === true ||
-            rest.target_language === 1 ||
-            (typeof rest.target_language === "string" &&
-              rest.target_language.trim() !== "" &&
-              rest.target_language !== "0"),
+          target_language: normalizeAskFromLanguageFlag(rest.target_language),
         }));
       if (normalized.length === 0) {
         setImportMessage(t("No prompts in sample file."));

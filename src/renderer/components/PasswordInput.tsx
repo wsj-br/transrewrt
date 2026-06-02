@@ -1,7 +1,7 @@
 /**
  * Reusable password input with show/hide toggle.
  */
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import PropTypes from "prop-types";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,21 @@ const PasswordInput = ({
   hidePasswordAriaLabel = "Hide password",
   showPassword: controlledShow,
   onShowPasswordChange,
+}: {
+  id?: string;
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  autoFocus?: boolean;
+  autoComplete?: string;
+  name?: string;
+  style?: CSSProperties;
+  showPasswordAriaLabel?: string;
+  hidePasswordAriaLabel?: string;
+  showPassword?: boolean;
+  onShowPasswordChange?: (show: boolean) => void;
 }) => {
   const [internalShow, setInternalShow] = useState(false);
   const isControlled = controlledShow !== undefined;

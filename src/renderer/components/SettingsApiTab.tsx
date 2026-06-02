@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { Fragment, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
 import PropTypes from "prop-types";
@@ -246,7 +246,7 @@ const SettingsApiTab = ({
     setOllamaDraft(savedOllamaBaseUrl);
   }, [savedOllamaBaseUrl]);
 
-  const runProviderTest = async (provider, overrideValue) => {
+  const runProviderTest = async (provider: string, overrideValue?: string) => {
     setTestResults((prev) => ({
       ...prev,
       [provider]: { status: "testing", message: t("Testing...") },
@@ -284,8 +284,8 @@ const SettingsApiTab = ({
                 const overrideValue =
                   isEditing || !configured ? (draftValue ?? "").trim() : undefined;
                 return (
+                  <Fragment key={key}>
                   <SecretField
-                    key={key}
                     id={`api-${key}`}
                     label={t(labelKey)}
                     placeholder={placeholder}
@@ -324,6 +324,7 @@ const SettingsApiTab = ({
                     onOpenDoc={openExternalUrl}
                     docLinkLabel={t("Open provider website")}
                   />
+                  </Fragment>
                 );
               })}
             </div>

@@ -93,7 +93,9 @@ function isLikelyDesktopLinuxBrowser() {
  * @param {{ platform?: string, isElectron?: boolean }} opts
  * @returns {{ options: { type: string, value: string, label: string }[], defaultFont: string }}
  */
-export function getAppearanceFontOptions(opts = {}) {
+export function getAppearanceFontOptions(
+  opts: { platform?: string; isElectron?: boolean } = {},
+) {
   const { platform, isElectron } = opts;
   const useLinuxFonts =
     (isElectron && platform === "linux") || (!isElectron && isLikelyDesktopLinuxBrowser());

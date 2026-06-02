@@ -283,7 +283,6 @@ const App = () => {
     activeModel,
     settings,
     updateSettings,
-    setSetting,
     currentMode,
     setCurrentMode,
     inputTextTranslate,

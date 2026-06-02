@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Trash2, Copy, Clipboard } from "lucide-react";
@@ -18,13 +18,13 @@ const footerMetaTextClass =
 
 const TextPanel = ({
   title,
-  icon: _icon,
-  text,
+  icon: _icon = null,
+  text = "",
   onTextChange,
   placeholder,
-  readOnly,
-  stats,
-  headerMeta: _headerMeta,
+  readOnly = false,
+  stats = null,
+  headerMeta: _headerMeta = null,
   footerStats,
   onClear,
   onCopy,
@@ -34,13 +34,38 @@ const TextPanel = ({
   fontSize,
   textColor,
   footerAlign = "right",
-  showDiff,
+  showDiff = false,
   inputTextForDiff,
-  outputIsModelResult,
+  outputIsModelResult = false,
   onShowDiffChange,
   footerMinimal = false,
   outputTint = false,
   hideFooter = false,
+}: {
+  title?: string;
+  icon?: ReactNode;
+  text?: string;
+  onTextChange?: (value: string) => void;
+  placeholder?: string;
+  readOnly?: boolean;
+  stats?: ReactNode;
+  headerMeta?: ReactNode;
+  footerStats?: ReactNode;
+  onClear?: () => void;
+  onCopy?: () => void;
+  onPaste?: () => void;
+  onPasteEvent?: (pasted: string) => void;
+  fontFamily?: string;
+  fontSize?: number;
+  textColor?: string;
+  footerAlign?: string;
+  showDiff?: boolean;
+  inputTextForDiff?: string;
+  outputIsModelResult?: boolean;
+  onShowDiffChange?: (checked: boolean) => void;
+  footerMinimal?: boolean;
+  outputTint?: boolean;
+  hideFooter?: boolean;
 }) => {
   const { t } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);

@@ -21,6 +21,7 @@ import {
   resolveEasyRuntime,
 } from "../utils/presets/resolveEasyPresetModel";
 import { STARTUP_FETCH_MS, STARTUP_SAFETY_MS, withTimeout } from "../utils/misc/startupUtils";
+import type { LlmCallResult } from "../types/llm";
 
 // Create the context
 const AppContext = createContext();
@@ -91,9 +92,10 @@ export const AppProvider = ({ children }) => {
 
     const loadLanguages = (persist = true) => {
       try {
-        let rawLangs = configManager.get("top_languages");
-        if (!rawLangs?.length && configManager.get("available_languages")?.length) {
-          rawLangs = configManager.get("available_languages");
+        let rawLangs = configManager.get("top_languages") as string[] | undefined;
+        const availableLangs = configManager.get("available_languages") as string[] | undefined;
+        if (!rawLangs?.length && availableLangs?.length) {
+          rawLangs = availableLangs;
           if (persist) {
             configManager.set("top_languages", rawLangs);
           } else {
@@ -200,7 +202,7 @@ export const AppProvider = ({ children }) => {
 
         loadLanguages(!isWeb || webAuthed);
         preloadProviderIcons();
-        const uiLocale = configManager.get("ui_locale") || SOURCE_LOCALE;
+        const uiLocale = String(configManager.get("ui_locale") || SOURCE_LOCALE);
 
         finishLoading();
         void runBackgroundStartup(isWeb, uiLocale);
@@ -226,9 +228,9 @@ export const AppProvider = ({ children }) => {
         configManager.loadConfig().then(async () => {
           setSettings(configManager.getAll());
           setAvailableModels(configManager.get("available_models") || []);
-          const rawLangs = configManager.get("top_languages") || [];
+          const rawLangs = (configManager.get("top_languages") || []) as string[];
           setTopLanguages(rawLangs);
-          const uiLocale = configManager.get("ui_locale") || SOURCE_LOCALE;
+          const uiLocale = String(configManager.get("ui_locale") || SOURCE_LOCALE);
           await loadLocale(uiLocale);
           i18n.changeLanguage(uiLocale);
           const mode = configManager.get("mode");
@@ -317,7 +319,7 @@ export const AppProvider = ({ children }) => {
     [applyPresetsFile],
   );
 
-  const setSetting = useCallback(async (key, value, options = {}) => {
+  const setSetting = useCallback(async (key, value, options: { optimistic?: boolean } = {}) => {
     const optimistic =
       options.optimistic === true &&
       (key === "last_used_model" ||
@@ -479,7 +481,7 @@ export const AppProvider = ({ children }) => {
       // Log to cost DB / server: include selected target language for this run
       const translateInputStats = getTextStats(typeof text === "string" ? text : "");
       const translateOutputStats = getTextStats(result.content ?? "");
-      const translatePayload = {
+      const translatePayload: Record<string, unknown> = {
         timestamp: new Date().toISOString(),
         type: "translate",
         model: result.model_used || modelToUse,
@@ -521,7 +523,14 @@ export const AppProvider = ({ children }) => {
     };
 
     try {
-      const result = await apiService.translate(text, targetLang, effectiveModel, sourceLang, signal, promptHint);
+      const result = (await apiService.translate(
+        text,
+        targetLang,
+        effectiveModel,
+        sourceLang,
+        signal,
+        promptHint,
+      )) as LlmCallResult;
       return await finalizeTranslate(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
@@ -615,7 +624,12 @@ export const AppProvider = ({ children }) => {
     };
 
     try {
-      const result = await apiService.translatePromptFieldsJson(fieldsObject, targetLang, effectiveModel, signal);
+      const result = (await apiService.translatePromptFieldsJson(
+        fieldsObject,
+        targetLang,
+        effectiveModel,
+        signal,
+      )) as LlmCallResult;
       return await finalizeTranslatePromptFields(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
@@ -661,7 +675,11 @@ export const AppProvider = ({ children }) => {
     const { effectiveModel: presetModel, fromPresetCatalog } = resolvePresetRuntime();
     const effectiveModel = presetModel ?? model;
     try {
-      const result = await apiService.improvePromptConfigJson(configObject, effectiveModel, signal);
+      const result = (await apiService.improvePromptConfigJson(
+        configObject,
+        effectiveModel,
+        signal,
+      )) as LlmCallResult;
       if (result.error) return result;
       result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
@@ -723,7 +741,11 @@ export const AppProvider = ({ children }) => {
     const { effectiveModel: presetModel, fromPresetCatalog } = resolvePresetRuntime();
     const effectiveModel = presetModel ?? model;
     try {
-      const result = await apiService.generatePromptConfigJson(userDescription, effectiveModel, signal);
+      const result = (await apiService.generatePromptConfigJson(
+        userDescription,
+        effectiveModel,
+        signal,
+      )) as LlmCallResult;
       if (result.error) return result;
       result.model_used = result.model || effectiveModel;
       await applyCostToResult(setSetting, result);
@@ -804,7 +826,7 @@ export const AppProvider = ({ children }) => {
 
       const rewriteInputStats = getTextStats(typeof text === "string" ? text : "");
       const rewriteOutputStats = getTextStats(result.content ?? "");
-      const rewritePayload = {
+      const rewritePayload: Record<string, unknown> = {
         timestamp: new Date().toISOString(),
         type: "rewrite",
         model: result.model_used || modelToUse,
@@ -846,7 +868,14 @@ export const AppProvider = ({ children }) => {
     };
 
     try {
-      const result = await apiService.rewrite(text, mode, effectiveModel, signal, sourceLang, promptHint);
+      const result = (await apiService.rewrite(
+        text,
+        mode,
+        effectiveModel,
+        signal,
+        sourceLang,
+        promptHint,
+      )) as LlmCallResult;
       return await finalizeRewrite(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
@@ -914,7 +943,7 @@ export const AppProvider = ({ children }) => {
       // Log to cost DB / server: include From language used in the system prompt when set
       const transformInputStats = getTextStats(typeof text === "string" ? text : "");
       const transformOutputStats = getTextStats(result.content ?? "");
-      const transformPayload = {
+      const transformPayload: Record<string, unknown> = {
         timestamp: new Date().toISOString(),
         type: "transform",
         model: result.model_used || modelToUse,
@@ -957,7 +986,14 @@ export const AppProvider = ({ children }) => {
     };
 
     try {
-      const result = await apiService.transform(text, promptConfig, effectiveModel, signal, statedFromLang, promptHint);
+      const result = (await apiService.transform(
+        text,
+        promptConfig,
+        effectiveModel,
+        signal,
+        statedFromLang,
+        promptHint,
+      )) as LlmCallResult;
       return await finalizeTransform(result, effectiveModel);
     } catch (err) {
       if (err.name === "AbortError") throw err;
@@ -1031,7 +1067,7 @@ export const AppProvider = ({ children }) => {
         const loadedModelIds = new Set(loadedModels.map(m => m.id));
 
         // Get current selections
-        const currentSelected = configManager.get("available_models") || [];
+        const currentSelected = (configManager.get("available_models") || []) as string[];
         const selectedSet = new Set(currentSelected);
 
         // Filter out any selected models that are no longer available

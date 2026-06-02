@@ -68,7 +68,7 @@ export function preloadProviderIcons() {
   const urls = new Set(Object.values(fileToUrl));
   urls.forEach((url) => {
     const img = new Image();
-    img.src = url;
+    img.src = url as string;
   });
 }
 

@@ -200,10 +200,10 @@ export default function DashboardTabSummary({
       data-testid="dashboard-tabpanel-summary"
     >
       <div className="grid grid-cols-2 gap-3 p-1 pt-3">
-        {cards.map(({ label, value, key }) => (
-          <div key={key ?? label} className={styles.summaryKpiCard}>
-            <div className={styles.summaryKpiLabel}>{label}</div>
-            <div className={`${styles.summaryKpiValue} w-full min-w-0`}>{value}</div>
+        {cards.map((card) => (
+          <div key={"key" in card && card.key ? card.key : card.label} className={styles.summaryKpiCard}>
+            <div className={styles.summaryKpiLabel}>{card.label}</div>
+            <div className={`${styles.summaryKpiValue} w-full min-w-0`}>{card.value}</div>
           </div>
         ))}
       </div>

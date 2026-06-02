@@ -18,7 +18,11 @@ export function formatInteger(n, locale) {
 }
 
 /** Format decimal number with locale-aware separator. */
-export function formatDecimal(n, locale, options = {}) {
+export function formatDecimal(
+  n,
+  locale,
+  options: { minimumFractionDigits?: number; maximumFractionDigits?: number } = {},
+) {
   const loc = resolveLocale(locale);
   const { minimumFractionDigits = 0, maximumFractionDigits = 1 } = options;
   const num = Number(n);
@@ -102,7 +106,7 @@ export function formatPartialRunCostLabel(result, locale, t) {
 }
 
 /** Format date and time for display; format follows locale (e.g. 09.03.2026 in de, 2026/03/09 in ja). Time is HH:mm:ss. */
-export function formatDateTime(date, locale, timeZone) {
+export function formatDateTime(date, locale, timeZone?: string) {
   if (date == null) return DASH;
   const d = date instanceof Date ? date : new Date(date);
   if (Number.isNaN(d.getTime())) return DASH;

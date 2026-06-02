@@ -34,7 +34,7 @@ function registerLlmIpc(ipcMain, getConfigCache) {
 
   ipcMain.handle(
     "llm:stream",
-    async (event, { requestId, canonicalModelId, messages, temperature, max_tokens, task_type }) => {
+    async (event, { requestId, canonicalModelId, messages, temperature }) => {
       if (!requestId) throw new Error("requestId is required");
       const wc = event.sender;
       const keysMap = mergeKeys(getConfigCache());
@@ -59,9 +59,6 @@ function registerLlmIpc(ipcMain, getConfigCache) {
             keysMap,
             temperature:
               typeof temperature === "number" ? temperature : 0.3,
-            max_tokens:
-              typeof max_tokens === "number" && max_tokens > 0 ? max_tokens : undefined,
-            task_type: typeof task_type === "string" ? task_type : undefined,
             signal: ac.signal,
           },
           {

@@ -74,12 +74,6 @@ module.exports = function createApiLlmRouter(
     const messages = body.messages;
     const temperature =
       typeof body.temperature === "number" ? body.temperature : 0.3;
-    const max_tokens =
-      typeof body.max_tokens === "number" && body.max_tokens > 0
-        ? body.max_tokens
-        : undefined;
-    const task_type =
-      typeof body.task_type === "string" ? body.task_type : undefined;
 
     if (!canonicalModelId || typeof canonicalModelId !== "string") {
       return res.status(400).json({ error: "canonicalModelId is required" });
@@ -115,7 +109,7 @@ module.exports = function createApiLlmRouter(
       await streamCompletion(
         canonicalModelId,
         messages,
-        { keysMap, temperature, max_tokens, task_type, signal: ac.signal },
+        { keysMap, temperature, signal: ac.signal },
         {
           onSseLine: (line) => {
             if (!res.writableEnded) {

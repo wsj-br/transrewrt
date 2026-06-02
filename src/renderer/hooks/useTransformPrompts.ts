@@ -7,6 +7,18 @@ import { formatApiErrorLine } from "../utils/misc/apiErrorDisplay";
 import { SOURCE_LOCALE } from "../i18n";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
+function normalizeAskFromLanguageFlag(value: unknown): boolean {
+  if (value === true || value === 1) return true;
+  if (value === false || value === 0 || value === "0") return false;
+  if (typeof value === "string") {
+    const s = value.trim().toLowerCase();
+    if (s === "yes" || s === "true" || s === "1") return true;
+    if (s === "no" || s === "false" || s === "") return false;
+    if (s.length > 0) return true;
+  }
+  return false;
+}
+
 function getCustomPromptsApi() {
   return typeof window !== "undefined" && window.electronAPI?.customPrompts
     ? window.electronAPI.customPrompts
@@ -120,14 +132,14 @@ export function useTransformPrompts({
         typeof prompt.instructions === "string"
           ? prompt.instructions
           : JSON.stringify(prompt.instructions || []);
-      const res = await api.create({
+      const res = (await api.create({
         name: copyName,
         role: prompt.role || "",
         instructions,
         output_description: prompt.output_description ?? "transformed",
         temperature: Number(prompt.temperature) || 0.4,
         target_language: prompt.target_language ?? null,
-      });
+      })) as { error?: string };
       if (res?.error) throw new Error(res.error);
       const list = await api.getAll();
       setTransformPrompts(Array.isArray(list) ? list : []);
@@ -166,12 +178,7 @@ export function useTransformPrompts({
          
         .map(({ id: _id, ...rest }) => ({
           ...rest,
-          target_language:
-            rest.target_language === true ||
-            rest.target_language === 1 ||
-            (typeof rest.target_language === "string" &&
-              rest.target_language.trim() !== "" &&
-              rest.target_language !== "0"),
+          target_language: normalizeAskFromLanguageFlag(rest.target_language),
         }));
       if (normalized.length === 0) {
         setError("No prompts in sample file.");
@@ -205,10 +212,10 @@ export function useTransformPrompts({
     try {
       let createdRowId = null;
       if (editingPrompt?.id != null) {
-        const res = await api.update(editingPrompt.id, payload);
+        const res = (await api.update(editingPrompt.id, payload)) as { error?: string };
         if (res?.error) throw new Error(res.error);
       } else {
-        const res = await api.create(payload);
+        const res = (await api.create(payload)) as { error?: string; id?: unknown };
         if (res?.error) throw new Error(res.error);
         if (res?.id != null) createdRowId = res.id;
       }
@@ -258,7 +265,7 @@ export function useTransformPrompts({
       return;
     }
     try {
-      const res = await api.delete(prompt.id);
+      const res = (await api.delete(prompt.id)) as { error?: string };
       if (res?.error) throw new Error(res.error);
       const list = await api.getAll();
       setTransformPrompts(Array.isArray(list) ? list : []);

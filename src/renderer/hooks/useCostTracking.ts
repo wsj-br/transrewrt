@@ -20,7 +20,7 @@ export function useCostTracking() {
   const applyCostToResult = async (setSetting, result) => {
     if (result.usage) {
       const calculatedCost = Number(result.usage.cost) || 0;
-      const currentTotal = configManager.get("total_cost") ?? 0;
+      const currentTotal = Number(configManager.get("total_cost") ?? 0);
       const newTotalCost = currentTotal + calculatedCost;
       result.calculated_cost = calculatedCost;
       result.total_cost = newTotalCost;

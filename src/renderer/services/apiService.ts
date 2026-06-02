@@ -1,7 +1,6 @@
 import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import prompts from "../../config-defaults/prompts.json";
-import { estimateMaxTokensFromUserContent } from "../../shared/llm/estimateMaxTokens.js";
 import { streamChoiceToString } from "../../shared/llm/streamDeltaContent.js";
 
 function randomRequestId() {
@@ -122,6 +121,8 @@ const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
 // API service: Electron uses main-process LLM IPC; web uses authenticated /api/llm/* routes.
 class APIService {
+  _isWebMode = false;
+
   constructor() {
     this._isWebMode = typeof window !== "undefined" && !window.electronAPI?.getConfig;
   }
@@ -140,12 +141,14 @@ class APIService {
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         let url;
-        const opts = { headers: { "Content-Type": "application/json" } };
+        const opts: RequestInit = { headers: { "Content-Type": "application/json" } };
         if (this._isWebMode) {
           url = `${BASE_PATH}/api/llm/generation?id=${encodeURIComponent(generationId)}`;
           opts.credentials = "include";
         } else {
-          const secrets = await window.electronAPI.getSecretsForRequest();
+          const secrets = (await window.electronAPI.getSecretsForRequest()) as {
+            openrouter_api_key?: string;
+          };
           const key = (secrets?.openrouter_api_key || "").trim();
           if (!key) return null;
           url = `${OPENROUTER_API_BASE}/generation?id=${encodeURIComponent(generationId)}`;
@@ -234,13 +237,10 @@ class APIService {
       { role: "system", content: systemPrompt },
       { role: "user", content: userText },
     ];
-    const max_tokens = estimateMaxTokensFromUserContent(userText, type);
     const payloadObj = {
       canonicalModelId: model,
       messages,
       temperature,
-      max_tokens,
-      task_type: type,
     };
     const request_bytes = new TextEncoder().encode(JSON.stringify(payloadObj)).length;
     const startTime = Date.now();
@@ -257,14 +257,12 @@ class APIService {
         );
       }
       try {
-        const { content, usage } = await window.electronAPI.llmStream({
+        const { content, usage } = (await window.electronAPI.llmStream({
           requestId,
           canonicalModelId: model,
           messages,
           temperature,
-          max_tokens,
-          task_type: type,
-        });
+        })) as { content?: string; usage?: Record<string, unknown> };
         const duration_ms = Date.now() - startTime;
         const result = {
           content: content || "",
@@ -296,7 +294,7 @@ class APIService {
     }
 
     const url = `${BASE_PATH}/api/llm/stream`;
-    const fetchOptions = {
+    const fetchOptions: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payloadObj),

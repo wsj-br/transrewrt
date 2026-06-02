@@ -14,7 +14,7 @@ const StyleSelector = ({
   value,
   onChange,
   options = [],
-  iconColor,
+  iconColor = undefined,
   className,
   hugSelectWidth = false,
 }) => {
