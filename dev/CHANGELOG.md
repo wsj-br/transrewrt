@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.5] - 2026-06-02
+
+- **Changed**: `take-screenshots` — force dark theme in config/user prefs; load Noto web fonts (Bengali, Devanagari, KR, Gurmukhi, Telugu, Thai) globally so locales like bn, hi, ko, pa, te, th render correctly.
 - **Changed**: i18n runtime aligned with ai-i18n-tools GETTING_STARTED — `setupKeyAsDefaultT`, `makeLocaleLoadersFromManifest`, `SOURCE_LOCALE` fallbacks, `flipUiArrowsForRtl` from runtime; added `i18n:dashboard` and `i18n:locales` scripts.
 - **Removed**: Reverted unnecessary i18n complexity (`UiLanguageProvider`, `setUiLanguage`, `bindI18n: languageChanged loaded`, memo deps on locale); root cause of the reported issue was a stale dev-server process.
 - **Fixed**: Settings → General → Presets catalog version and **Last check** timestamps use the browser/system timezone when available, with Docker `TZ` as fallback on web.
@@ -23,6 +26,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Added**: Presets editor — OpenRouter models, pricing, and endpoint performance cached on disk (`presets-editor-openrouter-cache.json`, 6h TTL); model picker and Performance page read from cache (`?force=1` / Refresh to rebuild).
 - **Added**: Presets editor — model picker (OpenRouter) shows best-provider latency P90 (seconds) and throughput P90 (tok/s) on the pricing row; loaded from the OpenRouter disk cache.
 - **Changed**: `.github/workflows/release.yml` — bump artifact actions to Node 24 runtimes (`upload-artifact@v7`, `download-artifact@v8`, `action-gh-release@v3`); remove `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` (was triggering Node 20 deprecation warnings).
+- **Fixed**: Dev presets editor OpenRouter disk cache — unused catch binding (eslint `no-unused-vars`).
 
 ## [1.3.4] - 2026-05-30
 

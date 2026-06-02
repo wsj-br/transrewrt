@@ -184,7 +184,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
 
-5. **Noto fonts** (optional, for language-selector screenshot):
+5. **Noto fonts** (for language-selector screenshot):
 
    ```bash
    sudo apt install fonts-noto-cjk fonts-noto-core

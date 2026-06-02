@@ -69,7 +69,7 @@ function readDiskCache(cachePath) {
           ? parsed.endpointsByQueryPath
           : {},
     };
-  } catch (e) {
+  } catch {
     return null;
   }
 }

@@ -16,11 +16,12 @@
  *       HISTORY_DISABLED must not be true/1 (checked after CLI validation): exit so the History screenshot can work (match the web server env, e.g. `.env`).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
- * Before capture, the script sets Easy mode (`mode`, `easy_provider`, `selected_preset_id`) and `top_languages`
- * in data/config.json and (web) in SQLite user_preferences for ADMIN_USERNAME so the UI matches across runs.
+ * Before capture, the script sets Easy mode (`mode`, `easy_provider`, `selected_preset_id`), dark `theme`,
+ * and `top_languages` in data/config.json and (web) in SQLite user_preferences for ADMIN_USERNAME so the UI matches across runs.
  *
- * The language-selector screenshot applies font-family for Noto Sans KR/Telugu/Thai so system-installed
- * Noto fonts are used (e.g. on Debian/Raspbian: apt install fonts-noto-cjk fonts-noto-core).
+ * Before capture, loads Noto Sans families from Google Fonts (Bengali, Devanagari, KR, Gurmukhi,
+ * Telugu, Thai) and applies a global font stack so UI locales like bn, hi, ko, pa, te, th render
+ * correctly when system Chromium lacks those scripts (Geist only covers Latin).
  *
  * Screenshots are taken in every UI language from src/renderer/locales/ui-languages.json and saved
  * under images/screenshots/LANGCODE/ (e.g. images/screenshots/pt-BR/rewrite.png). Session logs are written
@@ -166,6 +167,23 @@ function getDataDir() {
 }
 
 const SCREENSHOT_TOP_LANGUAGES = ["English (UK)", "Portuguese (BR)", "Spanish"];
+/** Fixed dark theme for marketing screenshots (avoids light UI when theme is system + OS is light). */
+const SCREENSHOT_THEME = "dark";
+/** Google Fonts CSS2 URL — Noto families for scripts Geist does not cover. */
+const SCREENSHOT_NOTO_FONTS_URL =
+  "https://fonts.googleapis.com/css2?" +
+  [
+    "family=Noto+Sans+Bengali:wght@400;700",
+    "family=Noto+Sans+Devanagari:wght@400;700",
+    "family=Noto+Sans+KR:wght@400;700",
+    "family=Noto+Sans+Gurmukhi:wght@400;700",
+    "family=Noto+Sans+Telugu:wght@400;700",
+    "family=Noto+Sans+Thai:wght@400;700",
+  ].join("&") +
+  "&display=swap";
+const SCREENSHOT_FONT_FAMILY_STACK =
+  '"Geist", "Noto Sans Bengali", "Noto Sans Devanagari", "Noto Sans KR", "Noto Sans Gurmukhi", "Noto Sans Telugu", "Noto Sans Thai", system-ui, sans-serif';
+const SCREENSHOT_FONT_STYLE_ID = "transrewrt-screenshot-fonts";
 /** Easy mode preset id shown in the toolbar (Standard preset in easy-mode-config/presets.json). */
 const SCREENSHOT_DEFAULT_PRESET_ID = "standard";
 const SCREENSHOT_EASY_PROVIDER = "openrouter";
@@ -201,13 +219,15 @@ function applyScreenshotConfigConsistency() {
   cfg.mode = "easy";
   cfg.easy_provider = SCREENSHOT_EASY_PROVIDER;
   cfg.selected_preset_id = SCREENSHOT_DEFAULT_PRESET_ID;
+  cfg.theme = SCREENSHOT_THEME;
   cfg.top_languages = [...SCREENSHOT_TOP_LANGUAGES];
   fs.mkdirSync(path.dirname(configPath), { recursive: true });
   fs.writeFileSync(configPath, JSON.stringify(cfg, null, 2) + "\n", "utf8");
   log(
-    "Screenshot config: wrote Easy mode (preset %s, provider %s) and top_languages to %s.",
+    "Screenshot config: wrote Easy mode (preset %s, provider %s), theme %s, and top_languages to %s.",
     SCREENSHOT_DEFAULT_PRESET_ID,
     SCREENSHOT_EASY_PROVIDER,
+    SCREENSHOT_THEME,
     configPath,
   );
 
@@ -247,6 +267,7 @@ function applyScreenshotConfigConsistency() {
       mode: "easy",
       easy_provider: SCREENSHOT_EASY_PROVIDER,
       selected_preset_id: SCREENSHOT_DEFAULT_PRESET_ID,
+      theme: SCREENSHOT_THEME,
       top_languages: [...SCREENSHOT_TOP_LANGUAGES],
     };
     db.prepare(
@@ -978,14 +999,49 @@ async function captureSettingsGeneral(page, filePath) {
   await page.screenshot({ path: filePath });
 }
 
+let screenshotWebFontsLoaded = false;
+
+/**
+ * Loads Noto web fonts and applies a global font stack so bn/hi/ko/pa/te/th (and the language menu)
+ * render correctly in headless Chromium when system fonts are missing.
+ */
+async function ensureScreenshotWebFonts(page) {
+  if (screenshotWebFontsLoaded) return;
+  log("Loading Noto web fonts for Indic/Korean/Thai UI scripts...");
+  try {
+    await page.evaluate(
+      async (fontUrl, fontStack, styleId) => {
+        if (document.getElementById(styleId)) return;
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = fontUrl;
+        document.head.appendChild(link);
+        await new Promise((resolve) => {
+          link.onload = () => resolve();
+          link.onerror = () => resolve();
+          setTimeout(resolve, 8000);
+        });
+        const style = document.createElement("style");
+        style.id = styleId;
+        style.textContent = `body, body * { font-family: ${fontStack} !important; }`;
+        document.head.appendChild(style);
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+      },
+      SCREENSHOT_NOTO_FONTS_URL,
+      SCREENSHOT_FONT_FAMILY_STACK,
+      SCREENSHOT_FONT_STYLE_ID,
+    );
+    screenshotWebFontsLoaded = true;
+    log("Noto web fonts loaded.");
+  } catch (err) {
+    log("Could not load Noto web fonts (non-fatal): %s", err.message);
+  }
+}
+
 async function prepareLanguageSelector(page) {
-  log("Applying font-family for language selector (Noto Sans KR/Telugu/Thai, system fallback)...");
-  await page.evaluate(() => {
-    const style = document.createElement("style");
-    style.textContent =
-      '[role="menu"], [role="menuitem"] { font-family: "Noto Sans KR", "Noto Sans Telugu", "Noto Sans Thai", system-ui, sans-serif !important; }';
-    document.head.appendChild(style);
-  });
+  await ensureScreenshotWebFonts(page);
 }
 
 async function captureLanguageSelector(page, filePath) {
@@ -1364,6 +1420,7 @@ async function main() {
   await wait(2000);
   await maybeLogin(page);
   await ensureAppShell(page);
+  await ensureScreenshotWebFonts(page);
 
   if (args.screenshotFilters != null && args.screenshotFilters.length > 0) {
     log("Filtering to screenshot set(s): %s", args.screenshotFilters.join(", "));

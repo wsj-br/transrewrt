@@ -1,23 +1,23 @@
 ---
-translation_last_updated: '2026-06-02T00:06:25.638Z'
-source_file_mtime: '2026-06-01T18:19:40.703Z'
-source_file_hash: 525f80677c6c8c6da16cd0a4ede5c7662f958eeba60ab3c613c6cc8edd8bd407
+translation_last_updated: '2026-06-02T15:31:45.521Z'
+source_file_mtime: '2026-06-02T15:30:03.287Z'
+source_file_hash: be3f9b67527af4a76a7271c81f0a2da3ac4ae613e81dd07786d01ee40eb7df57
 translation_language: te
 source_file_path: README.md
 translation_models:
-  - anthropic/claude-3-haiku
   - qwen/qwen3-235b-a22b-2507
+  - qwen/qwen3.6-35b-a3b
 ---
 <p align="center">
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.4-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.3.5-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
+<img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
 ఎఐ-శక్తితో కూడిన టెక్స్ట్ సాధనం: భాషల మధ్య అనువదించు, విభిన్న శైలులలో రీరైట్ చేయి, కస్టమ్ ప్రాంప్ట్‌లతో ట్రాన్స్‌ఫార్మ్ చేయి - బహుళ ఎఐ ప్రదాతలను ఉపయోగించి (ఓపెన్రౌటర్, ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ మరియు స్థానిక ఓలామా). డెస్క్‌టాప్ అప్లికేషన్ (ఎలక్ట్రాన్) లేదా స్వంతంగా హోస్ట్ చేసుకునే వెబ్ అప్లికేషన్ (డాకర్) గా నడుస్తుంది.
