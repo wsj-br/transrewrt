@@ -6,6 +6,7 @@ import { formatDateTime, formatRelativeTime } from "../utils/misc/formatUtils";
 import ConfirmModal from "./ConfirmModal";
 import PasswordInput from "./PasswordInput";
 import { useAppContext } from "../contexts/AppContext";
+import { SOURCE_LOCALE } from "../i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -49,7 +50,7 @@ function generateRandomPassword(length = 10) {
 
 const SettingsUsersTab = () => {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const { settings, setSetting, currentUser } = useAppContext();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -85,7 +86,7 @@ const SettingsUsersTab = () => {
     } finally {
       setLoading(false);
     }
-  }, [t, i18n.language]);
+  }, [t]);
 
   useEffect(() => {
     if (currentUser) { setError(""); loadUsers(); }
@@ -106,7 +107,7 @@ const SettingsUsersTab = () => {
       { label: t("4 days"), seconds: 345600 },
       { label: t("7 days"), seconds: 604800 },
     ],
-    [t, i18n.language]
+    [t]
   );
   const sessionTimeoutSeconds = Number(settings.web_session_timeout) || DEFAULT_SESSION_TIMEOUT;
   const sessionTimeoutValue = useMemo(() => secondsToClosestOption(sessionTimeoutSeconds), [sessionTimeoutSeconds]);

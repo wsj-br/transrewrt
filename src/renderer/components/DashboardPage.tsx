@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useUiLanguage } from "../hooks/useUiLanguage";
 import { getFilters } from "../utils/misc/costUtils";
 import { getCostApi, getFilterRange } from "../utils/misc/costUtils";
 import { useAppContext } from "../contexts/AppContext";
@@ -48,7 +47,6 @@ function useIsBelowSm() {
 
 const DashboardPage = () => {
   const { t } = useTranslation();
-  useUiLanguage();
   const { settings, setSetting, currentUser } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 

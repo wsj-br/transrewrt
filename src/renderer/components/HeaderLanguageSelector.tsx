@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Globe, Check } from "lucide-react";
 import PropTypes from "prop-types";
 import { useAppContext } from "../contexts/AppContext";
-import { setUiLanguage } from "../hooks/useUiLanguage";
+import i18n, { loadLocale, SOURCE_LOCALE } from "../i18n";
 import { UI_LANGUAGES } from "../constants";
 import { getUILanguageLabelNative } from "ai-i18n-tools/runtime";
 import {
@@ -22,12 +22,13 @@ const GLOBE_SIZE_COMPACT = 16;
 const HeaderLanguageSelector = ({ compact = false }) => {
   const { t } = useTranslation();
   const { settings, updateSettings } = useAppContext();
-  const uiLocale = settings?.ui_locale || "en-GB";
+  const uiLocale = settings?.ui_locale || SOURCE_LOCALE;
   const iconSize = compact ? GLOBE_SIZE_COMPACT : GLOBE_SIZE_DEFAULT;
 
   const handleSelect = async (code) => {
     if (!code) return;
-    await setUiLanguage(code);
+    await loadLocale(code);
+    i18n.changeLanguage(code);
     updateSettings({ ui_locale: code });
   };
 

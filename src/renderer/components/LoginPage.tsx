@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Languages, ChevronDown, Check } from "lucide-react";
 import PropTypes from "prop-types";
-import i18n from "../i18n";
-import { setUiLanguage } from "../hooks/useUiLanguage";
+import i18n, { loadLocale, SOURCE_LOCALE } from "../i18n";
 import { UI_LANGUAGES, DEFAULT_ADMIN_USERNAME, DEFAULT_ADMIN_PASSWORD } from "../constants";
 import { getUILanguageLabel } from "ai-i18n-tools/runtime";
 import webAPI from "../utils/api/webApiClient";
@@ -70,8 +69,8 @@ const LoginPage = ({ onSuccess }) => {
 
   const uiLocale =
     typeof window !== "undefined"
-      ? localStorage.getItem(UI_LOCALE_STORAGE_KEY) || i18n.language || "en-GB"
-      : "en-GB";
+      ? localStorage.getItem(UI_LOCALE_STORAGE_KEY) || i18n.language || SOURCE_LOCALE
+      : SOURCE_LOCALE;
   const currentLang = UI_LANGUAGES.find((l) => l.code === uiLocale) || UI_LANGUAGES[0];
 
   useEffect(() => {
@@ -81,13 +80,14 @@ const LoginPage = ({ onSuccess }) => {
   useEffect(() => {
     const stored = typeof window !== "undefined" && localStorage.getItem(UI_LOCALE_STORAGE_KEY);
     if (stored && stored !== i18n.language) {
-      void setUiLanguage(stored);
+      loadLocale(stored).then(() => i18n.changeLanguage(stored));
     }
   }, []);
 
   const handleLangSelect = async (code) => {
     if (!code) return;
-    await setUiLanguage(code);
+    await loadLocale(code);
+    i18n.changeLanguage(code);
     if (typeof window !== "undefined") {
       localStorage.setItem(UI_LOCALE_STORAGE_KEY, code);
     }

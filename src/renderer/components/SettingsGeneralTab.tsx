@@ -30,6 +30,7 @@ import {
 import { listConfiguredEasyEngines, pickDefaultEasyProvider } from "@/utils/presets/configuredEasyEngines";
 import { useAppContext } from "@/contexts/AppContext";
 import { formatDisplayDateTime } from "../utils/misc/formatUtils";
+import { SOURCE_LOCALE } from "../i18n";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -73,7 +74,7 @@ const SettingsGeneralTab = ({
 }) => {
   const { t, i18n } = useTranslation();
   const { apiKeyStatus, presetsFileMeta, presetsLastCheckedAt, presetsRefreshBusy, refreshPresetsCatalog } = useAppContext();
-  const locale = i18n.language || 'en-GB';
+  const locale = i18n.language || SOURCE_LOCALE;
   const serverConfiguredEngines =
     isWeb && Array.isArray(apiKeyStatus?.configuredEngines)
       ? apiKeyStatus.configuredEngines
@@ -86,14 +87,24 @@ const SettingsGeneralTab = ({
   const { options: FONT_OPTIONS, defaultFont: DEFAULT_FONT, fontValues: FONT_VALUES } = useMemo(() => {
     const { options, defaultFont } = getAppearanceFontContext();
     const fontValues = options.filter((o) => o.type === "font").map((o) => o.value);
-    return { options, defaultFont, fontValues };
-  }, []);
+    const headerLabelByValue = {
+      __sans__: t("- Sans-serif -"),
+      __serif__: t("- Serif -"),
+      __mono__: t("- Monospace -"),
+    };
+    const translatedOptions = options.map((item) =>
+      item.type === "header"
+        ? { ...item, label: headerLabelByValue[item.value] ?? item.label }
+        : item
+    );
+    return { options: translatedOptions, defaultFont, fontValues };
+  }, [t]);
 
   const themeOptions = useMemo(() => [
     { value: 'system', label: t('System (follow OS)'), icon: Monitor },
     { value: 'light', label: t('Light'), icon: Sun },
     { value: 'dark', label: t('Dark'), icon: Moon },
-  ], [t, i18n.language]);
+  ], [t]);
 
   const historyAdminDisabled = localSettings.history_disabled_by_administrator === true;
 
@@ -126,7 +137,7 @@ const SettingsGeneralTab = ({
       { value: 'gt_1y', label: t('> 1 year') },
       { value: 'gt_2y', label: t('> 2 years') },
     ],
-    [t, i18n.language],
+    [t],
   );
 
   const executeHistoryDelete = async () => {
@@ -479,7 +490,7 @@ const SettingsGeneralTab = ({
                       )}
                       {FONT_OPTIONS.map((item) =>
                         item.type === 'header' ? (
-                          <SelectItem key={item.value} value={item.value} disabled>{t(item.label)}</SelectItem>
+                          <SelectItem key={item.value} value={item.value} disabled>{item.label}</SelectItem>
                         ) : (
                           <SelectItem
                             key={item.value}

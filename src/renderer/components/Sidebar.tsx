@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useUiLanguage } from "../hooks/useUiLanguage";
 import {
   Languages,
   PenTool,
@@ -137,7 +136,6 @@ function SidebarInner({
   onAfterNavClick?: () => void;
 }) {
   const { t } = useTranslation();
-  const uiLanguage = useUiLanguage();
 
   const isTranslateActive =
     props.currentMode === "translate" && props.currentView === "workspace";
@@ -276,7 +274,7 @@ function SidebarInner({
         >
           {mainNavItems.map((item) => (
             <NavButton
-              key={`${item.id}-${uiLanguage}`}
+              key={item.id}
               item={item}
               collapsed={collapsed}
               onAfterNavClick={onAfterNavClick}
@@ -291,7 +289,7 @@ function SidebarInner({
         >
           {bottomNavItems.map((item) => (
             <NavButton
-              key={`${item.id}-${uiLanguage}`}
+              key={item.id}
               item={item}
               collapsed={collapsed}
               onAfterNavClick={onAfterNavClick}
@@ -399,7 +397,6 @@ function SidebarInner({
 
 export default function Sidebar(props: SidebarProps) {
   const { t } = useTranslation();
-  useUiLanguage();
   const [collapsed, setCollapsed] = useState(readStoredSidebarCollapsed);
   const [mobileOpen, setMobileOpen] = useState(false);
 

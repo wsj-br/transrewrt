@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { BookOpenText, Download, Upload, List, Trash2, Loader2, Save } from "lucide-react";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
+import { SOURCE_LOCALE } from "../i18n";
 import ConfirmModal from "./ConfirmModal";
 import * as XLSX from "xlsx-js-style";
 import webAPI from "../utils/api/webApiClient";
@@ -291,7 +292,7 @@ function buildExportBlobAndFilename(rawList, format) {
 
 const SettingsTransformPromptsTab = () => {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const [prompts, setPrompts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [exportMessage, setExportMessage] = useState("");

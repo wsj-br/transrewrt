@@ -11,8 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: i18n runtime aligned with ai-i18n-tools GETTING_STARTED — `setupKeyAsDefaultT`, `makeLocaleLoadersFromManifest`, `SOURCE_LOCALE` fallbacks, `flipUiArrowsForRtl` from runtime; added `i18n:dashboard` and `i18n:locales` scripts.
+- **Removed**: Reverted unnecessary i18n complexity (`UiLanguageProvider`, `setUiLanguage`, `bindI18n: languageChanged loaded`, memo deps on locale); root cause of the reported issue was a stale dev-server process.
 - **Fixed**: Settings → General → Presets catalog version and **Last check** timestamps use the browser/system timezone when available, with Docker `TZ` as fallback on web.
-- **Fixed**: UI labels (sidebar, headers, Settings tabs/options, History/Dashboard export columns) refresh when the UI language changes (`UiLanguageProvider`, await `changeLanguage`, `bindI18n: languageChanged loaded`, memo deps on locale).
 - **Fixed**: Settings → Models — **Deselect All** confirmation uses the in-app modal instead of the browser `confirm` dialog.
 - **Changed**: Settings → Models — **Deselect All** uses outline button styling so its border stays visible.
 - **Added**: Settings → Models — **Select from presets** on Selected Models adds preset main/fallback models per configured provider (with Load all).

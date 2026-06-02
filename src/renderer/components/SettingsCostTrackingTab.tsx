@@ -13,10 +13,10 @@ import {
 } from "../utils/misc/costUtils";
 import {
   formatDecimal,
-  flipUiArrowsForRtl,
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
-import { getTextDirection } from "ai-i18n-tools/runtime";
+import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
+import { SOURCE_LOCALE } from "../i18n";
 import { isOpenRouterKeyAuthFailureMessage } from "../../shared/apiErrorMessage.js";
 import { Button } from "@/components/ui/button";
 import {
@@ -41,7 +41,7 @@ const SettingsCostTrackingTab = ({
   isTabActive,
 }) => {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const isRtl = getTextDirection(i18n.language) === "rtl";
   const [byFunction, setByFunction] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ const SettingsCostTrackingTab = ({
       { value: "gt_1y", label: t("> 1 year") },
       { value: "gt_2y", label: t("> 2 years") },
     ],
-    [t, i18n.language]
+    [t]
   );
 
   const canUseOpenRouterKeyInfo =
@@ -134,7 +134,7 @@ const SettingsCostTrackingTab = ({
     const hasUsage = usage != null && !Number.isNaN(Number(usage));
     if (!hasUsage && keyInfo.limit == null) return t("no limit configured");
     return { usage, hasLimit: keyInfo.limit != null, limit: keyInfo.limit, limitReset: keyInfo.limit_reset };
-  }, [keyInfoLoading, keyInfoError, keyInfo, t, i18n.language, isRtl]);
+  }, [keyInfoLoading, keyInfoError, keyInfo, t, isRtl]);
 
   const costApi = getCostApi();
   useEffect(() => {

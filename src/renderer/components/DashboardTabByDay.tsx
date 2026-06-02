@@ -24,6 +24,7 @@ import {
   triggerDownload,
 } from "../utils/misc/exportUtils";
 import DashboardExportToolbar from "./dashboard/DashboardExportToolbar";
+import { SOURCE_LOCALE } from "../i18n";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME_BY_DAY = "transrewrt-byday";
@@ -57,7 +58,7 @@ export default function DashboardTabByDay({
   emptyRow,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const [exportLoading, setExportLoading] = useState(false);
   const axisStyle = { stroke: CHART_COLORS.grid, fontSize: 12 };
   const tickStyle = { fill: "#9ca3af" };
@@ -74,7 +75,7 @@ export default function DashboardTabByDay({
       { key: "avg_translation", labelKey: t("Avg translation") },
       { key: "avg_rewrite", labelKey: t("Avg rewrite") },
     ],
-    [t, i18n.language]
+    [t]
   );
 
   const handleExport = useCallback(

@@ -8,8 +8,7 @@ import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
 import { getTextStats } from "../utils/misc/formatUtils";
 import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
-import i18n from "../i18n";
-import { setUiLanguage } from "../hooks/useUiLanguage";
+import i18n, { loadLocale, SOURCE_LOCALE } from "../i18n";
 import { preloadProviderIcons } from "../components/ProviderIcon";
 import { loadPresetsFile, loadPresetsRemoteSyncState, syncPresetsFromRemote } from "../utils/presets/presetsManager";
 import { pickDefaultEasyProvider } from "../utils/presets/configuredEasyEngines";
@@ -122,7 +121,9 @@ export const AppProvider = ({ children }) => {
 
     const runBackgroundStartup = async (isWeb: boolean, uiLocale: string) => {
       await Promise.allSettled([
-        cancelled ? Promise.resolve() : setUiLanguage(uiLocale),
+        loadLocale(uiLocale).then(() => {
+          if (!cancelled) i18n.changeLanguage(uiLocale);
+        }),
         isWeb && webAPI.getApiStatus
           ? webAPI.getApiStatus().then((status) => {
               if (!cancelled) setApiKeyStatus(status);
@@ -199,7 +200,7 @@ export const AppProvider = ({ children }) => {
 
         loadLanguages(!isWeb || webAuthed);
         preloadProviderIcons();
-        const uiLocale = configManager.get("ui_locale") || "en-GB";
+        const uiLocale = configManager.get("ui_locale") || SOURCE_LOCALE;
 
         finishLoading();
         void runBackgroundStartup(isWeb, uiLocale);
@@ -227,8 +228,9 @@ export const AppProvider = ({ children }) => {
           setAvailableModels(configManager.get("available_models") || []);
           const rawLangs = configManager.get("top_languages") || [];
           setTopLanguages(rawLangs);
-          const uiLocale = configManager.get("ui_locale") || "en-GB";
-          await setUiLanguage(uiLocale);
+          const uiLocale = configManager.get("ui_locale") || SOURCE_LOCALE;
+          await loadLocale(uiLocale);
+          i18n.changeLanguage(uiLocale);
           const mode = configManager.get("mode");
           if (resolveExperienceMode(mode as string | undefined) === "easy") {
             try {

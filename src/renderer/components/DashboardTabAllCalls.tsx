@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { SOURCE_LOCALE } from "../i18n";
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const EXPORT_FILENAME = "transrewrt-calls";
@@ -60,7 +61,7 @@ export default function DashboardTabAllCalls({
   isCardLayout = false,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const [exportLoading, setExportLoading] = useState(false);
   const [selectedCallRow, setSelectedCallRow] = useState(null);
 
@@ -101,7 +102,7 @@ export default function DashboardTabAllCalls({
       { key: "output_words", labelKey: t("Output words") },
       { key: "output_paragraphs", labelKey: t("Output paragraphs") },
     ],
-    [t, i18n.language]
+    [t]
   );
 
   const handleExport = useCallback(

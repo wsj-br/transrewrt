@@ -74,7 +74,7 @@ function useIsBelowMd() {
 }
 
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { settings, allModels, currentUser, setSetting, fetchModels, presetsCatalog, apiKeyStatus } =
     useAppContext();
 
@@ -155,7 +155,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         : []),
       { id: "about", icon: <Info size={15} />, label: t("About") },
     ],
-    [t, i18n.language, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
+    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
   );
 
   const selectedTabMeta = useMemo(
@@ -337,7 +337,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         a.label.localeCompare(b.label, undefined, { sensitivity: "base" }),
       );
     return [allLabel, ...rows];
-  }, [t, i18n.language, enginesWithModels]);
+  }, [t, enginesWithModels]);
 
   const allowedEngineFilterValues = useMemo(
     () =>

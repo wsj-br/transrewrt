@@ -27,6 +27,7 @@ import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import { applyConfiguredTheme } from "../utils/misc/themeUtils";
 import { isWeb } from "../constants";
+import { SOURCE_LOCALE } from "../i18n";
 import "../styles/main.css";
 
 // Inline logo SVG for loading screen so it appears immediately (no image load flash)
@@ -52,7 +53,7 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 
 const App = () => {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
   const presetUiLocale = settings?.ui_locale || locale;

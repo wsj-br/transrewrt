@@ -8,6 +8,7 @@ import {
   DASH,
 } from "../utils/misc/costUtils";
 import { modelFooterDisplayId } from "../utils/misc/modelIdUtils";
+import { SOURCE_LOCALE } from "../i18n";
 
 function formatCallsSharePct(calls, totalCalls, locale) {
   const n = Number(calls) || 0;
@@ -74,7 +75,7 @@ export default function DashboardTabSummary({
   styles,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
 
   const totalCalls = byFunction.find((r) => r.function === "Total")?.calls ?? 0;
   const totalCostFromSummary =

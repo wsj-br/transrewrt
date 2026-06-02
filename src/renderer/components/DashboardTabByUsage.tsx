@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { CHART_COLORS, chartProps } from "./DashboardPage-constants";
 import { formatInteger, formatDecimal } from "../utils/misc/formatUtils";
+import { SOURCE_LOCALE } from "../i18n";
 
 export default function DashboardTabByUsage({
   loading,
@@ -22,7 +23,7 @@ export default function DashboardTabByUsage({
   styles,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const byUsageAxisStyle = {
     stroke: CHART_COLORS.grid,
     fontSize: "clamp(9px, 1.4vh, 12px)",

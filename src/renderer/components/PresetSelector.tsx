@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { presetDisplayDescription, presetDisplayName } from "@/utils/presets/presetDisplay";
 import type { Preset } from "@/utils/presets/presetsTypes";
+import { SOURCE_LOCALE } from "../i18n";
 
 /**
  * Easy mode: pick a preset (name + description). No provider / route UI.
@@ -29,7 +30,7 @@ function PresetSelector({
 
   if (!presets.length) return null;
 
-  const resolvedUiLocale = uiLocale || i18n.language || "en-GB";
+  const resolvedUiLocale = uiLocale || i18n.language || SOURCE_LOCALE;
 
   const sorted = [...presets].sort((a, b) =>
     presetDisplayName(a as Preset, resolvedUiLocale, sourceLocale).localeCompare(

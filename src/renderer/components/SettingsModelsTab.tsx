@@ -1,7 +1,8 @@
 import { useMemo, useState, useEffect, useId } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatDecimal, flipUiArrowsForRtl } from '../utils/misc/formatUtils';
-import { getTextDirection } from "ai-i18n-tools/runtime";
+import { formatDecimal } from '../utils/misc/formatUtils';
+import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
+import { SOURCE_LOCALE } from '../i18n';
 import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import PropTypes from 'prop-types';
 import { FREE_MODEL_ID } from "../constants";
@@ -134,7 +135,7 @@ const SettingsModelsTab = ({
   onLoadPresetModels,
 }) => {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || 'en-GB';
+  const locale = i18n.language || SOURCE_LOCALE;
   const isRtl = getTextDirection(i18n.language) === 'rtl';
   const isBelowLg = useIsBelowLg();
   const [activeModelsTab, setActiveModelsTab] = useState('available');
@@ -183,7 +184,7 @@ const SettingsModelsTab = ({
       { value: 'provider-asc', label: flipUiArrowsForRtl(t('Provider A→Z'), isRtl) },
       { value: 'provider-desc', label: flipUiArrowsForRtl(t('Provider Z→A'), isRtl) },
     ],
-    [t, i18n.language, isRtl]
+    [t, isRtl]
   );
 
   const formatPricePer1M = (pricePerToken) =>

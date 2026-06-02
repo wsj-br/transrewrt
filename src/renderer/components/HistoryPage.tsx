@@ -12,6 +12,7 @@ import {
   DASH,
 } from "../utils/misc/costUtils";
 import { formatDateTime } from "../utils/misc/formatUtils";
+import { SOURCE_LOCALE } from "../i18n";
 import { rowsToCsvWithLabels, triggerDownload } from "../utils/misc/exportUtils";
 import { useAppContext } from "../contexts/AppContext";
 import CallDetailsContent from "./CallDetailsContent";
@@ -168,7 +169,7 @@ HistoryDetailSections.propTypes = {
 
 export default function HistoryPage() {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const { settings, currentUser } = useAppContext();
   const costFractionStyle = settings?.cost_fraction_style || "muted";
 
@@ -245,7 +246,7 @@ export default function HistoryPage() {
       { key: "input_text", labelKey: t("Input text") },
       { key: "output_text", labelKey: t("Output text") },
     ],
-    [t, i18n.language],
+    [t],
   );
 
   const handleExport = useCallback(

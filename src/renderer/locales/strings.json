@@ -80,7 +80,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 766
+        "line": 769
       }
     ]
   },
@@ -335,7 +335,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 334
+        "line": 335
       }
     ]
   },
@@ -424,7 +424,7 @@
       },
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 197
+        "line": 198
       }
     ]
   },
@@ -513,6 +513,91 @@
       }
     ]
   },
+  "40672229": {
+    "source": "- Sans-serif -",
+    "translated": {
+      "ar": "- بدون زخرفة -",
+      "ca": "- Sense serifs -",
+      "pt-BR": "- Sem serifa -",
+      "bn": "- স্যান্স-সেরিফ -",
+      "zh-TW": "- 無襯線 -",
+      "zh-CN": "- 无衬线体 -",
+      "hr": "- Bezsérifni -",
+      "cs": "- Bez patiček -",
+      "en-US": "- Sans-serif -",
+      "fr": "- Sans empattement -",
+      "nl": "- Schreefloos -",
+      "tl": "- Sans-serif -",
+      "de": "- Sans-Serif -",
+      "el": "- Χωρίς παύλες -",
+      "hu": "- Nem serif -",
+      "hi": "- बिना-शिरा -",
+      "it": "- Senza grazie -",
+      "ko": "- 고딕 -",
+      "ja": "- ゴシック体 -",
+      "ms": "- Sans-serif -",
+      "pt": "- Sem serifa -",
+      "fa": "- بی‌سریف -",
+      "pl": "- Bezseryfowy -",
+      "jv": "- Sans-serif -",
+      "ro": "- Fără serife -",
+      "ru": "- Без засечек -",
+      "sk": "- Bezpätkové -",
+      "pa": "- ਸੈਨਸ-ਸੈਰਿਫ -",
+      "es": "- Sans serif -",
+      "te": "- సాన్స్-సెరిఫ్ -",
+      "sv": "- Sanserif -",
+      "sw": "- Sanserifu -",
+      "uk": "- Без засічок -",
+      "vi": "- Không chân -",
+      "tr": "- Sanserif -",
+      "th": "- ไม่มีหัว -"
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 91
+      }
+    ]
+  },
   "46385073": {
     "source": "Configuration restored. You may need to sign in again.",
     "translated": {
@@ -594,7 +679,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 252
+        "line": 255
       }
     ]
   },
@@ -679,7 +764,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 738
+        "line": 741
       }
     ]
   },
@@ -849,11 +934,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 433
+        "line": 434
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 489
+        "line": 490
       }
     ]
   },
@@ -938,7 +1023,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 403
+        "line": 404
       }
     ]
   },
@@ -1533,7 +1618,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 389
+        "line": 390
       }
     ]
   },
@@ -1618,27 +1703,27 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 396
+        "line": 397
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 450
+        "line": 451
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 456
+        "line": 457
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 95
+        "line": 96
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 464
+        "line": 465
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 237
+        "line": 238
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -1735,15 +1820,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 404
+        "line": 405
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 376
+        "line": 377
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 582
+        "line": 583
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -1836,15 +1921,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 408
+        "line": 409
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 456
+        "line": 457
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 108
+        "line": 100
       }
     ]
   },
@@ -1929,19 +2014,19 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 416
+        "line": 417
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 96
+        "line": 97
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 489
+        "line": 490
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 238
+        "line": 239
       }
     ]
   },
@@ -2026,15 +2111,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 458
+        "line": 459
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 196
+        "line": 197
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 109
+        "line": 101
       }
     ]
   },
@@ -2119,35 +2204,35 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 614
+        "line": 615
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 248
+        "line": 249
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 165
+        "line": 166
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 278
+        "line": 279
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 286
+        "line": 287
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 37
+        "line": 38
       },
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 91
+        "line": 92
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 360
+        "line": 361
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
@@ -2159,11 +2244,11 @@
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 581
+        "line": 582
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 243
+        "line": 244
       },
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
@@ -2256,15 +2341,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 634
+        "line": 635
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 581
+        "line": 582
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 780
+        "line": 781
       },
       {
         "file": "src/renderer/components/TransformPromptSelector.tsx",
@@ -2353,11 +2438,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 635
+        "line": 636
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 781
+        "line": 782
       }
     ]
   },
@@ -2442,11 +2527,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 636
+        "line": 637
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 784
+        "line": 785
       }
     ]
   },
@@ -2531,7 +2616,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 638
+        "line": 639
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -2539,7 +2624,7 @@
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 787
+        "line": 788
       }
     ]
   },
@@ -2624,15 +2709,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 639
+        "line": 640
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 733
+        "line": 734
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 801
+        "line": 802
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2644,7 +2729,7 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 165
+        "line": 164
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
@@ -2656,15 +2741,15 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 741
+        "line": 744
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 793
+        "line": 796
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 819
+        "line": 822
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -2672,11 +2757,11 @@
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 772
+        "line": 773
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 788
+        "line": 789
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
@@ -2688,7 +2773,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 451
+        "line": 450
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
@@ -2777,15 +2862,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 730
+        "line": 731
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 798
+        "line": 799
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 767
+        "line": 768
       }
     ]
   },
@@ -2870,11 +2955,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 731
+        "line": 732
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 799
+        "line": 800
       }
     ]
   },
@@ -2959,11 +3044,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 731
+        "line": 732
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 799
+        "line": 800
       }
     ]
   },
@@ -3048,11 +3133,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 732
+        "line": 733
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 800
+        "line": 801
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -3060,19 +3145,19 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 818
+        "line": 821
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 771
+        "line": 772
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 463
+        "line": 464
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 456
+        "line": 455
       }
     ]
   },
@@ -3157,7 +3242,7 @@
     "locations": [
       {
         "file": "src/renderer/components/CallDetailsContent.tsx",
-        "line": 25
+        "line": 26
       }
     ]
   },
@@ -3630,11 +3715,11 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 284
+        "line": 285
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 341
+        "line": 342
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -3747,11 +3832,11 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 414
+        "line": 415
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 443
+        "line": 444
       }
     ]
   },
@@ -3868,15 +3953,15 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 377
+        "line": 378
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 414
+        "line": 415
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 443
+        "line": 444
       }
     ]
   },
@@ -3993,15 +4078,15 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 377
+        "line": 378
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 414
+        "line": 415
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 443
+        "line": 444
       }
     ]
   },
@@ -4454,11 +4539,11 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 261
+        "line": 262
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 316
+        "line": 317
       }
     ]
   },
@@ -4636,7 +4721,7 @@
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 292
+        "line": 293
       }
     ]
   },
@@ -4725,7 +4810,7 @@
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 194
+        "line": 195
       }
     ]
   },
@@ -4814,19 +4899,19 @@
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 295
+        "line": 296
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 561
+        "line": 562
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 343
+        "line": 344
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 546
+        "line": 547
       }
     ]
   },
@@ -5081,15 +5166,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 83
+        "line": 84
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 344
+        "line": 345
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 225
+        "line": 226
       }
     ]
   },
@@ -5174,15 +5259,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 84
+        "line": 85
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 368
+        "line": 369
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 226
+        "line": 227
       }
     ]
   },
@@ -5267,19 +5352,19 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 85
+        "line": 86
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 392
+        "line": 393
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 227
+        "line": 228
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 300
+        "line": 301
       }
     ]
   },
@@ -5364,15 +5449,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 86
+        "line": 87
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 416
+        "line": 417
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 228
+        "line": 229
       },
       {
         "file": "src/renderer/components/LoginModal.tsx",
@@ -5392,23 +5477,23 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 299
+        "line": 300
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 368
+        "line": 369
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 370
+        "line": 371
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 405
+        "line": 406
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 407
+        "line": 408
       }
     ]
   },
@@ -5493,27 +5578,27 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 87
+        "line": 88
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 440
+        "line": 441
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 73
+        "line": 74
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 167
+        "line": 168
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 408
+        "line": 409
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 229
+        "line": 230
       }
     ]
   },
@@ -5598,11 +5683,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 88
+        "line": 89
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 230
+        "line": 231
       }
     ]
   },
@@ -5687,11 +5772,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 89
+        "line": 90
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 231
+        "line": 232
       }
     ]
   },
@@ -5776,11 +5861,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 90
+        "line": 91
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 232
+        "line": 233
       }
     ]
   },
@@ -5865,15 +5950,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 91
+        "line": 92
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 281
+        "line": 282
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 233
+        "line": 234
       }
     ]
   },
@@ -5958,11 +6043,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 92
+        "line": 93
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 234
+        "line": 235
       }
     ]
   },
@@ -6047,11 +6132,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 93
+        "line": 94
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 235
+        "line": 236
       }
     ]
   },
@@ -6136,11 +6221,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 94
+        "line": 95
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 236
+        "line": 237
       }
     ]
   },
@@ -6225,11 +6310,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 97
+        "line": 98
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 239
+        "line": 240
       }
     ]
   },
@@ -6314,11 +6399,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 98
+        "line": 99
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 240
+        "line": 241
       }
     ]
   },
@@ -6403,11 +6488,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 99
+        "line": 100
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 241
+        "line": 242
       }
     ]
   },
@@ -6492,11 +6577,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 100
+        "line": 101
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 242
+        "line": 243
       }
     ]
   },
@@ -6581,11 +6666,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 101
+        "line": 102
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 243
+        "line": 244
       }
     ]
   },
@@ -6670,11 +6755,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 102
+        "line": 103
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 244
+        "line": 245
       }
     ]
   },
@@ -6759,11 +6844,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 199
+        "line": 200
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 219
+        "line": 220
       }
     ]
   },
@@ -6848,7 +6933,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 220
+        "line": 221
       }
     ]
   },
@@ -6933,11 +7018,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 229
+        "line": 230
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 255
+        "line": 256
       }
     ]
   },
@@ -7022,7 +7107,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 232
+        "line": 233
       }
     ]
   },
@@ -7107,11 +7192,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 240
+        "line": 241
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 272
+        "line": 273
       }
     ]
   },
@@ -7196,23 +7281,23 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 254
+        "line": 255
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
-        "line": 506
+        "line": 507
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 300
+        "line": 301
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 500
+        "line": 501
       },
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 364
+        "line": 365
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -7224,7 +7309,7 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 250
+        "line": 251
       }
     ]
   },
@@ -7309,11 +7394,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 67
+        "line": 68
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 285
+        "line": 286
       }
     ]
   },
@@ -7398,15 +7483,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 68
+        "line": 69
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 286
+        "line": 287
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 168
+        "line": 169
       }
     ]
   },
@@ -7491,15 +7576,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 69
+        "line": 70
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 287
+        "line": 288
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 169
+        "line": 170
       }
     ]
   },
@@ -7584,15 +7669,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 70
+        "line": 71
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 288
+        "line": 289
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 170
+        "line": 171
       }
     ]
   },
@@ -7677,15 +7762,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 71
+        "line": 72
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 289
+        "line": 290
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 171
+        "line": 172
       }
     ]
   },
@@ -7770,15 +7855,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 72
+        "line": 73
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 290
+        "line": 291
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 172
+        "line": 173
       }
     ]
   },
@@ -7863,15 +7948,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 73
+        "line": 74
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 291
+        "line": 292
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 173
+        "line": 174
       }
     ]
   },
@@ -7956,11 +8041,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 74
+        "line": 75
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 292
+        "line": 293
       }
     ]
   },
@@ -8045,11 +8130,11 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 75
+        "line": 76
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 293
+        "line": 294
       }
     ]
   },
@@ -8134,7 +8219,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 169
+        "line": 170
       }
     ]
   },
@@ -8219,7 +8304,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 174
+        "line": 175
       }
     ]
   },
@@ -8304,23 +8389,23 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 200
+        "line": 201
       },
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 209
+        "line": 210
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 351
+        "line": 352
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 378
+        "line": 379
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 433
+        "line": 434
       }
     ]
   },
@@ -8405,7 +8490,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 216
+        "line": 217
       }
     ]
   },
@@ -8490,7 +8575,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByDay.tsx",
-        "line": 240
+        "line": 241
       }
     ]
   },
@@ -8575,7 +8660,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 93
+        "line": 94
       }
     ]
   },
@@ -8660,7 +8745,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 94
+        "line": 95
       }
     ]
   },
@@ -8745,7 +8830,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 100
+        "line": 101
       }
     ]
   },
@@ -8830,7 +8915,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 101
+        "line": 102
       }
     ]
   },
@@ -8915,7 +9000,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 107
+        "line": 108
       }
     ]
   },
@@ -9000,7 +9085,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 108
+        "line": 109
       }
     ]
   },
@@ -9085,23 +9170,23 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 174
+        "line": 175
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 355
+        "line": 356
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 382
+        "line": 383
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 483
+        "line": 484
       },
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 150
+        "line": 151
       }
     ]
   },
@@ -9186,23 +9271,23 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 337
+        "line": 338
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 540
+        "line": 541
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 401
+        "line": 402
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 459
+        "line": 460
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 560
+        "line": 561
       }
     ]
   },
@@ -9287,19 +9372,19 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 353
+        "line": 354
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 380
+        "line": 381
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
-        "line": 458
+        "line": 459
       },
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 136
+        "line": 137
       }
     ]
   },
@@ -9384,7 +9469,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 43
+        "line": 44
       }
     ]
   },
@@ -9469,7 +9554,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 49
+        "line": 50
       }
     ]
   },
@@ -9554,27 +9639,27 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 111
+        "line": 112
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 119
+        "line": 120
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 228
+        "line": 229
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 236
+        "line": 237
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 346
+        "line": 347
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 354
+        "line": 355
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -9671,15 +9756,15 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 156
+        "line": 157
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 273
+        "line": 274
       },
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 391
+        "line": 392
       }
     ]
   },
@@ -9764,7 +9849,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabByUsage.tsx",
-        "line": 164
+        "line": 165
       }
     ]
   },
@@ -9849,7 +9934,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 98
+        "line": 99
       }
     ]
   },
@@ -9934,7 +10019,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 98
+        "line": 99
       }
     ]
   },
@@ -10019,7 +10104,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 98
+        "line": 99
       }
     ]
   },
@@ -10104,7 +10189,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 140
+        "line": 141
       }
     ]
   },
@@ -10189,7 +10274,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 146
+        "line": 147
       }
     ]
   },
@@ -10274,7 +10359,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 154
+        "line": 155
       }
     ]
   },
@@ -10359,7 +10444,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 167
+        "line": 168
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
@@ -10468,7 +10553,7 @@
     "locations": [
       {
         "file": "src/renderer/components/DashboardTabSummary.tsx",
-        "line": 180
+        "line": 181
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
@@ -10662,11 +10747,11 @@
     "locations": [
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 133
+        "line": 134
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 204
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -10767,11 +10852,11 @@
     "locations": [
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 145
+        "line": 146
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 204
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -10876,7 +10961,7 @@
     "locations": [
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 245
+        "line": 246
       }
     ]
   },
@@ -10961,7 +11046,7 @@
     "locations": [
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 246
+        "line": 247
       }
     ]
   },
@@ -11046,7 +11131,7 @@
     "locations": [
       {
         "file": "src/renderer/components/HistoryPage.tsx",
-        "line": 342
+        "line": 343
       },
       {
         "file": "src/renderer/components/dashboard/DashboardExportToolbar.tsx",
@@ -11782,11 +11867,11 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 375
+        "line": 376
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 377
+        "line": 378
       }
     ]
   },
@@ -12486,7 +12571,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 637
+        "line": 640
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -12858,7 +12943,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 78
+        "line": 77
       }
     ]
   },
@@ -12943,7 +13028,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 89
+        "line": 88
       }
     ]
   },
@@ -13028,7 +13113,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 154
+        "line": 153
       }
     ]
   },
@@ -13113,7 +13198,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 154
+        "line": 153
       }
     ]
   },
@@ -13198,7 +13283,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 155
+        "line": 154
       }
     ]
   },
@@ -13283,11 +13368,11 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 162
+        "line": 161
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 573
+        "line": 574
       }
     ]
   },
@@ -13372,7 +13457,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 163
+        "line": 162
       }
     ]
   },
@@ -13457,7 +13542,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 164
+        "line": 163
       }
     ]
   },
@@ -13542,7 +13627,7 @@
     "locations": [
       {
         "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 55
+        "line": 56
       }
     ]
   },
@@ -13627,7 +13712,7 @@
     "locations": [
       {
         "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 107
+        "line": 108
       }
     ]
   },
@@ -13671,16 +13756,6 @@
       "vi": "Chọn từ cài đặt sẵn",
       "tr": "Ön ayarlardan seçin"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
-        "line": 126
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 515
-      }
-    ],
     "models": {
       "ar": "qwen/qwen3.6-35b-a3b",
       "bn": "qwen/qwen3.6-35b-a3b",
@@ -13718,7 +13793,17 @@
       "th": "qwen/qwen3.6-35b-a3b",
       "vi": "qwen/qwen3.6-35b-a3b",
       "tr": "qwen/qwen3.6-35b-a3b"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 126
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 516
+      }
+    ]
   },
   "93c85eb8": {
     "source": "No presets available.",
@@ -14509,7 +14594,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 366
+        "line": 369
       }
     ]
   },
@@ -15893,11 +15978,11 @@
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 397
+        "line": 398
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 447
+        "line": 446
       }
     ]
   },
@@ -17192,7 +17277,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 128
+        "line": 131
       }
     ]
   },
@@ -17281,7 +17366,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 129
+        "line": 132
       }
     ]
   },
@@ -17370,7 +17455,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 130
+        "line": 133
       }
     ]
   },
@@ -17459,7 +17544,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 131
+        "line": 134
       }
     ]
   },
@@ -17548,7 +17633,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 132
+        "line": 135
       }
     ]
   },
@@ -17637,7 +17722,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 133
+        "line": 136
       }
     ]
   },
@@ -17726,7 +17811,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 134
+        "line": 137
       }
     ]
   },
@@ -17815,7 +17900,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 135
+        "line": 138
       }
     ]
   },
@@ -18341,7 +18426,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 144
+        "line": 147
       }
     ]
   },
@@ -20057,7 +20142,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 674
+        "line": 677
       }
     ]
   },
@@ -20146,7 +20231,7 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 691
+        "line": 694
       }
     ]
   },
@@ -20239,7 +20324,177 @@
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 691
+        "line": 694
+      }
+    ]
+  },
+  "acc521d1": {
+    "source": "- Serif -",
+    "translated": {
+      "ar": "- مزخرف -",
+      "ca": "- Serif -",
+      "pt-BR": "- Serif -",
+      "bn": "- সেরিফ -",
+      "zh-TW": "- 襯線 -",
+      "zh-CN": "- 衬线体 -",
+      "hr": "- Sérifni -",
+      "cs": "- S patičkami -",
+      "en-US": "- Serif -",
+      "fr": "- Empattement -",
+      "nl": "- Schreef -",
+      "tl": "- Serif -",
+      "de": "- Serif -",
+      "el": "- Με παύλες -",
+      "hu": "- Serif -",
+      "hi": "- शिरा -",
+      "it": "- Con grazie -",
+      "ko": "- 명조 -",
+      "ja": "- 明朝体 -",
+      "ms": "- Serif -",
+      "pt": "- Serifa -",
+      "fa": "- سریف -",
+      "pl": "- Szeryfowy -",
+      "jv": "- Serif -",
+      "ro": "- Cu serife -",
+      "ru": "- С засечками -",
+      "sk": "- Pätkové -",
+      "pa": "- ਸੈਰਿਫ -",
+      "es": "- Serif -",
+      "te": "- సెరిఫ్ -",
+      "sv": "- Serif -",
+      "sw": "- Serifu -",
+      "uk": "- З засічками -",
+      "vi": "- Có chân -",
+      "tr": "- Serif -",
+      "th": "- มีหัว -"
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 92
+      }
+    ]
+  },
+  "479d4903": {
+    "source": "- Monospace -",
+    "translated": {
+      "ar": "- عرض ثابت -",
+      "ca": "- Monoespai -",
+      "pt-BR": "- Monoespaçado -",
+      "bn": "- মোনোস্পেস -",
+      "zh-TW": "- 等寬 -",
+      "zh-CN": "- 等宽字体 -",
+      "hr": "- Monospace -",
+      "cs": "- Monospace -",
+      "en-US": "- Monospace -",
+      "fr": "- Monospace -",
+      "nl": "- Monospace -",
+      "tl": "- Monospace -",
+      "de": "- Monospace -",
+      "el": "- Μονόπλευρο -",
+      "hu": "- Monospace -",
+      "hi": "- मोनोस्पेस -",
+      "it": "- Monospaziato -",
+      "ko": "- 고정폭 -",
+      "ja": "- 等幅フォント -",
+      "ms": "- Monospace -",
+      "pt": "- Monoespaçado -",
+      "fa": "- تک‌فاصله -",
+      "pl": "- Monospace -",
+      "jv": "- Monospace -",
+      "ro": "- Monospațiu -",
+      "ru": "- Моноширинный -",
+      "sk": "- Monospace -",
+      "pa": "- ਮੋਨੋਸਪੇਸ -",
+      "es": "- Monoespaciado -",
+      "te": "- మోనోస్పేస్ -",
+      "sv": "- Monotypsnitt -",
+      "sw": "- Monospace -",
+      "uk": "- Моноширинний -",
+      "vi": "- Đơn cách -",
+      "tr": "- Monospace -",
+      "th": "- โมโนสเปซ -"
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 93
       }
     ]
   },
@@ -20324,7 +20579,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 101
+        "line": 104
       }
     ]
   },
@@ -20409,7 +20664,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 102
+        "line": 105
       }
     ]
   },
@@ -20494,7 +20749,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 103
+        "line": 106
       }
     ]
   },
@@ -20579,7 +20834,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 155
+        "line": 158
       }
     ]
   },
@@ -20664,7 +20919,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 157
+        "line": 160
       }
     ]
   },
@@ -20749,7 +21004,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 195
+        "line": 198
       }
     ]
   },
@@ -20834,11 +21089,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 209
+        "line": 212
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 212
+        "line": 215
       }
     ]
   },
@@ -20923,15 +21178,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 240
-      },
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 243
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 248
+        "line": 246
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 251
       }
     ]
   },
@@ -21016,15 +21271,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 245
+        "line": 248
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 250
+        "line": 253
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 256
+        "line": 259
       }
     ]
   },
@@ -21109,7 +21364,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 252
+        "line": 255
       }
     ]
   },
@@ -21194,7 +21449,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 272
+        "line": 275
       }
     ]
   },
@@ -21279,7 +21534,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 276
+        "line": 279
       }
     ]
   },
@@ -21364,7 +21619,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 290
+        "line": 293
       }
     ]
   },
@@ -21449,7 +21704,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 292
+        "line": 295
       }
     ]
   },
@@ -21534,7 +21789,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 306
+        "line": 309
       }
     ]
   },
@@ -21619,7 +21874,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 308
+        "line": 311
       }
     ]
   },
@@ -21704,11 +21959,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 315
+        "line": 318
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 262
+        "line": 263
       }
     ]
   },
@@ -21793,7 +22048,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 318
+        "line": 321
       }
     ]
   },
@@ -21878,7 +22133,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 319
+        "line": 322
       }
     ]
   },
@@ -21963,7 +22218,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 330
+        "line": 333
       }
     ]
   },
@@ -22048,7 +22303,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 331
+        "line": 334
       }
     ]
   },
@@ -22133,7 +22388,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 361
+        "line": 364
       }
     ]
   },
@@ -22218,7 +22473,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 363
+        "line": 366
       }
     ]
   },
@@ -22303,11 +22558,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 368
+        "line": 371
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 372
+        "line": 375
       }
     ]
   },
@@ -22392,7 +22647,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 370
+        "line": 373
       }
     ]
   },
@@ -22477,7 +22732,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 384
+        "line": 387
       }
     ]
   },
@@ -22562,7 +22817,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 384
+        "line": 387
       }
     ]
   },
@@ -22647,7 +22902,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 397
+        "line": 400
       }
     ]
   },
@@ -22732,7 +22987,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 402
+        "line": 405
       }
     ]
   },
@@ -22817,7 +23072,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 430
+        "line": 433
       }
     ]
   },
@@ -22902,7 +23157,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 433
+        "line": 436
       }
     ]
   },
@@ -22987,11 +23242,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 451
+        "line": 454
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 521
+        "line": 524
       }
     ]
   },
@@ -23076,7 +23331,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 464
+        "line": 467
       }
     ]
   },
@@ -23161,7 +23416,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 469
+        "line": 472
       }
     ]
   },
@@ -23246,7 +23501,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 505
+        "line": 508
       }
     ]
   },
@@ -23331,7 +23586,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 539
+        "line": 542
       }
     ]
   },
@@ -23416,7 +23671,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 545
+        "line": 548
       }
     ]
   },
@@ -23501,15 +23756,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 546
+        "line": 549
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 559
+        "line": 562
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 570
+        "line": 573
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -23626,11 +23881,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 559
+        "line": 562
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 570
+        "line": 573
       }
     ]
   },
@@ -23715,7 +23970,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 570
+        "line": 573
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -23816,7 +24071,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 581
+        "line": 584
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -23917,7 +24172,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 591
+        "line": 594
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -24018,7 +24273,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 602
+        "line": 605
       }
     ]
   },
@@ -24103,7 +24358,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 607
+        "line": 610
       }
     ]
   },
@@ -24188,7 +24443,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 641
+        "line": 644
       }
     ]
   },
@@ -24273,7 +24528,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 662
+        "line": 665
       }
     ]
   },
@@ -24358,7 +24613,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 671
+        "line": 674
       }
     ]
   },
@@ -24443,7 +24698,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 708
+        "line": 711
       }
     ]
   },
@@ -24528,7 +24783,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 718
+        "line": 721
       }
     ]
   },
@@ -24613,11 +24868,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 723
+        "line": 726
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 792
+        "line": 795
       }
     ]
   },
@@ -24702,7 +24957,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 723
+        "line": 726
       }
     ]
   },
@@ -24787,7 +25042,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 726
+        "line": 729
       }
     ]
   },
@@ -24872,7 +25127,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 739
+        "line": 742
       }
     ]
   },
@@ -24957,7 +25212,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 740
+        "line": 743
       }
     ]
   },
@@ -25042,7 +25297,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 749
+        "line": 752
       }
     ]
   },
@@ -25127,7 +25382,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 754
+        "line": 757
       }
     ]
   },
@@ -25212,7 +25467,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 755
+        "line": 758
       }
     ]
   },
@@ -25297,7 +25552,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 769
+        "line": 772
       }
     ]
   },
@@ -25382,7 +25637,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 779
+        "line": 782
       }
     ]
   },
@@ -25467,7 +25722,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 787
+        "line": 790
       }
     ]
   },
@@ -25552,7 +25807,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 792
+        "line": 795
       }
     ]
   },
@@ -25637,7 +25892,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 808
+        "line": 811
       }
     ]
   },
@@ -25722,7 +25977,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 809
+        "line": 812
       }
     ]
   },
@@ -25807,7 +26062,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 813
+        "line": 816
       }
     ]
   },
@@ -25892,7 +26147,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 814
+        "line": 817
       }
     ]
   },
@@ -26402,7 +26657,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 179
+        "line": 180
       }
     ]
   },
@@ -26487,7 +26742,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 180
+        "line": 181
       }
     ]
   },
@@ -26572,7 +26827,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 181
+        "line": 182
       }
     ]
   },
@@ -26657,7 +26912,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 182
+        "line": 183
       }
     ]
   },
@@ -26742,7 +26997,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 183
+        "line": 184
       }
     ]
   },
@@ -26827,7 +27082,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 184
+        "line": 185
       }
     ]
   },
@@ -26912,7 +27167,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 200
+        "line": 201
       }
     ]
   },
@@ -26997,7 +27252,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 204
       }
     ]
   },
@@ -27082,7 +27337,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 224
+        "line": 225
       }
     ]
   },
@@ -27167,7 +27422,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 236
+        "line": 237
       }
     ]
   },
@@ -27252,7 +27507,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 285
+        "line": 286
       }
     ]
   },
@@ -27337,7 +27592,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 291
+        "line": 292
       }
     ]
   },
@@ -27422,7 +27677,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 294
+        "line": 295
       }
     ]
   },
@@ -27507,7 +27762,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 318
+        "line": 319
       }
     ]
   },
@@ -27592,7 +27847,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 335
+        "line": 336
       }
     ]
   },
@@ -27677,7 +27932,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 340
+        "line": 341
       }
     ]
   },
@@ -27762,7 +28017,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 343
+        "line": 344
       }
     ]
   },
@@ -27847,7 +28102,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 365
+        "line": 366
       }
     ]
   },
@@ -27932,7 +28187,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 365
+        "line": 366
       }
     ]
   },
@@ -28017,7 +28272,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 369
+        "line": 370
       }
     ]
   },
@@ -28102,15 +28357,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 411
+        "line": 412
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 469
+        "line": 470
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 639
+        "line": 640
       }
     ]
   },
@@ -28195,11 +28450,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 413
+        "line": 414
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 471
+        "line": 472
       }
     ]
   },
@@ -28284,7 +28539,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 501
+        "line": 502
       }
     ]
   },
@@ -28369,7 +28624,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 518
+        "line": 519
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -28458,7 +28713,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 603
+        "line": 604
       }
     ]
   },
@@ -28543,7 +28798,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 620
+        "line": 621
       }
     ]
   },
@@ -30506,7 +30761,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 181
+        "line": 182
       }
     ]
   },
@@ -30591,7 +30846,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 181
+        "line": 182
       }
     ]
   },
@@ -30676,7 +30931,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 390
+        "line": 391
       }
     ]
   },
@@ -30761,7 +31016,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 398
+        "line": 399
       }
     ]
   },
@@ -30846,7 +31101,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 403
+        "line": 404
       }
     ]
   },
@@ -30931,7 +31186,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 405
+        "line": 406
       }
     ]
   },
@@ -31016,7 +31271,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 451
+        "line": 452
       }
     ]
   },
@@ -31101,7 +31356,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 462
+        "line": 463
       }
     ]
   },
@@ -31186,11 +31441,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 473
+        "line": 474
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 520
+        "line": 521
       }
     ]
   },
@@ -31275,11 +31530,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 476
+        "line": 477
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 523
+        "line": 524
       }
     ]
   },
@@ -31364,7 +31619,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 507
+        "line": 508
       }
     ]
   },
@@ -31449,7 +31704,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 535
+        "line": 536
       }
     ]
   },
@@ -31534,7 +31789,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 540
+        "line": 541
       }
     ]
   },
@@ -31619,7 +31874,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 543
+        "line": 544
       }
     ]
   },
@@ -31704,7 +31959,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 557
+        "line": 558
       }
     ]
   },
@@ -31789,7 +32044,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 599
+        "line": 600
       }
     ]
   },
@@ -31874,11 +32129,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 612
+        "line": 613
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 694
+        "line": 695
       }
     ]
   },
@@ -31963,7 +32218,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 622
+        "line": 623
       }
     ]
   },
@@ -32048,11 +32303,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 629
+        "line": 630
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 710
+        "line": 711
       }
     ]
   },
@@ -32137,19 +32392,19 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 647
-      },
-      {
-        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
         "line": 648
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 734
+        "line": 649
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
         "line": 735
+      },
+      {
+        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
+        "line": 736
       }
     ]
   },
@@ -32234,11 +32489,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 655
+        "line": 656
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 699
+        "line": 700
       }
     ]
   },
@@ -32323,15 +32578,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 659
+        "line": 660
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 700
+        "line": 701
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 407
+        "line": 406
       }
     ]
   },
@@ -32416,11 +32671,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 668
+        "line": 669
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 701
+        "line": 702
       }
     ]
   },
@@ -32505,11 +32760,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 672
+        "line": 673
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 702
+        "line": 703
       }
     ]
   },
@@ -32594,15 +32849,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 676
+        "line": 677
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 703
+        "line": 704
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 437
+        "line": 436
       }
     ]
   },
@@ -32687,7 +32942,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 698
+        "line": 699
       }
     ]
   },
@@ -32772,7 +33027,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 768
+        "line": 769
       }
     ]
   },
@@ -32857,7 +33112,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 83
+        "line": 84
       }
     ]
   },
@@ -32942,7 +33197,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 101
+        "line": 102
       }
     ]
   },
@@ -33027,7 +33282,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 102
+        "line": 103
       }
     ]
   },
@@ -33112,7 +33367,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 103
+        "line": 104
       }
     ]
   },
@@ -33197,7 +33452,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 104
+        "line": 105
       }
     ]
   },
@@ -33282,7 +33537,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 105
+        "line": 106
       }
     ]
   },
@@ -33367,7 +33622,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 106
+        "line": 107
       }
     ]
   },
@@ -33452,7 +33707,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 107
+        "line": 108
       }
     ]
   },
@@ -33537,11 +33792,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 116
+        "line": 117
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 132
+        "line": 133
       }
     ]
   },
@@ -33626,7 +33881,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 117
+        "line": 118
       }
     ]
   },
@@ -33711,7 +33966,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 126
+        "line": 127
       }
     ]
   },
@@ -33796,7 +34051,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 141
+        "line": 142
       }
     ]
   },
@@ -33881,7 +34136,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 148
+        "line": 149
       }
     ]
   },
@@ -33966,7 +34221,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 156
+        "line": 157
       }
     ]
   },
@@ -34051,7 +34306,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 169
+        "line": 170
       }
     ]
   },
@@ -34136,7 +34391,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 182
+        "line": 183
       }
     ]
   },
@@ -34221,7 +34476,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 195
+        "line": 196
       }
     ]
   },
@@ -34306,7 +34561,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 197
+        "line": 198
       }
     ]
   },
@@ -34391,7 +34646,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 203
+        "line": 204
       }
     ]
   },
@@ -34476,11 +34731,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 212
+        "line": 213
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 222
+        "line": 223
       }
     ]
   },
@@ -34565,7 +34820,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 213
+        "line": 214
       }
     ]
   },
@@ -34650,11 +34905,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 237
+        "line": 238
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 359
+        "line": 360
       }
     ]
   },
@@ -34739,7 +34994,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 251
+        "line": 252
       }
     ]
   },
@@ -34824,11 +35079,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 259
+        "line": 260
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 314
+        "line": 315
       }
     ]
   },
@@ -34913,11 +35168,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 265
+        "line": 266
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 301
+        "line": 302
       }
     ]
   },
@@ -35002,11 +35257,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 270
+        "line": 271
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 302
+        "line": 303
       }
     ]
   },
@@ -35091,11 +35346,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 275
+        "line": 276
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 303
+        "line": 304
       }
     ]
   },
@@ -35180,11 +35435,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 280
+        "line": 281
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 336
+        "line": 337
       }
     ]
   },
@@ -35269,11 +35524,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 283
+        "line": 284
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 340
+        "line": 341
       }
     ]
   },
@@ -35358,15 +35613,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 285
+        "line": 286
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 342
+        "line": 343
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 451
+        "line": 452
       }
     ]
   },
@@ -35451,15 +35706,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 287
+        "line": 288
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 344
+        "line": 345
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 461
+        "line": 462
       }
     ]
   },
@@ -35544,7 +35799,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 304
+        "line": 305
       }
     ]
   },
@@ -35629,7 +35884,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 305
+        "line": 306
       }
     ]
   },
@@ -35714,7 +35969,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 360
+        "line": 361
       }
     ]
   },
@@ -35799,7 +36054,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 366
+        "line": 367
       }
     ]
   },
@@ -35884,19 +36139,19 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 371
+        "line": 372
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 378
+        "line": 379
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 408
+        "line": 409
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 415
+        "line": 416
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
@@ -35985,11 +36240,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 378
+        "line": 379
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 415
+        "line": 416
       }
     ]
   },
@@ -36074,11 +36329,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 383
+        "line": 384
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 421
+        "line": 422
       }
     ]
   },
@@ -36163,11 +36418,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 387
+        "line": 388
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 426
+        "line": 427
       }
     ]
   },
@@ -36252,7 +36507,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 396
+        "line": 397
       }
     ]
   },
@@ -36337,7 +36592,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 412
+        "line": 413
       }
     ]
   },
@@ -36422,11 +36677,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 435
+        "line": 436
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 436
+        "line": 437
       }
     ]
   },
@@ -36511,7 +36766,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 442
+        "line": 443
       }
     ]
   },
@@ -36596,7 +36851,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 452
+        "line": 453
       }
     ]
   },
@@ -36681,7 +36936,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 453
+        "line": 454
       }
     ]
   },
@@ -36766,7 +37021,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 462
+        "line": 463
       }
     ]
   },
@@ -38991,7 +39246,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 202
+        "line": 201
       }
     ]
   },
@@ -39076,11 +39331,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 212
+        "line": 211
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 226
+        "line": 225
       }
     ]
   },
@@ -39165,11 +39420,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 262
+        "line": 261
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 278
+        "line": 277
       }
     ]
   },
@@ -39254,11 +39509,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 313
+        "line": 312
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 328
+        "line": 327
       }
     ]
   },
@@ -39343,11 +39598,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 346
+        "line": 345
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 350
+        "line": 349
       }
     ]
   },
@@ -39432,7 +39687,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 363
+        "line": 362
       }
     ]
   },
@@ -39517,7 +39772,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 370
+        "line": 369
       }
     ]
   },
@@ -39602,7 +39857,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 375
+        "line": 374
       }
     ]
   },
@@ -39687,7 +39942,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 380
+        "line": 379
       }
     ]
   },
@@ -39772,7 +40027,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 385
+        "line": 384
       }
     ]
   },
@@ -39857,7 +40112,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 386
+        "line": 385
       }
     ]
   },
@@ -39942,7 +40197,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 390
+        "line": 389
       }
     ]
   },
@@ -40027,7 +40282,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 395
+        "line": 394
       }
     ]
   },
@@ -40112,7 +40367,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 400
+        "line": 399
       }
     ]
   },
@@ -40197,7 +40452,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 406
+        "line": 405
       }
     ]
   },
@@ -40282,7 +40537,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 412
+        "line": 411
       }
     ]
   },
@@ -40367,7 +40622,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 417
+        "line": 416
       }
     ]
   },
@@ -40452,7 +40707,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 423
+        "line": 422
       }
     ]
   },
@@ -40537,7 +40792,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 427
+        "line": 426
       }
     ]
   },
@@ -40622,7 +40877,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 439
+        "line": 438
       }
     ]
   },
@@ -40707,7 +40962,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 464
+        "line": 463
       }
     ]
   },
@@ -40792,7 +41047,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 470
+        "line": 469
       }
     ]
   },
@@ -42002,7 +42257,7 @@
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 288
+        "line": 289
       }
     ]
   },
@@ -45093,7 +45348,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 94
+        "line": 95
       }
     ]
   },
@@ -45178,23 +45433,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 150
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
         "line": 151
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 162
+        "line": 152
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 181
+        "line": 163
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 213
+        "line": 182
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 214
       }
     ]
   },
@@ -45279,11 +45534,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 150
+        "line": 151
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 299
+        "line": 300
       }
     ]
   },
@@ -45368,15 +45623,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 156
+        "line": 157
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 305
+        "line": 306
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 442
+        "line": 443
       }
     ]
   },
@@ -45461,15 +45716,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 157
+        "line": 158
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 306
+        "line": 307
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 443
+        "line": 444
       }
     ]
   },
@@ -45554,35 +45809,35 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 164
+        "line": 165
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 183
+        "line": 184
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 314
+        "line": 315
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 333
+        "line": 334
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 450
+        "line": 451
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 470
+        "line": 471
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 314
+        "line": 315
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 322
+        "line": 323
       }
     ]
   },
@@ -45667,11 +45922,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 230
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 299
+        "line": 231
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
@@ -45679,11 +45930,15 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 312
+        "line": 301
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 331
+        "line": 313
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 332
       }
     ]
   },
@@ -45768,7 +46023,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 241
+        "line": 242
       }
     ]
   },
@@ -45853,7 +46108,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 385
+        "line": 386
       }
     ]
   },
@@ -45938,31 +46193,31 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 436
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
         "line": 437
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 448
+        "line": 438
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 468
+        "line": 449
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 502
+        "line": 469
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 503
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 313
+        "line": 314
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 321
+        "line": 322
       }
     ]
   },
@@ -46047,7 +46302,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 436
+        "line": 437
       }
     ]
   },
@@ -46132,7 +46387,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 26
+        "line": 27
       }
     ]
   },
@@ -46217,7 +46472,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 27
+        "line": 28
       }
     ]
   },
@@ -46302,7 +46557,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 28
+        "line": 29
       }
     ]
   },
@@ -46387,7 +46642,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 29
+        "line": 30
       }
     ]
   },
@@ -46472,7 +46727,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 36
+        "line": 37
       }
     ]
   },
@@ -46557,7 +46812,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 37
+        "line": 38
       }
     ]
   },
@@ -46642,7 +46897,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 38
+        "line": 39
       }
     ]
   },
@@ -46727,7 +46982,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 39
+        "line": 40
       }
     ]
   },
@@ -46812,7 +47067,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 40
+        "line": 41
       }
     ]
   },
@@ -46897,7 +47152,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 41
+        "line": 42
       }
     ]
   },
@@ -46982,7 +47237,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 42
+        "line": 43
       }
     ]
   },
@@ -47067,7 +47322,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 43
+        "line": 44
       }
     ]
   },
@@ -47152,7 +47407,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/costUtils.tsx",
-        "line": 44
+        "line": 45
       }
     ]
   },
@@ -47237,7 +47492,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 134
+        "line": 150
       }
     ]
   },
@@ -47322,11 +47577,11 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 156
+        "line": 172
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
-        "line": 166
+        "line": 182
       }
     ]
   },

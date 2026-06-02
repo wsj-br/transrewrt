@@ -5,6 +5,7 @@ import {
   resolveRunCostLine,
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
+import { SOURCE_LOCALE } from "../i18n";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -45,7 +46,7 @@ export function useProcessing({
   const [lastRunModel, setLastRunModel] = useState(null);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
 
   const isAbortMessage = useCallback((msg) => {
     if (msg == null || typeof msg !== "string") return false;

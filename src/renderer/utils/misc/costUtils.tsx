@@ -5,6 +5,7 @@
 
 import React from "react";
 import webAPI from "../api/webApiClient";
+import { SOURCE_LOCALE } from "../../i18n";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
 
@@ -47,7 +48,7 @@ export function getFilters(t) {
 
 export const DASH = "-";
 
-const DEFAULT_LOCALE = "en-GB";
+const DEFAULT_LOCALE = SOURCE_LOCALE;
 function resolveLocale(locale) {
   return locale && typeof locale === "string" ? locale : DEFAULT_LOCALE;
 }

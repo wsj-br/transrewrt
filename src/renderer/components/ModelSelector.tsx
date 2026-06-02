@@ -6,8 +6,7 @@ import ConfirmModal from "./ConfirmModal";
 import ProviderIcon from "./ProviderIcon";
 import { modelHeaderDisplayId, providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
 import { modelRouteBadgeProps } from "../utils/misc/modelRouteBadge";
-import { flipUiArrowsForRtl } from "../utils/misc/formatUtils";
-import { getTextDirection } from "ai-i18n-tools/runtime";
+import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import {
   DropdownMenu,
   DropdownMenuContent,

@@ -1,6 +1,5 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { useUiLanguage } from "../hooks/useUiLanguage";
 import { cn } from "@/lib/utils";
 import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
 import ModelOrPresetPicker from "./ModelOrPresetPicker";
@@ -169,7 +168,6 @@ const MainContent = ({
   onLayoutChange: (mode: LayoutMode) => void;
 }) => {
   const { t } = useTranslation();
-  useUiLanguage();
 
   if (view === "settings") {
     return (

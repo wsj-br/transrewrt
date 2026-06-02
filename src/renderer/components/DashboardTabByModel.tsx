@@ -22,6 +22,7 @@ import {
 } from "../utils/misc/modelIdUtils";
 import { getCallDetailsValueColorClass } from "./CallDetailsContent";
 import DashboardExportToolbar from "./dashboard/DashboardExportToolbar";
+import { SOURCE_LOCALE } from "../i18n";
 import { cn } from "@/lib/utils";
 
 const EXPORT_FILENAME_BY_MODEL = "transrewrt-bymodel";
@@ -144,7 +145,7 @@ export default function DashboardTabByModel({
   setModelToDelete,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
   const [exportLoading, setExportLoading] = useState(false);
   const [expandedModelId, setExpandedModelId] = useState(null);
   const [byModelSort, setByModelSort] = useState({ key: "total_calls", dir: "desc" });
@@ -173,7 +174,7 @@ export default function DashboardTabByModel({
       { key: "transform_cost", labelKey: t("Transform cost") },
       { key: "avg_tps", labelKey: t("Avg TPS") },
     ],
-    [t, i18n.language]
+    [t]
   );
 
   const dataRows = useMemo(() => {

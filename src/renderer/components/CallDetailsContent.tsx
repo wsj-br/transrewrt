@@ -6,6 +6,7 @@ import {
   formatDurationMs,
 } from "../utils/misc/formatUtils";
 import { DASH } from "../utils/misc/costUtils";
+import { SOURCE_LOCALE } from "../i18n";
 
 function orDash(val) {
   if (val == null) return DASH;
@@ -74,7 +75,7 @@ export default function CallDetailsContent({
   columnCount = 3,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
 
   if (!row) return null;
 

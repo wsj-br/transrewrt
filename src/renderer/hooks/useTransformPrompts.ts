@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import webAPI from "../utils/api/webApiClient";
 import { resolveDuplicateNames } from "../utils/misc/promptUtils";
 import { formatElapsedMmSs, formatPartialRunCostLabel, formatDecimal } from "../utils/misc/formatUtils";
+import { SOURCE_LOCALE } from "../i18n";
 import samplePromptsData from "../../config-defaults/transform-prompts.json";
 
 function getCustomPromptsApi() {
@@ -28,7 +29,7 @@ export function useTransformPrompts({
   activeModel,
 }) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language || "en-GB";
+  const locale = i18n.language || SOURCE_LOCALE;
 
   const isAbortMessage = (msg) => {
     if (msg == null || typeof msg !== "string") return false;
