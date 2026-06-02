@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Transrewrt 1.3.5 - Release Notes
 
 **Release date:** 2026-06-02
@@ -27,7 +25,7 @@ Transrewrt 1.3.5 focuses on the presets editor and model settings: faster OpenRo
 
 ## Detailed changelog
 
-For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](../dev/CHANGELOG.md)** — section **[1.3.5] - 2026-06-02**.
+For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md)** — section **[1.3.5] - 2026-06-02**.
 
 ## Getting This Release
 
@@ -41,10 +39,10 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](../README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](../USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
-- **[DEVELOPMENT.md](../dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
-- **[i18n.md](../dev/i18n.md)** — UI translation workflow (`i18n:extract`, `i18n:translate`, new dashboard/locales scripts)
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
+- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
+- **[i18n.md](https://github.com/wsj-br/transrewrt/blob/main/dev/i18n.md)** — UI translation workflow (`i18n:extract`, `i18n:translate`, new dashboard/locales scripts)
 
 ## Disclaimer
 

@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Transrewrt 1.3.1 - Release Notes
 
 **Release date:** 2026-05-18
@@ -43,8 +41,8 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](../README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](../USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, skills, history)  
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, skills, history)  
 - **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Architecture and runtime modes  
 - **[DEVELOPMENT.md](DEVELOPMENT.md)** — Local setup, skills editor, and tooling  
 - **[i18n.md](i18n.md)** — UI translation workflow  

@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Transrewrt 1.3.2 - Release Notes
 
 **Release date:** 2026-05-22
@@ -40,8 +38,8 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](../README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](../USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, skills, history)  
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, skills, history)  
 - **[skill-check/README.md](skill-check/README.md)** — Skills model availability checker (cron install, NTFY, fuzzy replacement)  
 - **[skills-editor/README.md](skills-editor/README.md)** — Development skills catalog editor  
 - **[DEVELOPMENT.md](DEVELOPMENT.md)** — Local setup and tooling  

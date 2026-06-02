@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Transrewrt 1.3.4 - Release Notes
 
 **Release date:** 2026-05-30
@@ -27,7 +25,7 @@ Transrewrt 1.3.4 improves reliability on first launch and in self-hosted deploym
 
 ## Detailed changelog
 
-For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](../dev/CHANGELOG.md)** — section **[1.3.4] - 2026-05-30**.
+For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md)** — section **[1.3.4] - 2026-05-30**.
 
 ## Getting This Release
 
@@ -41,9 +39,9 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](../README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](../USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
-- **[DEVELOPMENT.md](../dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
+- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
 
 ## Disclaimer
 

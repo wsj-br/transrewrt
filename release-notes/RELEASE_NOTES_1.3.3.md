@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Transrewrt 1.3.3 - Release Notes
 
 **Release date:** 2026-05-27
@@ -32,7 +30,7 @@ Transrewrt 1.3.3 polishes day-to-day translate, rewrite, and transform workflows
 
 ## Detailed changelog
 
-For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](../dev/CHANGELOG.md)** — section **[1.3.3] - 2026-05-27**.
+For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md)** — section **[1.3.3] - 2026-05-27**.
 
 ## Getting This Release
 
@@ -46,11 +44,11 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](../README.md)** — Overview, installation, and quick start  
-- **[USER-GUIDE](../USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
-- **[presets-check/README.md](../dev/presets-check/README.md)** — Presets model availability checker (cron install, NTFY, fuzzy replacement)  
-- **[presets-editor/README.md](../dev/presets-editor/README.md)** — Development presets catalog editor  
-- **[DEVELOPMENT.md](../dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — Full walkthrough of features and settings (Easy vs Advanced, presets, history)  
+- **[presets-check/README.md](https://github.com/wsj-br/transrewrt/blob/main/dev/presets-check/README.md)** — Presets model availability checker (cron install, NTFY, fuzzy replacement)  
+- **[presets-editor/README.md](https://github.com/wsj-br/transrewrt/blob/main/dev/presets-editor/README.md)** — Development presets catalog editor  
+- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, and tooling  
 
 ## Disclaimer
 

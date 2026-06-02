@@ -50,6 +50,7 @@
         "USER-GUIDE.md"
       ],
       "outputDir": "translated-docs/",
+      "addFrontmatter": false,
       "docsOutput": {
         "style": "flat",
         "postProcessing": {

@@ -30,8 +30,8 @@ Exact filenames and checksums appear on the release page.
 
 ## Documentation
 
-- **[README](README.md)** - Overview, installation, and quick start  
-- **[USER-GUIDE](USER-GUIDE.md)** - Full walkthrough of features and settings  
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** - Overview, installation, and quick start  
+- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** - Full walkthrough of features and settings  
 
 ## Disclaimer
 
@@ -40,7 +40,7 @@ Product names and icons belong to their respective owners and are used for ident
 
 ## License
 
-Transrewrt is released under the **Apache License 2.0. See [LICENSE](LICENSE).
+Transrewrt is released under the **Apache License 2.0. See [LICENSE](https://github.com/wsj-br/transrewrt/blob/main/LICENSE).
 
 ---
 
