@@ -6,7 +6,7 @@
 import { getBasePath } from "../misc/urlUtils";
 import * as sessionExpiredHandler from "../misc/sessionExpiredHandler";
 import { configBackupFileStem } from "../../../shared/configBackup/fileStem.js";
-import { extractApiErrorMessage } from "../../../shared/apiErrorMessage.js";
+import { extractApiErrorMessage, normalizeOpenRouterKeyErrorMessage } from "../../../shared/apiErrorMessage.js";
 
 const API_BASE = getBasePath();
 const DEFAULT_FETCH_TIMEOUT_MS = 15_000;
@@ -767,7 +767,11 @@ const webAPI = {
         );
       }
       if (!res.ok) {
-        throw new Error(extractApiErrorMessage(data, `HTTP ${res.status}`));
+        throw new Error(
+          normalizeOpenRouterKeyErrorMessage(
+            extractApiErrorMessage(data, `HTTP ${res.status}`),
+          ),
+        );
       }
       return data;
     } catch (err) {

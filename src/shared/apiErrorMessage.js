@@ -2,6 +2,10 @@
  * Browser-safe API error helpers (no Node / LLM dependencies).
  */
 
+/** i18n key (key-as-default) for invalid/disabled/missing OpenRouter API keys. */
+const OPENROUTER_KEY_INVALID_MESSAGE =
+  "OpenRouter API key is invalid, disabled, or not found.";
+
 /**
  * Human-readable message from JSON API error bodies (e.g. OpenRouter `{ error: { message } }`).
  * @param {unknown} data - Parsed response body or fragment
@@ -38,11 +42,28 @@ function isOpenRouterKeyAuthFailureMessage(message) {
     /authentication required/i.test(m) ||
     /invalid api key/i.test(m) ||
     /api key.*(invalid|not valid|required)/i.test(m) ||
-    /^http 401\b/i.test(m)
+    /^http 401\b/i.test(m) ||
+    /\buser not found\b/i.test(m)
   );
 }
 
+/**
+ * Map cryptic OpenRouter auth errors (e.g. "User not found.") to a clear i18n key.
+ * @param {unknown} message
+ * @returns {string}
+ */
+function normalizeOpenRouterKeyErrorMessage(message) {
+  if (typeof message !== "string" || !message.trim()) return "";
+  const trimmed = message.trim();
+  if (isOpenRouterKeyAuthFailureMessage(trimmed)) {
+    return OPENROUTER_KEY_INVALID_MESSAGE;
+  }
+  return trimmed;
+}
+
 module.exports = {
+  OPENROUTER_KEY_INVALID_MESSAGE,
   extractApiErrorMessage,
   isOpenRouterKeyAuthFailureMessage,
+  normalizeOpenRouterKeyErrorMessage,
 };

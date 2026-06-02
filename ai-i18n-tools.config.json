@@ -6,7 +6,7 @@
     "pl",      "jv",    "pt",    "pa",    "ro",       "ru",       "sk",    "es",    "sw",    "sv",    "te",
     "th",      "tr",    "uk",    "vi"
   ],
-  "concurrency": 4,
+  "concurrency": 8,
   "batchSize": 20,
   "maxBatchChars": 4096,
   "openrouter": {

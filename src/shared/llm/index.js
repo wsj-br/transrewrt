@@ -12,9 +12,11 @@ const {
 
 const { OPENROUTER_PROVIDER } = require("../openRouterProviderRouting");
 const { estimateMaxTokensFromMessages, MAX_MAX_TOKENS } = require("./estimateMaxTokens");
+const { streamChoiceToString } = require("./streamDeltaContent");
 const {
   extractApiErrorMessage,
   isOpenRouterKeyAuthFailureMessage,
+  normalizeOpenRouterKeyErrorMessage,
 } = require("../apiErrorMessage.js");
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
@@ -308,6 +310,13 @@ async function testProviderAuth(provider, value) {
       detail = extractApiErrorMessage(parsed, detail);
     } catch {
       if (body) detail = body.slice(0, 220);
+    }
+    if (normalizedProvider === "openrouter" && isOpenRouterKeyAuthFailureMessage(detail)) {
+      return {
+        provider: normalizedProvider,
+        ok: false,
+        message: normalizeOpenRouterKeyErrorMessage(detail),
+      };
     }
     return {
       provider: normalizedProvider,
@@ -757,11 +766,12 @@ async function streamOpenRouterCompletion({
     let errText = await res.text().catch(() => "");
     let msg = `OpenRouter HTTP ${res.status}`;
     try {
-      const j = JSON.parse(errText);
-      if (j?.error?.message) msg = j.error.message;
+      const j = errText ? JSON.parse(errText) : {};
+      msg = extractApiErrorMessage(j, msg);
     } catch {
       if (errText) msg = errText.slice(0, 500);
     }
+    msg = normalizeOpenRouterKeyErrorMessage(msg) || msg;
     const err = new Error(msg);
     err.status = res.status;
     throw err;
@@ -802,8 +812,8 @@ async function streamOpenRouterCompletion({
         }
         if (data.id && !generationId) generationId = data.id;
         if (data.usage) lastUsage = data.usage;
-        const delta = data.choices?.[0]?.delta?.content;
-        if (delta && onText) onText(delta);
+        const deltaPiece = streamChoiceToString(data.choices?.[0]);
+        if (deltaPiece && onText) onText(deltaPiece);
         if (onSseLine) onSseLine(trimmed);
       }
       if (done) break;
@@ -940,6 +950,7 @@ module.exports = {
   providerDisplayName,
   extractApiErrorMessage,
   isOpenRouterKeyAuthFailureMessage,
+  normalizeOpenRouterKeyErrorMessage,
   testProviderAuth,
   listLlmEnvVarsPresent,
   buildConfig,

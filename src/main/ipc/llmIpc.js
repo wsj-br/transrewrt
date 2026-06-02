@@ -7,6 +7,7 @@ const {
   getAllModels,
   streamCompletion,
 } = require("../../shared/llm");
+const { streamTextChunkToString } = require("../../shared/llm/streamDeltaContent");
 
 /**
  * @param {import("electron").IpcMain} ipcMain
@@ -40,9 +41,13 @@ function registerLlmIpc(ipcMain, getConfigCache) {
       const ac = new AbortController();
       abortByRequest.set(requestId, ac);
 
+      let accumulatedContent = "";
       const sendChunk = (text) => {
+        const piece = streamTextChunkToString(text);
+        if (!piece) return;
+        accumulatedContent += piece;
         if (!wc.isDestroyed()) {
-          wc.send("llm:chunk", { requestId, text });
+          wc.send("llm:chunk", { requestId, text: piece });
         }
       };
 
@@ -64,9 +69,9 @@ function registerLlmIpc(ipcMain, getConfigCache) {
           },
         );
         if (!wc.isDestroyed()) {
-          wc.send("llm:end", { requestId, usage });
+          wc.send("llm:end", { requestId, usage, content: accumulatedContent });
         }
-        return { ok: true, usage };
+        return { ok: true, usage, content: accumulatedContent };
       } catch (err) {
         const msg = err?.message || String(err);
         if (!wc.isDestroyed()) {

@@ -3,36 +3,40 @@
 
 const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
+/**
+ * Electron LLM stream: main accumulates text and returns it on invoke completion.
+ * Do not resolve from llm:end — IPC can deliver end before chunk events, which
+ * previously left translate output empty while usage still looked successful.
+ */
 function llmStreamWithAccumulation(payload) {
   return new Promise((resolve, reject) => {
     const { requestId } = payload;
-    let content = '';
+    let chunkContent = '';
     const onChunk = (_e, d) => {
       if (d.requestId !== requestId) return;
-      content += d.text || '';
-    };
-    const onEnd = (_e, d) => {
-      if (d.requestId !== requestId) return;
-      cleanup();
-      resolve({ content, usage: d.usage, cancelled: false });
-    };
-    const onErr = (_e, d) => {
-      if (d.requestId !== requestId) return;
-      cleanup();
-      reject(new Error(d.error || 'LLM stream error'));
+      chunkContent += d.text || '';
     };
     function cleanup() {
       ipcRenderer.removeListener('llm:chunk', onChunk);
-      ipcRenderer.removeListener('llm:end', onEnd);
-      ipcRenderer.removeListener('llm:error', onErr);
     }
     ipcRenderer.on('llm:chunk', onChunk);
-    ipcRenderer.on('llm:end', onEnd);
-    ipcRenderer.on('llm:error', onErr);
-    ipcRenderer.invoke('llm:stream', payload).catch((e) => {
-      cleanup();
-      reject(e);
-    });
+    ipcRenderer
+      .invoke('llm:stream', payload)
+      .then((result) => {
+        cleanup();
+        const fromInvoke =
+          result && typeof result.content === 'string' ? result.content : '';
+        const finalContent = fromInvoke.length > 0 ? fromInvoke : chunkContent;
+        resolve({
+          content: finalContent,
+          usage: result?.usage ?? null,
+          cancelled: false,
+        });
+      })
+      .catch((e) => {
+        cleanup();
+        reject(e);
+      });
   });
 }
 

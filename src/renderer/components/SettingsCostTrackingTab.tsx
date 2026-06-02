@@ -17,7 +17,7 @@ import {
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import { SOURCE_LOCALE } from "../i18n";
-import { isOpenRouterKeyAuthFailureMessage } from "../../shared/apiErrorMessage.js";
+import { translateApiErrorMessage } from "../utils/misc/apiErrorDisplay";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -107,9 +107,7 @@ const SettingsCostTrackingTab = ({
         const cleaned =
           typeof raw === "string" ? raw.replace(ipcPrefix, "").trim() : "";
         setKeyInfoError(
-          isOpenRouterKeyAuthFailureMessage(cleaned)
-            ? t("API Key is invalid")
-            : cleaned || t("Failed to load key info"),
+          translateApiErrorMessage(cleaned, t) || t("Failed to load key info"),
         );
       }
     } finally {

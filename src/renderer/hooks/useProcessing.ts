@@ -5,6 +5,7 @@ import {
   resolveRunCostLine,
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
+import { formatApiErrorLine } from "../utils/misc/apiErrorDisplay";
 import { SOURCE_LOCALE } from "../i18n";
 
 /**
@@ -144,6 +145,10 @@ export function useProcessing({
           if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
             console.warn("Auto-copy to clipboard failed:", err);
           });
+        } else if (!result.cancelled && !result.error) {
+          setOutputTextTranslate(
+            t("Translation finished but returned no text. Try again or choose another model."),
+          );
         }
         if (result.cancelled) {
           if (cancelledByUserRef.current) {
@@ -162,7 +167,7 @@ export function useProcessing({
           if (isAbortMessage(result.error)) {
             setOutputTextTranslate(t("Translation stopped by user."));
           } else {
-            setOutputTextTranslate(t("Error: {{message}}", { message: result.error }));
+            setOutputTextTranslate(formatApiErrorLine(result.error, t));
           }
         }
       } catch (error) {
@@ -181,7 +186,7 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTranslate(t("Translation stopped by user."));
         } else {
-          setOutputTextTranslate(t("Error: {{message}}", { message: error.message }));
+          setOutputTextTranslate(formatApiErrorLine(error.message, t));
         }
       } finally {
         abortControllerRef.current = null;
@@ -292,6 +297,11 @@ export function useProcessing({
         if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
           console.warn("Auto-copy to clipboard failed:", err);
         });
+      } else if (!result.cancelled && !result.error) {
+        setRewriteOutputIsModelResult(false);
+        setOutputTextRewrite(
+          t("Rewrite finished but returned no text. Try again or choose another model."),
+        );
       }
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
@@ -312,7 +322,7 @@ export function useProcessing({
         if (isAbortMessage(result.error)) {
           setOutputTextRewrite(t("Rewrite stopped by user."));
         } else {
-          setOutputTextRewrite(t("Error: {{message}}", { message: result.error }));
+          setOutputTextRewrite(formatApiErrorLine(result.error, t));
         }
       }
     } catch (error) {
@@ -331,7 +341,7 @@ export function useProcessing({
       if (userAbort) {
         setOutputTextRewrite(t("Rewrite stopped by user."));
       } else {
-        setOutputTextRewrite(t("Error: {{message}}", { message: error.message }));
+        setOutputTextRewrite(formatApiErrorLine(error.message, t));
       }
     } finally {
       abortControllerRef.current = null;
@@ -448,7 +458,7 @@ export function useProcessing({
           if (isAbortMessage(result.error)) {
             setOutputTextTransform(t("Transform stopped by user."));
           } else {
-            setOutputTextTransform(t("Error: {{message}}", { message: result.error }));
+            setOutputTextTransform(formatApiErrorLine(result.error, t));
           }
         }
       } catch (err) {
@@ -468,7 +478,7 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTransform(t("Transform stopped by user."));
         } else {
-          setOutputTextTransform(t("Error: {{message}}", { message: err.message }));
+          setOutputTextTransform(formatApiErrorLine(err.message, t));
         }
       } finally {
         abortControllerRef.current = null;

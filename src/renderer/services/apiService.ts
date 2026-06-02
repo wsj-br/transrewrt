@@ -2,6 +2,7 @@ import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import prompts from "../../config-defaults/prompts.json";
 import { estimateMaxTokensFromUserContent } from "../../shared/llm/estimateMaxTokens.js";
+import { streamChoiceToString } from "../../shared/llm/streamDeltaContent.js";
 
 function randomRequestId() {
   return globalThis.crypto?.randomUUID?.() || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -14,26 +15,6 @@ function resolvePrompt(value) {
 /** True only for an explicit user abort (AbortSignal), not network failures ("Failed to fetch"). */
 function isAbortError(error) {
   return Boolean(error && error.name === "AbortError");
-}
-
-/** Normalize OpenAI-style streaming `delta.content` (string or multipart array) for SSE parsing. */
-function sseDeltaContentToString(delta) {
-  if (!delta) return "";
-  const c = delta.content;
-  if (typeof c === "string") return c;
-  if (Array.isArray(c)) {
-    return c
-      .map((part) => {
-        if (typeof part === "string") return part;
-        if (part && typeof part === "object" && part.type === "text" && typeof part.text === "string") {
-          return part.text;
-        }
-        return "";
-      })
-      .join("");
-  }
-  if (c != null) return String(c);
-  return "";
 }
 
 function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
@@ -353,7 +334,7 @@ class APIService {
         const data = JSON.parse(dataStr);
         rawChunks.push(data);
         if (data.id && !generationId) generationId = data.id;
-        const deltaPiece = sseDeltaContentToString(data.choices?.[0]?.delta);
+        const deltaPiece = streamChoiceToString(data.choices?.[0]);
         if (deltaPiece) content += deltaPiece;
         if (data.usage) usage = data.usage;
         if (data.error) {

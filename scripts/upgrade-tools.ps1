@@ -125,13 +125,16 @@ try {
     $pnpmNewVer = (npm ls -g pnpm --depth=0 --json 2>$null | ConvertFrom-Json).dependencies.pnpm.version
     if ($pnpmNewVer) {
         Write-Host "✏️  Updating packageManager field to pnpm@${pnpmNewVer}..." -ForegroundColor Blue
-        $pkgPath = Resolve-Path (Join-Path $PSScriptRoot '..' 'package.json')
+        $pkgPath = (Resolve-Path (Join-Path $PSScriptRoot '..' 'package.json')).Path -replace '\\', '/'
         node -e @"
             const fs = require('fs');
-            const p = JSON.parse(fs.readFileSync('$($pkgPath.Path)', 'utf8'));
+            const p = JSON.parse(fs.readFileSync('$pkgPath', 'utf8'));
             p.packageManager = 'pnpm@${pnpmNewVer}';
-            fs.writeFileSync('$($pkgPath.Path)', JSON.stringify(p, null, 2) + '\n');
+            fs.writeFileSync('$pkgPath', JSON.stringify(p, null, 2) + '\n');
 "@
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to update packageManager in package.json (node exit code $LASTEXITCODE)"
+        }
         Write-Host "✔  packageManager updated to pnpm@${pnpmNewVer}" -ForegroundColor Green
         if (Get-Command corepack -ErrorAction SilentlyContinue) {
             Write-Host "📦  Activating pnpm@${pnpmNewVer} via corepack..." -ForegroundColor Blue

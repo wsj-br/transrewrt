@@ -1,12 +1,3 @@
----
-translation_last_updated: '2026-06-02T15:30:35.115Z'
-source_file_mtime: '2026-05-27T22:00:37.048Z'
-source_file_hash: d579a314d0937a8c924a4bbd0739fe45cf76ee2cf38c17a17a3047c57951ef16
-translation_language: pt-BR
-source_file_path: USER-GUIDE.md
-translation_models:
-  - qwen/qwen3-235b-a22b-2507
----
 ![Transrewrt banner](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>

@@ -250,7 +250,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 231
+        "line": 229
       }
     ]
   },
@@ -849,7 +849,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 347
+        "line": 345
       }
     ]
   },
@@ -1727,15 +1727,15 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 307
+        "line": 305
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 328
+        "line": 326
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 349
+        "line": 347
       }
     ]
   },
@@ -1832,11 +1832,11 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 321
+        "line": 319
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 368
+        "line": 366
       }
     ]
   },
@@ -2240,7 +2240,7 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 126
+        "line": 124
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2737,7 +2737,7 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 418
+        "line": 416
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -7301,11 +7301,11 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 170
+        "line": 168
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 295
+        "line": 293
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
@@ -9663,15 +9663,15 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 303
+        "line": 301
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 324
+        "line": 322
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 348
+        "line": 346
       }
     ]
   },
@@ -18078,92 +18078,7 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 112
-      }
-    ]
-  },
-  "09b3a8da": {
-    "source": "API Key is invalid",
-    "translated": {
-      "ca": "La clau d'API no és vàlida",
-      "ar": "مفتاح API غير صالح",
-      "pt-BR": "Chave de API inválida",
-      "bn": "API কী অবৈধ",
-      "hr": "API ključ je neispravan",
-      "zh-TW": "API 金鑰無效",
-      "zh-CN": "API 密钥无效",
-      "cs": "API klíč je neplatný",
-      "tl": "Invalid ang API Key",
-      "fr": "La clé API n'est pas valide",
-      "en-US": "API Key is invalid",
-      "nl": "API-sleutel is ongeldig",
-      "de": "API-Schlüssel ist ungültig",
-      "hi": "API कुंजी अमान्य है",
-      "hu": "Az API-kulcs érvénytelen",
-      "el": "Το κλειδί API είναι άκυρο",
-      "ko": "API 키가 잘못되었습니다",
-      "ms": "Kunci API tidak sah",
-      "it": "Chiave API non valida",
-      "ja": "APIキーが無効です",
-      "pt": "Chave de API inválida",
-      "fa": "کلید API نامعتبر است",
-      "pl": "Klucz API jest nieprawidłowy",
-      "jv": "Kunci API ora sah",
-      "ro": "Cheia API este nevalidă",
-      "pa": "API ਕੁੰਜੀ ਅਵੈਧ ਹੈ",
-      "sk": "API kľúč je neplatný",
-      "ru": "Ключ API недействителен",
-      "sw": "Funguo ya API si sahihi",
-      "te": "API కీ చెల్లదు",
-      "es": "La clave de API no es válida",
-      "sv": "API-nyckeln är ogiltig",
-      "vi": "Khóa API không hợp lệ",
-      "tr": "API Anahtarı geçersiz",
-      "th": "คีย์ API ไม่ถูกต้อง",
-      "uk": "Ключ API недійсний"
-    },
-    "models": {
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "pt-BR": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "cs": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 111
+        "line": 110
       }
     ]
   },
@@ -18248,7 +18163,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 135
+        "line": 133
       }
     ]
   },
@@ -18333,11 +18248,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 161
+        "line": 159
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 165
+        "line": 163
       }
     ]
   },
@@ -18422,7 +18337,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 176
+        "line": 174
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -18511,7 +18426,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 196
+        "line": 194
       }
     ]
   },
@@ -18596,7 +18511,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 198
+        "line": 196
       }
     ]
   },
@@ -18681,7 +18596,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 204
+        "line": 202
       }
     ]
   },
@@ -18766,7 +18681,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 204
+        "line": 202
       }
     ]
   },
@@ -18851,7 +18766,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 207
+        "line": 205
       }
     ]
   },
@@ -18936,7 +18851,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 208
+        "line": 206
       }
     ]
   },
@@ -19021,7 +18936,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 217
+        "line": 215
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -19110,7 +19025,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 221
+        "line": 219
       }
     ]
   },
@@ -19195,7 +19110,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 228
+        "line": 226
       }
     ]
   },
@@ -19280,7 +19195,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 244
+        "line": 242
       }
     ]
   },
@@ -19365,7 +19280,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 251
+        "line": 249
       }
     ]
   },
@@ -19450,7 +19365,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 265
+        "line": 263
       }
     ]
   },
@@ -19535,7 +19450,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 266
+        "line": 264
       }
     ]
   },
@@ -19620,7 +19535,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 272
+        "line": 270
       }
     ]
   },
@@ -19705,7 +19620,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 276
+        "line": 274
       }
     ]
   },
@@ -19790,7 +19705,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 282
+        "line": 280
       }
     ]
   },
@@ -19875,7 +19790,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 286
+        "line": 284
       }
     ]
   },
@@ -19960,15 +19875,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 311
+        "line": 309
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 332
+        "line": 330
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 350
+        "line": 348
       }
     ]
   },
@@ -20053,7 +19968,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 389
+        "line": 387
       }
     ]
   },
@@ -20138,7 +20053,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 393
+        "line": 391
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -20227,7 +20142,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 405
+        "line": 403
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -20316,11 +20231,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 405
+        "line": 403
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 417
+        "line": 415
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -42257,7 +42172,7 @@
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 289
+        "line": 290
       }
     ]
   },
@@ -45348,7 +45263,92 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 95
+        "line": 96
+      }
+    ]
+  },
+  "6a25d014": {
+    "source": "Translation finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "ar": "انتهت الترجمة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
+      "pt-BR": "Tradução concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ca": "S'ha completat la traducció, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
+      "bn": "অনুবাদ সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "zh-TW": "翻譯已完成，但未傳回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "翻译完成，但未返回文本。请重试或选择其他模型。",
+      "cs": "Překlad dokončen, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
+      "hr": "Prijevod je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "en-US": "Translation finished but returned no text. Try again or choose another model.",
+      "fr": "La traduction est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
+      "nl": "Vertaling voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
+      "tl": "Natapos na ang pagsasalin ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "de": "Übersetzung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "hi": "अनुवाद समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "hu": "A fordítás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
+      "el": "Η μετάφραση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
+      "ja": "翻訳は完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
+      "ko": "번역 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "it": "Traduzione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ms": "Terjemahan selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
+      "pt": "A tradução foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "fa": "ترجمه انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
+      "jv": "Terjemahan wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "pl": "Tłumaczenie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "sk": "Preklad dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
+      "ru": "Перевод завершён, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Traducerea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਅਨੁਵਾਦ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "sv": "Översättningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "es": "La traducción ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
+      "sw": "Tafsiri imekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "te": "అనువాదం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
+      "vi": "Hoàn tất bản dịch nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
+      "th": "การแปลเสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
+      "tr": "Çeviri tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Переклад завершено, але результат порожній. Повторіть спробу або виберіть іншу модель."
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 150
       }
     ]
   },
@@ -45433,23 +45433,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 151
+        "line": 156
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 152
+        "line": 157
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 163
+        "line": 168
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 182
+        "line": 187
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 214
+        "line": 219
       }
     ]
   },
@@ -45534,11 +45534,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 151
+        "line": 156
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 300
+        "line": 310
       }
     ]
   },
@@ -45623,15 +45623,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 157
+        "line": 162
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 306
+        "line": 316
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 443
+        "line": 453
       }
     ]
   },
@@ -45716,128 +45716,15 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 158
+        "line": 163
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 307
+        "line": 317
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 444
-      }
-    ]
-  },
-  "5de8f1d4": {
-    "source": "Error: {{message}}",
-    "translated": {
-      "pt-BR": "Erro: {{message}}",
-      "ca": "Error: {{message}}",
-      "ar": "خطأ: {{message}}",
-      "bn": "ত্রুটি: {{message}}",
-      "zh-TW": "錯誤: {{message}}",
-      "zh-CN": "错误: {{message}}",
-      "cs": "Chyba: {{message}}",
-      "hr": "Pogreška: {{message}}",
-      "en-US": "Error: {{message}}",
-      "fr": "Erreur : {{message}}",
-      "tl": "Error: {{message}}",
-      "nl": "Fout: {{message}}",
-      "hu": "Hiba: {{message}}",
-      "de": "Fehler: {{message}}",
-      "hi": "त्रुटि: {{message}}",
-      "el": "Σφάλμα: {{message}}",
-      "ms": "Ralat: {{message}}",
-      "ja": "エラー: {{message}}",
-      "ko": "오류: {{message}}",
-      "it": "Errore: {{message}}",
-      "pt": "Erro: {{message}}",
-      "pl": "Błąd: {{message}}",
-      "fa": "خطا: {{message}}",
-      "pa": "ਗਲਤੀ: {{message}}",
-      "es": "Error: {{message}}",
-      "ru": "Ошибка: {{message}}",
-      "ro": "Eroare: {{message}}",
-      "sk": "Chyba: {{message}}",
-      "sv": "Fel: {{message}}",
-      "sw": "Hitilafu: {{message}}",
-      "th": "ข้อผิดพลาด: {{message}}",
-      "te": "లోపం: {{message}}",
-      "vi": "Lỗi: {{message}}",
-      "tr": "Hata: {{message}}",
-      "uk": "Помилка: {{message}}",
-      "jv": "Kasalahan: {{message}}"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 165
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 184
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 315
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 334
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 451
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 471
-      },
-      {
-        "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 315
-      },
-      {
-        "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 323
+        "line": 454
       }
     ]
   },
@@ -45922,23 +45809,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 231
+        "line": 236
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 300
+        "line": 310
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 301
+        "line": 311
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 313
+        "line": 323
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 332
+        "line": 342
       }
     ]
   },
@@ -46023,7 +45910,92 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 242
+        "line": 247
+      }
+    ]
+  },
+  "30461c2b": {
+    "source": "Rewrite finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "ar": "انتهت إعادة الصياغة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
+      "pt-BR": "Reescrita concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ca": "S'ha completat la reescriptura, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
+      "bn": "পুনর্লিখন সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "zh-TW": "重寫已完成，但未傳回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "重写完成，但未返回文本。请重试或选择其他模型。",
+      "cs": "Přepsání dokončeno, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
+      "hr": "Prepis je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "en-US": "Rewrite finished but returned no text. Try again or choose another model.",
+      "fr": "La réécriture est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
+      "nl": "Herschrijven voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
+      "tl": "Natapos na ang pagsusulat muli ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "de": "Neuschreibung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "hi": "पुनर्लेखन समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "hu": "Az átfogalmazás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
+      "el": "Η αναδιατύπωση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
+      "ja": "書き換えは完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
+      "ko": "다시 작성 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "it": "Riscrittura completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ms": "Tulis semula selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
+      "pt": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
+      "jv": "Tulis ulang wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "pl": "Przepisanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "sk": "Prepis dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
+      "ru": "Переписывание завершено, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Rescrierea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਦੁਬਾਰਾ ਲਿਖਣਾ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "sv": "Omskrivningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "es": "La reescritura ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
+      "sw": "Uandishi upya umekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "te": "పునర్లెఖనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
+      "vi": "Hoàn tất viết lại nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
+      "th": "การเขียนใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
+      "tr": "Yeniden yazma tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Переписування завершено, але результат порожній. Повторіть спробу або виберіть іншу модель."
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 303
       }
     ]
   },
@@ -46108,7 +46080,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 386
+        "line": 396
       }
     ]
   },
@@ -46193,31 +46165,31 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 437
+        "line": 447
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 438
+        "line": 448
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 449
+        "line": 459
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 469
+        "line": 479
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 503
+        "line": 513
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 314
+        "line": 315
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
-        "line": 322
+        "line": 323
       }
     ]
   },
@@ -46302,7 +46274,92 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 437
+        "line": 447
+      }
+    ]
+  },
+  "5de8f1d4": {
+    "source": "Error: {{message}}",
+    "translated": {
+      "pt-BR": "Erro: {{message}}",
+      "ca": "Error: {{message}}",
+      "ar": "خطأ: {{message}}",
+      "bn": "ত্রুটি: {{message}}",
+      "zh-TW": "錯誤: {{message}}",
+      "zh-CN": "错误: {{message}}",
+      "cs": "Chyba: {{message}}",
+      "hr": "Pogreška: {{message}}",
+      "en-US": "Error: {{message}}",
+      "fr": "Erreur : {{message}}",
+      "tl": "Error: {{message}}",
+      "nl": "Fout: {{message}}",
+      "hu": "Hiba: {{message}}",
+      "de": "Fehler: {{message}}",
+      "hi": "त्रुटि: {{message}}",
+      "el": "Σφάλμα: {{message}}",
+      "ms": "Ralat: {{message}}",
+      "ja": "エラー: {{message}}",
+      "ko": "오류: {{message}}",
+      "it": "Errore: {{message}}",
+      "pt": "Erro: {{message}}",
+      "pl": "Błąd: {{message}}",
+      "fa": "خطا: {{message}}",
+      "pa": "ਗਲਤੀ: {{message}}",
+      "es": "Error: {{message}}",
+      "ru": "Ошибка: {{message}}",
+      "ro": "Eroare: {{message}}",
+      "sk": "Chyba: {{message}}",
+      "sv": "Fel: {{message}}",
+      "sw": "Hitilafu: {{message}}",
+      "th": "ข้อผิดพลาด: {{message}}",
+      "te": "లోపం: {{message}}",
+      "vi": "Lỗi: {{message}}",
+      "tr": "Hata: {{message}}",
+      "uk": "Помилка: {{message}}",
+      "jv": "Kasalahan: {{message}}"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 15
       }
     ]
   },
