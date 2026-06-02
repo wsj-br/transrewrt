@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `.github/workflows/pnpm-audit.yml` — bump actions to Node 24 runtimes (`checkout@v6`, `pnpm/action-setup@v5`, `setup-node@v6`, `create-pull-request@v8`).
+
 ## [1.3.5] - 2026-06-02
 
 - **Changed**: `take-screenshots` — force dark theme in config/user prefs; load Noto web fonts (Bengali, Devanagari, KR, Gurmukhi, Telugu, Thai) globally so locales like bn, hi, ko, pa, te, th render correctly.
