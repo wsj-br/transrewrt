@@ -277,13 +277,13 @@ Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta �
 
 În [**Setări** > **Setări generale**](#general-settings), puteți modifica modul în care funcționează traducerea:
 
-- **Auto-traducere la lipire** execută o traducere imediat ce lipiți text.
-- **Copiază automat rezultatul în clipboard** copiază automat rezultatul după o execuție reușită.
-- **Traducere în timp real (în timp ce scrieți)** execută traduceri în timp ce tastați.
-- **Timeout (ms)** controlează cât timp așteaptă aplicația înainte de a executa o traducere în timp real.
-- **Comportament pentru ENTER** controlează ce se întâmplă când apăsați `Enter`:
-  - **Enter** rulează traducerea sau rescrierea (implicit).
-  - **Shift + Enter** rulează traducerea sau rescrierea; **Enter** simplu inserează o linie nouă.
+- **Executare automată la lipire** rulează o traducere imediat ce lipsești text.
+- **Copiere automată a rezultatului în clipboard** copiază rezultatul automat după o execuție reușită.
+- **Traducere în timp real în timp ce scrii** (⚠️ Acest lucru poate crește costurile de utilizare) rulează traduceri în timp ce scrii.
+- **Timeout (ms)** controlează cât timp așteaptă aplicația înainte de a rula o traducere în timp real.
+- **Comportament pentru ENTER** alege dacă `Enter` rulează sarcina sau inserează un nou rând:
+  - **Enter** rulează traduce sau reescriere (implicit).
+  - **Shift + Enter** rulează traduce sau reescriere; **Enter** simplu inserează un nou rând.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Aceasta este zona cea mai flexibilă a aplicației. O puteți utiliza pentru sar
 <a id="run-an-existing-prompt"></a>
 ### Executarea unui prompt existent
 
-1. Deschideți **Transformare**.
-2. Alegeți un prompt din lista de prompturi.
-3. Dacă apare o casetă **Destinație**, alegeți o limbă dacă doriți una.
-4. Tastați sau lipiți text în **Intrare**.
+1. Deschide **Transformare**.
+2. Alege un prompt din lista de prompturi.
+3. Dacă apare un câmp de limbă **Din**, alege o limbă dacă dorești una.
+4. Scrie sau lipește text în **Intrare**.
 5. Faceți clic pe **Transformare**.
 6. Citiți rezultatul în **Ieșire**.
 
@@ -383,11 +383,10 @@ Câmpurile principale sunt:
 - **Instrucțiuni prompt (opțional)**: o scurtă indicație afișată utilizatorului atunci când rulează promptul.
 - **Rolul modelului**: rolul general atribuit IA, cum ar fi 'Ești un asistent util.'
 - **Instrucțiuni model (una pe linie)**: regulile specifice pe care doriți ca IA să le urmeze.
-- **Descriere ieșire**: un cuvânt scurt care descrie rezultatul, cum ar fi 'rezumat' sau 'rescriere'.
-- **Temperatură (0,0 → 1,0)**: modul în care se va comporta modelul; consultați mai jos.
-- **Cereți limba destinație**: adaugă un selector de limbă destinație atunci când este rulat promptul.
-
-Dacă termenul tehnic **Temperatură** este nou pentru dvs., gândiți-vă astfel:
+- **Descriere ieșire (de ex. transformat, rezumat etc.)**: un cuvânt scurt care descrie rezultatul.
+- **Temperatură (0,0 → 1,0)**: cum se va comporta modelul; vezi mai jos.
+- **Cere limbă țintă**: adaugă un selector de limbă atunci când promptul este rulat.
+Dacă termenul tehnic **Temperatură** este nou pentru tine, gândește-te la el astfel:
 
 - O temperatură **mai scăzută** oferă rezultate mai stabile și mai previzibile.
 - O temperatură **mai ridicată** oferă mai multă varietate și creativitate.
@@ -568,21 +567,6 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 - **Ușor** (implicit): alegeți un **Furnizor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras sau Ollama). Furnizorii cloud folosesc presetele încorporate din bara de instrumente. **Ollama** listează modelele instalate pe mașina dumneavoastră în loc de presete. În modul Ușor, **Catalog de presete** afișează versiunea catalogului și data ultimei actualizări; faceți clic pe **Reîmprospătați catalogul de presete** pentru a prelua cea mai recentă listă de presete din depozitul proiectului (aplicația verifică și periodic în fundal).
 - **Avansat**: alegeți modele individuale în bara de instrumente; gestionați lista în [**Setări** > **Modele**](#models).
 
-În **aplicația web**, furnizorii afișați depind de cheile API setate în mediul serverului. În **aplicația desktop**, configurați cheile în [**Configurare API**](#api-config).
-
-**Comportament**
-
-- **Comportament pentru ENTER** alege dacă `Enter` execută sarcina sau inserează o linie nouă.
-- **Auto-traducere la lipire** pornește traducerea imediat ce lipiți text.
-- **Copiază automat rezultatul în clipboard** copiază automat rezultatele cu succes.
-- **Traducere în timp real (în timp ce scrii)** traduce în timp ce scrii.
-- **Timeout (ms)** setează timpul de așteptare pentru traducerea în timp real.
-
-**Istoric**
-
-- **Păstrează istoricul execuției** controlează dacă fiecare operațiune de traducere, rescriere și transformare stochează **textul de intrare și cel de ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni va solicita confirmare; dacă confirmați, textul stocat în istoric va fi eliminat din baza de date. Dacă eticheta afișează *dezactivat de administrator*, instalarea dumneavoastră are setat `HISTORY_DISABLED` în mediul de execuție (consultați [README](README.ro.md#configuration-and-environment)); nu puteți activa din nou istoricul din interfața utilizatorului.
-- **Șterge datele istoricului** vă permite să eliminați textul stocat în funcție de vechime (de exemplu, mai vechi de câteva luni sau **toate datele (ștergere)**) utilizând opțiunea **Șterge datele**. Aceasta afectează doar textul salvat pentru vizualizarea **Istoric**; **nu** șterge datele privind costurile sau utilizarea totală. Pentru a elimina sau reduce datele privind **costul**, utilizați [**Setări** > **Urmărire costuri**](#cost-tracking).
-
 **Aspect**
 
 - **Temă** comută între aspect deschis, întunecat și sistem.
@@ -592,15 +576,26 @@ Utilizați **Setări generale** pentru a controla comportamentul la tastare, dac
 - **Familie font** modifică fontul de scriere în panourile de text.
 - **Dimensiune** modifică dimensiunea fontului.
 
-**Backup configurație** (doar pentru administratori aplicație desktop și web)
+**Comportament**
 
-- **Include datele de utilizare în backup** - dacă este activat, arhiva ZIP conține și istoricul execuțiilor și datele apelurilor API.
-- **Backup configurație** - creează o singură arhivă ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în UTC implicit) cu `config.json`, `state.json`, cheia opțională de criptare, utilizatori, preferințe, solicitări personalizate și datele de utilizare dacă ați activat această opțiune. După un backup reușit, confirmarea afișează numele fișierului salvat.
-- **Restaurează din backup** - deschide mai întâi un **dialog de confirmare**. Alegeți arhiva ZIP în dialog (**Răsfoiește** / selector de fișiere sau glisați și plasați acolo unde este suportat), apoi verificați opțiunile:
-  - **Restaurează datele de utilizare** - importă utilizarea/istoricul din arhiva ZIP dacă a fost făcut backup cu datele de utilizare incluse; lăsați dezactivat dacă doriți doar setările și solicitările.
-  - **Șterge datele vechi de utilizare înainte de restaurare** - elimină utilizarea/istoricul existent pe această instanță înainte de aplicarea backup-ului (opțional; folosiți atunci când doriți o înlocuire curată).
+- **Comportament pentru ENTER** alege dacă `Enter` rulează sarcina sau inserează un nou rând.
+- **Executare automată la lipire** începe traducerea imediat ce lipești text.
+- **Copiere automată a rezultatului în clipboard** copiază rezultatele reușite automat.
+- **Traducere în timp real în timp ce scrii** (⚠️ Acest lucru poate crește costurile de utilizare) traduce în timp ce scrii.
+- **Timeout (ms)** setează timpul de așteptare pentru traducerea în timp real.
 
-Backup-urile create în versiunea web sau desktop pot fi restaurate în cealaltă. Când restaurați un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
+**Istoric**
+
+- **Păstrează istoricul execuției** controlează dacă fiecare operațiune de traducere, rescriere și transformare stochează **textul de intrare și cel de ieșire** pentru vizualizarea din bara laterală [**Istoric**](#history). Dezactivarea acestei opțiuni va solicita confirmare; dacă confirmați, textul stocat în istoric va fi eliminat din baza de date. Dacă eticheta afișează *dezactivat de administrator*, instalarea dumneavoastră are setat `HISTORY_DISABLED` în mediul de execuție (consultați [README](README.ro.md#configuration-and-environment)); nu puteți activa din nou istoricul din interfața utilizatorului.
+- **Șterge datele istoricului** vă permite să eliminați textul stocat în funcție de vechime (de exemplu, mai vechi de câteva luni sau **toate datele (ștergere)**) utilizând opțiunea **Șterge datele**. Aceasta afectează doar textul salvat pentru vizualizarea **Istoric**; **nu** șterge datele privind costurile sau utilizarea totală. Pentru a elimina sau reduce datele privind **costul**, utilizați [**Setări** > **Urmărire costuri**](#cost-tracking).
+
+**Backup configurație** (doar pentru administratori de aplicații desktop și web)
+- **Include datele de utilizare în backup** - când este activat, ZIP-ul conține de asemenea istoricul execuțiilor și datele apelurilor API.
+- **Backup configurație** - creează un singur ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` în ora locală) cu `config.json`, `state.json`, cheia de criptare opțională, utilizatori, preferințe, prompturi personalizate și date de utilizare dacă ai optat pentru aceasta. După un backup reușit, confirmarea arată numele fișierului salvat.
+- **Restaurare din backup** - deschide mai întâi un **dialog de confirmare**. Alege ZIP-ul de backup din dialog (**Răsfoire** / selector de fișiere sau drag-and-drop unde este suportat), apoi revizuiește opțiunile:
+  - **Restaurează datele de utilizare** - importă utilizarea/istoricul din ZIP când a fost realizat backup-ul cu utilizarea inclusă; lasă dezactivat dacă vrei doar setările și prompturile.
+  - **Șterge vechile date de utilizare înainte de a restaura** - elimină utilizarea/istoricul existent pe această instalare înainte de a aplica backup-ul (opțional; folosește când vrei o înlocuire curată).
+Backup-urile create fie în versiunea web, fie în versiunea desktop pot fi restaurate în cealaltă. Când restaurezi un backup desktop în versiunea web, datele vor fi restaurate pentru utilizatorul administrator.
 
 <br/>
 
@@ -801,11 +796,10 @@ Dacă utilizați aplicația desktop:
 
 Încercați una sau mai multe dintre următoarele opțiuni:
 
-- alegeți un preset diferit (Ușor) sau un model (Avansat)
-- utilizați o intrare mai scurtă
-- dezactivați **Traducere în timp real (în timp ce scrieți)** în [**Setări** > **Setări generale**](#general-settings)
-- utilizați modele gratuite pentru sarcini simple (consultați [Modele](#models))
-
+- alege un preset diferit (Ușor) sau model (Avansat)
+- folosește o intrare mai scurtă
+- dezactivează **Traducerea în timp real în timp ce scrii** în [**Setări** > **Setări generale**](#general-settings)
+- folosește modele gratuite pentru sarcini simple (vezi [Modele](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

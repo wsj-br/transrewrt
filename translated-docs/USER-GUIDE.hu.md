@@ -276,13 +276,13 @@ A kiválasztott **Fő nyelvek** a lista tetején jelennek meg. Ezeket a [**Beál
 
 A [**Beállítások** > **Általános beállítások**](#general-settings) menüben testreszabhatja a fordítás működését:
 
-- A **Fordítás beillesztéskor** automatikusan lefordítja a beillesztett szöveget.
-- Az **Eredmény automatikus másolása a vágólapra** az eredményt automatikusan másolja a vágólapra a sikeres fordítás után.
-- Az **Igény szerinti fordítás (gépelés közben)** a gépelés közben folyamatosan fordít.
-- Az **Időtúllépés (ms)** határozza meg, mennyi ideig vár az alkalmazás az igény szerinti fordítás elindítása előtt.
-- Az **ENTER működése** azt szabályozza, mi történik az `Enter` billentyű lenyomásakor:
-  - **Enter**: fordítást vagy átírást indít (alapértelmezett).
-  - **Shift + Enter**: fordítást vagy átírást indít; egyszerű **Enter** új sort szúr be.
+- **Automatikus végrehajtás beillesztéskor** a fordítást azonnal végrehajtja, amint beilleszt egy szöveget.
+- **Eredmény automatikus másolása a vágólapra** automatikusan másolja az eredményt egy sikeres futás után.
+- **Valós idejű fordítás gépelés közben** (⚠️ Ez növelheti a használati költségeket) a gépelés közben végzi a fordításokat.
+- **Időtúllépés (ms)** szabályozza, hogy mennyi ideig vár az alkalmazás, mielőtt valós idejű fordítást végez.
+- **Viselkedés a következőhöz: ENTER** azt választja meg, hogy `Enter` végrehajtja-e a feladatot, vagy új sort illeszt be:
+  - **Enter** végrehajtja a fordítást vagy az átírást (alapértelmezett).
+  - **Shift + Enter** végrehajtja a fordítást vagy az átírást; sima **Enter** új sort illeszt be.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -332,10 +332,10 @@ Ez az alkalmazás legrugalmazabb része. Ilyen feladatokra használható, mint:
 <a id="run-an-existing-prompt"></a>
 ### Létező parancs futtatása
 
-1. Nyissa meg a(z) **Átalakítás** funkciót.
-2. Válasszon egy parancsot a parancslista közül.
-3. Ha megjelenik egy **Cél** nyelv mező, válasszon nyelvet, ha szeretne.
-4. Írjon be szöveget, vagy illessze be a(z) **Bemenet** mezőbe.
+1. Nyisd meg a **Átalakítás**-t.
+2. Válassz egy kérést a kéréslistából.
+3. Ha megjelenik egy **Nyelv** doboz, válassz egy nyelvet, ha szeretnél.
+4. Írj vagy illessz be szöveget a **Bemenet**-be.
 5. Kattintson az **Átalakítás** gombra.
 6. Olvassa el az eredményt a(z) **Kimenet** mezőben.
 
@@ -382,11 +382,10 @@ A fő mezők a következők:
 - **Parancs utasításai (nem kötelező)**: egy rövid útmutató, amely a felhasználó számára jelenik meg a prompt futtatásakor.
 - **Modell szerepe**: az AI-nek kiosztott általános szerep, például: „Hasznos asszisztens vagyok.”
 - **Modell utasításai (soronként egy)**: azok a konkrét szabályok, amelyeket az MI-nek követnie kell.
-- **Kimenet leírása**: egy rövid szó, amely az eredményt írja le, például „összegzés” vagy „átírás”.
-- **Hőmérséklet (0,0 → 1,0)**: a modell viselkedését határozza meg; lásd lentebb.
-- **Nyelv kérése célként**: nyelvválasztó mezőt ad hozzá, amikor a prompt fut.
-
-Ha az **Hőmérséklet** technikai kifejezés új Önnek, képzelje el így:
+- **Kimeneti leírás (pl. átalakított, összefoglalt, stb.)**: egy rövid szó, amely leírja az eredményt.
+- **Hőmérséklet (0.0 → 1.0)**: hogyan fog viselkedni a modell; lásd alább.
+- **Kérj cél nyelvet**: nyelvválasztót ad hozzá, amikor a kérést végrehajtják.
+Ha a technikai kifejezés **Hőmérséklet** új számodra, így gondolj rá:
 
 - Az **alacsonyabb** hőmérséklet stabilabb, kiszámíthatóbb eredményeket ad.
 - A **magasabb** hőmérséklet nagyobb változatosságot és kreativitást eredményez.
@@ -567,21 +566,6 @@ Az **Általános beállítások** használatával szabályozhatja a gépelés m�
 - **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltatót** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras vagy Ollama). A felhőalapú szolgáltatók az eszköztár beépített előbeállításait használják. Az **Ollama** a gépén telepített modelleket jeleníti meg az előbeállítások helyett. Az Egyszerű módban az **Előbeállítások katalógusa** megjeleníti a katalógus verzióját és az utolsó frissítés idejét; kattintson az **Előbeállítások katalógusának frissítése** gombra a legfrissebb előbeállításlista letöltéséhez a projekt adattárából (az alkalmazás szintén rendszeresen ellenőrzi a frissítéseket a háttérben).
 - **Haladó**: válasszon egyedi modelleket az eszköztáron; kezelje a listát a [**Beállítások** > **Modellek**](#models) menüpontban.
 
-A **webalkalmazásban** a megjelenő szolgáltatók azon API-kulcsoktól függenek, amelyeket a szerverkörnyezetben állítottak be. Az **asztali alkalmazásban** az API-kulcsokat a [**API beállítások**](#api-config) alatt konfigurálhatja.
-
-**Működés**
-
-- **ENTER működése** határozza meg, hogy az `Enter` végrehajtja-e a feladatot, vagy új sort szúr be.
-- **Automatikus fordítás beillesztéskor** a szöveg beillesztésekor azonnal elindítja a fordítást.
-- **Eredmény automatikus másolása a vágólapra** sikeres eredményeket automatikusan másol a vágólapra.
-- **Valós idejű fordítás (gépelés közben)** gépelés közben fordít.
-- **Időtúllépés (ms)** beállítja a várakozási időt a valós idejű fordításhoz.
-
-**Előzmények**
-
-- **Előzmények megőrzése** szabályozza, hogy a fordítási, átírási és átalakítási műveletek **bemeneti és kimeneti szövegét** tárolják-e az oldalsáv [**Előzmények**](#history) nézete számára. Ha kikapcsolja, megerősítést kér; ha megerősíti, a tárolt előzmények szövege eltávolításra kerül az adatbázisból. Ha a címke *letiltva az adminisztrátor által* állapotot mutatja, az alkalmazás környezetében a `HISTORY_DISABLED` beállítás aktív (lásd a [README](README.hu.md#configuration-and-environment) fájlt); ebben az esetben az előzményeket nem lehet a felhasználói felületről újra engedélyezni.
-- **Előzményadatok törlése** lehetővé teszi a tárolt szövegek kor szerinti eltávolítását (például néhány hónapnál régebbi vagy **összes adat (törlés)**) a **Adatok törlése** funkcióval. Ez csak a **Előzmények** nézethez mentett végrehajtási szövegeket érinti; **nem** törli a költség- vagy használati összesítéseket. A **költség** adatok eltávolításához vagy csökkentéséhez használja az [**Beállítások** > **Költségkövetés**](#cost-tracking) lehetőséget.
-
 **Megjelenés**
 
 - A **Téma** vált a világos, sötét és rendszer szerinti megjelenés között.
@@ -591,15 +575,26 @@ A **webalkalmazásban** a megjelenő szolgáltatók azon API-kulcsoktól függen
 - A **Betűtípus** módosítja a szövegpanelek betűtípusát.
 - A **Méret** módosítja a betűméretet.
 
-**Konfiguráció biztonsági mentése** (csak asztali alkalmazás és webes rendszergazdák számára)
+**Működés**
 
-- **Használati adatok belefoglalása a biztonsági másolatba** – ha engedélyezve van, a ZIP fájl tartalmazza az előzményeket és az API-hívások adatait is.
-- **Konfiguráció biztonsági mentése** – egyetlen ZIP fájlt hoz létre (alapértelmezés szerint `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` UTC-ben), amely tartalmazza a `config.json`, `state.json`, opcionális titkosítási kulcsot, felhasználókat, beállításokat, egyéni promptokat, valamint a használati adatokat, ha ezt választottad. A sikeres biztonsági mentés után a megerősítés megjeleníti a mentett fájl nevét.
-- **Visszaállítás biztonsági másolatból** – először egy **megerősítő párbeszédablakot** nyit meg. Válaszd ki a biztonsági mentés ZIP fájlját a párbeszédablakban (**Tallózás** / fájlválasztó vagy fogd és vidd, ahol támogatott), majd tekintsd át a beállításokat:
-  - **Használati adatok visszaállítása** – importálja a használati/előzményadatokat a ZIP-ből, ha a biztonsági mentés során a használati adatok is be lettek foglalva; hagyd kikapcsolva, ha csak a beállításokat és promptokat szeretnéd visszaállítani.
-  - **Régi használati adatok törlése a visszaállítás előtt** – eltávolítja a jelenlegi telepítésben lévő meglévő használati/előzményadatokat a biztonsági másolat alkalmazása előtt (nem kötelező; akkor használd, ha tiszta csere szükséges).
+- **Viselkedés a következőhöz: ENTER** azt választja meg, hogy `Enter` végrehajtja-e a feladatot, vagy új sort illeszt be.
+- **Automatikus végrehajtás beillesztéskor** elindítja a fordítást, amint beilleszt egy szöveget.
+- **Eredmény automatikus másolása a vágólapra** automatikusan másolja a sikeres eredményeket.
+- **Valós idejű fordítás gépelés közben** (⚠️ Ez növelheti a használati költségeket) fordít, miközben gépelsz.
+- **Időtúllépés (ms)** beállítja a várakozási időt a valós idejű fordításhoz.
 
-A webes vagy asztali verzióban készült biztonsági másolatokat a másik verzióban is vissza lehet állítani. Ha asztali biztonsági másolatot állítasz vissza a webes verzióban, az adatok az adminisztrátor felhasználóhoz kerülnek visszaállításra.
+**Előzmények**
+
+- **Előzmények megőrzése** szabályozza, hogy a fordítási, átírási és átalakítási műveletek **bemeneti és kimeneti szövegét** tárolják-e az oldalsáv [**Előzmények**](#history) nézete számára. Ha kikapcsolja, megerősítést kér; ha megerősíti, a tárolt előzmények szövege eltávolításra kerül az adatbázisból. Ha a címke *letiltva az adminisztrátor által* állapotot mutatja, az alkalmazás környezetében a `HISTORY_DISABLED` beállítás aktív (lásd a [README](README.hu.md#configuration-and-environment) fájlt); ebben az esetben az előzményeket nem lehet a felhasználói felületről újra engedélyezni.
+- **Előzményadatok törlése** lehetővé teszi a tárolt szövegek kor szerinti eltávolítását (például néhány hónapnál régebbi vagy **összes adat (törlés)**) a **Adatok törlése** funkcióval. Ez csak a **Előzmények** nézethez mentett végrehajtási szövegeket érinti; **nem** törli a költség- vagy használati összesítéseket. A **költség** adatok eltávolításához vagy csökkentéséhez használja az [**Beállítások** > **Költségkövetés**](#cost-tracking) lehetőséget.
+
+**Konfiguráció biztonsági mentése** (asztali alkalmazás és webadminisztrátorok számára)
+- **Használati adatok szerepeljenek a biztonsági mentésben** - ha engedélyezve van, a ZIP tartalmazza a végrehajtási előzményeket és az API hívási adatokat is.
+- **Konfiguráció biztonsági mentése** - létrehoz egyetlen ZIP-et (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` helyi időben) `config.json`, `state.json`, opcionális titkosítási kulcs, felhasználók, preferenciák, egyedi kérések és használati adatok, ha beleegyeztél. Sikeres biztonsági mentés után a megerősítés megjeleníti a mentett fájl nevét.
+- **Visszaállítás biztonsági mentésből** - először megnyit egy **megerősítő párbeszédet**. Válaszd ki a biztonsági mentés ZIP fájlt a párbeszédablakban (**Böngészés** / fájl kiválasztó vagy húzd és ejtsd, ahol támogatott), majd nézd át az opciókat:
+  - **Használati adatok visszaállítása** - importálja a használati/előtörténetet a ZIP-ből, amikor azt használati adatokkal mentették; hagyd ki, ha csak a beállításokat és kéréseket szeretnéd.
+  - **Régi használati adatok törlése a visszaállítás előtt** - távolítsd el a meglévő használati/előtörténetet ezen az installáción, mielőtt alkalmaznád a biztonsági mentést (opcionális; használd, amikor tiszta cserét szeretnél).
+A webes vagy asztali verzióban készült biztonsági mentések visszaállíthatók a másikban. Amikor asztali biztonsági mentést állítasz vissza a webes verzióban, az adatok az adminisztrátor felhasználóhoz lesznek visszaállítva.
 
 <br/>
 
@@ -800,11 +795,10 @@ Ha az asztali alkalmazást használja:
 
 Próbálja ki az alábbiak egyikét vagy többjét:
 
-- válasszon másik előbeállítást (Egyszerű) vagy modellt (Haladó)
-- használjon rövidebb bemenetet
-- kapcsolja ki a **Valós idejű fordítás (gépelés közben)** funkciót a [**Beállítások** > **Általános beállítások**](#general-settings) menüpontban
-- egyszerű feladatokhoz használjon ingyenes modelleket (lásd: [Modellek](#models))
-
+- válassz egy másik előbeállítást (Egyszerű) vagy modellt (Haladó)
+- használj rövidebb bemenetet
+- kapcsold ki a **Valós idejű fordítást gépelés közben** a [**Beállítások** > **Általános beállítások**](#general-settings)
+- használj ingyenes modelleket egyszerű feladatokhoz (lásd [Modellek](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

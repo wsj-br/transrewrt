@@ -277,13 +277,13 @@ Vos **Langues principales** sélectionnées apparaissent en haut de la liste. Vo
 
 Dans [**Paramètres** > **Paramètres généraux**](#general-settings), vous pouvez modifier le comportement de la traduction :
 
-- **Traduction automatique au collage** lance une traduction dès que vous collez du texte.
-- **Copier automatiquement le résultat dans le presse-papiers** copie automatiquement le résultat après une exécution réussie.
-- **Traduction en temps réel (pendant la saisie)** lance des traductions pendant que vous tapez.
-- **Délai d'attente (ms)** contrôle la durée d'attente de l'application avant d'exécuter une traduction en temps réel.
-- **Comportement pour ENTRÉE** contrôle ce qui se produit lorsque vous appuyez sur `Enter` :
-  - **Entrée** lance la traduction ou la réécriture (par défaut).
-  - **Maj + Entrée** lance la traduction ou la réécriture ; une simple **Entrée** insère une nouvelle ligne.
+- **Exécuter automatiquement lors du collage** exécute une traduction dès que vous collez du texte.
+- **Copier automatiquement le résultat dans le presse-papiers** copie le résultat automatiquement après une exécution réussie.
+- **Traduction en temps réel lors de la saisie** (⚠️ Cela peut augmenter les coûts d'utilisation) exécute des traductions pendant que vous tapez.
+- **Délai d'attente (ms)** contrôle combien de temps l'application attend avant d'exécuter une traduction en temps réel.
+- **Comportement pour ENTER** choisit si `Enter` exécute la tâche ou insère une nouvelle ligne :
+  - **Entrée** exécute traduire ou réécrire (par défaut).
+  - **Maj + Entrée** exécute traduire ou réécrire ; **Entrée** simple insère une nouvelle ligne.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ C'est la zone la plus souple de l'application. Vous pouvez l'utiliser pour des t
 <a id="run-an-existing-prompt"></a>
 ### Exécuter une invite existante
 
-1. Ouvrez **Transformer**.
+1. Ouvrez **Transformation**.
 2. Choisissez une invite dans la liste des invites.
-3. Si une zone **Cible** langue apparaît, choisissez une langue si vous le souhaitez.
-4. Saisissez ou collez du texte dans **Entrée**.
+3. Si une boîte de langue **Depuis** apparaît, choisissez une langue si vous le souhaitez.
+4. Tapez ou collez du texte dans **Entrée**.
 5. Cliquez sur **Transformer**.
 6. Lisez le résultat dans **Sortie**.
 
@@ -383,11 +383,10 @@ Les principaux champs sont :
 - **Instructions de l'invite (facultatif)** : une courte indication affichée à l'utilisateur lors de l'exécution de l'invite.
 - **Rôle du modèle** : le rôle général attribué à l'IA, par exemple 'Vous êtes un assistant utile.'
 - **Instructions du modèle (une par ligne)** : les règles spécifiques que vous souhaitez que l'IA suive.
-- **Description de la sortie** : un mot court décrivant le résultat, comme 'résumé' ou 'réécriture'.
-- **Température (0,0 → 1,0)** : le comportement du modèle ; voir ci-dessous.
-- **Demander la langue cible** : ajoute un sélecteur de langue cible lors de l'exécution de l'invite.
-
-Si le terme technique **Température** est nouveau pour vous, pensez-y comme suit :
+- **Description de la sortie (p. ex. transformé, résumé, etc.)** : un mot court décrivant le résultat.
+- **Température (0,0 → 1,0)** : comment le modèle se comportera ; voir ci-dessous.
+- **Demander la langue cible** : ajoute un sélecteur de langue lorsque l'invite est exécutée.
+Si le terme technique **Température** est nouveau pour vous, pensez-y comme ceci :
 
 - Une **température** plus basse donne des résultats plus stables et prévisibles.
 - Une **température** plus élevée donne plus de variété et de créativité.
@@ -568,21 +567,6 @@ Utilisez **Paramètres généraux** pour contrôler le comportement de saisie, s
 - **Facile** (par défaut) : choisissez un **Fournisseur** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Les fournisseurs cloud utilisent les préréglages intégrés dans la barre d'outils. **Ollama** affiche les modèles installés sur votre machine au lieu des préréglages. En mode Facile, le **Catalogue des préréglages** indique la version du catalogue et l'heure de la dernière mise à jour ; cliquez sur **Actualiser le catalogue des préréglages** pour récupérer la liste la plus récente depuis le dépôt du projet (l'application vérifie également périodiquement en arrière-plan).
 - **Avancé** : sélectionnez des modèles individuels dans la barre d'outils ; gérez la liste sous [**Paramètres** > **Modèles**](#models).
 
-Dans l'**application web**, les fournisseurs disponibles dépendent des clés API définies dans l'environnement du serveur. Dans l'**application de bureau**, configurez les clés sous [**Configuration API**](#api-config).
-
-**Comportement**
-
-- **Comportement pour ENTRÉE** permet de choisir si `Enter` exécute la tâche ou insère une nouvelle ligne.
-- **Traduction automatique au collage** déclenche la traduction dès que vous collez du texte.
-- **Copier automatiquement le résultat dans le presse-papiers** copie automatiquement les résultats réussis.
-- **Traduction en temps réel (pendant la saisie)** traduit pendant que vous tapez.
-- **Délai d'attente (ms)** définit le temps d'attente pour la traduction en temps réel.
-
-**Historique**
-
-- **Conserver l'historique des exécutions** détermine si chaque traduction, réécriture et transformation enregistre le **texte d'entrée et de sortie** pour la vue latérale [**Historique**](#history). Désactiver cette option demande une confirmation ; si vous confirmez, les textes d'historique stockés sont supprimés de la base de données. Si l'étiquette indique *désactivé par l'administrateur*, votre installation a `HISTORY_DISABLED` défini dans l'environnement (voir le [README](README.fr.md#configuration-and-environment)) ; vous ne pouvez pas réactiver l'historique depuis l'interface.
-- **Supprimer les données d'historique** vous permet de supprimer les textes stockés selon leur ancienneté (par exemple, plus anciens que quelques mois, ou **toutes les données (effacer)**) à l'aide de **Supprimer les données**. Cela affecte uniquement les textes d'exécution sauvegardés pour la vue **Historique** ; cela ne supprime **pas** les totaux de coût ou d'utilisation. Pour supprimer ou réduire les données de **coût**, utilisez [**Paramètres** > **Suivi des coûts**](#cost-tracking).
-
 **Apparence**
 
 - **Thème** permet de basculer entre les modes clair, sombre et système.
@@ -592,15 +576,26 @@ Dans l'**application web**, les fournisseurs disponibles dépendent des clés AP
 - **Famille de polices** modifie la police utilisée dans les panneaux de texte.
 - **Taille** modifie la taille de la police.
 
-**Sauvegarde de la configuration** (uniquement pour l'application de bureau et les administrateurs web)
+**Comportement**
 
-- **Inclure les données d'utilisation dans la sauvegarde** - lorsqu'activé, le fichier ZIP contient également l'historique des exécutions et les données des appels API.
-- **Sauvegarder la configuration** - crée un fichier ZIP unique (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC par défaut) contenant `config.json`, `state.json`, une clé de chiffrement facultative, les utilisateurs, les préférences, les invites personnalisées et les données d'utilisation si vous avez choisi cette option. Après une sauvegarde réussie, une confirmation affiche le nom du fichier enregistré.
-- **Restaurer à partir d'une sauvegarde** - ouvre d'abord une **boîte de dialogue de confirmation**. Sélectionnez le fichier ZIP de sauvegarde dans la boîte de dialogue (**Parcourir** / sélecteur de fichiers ou glisser-déposer, selon les plateformes), puis examinez les options :
-  - **Restaurer les données d'utilisation** - importe les données d'utilisation/historique du fichier ZIP si elles ont été incluses lors de la sauvegarde ; désactivez cette option si vous souhaitez uniquement restaurer les paramètres et les invites.
-  - **Effacer les anciennes données d'utilisation avant la restauration** - supprime les données d'utilisation/historique existantes sur cette installation avant d'appliquer la sauvegarde (facultatif ; à utiliser lorsque vous souhaitez effectuer un remplacement complet).
+- **Comportement pour ENTER** choisit si `Enter` exécute la tâche ou insère une nouvelle ligne.
+- **Exécuter automatiquement lors du collage** commence la traduction dès que vous collez du texte.
+- **Copier automatiquement le résultat dans le presse-papiers** copie automatiquement les résultats réussis.
+- **Traduction en temps réel lors de la saisie** (⚠️ Cela peut augmenter les coûts d'utilisation) traduit pendant que vous tapez.
+- **Délai d'attente (ms)** définit le temps d'attente pour la traduction en temps réel.
 
-Les sauvegardes créées dans la version web ou de bureau peuvent être restaurées dans l'autre version. Lors de la restauration d'une sauvegarde de bureau dans la version web, les données seront restaurées pour l'utilisateur administrateur.
+**Historique**
+
+- **Conserver l'historique des exécutions** détermine si chaque traduction, réécriture et transformation enregistre le **texte d'entrée et de sortie** pour la vue latérale [**Historique**](#history). Désactiver cette option demande une confirmation ; si vous confirmez, les textes d'historique stockés sont supprimés de la base de données. Si l'étiquette indique *désactivé par l'administrateur*, votre installation a `HISTORY_DISABLED` défini dans l'environnement (voir le [README](README.fr.md#configuration-and-environment)) ; vous ne pouvez pas réactiver l'historique depuis l'interface.
+- **Supprimer les données d'historique** vous permet de supprimer les textes stockés selon leur ancienneté (par exemple, plus anciens que quelques mois, ou **toutes les données (effacer)**) à l'aide de **Supprimer les données**. Cela affecte uniquement les textes d'exécution sauvegardés pour la vue **Historique** ; cela ne supprime **pas** les totaux de coût ou d'utilisation. Pour supprimer ou réduire les données de **coût**, utilisez [**Paramètres** > **Suivi des coûts**](#cost-tracking).
+
+**Sauvegarde de la configuration** (administrateurs d'applications de bureau et web uniquement)
+- **Inclure les données d'utilisation dans la sauvegarde** - lorsqu'il est activé, le ZIP contient également l'historique d'exécution et les données d'appel API.
+- **Sauvegarder la configuration** - crée un seul ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` à l'heure locale) avec `config.json`, `state.json`, clé de chiffrement optionnelle, utilisateurs, préférences, invites personnalisées et données d'utilisation si vous avez opté pour cela. Après une sauvegarde réussie, la confirmation affiche le nom du fichier enregistré.
+- **Restaurer à partir d'une sauvegarde** - ouvre d'abord une **boîte de dialogue de confirmation**. Choisissez le ZIP de sauvegarde dans la boîte de dialogue (**Parcourir** / sélecteur de fichiers ou glisser-déposer où cela est pris en charge), puis examinez les options :
+  - **Restaurer les données d'utilisation** - importer l'utilisation/l'historique depuis le ZIP lorsqu'il a été sauvegardé avec l'utilisation incluse ; laissez de côté si vous ne souhaitez que les paramètres et les invites.
+  - **Effacer les anciennes données d'utilisation avant de restaurer** - supprimer l'utilisation/l'historique existants sur cette installation avant d'appliquer la sauvegarde (optionnel ; utilisez lorsque vous souhaitez un remplacement propre).
+Les sauvegardes créées dans la version web ou de bureau peuvent être restaurées dans l'autre. Lors de la restauration d'une sauvegarde de bureau dans la version web, les données seront restaurées à l'utilisateur administrateur.
 
 <br/>
 
@@ -801,11 +796,10 @@ En mode **Avancé**, ouvrez [**Paramètres** > **Modèles**](#models) et cliquez
 
 Essayez une ou plusieurs des solutions suivantes :
 
-- choisissez un autre préréglage (Facile) ou modèle (Avancé)
+- choisissez un préréglage différent (Facile) ou un modèle (Avancé)
 - utilisez une entrée plus courte
-- désactivez la **Traduction en temps réel (pendant la saisie)** dans [**Paramètres** > **Paramètres généraux**](#general-settings)
-- utilisez des modèles gratuits pour les tâches simples (voir [Modèles](#models))
-
+- désactivez **Traduction en temps réel lors de la saisie** dans [**Paramètres** > **Paramètres généraux**](#general-settings)
+- utilisez des modèles gratuits pour des tâches simples (voir [Modèles](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

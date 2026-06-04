@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
+- **Changed**: USER-GUIDE.md — label updates to match current implementation: "Auto-execute on paste" (renamed from "Auto-translate on paste"), "Real-time translation while typing" (with inline warning), "From" language selector in Transform prompt editor, and "Output description (e.g. transformed, summarised, etc.)" field label. Backup filename timestamp documentation updated to "local time".
 
 ## [1.3.7] - 2026-06-02
 

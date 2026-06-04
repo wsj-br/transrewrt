@@ -277,11 +277,11 @@ Ihre ausgewählten **Top-Sprachen** werden oben in der Liste angezeigt. Sie kön
 
 Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) können Sie das Verhalten der Übersetzung anpassen:
 
-- **Automatische Übersetzung beim Einfügen** führt eine Übersetzung automatisch aus, sobald Sie Text einfügen.
-- **Ergebnis automatisch in die Zwischenablage kopieren** kopiert das Ergebnis nach einer erfolgreichen Übersetzung automatisch.
-- **Echtzeit-Übersetzung (beim Tippen)** führt Übersetzungen durch, während Sie tippen.
-- **Timeout (ms)** legt fest, wie lange die App wartet, bevor eine Echtzeit-Übersetzung gestartet wird.
-- **Verhalten für ENTER** steuert, was passiert, wenn Sie `Enter` drücken:
+- **Automatisch ausführen beim Einfügen** führt eine Übersetzung aus, sobald Sie Text einfügen.
+- **Ergebnis automatisch in die Zwischenablage kopieren** kopiert das Ergebnis automatisch nach einem erfolgreichen Durchlauf.
+- **Echtzeitübersetzung während der Eingabe** (⚠️ Dies kann die Nutzungskosten erhöhen) führt Übersetzungen während der Eingabe aus.
+- **Timeout (ms)** steuert, wie lange die App wartet, bevor sie eine Echtzeitübersetzung ausführt.
+- **Verhalten für ENTER** wählt, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt:
   - **Enter** führt Übersetzen oder Umschreiben aus (Standard).
   - **Shift + Enter** führt Übersetzen oder Umschreiben aus; einfaches **Enter** fügt eine neue Zeile ein.
 
@@ -333,9 +333,9 @@ Dieser Bereich der App bietet die größte Flexibilität. Sie können ihn für A
 <a id="run-an-existing-prompt"></a>
 ### Einen vorhandenen Prompt ausführen
 
-1. Öffnen Sie **Umwandeln**.
-2. Wählen Sie einen Prompt aus der Prompt-Liste.
-3. Wenn ein **Ziel**-Sprachfeld angezeigt wird, wählen Sie gegebenenfalls eine Sprache aus.
+1. Öffnen Sie **Transformieren**.
+2. Wählen Sie eine Eingabeaufforderung aus der Eingabeaufforderungsliste aus.
+3. Wenn ein **Von**-Sprachenfeld erscheint, wählen Sie eine Sprache, wenn Sie eine möchten.
 4. Geben Sie Text in **Eingabe** ein oder fügen Sie ihn ein.
 5. Klicken Sie auf **Umwandeln**.
 6. Lesen Sie das Ergebnis in **Ausgabe**.
@@ -383,11 +383,10 @@ Die wichtigsten Felder sind:
 - **Prompt-Anweisungen (optional)**: ein kurzer Hinweis, der dem Benutzer beim Ausführen des Prompts angezeigt wird.
 - **Modellrolle**: die allgemeine Rolle, die der KI zugewiesen wird, z. B. 'Du bist ein hilfreicher Assistent.'
 - **Modellanweisungen (eine pro Zeile)**: die spezifischen Regeln, denen die KI folgen soll.
-- **Ausgabe-Beschreibung**: ein kurzes Wort, das das Ergebnis beschreibt, z. B. 'Zusammenfassung' oder 'Umschreiben'.
-- **Temperatur (0.0 → 1.0)**: wie sich das Modell verhalten wird; siehe unten.
-- **Nach Zielsprache fragen**: fügt beim Ausführen des Prompts einen Zielsprach-Selector hinzu.
-
-Wenn Ihnen der Fachbegriff **Temperatur** neu ist, stellen Sie sich das Folgende vor:
+- **Beschreibung der Ausgabe (z.B. transformiert, zusammengefasst usw.)**: ein kurzes Wort, das das Ergebnis beschreibt.
+- **Temperatur (0,0 → 1,0)**: wie sich das Modell verhalten wird; siehe unten.
+- **Nach Zielsprache fragen**: fügt einen Sprachwähler hinzu, wenn die Eingabeaufforderung ausgeführt wird.
+Wenn der technische Begriff **Temperatur** neu für Sie ist, denken Sie so darüber nach:
 
 - Eine **niedrigere** Temperatur führt zu stabileren, vorhersehbareren Ergebnissen.
 - Eine **höhere** Temperatur führt zu mehr Abwechslung und Kreativität.
@@ -568,21 +567,6 @@ Verwenden Sie **Allgemeine Einstellungen**, um das Tippverhalten, die Speicherun
 - **Einfach** (Standard): Wählen Sie einen **Anbieter** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras oder Ollama). Cloud-Anbieter verwenden die integrierten Voreinstellungen in der Symbolleiste. **Ollama** listet stattdessen die auf Ihrem Gerät installierten Modelle auf. Im Einfach-Modus zeigt der **Katalog der Voreinstellungen** die Katalogversion und die letzte Aktualisierungszeit an; klicken Sie auf **Katalog der Voreinstellungen aktualisieren**, um die aktuellste Liste der Voreinstellungen aus dem Projekt-Repository abzurufen (die App prüft dies auch regelmäßig im Hintergrund).
 - **Erweitert**: Wählen Sie einzelne Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [**Einstellungen** > **Modelle**](#models).
 
-In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment gesetzten API-Schlüsseln ab. In der **Desktop-App** konfigurieren Sie die Schlüssel unter [**API-Konfiguration**](#api-config).
-
-**Verhalten**
-
-- **Verhalten für ENTER** legt fest, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt.
-- **Automatische Übersetzung beim Einfügen** startet die Übersetzung, sobald Sie Text einfügen.
-- **Ergebnis automatisch in die Zwischenablage kopieren** kopiert erfolgreiche Ergebnisse automatisch.
-- **Echtzeit-Übersetzung (beim Tippen)** übersetzt während des Tippens.
-- **Timeout (ms)** legt die Wartezeit für die Echtzeit-Übersetzung fest.
-
-**Historie**
-
-- **Ausführungsverlauf behalten** steuert, ob jeder Übersetzungs-, Umschreibungs- und Umwandlungsvorgang **Eingabe- und Ausgabetext** für die Seitenleistenansicht [**Verlauf**](#history) speichert. Bei Deaktivierung wird eine Bestätigung angefordert; bei Bestätigung wird der gespeicherte Verlaufstext aus der Datenbank entfernt. Wenn die Bezeichnung *vom Administrator deaktiviert* angezeigt wird, ist `HISTORY_DISABLED` in der Umgebung Ihrer Installation festgelegt (siehe [README](README.de.md#configuration-and-environment)); Sie können den Verlauf dann nicht über die Benutzeroberfläche wieder aktivieren.
-- **Verlaufsdaten löschen** ermöglicht das Entfernen gespeicherter Texte nach Alter (z. B. älter als einige Monate oder **alle Daten (leeren)**) mithilfe von **Daten löschen**. Dies betrifft nur gespeicherte Ausführungstexte für die **Verlauf**-Ansicht; es werden **keine** Kosten- oder Nutzungsdaten gelöscht. Um **Kosten**-Daten zu entfernen oder zu bereinigen, verwenden Sie [**Einstellungen** > **Kostenverfolgung**](#cost-tracking).
-
 **Erscheinungsbild**
 
 - **Thema** wechselt zwischen hellem, dunklem und systembasiertem Erscheinungsbild.
@@ -592,15 +576,26 @@ In der **Web-App** hängt die Anzeige der Anbieter von den im Server-Environment
 - **Schriftart** ändert die Schriftart in den Textfeldern.
 - **Größe** ändert die Schriftgröße.
 
-**Konfigurationssicherung** (nur für Desktop-App und Web-Administratoren)
+**Verhalten**
 
-- **Nutzungsdaten in die Sicherung einschließen** – wenn aktiviert, enthält die ZIP-Datei auch Ausführungsverlauf und API-Aufrufdaten.
-- **Konfiguration sichern** – erstellt eine einzelne ZIP-Datei (standardmäßig `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) mit `config.json`, `state.json`, optionaler Verschlüsselungsschlüssel, Benutzern, Einstellungen, benutzerdefinierten Aufforderungen und Nutzungsdaten, falls aktiviert. Nach einer erfolgreichen Sicherung wird der Dateiname der gesicherten Datei angezeigt.
-- **Aus Sicherung wiederherstellen** – öffnet zuerst einen **Bestätigungsdialog**. Wählen Sie die Sicherungs-ZIP-Datei im Dialog aus (**Durchsuchen**/Dateiauswahl oder Drag-and-Drop, falls unterstützt), und prüfen Sie dann die Optionen:
-  - **Nutzungsdaten wiederherstellen** – importiert Nutzung/Verlauf aus der ZIP-Datei, wenn diese bei der Sicherung enthalten war; deaktivieren Sie dies, wenn Sie nur Einstellungen und Aufforderungen übernehmen möchten.
-  - **Alte Nutzungsdaten vor dem Wiederherstellen löschen** – entfernt vorhandene Nutzung/Verlauf auf dieser Installation, bevor die Sicherung angewendet wird (optional; verwenden Sie dies, wenn Sie einen sauberen Austausch wünschen).
+- **Verhalten für ENTER** wählt, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt.
+- **Automatisch ausführen beim Einfügen** startet die Übersetzung, sobald Sie Text einfügen.
+- **Ergebnis automatisch in die Zwischenablage kopieren** kopiert erfolgreiche Ergebnisse automatisch.
+- **Echtzeitübersetzung während der Eingabe** (⚠️ Dies kann die Nutzungskosten erhöhen) übersetzt, während Sie eingeben.
+- **Timeout (ms)** legt die Wartezeit für die Echtzeit-Übersetzung fest.
 
-Sicherungen, die entweder in der Web- oder Desktopversion erstellt wurden, können in der jeweils anderen Version wiederhergestellt werden. Beim Wiederherstellen einer Desktop-Sicherung in der Webversion werden die Daten im Administrator-Benutzerkonto wiederhergestellt.
+**Historie**
+
+- **Ausführungsverlauf behalten** steuert, ob jeder Übersetzungs-, Umschreibungs- und Umwandlungsvorgang **Eingabe- und Ausgabetext** für die Seitenleistenansicht [**Verlauf**](#history) speichert. Bei Deaktivierung wird eine Bestätigung angefordert; bei Bestätigung wird der gespeicherte Verlaufstext aus der Datenbank entfernt. Wenn die Bezeichnung *vom Administrator deaktiviert* angezeigt wird, ist `HISTORY_DISABLED` in der Umgebung Ihrer Installation festgelegt (siehe [README](README.de.md#configuration-and-environment)); Sie können den Verlauf dann nicht über die Benutzeroberfläche wieder aktivieren.
+- **Verlaufsdaten löschen** ermöglicht das Entfernen gespeicherter Texte nach Alter (z. B. älter als einige Monate oder **alle Daten (leeren)**) mithilfe von **Daten löschen**. Dies betrifft nur gespeicherte Ausführungstexte für die **Verlauf**-Ansicht; es werden **keine** Kosten- oder Nutzungsdaten gelöscht. Um **Kosten**-Daten zu entfernen oder zu bereinigen, verwenden Sie [**Einstellungen** > **Kostenverfolgung**](#cost-tracking).
+
+**Konfigurationssicherung** (nur Desktop-App und Webadministratoren)
+- **Nutzungsdaten in die Sicherung einschließen** - wenn aktiviert, enthält die ZIP auch Ausführungsverlauf und API-Aufrufdaten.
+- **Konfiguration sichern** - erstellt eine einzelne ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in lokaler Zeit) mit `config.json`, `state.json`, optionalem Verschlüsselungsschlüssel, Benutzern, Einstellungen, benutzerdefinierten Eingabeaufforderungen und Nutzungsdaten, wenn Sie sich angemeldet haben. Nach einer erfolgreichen Sicherung zeigt die Bestätigung den gespeicherten Dateinamen an.
+- **Aus Sicherung wiederherstellen** - öffnet zuerst einen **Bestätigungsdialog**. Wählen Sie die Sicherungs-ZIP im Dialog aus (**Durchsuchen** / Dateiauswahl oder Drag-and-Drop, wo unterstützt), und überprüfen Sie dann die Optionen:
+  - **Nutzungsdaten wiederherstellen** - importiert Nutzungs-/Verlauf aus der ZIP, wenn sie mit eingeschlossenen Nutzungsdaten gesichert wurde; deaktivieren, wenn Sie nur Einstellungen und Eingabeaufforderungen möchten.
+  - **Alte Nutzungsdaten vor der Wiederherstellung löschen** - entfernt vorhandene Nutzungs-/Verlauf auf dieser Installation, bevor die Sicherung angewendet wird (optional; verwenden, wenn Sie einen sauberen Austausch wünschen).
+Sicherungen, die entweder in der Web- oder Desktop-Version erstellt wurden, können in der anderen wiederhergestellt werden. Bei der Wiederherstellung einer Desktop-Sicherung in der Web-Version werden die Daten dem Administratorkonto wiederhergestellt.
 
 <br/>
 
@@ -801,11 +796,10 @@ Im **Erweitert**-Modus öffnen Sie [**Einstellungen** > **Modelle**](#models) un
 
 Probieren Sie eines oder mehrere davon aus:
 
-- Wählen Sie eine andere Voreinstellung (Einfach) oder ein anderes Modell (Erweitert)
-- Verwenden Sie eine kürzere Eingabe
-- Deaktivieren Sie **Echtzeit-Übersetzung (beim Tippen)** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings)
-- Verwenden Sie kostenlose Modelle für einfache Aufgaben (siehe [Modelle](#models))
-
+- wählen Sie eine andere Vorgabe (Einfach) oder ein anderes Modell (Erweitert)
+- verwenden Sie eine kürzere Eingabe
+- deaktivieren Sie **Echtzeitübersetzung während der Eingabe** in [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings)
+- verwenden Sie kostenlose Modelle für einfache Aufgaben (siehe [Modelle](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

@@ -277,13 +277,13 @@ Ang iyong napiling **Top languages** ay lilitaw sa tuktok ng listahan. Maaari mo
 
 Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin kung paano gumagana ang pagsasalin:
 
-- **Auto-translate on paste** ay nagsasagawa ng pagsasalin agad-agad kapag pinaste mo ang teksto.
-- **Auto-copy result to clipboard** ay awtomatikong kumokopya ng resulta pagkatapos ng matagumpay na pagsasalin.
-- **Real-time translation (habang nagta-type)** ay nagsasalin habang nagta-type ka.
-- **Timeout (ms)** ay nagtatakda kung gaano katagal hihintayin ng app bago magsagawa ng real-time na pagsasalin.
-- Ang **Pag-uugali para sa ENTER** ay kontrolado kung ano ang mangyayari kapag pinindot mo ang `Enter`:
-  - Ang **Enter** ay nagpapatakbo ng pagsasalin o muling pagsulat (default).
-  - Ang **Shift + Enter** ay nagpapatakbo ng pagsasalin o muling pagsulat; ang simpleng **Enter** ay nagdadagdag ng bagong linya.
+- **Awtomatikong-ipatupad kapag nailagay** ay nagpapatakbo ng pagsasalin sa sandaling i-paste mo ang teksto.
+- **Awtomatikong-kopyahin ang resulta sa clipboard** ay awtomatikong kinokopya ang resulta pagkatapos ng matagumpay na pagpapatakbo.
+- **Pagsasalin sa real-time habang nagta-type** (⚠️ Maaaring tumaas ang mga gastos sa paggamit) ay nagpapatakbo ng mga pagsasalin habang nagta-type ka.
+- **Timeout (ms)** ay kumokontrol kung gaano katagal naghihintay ang app bago magpatakbo ng isang pagsasalin sa real-time.
+- **Pag-uugali para sa ENTER** ay pumipili kung ang `Enter` ay nagpapatakbo ng gawain o nag-iinsert ng bagong linya:
+  - **Enter** ay nagpapatakbo ng pagsasalin o rewrite (default).
+  - **Shift + Enter** ay nagpapatakbo ng pagsasalin o rewrite; ang plain **Enter** ay nag-iinsert ng bagong linya.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Ito ang pinakamalawak na bahagi ng app. Maaari mo itong gamitin para sa mga gawa
 <a id="run-an-existing-prompt"></a>
 ### Patakbuhin ang umiiral na prompt
 
-1. Buksan ang **Baguhin**.
-2. Pumili ng isang prompt mula sa listahan ng prompt.
-3. Kung lumitaw ang kahon ng **Destinasyon** na wika, pumili ng wika kung gusto mo.
-4. I-type o i-paste ang teksto sa loob ng **Input**.
+1. Buksan ang **Transform**.
+2. Pumili ng prompt mula sa listahan ng prompt.
+3. Kung may lumitaw na **From** na kahon ng wika, pumili ng wika kung nais mo.
+4. I-type o i-paste ang teksto sa **Input**.
 5. I-click ang **Baguhin**.
 6. Basahin ang resulta sa **Output**.
 
@@ -383,11 +383,10 @@ Ang pangunahing mga field ay:
 - **Mga tagubilin sa prompt (opsyonal)**: maikling tulong na ipinapakita sa user kapag pinapatakbo ang prompt.
 - **Tungkulin ng Modelo**: ang pangkalahatang tungkulin na itinakda sa AI, tulad ng 'Ikaw ay isang mapaglingkod na katulong.'
 - **Mga Tagubilin sa Modelo (isa bawat hanay)**: ang tiyak na mga alituntunin na gusto mong sundin ng AI.
-- **Deskripsyon ng output**: maikling salita na naglalarawan sa resulta, tulad ng 'buod' o 'muling isulat'.
-- **Temperature (0.0 → 1.0)**: kung paano kikilos ang modelo; tingnan sa ibaba.
-- **Humiling ng wika ng destinasyon**: nagdadagdag ng selector ng wika ng destinasyon kapag pinapatakbo ang prompt.
-
-Kung bago sa iyo ang teknikal na terminong **Temperature**, isipin mo ito nang ganito:
+- **Paglalarawan ng Output (hal. binago, na-summarize, atbp.)**: isang maikling salita na naglalarawan sa resulta.
+- **Temperatura (0.0 → 1.0)**: kung paano mag-uugali ang modelo; tingnan sa ibaba.
+- **Humiling ng target na wika**: nagdadagdag ng selector ng wika kapag pinapatakbo ang prompt.
+Kung ang teknikal na termino na **Temperatura** ay bago sa iyo, isipin ito na parang ganito:
 
 - Ang **mas mababang** temperature ay nagbibigay ng mas matatag at higit na nakaplanong resulta.
 - Ang **mas mataas** na temperature ay nagbibigay ng higit na iba't-iba at malikhain.
@@ -568,21 +567,6 @@ Gumamit ng **General Settings** upang kontrolin ang pag-uugali sa pag-type, kung
 - **Madali** (default): pumili ng **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, o Ollama). Ang mga cloud provider ay gumagamit ng mga naka-embed na preset sa toolbar. Ang **Ollama** ay naglilista ng mga modelo na naka-install sa iyong makina imbes na mga preset. Sa Madaling mode, ang **Katalogo ng mga preset** ay nagpapakita ng bersyon ng katalogo at oras ng huling pag-update; i-click ang **I-refresh ang katalogo ng mga preset** para i-fetch ang pinakabagong listahan ng preset mula sa repository ng proyekto (ang app ay nagsusuri rin nang pana-panahon sa background).
 - **Advanced**: pumili ng mga indibidwal na modelo sa toolbar; pamahalaan ang listahan sa ilalim ng [**Mga Setting** > **Mga Modelo**](#models).
 
-Sa **web app**, ang mga provider na lumilitaw ay nakadepende sa mga API key na naka-set sa server environment. Sa **desktop app**, i-configure ang mga key sa ilalim ng [**API Config**](#api-config).
-
-**Pag-uugali**
-
-- Ang **Pag-uugali para sa ENTER** ay nagpapasya kung ang `Enter` ay papatakbo sa gawain o mag-i-insert ng bagong linya.
-- Ang **Auto-translate kapag pinaste** ay nagsisimula ng pagsasalin pagkatapos mong i-paste ang teksto.
-- Ang **I-copy nang awtomatiko ang resulta sa clipboard** ay awtomatikong kumokopya sa matagumpay na resulta.
-- Ang **Real-time na pagsasalin (habang nagtatype)** ay nagsasalin habang nagtatype ka.
-- Ang **Timeout (ms)** ay nagtatakda ng oras ng paghihintay para sa real-time na pagsasalin.
-
-**Kasaysayan**
-
-- **Panatilihin ang kasaysayan ng pagpapatakbo** ay kontrolado kung ang bawat isalin, muling isulat, at baguhin ay nag-iimbak ng **input at tekstong lalabas** para sa tab na [**Kasaysayan**](#history). Ang pag-off nito ay maghihingi ng kumpirmasyon; kung ikaw ay kumpirmado, ang naka-imbak na kasaysayan ng teksto ay tatanggalin sa database. Kung ang label ay nagpapakita ng *hindi pinagana ng tagapangasiwa*, ang iyong pag-install ay may nakatakda na `HISTORY_DISABLED` sa environment (tingnan ang [README](README.tl.md#configuration-and-environment)); hindi mo maaaring i-on muli ang kasaysayan mula sa UI.
-- **Tanggalin ang data ng kasaysayan** ay nagbibigay-daan sa iyo na alisin ang naka-imbak na teksto batay sa edad (halimbawa, mas matanda kaysa ilang buwan, o **lahat ng data (linisin)**) gamit ang **Tanggalin ang data**. Ito ay nakakaapekto lamang sa naka-save na teksto ng pagpapatakbo para sa view na **Kasaysayan**; hindi ito **tinatanggal** ang gastos o kabuuang paggamit. Para alisin o bawasan ang data ng **gastos**, gamitin ang [**Mga Setting** > **Pagsusubaybay ng Gastos**](#cost-tracking).
-
 **Hitsura**
 
 - Ang **Tema** ay nagbabago sa pagitan ng maliwanag, madilim, at hitsura ng sistema.
@@ -592,15 +576,26 @@ Sa **web app**, ang mga provider na lumilitaw ay nakadepende sa mga API key na n
 - Ang **Pamilya ng Font** ay nagbabago sa font ng pagsulat sa mga panel ng teksto.
 - Ang **Laki** ay nagbabago sa laki ng font.
 
-**Backup ng Configuration** (para lamang sa mga tagapangasiwa ng desktop app at web)
+**Pag-uugali**
 
-- **Isama ang data ng paggamit sa backup** - kapag naka-enable, ang ZIP ay naglalaman din ng kasaysayan ng pagpapatakbo at data ng API call.
-- **I-backup ang configuration** - gumagawa ng isang ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` sa UTC bilang default) na naglalaman ng `config.json`, `state.json`, opsyonal na encryption key, mga gumagamit, mga kagustuhan, mga custom na prompt, at data ng paggamit kung pinili mo ito. Matapos ang matagumpay na backup, ang kumpirmasyon ay nagpapakita ng pangalan ng naka-save na file.
-- **I-restore mula sa backup** - binubuksan muna ang **dialog ng kumpirmasyon**. Piliin ang backup ZIP sa loob ng dialog (**Browse** / file picker o drag-and-drop kung suportado), pagkatapos ay suriin ang mga opsyon:
-  - **Ibalik ang data ng paggamit** - i-import ang data ng paggamit/kasaysayan mula sa ZIP kapag ito ay na-backup na kasama ang paggamit; huwag i-enable kung gusto mo lamang ang mga setting at prompt.
-  - **Tanggalin ang lumang data ng paggamit bago ibalik** - alisin ang umiiral na data ng paggamit/kasaysayan sa install na ito bago ilapat ang backup (opsyonal; gamitin kapag gusto mong malinis na palitan).
+- **Pag-uugali para sa ENTER** ay pumipili kung ang `Enter` ay nagpapatakbo ng gawain o nag-iinsert ng bagong linya.
+- **Awtomatikong-ipatupad kapag nailagay** ay nagsisimula ng pagsasalin sa sandaling i-paste mo ang teksto.
+- **Awtomatikong-kopyahin ang resulta sa clipboard** ay awtomatikong kinokopya ang matagumpay na mga resulta.
+- **Pagsasalin sa real-time habang nagta-type** (⚠️ Maaaring tumaas ang mga gastos sa paggamit) ay nagsasalin habang nagta-type ka.
+- Ang **Timeout (ms)** ay nagtatakda ng oras ng paghihintay para sa real-time na pagsasalin.
 
-Ang mga backup na nilikha sa web o desktop version ay maaaring i-restore sa kabilang bersyon. Kapag ini-restore ang desktop backup sa web version, ang data ay mai-restore sa administrator user.
+**Kasaysayan**
+
+- **Panatilihin ang kasaysayan ng pagpapatakbo** ay kontrolado kung ang bawat isalin, muling isulat, at baguhin ay nag-iimbak ng **input at tekstong lalabas** para sa tab na [**Kasaysayan**](#history). Ang pag-off nito ay maghihingi ng kumpirmasyon; kung ikaw ay kumpirmado, ang naka-imbak na kasaysayan ng teksto ay tatanggalin sa database. Kung ang label ay nagpapakita ng *hindi pinagana ng tagapangasiwa*, ang iyong pag-install ay may nakatakda na `HISTORY_DISABLED` sa environment (tingnan ang [README](README.tl.md#configuration-and-environment)); hindi mo maaaring i-on muli ang kasaysayan mula sa UI.
+- **Tanggalin ang data ng kasaysayan** ay nagbibigay-daan sa iyo na alisin ang naka-imbak na teksto batay sa edad (halimbawa, mas matanda kaysa ilang buwan, o **lahat ng data (linisin)**) gamit ang **Tanggalin ang data**. Ito ay nakakaapekto lamang sa naka-save na teksto ng pagpapatakbo para sa view na **Kasaysayan**; hindi ito **tinatanggal** ang gastos o kabuuang paggamit. Para alisin o bawasan ang data ng **gastos**, gamitin ang [**Mga Setting** > **Pagsusubaybay ng Gastos**](#cost-tracking).
+
+**Backup ng Configuration** (desktop app at web administrators lamang)
+- **Isama ang data ng paggamit sa backup** - kapag pinagana, ang ZIP ay naglalaman din ng kasaysayan ng pagpapatakbo at data ng tawag sa API.
+- **I-backup ang configuration** - lumilikha ng isang solong ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` sa lokal na oras) na may `config.json`, `state.json`, opsyonal na susi ng encryption, mga gumagamit, mga kagustuhan, mga custom na prompt, at data ng paggamit kung ikaw ay pumayag. Pagkatapos ng matagumpay na backup, ang kumpirmasyon ay nagpapakita ng pangalan ng na-save na file.
+- **Ibalik mula sa backup** - nagbubukas ng **confirmation dialog first**. Pumili ng backup ZIP sa loob ng dialog (**Browse** / file picker o drag-and-drop kung suportado), pagkatapos ay suriin ang mga opsyon:
+  - **I-restore ang data ng paggamit** - i-import ang paggamit/kasaysayan mula sa ZIP kapag ito ay na-backup na may kasamang paggamit; iwanan kung nais mo lamang ang mga setting at prompt.
+  - **Burahin ang lumang data ng paggamit bago i-restore** - alisin ang umiiral na paggamit/kasaysayan sa pag-install na ito bago ilapat ang backup (opsyonal; gamitin kapag nais mo ng malinis na kapalit).
+Ang mga backup na nilikha sa alinman sa web o desktop na bersyon ay maaaring ma-restore sa iba. Kapag nag-restore ng desktop backup sa web na bersyon, ang data ay maibabalik sa administrator user.
 
 <br/>
 
@@ -801,11 +796,10 @@ Sa **Advanced** na mode, buksan ang [**Mga Setting** > **Mga Modelo**](#models) 
 
 Subukan ang isa o higit pa sa mga sumusunod:
 
-- pumili ng ibang preset (Madali) o modelo (Advanced)
-- gumamit ng mas maikling input
-- i-off ang **Real-time na pagsasalin (habang nagta-type)** sa [**Mga Setting** > **Mga Pangkalahatang Setting**](#general-settings)
-- gumamit ng libreng mga modelo para sa simpleng mga gawain (tingnan ang [Mga Modelo](#models))
-
+- pumili ng ibang naka-preset (Madali) o modelo (Abante)
+- gumamit ng mas maiikli na input
+- i-off ang **Pagsasalin sa real-time habang nagta-type** sa [**Mga Setting** > **Pangkalahatang Mga Setting**](#general-settings)
+- gumamit ng mga libreng modelo para sa simpleng mga gawain (tingnan ang [Mga Modelo](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

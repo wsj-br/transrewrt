@@ -277,13 +277,13 @@ Le tue **Lingue principali** selezionate appaiono in alto nell'elenco. Puoi impo
 
 In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modificare il comportamento della traduzione:
 
-- **Traduzione automatica al momento dell'incolla** esegue automaticamente una traduzione non appena incolli del testo.
-- **Copia automaticamente il risultato negli appunti** copia automaticamente il risultato al termine dell'elaborazione.
-- **Traduzione in tempo reale (durante la digitazione)** esegue traduzioni mentre digiti.
-- **Timeout (ms)** regola per quanto tempo l'app attende prima di eseguire una traduzione in tempo reale.
-- **Comportamento per INVIO** controlla cosa accade quando premi `Enter`:
-  - **Invio** esegue traduzione o riscrittura (predefinito).
-  - **Maiusc + Invio** esegue traduzione o riscrittura; **Invio** semplice inserisce una nuova riga.
+- **Esegui automaticamente al copia-incolla** esegue una traduzione non appena incolli del testo.
+- **Copia automaticamente il risultato negli appunti** copia automaticamente il risultato dopo un'esecuzione riuscita.
+- **Traduzione in tempo reale mentre si digita** (⚠️ Questo potrebbe aumentare i costi di utilizzo) esegue traduzioni mentre digiti.
+- **Timeout (ms)** controlla quanto a lungo l'app attende prima di eseguire una traduzione in tempo reale.
+- **Comportamento per ENTER** sceglie se `Enter` esegue il compito o inserisce una nuova riga:
+  - **Enter** esegue traduci o riscrivi (predefinito).
+  - **Shift + Enter** esegue traduci o riscrivi; **Enter** semplice inserisce una nuova riga.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -335,7 +335,7 @@ Questa è l'area più flessibile dell'app. Puoi utilizzarla per attività come:
 
 1. Apri **Trasforma**.
 2. Scegli un prompt dall'elenco dei prompt.
-3. Se appare una casella per la lingua **Destinazione**, scegli una lingua se lo desideri.
+3. Se appare una casella di lingua **Da**, scegli una lingua se ne desideri una.
 4. Digita o incolla il testo in **Input**.
 5. Fai clic su **Trasforma**.
 6. Leggi il risultato in **Output**.
@@ -383,10 +383,9 @@ I campi principali sono:
 - **Istruzioni del prompt (opzionale)**: un breve suggerimento visualizzato all'utente durante l'esecuzione del prompt.
 - **Ruolo del modello**: il ruolo generale assegnato all'IA, come 'Sei un assistente utile.'
 - **Istruzioni del modello (una per riga)**: le regole specifiche che desideri che l'IA segua.
-- **Descrizione output**: una parola breve che descrive il risultato, come 'riepilogo' o 'riscrivi'.
+- **Descrizione dell'output (es. trasformato, riassunto, ecc.)**: una parola breve che descrive il risultato.
 - **Temperatura (0,0 → 1,0)**: come si comporterà il modello; vedi sotto.
-- **Chiedi la lingua di destinazione**: aggiunge un selettore di lingua di destinazione quando il prompt viene eseguito.
-
+- **Chiedi la lingua di destinazione**: aggiunge un selettore di lingua quando il prompt viene eseguito.
 Se il termine tecnico **Temperatura** è nuovo per te, pensalo in questo modo:
 
 - Una temperatura **più bassa** fornisce risultati più stabili e prevedibili.
@@ -568,21 +567,6 @@ Utilizza **Impostazioni generali** per controllare il comportamento della digita
 - **Facile** (predefinito): scegli un **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). I provider cloud utilizzano i preset integrati nella barra degli strumenti. **Ollama** elenca i modelli installati sul tuo computer al posto dei preset. In modalità Facile, **Catalogo dei preset** mostra la versione del catalogo e l'ora dell'ultimo aggiornamento; fai clic su **Aggiorna catalogo dei preset** per scaricare l'elenco più recente dal repository del progetto (l'app verifica periodicamente in background).
 - **Avanzato**: seleziona singoli modelli nella barra degli strumenti; gestisci l'elenco in [**Impostazioni** > **Modelli**](#models).
 
-Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate nell'ambiente del server. Nell'**app desktop**, configura le chiavi in [**Configurazione API**](#api-config).
-
-**Comportamento**
-
-- **Comportamento per ENTER** consente di scegliere se `Enter` esegue l'attività o inserisce una nuova riga.
-- **Traduzione automatica al momento dell'incolla** avvia la traduzione non appena incolli del testo.
-- **Copia automaticamente il risultato negli appunti** copia automaticamente i risultati riusciti.
-- **Traduzione in tempo reale (durante la digitazione)** traduce mentre digiti.
-- **Timeout (ms)** imposta il tempo di attesa per la traduzione in tempo reale.
-
-**Cronologia**
-
-- **Mantieni la cronologia di esecuzione** controlla se ogni operazione di traduzione, riscrittura e trasformazione memorizza il **testo in input e output** per la visualizzazione della [**Cronologia**](#history) nella barra laterale. Disattivandolo verrà richiesta una conferma; se confermi, il testo della cronologia memorizzato verrà rimosso dal database. Se l'etichetta mostra *disabilitato dall'amministratore*, la tua installazione ha `HISTORY_DISABLED` impostato nell'ambiente (vedi il [README](README.it.md#configuration-and-environment)); non potrai riattivare la cronologia dall'interfaccia utente.
-- **Elimina dati cronologia** ti consente di rimuovere il testo memorizzato in base all'età (ad esempio più vecchio di alcuni mesi, oppure **tutti i dati (cancella)**) utilizzando **Elimina dati**. Questa operazione influisce solo sul testo di esecuzione salvato per la vista **Cronologia**; **non** elimina i totali di costi o utilizzo. Per rimuovere o ridurre i dati relativi ai **costi**, utilizza [**Impostazioni** > **Monitoraggio costi**](#cost-tracking).
-
 **Aspetto**
 
 - **Tema** passa tra aspetto chiaro, scuro e del sistema.
@@ -592,15 +576,26 @@ Nell'**app web**, i provider disponibili dipendono dalle chiavi API impostate ne
 - **Famiglia caratteri** modifica il carattere di scrittura nei pannelli di testo.
 - **Dimensione** modifica la dimensione del carattere.
 
-**Backup configurazione** (solo app desktop e amministratori web)
+**Comportamento**
 
-- **Includi i dati di utilizzo nel backup** - se abilitato, il file ZIP contiene anche la cronologia di esecuzione e i dati delle chiamate API.
-- **Esegui backup configurazione** - crea un singolo file ZIP (di default `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) contenente `config.json`, `state.json`, chiave di crittografia opzionale, utenti, preferenze, prompt personalizzati e dati di utilizzo se hai scelto di includerli. Al termine del backup, la conferma mostra il nome del file salvato.
-- **Ripristina da backup** - apre prima un **dialogo di conferma**. Scegli il file ZIP di backup all'interno del dialogo (**Sfoglia** / selettore file o trascinamento, dove supportato), quindi verifica le opzioni:
-  - **Ripristina i dati di utilizzo** - importa dati di utilizzo/cronologia dal file ZIP se era stato eseguito il backup includendo i dati di utilizzo; lascia disattivato se desideri solo impostazioni e prompt.
-  - **Cancella i vecchi dati di utilizzo prima del ripristino** - rimuove i dati di utilizzo/cronologia esistenti su questa installazione prima di applicare il backup (opzionale; utilizza quando desideri un rimpiazzo pulito).
+- **Comportamento per ENTER** sceglie se `Enter` esegue il compito o inserisce una nuova riga.
+- **Esegui automaticamente al copia-incolla** avvia la traduzione non appena incolli del testo.
+- **Copia automaticamente il risultato negli appunti** copia automaticamente i risultati riusciti.
+- **Traduzione in tempo reale mentre si digita** (⚠️ Questo potrebbe aumentare i costi di utilizzo) traduce mentre digiti.
+- **Timeout (ms)** imposta il tempo di attesa per la traduzione in tempo reale.
 
-I backup creati nella versione web o desktop possono essere ripristinati nell'altra. Quando si ripristina un backup desktop nella versione web, i dati verranno ripristinati per l'utente amministratore.
+**Cronologia**
+
+- **Mantieni la cronologia di esecuzione** controlla se ogni operazione di traduzione, riscrittura e trasformazione memorizza il **testo in input e output** per la visualizzazione della [**Cronologia**](#history) nella barra laterale. Disattivandolo verrà richiesta una conferma; se confermi, il testo della cronologia memorizzato verrà rimosso dal database. Se l'etichetta mostra *disabilitato dall'amministratore*, la tua installazione ha `HISTORY_DISABLED` impostato nell'ambiente (vedi il [README](README.it.md#configuration-and-environment)); non potrai riattivare la cronologia dall'interfaccia utente.
+- **Elimina dati cronologia** ti consente di rimuovere il testo memorizzato in base all'età (ad esempio più vecchio di alcuni mesi, oppure **tutti i dati (cancella)**) utilizzando **Elimina dati**. Questa operazione influisce solo sul testo di esecuzione salvato per la vista **Cronologia**; **non** elimina i totali di costi o utilizzo. Per rimuovere o ridurre i dati relativi ai **costi**, utilizza [**Impostazioni** > **Monitoraggio costi**](#cost-tracking).
+
+**Backup della configurazione** (solo per amministratori di app desktop e web)
+- **Includi i dati di utilizzo nel backup** - quando abilitato, il ZIP contiene anche la cronologia delle esecuzioni e i dati delle chiamate API.
+- **Esegui backup della configurazione** - crea un singolo ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in ora locale) con `config.json`, `state.json`, chiave di crittografia opzionale, utenti, preferenze, prompt personalizzati e dati di utilizzo se hai scelto di partecipare. Dopo un backup riuscito, la conferma mostra il nome del file salvato.
+- **Ripristina dal backup** - apre prima una **finestra di conferma**. Scegli il ZIP di backup all'interno della finestra di dialogo (**Sfoglia** / selettore file o drag-and-drop dove supportato), quindi rivedi le opzioni:
+  - **Ripristina i dati di utilizzo** - importa utilizzo/storia dal ZIP quando è stato eseguito il backup con utilizzo incluso; lascia disattivato se desideri solo impostazioni e prompt.
+  - **Cancella i vecchi dati di utilizzo prima di ripristinare** - rimuovi l'utilizzo/storia esistente su questa installazione prima di applicare il backup (opzionale; usa quando desideri una sostituzione pulita).
+I backup creati nella versione web o desktop possono essere ripristinati nell'altra. Quando ripristini un backup desktop nella versione web, i dati verranno ripristinati all'utente amministratore.
 
 <br/>
 
@@ -801,11 +796,10 @@ In modalità **Avanzato**, apri [**Impostazioni** > **Modelli**](#models) e fai 
 
 Prova una o più delle seguenti azioni:
 
-- scegli un preset diverso (Facile) o un modello diverso (Avanzato)
-- utilizza un input più breve
-- disattiva **Traduzione in tempo reale (durante la digitazione)** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
+- scegli un preset diverso (Facile) o un modello (Avanzato)
+- usa un input più breve
+- disattiva **Traduzione in tempo reale mentre si digita** in [**Impostazioni** > **Impostazioni generali**](#general-settings)
 - usa modelli gratuiti per compiti semplici (vedi [Modelli](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

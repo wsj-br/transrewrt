@@ -277,13 +277,13 @@ Các **Ngôn ngữ hàng đầu** bạn chọn sẽ xuất hiện ở đầu dan
 
 Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có thể thay đổi cách thức hoạt động của tính năng dịch:
 
-- **Tự động dịch khi dán** sẽ thực hiện dịch ngay khi bạn dán văn bản.
-- **Tự động sao chép kết quả vào bộ nhớ tạm** sẽ tự động sao chép kết quả sau khi dịch thành công.
-- **Dịch thời gian thực (trong khi gõ)** sẽ dịch khi bạn đang gõ văn bản.
-- **Thời gian chờ (ms)** điều chỉnh khoảng thời gian ứng dụng chờ trước khi thực hiện dịch thời gian thực.
-- **Hành vi cho ENTER** điều khiển hành động khi bạn nhấn `Enter`:
-  - **Enter** thực hiện dịch hoặc viết lại (mặc định).
-  - **Shift + Enter** thực hiện dịch hoặc viết lại; **Enter** thuần túy chèn dòng mới.
+- **Tự động thực thi khi dán** chạy một bản dịch ngay khi bạn dán văn bản.
+- **Tự động sao chép kết quả vào bộ nhớ tạm** tự động sao chép kết quả sau khi chạy thành công.
+- **Dịch thời gian thực trong khi gõ** (⚠️ Điều này có thể làm tăng chi phí sử dụng) chạy các bản dịch trong khi bạn gõ.
+- **Thời gian chờ (ms)** kiểm soát thời gian mà ứng dụng chờ trước khi chạy một bản dịch thời gian thực.
+- **Hành vi cho ENTER** chọn xem `Enter` có chạy tác vụ hay chèn một dòng mới:
+  - **Enter** chạy dịch hoặc chỉnh sửa lại (mặc định).
+  - **Shift + Enter** chạy dịch hoặc chỉnh sửa lại; **Enter** thông thường chèn một dòng mới.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -335,8 +335,8 @@ Sử dụng **Chuyển đổi** khi bạn muốn AI tuân theo một tập hư�
 
 1. Mở **Chuyển đổi**.
 2. Chọn một lời nhắc từ danh sách lời nhắc.
-3. Nếu xuất hiện hộp **Đích** ngôn ngữ, hãy chọn một ngôn ngữ nếu bạn muốn.
-4. Nhập hoặc dán văn bản vào **Đầu vào**.
+3. Nếu một hộp ngôn ngữ **Từ** xuất hiện, chọn một ngôn ngữ nếu bạn muốn.
+4. Gõ hoặc dán văn bản vào **Đầu vào**.
 5. Nhấp **Chuyển đổi**.
 6. Đọc kết quả trong **Đầu ra**.
 
@@ -383,11 +383,10 @@ Các trường chính gồm:
 - **Hướng dẫn lời nhắc (tùy chọn)**: gợi ý ngắn hiển thị cho người dùng khi chạy lời nhắc.
 - **Vai trò mô hình**: vai trò tổng thể được gán cho AI, ví dụ: 'Bạn là trợ lý hữu ích.'
 - **Hướng dẫn mô hình (mỗi dòng một hướng dẫn)**: các quy tắc cụ thể mà bạn muốn AI tuân theo.
-- **Mô tả đầu ra**: từ ngắn mô tả kết quả, ví dụ: 'tóm tắt' hoặc 'viết lại'.
-- **Nhiệt độ (0.0 → 1.0)**: cách mô hình sẽ hành xử; xem bên dưới.
-- **Yêu cầu ngôn ngữ đích**: thêm bộ chọn ngôn ngữ đích khi chạy lời nhắc.
-
-Nếu bạn chưa quen với thuật ngữ kỹ thuật **Nhiệt độ**, hãy hiểu như sau:
+- **Mô tả đầu ra (ví dụ: đã chuyển đổi, tóm tắt, v.v.)**: một từ ngắn mô tả kết quả.
+- **Nhiệt độ (0,0 → 1,0)**: cách mà mô hình sẽ hành xử; xem bên dưới.
+- **Hỏi về ngôn ngữ đích**: thêm một bộ chọn ngôn ngữ khi lời nhắc được chạy.
+Nếu thuật ngữ kỹ thuật **Nhiệt độ** là mới với bạn, hãy nghĩ về nó như thế này:
 
 - **Nhiệt độ thấp hơn** cho kết quả ổn định và dự đoán được hơn.
 - **Nhiệt độ cao hơn** cho sự đa dạng và sáng tạo hơn.
@@ -568,21 +567,6 @@ Sử dụng **Cài đặt chung** để điều chỉnh hành vi gõ, việc lư
 - **Dễ** (mặc định): chọn một **Nhà cung cấp** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras hoặc Ollama). Các nhà cung cấp đám mây sử dụng các thiết lập sẵn tích hợp trên thanh công cụ. **Ollama** liệt kê các mô hình đã cài đặt trên máy bạn thay vì các thiết lập sẵn. Ở chế độ Dễ, **Danh mục thiết lập sẵn** hiển thị phiên bản danh mục và thời gian cập nhật lần cuối; nhấp vào **Làm mới danh mục thiết lập sẵn** để tải về danh sách thiết lập sẵn mới nhất từ kho lưu trữ dự án (ứng dụng cũng tự động kiểm tra định kỳ trong nền).
 - **Nâng cao**: chọn từng mô hình riêng lẻ trên thanh công cụ; quản lý danh sách này tại [**Cài đặt** > **Mô hình**](#models).
 
-Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào khóa API được thiết lập trong môi trường máy chủ. Trong **ứng dụng desktop**, hãy cấu hình khóa tại [**Cấu hình API**](#api-config).
-
-**Hành vi**
-
-- **Hành vi cho ENTER** chọn xem `Enter` thực thi tác vụ hay chèn dòng mới.
-- **Tự động dịch khi dán** bắt đầu dịch ngay khi bạn dán văn bản.
-- **Tự động sao chép kết quả vào bộ nhớ tạm** tự động sao chép kết quả thành công.
-- **Dịch thời gian thực (trong khi gõ)** dịch trong khi bạn gõ.
-- **Thời gian chờ (ms)** đặt thời gian chờ cho dịch thời gian thực.
-
-**Lịch sử**
-
-- **Giữ lịch sử thực thi** kiểm soát việc mỗi thao tác dịch, viết lại và chuyển đổi có lưu **văn bản đầu vào và đầu ra** để hiển thị trong khung bên [**Lịch sử**](#history) hay không. Khi tắt tính năng này, hệ thống sẽ yêu cầu xác nhận; nếu bạn xác nhận, dữ liệu lịch sử đã lưu sẽ bị xóa khỏi cơ sở dữ liệu. Nếu nhãn hiển thị *bị tắt bởi quản trị viên*, cài đặt của bạn đã có `HISTORY_DISABLED` được thiết lập trong môi trường (xem [README](README.vi.md#configuration-and-environment)); bạn không thể bật lại lịch sử từ giao diện người dùng.
-- **Xóa dữ liệu lịch sử** cho phép bạn xóa văn bản đã lưu theo độ tuổi (ví dụ: cũ hơn vài tháng, hoặc **tất cả dữ liệu (xóa)**) bằng cách sử dụng **Xóa dữ liệu**. Thao tác này chỉ ảnh hưởng đến văn bản thực thi đã lưu cho chế độ xem **Lịch sử**; nó **không** xóa tổng chi phí hoặc dữ liệu sử dụng. Để xóa hoặc thu gọn dữ liệu **chi phí**, hãy sử dụng [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking).
-
 **Giao diện**
 
 - **Chủ đề** chuyển đổi giữa chế độ sáng, tối và hệ thống.
@@ -592,15 +576,26 @@ Trong **ứng dụng web**, các nhà cung cấp hiển thị phụ thuộc vào
 - **Họ phông chữ** thay đổi phông chữ trong các bảng văn bản.
 - **Kích cỡ** thay đổi kích thước phông chữ.
 
+**Hành vi**
+
+- **Hành vi cho ENTER** chọn xem `Enter` có chạy tác vụ hay chèn một dòng mới.
+- **Tự động thực thi khi dán** bắt đầu dịch ngay khi bạn dán văn bản.
+- **Tự động sao chép kết quả vào bộ nhớ tạm** tự động sao chép các kết quả thành công.
+- **Dịch thời gian thực trong khi gõ** (⚠️ Điều này có thể làm tăng chi phí sử dụng) dịch trong khi bạn gõ.
+- **Thời gian chờ (ms)** đặt thời gian chờ cho dịch thời gian thực.
+
+**Lịch sử**
+
+- **Giữ lịch sử thực thi** kiểm soát việc mỗi thao tác dịch, viết lại và chuyển đổi có lưu **văn bản đầu vào và đầu ra** để hiển thị trong khung bên [**Lịch sử**](#history) hay không. Khi tắt tính năng này, hệ thống sẽ yêu cầu xác nhận; nếu bạn xác nhận, dữ liệu lịch sử đã lưu sẽ bị xóa khỏi cơ sở dữ liệu. Nếu nhãn hiển thị *bị tắt bởi quản trị viên*, cài đặt của bạn đã có `HISTORY_DISABLED` được thiết lập trong môi trường (xem [README](README.vi.md#configuration-and-environment)); bạn không thể bật lại lịch sử từ giao diện người dùng.
+- **Xóa dữ liệu lịch sử** cho phép bạn xóa văn bản đã lưu theo độ tuổi (ví dụ: cũ hơn vài tháng, hoặc **tất cả dữ liệu (xóa)**) bằng cách sử dụng **Xóa dữ liệu**. Thao tác này chỉ ảnh hưởng đến văn bản thực thi đã lưu cho chế độ xem **Lịch sử**; nó **không** xóa tổng chi phí hoặc dữ liệu sử dụng. Để xóa hoặc thu gọn dữ liệu **chi phí**, hãy sử dụng [**Cài đặt** > **Theo dõi chi phí**](#cost-tracking).
+
 **Sao lưu cấu hình** (chỉ dành cho quản trị viên ứng dụng máy tính để bàn và web)
-
-- **Bao gồm dữ liệu sử dụng trong bản sao lưu** - khi được bật, tệp ZIP cũng chứa dữ liệu lịch sử thực thi và dữ liệu gọi API.
-- **Sao lưu cấu hình** - tạo một tệp ZIP duy nhất (mặc định là `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` theo múi giờ UTC) bao gồm `config.json`, `state.json`, khóa mã hóa tùy chọn, người dùng, tùy chọn, lời nhắc tùy chỉnh và dữ liệu sử dụng nếu bạn đã chọn tham gia. Sau khi sao lưu thành công, thông báo xác nhận sẽ hiển thị tên tệp đã lưu.
-- **Phục hồi từ bản sao lưu** - mở **hộp thoại xác nhận trước tiên**. Chọn tệp ZIP sao lưu trong hộp thoại (**Duyệt** / trình chọn tệp hoặc kéo và thả nếu được hỗ trợ), sau đó xem lại các tùy chọn:
-  - **Khôi phục dữ liệu sử dụng** - nhập dữ liệu sử dụng/lịch sử từ tệp ZIP khi bản sao lưu đó được thực hiện với tùy chọn bao gồm dữ liệu sử dụng; bỏ chọn nếu bạn chỉ muốn cài đặt và lời nhắc.
-  - **Xóa dữ liệu sử dụng cũ trước khi khôi phục** - xóa dữ liệu sử dụng/lịch sử hiện có trên bản cài đặt này trước khi áp dụng bản sao lưu (tùy chọn; sử dụng khi bạn muốn thay thế hoàn toàn).
-
-Bản sao lưu được tạo trên phiên bản web hay desktop đều có thể được khôi phục trên phiên bản còn lại. Khi khôi phục bản sao lưu từ desktop trên phiên bản web, dữ liệu sẽ được khôi phục vào tài khoản người dùng quản trị.
+- **Bao gồm dữ liệu sử dụng trong bản sao lưu** - khi được kích hoạt, ZIP cũng chứa lịch sử thực thi và dữ liệu gọi API.
+- **Sao lưu cấu hình** - tạo một ZIP duy nhất (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` theo giờ cục bộ) với `config.json`, `state.json`, khóa mã hóa tùy chọn, người dùng, sở thích, lời nhắc tùy chỉnh và dữ liệu sử dụng nếu bạn đã chọn tham gia. Sau khi sao lưu thành công, thông báo xác nhận hiển thị tên tệp đã lưu.
+- **Khôi phục từ bản sao lưu** - mở một **hộp thoại xác nhận trước**. Chọn ZIP sao lưu bên trong hộp thoại (**Duyệt** / trình chọn tệp hoặc kéo và thả nơi được hỗ trợ), sau đó xem lại các tùy chọn:
+  - **Khôi phục dữ liệu sử dụng** - nhập dữ liệu sử dụng/lịch sử từ ZIP khi nó được sao lưu với dữ liệu sử dụng bao gồm; để trống nếu bạn chỉ muốn cài đặt và lời nhắc.
+  - **Xóa dữ liệu sử dụng cũ trước khi khôi phục** - xóa dữ liệu sử dụng/lịch sử hiện có trên cài đặt này trước khi áp dụng bản sao lưu (tùy chọn; sử dụng khi bạn muốn thay thế sạch).
+Các bản sao lưu được tạo trong phiên bản web hoặc máy tính để bàn có thể được khôi phục trong phiên bản còn lại. Khi khôi phục một bản sao lưu máy tính để bàn trong phiên bản web, dữ liệu sẽ được khôi phục cho người dùng quản trị viên.
 
 <br/>
 
@@ -801,11 +796,10 @@ Nếu bạn đang sử dụng ứng dụng trên máy tính:
 
 Hãy thử một hoặc nhiều cách sau:
 
-- chọn một thiết lập sẵn (Dễ) hoặc mô hình (Nâng cao) khác
-- sử dụng đầu vào ngắn hơn
-- tắt **Dịch thời gian thực (khi gõ)** trong [**Cài đặt** > **Cài đặt chung**](#general-settings)
+- chọn một cài đặt trước khác (Dễ dàng) hoặc mô hình (Nâng cao)
+- sử dụng một đầu vào ngắn hơn
+- tắt **Dịch thời gian thực trong khi gõ** trong [**Cài đặt** > **Cài đặt chung**](#general-settings)
 - sử dụng các mô hình miễn phí cho các tác vụ đơn giản (xem [Mô hình](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

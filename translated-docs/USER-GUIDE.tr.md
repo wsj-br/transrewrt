@@ -277,13 +277,13 @@ Seçtiğiniz **Üst diller** listede en üstte görünür. Bunları [**Ayarlar**
 
 [**Ayarlar** > **Genel Ayarlar**](#general-settings) bölümünde çeviri davranışını değiştirebilirsiniz:
 
-- **Yapıştırmada otomatik çeviri**, metni yapıştırdığınız anda bir çeviri başlatır.
-- **Sonucu panoya otomatik kopyala**, başarılı bir çeviri sonrasında sonucu otomatik olarak kopyalar.
-- **Gerçek zamanlı çeviri (yazarken)**, yazarken çevirileri çalıştırır.
-- **Zaman aşımı (ms)**, uygulamanın gerçek zamanlı çeviri yapmadan önce ne kadar bekleyeceğini belirler.
-- **ENTER için Davranış**, `Enter` tuşuna bastığınızda ne olacağını kontrol eder:
-  - **Enter**, çevir veya yeniden yaz işlemini çalıştırır (varsayılan).
-  - **Shift + Enter**, çevir veya yeniden yaz işlemini çalıştırır; sade **Enter**, yeni bir satır ekler.
+- **Yapıştırırken otomatik çalıştır** metni yapıştırdığınız anda bir çeviri çalıştırır.
+- **Sonucu panoya otomatik kopyala** başarılı bir çalıştırmadan sonra sonucu otomatik olarak kopyalar.
+- **Yazarken gerçek zamanlı çeviri** (⚠️ Bu kullanım maliyetlerini artırabilir) yazarken çevirileri çalıştırır.
+- **Zaman aşımı (ms)** uygulamanın gerçek zamanlı çeviri çalıştırmadan önce ne kadar bekleyeceğini kontrol eder.
+- **ENTER için davranış** `Enter` görevi çalıştırıp çalıştırmayacağına veya yeni bir satır ekleyip eklemeyeceğine karar verir:
+  - **Enter** çeviriyi veya yeniden yazmayı çalıştırır (varsayılan).
+  - **Shift + Enter** çeviriyi veya yeniden yazmayı çalıştırır; düz **Enter** yeni bir satır ekler.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -334,9 +334,9 @@ Bu, uygulamanın en esnek bölümüdür. Bunu şu tür görevler için kullanabi
 ### Var olan bir istemi çalıştırın
 
 1. **Dönüştür**'ü açın.
-2. İstem listesinden bir istem seçin.
-3. Bir **Hedef** dil kutusu görünürse, isterseniz bir dil seçin.
-4. **Girdi** alanına metin yazın veya yapıştırın.
+2. İstek listesinden bir istek seçin.
+3. Eğer bir **From** dil kutusu görünüyorsa, isterseniz bir dil seçin.
+4. **Giriş** alanına metin yazın veya yapıştırın.
 5. **Dönüştür**'e tıklayın.
 6. Sonucu **Çıktı** alanında okuyun.
 
@@ -383,11 +383,10 @@ Ana alanlar şunlardır:
 - **İstem talimatları (isteğe bağlı)**: istem çalıştırıldığında kullanıcıya gösterilen kısa bir ipucu.
 - **Model Rolü**: 'Yararlı bir asistan olduğunu varsay' gibi, yapay zekaya atanan genel rol.
 - **Model Talimatları (satır başı yapın)**: yapay zekanın uymasını istediğiniz özel kurallar.
-- **Çıktı açıklaması**: 'özet' veya 'yeniden yaz' gibi sonucu tanımlayan kısa bir kelime.
-- **Sıcaklık (0,0 → 1,0)**: modelin nasıl davranacağını belirler; aşağıya bakın.
-- **Hedef dil iste**: istem çalıştırıldığında hedef dil seçici ekler.
-
-Eğer teknik terim **Sıcaklık** sizin için yeniyseniz, şöyle düşünebilirsiniz:
+- **Çıktı açıklaması (dönüştürülmüş, özetlenmiş vb.)**: sonucu tanımlayan kısa bir kelime.
+- **Sıcaklık (0.0 → 1.0)**: modelin nasıl davranacağını kontrol eder; aşağıya bakın.
+- **Hedef dili sor**: istek çalıştırıldığında bir dil seçici ekler.
+Eğer teknik terim **Sıcaklık** size yeni geliyorsa, bunu şöyle düşünün:
 
 - **Daha düşük** sıcaklık, daha durağan ve öngörülebilir sonuçlar verir.
 - **Daha yüksek** sıcaklık, daha fazla çeşitlilik ve yaratıcılık sağlar.
@@ -568,21 +567,6 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 - **Kolay** (varsayılan): bir **Sağlayıcı** seçin (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras veya Ollama). Bulut sağlayıcılar araç çubuğundaki yerleşik ön ayarları kullanır. **Ollama**, ön ayarlar yerine makinenizde kurulu modelleri listeler. Kolay modda, **Ön ayar kataloğu** katalog sürümünü ve son güncelleme zamanını gösterir; proje deposundan en son ön ayar listesini almak için **Ön ayar kataloğunu yenile**'ye tıklayın (uygulama ayrıca arka planda periyodik olarak kontrol eder).
 - **Gelişmiş**: araç çubuğunda bireysel modelleri seçin; listeyi [**Ayarlar** > **Modeller**](#models) altında yönetin.
 
-**Web uygulamasında**, hangi sağlayıcıların görüneceği sunucu ortamında ayarlanan API anahtarlarına bağlıdır. **Masaüstü uygulamasında**, anahtarları [**API Yapılandırması**](#api-config) altında yapılandırın.
-
-**Davranış**
-
-- **ENTER için Davranış**, `Enter` görevi çalıştırır ya da yeni bir satır ekler.
-- **Yapıştırmada otomatik çeviri**, metni yapıştırdığınız anda çeviriyi başlatır.
-- **Sonucu panoya otomatik kopyala**, başarılı sonuçları otomatik olarak kopyalar.
-- **Gerçek zamanlı çeviri (yazarken)**, yazarken çeviriyi yapar.
-- **Zaman aşımı (ms)**, gerçek zamanlı çeviri için bekleme süresini ayarlar.
-
-**Geçmiş**
-
-- **Çalıştırma geçmişini tut** her çeviri, yeniden yazma ve dönüştürme işleminin **girdi ve çıktı metni**'ni yan paneldeki [**Geçmiş**](#history) görünümü için saklayıp saklamayacağını kontrol eder. Bunu kapatmak onay ister; onaylarsanız, saklanan geçmiş metni veritabanından kaldırılır. Etiket *yönetici tarafından devre dışı bırakıldı* olarak görünüyorsa, kurulumunuzda `HISTORY_DISABLED` ortamda ayarlanmıştır (bkz. [README](README.tr.md#configuration-and-environment)); geçmişi UI'dan tekrar açamazsınız.
-- **Geçmiş verilerini sil** saklanan metni yaşıyla (örneğin birkaç aydan daha eski veya **tüm veriler (temizle)**) **Verileri sil** kullanarak kaldırmanıza olanak tanır. Bu yalnızca **Geçmiş** görünümü için kaydedilen çalıştırma metnini etkiler; maliyet veya kullanım toplamlarını **silmez**. **Maliyet** verilerini kaldırmak veya kısaltmak için [**Ayarlar** > **Maliyet Takibi**](#cost-tracking) kullanın.
-
 **Görünüm**
 
 - **Tema**, açık, koyu ve sistem görünümü arasında geçiş yapar.
@@ -592,15 +576,26 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
 - **Yazı Tipi Ailesi**, metin panellerindeki yazım yazı tipini değiştirir.
 - **Boyut**, yazı tipi boyutunu değiştirir.
 
-**Yapılandırma Yedekleme** (sadece masaüstü uygulaması ve web yöneticileri için)
+**Davranış**
 
-- **Yedekte kullanım verilerini dahil et** - etkinleştirildiğinde ZIP dosyası ayrıca yürütme geçmişi ve API çağrısı verilerini de içerir.
-- **Yapılandırmayı yedekle** - `config.json`, `state.json`, isteğe bağlı şifreleme anahtarı, kullanıcılar, tercihler, özel istemler ve kullanım verileri (eğer kabul ettiyseniz) ile tek bir ZIP dosyası oluşturur (varsayılan olarak UTC'ye göre `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip`). Başarılı bir yedeklemeden sonra onay, kaydedilen dosya adını gösterir.
-- **Yedekten geri yükle** - önce bir **onay iletişim kutusu** açar. İletişim kutusu içinde yedek ZIP dosyasını seçin (**Gözat** / dosya seçici veya destekleniyorsa sürükleyip bırakma), ardından seçenekleri gözden geçirin:
-  - **Kullanım verilerini geri yükle** - yedekleme sırasında kullanım verileri dahil edildiyse ZIP'deki kullanım/geçmişi içe aktarın; yalnızca ayarları ve istemleri istiyorsanız işaretini kaldırın.
-  - **Geri yüklemeden önce eski kullanım verilerini temizle** - yedek uygulanmadan önce bu kurulumdaki mevcut kullanım/geçmişi kaldırır (isteğe bağlı; temiz bir değiştirme yapmak istediğinizde kullanın).
+- **ENTER için davranış** `Enter` görevi çalıştırıp çalıştırmayacağına veya yeni bir satır ekleyip eklemeyeceğine karar verir.
+- **Yapıştırırken otomatik çalıştır** metni yapıştırdığınız anda çeviriyi başlatır.
+- **Sonucu panoya otomatik kopyala** başarılı sonuçları otomatik olarak kopyalar.
+- **Yazarken gerçek zamanlı çeviri** (⚠️ Bu kullanım maliyetlerini artırabilir) yazarken çevirileri çalıştırır.
+- **Zaman aşımı (ms)**, gerçek zamanlı çeviri için bekleme süresini ayarlar.
 
-Web veya masaüstü sürümünde oluşturulan yedeklemeler, diğerinde geri yüklenebilir. Masaüstü yedeklemesi web sürümüne geri yüklenirse, veriler yönetici kullanıcısına geri yüklenir.
+**Geçmiş**
+
+- **Çalıştırma geçmişini tut** her çeviri, yeniden yazma ve dönüştürme işleminin **girdi ve çıktı metni**'ni yan paneldeki [**Geçmiş**](#history) görünümü için saklayıp saklamayacağını kontrol eder. Bunu kapatmak onay ister; onaylarsanız, saklanan geçmiş metni veritabanından kaldırılır. Etiket *yönetici tarafından devre dışı bırakıldı* olarak görünüyorsa, kurulumunuzda `HISTORY_DISABLED` ortamda ayarlanmıştır (bkz. [README](README.tr.md#configuration-and-environment)); geçmişi UI'dan tekrar açamazsınız.
+- **Geçmiş verilerini sil** saklanan metni yaşıyla (örneğin birkaç aydan daha eski veya **tüm veriler (temizle)**) **Verileri sil** kullanarak kaldırmanıza olanak tanır. Bu yalnızca **Geçmiş** görünümü için kaydedilen çalıştırma metnini etkiler; maliyet veya kullanım toplamlarını **silmez**. **Maliyet** verilerini kaldırmak veya kısaltmak için [**Ayarlar** > **Maliyet Takibi**](#cost-tracking) kullanın.
+
+**Yapılandırma Yedekleme** (masaüstü uygulaması ve web yöneticileri için yalnızca)
+- **Yedeklemeye kullanım verilerini dahil et** - etkinleştirildiğinde, ZIP ayrıca yürütme geçmişi ve API çağrı verilerini içerir.
+- **Yapılandırmayı yedekle** - `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` yerel saatte tek bir ZIP oluşturur; `config.json`, `state.json`, isteğe bağlı şifreleme anahtarı, kullanıcılar, tercihler, özel istekler ve eğer katıldıysanız kullanım verilerini içerir. Başarılı bir yedeklemeden sonra, onay kaydedilen dosya adını gösterir.
+- **Yedekten geri yükle** - önce bir **onay iletişim kutusu açar**. İletişim kutusundaki yedek ZIP'i seçin (**Gözat** / dosya seçici veya destekleniyorsa sürükleyip bırakın), ardından seçenekleri gözden geçirin:
+  - **Kullanım verilerini geri yükle** - yedekleme sırasında kullanım dahil edilmişse ZIP'ten kullanım/tarihçeyi içe aktar; yalnızca ayarları ve istekleri istiyorsanız kapatın.
+  - **Geri yüklemeden önce eski kullanım verilerini temizle** - bu kurulumda mevcut kullanım/tarihçeyi yedeklemeyi uygulamadan önce kaldırın (isteğe bağlı; temiz bir değişim istediğinizde kullanın).
+Web veya masaüstü sürümünde oluşturulan yedeklemeler diğerinde geri yüklenebilir. Web sürümünde bir masaüstü yedeği geri yüklerken, veriler yönetici kullanıcıya geri yüklenecektir.
 
 <br/>
 
@@ -801,10 +796,9 @@ Masaüstü uygulamasını kullanıyorsanız:
 Aşağıdakilerden birini veya birkaçını deneyin:
 
 - farklı bir ön ayar (Kolay) veya model (Gelişmiş) seçin
-- daha kısa bir girdi kullanın
-- [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde **Gerçek zamanlı çeviri (yazarken)** seçeneğini devre dışı bırakın
-- basit görevler için ücretsiz modeller kullanın (bkz. [Modeller](#models))
-
+- daha kısa bir giriş kullanın
+- [**Ayarlar** > **Genel Ayarlar**](#general-settings) içinde **Yazarken gerçek zamanlı çeviri**'yi kapatın
+- basit görevler için ücretsiz modeller kullanın (bakınız [Modeller](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

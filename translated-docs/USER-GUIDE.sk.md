@@ -277,13 +277,13 @@ Vaše vybrané **Hlavné jazyky** sa zobrazujú na vrchu zoznamu. Môžete ich n
 
 V [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) môžete zmeniť, ako sa správa preklad:
 
-- **Automatický preklad pri vkladaní** spustí preklad hneď, ako vložíte text.
-- **Automatické kopírovanie výsledku do schránky** automaticky skopíruje výsledok po úspešnom vykonaní.
-- **Preklad v reálnom čase (počas písania)** vykonáva preklady počas písania.
+- **Automaticky spustiť pri vložení** spustí preklad hneď, ako vložíte text.
+- **Automaticky skopírovať výsledok do schránky** automaticky skopíruje výsledok po úspešnom spustení.
+- **Preklad v reálnom čase pri písaní** (⚠️ To môže zvýšiť náklady na používanie) spúšťa preklady, zatiaľ čo píšete.
 - **Časový limit (ms)** ovláda, ako dlho aplikácia čaká pred spustením prekladu v reálnom čase.
-- **Správanie pre ENTER** určuje, čo sa stane po stlačení klávesu `Enter`:
+- **Správanie pre ENTER** vyberá, či `Enter` spustí úlohu alebo vloží nový riadok:
   - **Enter** spustí preklad alebo prepísanie (predvolené).
-  - **Shift + Enter** spustí preklad alebo prepísanie; bežný **Enter** vloží nový riadok.
+  - **Shift + Enter** spustí preklad alebo prepísanie; obyčajný **Enter** vloží nový riadok.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -335,8 +335,8 @@ Toto je najflexibilnejšia oblasť aplikácie. Môžete ju použiť na úlohy ak
 
 1. Otvorte **Transformovať**.
 2. Vyberte výzvu zo zoznamu výziev.
-3. Ak sa objaví pole **Cieľ**, vyberte jazyk, ak ho chcete.
-4. Zadajte alebo vložte text do poľa **Vstup**.
+3. Ak sa objaví pole **Z** jazyk, vyberte jazyk, ak ho chcete.
+4. Zadajte alebo vložte text do **Vstupu**.
 5. Kliknite na **Transformovať**.
 6. Prečítajte si výsledok v časti **Výstup**.
 
@@ -383,11 +383,10 @@ Hlavné polia sú:
 - **Inštrukcie k výzve (voliteľné)**: krátky tip zobrazený používateľovi pri spustení výzvy.
 - **Úloha modelu**: celková úloha pridelená umelému inteligencii, napríklad 'Ste užitočným asistentom.'
 - **Inštrukcie modelu (jedna na riadok)**: konkrétne pravidlá, ktoré má umelá inteligencia dodržiavať.
-- **Popis výstupu**: krátky výraz opisujúci výsledok, napríklad 'zhrnutie' alebo 'prepísať'.
-- **Teplota (0,0 → 1,0)**: správanie modelu; pozri nižšie.
-- **Požiadať o cieľový jazyk**: pridá voľbu cieľového jazyka pri spustení výzvy.
-
-Ak pojem **Teplota** pre vás nie je známy, predstavte si to takto:
+- **Popis výstupu (napr. transformovaný, zhrnutý atď.)**: krátke slovo popisujúce výsledok.
+- **Teplota (0,0 → 1,0)**: ako sa model bude správať; pozrite sa nižšie.
+- **Požiadať o cieľový jazyk**: pridáva výber jazyka, keď sa výzva spustí.
+Ak je technický termín **Teplota** pre vás nový, myslite na to takto:
 
 - **Nižšia** teplota dáva stabilnejšie a predvídateľnejšie výsledky.
 - **Vyššia** teplota dáva väčšiu rozmanitosť a kreativitu.
@@ -568,21 +567,6 @@ Použite **Všeobecné nastavenia** na nastavenie správania pri písaní, či s
 - **Jednoduchý** (predvolené): vyberte **poskytovateľa** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras alebo Ollama). Cloudoví poskytovatelia používajú preddefinované predvoľby v paneli nástrojov. **Ollama** namiesto predvoľieb zobrazí modely nainštalované na vašom počítači. V režime Jednoduchý zobrazuje **Katalóg predvoľieb** verziu katalógu a čas poslednej aktualizácie; kliknutím na **Obnoviť katalóg predvoľieb** načítate najnovší zoznam predvoľieb z repozitára projektu (aplikácia tiež pravidelne kontroluje aktualizácie na pozadí).
 - **Pokročilý**: vyberajte jednotlivé modely v paneli nástrojov; zoznam spravujte v časti [**Nastavenia** > **Modely**](#models).
 
-Vo **webovej aplikácii** závisí, ktorí poskytovatelia sa zobrazia, od API kľúčov nastavených v serverovom prostredí. V **desktopovej aplikácii** nakonfigurujte kľúče v časti [**Nastavenie API**](#api-config).
-
-**Správanie**
-
-- **Správanie pre ENTER** určuje, či sa `Enter` spustí úloha alebo sa vloží nový riadok.
-- **Automatický preklad pri vkladaní** spustí preklad ihneď po vložení textu.
-- **Automatické kopírovanie výsledku do schránky** automaticky kopíruje úspešné výsledky.
-- **Preklad v reálnom čase (počas písania)** prekladá počas písania.
-- **Časový limit (ms)** nastavuje dobu čakania pre preklad v reálnom čase.
-
-**História**
-
-- **Zachovať históriu vykonaní** určuje, či sa pri každom preklade, prepísaní a transformácii ukladajú **vstupný a výstupný text** pre zobrazenie v bočnom paneli [**História**](#history). Ak túto možnosť vypnete, zobrazí sa výzva na potvrdenie; po potvrdení sa uložený text histórie odstráni z databázy. Ak je označenie *zakázané správcom*, vo vašej inštalácii je vo vývojovom prostredí nastavená hodnota `HISTORY_DISABLED` (pozri [README](README.sk.md#configuration-and-environment)); v užívateľskom rozhraní nemôžete históriu znova zapnúť.
-- **Odstrániť dáta histórie** vám umožňuje odstrániť uložený text podľa veku (napríklad staršie ako niekoľko mesiacov alebo **všetky údaje (vymazať)**) pomocou možnosti **Odstrániť dáta**. Toto ovplyvňuje iba uložený text vykonaní pre zobrazenie **História**; **nezmaže** to údaje o nákladoch alebo celkovom využití. Ak chcete odstrániť alebo skrátiť údaje o **nákladoch**, použite [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking).
-
 **Vzhľad**
 
 - **Téma** prepína medzi svetlým, tmavým a systémovým vzhľadom.
@@ -592,15 +576,26 @@ Vo **webovej aplikácii** závisí, ktorí poskytovatelia sa zobrazia, od API k�
 - **Rodina písma** mení písmo v textových paneloch.
 - **Veľkosť** mení veľkosť písma.
 
-**Zálohovanie konfigurácie** (iba pre správcov desktopovej aplikácie a webu)
+**Správanie**
 
-- **Zahrnúť dáta o využití do zálohy** – ak je povolené, ZIP obsahuje aj históriu vykonaní a dáta o volaniach API.
-- **Zálohovať konfiguráciu** – vytvorí jeden ZIP súbor (štandardne `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` v UTC) s `config.json`, `state.json`, voliteľným šifrovacím kľúčom, používateľmi, preferenciami, vlastnými výzvami a údajmi o používaní, ak ste sa na to prihlásili. Po úspešnej zálohe potvrdenie zobrazí názov uloženého súboru.
-- **Obnoviť zo zálohy** – otvorí sa najskôr **potvrdzovacie dialógové okno**. Vyberte zálohový ZIP súbor v dialógu (**Prehliadať** / výber súboru alebo presunutie a vloženie, kde je podporované), potom skontrolujte možnosti:
-  - **Obnoviť dáta o používaní** – importuje údaje o používaní/histórii zo záložného ZIP súboru, ak bola záloha vytvorená s zahrnutím údajov o používaní; ponechajte vypnuté, ak chcete iba nastavenia a výzvy.
-  - **Vymazať staré dáta o používaní pred obnovením** – odstráni existujúce údaje o používaní/histórii v tejto inštalácii pred aplikovaním zálohy (voliteľné; použite, keď chcete čistú náhradu).
+- **Správanie pre ENTER** vyberá, či `Enter` spustí úlohu alebo vloží nový riadok.
+- **Automaticky spustiť pri vložení** spúšťa preklad hneď, ako vložíte text.
+- **Automaticky skopírovať výsledok do schránky** automaticky kopíruje úspešné výsledky.
+- **Preklad v reálnom čase pri písaní** (⚠️ To môže zvýšiť náklady na používanie) prekladá, zatiaľ čo píšete.
+- **Časový limit (ms)** nastavuje dobu čakania pre preklad v reálnom čase.
 
-Zálohy vytvorené vo webovej alebo desktopovej verzii je možné obnoviť v druhej verzii. Pri obnove desktopovej zálohy vo webovej verzii budú dáta obnovené pre používateľa administrátora.
+**História**
+
+- **Zachovať históriu vykonaní** určuje, či sa pri každom preklade, prepísaní a transformácii ukladajú **vstupný a výstupný text** pre zobrazenie v bočnom paneli [**História**](#history). Ak túto možnosť vypnete, zobrazí sa výzva na potvrdenie; po potvrdení sa uložený text histórie odstráni z databázy. Ak je označenie *zakázané správcom*, vo vašej inštalácii je vo vývojovom prostredí nastavená hodnota `HISTORY_DISABLED` (pozri [README](README.sk.md#configuration-and-environment)); v užívateľskom rozhraní nemôžete históriu znova zapnúť.
+- **Odstrániť dáta histórie** vám umožňuje odstrániť uložený text podľa veku (napríklad staršie ako niekoľko mesiacov alebo **všetky údaje (vymazať)**) pomocou možnosti **Odstrániť dáta**. Toto ovplyvňuje iba uložený text vykonaní pre zobrazenie **História**; **nezmaže** to údaje o nákladoch alebo celkovom využití. Ak chcete odstrániť alebo skrátiť údaje o **nákladoch**, použite [**Nastavenia** > **Sledovanie nákladov**](#cost-tracking).
+
+**Záloha konfigurácie** (iba pre administrátorov desktopovej aplikácie a webu)
+- **Zahrnúť údaje o používaní do zálohy** - keď je povolené, ZIP obsahuje aj históriu vykonávania a údaje o volaniach API.
+- **Zálohovať konfiguráciu** - vytvorí jeden ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` v miestnom čase) s `config.json`, `state.json`, voliteľným šifrovacím kľúčom, používateľmi, preferenciami, vlastnými výzvami a údajmi o používaní, ak ste sa prihlásili. Po úspešnej zálohe sa potvrdzujúca správa zobrazí s názvom uloženého súboru.
+- **Obnoviť zo zálohy** - najprv otvorí **potvrdzujúci dialóg**. Vyberte záložný ZIP v dialógu (**Prehľadávať** / výber súboru alebo pretiahnite a pusťte, kde je to podporované), potom si prejdite možnosti:
+  - **Obnoviť údaje o používaní** - importovať údaje o používaní/histórii zo ZIP, keď bola záloha vytvorená s údajmi o používaní; nechajte vypnuté, ak chcete iba nastavenia a výzvy.
+  - **Pred obnovením vymazať staré údaje o používaní** - odstrániť existujúce údaje o používaní/histórii na tejto inštalácii pred aplikovaním zálohy (voliteľné; použite, keď chcete čistú náhradu).
+Zálohy vytvorené v webovej alebo desktopovej verzii môžu byť obnovené v druhej. Pri obnove desktopovej zálohy vo webovej verzii budú údaje obnovené na administrátorského používateľa.
 
 <br/>
 
@@ -801,11 +796,10 @@ V režime **Pokročilý** otvorte [**Nastavenia** > **Modely**](#models) a klikn
 
 Vyskúšajte jednu alebo viac z týchto možností:
 
-- vyberte si inú predvoľbu (Jednoduchý) alebo model (Pokročilý)
+- vyberte inú predvoľbu (Jednoduché) alebo model (Pokročilé)
 - použite kratší vstup
-- vypnite **Preklad v reálnom čase (počas písania)** v časti [**Nastavenia** > **Všeobecné nastavenia**](#general-settings)
-- pre jednoduché úlohy použite modely zdarma (pozri [Modely](#models))
-
+- vypnite **Preklad v reálnom čase pri písaní** v [**Nastaveniach** > **Všeobecné nastavenia**](#general-settings)
+- použite bezplatné modely na jednoduché úlohy (pozrite sa na [Modely](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

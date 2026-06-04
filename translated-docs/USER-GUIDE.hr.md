@@ -277,13 +277,13 @@ Vaši odabrani **najčešći jezici** prikazat će se na vrhu popisa. Možete ih
 
 U [**Postavke** > **Opće postavke**](#general-settings) možete promijeniti kako se ponaša prijevod:
 
-- **Automatski prijevod pri lijepljenju** pokreće prijevod čim zalijepite tekst.
-- **Automatsko kopiranje rezultata u međuspremnik** automatski kopira rezultat nakon uspješnog prijevoda.
-- **Prijevod u stvarnom vremenu (tijekom tipkanja)** pokreće prijevode dok tipkate.
-- **Vrijeme čekanja (ms)** određuje koliko dugo aplikacija čeka prije pokretanja prijevoda u stvarnom vremenu.
-- **Ponašanje za ENTER** kontrolira što se događa kada pritisnete `Enter`:
-  - **Enter** pokreće prevođenje ili prepisivanje (zadano).
-  - **Shift + Enter** pokreće prevođenje ili prepisivanje; obični **Enter** umetne novu liniju.
+- **Automatsko izvršavanje pri lijepljenju** pokreće prijevod čim zalijepite tekst.
+- **Automatsko kopiranje rezultata u međuspremnik** automatski kopira rezultat nakon uspješnog pokretanja.
+- **Prijevod u stvarnom vremenu tijekom pisanja** (⚠️ Ovo može povećati troškove korištenja) pokreće prijevode dok tipkate.
+- **Timeout (ms)** kontrolira koliko dugo aplikacija čeka prije pokretanja prijevoda u stvarnom vremenu.
+- **Ponašanje za ENTER** bira hoće li `Enter` pokrenuti zadatak ili umetnuti novi redak:
+  - **Enter** pokreće prijevod ili prepisivanje (zadano).
+  - **Shift + Enter** pokreće prijevod ili prepisivanje; običan **Enter** umeće novi redak.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Ovo je najfleksibilniji dio aplikacije. Možete ga koristiti za zadatke poput:
 <a id="run-an-existing-prompt"></a>
 ### Pokrenite postojeći upit
 
-1. Otvori **Transformiraj**.
-2. Odaberi upit s popisa upita.
-3. Ako se pojavi okvir za **Meta** jezik, odaberi jezik ako želiš.
-4. Upiši ili zalijepi tekst u **Ulaz**.
+1. Otvorite **Transformacija**.
+2. Odaberite upit s popisa uputa.
+3. Ako se pojavi okvir **Od**, odaberite jezik ako ga želite.
+4. Upišite ili zalijepite tekst u **Unos**.
 5. Klikni **Transformiraj**.
 6. Pročitaj rezultat u **Izlaz**.
 
@@ -383,11 +383,10 @@ Glavna polja su:
 - **Upute za upit (neobavezno)**: kratka napomena koja se prikazuje korisniku prilikom pokretanja upita.
 - **Uloga modela**: opća uloga dodijeljena umjetnoj inteligenciji, npr. 'Vi ste korisni pomoćnik.'
 - **Upute za model (jedna po retku)**: specifična pravila koja AI treba slijediti.
-- **Opis izlaza**: kratka riječ koja opisuje rezultat, npr. 'sažetak' ili 'prepisi'.
+- **Opis izlaza (npr. transformirano, sažeto, itd.)**: kratka riječ koja opisuje rezultat.
 - **Temperatura (0,0 → 1,0)**: kako će se model ponašati; pogledajte ispod.
-- **Zatraži ciljani jezik**: dodaje odabir ciljanog jezika kada se pokrene upit.
-
-Ako vam je tehnički izraz **Temperatura** nov, razmislite o tome ovako:
+- **Traži ciljni jezik**: dodaje birač jezika kada se upit pokrene.
+Ako vam je tehnički termin **Temperatura** nov, razmislite ovako:
 
 - **Niža** temperatura daje stabilnije, predvidljivije rezultate.
 - **Viša** temperatura daje veću raznolikost i kreativnost.
@@ -568,21 +567,6 @@ Koristite **Opće postavke** za kontrolu ponašanja tipkanja, pohranjivanje deta
 - **Lako** (zadano): odaberite **davatelja usluga** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ili Ollama). Oblačni davatelji usluga koriste ugrađene unaprijed postavljene vrijednosti na alatnoj traci. **Ollama** prikazuje modele instalirane na vašem računalu umjesto unaprijed postavljenih vrijednosti. U Lako načinu rada, **Katalog unaprijed postavljenih vrijednosti** prikazuje verziju kataloga i vrijeme zadnjeg ažuriranja; kliknite **Osvježi katalog unaprijed postavljenih vrijednosti** kako biste preuzeli najnoviju listu unaprijed postavljenih vrijednosti iz spisa projekta (aplikacija također periodično provjerava u pozadini).
 - **Napredno**: odaberite pojedinačne modele na alatnoj traci; upravljajte listom putem [**Postavke** > **Modeli**](#models).
 
-U **web aplikaciji**, koji davatelji usluga se prikazuju ovisi o API ključevima postavljenima u server okolini. U **desktop aplikaciji**, konfigurirajte ključeve putem [**API konfiguracije**](#api-config).
-
-**Ponašanje**
-
-- **Ponašanje za ENTER** određuje hoće li `Enter` pokrenuti zadatak ili umetnuti novi redak.
-- **Automatski prijevod pri lijepljenju** pokreće prijevod čim zalijepite tekst.
-- **Automatsko kopiranje rezultata u međuspremnik** automatski kopira uspješne rezultate.
-- **Prijevod u stvarnom vremenu (tijekom tipkanja)** prevodi dok tipkate.
-- **Vrijeme čekanja (ms)** postavlja vrijeme čekanja za prijevod u stvarnom vremenu.
-
-**Povijest**
-
-- **Zadrži povijest izvršavanja** kontrolira pohranjuje li se svaki prijevod, prepisivanje i transformacija **ulazni i izlazni tekst** za prikaz [**Povijesti**](#history) u bočnoj traci. Isključivanje traži potvrdu; ako potvrdite, pohranjeni tekst povijesti uklanja se iz baze podataka. Ako je oznaka *onemogućeno od strane administratora*, vaša instalacija ima `HISTORY_DISABLED` postavljeno u okolini (pogledajte [README](README.hr.md#configuration-and-environment)); ne možete ponovno uključiti povijest putem sučelja.
-- **Izbriši povijest podataka** omogućuje uklanjanje pohranjenog teksta prema dobi (npr. starijeg od nekoliko mjeseci ili **svi podaci (izbriši)**) korištenjem **Izbriši podatke**. To utječe samo na spremljeni tekst izvršavanja za prikaz **Povijesti**; ne briše **troškove** ili ukupne podatke o korištenju. Za uklanjanje ili smanjenje podataka o **troškovima**, koristite [**Postavke** > **Praćenje troškova**](#cost-tracking).
-
 **Izgled**
 
 - **Tema** prebacuje između svijetle, tamne i sistemske pojave.
@@ -592,15 +576,26 @@ U **web aplikaciji**, koji davatelji usluga se prikazuju ovisi o API ključevima
 - **Obitelj fontova** mijenja font pisanja u tekstualnim panelima.
 - **Veličina** mijenja veličinu fonta.
 
-**Sigurnosna kopija konfiguracije** (samo za desktop aplikacije i web administratore)
+**Ponašanje**
 
-- **Uključi podatke o korištenju u sigurnosnu kopiju** – kada je omogućeno, ZIP datoteka također sadrži povijest izvršavanja i podatke o pozivima API-ja.
-- **Napravi sigurnosnu kopiju konfiguracije** – stvara jednu ZIP datoteku (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` u UTC-u po zadanom) koja sadrži `config.json`, `state.json`, opcionalni ključ za šifriranje, korisnike, postavke, prilagođene upite i podatke o korištenju ako ste to odabrali. Nakon uspješne sigurnosne kopije, potvrda prikazuje naziv spremljene datoteke.
-- **Vrati iz sigurnosne kopije** – prvo otvara **dijalog za potvrdu**. Odaberite ZIP datoteku sigurnosne kopije unutar dijaloga (**Pregledaj** / odabir datoteke ili povlačenje i ispustanje gdje je podržano), a zatim pregledajte opcije:
-  - **Vrati podatke o korištenju** – uvozi podatke o korištenju/povijesti iz ZIP datoteke ako je sigurnosna kopija napravljena s uključenim podacima o korištenju; ostavite isključeno ako želite samo postavke i upite.
-  - **Obriši stare podatke o korištenju prije vraćanja** – uklanja postojeće podatke o korištenju/povijesti na ovoj instalaciji prije primjene sigurnosne kopije (neobavezno; koristite kada želite čisto zamijeniti).
+- **Ponašanje za ENTER** bira hoće li `Enter` pokrenuti zadatak ili umetnuti novi redak.
+- **Automatsko izvršavanje pri lijepljenju** pokreće prijevod čim zalijepite tekst.
+- **Automatsko kopiranje rezultata u međuspremnik** automatski kopira uspješne rezultate.
+- **Prijevod u stvarnom vremenu tijekom pisanja** (⚠️ Ovo može povećati troškove korištenja) prevodi dok tipkate.
+- **Vrijeme čekanja (ms)** postavlja vrijeme čekanja za prijevod u stvarnom vremenu.
 
-Sigurnosne kopije napravljene u web ili desktop verziji mogu se vratiti u drugoj verziji. Kada vratite desktop sigurnosnu kopiju u web verziji, podaci će se vratiti administratorskom korisniku.
+**Povijest**
+
+- **Zadrži povijest izvršavanja** kontrolira pohranjuje li se svaki prijevod, prepisivanje i transformacija **ulazni i izlazni tekst** za prikaz [**Povijesti**](#history) u bočnoj traci. Isključivanje traži potvrdu; ako potvrdite, pohranjeni tekst povijesti uklanja se iz baze podataka. Ako je oznaka *onemogućeno od strane administratora*, vaša instalacija ima `HISTORY_DISABLED` postavljeno u okolini (pogledajte [README](README.hr.md#configuration-and-environment)); ne možete ponovno uključiti povijest putem sučelja.
+- **Izbriši povijest podataka** omogućuje uklanjanje pohranjenog teksta prema dobi (npr. starijeg od nekoliko mjeseci ili **svi podaci (izbriši)**) korištenjem **Izbriši podatke**. To utječe samo na spremljeni tekst izvršavanja za prikaz **Povijesti**; ne briše **troškove** ili ukupne podatke o korištenju. Za uklanjanje ili smanjenje podataka o **troškovima**, koristite [**Postavke** > **Praćenje troškova**](#cost-tracking).
+
+**Sigurnosna kopija konfiguracije** (samo za administratore desktop aplikacije i weba)
+- **Uključi podatke o korištenju u sigurnosnu kopiju** - kada je omogućeno, ZIP također sadržava povijest izvršavanja i podatke API poziva.
+- **Napravi sigurnosnu kopiju konfiguracije** - stvara jedan ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` u lokalnom vremenu) s `config.json`, `state.json`, opcionalnim ključem šifriranja, korisnicima, postavkama, prilagođenim uputama i podacima o korištenju ako ste se odlučili. Nakon uspješne sigurnosne kopije, potvrda prikazuje naziv spremljene datoteke.
+- **Vrati iz sigurnosne kopije** - prvo otvara **dijaloški okvir za potvrdu**. Odaberite sigurnosnu kopiju ZIP-a unutar dijaloškog okvira (**Pregledaj** / birač datoteka ili povlačenje i ispuštanje gdje je podržano), a zatim pregledajte opcije:
+  - **Vrati podatke o korištenju** - uvezite podatke o korištenju/povijesti iz ZIP-a kada je sigurnosna kopija napravljena s uključenim podacima o korištenju; isključite ako želite samo postavke i upute.
+  - **Očisti stare podatke o korištenju prije vraćanja** - uklonite postojeće podatke o korištenju/povijesti na ovoj instalaciji prije primjene sigurnosne kopije (opcionalno; koristite kada želite čistu zamjenu).
+Sigurnosne kopije stvorene u web ili desktop verziji mogu se vratiti u drugoj. Kada vraćate sigurnosnu kopiju desktop verzije u web verziju, podaci će biti vraćeni administratorskom korisniku.
 
 <br/>
 
@@ -801,11 +796,10 @@ U **Naprednom** načinu, otvorite [**Postavke** > **Modeli**](#models) i kliknit
 
 Isprobajte jedno ili više od sljedećeg:
 
-- odaberite drugo unaprijed postavljeno (Lako) ili model (Napredno)
-- koristite kraći ulaz
-- isključite **Prijevod u stvarnom vremenu (tijekom tipkanja)** u [**Postavkama** > **Opće postavke**](#general-settings)
+- odaberite drugi predložak (Jednostavno) ili model (Napredno)
+- koristite kraći unos
+- isključite **Prijevod u stvarnom vremenu tijekom pisanja** u [**Postavke** > **Opće postavke**](#general-settings)
 - koristite besplatne modele za jednostavne zadatke (pogledajte [Modeli](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

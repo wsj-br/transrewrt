@@ -277,13 +277,13 @@ Dina valda **Toppspråk** visas överst i listan. Du kan ange dessa i [**Instäl
 
 I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du ändra hur översättning fungerar:
 
-- **Automatisk översättning vid klistra in** utför en översättning så fort du klistrar in text.
-- **Kopiera resultat automatiskt till urklipp** kopierar resultatet automatiskt efter en lyckad körning.
-- **Översättning i realtid (medan du skriver)** utför översättningar medan du skriver.
-- **Tidsgräns (ms)** styr hur länge appen väntar innan en översättning i realtid startar.
-- **Beteende för ENTER** styr vad som händer när du trycker på `Enter`:
-  - **Enter** kör översättning eller omskrivning (standard).
-  - **Shift + Enter** kör översättning eller omskrivning; enkel **Enter** infogar en ny rad.
+- **Kör automatiskt vid inklistring** kör en översättning så snart du klistrar in text.
+- **Autokopiera resultat till urklipp** kopierar resultatet automatiskt efter en lyckad körning.
+- **Översättning i realtid medan du skriver** (⚠️ Detta kan öka användningskostnaderna) kör översättningar medan du skriver.
+- **Timeout (ms)** kontrollerar hur länge appen väntar innan den kör en översättning i realtid.
+- **Beteende för ENTER** väljer om `Enter` kör uppgiften eller infogar en ny rad:
+  - **Enter** kör översätt eller omskrivning (standard).
+  - **Shift + Enter** kör översätt eller omskrivning; vanlig **Enter** infogar en ny rad.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -335,7 +335,7 @@ Detta är den mest flexibla delen av appen. Du kan använda den för uppgifter s
 
 1. Öppna **Transformera**.
 2. Välj en prompt från promptlistan.
-3. Om en ruta för **Mål**språk visas, välj ett språk om du vill ha det.
+3. Om en **Från** språkbox visas, välj ett språk om du vill ha ett.
 4. Skriv eller klistra in text i **Inmatning**.
 5. Klicka på **Transformera**.
 6. Läs resultatet i **Utmatning**.
@@ -383,11 +383,10 @@ De viktigaste fälten är:
 - **Promptinstruktioner (valfritt)**: en kort handledning som visas för användaren när prompten körs.
 - **Modellroll**: den övergripande roll som tilldelas AI, till exempel 'Du är en hjälpsam assistent.'
 - **Modellinstruktioner (en per rad)**: de specifika regler du vill att AI ska följa.
-- **Beskrivning av utdata**: ett kort ord som beskriver resultatet, till exempel 'sammanfattning' eller 'omskriv'.
+- **Utbeskrivning (t.ex. transformerad, sammanfattad, etc.)**: ett kort ord som beskriver resultatet.
 - **Temperatur (0,0 → 1,0)**: hur modellen kommer att bete sig; se nedan.
-- **Fråga efter målspråk**: lägger till en målspråksväljare när prompten körs.
-
-Om det tekniska begreppet **Temperatur** är nytt för dig, tänk så här:
+- **Fråga efter målspråk**: lägger till en språkvalare när prompten körs.
+Om den tekniska termen **Temperatur** är ny för dig, tänk på det så här:
 
 - En **lägre** temperatur ger mer stabila, förutsägbara resultat.
 - En **högre** temperatur ger mer variation och kreativitet.
@@ -568,21 +567,6 @@ Använd **Allmänna inställningar** för att styra beteendet vid skrivning, om 
 - **Enkel** (standard): välj en **Leverantör** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras eller Ollama). Molnleverantörer använder de inbyggda förinställningarna i verktygsfältet. **Ollama** visar modeller installerade på din dator istället för förinställningar. I Enkel-läge visar **Förinställningskatalog** katalogversionen och tidpunkten för senaste uppdatering; klicka på **Uppdatera förinställningskatalog** för att hämta den senaste förinställningslistan från projektets förråd (appen kontrollerar också regelbundet i bakgrunden).
 - **Avancerad**: välj enskilda modeller i verktygsfältet; hantera listan under [**Inställningar** > **Modeller**](#models).
 
-I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inställda i servermiljön. I **skrivbordsappen** konfigurerar du nycklar under [**API-konfiguration**](#api-config).
-
-**Beteende**
-
-- **Beteende för ENTER** väljer om `Enter` kör uppgiften eller infogar en ny rad.
-- **Automatisk översättning vid klistra in** startar översättning så fort du klistrar in text.
-- **Kopiera resultat automatiskt till urklipp** kopierar lyckade resultat automatiskt.
-- **Översättning i realtid (medan du skriver)** översätter medan du skriver.
-- **Timeout (ms)** anger väntetiden för översättning i realtid.
-
-**Historik**
-
-- **Spara körningshistorik** styr om varje översättning, omskrivning och transformering lagrar **inmatning och utdata** för sidofältets vy [**Historik**](#history). Om du stänger av det efterfrågas bekräftelse; om du bekräftar tas lagrad historiktext bort från databasen. Om etiketten visar *inaktiverad av administratören* har din installation `HISTORY_DISABLED` aktiverat i miljön (se [README](README.sv.md#configuration-and-environment)); du kan då inte aktivera historiken igen via användargränssnittet.
-- **Radera historikdata** låter dig ta bort lagrad text baserat på ålder (till exempel äldre än några månader, eller **alla data (rensa)**) med hjälp av **Radera data**. Det påverkar endast sparad körningstext för vyn **Historik**; det tar **inte bort** kostnads- eller användningssammanfattningar. För att ta bort eller trimma **kostnads**data, använd [**Inställningar** > **Kostnadsöversikt**](#cost-tracking).
-
 **Utseende**
 
 - **Tema** växlar mellan ljust, mörkt och systemutseende.
@@ -592,15 +576,26 @@ I **webbappen** beror vilka leverantörer som visas på API-nycklar som är inst
 - **Teckensnitt** ändrar skrivteckensnittet i textpanelerna.
 - **Storlek** ändrar teckenstorleken.
 
-**Säkerhetskopiering av konfiguration** (endast skrivbordsapp och webbadministratörer)
+**Beteende**
 
-- **Inkludera användningsdata i säkerhetskopian** – när aktiverat innehåller ZIP-filen även körningshistorik och API-anropsdata.
-- **Säkerhetskopiera konfiguration** – skapar en enskild ZIP-fil (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` i UTC som standard) med `config.json`, `state.json`, valfri krypteringsnyckel, användare, inställningar, anpassade prompts och användningsdata om du valt detta. Efter en lyckad säkerhetskopiering visas bekräftelse med det sparade filnamnet.
-- **Återställ från säkerhetskopia** – öppnar först en **bekräftelsedialog**. Välj säkerhetskopia ZIP i dialogrutan (**Bläddra** / filväljare eller dra och släpp där det stöds), och granska sedan alternativen:
-  - **Återställ användningsdata** – importera användning/historik från ZIP:en om den säkerhetskopierades med användningsdata inkluderade; lämna avmarkerat om du endast vill ha inställningar och prompts.
-  - **Rensa gamla användningsdata innan återställning** – ta bort befintlig användning/historik i den här installationen innan säkerhetskopian tillämpas (valfritt; använd när du vill ha en ren ersättning).
+- **Beteende för ENTER** väljer om `Enter` kör uppgiften eller infogar en ny rad.
+- **Kör automatiskt vid inklistring** startar översättning så snart du klistrar in text.
+- **Autokopiera resultat till urklipp** kopierar lyckade resultat automatiskt.
+- **Översättning i realtid medan du skriver** (⚠️ Detta kan öka användningskostnaderna) översätter medan du skriver.
+- **Timeout (ms)** anger väntetiden för översättning i realtid.
 
-Säkerhetskopior skapade i antingen webb- eller skrivbordsversionen kan återställas i den andra. När en skrivbords-säkerhetskopia återställs i webbversionen återställs data till administratörsanvändaren.
+**Historik**
+
+- **Spara körningshistorik** styr om varje översättning, omskrivning och transformering lagrar **inmatning och utdata** för sidofältets vy [**Historik**](#history). Om du stänger av det efterfrågas bekräftelse; om du bekräftar tas lagrad historiktext bort från databasen. Om etiketten visar *inaktiverad av administratören* har din installation `HISTORY_DISABLED` aktiverat i miljön (se [README](README.sv.md#configuration-and-environment)); du kan då inte aktivera historiken igen via användargränssnittet.
+- **Radera historikdata** låter dig ta bort lagrad text baserat på ålder (till exempel äldre än några månader, eller **alla data (rensa)**) med hjälp av **Radera data**. Det påverkar endast sparad körningstext för vyn **Historik**; det tar **inte bort** kostnads- eller användningssammanfattningar. För att ta bort eller trimma **kostnads**data, använd [**Inställningar** > **Kostnadsöversikt**](#cost-tracking).
+
+**Konfigurationssäkerhetskopiering** (endast för skrivbordsapp och webbadministratörer)
+- **Inkludera användningsdata i säkerhetskopian** - när aktiverad, innehåller ZIP:en också körningshistorik och API-anropsdata.
+- **Säkerhetskopiera konfiguration** - skapar en enda ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` i lokal tid) med `config.json`, `state.json`, valfritt krypteringsnyckel, användare, preferenser, anpassade prompts och användningsdata om du valt att inkludera det. Efter en lyckad säkerhetskopiering visar bekräftelsen det sparade filnamnet.
+- **Återställ från säkerhetskopia** - öppnar en **bekräftelsedialog först**. Välj backup ZIP:en inuti dialogen (**Bläddra** / filväljare eller dra och släpp där det stöds), granska sedan alternativen:
+  - **Återställ användningsdata** - importera användning/historik från ZIP:en när den säkerhetskopierades med användning inkluderad; lämna av om du bara vill ha inställningar och prompts.
+  - **Rensa gammal användningsdata innan återställning** - ta bort befintlig användning/historik på denna installation innan backupen tillämpas (valfritt; använd när du vill ha en ren ersättning).
+Säkerhetskopior skapade i antingen webb- eller skrivbordsversionen kan återställas i den andra. När du återställer en skrivbordsbackup i webbversionen kommer datan att återställas till administratörsanvändaren.
 
 <br/>
 
@@ -803,9 +798,8 @@ Prova en eller flera av följande åtgärder:
 
 - välj en annan förinställning (Enkel) eller modell (Avancerad)
 - använd en kortare inmatning
-- stäng av **Översättning i realtid (medan du skriver)** i [**Inställningar** > **Allmänna inställningar**](#general-settings)
-- använd gratismodeller för enkla uppgifter (se [Modeller](#models))
-
+- stäng av **Översättning i realtid medan du skriver** i [**Inställningar** > **Allmänna inställningar**](#general-settings)
+- använd gratis modeller för enkla uppgifter (se [Modeller](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

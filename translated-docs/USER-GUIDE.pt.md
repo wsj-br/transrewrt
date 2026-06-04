@@ -277,13 +277,13 @@ Os seus **Idiomas principais** selecionados aparecem no topo da lista. Pode defi
 
 Em [**Definições** > **Configurações Gerais**](#general-settings), pode alterar o comportamento da tradução:
 
-- **Tradução automática ao colar** executa uma tradução assim que cola o texto.
+- **Executar automaticamente ao colar** executa uma tradução assim que você cola o texto.
 - **Copiar automaticamente o resultado para a área de transferência** copia o resultado automaticamente após uma execução bem-sucedida.
-- **Tradução em tempo real (enquanto escreve)** executa traduções enquanto escreve.
-- **Tempo limite (ms)** controla quanto tempo a aplicação espera antes de executar uma tradução em tempo real.
-- **Comportamento para ENTER** controla o que acontece quando pressiona `Enter`:
-  - **Enter** executa tradução ou reescrita (padrão).
-  - **Shift + Enter** executa tradução ou reescrita; **Enter** simples insere uma nova linha.
+- **Tradução em tempo real enquanto digita** (⚠️ Isso pode aumentar os custos de uso) executa traduções enquanto você digita.
+- **Tempo limite (ms)** controla quanto tempo o aplicativo espera antes de executar uma tradução em tempo real.
+- **Comportamento para ENTER** escolhe se `Enter` executa a tarefa ou insere uma nova linha:
+  - **Enter** executa traduzir ou reescrever (padrão).
+  - **Shift + Enter** executa traduzir ou reescrever; **Enter** simples insere uma nova linha.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -335,8 +335,8 @@ Esta é a área mais flexível da aplicação. Pode utilizá-la para tarefas com
 
 1. Abra **Transformar**.
 2. Escolha um prompt da lista de prompts.
-3. Se aparecer uma caixa de idioma **Destino**, escolha um idioma, se desejar.
-4. Digite ou cole texto em **Entrada**.
+3. Se uma caixa de idioma **De** aparecer, escolha um idioma se desejar.
+4. Digite ou cole o texto em **Entrada**.
 5. Clique em **Transformar**.
 6. Leia o resultado em **Saída**.
 
@@ -383,11 +383,10 @@ Os campos principais são:
 - **Instruções do prompt (opcional)**: uma dica curta exibida ao utilizador ao executar o prompt.
 - **Função do modelo**: a função geral atribuída à IA, como 'Você é um assistente útil.'
 - **Instruções do modelo (uma por linha)**: as regras específicas que deseja que a IA siga.
-- **Descrição da saída**: uma palavra curta que descreve o resultado, como 'resumo' ou 'reescrever'.
+- **Descrição da saída (p. ex. transformada, resumida, etc.)**: uma palavra curta descrevendo o resultado.
 - **Temperatura (0,0 → 1,0)**: como o modelo se comportará; veja abaixo.
-- **Pedir idioma de destino**: adiciona um seletor de idioma de destino ao executar o prompt.
-
-Se o termo técnico **Temperatura** for novo para si, pense da seguinte forma:
+- **Pedir idioma de destino**: adiciona um seletor de idioma quando o prompt é executado.
+Se o termo técnico **Temperatura** é novo para você, pense assim:
 
 - Uma temperatura **mais baixa** produz resultados mais estáveis e previsíveis.
 - Uma temperatura **mais alta** produz mais variedade e criatividade.
@@ -568,21 +567,6 @@ Utilize **Configurações Gerais** para controlar o comportamento de digitação
 - **Fácil** (padrão): escolha um **Fornecedor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ou Ollama). Fornecedores na nuvem usam as predefinições incorporadas na barra de ferramentas. O **Ollama** lista os modelos instalados na sua máquina em vez de predefinições. No modo Fácil, o **Catálogo de predefinições** mostra a versão do catálogo e a hora da última atualização; clique em **Atualizar catálogo de predefinições** para obter a lista mais recente de predefinições do repositório do projeto (a aplicação também verifica periodicamente em segundo plano).
 - **Avançado**: escolha modelos individuais na barra de ferramentas; gere a lista em [**Definições** > **Modelos**](#models).
 
-Na **aplicação web**, os fornecedores disponíveis dependem das chaves API definidas no ambiente do servidor. Na **aplicação para ambiente de trabalho**, configure as chaves em [**Configuração da API**](#api-config).
-
-**Comportamento**
-
-- **Comportamento para ENTER** escolhe se `Enter` executa a tarefa ou insere uma nova linha.
-- **Tradução automática ao colar** inicia a tradução assim que colar texto.
-- **Copiar automaticamente o resultado para a área de transferência** copia automaticamente os resultados bem-sucedidos.
-- **Tradução em tempo real (enquanto escreve)** traduz enquanto escreve.
-- **Tempo limite (ms)** define o tempo de espera para a tradução em tempo real.
-
-**Histórico**
-
-- **Manter histórico de execução** controla se cada operação de tradução, reescrita e transformação armazena o **texto de entrada e saída** para a visualização do painel lateral [**Histórico**](#history). Desativar esta opção solicita confirmação; se confirmar, o texto armazenado será removido da base de dados. Se a etiqueta mostrar *desativado pelo administrador*, a sua instalação tem `HISTORY_DISABLED` definido no ambiente (veja o [README](README.pt.md#configuration-and-environment)); não poderá reativar o histórico a partir da interface.
-- **Eliminar dados do histórico** permite remover texto armazenado por idade (por exemplo, mais antigo que alguns meses, ou **todos os dados (limpar)**) usando **Eliminar dados**. Isto afeta apenas o texto de execução guardado para a visualização **Histórico**; **não** elimina os totais de custo ou utilização. Para remover ou reduzir dados de **custo**, utilize [**Definições** > **Rastreamento de Custo**](#cost-tracking).
-
 **Aparência**
 
 - **Tema** alterna entre aparência clara, escura e do sistema.
@@ -592,15 +576,26 @@ Na **aplicação web**, os fornecedores disponíveis dependem das chaves API def
 - **Família da fonte** altera a fonte de escrita nos painéis de texto.
 - **Tamanho** altera o tamanho da fonte.
 
-**Cópia de Segurança da Configuração** (apenas para administradores da aplicação de ambiente de trabalho e web)
+**Comportamento**
 
-- **Incluir dados de uso na cópia de segurança** - quando ativado, o ZIP também contém histórico de execução e dados de chamadas à API.
-- **Fazer cópia de segurança da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` em UTC por defeito) com `config.json`, `state.json`, chave de encriptação opcional, utilizadores, preferências, prompts personalizados e dados de uso se tiver optado por isso. Após uma cópia de segurança bem-sucedida, a confirmação mostra o nome do ficheiro guardado.
-- **Restaurar a partir da cópia de segurança** - abre primeiro uma **janela de confirmação**. Escolha o ficheiro ZIP da cópia de segurança na janela (**Procurar** / seletor de ficheiros ou arrastar e largar, onde suportado), depois reveja as opções:
-  - **Restaurar os dados de uso** - importa o uso/histórico do ZIP quando foi feita a cópia de segurança com os dados de uso incluídos; desative se quiser apenas as definições e prompts.
-  - **Limpar os dados antigos de uso antes de restaurar** - remove o uso/histórico existente nesta instalação antes de aplicar a cópia de segurança (opcional; use quando quiser uma substituição limpa).
+- **Comportamento para ENTER** escolhe se `Enter` executa a tarefa ou insere uma nova linha.
+- **Executar automaticamente ao colar** inicia a tradução assim que você cola o texto.
+- **Copiar automaticamente o resultado para a área de transferência** copia resultados bem-sucedidos automaticamente.
+- **Tradução em tempo real enquanto digita** (⚠️ Isso pode aumentar os custos de uso) traduz enquanto você digita.
+- **Tempo limite (ms)** define o tempo de espera para a tradução em tempo real.
 
-As cópias de segurança criadas na versão web ou desktop podem ser restauradas na outra versão. Ao restaurar uma cópia de segurança do desktop na versão web, os dados serão restaurados para o utilizador administrador.
+**Histórico**
+
+- **Manter histórico de execução** controla se cada operação de tradução, reescrita e transformação armazena o **texto de entrada e saída** para a visualização do painel lateral [**Histórico**](#history). Desativar esta opção solicita confirmação; se confirmar, o texto armazenado será removido da base de dados. Se a etiqueta mostrar *desativado pelo administrador*, a sua instalação tem `HISTORY_DISABLED` definido no ambiente (veja o [README](README.pt.md#configuration-and-environment)); não poderá reativar o histórico a partir da interface.
+- **Eliminar dados do histórico** permite remover texto armazenado por idade (por exemplo, mais antigo que alguns meses, ou **todos os dados (limpar)**) usando **Eliminar dados**. Isto afeta apenas o texto de execução guardado para a visualização **Histórico**; **não** elimina os totais de custo ou utilização. Para remover ou reduzir dados de **custo**, utilize [**Definições** > **Rastreamento de Custo**](#cost-tracking).
+
+**Backup de configuração** (apenas para administradores de aplicativos de desktop e web)
+- **Incluir dados de uso no backup** - quando ativado, o ZIP também contém histórico de execução e dados de chamadas de API.
+- **Fazer backup da configuração** - cria um único ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` no horário local) com `config.json`, `state.json`, chave de criptografia opcional, usuários, preferências, prompts personalizados e dados de uso se você optou por isso. Após um backup bem-sucedido, a confirmação mostra o nome do arquivo salvo.
+- **Restaurar do backup** - abre um **diálogo de confirmação primeiro**. Escolha o ZIP de backup dentro do diálogo (**Procurar** / seletor de arquivos ou arrastar e soltar onde suportado), depois revise as opções:
+  - **Restaurar os dados de uso** - importar uso/histórico do ZIP quando foi feito backup com uso incluído; deixe desmarcado se você quiser apenas configurações e prompts.
+  - **Limpar os dados de uso antigos antes de restaurar** - remover uso/histórico existente nesta instalação antes de aplicar o backup (opcional; use quando você quiser uma substituição limpa).
+Backups criados na versão web ou desktop podem ser restaurados na outra. Ao restaurar um backup de desktop na versão web, os dados serão restaurados para o usuário administrador.
 
 <br/>
 
@@ -801,11 +796,10 @@ No modo **Avançado**, abra [**Definições** > **Modelos**](#models) e clique e
 
 Experimente uma ou mais das seguintes opções:
 
-- escolha uma predefinição (Fácil) ou modelo (Avançado) diferente
+- escolha uma predefinição diferente (Fácil) ou modelo (Avançado)
 - use uma entrada mais curta
-- desative **Tradução em tempo real (enquanto digita)** em [**Definições** > **Configurações Gerais**](#general-settings)
-- use modelos gratuitos para tarefas simples (veja [Modelos](#models))
-
+- desative **Tradução em tempo real enquanto digita** em [**Configurações** > **Configurações Gerais**](#general-settings)
+- use modelos grátis para tarefas simples (veja [Modelos](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

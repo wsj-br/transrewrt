@@ -277,13 +277,13 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 
 Ing [**Setelan** > **Setelan Umum**](#general-settings), sampeyan bisa ngganti cara terjemahan ditindakake:
 
-- **Otomatis nerjemahake nalika nempel** nglakokake terjemahan sawise sampeyan nempel teks.
-- **Salin otomatis asil menyang clipboard** nyalin asil sacara otomatis sawise proses rampung.
-- **Terjemahan real-time (saat mengetik)** nglakokake terjemahan nalika sampeyan ngetik.
-- **Timeout (ms)** ngatur suwe aplikasi nunggu sadurunge nglakokake terjemahan real-time.
-- **Perilaku kanggo ENTER** ngontrol apa sing kedadeyan nalika sampeyan menek `Enter`:
-  - **Enter** nguripake terjemahan utawa nulis ulang (baku).
-  - **Shift + Enter** nguripake terjemahan utawa nulis ulang; **Enter** biasa mlebuke baris anyar.
+- **Otomatis-leksanani nalika nempel** nglakokake terjemahan sawise sampeyan nempel teks.
+- **Otomatis-salin asil menyang papan klip** nyalin asil kanthi otomatis sawise eksekusi sukses.
+- **Terjemahan wektu nyata nalika ngetik** (⚠️ Iki bisa nambah biaya panggunaan) nglakokake terjemahan nalika sampeyan ngetik.
+- **Timeout (ms)** ngontrol suwene aplikasi ngenteni sadurunge nglakokake terjemahan wektu nyata.
+- **Tingkah laku kanggo ENTER** milih apa `Enter` nglakokake tugas utawa nyisipake baris anyar:
+  - **Enter** nglakokake terjemah utawa transrewrt (standar).
+  - **Shift + Enter** nglakokake terjemah utawa transrewrt; **Enter** biasa nyisipake baris anyar.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Iki minangka bagéyan paling fleksibel saka aplikasi. Sampeyan bisa nggunakake k
 <a id="run-an-existing-prompt"></a>
 ### Jalanke prompt sing ana
 
-1. Buka **Transform**.
+1. Buka **Transformasi**.
 2. Pilih prompt saka dhaptar prompt.
-3. Yen kotak **Target** basa mucul, pilih basa yen perlu.
-4. Ketik utawa tempelna teks menyang **Input**.
+3. Yen kothak basa **From** muncul, pilih basa yen sampeyan pengin siji.
+4. Ketik utawa tempel teks menyang **Input**.
 5. Klik **Ubah**.
 6. Maca asilé ing **Output**.
 
@@ -383,11 +383,10 @@ Bidang utama yaiku:
 - **Instruksi prompt (opsional)**: cathetan cendhak sing ditampilake marang pangguna nalika njalankan prompt.
 - **Peran Model**: peran kabeh sing diwenehake marang AI, kayata 'Sampeyan minangka asisten sing mbantu.'
 - **Instruksi Model (siji saben baris)**: aturan tartamtu sing pengin AI tundhuk.
-- **Deskripsi output**: tembung cendhak sing njlènètaké asilé, kaya 'ringkasan' utawa 'tulis ulang'.
-- **Suhu (0.0 → 1.0)**: cara model bakal tumindak; deleng ing ngisor iki.
-- **Panyuwunan basa sasaran**: nambahaké pamilah basa sasaran nalika prompt dijalanaké.
-
-Yen istilah teknis **Suhu** iku anyar kanggo sampeyan, pikirke kaya ngene:
+- **Katrangan output (contone: diowahi, diringkes, lsp.)**: tembung cendhak sing nerangake asil.
+- **Temperatur (0.0 → 1.0)**: kepiye model bakal tumindak; deleng ing ngisor iki.
+- **Takon kanggo basa sasaran**: nambahake pemilih basa nalika prompt dilakokake.
+Yen istilah teknis **Temperatur** anyar kanggo sampeyan, pikirake kaya ngene:
 
 - **Suhu sing luwih rendah** maringi asil sing luwih tetep lan prediktif.
 - **Suhu sing luwih dhuwur** maringi variasi lan kreativitas sing luwih akeh.
@@ -568,21 +567,6 @@ Gunakake **Setelan Umum** kanggo ngontrol perilaku ngetik, apa rincian eksekusi 
 - **Gampang** (baku): pilih **Panyedhiya** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, utawa Ollama). Panyedhiya awan nggunakake preset sing diintegrasikake ing toolbar. **Ollama** nuduhake model sing diinstal ing mesin sampeyan tinimbang preset. Ing modus Gampang, **Katalog preset** nuduhake versi katalog lan wektu pembaruan pungkasan; klik **Nganyari katalog preset** kanggo njupuk daftar preset paling anyar saka repositori proyek (aplikasi uga mriksa kanthi periodik ing mburine). 
 - **Lanjutan**: pilih model dhewe-dhewe ing toolbar; atur daftar ing [**Setelan** > **Model**](#models).
 
-Ing **aplikasi web**, panyedhiya sing katon gumantung marang kunci API sing disetel ing lingkungan server. Ing **aplikasi desktop**, atur kunci ing [**Konfigurasi API**](#api-config).
-
-**Perilaku**
-
-- **Perilaku kanggo ENTER** milih apa `Enter` ngeksekusi tugas utawa nambah baris anyar.
-- **Otomatis nerjemahake nalika nempel** miwiti terjemahan sawise sampeyan nempelake teks.
-- **Salin otomatis asil menyang clipboard** nyalin asil sing sukses sacara otomatis.
-- **Terjemahan real-time (saat ngetik)** menerjemahake nalika sampeyan ngetik.
-- **Batas wektu (ms)** ngatur wektu tunggu kanggo terjemahan real-time.
-
-**Riwayat**
-
-- **Simpen riwayat eksekusi** ngontrol apa saben terjemahan, nulis ulang, lan ngowahi nyimpen **input lan teks output** kanggo tampilan [**Riwayat**](#history) ing samping. Mateni fitur iki bakal takon konfirmasi; yen sampeyan konfirmasi, teks riwayat sing disimpen bakal dihapus saka database. Yen label nuduhake *dinonaktifake déning administrator*, instalasi sampeyan duwé `HISTORY_DISABLED` disetel ing lingkungan (deleng [README](README.jv.md#configuration-and-environment)); sampeyan ora bisa ngaktifake maneh riwayat liwat UI.
-- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen berdasar umur (contone sing wis tuwa saka sawetara sasi, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mengaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki ora **menghapus** total biaya utawa panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
-
 **Penampilan**
 
 - **Tema** ngalih antarane tampilan cahya, gelap, lan sistem.
@@ -592,15 +576,26 @@ Ing **aplikasi web**, panyedhiya sing katon gumantung marang kunci API sing dise
 - **Famili Font** ngowahi font tulisan ing panel teks.
 - **Ukuran** ngowahi ukuran font.
 
-**Cadangan Konfigurasi** (mung aplikasi desktop lan administrator web)
+**Perilaku**
 
-- **Sertakake data panggunaan ing cadangan** - yen diaktifake, ZIP uga ngandhut riwayat eksekusi lan data telpon API.
-- **Cadangan konfigurasi** - nggawe siji file ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing UTC kanthi standar) ngandhut `config.json`, `state.json`, kunci enkripsi opsional, pangguna, preferensi, prompt kustom, lan data panggunaan yen sampeyan milih. Sawise cadangan sukses, konfirmasi nuduhake jeneng file sing disimpen.
-- **Pulihake saka cadangan** - mbukak **dialog konfirmasi dhisik**. Pilih file ZIP cadangan ing jero dialog (**Browse** / pemilih file utawa drag-and-drop yen didhukung), banjur priksa pilihan:
-  - **Pulihake data panggunaan** - ngimpor panggunaan/riwayat saka ZIP nalika dicadangake kanthi data panggunaan kalebu; tinggalake mati yen sampeyan mung pengin setelan lan prompt.
-  - **Bersihke data panggunaan lawas sadurunge dipulihake** - mbusak panggunaan/riwayat sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika sampeyan pengin ngganti kanthi resik).
+- **Tingkah laku kanggo ENTER** milih apa `Enter` nglakokake tugas utawa nyisipake baris anyar.
+- **Otomatis-leksanani nalika nempel** miwiti terjemahan sawise sampeyan nempel teks.
+- **Otomatis-salin asil menyang papan klip** nyalin asil sukses kanthi otomatis.
+- **Terjemahan wektu nyata nalika ngetik** (⚠️ Iki bisa nambah biaya panggunaan) nerjemahake nalika sampeyan ngetik.
+- **Batas wektu (ms)** ngatur wektu tunggu kanggo terjemahan real-time.
 
-Cadangan sing digawe ing versi web utawa desktop bisa dipulihake ing versi liyane. Nalika mulihake cadangan desktop ing versi web, datane bakal dipulihake menyang pangguna administrator.
+**Riwayat**
+
+- **Simpen riwayat eksekusi** ngontrol apa saben terjemahan, nulis ulang, lan ngowahi nyimpen **input lan teks output** kanggo tampilan [**Riwayat**](#history) ing samping. Mateni fitur iki bakal takon konfirmasi; yen sampeyan konfirmasi, teks riwayat sing disimpen bakal dihapus saka database. Yen label nuduhake *dinonaktifake déning administrator*, instalasi sampeyan duwé `HISTORY_DISABLED` disetel ing lingkungan (deleng [README](README.jv.md#configuration-and-environment)); sampeyan ora bisa ngaktifake maneh riwayat liwat UI.
+- **Hapus data riwayat** ngidini sampeyan mbusak teks sing disimpen berdasar umur (contone sing wis tuwa saka sawetara sasi, utawa **kabeh data (bener-bener resik)**) nggunakake **Hapus data**. Iki mung mengaruhi teks eksekusi sing disimpen kanggo tampilan **Riwayat**; iki ora **menghapus** total biaya utawa panggunaan. Kanggo mbusak utawa ngurangi data **biaya**, gunakake [**Setelan** > **Pelacakan Biaya**](#cost-tracking).
+
+**Cadangan Konfigurasi** (hanya kanggo administrator aplikasi desktop lan web)
+- **Kalebu data panganggo ing cadangan** - nalika diaktifake, ZIP uga ngemot sejarah eksekusi lan data panggilan API.
+- **Cadangake konfigurasi** - nggawe siji ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` ing wektu lokal) kanthi `config.json`, `state.json`, kunci enkripsi opsional, pengguna, preferensi, prompt khusus, lan data panganggo yen sampeyan milih. Sawise cadangan sukses, konfirmasi nuduhake jeneng file sing disimpen.
+- **Balekake saka cadangan** - mbukak **dialog konfirmasi dhisik**. Pilih ZIP cadangan ing jero dialog (**Telusuri** / pemilih file utawa seret lan lepas ing ngendi didhukung), banjur tinjau opsi:
+  - **Balekake data panganggo** - ngimpor panggunaan/sejarah saka ZIP nalika dicadangkan kanthi panggunaan kalebu; tinggalake yen sampeyan mung pengin setelan lan prompt.
+  - **Busak data panganggo lawas sadurungé dibalekake** - mbusak panggunaan/sejarah sing ana ing instalasi iki sadurunge nerapake cadangan (opsional; gunakake nalika sampeyan pengin ganti bersih).
+Cadangan sing digawe ing versi web utawa desktop bisa dibalekake ing liyane. Nalika mbalekake cadangan desktop ing versi web, data bakal dibalekake menyang pengguna administrator.
 
 <br/>
 
@@ -801,11 +796,10 @@ Ing modus **Lanjutan**, bukak [**Setelan** > **Model**](#models) lan klik **Sega
 
 Coba siji utawa luwih saka iki:
 
-- pilih preset liya (Gampang) utawa model (Lanjutan)
+- pilih preset (Mudah) utawa model (Lanjutan) sing beda
 - gunakake input sing luwih cendhak
-- mateni **Terjemahan langsung (saat mengetik)** ing [**Setelan** > **Setelan Umum**](#general-settings)
+- mateni **Terjemahan wektu nyata nalika ngetik** ing [**Pengaturan** > **Pengaturan Umum**](#general-settings)
 - gunakake model gratis kanggo tugas sederhana (deleng [Model](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

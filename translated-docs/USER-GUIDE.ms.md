@@ -277,13 +277,13 @@ Bahasa **Top languages** yang anda pilih akan muncul di bahagian atas senarai. A
 
 Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah cara terjemahan berfungsi:
 
-- **Auto-translate on paste** akan menjalankan terjemahan sebaik sahaja anda menampal teks.
-- **Auto-copy result to clipboard** akan menyalin hasil secara automatik selepas terjemahan berjaya dilaksanakan.
-- **Real-time translation (while typing)** akan menjalankan terjemahan semasa anda menaip.
-- **Timeout (ms)** mengawal berapa lama aplikasi menunggu sebelum menjalankan terjemahan masa sebenar.
-- **Kelakuan untuk ENTER** mengawal apa yang berlaku apabila anda menekan `Enter`:
-  - **Enter** melaksanakan terjemahan atau penulisan semula (lalai).
-  - **Shift + Enter** melaksanakan terjemahan atau penulisan semula; **Enter** biasa memasukkan baris baharu.
+- **Auto-laksana pada tampal** menjalankan terjemahan sebaik sahaja anda tampal teks.
+- **Auto-salin hasil ke papan keratan** menyalin hasil secara automatik selepas larian yang berjaya.
+- **Terjemahan masa nyata semasa menaip** (⚠️ Ini mungkin meningkatkan kos penggunaan) menjalankan terjemahan semasa anda menaip.
+- **Timeout (ms)** mengawal berapa lama aplikasi menunggu sebelum menjalankan terjemahan masa nyata.
+- **Tingkah laku untuk ENTER** memilih sama ada `Enter` menjalankan tugas atau menyisipkan baris baru:
+  - **Enter** menjalankan terjemah atau menulis semula (lalai).
+  - **Shift + Enter** menjalankan terjemah atau menulis semula; **Enter** biasa menyisipkan baris baru.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,9 +333,9 @@ Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya un
 <a id="run-an-existing-prompt"></a>
 ### Jalankan arahan sedia ada
 
-1. Buka **Transform**.
-2. Pilih arahan daripada senarai arahan.
-3. Jika kotak **Sasaran** bahasa muncul, pilih bahasa jika anda mahukannya.
+1. Buka **Transformasi**.
+2. Pilih arahan dari senarai arahan.
+3. Jika kotak bahasa **Dari** muncul, pilih bahasa jika anda mahu satu.
 4. Taip atau tampal teks ke dalam **Input**.
 5. Klik **Transformasikan**.
 6. Baca hasilnya dalam **Output**.
@@ -383,11 +383,10 @@ Medan utama adalah:
 - **Arahan arahan (pilihan)**: petua ringkas yang dipaparkan kepada pengguna apabila menjalankan arahan.
 - **Peranan Model**: peranan keseluruhan yang diberikan kepada AI, seperti 'Anda adalah pembantu yang membantu.'
 - **Arahan Model (satu setiap baris)**: peraturan khusus yang anda mahu AI ikuti.
-- **Penerangan output**: perkataan ringkas yang menerangkan hasilnya, seperti 'ringkasan' atau 'tulis semula'.
-- **Suhu (0.0 → 1.0)**: bagaimana model akan berkelakuan; lihat di bawah.
-- **Minta bahasa sasaran**: menambah pemilih bahasa sasaran apabila arahan dijalankan.
-
-Jika istilah teknikal **Suhu** adalah baru bagi anda, fahamkan seperti berikut:
+- **Penerangan output (cth. diubah, diringkaskan, dll.)**: satu perkataan pendek yang menerangkan hasilnya.
+- **Suhu (0.0 → 1.0)**: bagaimana model akan bertindak; lihat di bawah.
+- **Tanya untuk bahasa sasaran**: menambah pemilih bahasa apabila arahan dijalankan.
+Jika istilah teknikal **Suhu** adalah baru bagi anda, fikirkan tentangnya seperti ini:
 
 - **Suhu** yang lebih rendah memberi hasil yang lebih stabil dan lebih boleh diramal.
 - **Suhu** yang lebih tinggi memberi lebih banyak variasi dan kreativiti.
@@ -568,21 +567,6 @@ Gunakan **Tetapan Umum** untuk mengawal kelakuan menaip, sama ada butiran pelaks
 - **Mudah** (lalai): pilih **Penyedia** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, atau Ollama). Penyedia awan menggunakan pratetap binaan dalam bar alat. **Ollama** menyenaraikan model yang dipasang pada mesin anda sebagai ganti pratetap. Dalam mod Mudah, **Katalog pratetap** menunjukkan versi katalog dan masa kemaskini terakhir; klik **Segarkan katalog pratetap** untuk memuat senarai pratetap terkini daripada repositori projek (aplikasi juga memeriksa secara berkala di latar belakang).
 - **Lanjutan**: pilih model individu dalam bar alat; urus senarai tersebut di bawah [**Tetapan** > **Model**](#models).
 
-Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang ditetapkan dalam persekitaran pelayan. Dalam **aplikasi desktop**, konfigurasikan kunci di bawah [**Konfigurasi API**](#api-config).
-
-**Kelakuan**
-
-- **Kelakuan untuk ENTER** memilih sama ada `Enter` melaksanakan tugas atau memasukkan baris baru.
-- **Terjemah automatik semasa tampal** memulakan terjemahan sebaik sahaja anda menampal teks.
-- **Salin hasil secara automatik ke papan keratan** menyalin hasil yang berjaya secara automatik.
-- **Terjemahan masa sebenar (semasa menaip)** menterjemah semasa anda menaip.
-- **Tempoh tamat (ms)** menetapkan masa tunggu untuk terjemahan masa sebenar.
-
-**Sejarah**
-
-- **Simpan sejarah pelaksanaan** mengawal sama ada setiap terjemahan, tulis semula, dan transformasi menyimpan **teks input dan output** untuk paparan [**Sejarah**](#history) di bar sisi. Mematikannya akan meminta pengesahan; jika anda mengesahkan, teks sejarah yang disimpan akan dialih keluar dari pangkalan data. Jika label menunjukkan *dilumpuhkan oleh pentadbir*, pemasangan anda mempunyai `HISTORY_DISABLED` ditetapkan dalam persekitaran (rujuk [README](README.ms.md#configuration-and-environment)); anda tidak boleh menghidupkan semula sejarah dari UI.
-- **Padam data sejarah** membolehkan anda mengalih keluar teks yang disimpan berdasarkan umur (contohnya lebih lama daripada beberapa bulan, atau **semua data (kosongkan)**) menggunakan **Padam data**. Ini hanya mempengaruhi teks pelaksanaan yang disimpan untuk paparan **Sejarah**; ia **tidak** memadamkan jumlah kos atau penggunaan. Untuk mengalih keluar atau memotong data **kos**, gunakan [**Tetapan** > **Penjejakan Kos**](#cost-tracking).
-
 **Rupa**
 
 - **Tema** menukar antara rupa cerah, gelap, dan sistem.
@@ -592,15 +576,26 @@ Dalam **aplikasi web**, penyedia yang muncul bergantung kepada kunci API yang di
 - **Famili Fon** menukar fon penulisan dalam panel teks.
 - **Saiz** menukar saiz fon.
 
+**Kelakuan**
+
+- **Tingkah laku untuk ENTER** memilih sama ada `Enter` menjalankan tugas atau menyisipkan baris baru.
+- **Auto-laksana pada tampal** memulakan terjemahan sebaik sahaja anda tampal teks.
+- **Auto-salin hasil ke papan keratan** menyalin hasil yang berjaya secara automatik.
+- **Terjemahan masa nyata semasa menaip** (⚠️ Ini mungkin meningkatkan kos penggunaan) menterjemah semasa anda menaip.
+- **Tempoh tamat (ms)** menetapkan masa tunggu untuk terjemahan masa sebenar.
+
+**Sejarah**
+
+- **Simpan sejarah pelaksanaan** mengawal sama ada setiap terjemahan, tulis semula, dan transformasi menyimpan **teks input dan output** untuk paparan [**Sejarah**](#history) di bar sisi. Mematikannya akan meminta pengesahan; jika anda mengesahkan, teks sejarah yang disimpan akan dialih keluar dari pangkalan data. Jika label menunjukkan *dilumpuhkan oleh pentadbir*, pemasangan anda mempunyai `HISTORY_DISABLED` ditetapkan dalam persekitaran (rujuk [README](README.ms.md#configuration-and-environment)); anda tidak boleh menghidupkan semula sejarah dari UI.
+- **Padam data sejarah** membolehkan anda mengalih keluar teks yang disimpan berdasarkan umur (contohnya lebih lama daripada beberapa bulan, atau **semua data (kosongkan)**) menggunakan **Padam data**. Ini hanya mempengaruhi teks pelaksanaan yang disimpan untuk paparan **Sejarah**; ia **tidak** memadamkan jumlah kos atau penggunaan. Untuk mengalih keluar atau memotong data **kos**, gunakan [**Tetapan** > **Penjejakan Kos**](#cost-tracking).
+
 **Sandaran Konfigurasi** (hanya untuk pentadbir aplikasi desktop dan web)
-
-- **Sertakan data penggunaan dalam sandaran** - apabila didayakan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
-- **Sandar konfigurasi** - mencipta satu fail ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` dalam UTC secara lalai) dengan `config.json`, `state.json`, kunci penyulitan pilihan, pengguna, keutamaan, arahan tersuai, dan data penggunaan jika anda memilih untuk menyertakannya. Selepas sandaran berjaya, pengesahan akan memaparkan nama fail yang disimpan.
-- **Pulih daripada sandaran** - membuka **dialog pengesahan dahulu**. Pilih fail ZIP sandaran dalam dialog tersebut (**Browse** / pemilih fail atau seret-dan-lepas jika disokong), kemudian semak semula pilihan:
-  - **Pulihkan data penggunaan** - import data penggunaan/sejarah dari ZIP jika ia disandar bersama data penggunaan; tinggalkan tidak didayakan jika anda hanya mahu tetapan dan arahan.
-  - **Kosongkan data penggunaan lama sebelum memulihkan** - alih keluar data penggunaan/sejarah sedia ada pada pemasangan ini sebelum memohon sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
-
-Sandaran yang dicipta dalam versi web atau desktop boleh dipulihkan dalam versi yang lain. Apabila memulihkan sandaran desktop dalam versi web, data akan dipulihkan ke pengguna pentadbir.
+- **Masukkan data penggunaan dalam sandaran** - apabila diaktifkan, ZIP juga mengandungi sejarah pelaksanaan dan data panggilan API.
+- **Sandaran konfigurasi** - mencipta satu ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` dalam waktu tempatan) dengan `config.json`, `state.json`, kunci penyulitan pilihan, pengguna, pilihan, arahan khusus, dan data penggunaan jika anda memilih untuk menyertai. Selepas sandaran yang berjaya, pengesahan menunjukkan nama fail yang disimpan.
+- **Pulihkan dari sandaran** - membuka **dialog pengesahan terlebih dahulu**. Pilih ZIP sandaran di dalam dialog (**Browse** / pemilih fail atau seret dan lepas di mana disokong), kemudian semak pilihan:
+  - **Pulihkan data penggunaan** - mengimport penggunaan/sejarah dari ZIP apabila ia disandarkan dengan penggunaan yang disertakan; biarkan tidak aktif jika anda hanya mahu tetapan dan arahan.
+  - **Kosongkan data penggunaan lama sebelum memulihkan** - alih keluar penggunaan/sejarah sedia ada pada pemasangan ini sebelum menerapkan sandaran (pilihan; gunakan apabila anda mahu penggantian bersih).
+Sandaran yang dibuat dalam versi web atau desktop boleh dipulihkan dalam yang lain. Apabila memulihkan sandaran desktop dalam versi web, data akan dipulihkan kepada pengguna pentadbir.
 
 <br/>
 
@@ -801,11 +796,10 @@ Dalam mod **Lanjutan**, buka [**Tetapan** > **Model**](#models) dan klik **Segar
 
 Cuba satu atau lebih perkara berikut:
 
-- pilih pratetap (Mudah) atau model (Lanjutan) yang berbeza
+- pilih preset (Mudah) atau model (Lanjutan) yang berbeza
 - gunakan input yang lebih pendek
-- matikan **Terjemahan masa nyata (semasa menaip)** di [**Tetapan** > **Tetapan Umum**](#general-settings)
-- gunakan model percuma untuk tugas-tugas ringkas (rujuk [Model](#models))
-
+- matikan **Terjemahan masa nyata semasa menaip** dalam [**Tetapan** > **Tetapan Umum**](#general-settings)
+- gunakan model percuma untuk tugas mudah (lihat [Model](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

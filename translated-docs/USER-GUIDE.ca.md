@@ -277,13 +277,13 @@ Els vostres **Idiomes preferits** seleccionats apareixen a la part superior de l
 
 A [**Configuració** > **Configuració general**](#general-settings), podeu canviar el comportament de la traducció:
 
-- **Traducció automàtica en enganxar** executa una traducció tan aviat com enganxeu text.
-- **Copiar automàticament el resultat al portaobjectes** copia el resultat automàticament després d'una execució correcta.
-- **Traducció en temps real (mentre escriviu)** executa traduccions mentre escriviu.
-- **Temps d'espera (ms)** controla quant de temps espera l'aplicació abans d'executar una traducció en temps real.
-- **Comportament per a ENTER** controla què passa quan prem `Enter`:
-  - **Enter** executa traduir o reescriure (per defecte).
-  - **Shift + Enter** executa traduir o reescriure; **Enter** normal insereix una nova línia.
+- **Executar automàticament en enganxar** executa una traducció tan aviat com enganxes text.
+- **Copiar automàticament el resultat al porta-retalls** copia el resultat automàticament després d'una execució exitosa.
+- **Traducció en temps real mentre escrius** (⚠️ Això pot augmentar els costos d'ús) executa traduccions mentre escrius.
+- **Temps d'espera (ms)** controla quant de temps l'aplicació espera abans d'executar una traducció en temps real.
+- **Comportament per a ENTER** tria si `Enter` executa la tasca o insereix una nova línia:
+  - **Enter** executa traduir o reescriptura (per defecte).
+  - **Shift + Enter** executa traduir o reescriptura; **Enter** normal insereix una nova línia.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Aquesta és l'àrea més flexible de l'aplicació. Podeu utilitzar-la per a tasq
 <a id="run-an-existing-prompt"></a>
 ### Executar un indicador existent
 
-1. Obre **Transformar**.
+1. Obre **Transformació**.
 2. Tria un indicador de la llista d'indicadors.
-3. Si apareix un quadre d'idioma de **Destinació**, tria un idioma si ho desitges.
-4. Escriu o enganxa el text a **Entrada**.
+3. Si apareix una caixa de llengua **De**, tria una llengua si en vols una.
+4. Escriu o enganxa text a **Entrada**.
 5. Feu clic a **Transformar**.
 6. Llegiu el resultat a **Sortida**.
 
@@ -383,11 +383,10 @@ Els camps principals són:
 - **Instruccions de l'indicador (opcional)**: una breu pista que es mostra a l'usuari quan s'executa l'indicador.
 - **Rol del model**: el rol general assignat a la IA, com ara «Ets un assistent útil.»
 - **Instruccions del model (una per línia)**: les regles específiques que voleu que segueixi la IA.
-- **Descripció de la sortida**: una paraula breu que descriu el resultat, com ara «resum» o «reescriure».
-- **Temperatura (0,0 → 1,0)**: com es comportarà el model; vegeu més avall.
-- **Demana l'idioma de destinació**: afegeix un selector d'idioma de destinació quan s'executa l'indicador.
-
-Si el terme tècnic **Temperatura** és nou per a vós, penseu-hi d'aquesta manera:
+- **Descripció de la sortida (p. ex. transformat, resumit, etc.)**: una paraula curta que descriu el resultat.
+- **Temperatura (0,0 → 1,0)**: com es comportarà el model; vegeu a continuació.
+- **Preguntar per la llengua de destí**: afegeix un selector de llengua quan s'executa l'indicador.
+Si el terme tècnic **Temperatura** és nou per a tu, pensa en ell així:
 
 - Una **temperatura més baixa** dóna resultats més estables i previsibles.
 - Una **temperatura més alta** dóna més varietat i creativitat.
@@ -568,21 +567,6 @@ Utilitzeu **Configuració general** per controlar el comportament de l'escriptur
 - **Fàcil** (per defecte): trieu un **Proveïdor** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras o Ollama). Els proveïdors en núvol utilitzen els predeterminats integrats a la barra d'eines. **Ollama** mostra els models instal·lats al vostre ordinador en comptes dels predeterminats. En mode Fàcil, el **Catàleg de preconfiguracions** mostra la versió del catàleg i l'hora de la darrera actualització; feu clic a **Actualitzar el catàleg de preconfiguracions** per obtenir la llista més recent de predeterminats des del repositori del projecte (l'aplicació també comprova periòdicament en segon pla).
 - **Avançat**: trieu models individuals a la barra d'eines; gestioneu la llista a [**Configuració** > **Models**](#models).
 
-A l'**aplicació web**, els proveïdors disponibles depenen de les claus API establertes a l'entorn del servidor. A l'**aplicació d'escriptori**, configureu les claus a [**Configuració de l'API**](#api-config).
-
-**Comportament**
-
-- **Comportament per a ENTER** tria si `Enter` executa la tasca o insereix una nova línia.
-- **Traducció automàtica en enganxar** comença la traducció tan aviat com enganxeu text.
-- **Copiar automàticament el resultat al portaobjectes** copia automàticament els resultats correctes.
-- **Traducció en temps real (mentre s'escriu)** tradueix mentre s'escriu.
-- **Temps d'espera (ms)** estableix el temps d'espera per a la traducció en temps real.
-
-**Historial**
-
-- **Mantenir l'historial d'execució** controla si cada traducció, reescriptura i transformació desa **text d'entrada i de sortida** per a la vista [**Historial**](#history) a la barra lateral. Desactivar-ho demana confirmació; si confirmeu, el text de l'historial desat s'elimina de la base de dades. Si l'etiqueta mostra *desactivat per l'administrador*, la vostra instal·lació té `HISTORY_DISABLED` establert a l'entorn (vegeu el [README](README.ca.md#configuration-and-environment)); no podeu tornar a activar l'historial des de la interfície d'usuari.
-- **Eliminar dades d'historial** us permet eliminar el text desat segons l'antiguitat (per exemple, més antic de pocs mesos, o **totes les dades (esborrar)**) mitjançant **Eliminar dades**. Això només afecta el text d'execució desat per a la vista **Historial**; **no** elimina els totals de cost o ús. Per eliminar o retallar dades de **cost**, utilitzeu [**Configuració** > **Seguiment de costos**](#cost-tracking).
-
 **Aparença**
 
 - **Tema** canvia entre aparença clara, fosca i del sistema.
@@ -592,15 +576,26 @@ A l'**aplicació web**, els proveïdors disponibles depenen de les claus API est
 - **Tipus de lletra** canvia la font d'escriptura als panells de text.
 - **Mida** canvia la mida de la font.
 
+**Comportament**
+
+- **Comportament per a ENTER** tria si `Enter` executa la tasca o insereix una nova línia.
+- **Executar automàticament en enganxar** comença la traducció tan aviat com enganxes text.
+- **Copiar automàticament el resultat al porta-retalls** copia els resultats exitosos automàticament.
+- **Traducció en temps real mentre escrius** (⚠️ Això pot augmentar els costos d'ús) tradueix mentre escrius.
+- **Temps d'espera (ms)** estableix el temps d'espera per a la traducció en temps real.
+
+**Historial**
+
+- **Mantenir l'historial d'execució** controla si cada traducció, reescriptura i transformació desa **text d'entrada i de sortida** per a la vista [**Historial**](#history) a la barra lateral. Desactivar-ho demana confirmació; si confirmeu, el text de l'historial desat s'elimina de la base de dades. Si l'etiqueta mostra *desactivat per l'administrador*, la vostra instal·lació té `HISTORY_DISABLED` establert a l'entorn (vegeu el [README](README.ca.md#configuration-and-environment)); no podeu tornar a activar l'historial des de la interfície d'usuari.
+- **Eliminar dades d'historial** us permet eliminar el text desat segons l'antiguitat (per exemple, més antic de pocs mesos, o **totes les dades (esborrar)**) mitjançant **Eliminar dades**. Això només afecta el text d'execució desat per a la vista **Historial**; **no** elimina els totals de cost o ús. Per eliminar o retallar dades de **cost**, utilitzeu [**Configuració** > **Seguiment de costos**](#cost-tracking).
+
 **Còpia de seguretat de la configuració** (només per a administradors d'aplicacions d'escriptori i web)
-
-- **Incloure dades d'ús en la còpia de seguretat** - quan està activat, el ZIP també conté l'historial d'execució i dades de crides a l'API.
-- **Fer còpia de seguretat de la configuració** - crea un únic ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en UTC per defecte) amb `config.json`, `state.json`, clau d'encriptació opcional, usuaris, preferències, indicacions personalitzades i dades d'ús si ho heu activat. Després d'una còpia de seguretat correcta, la confirmació mostra el nom del fitxer desat.
-- **Restaurar des de còpia de seguretat** - obre primer un **diàleg de confirmació**. Trieu el fitxer ZIP de còpia de seguretat al diàleg (**Navegar** / selector de fitxers o arrossegar i deixar anar on sigui compatible), després reviseu les opcions:
-  - **Restaura les dades d'ús** - importa l'ús/l'historial del ZIP quan es va fer la còpia de seguretat amb dades d'ús incloses; deixeu-ho desactivat si només voleu la configuració i les indicacions.
-  - **Esborra les dades d'ús antigues abans de restaurar** - elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitzeu-ho quan vulgueu un reemplaçament net).
-
-Les còpies de seguretat creades tant a la versió web com a la d'escriptori es poden restaurar a l'altra. Quan es restaura una còpia de seguretat d'escriptori a la versió web, les dades es restauraran a l'usuari administrador.
+- **Incloure les dades d'ús a la còpia de seguretat** - quan està habilitat, el ZIP també conté l'historial d'execució i les dades de trucades API.
+- **Fer còpia de seguretat de la configuració** - crea un únic ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` en hora local) amb `config.json`, `state.json`, clau de xifratge opcional, usuaris, preferències, indicadors personalitzats i dades d'ús si t'has inscrit. Després d'una còpia de seguretat exitosa, la confirmació mostra el nom del fitxer desat.
+- **Restaurar des de la còpia de seguretat** - obre primer un **diàleg de confirmació**. Tria el ZIP de còpia de seguretat dins del diàleg (**Navegar** / selector de fitxers o arrossegar i deixar anar on sigui compatible), després revisa les opcions:
+  - **Restaurar les dades d'ús** - importa l'ús/historial del ZIP quan es va fer la còpia de seguretat amb l'ús inclòs; deixa-ho desmarcat si només vols configuracions i indicadors.
+  - **Esborrar les dades d'ús antigues abans de restaurar** - elimina l'ús/historial existent en aquesta instal·lació abans d'aplicar la còpia de seguretat (opcional; utilitza-ho quan vulguis un reemplaçament net).
+Les còpies de seguretat creades tant en la versió web com en la d'escriptori es poden restaurar en l'altra. Quan es restaura una còpia de seguretat d'escriptori en la versió web, les dades es restauraran a l'usuari administrador.
 
 <br/>
 
@@ -801,11 +796,10 @@ En mode **Avançat**, obriu [**Configuració** > **Models**](#models) i feu clic
 
 Proveu una o més d'aquestes opcions:
 
-- trieu un predeterminat diferent (Fàcil) o model (Avançat)
-- utilitzeu una entrada més curta
-- desactiveu **Traducció en temps real (mentre escriviu)** a [**Configuració** > **Configuració general**](#general-settings)
-- utilitzeu models gratuïts per a tasques senzilles (vegeu [Models](#models))
-
+- tria un preset diferent (Fàcil) o model (Avançat)
+- utilitza una entrada més curta
+- desactiva **Traducció en temps real mentre escrius** a [**Configuració** > **Configuració general**](#general-settings)
+- utilitza models gratuïts per a tasques simples (vegeu [Models](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

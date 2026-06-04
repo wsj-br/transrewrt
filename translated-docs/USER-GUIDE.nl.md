@@ -277,11 +277,11 @@ Uw geselecteerde **Top talen** verschijnen bovenaan de lijst. U kunt deze instel
 
 In [**Instellingen** > **Algemene instellingen**](#general-settings) kunt u aanpassen hoe vertalen werkt:
 
-- **Automatisch vertalen bij plakken** voert een vertaling uit zodra u tekst plakt.
-- **Resultaat automatisch kopiëren naar klembord** kopieert het resultaat automatisch na een succesvolle uitvoering.
-- **Vertaling in realtime (tijdens het typen)** voert vertalingen uit terwijl u typt.
-- **Time-out (ms)** bepaalt hoe lang de app wacht voordat een realtimevertaling wordt uitgevoerd.
-- **Gedrag voor ENTER** bepaalt wat er gebeurt wanneer je op `Enter` drukt:
+- **Auto-uitvoeren bij plakken** voert een vertaling uit zodra je tekst plakt.
+- **Automatisch resultaat naar klembord kopiëren** kopieert het resultaat automatisch na een succesvolle uitvoering.
+- **Realtime vertaling tijdens typen** (⚠️ Dit kan de gebruikskosten verhogen) voert vertalingen uit terwijl je typt.
+- **Timeout (ms)** bepaalt hoe lang de app wacht voordat een realtime vertaling wordt uitgevoerd.
+- **Gedrag voor ENTER** kiest of `Enter` de taak uitvoert of een nieuwe regel invoegt:
   - **Enter** voert vertalen of herschrijven uit (standaard).
   - **Shift + Enter** voert vertalen of herschrijven uit; gewone **Enter** voegt een nieuwe regel in.
 
@@ -333,10 +333,10 @@ Dit is het meest flexibele gedeelte van de app. U kunt het gebruiken voor taken 
 <a id="run-an-existing-prompt"></a>
 ### Een bestaande prompt uitvoeren
 
-1. Open **Transform**.
+1. Open **Transformeren**.
 2. Kies een prompt uit de promptlijst.
-3. Als er een **Doel**-taalvak verschijnt, kies dan een taal als u dat wilt.
-4. Typ tekst of plak deze in **Invoer**.
+3. Als er een **Van** taalvak verschijnt, kies dan een taal als je dat wilt.
+4. Typ of plak tekst in **Invoer**.
 5. Klik op **Transformeren**.
 6. Lees het resultaat in **Uitvoer**.
 
@@ -383,11 +383,10 @@ De belangrijkste velden zijn:
 - **Promptinstructies (optioneel)**: een korte hint die aan de gebruiker wordt getoond bij het uitvoeren van de prompt.
 - **Modelrol**: de algemene rol die aan de AI wordt toegewezen, zoals 'Je bent een behulpzame assistent.'
 - **Modelinstructies (één per regel)**: de specifieke regels die de AI moet volgen.
-- **Uitvoerbeschrijving**: een kort woord dat het resultaat beschrijft, zoals 'samenvatting' of 'herschrijven'.
+- **Uitvoerbeschrijving (bijv. getransformeerd, samengevat, etc.)**: een kort woord dat het resultaat beschrijft.
 - **Temperatuur (0,0 → 1,0)**: hoe het model zich zal gedragen; zie hieronder.
-- **Vraag om doeltaal**: voegt een doeltaalkeuze toe wanneer de prompt wordt uitgevoerd.
-
-Als de technische term **Temperatuur** nieuw voor u is, kunt u er als volgt over denken:
+- **Vraag om doeltaal**: voegt een taalselector toe wanneer de prompt wordt uitgevoerd.
+Als de technische term **Temperatuur** nieuw voor je is, denk er dan zo over:
 
 - Een **lagere** temperatuur geeft stabielere, voorspelbaardere resultaten.
 - Een **hogere** temperatuur geeft meer variatie en creativiteit.
@@ -568,21 +567,6 @@ Gebruik **Algemene instellingen** om het typgedrag te beheren, of uitvoeringsdet
 - **Eenvoudig** (standaard): kies een **Leverancier** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras of Ollama). Cloudleveranciers gebruiken de ingebouwde voorkeuzes in de werkbalk. **Ollama** geeft modellen weer die op uw machine zijn geïnstalleerd, in plaats van voorkeuzes. In Eenvoudige modus toont **Catalogus met voorkeuzes** de catalogusversie en de tijd van de laatste update; klik op **Vernieuw catalogus met voorkeuzes** om de nieuwste lijst met voorkeuzes op te halen uit de opslagplaats van het project (de app controleert ook periodiek op de achtergrond). 
 - **Geavanceerd**: kies afzonderlijke modellen in de werkbalk; beheer de lijst onder [**Instellingen** > **Modellen**](#models).
 
-In de **webapp** hangt welke leveranciers worden weergegeven af van de API-sleutels die zijn ingesteld in de serveromgeving. In de **desktopapp** configureert u sleutels onder [**API-configuratie**](#api-config).
-
-**Gedrag**
-
-- **Gedrag voor ENTER** kiest of `Enter` de taak uitvoert of een nieuwe regel invoegt.
-- **Automatisch vertalen bij plakken** start de vertaling zodra u tekst plakt.
-- **Resultaat automatisch kopiëren naar klembord** kopieert succesvolle resultaten automatisch.
-- **Vertaling in realtime (tijdens het typen)** vertaalt terwijl u typt.
-- **Time-out (ms)** stelt de wachttijd in voor realtimevertaling.
-
-**Geschiedenis**
-
-- **Voeringsgeschiedenis bijhouden** bepaalt of elke vertaling, herschrijving en transformatie de **invoer- en uitvoertekst** opslaat voor de zijbalkweergave [**Geschiedenis**](#history). Uitschakelen vraagt om bevestiging; als u bevestigt, wordt de opgeslagen geschiedenistekst uit de database verwijderd. Als het label *uitgeschakeld door de beheerder* toont, is `HISTORY_DISABLED` ingesteld in de omgeving (zie de [README](README.nl.md#configuration-and-environment)); u kunt de geschiedenis dan niet opnieuw inschakelen via de gebruikersinterface.
-- **Verwijder geschiedenisgegevens** stelt u in staat opgeslagen tekst te verwijderen op basis van leeftijd (bijvoorbeeld ouder dan een paar maanden, of **alle gegevens (wissen)**) met behulp van **Verwijder gegevens**. Dit heeft alleen invloed op de opgeslagen uitvoertekst voor de **Geschiedenis**-weergave; het verwijdert **niet** de kosten- of gebruikstotalen. Gebruik [**Instellingen** > **Kostenregistratie**](#cost-tracking) om **kosten**-gegevens te verwijderen of inkorten.
-
 **Weergave**
 
 - **Thema** schakelt tussen lichte, donkere en systeemweergave.
@@ -592,15 +576,26 @@ In de **webapp** hangt welke leveranciers worden weergegeven af van de API-sleut
 - **Lettertype** verandert het schrijflettertype in de tekstpanelen.
 - **Grootte** verandert de lettergrootte.
 
-**Configuratieback-up** (alleen desktop app en webbeheerders)
+**Gedrag**
 
-- **Neem gebruiksgegevens op in de back-up** - als dit is ingeschakeld, bevat het ZIP-bestand ook uitvoeringsgeschiedenis en API-aanroepgegevens. 
-- **Back-up configuratie** - maakt één ZIP-bestand (standaard `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruiksgegevens indien u hiervoor hebt gekozen. Na een succesvolle back-up wordt de bestandsnaam van het opgeslagen bestand weergegeven.
-- **Herstel vanuit back-up** - opent eerst een **bevestigingsvenster**. Kies het back-up ZIP-bestand in het venster (**Bladeren** / bestandskiezer of slepen en neerzetten waar ondersteund), en controleer vervolgens de opties:
-  - **Gebruiksgegevens herstellen** - importeert gebruik/geschiedenis uit het ZIP-bestand wanneer deze is gemaakt met inbegrip van gebruiksgegevens; laat uitgeschakeld als u alleen instellingen en prompts wilt.
-  - **Verwijder de oude gebruiksgegevens voordat u herstelt** - verwijdert bestaande gebruik/geschiedenis op deze installatie voordat de back-up wordt toegepast (optioneel; gebruik wanneer u een schone vervanging wilt).
+- **Gedrag voor ENTER** kiest of `Enter` de taak uitvoert of een nieuwe regel invoegt.
+- **Auto-uitvoeren bij plakken** start de vertaling zodra je tekst plakt.
+- **Automatisch resultaat naar klembord kopiëren** kopieert succesvolle resultaten automatisch.
+- **Realtime vertaling tijdens typen** (⚠️ Dit kan de gebruikskosten verhogen) vertaalt terwijl je typt.
+- **Time-out (ms)** stelt de wachttijd in voor realtimevertaling.
 
-Back-ups die zijn gemaakt in de web- of desktopversie kunnen worden hersteld in de andere versie. Bij het herstellen van een desktopback-up in de webversie worden de gegevens hersteld voor de beheerdergebruiker.
+**Geschiedenis**
+
+- **Voeringsgeschiedenis bijhouden** bepaalt of elke vertaling, herschrijving en transformatie de **invoer- en uitvoertekst** opslaat voor de zijbalkweergave [**Geschiedenis**](#history). Uitschakelen vraagt om bevestiging; als u bevestigt, wordt de opgeslagen geschiedenistekst uit de database verwijderd. Als het label *uitgeschakeld door de beheerder* toont, is `HISTORY_DISABLED` ingesteld in de omgeving (zie de [README](README.nl.md#configuration-and-environment)); u kunt de geschiedenis dan niet opnieuw inschakelen via de gebruikersinterface.
+- **Verwijder geschiedenisgegevens** stelt u in staat opgeslagen tekst te verwijderen op basis van leeftijd (bijvoorbeeld ouder dan een paar maanden, of **alle gegevens (wissen)**) met behulp van **Verwijder gegevens**. Dit heeft alleen invloed op de opgeslagen uitvoertekst voor de **Geschiedenis**-weergave; het verwijdert **niet** de kosten- of gebruikstotalen. Gebruik [**Instellingen** > **Kostenregistratie**](#cost-tracking) om **kosten**-gegevens te verwijderen of inkorten.
+
+**Configuratie backup** (alleen desktop-app en webbeheerders)
+- **Gebruiksgegevens opnemen in de backup** - wanneer ingeschakeld, bevat de ZIP ook uitvoeringsgeschiedenis en API-aanroepgegevens.
+- **Configuratie backup** - maakt een enkele ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in lokale tijd) met `config.json`, `state.json`, optionele versleutelingssleutel, gebruikers, voorkeuren, aangepaste prompts en gebruiksgegevens als je je hebt aangemeld. Na een succesvolle backup toont de bevestiging de opgeslagen bestandsnaam.
+- **Herstellen vanuit backup** - opent eerst een **bevestigingsdialoog**. Kies de backup ZIP in de dialoog (**Bladeren** / bestandskiezer of slepen en neerzetten waar ondersteund), en bekijk vervolgens de opties:
+  - **Gebruiksgegevens herstellen** - importeer gebruiks-/geschiedenisgegevens uit de ZIP wanneer deze is geback-upt met gebruiksgegevens inbegrepen; laat uit als je alleen instellingen en prompts wilt.
+  - **Oude gebruiksgegevens wissen voordat je herstelt** - verwijder bestaande gebruiks-/geschiedenisgegevens op deze installatie voordat je de backup toepast (optioneel; gebruik wanneer je een schone vervanging wilt).
+Backups die in de web- of desktopversie zijn gemaakt, kunnen in de andere worden hersteld. Bij het herstellen van een desktopbackup in de webversie worden de gegevens hersteld naar de beheerder gebruiker.
 
 <br/>
 
@@ -801,11 +796,10 @@ In **Geavanceerde** modus opent u [**Instellingen** > **Modellen**](#models) en 
 
 Probeer een of meer van de volgende opties:
 
-- kies een andere voorkeuze (Eenvoudig) of model (Geavanceerd)
+- kies een andere voorinstelling (Eenvoudig) of model (Geavanceerd)
 - gebruik een kortere invoer
-- schakel **Real-time vertaling (tijdens het typen)** uit in [**Instellingen** > **Algemene instellingen**](#general-settings)
+- zet **Realtime vertaling tijdens typen** uit in [**Instellingen** > **Algemene instellingen**](#general-settings)
 - gebruik gratis modellen voor eenvoudige taken (zie [Modellen](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

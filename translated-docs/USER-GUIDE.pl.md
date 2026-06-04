@@ -277,13 +277,13 @@ Wybrane przez Ciebie **Najważniejsze języki** pojawiają się u góry listy. M
 
 W sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zmienić sposób działania tłumaczenia:
 
-- **Automatyczne tłumaczenie przy wklejaniu** — tłumaczenie jest uruchamiane automatycznie po wklejeniu tekstu.
-- **Automatyczne kopiowanie wyniku do schowka** — wynik jest automatycznie kopiowany do schowka po pomyślnym tłumaczeniu.
-- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** — tłumaczenie uruchamiane jest w trakcie wpisywania tekstu.
-- **Limit czasu (ms)** — określa, jak długo aplikacja czeka przed uruchomieniem tłumaczenia w czasie rzeczywistym.
-- **Zachowanie dla ENTER** kontroluje działanie po naciśnięciu `Enter`:
-  - **Enter** uruchamia tłumaczenie lub przepisanie (domyślne).
-  - **Shift + Enter** uruchamia tłumaczenie lub przepisanie; zwykły **Enter** wstawia nową linię.
+- **Wykonaj automatycznie po wklejeniu** uruchamia tłumaczenie, gdy tylko wkleisz tekst.
+- **Kopiuj automatycznie** kopiuje wynik automatycznie po udanym wykonaniu.
+- **Tłumaczenie w czasie rzeczywistym podczas pisania** (⚠️ Może to zwiększyć koszty użytkowania) uruchamia tłumaczenia podczas pisania.
+- **Limit czasu (ms)** kontroluje, jak długo aplikacja czeka przed uruchomieniem tłumaczenia w czasie rzeczywistym.
+- **Zachowanie dla ENTER** wybiera, czy `Enter` uruchamia zadanie, czy wstawia nową linię:
+  - **Enter** uruchamia tłumaczenie lub przeróbkę (domyślnie).
+  - **Shift + Enter** uruchamia tłumaczenie lub przeróbkę; zwykły **Enter** wstawia nową linię.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ To najbardziej elastyczna część aplikacji. Można jej używać do zadań taki
 <a id="run-an-existing-prompt"></a>
 ### Uruchom istniejącą zachętę
 
-1. Otwórz **Przekształć**.
-2. Wybierz zachętę z listy zachęt.
-3. Jeśli pojawi się pole **Cel**, wybierz język, jeśli chcesz.
-4. Wpisz lub wklej tekst do pola **Wejście**.
+1. Otwórz **Transformację**.
+2. Wybierz monit z listy monitów.
+3. Jeśli pojawi się pole języka **From**, wybierz język, jeśli chcesz.
+4. Wpisz lub wklej tekst do **Wejścia**.
 5. Kliknij **Przekształć**.
 6. Przeczytaj wynik w polu **Wyjście**.
 
@@ -383,11 +383,10 @@ Główne pola to:
 - **Instrukcje zachęty (opcjonalne)**: krótki opis wyświetlany użytkownikowi podczas uruchamiania zachęty.
 - **Rola modelu**: ogólna rola przypisana AI, np. „Jesteś pomocnym asystentem”.
 - **Instrukcje modelu (jedna na linię)**: konkretne zasady, których ma przestrzegać AI.
-- **Opis wyniku**: krótkie słowo opisujące wynik, np. „podsumowanie” lub „przepisz”.
-- **Temperatura (0,0 → 1,0)**: sposób działania modelu; zobacz poniżej.
-- **Poproś o język docelowy**: dodaje selektor języka docelowego podczas uruchamiania zachęty.
-
-Jeśli termin techniczny **Temperatura** jest dla Ciebie nowy, pomyśl o tym w ten sposób:
+- **Opis wyjścia (np. przekształcony, podsumowany itp.)**: krótkie słowo opisujące wynik.
+- **Temperatura (0,0 → 1,0)**: jak model będzie się zachowywał; zobacz poniżej.
+- **Zapytaj o język docelowy**: dodaje selektor języka, gdy monit jest uruchamiany.
+Jeśli techniczny termin **Temperatura** jest dla Ciebie nowy, pomyśl o tym w ten sposób:
 
 - **Niższa** temperatura daje bardziej stabilne i przewidywalne wyniki.
 - **Wyższa** temperatura daje większą różnorodność i kreatywność.
@@ -568,21 +567,6 @@ Użyj **Ustawień ogólnych**, aby kontrolować zachowanie podczas pisania, czy 
 - **Łatwy** (domyślny): wybierasz **Dostawcę** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras lub Ollama). Dostawcy w chmurze używają wbudowanych ustawień wstępnych w pasku narzędzi. **Ollama** wyświetla modele zainstalowane na Twoim komputerze zamiast ustawień wstępnych. W trybie Łatwy, **Katalog ustawień wstępnych** pokazuje wersję katalogu i czas ostatniej aktualizacji; kliknij **Odśwież katalog ustawień wstępnych**, aby pobrać najnowszą listę ustawień wstępnych z repozytorium projektu (aplikacja sprawdza to również okresowo w tle).
 - **Zaawansowany**: wybierasz poszczególne modele w pasku narzędzi; zarządzasz listą w [**Ustawienia** > **Modele**](#models).
 
-W **aplikacji internetowej** dostępność dostawców zależy od kluczy API ustawionych w środowisku serwera. W **aplikacji komputerowej** skonfiguruj klucze w sekcji [**Konfiguracja API**](#api-config).
-
-**Zachowanie**
-
-- **Zachowanie dla ENTER** określa, czy `Enter` uruchamia zadanie, czy wstawia nową linię.
-- **Automatyczne tłumaczenie przy wklejaniu** uruchamia tłumaczenie zaraz po wklejeniu tekstu.
-- **Automatyczne kopiowanie wyniku do schowka** automatycznie kopiuje pomyślne wyniki.
-- **Tłumaczenie w czasie rzeczywistym (podczas pisania)** tłumaczy tekst podczas pisania.
-- **Limit czasu (ms)** ustawia czas oczekiwania dla tłumaczenia w czasie rzeczywistym.
-
-**Historia**
-
-- **Zachowaj historię wykonania** kontroluje, czy każde tłumaczenie, przepisywanie i przekształcanie przechowuje **tekst wejściowy i wyjściowy** do widoku bocznego panelu [**Historia**](#history). Wyłączenie tej opcji spowoduje wyświetlenie potwierdzenia; po potwierdzeniu przechowywany tekst historii zostanie usunięty z bazy danych. Jeśli etykieta pokazuje *wyłączone przez administratora*, Twoja instalacja ma ustawione `HISTORY_DISABLED` w środowisku (zobacz [README](README.pl.md#configuration-and-environment)); nie możesz włączyć historii ponownie z poziomu interfejsu użytkownika.
-- **Usuń dane historii** pozwala usunąć przechowywany tekst według wieku (na przykład starszy niż kilka miesięcy lub **wszystkie dane (wyczyść)**) za pomocą opcji **Usuń dane**. Dotyczy to wyłącznie zapisanego tekstu wykonania dla widoku **Historia**; **nie** powoduje usunięcia danych dotyczących kosztów ani łącznego zużycia. Aby usunąć lub skrócić dane dotyczące **kosztów**, skorzystaj z [**Ustawienia** > **Śledzenie kosztów**](#cost-tracking).
-
 **Wygląd**
 
 - **Motyw** przełącza między jasnym, ciemnym i systemowym wyglądem.
@@ -592,15 +576,26 @@ W **aplikacji internetowej** dostępność dostawców zależy od kluczy API usta
 - **Rodzina czcionek** zmienia czcionkę w panelach tekstowych.
 - **Rozmiar** zmienia rozmiar czcionki.
 
-**Kopia zapasowa konfiguracji** (tylko dla administratorów aplikacji komputerowej i internetowej)
+**Zachowanie**
 
-- **Uwzględnij dane użycia w kopii zapasowej** — gdy włączone, plik ZIP zawiera również historię wykonywania i dane wywołań API.
-- **Wykonaj kopię zapasową konfiguracji** — tworzy pojedynczy plik ZIP (domyślnie z nazwą `transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` w czasie UTC), zawierający `config.json`, `state.json`, opcjonalny klucz szyfrowania, użytkowników, preferencje, niestandardowe podpowiedzi oraz dane użycia, jeśli zostały wybrane. Po pomyślnej kopii zapasowej potwierdzenie pokazuje nazwę zapisanego pliku.
-- **Przywróć z kopii zapasowej** — otwiera najpierw **okno potwierdzenia**. Wybierz plik kopii zapasowej ZIP w oknie (**Przeglądaj** / selektor plików lub przeciągnij i upuść, tam gdzie to możliwe), a następnie przejrzyj opcje:
-  - **Przywróć dane użycia** — importuje dane użycia/historii z pliku ZIP, jeśli podczas tworzenia kopii zapasowej dane użycia zostały uwzględnione; pozostaw wyłączone, jeśli chcesz tylko przywrócić ustawienia i podpowiedzi.
-  - **Wyczyść stare dane użycia przed przywróceniem** — usuwa istniejące dane użycia/historię w tej instalacji przed zastosowaniem kopii zapasowej (opcjonalne; użyj, gdy chcesz wykonać czyste zastąpienie).
+- **Zachowanie dla ENTER** wybiera, czy `Enter` uruchamia zadanie, czy wstawia nową linię.
+- **Wykonaj automatycznie po wklejeniu** rozpoczyna tłumaczenie, gdy tylko wkleisz tekst.
+- **Kopiuj automatycznie** automatycznie kopiuje udane wyniki.
+- **Tłumaczenie w czasie rzeczywistym podczas pisania** (⚠️ Może to zwiększyć koszty użytkowania) tłumaczy podczas pisania.
+- **Limit czasu (ms)** ustawia czas oczekiwania dla tłumaczenia w czasie rzeczywistym.
 
-Kopie zapasowe utworzone w wersji internetowej lub desktopowej można przywrócić w drugiej wersji. Podczas przywracania kopii zapasowej desktopowej w wersji internetowej dane zostaną przywrócone do użytkownika administratora.
+**Historia**
+
+- **Zachowaj historię wykonania** kontroluje, czy każde tłumaczenie, przepisywanie i przekształcanie przechowuje **tekst wejściowy i wyjściowy** do widoku bocznego panelu [**Historia**](#history). Wyłączenie tej opcji spowoduje wyświetlenie potwierdzenia; po potwierdzeniu przechowywany tekst historii zostanie usunięty z bazy danych. Jeśli etykieta pokazuje *wyłączone przez administratora*, Twoja instalacja ma ustawione `HISTORY_DISABLED` w środowisku (zobacz [README](README.pl.md#configuration-and-environment)); nie możesz włączyć historii ponownie z poziomu interfejsu użytkownika.
+- **Usuń dane historii** pozwala usunąć przechowywany tekst według wieku (na przykład starszy niż kilka miesięcy lub **wszystkie dane (wyczyść)**) za pomocą opcji **Usuń dane**. Dotyczy to wyłącznie zapisanego tekstu wykonania dla widoku **Historia**; **nie** powoduje usunięcia danych dotyczących kosztów ani łącznego zużycia. Aby usunąć lub skrócić dane dotyczące **kosztów**, skorzystaj z [**Ustawienia** > **Śledzenie kosztów**](#cost-tracking).
+
+**Kopia zapasowa konfiguracji** (tylko dla administratorów aplikacji desktopowej i webowej)
+- **Uwzględnij dane użytkowania w kopii zapasowej** - gdy jest włączone, ZIP zawiera również historię wykonania i dane wywołań API.
+- **Utwórz kopię zapasową konfiguracji** - tworzy pojedynczy ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` w czasie lokalnym) z `config.json`, `state.json`, opcjonalnym kluczem szyfrowania, użytkownikami, preferencjami, niestandardowymi monitami i danymi użytkowania, jeśli się na to zdecydowałeś. Po udanym wykonaniu kopii zapasowej potwierdzenie pokazuje nazwę zapisanej pliku.
+- **Przywróć z kopii zapasowej** - najpierw otwiera **okno potwierdzenia**. Wybierz plik ZIP kopii zapasowej w oknie dialogowym (**Przeglądaj** / wybierak plików lub przeciągnij i upuść tam, gdzie jest to obsługiwane), a następnie przejrzyj opcje:
+  - **Przywróć dane użytkowania** - importuj dane użytkowania/historii z ZIP, gdy była ona tworzona z uwzględnieniem użytkowania; pozostaw wyłączone, jeśli chcesz tylko ustawienia i monity.
+  - **Wyczyść stare dane użytkowania przed przywróceniem** - usuń istniejące dane użytkowania/historii na tej instalacji przed zastosowaniem kopii zapasowej (opcjonalnie; użyj, gdy chcesz czystego zastąpienia).
+Kopie zapasowe utworzone w wersji webowej lub desktopowej mogą być przywracane w drugiej. Przywracając kopię zapasową desktopową w wersji webowej, dane zostaną przywrócone do użytkownika administratora.
 
 <br/>
 
@@ -801,11 +796,10 @@ W trybie **Zaawansowany** otwórz [**Ustawienia** > **Modele**](#models) i klikn
 
 Wypróbuj jedną lub więcej z poniższych opcji:
 
-- wybierz inne ustawienie wstępne (Łatwy) lub model (Zaawansowany)
+- wybierz inny preset (Łatwy) lub model (Zaawansowany)
 - użyj krótszego wejścia
-- wyłącz opcję **Tłumaczenie w czasie rzeczywistym (podczas pisania)** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings)
-- używaj darmowych modeli do prostych zadań (zobacz [Modele](#models))
-
+- wyłącz **Tłumaczenie w czasie rzeczywistym podczas pisania** w [**Ustawienia** > **Ustawienia ogólne**](#general-settings)
+- użyj bezpłatnych modeli do prostych zadań (zobacz [Modele](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

@@ -277,11 +277,11 @@ Your selected **Top languages** appear at the top of the list. You can set these
 
 In [**Settings** > **General Settings**](#general-settings), you can change how translation behaves:
 
-- **Auto-translate on paste** runs a translation as soon as you paste text.
+- **Auto-execute on paste** runs a translation as soon as you paste text.
 - **Auto-copy result to clipboard** copies the result automatically after a successful run.
-- **Real-time translation (while typing)** runs translations while you type.
+- **Real-time translation while typing** (⚠️ This may increase usage costs) runs translations while you type.
 - **Timeout (ms)** controls how long the app waits before running a real-time translation.
-- **Behavior for ENTER** controls what happens when you press `Enter`:
+- **Behavior for ENTER** chooses whether `Enter` runs the task or inserts a new line:
   - **Enter** runs translate or rewrite (default).
   - **Shift + Enter** runs translate or rewrite; plain **Enter** inserts a new line.
 
@@ -335,7 +335,7 @@ This is the most flexible area of the app. You can use it for tasks such as:
 
 1. Open **Transform**.
 2. Choose a prompt from the prompt list.
-3. If a **Target** language box appears, choose a language if you want one.
+3. If a **From** language box appears, choose a language if you want one.
 4. Type or paste text into **Input**.
 5. Click **Transform**.
 6. Read the result in **Output**.
@@ -383,10 +383,9 @@ The main fields are:
 - **Prompt instructions (optional)**: a short hint displayed to the user when running the prompt.
 - **Model Role**: the overall role assigned to the AI, such as 'You are a helpful assistant.'
 - **Model Instructions (one per line)**: the specific rules you want the AI to follow.
-- **Output description**: a short word describing the result, such as 'summary' or 'rewrite'.
+- **Output description (e.g. transformed, summarized, etc.)**: a short word describing the result.
 - **Temperature (0.0 → 1.0)**: how the model will behave; see below.
-- **Ask for target language**: adds a target language selector when the prompt is run.
-
+- **Ask for target language**: adds a language selector when the prompt is run.
 If the technical term **Temperature** is new to you, think of it like this:
 
 - A **lower** temperature gives steadier, more predictable results.
@@ -568,21 +567,6 @@ Use **General Settings** to control typing behavior, whether execution details a
 - **Easy** (default): choose a **Provider** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, or Ollama). Cloud providers use the built-in presets in the toolbar. **Ollama** lists models installed on your machine instead of presets. In Easy mode, **Presets catalog** shows the catalog version and last update time; click **Refresh presets catalog** to fetch the latest preset list from the project repository (the app also checks periodically in the background).
 - **Advanced**: pick individual models in the toolbar; manage the list under [**Settings** > **Models**](#models).
 
-On the **web app**, which providers appear depends on API keys set in the server environment. On the **desktop app**, configure keys under [**API Config**](#api-config).
-
-**Behavior**
-
-- **Behavior for ENTER** chooses whether `Enter` runs the task or inserts a new line.
-- **Auto-translate on paste** starts translation as soon as you paste text.
-- **Auto-copy result to clipboard** copies successful results automatically.
-- **Real-time translation (while typing)** translates while you type.
-- **Timeout (ms)** sets the wait time for real-time translation.
-
-**History**
-
-- **Keep execution history** controls whether each translate, rewrite, and transform stores **input and output text** for the sidebar [**History**](#history) view. Turning it off asks for confirmation; if you confirm, stored history text is removed from the database. If the label shows *disabled by the administrator*, your install has `HISTORY_DISABLED` set in the environment (see the [README](README.en-US.md#configuration-and-environment)); you cannot turn history back on from the UI.
-- **Delete history data** lets you remove stored text by age (for example older than a few months, or **all data (clear)**) using **Delete data**. That only affects saved execution text for the **History** view; it does **not** delete cost or usage totals. To remove or trim **cost** data, use [**Settings** > **Cost Tracking**](#cost-tracking).
-
 **Appearance**
 
 - **Theme** switches between light, dark, and system appearance.
@@ -592,14 +576,25 @@ On the **web app**, which providers appear depends on API keys set in the server
 - **Font Family** changes the writing font in the text panels.
 - **Size** changes the font size.
 
-**Configuration Backup** (desktop app and web administrators only)
+**Behavior**
 
+- **Behavior for ENTER** chooses whether `Enter` runs the task or inserts a new line.
+- **Auto-execute on paste** starts translation as soon as you paste text.
+- **Auto-copy result to clipboard** copies successful results automatically.
+- **Real-time translation while typing** (⚠️ This may increase usage costs) translates while you type.
+- **Timeout (ms)** sets the wait time for real-time translation.
+
+**History**
+
+- **Keep execution history** controls whether each translate, rewrite, and transform stores **input and output text** for the sidebar [**History**](#history) view. Turning it off asks for confirmation; if you confirm, stored history text is removed from the database. If the label shows *disabled by the administrator*, your install has `HISTORY_DISABLED` set in the environment (see the [README](README.en-US.md#configuration-and-environment)); you cannot turn history back on from the UI.
+- **Delete history data** lets you remove stored text by age (for example older than a few months, or **all data (clear)**) using **Delete data**. That only affects saved execution text for the **History** view; it does **not** delete cost or usage totals. To remove or trim **cost** data, use [**Settings** > **Cost Tracking**](#cost-tracking).
+
+**Configuration Backup** (desktop app and web administrators only)
 - **Include usage data in the backup** - when enabled, the ZIP also contains execution history and API call data.
-- **Backup configuration** - creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in UTC by default) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
+- **Backup configuration** - creates a single ZIP (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` in local time) with `config.json`, `state.json`, optional encryption key, users, preferences, custom prompts, and usage data if you opted in. After a successful backup, the confirmation shows the saved file name.
 - **Restore from backup** - opens a **confirmation dialog first**. Choose the backup ZIP inside the dialog (**Browse** / file picker or drag-and-drop where supported), then review the options:
   - **Restore the usage data** - import usage/history from the ZIP when it was backed up with usage included; leave off if you only want settings and prompts.
   - **Clear the old usage data before restoring** - remove existing usage/history on this install before applying the backup (optional; use when you want a clean replace).
-
 Backups created in either the web or desktop version can be restored in the other. When restoring a desktop backup in the web version, the data will be restored to the administrator user.
 
 <br/>
@@ -803,9 +798,8 @@ Try one or more of these:
 
 - choose a different preset (Easy) or model (Advanced)
 - use a shorter input
-- turn off **Real-time translation (while typing)** in [**Settings** > **General Settings**](#general-settings)
+- turn off **Real-time translation while typing** in [**Settings** > **General Settings**](#general-settings)
 - use free models for simple tasks (see [Models](#models))
-
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>

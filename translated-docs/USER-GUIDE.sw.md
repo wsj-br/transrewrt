@@ -277,13 +277,13 @@ Lugha zako zilizo **Imechaguliwa** zinarudi juu ya orodha. Unaweza zifafanua kat
 
 Katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings), unaweza badilisha namna tafsiri inavyofanya kazi:
 
-- **Tafsiri moja kwa moja baada ya kunakili** inatumia tafsiri mara tu unapotumia maandishi.
-- **Nakili moja kwa moja matokeo kwenye ubao wa kunakili** inanakili matokeo moja kwa moja baada ya kufanikisha tafsiri.
-- **Tafsiri ya wakati wowote (wakati wa kuandika)** inatumia tafsiri wakati unapoandika.
-- **Wakati uliochukua (ms)** unadhibiti muda ambao programu inasubiri kabla ya kutekeleza tafsiri ya wakati wowote.
-- **Tabia kwa ENTER** inadhibiti kinachotokea unapobonyeza `Enter`:
-  - **Enter** inatumia tafsiri au andika upya (chaguo-msingi).
-  - **Shift + Enter** inatumia tafsiri au andika upya; **Enter** pekee inaweka mstari mpya.
+- **Tekeleza kiotomatiki wakati wa kunakili** inatekeleza tafsiri mara tu unapobandika maandiko.
+- **Nakili matokeo kiotomatiki kwenye ubao wa kunakili** inanakili matokeo kiotomatiki baada ya utekelezaji kufanikiwa.
+- **Tafsiri ya wakati halisi wakati wa kuandika** (⚠️ Hii inaweza kuongeza gharama za matumizi) inatekeleza tafsiri wakati unapoandika.
+- **Muda wa kusubiri (ms)** unadhibiti ni muda gani programu inangoja kabla ya kutekeleza tafsiri ya wakati halisi.
+- **Tabia kwa ENTER** inachagua ikiwa `Enter` inatekeleza kazi au inaingiza mstari mpya:
+  - **Enter** inatekeleza tafsiri au kuandika upya (chaguo la kawaida).
+  - **Shift + Enter** inatekeleza tafsiri au kuandika upya; **Enter** ya kawaida inaingiza mstari mpya.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -333,10 +333,10 @@ Hii ni sehemu yenye uwezo mkubwa zaidi ya programu. Unaweza kutumia kwa kazi kam
 <a id="run-an-existing-prompt"></a>
 ### Tekeleza maagizo uliyo yana
 
-1. Fungua **Badilisha**.
-2. Chagua maagizo kutoka kwenye orodha ya maagizo.
-3. Ikiwa kisanduku cha **Lengo** la lugha kinavyotazamika, chagua lugha ikiwa unataka.
-4. Andika au bandika maandishi kwenye **Kuingiza**.
+1. Fungua **Kubadilisha**.
+2. Chagua maelezo kutoka kwenye orodha ya maelezo.
+3. Ikiwa kisanduku cha lugha **Kutoka** kinaonekana, chagua lugha ikiwa unataka moja.
+4. Andika au bandika maandiko kwenye **Ingiza**.
 5. Bonyeza **Badilisha**.
 6. Soma matokeo kwenye **Pato**.
 
@@ -383,11 +383,10 @@ Sehemu kuu ni:
 - **Maelekezo ya maagizo (si muhimu)**: maelekezo mafupi yanayooneshwa kwa mtumiaji wakati wa kuendesha maagizo.
 - **Jukumu la mfumo**: jukumu jumla uliopewa kwa AI, kama vile 'Wewe ni msaada mwema.'
 - **Maelekezo ya mfumo (moja kwa mstari)**: sheria maalum unayotaka AI kuzifuate.
-- **Maelezo ya pato**: neno fupi unaoelezea matokeo, kama vile 'muhtasari' au 'andika upya'.
-- **Joto (0.0 → 1.0)**: namna ambavyo mfumo utashughulika; angalia chini.
-- **Waulize kuhusu lugha ya lengo**: inaongeza kichagua cha lugha ya lengo wakati maagizo yanapokimbia.
-
-Ikiwa terminologia ya kiufundi **Joto** ni mpya kwako, fikiria kama ifuatavyo:
+- **Maelezo ya Mazao (k.m. yaliyobadilishwa, yaliyopigiwa mstari, nk.)**: neno fupi linaloelezea matokeo.
+- **Joto (0.0 → 1.0)**: jinsi modeli itakavyofanya kazi; angalia hapa chini.
+- **Uliza lugha lengwa**: inaongeza mteule wa lugha wakati maelezo yanatekelezwa.
+Ikiwa neno la kiufundi **Joto** ni jipya kwako, fikiria hivi:
 
 - **Joto** dogo linatoa matokeo ya thabiti zaidi, yanayotabiriwa kwa urahisi.
 - **Joto** kubwa linatoa ubunifu na tofauti zaidi.
@@ -568,21 +567,6 @@ Tumia **Mipangilio ya Kawaida** kupitia tabia ya kuandika, kama taarifa za uteke
 - **Rahisi** (chaguo-msingi): chagua **Mtoa huduma** (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, au Ollama). Watoa huduma wa mawingu wanatumia vitanzandiko vilivyowekwa kwenye barua pepe. **Ollama** inaonyesha mifumo iliyosakinishwa kwenye kifaa chako badala ya vitanzandiko. Katika namweo la Rahisi, **Orodha ya vitanzandiko** inaonyesha toleo la orodha na wakati wa sasisho la mwisho; bofya **Sasisha orodha ya vitanzandiko** kupokea orodha ya hivi karibuni ya vitanzandiko kutoka kwenye hazina ya mradi (programu pia inachunguza kwa muda wa muda wa nyuma). 
 - **Ubinafsi**: chagua mifumo moja kwa moja kwenye barua pepe; usimamie orodha chini ya [**Mipangilio** > **Mifano**](#models).
 
-Katika **programu ya wavuti**, matoa yanayotazamika yanategemea bango la API zilizowekwa katika mazingira ya seva. Katika **programu ya kompyuta**, weka bango kwenye [**Mipangilio ya API**](#api-config).
-
-**Tabia**
-
-- **Tabia kwa ENTER** chagua kama `Enter` inatumia kazi au inaweka mstari mpya.
-- **Tafsiri moja kwa moja baada ya kunakili** inanashia tafsiri mara tuunakili maandishi.
-- **Nakili moja kwa moja matokeo kwenye ubao wa kunakili** inanakili matokeo yanayofanikiwa moja kwa moja.
-- **Tafsiri ya wakati wa kweli (wakati wa kuandika)** inatafsiri wakati unapoandika.
-- **Wakati usio (ms)** hufafanua muda wa kusubiri kwa ajili ya tafsiri ya wakati wa kweli.
-
-**Historia**
-
-- **Hifadhi historia ya utekelezaji** inaendeleza kama kila tafsiri, andika upya, na ubadilishaji unahifadhi **maandishi ya kuingiza na pato** kwa ajili ya onyesho la upande wa upande wa [**Historia**](#history). Kuzima kinauliza kuthibitisha; kama utathibitisha, data ya historia iliyohifadhiwa itafutwa kutoka kwenye hifadhidata. Kama lebo inaonyesha *imezimwa na msimamizi*, kiolesura chako kina `HISTORY_DISABLED` kilichowekwa mazingira (tazama [README](README.sw.md#configuration-and-environment)); huwezi kurudisha historia tena kutoka kwenye UI.
-- **Futa data ya historia** inaruhusu kufuta maandishi yaliyohifadhiwa kulingana na umri (kwa mfano, zilizopita muda wa miezi kadhaa, au **data yote (wazi)**) kwa kutumia **Futa data**. Hii inaathiri tu maandishi ya utekelezaji yaliyohifadhiwa kwa ajili ya onyesho la **Historia**; haina **fanya** kufuta data ya gharama au jumla la matumizi. Ili kufuta au kupunguza data ya **gharama**, tumia [**Mipangilio** > **Ufuatiliaji wa Gharama**](#cost-tracking).
-
 **Muonekano**
 
 - **Muonekano** unabadilisha kati ya mwanga, giza, na muonekano wa mfumo.
@@ -592,15 +576,26 @@ Katika **programu ya wavuti**, matoa yanayotazamika yanategemea bango la API zil
 - **Familia ya fonti** inabadilisha fonti ya maandishi kwenye paneli za maandishi.
 - **Ukubwa** unabadilisha ukubwa wa fonti.
 
-**Usimbaji wa Usanidi** (kwa watumiaji wa programu ya mezani na maarufu wa wavuti tu)
+**Tabia**
 
-- **Jumuisha data ya matumizi kwenye usimbaji** - ikiwa imewezeshwa, ZIP pia ina historia ya utekelezaji na data ya maombi ya API.
-- **Usimbaji wa usanidi** - hundua ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` kwa UTC kwa chaguo-msingi) yenye `config.json`, `state.json`, ufunguo wa usimbaji wa sihi, watumiaji, mapendeleo, maagizo ya desturi, na data ya matumizi ikiwa umekubali. Baada ya usimbaji wa mafanikio, uthibitishaji unaonyesha jina la faili iliyohifadhiwa.
-- **Weka upya kutoka kwenye usimbaji** - hufungua **mchemchela wa uthibitishaji kwanza**. Chagua faili ya ZIP ya usimbaji ndani ya mchemchela (**Chunguza** / kichujio cha faili au buruta-na-angusha pale inapotumika), kisha ukagua chaguzi:
-  - **Rejesha data ya matumizi** - ingiza data ya matumizi/historia kutoka kwenye ZIP wakati iliposimwa ikiwa ilisimwa pamoja na matumizi; wachikie ikiwa unataka mipangilio na maagizo tu.
-  - **Futa data ya zamani kabla ya kurudisha** - ondoa matumizi/historia yaliyopo kwenye uwekaji huu kabla ya kutumia usimbaji (si lazima; tumia wakati unataka badilika safi).
+- **Tabia kwa ENTER** inachagua ikiwa `Enter` inatekeleza kazi au inaingiza mstari mpya.
+- **Tekeleza kiotomatiki wakati wa kunakili** inaanza tafsiri mara tu unapobandika maandiko.
+- **Nakili matokeo kiotomatiki kwenye ubao wa kunakili** inanakili matokeo yaliyofanikiwa kiotomatiki.
+- **Tafsiri ya wakati halisi wakati wa kuandika** (⚠️ Hii inaweza kuongeza gharama za matumizi) inatafsiri wakati unapoandika.
+- **Wakati usio (ms)** hufafanua muda wa kusubiri kwa ajili ya tafsiri ya wakati wa kweli.
 
-Usimbaji ulioundwa kwenye toleo la wavuti au desktopi unaweza kuwekwa upya kwenye jingine. Wakati wa kuweka upya usimbaji wa desktopi kwenye toleo la wavuti, data itawekwa upya kwa mtumiaji wa msimamizi.
+**Historia**
+
+- **Hifadhi historia ya utekelezaji** inaendeleza kama kila tafsiri, andika upya, na ubadilishaji unahifadhi **maandishi ya kuingiza na pato** kwa ajili ya onyesho la upande wa upande wa [**Historia**](#history). Kuzima kinauliza kuthibitisha; kama utathibitisha, data ya historia iliyohifadhiwa itafutwa kutoka kwenye hifadhidata. Kama lebo inaonyesha *imezimwa na msimamizi*, kiolesura chako kina `HISTORY_DISABLED` kilichowekwa mazingira (tazama [README](README.sw.md#configuration-and-environment)); huwezi kurudisha historia tena kutoka kwenye UI.
+- **Futa data ya historia** inaruhusu kufuta maandishi yaliyohifadhiwa kulingana na umri (kwa mfano, zilizopita muda wa miezi kadhaa, au **data yote (wazi)**) kwa kutumia **Futa data**. Hii inaathiri tu maandishi ya utekelezaji yaliyohifadhiwa kwa ajili ya onyesho la **Historia**; haina **fanya** kufuta data ya gharama au jumla la matumizi. Ili kufuta au kupunguza data ya **gharama**, tumia [**Mipangilio** > **Ufuatiliaji wa Gharama**](#cost-tracking).
+
+**Hifadhi ya Usanidi** (programu ya desktop na wasimamizi wa wavuti pekee)
+- **Jumuisha data ya matumizi kwenye hifadhi** - wakati imewezeshwa, ZIP pia inajumuisha historia ya utekelezaji na data ya wito wa API.
+- **Hifadhi usanidi** - inaunda ZIP moja (`transrewrt-config-backup-YYYY-MM-DD_HHMMSS.zip` kwa wakati wa mahali) yenye `config.json`, `state.json`, ufunguo wa usimbuaji wa hiari, watumiaji, mapendeleo, maelezo ya kawaida, na data ya matumizi ikiwa umechagua. Baada ya hifadhi kufanikiwa, uthibitisho unaonyesha jina la faili lililohifadhiwa.
+- **Rejelea kutoka kwa hifadhi** - inafungua **kidhibiti cha uthibitisho kwanza**. Chagua ZIP ya hifadhi ndani ya kidhibiti (**Browse** / mteule wa faili au buruta-na-drop ambapo inasaidiwa), kisha angalia chaguzi:
+  - **Rejelea data ya matumizi** - ingiza matumizi/historia kutoka kwa ZIP wakati ilihifadhiwa ikiwa na matumizi yaliyojumuishwa; acha mbali ikiwa unataka tu mipangilio na maelezo.
+  - **Futa data ya matumizi ya zamani kabla ya kurejelesha** - ondolewa matumizi/historia iliyopo kwenye usakinishaji huu kabla ya kutumia hifadhi (hiari; tumia unapohitaji kubadilisha kwa safi).
+Hifadhi zilizoundwa katika toleo la wavuti au desktop zinaweza kurejelewa katika nyingine. Wakati wa kurejesha hifadhi ya desktop katika toleo la wavuti, data itarejelewa kwa mtumiaji msimamizi.
 
 <br/>
 
@@ -801,11 +796,10 @@ Katika njia ya **Ubinafsi**, fungua [**Mipangilio** > **Mifano**](#models) na bo
 
 Jaribu moja au zaidi ya haya:
 
-- chagua vitanzandiko tofauti (Rahisi) au mfumo (Ubinafsi)
-- tumia kuingiza fupi
-- zima **Tafsiri ya wakati mmoja (wakati wa kuandika)** kwenye [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings)
-- tumia mifano ya bure kwa kazi rahisi (tazama [Mifano](#models))
-
+- chagua awali tofauti (Rahisi) au modeli (Maalum)
+- tumia ingizo fupi
+- zima **Tafsiri ya wakati halisi wakati wa kuandika** katika [**Mipangilio** > **Mipangilio ya Jumla**](#general-settings)
+- tumia modeli za bure kwa kazi rahisi (angalia [Modeli](#models))
 <br/>
 
 <a id="the-interface-is-in-the-wrong-language"></a>
