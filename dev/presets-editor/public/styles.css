@@ -1189,10 +1189,10 @@ table.trans-table {
 .ai-suggest-presets-checkboxes {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
   max-height: min(36vh, 280px);
   overflow: auto;
-  padding: 8px 10px;
+  padding: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
@@ -1203,15 +1203,42 @@ table.trans-table {
   align-items: flex-start;
   gap: 8px;
   margin: 0;
-  padding: 6px 4px;
-  border-radius: 6px;
+  padding: 6px 10px;
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.9rem;
   line-height: 1.35;
 }
 
-.ai-suggest-presets-check:hover {
+.ai-suggest-presets-check:not(.preset-select-master-row):hover {
   background: var(--surface-hover, rgba(127, 127, 127, 0.08));
+}
+
+.ai-suggest-presets-check.preset-select-master-row {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  align-items: center;
+  padding: 8px 10px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.ai-suggest-presets-check.preset-select-master-row:hover {
+  background: var(--panel);
+}
+
+.preset-select-master-row .preset-select-master-label strong {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.preset-select-master-row input[type="checkbox"] {
+  margin-top: 0;
+  /* Clicks go to the label so one code path updates checked/indeterminate (input clicks broke sync). */
+  pointer-events: none;
 }
 
 .ai-suggest-presets-check input {
@@ -1553,4 +1580,152 @@ table.trans-table {
   animation: ai-suggest-spin 0.75s linear infinite;
   vertical-align: middle;
   margin-right: 6px;
+}
+
+/* Translate benchmark panel (reuses .performance-panel layout) */
+
+.benchmark-setup-columns {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 1.2fr);
+  gap: 16px 20px;
+  flex-shrink: 0;
+  align-items: stretch;
+}
+
+.benchmark-setup-presets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.benchmark-fallback-toggle {
+  margin: 0;
+  padding: 4px 0;
+}
+
+.benchmark-setup-presets .ai-suggest-presets-checkboxes {
+  flex: 1;
+  min-height: 120px;
+  max-height: 280px;
+}
+
+.benchmark-setup-presets-note {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.benchmark-setup-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.benchmark-setup-sample .benchmark-sample-text {
+  flex: 1;
+  min-height: 8rem;
+}
+
+.benchmark-results-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.benchmark-results-block .performance-table-wrap {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .benchmark-setup-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benchmark-panel .benchmark-sample-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.benchmark-panel .benchmark-sample-text {
+  width: 100%;
+  min-height: 5rem;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.benchmark-panel .benchmark-total-cost {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.perf-table .benchmark-preview {
+  white-space: normal;
+  max-width: 280px;
+  overflow-wrap: anywhere;
+}
+
+.perf-table tr.benchmark-result-row-expandable {
+  cursor: pointer;
+}
+
+.perf-table tr.benchmark-result-row-expandable:hover {
+  background: var(--surface-hover, rgba(127, 127, 127, 0.08));
+}
+
+.perf-table tr.benchmark-result-row-expanded {
+  background: var(--surface-hover, rgba(127, 127, 127, 0.1));
+}
+
+.perf-table tr.benchmark-result-detail.hidden {
+  display: none;
+}
+
+.benchmark-result-detail-cell {
+  padding: 10px 12px 12px;
+  vertical-align: top;
+  white-space: normal;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.benchmark-result-full-output {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: min(40vh, 320px);
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel, var(--bg));
+}
+
+.perf-table .benchmark-status-err {
+  white-space: normal;
+  max-width: 200px;
+  overflow-wrap: anywhere;
+}
+
+.perf-table tr.benchmark-row-fail {
+  opacity: 0.92;
 }

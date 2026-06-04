@@ -140,6 +140,14 @@ const {
   resolveEndpointsQueryPath,
 } = require("./openRouterDiskCache.js");
 const {
+  runTranslatePresetsBenchmark,
+  normalizeSampleText,
+  formatDurationMs,
+  BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
+  BENCHMARK_SOURCE_LANG,
+  BENCHMARK_TARGET_LANG,
+} = require("./translatePresetsBenchmark.js");
+const {
   parsePresetsJson,
   bumpPatchVersion,
   serializePresetsCatalog,
@@ -1547,6 +1555,177 @@ app.post("/api/presets/test-model", async (req, res) => {
       status: e.status,
       latencyMs: e.latencyMs,
     });
+  }
+});
+
+function writeTranslateBenchmarkSse(res, event, data) {
+  res.write(`event: ${event}\n`);
+  res.write(`data: ${JSON.stringify(data)}\n\n`);
+  if (typeof res.flush === "function") res.flush();
+}
+
+function formatBenchmarkCostUsd(costUsd, costKnown) {
+  if (costUsd == null || Number.isNaN(Number(costUsd))) return "—";
+  if (!costKnown && Number(costUsd) === 0) return "—";
+  return "$" + Number(costUsd).toFixed(6);
+}
+
+function logTranslateBenchmarkRowComplete(ctx, row) {
+  const { index, total, preset_id, slot } = ctx || {};
+  const slotPart = slot ? ` ${slot}` : "";
+  let suffix = "";
+  if (row && row.ok) {
+    const parts = [];
+    if (row.duration_fmt) parts.push(row.duration_fmt);
+    parts.push(formatBenchmarkCostUsd(row.cost_usd, row.cost_known));
+    suffix = " — " + parts.join(", ");
+  } else {
+    suffix = " — failed";
+  }
+  console.log(
+    `[presets-editor] translate-benchmark: ${index}/${total} (${preset_id}${slotPart})${suffix}`,
+  );
+}
+
+function logTranslateBenchmarkFinished(startedAt, finishedAt, result) {
+  const wallMs = new Date(finishedAt).getTime() - new Date(startedAt).getTime();
+  const wallFmt = formatDurationMs(wallMs);
+  const costFmt = formatBenchmarkCostUsd(
+    result.total_cost_usd,
+    result.total_cost_known,
+  );
+  let msg = `[presets-editor] translate-benchmark: finished — ${wallFmt}, ${costFmt}`;
+  if (result.total_cost_partial) msg += " (partial costs)";
+  console.log(msg);
+}
+
+function buildTranslateBenchmarkResponsePayload(startedAt, finishedAt, result) {
+  return {
+    started_at: startedAt,
+    finished_at: finishedAt,
+    sample_text: result.sample_text,
+    source_lang: result.source_lang,
+    target_lang: result.target_lang,
+    rows: result.rows,
+    total_cost_usd: result.total_cost_usd,
+    total_cost_known: result.total_cost_known,
+    total_cost_partial: result.total_cost_partial,
+  };
+}
+
+app.get("/api/presets/translate-benchmark/defaults", (_req, res) => {
+  res.json({
+    default_sample_text: BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
+    source_lang: BENCHMARK_SOURCE_LANG,
+    target_lang: BENCHMARK_TARGET_LANG,
+  });
+});
+
+app.post("/api/presets/translate-benchmark", async (req, res) => {
+  try {
+    await ensureEditorPresetsPrepared();
+    const catalog = editorPresetsCatalog || loadRepoPresetsCatalogFromDisk();
+    const presets = Array.isArray(catalog?.presets) ? catalog.presets : [];
+    const keysMap = mergeKeys({}, process.env);
+    if (!engineConfigured("openrouter", keysMap)) {
+      return res.status(400).json({
+        error:
+          "OPENROUTER_API_KEY is not set. Export it in the shell before starting the presets editor.",
+      });
+    }
+
+    const bodyText =
+      req.body && typeof req.body.sample_text === "string" ? req.body.sample_text : "";
+    const sampleText = normalizeSampleText(bodyText);
+
+    const presetIdsRaw =
+      req.body && Array.isArray(req.body.preset_ids) ? req.body.preset_ids : null;
+    if (!presetIdsRaw || !presetIdsRaw.length) {
+      return res.status(400).json({ error: "preset_ids must be a non-empty array" });
+    }
+    const idSet = new Set(
+      presetIdsRaw.map((id) => String(id).trim()).filter(Boolean),
+    );
+    const selectedPresets = presets.filter((p) => p && p.id && idSet.has(p.id));
+    if (!selectedPresets.length) {
+      return res.status(400).json({ error: "No matching presets for preset_ids" });
+    }
+
+    const includeFallback = req.body?.include_fallback !== false;
+
+    const wantStream =
+      (req.body && req.body.stream === true) ||
+      String(req.query.stream || "") === "1";
+
+    const startedAt = new Date().toISOString();
+    console.log(
+      "[presets-editor] translate-benchmark: starting…" +
+        (includeFallback ? " (main + fallback)" : " (main only)"),
+    );
+
+    const hooks = {};
+
+    if (wantStream) {
+      res.setHeader("Content-Type", "text/event-stream; charset=utf-8");
+      res.setHeader("Cache-Control", "no-cache, no-transform");
+      res.setHeader("Connection", "keep-alive");
+      res.flushHeaders?.();
+
+      hooks.onProgress = (p) => {
+        writeTranslateBenchmarkSse(res, "progress", p);
+      };
+      hooks.onRow = (row, ctx) => {
+        logTranslateBenchmarkRowComplete(ctx, row);
+        writeTranslateBenchmarkSse(res, "row", row);
+      };
+
+      try {
+        const result = await runTranslatePresetsBenchmark({
+          presets: selectedPresets,
+          keysMap,
+          sample_text: sampleText,
+          include_fallback: includeFallback,
+          onProgress: hooks.onProgress,
+          onRow: hooks.onRow,
+        });
+        const finishedAt = new Date().toISOString();
+        logTranslateBenchmarkFinished(startedAt, finishedAt, result);
+        writeTranslateBenchmarkSse(
+          res,
+          "done",
+          buildTranslateBenchmarkResponsePayload(startedAt, finishedAt, result),
+        );
+        res.end();
+      } catch (streamErr) {
+        writeTranslateBenchmarkSse(res, "error", {
+          error: streamErr.message || String(streamErr),
+        });
+        res.end();
+      }
+      return;
+    }
+
+    hooks.onRow = (row, ctx) => {
+      logTranslateBenchmarkRowComplete(ctx, row);
+    };
+
+    const result = await runTranslatePresetsBenchmark({
+      presets: selectedPresets,
+      keysMap,
+      sample_text: sampleText,
+      include_fallback: includeFallback,
+      onProgress: hooks.onProgress,
+      onRow: hooks.onRow,
+    });
+
+    const finishedAt = new Date().toISOString();
+    logTranslateBenchmarkFinished(startedAt, finishedAt, result);
+
+    res.json(buildTranslateBenchmarkResponsePayload(startedAt, finishedAt, result));
+  } catch (e) {
+    console.error("[presets-editor] POST /api/presets/translate-benchmark:", e);
+    const status = e.message && e.message.includes("OPENROUTER_API_KEY") ? 400 : 500;
+    res.status(status).json({ error: e.message || String(e) });
   }
 });
 

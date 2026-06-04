@@ -274,6 +274,8 @@
   /** @type {Set<string>} */
   var openRouterPerformancePending = new Set();
   var translateRunInFlight = false;
+  /** Skip per-checkbox sync while master row bulk-toggles all preset checkboxes. */
+  var presetSelectListBulkSync = false;
   var KEY_TRANSLATION_MODEL = "translation_model";
   var KEY_TRANSLATION_FALLBACK = "translation_model_fallback";
   var KEY_SUGGESTION_MODEL = "suggestion_model";
@@ -611,6 +613,7 @@
     const run = document.getElementById("ai-suggest-run-panel");
     const review = document.getElementById("ai-suggest-review-panel");
     const perf = document.getElementById("performance-panel");
+    const bench = document.getElementById("translate-benchmark-panel");
     const layout = document.getElementById("editor-main-layout");
     if (layout) layout.classList.add("layout-ai-suggest-review");
     if (listPanel) listPanel.classList.add("hidden");
@@ -619,6 +622,7 @@
     if (run) run.classList.add("hidden");
     if (review) review.classList.add("hidden");
     if (perf) perf.classList.add("hidden");
+    if (bench) bench.classList.add("hidden");
   }
 
   function showEditorMainPanels() {
@@ -651,48 +655,148 @@
     return (prov && prov.label) || engine;
   }
 
-  function getAiSuggestablePresets() {
-    return (catalog.presets || []).filter(function (s) {
-      return s && typeof s.id === "string" && s.id !== "free-router";
-    });
-  }
-
-  function getSelectedAiSuggestPresetIds() {
-    const host = document.getElementById("ai-suggest-presets-checkboxes");
-    if (!host) return [];
-    return Array.from(host.querySelectorAll('input[type="checkbox"][data-preset-id]:checked')).map(
-      function (el) {
-        return el.getAttribute("data-preset-id") || "";
-      },
-    ).filter(Boolean);
-  }
-
-  function setAllAiSuggestPresetChecks(checked) {
-    const host = document.getElementById("ai-suggest-presets-checkboxes");
-    if (!host) return;
-    host.querySelectorAll('input[type="checkbox"][data-preset-id]').forEach(function (el) {
-      el.checked = checked;
-    });
-    updateAiSuggestContinueButton();
-  }
-
-  function renderAiSuggestPresetCheckboxes() {
-    const host = document.getElementById("ai-suggest-presets-checkboxes");
-    if (!host) return;
-    host.innerHTML = "";
-    const presets = getAiSuggestablePresets().slice().sort(function (a, b) {
-      return String(a.name || a.id).localeCompare(String(b.name || b.id), undefined, {
-        sensitivity: "base",
+  function getPresetsForSelectList(includeFreeRouter) {
+    return (catalog.presets || [])
+      .filter(function (s) {
+        if (!s || typeof s.id !== "string") return false;
+        if (!includeFreeRouter && s.id === "free-router") return false;
+        return true;
+      })
+      .slice()
+      .sort(function (a, b) {
+        return String(a.name || a.id).localeCompare(String(b.name || b.id), undefined, {
+          sensitivity: "base",
+        });
       });
+  }
+
+  function getPresetCheckboxInputs(host) {
+    if (!host) return [];
+    return Array.from(host.querySelectorAll('input[type="checkbox"][data-preset-id]'));
+  }
+
+  function getSelectedPresetIdsFromHost(hostId) {
+    const host = document.getElementById(hostId);
+    if (!host) return [];
+    return getPresetCheckboxInputs(host)
+      .filter(function (el) {
+        return el.checked;
+      })
+      .map(function (el) {
+        return el.getAttribute("data-preset-id") || "";
+      })
+      .filter(Boolean);
+  }
+
+  function syncPresetSelectMaster(host) {
+    if (!host) return;
+    const master = host.querySelector("[data-preset-select-master]");
+    if (!master) return;
+    const boxes = getPresetCheckboxInputs(host);
+    const total = boxes.length;
+    const checked = boxes.filter(function (b) {
+      return b.checked;
+    }).length;
+
+    // Three-state master: none (empty), all (checkmark), partial (dash).
+    // Clear indeterminate before checked — some browsers keep checked true otherwise.
+    if (total === 0 || checked === 0) {
+      master.indeterminate = false;
+      master.checked = false;
+    } else if (checked === total) {
+      master.indeterminate = false;
+      master.checked = true;
+    } else {
+      master.checked = false;
+      master.indeterminate = true;
+    }
+  }
+
+  function setPresetCheckboxInputsChecked(host, checked) {
+    presetSelectListBulkSync = true;
+    try {
+      getPresetCheckboxInputs(host).forEach(function (el) {
+        el.checked = checked;
+      });
+    } finally {
+      presetSelectListBulkSync = false;
+    }
+    syncPresetSelectMaster(host);
+    // Re-apply after paint — direct checkbox hits used to leave the master visual out of sync.
+    requestAnimationFrame(function () {
+      syncPresetSelectMaster(host);
     });
+  }
+
+  function setAllPresetChecksInHost(hostId, checked, onChange) {
+    const host = document.getElementById(hostId);
+    if (!host) return;
+    setPresetCheckboxInputsChecked(host, checked);
+    if (typeof onChange === "function") onChange();
+  }
+
+  function onPresetSelectMasterClick(host, onChange) {
+    const boxes = getPresetCheckboxInputs(host);
+    const checked = boxes.filter(function (b) {
+      return b.checked;
+    }).length;
+    // Any selection (all or partial) → clear; none selected → select all.
+    const selectAll = checked === 0;
+    setPresetCheckboxInputsChecked(host, selectAll);
+    if (typeof onChange === "function") onChange();
+  }
+
+  function bindPresetSelectMasterRow(masterLabel, _masterInput, host, onChange) {
+    function onMasterActivate(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      onPresetSelectMasterClick(host, onChange);
+    }
+    // Block native checkbox toggle; pointer-events on input are off (see CSS) so all hits use the label.
+    masterLabel.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+    });
+    masterLabel.addEventListener("click", onMasterActivate);
+  }
+
+  /**
+   * @param {string} hostId
+   * @param {{ includeFreeRouter?: boolean, onChange?: () => void, emptyMessage?: string, ariaLabel?: string }} options
+   */
+  function renderPresetSelectList(hostId, options) {
+    const opts = options || {};
+    const host = document.getElementById(hostId);
+    if (!host) return;
+    const onChange = opts.onChange || function () {};
+    host.innerHTML = "";
+
+    const presets = getPresetsForSelectList(!!opts.includeFreeRouter);
     if (!presets.length) {
       const empty = document.createElement("p");
       empty.className = "muted";
-      empty.textContent = "No presets available (add presets besides free-router).";
+      empty.textContent =
+        opts.emptyMessage || "No presets available.";
       host.appendChild(empty);
-      updateAiSuggestContinueButton();
+      onChange();
       return;
     }
+
+    const masterLabel = document.createElement("label");
+    masterLabel.className = "ai-suggest-presets-check preset-select-master-row";
+    const masterInput = document.createElement("input");
+    masterInput.type = "checkbox";
+    masterInput.setAttribute("data-preset-select-master", "1");
+    masterInput.setAttribute("aria-label", opts.ariaLabel || "Toggle all presets");
+    const masterSpan = document.createElement("span");
+    masterSpan.className = "ai-suggest-presets-check-label preset-select-master-label";
+    const masterTitle = document.createElement("strong");
+    masterTitle.textContent = "Presets";
+    masterSpan.appendChild(masterTitle);
+    masterLabel.appendChild(masterInput);
+    masterLabel.appendChild(masterSpan);
+    bindPresetSelectMasterRow(masterLabel, masterInput, host, onChange);
+    host.appendChild(masterLabel);
+
     presets.forEach(function (preset) {
       const label = document.createElement("label");
       label.className = "ai-suggest-presets-check";
@@ -700,7 +804,11 @@
       input.type = "checkbox";
       input.checked = true;
       input.setAttribute("data-preset-id", preset.id);
-      input.addEventListener("change", updateAiSuggestContinueButton);
+      input.addEventListener("change", function () {
+        if (presetSelectListBulkSync) return;
+        syncPresetSelectMaster(host);
+        onChange();
+      });
       const span = document.createElement("span");
       span.className = "ai-suggest-presets-check-label";
       span.innerHTML =
@@ -713,7 +821,25 @@
       label.appendChild(span);
       host.appendChild(label);
     });
-    updateAiSuggestContinueButton();
+    syncPresetSelectMaster(host);
+    onChange();
+  }
+
+  function getAiSuggestablePresets() {
+    return getPresetsForSelectList(false);
+  }
+
+  function getSelectedAiSuggestPresetIds() {
+    return getSelectedPresetIdsFromHost("ai-suggest-presets-checkboxes");
+  }
+
+  function renderAiSuggestPresetCheckboxes() {
+    renderPresetSelectList("ai-suggest-presets-checkboxes", {
+      includeFreeRouter: false,
+      onChange: updateAiSuggestContinueButton,
+      emptyMessage: "No presets available (add presets besides free-router).",
+      ariaLabel: "Toggle all presets for AI suggestion",
+    });
   }
 
   function updateAiSuggestContinueButton() {
@@ -2593,19 +2719,6 @@
     });
   }
 
-  const btnAiSuggestPresetsAll = document.getElementById("btn-ai-suggest-presets-all");
-  if (btnAiSuggestPresetsAll) {
-    btnAiSuggestPresetsAll.addEventListener("click", function () {
-      setAllAiSuggestPresetChecks(true);
-    });
-  }
-  const btnAiSuggestPresetsNone = document.getElementById("btn-ai-suggest-presets-none");
-  if (btnAiSuggestPresetsNone) {
-    btnAiSuggestPresetsNone.addEventListener("click", function () {
-      setAllAiSuggestPresetChecks(false);
-    });
-  }
-
   const btnAiSuggestSetupCancel = document.getElementById("btn-ai-suggest-setup-cancel");
   if (btnAiSuggestSetupCancel) {
     btnAiSuggestSetupCancel.addEventListener("click", function () {
@@ -2990,5 +3103,444 @@
     });
   }
 
+  // ── Translate benchmark panel ─────────────────────────────────────────────
+
+  let translateBenchmarkDefaultsPromise = null;
+
+  function loadTranslateBenchmarkDefaults() {
+    if (translateBenchmarkDefaultsPromise) return translateBenchmarkDefaultsPromise;
+    translateBenchmarkDefaultsPromise = (async function () {
+      const sampleEl = document.getElementById("translate-benchmark-sample-text");
+      if (!sampleEl || sampleEl.value.trim()) return;
+      try {
+        const res = await fetch("/api/presets/translate-benchmark/defaults");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.default_sample_text != null && !sampleEl.value.trim()) {
+          sampleEl.value = data.default_sample_text;
+        }
+      } catch (_) {
+        /* ignore */
+      }
+    })();
+    return translateBenchmarkDefaultsPromise;
+  }
+
+  function getSelectedBenchmarkPresetIds() {
+    return getSelectedPresetIdsFromHost("benchmark-presets-checkboxes");
+  }
+
+  function updateBenchmarkRunButton() {
+    const btnRun = document.getElementById("btn-translate-benchmark-run");
+    if (!btnRun) return;
+    const selected = getSelectedBenchmarkPresetIds().length;
+    btnRun.disabled = selected === 0;
+  }
+
+  function renderBenchmarkPresetCheckboxes() {
+    renderPresetSelectList("benchmark-presets-checkboxes", {
+      includeFreeRouter: true,
+      onChange: updateBenchmarkRunButton,
+      emptyMessage: "No presets in the catalog.",
+      ariaLabel: "Toggle all presets for benchmark",
+    });
+  }
+
+  function showTranslateBenchmarkPanel() {
+    hideEditorMainPanels();
+    const panel = document.getElementById("translate-benchmark-panel");
+    const translateRow = document.getElementById("topbar-translate-row");
+    if (translateRow) translateRow.classList.add("hidden");
+    if (panel) panel.classList.remove("hidden");
+    renderBenchmarkPresetCheckboxes();
+    void loadTranslateBenchmarkDefaults();
+  }
+
+  function exitTranslateBenchmarkPanel() {
+    const panel = document.getElementById("translate-benchmark-panel");
+    if (panel) panel.classList.add("hidden");
+    showEditorMainPanels();
+    setTopbarTranslateRowVisible(true);
+  }
+
+  function setTranslateBenchmarkStatus(msg, isErr) {
+    const el = document.getElementById("translate-benchmark-status");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.classList.toggle("err", !!isErr);
+    el.classList.toggle("muted", !isErr && !msg);
+  }
+
+  function clearTranslateBenchmarkStatus() {
+    setTranslateBenchmarkStatus("", false);
+  }
+
+  function benchmarkFmtCostUsd(costUsd, costKnown) {
+    if (costUsd == null || Number.isNaN(Number(costUsd))) return "—";
+    if (!costKnown && Number(costUsd) === 0) return "—";
+    return "$" + Number(costUsd).toFixed(6);
+  }
+
+  function renderTranslateBenchmarkTotalCost(data) {
+    const el = document.getElementById("translate-benchmark-total-cost");
+    if (!el) return;
+    const rows = data.rows || [];
+    if (!rows.length) {
+      el.classList.add("hidden");
+      el.textContent = "";
+      return;
+    }
+    const totalFmt = benchmarkFmtCostUsd(data.total_cost_usd, data.total_cost_known);
+    let text = "Total cost (this run): " + totalFmt;
+    if (data.total_cost_partial) {
+      text += " — sum of known rows only; some costs unavailable";
+    }
+    el.textContent = text;
+    el.classList.remove("hidden");
+  }
+
+  function formatBenchmarkSlotLabel(slot) {
+    if (slot === "main") return "main";
+    if (slot === "fallback") return "fallback";
+    return slot || "";
+  }
+
+  function formatBenchmarkProgressMessage(p) {
+    if (!p || p.total == null) return "Running benchmark…";
+    const slotLabel = formatBenchmarkSlotLabel(p.slot);
+    const idPart = (p.preset_id || "?") + (slotLabel ? " · " + slotLabel : "");
+    return "Running " + p.index + "/" + p.total + " (" + idPart + ")…";
+  }
+
+  var BENCHMARK_RESULT_TABLE_COLS = 8;
+
+  function appendBenchmarkResultRows(tbody, row) {
+    const summaryTr = document.createElement("tr");
+    summaryTr.className = "benchmark-result-row";
+    if (!row.ok) summaryTr.classList.add("benchmark-row-fail");
+
+    const fullText = row.ok
+      ? String(row.content || row.content_preview || "").trim()
+      : String(row.error || "").trim();
+    const canExpand = fullText.length > 0;
+    if (canExpand) {
+      summaryTr.classList.add("benchmark-result-row-expandable");
+      summaryTr.setAttribute("role", "button");
+      summaryTr.setAttribute("tabindex", "0");
+      summaryTr.setAttribute("aria-expanded", "false");
+      summaryTr.title = "Click to show full output";
+    }
+
+    const tdPreset = document.createElement("td");
+    tdPreset.className = "cell-setting";
+    tdPreset.textContent = row.preset_id || "—";
+    summaryTr.appendChild(tdPreset);
+
+    const tdSlot = document.createElement("td");
+    tdSlot.className = "cell-slot";
+    tdSlot.textContent = formatBenchmarkSlotLabel(row.slot) || "—";
+    summaryTr.appendChild(tdSlot);
+
+    const tdModel = document.createElement("td");
+    tdModel.className = "cell-model";
+    tdModel.textContent = row.model_id || "—";
+    summaryTr.appendChild(tdModel);
+
+    summaryTr.appendChild(numCell(row.ok ? row.duration_fmt : null));
+    summaryTr.appendChild(
+      numCell(row.ok ? benchmarkFmtCostUsd(row.cost_usd, row.cost_known) : null),
+    );
+
+    let tokText = null;
+    if (row.ok && row.prompt_tokens != null && row.completion_tokens != null) {
+      tokText = row.prompt_tokens + " / " + row.completion_tokens;
+    }
+    summaryTr.appendChild(numCell(tokText));
+
+    const tdStatus = document.createElement("td");
+    tdStatus.className = "num";
+    if (row.ok) {
+      tdStatus.textContent = "OK";
+      tdStatus.classList.add("cell-status-ok");
+    } else {
+      tdStatus.textContent = row.error || "Failed";
+      tdStatus.classList.add("cell-status-err", "benchmark-status-err");
+    }
+    summaryTr.appendChild(tdStatus);
+
+    const tdPreview = document.createElement("td");
+    tdPreview.className = "benchmark-preview";
+    if (row.ok) {
+      const preview = row.content_preview || "—";
+      tdPreview.textContent = canExpand ? preview + " ▾" : preview;
+    } else {
+      tdPreview.textContent = canExpand ? "Show error ▾" : "—";
+    }
+    summaryTr.appendChild(tdPreview);
+
+    const detailTr = document.createElement("tr");
+    detailTr.className = "benchmark-result-detail hidden";
+    const detailTd = document.createElement("td");
+    detailTd.colSpan = BENCHMARK_RESULT_TABLE_COLS;
+    detailTd.className = "benchmark-result-detail-cell";
+    const out = document.createElement("div");
+    out.className = "benchmark-result-full-output";
+    out.textContent = fullText || "—";
+    detailTd.appendChild(out);
+    detailTr.appendChild(detailTd);
+
+    if (canExpand) {
+      function setExpanded(open) {
+        detailTr.classList.toggle("hidden", !open);
+        summaryTr.setAttribute("aria-expanded", open ? "true" : "false");
+        summaryTr.classList.toggle("benchmark-result-row-expanded", open);
+        const prevCell = summaryTr.querySelector(".benchmark-preview");
+        if (prevCell) {
+          const base = row.ok ? row.content_preview || "—" : "Show error";
+          prevCell.textContent = open ? base + " ▴" : base + " ▾";
+        }
+      }
+      function toggleExpanded() {
+        setExpanded(detailTr.classList.contains("hidden"));
+      }
+      summaryTr.addEventListener("click", toggleExpanded);
+      summaryTr.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleExpanded();
+        }
+      });
+    }
+
+    tbody.appendChild(summaryTr);
+    tbody.appendChild(detailTr);
+  }
+
+  function initTranslateBenchmarkTableShell() {
+    const wrap = document.getElementById("translate-benchmark-table-wrap");
+    if (!wrap) return null;
+    wrap.innerHTML = "";
+
+    const table = document.createElement("table");
+    table.className = "perf-table";
+    table.id = "translate-benchmark-results-table";
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    [
+      "Preset ID",
+      "Slot",
+      "Model ID",
+      "Time",
+      "Cost",
+      "Tokens (in/out)",
+      "Status",
+      "Output",
+    ].forEach(function (label, i) {
+      const th = document.createElement("th");
+      th.textContent = label;
+      if (i >= 3) th.className = "num";
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    tbody.id = "translate-benchmark-results-tbody";
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    return tbody;
+  }
+
+  function appendTranslateBenchmarkRow(row) {
+    let tbody = document.getElementById("translate-benchmark-results-tbody");
+    if (!tbody) tbody = initTranslateBenchmarkTableShell();
+    if (!tbody) return;
+    appendBenchmarkResultRows(tbody, row);
+  }
+
+  function renderTranslateBenchmarkTable(data) {
+    const wrap = document.getElementById("translate-benchmark-table-wrap");
+    if (!wrap) return;
+
+    const rows = data.rows || [];
+    if (!rows.length) {
+      wrap.innerHTML = "";
+      const p = document.createElement("p");
+      p.className = "muted performance-empty";
+      p.textContent = "No presets with an OpenRouter primary model.";
+      wrap.appendChild(p);
+      return;
+    }
+
+    initTranslateBenchmarkTableShell();
+    rows.forEach(function (row) {
+      appendTranslateBenchmarkRow(row);
+    });
+    renderTranslateBenchmarkTotalCost(data);
+  }
+
+  function parseTranslateBenchmarkSseChunk(buffer) {
+    const events = [];
+    const blocks = buffer.split("\n\n");
+    const remainder = blocks.pop() || "";
+    blocks.forEach(function (block) {
+      const trimmed = block.trim();
+      if (!trimmed) return;
+      let eventName = "message";
+      let dataStr = "";
+      trimmed.split("\n").forEach(function (line) {
+        if (line.startsWith("event: ")) eventName = line.slice(7).trim();
+        else if (line.startsWith("data: ")) dataStr += line.slice(6);
+      });
+      if (!dataStr) return;
+      try {
+        events.push({ event: eventName, data: JSON.parse(dataStr) });
+      } catch (_) {
+        /* ignore malformed chunk */
+      }
+    });
+    return { events, remainder };
+  }
+
+  async function consumeTranslateBenchmarkSse(res) {
+    if (!res.body) throw new Error("Empty response body");
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let finalPayload = null;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (value) buffer += decoder.decode(value, { stream: true });
+      const parsed = parseTranslateBenchmarkSseChunk(buffer);
+      buffer = parsed.remainder;
+      parsed.events.forEach(function (ev) {
+        if (ev.event === "progress") {
+          setTranslateBenchmarkStatus(formatBenchmarkProgressMessage(ev.data), false);
+        } else if (ev.event === "row") {
+          appendTranslateBenchmarkRow(ev.data);
+        } else if (ev.event === "done") {
+          finalPayload = ev.data;
+        } else if (ev.event === "error") {
+          throw new Error(ev.data?.error || "Benchmark failed");
+        }
+      });
+      if (done) {
+        if (buffer.trim()) {
+          const tail = parseTranslateBenchmarkSseChunk(buffer + "\n\n");
+          tail.events.forEach(function (ev) {
+            if (ev.event === "progress") {
+              setTranslateBenchmarkStatus(formatBenchmarkProgressMessage(ev.data), false);
+            } else if (ev.event === "row") {
+              appendTranslateBenchmarkRow(ev.data);
+            } else if (ev.event === "done") {
+              finalPayload = ev.data;
+            } else if (ev.event === "error") {
+              throw new Error(ev.data?.error || "Benchmark failed");
+            }
+          });
+        }
+        break;
+      }
+    }
+
+    return finalPayload;
+  }
+
+  function benchmarkIncludeFallbackModels() {
+    const el = document.getElementById("benchmark-include-fallback");
+    return el ? el.checked : false;
+  }
+
+  async function runTranslateBenchmark() {
+    const btnRun = document.getElementById("btn-translate-benchmark-run");
+    const sampleEl = document.getElementById("translate-benchmark-sample-text");
+    const sampleText = sampleEl ? sampleEl.value : "";
+    const presetIds = getSelectedBenchmarkPresetIds();
+    const includeFallback = benchmarkIncludeFallbackModels();
+    if (!presetIds.length) {
+      setTranslateBenchmarkStatus("Select at least one preset to benchmark.", true);
+      return;
+    }
+
+    if (btnRun) btnRun.disabled = true;
+    setTranslateBenchmarkStatus("Starting benchmark…", false);
+    const totalEl = document.getElementById("translate-benchmark-total-cost");
+    if (totalEl) {
+      totalEl.classList.add("hidden");
+      totalEl.textContent = "";
+    }
+    initTranslateBenchmarkTableShell();
+
+    try {
+      const res = await fetch("/api/presets/translate-benchmark?stream=1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "text/event-stream",
+        },
+        body: JSON.stringify({
+          sample_text: sampleText,
+          preset_ids: presetIds,
+          include_fallback: includeFallback,
+          stream: true,
+        }),
+      });
+
+      const contentType = (res.headers.get("Content-Type") || "").toLowerCase();
+      if (!res.ok) {
+        const data =
+          contentType.indexOf("json") >= 0
+            ? await res.json().catch(function () {
+                return {};
+              })
+            : {};
+        throw new Error(data.error || "HTTP " + res.status);
+      }
+
+      if (contentType.indexOf("text/event-stream") < 0) {
+        const data = await res.json();
+        clearTranslateBenchmarkStatus();
+        renderTranslateBenchmarkTable(data);
+        return;
+      }
+
+      const data = await consumeTranslateBenchmarkSse(res);
+      if (!data) throw new Error("Benchmark ended without a result");
+      renderTranslateBenchmarkTotalCost(data);
+      clearTranslateBenchmarkStatus();
+    } catch (err) {
+      setTranslateBenchmarkStatus(
+        "Failed: " + (err.message || String(err)),
+        true,
+      );
+    } finally {
+      updateBenchmarkRunButton();
+    }
+  }
+
+  const btnTranslateBenchmark = document.getElementById("btn-translate-benchmark");
+  if (btnTranslateBenchmark) {
+    btnTranslateBenchmark.addEventListener("click", function () {
+      showTranslateBenchmarkPanel();
+    });
+  }
+
+  const btnTranslateBenchmarkClose = document.getElementById("btn-translate-benchmark-close");
+  if (btnTranslateBenchmarkClose) {
+    btnTranslateBenchmarkClose.addEventListener("click", function () {
+      exitTranslateBenchmarkPanel();
+    });
+  }
+
+  const btnTranslateBenchmarkRun = document.getElementById("btn-translate-benchmark-run");
+  if (btnTranslateBenchmarkRun) {
+    btnTranslateBenchmarkRun.addEventListener("click", function () {
+      runTranslateBenchmark();
+    });
+  }
+
+  void loadTranslateBenchmarkDefaults();
   loadAll();
 })();

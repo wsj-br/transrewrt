@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
+- **Added**: Presets editor **Benchmark** panel — two-column layout (preset checkboxes including `free-router`, editable sample text), per-row cost and total run cost, live SSE progress; shared master checkbox list with AI Suggestion (`POST /api/presets/translate-benchmark` with `preset_ids`).
+- **Changed**: Benchmark runs both `model_ids.openrouter` and `fallback_ids.openrouter` per selected preset (separate result rows).
+- **Added**: Benchmark results table — click a row to expand and view the full model output.
+- **Changed**: Benchmark sample textarea loads default text from `translatePresetsBenchmark.js` via `GET /api/presets/translate-benchmark/defaults` (no duplicate in `index.html`).
+- **Changed**: Presets-editor translate-benchmark server log lines include per-row duration/cost when each run completes and wall-clock total time plus total cost on `finished`.
+- **Changed**: Benchmark costs (table and server log) use `$0.000000` (six decimal places).
+- **Added**: Benchmark **Test fallback models too** checkbox (`include_fallback` on API).
+- **Removed**: Standalone `scripts/benchmark-presets-translate.js` (replaced by the editor feature).
 - **Changed**: USER-GUIDE.md — label updates to match current implementation: "Auto-execute on paste" (renamed from "Auto-translate on paste"), "Real-time translation while typing" (with inline warning), "From" language selector in Transform prompt editor, and "Output description (e.g. transformed, summarised, etc.)" field label. Backup filename timestamp documentation updated to "local time".
 
 ## [1.3.7] - 2026-06-02

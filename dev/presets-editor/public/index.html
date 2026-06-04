@@ -32,6 +32,7 @@
           </button>
           <button type="button" id="btn-reload" class="btn secondary">Reload</button>
           <button type="button" id="btn-performance" class="btn secondary">Performance</button>
+          <button type="button" id="btn-translate-benchmark" class="btn secondary">Benchmark</button>
           <button type="button" id="btn-ai-suggest" class="btn">AI Suggestion</button>
           <button type="button" id="btn-save-catalog" class="btn primary">Save catalog</button>
         </div>
@@ -164,14 +165,6 @@
           <div class="ai-suggest-setup-presets">
             <div class="ai-suggest-setup-presets-header">
               <span class="header-model-label">Presets to suggest</span>
-              <div class="ai-suggest-preset-select-toolbar">
-                <button type="button" id="btn-ai-suggest-presets-all" class="btn secondary sm">
-                  Select all
-                </button>
-                <button type="button" id="btn-ai-suggest-presets-none" class="btn secondary sm">
-                  Select none
-                </button>
-              </div>
             </div>
             <p class="muted ai-suggest-setup-presets-note">
               Choose which presets receive new <code>model_ids</code> suggestions (<code>free-router</code> is
@@ -256,6 +249,8 @@
                 setting (matching OpenRouter <code>sort: latency</code> routing).
                 <code>~author/…-latest</code> aliases are resolved to their current concrete model
                 via the OpenRouter catalog. Latency in seconds; TPS = tokens per second.
+                Latency columns are time-to-first-token only — use Benchmark for full translate
+                duration.
               </p>
             </div>
             <div class="performance-header-actions">
@@ -266,6 +261,78 @@
           <div id="performance-status" class="performance-status muted" aria-live="polite"></div>
           <div id="performance-table-wrap" class="performance-table-wrap">
             <p class="muted performance-empty" id="performance-empty">Click Refresh to load data.</p>
+          </div>
+        </div>
+      </section>
+      <section
+        class="panel performance-panel benchmark-panel hidden"
+        id="translate-benchmark-panel"
+        aria-labelledby="translate-benchmark-panel-title"
+      >
+        <div class="performance-inner">
+          <div class="performance-header">
+            <div class="performance-header-left">
+              <h2 id="translate-benchmark-panel-title">Benchmark</h2>
+              <p class="muted performance-note">
+                Runs one streamed translate per selected preset from the loaded catalog
+                (including unsaved edits). Optionally include each preset’s
+                <code>fallback_ids.openrouter</code> model.
+                Portuguese → English with the same prompts as the app. Times are end-to-end wall
+                clock (not the TTFT percentiles on the Performance page). Costs use OpenRouter
+                usage when reported.
+              </p>
+            </div>
+            <div class="performance-header-actions">
+              <button type="button" id="btn-translate-benchmark-run" class="btn primary sm">
+                Run benchmark
+              </button>
+              <button type="button" id="btn-translate-benchmark-close" class="btn secondary">
+                Close
+              </button>
+            </div>
+          </div>
+          <div class="benchmark-setup-columns">
+            <div class="benchmark-setup-presets">
+              <span class="header-model-label">Presets to benchmark</span>
+              <label class="benchmark-fallback-toggle ai-suggest-presets-check">
+                <input type="checkbox" id="benchmark-include-fallback" checked />
+                <span class="ai-suggest-presets-check-label">Test fallback models too</span>
+              </label>
+              <p class="muted benchmark-setup-presets-note">
+                Select presets to include (<code>free-router</code> is available here). One result
+                row per model tested.
+              </p>
+              <div
+                id="benchmark-presets-checkboxes"
+                class="ai-suggest-presets-checkboxes preset-select-list-host"
+                role="group"
+                aria-label="Presets to include in benchmark"
+              ></div>
+            </div>
+            <div class="benchmark-setup-sample">
+              <label class="benchmark-sample-label" for="translate-benchmark-sample-text">
+                Text to translate (Portuguese → English)
+              </label>
+              <textarea
+                id="translate-benchmark-sample-text"
+                class="benchmark-sample-text"
+                rows="8"
+                spellcheck="false"
+              ></textarea>
+            </div>
+          </div>
+          <div class="benchmark-results-block">
+            <div
+              id="translate-benchmark-status"
+              class="performance-status muted"
+              aria-live="polite"
+            ></div>
+            <p id="translate-benchmark-total-cost" class="benchmark-total-cost muted hidden"></p>
+            <div id="translate-benchmark-table-wrap" class="performance-table-wrap">
+              <p class="muted performance-empty" id="translate-benchmark-empty">
+                Click Run benchmark to translate the selected presets.
+              </p>
+            </div>
           </div>
         </div>
       </section>
