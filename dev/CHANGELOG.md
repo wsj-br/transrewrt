@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
+- **Added**: `scripts/release.ps1` — PowerShell port of `release.sh` for GitHub releases on Windows (`pnpm run release:github:win`, `pnpm run release:github:dry:win`).
 - **Added**: Presets editor **Benchmark** panel — two-column layout (preset checkboxes including `free-router`, editable sample text), per-row cost and total run cost, live SSE progress; shared master checkbox list with AI Suggestion (`POST /api/presets/translate-benchmark` with `preset_ids`).
 - **Changed**: Benchmark runs both `model_ids.openrouter` and `fallback_ids.openrouter` per selected preset (separate result rows).
 - **Added**: Benchmark results table — click a row to expand and view the full model output.

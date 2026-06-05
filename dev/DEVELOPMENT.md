@@ -451,7 +451,7 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
-Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`**) so CI attaches installers to the release.
+Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`** on Linux/macOS, or **`pnpm run release:github:win`** on Windows) so CI attaches installers to the release.
 
 Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`origin`**, and opens a GitHub Release whose body comes from **`release-notes/RELEASE_NOTES_<version>.md`** (see [Publish the GitHub Release](#publish-the-github-release-releasegithub)). That publication triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml).
 
@@ -476,7 +476,7 @@ Do this on the development branch you intend to merge (e.g., `v1.1.x`), then pus
 
 Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a Cursor chat to draft release notes and fold [CHANGELOG.md](CHANGELOG.md) in one step, or follow the steps below manually.
 
-1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.sh](../scripts/release.sh)).
+1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.sh](../scripts/release.sh) and [scripts/release.ps1](../scripts/release.ps1)).
 2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z] - YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
 4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11) and run `pnpm install` until clean.
@@ -487,7 +487,7 @@ Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a C
 9. **Third-party notices**: Run `pnpm run 3p-notices` if production dependencies changed; commit [NOTICES](../NOTICES) when appropriate.
 10. **Commit and push**: Commit your changes to the changelog, release notes, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
 
-Commit the release-notes file and changelog together with other release prep so **`git status` is clean** before you run `release:github` (unless you pass `--verify-clean=false` to the script).
+Commit the release-notes file and changelog together with other release prep so **`git status` is clean** before you run `release:github` (unless you pass `--verify-clean=false` / `-VerifyClean:$false` to the script).
 
 
 ---
@@ -504,14 +504,19 @@ Commit the release-notes file and changelog together with other release prep so 
 
 ### Publish the GitHub Release (`release:github`)
 
-After `main` contains the release commit(s), check out `main` locally at the commit you want to tag (pull from `origin` if needed). Publishing is done with [scripts/release.sh](../scripts/release.sh) (wrappers: **`pnpm run release:github`** / **`pnpm run release:github:dry`**).
+After `main` contains the release commit(s), check out `main` locally at the commit you want to tag (pull from `origin` if needed). Publishing uses [scripts/release.sh](../scripts/release.sh) on Linux/macOS or [scripts/release.ps1](../scripts/release.ps1) on Windows (pnpm wrappers below).
+
+| Platform | Script | Dry-run | Create release |
+|----------|--------|---------|----------------|
+| **Linux / macOS** | [scripts/release.sh](../scripts/release.sh) | `pnpm run release:github:dry` | `pnpm run release:github` |
+| **Windows (PowerShell)** | [scripts/release.ps1](../scripts/release.ps1) | `pnpm run release:github:dry:win` | `pnpm run release:github:win` |
 
 **Prerequisites**
 
 - [GitHub CLI](https://cli.github.com/) (`gh`) installed and authenticated (`gh auth login`).
 - Remote **`origin`** configured (e.g. `git@github.com:wsj-br/transrewrt.git`).
 - **`release-notes/RELEASE_NOTES_<version>.md`** present for the current `package.json` version.
-- Working tree clean (default), or pass `--verify-clean=false` to the script.
+- Working tree clean (default), or pass `--verify-clean=false` (Bash) / `-VerifyClean:$false` (PowerShell) to the script.
 
 **Steps**
 
@@ -522,19 +527,37 @@ After `main` contains the release commit(s), check out `main` locally at the com
    git pull origin main
    ```
 
+   On Windows (PowerShell), the same `git` commands apply.
+
 2. Dry-run (prints planned steps; no tag deletion, push, or release):
+
+   **Linux / macOS:**
 
    ```bash
    pnpm run release:github:dry
    ```
 
+   **Windows (PowerShell):**
+
+   ```powershell
+   pnpm run release:github:dry:win
+   ```
+
 3. Create the release:
+
+   **Linux / macOS:**
 
    ```bash
    pnpm run release:github
    ```
 
-   Equivalent: `bash scripts/release.sh` from the repo root. See `bash scripts/release.sh --help` for `--dry-run` and `--verify-clean=false`.
+   **Windows (PowerShell):**
+
+   ```powershell
+   pnpm run release:github:win
+   ```
+
+   Direct invocation: `bash scripts/release.sh` or `.\scripts\release.ps1` from the repo root. Help: `bash scripts/release.sh --help` or `.\scripts\release.ps1 --help`. Bash-style flags (`--dry-run`, `--verify-clean=false`) work on the PowerShell script; native parameters are `-DryRun` and `-VerifyClean:$false`.
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
@@ -672,10 +695,12 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 
 See [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-release).
 
-| Command                      | Purpose                                                                                                      |
-|------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `pnpm run release:github`    | Tag `v<version>` at HEAD, push to `origin`, create GitHub release from `release-notes/RELEASE_NOTES_<version>.md` |
-| `pnpm run release:github:dry`| Validate inputs and print planned steps (no tag push or GitHub release)                                      |
+| Command                           | Purpose                                                                                                      |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `pnpm run release:github`         | Tag `v<version>` at HEAD, push to `origin`, create GitHub release from `release-notes/RELEASE_NOTES_<version>.md` (Bash; Linux/macOS) |
+| `pnpm run release:github:dry`     | Validate inputs and print planned steps (no tag push or GitHub release); Bash                                |
+| `pnpm run release:github:win`     | Same as `release:github`; PowerShell ([scripts/release.ps1](../scripts/release.ps1))                         |
+| `pnpm run release:github:dry:win` | Same as `release:github:dry`; PowerShell                                                                     |
 
 ### Toolchain
 
@@ -764,7 +789,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [NOTICES](../NOTICES)                                                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                        |
 | [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `NOTICES`                                                                    |
 | [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                             |
-| [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release: tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
+| [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release (Bash): tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
+| [scripts/release.ps1](../scripts/release.ps1)                                               | Same as `release.sh` for Windows (PowerShell); `pnpm run release:github:win` / `release:github:dry:win` |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md) and [Related documentation](#related-documentation).
