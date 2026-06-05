@@ -54,7 +54,7 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
-  const { settings, translate, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translateAlternative, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
   const presetUiLocale = settings?.ui_locale || locale;
   const presetSourceLocale = settings?.source_locale || "en-GB";
@@ -273,11 +273,17 @@ const App = () => {
     lastRunCostKind,
     lastRunModel,
     rewriteOutputIsModelResult,
+    translateOutputIsModelResult,
+    translateVersions,
+    selectedTranslateVersion,
     processingModeRef,
     handleRunAction,
     handleRunActionStartOnly,
+    handleAlternative,
+    handleTranslateVersionChange,
   } = useProcessing({
     translate,
+    translateAlternative,
     rewrite,
     transform,
     activeModel,
@@ -286,6 +292,7 @@ const App = () => {
     currentMode,
     setCurrentMode,
     inputTextTranslate,
+    outputTextTranslate,
     setOutputTextTranslate,
     targetLanguage,
     sourceLanguage,
@@ -472,9 +479,14 @@ const App = () => {
     isProcessing,
     processingModeRef,
     handleRunAction,
+    handleAlternative,
+    handleTranslateVersionChange,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
+    translateOutputIsModelResult,
+    translateVersions,
+    selectedTranslateVersion,
     layoutMode,
     autoExecuteOnPaste: settings.auto_translate_on_paste !== false,
     autoCopy: !!settings.auto_copy,

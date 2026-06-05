@@ -577,6 +577,138 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Rephrase translation: alternative wording for an existing translation
+  const translateAlternative = async (
+    originalText,
+    existingVersions,
+    targetLang,
+    model,
+    sourceLang = null,
+    signal = null,
+  ) => {
+    setLoading(true);
+    setError(null);
+
+    const { effectiveModel: presetModel, fallbackModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
+
+    const finalizeAlternative = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
+      await applyCostToResult(setSetting, result);
+
+      await writeLastApiResult({
+        type: "translate_alternative",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+
+      logApiCall("translate_alternative", result, {
+        source_lang: sourceLang || "",
+        target_lang: targetLang || "",
+      });
+
+      const altInputStats = getTextStats(typeof originalText === "string" ? originalText : "");
+      const altOutputStats = getTextStats(result.content ?? "");
+      const altPayload: Record<string, unknown> = {
+        timestamp: new Date().toISOString(),
+        type: "translate_alternative",
+        model: result.model_used || modelToUse,
+        prompt_tokens:
+          result.usage?.prompt_tokens ??
+          (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ??
+          (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens =
+            (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+        username: currentUser?.username ?? null,
+        input_chars: altInputStats.chars,
+        input_words: altInputStats.words,
+        input_paragraphs: altInputStats.paragraphs,
+        output_chars: altOutputStats.chars,
+        output_words: altOutputStats.words,
+        output_paragraphs: altOutputStats.paragraphs,
+      };
+      if (settings.keep_execution_history !== false) {
+        altPayload.input_text = typeof originalText === "string" ? originalText : "";
+        altPayload.output_text = result.content ?? "";
+      }
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(altPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(altPayload);
+      }
+
+      return result;
+    };
+
+    try {
+      const result = (await apiService.translateAlternative(
+        originalText,
+        existingVersions,
+        targetLang,
+        effectiveModel,
+        sourceLang,
+        signal,
+      )) as LlmCallResult;
+      return await finalizeAlternative(result, effectiveModel);
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        let finalErr = err;
+
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.translateAlternative(
+              originalText,
+              existingVersions,
+              targetLang,
+              fallbackModel,
+              sourceLang,
+              signal,
+            );
+            return await finalizeAlternative(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
+        }
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
+      }
+
+      setError("Alternative translation failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Translate prompt fields (JSON object in one request; same prompt style as ai-i18n-tools translate-ui)
   const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
     setLoading(true);
@@ -1183,6 +1315,7 @@ export const AppProvider = ({ children }) => {
     setEasyOllamaModel: (id) => setSetting("easy_ollama_model", id, { optimistic: true }),
     setSelectedPresetId: (id) => setSetting("selected_preset_id", id, { optimistic: true }),
     translate,
+    translateAlternative,
     translatePromptFields,
     improvePromptConfig,
     generatePromptConfig,

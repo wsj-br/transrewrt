@@ -51,6 +51,17 @@ function resolveBuildTimestampPath() {
   return devLayout;
 }
 const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
+const { version: APP_VERSION } = require("../../package.json");
+
+function readBuildTimestamp() {
+  try {
+    if (!fs.existsSync(BUILD_TIMESTAMP_PATH)) return null;
+    const content = fs.readFileSync(BUILD_TIMESTAMP_PATH, "utf8").trim();
+    return content || null;
+  } catch {
+    return null;
+  }
+}
 
 /** Docker: /app/NOTICES or /app/dist/NOTICES (after build). Dev: repo root via src/server → ../.. */
 function resolveThirdPartyNoticesPath() {
@@ -64,6 +75,8 @@ function resolveThirdPartyNoticesPath() {
 }
 
 const DEV_WEB = process.env.DEV_WEB === "true";
+const DEV_WEB_APP_PORT = Number(process.env.DEV_WEB_APP_PORT) || 5500;
+const DEV_WEB_APP_URL = `http://localhost:${DEV_WEB_APP_PORT}`;
 
 const dataDir = path.dirname(CONFIG_PATH);
 const dbPath = path.join(dataDir, "transrewrt.db");
@@ -79,10 +92,15 @@ const log = createLogger(dataDir, logToConsole);
 
 log.info("=".repeat(60));
 log.info("[SERVER] Transrewrt Server starting...");
+log.info(`[SERVER] Version: ${APP_VERSION}`);
+const buildTimestamp = readBuildTimestamp();
+if (buildTimestamp) {
+  log.info(`[SERVER] Build: ${buildTimestamp}`);
+}
 log.info(`[SERVER] Port: ${PORT}`);
 if (DEV_WEB) {
   log.info(
-    "[SERVER] DEV_WEB mode: only API on this port; use http://localhost:5000 for the app",
+    `[SERVER] DEV_WEB mode: only API on this port; use ${DEV_WEB_APP_URL} for the app`,
   );
 }
 log.info(`[SERVER] Config path: ${CONFIG_PATH}`);
@@ -199,14 +217,14 @@ if (!DEV_WEB) {
       <body style="font-family: system-ui; padding: 2rem; max-width: 40rem;">
         <h1>Transrewrt (dev)</h1>
         <p>For web development, use the Webpack dev server:</p>
-        <p><a href="http://localhost:5000">http://localhost:5000</a></p>
+        <p><a href="${DEV_WEB_APP_URL}">${DEV_WEB_APP_URL}</a></p>
         <p>This port (4030) only serves the API when running <code>pnpm run dev:web</code>.</p>
       </body></html>
     `);
   });
   app.get("/{*splat}", (req, res, next) => {
     if (req.path.startsWith("/api/")) return next();
-    res.redirect(302, "http://localhost:5000");
+    res.redirect(302, DEV_WEB_APP_URL);
   });
 }
 

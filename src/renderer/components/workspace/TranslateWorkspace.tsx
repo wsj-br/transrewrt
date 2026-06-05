@@ -8,6 +8,7 @@ import {
   workspacePaneStatsTextClassName,
 } from "./workspaceLayoutClasses";
 import { getTranslateStackPanels } from "./TranslateStackPanels";
+import { TranslateRephraseControls } from "./TranslateRephraseControls";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { Button } from "@/components/ui/button";
@@ -33,9 +34,14 @@ export function getTranslatePanels({ common, input, output, options }) {
     isProcessing,
     processingModeRef,
     handleRunAction,
+    handleAlternative,
+    handleTranslateVersionChange,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
+    translateOutputIsModelResult,
+    translateVersions = [],
+    selectedTranslateVersion = 1,
     autoExecuteOnPaste,
     autoCopy,
     onAutoExecuteChange,
@@ -113,6 +119,15 @@ export function getTranslatePanels({ common, input, output, options }) {
           dataTestId="translate-to"
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
+        />
+        <TranslateRephraseControls
+          t={t}
+          isProcessing={isProcessing}
+          translateOutputIsModelResult={!!translateOutputIsModelResult}
+          translateVersions={translateVersions}
+          selectedTranslateVersion={selectedTranslateVersion}
+          onRephrase={handleAlternative}
+          onVersionChange={handleTranslateVersionChange}
         />
         {outputMeta ? (
           <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>

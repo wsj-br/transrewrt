@@ -40,6 +40,24 @@ function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
   return prompt;
 }
 
+function buildAlternativeTranslatePrompt(sourceLang, targetLang) {
+  const config = prompts.translate_alternative;
+  const taskLines = [...config.task];
+  if (sourceLang && sourceLang !== "Detect Language" && config.withSourceLanguageLine) {
+    taskLines.unshift(config.withSourceLanguageLine);
+  }
+  const lines = [
+    config.role,
+    "",
+    "Your task:",
+    ...taskLines,
+    ...config.footer,
+  ];
+  return resolvePrompt(lines)
+    .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
+    .replace(/\{\{targetLang\}\}/g, targetLang || "");
+}
+
 function buildRewriteSystemPrompt(styleConfig, sourceLang = null, promptHint = null) {
   const shared = prompts.shared.rewrite;
   const rewriteRoot = prompts.rewrite;
@@ -445,6 +463,51 @@ class APIService {
       );
       if (isUnavailable) throw error;
       console.error("Translation error:", error);
+      return {
+        error: error.message,
+      };
+    }
+  }
+
+  /**
+   * Generate an alternative translation paraphrasing existing translation versions.
+   * @param {string} originalText - Source text
+   * @param {string|string[]} existingVersions - Current translation(s) to avoid repeating
+   * @param {string} targetLang - Target language
+   * @param {string} model - Model to use
+   * @param {string|null} sourceLang - Source language (optional)
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} Translation result with content and usage
+   */
+  async translateAlternative(originalText, existingVersions, targetLang, model, sourceLang = null, signal = null) {
+    try {
+      const versions = Array.isArray(existingVersions)
+        ? existingVersions.filter((v) => typeof v === "string" && v.trim())
+        : (existingVersions ? [existingVersions] : []);
+      const systemPrompt = buildAlternativeTranslatePrompt(sourceLang, targetLang);
+      const versionTags = versions
+        .map((text, index) => `<version_${index + 1}>${text}</version_${index + 1}>`)
+        .join("\n");
+      const userMessage = `<original>${originalText}</original>\n<existing_translations>\n${versionTags}\n</existing_translations>`;
+      return await this._streamChatCompletion(
+        systemPrompt,
+        userMessage,
+        model,
+        0.6,
+        signal,
+        "translate_alternative",
+        {},
+      );
+    } catch (error) {
+      if (isAbortError(error)) {
+        return { cancelled: true, content: "", usage: null };
+      }
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("Alternative translation error:", error);
       return {
         error: error.message,
       };

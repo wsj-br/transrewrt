@@ -5,14 +5,14 @@
  * and saves them to images/screenshots/.
  *
  * Prerequisites:
- * - Web app running (e.g. pnpm run dev:web → http://localhost:5000).
+ * - Web app running (e.g. pnpm run dev:web → http://localhost:5500).
  * - Set ADMIN_USERNAME and ADMIN_PASSWORD in the environment (required; script exits if missing).
  *
  * Usage: pnpm run take-screenshots [--screenshot=NAME[,NAME...]] [--locale=CODE[,CODE...]]
  *   Unknown flags, invalid `--screenshot=` names, and `--locale` filters that match nothing are rejected at startup (before config/DB/server/browser).
  *   --screenshot=…  (or --screen=…)  One or more sets, comma- or space-separated (e.g. --screenshot=translate,rewrite).
  *   --locale=CODE      (comma- or space-separated) Only run for these locale(s). On PowerShell, quote commas: '--locale=pt-BR,es' or use spaces: --locale=pt-BR es.
- * Env: BASE_URL (default http://localhost:5000), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
+ * Env: BASE_URL (default http://localhost:5500), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
  *       HISTORY_DISABLED must not be true/1 (checked after CLI validation): exit so the History screenshot can work (match the web server env, e.g. `.env`).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
@@ -44,7 +44,7 @@ const {
 } = require("../src/shared/db/appSchema.js");
 const { isHistoryDisabledByEnv } = require("../src/shared/historyEnv.js");
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
+const BASE_URL = process.env.BASE_URL || "http://localhost:5500";
 
 /** Transform screenshot flows select this prompt; seeded into custom_prompts if missing. */
 const DICTIONARY_ENTRY_PROMPT_NAME = "Dictionary Entry";
@@ -103,7 +103,7 @@ function parseArgs() {
 }
 
 function printHelp(availableScreenshotNames) {
-  const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+  const baseUrl = process.env.BASE_URL || "http://localhost:5500";
   const setList =
     availableScreenshotNames && availableScreenshotNames.length > 0
       ? availableScreenshotNames.map((n) => `    ${n}`).join("\n")

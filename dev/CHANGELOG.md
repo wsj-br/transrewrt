@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
+
+## [1.3.8] - 2026-06-05
+
+- **Changed**: `pnpm dev:web` webpack dev server port **5000 → 5500** (avoids Windows Hyper-V reserved ranges and Chrome `ERR_UNSAFE_PORT` on 5000/6000); production/Docker default remains 5000.
+- **Changed**: Web server startup logs include app version and build timestamp when available.
+- **Added**: Translate workspace **Rephrase...** with version selector (1–3) — store up to three translation variants, switch between them in the output panel, and send all existing versions to the model when generating a new rephrase.
 - **Added**: `scripts/release.ps1` — PowerShell port of `release.sh` for GitHub releases on Windows (`pnpm run release:github:win`, `pnpm run release:github:dry:win`).
 - **Added**: Presets editor **Benchmark** panel — two-column layout (preset checkboxes including `free-router`, editable sample text), per-row cost and total run cost, live SSE progress; shared master checkbox list with AI Suggestion (`POST /api/presets/translate-benchmark` with `preset_ids`).
 - **Changed**: Benchmark runs both `model_ids.openrouter` and `fallback_ids.openrouter` per selected preset (separate result rows).

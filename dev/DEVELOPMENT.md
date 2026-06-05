@@ -226,7 +226,7 @@ The **postinstall** script runs `electron-rebuild` so native addons match Electr
 ## Development Workflow
 
 - **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload. (`pnpm dev` chains `watch`, `electron`, `electron-rebuild`, and `write-build-timestamp`; you normally do not run those scripts directly.)
-- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5000 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5000](http://localhost:5000) in a browser. (`watch:web` is used internally; run `dev:web`, not `watch:web`, for day-to-day work.)
+- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5500 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5500](http://localhost:5500) in a browser. (`watch:web` is used internally; run `dev:web`, not `watch:web`, for day-to-day work.)
 
 To run Electron with a production build (no dev server):
 
@@ -434,7 +434,7 @@ There is no automated test suite (`pnpm test` exits with an error placeholder). 
 ### Dev mode (recommended for day-to-day testing)
 
 - **Electron:** Run `pnpm dev`. Webpack watch starts on port 4030 and Electron launches automatically; the app opens in the Electron window. Edit React code and see changes with hot reload.
-- **Web:** Run `pnpm dev:web`. Webpack serves the app on port 5000 and the API server runs on 4030 (proxied via `/api`). Open **[http://localhost:5000](http://localhost:5000)** in a browser to use the app with HMR.
+- **Web:** Run `pnpm dev:web`. Webpack serves the app on port 5500 and the API server runs on 4030 (proxied via `/api`). Open **[http://localhost:5500](http://localhost:5500)** in a browser to use the app with HMR.
 
 ### Production-style (smoke test)
 
@@ -593,7 +593,7 @@ That GitHub release triggers [`.github/workflows/release.yml`](../.github/workfl
 
 | Phase       | Command                               | Notes                                                              |
 |-------------|---------------------------------------|--------------------------------------------------------------------|
-| **Develop** | `pnpm dev:web`                        | Webpack on :5000, API on :4030 (proxied via /api)                  |
+| **Develop** | `pnpm dev:web`                        | Webpack on :5500, API on :4030 (proxied via /api)                  |
 | **Build**   | `pnpm build` or `pnpm build-renderer` | Output to `dist/`                                                  |
 | **Test**    | `pnpm serve`                          | Build then serve at [http://localhost:5000](http://localhost:5000) |
 | **Run**     | `pnpm start:server`                   | Serve only (use when `dist/` already built)                        |
@@ -626,7 +626,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                       |
 | `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
-| `pnpm dev:web`                       | Web development: runs Webpack on **:5000**, and API server on **:4030** (proxied as `/api`).                                                                |
+| `pnpm dev:web`                       | Web development: runs Webpack on **:5500**, and API server on **:4030** (proxied as `/api`).                                                                |
 | `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
 | `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#presets-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
 | `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |

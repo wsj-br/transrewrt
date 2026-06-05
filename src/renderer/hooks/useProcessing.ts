@@ -15,6 +15,7 @@ import { SOURCE_LOCALE } from "../i18n";
  */
 export function useProcessing({
   translate,
+  translateAlternative,
   rewrite,
   transform,
   activeModel,
@@ -24,6 +25,7 @@ export function useProcessing({
   setCurrentMode,
   // Translate
   inputTextTranslate,
+  outputTextTranslate,
   setOutputTextTranslate,
   targetLanguage,
   sourceLanguage,
@@ -45,6 +47,9 @@ export function useProcessing({
   /** none: idle; amount/free/unknown: last completed run (for status line). */
   const [lastRunCostKind, setLastRunCostKind] = useState("none");
   const [lastRunModel, setLastRunModel] = useState(null);
+  const [translateOutputIsModelResult, setTranslateOutputIsModelResult] = useState(false);
+  const [translateVersions, setTranslateVersions] = useState([]);
+  const [selectedTranslateVersion, setSelectedTranslateVersion] = useState(1);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
@@ -63,10 +68,23 @@ export function useProcessing({
   const cancelledByUserRef = useRef(false);
   const processingModeRef = useRef(null);
   const currentModeRef = useRef(currentMode);
+  const translateVersionsRef = useRef([]);
+
+  useEffect(() => {
+    translateVersionsRef.current = translateVersions;
+  }, [translateVersions]);
 
   useEffect(() => {
     currentModeRef.current = currentMode;
   }, [currentMode]);
+
+  useEffect(() => {
+    if (!outputTextTranslate?.trim()) {
+      setTranslateOutputIsModelResult(false);
+      setTranslateVersions([]);
+      setSelectedTranslateVersion(1);
+    }
+  }, [outputTextTranslate]);
 
   useEffect(() => {
     return () => {
@@ -93,6 +111,9 @@ export function useProcessing({
 
       processingModeRef.current = "translate";
       setIsProcessing(true);
+      setTranslateOutputIsModelResult(false);
+      setTranslateVersions([]);
+      setSelectedTranslateVersion(1);
       setOutputTextTranslate(t('Translating...'));
       setLastRunCost(0);
       setLastRunCostKind("none");
@@ -141,16 +162,25 @@ export function useProcessing({
 
         if (result.content) {
           const cleaned = result.content.replace(/^\s*\n+/, "");
+          setTranslateVersions([cleaned]);
+          setSelectedTranslateVersion(1);
+          setTranslateOutputIsModelResult(true);
           setOutputTextTranslate(cleaned);
           if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
             console.warn("Auto-copy to clipboard failed:", err);
           });
         } else if (!result.cancelled && !result.error) {
+          setTranslateOutputIsModelResult(false);
+          setTranslateVersions([]);
+          setSelectedTranslateVersion(1);
           setOutputTextTranslate(
             t("Translation finished but returned no text. Try again or choose another model."),
           );
         }
         if (result.cancelled) {
+          setTranslateOutputIsModelResult(false);
+          setTranslateVersions([]);
+          setSelectedTranslateVersion(1);
           if (cancelledByUserRef.current) {
             const msg = result.content
               ? `${t("Translation stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
@@ -164,6 +194,7 @@ export function useProcessing({
             );
           }
         } else if (result.error) {
+          setTranslateOutputIsModelResult(false);
           if (isAbortMessage(result.error)) {
             setOutputTextTranslate(t("Translation stopped by user."));
           } else {
@@ -179,6 +210,7 @@ export function useProcessing({
         setIsProcessing(false);
         setLastRunCost(0);
         setLastRunModel(null);
+        setTranslateOutputIsModelResult(false);
         const userAbort =
           cancelledByUserRef.current ||
           error.name === "AbortError" ||
@@ -213,6 +245,138 @@ export function useProcessing({
     ]
   );
 
+  const translateAlternativeText = useCallback(
+    async (signal) => {
+      const text = inputTextTranslate;
+      const versions = translateVersionsRef.current;
+      if (!text?.trim() || !versions.length || versions.length >= 3) return;
+
+      const previousVersionText = versions[selectedTranslateVersion - 1] || versions[versions.length - 1];
+
+      processingModeRef.current = "translate_alternative";
+      setIsProcessing(true);
+      setOutputTextTranslate(t("Rephrasing..."));
+      setLastRunCost(0);
+      setLastRunCostKind("none");
+      setLastRunModel(null);
+      setElapsedTime(0);
+      setTokensPerSecond(0);
+      startTimeRef.current = Date.now();
+      if (timerRef.current) clearInterval(timerRef.current);
+      timerRef.current = setInterval(() => {
+        if (!startTimeRef.current) return;
+        setElapsedTime((Date.now() - startTimeRef.current) / 1000);
+      }, 100);
+      tpsCalculationRef.current = { startTime: Date.now(), tokens: 0 };
+
+      try {
+        const result = await translateAlternative(
+          text,
+          versions,
+          targetLanguage,
+          activeModel,
+          sourceLanguage === "Detect Language" ? null : sourceLanguage,
+          signal,
+        );
+
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        startTimeRef.current = null;
+        setIsProcessing(false);
+
+        const totalTokens =
+          (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+        const durationSeconds = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
+        const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
+        setTokensPerSecond(tps);
+        const costLine = resolveRunCostLine({
+          calculated_cost: result.calculated_cost,
+          usage: result.usage,
+          model_used: result.model_used || result.model || activeModel,
+        });
+        setLastRunCost(costLine.kind === "amount" ? costLine.value : 0);
+        setLastRunCostKind(costLine.kind);
+        setLastRunModel(result.model_used || result.model || null);
+
+        if (cancelledByUserRef.current) return;
+
+        if (result.content) {
+          const cleaned = result.content.replace(/^\s*\n+/, "");
+          setTranslateVersions((prev) => {
+            const next = [...prev, cleaned].slice(0, 3);
+            setSelectedTranslateVersion(next.length);
+            return next;
+          });
+          setTranslateOutputIsModelResult(true);
+          setOutputTextTranslate(cleaned);
+          if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
+            console.warn("Auto-copy to clipboard failed:", err);
+          });
+        } else if (!result.cancelled && !result.error) {
+          setTranslateOutputIsModelResult(true);
+          setOutputTextTranslate(
+            t("Rephrase finished but returned no text. Try again or choose another model."),
+          );
+        }
+        if (result.cancelled) {
+          setTranslateOutputIsModelResult(true);
+          if (cancelledByUserRef.current) {
+            setOutputTextTranslate(previousVersionText);
+          } else {
+            setOutputTextTranslate(
+              result.content
+                ? `${t("The request ended before completion.")}\n\n${result.content}`
+                : t("The request ended before completion. Try again."),
+            );
+          }
+        } else if (result.error) {
+          setTranslateOutputIsModelResult(true);
+          if (isAbortMessage(result.error)) {
+            setOutputTextTranslate(previousVersionText);
+          } else {
+            setOutputTextTranslate(formatApiErrorLine(result.error, t));
+          }
+        }
+      } catch (error) {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        startTimeRef.current = null;
+        setIsProcessing(false);
+        setLastRunCost(0);
+        setLastRunModel(null);
+        setTranslateOutputIsModelResult(true);
+        const userAbort =
+          cancelledByUserRef.current ||
+          error.name === "AbortError" ||
+          (error.message && isAbortMessage(error.message));
+        if (userAbort) {
+          setOutputTextTranslate(previousVersionText);
+        } else {
+          setOutputTextTranslate(formatApiErrorLine(error.message, t));
+        }
+      } finally {
+        abortControllerRef.current = null;
+        processingModeRef.current = null;
+      }
+    },
+    [
+      t,
+      isAbortMessage,
+      inputTextTranslate,
+      selectedTranslateVersion,
+      targetLanguage,
+      sourceLanguage,
+      activeModel,
+      settings.auto_copy,
+      translateAlternative,
+      setOutputTextTranslate,
+    ]
+  );
+
   const handleTranslate = useCallback(() => {
     if (isProcessing) {
       cancelledByUserRef.current = true;
@@ -225,6 +389,34 @@ export function useProcessing({
     abortControllerRef.current = new AbortController();
     translateText(abortControllerRef.current.signal);
   }, [isProcessing, stopProcessing, translateText, setOutputTextTranslate, t]);
+
+  const handleAlternative = useCallback(() => {
+    if (isProcessing) {
+      if (processingModeRef.current === "translate_alternative") {
+        cancelledByUserRef.current = true;
+        const versions = translateVersionsRef.current;
+        const restore = versions[selectedTranslateVersion - 1];
+        if (restore) setOutputTextTranslate(restore);
+        if (abortControllerRef.current) abortControllerRef.current.abort();
+        stopProcessing();
+      }
+      return;
+    }
+    if (translateVersionsRef.current.length >= 3) return;
+    cancelledByUserRef.current = false;
+    abortControllerRef.current = new AbortController();
+    translateAlternativeText(abortControllerRef.current.signal);
+  }, [isProcessing, stopProcessing, translateAlternativeText, selectedTranslateVersion, setOutputTextTranslate]);
+
+  const handleTranslateVersionChange = useCallback(
+    (version) => {
+      const index = Number(version) - 1;
+      if (index < 0 || index >= translateVersions.length) return;
+      setSelectedTranslateVersion(Number(version));
+      setOutputTextTranslate(translateVersions[index]);
+    },
+    [translateVersions, setOutputTextTranslate],
+  );
 
   const handleRewrite = useCallback(async () => {
     const text = inputTextRewrite;
@@ -529,6 +721,7 @@ export function useProcessing({
   const handleRunAction = useCallback(() => {
     if (isProcessing) {
       if (processingModeRef.current === "translate") handleTranslate();
+      else if (processingModeRef.current === "translate_alternative") handleAlternative();
       else if (processingModeRef.current === "rewrite") handleRewrite();
       else if (processingModeRef.current === "transform") handleTransform();
       return;
@@ -540,6 +733,7 @@ export function useProcessing({
     currentMode,
     isProcessing,
     handleTranslate,
+    handleAlternative,
     handleRewrite,
     handleTransform,
   ]);
@@ -551,9 +745,14 @@ export function useProcessing({
     lastRunCost,
     lastRunCostKind,
     lastRunModel,
+    translateOutputIsModelResult,
+    translateVersions,
+    selectedTranslateVersion,
     rewriteOutputIsModelResult,
     stopProcessing,
     handleTranslate,
+    handleAlternative,
+    handleTranslateVersionChange,
     handleRewrite,
     runTransform,
     handleTransform,

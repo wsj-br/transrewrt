@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Zap, Square, ArrowRightLeft, Clipboard, Copy, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
+import { TranslateRephraseControls } from "./TranslateRephraseControls";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str: string) {
@@ -41,9 +42,14 @@ export function getTranslateStackPanels({
     isProcessing: boolean;
     processingModeRef?: MutableRefObject<string | undefined>;
     handleRunAction: () => void;
+    handleAlternative?: () => void;
+    handleTranslateVersionChange?: (version: string) => void;
     lastRunModel?: string | null;
     outputMeta?: ReactNode;
     outputMetaCostTooltip?: string | null;
+    translateOutputIsModelResult?: boolean;
+    translateVersions?: string[];
+    selectedTranslateVersion?: number;
     autoExecuteOnPaste?: boolean;
     autoCopy?: boolean;
     onAutoExecuteChange?: (checked: boolean) => void;
@@ -77,9 +83,14 @@ export function getTranslateStackPanels({
     isProcessing,
     processingModeRef,
     handleRunAction,
+    handleAlternative,
+    handleTranslateVersionChange,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
+    translateOutputIsModelResult = false,
+    translateVersions = [],
+    selectedTranslateVersion = 1,
     autoExecuteOnPaste = true,
     autoCopy = false,
     onAutoExecuteChange,
@@ -181,6 +192,15 @@ export function getTranslateStackPanels({
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
           hugSelectWidth
+        />
+        <TranslateRephraseControls
+          t={t}
+          isProcessing={isProcessing}
+          translateOutputIsModelResult={translateOutputIsModelResult}
+          translateVersions={translateVersions}
+          selectedTranslateVersion={selectedTranslateVersion}
+          onRephrase={() => handleAlternative?.()}
+          onVersionChange={(version) => handleTranslateVersionChange?.(version)}
         />
         {outputMeta ? (
           <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>

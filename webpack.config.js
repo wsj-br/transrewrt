@@ -169,7 +169,7 @@ module.exports = (env, argv) => {
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
-    // When using dev:web (watch:web on 5000), proxy /api to Express server (port 4030)
+    // When using dev:web (watch:web on 5500), proxy /api to Express server (port 4030)
     proxy: [
       {
         context: ["/api"],
@@ -193,7 +193,7 @@ module.exports = (env, argv) => {
         }
       : {}),
     client: {
-      // default host/port so HMR works for both watch (4030) and watch:web (5000)
+      // default host/port so HMR works for both watch (4030) and watch:web (5500)
       overlay: {
         errors: true,
         warnings: false,

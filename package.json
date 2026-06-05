@@ -7,7 +7,7 @@
     "dev": "node scripts/electron-rebuild.js && node scripts/write-build-timestamp.js && concurrently \"pnpm run watch\" \"pnpm run electron\"",
     "dev:web": "node scripts/node-rebuild.js && node scripts/write-build-timestamp.js && concurrently \"pnpm run watch:web\" \"cross-env DEV_WEB=true PORT=4030 pnpm run start:server\"",
     "watch": "webpack serve --mode development --port 4030",
-    "watch:web": "webpack serve --mode development --port 5000",
+    "watch:web": "webpack serve --mode development --port 5500",
     "electron": "wait-on http://localhost:4030 && node scripts/ensure-dev-desktop.js && cross-env NODE_ENV=development electron . ",
     "build": "node node_modules/webpack/bin/webpack.js --mode production",
     "build-renderer": "node node_modules/webpack/bin/webpack.js --mode production",

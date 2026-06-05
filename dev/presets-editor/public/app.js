@@ -728,13 +728,6 @@
     });
   }
 
-  function setAllPresetChecksInHost(hostId, checked, onChange) {
-    const host = document.getElementById(hostId);
-    if (!host) return;
-    setPresetCheckboxInputsChecked(host, checked);
-    if (typeof onChange === "function") onChange();
-  }
-
   function onPresetSelectMasterClick(host, onChange) {
     const boxes = getPresetCheckboxInputs(host);
     const checked = boxes.filter(function (b) {
@@ -823,10 +816,6 @@
     });
     syncPresetSelectMaster(host);
     onChange();
-  }
-
-  function getAiSuggestablePresets() {
-    return getPresetsForSelectList(false);
   }
 
   function getSelectedAiSuggestPresetIds() {
@@ -3119,7 +3108,7 @@
         if (data.default_sample_text != null && !sampleEl.value.trim()) {
           sampleEl.value = data.default_sample_text;
         }
-      } catch (_) {
+      } catch {
         /* ignore */
       }
     })();
@@ -3396,7 +3385,7 @@
       if (!dataStr) return;
       try {
         events.push({ event: eventName, data: JSON.parse(dataStr) });
-      } catch (_) {
+      } catch {
         /* ignore malformed chunk */
       }
     });
