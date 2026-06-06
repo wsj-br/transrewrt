@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.3.9] - 2026-06-06
+
+- **Fixed**: Docker web app failed to start (`Cannot find module '../../package.json'`) because server version logging used a dev-only relative path; Docker layout now resolves `/app/package.json` correctly.
+
 ## [1.3.8] - 2026-06-05
 
 - **Changed**: `pnpm dev:web` webpack dev server port **5000 → 5500** (avoids Windows Hyper-V reserved ranges and Chrome `ERR_UNSAFE_PORT` on 5000/6000); production/Docker default remains 5000.

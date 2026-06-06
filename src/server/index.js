@@ -51,7 +51,15 @@ function resolveBuildTimestampPath() {
   return devLayout;
 }
 const BUILD_TIMESTAMP_PATH = resolveBuildTimestampPath();
-const { version: APP_VERSION } = require("../../package.json");
+/** Docker: /app/server → /app/package.json. Dev: src/server → repo root. */
+function resolvePackageJsonPath() {
+  const oneUp = path.join(__dirname, "..", "package.json");
+  const twoUp = path.join(__dirname, "..", "..", "package.json");
+  if (fs.existsSync(oneUp)) return oneUp;
+  if (fs.existsSync(twoUp)) return twoUp;
+  return oneUp;
+}
+const { version: APP_VERSION } = require(resolvePackageJsonPath());
 
 function readBuildTimestamp() {
   try {

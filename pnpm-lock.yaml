@@ -3012,8 +3012,8 @@ packages:
   electron-reload@2.0.0-alpha.1:
     resolution: {integrity: sha512-hTde7gv0TEqxbxlB3pj2CwoyCQ9sdiQrcP8GkpzhosxyVeYM3mZbMEVKCZK3L0fED7Mz5A9IWmK7zEvi4H3P1g==}
 
-  electron-to-chromium@1.5.367:
-    resolution: {integrity: sha512-4Mk/mrynCNQ+atY40D3UpmhLWB6AHMbYMlIrPhHcMF6x0L7O0b052FCAsxw1LlaR++UFuNg3D/A6XCuGDa0guQ==}
+  electron-to-chromium@1.5.368:
+    resolution: {integrity: sha512-7RckJJK4uESJF9PxvfMWd3TGqIiieUTG4HxnKaKuIpGbcr+r2ZEB3g2gAhCP3Fqm42vJSzLfgab9eva/C4/XVw==}
 
   electron-winstaller@5.4.0:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
@@ -8551,7 +8551,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.33
       caniuse-lite: 1.0.30001793
-      electron-to-chromium: 1.5.367
+      electron-to-chromium: 1.5.368
       node-releases: 2.0.47
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
@@ -9193,7 +9193,7 @@ snapshots:
     dependencies:
       chokidar: 3.6.0
 
-  electron-to-chromium@1.5.367: {}
+  electron-to-chromium@1.5.368: {}
 
   electron-winstaller@5.4.0:
     dependencies:
