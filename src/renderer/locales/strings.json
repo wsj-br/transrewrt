@@ -44225,49 +44225,349 @@
   },
   "b52d3b12": {
     "source": "Version {{number}}",
-    "translated": {},
+    "translated": {
+      "cs": "Verze {{number}}",
+      "pt-BR": "Versão {{number}}",
+      "zh-TW": "版本 {{number}}",
+      "zh-CN": "版本 {{number}}",
+      "hr": "Verzija {{number}}",
+      "ar": "الإصدار {{number}}",
+      "bn": "সংস্করণ {{number}}",
+      "ca": "Versió {{number}}",
+      "en-US": "Version {{number}}",
+      "fr": "Version {{number}}",
+      "de": "Version {{number}}",
+      "nl": "Versie {{number}}",
+      "hu": "Verzió {{number}}",
+      "el": "Έκδοση {{number}}",
+      "hi": "संस्करण {{number}}",
+      "tl": "Bersyon {{number}}",
+      "pt": "Versão {{number}}",
+      "ko": "버전 {{number}}",
+      "pl": "Wersja {{number}}",
+      "fa": "نسخه {{number}}",
+      "ms": "Versi {{number}}",
+      "jv": "Versi {{number}}",
+      "it": "Versione {{number}}",
+      "ja": "バージョン {{number}}",
+      "sv": "Version {{number}}",
+      "sk": "Verzia {{number}}",
+      "es": "Versión {{number}}",
+      "ru": "Версия {{number}}",
+      "ro": "Versiunea {{number}}",
+      "pa": "ਸੰਸਕਰਨ {{number}}",
+      "te": "సంస్కరణ {{number}}",
+      "sw": "Toleo {{number}}",
+      "vi": "Phiên bản {{number}}",
+      "tr": "Sürüm {{number}}",
+      "uk": "Версія {{number}}",
+      "th": "เวอร์ชัน {{number}}"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 19
+        "line": 18
       }
     ]
   },
   "cc89bf7a": {
     "source": "Maximum of 3 translation versions reached",
-    "translated": {},
+    "translated": {
+      "cs": "Maximální počet 3 verzí překladu byl dosažen",
+      "pt-BR": "Número máximo de 3 versões de tradução atingido",
+      "zh-TW": "已達翻譯版本上限 3 個",
+      "zh-CN": "翻译版本数已达上限（3 个）",
+      "hr": "Dosegnut je maksimalan broj od 3 verzije prijevoda",
+      "ar": "تم الوصول إلى الحد الأقصى البالغ 3 نسخ ترجمة",
+      "bn": "অনুবাদ সংস্করণের সর্বোচ্চ ৩টি সীমা অতিক্রম হয়েছে",
+      "ca": "S'ha arribat al màxim de 3 versions de traducció",
+      "en-US": "Maximum of 3 translation versions reached",
+      "fr": "Nombre maximum de 3 versions de traduction atteint",
+      "de": "Maximal 3 Übersetzungsversionen erreicht",
+      "nl": "Maximaal 3 vertaalversies bereikt",
+      "hu": "Maximum 3 fordítási verzió érhető el",
+      "el": "Έχει φτάσει το όριο των 3 εκδόσεων μετάφρασης",
+      "hi": "अधिकतम 3 अनुवाद संस्करण प्राप्त हो चुके हैं",
+      "tl": "Naabot na ang maximum na 3 bersyon ng pagsasalin",
+      "pt": "Número máximo de 3 versões de tradução atingido",
+      "ko": "번역 버전은 최대 3개까지 생성할 수 있습니다",
+      "pl": "Osiągnięto maksymalną liczbę 3 wersji tłumaczenia",
+      "fa": "حداکثر ۳ نسخه ترجمه انتخاب شده است",
+      "ms": "Maksimum 3 versi terjemahan dicapai",
+      "jv": "Maksimum 3 versi terjemahan wis tercapai",
+      "it": "Limite di 3 versioni di traduzione raggiunto",
+      "ja": "翻訳バージョンの最大数（3）に達しました",
+      "sv": "Maximalt 3 översättningsversioner nådda",
+      "sk": "Maximálny počet 3 verzií prekladu bol dosiahnutý",
+      "es": "Se ha alcanzado el máximo de 3 versiones de traducción",
+      "ru": "Достигнут лимит в 3 версии перевода",
+      "ro": "S-a atins numărul maxim de 3 versiuni de traducere",
+      "pa": "ਅਨੁਵਾਦ ਦੇ ਵੱਧ ਤੋਂ ਵੱਧ 3 ਸੰਸਕਰਨ ਪ੍ਰਾਪਤ ਹੋ ਚੁੱਕੇ ਹਨ",
+      "te": "అనువాద సంస్కరణల గరిష్ట పరిమితి 3 చేరుకుంది",
+      "sw": "Upeo wa toleo 3 za tafsiri umefikiwa",
+      "vi": "Đã đạt tối đa 3 phiên bản dịch",
+      "tr": "3 çeviri sürümü sınırına ulaşıldı",
+      "uk": "Досягнуто максимальної кількості версій перекладу (3)",
+      "th": "จำกัดเวอร์ชันการแปลสูงสุด 3 เวอร์ชันแล้ว"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 45
+        "line": 44
       }
     ]
   },
   "62419fc4": {
     "source": "Rephrase...",
-    "translated": {},
+    "translated": {
+      "cs": "Přeformulovat...",
+      "pt-BR": "Reescrever...",
+      "zh-TW": "改寫...",
+      "zh-CN": "改写...",
+      "hr": "Preformuliraj...",
+      "ar": "إعادة صياغة...",
+      "bn": "পুনরায় লিখুন...",
+      "ca": "Reformula...",
+      "en-US": "Rephrase...",
+      "fr": "Reformuler...",
+      "de": "Umformulieren...",
+      "nl": "Herschrijven...",
+      "hu": "Átfogalmazás...",
+      "el": "Επαναδιατύπωση...",
+      "hi": "पुनर्लेखन...",
+      "tl": "I-rephrase...",
+      "pt": "Reformular...",
+      "ko": "다시 작성...",
+      "pl": "Przeformułuj...",
+      "fa": "بازنویسی...",
+      "ms": "Ungkapan semula...",
+      "jv": "Ganti tembung...",
+      "it": "Riformula...",
+      "ja": "書き換え...",
+      "sv": "Omformulera...",
+      "sk": "Preformulovať...",
+      "es": "Reescribir...",
+      "ru": "Перефразировать...",
+      "ro": "Reformulează...",
+      "pa": "ਮੁੜ ਲਿਖੋ...",
+      "te": "పునర్వచనం...",
+      "sw": "Andika upya...",
+      "vi": "Viết lại...",
+      "tr": "Yeniden ifade et...",
+      "uk": "Перефразувати...",
+      "th": "เรียบเรียงใหม่..."
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
+        "line": 44
+      },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
         "line": 45
       },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 46
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 49
+        "line": 48
       }
     ]
   },
   "48589c79": {
     "source": "Translation version",
-    "translated": {},
+    "translated": {
+      "cs": "Verze překladu",
+      "pt-BR": "Versão de tradução",
+      "zh-TW": "翻譯版本",
+      "zh-CN": "翻译版本",
+      "hr": "Verzija prijevoda",
+      "ar": "نسخة الترجمة",
+      "bn": "অনুবাদ সংস্করণ",
+      "ca": "Versió de traducció",
+      "en-US": "Translation version",
+      "fr": "Version de traduction",
+      "de": "Übersetzungsversion",
+      "nl": "Vertaalversie",
+      "hu": "Fordítási verzió",
+      "el": "Έκδοση μετάφρασης",
+      "hi": "अनुवाद संस्करण",
+      "tl": "Bersyon ng pagsasalin",
+      "pt": "Versão de tradução",
+      "ko": "번역 버전",
+      "pl": "Wersja tłumaczenia",
+      "fa": "نسخه ترجمه",
+      "ms": "Versi terjemahan",
+      "jv": "Versi terjemahan",
+      "it": "Versione di traduzione",
+      "ja": "翻訳バージョン",
+      "sv": "Översättningsversion",
+      "sk": "Verzia prekladu",
+      "es": "Versión de traducción",
+      "ru": "Версия перевода",
+      "ro": "Versiune de traducere",
+      "pa": "ਅਨੁਵਾਦ ਸੰਸਕਰਨ",
+      "te": "అనువాద సంస్కరణ",
+      "sw": "Toleo la tafsiri",
+      "vi": "Phiên bản dịch",
+      "tr": "Çeviri sürümü",
+      "uk": "Версія перекладу",
+      "th": "เวอร์ชันการแปล"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 60
+        "line": 59
       }
     ]
   },
@@ -45505,7 +45805,7 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 384
+        "line": 383
       }
     ]
   },
@@ -45594,7 +45894,7 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 503
+        "line": 502
       }
     ]
   },
@@ -45687,11 +45987,11 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 509
+        "line": 508
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 646
+        "line": 645
       }
     ]
   },
@@ -45784,17 +46084,92 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 510
+        "line": 509
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 647
+        "line": 646
       }
     ]
   },
   "d6dd9f90": {
     "source": "Rephrasing...",
-    "translated": {},
+    "translated": {
+      "cs": "Přeformulování...",
+      "pt-BR": "Reescrevendo...",
+      "zh-TW": "正在改寫...",
+      "zh-CN": "正在改写...",
+      "hr": "Preformuliranje...",
+      "ar": "جارٍ إعادة الصياغة...",
+      "bn": "পুনরায় লিখছে...",
+      "ca": "S'està reformulant...",
+      "en-US": "Rephrasing...",
+      "fr": "Reformulation...",
+      "de": "Wird umformuliert...",
+      "nl": "Herschrijven...",
+      "hu": "Átfogalmazás...",
+      "el": "Επαναδιατύπωση...",
+      "hi": "पुनर्लेखन हो रहा है...",
+      "tl": "Nire-rephrase...",
+      "pt": "A reformular...",
+      "ko": "다시 작성 중...",
+      "pl": "Przeformułowywanie...",
+      "fa": "در حال بازنویسی...",
+      "ms": "Mengungkapkan semula...",
+      "jv": "Ngganti tembung...",
+      "it": "Riformulazione...",
+      "ja": "書き換えています...",
+      "sv": "Omformulerar...",
+      "sk": "Preformulováva sa...",
+      "es": "Reescribiendo...",
+      "ru": "Перефразирование...",
+      "ro": "Se reformulează...",
+      "pa": "ਮੁੜ ਲਿਖਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+      "te": "పునర్వచనం జరుగుతోంది...",
+      "sw": "Inaandikwa upya...",
+      "vi": "Đang viết lại...",
+      "tr": "Yeniden ifade ediliyor...",
+      "uk": "Перефразування...",
+      "th": "กำลังเรียบเรียงใหม่..."
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
@@ -45804,7 +46179,82 @@
   },
   "e5a23e5d": {
     "source": "Rephrase finished but returned no text. Try again or choose another model.",
-    "translated": {},
+    "translated": {
+      "cs": "Přeformulování bylo dokončeno, ale nevrátilo žádný text. Zkuste to znovu nebo vyberte jiný model.",
+      "pt-BR": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "zh-TW": "改寫完成但未返回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "改写完成但未返回文本。请重试或选择其他模型。",
+      "hr": "Preformuliranje je završeno, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "ar": "انتهت إعادة الصياغة لكنها لم تُرجِ أي نص. حاول مرة أخرى أو اختر نموذجًا آخر.",
+      "bn": "পুনরায় লেখা সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট ফেরত আসেনি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "ca": "La reformulació ha finalitzat però no s'ha retornat cap text. Torneu-ho a provar o trieu un altre model.",
+      "en-US": "Rephrase finished but returned no text. Try again or choose another model.",
+      "fr": "Reformulation terminée, mais aucun texte n'a été généré. Réessayez ou choisissez un autre modèle.",
+      "de": "Umformulierung abgeschlossen, es wurde jedoch kein Text zurückgegeben. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "nl": "Herschrijven voltooid, maar er is geen tekst teruggekomen. Probeer het opnieuw of kies een ander model.",
+      "hu": "Az átfogalmazás befejeződött, de nem adott vissza szöveget. Próbálja meg újra, vagy válasszon másik modellt.",
+      "el": "Η επαναδιατύπωση ολοκληρώθηκε αλλά δεν παρήχθη κείμενο. Δοκιμάστε ξανά ή επιλέξτε άλλο μοντέλο.",
+      "hi": "पुनर्लेखन समाप्त हो गया है, लेकिन कोई पाठ नहीं मिला। कृपया पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "tl": "Natapos ang pag-rephrase ngunit walang ibinalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "pt": "A reformulação terminou, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ko": "다시 작성이 완료되었지만 결과가 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "pl": "Przeformułowanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. مجدداً تلاش کنید یا مدل دیگری انتخاب کنید.",
+      "ms": "Ungkapan semula selesai tetapi tidak mengembalikan sebarang teks. Cuba lagi atau pilih model lain.",
+      "jv": "Ganti tembung wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "it": "Riformulazione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ja": "書き換えは完了しましたが、テキストが返されませんでした。再試行するか、別のモデルを選択してください。",
+      "sv": "Omformuleringen avslutades men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "sk": "Preformulovanie dokončené, ale nevrátilo žiadny text. Skúste to znova alebo vyberte iný model.",
+      "es": "La reescritura ha finalizado pero no se ha devuelto ningún texto. Inténtelo de nuevo o elija otro modelo.",
+      "ru": "Перефразирование завершено, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Reformularea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਮੁੜ ਲਿਖਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋ ਗਈ ਹੈ ਪਰ ਕੋਈ ਪਾਠ ਨਹੀਂ ਮਿਲਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "te": "పునర్వచనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్ ఎంచుకోండి.",
+      "sw": "Uandishi upya umekamilika lakini haukutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "vi": "Hoàn tất viết lại nhưng không trả về văn bản. Hãy thử lại hoặc chọn mô hình khác.",
+      "tr": "Yeniden ifade işlemi tamamlandı ancak metin döndürülmadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Перефразування завершено, але текст не повернуто. Повторіть спробу або виберіть іншу модель.",
+      "th": "การเรียบเรียงใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b"
+    },
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
@@ -45893,7 +46343,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 429
+        "line": 428
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 502
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
@@ -45901,15 +46355,11 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 504
+        "line": 515
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 516
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 535
+        "line": 534
       }
     ]
   },
@@ -45994,7 +46444,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 440
+        "line": 439
       }
     ]
   },
@@ -46079,7 +46529,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 496
+        "line": 495
       }
     ]
   },
@@ -46164,7 +46614,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 589
+        "line": 588
       }
     ]
   },
@@ -46249,23 +46699,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 639
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
         "line": 640
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 641
+        "line": 651
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 652
+        "line": 671
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 672
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 706
+        "line": 705
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -46358,7 +46808,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 640
+        "line": 639
       }
     ]
   },

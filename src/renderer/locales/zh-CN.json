@@ -500,7 +500,7 @@
   "Enter text to transform...": "输入要转换的文本...",
   "Stop Transform": "停止转换",
   "Version {{number}}": "版本 {{number}}",
-  "Maximum of 3 translation versions reached": "翻译版本已达上限（3个）",
+  "Maximum of 3 translation versions reached": "翻译版本数已达上限（3 个）",
   "Rephrase...": "改写...",
   "Translation version": "翻译版本",
   "Swap languages": "交换语言",
