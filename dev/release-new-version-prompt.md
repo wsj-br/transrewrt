@@ -2,37 +2,38 @@ Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **T
 
 **Before you start:** run checks that mirror what CI runs before packaging:
 
-1. **`pnpm lint`**
-2. **`pnpm build`** then **`pnpm build:main`**
+1. `pnpm install`
+2. `pnpm lint`
+3. `pnpm build` then `pnpm build:main`
 
-Fix any failures. Optionally run **`pnpm package`** on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows/Linux).
+Fix any failures. Optionally run `pnpm package` on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows/Linux).
 
 There is no automated unit/integration test script in `package.json` (`pnpm test` is a stub); do not assume a test suite unless one was added.
 
 **Instructions:**
 
-1. **Read `package.json`** for the target version (`x.y.z`). If you are cutting the release, the version should already be bumped on your branch.
-2. After bumping `version` in `package.json`, run **`pnpm update-version`** so the README version badge and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
+1. **Read** `package.json` for the target version (`x.y.z`). If you are cutting the release, the version should already be bumped on your branch.
+2. After bumping `version` in `package.json`, run `pnpm update-version`so the README version badge and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
 3. **Open `dev/CHANGELOG.md`.**
-4. **Copy all entries under `## Unreleased`** up to (but not including) the next `## [` heading (the previous shipped version).
+4. **Copy all entries under** `## Unreleased` up to (but not including) the next `## [` heading (the previous shipped version).
 5. **Format the new file** to match the newest existing notes under [`release-notes/`](https://github.com/wsj-br/transrewrt/tree/main/release-notes/), e.g. [`release-notes/RELEASE-NOTES-v1.1.1.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE-NOTES-v1.1.1.md) (legacy naming) or prior `RELEASE_NOTES_*.md` files:
    - Title: `# Transrewrt <version> - Release Notes`
    - **Release date:** `YYYY-MM-DD` (use the authoritative “today” from context when running this task)
    - Short opening paragraph summarizing the themes of the release (user-focused).
-   - **`## Highlights`** — Most important user-visible changes (features, fixes, polish); not every changelog bullet verbatim.
-   - When it helps readability, add **`## Improvements`** and/or **`## Fixes`** with grouped bullets (see prior release notes); smaller releases may fold these into Highlights only.
-   - **`## Getting This Release`** — Point to GitHub Releases; list typical artifacts: Windows installer (x64), Linux AppImage (x64 and arm64), Docker image `ghcr.io/wsj-br/transrewrt:<version>` (and `latest` when applicable). Mention that exact filenames/checksums are on the release page.
-   - **`## Documentation`** — Link to the main docs using full GitHub URLs (`https://github.com/wsj-br/transrewrt/blob/main/…`) so links work on the GitHub release page (relative paths break there), for example:
+   - `## Highlights`— Most important user-visible changes (features, fixes, polish); not every changelog bullet verbatim.
+   - When it helps readability, add `## Improvements`** and/or **`## Fixes`with grouped bullets (see prior release notes); smaller releases may fold these into Highlights only.
+   - `## Getting This Release`— Point to GitHub Releases; list typical artifacts: Windows installer (x64), Linux AppImage (x64 and arm64), Docker image `ghcr.io/wsj-br/transrewrt:<version>` (and `latest` when applicable). Mention that exact filenames/checksums are on the release page.
+   - `## Documentation`— Link to the main docs using full GitHub URLs (`https://github.com/wsj-br/transrewrt/blob/main/…`) so links work on the GitHub release page (relative paths break there), for example:
      - [README](https://github.com/wsj-br/transrewrt/blob/main/README.md) — overview, installation, quick start  
      - [USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md) — full feature walkthrough  
      - Optional: [dev/SYSTEM-OVERVIEW.md](https://github.com/wsj-br/transrewrt/blob/main/dev/SYSTEM-OVERVIEW.md), [dev/DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md), [dev/i18n.md](https://github.com/wsj-br/transrewrt/blob/main/dev/i18n.md) when this release materially touches architecture, dev setup, or translations  
-   - **`## Disclaimer`** — Same product-names disclaimer as in [`release-notes/RELEASE-NOTES-v1.1.1.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE-NOTES-v1.1.1.md).
-   - **`## License`** — Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](https://github.com/wsj-br/transrewrt/blob/main/LICENSE) as in prior release notes.
+   - `## Disclaimer`— Same product-names disclaimer as in [`release-notes/RELEASE-NOTES-v1.1.1.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE-NOTES-v1.1.1.md).
+   - `## License`— Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](https://github.com/wsj-br/transrewrt/blob/main/LICENSE) as in prior release notes.
    - Closing thank-you line optional, matching prior tone.
-   - Do **not** paste the raw `[Unreleased]` changelog verbatim as the only content; synthesize highlights first. You may add a **detailed changelog subsection** (or collapsible summary) if useful for power users.
+   - Do **not** paste the raw `[Unreleased]` changelog verbatim as the only content; synthesize highlights first. You may add a detailed changelog subsection(or collapsible summary) if useful for power users.
 6. **Update `dev/CHANGELOG.md`**:
-   - Move everything from `[Unreleased]` into **`## [x.y.z] - YYYY-MM-DD`** (today’s date).
-   - Leave an empty **`## Unreleased`** section at the top for future work.
+   - Move everything from `[Unreleased]` into `## [x.y.z] - YYYY-MM-DD`(today’s date).
+   - Leave an empty `## Unreleased`section at the top for future work.
 
 **Example shape** (adapt section headings to match the latest release notes under `release-notes/`):
 
