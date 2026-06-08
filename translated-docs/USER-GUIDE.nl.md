@@ -49,24 +49,25 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Werkbalk](#toolbar)
   - [Invoer- en uitvoerpanelen](#input-and-output-panels)
 - [Vertalen](#translate)
-  - [Tekst vertalen](#translate-text)
-  - [Taalkeuze](#language-selection)
+  - [Vertaal tekst](#translate-text)
+  - [Taalselectie](#language-selection)
   - [Handige vertaalinstellingen](#helpful-translation-settings)
+  - [Je vertaling verfijnen](#refining-translation)
 - [Herschrijven](#rewrite)
 - [Transformeren](#transform)
-  - [Een bestaande prompt uitvoeren](#run-an-existing-prompt)
-  - [Als u nog geen prompts hebt](#if-you-have-no-prompts-yet)
-  - [Snel een prompt aanmaken](#create-a-prompt-quickly)
-  - [Een prompt bewerken](#edit-a-prompt)
-  - [Een prompt testen voordat u deze gebruikt](#test-a-prompt-before-using-it)
+  - [Voer een bestaande prompt uit](#run-an-existing-prompt)
+  - [Als je nog geen prompts hebt](#if-you-have-no-prompts-yet)
+  - [Maak snel een prompt aan](#create-a-prompt-quickly)
+  - [Bewerk een prompt](#edit-a-prompt)
+  - [Test een prompt voordat je deze gebruikt](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [De gegevens filteren](#filter-the-data)
+  - [Filter de gegevens](#filter-the-data)
   - [Dashboard-tabbladen](#dashboard-tabs)
   - [Gegevens exporteren](#export-data)
-  - [Opgeslagen gegevens voor een model verwijderen](#delete-stored-records-for-a-model)
+  - [Verwijder opgeslagen records voor een model](#delete-stored-records-for-a-model)
 - [Geschiedenis](#history)
-  - [Geschiedenis filteren](#filter-the-history)
-  - [Geschiedenisgegevens exporteren](#export-history-data)
+  - [Filter de geschiedenis](#filter-the-history)
+  - [Exporteer geschiedenisgegevens](#export-history-data)
 - [Instellingen](#settings)
   - [Algemene instellingen](#general-settings)
   - [Modellen](#models)
@@ -77,19 +78,19 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [API-configuratie](#api-config)
   - [Over](#about)
 - [Veelvoorkomende problemen](#common-issues)
-  - [De app vertaalt, herschrijft of transformeert geen tekst](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [De app vertaalt, herschrijft of transformeert tekst niet](#the-app-will-not-translate-rewrite-or-transform-text)
   - [De modellenlijst is leeg](#the-model-list-is-empty)
   - [Het resultaat is te traag of te duur](#the-result-is-too-slow-or-too-expensive)
   - [De interface is in de verkeerde taal](#the-interface-is-in-the-wrong-language)
   - [De tekst is te klein of moeilijk te lezen](#the-text-is-too-small-or-hard-to-read)
   - [Dashboard Samenvatting lijkt leeg](#dashboard-summary-looks-empty)
   - [Kosten tonen "niet beschikbaar" of lijken verkeerd](#cost-shows-not-available-or-seems-wrong)
-  - [Totale kosten komen niet overeen met mijn leveranciersfactuur](#total-cost-does-not-match-my-provider-bill)
-  - [De geschiedenispagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
-  - [Webapp: onverwacht doorgestuurd naar de aanmeldpagina](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbeheerder: wachtwoord vergeten of kwijtgeraakt](#web-admin-forgot-or-lost-a-password)
+  - [Totale kosten komen niet overeen met mijn providerfactuur](#total-cost-does-not-match-my-provider-bill)
+  - [De Geschiedenis-pagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
+  - [Webapp: onverwacht doorgestuurd naar de inlogpagina](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webbeheerder: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
   - [Dashboard toont geen gegevens voor andere gebruikers (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ik heb een prompt aangepast en de bewerkingen verloren](#i-changed-a-prompt-and-lost-the-edits)
+  - [Ik heb een prompt gewijzigd en de bewerkingen verloren](#i-changed-a-prompt-and-lost-the-edits)
 - [Snelle tips](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [Licentie](#license)
@@ -284,6 +285,17 @@ In [**Instellingen** > **Algemene instellingen**](#general-settings) kunt u aanp
 - **Gedrag voor ENTER** kiest of `Enter` de taak uitvoert of een nieuwe regel invoegt:
   - **Enter** voert vertalen of herschrijven uit (standaard).
   - **Shift + Enter** voert vertalen of herschrijven uit; gewone **Enter** voegt een nieuwe regel in.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Je vertaling verfijnen
+
+Na een succesvolle vertaling kun je het resultaat verfijnen in het uitvoervenster:
+
+1. **Herschrijven…** — selecteer geen tekst in de uitvoer om een volledige nieuwe vertaling van dezelfde invoer te krijgen met andere bewoording. Je kunt maximaal **vijf** versies opslaan en hier tussen schakelen via de dropdown voor versies. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven in de buurt van de selectie (dezelfde werking als rechtermuisknop). Zonder selectie is **Herschrijven…** uitgeschakeld zodra je vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, waarbij versie 5 wordt bijgewerkt).
+2. **Woordalternatieven** — selecteer één of meer woorden in de uitvoer (als je slechts een deel van een woord selecteert, breidt de app de selectie automatisch uit naar volledige woorden), klik vervolgens met de rechtermuisknop of op **Herschrijven…**. Er verschijnt een korte lijst met alternatieven in de buurt van de selectie; klik op een optie om het te vervangen. Als je minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtermuisklik zonder selectie heeft geen effect. Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
+3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan de gebruikskosten verhogen (zelfde als een normale vertaalaanvraag).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

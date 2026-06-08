@@ -48,49 +48,50 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [Eszköztár](#toolbar)
   - [Bemeneti és kimeneti panel](#input-and-output-panels)
 - [Fordítás](#translate)
-  - [Szöveg fordítása](#translate-text)
-  - [Nyelvválasztás](#language-selection)
+  - [Fordítás](#translate-text)
+  - [Nyelv kiválasztása](#language-selection)
   - [Hasznos fordítási beállítások](#helpful-translation-settings)
+  - [A fordítás finomítása](#refining-translation)
 - [Átírás](#rewrite)
 - [Átalakítás](#transform)
-  - [Meglévő prompt futtatása](#run-an-existing-prompt)
-  - [Ha még nincsenek promptjai](#if-you-have-no-prompts-yet)
-  - [Gyorsan új prompt létrehozása](#create-a-prompt-quickly)
-  - [Prompt szerkesztése](#edit-a-prompt)
-  - [Prompt tesztelése használat előtt](#test-a-prompt-before-using-it)
+  - [Futtass egy meglévő kérést](#run-an-existing-prompt)
+  - [Ha még nincs kérése](#if-you-have-no-prompts-yet)
+  - [Hozzáadás egy kéréshez gyorsan](#create-a-prompt-quickly)
+  - [Kérés szerkesztése](#edit-a-prompt)
+  - [Kérés tesztelése használat előtt](#test-a-prompt-before-using-it)
 - [Irányítópult](#dashboard)
   - [Adatok szűrése](#filter-the-data)
-  - [Irányítópult fülei](#dashboard-tabs)
+  - [Irányítópult lapok](#dashboard-tabs)
   - [Adatok exportálása](#export-data)
-  - [Rekordok törlése egy modellhez](#delete-stored-records-for-a-model)
+  - [Törlés tárolt rekordok egy modellhez](#delete-stored-records-for-a-model)
 - [Előzmények](#history)
   - [Előzmények szűrése](#filter-the-history)
-  - [Előzményadatok exportálása](#export-history-data)
+  - [Előzmények adatainak exportálása](#export-history-data)
 - [Beállítások](#settings)
   - [Általános beállítások](#general-settings)
   - [Modellek](#models)
   - [Nyelvek](#languages)
   - [Költségkövetés](#cost-tracking)
-  - [Átalakítás (beállítások fül)](#transform-settings-tab)
+  - [Átalakítás (beállítási fül)](#transform-settings-tab)
   - [Felhasználók](#users)
-  - [API beállítások](#api-config)
+  - [API konfiguráció](#api-config)
   - [Névjegy](#about)
 - [Gyakori problémák](#common-issues)
-  - [Az alkalmazás nem fordít, ír át vagy alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [A modelllista üres](#the-model-list-is-empty)
-  - [Az eredmény túl lassú vagy túl költséges](#the-result-is-too-slow-or-too-expensive)
-  - [A felület rossz nyelven jelenik meg](#the-interface-is-in-the-wrong-language)
+  - [Az alkalmazás nem fordít, nem ír át, vagy nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [A modell lista üres](#the-model-list-is-empty)
+  - [Az eredmény túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
+  - [A felület a rossz nyelven van](#the-interface-is-in-the-wrong-language)
   - [A szöveg túl kicsi vagy nehezen olvasható](#the-text-is-too-small-or-hard-to-read)
-  - [Az Irányítópult összegzése üresen jelenik meg](#dashboard-summary-looks-empty)
+  - [Irányítópult összefoglaló üresnek tűnik](#dashboard-summary-looks-empty)
   - [A költség "nem elérhető" vagy helytelennek tűnik](#cost-shows-not-available-or-seems-wrong)
-  - [A teljes költség nem egyezik meg a szolgáltató számlájával](#total-cost-does-not-match-my-provider-bill)
-  - [Az Előzmények oldal hiányzik az oldalsávon](#the-history-page-is-missing-from-the-sidebar)
-  - [Webalkalmazás: váratlanul a bejelentkező oldalra irányít](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webes admin: elfelejtett vagy elveszett jelszó](#web-admin-forgot-or-lost-a-password)
-  - [Az irányítópult nem mutat adatot más felhasználókról (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Módosítottam egy promptot, és elvesztek a változtatások](#i-changed-a-prompt-and-lost-the-edits)
+  - [A teljes költség nem egyezik a szolgáltatóm számlájával](#total-cost-does-not-match-my-provider-bill)
+  - [Az Előzmények oldal hiányzik az oldalsávból](#the-history-page-is-missing-from-the-sidebar)
+  - [Webalkalmazás: váratlanul átirányít a bejelentkezési oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web rendszergazda: elfelejtette vagy elvesztette a jelszót](#web-admin-forgot-or-lost-a-password)
+  - [Irányítópult nem mutat adatokat más felhasználók számára (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Megváltoztattam egy kérést és elvesztettem a módosításokat](#i-changed-a-prompt-and-lost-the-edits)
 - [Gyors tippek](#quick-tips)
-- [Felelősség kizárása](#disclaimer)
+- [Jogi nyilatkozat](#disclaimer)
 - [Licenc](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -283,6 +284,17 @@ A [**Beállítások** > **Általános beállítások**](#general-settings) menü
 - **Viselkedés a következőhöz: ENTER** azt választja meg, hogy `Enter` végrehajtja-e a feladatot, vagy új sort illeszt be:
   - **Enter** végrehajtja a fordítást vagy az átírást (alapértelmezett).
   - **Shift + Enter** végrehajtja a fordítást vagy az átírást; sima **Enter** új sort illeszt be.
+
+<br/>
+
+<a id="refining-translation"></a>
+### A fordítás finomítása
+
+Sikeres fordítás után finomíthatja az eredményt a kimeneti panelen:
+
+1. **Átfogalmazás…** — ha a kimenetben nincs szöveg kijelölve, egy másik teljes fordítást kapsz ugyanarról a bemenetről, más megfogalmazással. Legfeljebb **öt** verziót tárolhatsz, és válthatsz közöttük a verzió legördülő menüjében. Kijelölt szöveggel a **Átfogalmazás…** szóalternatívákat nyit meg a kijelölés közelében (ugyanaz, mint a jobb kattintás). Kijelölés nélkül a **Átfogalmazás…** letiltásra kerül, amint elérted az öt verziót; kijelölés esetén azonban továbbra is működik öt verziónál (csak szóalternatívák, az 5. verzió frissítése).
+2. **Szóalternatívák** — válassz ki egy vagy több szót a kimenetben (ha csak egy szó részét választod ki, az alkalmazás a kijelölést teljes szavakra bővíti), majd kattints jobb gombbal vagy a **Átfogalmazás…** gombra. Egy rövid alternatíva lista jelenik meg a kijelölés közelében; kattints egyre, hogy helyettesítsd. Ha kevesebb mint öt verziód van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak a **5. verzió** frissül. Jobb kattintás kijelölés nélkül nem csinál semmit. Nyomd meg az **Esc** billentyűt, vagy kattints a lista kívül, hogy töröld a módosítást.
+3. **Költségek** — minden teljes **Átfogalmazás…** (kijelölés nélkül) és minden szóalternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanúgy, mint egy normál fordítási futás).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

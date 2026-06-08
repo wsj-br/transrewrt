@@ -49,50 +49,51 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
   - [Toolbar](#toolbar)
   - [Panel input lan output](#input-and-output-panels)
 - [Terjemahake](#translate)
-  - [Terjemahake tèks](#translate-text)
-  - [Pilihan basa](#language-selection)
-  - [Setelan terjemahan sing migunani](#helpful-translation-settings)
-- [Tulis ulang](#rewrite)
-- [Ubah](#transform)
-  - [Jalankan prompt sing wis ana](#run-an-existing-prompt)
-  - [Yen durung duwe prompt](#if-you-have-no-prompts-yet)
-  - [Gawe prompt kanthi cepet](#create-a-prompt-quickly)
+  - [Terjemahake teks](#translate-text)
+  - [Pilih bahasa](#language-selection)
+  - [Pengaturan terjemahan sing penting](#helpful-translation-settings)
+  - [Nglengkapi terjemahanmu](#refining-translation)
+- [Transrewrt](#rewrite)
+- [Transformasi](#transform)
+  - [Njaluk prompt sing wis ana](#run-an-existing-prompt)
+  - [Yen sampeyan durung duwe prompt](#if-you-have-no-prompts-yet)
+  - [Gawé prompt kanthi cepet](#create-a-prompt-quickly)
   - [Sunting prompt](#edit-a-prompt)
   - [Tes prompt sadurunge digunakake](#test-a-prompt-before-using-it)
-- [Dasbor](#dashboard)
-  - [Saring data](#filter-the-data)
-  - [Tab dasbor](#dashboard-tabs)
+- [Dashboard](#dashboard)
+  - [Filter data](#filter-the-data)
+  - [Tab dashboard](#dashboard-tabs)
   - [Ekspor data](#export-data)
-  - [Hapus rekaman sing disimpen kanggo model](#delete-stored-records-for-a-model)
-- [Riwayat](#history)
-  - [Saring riwayat](#filter-the-history)
-  - [Ekspor data riwayat](#export-history-data)
-- [Setelan](#settings)
-  - [Setelan umum](#general-settings)
+  - [Hapus catatan sing disimpen kanggo model](#delete-stored-records-for-a-model)
+- [Sejarah](#history)
+  - [Filter sejarah](#filter-the-history)
+  - [Ekspor data sejarah](#export-history-data)
+- [Pengaturan](#settings)
+  - [Pengaturan umum](#general-settings)
   - [Model](#models)
-  - [Basa](#languages)
+  - [Bahasa](#languages)
   - [Pelacakan biaya](#cost-tracking)
-  - [Ubah (tab setelan)](#transform-settings-tab)
-  - [Pangguna](#users)
+  - [Transformasi (tab pengaturan)](#transform-settings-tab)
+  - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
-  - [Tentang](#about)
+  - [Ngenani](#about)
 - [Masalah umum](#common-issues)
-  - [Aplikasi ora bisa menerjemahake, nulis ulang, utawa ngowahi tèks](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Dhaptar model kosong](#the-model-list-is-empty)
-  - [Asilé alon banget utawa larang banget](#the-result-is-too-slow-or-too-expensive)
+  - [Aplikasi ora bisa nerjemahake, transrewrt, utawa transformasi teks](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Daftar model kosong](#the-model-list-is-empty)
+  - [Hasil terlalu alon utawa terlalu larang](#the-result-is-too-slow-or-too-expensive)
   - [Antarmuka nganggo basa sing salah](#the-interface-is-in-the-wrong-language)
-  - [Teks kecil banget utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
-  - [Ringkasan Dasbor katon kosong](#dashboard-summary-looks-empty)
+  - [Teks terlalu cilik utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
+  - [Ringkasan Dashboard katon kosong](#dashboard-summary-looks-empty)
   - [Biaya nuduhake "ora tersedia" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
-  - [Total biaya ora cocog karo tagihan panyedhiya sampeyan](#total-cost-does-not-match-my-provider-bill)
-  - [Kaca Riwayat ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: dialihake menyang kaca login kanthi ora dikarepake](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: lali utawa ilang sandhi](#web-admin-forgot-or-lost-a-password)
-  - [Dasbor ora nuduhake data kanggo pangguna liya (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Aku ngowahi prompt lan kehilangan suntingan](#i-changed-a-prompt-and-lost-the-edits)
-- [Tip cepet](#quick-tips)
-- [Penafian](#disclaimer)
-- [Lisensi](#license)
+  - [Total biaya ora cocog karo tagihan penyedia](#total-cost-does-not-match-my-provider-bill)
+  - [Halaman Sejarah ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: dialihake menyang halaman login kanthi ora dikarepake](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: lali utawa ilang sandi](#web-admin-forgot-or-lost-a-password)
+  - [Dashboard ora nuduhake data kanggo pengguna liyane (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Aku ngganti prompt lan ilang suntingan](#i-changed-a-prompt-and-lost-the-edits)
+- [Tips cepet](#quick-tips)
+- [Pernyataan](#disclaimer)
+- [Lisènsi](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -284,6 +285,17 @@ Ing [**Setelan** > **Setelan Umum**](#general-settings), sampeyan bisa ngganti c
 - **Tingkah laku kanggo ENTER** milih apa `Enter` nglakokake tugas utawa nyisipake baris anyar:
   - **Enter** nglakokake terjemah utawa transrewrt (standar).
   - **Shift + Enter** nglakokake terjemah utawa transrewrt; **Enter** biasa nyisipake baris anyar.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Nglengkapi terjemahanmu
+
+Sawise terjemahan sukses, sampeyan bisa nglengkapi asil ing panel output:
+
+1. **Terjemahake…** — tanpa teks dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi tembung sing beda. Sampeyan bisa nyimpen nganti **lima** versi lan ganti antarane versi ing dropdown versi. Kanthi teks dipilih, **Terjemahake…** mbukak alternatif tembung cedhak pilihan (sama kaya klik-tengen). Tanpa pilihan, **Terjemahake…** dinonaktifake sawise sampeyan tekan lima versi; kanthi pilihan, isih bisa digunakake ing lima versi (alternatif tembung wae, nganyari versi 5).
+2. **Alternatif tembung** — pilih siji utawa luwih tembung ing output (yen sampeyan milih mung bagean saka tembung, aplikasi bakal ngembangake pilihan dadi tembung lengkap), banjur klik-tengen utawa klik **Terjemahake…**. Dhaptar cendhak alternatif muncul cedhak pilihan; klik siji kanggo ngganti. Yen sampeyan duwe kurang saka lima versi, output sing diedit disimpen minangka versi anyar; ing lima versi, mung **versi 5** sing diupdate. Klik-tengen tanpa pilihan ora nindakake apa-apa. Pencet **Esc** utawa klik ing njaba dhaptar kanggo batal tanpa ngganti output.
+3. **Biaya** — saben **Terjemahake…** lengkap (tanpa pilihan) lan saben permintaan alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (sama kaya proses terjemahan normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

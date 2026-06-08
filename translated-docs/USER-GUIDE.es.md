@@ -51,17 +51,18 @@ Esta guía explica cómo usar la aplicación una vez instalada y en funcionamien
 - [Traducir](#translate)
   - [Traducir texto](#translate-text)
   - [Selección de idioma](#language-selection)
-  - [Configuración útil para la traducción](#helpful-translation-settings)
-- [Reescribir](#rewrite)
+  - [Configuraciones de traducción útiles](#helpful-translation-settings)
+  - [Refinando tu traducción](#refining-translation)
+- [Reescritura](#rewrite)
 - [Transformar](#transform)
-  - [Ejecutar un prompt existente](#run-an-existing-prompt)
-  - [Si aún no tienes prompts](#if-you-have-no-prompts-yet)
-  - [Crear un prompt rápidamente](#create-a-prompt-quickly)
-  - [Editar un prompt](#edit-a-prompt)
-  - [Probar un prompt antes de usarlo](#test-a-prompt-before-using-it)
-- [Panel](#dashboard)
+  - [Ejecutar un indicador existente](#run-an-existing-prompt)
+  - [Si aún no tienes indicadores](#if-you-have-no-prompts-yet)
+  - [Crear un indicador rápidamente](#create-a-prompt-quickly)
+  - [Editar un indicador](#edit-a-prompt)
+  - [Probar un indicador antes de usarlo](#test-a-prompt-before-using-it)
+- [Panel de control](#dashboard)
   - [Filtrar los datos](#filter-the-data)
-  - [Pestañas del panel](#dashboard-tabs)
+  - [Pestañas del panel de control](#dashboard-tabs)
   - [Exportar datos](#export-data)
   - [Eliminar registros almacenados para un modelo](#delete-stored-records-for-a-model)
 - [Historial](#history)
@@ -77,19 +78,19 @@ Esta guía explica cómo usar la aplicación una vez instalada y en funcionamien
   - [Configuración de API](#api-config)
   - [Acerca de](#about)
 - [Problemas comunes](#common-issues)
-  - [La aplicación no traduce, reescribe ni transforma texto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [La aplicación no traducirá, reescribirá o transformará texto](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La lista de modelos está vacía](#the-model-list-is-empty)
-  - [El resultado es demasiado lento o demasiado costoso](#the-result-is-too-slow-or-too-expensive)
+  - [El resultado es demasiado lento o demasiado caro](#the-result-is-too-slow-or-too-expensive)
   - [La interfaz está en el idioma incorrecto](#the-interface-is-in-the-wrong-language)
   - [El texto es demasiado pequeño o difícil de leer](#the-text-is-too-small-or-hard-to-read)
-  - [El resumen del panel parece vacío](#dashboard-summary-looks-empty)
+  - [El resumen del panel de control parece vacío](#dashboard-summary-looks-empty)
   - [El costo muestra "no disponible" o parece incorrecto](#cost-shows-not-available-or-seems-wrong)
-  - [El coste total no coincide con la factura de mi proveedor](#total-cost-does-not-match-my-provider-bill)
-  - [La página Historial falta en la barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicación web: redirigido inesperadamente a la página de inicio de sesión](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [El costo total no coincide con la factura de mi proveedor](#total-cost-does-not-match-my-provider-bill)
+  - [La página de historial falta en la barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplicación web: redirigido a la página de inicio de sesión inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Administrador web: olvidé o perdí una contraseña](#web-admin-forgot-or-lost-a-password)
-  - [El panel no muestra datos de otros usuarios (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [He modificado un prompt y he perdido los cambios](#i-changed-a-prompt-and-lost-the-edits)
+  - [El panel de control no muestra datos para otros usuarios (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Cambié un indicador y perdí las ediciones](#i-changed-a-prompt-and-lost-the-edits)
 - [Consejos rápidos](#quick-tips)
 - [Descargo de responsabilidad](#disclaimer)
 - [Licencia](#license)
@@ -284,6 +285,17 @@ En [**Configuración** > **Configuración general**](#general-settings), puede c
 - **Comportamiento para ENTER** elige si `Enter` ejecuta la tarea o inserta una nueva línea:
   - **Enter** ejecuta traducir o reescribir (por defecto).
   - **Shift + Enter** ejecuta traducir o reescribir; **Enter** simple inserta una nueva línea.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Refinando tu traducción
+
+Después de una traducción exitosa, puedes refinar el resultado en el panel de salida:
+
+1. **Reformular…** — sin texto seleccionado en la salida, obtén otra traducción completa de la misma entrada con diferentes palabras. Puedes almacenar hasta **cinco** versiones y alternar entre ellas en el menú desplegable de versiones. Con texto seleccionado, **Reformular…** abre alternativas de palabras cerca de la selección (igual que al hacer clic derecho). Sin una selección, **Reformular…** está deshabilitado una vez que alcanzas cinco versiones; con una selección, sigue funcionando en cinco versiones (solo alternativas de palabras, actualizando la versión 5).
+2. **Alternativas de palabras** — selecciona una o más palabras en la salida (si seleccionas solo parte de una palabra, la aplicación expande la selección a palabras completas), luego haz clic derecho o haz clic en **Reformular…**. Aparece una lista corta de alternativas cerca de la selección; haz clic en una para reemplazarla. Si tienes menos de cinco versiones, la salida editada se guarda como una nueva versión; en cinco versiones, solo se actualiza **la versión 5**. Hacer clic derecho sin selección no hace nada. Presiona **Esc** o haz clic fuera de la lista para cancelar sin cambiar la salida.
+3. **Costos** — cada **Reformular…** completo (sin selección) y cada solicitud de alternativa de palabra utiliza el modelo nuevamente y puede añadir al costo de uso (igual que una ejecución de traducción normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

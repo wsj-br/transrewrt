@@ -32,7 +32,7 @@ export function getRewritePanels({ common, input, output, options }) {
     t,
     settings,
     isProcessing,
-    processingModeRef,
+    processingMode,
     handleRunAction,
     lastRunModel,
     outputMeta,
@@ -257,7 +257,7 @@ export function getRewritePanels({ common, input, output, options }) {
       >
         {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
         {isProcessing
-          ? `${t("Stop")} ${processingModeRef?.current === "rewrite" ? t("Rewrite") : t("Translate")}`
+          ? `${t("Stop")} ${processingMode === "rewrite" ? t("Rewrite") : t("Translate")}`
           : t("Rewrite")}
         {!isProcessing && (
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>

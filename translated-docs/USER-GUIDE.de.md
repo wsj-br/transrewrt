@@ -49,19 +49,20 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Symbolleiste](#toolbar)
   - [Eingabe- und Ausgabefelder](#input-and-output-panels)
 - [Übersetzen](#translate)
-  - [Text übersetzen](#translate-text)
+  - [Übersetzen Sie den Text](#translate-text)
   - [Sprachauswahl](#language-selection)
-  - [Nützliche Übersetzungseinstellungen](#helpful-translation-settings)
+  - [Hilfreiche Übersetzungseinstellungen](#helpful-translation-settings)
+  - [Verfeinern Sie Ihre Übersetzung](#refining-translation)
 - [Umschreiben](#rewrite)
-- [Umwandeln](#transform)
+- [Transformieren](#transform)
   - [Einen vorhandenen Prompt ausführen](#run-an-existing-prompt)
-  - [Wenn noch keine Prompts vorhanden sind](#if-you-have-no-prompts-yet)
-  - [Schnell einen Prompt erstellen](#create-a-prompt-quickly)
+  - [Wenn Sie noch keine Prompts haben](#if-you-have-no-prompts-yet)
+  - [Einen Prompt schnell erstellen](#create-a-prompt-quickly)
   - [Einen Prompt bearbeiten](#edit-a-prompt)
-  - [Einen Prompt vor der Nutzung testen](#test-a-prompt-before-using-it)
-- [Übersicht](#dashboard)
+  - [Einen Prompt vor der Verwendung testen](#test-a-prompt-before-using-it)
+- [Dashboard](#dashboard)
   - [Daten filtern](#filter-the-data)
-  - [Registerkarten der Übersicht](#dashboard-tabs)
+  - [Dashboard-Tabs](#dashboard-tabs)
   - [Daten exportieren](#export-data)
   - [Gespeicherte Datensätze für ein Modell löschen](#delete-stored-records-for-a-model)
 - [Verlauf](#history)
@@ -72,25 +73,25 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Umwandeln (Einstellungen-Registerkarte)](#transform-settings-tab)
+  - [Transformieren (Einstellungs-Tab)](#transform-settings-tab)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
 - [Häufige Probleme](#common-issues)
-  - [Die App übersetzt, umschreibt oder wandelt Text nicht um](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Die App kann keinen Text übersetzen, umschreiben oder transformieren](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Die Modellliste ist leer](#the-model-list-is-empty)
   - [Das Ergebnis ist zu langsam oder zu teuer](#the-result-is-too-slow-or-too-expensive)
-  - [Die Oberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
-  - [Der Text ist zu klein oder schwer lesbar](#the-text-is-too-small-or-hard-to-read)
-  - [Die Übersichts-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
-  - [Kosten zeigen „nicht verfügbar“ oder scheinen falsch](#cost-shows-not-available-or-seems-wrong)
-  - [Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
-  - [Die Verlauf-Seite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
-  - [Web-App: Unerwartete Weiterleitung zur Anmeldeseite](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Die Benutzeroberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
+  - [Der Text ist zu klein oder schwer zu lesen](#the-text-is-too-small-or-hard-to-read)
+  - [Dashboard-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
+  - [Kosten zeigen "nicht verfügbar" oder scheinen falsch zu sein](#cost-shows-not-available-or-seems-wrong)
+  - [Die Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
+  - [Die Verlaufsseite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-App: unerwartet zur Anmeldeseite umgeleitet](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web-Administrator: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
-  - [Übersicht zeigt keine Daten für andere Benutzer an (Web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ich habe einen Prompt geändert und die Bearbeitungen sind verloren](#i-changed-a-prompt-and-lost-the-edits)
-- [Schnelltipps](#quick-tips)
+  - [Dashboard zeigt keine Daten für andere Benutzer (Web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Ich habe einen Prompt geändert und die Änderungen verloren](#i-changed-a-prompt-and-lost-the-edits)
+- [Schnelle Tipps](#quick-tips)
 - [Haftungsausschluss](#disclaimer)
 - [Lizenz](#license)
 
@@ -284,6 +285,17 @@ Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) kön
 - **Verhalten für ENTER** wählt, ob `Enter` die Aufgabe ausführt oder eine neue Zeile einfügt:
   - **Enter** führt Übersetzen oder Umschreiben aus (Standard).
   - **Shift + Enter** führt Übersetzen oder Umschreiben aus; einfaches **Enter** fügt eine neue Zeile ein.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Verfeinern Sie Ihre Übersetzung
+
+Nach einer erfolgreichen Übersetzung können Sie das Ergebnis im Ausgabebereich verfeinern:
+
+1. **Umformulieren…** — Wenn in der Ausgabe kein Text ausgewählt ist, wird eine vollständige Übersetzung derselben Eingabe mit abweichender Formulierung erstellt. Sie können bis zu **fünf** Versionen speichern und zwischen ihnen im Dropdown-Menü für Versionen wechseln. Ist Text ausgewählt, öffnet **Umformulieren…** Wortalternativen in der Nähe der Auswahl (entspricht einem Rechtsklick). Ohne Textauswahl ist **Umformulieren…** deaktiviert, sobald fünf Versionen erreicht sind; bei einer Auswahl funktioniert die Funktion weiterhin auch bei fünf Versionen (nur Wortalternativen, wobei Version 5 aktualisiert wird).
+2. **Wortalternativen** — Wählen Sie ein oder mehrere Wörter in der Ausgabe aus (falls nur ein Teil eines Wortes markiert ist, erweitert die App die Auswahl automatisch auf das vollständige Wort), und klicken Sie mit der rechten Maustaste oder auf **Umformulieren…**. In der Nähe der Auswahl erscheint eine kurze Liste mit Alternativen; klicken Sie auf eine Option, um sie zu ersetzen. Sind weniger als fünf Versionen vorhanden, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird ausschließlich **Version 5** aktualisiert. Ein Rechtsklick ohne Textauswahl hat keine Wirkung. Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um den Vorgang ohne Änderung der Ausgabe abzubrechen.
+3. **Kosten** — Jede vollständige **Umformulieren…**-Anfrage (ohne Auswahl) und jede Anfrage nach Wortalternativen nutzt das Modell erneut und kann die Nutzungskosten erhöhen (entspricht einem normalen Übersetzungsvorgang).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

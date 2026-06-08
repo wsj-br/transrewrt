@@ -32,10 +32,11 @@ export function getTranslatePanels({ common, input, output, options }) {
     t,
     settings,
     isProcessing,
-    processingModeRef,
+    processingMode,
     handleRunAction,
-    handleAlternative,
+    handleRephraseClick,
     handleTranslateVersionChange,
+    outputHasSelection,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
@@ -126,7 +127,8 @@ export function getTranslatePanels({ common, input, output, options }) {
           translateOutputIsModelResult={!!translateOutputIsModelResult}
           translateVersions={translateVersions}
           selectedTranslateVersion={selectedTranslateVersion}
-          onRephrase={handleAlternative}
+          outputHasSelection={!!outputHasSelection}
+          onRephrase={handleRephraseClick}
           onVersionChange={handleTranslateVersionChange}
         />
         {outputMeta ? (
@@ -142,6 +144,8 @@ export function getTranslatePanels({ common, input, output, options }) {
           onTextChange={output.setText}
           placeholder={t("Output will appear here...")}
           readOnly={true}
+          onContextMenu={output.onContextMenu}
+          textareaRefCallback={output.textareaRefCallback}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           outputTint={true}
@@ -207,7 +211,7 @@ export function getTranslatePanels({ common, input, output, options }) {
       >
         {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
         {isProcessing
-          ? `${t("Stop")} ${processingModeRef?.current === "translate" ? t("Translate") : t("Rewrite")}`
+          ? `${t("Stop")} ${processingMode === "translate" || processingMode === "translate_alternative" ? t("Translate") : t("Rewrite")}`
           : t("Translate")}
         {!isProcessing && (
           <span className="text-xs font-normal opacity-80">{shortcutLabel}</span>

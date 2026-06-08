@@ -49,49 +49,50 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
   - [Alatna traka](#toolbar)
   - [Ulazni i izlazni paneli](#input-and-output-panels)
 - [Prijevod](#translate)
-  - [Prijevod teksta](#translate-text)
+  - [Prevedi tekst](#translate-text)
   - [Odabir jezika](#language-selection)
-  - [Korisne postavke prijevoda](#helpful-translation-settings)
-- [Prepisi](#rewrite)
-- [Transformiraj](#transform)
+  - [Pomoćne postavke prevođenja](#helpful-translation-settings)
+  - [Usavršavanje vašeg prijevoda](#refining-translation)
+- [Prepisivanje](#rewrite)
+- [Transformacija](#transform)
   - [Pokreni postojeći upit](#run-an-existing-prompt)
-  - [Ako još nemate upita](#if-you-have-no-prompts-yet)
-  - [Brzo kreiraj upit](#create-a-prompt-quickly)
+  - [Ako još nemate upite](#if-you-have-no-prompts-yet)
+  - [Brzo stvori upit](#create-a-prompt-quickly)
   - [Uredi upit](#edit-a-prompt)
   - [Testiraj upit prije korištenja](#test-a-prompt-before-using-it)
 - [Nadzorna ploča](#dashboard)
-  - [Filtriraj podatke](#filter-the-data)
+  - [Filtar podataka](#filter-the-data)
   - [Kartice nadzorne ploče](#dashboard-tabs)
-  - [Izvoz podataka](#export-data)
+  - [Izvezi podatke](#export-data)
   - [Izbriši pohranjene zapise za model](#delete-stored-records-for-a-model)
 - [Povijest](#history)
-  - [Filtriraj povijest](#filter-the-history)
+  - [Filtar povijesti](#filter-the-history)
   - [Izvezi podatke povijesti](#export-history-data)
 - [Postavke](#settings)
   - [Opće postavke](#general-settings)
   - [Modeli](#models)
   - [Jezici](#languages)
   - [Praćenje troškova](#cost-tracking)
-  - [Transformiraj (kartica postavke)](#transform-settings-tab)
+  - [Transformacija (kartica postavki)](#transform-settings-tab)
   - [Korisnici](#users)
   - [API konfiguracija](#api-config)
   - [O programu](#about)
 - [Uobičajeni problemi](#common-issues)
-  - [Aplikacija ne prevodi, prepisuje ili transformira tekst](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikacija ne prevodi, ne prepisuje ili ne transformira tekst](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Popis modela je prazan](#the-model-list-is-empty)
-  - [Rezultat je pre spor ili pre skup](#the-result-is-too-slow-or-too-expensive)
+  - [Rezultat je prespor ili preskup](#the-result-is-too-slow-or-too-expensive)
   - [Sučelje je na pogrešnom jeziku](#the-interface-is-in-the-wrong-language)
   - [Tekst je premalen ili teško čitljiv](#the-text-is-too-small-or-hard-to-read)
-  - [Sažetak nadzorne ploče izgleda prazno](#dashboard-summary-looks-empty)
-  - [Trošak prikazuje "nije dostupno" ili izgleda netočno](#cost-shows-not-available-or-seems-wrong)
-  - [Ukupni trošak se ne podudara s računom davatelja usluga](#total-cost-does-not-match-my-provider-bill)
-  - [Stranica Povijest nedostaje u bočnoj traci](#the-history-page-is-missing-from-the-sidebar)
-  - [Web aplikacija: neočekivano preusmjeravanje na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Sažetak nadzorne ploče izgleda prazan](#dashboard-summary-looks-empty)
+  - [Trošak prikazuje "nije dostupno" ili se čini pogrešnim](#cost-shows-not-available-or-seems-wrong)
+  - [Ukupni trošak se ne podudara s računom mog davatelja](#total-cost-does-not-match-my-provider-bill)
+  - [Stranica Povijest nedostaje iz bočne trake](#the-history-page-is-missing-from-the-sidebar)
+  - [Web aplikacija: neočekivano preusmjerena na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web administrator: zaboravljena ili izgubljena lozinka](#web-admin-forgot-or-lost-a-password)
   - [Nadzorna ploča ne prikazuje podatke za druge korisnike (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Promijenio sam upit i izgubio izmjene](#i-changed-a-prompt-and-lost-the-edits)
 - [Brzi savjeti](#quick-tips)
-- [Ograničenje odgovornosti](#disclaimer)
+- [Odricanje od odgovornosti](#disclaimer)
 - [Licenca](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ U [**Postavke** > **Opće postavke**](#general-settings) možete promijeniti kak
 - **Ponašanje za ENTER** bira hoće li `Enter` pokrenuti zadatak ili umetnuti novi redak:
   - **Enter** pokreće prijevod ili prepisivanje (zadano).
   - **Shift + Enter** pokreće prijevod ili prepisivanje; običan **Enter** umeće novi redak.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Usavršavanje vašeg prijevoda
+
+Nakon uspješnog prevođenja, možete usavršiti rezultat u panelu izlaza:
+
+1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijte još jedan puni prijevod istog unosa s drugačijim riječima. Možete pohraniti do **pet** verzija i prebacivati se između njih u padajućem izborniku verzija. Kada je tekst odabran, **Preformuliraj…** otvara alternativne riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dođete do pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažuriranje verzije 5).
+2. **Alternativne riječi** — odaberite jednu ili više riječi u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desni klik ili kliknite **Preformuliraj…**. Kratki popis alternativa pojavljuje se blizu odabira; kliknite jednu da je zamijenite. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; kod pet verzija, samo se **verzija 5** ažurira. Desni klik bez odabira ne radi ništa. Pritisnite **Esc** ili kliknite izvan popisa da biste otkazali bez promjene izlaza.
+3. **Troškovi** — svaki puni **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativnom riječi ponovo koristi model i može povećati trošak korištenja (isto kao normalno prevođenje).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

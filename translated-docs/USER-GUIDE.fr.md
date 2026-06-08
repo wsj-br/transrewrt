@@ -49,14 +49,15 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Barre d'outils](#toolbar)
   - [Panneaux d'entrée et de sortie](#input-and-output-panels)
 - [Traduire](#translate)
-  - [Traduire un texte](#translate-text)
+  - [Traduire le texte](#translate-text)
   - [Sélection de la langue](#language-selection)
-  - [Paramètres utiles pour la traduction](#helpful-translation-settings)
-- [Réécrire](#rewrite)
-- [Transformer](#transform)
+  - [Paramètres de traduction utiles](#helpful-translation-settings)
+  - [Affiner votre traduction](#refining-translation)
+- [Réécriture](#rewrite)
+- [Transformation](#transform)
   - [Exécuter une invite existante](#run-an-existing-prompt)
   - [Si vous n'avez pas encore d'invites](#if-you-have-no-prompts-yet)
-  - [Créer rapidement une invite](#create-a-prompt-quickly)
+  - [Créer une invite rapidement](#create-a-prompt-quickly)
   - [Modifier une invite](#edit-a-prompt)
   - [Tester une invite avant de l'utiliser](#test-a-prompt-before-using-it)
 - [Tableau de bord](#dashboard)
@@ -66,30 +67,30 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Supprimer les enregistrements stockés pour un modèle](#delete-stored-records-for-a-model)
 - [Historique](#history)
   - [Filtrer l'historique](#filter-the-history)
-  - [Exporter les données de l'historique](#export-history-data)
+  - [Exporter les données d'historique](#export-history-data)
 - [Paramètres](#settings)
   - [Paramètres généraux](#general-settings)
   - [Modèles](#models)
   - [Langues](#languages)
   - [Suivi des coûts](#cost-tracking)
-  - [Transformer (onglet Paramètres)](#transform-settings-tab)
+  - [Transformation (onglet des paramètres)](#transform-settings-tab)
   - [Utilisateurs](#users)
-  - [Configuration API](#api-config)
+  - [Config. API](#api-config)
   - [À propos](#about)
 - [Problèmes courants](#common-issues)
-  - [L'application ne traduit, ne réécrit ni ne transforme pas le texte](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'application ne traduira, ne réécrira ou ne transformera pas le texte](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La liste des modèles est vide](#the-model-list-is-empty)
   - [Le résultat est trop lent ou trop coûteux](#the-result-is-too-slow-or-too-expensive)
   - [L'interface est dans la mauvaise langue](#the-interface-is-in-the-wrong-language)
   - [Le texte est trop petit ou difficile à lire](#the-text-is-too-small-or-hard-to-read)
   - [Le résumé du tableau de bord semble vide](#dashboard-summary-looks-empty)
-  - [Le coût affiche « non disponible » ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
-  - [Le coût total ne correspond pas à ma facture fournisseur](#total-cost-does-not-match-my-provider-bill)
+  - [Le coût indique "non disponible" ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
+  - [Le coût total ne correspond pas à ma facture de fournisseur](#total-cost-does-not-match-my-provider-bill)
   - [La page Historique est manquante dans la barre latérale](#the-history-page-is-missing-from-the-sidebar)
-  - [Application web : redirection inattendue vers la page de connexion](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Application web : redirigé vers la page de connexion de manière inattendue](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Administrateur web : mot de passe oublié ou perdu](#web-admin-forgot-or-lost-a-password)
-  - [Le tableau de bord n'affiche aucune donnée pour les autres utilisateurs (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [J'ai modifié une invite et perdu mes modifications](#i-changed-a-prompt-and-lost-the-edits)
+  - [Le tableau de bord ne montre aucune donnée pour d'autres utilisateurs (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [J'ai changé une invite et perdu les modifications](#i-changed-a-prompt-and-lost-the-edits)
 - [Conseils rapides](#quick-tips)
 - [Avertissement](#disclaimer)
 - [Licence](#license)
@@ -284,6 +285,17 @@ Dans [**Paramètres** > **Paramètres généraux**](#general-settings), vous pou
 - **Comportement pour ENTER** choisit si `Enter` exécute la tâche ou insère une nouvelle ligne :
   - **Entrée** exécute traduire ou réécrire (par défaut).
   - **Maj + Entrée** exécute traduire ou réécrire ; **Entrée** simple insère une nouvelle ligne.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Affiner votre traduction
+
+Après une traduction réussie, vous pouvez affiner le résultat dans le panneau de sortie :
+
+1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre traduction complète de la même entrée avec une formulation différente. Vous pouvez conserver jusqu'à **cinq** versions et basculer entre elles à l'aide du menu déroulant des versions. Avec du texte sélectionné, **Reformuler…** affiche des alternatives de mots à proximité de la sélection (identique à un clic droit). Sans sélection, **Reformuler…** est désactivé une fois les cinq versions atteintes ; avec une sélection, il reste fonctionnel à cinq versions (uniquement des alternatives de mots, en mettant à jour la version 5).
+2. **Alternatives de mots** — sélectionnez un ou plusieurs mots dans la sortie (si vous ne sélectionnez qu'une partie d'un mot, l'application étend la sélection aux mots complets), puis faites un clic droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît à proximité de la sélection ; cliquez sur l'une d'elles pour la remplacer. Si vous disposez de moins de cinq versions, la sortie modifiée est enregistrée en tant que nouvelle version ; à cinq versions, seule la **version 5** est mise à jour. Un clic droit sans sélection ne produit aucun effet. Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans modifier la sortie.
+3. **Coûts** — chaque demande de **Reformuler…** complète (sans sélection) et chaque demande d'alternative de mot réutilise le modèle et peut augmenter le coût d'utilisation (identique à une exécution de traduction classique).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

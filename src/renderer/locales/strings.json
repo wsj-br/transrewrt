@@ -1618,7 +1618,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 396
+        "line": 437
       }
     ]
   },
@@ -1703,15 +1703,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 403
+        "line": 444
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 457
+        "line": 498
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 463
+        "line": 504
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -1820,7 +1820,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 411
+        "line": 452
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -1921,11 +1921,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 415
+        "line": 456
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 463
+        "line": 504
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2014,7 +2014,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 423
+        "line": 464
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2111,7 +2111,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 465
+        "line": 506
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -2204,7 +2204,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 626
+        "line": 670
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2341,7 +2341,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 646
+        "line": 690
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2438,7 +2438,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 647
+        "line": 691
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2527,7 +2527,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 648
+        "line": 692
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2616,7 +2616,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 650
+        "line": 694
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -2709,15 +2709,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 651
+        "line": 695
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 745
+        "line": 789
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 813
+        "line": 858
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2862,11 +2862,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 742
+        "line": 786
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 810
+        "line": 855
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2955,11 +2955,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 743
+        "line": 787
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 811
+        "line": 856
       }
     ]
   },
@@ -3044,11 +3044,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 743
+        "line": 787
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 811
+        "line": 856
       }
     ]
   },
@@ -3133,11 +3133,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 744
+        "line": 788
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 812
+        "line": 857
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -10464,11 +10464,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 285
+        "line": 292
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 210
+        "line": 214
       }
     ]
   },
@@ -10763,11 +10763,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 144
+        "line": 148
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 74
+        "line": 75
       }
     ]
   },
@@ -10872,11 +10872,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 213
+        "line": 218
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 140
+        "line": 142
       }
     ]
   },
@@ -12680,19 +12680,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 285
+        "line": 292
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 286
+        "line": 293
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 210
+        "line": 214
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 211
+        "line": 215
       }
     ]
   },
@@ -23703,19 +23703,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 110
+        "line": 114
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 111
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 54
+        "line": 115
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 55
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 56
       }
     ]
   },
@@ -23901,11 +23901,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 110
+        "line": 114
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 54
+        "line": 55
       }
     ]
   },
@@ -24002,11 +24002,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 165
+        "line": 169
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 94
+        "line": 95
       }
     ]
   },
@@ -24103,11 +24103,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 244
+        "line": 251
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 170
+        "line": 174
       }
     ]
   },
@@ -37636,11 +37636,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 129
+        "line": 133
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 160
+        "line": 166
       }
     ]
   },
@@ -37725,15 +37725,15 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 179
+        "line": 185
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 217
+        "line": 223
       },
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 249
+        "line": 255
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -37757,19 +37757,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 256
+        "line": 263
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 257
+        "line": 264
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 181
+        "line": 185
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 182
+        "line": 186
       }
     ]
   },
@@ -37854,7 +37854,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 206
+        "line": 212
       }
     ]
   },
@@ -37939,7 +37939,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 206
+        "line": 212
       }
     ]
   },
@@ -38024,7 +38024,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 212
+        "line": 218
       }
     ]
   },
@@ -38109,7 +38109,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 227
+        "line": 233
       }
     ]
   },
@@ -38194,7 +38194,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TextPanel.tsx",
-        "line": 232
+        "line": 238
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -38214,19 +38214,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 173
+        "line": 177
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 174
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 101
+        "line": 178
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 102
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 103
       }
     ]
   },
@@ -42690,6 +42690,176 @@
       }
     ]
   },
+  "308aa69b": {
+    "source": "Translation word alternatives",
+    "translated": {
+      "bn": "অনুবাদ শব্দের বিকল্প",
+      "zh-CN": "翻译备选词",
+      "hr": "Alternativni prijevodi riječi",
+      "zh-TW": "翻譯詞彙替代方案",
+      "ar": "بدائل ترجمة الكلمات",
+      "cs": "Alternativy překladu slova",
+      "ca": "Alternatives de paraules",
+      "pt-BR": "Alternativas de tradução",
+      "fr": "Alternatives de traduction",
+      "en-US": "Translation word alternatives",
+      "de": "Übersetzungsalternativen",
+      "el": "Εναλλακτικές λέξεις μετάφρασης",
+      "hi": "अनुवाद शब्द विकल्प",
+      "tl": "Mga alternatibong salita sa pagsasalin",
+      "nl": "Vertaalalternatieven",
+      "hu": "Szóalternatívák",
+      "it": "Alternative di traduzione",
+      "ms": "Alternatif kata terjemahan",
+      "ko": "번역어 대안",
+      "pt": "Alternativas de Tradução",
+      "ja": "翻訳語の候補",
+      "pl": "Warianty tłumaczeń",
+      "jv": "Alternatif tembung terjemahan",
+      "fa": "جایگزین‌های واژه ترجمه",
+      "es": "Alternativas de traducción de palabras",
+      "ru": "Варианты перевода слова",
+      "sv": "Ordalternativ för översättning",
+      "te": "అనువాద పద ప్రత్యామ్నాయాలు",
+      "ro": "Alternative de traducere a cuvântului",
+      "sw": "Chaguo Nyingine Za Tafsiri Ya Neno",
+      "sk": "Alternatívy prekladu",
+      "pa": "ਅਨੁਵਾਦ ਸ਼ਬਦ ਵਿਕਲਪ",
+      "th": "คำแปลทางเลือก",
+      "tr": "Çeviri kelime alternatifleri",
+      "vi": "Lựa chọn từ thay thế",
+      "uk": "Варіанти перекладу слова"
+    },
+    "models": {
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TranslateWordAlternativesPopover.tsx",
+        "line": 80
+      }
+    ]
+  },
+  "e3526864": {
+    "source": "Loading alternatives…",
+    "translated": {
+      "bn": "বিকল্প লোড হচ্ছে…",
+      "zh-CN": "正在加载备选词…",
+      "hr": "Učitavanje alternativa…",
+      "zh-TW": "正在載入替代方案…",
+      "ar": "جارٍ تحميل البدائل…",
+      "cs": "Načítání alternativ…",
+      "ca": "Carregant alternatives…",
+      "pt-BR": "Carregando alternativas…",
+      "fr": "Chargement des alternatives…",
+      "en-US": "Loading alternatives…",
+      "de": "Alternativen werden geladen…",
+      "el": "Φόρτωση εναλλακτικών…",
+      "hi": "विकल्प लोड हो रहे हैं…",
+      "tl": "Naglo-load ng mga alternatibo…",
+      "nl": "Alternatieven laden…",
+      "hu": "Alternatívák betöltése…",
+      "it": "Caricamento alternative…",
+      "ms": "Memuatkan alternatif…",
+      "ko": "대안 로딩 중…",
+      "pt": "A carregar alternativas…",
+      "ja": "候補を読み込み中…",
+      "pl": "Ładowanie wariantów…",
+      "jv": "Ngemu alternatif…",
+      "fa": "در حال بارگذاری جایگزین‌ها…",
+      "es": "Cargando alternativas…",
+      "ru": "Загрузка вариантов…",
+      "sv": "Laddar alternativ…",
+      "te": "ప్రత్యామ్నాయాలు లోడ్ అవుతోంది…",
+      "ro": "Se încarcă alternativele…",
+      "sw": "Inapakia chaguo nyingine…",
+      "sk": "Načítavajú sa alternatívy…",
+      "pa": "ਵਿਕਲਪ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…",
+      "th": "กำลังโหลดทางเลือก…",
+      "tr": "Alternatifler yükleniyor…",
+      "vi": "Đang tải phương án thay thế…",
+      "uk": "Завантаження варіантів…"
+    },
+    "models": {
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/TranslateWordAlternativesPopover.tsx",
+        "line": 88
+      }
+    ]
+  },
   "0ecd11c1": {
     "source": "JSON",
     "translated": {
@@ -43386,11 +43556,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 120
+        "line": 124
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 63
+        "line": 64
       }
     ]
   },
@@ -43479,11 +43649,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 147
+        "line": 151
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 77
+        "line": 78
       }
     ]
   },
@@ -43576,11 +43746,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 162
+        "line": 166
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 91
+        "line": 92
       }
     ]
   },
@@ -43673,11 +43843,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 216
+        "line": 221
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 143
+        "line": 145
       }
     ]
   },
@@ -43770,11 +43940,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 241
+        "line": 248
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 167
+        "line": 171
       }
     ]
   },
@@ -43952,11 +44122,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 276
+        "line": 283
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 201
+        "line": 205
       }
     ]
   },
@@ -44045,11 +44215,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 285
+        "line": 292
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 210
+        "line": 214
       }
     ]
   },
@@ -44304,92 +44474,92 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 18
+        "line": 19
       }
     ]
   },
-  "cc89bf7a": {
-    "source": "Maximum of 3 translation versions reached",
+  "4c5614e6": {
+    "source": "Maximum of 5 translation versions reached",
     "translated": {
-      "cs": "Maximální počet 3 verzí překladu byl dosažen",
-      "pt-BR": "Número máximo de 3 versões de tradução atingido",
-      "zh-TW": "已達翻譯版本上限 3 個",
-      "zh-CN": "翻译版本数已达上限（3 个）",
-      "hr": "Dosegnut je maksimalan broj od 3 verzije prijevoda",
-      "ar": "تم الوصول إلى الحد الأقصى البالغ 3 نسخ ترجمة",
-      "bn": "অনুবাদ সংস্করণের সর্বোচ্চ ৩টি সীমা অতিক্রম হয়েছে",
-      "ca": "S'ha arribat al màxim de 3 versions de traducció",
-      "en-US": "Maximum of 3 translation versions reached",
-      "fr": "Nombre maximum de 3 versions de traduction atteint",
-      "de": "Maximal 3 Übersetzungsversionen erreicht",
-      "nl": "Maximaal 3 vertaalversies bereikt",
-      "hu": "Maximum 3 fordítási verzió érhető el",
-      "el": "Έχει φτάσει το όριο των 3 εκδόσεων μετάφρασης",
-      "hi": "अधिकतम 3 अनुवाद संस्करण प्राप्त हो चुके हैं",
-      "tl": "Naabot na ang maximum na 3 bersyon ng pagsasalin",
-      "pt": "Número máximo de 3 versões de tradução atingido",
-      "ko": "번역 버전은 최대 3개까지 생성할 수 있습니다",
-      "pl": "Osiągnięto maksymalną liczbę 3 wersji tłumaczenia",
-      "fa": "حداکثر ۳ نسخه ترجمه انتخاب شده است",
-      "ms": "Maksimum 3 versi terjemahan dicapai",
-      "jv": "Maksimum 3 versi terjemahan wis tercapai",
-      "it": "Limite di 3 versioni di traduzione raggiunto",
-      "ja": "翻訳バージョンの最大数（3）に達しました",
-      "sv": "Maximalt 3 översättningsversioner nådda",
-      "sk": "Maximálny počet 3 verzií prekladu bol dosiahnutý",
-      "es": "Se ha alcanzado el máximo de 3 versiones de traducción",
-      "ru": "Достигнут лимит в 3 версии перевода",
-      "ro": "S-a atins numărul maxim de 3 versiuni de traducere",
-      "pa": "ਅਨੁਵਾਦ ਦੇ ਵੱਧ ਤੋਂ ਵੱਧ 3 ਸੰਸਕਰਨ ਪ੍ਰਾਪਤ ਹੋ ਚੁੱਕੇ ਹਨ",
-      "te": "అనువాద సంస్కరణల గరిష్ట పరిమితి 3 చేరుకుంది",
-      "sw": "Upeo wa toleo 3 za tafsiri umefikiwa",
-      "vi": "Đã đạt tối đa 3 phiên bản dịch",
-      "tr": "3 çeviri sürümü sınırına ulaşıldı",
-      "uk": "Досягнуто максимальної кількості версій перекладу (3)",
-      "th": "จำกัดเวอร์ชันการแปลสูงสุด 3 เวอร์ชันแล้ว"
+      "bn": "অনুবাদের সর্বোচ্চ ৫টি সংস্করণে পৌঁছেছে",
+      "zh-CN": "翻译版本已达上限（5个）",
+      "hr": "Dosegnut je maksimalan broj od 5 verzija prijevoda",
+      "zh-TW": "已達翻譯版本上限（5 個）",
+      "ar": "تم الوصول إلى الحد الأقصى البالغ 5 نسخ ترجمة",
+      "cs": "Dosažen maximální počet 5 překladových variant",
+      "ca": "S'ha arribat al màxim de 5 versions de traducció",
+      "pt-BR": "Limite de 5 versões de tradução atingido",
+      "fr": "Limite de 5 versions de traduction atteinte",
+      "en-US": "Maximum of 5 translation versions reached",
+      "de": "Maximal 5 Übersetzungsversionen erreicht",
+      "el": "Έχει φτάσει το μέγιστο όριο 5 εκδόσεων μετάφρασης",
+      "hi": "अधिकतम 5 अनुवाद संस्करण प्राप्त हो चुके हैं",
+      "tl": "Naabot na ang maximum na 5 bersyon ng pagsasalin",
+      "nl": "Maximaal 5 vertaalversies bereikt",
+      "hu": "Maximum 5 fordítási verzió érhető el",
+      "it": "Limite massimo di 5 versioni di traduzione raggiunto",
+      "ms": "Had maksimum 5 versi terjemahan dicapai",
+      "ko": "번역 버전 최대 5개에 도달했습니다",
+      "pt": "Limite de 5 Versões de Tradução Atingido",
+      "ja": "翻訳候補は最大5つまでです",
+      "pl": "Osiągnięto limit 5 wersji tłumaczenia",
+      "jv": "Maksimal 5 versi terjemahan wis tercapai",
+      "fa": "حداکثر ۵ نسخه ترجمه مجاز است",
+      "es": "Se ha alcanzado el máximo de 5 versiones de traducción",
+      "ru": "Достигнут лимит в 5 вариантов перевода",
+      "sv": "Maximalt 5 översättningsversioner har nåtts",
+      "te": "గరిష్ఠంగా 5 అనువాద రూపాలు సాధించబడింది",
+      "ro": "S-a atins limita maximă de 5 versiuni de traducere",
+      "sw": "Imefikiwa kiwango cha juu cha toleo 5 la tafsiri",
+      "sk": "Bol dosiahnutý maximálny počet 5 verzií prekladu",
+      "pa": "ਅਨੁਵਾਦ ਰੂਪਾਂ ਦੀ ਅਧਿਕਤਮ ਸੀਮਾ 5 ਪਹੁੰਚ ਗਈ ਹੈ",
+      "th": "ถึงจำนวนคำแปลสูงสุด 5 เวอร์ชันแล้ว",
+      "tr": "5 çeviri versiyonu sınırına ulaşıldı",
+      "vi": "Đã đạt giới hạn tối đa 5 phương án dịch",
+      "uk": "Досягнуто максимальну кількість варіантів перекладу (5)"
     },
     "models": {
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
       "zh-CN": "qwen/qwen3.6-35b-a3b",
       "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
       "ar": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
       "ca": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
       "fr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
       "de": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
       "el": "qwen/qwen3.6-35b-a3b",
       "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "openai/gpt-4o-mini",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
       "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
       "ja": "qwen/qwen3.6-35b-a3b",
-      "sv": "openai/gpt-4o-mini",
-      "sk": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
       "es": "qwen/qwen3.6-35b-a3b",
       "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
       "te": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
       "sw": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
       "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b"
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
     },
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 44
+        "line": 55
       }
     ]
   },
@@ -44474,15 +44644,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 44
+        "line": 56
       },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 45
+        "line": 58
       },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 48
+        "line": 61
       }
     ]
   },
@@ -44567,7 +44737,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 59
+        "line": 72
       }
     ]
   },
@@ -44652,11 +44822,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 136
+        "line": 140
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 137
+        "line": 141
       }
     ]
   },
@@ -44741,11 +44911,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 187
+        "line": 191
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 115
+        "line": 116
       }
     ]
   },
@@ -45425,31 +45595,35 @@
     "locations": [
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 562
+        "line": 563
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 694
+        "line": 695
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 785
+        "line": 835
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 853
+        "line": 926
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 919
+        "line": 994
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1031
+        "line": 1060
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1149
+        "line": 1172
+      },
+      {
+        "file": "src/renderer/contexts/AppContext.tsx",
+        "line": 1290
       }
     ]
   },
@@ -45619,7 +45793,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 117
+        "line": 123
       }
     ]
   },
@@ -45704,7 +45878,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 177
+        "line": 183
       }
     ]
   },
@@ -45789,23 +45963,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 186
+        "line": 192
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 187
+        "line": 193
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 199
+        "line": 205
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 219
+        "line": 225
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 383
+        "line": 391
       }
     ]
   },
@@ -45890,11 +46064,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 186
+        "line": 192
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 502
+        "line": 510
       }
     ]
   },
@@ -45979,19 +46153,19 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 192
+        "line": 198
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 330
+        "line": 337
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 508
+        "line": 516
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 645
+        "line": 654
       }
     ]
   },
@@ -46076,19 +46250,19 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 193
+        "line": 199
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 331
+        "line": 338
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 509
+        "line": 517
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 646
+        "line": 655
       }
     ]
   },
@@ -46173,7 +46347,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 258
+        "line": 265
       }
     ]
   },
@@ -46258,7 +46432,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 320
+        "line": 327
       }
     ]
   },
@@ -46343,23 +46517,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 428
+        "line": 436
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 502
+        "line": 510
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 503
+        "line": 511
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 515
+        "line": 523
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 534
+        "line": 542
       }
     ]
   },
@@ -46444,7 +46618,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 439
+        "line": 447
       }
     ]
   },
@@ -46529,7 +46703,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 495
+        "line": 503
       }
     ]
   },
@@ -46614,7 +46788,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 588
+        "line": 597
       }
     ]
   },
@@ -46699,23 +46873,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 639
+        "line": 648
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 640
+        "line": 649
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 651
+        "line": 660
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 671
+        "line": 680
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 705
+        "line": 715
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -46808,7 +46982,92 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 639
+        "line": 648
+      }
+    ]
+  },
+  "ba4b2e57": {
+    "source": "No alternatives found",
+    "translated": {
+      "bn": "কোনো বিকল্প পাওয়া যায়নি",
+      "zh-CN": "未找到备选词",
+      "hr": "Nema pronađenih alternativa",
+      "zh-TW": "找不到替代方案",
+      "ar": "لم يتم العثور على بدائل",
+      "cs": "Nebyly nalezeny žádné alternativy",
+      "ca": "No s'han trobat alternatives",
+      "pt-BR": "Nenhuma alternativa encontrada",
+      "fr": "Aucune alternative trouvée",
+      "en-US": "No alternatives found",
+      "de": "Keine Alternativen gefunden",
+      "el": "Δεν βρέθηκαν εναλλακτικές",
+      "hi": "कोई विकल्प नहीं मिला",
+      "tl": "Walang nahanap na alternatibo",
+      "nl": "Geen alternatieven gevonden",
+      "hu": "Nem található alternatíva",
+      "it": "Nessuna alternativa trovata",
+      "ms": "Tiada alternatif ditemui",
+      "ko": "대안을 찾을 수 없습니다",
+      "pt": "Nenhuma Alternativa Encontrada",
+      "ja": "候補が見つかりません",
+      "pl": "Nie znaleziono wariantów",
+      "jv": "Ora ana alternatif sing ditemokake",
+      "fa": "جایگزینی یافت نشد",
+      "es": "No se han encontrado alternativas",
+      "ru": "Варианты не найдены",
+      "sv": "Inga alternativ hittades",
+      "te": "ప్రత్యామ్నాయాలు కనుగొనబడలేదు",
+      "ro": "Nu s-au găsit alternative",
+      "sw": "Hakuna chaguo nyingine zilizopatikana",
+      "sk": "Nenašli sa žiadne alternatívy",
+      "pa": "ਕੋਈ ਵਿਕਲਪ ਨਹੀਂ ਮਿਲੇ",
+      "th": "ไม่พบทางเลือก",
+      "tr": "Alternatif bulunamadı",
+      "vi": "Không tìm thấy phương án thay thế",
+      "uk": "Варіантів не знайдено"
+    },
+    "models": {
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/hooks/useTranslateWordAlternatives.ts",
+        "line": 176
       }
     ]
   },

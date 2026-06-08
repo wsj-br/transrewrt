@@ -48,16 +48,17 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
   - [툴바](#toolbar)
   - [입력 및 출력 패널](#input-and-output-panels)
 - [번역](#translate)
-  - [텍스트 번역](#translate-text)
+  - [번역 텍스트](#translate-text)
   - [언어 선택](#language-selection)
   - [유용한 번역 설정](#helpful-translation-settings)
-- [다시 작성](#rewrite)
+  - [번역 다듬기](#refining-translation)
+- [다시 쓰기](#rewrite)
 - [변환](#transform)
   - [기존 프롬프트 실행](#run-an-existing-prompt)
-  - [아직 프롬프트가 없는 경우](#if-you-have-no-prompts-yet)
-  - [빠르게 프롬프트 생성](#create-a-prompt-quickly)
+  - [프롬프트가 아직 없는 경우](#if-you-have-no-prompts-yet)
+  - [프롬프트를 빠르게 생성](#create-a-prompt-quickly)
   - [프롬프트 편집](#edit-a-prompt)
-  - [사용 전 프롬프트 테스트](#test-a-prompt-before-using-it)
+  - [사용하기 전에 프롬프트 테스트](#test-a-prompt-before-using-it)
 - [대시보드](#dashboard)
   - [데이터 필터링](#filter-the-data)
   - [대시보드 탭](#dashboard-tabs)
@@ -73,22 +74,22 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
   - [비용 추적](#cost-tracking)
   - [변환 (설정 탭)](#transform-settings-tab)
   - [사용자](#users)
-  - [API 설정](#api-config)
+  - [API 구성](#api-config)
   - [정보](#about)
 - [일반적인 문제](#common-issues)
-  - [앱이 텍스트를 번역, 다시 작성 또는 변환하지 못함](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [앱이 텍스트를 번역, 다시 쓰기 또는 변환하지 않음](#the-app-will-not-translate-rewrite-or-transform-text)
   - [모델 목록이 비어 있음](#the-model-list-is-empty)
-  - [결과가 너무 느리거나 비쌈](#the-result-is-too-slow-or-too-expensive)
-  - [인터페이스 언어가 잘못됨](#the-interface-is-in-the-wrong-language)
-  - [글자가 너무 작거나 읽기 어렵습니다](#the-text-is-too-small-or-hard-to-read)
-  - [대시보드 요약이 비어 보입니다](#dashboard-summary-looks-empty)
-  - [비용이 "사용 불가" 또는 잘못 표시됩니다](#cost-shows-not-available-or-seems-wrong)
-  - [총 비용이 제공업체 청구서와 일치하지 않습니다](#total-cost-does-not-match-my-provider-bill)
-  - [사이드바에 기록 페이지가 없음](#the-history-page-is-missing-from-the-sidebar)
+  - [결과가 너무 느리거나 비용이 너무 비쌈](#the-result-is-too-slow-or-too-expensive)
+  - [인터페이스가 잘못된 언어로 되어 있음](#the-interface-is-in-the-wrong-language)
+  - [텍스트가 너무 작거나 읽기 어려움](#the-text-is-too-small-or-hard-to-read)
+  - [대시보드 요약이 비어 있음](#dashboard-summary-looks-empty)
+  - [비용이 "사용 가능하지 않음" 또는 잘못된 것처럼 보임](#cost-shows-not-available-or-seems-wrong)
+  - [총 비용이 내 공급자 청구서와 일치하지 않음](#total-cost-does-not-match-my-provider-bill)
+  - [사이드바에서 기록 페이지가 없음](#the-history-page-is-missing-from-the-sidebar)
   - [웹 앱: 예기치 않게 로그인 페이지로 리디렉션됨](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [웹 관리자: 비밀번호를 잊었거나 분실함](#web-admin-forgot-or-lost-a-password)
-  - [대시보드에 다른 사용자의 데이터가 표시되지 않음 (웹)](#dashboard-shows-no-data-for-other-users-web)
-  - [프롬프트를 수정했지만 편집 내용이 사라짐](#i-changed-a-prompt-and-lost-the-edits)
+  - [웹 관리자: 비밀번호를 잊어버리거나 분실함](#web-admin-forgot-or-lost-a-password)
+  - [대시보드에 다른 사용자에 대한 데이터가 없음 (웹)](#dashboard-shows-no-data-for-other-users-web)
+  - [프롬프트를 변경하고 편집 내용을 잃어버림](#i-changed-a-prompt-and-lost-the-edits)
 - [빠른 팁](#quick-tips)
 - [면책 조항](#disclaimer)
 - [라이선스](#license)
@@ -283,6 +284,17 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 - **ENTER 동작 대상**는 `Enter`가 작업을 실행할지 또는 새 줄을 삽입할지를 선택합니다:
   - **Enter**는 번역 또는 다시 쓰기를 실행합니다(기본값).
   - **Shift + Enter**는 번역 또는 다시 쓰기를 실행하며, 일반 **Enter**는 새 줄을 삽입합니다.
+
+<br/>
+
+<a id="refining-translation"></a>
+### 번역 다듬기
+
+성공적인 번역 후, 출력 패널에서 결과를 다듬을 수 있습니다:
+
+1. **다시 표현하기…** — 출력에 선택된 텍스트가 없을 때, 동일한 입력의 다른 표현으로 전체 번역을 얻습니다. 최대 **다섯** 개의 버전을 저장하고 버전 드롭다운에서 전환할 수 있습니다. 텍스트가 선택된 경우, **다시 표현하기…** 는 선택 근처에 단어 대안을 엽니다 (우클릭과 동일). 선택이 없으면, **다시 표현하기…** 는 다섯 개의 버전에 도달하면 비활성화됩니다; 선택이 있는 경우, 여전히 다섯 개의 버전에서 작동합니다 (단어 대안만, 버전 5 업데이트).
+2. **단어 대안** — 출력에서 하나 이상의 단어를 선택합니다 (단어의 일부만 선택하면, 앱이 선택을 전체 단어로 확장합니다), 그런 다음 우클릭하거나 **다시 표현하기…** 를 클릭합니다. 선택 근처에 짧은 대안 목록이 나타납니다; 하나를 클릭하여 교체합니다. 다섯 개의 버전이 없는 경우, 편집된 출력은 새로운 버전으로 저장됩니다; 다섯 개의 버전에서, 오직 **버전 5**만 업데이트됩니다. 선택 없이 우클릭하면 아무 것도 하지 않습니다. **Esc**를 누르거나 목록 외부를 클릭하여 출력을 변경하지 않고 취소합니다.
+3. **비용** — 각 전체 **다시 표현하기…** (선택 없음) 및 각 단어 대안 요청은 모델을 다시 사용하며 사용 비용을 추가할 수 있습니다 (정상 번역 실행과 동일).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

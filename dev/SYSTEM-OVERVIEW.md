@@ -162,8 +162,8 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   ├── renderer/          # Shared React app
 │   │   ├── components/    # App, PresetSelector, HistoryPage, SettingsPanel, …
 │   │   ├── contexts/      # AppContext (mode, skills, easy provider)
-│   │   ├── hooks/         # useProcessing, useCostTracking, useDirection, …
-│   │   ├── services/      # apiService (translate / rewrite / transform / models)
+│   │   ├── hooks/         # useProcessing, useTranslateWordAlternatives, useCostTracking, …
+│   │   ├── services/      # apiService (translate / rephrase / word alternatives / rewrite / transform / models)
 │   │   ├── utils/         # configManager, webApiClient, skills/presetsManager, …
 │   │   ├── locales/       # i18n JSON (strings.json, per-locale bundles)
 │   │   ├── styles/        # main.css
@@ -201,6 +201,12 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 - **Authorization**: **Settings → Cost tracking** and **provider keys** in `/api/config` are **admin-only** on web. `GET /api/calls/*` applies **username** filters for non-admins server-side.
 - **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see USER-GUIDE. Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
 - **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404.
+
+### Translate workspace
+
+- **Version history**: up to **5** output variants (`MAX_TRANSLATE_VERSIONS` in [translateVersions.ts](../src/renderer/constants/translateVersions.ts)); state in [useProcessing.ts](../src/renderer/hooks/useProcessing.ts); **Rephrase…** and version selector in [TranslateRephraseControls.tsx](../src/renderer/components/workspace/TranslateRephraseControls.tsx).
+- **Rephrase**: [translateAlternative](../src/renderer/services/apiService.ts) / [AppContext](../src/renderer/contexts/AppContext.tsx); prompt `translate_alternative` in [prompts.json](../src/config-defaults/prompts.json); history type `translate_alternative`. Appends a new full translation until the version cap; disabled at cap.
+- **Word alternatives**: right-click on selected output text → [translateWordAlternatives](../src/renderer/services/apiService.ts) (prompt `translate_word_alternatives`); [useTranslateWordAlternatives.ts](../src/renderer/hooks/useTranslateWordAlternatives.ts) + [TranslateWordAlternativesPopover.tsx](../src/renderer/components/TranslateWordAlternativesPopover.tsx); selection expansion in [textSelectionUtils.ts](../src/renderer/utils/misc/textSelectionUtils.ts); history type `translate_word_alternatives`. At cap, overwrites version 5 only.
 
 ---
 

@@ -1,4 +1,4 @@
-import type { MutableRefObject, ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import LanguageSelector from "../LanguageSelector";
 import TextPanel from "../TextPanel";
 import {
@@ -40,10 +40,11 @@ export function getTranslateStackPanels({
     t: (key: string) => string;
     settings?: { enter_behavior?: string; font_family?: string; font_size?: number };
     isProcessing: boolean;
-    processingModeRef?: MutableRefObject<string | undefined>;
+    processingMode?: string | null;
     handleRunAction: () => void;
-    handleAlternative?: () => void;
+    handleRephraseClick?: () => void;
     handleTranslateVersionChange?: (version: string) => void;
+    outputHasSelection?: boolean;
     lastRunModel?: string | null;
     outputMeta?: ReactNode;
     outputMetaCostTooltip?: string | null;
@@ -68,6 +69,8 @@ export function getTranslateStackPanels({
     setText: (v: string) => void;
     getStats: () => string;
     copy: () => void;
+    onContextMenu?: (e: MouseEvent<HTMLTextAreaElement>) => void;
+    textareaRefCallback?: (node: HTMLTextAreaElement | null) => void;
   };
   options: {
     sourceLanguage: string;
@@ -81,10 +84,11 @@ export function getTranslateStackPanels({
     t,
     settings,
     isProcessing,
-    processingModeRef,
+    processingMode,
     handleRunAction,
-    handleAlternative,
+    handleRephraseClick,
     handleTranslateVersionChange,
+    outputHasSelection = false,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
@@ -199,7 +203,8 @@ export function getTranslateStackPanels({
           translateOutputIsModelResult={translateOutputIsModelResult}
           translateVersions={translateVersions}
           selectedTranslateVersion={selectedTranslateVersion}
-          onRephrase={() => handleAlternative?.()}
+          outputHasSelection={outputHasSelection}
+          onRephrase={() => handleRephraseClick?.()}
           onVersionChange={(version) => handleTranslateVersionChange?.(version)}
         />
         {outputMeta ? (
@@ -215,6 +220,8 @@ export function getTranslateStackPanels({
           onTextChange={output.setText}
           placeholder={t("Output will appear here...")}
           readOnly
+          onContextMenu={output.onContextMenu}
+          textareaRefCallback={output.textareaRefCallback}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           outputTint={true}
@@ -282,7 +289,7 @@ export function getTranslateStackPanels({
       >
         {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
         {isProcessing
-          ? `${t("Stop")} ${processingModeRef?.current === "translate" ? t("Translate") : t("Rewrite")}`
+          ? `${t("Stop")} ${processingMode === "translate" || processingMode === "translate_alternative" ? t("Translate") : t("Rewrite")}`
           : t("Translate")}
         {!isProcessing && (
           <span className="text-xs font-normal opacity-80">{shortcutLabel}</span>

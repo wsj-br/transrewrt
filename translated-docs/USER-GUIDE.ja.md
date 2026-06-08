@@ -48,48 +48,49 @@ Transrewrtは、テキストを以下の3つの方法で処理するのに役立
   - [ツールバー](#toolbar)
   - [入力および出力パネル](#input-and-output-panels)
 - [翻訳](#translate)
-  - [テキストを翻訳する](#translate-text)
-  - [言語の選択](#language-selection)
-  - [便利な翻訳設定](#helpful-translation-settings)
+  - [翻訳テキスト](#translate-text)
+  - [言語選択](#language-selection)
+  - [役立つ翻訳設定](#helpful-translation-settings)
+  - [翻訳の洗練](#refining-translation)
 - [書き換え](#rewrite)
 - [変換](#transform)
-  - [既存のプロンプトを実行する](#run-an-existing-prompt)
-  - [まだプロンプトがない場合](#if-you-have-no-prompts-yet)
-  - [素早くプロンプトを作成する](#create-a-prompt-quickly)
-  - [プロンプトを編集する](#edit-a-prompt)
-  - [使用前にプロンプトをテストする](#test-a-prompt-before-using-it)
+  - [既存のプロンプトを実行](#run-an-existing-prompt)
+  - [プロンプトがまだない場合](#if-you-have-no-prompts-yet)
+  - [プロンプトを迅速に作成](#create-a-prompt-quickly)
+  - [プロンプトを編集](#edit-a-prompt)
+  - [使用前にプロンプトをテスト](#test-a-prompt-before-using-it)
 - [ダッシュボード](#dashboard)
-  - [データをフィルターする](#filter-the-data)
-  - [ダッシュボードのタブ](#dashboard-tabs)
-  - [データをエクスポートする](#export-data)
-  - [モデルの保存された記録を削除する](#delete-stored-records-for-a-model)
+  - [データをフィルター](#filter-the-data)
+  - [ダッシュボードタブ](#dashboard-tabs)
+  - [データをエクスポート](#export-data)
+  - [モデルの保存されたレコードを削除](#delete-stored-records-for-a-model)
 - [履歴](#history)
-  - [履歴をフィルターする](#filter-the-history)
-  - [履歴データをエクスポートする](#export-history-data)
+  - [履歴をフィルター](#filter-the-history)
+  - [履歴データをエクスポート](#export-history-data)
 - [設定](#settings)
   - [一般設定](#general-settings)
   - [モデル](#models)
   - [言語](#languages)
   - [コスト追跡](#cost-tracking)
-  - [変換 (設定タブ)](#transform-settings-tab)
+  - [変換（設定タブ）](#transform-settings-tab)
   - [ユーザー](#users)
-  - [API設定](#api-config)
-  - [情報](#about)
-- [よくある問題](#common-issues)
-  - [アプリがテキストを翻訳、書き換え、変換しない](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [モデル一覧が空である](#the-model-list-is-empty)
-  - [結果が遅すぎる、または高コストである](#the-result-is-too-slow-or-too-expensive)
-  - [インターフェースの言語が間違っている](#the-interface-is-in-the-wrong-language)
-  - [テキストが小さくて読みづらい](#the-text-is-too-small-or-hard-to-read)
+  - [API 設定](#api-config)
+  - [について](#about)
+- [一般的な問題](#common-issues)
+  - [アプリがテキストを翻訳、書き換え、または変換しない](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [モデルリストが空](#the-model-list-is-empty)
+  - [結果が遅すぎるか高すぎる](#the-result-is-too-slow-or-too-expensive)
+  - [インターフェースが間違った言語になっている](#the-interface-is-in-the-wrong-language)
+  - [テキストが小さすぎるか読みづらい](#the-text-is-too-small-or-hard-to-read)
   - [ダッシュボードの概要が空に見える](#dashboard-summary-looks-empty)
-  - [コストが「利用可能ではありません」と表示される、または不正確に見える](#cost-shows-not-available-or-seems-wrong)
-  - [合計コストがプロバイダーの請求額と一致しない](#total-cost-does-not-match-my-provider-bill)
-  - [サイドバーに履歴ページが表示されない](#the-history-page-is-missing-from-the-sidebar)
-  - [Webアプリ：予期せずログインページにリダイレクトされる](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web管理者：パスワードを忘れた、または紛失した](#web-admin-forgot-or-lost-a-password)
-  - [ダッシュボードに他のユーザーのデータが表示されない（Web）](#dashboard-shows-no-data-for-other-users-web)
-  - [プロンプトを編集したが変更が失われた](#i-changed-a-prompt-and-lost-the-edits)
-- [便利なヒント](#quick-tips)
+  - [コストが「利用可能ではない」と表示されるか、間違っているように見える](#cost-shows-not-available-or-seems-wrong)
+  - [合計コストがプロバイダーの請求書と一致しない](#total-cost-does-not-match-my-provider-bill)
+  - [履歴ページがサイドバーから欠落している](#the-history-page-is-missing-from-the-sidebar)
+  - [Webアプリ：予期せずログインページにリダイレクトされた](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web管理者：パスワードを忘れたか失った](#web-admin-forgot-or-lost-a-password)
+  - [ダッシュボードが他のユーザーのデータを表示しない（ウェブ）](#dashboard-shows-no-data-for-other-users-web)
+  - [プロンプトを変更して編集内容を失った](#i-changed-a-prompt-and-lost-the-edits)
+- [クイックヒント](#quick-tips)
 - [免責事項](#disclaimer)
 - [ライセンス](#license)
 
@@ -283,6 +284,17 @@ Transrewrt を使用するには、少なくとも1つのAIプロバイダーへ
 - **ENTERの動作対象**は、`Enter`がタスクを実行するか新しい行を挿入するかを選択します:
   - **Enter**は翻訳または書き換えを実行します（デフォルト）。
   - **Shift + Enter**は翻訳または書き換えを実行し、通常の**Enter**は新しい行を挿入します。
+
+<br/>
+
+<a id="refining-translation"></a>
+### 翻訳の洗練
+
+翻訳が成功した後、出力パネルで結果を洗練できます：
+
+1. **翻訳を言い換える…** — 出力にテキストが選択されていない場合、異なる言い回しで同じ入力の別の完全な翻訳を取得します。最大で**五**つのバージョンを保存し、バージョンドロップダウンで切り替えることができます。テキストが選択されている場合、**翻訳を言い換える…** は選択部分の近くに単語の代替を表示します（右クリックと同じ）。選択がない場合、**翻訳を言い換える…** は五つのバージョンに達すると無効になりますが、選択がある場合は五つのバージョンで機能し続けます（単語の代替のみ、バージョン5を更新）。
+2. **単語の代替** — 出力内の一つまたは複数の単語を選択します（単語の一部のみを選択した場合、アプリは選択を完全な単語に拡張します）、その後、右クリックするか、**翻訳を言い換える…** をクリックします。選択部分の近くに短い代替リストが表示されます；一つをクリックして置き換えます。五つ未満のバージョンがある場合、編集された出力は新しいバージョンとして保存されます；五つのバージョンでは、**バージョン5**のみが更新されます。選択なしで右クリックしても何も起こりません。**Esc**を押すか、リストの外をクリックして、出力を変更せずにキャンセルします。
+3. **コスト** — 各完全な**翻訳を言い換える…**（選択なし）および各単語代替リクエストは再度モデルを使用し、使用コストを追加する可能性があります（通常の翻訳実行と同じ）。
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

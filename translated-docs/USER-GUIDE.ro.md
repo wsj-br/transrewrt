@@ -49,49 +49,50 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Bara de instrumente](#toolbar)
   - [Panourile de intrare și ieșire](#input-and-output-panels)
 - [Traducere](#translate)
-  - [Traduceți textul](#translate-text)
-  - [Selectarea limbii](#language-selection)
+  - [Traducere text](#translate-text)
+  - [Selecția limbii](#language-selection)
   - [Setări utile pentru traducere](#helpful-translation-settings)
-- [Rescriere](#rewrite)
+  - [Îmbunătățirea traducerii](#refining-translation)
+- [Reescriere](#rewrite)
 - [Transformare](#transform)
   - [Rulați un prompt existent](#run-an-existing-prompt)
   - [Dacă nu aveți încă prompturi](#if-you-have-no-prompts-yet)
-  - [Creați rapid un prompt](#create-a-prompt-quickly)
-  - [Editați un prompt](#edit-a-prompt)
+  - [Creați un prompt rapid](#create-a-prompt-quickly)
+  - [Editare prompt](#edit-a-prompt)
   - [Testați un prompt înainte de a-l folosi](#test-a-prompt-before-using-it)
-- [Panou de control](#dashboard)
-  - [Filtrați datele](#filter-the-data)
-  - [Filele panoului de control](#dashboard-tabs)
-  - [Exportați datele](#export-data)
-  - [Ștergeți înregistrările stocate pentru un model](#delete-stored-records-for-a-model)
+- [Tablou de bord](#dashboard)
+  - [Filtrează datele](#filter-the-data)
+  - [Tab-uri tabloului de bord](#dashboard-tabs)
+  - [Exportă date](#export-data)
+  - [Șterge înregistrările stocate pentru un model](#delete-stored-records-for-a-model)
 - [Istoric](#history)
-  - [Filtrați istoricul](#filter-the-history)
-  - [Exportați datele din istoric](#export-history-data)
+  - [Filtrează istoricul](#filter-the-history)
+  - [Exportă datele istoricului](#export-history-data)
 - [Setări](#settings)
   - [Setări generale](#general-settings)
   - [Modele](#models)
   - [Limbi](#languages)
-  - [Urmărire costuri](#cost-tracking)
-  - [Transformare (fila setări)](#transform-settings-tab)
+  - [Urmărirea costurilor](#cost-tracking)
+  - [Transformare (tab setări)](#transform-settings-tab)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
-- [Probleme frecvente](#common-issues)
-  - [Aplicația nu traduce, rescrie sau transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Lista modelelor este goală](#the-model-list-is-empty)
+- [Probleme comune](#common-issues)
+  - [Aplicația nu va traduce, reescrie sau transforma textul](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Lista modelului este goală](#the-model-list-is-empty)
   - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
-  - [Rezumatul panoului de control pare gol](#dashboard-summary-looks-empty)
-  - [Costul afișează "nu este disponibil" sau pare incorect](#cost-shows-not-available-or-seems-wrong)
+  - [Sumarul tabloului de bord pare gol](#dashboard-summary-looks-empty)
+  - [Costul arată "nu este disponibil" sau pare greșit](#cost-shows-not-available-or-seems-wrong)
   - [Costul total nu se potrivește cu factura furnizorului meu](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrator web: ați uitat sau ați pierdut parola](#web-admin-forgot-or-lost-a-password)
-  - [Panoul de control nu afișează date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Am modificat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
+  - [Aplicație web: redirecționat către pagina de autentificare neașteptat](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: am uitat sau am pierdut o parolă](#web-admin-forgot-or-lost-a-password)
+  - [Tabloul de bord nu arată date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Am schimbat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
 - [Sfaturi rapide](#quick-tips)
-- [Declinare de răspundere](#disclaimer)
+- [Declinare de responsabilitate](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta �
 - **Comportament pentru ENTER** alege dacă `Enter` rulează sarcina sau inserează un nou rând:
   - **Enter** rulează traduce sau reescriere (implicit).
   - **Shift + Enter** rulează traduce sau reescriere; **Enter** simplu inserează un nou rând.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Îmbunătățirea traducerii
+
+După o traducere reușită, puteți îmbunătăți rezultatul în panoul de ieșire:
+
+1. **Reformulează…** — fără text selectat în ieșire, obține o altă traducere completă a aceleași intrări cu formulări diferite. Poți stoca până la **cinci** versiuni și comuta între ele în lista derulantă de versiuni. Cu text selectat, **Reformulează…** deschide alternative de cuvinte în apropierea selecției (la fel ca un clic dreapta). Fără o selecție, **Reformulează…** este dezactivat odată ce atingi cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5).
+2. **Alternative de cuvinte** — selectează unul sau mai multe cuvinte în ieșire (dacă selectezi doar o parte a unui cuvânt, aplicația extinde selecția la cuvinte complete), apoi fă clic dreapta sau apasă **Reformulează…**. O listă scurtă de alternative apare în apropierea selecției; fă clic pe una pentru a o înlocui. Dacă ai mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Fă clic dreapta fără selecție nu face nimic. Apasă **Esc** sau fă clic în afara listei pentru a anula fără a schimba ieșirea.
+3. **Costuri** — fiecare **Reformulează…** complet (fără selecție) și fiecare cerere de alternativă de cuvinte folosește din nou modelul și poate adăuga la costul de utilizare (la fel ca o rulare normală de traducere).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

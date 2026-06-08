@@ -11,6 +11,13 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Root `pnpm presets-check` runs local dry-run from `dev/presets-check` (no git fetch).
+- **Added**: Right-click selected text in translate output to fetch word/phrase alternatives; applies as a new version (or overwrites version 5 when the version limit is reached).
+- **Added**: With text selected in translate output, **Rephrase…** opens the same word-alternatives list near the selection; without selection, **Rephrase…** still runs a full alternative translation.
+- **Changed**: Translate Rephrase and version history support up to 5 versions (was 3).
+- **Fixed**: Translate output text selection stays highlighted while loading word alternatives via **Rephrase…** (same as right-click).
+- **Fixed**: Translate word alternatives now replace the full grammatical span (e.g. adjacent prepositions) so applying an option no longer leaves doubled or missing words.
+
 ## [1.3.9] - 2026-06-06
 
 - **Fixed**: Docker web app failed to start (`Cannot find module '../../package.json'`) because server version logging used a dev-only relative path; Docker layout now resolves `/app/package.json` correctly.

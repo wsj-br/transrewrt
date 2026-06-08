@@ -49,13 +49,14 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Bar alat](#toolbar)
   - [Panel input dan output](#input-and-output-panels)
 - [Terjemahan](#translate)
-  - [Terjemahkan teks](#translate-text)
+  - [Terjemah teks](#translate-text)
   - [Pemilihan bahasa](#language-selection)
   - [Tetapan terjemahan yang berguna](#helpful-translation-settings)
-- [Tulis semula](#rewrite)
+  - [Memperhalus terjemahan anda](#refining-translation)
+- [Menulis semula](#rewrite)
 - [Transformasi](#transform)
   - [Jalankan arahan sedia ada](#run-an-existing-prompt)
-  - [Jika tiada arahan yet](#if-you-have-no-prompts-yet)
+  - [Jika anda belum mempunyai arahan](#if-you-have-no-prompts-yet)
   - [Cipta arahan dengan cepat](#create-a-prompt-quickly)
   - [Edit arahan](#edit-a-prompt)
   - [Uji arahan sebelum menggunakannya](#test-a-prompt-before-using-it)
@@ -72,25 +73,25 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Model](#models)
   - [Bahasa](#languages)
   - [Penjejakan kos](#cost-tracking)
-  - [Transformasikan (tab tetapan)](#transform-settings-tab)
+  - [Transformasi (tab tetapan)](#transform-settings-tab)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
-  - [Perihal](#about)
-- [Isu biasa](#common-issues)
-  - [Aplikasi tidak menterjemah, menulis semula, atau mengubah teks](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Tentang](#about)
+- [Masalah biasa](#common-issues)
+  - [Aplikasi tidak akan menterjemah, menulis semula, atau mentransformasi teks](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Senarai model kosong](#the-model-list-is-empty)
-  - [Keputusan terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
-  - [Antara muka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
+  - [Hasil terlalu lambat atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
+  - [Antaramuka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
   - [Teks terlalu kecil atau sukar dibaca](#the-text-is-too-small-or-hard-to-read)
   - [Ringkasan Papan Pemuka kelihatan kosong](#dashboard-summary-looks-empty)
-  - [Kos menunjukkan "tidak tersedia" atau kelihatan salah](#cost-shows-not-available-or-seems-wrong)
-  - [Jumlah kos tidak sepadan dengan bil penyedia saya](#total-cost-does-not-match-my-provider-bill)
-  - [Halaman Sejarah tiada dalam bar sisi](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: diarahkan ke halaman log masuk secara tidak dijangka](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Pentadbir web: lupa atau hilang kata laluan](#web-admin-forgot-or-lost-a-password)
-  - [Papan pemuka tidak menunjukkan data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Saya mengubah arahan dan kehilangan suntingan](#i-changed-a-prompt-and-lost-the-edits)
-- [Petua pantas](#quick-tips)
+  - [Kos menunjukkan "tidak tersedia" atau nampak salah](#cost-shows-not-available-or-seems-wrong)
+  - [Jumlah kos tidak sepadan dengan bil pembekal saya](#total-cost-does-not-match-my-provider-bill)
+  - [Halaman Sejarah hilang dari bar sisi](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: diarahkan ke halaman log masuk tanpa diduga](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: terlupa atau kehilangan kata laluan](#web-admin-forgot-or-lost-a-password)
+  - [Papan pemuka menunjukkan tiada data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Saya mengubah arahan dan kehilangan pengeditan](#i-changed-a-prompt-and-lost-the-edits)
+- [Petua cepat](#quick-tips)
 - [Penafian](#disclaimer)
 - [Lesen](#license)
 
@@ -284,6 +285,17 @@ Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah c
 - **Tingkah laku untuk ENTER** memilih sama ada `Enter` menjalankan tugas atau menyisipkan baris baru:
   - **Enter** menjalankan terjemah atau menulis semula (lalai).
   - **Shift + Enter** menjalankan terjemah atau menulis semula; **Enter** biasa menyisipkan baris baru.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Memperhalus terjemahan anda
+
+Setelah terjemahan berjaya, anda boleh memperhalus hasil dalam panel output:
+
+1. **Tulis semula…** — tanpa teks yang dipilih dalam output, dapatkan terjemahan penuh yang lain bagi input yang sama dengan perkataan yang berbeza. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam dropdown versi. Dengan teks yang dipilih, **Tulis semula…** membuka alternatif perkataan berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Tulis semula…** dinyahaktifkan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (alternatif perkataan sahaja, mengemas kini versi 5).
+2. **Alternatif perkataan** — pilih satu atau lebih perkataan dalam output (jika anda hanya memilih sebahagian daripada perkataan, aplikasi akan mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Tulis semula…**. Senarai pendek alternatif muncul berhampiran pilihan; klik satu untuk menggantikannya. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baru; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan tidak melakukan apa-apa. Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
+3. **Kos** — setiap **Tulis semula…** penuh (tanpa pilihan) dan setiap permintaan alternatif perkataan menggunakan model sekali lagi dan mungkin menambah kepada kos penggunaan (sama seperti larian terjemahan biasa).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

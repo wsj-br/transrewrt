@@ -50,20 +50,21 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Pannelli di input e output](#input-and-output-panels)
 - [Traduci](#translate)
   - [Traduci testo](#translate-text)
-  - [Selezione della lingua](#language-selection)
-  - [Impostazioni utili per la traduzione](#helpful-translation-settings)
-- [Riscrivi](#rewrite)
+  - [Selezione lingua](#language-selection)
+  - [Impostazioni di traduzione utili](#helpful-translation-settings)
+  - [Affina la tua traduzione](#refining-translation)
+- [Riscrittura](#rewrite)
 - [Trasforma](#transform)
   - [Esegui un prompt esistente](#run-an-existing-prompt)
   - [Se non hai ancora prompt](#if-you-have-no-prompts-yet)
-  - [Crea rapidamente un prompt](#create-a-prompt-quickly)
+  - [Crea un prompt rapidamente](#create-a-prompt-quickly)
   - [Modifica un prompt](#edit-a-prompt)
-  - [Prova un prompt prima di usarlo](#test-a-prompt-before-using-it)
+  - [Testa un prompt prima di usarlo](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Filtra i dati](#filter-the-data)
   - [Schede della dashboard](#dashboard-tabs)
   - [Esporta dati](#export-data)
-  - [Elimina i record memorizzati per un modello](#delete-stored-records-for-a-model)
+  - [Elimina record memorizzati per un modello](#delete-stored-records-for-a-model)
 - [Cronologia](#history)
   - [Filtra la cronologia](#filter-the-history)
   - [Esporta dati della cronologia](#export-history-data)
@@ -71,7 +72,7 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Impostazioni generali](#general-settings)
   - [Modelli](#models)
   - [Lingue](#languages)
-  - [Monitoraggio costi](#cost-tracking)
+  - [Tracciamento dei costi](#cost-tracking)
   - [Trasforma (scheda impostazioni)](#transform-settings-tab)
   - [Utenti](#users)
   - [Configurazione API](#api-config)
@@ -82,16 +83,16 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Il risultato è troppo lento o troppo costoso](#the-result-is-too-slow-or-too-expensive)
   - [L'interfaccia è nella lingua sbagliata](#the-interface-is-in-the-wrong-language)
   - [Il testo è troppo piccolo o difficile da leggere](#the-text-is-too-small-or-hard-to-read)
-  - [Il riepilogo della dashboard appare vuoto](#dashboard-summary-looks-empty)
+  - [Il riepilogo della dashboard sembra vuoto](#dashboard-summary-looks-empty)
   - [Il costo mostra "non disponibile" o sembra errato](#cost-shows-not-available-or-seems-wrong)
-  - [Il costo totale non corrisponde al mio conto del provider](#total-cost-does-not-match-my-provider-bill)
-  - [La pagina Cronologia manca nella barra laterale](#the-history-page-is-missing-from-the-sidebar)
-  - [App web: reindirizzato alla pagina di accesso inaspettatamente](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Amministratore web: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
+  - [Il costo totale non corrisponde alla fattura del mio provider](#total-cost-does-not-match-my-provider-bill)
+  - [La pagina Cronologia manca dalla barra laterale](#the-history-page-is-missing-from-the-sidebar)
+  - [Web app: reindirizzato alla pagina di accesso inaspettatamente](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web admin: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
   - [La dashboard non mostra dati per altri utenti (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Ho modificato un prompt e ho perso le modifiche](#i-changed-a-prompt-and-lost-the-edits)
 - [Suggerimenti rapidi](#quick-tips)
-- [Avviso legale](#disclaimer)
+- [Dichiarazione di non responsabilità](#disclaimer)
 - [Licenza](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modif
 - **Comportamento per ENTER** sceglie se `Enter` esegue il compito o inserisce una nuova riga:
   - **Enter** esegue traduci o riscrivi (predefinito).
   - **Shift + Enter** esegue traduci o riscrivi; **Enter** semplice inserisce una nuova riga.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Affina la tua traduzione
+
+Dopo una traduzione riuscita, puoi affinare il risultato nel pannello di output:
+
+1. **Riformula…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Puoi memorizzare fino a **cinque** versioni e passare tra di esse nel menu a discesa delle versioni. Con il testo selezionato, **Riformula…** apre alternative di parole vicino alla selezione (stesso comportamento del clic destro). Senza una selezione, **Riformula…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona comunque a cinque versioni (solo alternative di parole, aggiornando la versione 5).
+2. **Alternative di parole** — seleziona una o più parole nell'output (se selezioni solo una parte di una parola, l'app espande la selezione a parole intere), quindi fai clic destro o clicca su **Riformula…**. Una breve lista di alternative appare vicino alla selezione; clicca su una per sostituirla. Se hai meno di cinque versioni, l'output modificato viene salvato come una nuova versione; a cinque versioni, solo **versione 5** viene aggiornata. Fai clic destro senza selezione non fa nulla. Premi **Esc** o clicca al di fuori della lista per annullare senza modificare l'output.
+3. **Costi** — ogni **Riformula…** completo (senza selezione) e ogni richiesta di alternativa di parola utilizza nuovamente il modello e può aumentare il costo di utilizzo (stesso comportamento di una normale esecuzione di traduzione).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

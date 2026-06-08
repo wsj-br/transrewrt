@@ -15,7 +15,9 @@ import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
+import { useTranslateWordAlternatives } from "../hooks/useTranslateWordAlternatives";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
+import { TranslateWordAlternativesPopover } from "./TranslateWordAlternativesPopover";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import {
   formatElapsedMmSs,
@@ -54,7 +56,7 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
-  const { settings, translate, translateAlternative, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translateAlternative, translateWordAlternatives, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
   const presetUiLocale = settings?.ui_locale || locale;
   const presetSourceLocale = settings?.source_locale || "en-GB";
@@ -276,7 +278,10 @@ const App = () => {
     translateOutputIsModelResult,
     translateVersions,
     selectedTranslateVersion,
-    processingModeRef,
+    setTranslateVersions,
+    setSelectedTranslateVersion,
+    applyRunCostFromResult,
+    processingMode,
     handleRunAction,
     handleRunActionStartOnly,
     handleAlternative,
@@ -305,6 +310,35 @@ const App = () => {
     transformPromptId,
     transformFromLang,
   });
+
+  const {
+    popoverProps: translateWordAltPopoverProps,
+    handleOutputContextMenu,
+    tryOpenWordAlternativesFromTextarea,
+    registerOutputTextarea,
+    outputHasSelection,
+    handleEscape: handleTranslateWordAltEscape,
+  } = useTranslateWordAlternatives({
+    translateWordAlternatives,
+    outputText: outputTextTranslate,
+    inputTextTranslate,
+    sourceLanguage,
+    targetLanguage,
+    activeModel,
+    isProcessing,
+    translateOutputIsModelResult,
+    translateVersions,
+    setTranslateVersions,
+    setSelectedTranslateVersion,
+    setOutputTextTranslate,
+    applyRunCostFromResult,
+    autoCopy: !!settings.auto_copy,
+  });
+
+  const handleRephraseClick = useCallback(() => {
+    if (tryOpenWordAlternativesFromTextarea()) return;
+    handleAlternative();
+  }, [handleAlternative, tryOpenWordAlternativesFromTextarea]);
 
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
@@ -374,7 +408,14 @@ const App = () => {
     currentMode
   );
 
-  useKeyboardShortcuts(handleRunAction, inputText, settings.enter_behavior, clearInput, currentView);
+  useKeyboardShortcuts(
+    handleRunAction,
+    inputText,
+    settings.enter_behavior,
+    clearInput,
+    currentView,
+    handleTranslateWordAltEscape,
+  );
 
   // Apply theme — 'light' | 'dark' | 'system' (follow OS)
   useEffect(() => applyConfiguredTheme(normalizeTheme(settings.theme)), [settings.theme]);
@@ -477,10 +518,11 @@ const App = () => {
     t,
     settings,
     isProcessing,
-    processingModeRef,
+    processingMode,
     handleRunAction,
-    handleAlternative,
+    handleRephraseClick,
     handleTranslateVersionChange,
+    outputHasSelection,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
@@ -512,6 +554,8 @@ const App = () => {
               setText: setOutputTextTranslate,
               getStats: outputStats,
               copy: copyOutput,
+              onContextMenu: handleOutputContextMenu,
+              textareaRefCallback: registerOutputTextarea,
             },
             options: {
               sourceLanguage,
@@ -749,6 +793,7 @@ const App = () => {
           />
         )}
         {loadSampleConfirmModal}
+        <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
       </>
     );
   }
@@ -816,6 +861,7 @@ const App = () => {
         />
       )}
       {loadSampleConfirmModal}
+      <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
     </div>
   );
 };

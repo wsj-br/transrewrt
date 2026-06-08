@@ -7,6 +7,7 @@ import {
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatApiErrorLine } from "../utils/misc/apiErrorDisplay";
 import { SOURCE_LOCALE } from "../i18n";
+import { MAX_TRANSLATE_VERSIONS } from "../constants/translateVersions";
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -67,6 +68,11 @@ export function useProcessing({
   const abortControllerRef = useRef(null);
   const cancelledByUserRef = useRef(false);
   const processingModeRef = useRef(null);
+  const [processingMode, setProcessingMode] = useState(null);
+  const setActiveProcessingMode = useCallback((mode) => {
+    processingModeRef.current = mode;
+    setProcessingMode(mode);
+  }, []);
   const currentModeRef = useRef(currentMode);
   const translateVersionsRef = useRef([]);
 
@@ -109,7 +115,7 @@ export function useProcessing({
       const text = inputTextTranslate;
       if (!text?.trim()) return;
 
-      processingModeRef.current = "translate";
+      setActiveProcessingMode("translate");
       setIsProcessing(true);
       setTranslateOutputIsModelResult(false);
       setTranslateVersions([]);
@@ -222,7 +228,7 @@ export function useProcessing({
         }
       } finally {
         abortControllerRef.current = null;
-        processingModeRef.current = null;
+        setActiveProcessingMode(null);
         if (!cancelledByUserRef.current && currentModeRef.current !== "translate") {
           setCurrentMode("translate");
           updateSettings({ app_mode: "translate" });
@@ -242,6 +248,7 @@ export function useProcessing({
       setOutputTextTranslate,
       setCurrentMode,
       updateSettings,
+      setActiveProcessingMode,
     ]
   );
 
@@ -249,11 +256,11 @@ export function useProcessing({
     async (signal) => {
       const text = inputTextTranslate;
       const versions = translateVersionsRef.current;
-      if (!text?.trim() || !versions.length || versions.length >= 3) return;
+      if (!text?.trim() || !versions.length || versions.length >= MAX_TRANSLATE_VERSIONS) return;
 
       const previousVersionText = versions[selectedTranslateVersion - 1] || versions[versions.length - 1];
 
-      processingModeRef.current = "translate_alternative";
+      setActiveProcessingMode("translate_alternative");
       setIsProcessing(true);
       setOutputTextTranslate(t("Rephrasing..."));
       setLastRunCost(0);
@@ -305,7 +312,7 @@ export function useProcessing({
         if (result.content) {
           const cleaned = result.content.replace(/^\s*\n+/, "");
           setTranslateVersions((prev) => {
-            const next = [...prev, cleaned].slice(0, 3);
+            const next = [...prev, cleaned].slice(0, MAX_TRANSLATE_VERSIONS);
             setSelectedTranslateVersion(next.length);
             return next;
           });
@@ -360,7 +367,7 @@ export function useProcessing({
         }
       } finally {
         abortControllerRef.current = null;
-        processingModeRef.current = null;
+        setActiveProcessingMode(null);
       }
     },
     [
@@ -374,6 +381,7 @@ export function useProcessing({
       settings.auto_copy,
       translateAlternative,
       setOutputTextTranslate,
+      setActiveProcessingMode,
     ]
   );
 
@@ -402,7 +410,7 @@ export function useProcessing({
       }
       return;
     }
-    if (translateVersionsRef.current.length >= 3) return;
+    if (translateVersionsRef.current.length >= MAX_TRANSLATE_VERSIONS) return;
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
     translateAlternativeText(abortControllerRef.current.signal);
@@ -432,7 +440,7 @@ export function useProcessing({
     }
     cancelledByUserRef.current = false;
     abortControllerRef.current = new AbortController();
-    processingModeRef.current = "rewrite";
+    setActiveProcessingMode("rewrite");
 
     setIsProcessing(true);
     setRewriteOutputIsModelResult(false);
@@ -537,7 +545,7 @@ export function useProcessing({
       }
     } finally {
       abortControllerRef.current = null;
-      processingModeRef.current = null;
+      setActiveProcessingMode(null);
       if (!cancelledByUserRef.current && currentModeRef.current !== "rewrite") {
         setCurrentMode("rewrite");
         updateSettings({ app_mode: "rewrite" });
@@ -558,6 +566,7 @@ export function useProcessing({
     stopProcessing,
     setCurrentMode,
     updateSettings,
+    setActiveProcessingMode,
   ]);
 
   const runTransform = useCallback(
@@ -583,7 +592,7 @@ export function useProcessing({
         transformFromLang && transformFromLang !== "Detect Language" ? transformFromLang : null;
       const statedFromLang = uiExplicit ?? workspaceFrom;
 
-      processingModeRef.current = "transform";
+      setActiveProcessingMode("transform");
       setIsProcessing(true);
       setOutputTextTransform(t('Transforming...'));
       setLastRunCost(0);
@@ -674,7 +683,7 @@ export function useProcessing({
         }
       } finally {
         abortControllerRef.current = null;
-        processingModeRef.current = null;
+        setActiveProcessingMode(null);
         if (!cancelledByUserRef.current && currentModeRef.current !== "transform") {
           setCurrentMode("transform");
           updateSettings({ app_mode: "transform" });
@@ -696,6 +705,7 @@ export function useProcessing({
       setOutputTextTransform,
       setCurrentMode,
       updateSettings,
+      setActiveProcessingMode,
     ]
   );
 
@@ -717,6 +727,25 @@ export function useProcessing({
     if (currentMode === "translate") handleTranslate();
     else if (currentMode === "rewrite") handleRewrite();
   }, [isProcessing, currentMode, handleTranslate, handleRewrite]);
+
+  const applyRunCostFromResult = useCallback(
+    (result) => {
+      const totalTokens =
+        (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+      const durationSeconds = result.duration_ms ? result.duration_ms / 1000 : 0;
+      const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
+      setTokensPerSecond(tps);
+      const costLine = resolveRunCostLine({
+        calculated_cost: result.calculated_cost,
+        usage: result.usage,
+        model_used: result.model_used || result.model || activeModel,
+      });
+      setLastRunCost(costLine.kind === "amount" ? costLine.value : 0);
+      setLastRunCostKind(costLine.kind);
+      setLastRunModel(result.model_used || result.model || activeModel);
+    },
+    [activeModel],
+  );
 
   const handleRunAction = useCallback(() => {
     if (isProcessing) {
@@ -748,6 +777,10 @@ export function useProcessing({
     translateOutputIsModelResult,
     translateVersions,
     selectedTranslateVersion,
+    setTranslateVersions,
+    setSelectedTranslateVersion,
+    setTranslateOutputIsModelResult,
+    applyRunCostFromResult,
     rewriteOutputIsModelResult,
     stopProcessing,
     handleTranslate,
@@ -756,7 +789,7 @@ export function useProcessing({
     handleRewrite,
     runTransform,
     handleTransform,
-    processingModeRef,
+    processingMode,
     handleRunAction,
     handleRunActionStartOnly,
   };

@@ -58,6 +58,57 @@ function buildAlternativeTranslatePrompt(sourceLang, targetLang) {
     .replace(/\{\{targetLang\}\}/g, targetLang || "");
 }
 
+function buildTranslateWordAlternativesPrompt(sourceLang, targetLang) {
+  const config = prompts.translate_word_alternatives;
+  const taskLines = [...config.task];
+  if (sourceLang && sourceLang !== "Detect Language" && config.withSourceLanguageLine) {
+    taskLines.unshift(config.withSourceLanguageLine);
+  }
+  const lines = [
+    config.role,
+    "",
+    "Your task:",
+    ...taskLines,
+    ...config.footer,
+  ];
+  return resolvePrompt(lines)
+    .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
+    .replace(/\{\{targetLang\}\}/g, targetLang || "");
+}
+
+function parseWordAlternativesJson(raw) {
+  const trimmed = (raw || "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+  let parsed;
+  try {
+    parsed = JSON.parse(trimmed);
+  } catch {
+    return { error: "Model response is not valid JSON" };
+  }
+  if (!Array.isArray(parsed)) {
+    return { error: "Model did not return a JSON array" };
+  }
+  const alternatives = [];
+  for (const item of parsed) {
+    if (typeof item === "string" && item.trim()) {
+      alternatives.push({ text: item.trim(), replaces: null });
+      continue;
+    }
+    if (item && typeof item === "object" && !Array.isArray(item)) {
+      const text =
+        typeof item.alternative === "string" ? item.alternative.trim() : "";
+      const replaces =
+        typeof item.replaces === "string" ? item.replaces.trim() : null;
+      if (text) {
+        alternatives.push({ text, replaces: replaces || null });
+      }
+    }
+  }
+  if (alternatives.length < 2 || alternatives.length > 4) {
+    return { error: "Model returned an invalid number of alternatives" };
+  }
+  return { alternatives };
+}
+
 function buildRewriteSystemPrompt(styleConfig, sourceLang = null, promptHint = null) {
   const shared = prompts.shared.rewrite;
   const rewriteRoot = prompts.rewrite;
@@ -508,6 +559,66 @@ class APIService {
       );
       if (isUnavailable) throw error;
       console.error("Alternative translation error:", error);
+      return {
+        error: error.message,
+      };
+    }
+  }
+
+  /**
+   * Suggest alternative wordings for a phrase within an existing translation.
+   * @param {string} fullTranslation - Current translated output
+   * @param {string} phrase - Selected phrase to replace
+   * @param {string} originalText - Source input text
+   * @param {string} targetLang - Target language
+   * @param {string} model - Model to use
+   * @param {string|null} sourceLang - Source language (optional)
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} { alternatives: { text, replaces }[], usage, ... } or { error: string }
+   */
+  async translateWordAlternatives(
+    fullTranslation,
+    phrase,
+    originalText,
+    targetLang,
+    model,
+    sourceLang = null,
+    signal = null,
+  ) {
+    try {
+      const systemPrompt = buildTranslateWordAlternativesPrompt(sourceLang, targetLang);
+      const userMessage = `<full_translation>${fullTranslation}</full_translation>\n<phrase>${phrase}</phrase>\n<original>${originalText}</original>`;
+      const result = await this._streamChatCompletion(
+        systemPrompt,
+        userMessage,
+        model,
+        0.5,
+        signal,
+        "translate_word_alternatives",
+        {},
+      );
+      if (result.cancelled) {
+        return { cancelled: true, alternatives: [], usage: result.usage };
+      }
+      const parsed = parseWordAlternativesJson(result.content);
+      if (parsed.error) {
+        return { error: parsed.error, usage: result.usage, model: result.model };
+      }
+      return {
+        ...result,
+        alternatives: parsed.alternatives,
+        content: undefined,
+      };
+    } catch (error) {
+      if (isAbortError(error)) {
+        return { cancelled: true, alternatives: [], usage: null };
+      }
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("Word alternatives error:", error);
       return {
         error: error.message,
       };

@@ -52,44 +52,45 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
   - [翻译文本](#translate-text)
   - [语言选择](#language-selection)
   - [有用的翻译设置](#helpful-translation-settings)
+  - [优化您的翻译](#refining-translation)
 - [重写](#rewrite)
 - [转换](#transform)
-  - [运行现有提示词](#run-an-existing-prompt)
-  - [如果您还没有提示词](#if-you-have-no-prompts-yet)
-  - [快速创建提示词](#create-a-prompt-quickly)
-  - [编辑提示词](#edit-a-prompt)
-  - [使用前测试提示词](#test-a-prompt-before-using-it)
+  - [运行现有提示](#run-an-existing-prompt)
+  - [如果您还没有提示](#if-you-have-no-prompts-yet)
+  - [快速创建提示](#create-a-prompt-quickly)
+  - [编辑提示](#edit-a-prompt)
+  - [在使用前测试提示](#test-a-prompt-before-using-it)
 - [仪表板](#dashboard)
   - [筛选数据](#filter-the-data)
-  - [仪表板标签页](#dashboard-tabs)
+  - [仪表板选项卡](#dashboard-tabs)
   - [导出数据](#export-data)
-  - [删除某个模型的存储记录](#delete-stored-records-for-a-model)
+  - [删除模型的存储记录](#delete-stored-records-for-a-model)
 - [历史记录](#history)
   - [筛选历史记录](#filter-the-history)
-  - [导出历史记录数据](#export-history-data)
+  - [导出历史数据](#export-history-data)
 - [设置](#settings)
   - [常规设置](#general-settings)
   - [模型](#models)
   - [语言](#languages)
   - [成本跟踪](#cost-tracking)
-  - [转换 (设置选项卡)](#transform-settings-tab)
+  - [转换（设置选项卡）](#transform-settings-tab)
   - [用户](#users)
   - [API 配置](#api-config)
   - [关于](#about)
 - [常见问题](#common-issues)
-  - [应用无法翻译、重写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [应用程序无法翻译、重写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型列表为空](#the-model-list-is-empty)
-  - [结果太慢或成本太高](#the-result-is-too-slow-or-too-expensive)
+  - [结果太慢或费用过高](#the-result-is-too-slow-or-too-expensive)
   - [界面语言错误](#the-interface-is-in-the-wrong-language)
   - [文本太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
-  - [仪表板摘要显示为空](#dashboard-summary-looks-empty)
-  - [费用显示“不可用”或看起来有误](#cost-shows-not-available-or-seems-wrong)
-  - [总成本与您的提供商账单不匹配](#total-cost-does-not-match-my-provider-bill)
-  - [侧边栏中缺少历史记录页面](#the-history-page-is-missing-from-the-sidebar)
+  - [仪表板摘要看起来为空](#dashboard-summary-looks-empty)
+  - [成本显示“不可用”或似乎错误](#cost-shows-not-available-or-seems-wrong)
+  - [总费用与我的提供商账单不符](#total-cost-does-not-match-my-provider-bill)
+  - [历史页面在侧边栏中缺失](#the-history-page-is-missing-from-the-sidebar)
   - [Web 应用：意外重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web 管理员：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
-  - [仪表板未显示其他用户的数据（Web）](#dashboard-shows-no-data-for-other-users-web)
-  - [我更改了提示词但编辑内容丢失](#i-changed-a-prompt-and-lost-the-edits)
+  - [Web 管理：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
+  - [仪表板对其他用户显示无数据（Web）](#dashboard-shows-no-data-for-other-users-web)
+  - [我更改了提示并丢失了编辑](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免责声明](#disclaimer)
 - [许可证](#license)
@@ -284,6 +285,17 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 - **ENTER的行为** 选择`Enter`是运行任务还是插入新行：
   - **Enter** 运行翻译或重写（默认）。
   - **Shift + Enter** 运行翻译或重写；普通的**Enter** 插入新行。
+
+<br/>
+
+<a id="refining-translation"></a>
+### 优化您的翻译
+
+在成功翻译后，您可以在输出面板中优化结果：
+
+1. **重新措辞…** — 在输出中未选择文本的情况下，获取相同输入的另一种完整翻译，使用不同的措辞。您可以存储最多 **五** 个版本，并在版本下拉菜单中切换它们。选择文本时，**重新措辞…** 会在选择附近打开单词替代选项（与右键单击相同）。如果没有选择，**重新措辞…** 在达到五个版本后将被禁用；如果有选择，它仍然可以在五个版本下工作（仅提供单词替代，更新版本 5）。
+2. **单词替代** — 在输出中选择一个或多个单词（如果您只选择了一个单词的一部分，应用程序会将选择扩展为完整单词），然后右键单击或单击 **重新措辞…**。在选择附近会出现一个简短的替代列表；单击一个以替换它。如果您少于五个版本，编辑后的输出将作为新版本保存；在五个版本时，仅更新 **版本 5**。右键单击没有选择的内容不会有任何反应。按 **Esc** 或单击列表外部以取消而不更改输出。
+3. **费用** — 每次完整的 **重新措辞…**（无选择）和每次单词替代请求都会再次使用模型，并可能增加使用费用（与正常翻译运行相同）。
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

@@ -49,49 +49,50 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Barua ya zana](#toolbar)
   - [Sehemu za kuingiza na pato](#input-and-output-panels)
 - [Tafsiri](#translate)
-  - [Tafsiri maandishi](#translate-text)
-  - [Uchaguzi wa lugha](#language-selection)
-  - [Mipangilio muhimu ya tafsiri](#helpful-translation-settings)
-- [Andika upya](#rewrite)
-- [Badilisha](#transform)
-  - [Imba maagizo yaliyopo](#run-an-existing-prompt)
-  - [Kama bado huna maagizo](#if-you-have-no-prompts-yet)
-  - [Tengeneza maagizo haraka](#create-a-prompt-quickly)
-  - [Hariri maagizo](#edit-a-prompt)
-  - [Jaribu maagizo kabla ya kutumia](#test-a-prompt-before-using-it)
+  - [Tafsiri maandiko](#translate-text)
+  - [Chaguo la lugha](#language-selection)
+  - [Mipangilio ya tafsiri yenye msaada](#helpful-translation-settings)
+  - [Kurekebisha tafsiri yako](#refining-translation)
+- [Kuandika upya](#rewrite)
+- [Kubadilisha](#transform)
+  - [Endesha maelezo yaliyopo](#run-an-existing-prompt)
+  - [Ikiwa huna maelezo bado](#if-you-have-no-prompts-yet)
+  - [Unda maelezo haraka](#create-a-prompt-quickly)
+  - [Hariri maelezo](#edit-a-prompt)
+  - [Jaribio la maelezo kabla ya kuyatumia](#test-a-prompt-before-using-it)
 - [Dashibodi](#dashboard)
   - [Chuja data](#filter-the-data)
-  - [Vidole vya dashibodi](#dashboard-tabs)
-  - [Tuma data nje](#export-data)
-  - [Futa rekodi zilizohifadhiwa kwa ajili ya mfumo](#delete-stored-records-for-a-model)
+  - [Mikakati ya dashibodi](#dashboard-tabs)
+  - [Hamisha data](#export-data)
+  - [Futa rekodi zilizohifadhiwa kwa ajili ya modeli](#delete-stored-records-for-a-model)
 - [Historia](#history)
   - [Chuja historia](#filter-the-history)
-  - [Tuma data ya historia nje](#export-history-data)
+  - [Hamisha data ya historia](#export-history-data)
 - [Mipangilio](#settings)
-  - [Mipangilio ya kawaida](#general-settings)
-  - [Mifano](#models)
+  - [Mipangilio ya jumla](#general-settings)
+  - [Modeli](#models)
   - [Lugha](#languages)
   - [Ufuatiliaji wa gharama](#cost-tracking)
-  - [Badilisha (tabu ya mipangilio)](#transform-settings-tab)
+  - [Kubadilisha (tab ya mipangilio)](#transform-settings-tab)
   - [Watumiaji](#users)
-  - [Mipangilio ya API](#api-config)
+  - [Usanidi wa API](#api-config)
   - [Kuhusu](#about)
-- [Matatizo ya kawaida](#common-issues)
-  - [Programu haiwezi kutafsiri, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Orodha ya mifano ni tupu](#the-model-list-is-empty)
-  - [Matokeo ni ya polepole au ghali sana](#the-result-is-too-slow-or-too-expensive)
-  - [Ukurasa umewekwa kwa lugha mbaya](#the-interface-is-in-the-wrong-language)
-  - [Maandishi ni ndogo sana au vigumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Muhtasari wa dashibodi unaonekana tupu](#dashboard-summary-looks-empty)
-  - [Gharama inaonyesha "haiapatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
-  - [Jumla ya gharama haifanani na bili yangu ya mtoa huduma](#total-cost-does-not-match-my-provider-bill)
-  - [Ukurasa wa Historia umepotea kutoka upau wa upande](#the-history-page-is-missing-from-the-sidebar)
-  - [Programu ya wavuti: umebwakiwa kurudi ukurasa wa kuingia kwa usahihi](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Msimamizi wa wavuti: umesahau au umepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
-  - [Dashibodi haionyesi data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nimebadilisha maagizo na kusahau mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
-- [Vidokezo haraka](#quick-tips)
-- [Kujitolewa](#disclaimer)
+- [Masuala ya kawaida](#common-issues)
+  - [Programu haitafsiri, haiandiki upya, au kubadilisha maandiko](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Orodha ya modeli ni tupu](#the-model-list-is-empty)
+  - [Matokeo ni polepole sana au gharama ni kubwa](#the-result-is-too-slow-or-too-expensive)
+  - [Kiolesura kiko katika lugha isiyo sahihi](#the-interface-is-in-the-wrong-language)
+  - [Maandishi ni madogo sana au magumu kusoma](#the-text-is-too-small-or-hard-to-read)
+  - [Muhtasari wa Dashibodi unaonekana kuwa tupu](#dashboard-summary-looks-empty)
+  - [Gharama inaonyesha "haipatikani" au inaonekana kuwa si sahihi](#cost-shows-not-available-or-seems-wrong)
+  - [Jumla ya gharama haitoshi na bili ya mtoa huduma wangu](#total-cost-does-not-match-my-provider-bill)
+  - [Ukurasa wa Historia umepotea kutoka kwenye sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Programu ya wavuti: ilielekezwa kwenye ukurasa wa kuingia bila kutarajia](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Msimamizi wa wavuti: kusahau au kupoteza nenosiri](#web-admin-forgot-or-lost-a-password)
+  - [Dashibodi inaonyesha hakuna data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
+  - [Nimebadilisha maelezo na kupoteza mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
+- [Vidokezo vya haraka](#quick-tips)
+- [Kanusho](#disclaimer)
 - [Leseni](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ Katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings), unaweza 
 - **Tabia kwa ENTER** inachagua ikiwa `Enter` inatekeleza kazi au inaingiza mstari mpya:
   - **Enter** inatekeleza tafsiri au kuandika upya (chaguo la kawaida).
   - **Shift + Enter** inatekeleza tafsiri au kuandika upya; **Enter** ya kawaida inaingiza mstari mpya.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Kurekebisha tafsiri yako
+
+Baada ya tafsiri kufanikiwa, unaweza kurekebisha matokeo katika paneli ya pato:
+
+1. **Tafsiri tena…** — bila maandiko yoyote yaliyochaguliwa katika toleo, pata tafsiri nyingine kamili ya maandiko sawa na yenye maneno tofauti. Unaweza kuhifadhi hadi **tano** ya matoleo na kubadilisha kati yao katika orodha ya matoleo. Ukiwa na maandiko yaliyochaguliwa, **Tafsiri tena…** inafungua chaguzi za maneno karibu na uchaguzi (sawa na kubofya-kulia). Bila uchaguzi, **Tafsiri tena…** inakuwa haifanyi kazi mara unafikia matoleo tano; ukiwa na uchaguzi, bado inafanya kazi kwa matoleo tano (chaguzi za maneno pekee, ikisasisha toleo la 5).
+2. **Chaguzi za maneno** — chagua neno moja au zaidi katika toleo (ikiwa unachagua sehemu tu ya neno, programu inapanua uchaguzi hadi maneno kamili), kisha bofya-kulia au bonyeza **Tafsiri tena…**. Orodha fupi ya chaguzi inaonekana karibu na uchaguzi; bonyeza moja ili kuibadilisha. Ikiwa una matoleo chini ya tano, toleo lililohaririwa linahifadhiwa kama toleo jipya; kwa matoleo tano, ni toleo pekee **la 5** linalosasishwa. Bofya-kulia bila uchaguzi haina athari yoyote. Bonyeza **Esc** au bonyeza nje ya orodha ili kughairi bila kubadilisha toleo.
+3. **Gharama** — kila **Tafsiri tena…** kamili (bila uchaguzi) na kila ombi la chaguo la neno hutumia modeli tena na inaweza kuongeza gharama ya matumizi (sawa na mchakato wa kawaida wa tafsiri).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

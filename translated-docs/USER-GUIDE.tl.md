@@ -50,48 +50,49 @@ Ipinaliliwanag ng gabay na ito kung paano gamitin ang app kapag naka-install at 
   - [Input at output panels](#input-and-output-panels)
 - [Pagsasalin](#translate)
   - [Isalin ang teksto](#translate-text)
-  - [Pagpili ng wika](#language-selection)
-  - [Mga kapaki-pakinabang na setting sa pagsasalin](#helpful-translation-settings)
-- [Muling isulat](#rewrite)
-- [Baguhin](#transform)
+  - [Pumili ng wika](#language-selection)
+  - [Mga kapaki-pakinabang na setting ng pagsasalin](#helpful-translation-settings)
+  - [Pagpapahusay ng iyong pagsasalin](#refining-translation)
+- [Rewrite](#rewrite)
+- [Transform](#transform)
   - [Patakbuhin ang umiiral na prompt](#run-an-existing-prompt)
-  - [Kung wala pang prompts](#if-you-have-no-prompts-yet)
-  - [Gawin agad ang isang prompt](#create-a-prompt-quickly)
-  - [I-edit ang isang prompt](#edit-a-prompt)
-  - [Subukan ang prompt bago gamitin](#test-a-prompt-before-using-it)
+  - [Kung wala ka pang mga prompt](#if-you-have-no-prompts-yet)
+  - [Lumikha ng prompt nang mabilis](#create-a-prompt-quickly)
+  - [I-edit ang prompt](#edit-a-prompt)
+  - [Subukin ang prompt bago ito gamitin](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [I-filter ang data](#filter-the-data)
   - [Mga tab ng Dashboard](#dashboard-tabs)
   - [I-export ang data](#export-data)
-  - [Tanggalin ang naka-imbak na tala para sa isang modelo](#delete-stored-records-for-a-model)
-- [Kasaysayan](#history)
-  - [I-filter ang kasaysayan](#filter-the-history)
-  - [I-export ang data ng kasaysayan](#export-history-data)
+  - [I-delete ang naka-imbak na mga tala para sa isang modelo](#delete-stored-records-for-a-model)
+- [History](#history)
+  - [I-filter ang history](#filter-the-history)
+  - [I-export ang data ng history](#export-history-data)
 - [Mga Setting](#settings)
-  - [Mga Pangkalahatang Setting](#general-settings)
+  - [Pangkalahatang mga setting](#general-settings)
   - [Mga Modelo](#models)
   - [Mga Wika](#languages)
-  - [Pagsusubaybay ng Gastos](#cost-tracking)
-  - [Baguhin (mga setting tab)](#transform-settings-tab)
+  - [Pagsubaybay ng Gastos](#cost-tracking)
+  - [Transform (tab ng mga setting)](#transform-settings-tab)
   - [Mga Gumagamit](#users)
-  - [Config ng API](#api-config)
-  - [Tungkol dito](#about)
-- [Karaniwang isyu](#common-issues)
-  - [Hindi maisasalin, muling maisusulat, o mababagong teksto ng app](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Walang laman ang listahan ng modelo](#the-model-list-is-empty)
-  - [Mabagal o mahal ang resulta](#the-result-is-too-slow-or-too-expensive)
-  - [Maling wika ang nasa interface](#the-interface-is-in-the-wrong-language)
+  - [API Config](#api-config)
+  - [Tungkol sa](#about)
+- [Karaniwang mga isyu](#common-issues)
+  - [Ang app ay hindi makapag-translate, mag-rewrite, o mag-transform ng teksto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Ang listahan ng modelo ay walang laman](#the-model-list-is-empty)
+  - [Ang resulta ay masyadong mabagal o masyadong mahal](#the-result-is-too-slow-or-too-expensive)
+  - [Ang interface ay nasa maling wika](#the-interface-is-in-the-wrong-language)
   - [Ang teksto ay masyadong maliit o mahirap basahin](#the-text-is-too-small-or-hard-to-read)
-  - [Ang Buod ng Dashboard ay tila walang laman](#dashboard-summary-looks-empty)
-  - [Ang Gastos ay nagsasabing "hindi magagamit" o tila mali](#cost-shows-not-available-or-seems-wrong)
-  - [Ang Kabuuang Gastos ay hindi tumutugma sa bill ng aking provider](#total-cost-does-not-match-my-provider-bill)
-  - [Nawawala ang History page sa sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Web app: biglang naililigaw sa login page](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Mukhang walang laman ang Dashboard Summary](#dashboard-summary-looks-empty)
+  - [Ang Gastos ay nagpapakita ng "hindi available" o mukhang mali](#cost-shows-not-available-or-seems-wrong)
+  - [Ang kabuuang gastos ay hindi tumutugma sa bill ng aking provider](#total-cost-does-not-match-my-provider-bill)
+  - [Ang History page ay nawawala mula sa sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Web app: na-redirect sa login page nang hindi inaasahan](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web admin: nakalimutan o nawala ang password](#web-admin-forgot-or-lost-a-password)
-  - [Walang data para sa ibang user ang ipinapakita ng Dashboard (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nagbago ako ng prompt at nawala ang mga edit](#i-changed-a-prompt-and-lost-the-edits)
-- [Mga mabilis na tip](#quick-tips)
-- [Paunawa](#disclaimer)
+  - [Ang Dashboard ay walang data para sa ibang mga gumagamit (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Binago ko ang isang prompt at nawala ang mga edit](#i-changed-a-prompt-and-lost-the-edits)
+- [Mabilis na mga tip](#quick-tips)
+- [Disclaimer](#disclaimer)
 - [Lisensya](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin
 - **Pag-uugali para sa ENTER** ay pumipili kung ang `Enter` ay nagpapatakbo ng gawain o nag-iinsert ng bagong linya:
   - **Enter** ay nagpapatakbo ng pagsasalin o rewrite (default).
   - **Shift + Enter** ay nagpapatakbo ng pagsasalin o rewrite; ang plain **Enter** ay nag-iinsert ng bagong linya.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Pagpapahusay ng iyong pagsasalin
+
+Matapos ang matagumpay na pagsasalin, maaari mong pagbutihin ang resulta sa output panel:
+
+1. **Mag-rephrase…** — kapag walang tekstong napili sa output, makakuha ng isa pang buong pagsasalin ng parehong input na may ibang wording. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat sa pagitan nila sa dropdown ng bersyon. Kapag may napiling teksto, ang **Mag-rephrase…** ay nagbubukas ng mga alternatibong salita malapit sa pagpili (pareho sa pag-right-click). Kung walang pagpili, ang **Mag-rephrase…** ay hindi pinagana kapag umabot ka na sa limang bersyon; sa may pagpili, ito ay gumagana pa rin sa limang bersyon (mga alternatibong salita lamang, ina-update ang bersyon 5).
+2. **Mga alternatibong salita** — pumili ng isa o higit pang mga salita sa output (kung pipiliin mo lamang ang bahagi ng isang salita, ang app ay pinalalaki ang pagpili sa buong mga salita), pagkatapos ay mag-right-click o i-click ang **Mag-rephrase…**. Isang maikling listahan ng mga alternatibo ang lilitaw malapit sa pagpili; i-click ang isa upang palitan ito. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, tanging ang **bersyon 5** lamang ang ina-update. Ang pag-right-click na walang pagpili ay walang ginagawa. Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
+3. **Gastos** — bawat buong **Mag-rephrase…** (walang pagpili) at bawat kahilingan ng alternatibong salita ay muling gumagamit ng modelo at maaaring magdagdag sa gastos ng paggamit (pareho sa isang normal na takbo ng pagsasalin).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

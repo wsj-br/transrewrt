@@ -49,47 +49,48 @@ Transrewrt 可協助您以三種主要方式處理文字：
   - [工具列](#toolbar)
   - [輸入與輸出面板](#input-and-output-panels)
 - [翻譯](#translate)
-  - [翻譯文字](#translate-text)
+  - [翻譯文本](#translate-text)
   - [語言選擇](#language-selection)
-  - [實用的翻譯設定](#helpful-translation-settings)
+  - [有用的翻譯設定](#helpful-translation-settings)
+  - [精煉你的翻譯](#refining-translation)
 - [重寫](#rewrite)
 - [轉換](#transform)
-  - [執行現有的提示](#run-an-existing-prompt)
-  - [如果您還沒有提示](#if-you-have-no-prompts-yet)
+  - [執行現有提示](#run-an-existing-prompt)
+  - [如果你還沒有提示](#if-you-have-no-prompts-yet)
   - [快速建立提示](#create-a-prompt-quickly)
   - [編輯提示](#edit-a-prompt)
-  - [使用前測試提示](#test-a-prompt-before-using-it)
+  - [在使用前測試提示](#test-a-prompt-before-using-it)
 - [儀表板](#dashboard)
-  - [篩選資料](#filter-the-data)
-  - [儀表板分頁](#dashboard-tabs)
-  - [匯出資料](#export-data)
-  - [刪除某模型的儲存記錄](#delete-stored-records-for-a-model)
+  - [篩選數據](#filter-the-data)
+  - [儀表板標籤](#dashboard-tabs)
+  - [匯出數據](#export-data)
+  - [刪除模型的存儲記錄](#delete-stored-records-for-a-model)
 - [歷史記錄](#history)
   - [篩選歷史記錄](#filter-the-history)
-  - [匯出歷史記錄資料](#export-history-data)
+  - [匯出歷史數據](#export-history-data)
 - [設定](#settings)
   - [一般設定](#general-settings)
   - [模型](#models)
   - [語言](#languages)
   - [成本追蹤](#cost-tracking)
-  - [轉換 (設定分頁)](#transform-settings-tab)
+  - [轉換（設定標籤）](#transform-settings-tab)
   - [使用者](#users)
   - [API 設定](#api-config)
   - [關於](#about)
 - [常見問題](#common-issues)
-  - [應用程式無法翻譯、重寫或轉換文字](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [模型清單為空](#the-model-list-is-empty)
-  - [結果太慢或成本太高](#the-result-is-too-slow-or-too-expensive)
+  - [應用程式無法翻譯、重寫或轉換文本](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [模型列表為空](#the-model-list-is-empty)
+  - [結果太慢或太貴](#the-result-is-too-slow-or-too-expensive)
   - [介面語言錯誤](#the-interface-is-in-the-wrong-language)
-  - [文字太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
+  - [文本太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
   - [儀表板摘要看起來是空的](#dashboard-summary-looks-empty)
-  - [成本顯示「不可用」或似乎有誤](#cost-shows-not-available-or-seems-wrong)
-  - [總成本與供應商帳單不符](#total-cost-does-not-match-my-provider-bill)
-  - [側邊欄中缺少歷史記錄頁面](#the-history-page-is-missing-from-the-sidebar)
-  - [網路應用程式：意外被重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [網路管理員：忘記或遺失密碼](#web-admin-forgot-or-lost-a-password)
-  - [儀表板未顯示其他使用者的資料（網路版）](#dashboard-shows-no-data-for-other-users-web)
-  - [我變更提示後遺失編輯內容](#i-changed-a-prompt-and-lost-the-edits)
+  - [成本顯示「不可用」或似乎錯誤](#cost-shows-not-available-or-seems-wrong)
+  - [總成本與我的提供者帳單不符](#total-cost-does-not-match-my-provider-bill)
+  - [歷史頁面在側邊欄中缺失](#the-history-page-is-missing-from-the-sidebar)
+  - [網頁應用程式：意外重定向到登錄頁面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [網頁管理員：忘記或丟失密碼](#web-admin-forgot-or-lost-a-password)
+  - [儀表板對其他使用者顯示無資料（網頁）](#dashboard-shows-no-data-for-other-users-web)
+  - [我更改了提示並丟失了編輯](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免責聲明](#disclaimer)
 - [授權](#license)
@@ -284,6 +285,17 @@ Transrewrt 可協助您以三種主要方式處理文字：
 - **ENTER的行為**選擇`Enter`是運行任務還是插入新行：
   - **Enter**運行翻譯或重寫（預設）。
   - **Shift + Enter**運行翻譯或重寫；普通的**Enter**插入新行。
+
+<br/>
+
+<a id="refining-translation"></a>
+### 精煉你的翻譯
+
+在成功翻譯後，你可以在輸出面板中精煉結果：
+
+1. **重新表述…** — 在輸出中未選擇任何文本的情況下，獲得相同輸入的另一個完整翻譯，使用不同的措辭。您可以儲存最多 **五** 個版本，並在版本下拉選單中切換。選擇文本時，**重新表述…** 會在選擇附近打開單詞替代選項（與右鍵點擊相同）。在沒有選擇的情況下，當您達到五個版本時，**重新表述…** 會被禁用；有選擇時，它仍然可以在五個版本下運作（僅限單詞替代，更新版本 5）。
+2. **單詞替代** — 在輸出中選擇一個或多個單詞（如果您僅選擇單詞的一部分，應用程式會將選擇擴展為完整單詞），然後右鍵點擊或點擊 **重新表述…**。一個簡短的替代選項列表會出現在選擇附近；點擊一個以替換它。如果您擁有少於五個版本，編輯後的輸出將作為新版本保存；在五個版本時，只有 **版本 5** 會被更新。右鍵點擊而不選擇則不會有任何反應。按 **Esc** 或點擊列表外部以取消而不改變輸出。
+3. **成本** — 每次完整的 **重新表述…**（無選擇）和每次單詞替代請求都會再次使用模型，並可能增加使用成本（與正常翻譯運行相同）。
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

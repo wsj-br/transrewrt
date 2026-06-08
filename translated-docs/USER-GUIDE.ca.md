@@ -49,49 +49,50 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [Barra d'eines](#toolbar)
   - [Panells d'entrada i sortida](#input-and-output-panels)
 - [Traduir](#translate)
-  - [Traduir text](#translate-text)
+  - [Tradueix text](#translate-text)
   - [Selecció d'idioma](#language-selection)
-  - [Configuracions útils de traducció](#helpful-translation-settings)
-- [Reescriure](#rewrite)
-- [Transformar](#transform)
-  - [Executar un indicador existent](#run-an-existing-prompt)
-  - [Si encara no teniu indicadors](#if-you-have-no-prompts-yet)
-  - [Crear un indicador ràpidament](#create-a-prompt-quickly)
-  - [Editar un indicador](#edit-a-prompt)
-  - [Provar un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
-- [Tauler](#dashboard)
-  - [Filtrar les dades](#filter-the-data)
-  - [Pestanyes del tauler](#dashboard-tabs)
-  - [Exportar dades](#export-data)
-  - [Esborrar registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
+  - [Configuracions de traducció útils](#helpful-translation-settings)
+  - [Refinant la teva traducció](#refining-translation)
+- [Reescriptura](#rewrite)
+- [Transformació](#transform)
+  - [Executa un indicador existent](#run-an-existing-prompt)
+  - [Si encara no tens indicadors](#if-you-have-no-prompts-yet)
+  - [Crea un indicador ràpidament](#create-a-prompt-quickly)
+  - [Edita un indicador](#edit-a-prompt)
+  - [Prova un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
+- [Tauler de control](#dashboard)
+  - [Filtra les dades](#filter-the-data)
+  - [Pestanyes del tauler de control](#dashboard-tabs)
+  - [Exporta dades](#export-data)
+  - [Elimina registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
 - [Historial](#history)
-  - [Filtre l'historial](#filter-the-history)
-  - [Exportar dades de l'historial](#export-history-data)
+  - [Filtra l'historial](#filter-the-history)
+  - [Exporta dades de l'historial](#export-history-data)
 - [Configuració](#settings)
   - [Configuració general](#general-settings)
   - [Models](#models)
   - [Idiomes](#languages)
   - [Seguiment de costos](#cost-tracking)
-  - [Transformar (pestanya de configuració)](#transform-settings-tab)
+  - [Transformació (pestanya de configuració)](#transform-settings-tab)
   - [Usuaris](#users)
   - [Configuració de l'API](#api-config)
   - [Quant a](#about)
-- [Problemes freqüents](#common-issues)
-  - [L'aplicació no tradueix, reescriu ni transforma el text](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Problemes comuns](#common-issues)
+  - [L'aplicació no tradueix, reescriu o transforma text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La llista de models està buida](#the-model-list-is-empty)
   - [El resultat és massa lent o massa car](#the-result-is-too-slow-or-too-expensive)
   - [La interfície està en l'idioma incorrecte](#the-interface-is-in-the-wrong-language)
   - [El text és massa petit o difícil de llegir](#the-text-is-too-small-or-hard-to-read)
-  - [El resum del tauler sembla buit](#dashboard-summary-looks-empty)
+  - [El resum del tauler de control sembla buit](#dashboard-summary-looks-empty)
   - [El cost mostra "no disponible" o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
-  - [El cost total no coincideix amb la meva factura del proveïdor](#total-cost-does-not-match-my-provider-bill)
-  - [La pàgina d'historial no apareix a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicació web: redirigit inesperadament a la pàgina d'inici de sessió](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrador web: he oblidat o perdut la contrasenya](#web-admin-forgot-or-lost-a-password)
-  - [El tauler no mostra dades d'altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [El cost total no coincideix amb la factura del meu proveïdor](#total-cost-does-not-match-my-provider-bill)
+  - [La pàgina d'historial falta de la barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplicació web: redirigit a la pàgina d'inici de sessió inesperadament](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administrador web: he oblidat o he perdut una contrasenya](#web-admin-forgot-or-lost-a-password)
+  - [El tauler de control no mostra dades per a altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
   - [He canviat un indicador i he perdut les edicions](#i-changed-a-prompt-and-lost-the-edits)
 - [Consells ràpids](#quick-tips)
-- [Avís legal](#disclaimer)
+- [Renúncia](#disclaimer)
 - [Llicència](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ A [**Configuració** > **Configuració general**](#general-settings), podeu canv
 - **Comportament per a ENTER** tria si `Enter` executa la tasca o insereix una nova línia:
   - **Enter** executa traduir o reescriptura (per defecte).
   - **Shift + Enter** executa traduir o reescriptura; **Enter** normal insereix una nova línia.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Refinant la teva traducció
+
+Després d'una traducció exitosa, pots refinar el resultat al panell de sortida:
+
+1. **Reformula…** — sense text seleccionat a la sortida, obté una altra traducció completa de la mateixa entrada amb una redacció diferent. Pots emmagatzemar fins a **cinc** versions i canviar entre elles al menú desplegable de versions. Amb text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que fer clic amb el botó dret). Sense selecció, **Reformula…** es desactiva un cop arribes a cinc versions; amb una selecció, encara funciona amb cinc versions (només alternatives de paraules, actualitzant la versió 5).
+2. **Alternatives de paraules** — selecciona una o més paraules a la sortida (si només seleccionis una part d'una paraula, l'aplicació amplia la selecció a paraules completes), després fes clic amb el botó dret o fes clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; fes clic a una per substituir-la. Si tens menys de cinc versions, la sortida editada es guarda com una nova versió; amb cinc versions, només es actualitza **la versió 5**. Fer clic amb el botó dret sense selecció no fa res. Prem **Esc** o fes clic fora de la llista per cancel·lar sense canviar la sortida.
+3. **Costos** — cada **Reformula…** complet (sense selecció) i cada sol·licitud d'alternativa de paraules utilitza de nou el model i pot afegir-se al cost d'ús (igual que una execució de traducció normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

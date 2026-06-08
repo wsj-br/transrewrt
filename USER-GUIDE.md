@@ -55,6 +55,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Translate text](#translate-text)
   - [Language selection](#language-selection)
   - [Helpful translation settings](#helpful-translation-settings)
+  - [Refining your translation](#refining-translation)
 - [Rewrite](#rewrite)
 - [Transform](#transform)
   - [Run an existing prompt](#run-an-existing-prompt)
@@ -288,6 +289,17 @@ In [**Settings** > **General Settings**](#general-settings), you can change how 
 - **Behaviour for ENTER** chooses whether `Enter` runs the task or inserts a new line:
   - **Enter** runs translate or rewrite (default).
   - **Shift + Enter** runs translate or rewrite; plain **Enter** inserts a new line.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Refining your translation
+
+After a successful translation, you can refine the result in the output panel:
+
+1. **Rephrase…** — with no text selected in the output, get another full translation of the same input with different wording. You can store up to **five** versions and switch between them in the version dropdown. With text selected, **Rephrase…** opens word alternatives near the selection (same as right-click). Without a selection, **Rephrase…** is disabled once you reach five versions; with a selection, it still works at five versions (word alternatives only, updating version 5).
+2. **Word alternatives** — select one or more words in the output (if you select only part of a word, the app expands the selection to full words), then right-click or click **Rephrase…**. A short list of alternatives appears near the selection; click one to replace it. If you have fewer than five versions, the edited output is saved as a new version; at five versions, only **version 5** is updated. Right-click with no selection does nothing. Press **Esc** or click outside the list to cancel without changing the output.
+3. **Costs** — each full **Rephrase…** (no selection) and each word-alternative request uses the model again and may add to usage cost (same as a normal translate run).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

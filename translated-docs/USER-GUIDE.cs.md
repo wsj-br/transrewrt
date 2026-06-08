@@ -49,49 +49,50 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Panel nástrojů](#toolbar)
   - [Panely pro vstup a výstup](#input-and-output-panels)
 - [Překlad](#translate)
-  - [Překlad textu](#translate-text)
+  - [Přeložit text](#translate-text)
   - [Výběr jazyka](#language-selection)
   - [Užitečná nastavení překladu](#helpful-translation-settings)
-- [Přepsat](#rewrite)
-- [Transformovat](#transform)
+  - [Vylepšení vašeho překladu](#refining-translation)
+- [Přepis](#rewrite)
+- [Transformace](#transform)
   - [Spustit existující výzvu](#run-an-existing-prompt)
-  - [Pokud ještě nemáte žádné výzvy](#if-you-have-no-prompts-yet)
+  - [Pokud zatím nemáte žádné výzvy](#if-you-have-no-prompts-yet)
   - [Rychlé vytvoření výzvy](#create-a-prompt-quickly)
   - [Upravit výzvu](#edit-a-prompt)
   - [Otestovat výzvu před použitím](#test-a-prompt-before-using-it)
-- [Přehled](#dashboard)
-  - [Filtrování dat](#filter-the-data)
-  - [Karty přehledu](#dashboard-tabs)
-  - [Export dat](#export-data)
-  - [Odstranit uložené záznamy pro model](#delete-stored-records-for-a-model)
+- [Nástěnka](#dashboard)
+  - [Filtrujte data](#filter-the-data)
+  - [Karty na nástěnce](#dashboard-tabs)
+  - [Exportovat data](#export-data)
+  - [Smazat uložené záznamy pro model](#delete-stored-records-for-a-model)
 - [Historie](#history)
-  - [Filtrování historie](#filter-the-history)
-  - [Export dat historie](#export-history-data)
+  - [Filtrujte historii](#filter-the-history)
+  - [Exportovat data historie](#export-history-data)
 - [Nastavení](#settings)
-  - [Obecné nastavení](#general-settings)
+  - [Obecná nastavení](#general-settings)
   - [Modely](#models)
   - [Jazyky](#languages)
   - [Sledování nákladů](#cost-tracking)
-  - [Transformovat (karta nastavení)](#transform-settings-tab)
+  - [Transformace (karta nastavení)](#transform-settings-tab)
   - [Uživatelé](#users)
-  - [Nastavení API](#api-config)
+  - [Konfigurace API](#api-config)
   - [O aplikaci](#about)
 - [Běžné problémy](#common-issues)
   - [Aplikace nepřekládá, nepřepisuje ani netransformuje text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Seznam modelů je prázdný](#the-model-list-is-empty)
   - [Výsledek je příliš pomalý nebo příliš drahý](#the-result-is-too-slow-or-too-expensive)
   - [Rozhraní je v nesprávném jazyce](#the-interface-is-in-the-wrong-language)
-  - [Text je příliš malý nebo špatně čitelný](#the-text-is-too-small-or-hard-to-read)
-  - [Souhrn na přehledu vypadá prázdně](#dashboard-summary-looks-empty)
-  - [Náklady zobrazují „není k dispozici“ nebo se zdají chybné](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady neodpovídají mému účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
-  - [Stránka Historie chybí v bočním panelu](#the-history-page-is-missing-from-the-sidebar)
-  - [Webová aplikace: neočekávaně přesměrováno na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webový správce: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
-  - [Přehled nezobrazuje data pro ostatní uživatele (webová verze)](#dashboard-shows-no-data-for-other-users-web)
-  - [Změnil jsem výzvu a upravy jsem ztratil](#i-changed-a-prompt-and-lost-the-edits)
+  - [Text je příliš malý nebo těžko čitelný](#the-text-is-too-small-or-hard-to-read)
+  - [Souhrn na nástěnce vypadá prázdně](#dashboard-summary-looks-empty)
+  - [Náklady ukazují "nedostupné" nebo se zdají být nesprávné](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady se neshodují s fakturou mého poskytovatele](#total-cost-does-not-match-my-provider-bill)
+  - [Stránka Historie chybí v postranním panelu](#the-history-page-is-missing-from-the-sidebar)
+  - [Webová aplikace: neočekávaně přesměrována na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webový administrátor: zapomněl nebo ztratil heslo](#web-admin-forgot-or-lost-a-password)
+  - [Nástěnka nezobrazuje žádná data pro ostatní uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Změnil jsem výzvu a ztratil úpravy](#i-changed-a-prompt-and-lost-the-edits)
 - [Rychlé tipy](#quick-tips)
-- [Právní upozornění](#disclaimer)
+- [Zřeknutí se odpovědnosti](#disclaimer)
 - [Licence](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ V části [**Nastavení** > **Obecné nastavení**](#general-settings) můžete 
 - **Chování pro ENTER** vybírá, zda `Enter` spustí úkol nebo vloží nový řádek:
   - **Enter** spustí překlad nebo přepis (výchozí).
   - **Shift + Enter** spustí překlad nebo přepis; obyčejný **Enter** vloží nový řádek.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Vylepšení vašeho překladu
+
+Po úspěšném překladu můžete vylepšit výsledek v panelu výstupu:
+
+1. **Přefrazovat…** — pokud není vybrán žádný text ve výstupu, získáte další plný překlad stejného vstupu s jinými slovy. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovacím menu verzí. Při vybraném textu **Přefrazovat…** otevře alternativy slov blízko výběru (stejně jako pravé tlačítko myši). Bez výběru je **Přefrazovat…** zakázáno, jakmile dosáhnete pěti verzí; při výběru to stále funguje na pěti verzích (pouze alternativy slov, aktualizující verzi 5).
+2. **Alternativy slov** — vyberte jedno nebo více slov ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přefrazovat…**. Krátký seznam alternativ se objeví blízko výběru; klikněte na jednu, abyste ji nahradili. Pokud máte méně než pět verzí, upravený výstup je uložen jako nová verze; při pěti verzích je aktualizována pouze **verze 5**. Kliknutí pravým tlačítkem bez výběru nic nedělá. Stiskněte **Esc** nebo klikněte mimo seznam, abyste zrušili bez změny výstupu.
+3. **Náklady** — každé plné **Přefrazovat…** (bez výběru) a každá žádost o alternativu slova znovu používá model a může přidat k nákladům na používání (stejně jako běžný překladový běh).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

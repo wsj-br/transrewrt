@@ -49,49 +49,50 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Pasek narzędzi](#toolbar)
   - [Panele wejścia i wyjścia](#input-and-output-panels)
 - [Tłumaczenie](#translate)
-  - [Tłumaczenie tekstu](#translate-text)
+  - [Tłumacz tekst](#translate-text)
   - [Wybór języka](#language-selection)
   - [Przydatne ustawienia tłumaczenia](#helpful-translation-settings)
-- [Przepisanie](#rewrite)
-- [Przekształcanie](#transform)
-  - [Uruchom istniejącą podpowiedź](#run-an-existing-prompt)
-  - [Jeśli nie masz jeszcze żadnych podpowiedzi](#if-you-have-no-prompts-yet)
-  - [Szybkie utworzenie podpowiedzi](#create-a-prompt-quickly)
-  - [Edycja podpowiedzi](#edit-a-prompt)
-  - [Przetestuj podpowiedź przed użyciem](#test-a-prompt-before-using-it)
-- [Panel główny](#dashboard)
-  - [Filtrowanie danych](#filter-the-data)
-  - [Karty panelu głównego](#dashboard-tabs)
-  - [Eksport danych](#export-data)
+  - [Udoskonalanie tłumaczenia](#refining-translation)
+- [Przeróbka](#rewrite)
+- [Transformacja](#transform)
+  - [Uruchom istniejący monit](#run-an-existing-prompt)
+  - [Jeśli nie masz jeszcze monitów](#if-you-have-no-prompts-yet)
+  - [Utwórz monit szybko](#create-a-prompt-quickly)
+  - [Edytuj monit](#edit-a-prompt)
+  - [Testuj monit przed użyciem](#test-a-prompt-before-using-it)
+- [Panel](#dashboard)
+  - [Filtruj dane](#filter-the-data)
+  - [Zakładki panelu](#dashboard-tabs)
+  - [Eksportuj dane](#export-data)
   - [Usuń zapisane rekordy dla modelu](#delete-stored-records-for-a-model)
 - [Historia](#history)
-  - [Filtrowanie historii](#filter-the-history)
-  - [Eksport danych historii](#export-history-data)
+  - [Filtruj historię](#filter-the-history)
+  - [Eksportuj dane historii](#export-history-data)
 - [Ustawienia](#settings)
   - [Ustawienia ogólne](#general-settings)
   - [Modele](#models)
   - [Języki](#languages)
   - [Śledzenie kosztów](#cost-tracking)
-  - [Przekształć (karta ustawień)](#transform-settings-tab)
+  - [Transformacja (zakładka ustawień)](#transform-settings-tab)
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
-  - [O programie](#about)
+  - [O aplikacji](#about)
 - [Typowe problemy](#common-issues)
-  - [Aplikacja nie tłumaczy, nie przepisuje ani nie przekształca tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikacja nie tłumaczy, nie przerabia ani nie transformuje tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista modeli jest pusta](#the-model-list-is-empty)
-  - [Wynik jest zbyt powolny lub zbyt kosztowny](#the-result-is-too-slow-or-too-expensive)
+  - [Wynik jest zbyt wolny lub zbyt drogi](#the-result-is-too-slow-or-too-expensive)
   - [Interfejs jest w niewłaściwym języku](#the-interface-is-in-the-wrong-language)
   - [Tekst jest zbyt mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
-  - [Podsumowanie na panelu głównym wygląda na puste](#dashboard-summary-looks-empty)
-  - [Koszt pokazuje „nie dostępny” lub wydaje się nieprawidłowy](#cost-shows-not-available-or-seems-wrong)
-  - [Całkowity koszt nie zgadza się z rachunkiem dostawcy](#total-cost-does-not-match-my-provider-bill)
-  - [Strona Historia brakuje w pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikacja internetowa: niespodziewane przekierowanie do strony logowania](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Podsumowanie panelu wygląda na puste](#dashboard-summary-looks-empty)
+  - [Koszt pokazuje "niedostępne" lub wydaje się błędny](#cost-shows-not-available-or-seems-wrong)
+  - [Całkowity koszt nie zgadza się z rachunkiem mojego dostawcy](#total-cost-does-not-match-my-provider-bill)
+  - [Strona historii brakuje w pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikacja internetowa: nieoczekiwanie przekierowano na stronę logowania](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Administrator internetowy: zapomniałem lub zgubiłem hasło](#web-admin-forgot-or-lost-a-password)
-  - [Panel główny nie pokazuje danych innych użytkowników (wersja internetowa)](#dashboard-shows-no-data-for-other-users-web)
-  - [Zmieniłem podpowiedź i straciłem edycje](#i-changed-a-prompt-and-lost-the-edits)
+  - [Panel nie pokazuje danych dla innych użytkowników (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Zmieniłem monit i straciłem edycje](#i-changed-a-prompt-and-lost-the-edits)
 - [Szybkie wskazówki](#quick-tips)
-- [Zrzeczenie odpowiedzialności](#disclaimer)
+- [Zastrzeżenie](#disclaimer)
 - [Licencja](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ W sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zm
 - **Zachowanie dla ENTER** wybiera, czy `Enter` uruchamia zadanie, czy wstawia nową linię:
   - **Enter** uruchamia tłumaczenie lub przeróbkę (domyślnie).
   - **Shift + Enter** uruchamia tłumaczenie lub przeróbkę; zwykły **Enter** wstawia nową linię.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Udoskonalanie tłumaczenia
+
+Po udanym tłumaczeniu możesz udoskonalić wynik w panelu wyjściowym:
+
+1. **Przeformułuj…** — gdy nie ma zaznaczonego tekstu w wyjściu, uzyskaj pełne tłumaczenie tego samego wejścia z innymi sformułowaniami. Możesz przechować do **pięciu** wersji i przełączać się między nimi w rozwijanym menu wersji. Gdy tekst jest zaznaczony, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone, gdy osiągniesz pięć wersji; z zaznaczeniem nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5).
+2. **Alternatywy słów** — zaznacz jedno lub więcej słów w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerza zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawia się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach aktualizowana jest tylko **wersja 5**. Kliknięcie prawym przyciskiem myszy bez zaznaczenia nic nie robi. Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
+3. **Koszty** — każde pełne **Przeformułuj…** (bez zaznaczenia) i każde żądanie alternatywy słów ponownie wykorzystuje model i może zwiększyć koszt użytkowania (tak jak normalne uruchomienie tłumaczenia).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

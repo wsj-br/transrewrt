@@ -49,19 +49,20 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Araç çubuğu](#toolbar)
   - [Girdi ve çıktı panelleri](#input-and-output-panels)
 - [Çevir](#translate)
-  - [Metni çevir](#translate-text)
+  - [Çeviri metni](#translate-text)
   - [Dil seçimi](#language-selection)
-  - [Yararlı çeviri ayarları](#helpful-translation-settings)
-- [Yeniden yaz](#rewrite)
+  - [Yardımcı çeviri ayarları](#helpful-translation-settings)
+  - [Çevirinizi iyileştirme](#refining-translation)
+- [Yeniden yazma](#rewrite)
 - [Dönüştür](#transform)
-  - [Var olan bir istemi çalıştır](#run-an-existing-prompt)
-  - [Henüz isteminiz yoksa](#if-you-have-no-prompts-yet)
-  - [Hızlıca bir istem oluştur](#create-a-prompt-quickly)
-  - [Bir istemi düzenle](#edit-a-prompt)
-  - [Kullanmadan önce bir istemi test et](#test-a-prompt-before-using-it)
-- [Kontrol Paneli](#dashboard)
+  - [Mevcut bir isteği çalıştır](#run-an-existing-prompt)
+  - [Henüz isteğiniz yoksa](#if-you-have-no-prompts-yet)
+  - [Hızlı bir istek oluştur](#create-a-prompt-quickly)
+  - [Bir isteği düzenle](#edit-a-prompt)
+  - [Kullanımdan önce bir isteği test et](#test-a-prompt-before-using-it)
+- [Pano](#dashboard)
   - [Verileri filtrele](#filter-the-data)
-  - [Kontrol Paneli sekmeleri](#dashboard-tabs)
+  - [Pano sekmeleri](#dashboard-tabs)
   - [Verileri dışa aktar](#export-data)
   - [Bir model için saklanan kayıtları sil](#delete-stored-records-for-a-model)
 - [Geçmiş](#history)
@@ -76,22 +77,22 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Kullanıcılar](#users)
   - [API yapılandırması](#api-config)
   - [Hakkında](#about)
-- [Sık karşılaşılan sorunlar](#common-issues)
-  - [Uygulama metni çevirmiyor, yeniden yazmıyor veya dönüştürmüyor](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Yaygın sorunlar](#common-issues)
+  - [Uygulama metni çeviremiyor, yeniden yazamıyor veya dönüştüremiyor](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Model listesi boş](#the-model-list-is-empty)
-  - [Sonuç çok yavaş veya çok maliyetli](#the-result-is-too-slow-or-too-expensive)
+  - [Sonuç çok yavaş veya çok pahalı](#the-result-is-too-slow-or-too-expensive)
   - [Arayüz yanlış dilde](#the-interface-is-in-the-wrong-language)
   - [Metin çok küçük veya okunması zor](#the-text-is-too-small-or-hard-to-read)
-  - [Kontrol Paneli Özeti boş görünüyor](#dashboard-summary-looks-empty)
-  - [Maliyet "mevcut değil" veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
-  - [Toplam maliyet sağlayıcınızın faturanızla eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
-  - [Geçmiş sayfası kenar çubuğunda eksik](#the-history-page-is-missing-from-the-sidebar)
-  - [Web uygulaması: beklenmedik şekilde oturum açma sayfasına yönlendiriliyorsunuz](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web yönetici: şifreyi unuttum veya kaybettim](#web-admin-forgot-or-lost-a-password)
-  - [Kontrol Paneli diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Bir istemi değiştirdim ve düzenlemeleri kaybettim](#i-changed-a-prompt-and-lost-the-edits)
+  - [Pano Özeti boş görünüyor](#dashboard-summary-looks-empty)
+  - [Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
+  - [Toplam maliyet sağlayıcı fatura ile eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
+  - [Geçmiş sayfası yan menüden kayboldu](#the-history-page-is-missing-from-the-sidebar)
+  - [Web uygulaması: beklenmedik şekilde giriş sayfasına yönlendirildi](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web yöneticisi: parolayı unuttum veya kaybettim](#web-admin-forgot-or-lost-a-password)
+  - [Pano diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Bir isteği değiştirdim ve düzenlemeleri kaybettim](#i-changed-a-prompt-and-lost-the-edits)
 - [Hızlı ipuçları](#quick-tips)
-- [Sorumluluk reddi](#disclaimer)
+- [Feragatname](#disclaimer)
 - [Lisans](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ Seçtiğiniz **Üst diller** listede en üstte görünür. Bunları [**Ayarlar**
 - **ENTER için davranış** `Enter` görevi çalıştırıp çalıştırmayacağına veya yeni bir satır ekleyip eklemeyeceğine karar verir:
   - **Enter** çeviriyi veya yeniden yazmayı çalıştırır (varsayılan).
   - **Shift + Enter** çeviriyi veya yeniden yazmayı çalıştırır; düz **Enter** yeni bir satır ekler.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Çevirinizi iyileştirme
+
+Başarılı bir çeviriden sonra, sonucu çıkış panelinde iyileştirebilirsiniz:
+
+1. **Yeniden ifade et…** — çıktıdaki metin seçilmeden, aynı girdinin farklı kelimelerle başka bir tam çevirisini alırsınız. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçildiğinde, **Yeniden ifade et…** seçiminiz yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim olmadan, **Yeniden ifade et…** beş sürüme ulaştığınızda devre dışı kalır; bir seçim ile beş sürümde de çalışmaya devam eder (yalnızca kelime alternatifleri, sürüm 5'i güncelleyerek).
+2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelime seçin (eğer yalnızca bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Yeniden ifade et…** butonuna tıklayın. Seçiminiz yakınında kısa bir alternatif listesi görünür; birine tıklayarak onu değiştirebilirsiniz. Beş sürümden az varsa, düzenlenmiş çıktı yeni bir sürüm olarak kaydedilir; beş sürümde yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklamak hiçbir şey yapmaz. Değişiklik yapmadan iptal etmek için **Esc** tuşuna basın veya listenin dışına tıklayın.
+3. **Maliyetler** — her tam **Yeniden ifade et…** (seçim yok) ve her kelime alternatif talebi modeli tekrar kullanır ve kullanım maliyetine ekleyebilir (normal bir çeviri çalışmasıyla aynı).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

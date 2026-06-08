@@ -51,11 +51,12 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
 - [Traduzir](#translate)
   - [Traduzir texto](#translate-text)
   - [Seleção de idioma](#language-selection)
-  - [Configurações úteis de tradução](#helpful-translation-settings)
-- [Reescrever](#rewrite)
+  - [Configurações de tradução úteis](#helpful-translation-settings)
+  - [Aprimorando sua tradução](#refining-translation)
+- [Reescrita](#rewrite)
 - [Transformar](#transform)
   - [Executar um prompt existente](#run-an-existing-prompt)
-  - [Se você ainda não tem prompts](#if-you-have-no-prompts-yet)
+  - [Se você ainda não tiver prompts](#if-you-have-no-prompts-yet)
   - [Criar um prompt rapidamente](#create-a-prompt-quickly)
   - [Editar um prompt](#edit-a-prompt)
   - [Testar um prompt antes de usá-lo](#test-a-prompt-before-using-it)
@@ -63,7 +64,7 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [Filtrar os dados](#filter-the-data)
   - [Guias do painel](#dashboard-tabs)
   - [Exportar dados](#export-data)
-  - [Excluir registros armazenados de um modelo](#delete-stored-records-for-a-model)
+  - [Excluir registros armazenados para um modelo](#delete-stored-records-for-a-model)
 - [Histórico](#history)
   - [Filtrar o histórico](#filter-the-history)
   - [Exportar dados do histórico](#export-history-data)
@@ -71,27 +72,27 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [Configurações gerais](#general-settings)
   - [Modelos](#models)
   - [Idiomas](#languages)
-  - [Rastreamento de Custo](#cost-tracking)
+  - [Rastreamento de custos](#cost-tracking)
   - [Transformar (guia de configurações)](#transform-settings-tab)
   - [Usuários](#users)
-  - [Configuração de API](#api-config)
+  - [Configuração da API](#api-config)
   - [Sobre](#about)
 - [Problemas comuns](#common-issues)
-  - [O aplicativo não traduz, reescreve ou transforma o texto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [O aplicativo não traduz, reescreve ou transforma texto](#the-app-will-not-translate-rewrite-or-transform-text)
   - [A lista de modelos está vazia](#the-model-list-is-empty)
   - [O resultado é muito lento ou muito caro](#the-result-is-too-slow-or-too-expensive)
-  - [A interface está em um idioma errado](#the-interface-is-in-the-wrong-language)
+  - [A interface está no idioma errado](#the-interface-is-in-the-wrong-language)
   - [O texto é muito pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
-  - [O Resumo do Painel parece vazio](#dashboard-summary-looks-empty)
-  - [O Custo mostra "não disponível" ou parece incorreto](#cost-shows-not-available-or-seems-wrong)
-  - [O Custo total não corresponde à minha fatura do provedor](#total-cost-does-not-match-my-provider-bill)
-  - [A página Histórico está ausente na barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicativo web: redirecionado inesperadamente para a página de login](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrador web: esqueceu ou perdeu a senha](#web-admin-forgot-or-lost-a-password)
-  - [O painel não mostra dados de outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Eu alterei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
+  - [O resumo do painel parece vazio](#dashboard-summary-looks-empty)
+  - [O custo mostra "não disponível" ou parece errado](#cost-shows-not-available-or-seems-wrong)
+  - [O custo total não corresponde à fatura do meu provedor](#total-cost-does-not-match-my-provider-bill)
+  - [A página de histórico está faltando na barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplicativo web: redirecionado para a página de login inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: esqueci ou perdi uma senha](#web-admin-forgot-or-lost-a-password)
+  - [O painel não mostra dados para outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Eu mudei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
 - [Dicas rápidas](#quick-tips)
-- [Aviso legal](#disclaimer)
+- [Isenção de responsabilidade](#disclaimer)
 - [Licença](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -284,6 +285,17 @@ Em [**Configurações** > **Configurações gerais**](#general-settings), você 
 - **Comportamento para ENTER** escolhe se `Enter` executa a tarefa ou insere uma nova linha:
   - **Enter** executa traduzir ou reescrever (padrão).
   - **Shift + Enter** executa traduzir ou reescrever; **Enter** simples insere uma nova linha.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Aprimorando sua tradução
+
+Após uma tradução bem-sucedida, você pode aprimorar o resultado no painel de saída:
+
+1. **Reformular…** — sem texto selecionado na saída, obtenha outra tradução completa da mesma entrada com palavras diferentes. Você pode armazenar até **cinco** versões e alternar entre elas no menu suspenso de versões. Com texto selecionado, **Reformular…** abre alternativas de palavras próximas à seleção (igual ao clique com o botão direito). Sem uma seleção, **Reformular…** é desativado uma vez que você atinge cinco versões; com uma seleção, ainda funciona com cinco versões (apenas alternativas de palavras, atualizando a versão 5).
+2. **Alternativas de palavras** — selecione uma ou mais palavras na saída (se você selecionar apenas parte de uma palavra, o aplicativo expande a seleção para palavras completas), em seguida, clique com o botão direito ou clique em **Reformular…**. Uma lista curta de alternativas aparece próxima à seleção; clique em uma para substituí-la. Se você tiver menos de cinco versões, a saída editada é salva como uma nova versão; com cinco versões, apenas **versão 5** é atualizada. Clique com o botão direito sem seleção não faz nada. Pressione **Esc** ou clique fora da lista para cancelar sem alterar a saída.
+3. **Custos** — cada **Reformular…** completo (sem seleção) e cada solicitação de alternativa de palavra utiliza o modelo novamente e pode aumentar o custo de uso (igual a uma execução normal de tradução).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

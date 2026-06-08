@@ -2,7 +2,7 @@ import { Shuffle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const MAX_TRANSLATE_VERSIONS = 3;
+import { MAX_TRANSLATE_VERSIONS } from "../../constants/translateVersions";
 
 interface TranslateRephraseControlsProps {
   t: (key: string, options?: Record<string, string | number>) => string;
@@ -10,6 +10,7 @@ interface TranslateRephraseControlsProps {
   translateOutputIsModelResult: boolean;
   translateVersions: string[];
   selectedTranslateVersion: number;
+  outputHasSelection?: boolean;
   onRephrase: () => void;
   onVersionChange: (version: string) => void;
 }
@@ -24,6 +25,7 @@ export function TranslateRephraseControls({
   translateOutputIsModelResult,
   translateVersions,
   selectedTranslateVersion,
+  outputHasSelection = false,
   onRephrase,
   onVersionChange,
 }: TranslateRephraseControlsProps) {
@@ -33,15 +35,26 @@ export function TranslateRephraseControls({
 
   const atMaxVersions = translateVersions.length >= MAX_TRANSLATE_VERSIONS;
 
+  const rephraseDisabled = isProcessing || (atMaxVersions && !outputHasSelection);
+
   return (
     <div className="flex shrink-0 items-center gap-1.5">
       <Button
         variant="outline"
         size="sm"
         className="h-8 shrink-0 gap-1.5"
-        disabled={isProcessing || atMaxVersions}
+        disabled={rephraseDisabled}
+        onMouseDown={(event) => {
+          if (outputHasSelection && !rephraseDisabled) {
+            event.preventDefault();
+          }
+        }}
         onClick={onRephrase}
-        title={atMaxVersions ? t("Maximum of 3 translation versions reached") : t("Rephrase...")}
+        title={
+          atMaxVersions && !outputHasSelection
+            ? t("Maximum of 5 translation versions reached")
+            : t("Rephrase...")
+        }
         aria-label={t("Rephrase...")}
       >
         <Shuffle className="h-3.5 w-3.5" />

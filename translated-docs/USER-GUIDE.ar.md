@@ -51,17 +51,18 @@
 - [الترجمة](#translate)
   - [ترجمة النص](#translate-text)
   - [اختيار اللغة](#language-selection)
-  - [إعدادات ترجمة مفيدة](#helpful-translation-settings)
-- [إعادة الصياغة](#rewrite)
-- [التحويل](#transform)
-  - [تشغيل موجه موجود](#run-an-existing-prompt)
-  - [إذا لم تكن لديك موجهات بعد](#if-you-have-no-prompts-yet)
-  - [إنشاء موجه بسرعة](#create-a-prompt-quickly)
-  - [تحرير موجه](#edit-a-prompt)
-  - [اختبار موجه قبل استخدامه](#test-a-prompt-before-using-it)
-- [لوحة التحكم](#dashboard)
+  - [إعدادات الترجمة المفيدة](#helpful-translation-settings)
+  - [تنقيح الترجمة الخاصة بك](#refining-translation)
+- [إعادة كتابة](#rewrite)
+- [تحويل](#transform)
+  - [تشغيل مطالبة موجودة](#run-an-existing-prompt)
+  - [إذا لم يكن لديك أي مطالبات حتى الآن](#if-you-have-no-prompts-yet)
+  - [إنشاء مطالبة بسرعة](#create-a-prompt-quickly)
+  - [تحرير مطالبة](#edit-a-prompt)
+  - [اختبار مطالبة قبل استخدامها](#test-a-prompt-before-using-it)
+- [لوحة القيادة](#dashboard)
   - [تصفية البيانات](#filter-the-data)
-  - [علامات تبويب لوحة التحكم](#dashboard-tabs)
+  - [علامات لوحة القيادة](#dashboard-tabs)
   - [تصدير البيانات](#export-data)
   - [حذف السجلات المخزنة لنموذج](#delete-stored-records-for-a-model)
 - [السجل](#history)
@@ -71,28 +72,28 @@
   - [الإعدادات العامة](#general-settings)
   - [النماذج](#models)
   - [اللغات](#languages)
-  - [تتبع التكلفة](#cost-tracking)
-  - [تحويل (علامة التبويب الإعدادات)](#transform-settings-tab)
+  - [تتبع التكاليف](#cost-tracking)
+  - [تحويل (علامة الإعدادات)](#transform-settings-tab)
   - [المستخدمون](#users)
-  - [تكوين واجهة برمجة التطبيقات](#api-config)
+  - [تكوين API](#api-config)
   - [حول](#about)
-- [المشاكل الشائعة](#common-issues)
-  - [لا يقوم التطبيق بترجمة النص أو إعادة صياغته أو تحويله](#the-app-will-not-translate-rewrite-or-transform-text)
+- [المشكلات الشائعة](#common-issues)
+  - [التطبيق لا يترجم أو يعيد كتابة أو يحول النص](#the-app-will-not-translate-rewrite-or-transform-text)
   - [قائمة النماذج فارغة](#the-model-list-is-empty)
   - [النتيجة بطيئة جدًا أو مكلفة جدًا](#the-result-is-too-slow-or-too-expensive)
-  - [الواجهة بلغة خاطئة](#the-interface-is-in-the-wrong-language)
+  - [واجهة المستخدم بلغة خاطئة](#the-interface-is-in-the-wrong-language)
   - [النص صغير جدًا أو يصعب قراءته](#the-text-is-too-small-or-hard-to-read)
-  - [يبدو ملخص لوحة التحكم فارغًا](#dashboard-summary-looks-empty)
-  - [تظهر التكلفة "غير متوفرة" أو تبدو خاطئة](#cost-shows-not-available-or-seems-wrong)
-  - [لا تتطابق التكلفة الإجمالية مع فاتورتي من المزود](#total-cost-does-not-match-my-provider-bill)
+  - [ملخص لوحة القيادة يبدو فارغًا](#dashboard-summary-looks-empty)
+  - [التكلفة تظهر "غير متاحة" أو تبدو خاطئة](#cost-shows-not-available-or-seems-wrong)
+  - [إجمالي التكلفة لا يتطابق مع فاتورة المزود الخاصة بي](#total-cost-does-not-match-my-provider-bill)
   - [صفحة السجل مفقودة من الشريط الجانبي](#the-history-page-is-missing-from-the-sidebar)
-  - [التطبيق الويب: إعادة التوجيه إلى صفحة تسجيل الدخول بشكل غير متوقع](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [مسؤول الويب: نسيان أو فقدان كلمة المرور](#web-admin-forgot-or-lost-a-password)
-  - [تُظهر لوحة التحكم عدم وجود بيانات للمستخدمين الآخرين (الويب)](#dashboard-shows-no-data-for-other-users-web)
-  - [قمت بتعديل موجه وفقدت التعديلات](#i-changed-a-prompt-and-lost-the-edits)
+  - [تطبيق الويب: تم إعادة توجيهي إلى صفحة تسجيل الدخول بشكل غير متوقع](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [مسؤول الويب: نسيت أو فقدت كلمة المرور](#web-admin-forgot-or-lost-a-password)
+  - [لوحة القيادة لا تظهر بيانات لمستخدمين آخرين (ويب)](#dashboard-shows-no-data-for-other-users-web)
+  - [غيرت مطالبة وفقدت التعديلات](#i-changed-a-prompt-and-lost-the-edits)
 - [نصائح سريعة](#quick-tips)
-- [إخلاء مسؤولية](#disclaimer)
-- [الرخصة](#license)
+- [إخلاء المسؤولية](#disclaimer)
+- [الترخيص](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -284,6 +285,17 @@
 - **السلوك لـ ENTER** يختار ما إذا كان `Enter` يقوم بتشغيل المهمة أو إدراج سطر جديد:
   - **Enter** يقوم بتشغيل الترجمة أو إعادة الكتابة (افتراضي).
   - **Shift + Enter** يقوم بتشغيل الترجمة أو إعادة الكتابة؛ بينما **Enter** العادي يقوم بإدراج سطر جديد.
+
+<br/>
+
+<a id="refining-translation"></a>
+### تنقيح الترجمة الخاصة بك
+
+بعد الترجمة الناجحة، يمكنك تنقيح النتيجة في لوحة الإخراج:
+
+1. **إعادة صياغة…** — عند عدم تحديد نص في الإخراج، احصل على ترجمة كاملة أخرى لنفس الإدخال بكلمات مختلفة. يمكنك تخزين ما يصل إلى **خمسة** إصدارات والتبديل بينها في قائمة الإصدارات المنسدلة. مع تحديد نص، يفتح **إعادة صياغة…** بدائل الكلمات بالقرب من التحديد (نفس الشيء كما في النقر بزر الماوس الأيمن). بدون تحديد، يتم تعطيل **إعادة صياغة…** بمجرد الوصول إلى خمسة إصدارات؛ مع تحديد، لا يزال يعمل عند خمسة إصدارات (بدائل الكلمات فقط، تحديث الإصدار 5).
+2. **بدائل الكلمات** — حدد كلمة أو أكثر في الإخراج (إذا قمت بتحديد جزء فقط من كلمة، يقوم التطبيق بتوسيع التحديد إلى كلمات كاملة)، ثم انقر بزر الماوس الأيمن أو انقر على **إعادة صياغة…**. تظهر قائمة قصيرة من البدائل بالقرب من التحديد؛ انقر على أحدها لاستبداله. إذا كان لديك أقل من خمسة إصدارات، يتم حفظ الإخراج المعدل كإصدار جديد؛ عند خمسة إصدارات، يتم تحديث **الإصدار 5** فقط. النقر بزر الماوس الأيمن بدون تحديد لا يفعل شيئًا. اضغط على **Esc** أو انقر خارج القائمة للإلغاء دون تغيير الإخراج.
+3. **التكاليف** — كل **إعادة صياغة…** كاملة (بدون تحديد) وكل طلب بديل كلمة يستخدم النموذج مرة أخرى وقد يضيف إلى تكلفة الاستخدام (نفس الشيء كما في عملية الترجمة العادية).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

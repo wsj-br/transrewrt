@@ -6,6 +6,7 @@ import webAPI from "../utils/api/webApiClient";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import { FREE_MODEL_ID, UI_LANGUAGES } from "../constants";
 import { getTextStats } from "../utils/misc/formatUtils";
+import { wordAlternativeDisplayText } from "../utils/misc/wordAlternativeUtils";
 import { useCostTracking } from "../hooks/useCostTracking";
 import { useModelManagement } from "../hooks/useModelManagement";
 import i18n, { loadLocale, SOURCE_LOCALE } from "../i18n";
@@ -709,6 +710,146 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const translateWordAlternatives = async (
+    fullTranslation,
+    phrase,
+    originalText,
+    targetLang,
+    model,
+    sourceLang = null,
+    signal = null,
+  ) => {
+    setLoading(true);
+    setError(null);
+
+    const { effectiveModel: presetModel, fallbackModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
+
+    const finalizeWordAlternatives = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
+      await applyCostToResult(setSetting, result);
+
+      await writeLastApiResult({
+        type: "translate_word_alternatives",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+
+      logApiCall("translate_word_alternatives", result, {
+        source_lang: sourceLang || "",
+        target_lang: targetLang || "",
+      });
+
+      const inputStats = getTextStats(typeof originalText === "string" ? originalText : "");
+      const outputStats = getTextStats(
+        Array.isArray(result.alternatives)
+          ? result.alternatives.map(wordAlternativeDisplayText).join(" | ")
+          : "",
+      );
+      const payload: Record<string, unknown> = {
+        timestamp: new Date().toISOString(),
+        type: "translate_word_alternatives",
+        model: result.model_used || modelToUse,
+        prompt_tokens:
+          result.usage?.prompt_tokens ??
+          (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ??
+          (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens =
+            (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+        username: currentUser?.username ?? null,
+        input_chars: inputStats.chars,
+        input_words: inputStats.words,
+        input_paragraphs: inputStats.paragraphs,
+        output_chars: outputStats.chars,
+        output_words: outputStats.words,
+        output_paragraphs: outputStats.paragraphs,
+      };
+      if (settings.keep_execution_history !== false) {
+        payload.input_text = typeof originalText === "string" ? originalText : "";
+        payload.output_text = Array.isArray(result.alternatives)
+          ? result.alternatives.map(wordAlternativeDisplayText).join("\n")
+          : "";
+      }
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(payload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(payload);
+      }
+
+      return result;
+    };
+
+    try {
+      const result = (await apiService.translateWordAlternatives(
+        fullTranslation,
+        phrase,
+        originalText,
+        targetLang,
+        effectiveModel,
+        sourceLang,
+        signal,
+      )) as LlmCallResult;
+      return await finalizeWordAlternatives(result, effectiveModel);
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        let finalErr = err;
+
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.translateWordAlternatives(
+              fullTranslation,
+              phrase,
+              originalText,
+              targetLang,
+              fallbackModel,
+              sourceLang,
+              signal,
+            );
+            return await finalizeWordAlternatives(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
+        }
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
+      }
+
+      setError("Word alternatives failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Translate prompt fields (JSON object in one request; same prompt style as ai-i18n-tools translate-ui)
   const translatePromptFields = async (fieldsObject, targetLang, model, signal = null) => {
     setLoading(true);
@@ -1316,6 +1457,7 @@ export const AppProvider = ({ children }) => {
     setSelectedPresetId: (id) => setSetting("selected_preset_id", id, { optimistic: true }),
     translate,
     translateAlternative,
+    translateWordAlternatives,
     translatePromptFields,
     improvePromptConfig,
     generatePromptConfig,

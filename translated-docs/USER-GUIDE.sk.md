@@ -52,29 +52,30 @@ Táto príručka vysvetľuje, ako používať aplikáciu po jej nainštalovaní 
   - [Preložiť text](#translate-text)
   - [Výber jazyka](#language-selection)
   - [Užitočné nastavenia prekladu](#helpful-translation-settings)
+  - [Vylepšenie vášho prekladu](#refining-translation)
 - [Prepísať](#rewrite)
 - [Transformovať](#transform)
   - [Spustiť existujúcu výzvu](#run-an-existing-prompt)
-  - [Ak ešte nemáte žiadne výzvy](#if-you-have-no-prompts-yet)
+  - [Ak zatiaľ nemáte žiadne výzvy](#if-you-have-no-prompts-yet)
   - [Rýchlo vytvoriť výzvu](#create-a-prompt-quickly)
   - [Upraviť výzvu](#edit-a-prompt)
-  - [Otestovať výzvu pred použitím](#test-a-prompt-before-using-it)
-- [Nástenka](#dashboard)
-  - [Filtrovať údaje](#filter-the-data)
-  - [Záložky nástenky](#dashboard-tabs)
-  - [Exportovať údaje](#export-data)
+  - [Testovať výzvu pred jej použitím](#test-a-prompt-before-using-it)
+- [Ovládací panel](#dashboard)
+  - [Filtrovať dáta](#filter-the-data)
+  - [Záložky ovládacieho panela](#dashboard-tabs)
+  - [Exportovať dáta](#export-data)
   - [Odstrániť uložené záznamy pre model](#delete-stored-records-for-a-model)
 - [História](#history)
   - [Filtrovať históriu](#filter-the-history)
-  - [Exportovať údaje histórie](#export-history-data)
+  - [Exportovať historické dáta](#export-history-data)
 - [Nastavenia](#settings)
   - [Všeobecné nastavenia](#general-settings)
   - [Modely](#models)
   - [Jazyky](#languages)
   - [Sledovanie nákladov](#cost-tracking)
-  - [Transformovať (karta nastavení)](#transform-settings-tab)
+  - [Transformovať (záložka nastavení)](#transform-settings-tab)
   - [Používatelia](#users)
-  - [Nastavenie API](#api-config)
+  - [Konfigurácia API](#api-config)
   - [O aplikácii](#about)
 - [Bežné problémy](#common-issues)
   - [Aplikácia neprekladá, neprepíše ani netransformuje text](#the-app-will-not-translate-rewrite-or-transform-text)
@@ -82,13 +83,13 @@ Táto príručka vysvetľuje, ako používať aplikáciu po jej nainštalovaní 
   - [Výsledok je príliš pomalý alebo príliš drahý](#the-result-is-too-slow-or-too-expensive)
   - [Rozhranie je v nesprávnom jazyku](#the-interface-is-in-the-wrong-language)
   - [Text je príliš malý alebo ťažko čitateľný](#the-text-is-too-small-or-hard-to-read)
-  - [Zhrnutie na nástenke vyzerá prázdne](#dashboard-summary-looks-empty)
-  - [Náklady zobrazujú „nedostupné“ alebo sú nesprávne](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady nezodpovedajú mojmu účtu poskytovateľa](#total-cost-does-not-match-my-provider-bill)
-  - [Stránka História chýba v postrannom paneli](#the-history-page-is-missing-from-the-sidebar)
+  - [Súhrn ovládacieho panela vyzerá prázdny](#dashboard-summary-looks-empty)
+  - [Náklady sa zobrazujú ako "nedostupné" alebo sa zdajú byť nesprávne](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady sa nezhodujú s faktúrou môjho poskytovateľa](#total-cost-does-not-match-my-provider-bill)
+  - [Stránka História chýba v bočnom paneli](#the-history-page-is-missing-from-the-sidebar)
   - [Webová aplikácia: neočakávane presmerovaná na prihlasovaciu stránku](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webový správca: zabudol alebo stratil heslo](#web-admin-forgot-or-lost-a-password)
-  - [Nástenka nezobrazuje žiadne údaje pre iných používateľov (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Webový administrátor: zabudol alebo stratil heslo](#web-admin-forgot-or-lost-a-password)
+  - [Ovládací panel nezobrazuje žiadne dáta pre iných používateľov (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Zmenil som výzvu a stratil úpravy](#i-changed-a-prompt-and-lost-the-edits)
 - [Rýchle tipy](#quick-tips)
 - [Zrieknutie sa zodpovednosti](#disclaimer)
@@ -284,6 +285,17 @@ V [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) môžete zmen
 - **Správanie pre ENTER** vyberá, či `Enter` spustí úlohu alebo vloží nový riadok:
   - **Enter** spustí preklad alebo prepísanie (predvolené).
   - **Shift + Enter** spustí preklad alebo prepísanie; obyčajný **Enter** vloží nový riadok.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Vylepšenie vášho prekladu
+
+Po úspešnom preklade môžete vylepšiť výsledok v paneli výstupu:
+
+1. **Preformulovať…** — ak nie je v výstupe vybraný žiadny text, získate ďalší úplný preklad toho istého vstupu s iným znením. Môžete si uložiť až **päť** verzií a prepínať medzi nimi v rozbaľovacom zozname verzií. Ak je vybraný text, **Preformulovať…** otvorí zoznam alternatív slov v blízkosti výberu (rovnako ako kliknutie pravým tlačidlom myši). Bez výberu je možnosť **Preformulovať…** po dosiahnutí piatich verzií zakázaná; s výberom funguje aj pri piatich verziách (iba alternatívy slov, aktualizuje verziu 5).
+2. **Alternatívy slov** — vyberte jedno alebo viac slov vo výstupe (ak vyberiete iba časť slova, aplikácia rozšíri výber na celé slová), potom kliknite pravým tlačidlom myši alebo na **Preformulovať…**. V blízkosti výberu sa zobrazí krátky zoznam alternatív; kliknutím na jednu z nich ju nahradíte. Ak máte menej ako päť verzií, upravený výstup sa uloží ako nová verzia; pri piatich verziách sa aktualizuje iba **verzia 5**. Kliknutie pravým tlačidlom bez výberu nemá žiadny účinok. Stlačením klávesy **Esc** alebo kliknutím mimo zoznamu zrušíte zmenu bez úprav vo výstupe.
+3. **Náklady** — každý úplný príkaz **Preformulovať…** (bez výberu) a každá požiadavka na alternatívu slov znova použije model a môže zvýšiť náklady na používanie (rovnako ako pri bežnom preklade).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

@@ -51,17 +51,18 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
 - [Dịch](#translate)
   - [Dịch văn bản](#translate-text)
   - [Chọn ngôn ngữ](#language-selection)
-  - [Các cài đặt dịch hữu ích](#helpful-translation-settings)
-- [Viết lại](#rewrite)
+  - [Cài đặt dịch hữu ích](#helpful-translation-settings)
+  - [Chỉnh sửa bản dịch của bạn](#refining-translation)
+- [Chỉnh sửa lại](#rewrite)
 - [Chuyển đổi](#transform)
   - [Chạy một lời nhắc hiện có](#run-an-existing-prompt)
   - [Nếu bạn chưa có lời nhắc nào](#if-you-have-no-prompts-yet)
-  - [Tạo nhanh một lời nhắc](#create-a-prompt-quickly)
-  - [Chỉnh sửa lời nhắc](#edit-a-prompt)
-  - [Kiểm tra lời nhắc trước khi sử dụng](#test-a-prompt-before-using-it)
+  - [Tạo một lời nhắc nhanh chóng](#create-a-prompt-quickly)
+  - [Chỉnh sửa một lời nhắc](#edit-a-prompt)
+  - [Kiểm tra một lời nhắc trước khi sử dụng](#test-a-prompt-before-using-it)
 - [Bảng điều khiển](#dashboard)
   - [Lọc dữ liệu](#filter-the-data)
-  - [Các tab bảng điều khiển](#dashboard-tabs)
+  - [Thẻ bảng điều khiển](#dashboard-tabs)
   - [Xuất dữ liệu](#export-data)
   - [Xóa các bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
 - [Lịch sử](#history)
@@ -71,24 +72,24 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Cài đặt chung](#general-settings)
   - [Mô hình](#models)
   - [Ngôn ngữ](#languages)
-  - [Theo dõi chi phí](#cost-tracking)
-  - [Chuyển đổi (tab cài đặt)](#transform-settings-tab)
+  - [Theo dõi Chi phí](#cost-tracking)
+  - [Chuyển đổi (thẻ cài đặt)](#transform-settings-tab)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
-- [Sự cố thường gặp](#common-issues)
-  - [Ứng dụng không dịch, viết lại hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Vấn đề thường gặp](#common-issues)
+  - [Ứng dụng không dịch, chỉnh sửa lại, hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Danh sách mô hình trống](#the-model-list-is-empty)
-  - [Kết quả quá chậm hoặc quá tốn kém](#the-result-is-too-slow-or-too-expensive)
-  - [Giao diện hiển thị sai ngôn ngữ](#the-interface-is-in-the-wrong-language)
+  - [Kết quả quá chậm hoặc quá đắt](#the-result-is-too-slow-or-too-expensive)
+  - [Giao diện đang ở ngôn ngữ sai](#the-interface-is-in-the-wrong-language)
   - [Văn bản quá nhỏ hoặc khó đọc](#the-text-is-too-small-or-hard-to-read)
-  - [Tóm tắt Bảng điều khiển trông trống rỗng](#dashboard-summary-looks-empty)
-  - [Chi phí hiển thị "không khả dụng" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
-  - [Tổng chi phí không khớp với hóa đơn từ nhà cung cấp của tôi](#total-cost-does-not-match-my-provider-bill)
+  - [Tóm tắt Bảng điều khiển trống](#dashboard-summary-looks-empty)
+  - [Chi phí hiển thị "không có sẵn" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
+  - [Tổng chi phí không khớp với hóa đơn của nhà cung cấp](#total-cost-does-not-match-my-provider-bill)
   - [Trang Lịch sử bị thiếu trong thanh bên](#the-history-page-is-missing-from-the-sidebar)
-  - [Ứng dụng web: bị chuyển hướng về trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Ứng dụng web: bị chuyển hướng đến trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Quản trị viên web: quên hoặc mất mật khẩu](#web-admin-forgot-or-lost-a-password)
-  - [Bảng điều khiển không hiển thị dữ liệu của người dùng khác (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Bảng điều khiển không hiển thị dữ liệu cho người dùng khác (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Tôi đã thay đổi một lời nhắc và mất các chỉnh sửa](#i-changed-a-prompt-and-lost-the-edits)
 - [Mẹo nhanh](#quick-tips)
 - [Tuyên bố từ chối trách nhiệm](#disclaimer)
@@ -284,6 +285,17 @@ Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có th
 - **Hành vi cho ENTER** chọn xem `Enter` có chạy tác vụ hay chèn một dòng mới:
   - **Enter** chạy dịch hoặc chỉnh sửa lại (mặc định).
   - **Shift + Enter** chạy dịch hoặc chỉnh sửa lại; **Enter** thông thường chèn một dòng mới.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Chỉnh sửa bản dịch của bạn
+
+Sau khi dịch thành công, bạn có thể chỉnh sửa kết quả trong bảng đầu ra:
+
+1. **Diễn đạt lại…** — khi không có văn bản nào được chọn trong đầu ra, hệ thống sẽ tạo một bản dịch đầy đủ khác của cùng đầu vào với cách diễn đạt khác. Bạn có thể lưu tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Diễn đạt lại…** sẽ mở danh sách lựa chọn từ gần vùng chọn (tương tự như nhấp chuột phải). Nếu không chọn văn bản, **Diễn đạt lại…** sẽ bị vô hiệu hóa khi bạn đã đạt năm phiên bản; nếu có chọn văn bản, tính năng này vẫn hoạt động ở năm phiên bản (chỉ hiển thị lựa chọn từ, cập nhật phiên bản 5).
+2. **Lựa chọn từ** — chọn một hoặc nhiều từ trong đầu ra (nếu chỉ chọn một phần của từ, ứng dụng sẽ tự động mở rộng vùng chọn thành từ đầy đủ), sau đó nhấp chuột phải hoặc chọn **Diễn đạt lại…**. Một danh sách ngắn các lựa chọn thay thế sẽ xuất hiện gần vùng chọn; nhấp vào một lựa chọn để thay thế. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng phiên bản mới; khi đã đủ năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải khi không chọn gì sẽ không thực hiện thao tác nào. Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
+3. **Chi phí** — mỗi lần yêu cầu **Diễn đạt lại…** đầy đủ (không chọn văn bản) và mỗi lần yêu cầu lựa chọn từ đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (tương tự như một lần chạy dịch thông thường).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

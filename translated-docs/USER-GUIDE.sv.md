@@ -51,17 +51,18 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 - [Översätt](#translate)
   - [Översätt text](#translate-text)
   - [Språkval](#language-selection)
-  - [Användbara översättningsinställningar](#helpful-translation-settings)
-- [Omskriv](#rewrite)
+  - [Hjälpsamma översättningsinställningar](#helpful-translation-settings)
+  - [Förfina din översättning](#refining-translation)
+- [Omskrivning](#rewrite)
 - [Transformera](#transform)
   - [Kör en befintlig prompt](#run-an-existing-prompt)
   - [Om du inte har några prompts än](#if-you-have-no-prompts-yet)
   - [Skapa en prompt snabbt](#create-a-prompt-quickly)
   - [Redigera en prompt](#edit-a-prompt)
   - [Testa en prompt innan du använder den](#test-a-prompt-before-using-it)
-- [Översiktspanel](#dashboard)
-  - [Filtrera data](#filter-the-data)
-  - [Flikar i översiktspaneln](#dashboard-tabs)
+- [Instrumentpanel](#dashboard)
+  - [Filtrera datan](#filter-the-data)
+  - [Instrumentpanelflikar](#dashboard-tabs)
   - [Exportera data](#export-data)
   - [Ta bort lagrade poster för en modell](#delete-stored-records-for-a-model)
 - [Historik](#history)
@@ -71,7 +72,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Allmänna inställningar](#general-settings)
   - [Modeller](#models)
   - [Språk](#languages)
-  - [Kostnadsöversikt](#cost-tracking)
+  - [Kostnadsspårning](#cost-tracking)
   - [Transformera (inställningsflik)](#transform-settings-tab)
   - [Användare](#users)
   - [API-konfiguration](#api-config)
@@ -82,13 +83,13 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Resultatet är för långsamt eller för dyrt](#the-result-is-too-slow-or-too-expensive)
   - [Gränssnittet är på fel språk](#the-interface-is-in-the-wrong-language)
   - [Texten är för liten eller svår att läsa](#the-text-is-too-small-or-hard-to-read)
-  - [Översiktspanelens sammanfattning ser tom ut](#dashboard-summary-looks-empty)
-  - [Kostnad visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
-  - [Total kostnad stämmer inte med min leverantörsräkning](#total-cost-does-not-match-my-provider-bill)
-  - [Historiksida saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
+  - [Instrumentpanelens sammanfattning ser tom ut](#dashboard-summary-looks-empty)
+  - [Kostnaden visar "inte tillgänglig" eller verkar fel](#cost-shows-not-available-or-seems-wrong)
+  - [Totalkostnaden stämmer inte överens med min leverantörs faktura](#total-cost-does-not-match-my-provider-bill)
+  - [Historiksidan saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
   - [Webbapp: omdirigerad till inloggningssidan oväntat](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Webbadmin: glömt eller förlorat ett lösenord](#web-admin-forgot-or-lost-a-password)
-  - [Översiktspaneln visar ingen data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
+  - [Instrumentpanelen visar inga data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
   - [Jag ändrade en prompt och förlorade redigeringarna](#i-changed-a-prompt-and-lost-the-edits)
 - [Snabba tips](#quick-tips)
 - [Ansvarsfriskrivning](#disclaimer)
@@ -284,6 +285,17 @@ I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du 
 - **Beteende för ENTER** väljer om `Enter` kör uppgiften eller infogar en ny rad:
   - **Enter** kör översätt eller omskrivning (standard).
   - **Shift + Enter** kör översätt eller omskrivning; vanlig **Enter** infogar en ny rad.
+
+<br/>
+
+<a id="refining-translation"></a>
+### Förfina din översättning
+
+Efter en lyckad översättning kan du förfina resultatet i utdatapanelen:
+
+1. **Omformulera…** — utan text vald i utdata, få en annan fullständig översättning av samma inmatning med annan formulering. Du kan spara upp till **fem** versioner och växla mellan dem i rullgardinsmenyn för versioner. Med text vald öppnar **Omformulera…** ordalternativ nära valet (samma som högerklick). Utan ett val är **Omformulera…** inaktiverat när du når fem versioner; med ett val fungerar det fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5).
+2. **Ordalternativ** — välj ett eller flera ord i utdata (om du bara väljer en del av ett ord, utökar appen valet till hela ord), klicka sedan med höger musknapp eller klicka på **Omformulera…**. En kort lista med alternativ visas nära valet; klicka på ett för att ersätta det. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan val gör ingenting. Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
+3. **Kostnader** — varje fullständig **Omformulera…** (ingen val) och varje begäran om ordalternativ använder modellen igen och kan öka användningskostnaden (samma som en normal översättningskörning).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

@@ -1,4 +1,4 @@
-import { useState, useMemo, type ReactNode } from "react";
+import { useState, useMemo, type MouseEvent, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Trash2, Copy, Clipboard } from "lucide-react";
@@ -30,6 +30,8 @@ const TextPanel = ({
   onCopy,
   onPaste,
   onPasteEvent,
+  onContextMenu,
+  textareaRefCallback,
   fontFamily,
   fontSize,
   textColor,
@@ -55,6 +57,8 @@ const TextPanel = ({
   onCopy?: () => void;
   onPaste?: () => void;
   onPasteEvent?: (pasted: string) => void;
+  onContextMenu?: (e: MouseEvent<HTMLTextAreaElement>) => void;
+  textareaRefCallback?: (node: HTMLTextAreaElement | null) => void;
   fontFamily?: string;
   fontSize?: number;
   textColor?: string;
@@ -145,6 +149,7 @@ const TextPanel = ({
           </div>
         ) : (
           <textarea
+            ref={textareaRefCallback}
             dir="auto"
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
@@ -154,6 +159,7 @@ const TextPanel = ({
             }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            onContextMenu={onContextMenu}
             placeholder={placeholder}
             readOnly={readOnly}
             spellCheck={false}
@@ -273,6 +279,8 @@ TextPanel.propTypes = {
   onCopy: PropTypes.func,
   onPaste: PropTypes.func,
   onPasteEvent: PropTypes.func,
+  onContextMenu: PropTypes.func,
+  textareaRefCallback: PropTypes.func,
   fontFamily: PropTypes.string,
   fontSize: PropTypes.number,
   textColor: PropTypes.string,
