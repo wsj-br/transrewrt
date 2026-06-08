@@ -45,6 +45,8 @@ const {
   ENGINE_IDS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
+  CUSTOM_CONFIG_KEYS,
+  CUSTOM_ENV_KEYS,
   readEnvNonBlank,
 } = require("../shared/llm");
 
@@ -99,6 +101,16 @@ function syncMissingEnvKeysIntoConfig(config) {
     const configKey = CONFIG_KEY_BY_ENGINE[engine];
     const envKey = ENV_KEY_BY_ENGINE[engine];
     if (!configKey || !envKey) continue;
+    const currentValue = next[configKey] != null ? String(next[configKey]).trim() : "";
+    const envValue = readEnvNonBlank(process.env, envKey);
+    if (!currentValue && envValue) {
+      next[configKey] = envValue;
+      changed = true;
+    }
+  }
+  for (const field of ["name", "url", "apiKey"]) {
+    const configKey = CUSTOM_CONFIG_KEYS[field];
+    const envKey = CUSTOM_ENV_KEYS[field];
     const currentValue = next[configKey] != null ? String(next[configKey]).trim() : "";
     const envValue = readEnvNonBlank(process.env, envKey);
     if (!currentValue && envValue) {

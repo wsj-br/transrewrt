@@ -82,13 +82,13 @@ module.exports = function createApiLlmRouter(
       return res.status(400).json({ error: "messages array is required" });
     }
 
+    const keysMap = mergeKeys(readConfig());
     try {
-      resolveEngine(canonicalModelId);
+      resolveEngine(canonicalModelId, keysMap);
     } catch (e) {
       return res.status(400).json({ error: e.message || "Invalid model id" });
     }
 
-    const keysMap = mergeKeys(readConfig());
     const ac = new AbortController();
     // Abort upstream LLM only when the *response* is torn down (client disconnect / tab close).
     // Do NOT use req.on("close"/"aborted"): with POST + express.json(), the request stream can

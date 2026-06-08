@@ -11,6 +11,7 @@ const {
   ENGINE_IDS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
+  CUSTOM_ENV_KEYS,
   OPENROUTER_BASE,
   providerDisplayName,
   testProviderAuth,
@@ -151,6 +152,25 @@ module.exports = function createStatusRouter(
   router.get("/provider-keys", requireAdmin, async (req, res) => {
     try {
       const providers = ENGINE_IDS.map((provider) => {
+        if (provider === "custom") {
+          const allCustom = ["name", "url", "apiKey"].every((field) =>
+            readEnvNonBlank(process.env, CUSTOM_ENV_KEYS[field]),
+          );
+          const displayName = readEnvNonBlank(process.env, CUSTOM_ENV_KEYS.name);
+          return {
+            provider,
+            label: displayName || providerDisplayName(provider),
+            configured: allCustom,
+            envConfigured: allCustom,
+            message: allCustom
+              ? "Configured from environment."
+              : "Not configured in environment.",
+            recommendedAction: allCustom
+              ? ""
+              : "Set CUSTOM_PROVIDER_NAME, CUSTOM_PROVIDER_URL, and CUSTOM_PROVIDER_API_KEY in your Docker environment.",
+            source: allCustom ? "environment" : "none",
+          };
+        }
         const envKey = ENV_KEY_BY_ENGINE[provider];
         const envConfigured = !!readEnvNonBlank(process.env, envKey);
         const configured = envConfigured;
@@ -184,6 +204,24 @@ module.exports = function createStatusRouter(
         return res.status(400).json({ error: "Unsupported provider." });
       }
       const merged = mergeKeys(readConfig());
+      if (provider === "custom") {
+        const extras = {
+          baseURL: merged.custom_provider_url || "",
+          displayName: merged.custom_provider_name || "",
+          apiKey: merged.custom_provider_api_key || "",
+          keysMap: merged,
+        };
+        const result = await testProviderAuth(provider, extras.apiKey, extras);
+        const response = {
+          provider,
+          status: result.ok ? "success" : "error",
+          message: result.ok
+            ? result.message
+            : `${result.message} Review this API key in your Docker environment configuration.`,
+          successI18n: result.successI18n,
+        };
+        return res.status(result.ok ? 200 : 400).json(response);
+      }
       const value = merged[CONFIG_KEY_BY_ENGINE[provider]] || "";
       const result = await testProviderAuth(provider, value);
       const response = {

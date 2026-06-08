@@ -169,6 +169,91 @@
       }
     ]
   },
+  "18275821": {
+    "source": "Custom provider name",
+    "translated": {
+      "zh-CN": "自定义提供商名称",
+      "pt-BR": "Nome do provedor personalizado",
+      "ca": "Nom del proveïdor personalitzat",
+      "cs": "Název vlastního poskytovatele",
+      "zh-TW": "自訂提供者名稱",
+      "bn": "কাস্টম প্রোভাইডারের নাম",
+      "ar": "اسم المزود المخصص",
+      "hr": "Naziv prilagođenog pružatelja",
+      "en-US": "Custom provider name",
+      "fr": "Nom du fournisseur personnalisé",
+      "tl": "Pangalan ng custom provider",
+      "de": "Benutzerdefinierter Anbietername",
+      "nl": "Naam aangepaste provider",
+      "el": "Όνομα προσαρμοσμένου παρόχου",
+      "hi": "कस्टम प्रोवाइडर का नाम",
+      "hu": "Egyedi szolgáltató neve",
+      "it": "Nome provider personalizzato",
+      "pt": "Nome do provedor personalizado",
+      "ja": "カスタムプロバイダー名",
+      "jv": "Jeneng provider kustom",
+      "fa": "نام ارائه‌دهنده سفارشی",
+      "ko": "사용자 지정 제공자 이름",
+      "ms": "Nama pembekal tersuai",
+      "pl": "Nazwa niestandardowego dostawcy",
+      "ro": "Nume furnizor personalizat",
+      "sk": "Názov vlastného poskytovateľa",
+      "es": "Nombre del proveedor personalizado",
+      "sw": "Jina la mtoa huduma wa kustom",
+      "ru": "Имя пользовательского провайдера",
+      "sv": "Anpassat leverantörsnamn",
+      "te": "కస్టమ్ ప్రొవైడర్ పేరు",
+      "pa": "ਕਸਟਮ ਪ੍ਰੋਵਾਈਡਰ ਦਾ ਨਾਮ",
+      "th": "ชื่อผู้ให้บริการที่กำหนดเอง",
+      "vi": "Tên nhà cung cấp tùy chỉnh",
+      "tr": "Özel sağlayıcı adı",
+      "uk": "Назва власного провайдера"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 394
+      }
+    ]
+  },
   "23220338": {
     "source": "Reset Cost",
     "translated": {
@@ -2733,7 +2818,11 @@
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 319
+        "line": 336
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 480
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -2753,7 +2842,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 694
+        "line": 707
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -9283,11 +9372,11 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 460
+        "line": 457
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 561
+        "line": 558
       }
     ]
   },
@@ -13376,7 +13465,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 574
+        "line": 571
       }
     ]
   },
@@ -13805,7 +13894,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 516
+        "line": 513
       }
     ]
   },
@@ -15711,189 +15800,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 252
+        "line": 282
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 375
+        "line": 536
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 424
-      }
-    ]
-  },
-  "6879d9ce": {
-    "source": "API Configuration",
-    "translated": {
-      "pt-BR": "Configuração da API",
-      "ca": "Configuració de l'API",
-      "ar": "تكوين API",
-      "bn": "API কনফিগারেশন",
-      "zh-CN": "API 配置",
-      "zh-TW": "API 配置",
-      "hr": "Konfiguracija API-ja",
-      "cs": "Konfigurace API",
-      "en-US": "API Configuration",
-      "fr": "Configuration de l'API",
-      "nl": "API-configuratie",
-      "tl": "Kumpigurasyon ng API",
-      "de": "API-Konfiguration",
-      "hu": "API konfiguráció",
-      "hi": "API कॉन्फ़िगरेशन",
-      "el": "Διαμόρφωση API",
-      "ms": "Konfigurasi API",
-      "ko": "API 구성",
-      "ja": "API 設定",
-      "it": "Configurazione API",
-      "pt": "Configuração da API",
-      "pl": "Konfiguracja API",
-      "pa": "API ਸੰਰਚਨਾ",
-      "fa": "پیکربندی API",
-      "es": "Configuración de la API",
-      "ro": "Configurare API",
-      "ru": "Конфигурация API",
-      "sk": "Konfigurácia API",
-      "th": "การกำหนดค่า API",
-      "sw": "Usanidi wa API",
-      "sv": "API-konfiguration",
-      "te": "API కాన్ఫిగరేషన్",
-      "vi": "Cấu hình API",
-      "tr": "API Yapılandırması",
-      "uk": "Конфігурація API",
-      "jv": "Konfigurasi API"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 272
-      },
-      {
-        "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 397
-      }
-    ]
-  },
-  "237defeb": {
-    "source": "Add API keys for each provider you use.",
-    "translated": {
-      "pt-BR": "Adicione chaves de API para cada provedor que você usar.",
-      "ca": "Afegiu les claus d'API per a cada proveïdor que utilitzeu.",
-      "ar": "أضف مفاتيح API لكل مزود تستخدمه.",
-      "bn": "আপনি যে প্রদানকারীগুলি ব্যবহার করেন তাদের জন্য API কী যুক্ত করুন।",
-      "zh-CN": "为您使用的每个提供商添加 API 密钥。",
-      "zh-TW": "為您使用的每個提供者添加 API 金鑰。",
-      "hr": "Dodajte API ključeve za svakog pružatelja kojeg koristite.",
-      "cs": "Přidejte API klíče pro každého poskytovatele, kterého používáte.",
-      "en-US": "Add API keys for each provider you use.",
-      "fr": "Ajoutez des clés API pour chaque fournisseur que vous utilisez.",
-      "nl": "Voeg API-sleutels toe voor elke provider die je gebruikt.",
-      "tl": "Magdagdag ng mga API key para sa bawat provider na ginagamit mo.",
-      "de": "Fügen Sie API-Schlüssel für jeden von Ihnen verwendeten Anbieter hinzu.",
-      "hu": "Adjon hozzá API-kulcsokat minden olyan szolgáltatóhoz, amelyet használ.",
-      "hi": "प्रत्येक प्रदाता के लिए API कुंजी जोड़ें जिनका आप उपयोग करते हैं।",
-      "el": "Προσθέστε κλειδιά API για κάθε πάροχο που χρησιμοποιείτε.",
-      "ms": "Tambah kunci API untuk setiap pembekal yang anda gunakan.",
-      "ko": "사용하는 각 공급자에 대한 API 키를 추가하세요.",
-      "ja": "使用するプロバイダーごとにAPIキーを追加してください。",
-      "it": "Aggiungi chiavi API per ogni fornitore che utilizzi.",
-      "pt": "Adicione chaves de API para cada provedor que você usar.",
-      "pl": "Dodaj klucze API dla każdego dostawcy, z którego korzystasz.",
-      "pa": "ਹਰੇਕ ਪ੍ਰਦਾਤਾ ਲਈ API ਕੁੰਜੀਆਂ ਜੋੜੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ।",
-      "fa": "کلیدهای API را برای هر ارائه‌دهنده که استفاده می‌کنید اضافه کنید.",
-      "es": "Agrega las claves de API para cada proveedor que uses.",
-      "ro": "Adăugați chei API pentru fiecare furnizor pe care îl utilizați.",
-      "ru": "Добавьте ключи API для каждого используемого провайдера.",
-      "sk": "Pridajte API kľúče pre každého poskytovateľa, ktorého používate.",
-      "th": "เพิ่มคีย์ API สำหรับแต่ละผู้ให้บริการที่คุณใช้",
-      "sw": "Ongeza funguo za API kwa kila mtoa huduma unayotumia.",
-      "sv": "Lägg till API-nycklar för varje leverantör du använder.",
-      "te": "మీరు ఉపయోగించే ప్రతి ప్రదాతకు API కీలను జోడించండి.",
-      "vi": "Thêm khóa API cho mỗi nhà cung cấp bạn sử dụng.",
-      "tr": "Kullandığınız her sağlayıcı için API anahtarlarını ekleyin.",
-      "uk": "Додайте ключі API для кожного провайдера, якого ви використовуєте.",
-      "jv": "Tambahke kunci API kanggo saben panyedia sing digunakake."
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 276
+        "line": 611
       }
     ]
   },
@@ -15978,7 +15893,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 318
+        "line": 335
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 479
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
@@ -16071,11 +15990,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 320
+        "line": 337
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 413
+        "line": 481
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 600
       }
     ]
   },
@@ -16160,7 +16083,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 321
+        "line": 338
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 482
       }
     ]
   },
@@ -16245,7 +16172,529 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 325
+        "line": 342
+      }
+    ]
+  },
+  "6a26ee28": {
+    "source": "Custom provider name, URL, and API key are all required.",
+    "translated": {
+      "zh-CN": "自定义提供商名称、URL 和 API 密钥均为必填项。",
+      "pt-BR": "Nome do provedor personalizado, URL e chave de API são obrigatórios.",
+      "ca": "El nom del proveïdor personalitzat, la URL i la clau API són obligatoris.",
+      "cs": "Název vlastního poskytovatele, URL a API klíč jsou povinné.",
+      "zh-TW": "必須提供自訂提供者名稱、URL 及 API 金鑰。",
+      "bn": "কাস্টম প্রোভাইডারের নাম, URL এবং API কী—সবকটি প্রয়োজন।",
+      "ar": "اسم المزود المخصص، والرابط، ومفتاح API جميعها مطلوبة.",
+      "hr": "Naziv prilagođenog pružatelja, URL i API ključ su obavezni.",
+      "en-US": "Custom provider name, URL, and API key are all required.",
+      "fr": "Le nom du fournisseur personnalisé, l'URL et la clé API sont tous requis.",
+      "tl": "Kailangan ang pangalan ng custom provider, URL, at API key.",
+      "de": "Benutzerdefinierter Anbietername, URL und API-Schlüssel sind alle erforderlich.",
+      "nl": "Naam aangepaste provider, URL en API-sleutel zijn 모두 verplicht.",
+      "el": "Απαιτούνται το όνομα προσαρμοσμένου παρόχου, η διεύθυνση URL και το κλειδί API.",
+      "hi": "कस्टम प्रोवाइडर का नाम, URL और API की, सभी आवश्यक हैं।",
+      "hu": "Az egyedi szolgáltató neve, a URL és az API-kulcs mind kötelező.",
+      "it": "Nome provider personalizzato, URL e chiave API sono tutti obbligatori.",
+      "pt": "Nome do provedor personalizado, URL e chave de API são obrigatórios.",
+      "ja": "カスタムプロバイダー名、URL、APIキーはすべて必須です。",
+      "jv": "Jeneng provider kustom, URL, lan kunci API kabeh dibutuhake.",
+      "fa": "نام ارائه‌دهنده سفارشی، URL و کلید API همگی الزامی هستند.",
+      "ko": "사용자 지정 제공자 이름, URL 및 API 키가 모두 필요합니다.",
+      "ms": "Nama pembekal tersuai, URL, dan kunci API semuanya diperlukan.",
+      "pl": "Nazwa niestandardowego dostawcy, adres URL i klucz API są wymagane.",
+      "ro": "Numele furnizorului personalizat, URL-ul și cheia API sunt obligatorii.",
+      "sk": "Vyžaduje sa názov vlastného poskytovateľa, URL adresa a API kľúč.",
+      "es": "El nombre del proveedor personalizado, la URL y la clave API son obligatorios.",
+      "sw": "Jina la mtoa huduma wa kustom, URL, na ufunguo wa API vyote vinahitajika.",
+      "ru": "Необходимо указать имя пользовательского провайдера, URL и API-ключ.",
+      "sv": "Anpassat leverantörsnamn, URL och API-nyckel krävs.",
+      "te": "కస్టమ్ ప్రొవైడర్ పేరు, URL మరియు API కీ తప్పనిసరి.",
+      "pa": "ਕਸਟਮ ਪ੍ਰੋਵਾਈਡਰ ਦਾ ਨਾਮ, URL, ਅਤੇ API ਕੀ, ਸਭ ਲਾਜ਼ਮੀ ਹਨ।",
+      "th": "จำเป็นต้องระบุชื่อผู้ให้บริการ, URL และ API key",
+      "vi": "Tên nhà cung cấp tùy chỉnh, URL và khóa API đều là bắt buộc.",
+      "tr": "Özel sağlayıcı adı, URL ve API anahtarının tamamı gereklidir.",
+      "uk": "Назва власного провайдера, URL-адреса та API-ключ є обов'язковими."
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 360
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 370
+      }
+    ]
+  },
+  "04fe4ad3": {
+    "source": "Custom OpenAI-compatible provider",
+    "translated": {
+      "zh-CN": "自定义 OpenAI 兼容提供商",
+      "pt-BR": "Provedor personalizado compatível com OpenAI",
+      "ca": "Proveïdor personalitzat compatible amb OpenAI",
+      "cs": "Vlastní poskytovatel kompatibilní s OpenAI",
+      "zh-TW": "自訂 OpenAI 相容提供者",
+      "bn": "কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রোভাইডার",
+      "ar": "مزود مخصص متوافق مع OpenAI",
+      "hr": "Prilagođeni pružatelj kompatibilan s OpenAI-jem",
+      "en-US": "Custom OpenAI-compatible provider",
+      "fr": "Fournisseur personnalisé compatible OpenAI",
+      "tl": "Custom OpenAI-compatible provider",
+      "de": "Benutzerdefinierter OpenAI-kompatibler Anbieter",
+      "nl": "Aangepaste OpenAI-compatibele provider",
+      "el": "Προσαρμοσμένος πάροχος συμβατός με OpenAI",
+      "hi": "कस्टम OpenAI-संगत प्रोवाइडर",
+      "hu": "Egyedi OpenAI-kompatibilis szolgáltató",
+      "it": "Provider personalizzato compatibile con OpenAI",
+      "pt": "Provedor personalizado compatível com OpenAI",
+      "ja": "カスタムOpenAI互換プロバイダー",
+      "jv": "Provider kustom sing kompatibel karo OpenAI",
+      "fa": "ارائه‌دهنده سفارشی سازگار با OpenAI",
+      "ko": "사용자 지정 OpenAI 호환 제공자",
+      "ms": "Pembekal tersuai serasi OpenAI",
+      "pl": "Niestandardowy dostawca zgodny z OpenAI",
+      "ro": "Furnizor personalizat compatibil cu OpenAI",
+      "sk": "Vlastný poskytovateľ kompatibilný s OpenAI",
+      "es": "Proveedor personalizado compatible con OpenAI",
+      "sw": "Mtoa huduma wa kustom anayepatana na OpenAI",
+      "ru": "Пользовательский OpenAI-совместимый провайдер",
+      "sv": "Anpassad OpenAI-kompatibel leverantör",
+      "te": "కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్",
+      "pa": "ਕਸਟਮ OpenAI-ਸਮਾਨ ਪ੍ਰੋਵਾਈਡਰ",
+      "th": "ผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง",
+      "vi": "Nhà cung cấp tùy chỉnh tương thích OpenAI",
+      "tr": "Özel OpenAI uyumlu sağlayıcı",
+      "uk": "Власний OpenAI-сумісний провайдер"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 384
+      }
+    ]
+  },
+  "ec885307": {
+    "source": "Custom provider is configured",
+    "translated": {
+      "zh-CN": "自定义提供商已配置",
+      "pt-BR": "Provedor personalizado configurado",
+      "ca": "El proveïdor personalitzat està configurat",
+      "cs": "Vlastní poskytovatel je nakonfigurován",
+      "zh-TW": "已設定自訂提供者",
+      "bn": "কাস্টম প্রোভাইডার কনফিগার করা হয়েছে",
+      "ar": "تم تكوين المزود المخصص",
+      "hr": "Prilagođeni pružatelj je konfiguriran",
+      "en-US": "Custom provider is configured",
+      "fr": "Le fournisseur personnalisé est configuré",
+      "tl": "Naka-configure ang custom provider",
+      "de": "Benutzerdefinierter Anbieter ist konfiguriert",
+      "nl": "Aangepaste provider is geconfigureerd",
+      "el": "Ο προσαρμοσμένος πάροχος έχει ρυθμιστεί",
+      "hi": "कस्टम प्रोवाइडर कॉन्फ़िगर है",
+      "hu": "Az egyedi szolgáltató konfigurálva van",
+      "it": "Provider personalizzato configurato",
+      "pt": "Provedor personalizado configurado",
+      "ja": "カスタムプロバイダーが設定されています",
+      "jv": "Provider kustom wis dikonfigurasi",
+      "fa": "ارائه‌دهنده سفارشی پیکربندی شده است",
+      "ko": "사용자 지정 제공자가 구성되었습니다",
+      "ms": "Pembekal tersuai telah dikonfigurasikan",
+      "pl": "Niestandardowy dostawca został skonfigurowany",
+      "ro": "Furnizorul personalizat este configurat",
+      "sk": "Vlastný poskytovateľ je nakonfigurovaný",
+      "es": "Proveedor personalizado configurado",
+      "sw": "Mtoa huduma wa kustom amesanidiwa",
+      "ru": "Пользовательский провайдер настроен",
+      "sv": "Anpassad leverantör är konfigurerad",
+      "te": "కస్టమ్ ప్రొవైడర్ కాన్ఫిగర్ చేయబడింది",
+      "pa": "ਕਸਟਮ ਪ੍ਰੋਵਾਈਡਰ ਕੌਂਫਿਗਰ ਕੀਤਾ ਗਿਆ ਹੈ",
+      "th": "กำหนดค่าผู้ให้บริการที่กำหนดเองแล้ว",
+      "vi": "Nhà cung cấp tùy chỉnh đã được cấu hình",
+      "tr": "Özel sağlayıcı yapılandırıldı",
+      "uk": "Власний провайдер налаштовано"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 388
+      }
+    ]
+  },
+  "fffe6773": {
+    "source": "Custom provider URL",
+    "translated": {
+      "zh-CN": "自定义提供商 URL",
+      "pt-BR": "URL do provedor personalizado",
+      "ca": "URL del proveïdor personalitzat",
+      "cs": "URL vlastního poskytovatele",
+      "zh-TW": "自訂提供者 URL",
+      "bn": "কাস্টম প্রোভাইডার URL",
+      "ar": "رابط المزود المخصص",
+      "hr": "URL prilagođenog pružatelja",
+      "en-US": "Custom provider URL",
+      "fr": "URL du fournisseur personnalisé",
+      "tl": "URL ng custom provider",
+      "de": "Benutzerdefinierte Anbieter-URL",
+      "nl": "URL aangepaste provider",
+      "el": "URL προσαρμοσμένου παρόχου",
+      "hi": "कस्टम प्रोवाइडर URL",
+      "hu": "Egyedi szolgáltató URL-je",
+      "it": "URL provider personalizzato",
+      "pt": "URL do provedor personalizado",
+      "ja": "カスタムプロバイダーURL",
+      "jv": "URL provider kustom",
+      "fa": "URL ارائه‌دهنده سفارشی",
+      "ko": "사용자 지정 제공자 URL",
+      "ms": "URL pembekal tersuai",
+      "pl": "URL niestandardowego dostawcy",
+      "ro": "URL furnizor personalizat",
+      "sk": "URL adresa vlastného poskytovateľa",
+      "es": "URL del proveedor personalizado",
+      "sw": "URL ya mtoa huduma wa kustom",
+      "ru": "URL пользовательского провайдера",
+      "sv": "Anpassad leverantörs-URL",
+      "te": "కస్టమ్ ప్రొవైడర్ URL",
+      "pa": "ਕਸਟਮ ਪ੍ਰੋਵਾਈਡਰ URL",
+      "th": "URL ของผู้ให้บริการที่กำหนดเอง",
+      "vi": "URL nhà cung cấp tùy chỉnh",
+      "tr": "Özel sağlayıcı URL'si",
+      "uk": "URL-адреса власного провайдера"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 418
+      }
+    ]
+  },
+  "9b4128cb": {
+    "source": "Open NVIDIA Build website",
+    "translated": {
+      "zh-CN": "打开 NVIDIA Build 网站",
+      "pt-BR": "Abrir site do NVIDIA Build",
+      "ca": "Obre el web d'Open NVIDIA Build",
+      "cs": "Otevřít web NVIDIA Build",
+      "zh-TW": "開啟 NVIDIA Build 網站",
+      "bn": "Open NVIDIA Build ওয়েবসাইট খুলুন",
+      "ar": "فتح موقع NVIDIA Build",
+      "hr": "Otvori web stranicu Open NVIDIA Build",
+      "en-US": "Open NVIDIA Build website",
+      "fr": "Ouvrir le site NVIDIA Build",
+      "tl": "Buksan ang website ng Open NVIDIA Build",
+      "de": "Open NVIDIA Build Website öffnen",
+      "nl": "Open NVIDIA Build-website",
+      "el": "Άνοιγμα ιστοσελίδας Open NVIDIA Build",
+      "hi": "Open NVIDIA Build वेबसाइट खोलें",
+      "hu": "Open NVIDIA Build weboldal megnyitása",
+      "it": "Apri sito web NVIDIA Build",
+      "pt": "Abrir site do NVIDIA Build",
+      "ja": "NVIDIA Build ウェブサイトを開く",
+      "jv": "Bukak situs web Open NVIDIA Build",
+      "fa": "باز کردن وب‌سایت Open NVIDIA Build",
+      "ko": "NVIDIA Build 웹사이트 열기",
+      "ms": "Buka laman web Open NVIDIA Build",
+      "pl": "Otwórz stronę Open NVIDIA Build",
+      "ro": "Deschide site-ul NVIDIA Build",
+      "sk": "Otvoriť web NVIDIA Build",
+      "es": "Abrir sitio web de NVIDIA Build",
+      "sw": "Fungua tovuti ya Open NVIDIA Build",
+      "ru": "Открыть сайт NVIDIA Build",
+      "sv": "Öppna NVIDIA Build-webbplatsen",
+      "te": "Open NVIDIA Build వెబ్‌సైట్‌ను తెరవండి",
+      "pa": "Open NVIDIA Build ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹੋ",
+      "th": "เปิดเว็บไซต์ Open NVIDIA Build",
+      "vi": "Mở trang web NVIDIA Build",
+      "tr": "Open NVIDIA Build web sitesini aç",
+      "uk": "Відкрити вебсайт NVIDIA Build"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 423
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 424
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 486
+      }
+    ]
+  },
+  "cd969ec1": {
+    "source": "Custom API key",
+    "translated": {
+      "zh-CN": "自定义 API 密钥",
+      "pt-BR": "Chave de API personalizada",
+      "ca": "Clau API personalitzada",
+      "cs": "Vlastní API klíč",
+      "zh-TW": "自訂 API 金鑰",
+      "bn": "কাস্টম API কী",
+      "ar": "مفتاح API مخصص",
+      "hr": "Prilagođeni API ključ",
+      "en-US": "Custom API key",
+      "fr": "Clé API personnalisée",
+      "tl": "Custom API key",
+      "de": "Benutzerdefinierter API-Schlüssel",
+      "nl": "Aangepaste API-sleutel",
+      "el": "Προσαρμοσμένο κλειδί API",
+      "hi": "कस्टम API की",
+      "hu": "Egyedi API-kulcs",
+      "it": "Chiave API personalizzata",
+      "pt": "Chave de API personalizada",
+      "ja": "カスタムAPIキー",
+      "jv": "Kunci API kustom",
+      "fa": "کلید API سفارشی",
+      "ko": "사용자 지정 API 키",
+      "ms": "Kunci API tersuai",
+      "pl": "Niestandardowy klucz API",
+      "ro": "Cheie API personalizată",
+      "sk": "Vlastný API kľúč",
+      "es": "Clave API personalizada",
+      "sw": "Ufunguo wa API wa kustom",
+      "ru": "Пользовательский API-ключ",
+      "sv": "Anpassad API-nyckel",
+      "te": "కస్టమ్ API కీ",
+      "pa": "ਕਸਟਮ API ਕੀ",
+      "th": "API key ที่กำหนดเอง",
+      "vi": "Khóa API tùy chỉnh",
+      "tr": "Özel API anahtarı",
+      "uk": "Власний API-ключ"
+    },
+    "models": {
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 451
       }
     ]
   },
@@ -16330,7 +16779,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 334
+        "line": 495
       }
     ]
   },
@@ -16415,11 +16864,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 338
+        "line": 499
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 339
+        "line": 500
       }
     ]
   },
@@ -16504,7 +16953,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 366
+        "line": 527
       }
     ]
   },
@@ -16589,15 +17038,189 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 375
+        "line": 536
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 424
+        "line": 611
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
         "line": 48
+      }
+    ]
+  },
+  "6879d9ce": {
+    "source": "API Configuration",
+    "translated": {
+      "pt-BR": "Configuração da API",
+      "ca": "Configuració de l'API",
+      "ar": "تكوين API",
+      "bn": "API কনফিগারেশন",
+      "zh-CN": "API 配置",
+      "zh-TW": "API 配置",
+      "hr": "Konfiguracija API-ja",
+      "cs": "Konfigurace API",
+      "en-US": "API Configuration",
+      "fr": "Configuration de l'API",
+      "nl": "API-configuratie",
+      "tl": "Kumpigurasyon ng API",
+      "de": "API-Konfiguration",
+      "hu": "API konfiguráció",
+      "hi": "API कॉन्फ़िगरेशन",
+      "el": "Διαμόρφωση API",
+      "ms": "Konfigurasi API",
+      "ko": "API 구성",
+      "ja": "API 設定",
+      "it": "Configurazione API",
+      "pt": "Configuração da API",
+      "pl": "Konfiguracja API",
+      "pa": "API ਸੰਰਚਨਾ",
+      "fa": "پیکربندی API",
+      "es": "Configuración de la API",
+      "ro": "Configurare API",
+      "ru": "Конфигурация API",
+      "sk": "Konfigurácia API",
+      "th": "การกำหนดค่า API",
+      "sw": "Usanidi wa API",
+      "sv": "API-konfiguration",
+      "te": "API కాన్ఫిగరేషన్",
+      "vi": "Cấu hình API",
+      "tr": "API Yapılandırması",
+      "uk": "Конфігурація API",
+      "jv": "Konfigurasi API"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 553
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 584
+      }
+    ]
+  },
+  "237defeb": {
+    "source": "Add API keys for each provider you use.",
+    "translated": {
+      "pt-BR": "Adicione chaves de API para cada provedor que você usar.",
+      "ca": "Afegiu les claus d'API per a cada proveïdor que utilitzeu.",
+      "ar": "أضف مفاتيح API لكل مزود تستخدمه.",
+      "bn": "আপনি যে প্রদানকারীগুলি ব্যবহার করেন তাদের জন্য API কী যুক্ত করুন।",
+      "zh-CN": "为您使用的每个提供商添加 API 密钥。",
+      "zh-TW": "為您使用的每個提供者添加 API 金鑰。",
+      "hr": "Dodajte API ključeve za svakog pružatelja kojeg koristite.",
+      "cs": "Přidejte API klíče pro každého poskytovatele, kterého používáte.",
+      "en-US": "Add API keys for each provider you use.",
+      "fr": "Ajoutez des clés API pour chaque fournisseur que vous utilisez.",
+      "nl": "Voeg API-sleutels toe voor elke provider die je gebruikt.",
+      "tl": "Magdagdag ng mga API key para sa bawat provider na ginagamit mo.",
+      "de": "Fügen Sie API-Schlüssel für jeden von Ihnen verwendeten Anbieter hinzu.",
+      "hu": "Adjon hozzá API-kulcsokat minden olyan szolgáltatóhoz, amelyet használ.",
+      "hi": "प्रत्येक प्रदाता के लिए API कुंजी जोड़ें जिनका आप उपयोग करते हैं।",
+      "el": "Προσθέστε κλειδιά API για κάθε πάροχο που χρησιμοποιείτε.",
+      "ms": "Tambah kunci API untuk setiap pembekal yang anda gunakan.",
+      "ko": "사용하는 각 공급자에 대한 API 키를 추가하세요.",
+      "ja": "使用するプロバイダーごとにAPIキーを追加してください。",
+      "it": "Aggiungi chiavi API per ogni fornitore che utilizzi.",
+      "pt": "Adicione chaves de API para cada provedor que você usar.",
+      "pl": "Dodaj klucze API dla każdego dostawcy, z którego korzystasz.",
+      "pa": "ਹਰੇਕ ਪ੍ਰਦਾਤਾ ਲਈ API ਕੁੰਜੀਆਂ ਜੋੜੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ।",
+      "fa": "کلیدهای API را برای هر ارائه‌دهنده که استفاده می‌کنید اضافه کنید.",
+      "es": "Agrega las claves de API para cada proveedor que uses.",
+      "ro": "Adăugați chei API pentru fiecare furnizor pe care îl utilizați.",
+      "ru": "Добавьте ключи API для каждого используемого провайдера.",
+      "sk": "Pridajte API kľúče pre každého poskytovateľa, ktorého používate.",
+      "th": "เพิ่มคีย์ API สำหรับแต่ละผู้ให้บริการที่คุณใช้",
+      "sw": "Ongeza funguo za API kwa kila mtoa huduma unayotumia.",
+      "sv": "Lägg till API-nycklar för varje leverantör du använder.",
+      "te": "మీరు ఉపయోగించే ప్రతి ప్రదాతకు API కీలను జోడించండి.",
+      "vi": "Thêm khóa API cho mỗi nhà cung cấp bạn sử dụng.",
+      "tr": "Kullandığınız her sağlayıcı için API anahtarlarını ekleyin.",
+      "uk": "Додайте ключі API для кожного провайдера, якого ви використовуєте.",
+      "jv": "Tambahke kunci API kanggo saben panyedia sing digunakake."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 557
       }
     ]
   },
@@ -16682,92 +17305,92 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 387
+        "line": 574
       }
     ]
   },
-  "a3ff4f4a": {
-    "source": "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.",
+  "0f81bf9a": {
+    "source": "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or install Ollama to run models locally without any API key.",
     "translated": {
-      "pt-BR": "Gere uma chave de API gratuita com Openrouter, Cerebras, Google, Groq, Mistral AI ou instale o Ollama para executar modelos localmente sem nenhuma chave de API.",
-      "ca": "Genera una clau d'API gratuïta amb Openrouter, Cerebras, Google, Groq, Mistral AI o instal·la Ollama per executar models localment sense cap clau d'API.",
-      "ar": "قم بإنشاء مفتاح API مجاني مع Openrouter أو Cerebras أو Google أو Groq أو Mistral AI أو قم بتثبيت Ollama لتشغيل النماذج محليًا دون أي مفتاح API.",
-      "bn": "Openrouter, Cerebras, Google, Groq, Mistral AI দিয়ে একটি বিনামূল্যের API কী তৈরি করুন বা Ollama স্থানীয়ভাবে ইনস্টল করে API কী ছাড়াই মডেল চালান।",
-      "zh-CN": "使用 Openrouter、Cerebras、Google、Groq、Mistral AI 生成免费 API 密钥，或安装 Ollama 以在本地运行模型而无需 API 密钥。",
-      "zh-TW": "使用 Openrouter、Cerebras、Google、Groq、Mistral AI 生成免費 API 金鑰,或安裝 Ollama 在本地運行模型而無需任何 API 金鑰。",
-      "hr": "Generirajte besplatan API ključ s Openrouterom, Cerebrasom, Googleom, Groqom, Mistral AI-em ili instalirajte Ollamu za lokalno pokretanje modela bez API ključa.",
-      "cs": "Získejte bezplatný API klíč od Openrouter, Cerebras, Google, Groq, Mistral AI nebo nainstalujte Ollamu a spouštějte modely místně bez API klíče.",
-      "en-US": "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.",
-      "fr": "Générez une clé API gratuite avec Openrouter, Cerebras, Google, Groq, Mistral AI ou installez Ollama pour exécuter des modèles localement sans aucune clé API.",
-      "nl": "Genereer een gratis API-sleutel met Openrouter, Cerebras, Google, Groq, Mistral AI, of installeer Ollama om modellen lokaal uit te voeren zonder API-sleutel.",
-      "tl": "Bumuo ng libreng API key sa Openrouter, Cerebras, Google, Groq, Mistral AI, o i-install ang Ollama upang patakbuhin ang mga modelo nang lokal nang walang anumang API key.",
-      "de": "Generieren Sie einen kostenlosen API-Schlüssel mit Openrouter, Cerebras, Google, Groq, Mistral AI oder installieren Sie Ollama, um Modelle lokal ohne API-Schlüssel auszuführen.",
-      "hu": "Hozzon létre ingyenes API-kulcsot az Openrouter, Cerebras, Google, Groq, Mistral AI szolgáltatásokkal, vagy telepítse az Ollama-t, hogy helyi modellek futtatásához ne kelljen API-kulcs.",
-      "hi": "Openrouter, Cerebras, Google, Groq, Mistral AI के साथ एक मुफ्त API कुंजी बनाएं, या Ollama को स्थानीय रूप से मॉडल चलाने के लिए किसी भी API कुंजी के बिना स्थापित करें।",
-      "el": "Δημιουργήστε ένα δωρεάν κλειδί API με Openrouter, Cerebras, Google, Groq, Mistral AI ή εγκαταστήστε το Ollama για να εκτελείτε μοντέλα τοπικά χωρίς κλειδί API.",
-      "ms": "Jana kunci API percuma dengan Openrouter, Cerebras, Google, Groq, Mistral AI, atau pasang Ollama untuk menjalankan model secara tempatan tanpa sebarang kunci API.",
-      "ko": "Openrouter, Cerebras, Google, Groq, Mistral AI에서 무료 API 키를 생성하거나 Ollama를 설치하여 API 키 없이 로컬에서 모델을 실행할 수 있습니다.",
-      "ja": "Openrouter、Cerebras、Google、Groq、Mistral AI で無料のAPIキーを生成するか、Ollamaをインストールしてローカルでモデルを実行できます。",
-      "it": "Genera una chiave API gratuita con Openrouter, Cerebras, Google, Groq, Mistral AI o installa Ollama per eseguire i modelli localmente senza chiave API.",
-      "pt": "Gere uma chave de API gratuita com Openrouter, Cerebras, Google, Groq, Mistral AI ou instale o Ollama para executar modelos localmente sem nenhuma chave de API.",
-      "pl": "Wygeneruj darmowy klucz API z Openrouter, Cerebras, Google, Groq, Mistral AI lub zainstaluj Ollama, aby uruchamiać modele lokalnie bez żadnego klucza API.",
-      "pa": "Openrouter, Cerebras, Google, Groq, Mistral AI ਨਾਲ ਮੁਫ਼ਤ API ਕੁੰਜੀ ਬਣਾਓ, ਜਾਂ ਕੋਈ ਵੀ API ਕੁੰਜੀ ਤੋਂ ਬਿਨਾਂ ਮਾਡਲਾਂ ਨੂੰ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਚਲਾਉਣ ਲਈ Ollama ਸਥਾਪਿਤ ਕਰੋ।",
-      "fa": "یک کلید API رایگان با Openrouter، Cerebras، Google، Groq، Mistral AI یا نصب Ollama برای اجرای مدل‌ها به صورت محلی بدون هیچ کلید API ایجاد کنید.",
-      "es": "Genera una clave de API gratuita con Openrouter, Cerebras, Google, Groq, Mistral AI o instala Ollama para ejecutar modelos localmente sin ninguna clave de API.",
-      "ro": "Generați o cheie API gratuită cu Openrouter, Cerebras, Google, Groq, Mistral AI sau instalați Ollama pentru a rula modele local fără nicio cheie API.",
-      "ru": "Получите бесплатный ключ API с Openrouter, Cerebras, Google, Groq, Mistral AI или установите Ollama для локального запуска моделей без ключа API.",
-      "sk": "Vygenerujte si bezplatný API kľúč s Openrouter, Cerebras, Google, Groq, Mistral AI alebo nainštalujte Ollama a spúšťajte modely lokálne bez akéhokoľvek API kľúča.",
-      "th": "สร้างคีย์ API ฟรีกับ Openrouter, Cerebras, Google, Groq, Mistral AI หรือติดตั้ง Ollama เพื่อรันโมเดลในเครื่องโดยไม่ต้องใช้คีย์ API",
-      "sw": "Tengeneza funguo ya API bure na Openrouter, Cerebras, Google, Groq, Mistral AI, au sakinisha Ollama ili utumie modeli bila funguo yoyote ya API.",
-      "sv": "Generera en gratis API-nyckel med Openrouter, Cerebras, Google, Groq, Mistral AI eller installera Ollama för att köra modeller lokalt utan någon API-nyckel.",
-      "te": "Openrouter, Cerebras, Google, Groq, Mistral AI తో ఉచిత API కీని రూపొందించండి లేదా Ollama ని స్థానికంగా అమలు చేయడం ద్వారా ఏ API కీ లేకుండా మోడళ్ళను అమలు చేయండి.",
-      "vi": "Tạo khóa API miễn phí với Openrouter, Cerebras, Google, Groq, Mistral AI hoặc cài đặt Ollama để chạy mô hình cục bộ mà không cần khóa API.",
-      "tr": "Openrouter, Cerebras, Google, Groq, Mistral AI ile ücretsiz bir API anahtarı oluşturun veya API anahtarı olmadan modelleri yerel olarak çalıştırmak için Ollama'yı yükleyin.",
-      "uk": "Згенеруйте безкоштовний ключ API з Openrouter, Cerebras, Google, Groq, Mistral AI або встановіть Ollama, щоб запускати моделі локально без будь-якого ключа API.",
-      "jv": "Gawé kunci API gratis karo Openrouter, Cerebras, Google, Groq, Mistral AI, utawa pasang Ollama kanggo njalanake model sacara lokal tanpa kunci API."
+      "zh-CN": "请通过 Openrouter、Cerebras、Google、Groq、Mistral AI 或 NVIDIA 生成免费 API 密钥，或安装 Ollama 以在本地运行模型而无需 API 密钥。",
+      "pt-BR": "Gere uma chave de API gratuita com Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, ou instale o Ollama para executar modelos localmente sem chave de API.",
+      "ca": "Genera una clau API gratuïta amb Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, o instal·la Ollama per executar models localment sense cap clau API.",
+      "cs": "Vygenerujte si bezplatný API klíč u Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, nebo nainstalujte Ollama pro lokální spouštění modelů bez API klíče.",
+      "zh-TW": "請透過 Openrouter、Cerebras、Google、Groq、Mistral AI 或 NVIDIA 產生免費 API 金鑰，或安裝 Ollama 以在本地端執行模型而無需 API 金鑰。",
+      "bn": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA থেকে একটি ফ্রি API কী তৈরি করুন, অথবা কোনো API কী ছাড়াই লোকালি মডেল চালানোর জন্য Ollama ইনস্টল করুন।",
+      "ar": "قم بإنشاء مفتاح API مجاني عبر Openrouter أو Cerebras أو Google أو Groq أو Mistral AI أو NVIDIA، أو قم بتثبيت Ollama لتشغيل النماذج محلياً بدون مفتاح API.",
+      "hr": "Generirajte besplatni API ključ putem Openroutera, Cerebrasa, Googlea, Groqa, Mistral AI-ja, NVIDIA-e ili instalirajte Ollamu za lokalno pokretanje modela bez API ključa.",
+      "en-US": "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or install Ollama to run models locally without any API key.",
+      "fr": "Générez une clé API gratuite avec Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, ou installez Ollama pour exécuter des modèles localement sans clé API.",
+      "tl": "Gumawa ng libreng API key sa Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, o i-install ang Ollama para magpatakbo ng mga model nang lokal nang walang API key.",
+      "de": "Erstellen Sie einen kostenlosen API-Schlüssel bei Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA oder installieren Sie Ollama, um Modelle lokal ohne API-Schlüssel auszuführen.",
+      "nl": "Genereer een gratis API-sleutel bij Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, of installeer Ollama om modellen lokaal uit te voeren zonder API-sleutel.",
+      "el": "Δημιουργήστε ένα δωρεάν κλειδί API με Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, ή εγκαταστήστε το Ollama για να εκτελέσετε μοντέλα τοπικά χωρίς κλειδί API.",
+      "hi": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA के साथ एक मुफ़्त API की जेनरेट करें, या बिना किसी API की के मॉडल को स्थानीय रूप से चलाने के लिए Ollama इंस्टॉल करें।",
+      "hu": "Generáljon egy ingyenes API-kulcsot az Openrouter, Cerebras, Google, Groq, Mistral AI vagy NVIDIA oldalán, vagy telepítse az Ollama-t a modellek helyi futtatásához API-kulcs nélkül.",
+      "it": "Genera una chiave API gratuita con Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, oppure installa Ollama per eseguire i modelli localmente senza chiave API.",
+      "pt": "Gere uma chave de API gratuita com Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, ou instale o Ollama para executar modelos localmente sem chave de API.",
+      "ja": "Openrouter、Cerebras、Google、Groq、Mistral AI、NVIDIAで無料のAPIキーを生成するか、OllamaをインストールしてAPIキーなしでローカルにモデルを実行してください。",
+      "jv": "Gawe kunci API gratis nganggo Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, utawa instal Ollama kanggo nglakokake model kanthi lokal tanpa kunci API.",
+      "fa": "یک کلید API رایگان از Openrouter، Cerebras، Google، Groq، Mistral AI یا NVIDIA دریافت کنید، یا Ollama را برای اجرای مدل‌ها به صورت محلی و بدون نیاز به کلید API نصب کنید.",
+      "ko": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA에서 무료 API 키를 생성하거나, Ollama를 설치하여 API 키 없이 로컬에서 모델을 실행하세요.",
+      "ms": "Jana kunci API percuma dengan Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, atau pasang Ollama untuk menjalankan model secara tempatan tanpa sebarang kunci API.",
+      "pl": "Wygeneruj bezpłatny klucz API w Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA lub zainstaluj Ollama, aby uruchamiać modele lokalnie bez klucza API.",
+      "ro": "Generează o cheie API gratuită cu Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA sau instalează Ollama pentru a rula modele local fără nicio cheie API.",
+      "sk": "Vygenerujte si bezplatný API kľúč v Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA alebo nainštalujte Ollama na lokálne spustenie modelov bez API kľúča.",
+      "es": "Genera una clave API gratuita con Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, o instala Ollama para ejecutar modelos localmente sin ninguna clave API.",
+      "sw": "Tengeneza ufunguo wa API wa bure kupitia Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, au install Ollama ili kuendesha modeli ndani ya kifaa chako bila ufunguo wa API.",
+      "ru": "Создайте бесплатный API-ключ в Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA или установите Ollama для локального запуска моделей без API-ключа.",
+      "sv": "Generera en gratis API-nyckel hos Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, eller installera Ollama för att köra modeller lokalt utan API-nyckel.",
+      "te": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIAలతో ఉచిత API కీని పొందండి, లేదా API కీ లేకుండా మోడళ్లను లోకల్‌గా రన్ చేయడానికి Ollamaను ఇన్‌స్టాల్ చేయండి.",
+      "pa": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA ਨਾਲ ਇੱਕ ਮੁਫ਼ਤ API ਕੀ ਬਣਾਓ, ਜਾਂ ਬਿਨਾਂ ਕਿਸੇ API ਕੀ ਦੇ ਮਾਡਲਾਂ ਨੂੰ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਚਲਾਉਣ ਲਈ Ollama ਇੰਸਟਾਲ ਕਰੋ।",
+      "th": "สร้าง API key ฟรีด้วย Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA หรือติดตั้ง Ollama เพื่อรันโมเดลในเครื่องโดยไม่ต้องใช้ API key",
+      "vi": "Tạo khóa API miễn phí với Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, hoặc cài đặt Ollama để chạy mô hình cục bộ mà không cần khóa API.",
+      "tr": "Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA ile ücretsiz bir API anahtarı oluşturun veya modelleri herhangi bir API anahtarı olmadan yerel olarak çalıştırmak için Ollama'yı yükleyin.",
+      "uk": "Створіть безкоштовний API-ключ через Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA або встановіть Ollama, щоб запускати моделі локально без API-ключа."
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 387
+        "line": 574
       }
     ]
   },
@@ -16852,7 +17475,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 401
+        "line": 588
       }
     ]
   },
@@ -16937,7 +17560,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 404
+        "line": 591
       }
     ]
   },
@@ -17022,7 +17645,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 414
+        "line": 601
       }
     ]
   },
@@ -17107,7 +17730,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 432
+        "line": 619
       }
     ]
   },
@@ -17192,7 +17815,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 438
+        "line": 625
       }
     ]
   },
@@ -28280,11 +28903,11 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 470
+        "line": 467
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 640
+        "line": 637
       }
     ]
   },
@@ -28373,7 +28996,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 472
+        "line": 469
       }
     ]
   },
@@ -28458,7 +29081,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 502
+        "line": 499
       }
     ]
   },
@@ -28543,11 +29166,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 519
+        "line": 516
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 693
+        "line": 706
       }
     ]
   },
@@ -28632,7 +29255,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 604
+        "line": 601
       }
     ]
   },
@@ -28717,7 +29340,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 621
+        "line": 618
       }
     ]
   },
@@ -29227,7 +29850,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 322
+        "line": 333
       }
     ]
   },
@@ -29312,7 +29935,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 323
+        "line": 334
       }
     ]
   },
@@ -29397,7 +30020,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 324
+        "line": 335
       }
     ]
   },
@@ -29482,7 +30105,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 325
+        "line": 336
       }
     ]
   },
@@ -29567,7 +30190,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 326
+        "line": 337
       }
     ]
   },
@@ -29652,7 +30275,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 327
+        "line": 338
       }
     ]
   },
@@ -29737,7 +30360,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 328
+        "line": 339
       }
     ]
   },
@@ -29822,7 +30445,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 329
+        "line": 340
       }
     ]
   },
@@ -29907,7 +30530,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 330
+        "line": 341
       }
     ]
   },
@@ -29992,7 +30615,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 331
+        "line": 342
       }
     ]
   },
@@ -30077,7 +30700,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 333
+        "line": 345
       }
     ]
   },
@@ -30162,7 +30785,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 496
+        "line": 509
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -30251,11 +30874,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 517
+        "line": 530
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 519
+        "line": 532
       }
     ]
   },
@@ -30340,7 +30963,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 554
+        "line": 567
       }
     ]
   },
@@ -30425,7 +31048,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 594
+        "line": 607
       }
     ]
   },
@@ -30510,7 +31133,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 689
+        "line": 702
       }
     ]
   },
@@ -30595,7 +31218,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 690
+        "line": 703
       }
     ]
   },
@@ -48435,173 +49058,92 @@
       }
     ]
   },
-  "f5ddaf0c": {
-    "source": "local",
+  "dd29808b": {
+    "source": "Custom provider",
     "translated": {
-      "pt-BR": "local",
-      "ca": "local",
-      "ar": "محلي",
-      "bn": "স্থানীয়",
-      "zh-TW": "本機",
-      "zh-CN": "本地",
-      "cs": "místní",
-      "hr": "lokalno",
-      "en-US": "Local",
-      "fr": "local",
-      "tl": "lokal",
-      "nl": "lokaal",
-      "hu": "helyi",
-      "de": "lokal",
-      "hi": "स्थानीय",
-      "el": "τοπικό",
-      "ms": "tempatan",
-      "ja": "ローカル",
-      "ko": "로컬",
-      "it": "locale",
-      "pt": "local",
-      "pl": "lokalny",
-      "fa": "محلی",
-      "pa": "ਸਥਾਨਕ",
-      "es": "local",
-      "ru": "локальный",
-      "ro": "local",
-      "sk": "miestne",
-      "sv": "lokal",
-      "sw": "mahali",
-      "th": "ท้องถิ่น",
-      "te": "స్థానిక",
-      "vi": "cục bộ",
-      "tr": "yerel",
-      "uk": "локальний",
-      "jv": "lokal"
+      "zh-CN": "自定义提供商",
+      "pt-BR": "Provedor personalizado",
+      "ca": "Proveïdor personalitzat",
+      "cs": "Vlastní poskytovatel",
+      "zh-TW": "自訂提供者",
+      "bn": "কাস্টম প্রোভাইডার",
+      "ar": "المزود المخصص",
+      "hr": "Prilagođeni pružatelj",
+      "en-US": "Custom provider",
+      "fr": "Fournisseur personnalisé",
+      "tl": "Custom provider",
+      "de": "Benutzerdefinierter Anbieter",
+      "nl": "Aangepaste provider",
+      "el": "Προσαρμοσμένος πάροχος",
+      "hi": "कस्टम प्रोवाइडर",
+      "hu": "Egyedi szolgáltató",
+      "it": "Provider personalizzato",
+      "pt": "Provedor personalizado",
+      "ja": "カスタムプロバイダー",
+      "jv": "Provider kustom",
+      "fa": "ارائه‌دهنده سفارشی",
+      "ko": "사용자 지정 제공자",
+      "ms": "Pembekal tersuai",
+      "pl": "Niestandardowy dostawca",
+      "ro": "Furnizor personalizat",
+      "sk": "Vlastný poskytovateľ",
+      "es": "Proveedor personalizado",
+      "sw": "Mtoa huduma wa kustom",
+      "ru": "Пользовательский провайдер",
+      "sv": "Anpassad leverantör",
+      "te": "కస్టమ్ ప్రొవైడర్",
+      "pa": "ਕਸਟਮ ਪ੍ਰੋਵਾਈਡਰ",
+      "th": "ผู้ให้บริการที่กำหนดเอง",
+      "vi": "Nhà cung cấp tùy chỉnh",
+      "tr": "Özel sağlayıcı",
+      "uk": "Власний провайдер"
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
+      "zh-CN": "google/gemma-4-31b-it",
+      "pt-BR": "google/gemma-4-31b-it",
+      "ca": "google/gemma-4-31b-it",
+      "cs": "google/gemma-4-31b-it",
+      "zh-TW": "google/gemma-4-31b-it",
+      "bn": "google/gemma-4-31b-it",
+      "ar": "google/gemma-4-31b-it",
+      "hr": "google/gemma-4-31b-it",
+      "en-US": "google/gemma-4-31b-it",
+      "fr": "google/gemma-4-31b-it",
+      "tl": "google/gemma-4-31b-it",
+      "de": "google/gemma-4-31b-it",
+      "nl": "google/gemma-4-31b-it",
+      "el": "google/gemma-4-31b-it",
+      "hi": "google/gemma-4-31b-it",
+      "hu": "google/gemma-4-31b-it",
+      "it": "google/gemma-4-31b-it",
+      "pt": "google/gemma-4-31b-it",
+      "ja": "google/gemma-4-31b-it",
+      "jv": "google/gemma-4-31b-it",
+      "fa": "google/gemma-4-31b-it",
+      "ko": "google/gemma-4-31b-it",
+      "ms": "google/gemma-4-31b-it",
+      "pl": "google/gemma-4-31b-it",
+      "ro": "google/gemma-4-31b-it",
+      "sk": "google/gemma-4-31b-it",
+      "es": "google/gemma-4-31b-it",
+      "sw": "google/gemma-4-31b-it",
+      "ru": "google/gemma-4-31b-it",
+      "sv": "google/gemma-4-31b-it",
+      "te": "google/gemma-4-31b-it",
+      "pa": "google/gemma-4-31b-it",
+      "th": "google/gemma-4-31b-it",
+      "vi": "google/gemma-4-31b-it",
+      "tr": "google/gemma-4-31b-it",
+      "uk": "google/gemma-4-31b-it"
     },
     "locations": [
       {
         "file": "src/renderer/utils/misc/modelRouteBadge.ts",
-        "line": 14
-      }
-    ]
-  },
-  "7caa701b": {
-    "source": "direct",
-    "translated": {
-      "pt-BR": "direto",
-      "ca": "directe",
-      "ar": "مباشر",
-      "bn": "সরাসরি",
-      "zh-TW": "直接",
-      "zh-CN": "直接",
-      "cs": "přímý",
-      "hr": "izravno",
-      "en-US": "Direct",
-      "fr": "direct",
-      "tl": "direkta",
-      "nl": "direct",
-      "hu": "közvetlen",
-      "de": "direkt",
-      "hi": "प्रत्यक्ष",
-      "el": "άμεσο",
-      "ms": "terus",
-      "ja": "ダイレクト",
-      "ko": "직접",
-      "it": "diretto",
-      "pt": "direto",
-      "pl": "bezpośredni",
-      "fa": "مستقیم",
-      "pa": "ਸਿੱਧਾ",
-      "es": "directo",
-      "ru": "прямой",
-      "ro": "direct",
-      "sk": "priame",
-      "sv": "direkt",
-      "sw": "moja kwa moja",
-      "th": "ตรง",
-      "te": "నేరుగా",
-      "vi": "trực tiếp",
-      "tr": "doğrudan",
-      "uk": "прямий",
-      "jv": "langsung"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
+        "line": 27
+      },
       {
         "file": "src/renderer/utils/misc/modelRouteBadge.ts",
-        "line": 16
+        "line": 42
       }
     ]
   },

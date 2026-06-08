@@ -2,10 +2,12 @@
  * Web server: which config keys stay in global config.json (admin-only) vs per-user SQLite prefs.
  */
 
-const { CONFIG_KEY_BY_ENGINE } = require("../../shared/llm");
+const { CONFIG_KEY_BY_ENGINE, CUSTOM_CONFIG_KEYS } = require("../../shared/llm");
 
 const SERVER_GLOBAL_KEYS = new Set([
   ...Object.values(CONFIG_KEY_BY_ENGINE),
+  CUSTOM_CONFIG_KEYS.name,
+  CUSTOM_CONFIG_KEYS.url,
   "web_session_timeout",
 ]);
 

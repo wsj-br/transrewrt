@@ -279,7 +279,14 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const handleTestApi = async ({
     provider,
     overrideValue,
-  }: { provider?: string; overrideValue?: string } = {}) => {
+    overrideUrl,
+    overrideName,
+  }: {
+    provider?: string;
+    overrideValue?: string;
+    overrideUrl?: string;
+    overrideName?: string;
+  } = {}) => {
     const normalizedProvider = String(provider || "").trim();
     if (!normalizedProvider) {
       return { status: "error", message: "Provider is required." };
@@ -297,6 +304,8 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       const result = await window.electronAPI.testProviderApiKey({
         provider: normalizedProvider,
         overrideValue,
+        overrideUrl,
+        overrideName,
       });
       return result;
     } catch (error) {
@@ -318,6 +327,8 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   }, [allModels]);
 
   const engineFilterOptions = useMemo(() => {
+    const customName = String(localSettings.custom_provider_name || "").trim();
+    const customFilterKey = customName.toLowerCase();
     const allRows = [
       { value: "openrouter", label: t("OpenRouter") },
       { value: "openai", label: t("OpenAI") },
@@ -329,6 +340,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       { value: "mistralai", label: t("Mistral") },
       { value: "ollama", label: t("Ollama") },
       { value: "xai", label: t("xAI") },
+      ...(customName ? [{ value: customFilterKey, label: customName }] : []),
     ];
     const allLabel = { value: "", label: t("All providers") };
     if (enginesWithModels.size === 0) {
@@ -340,7 +352,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         a.label.localeCompare(b.label, undefined, { sensitivity: "base" }),
       );
     return [allLabel, ...rows];
-  }, [t, enginesWithModels]);
+  }, [t, enginesWithModels, localSettings.custom_provider_name]);
 
   const allowedEngineFilterValues = useMemo(
     () =>
@@ -394,7 +406,8 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
           model.name.toLowerCase().includes(searchTerm.toLowerCase()));
       let matchesEngine = true;
       if (effectiveFilterEngine) {
-        matchesEngine = model.id.startsWith(`${effectiveFilterEngine}/`);
+        matchesEngine =
+          filterEngineFromModelId(model.id) === effectiveFilterEngine;
       }
       let matchesFree = true;
       if (filterFree) {

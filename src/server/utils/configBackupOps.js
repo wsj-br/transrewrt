@@ -11,7 +11,7 @@ const {
   BACKUP_VERSION,
   zipBufferToMap,
 } = require("../../shared/configBackup/zipUtils.js");
-const { mergeKeys, CONFIG_KEY_BY_ENGINE } = require("../../shared/llm");
+const { mergeKeys, CONFIG_KEY_BY_ENGINE, CUSTOM_CONFIG_KEYS } = require("../../shared/llm");
 const {
   pickUserPreferenceEntries,
   pickServerGlobalEntries,
@@ -25,6 +25,8 @@ function omitLlmProviderKeysFromConfig(config) {
   for (const k of Object.values(CONFIG_KEY_BY_ENGINE)) {
     delete out[k];
   }
+  delete out[CUSTOM_CONFIG_KEYS.name];
+  delete out[CUSTOM_CONFIG_KEYS.url];
   return out;
 }
 

@@ -452,9 +452,6 @@ const SettingsModelsTab = ({
                             )}>
                               {routeBadge.text}
                             </span>
-                            <span className="text-xs opacity-70">
-                              ({provider.length ? provider.charAt(0).toUpperCase() + provider.slice(1) : provider})
-                            </span>
                             {showFreeBadge && (
                               <Badge variant="outline" className="text-xs py-0 text-green-400 border-green-500/50">
                                 <WandSparkles size={10} className="me-1" />{t('Free')}

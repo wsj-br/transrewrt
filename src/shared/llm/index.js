@@ -31,6 +31,7 @@ const ENGINE_IDS = [
   "mistralai",
   "ollama",
   "xai",
+  "custom",
   "cerebras",
 ];
 
@@ -44,13 +45,29 @@ const CONFIG_KEY_BY_ENGINE = {
   mistralai: "mistralai_api_key",
   ollama: "ollama_base_url",
   xai: "xai_api_key",
+  custom: "custom_provider_api_key",
   cerebras: "cerebras_api_key",
 };
 
+/** Extra config/env keys for the custom OpenAI-compatible provider (name + URL). */
+const CUSTOM_CONFIG_KEYS = {
+  name: "custom_provider_name",
+  url: "custom_provider_url",
+  apiKey: "custom_provider_api_key",
+};
+
+const CUSTOM_ENV_KEYS = {
+  name: "CUSTOM_PROVIDER_NAME",
+  url: "CUSTOM_PROVIDER_URL",
+  apiKey: "CUSTOM_PROVIDER_API_KEY",
+};
+
 /** Config keys stored encrypted on disk (Electron). */
-const ENCRYPTED_CONFIG_KEYS = ENGINE_IDS.filter((e) => e !== "ollama").map(
-  (e) => CONFIG_KEY_BY_ENGINE[e],
-);
+const ENCRYPTED_CONFIG_KEYS = ENGINE_IDS.filter(
+  (e) => e !== "ollama" && e !== "custom",
+)
+  .map((e) => CONFIG_KEY_BY_ENGINE[e])
+  .concat([CUSTOM_CONFIG_KEYS.apiKey]);
 
 const ENV_KEY_BY_ENGINE = {
   openrouter: "OPENROUTER_API_KEY",
@@ -62,6 +79,7 @@ const ENV_KEY_BY_ENGINE = {
   mistralai: "MISTRAL_API_KEY",
   ollama: "OLLAMA_URL",
   xai: "XAI_API_KEY",
+  custom: "CUSTOM_PROVIDER_API_KEY",
   cerebras: "CEREBRAS_API_KEY",
 };
 
@@ -96,10 +114,20 @@ const PRICING_TTL_MS = 24 * 60 * 60 * 1000;
 const FREE_INNER_ID = "openrouter/free";
 
 /**
+ * @param {Record<string, string>} [keysMap]
+ * @returns {string}
+ */
+function customProviderPrefix(keysMap) {
+  if (!keysMap) return "";
+  return (keysMap[CUSTOM_CONFIG_KEYS.name] || "").trim();
+}
+
+/**
  * @param {string} canonicalId
+ * @param {Record<string, string>} [keysMap]
  * @returns {{ engine: string, innerModelId: string }}
  */
-function resolveEngine(canonicalId) {
+function resolveEngine(canonicalId, keysMap) {
   const id = String(canonicalId || "").trim();
   if (!id) throw new Error("Model id is required");
   if (id.startsWith("openrouter/")) {
@@ -115,6 +143,15 @@ function resolveEngine(canonicalId) {
   }
   const engine = id.slice(0, slash);
   const innerModelId = id.slice(slash + 1);
+  if (engine === "custom") {
+    if (!innerModelId) throw new Error("Invalid model id");
+    return { engine: "custom", innerModelId };
+  }
+  const customPrefix = customProviderPrefix(keysMap);
+  if (customPrefix && engine === customPrefix) {
+    if (!innerModelId) throw new Error("Invalid model id");
+    return { engine: "custom", innerModelId };
+  }
   if (!ENGINE_IDS.includes(engine)) {
     throw new Error(`Unknown provider engine "${engine}" in model id`);
   }
@@ -152,6 +189,14 @@ function mergeKeys(config, env = process.env) {
       config && config[ck] != null ? String(config[ck]).trim() : "";
     out[ck] = fromCfg || fromEnv;
   }
+  for (const field of ["name", "url"]) {
+    const ck = CUSTOM_CONFIG_KEYS[field];
+    const ek = CUSTOM_ENV_KEYS[field];
+    const fromEnv = readEnvNonBlank(env, ek);
+    const fromCfg =
+      config && config[ck] != null ? String(config[ck]).trim() : "";
+    out[ck] = fromCfg || fromEnv;
+  }
   return out;
 }
 
@@ -165,10 +210,19 @@ const PROVIDER_LABELS = {
   mistralai: "Mistral",
   ollama: "Ollama",
   xai: "xAI",
+  custom: "Custom provider",
   cerebras: "Cerebras",
 };
 
-function providerDisplayName(provider) {
+/**
+ * @param {string} provider
+ * @param {Record<string, string>} [keysMap]
+ */
+function providerDisplayName(provider, keysMap) {
+  if (provider === "custom" && keysMap) {
+    const name = (keysMap[CUSTOM_CONFIG_KEYS.name] || "").trim();
+    if (name) return name;
+  }
   return PROVIDER_LABELS[provider] || provider;
 }
 
@@ -183,8 +237,9 @@ const PROVIDER_TEST_SUCCESS_I18N = {
 /**
  * @param {string} provider
  * @param {string} value
+ * @param {{ baseURL?: string, displayName?: string, apiKey?: string }} [extras]
  */
-function buildProviderTestRequest(provider, value) {
+function buildProviderTestRequest(provider, value, extras = {}) {
   const normalized = String(value || "").trim();
   if (provider === "ollama") {
     const baseURL = normalized || "http://localhost:11434";
@@ -192,6 +247,24 @@ function buildProviderTestRequest(provider, value) {
     return {
       url: `${sanitizedBase}/api/tags`,
       options: { method: "GET" },
+    };
+  }
+  if (provider === "custom") {
+    const displayName = String(extras.displayName || "").trim();
+    const baseURL = String(extras.baseURL || "").trim().replace(/\/+$/, "");
+    const apiKey = String(extras.apiKey || normalized || "").trim();
+    if (!displayName || !baseURL || !apiKey) {
+      return {
+        missingMessage: "Custom provider name, URL, and API key are all required.",
+      };
+    }
+    return {
+      url: `${baseURL}/models`,
+      options: {
+        method: "GET",
+        headers: { Authorization: `Bearer ${apiKey}` },
+      },
+      displayName,
     };
   }
   if (!normalized) {
@@ -264,9 +337,10 @@ function buildProviderTestRequest(provider, value) {
 /**
  * @param {string} provider
  * @param {string} value
+ * @param {{ baseURL?: string, displayName?: string, apiKey?: string, keysMap?: Record<string, string> }} [extras]
  * @returns {Promise<{ provider: string, ok: boolean, message: string, successI18n?: { key: string, params?: Record<string, string> } }>}
  */
-async function testProviderAuth(provider, value) {
+async function testProviderAuth(provider, value, extras = {}) {
   const normalizedProvider = String(provider || "").trim();
   if (!ENGINE_IDS.includes(normalizedProvider)) {
     return {
@@ -276,10 +350,14 @@ async function testProviderAuth(provider, value) {
     };
   }
 
-  const req = buildProviderTestRequest(normalizedProvider, value);
+  const req = buildProviderTestRequest(normalizedProvider, value, extras);
   if (req.missingMessage) {
     return { provider: normalizedProvider, ok: false, message: req.missingMessage };
   }
+
+  const displayName =
+    req.displayName ||
+    providerDisplayName(normalizedProvider, extras.keysMap);
 
   try {
     const response = await fetch(req.url, req.options);
@@ -289,12 +367,12 @@ async function testProviderAuth(provider, value) {
           ? { key: PROVIDER_TEST_SUCCESS_I18N.ollamaOk }
           : {
               key: PROVIDER_TEST_SUCCESS_I18N.credentialsOk,
-              params: { provider: providerDisplayName(normalizedProvider) },
+              params: { provider: displayName },
             };
       const successMessage =
         normalizedProvider === "ollama"
           ? PROVIDER_TEST_SUCCESS_I18N.ollamaOk
-          : `${providerDisplayName(normalizedProvider)} credentials are valid.`;
+          : `${displayName} credentials are valid.`;
       return {
         provider: normalizedProvider,
         ok: true,
@@ -320,13 +398,13 @@ async function testProviderAuth(provider, value) {
     return {
       provider: normalizedProvider,
       ok: false,
-      message: `${providerDisplayName(normalizedProvider)} authentication failed: ${detail}`,
+      message: `${displayName} authentication failed: ${detail}`,
     };
   } catch (error) {
     return {
       provider: normalizedProvider,
       ok: false,
-      message: `${providerDisplayName(normalizedProvider)} test request failed: ${error.message}`,
+      message: `${displayName} test request failed: ${error.message}`,
     };
   }
 }
@@ -340,6 +418,17 @@ function listLlmEnvVarsPresent(env = process.env) {
   const names = [];
   for (const engine of ENGINE_IDS) {
     const ek = ENV_KEY_BY_ENGINE[engine];
+    if (engine === "custom") {
+      const allCustom = ["name", "url", "apiKey"].every((field) =>
+        readEnvNonBlank(env, CUSTOM_ENV_KEYS[field]),
+      );
+      if (allCustom) {
+        names.push(CUSTOM_ENV_KEYS.name);
+        names.push(CUSTOM_ENV_KEYS.url);
+        names.push(CUSTOM_ENV_KEYS.apiKey);
+      }
+      continue;
+    }
     if (readEnvNonBlank(env, ek)) names.push(ek);
   }
   return names;
@@ -354,6 +443,11 @@ function buildConfig(engine, keysMap) {
     const url = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
     return { baseURL: url.replace(/\/+$/, "") };
   }
+  if (engine === "custom") {
+    const baseURL = (keysMap[CUSTOM_CONFIG_KEYS.url] || "").trim().replace(/\/+$/, "");
+    const apiKey = (keysMap[CUSTOM_CONFIG_KEYS.apiKey] || "").trim();
+    return { baseURL, apiKey };
+  }
   const ck = CONFIG_KEY_BY_ENGINE[engine];
   const apiKey = (keysMap[ck] || "").trim();
   return { apiKey };
@@ -362,6 +456,13 @@ function buildConfig(engine, keysMap) {
 function engineConfigured(engine, keysMap) {
   if (engine === "ollama") {
     return !!(keysMap.ollama_base_url || "").trim();
+  }
+  if (engine === "custom") {
+    return (
+      !!(keysMap[CUSTOM_CONFIG_KEYS.name] || "").trim() &&
+      !!(keysMap[CUSTOM_CONFIG_KEYS.url] || "").trim() &&
+      !!(keysMap[CUSTOM_CONFIG_KEYS.apiKey] || "").trim()
+    );
   }
   const ck = CONFIG_KEY_BY_ENGINE[engine];
   return !!(keysMap[ck] || "").trim();
@@ -549,6 +650,38 @@ function estimateCostDollars(engine, innerModelId, usage) {
 }
 
 /**
+ * List models from a custom OpenAI-compatible endpoint.
+ * @param {Record<string, string>} keysMap
+ * @returns {Promise<import('multi-llm-ts').ChatModel[]>}
+ */
+async function loadCustomModels(keysMap) {
+  const conf = buildConfig("custom", keysMap);
+  const { baseURL, apiKey } = conf;
+  if (!baseURL || !apiKey) return [];
+  const res = await fetch(`${baseURL}/models`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  });
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+  const json = await res.json();
+  const rows = json.data || [];
+  const cap = defaultCapabilities?.capabilities || {
+    tools: true,
+    vision: false,
+    reasoning: false,
+    caching: false,
+  };
+  return rows
+    .filter((row) => row?.id)
+    .map((row) => ({
+      id: row.id,
+      name: row.name || row.id,
+      capabilities: cap,
+    }));
+}
+
+/**
  * @param {Record<string, string>} keysMap
  * @returns {Promise<Array<{ id: string, name: string, pricing: { prompt: number, completion: number }, pricingKnown: boolean, pricingEstimated?: boolean }>>}
  */
@@ -569,17 +702,30 @@ async function getAllModels(keysMap) {
       continue;
     }
     let list;
+    let chat;
     try {
-      list = await loadModels(engine, conf);
+      if (engine === "custom") {
+        chat = await loadCustomModels(keysMap);
+        list = { chat };
+      } else {
+        list = await loadModels(engine, conf);
+        chat = list?.chat || [];
+      }
     } catch (e) {
       console.error(`[llm] loadModels(${engine}) failed:`, e.message);
       catalogByEngine[engine] = [];
       continue;
     }
-    const chat = list?.chat || [];
     catalogByEngine[engine] = chat;
     for (const m of chat) {
-      const canonical = `${engine}/${m.id}`;
+      let canonical;
+      if (engine === "custom") {
+        const prefix = customProviderPrefix(keysMap);
+        if (!prefix) continue;
+        canonical = `${prefix}/${m.id}`;
+      } else {
+        canonical = `${engine}/${m.id}`;
+      }
       const raw = pricingDetailsFromChatModel(m, engine);
       let prompt = raw.prompt;
       let completion = raw.completion;
@@ -650,8 +796,12 @@ async function ensureCatalogForEngine(engine, keysMap) {
     return;
   }
   try {
-    const list = await loadModels(engine, conf);
-    catalogByEngine[engine] = list?.chat || [];
+    if (engine === "custom") {
+      catalogByEngine[engine] = await loadCustomModels(keysMap);
+    } else {
+      const list = await loadModels(engine, conf);
+      catalogByEngine[engine] = list?.chat || [];
+    }
   } catch (e) {
     console.error(`[llm] ensureCatalogForEngine(${engine}):`, e.message);
     catalogByEngine[engine] = [];
@@ -843,6 +993,115 @@ async function streamOpenRouterCompletion({
 }
 
 /**
+ * Stream chat completions from a custom OpenAI-compatible endpoint.
+ * @param {{ onSseLine?: (line: string) => void, onText?: (text: string) => void }} handlers
+ */
+async function streamCustomCompletion({
+  keysMap,
+  innerModelId,
+  messages,
+  temperature,
+  signal,
+  handlers = {},
+}) {
+  const { onSseLine, onText } = handlers;
+  const conf = buildConfig("custom", keysMap);
+  const { baseURL, apiKey } = conf;
+  if (!baseURL || !apiKey) {
+    throw new Error("Custom provider URL and API key are not configured");
+  }
+
+  const body = {
+    model: innerModelId,
+    messages,
+    temperature,
+    stream: true,
+    stream_options: { include_usage: true },
+  };
+
+  const res = await fetch(`${baseURL}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify(body),
+    signal,
+  });
+
+  if (!res.ok) {
+    let errText = await res.text().catch(() => "");
+    let msg = `Custom provider HTTP ${res.status}`;
+    try {
+      const j = errText ? JSON.parse(errText) : {};
+      msg = extractApiErrorMessage(j, msg);
+    } catch {
+      if (errText) msg = errText.slice(0, 500);
+    }
+    const err = new Error(msg);
+    err.status = res.status;
+    throw err;
+  }
+
+  if (!res.body) throw new Error("Empty response body");
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let lastUsage = null;
+
+  try {
+    while (true) {
+      if (signal?.aborted) {
+        await reader.cancel().catch(() => {});
+        break;
+      }
+      const { done, value } = await reader.read();
+      if (value) buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() ?? "";
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (trimmed === "data: [DONE]") {
+          if (onSseLine) onSseLine(trimmed);
+          continue;
+        }
+        if (!trimmed.startsWith("data: ")) continue;
+        const jsonStr = trimmed.slice(6);
+        let data;
+        try {
+          data = JSON.parse(jsonStr);
+        } catch {
+          continue;
+        }
+        if (data.usage) lastUsage = data.usage;
+        const deltaPiece = streamChoiceToString(data.choices?.[0]);
+        if (deltaPiece && onText) onText(deltaPiece);
+        if (onSseLine) onSseLine(trimmed);
+      }
+      if (done) break;
+    }
+  } finally {
+    reader.releaseLock?.();
+  }
+
+  await refreshOpenRouterPricingIfNeeded((keysMap.openrouter_api_key || "").trim());
+  const accumulated = {
+    prompt_tokens: lastUsage?.prompt_tokens ?? 0,
+    completion_tokens: lastUsage?.completion_tokens ?? 0,
+  };
+  const pricingRow = lookupOpenRouterPricingRow("custom", innerModelId);
+  const cost = estimateCostDollars("custom", innerModelId, accumulated);
+  const usage = normalizeUsage(accumulated, cost, pricingRow != null);
+  if (onSseLine) {
+    onSseLine(`data: ${JSON.stringify({ usage })}`);
+    onSseLine("data: [DONE]");
+  }
+  return { usage };
+}
+
+/**
  * @param {string} canonicalModelId
  * @param {Array<{role: string, content: string}>} messages
  * @param {{ temperature?: number, signal?: AbortSignal, keysMap: Record<string,string> }} opts
@@ -850,12 +1109,12 @@ async function streamOpenRouterCompletion({
  * @returns {Promise<{ usage: object }>}
  */
 async function streamCompletion(canonicalModelId, messages, opts, handlers = {}) {
-  const { engine, innerModelId } = resolveEngine(canonicalModelId);
-  const temperature = opts.temperature ?? 0.3;
-  const signal = opts.signal;
-
   const keysMap = opts.keysMap;
   if (!keysMap) throw new Error("keysMap is required");
+
+  const { engine, innerModelId } = resolveEngine(canonicalModelId, keysMap);
+  const temperature = opts.temperature ?? 0.3;
+  const signal = opts.signal;
 
   if (!engineConfigured(engine, keysMap)) {
     throw new Error(`No API key or URL configured for provider "${engine}"`);
@@ -863,6 +1122,18 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
 
   if (engine === "openrouter") {
     const { usage } = await streamOpenRouterCompletion({
+      keysMap,
+      innerModelId,
+      messages,
+      temperature,
+      signal,
+      handlers,
+    });
+    return { usage };
+  }
+
+  if (engine === "custom") {
+    const { usage } = await streamCustomCompletion({
       keysMap,
       innerModelId,
       messages,
@@ -930,10 +1201,13 @@ module.exports = {
   ENGINE_IDS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
+  CUSTOM_CONFIG_KEYS,
+  CUSTOM_ENV_KEYS,
   ENCRYPTED_CONFIG_KEYS,
   FREE_INNER_ID,
   PROVIDER_TEST_SUCCESS_I18N,
   resolveEngine,
+  customProviderPrefix,
   mergeKeys,
   readEnvNonBlank,
   providerDisplayName,

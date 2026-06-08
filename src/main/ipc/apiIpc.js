@@ -6,6 +6,7 @@ const {
   OPENROUTER_BASE,
   mergeKeys,
   CONFIG_KEY_BY_ENGINE,
+  CUSTOM_CONFIG_KEYS,
   extractApiErrorMessage,
   normalizeOpenRouterKeyErrorMessage,
   testProviderAuth,
@@ -65,10 +66,38 @@ function registerApiIpc(ipcMain, getConfigCache) {
     },
   );
 
-  ipcMain.handle("api:testProvider", async (_, { provider, overrideValue } = {}) => {
+  ipcMain.handle("api:testProvider", async (_, { provider, overrideValue, overrideUrl, overrideName } = {}) => {
     const normalizedProvider = String(provider || "").trim();
     const configCache = getConfigCache();
     const merged = mergeKeys(configCache);
+    if (normalizedProvider === "custom") {
+      const extras = {
+        baseURL:
+          overrideUrl !== undefined && overrideUrl !== null
+            ? String(overrideUrl)
+            : merged[CUSTOM_CONFIG_KEYS.url] || "",
+        displayName:
+          overrideName !== undefined && overrideName !== null
+            ? String(overrideName)
+            : merged[CUSTOM_CONFIG_KEYS.name] || "",
+        apiKey:
+          overrideValue !== undefined && overrideValue !== null
+            ? String(overrideValue)
+            : merged[CUSTOM_CONFIG_KEYS.apiKey] || "",
+        keysMap: merged,
+      };
+      const result = await testProviderAuth(
+        normalizedProvider,
+        extras.apiKey,
+        extras,
+      );
+      return {
+        provider: result.provider,
+        status: result.ok ? "success" : "error",
+        message: result.message,
+        successI18n: result.successI18n,
+      };
+    }
     const configField = CONFIG_KEY_BY_ENGINE[normalizedProvider];
     const value =
       overrideValue !== undefined && overrideValue !== null

@@ -200,8 +200,16 @@ const PROVIDER_SECRET_FIELDS = [
   { key: "groq_api_key", labelKey: "Groq API key", placeholder: "" },
   { key: "mistralai_api_key", labelKey: "Mistral API key", placeholder: "" },
   { key: "xai_api_key", labelKey: "xAI API key", placeholder: "" },
+];
+
+const PROVIDER_SECRET_FIELDS_AFTER_CUSTOM = [
   { key: "cerebras_api_key", labelKey: "Cerebras API key", placeholder: "" },
 ];
+
+const CUSTOM_PROVIDER_KEY = "custom_provider_api_key";
+const CUSTOM_PROVIDER_NAME_KEY = "custom_provider_name";
+const CUSTOM_PROVIDER_URL_KEY = "custom_provider_url";
+const NVIDIA_BUILD_URL = "https://build.nvidia.com/";
 
 const SettingsApiTab = ({
   localSettings,
@@ -219,20 +227,29 @@ const SettingsApiTab = ({
 
   const providerByKey = useMemo(() => {
     const map = {};
-    for (const { key } of PROVIDER_SECRET_FIELDS) {
+    for (const { key } of [...PROVIDER_SECRET_FIELDS, ...PROVIDER_SECRET_FIELDS_AFTER_CUSTOM]) {
       map[key] = key.replace("_api_key", "");
     }
+    map[CUSTOM_PROVIDER_KEY] = "custom";
     return map;
   }, []);
 
   const providerDocUrlByKey = useMemo(() => {
     const out = {};
-    for (const { key } of PROVIDER_SECRET_FIELDS) {
+    for (const { key } of [...PROVIDER_SECRET_FIELDS, ...PROVIDER_SECRET_FIELDS_AFTER_CUSTOM]) {
       const provider = key.replace("_api_key", "");
       out[key] = findProviderUrlById(provider, iconsWithFiles);
     }
     return out;
   }, []);
+
+  const savedCustomName = String(localSettings.custom_provider_name ?? "").trim();
+  const savedCustomUrl = String(localSettings.custom_provider_url ?? "").trim();
+  const [customNameDraft, setCustomNameDraft] = useState(savedCustomName);
+  const [customUrlDraft, setCustomUrlDraft] = useState(savedCustomUrl);
+  const customKeyConfigured = !!localSettings.custom_provider_api_key_configured;
+  const customFullyConfigured =
+    !!savedCustomName && !!savedCustomUrl && customKeyConfigured;
 
   useEffect(() => {
     if (!isWeb || currentUserRole !== "admin") return;
@@ -246,12 +263,25 @@ const SettingsApiTab = ({
     setOllamaDraft(savedOllamaBaseUrl);
   }, [savedOllamaBaseUrl]);
 
-  const runProviderTest = async (provider: string, overrideValue?: string) => {
+  useEffect(() => {
+    setCustomNameDraft(savedCustomName);
+  }, [savedCustomName]);
+
+  useEffect(() => {
+    setCustomUrlDraft(savedCustomUrl);
+  }, [savedCustomUrl]);
+
+  const runProviderTest = async (
+    provider: string,
+    overrideValue?: string,
+    overrideUrl?: string,
+    overrideName?: string,
+  ) => {
     setTestResults((prev) => ({
       ...prev,
       [provider]: { status: "testing", message: t("Testing...") },
     }));
-    const result = await onTestApi({ provider, overrideValue });
+    const result = await onTestApi({ provider, overrideValue, overrideUrl, overrideName });
     let message = result.message || "";
     if (result.status === "success") {
       const translated = formatProviderTestSuccessMessage(result.successI18n, t);
@@ -262,6 +292,257 @@ const SettingsApiTab = ({
       [provider]: { status: result.status, message },
     }));
   };
+
+  const renderSecretField = ({ key, labelKey, placeholder }) => {
+    const configured = !!localSettings[`${key}_configured`];
+    const isEditing = editingKey === key;
+    const provider = providerByKey[key];
+    const draftValue = draftValues[key] ?? "";
+    const overrideValue =
+      isEditing || !configured ? (draftValue ?? "").trim() : undefined;
+    return (
+      <Fragment key={key}>
+      <SecretField
+        id={`api-${key}`}
+        label={t(labelKey)}
+        placeholder={placeholder}
+        configured={configured}
+        value={configured && !isEditing ? "" : draftValue}
+        onChange={(nextValue) =>
+          setDraftValues((prev) => ({ ...prev, [key]: nextValue }))
+        }
+        onSave={() => {
+          const trimmed = (draftValue ?? "").trim();
+          onSettingChange(key, trimmed);
+          setDraftValues((prev) => ({ ...prev, [key]: "" }));
+          setEditingKey(null);
+        }}
+        onCancel={() => {
+          setDraftValues((prev) => ({ ...prev, [key]: "" }));
+          setEditingKey(null);
+        }}
+        onEdit={() => {
+          setEditingKey(key);
+          setDraftValues((prev) => ({ ...prev, [key]: "" }));
+          setTestResults((prev) => {
+            const next = { ...prev };
+            delete next[provider];
+            return next;
+          });
+        }}
+        onTest={() => runProviderTest(provider, overrideValue)}
+        testState={testResults[provider]}
+        saveLabel={t("Save")}
+        cancelLabel={t("Cancel")}
+        configuredMessage={t("API key is configured")}
+        editLabel={t("Edit")}
+        isEditing={isEditing}
+        docUrl={providerDocUrlByKey[key]}
+        onOpenDoc={openExternalUrl}
+        docLinkLabel={t("Open provider website")}
+      />
+      </Fragment>
+    );
+  };
+
+  const runCustomProviderTest = () => {
+    const name = (customNameDraft ?? "").trim() || savedCustomName;
+    const url = (customUrlDraft ?? "").trim() || savedCustomUrl;
+    const isEditingKey = editingKey === CUSTOM_PROVIDER_KEY;
+    const keyDraft = draftValues[CUSTOM_PROVIDER_KEY] ?? "";
+    const overrideValue =
+      isEditingKey || !customKeyConfigured ? (keyDraft ?? "").trim() : undefined;
+    if (!name || !url || (overrideValue !== undefined && !overrideValue)) {
+      setTestResults((prev) => ({
+        ...prev,
+        custom: {
+          status: "error",
+          message: t("Custom provider name, URL, and API key are all required."),
+        },
+      }));
+      return;
+    }
+    if (overrideValue === undefined && !customKeyConfigured) {
+      setTestResults((prev) => ({
+        ...prev,
+        custom: {
+          status: "error",
+          message: t("Custom provider name, URL, and API key are all required."),
+        },
+      }));
+      return;
+    }
+    runProviderTest("custom", overrideValue, url, name);
+  };
+
+  const customKeyDraft = draftValues[CUSTOM_PROVIDER_KEY] ?? "";
+  const isEditingCustomKey = editingKey === CUSTOM_PROVIDER_KEY;
+
+  const renderCustomProviderSection = () => (
+    <div className="mb-4">
+      <h4 className="text-sm font-semibold mt-0 mb-4">
+        {t("Custom OpenAI-compatible provider")}
+      </h4>
+      {customFullyConfigured ? (
+        <p className="mb-3 text-sm text-green-400 font-semibold">
+          {t("Custom provider is configured")}
+        </p>
+      ) : null}
+      <div className="flex flex-col gap-0">
+        <div className="mb-4">
+          <Label htmlFor="custom-provider-name" className="mb-1.5 block">
+            {t("Custom provider name")}
+          </Label>
+          <Input
+            id="custom-provider-name"
+            type="text"
+            value={customNameDraft}
+            onChange={(e) => setCustomNameDraft(e.target.value)}
+            onBlur={() => {
+              const next = (customNameDraft ?? "").trim();
+              if (next !== savedCustomName) {
+                onSettingChange(CUSTOM_PROVIDER_NAME_KEY, next);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key !== "Enter") return;
+              e.currentTarget.blur();
+            }}
+            placeholder="NVIDIA"
+            className="w-full max-w-[400px] min-w-0"
+          />
+        </div>
+        <div className="mb-4">
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <Label htmlFor="custom-provider-url" className="mb-0">
+              {t("Custom provider URL")}
+            </Label>
+            <button
+              type="button"
+              onClick={() => openExternalUrl(NVIDIA_BUILD_URL)}
+              aria-label={t("Open NVIDIA Build website")}
+              title={t("Open NVIDIA Build website")}
+              className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
+            >
+              <ExternalLink size={13} />
+            </button>
+          </div>
+          <Input
+            id="custom-provider-url"
+            type="text"
+            value={customUrlDraft}
+            onChange={(e) => setCustomUrlDraft(e.target.value)}
+            onBlur={() => {
+              const next = (customUrlDraft ?? "").trim();
+              if (next !== savedCustomUrl) {
+                onSettingChange(CUSTOM_PROVIDER_URL_KEY, next);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key !== "Enter") return;
+              e.currentTarget.blur();
+            }}
+            placeholder="https://integrate.api.nvidia.com/v1"
+            className="w-full max-w-[400px] min-w-0"
+          />
+        </div>
+        <SecretField
+          id={`api-${CUSTOM_PROVIDER_KEY}`}
+          label={t("Custom API key")}
+          placeholder=""
+          configured={customKeyConfigured}
+          value={customKeyConfigured && !isEditingCustomKey ? "" : customKeyDraft}
+          onChange={(nextValue) =>
+            setDraftValues((prev) => ({ ...prev, [CUSTOM_PROVIDER_KEY]: nextValue }))
+          }
+          onSave={() => {
+            const trimmed = (customKeyDraft ?? "").trim();
+            onSettingChange(CUSTOM_PROVIDER_KEY, trimmed);
+            setDraftValues((prev) => ({ ...prev, [CUSTOM_PROVIDER_KEY]: "" }));
+            setEditingKey(null);
+          }}
+          onCancel={() => {
+            setDraftValues((prev) => ({ ...prev, [CUSTOM_PROVIDER_KEY]: "" }));
+            setEditingKey(null);
+          }}
+          onEdit={() => {
+            setEditingKey(CUSTOM_PROVIDER_KEY);
+            setDraftValues((prev) => ({ ...prev, [CUSTOM_PROVIDER_KEY]: "" }));
+            setTestResults((prev) => {
+              const next = { ...prev };
+              delete next.custom;
+              return next;
+            });
+          }}
+          onTest={runCustomProviderTest}
+          testState={testResults.custom}
+          saveLabel={t("Save")}
+          cancelLabel={t("Cancel")}
+          configuredMessage={t("API key is configured")}
+          editLabel={t("Edit")}
+          isEditing={isEditingCustomKey}
+          docUrl={NVIDIA_BUILD_URL}
+          onOpenDoc={openExternalUrl}
+          docLinkLabel={t("Open NVIDIA Build website")}
+        />
+      </div>
+    </div>
+  );
+
+  const renderOllamaSection = () => (
+    <div className="mb-4">
+      <div className="flex items-center gap-1.5 mb-1.5">
+        <Label htmlFor="ollama-base-url" className="mb-0">{t("Ollama base URL")}</Label>
+        <button
+          type="button"
+          onClick={() => openExternalUrl(OLLAMA_URL)}
+          aria-label={t("Open Ollama website")}
+          title={t("Open Ollama website")}
+          className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
+        >
+          <ExternalLink size={13} />
+        </button>
+      </div>
+      <div className="flex items-start gap-2 flex-wrap">
+        <div className="flex flex-col">
+          <Input
+            id="ollama-base-url"
+            type="text"
+            value={ollamaDraft}
+            onChange={(e) => setOllamaDraft(e.target.value)}
+            onBlur={() => {
+              const next = (ollamaDraft ?? "").trim();
+              if (next !== savedOllamaBaseUrl) {
+                onSettingChange("ollama_base_url", next);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key !== "Enter") return;
+              e.currentTarget.blur();
+            }}
+            placeholder="http://localhost:11434"
+            className="w-full max-w-[400px] min-w-0"
+          />
+          <p className="mt-1.5 mb-0 text-xs text-muted-foreground">
+            {t("Use http://localhost:11434 if you are running Ollama on this machine.")}
+          </p>
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => runProviderTest("ollama", (ollamaDraft ?? "").trim())}
+          disabled={testResults.ollama?.status === "testing"}
+        >
+          {testResults.ollama?.status === "testing" ? t("Testing...") : t("Test")}
+        </Button>
+      </div>
+      {testResults.ollama?.message ? (
+        <p className={cn("mt-1.5 text-sm", testStatusClass(testResults.ollama?.status))}>
+          {testResults.ollama.message}
+        </p>
+      ) : null}
+    </div>
+  );
 
   return (
     <div className={settingsTabContent}>
@@ -276,115 +557,21 @@ const SettingsApiTab = ({
             <p className="block mb-5 max-w-[560px] text-sm">{t("Add API keys for each provider you use.")}</p>
 
             <div className="grid gap-x-6 w-full" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))" }}>
-              {PROVIDER_SECRET_FIELDS.map(({ key, labelKey, placeholder }) => {
-                const configured = !!localSettings[`${key}_configured`];
-                const isEditing = editingKey === key;
-                const provider = providerByKey[key];
-                const draftValue = draftValues[key] ?? "";
-                const overrideValue =
-                  isEditing || !configured ? (draftValue ?? "").trim() : undefined;
-                return (
-                  <Fragment key={key}>
-                  <SecretField
-                    id={`api-${key}`}
-                    label={t(labelKey)}
-                    placeholder={placeholder}
-                    configured={configured}
-                    value={configured && !isEditing ? "" : draftValue}
-                    onChange={(nextValue) =>
-                      setDraftValues((prev) => ({ ...prev, [key]: nextValue }))
-                    }
-                    onSave={() => {
-                      const trimmed = (draftValue ?? "").trim();
-                      onSettingChange(key, trimmed);
-                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
-                      setEditingKey(null);
-                    }}
-                    onCancel={() => {
-                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
-                      setEditingKey(null);
-                    }}
-                    onEdit={() => {
-                      setEditingKey(key);
-                      setDraftValues((prev) => ({ ...prev, [key]: "" }));
-                      setTestResults((prev) => {
-                        const next = { ...prev };
-                        delete next[provider];
-                        return next;
-                      });
-                    }}
-                    onTest={() => runProviderTest(provider, overrideValue)}
-                    testState={testResults[provider]}
-                    saveLabel={t("Save")}
-                    cancelLabel={t("Cancel")}
-                    configuredMessage={t("API key is configured")}
-                    editLabel={t("Edit")}
-                    isEditing={isEditing}
-                    docUrl={providerDocUrlByKey[key]}
-                    onOpenDoc={openExternalUrl}
-                    docLinkLabel={t("Open provider website")}
-                  />
-                  </Fragment>
-                );
-              })}
+              {PROVIDER_SECRET_FIELDS.map((field) => renderSecretField(field))}
+              {PROVIDER_SECRET_FIELDS_AFTER_CUSTOM.map((field) => renderSecretField(field))}
             </div>
 
-            <div className="mb-4">
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <Label htmlFor="ollama-base-url" className="mb-0">{t("Ollama base URL")}</Label>
-                <button
-                  type="button"
-                  onClick={() => openExternalUrl(OLLAMA_URL)}
-                  aria-label={t("Open Ollama website")}
-                  title={t("Open Ollama website")}
-                  className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
-                >
-                  <ExternalLink size={13} />
-                </button>
-              </div>
-              <div className="flex items-start gap-2 flex-wrap">
-                <div className="flex flex-col">
-                  <Input
-                    id="ollama-base-url"
-                    type="text"
-                    value={ollamaDraft}
-                    onChange={(e) => setOllamaDraft(e.target.value)}
-                    onBlur={() => {
-                      const next = (ollamaDraft ?? "").trim();
-                      if (next !== savedOllamaBaseUrl) {
-                        onSettingChange("ollama_base_url", next);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key !== "Enter") return;
-                      e.currentTarget.blur();
-                    }}
-                    placeholder="http://localhost:11434"
-                    className="w-full max-w-[400px] min-w-0"
-                  />
-                  <p className="mt-1.5 mb-0 text-xs text-muted-foreground">
-                    {t("Use http://localhost:11434 if you are running Ollama on this machine.")}
-                  </p>
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => runProviderTest("ollama", (ollamaDraft ?? "").trim())}
-                  disabled={testResults.ollama?.status === "testing"}
-                >
-                  {testResults.ollama?.status === "testing" ? t("Testing...") : t("Test")}
-                </Button>
-              </div>
-              {testResults.ollama?.message ? (
-                <p className={cn("mt-1.5 text-sm", testStatusClass(testResults.ollama?.status))}>
-                  {testResults.ollama.message}
-                </p>
-              ) : null}
+            <div
+              className="grid gap-x-6 gap-y-4 w-full mt-2"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))" }}
+            >
+              {renderCustomProviderSection()}
+              {renderOllamaSection()}
             </div>
 
             <div className="mt-6 p-3 bg-muted rounded-md max-w-[800px]">
               <p className="m-0 text-sm">
-                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, or install Ollama to run models locally without any API key.")}
+                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or install Ollama to run models locally without any API key.")}
               </p>
             </div>
           </div>

@@ -87,9 +87,9 @@ const ProviderIcon = ({ provider, size = 16 }) => {
     );
   }
 
-  // Fallback to generic robot emoji
+  // Fallback for unknown providers (e.g. custom OpenAI-compatible)
   const fontSize = size === 20 ? '20px' : '16px';
-  return <span style={{ fontSize, lineHeight: 1 }}>🤖</span>;
+  return <span style={{ fontSize, lineHeight: 1 }} title={provider}>🔑</span>;
 };
 
 ProviderIcon.propTypes = {

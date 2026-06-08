@@ -11,6 +11,13 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Custom OpenAI-compatible provider (name, URL, and API key) in Settings → API Config (Electron) and via `CUSTOM_PROVIDER_*` environment variables (web/Docker); models listed in Advanced mode when configured and reachable (e.g. NVIDIA NIM).
+- **Added**: `pnpm run check-custom-provider` script to test `CUSTOM_PROVIDER_*` and list custom provider models on the console.
+- **Changed**: Custom provider model ids use the configured provider name as prefix (e.g. `NVIDIA/nvidia/…`) instead of `custom/…`; legacy `custom/…` ids still resolve for streaming.
+- **Fixed**: Settings → Models provider filter matches custom provider names case-insensitively (e.g. NVIDIA).
+- **Changed**: Settings → Models route badge shows the API provider name (Anthropic, Cerebras, openrouter, NVIDIA, …) instead of generic "direct".
+- **Changed**: Settings → API Config (Electron): Ollama and custom OpenAI-compatible provider in a two-column row; custom fields stacked vertically; removed duplicate Test custom provider button.
+
 ## [1.4.0] - 2026-06-08
 
 - **Added**: `data-testid="translate-run-button"` and `data-testid="translate-rephrase-button"` on Translate workspace controls for automation.

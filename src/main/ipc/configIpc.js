@@ -5,7 +5,7 @@
 const path = require("path");
 const fs = require("fs");
 const { app, BrowserWindow } = require("electron");
-const { ENCRYPTED_CONFIG_KEYS } = require("../../shared/llm");
+const { ENCRYPTED_CONFIG_KEYS, engineConfigured, mergeKeys } = require("../../shared/llm");
 const {
   applyHistoryEnvToClientConfig,
   isHistoryDisabledByEnv,
@@ -73,7 +73,8 @@ function registerConfigIpc(ipcMain, ctx) {
       ENCRYPTED_CONFIG_KEYS.some(
         (f) => cache[f] && String(cache[f]).trim(),
       ) ||
-      !!(cache.ollama_base_url && String(cache.ollama_base_url).trim());
+      !!(cache.ollama_base_url && String(cache.ollama_base_url).trim()) ||
+      engineConfigured("custom", mergeKeys(cache));
     return Promise.resolve(
       applyHistoryEnvToClientConfig({ ...sanitized, ...state }),
     );

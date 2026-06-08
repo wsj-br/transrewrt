@@ -300,10 +300,15 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Display name for a custom OpenAI-compatible provider (all three custom vars required) |
+| `CUSTOM_PROVIDER_URL`  | Base URL for a custom OpenAI-compatible provider (e.g. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API key for a custom OpenAI-compatible provider                         |
+
+**Custom OpenAI-compatible provider (web/Docker):** set all three `CUSTOM_PROVIDER_*` variables. Example for [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, and an API key from [build.nvidia.com](https://build.nvidia.com/). Models appear in **Advanced** mode under Settings → Models with ids like `NVIDIA/…` (provider name as prefix).
 
 **Privacy mode:** To force the track of history off regardless of `config.json` or per-user preferences, set `HISTORY_DISABLED` to `true` or `1` (case-insensitive) for the **web/Docker server process** and/or the **Electron desktop main process** (e.g. system or launcher environment — not the renderer alone). This disables storing input/output history, locks **Settings → General Settings → History**, and blocks History-related APIs.
 
-Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configure only the providers you use. Model IDs are namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` for custom endpoints, etc.).
 
 **Cost display:** OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available; without it, non-OpenRouter cost may show as `0`. Estimates are not invoices.
 

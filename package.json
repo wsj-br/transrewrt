@@ -51,6 +51,7 @@
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
+    "check-custom-provider": "node scripts/check-custom-provider.js",
     "3p-notices": "node scripts/write-third-party-notices.js",
     "release:github": "bash scripts/release.sh",
     "release:github:dry": "bash scripts/release.sh --dry-run",
