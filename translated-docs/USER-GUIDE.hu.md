@@ -103,7 +103,7 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
 
 A Transrewrt használatához legalább egy AI-szolgáltatóhoz kell hozzáférésed. A támogatott szolgáltatók: [OpenRouter](https://openrouter.ai) (amely sok modellt egyesít), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras és [Ollama](https://ollama.com) helyi modellekhez.
 
-Nem szükséges fizetős modellt választanod az induláshoz. Amint hozzáadod az OpenRouter API-kulcsodat, az alkalmazás automatikusan engedélyez egy beépített **ingyenes** OpenRouter lehetőséget. Ez lehetővé teszi, hogy azonnal elkezdhesd a szövegek fordítását, átírását és átalakítását. Alternatív megoldásként ingyenes API-kulcsot kaphatsz a Cerebras, Google, Groq vagy Mistral AI szolgáltatóktól is.
+Nem kell fizetős modellt választania a kezdéshez. Amint hozzáadja az OpenRouter API-kulcsát, az alkalmazás automatikusan engedélyez egy beépített, **ingyenes** OpenRouter opciót. Ez lehetővé teszi a szöveg azonnali fordítását, átírását és átalakítását. Alternatív megoldásként ingyenes API-kulcsot szerezhet a Cerebrastól, a Google-tól, a Groqtól, a Mistral AI-tól vagy a [NVIDIA](https://build.nvidia.com/) (OpenAI-kompatibilis API) szolgáltatótól.
 
 Egyszerű szavakkal:
 
@@ -716,11 +716,11 @@ A **Felhasználók** elem használatával kezelheti a felhasználói fiókokat a
 <a id="api-config"></a>
 ### API beállítások
 
-A támogatott szolgáltatók: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, és **Ollama** (helyi modellek alap URL címen keresztül). Csak azokat a szolgáltatókat kell beállítania, amelyeket használ.
+A támogatott szolgáltatók a következők: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (helyi modellek egy alap URL-en keresztül), és egy opcionális **egyedi OpenAI-kompatibilis szolgáltató** (név, URL és API-kulcs – csak haladó módban). Csak a használt szolgáltatókat kell konfigurálnia.
 
 **Webalkalmazás: csak rendszergazda**
 
-Az API-kulcsokat a rendszer- vagy Docker-környezeti változókban kell beállítani – nem a webes felületen adja meg őket. Ez az oldal megjeleníti, hogy mely szolgáltatókhoz van kulcs beállítva, és lehetővé teszi az egyes szolgáltatók tesztelését a `Test` gombra kattintva.
+Az API-kulcsokat rendszer- vagy Docker-környezeti változókon keresztül konfigurálja – nem a webes felületen kell megadni őket. Az egyedi szolgáltatóhoz állítsa be a `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` és `CUSTOM_PROVIDER_API_KEY` értékeket (mindhárom kötelező). Ez az oldal mutatja, hogy mely szolgáltatókhoz van kulcs konfigurálva, és lehetővé teszi mindegyik tesztelését a `Test` gombra kattintva.
 
 <br/>
 
@@ -736,16 +736,16 @@ Az API-kulcsokat a rendszer- vagy Docker-környezeti változókban kell beállí
 
 **Asztali alkalmazás**
 
-Az **API beállítások** segítségével tárolhatja az egyes használt szolgáltatók API-kulcsait. Az Ollama esetében az API-kulcs helyett adja meg az **alap URL-t**.
+Használja az **API konfigurációt** az API-kulcsok tárolásához minden használt szolgáltatóhoz. Az Ollama esetében az API-kulcs helyett adja meg az **alap URL-t**. Egy egyedi OpenAI-kompatibilis szolgáltatóhoz (pl. [NVIDIA NIM](https://build.nvidia.com/)) adjon meg egy **szolgáltatónevet**, **alap URL-t** (például `https://integrate.api.nvidia.com/v1`) és **API-kulcsot**; mindhárom kötelező. Az URL és a név helyben szerkeszthető; az API-kulcs cseréjéhez használja a **Szerkesztés** lehetőséget. Az egyedi szolgáltató modelljei csak **haladó** módban jelennek meg (Beállítások → Modellek).
 
 <br/>
 
 > 💡 **Tipp** <br/>
-> Ha nem szeretne API-kulcsot használni, vagy fizetni a használatért, [tölthet le Ollamát](https://ollama.com), és ingyen futtathat modelleket (például `translategemma:4b`) a saját gépén. Alternatív megoldásként ingyenes OpenRouter-fiókot hozhat létre (bankkártya nélkül), ahol ingyenes modelleket használhat, vagy ingyenes API-kulcsot szerezhet a Cerebras, Google, Groq vagy Mistral AI szolgáltatóktól.
+> Ha nem szeretne API-kulcsot használni vagy fizetni a használatért, letöltheti az [Ollama](https://ollama.com) programot, és ingyenesen futtathat modelleket (például `translategemma:4b`) helyben a gépén. Alternatív megoldásként létrehozhat egy ingyenes OpenRouter fiókot (nem szükséges hitelkártya) az ingyenes modelljeik használatához, vagy szerezhet ingyenes API-kulcsot a Cerebrastól, a Google-tól, a Groqtól, a Mistral AI-tól vagy a [NVIDIA](https://build.nvidia.com/) szolgáltatótól.
 
 <br/>
 
-- Csak azokat a szolgáltatókat adja hozzá, amelyekre szüksége van. A **Beállítások** > **Modellek** menüpontban minden modellazonosító a szolgáltató nevével kezdődik (például `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Csak a szükséges szolgáltatókat adja hozzá. A **Beállítások** > **Modellek** részben minden modell azonosítója a szolgáltatóval kezdődik (például `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` egy NVIDIA nevű egyedi végponthoz).
 
 API-kulcs hozzáadásához írja be az értéket a szövegmezőbe, majd kattintson a `Save` gombra. Már meglévő kulcs lecseréléséhez kattintson a `Edit` gombra. A kulcs működésének ellenőrzéséhez kattintson a `Test` gombra. Az Ollama alap URL-je esetében mindig kattintson a `Test` gombra a kapcsolat ellenőrzéséhez.
 

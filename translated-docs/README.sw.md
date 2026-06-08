@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepS
 | `MISTRAL_API_KEY` | Ufunguo wa Mistral API |
 | `OLLAMA_URL` | URL ya msingi wa Ollama (kama vile `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | ufunguo wa xAI API                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Jina la kuonyesha kwa mtoa huduma wa kustom anayepatana na OpenAI (vigezo vyote vitatu vya kustom vinahitajika) |
+| `CUSTOM_PROVIDER_URL`  | URL ya msingi kwa mtoa huduma wa kustom anayepatana na OpenAI (k.m. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Ufunguo wa API kwa mtoa huduma wa kustom anayepatana na OpenAI                         |
+
+**Mtoa huduma wa kustom anayepatana na OpenAI (web/Docker):** weka vigezo vyote vitatu vya `CUSTOM_PROVIDER_*`. Mfano wa [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, na ufunguo wa API kutoka [build.nvidia.com](https://build.nvidia.com/). Modeli huonekana katika hali ya **Maalum** chini ya Mipangilio → Modeli zenye vitambulisho kama `NVIDIA/…` (jina la mtoa huduma kama kiambishi awali).
 
 **Namweo ya faragha:** Ikiwa unataka kuzima kufuatilia historia bila kujali `config.json` au mapendeleo ya kila mtumiaji, weka `HISTORY_DISABLED` kuwa `true` au `1` (haikadhi herufi kubwa/ndogo) kwa ajili ya **prosesi ya wavuti/Docker server** na/au **prosesi kuu ya Electron ya desktop** (kama vile mazingira ya mfumo au kuanzisha — si kipekee kipengele cha kuonyesha). Hii huwasilisha kuhifadhi historia ya kuingiza/pato, inafunga **Mipangilio → Mipangilio ya kawaida → Historia**, na inazuia API zinazohusiana na Historia.
 
-Wansasishi tu watoa wanaotumia. Vitambulisho vya kifaa vina nafasi (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, n.k.).
+Sanidi tu watoa huduma unaotumia. Vitambulisho vya modeli vina majina yaliyowekwa (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` kwa miisho ya kustom, n.k.).
 
 **Onesha gharama:** OpenRouter hurudisha gharama halisi iliyotajwa wakati inapofaa. Watoa wengine hutumia gharama **inazamiwa** kutoka kwa bei ya kifaa cha OpenRouter wakati kitufe cha OpenRouter kipatikana; bila hiyo, gharama isiyo ya OpenRouter inaweza kuonekana kama `0`. Matumizi ni mapema, si anwani.
 

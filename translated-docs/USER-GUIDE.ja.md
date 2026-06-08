@@ -103,7 +103,7 @@ Transrewrtは、テキストを以下の3つの方法で処理するのに役立
 
 Transrewrt を使用するには、少なくとも1つのAIプロバイダーへのアクセスが必要です。サポートされているプロバイダーは以下のとおりです：[OpenRouter](https://openrouter.ai)（多数のモデルを統合）、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、およびローカルモデル用の[Ollama](https://ollama.com)。
 
-開始するには有料モデルを選択する必要はありません。OpenRouterのAPIキーを追加すると、アプリは自動的に内蔵の**無料**OpenRouterオプションを有効にします。これにより、すぐにテキストの翻訳、書き換え、変換を始めることができます。また、Cerebras、Google、Groq、またはMistral AIから無料のAPIキーを取得することもできます。
+有料モデルを選択する必要はありません。OpenRouter API キーを追加すると、アプリは自動的に組み込みの **無料** OpenRouter オプションを有効にします。これにより、テキストの翻訳、書き換え、変換をすぐに開始できます。または、Cerebras、Google、Groq、Mistral AI、または [NVIDIA](https://build.nvidia.com/) (OpenAI 互換 API) から無料の API キーを取得することもできます。
 
 わかりやすく言うと：
 
@@ -715,11 +715,11 @@ Web版では、**ユーザー**を使用してユーザー アカウントを管
 <a id="api-config"></a>
 ### API設定
 
-サポートされているプロバイダーは以下のとおりです：OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、および**Ollama**（ベースURL経由のローカルモデル）。使用するプロバイダーのみを設定する必要があります。
+サポートされているプロバイダーは次のとおりです: OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、**Ollama** (ベース URL を介したローカルモデル)、およびオプションの **カスタム OpenAI 互換プロバイダー** (名前、URL、API キー — 高度モードのみ)。使用するプロバイダーのみを設定する必要があります。
 
 **Webアプリケーション：管理者のみ**
 
-APIキーはシステムまたはDockerの環境変数で設定します。Web UIに入力するものではありません。このページでは、どのプロバイダーにキーが設定されているかを確認でき、`Test`ボタンをクリックしてそれぞれの接続テストができます。
+API キーは、システムまたは Docker 環境変数を通じて設定されます。Web UI には入力されません。カスタム プロバイダーの場合、`CUSTOM_PROVIDER_NAME`、`CUSTOM_PROVIDER_URL`、および `CUSTOM_PROVIDER_API_KEY` (3 つすべてが必要) を設定します。このページには、キーが設定されているプロバイダーが表示され、`Test` ボタンをクリックして各プロバイダーをテストできます。
 
 <br/>
 
@@ -735,16 +735,16 @@ APIキーはシステムまたはDockerの環境変数で設定します。Web U
 
 **デスクトップアプリケーション**
 
-使用する各プロバイダーのAPIキーは、**API設定**で保存します。Ollamaの場合は、APIキーの代わりに**ベースURL**を入力します。
+**API 設定**を使用して、使用するプロバイダーごとに API キーを保存します。Ollama の場合は、API キーの代わりに **ベース URL** を入力します。カスタム OpenAI 互換プロバイダー (例: [NVIDIA NIM](https://build.nvidia.com/)) の場合は、**プロバイダー名**、**ベース URL** (例: `https://integrate.api.nvidia.com/v1`)、および **API キー** を入力します。これら 3 つすべてが必要です。URL と名前はインラインで編集されます。**編集** を使用して API キーを置き換えます。カスタム プロバイダーのモデルは **高度** モードのみに表示されます (設定 → モデル)。
 
 <br/>
 
 > 💡 **ヒント** <br/>
-> APIキーを使用しない、または利用料金を支払いたくない場合は、[Ollamaをダウンロード](https://ollama.com)して、`translategemma:4b`などのモデルをマシン上で無料でローカル実行できます。また、無料のOpenRouterアカウントを作成する（クレジットカード不要）ことで無料モデルを利用したり、Cerebras、Google、Groq、またはMistral AIから無料のAPIキーを取得することもできます。
+> API キーを使用したくない場合や、使用料を支払いたくない場合は、[Ollama をダウンロード](https://ollama.com) して、モデル (例: `translategemma:4b`) を無料でローカルマシンで実行できます。または、無料の OpenRouter アカウント (クレジットカード不要) を作成して無料モデルを使用するか、Cerebras、Google、Groq、Mistral AI、または [NVIDIA](https://build.nvidia.com/) から無料の API キーを取得することもできます。
 
 <br/>
 
-- 必要なプロバイダーのみを追加してください。**設定** > **モデル**では、各モデルIDはプロバイダー名で始まります（例：`openrouter/openrouter/free`、`openai/gpt-4o`、`ollama/llama3`）。
+- 必要なプロバイダーのみを追加します。**設定** > **モデル** では、各モデル ID はプロバイダーで始まります (例: カスタム エンドポイント NVIDIA の場合、`openrouter/openrouter/free`、`openai/gpt-4o`、`ollama/llama3`、`NVIDIA/nvidia/nemotron-nano-3-30b-a3b`)。
 
 APIキーを追加するには、テキストフィールドに値を入力して`Save`をクリックします。既存のキーを置き換えるには、`Edit`をクリックします。キーが正常に機能しているか確認するには、`Test`をクリックします。OllamaのベースURLの場合は、接続確認のために常に`Test`をクリックしてください。
 

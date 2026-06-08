@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt 支援多種 AI 供應商。[OpenRouter](https://openrouter.ai) 是�
 | `MISTRAL_API_KEY`    | Mistral API 金鑰                                                              |
 | `OLLAMA_URL`         | Ollama 基底 URL（例如 `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API 金鑰                                                                  |
+| `CUSTOM_PROVIDER_NAME` | 自訂 OpenAI 相容提供者的顯示名稱（需要所有三個自訂變數） |
+| `CUSTOM_PROVIDER_URL`  | 自訂 OpenAI 相容提供者的基礎 URL（例如 `https://integrate.api.nvidia.com/v1`） |
+| `CUSTOM_PROVIDER_API_KEY` | 自訂 OpenAI 相容提供者的 API 金鑰 |
+
+**自訂 OpenAI 相容提供者（網頁/Docker）：** 設定所有三個 `CUSTOM_PROVIDER_*` 變數。以 [NVIDIA NIM](https://build.nvidia.com/) 為例：`CUSTOM_PROVIDER_NAME=NVIDIA`、`CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`，以及來自 [build.nvidia.com](https://build.nvidia.com/) 的 API 金鑰。模型會顯示在「設定」→「模型」下的「**進階**」模式中，其 ID 類似 `NVIDIA/…`（以提供者名稱作為前綴）。
 
 **隱私模式：** 要強制關閉歷史記錄追蹤，無論是 `config.json` 還是每位使用者的偏好，請將 `HISTORY_DISABLED` 設定為 `true` 或 `1`（不區分大小寫），適用於 **網頁/Docker 伺服器進程** 和/或 **Electron 桌面主進程**（例如系統或啟動器環境 — 而非僅限於渲染器）。這會禁用存儲輸入/輸出歷史記錄，鎖定 **設定 → 一般設定 → 歷史記錄**，並阻止與歷史記錄相關的 API。
 
-僅設定您使用的供應商。模型 ID 是命名空間化的 (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, 等等)。
+僅設定您使用的提供者。模型 ID 是命名空間化的（例如 `openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`、`{providerName}/…` 等自訂端點）。
 
 **費用顯示：** 當適用時，OpenRouter 會回傳確切的計費金額。其他供應商在有提供 OpenRouter 金鑰時，會使用 OpenRouter 公開模型定價中的 **估計**成本；若無此金鑰，非 OpenRouter 的成本可能會顯示為 `0`。估計值不具發票效力。
 

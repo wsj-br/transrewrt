@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -295,10 +295,15 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 | `MISTRAL_API_KEY` | Mistral API-kulcs |
 | `OLLAMA_URL` | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API-kulcs                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Megjelenítendő név egy egyedi OpenAI-kompatibilis szolgáltatóhoz (mindhárom egyéni változó szükséges) |
+| `CUSTOM_PROVIDER_URL`  | Alap URL egy egyedi OpenAI-kompatibilis szolgáltatóhoz (pl. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API kulcs egy egyedi OpenAI-kompatibilis szolgáltatóhoz                         |
+
+**Egyedi OpenAI-kompatibilis szolgáltató (web/Docker):** állítsa be mindhárom `CUSTOM_PROVIDER_*` változót. Példa a [NVIDIA NIM](https://build.nvidia.com/) szolgáltatóhoz: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, és egy API kulcs a [build.nvidia.com](https://build.nvidia.com/) webhelyről. A modellek a **Haladó** módban jelennek meg a Beállítások → Modellek menüpont alatt, olyan azonosítókkal, mint a `NVIDIA/…` (szolgáltató neve előtagként).
 
 **Adatvédelmi mód:** Az előzmények nyomon követésének kikényszerítéséhez, függetlenül a `config.json` beállítástól vagy a felhasználónkénti preferenciáktól, állítsa a `HISTORY_DISABLED` értékét `true` vagy `1` értékre (kis- és nagybetűk megkülönböztetése nélkül) a **web/Docker szerverfolyamathoz** és/vagy az **Electron asztali főfolyamathoz** (pl. rendszer- vagy indítási környezetben — nem csak a renderelő részhez). Ez letiltja a bemenet/kimenet előzmények tárolását, zárolja a **Beállítások → Általános beállítások → Előzmények** menüpontot, és blokkolja az Előzményekhez kapcsolódó API-kat.
 
-Csak azokat a szolgáltatókat konfiguráld, amelyeket használsz. A modellazonosítók névteresek (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, stb.).
+Csak a használt szolgáltatókat konfigurálja. A modellazonosítók névtérbe vannak foglalva (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` egyéni végpontokhoz stb.).
 
 **Költségmegjelenítés:** Az OpenRouter alkalmazható esetekben a pontos számlázott költséget adja vissza. Más szolgáltatók az OpenRouter nyilvános modellárak alapján számított **becsült** költséget használják, ha rendelkezésre áll OpenRouter kulcs; ha nincs, a nem-OpenRouter költség `0` lehet. A becslések nem számlák.
 

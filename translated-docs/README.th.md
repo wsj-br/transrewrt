@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt รองรับผู้ให้บริการ AI หลา�
 | `MISTRAL_API_KEY`    | คีย์ API ของ Mistral                                                              |
 | `OLLAMA_URL`         | URL พื้นฐานของ Ollama (เช่น `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | คีย์ API ของ xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | ชื่อที่แสดงสำหรับผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง (ต้องใช้ตัวแปรแบบกำหนดเองทั้งสามตัว) |
+| `CUSTOM_PROVIDER_URL`  | URL พื้นฐานสำหรับผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง (เช่น `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | คีย์ API สำหรับผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง                         |
+
+**ผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง (เว็บ/Docker):** ตั้งค่าตัวแปร `CUSTOM_PROVIDER_*` ทั้งสามตัว ตัวอย่างสำหรับ [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, และคีย์ API จาก [build.nvidia.com](https://build.nvidia.com/) โมเดลจะปรากฏในโหมด **ขั้นสูง** ภายใต้ การตั้งค่า → โมเดล โดยมี ID เช่น `NVIDIA/…` (ชื่อผู้ให้บริการเป็นคำนำหน้า)
 
 **โหมดความเป็นส่วนตัว:** เพื่อบังคับไม่ติดตามประวัติการใช้งาน ไม่ว่าจะตั้งค่า `config.json` หรือการตั้งค่าตามผู้ใช้ ให้ตั้งค่า `HISTORY_DISABLED` เป็น `true` หรือ `1` (ไม่แยกตัวพิมพ์ใหญ่-เล็ก) สำหรับ **กระบวนการเว็บ/เซิร์ฟเวอร์ Docker** และ/หรือ **กระบวนการหลักของแอปเดสก์ท็อป Electron** (เช่น ตั้งในระบบหรือตัวเริ่มโปรแกรม — ไม่ใช่เฉพาะตัวเรนเดอร์) สิ่งนี้จะปิดการจัดเก็บประวัติข้อมูลนำเข้า/ส่งออก ล็อก **ตั้งค่า → การตั้งค่าทั่วไป → ประวัติการใช้งาน** และบล็อก API ที่เกี่ยวข้องกับประวัติการใช้งาน
 
-กรุณาตั้งค่าเฉพาะผู้ให้บริการที่คุณใช้งานเท่านั้น รหัสโมเดลจะถูกจัดกลุ่มตาม namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ฯลฯ)
+กำหนดค่าเฉพาะผู้ให้บริการที่คุณใช้เท่านั้น ID โมเดลจะถูกแบ่งเป็นเนมสเปซ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` สำหรับจุดสิ้นสุดแบบกำหนดเอง เป็นต้น)
 
 **การแสดงค่าใช้จ่าย:** OpenRouter จะส่งกลับค่าใช้จ่ายที่เรียกเก็บจริงเมื่อเกี่ยวข้อง ผู้ให้บริการอื่นจะใช้ค่าใช้จ่าย**โดยประมาณ**จากราคาโมเดลสาธารณะของ OpenRouter เมื่อมีคีย์ OpenRouter; หากไม่มี ค่าใช้จ่ายจากผู้ให้บริการที่ไม่ใช่ OpenRouter อาจแสดงเป็น `0` ตัวประมาณการไม่ใช่ใบแจ้งหนี้
 

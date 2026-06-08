@@ -104,7 +104,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
 
 Per utilitzar Transrewrt, necessiteu accés a com a mínim un proveïdor d'IA. Els proveïdors compatibles són: [OpenRouter](https://openrouter.ai) (que agrega molts models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i [Ollama](https://ollama.com) per a models locals.
 
-No cal que seleccioneu un model de pagament per començar. Tan aviat com afegiu la vostra clau API d'OpenRouter, l'aplicació habilita automàticament una opció **gratuïta** integrada d'OpenRouter. Això us permet començar a traduir, reescriure i transformar text immediatament. Alternativament, també podeu obtenir una clau API gratuïta de Cerebras, Google, Groq o Mistral AI.
+No cal que seleccioneu un model de pagament per començar. Tan bon punt afegiu la vostra clau API d'OpenRouter, l'aplicació habilita automàticament una opció **gratuïta** integrada d'OpenRouter. Això us permet començar a traduir, reescriure i transformar text immediatament. Alternativament, també podeu obtenir una clau API gratuïta de Cerebras, Google, Groq, Mistral AI o [NVIDIA](https://build.nvidia.com/) (API compatible amb OpenAI).
 
 En paraules senzilles:
 
@@ -717,11 +717,11 @@ Utilitza **Usuaris** per gestionar comptes d'usuari a la versió web. Pots afegi
 <a id="api-config"></a>
 ### Configuració de l'API
 
-Els proveïdors compatibles són: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i **Ollama** (models locals mitjançant una URL base). Només cal que configureu els proveïdors que utilitzeu.
+Els proveïdors compatibles són: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (models locals mitjançant una URL base) i un **proveïdor personalitzat opcional compatible amb OpenAI** (nom, URL i clau API - només en mode Avançat). Només cal que configureu els proveïdors que utilitzeu.
 
 **Aplicació web: només administrador**
 
-Les claus API es configuren mitjançant variables d'entorn del sistema o de Docker; no s'introdueixen a la interfície web. Aquesta pàgina mostra quins proveïdors tenen una clau configurada i us permet provar cadascun fent clic al botó `Test`.
+Les claus API es configuren mitjançant variables d'entorn del sistema o de Docker; no s'introdueixen a la interfície web. Per al proveïdor personalitzat, configureu `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` i `CUSTOM_PROVIDER_API_KEY` (es requereixen els tres). Aquesta pàgina mostra quins proveïdors tenen una clau configurada i us permet provar-los fent clic al botó `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Les claus API es configuren mitjançant variables d'entorn del sistema o de Dock
 
 **Aplicació d'escriptori**
 
-Utilitza **Configuració de l'API** per desar les claus API de cada proveïdor que utilitzis. Per a Ollama, introdueix l'**URL base** en lloc d'una clau API.
+Utilitzeu **Configuració de l'API** per emmagatzemar les claus API de cada proveïdor que utilitzeu. Per a Ollama, introduïu l'**URL base** en lloc d'una clau API. Per a un proveïdor personalitzat compatible amb OpenAI (per exemple, [NVIDIA NIM](https://build.nvidia.com/)), introduïu un **nom de proveïdor**, una **URL base** (com ara `https://integrate.api.nvidia.com/v1`) i una **clau API**; es requereixen els tres. L'URL i el nom es modifiquen en línia; utilitzeu **Edita** per substituir la clau API. Els models del proveïdor personalitzat apareixen només en mode **Avançat** (Configuració > Models).
 
 <br/>
 
 > 💡 **Consell** <br/>
-> Si no vols utilitzar una clau API ni pagar per l'ús, pots [descarregar Ollama](https://ollama.com) i executar models (com ara `translategemma:4b`) localment al teu ordinador de forma gratuïta. Alternativament, pots crear un compte gratuït a OpenRouter (sense necessitat de targeta de crèdit) per utilitzar els seus models gratuïts, o obtenir una clau API gratuïta de Cerebras, Google, Groq o Mistral AI.
+> Si no voleu utilitzar una clau API ni pagar per l'ús, podeu [descarregar Ollama](https://ollama.com) i executar models (com ara `translategemma:4b`) localment a la vostra màquina de forma gratuïta. Alternativament, podeu crear un compte gratuït d'OpenRouter (no es requereix targeta de crèdit) per utilitzar els seus models gratuïts, o obtenir una clau API gratuïta de Cerebras, Google, Groq, Mistral AI o [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Afegeix només els proveïdors que necessites. A **Configuració** > **Models**, cada ID de model comença amb el proveïdor (per exemple `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Afegiu només els proveïdors que necessiteu. A **Configuració** > **Models**, cada ID de model comença amb el proveïdor (per exemple, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` per a un punt final personalitzat anomenat NVIDIA).
 
 Per afegir una clau API, introdueix el valor al camp de text i fes clic a `Save`. Per substituir una clau existent, fes clic a `Edit`. Per verificar que una clau funciona, fes clic a `Test`. Per a l'URL base d'Ollama, sempre fes clic a `Test` per comprovar la connexió.
 

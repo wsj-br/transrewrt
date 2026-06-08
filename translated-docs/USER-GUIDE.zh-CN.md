@@ -104,7 +104,7 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 
 要使用 Transrewrt，您需要至少一个 AI 提供商的访问权限。支持的提供商包括：[OpenRouter](https://openrouter.ai)（聚合了多个模型）、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras，以及用于本地模型的 [Ollama](https://ollama.com)。
 
-您无需选择付费模型即可开始使用。一旦添加了您的 OpenRouter API 密钥，应用将自动启用一个内置的 **免费** OpenRouter 选项。这使您可以立即开始翻译、重写和转换文本。或者，您也可以从 Cerebras、Google、Groq 或 Mistral AI 获取免费的 API 密钥。
+您无需选择付费模型即可开始。添加 OpenRouter API 密钥后，应用程序会自动启用内置的 **免费** OpenRouter 选项。这样您就可以立即开始翻译、改写和转换文本。或者，您也可以从 Cerebras、Google、Groq、Mistral AI 或 [NVIDIA](https://build.nvidia.com/)（OpenAI 兼容 API）获取免费 API 密钥。
 
 简单来说：
 
@@ -717,11 +717,11 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 <a id="api-config"></a>
 ### API 配置
 
-支持的提供商包括：OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras，以及 **Ollama**（通过基础 URL 使用本地模型）。您只需配置您实际使用的提供商。
+支持的提供商包括：OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、**Ollama**（通过基础 URL 的本地模型）以及可选的 **自定义 OpenAI 兼容提供商**（名称、URL 和 API 密钥 — 仅限高级模式）。您只需配置您使用的提供商。
 
 **Web 应用程序：仅限管理员**
 
-API 密钥通过系统或 Docker 环境变量进行配置——不会在 Web 界面中输入。此页面显示哪些提供商已配置密钥，并允许您通过点击 `Test` 按钮来测试每个提供商。
+API 密钥通过系统或 Docker 环境变量进行配置 — 不会在 Web UI 中输入。对于自定义提供商，请设置 `CUSTOM_PROVIDER_NAME`、`CUSTOM_PROVIDER_URL` 和 `CUSTOM_PROVIDER_API_KEY`（三者都必需）。此页面显示了已配置密钥的提供商，并允许您通过点击 `Test` 按钮来测试每个提供商。
 
 <br/>
 
@@ -737,16 +737,16 @@ API 密钥通过系统或 Docker 环境变量进行配置——不会在 Web 界
 
 **桌面应用程序**
 
-使用 **API 配置** 为每个您使用的提供商存储 API 密钥。对于 Ollama，请输入 **基础 URL** 而非 API 密钥。
+使用 **API 配置** 来存储您使用的每个提供商的 API 密钥。对于 Ollama，请输入 **基础 URL** 而不是 API 密钥。对于自定义 OpenAI 兼容提供商（例如 [NVIDIA NIM](https://build.nvidia.com/)），请输入 **提供商名称**、**基础 URL**（例如 `https://integrate.api.nvidia.com/v1`）和 **API 密钥**；三者都必需。URL 和名称会内联编辑；使用 **编辑** 来替换 API 密钥。自定义提供商模型仅在 **高级** 模式下显示（设置 → 模型）。
 
 <br/>
 
 > 💡 **提示** <br/>
-> 如果您不想使用 API 密钥或支付费用，可以 [下载 Ollama](https://ollama.com) 并在本地机器上免费运行模型（例如 `translategemma:4b`）。或者，您也可以创建一个免费的 OpenRouter 账户（无需信用卡）来使用其免费模型，或从 Cerebras、Google、Groq 或 Mistral AI 获取免费 API 密钥。
+> 如果您不想使用 API 密钥或支付使用费用，可以 [下载 Ollama](https://ollama.com) 并在本地机器上免费运行模型（例如 `translategemma:4b`）。或者，您可以创建一个免费的 OpenRouter 账户（无需信用卡）来使用他们的免费模型，或者从 Cerebras、Google、Groq、Mistral AI 或 [NVIDIA](https://build.nvidia.com/) 获取免费 API 密钥。
 
 <br/>
 
-- 仅添加您需要的提供商。在 **设置** > **模型** 中，每个模型 ID 都以提供商名称开头（例如 `openrouter/openrouter/free`、`openai/gpt-4o`、`ollama/llama3`）。
+- 只添加您需要的提供商。在 **设置** > **模型** 中，每个模型 ID 都以提供商开头（例如，对于名为 NVIDIA 的自定义端点，模型 ID 为 `openrouter/openrouter/free`、`openai/gpt-4o`、`ollama/llama3`、`NVIDIA/nvidia/nemotron-nano-3-30b-a3b`）。
 
 要添加 API 密钥，请在文本框中输入值，然后点击 `Save`。要替换现有密钥，请点击 `Edit`。要验证密钥是否有效，请点击 `Test`。对于 Ollama 基础 URL，请始终点击 `Test` 以检查连接。
 

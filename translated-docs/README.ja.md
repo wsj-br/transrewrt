@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -295,10 +295,15 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 | `MISTRAL_API_KEY`    | Mistral APIキー                                                              |
 | `OLLAMA_URL`         | OllamaのベースURL（例: `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API キー                                                                  |
+| `CUSTOM_PROVIDER_NAME` | カスタムOpenAI互換プロバイダーの表示名（カスタム変数3つすべて必須） |
+| `CUSTOM_PROVIDER_URL`  | カスタムOpenAI互換プロバイダーのベースURL（例: `https://integrate.api.nvidia.com/v1`） |
+| `CUSTOM_PROVIDER_API_KEY` | カスタムOpenAI互換プロバイダーのAPIキー                         |
+
+**カスタムOpenAI互換プロバイダー (web/Docker):** 3つの `CUSTOM_PROVIDER_*` 変数をすべて設定してください。[NVIDIA NIM](https://build.nvidia.com/) の例：`CUSTOM_PROVIDER_NAME=NVIDIA`、`CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`、および [build.nvidia.com](https://build.nvidia.com/) で取得したAPIキー。**高度** モードの [設定] → [モデル] に、`NVIDIA/…`（接頭辞としてプロバイダー名が付いたもの）のようなIDでモデルが表示されます。
 
 **プライバシーモード：** `config.json` やユーザーごとの設定に関係なく、履歴の記録を強制的にオフにするには、**web/Dockerサーバープロセス** および／または **Electronデスクトップメインプロセス** に対して `HISTORY_DISABLED` を `true` または `1`（大文字小文字を区別しない）に設定します（例：システムまたはランチャの環境 — レンダラープロセス単体ではなく）。これにより、入力／出力履歴の保存が無効になり、**設定 → 一般設定 → 履歴** がロックされ、履歴関連のAPIがブロックされます。
 
-使用するプロバイダーのみを設定してください。モデルIDは名前空間付きです（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`など）。
+使用するプロバイダーのみを設定してください。モデルIDは名前空間化されています（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`、カスタムエンドポイントの場合は`{providerName}/…`など）。
 
 **コスト表示：** OpenRouterは該当する場合、請求された正確なコストを返します。その他のプロバイダーは、OpenRouterキーが利用可能な場合、OpenRouterの公開モデル価格に基づく**推定**コストを使用します。キーがない場合、OpenRouter以外のコストは`0`と表示されることがあります。推定値は請求書ではありません。
 

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Você também pode usar outros provedores (OpenAI, Anthropic, Google Gemini, Dee
 | `MISTRAL_API_KEY`    | Chave de API Mistral                                                              |
 | `OLLAMA_URL`         | URL base do Ollama (ex: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Chave de API do xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Nome de exibição para um provedor personalizado compatível com OpenAI (todas as três variáveis personalizadas são necessárias) |
+| `CUSTOM_PROVIDER_URL`  | URL base para um provedor personalizado compatível com OpenAI (por exemplo, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Chave de API para um provedor personalizado compatível com OpenAI                         |
+
+**Provedor personalizado compatível com OpenAI (web/Docker):** defina todas as três variáveis `CUSTOM_PROVIDER_*`. Exemplo para [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` e uma chave de API de [build.nvidia.com](https://build.nvidia.com/). Os modelos aparecem no modo **Avançado** em Configurações → Modelos com IDs como `NVIDIA/…` (nome do provedor como prefixo).
 
 **Modo privacidade:** Para forçar o desligamento do rastreamento de histórico independentemente de `config.json` ou das preferências por usuário, defina `HISTORY_DISABLED` como `true` ou `1` (sem diferenciar maiúsculas e minúsculas) para o **processo do servidor web/Docker** e/ou o **processo principal do desktop Electron** (por exemplo, ambiente do sistema ou inicializador — não apenas o renderizador). Isso desativa o armazenamento do histórico de entrada/saída, bloqueia **Configurações → Configurações gerais → Histórico** e impede APIs relacionadas ao Histórico.
 
-Configure apenas os provedores que você utiliza. Os IDs dos modelos são organizados por namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configure apenas os provedores que você usa. Os IDs dos modelos são com namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` para endpoints personalizados, etc.).
 
 **Exibição de custo:** O OpenRouter retorna o custo cobrado exato quando aplicável. Outros provedores usam o custo **estimado** do OpenRouter com base na tabela pública de preços dos modelos, quando uma chave OpenRouter está disponível; sem ela, o custo de provedores não-OpenRouter pode aparecer como `0`. As estimativas não são faturas.
 

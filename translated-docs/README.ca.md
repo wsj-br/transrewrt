@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ També pots utilitzar altres proveïdors (OpenAI, Anthropic, Google Gemini, Deep
 | `MISTRAL_API_KEY`    | Clau API de Mistral                                                              |
 | `OLLAMA_URL`         | URL base d'Ollama (p. ex. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | clau d'API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Nom de visualització per a un proveïdor personalitzat compatible amb OpenAI (es requereixen les tres variables personalitzades) |
+| `CUSTOM_PROVIDER_URL`  | URL base per a un proveïdor personalitzat compatible amb OpenAI (per exemple, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Clau API per a un proveïdor personalitzat compatible amb OpenAI                         |
+
+**Proveïdor personalitzat compatible amb OpenAI (web/Docker):** configureu les tres variables `CUSTOM_PROVIDER_*`. Exemple per a [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, i una clau API de [build.nvidia.com](https://build.nvidia.com/). Els models apareixen en mode **Avançat** a Configuració → Models amb identificadors com `NVIDIA/…` (nom del proveïdor com a prefix).
 
 **Mode de privacitat:** Per forçar la desactivació de l'historial independentment de `config.json` o de les preferències per usuari, estableix `HISTORY_DISABLED` a `true` o `1` (no distingeix majúscules/minúscules) per al **procés del servidor web/Docker** i/o pel **procés principal d'Escriptori Electron** (per exemple, l'entorn del sistema o del llançador — no només el renderitzador). Això desactiva l'emmagatzematge de l'historial d'entrada/sortida, bloqueja **Configuració → Configuració general → Historial** i impedeix l'ús de les API relacionades amb l'historial.
 
-Configureu només els proveïdors que utilitzeu. Els IDs dels models tenen espai de noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configureu només els proveïdors que utilitzeu. Els identificadors de model estan espaiats per noms (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` per a punts finals personalitzats, etc.).
 
 **Visualització del cost:** OpenRouter retorna el cost facturat exacte quan és aplicable. Altres proveïdors utilitzen el cost **estimat** de la tarifació pública de models d'OpenRouter quan hi ha una clau OpenRouter disponible; sense això, el cost no OpenRouter pot mostrar-se com `0`. Les estimacions no són factures.
 

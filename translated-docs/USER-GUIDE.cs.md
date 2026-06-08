@@ -104,7 +104,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
 
 Pro použití aplikace Transrewrt potřebujete přístup alespoň k jednomu poskytovateli umělé inteligence. Podporovaní poskytovatelé jsou: [OpenRouter](https://openrouter.ai) (který agreguje mnoho modelů), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras a [Ollama](https://ollama.com) pro místní modely.
 
-Nemusíte vybírat placený model, abyste mohli začít. Jakmile přidáte svůj klíč OpenRouter API, aplikace automaticky aktivuje vestavěnou **zdarma** možnost OpenRouter. To vám umožní okamžitě začít s překladem, přepisováním a transformací textu. Alternativně můžete získat bezplatný klíč API také od Cerebras, Google, Groq nebo Mistral AI.
+Pro začátek nemusíte vybírat placený model. Jakmile přidáte svůj API klíč OpenRouter, aplikace automaticky povolí vestavěnou **bezplatnou** možnost OpenRouter. To vám umožní okamžitě začít překládat, přepisovat a transformovat text. Alternativně můžete také získat bezplatný API klíč od společností Cerebras, Google, Groq, Mistral AI nebo [NVIDIA](https://build.nvidia.com/) (API kompatibilní s OpenAI).
 
 Jednoduše řečeno:
 
@@ -717,11 +717,11 @@ Použijte **Uživatelé** ke správě uživatelských účtů ve webové verzi. 
 <a id="api-config"></a>
 ### Nastavení API
 
-Podporovaní poskytovatelé jsou: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras a **Ollama** (místní modely přes základní adresu URL). Nakonfigurujte pouze ty poskytovatele, které používáte.
+Podporovaní poskytovatelé jsou: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokální modely přes základní URL) a volitelný **vlastní poskytovatel kompatibilní s OpenAI** (název, URL a API klíč – pouze v pokročilém režimu). Musíte nakonfigurovat pouze poskytovatele, které používáte.
 
 **Webová aplikace: pouze pro správce**
 
-API klíče jsou nastaveny prostřednictvím systémových nebo Dockerových proměnných prostředí – nezadávají se ve webovém uživatelském rozhraní. Tato stránka zobrazuje, u kterých poskytovatelů je klíč nakonfigurován, a umožňuje vám každý otestovat kliknutím na tlačítko `Test`.
+API klíče se konfigurují prostřednictvím systémových proměnných prostředí nebo proměnných prostředí Docker – nezadávají se ve webovém uživatelském rozhraní. Pro vlastního poskytovatele nastavte `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` a `CUSTOM_PROVIDER_API_KEY` (všechny tři jsou povinné). Tato stránka zobrazuje, kteří poskytovatelé mají nakonfigurovaný klíč, a umožňuje vám každý z nich otestovat kliknutím na tlačítko `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ API klíče jsou nastaveny prostřednictvím systémových nebo Dockerových pro
 
 **Desktopová aplikace**
 
-Použijte **Nastavení API** k uložení API klíčů pro každého poskytovatele, kterého používáte. Pro Ollamu zadejte místo API klíče **základní adresu URL**.
+Použijte **Konfigurace API** k uložení API klíčů pro každého poskytovatele, kterého používáte. Pro Ollama zadejte místo API klíče **základní URL**. Pro vlastního poskytovatele kompatibilního s OpenAI (např. [NVIDIA NIM](https://build.nvidia.com/)) zadejte **název poskytovatele**, **základní URL** (např. `https://integrate.api.nvidia.com/v1`) a **API klíč**; všechny tři jsou povinné. URL a název se upravují přímo; použijte **Upravit** k nahrazení API klíče. Modely vlastního poskytovatele se zobrazují pouze v **pokročilém** režimu (Nastavení → Modely).
 
 <br/>
 
 > 💡 **Tip** <br/>
-> Pokud nechcete používat API klíč ani platit za využití služby, můžete [stáhnout Ollamu](https://ollama.com) a spouštět modely (například `translategemma:4b`) lokálně na svém počítači zdarma. Alternativně můžete vytvořit bezplatný účet na OpenRouter (bez platební karty) a využívat jejich zdarma dostupné modely, nebo získat bezplatný API klíč od Cerebras, Google, Groq nebo Mistral AI.
+> Pokud nechcete používat API klíč nebo platit za používání, můžete si [stáhnout Ollama](https://ollama.com) a zdarma spouštět modely (např. `translategemma:4b`) lokálně na svém počítači. Alternativně si můžete vytvořit bezplatný účet OpenRouter (bez nutnosti kreditní karty) a používat jejich bezplatné modely, nebo získat bezplatný API klíč od společností Cerebras, Google, Groq, Mistral AI nebo [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Přidávejte pouze poskytovatele, které potřebujete. V části **Nastavení** > **Modely** každé ID modelu začíná názvem poskytovatele (například `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Přidejte pouze poskytovatele, které potřebujete. V **Nastavení** > **Modely** začíná každý ID modelu poskytovatelem (například `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` pro vlastní koncový bod s názvem NVIDIA).
 
 Chcete-li přidat API klíč, zadejte hodnotu do textového pole a klikněte na `Save`. Chcete-li nahradit stávající klíč, klikněte na `Edit`. Chcete-li ověřit, že klíč funguje, klikněte na `Test`. U základní adresy URL Ollamy vždy klikněte na `Test` a ověřte připojení.
 

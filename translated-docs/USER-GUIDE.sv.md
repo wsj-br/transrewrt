@@ -104,7 +104,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 
 För att använda Transrewrt behöver du åtkomst till minst en AI-leverantör. De leverantörer som stöds är: [OpenRouter](https://openrouter.ai) (som samlar många modeller), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras och [Ollama](https://ollama.com) för lokala modeller.
 
-Du behöver inte välja en betald modell för att komma igång. Så fort du lägger till din OpenRouter-API-nyckel aktiverar appen automatiskt ett inbyggt **gratis** OpenRouter-alternativ. Det gör att du direkt kan börja översätta, omskriva och transformera text. Alternativt kan du också skaffa en gratis API-nyckel från Cerebras, Google, Groq eller Mistral AI.
+Du behöver inte välja en betald modell för att komma igång. Så snart du lägger till din OpenRouter API-nyckel aktiveras automatiskt ett inbyggt **gratis** OpenRouter-alternativ i appen. Detta låter dig börja översätta, skriva om och transformera text direkt. Alternativt kan du även skaffa en gratis API-nyckel från Cerebras, Google, Groq, Mistral AI eller [NVIDIA](https://build.nvidia.com/) (OpenAI-kompatibelt API).
 
 Med enkla ord:
 
@@ -717,11 +717,11 @@ Använd **Användare** för att hantera användarkonton i webbversionen. Du kan 
 <a id="api-config"></a>
 ### API-konfiguration
 
-De leverantörer som stöds är: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras och **Ollama** (lokala modeller via en bas-URL). Du behöver bara konfigurera de leverantörer du använder.
+De stödda leverantörerna är: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokala modeller via en bas-URL) och en valfri **anpassad OpenAI-kompatibel leverantör** (namn, URL och API-nyckel — endast i Avancerat läge). Du behöver bara konfigurera de leverantörer du använder.
 
 **Webbapplikation: endast administratör**
 
-API-nycklar konfigureras via system- eller Docker-miljövariabler – de matas inte in i webbgränssnittet. På den här sidan visas vilka leverantörer som har en nyckel konfigurerad och låter dig testa varje leverantör genom att klicka på knappen `Test`.
+API-nycklar konfigureras via system- eller Docker-miljövariabler – de anges inte i webbgränssnittet. För den anpassade leverantören, ställ in `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` och `CUSTOM_PROVIDER_API_KEY` (alla tre krävs). Den här sidan visar vilka leverantörer som har en konfigurerad nyckel och låter dig testa var och en genom att klicka på knappen `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ API-nycklar konfigureras via system- eller Docker-miljövariabler – de matas i
 
 **Skrivbordsapplikation**
 
-Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör du använder. För Ollama anger du **bas-URL:en** istället för en API-nyckel.
+Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör du använder. För Ollama anger du **bas-URL** istället för en API-nyckel. För en anpassad OpenAI-kompatibel leverantör (t.ex. [NVIDIA NIM](https://build.nvidia.com/)), ange ett **leverantörsnamn**, **bas-URL** (som `https://integrate.api.nvidia.com/v1`) och **API-nyckel**; alla tre krävs. URL:en och namnet redigeras inline; använd **Redigera** för att ersätta API-nyckeln. Modeller från anpassade leverantörer visas endast i **Avancerat** läge (Inställningar → Modeller).
 
 <br/>
 
 > 💡 **Tips** <br/>
-> Om du inte vill använda en API-nyckel eller betala för användning kan du [ladda ner Ollama](https://ollama.com) och köra modeller (till exempel `translategemma:4b`) lokalt på din dator helt gratis. Alternativt kan du skapa ett gratis OpenRouter-konto (inget kreditkort krävs) för att använda deras fria modeller, eller skaffa en gratis API-nyckel från Cerebras, Google, Groq eller Mistral AI.
+> Om du inte vill använda en API-nyckel eller betala för användning kan du [ladda ner Ollama](https://ollama.com) och köra modeller (som `translategemma:4b`) lokalt på din maskin gratis. Alternativt kan du skapa ett gratis OpenRouter-konto (inget kreditkort krävs) för att använda deras gratismodeller, eller skaffa en gratis API-nyckel från Cerebras, Google, Groq, Mistral AI eller [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Lägg endast till de leverantörer du behöver. I **Inställningar** > **Modeller** börjar varje modell-ID med leverantören (till exempel `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Lägg till endast de leverantörer du behöver. I **Inställningar** > **Modeller** börjar varje modell-ID med leverantören (till exempel `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` för en anpassad slutpunkt som heter NVIDIA).
 
 För att lägga till en API-nyckel anger du värdet i textfältet och klickar på `Save`. För att ersätta en befintlig nyckel klickar du på `Edit`. För att verifiera att en nyckel fungerar klickar du på `Test`. För Ollama bas-URL klickar du alltid på `Test` för att kontrollera anslutningen.
 

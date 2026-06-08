@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL asas Ollama (contoh: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kunci API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Nama paparan untuk pembekal tersuai serasi OpenAI (ketiga-tiga pemboleh ubah tersuai diperlukan) |
+| `CUSTOM_PROVIDER_URL`  | URL asas untuk pembekal tersuai serasi OpenAI (contohnya `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Kunci API untuk pembekal tersuai serasi OpenAI                         |
+
+**Pembekal tersuai serasi OpenAI (web/Docker):** tetapkan ketiga-tiga pemboleh ubah `CUSTOM_PROVIDER_*`. Contoh untuk [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, dan kunci API daripada [build.nvidia.com](https://build.nvidia.com/). Model muncul dalam mod **Lanjutan** di bawah Tetapan → Model dengan ID seperti `NVIDIA/…` (nama pembekal sebagai awalan).
 
 **Mod privasi:** Untuk memaksa pemecatan pengesanan sejarah tanpa mengira `config.json` atau keutamaan pengguna, tetapkan `HISTORY_DISABLED` kepada `true` atau `1` (tidak sensitif kepada huruf besar/kecil) untuk proses **pelayan web/Docker** dan/atau proses utama **Electron desktop** (contohnya persekitaran sistem atau pelancar — bukan hanya perender). Ini melumpuhkan penyimpanan sejarah input/output, mengunci **Tetapan → Tetapan Umum → Sejarah**, dan menyekat API berkaitan Sejarah.
 
-Konfigur hanya penyedia yang anda gunakan. ID model mempunyai namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, dll.).
+Konfigurasikan hanya pembekal yang anda gunakan. ID model adalah berruang nama (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` untuk titik tamat tersuai, dll.).
 
 **Paparan kos:** OpenRouter mengembalikan kos yang dikenakan secara tepat apabila berkaitan. Penyedia lain menggunakan kos **anggaran** daripada penetapan harga model awam OpenRouter apabila kunci OpenRouter tersedia; tanpanya, kos bukan OpenRouter mungkin dipaparkan sebagai `0`. Anggaran bukan invois.
 

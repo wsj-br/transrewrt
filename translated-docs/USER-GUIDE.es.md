@@ -104,7 +104,7 @@ Esta guía explica cómo usar la aplicación una vez instalada y en funcionamien
 
 Para usar Transrewrt, necesitas acceso a al menos un proveedor de IA. Los proveedores compatibles son: [OpenRouter](https://openrouter.ai) (que agrega muchos modelos), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras y [Ollama](https://ollama.com) para modelos locales.
 
-No necesitas seleccionar un modelo de pago para comenzar. Tan pronto como agregues tu clave de API de OpenRouter, la aplicación activa automáticamente una opción **gratis** integrada de OpenRouter. Esto te permite comenzar a traducir, reescribir y transformar texto de inmediato. Alternativamente, también puedes obtener una clave de API gratuita de Cerebras, Google, Groq o Mistral AI.
+No es necesario seleccionar un modelo de pago para empezar. Tan pronto como agregues tu clave API de OpenRouter, la aplicación habilitará automáticamente una opción **gratuita** incorporada de OpenRouter. Esto te permite empezar a traducir, reescribir y transformar texto de inmediato. Alternativamente, también puedes obtener una clave API gratuita de Cerebras, Google, Groq, Mistral AI o [NVIDIA](https://build.nvidia.com/) (API compatible con OpenAI).
 
 En términos sencillos:
 
@@ -717,11 +717,11 @@ Use **Usuarios** para administrar cuentas de usuario en la versión web. Puede a
 <a id="api-config"></a>
 ### Configuración de API
 
-Los proveedores compatibles son: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras y **Ollama** (modelos locales mediante una URL base). Solo necesita configurar los proveedores que utilice.
+Los proveedores compatibles son: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (modelos locales a través de una URL base) y un **proveedor opcional compatible con OpenAI** (nombre, URL y clave API — solo modo Avanzado). Solo necesitas configurar los proveedores que utilices.
 
 **Aplicación web: solo administrador**
 
-Las claves API se configuran mediante variables de entorno del sistema o de Docker; no se introducen en la interfaz web. Esta página muestra qué proveedores tienen una clave configurada y le permite probar cada uno haciendo clic en el botón `Test`.
+Las claves API se configuran a través de variables de entorno del sistema o de Docker; no se introducen en la interfaz web. Para el proveedor personalizado, configura `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` y `CUSTOM_PROVIDER_API_KEY` (los tres son necesarios). Esta página muestra qué proveedores tienen una clave configurada y te permite probar cada uno haciendo clic en el botón `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Las claves API se configuran mediante variables de entorno del sistema o de Dock
 
 **Aplicación de escritorio**
 
-Use **Configuración de API** para almacenar claves API para cada proveedor que utilice. Para Ollama, introduzca la **URL base** en lugar de una clave API.
+Utiliza **Configuración de API** para almacenar las claves API de cada proveedor que utilices. Para Ollama, introduce la **URL base** en lugar de una clave API. Para un proveedor personalizado compatible con OpenAI (por ejemplo, [NVIDIA NIM](https://build.nvidia.com/)), introduce un **nombre de proveedor**, una **URL base** (como `https://integrate.api.nvidia.com/v1`) y una **clave API**; los tres son necesarios. La URL y el nombre se editan en línea; utiliza **Editar** para reemplazar la clave API. Los modelos del proveedor personalizado aparecen solo en el modo **Avanzado** (Configuración → Modelos).
 
 <br/>
 
 > 💡 **Consejo** <br/>
-> Si no desea usar una clave API ni pagar por el uso, puede [descargar Ollama](https://ollama.com) y ejecutar modelos (como `translategemma:4b`) localmente en su máquina de forma gratuita. Alternativamente, puede crear una cuenta gratuita en OpenRouter (sin necesidad de tarjeta de crédito) para usar sus modelos gratuitos, o obtener una clave API gratuita de Cerebras, Google, Groq o Mistral AI.
+> Si no deseas utilizar una clave API ni pagar por el uso, puedes [descargar Ollama](https://ollama.com) y ejecutar modelos (como `translategemma:4b`) localmente en tu máquina de forma gratuita. Alternativamente, puedes crear una cuenta gratuita de OpenRouter (no se requiere tarjeta de crédito) para usar sus modelos gratuitos, u obtener una clave API gratuita de Cerebras, Google, Groq, Mistral AI o [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Añada solo los proveedores que necesite. En **Configuración** > **Modelos**, cada ID de modelo comienza con el nombre del proveedor (por ejemplo `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Agrega solo los proveedores que necesites. En **Configuración** > **Modelos**, cada ID de modelo comienza con el proveedor (por ejemplo, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` para un punto final personalizado llamado NVIDIA).
 
 Para añadir una clave API, introduzca el valor en el campo de texto y haga clic en `Save`. Para reemplazar una clave existente, haga clic en `Edit`. Para verificar que una clave funcione, haga clic en `Test`. Para la URL base de Ollama, haga clic siempre en `Test` para comprobar la conexión.
 

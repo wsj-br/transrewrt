@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -295,10 +295,15 @@ Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL dhasar Ollama (contone `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Jeneng tampilan kanggo penyedia kustom sing kompatibel karo OpenAI (kabeh telu var kustom dibutuhake) |
+| `CUSTOM_PROVIDER_URL`  | URL dhasar kanggo penyedia kustom sing kompatibel karo OpenAI (contone `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Kunci API kanggo penyedia kustom sing kompatibel karo OpenAI                         |
+
+**Penyedia kustom sing kompatibel karo OpenAI (web/Docker):** setel kabeh telu variabel `CUSTOM_PROVIDER_*`. Tuladha kanggo [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, lan kunci API saka [build.nvidia.com](https://build.nvidia.com/). Model katon ing mode **Lanjutan** ing Pengaturan → Model kanthi ID kaya `NVIDIA/…` (jeneng penyedia minangka prefiks).
 
 **Modus privasi:** Kanggo memaksa pelacakan riwayat mati tanpa nggatekake `config.json` utawa preferensi saben pangguna, setel `HISTORY_DISABLED` dadi `true` utawa `1` (ora nggatekake kapitalisasi) kanggo **proses server web/Docker** lan/utawa **proses utama desktop Electron** (contone lingkungan sistem utawa peluncur — ora mung renderer). Iki mateni nyimpen riwayat input/output, ngunci **Setelan → Setelan Umum → Riwayat**, lan mblokir API sing ana gandhèngan karo Riwayat.
 
-Konfigurasikake mung provider sing digunakake. ID model duwé namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, lsp.).
+Konfigurasi mung penyedia sing sampeyan gunakake. ID model di-namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` kanggo endpoint kustom, lsp).
 
 **Tampilan biaya:** OpenRouter maringi biaya sing dibayar sacara tepat yen cocog. Provider liya nggunakake biaya **diperkirakake** saka rega model umum OpenRouter nalika ana kunci OpenRouter; tanpa kuwi, biaya non-OpenRouter bisa uga nuduhake minangka `0`. Perkiraan ora kalebu invoice.
 

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt поддерживает несколько провайдеров И
 | `MISTRAL_API_KEY`    | Ключ API Mistral                                                              |
 | `OLLAMA_URL`         | Базовый URL Ollama (например, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Ключ API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Отображаемое имя для пользовательского OpenAI-совместимого провайдера (требуются все три пользовательских переменных) |
+| `CUSTOM_PROVIDER_URL`  | Базовый URL для пользовательского OpenAI-совместимого провайдера (например, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API-ключ для пользовательского OpenAI-совместимого провайдера                         |
+
+**Пользовательский OpenAI-совместимый провайдер (web/Docker):** установите все три переменные `CUSTOM_PROVIDER_*`. Пример для [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` и API-ключ с [build.nvidia.com](https://build.nvidia.com/). Модели отображаются в **Расширенном** режиме в разделе Настройки → Модели с идентификаторами, такими как `NVIDIA/…` (имя провайдера в качестве префикса).
 
 **Режим конфиденциальности:** Чтобы принудительно отключить отслеживание истории независимо от `config.json` или предпочтений пользователя, установите для `HISTORY_DISABLED` значение `true` или `1` (без учёта регистра) в **веб-/Docker-серверном процессе** и/или **главном процессе настольного приложения Electron** (например, в системе или среде запуска — не только в процессе отрисовки). Это отключает сохранение истории ввода/вывода, блокирует раздел **Настройки → Основные настройки → История** и запрещает использование API, связанных с историей.
 
-Настройте только тех провайдеров, которых вы используете. Идентификаторы моделей пространственно разделены (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, и т.д.).
+Настройте только те провайдеры, которые вы используете. Идентификаторы моделей имеют пространства имен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` для пользовательских конечных точек и т. д.).
 
 **Отображение стоимости:** OpenRouter возвращает точную стоимость при наличии таковой. Другие провайдеры используют **примерную** стоимость из публичного прайс-листа моделей OpenRouter, если доступен ключ OpenRouter; без него стоимость не-OpenRouter может отображаться как `0`. Оценки не являются счетами.
 

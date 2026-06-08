@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 | `MISTRAL_API_KEY`    | Mistral API-sleutel                                                              |
 | `OLLAMA_URL`         | Ollama basis-URL (bijv. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-sleutel                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Weergavenaam voor een aangepaste OpenAI-compatibele provider (alle drie aangepaste variabelen vereist) |
+| `CUSTOM_PROVIDER_URL`  | Basiss URL voor een aangepaste OpenAI-compatibele provider (bijv. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API-sleutel voor een aangepaste OpenAI-compatibele provider                         |
+
+**Aangepaste OpenAI-compatibele provider (web/Docker):** stel alle drie `CUSTOM_PROVIDER_*` variabelen in. Voorbeeld voor [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, en een API-sleutel van [build.nvidia.com](https://build.nvidia.com/). Modellen verschijnen in **Geavanceerd** modus onder Instellingen → Modellen met ID's zoals `NVIDIA/…` (providernaam als voorvoegsel).
 
 **Privacymodus:** Om de geschiedenisregistratie uit te schakelen, ongeacht `config.json` of gebruikersvoorkeuren, stel `HISTORY_DISABLED` in op `true` of `1` (niet hoofdlettergevoelig) voor het **web/Docker-serverproces** en/of het **Electron-desktop hoofdproces** (bijvoorbeeld systeem- of startomgeving — niet alleen de renderer). Dit schakelt het opslaan van invoer/uitvoer-geschiedenis uit, vergrendelt **Instellingen → Algemene instellingen → Geschiedenis** en blokkeert geschiedenisgerelateerde API's.
 
-Configureer alleen de providers die u gebruikt. Model-ID's zijn genamespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, enz.).
+Configureer alleen de providers die u gebruikt. Model-ID's zijn genormaliseerd (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` voor aangepaste eindpunten, enz.).
 
 **Kostenweergave:** OpenRouter retourneert de exacte factuurkosten indien van toepassing. Andere providers gebruiken de **geschatte** kosten van OpenRouter’s openbare modelprijzen wanneer een OpenRouter-sleutel beschikbaar is; zonder deze kunnen kosten van niet-OpenRouter worden weergegeven als `0`. Schattingen zijn geen facturen.
 

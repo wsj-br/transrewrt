@@ -104,7 +104,7 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
 
 Kanggo nggunakaké Transrewrt, sampeyan kudu duwé akses menyang paling ora siji panyedhiya AI. Panyedhiya sing didhukung yaiku: [OpenRouter](https://openrouter.ai) (sing nggabungaké akeh model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, lan [Ollama](https://ollama.com) kanggo model lokal.
 
-Sampeyan ora kudu milih model bayar kanggo miwiti. Sawisé sampeyan nambahaké kunci API OpenRouter, aplikasi sacara otomatis ngaktifaké pilihan OpenRouter **gratis** sing wis diintegrasikaké. Iki ngidinaké sampeyan miwiti terjemahan, nulis ulang, lan ngowahi tèks sacara langsung. Alternatifipun, sampeyan uga bisa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
+Sampeyan ora perlu milih model sing mbayar kanggo miwiti. Sanalika sampeyan nambah kunci API OpenRouter, aplikasi kanthi otomatis ngaktifake opsi OpenRouter **gratis** sing dibangun. Iki ngidini sampeyan miwiti nerjemahake, nulis ulang, lan ngowahi teks langsung. Utawa, sampeyan uga bisa entuk kunci API gratis saka Cerebras, Google, Groq, Mistral AI, utawa [NVIDIA](https://build.nvidia.com/) (API sing kompatibel karo OpenAI).
 
 Ing basa sing luwih gampang:
 
@@ -717,11 +717,11 @@ Gunakake **Pangguna** kanggo ngatur akun pangguna ing versi web. Sampeyan bisa n
 <a id="api-config"></a>
 ### Konfigurasi API
 
-Panyedhiya sing didhukung yaiku: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, lan **Ollama** (model lokal liwat URL dhasar). Sampeyan mung kudu ngonfigurasi panyedhiya sing digunakake.
+Penyedia sing didhukung yaiku: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (model lokal liwat URL basis), lan **penyedia kustom sing kompatibel karo OpenAI** opsional (jeneng, URL, lan kunci API — mung mode Lanjutan). Sampeyan mung perlu ngatur penyedia sing sampeyan gunakake.
 
 **Aplikasi web: administrator wae**
 
-Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dimasukkan ing antarmuka web. Kaca iki nuduhake panyedhiya sing duwe kunci dikonfigurasi lan ngidini sampeyan nyoba saben kunci kanthi klik tombol `Test`.
+Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dilebokake ing UI web. Kanggo penyedia kustom, atur `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL`, lan `CUSTOM_PROVIDER_API_KEY` (kabeh telu dibutuhake). Kaca iki nuduhake penyedia endi sing duwe kunci sing dikonfigurasi lan ngidini sampeyan nguji saben siji kanthi ngeklik tombol `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Kunci API dikonfigurasi liwat variabel lingkungan sistem utawa Docker - ora dima
 
 **Aplikasi desktop**
 
-Gunakake **Konfigurasi API** kanggo nyimpen kunci API kanggo saben panyedhiya sing digunakake. Kanggo Ollama, lebokake **URL dhasar** tinimbang kunci API.
+Gunakake **Konfigurasi API** kanggo nyimpen kunci API kanggo saben penyedia sing sampeyan gunakake. Kanggo Ollama, lebokake **URL basis** tinimbang kunci API. Kanggo penyedia kustom sing kompatibel karo OpenAI (contone [NVIDIA NIM](https://build.nvidia.com/)), lebokake **jeneng penyedia**, **URL basis** (kayata `https://integrate.api.nvidia.com/v1`), lan **kunci API**; kabeh telu dibutuhake. URL lan jeneng diowahi inline; gunakake **Sunting** kanggo ngganti kunci API. Model penyedia kustom katon mung ing mode **Lanjutan** (Pengaturan → Model).
 
 <br/>
 
 > 💡 **Tip** <br/>
-> Yen sampeyan ora pengin nggunakake kunci API utawa mbayar panggunaan, sampeyan bisa [ngunduh Ollama](https://ollama.com) lan nggunakake model (kayata `translategemma:4b`) sacara lokal ing mesin sampeyan kanthi gratis. Alternatif, sampeyan bisa gawe akun OpenRouter gratis (ora perlu kartu kredit) kanggo nggunakake model gratis dheweke, utawa entuk kunci API gratis saka Cerebras, Google, Groq, utawa Mistral AI.
+> Yen sampeyan ora pengin nggunakake kunci API utawa mbayar panggunaan, sampeyan bisa [ngundhuh Ollama](https://ollama.com) lan nglakokake model (kayata `translategemma:4b`) kanthi lokal ing mesin sampeyan kanthi gratis. Utawa, sampeyan bisa nggawe akun OpenRouter gratis (ora perlu kertu kredit) kanggo nggunakake model gratis, utawa entuk kunci API gratis saka Cerebras, Google, Groq, Mistral AI, utawa [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Tambahake mung panyedhiya sing dibutuhake. Ing **Setelan** > **Model**, saben id model diwiwiti karo panyedhiya (contone `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Tambahake mung penyedia sing sampeyan butuhake. Ing **Pengaturan** > **Model**, saben ID model diwiwiti nganggo penyedia (contone `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` kanggo titik akhir kustom sing diarani NVIDIA).
 
 Kanggo nambah kunci API, lebokake nilai ing kolom teks lan klik `Save`. Kanggo ngganti kunci sing ana, klik `Edit`. Kanggo mriksa manawa kunci bisa digunakake, klik `Test`. Kanggo URL dhasar Ollama, tansah klik `Test` kanggo mriksa koneksi.
 

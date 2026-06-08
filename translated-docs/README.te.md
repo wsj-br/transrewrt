@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 | `MISTRAL_API_KEY`    | Mistral API కీ                                                              |
 | `OLLAMA_URL`         | Ollama బేస్ URL (ఉదా: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API కీ                                                                  |
+| `CUSTOM_PROVIDER_NAME` | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం డిస్ప్లే పేరు (మూడు కస్టమ్ వేరియబుల్స్ అవసరం) |
+| `CUSTOM_PROVIDER_URL`  | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం బేస్ URL (ఉదా. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం API కీ                         |
+
+**కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ (వెబ్/డాకర్):** మూడు `CUSTOM_PROVIDER_*` వేరియబుల్స్‌ను సెట్ చేయండి. [NVIDIA NIM](https://build.nvidia.com/) కోసం ఉదాహరణ: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, మరియు [build.nvidia.com](https://build.nvidia.com/) నుండి API కీ. మాడల్స్ **అధునాతన** మోడ్‌లో సెట్టింగ్స్ → మాడల్స్ కింద `NVIDIA/…` వంటి ఐడిలతో కనిపిస్తాయి (ప్రొవైడర్ పేరు ప్రిఫిక్స్‌గా ఉంటుంది).
 
 **గోప్యతా మోడ్:** `config.json` లేదా వాడుకరి ప్రాధాన్యతలకు సంబంధించి చరిత్ర ట్రాక్‌ను ఆపడానికి, **వెబ్/డాకర్ సర్వర్ ప్రాసెస్** మరియు/లేదా **ఎలక్ట్రాన్ డెస్క్‌టాప్ మెయిన్ ప్రాసెస్** కోసం `HISTORY_DISABLED` ని `true` లేదా `1` (చిన్న అక్షరాలు/పెద్ద అక్షరాలు పటిష్టంగా లెక్కించబడవు) గా సెట్ చేయండి (ఉదా: సిస్టమ్ లేదా లాంచర్ పర్యావరణం — రెండరర్ మాత్రమే కాదు). ఇది ఇన్‌పుట్/అవుట్‌పుట్ చరిత్రను నిల్వ చేయడాన్ని నిషేధిస్తుంది, **సెట్టింగ్స్ → సాధారణ సెట్టింగ్లు → చరిత్ర** ని లాక్ చేస్తుంది మరియు చరిత్రకు సంబంధించిన APIలను నిరోధిస్తుంది.
 
-మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయండి. మోడల్ ఐడీలు నేమ్‌స్పేస్ చేయబడతాయి (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, మొదలైనవి).
+మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయండి. మాడల్ ఐడిలు నేమ్‌స్పేస్ చేయబడ్డాయి (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, కస్టమ్ ఎండ్‌పాయింట్‌ల కోసం `{providerName}/…`, మొదలైనవి).
 
 **ఖర్చు ప్రదర్శన:** అవసరమైనప్పుడు ఓపెన్రౌటర్ ఖచ్చితమైన బిల్లింగ్ ఖర్చును తిరిగి ఇస్తుంది. ఇతర ప్రొవైడర్లు ఓపెన్రౌటర్ కీ లభ్యమైనప్పుడు ఓపెన్రౌటర్ యొక్క పబ్లిక్ మోడల్ ధరల నుండి **అంచనా** ఖర్చును ఉపయోగిస్తాయి; అది లేకుంటే, నాన్-ఓపెన్రౌటర్ ఖర్చు `0`గా చూపబడవచ్చు. అంచనాలు బిల్లులు కావు.
 

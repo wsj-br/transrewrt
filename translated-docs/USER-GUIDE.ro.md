@@ -104,7 +104,7 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
 
 Pentru a utiliza Transrewrt, aveți nevoie de acces la cel puțin un furnizor de inteligență artificială. Furnizorii susținuți sunt: [OpenRouter](https://openrouter.ai) (care agregă multe modele), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras și [Ollama](https://ollama.com) pentru modele locale.
 
-Nu este necesar să selectați un model plătit pentru a începe. Imediat ce adăugați cheia dvs. API OpenRouter, aplicația activează automat o opțiune **gratuită** integrată OpenRouter. Acest lucru vă permite să începeți traducerea, rescrierea și transformarea textului imediat. Alternativ, puteți obține o cheie API gratuită de la Cerebras, Google, Groq sau Mistral AI.
+Nu trebuie să selectați un model plătit pentru a începe. Imediat ce adăugați cheia API OpenRouter, aplicația activează automat o opțiune **gratuită** integrată OpenRouter. Aceasta vă permite să începeți să traduceți, să rescrieți și să transformați textul imediat. Alternativ, puteți obține o cheie API gratuită de la Cerebras, Google, Groq, Mistral AI sau [NVIDIA](https://build.nvidia.com/) (API compatibil cu OpenAI).
 
 În termeni simpli:
 
@@ -717,11 +717,11 @@ Utilizați **Utilizatori** pentru a gestiona conturile de utilizator în versiun
 <a id="api-config"></a>
 ### Configurare API
 
-Furnizorii suportați sunt: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras și **Ollama** (modele locale printr-un URL de bază). Trebuie să configurați doar furnizorii pe care îi utilizați.
+Furnizorii suportați sunt: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (modele locale prin URL de bază) și un **furnizor personalizat opțional compatibil cu OpenAI** (nume, URL și cheie API — doar în modul Avansat). Trebuie să configurați doar furnizorii pe care îi utilizați.
 
 **Aplicație web: doar administrator**
 
-Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker - nu sunt introduse în interfața web. Această pagină arată pentru care furnizori este configurată o cheie și vă permite să testați fiecare apăsând butonul `Test`.
+Cheile API sunt configurate prin variabile de mediu de sistem sau Docker - nu sunt introduse în interfața web. Pentru furnizorul personalizat, setați `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` și `CUSTOM_PROVIDER_API_KEY` (toate trei necesare). Această pagină arată ce furnizori au o cheie configurată și vă permite să testați fiecare dintre ei făcând clic pe butonul `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Cheile API sunt configurate prin variabile de mediu ale sistemului sau Docker - 
 
 **Aplicație desktop**
 
-Utilizați **Configurare API** pentru a stoca cheile API pentru fiecare furnizor pe care îl utilizați. Pentru Ollama, introduceți **URL-ul de bază** în loc de o cheie API.
+Utilizați **Configurare API** pentru a stoca cheile API pentru fiecare furnizor pe care îl utilizați. Pentru Ollama, introduceți **URL-ul de bază** în loc de o cheie API. Pentru un furnizor personalizat compatibil cu OpenAI (de ex. [NVIDIA NIM](https://build.nvidia.com/)), introduceți un **nume de furnizor**, **URL de bază** (cum ar fi `https://integrate.api.nvidia.com/v1`) și **cheie API**; toate trei sunt necesare. URL-ul și numele sunt editate inline; utilizați **Editare** pentru a înlocui cheia API. Modelele furnizorului personalizat apar doar în modul **Avansat** (Setări → Modele).
 
 <br/>
 
 > 💡 **Sfat** <br/>
-> Dacă nu doriți să utilizați o cheie API sau să plătiți pentru utilizare, puteți [descărca Ollama](https://ollama.com) și rula modele (cum ar fi `translategemma:4b`) local pe mașina dumneavoastră gratuit. Alternativ, puteți crea un cont gratuit OpenRouter (fără card de credit) pentru a utiliza modelele lor gratuite sau obține o cheie API gratuită de la Cerebras, Google, Groq sau Mistral AI.
+> Dacă nu doriți să utilizați o cheie API sau să plătiți pentru utilizare, puteți [descărca Ollama](https://ollama.com) și rula modele (cum ar fi `translategemma:4b`) local pe mașina dvs. gratuit. Alternativ, puteți crea un cont gratuit OpenRouter (nu este necesar cardul de credit) pentru a utiliza modelele lor gratuite sau puteți obține o cheie API gratuită de la Cerebras, Google, Groq, Mistral AI sau [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Adăugați doar furnizorii de care aveți nevoie. În **Setări** > **Modele**, fiecare ID de model începe cu furnizorul (de exemplu `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Adăugați doar furnizorii de care aveți nevoie. În **Setări** > **Modele**, fiecare ID de model începe cu furnizorul (de exemplu `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` pentru un punct final personalizat numit NVIDIA).
 
 Pentru a adăuga o cheie API, introduceți valoarea în câmpul de text și apăsați `Save`. Pentru a înlocui o cheie existentă, apăsați `Edit`. Pentru a verifica dacă o cheie funcționează, apăsați `Test`. Pentru URL-ul de bază Ollama, apăsați întotdeauna `Test` pentru a verifica conexiunea.
 

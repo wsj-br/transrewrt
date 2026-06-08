@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API anahtarı                                                              |
 | `OLLAMA_URL`         | Ollama temel URL'si (örneğin `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API anahtarı                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Özel bir OpenAI uyumlu sağlayıcı için görünen ad (her üç özel değişken de gereklidir) |
+| `CUSTOM_PROVIDER_URL`  | Özel bir OpenAI uyumlu sağlayıcı için temel URL (örneğin, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Özel bir OpenAI uyumlu sağlayıcı için API anahtarı                         |
+
+**Özel OpenAI uyumlu sağlayıcı (web/Docker):** üç `CUSTOM_PROVIDER_*` değişkenini de ayarlayın. [NVIDIA NIM](https://build.nvidia.com/) için örnek: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` ve [build.nvidia.com](https://build.nvidia.com/) adresinden bir API anahtarı. Modeller, Ayarlar → Modeller altında **Gelişmiş** modda `NVIDIA/…` gibi kimliklerle görünür (sağlayıcı adı önek olarak kullanılır).
 
 **Gizlilik modu:** `config.json` veya kullanıcı tercihlerinden bağımsız olarak geçmiş izlemeyi devre dışı bırakmak için **web/Docker sunucu süreci** ve/veya **Electron masaüstü ana süreci** için `HISTORY_DISABLED` değerini `true` veya `1` olarak ayarlayın (büyük/küçük harf duyarsız) (örneğin sistem veya başlatıcı ortamı — yalnızca renderer değil). Bu, girdi/çıktı geçmişinin kaydedilmesini devre dışı bırakır, **Ayarlar → Genel Ayarlar → Geçmiş** bölümünü kilitler ve Geçmiş ile ilgili API'leri engeller.
 
-Sadece kullandığınız sağlayıcıları yapılandırın. Model kimlikleri isim alanı altındadır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, vb.).
+Yalnızca kullandığınız sağlayıcıları yapılandırın. Model kimlikleri ad alanlıdır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, özel uç noktalar için `{providerName}/…` vb.).
 
 **Maliyet gösterimi:** OpenRouter, geçerli olduğunda tam faturalandırılan maliyeti döndürür. Diğer sağlayıcılar, OpenRouter anahtarı mevcutsa OpenRouter'ın kamuya açık model fiyatlandırmasından **tahmini** maliyeti kullanır; anahtar yoksa, OpenRouter olmayan maliyet `0` olarak görünebilir. Tahminler fatura değildir.
 

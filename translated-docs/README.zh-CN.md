@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt 支持多个 AI 提供商。[OpenRouter](https://openrouter.ai) 是�
 | `MISTRAL_API_KEY`    | Mistral API 密钥                                                              |
 | `OLLAMA_URL`         | Ollama 基础 URL（例如 `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API 密钥                                                                  |
+| `CUSTOM_PROVIDER_NAME` | 自定义 OpenAI 兼容提供商的显示名称（需要所有三个自定义变量） |
+| `CUSTOM_PROVIDER_URL`  | 自定义 OpenAI 兼容提供商的基础 URL（例如 `https://integrate.api.nvidia.com/v1`） |
+| `CUSTOM_PROVIDER_API_KEY` | 自定义 OpenAI 兼容提供商的 API 密钥 |
+
+**自定义 OpenAI 兼容提供商（Web/Docker）：** 设置所有三个 `CUSTOM_PROVIDER_*` 变量。[NVIDIA NIM](https://build.nvidia.com/) 示例：`CUSTOM_PROVIDER_NAME=NVIDIA`、`CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` 以及来自 [build.nvidia.com](https://build.nvidia.com/) 的 API 密钥。模型将出现在“设置”→“模型”下的 **高级** 模式中，其 ID 类似于 `NVIDIA/…`（以提供商名称作为前缀）。
 
 **隐私模式：** 若要强制关闭历史记录跟踪，无论 `config.json` 或每个用户的偏好设置如何，请将 `HISTORY_DISABLED` 设置为 `true` 或 `1`（不区分大小写），适用于 **web/Docker 服务器进程** 和/或 **Electron 桌面主进程**（例如系统或启动器环境 —— 而不仅仅是渲染进程）。这将禁用输入/输出历史记录的存储，锁定 **设置 → 常规设置 → 历史记录**，并阻止与历史记录相关的 API。
 
-仅配置您使用的提供商。模型 ID 是带命名空间的（`openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…` 等）。
+仅配置您使用的提供商。模型 ID 是命名空间化的（例如 `openrouter/…`、`openai/…`、`cerebras/…`、`ollama/…`、`{providerName}/…` 用于自定义端点等）。
 
 **费用显示：** OpenRouter 在适用时返回确切的计费费用。其他提供商在提供 OpenRouter 密钥时，使用 OpenRouter 公开的模型定价中的 **估计** 费用；若无 OpenRouter 密钥，非 OpenRouter 费用可能显示为 `0`。估算值并非账单。
 

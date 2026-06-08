@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt कई AI प्रदाताओं का समर्थन क�
 | `MISTRAL_API_KEY` | मिस्ट्रल एपीआई कुंजी |
 | `OLLAMA_URL` | ओलामा बेस यूआरएल (उदाहरण के लिए `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API कुंजी                                                                  |
+| `CUSTOM_PROVIDER_NAME` | कस्टम OpenAI-संगत प्रदाता के लिए प्रदर्शन नाम (सभी तीन कस्टम चर आवश्यक हैं) |
+| `CUSTOM_PROVIDER_URL`  | कस्टम OpenAI-संगत प्रदाता के लिए आधार URL (जैसे `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | कस्टम OpenAI-संगत प्रदाता के लिए API कुंजी                         |
+
+**कस्टम OpenAI-संगत प्रदाता (वेब/डॉकर):** सभी तीन `CUSTOM_PROVIDER_*` चर सेट करें। [NVIDIA NIM](https://build.nvidia.com/) के लिए उदाहरण: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, और [build.nvidia.com](https://build.nvidia.com/) से एक API कुंजी। मॉडल सेटिंग्स → मॉडल के तहत **उन्नत** मोड में `NVIDIA/…` जैसे आईडी के साथ दिखाई देते हैं (प्रदाता नाम उपसर्ग के रूप में)।
 
 **गोपनीयता मोड:** `config.json` या उपयोगकर्ता की पसंद के बावजूद इतिहास के ट्रैक को अक्षम करने के लिए, **वेब/Docker सर्वर प्रक्रिया** और/या **इलेक्ट्रॉन डेस्कटॉप मुख्य प्रक्रिया** के लिए `HISTORY_DISABLED` को `true` या `1` (केस-असंवेदनशील) पर सेट करें (उदाहरण के लिए सिस्टम या लॉन्चर वातावरण — केवल रेंडरर नहीं)। इससे इनपुट/आउटपुट इतिहास को संग्रहीत करना अक्षम हो जाता है, **सेटिंग्स → सामान्य सेटिंग्स → इतिहास** लॉक हो जाता है, और इतिहास से संबंधित API अवरुद्ध हो जाते हैं।
 
-केवल उन प्रदाताओं को कॉन्फ़िगर करें जिनका आप उपयोग करते हैं। मॉडल आईडी नामस्थानित हैं (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, आदि)।
+केवल उन प्रदाताओं को कॉन्फ़िगर करें जिनका आप उपयोग करते हैं। मॉडल आईडी नेमस्पेस किए गए हैं (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` कस्टम एंडपॉइंट के लिए, आदि)।
 
 **लागत प्रदर्शन:** OpenRouter उपयुक्त होने पर ठीक बिल की गई लागत लौटाता है। अन्य प्रदाता तब तक **अनुमानित** लागत का उपयोग करते हैं जब तक OpenRouter की कुंजी उपलब्ध हो, जो OpenRouter की सार्वजनिक मॉडल मूल्य नीति से ली गई होती है; बिना कुंजी के, गैर-OpenRouter लागत `0` के रूप में दिख सकती है। अनुमान बिल नहीं होते हैं।
 

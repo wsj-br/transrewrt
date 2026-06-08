@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Du kan också använda andra leverantörer (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral API-nyckel                                                              |
 | `OLLAMA_URL`         | Ollama bas-URL (t.ex. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-nyckel                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Visningsnamn för en anpassad OpenAI-kompatibel leverantör (alla tre anpassade variabler krävs) |
+| `CUSTOM_PROVIDER_URL`  | Bas-URL för en anpassad OpenAI-kompatibel leverantör (t.ex. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API-nyckel för en anpassad OpenAI-kompatibel leverantör                         |
+
+**Anpassad OpenAI-kompatibel leverantör (webb/Docker):** ställ in alla tre `CUSTOM_PROVIDER_*`-variabler. Exempel för [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` och en API-nyckel från [build.nvidia.com](https://build.nvidia.com/). Modeller visas i **Avancerad** läge under Inställningar → Modeller med ID:n som `NVIDIA/…` (leverantörsnamn som prefix).
 
 **Integritetsläge:** För att tvinga av historikspårning oavsett `config.json` eller användarinställningar, sätt `HISTORY_DISABLED` till `true` eller `1` (ej skiftlägeskänsligt) för **webb-/Docker-serverprocessen** och/eller **Electron-skrivbordsappens huvudprocess** (t.ex. system- eller startmiljö – inte endast renderingsprocessen). Detta inaktiverar lagring av inmatnings-/utmatningshistorik, låser **Inställningar → Allmänna inställningar → Historik** och blockerar API:er relaterade till Historik.
 
-Konfigurera endast de leverantörer du använder. Modell-ID:n är namnrymdsindelade (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Konfigurera endast de leverantörer du använder. Modell-ID:n är namngivna (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` för anpassade slutpunkter, etc.).
 
 **Kostnadsvisning:** OpenRouter returnerar exakt fakturerad kostnad när det är tillämpligt. Andra leverantörer använder **uppskattad** kostnad från OpenRouters publika modellprissättning när en OpenRouter-nyckel är tillgänglig; utan nyckel kan icke-OpenRouter-kostnader visas som `0`. Uppskattningar är inte fakturor.
 

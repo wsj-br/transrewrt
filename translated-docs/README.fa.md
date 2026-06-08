@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 | `MISTRAL_API_KEY`    | کلید API Mistral                                                              |
 | `OLLAMA_URL`         | آدرس پایه Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | کلید API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | نام نمایشی برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (هر سه متغیر سفارشی مورد نیاز است) |
+| `CUSTOM_PROVIDER_URL`  | URL پایه برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (مثلاً `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | کلید API برای یک ارائه‌دهنده سفارشی سازگار با OpenAI                         |
+
+**ارائه‌دهنده سفارشی سازگار با OpenAI (وب/Docker):** هر سه متغیر `CUSTOM_PROVIDER_*` را تنظیم کنید. مثال برای [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`، `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` و یک کلید API از [build.nvidia.com](https://build.nvidia.com/). مدل‌ها در حالت **پیشرفته** تحت تنظیمات → مدل‌ها با شناسه‌هایی مانند `NVIDIA/…` (نام ارائه‌دهنده به عنوان پیشوند) ظاهر می‌شوند.
 
 **حالت حریم خصوصی:** برای غیرفعال کردن مطلق پیگیری تاریخچه بسته به `config.json` یا ترجیحات کاربر، مقدار `HISTORY_DISABLED` را روی `true` یا `1` (بدون توجه به بزرگی یا کوچکی حروف) تنظیم کنید، هم برای **فرآیند سرور وب/داکر** و/یا **فرآیند اصلی دسکتاپ الکترون** (مثلاً محیط سیستم یا برنامه‌ی راه‌انداز — نه فقط رندرر). این کار ذخیره‌سازی تاریخچه ورودی/خروجی را غیرفعال می‌کند، **تنظیمات → تنظیمات عمومی → تاریخچه** را قفل می‌کند و از دسترسی به APIهای مرتبط با تاریخچه جلوگیری می‌کند.
 
-فقط ارائه‌دهندگانی را پیکربندی کنید که از آنها استفاده می‌کنید. شناسه‌های مدل دارای فضای نام هستند (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, و غیره).
+فقط ارائه‌دهندگانی را که استفاده می‌کنید پیکربندی کنید. شناسه‌های مدل دارای فضای نام هستند (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، `{providerName}/…` برای نقاط پایانی سفارشی و غیره).
 
 **نمایش هزینه:** OpenRouter در صورت امکان هزینه دقیق صورتحساب شده را برمی‌گرداند. سایر ارائه‌دهندگان از **تخمینی** استفاده می‌کنند که از قیمت‌گذاری عمومی مدل OpenRouter گرفته شده، در صورتی که کلید OpenRouter موجود باشد؛ در غیر این صورت، هزینه‌های غیر از OpenRouter ممکن است به صورت `0` نمایش داده شوند. این تخمین‌ها فاکتور نیستند.
 

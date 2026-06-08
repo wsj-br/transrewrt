@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY`    | مفتاح واجهة برمجة تطبيقات Mistral                                                              |
 | `OLLAMA_URL`         | عنوان URL الأساسي لـ Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | مفتاح واجهة برمجة تطبيقات xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | اسم العرض لمزود مخصص متوافق مع OpenAI (جميع المتغيرات المخصصة الثلاثة مطلوبة) |
+| `CUSTOM_PROVIDER_URL`  | عنوان URL الأساسي لمزود مخصص متوافق مع OpenAI (مثل `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | مفتاح API لمزود مخصص متوافق مع OpenAI                         |
+
+**مزود مخصص متوافق مع OpenAI (ويب/Docker):** قم بتعيين المتغيرات الثلاثة `CUSTOM_PROVIDER_*`. مثال لـ [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`، `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`، ومفتاح API من [build.nvidia.com](https://build.nvidia.com/). تظهر النماذج في وضع **متقدم** ضمن الإعدادات → النماذج بمعرفات مثل `NVIDIA/…` (اسم المزود كبادئة).
 
 **وضع الخصوصية:** لإجبار إيقاف تتبع السجل بغض النظر عن `config.json` أو تفضيلات المستخدم الفردية، قم بتعيين `HISTORY_DISABLED` إلى `true` أو `1` (بدون تمييز بين الأحرف الكبيرة والصغيرة) لعملية **خادم الويب/دوكير** و/أو عملية **إلكترون الرئيسية على سطح المكتب** (مثلاً بيئة النظام أو برنامج التشغيل — وليس العارض فقط). هذا يعطل تخزين سجل المدخلات/المخرجات، ويُقفل **الإعدادات → الإعدادات العامة → السجل**، ويمنع واجهات برمجة التطبيقات المتعلقة بالسجل.
 
-قم بتهيئة موفري الخدمة الذين تستخدمهم فقط. أسماء النماذج تحتوي على نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، إلخ).
+قم بتكوين المزودين الذين تستخدمهم فقط. معرفات النماذج لها نطاقات (`openrouter/…`، `openai/…`، `cerebras/…`، `ollama/…`، `{providerName}/…` لنقاط النهاية المخصصة، إلخ).
 
 **عرض التكلفة:** يُرجع أوبن روتر التكلفة المُفَاترة الفعلية عند توفرها. أما موفرو الخدمة الآخرون فيستخدمون **تكلفة مقدرة** من أسعار النماذج العامة في أوبن روتر عندما يكون مفتاح أوبن روتر متاحًا؛ وإذا لم يكن كذلك، فقد تُعرض التكلفة غير التابعة لأوبن روتر كـ `0`. التقديرات ليست فواتير.
 

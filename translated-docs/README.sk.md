@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kľúč Mistral API                                                              |
 | `OLLAMA_URL`         | Základná URL Ollama (napr. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kľúč xAI API                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Zobrazovaný názov pre vlastného poskytovateľa kompatibilného s OpenAI (všetky tri vlastné premenné sú povinné) |
+| `CUSTOM_PROVIDER_URL`  | Základná URL pre vlastného poskytovateľa kompatibilného s OpenAI (napr. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API kľúč pre vlastného poskytovateľa kompatibilného s OpenAI                         |
+
+**Vlastný poskytovateľ kompatibilný s OpenAI (web/Docker):** nastavte všetky tri premenné `CUSTOM_PROVIDER_*`. Príklad pre [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` a API kľúč z [build.nvidia.com](https://build.nvidia.com/). Modely sa zobrazia v režime **Pokročilé** v časti Nastavenia → Modely s identifikátormi ako `NVIDIA/…` (názov poskytovateľa ako predpona).
 
 **Režim súkromia:** Ak chcete vynútiť vypnutie sledovania histórie bez ohľadu na `config.json` alebo preferencie používateľa, nastavte `HISTORY_DISABLED` na `true` alebo `1` (bez rozlišovania veľkosti písmen) pre **webový/Docker serverový proces** a/alebo **hlavný proces desktopovej aplikácie Electron** (napr. systémové alebo spúšťacie prostredie – nie len vykresľovací proces). Toto zakazuje ukladanie histórie vstupov/výstupov, uzamkne **Nastavenia → Všeobecné nastavenia → História** a blokuje API súvisiace s Históriou.
 
-Nakonfigurujte len poskytovateľov, ktorých používate. Identifikátory modelov sú menovane (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atď.).
+Konfigurujte iba poskytovateľov, ktorých používate. ID modelov sú pomenované (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` pre vlastné koncové body atď.).
 
 **Zobrazenie nákladov:** OpenRouter vráti presnú fakturovanú sumu, ak je to možné. Ostatní poskytovatelia používajú **odhadované** náklady z verejného cenníka modelov OpenRouter, ak je k dispozícii kľúč OpenRouter; bez neho sa náklady pre poskytovateľov mimo OpenRouter môžu zobrazovať ako `0`. Odhady nie sú faktúrami.
 

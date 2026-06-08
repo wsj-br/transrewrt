@@ -103,7 +103,7 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
 
 Transrewrt를 사용하려면 최소한 하나의 AI 제공업체에 접근할 수 있어야 합니다. 지원되는 제공업체는 다음과 같습니다: [OpenRouter](https://openrouter.ai) (다양한 모델을 통합), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras 및 로컬 모델용 [Ollama](https://ollama.com).
 
-시작하려면 유료 모델을 선택할 필요는 없습니다. OpenRouter API 키를 추가하는 즉시 앱은 내장된 **무료** OpenRouter 옵션을 자동으로 활성화합니다. 이를 통해 즉시 텍스트 번역, 다시 작성 및 변환을 시작할 수 있습니다. 또는 Cerebras, Google, Groq 또는 Mistral AI에서 무료 API 키를 발급받을 수도 있습니다.
+유료 모델을 선택하지 않아도 됩니다. OpenRouter API 키를 추가하면 앱에서 자동으로 내장된 **무료** OpenRouter 옵션을 활성화합니다. 이를 통해 즉시 텍스트 번역, 다시 작성 및 변환을 시작할 수 있습니다. 또는 Cerebras, Google, Groq, Mistral AI 또는 [NVIDIA](https://build.nvidia.com/)(OpenAI 호환 API)에서 무료 API 키를 받을 수도 있습니다.
 
 간단히 설명하면:
 
@@ -716,11 +716,11 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 <a id="api-config"></a>
 ### API 설정
 
-지원되는 제공업체는 OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras 및 **Ollama**(기본 URL을 통한 로컬 모델)입니다. 사용하는 제공업체만 구성하면 됩니다.
+지원되는 공급자는 다음과 같습니다: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama**(기본 URL을 통한 로컬 모델) 및 선택적 **사용자 지정 OpenAI 호환 제공자**(이름, URL 및 API 키 - 고급 모드 전용). 사용하는 공급자만 구성하면 됩니다.
 
 **웹 애플리케이션: 관리자 전용**
 
-API 키는 시스템 또는 Docker 환경 변수를 통해 구성되며, 웹 UI에 입력하지 않습니다. 이 페이지는 어떤 제공업체에 키가 구성되어 있는지 보여주며, `Test` 버튼을 클릭하여 각각을 테스트할 수 있습니다.
+API 키는 시스템 또는 Docker 환경 변수를 통해 구성되며 웹 UI에 입력되지 않습니다. 사용자 지정 공급자의 경우 `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL`, `CUSTOM_PROVIDER_API_KEY`(세 가지 모두 필수)를 설정합니다. 이 페이지에서는 구성된 키가 있는 공급자를 보여주고 `Test` 버튼을 클릭하여 각 공급자를 테스트할 수 있습니다.
 
 <br/>
 
@@ -736,16 +736,16 @@ API 키는 시스템 또는 Docker 환경 변수를 통해 구성되며, 웹 UI�
 
 **데스크톱 애플리케이션**
 
-사용하는 각 제공업체에 대한 API 키를 저장하려면 **API 설정**을 사용하십시오. Ollama의 경우 API 키 대신 **기본 URL**을 입력합니다.
+**API 구성**을 사용하여 사용하는 각 공급자의 API 키를 저장합니다. Ollama의 경우 API 키 대신 **기본 URL**을 입력합니다. 사용자 지정 OpenAI 호환 공급자(예: [NVIDIA NIM](https://build.nvidia.com/))의 경우 **공급자 이름**, **기본 URL**(예: `https://integrate.api.nvidia.com/v1`) 및 **API 키**를 입력합니다. 세 가지 모두 필수입니다. URL과 이름은 인라인으로 편집됩니다. **편집**을 사용하여 API 키를 바꿉니다. 사용자 지정 공급자 모델은 **고급** 모드에서만 표시됩니다(설정 → 모델).
 
 <br/>
 
 > 💡 **팁** <br/>
-> API 키를 사용하거나 요금을 지불하고 싶지 않다면 [Ollama 다운로드](https://ollama.com)하여 기계에서 `translategemma:4b`과 같은 모델을 무료로 로컬로 실행할 수 있습니다. 또는 무료 OpenRouter 계정을 만들어(신용카드 필요 없음) 무료 모델을 사용하거나, Cerebras, Google, Groq 또는 Mistral AI에서 무료 API 키를 발급받을 수 있습니다.
+> API 키를 사용하거나 사용료를 지불하고 싶지 않다면 [Ollama 다운로드](https://ollama.com)하여 무료로 로컬 컴퓨터에서 모델(예: `translategemma:4b`)을 실행할 수 있습니다. 또는 무료 OpenRouter 계정(신용 카드 불필요)을 만들어 무료 모델을 사용하거나 Cerebras, Google, Groq, Mistral AI 또는 [NVIDIA](https://build.nvidia.com/)에서 무료 API 키를 받을 수 있습니다.
 
 <br/>
 
-- 필요한 제공업체만 추가하세요. **설정** > **모델**에서 각 모델 ID는 제공업체로 시작됩니다(예: `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- 필요한 공급자만 추가합니다. **설정** > **모델**에서 각 모델 ID는 공급자로 시작합니다(예: NVIDIA라는 사용자 지정 엔드포인트의 경우 `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`).
 
 API 키를 추가하려면 텍스트 필드에 값을 입력하고 `Save`을 클릭하세요. 기존 키를 교체하려면 `Edit`을 클릭하세요. 키가 작동하는지 확인하려면 `Test`을 클릭하세요. Ollama 기본 URL의 경우 연결을 확인하려면 항상 `Test`을 클릭하세요.
 

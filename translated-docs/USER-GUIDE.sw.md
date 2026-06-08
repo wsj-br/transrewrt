@@ -104,7 +104,7 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
 
 Ili kutumia Transrewrt, unahitaji ufikiaji kwa mtoa huduma yoyote moja ya AI. Matoa wa kusaidiwa ni: [OpenRouter](https://openrouter.ai) (ambayo inakusanya mifano mingi), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, na [Ollama](https://ollama.com) kwa mifano ya wahali.
 
-Hauhitaji kuchagua mfumo wa malipo ili kuanza. Mara tu unapoweka ujuzi wako wa OpenRouter API, programu hutoa chaguo cha **bure** cha OpenRouter kiotomatiki. Hii inakuruhusu kuanza kufanya tafsiri, kuandika upya, na kubadilisha maandishi mara moja. Kama mbadala, unaweza pia kupata ujuzi wa API wa bure kutoka Cerebras, Google, Groq, au Mistral AI.
+Huna haja ya kuchagua modeli yenye malipo ili kuanza. Mara tu unapoongeza ufunguo wako wa API wa OpenRouter, programu huwezesha kiotomatiki chaguo la ndani la **bure** la OpenRouter. Hii hukuruhusu kuanza kutafsiri, kuandika upya, na kubadilisha maandishi mara moja. Vinginevyo, unaweza pia kupata ufunguo wa bure wa API kutoka Cerebras, Google, Groq, Mistral AI, au [NVIDIA](https://build.nvidia.com/) (API inayopatana na OpenAI).
 
 Kwa maneno rahisi:
 
@@ -717,11 +717,11 @@ Tumia **Watumiaji** kudumisha akaunti za watumiaji katika toleo la wavuti. Unawe
 <a id="api-config"></a>
 ### Mipangilio ya API
 
-Watoa huduma wafanyakazi ni: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, na **Ollama** (mifumo ya wahali kupitia URL ya msingi). Unahitaji kusanidi tu watoa ambao unawatumia.
+Watoa huduma wanaoungwa mkono ni: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (modeli za ndani kupitia URL ya msingi), na **mtoa huduma wa hiari anayepatana na OpenAI** (jina, URL, na ufunguo wa API — hali ya Maalum pekee). Unahitaji tu kusanidi watoa huduma unaotumia.
 
 **Programu ya wavuti: kwa msimamizi tu**
 
-Vifunguo vya API vinawekwa kupitia vigezo vya mazingira ya mfumo au Docker - havijawekwa katika UI ya wavuti. Ukurasa huu unawasilisha watoa ambao vifunguo vimeanzishwa na kukuruhusu kujaribu kila kimoja kwa kubonyeza kitufe cha `Test`.
+Funguo za API huendeshwa kupitia vigezo vya mazingira ya mfumo au Docker - hazijaingizwa kwenye kiolesura cha wavuti. Kwa mtoa huduma wa kustom, weka `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL`, na `CUSTOM_PROVIDER_API_KEY` (zote tatu zinahitajika). Ukurasa huu unaonyesha ni watoa huduma gani wana ufunguo uliosajiliwa na hukuruhusu kujaribu kila mmoja kwa kubofya kitufe cha `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Vifunguo vya API vinawekwa kupitia vigezo vya mazingira ya mfumo au Docker - hav
 
 **Programu ya kompyuta**
 
-Tumia **Mipangilio ya API** kuhifadhi vifunguo vya API kwa kila mtoa unaotumia. Kwa Ollama, weka **URL ya msingi** badala ya funguo la API.
+Tumia **Usanidi wa API** kuhifadhi funguo za API kwa kila mtoa huduma unaotumia. Kwa Ollama, weka **URL ya msingi** badala ya ufunguo wa API. Kwa mtoa huduma wa kustom anayepatana na OpenAI (k.w.a [NVIDIA NIM](https://build.nvidia.com/)), weka **jina la mtoa huduma**, **URL ya msingi** (kama vile `https://integrate.api.nvidia.com/v1`), na **ufunguo wa API**; zote tatu zinahitajika. URL na jina huhaririwa moja kwa moja; tumia **Hariri** kuchukua nafasi ya ufunguo wa API. Model za mtoa huduma wa kustom huonekana katika hali ya **Maalum** pekee (Mipangilio → Modeli).
 
 <br/>
 
-> 💡 **Shauri** <br/>
-> Ikiwa hutaki kutumia funguo la API au kulipa matumizi, unaweza [pakuza Ollama](https://ollama.com) na kuendesha mifumo (kama vile `translategemma:4b`) kwenye kompyuta yako bila malipo. Pia, unaweza kuunda akaunti ya bure ya OpenRouter (bila kadi ya mkopo) kutumia mifumo yao ya bure, au kupata funguo la API bila malipo kutoka Cerebras, Google, Groq, au Mistral AI.
+> 💡 **Kidokezo** <br/>
+> Ikiwa hutaki kutumia ufunguo wa API au kulipia matumizi, unaweza [kupakua Ollama](https://ollama.com) na kuendesha modeli (kama vile `translategemma:4b`) ndani ya mashine yako kwa bure. Vinginevyo, unaweza kuunda akaunti ya bure ya OpenRouter (hakuna kadi ya mkopo inayohitajika) kutumia modeli zao za bure, au kupata ufunguo wa bure wa API kutoka Cerebras, Google, Groq, Mistral AI, au [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Ongeza watoa wote ambao unawahitaji. Katika **Mipangilio** > **Mifano**, kitambulisho cha kila mfumo kinaanza na mtoa (kama vile `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Ongeza tu watoa huduma unaohitaji. Katika **Mipangilio** > **Modeli**, kila kitambulisho cha modeli huanza na mtoa huduma (kwa mfano `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` kwa sehemu ya kustom inayoitwa NVIDIA).
 
 Ili kuongeza funguo la API, weka thamani kwenye kikopo cha maandishi na ubonyeze `Save`. Ili kubadilisha funguo uliopo, bonyeza `Edit`. Ili kuthibitisha kwamba funguo linafanya kazi, bonyeza `Test`. Kwa URL ya msingi wa Ollama, bonyeza daima `Test` kuchunguza muunganisho.
 

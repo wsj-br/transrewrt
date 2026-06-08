@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY` | Κλειδί API Mistral |
 | `OLLAMA_URL` | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | Κλειδί API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Όνομα εμφάνισης για προσαρμοσμένο πάροχο συμβατό με OpenAI (απαιτούνται και οι τρεις προσαρμοσμένες μεταβλητές) |
+| `CUSTOM_PROVIDER_URL`  | Βασική διεύθυνση URL για προσαρμοσμένο πάροχο συμβατό με OpenAI (π.χ. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Κλειδί API για προσαρμοσμένο πάροχο συμβατό με OpenAI                         |
+
+**Προσαρμοσμένος πάροχος συμβατός με OpenAI (web/Docker):** ορίστε και τις τρεις μεταβλητές `CUSTOM_PROVIDER_*`. Παράδειγμα για [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, και ένα κλειδί API από το [build.nvidia.com](https://build.nvidia.com/). Τα μοντέλα εμφανίζονται σε **Προχωρημένη** λειτουργία στην ενότητα Ρυθμίσεις → Μοντέλα με αναγνωριστικά όπως `NVIDIA/…` (όνομα παρόχου ως πρόθεμα).
 
 **Λειτουργία ιδιωτικότητας:** Για να εξαναγκάσετε την απενεργοποίηση της παρακολούθησης του ιστορικού, ανεξάρτητα από το `config.json` ή τις προτιμήσεις ανά χρήστη, ορίστε το `HISTORY_DISABLED` σε `true` ή `1` (χωρίς διάκριση πεζών/κεφαλαίων) για τη **διεργασία web/Docker server** και/ή τη **κύρια διεργασία desktop Electron** (π.χ. περιβάλλον συστήματος ή εκκινητή — όχι μόνο το renderer). Αυτό απενεργοποιεί την αποθήκευση του ιστορικού εισόδου/εξόδου, κλειδώνει τις **Ρυθμίσεις → Γενικές ρυθμίσεις → Ιστορικό** και αποκλείει τις σχετικές με το Ιστορικό APIs.
 
-Ρυθμίστε μόνο τους παρόχους που χρησιμοποιείτε. Οι ταυτότητες μοντέλων είναι ονοματοχώροι (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, κ.λπ.).
+Διαμορφώστε μόνο τους παρόχους που χρησιμοποιείτε. Τα αναγνωριστικά μοντέλων έχουν χώρους ονομάτων (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` για προσαρμοσμένα τελικά σημεία, κ.λπ.).
 
 **Εμφάνιση κόστους:** Το OpenRouter επιστρέφει το ακριβές χρεωμένο κόστος όταν εφαρμόζεται. Άλλοι πάροχοι χρησιμοποιούν **εκτιμώμενο** κόστος από τη δημόσια τιμολόγηση μοντέλων του OpenRouter όταν είναι διαθέσιμο κλειδί OpenRouter· διαφορετικά, το κόστος μη-OpenRouter μπορεί να εμφανίζεται ως `0`. Οι εκτιμήσεις δεν είναι τιμολόγια.
 

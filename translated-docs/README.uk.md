@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt підтримує кілька постачальників ШІ. [O
 | `MISTRAL_API_KEY`    | Ключ API Mistral                                                              |
 | `OLLAMA_URL`         | Базовий URL Ollama (наприклад, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Ключ API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Відображуване ім'я для власного OpenAI-сумісного провайдера (потрібні всі три власні змінні) |
+| `CUSTOM_PROVIDER_URL`  | Базова URL-адреса для власного OpenAI-сумісного провайдера (наприклад, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Ключ API для власного OpenAI-сумісного провайдера                         |
+
+**Власний OpenAI-сумісний провайдер (веб/Docker):** встановіть усі три змінні `CUSTOM_PROVIDER_*`. Приклад для [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` та ключ API з [build.nvidia.com](https://build.nvidia.com/). Моделі з'являються в **Розширеному** режимі в розділі Налаштування → Моделі з ідентифікаторами на кшталт `NVIDIA/…` (назва провайдера як префікс).
 
 **Режим конфіденційності:** Щоб примусово вимкнути відстеження історії незалежно від `config.json` або налаштувань окремих користувачів, встановіть `HISTORY_DISABLED` рівним `true` або `1` (без урахування регістру) для **веб-/Docker-серверного процесу** та/або **головного процесу настільного додатка Electron** (наприклад, системного середовища або засобу запуску — не лише процесу візуалізації). Це вимикає збереження історії вхідних і вихідних даних, заблоковує **Налаштування → Загальні налаштування → Історія** та блокує API, пов’язані з Історією.
 
-Налаштовуйте лише тих постачальників, яких використовуєте. Ідентифікатори моделей мають простір імен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, тощо).
+Налаштовуйте лише ті провайдери, які ви використовуєте. Ідентифікатори моделей мають простір імен (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` для власних кінцевих точок тощо).
 
 **Відображення вартості:** OpenRouter повертає точну виставлену вартість, коли це можливо. Інші постачальники використовують **приблизну** вартість із публічного ціноутворення моделей OpenRouter, якщо доступний ключ OpenRouter; без нього вартість не-OpenRouter може відображатися як `0`. Оцінки не є рахунками.
 

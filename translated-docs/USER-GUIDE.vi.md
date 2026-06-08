@@ -104,7 +104,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
 
 Để sử dụng Transrewrt, bạn cần truy cập vào ít nhất một nhà cung cấp AI. Các nhà cung cấp được hỗ trợ gồm: [OpenRouter](https://openrouter.ai) (tích hợp nhiều mô hình), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras và [Ollama](https://ollama.com) cho các mô hình nội bộ.
 
-Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạn thêm khóa API OpenRouter, ứng dụng sẽ tự động kích hoạt tùy chọn OpenRouter **miễn phí** được tích hợp sẵn. Điều này cho phép bạn bắt đầu dịch, viết lại và chuyển đổi văn bản ngay lập tức. Ngoài ra, bạn cũng có thể lấy khóa API miễn phí từ Cerebras, Google, Groq hoặc Mistral AI.
+Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạn thêm khóa API OpenRouter của mình, ứng dụng sẽ tự động bật tùy chọn OpenRouter **miễn phí** tích hợp sẵn. Điều này cho phép bạn bắt đầu dịch, viết lại và chuyển đổi văn bản ngay lập tức. Ngoài ra, bạn cũng có thể lấy khóa API miễn phí từ Cerebras, Google, Groq, Mistral AI hoặc [NVIDIA](https://build.nvidia.com/) (API tương thích OpenAI).
 
 Nói một cách đơn giản:
 
@@ -717,11 +717,11 @@ Sử dụng **Người dùng** để quản lý tài khoản người dùng tron
 <a id="api-config"></a>
 ### Cấu hình API
 
-Các nhà cung cấp được hỗ trợ gồm: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, và **Ollama** (mô hình nội bộ thông qua URL gốc). Bạn chỉ cần cấu hình các nhà cung cấp mà bạn sử dụng.
+Các nhà cung cấp được hỗ trợ bao gồm: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (mô hình cục bộ qua URL cơ sở) và **nhà cung cấp tùy chỉnh tương thích OpenAI** tùy chọn (tên, URL và khóa API — chỉ ở chế độ Nâng cao). Bạn chỉ cần cấu hình các nhà cung cấp mà bạn sử dụng.
 
 **Ứng dụng web: chỉ dành cho quản trị viên**
 
-Các khóa API được cấu hình thông qua biến môi trường hệ thống hoặc Docker - chúng không được nhập trong giao diện web. Trang này hiển thị các nhà cung cấp đã được cấu hình khóa và cho phép bạn kiểm tra từng nhà cung cấp bằng cách nhấn nút `Test`.
+Khóa API được cấu hình thông qua các biến môi trường hệ thống hoặc Docker — chúng không được nhập vào giao diện web. Đối với nhà cung cấp tùy chỉnh, hãy đặt `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` và `CUSTOM_PROVIDER_API_KEY` (cả ba đều bắt buộc). Trang này hiển thị nhà cung cấp nào có khóa được cấu hình và cho phép bạn kiểm tra từng nhà cung cấp bằng cách nhấp vào nút `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Các khóa API được cấu hình thông qua biến môi trường hệ thốn
 
 **Ứng dụng máy tính để bàn**
 
-Sử dụng **Cấu hình API** để lưu trữ các khóa API cho từng nhà cung cấp bạn sử dụng. Với Ollama, hãy nhập **URL gốc** thay vì khóa API.
+Sử dụng **Cấu hình API** để lưu trữ khóa API cho từng nhà cung cấp bạn sử dụng. Đối với Ollama, hãy nhập **URL cơ sở** thay vì khóa API. Đối với nhà cung cấp tùy chỉnh tương thích OpenAI (ví dụ: [NVIDIA NIM](https://build.nvidia.com/)), hãy nhập **tên nhà cung cấp**, **URL cơ sở** (chẳng hạn như `https://integrate.api.nvidia.com/v1`) và **khóa API**; cả ba đều bắt buộc. URL và tên được chỉnh sửa nội tuyến; sử dụng **Chỉnh sửa** để thay thế khóa API. Các mô hình nhà cung cấp tùy chỉnh chỉ xuất hiện ở chế độ **Nâng cao** (Cài đặt → Mô hình).
 
 <br/>
 
 > 💡 **Mẹo** <br/>
-> Nếu bạn không muốn sử dụng khóa API hoặc trả phí sử dụng, bạn có thể [tải xuống Ollama](https://ollama.com) và chạy các mô hình (ví dụ như `translategemma:4b`) trên máy tính của bạn miễn phí. Ngoài ra, bạn có thể tạo tài khoản OpenRouter miễn phí (không cần thẻ tín dụng) để sử dụng các mô hình miễn phí của họ, hoặc lấy khóa API miễn phí từ Cerebras, Google, Groq hoặc Mistral AI.
+> Nếu bạn không muốn sử dụng khóa API hoặc trả phí sử dụng, bạn có thể [tải xuống Ollama](https://ollama.com) và chạy các mô hình (chẳng hạn như `translategemma:4b`) cục bộ trên máy của mình miễn phí. Ngoài ra, bạn có thể tạo tài khoản OpenRouter miễn phí (không yêu cầu thẻ tín dụng) để sử dụng các mô hình miễn phí của họ, hoặc lấy khóa API miễn phí từ Cerebras, Google, Groq, Mistral AI hoặc [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Chỉ thêm các nhà cung cấp mà bạn cần. Trong **Cài đặt** > **Mô hình**, mỗi ID mô hình bắt đầu bằng tên nhà cung cấp (ví dụ: `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Chỉ thêm các nhà cung cấp bạn cần. Trong **Cài đặt** > **Mô hình**, mỗi ID mô hình bắt đầu bằng nhà cung cấp (ví dụ: `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` cho một điểm cuối tùy chỉnh có tên NVIDIA).
 
 Để thêm khóa API, nhập giá trị vào ô văn bản và nhấn `Save`. Để thay thế khóa hiện có, nhấn `Edit`. Để xác minh khóa hoạt động, nhấn `Test`. Với URL gốc Ollama, luôn nhấn `Test` để kiểm tra kết nối.
 

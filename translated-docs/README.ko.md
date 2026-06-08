@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -295,10 +295,15 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 | `MISTRAL_API_KEY`    | Mistral API 키                                                              |
 | `OLLAMA_URL`         | Ollama 기본 URL (예: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API 키                                                                  |
+| `CUSTOM_PROVIDER_NAME` | 사용자 지정 OpenAI 호환 공급자에 대한 표시 이름 (세 개의 사용자 지정 변수 모두 필요) |
+| `CUSTOM_PROVIDER_URL`  | 사용자 지정 OpenAI 호환 공급자에 대한 기본 URL (예: `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | 사용자 지정 OpenAI 호환 공급자에 대한 API 키                         |
+
+**사용자 지정 OpenAI 호환 제공자(웹/Docker):** 세 가지 `CUSTOM_PROVIDER_*` 변수를 모두 설정합니다. [NVIDIA NIM](https://build.nvidia.com/)의 예시: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` 및 [build.nvidia.com](https://build.nvidia.com/)의 API 키. 모델은 설정 → 모델 아래의 **고급** 모드에 `NVIDIA/…`와 같은 ID(접두사로 제공자 이름)로 표시됩니다.
 
 **개인정보 보호 모드:** `config.json` 또는 사용자별 설정과 관계없이 기록 추적을 강제로 끄려면, **웹/Docker 서버 프로세스** 및/또는 **Electron 데스크탑 메인 프로세스**에서 `HISTORY_DISABLED`을 `true` 또는 `1`(대소문자 구분 없음)로 설정하십시오(예: 시스템 또는 런처 환경 — 렌더러만이 아님). 이 설정은 입력/출력 기록 저장을 비활성화하고, **설정 → 일반 설정 → 기록**을 잠급니다. 또한 기록 관련 API를 차단합니다.
 
-사용하는 제공자만 구성하세요. 모델 ID는 네임스페이스가 지정되어 있습니다 (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, 등).
+사용하는 공급자만 구성하세요. 모델 ID는 네임스페이스화됩니다 (예: `openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` 사용자 지정 엔드포인트 등).
 
 **비용 표시:** OpenRouter는 적용 가능한 경우 정확한 청구 비용을 반환합니다. 다른 제공자는 OpenRouter 키가 있는 경우 OpenRouter의 공개 모델 가격 기준 **예상** 비용을 사용합니다. OpenRouter 키가 없으면 비-OpenRouter 비용이 `0`으로 표시될 수 있습니다. 예상치는 청구서가 아닙니다.
 

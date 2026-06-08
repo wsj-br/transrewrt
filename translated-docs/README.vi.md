@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 | `MISTRAL_API_KEY`    | Khóa API Mistral                                                              |
 | `OLLAMA_URL`         | URL gốc Ollama (ví dụ: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Khóa API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Tên hiển thị cho nhà cung cấp tùy chỉnh tương thích OpenAI (yêu cầu cả ba biến tùy chỉnh) |
+| `CUSTOM_PROVIDER_URL`  | URL cơ sở cho nhà cung cấp tùy chỉnh tương thích OpenAI (ví dụ: `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Khóa API cho nhà cung cấp tùy chỉnh tương thích OpenAI                         |
+
+**Nhà cung cấp tùy chỉnh tương thích OpenAI (web/Docker):** đặt cả ba biến `CUSTOM_PROVIDER_*`. Ví dụ cho [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, và khóa API từ [build.nvidia.com](https://build.nvidia.com/). Các mô hình xuất hiện ở chế độ **Nâng cao** trong Cài đặt → Mô hình với các ID như `NVIDIA/…` (tên nhà cung cấp làm tiền tố).
 
 **Chế độ riêng tư:** Để buộc tắt việc ghi nhận lịch sử bất kể `config.json` hay tùy chọn theo người dùng, hãy đặt `HISTORY_DISABLED` thành `true` hoặc `1` (không phân biệt chữ hoa/thường) cho **quy trình máy chủ web/Docker** và/hoặc **quy trình chính ứng dụng desktop Electron** (ví dụ: môi trường hệ thống hoặc trình khởi chạy — không chỉ riêng trình hiển thị). Thao tác này sẽ vô hiệu hóa việc lưu trữ lịch sử đầu vào/đầu ra, khóa mục **Cài đặt → Cài đặt chung → Lịch sử** và chặn các API liên quan đến Lịch sử.
 
-Chỉ cấu hình các nhà cung cấp bạn sử dụng. ID mô hình được phân không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, v.v.).
+Chỉ cấu hình các nhà cung cấp bạn sử dụng. ID mô hình được đặt tên theo không gian tên (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` cho các điểm cuối tùy chỉnh, v.v.).
 
 **Hiển thị chi phí:** OpenRouter trả về chi phí tính chính xác khi có thể. Các nhà cung cấp khác sử dụng chi phí **ước tính** từ bảng giá mô hình công khai của OpenRouter khi có khóa OpenRouter; nếu không, chi phí không phải OpenRouter có thể hiển thị là `0`. Các ước tính không phải là hóa đơn.
 

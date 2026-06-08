@@ -104,7 +104,7 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
 
 Om Transrewrt te gebruiken, hebt u toegang nodig tot minstens één AI-leverancier. De ondersteunde leveranciers zijn: [OpenRouter](https://openrouter.ai) (die veel modellen bundelt), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras en [Ollama](https://ollama.com) voor lokale modellen.
 
-U hoeft geen betaald model te selecteren om te beginnen. Zodra u uw OpenRouter API-sleutel toevoegt, schakelt de app automatisch een ingebouwde **gratis** OpenRouter-optie in. Hierdoor kunt u direct tekst vertalen, herschrijven en transformeren. U kunt ook een gratis API-sleutel verkrijgen van Cerebras, Google, Groq of Mistral AI.
+U hoeft geen betaald model te selecteren om te beginnen. Zodra u uw OpenRouter API-sleutel toevoegt, schakelt de app automatisch een ingebouwde **gratis** OpenRouter-optie in. Hiermee kunt u direct tekst vertalen, herschrijven en transformeren. U kunt ook een gratis API-sleutel verkrijgen van Cerebras, Google, Groq, Mistral AI of [NVIDIA](https://build.nvidia.com/) (OpenAI-compatibele API).
 
 In eenvoudige bewoordingen:
 
@@ -717,11 +717,11 @@ Gebruik **Gebruikers** om gebruikersaccounts te beheren in de webversie. U kunt 
 <a id="api-config"></a>
 ### API-configuratie
 
-De ondersteunde leveranciers zijn: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, en **Ollama** (lokale modellen via een basis-URL). U hoeft alleen de leveranciers te configureren die u gebruikt.
+De ondersteunde providers zijn: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokale modellen via een basis-URL) en een optionele **aangepaste OpenAI-compatibele provider** (naam, URL en API-sleutel — alleen Geavanceerde modus). U hoeft alleen de providers te configureren die u gebruikt.
 
 **Webapplicatie: alleen beheerder**
 
-API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen – ze worden niet ingevoerd in de web-UI. Op deze pagina ziet u welke leveranciers een sleutel geconfigureerd hebben en kunt u elke leverancier testen door op de knop `Test` te klikken.
+API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen - ze worden niet ingevoerd in de web-UI. Stel voor de aangepaste provider `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` en `CUSTOM_PROVIDER_API_KEY` in (alle drie vereist). Deze pagina toont welke providers een geconfigureerde sleutel hebben en laat u elke provider testen door op de knop `Test` te klikken.
 
 <br/>
 
@@ -737,16 +737,16 @@ API-sleutels worden geconfigureerd via systeem- of Docker-omgevingsvariabelen �
 
 **Bureaubladapplicatie**
 
-Gebruik **API-configuratie** om API-sleutels op te slaan voor elke leverancier die u gebruikt. Voor Ollama voert u in plaats van een API-sleutel de **basis-URL** in.
+Gebruik **API-configuratie** om API-sleutels op te slaan voor elke provider die u gebruikt. Voer voor Ollama de **basis-URL** in in plaats van een API-sleutel. Voer voor een aangepaste OpenAI-compatibele provider (bijv. [NVIDIA NIM](https://build.nvidia.com/)) een **providernaam**, **basis-URL** (zoals `https://integrate.api.nvidia.com/v1`) en **API-sleutel** in; alle drie zijn vereist. De URL en naam worden inline bewerkt; gebruik **Bewerken** om de API-sleutel te vervangen. Modellen van aangepaste providers worden alleen weergegeven in de **Geavanceerde** modus (Instellingen → Modellen).
 
 <br/>
 
 > 💡 **Tip** <br/>
-> Als u geen API-sleutel wilt gebruiken of geen kosten wilt maken, kunt u [Ollama downloaden](https://ollama.com) en modellen (zoals `translategemma:4b`) gratis lokaal op uw machine uitvoeren. U kunt ook een gratis OpenRouter-account aanmaken (zonder creditcard) om hun gratis modellen te gebruiken, of een gratis API-sleutel verkrijgen van Cerebras, Google, Groq of Mistral AI.
+> Als u geen API-sleutel wilt gebruiken of wilt betalen voor gebruik, kunt u [Ollama downloaden](https://ollama.com) en modellen (zoals `translategemma:4b`) gratis lokaal op uw machine uitvoeren. U kunt ook een gratis OpenRouter-account aanmaken (geen creditcard vereist) om hun gratis modellen te gebruiken, of een gratis API-sleutel verkrijgen van Cerebras, Google, Groq, Mistral AI of [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Voeg alleen de leveranciers toe die u nodig hebt. In **Instellingen** > **Modellen** begint elk model-ID met de leverancier (bijvoorbeeld `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Voeg alleen de providers toe die u nodig heeft. In **Instellingen** > **Modellen** begint elke model-ID met de provider (bijvoorbeeld `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` voor een aangepast eindpunt genaamd NVIDIA).
 
 Om een API-sleutel toe te voegen, voert u de waarde in het tekstvak in en klikt u op `Save`. Om een bestaande sleutel te vervangen, klikt u op `Edit`. Om te controleren of een sleutel werkt, klikt u op `Test`. Voor de Ollama-basis-URL klikt u altijd op `Test` om de verbinding te controleren.
 

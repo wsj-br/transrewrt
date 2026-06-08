@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 | `MISTRAL_API_KEY`    | Cheie API Mistral                                                              |
 | `OLLAMA_URL`         | URL de bază Ollama (ex: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Cheie API xAI                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Nume afișat pentru un furnizor personalizat compatibil cu OpenAI (toate cele trei variabile personalizate sunt necesare) |
+| `CUSTOM_PROVIDER_URL`  | URL de bază pentru un furnizor personalizat compatibil cu OpenAI (de ex. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | Cheie API pentru un furnizor personalizat compatibil cu OpenAI                         |
+
+**Furnizor personalizat compatibil cu OpenAI (web/Docker):** setați toate cele trei variabile `CUSTOM_PROVIDER_*`. Exemplu pentru [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` și o cheie API de pe [build.nvidia.com](https://build.nvidia.com/). Modelele apar în modul **Avansat** sub Setări → Modele cu ID-uri precum `NVIDIA/…` (numele furnizorului ca prefix).
 
 **Modul de confidențialitate:** Pentru a forța dezactivarea urmăririi istoricului indiferent de `config.json` sau de preferințele pe utilizator, setați `HISTORY_DISABLED` la `true` sau `1` (fără distincție între majuscule și minuscule) pentru **procesul server web/Docker** și/sau **procesul principal desktop Electron** (de exemplu, mediul sistemului sau al lansatorului — nu doar renderer-ul). Aceasta dezactivează stocarea istoricului intrare/ieșire, blochează **Setări → Setări generale → Istoric** și blochează API-urile legate de Istoric.
 
-Configurați doar furnizorii pe care îi utilizați. ID-urile modelelor sunt separate prin namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Configurați numai furnizorii pe care îi utilizați. ID-urile modelelor sunt organizate pe spații de nume (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` pentru puncte finale personalizate etc.).
 
 **Afișare cost:** OpenRouter returnează costul exact facturat atunci când este aplicabil. Alți furnizori folosesc costul **estimat** din prețurile publice ale modelelor OpenRouter atunci când este disponibilă o cheie OpenRouter; fără aceasta, costul non-OpenRouter poate apărea ca `0`. Estimările nu sunt facturi.
 

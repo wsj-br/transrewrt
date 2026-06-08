@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Maaari mo ring gamitin ang iba pang provider (OpenAI, Anthropic, Google Gemini, 
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (hal. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Display name para sa isang custom OpenAI-compatible provider (lahat ng tatlong custom vars ay kailangan) |
+| `CUSTOM_PROVIDER_URL`  | Base URL para sa isang custom OpenAI-compatible provider (hal. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API key para sa isang custom OpenAI-compatible provider                         |
+
+**Custom OpenAI-compatible provider (web/Docker):** i-set ang lahat ng tatlong `CUSTOM_PROVIDER_*` variables. Halimbawa para sa [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, at isang API key mula sa [build.nvidia.com](https://build.nvidia.com/). Ang mga modelo ay lalabas sa **Abante** mode sa ilalim ng Mga Setting → Mga Modelo na may mga id tulad ng `NVIDIA/…` (pangalan ng provider bilang prefix).
 
 **Privacy mode:** Upang pilitin ang pag-off ng pagsubaybay sa kasaysayan anuman ang `config.json` o mga kagustuhan batay sa user, itakda ang `HISTORY_DISABLED` sa `true` o `1` (hindi sensitibo sa kaso) para sa **web/Docker server process** at/o sa **Electron desktop main process** (hal. sistema o environment ng launcher — hindi lamang ang renderer). Ito ay nag-de-disable sa pag-iimbak ng kasaysayan ng input/output, i-lock ang **Settings → Mga Pangkalahatang Setting → Kasaysayan**, at pinipigilan ang mga History-related API.
 
-I-configure lamang ang mga provider na ginagamit mo. Ang mga Model ID ay may namespace (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, atbp.).
+I-configure lamang ang mga provider na ginagamit mo. Ang mga Model ID ay namespaced (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` para sa custom endpoints, atbp.).
 
 **Pagpapakita ng gastos:** Ibinabalik ng OpenRouter ang eksaktong na-bill na gastos kapag naaangkop. Ang iba pang mga provider ay gumagamit ng **tinataya** na gastos mula sa pampublikong presyo ng modelo ng OpenRouter kapag available ang OpenRouter key; kung wala ito, ang gastos na hindi OpenRouter ay maaaring ipakita bilang `0`. Ang mga pagtataya ay hindi mga invoice.
 

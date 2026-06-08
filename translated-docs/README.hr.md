@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Također možete koristiti druge davatelje (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral API ključ                                                              |
 | `OLLAMA_URL`         | Ollama osnovni URL (npr. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API ključ                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Prikazni naziv za prilagođenog pružatelja kompatibilnog s OpenAI-jem (sva tri prilagođena polja su obavezna) |
+| `CUSTOM_PROVIDER_URL`  | Osnovni URL za prilagođenog pružatelja kompatibilnog s OpenAI-jem (npr. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API ključ za prilagođenog pružatelja kompatibilnog s OpenAI-jem                         |
+
+**Prilagođeni pružatelj kompatibilan s OpenAI-jem (web/Docker):** postavite sva tri `CUSTOM_PROVIDER_*` polja. Primjer za [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, i API ključ s [build.nvidia.com](https://build.nvidia.com/). Modeli se pojavljuju u **Naprednom** načinu rada pod Postavke → Modeli s ID-ovima poput `NVIDIA/…` (naziv pružatelja kao prefiks).
 
 **Način privatnosti:** Da biste prisilno isključili praćenje povijesti bez obzira na `config.json` ili postavke pojedinačnih korisnika, postavite `HISTORY_DISABLED` na `true` ili `1` (neovisno o velikim/malim slovima) za **web/Docker poslužiteljski proces** i/ili **glavni proces Electron desktop aplikacije** (npr. sustav ili okruženje pokretača — ne samo renderer). To onemogućuje pohranjivanje povijesti ulaza/izlaza, zaključava **Postavke → Opće postavke → Povijest** i blokira API-je vezane uz Povijest.
 
-Konfigurirajte samo davatelje usluga koje koristite. ID-ovi modela su imenski prostori (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, itd.).
+Konfigurirajte samo pružatelje koje koristite. ID-ovi modela su podijeljeni po nazivima (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` za prilagođene krajnje točke, itd.).
 
 **Prikaz troškova:** OpenRouter vraća točan naplaćeni trošak kad god je primjenjivo. Ostali davatelji koriste **procijenjeno** troškove iz javne cjenika modela OpenRoutera kada je dostupan OpenRouter ključ; bez njega, troškovi za ne-OpenRouter mogu se prikazati kao `0`. Procjene nisu računi.
 

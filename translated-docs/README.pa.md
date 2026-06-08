@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt ਕਈ ਏਆਈ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਸਮਰ�
 | `MISTRAL_API_KEY`    | ਮਿਸਟਰਲ ਏਪੀਆਈ ਕੁੰਜੀ                                                              |
 | `OLLAMA_URL`         | ਓਲਾਮਾ ਬੇਸ URL (ਜਿਵੇਂ `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API ਕੁੰਜੀ                                                                  |
+| `CUSTOM_PROVIDER_NAME` | ਇੱਕ ਕਸਟਮ OpenAI-ਸਮਾਨ ਪ੍ਰੋਵਾਈਡਰ ਲਈ ਡਿਸਪਲੇ ਨਾਮ (ਤਿੰਨੋਂ ਕਸਟਮ ਵੇਰੀਏਬਲ ਲੋੜੀਂਦੇ ਹਨ) |
+| `CUSTOM_PROVIDER_URL`  | ਇੱਕ ਕਸਟਮ OpenAI-ਸਮਾਨ ਪ੍ਰੋਵਾਈਡਰ ਲਈ ਬੇਸ URL (ਉਦਾਹਰਨ ਲਈ `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | ਇੱਕ ਕਸਟਮ OpenAI-ਸਮਾਨ ਪ੍ਰੋਵਾਈਡਰ ਲਈ API ਕੁੰਜੀ                         |
+
+**ਕਸਟਮ OpenAI-ਸਮਾਨ ਪ੍ਰੋਵਾਈਡਰ (ਵੈੱਬ/ਡੌਕਰ):** ਸਾਰੇ ਤਿੰਨ `CUSTOM_PROVIDER_*` ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ। [NVIDIA NIM](https://build.nvidia.com/) ਲਈ ਉਦਾਹਰਨ: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, ਅਤੇ [build.nvidia.com](https://build.nvidia.com/) ਤੋਂ ਇੱਕ API ਕੁੰਜੀ। ਮਾਡਲ ਸੈਟਿੰਗਾਂ → ਮਾਡਲ ਦੇ ਅਧੀਨ **ਤਕਨੀਕੀ** ਮੋਡ ਵਿੱਚ `NVIDIA/…` ਵਰਗੇ ID ਨਾਲ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ (ਪ੍ਰੀਫਿਕਸ ਵਜੋਂ ਪ੍ਰੋਵਾਈਡਰ ਨਾਮ)।
 
 **ਪ੍ਰਾਈਵੇਸੀ ਮੋਡ:** `config.json` ਜਾਂ ਯੂਜ਼ਰ ਅਨੁਸਾਰੀ ਪਸੰਦਾਂ ਤੋਂ ਬੇਪਰਵਾਹ ਇਤਿਹਾਸ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ, **ਵੈੱਬ/Docker ਸਰਵਰ ਪ੍ਰਕਿਰਿਆ** ਅਤੇ/ਜਾਂ **ਇਲੈਕਟ੍ਰਾਨ ਡੈਸਕਟਾਪ ਮੁੱਖ ਪ੍ਰਕਿਰਿਆ** ਲਈ `HISTORY_DISABLED` ਨੂੰ `true` ਜਾਂ `1` (ਅੱਖਰ-ਅਸੰਵੇਦਨਸ਼ੀਲ) ਤੇ ਸੈੱਟ ਕਰੋ (ਉਦਾਹਰਣ ਵਜੋਂ ਸਿਸਟਮ ਜਾਂ ਲਾਂਚਰ ਵਾਤਾਵਰਣ — ਸਿਰਫ਼ ਰੈਂਡਰਰ ਨਹੀਂ)। ਇਸ ਨਾਲ ਇਨਪੁਟ/ਆਉਟਪੁਟ ਇਤਿਹਾਸ ਸਟੋਰ ਕਰਨਾ ਅਸਮਰੱਥ ਹੋ ਜਾਂਦਾ ਹੈ, **ਸੈਟਿੰਗਜ਼ → ਆਮ ਸੈਟਿੰਗਾਂ → ਇਤਿਹਾਸ** ਨੂੰ ਲਾਕ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਇਤਿਹਾਸ-ਸਬੰਧਤ API ਨੂੰ ਰੋਕਿਆ ਜਾਂਦਾ ਹੈ।
 
-ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰਦਾਤਾਵਾਂ ਨੂੰ ਕਾਨਫ਼ਿਗਰ ਕਰੋ ਜਿਨ੍ਹਾਂ ਦੀ ਤੁਸੀਂ ਵਰਤੋਂ ਕਰਦੇ ਹੋ। ਮਾਡਲ ਆਈਡੀਜ਼ ਨਾਮਕ ਖੇਤਰ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਆਦਿ) ਹਨ।
+ਸਿਰਫ਼ ਉਹਨਾਂ ਪ੍ਰੋਵਾਈਡਰਾਂ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰੋ ਜੋ ਤੁਸੀਂ ਵਰਤਦੇ ਹੋ। ਮਾਡਲ ID ਨਾਮ-ਸਪੇਸਡ ਹੁੰਦੇ ਹਨ (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ਕਸਟਮ ਐਂਡਪੁਆਇੰਟਸ ਆਦਿ ਲਈ `{providerName}/…`)।
 
 **ਲਾਗਤ ਪ੍ਰਦਰਸ਼ਨ:** OpenRouter ਲਾਗੂ ਹੋਣ ਦੀ ਸਥਿਤੀ ਵਿੱਚ ਸਹੀ ਬਿਲਡ ਲਾਗਤ ਵਾਪਸ ਕਰਦਾ ਹੈ। ਹੋਰ ਪ੍ਰਦਾਤਾ OpenRouter ਦੀ ਖੁੱਲ੍ਹੀ ਮਾਡਲ ਕੀਮਤ ਤੋਂ **ਅਨੁਮਾਨਿਤ** ਲਾਗਤ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਨ ਜਦੋਂ OpenRouter ਕੁੰਜੀ ਉਪਲਬਧ ਹੁੰਦੀ ਹੈ; ਇਸ ਦੇ ਬਿਨਾਂ, ਗੈਰ-OpenRouter ਲਾਗਤ `0` ਵਜੋਂ ਦਿਖਾਈ ਦੇ ਸਕਦੀ ਹੈ। ਅਨੁਮਾਨ ਬਿੱਲ ਨਹੀਂ ਹੁੰਦੇ।
 

@@ -104,7 +104,7 @@ This guide explains how to use the app once it is installed and running. For ins
 
 To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
 
-You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
+You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, Mistral AI, or [NVIDIA](https://build.nvidia.com/) (OpenAI-compatible API).
 
 In plain language:
 
@@ -717,11 +717,11 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 <a id="api-config"></a>
 ### API config
 
-The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and **Ollama** (local models via a base URL). You only need to configure the providers you use.
+The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (local models via a base URL), and an optional **custom OpenAI-compatible provider** (name, URL, and API key — Advanced mode only). You only need to configure the providers you use.
 
 **Web application: administrator only**
 
-API keys are configured through system or Docker environment variables - they are not entered in the web UI. This page shows which providers have a key configured and lets you test each one by clicking the `Test` button.
+API keys are configured through system or Docker environment variables - they are not entered in the web UI. For the custom provider, set `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL`, and `CUSTOM_PROVIDER_API_KEY` (all three required). This page shows which providers have a key configured and lets you test each one by clicking the `Test` button.
 
 <br/>
 
@@ -737,16 +737,16 @@ API keys are configured through system or Docker environment variables - they ar
 
 **Desktop application**
 
-Use **API Config** to store API keys for each provider you use. For Ollama, enter the **base URL** instead of an API key.
+Use **API Config** to store API keys for each provider you use. For Ollama, enter the **base URL** instead of an API key. For a custom OpenAI-compatible provider (e.g. [NVIDIA NIM](https://build.nvidia.com/)), enter a **provider name**, **base URL** (such as `https://integrate.api.nvidia.com/v1`), and **API key**; all three are required. The URL and name are edited inline; use **Edit** to replace the API key. Custom provider models appear in **Advanced** mode only (Settings → Models).
 
 <br/>
 
 > 💡 **Tip** <br/>
-> If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models (such as `translategemma:4b`) locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models, or obtain a free API key from Cerebras, Google, Groq, or Mistral AI.
+> If you do not want to use an API key or pay for usage, you can [download Ollama](https://ollama.com) and run models (such as `translategemma:4b`) locally on your machine for free. Alternatively, you can create a free OpenRouter account (no credit card required) to use their free models, or obtain a free API key from Cerebras, Google, Groq, Mistral AI, or [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` for a custom endpoint named NVIDIA).
 
 To add an API key, enter the value in the text field and click `Save`. To replace an existing key, click `Edit`. To verify that a key is working, click `Test`. For the Ollama base URL, always click `Test` to check the connection.
 

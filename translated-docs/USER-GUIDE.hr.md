@@ -104,7 +104,7 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
 
 Da biste koristili Transrewrt, potreban vam je pristup barem jednom davatelju usluga umjetne inteligencije. Podržani davatelji usluga su: [OpenRouter](https://openrouter.ai) (koji nudi pristup mnogim modelima), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i [Ollama](https://ollama.com) za lokalne modele.
 
-Ne morate odabrati plaćeni model kako biste započeli. Čim dodate svoj OpenRouter API ključ, aplikacija automatski omogućuje ugrađenu **besplatnu** OpenRouter opciju. To vam omogućuje trenutno prevođenje, prepisivanje i transformaciju teksta. Alternativno, možete dobiti besplatni API ključ od Cerebras, Googlea, Groq ili Mistral AI-a.
+Ne morate odabrati plaćeni model za početak. Čim dodate svoj OpenRouter API ključ, aplikacija automatski omogućuje ugrađenu **besplatnu** OpenRouter opciju. To vam omogućuje da odmah počnete prevoditi, prepisivati i transformirati tekst. Alternativno, možete dobiti besplatni API ključ od Cerebras, Google, Groq, Mistral AI ili [NVIDIA](https://build.nvidia.com/) (API kompatibilan s OpenAI-jem).
 
 Jednostavnim riječima:
 
@@ -717,11 +717,11 @@ Koristite **Korisnici** za upravljanje korisničkim računima u web verziji. Mo�
 <a id="api-config"></a>
 ### API konfiguracija
 
-Podržani davatelji usluga su: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i **Ollama** (lokalni modeli putem osnovnog URL-a). Potrebno je konfigurirati samo davatelje usluga koje koristite.
+Podržani davatelji su: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokalni modeli putem osnovnog URL-a) i opcionalni **prilagođeni pružatelj kompatibilan s OpenAI-jem** (naziv, URL i API ključ — samo u naprednom načinu rada). Morate konfigurirati samo davatelje koje koristite.
 
 **Web aplikacija: samo administrator**
 
-API ključevi se konfiguriraju putem sustavskih ili Docker okolišnih varijabli – ne unose se u web sučelju. Ova stranica prikazuje za koje davatelje usluga je ključ konfiguriran i omogućuje testiranje svakog pojedinačno klikom na gumb `Test`.
+API ključevi se konfiguriraju putem sistemskih varijabli okruženja ili Docker varijabli okruženja - ne unose se u web korisničkom sučelju. Za prilagođenog davatelja, postavite `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` i `CUSTOM_PROVIDER_API_KEY` (sva tri su obavezna). Ova stranica prikazuje koji davatelji imaju konfiguriran ključ i omogućuje vam da ih testirate klikom na gumb `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ API ključevi se konfiguriraju putem sustavskih ili Docker okolišnih varijabli 
 
 **Desktop aplikacija**
 
-Koristite **API konfiguraciju** za pohranu API ključeva za svakog davatelja usluga kojeg koristite. Za Ollamu unesite **osnovni URL** umjesto API ključa.
+Upotrijebite **API konfiguraciju** za pohranu API ključeva za svakog davatelja kojeg koristite. Za Ollamu, unesite **osnovni URL** umjesto API ključa. Za prilagođenog davatelja kompatibilnog s OpenAI-jem (npr. [NVIDIA NIM](https://build.nvidia.com/)), unesite **naziv davatelja**, **osnovni URL** (kao što je `https://integrate.api.nvidia.com/v1`) i **API ključ**; sva tri su obavezna. URL i naziv uređuju se u retku; upotrijebite **Uredi** za zamjenu API ključa. Modeli prilagođenog davatelja pojavljuju se samo u **Naprednom** načinu rada (Postavke → Modeli).
 
 <br/>
 
 > 💡 **Savjet** <br/>
-> Ako ne želite koristiti API ključeve niti plaćati za korištenje, možete [preuzeti Ollamu](https://ollama.com) i besplatno pokretati modele (kao što je `translategemma:4b`) lokalno na svom računalu. Alternativno, možete kreirati besplatni OpenRouter račun (bez potrebe za kreditnom karticom) kako biste koristili njihove besplatne modele ili dobiti besplatni API ključ od Cerebras, Googlea, Groqa ili Mistral AI-a.
+> Ako ne želite koristiti API ključ ili plaćati korištenje, možete [preuzeti Ollamu](https://ollama.com) i besplatno pokrenuti modele (kao što je `translategemma:4b`) lokalno na svom računalu. Alternativno, možete stvoriti besplatni OpenRouter račun (nije potrebna kreditna kartica) za korištenje njihovih besplatnih modela ili dobiti besplatni API ključ od Cerebras, Google, Groq, Mistral AI ili [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Dodajte samo davatelje usluga koje trebate. U **Postavkama** > **Modeli**, svaki ID modela započinje imenom davatelja usluga (npr. `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Dodajte samo davatelje koje trebate. U **Postavke** > **Modeli**, svaki ID modela počinje s davateljem (na primjer `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` za prilagođeni kraj točke nazvan NVIDIA).
 
 Da biste dodali API ključ, unesite vrijednost u tekstualno polje i kliknite `Save`. Da biste zamijenili postojeći ključ, kliknite `Edit`. Da biste provjerili radi li ključ, kliknite `Test`. Za Ollama osnovni URL, uvijek kliknite `Test` kako biste provjerili vezu.
 

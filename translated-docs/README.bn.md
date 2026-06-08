@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 | `MISTRAL_API_KEY` | মিস্ট্রাল API কী |
 | `OLLAMA_URL` | ওলামা বেস URL (যেমন `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API কী                                                                  |
+| `CUSTOM_PROVIDER_NAME` | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য প্রদর্শনের নাম (তিনটি কাস্টম ভেরিয়েবলই প্রয়োজন) |
+| `CUSTOM_PROVIDER_URL`  | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য বেস URL (যেমন `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য API কী                         |
+
+**কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারী (ওয়েব/Docker):** তিনটি `CUSTOM_PROVIDER_*` ভেরিয়েবল সেট করুন। [NVIDIA NIM](https://build.nvidia.com/) এর জন্য উদাহরণ: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, এবং [build.nvidia.com](https://build.nvidia.com/) থেকে একটি API কী। মডেলগুলি সেটিংস → মডেলগুলির অধীনে **উন্নত** মোডে `NVIDIA/…` এর মতো আইডি সহ প্রদর্শিত হবে (প্রদানকারীর নাম উপসর্গ হিসাবে)।
 
 **গোপনীয়তা মোড:** `config.json` বা ব্যবহারকারী অনুযায়ী পছন্দের উপর নির্ভর না করে ইতিহাস ট্র্যাক বাধ্যতামূলকভাবে বন্ধ করতে, **ওয়েব/ডকার সার্ভার প্রক্রিয়া** এবং/অথবা **ইলেকট্রন ডেস্কটপ মূল প্রক্রিয়া**-এর জন্য `HISTORY_DISABLED` কে `true` বা `1` (কেস-অসংবেদী) সেট করুন (যেমন সিস্টেম বা লঞ্চার পরিবেশ — শুধুমাত্র রেন্ডারার নয়)। এটি ইনপুট/আউটপুট ইতিহাস সংরক্ষণ বন্ধ করে, **সেটিংস → সাধারণ সেটিংস → ইতিহাস** লক করে এবং ইতিহাস-সংক্রান্ত API গুলি ব্লক করে।
 
-আপনি যেসব প্রদানকারী ব্যবহার করেন তাদের জন্য শুধুমাত্র কনফিগার করুন। মডেল আইডি নেমস্পেস করা হয় (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, ইত্যাদি)।
+শুধুমাত্র আপনি যে প্রদানকারীগুলি ব্যবহার করেন সেগুলি কনফিগার করুন। মডেল আইডিগুলি নেমস্পেসড (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` কাস্টম এন্ডপয়েন্টের জন্য, ইত্যাদি)।
 
 **খরচ প্রদর্শন:** প্রযোজ্য ক্ষেত্রে ওপেনরাউটার সঠিক বিল করা খরচ প্রদান করে। অন্যান্য প্রদানকারীরা ওপেনরাউটারের পাবলিক মডেল মূল্য থেকে **আনুমানিক** খরচ ব্যবহার করে যখন একটি ওপেনরাউটার কী উপলব্ধ থাকে; এটি ছাড়া, অ-ওপেনরাউটার খরচ `0` হিসাবে দেখানো হতে পারে। অনুমানগুলি চালান নয়।
 

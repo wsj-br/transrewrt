@@ -104,7 +104,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
 
 Untuk menggunakan Transrewrt, anda perlu akses kepada sekurang-kurangnya satu penyedia AI. Penyedia yang disokong ialah: [OpenRouter](https://openrouter.ai) (yang menggabungkan banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan [Ollama](https://ollama.com) untuk model tempatan.
 
-Anda tidak perlu memilih model berbayar untuk bermula. Segera selepas anda menambah kunci API OpenRouter anda, aplikasi secara automatik akan mengaktifkan pilihan OpenRouter **percuma** terbina dalam. Ini membolehkan anda mula menterjemah, menulis semula, dan mengubah teks serta-merta. Sebagai alternatif, anda juga boleh mendapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
+Anda tidak perlu memilih model berbayar untuk bermula. Sebaik sahaja anda menambah kunci API OpenRouter anda, aplikasi akan mendayakan pilihan OpenRouter **percuma** terbina dalam secara automatik. Ini membolehkan anda mula menterjemah, menulis semula dan mengubah teks dengan segera. Sebagai alternatif, anda juga boleh mendapatkan kunci API percuma daripada Cerebras, Google, Groq, Mistral AI, atau [NVIDIA](https://build.nvidia.com/) (API serasi OpenAI).
 
 Dalam bahasa yang mudah difahami:
 
@@ -717,11 +717,11 @@ Gunakan **Pengguna** untuk mengurus akaun pengguna dalam versi web. Anda boleh m
 <a id="api-config"></a>
 ### Konfigurasi API
 
-Penyedia yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan **Ollama** (model tempatan melalui URL asas). Anda hanya perlu mengkonfigurasikan penyedia yang anda gunakan.
+Pembekal yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (model tempatan melalui URL asas), dan **pembekal serasi OpenAI tersuai** pilihan (nama, URL dan kunci API — Mod Lanjutan sahaja). Anda hanya perlu mengkonfigurasi pembekal yang anda gunakan.
 
 **Aplikasi web: pentadbir sahaja**
 
-Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker - ia tidak dimasukkan dalam UI web. Halaman ini menunjukkan penyedia mana yang mempunyai kunci yang dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang `Test`.
+Kunci API dikonfigurasikan melalui pembolehubah persekitaran sistem atau Docker — ia tidak dimasukkan dalam UI web. Untuk pembekal tersuai, tetapkan `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL`, dan `CUSTOM_PROVIDER_API_KEY` (ketiga-tiganya diperlukan). Halaman ini menunjukkan pembekal mana yang mempunyai kunci yang dikonfigurasikan dan membolehkan anda menguji setiap satu dengan mengklik butang `Test`.
 
 <br/>
 
@@ -737,16 +737,16 @@ Kunci API dikonfigurasikan melalui pemboleh ubah persekitaran sistem atau Docker
 
 **Aplikasi desktop**
 
-Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap penyedia yang anda gunakan. Untuk Ollama, masukkan **URL asas** sebagai ganti kunci API.
+Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap pembekal yang anda gunakan. Untuk Ollama, masukkan **URL asas** dan bukannya kunci API. Untuk pembekal serasi OpenAI tersuai (cth. [NVIDIA NIM](https://build.nvidia.com/)), masukkan **nama pembekal**, **URL asas** (seperti `https://integrate.api.nvidia.com/v1`), dan **kunci API**; ketiga-tiganya diperlukan. URL dan nama diedit secara setempat; gunakan **Edit** untuk menggantikan kunci API. Model pembekal tersuai muncul dalam mod **Lanjutan** sahaja (Tetapan → Model).
 
 <br/>
 
-> 💡 **Tip** <br/>
-> Jika anda tidak mahu menggunakan kunci API atau membayar penggunaan, anda boleh [muat turun Ollama](https://ollama.com) dan jalankan model (seperti `translategemma:4b`) secara tempatan pada mesin anda secara percuma. Sebagai alternatif, anda boleh cipta akaun OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma mereka, atau dapatkan kunci API percuma daripada Cerebras, Google, Groq, atau Mistral AI.
+> 💡 **Petua** <br/>
+> Jika anda tidak mahu menggunakan kunci API atau membayar untuk penggunaan, anda boleh [muat turun Ollama](https://ollama.com) dan jalankan model (seperti `translategemma:4b`) secara setempat pada mesin anda secara percuma. Sebagai alternatif, anda boleh mencipta akaun OpenRouter percuma (tiada kad kredit diperlukan) untuk menggunakan model percuma mereka, atau dapatkan kunci API percuma daripada Cerebras, Google, Groq, Mistral AI, atau [NVIDIA](https://build.nvidia.com/).
 
 <br/>
 
-- Tambah hanya penyedia yang anda perlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan penyedia (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Tambah hanya pembekal yang anda perlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan pembekal (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` untuk titik akhir tersuai bernama NVIDIA).
 
 Untuk menambah kunci API, masukkan nilai dalam ruang teks dan klik `Save`. Untuk menggantikan kunci sedia ada, klik `Edit`. Untuk mengesahkan kunci berfungsi, klik `Test`. Untuk URL asas Ollama, sentiasa klik `Test` untuk menyemak sambungan.
 

@@ -104,7 +104,7 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
 
 Transrewrt'ı kullanmak için en az bir yapay zeka sağlayıcısına erişim sahibi olmanız gerekir. Desteklenen sağlayıcılar şunlardır: [OpenRouter](https://openrouter.ai) (birçok modeli bir araya getirir), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ve yerel modeller için [Ollama](https://ollama.com).
 
-Başlarken ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı eklediğiniz anda uygulama yerleşik bir **ücretsiz** OpenRouter seçeneğini otomatik olarak etkinleştirir. Bu sayede hemen çeviri yapmaya, metinleri yeniden yazmaya ve dönüştürmeye başlayabilirsiniz. Alternatif olarak Cerebras, Google, Groq veya Mistral AI'dan ücretsiz bir API anahtarı da alabilirsiniz.
+Başlamak için ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı eklediğiniz anda uygulama otomatik olarak yerleşik bir **ücretsiz** OpenRouter seçeneğini etkinleştirir. Bu, metni hemen çevirmeye, yeniden yazmaya ve dönüştürmeye başlamanızı sağlar. Alternatif olarak, Cerebras, Google, Groq, Mistral AI veya [NVIDIA](https://build.nvidia.com/) (OpenAI uyumlu API) adresinden de ücretsiz bir API anahtarı alabilirsiniz.
 
 Basitçe:
 
@@ -716,11 +716,11 @@ Web sürümünde kullanıcı hesaplarını yönetmek için **Kullanıcılar** b�
 <a id="api-config"></a>
 ### API yapılandırması
 
-Desteklenen sağlayıcılar şunlardır: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ve **Ollama** (temel bir URL aracılığıyla yerel modeller). Sadece kullandığınız sağlayıcıları yapılandırmanız gerekir.
+Desteklenen sağlayıcılar şunlardır: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (temel URL aracılığıyla yerel modeller) ve isteğe bağlı **özel OpenAI uyumlu sağlayıcı** (ad, URL ve API anahtarı — yalnızca Gelişmiş mod). Yalnızca kullandığınız sağlayıcıları yapılandırmanız gerekir.
 
 **Web uygulaması: yalnızca yönetici**
 
-API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapılandırılır - web arayüzünde girilmez. Bu sayfa hangi sağlayıcıların anahtarla yapılandırıldığını gösterir ve her birini `Test` düğmesine tıklayarak test etmenizi sağlar.
+API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapılandırılır - web kullanıcı arayüzüne girilmez. Özel sağlayıcı için `CUSTOM_PROVIDER_NAME`, `CUSTOM_PROVIDER_URL` ve `CUSTOM_PROVIDER_API_KEY` (her üçü de gereklidir) ayarlayın. Bu sayfa, hangi sağlayıcıların yapılandırılmış bir anahtarı olduğunu gösterir ve `Test` düğmesine tıklayarak her birini test etmenizi sağlar.
 
 <br/>
 
@@ -736,16 +736,16 @@ API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapıl
 
 **Masaüstü uygulaması**
 
-Kullandığınız her sağlayıcı için API anahtarlarını depolamak üzere **API Yapılandırması** bölümünü kullanın. Ollama için bir API anahtarı yerine **temel URL** girin.
+Kullandığınız her sağlayıcı için API anahtarlarını depolamak üzere **API Yapılandırması**'nı kullanın. Ollama için API anahtarı yerine **temel URL**'yi girin. Özel bir OpenAI uyumlu sağlayıcı (örneğin [NVIDIA NIM](https://build.nvidia.com/)) için **sağlayıcı adı**, **temel URL** (örneğin `https://integrate.api.nvidia.com/v1`) ve **API anahtarı** girin; her üçü de gereklidir. URL ve ad satır içi düzenlenir; API anahtarını değiştirmek için **Düzenle**'yi kullanın. Özel sağlayıcı modelleri yalnızca **Gelişmiş** modda görünür (Ayarlar → Modeller).
 
 <br/>
 
 > 💡 **İpucu** <br/>
-> API anahtarı kullanmak istemiyor veya ücret ödemek istemiyorsanız, makinenizde ücretsiz olarak modelleri (örneğin `translategemma:4b`) çalıştırmak için [Ollama'yı indirebilirsiniz](https://ollama.com). Alternatif olarak, ücretsiz modellerini kullanmak için kredi kartı gerektirmeyen ücretsiz bir OpenRouter hesabı oluşturabilir veya Cerebras, Google, Groq veya Mistral AI'den ücretsiz bir API anahtarı alabilirsiniz.
+> Bir API anahtarı kullanmak veya kullanım için ödeme yapmak istemiyorsanız, [Ollama'yı indirebilir](https://ollama.com) ve modelleri (örneğin `translategemma:4b`) makinenizde ücretsiz olarak yerel olarak çalıştırabilirsiniz. Alternatif olarak, ücretsiz modellerini kullanmak için ücretsiz bir OpenRouter hesabı oluşturabilir (kredi kartı gerekmez) veya Cerebras, Google, Groq, Mistral AI veya [NVIDIA](https://build.nvidia.com/) adresinden ücretsiz bir API anahtarı alabilirsiniz.
 
 <br/>
 
-- Sadece ihtiyacınız olan sağlayıcıları ekleyin. **Ayarlar** > **Modeller** bölümünde, her model kimliği sağlayıcıyla başlar (örneğin `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`).
+- Yalnızca ihtiyacınız olan sağlayıcıları ekleyin. **Ayarlar** > **Modeller**'de, her model kimliği sağlayıcıyla başlar (örneğin, NVIDIA adında özel bir uç nokta için `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`).
 
 Bir API anahtarı eklemek için metin alanına değeri girin ve `Save` düğmesine tıklayın. Mevcut bir anahtarı değiştirmek için `Edit` düğmesine tıklayın. Bir anahtarın çalışıp çalışmadığını doğrulamak için `Test` düğmesine tıklayın. Ollama temel URL'si için bağlantıyı kontrol etmek üzere her zaman `Test` düğmesine tıklayın.
 

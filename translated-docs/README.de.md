@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.4.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -296,10 +296,15 @@ Sie können auch andere Anbieter verwenden (OpenAI, Anthropic, Google Gemini, De
 | `MISTRAL_API_KEY`    | Mistral-API-Schlüssel                                                              |
 | `OLLAMA_URL`         | Ollama-Basis-URL (z. B. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI-API-Schlüssel                                                                  |
+| `CUSTOM_PROVIDER_NAME` | Anzeigename für einen benutzerdefinierten OpenAI-kompatiblen Anbieter (alle drei benutzerdefinierten Variablen erforderlich) |
+| `CUSTOM_PROVIDER_URL`  | Basis-URL für einen benutzerdefinierten OpenAI-kompatiblen Anbieter (z. B. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_API_KEY` | API-Schlüssel für einen benutzerdefinierten OpenAI-kompatiblen Anbieter                         |
+
+**Benutzerdefinierter OpenAI-kompatibler Anbieter (Web/Docker):** Legen Sie alle drei `CUSTOM_PROVIDER_*`-Variablen fest. Beispiel für [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` und einen API-Schlüssel von [build.nvidia.com](https://build.nvidia.com/). Modelle erscheinen im **Erweitert**-Modus unter Einstellungen → Modelle mit IDs wie `NVIDIA/…` (Anbietername als Präfix).
 
 **Datenschutzmodus:** Um die Verlaufsprotokollierung unabhängig von `config.json` oder benutzerspezifischen Einstellungen zu deaktivieren, setzen Sie `HISTORY_DISABLED` auf `true` oder `1` (Groß-/Kleinschreibung wird nicht beachtet) für den **Web-/Docker-Server-Prozess** und/oder den **Electron-Desktop-Hauptprozess** (z. B. System- oder Starter-Umgebung — nicht nur den Renderer). Dadurch wird das Speichern von Ein- und Ausgabe-Verläufen deaktiviert, **Einstellungen → Allgemeine Einstellungen → Verlauf** gesperrt und Verlauf-bezogene APIs blockiert.
 
-Konfigurieren Sie nur die Anbieter, die Sie verwenden. Modell-IDs sind namensbasiert (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, etc.).
+Konfigurieren Sie nur die Anbieter, die Sie verwenden. Modell-IDs sind mit Namespaces versehen (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` für benutzerdefinierte Endpunkte usw.).
 
 **Kostenanzeige:** OpenRouter gibt die genauen Abrechnungskosten zurück, wenn zutreffend. Andere Anbieter verwenden **geschätzte** Kosten basierend auf den öffentlichen OpenRouter-Preisen, sofern ein OpenRouter-Schlüssel verfügbar ist; andernfalls können Nicht-OpenRouter-Kosten als `0` angezeigt werden. Schätzungen sind keine Rechnungen.
 
