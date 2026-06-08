@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.5.0] - 2026-06-08
+
 - **Added**: Custom OpenAI-compatible provider (name, URL, and API key) in Settings → API Config (Electron) and via `CUSTOM_PROVIDER_*` environment variables (web/Docker); models listed in Advanced mode when configured and reachable (e.g. NVIDIA NIM).
 - **Added**: `pnpm run check-custom-provider` script to test `CUSTOM_PROVIDER_*` and list custom provider models on the console.
 - **Changed**: Custom provider model ids use the configured provider name as prefix (e.g. `NVIDIA/nvidia/…`) instead of `custom/…`; legacy `custom/…` ids still resolve for streaming.
