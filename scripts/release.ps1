@@ -157,6 +157,13 @@ if (-not (Test-GitQuiet @('remote', 'get-url', 'origin'))) {
     exit 1
 }
 
+Write-Host "Syncing dependencies..."
+& pnpm install --no-frozen-lockfile
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "pnpm install failed — commit the updated pnpm-lock.yaml first."
+    exit 1
+}
+
 $headCommit = (git rev-parse HEAD).Trim()
 
 function Test-RemoteTagExists {

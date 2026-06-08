@@ -77,6 +77,10 @@ fi
 
 git remote get-url origin >/dev/null 2>&1 || fail "Remote 'origin' not configured."
 
+# Ensure pnpm-lock.yaml is in sync with package.json before releasing
+echo "Syncing dependencies..."
+pnpm install --no-frozen-lockfile || fail "pnpm install failed — commit the updated pnpm-lock.yaml first."
+
 HEAD_COMMIT="$(git rev-parse HEAD)"
 
 remote_tag_exists() {

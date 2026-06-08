@@ -47,6 +47,7 @@
     "presets-check": "cd dev/presets-check && node check.js -- --local --dry-run",
     "presets-check:install": "node dev/presets-check/install.js",
     "postinstall": "node scripts/electron-rebuild.js",
+    "prepackage": "pnpm install --no-frozen-lockfile",
     "reset-web-password": "node scripts/reset-web-password.js",
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
