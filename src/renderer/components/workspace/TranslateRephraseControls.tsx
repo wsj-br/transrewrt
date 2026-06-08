@@ -43,6 +43,7 @@ export function TranslateRephraseControls({
         variant="outline"
         size="sm"
         className="h-8 shrink-0 gap-1.5"
+        data-testid="translate-rephrase-button"
         disabled={rephraseDisabled}
         onMouseDown={(event) => {
           if (outputHasSelection && !rephraseDisabled) {

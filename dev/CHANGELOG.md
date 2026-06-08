@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: `data-testid="translate-run-button"` and `data-testid="translate-rephrase-button"` on Translate workspace controls for automation.
+- **Fixed**: `take-screenshots` translate sample no longer clicks the layout toggle (also emerald-styled on translate mode) instead of the Translate action button.
+- **Fixed**: `take-screenshots` translate capture runs the sample translation after each target UI locale is applied (not before), fills the React input reliably, and waits for visible output plus `[data-testid="translate-rephrase-button"]` before the screenshot.
+- **Changed**: USER-GUIDE.md — translate refinement docs: control placement, workflow step, grammar-span replacements, stop during rephrase, and all-versions context for full rephrase.
 - **Changed**: Root `pnpm presets-check` runs local dry-run from `dev/presets-check` (no git fetch).
 - **Added**: Right-click selected text in translate output to fetch word/phrase alternatives; applies as a new version (or overwrites version 5 when the version limit is reached).
 - **Added**: With text selected in translate output, **Rephrase…** opens the same word-alternatives list near the selection; without selection, **Rephrase…** still runs a full alternative translation.

@@ -189,6 +189,8 @@ const SCREENSHOT_DEFAULT_PRESET_ID = "standard";
 const SCREENSHOT_EASY_PROVIDER = "openrouter";
 /** Resolved OpenRouter model for Standard preset — used in execution history sample rows. */
 const SCREENSHOT_HISTORY_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b";
+/** Short input for translate.png so the Rephrase control is visible in the screenshot. */
+const TRANSLATE_SCREENSHOT_SAMPLE_INPUT = "this is a test";
 /** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
 const HISTORY_SAMPLE_INPUT =
   "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
@@ -519,7 +521,7 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 2500;
 
 const SCREENSHOTS = [
-  { name: "translate", prepare: prepareTranslate, capture: captureTranslate },
+  { name: "translate", prepare: prepareTranslate, capture: captureTranslate, prepareTeardownPerLocale: true },
   { name: "rewrite", prepare: prepareRewrite, capture: captureRewrite },
   { name: "transform", prepare: prepareTransform, capture: captureTransform },
   { name: "transform-prompt-edit", prepare: prepareTransformNewPrompt, capture: captureTransformNewPrompt, finalTeardown: finalTeardownTransformPromptEdit },
@@ -846,9 +848,102 @@ async function setTranslateFromToLanguages(page) {
   log("Set Translate From: Detect Language, To: Portuguese (BR).");
 }
 
+/** Set a React-controlled textarea value (Puppeteer typing alone may not update app state). */
+async function fillReactTextarea(page, selector, value) {
+  await waitForSelector(page, selector);
+  await page.click(selector);
+  await page.evaluate((sel, text) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const nativeSetter = Object.getOwnPropertyDescriptor(
+      window.HTMLTextAreaElement.prototype,
+      "value",
+    )?.set;
+    if (nativeSetter) nativeSetter.call(el, text);
+    else el.value = text;
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+  }, selector, value);
+  await wait(150);
+}
+
+/** True when sample input, model output, and Rephrase are all present. */
+async function translateSampleResultReady(page, sampleText) {
+  return page.evaluate((text) => {
+    const input = document.querySelector("textarea:not([readonly])");
+    const output = Array.from(document.querySelectorAll("textarea[readonly]")).find(
+      (ta) => String(ta.value || "").trim().length > 0,
+    );
+    const rephrase = document.querySelector("[data-testid=\"translate-rephrase-button\"]");
+    if (!input || !output || !rephrase) return false;
+    const style = window.getComputedStyle(rephrase);
+    const rect = rephrase.getBoundingClientRect();
+    const rephraseVisible =
+      style.display !== "none" &&
+      style.visibility !== "hidden" &&
+      rect.width > 0 &&
+      rect.height > 0;
+    return input.value.trim() === text && rephraseVisible;
+  }, sampleText);
+}
+
+/** Type sample text, run Translate, and wait until output and Rephrase are ready. */
+async function runTranslateSampleForScreenshot(page) {
+  const sampleText = TRANSLATE_SCREENSHOT_SAMPLE_INPUT;
+  if (await translateSampleResultReady(page, sampleText)) {
+    log("Sample translation already present; skipping.");
+    return;
+  }
+
+  log("Running sample translation (%s) before translate screenshot...", sampleText);
+  const inputSel = "textarea:not([readonly])";
+  await fillReactTextarea(page, inputSel, sampleText);
+
+  const inputValue = await page.$eval(inputSel, (el) => String(el.value || "").trim());
+  if (inputValue !== sampleText) {
+    log("Translate input value mismatch after fill (got %j); continuing anyway.", inputValue);
+  }
+
+  const runBtn = await page.$("[data-testid=\"translate-run-button\"]");
+  if (!runBtn) {
+    log("Translate run button [data-testid=translate-run-button] not found; continuing without Rephrase control.");
+    return;
+  }
+  await clickByTestId(page, "translate-run-button");
+
+  log("Waiting for sample translation output and [data-testid=translate-rephrase-button]...");
+  try {
+    await page.waitForFunction(
+      (text) => {
+        const input = document.querySelector("textarea:not([readonly])");
+        const output = Array.from(document.querySelectorAll("textarea[readonly]")).find(
+          (ta) => String(ta.value || "").trim().length > 0,
+        );
+        const rephrase = document.querySelector("[data-testid=\"translate-rephrase-button\"]");
+        if (!input || !output || !rephrase) return false;
+        const style = window.getComputedStyle(rephrase);
+        const rect = rephrase.getBoundingClientRect();
+        const rephraseVisible =
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          rect.width > 0 &&
+          rect.height > 0;
+        return input.value.trim() === text && rephraseVisible;
+      },
+      { timeout: 15000 },
+      sampleText,
+    );
+    log("Sample translation complete; Rephrase control visible.");
+  } catch (err) {
+    log("Translation did not complete within timeout: %s", err.message);
+  }
+  await wait(400);
+}
+
 async function prepareTranslate(page) {
   await clickByTestId(page, "nav-translate");
   await wait(500);
+  await runTranslateSampleForScreenshot(page);
 }
 
 async function captureTranslate(page, filePath) {

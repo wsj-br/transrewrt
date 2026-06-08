@@ -284,6 +284,7 @@ export function getTranslateStackPanels({
         </Button>
       </div>
       <Button
+        data-testid="translate-run-button"
         onClick={handleRunAction}
         className="h-10 rounded-full border-0 bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-[0_0_22px_rgba(0,209,160,0.35)] transition-shadow duration-200 hover:from-emerald-600 hover:to-teal-700 hover:shadow-[0_0_32px_rgba(0,209,160,0.5)] gap-2"
       >
