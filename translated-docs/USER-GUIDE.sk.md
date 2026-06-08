@@ -260,6 +260,7 @@ Použite **Preložiť**, keď chcete previesť text z jedného jazyka do druhéh
 6. Kliknite na **Preložiť**.
 7. Prečítajte si výsledok v **Výstup**.
 8. Použite tlačidlo na kopírovanie, ak chcete skopírovať výsledok.
+9. Voliteľne vylepšite výsledok pomocou **Preformulovať…** alebo alternatívnych slov — pozrite sa na [Vylepšenie vášho prekladu](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ V [**Nastavenia** > **Všeobecné nastavenia**](#general-settings) môžete zmen
 <a id="refining-translation"></a>
 ### Vylepšenie vášho prekladu
 
-Po úspešnom preklade môžete vylepšiť výsledok v paneli výstupu:
+Po úspešnom preklade sa **Preformulovať…** a rozbaľovací zoznam verzií objavia v hlavičke výstupu, vedľa selektora jazyka **Na:**. Môžete tam vylepšiť výsledok:
 
-1. **Preformulovať…** — ak nie je v výstupe vybraný žiadny text, získate ďalší úplný preklad toho istého vstupu s iným znením. Môžete si uložiť až **päť** verzií a prepínať medzi nimi v rozbaľovacom zozname verzií. Ak je vybraný text, **Preformulovať…** otvorí zoznam alternatív slov v blízkosti výberu (rovnako ako kliknutie pravým tlačidlom myši). Bez výberu je možnosť **Preformulovať…** po dosiahnutí piatich verzií zakázaná; s výberom funguje aj pri piatich verziách (iba alternatívy slov, aktualizuje verziu 5).
-2. **Alternatívy slov** — vyberte jedno alebo viac slov vo výstupe (ak vyberiete iba časť slova, aplikácia rozšíri výber na celé slová), potom kliknite pravým tlačidlom myši alebo na **Preformulovať…**. V blízkosti výberu sa zobrazí krátky zoznam alternatív; kliknutím na jednu z nich ju nahradíte. Ak máte menej ako päť verzií, upravený výstup sa uloží ako nová verzia; pri piatich verziách sa aktualizuje iba **verzia 5**. Kliknutie pravým tlačidlom bez výberu nemá žiadny účinok. Stlačením klávesy **Esc** alebo kliknutím mimo zoznamu zrušíte zmenu bez úprav vo výstupe.
-3. **Náklady** — každý úplný príkaz **Preformulovať…** (bez výberu) a každá požiadavka na alternatívu slov znova použije model a môže zvýšiť náklady na používanie (rovnako ako pri bežnom preklade).
+1. **Preformulovať…** — bez vybraného textu vo výstupe získate ďalší úplný preklad rovnakého vstupu s iným znením. Model prijíma každú verziu, ktorú už máte, takže nové znenie sa môže líšiť od všetkých predchádzajúcich. Môžete uložiť až **päť** verzií a prepínať medzi nimi v rozbaľovacom zozname verzií. Pri vybranom texte **Preformulovať…** otvorí alternatívy slov blízko výberu (rovnako ako pravé kliknutie). Bez výberu je **Preformulovať…** zakázané, ak dosiahnete päť verzií; pri výbere stále funguje pri piatich verziách (iba alternatívy slov, aktualizuje verziu 5). Keď prebieha úplné preformulovanie, kliknite na **Zastaviť preklad**, aby ste zrušili; výstup sa vráti k verzii, ktorá bola aktívna, keď sa preformulovanie začalo.
+2. **Alternatívy slov** — vyberte jedno alebo viac slov alebo krátku frázu vo výstupe (ak vyberiete iba časť slova, aplikácia rozšíri výber na celé slová), potom pravým kliknutím alebo kliknutím na **Preformulovať…**. Krátky zoznam alternatív sa objaví blízko výberu; kliknite na jednu, aby ste ju nahradili. Každá možnosť môže nahradiť mierne širší rozsah ako váš výber (napríklad susednú predložku alebo článok), takže veta zostáva gramatická. Ak máte menej ako päť verzií, upravený výstup sa uloží ako nová verzia; pri piatich verziách sa aktualizuje iba **verzia 5**. Pravé kliknutie bez výberu nerobí nič. Stlačte **Esc** alebo kliknite mimo zoznam, aby ste zrušili bez zmeny výstupu.
+3. **Náklady** — každé úplné **Preformulovať…** (bez výberu) a každá požiadavka na alternatívy slov znovu používa model a môže pridať k nákladom na používanie (rovnako ako normálny preklad).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

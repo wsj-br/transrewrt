@@ -260,6 +260,7 @@ Utilitzeu **Traduir** quan vulgueu convertir text d'un idioma a un altre.
 6. Feu clic a **Traduir**.
 7. Llegiu el resultat a **Sortida**.
 8. Utilitzeu el botó de còpia si voleu copiar el resultat.
+9. Opcionalment refina el resultat amb **Reformula…** o alternatives de paraules — vegeu [Refinant la vostra traducció](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ A [**Configuració** > **Configuració general**](#general-settings), podeu canv
 <a id="refining-translation"></a>
 ### Refinant la teva traducció
 
-Després d'una traducció exitosa, pots refinar el resultat al panell de sortida:
+Després d'una traducció exitosa, **Reformula…** i el menú desplegable de versió apareixen a la capçalera de sortida, al costat del selector de llengua **A:**. Podeu refinar el resultat allí:
 
-1. **Reformula…** — sense text seleccionat a la sortida, obté una altra traducció completa de la mateixa entrada amb una redacció diferent. Pots emmagatzemar fins a **cinc** versions i canviar entre elles al menú desplegable de versions. Amb text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que fer clic amb el botó dret). Sense selecció, **Reformula…** es desactiva un cop arribes a cinc versions; amb una selecció, encara funciona amb cinc versions (només alternatives de paraules, actualitzant la versió 5).
-2. **Alternatives de paraules** — selecciona una o més paraules a la sortida (si només seleccionis una part d'una paraula, l'aplicació amplia la selecció a paraules completes), després fes clic amb el botó dret o fes clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; fes clic a una per substituir-la. Si tens menys de cinc versions, la sortida editada es guarda com una nova versió; amb cinc versions, només es actualitza **la versió 5**. Fer clic amb el botó dret sense selecció no fa res. Prem **Esc** o fes clic fora de la llista per cancel·lar sense canviar la sortida.
-3. **Costos** — cada **Reformula…** complet (sense selecció) i cada sol·licitud d'alternativa de paraules utilitza de nou el model i pot afegir-se al cost d'ús (igual que una execució de traducció normal).
+1. **Reformula…** — sense text seleccionat a la sortida, obtindreu una altra traducció completa de la mateixa entrada amb una redacció diferent. El model rep cada versió que ja teniu, de manera que la nova redacció pot diferir de totes elles. Podeu emmagatzemar fins a **cinc** versions i canviar entre elles al menú desplegable de versió. Amb text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que fer clic amb el botó dret). Sense una selecció, **Reformula…** es desactiva un cop arribeu a cinc versions; amb una selecció, encara funciona amb cinc versions (alternatives de paraules només, actualitzant la versió 5). Mentre s'està executant una reformulació completa, feu clic a **Atura Traducció** per cancel·lar; la sortida torna a la versió que estava activa quan va començar la reformulació.
+2. **Alternatives de paraules** — seleccioneu una o més paraules o una frase curta a la sortida (si seleccioneu només part d'una paraula, l'aplicació amplia la selecció a paraules completes), després feu clic amb el botó dret o feu clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; feu clic a una per substituir-la. Cada opció pot substituir un rang lleugerament més ampli que la vostra selecció (per exemple, una preposició o article adjacent) de manera que la frase es mantingui gramatical. Si teniu menys de cinc versions, la sortida editada es guarda com una nova versió; amb cinc versions, només es actualitza **la versió 5**. Fer clic amb el botó dret sense selecció no fa res. Premeu **Esc** o feu clic fora de la llista per cancel·lar sense canviar la sortida.
+3. **Costos** — cada **Reformula…** completa (sense selecció) i cada sol·licitud d'alternativa de paraules utilitza el model novament i pot afegir-se al cost d'ús (igual que una execució de traducció normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

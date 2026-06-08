@@ -259,6 +259,7 @@ A **Fordítás** funkciót akkor használja, ha szöveget szeretne átalakítani
 6. Kattintson a(z) **Fordítás** gombra.
 7. Olvassa el az eredményt a(z) **Kimenet** mezőben.
 8. Használja a másolás gombot, ha másolni szeretné az eredményt.
+9. Opcionálisan finomíthatja az eredményt a **Hozzáadás…** vagy szószók alternatívák segítségével — lásd [A fordítás finomítása](#refining-translation).
 
 <br/>
 
@@ -290,11 +291,11 @@ A [**Beállítások** > **Általános beállítások**](#general-settings) menü
 <a id="refining-translation"></a>
 ### A fordítás finomítása
 
-Sikeres fordítás után finomíthatja az eredményt a kimeneti panelen:
+Sikeres fordítás után a **Hozzáadás…** és a verzió legördülő menü megjelenik a kimeneti fejlécben, a **Cél:** nyelvválasztó mellett. Itt finomíthatja az eredményt:
 
-1. **Átfogalmazás…** — ha a kimenetben nincs szöveg kijelölve, egy másik teljes fordítást kapsz ugyanarról a bemenetről, más megfogalmazással. Legfeljebb **öt** verziót tárolhatsz, és válthatsz közöttük a verzió legördülő menüjében. Kijelölt szöveggel a **Átfogalmazás…** szóalternatívákat nyit meg a kijelölés közelében (ugyanaz, mint a jobb kattintás). Kijelölés nélkül a **Átfogalmazás…** letiltásra kerül, amint elérted az öt verziót; kijelölés esetén azonban továbbra is működik öt verziónál (csak szóalternatívák, az 5. verzió frissítése).
-2. **Szóalternatívák** — válassz ki egy vagy több szót a kimenetben (ha csak egy szó részét választod ki, az alkalmazás a kijelölést teljes szavakra bővíti), majd kattints jobb gombbal vagy a **Átfogalmazás…** gombra. Egy rövid alternatíva lista jelenik meg a kijelölés közelében; kattints egyre, hogy helyettesítsd. Ha kevesebb mint öt verziód van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak a **5. verzió** frissül. Jobb kattintás kijelölés nélkül nem csinál semmit. Nyomd meg az **Esc** billentyűt, vagy kattints a lista kívül, hogy töröld a módosítást.
-3. **Költségek** — minden teljes **Átfogalmazás…** (kijelölés nélkül) és minden szóalternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanúgy, mint egy normál fordítási futás).
+1. **Hozzáadás…** — ha nincs kiválasztott szöveg a kimenetben, egy újabb teljes fordítást kap ugyanazzal a bemenettel, de más megfogalmazásban. A modell megkapja az összes már meglévő verziót, így az új megfogalmazás eltérhet mindegyiktől. Legfeljebb **öt** verziót tárolhat, és válthat közöttük a verzió legördülő menüben. Kiválasztott szöveg esetén a **Hozzáadás…** szószók alternatíváit nyitja meg a kiválasztás közelében (ugyanaz, mint a jobb gombos kattintás). Kiválasztás nélkül a **Hozzáadás…** letiltásra kerül, amint eléri az öt verziót; kiválasztással azonban továbbra is működik öt verziónál (csak szószók alternatívái, az 5. verzió frissítése). Amíg egy teljes újrafogalmazás fut, kattintson a **Leállítás Fordítás** gombra a megszakításhoz; a kimenet visszatér arra a verzióra, amely aktív volt, amikor az újrafogalmazás elkezdődött.
+2. **Szószók alternatívái** — válasszon ki egy vagy több szót vagy egy rövid kifejezést a kimenetben (ha csak egy szó részét választja ki, az alkalmazás kibővíti a választást teljes szavakra), majd kattintson a jobb gombbal, vagy kattintson a **Hozzáadás…** gombra. Egy rövid alternatív lista jelenik meg a kiválasztás közelében; kattintson egyre a helyettesítéshez. Minden lehetőség egy kicsit szélesebb terjedelmet is helyettesíthet, mint a kiválasztás (például egy szomszédos elöljárószó vagy névelő), így a mondat nyelvtanilag helyes marad. Ha kevesebb mint öt verziója van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak az **5. verzió** frissül. Jobb gombbal kattintva, ha nincs kiválasztás, semmi sem történik. Nyomja meg az **Esc** billentyűt, vagy kattintson a lista kívül, hogy megszakítsa anélkül, hogy megváltoztatná a kimenetet.
+3. **Költségek** — minden teljes **Hozzáadás…** (kiválasztás nélkül) és minden szószók alternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanaz, mint egy normál fordítási futás).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

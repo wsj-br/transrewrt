@@ -260,6 +260,7 @@ Tumia **Tafsiri** unapotaka kubadilisha maandishi kutoka kwa lugha moja hadi nyi
 6. Bonyeza **Tafsiri**.
 7. Soma matokeo kwenye **Pato**.
 8. Tumia kitufe cha kunakili ikiwa unataka kunakili matokeo.
+9. Chaguo la kuboresha matokeo kwa **Rephrase…** au mbadala za maneno — angalia [Kuboreshaji tafsiri yako](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings), unaweza 
 <a id="refining-translation"></a>
 ### Kurekebisha tafsiri yako
 
-Baada ya tafsiri kufanikiwa, unaweza kurekebisha matokeo katika paneli ya pato:
+Baada ya tafsiri kufanikiwa, **Rephrase…** na orodha ya toleo zinaonekana kwenye kichwa cha matokeo, karibu na mteuzi wa lugha **Kwa:**. Unaweza kuboresha matokeo hapo:
 
-1. **Tafsiri tena…** — bila maandiko yoyote yaliyochaguliwa katika toleo, pata tafsiri nyingine kamili ya maandiko sawa na yenye maneno tofauti. Unaweza kuhifadhi hadi **tano** ya matoleo na kubadilisha kati yao katika orodha ya matoleo. Ukiwa na maandiko yaliyochaguliwa, **Tafsiri tena…** inafungua chaguzi za maneno karibu na uchaguzi (sawa na kubofya-kulia). Bila uchaguzi, **Tafsiri tena…** inakuwa haifanyi kazi mara unafikia matoleo tano; ukiwa na uchaguzi, bado inafanya kazi kwa matoleo tano (chaguzi za maneno pekee, ikisasisha toleo la 5).
-2. **Chaguzi za maneno** — chagua neno moja au zaidi katika toleo (ikiwa unachagua sehemu tu ya neno, programu inapanua uchaguzi hadi maneno kamili), kisha bofya-kulia au bonyeza **Tafsiri tena…**. Orodha fupi ya chaguzi inaonekana karibu na uchaguzi; bonyeza moja ili kuibadilisha. Ikiwa una matoleo chini ya tano, toleo lililohaririwa linahifadhiwa kama toleo jipya; kwa matoleo tano, ni toleo pekee **la 5** linalosasishwa. Bofya-kulia bila uchaguzi haina athari yoyote. Bonyeza **Esc** au bonyeza nje ya orodha ili kughairi bila kubadilisha toleo.
-3. **Gharama** — kila **Tafsiri tena…** kamili (bila uchaguzi) na kila ombi la chaguo la neno hutumia modeli tena na inaweza kuongeza gharama ya matumizi (sawa na mchakato wa kawaida wa tafsiri).
+1. **Rephrase…** — bila maandiko yoyote yaliyochaguliwa kwenye matokeo, pata tafsiri nyingine kamili ya ingizo sawa na maneno tofauti. Mfano unapata kila toleo ulilonalo tayari ili maneno mapya yawe tofauti na yote. Unaweza kuhifadhi hadi **tano** ya matoleo na kubadilisha kati yao kwenye orodha ya toleo. Ukiwa na maandiko yaliyochaguliwa, **Rephrase…** inafungua mbadala za maneno karibu na uchaguzi (sawa na kubonyeza kulia). Bila uchaguzi, **Rephrase…** inazuiliwa mara unapofikia matoleo tano; ukiwa na uchaguzi, bado inafanya kazi kwa matoleo tano (mbadala za maneno pekee, ikisasisha toleo 5). Wakati kuboresha kamili kunapofanyika, bonyeza **Simamisha Tafsiri** ili kughairi; matokeo yanarudi kwenye toleo lililokuwa hai wakati kuboresha kulianza.
+2. **Mbadala za maneno** — chagua neno moja au zaidi au kifungu kifupi kwenye matokeo (ikiwa unachagua sehemu tu ya neno, programu inapanua uchaguzi hadi maneno kamili), kisha bonyeza kulia au bonyeza **Rephrase…**. Orodha fupi ya mbadala inaonekana karibu na uchaguzi; bonyeza moja ili kuibadilisha. Kila chaguo kinaweza kubadilisha sehemu pana kidogo zaidi kuliko uchaguzi wako (kwa mfano, preposition au makala iliyo karibu) ili sentensi ibaki na sarufi. Ikiwa una matoleo chini ya tano, matokeo yaliyohariri yanahifadhiwa kama toleo jipya; kwa matoleo tano, ni **toleo 5** pekee linalosasishwa. Bonyeza kulia bila uchaguzi hakufanyi chochote. Bonyeza **Esc** au bonyeza nje ya orodha ili kughairi bila kubadilisha matokeo.
+3. **Gharama** — kila **Rephrase…** kamili (bila uchaguzi) na kila ombi la mbadala za maneno hutumia mfano tena na inaweza kuongeza gharama ya matumizi (sawa na kazi ya tafsiri ya kawaida).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

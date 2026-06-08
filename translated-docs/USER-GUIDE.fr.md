@@ -260,6 +260,7 @@ Utilisez **Traduire** lorsque vous souhaitez convertir un texte d'une langue à 
 6. Cliquez sur **Traduire**.
 7. Lisez le résultat dans **Sortie**.
 8. Utilisez le bouton de copie si vous souhaitez copier le résultat.
+9. Optionnellement, affinez le résultat avec **Reformuler…** ou des alternatives de mots — voir [Affiner votre traduction](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Dans [**Paramètres** > **Paramètres généraux**](#general-settings), vous pou
 <a id="refining-translation"></a>
 ### Affiner votre traduction
 
-Après une traduction réussie, vous pouvez affiner le résultat dans le panneau de sortie :
+Après une traduction réussie, **Reformuler…** et le menu déroulant de version apparaissent dans l'en-tête de sortie, à côté du sélecteur de langue **Vers :**. Vous pouvez affiner le résultat là :
 
-1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre traduction complète de la même entrée avec une formulation différente. Vous pouvez conserver jusqu'à **cinq** versions et basculer entre elles à l'aide du menu déroulant des versions. Avec du texte sélectionné, **Reformuler…** affiche des alternatives de mots à proximité de la sélection (identique à un clic droit). Sans sélection, **Reformuler…** est désactivé une fois les cinq versions atteintes ; avec une sélection, il reste fonctionnel à cinq versions (uniquement des alternatives de mots, en mettant à jour la version 5).
-2. **Alternatives de mots** — sélectionnez un ou plusieurs mots dans la sortie (si vous ne sélectionnez qu'une partie d'un mot, l'application étend la sélection aux mots complets), puis faites un clic droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît à proximité de la sélection ; cliquez sur l'une d'elles pour la remplacer. Si vous disposez de moins de cinq versions, la sortie modifiée est enregistrée en tant que nouvelle version ; à cinq versions, seule la **version 5** est mise à jour. Un clic droit sans sélection ne produit aucun effet. Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans modifier la sortie.
-3. **Coûts** — chaque demande de **Reformuler…** complète (sans sélection) et chaque demande d'alternative de mot réutilise le modèle et peut augmenter le coût d'utilisation (identique à une exécution de traduction classique).
+1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre traduction complète du même input avec des formulations différentes. Le modèle reçoit chaque version que vous avez déjà afin que la nouvelle formulation puisse différer de toutes les autres. Vous pouvez stocker jusqu'à **cinq** versions et basculer entre elles dans le menu déroulant de version. Avec du texte sélectionné, **Reformuler…** ouvre des alternatives de mots près de la sélection (comme un clic droit). Sans sélection, **Reformuler…** est désactivé une fois que vous atteignez cinq versions ; avec une sélection, cela fonctionne toujours à cinq versions (alternatives de mots uniquement, mise à jour de la version 5). Pendant qu'une reformulation complète est en cours, cliquez sur **Arrêter Traduire** pour annuler ; la sortie revient à la version qui était active lorsque la reformulation a commencé.
+2. **Alternatives de mots** — sélectionnez un ou plusieurs mots ou une courte phrase dans la sortie (si vous sélectionnez seulement une partie d'un mot, l'application étend la sélection à des mots complets), puis cliquez avec le bouton droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît près de la sélection ; cliquez sur l'une d'elles pour la remplacer. Chaque option peut remplacer une portée légèrement plus large que votre sélection (par exemple, une préposition ou un article adjacent) afin que la phrase reste grammaticale. Si vous avez moins de cinq versions, la sortie modifiée est enregistrée comme une nouvelle version ; à cinq versions, seule **la version 5** est mise à jour. Un clic droit sans sélection ne fait rien. Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans changer la sortie.
+3. **Coûts** — chaque **Reformuler…** complet (sans sélection) et chaque demande d'alternative de mot utilise à nouveau le modèle et peut ajouter au coût d'utilisation (comme lors d'une exécution de traduction normale).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

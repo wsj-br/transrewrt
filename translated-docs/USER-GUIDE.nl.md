@@ -260,6 +260,7 @@ Gebruik **Vertalen** wanneer u tekst van de ene taal naar de andere wilt omzette
 6. Klik op **Vertalen**.
 7. Lees het resultaat in **Uitvoer**.
 8. Gebruik de kopieerknop als u het resultaat wilt kopiëren.
+9. Optioneel het resultaat verfijnen met **Herschrijven…** of woordalternatieven — zie [Je vertaling verfijnen](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ In [**Instellingen** > **Algemene instellingen**](#general-settings) kunt u aanp
 <a id="refining-translation"></a>
 ### Je vertaling verfijnen
 
-Na een succesvolle vertaling kun je het resultaat verfijnen in het uitvoervenster:
+Na een succesvolle vertaling verschijnen **Herschrijven…** en de versie dropdown in de uitvoerheader, naast de **Naar:** taalselector. Je kunt het resultaat daar verfijnen:
 
-1. **Herschrijven…** — selecteer geen tekst in de uitvoer om een volledige nieuwe vertaling van dezelfde invoer te krijgen met andere bewoording. Je kunt maximaal **vijf** versies opslaan en hier tussen schakelen via de dropdown voor versies. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven in de buurt van de selectie (dezelfde werking als rechtermuisknop). Zonder selectie is **Herschrijven…** uitgeschakeld zodra je vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, waarbij versie 5 wordt bijgewerkt).
-2. **Woordalternatieven** — selecteer één of meer woorden in de uitvoer (als je slechts een deel van een woord selecteert, breidt de app de selectie automatisch uit naar volledige woorden), klik vervolgens met de rechtermuisknop of op **Herschrijven…**. Er verschijnt een korte lijst met alternatieven in de buurt van de selectie; klik op een optie om het te vervangen. Als je minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtermuisklik zonder selectie heeft geen effect. Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
-3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan de gebruikskosten verhogen (zelfde als een normale vertaalaanvraag).
+1. **Herschrijven…** — met geen tekst geselecteerd in de uitvoer, krijg je een volledige vertaling van dezelfde invoer met andere bewoording. Het model ontvangt elke versie die je al hebt, zodat de nieuwe bewoording kan verschillen van al deze. Je kunt tot **vijf** versies opslaan en tussen hen schakelen in de versie dropdown. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven nabij de selectie (dezelfde als rechtsklikken). Zonder selectie is **Herschrijven…** uitgeschakeld zodra je vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, versie 5 wordt bijgewerkt). Terwijl een volledige herschrijving loopt, klik op **Stop Vertalen** om te annuleren; de uitvoer keert terug naar de versie die actief was toen de herschrijving begon.
+2. **Woordalternatieven** — selecteer een of meer woorden of een korte zin in de uitvoer (als je alleen een deel van een woord selecteert, breidt de app de selectie uit naar volledige woorden), klik dan met de rechtermuisknop of klik op **Herschrijven…**. Een korte lijst met alternatieven verschijnt nabij de selectie; klik op een om deze te vervangen. Elke optie kan een iets bredere span vervangen dan je selectie (bijvoorbeeld een aangrenzende voorzetsel of lidwoord) zodat de zin grammaticaal blijft. Als je minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtsklikken zonder selectie doet niets. Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
+3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan bijdragen aan de gebruikskosten (dezelfde als een normale vertaalrun).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

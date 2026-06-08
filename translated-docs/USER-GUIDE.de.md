@@ -260,6 +260,7 @@ Verwenden Sie **Übersetzen**, wenn Sie Text von einer Sprache in eine andere ko
 6. Klicken Sie auf **Übersetzen**.
 7. Lesen Sie das Ergebnis in **Ausgabe**.
 8. Verwenden Sie die Schaltfläche Kopieren, wenn Sie das Ergebnis kopieren möchten.
+9. Optional das Ergebnis mit **Hinzufügen…** oder Wortalternativen verfeinern — siehe [Verfeinerung Ihrer Übersetzung](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) kön
 <a id="refining-translation"></a>
 ### Verfeinern Sie Ihre Übersetzung
 
-Nach einer erfolgreichen Übersetzung können Sie das Ergebnis im Ausgabebereich verfeinern:
+Nach einer erfolgreichen Übersetzung erscheinen **Hinzufügen…** und das Dropdown-Menü für die Version im Ausgabeheader, neben dem **Nach:**-Sprachauswahlfeld. Sie können das Ergebnis dort verfeinern:
 
-1. **Umformulieren…** — Wenn in der Ausgabe kein Text ausgewählt ist, wird eine vollständige Übersetzung derselben Eingabe mit abweichender Formulierung erstellt. Sie können bis zu **fünf** Versionen speichern und zwischen ihnen im Dropdown-Menü für Versionen wechseln. Ist Text ausgewählt, öffnet **Umformulieren…** Wortalternativen in der Nähe der Auswahl (entspricht einem Rechtsklick). Ohne Textauswahl ist **Umformulieren…** deaktiviert, sobald fünf Versionen erreicht sind; bei einer Auswahl funktioniert die Funktion weiterhin auch bei fünf Versionen (nur Wortalternativen, wobei Version 5 aktualisiert wird).
-2. **Wortalternativen** — Wählen Sie ein oder mehrere Wörter in der Ausgabe aus (falls nur ein Teil eines Wortes markiert ist, erweitert die App die Auswahl automatisch auf das vollständige Wort), und klicken Sie mit der rechten Maustaste oder auf **Umformulieren…**. In der Nähe der Auswahl erscheint eine kurze Liste mit Alternativen; klicken Sie auf eine Option, um sie zu ersetzen. Sind weniger als fünf Versionen vorhanden, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird ausschließlich **Version 5** aktualisiert. Ein Rechtsklick ohne Textauswahl hat keine Wirkung. Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um den Vorgang ohne Änderung der Ausgabe abzubrechen.
-3. **Kosten** — Jede vollständige **Umformulieren…**-Anfrage (ohne Auswahl) und jede Anfrage nach Wortalternativen nutzt das Modell erneut und kann die Nutzungskosten erhöhen (entspricht einem normalen Übersetzungsvorgang).
+1. **Hinzufügen…** — ohne ausgewählten Text in der Ausgabe erhalten Sie eine vollständige Übersetzung des gleichen Eingangs mit anderer Formulierung. Das Modell erhält jede Version, die Sie bereits haben, sodass die neue Formulierung von allen abweichen kann. Sie können bis zu **fünf** Versionen speichern und zwischen ihnen im Dropdown-Menü für die Version wechseln. Mit ausgewähltem Text öffnet **Hinzufügen…** Wortalternativen in der Nähe der Auswahl (gleich wie Rechtsklick). Ohne Auswahl ist **Hinzufügen…** deaktiviert, sobald Sie fünf Versionen erreicht haben; mit einer Auswahl funktioniert es weiterhin bei fünf Versionen (nur Wortalternativen, Aktualisierung der Version 5). Während eine vollständige Umformulierung läuft, klicken Sie auf **Stoppen Übersetzen**, um abzubrechen; die Ausgabe kehrt zu der Version zurück, die aktiv war, als die Umformulierung begann.
+2. **Wortalternativen** — wählen Sie ein oder mehrere Wörter oder eine kurze Phrase in der Ausgabe aus (wenn Sie nur einen Teil eines Wortes auswählen, erweitert die App die Auswahl auf vollständige Wörter), dann klicken Sie mit der rechten Maustaste oder auf **Hinzufügen…**. Eine kurze Liste von Alternativen erscheint in der Nähe der Auswahl; klicken Sie auf eine, um sie zu ersetzen. Jede Option kann einen etwas breiteren Bereich als Ihre Auswahl ersetzen (zum Beispiel eine benachbarte Präposition oder einen Artikel), sodass der Satz grammatikalisch bleibt. Wenn Sie weniger als fünf Versionen haben, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird nur **Version 5** aktualisiert. Rechtsklick ohne Auswahl hat keine Wirkung. Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um abzubrechen, ohne die Ausgabe zu ändern.
+3. **Kosten** — jede vollständige **Hinzufügen…** (keine Auswahl) und jede Anfrage nach Wortalternativen verwendet das Modell erneut und kann zu Nutzungskosten führen (gleich wie bei einem normalen Übersetzungsdurchlauf).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

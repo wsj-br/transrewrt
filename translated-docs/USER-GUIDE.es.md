@@ -260,6 +260,7 @@ Utilice **Traducir** cuando desee convertir texto de un idioma a otro.
 6. Haga clic en **Traducir**.
 7. Lea el resultado en **Salida**.
 8. Utilice el botón de copiar si desea copiar el resultado.
+9. Opcionalmente refine el resultado con **Reformular…** o alternativas de palabras — vea [Refinando su traducción](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ En [**Configuración** > **Configuración general**](#general-settings), puede c
 <a id="refining-translation"></a>
 ### Refinando tu traducción
 
-Después de una traducción exitosa, puedes refinar el resultado en el panel de salida:
+Después de una traducción exitosa, **Reformular…** y el menú desplegable de versiones aparecen en el encabezado de salida, junto al selector de idioma **A:**. Puede refinar el resultado allí:
 
-1. **Reformular…** — sin texto seleccionado en la salida, obtén otra traducción completa de la misma entrada con diferentes palabras. Puedes almacenar hasta **cinco** versiones y alternar entre ellas en el menú desplegable de versiones. Con texto seleccionado, **Reformular…** abre alternativas de palabras cerca de la selección (igual que al hacer clic derecho). Sin una selección, **Reformular…** está deshabilitado una vez que alcanzas cinco versiones; con una selección, sigue funcionando en cinco versiones (solo alternativas de palabras, actualizando la versión 5).
-2. **Alternativas de palabras** — selecciona una o más palabras en la salida (si seleccionas solo parte de una palabra, la aplicación expande la selección a palabras completas), luego haz clic derecho o haz clic en **Reformular…**. Aparece una lista corta de alternativas cerca de la selección; haz clic en una para reemplazarla. Si tienes menos de cinco versiones, la salida editada se guarda como una nueva versión; en cinco versiones, solo se actualiza **la versión 5**. Hacer clic derecho sin selección no hace nada. Presiona **Esc** o haz clic fuera de la lista para cancelar sin cambiar la salida.
-3. **Costos** — cada **Reformular…** completo (sin selección) y cada solicitud de alternativa de palabra utiliza el modelo nuevamente y puede añadir al costo de uso (igual que una ejecución de traducción normal).
+1. **Reformular…** — sin texto seleccionado en la salida, obtenga otra traducción completa de la misma entrada con una redacción diferente. El modelo recibe cada versión que ya tiene, por lo que la nueva redacción puede diferir de todas ellas. Puede almacenar hasta **cinco** versiones y alternar entre ellas en el menú desplegable de versiones. Con texto seleccionado, **Reformular…** abre alternativas de palabras cerca de la selección (igual que hacer clic derecho). Sin una selección, **Reformular…** está deshabilitado una vez que alcanza cinco versiones; con una selección, aún funciona en cinco versiones (solo alternativas de palabras, actualizando la versión 5). Mientras se está ejecutando una reformulación completa, haga clic en **Detener Traducción** para cancelar; la salida regresa a la versión que estaba activa cuando comenzó la reformulación.
+2. **Alternativas de palabras** — seleccione una o más palabras o una frase corta en la salida (si selecciona solo parte de una palabra, la aplicación expande la selección a palabras completas), luego haga clic derecho o haga clic en **Reformular…**. Aparece una lista corta de alternativas cerca de la selección; haga clic en una para reemplazarla. Cada opción puede reemplazar un rango ligeramente más amplio que su selección (por ejemplo, una preposición o artículo adyacente) para que la oración se mantenga gramatical. Si tiene menos de cinco versiones, la salida editada se guarda como una nueva versión; en cinco versiones, solo se actualiza **la versión 5**. Hacer clic derecho sin selección no hace nada. Presione **Esc** o haga clic fuera de la lista para cancelar sin cambiar la salida.
+3. **Costos** — cada **Reformular…** completo (sin selección) y cada solicitud de alternativa de palabra utiliza el modelo nuevamente y puede aumentar el costo de uso (igual que una ejecución de traducción normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

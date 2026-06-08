@@ -260,6 +260,7 @@ Gamitin ang **Isalin** kapag nais mong i-convert ang teksto mula sa isang wika p
 6. I-click ang **Translate**.
 7. Basahin ang resulta sa **Output**.
 8. Gamitin ang button na kopya kung gusto mong kopyahin ang resulta.
+9. Opsyonal na pinuhin ang resulta gamit ang **Mag-rephrase…** o mga alternatibong salita — tingnan ang [Pagpino ng iyong pagsasalin](#refining-translation).
 
 <br/>
 
@@ -291,10 +292,10 @@ Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin
 <a id="refining-translation"></a>
 ### Pagpapahusay ng iyong pagsasalin
 
-Matapos ang matagumpay na pagsasalin, maaari mong pagbutihin ang resulta sa output panel:
+Pagkatapos ng matagumpay na pagsasalin, ang **Mag-rephrase…** at ang dropdown ng bersyon ay lumalabas sa header ng output, katabi ng **Sa:** na selector ng wika. Maaari mong pinuhin ang resulta doon:
 
-1. **Mag-rephrase…** — kapag walang tekstong napili sa output, makakuha ng isa pang buong pagsasalin ng parehong input na may ibang wording. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat sa pagitan nila sa dropdown ng bersyon. Kapag may napiling teksto, ang **Mag-rephrase…** ay nagbubukas ng mga alternatibong salita malapit sa pagpili (pareho sa pag-right-click). Kung walang pagpili, ang **Mag-rephrase…** ay hindi pinagana kapag umabot ka na sa limang bersyon; sa may pagpili, ito ay gumagana pa rin sa limang bersyon (mga alternatibong salita lamang, ina-update ang bersyon 5).
-2. **Mga alternatibong salita** — pumili ng isa o higit pang mga salita sa output (kung pipiliin mo lamang ang bahagi ng isang salita, ang app ay pinalalaki ang pagpili sa buong mga salita), pagkatapos ay mag-right-click o i-click ang **Mag-rephrase…**. Isang maikling listahan ng mga alternatibo ang lilitaw malapit sa pagpili; i-click ang isa upang palitan ito. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, tanging ang **bersyon 5** lamang ang ina-update. Ang pag-right-click na walang pagpili ay walang ginagawa. Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
+1. **Mag-rephrase…** — kung walang tekstong napili sa output, makakuha ng isa pang buong pagsasalin ng parehong input na may ibang wording. Tinatanggap ng modelo ang bawat bersyon na mayroon ka na kaya ang bagong wording ay maaaring magkaiba sa lahat ng ito. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat-lipat sa mga ito sa dropdown ng bersyon. Kapag may napiling teksto, ang **Mag-rephrase…** ay nagbubukas ng mga alternatibong salita malapit sa pagpili (pareho sa pag-right-click). Kung walang pagpili, ang **Mag-rephrase…** ay hindi pinagana kapag umabot ka na sa limang bersyon; kung may pagpili, ito ay gumagana pa rin sa limang bersyon (mga alternatibong salita lamang, ina-update ang bersyon 5). Habang tumatakbo ang isang buong rephrase, i-click ang **Huminto sa Pagsasalin** upang kanselahin; ang output ay babalik sa bersyon na aktibo nang magsimula ang rephrase.
+2. **Mga alternatibong salita** — pumili ng isa o higit pang mga salita o isang maikling parirala sa output (kung pumili ka lamang ng bahagi ng isang salita, ang app ay palawakin ang pagpili sa buong mga salita), pagkatapos ay i-right-click o i-click ang **Mag-rephrase…**. Isang maikling listahan ng mga alternatibo ang lilitaw malapit sa pagpili; i-click ang isa upang palitan ito. Bawat opsyon ay maaaring palitan ang bahagyang mas malawak na saklaw kaysa sa iyong pagpili (halimbawa, isang katabing preposition o artikulo) upang manatiling grammatical ang pangungusap. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, tanging ang **bersyon 5** ang ina-update. Ang pag-right-click nang walang pagpili ay walang ginagawa. Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
 3. **Gastos** — bawat buong **Mag-rephrase…** (walang pagpili) at bawat kahilingan ng alternatibong salita ay muling gumagamit ng modelo at maaaring magdagdag sa gastos ng paggamit (pareho sa isang normal na takbo ng pagsasalin).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #

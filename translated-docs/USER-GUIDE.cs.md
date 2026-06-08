@@ -260,6 +260,7 @@ Použijte **Překlad**, chcete-li převést text z jednoho jazyka do druhého.
 6. Klikněte na **Překlad**.
 7. Přečtěte si výsledek ve **Výstupu**.
 8. Pokud chcete výsledek zkopírovat, použijte tlačítko pro kopírování.
+9. Volitelně vylepšete výsledek pomocí **Přefrázovat…** nebo alternativ slov — viz [Vylepšení vašeho překladu](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ V části [**Nastavení** > **Obecné nastavení**](#general-settings) můžete 
 <a id="refining-translation"></a>
 ### Vylepšení vašeho překladu
 
-Po úspěšném překladu můžete vylepšit výsledek v panelu výstupu:
+Po úspěšném překladu se **Přefrázovat…** a rozbalovací nabídka verzí objeví v záhlaví výstupu, vedle výběru jazyka **Na:**. Můžete tam vylepšit výsledek:
 
-1. **Přefrazovat…** — pokud není vybrán žádný text ve výstupu, získáte další plný překlad stejného vstupu s jinými slovy. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovacím menu verzí. Při vybraném textu **Přefrazovat…** otevře alternativy slov blízko výběru (stejně jako pravé tlačítko myši). Bez výběru je **Přefrazovat…** zakázáno, jakmile dosáhnete pěti verzí; při výběru to stále funguje na pěti verzích (pouze alternativy slov, aktualizující verzi 5).
-2. **Alternativy slov** — vyberte jedno nebo více slov ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přefrazovat…**. Krátký seznam alternativ se objeví blízko výběru; klikněte na jednu, abyste ji nahradili. Pokud máte méně než pět verzí, upravený výstup je uložen jako nová verze; při pěti verzích je aktualizována pouze **verze 5**. Kliknutí pravým tlačítkem bez výběru nic nedělá. Stiskněte **Esc** nebo klikněte mimo seznam, abyste zrušili bez změny výstupu.
-3. **Náklady** — každé plné **Přefrazovat…** (bez výběru) a každá žádost o alternativu slova znovu používá model a může přidat k nákladům na používání (stejně jako běžný překladový běh).
+1. **Přefrázovat…** — pokud není v výstupu vybrán žádný text, získejte další plný překlad stejného vstupu s jinými slovy. Model obdrží každou verzi, kterou již máte, takže nová slova se mohou lišit od všech ostatních. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovací nabídce verzí. Pokud je text vybrán, **Přefrázovat…** otevře alternativy slov blízko výběru (stejně jako pravé kliknutí). Bez výběru je **Přefrázovat…** zakázáno, jakmile dosáhnete pěti verzí; s výběrem to stále funguje na pěti verzích (pouze alternativy slov, aktualizace verze 5). Když probíhá plné přefrázování, klikněte na **Zastavit překlad**, abyste zrušili; výstup se vrátí k verzi, která byla aktivní, když přefrázování začalo.
+2. **Alternativy slov** — vyberte jedno nebo více slov nebo krátkou frázi ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přefrázovat…**. Krátký seznam alternativ se objeví blízko výběru; klikněte na jednu, abyste ji nahradili. Každá možnost může nahradit mírně širší rozsah než váš výběr (například sousední předložku nebo článek), takže věta zůstává gramatická. Pokud máte méně než pět verzí, upravený výstup je uložen jako nová verze; při pěti verzích je aktualizována pouze **verze 5**. Pravé kliknutí bez výběru nic nedělá. Stiskněte **Esc** nebo klikněte mimo seznam, abyste zrušili bez změny výstupu.
+3. **Náklady** — každé plné **Přefrázovat…** (bez výběru) a každá žádost o alternativu slov znovu využívá model a může přidat k nákladům na použití (stejně jako běžný překlad).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

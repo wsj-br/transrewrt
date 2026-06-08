@@ -260,6 +260,7 @@ Sử dụng **Dịch** khi bạn muốn chuyển đổi văn bản từ một ng
 6. Nhấp **Dịch**.
 7. Đọc kết quả ở phần **Đầu ra**.
 8. Sử dụng nút sao chép nếu bạn muốn sao chép kết quả.
+9. Tùy chọn tinh chỉnh kết quả với **Dịch lại…** hoặc các từ thay thế — xem [Tinh chỉnh bản dịch của bạn](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có th
 <a id="refining-translation"></a>
 ### Chỉnh sửa bản dịch của bạn
 
-Sau khi dịch thành công, bạn có thể chỉnh sửa kết quả trong bảng đầu ra:
+Sau khi bản dịch thành công, **Dịch lại…** và menu thả xuống phiên bản xuất hiện trong tiêu đề đầu ra, bên cạnh bộ chọn ngôn ngữ **Đến:**. Bạn có thể tinh chỉnh kết quả ở đó:
 
-1. **Diễn đạt lại…** — khi không có văn bản nào được chọn trong đầu ra, hệ thống sẽ tạo một bản dịch đầy đủ khác của cùng đầu vào với cách diễn đạt khác. Bạn có thể lưu tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Diễn đạt lại…** sẽ mở danh sách lựa chọn từ gần vùng chọn (tương tự như nhấp chuột phải). Nếu không chọn văn bản, **Diễn đạt lại…** sẽ bị vô hiệu hóa khi bạn đã đạt năm phiên bản; nếu có chọn văn bản, tính năng này vẫn hoạt động ở năm phiên bản (chỉ hiển thị lựa chọn từ, cập nhật phiên bản 5).
-2. **Lựa chọn từ** — chọn một hoặc nhiều từ trong đầu ra (nếu chỉ chọn một phần của từ, ứng dụng sẽ tự động mở rộng vùng chọn thành từ đầy đủ), sau đó nhấp chuột phải hoặc chọn **Diễn đạt lại…**. Một danh sách ngắn các lựa chọn thay thế sẽ xuất hiện gần vùng chọn; nhấp vào một lựa chọn để thay thế. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng phiên bản mới; khi đã đủ năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải khi không chọn gì sẽ không thực hiện thao tác nào. Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
-3. **Chi phí** — mỗi lần yêu cầu **Diễn đạt lại…** đầy đủ (không chọn văn bản) và mỗi lần yêu cầu lựa chọn từ đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (tương tự như một lần chạy dịch thông thường).
+1. **Dịch lại…** — khi không có văn bản nào được chọn trong đầu ra, nhận một bản dịch đầy đủ khác của cùng một đầu vào với cách diễn đạt khác. Mô hình nhận mọi phiên bản bạn đã có để cách diễn đạt mới có thể khác với tất cả chúng. Bạn có thể lưu tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Dịch lại…** mở các từ thay thế gần lựa chọn (giống như nhấp chuột phải). Nếu không có lựa chọn, **Dịch lại…** sẽ bị vô hiệu hóa khi bạn đạt năm phiên bản; với một lựa chọn, nó vẫn hoạt động ở năm phiên bản (chỉ từ thay thế, cập nhật phiên bản 5). Trong khi một lần dịch lại đầy đủ đang chạy, nhấp vào **Dừng Dịch** để hủy; đầu ra sẽ trở lại phiên bản đang hoạt động khi lần dịch lại bắt đầu.
+2. **Từ thay thế** — chọn một hoặc nhiều từ hoặc một cụm từ ngắn trong đầu ra (nếu bạn chỉ chọn một phần của một từ, ứng dụng sẽ mở rộng lựa chọn thành các từ đầy đủ), sau đó nhấp chuột phải hoặc nhấp vào **Dịch lại…**. Một danh sách ngắn các lựa chọn xuất hiện gần lựa chọn; nhấp vào một để thay thế. Mỗi tùy chọn có thể thay thế một khoảng rộng hơn một chút so với lựa chọn của bạn (ví dụ như một giới từ hoặc mạo từ liền kề) để câu vẫn giữ được ngữ pháp. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng một phiên bản mới; ở năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải mà không có lựa chọn sẽ không có tác dụng. Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
+3. **Chi phí** — mỗi lần **Dịch lại…** đầy đủ (không có lựa chọn) và mỗi yêu cầu từ thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (giống như một lần dịch bình thường).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

@@ -260,6 +260,7 @@ Koristite **Prevedi** kada želite pretvoriti tekst s jednog jezika na drugi.
 6. Kliknite **Prevedi**.
 7. Pročitajte rezultat u **Izlaz**.
 8. Koristite gumb za kopiranje ako želite kopirati rezultat.
+9. Opcionalno poboljšajte rezultat s **Preformuliraj…** ili alternativama za riječi — pogledajte [Poboljšanje vašeg prijevoda](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ U [**Postavke** > **Opće postavke**](#general-settings) možete promijeniti kak
 <a id="refining-translation"></a>
 ### Usavršavanje vašeg prijevoda
 
-Nakon uspješnog prevođenja, možete usavršiti rezultat u panelu izlaza:
+Nakon uspješnog prijevoda, **Preformuliraj…** i padajući izbornik verzija pojavljuju se u zaglavlju izlaza, pored odabira jezika **Do:**. Tamo možete poboljšati rezultat:
 
-1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijte još jedan puni prijevod istog unosa s drugačijim riječima. Možete pohraniti do **pet** verzija i prebacivati se između njih u padajućem izborniku verzija. Kada je tekst odabran, **Preformuliraj…** otvara alternativne riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dođete do pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažuriranje verzije 5).
-2. **Alternativne riječi** — odaberite jednu ili više riječi u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desni klik ili kliknite **Preformuliraj…**. Kratki popis alternativa pojavljuje se blizu odabira; kliknite jednu da je zamijenite. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; kod pet verzija, samo se **verzija 5** ažurira. Desni klik bez odabira ne radi ništa. Pritisnite **Esc** ili kliknite izvan popisa da biste otkazali bez promjene izlaza.
-3. **Troškovi** — svaki puni **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativnom riječi ponovo koristi model i može povećati trošak korištenja (isto kao normalno prevođenje).
+1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijate još jedan puni prijevod istog unosa s drugačijim riječima. Model prima svaku verziju koju već imate tako da se nova formulacija može razlikovati od svih njih. Možete pohraniti do **pet** verzija i prelaziti između njih u padajućem izborniku verzija. Kada je tekst odabran, **Preformuliraj…** otvara alternative za riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dosegnete pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažurira verziju 5). Dok se puni preformuliranje izvršava, kliknite **Zaustavi Prevod** da otkažete; izlaz se vraća na verziju koja je bila aktivna kada je preformuliranje započelo.
+2. **Alternativne riječi** — odaberite jednu ili više riječi ili kratku frazu u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desni klik ili kliknite **Preformuliraj…**. Kratki popis alternativa pojavljuje se blizu odabira; kliknite jednu da je zamijenite. Svaka opcija može zamijeniti nešto širi raspon od vašeg odabira (na primjer, susjedna prijedloga ili član) tako da rečenica ostane gramatička. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; pri pet verzija, samo se **verzija 5** ažurira. Desni klik bez odabira ne radi ništa. Pritisnite **Esc** ili kliknite izvan popisa da otkažete bez promjene izlaza.
+3. **Troškovi** — svaki puni **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativama riječi ponovno koristi model i može povećati trošak korištenja (isto kao normalno prevođenje).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

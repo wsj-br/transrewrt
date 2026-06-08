@@ -260,6 +260,7 @@ Använd **Översätt** när du vill konvertera text från ett språk till ett an
 6. Klicka på **Översätt**.
 7. Läs resultatet i **Utmatning**.
 8. Använd kopieringsknappen om du vill kopiera resultatet.
+9. Valfritt förfina resultatet med **Överskriv…** eller ordalternativ — se [Förfina din översättning](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du 
 <a id="refining-translation"></a>
 ### Förfina din översättning
 
-Efter en lyckad översättning kan du förfina resultatet i utdatapanelen:
+Efter en lyckad översättning visas **Överskriv…** och versionsrullgardinsmenyn i utdatahuvudet, bredvid språkvalet **Till:**. Du kan förfina resultatet där:
 
-1. **Omformulera…** — utan text vald i utdata, få en annan fullständig översättning av samma inmatning med annan formulering. Du kan spara upp till **fem** versioner och växla mellan dem i rullgardinsmenyn för versioner. Med text vald öppnar **Omformulera…** ordalternativ nära valet (samma som högerklick). Utan ett val är **Omformulera…** inaktiverat när du når fem versioner; med ett val fungerar det fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5).
-2. **Ordalternativ** — välj ett eller flera ord i utdata (om du bara väljer en del av ett ord, utökar appen valet till hela ord), klicka sedan med höger musknapp eller klicka på **Omformulera…**. En kort lista med alternativ visas nära valet; klicka på ett för att ersätta det. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan val gör ingenting. Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
-3. **Kostnader** — varje fullständig **Omformulera…** (ingen val) och varje begäran om ordalternativ använder modellen igen och kan öka användningskostnaden (samma som en normal översättningskörning).
+1. **Överskriv…** — med ingen text vald i utdata, få en annan fullständig översättning av samma inmatning med olika formuleringar. Modellen får varje version du redan har så den nya formuleringen kan skilja sig från alla. Du kan spara upp till **fem** versioner och växla mellan dem i versionsrullgardinsmenyn. Med text vald öppnar **Överskriv…** ordalternativ nära valet (samma som högerklick). Utan ett val är **Överskriv…** inaktiverat när du når fem versioner; med ett val fungerar det fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5). När en fullständig omformulering pågår, klicka på **Stoppa översättning** för att avbryta; utdata återgår till den version som var aktiv när omformuleringen startade.
+2. **Ordalternativ** — välj ett eller flera ord eller en kort fras i utdata (om du endast väljer en del av ett ord, utökar appen valet till hela ord), klicka sedan med höger musknapp eller klicka på **Överskriv…**. En kort lista med alternativ visas nära valet; klicka på ett för att ersätta det. Varje alternativ kan ersätta ett något bredare spann än ditt val (till exempel en angränsande preposition eller artikel) så att meningen förblir grammatisk. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan val gör ingenting. Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
+3. **Kostnader** — varje fullständig **Överskriv…** (ingen val) och varje begäran om ordalternativ använder modellen igen och kan öka användningskostnaden (samma som en normal översättningskörning).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

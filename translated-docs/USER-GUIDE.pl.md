@@ -260,6 +260,7 @@ Użyj opcji **Tłumacz**, gdy chcesz przetłumaczyć tekst z jednego języka na 
 6. Kliknij przycisk **Tłumacz**.
 7. Przeczytaj wynik w polu **Wyjście**.
 8. Skorzystaj z przycisku kopiowania, jeśli chcesz skopiować wynik.
+9. Opcjonalnie udoskonal wynik za pomocą **Przeformułuj…** lub alternatyw słów — zobacz [Udoskonalanie tłumaczenia](#refining-translation).
 
 <br/>
 
@@ -291,10 +292,10 @@ W sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zm
 <a id="refining-translation"></a>
 ### Udoskonalanie tłumaczenia
 
-Po udanym tłumaczeniu możesz udoskonalić wynik w panelu wyjściowym:
+Po udanym tłumaczeniu, **Przeformułuj…** oraz rozwijane menu wersji pojawiają się w nagłówku wyjścia, obok selektora języka **Do:**. Możesz tam udoskonalić wynik:
 
-1. **Przeformułuj…** — gdy nie ma zaznaczonego tekstu w wyjściu, uzyskaj pełne tłumaczenie tego samego wejścia z innymi sformułowaniami. Możesz przechować do **pięciu** wersji i przełączać się między nimi w rozwijanym menu wersji. Gdy tekst jest zaznaczony, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone, gdy osiągniesz pięć wersji; z zaznaczeniem nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5).
-2. **Alternatywy słów** — zaznacz jedno lub więcej słów w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerza zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawia się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach aktualizowana jest tylko **wersja 5**. Kliknięcie prawym przyciskiem myszy bez zaznaczenia nic nie robi. Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
+1. **Przeformułuj…** — bez zaznaczonego tekstu w wyjściu, uzyskaj pełne tłumaczenie tego samego wejścia z innym sformułowaniem. Model otrzymuje każdą wersję, którą już masz, więc nowe sformułowanie może różnić się od wszystkich. Możesz przechowywać do **pięciu** wersji i przełączać się między nimi w rozwijanym menu wersji. Przy zaznaczonym tekście, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone, gdy osiągniesz pięć wersji; przy zaznaczeniu nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5). Gdy pełne przeformułowanie jest w toku, kliknij **Zatrzymaj Tłumaczenie**, aby anulować; wyjście wraca do wersji, która była aktywna, gdy rozpoczęło się przeformułowanie.
+2. **Alternatywy słów** — zaznacz jedno lub więcej słów lub krótką frazę w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerza zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawia się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Każda opcja może zastąpić nieco szerszy zakres niż twoje zaznaczenie (na przykład sąsiedni przyimek lub artykuł), aby zdanie pozostało gramatyczne. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach, tylko **wersja 5** jest aktualizowana. Kliknięcie prawym przyciskiem myszy bez zaznaczenia nic nie robi. Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
 3. **Koszty** — każde pełne **Przeformułuj…** (bez zaznaczenia) i każde żądanie alternatywy słów ponownie wykorzystuje model i może zwiększyć koszt użytkowania (tak jak normalne uruchomienie tłumaczenia).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #

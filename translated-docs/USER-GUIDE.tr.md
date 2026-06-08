@@ -260,6 +260,7 @@ Metni bir dilden başka bir dile çevirmek istediğinizde **Çevir** seçeneğin
 6. **Çevir**'e tıklayın.
 7. Sonucu **Çıktı** alanında okuyun.
 8. Sonucu kopyalamak istiyorsanız kopyalama düğmesini kullanın.
+9. İsteğe bağlı olarak sonucu **Ekle…** veya kelime alternatifleri ile geliştirin — [Çevirinizi Geliştirme](#refining-translation) bölümüne bakın.
 
 <br/>
 
@@ -291,11 +292,11 @@ Seçtiğiniz **Üst diller** listede en üstte görünür. Bunları [**Ayarlar**
 <a id="refining-translation"></a>
 ### Çevirinizi iyileştirme
 
-Başarılı bir çeviriden sonra, sonucu çıkış panelinde iyileştirebilirsiniz:
+Başarılı bir çeviriden sonra, **Ekle…** ve sürüm açılır menüsü çıktı başlığında, **Hedef:** dil seçicisinin yanında görünür. Sonucu burada geliştirebilirsiniz:
 
-1. **Yeniden ifade et…** — çıktıdaki metin seçilmeden, aynı girdinin farklı kelimelerle başka bir tam çevirisini alırsınız. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçildiğinde, **Yeniden ifade et…** seçiminiz yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim olmadan, **Yeniden ifade et…** beş sürüme ulaştığınızda devre dışı kalır; bir seçim ile beş sürümde de çalışmaya devam eder (yalnızca kelime alternatifleri, sürüm 5'i güncelleyerek).
-2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelime seçin (eğer yalnızca bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Yeniden ifade et…** butonuna tıklayın. Seçiminiz yakınında kısa bir alternatif listesi görünür; birine tıklayarak onu değiştirebilirsiniz. Beş sürümden az varsa, düzenlenmiş çıktı yeni bir sürüm olarak kaydedilir; beş sürümde yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklamak hiçbir şey yapmaz. Değişiklik yapmadan iptal etmek için **Esc** tuşuna basın veya listenin dışına tıklayın.
-3. **Maliyetler** — her tam **Yeniden ifade et…** (seçim yok) ve her kelime alternatif talebi modeli tekrar kullanır ve kullanım maliyetine ekleyebilir (normal bir çeviri çalışmasıyla aynı).
+1. **Ekle…** — çıktıdaki metin seçilmeden, aynı girdi için farklı kelimelerle başka bir tam çeviri alın. Model, zaten sahip olduğunuz her sürümü alır, böylece yeni kelimeler hepsinden farklı olabilir. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçildiğinde, **Ekle…** seçiminiz yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim olmadan, **Ekle…** beş sürüme ulaştığınızda devre dışı kalır; bir seçim ile, yine de beş sürümde çalışır (sadece kelime alternatifleri, sürüm 5'i günceller). Tam bir yeniden ifade işlemi devam ederken, iptal etmek için **Durdur Çevir** butonuna tıklayın; çıktı, yeniden ifade işlemi başladığında aktif olan sürüme döner.
+2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelimeyi veya kısa bir ifadeyi seçin (eğer sadece bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Ekle…** butonuna tıklayın. Seçiminiz yakınında kısa bir alternatif listesi görünür; birine tıklayarak onu değiştirebilirsiniz. Her seçenek, seçiminizden biraz daha geniş bir aralığı değiştirebilir (örneğin, bitişik bir edat veya tanım) böylece cümle gramatik kalır. Beşten az sürümünüz varsa, düzenlenmiş çıktı yeni bir sürüm olarak kaydedilir; beş sürümde, yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklamak hiçbir şey yapmaz. Çıktıyı değiştirmeden iptal etmek için **Esc** tuşuna basın veya liste dışında bir yere tıklayın.
+3. **Maliyetler** — her tam **Ekle…** (seçim yok) ve her kelime-alternatif isteği modeli tekrar kullanır ve kullanım maliyetine ekleyebilir (normal bir çeviri çalışmasıyla aynı).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

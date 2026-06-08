@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.4.0] - 2026-06-08
+
 - **Added**: `data-testid="translate-run-button"` and `data-testid="translate-rephrase-button"` on Translate workspace controls for automation.
 - **Fixed**: `take-screenshots` translate sample no longer clicks the layout toggle (also emerald-styled on translate mode) instead of the Translate action button.
 - **Fixed**: `take-screenshots` translate capture runs the sample translation after each target UI locale is applied (not before), fills the React input reliably, and waits for visible output plus `[data-testid="translate-rephrase-button"]` before the screenshot.

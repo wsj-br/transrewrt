@@ -10464,11 +10464,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 292
+        "line": 293
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 214
+        "line": 215
       }
     ]
   },
@@ -12680,19 +12680,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 292
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
         "line": 293
       },
       {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 214
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 294
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 215
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 216
       }
     ]
   },
@@ -44215,11 +44215,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 292
+        "line": 293
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 214
+        "line": 215
       }
     ]
   },
@@ -44559,7 +44559,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 55
+        "line": 56
       }
     ]
   },
@@ -44644,15 +44644,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 56
+        "line": 57
       },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 58
+        "line": 59
       },
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 61
+        "line": 62
       }
     ]
   },
@@ -44737,7 +44737,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 72
+        "line": 73
       }
     ]
   },

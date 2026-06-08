@@ -260,6 +260,7 @@ Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa meny
 6. Klik **Terjemahake**.
 7. Maca asil ing **Output**.
 8. Gunakake tombol salin menawa sampeyan pengin nyalin asil kasebut.
+9. Pilihan kanggo nyaring asil nganggo **Rephrase…** utawa alternatif tembung — deleng [Nyaring terjemahanmu](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Ing [**Setelan** > **Setelan Umum**](#general-settings), sampeyan bisa ngganti c
 <a id="refining-translation"></a>
 ### Nglengkapi terjemahanmu
 
-Sawise terjemahan sukses, sampeyan bisa nglengkapi asil ing panel output:
+Sawise terjemahan sukses, **Rephrase…** lan dropdown versi muncul ing header output, ing jejere selector basa **Menyang:**. Sampeyan bisa nyaring asil ing kana:
 
-1. **Terjemahake…** — tanpa teks dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi tembung sing beda. Sampeyan bisa nyimpen nganti **lima** versi lan ganti antarane versi ing dropdown versi. Kanthi teks dipilih, **Terjemahake…** mbukak alternatif tembung cedhak pilihan (sama kaya klik-tengen). Tanpa pilihan, **Terjemahake…** dinonaktifake sawise sampeyan tekan lima versi; kanthi pilihan, isih bisa digunakake ing lima versi (alternatif tembung wae, nganyari versi 5).
-2. **Alternatif tembung** — pilih siji utawa luwih tembung ing output (yen sampeyan milih mung bagean saka tembung, aplikasi bakal ngembangake pilihan dadi tembung lengkap), banjur klik-tengen utawa klik **Terjemahake…**. Dhaptar cendhak alternatif muncul cedhak pilihan; klik siji kanggo ngganti. Yen sampeyan duwe kurang saka lima versi, output sing diedit disimpen minangka versi anyar; ing lima versi, mung **versi 5** sing diupdate. Klik-tengen tanpa pilihan ora nindakake apa-apa. Pencet **Esc** utawa klik ing njaba dhaptar kanggo batal tanpa ngganti output.
-3. **Biaya** — saben **Terjemahake…** lengkap (tanpa pilihan) lan saben permintaan alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (sama kaya proses terjemahan normal).
+1. **Rephrase…** — tanpa teks sing dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi wording sing beda. Model nampa saben versi sing wis sampeyan duwe supaya wording anyar bisa beda saka kabeh. Sampeyan bisa nyimpen nganti **lima** versi lan ganti antarane versi kasebut ing dropdown versi. Kanthi teks sing dipilih, **Rephrase…** mbukak alternatif tembung cedhak pilihan (sama kaya klik-tengen). Tanpa pilihan, **Rephrase…** dinonaktifake sawise sampeyan tekan lima versi; kanthi pilihan, isih bisa digunakake ing lima versi (alternatif tembung wae, nganyari versi 5). Nalika rephrase lengkap lagi mlaku, klik **Mandheg Terjemah** kanggo mbatalake; output bali menyang versi sing aktif nalika rephrase diwiwiti.
+2. **Alternatif tembung** — pilih siji utawa luwih tembung utawa frasa cekak ing output (yen sampeyan mung milih bagean saka tembung, aplikasi bakal ngembangake pilihan dadi tembung lengkap), banjur klik-tengen utawa klik **Rephrase…**. Dhaptar cekak alternatif muncul cedhak pilihan; klik siji kanggo ngganti. Saben pilihan bisa ngganti rentang sing luwih jembar tinimbang pilihan sampeyan (contone, preposisi utawa artikel sing cedhak) supaya ukara tetep gramatikal. Yen sampeyan duwe kurang saka lima versi, output sing diedit disimpen minangka versi anyar; ing lima versi, mung **versi 5** sing diupdate. Klik-tengen tanpa pilihan ora nindakake apa-apa. Pencet **Esc** utawa klik ing njaba dhaptar kanggo mbatalake tanpa ngganti output.
+3. **Biaya** — saben **Rephrase…** lengkap (tanpa pilihan) lan saben permintaan alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (sama kaya jalur terjemahan normal).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

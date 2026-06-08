@@ -260,6 +260,7 @@ Utilizați **Traducere** atunci când doriți să convertiți text dintr-o limb�
 6. Faceți clic pe **Traducere**.
 7. Citiți rezultatul în **Ieșire**.
 8. Utilizați butonul de copiere dacă doriți să copiați rezultatul.
+9. Opțional, rafinează rezultatul cu **Reformulare…** sau alternative de cuvinte — vezi [Rafinarea traducerii tale](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta �
 <a id="refining-translation"></a>
 ### Îmbunătățirea traducerii
 
-După o traducere reușită, puteți îmbunătăți rezultatul în panoul de ieșire:
+După o traducere reușită, **Reformulare…** și dropdown-ul versiunii apar în antetul ieșirii, lângă selectorul de limbă **Către:**. Poți rafina rezultatul acolo:
 
-1. **Reformulează…** — fără text selectat în ieșire, obține o altă traducere completă a aceleași intrări cu formulări diferite. Poți stoca până la **cinci** versiuni și comuta între ele în lista derulantă de versiuni. Cu text selectat, **Reformulează…** deschide alternative de cuvinte în apropierea selecției (la fel ca un clic dreapta). Fără o selecție, **Reformulează…** este dezactivat odată ce atingi cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5).
-2. **Alternative de cuvinte** — selectează unul sau mai multe cuvinte în ieșire (dacă selectezi doar o parte a unui cuvânt, aplicația extinde selecția la cuvinte complete), apoi fă clic dreapta sau apasă **Reformulează…**. O listă scurtă de alternative apare în apropierea selecției; fă clic pe una pentru a o înlocui. Dacă ai mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Fă clic dreapta fără selecție nu face nimic. Apasă **Esc** sau fă clic în afara listei pentru a anula fără a schimba ieșirea.
-3. **Costuri** — fiecare **Reformulează…** complet (fără selecție) și fiecare cerere de alternativă de cuvinte folosește din nou modelul și poate adăuga la costul de utilizare (la fel ca o rulare normală de traducere).
+1. **Reformulare…** — fără text selectat în ieșire, obții o altă traducere completă a aceleași intrări cu o formulare diferită. Modelul primește fiecare versiune pe care o ai deja, astfel încât noua formulare să poată diferi de toate acestea. Poți stoca până la **cinci** versiuni și să comuți între ele în dropdown-ul versiunii. Cu text selectat, **Reformulare…** deschide alternative de cuvinte aproape de selecție (la fel ca un clic dreapta). Fără o selecție, **Reformulare…** este dezactivat odată ce atingi cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5). În timp ce o reformulare completă este în curs de desfășurare, apasă **Oprește Traducerea** pentru a anula; ieșirea revine la versiunea care era activă când a început reformularea.
+2. **Alternative de cuvinte** — selectează unul sau mai multe cuvinte sau o frază scurtă în ieșire (dacă selectezi doar o parte a unui cuvânt, aplicația extinde selecția la cuvinte complete), apoi fă clic dreapta sau apasă **Reformulare…**. O listă scurtă de alternative apare aproape de selecție; apasă una pentru a o înlocui. Fiecare opțiune poate înlocui un interval ușor mai larg decât selecția ta (de exemplu, o prepoziție sau un articol adiacent) astfel încât propoziția să rămână gramatical corectă. Dacă ai mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Fă clic dreapta fără selecție nu face nimic. Apasă **Esc** sau fă clic în afara listei pentru a anula fără a schimba ieșirea.
+3. **Costuri** — fiecare **Reformulare…** completă (fără selecție) și fiecare cerere de alternativă de cuvinte folosește din nou modelul și poate adăuga la costul de utilizare (la fel ca o execuție normală de traducere).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

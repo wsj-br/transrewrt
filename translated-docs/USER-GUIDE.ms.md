@@ -260,6 +260,7 @@ Gunakan **Terjemahkan** apabila anda ingin menukar teks daripada satu bahasa ke 
 6. Klik **Terjemahkan**.
 7. Baca hasilnya dalam **Output**.
 8. Gunakan butang salin jika anda ingin menyalin hasil tersebut.
+9. Secara pilihan, perhalusi hasil dengan **Terjemah Semula…** atau alternatif perkataan — lihat [Memperhalusi terjemahan anda](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah c
 <a id="refining-translation"></a>
 ### Memperhalus terjemahan anda
 
-Setelah terjemahan berjaya, anda boleh memperhalus hasil dalam panel output:
+Selepas terjemahan berjaya, **Terjemah Semula…** dan dropdown versi muncul di tajuk output, di sebelah pemilih bahasa **Ke:**. Anda boleh memperhalusi hasil di sana:
 
-1. **Tulis semula…** — tanpa teks yang dipilih dalam output, dapatkan terjemahan penuh yang lain bagi input yang sama dengan perkataan yang berbeza. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam dropdown versi. Dengan teks yang dipilih, **Tulis semula…** membuka alternatif perkataan berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Tulis semula…** dinyahaktifkan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (alternatif perkataan sahaja, mengemas kini versi 5).
-2. **Alternatif perkataan** — pilih satu atau lebih perkataan dalam output (jika anda hanya memilih sebahagian daripada perkataan, aplikasi akan mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Tulis semula…**. Senarai pendek alternatif muncul berhampiran pilihan; klik satu untuk menggantikannya. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baru; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan tidak melakukan apa-apa. Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
-3. **Kos** — setiap **Tulis semula…** penuh (tanpa pilihan) dan setiap permintaan alternatif perkataan menggunakan model sekali lagi dan mungkin menambah kepada kos penggunaan (sama seperti larian terjemahan biasa).
+1. **Terjemah Semula…** — tanpa teks yang dipilih dalam output, dapatkan terjemahan penuh yang lain bagi input yang sama dengan perkataan yang berbeza. Model menerima setiap versi yang anda sudah ada supaya perkataan baru boleh berbeza daripada semua versi tersebut. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam dropdown versi. Dengan teks yang dipilih, **Terjemah Semula…** membuka alternatif perkataan berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Terjemah Semula…** dinyahdayakan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (alternatif perkataan sahaja, mengemas kini versi 5). Semasa terjemahan penuh sedang berjalan, klik **Henti Terjemah** untuk membatalkan; output kembali kepada versi yang aktif apabila terjemahan semula dimulakan.
+2. **Alternatif perkataan** — pilih satu atau lebih perkataan atau frasa pendek dalam output (jika anda hanya memilih sebahagian daripada perkataan, aplikasi akan mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Terjemah Semula…**. Senarai pendek alternatif muncul berhampiran pilihan; klik satu untuk menggantikannya. Setiap pilihan mungkin menggantikan jangkauan yang sedikit lebih luas daripada pilihan anda (contohnya, preposisi atau artikel yang bersebelahan) supaya ayat tetap gramatis. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baru; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan tidak melakukan apa-apa. Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
+3. **Kos** — setiap **Terjemah Semula…** penuh (tanpa pilihan) dan setiap permintaan alternatif perkataan menggunakan model sekali lagi dan mungkin menambah kepada kos penggunaan (sama seperti larian terjemahan biasa).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 

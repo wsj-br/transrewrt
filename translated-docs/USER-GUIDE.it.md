@@ -260,6 +260,7 @@ Usa **Traduci** quando desideri convertire un testo da una lingua all'altra.
 6. Fai clic su **Traduci**.
 7. Leggi il risultato in **Output**.
 8. Usa il pulsante di copia se desideri copiare il risultato.
+9. Opzionalmente affina il risultato con **Aggiungi una riformulazione…** o alternative di parole — vedi [Affinare la tua traduzione](#refining-translation).
 
 <br/>
 
@@ -291,11 +292,11 @@ In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modif
 <a id="refining-translation"></a>
 ### Affina la tua traduzione
 
-Dopo una traduzione riuscita, puoi affinare il risultato nel pannello di output:
+Dopo una traduzione riuscita, **Aggiungi una riformulazione…** e il menu a discesa delle versioni appaiono nell'intestazione dell'output, accanto al selettore di lingua **A:**. Puoi affinare il risultato lì:
 
-1. **Riformula…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Puoi memorizzare fino a **cinque** versioni e passare tra di esse nel menu a discesa delle versioni. Con il testo selezionato, **Riformula…** apre alternative di parole vicino alla selezione (stesso comportamento del clic destro). Senza una selezione, **Riformula…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona comunque a cinque versioni (solo alternative di parole, aggiornando la versione 5).
-2. **Alternative di parole** — seleziona una o più parole nell'output (se selezioni solo una parte di una parola, l'app espande la selezione a parole intere), quindi fai clic destro o clicca su **Riformula…**. Una breve lista di alternative appare vicino alla selezione; clicca su una per sostituirla. Se hai meno di cinque versioni, l'output modificato viene salvato come una nuova versione; a cinque versioni, solo **versione 5** viene aggiornata. Fai clic destro senza selezione non fa nulla. Premi **Esc** o clicca al di fuori della lista per annullare senza modificare l'output.
-3. **Costi** — ogni **Riformula…** completo (senza selezione) e ogni richiesta di alternativa di parola utilizza nuovamente il modello e può aumentare il costo di utilizzo (stesso comportamento di una normale esecuzione di traduzione).
+1. **Aggiungi una riformulazione…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Il modello riceve ogni versione che hai già, quindi la nuova formulazione può differire da tutte le altre. Puoi memorizzare fino a **cinque** versioni e passare tra di esse nel menu a discesa delle versioni. Con testo selezionato, **Aggiungi una riformulazione…** apre alternative di parole vicino alla selezione (stesso comportamento del clic destro). Senza una selezione, **Aggiungi una riformulazione…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona comunque a cinque versioni (solo alternative di parole, aggiornando la versione 5). Mentre una riformulazione completa è in esecuzione, fai clic su **Interrompi Traduzione** per annullare; l'output torna alla versione che era attiva quando è iniziata la riformulazione.
+2. **Alternative di parole** — seleziona una o più parole o una breve frase nell'output (se selezioni solo parte di una parola, l'app espande la selezione a parole complete), quindi fai clic destro o clicca su **Aggiungi una riformulazione…**. Un breve elenco di alternative appare vicino alla selezione; fai clic su una per sostituirla. Ogni opzione può sostituire un intervallo leggermente più ampio della tua selezione (ad esempio una preposizione o un articolo adiacente) in modo che la frase rimanga grammaticale. Se hai meno di cinque versioni, l'output modificato viene salvato come una nuova versione; a cinque versioni, solo **versione 5** viene aggiornata. Fare clic destro senza selezione non fa nulla. Premi **Esc** o fai clic al di fuori dell'elenco per annullare senza modificare l'output.
+3. **Costi** — ogni **Aggiungi una riformulazione…** completo (senza selezione) e ogni richiesta di alternativa di parole utilizza nuovamente il modello e può aumentare il costo di utilizzo (stesso comportamento di una normale esecuzione di traduzione).
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
